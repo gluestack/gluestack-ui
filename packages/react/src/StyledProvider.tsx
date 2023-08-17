@@ -6,8 +6,10 @@ import type { COLORMODES } from './types';
 import { platformSpecificSpaceUnits } from './utils';
 import { createGlobalStylesWeb } from './createGlobalStylesWeb';
 import { createGlobalStyles } from './createGlobalStyles';
+import { GluestackStyleSheet } from './style-sheet';
 type Config = any;
 let colorModeSet = false;
+let styleInjected = false;
 
 export const defaultConfig: { config: Config; colorMode: COLORMODES } = {
   config: {},
@@ -17,11 +19,20 @@ export const defaultConfig: { config: Config; colorMode: COLORMODES } = {
 const defaultContextData: Config = defaultConfig;
 const StyledContext = React.createContext<Config>(defaultContextData);
 
-const setCurrentColorMode = (currentColorMode: string) => {
-  if (currentColorMode) {
-    set(currentColorMode === 'dark' ? 'dark' : 'light');
+const setCurrentColorMode = (inputColorMode: string) => {
+  if (inputColorMode) {
+    // console.log(get(), '>>>>>>');
+    const currentColorMode = get();
+    if (currentColorMode !== inputColorMode) {
+      set(inputColorMode);
+    }
     colorModeSet = true;
   }
+
+  // if (inputColorMode) {
+  //   set(inputColorMode === 'dark' ? 'dark' : 'light');
+  //   colorModeSet = true;
+  // }
 };
 export const StyledProvider: React.FC<{
   config: Config;
@@ -39,6 +50,23 @@ export const StyledProvider: React.FC<{
     globalStyleInjector({ ...currentConfig, propertyTokenMap });
   }
 
+  if (!styleInjected) {
+    // setTimeout(() => {
+    GluestackStyleSheet.resolve({ ...config, propertyTokenMap });
+    GluestackStyleSheet.injectInStyle();
+    styleInjected = true;
+    // }, 1000);
+  }
+  const [styleInjectedOnMount, setState] = React.useState(false);
+
+  React.useEffect(() => {
+    if (!styleInjectedOnMount) {
+      GluestackStyleSheet.resolve({ ...config, propertyTokenMap });
+      GluestackStyleSheet.injectInStyle();
+      setState(true);
+    }
+  }, []);
+
   const currentColorMode = React.useMemo(() => {
     return colorMode ?? get() ?? 'light';
   }, [colorMode]);
@@ -47,7 +75,11 @@ export const StyledProvider: React.FC<{
     // Add gs class name
     if (Platform.OS === 'web') {
       document.documentElement.classList.add(`gs`);
+      document.documentElement.classList.add(`gs-${currentColorMode}`);
     }
+
+    // GluestackStyleSheet.resolve({ ...config, propertyTokenMap });
+    // GluestackStyleSheet.injectInStyle();
 
     onChange((currentColor: string) => {
       // only for web
@@ -67,13 +99,13 @@ export const StyledProvider: React.FC<{
     setCurrentColorMode(currentColorMode);
   }, [currentColorMode]);
 
-  // Set colormode for the first time
+  // // Set colormode for the first time
   if (!colorModeSet) {
     setCurrentColorMode(currentColorMode);
   }
 
   const globalStyleMap =
-    config.globalStyle && createGlobalStyles(config.globalStyle);
+    config?.globalStyle && createGlobalStyles(config.globalStyle);
 
   const contextValue = React.useMemo(() => {
     return { config: currentConfig, globalStyle: globalStyleMap };

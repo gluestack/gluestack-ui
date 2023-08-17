@@ -1,5 +1,14 @@
 # @gluestack-style/react
 
+## 0.2.1
+
+### Patch Changes
+
+- Boot time performance improvments [PR](https://github.com/gluestack/gluestack-style/pull/318)
+- Typing improvement
+- Styled precedence order
+- AsForwarder style injection order
+
 ## 0.1.33
 
 ### Patch Changes

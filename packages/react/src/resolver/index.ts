@@ -1,20 +1,17 @@
 // import { isWeb } from './isWeb';
 import type {
   CSSObject,
-  ITheme,
   OrderedSXResolved,
   Path,
-  StyledResolved,
   StyledValue,
-  SX,
-  SXResolved,
-  StyleIds,
-} from './types';
+  VerbosedSX,
+  VerbosedSxResolved,
+} from '../types';
 import {
   resolvedTokenization,
   resolveTokensFromConfig,
   deepMergeArray,
-} from './utils';
+} from '../utils';
 
 function getWeightBaseOnPath(path: Path) {
   const weightObject: {
@@ -213,185 +210,16 @@ export function checkAndPush(item: any, ret: any, keyToCheck: any) {
   }
 }
 
-export function getComponentResolved(orderedResolved: OrderedSXResolved) {
-  return orderedResolved.filter(
-    (item: any) => !item.meta.path?.includes('descendants')
-  );
-}
-
-export function getDescendantResolved(orderedResolved: OrderedSXResolved) {
-  return orderedResolved.filter((item: any) =>
-    item.meta.path?.includes('descendants')
-  );
-}
-
-export function getComponentResolvedBaseStyle(
-  orderedResolved: OrderedSXResolved
-) {
-  return orderedResolved.filter(
-    (item: any) =>
-      !item.meta.path?.includes('descendants') &&
-      !(
-        item.meta.path?.includes('variants') ||
-        item.meta.path?.includes('compoundVariants')
-      )
-  );
-}
-
-export function getComponentResolvedVariantStyle(
-  orderedResolved: OrderedSXResolved
-) {
-  return orderedResolved.filter(
-    (item: any) =>
-      !item.meta.path?.includes('descendants') &&
-      (item.meta.path?.includes('variants') ||
-        item.meta.path?.includes('compoundVariants'))
-  );
-}
-
-export function getDescendantResolvedBaseStyle(
-  orderedResolved: OrderedSXResolved
-) {
-  return orderedResolved.filter(
-    (item: any) =>
-      item.meta.path?.includes('descendants') &&
-      !(
-        item.meta.path?.includes('variants') ||
-        item.meta.path?.includes('compoundVariants')
-      )
-  );
-}
-
-export function getDescendantResolvedVariantStyle(
-  orderedResolved: OrderedSXResolved
-) {
-  return orderedResolved.filter(
-    (item: any) =>
-      item.meta.path?.includes('descendants') &&
-      (item.meta.path?.includes('variants') ||
-        item.meta.path?.includes('compoundVariants'))
-  );
-}
-
-export function getComponentStyleIds(arr: OrderedSXResolved): StyleIds {
-  const ret: StyleIds = {
-    baseStyle: {},
-    variants: {},
-    compoundVariants: [],
-    // sizes: {},
-  };
-  for (let i in arr) {
-    const item = arr[i];
-    checkAndPush(item, ret.baseStyle, 'baseStyle');
-
-    let variantType: string | number = '';
-    let variantName: string | number = '';
-
-    if (item?.meta?.path?.includes('variants')) {
-      variantType = item.meta.path[item.meta.path.indexOf('variants') + 1];
-      variantName = item.meta.path[item.meta.path.indexOf('variants') + 2];
-
-      if (!ret.variants[variantType]) {
-        ret.variants[variantType] = { [variantName]: { ids: [] } };
-      } else if (
-        ret.variants[variantType] &&
-        !ret.variants[variantType][variantName]
-      ) {
-        ret.variants[variantType][variantName] = { ids: [] };
-      }
-
-      checkAndPush(item, ret.variants[variantType][variantName], 'variants');
-      // console.log('styleids>>Var', ret);
-    }
-
-    // if (item?.meta?.path?.includes('variants')) {
-    //   variantType = item.meta.path[item.meta.path.indexOf('variants') + 1];
-    //   variantName = item.meta.path[item.meta.path.indexOf('variants') + 2];
-
-    //   if (!ret.variants[variantType]) {
-    //     ret.variants[variantType] = { [variantName]: { ids: [] } };
-    //   } else if (
-    //     ret.variants[variantType] &&
-    //     !ret.variants[variantType][[variantName]]
-    //   ) {
-    //     ret.variants[variantType][variantName] = { ids: [] };
-    //   }
-
-    //   checkAndPush(item, ret.variants[variantType][variantName], 'variants');
-    // }
-
-    if (item?.meta?.path?.includes('compoundVariants')) {
-      // let conditionStartIndex = item.meta.path.indexOf('compoundVariants');
-      // let condition = {} as any;
-
-      // for (let i = conditionStartIndex + 1; i < item.meta.path.length; i++) {
-      //   if ((i - conditionStartIndex) % 2 !== 0) {
-      //     condition[item.meta.path[i]] = item.meta.path[i + 1];
-      //     i++;
-      //   }
-      // }
-
-      // console.log(condition, item.meta, 'hello world');
-      // console.log('styleids>>', ret.compoundVariants);
-
-      // if (ret.compoundVariants.length === 0)
-      //   ret.compoundVariants = [{ ids: [], n: 'alsjnf' }];
-
-      const condition = item?.meta?.condition;
-      let conditionIndex = ret.compoundVariants.findIndex(
-        (item) => item.condition === condition
-      );
-      // if (
-      //   ret.compoundVariants.findIndex((item) => item.condition === condition) >
-      //   -1
-      // ) {
-      // }
-
-      if (conditionIndex === -1) {
-        ret.compoundVariants.push({ condition: item?.meta?.condition });
-        conditionIndex = ret.compoundVariants.length - 1;
-      }
-      // console.log('>>>><<<<<', conditionIndex);
-
-      checkAndPush(
-        item,
-        ret.compoundVariants[conditionIndex],
-        'compoundVariants'
-      );
-
-      // checkAndPush(item, ret.compoundVariants, 'compoundVariants');
-      // console.log('styleids>>', ret.compoundVariants);
-    }
-  }
-
-  return ret;
-}
-
-export function getDescendantStyleIds(
-  arr: any,
-  descendantStyle: any = []
-): StyleIds {
-  const ret: any = {};
-  // return ret;
-  descendantStyle.forEach((style: any) => {
-    const filteredOrderListByDescendant = arr.filter(
-      (item: any) =>
-        item.meta.path[item.meta.path.lastIndexOf('descendants') + 1] === style
-    );
-
-    ret[style] = getComponentStyleIds(filteredOrderListByDescendant);
-  });
-
-  return ret;
-}
-
 export function sxToSXResolved(
-  sx: SX,
+  sx: VerbosedSX,
   path: Path = [],
   meta: any,
-  CONFIG: any
-): SXResolved {
-  const resolvedCSSStyle = StyledValueToCSSObject(sx?.style, CONFIG);
+  CONFIG: any,
+  shouldResolve = true
+): VerbosedSxResolved {
+  const resolvedCSSStyle = shouldResolve
+    ? StyledValueToCSSObject(sx?.style, CONFIG)
+    : sx?.style;
 
   // console.log('hello here ***', sx?.style, resolvedCSSStyle);
   const styledValueResolvedWithMeta = {
@@ -410,21 +238,24 @@ export function sxToSXResolved(
 
   // console.log('sx !@#!@#!@#!@#', sx);
   // console.log(sx, '********');
-  const ret: SXResolved = {
+  const ret: VerbosedSxResolved = {
     //@ts-ignore
     styledValueResolvedWithMeta: styledValueResolvedWithMeta,
     //@ts-ignore
     queriesResolved: sx?.queries
       ? sx.queries.map((query: any, index: any) => {
-          const resolvedCondition = resolveTokensFromConfig(CONFIG, {
-            condition: query.condition,
-          }).condition;
+          const resolvedCondition = shouldResolve
+            ? resolveTokensFromConfig(CONFIG, {
+                condition: query.condition,
+              }).condition
+            : query.condition;
 
           const sxResolvedValue = sxToSXResolved(
             query.value,
             [...path, 'queries', index, query.condition],
             { queryCondition: resolvedCondition },
-            CONFIG
+            CONFIG,
+            shouldResolve
           );
 
           if (sxResolvedValue?.styledValueResolvedWithMeta) {
@@ -455,7 +286,8 @@ export function sxToSXResolved(
               sx.platform[key],
               [...path, 'platform', key],
               meta,
-              CONFIG
+              CONFIG,
+              shouldResolve
             ),
           }),
           {}
@@ -468,7 +300,8 @@ export function sxToSXResolved(
             sx.colorMode[key],
             [...path, 'colorMode', key],
             { colorMode: key, ...meta },
-            CONFIG
+            CONFIG,
+            shouldResolve
           );
 
           if (sxResolved?.styledValueResolvedWithMeta) {
@@ -489,7 +322,8 @@ export function sxToSXResolved(
               sx.state[key],
               [...path, 'state', key],
               meta,
-              CONFIG
+              CONFIG,
+              shouldResolve
             ),
           }),
           {}
@@ -504,7 +338,8 @@ export function sxToSXResolved(
               sx.descendants[key],
               [...path, 'descendants', key],
               meta,
-              CONFIG
+              CONFIG,
+              shouldResolve
             ),
           }),
           {}
@@ -529,6 +364,7 @@ export function sxToSXResolved(
 
   return ret;
 }
+
 export function StyledValueToCSSObject(
   input: StyledValue | undefined,
   CONFIG: any
@@ -540,7 +376,7 @@ export function StyledValueToCSSObject(
   return resolvedTokenization(input, CONFIG);
 }
 export function SXResolvedToOrderedSXResolved(
-  sxResolved: SXResolved
+  sxResolved: VerbosedSxResolved
 ): OrderedSXResolved {
   let orderedSXResolved: any = [];
   if (sxResolved?.styledValueResolvedWithMeta?.original) {
@@ -597,10 +433,11 @@ export function SXResolvedToOrderedSXResolved(
     (a: any, b: any) => a.meta.weight - b.meta.weight
   );
 }
-function reduceAndResolveCompoundVariants(
+export function reduceAndResolveCompoundVariants(
   compoundVariants: any,
   path: Array<string | number>,
-  CONFIG: any
+  CONFIG: any,
+  shouldResolve = true
 ) {
   const compoundVariantsResolved = compoundVariants?.map(
     (compoundVariant: any, index: number) => {
@@ -618,120 +455,12 @@ function reduceAndResolveCompoundVariants(
         {
           condition,
         },
-        CONFIG
+        CONFIG,
+        shouldResolve
       );
     }
   );
   // console.log(compoundVariantsResolved, 'compoundVariantsResolved');
 
   return compoundVariantsResolved;
-}
-export function styledToStyledResolved<Variants, P>(
-  styled: ITheme<Variants, P>,
-  path: Path = [],
-  CONFIG: any
-): StyledResolved {
-  // console.log(
-  //   'styled.compoundVariants',
-  //   reduceAndResolveCompoundVariants(styled.compoundVariants, path, CONFIG)
-  // );
-
-  return {
-    baseStyle: styled?.baseStyle
-      ? //@ts-ignore
-        sxToSXResolved(styled.baseStyle, [...path, 'baseStyle'], {}, CONFIG)
-      : undefined,
-    variants: styled?.variants
-      ? Object.keys(styled.variants).reduce(
-          (acc, key1) => ({
-            ...acc,
-            // @ts-ignore
-            [key1]: Object.keys(styled?.variants?.[key1]).reduce(
-              (acc, key) => ({
-                ...acc,
-                [key]: sxToSXResolved(
-                  //@ts-ignore
-                  styled.variants[key1][key],
-                  [...path, 'variants', key1, key],
-                  {},
-                  CONFIG
-                ),
-              }),
-              {}
-            ),
-
-            // sxToSXResolved(
-            //   //@ts-ignore
-            //   styled.variants[key],
-            //   [...path, 'variants', key],
-            //   {},
-            //   CONFIG
-            // ),
-          }),
-          {}
-        )
-      : undefined,
-    // @ts-ignore
-    compoundVariants: styled?.compoundVariants
-      ? // @ts-ignore
-        reduceAndResolveCompoundVariants(styled.compoundVariants, path, CONFIG)
-      : undefined,
-  };
-}
-
-export function styledResolvedToOrderedSXResolved(
-  styledResolved: StyledResolved
-): OrderedSXResolved {
-  const orderedSXResolved: OrderedSXResolved = [
-    //@ts-ignore
-    ...SXResolvedToOrderedSXResolved(styledResolved?.baseStyle),
-  ];
-
-  if (styledResolved.variants) {
-    Object.keys(styledResolved.variants).forEach((key) => {
-      //@ts-ignore
-      const variantSXResolved = styledResolved?.variants[key];
-      // variantSXResolved.styledValueResolvedWithMeta.meta.weight =
-      //   STYLED_PRECENDENCE.variants;
-      Object.keys(variantSXResolved).forEach((variantKey) => {
-        // @ts-ignore
-        const variantValueSXResolved = variantSXResolved[variantKey];
-
-        orderedSXResolved.push(
-          ...SXResolvedToOrderedSXResolved(variantValueSXResolved)
-        );
-      });
-    });
-  }
-
-  if (styledResolved.compoundVariants) {
-    styledResolved.compoundVariants.forEach((compoundVariant: any) => {
-      orderedSXResolved.push(...SXResolvedToOrderedSXResolved(compoundVariant));
-    });
-  }
-
-  return orderedSXResolved.sort(
-    (a: any, b: any) => a.meta.weight - b.meta.weight
-  );
-}
-export function getStyleIds(
-  orderedResolved: OrderedSXResolved,
-  componentStyleConfig: any
-): {
-  component: StyleIds;
-  descendant: StyleIds;
-} {
-  const componentOrderResolved = getComponentResolved(orderedResolved);
-  const descendantOrderResolved = getDescendantResolved(orderedResolved);
-
-  const component = getComponentStyleIds(componentOrderResolved);
-  const descendant = getDescendantStyleIds(
-    descendantOrderResolved,
-    componentStyleConfig.descendantStyle
-  );
-
-  return {
-    component,
-    descendant,
-  };
 }
