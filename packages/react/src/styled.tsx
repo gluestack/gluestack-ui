@@ -32,7 +32,7 @@ import {
 import { convertUtilityPropsToSX } from './core/convert-utility-to-sx';
 import { useStyled } from './StyledProvider';
 import { propertyTokenMap } from './propertyTokenMap';
-import { Platform } from 'react-native';
+import { Platform, StyleSheet } from 'react-native';
 import { INTERNAL_updateCSSStyleInOrderedResolved } from './updateCSSStyleInOrderedResolved';
 import { generateStylePropsFromCSSIds } from './generateStylePropsFromCSSIds';
 
@@ -1578,6 +1578,9 @@ export function verboseStyled<P, Variants>(
 
     let resolvedStyleMemo = [passingProps?.style, ...resolvedStyleProps?.style];
 
+    if (Platform.OS === 'web') {
+      resolvedStyleMemo = StyleSheet.flatten(resolvedStyleMemo);
+    }
     // if (componentProps.debug === 'BOX_TEST') {
     //   return (
     //     <Component {...resolvedStyleProps} style={resolvedStyleMemo} ref={ref}>
