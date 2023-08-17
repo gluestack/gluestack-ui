@@ -562,7 +562,10 @@ function getMergedStateAndColorModeCSSIdsAndProps(
     Object.keys(mergedVariantProps).forEach((variant) => {
       const variantObjectPath = `${variant}.${mergedVariantProps[variant]}`;
 
-      if (variant && componentStyleIds?.[variantObjectPath]) {
+      if (
+        variant &&
+        componentVariantFlatternStyleIdObject?.[variantObjectPath]
+      ) {
         const {
           cssIds: stateStleCSSFromStyleIds,
           passingProps: stateStyleProps,
@@ -1064,6 +1067,9 @@ export function verboseStyled<P, Variants>(
         ...styledContext.config,
         propertyTokenMap,
       };
+
+      GluestackStyleSheet.resolve(CONFIG);
+      GluestackStyleSheet.injectInStyle();
       Object.assign(styledSystemProps, CONFIG?.aliases);
 
       //@ts-ignore
@@ -1092,6 +1098,7 @@ export function verboseStyled<P, Variants>(
       componentCompoundVariantFlatternStyleIdObject = i;
       componentDescendantFlattenStyles = descendantFlattenStyles;
       styleHashCreated = true;
+
       /* Boot time */
     }
 
