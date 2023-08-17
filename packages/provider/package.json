@@ -42,8 +42,6 @@
     "tsconfig": "*"
   },
   "dependencies": {
-    "@gluestack-ui/overlay": "^0.1.7",
-    "@gluestack-ui/toast": "^0.1.11",
     "@react-native-aria/interactions": "^0.2.10",
     "tsconfig": "7",
     "typescript": "^4.9.4"
