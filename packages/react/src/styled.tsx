@@ -1576,10 +1576,7 @@ export function verboseStyled<P, Variants>(
 
     const AsComp: any = (as as any) || (passingProps.as as any) || undefined;
 
-    const resolvedStyleMemo = [
-      passingProps?.style,
-      ...resolvedStyleProps?.style,
-    ];
+    let resolvedStyleMemo = [passingProps?.style, ...resolvedStyleProps?.style];
 
     // if (componentProps.debug === 'BOX_TEST') {
     //   return (

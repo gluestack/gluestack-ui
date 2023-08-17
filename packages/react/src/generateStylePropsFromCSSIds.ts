@@ -130,7 +130,7 @@ export function generateStylePropsFromCSSIds(
   // console.setStartTimeStamp('generateStylePropsFromCSSIds');
   const propsStyles = Array.isArray(props?.style)
     ? props?.style
-    : [props?.stlye];
+    : [props?.style];
 
   // console.log(styleCSSIds, 'style css id');
   // for RN
@@ -168,6 +168,7 @@ export function generateStylePropsFromCSSIds(
   //   dataSet:
   //   style: getDataStyle(props, styleCSSIdsString),
   // });
+
   Object.assign(props, {
     'data-style': getDataStyle(props, styleCSSIdsString),
     'style': propsStyles ? [...styleObj, ...propsStyles] : styleObj,
