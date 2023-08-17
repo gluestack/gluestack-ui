@@ -20,12 +20,11 @@ import {
   ButtonIcon,
   ButtonSpinner,
   ButtonGroup,
-  Spinner,
   AddIcon,
   InfoIcon,
 } from './Button';
 import { Icon, EditIcon, ArrowUpIcon, Heading } from './Button';
-import { Text, Input, Box, HStack, VStack } from './Button';
+import { Text, Input, InputInput, Box, HStack, VStack } from './Button';
 import { ThreeDotsIcon, ArrowLeftIcon, Center } from './Button';
 import { transformedCode } from '../../../utils';
 import {
@@ -382,14 +381,14 @@ A loading button is a type of button component that provides visual feedback to 
     metaData={{
       code: `
         <Button isDisabled={true} bg='$darkBlue600' p='$3'>
-          <Spinner color='$white' mr='$1'/>
+          <ButtonSpinner mr='$1'/>
           <ButtonText fontWeight='$medium' fontSize='$sm'>Please wait...</ButtonText>
         </Button>
       `,
       transformCode: (code) => {
         return transformedCode(code);
       },
-      scope: { Button, ButtonText, ButtonIcon, Wrapper, Spinner },
+      scope: { Button, ButtonText, ButtonIcon, Wrapper, ButtonSpinner },
       argsType: {},
     }}
   />
@@ -454,37 +453,6 @@ A button with a link combines the interactive behavior of a button component wit
   />
 </AppProvider>
 
-#### Button Group
-
-The button group component allows users to group buttons and display them in a horizontal or vertical row for better visual representation and functionality.
-
-<AppProvider>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
-      <ButtonGroup direction="row" space="md">
-        <Button>
-          <ButtonText>Button 1</ButtonText>
-        </Button>
-        <Button >
-          <ButtonText>Button 2</ButtonText>
-        </Button>
-        <Button>
-          <ButtonText>Button 3</ButtonText>
-        </Button>
-      </ButtonGroup>
-   `,
-      transformCode: (code) => {
-        return transformedCode(code);
-      },
-      scope: { Button, ButtonText, ButtonIcon, ButtonGroup, Wrapper },
-      argsType: {},
-    }}
-  />
-</AppProvider>
-
 #### Button Group in a Card
 
 A button group within a card component incorporates multiple button components, providing a cohesive and organized interface for selecting various actions or options within the context of the card.
@@ -497,7 +465,7 @@ A button group within a card component incorporates multiple button components, 
     metaData={{
       code: `
         <HStack  p='$12'  alignItems='center'  borderColor='$backgroundLight300'
-          borderWidth='$1'   borderRadius="$lg" sx={{
+          borderWidth={1} borderRadius="$lg" sx={{
             _dark:{
               borderColor: "$backgroundDark700",
             }
@@ -510,8 +478,8 @@ A button group within a card component incorporates multiple button components, 
               We use this feedback to improve the quality of our documentation.
             </Text>
           </Box>
-          <ButtonGroup direction="row" maxHeight='$10'>
-            <Button variant='outline' mr='$2'  py='$2.5' action="secondary">
+          <ButtonGroup space='md'>
+            <Button variant='outline' py='$2.5' action="secondary">
               <ButtonText  fontSize='$sm' fontWeight='$medium'
               >
                 No
@@ -569,10 +537,10 @@ The icon component incorporates a button component, combining visual representat
         <Box>
           <Button>
           <ButtonIcon as={InfoIcon} mr="$2"/>
-            <ButtonText>LeftIcon</ButtonText>
+            <ButtonText>Left Icon</ButtonText>
           </Button>
           <Button variant="solid" mt="$2">
-          <ButtonText>RightIcon</ButtonText>
+          <ButtonText>Right Icon</ButtonText>
               <ButtonIcon as={AddIcon} ml="$2"/>
           </Button>
         </Box>
@@ -674,6 +642,7 @@ The button with full width component utilizes a button component, expanding its 
         Heading,
         Text,
         Input,
+        InputInput,
         Icon,
         Center,
         ArrowLeftIcon,

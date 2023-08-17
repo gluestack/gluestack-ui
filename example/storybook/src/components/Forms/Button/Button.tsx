@@ -10,7 +10,7 @@ import {
   Icon,
   AddIcon,
   InfoIcon,
-  Spinner,
+  ButtonSpinner,
   ArrowUpIcon,
   Heading,
   Text,
@@ -18,6 +18,7 @@ import {
   VStack,
   ThreeDotsIcon,
   Input,
+  InputInput,
 } from '../../../ui-components';
 
 import { EditIcon, ArrowLeftIcon } from 'lucide-react-native';
@@ -42,7 +43,7 @@ export {
   Icon,
   AddIcon,
   InfoIcon,
-  Spinner,
+  ButtonSpinner,
   EditIcon,
   ArrowUpIcon,
   Heading,
@@ -52,6 +53,7 @@ export {
   VStack,
   ThreeDotsIcon,
   Input,
+  InputInput,
   ArrowLeftIcon,
   Center,
 };
