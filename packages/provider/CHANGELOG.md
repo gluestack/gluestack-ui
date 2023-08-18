@@ -1,5 +1,11 @@
 # @gluestack-ui/provider
 
+## 0.1.7
+
+### Patch Changes
+
+- Fixed toast closeAll issue
+
 ## 0.1.6
 
 ### Patch Changes

@@ -10,7 +10,7 @@ import { Meta } from '@storybook/addon-docs';
 import { config } from '../../../gluestack-ui.config';
 
 <Meta title="components/Provider/GluestackUIProvider" />
-x`
+
 import {
   GluestackUIProvider,
   Pressable,
@@ -144,7 +144,9 @@ We have also exported all the providers separately so that you can use them indi
 To use only config and styled functionalities, you can use `GluestackUIStyledProvider` component.
 
 ```jsx
+
 import { GluestackUIStyledProvider, config } from '@gluestack-ui/themed';
+
 <GluestackUIStyledProvider config={config.theme}>
   <Button>
     <ButtonText>Hello World</ButtonText>
