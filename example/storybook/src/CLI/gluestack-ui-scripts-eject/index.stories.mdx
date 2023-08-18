@@ -27,7 +27,7 @@ import {
 `gluestack-ui-scripts` exports an `eject` command that
 
 - ejects all the components and gluestack-ui theme in `gluestack-ui-components` folder.
-- For Next Apps an alias of '@gluestack-ui/react' is added which will use the components from `./components` now.
+- For Next Apps an alias of '@gluestack-ui/themed' is added which will use the components from `./components` now.
 
 ```bash
 # ejects all the components and the config file
@@ -53,7 +53,7 @@ module.exports = function (api) {
         'module-resolver',
         {
           alias: {
-            '@gluestack-ui/react': path.join(__dirname, './components'),
+            '@gluestack-ui/themed': path.join(__dirname, './components'),
           },
         },
       ],
