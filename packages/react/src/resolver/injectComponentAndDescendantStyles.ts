@@ -25,34 +25,38 @@ export function injectComponentAndDescendantStyles(
   const descendantOrderResolvedVariantStyle =
     getDescendantResolvedVariantStyle(orderedResolved);
 
-  GluestackStyleSheet.declare(
+  GluestackStyleSheet.resolveByOrderResolved(
     componentOrderResolvedBaseStyle,
     type + '-base',
     styleTagId ? styleTagId : 'css-injected-boot-time',
     {},
-    true
+    {},
+    false
   );
-  GluestackStyleSheet.declare(
+  GluestackStyleSheet.resolveByOrderResolved(
     descendantOrderResolvedBaseStyle,
     type + '-descendant-base',
     styleTagId ? styleTagId : 'css-injected-boot-time-descendant',
     {},
-    true
+    {},
+    false
   );
-  GluestackStyleSheet.declare(
+  GluestackStyleSheet.resolveByOrderResolved(
     componentOrderResolvedVariantStyle,
     type + '-variant',
     styleTagId ? styleTagId : 'css-injected-boot-time',
     {},
-    true
+    {},
+    false
   );
-  GluestackStyleSheet.declare(
+  GluestackStyleSheet.resolveByOrderResolved(
     descendantOrderResolvedVariantStyle,
     type + '-descendant-variant',
     styleTagId ? styleTagId : 'css-injected-boot-time-descendant',
     {},
-    true
+    {},
+    false
   );
 
-  GluestackStyleSheet.injectInStyle();
+  // GluestackStyleSheet.injectInStyle();
 }

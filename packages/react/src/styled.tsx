@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-console */
 import React, {
@@ -813,7 +814,13 @@ function updateOrderUnResolvedMap(
     ExtendedConfig
   );
 
-  return orderedUnResolvedTheme;
+  return {
+    orderedUnResolvedTheme,
+    componentOrderResolvedBaseStyle,
+    componentOrderResolvedVariantStyle,
+    descendantOrderResolvedBaseStyle,
+    descendantOrderResolvedVariantStyle,
+  };
 }
 
 const getStyleIdsFromMap = (
@@ -935,6 +942,10 @@ export function verboseStyled<P, Variants>(
     component: StyleIds;
     descendant: StyleIds;
   };
+  let componentOrderResolvedBaseStyle: any = {};
+  let componentOrderResolvedVariantStyle: any = {};
+  let descendantOrderResolvedBaseStyle: any = {};
+  let descendantOrderResolvedVariantStyle: any = {};
   // const orderedUnResolvedTheme = updateOrderUnResolvedMap(
   //   theme,
   //   componentHash,
@@ -956,14 +967,25 @@ export function verboseStyled<P, Variants>(
       );
     }
   } else {
-    const orderedUnResolvedTheme = updateOrderUnResolvedMap(
+    const {
+      orderedUnResolvedTheme: a,
+      componentOrderResolvedBaseStyle: b,
+      componentOrderResolvedVariantStyle: c,
+      descendantOrderResolvedBaseStyle: d,
+      descendantOrderResolvedVariantStyle: f,
+    } = updateOrderUnResolvedMap(
       theme,
       componentHash,
       declarationType,
       ExtendedConfig
     );
 
-    styleIds = getStyleIds(orderedUnResolvedTheme, componentStyleConfig);
+    componentOrderResolvedBaseStyle = b;
+    componentOrderResolvedVariantStyle = c;
+    descendantOrderResolvedBaseStyle = d;
+    descendantOrderResolvedVariantStyle = f;
+
+    styleIds = getStyleIds(a, componentStyleConfig);
   }
 
   if (BUILD_TIME_PARAMS?.styleIds) {
@@ -1068,8 +1090,37 @@ export function verboseStyled<P, Variants>(
         propertyTokenMap,
       };
 
-      GluestackStyleSheet.resolve(CONFIG);
-      GluestackStyleSheet.injectInStyle();
+      // GluestackStyleSheet.resolve(CONFIG);
+      // GluestackStyleSheet.injectInStyle();
+
+      GluestackStyleSheet.resolveByOrderResolved(
+        componentOrderResolvedBaseStyle,
+        'boot-base',
+        componentHash,
+        componentExtendedConfig,
+        CONFIG
+      );
+      GluestackStyleSheet.resolveByOrderResolved(
+        componentOrderResolvedVariantStyle,
+        'boot-variant',
+        componentHash,
+        componentExtendedConfig,
+        CONFIG
+      );
+      GluestackStyleSheet.resolveByOrderResolved(
+        descendantOrderResolvedBaseStyle,
+        'boot-descendant-base',
+        componentHash,
+        componentExtendedConfig,
+        CONFIG
+      );
+      GluestackStyleSheet.resolveByOrderResolved(
+        descendantOrderResolvedVariantStyle,
+        'boot-descendant-variant',
+        componentHash,
+        componentExtendedConfig,
+        CONFIG
+      );
       Object.assign(styledSystemProps, CONFIG?.aliases);
 
       //@ts-ignore
@@ -1376,8 +1427,8 @@ export function verboseStyled<P, Variants>(
       mergedSXVariantStyleCSSIds = e;
       mergedSxStateProps = f;
       mergedSxDescendantsStyle = g;
-      setComponentStatePassingProps(stateProps);
-      setSxStatePassingProps(mergedSxStateProps);
+      // setComponentStatePassingProps(stateProps);
+      // setSxStatePassingProps(mergedSxStateProps);
 
       mergedDescendantsStyle = h;
     }
