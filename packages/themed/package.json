@@ -1,9 +1,8 @@
 {
   "name": "@gluestack-ui/themed",
   "version": "0.1.1",
-  "main": "lib/commonjs/index",
-  "module": "lib/module/index",
-  "types": "lib/typescript/index.d.ts",
+  "main": "build/src/index.js",
+  "types": "build/src/index.d.ts",
   "react-native": "src/index",
   "source": "src/index",
   "typings": "lib/typescript/index.d.ts",
@@ -12,7 +11,6 @@
     "react",
     "native",
     "react-native",
-    "button",
     "gluestack-ui",
     "universal",
     "headless",
@@ -23,25 +21,13 @@
     "nextjs"
   ],
   "scripts": {
-    "prepare": "bob build",
-    "release": "release-it",
-    "build": "bob build",
-    "clean": "rm -rf lib",
-    "dev:web": "cd example/native && yarn web --clear",
-    "storybook": "cd example/native/storybook && yarn web"
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "clean": "rm -rf lib"
   },
-  "devDependencies": {
-    "@types/react": "^18.0.22",
-    "@types/react-native": "^0.69.15",
-    "babel-plugin-transform-remove-console": "^6.9.4",
-    "react": "^18.1.0",
-    "react-dom": "^18.1.0",
-    "react-native": "^0.70.3",
-    "react-native-builder-bob": "^0.20.1",
-    "react-native-web": "^0.18.1",
-    "tsconfig": "7",
-    "typescript": "^4.7.4"
-  },
+  "author": "",
+  "license": "ISC",
   "dependencies": {
     "@babel/preset-env": "^7.22.9",
     "@babel/preset-react": "^7.22.5",
@@ -88,40 +74,19 @@
     "webpack": "^5.88.2",
     "webpack-cli": "^5.1.4"
   },
+  "devDependencies": {
+    "@types/react-native": "^0.71.6",
+    "react-native": "^0.70.7",
+    "react-native-web": "^0.18.12"
+  },
   "peerDependencies": {
+    "@gluestack-style/animation-plugin": "latest",
+    "@gluestack-style/react": "latest",
+    "@types/react-native": "^0.72.2",
+    "react-native": "^0.72.3",
+    "react-native-web": "^0.19.7",
     "react": ">=16",
     "react-dom": ">=16"
-  },
-  "react-native-builder-bob": {
-    "source": "src",
-    "output": "lib",
-    "targets": [
-      "commonjs",
-      [
-        "module"
-      ],
-      "typescript"
-    ]
-  },
-  "files": [
-    "lib/",
-    "src/"
-  ],
-  "jest": {
-    "preset": "jest-expo",
-    "transform": {
-      "^.+\\.js$": "<rootDir>/node_modules/react-native/jest/preprocessor.js"
-    },
-    "modulePathIgnorePatterns": [
-      "<rootDir>/example/*",
-      "<rootDir>/lib/"
-    ],
-    "transformIgnorePatterns": [
-      "node_modules/(?!(@react-native|react-native|expo-asset|expo-constants|@unimodules|react-native-unimodules|expo-font|react-native-svg|@expo/vector-icons|react-native-vector-icons|@react-native-aria/checkbox|@react-native-aria/interactions|@react-native-aria/button|@react-native-aria/switch|@react-native-aria/toggle|@react-native-aria/utils|@react-native-aria/*))"
-    ],
-    "setupFiles": [
-      "<rootDir>/src/jest/mock.ts"
-    ]
   },
   "release-it": {
     "git": {
@@ -133,11 +98,6 @@
     },
     "github": {
       "release": true
-    },
-    "plugins": {
-      "@release-it/conventional-changelog": {
-        "preset": "angular"
-      }
     }
   }
 }
