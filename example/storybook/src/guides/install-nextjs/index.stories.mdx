@@ -1,9 +1,9 @@
 ---
-title: Installation in Next.js project | gluestack-ui
+title: Installation in Next.js | gluestack-ui
 
 description: In this guide, we will walk you through the steps required to add gluestack-ui to your Next project.
 
-pageTitle: Install in Next.js project
+pageTitle: Install in Next.js
 
 pageDescription: In this guide, we will walk you through the steps required to add gluestack-ui to your Next project.
 
@@ -12,7 +12,7 @@ showHeader: true
 
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
-<Meta title="Getting Started/Install in Next.js" />
+<Meta title="Guides/Install in Next.js" />
 
 import { AppProvider, Link, Box, HStack, Text } from '@gluestack/design-system';
 
@@ -21,12 +21,16 @@ import { AppProvider, Link, Box, HStack, Text } from '@gluestack/design-system';
 If you are starting with a new project, you can use `npx` to create a new project with `gluestack-ui`.
 
 ```bash
-npx create-next-app-with-gluestack-ui@latest
+npx gluestack
 ```
 
-The above command will create a new Next.js project with all the components of `gluestack-ui` installed and configured.
+The above command will create a new nextJs project with `@gluestack-ui/themed` installed and configured with `@gluestack/ui-next-adapter`.
 
-You can directly use all the components of `gluestack-ui` in your project.
+You can directly use all the components by directly importing them in your project.
+
+```bash
+import { Button } from '@gluestack-ui/themed';
+```
 
 ## Existing Project
 
@@ -37,13 +41,13 @@ If you wish to install `gluestack-ui` into your existing project, you can procee
 First, install the dependencies of gluestack-ui in your project. This can be done using the following command:
 
 ```bash
-yarn add @gluestack-ui/react @gluestack/ui-next-adapter react-native-web react-native-svg@13.4.0
+yarn add @gluestack-ui/themed @gluestack/ui-next-adapter react-native-web react-native-svg@13.4.0
 ```
 
 OR
 
 ```bash
-npm i @gluestack-ui/react @gluestack/ui-next-adapter react-native-web react-native-svg@13.4.0
+npm i @gluestack-ui/themed @gluestack/ui-next-adapter react-native-web react-native-svg@13.4.0
 
 ```
 
@@ -168,7 +172,7 @@ const { withGluestackUI } = require('@gluestack/ui-next-adapter');
 
 const nextConfig = {
   reactStrictMode: true,
-  transpilePackages: ['@gluestack-ui/react'],
+  transpilePackages: ['@gluestack-ui/themed'],
 };
 
 module.exports = withGluestackUI(nextConfig);
