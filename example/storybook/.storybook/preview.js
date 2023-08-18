@@ -22,8 +22,7 @@ export const parameters = {
         ['Introduction', 'Accessibility'],
         'Getting Started',
         ['Installation'],
-        'Guides',
-        ['Nextjs', 'Expo', 'React Native'],
+
         'Configuration',
         ['Theme Tokens', 'Server-Side Rendering', 'React Server Components'],
         'Components',
@@ -62,6 +61,8 @@ export const parameters = {
           'Others',
           ['Fab'],
         ],
+        'Guides',
+        ['Nextjs', 'Expo', 'React Native'],
         'Advanced',
         ['Fonts', 'Animations', 'CLI'],
         'More',
