@@ -21,12 +21,7 @@ export const parameters = {
         'Overview',
         ['Introduction', 'Accessibility'],
         'Getting Started',
-        [
-          'Installation',
-          'Install in Expo',
-          'Install in Next.js',
-          'Install in React Native',
-        ],
+        ['Installation', 'Guides', ['Nextjs', 'Expo', 'React Native']],
         'Configuration',
         ['Theme Tokens', 'Server-Side Rendering', 'React Server Components'],
         'Components',
