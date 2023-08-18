@@ -62,7 +62,7 @@ export const parameters = {
           ['Fab'],
         ],
         'Guides',
-        ['Nextjs', 'Expo', 'React Native'],
+        ['Install in Next.js', 'Install in Expo', 'Install in React Native'],
         'Advanced',
         ['Fonts', 'Animations', 'CLI'],
         'More',
