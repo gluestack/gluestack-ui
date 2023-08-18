@@ -6,7 +6,7 @@ import {
   Pressable,
   Text,
   Box,
-} from '../../../ui-components';
+} from '@gluestack-ui/themed';
 import { config } from '../../../gluestack-ui.config';
 
 const ProviderStory = () => {

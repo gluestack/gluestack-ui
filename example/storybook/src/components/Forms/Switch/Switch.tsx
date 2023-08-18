@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Switch, VStack, Text, HStack } from '../../../ui-components';
+import { Switch, VStack, Text, HStack } from '@gluestack-ui/themed';
 
 const SwitchStory = ({ isDisabled = false, ...props }: any) => {
   const [isEnabled, setIsEnabled] = useState(true);

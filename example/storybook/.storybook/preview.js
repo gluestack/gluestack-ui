@@ -1,6 +1,6 @@
 import { addParameters } from '@storybook/client-api';
 import { DocsContainer } from '@storybook/addon-docs/blocks';
-import { Center, GluestackUIProvider } from '../src/ui-components';
+import { Center, GluestackUIProvider } from '@gluestack-ui/themed';
 import { config } from '../src/gluestack-ui.config';
 import { useState } from 'react';
 export const parameters = {

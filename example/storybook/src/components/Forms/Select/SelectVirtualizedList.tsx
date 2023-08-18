@@ -15,7 +15,7 @@ import {
   SelectTrigger,
   SelectVirtualizedList,
   Icon,
-} from '../../../ui-components';
+} from '@gluestack-ui/themed';
 
 const SelectStory = ({ isDisabled, isInvalid, ...props }: any) => {
   const getItem = (_data: any, index: number): any => ({

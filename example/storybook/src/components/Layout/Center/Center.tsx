@@ -1,5 +1,5 @@
 import type { ComponentStory } from '@storybook/react-native';
-import { Text, Center } from '../../../ui-components';
+import { Text, Center } from '@gluestack-ui/themed';
 import React from 'react';
 
 type MyCenterStory = ComponentStory<typeof Center>;

@@ -23,7 +23,7 @@ import {
   FormControlErrorIcon,
   FormControlErrorText,
   AlertCircleIcon,
-} from '../../../ui-components';
+} from '@gluestack-ui/themed';
 
 const colors = [
   { label: 'Red', value: 'red-key' },

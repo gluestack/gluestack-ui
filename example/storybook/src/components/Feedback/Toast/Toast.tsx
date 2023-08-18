@@ -12,7 +12,7 @@ import {
   CheckIcon,
   Pressable,
   Center,
-} from '../../../ui-components';
+} from '@gluestack-ui/themed';
 import { MessageCircle, AlertTriangleIcon } from 'lucide-react-native';
 
 const ToastStory = ({ placement = 'top', ...props }: any) => {

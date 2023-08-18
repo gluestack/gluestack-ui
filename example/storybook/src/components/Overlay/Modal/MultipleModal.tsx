@@ -7,7 +7,7 @@ import {
   CloseIcon,
   Text,
   Icon,
-} from '../../../ui-components';
+} from '@gluestack-ui/themed';
 import {
   Modal,
   ModalBackdrop,
@@ -19,7 +19,7 @@ import {
   VStack,
   HStack,
   Heading,
-} from '../../../ui-components';
+} from '@gluestack-ui/themed';
 
 const MultipleModalStory = ({ ...props }: any) => {
   const [showModal, setShowModal] = React.useState(false);

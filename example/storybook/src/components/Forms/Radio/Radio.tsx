@@ -1,7 +1,7 @@
 import React from 'react';
 /* eslint-disable no-console */
 // @ts-ignore
-import { CircleIcon } from '../../../ui-components';
+import { CircleIcon } from '@gluestack-ui/themed';
 import {
   Center,
   Radio,
@@ -15,7 +15,7 @@ import {
   Heading,
   Text,
   FormControl,
-} from '../../../ui-components';
+} from '@gluestack-ui/themed';
 
 const RadioStory = ({
   size,

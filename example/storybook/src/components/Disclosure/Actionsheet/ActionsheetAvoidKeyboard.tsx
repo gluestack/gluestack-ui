@@ -20,7 +20,7 @@ import {
   Text,
   Box,
   Icon,
-} from '../../../ui-components';
+} from '@gluestack-ui/themed';
 import { KeyboardAvoidingView, Platform } from 'react-native';
 import { createIcon } from '@gluestack-ui/icon';
 import { Svg, Path } from 'react-native-svg';

@@ -1,12 +1,11 @@
 {
-  "extends": "expo/tsconfig.base",
+  "include": ["src"],
+  "exclude": ["node_modules", "example"],
+  "paths": {},
   "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@gluestack-ui/themed": ["../../packages/themed/src"]
-    },
     "emitDeclarationOnly": true,
     "noEmit": false,
+    "baseUrl": "",
     "declaration": true,
     "allowUnreachableCode": false,
     "allowUnusedLabels": true,
@@ -26,7 +25,5 @@
     "skipLibCheck": true,
     "strict": true,
     "target": "esnext"
-  },
-  "exclude": ["lib", "node_modules", "storybookDocsComponents", "__tests__"],
-  "include": ["src"]
+  }
 }
