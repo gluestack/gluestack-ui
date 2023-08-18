@@ -1,5 +1,11 @@
 # @gluestack-style/react
 
+## 0.2.3
+
+### Patch Changes
+
+- Reduced DOM size for injected style tags [PR](https://github.com/gluestack/gluestack-style/pull/323)
+
 ## 0.2.1
 
 ### Patch Changes
