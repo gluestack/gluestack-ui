@@ -10,7 +10,6 @@ import { Meta } from '@storybook/addon-docs';
 import { config } from '../../../gluestack-ui.config';
 
 <Meta title="components/Provider/GluestackUIProvider" />
-
 import {
   GluestackUIProvider,
   Pressable,
@@ -68,7 +67,11 @@ Following is the default implementation of the **GluestackUIProvider** component
 You have to import the Provider from the library at the root level of your application
 
 ```jsx
+<<<<<<< HEAD
 import { Tooltip } from '@gluestack-ui/react';
+=======
+import { Tooltip } from '@gluestack-ui/themed';
+>>>>>>> fix/docs
 ```
 
 ### Anatomy
@@ -144,7 +147,11 @@ We have also exported all the providers separately so that you can use them indi
 To use only config and styled functionalities, you can use `GluestackUIStyledProvider` component.
 
 ```jsx
+<<<<<<< HEAD
 import { GluestackUIStyledProvider, config } from '@gluestack-ui/react';
+=======
+import { GluestackUIStyledProvider, config } from '@gluestack-ui/themed';
+>>>>>>> fix/docs
 <GluestackUIStyledProvider config={config.theme}>
   <Button>
     <ButtonText>Hello World</ButtonText>
