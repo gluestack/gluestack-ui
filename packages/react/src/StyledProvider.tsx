@@ -6,10 +6,8 @@ import type { COLORMODES } from './types';
 import { platformSpecificSpaceUnits } from './utils';
 import { createGlobalStylesWeb } from './createGlobalStylesWeb';
 import { createGlobalStyles } from './createGlobalStyles';
-import { GluestackStyleSheet } from './style-sheet';
 type Config = any;
 let colorModeSet = false;
-let styleInjected = false;
 
 export const defaultConfig: { config: Config; colorMode: COLORMODES } = {
   config: {},
@@ -49,23 +47,6 @@ export const StyledProvider: React.FC<{
     const globalStyleInjector = createGlobalStylesWeb(globalStyles);
     globalStyleInjector({ ...currentConfig, propertyTokenMap });
   }
-
-  if (!styleInjected) {
-    // setTimeout(() => {
-    GluestackStyleSheet.resolve({ ...config, propertyTokenMap });
-    GluestackStyleSheet.injectInStyle();
-    styleInjected = true;
-    // }, 1000);
-  }
-  const [styleInjectedOnMount, setState] = React.useState(false);
-
-  React.useEffect(() => {
-    if (!styleInjectedOnMount) {
-      GluestackStyleSheet.resolve({ ...config, propertyTokenMap });
-      GluestackStyleSheet.injectInStyle();
-      setState(true);
-    }
-  }, []);
 
   const currentColorMode = React.useMemo(() => {
     return colorMode ?? get() ?? 'light';
