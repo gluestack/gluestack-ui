@@ -1,0 +1,231 @@
+---
+title: Accessibility | gluestack-ui
+description: gluestack-ui is a React library that provides universal, unstyled, and accessible components. It includes keyboard accessibility and focus management features, making it a great choice for developers who prioritize accessibility and usability.
+---
+
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+
+<Meta title="Overview/Started" />
+
+import {
+  AppProvider,
+  Box,
+  HStack,
+  VStack,
+  Heading,
+  Button,
+  Text,
+  Hoverable,
+  CodePreview,
+  CodeBlock,
+} from '@gluestack/design-system';
+import MySvgComponent from '../../components/SVG/MySvgComponent';
+import MYSvg from '../../components/SVG/MYSvg';
+import Expo from '../../components/SVG/Expo';
+import Checkbox from '../../components/SVG/Checkbox';
+import App from './App';
+
+<Heading color="black">Getting Started</Heading>
+
+<AppProvider>
+  <HStack space="md"  sx={{
+      '@lg': {
+        flexDirection: 'row',
+      },
+      'flexDirection': 'column',
+    }}>
+    <Box
+      mt={28}
+      mb={24}
+      h={180}
+      w={502}
+       borderRadius="12px"
+   borderWidth="1px"
+ borderColor="rgba(38, 38, 38, 1)"  
+      sx={{
+        _web: {
+          background:
+             'linear-gradient(329deg, rgba(0, 16, 71, 0.40) 0%, rgba(77, 77, 77, 0.00) 100%), linear-gradient(123deg, rgba(115, 41, 150, 0.60) 0%, rgba(15, 24, 86, 0.00) 100%)'
+        },
+      }}
+    >
+      <Box
+        h={180}
+        w={502}
+        borderRadius="12px"
+   borderWidth="1px"
+ borderColor="rgba(38, 38, 38, 1)"  
+      >
+        <Box p={24}>
+          <VStack>
+            <HStack justifyContent="space-between" alignItems="center">
+              <Heading color="white">Quickstart</Heading>
+              <MySvgComponent />
+            </HStack>
+            <CodePreview
+              metaData={{
+                code: `npx gluestack`,
+              }}
+              language="bash"
+              showArgsController={false}
+              showComponentRenderer={false}
+              showCodeBlock={true}
+              h="max-content"
+              mb="$6"
+              w="$full"
+              mt={'$1'}
+              codeBlockProps={{
+                bg: 'white',
+                h:"56px",
+                w:"454px",
+                borderRadius:"8px",
+                px:"16px",
+                py:"24px"
+              }}
+            />
+          </VStack>
+        </Box>
+      </Box>
+    </Box>
+    <Box mt={28} mb={24} h={180} w={502} bg="black">
+      <Box h={180} w={502} borderRadius="xl" borderColor="#262626">
+        <Box p={24}>
+          <VStack>
+              <Heading color="white">Manual Installation</Heading>
+                <MYSvg/>
+          </VStack>
+        </Box>
+      </Box>
+    </Box>
+
+  </HStack>
+</AppProvider>
+
+<Heading color="black"> Try gluestack-ui </Heading>
+
+<HStack space="md"  sx={{
+      '@lg': {
+        flexDirection: 'row',
+      },
+      'flexDirection': 'column',
+    }}>
+  <Box
+   borderRadius="12px"
+   borderWidth="1px"
+  borderColor="rgba(38, 38, 38, 1)"
+    mt={28}
+    mb={24}
+    h={112}
+    w={502}
+    sx={{
+      _web: {
+        background:
+          'linear-gradient(329deg, rgba(0, 16, 71, 0.40) 0%, rgba(77, 77, 77, 0.00) 100%), linear-gradient(123deg, rgba(97, 85, 42, 0.60) 0%, rgba(15, 24, 86, 0.00) 100%)',
+      },
+    }}
+  >
+    <Box h={112} w={502} borderRadius="$xl" borderColor="#262626">
+      <Box p={24}>
+        <VStack>
+          <HStack alignItems="center" space="md" mb={10}>
+            <Expo />
+            <Heading color="white" my={0}>Try gluestack-ui on Snack</Heading>
+          </HStack>
+          <Text fontSize={16} color="white" >
+            Get started without having to set up.
+          </Text>
+        </VStack>
+      </Box>
+    </Box>
+  </Box>
+
+  <Box
+   borderRadius="12px"
+   borderWidth="1px"
+ borderColor="rgba(38, 38, 38, 1)"   
+  mt={28}
+    mb={24}
+    h={112}
+    w={502}
+    sx={{
+      _web: {
+        background:
+          'linear-gradient(138deg, rgba(3, 189, 153, 0.40) 0.96%, rgba(27, 155, 147, 0.13) 46.16%, rgba(15, 31, 81, 0.28) 85.56%)'
+      },
+    }}
+  >
+    <Box
+      h={112}
+      w={502}
+    >
+      <Box p={24}>
+        <VStack>
+          <HStack alignItems="center" space="md" mb={10}>
+           <Checkbox/>
+            <Heading color="white" my={0}>Try gluestack-ui on CodeSandbox</Heading>
+          </HStack>
+          <Text fontSize={16} color="white">
+           See how your app looks as you code.
+          </Text>
+        </VStack>
+      </Box>
+    </Box>
+  </Box>
+</HStack>
+
+<VStack>
+  <Heading color="black" my={0} mb={6}>
+    Explore Components
+  </Heading>
+  <Text color="black">
+    30+ responsive components for every screen and style
+  </Text>
+</VStack>
+
+<Box>
+  <App />
+</Box>
+
+<VStack mb={200}>
+  <Heading color="black" my={0} mb={6}>
+    Watch our talks
+  </Heading>
+  <Text color="black">
+    Explore our presentations. Stay informed and gain expertise.
+  </Text>
+</VStack>
+
+<AppProvider>
+  <HStack
+    space="md"
+    flex={1}
+    mt="$9"
+    mb="$4"
+    sx={{
+      '@lg': {
+        flexDirection: 'row',
+      },
+      'flexDirection': 'column',
+    }}
+  >
+    <Hoverable
+      heading={'Expo'}
+      subHeading={'Try gluestack-ui on Snack'}
+      href="/docs/getting-started/install-expo"
+    />
+    <Hoverable
+      heading={'Next.js'}
+      subHeading={'Guide to install in a Next.js project'}
+      href="/docs/getting-started/install-nextjs"
+    />
+    <Hoverable
+      heading={'React Native'}
+      subHeading={'Guide to install in a React Native project'}
+      href="/docs/getting-started/install-rn"
+    />
+  </HStack>
+</AppProvider>
+
+```
+
+```
