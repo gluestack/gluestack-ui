@@ -4,10 +4,11 @@ import { styled } from '../../styled';
 export default styled(
   Text,
   {
-    color: '$textLight0',
+    color: '$text.50',
     fontFamily: '$body',
-    //@ts-ignore
     userSelect: 'none',
+    //@ts-ignore
+    lineHeight: '1.5em',
   },
   { ancestorStyle: ['_text'], DEBUG: 'STYLEDBUTTONTEXT' }
 );
