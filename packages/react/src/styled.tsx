@@ -54,7 +54,11 @@ import {
   convertSxToSxVerbosed,
 } from './convertSxToSxVerbosed';
 import { stableHash } from './stableHash';
-import { DeclarationType, GluestackStyleSheet } from './style-sheet';
+import {
+  DeclarationType,
+  ExtendedStyleSheet,
+  GluestackStyleSheet,
+} from './style-sheet';
 import { CSSPropertiesMap } from './core/styled-system';
 // import { GluestackStyleSheet } from './style-sheet';
 const styledSystemProps = { ...CSSPropertiesMap };
@@ -890,7 +894,8 @@ export function verboseStyled<P, Variants>(
       descendant: StyleIds;
     };
     themeHash?: string;
-  }
+  },
+  componentName?: string
 ) {
   const componentHash = stableHash({
     ...theme,
@@ -1102,14 +1107,19 @@ export function verboseStyled<P, Variants>(
         propertyTokenMap,
       };
 
-      // GluestackStyleSheet.resolve(CONFIG);
-      // GluestackStyleSheet.injectInStyle();
-
-      GluestackStyleSheet.resolve(
+      // Injecting style
+      const toBeInjected = GluestackStyleSheet.resolve(
         orderedCSSIds,
         CONFIG,
         componentExtendedConfig
       );
+      GluestackStyleSheet.inject(toBeInjected);
+
+      // Injecting Extended StyleSheet from Config
+      const ExtendedToBeInjected =
+        CONFIG?.components?.[`${componentName}`]?.theme.toBeInjected;
+      ExtendedToBeInjected && ExtendedStyleSheet.inject(ExtendedToBeInjected);
+
       // GluestackStyleSheet.resolveByOrderResolved(
       //   componentOrderResolvedBaseStyle,
       //   'boot-base',
@@ -1624,6 +1634,8 @@ export function verboseStyled<P, Variants>(
 
     // END: Unable to optimize because of useEffect overhead and stableHash to prevent rerender
 
+    const extendedCssIDs =
+      CONFIG?.components?.[`${componentName}`]?.theme.styleIds || [];
     const styleCSSIds = [
       ...mergedBaseStyleCSSIds,
       ...applyBaseStyleCSSIds,
@@ -1633,6 +1645,7 @@ export function verboseStyled<P, Variants>(
       ...applyAncestorVariantStyleCSSIds,
       ...applyComponentStateBaseStyleIds,
       ...applyComponentStateVariantStyleIds,
+      ...extendedCssIDs,
       ...applySxVariantStyleCSSIds.current,
       ...applySxStateBaseStyleCSSIds,
       ...mergedSXVariantStyleCSSIds,
@@ -1716,13 +1729,14 @@ export function styled<P, Variants>(
   componentStyleConfig?: ConfigType,
   ExtendedConfig?: ExtendedConfigType,
   BUILD_TIME_PARAMS?: {
-    orderedResolved: OrderedSXResolved;
-    styleIds: {
+    orderedResolved?: OrderedSXResolved;
+    styleIds?: {
       component: StyleIds;
       descendant: StyleIds;
     };
     themeHash?: string;
-  }
+  },
+  componentName?: string
 ) {
   const DEBUG_TAG = componentStyleConfig?.DEBUG;
   const DEBUG =
@@ -1746,7 +1760,8 @@ export function styled<P, Variants>(
     sxConvertedObject,
     componentStyleConfig,
     ExtendedConfig,
-    BUILD_TIME_PARAMS
+    BUILD_TIME_PARAMS,
+    componentName
   );
 
   return StyledComponent;

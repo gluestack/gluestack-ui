@@ -82,13 +82,16 @@ export class StyleInjector {
       }
     });
 
+    return toBeInjected;
+  }
+
+  inject(toBeInjected: any) {
     Object.keys(toBeInjected).forEach((type) => {
       Object.keys(toBeInjected[type]).forEach((styleTag) => {
         this.injectStyles(toBeInjected[type][styleTag], type, styleTag);
       });
     });
   }
-
   resolveComponentTheme(
     componentTheme: any,
     theme: any,
@@ -134,4 +137,6 @@ export class StyleInjector {
 }
 
 const stylesheet = new StyleInjector();
+const extendedStyleSheet = new StyleInjector();
 export const GluestackStyleSheet = stylesheet;
+export const ExtendedStyleSheet = extendedStyleSheet;

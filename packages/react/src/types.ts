@@ -72,6 +72,17 @@ export type GlueStackConfig<
   tokens: IToken;
   aliases: IGlobalAliases;
   globalStyle?: GlobalStyles<IGlobalAliases, IToken, IGlobalStyle>;
+  components?: {
+    [key: string]: {
+      theme: Partial<GlobalStyles<IGlobalAliases, IToken, IGlobalStyle>>;
+    };
+  };
+};
+
+export type ComponentsThemeType<IGlobalAliases, IToken, IComponents> = {
+  [key: string]: {
+    theme: GlobalStyles<IGlobalAliases, IToken, IComponents>;
+  };
 };
 
 export type InferConfig<Conf> = Conf extends GlueStackConfig<
@@ -658,6 +669,10 @@ export type IWrapperType =
   | 'boot-descendant-base'
   | 'boot-variant'
   | 'boot-descendant-variant'
+  | 'extended-base'
+  | 'extended-descendant-base'
+  | 'extended-variant'
+  | 'extended-descendant-variant'
   | 'passing-base'
   | 'inline-base'
   | 'inline-variant'

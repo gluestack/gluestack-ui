@@ -1,6 +1,6 @@
 import { createConfig } from '@gluestack-style/react';
 
-export const config = {
+export const config = createConfig({
   aliases: {
     bg: 'backgroundColor',
     backgroundColor: 'backgroundColor',
@@ -645,46 +645,14 @@ export const config = {
       100: 1,
     },
   } as const,
-  // globalStyle: {
-  //   variants: {
-  //     variant: {
-  //       '1': {
-  //         bg: '$red200',
-  //       },
-  //       '2': {
-  //         bg: '$red200',
-  //       },
-  //     },
-  //     dropShadow: {
-  //       '1': {
-  //         bg: '$red200',
-  //       },
-  //       '2': {
-  //         bg: '$red200',
-  //       },
-  //     },
-  //     softShadow: {
-  //       '1': {
-  //         bg: '$red200',
-  //       },
-  //       '2': {
-  //         bg: '$red200',
-  //       },
-  //     },
-  //     //   variant: {
-  //     //     primary: {
-  //     //       bg: 'red'
-  //     //     }
-  //     //   }
-
-  //     //   // test: {
-  //     //   //   primary: {
-  //     //   //     bg: 'red'
-  //     //   //   }
-  //     //   // }
-  //   },
-  // } as const,
-} as const;
+  components: {
+    Box: {
+      theme: {
+        bg: '$amber200',
+      },
+    },
+  },
+} as const);
 
 type ConfigType = typeof config;
 
