@@ -46,7 +46,7 @@ JavaScript, React, React Native, Styled System
 To use the `gluestack-ui` in your project, follow these steps:
 
 1. Wrap your application with the `GluestackUIProvider` provided by
-   **@gluestack-ui**.
+   **@gluestack-ui/themed**.
 
 ```jsx
 import { GluestackUIProvider, config } from '@gluestack-ui/themed';
