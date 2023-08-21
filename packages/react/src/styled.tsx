@@ -789,30 +789,37 @@ function updateOrderUnResolvedMap(
     orderedUnResolvedTheme
   );
 
-  GluestackStyleSheet.declare(
+  const componentBaseStyleIds = GluestackStyleSheet.declare(
     componentOrderResolvedBaseStyle,
     declarationType + '-base',
     componentHash ? componentHash : 'css-injected-boot-time',
     ExtendedConfig
   );
-  GluestackStyleSheet.declare(
+  const descendantBaseStyleIds = GluestackStyleSheet.declare(
     descendantOrderResolvedBaseStyle,
     declarationType + '-descendant-base',
     componentHash ? componentHash : 'css-injected-boot-time-descendant',
     ExtendedConfig
   );
-  GluestackStyleSheet.declare(
+  const componentVariantStyleIds = GluestackStyleSheet.declare(
     componentOrderResolvedVariantStyle,
     declarationType + '-variant',
     componentHash ? componentHash : 'css-injected-boot-time',
     ExtendedConfig
   );
-  GluestackStyleSheet.declare(
+  const descendantVariantStyleIds = GluestackStyleSheet.declare(
     descendantOrderResolvedVariantStyle,
     declarationType + '-descendant-variant',
     componentHash ? componentHash : 'css-injected-boot-time-descendant',
     ExtendedConfig
   );
+
+  const styleCSSIdsArr = [
+    ...componentBaseStyleIds,
+    ...descendantBaseStyleIds,
+    ...componentVariantStyleIds,
+    ...descendantVariantStyleIds,
+  ];
 
   return {
     orderedUnResolvedTheme,
@@ -820,6 +827,7 @@ function updateOrderUnResolvedMap(
     componentOrderResolvedVariantStyle,
     descendantOrderResolvedBaseStyle,
     descendantOrderResolvedVariantStyle,
+    styleCSSIdsArr,
   };
 }
 
@@ -946,6 +954,7 @@ export function verboseStyled<P, Variants>(
   let componentOrderResolvedVariantStyle: any = {};
   let descendantOrderResolvedBaseStyle: any = {};
   let descendantOrderResolvedVariantStyle: any = {};
+  let orderedCSSIds: any = [];
   // const orderedUnResolvedTheme = updateOrderUnResolvedMap(
   //   theme,
   //   componentHash,
@@ -973,6 +982,7 @@ export function verboseStyled<P, Variants>(
       componentOrderResolvedVariantStyle: c,
       descendantOrderResolvedBaseStyle: d,
       descendantOrderResolvedVariantStyle: f,
+      styleCSSIdsArr: g,
     } = updateOrderUnResolvedMap(
       theme,
       componentHash,
@@ -984,6 +994,8 @@ export function verboseStyled<P, Variants>(
     componentOrderResolvedVariantStyle = c;
     descendantOrderResolvedBaseStyle = d;
     descendantOrderResolvedVariantStyle = f;
+
+    orderedCSSIds = g;
 
     styleIds = getStyleIds(a, componentStyleConfig);
   }
@@ -1093,34 +1105,39 @@ export function verboseStyled<P, Variants>(
       // GluestackStyleSheet.resolve(CONFIG);
       // GluestackStyleSheet.injectInStyle();
 
-      GluestackStyleSheet.resolveByOrderResolved(
-        componentOrderResolvedBaseStyle,
-        'boot-base',
-        componentHash,
-        componentExtendedConfig,
-        CONFIG
+      GluestackStyleSheet.resolve(
+        orderedCSSIds,
+        CONFIG,
+        componentExtendedConfig
       );
-      GluestackStyleSheet.resolveByOrderResolved(
-        componentOrderResolvedVariantStyle,
-        'boot-variant',
-        componentHash,
-        componentExtendedConfig,
-        CONFIG
-      );
-      GluestackStyleSheet.resolveByOrderResolved(
-        descendantOrderResolvedBaseStyle,
-        'boot-descendant-base',
-        componentHash,
-        componentExtendedConfig,
-        CONFIG
-      );
-      GluestackStyleSheet.resolveByOrderResolved(
-        descendantOrderResolvedVariantStyle,
-        'boot-descendant-variant',
-        componentHash,
-        componentExtendedConfig,
-        CONFIG
-      );
+      // GluestackStyleSheet.resolveByOrderResolved(
+      //   componentOrderResolvedBaseStyle,
+      //   'boot-base',
+      //   componentHash,
+      //   componentExtendedConfig,
+      //   CONFIG
+      // );
+      // GluestackStyleSheet.resolveByOrderResolved(
+      //   componentOrderResolvedVariantStyle,
+      //   'boot-variant',
+      //   componentHash,
+      //   componentExtendedConfig,
+      //   CONFIG
+      // );
+      // GluestackStyleSheet.resolveByOrderResolved(
+      //   descendantOrderResolvedBaseStyle,
+      //   'boot-descendant-base',
+      //   componentHash,
+      //   componentExtendedConfig,
+      //   CONFIG
+      // );
+      // GluestackStyleSheet.resolveByOrderResolved(
+      //   descendantOrderResolvedVariantStyle,
+      //   'boot-descendant-variant',
+      //   componentHash,
+      //   componentExtendedConfig,
+      //   CONFIG
+      // );
       Object.assign(styledSystemProps, CONFIG?.aliases);
 
       //@ts-ignore
