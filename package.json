@@ -1,6 +1,6 @@
 {
   "name": "@gluestack-ui/themed-native-base",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "react-native": "src/index",
