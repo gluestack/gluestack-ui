@@ -349,7 +349,7 @@ function convertToSXForStateColorModeMediaQuery(obj: any, config: any) {
 
   // delete newObj['_dark'];
 
-  console.log(newObj, 'NNNNNN');
+  // console.log(newObj, 'NNNNNN');
   return newObj;
 }
 
@@ -364,13 +364,15 @@ function addDollarSignsToProps(obj: any, config: any) {
     }
 
     if (CSSPropertiesMap.hasOwnProperty(propertyName)) {
-      const tokenAvailable =
-        config.tokens[propertyTokenMap[propertyName]][propValue];
+      const tokenAvailable = config.tokens[propertyTokenMap[propertyName]]
+        ? config.tokens[propertyTokenMap[propertyName]][propValue]
+        : undefined;
 
       if (tokenAvailable === undefined) {
         newObj[key] = propValue;
+      } else {
+        newObj[key] = `$${propValue}`;
       }
-      newObj[key] = `$${propValue}`;
     } else if (typeof obj[key] === 'object') {
       newObj[key] = addDollarSignsToProps(obj[key], config);
     } else {
