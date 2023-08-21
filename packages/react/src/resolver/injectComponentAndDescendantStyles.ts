@@ -26,7 +26,7 @@ export function injectComponentAndDescendantStyles(
     componentOrderResolvedBaseStyle,
     type + '-base',
     styleTagId ? styleTagId : 'css-injected-boot-time',
-    false
+    {}
   );
   const descendantOrderResolvedBaseStyleIds = GluestackStyleSheet.declare(
     descendantOrderResolvedBaseStyle,
@@ -54,4 +54,6 @@ export function injectComponentAndDescendantStyles(
     ...descendantOrderResolvedVariantStyleIds,
   ];
   GluestackStyleSheet.resolve(styleCSSIdsArr, {}, {}, false);
+
+  GluestackStyleSheet.injectInStyle(styleCSSIdsArr);
 }
