@@ -1,7 +1,0 @@
-{
-  "dependencies": {
-    "@gluestack-ui/icon": "latest",
-    "react-native-svg": "13.4.0"
-  },
-  "keywords": ["components", "core"]
-}
