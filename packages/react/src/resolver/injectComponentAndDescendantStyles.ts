@@ -12,9 +12,6 @@ export function injectComponentAndDescendantStyles(
   styleTagId?: string,
   type: 'boot' | 'inline' = 'boot'
 ) {
-  // const componentOrderResolved = getComponentResolved(orderedResolved);
-  // const descendantOrderResolved = getDescendantResolved(orderedResolved);
-
   const componentOrderResolvedBaseStyle =
     getComponentResolvedBaseStyle(orderedResolved);
   const componentOrderResolvedVariantStyle =
@@ -25,38 +22,36 @@ export function injectComponentAndDescendantStyles(
   const descendantOrderResolvedVariantStyle =
     getDescendantResolvedVariantStyle(orderedResolved);
 
-  GluestackStyleSheet.resolveByOrderResolved(
+  const componentOrderResolvedBaseStyleIds = GluestackStyleSheet.declare(
     componentOrderResolvedBaseStyle,
     type + '-base',
     styleTagId ? styleTagId : 'css-injected-boot-time',
-    {},
-    {},
     false
   );
-  GluestackStyleSheet.resolveByOrderResolved(
+  const descendantOrderResolvedBaseStyleIds = GluestackStyleSheet.declare(
     descendantOrderResolvedBaseStyle,
     type + '-descendant-base',
     styleTagId ? styleTagId : 'css-injected-boot-time-descendant',
-    {},
-    {},
-    false
+    {}
   );
-  GluestackStyleSheet.resolveByOrderResolved(
+  const componentOrderResolvedVariantStyleIds = GluestackStyleSheet.declare(
     componentOrderResolvedVariantStyle,
     type + '-variant',
     styleTagId ? styleTagId : 'css-injected-boot-time',
-    {},
-    {},
-    false
+    {}
   );
-  GluestackStyleSheet.resolveByOrderResolved(
+  const descendantOrderResolvedVariantStyleIds = GluestackStyleSheet.declare(
     descendantOrderResolvedVariantStyle,
     type + '-descendant-variant',
     styleTagId ? styleTagId : 'css-injected-boot-time-descendant',
-    {},
-    {},
-    false
+    {}
   );
 
-  // GluestackStyleSheet.injectInStyle();
+  const styleCSSIdsArr = [
+    ...componentOrderResolvedBaseStyleIds,
+    ...descendantOrderResolvedBaseStyleIds,
+    ...componentOrderResolvedVariantStyleIds,
+    ...descendantOrderResolvedVariantStyleIds,
+  ];
+  GluestackStyleSheet.resolve(styleCSSIdsArr, {}, {}, false);
 }
