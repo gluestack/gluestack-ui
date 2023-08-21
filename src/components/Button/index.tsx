@@ -1,3 +1,4 @@
+import React from 'react';
 import { createButton } from '@gluestack-ui/button';
 import {
   Root,
@@ -9,7 +10,7 @@ import {
   Icon,
 } from './styled-components';
 
-export const Button = createButton({
+export const AccessibleButton = createButton({
   Root,
   Text,
   Group,
@@ -18,10 +19,28 @@ export const Button = createButton({
   Spinner,
   Icon,
 });
-export const ButtonText = Button.Text;
-export const ButtonGroup = Button.Group;
-export const ButtonSpinner = Button.Spinner;
-export const ButtonIcon = Button.Icon;
+
+//@ts-ignore
+export const Button = ({ children, ...props }) => {
+  // console.log(children, typeof children === 'string', 'Chlired button');
+  return (
+    <AccessibleButton {...props}>
+      {typeof children === 'string' ? (
+        <AccessibleButton.Text>{children}</AccessibleButton.Text>
+      ) : (
+        <>{children}</>
+      )}
+    </AccessibleButton>
+  );
+};
+
+//@ts-ignore
+export const ButtonText = ({ children, ...props }) => {
+  return <AccessibleButton.Text {...props}>{children}</AccessibleButton.Text>;
+};
+// export const ButtonGroup = Button.Group;
+// export const ButtonSpinner = Button.Spinner;
+// export const ButtonIcon = Button.Icon;
 
 // const ButtonTemp = ({ children, ...props }) => {
 //   return <AccessibleButton>{children}</AccessibleButton>;
