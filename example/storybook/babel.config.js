@@ -25,6 +25,10 @@ function getAliases() {
   return {
     // For development, we want to alias the library to the source
     '@gluestack-ui/button': path.join(__dirname, '../../packages/button/src'),
+    '@gluestack-ui/accordion': path.join(
+      __dirname,
+      '../../packages/accordion/src'
+    ),
     '@gluestack-ui/vstack': path.join(__dirname, '../../packages/vstack/src'),
     '@gluestack-ui/tooltip': path.join(__dirname, '../../packages/tooltip/src'),
     '@gluestack-ui/popover': path.join(__dirname, '../../packages/popover/src'),
