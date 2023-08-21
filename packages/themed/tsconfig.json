@@ -22,6 +22,7 @@
     "noUnusedLocals": false,
     "noUnusedParameters": true,
     "resolveJsonModule": true,
+    "outDir": "./build",
     "skipLibCheck": true,
     "strict": true,
     "target": "esnext"
