@@ -6,23 +6,23 @@ export default styled(
   Pressable,
   {
     'borderRadius': '$sm',
-    'backgroundColor': '$primary500',
+    'backgroundColor': '$primary.500',
     'flexDirection': 'row',
     'justifyContent': 'center',
     'alignItems': 'center',
 
     '_text': {
-      color: '$textLight0',
+      color: '$textLight.0',
       fontWeight: '$semibold',
       _dark: {
-        color: '$textDark0',
+        color: '$textDark.0',
       },
     },
 
     '_icon': {
-      color: '$textLight0',
+      color: '$textLight.0',
       _dark: {
-        color: '$textDark0',
+        color: '$textDark.0',
       },
     },
 
@@ -40,91 +40,91 @@ export default styled(
     'variants': {
       action: {
         primary: {
-          'bg': '$primary500',
-          'borderColor': '$primary300',
+          'bg': '$primary.500',
+          'borderColor': '$primary.300',
 
           ':hover': {
-            bg: '$primary600',
-            borderColor: '$primary400',
+            bg: '$primary.600',
+            borderColor: '$primary.400',
           },
 
           ':active': {
-            bg: '$primary700',
-            borderColor: '$primary700',
+            bg: '$primary.700',
+            borderColor: '$primary.700',
           },
 
           '_text': {
-            'color': '$primary600',
+            'color': '$primary.600',
             ':hover': {
-              color: '$primary600',
+              color: '$primary.600',
             },
             ':active': {
-              color: '$primary700',
+              color: '$primary.700',
             },
           },
 
           '_icon': {
-            'color': '$primary600',
+            'color': '$primary.600',
             ':hover': {
-              color: '$primary600',
+              color: '$primary.600',
             },
             ':active': {
-              color: '$primary700',
+              color: '$primary.700',
             },
           },
 
           '_spinner': {
             'props': {
-              color: '$primary600',
+              color: '$primary.600',
             },
             ':hover': {
               props: {
-                color: '$primary600',
+                color: '$primary.600',
               },
             },
             ':active': {
               props: {
-                color: '$primary700',
+                color: '$primary.700',
               },
             },
           },
 
           '_dark': {
-            'bg': '$primary400',
-            'borderColor': '$primary700',
+            'bg': '$primary.400',
+            'borderColor': '$primary.700',
             ':hover': {
-              bg: '$primary500',
-              borderColor: '$primary400',
+              bg: '$primary..500',
+              borderColor: '$primary.400',
             },
             ':active': {
-              bg: '$primary600',
-              borderColor: '$primary300',
+              bg: '$primary.600',
+              borderColor: '$primary.300',
             },
             '_text': {
-              'color': '$primary300',
+              'color': '$primary.300',
               ':hover': {
-                color: '$primary300',
+                color: '$primary.300',
               },
               ':active': {
-                color: '$primary200',
+                color: '$primary.200',
               },
             },
             '_icon': {
-              'color': '$primary300',
+              'color': '$primary.300',
               ':hover': {
-                color: '$primary300',
+                color: '$primary.300',
               },
               ':active': {
-                color: '$primary200',
+                color: '$primary.200',
               },
             },
             '_spinner': {
-              'props': { color: '$primary300' },
+              'props': { color: '$primary.300' },
               ':hover': {
-                props: { color: '$primary300' },
+                props: { color: '$primary.300' },
               },
               ':active': {
-                props: { color: '$primary200' },
+                props: { color: '$primary.200' },
               },
             },
 
@@ -455,58 +455,58 @@ export default styled(
         },
         solid: {
           _text: {
-            'color': '$textLight0',
+            'color': '$textLight.0',
             ':hover': {
-              color: '$textLight0',
+              color: '$textLight.0',
             },
             ':active': {
-              color: '$textLight0',
+              color: '$textLight.0',
             },
           },
           _spinner: {
-            'props': { color: '$textLight0' },
+            'props': { color: '$textLight.0' },
             ':hover': {
-              props: { color: '$textLight0' },
+              props: { color: '$textLight.0' },
             },
             ':active': {
-              props: { color: '$textLight0' },
+              props: { color: '$textLight.0' },
             },
           },
           _icon: {
-            'props': { color: '$textLight0' },
+            'props': { color: '$textLight.0' },
             ':hover': {
-              props: { color: '$textLight0' },
+              props: { color: '$textLight.0' },
             },
             ':active': {
-              props: { color: '$textLight0' },
+              props: { color: '$textLight.0' },
             },
           },
           _dark: {
             _text: {
-              'color': '$textDark0',
+              'color': '$textDark.0',
               ':hover': {
-                color: '$textDark0',
+                color: '$textDark.0',
               },
               ':active': {
-                color: '$textDark0',
+                color: '$textDark.0',
               },
             },
             _spinner: {
-              'props': { color: '$textDark0' },
+              'props': { color: '$textDark.0' },
               ':hover': {
-                props: { color: '$textDark0' },
+                props: { color: '$textDark.0' },
               },
               ':active': {
-                props: { color: '$textDark0' },
+                props: { color: '$textDark.0' },
               },
             },
             _icon: {
-              'props': { color: '$textDark0' },
+              'props': { color: '$textDark.0' },
               ':hover': {
-                props: { color: '$textDark0' },
+                props: { color: '$textDark.0' },
               },
               ':active': {
-                props: { color: '$textDark0' },
+                props: { color: '$textDark.0' },
               },
             },
           },
@@ -576,438 +576,6 @@ export default styled(
         },
       },
     },
-    'compoundVariants': [
-      {
-        action: 'primary',
-        variant: 'link',
-        value: {
-          'px': '$0',
-          'bg': 'transparent',
-          ':hover': {
-            bg: 'transparent',
-          },
-          ':active': {
-            bg: 'transparent',
-          },
-          '_dark': {
-            'bg': 'transparent',
-            ':hover': {
-              bg: 'transparent',
-            },
-            ':active': {
-              bg: 'transparent',
-            },
-          },
-        },
-      },
-      {
-        action: 'secondary',
-        variant: 'link',
-        value: {
-          'px': '$0',
-          'bg': 'transparent',
-          ':hover': {
-            bg: 'transparent',
-          },
-          ':active': {
-            bg: 'transparent',
-          },
-          '_dark': {
-            'bg': 'transparent',
-            ':hover': {
-              bg: 'transparent',
-            },
-            ':active': {
-              bg: 'transparent',
-            },
-          },
-        },
-      },
-      {
-        action: 'positive',
-        variant: 'link',
-        value: {
-          'px': '$0',
-          'bg': 'transparent',
-          ':hover': {
-            bg: 'transparent',
-          },
-          ':active': {
-            bg: 'transparent',
-          },
-          '_dark': {
-            'bg': 'transparent',
-            ':hover': {
-              bg: 'transparent',
-            },
-            ':active': {
-              bg: 'transparent',
-            },
-          },
-        },
-      },
-      {
-        action: 'negative',
-        variant: 'link',
-        value: {
-          'px': '$0',
-          'bg': 'transparent',
-          ':hover': {
-            bg: 'transparent',
-          },
-          ':active': {
-            bg: 'transparent',
-          },
-          '_dark': {
-            'bg': 'transparent',
-            ':hover': {
-              bg: 'transparent',
-            },
-            ':active': {
-              bg: 'transparent',
-            },
-          },
-        },
-      },
-      {
-        action: 'primary',
-        variant: 'outline',
-        value: {
-          'bg': 'transparent',
-          ':hover': {
-            bg: '$backgroundLight50',
-          },
-          ':active': {
-            bg: 'transparent',
-          },
-          '_dark': {
-            'bg': 'transparent',
-            ':hover': {
-              bg: '$backgroundDark900',
-            },
-            ':active': {
-              bg: 'transparent',
-            },
-          },
-        },
-      },
-      {
-        action: 'secondary',
-        variant: 'outline',
-        value: {
-          'bg': 'transparent',
-          ':hover': {
-            bg: '$backgroundLight50',
-          },
-          ':active': {
-            bg: 'transparent',
-          },
-          '_dark': {
-            'bg': 'transparent',
-            ':hover': {
-              bg: '$backgroundDark900',
-            },
-            ':active': {
-              bg: 'transparent',
-            },
-          },
-        },
-      },
-      {
-        action: 'positive',
-        variant: 'outline',
-        value: {
-          'bg': 'transparent',
-          ':hover': {
-            bg: '$backgroundLight50',
-          },
-          ':active': {
-            bg: 'transparent',
-          },
-          '_dark': {
-            'bg': 'transparent',
-            ':hover': {
-              bg: '$backgroundDark900',
-            },
-            ':active': {
-              bg: 'transparent',
-            },
-          },
-        },
-      },
-      {
-        action: 'negative',
-        variant: 'outline',
-        value: {
-          'bg': 'transparent',
-          ':hover': {
-            bg: '$backgroundLight50',
-          },
-          ':active': {
-            bg: 'transparent',
-          },
-          '_dark': {
-            'bg': 'transparent',
-            ':hover': {
-              bg: '$backgroundDark900',
-            },
-            ':active': {
-              bg: 'transparent',
-            },
-          },
-        },
-      },
-      {
-        action: 'primary',
-        variant: 'solid',
-        value: {
-          _text: {
-            'color': '$textLight0',
-            ':hover': {
-              color: '$textLight0',
-            },
-            ':active': {
-              color: '$textLight0',
-            },
-          },
-          _icon: {
-            'color': '$textLight0',
-            ':hover': {
-              color: '$textLight0',
-            },
-            ':active': {
-              color: '$textLight0',
-            },
-          },
-          _spinner: {
-            'props': { color: '$textLight0' },
-            ':hover': {
-              props: { color: '$textLight0' },
-            },
-            ':active': {
-              props: { color: '$textLight0' },
-            },
-          },
-          _dark: {
-            _text: {
-              'color': '$textDark0',
-              ':hover': {
-                color: '$textDark0',
-              },
-              ':active': {
-                color: '$textDark0',
-              },
-            },
-            _icon: {
-              'color': '$textDark0',
-              ':hover': {
-                color: '$textDark0',
-              },
-              ':active': {
-                color: '$textDark0',
-              },
-            },
-            _spinner: {
-              'props': { color: '$textDark0' },
-              ':hover': {
-                props: { color: '$textDark0' },
-              },
-              ':active': {
-                props: { color: '$textDark0' },
-              },
-            },
-          },
-        },
-      },
-      {
-        action: 'secondary',
-        variant: 'solid',
-        value: {
-          _text: {
-            'color': '$textLight0',
-            ':hover': {
-              color: '$textLight0',
-            },
-            ':active': {
-              color: '$textLight0',
-            },
-          },
-          _icon: {
-            'color': '$textLight0',
-            ':hover': {
-              color: '$textLight0',
-            },
-            ':active': {
-              color: '$textLight0',
-            },
-          },
-          _spinner: {
-            'props': { color: '$textLight0' },
-            ':hover': {
-              props: { color: '$textLight0' },
-            },
-            ':active': {
-              props: { color: '$textLight0' },
-            },
-          },
-          _dark: {
-            _text: {
-              'color': '$textDark0',
-              ':hover': {
-                color: '$textDark0',
-              },
-              ':active': {
-                color: '$textDark0',
-              },
-            },
-            _icon: {
-              'color': '$textDark0',
-              ':hover': {
-                color: '$textDark0',
-              },
-              ':active': {
-                color: '$textDark0',
-              },
-            },
-            _spinner: {
-              'props': { color: '$textDark0' },
-              ':hover': {
-                props: { color: '$textDark0' },
-              },
-              ':active': {
-                props: { color: '$textDark0' },
-              },
-            },
-          },
-        },
-      },
-      {
-        action: 'positive',
-        variant: 'solid',
-        value: {
-          _text: {
-            'color': '$textLight0',
-            ':hover': {
-              color: '$textLight0',
-            },
-            ':active': {
-              color: '$textLight0',
-            },
-          },
-          _icon: {
-            'color': '$textLight0',
-            ':hover': {
-              color: '$textLight0',
-            },
-            ':active': {
-              color: '$textLight0',
-            },
-            'props': { color: '$textLight0' },
-          },
-          _spinner: {
-            'props': { color: '$textLight0' },
-            ':hover': {
-              props: { color: '$textLight0' },
-            },
-            ':active': {
-              props: { color: '$textLight0' },
-            },
-          },
-
-          _dark: {
-            _text: {
-              'color': '$textDark0',
-              ':hover': {
-                color: '$textDark0',
-              },
-              ':active': {
-                color: '$textDark0',
-              },
-            },
-            _icon: {
-              'color': '$textDark0',
-              ':hover': {
-                color: '$textDark0',
-              },
-              ':active': {
-                color: '$textDark0',
-              },
-            },
-            _spinner: {
-              'props': { color: '$textDark0' },
-              ':hover': {
-                props: { color: '$textDark0' },
-              },
-              ':active': {
-                props: { color: '$textDark0' },
-              },
-            },
-          },
-        },
-      },
-      {
-        action: 'negative',
-        variant: 'solid',
-        value: {
-          _text: {
-            'color': '$textLight0',
-            ':hover': {
-              color: '$textLight0',
-            },
-            ':active': {
-              color: '$textLight0',
-            },
-          },
-          _icon: {
-            'color': '$textLight0',
-            ':hover': {
-              color: '$textLight0',
-            },
-            ':active': {
-              color: '$textLight0',
-            },
-          },
-          _spinner: {
-            'props': { color: '$textLight0' },
-            ':hover': {
-              props: { color: '$textLight0' },
-            },
-            ':active': {
-              props: { color: '$textLight0' },
-            },
-          },
-          _dark: {
-            _text: {
-              'color': '$textDark0',
-              ':hover': {
-                color: '$textDark0',
-              },
-              ':active': {
-                color: '$textDark0',
-              },
-            },
-            _icon: {
-              'color': '$textDark0',
-              ':hover': {
-                color: '$textDark0',
-              },
-              ':active': {
-                color: '$textDark0',
-              },
-            },
-            _spinner: {
-              'props': { color: '$textDark0' },
-              ':hover': {
-                props: { color: '$textDark0' },
-              },
-              ':active': {
-                props: { color: '$textDark0' },
-              },
-            },
-          },
-        },
-      },
-    ],
 
     'defaultProps': {
       size: 'md',
