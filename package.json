@@ -3,9 +3,6 @@
   "version": "0.1.4",
   "main": "build/index.js",
   "types": "build/index.d.ts",
-  "react-native": "src/index",
-  "source": "src/index",
-  "typings": "lib/typescript/index.d.ts",
   "description": "A universal themed components for React Native, Next.js & React",
   "keywords": [
     "react",
