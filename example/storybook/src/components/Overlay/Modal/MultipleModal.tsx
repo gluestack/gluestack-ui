@@ -1,7 +1,25 @@
 import React from 'react';
 
-import { Center, Button, CloseIcon, Text, Icon } from '../../../ui-components';
-import { Modal, VStack, HStack, Heading } from '../../../ui-components';
+import {
+  Center,
+  Button,
+  ButtonText,
+  CloseIcon,
+  Text,
+  Icon,
+} from '../../../ui-components';
+import {
+  Modal,
+  ModalBackdrop,
+  ModalContent,
+  ModalHeader,
+  ModalCloseButton,
+  ModalBody,
+  ModalFooter,
+  VStack,
+  HStack,
+  Heading,
+} from '../../../ui-components';
 
 const MultipleModalStory = ({ ...props }: any) => {
   const [showModal, setShowModal] = React.useState(false);
@@ -11,7 +29,7 @@ const MultipleModalStory = ({ ...props }: any) => {
     <>
       <Center>
         <Button onPress={() => setShowModal(true)}>
-          <Button.Text>Button</Button.Text>
+          <ButtonText>Button</ButtonText>
         </Button>
       </Center>
 
@@ -22,15 +40,15 @@ const MultipleModalStory = ({ ...props }: any) => {
         }}
         {...props}
       >
-        <Modal.Backdrop />
-        <Modal.Content>
-          <Modal.Header>
+        <ModalBackdrop />
+        <ModalContent>
+          <ModalHeader>
             <Heading>Order</Heading>
-            <Modal.CloseButton>
+            <ModalCloseButton>
               <Icon as={CloseIcon} />
-            </Modal.CloseButton>
-          </Modal.Header>
-          <Modal.Body>
+            </ModalCloseButton>
+          </ModalHeader>
+          <ModalBody>
             <VStack space="sm">
               <HStack alignItems="center" justifyContent="space-between">
                 <Text fontWeight="$medium">Sub Total</Text>
@@ -45,8 +63,8 @@ const MultipleModalStory = ({ ...props }: any) => {
                 <Text color="$green500">$337.61</Text>
               </HStack>
             </VStack>
-          </Modal.Body>
-          <Modal.Footer>
+          </ModalBody>
+          <ModalFooter>
             <Button
               variant="outline"
               action="secondary"
@@ -55,17 +73,17 @@ const MultipleModalStory = ({ ...props }: any) => {
               }}
               sx={{ mr: '$3' }}
             >
-              <Button.Text>Cancel</Button.Text>
+              <ButtonText>Cancel</ButtonText>
             </Button>
             <Button
               onPress={() => {
                 setShowModal2(true);
               }}
             >
-              <Button.Text>Continue</Button.Text>
+              <ButtonText>Continue</ButtonText>
             </Button>
-          </Modal.Footer>
-        </Modal.Content>
+          </ModalFooter>
+        </ModalContent>
       </Modal>
 
       <Modal
@@ -74,29 +92,29 @@ const MultipleModalStory = ({ ...props }: any) => {
           setShowModal2(false);
         }}
       >
-        <Modal.Backdrop />
-        <Modal.Content {...props}>
-          <Modal.Header>
+        <ModalBackdrop />
+        <ModalContent {...props}>
+          <ModalHeader>
             <Heading>Order</Heading>
-            <Modal.CloseButton>
+            <ModalCloseButton>
               <Icon as={CloseIcon} />
-            </Modal.CloseButton>
-          </Modal.Header>
-          <Modal.Body>
+            </ModalCloseButton>
+          </ModalHeader>
+          <ModalBody>
             <Center h={100}>
               <Heading>Second Modal</Heading>
             </Center>
-          </Modal.Body>
-          <Modal.Footer>
+          </ModalBody>
+          <ModalFooter>
             <Button
               onPress={() => {
                 setShowModal2(false);
               }}
             >
-              <Button.Text>Cancel</Button.Text>
+              <ButtonText>Cancel</ButtonText>
             </Button>
-          </Modal.Footer>
-        </Modal.Content>
+          </ModalFooter>
+        </ModalContent>
       </Modal>
     </>
   );

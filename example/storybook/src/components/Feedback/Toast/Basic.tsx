@@ -1,5 +1,11 @@
 import React from 'react';
-import { Button, Toast, useToast } from '../../../ui-components';
+import {
+  Button,
+  ButtonText,
+  Toast,
+  ToastTitle,
+  useToast,
+} from '../../../ui-components';
 
 const Basic = ({ placement = 'top', ...props }: any) => {
   const toast = useToast();
@@ -11,7 +17,7 @@ const Basic = ({ placement = 'top', ...props }: any) => {
           render: ({ id }) => {
             return (
               <Toast nativeId={id} {...props}>
-                <Toast.Title
+                <ToastTitle
                   dataSet={{
                     'component-props': JSON.stringify({
                       'is-text-style': true,
@@ -21,14 +27,14 @@ const Basic = ({ placement = 'top', ...props }: any) => {
                   }}
                 >
                   Hello World Toast {id}
-                </Toast.Title>
+                </ToastTitle>
               </Toast>
             );
           },
         });
       }}
     >
-      <Button.Text
+      <ButtonText
         dataSet={{
           'component-props': JSON.stringify({
             'is-text-style': true,
@@ -38,7 +44,7 @@ const Basic = ({ placement = 'top', ...props }: any) => {
         }}
       >
         Press Me
-      </Button.Text>
+      </ButtonText>
     </Button>
   );
 };

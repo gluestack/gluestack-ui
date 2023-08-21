@@ -1,6 +1,8 @@
 import React from 'react';
 import {
   Alert,
+  AlertIcon,
+  AlertText,
   InfoIcon,
   CheckCircleIcon,
   CloseCircleIcon,
@@ -13,7 +15,7 @@ import {
 function AlertStory({ ...props }: any) {
   return (
     <Alert {...props}>
-      <Alert.Icon
+      <AlertIcon
         as={InfoIcon}
         mr="$3"
         dataSet={{
@@ -25,7 +27,7 @@ function AlertStory({ ...props }: any) {
           }),
         }}
       />
-      <Alert.Text
+      <AlertText
         dataSet={{
           'component-props': JSON.stringify({
             'is-text-style': true,
@@ -35,7 +37,7 @@ function AlertStory({ ...props }: any) {
         }}
       >
         Selection successfully moved!
-      </Alert.Text>
+      </AlertText>
     </Alert>
   );
 }
@@ -44,6 +46,8 @@ export default AlertStory;
 
 export {
   Alert,
+  AlertIcon,
+  AlertText,
   InfoIcon,
   CheckCircleIcon,
   CloseCircleIcon,

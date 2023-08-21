@@ -14,9 +14,33 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Overlay/Popover" />
 
-import { Popover, Pressable, Text as PopoverText } from './Popover';
-import { Heading, Icon, HStack, VStack, Avatar } from './Popover';
-import { Button, Box, CloseIcon, CircleIcon } from './Popover';
+import {
+  Popover,
+  PopoverBackdrop,
+  PopoverContent,
+  PopoverHeader,
+  PopoverBody,
+  PopoverFooter,
+  PopoverCloseButton,
+  Pressable,
+  Text as PopoverText,
+} from './Popover';
+import {
+  Heading,
+  Icon,
+  HStack,
+  VStack,
+  Avatar,
+  AvatarFallbackText,
+} from './Popover';
+import {
+  Button,
+  ButtonGroup,
+  ButtonText,
+  Box,
+  CloseIcon,
+  CircleIcon,
+} from './Popover';
 import { PhoneIcon, Clock3Icon, MailIcon } from './Popover';
 import { useState, Center } from './Popover';
 import { transformedCode } from '../../../utils';
@@ -31,9 +55,11 @@ import {
 
 import Wrapper from '../../Wrapper';
 
-## Basic
+## Themed
 
 Following is the default implementation of the **Popover** component without any additional customization. This serves as a starting point for users who are new to this library and want to learn about the basic functionality and appearance of the component.
+
+Note: We have added a new API for the components — you can avoid the use of "." when using a component. For example, you can now use `<ButtonText>` instead of `<Button.Text>`. This is to accommodate new changes to the RSC, which does not support "." as per [this](https://github.com/vercel/next.js/issues/51593) issue. You can still use the older format, but if you want to use RSC, we recommend skipping the "."
 
 <AppProvider>
   <CodePreview
@@ -60,40 +86,40 @@ Following is the default implementation of the **Popover** component without any
                 <Button
                   {...triggerProps}
                 >
-                  <Button.Text>
+                  <ButtonText>
                     Popover
-                  </Button.Text>
+                  </ButtonText>
                 </Button>
               );
             }}
           >
-            <Popover.Backdrop/>
-            <Popover.Content>
-              <Popover.Header>
+            <PopoverBackdrop/>
+            <PopoverContent>
+              <PopoverHeader>
                 <Heading size='lg'>Welcome!</Heading>
-                <Popover.CloseButton>
+                <PopoverCloseButton>
                   <Icon as={CloseIcon}/>
-                </Popover.CloseButton>
-              </Popover.Header>
-              <Popover.Body>
+                </PopoverCloseButton>
+              </PopoverHeader>
+              <PopoverBody>
                 <Text size='sm'>
                   Join the product tour and start creating your own checklist. Are you ready to jump in?
                 </Text>
-              </Popover.Body>
-              <Popover.Footer>
+              </PopoverBody>
+              <PopoverFooter>
                 <Text size='xs' flex={1}>
                   Step 2 of 3
                 </Text>
-                <Button.Group space='md'>
+                <ButtonGroup space='md'>
                   <Button variant="outline" action='secondary' onPress={handleClose}>
-                    <Button.Text>Back</Button.Text>
+                    <ButtonText>Back</ButtonText>
                   </Button>
                   <Button onPress={handleClose}>
-                    <Button.Text>Next</Button.Text>
+                    <ButtonText>Next</ButtonText>
                   </Button>
-                </Button.Group>
-              </Popover.Footer>
-            </Popover.Content>
+                </ButtonGroup>
+              </PopoverFooter>
+            </PopoverContent>
           </Popover>
         )
       }
@@ -107,7 +133,15 @@ Following is the default implementation of the **Popover** component without any
         Text: PopoverText,
         Heading,
         Popover,
+        PopoverBackdrop,
+        PopoverContent,
+        PopoverHeader,
+        PopoverBody,
+        PopoverFooter,
+        PopoverCloseButton,
         Button,
+        ButtonGroup,
+        ButtonText,
         CloseIcon,
         Icon,
         useState,
@@ -141,28 +175,14 @@ Following is the default implementation of the **Popover** component without any
   />
 </AppProvider>
 
-## Installation
-
-To install the component, run the following command in your terminal. This will add the component to your project's dependencies and allow you to use it in your project.
-
-```bash
-npx gluestack-ui@latest add popover
-```
-
-## Update Component
-
-To update the component, run the following command in your terminal. This will update your component and it's dependencies.
-
-```bash
-npx gluestack-ui@latest update popover
-```
+<br />
 
 ### Import
 
 To use the component in your project, run the command below into your import statement. This will import the component from your components folder.
 
 ```jsx
-import { Popover } from './components';
+import { Popover } from '@gluestack-ui/themed';
 ```
 
 ### Anatomy
@@ -172,14 +192,14 @@ The structure provided below can help you identify and understand a Popover comp
 ```jsx
 export default () => (
   <Popover>
-    <Popover.Backdrop />
-    <Popover.Content>
-      <Popover.Header>
-        <Popover.CloseButton />
-      </Popover.Header>
-      <Popover.Body />
-      <Popover.Footer />
-    </Popover.Content>
+    <PopoverBackdrop />
+    <PopoverContent>
+      <PopoverHeader>
+        <PopoverCloseButton />
+      </PopoverHeader>
+      <PopoverBody />
+      <PopoverFooter />
+    </PopoverContent>
   </Popover>
 );
 ```
@@ -548,28 +568,28 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
   </TableContainer>
 </AppProvider>
 
-#### Popover.Backdrop
+#### PopoverBackdrop
 
 It is React Native's [Pressable](https://reactnative.dev/docs/pressable) component, created using [@legendapp/motion's](https://legendapp.com/open-source/motion/) `createMotionAnimatedComponent` function to add animation to the component. You can use any declarative animation library you prefer.
 
-#### Popover.Content
+#### PopoverContent
 
 Contains all backdrop related layout style props and actions.
 It is [@legendapp/motion's](https://legendapp.com/open-source/motion/) [Motion.View](https://legendapp.com/open-source/motion/overview/) component. You can use any declarative animation library you prefer.
 
-#### Popover.Header
+#### PopoverHeader
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
-#### Popover.Footer
+#### PopoverFooter
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
-#### Popover.Body
+#### PopoverBody
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
-#### Popover.CloseButton
+#### PopoverCloseButton
 
 It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable) component.
 
@@ -583,7 +603,7 @@ We have outlined the various features that ensure the Popover component is acces
 - `Enter`: Opens/closes the popover.
 - `Tab`: Moves focus to the next focusable element.
 - `Shift + Tab`: Moves focus to the previous focusable element.
-- `Esc`: Closes the popover and moves focus to Popover.Trigger.
+- `Esc`: Closes the popover and moves focus to PopoverTrigger.
 
 ### Dependencies
 
@@ -623,9 +643,9 @@ A popover component can enhance the avatar by providing additional information a
                     {...triggerProps}
                   >
                     <Avatar bg='$indigo600'>
-                      <Avatar.FallbackText >
+                      <AvatarFallbackText >
                         Kevin James
-                      </Avatar.FallbackText>
+                      </AvatarFallbackText>
                     </Avatar>
                   </Pressable>
                   <VStack ml='$2.5'>
@@ -640,14 +660,14 @@ A popover component can enhance the avatar by providing additional information a
               );
             }}
           >
-            <Popover.Backdrop/>
-            <Popover.Content w='$80'>
-              <Popover.Header  px='$5' pt='$5'>
+            <PopoverBackdrop/>
+            <PopoverContent w='$80'>
+              <PopoverHeader  px='$5' pt='$5'>
                 <HStack>
                   <Avatar bg='$indigo600' >
-                    <Avatar.FallbackText>
+                    <AvatarFallbackText>
                       Kevin James
-                    </Avatar.FallbackText>
+                    </AvatarFallbackText>
                   </Avatar>
                   <VStack ml='$2.5'>
                     <Heading fontSize='$md'>
@@ -661,8 +681,8 @@ A popover component can enhance the avatar by providing additional information a
                     </HStack>
                   </VStack>
                 </HStack>
-              </Popover.Header>
-              <Popover.Body  px='$5' pb='$5'>
+              </PopoverHeader>
+              <PopoverBody  px='$5' pb='$5'>
                 <VStack space='lg'>
                   <VStack space='sm'>
                     <HStack alignItems='center'>
@@ -689,11 +709,11 @@ A popover component can enhance the avatar by providing additional information a
                       bg:"$darkBlue500"
                     }
                   }}>
-                    <Button.Text>View Profile</Button.Text>
+                    <ButtonText>View Profile</ButtonText>
                   </Button>
                 </VStack>
-              </Popover.Body>
-            </Popover.Content>
+              </PopoverBody>
+            </PopoverContent>
           </Popover>
         </Box>
       `,
@@ -706,8 +726,15 @@ A popover component can enhance the avatar by providing additional information a
         Heading,
         Text: PopoverText,
         Popover,
+        PopoverBackdrop,
+        PopoverContent,
+        PopoverHeader,
+        PopoverBody,
+        PopoverFooter,
+        PopoverCloseButton,
         Pressable,
         Button,
+        ButtonText,
         HStack,
         VStack,
         CircleIcon,
@@ -715,6 +742,7 @@ A popover component can enhance the avatar by providing additional information a
         Clock3Icon,
         MailIcon,
         Avatar,
+        AvatarFallbackText,
         Icon,
       },
       argsType: {},
@@ -722,13 +750,13 @@ A popover component can enhance the avatar by providing additional information a
   />
 </AppProvider>
 
-## Advanced
+## Unstyled
 
 We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
 
 ### Customizing the Popover
 
-We have a function called `createPopover` which can be used to create a custom popover component. This function takes in a configuration object which contains the styled components that you want to use for the Popover. You can refer [style.gluestack.io](https://style.gluestack.io/) for more information on how to use styled components.
+We have a function called `createPopover` which can be used to create a custom popover component. This function takes in a configuration object which contains the styled components that you want to use for the Popover You can refer [style.gluestack.io](https://style.gluestack.io/) for more information on how to use styled components.
 
 You can read more on how to animate components [here](https://ui.gluestack.io/docs/advanced/animations).
 
@@ -768,14 +796,14 @@ export const Popover = createPopover({
 // Using the popover component
 export default () => (
   <Popover>
-    <Popover.Backdrop />
-    <Popover.Content>
-      <Popover.Header>
-        <Popover.CloseButton />
-      </Popover.Header>
-      <Popover.Body />
-      <Popover.Footer />
-    </Popover.Content>
+    <PopoverBackdrop />
+    <PopoverContent>
+      <PopoverHeader>
+        <PopoverCloseButton />
+      </PopoverHeader>
+      <PopoverBody />
+      <PopoverFooter />
+    </PopoverContent>
   </Popover>
 );
 ```

@@ -1,6 +1,16 @@
 import React, { useMemo, useCallback } from 'react';
 
-import { Actionsheet, Button } from '../../../ui-components';
+import {
+  Actionsheet,
+  ActionsheetBackdrop,
+  ActionsheetContent,
+  ActionsheetDragIndicator,
+  ActionsheetDragIndicatorWrapper,
+  ActionsheetItem,
+  ActionsheetItemText,
+  ActionsheetScrollView,
+  Button,
+} from '../../../ui-components';
 import { useEffect } from 'react';
 
 function ActionsheetExample({
@@ -31,8 +41,8 @@ function ActionsheetExample({
 
   const renderItem = useCallback(
     (item: any) => (
-      <Actionsheet.Item onPress={handleClose} key={item}>
-        <Actionsheet.ItemText
+      <ActionsheetItem onPress={handleClose} key={item}>
+        <ActionsheetItemText
           dataSet={{
             'component-props': JSON.stringify({
               'is-text-style': true,
@@ -42,8 +52,8 @@ function ActionsheetExample({
           }}
         >
           {item}
-        </Actionsheet.ItemText>
-      </Actionsheet.Item>
+        </ActionsheetItemText>
+      </ActionsheetItem>
     ),
     [handleClose]
   );
@@ -54,13 +64,13 @@ function ActionsheetExample({
       onClose={handleClose}
       {...props}
     >
-      <Actionsheet.Backdrop />
-      <Actionsheet.Content>
-        <Actionsheet.DragIndicatorWrapper>
-          <Actionsheet.DragIndicator />
-        </Actionsheet.DragIndicatorWrapper>
-        <Actionsheet.ScrollView>{data.map(renderItem)}</Actionsheet.ScrollView>
-      </Actionsheet.Content>
+      <ActionsheetBackdrop />
+      <ActionsheetContent>
+        <ActionsheetDragIndicatorWrapper>
+          <ActionsheetDragIndicator />
+        </ActionsheetDragIndicatorWrapper>
+        <ActionsheetScrollView>{data.map(renderItem)}</ActionsheetScrollView>
+      </ActionsheetContent>
     </Actionsheet>
   );
 }

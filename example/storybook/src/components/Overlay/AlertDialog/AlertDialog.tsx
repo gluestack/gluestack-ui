@@ -3,7 +3,15 @@ import React, { useState } from 'react';
 import {
   CloseIcon,
   AlertDialog,
+  AlertDialogBackdrop,
+  AlertDialogContent,
+  AlertDialogHeader,
+  AlertDialogCloseButton,
+  AlertDialogFooter,
+  AlertDialogBody,
   Button,
+  ButtonText,
+  ButtonGroup,
   Text,
   Center,
   Icon,
@@ -27,9 +35,9 @@ const AlertDialogStory = ({
       onClose={handleClose}
       {...props}
     >
-      <AlertDialog.Backdrop />
-      <AlertDialog.Content>
-        <AlertDialog.Header>
+      <AlertDialogBackdrop />
+      <AlertDialogContent>
+        <AlertDialogHeader>
           <Heading
             dataSet={{
               'component-props': JSON.stringify({
@@ -41,7 +49,7 @@ const AlertDialogStory = ({
           >
             Return Policy
           </Heading>
-          <AlertDialog.CloseButton>
+          <AlertDialogCloseButton>
             <Icon
               as={CloseIcon}
               dataSet={{
@@ -53,9 +61,9 @@ const AlertDialogStory = ({
                 }),
               }}
             />
-          </AlertDialog.CloseButton>
-        </AlertDialog.Header>
-        <AlertDialog.Body>
+          </AlertDialogCloseButton>
+        </AlertDialogHeader>
+        <AlertDialogBody>
           <Text
             dataSet={{
               'component-props': JSON.stringify({
@@ -69,15 +77,15 @@ const AlertDialogStory = ({
             intersection, reminding you to stop and think before you proceed. Is
             deleting this folder the right choice?
           </Text>
-        </AlertDialog.Body>
-        <AlertDialog.Footer>
+        </AlertDialogBody>
+        <AlertDialogFooter>
           <Button
             variant="outline"
             action="secondary"
             onPress={handleClose}
             mr="$3"
           >
-            <Button.Text
+            <ButtonText
               dataSet={{
                 'component-props': JSON.stringify({
                   'is-text-style': true,
@@ -87,10 +95,10 @@ const AlertDialogStory = ({
               }}
             >
               Cancel
-            </Button.Text>
+            </ButtonText>
           </Button>
           <Button action="negative" onPress={handleClose}>
-            <Button.Text
+            <ButtonText
               dataSet={{
                 'component-props': JSON.stringify({
                   'is-text-style': true,
@@ -100,10 +108,10 @@ const AlertDialogStory = ({
               }}
             >
               Delete
-            </Button.Text>
+            </ButtonText>
           </Button>
-        </AlertDialog.Footer>
-      </AlertDialog.Content>
+        </AlertDialogFooter>
+      </AlertDialogContent>
     </AlertDialog>
   );
 };
@@ -114,8 +122,8 @@ const FigmaAlertDialogStory = ({
 }) => {
   return (
     <AlertDialog isOpen={true} my="$16" _experimentalOverlay={false} {...props}>
-      <AlertDialog.Content>
-        <AlertDialog.Header>
+      <AlertDialogContent>
+        <AlertDialogHeader>
           <Heading
             dataSet={{
               'component-props': JSON.stringify({
@@ -127,7 +135,7 @@ const FigmaAlertDialogStory = ({
           >
             Return Policy
           </Heading>
-          <AlertDialog.CloseButton>
+          <AlertDialogCloseButton>
             <Icon
               as={CloseIcon}
               dataSet={{
@@ -139,9 +147,9 @@ const FigmaAlertDialogStory = ({
                 }),
               }}
             />
-          </AlertDialog.CloseButton>
-        </AlertDialog.Header>
-        <AlertDialog.Body>
+          </AlertDialogCloseButton>
+        </AlertDialogHeader>
+        <AlertDialogBody>
           <Text
             dataSet={{
               'component-props': JSON.stringify({
@@ -155,8 +163,8 @@ const FigmaAlertDialogStory = ({
             intersection, reminding you to stop and think before you proceed. Is
             deleting this folder the right choice?
           </Text>
-        </AlertDialog.Body>
-        <AlertDialog.Footer>
+        </AlertDialogBody>
+        <AlertDialogFooter>
           <Button
             variant="outline"
             action="secondary"
@@ -171,7 +179,7 @@ const FigmaAlertDialogStory = ({
               }),
             }}
           >
-            <Button.Text
+            <ButtonText
               dataSet={{
                 'component-props': JSON.stringify({
                   'is-text-style': true,
@@ -181,7 +189,7 @@ const FigmaAlertDialogStory = ({
               }}
             >
               Cancel
-            </Button.Text>
+            </ButtonText>
           </Button>
           <Button
             action="negative"
@@ -195,7 +203,7 @@ const FigmaAlertDialogStory = ({
               }),
             }}
           >
-            <Button.Text
+            <ButtonText
               dataSet={{
                 'component-props': JSON.stringify({
                   'is-text-style': true,
@@ -205,10 +213,10 @@ const FigmaAlertDialogStory = ({
               }}
             >
               Delete
-            </Button.Text>
+            </ButtonText>
           </Button>
-        </AlertDialog.Footer>
-      </AlertDialog.Content>
+        </AlertDialogFooter>
+      </AlertDialogContent>
     </AlertDialog>
   );
 };
@@ -218,7 +226,15 @@ export default FigmaAlertDialogStory;
 export {
   AlertDialogStory,
   AlertDialog,
+  AlertDialogBackdrop,
+  AlertDialogContent,
+  AlertDialogHeader,
+  AlertDialogCloseButton,
+  AlertDialogFooter,
+  AlertDialogBody,
   Button,
+  ButtonText,
+  ButtonGroup,
   Text,
   CloseIcon,
   Center,

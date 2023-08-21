@@ -5,7 +5,7 @@ description: gluestack-ui components can be rendered on the server.
 
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
-<Meta title="Configuration/SSR" />
+<Meta title="Configuration/Server-Side Rendering" />
 
 # Server-side rendering (SSR)
 
@@ -16,26 +16,3 @@ gluestack-ui components are built on top of React Native Web and `@gluestack-sty
 However, for more advanced server-side rendering scenarios, such as with Next.js, some configuration may be necessary. In these cases, you may need to install and configure additional packages, such as next-transpile-modules, to ensure that the gluestack-ui components are properly transpiled and available for server-side rendering.
 
 To use gluestack-ui components with server-side rendering, you need to configure your project to transpile the modules correctly. The easiest way to do this is by using the withGluestackUI Next.js adapter. This adapter adds the necessary configuration to your project to ensure that your gluestack-ui components are transpiled correctly for server-side rendering.
-
-You can use the `withGluestackUI` Next.js adapter to transpile gluestack-ui modules for server-side rendering.
-The adapter is provided by the `@gluestack/ui-next-adapter` package, and can be used in a Next.js project by adding it to the next.config.js file.
-
-```jsx
-const withGluestackUI = require('@gluestack/ui-next-adapter');
-
-module.exports = withGluestackUI({
-  // Your Next.js configuration here
-});
-```
-
-To add a gluestack-ui component to your project, you can use the following command:
-
-```bash
-npx gluestack-ui@latest add button
-```
-
-This command will add the button component to your project and configure it for server-side rendering using the withGluestackUI adapter.
-
-Once you have added the component and configured your project, you can use the component in your application like any other React component. When the component is rendered server-side, it will be pre-rendered on the server and sent to the client as HTML.
-
-In summary, gluestack-ui components can be easily rendered server-side using Next.js or any other server-side rendering framework. To get started, simply add the component to your project using the npx gluestack-ui@latest add command, and use the withGluestackUI adapter to configure your project for server-side rendering.

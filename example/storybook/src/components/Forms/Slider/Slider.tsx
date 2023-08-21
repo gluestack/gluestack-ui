@@ -2,6 +2,9 @@ import React from 'react';
 import {
   Text,
   Slider,
+  SliderTrack,
+  SliderFilledTrack,
+  SliderThumb,
   VStack,
   HStack,
   Box,
@@ -35,10 +38,10 @@ const SliderStory = ({ value: valueProp = 60, ...props }: any) => {
         handleChange(value);
       }}
     >
-      <Slider.Track>
-        <Slider.FilledTrack />
-      </Slider.Track>
-      <Slider.Thumb />
+      <SliderTrack>
+        <SliderFilledTrack />
+      </SliderTrack>
+      <SliderThumb />
     </Slider>
   );
 };
@@ -47,6 +50,9 @@ export default SliderStory;
 
 export {
   Slider,
+  SliderTrack,
+  SliderFilledTrack,
+  SliderThumb,
   VStack,
   Volume,
   HStack,

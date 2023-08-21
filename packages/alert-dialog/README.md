@@ -43,26 +43,26 @@ const AlertDialog = createAlertDialog({
 // Using the alert-dialog component
 export default () => (
   <AlertDialog>
-    <AlertDialog.Backdrop />
-    <AlertDialog.Content>
-      <AlertDialog.Header>
+    <AlertDialogBackdrop />
+    <AlertDialogContent>
+      <AlertDialogHeader>
         <Heading>Confirm your request</Heading>
-        <AlertDialog.CloseButton>
+        <AlertDialogCloseButton>
           <CloseIcon />
-        </AlertDialog.CloseButton>
-      </AlertDialog.Header>
-      <AlertDialog.Body>
+        </AlertDialogCloseButton>
+      </AlertDialogHeader>
+      <AlertDialogBody>
         <Text>AlertDialog Body</Text>
-      </AlertDialog.Body>
-      <AlertDialog.Footer>
+      </AlertDialogBody>
+      <AlertDialogFooter>
         <Button>
-          <Button.Text></Button.Text>
+          <ButtonText></ButtonText>
         </Button>
         <Button>
-          <Button.Text></Button.Text>
+          <ButtonText></ButtonText>
         </Button>
-      </AlertDialog.Footer>
-    </AlertDialog.Content>
+      </AlertDialogFooter>
+    </AlertDialogContent>
   </AlertDialog>
 );
 ```

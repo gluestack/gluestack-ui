@@ -2,7 +2,15 @@ import React, { useState } from 'react';
 import {
   Text,
   Button,
+  ButtonText,
+  ButtonGroup,
   Popover,
+  PopoverBackdrop,
+  PopoverContent,
+  PopoverHeader,
+  PopoverBody,
+  PopoverFooter,
+  PopoverCloseButton,
   CloseIcon,
   Icon,
   Box,
@@ -12,6 +20,7 @@ import {
   HStack,
   VStack,
   Avatar,
+  AvatarFallbackText,
   CircleIcon,
   AddIcon,
 } from '../../../ui-components';
@@ -32,40 +41,40 @@ const PopoverStory = ({
         trigger={(triggerProps) => {
           return (
             <Button {...triggerProps}>
-              <Button.Text>Popover</Button.Text>
+              <ButtonText>Popover</ButtonText>
             </Button>
           );
         }}
       >
-        <Popover.Backdrop />
-        <Popover.Content maxWidth="$96">
-          <Popover.Header>
+        <PopoverBackdrop />
+        <PopoverContent maxWidth="$96">
+          <PopoverHeader>
             <Heading>Welcome!</Heading>
-            <Popover.CloseButton>
+            <PopoverCloseButton>
               <Icon as={CloseIcon} />
-            </Popover.CloseButton>
-          </Popover.Header>
-          <Popover.Body>
+            </PopoverCloseButton>
+          </PopoverHeader>
+          <PopoverBody>
             <Text>
               Join the product tour and start creating your own checklist. Are
               you ready to jump in?
             </Text>
-          </Popover.Body>
-          <Popover.Footer>
+          </PopoverBody>
+          <PopoverFooter>
             <Text size="xs" flex={1}>
               Step 2 of 3
             </Text>
             {/* @ts-ignore */}
-            <Button.Group space="md">
+            <ButtonGroup space="md">
               <Button variant="outline" action="secondary">
-                <Button.Text>Back</Button.Text>
+                <ButtonText>Back</ButtonText>
               </Button>
               <Button>
-                <Button.Text>Next</Button.Text>
+                <ButtonText>Next</ButtonText>
               </Button>
-            </Button.Group>
-          </Popover.Footer>
-        </Popover.Content>
+            </ButtonGroup>
+          </PopoverFooter>
+        </PopoverContent>
       </Popover>
     </Center>
   );
@@ -166,7 +175,15 @@ export {
   PopoverStory,
   Text,
   Popover,
+  PopoverBackdrop,
+  PopoverContent,
+  PopoverHeader,
+  PopoverBody,
+  PopoverFooter,
+  PopoverCloseButton,
   Button,
+  ButtonGroup,
+  ButtonText,
   CloseIcon,
   Box,
   Heading,
@@ -175,6 +192,7 @@ export {
   HStack,
   VStack,
   Avatar,
+  AvatarFallbackText,
   CircleIcon,
   AddIcon,
   Center,

@@ -2,6 +2,13 @@ import React from 'react';
 
 import {
   Actionsheet,
+  ActionsheetBackdrop,
+  ActionsheetContent,
+  ActionsheetDragIndicator,
+  ActionsheetDragIndicatorWrapper,
+  ActionsheetItem,
+  ActionsheetItemText,
+  ActionsheetIcon,
   Button,
   Icon,
   TrashIcon,
@@ -32,13 +39,13 @@ function ActionsheetExample({
       onClose={handleClose}
       {...props}
     >
-      <Actionsheet.Backdrop />
-      <Actionsheet.Content>
-        <Actionsheet.DragIndicatorWrapper>
-          <Actionsheet.DragIndicator />
-        </Actionsheet.DragIndicatorWrapper>
-        <Actionsheet.Item onPress={handleClose}>
-          <Actionsheet.Icon
+      <ActionsheetBackdrop />
+      <ActionsheetContent>
+        <ActionsheetDragIndicatorWrapper>
+          <ActionsheetDragIndicator />
+        </ActionsheetDragIndicatorWrapper>
+        <ActionsheetItem onPress={handleClose}>
+          <ActionsheetIcon
             as={TrashIcon}
             dataSet={{
               'component-props': JSON.stringify({
@@ -49,7 +56,7 @@ function ActionsheetExample({
               }),
             }}
           />
-          <Actionsheet.ItemText
+          <ActionsheetItemText
             dataSet={{
               'component-props': JSON.stringify({
                 'is-text-style': true,
@@ -59,10 +66,10 @@ function ActionsheetExample({
             }}
           >
             Delete
-          </Actionsheet.ItemText>
-        </Actionsheet.Item>
-        <Actionsheet.Item onPress={handleClose}>
-          <Actionsheet.Icon
+          </ActionsheetItemText>
+        </ActionsheetItem>
+        <ActionsheetItem onPress={handleClose}>
+          <ActionsheetIcon
             as={ShareIcon}
             dataSet={{
               'component-props': JSON.stringify({
@@ -73,7 +80,7 @@ function ActionsheetExample({
               }),
             }}
           />
-          <Actionsheet.ItemText
+          <ActionsheetItemText
             dataSet={{
               'component-props': JSON.stringify({
                 'is-text-style': true,
@@ -83,10 +90,10 @@ function ActionsheetExample({
             }}
           >
             Share
-          </Actionsheet.ItemText>
-        </Actionsheet.Item>
-        <Actionsheet.Item onPress={handleClose}>
-          <Actionsheet.Icon
+          </ActionsheetItemText>
+        </ActionsheetItem>
+        <ActionsheetItem onPress={handleClose}>
+          <ActionsheetIcon
             as={PlayIcon}
             dataSet={{
               'component-props': JSON.stringify({
@@ -97,7 +104,7 @@ function ActionsheetExample({
               }),
             }}
           />
-          <Actionsheet.ItemText
+          <ActionsheetItemText
             dataSet={{
               'component-props': JSON.stringify({
                 'is-text-style': true,
@@ -107,10 +114,10 @@ function ActionsheetExample({
             }}
           >
             Play
-          </Actionsheet.ItemText>
-        </Actionsheet.Item>
-        <Actionsheet.Item onPress={handleClose}>
-          <Actionsheet.Icon
+          </ActionsheetItemText>
+        </ActionsheetItem>
+        <ActionsheetItem onPress={handleClose}>
+          <ActionsheetIcon
             as={FavouriteIcon}
             dataSet={{
               'component-props': JSON.stringify({
@@ -121,7 +128,7 @@ function ActionsheetExample({
               }),
             }}
           />
-          <Actionsheet.ItemText
+          <ActionsheetItemText
             dataSet={{
               'component-props': JSON.stringify({
                 'is-text-style': true,
@@ -131,10 +138,10 @@ function ActionsheetExample({
             }}
           >
             Favourite
-          </Actionsheet.ItemText>
-        </Actionsheet.Item>
-        <Actionsheet.Item onPress={handleClose}>
-          <Actionsheet.Icon
+          </ActionsheetItemText>
+        </ActionsheetItem>
+        <ActionsheetItem onPress={handleClose}>
+          <ActionsheetIcon
             as={CloseIcon}
             dataSet={{
               'component-props': JSON.stringify({
@@ -145,7 +152,7 @@ function ActionsheetExample({
               }),
             }}
           />
-          <Actionsheet.ItemText
+          <ActionsheetItemText
             dataSet={{
               'component-props': JSON.stringify({
                 'is-text-style': true,
@@ -155,9 +162,9 @@ function ActionsheetExample({
             }}
           >
             Cancel
-          </Actionsheet.ItemText>
-        </Actionsheet.Item>
-      </Actionsheet.Content>
+          </ActionsheetItemText>
+        </ActionsheetItem>
+      </ActionsheetContent>
     </Actionsheet>
   );
 }

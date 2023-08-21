@@ -23,3 +23,10 @@ export const Popover = createPopover({
   //@ts-ignore
   AnimatePresence: styled.Component,
 });
+export const PopoverArrow = Popover.Arrow;
+export const PopoverContent = Popover.Content;
+export const PopoverHeader = Popover.Header;
+export const PopoverFooter = Popover.Footer;
+export const PopoverBody = Popover.Body;
+export const PopoverBackdrop = Popover.Backdrop;
+export const PopoverCloseButton = Popover.CloseButton;

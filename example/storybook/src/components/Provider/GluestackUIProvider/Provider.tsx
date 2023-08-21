@@ -1,7 +1,8 @@
 import React from 'react';
 import {
   Button,
-  GluestackUIProvider as Provider,
+  ButtonText,
+  GluestackUIProvider,
   Pressable,
   Text,
   Box,
@@ -16,15 +17,15 @@ const ProviderStory = () => {
     colorMode === 'light' ? setColorMode('dark') : setColorMode('light');
   };
   return (
-    <Provider config={config.theme} colorMode={colorMode}>
+    <GluestackUIProvider config={config.theme} colorMode={colorMode}>
       <Box w={100}>
         <Button onPress={toggleColorMode}>
-          <Button.Text>Change Mode</Button.Text>
+          <ButtonText>Change Mode</ButtonText>
         </Button>
         <Pressable bg="$pink600" mb={'$4'}>
           <Text>Hello</Text>
         </Pressable>
-        <Provider
+        <GluestackUIProvider
           config={{
             ...config.theme,
             tokens: {
@@ -36,12 +37,12 @@ const ProviderStory = () => {
           <Button bg="$pink600" sx={{ _dark: { bg: '$pink600' } }}>
             <Text>Hello</Text>
           </Button>
-        </Provider>
+        </GluestackUIProvider>
       </Box>
-    </Provider>
+    </GluestackUIProvider>
   );
 };
 
 export default ProviderStory;
 
-export { Pressable, Button, Provider, Box };
+export { Pressable, Button, GluestackUIProvider, Box, ButtonText };

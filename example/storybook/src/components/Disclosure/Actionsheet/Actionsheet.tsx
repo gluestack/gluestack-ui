@@ -1,7 +1,20 @@
 import React, { useState } from 'react';
 import {
   Actionsheet,
+  ActionsheetIcon,
+  ActionsheetBackdrop,
+  ActionsheetContent,
+  ActionsheetDragIndicator,
+  ActionsheetDragIndicatorWrapper,
+  ActionsheetItem,
+  ActionsheetItemText,
+  ActionsheetFlatList,
+  ActionsheetScrollView,
+  ActionsheetSectionList,
+  ActionsheetSectionHeaderText,
+  ActionsheetVirtualizedList,
   Button,
+  ButtonText,
   VStack,
   HStack,
   Icon,
@@ -20,110 +33,45 @@ function ActionsheetStory({ ...props }: any) {
   const handleClose = () => setShowActionsheet(false);
 
   return (
-    <Center>
-      <Button
-        onPress={() => {
-          setShowActionsheet((prev) => !prev);
-        }}
-      >
-        <Button.Text
-          dataSet={{
-            'component-props': JSON.stringify({
-              'is-text-style': true,
-              'component-name': 'Text',
-              'size': 'md',
-            }),
-          }}
-        >
-          Open
-        </Button.Text>
-      </Button>
-      <Actionsheet isOpen={showActionsheet} onClose={handleClose} {...props}>
-        <Actionsheet.Backdrop />
-        <Actionsheet.Content>
-          <Actionsheet.DragIndicatorWrapper>
-            <Actionsheet.DragIndicator />
-          </Actionsheet.DragIndicatorWrapper>
-          <Actionsheet.Item onPress={handleClose} isDisabled>
-            <Actionsheet.ItemText
-              dataSet={{
-                'component-props': JSON.stringify({
-                  'is-text-style': true,
-                  'component-name': 'Text',
-                  'size': 'md',
-                }),
-              }}
-            >
-              Delete
-            </Actionsheet.ItemText>
-          </Actionsheet.Item>
-          <Actionsheet.Item onPress={handleClose}>
-            <Actionsheet.ItemText
-              dataSet={{
-                'component-props': JSON.stringify({
-                  'is-text-style': true,
-                  'component-name': 'Text',
-                  'size': 'md',
-                }),
-              }}
-            >
-              Share
-            </Actionsheet.ItemText>
-          </Actionsheet.Item>
-          <Actionsheet.Item onPress={handleClose}>
-            <Actionsheet.ItemText
-              dataSet={{
-                'component-props': JSON.stringify({
-                  'is-text-style': true,
-                  'component-name': 'Text',
-                  'size': 'md',
-                }),
-              }}
-            >
-              Play
-            </Actionsheet.ItemText>
-          </Actionsheet.Item>
-          <Actionsheet.Item onPress={handleClose}>
-            <Actionsheet.ItemText
-              dataSet={{
-                'component-props': JSON.stringify({
-                  'is-text-style': true,
-                  'component-name': 'Text',
-                  'size': 'md',
-                }),
-              }}
-            >
-              Favourite
-            </Actionsheet.ItemText>
-          </Actionsheet.Item>
-          <Actionsheet.Item onPress={handleClose}>
-            <Actionsheet.ItemText
-              dataSet={{
-                'component-props': JSON.stringify({
-                  'is-text-style': true,
-                  'component-name': 'Text',
-                  'size': 'md',
-                }),
-              }}
-            >
-              Cancel
-            </Actionsheet.ItemText>
-          </Actionsheet.Item>
-        </Actionsheet.Content>
-      </Actionsheet>
-    </Center>
+    <Actionsheet
+      isOpen={showActionsheet || showActionsheetProp}
+      onClose={handleClose}
+      {...props}
+    >
+      <ActionsheetBackdrop />
+      <ActionsheetContent>
+        <ActionsheetDragIndicatorWrapper>
+          <ActionsheetDragIndicator />
+        </ActionsheetDragIndicatorWrapper>
+        <ActionsheetItem onPress={handleClose} isDisabled>
+          <ActionsheetItemText>Delete</ActionsheetItemText>
+        </ActionsheetItem>
+        <ActionsheetItem onPress={handleClose}>
+          <ActionsheetItemText>Share</ActionsheetItemText>
+        </ActionsheetItem>
+        <ActionsheetItem onPress={handleClose}>
+          <ActionsheetItemText>Play</ActionsheetItemText>
+        </ActionsheetItem>
+        <ActionsheetItem onPress={handleClose}>
+          <ActionsheetItemText>Favourite</ActionsheetItemText>
+        </ActionsheetItem>
+        <ActionsheetItem onPress={handleClose}>
+          <ActionsheetItemText>Cancel</ActionsheetItemText>
+        </ActionsheetItem>
+      </ActionsheetContent>
+    </Actionsheet>
   );
 }
 
 function FigmaActionsheetStory({ ...props }: any) {
   return (
     <Center w={900} h={400}>
-      <Actionsheet.Content {...props} w="$full" _experimentalContent={true}>
-        <Actionsheet.DragIndicatorWrapper>
-          <Actionsheet.DragIndicator />
-        </Actionsheet.DragIndicatorWrapper>
-        <Actionsheet.Item>
-          <Actionsheet.ItemText
+      <ActionsheetContent {...props} w="$full" _experimentalContent={true}>
+        <ActionsheetDragIndicatorWrapper>
+          <ActionsheetDragIndicator />
+        </ActionsheetDragIndicatorWrapper>
+        <ActionsheetItem>
+          <ActionsheetItemText
             dataSet={{
               'component-props': JSON.stringify({
                 'is-text-style': true,
@@ -133,10 +81,10 @@ function FigmaActionsheetStory({ ...props }: any) {
             }}
           >
             Delete
-          </Actionsheet.ItemText>
-        </Actionsheet.Item>
-        <Actionsheet.Item>
-          <Actionsheet.ItemText
+          </ActionsheetItemText>
+        </ActionsheetItem>
+        <ActionsheetItem>
+          <ActionsheetItemText
             dataSet={{
               'component-props': JSON.stringify({
                 'is-text-style': true,
@@ -146,10 +94,10 @@ function FigmaActionsheetStory({ ...props }: any) {
             }}
           >
             Share
-          </Actionsheet.ItemText>
-        </Actionsheet.Item>
-        <Actionsheet.Item>
-          <Actionsheet.ItemText
+          </ActionsheetItemText>
+        </ActionsheetItem>
+        <ActionsheetItem>
+          <ActionsheetItemText
             dataSet={{
               'component-props': JSON.stringify({
                 'is-text-style': true,
@@ -159,10 +107,10 @@ function FigmaActionsheetStory({ ...props }: any) {
             }}
           >
             Play
-          </Actionsheet.ItemText>
-        </Actionsheet.Item>
-        <Actionsheet.Item>
-          <Actionsheet.ItemText
+          </ActionsheetItemText>
+        </ActionsheetItem>
+        <ActionsheetItem>
+          <ActionsheetItemText
             dataSet={{
               'component-props': JSON.stringify({
                 'is-text-style': true,
@@ -172,10 +120,10 @@ function FigmaActionsheetStory({ ...props }: any) {
             }}
           >
             Favourite
-          </Actionsheet.ItemText>
-        </Actionsheet.Item>
-        <Actionsheet.Item>
-          <Actionsheet.ItemText
+          </ActionsheetItemText>
+        </ActionsheetItem>
+        <ActionsheetItem>
+          <ActionsheetItemText
             dataSet={{
               'component-props': JSON.stringify({
                 'is-text-style': true,
@@ -185,9 +133,9 @@ function FigmaActionsheetStory({ ...props }: any) {
             }}
           >
             Cancel
-          </Actionsheet.ItemText>
-        </Actionsheet.Item>
-      </Actionsheet.Content>
+          </ActionsheetItemText>
+        </ActionsheetItem>
+      </ActionsheetContent>
     </Center>
   );
 }
@@ -197,7 +145,20 @@ export default FigmaActionsheetStory;
 export {
   ActionsheetStory,
   Actionsheet,
+  ActionsheetIcon,
+  ActionsheetBackdrop,
+  ActionsheetContent,
+  ActionsheetDragIndicator,
+  ActionsheetDragIndicatorWrapper,
+  ActionsheetItem,
+  ActionsheetItemText,
+  ActionsheetFlatList,
+  ActionsheetScrollView,
+  ActionsheetSectionList,
+  ActionsheetSectionHeaderText,
+  ActionsheetVirtualizedList,
   Button,
+  ButtonText,
   VStack,
   HStack,
   Icon,

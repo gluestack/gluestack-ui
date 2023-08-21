@@ -63,12 +63,12 @@ const Avatar = createAvatar({
 
 // Using the avatar component
 export default () => (
-  <Avatar.Group>
+  <AvatarGroup>
     <Avatar>
-      <Avatar.FallbackText />
-      <Avatar.Badge />
+      <AvatarFallbackText />
+      <AvatarBadge />
     </Avatar>
-  </Avatar.Group>
+  </AvatarGroup>
 );
 ```
 

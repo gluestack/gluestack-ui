@@ -1,0 +1,83 @@
+---
+title: Installation in Expo | gluestack-ui
+
+description: In this guide, we will walk you through the steps required to add gluestack-ui to your Expo project.
+
+pageTitle: Install in Expo
+
+pageDescription: In this guide, we will walk you through the steps required to add gluestack-ui to your Expo project.
+
+showHeader: true
+---
+
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+
+import { AppProvider, Link, Box, HStack, Text } from '@gluestack/design-system';
+
+<Meta title="Guides/Install in Expo" />
+
+## New Project
+
+If you are starting with a new project, you can use `npx` to create a new project with `gluestack-ui`.
+
+```bash
+npx gluestack
+```
+
+The above command will create a new Expo project with `@gluestack-ui/themed` installed and configured.
+
+You can directly use all the components by directly importing them in your project.
+
+```bash
+import { Button } from '@gluestack-ui/themed';
+```
+
+## Existing Project
+
+Create a new Expo projects if it doesn't already exist
+
+```bash
+npm install --global expo-cli
+expo init my-project
+cd my-project/
+```
+
+[Refer this link](https://docs.expo.dev/index.html) for additional information on Expo and setting up an Expo starter app.
+
+If you wish to install `gluestack-ui` into your existing project, you can proceed with the following steps:
+
+### Step 1: Install dependencies
+
+```bash
+yarn add @gluestack-ui/themed react-native-svg@13.4.0
+```
+
+OR
+
+```bash
+npm i @gluestack-ui/themed react-native-svg@13.4.0
+```
+
+### Step 2: Configure the GluestackUIProvider
+
+The `GluestackUIProvider` is a component that provides aliases and tokens throughout your app, using React's Context API. It should be added to the root of your app.
+
+You can update your `App.tsx` file as follows:
+
+```jsx
+import { GluestackUIProvider, Text, Box, config } from '@gluestack-ui/themed';
+
+export default function App() {
+  return (
+    <GluestackUIProvider config={config.theme}>
+      <Box width="100%" justifyContent="center" alignItems="center">
+        <Text>Open up App.js to start working on your app!</Text>
+      </Box>
+    </GluestackUIProvider>
+  );
+}
+```
+
+This ensures that all components are wrapped with `<GluestackUIProvider />`, and the theme from `gluestack-ui.config.ts` is applied.
+
+This guide should help you get started with gluestack-ui in your expo project. If you run into any issues or have further questions, please refer to the official documentation or community forums.

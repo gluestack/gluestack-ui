@@ -2,6 +2,8 @@ import React from 'react';
 import {
   Center,
   Badge,
+  BadgeText,
+  BadgeIcon,
   Icon,
   Box,
   Text,
@@ -14,9 +16,14 @@ import {
   CheckIcon,
   Heading,
   Avatar,
+  AvatarFallbackText,
+  AvatarImage,
   Button,
+  ButtonText,
   Menu,
   MenuIcon,
+  MenuItem,
+  MenuItemLabel,
 } from '../../../ui-components';
 import {
   PaintBucket,
@@ -41,7 +48,7 @@ const BadgeStory = ({ text = 'New feature', ...props }: any) => {
   }
   return (
     <Badge {...props}>
-      <Badge.Text
+      <BadgeText
         dataSet={{
           'component-props': JSON.stringify({
             'is-text-style': true,
@@ -51,8 +58,8 @@ const BadgeStory = ({ text = 'New feature', ...props }: any) => {
         }}
       >
         {text}
-      </Badge.Text>
-      <Badge.Icon
+      </BadgeText>
+      <BadgeIcon
         ml="$1"
         as={GlobeIcon}
         dataSet={{
@@ -73,6 +80,8 @@ export default BadgeStory;
 export {
   Center,
   Badge,
+  BadgeText,
+  BadgeIcon,
   Icon,
   Box,
   Text,
@@ -87,10 +96,15 @@ export {
   CheckIcon,
   Heading,
   Avatar,
+  AvatarFallbackText,
+  AvatarImage,
   Button,
+  ButtonText,
   GlobeIcon,
   BadgeCheckIcon,
-  MenuIcon,
   Menu,
+  MenuIcon,
+  MenuItem,
+  MenuItemLabel,
   BadgePlusIcon,
 };

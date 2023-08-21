@@ -1,9 +1,9 @@
 ---
-title: Installation in React Native project | gluestack-ui
+title: Installation in React Native | gluestack-ui
 
 description: In this guide, we will walk you through the steps required to add gluestack-ui to your React Native project. You can create a new React Native project using React Native CLI. We will cover initial setup, configuring the provider, and adding a new component.
 
-pageTitle: Install in React Native project
+pageTitle: Install in React Native
 
 pageDescription: In this guide, we will walk you through the steps required to add gluestack-ui to your React Native project. You can create a new React Native project using React Native CLI. We will cover initial setup, configuring the provider, and adding a new component.
 
@@ -14,17 +14,17 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 import { AppProvider, Link, Box, HStack, Text } from '@gluestack/design-system';
 
-<Meta title="Getting Started/Install in React Native" />
+<Meta title="Guides/Install in React Native" />
 
-## Automatic
+## New Project
 
 If you are starting with a new project, you can use `npx` to create a new project with `gluestack-ui`.
 
 ```bash
-npx create-react-native-app-with-gluestack-ui@latest
+npx gluestack
 ```
 
-## Manual
+## Existing Project
 
 If you wish to install `gluestack-ui` into your existing project, you can proceed with the following steps:
 
@@ -33,15 +33,14 @@ If you wish to install `gluestack-ui` into your existing project, you can procee
 First, install the latest version of gluestack-ui in your project. This can be done using the following command:
 
 ```bash
-npx gluestack-ui@latest
+yarn add @gluestack-ui/themed
 ```
 
-This command performs the following tasks:
+OR
 
-- Checks if gluestack-ui is already installed in the project. If not, it creates a new `gluestack-ui.config.ts` file at the root of your project. This file contains the default theme.
-- Creates a `GluestackUIProvider`, a wrapper component.
-- Add a `styled` function created using [FontResolver](https://style.gluestack.io/docs/plugins/fonts-plugin) and [AnimationResolver](https://style.gluestack.io/docs/plugins/animation-plugin) plugins.
-- Installs the required dependencies: `@gluestack-style/react`, `@gluestack-style/animation-plugin`, and `@gluestack-ui/provider`.
+```bash
+npm i @gluestack-ui/themed
+```
 
 ### Step 2: Configure the GluestackUIProvider
 
@@ -50,9 +49,7 @@ The `GluestackUIProvider` is a component that provides aliases and tokens throug
 You can update your `App.tsx` file as follows:
 
 ```jsx
-import { Text } from 'react-native';
-import { GluestackUIProvider } from './components';
-import { config } from './gluestack-ui.config';
+import { config, GluestackUIProvider, Text } from '@gluestack-ui/themed';
 
 export default function App() {
   return (

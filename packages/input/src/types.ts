@@ -44,7 +44,7 @@ interface IInputFieldProps {
    */
   isFullWidth?: boolean;
 }
-interface IInputProps {
+export interface IInputProps {
   type?: 'text' | 'password';
   onKeyPress?: (e: any) => void;
   onFocus?: any;

@@ -3,9 +3,13 @@ import React from 'react';
 import {
   AddIcon,
   Fab,
+  FabIcon,
+  FabLabel,
   Box,
   MenuIcon,
   Checkbox,
+  CheckboxIndicator,
+  CheckboxLabel,
   SearchIcon,
   Link,
   VStack,
@@ -35,7 +39,7 @@ const FabStory = ({
     >
       <Fab placement={placement} {...props}>
         {showIcon && (
-          <Fab.Icon
+          <FabIcon
             as={MenuIcon}
             mr={showLabel ? '$1' : '$0'}
             dataSet={{
@@ -48,7 +52,7 @@ const FabStory = ({
             }}
           />
         )}
-        {showLabel && <Fab.Label>Menu</Fab.Label>}
+        {showLabel && <FabLabel>Menu</FabLabel>}
       </Fab>
     </Box>
   );
@@ -92,6 +96,8 @@ export default FigmaFabStory;
 export {
   FabStory,
   Fab,
+  FabIcon,
+  FabLabel,
   SearchIcon,
   EditIcon,
   Box,
@@ -103,6 +109,8 @@ export {
   Divider,
   AddIcon,
   Checkbox,
+  CheckboxIndicator,
+  CheckboxLabel,
   CheckIcon,
   Image,
   Link,

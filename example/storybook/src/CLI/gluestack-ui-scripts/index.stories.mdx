@@ -1,0 +1,45 @@
+---
+title: gluestack-ui Command Line Interface (CLI) Guide | gluestack-ui
+
+description: gluestack-ui offers a powerful and user-friendly Command Line Interface (CLI) to streamline your development experience. The CLI includes commands for initial installation setup, adding, updating, or removing components in your project. The following is a list of commands provided by gluestack-ui CLI
+
+pageTitle: Installation
+
+pageDescription: gluestack-ui offers a powerful and user-friendly Command Line Interface (CLI) to streamline your development experience. The CLI includes commands for initial installation setup, adding, updating, or removing components in your project. The following is a list of commands provided by gluestack-ui CLI
+---
+
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+import {
+  AppProvider,
+  CodePreview,
+  Table,
+  TableContainer,
+  Text,
+  InlineCode,
+  Icon,
+  CheckIcon,
+} from '@gluestack/design-system';
+
+<Meta title="CLI/gluestack-ui-scripts" />
+
+# Command Line Interface (CLI) Guide
+
+`@gluestack-ui/themed` is a component library which provides universal, accessible, interactive, styled components.
+
+The accessibility, interactivity and other features of the components are provided by `@gluestack-ui/themed`. The styling of the components is done by using another library [gluestack-style](https://style.gluestack.io/). We can use customised styles, theme tokens, dark and light mode, breakpoints etc with the help of `@gluestack-style`
+
+By default gluestack-ui components comes with a default base styling for all components, which is acheived when the components are wrapped with a Provider that takes in a theme file. `@gluestack-ui/themed` ships a theme created by team of designers after a lot of research. But what if there is a need to customise the base styling for all components or just the theme file. Don't worry we got you covered.
+
+`gluestack-ui-scripts` is another library that provides a set of commands that manipultes `@gluestack-ui/themed`. We need to install the scripts package first.
+
+```bash
+
+yarn add gluestack-ui-scripts
+```
+
+OR
+
+```bash
+npm i gluestack-ui-scripts
+
+```

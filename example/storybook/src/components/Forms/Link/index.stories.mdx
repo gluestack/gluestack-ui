@@ -14,7 +14,7 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Forms/Link" />
 
-import { LinkTemp as Link, ArrowUpRightIcon, Icon, HStack, Text } from './Link';
+import { Link, LinkText, ArrowUpRightIcon, Icon, HStack, Text } from './Link';
 import { transformedCode } from '../../../utils';
 import {
   AppProvider,
@@ -26,18 +26,20 @@ import {
 
 import Wrapper from '../../Wrapper';
 
-## Basic
+## Themed
 
 Following is the default implementation of the **Link** component without any additional customization. This serves as a starting point for users who are new to this library and want to learn about the basic functionality and appearance of the component.
+
+Note: We have added a new API for the components — you can avoid the use of "." when using a component. For example, you can now use `<ButtonText>` instead of `<Button.Text>`. This is to accommodate new changes to the RSC, which does not support "." as per [this](https://github.com/vercel/next.js/issues/51593) issue. You can still use the older format, but if you want to use RSC, we recommend skipping the "."
 
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `    
+      code: `
       <Link href="https://gluestack.io/">
-        <Link.Text>gluestack</Link.Text>
+        <LinkText>gluestack</LinkText>
       </Link>
       `,
       transformCode: (code) => {
@@ -46,34 +48,21 @@ Following is the default implementation of the **Link** component without any ad
       scope: {
         Wrapper,
         Link,
+        LinkText,
       },
       argsType: {},
     }}
   />
 </AppProvider>
 
-## Installation
-
-To install the component, run the following command in your terminal. This will add the component to your project's dependencies and allow you to use it in your project.
-
-```bash
-npx gluestack-ui@latest add link
-```
-
-## Update Component
-
-To update the component, run the following command in your terminal. This will update your component and it's dependencies.
-
-```bash
-npx gluestack-ui@latest update link
-```
+<br />
 
 ### Import
 
 To use the component in your project, run the command below into your import statement. This will import the component from your components folder.
 
 ```bash
-import { Link } from './components';
+import { Link } from '@gluestack-ui/themed';
 ```
 
 ### Anatomy
@@ -83,7 +72,7 @@ The structure provided below can help you identify and understand a Link compone
 ```jsx
 export default () => (
   <Link>
-    <Link.Text />
+    <LinkText />
   </Link>
 );
 ```
@@ -204,7 +193,7 @@ It inherits all the properties of React Native's [Pressable](https://reactnative
   </TableContainer>
 </AppProvider>
 
-#### Link.Text
+#### LinkText
 
 Contains all text related layout style props and actions. It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text) component.
 
@@ -246,18 +235,17 @@ The Examples section provides visual representations of the different variants o
               size="lg"
             >Design inspiration from </Text>
               <Link href="https://gluestack.io/" isExternal>
-                <Link.Text size="lg">pinterest.com</Link.Text>
+                <LinkText size="lg">pinterest.com</LinkText>
               </Link>
           </HStack>
 `,
-transformCode: (code) => {
-return transformedCode(code);
-},
-scope: { Link, Wrapper, ArrowUpRightIcon, Icon, HStack, Text },
-argsType: {},
-}}
-/>
-
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: { Link, LinkText, Wrapper, ArrowUpRightIcon, Icon, HStack, Text },
+      argsType: {},
+    }}
+  />
 </AppProvider>
 
 #### Link with icon
@@ -269,11 +257,11 @@ argsType: {},
     metaData={{
       code: `
         <HStack>
-              <Text 
+              <Text
                size="lg">Go to </Text>
               <Link href="https://gluestack.io/" isExternal>
                 <HStack alignItems="center">
-                <Link.Text size="lg">Pinterest</Link.Text>
+                <LinkText size="lg">Pinterest</LinkText>
                 <Icon as={ArrowUpRightIcon} size="lg" color="$info600" mt="$0.5" sx={{
                   _dark:{
                     color:"$info300"
@@ -283,17 +271,16 @@ argsType: {},
               </Link>
          </HStack>
 `,
-transformCode: (code) => {
-return transformedCode(code);
-},
-scope: { Link, Wrapper, ArrowUpRightIcon, Icon, HStack, Text },
-argsType: {},
-}}
-/>
-
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: { Link, LinkText, Wrapper, ArrowUpRightIcon, Icon, HStack, Text },
+      argsType: {},
+    }}
+  />
 </AppProvider>
 
-## Advanced
+## Unstyled
 
 We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
 
@@ -320,14 +307,14 @@ const Link = createLink({
 // Using the link component
 export default () => (
   <Link href="">
-    <Link.Text />
+    <LinkText />
   </Link>
 );
 ```
 
 #### How to use Next.js Link
 
-By default, Link component uses an anchor tag on web and pressable on native. If you want to use Next.js Link component on web, you have to create a new styled component for link and map it to Link component. You can also change the already present styled-component for link on the path `./components/core/link/styled-components` in your project. For web specific styling, you can create a file with `.web` extension. For example, if you want to create a custom link component, you can create a file named `Link.tsx` and `Link.web.tsx` in the same directory. The `.web` file will be used only on web and the `Link.tsx` file will be used on native.
+By default, Link component uses an anchor tag on web and pressable on native. If you want to use Next.js Link component on web, you have to create a new styled component for link and map it to Link component. You can also change the already present styled-component for link on the path `./components/core/link/styled-components` in your project. For web specific styling, you can create a file with `.web` extension. For example, if you want to create a custom link component, you can create a file named `Linktsx` and `Linkweb.tsx` in the same directory. The `.web` file will be used only on web and the `Linktsx` file will be used on native.
 
 ```jsx
 import Link from 'next/link';

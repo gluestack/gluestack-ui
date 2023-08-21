@@ -14,10 +14,23 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Overlay/AlertDialog" />
 
-import { CloseIcon, Button, Center } from './AlertDialog';
+import {
+  CloseIcon,
+  Button,
+  ButtonText,
+  ButtonGroup,
+  Center,
+  AlertDialog,
+  AlertDialogBackdrop,
+  AlertDialogContent,
+  AlertDialogHeader,
+  AlertDialogCloseButton,
+  AlertDialogFooter,
+  AlertDialogBody,
+} from './AlertDialog';
 import { HStack, AlertTriangleIcon } from './AlertDialog';
 import { Heading, Icon, AlertCircleIcon } from './AlertDialog';
-import { Text, AlertDialog, CheckCircleIcon } from './AlertDialog';
+import { Text, CheckCircleIcon } from './AlertDialog';
 import { transformedCode } from '../../../utils';
 import {
   AppProvider,
@@ -29,9 +42,11 @@ import {
 
 import Wrapper from '../../Wrapper';
 
-## Basic
+## Themed
 
 Following is the default implementation of the **AlertDialog** component without any additional customization. This serves as a starting point for users who are new to this library and want to learn about the basic functionality and appearance of the component.
+
+Note: We have added a new API for the components — you can avoid the use of "." when using a component. For example, you can now use `<ButtonText>` instead of `<Button.Text>`. This is to accommodate new changes to the RSC, which does not support "." as per [this](https://github.com/vercel/next.js/issues/51593) issue. You can still use the older format, but if you want to use RSC, we recommend skipping the "."
 
 <AppProvider>
   <CodePreview
@@ -44,7 +59,7 @@ Following is the default implementation of the **AlertDialog** component without
           return (
             <Center h={300}>
               <Button onPress={() => setShowAlertDialog(true)}>
-                <Button.Text>Click me</Button.Text>
+                <ButtonText>Click me</ButtonText>
               </Button>
               <AlertDialog
                 isOpen={showAlertDialog}
@@ -52,21 +67,21 @@ Following is the default implementation of the **AlertDialog** component without
                 setShowAlertDialog(false);
                 }}
               >
-                <AlertDialog.Backdrop />
-                <AlertDialog.Content>
-                  <AlertDialog.Header>
+                <AlertDialogBackdrop />
+                <AlertDialogContent>
+                  <AlertDialogHeader>
                     <Heading size='lg'>Deactivate account</Heading>
-                    <AlertDialog.CloseButton>
+                    <AlertDialogCloseButton>
                       <Icon as={CloseIcon} />
-                    </AlertDialog.CloseButton>
-                  </AlertDialog.Header>
-                  <AlertDialog.Body>
+                    </AlertDialogCloseButton>
+                  </AlertDialogHeader>
+                  <AlertDialogBody>
                     <Text size='sm'>
                       Are you sure you want to deactivate your account? Your data will be permanently removed and cannot be undone.
                     </Text>
-                  </AlertDialog.Body>
-                  <AlertDialog.Footer>
-                   <Button.Group space="lg">
+                  </AlertDialogBody>
+                  <AlertDialogFooter>
+                   <ButtonGroup space="lg">
                     <Button
                       variant="outline"
                       action="secondary"
@@ -74,7 +89,7 @@ Following is the default implementation of the **AlertDialog** component without
                         setShowAlertDialog(false);
                       }}
                     >
-                      <Button.Text>Cancel</Button.Text>
+                      <ButtonText>Cancel</ButtonText>
                     </Button>
                     <Button
                       bg='$error600'
@@ -83,11 +98,11 @@ Following is the default implementation of the **AlertDialog** component without
                         setShowAlertDialog(false);
                       }}
                     >
-                      <Button.Text>Deactivate</Button.Text>
+                      <ButtonText>Deactivate</ButtonText>
                     </Button>
-                     </Button.Group>
-                  </AlertDialog.Footer>
-                </AlertDialog.Content>
+                     </ButtonGroup>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
               </AlertDialog>
             </Center>
           );
@@ -99,8 +114,16 @@ Following is the default implementation of the **AlertDialog** component without
       scope: {
         Wrapper,
         AlertDialog,
+        AlertDialogBackdrop,
+        AlertDialogContent,
+        AlertDialogHeader,
+        AlertDialogCloseButton,
+        AlertDialogFooter,
+        AlertDialogBody,
         CloseIcon,
         Button,
+        ButtonText,
+        ButtonGroup,
         Center,
         Text,
         Heading,
@@ -112,28 +135,20 @@ Following is the default implementation of the **AlertDialog** component without
   />
 </AppProvider>
 
-## Installation
-
-To install the component, run the following command in your terminal. This will add the component to your project's dependencies and allow you to use it in your project.
-
-```bash
-npx gluestack-ui@latest add alert-dialog
-```
-
-## Update Component
-
-To update the component, run the following command in your terminal. This will update your component and it's dependencies.
-
-```bash
-npx gluestack-ui@latest update alert-dialog
-```
+<br />
 
 ### Import
 
 To use the component in your project, run the command below into your import statement. This will import the component from your components folder.
 
 ```bash
-import { AlertDialog } from './components';
+import {  AlertDialog,
+  AlertDialogBackdrop,
+  AlertDialogContent,
+  AlertDialogHeader,
+  AlertDialogCloseButton,
+  AlertDialogFooter,
+  AlertDialogBody, } from '@gluestack-ui/themed';
 ```
 
 ### Anatomy
@@ -143,14 +158,14 @@ The structure provided below can help you identify and understand a AlertDialog 
 ```jsx
 export default () => (
   <AlertDialog>
-    <AlertDialog.Backdrop />
-    <AlertDialog.Content>
-      <AlertDialog.Header>
-        <AlertDialog.CloseButton />
-      </AlertDialog.Header>
-      <AlertDialog.Body />
-      <AlertDialog.Footer />
-    </AlertDialog.Content>
+    <AlertDialogBackdrop />
+    <AlertDialogContent>
+      <AlertDialogHeader>
+        <AlertDialogCloseButton />
+      </AlertDialogHeader>
+      <AlertDialogBody />
+      <AlertDialogFooter />
+    </AlertDialogContent>
   </AlertDialog>
 );
 ```
@@ -245,7 +260,7 @@ It inherits all the properties of React Native's [Pressable](https://reactnative
             <Table.TText>false</Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>{`Specifies the default open state of the AlertDialog.`}</Table.TText>
+            <Table.TText>{`Specifies the default open state of the AlertDialog`}</Table.TText>
           </Table.TD>
         </Table.TR>
         <Table.TR>
@@ -325,7 +340,7 @@ It inherits all the properties of React Native's [Pressable](https://reactnative
             <Table.TText>true</Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>{`If true, the keyboard can dismiss the AlertDialog.`}</Table.TText>
+            <Table.TText>{`If true, the keyboard can dismiss the AlertDialog`}</Table.TText>
           </Table.TD>
         </Table.TR>
         <Table.TR>
@@ -341,7 +356,7 @@ It inherits all the properties of React Native's [Pressable](https://reactnative
             <Table.TText>slide</Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>{`Specifies the animation preset for the AlertDialog.`}</Table.TText>
+            <Table.TText>{`Specifies the animation preset for the AlertDialog`}</Table.TText>
           </Table.TD>
         </Table.TR>
         <Table.TR>
@@ -365,27 +380,27 @@ It inherits all the properties of React Native's [Pressable](https://reactnative
   </TableContainer>
 </AppProvider>
 
-#### AlertDialog.Backdrop
+#### AlertDialogBackdrop
 
 It is React Native's [Pressable](https://reactnative.dev/docs/pressable#props) component, created using [@legendapp/motion's](https://legendapp.com/open-source/motion/) `createMotionAnimatedComponent` function to add animation to the component. You can use any declarative animation library you prefer.
 
-#### AlertDialog.Content
+#### AlertDialogContent
 
 It is [@legendapp/motion's](https://legendapp.com/open-source/motion/) [Motion.View](https://legendapp.com/open-source/motion/overview/) component. You can use any declarative animation library you prefer.
 
-#### AlertDialog.CloseButton
+#### AlertDialogCloseButton
 
 It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable) component.
 
-#### AlertDialog.Header
+#### AlertDialogHeader
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
-#### AlertDialog.Body
+#### AlertDialogBody
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
-#### AlertDialog.Footer
+#### AlertDialogFooter
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
@@ -422,7 +437,7 @@ An example of an AlertDialog component incorporating an icon component for visua
           <>
             <Center h={300} >
                 <Button onPress={() => setShowAlertDialog(true)}>
-                    <Button.Text>Click me</Button.Text>
+                    <ButtonText>Click me</ButtonText>
                 </Button>
             </Center>
             <AlertDialog
@@ -431,9 +446,9 @@ An example of an AlertDialog component incorporating an icon component for visua
                   setShowAlertDialog(false);
               }}
             >
-                  <AlertDialog.Backdrop/>
-              <AlertDialog.Content>
-              <AlertDialog.Header borderBottomWidth='$0'>
+                  <AlertDialogBackdrop/>
+              <AlertDialogContent>
+              <AlertDialogHeader borderBottomWidth='$0'>
                  <HStack space='sm' alignItems='center'>
                   <Icon as={CheckCircleIcon} color='$success700' sx={{
                     _dark:{
@@ -442,13 +457,13 @@ An example of an AlertDialog component incorporating an icon component for visua
                   }} />
                     <Heading size='lg'>Order placed</Heading>
                   </HStack>
-                </AlertDialog.Header>
-                <AlertDialog.Body>
+                </AlertDialogHeader>
+                <AlertDialogBody>
                     <Text size="sm">
                     Congratulations, your order has been placed! You will receive a confirmation email shortly. Thank you for shopping with us.
                     </Text>
-                </AlertDialog.Body>
-                 <AlertDialog.Footer  borderTopWidth='$0'>
+                </AlertDialogBody>
+                 <AlertDialogFooter  borderTopWidth='$0'>
                   <Button
                     variant="outline"
                     size="sm"
@@ -458,10 +473,10 @@ An example of an AlertDialog component incorporating an icon component for visua
                       setShowAlertDialog(false);
                     }}
                   >
-                    <Button.Text>Okay</Button.Text>
+                    <ButtonText>Okay</ButtonText>
                   </Button>
-                </AlertDialog.Footer>
-              </AlertDialog.Content>
+                </AlertDialogFooter>
+              </AlertDialogContent>
             </AlertDialog>
           </>
         );
@@ -472,9 +487,16 @@ An example of an AlertDialog component incorporating an icon component for visua
       },
       scope: {
         Button,
+        ButtonText,
         Center,
         Wrapper,
         AlertDialog,
+        AlertDialogBackdrop,
+        AlertDialogContent,
+        AlertDialogHeader,
+        AlertDialogCloseButton,
+        AlertDialogFooter,
+        AlertDialogBody,
         Icon,
         Text,
         HStack,
@@ -503,7 +525,7 @@ An AlertDialog component with adjustable sizes, providing flexible and visually 
           <>
        <Center h={300} >
                 <Button onPress={() => setShowAlertDialog(true)}>
-                    <Button.Text>Click me</Button.Text>
+                    <ButtonText>Click me</ButtonText>
                 </Button>
             </Center>
             <AlertDialog
@@ -513,21 +535,21 @@ An AlertDialog component with adjustable sizes, providing flexible and visually 
               }}
               {...props}
             >
-                  <AlertDialog.Backdrop/>
-              <AlertDialog.Content>
-              <AlertDialog.Header borderBottomWidth='$0'>
+                  <AlertDialogBackdrop/>
+              <AlertDialogContent>
+              <AlertDialogHeader borderBottomWidth='$0'>
                  <HStack space='sm' alignItems='center'>
                   <Icon as={AlertTriangleIcon} color='$error700'  />
                     <Heading size='lg'>Order placed</Heading>
                   </HStack>
-                </AlertDialog.Header>
-                <AlertDialog.Body>
+                </AlertDialogHeader>
+                <AlertDialogBody>
                     <Text>
                      You have exceeded your monthly upload limit. Please upgrade to a premium account to continue uploading.
                   </Text>
-                </AlertDialog.Body>
-                 <AlertDialog.Footer  borderTopWidth='$0'>
-                   <Button.Group space="lg">
+                </AlertDialogBody>
+                 <AlertDialogFooter  borderTopWidth='$0'>
+                   <ButtonGroup space="lg">
               <Button
                 variant="outline"
                 action="secondary"
@@ -535,7 +557,7 @@ An AlertDialog component with adjustable sizes, providing flexible and visually 
                   setShowAlertDialog(false)
                 }}
               >
-                <Button.Text fontSizes="$md">Close</Button.Text>
+                <ButtonText fontSizes="$md">Close</ButtonText>
               </Button>
                 <Button
                 action="primary"
@@ -544,11 +566,11 @@ An AlertDialog component with adjustable sizes, providing flexible and visually 
                 }}
                 bgColor="$darkBlue700"
               >
-                <Button.Text>View plans</Button.Text>
+                <ButtonText>View plans</ButtonText>
               </Button>
-                    </Button.Group >
-                </AlertDialog.Footer>
-              </AlertDialog.Content>
+                    </ButtonGroup >
+                </AlertDialogFooter>
+              </AlertDialogContent>
             </AlertDialog>
           </>
         );
@@ -559,9 +581,17 @@ An AlertDialog component with adjustable sizes, providing flexible and visually 
       },
       scope: {
         Button,
+        ButtonText,
+        ButtonGroup,
         Center,
         Wrapper,
         AlertDialog,
+        AlertDialogBackdrop,
+        AlertDialogContent,
+        AlertDialogHeader,
+        AlertDialogCloseButton,
+        AlertDialogFooter,
+        AlertDialogBody,
         Icon,
         Text,
         HStack,
@@ -580,7 +610,7 @@ An AlertDialog component with adjustable sizes, providing flexible and visually 
   />
 </AppProvider>
 
-## Advanced
+## Unstyled
 
 We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
 
@@ -623,26 +653,26 @@ const AlertDialog = createAlertDialog({
 // Using the alert-dialog component
 export default () => (
   <AlertDialog>
-    <AlertDialog.Backdrop />
-    <AlertDialog.Content>
-      <AlertDialog.Header>
+    <AlertDialogBackdrop />
+    <AlertDialogContent>
+      <AlertDialogHeader>
         <Heading>Confirm your request</Heading>
-        <AlertDialog.CloseButton>
+        <AlertDialogCloseButton>
           <CloseIcon />
-        </AlertDialog.CloseButton>
-      </AlertDialog.Header>
-      <AlertDialog.Body>
+        </AlertDialogCloseButton>
+      </AlertDialogHeader>
+      <AlertDialogBody>
         <Text>AlertDialog Body</Text>
-      </AlertDialog.Body>
-      <AlertDialog.Footer>
+      </AlertDialogBody>
+      <AlertDialogFooter>
         <Button>
-          <Button.Text>Okay</Button.Text>
+          <ButtonText>Okay</ButtonText>
         </Button>
         <Button>
-          <Button.Text>Close</Button.Text>
+          <ButtonText>Close</ButtonText>
         </Button>
-      </AlertDialog.Footer>
-    </AlertDialog.Content>
+      </AlertDialogFooter>
+    </AlertDialogContent>
   </AlertDialog>
 );
 ```

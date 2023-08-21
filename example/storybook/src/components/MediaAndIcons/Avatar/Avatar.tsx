@@ -4,6 +4,10 @@ import React from 'react';
 import {
   VStack,
   Avatar,
+  AvatarGroup,
+  AvatarBadge,
+  AvatarFallbackText,
+  AvatarImage,
   HStack,
   Icon,
   Heading,
@@ -31,7 +35,7 @@ const AvatarStory: CustomAvatarStory = ({
 }: any) => {
   return (
     <Avatar size={size} {...props}>
-      <Avatar.FallbackText
+      <AvatarFallbackText
         dataSet={{
           'component-props': JSON.stringify({
             'is-text-style': true,
@@ -41,17 +45,29 @@ const AvatarStory: CustomAvatarStory = ({
         }}
       >
         {fallbackText}
-      </Avatar.FallbackText>
-      <Avatar.Image
+      </AvatarFallbackText>
+      <AvatarImage
         source={{
           uri: uri,
         }}
       />
-      {badge && <Avatar.Badge />}
+      {badge && <AvatarBadge />}
     </Avatar>
   );
 };
 
 export default AvatarStory;
 
-export { HStack, VStack, Avatar, Icon, Heading, User, Text };
+export {
+  HStack,
+  VStack,
+  Avatar,
+  AvatarGroup,
+  AvatarBadge,
+  AvatarFallbackText,
+  AvatarImage,
+  Icon,
+  Heading,
+  User,
+  Text,
+};

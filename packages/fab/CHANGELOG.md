@@ -1,5 +1,11 @@
 # @gluestack-ui/fab
 
+## 0.1.11
+
+### Patch Changes
+
+- Changed component APIs from dot notation to normal
+
 ## 0.1.10
 
 ### Patch Changes

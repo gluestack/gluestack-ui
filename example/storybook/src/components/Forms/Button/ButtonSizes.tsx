@@ -1,6 +1,12 @@
 import React from 'react';
 import type { ComponentStory } from '@storybook/react-native';
-import { Button, VStack, AddIcon } from '../../../ui-components';
+import {
+  Button,
+  ButtonText,
+  ButtonIcon,
+  VStack,
+  AddIcon,
+} from '../../../ui-components';
 
 type MyButtonStory = ComponentStory<typeof Button>;
 
@@ -11,8 +17,8 @@ const ButtonSizesExample: MyButtonStory = ({}) => {
       {sizes.map((size: any) => {
         return (
           <Button mt="$4" size={size} key={size}>
-            <Button.Text>Button</Button.Text>
-            <Button.Icon as={AddIcon} ml="$2" />
+            <ButtonText>Button</ButtonText>
+            <ButtonIcon as={AddIcon} ml="$2" />
           </Button>
         );
       })}

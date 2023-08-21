@@ -8,6 +8,7 @@ import {
   Center,
   Heading,
   Button,
+  ButtonText,
 } from '../../../ui-components';
 
 const DividerStory = ({ ...props }) => {
@@ -51,4 +52,14 @@ const DividerStory = ({ ...props }) => {
 
 export default DividerStory;
 
-export { Text, VStack, HStack, Divider, Box, Center, Heading, Button };
+export {
+  Text,
+  VStack,
+  HStack,
+  Divider,
+  Box,
+  Center,
+  Heading,
+  Button,
+  ButtonText,
+};

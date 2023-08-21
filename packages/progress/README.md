@@ -33,7 +33,7 @@ const Progress = createProgress({
 // Using the Progress component
 export default () => (
   <Progress>
-    <Progress.FilledTrack />
+    <ProgressFilledTrack />
   </Progress>
 );
 ```

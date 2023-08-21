@@ -14,11 +14,17 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Overlay/Tooltip" />
 
-import { Tooltip, Center, Button } from './Tooltip';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipText,
+  Center,
+  Button,
+  ButtonText,
+} from './Tooltip';
 import { Box, Heading, Edit } from './Tooltip';
 import { VStack, Command, Icon } from './Tooltip';
-import { Text as TooltipText } from './Tooltip';
-import { Avatar, HStack } from './Tooltip';
+import { Avatar, AvatarGroup, AvatarFallbackText, HStack } from './Tooltip';
 import { transformedCode } from '../../../utils';
 import {
   AppProvider,
@@ -31,35 +37,45 @@ import {
 
 import Wrapper from '../../Wrapper';
 
-## Basic
+## Themed
 
 Following is the default implementation of the **Tooltip** component without any additional customization. This serves as a starting point for users who are new to this library and want to learn about the basic functionality and appearance of the component.
+
+Note: We have added a new API for the components — you can avoid the use of "." when using a component. For example, you can now use `<ButtonText>` instead of `<Button.Text>`. This is to accommodate new changes to the RSC, which does not support "." as per [this](https://github.com/vercel/next.js/issues/51593) issue. You can still use the older format, but if you want to use RSC, we recommend skipping the "."
 
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={true}
     metaData={{
-      code: ` 
+      code: `
         <Tooltip
           {...props}
           trigger={(triggerProps) => {
             return (
               <Button h='$24' {...triggerProps}>
-                <Button.Text>Hover on me!</Button.Text>
+                <ButtonText>Hover on me!</ButtonText>
               </Button>
             );
           }}
         >
-          <Tooltip.Content>
-           <Tooltip.Text>Tooltip</Tooltip.Text>
-          </Tooltip.Content>
+          <TooltipContent>
+           <TooltipText>Tooltip</TooltipText>
+          </TooltipContent>
         </Tooltip>
       `,
       transformCode: (code) => {
         return transformedCode(code);
       },
-      scope: { Wrapper, Tooltip, Center, Button, Text: TooltipText },
+      scope: {
+        Wrapper,
+        Tooltip,
+        TooltipContent,
+        TooltipText,
+        Center,
+        Button,
+        ButtonText,
+      },
       argsType: {
         placement: {
           control: 'select',
@@ -84,21 +100,7 @@ Following is the default implementation of the **Tooltip** component without any
   />
 </AppProvider>
 
-## Installation
-
-To install the component, run the following command in your terminal. This will add the component to your project's dependencies and allow you to use it in your project.
-
-```bash
-npx gluestack-ui@latest add tooltip
-```
-
-## Update Component
-
-To update the component, run the following command in your terminal. This will update your component and it's dependencies.
-
-```bash
-npx gluestack-ui@latest update tooltip
-```
+<br />
 
 ### Import
 
@@ -106,7 +108,7 @@ To use the component in your project, run the command below into your import sta
 
 ```jsx
 // import the component from your components folder
-import { Tooltip } from './components';
+import { Tooltip } from '@gluestack-ui/themed';
 ```
 
 ### Anatomy
@@ -116,9 +118,9 @@ The structure provided below can help you identify and understand a Tooltip comp
 ```jsx
 export default () => (
   <Tooltip>
-    <Tooltip.Content >
-    <Tooltip.Text />
-     <Tooltip.Content />
+    <TooltipContent>
+      <TooltipText />
+    </TooltipContent>
   </Tooltip>
 );
 ```
@@ -428,17 +430,17 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
   </TableContainer>
 </AppProvider>
 
-#### Tooltip.Text
+#### TooltipText
 
 Contains all text related layout style props and actions. It inherits all the properties of React Native's Text component.
 
-#### Tooltip.Content
+#### TooltipContent
 
 Contains all backdrop related layout style props and actions. It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
 ### Accessibility
 
-We have outlined the various features that ensure the Tooltip component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards. It adheres to the [TOOLTIP WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/).
+We have outlined the various features that ensure the Tooltip component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards. It adheres to the [ WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/).
 
 ### Dependencies
 
@@ -471,7 +473,7 @@ A tooltip component with an avatar is a user interface element that displays a s
         ];
           return (
             <Box h="$96" justifyContent="center">
-              <Avatar.Group flexDirection='row'>
+              <AvatarGroup flexDirection='row'>
                 <Tooltip
                   placement={"top"}
                   trigger={(triggerProps) => {
@@ -484,12 +486,12 @@ A tooltip component with an avatar is a user interface element that displays a s
                         sx={{'_dark' : {borderColor: '$black'}}}
                         {...triggerProps}
                       >
-                        <Avatar.FallbackText>+ 3</Avatar.FallbackText>
+                        <AvatarFallbackText>+ 3</AvatarFallbackText>
                       </Avatar>
                     )
                   }}
                 >
-                  <Tooltip.Content
+                  <TooltipContent
                     p="$5"
                     maxWidth='$72'
                     sx={{
@@ -506,16 +508,16 @@ A tooltip component with an avatar is a user interface element that displays a s
                         <Text fontSize="$sm" lineHeight='$md'>and David</Text>
                       </Center>
                     </VStack>
-                  </Tooltip.Content>
+                  </TooltipContent>
                 </Tooltip>
                 {avatars.map((avatar, index) => {
                   return (
                     <Avatar key={index} size="lg" borderColor="$white" borderWidth="$2" bgColor={avatar.color} sx={{'_dark' : {borderColor: '$black'}}} >
-                      <Avatar.FallbackText>{avatar.alt}</Avatar.FallbackText>
+                      <AvatarFallbackText>{avatar.alt}</AvatarFallbackText>
                     </Avatar>
                   );
                 })}
-              </Avatar.Group>
+              </AvatarGroup>
             </Box>
           );
         }
@@ -525,9 +527,13 @@ A tooltip component with an avatar is a user interface element that displays a s
       },
       scope: {
         Avatar,
+        AvatarGroup,
+        AvatarFallbackText,
         Wrapper,
         HStack,
         Tooltip,
+        TooltipContent,
+        TooltipText,
         Text,
         Box,
         Heading,
@@ -562,7 +568,7 @@ A tooltip component with an icon is a user interface element that provides conte
                     )
                   }}
               >
-                <Tooltip.Content
+                <TooltipContent
                   sx={{
                     bg:'$white',
                     '_dark': {
@@ -577,11 +583,11 @@ A tooltip component with an icon is a user interface element that provides conte
                               <Icon as={Command} color="$white"/>
                           </Avatar>
                           <Avatar size="xs"  bg="$trueGray500" rounded="$sm">
-                            <Avatar.FallbackText>N</Avatar.FallbackText>
+                            <AvatarFallbackText>N</AvatarFallbackText>
                           </Avatar>
                     </HStack>
                   </Box>
-                </Tooltip.Content>
+                </TooltipContent>
               </Tooltip>
             </Box>
         );
@@ -592,9 +598,12 @@ A tooltip component with an icon is a user interface element that provides conte
       },
       scope: {
         Avatar,
+        AvatarFallbackText,
         Wrapper,
         HStack,
         Tooltip,
+        TooltipContent,
+        TooltipText,
         Text,
         Box,
         Heading,
@@ -607,13 +616,13 @@ A tooltip component with an icon is a user interface element that provides conte
   />
 </AppProvider>
 
-## Advanced
+## Unstyled
 
 We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
 
 ### Customizing the Tooltip
 
-We have a function called `createTooltip` which can be used to create a custom tooltip component. This function takes in a configuration object which contains the styled components that you want to use for the Tooltip. You can refer [style.gluestack.io](https://style.gluestack.io/) for more information on how to use styled components.
+We have a function called `createTooltip` which can be used to create a custom tooltip component. This function takes in a configuration object which contains the styled components that you want to use for the Tooltip You can refer [style.gluestack.io](https://style.gluestack.io/) for more information on how to use styled components.
 
 You can read more on how to animate components [here](https://ui.gluestack.io/docs/advanced/animations).
 
@@ -638,9 +647,9 @@ export const Tooltip = createTooltip({
 // Using the tooltip component
 export default () => (
   <Tooltip>
-    <Tooltip.Content >
-     <Tooltip.Text />
-     <Tooltip.Content />
+    <TooltipContent >
+     <TooltipText />
+     <TooltipContent />
   </Tooltip>
 );
 ```

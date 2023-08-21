@@ -9,3 +9,5 @@ export const Tooltip = createTooltip({
   //@ts-ignore
   AnimatePresence: styled.Component,
 });
+export const TooltipContent = Tooltip.Content;
+export const TooltipText = Tooltip.Text;

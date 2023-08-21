@@ -2,10 +2,19 @@ import React, { useEffect } from 'react';
 
 import {
   Actionsheet,
+  ActionsheetBackdrop,
+  ActionsheetContent,
+  ActionsheetDragIndicator,
+  ActionsheetDragIndicatorWrapper,
   Button,
+  ButtonText,
   VStack,
   Input,
+  InputIcon,
+  InputInput,
   FormControl,
+  FormControlLabel,
+  FormControlLabelText,
   HStack,
   Image,
   Text,
@@ -75,11 +84,11 @@ function ActionsheetExample({
         onClose={handleClose}
         {...props}
       >
-        <Actionsheet.Backdrop />
-        <Actionsheet.Content maxHeight="75%">
-          <Actionsheet.DragIndicatorWrapper>
-            <Actionsheet.DragIndicator />
-          </Actionsheet.DragIndicatorWrapper>
+        <ActionsheetBackdrop />
+        <ActionsheetContent maxHeight="75%">
+          <ActionsheetDragIndicatorWrapper>
+            <ActionsheetDragIndicator />
+          </ActionsheetDragIndicatorWrapper>
           <VStack w="$full" p={20}>
             <HStack justifyContent="center" alignItems="center" space="md">
               <Box
@@ -124,8 +133,8 @@ function ActionsheetExample({
               </VStack>
             </HStack>
             <FormControl mt={36}>
-              <FormControl.Label>
-                <FormControl.Label.Text
+              <FormControlLabel>
+                <FormControlLabelText
                   dataSet={{
                     'component-props': JSON.stringify({
                       'is-text-style': true,
@@ -135,16 +144,16 @@ function ActionsheetExample({
                   }}
                 >
                   Confirm security code
-                </FormControl.Label.Text>
-              </FormControl.Label>
+                </FormControlLabelText>
+              </FormControlLabel>
               <Input isFullWidth={true} {...props}>
-                <Input.Icon>
+                <InputIcon>
                   <Icon as={LeadingIcon} ml="$3" />
-                </Input.Icon>
-                <Input.Input placeholder="CVC/CVV" />
+                </InputIcon>
+                <InputInput placeholder="CVC/CVV" />
               </Input>
               <Button onPress={handleClose} mt={20}>
-                <Button.Text
+                <ButtonText
                   dataSet={{
                     'component-props': JSON.stringify({
                       'is-text-style': true,
@@ -154,11 +163,11 @@ function ActionsheetExample({
                   }}
                 >
                   Pay $1000
-                </Button.Text>
+                </ButtonText>
               </Button>
             </FormControl>
           </VStack>
-        </Actionsheet.Content>
+        </ActionsheetContent>
       </Actionsheet>
     </KeyboardAvoidingView>
   );

@@ -1,5 +1,13 @@
 # @gluestack-ui/radio
 
+## 0.1.18
+
+### Patch Changes
+
+- Changed component APIs from dot notation to normal
+- Updated dependencies
+  - @gluestack-ui/form-control@0.1.10
+
 ## 0.1.17
 
 ### Patch Changes

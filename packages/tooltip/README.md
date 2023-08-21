@@ -47,7 +47,7 @@ export const Tooltip = createTooltip({
 // Using the tooltip component
 export default () => (
   <Tooltip>
-    <Tooltip.content />
+    <TooltipContent />
   </Tooltip>
 );
 ```

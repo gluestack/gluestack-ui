@@ -6,3 +6,5 @@ export const Input = createInput({
   Icon,
   Input: StyledInput,
 });
+export const InputIcon = Input.Icon;
+export const InputInput = Input.Input;

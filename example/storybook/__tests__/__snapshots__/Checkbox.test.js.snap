@@ -3,7 +3,7 @@
 exports[`Checkbox component isDisabled 1`] = `
 <div
   className="css-view-175oi2r"
-  data-style="1mk50wr-1q64x7k 14bja7p-1q64x7k f60j3e-1q64x7k"
+  data-style="1mk50wr-1q64x7k 14bja7p-1q64x7k n7aciq-1q64x7k"
   dir={null}
 >
   <div
@@ -23,7 +23,7 @@ exports[`Checkbox component isDisabled 1`] = `
       <label
         aria-label="Checkbox"
         className="css-view-175oi2r"
-        data-style="2fjcr2-1mdhnmt 2fjcr2-r3q1zx 14bja7p-1q64x7k jyo3sk-w9iemt"
+        data-style="2fjcr2-1mdhnmt 2fjcr2-1ebsp7h 2fjcr2-r3q1zx 14bja7p-1q64x7k jyo3sk-w9iemt"
         dir={null}
         id="checkbox-1"
       >
@@ -114,7 +114,7 @@ exports[`Checkbox component isDisabled 1`] = `
       <label
         aria-label="Checkbox"
         className="css-view-175oi2r"
-        data-style="2fjcr2-1mdhnmt 2fjcr2-r3q1zx 14bja7p-1q64x7k jyo3sk-w9iemt"
+        data-style="2fjcr2-1mdhnmt 2fjcr2-1ebsp7h 2fjcr2-r3q1zx 14bja7p-1q64x7k jyo3sk-w9iemt"
         dir={null}
         id="checkbox-2"
       >
@@ -180,7 +180,7 @@ exports[`Checkbox component isDisabled 1`] = `
 exports[`Checkbox component isInvalid 1`] = `
 <div
   className="css-view-175oi2r"
-  data-style="1mk50wr-1q64x7k 14bja7p-1q64x7k f60j3e-1q64x7k"
+  data-style="1mk50wr-1q64x7k 14bja7p-1q64x7k n7aciq-1q64x7k"
   dir={null}
 >
   <div
@@ -199,7 +199,7 @@ exports[`Checkbox component isInvalid 1`] = `
       <label
         aria-label="Checkbox"
         className="css-view-175oi2r"
-        data-style="2fjcr2-1mdhnmt 14bja7p-1q64x7k jyo3sk-w9iemt"
+        data-style="2fjcr2-1mdhnmt 2fjcr2-1ebsp7h 14bja7p-1q64x7k jyo3sk-w9iemt"
         dir={null}
         id="checkbox-1"
       >
@@ -290,7 +290,7 @@ exports[`Checkbox component isInvalid 1`] = `
       <label
         aria-label="Checkbox"
         className="css-view-175oi2r"
-        data-style="2fjcr2-1mdhnmt 14bja7p-1q64x7k jyo3sk-w9iemt"
+        data-style="2fjcr2-1mdhnmt 2fjcr2-1ebsp7h 14bja7p-1q64x7k jyo3sk-w9iemt"
         dir={null}
         id="checkbox-2"
       >
@@ -356,7 +356,7 @@ exports[`Checkbox component isInvalid 1`] = `
 exports[`Checkbox component isReadOnly 1`] = `
 <div
   className="css-view-175oi2r"
-  data-style="1mk50wr-1q64x7k 14bja7p-1q64x7k f60j3e-1q64x7k"
+  data-style="1mk50wr-1q64x7k 14bja7p-1q64x7k n7aciq-1q64x7k"
   dir={null}
 >
   <div
@@ -375,7 +375,7 @@ exports[`Checkbox component isReadOnly 1`] = `
       <label
         aria-label="Checkbox"
         className="css-view-175oi2r"
-        data-style="2fjcr2-1mdhnmt 14bja7p-1q64x7k jyo3sk-w9iemt"
+        data-style="2fjcr2-1mdhnmt 2fjcr2-1ebsp7h 14bja7p-1q64x7k jyo3sk-w9iemt"
         dir={null}
         id="checkbox-1"
       >
@@ -467,7 +467,7 @@ exports[`Checkbox component isReadOnly 1`] = `
       <label
         aria-label="Checkbox"
         className="css-view-175oi2r"
-        data-style="2fjcr2-1mdhnmt 14bja7p-1q64x7k jyo3sk-w9iemt"
+        data-style="2fjcr2-1mdhnmt 2fjcr2-1ebsp7h 14bja7p-1q64x7k jyo3sk-w9iemt"
         dir={null}
         id="checkbox-2"
       >
@@ -534,7 +534,7 @@ exports[`Checkbox component isReadOnly 1`] = `
 exports[`Checkbox component size lg 1`] = `
 <div
   className="css-view-175oi2r"
-  data-style="1mk50wr-1q64x7k 14bja7p-1q64x7k f60j3e-1q64x7k"
+  data-style="1mk50wr-1q64x7k 14bja7p-1q64x7k n7aciq-1q64x7k"
   dir={null}
 >
   <div
@@ -710,7 +710,7 @@ exports[`Checkbox component size lg 1`] = `
 exports[`Checkbox component size md 1`] = `
 <div
   className="css-view-175oi2r"
-  data-style="1mk50wr-1q64x7k 14bja7p-1q64x7k f60j3e-1q64x7k"
+  data-style="1mk50wr-1q64x7k 14bja7p-1q64x7k n7aciq-1q64x7k"
   dir={null}
 >
   <div
@@ -886,7 +886,7 @@ exports[`Checkbox component size md 1`] = `
 exports[`Checkbox component size sm 1`] = `
 <div
   className="css-view-175oi2r"
-  data-style="1mk50wr-1q64x7k 14bja7p-1q64x7k f60j3e-1q64x7k"
+  data-style="1mk50wr-1q64x7k 14bja7p-1q64x7k n7aciq-1q64x7k"
   dir={null}
 >
   <div

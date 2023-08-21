@@ -1,5 +1,17 @@
 # @gluestack-ui/toast
 
+## 0.1.14
+
+### Patch Changes
+
+- Fixed toast closeAll issue
+
+## 0.1.13
+
+### Patch Changes
+
+- Changed component APIs from dot notation to normal
+
 ## 0.1.12
 
 ### Patch Changes

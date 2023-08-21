@@ -1,7 +1,10 @@
 import React from 'react';
 import {
   Button,
+  ButtonText,
   Toast,
+  ToastTitle,
+  ToastDescription,
   useToast,
   Icon,
   CloseIcon,
@@ -70,7 +73,7 @@ const ToastStory = ({ placement = 'top', ...props }: any) => {
               <>
                 <Toast nativeID={id} {...props}>
                   <VStack space="xs">
-                    <Toast.Title
+                    <ToastTitle
                       dataSet={{
                         'component-props': JSON.stringify({
                           'is-text-style': true,
@@ -80,8 +83,8 @@ const ToastStory = ({ placement = 'top', ...props }: any) => {
                       }}
                     >
                       Hello World Toast
-                    </Toast.Title>
-                    <Toast.Description
+                    </ToastTitle>
+                    <ToastDescription
                       dataSet={{
                         'component-props': JSON.stringify({
                           'is-text-style': true,
@@ -91,7 +94,7 @@ const ToastStory = ({ placement = 'top', ...props }: any) => {
                       }}
                     >
                       Please create a support tibnnbcket from the support page
-                    </Toast.Description>
+                    </ToastDescription>
                   </VStack>
                   <Pressable onPress={() => toast.close(id)}>
                     <Icon
@@ -113,7 +116,7 @@ const ToastStory = ({ placement = 'top', ...props }: any) => {
         });
       }}
     >
-      <Button.Text
+      <ButtonText
         dataSet={{
           'component-props': JSON.stringify({
             'is-text-style': true,
@@ -123,7 +126,7 @@ const ToastStory = ({ placement = 'top', ...props }: any) => {
         }}
       >
         Press Me
-      </Button.Text>
+      </ButtonText>
     </Button>
   );
 };
@@ -133,6 +136,8 @@ export default ToastFigmaStory;
 export {
   ToastStory,
   Toast,
+  ToastTitle,
+  ToastDescription,
   useToast,
   Icon,
   CloseIcon,
@@ -141,6 +146,7 @@ export {
   MessageCircle,
   AlertTriangleIcon,
   Button,
+  ButtonText,
   Pressable,
   Center,
 };

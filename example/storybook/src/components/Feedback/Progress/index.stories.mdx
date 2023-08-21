@@ -14,7 +14,13 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Feedback/Progress" />
 
-import { Progress, VStack, Box, Heading } from './Progress';
+import {
+  Progress,
+  ProgressFilledTrack,
+  VStack,
+  Box,
+  Heading,
+} from './Progress';
 import { transformedCode } from '../../../utils';
 import {
   AppProvider,
@@ -27,9 +33,11 @@ import {
 
 import Wrapper from '../../Wrapper';
 
-## Basic
+## Themed
 
 Following is the default implementation of the **Progress** component without any additional customization. This serves as a starting point for users who are new to this library and want to learn about the basic functionality and appearance of the component.
+
+Note: We have added a new API for the components — you can avoid the use of "." when using a component. For example, you can now use `<ButtonText>` instead of `<Button.Text>`. This is to accommodate new changes to the RSC, which does not support "." as per [this](https://github.com/vercel/next.js/issues/51593) issue. You can still use the older format, but if you want to use RSC, we recommend skipping the "."
 
 <AppProvider>
   <CodePreview
@@ -38,13 +46,13 @@ Following is the default implementation of the **Progress** component without an
     metaData={{
       code: `
        <Progress value={40} w={300} {...props} >
-          <Progress.FilledTrack />
+          <ProgressFilledTrack />
         </Progress>
       `,
       transformCode: (code) => {
         return transformedCode(code);
       },
-      scope: { Wrapper, Progress },
+      scope: { Wrapper, Progress, ProgressFilledTrack },
       argsType: {
         size: {
           control: 'select',
@@ -56,28 +64,14 @@ Following is the default implementation of the **Progress** component without an
   />
 </AppProvider>
 
-## Installation
-
-To install the component, run the following command in your terminal. This will add the component to your project's dependencies and allow you to use it in your project.
-
-```bash
-npx gluestack-ui@latest add progress
-```
-
-## Update Component
-
-To update the component, run the following command in your terminal. This will update your component and it's dependencies.
-
-```bash
-npx gluestack-ui@latest update progress
-```
+<br />
 
 ### Import
 
 To use the component in your project, run the command below into your import statement. This will import the component from your components folder.
 
 ```bash
-import { Progress } from './components';
+import { Progress } from '@gluestack-ui/themed';
 ```
 
 ### Anatomy
@@ -87,7 +81,7 @@ The structure provided below can help you identify and understand a Progress com
 ```jsx
 export default () => (
   <Progress>
-    <Progress.FilledTrack />
+    <ProgressFilledTrack />
   </Progress>
 );
 ```
@@ -141,7 +135,7 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
   </TableContainer>
 </AppProvider>
 
-### Progress.FilledTrack
+### ProgressFilledTrack
 
 It also inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
@@ -180,7 +174,7 @@ Progress component with value
       <VStack space="lg">
         <Text size="lg">Downloading 55%</Text>
         <Progress value={55} w='$80' h='$1'>
-          <Progress.FilledTrack h='$1' />
+          <ProgressFilledTrack h='$1' />
         </Progress>
       </VStack>
     `,
@@ -190,6 +184,7 @@ Progress component with value
       scope: {
         Wrapper,
         Progress,
+        ProgressFilledTrack,
         VStack,
         Text,
         Box,
@@ -211,16 +206,16 @@ You can add track color to progress bar as per our needs.
       code: `
         <VStack space="3xl">
           <Progress value={46} w='$96' h='$2' size="sm">
-            <Progress.FilledTrack bg="$emerald600"/>
+            <ProgressFilledTrack bg="$emerald600"/>
           </Progress>
           <Progress value={46} w='$96' h='$2' size="sm">
-            <Progress.FilledTrack bg="$amber600"/>
+            <ProgressFilledTrack bg="$amber600"/>
           </Progress>
           <Progress value={46} w='$96' h='$2' size="sm">
-            <Progress.FilledTrack bg="$fuchsia600"/>
+            <ProgressFilledTrack bg="$fuchsia600"/>
           </Progress>
           <Progress value={46} w='$96' h='$2' size="sm">
-            <Progress.FilledTrack bg="$cyan600"/>
+            <ProgressFilledTrack bg="$cyan600"/>
           </Progress>
         </VStack>
       `,
@@ -230,6 +225,7 @@ You can add track color to progress bar as per our needs.
       scope: {
         Wrapper,
         Progress,
+        ProgressFilledTrack,
         VStack,
       },
       argsType: {},
@@ -250,7 +246,7 @@ You can customize the progress bar. Below is the example where we have change th
         <VStack space="lg">
         <Heading>Internal Storage</Heading>
         <Progress value={46} w={410} h={8} bg="$lime100">
-          <Progress.FilledTrack h={8} bg="$lime500" />
+          <ProgressFilledTrack h={8} bg="$lime500" />
         </Progress>
         <Text sizze="md">14GB</Text>
         </VStack>
@@ -261,6 +257,7 @@ You can customize the progress bar. Below is the example where we have change th
       scope: {
         Wrapper,
         Progress,
+        ProgressFilledTrack,
         VStack,
         Heading,
         Text,
@@ -270,13 +267,13 @@ You can customize the progress bar. Below is the example where we have change th
   />
 </AppProvider>
 
-## Advanced
+## Unstyled
 
 We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
 
 ### Customizing the Progress
 
-For customizing the Progress, you have to map styled view to Progress. You can refer [style.gluestack.io](https://style.gluestack.io/) for more information on how to use styled components.
+For customizing the Progress, you have to map styled view to Progress You can refer [style.gluestack.io](https://style.gluestack.io/) for more information on how to use styled components.
 
 #### Usage
 
@@ -301,7 +298,7 @@ const Progress = createProgress({
 // Using the Progress component
 export default () => (
   <Progress>
-    <Progress.FilledTrack />
+    <ProgressFilledTrack />
   </Progress>
 );
 ```
