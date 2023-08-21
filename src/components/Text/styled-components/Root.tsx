@@ -4,7 +4,7 @@ import { styled } from '../../styled';
 export default styled(
   Text,
   {
-    color: '$textLight700',
+    color: '$text.900',
     fontWeight: '$normal',
     fontFamily: '$body',
     fontStyle: 'normal',
@@ -113,7 +113,7 @@ export default styled(
     },
 
     _dark: {
-      color: '$textDark200',
+      color: '$text.50',
     },
   },
   {}
