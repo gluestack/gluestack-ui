@@ -38,9 +38,16 @@ const {
 const {
   CSSPropertiesMap,
 } = require('@gluestack-style/react/lib/commonjs/core/styled-system');
+const {
+  StyleInjector,
+} = require('@gluestack-style/react/lib/commonjs/style-sheet/index');
+const {
+  updateOrderUnResolvedMap,
+} = require('@gluestack-style/react/lib/commonjs/updateOrderUnResolvedMap');
 
 const IMPORT_NAME = '@gluestack-style/react';
 let configThemePath = [];
+const BUILD_TIME_GLUESTACK_STYLESHEET = new StyleInjector();
 
 function addQuotesToObjectKeys(code) {
   const ast = babel.parse(`var a = ${code}`, {
@@ -446,62 +453,70 @@ module.exports = function (b) {
 
             const verbosedTheme = convertStyledToStyledVerbosed(theme);
 
-            let resolvedStyles = styledToStyledResolved(
-              verbosedTheme,
-              [],
-              componentExtendedConfig
-            );
-
-            let orderedResolved =
-              styledResolvedToOrderedSXResolved(resolvedStyles);
-            // console.log('\n\n >>>>>>>>>>>>>>>>>>>>>\n');
-            // console.log(JSON.stringify(verbosedTheme));
-            // console.log('\n >>>>>>>>>>>>>>>>>>>>>\n\n');
-
-            let themeHash = stableHash({
-              ...verbosedTheme,
+            let componentHash = stableHash({
+              ...theme,
               ...componentConfig,
+              ...ExtendedConfig,
             });
 
             if (outputLibrary) {
-              themeHash = outputLibrary + '-' + themeHash;
+              componentHash = outputLibrary + '-' + componentHash;
             }
 
-            if (platform === 'all') {
-              INTERNAL_updateCSSStyleInOrderedResolvedWeb(
-                orderedResolved,
-                themeHash,
-                true
-              );
-            } else if (platform === 'web') {
-              INTERNAL_updateCSSStyleInOrderedResolvedWeb(
-                orderedResolved,
-                themeHash,
-                false
-              );
-            } else {
-              INTERNAL_updateCSSStyleInOrderedResolved(
-                orderedResolved,
-                themeHash,
-                true
-              );
-            }
+            const {
+              orderedUnResolvedTheme,
+              styleCSSIdsArr: orderedStyleIdsArray,
+            } = updateOrderUnResolvedMap(
+              verbosedTheme,
+              componentHash,
+              'boot',
+              ExtendedConfig,
+              BUILD_TIME_GLUESTACK_STYLESHEET
+            );
 
-            let styleIds = getStyleIds(orderedResolved, componentConfig);
+            BUILD_TIME_GLUESTACK_STYLESHEET.resolve(
+              orderedStyleIdsArray,
+              componentExtendedConfig,
+              ExtendedConfig
+            );
+
+            const current_global_map =
+              BUILD_TIME_GLUESTACK_STYLESHEET.getStyleMap();
+
+            const orderedResolvedTheme = [];
+
+            current_global_map?.forEach((styledResolved) => {
+              if (orderedStyleIdsArray.includes(styledResolved?.meta?.cssId)) {
+                orderedResolvedTheme.push(styledResolved);
+              }
+            });
+
+            let styleIds = getStyleIds(orderedUnResolvedTheme, componentConfig);
 
             let styleIdsAst = generateObjectAst(styleIds);
 
-            let themeHashAst = t.stringLiteral(themeHash);
+            let componentHashAst = t.stringLiteral(componentHash);
 
-            let orderedResolvedAst = generateArrayAst(orderedResolved);
+            let orderedResolvedAst = generateArrayAst(orderedResolvedTheme);
+
+            let orderedStyleIdsArrayAst = t.arrayExpression(
+              orderedStyleIdsArray?.map((cssId) => t.stringLiteral(cssId))
+            );
 
             let resultParamsNode = t.objectExpression([
               t.objectProperty(
                 t.stringLiteral('orderedResolved'),
                 orderedResolvedAst
               ),
+              t.objectProperty(
+                t.stringLiteral('orderedStyleIdsArray'),
+                orderedStyleIdsArrayAst
+              ),
               t.objectProperty(t.stringLiteral('styleIds'), styleIdsAst),
-              t.objectProperty(t.stringLiteral('themeHash'), themeHashAst),
+              t.objectProperty(
+                t.stringLiteral('componentHash'),
+                componentHashAst
+              ),
             ]);
 
             while (args.length < 4) {
