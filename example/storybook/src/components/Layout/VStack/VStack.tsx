@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { VStack, Box } from '../../../ui-components';
+import { VStack, Box } from '@gluestack-ui/themed';
 
 const VStackStory = ({ space, reversed, ...props }: any) => {
   return (

@@ -12,7 +12,7 @@ import {
   Icon,
   Heading,
   Text,
-} from '../../../ui-components';
+} from '@gluestack-ui/themed';
 import { User } from 'lucide-react-native';
 
 type CustomAvatarStory = ComponentStory<typeof Avatar>;

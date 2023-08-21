@@ -1,5 +1,5 @@
 import React from 'react';
-import { Center, Pressable, Text } from '../../../ui-components';
+import { Center, Pressable, Text } from '@gluestack-ui/themed';
 
 const PressableStory = ({ ...props }: any) => {
   return (

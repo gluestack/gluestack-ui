@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Link, LinkText, Icon, HStack, Text } from '../../../ui-components';
+import { Link, LinkText, Icon, HStack, Text } from '@gluestack-ui/themed';
 import { ArrowUpRightIcon } from 'lucide-react-native';
 
 const LinkStory = () => {

@@ -1,6 +1,6 @@
 import type { ComponentStory } from '@storybook/react-native';
-import { Button, ButtonText } from '../../../ui-components';
-import { VStack } from '../../../ui-components';
+import { Button, ButtonText } from '@gluestack-ui/themed';
+import { VStack } from '@gluestack-ui/themed';
 
 import React from 'react';
 

@@ -13,7 +13,7 @@ import {
   Tooltip,
   Button,
   Center,
-} from '../../../ui-components';
+} from '@gluestack-ui/themed';
 
 import { Volume, Volume2Icon, LightbulbIcon } from 'lucide-react-native';
 

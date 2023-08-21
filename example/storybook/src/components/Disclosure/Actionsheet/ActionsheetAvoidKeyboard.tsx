@@ -20,11 +20,11 @@ import {
   Text,
   Box,
   Icon,
-} from '../../../ui-components';
+} from '@gluestack-ui/themed';
 import { KeyboardAvoidingView, Platform } from 'react-native';
-import { createIcon } from '@gluestack-ui/icon';
+import { createIcon } from '@gluestack-ui/themed';
 import { Svg, Path } from 'react-native-svg';
-import { styled, AsForwarder } from '@gluestack-style/react';
+import { styled, AsForwarder } from '@gluestack-ui/themed';
 
 const IconRoot: any = styled(
   AsForwarder,

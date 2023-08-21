@@ -14,7 +14,7 @@ import {
   SelectDragIndicator,
   SelectItem,
   Icon,
-} from '../../../ui-components';
+} from '@gluestack-ui/themed';
 
 const SelectStory = ({ size = 'md', variant = 'outline', ...props }: any) => {
   return (

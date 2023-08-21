@@ -16,7 +16,7 @@ import {
   PlayIcon,
   FavouriteIcon,
   CloseIcon,
-} from '../../../ui-components';
+} from '@gluestack-ui/themed';
 import { useEffect } from 'react';
 
 function ActionsheetExample({

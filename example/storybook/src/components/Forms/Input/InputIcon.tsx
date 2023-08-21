@@ -7,7 +7,7 @@ import {
   SearchIcon,
   InputIcon,
   InputInput,
-} from '../../../ui-components';
+} from '@gluestack-ui/themed';
 import { EyeIcon, EyeOffIcon } from 'lucide-react-native';
 
 const InputStory = ({ ...props }: any) => {

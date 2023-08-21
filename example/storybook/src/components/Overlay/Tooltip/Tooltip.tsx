@@ -15,7 +15,7 @@ import {
   VStack,
   HStack,
   Icon,
-} from '../../../ui-components';
+} from '@gluestack-ui/themed';
 import { Edit, Command } from 'lucide-react-native';
 
 const TooltipStory = ({

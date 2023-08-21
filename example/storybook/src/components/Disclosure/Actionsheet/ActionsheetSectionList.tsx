@@ -11,7 +11,7 @@ import {
   ActionsheetSectionList,
   ActionsheetSectionHeaderText,
   Button,
-} from '../../../ui-components';
+} from '@gluestack-ui/themed';
 
 function ActionsheetExample({
   showActionsheet: showActionsheetProp = true,

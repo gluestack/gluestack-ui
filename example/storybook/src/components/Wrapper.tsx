@@ -1,10 +1,10 @@
 import React from 'react';
-import { config } from '../gluestack-ui.config';
-import { StyledProvider } from '@gluestack-style/react';
-import { createProvider } from '@gluestack-ui/provider';
-import { Box } from '../ui-components';
+import { config } from '@gluestack-ui/themed';
+import { StyledProvider } from '@gluestack-ui/themed';
+import { createProvider } from '@gluestack-ui/themed';
+import { Box } from './Layout/Box/Box';
 
-import { Center } from '../ui-components';
+import { Center } from './Layout/Center/Center';
 
 const Provider = createProvider({ StyledProvider }) as any;
 Provider.displayName = 'Provider';
