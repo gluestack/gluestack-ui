@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { createButton } from '@gluestack-ui/button';
 import {
   Root,
@@ -9,6 +9,8 @@ import {
   Spinner,
   Icon,
 } from './styled-components';
+import { useStyled } from '@gluestack-style/react';
+import { usePropResolution } from '../../hooks/usePropResolution';
 
 export const AccessibleButton = createButton({
   Root,
@@ -22,9 +24,10 @@ export const AccessibleButton = createButton({
 
 //@ts-ignore
 export const Button = ({ children, ...props }) => {
-  // console.log(children, typeof children === 'string', 'Chlired button');
+  const resolvedPropForGluestack = usePropResolution(props);
+
   return (
-    <AccessibleButton {...props}>
+    <AccessibleButton {...resolvedPropForGluestack}>
       {typeof children === 'string' ? (
         <AccessibleButton.Text>{children}</AccessibleButton.Text>
       ) : (
