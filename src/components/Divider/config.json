@@ -1,0 +1,4 @@
+{
+  "dependencies": { "@gluestack-ui/divider": "latest" },
+  "keywords": ["components", "core"]
+}

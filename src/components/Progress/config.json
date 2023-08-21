@@ -1,0 +1,4 @@
+{
+  "dependencies": { "@gluestack-ui/progress": "latest" },
+  "keywords": ["components", "core"]
+}
