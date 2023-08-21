@@ -1,25 +1,70 @@
 import React from 'react';
-import Wrapper from '../../Wrapper';
-import { Center, InfoIcon, Select, Icon } from '../../../ui-components';
 
-export const SelectStory = ({ isDisabled, isInvalid, ...props }: any) => {
+import {
+  Center,
+  ChevronDownIcon,
+  Select,
+  SelectIcon,
+  SelectTrigger,
+  SelectInput,
+  SelectPortal,
+  SelectBackdrop,
+  SelectContent,
+  SelectDragIndicatorWrapper,
+  SelectDragIndicator,
+  SelectItem,
+  Icon,
+} from '@gluestack-ui/themed';
+
+const SelectStory = ({ size = 'md', variant = 'outline', ...props }: any) => {
   return (
-    <Wrapper>
-      <Center>
-        <Select isDisabled={isDisabled} isInvalid={isInvalid} {...props}>
-          <Select.ItemList placeholder="Select">
-            <Select.Item value="select option" label="select option" />
-            <Select.Item value="select option 1" label="select option 1" />
-            <Select.Item value="select option 2" label="select option 2" />
-            <Select.Item value="select option 3" label="select option 3" />
-          </Select.ItemList>
-          <Select.Icon>
-            <Icon as={InfoIcon} />
-          </Select.Icon>
-        </Select>
-      </Center>
-    </Wrapper>
+    <Select {...props}>
+      <SelectTrigger size={size} variant={variant}>
+        <SelectInput placeholder="Select option" />
+        <SelectIcon
+          mr={variant === 'underlined' ? 0 : '$3'}
+          ml={variant === 'underlined' ? '$3' : 0}
+          as={ChevronDownIcon}
+        />
+      </SelectTrigger>
+      <SelectPortal>
+        <SelectBackdrop />
+        <SelectContent>
+          <SelectDragIndicatorWrapper>
+            <SelectDragIndicator />
+          </SelectDragIndicatorWrapper>
+          <SelectItem label="UX Research" value="UX Research" />
+          <SelectItem label="Web Development" value="Web Development" />
+          <SelectItem
+            label="Cross Platform Development Process"
+            value="Cross Platform Development Process"
+          />
+          <SelectItem
+            label="UI Designing"
+            value="UI Designing"
+            isDisabled={true}
+          />
+          <SelectItem label="Backend Development" value="Backend Development" />
+        </SelectContent>
+      </SelectPortal>
+    </Select>
   );
 };
 
-export { Center, Select, Icon, InfoIcon };
+export default SelectStory;
+
+export {
+  Center,
+  Select,
+  SelectTrigger,
+  SelectInput,
+  SelectIcon,
+  SelectPortal,
+  SelectBackdrop,
+  SelectContent,
+  SelectDragIndicatorWrapper,
+  SelectDragIndicator,
+  SelectItem,
+  Icon,
+  ChevronDownIcon,
+};

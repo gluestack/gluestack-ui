@@ -1,200 +1,71 @@
 ---
 title: Installation | gluestack-ui
 
-description: A Quick Installation guide for gluestack-ui.
+description: To get started with gluestack-ui, check out this quick installation guide. It provides simple steps to help you install and use the library in your projects.
 
 pageTitle: Installation
 
-pageDescription: A Quick Installation guide for gluestack-ui.
+pageDescription: To get started with gluestack-ui, check out this quick installation guide. It provides simple steps to help you install and use the library in your projects.
 
 showHeader: true
 ---
 
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
+import {
+  AppProvider,
+  Box,
+  HStack,
+  Text,
+  Hoverable,
+  CodePreview,
+} from '@gluestack/design-system';
+
 <Meta title="Getting Started/Installation" />
 
 ## Installation
 
-To get started with gluestack-ui, you can install it using `npx` to do initial setup and add any desired component package.
-
-### Initialiser (Step 1)
-
-To do the initial setup run:
+Gluestack-ui is supported in Expo or React Native CLI initiated apps. Web support is made possible by react-native-web. You can directly do the initial setup using the following command
 
 ```bash
-npx gluestack-ui
-
+npx gluestack
 ```
 
-This will:
+Refer the guides shown below to setup `gluestack-ui` in your existing Expo or Next.js app.
 
-- Check if gluestack-ui is installed in the project, if not it will create a `gluestack.config.ts` file which will have the default theme.
-- It will create `GluestackUIProvider` (Wrapper component)
-- Installs the required dependencies
-  - @dank-style/react
-  - @gluestack-ui/provider
-
-<br />
-
-### Component Adder (Step 2)
-
-We can add a new component using npx `npx npx gluestack-ui add <package-name>`. For example, to add the button component package, you can run the following command:
-
-```bash
-npx npx gluestack-ui add button
-
-```
-
-This will install the `@gluestack-ui/button` package and add it to your project's dependencies. This will add the necessary code to your project, including importing the `createButton` function and creating a `Button` component using it.
-
-After installing the component, you can use it in your app by importing it and rendering it in your JSX. For example:
-
-```jsx
-import { Button } from './components/button';
-function App() {
-  return (
-    <>
-      <Button onPress={() => alert('Clicked!')}>
-        <Button.Text>Click me!</Button.Text>
-      </Button>
-    </>
-  );
-}
-```
-
-For components to work properly we need to wrap our components with `<GluestackUIProvider/>` and pass the theme from `gluestack-ui.config.ts` file.
-
-#### Next.js Projects
-
-For Next.js Projects update \_app.tsx with the below code:
-
-```jsx
-import { GluestackUIProvider } from '@/components';
-import { config } from '@/gluestack-ui.config';
-import '@/styles/globals.css';
-import type { AppProps } from 'next/app';
-
-export default function App({ Component, pageProps }: AppProps) {
-  return (
-    <GluestackUIProvider config={config.theme}>
-      <Component {...pageProps} />
-    </GluestackUIProvider>
-  );
-}
-```
-
-#### Expo Projects
-
-For Expo Projects update App.tsx with the below code:
-
-```jsx
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import { GluestackUIProvider } from './components';
-import { config } from './gluestack-ui.config';
-
-export default function App() {
-  return (
-    <GluestackUIProvider config={config.theme}>
-      <Button onPress={() => alert('Clicked!')}>
-        <Button.Text>Click me!</Button.Text>
-      </Button>
-    </GluestackUIProvider>
-  );
-}
-```
-
-### Commands provided by gluestack-ui
-
-#### Init gluestack-ui
-
-```bash
- npx gluestack-ui init
-```
-
-#### Init and add components
-
-```bash
-  npx gluestack-ui
-```
-
-#### Add component
-
-```bash
- npx npx gluestack-ui add <component-name>
-```
-
-#### Update component
-
-```bash
- npx gluestack-ui update <component-name>
-```
-
-#### Remove component
-
-```bash
-  npx gluestack-ui remove <component-name>
-```
-
-#### Help
-
-```bash
-  npx gluestack-ui help
-```
-
-This will render a button component that can be clicked and will display an alert when clicked.
-
-## For Next.js Projects
-
-It's also recommended to set up your server-side rendering (SSR) correctly. To do this, you will need to use the flush() function exported by the library and call it in your \_document.js file. So, for Next.js projects we require `@gluestack/ui-next-adapter` as a dependency and update \_document.js with the below code:
-
-```jsx
-import * as React from 'react';
-import { Html, Head, Main, NextScript } from 'next/document';
-import { AppRegistry } from 'react-native-web';
-import { flush } from '@dank-style/react';
-
-function Document() {
-  return (
-    <Html lang="en">
-      <Head />
-      <body>
-        <Main />
-        <NextScript />
-      </body>
-    </Html>
-  );
-}
-
-Document.getInitialProps = async ({ renderPage }: any) => {
-  AppRegistry.registerComponent('Main', () => Main);
-  const { getStyleElement } = AppRegistry.getApplication('Main');
-  const page = await renderPage();
-  const styles = [getStyleElement(), ...flush()];
-  return { ...page, styles: React.Children.toArray(styles) };
-};
-
-export default Document;
-```
-
-Make the following changes in `next.config.js`
-
-```jsx
-/** @type {import('next').NextConfig} */
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const { withGluestackUI } = require('@gluestack/ui-next-adapter');
-
-const nextConfig = {
-  reactStrictMode: true,
-};
-
-module.exports = withGluestackUI(nextConfig);
-```
+<AppProvider>
+  <HStack
+    space="md"
+    flex={1}
+    mb="$4"
+    sx={{
+      '@lg': {
+        flexDirection: 'row',
+      },
+      'flexDirection': 'column',
+    }}
+  >
+    <Hoverable
+      heading={'Expo'}
+      subHeading={'Guide to install in an Expo project'}
+      href="/docs/guides/install-expo"
+    />
+    <Hoverable
+      heading={'Next.js'}
+      subHeading={'Guide to install in a Next.js project'}
+      href="/docs/guides/install-nextjs"
+    />
+    <Hoverable
+      heading={'React Native'}
+      subHeading={'Guide to install in a React Native project'}
+      href="/docs/guides/install-rn"
+    />
+  </HStack>
+</AppProvider>
 
 ### Summary
 
-In this guide, we've walked you through the process of installing gluestack-ui and adding a Button component to your project using the npx command. With gluestack-ui, you can benefit from a library of accessible and composable UI components that work seamlessly on mobile and web platforms.
+In this guide, we've walked you through the process of installing gluestack-ui and adding a component to your project. With gluestack-ui, you can benefit from a library of accessible and composable UI components that work seamlessly on mobile and web platforms.
 
 The library follows WAI-ARIA authoring practices guidelines, making it accessible to a wide range of users.
 It provides both controlled and uncontrolled options for maximum flexibility. The focus is fully managed and customizable, and the dismissing and layering behaviour can be highly customized as well. With gluestack-ui, you can create high-quality UI components with ease.

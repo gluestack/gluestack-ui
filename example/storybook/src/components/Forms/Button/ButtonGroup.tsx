@@ -1,30 +1,25 @@
 import type { ComponentStory } from '@storybook/react-native';
-import { Button } from '../../../ui-components';
-import { Center } from '../../../ui-components';
-import Wrapper from '../../Wrapper';
+import { Button, ButtonGroup, ButtonText } from '@gluestack-ui/themed';
+
 import React from 'react';
 
 type MyButtonStory = ComponentStory<typeof Button>;
 
-export const GroupedExample: MyButtonStory = ({
-  // text = 'Button',
-  ...props
-}) => {
+const ButtonGroupStory: MyButtonStory = ({ ...props }) => {
   return (
-    <Wrapper>
-      <Center>
-        <Button.Group direction="column" {...props}>
-          <Button>
-            <Button.Text>Button 1</Button.Text>
-          </Button>
-          <Button bg="$blue500">
-            <Button.Text>Button 2</Button.Text>
-          </Button>
-          <Button>
-            <Button.Text>Button 3</Button.Text>
-          </Button>
-        </Button.Group>
-      </Center>
-    </Wrapper>
+    // @ts-ignore
+    <ButtonGroup {...props}>
+      <Button>
+        <ButtonText>Button 1</ButtonText>
+      </Button>
+      <Button>
+        <ButtonText>Button 2</ButtonText>
+      </Button>
+      <Button>
+        <ButtonText>Button 3</ButtonText>
+      </Button>
+    </ButtonGroup>
   );
 };
+
+export default ButtonGroupStory;

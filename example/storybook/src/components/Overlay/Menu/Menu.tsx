@@ -1,88 +1,78 @@
 import React from 'react';
-import Wrapper from '../../Wrapper';
-import { Center } from '../../../ui-components';
+
 import {
   Button,
-  HamburgerIcon,
-  Menu,
-  Text,
+  ButtonText,
   GlobeIcon,
-  PluginIcon,
-  ThemeIcon,
+  HStack,
+  Menu,
+  MenuIcon,
+  MenuItem,
+  MenuItemLabel,
+  Icon,
+  Text,
   SettingsIcon,
-  PlusIcon,
-  Box,
-  Badge,
-  Pressable,
-  Avatar,
-  Divider,
-} from '../../../ui-components';
+  AddIcon,
+  Center,
+} from '@gluestack-ui/themed';
+import { PaintBucket, PuzzleIcon } from 'lucide-react-native';
 
-export const MenuStory = ({ placement }: any) => {
+const MenuStory = ({ placement = 'bottom' }: any) => {
   return (
-    <>
-      <Wrapper>
-        <Menu
-          placement={placement}
-          trigger={(triggerProps: any) => {
-            return (
-              <Center>
-                <Button {...triggerProps}>
-                  <Button.Text>
-                    <HamburgerIcon />
-                  </Button.Text>
-                </Button>
-              </Center>
-            );
-          }}
-        >
-          <Menu.Content>
-            <Menu.Item>
-              <Text sx={{ px: '$3' }}>Arial</Text>
-            </Menu.Item>
-            <Menu.Item>
-              <Text sx={{ px: '$3' }}>Nunito Sans</Text>
-            </Menu.Item>
-            <Menu.Item>
-              <Text sx={{ px: '$3' }}>Roboto</Text>
-            </Menu.Item>
-            <Menu.Item>
-              <Text sx={{ px: '$3' }}>Poppins</Text>
-            </Menu.Item>
-            <Menu.Item>
-              <Text sx={{ px: '$3' }}>SF Pro</Text>
-            </Menu.Item>
-            <Menu.Item>
-              <Text sx={{ px: '$3' }}>Helvetica</Text>
-            </Menu.Item>
-            <Menu.Item isDisabled>
-              <Text sx={{ px: '$3' }}>Sofia</Text>
-            </Menu.Item>
-            <Menu.Item>
-              <Text sx={{ px: '$3' }}>Cookie</Text>
-            </Menu.Item>
-          </Menu.Content>
-          <Menu.Backdrop />
-        </Menu>
-      </Wrapper>
-    </>
+    <Center>
+      <Menu
+        isOpen={true}
+        placement={placement}
+        disabledKeys={['Settings']}
+        // eslint-disable-next-line react/no-unstable-nested-components
+        trigger={({ ...triggerProps }) => {
+          return (
+            <Button {...triggerProps}>
+              <ButtonText>Menu</ButtonText>
+            </Button>
+          );
+        }}
+      >
+        <MenuItem key="Community" textValue="Community">
+          <Icon as={GlobeIcon} size="sm" mr="$2" />
+          <MenuItemLabel size="sm">Community</MenuItemLabel>
+        </MenuItem>
+        <MenuItem key="Plugins" textValue="Plugins">
+          <Icon as={PuzzleIcon} size={16} mr="$2" />
+          <MenuItemLabel size="sm">Plugins</MenuItemLabel>
+        </MenuItem>
+        <MenuItem key="Theme" textValue="Theme">
+          <Icon as={PaintBucket} size={16} mr="$2" />
+          <MenuItemLabel size="sm">Theme</MenuItemLabel>
+        </MenuItem>
+        <MenuItem key="Settings" textValue="Settings">
+          <Icon as={SettingsIcon} size="sm" mr="$2" />
+          <MenuItemLabel size="sm">Settings</MenuItemLabel>
+        </MenuItem>
+        <MenuItem key="Add account" textValue="Add account">
+          <Icon as={AddIcon} size="sm" mr="$2" />
+          <MenuItemLabel size="sm">Add account</MenuItemLabel>
+        </MenuItem>
+      </Menu>
+    </Center>
   );
 };
 
+export default MenuStory;
+
 export {
   Button,
-  HamburgerIcon,
-  Menu,
-  Text,
-  Center,
+  ButtonText,
   GlobeIcon,
-  PluginIcon,
-  ThemeIcon,
+  HStack,
+  Menu,
+  MenuIcon,
+  MenuItem,
+  MenuItemLabel,
+  Icon,
+  Text,
   SettingsIcon,
-  PlusIcon,
-  Box,
-  Badge,
-  Pressable,
-  Avatar,
-  Divider,
+  AddIcon,
+  PaintBucket,
+  PuzzleIcon,
 };

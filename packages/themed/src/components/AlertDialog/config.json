@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "@gluestack-ui/alert-dialog": "latest",
+    "@legendapp/motion": "latest"
+  },
+  "keywords": ["components", "core"]
+}

@@ -1,16 +1,5 @@
 import type { ComponentMeta } from '@storybook/react-native';
-import { MenuStory as Menu } from './Menu';
-import { MenuGroupStory as Group } from './MenuGroup';
-import { ComplexMenuGroup } from './ComplexMenuGroup';
-
-// var st = document.createElement('style');
-// var st2 = document.createElement('style');
-
-// st.innerHTML = `#story--menu--basic{ height: 400px }`;
-// st2.innerHTML = `#story--menu--grouped{ height: 400px }`;
-
-// document.body.append(st);
-// document.body.append(st2);
+import Menu from './Menu';
 
 const MenuMeta: ComponentMeta<typeof Menu> = {
   title: 'stories/OVERLAY/Menu',
@@ -20,27 +9,29 @@ const MenuMeta: ComponentMeta<typeof Menu> = {
       control: 'select',
       options: [
         'bottom',
-        'bottom-end',
-        'bottom-start',
+        'bottom end',
+        'bottom start',
         'top',
-        'top-end',
-        'top-start',
+        'top end',
+        'top start',
         'left',
-        'left-end',
-        'left-start',
+        'left end',
+        'left start',
         'right',
-        'right-end',
-        'right-start',
+        'right end',
+        'right start',
       ],
+    },
+    showMenu: {
+      control: 'boolean',
+      options: [true, false],
     },
   },
   args: {
     placement: 'bottom',
+    showMenu: true,
   },
 };
 
 export default MenuMeta;
-
 export { Menu };
-export { Group };
-export { ComplexMenuGroup };

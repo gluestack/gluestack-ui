@@ -1,7 +1,8 @@
 import type { ComponentMeta } from '@storybook/react-native';
-import { InputStory as Input } from './Input';
+import Input from './Input';
+import InputIcon from './InputIcon';
 
-const MyInputMeta: ComponentMeta<typeof Input> = {
+const InputMeta: ComponentMeta<typeof Input> = {
   title: 'stories/FORMS/Input',
   component: Input,
   argTypes: {
@@ -21,10 +22,20 @@ const MyInputMeta: ComponentMeta<typeof Input> = {
       control: 'boolean',
       options: [true, false],
     },
+    isReadonly: {
+      control: 'boolean',
+      options: [true, false],
+    },
   },
-  args: { size: 'md', variant: 'outline', isInvalid: false, isDisabled: false },
+  args: {
+    size: 'sm',
+    variant: 'outline',
+    isInvalid: false,
+    isDisabled: false,
+    isReadonly: false,
+  },
 };
 
-export default MyInputMeta;
+export default InputMeta;
 
-export { Input };
+export { Input, InputIcon };

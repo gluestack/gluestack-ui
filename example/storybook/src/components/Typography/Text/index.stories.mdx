@@ -1,11 +1,11 @@
 ---
-title: gluestack-ui Text Component | Installation, Usage, and API
+title: Text | gluestack-ui | Installation, Usage, and API
 
-description: Text allows the rendering of text and paragraphs within an interface.
+description: Looking to add text to your gluestack-ui project? Check out our text component, which supports paragraphs and other formatting options.
 
 pageTitle: Text
 
-pageDescription: Text allows the rendering of text and paragraphs within an interface.
+pageDescription: Looking to add text to your gluestack-ui project? Check out our text component, which supports paragraphs and other formatting options.
 
 showHeader: true
 ---
@@ -14,14 +14,21 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Typography/Text" />
 
-import { Text } from './Text';
-import { Center } from '../../Layout/Center/Center';
+import { Text, Center } from './Text';
 import { transformedCode } from '../../../utils';
 import Wrapper from '../../Wrapper';
 
-import { AppProvider, CodePreview, Table } from '@gluestack/design-system';
+import {
+  AppProvider,
+  CodePreview,
+  Table,
+  TableContainer,
+  InlineCode,
+} from '@gluestack/design-system';
 
-## Basic
+## Themed
+
+Following is the default implementation of the **Text** component without any additional customization. This serves as a starting point for users who are new to this library and want to learn about the basic functionality and appearance of the component.
 
 <AppProvider>
   <CodePreview
@@ -29,10 +36,10 @@ import { AppProvider, CodePreview, Table } from '@gluestack/design-system';
     showArgsController={false}
     metaData={{
       code: `
-<Text>
-  Text
-</Text>
-`,
+        <Text>
+          Text
+        </Text>
+      `,
       transformCode: (code) => {
         return transformedCode(code);
       },
@@ -44,87 +51,213 @@ import { AppProvider, CodePreview, Table } from '@gluestack/design-system';
     }}
   />
 </AppProvider>
+
 <br />
-
-## Installation
-
-This command copies the `Text` component to your project.
-
-```bash
-npx gluestack-ui add text
-```
 
 ### Import
 
-```bash
-// import the component from your components folder
-import { Text } from './components';
-```
+To use the component in your project, run the command below into your import statement. This will import the component from your components folder.
 
-<br />
+```bash
+import { Text } from '@gluestack-ui/themed';
+```
 
 ### Anatomy
 
+The structure provided below can help you identify and understand a Text component's various parts.
+
 ```jsx
-export default () => <Text></Text>;
+export default () => <Text />;
 ```
 
 ### API Reference
 
+The following section contains a comprehensive list of the component's references, including descriptions, properties, types, and default behavior. This information is readily available for you to access, helping you effectively utilize the component library in your projects.
+
 #### Text
 
-It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text#props) component.
-
-<br />
-<br />
+It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text) component.
 
 ### Examples
 
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
 #### Text Sizes
+
+Text component comes in different sizes, such as `xs`, `sm`, `md`, `lg`, `xl`, `2xl`, `3xl`, `4xl`, `5xl`, and `6xl` allowing users to adjust the button size based on their design needs.
 
 <AppProvider>
   <CodePreview
+    _rendererWrapper={{ py: '$2.5' }}
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
       code: `
-function App() {
-  const sizes = [
-    'xs',
-    'sm',
-    'md',
-    'lg',
-    'xl',
-    '2xl',
-    '3xl',
-    '4xl',
-    '5xl',
-    '6xl',
-  ];
-  return (
-    <Wrapper>
-      <Center>
-        {sizes.map((size) => (
-          <Text size={size}>{size}</Text>
-        ))}
-      </Center>
-    </Wrapper>
-  );
-};
-`,
+        function App() {
+          const sizes = [
+            'xs',
+            'sm',
+            'md',
+            'lg',
+            'xl',
+            '2xl',
+            '3xl',
+            '4xl',
+            '5xl',
+            '6xl',
+          ];
+          return (
+            <Center>
+              {sizes.map((size) => (
+                <Text size={size}>{size}</Text>
+              ))}
+            </Center>
+          );
+        };
+      `,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'App');
+      },
       scope: { Wrapper, Center, Text },
       argsType: {},
     }}
   />
 </AppProvider>
 
-## Advanced
+Text component also accepts some shorthands for basic quick styling.
+
+<AppProvider>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Type</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Default</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Description</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>bold</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Used to make the text bold.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>isTruncated</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`If true, it will render an ellipsis when the text exceeds the width of the viewport or maxWidth set.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>italic</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Used to make the text italic.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>underline</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Used underline the text.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>strikeThrough</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`A horizontal line through the center of the text.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>highlight</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Used to highlight the text with a yellow background.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</AppProvider>
+
+## Unstyled
+
+We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
 
 ### Customizing the Text
 
-For customizing the Text, you have to map styled view to Text. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
+For customizing the Text, you have to map styled view to Text. You can refer [style.gluestack.io](https://style.gluestack.io/) for more information on how to use styled components.
 
 #### Usage
+
+Default styling of the component can be found in the `components/core/text` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/tree/main/example/storybook/src/ui-components/Text) of the styled `Text` component.
 
 ```jsx
 // import the styles
@@ -136,5 +269,3 @@ const Text = Root;
 // Using the text component
 export default () => <Text />;
 ```
-
-Default styling of the component can be found in the `components/core/text` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/ui-components/Text/index.tsx) of the styled `Text` component.

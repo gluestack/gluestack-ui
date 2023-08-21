@@ -1,17 +1,35 @@
 import React from 'react';
-import Wrapper from '../../Wrapper';
-import { Center, Button, CloseIcon, Text, Icon } from '../../../ui-components';
-import { Modal, VStack, HStack, Heading } from '../../../ui-components';
 
-export const MultipleModalStory = ({ ...props }: any) => {
+import {
+  Center,
+  Button,
+  ButtonText,
+  CloseIcon,
+  Text,
+  Icon,
+} from '@gluestack-ui/themed';
+import {
+  Modal,
+  ModalBackdrop,
+  ModalContent,
+  ModalHeader,
+  ModalCloseButton,
+  ModalBody,
+  ModalFooter,
+  VStack,
+  HStack,
+  Heading,
+} from '@gluestack-ui/themed';
+
+const MultipleModalStory = ({ ...props }: any) => {
   const [showModal, setShowModal] = React.useState(false);
   const [showModal2, setShowModal2] = React.useState(false);
 
   return (
-    <Wrapper>
+    <>
       <Center>
         <Button onPress={() => setShowModal(true)}>
-          <Button.Text>Button</Button.Text>
+          <ButtonText>Button</ButtonText>
         </Button>
       </Center>
 
@@ -22,98 +40,84 @@ export const MultipleModalStory = ({ ...props }: any) => {
         }}
         {...props}
       >
-        <Modal.Backdrop />
-        <Modal.Content>
-          <Modal.CloseButton>
-            <Icon as={CloseIcon} sx={{ w: 16, h: 16 }} />
-          </Modal.CloseButton>
-          <Modal.Header>
-            <Text variant="modalHeader">Order</Text>
-          </Modal.Header>
-          <Modal.Body>
+        <ModalBackdrop />
+        <ModalContent>
+          <ModalHeader>
+            <Heading>Order</Heading>
+            <ModalCloseButton>
+              <Icon as={CloseIcon} />
+            </ModalCloseButton>
+          </ModalHeader>
+          <ModalBody>
             <VStack space="sm">
-              <HStack
-                sx={{
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                }}
-              >
-                <Text sx={{ fontWeight: '$medium' }}>Sub Total</Text>
-                <Text sx={{ color: '$blueGray400' }}>$298.77</Text>
+              <HStack alignItems="center" justifyContent="space-between">
+                <Text fontWeight="$medium">Sub Total</Text>
+                <Text color="$blueGray400">$298.77</Text>
               </HStack>
-              <HStack
-                sx={{
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                }}
-              >
-                <Text sx={{ fontWeight: '$medium' }}>Tax</Text>
-                <Text sx={{ color: '$blueGray400' }}>$38.84</Text>
+              <HStack alignItems="center" justifyContent="space-between">
+                <Text fontWeight="$medium">Tax</Text>
+                <Text color="$blueGray400">$38.84</Text>
               </HStack>
-              <HStack
-                sx={{
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                }}
-              >
-                <Text sx={{ fontWeight: '$medium' }}>Total Amount</Text>
-                <Text sx={{ color: '$green500' }}>$337.61</Text>
+              <HStack alignItems="center" justifyContent="space-between">
+                <Text fontWeight="$medium">Total Amount</Text>
+                <Text color="$green500">$337.61</Text>
               </HStack>
             </VStack>
-          </Modal.Body>
-          <Modal.Footer>
+          </ModalBody>
+          <ModalFooter>
             <Button
               variant="outline"
+              action="secondary"
               onPress={() => {
                 setShowModal(false);
               }}
-              sx={{ mr: 8 }}
+              sx={{ mr: '$3' }}
             >
-              <Button.Text>Cancel</Button.Text>
+              <ButtonText>Cancel</ButtonText>
             </Button>
             <Button
               onPress={() => {
                 setShowModal2(true);
               }}
             >
-              <Button.Text>Continue</Button.Text>
+              <ButtonText>Continue</ButtonText>
             </Button>
-          </Modal.Footer>
-        </Modal.Content>
+          </ModalFooter>
+        </ModalContent>
       </Modal>
 
       <Modal
         isOpen={showModal2}
         onClose={() => {
-          // eslint-disable-next-line no-console
-          console.log('hello here 1111');
           setShowModal2(false);
         }}
       >
-        <Modal.Backdrop />
-        <Modal.Content {...props}>
-          <Modal.CloseButton>
-            <CloseIcon sx={{ w: 16, h: 16 }} />
-          </Modal.CloseButton>
-          <Modal.Header>
-            <Text variant="modalHeader">Order</Text>
-          </Modal.Header>
-          <Modal.Body>
-            <Center>
+        <ModalBackdrop />
+        <ModalContent {...props}>
+          <ModalHeader>
+            <Heading>Order</Heading>
+            <ModalCloseButton>
+              <Icon as={CloseIcon} />
+            </ModalCloseButton>
+          </ModalHeader>
+          <ModalBody>
+            <Center h={100}>
               <Heading>Second Modal</Heading>
             </Center>
-          </Modal.Body>
-          <Modal.Footer>
+          </ModalBody>
+          <ModalFooter>
             <Button
               onPress={() => {
                 setShowModal2(false);
               }}
             >
-              <Button.Text>Cancel</Button.Text>
+              <ButtonText>Cancel</ButtonText>
             </Button>
-          </Modal.Footer>
-        </Modal.Content>
+          </ModalFooter>
+        </ModalContent>
       </Modal>
-    </Wrapper>
+    </>
   );
 };
+
+export default MultipleModalStory;

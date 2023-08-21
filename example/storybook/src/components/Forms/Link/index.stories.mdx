@@ -1,11 +1,11 @@
 ---
-title: gluestack-ui Link Component | Installation, Usage, and API
+title: Link | gluestack-ui | Installation, Usage, and API
 
-description: Links are accessible elements used primarily for navigation. This component is styled to resemble a hyperlink.
+description: With links, users can navigate seamlessly throughout a website. This component has a hyperlinked appearance for a user-friendly experience.
 
 pageTitle: Link
 
-pageDescription: Links are accessible elements used primarily for navigation. This component is styled to resemble a hyperlink.
+pageDescription: With links, users can navigate seamlessly throughout a website. This component has a hyperlinked appearance for a user-friendly experience.
 
 showHeader: true
 ---
@@ -14,20 +14,23 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Forms/Link" />
 
-import { LinkTemp as Link, Text as LinkText } from './Link';
+import { Link, LinkText, ArrowUpRightIcon, Icon, HStack, Text } from './Link';
 import { transformedCode } from '../../../utils';
 import {
   AppProvider,
   CodePreview,
   Table,
   TableContainer,
-  Text,
   InlineCode,
 } from '@gluestack/design-system';
 
 import Wrapper from '../../Wrapper';
 
-## Basic
+## Themed
+
+Following is the default implementation of the **Link** component without any additional customization. This serves as a starting point for users who are new to this library and want to learn about the basic functionality and appearance of the component.
+
+Note: We have added a new API for the components — you can avoid the use of "." when using a component. For example, you can now use `<ButtonText>` instead of `<Button.Text>`. This is to accommodate new changes to the RSC, which does not support "." as per [this](https://github.com/vercel/next.js/issues/51593) issue. You can still use the older format, but if you want to use RSC, we recommend skipping the "."
 
 <AppProvider>
   <CodePreview
@@ -35,59 +38,53 @@ import Wrapper from '../../Wrapper';
     showArgsController={false}
     metaData={{
       code: `
-<Link href="https://gluestack.io/">
-  <Text>Link</Text>
-</Link>
-`,
+      <Link href="https://gluestack.io/">
+        <LinkText>gluestack</LinkText>
+      </Link>
+      `,
       transformCode: (code) => {
         return transformedCode(code);
       },
       scope: {
         Wrapper,
         Link,
-        Text: LinkText,
+        LinkText,
       },
       argsType: {},
     }}
   />
 </AppProvider>
+
 <br />
-
-## Installation
-
-This command copies the `Link` component to your project.
-
-```bash
-npx gluestack-ui add link
-```
 
 ### Import
 
-```bash
-// import the component from your components folder
-import { Link } from './components';
-```
+To use the component in your project, run the command below into your import statement. This will import the component from your components folder.
 
-<br />
+```bash
+import { Link } from '@gluestack-ui/themed';
+```
 
 ### Anatomy
 
-The link component consists of the following parts:
+The structure provided below can help you identify and understand a Link component's various parts.
 
 ```jsx
 export default () => (
   <Link>
-    <Text>Link</Text>
+    <LinkText />
   </Link>
 );
 ```
 
 ### API Reference
 
+The following section contains a comprehensive list of the component's references, including descriptions, properties, types, and default behavior. This information is readily available for you to access, helping you effectively utilize the component library in your projects.
+
 #### Link
 
 Contains all link related layout style props and actions.
-It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable#props) component.
+It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable) component.
 
 <AppProvider>
   <TableContainer>
@@ -159,26 +156,73 @@ It inherits all the properties of React Native's [Pressable](https://reactnative
             <Table.TText>{`If true, link will be opened in new tab on web. It uses _target property to achieve this.`}</Table.TText>
           </Table.TD>
         </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>isHovered</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`When true, the link displays a hover state.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>isFocusVisible</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`To manually set focus visible state to the link.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
       </Table.TBody>
     </Table>
   </TableContainer>
 </AppProvider>
 
+#### LinkText
+
+Contains all text related layout style props and actions. It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text) component.
+
 ### Accessibility
 
-Adheres to the [WAI-ARIA design pattern]('https://www.w3.org/WAI/ARIA/apg/#link').
+We have outlined the various features that ensure the Link component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards. Adheres to the [WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/link/).
+
+#### Keyboard
+
+- `Tab`: Moves focus to the next focusable element.
+- `Enter`: Users should be able to open a link.
+
+#### Screen Reader
+
+- VoiceOver: When a link receives focus, screen readers should announce a descriptive link name.
 
 ### Dependencies
 
+The following are the lists of all the libraries and packages the component relies on. This information will help you ensure that your project has all the necessary dependencies installed to use the component.
+
 - `@gluestack-ui/utils`
 - `@react-native-aria/focus`
-
-<br />
-<br />
+- `@react-native-aria/interactions`
 
 ### Examples
 
-#### External link
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+#### Default
 
 <AppProvider>
   <CodePreview
@@ -186,28 +230,67 @@ Adheres to the [WAI-ARIA design pattern]('https://www.w3.org/WAI/ARIA/apg/#link'
     showArgsController={false}
     metaData={{
       code: `
-<Link href="https://gluestack.io/" isExternal>
-  <Text>Link</Text>
-</Link>
+          <HStack>
+            <Text
+              size="lg"
+            >Design inspiration from </Text>
+              <Link href="https://gluestack.io/" isExternal>
+                <LinkText size="lg">pinterest.com</LinkText>
+              </Link>
+          </HStack>
 `,
       transformCode: (code) => {
         return transformedCode(code);
       },
-      scope: { Link, Wrapper, Text: LinkText },
+      scope: { Link, LinkText, Wrapper, ArrowUpRightIcon, Icon, HStack, Text },
       argsType: {},
     }}
   />
 </AppProvider>
 
-<br />
+#### Link with icon
 
-## Advanced
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+        <HStack>
+              <Text
+               size="lg">Go to </Text>
+              <Link href="https://gluestack.io/" isExternal>
+                <HStack alignItems="center">
+                <LinkText size="lg">Pinterest</LinkText>
+                <Icon as={ArrowUpRightIcon} size="lg" color="$info600" mt="$0.5" sx={{
+                  _dark:{
+                    color:"$info300"
+                  }
+                }}/>
+                </HStack>
+              </Link>
+         </HStack>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: { Link, LinkText, Wrapper, ArrowUpRightIcon, Icon, HStack, Text },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+## Unstyled
+
+We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
 
 ### Customizing the Link
 
-We have a function called `createLink` which can be used to create a custom link component. This function takes in a configuration object which contains the styled components that you want to use for the link. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
+We have a function called `createLink` which can be used to create a custom link component. This function takes in a configuration object which contains the styled components that you want to use for the link. You can refer [style.gluestack.io](https://style.gluestack.io/) for more information on how to use styled components.
 
 #### Usage
+
+Default styling of all these components can be found in the `components/core/link` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/tree/main/example/storybook/src/components/Forms/Link) of the styled `Link` components.
 
 ```jsx
 // import the styles
@@ -224,19 +307,17 @@ const Link = createLink({
 // Using the link component
 export default () => (
   <Link href="">
-    <Text />
+    <LinkText />
   </Link>
 );
 ```
 
-Default styling of all these components can be found in the `components/core/link` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/components/Link/index.tsx) of the styled `Link` components.
-
 #### How to use Next.js Link
 
-By default, Link component uses anchor tag on web and pressable on native. If you want to use Next.js Link component on web, you have to create a new styled component for link and map it to Link component. You can also change the already present styled-component for link on the path `./components/core/link/styled-components` in your project. For web specific styling, you can create a file with `.web` extension. For example, if you want to create a custom link component, you can create a file named `Link.tsx` and `Link.web.tsx` in the same directory. The `.web` file will be used only on web and the `Link.tsx` file will be used on native.
+By default, Link component uses an anchor tag on web and pressable on native. If you want to use Next.js Link component on web, you have to create a new styled component for link and map it to Link component. You can also change the already present styled-component for link on the path `./components/core/link/styled-components` in your project. For web specific styling, you can create a file with `.web` extension. For example, if you want to create a custom link component, you can create a file named `Linktsx` and `Linkweb.tsx` in the same directory. The `.web` file will be used only on web and the `Linktsx` file will be used on native.
 
 ```jsx
-import Link from 'next/link'
+import Link from 'next/link';
 
 
 // Using the Next Link component
@@ -247,9 +328,9 @@ props: {
   w: 100,
   h: 100,
   borderRadius: '$full',
-}
+};
 
-// you can also https://dank.style/docs/getting-started/styled to style the component
+// you can also https://style.gluestack.io/docs/getting-started/styled to style the component
 
 
 export default () => <StyledLink />;

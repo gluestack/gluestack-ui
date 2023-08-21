@@ -1,43 +1,37 @@
 import React from 'react';
-
-import Wrapper from '../../Wrapper';
 import {
   Alert,
-  Center,
+  AlertIcon,
+  AlertText,
   InfoIcon,
   CheckCircleIcon,
-  CloseIconFilled,
-  NotificationIcon,
-  WarningIcon,
+  CloseCircleIcon,
+  BellIcon,
+  AlertCircleIcon,
   VStack,
   Icon,
-} from '../../../ui-components';
+} from '@gluestack-ui/themed';
 
-export function AlertTemp({ ...props }: any) {
+function AlertStory({ ...props }: any) {
   return (
-    <Wrapper>
-      <Center>
-        <Alert {...props}>
-          <Alert.Icon>
-            <Icon as={InfoIcon} />
-          </Alert.Icon>
-          <Alert.Text>Selection successfully moved!</Alert.Text>
-        </Alert>
-      </Center>
-    </Wrapper>
+    <Alert {...props}>
+      <AlertIcon as={InfoIcon} mr="$3" />
+      <AlertText>Selection successfully moved!</AlertText>
+    </Alert>
   );
 }
 
-export default AlertTemp;
+export default AlertStory;
 
 export {
   Alert,
+  AlertIcon,
+  AlertText,
   InfoIcon,
-  Center,
   CheckCircleIcon,
-  CloseIconFilled,
-  NotificationIcon,
-  WarningIcon,
+  CloseCircleIcon,
+  BellIcon,
+  AlertCircleIcon,
   Icon,
   VStack,
 };

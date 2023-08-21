@@ -1,60 +1,113 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Text,
-  Pressable,
-  Popover,
   Button,
+  ButtonText,
+  ButtonGroup,
+  Popover,
+  PopoverBackdrop,
+  PopoverContent,
+  PopoverHeader,
+  PopoverBody,
+  PopoverFooter,
+  PopoverCloseButton,
   CloseIcon,
   Icon,
-} from '../../../ui-components';
+  Box,
+  Center,
+  Heading,
+  Pressable,
+  HStack,
+  VStack,
+  Avatar,
+  AvatarFallbackText,
+  CircleIcon,
+  AddIcon,
+} from '@gluestack-ui/themed';
 
-import Wrapper from '../../Wrapper';
+import { PhoneIcon, Clock3Icon, MailIcon } from 'lucide-react-native';
 
-export const PopoverStory = () => {
+const PopoverStory = ({
+  showPopover: showPopoverProp = true,
+  placement = 'bottom',
+}: any) => {
   return (
-    <Wrapper>
+    <Center w={1200} h={800}>
       <Popover
-        placement={'top'}
-        trigger={(triggerProps: any) => {
+        offset={10}
+        isOpen={showPopoverProp}
+        placement={placement}
+        // eslint-disable-next-line react/no-unstable-nested-components
+        trigger={(triggerProps) => {
           return (
-            <Pressable
-              bgColor={'$red500'}
-              borderRadius={'$md'}
-              {...triggerProps}
-            >
-              <Text color={'white'} padding="$3">
-                Popover
-              </Text>
-            </Pressable>
+            <Button {...triggerProps}>
+              <ButtonText>Popover</ButtonText>
+            </Button>
           );
         }}
       >
-        <Popover.Content>
-          <Popover.Header>
-            <Text>Delete Customer</Text>
-            <Popover.CloseButton>
-              <Icon as={CloseIcon} sx={{ w: 16, h: 16 }} />
-            </Popover.CloseButton>
-          </Popover.Header>
-          <Popover.Body>
+        <PopoverBackdrop />
+        <PopoverContent maxWidth="$96">
+          <PopoverHeader>
+            <Heading>Welcome!</Heading>
+            <PopoverCloseButton>
+              <Icon as={CloseIcon} />
+            </PopoverCloseButton>
+          </PopoverHeader>
+          <PopoverBody>
             <Text>
-              This will remove all data relating to Alex. This action cannot be
-              reversed. Deleted data can not be recovered.
+              Join the product tour and start creating your own checklist. Are
+              you ready to jump in?
             </Text>
-          </Popover.Body>
-          <Popover.Footer>
+          </PopoverBody>
+          <PopoverFooter>
+            <Text size="xs" flex={1}>
+              Step 2 of 3
+            </Text>
             {/* @ts-ignore */}
-            <Button variant="outline" mr={'$2'}>
-              <Button.Text>Cancel</Button.Text>
-            </Button>
-            <Button>
-              <Button.Text color={'white'}>Delete</Button.Text>
-            </Button>
-          </Popover.Footer>
-        </Popover.Content>
+            <ButtonGroup space="md">
+              <Button variant="outline" action="secondary">
+                <ButtonText>Back</ButtonText>
+              </Button>
+              <Button>
+                <ButtonText>Next</ButtonText>
+              </Button>
+            </ButtonGroup>
+          </PopoverFooter>
+        </PopoverContent>
       </Popover>
-    </Wrapper>
+    </Center>
   );
 };
 
-export { Text, Pressable, Popover, Button, CloseIcon };
+export default PopoverStory;
+
+export {
+  Text,
+  Popover,
+  PopoverBackdrop,
+  PopoverContent,
+  PopoverHeader,
+  PopoverBody,
+  PopoverFooter,
+  PopoverCloseButton,
+  Button,
+  ButtonGroup,
+  ButtonText,
+  CloseIcon,
+  Box,
+  Heading,
+  Icon,
+  Pressable,
+  HStack,
+  VStack,
+  Avatar,
+  AvatarFallbackText,
+  CircleIcon,
+  AddIcon,
+  Center,
+  PhoneIcon,
+  Clock3Icon,
+  MailIcon,
+  useState,
+};

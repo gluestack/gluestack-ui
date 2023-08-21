@@ -50,6 +50,7 @@ try {
 const getStories = () => {
   return [
     require('../src/components/Disclosure/Actionsheet/Actionsheet.stories.tsx'),
+    // require('../src/components/Disclosure/Accordion/Acc.stories.tsx'),
     require('../src/components/Typography/Text/Text.stories.tsx'),
     require('../src/components/Overlay/AlertDialog/AlertDialog.stories.tsx'),
     require('../src/components/MediaAndIcons/Avatar/Avatar.stories.tsx'),
@@ -58,12 +59,12 @@ const getStories = () => {
     require('../src/components/DataDisplay/Badge/Badge.stories.tsx'),
     require('../src/components/Forms/Button/ButtonGroup.stories.tsx'),
     require('../src/components/Forms/Checkbox/Checkbox.stories.tsx'),
-    require('../src/components/Layout/Divider/Divider.stories.tsx'),
+    require('../src/components/DataDisplay/Divider/Divider.stories.tsx'),
     require('../src/components/Others/Fab/Fab.stories.tsx'),
     require('../src/components/Forms/FormControl/FormControl.stories.tsx'),
     require('../src/components/Typography/Heading/Heading.stories.tsx'),
     require('../src/components/Layout/HStack/HStack.stories.tsx'),
-    require('../src/components/MediaAndIcons/Icon/Icons.stories.tsx'),
+    // require('../src/components/MediaAndIcons/Icon/Icons.stories.tsx'),
     require('../src/components/Forms/Input/Input.stories.tsx'),
     require('../src/components/Forms/Link/Link.stories.tsx'),
     require('../src/components/Overlay/Menu/Menu.stories.tsx'),
@@ -76,11 +77,12 @@ const getStories = () => {
     require('../src/components/Forms/Slider/Slider.stories.tsx'),
     require('../src/components/Feedback/Spinner/Spinner.stories.tsx'),
     require('../src/components/Forms/Switch/Switch.stories.tsx'),
-    require('../src/components/Forms/TextArea/TextArea.stories.tsx'),
+    // require('../src/components/Forms/Textarea/Textarea.stories.tsx'),
     require('../src/components/Feedback/Toast/Toast.stories.tsx'),
     require('../src/components/Overlay/Tooltip/Tooltip.stories.tsx'),
     require('../src/components/Layout/VStack/VStack.stories.tsx'),
     require('../src/components/Forms/Tabs/Tabs.stories.tsx'),
+    require('../src/components/MediaAndIcons/Image/Image.stories.tsx'),
   ];
 };
 

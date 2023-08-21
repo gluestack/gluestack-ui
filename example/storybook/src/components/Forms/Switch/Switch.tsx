@@ -1,28 +1,19 @@
 import React, { useState } from 'react';
-import { Center, Switch, VStack } from '../../../ui-components';
-import Wrapper from '../../Wrapper';
+import { Switch, VStack, Text, HStack } from '@gluestack-ui/themed';
 
-export const SwitchStory = ({
-  isDisabled,
-  isEnabled: isEnabledProp,
-  ...props
-}: any) => {
-  const [isEnabled, setIsEnabled] = useState(false);
-  React.useEffect(() => {
-    if (!isDisabled) setIsEnabled(isEnabledProp);
-  }, [isEnabledProp, isDisabled]);
+const SwitchStory = ({ isDisabled = false, ...props }: any) => {
+  const [isEnabled, setIsEnabled] = useState(true);
   return (
-    <Wrapper>
-      <Center sx={{ flex: 1 }}>
-        <Switch
-          value={isEnabled}
-          onValueChange={(val: any) => setIsEnabled(val)}
-          isDisabled={isDisabled}
-          {...props}
-        />
-      </Center>
-    </Wrapper>
+    <Switch
+      defaultValue={true}
+      value={isEnabled}
+      onValueChange={(val: any) => setIsEnabled(val)}
+      isDisabled={isDisabled}
+      {...props}
+    />
   );
 };
 
-export { Switch, VStack };
+export default SwitchStory;
+
+export { Switch, VStack, Text, HStack };

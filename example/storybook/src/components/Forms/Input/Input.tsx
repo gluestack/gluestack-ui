@@ -1,32 +1,57 @@
 import React from 'react';
-import Wrapper from '../../Wrapper';
-import { Center, Input } from '../../../ui-components';
+import {
+  Input,
+  InputInput,
+  InputIcon,
+  Center,
+  Button,
+  ButtonText,
+  Box,
+  VStack,
+  Text,
+  Heading,
+  Icon,
+  SearchIcon,
+  FormControl,
+} from '@gluestack-ui/themed';
+import { EyeIcon, EyeOffIcon } from 'lucide-react-native';
+import { useState } from 'react';
 
-export const InputStory = ({
-  // variant,
-  // isInvalid,
-  // isDisabled,
-  // size,
-  ...props
-}: any) => {
-  const [value, setValue] = React.useState('Some Random Text');
+const InputStory = ({ ...props }: any) => {
+  const [value, setValue] = React.useState('');
 
   return (
-    <Wrapper>
-      <Center justifyContent="center" w="50%" alignItems="center">
-        <Input {...props}>
-          <Input.Input
-            onChange={(e: any) => {
-              setValue(e.nativeEvent.text);
-            }}
-            value={value}
-            placeholder="Enter Text here"
-            placeholderTextColor={'$textLight900'}
-          />
-        </Input>
-      </Center>
-    </Wrapper>
+    <Input {...props}>
+      <InputInput
+        onChange={(e: any) => {
+          setValue(e.nativeEvent.text);
+        }}
+        value={value}
+        placeholder="Enter Text here"
+      />
+      <InputIcon pr="$4">
+        <Icon as={SearchIcon} />
+      </InputIcon>
+    </Input>
   );
 };
 
-export { Input };
+export default InputStory;
+
+export {
+  Input,
+  InputInput,
+  InputIcon,
+  Center,
+  Button,
+  ButtonText,
+  Box,
+  VStack,
+  Text,
+  Heading,
+  useState,
+  Icon,
+  EyeIcon,
+  EyeOffIcon,
+  FormControl,
+};

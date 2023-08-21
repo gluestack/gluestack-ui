@@ -1,22 +1,32 @@
 import React from 'react';
 import type { ComponentMeta } from '@storybook/react-native';
 import { DocsContainer } from '@storybook/addon-docs';
-import { GroupedExample } from './ButtonGroup';
+import ButtonGroupStory from './ButtonGroup';
 
-const ButtonGroup: ComponentMeta<any> = {
+const ButtonGroupMeta: ComponentMeta<any> = {
   title: 'stories/FORMS/Button',
-  component: GroupedExample,
+  component: ButtonGroupStory,
   args: {
-    size: 'md',
+    space: 'md',
+    isAttached: true,
+    direction: 'row',
   },
   argTypes: {
-    size: {
+    space: {
       control: 'select',
-      options: ['xs', 'sm', 'md', 'lg'],
-      description: 'The size of the button.',
+      options: ['xs', 'sm', 'md', 'lg', 'xl'],
+      description: 'The space between the buttons.',
       table: {
         defaultValue: { summary: 'md' },
       },
+    },
+    isAttached: {
+      control: 'boolean',
+      options: [true, false],
+    },
+    direction: {
+      control: 'select',
+      options: ['row', 'column'],
     },
   },
   parameters: {
@@ -27,5 +37,5 @@ const ButtonGroup: ComponentMeta<any> = {
   },
 };
 
-export default ButtonGroup;
-export { GroupedExample as ButtonGroup };
+export default ButtonGroupMeta;
+export { ButtonGroupStory as ButtonGroup };

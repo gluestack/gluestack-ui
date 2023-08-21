@@ -1,63 +1,122 @@
 import React from 'react';
-import { CloseIcon, Button, Heading, Text, Icon } from '../../../ui-components';
-import { Modal, Center, VStack, HStack } from '../../../ui-components';
-import Wrapper from '../../Wrapper';
+import {
+  CloseIcon,
+  Button,
+  ButtonText,
+  Heading,
+  Text,
+  Icon,
+} from '@gluestack-ui/themed';
+import {
+  Modal,
+  ModalBackdrop,
+  ModalContent,
+  ModalHeader,
+  ModalCloseButton,
+  ModalBody,
+  ModalFooter,
+  Center,
+  VStack,
+  HStack,
+  CheckCircleIcon,
+  Input,
+  ArrowLeftIcon,
+  Link,
+} from '@gluestack-ui/themed';
 
-export const ModalStory = ({ ...props }) => {
+const ModalStory = ({ showModal: showModalProp = true, ...props }) => {
   const [showModal, setShowModal] = React.useState(false);
+  const ref = React.useRef(null);
   return (
-    <Wrapper>
-      <Button onPress={() => setShowModal(true)}>
-        <Button.Text>Click me</Button.Text>
-      </Button>
-      <Modal
-        isOpen={showModal}
-        onClose={() => {
-          setShowModal(false);
-        }}
-        {...props}
-        overflow="hidden"
-      >
-        <Modal.Backdrop />
-        <Modal.Content pointerEvents="auto">
-          <Modal.Header>
-            <Heading fontSize="$md">Confirm your request</Heading>
-            <Modal.CloseButton>
-              <Icon as={CloseIcon} sx={{ w: 16, h: 16 }} />
-            </Modal.CloseButton>
-          </Modal.Header>
-          <Modal.Body>
-            <Text fontSize="$sm">
-              You're almost there! This modal is the final checkpoint before you
-              reach your destination. Confirm that you're ready to go, and we'll
-              hit the road!
-            </Text>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button
-              variant="outline"
-              action="secondary"
-              mr="$3"
-              onPress={() => {
-                setShowModal(false);
-              }}
-            >
-              <Button.Text>Cancel</Button.Text>
-            </Button>
-            <Button
-              // style="solid"
-              action="primary"
-              onPress={() => {
-                setShowModal(false);
-              }}
-            >
-              <Button.Text>Confirm</Button.Text>
-            </Button>
-          </Modal.Footer>
-        </Modal.Content>
-      </Modal>
-    </Wrapper>
+    <Modal
+      isOpen={showModal || showModalProp}
+      onClose={() => {
+        setShowModal(false);
+      }}
+      {...props}
+      finalFocusRef={ref}
+    >
+      <ModalBackdrop />
+      <ModalContent>
+        <ModalHeader>
+          <Heading maxWidth="80%">Engage with Modals</Heading>
+          <ModalCloseButton>
+            <Icon as={CloseIcon} />
+          </ModalCloseButton>
+        </ModalHeader>
+        <ModalBody>
+          <Text fontSize="$sm">
+            Elevate user interactions with our versatile modals. Seamlessly
+            integrate notifications, forms, and media displays. Make an impact
+            effortlessly.
+          </Text>
+        </ModalBody>
+        <ModalFooter>
+          <Button
+            variant="outline"
+            size="sm"
+            action="secondary"
+            mr="$3"
+            onPress={() => {
+              setShowModal(false);
+            }}
+          >
+            <ButtonText>Cancel</ButtonText>
+          </Button>
+          <Button
+            size="sm"
+            action="positive"
+            onPress={() => {
+              setShowModal(false);
+            }}
+            sx={{
+              'bg': '$success700',
+              ':hover': {
+                bg: '$success800',
+              },
+              ':active': {
+                bg: '$success900',
+              },
+              '_dark': {
+                'bg': '$success600',
+                ':hover': {
+                  bg: '$success700',
+                },
+                ':active': {
+                  bg: '$success800',
+                },
+              },
+            }}
+          >
+            <ButtonText>Explore</ButtonText>
+          </Button>
+        </ModalFooter>
+      </ModalContent>
+    </Modal>
   );
 };
 
-export { Modal, CloseIcon, Button, Text, Center, VStack, HStack, Heading };
+export default ModalStory;
+
+export {
+  Modal,
+  ModalBackdrop,
+  ModalContent,
+  ModalHeader,
+  ModalCloseButton,
+  ModalBody,
+  ModalFooter,
+  CloseIcon,
+  Button,
+  ButtonText,
+  Text,
+  Center,
+  VStack,
+  HStack,
+  Heading,
+  Icon,
+  CheckCircleIcon,
+  Input,
+  ArrowLeftIcon,
+  Link,
+};

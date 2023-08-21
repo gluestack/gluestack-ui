@@ -1,11 +1,11 @@
 ---
-title: gluestack-ui Pressable Component | Installation, Usage, and API
+title: Pressable | gluestack-ui | Installation, Usage, and API
 
-description: Pressable is a lower level primitive if you need more flexibility than a button and access to hover, pressed and focus events.
+description: By providing access to hover, pressed, and focus events, Pressable serves as a more flexible alternative to buttons at a lower level of abstraction. It is a useful primitive for advanced customization needs.
 
 pageTitle: Pressable
 
-pageDescription: Pressable is a lower level primitive if you need more flexibility than a button and access to hover, pressed and focus events.
+pageDescription: By providing access to hover, pressed, and focus events, Pressable serves as a more flexible alternative to buttons at a lower level of abstraction. It is a useful primitive for advanced customization needs.
 
 showHeader: true
 ---
@@ -14,13 +14,15 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="components/Forms/Pressable" />
 
-import { Pressable, Center } from './Pressable';
+import { Pressable } from './Pressable';
 import { transformedCode } from '../../../utils';
 import { AppProvider, CodePreview, Text } from '@gluestack/design-system';
 
 import Wrapper from '../../Wrapper';
 
-## Basic
+## Themed
+
+Following is the default implementation of the **Pressable** component without any additional customization. This serves as a starting point for users who are new to this library and want to learn about the basic functionality and appearance of the component.
 
 <AppProvider>
   <CodePreview
@@ -29,15 +31,8 @@ import Wrapper from '../../Wrapper';
     metaData={{
       code: `
  <Pressable
-  onPress={() => console.log('Hello')}
-  sx={{ h: 100, w: 200 }}>
-    <Center
-      sx={{
-        h: '100%',
-        w: '100%',
-        bg: '$primary500',
-      }}
-    />
+  onPress={() => console.log('Hello')} p="$5" bg="$primary500" sx={{':hover':{ bg:"$primary400"}}}>
+  <Text color="white">Press me</Text>
 </Pressable>
 `,
       transformCode: (code) => {
@@ -46,60 +41,58 @@ import Wrapper from '../../Wrapper';
       scope: {
         Wrapper,
         Pressable,
-        Center,
         Text,
       },
       argsType: {},
     }}
   />
 </AppProvider>
+
 <br />
-
-## Installation
-
-This command copies the `Pressable` component to your project.
-
-```bash
-npx gluestack-ui add pressable
-```
 
 ### Import
 
-```bash
-// import the component from your components folder
-import { Pressable } from './components';
-```
+To use the component in your project, run the command below into your import statement. This will import the component from your components folder.
 
-<br />
+```bash
+import { Pressable } from '@gluestack-ui/themed';
+```
 
 ### Anatomy
 
-The pressable component consists of the following parts:
+The structure provided below can help you identify and understand a Pressable component's various parts.
 
 ```jsx
-export default () => (
-  <Pressable>
-    <Text>Pressable</Text>
-  </Pressable>
-);
+export default () => <Pressable />;
 ```
 
 ### API Reference
 
+The following section contains a comprehensive list of the component's references, including descriptions, properties, types, and default behavior. This information is readily available for you to access, helping you effectively utilize the component library in your projects.
+
 #### Pressable
 
-It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable#props) component.
+It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable) component.
 
-<br />
-<br />
+### Dependencies
 
-## Advanced
+The following are the lists of all the libraries and packages the component relies on. This information will help you ensure that your project has all the necessary dependencies installed to use the component.
+
+- `@gluestack-ui/utils`
+- `@react-native-aria/focus`
+- `@react-native-aria/interactions`
+
+## Unstyled
+
+We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
 
 ### Customizing the Pressable
 
-For customizing the Pressable, you have to map styled view to Pressable. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
+For customizing the Pressable, you have to map styled view to Pressable. You can refer [style.gluestack.io](https://style.gluestack.io/) for more information on how to use styled components.
 
 #### Usage
+
+Default styling of the component can be found in the `components/pressable` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/main/example/storybook/src/ui-components/Pressable) of the styled `Pressable` component.
 
 ```jsx
 // import the styles
@@ -108,12 +101,6 @@ import { Root } from '../components/core/pressable/styled-components';
 // mapping the Pressable to root component
 const Pressable = Root;
 
-// Using the Pressable component
-export default () => (
-  <Pressable>
-    <Text />
-  </Pressable>
-);
+// using the Pressable component
+export default () => <Pressable />;
 ```
-
-Default styling of the component can be found in the `components/pressable` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/ui-components/Pressable/index.tsx) of the styled `Pressable` component.

@@ -1,7 +1,8 @@
 import type { ComponentMeta } from '@storybook/react-native';
-import { Basic as Toast } from './Toast';
+import Toast from './Toast';
+import DuplicateToastPrevent from './DuplicateToastPrevent';
 
-const MySwitchMeta: ComponentMeta<typeof Toast> = {
+const ToastMeta: ComponentMeta<typeof Toast> = {
   title: 'stories/FEEDBACK/Toast',
   component: Toast,
   argTypes: {
@@ -9,16 +10,16 @@ const MySwitchMeta: ComponentMeta<typeof Toast> = {
       control: 'select',
       options: [
         'top',
-        'top-right',
-        'top-left',
+        'top right',
+        'top left',
         'bottom',
-        'bottom-left',
-        'bottom-right',
+        'bottom left',
+        'bottom right',
       ],
     },
     action: {
       control: 'select',
-      options: ['error', 'warning', 'success', 'info', 'muted'],
+      options: ['error', 'warning', 'success', 'info', 'attention'],
     },
     variant: {
       control: 'select',
@@ -40,6 +41,6 @@ const MySwitchMeta: ComponentMeta<typeof Toast> = {
   },
 };
 
-export default MySwitchMeta;
+export default ToastMeta;
 
-export { Toast };
+export { Toast, DuplicateToastPrevent };

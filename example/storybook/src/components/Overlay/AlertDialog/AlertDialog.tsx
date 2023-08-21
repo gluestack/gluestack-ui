@@ -1,53 +1,93 @@
 import React, { useState } from 'react';
 
-import Wrapper from '../../Wrapper';
 import {
   CloseIcon,
   AlertDialog,
+  AlertDialogBackdrop,
+  AlertDialogContent,
+  AlertDialogHeader,
+  AlertDialogCloseButton,
+  AlertDialogFooter,
+  AlertDialogBody,
   Button,
+  ButtonText,
+  ButtonGroup,
   Text,
   Center,
   Icon,
-} from '../../../ui-components';
+  Heading,
+  AlertCircleIcon,
+  CheckCircleIcon,
+  HStack,
+} from '@gluestack-ui/themed';
 
-export const AlertDialogStory = ({ ...props }) => {
+import { AlertTriangleIcon } from 'lucide-react-native';
+
+const AlertDialogStory = ({
+  showAlertDialog: showAlertDialogProp = true,
+  ...props
+}) => {
   const [showAlertDialog, setShowAlertDialog] = useState(false);
   const handleClose = () => setShowAlertDialog(!showAlertDialog);
   return (
-    <Wrapper>
-      <Button onPress={handleClose}>
-        <Button.Text>Click me</Button.Text>
-      </Button>
-
-      <AlertDialog isOpen={showAlertDialog} onClose={handleClose} {...props}>
-        <AlertDialog.Backdrop />
-        <AlertDialog.Content>
-          <AlertDialog.Header>
-            {/* @ts-ignore */}
-            <Text variant="AlertDialogHeader">Return Policy</Text>
-            <AlertDialog.CloseButton>
-              <Icon as={CloseIcon} sx={{ w: 16, h: 16 }} />
-            </AlertDialog.CloseButton>
-          </AlertDialog.Header>
-          <AlertDialog.Body>
-            <Text>
-              Whoa, slow down there! This modal is like a red light at an
-              intersection, reminding you to stop and think before you proceed.
-              Is deleting this folder the right choice?
-            </Text>
-          </AlertDialog.Body>
-          <AlertDialog.Footer>
-            <Button variant="outline" onPress={handleClose} mr="$3">
-              <Button.Text>Cancel</Button.Text>
-            </Button>
-            <Button action="negative" onPress={handleClose}>
-              <Button.Text>Delete</Button.Text>
-            </Button>
-          </AlertDialog.Footer>
-        </AlertDialog.Content>
-      </AlertDialog>
-    </Wrapper>
+    <AlertDialog
+      isOpen={showAlertDialog || showAlertDialogProp}
+      onClose={handleClose}
+      {...props}
+    >
+      <AlertDialogBackdrop />
+      <AlertDialogContent>
+        <AlertDialogHeader>
+          <Heading>Return Policy</Heading>
+          <AlertDialogCloseButton>
+            <Icon as={CloseIcon} />
+          </AlertDialogCloseButton>
+        </AlertDialogHeader>
+        <AlertDialogBody>
+          <Text>
+            Whoa, slow down there! This modal is like a red light at an
+            intersection, reminding you to stop and think before you proceed. Is
+            deleting this folder the right choice?
+          </Text>
+        </AlertDialogBody>
+        <AlertDialogFooter>
+          <Button
+            variant="outline"
+            action="secondary"
+            onPress={handleClose}
+            mr="$3"
+          >
+            <ButtonText>Cancel</ButtonText>
+          </Button>
+          <Button action="negative" onPress={handleClose}>
+            <ButtonText>Delete</ButtonText>
+          </Button>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
   );
 };
 
-export { AlertDialog, Button, Text, CloseIcon, Center };
+export default AlertDialogStory;
+
+export {
+  AlertDialog,
+  AlertDialogBackdrop,
+  AlertDialogContent,
+  AlertDialogHeader,
+  AlertDialogCloseButton,
+  AlertDialogFooter,
+  AlertDialogBody,
+  Button,
+  ButtonText,
+  ButtonGroup,
+  Text,
+  CloseIcon,
+  Center,
+  Heading,
+  Icon,
+  AlertCircleIcon,
+  HStack,
+  AlertTriangleIcon,
+  CheckCircleIcon,
+};

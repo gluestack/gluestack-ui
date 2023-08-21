@@ -1,23 +1,32 @@
 import React from 'react';
-import Wrapper from '../../Wrapper';
-import { TextArea } from '../../../ui-components';
+import {
+  Textarea,
+  TextareaInput,
+  FormControl,
+  FormControlHelper,
+  FormControlHelperText,
+  FormControlError,
+  FormControlLabel,
+  FormControlLabelText,
+} from '@gluestack-ui/themed';
 
-export const TextAreaStory = ({ ...props }: any) => {
+const TextareaStory = ({ ...props }: any) => {
   return (
-    <Wrapper>
-      <TextArea {...props}>
-        <TextArea.Input
-          placeholder="Your text goes here..."
-          placeholderTextColor="$textDark400"
-          // sx={{
-          //   _dark: {
-          //     placeholderTextColor: 'black',
-          //   },
-          // }}
-        />
-      </TextArea>
-    </Wrapper>
+    <Textarea {...props} mx="$2">
+      <TextareaInput placeholder="Your text goes here..." />
+    </Textarea>
   );
 };
 
-export { TextArea };
+export default TextareaStory;
+
+export {
+  Textarea,
+  TextareaInput,
+  FormControl,
+  FormControlHelper,
+  FormControlHelperText,
+  FormControlError,
+  FormControlLabel,
+  FormControlLabelText,
+};

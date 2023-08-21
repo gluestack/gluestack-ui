@@ -1,8 +1,23 @@
 import React from 'react';
-import { Text, Slider } from '../../../ui-components';
-import Wrapper from '../../Wrapper';
+import {
+  Text,
+  Slider,
+  SliderTrack,
+  SliderFilledTrack,
+  SliderThumb,
+  VStack,
+  HStack,
+  Box,
+  Icon,
+  Heading,
+  Tooltip,
+  Button,
+  Center,
+} from '@gluestack-ui/themed';
 
-export const SliderStory = ({
+import { Volume, Volume2Icon, LightbulbIcon } from 'lucide-react-native';
+
+const SliderStory = ({
   value: valueProp = 60,
   ...props
 }: {
@@ -19,9 +34,8 @@ export const SliderStory = ({
   }, [valueProp]);
 
   return (
-    <Wrapper>
+    <Box w={200} h={200}>
       <Slider
-        w="50%"
         mt="$4"
         value={sliderValue}
         onChange={(value: any) => {
@@ -29,14 +43,32 @@ export const SliderStory = ({
         }}
         {...props}
       >
-        <Slider.Track>
-          <Slider.FilledTrack />
-        </Slider.Track>
-        <Slider.Thumb />
+        <SliderTrack>
+          <SliderFilledTrack />
+        </SliderTrack>
+        <SliderThumb />
       </Slider>
-      <Text mt="$4">Slider Value {sliderValue}</Text>
-    </Wrapper>
+    </Box>
   );
 };
 
-export { Slider };
+export default SliderStory;
+
+export {
+  Slider,
+  SliderTrack,
+  SliderFilledTrack,
+  SliderThumb,
+  VStack,
+  Volume,
+  HStack,
+  Volume2Icon,
+  Text,
+  Box,
+  LightbulbIcon,
+  Icon,
+  Heading,
+  Tooltip,
+  Button,
+  Center,
+};

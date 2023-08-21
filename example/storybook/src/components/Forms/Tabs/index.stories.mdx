@@ -1,20 +1,30 @@
 ---
-title: gluestack-ui Tabs Component | Installation, Usage, and API
+title: Tabs | gluestack-ui | Installation, Usage, and API
 
-description: Tabs make it easy to explore and switch between different views.
+description: Tabs are a user-friendly way to navigate between different sections or pages of a website or application, providing a clear and organized layout for easy access. They also allow for quick and efficient switching between views.
 
 pageTitle: Tabs
 
-pageDescription: Tabs make it easy to explore and switch between different views.
+pageDescription: Tabs are a user-friendly way to navigate between different sections or pages of a website or application, providing a clear and organized layout for easy access. They also allow for quick and efficient switching between views.
 
 showHeader: true
+
+tag: alpha
 ---
 
 import { Meta } from '@storybook/addon-docs';
 
-<Meta title="components/Forms/Tabs" />
+<Meta title="components/Disclosure/TabsOld" />
 
-import { Tabs, Text as TabsText } from './Tabs';
+import {
+  Tabs,
+  TabsTabList,
+  TabsTab,
+  TabsTabTitle,
+  TabsTabPanels,
+  TabsTabPanel,
+  Text as TabsText,
+} from './Tabs';
 import { transformedCode } from '../../../utils';
 import {
   AppProvider,
@@ -27,7 +37,11 @@ import {
 
 import Wrapper from '../../Wrapper';
 
-## Basic
+## Themed
+
+Following is the default implementation of the **Tabs** component without any additional customization. This serves as a starting point for users who are new to this library and want to learn about the basic functionality and appearance of the component.
+
+Note: We have added a new API for the components — you can avoid the use of "." when using a component. For example, you can now use `<ButtonText>` instead of `<Button.Text>`. This is to accommodate new changes to the RSC, which does not support "." as per [this](https://github.com/vercel/next.js/issues/51593) issue. You can still use the older format, but if you want to use RSC, we recommend skipping the "."
 
 <AppProvider>
   <CodePreview
@@ -36,22 +50,22 @@ import Wrapper from '../../Wrapper';
     metaData={{
       code: `
 <Tabs w="$full" value="tab1">
-  <Tabs.TabList>
-    <Tabs.Tab value="tab1">
-      <Tabs.TabTitle>Tab 1</Tabs.TabTitle>
-    </Tabs.Tab>
-    <Tabs.Tab value="tab2">
-      <Tabs.TabTitle>Tab 2</Tabs.TabTitle>
-    </Tabs.Tab>
-  </Tabs.TabList>
-  <Tabs.TabPanels mt="$4">
-    <Tabs.TabPanel value="tab1">
+  <TabsTabList>
+    <TabsTab value="tab1">
+      <TabsTabTitle>Tab 1</TabsTabTitle>
+    </TabsTab>
+    <TabsTab value="tab2">
+      <TabsTabTitle>Tab 2</TabsTabTitle>
+    </TabsTab>
+  </TabsTabList>
+  <TabsTabPanels mt="$4">
+    <TabsTabPanel value="tab1">
       <Text>Hello world 1</Text>
-    </Tabs.TabPanel>
-    <Tabs.TabPanel value="tab2">
+    </TabsTabPanel>
+    <TabsTabPanel value="tab2">
       <Text>Hello world 2</Text>
-    </Tabs.TabPanel>
-  </Tabs.TabPanels>
+    </TabsTabPanel>
+  </TabsTabPanels>
 </Tabs>
 `,
       transformCode: (code) => {
@@ -60,83 +74,82 @@ import Wrapper from '../../Wrapper';
       scope: {
         Wrapper,
         Tabs,
+        TabsTabList,
+        TabsTab,
+        TabsTabTitle,
+        TabsTabPanels,
+        TabsTabPanel,
         Text: TabsText,
       },
       argsType: {},
     }}
   />
 </AppProvider>
+
 <br />
-
-## Installation
-
-This command copies the `Tabs` component to your project.
-
-```bash
-npx gluestack-ui add tabs
-```
 
 ### Import
 
-```bash
-// import the component from your components folder
-import { Tabs } from './components';
-```
+To use the component in your project, run the command below into your import statement. This will import the component from your components folder.
 
-<br />
+```bash
+import { Tabs } from '@gluestack-ui/themed';
+```
 
 ### Anatomy
 
-The tabs component consists of the following parts:
+The structure provided below can help you identify and understand a Tabs component's various parts.
 
 ```jsx
 export default () => (
   <Tabs>
-    <Tabs.TabList>
-      <Tabs.Tab value="tab1">
-        <Tabs.TabTitle>Tab 1</Tabs.TabTitle>
-      </Tabs.Tab>
-      <Tabs.Tab value="tab2">
-        <Tabs.TabTitle>Tab 2</Tabs.TabTitle>
-      </Tabs.Tab>
-    </Tabs.TabList>
-    <Tabs.TabPanels mt="$4">
-      <Tabs.TabPanel value="tab1">
+    <TabsTabList>
+      <TabsTab value="tab1">
+        <TabsTabTitle>Tab 1</TabsTabTitle>
+      </TabsTab>
+      <TabsTab value="tab2">
+        <TabsTabTitle>Tab 2</TabsTabTitle>
+      </TabsTab>
+    </TabsTabList>
+    <TabsTabPanels mt="$4">
+      <TabsTabPanel value="tab1">
         <Text>Hello world 1</Text>
-      </Tabs.TabPanel>
-      <Tabs.TabPanel value="tab2">
+      </TabsTabPanel>
+      <TabsTabPanel value="tab2">
         <Text>Hello world 2</Text>
-      </Tabs.TabPanel>
-    </Tabs.TabPanels>
+      </TabsTabPanel>
+    </TabsTabPanels>
   </Tabs>
 );
 ```
 
 ### API Reference
 
+The following section contains a comprehensive list of the component's references, including descriptions, properties, types, and default behavior. This information is readily available for you to access, helping you effectively utilize the component library in your projects.
+
 #### Tabs
 
-It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
-#### Tabs.TabList
+#### TabsTabList
 
-It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
-#### Tabs.Tab
+#### TabsTab
 
-It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
-#### Tabs.TabTitle
+#### TabsTabTitle
 
-It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/view#props) component.
+It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/view) component.
 
-#### Tabs.TabPanels
+#### TabsTabPanels
 
-It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
-#### Tabs.TabPanel
+#### TabsTabPanel
 
-It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
 ### Features
 
@@ -146,21 +159,24 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
 
 ### Dependencies
 
+The following are the lists of all the libraries and packages the component relies on. This information will help you ensure that your project has all the necessary dependencies installed to use the component.
+
 - `@gluestack-ui/tabs`
 - `@gluestack-ui/utils`
 - `@react-native-aria/focus`
-- `react-native-svg`
+- `@react-native-aria/interactions`
 
-<br />
-<br />
+## Unstyled
 
-## Advanced
+We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
 
 ### Customizing the Tabs
 
-We have a function called `createTabs` which can be used to create a custom tabs component. This function takes in a configuration object which contains the styled components that you want to use for the tabs. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
+We have a function called `createTabs` which can be used to create a custom tabs component. This function takes in a configuration object which contains the styled components that you want to use for the tabs. You can refer [style.gluestack.io](https://style.gluestack.io/) for more information on how to use styled components.
 
 #### Usage
+
+Default styling of all these components can be found in the `components/tabs` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/tree/main/example/storybook/src/ui-components/Tabs) of the styled `Tabs` components.
 
 ```jsx
 // import the styles
@@ -191,16 +207,14 @@ const Tabs = createTabs({
 // Using the tabs component
 export default () => (
   <Tabs>
-    <Tabs.TabList>
-      <Tabs.Tab value="tab1">
-        <Tabs.TabTitle>Tab 1</Tabs.TabTitle>
-      </Tabs.Tab>
-      <Tabs.Tab value="tab2">
-        <Tabs.TabTitle>Tab 2</Tabs.TabTitle>
-      </Tabs.Tab>
-    </Tabs.TabList>
+    <TabsTabList>
+      <TabsTab value="tab1">
+        <TabsTabTitle>Tab 1</TabsTabTitle>
+      </TabsTab>
+      <TabsTab value="tab2">
+        <TabsTabTitle>Tab 2</TabsTabTitle>
+      </TabsTab>
+    </TabsTabList>
   </Tabs>
 );
 ```
-
-Default styling of all these components can be found in the `components/tabs` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/ui-components/Tabs/index.tsx) of the styled `Tabs` components.

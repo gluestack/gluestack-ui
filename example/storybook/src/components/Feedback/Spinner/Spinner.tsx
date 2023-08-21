@@ -1,13 +1,9 @@
 import React from 'react';
-import Wrapper from '../../Wrapper';
-import { Spinner } from '../../../ui-components';
 
-export const SpinnerStory = ({ ...props }) => {
-  return (
-    <Wrapper>
-      <Spinner color="$primary500" {...props} size="small" />
-    </Wrapper>
-  );
-};
+import { Spinner, HStack, Text, VStack } from '@gluestack-ui/themed';
 
-export { Spinner };
+const SpinnerStory = ({ ...props }) => <Spinner {...props} />;
+
+export default SpinnerStory;
+
+export { Spinner, HStack, Text, VStack };

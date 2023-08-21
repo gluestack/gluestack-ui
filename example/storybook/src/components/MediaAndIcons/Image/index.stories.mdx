@@ -1,11 +1,11 @@
 ---
-title: gluestack-ui Image Component | Installation, Usage, and API
+title: Image | gluestack-ui | Installation, Usage, and API
 
-description: The Image component allows one to display images.
+description: With the Image component, you can enhance the look and feel of your app or website by incorporating compelling imagery.
 
 pageTitle: Image
 
-pageDescription: The Image component allows one to display images.
+pageDescription: With the Image component, you can enhance the look and feel of your app or website by incorporating compelling imagery.
 
 showHeader: true
 ---
@@ -21,55 +21,73 @@ import Wrapper from '../../Wrapper';
 
 import { AppProvider, CodePreview, Text } from '@gluestack/design-system';
 
-## Basic
+## Themed
+
+Following is the default implementation of the **Image** component without any additional customization. This serves as a starting point for users who are new to this library and want to learn about the basic functionality and appearance of the component.
 
 <AppProvider>
   <CodePreview
+    _rendererWrapper={{
+      py: '$8',
+      px: '$8',
+    }}
     showComponentRenderer={true}
-    showArgsController={false}
+    showArgsController={true}
     metaData={{
-      code: ` 
- <Image
-  w={100}
-  h={100}
-  source={{
-    uri: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg',
-  }}
-  fallbackSource={{
-    uri: 'https://images.unsplash.com/photo-1575936123452-b67c3203c357?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8&w=1000&q=80',
-  }}
-/>
-    `,
+      code: `
+       <Image
+       {...props}
+         source={{
+            uri: 'https://images.unsplash.com/photo-1472214103451-9374bd1c798e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+          }}
+      />
+      `,
       transformCode: (code) => {
         return transformedCode(code);
       },
-      scope: { Wrapper, Image },
-      argsType: {},
+      scope: {
+        Wrapper,
+        Image,
+      },
+      argsType: {
+        size: {
+          control: 'select',
+          options: ['2xs', 'xs', 'sm', 'md', 'lg', 'xl', '2xl'],
+          default: 'md',
+        },
+        borderRadius: {
+          control: 'select',
+          options: [
+            '$none',
+            '$xs',
+            '$sm',
+            '$md',
+            '$lg',
+            '$xl',
+            '$2xl',
+            '$3xl',
+            '$full',
+          ],
+          default: '$none',
+        },
+      },
     }}
   />
 </AppProvider>
+
 <br />
-
-## Installation
-
-This command copies the `Image` component to your project.
-
-```bash
-npx gluestack-ui add image
-```
 
 ### Import
 
-```bash
-// import the component from your components folder
-import { Image } from './components';
-```
+To use the component in your project, run the command below into your import statement. This will import the component from your components folder.
 
-<br />
+```bash
+import { Image } from '@gluestack-ui/themed';
+```
 
 ### Anatomy
 
-The image component consists of the following parts:
+The structure provided below can help you identify and understand a Image component's various parts.
 
 ```jsx
 export default () => <Image />;
@@ -77,67 +95,19 @@ export default () => <Image />;
 
 ### API Reference
 
+The following section contains a comprehensive list of the component's references, including descriptions, properties, types, and default behavior. This information is readily available for you to access, helping you effectively utilize the component library in your projects.
+
 #### Image
 
-It inherits all the properties of React Native's [Image](https://reactnative.dev/docs/image#props) component.
+It inherits all the properties of React Native's [Image](https://reactnative.dev/docs/image) component.
 
-<br />
-<br />
+## Unstyled
 
-### Examples
-
-#### Image sizes
-
-<AppProvider>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
-<VStack space="md" alignItems="center">
-  {['xs', 'sm', 'md', 'lg', 'xl', '2xl'].map((size, index) => (
-    <Image
-      source={{
-        uri: "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
-      }}
-      size={size}
-      borderRadius={"$full"}
-      fallbackSource={{
-        uri: "https://images.unsplash.com/photo-1575936123452-b67c3203c357?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8&w=1000&q=80",
-      }}
-      key={index}
-    />
-  ))}
-</VStack>
-`,
-      scope: { Wrapper, Image, VStack },
-      argsType: {},
-    }}
-  />
-</AppProvider>
-
-<br />
-
-## Advanced
+We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
 
 ### Customizing the Image
 
-For customizing the Image, you have to map styled Image to Image. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
-
-#### Usage
-
-```jsx
-// import the styles
-import { Root } from '../components/core/image/styled-components';
-
-// mapping the Image to root component
-const Image = Root;
-
-// Using the Image component
-export default () => <Image />;
-```
-
-Default styling of the component can be found in the `components/core/image` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/components/Image/index.tsx) of the styled `Image` component.
+For customizing the Image, you have to map styled Image to Image. You can refer [style.gluestack.io](https://style.gluestack.io/) for more information on how to use styled components.
 
 #### How to use Next.js Image
 
@@ -157,7 +127,7 @@ props: {
   borderRadius: '$full',
 }
 
-// you can also https://dank.style/docs/getting-started/styled to style the component
+// you can also https://style.gluestack.io/docs/getting-started/styled to style the component
 
 
 export default () => <StyledImage />;
@@ -174,4 +144,19 @@ import Image from 'expo-image';
 const StyledImage = styled(Image, styling, componentConfig, extenedBaseConfig);
 
 export default () => <StyledImage />;
+```
+
+#### Usage
+
+Default styling of the component can be found in the `components/core/image` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/tree/main/example/storybook/src/ui-components/Image) of the styled `Image` component.
+
+```jsx
+// import the styles
+import { Root } from '../components/core/image/styled-components';
+
+// mapping the Image to root component
+const Image = Root;
+
+// Using the Image component
+export default () => <Image />;
 ```

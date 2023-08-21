@@ -1,0 +1,364 @@
+---
+title: Accordion | gluestack-ui | Installation, Usage, and API
+
+description: The Accordion component is a versatile and interactive user interface element, designed to efficiently organize and present content in a compact space.
+
+pageTitle: Accordion
+
+pageDescription: The Accordion component is a versatile and interactive user interface element, designed to efficiently organize and present content in a compact space.
+
+showHeader: true
+
+tag: api-draft
+---
+
+import { Meta } from '@storybook/addon-docs';
+import {
+  AppProvider,
+  CodePreview,
+  Table,
+  TableContainer,
+  InlineCode,
+  AddIcon,
+  InfoIcon,
+  Alert,
+} from '@gluestack/design-system';
+
+<Meta title="components/Disclosure/Accordion" />
+
+## Anatomy
+
+The structure provided below can help you identify and understand Accordion component's various parts.
+
+```jsx
+export default () => (
+  <Accordion>
+    <Accordion.Item>
+      <Accordion.Header>
+        <Accordion.Trigger>
+          <Accordion.Icon />
+        </Accordion.Trigger>
+      </Accordion.Header>
+      <Accordion.Content />
+    </Accordion.Item>
+  </Accordion>
+);
+```
+
+## API Reference
+
+The following section contains a comprehensive list of the component's references, including descriptions, properties, types, and default behavior. This information is readily available for you to access, helping you effectively utilize the component library in your projects.
+
+#### Accordion
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+<AppProvider>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Type</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Default</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Description</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>type</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>"single" | "multiple"</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Determines whether one or multiple items can be opened at the same time.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>isCollapsible</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`When type is "single", allows closing content when clicking trigger for an open item.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>defaultValue</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>string[]</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>[]</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`The value of the item to expand when initially rendered when type is "multiple". Use when you do not need to control the state of the items.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>value</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>string[]</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>[]</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`The controlled value of the item to expand when type is "multiple". Must be used in conjunction with onValueChange.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>onValueChange</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>function</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Event handler called when the expanded state of an item changes and type is "single".`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>isDisabled</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`When true, prevents the user from interacting with the accordion and all its items.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>orientation</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>"horizontal" | "vertical"</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>"vertical"</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`The orientation of the accordion.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</AppProvider>
+
+#### Accordion.Item
+
+Contains all the parts of a collapsible section.
+
+<AppProvider>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Type</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Default</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Description</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>value</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>string[]</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>[]</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`The controlled value of the item to expand when type is "multiple". Must be used in conjunction with onValueChange.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>isDisabled</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`When true, prevents the user from interacting with the accordion and all its items.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</AppProvider>
+
+#### Accordion.Header
+
+Wraps an `Accordion.Trigger`. Use the asChild prop to update it to the appropriate heading level for your page.
+
+#### Accordion.Trigger
+
+Toggles the collapsed state of its associated item. It inherits all the properties of react native's [Pressable](https://reactnative.dev/docs/pressable). It should be nested inside of an `Accordion.Header`.
+
+#### Accordion.Content
+
+Contains all the collapsible content for an item. It inherits all the properties of React Native [View](https://reactnative.dev/docs/view) component.
+
+#### Accordion.Icon
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+## Accessibility
+
+Adheres to the [Accordion WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/accordion/examples/accordion/).
+
+We have outlined the various features that ensure the Accordion component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards.
+
+- Header is h3 tag on web.
+- aria-expanded="true" when the Accordion Content is visible.
+- aria-labelledby="IDREF" References the accordion header button that expands and collapses the region.
+
+### Keyboard Interactions
+
+- `Space` - When focus is on an Accordion.Trigger of a collapsed section, expands the section.
+- `Enter` - When focus is on an Accordion.Trigger of a collapsed section, expands the section.
+- `Tab` - Moves focus to the next focusable element.
+- `Shift + Tab` - Moves focus to the previous focusable element.
+- `ArrowDown` - Moves focus to the next Accordion.Trigger when orientation is vertical.
+- `ArrowUp` - Moves focus to the previous Accordion.Trigger when orientation is vertical.
+- `ArrowRight` - Moves focus to the next Accordion.Trigger when orientation is horizontal.
+- `ArrowLeft` - Moves focus to the previous Accordion.Trigger when orientation is horizontal.
+- `Home` - When focus is on an Accordion.Trigger, moves focus to the first Accordion.Trigger.
+- `End` - When focus is on an Accordion.Trigger, moves focus to the last Accordion.Trigger.
+
+## Unstyled
+
+We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
+
+### Customizing the Accordion
+
+We have a function called createAccordion which can be used to create a custom accordion component. This function takes in a configuration object which contains the styled components that you want to use for the Accordion. You can refer [style.gluestack.io](https://style.gluestack.io) for more information on how to use styled components.
+
+You can read more on how to animate components [here](https://ui.gluestack.io/docs/advanced/animations).
+
+### Usage
+
+Default styling of all these components can be found in the `components/core/accordion` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/tree/main/example/storybook/src/components/Disclosure/Accordion) of the styled `Accordion` components.
+
+```jsx
+// import the styled components
+
+import {
+  Root,
+  Header,
+  Trigger,
+  Content,
+  Item,
+  Icon,
+} from '../components/core/accordion/styled-components';
+
+// import the createAccordion function
+import { createAccordion } from '@gluestack-ui/accordion';
+
+// Understanding the API
+export const Accordion = createAccordion({
+  Root,
+  Header,
+  Trigger,
+  Content,
+  Item,
+  Icon,
+});
+
+// Using the accordion component
+export default () => (
+  <Accordion>
+    <Accordion.Item>
+      <Accordion.Header>
+        <Accordion.Trigger>
+          <Text>Accordion Item 1</Text>
+          <Accordion.Icon>
+            <AddIcon />
+          </Accordion.Icon>
+        </Accordion.Trigger>
+      </Accordion.Header>
+      <Accordion.Content>
+        <Text>Accordion Content 1</Text>
+      </Accordion.Content>
+    </Accordion.Item>
+    {/* ... */}
+    <Accordion.Item>
+      <Accordion.Header>
+        <Accordion.Trigger>
+          <Text>Accordion Item 4</Text>
+          <Accordion.Icon>
+            <AddIcon />
+          </Accordion.Icon>
+        </Accordion.Trigger>
+      </Accordion.Header>
+      <Accordion.Content>
+        <Text>Accordion Content 4</Text>
+      </Accordion.Content>
+    </Accordion.Item>
+  </Accordion>
+);
+```

@@ -1,7 +1,7 @@
 import type { ComponentMeta } from '@storybook/react-native';
-import { FormControlStory as FormControl } from './FormControl';
+import FormControl from './FormControl';
 
-const MyFormControlMeta: ComponentMeta<typeof FormControl> = {
+const FormControlMeta: ComponentMeta<typeof FormControl> = {
   title: 'stories/FORMS/FormControl',
   component: FormControl,
   argTypes: {
@@ -30,6 +30,6 @@ const MyFormControlMeta: ComponentMeta<typeof FormControl> = {
   },
 };
 
-export default MyFormControlMeta;
+export default FormControlMeta;
 
 export { FormControl };

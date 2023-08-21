@@ -1,9 +1,15 @@
 import React from 'react';
 /* eslint-disable no-console */
-import { CircleIcon, Center, Radio } from '../../../ui-components';
-import Wrapper from '../../Wrapper';
+import {
+  CircleIcon,
+  Radio,
+  RadioGroup,
+  RadioIcon,
+  RadioIndicator,
+  RadioLabel,
+} from '@gluestack-ui/themed';
 
-export const RadioGroup = ({
+const RadioGroup = ({
   size,
   isDisabled = false,
   isInvalid = false,
@@ -13,68 +19,62 @@ export const RadioGroup = ({
   const [values, setValues] = React.useState('Label 1');
 
   return (
-    <Wrapper>
-      <Center>
-        <Radio.Group
-          isDisabled={isDisabled}
-          isReadOnly={isReadOnly}
-          value={values}
-          onChange={setValues}
-        >
-          <Radio
-            isDisabled={isDisabled}
-            isInvalid={isInvalid}
-            size={size}
-            value="Label 1"
-            accessibilityLabel="Radio"
-            onChange={(nextValue: boolean) =>
-              console.log(nextValue, 'nextValue')
-            }
-            {...props}
-          >
-            <Radio.Indicator>
-              <Radio.Icon>
-                <CircleIcon />
-              </Radio.Icon>
-            </Radio.Indicator>
-            <Radio.Label>Label 1</Radio.Label>
-          </Radio>
-          <Radio
-            isDisabled={isDisabled}
-            isInvalid={isInvalid}
-            size={size}
-            value="Label 2"
-            accessibilityLabel="Radio"
-            onChange={(nextValue: boolean) =>
-              console.log(nextValue, 'nextValue')
-            }
-          >
-            <Radio.Indicator>
-              <Radio.Icon>
-                <CircleIcon />
-              </Radio.Icon>
-            </Radio.Indicator>
-            <Radio.Label>Label 2</Radio.Label>
-          </Radio>
-          <Radio
-            isDisabled={isDisabled}
-            isInvalid={isInvalid}
-            size={size}
-            value="Label 3"
-            accessibilityLabel="Radio"
-            onChange={(isSelected: boolean) =>
-              console.log(isSelected, 'isSelected')
-            }
-          >
-            <Radio.Indicator>
-              <Radio.Icon>
-                <CircleIcon />
-              </Radio.Icon>
-            </Radio.Indicator>
-            <Radio.Label>Label 3</Radio.Label>
-          </Radio>
-        </Radio.Group>
-      </Center>
-    </Wrapper>
+    <RadioGroup
+      isDisabled={isDisabled}
+      isReadOnly={isReadOnly}
+      value={values}
+      onChange={setValues}
+    >
+      <Radio
+        isDisabled={isDisabled}
+        isInvalid={isInvalid}
+        size={size}
+        value="Label 1"
+        accessibilityLabel="Radio"
+        onChange={(nextValue: boolean) => console.log(nextValue, 'nextValue')}
+        {...props}
+      >
+        <RadioIndicator>
+          <RadioIcon>
+            <CircleIcon />
+          </RadioIcon>
+        </RadioIndicator>
+        <RadioLabel>Label 1</RadioLabel>
+      </Radio>
+      <Radio
+        isDisabled={isDisabled}
+        isInvalid={isInvalid}
+        size={size}
+        value="Label 2"
+        accessibilityLabel="Radio"
+        onChange={(nextValue: boolean) => console.log(nextValue, 'nextValue')}
+      >
+        <RadioIndicator>
+          <RadioIcon>
+            <CircleIcon />
+          </RadioIcon>
+        </RadioIndicator>
+        <RadioLabel>Label 2</RadioLabel>
+      </Radio>
+      <Radio
+        isDisabled={isDisabled}
+        isInvalid={isInvalid}
+        size={size}
+        value="Label 3"
+        accessibilityLabel="Radio"
+        onChange={(isSelected: boolean) =>
+          console.log(isSelected, 'isSelected')
+        }
+      >
+        <RadioIndicator>
+          <RadioIcon>
+            <CircleIcon />
+          </RadioIcon>
+        </RadioIndicator>
+        <RadioLabel>Label 3</RadioLabel>
+      </Radio>
+    </RadioGroup>
   );
 };
+
+export default RadioGroup;

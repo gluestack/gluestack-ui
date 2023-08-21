@@ -1,5 +1,5 @@
 import type { ComponentMeta } from '@storybook/react-native';
-import { SpinnerStory as Spinner } from './Spinner';
+import Spinner from './Spinner';
 
 const SpinnerMeta: ComponentMeta<typeof Spinner> = {
   title: 'stories/FEEDBACK/Spinner',
@@ -7,15 +7,15 @@ const SpinnerMeta: ComponentMeta<typeof Spinner> = {
   argTypes: {
     size: {
       control: 'select',
-      options: ['xs', 'small', 'md', 'large', 'xl'],
-      description: 'The size of the button.',
+      options: ['small', 'large'],
+      description: 'The size of the spinner.',
       table: {
-        defaultValue: { summary: 'md' },
+        defaultValue: { summary: 'small' },
       },
     },
   },
   args: {
-    // size: 'md'
+    size: 'small',
   },
 };
 

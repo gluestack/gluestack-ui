@@ -1,18 +1,71 @@
 import React from 'react';
-import Wrapper from '../../Wrapper';
-import { HamburgerIcon, Fab, Icon } from '../../../ui-components';
 
-export const FabStory = ({ position, showLabel, showIcon, ...props }: any) => {
+import {
+  AddIcon,
+  Fab,
+  FabIcon,
+  FabLabel,
+  Box,
+  MenuIcon,
+  Checkbox,
+  CheckboxIndicator,
+  CheckboxLabel,
+  SearchIcon,
+  Link,
+  VStack,
+  HStack,
+  Avatar,
+  Heading,
+  Text,
+  Divider,
+  Image,
+} from '@gluestack-ui/themed';
+
+import { CheckIcon, EditIcon, ShoppingCartIcon } from 'lucide-react-native';
+
+const FabStory = ({
+  placement = 'bottom right',
+  showLabel = true,
+  showIcon = true,
+  ...props
+}: any) => {
   return (
-    <Wrapper>
-      <Fab position={position} sx={{ mx: 20, my: 20 }} {...props}>
-        {showIcon && (
-          <Icon as={HamburgerIcon} sx={{ w: 20, h: 20 }} color="white" />
-        )}
-        {showLabel && <Fab.Label>Menu</Fab.Label>}
+    <Box
+      position="relative"
+      bg="$trueGray200"
+      h="$full"
+      w="$full"
+      sx={{ _web: { w: 300, h: 300 } }}
+    >
+      <Fab placement={placement} {...props}>
+        {showIcon && <FabIcon as={MenuIcon} mr="$1" />}
+        {showLabel && <FabLabel>Menu</FabLabel>}
       </Fab>
-    </Wrapper>
+    </Box>
   );
 };
 
-export { Fab, HamburgerIcon };
+export default FabStory;
+
+export {
+  Fab,
+  FabIcon,
+  FabLabel,
+  SearchIcon,
+  EditIcon,
+  Box,
+  VStack,
+  HStack,
+  Avatar,
+  Heading,
+  Text,
+  Divider,
+  AddIcon,
+  Checkbox,
+  CheckboxIndicator,
+  CheckboxLabel,
+  CheckIcon,
+  Image,
+  Link,
+  ShoppingCartIcon,
+};

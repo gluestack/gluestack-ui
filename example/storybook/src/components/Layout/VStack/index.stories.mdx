@@ -1,11 +1,11 @@
 ---
-title: gluestack-ui VStack Component | Installation, Usage, and API
+title: VStack | gluestack-ui | Installation, Usage, and API
 
-description: VStack aligns items vertically. Column is also an alias for VStack.
+description: VStack organizes items vertically in a layout. Alternatively, you can use Column as an alias for VStack to achieve the same layout.
 
 pageTitle: VStack
 
-pageDescription: VStack aligns items vertically. Column is also an alias for VStack.
+pageDescription: VStack organizes items vertically in a layout. Alternatively, you can use Column as an alias for VStack to achieve the same layout.
 
 showHeader: true
 ---
@@ -27,20 +27,24 @@ import {
 
 import Wrapper from '../../Wrapper';
 
-## Basic
+## Themed
+
+Following is the default implementation of the **VStack** component without any additional customization. This serves as a starting point for users who are new to this library and want to learn about the basic functionality and appearance of the component.
 
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
-    showArgsController={false}
+    showArgsController={true}
     metaData={{
       code: `
-<VStack space="md">
-  <Box sx={{ w: 100, h: 100, bg: '$blue300' }} />
-  <Box sx={{ w: 100, h: 100, bg: '$blue400' }} />
-  <Box sx={{ w: 100, h: 100, bg: '$blue500' }} />
-</VStack>
-`,
+        <Box h='$80' justifyContent='center'>
+          <VStack {...props}>
+            <Box w='$20' h='$20' bg='$blue300' />
+            <Box w='$20' h='$20' bg='$blue400' />
+            <Box w='$20' h='$20' bg='$blue500' />
+          </VStack>
+        </Box>
+      `,
       transformCode: (code) => {
         return transformedCode(code);
       },
@@ -49,47 +53,47 @@ import Wrapper from '../../Wrapper';
         VStack,
         Box,
       },
-      argsType: {},
+      argsType: {
+        space: {
+          control: 'select',
+          options: ['none', 'xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', '4xl'],
+          default: 'md',
+        },
+        reversed: {
+          control: 'boolean',
+          options: [true, false],
+          default: false,
+        },
+      },
     }}
   />
 </AppProvider>
+
 <br />
-
-## Installation
-
-This command copies the `VStack` component to your project.
-
-```bash
-npx gluestack-ui add vstack
-```
 
 ### Import
 
-```bash
-// import the component from your components folder
-import { VStack } from './components';
-```
+To use the component in your project, run the command below into your import statement. This will import the component from your components folder.
 
-<br />
+```bash
+import { VStack } from '@gluestack-ui/themed';
+```
 
 ### Anatomy
 
-The VStack component consists of the following parts:
+The structure provided below can help you identify and understand a VStack component's various parts.
 
 ```jsx
-export default () => (
-  <VStack>
-    <Box>Box</Box>
-    <Box>Box</Box>
-  </VStack>
-);
+export default () => <VStack />;
 ```
 
 ### API Reference
 
+The following section contains a comprehensive list of the component's references, including descriptions, properties, types, and default behavior. This information is readily available for you to access, helping you effectively utilize the component library in your projects.
+
 #### VStack
 
-It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
 <AppProvider>
   <TableContainer>
@@ -118,7 +122,7 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
             </Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>{`number | string | undefined`}</Table.TText>
+            <Table.TText>string</Table.TText>
           </Table.TD>
           <Table.TD>
             <Table.TText>-</Table.TText>
@@ -127,30 +131,60 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
             <Table.TText>{`It sets the space between children.`}</Table.TText>
           </Table.TD>
         </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>reversed</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`When true, it places the VStack items in reverse direction.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
       </Table.TBody>
     </Table>
   </TableContainer>
 </AppProvider>
 
-<br />
-<br />
+### Accessibility
+
+The accessibility of a VStack is primarily determined by the accessibility information of the components it contains. When you pass an accessible component inside a VStack, its accessibility attributes, such as labels and hints, will be utilized by assistive technologies like screen readers.
+
+In essence, the VStack acts as a container that inherits and propagates the accessibility attributes of its child views.
+
+### Dependencies
+
+The following are the lists of all the libraries and packages the component relies on. This information will help you ensure that your project has all the necessary dependencies installed to use the component.
+
+- `@gluestack-ui/utils`
 
 ### Examples
 
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
 #### VStack Reversed
+
+A Vstack component with the reversed prop reverses the order of vertically stacked elements, enabling customized vertical layouts and visual arrangements of content within a user interface.
 
 <AppProvider>
   <CodePreview
+    _rendererWrapper={{ py: '$2.5' }}
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
       code: `
-<VStack space="md" reversed>
-  <Box sx={{ w: 100, h: 100, bg: '$blue300' }} />
-  <Box sx={{ w: 100, h: 100, bg: '$blue400' }} />
-  <Box sx={{ w: 100, h: 100, bg: '$blue500' }} />
-</VStack>
-`,
+        <VStack space="md">
+          <Box w='$20' h='$20' bg='$blue300' />
+          <Box w='$20' h='$20' bg='$blue400' />
+          <Box w='$20' h='$20' bg='$blue500' />
+        </VStack>
+      `,
       transformCode: (code) => {
         return transformedCode(code);
       },
@@ -160,15 +194,17 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
   />
 </AppProvider>
 
-<br />
+## Unstyled
 
-## Advanced
+We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
 
 ### Customizing the VStack
 
-We have a function called `createVStack` which can be used to create a custom VStack component. This function takes in a configuration object which contains the styled components that you want to use for the VStack. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
+We have a function called `createVStack` which can be used to create a custom VStack component. This function takes in a configuration object which contains the styled components that you want to use for the VStack. You can refer [style.gluestack.io](https://style.gluestack.io/) for more information on how to use styled components.
 
 #### Usage
+
+Default styling of the component can be found in the `components/vstack` file.For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/tree/main/example/storybook/src/ui-components/VStack) of the styled `VStack` component.
 
 ```jsx
 // import the styles
@@ -187,4 +223,16 @@ const VStack = createVStack({
 export default () => <VStack />;
 ```
 
-Default styling of the component can be found in the `components/vstack` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/ui-components/VStack/index.tsx) of the styled `VStack` component.
+## Spec Doc
+
+Explore the comprehensive details of the VStack in this document, including its implementation details, checklist, and potential future additions. Dive into the thought process behind the component and gain insights into its development journey.
+
+<iframe
+  style={{
+    borderRadius: '8px',
+    border: ' 1px solid rgba(0, 0, 0, 0.1)',
+    aspectRatio: 736 / 585,
+  }}
+  src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FNcXOxqKbdnGsLQNex3H76u%2F%25C2%25A0%25F0%259F%2593%259Agluestack-UI-handbook%3Fpage-id%3D549%253A13306%26type%3Ddesign%26node-id%3D549-13904%26viewport%3D1130%252C341%252C0.17%26scaling%3Dscale-down%26starting-point-node-id%3D549%253A13307"
+  allowFullScreen
+/>

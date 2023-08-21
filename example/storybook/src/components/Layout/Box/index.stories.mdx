@@ -1,11 +1,11 @@
 ---
-title: gluestack-ui Box Component | Installation, Usage, and API
+title: Box | gluestack-ui | Installation, Usage, and API
 
-description: This is a generic component for low level layout needs. It is similar to a div in HTML.
+description: If you're looking for a flexible component to help with low-level layout needs, the Box component might be just what you need. With its customizable styles and props, it can be used to create a wide range of UI elements, from simple containers to complex layout structures.
 
 pageTitle: Box
 
-pageDescription: This is a generic component for low level layout needs. It is similar to a div in HTML.
+pageDescription: If you're looking for a flexible component to help with low-level layout needs, the Box component might be just what you need. With its customizable styles and props, it can be used to create a wide range of UI elements, from simple containers to complex layout structures.
 
 showHeader: true
 ---
@@ -21,7 +21,9 @@ import { AppProvider, CodePreview, Text } from '@gluestack/design-system';
 
 import Wrapper from '../../Wrapper';
 
-## Basic
+## Themed
+
+Following is the default implementation of the **Box** component without any additional customization. This serves as a starting point for users who are new to this library and want to learn about the basic functionality and appearance of the component.
 
 <AppProvider>
   <CodePreview
@@ -30,15 +32,11 @@ import Wrapper from '../../Wrapper';
     metaData={{
       code: `
 <Box
-  h="$20"
-  w="$20"
   bg="$primary500"
-  p="$20"
-  justifyContent="center"
-  alignItems="center"
+  p="$5"
 >
-  <Text color="white" fontWeight="bold">
-    BOX
+  <Text color="white">
+    This is the Box
   </Text>
 </Box>
 `,
@@ -54,49 +52,40 @@ import Wrapper from '../../Wrapper';
     }}
   />
 </AppProvider>
+
 <br />
-
-## Installation
-
-This command copies the `Box` component to your project.
-
-```bash
-npx gluestack-ui add box
-```
 
 ### Import
 
-```bash
-// import the component from your components folder
-import { Box } from './components';
-```
+To use the component in your project, run the command below into your import statement. This will import the component from your components folder.
 
-<br />
+```bash
+import { Box } from '@gluestack-ui/themed';
+```
 
 ### Anatomy
 
-The box component consists of the following parts:
+The structure provided below can help you identify and understand a Box component's various parts.
 
 ```jsx
-export default () => (
-  <Box>
-    <Text>Box</Text>
-  </Box>
-);
+export default () => <Box />;
 ```
 
 ### API Reference
 
+The following section contains a comprehensive list of the component's references, including descriptions, properties, types, and default behavior. This information is readily available for you to access, helping you effectively utilize the component library in your projects.
+
 #### Box
 
-It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
-
-<br />
-<br />
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
 ### Examples
 
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
 #### Box with ref
+
+A Box component with a ref property enables the direct reference and manipulation of the underlying DOM element, offering greater control and flexibility in modifying the box's appearance and behavior within a user interface.
 
 <AppProvider>
   <CodePreview
@@ -104,54 +93,51 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
     showArgsController={false}
     metaData={{
       code: `
-function App () {
-  const myRef = useRef({});
-  useEffect(() => {
-    const styleObj = {
-      borderWidth: 8,
-      borderRadius: 4,
-      borderColor: '#22D3EE',
-    };
-    myRef.current.setNativeProps({
-      style: styleObj,
-    });
-  }, [myRef]);
-return (
-<Wrapper>
-  <Box sx={{ h: 100, w: 100, bg: '$red500' }} ref={myRef} />
-</Wrapper>
-);
-    }
-`,
+        function App () {
+          const myRef = useRef({});
+          useEffect(() => {
+            const styleObj = {
+              borderWidth: 2,
+              borderRadius: 4,
+              borderColor: '#1A91FF',
+            };
+            myRef.current.setNativeProps({
+              style: styleObj,
+            });
+          }, [myRef]);
+        return (
+          <Box sx={{ h: 100, w: 100, bg: '$primary100'}} ref={myRef} />
+        );
+      }
+      `,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'App');
+      },
       scope: { Box, Wrapper, useRef, useEffect },
       argsType: {},
     }}
   />
 </AppProvider>
 
-<br />
+## Unstyled
 
-## Advanced
+We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
 
 ### Customizing the Box
 
-For customizing the Box, you have to map styled view to Box. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
+For customizing the Box, you have to map styled view to Box. You can refer [style.gluestack.io](https://style.gluestack.io/) for more information on how to use styled components.
 
 #### Usage
+
+Default styling of the component can be found in the `components/box` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/main/example/storybook/src/ui-components/Box) of the styled `Box` component.
 
 ```jsx
 // import the styles
 import { Root } from '../components/core/box/styled-components';
 
-// mapping the Text to root component
+// mapping the Box to root component
 const Box = Root;
 
-// Using the box component
-export default () => (
-  <Box>
-    <Text />
-  </Box>
-);
+// using the Box component
+export default () => <Box />;
 ```
-
-Default styling of the component can be found in the `components/box` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/ui-components/Box/index.tsx) of the styled `Box` component.

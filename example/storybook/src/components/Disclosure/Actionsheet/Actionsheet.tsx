@@ -1,43 +1,96 @@
-import React from 'react';
-import Wrapper from '../../Wrapper';
-import { Actionsheet, Text, Pressable } from '../../../ui-components';
+import React, { useState } from 'react';
+import {
+  Actionsheet,
+  ActionsheetIcon,
+  ActionsheetBackdrop,
+  ActionsheetContent,
+  ActionsheetDragIndicator,
+  ActionsheetDragIndicatorWrapper,
+  ActionsheetItem,
+  ActionsheetItemText,
+  ActionsheetFlatList,
+  ActionsheetScrollView,
+  ActionsheetSectionList,
+  ActionsheetSectionHeaderText,
+  ActionsheetVirtualizedList,
+  Button,
+  ButtonText,
+  VStack,
+  HStack,
+  Icon,
+  Box,
+  FormControl,
+  Input,
+  AddIcon,
+  Image,
+  Text,
+} from '@gluestack-ui/themed';
 
-export function ActionsheetExample({ ...props }) {
+function ActionsheetStory({
+  showActionsheet: showActionsheetProp = true,
+  ...props
+}: any) {
   const [showActionsheet, setShowActionsheet] = React.useState(false);
-  const handleClose = () => setShowActionsheet(!showActionsheet);
+
+  const handleClose = () => setShowActionsheet(false);
 
   return (
-    <Wrapper>
-      <Pressable onPress={handleClose}>
-        <Text>Open</Text>
-      </Pressable>
-      <Actionsheet isOpen={showActionsheet} onClose={handleClose} {...props}>
-        <Actionsheet.Backdrop />
-        <Actionsheet.Content>
-          <Actionsheet.DragIndicatorWrapper>
-            <Actionsheet.DragIndicator />
-          </Actionsheet.DragIndicatorWrapper>
-          <Actionsheet.Item onPress={handleClose}>
-            <Actionsheet.ItemText>Community</Actionsheet.ItemText>
-          </Actionsheet.Item>
-          <Actionsheet.Item onPress={handleClose}>
-            <Actionsheet.ItemText>Plugins</Actionsheet.ItemText>
-          </Actionsheet.Item>
-          <Actionsheet.Item onPress={handleClose}>
-            <Actionsheet.ItemText>Theme</Actionsheet.ItemText>
-          </Actionsheet.Item>
-          <Actionsheet.Item onPress={handleClose}>
-            <Actionsheet.ItemText>Settings</Actionsheet.ItemText>
-          </Actionsheet.Item>
-          <Actionsheet.Item onPress={handleClose}>
-            <Actionsheet.ItemText>Add account</Actionsheet.ItemText>
-          </Actionsheet.Item>
-        </Actionsheet.Content>
-      </Actionsheet>
-    </Wrapper>
+    <Actionsheet
+      isOpen={showActionsheet || showActionsheetProp}
+      onClose={handleClose}
+      {...props}
+    >
+      <ActionsheetBackdrop />
+      <ActionsheetContent>
+        <ActionsheetDragIndicatorWrapper>
+          <ActionsheetDragIndicator />
+        </ActionsheetDragIndicatorWrapper>
+        <ActionsheetItem onPress={handleClose} isDisabled>
+          <ActionsheetItemText>Delete</ActionsheetItemText>
+        </ActionsheetItem>
+        <ActionsheetItem onPress={handleClose}>
+          <ActionsheetItemText>Share</ActionsheetItemText>
+        </ActionsheetItem>
+        <ActionsheetItem onPress={handleClose}>
+          <ActionsheetItemText>Play</ActionsheetItemText>
+        </ActionsheetItem>
+        <ActionsheetItem onPress={handleClose}>
+          <ActionsheetItemText>Favourite</ActionsheetItemText>
+        </ActionsheetItem>
+        <ActionsheetItem onPress={handleClose}>
+          <ActionsheetItemText>Cancel</ActionsheetItemText>
+        </ActionsheetItem>
+      </ActionsheetContent>
+    </Actionsheet>
   );
 }
 
-export default ActionsheetExample;
+export default ActionsheetStory;
 
-export { Actionsheet, Pressable, Text };
+export {
+  Actionsheet,
+  ActionsheetIcon,
+  ActionsheetBackdrop,
+  ActionsheetContent,
+  ActionsheetDragIndicator,
+  ActionsheetDragIndicatorWrapper,
+  ActionsheetItem,
+  ActionsheetItemText,
+  ActionsheetFlatList,
+  ActionsheetScrollView,
+  ActionsheetSectionList,
+  ActionsheetSectionHeaderText,
+  ActionsheetVirtualizedList,
+  Button,
+  ButtonText,
+  VStack,
+  HStack,
+  Icon,
+  Box,
+  FormControl,
+  Input,
+  AddIcon,
+  Image,
+  Text,
+  useState,
+};

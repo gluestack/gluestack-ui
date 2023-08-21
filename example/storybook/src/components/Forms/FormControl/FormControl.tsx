@@ -1,44 +1,151 @@
 import React from 'react';
-import { Input, FormControl, WarningIcon, Icon } from '../../../ui-components';
+import {
+  FormControl,
+  FormControlLabel,
+  FormControlLabelText,
+  FormControlHelper,
+  FormControlHelperText,
+  FormControlError,
+  FormControlErrorIcon,
+  FormControlErrorText,
+  Input,
+  InputInput,
+  Radio,
+  RadioGroup,
+  RadioIcon,
+  RadioIndicator,
+  RadioLabel,
+  Button,
+  ButtonText,
+  Box,
+  Checkbox,
+  CheckboxGroup,
+  CheckboxIndicator,
+  CheckboxIcon,
+  CheckboxLabel,
+  Textarea,
+  TextareaInput,
+  Select,
+  SelectTrigger,
+  SelectInput,
+  SelectIcon,
+  SelectPortal,
+  SelectBackdrop,
+  SelectContent,
+  SelectDragIndicatorWrapper,
+  SelectDragIndicator,
+  SelectItem,
+  Slider,
+  Switch,
+  Modal,
+  ModalBackdrop,
+  ModalContent,
+  ModalHeader,
+  ModalCloseButton,
+  ModalBody,
+  ModalFooter,
+  HStack,
+  VStack,
+  Heading,
+  Text,
+  Center,
+  Icon,
+  CircleIcon,
+  CheckIcon,
+  AlertCircleIcon,
+  ChevronDownIcon,
+} from '@gluestack-ui/themed';
 
-import Wrapper from '../../Wrapper';
-
-export const FormControlStory = ({ ...props }) => {
+const FormControlStory = ({ ...props }) => {
   return (
-    <Wrapper>
-      <FormControl {...props}>
-        {/* Label Message */}
-        <FormControl.Label>
-          <FormControl.Label.Text>Password</FormControl.Label.Text>
-        </FormControl.Label>
-        <Input>
-          <Input.Input
-            type="password"
-            defaultValue="12345"
-            placeholder="password"
+    <FormControl {...props}>
+      <FormControlLabel>
+        <FormControlLabelText>Password</FormControlLabelText>
+      </FormControlLabel>
+      <Input>
+        <InputInput
+          type="password"
+          defaultValue="12345"
+          placeholder="password"
+        />
+      </Input>
+
+      <FormControlHelper>
+        <FormControlHelperText>
+          Must be atleast 6 characters.
+        </FormControlHelperText>
+      </FormControlHelper>
+
+      <FormControlError>
+        <FormControlErrorIcon>
+          <Icon
+            as={AlertCircleIcon}
+            sx={{ color: '$red500', height: '$3', width: '$3' }}
           />
-        </Input>
-        {/* Helper Text */}
-        <FormControl.Helper>
-          <FormControl.Helper.Text>
-            Must be atleast 6 characters.
-          </FormControl.Helper.Text>
-        </FormControl.Helper>
-        {/* Error Message */}
-        <FormControl.Error>
-          <FormControl.Error.Icon>
-            <Icon
-              as={WarningIcon}
-              sx={{ color: '$red500', height: '$3', width: '$3' }}
-            />
-          </FormControl.Error.Icon>
-          <FormControl.Error.Text>
-            Atleast 6 characters are required.
-          </FormControl.Error.Text>
-        </FormControl.Error>
-      </FormControl>
-    </Wrapper>
+        </FormControlErrorIcon>
+        <FormControlErrorText>
+          Atleast 6 characters are required.
+        </FormControlErrorText>
+      </FormControlError>
+    </FormControl>
   );
 };
 
-export { FormControl, Input, WarningIcon, Icon };
+export default FormControlStory;
+
+export {
+  FormControl,
+  FormControlLabel,
+  FormControlLabelText,
+  FormControlHelper,
+  FormControlHelperText,
+  FormControlError,
+  FormControlErrorIcon,
+  FormControlErrorText,
+  Box,
+  Input,
+  InputInput,
+  Button,
+  ButtonText,
+  Radio,
+  RadioGroup,
+  RadioIcon,
+  RadioIndicator,
+  RadioLabel,
+  Checkbox,
+  CheckboxGroup,
+  CheckboxIndicator,
+  CheckboxIcon,
+  CheckboxLabel,
+  Textarea,
+  TextareaInput,
+  Select,
+  SelectTrigger,
+  SelectInput,
+  SelectIcon,
+  SelectPortal,
+  SelectBackdrop,
+  SelectContent,
+  SelectDragIndicatorWrapper,
+  SelectDragIndicator,
+  SelectItem,
+  Slider,
+  Switch,
+  Modal,
+  ModalBackdrop,
+  ModalContent,
+  ModalHeader,
+  ModalCloseButton,
+  ModalBody,
+  ModalFooter,
+  HStack,
+  VStack,
+  Heading,
+  Text,
+  Center,
+  Icon,
+  AlertCircleIcon,
+  ChevronDownIcon,
+  CircleIcon,
+  CheckIcon,
+};

@@ -1,17 +1,22 @@
 import React from 'react';
-import Wrapper from '../../Wrapper';
-import { Center, Progress } from '../../../ui-components';
 
-export const ProgressBasicStory = ({ value = 50, ...props }: any) => {
+import {
+  Progress,
+  ProgressFilledTrack,
+  VStack,
+  Text,
+  Box,
+  Heading,
+} from '@gluestack-ui/themed';
+
+const ProgressStory = ({ value = 50, ...props }: any) => {
   return (
-    <Wrapper>
-      <Center w="100%" h="100%" alignItems="center" justifyContent="center">
-        <Progress w="70%" value={value} {...props}>
-          <Progress.FilledTrack />
-        </Progress>
-      </Center>
-    </Wrapper>
+    <Progress w="70%" value={value} {...props}>
+      <ProgressFilledTrack />
+    </Progress>
   );
 };
 
-export { Progress };
+export default ProgressStory;
+
+export { Progress, ProgressFilledTrack, VStack, Text, Box, Heading };

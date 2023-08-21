@@ -1,17 +1,14 @@
 import React from 'react';
-import Wrapper from '../../Wrapper';
-import { Center, Text } from '../../../ui-components';
+import { Text, Center } from '@gluestack-ui/themed';
 
-export const TextStory = ({ size, text, ...props }: any) => {
+const TextStory = ({ size = 'md', text = 'Hello world', ...props }: any) => {
   return (
-    <Wrapper>
-      <Center>
-        <Text size={size} {...props}>
-          {text}
-        </Text>
-      </Center>
-    </Wrapper>
+    <Text size={size} {...props}>
+      {text}
+    </Text>
   );
 };
 
-export { Text };
+export default TextStory;
+
+export { Text, Center };
