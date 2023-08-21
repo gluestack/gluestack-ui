@@ -1,4 +1,3 @@
-import { injectInStyle } from '../injectInStyle';
 import { StyledValueToCSSObject } from '../resolver';
 import type { OrderedSXResolved } from '../types';
 import { getCSSIdAndRuleset } from '../updateCSSStyleInOrderedResolved.web';
@@ -82,11 +81,11 @@ export class StyleInjector {
       }
     });
 
-    Object.keys(toBeInjected).forEach((type) => {
-      Object.keys(toBeInjected[type]).forEach((styleTag) => {
-        this.injectStyles(toBeInjected[type][styleTag], type, styleTag);
-      });
-    });
+    // Object.keys(toBeInjected).forEach((type) => {
+    //   Object.keys(toBeInjected[type]).forEach((styleTag) => {
+    //     this.injectStyles(toBeInjected[type][styleTag], type, styleTag);
+    //   });
+    // });
   }
 
   resolveComponentTheme(
@@ -101,7 +100,7 @@ export class StyleInjector {
       componentExtendedConfig
     );
 
-    delete componentTheme.meta.cssRuleset;
+    // delete componentTheme.meta.cssRuleset;
 
     if (componentTheme.meta && componentTheme.meta.queryCondition) {
       const queryCondition = resolveTokensFromConfig(CONFIG, {
@@ -126,10 +125,32 @@ export class StyleInjector {
     }
   }
 
-  injectInStyle() {
-    const styleSheetInjectInStyle = injectInStyle.bind(this);
+  injectInStyle(cssIds: any) {
+    const toBeInjected: any = {};
 
-    styleSheetInjectInStyle(this.#globalStyleMap);
+    cssIds.forEach((cssId: string) => {
+      if (this.#globalStyleMap.get(cssId)) {
+        const styledResolved = this.#globalStyleMap.get(cssId);
+
+        if (!toBeInjected[styledResolved.type])
+          toBeInjected[styledResolved.type] = {};
+        if (!toBeInjected[styledResolved.type][styledResolved.componentHash])
+          toBeInjected[styledResolved.type][styledResolved.componentHash] = '';
+        toBeInjected[styledResolved.type][styledResolved.componentHash] +=
+          styledResolved.meta.cssRuleset;
+
+        this.#globalStyleMap.set(styledResolved.meta.cssId, {
+          ...styledResolved,
+          value: styledResolved?.resolved,
+        });
+      }
+    });
+
+    Object.keys(toBeInjected).forEach((type) => {
+      Object.keys(toBeInjected[type]).forEach((styleTag) => {
+        this.injectStyles(toBeInjected[type][styleTag], type, styleTag);
+      });
+    });
   }
 }
 
