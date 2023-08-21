@@ -324,7 +324,7 @@ function renamePseudoClasses(obj: any) {
   return obj;
 }
 
-function convertToSXForStateColorModeMediaQuery(obj: any, config: any) {
+function convertToSXForStateColorModeMediaQuery(obj: any, _config: any) {
   let newObj: any = {
     // ...obj,
     sx: {},

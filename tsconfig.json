@@ -3,9 +3,8 @@
   "exclude": ["node_modules", "example"],
   "paths": {},
   "compilerOptions": {
-    "emitDeclarationOnly": true,
     "noEmit": false,
-    "baseUrl": "",
+    "baseUrl": ".",
     "declaration": true,
     "allowUnreachableCode": false,
     "allowUnusedLabels": true,
@@ -24,6 +23,7 @@
     "resolveJsonModule": true,
     "outDir": "./build",
     "skipLibCheck": true,
+    
     "strict": true,
     "target": "esnext"
   }
