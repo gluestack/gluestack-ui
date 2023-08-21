@@ -123,9 +123,11 @@ export default styled(
         sm: {
           px: '$2',
           _icon: {
-            props: {
-              size: '2xs',
-            },
+            // props: {
+            //   size: '2xs',
+            // },
+            h: '$3',
+            w: '$3',
           },
           _text: {
             props: {
@@ -136,9 +138,11 @@ export default styled(
         md: {
           px: '$2',
           _icon: {
-            props: {
-              size: 'xs',
-            },
+            // props: {
+            //   size: 'xs',
+            // },
+            h: '$3.5',
+            w: '$3.5',
           },
           _text: {
             props: {
@@ -149,7 +153,9 @@ export default styled(
         lg: {
           px: '$2',
           _icon: {
-            props: { size: 'sm' },
+            // props: { size: 'sm' },
+            h: '$4',
+            w: '$4',
           },
           _text: {
             props: { size: 'sm' },
