@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+// import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { createButton } from '@gluestack-ui/button';
 import {
   Root,
@@ -9,7 +10,7 @@ import {
   Spinner,
   Icon,
 } from './styled-components';
-import { useStyled } from '@gluestack-style/react';
+// import { useStyled } from '@gluestack-style/react';
 import { usePropResolution } from '../../hooks/usePropResolution';
 
 export const AccessibleButton = createButton({
