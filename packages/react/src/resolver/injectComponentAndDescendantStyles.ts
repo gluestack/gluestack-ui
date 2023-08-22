@@ -1,4 +1,4 @@
-import { GluestackStyleSheet } from '../style-sheet';
+import { GluestackStyleSheet, StyleInjector } from '../style-sheet';
 import type { OrderedSXResolved } from '../types';
 import {
   getComponentResolvedBaseStyle,
@@ -10,7 +10,9 @@ import {
 export function injectComponentAndDescendantStyles(
   orderedResolved: OrderedSXResolved,
   styleTagId?: string,
-  type: 'boot' | 'inline' = 'boot'
+  type: 'boot' | 'inline' = 'boot',
+  _GluestackStyleSheet: StyleInjector = GluestackStyleSheet,
+  shouldInject: boolean = true
 ) {
   const componentOrderResolvedBaseStyle =
     getComponentResolvedBaseStyle(orderedResolved);
@@ -22,25 +24,25 @@ export function injectComponentAndDescendantStyles(
   const descendantOrderResolvedVariantStyle =
     getDescendantResolvedVariantStyle(orderedResolved);
 
-  const componentOrderResolvedBaseStyleIds = GluestackStyleSheet.declare(
+  const componentOrderResolvedBaseStyleIds = _GluestackStyleSheet.declare(
     componentOrderResolvedBaseStyle,
     type + '-base',
     styleTagId ? styleTagId : 'css-injected-boot-time',
     {}
   );
-  const descendantOrderResolvedBaseStyleIds = GluestackStyleSheet.declare(
+  const descendantOrderResolvedBaseStyleIds = _GluestackStyleSheet.declare(
     descendantOrderResolvedBaseStyle,
     type + '-descendant-base',
     styleTagId ? styleTagId : 'css-injected-boot-time-descendant',
     {}
   );
-  const componentOrderResolvedVariantStyleIds = GluestackStyleSheet.declare(
+  const componentOrderResolvedVariantStyleIds = _GluestackStyleSheet.declare(
     componentOrderResolvedVariantStyle,
     type + '-variant',
     styleTagId ? styleTagId : 'css-injected-boot-time',
     {}
   );
-  const descendantOrderResolvedVariantStyleIds = GluestackStyleSheet.declare(
+  const descendantOrderResolvedVariantStyleIds = _GluestackStyleSheet.declare(
     descendantOrderResolvedVariantStyle,
     type + '-descendant-variant',
     styleTagId ? styleTagId : 'css-injected-boot-time-descendant',
@@ -53,7 +55,9 @@ export function injectComponentAndDescendantStyles(
     ...componentOrderResolvedVariantStyleIds,
     ...descendantOrderResolvedVariantStyleIds,
   ];
-  GluestackStyleSheet.resolve(styleCSSIdsArr, {}, {}, false);
+  _GluestackStyleSheet.resolve(styleCSSIdsArr, {}, {}, false);
 
-  GluestackStyleSheet.injectInStyle(styleCSSIdsArr);
+  if (shouldInject) _GluestackStyleSheet.injectInStyle(styleCSSIdsArr);
+
+  return styleCSSIdsArr;
 }
