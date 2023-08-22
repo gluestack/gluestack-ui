@@ -1,11 +1,8 @@
 {
   "name": "@gluestack-ui/themed",
-  "version": "0.1.1",
-  "main": "build/src/index.js",
-  "types": "build/src/index.d.ts",
-  "react-native": "src/index",
-  "source": "src/index",
-  "typings": "lib/typescript/index.d.ts",
+  "version": "0.1.2-alpha.1",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
   "description": "A universal themed components for React Native, Next.js & React",
   "keywords": [
     "react",
