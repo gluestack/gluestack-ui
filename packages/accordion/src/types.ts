@@ -62,16 +62,18 @@ export interface IAccordionTriggerProps extends PressableProps {
 export type IAccordionComponentType<
   AccordionProps,
   ItemProps,
-  // HeaderProps,
+  HeaderProps,
   TriggerProps,
-  // IconProps,
-  ContentProps
+  ContentProps,
+  IconProps
 > = ((props: AccordionProps & IAccordionProps) => JSX.Element) & {
   Item: React.MemoExoticComponent<
     (props: ItemProps & IAccordionItemProps) => JSX.Element
   >;
-  // Header: React.MemoExoticComponent<(props: HeaderProps) => JSX.Element>;
+  Header: React.MemoExoticComponent<(props: HeaderProps) => JSX.Element>;
   Trigger: React.MemoExoticComponent<(props: TriggerProps) => JSX.Element>;
   // Icon: React.MemoExoticComponent<(props: IconProps) => JSX.Element>;
   Content: React.MemoExoticComponent<(props: ContentProps) => JSX.Element>;
+
+  Icon: React.MemoExoticComponent<(props: IconProps) => JSX.Element>;
 };

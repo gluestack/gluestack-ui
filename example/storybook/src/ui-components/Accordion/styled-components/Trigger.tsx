@@ -6,7 +6,7 @@ export default styled(
   Pressable,
   {
     'borderRadius': '$sm',
-    'backgroundColor': '$primary500',
+    // 'backgroundColor': '$primary500',
     'flexDirection': 'row',
     'justifyContent': 'center',
     'alignItems': 'center',
@@ -1012,7 +1012,6 @@ export default styled(
     'defaultProps': {
       size: 'md',
       variant: 'solid',
-      action: 'primary',
     },
 
     '_web': {

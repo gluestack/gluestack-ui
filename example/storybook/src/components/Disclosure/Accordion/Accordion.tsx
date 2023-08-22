@@ -3,7 +3,11 @@ import {
   Accordion,
   AccordionContent,
   AccordionItem,
+  AccordionHeader,
   AccordionTrigger,
+  AccordionIcon,
+  ChevronDownIcon,
+  Text,
 } from '../../../ui-components';
 import React from 'react';
 
@@ -15,17 +19,89 @@ const AccordionStory: MyAccordionStory = ({}: // text = 'Accordion',
 // ...props
 any) => {
   return (
-    // <Button {...props}>
-    //   <ButtonText>{text}</ButtonText>
-    // </Button>
     <Accordion>
       <AccordionItem>
-        <AccordionTrigger h={60} w={60}>
-          Press me
-        </AccordionTrigger>
-        <AccordionContent bg="$amber500" h={60} w={60}>
-          Hey
-        </AccordionContent>
+        <AccordionHeader borderBottomWidth="$1" borderColor="$gray300">
+          <AccordionTrigger justifyContent="space-between" px="$0">
+            <Text color="$black" fontWeight="semibold">
+              Press me
+            </Text>
+            <AccordionIcon>
+              <ChevronDownIcon color="$black" />
+            </AccordionIcon>
+          </AccordionTrigger>
+          <AccordionContent>
+            <Text color="$black">
+              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi".
+            </Text>
+          </AccordionContent>
+        </AccordionHeader>
+      </AccordionItem>
+
+      <AccordionItem>
+        <AccordionHeader borderBottomWidth="$1" borderColor="$gray300">
+          <AccordionTrigger justifyContent="space-between" px="$0">
+            <Text color="$black" fontWeight="semibold">
+              Press me
+            </Text>
+            <AccordionIcon>
+              <ChevronDownIcon color="$black" />
+            </AccordionIcon>
+          </AccordionTrigger>
+          <AccordionContent>
+            <Text color="$black">
+              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi".
+            </Text>
+          </AccordionContent>
+        </AccordionHeader>
+      </AccordionItem>
+
+      <AccordionItem>
+        <AccordionHeader borderBottomWidth="$1" borderColor="$gray300">
+          <AccordionTrigger justifyContent="space-between" px="$0">
+            <Text color="$black" fontWeight="semibold">
+              Press me
+            </Text>
+            <AccordionIcon>
+              <ChevronDownIcon color="$black" />
+            </AccordionIcon>
+          </AccordionTrigger>
+          <AccordionContent>
+            <Text color="$black">
+              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi".
+            </Text>
+          </AccordionContent>
+        </AccordionHeader>
+      </AccordionItem>
+
+      <AccordionItem>
+        <AccordionHeader borderBottomWidth="$1" borderColor="$gray300">
+          <AccordionTrigger justifyContent="space-between" px="$0">
+            <Text color="$black" fontWeight="semibold">
+              Press me
+            </Text>
+            <AccordionIcon>
+              <ChevronDownIcon color="$black" />
+            </AccordionIcon>
+          </AccordionTrigger>
+          <AccordionContent>
+            <Text color="$black">
+              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi".
+            </Text>
+          </AccordionContent>
+        </AccordionHeader>
       </AccordionItem>
     </Accordion>
   );

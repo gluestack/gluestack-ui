@@ -3,18 +3,8 @@ import { IAccordionItemProps } from './types';
 import React, { forwardRef } from 'react';
 export const AccordionItemContext = React.createContext({});
 
-// export function useAccordionItemProvider() {
-
-//   const context = {
-//     visibleContent,
-//     handleToggle,
-//   };
-
-//   return context;
-// }
-
 export const AccordionItem = <T,>(StyledAccordionItem: any) =>
-  forwardRef(({ children }: T & IAccordionItemProps, ref: any) => {
+  forwardRef(({ children, ...props }: T & IAccordionItemProps, ref?: any) => {
     const [visibleContent, setVisibleContent] = useState(false);
 
     return (
@@ -24,7 +14,9 @@ export const AccordionItem = <T,>(StyledAccordionItem: any) =>
           setVisibleContent,
         }}
       >
-        <StyledAccordionItem ref={ref}>{children}</StyledAccordionItem>
+        <StyledAccordionItem ref={ref} {...props}>
+          {children}
+        </StyledAccordionItem>
       </AccordionItemContext.Provider>
     );
   });

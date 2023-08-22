@@ -5,8 +5,7 @@ import { View } from 'react-native';
 export default styled(
   View,
   {
-    // h: 60,
-    // w: 900,
+    py: '$3',
   },
   {
     descendantStyle: [],

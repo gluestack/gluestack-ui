@@ -4,9 +4,13 @@ import { AccordionItemContext } from './AccordionItem';
 
 export const AccordionTrigger = <T,>(StyledAccordionTrigger: any) =>
   forwardRef(
-    ({ children, isDisabled }: T & IAccordionTriggerProps, ref: any) => {
+    (
+      { children, isDisabled, ...props }: T & IAccordionTriggerProps,
+      ref?: any
+    ) => {
       const { visibleContent, setVisibleContent } =
         React.useContext<any>(AccordionItemContext);
+
       return (
         <StyledAccordionTrigger
           onPress={() => {
@@ -14,6 +18,7 @@ export const AccordionTrigger = <T,>(StyledAccordionTrigger: any) =>
           }}
           disabled={isDisabled}
           ref={ref}
+          {...props}
         >
           {children}
         </StyledAccordionTrigger>
