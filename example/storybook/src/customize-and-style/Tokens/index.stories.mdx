@@ -1,0 +1,97 @@
+---
+title: Tokens | gluestack-ui
+
+description: gluestack-ui uses tokens to store design-related values such as colors, typography, spacing, and more. They are a way of centralizing the values in a single location.
+
+pageTitle: Tokens
+
+pageDescription: gluestack-ui uses tokens to store design-related values such as colors, typography, spacing, and more. They are a way of centralizing the values in a single location.
+
+showHeader: true
+---
+
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+
+import {
+  AppProvider,
+  Box,
+  HStack,
+  Text,
+  Hoverable,
+} from '@gluestack/design-system';
+
+<Meta title="Customize and Style/Tokens" />
+
+## Tokens
+
+gluestack-ui components internally utilize theme tokens by consuming them within all styled components.
+Theme and token configurations are exported under the name `config` from the `@gluestack-ui/themed` . This `config` can be passed to the `GluestackUIProvider`, allowing you to provide the necessary theme and styling information for the gluestack-ui components. This approach enables a centralized and consistent theming system across your application's UI components.
+
+```jsx
+import { config, GluestackUIProvider } from 'gluestack-ui/react';
+
+function App() {
+  return (
+    <GluestackUIProvider config={config.theme}>
+      <App />
+    </GluestackUIProvider>
+  );
+}
+```
+
+For the latest theme configurations, you can refer to the following link: [gluestack-ui-config.ts](https://github.com/gluestack/gluestack-ui/blob/patch/example/storybook/src/gluestack-ui.config.ts.) in the [gluestack-ui](https://github.com/gluestack/gluestack-ui) repository.
+
+## Update Tokens
+
+If you are using default config provided by `@gluestack-ui/themed`, you can directly update the version of `@gluestack-ui/themed`.
+
+You can also create a custom theme using `createConfig` from `@gluestack-style/react` and pass it to `GluestackUIProvider`.
+
+```jsx
+import { createConfig } from 'gluestack-style/react';
+
+const customTheme = createConfig({
+  aliases: {
+    bg: 'backgroundColor',
+    p: 'padding',
+    h: 'height',
+    w: 'width',
+  },
+  tokens: {
+    colors: {
+      primary: 'blue',
+      secondary: 'green',
+      text: 'black',
+      background: 'white',
+    },
+    fonts: {
+      body: 'Arial, sans-serif',
+      heading: 'Georgia, serif',
+    },
+    fontSizes: {
+      small: 12,
+      medium: 16,
+      large: 20,
+    },
+    space: { 0: 0, 1: 4, 2: 8, 4: 16, 8: 32 },
+  },
+  globalStyle: {
+    // ...
+  },
+})
+
+function App() {
+  return (
+    <GluestackUIProvider config={customTheme} />
+      <App />
+    </GluestackUIProvider>
+  )
+}
+
+```
+
+- aliases: This is useful when you want to use a shorter name for a token. For example, you can use `bg` instead of `backgroundColor` for the `backgroundColor` token.
+
+- tokens: This is where you define your design tokens.
+
+You can refer to [gluestack-style](https://style.gluestack.io/docs/configuration/theme-tokens) for more information aliases, tokens and globalStyle.

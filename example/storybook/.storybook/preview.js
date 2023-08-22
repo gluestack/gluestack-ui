@@ -24,6 +24,8 @@ export const parameters = {
         ['Installation'],
         'Core Concepts',
         ['Themed Library', 'Unstyled Components'],
+        'Customize and Style',
+        ['/Default Styles', 'Tokens'],
         'Configuration',
         ['Theme Tokens', 'Server-Side Rendering', 'React Server Components'],
         'Components',

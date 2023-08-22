@@ -1,11 +1,11 @@
 ---
-title: Unstyled Components | gluestack-ui
+title: Default Styles | gluestack-ui
 
-description: Gluestack ui provides Unstyled components, user can style these components. In this guide we will learn about the right way to style components.
+description: Default styles are applied to all th `@gluestack-ui/themed` components. In this guide we will learn how are default styles applied.
 
-pageTitle: Unstyled Components
+pageTitle: Default Styles
 
-pageDescription: Gluestack ui provides Unstyled components, user can style these components. In this guide we will learn about the right way to style components.
+pageDescription: Default styles are applied to all th `@gluestack-ui/themed` components. In this guide we will learn how are default styles applied.
 
 showHeader: true
 ---
@@ -21,53 +21,45 @@ import {
   CodePreview,
 } from '@gluestack/design-system';
 
-<Meta title="Core Concepts/Unstyled Components" />
+<Meta title="Customize and Style/Default Styles" />
 
-## Unstyled Components
+## Default Styles
 
-In this guide we will learn how we can create unstyled components using `@gluestack-ui`.
-
-> Note: Using Unstyled components is recommended incase you are building your own design system and want to create everything from scratch.
-
-Lets try creating an unstyled Button component
-
-We have a function called `createButton` which can be used to create a custom button component. This function takes in a configuration object which contains the styled components that you want to use for the button. You can refer [style.gluestack.io](https://style.gluestack.io/) for more information on how to use styled components. The createButton function takes an object which consists of the styled components that you can style according to your requirements. These styled components can be created using the `styled` function exported by `@gluestack-style/react`. The basic example is given below.
+All the components of `@gluestack-ui/themed` by default are styled. Default styling is provided by our styling engine [`@gluestack-style/react`](https://style.gluestack.io/docs/overview/introduction) and it is defined in [`gluestack-ui.config.ts`](https://github.com/gluestack/gluestack-ui/blob/main/example/storybook/src/gluestack-ui.config.ts) file. Config file exports an object which is passed inside the `GlueStackUIProvider`(a Wrapper component that applies the theme to all the children).
 
 ```jsx
-import { createStyled } from '@gluestack-style/react';
-import { ActivityIndicator, Pressable, Text, View } from 'react-native';
-// import the createButton function
-import { createButton } from '@gluestack-ui/button';
+import { config, GlueStackUIProvider } from '@gluestack-ui/themed';
 
-// Creating Styled Components by using react native components
-const Root = createStyled(Pressable, {});
-const Text = createStyled(Text, {});
-const Group = createStyled(View, {});
-const GroupHSpacer = createStyled(View, {});
-const GroupVSpacer = createStyled(View, {});
-const Spinner = createStyled(ActivityIndicator, {});
-
-// Understanding the API
-const Button = createButton({
-  Root,
-  Text,
-  Group,
-  GroupHSpacer,
-  GroupVSpacer,
-  Spinner,
-});
-
-// Using the button component
-export default () => (
-  <ButtonGroup>
-    <Button>
-      <ButtonText />
-      <ButtonSpinner />
-      <ButtonIcon />
-    </Button>
-  </ButtonGroup>
-);
+function App({ children }) {
+  return (
+    <GluestackUIProvider config={config.theme}>{children}</GluestackUIProvider>
+  );
+}
 ```
 
-In the above example, we are creating an accessible, universal `Button` component by using createButton function exported by '@gluestack-ui/button' package. Using the API used by the function, we are creating different unstyled components and passing it to the function. Similarly, we have a different package and API for each component and we create styled components with help of `@gluestack-style/react` library and pass them in a object to the function.
-API's for package is specified in the documentation of the respective components.
+The imported config contains a theme object which contains all the configuration, the structure looks something like the following:
+
+```bash
+{
+  "theme": {
+    "aliases": {
+      # Adding bg as alias of background Color
+      "bg": "backgroundColor"
+    },
+    "tokens": {
+      # All the tokens are defined here like colors, borderWidths, radii, breakpoints, mediaQueries ....
+    },
+    "globalStyle": {
+      # All the global style is defined here
+    }
+  }
+}
+```
+
+The theme object has aliases, tokens and global style.
+
+- aliases: This is useful when you want to use a shorter name for a token. For example, you can use bg instead of backgroundColor for the backgroundColor token.
+
+- tokens: This is where you define your design tokens. Tokens helps us to maintain consistent designs.
+
+- globalStyle: The styles written inside globalStyle are applied globally in the application.
