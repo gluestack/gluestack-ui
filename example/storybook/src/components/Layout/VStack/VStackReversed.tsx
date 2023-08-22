@@ -1,8 +1,8 @@
 import type { ComponentStory } from '@storybook/react-native';
 import React from 'react';
-import { Box } from '../../../ui-components';
+import { Box } from '@gluestack-ui/themed';
 
-import { VStack } from '../../../ui-components';
+import { VStack } from '@gluestack-ui/themed';
 
 type MyVStackStory = ComponentStory<typeof VStack>;
 

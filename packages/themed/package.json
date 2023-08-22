@@ -1,0 +1,105 @@
+{
+  "name": "@gluestack-ui/themed",
+  "version": "0.1.1",
+  "main": "build/src/index.js",
+  "types": "build/src/index.d.ts",
+  "react-native": "src/index",
+  "source": "src/index",
+  "typings": "lib/typescript/index.d.ts",
+  "description": "A universal themed components for React Native, Next.js & React",
+  "keywords": [
+    "react",
+    "native",
+    "react-native",
+    "gluestack-ui",
+    "universal",
+    "headless",
+    "typescript",
+    "component",
+    "android",
+    "ios",
+    "nextjs"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "prepare": "tsc",
+    "watch": "tsc --watch",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "clean": "rm -rf lib"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@expo/html-elements": "latest",
+    "@gluestack-style/animation-plugin": "latest",
+    "@gluestack-style/react": "^0.2.3",
+    "@gluestack-ui/actionsheet": "latest",
+    "@gluestack-ui/alert": "latest",
+    "@gluestack-ui/alert-dialog": "latest",
+    "@gluestack-ui/avatar": "latest",
+    "@gluestack-ui/button": "latest",
+    "@gluestack-ui/checkbox": "^0.1.17",
+    "@gluestack-ui/divider": "latest",
+    "@gluestack-ui/fab": "latest",
+    "@gluestack-ui/form-control": "latest",
+    "@gluestack-ui/hstack": "latest",
+    "@gluestack-ui/icon": "latest",
+    "@gluestack-ui/input": "^0.1.10",
+    "@gluestack-ui/link": "latest",
+    "@gluestack-ui/menu": "latest",
+    "@gluestack-ui/modal": "latest",
+    "@gluestack-ui/overlay": "latest",
+    "@gluestack-ui/popover": "latest",
+    "@gluestack-ui/pressable": "latest",
+    "@gluestack-ui/progress": "latest",
+    "@gluestack-ui/provider": "latest",
+    "@gluestack-ui/radio": "latest",
+    "@gluestack-ui/select": "^0.1.14",
+    "@gluestack-ui/slider": "latest",
+    "@gluestack-ui/spinner": "latest",
+    "@gluestack-ui/switch": "latest",
+    "@gluestack-ui/tabs": "^0.1.11",
+    "@gluestack-ui/textarea": "^0.1.12",
+    "@gluestack-ui/toast": "latest",
+    "@gluestack-ui/tooltip": "^0.1.15",
+    "@gluestack-ui/vstack": "latest",
+    "@legendapp/motion": "latest",
+    "react": "^18.2.0",
+    "react-native-svg": "13.4.0"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.22.9",
+    "@babel/preset-react": "^7.22.5",
+    "@babel/preset-typescript": "^7.22.5",
+    "@types/react-native": "^0.71.6",
+    "file-loader": "^6.2.0",
+    "react-native": "^0.70.7",
+    "react-native-web": "^0.18.12",
+    "ts-loader": "^9.4.4",
+    "typescript": "^5.1.6",
+    "url-loader": "^4.1.1",
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4"
+  },
+  "peerDependencies": {
+    "@gluestack-style/animation-plugin": "latest",
+    "@gluestack-style/react": "latest",
+    "@types/react-native": "^0.72.2",
+    "react": ">=16",
+    "react-dom": ">=16",
+    "react-native": "^0.72.3",
+    "react-native-web": "^0.19.7"
+  },
+  "release-it": {
+    "git": {
+      "commitMessage": "chore: release ${version}",
+      "tagName": "v${version}"
+    },
+    "npm": {
+      "publish": true
+    },
+    "github": {
+      "release": true
+    }
+  }
+}

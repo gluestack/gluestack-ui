@@ -7,7 +7,7 @@ import {
   RadioIcon,
   RadioIndicator,
   RadioLabel,
-} from '../../../ui-components';
+} from '@gluestack-ui/themed';
 
 const RadioGroup = ({
   size,

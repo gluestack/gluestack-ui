@@ -1,0 +1,31 @@
+{
+  "include": ["./src"],
+  "exclude": ["node_modules", "example"],
+  "path": {},
+  "compilerOptions": {
+    "ignoreDeprecations": "5.0",
+    "emitDeclarationOnly": true,
+    "noEmit": false,
+    "declaration": true,
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": true,
+    "esModuleInterop": true,
+    "importsNotUsedAsValues": "error",
+    "forceConsistentCasingInFileNames": true,
+    "jsx": "react",
+    "lib": ["esnext", "dom"],
+    "module": "esnext",
+    "moduleResolution": "node",
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "noImplicitUseStrict": false,
+    "noStrictGenericChecks": false,
+    "noUnusedLocals": false,
+    "noUnusedParameters": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "target": "esnext",
+    "outDir": "./build"
+  }
+}

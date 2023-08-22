@@ -1,7 +1,7 @@
 import React from 'react';
 import type { ComponentStory } from '@storybook/react-native';
-import { AddIcon, InfoIcon, HStack } from '../../../ui-components';
-import { Button, ButtonIcon, ButtonText } from '../../../ui-components';
+import { AddIcon, InfoIcon, HStack } from '@gluestack-ui/themed';
+import { Button, ButtonIcon, ButtonText } from '@gluestack-ui/themed';
 
 type MyButtonStory = ComponentStory<typeof Button>;
 

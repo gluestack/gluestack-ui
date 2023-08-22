@@ -54,7 +54,7 @@ import {
   CheckIcon,
   AlertCircleIcon,
   ChevronDownIcon,
-} from '../../../ui-components';
+} from '@gluestack-ui/themed';
 
 const FormControlStory = ({ ...props }) => {
   return (

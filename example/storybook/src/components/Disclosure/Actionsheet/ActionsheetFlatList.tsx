@@ -10,7 +10,7 @@ import {
   ActionsheetItemText,
   ActionsheetFlatList,
   Button,
-} from '../../../ui-components';
+} from '@gluestack-ui/themed';
 import { useEffect } from 'react';
 
 function ActionsheetExample({

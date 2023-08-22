@@ -1,4 +1,4 @@
-import { Text, Box } from '../../../ui-components';
+import { Text, Box } from '@gluestack-ui/themed';
 import React from 'react';
 
 const BoxStory: any = ({

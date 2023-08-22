@@ -13,7 +13,7 @@ import {
   Icon,
   SearchIcon,
   FormControl,
-} from '../../../ui-components';
+} from '@gluestack-ui/themed';
 import { EyeIcon, EyeOffIcon } from 'lucide-react-native';
 import { useState } from 'react';
 

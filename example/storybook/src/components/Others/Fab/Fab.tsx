@@ -19,7 +19,7 @@ import {
   Text,
   Divider,
   Image,
-} from '../../../ui-components';
+} from '@gluestack-ui/themed';
 
 import { CheckIcon, EditIcon, ShoppingCartIcon } from 'lucide-react-native';
 

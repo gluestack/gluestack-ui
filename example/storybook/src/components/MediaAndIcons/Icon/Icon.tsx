@@ -59,7 +59,7 @@ import {
   GlobeIcon,
   ThreeDotsIcon,
   PlayIcon,
-} from '../../../ui-components';
+} from '@gluestack-ui/themed';
 
 import {
   // Cake,

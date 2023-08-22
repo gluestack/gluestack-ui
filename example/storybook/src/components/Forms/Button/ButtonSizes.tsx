@@ -6,7 +6,7 @@ import {
   ButtonIcon,
   VStack,
   AddIcon,
-} from '../../../ui-components';
+} from '@gluestack-ui/themed';
 
 type MyButtonStory = ComponentStory<typeof Button>;
 
