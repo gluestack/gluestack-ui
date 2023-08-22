@@ -25,7 +25,7 @@ export const parameters = {
         'Core Concepts',
         ['Themed Library', 'Unstyled Components'],
         'Customize and Style',
-        ['/Default Styles', 'Tokens'],
+        ['Default Styles', 'Tokens', 'Overwriting'],
         'Configuration',
         ['Theme Tokens', 'Server-Side Rendering', 'React Server Components'],
         'Components',
