@@ -51,64 +51,61 @@ const resolveComponentThemes = (config: any) => {
 
 const resolveTheme = (componentTheme: {}, config: any) => {
   const versboseComponentTheme = convertStyledToStyledVerbosed(componentTheme);
-  // const componentHash = stableHash({
-  //   ...componentTheme,
-  // });
-  // const styledResolvedTheme = styledToStyledResolved(
-  //   versboseComponentTheme,
-  //   [],
-  //   {
-  //     ...config,
-  //     propertyTokenMap: { ...propertyTokenMap, ...config?.propertyTokenMap },
-  //   }
-  // );
-  // const [
-  //   componentOrderResolvedBaseStyle,
-  //   componentOrderResolvedVariantStyle,
-  //   descendantOrderResolvedBaseStyle,
-  //   descendantOrderResolvedVariantStyle,
-  //   _orderedResolved,
-  // ] = getComponentOrderResolve(styledResolvedTheme, componentHash, true);
+  const componentHash = stableHash({
+    ...componentTheme,
+  });
+  const styledResolvedTheme = styledToStyledResolved(
+    versboseComponentTheme,
+    [],
+    {
+      ...config,
+      propertyTokenMap: { ...propertyTokenMap, ...config?.propertyTokenMap },
+    }
+  );
+  const [
+    componentOrderResolvedBaseStyle,
+    componentOrderResolvedVariantStyle,
+    descendantOrderResolvedBaseStyle,
+    descendantOrderResolvedVariantStyle,
+    _orderedResolved,
+  ] = getComponentOrderResolve(styledResolvedTheme, componentHash, true);
 
-  // const extendedThemeBaseIDs = ExtendedStyleSheet.declare(
-  //   componentOrderResolvedBaseStyle,
-  //   'extended-base',
-  //   componentHash ? componentHash : 'css-injected-extended-time',
-  //   config
-  // );
-  // const extendedThemeDescendantBaseIDs = ExtendedStyleSheet.declare(
-  //   descendantOrderResolvedBaseStyle,
-  //   'extended-descendant-base',
-  //   componentHash ? componentHash : 'css-injected-extended-time-descendant',
-  //   config
-  // );
-  // const extendedThemeVariantIDs = ExtendedStyleSheet.declare(
-  //   componentOrderResolvedVariantStyle,
-  //   'extended-variant',
-  //   componentHash ? componentHash : 'css-injected-extended-time',
-  //   config
-  // );
-  // const extendedThemeDescendantVariantIDs = ExtendedStyleSheet.declare(
-  //   descendantOrderResolvedVariantStyle,
-  //   'extended-descendant-variant',
-  //   componentHash ? componentHash : 'css-injected-extended-time-descendant',
-  //   config
-  // );
+  const extendedThemeBaseIDs = ExtendedStyleSheet.declare(
+    componentOrderResolvedBaseStyle,
+    'extended-base',
+    componentHash ? componentHash : 'css-injected-extended-time',
+    config
+  );
+  const extendedThemeDescendantBaseIDs = ExtendedStyleSheet.declare(
+    descendantOrderResolvedBaseStyle,
+    'extended-descendant-base',
+    componentHash ? componentHash : 'css-injected-extended-time-descendant',
+    config
+  );
+  const extendedThemeVariantIDs = ExtendedStyleSheet.declare(
+    componentOrderResolvedVariantStyle,
+    'extended-variant',
+    componentHash ? componentHash : 'css-injected-extended-time',
+    config
+  );
+  const extendedThemeDescendantVariantIDs = ExtendedStyleSheet.declare(
+    descendantOrderResolvedVariantStyle,
+    'extended-descendant-variant',
+    componentHash ? componentHash : 'css-injected-extended-time-descendant',
+    config
+  );
 
-  // const mergedStyleIds = [
-  //   ...extendedThemeBaseIDs,
-  //   ...extendedThemeDescendantBaseIDs,
-  //   ...extendedThemeVariantIDs,
-  //   ...extendedThemeDescendantVariantIDs,
-  // ];
-  // const toBeInjected = ExtendedStyleSheet.resolve(mergedStyleIds, config, {});
+  const mergedStyleIds = [
+    ...extendedThemeBaseIDs,
+    ...extendedThemeDescendantBaseIDs,
+    ...extendedThemeVariantIDs,
+    ...extendedThemeDescendantVariantIDs,
+  ];
+  const toBeInjected = ExtendedStyleSheet.resolve(mergedStyleIds, config, {});
 
-  // const styleIds = getStyleIds(_orderedResolved, {});
+  const styleIds = getStyleIds(_orderedResolved, {});
 
-  return {
-    //  toBeInjected, styleIds,
-    ...versboseComponentTheme,
-  };
+  return { toBeInjected, styleIds, theme: versboseComponentTheme };
 };
 
 // type aliases = const;

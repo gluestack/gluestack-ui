@@ -1108,7 +1108,8 @@ export function verboseStyled<P, Variants>(
         propertyTokenMap,
       };
 
-      const EXTENDED_THEME = CONFIG?.components?.[`${componentName}`].theme;
+      const EXTENDED_THEME =
+        CONFIG?.components?.[`${componentName}`].theme?.theme;
 
       // Injecting style
       const toBeInjected = GluestackStyleSheet.resolve(
@@ -1118,52 +1119,17 @@ export function verboseStyled<P, Variants>(
       );
       GluestackStyleSheet.inject(toBeInjected);
 
+      // Injecting Extended StyleSheet from Config
+      const ExtendedToBeInjected =
+        CONFIG?.components?.[`${componentName}`]?.theme.toBeInjected;
+      ExtendedToBeInjected && ExtendedStyleSheet.inject(ExtendedToBeInjected);
       if (EXTENDED_THEME) {
-        theme = deepMerge(theme, EXTENDED_THEME);
+        theme.variants = deepMerge(theme.variants, EXTENDED_THEME.variants);
         theme.defaultProps = deepMerge(
           theme.defaultProps,
           EXTENDED_THEME.props
         );
-
-        const componentHash = stableHash({
-          ...EXTENDED_THEME,
-          ...componentStyleConfig,
-          ...ExtendedConfig,
-        });
-
-        const {
-          orderedUnResolvedTheme: a,
-          componentOrderResolvedBaseStyle: b,
-          componentOrderResolvedVariantStyle: c,
-          descendantOrderResolvedBaseStyle: d,
-          descendantOrderResolvedVariantStyle: f,
-          styleCSSIdsArr: g,
-        } = updateOrderUnResolvedMap(
-          EXTENDED_THEME,
-          componentHash,
-          declarationType,
-          ExtendedConfig
-        );
-
-        componentOrderResolvedBaseStyle = b;
-        componentOrderResolvedVariantStyle = c;
-        descendantOrderResolvedBaseStyle = d;
-        descendantOrderResolvedVariantStyle = f;
-
-        let orderedCSSIds = g;
-
-        const styleIdsForExtendedTheme = getStyleIds(a, componentStyleConfig);
-
-        styleIds = deepMergeArray(styleIds, styleIdsForExtendedTheme);
-
-        const toBeInjected = GluestackStyleSheet.resolve(
-          orderedCSSIds,
-          CONFIG,
-          componentExtendedConfig
-        );
-
-        // run time
-        GluestackStyleSheet.inject(toBeInjected);
+        theme.props = deepMerge(theme.props, EXTENDED_THEME.props);
       }
 
       Object.assign(styledSystemProps, CONFIG?.aliases);
@@ -1176,10 +1142,10 @@ export function verboseStyled<P, Variants>(
         theme = shallowMerge({ ...globalStyle }, theme);
       }
 
-      // deepMergeArray(
-      //   styleIds,
-      //   CONFIG?.components?.[`${componentName}`]?.theme.styleIds
-      // );
+      deepMergeArray(
+        styleIds,
+        CONFIG?.components?.[`${componentName}`]?.theme.styleIds
+      );
       const {
         componentStyleIds: c,
         componentDescendantStyleIds: d,
