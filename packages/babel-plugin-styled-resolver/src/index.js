@@ -47,10 +47,68 @@ const {
 const {
   updateOrderUnResolvedMap,
 } = require('@gluestack-style/react/lib/commonjs/updateOrderUnResolvedMap');
+const {
+  setObjectKeyValue,
+} = require('@gluestack-style/react/lib/commonjs/utils');
 
 const IMPORT_NAME = '@gluestack-style/react';
 let configThemePath = [];
 const BUILD_TIME_GLUESTACK_STYLESHEET = new StyleInjector();
+
+const convertExpressionContainerToStaticObject = (
+  properties,
+  result = {},
+  keyPath = [],
+  propsToBePersist = {}
+) => {
+  properties?.forEach((property, index) => {
+    if (property.value.type === 'ObjectExpression') {
+      keyPath.push(property.key.value);
+      convertExpressionContainerToStaticObject(
+        property.value.properties,
+        result,
+        keyPath,
+        propsToBePersist
+      );
+      keyPath.pop();
+    } else if (property.value.type === 'Identifier') {
+      if (property.key.value) {
+        setObjectKeyValue(
+          propsToBePersist,
+          [...keyPath, property.key.value],
+          property.value.name
+        );
+      }
+      if (property.key.name) {
+        setObjectKeyValue(
+          propsToBePersist,
+          [...keyPath, property.key.name],
+          property.value.name
+        );
+      }
+    } else {
+      if (property.key.value) {
+        setObjectKeyValue(
+          result,
+          [...keyPath, property.key.value],
+          property.value.value
+        );
+      }
+
+      if (property.key.name) {
+        setObjectKeyValue(
+          result,
+          [...keyPath, property.key.name],
+          property.value.value
+        );
+      }
+    }
+  });
+  return {
+    result,
+    propsToBePersist,
+  };
+};
 
 function addQuotesToObjectKeys(code) {
   const ast = babel.parse(`var a = ${code}`, {
@@ -245,6 +303,21 @@ let ConfigDefault = CONFIG;
 
 module.exports = function (b) {
   const { types: t } = b;
+
+  function generateObjectAstOfIdentifiers(obj) {
+    let properties = Object.keys(obj).map((key) => {
+      if (typeof obj[key] === 'object') {
+        return t.objectProperty(
+          t.stringLiteral(key),
+          generateObjectAstOfIdentifiers(obj[key])
+        );
+      } else {
+        return t.objectProperty(t.stringLiteral(key), t.identifier(obj[key]));
+      }
+    });
+
+    return t.objectExpression(properties.filter((property) => property));
+  }
 
   function generateObjectAst(obj) {
     let properties = Object.entries(obj).map(([key, value]) => {
@@ -561,6 +634,8 @@ module.exports = function (b) {
           )
         ) {
           let propsToBePersist = [];
+          let sxPropsWithIdentifier = {};
+          let utilityPropsWithIdentifier = {};
 
           let mergedPropertyConfig = {
             ...ConfigDefault?.propertyTokenMap,
@@ -569,7 +644,7 @@ module.exports = function (b) {
 
           const styledSystemProps = {
             ...CSSPropertiesMap,
-            ...CONFIG?.aliases,
+            ...ConfigDefault?.aliases,
           };
 
           const attr = jsxOpeningElementPath.node.attributes;
@@ -583,16 +658,26 @@ module.exports = function (b) {
                 !t.isIdentifier(propValue.expression) &&
                 propName === 'sx'
               ) {
-                const objectProperties = propValue.expression;
+                const objectProperties = propValue.expression.properties;
 
-                componentSXProp = getObjectFromAstNode(objectProperties);
+                const {
+                  result: sxPropsObject,
+                  propsToBePersist: sxPropsWithIdentfier,
+                } = convertExpressionContainerToStaticObject(objectProperties);
+                componentSXProp = sxPropsObject;
+                sxPropsWithIdentifier = sxPropsWithIdentfier;
               } else if (styledSystemProps[propName]) {
-                componentUtilityProps = Object.assign(
-                  componentUtilityProps ?? {},
-                  {
-                    [propName]: propValue.value,
-                  }
-                );
+                if (propValue.type === 'JSXExpressionContainer') {
+                  utilityPropsWithIdentifier[propName] =
+                    propValue.expression.name;
+                } else {
+                  componentUtilityProps = Object.assign(
+                    componentUtilityProps ?? {},
+                    {
+                      [propName]: propValue.value,
+                    }
+                  );
+                }
               } else {
                 propsToBePersist.push(attribute);
               }
@@ -603,6 +688,10 @@ module.exports = function (b) {
             0,
             jsxOpeningElementPath.node.attributes.length
           );
+
+          for (const key in utilityPropsWithIdentifier) {
+            if (componentSXProp[key]) delete utilityPropsWithIdentifier[key];
+          }
 
           const sx = {
             ...componentUtilityProps,
@@ -700,6 +789,17 @@ module.exports = function (b) {
             );
 
             jsxOpeningElementPath.node.attributes = propsToBePersist;
+
+            const propsWithIdentifierAst = generateObjectAstOfIdentifiers(
+              merge(sxPropsWithIdentifier, utilityPropsWithIdentifier)
+            );
+
+            jsxOpeningElementPath.node.attributes.push(
+              t.jsxAttribute(
+                t.jsxIdentifier('sx'),
+                t.jsxExpressionContainer(propsWithIdentifierAst)
+              )
+            );
             jsxOpeningElementPath.node.attributes.push(
               t.jsxAttribute(
                 t.jsxIdentifier('styledIds'),
