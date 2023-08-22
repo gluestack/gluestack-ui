@@ -1129,6 +1129,7 @@ export function verboseStyled<P, Variants>(
           theme.defaultProps,
           EXTENDED_THEME.props
         );
+        // @ts-ignore
         theme.props = deepMerge(theme.props, EXTENDED_THEME.props);
       }
 
