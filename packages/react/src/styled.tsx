@@ -1109,7 +1109,7 @@ export function verboseStyled<P, Variants>(
       };
 
       const EXTENDED_THEME =
-        CONFIG?.components?.[`${componentName}`].theme?.theme;
+        componentName && CONFIG?.components?.[componentName].theme?.theme;
 
       // Injecting style
       const toBeInjected = GluestackStyleSheet.resolve(
