@@ -12,6 +12,7 @@ export default styled(
 
     ':disabled': {
       opacity: 0.4,
+      // @ts-ignore
       _web: {
         // @ts-ignore
         pointerEvents: 'all !important',

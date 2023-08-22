@@ -7,4 +7,4 @@ export const Input = createInput({
   Input: StyledInput,
 });
 export const InputIcon = Input.Icon;
-export const InputInput = Input.Input;
+// export const InputInput = Input.Input;

@@ -12,4 +12,4 @@ export const Checkbox = createCheckbox({
 export const CheckboxIndicator = Checkbox.Indicator;
 export const CheckboxIcon = Checkbox.Icon;
 export const CheckboxLabel = Checkbox.Label;
-export const CheckboxGroup = Checkbox.Group;
+// export const CheckboxGroup = Checkbox.Group;

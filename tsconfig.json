@@ -1,30 +1,18 @@
 {
-  "include": ["src"],
-  "exclude": ["node_modules", "example"],
-  "paths": {},
   "compilerOptions": {
-    "emitDeclarationOnly": true,
-    "noEmit": false,
-    "baseUrl": "",
-    "declaration": true,
-    "allowUnreachableCode": false,
-    "allowUnusedLabels": true,
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "jsx": "react",
-    "lib": ["esnext", "dom"],
-    "module": "esnext",
-    "moduleResolution": "node",
-    "noFallthroughCasesInSwitch": true,
-    "noImplicitReturns": true,
-    "noImplicitUseStrict": false,
-    "noStrictGenericChecks": false,
-    "noUnusedLocals": false,
-    "noUnusedParameters": true,
-    "resolveJsonModule": true,
-    "outDir": "./build",
     "skipLibCheck": true,
+    "target": "es6",
+    "lib": ["es6", "es2015", "dom"],
+    "declaration": true,
+    "outDir": "build",
     "strict": true,
-    "target": "esnext"
-  }
+    "types": ["node"],
+    "esModuleInterop": true,
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    "allowJs": true,
+    "jsx": "react"
+  },
+  "exclude": ["node_modules"],
+  "include": ["src"]
 }
