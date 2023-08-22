@@ -22,7 +22,8 @@ export const parameters = {
         ['Introduction', 'Accessibility'],
         'Getting Started',
         ['Installation'],
-
+        'Core Concepts',
+        ['Themed Library', 'Unstyled Components'],
         'Configuration',
         ['Theme Tokens', 'Server-Side Rendering', 'React Server Components'],
         'Components',
