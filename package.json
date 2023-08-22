@@ -82,7 +82,7 @@
   },
   "peerDependencies": {
     "@gluestack-style/animation-plugin": "latest",
-    "@gluestack-style/react": "latest",
+    "@gluestack-style/react": "^0.2.3",
     "@types/react-native": "^0.72.2",
     "react": ">=16",
     "react-dom": ">=16",
