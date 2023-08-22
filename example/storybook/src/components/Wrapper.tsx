@@ -1,7 +1,7 @@
 import React from 'react';
 import { config } from '@gluestack-ui/themed';
 import { StyledProvider } from '@gluestack-ui/themed';
-import { createProvider } from '@gluestack-ui/themed';
+import { createProvider } from '@gluestack-ui/provider';
 import { Box } from './Layout/Box/Box';
 
 import { Center } from './Layout/Center/Center';

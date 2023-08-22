@@ -22,7 +22,7 @@ import {
   Icon,
 } from '@gluestack-ui/themed';
 import { KeyboardAvoidingView, Platform } from 'react-native';
-import { createIcon } from '@gluestack-ui/themed';
+import { createIcon } from '@gluestack-ui/icon';
 import { Svg, Path } from 'react-native-svg';
 import { styled, AsForwarder } from '@gluestack-ui/themed';
 
