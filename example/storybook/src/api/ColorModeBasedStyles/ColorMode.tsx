@@ -5,25 +5,18 @@ import { Wrapper } from '../../components/Wrapper';
 import { get, set } from '@gluestack-style/react';
 
 const StyledColorMode = memo(
-  styled(
-    View,
-    {
-      'w': 100,
-      'h': 100,
-      'bg': '$red500',
+  styled(View, {
+    'w': 100,
+    'h': 100,
+    'bg': '$red500',
 
-      '_dark': {
-        bg: '$info600',
-      },
-      ':hover': {
-        bg: '$purple500',
-      },
+    '_dark': {
+      bg: '$info600',
     },
-    {},
-    {},
-    {},
-    'Box'
-  )
+    ':hover': {
+      bg: '$purple500',
+    },
+  })
 );
 
 export function ColorMode() {
@@ -46,7 +39,7 @@ export function ColorMode() {
           Toggle {currectColorMode === 'dark' ? 'light' : 'dark'}
         </Text>
       </Pressable>
-      <StyledColorMode variant="blackbox" />
+      <StyledColorMode />
     </Wrapper>
   );
 }
