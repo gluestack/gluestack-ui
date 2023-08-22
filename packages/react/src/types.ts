@@ -75,6 +75,7 @@ export type GlueStackConfig<
   components?: {
     [key: string]: {
       theme: Partial<GlobalStyles<IGlobalAliases, IToken, IGlobalStyle>>;
+      componentConfig?: IConfigProps;
     };
   };
 };

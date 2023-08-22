@@ -39,17 +39,25 @@ const resolveComponentThemes = (config: any) => {
   Object.keys(newConfig.components).forEach((componentName) => {
     const component = newConfig.components[componentName];
     if (component.theme) {
-      component.theme = resolveTheme(component.theme, {
-        ...config,
-        propertyTokenMap,
-      });
+      component.theme = resolveTheme(
+        component.theme,
+        {
+          ...config,
+          propertyTokenMap,
+        },
+        component?.componentConfig
+      );
     }
   });
 
   return newConfig;
 };
 
-const resolveTheme = (componentTheme: {}, config: any) => {
+const resolveTheme = (
+  componentTheme: {},
+  config: any,
+  extendedConfig?: any
+) => {
   const versboseComponentTheme = convertStyledToStyledVerbosed(componentTheme);
   const componentHash = stableHash({
     ...componentTheme,
@@ -74,25 +82,25 @@ const resolveTheme = (componentTheme: {}, config: any) => {
     componentOrderResolvedBaseStyle,
     'extended-base',
     componentHash ? componentHash : 'css-injected-extended-time',
-    config
+    extendedConfig ?? {}
   );
   const extendedThemeDescendantBaseIDs = ExtendedStyleSheet.declare(
     descendantOrderResolvedBaseStyle,
     'extended-descendant-base',
     componentHash ? componentHash : 'css-injected-extended-time-descendant',
-    config
+    extendedConfig ?? {}
   );
   const extendedThemeVariantIDs = ExtendedStyleSheet.declare(
     componentOrderResolvedVariantStyle,
     'extended-variant',
     componentHash ? componentHash : 'css-injected-extended-time',
-    config
+    extendedConfig ?? {}
   );
   const extendedThemeDescendantVariantIDs = ExtendedStyleSheet.declare(
     descendantOrderResolvedVariantStyle,
     'extended-descendant-variant',
     componentHash ? componentHash : 'css-injected-extended-time-descendant',
-    config
+    extendedConfig ?? {}
   );
 
   const mergedStyleIds = [
@@ -101,9 +109,10 @@ const resolveTheme = (componentTheme: {}, config: any) => {
     ...extendedThemeVariantIDs,
     ...extendedThemeDescendantVariantIDs,
   ];
+
   const toBeInjected = ExtendedStyleSheet.resolve(mergedStyleIds, config, {});
 
-  const styleIds = getStyleIds(_orderedResolved, {});
+  const styleIds = getStyleIds(_orderedResolved, extendedConfig ?? {});
 
   return { toBeInjected, styleIds, theme: versboseComponentTheme };
 };
