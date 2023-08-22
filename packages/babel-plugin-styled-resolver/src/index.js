@@ -14,6 +14,9 @@ const {
 const {
   styledToStyledResolved,
 } = require('@gluestack-style/react/lib/commonjs/resolver/styledResolved');
+const {
+  injectComponentAndDescendantStyles,
+} = require('@gluestack-style/react/lib/commonjs/resolver/injectComponentAndDescendantStyles');
 
 const {
   convertStyledToStyledVerbosed,
@@ -549,153 +552,182 @@ module.exports = function (b) {
           // console.log('\n >>>>>>>>>>>>>>>>>>>>>\n\n');
         }
       },
-      // JSXOpeningElement(jsxOpeningElementPath) {
-      //   if (
-      //     jsxOpeningElementPath.node.name &&
-      //     jsxOpeningElementPath.node.name.name &&
-      //     guessingStyledComponents.includes(
-      //       jsxOpeningElementPath.node.name.name
-      //     )
-      //   ) {
-      //     let propsToBePersist = [];
+      JSXOpeningElement(jsxOpeningElementPath) {
+        if (
+          jsxOpeningElementPath.node.name &&
+          jsxOpeningElementPath.node.name.name &&
+          guessingStyledComponents.includes(
+            jsxOpeningElementPath.node.name.name
+          )
+        ) {
+          let propsToBePersist = [];
 
-      //     let mergedPropertyConfig = {
-      //       ...ConfigDefault?.propertyTokenMap,
-      //       ...propertyTokenMap,
-      //     };
+          let mergedPropertyConfig = {
+            ...ConfigDefault?.propertyTokenMap,
+            ...propertyTokenMap,
+          };
 
-      //     const styledSystemProps = {
-      //       ...CSSPropertiesMap,
-      //       ...CONFIG?.aliases,
-      //     };
+          const styledSystemProps = {
+            ...CSSPropertiesMap,
+            ...CONFIG?.aliases,
+          };
 
-      //     const attr = jsxOpeningElementPath.node.attributes;
-      //     attr.forEach((attribute, index) => {
-      //       if (t.isJSXAttribute(attribute)) {
-      //         const propName = attribute.name.name;
-      //         const propValue = attribute.value;
+          const attr = jsxOpeningElementPath.node.attributes;
+          attr.forEach((attribute, index) => {
+            if (t.isJSXAttribute(attribute)) {
+              const propName = attribute.name.name;
+              const propValue = attribute.value;
 
-      //         if (
-      //           propValue.type === 'JSXExpressionContainer' &&
-      //           !t.isIdentifier(propValue.expression) &&
-      //           propName === 'sx'
-      //         ) {
-      //           const objectProperties = propValue.expression;
+              if (
+                propValue.type === 'JSXExpressionContainer' &&
+                !t.isIdentifier(propValue.expression) &&
+                propName === 'sx'
+              ) {
+                const objectProperties = propValue.expression;
 
-      //           componentSXProp = getObjectFromAstNode(objectProperties);
-      //         } else if (styledSystemProps[propName]) {
-      //           componentUtilityProps = Object.assign(
-      //             componentUtilityProps ?? {},
-      //             {
-      //               [propName]: propValue.value,
-      //             }
-      //           );
-      //         } else {
-      //           propsToBePersist.push(attribute);
-      //         }
-      //       }
-      //     });
+                componentSXProp = getObjectFromAstNode(objectProperties);
+              } else if (styledSystemProps[propName]) {
+                componentUtilityProps = Object.assign(
+                  componentUtilityProps ?? {},
+                  {
+                    [propName]: propValue.value,
+                  }
+                );
+              } else {
+                propsToBePersist.push(attribute);
+              }
+            }
+          });
 
-      //     jsxOpeningElementPath.node.attributes.splice(
-      //       0,
-      //       jsxOpeningElementPath.node.attributes.length
-      //     );
+          jsxOpeningElementPath.node.attributes.splice(
+            0,
+            jsxOpeningElementPath.node.attributes.length
+          );
 
-      //     const sx = {
-      //       ...componentUtilityProps,
-      //       ...componentSXProp,
-      //     };
+          const sx = {
+            ...componentUtilityProps,
+            ...componentSXProp,
+          };
 
-      //     if (sx) {
-      //       const verbosedSx = convertSxToSxVerbosed(sx);
+          if (sx) {
+            const verbosedSx = convertSxToSxVerbosed(sx);
 
-      //       const inlineSxTheme = {
-      //         baseStyle: verbosedSx,
-      //       };
+            const inlineSxTheme = {
+              baseStyle: verbosedSx,
+            };
 
-      //       let componentExtendedConfig = merge(
-      //         {},
-      //         {
-      //           ...ConfigDefault,
-      //           propertyTokenMap: { ...mergedPropertyConfig },
-      //         }
-      //       );
+            let componentExtendedConfig = merge(
+              {},
+              {
+                ...ConfigDefault,
+                propertyTokenMap: { ...mergedPropertyConfig },
+              }
+            );
 
-      //       let resolvedStyles = styledToStyledResolved(
-      //         inlineSxTheme,
-      //         [],
-      //         componentExtendedConfig
-      //       );
+            let resolvedStyles = styledToStyledResolved(
+              inlineSxTheme,
+              [],
+              componentExtendedConfig
+            );
 
-      //       let orderedResolved =
-      //         styledResolvedToOrderedSXResolved(resolvedStyles);
+            let orderedResolved =
+              styledResolvedToOrderedSXResolved(resolvedStyles);
 
-      //       let sxHash = stableHash(sx);
+            let sxHash = stableHash(sx);
 
-      //       if (outputLibrary) {
-      //         sxHash = outputLibrary + '-' + sxHash;
-      //       }
+            if (outputLibrary) {
+              sxHash = outputLibrary + '-' + sxHash;
+            }
 
-      //       if (platform === 'all') {
-      //         INTERNAL_updateCSSStyleInOrderedResolvedWeb(
-      //           orderedResolved,
-      //           sxHash,
-      //           true,
-      //           'gs'
-      //         );
-      //       } else if (platform === 'web') {
-      //         INTERNAL_updateCSSStyleInOrderedResolvedWeb(
-      //           orderedResolved,
-      //           sxHash,
-      //           false,
-      //           'gs'
-      //         );
-      //       } else {
-      //         INTERNAL_updateCSSStyleInOrderedResolved(
-      //           orderedResolved,
-      //           sxHash,
-      //           true,
-      //           'gs'
-      //         );
-      //       }
+            if (platform === 'all') {
+              INTERNAL_updateCSSStyleInOrderedResolvedWeb(
+                orderedResolved,
+                sxHash,
+                true,
+                'gs'
+              );
+            } else if (platform === 'web') {
+              INTERNAL_updateCSSStyleInOrderedResolvedWeb(
+                orderedResolved,
+                sxHash,
+                false,
+                'gs'
+              );
+            } else {
+              INTERNAL_updateCSSStyleInOrderedResolved(
+                orderedResolved,
+                sxHash,
+                true,
+                'gs'
+              );
+            }
 
-      //       let styleIds = getStyleIds(
-      //         orderedResolved,
-      //         componentExtendedConfig
-      //       );
+            const orderCSSIds = injectComponentAndDescendantStyles(
+              orderedResolved,
+              sxHash,
+              'inline',
+              BUILD_TIME_GLUESTACK_STYLESHEET,
+              false
+            );
 
-      //       let styleIdsAst = generateObjectAst(styleIds);
+            const current_global_map =
+              BUILD_TIME_GLUESTACK_STYLESHEET.getStyleMap();
 
-      //       let orderResolvedArrayExpression = [];
+            const orderedResolvedTheme = [];
 
-      //       orderedResolved.forEach((styledResolved) => {
-      //         let orderedResolvedAst = generateObjectAst(styledResolved);
-      //         orderResolvedArrayExpression.push(orderedResolvedAst);
-      //       });
+            current_global_map?.forEach((styledResolved) => {
+              if (orderCSSIds.includes(styledResolved?.meta?.cssId)) {
+                orderedResolvedTheme.push(styledResolved);
+              }
+            });
 
-      //       jsxOpeningElementPath.node.attributes = propsToBePersist;
-      //       jsxOpeningElementPath.node.attributes.push(
-      //         t.jsxAttribute(
-      //           t.jsxIdentifier('styledIds'),
-      //           t.jsxExpressionContainer(styleIdsAst)
-      //         )
-      //       );
-      //       jsxOpeningElementPath.node.attributes.push(
-      //         t.jsxAttribute(
-      //           t.jsxIdentifier('orderResolved'),
-      //           t.jsxExpressionContainer(
-      //             t.arrayExpression(orderResolvedArrayExpression)
-      //           )
-      //         )
-      //       );
-      //       jsxOpeningElementPath.node.attributes.push(
-      //         t.jsxAttribute(t.jsxIdentifier('sxHash'), t.stringLiteral(sxHash))
-      //       );
-      //     }
-      //     componentSXProp = undefined;
-      //     componentUtilityProps = undefined;
-      //   }
-      // },
+            let styleIds = getStyleIds(
+              orderedResolved,
+              componentExtendedConfig
+            );
+
+            let styleIdsAst = generateObjectAst(styleIds);
+
+            let orderResolvedArrayExpression = [];
+
+            orderedResolved.forEach((styledResolved) => {
+              let orderedResolvedAst = generateObjectAst(styledResolved);
+              orderResolvedArrayExpression.push(orderedResolvedAst);
+            });
+
+            let orderedStyleIdsArrayAst = t.arrayExpression(
+              orderCSSIds?.map((cssId) => t.stringLiteral(cssId))
+            );
+
+            jsxOpeningElementPath.node.attributes = propsToBePersist;
+            jsxOpeningElementPath.node.attributes.push(
+              t.jsxAttribute(
+                t.jsxIdentifier('styledIds'),
+                t.jsxExpressionContainer(styleIdsAst)
+              )
+            );
+            jsxOpeningElementPath.node.attributes.push(
+              t.jsxAttribute(
+                t.jsxIdentifier('orderResolved'),
+                t.jsxExpressionContainer(
+                  t.arrayExpression(orderResolvedArrayExpression)
+                )
+              )
+            );
+            jsxOpeningElementPath.node.attributes.push(
+              t.jsxAttribute(t.jsxIdentifier('sxHash'), t.stringLiteral(sxHash))
+            );
+            jsxOpeningElementPath.node.attributes.push(
+              t.jsxAttribute(
+                t.jsxIdentifier('orderedStyleIdsArray'),
+                t.jsxExpressionContainer(orderedStyleIdsArrayAst)
+              )
+            );
+          }
+          componentSXProp = undefined;
+          componentUtilityProps = undefined;
+        }
+      },
     },
   };
 };
