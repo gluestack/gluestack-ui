@@ -2709,7 +2709,7 @@
     "@react-native-aria/focus" "^0.2.8"
     "@react-native-aria/interactions" "^0.2.10"
 
-"@gluestack-ui/checkbox@^0.1.12":
+"@gluestack-ui/checkbox@^0.1.12", "@gluestack-ui/checkbox@^0.1.17":
   version "0.1.17"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/checkbox/-/checkbox-0.1.17.tgz#4ebadec4b428d3d65b8983a6d4547bdae7a5f3ee"
   integrity sha512-6MpJgG306jKp3iip+EgkXcwYxqVkxuE+XW75+8TfOE3ZI3p0JZCuGNRSKaAOJDmwxPVPO40vm1GFPrREJvoi4g==
@@ -2823,7 +2823,7 @@
     "@react-native-aria/focus" "^0.2.7"
     react-native-svg "13.4.0"
 
-"@gluestack-ui/input@^0.1.5":
+"@gluestack-ui/input@^0.1.10", "@gluestack-ui/input@^0.1.5":
   version "0.1.10"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/input/-/input-0.1.10.tgz#10b40c633b43fdd45cae69a7693dacdb15f44fd3"
   integrity sha512-+441f6chxsPYdphsvJw3J+EvA2GGuuo1JLIJUEfNV3d2vuzG9nlRxlIXde2YuLu7W/kNuCHh0g0zKYNnHahlUA==
@@ -3040,7 +3040,7 @@
     "@react-native-aria/focus" "^0.2.7"
     react-native-svg "13.4.0"
 
-"@gluestack-ui/select@^0.1.6":
+"@gluestack-ui/select@^0.1.14", "@gluestack-ui/select@^0.1.6":
   version "0.1.14"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/select/-/select-0.1.14.tgz#484d668fd71c70d65f5c8cfb18964f21ebf80a28"
   integrity sha512-N2cyzl3MhIQgnKdqY3o5SikdstQXu8VNAYXTQ7N3TVN6nGqoVpWKGlgmz9yt+xQtTH6+2hNkdnjR6sMPdG3leQ==
@@ -3127,7 +3127,7 @@
     "@react-native-aria/interactions" "^0.2.8"
     "@react-stately/toggle" "^3.4.4"
 
-"@gluestack-ui/tabs@^0.1.6":
+"@gluestack-ui/tabs@^0.1.11", "@gluestack-ui/tabs@^0.1.6":
   version "0.1.11"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/tabs/-/tabs-0.1.11.tgz#4d0269b9064adc343c94aad8940c87f11bba7270"
   integrity sha512-/zXn5G7sPViNtWGtBDC8cl+QyE88vqfjio2P0IOZ77bzSA9ddA7SrMIhvHpvyy+kdWs5K8sElApXb6tAwFIi6w==
@@ -3145,7 +3145,7 @@
     "@react-native-aria/focus" "^0.2.8"
     "@react-native-aria/interactions" "^0.2.10"
 
-"@gluestack-ui/textarea@^0.1.7":
+"@gluestack-ui/textarea@^0.1.12", "@gluestack-ui/textarea@^0.1.7":
   version "0.1.12"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/textarea/-/textarea-0.1.12.tgz#9f544ba9b7aa43e78a2ec11c9894d7b3abe04a44"
   integrity sha512-yRZvLWXe9bZGb3oYZyz7vClUU6+qvQ+iHWM0F+ccMr6oj9c4i1Ru/9G5+8O+mhXm7/fuMhQWkAlpMy7BtEq7WQ==
@@ -3187,7 +3187,7 @@
     "@gluestack-ui/utils" "^0.1.3"
     "@react-native-aria/focus" "^0.2.7"
 
-"@gluestack-ui/tooltip@^0.1.6":
+"@gluestack-ui/tooltip@^0.1.15", "@gluestack-ui/tooltip@^0.1.6":
   version "0.1.15"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/tooltip/-/tooltip-0.1.15.tgz#cf722b4574cc9ad89c763a60b6ab2ec85e90b9b7"
   integrity sha512-qD7HOen4aJHIS4CeJOlLcHdYKvlTAARA3hQDjW51u5EXm/dKyekpW10A5Ny1Z95XT3DViNolEFizsiOLYnKF1A==

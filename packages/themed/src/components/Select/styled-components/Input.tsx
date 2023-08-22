@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { styled } from '../../styled';
 import { TextInput } from 'react-native';
 
