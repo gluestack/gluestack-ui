@@ -25,7 +25,7 @@ import {
 
 ## Overwriting
 
-Overwriting of the default theme is important to create customizable designs, `@gluestack-ui-themed` components comes with a default base styling for all components, which is acheived when the components are wrapped with a Provider that takes in a theme file. `@gluestack-ui/themed` ships a theme created by team of designers after a lot of research. But what if there is a need to customise the base styling for all components or just the theme file. Don't worry we got you covered. `@gluestack-style/react` exports a createConfig function with help of which we can create custom config according to our design/design-system.
+Overwriting of the default theme is important to create customizable designs, `@gluestack-ui-themed` components comes with a default base styling for all components, which is acheived when the components are wrapped with a Provider that takes in a theme file. `@gluestack-ui/themed` ships a theme created by team of designers after a lot of research. For customization `@gluestack-style/react` exports a createConfig function with help of which we can create custom config according to our design/design-system.
 
 ## Create Config
 
@@ -39,7 +39,8 @@ createConfig function takes an object as a parameter which takes in aliases, tok
 
 - components: This is where you can define styles for different components based on keys. API will look something like this.
 
-`  components: {
+```bash
+components: {
     Button: {
       theme: {
         bg: '$primary',
@@ -51,7 +52,8 @@ createConfig function takes an object as a parameter which takes in aliases, tok
       },
     },
     ButtonText: {},
-  }`
+  }
+```
 
 > Note: This feature is still a work in progress and is not supported yet, we will release it soon.
 
@@ -60,32 +62,19 @@ import { createConfig } from 'gluestack-style/react';
 import { config } from 'gluestack-ui/themed';
 
 const config = createConfig({
-  ...config,
-  aliases: {
-    // ...
-  },
-  tokens: {
-    colors: {
-      primary: 'blue',
-      secondary: 'green',
-      text: 'black',
-      background: 'white',
+    ...config.theme,
+    aliases: {
+      ...config.theme.aliases,
+      newbg: 'backgroundColor',
     },
-    fonts: {
-      body: 'Arial, sans-serif',
-      heading: 'Georgia, serif',
+    tokens: {
+      ...config.theme.tokens,
+      colors: {
+        ...config.theme.tokens.colors,
+        secondary: 'green',
+      },
     },
-    fontSizes: {
-      small: '12px',
-      medium: '16px',
-      large: '20px',
-    },
-    space: { 0: 0, 1: 4, 2: 8, 4: 16, 8: 32 },
-  },
-  globalStyle: {
-    // ...
-  },
-} as const);
+  } as const);
 ```
 
 Refer to [this](https://snack.expo.dev/@gluestack/createconfig) snack for live example.
