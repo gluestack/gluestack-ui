@@ -24,11 +24,11 @@ import type {
 } from './types';
 import {
   deepMerge,
-  // deepMergeArray,
   getResolvedTokenValueFromConfig,
   deepMergeObjects,
   resolveStringToken,
   shallowMerge,
+  // deepMergeArray,
 } from './utils';
 import { convertUtilityPropsToSX } from './core/convert-utility-to-sx';
 import { useStyled } from './StyledProvider';
@@ -888,8 +888,8 @@ export function verboseStyled<P, Variants>(
   componentStyleConfig: ConfigType = {},
   ExtendedConfig?: any,
   BUILD_TIME_PARAMS?: {
-    orderedResolved: OrderedSXResolved;
-    styleIds: {
+    orderedResolved?: OrderedSXResolved;
+    styleIds?: {
       component: StyleIds;
       descendant: StyleIds;
     };
@@ -1158,6 +1158,10 @@ export function verboseStyled<P, Variants>(
         theme = shallowMerge({ ...globalStyle }, theme);
       }
 
+      // deepMergeArray(
+      //   styleIds,
+      //   CONFIG?.components?.[`${componentName}`]?.theme.styleIds
+      // );
       const {
         componentStyleIds: c,
         componentDescendantStyleIds: d,
@@ -1205,7 +1209,6 @@ export function verboseStyled<P, Variants>(
       incomingComponentProps
     );
 
-    //
     // passingProps is specific to current component
     const passingProps = deepMergeObjects(
       applyComponentPassingProps,
@@ -1634,8 +1637,6 @@ export function verboseStyled<P, Variants>(
 
     // END: Unable to optimize because of useEffect overhead and stableHash to prevent rerender
 
-    const extendedCssIDs =
-      CONFIG?.components?.[`${componentName}`]?.theme.styleIds || [];
     const styleCSSIds = [
       ...mergedBaseStyleCSSIds,
       ...applyBaseStyleCSSIds,
@@ -1645,7 +1646,6 @@ export function verboseStyled<P, Variants>(
       ...applyAncestorVariantStyleCSSIds,
       ...applyComponentStateBaseStyleIds,
       ...applyComponentStateVariantStyleIds,
-      ...extendedCssIDs,
       ...applySxVariantStyleCSSIds.current,
       ...applySxStateBaseStyleCSSIds,
       ...mergedSXVariantStyleCSSIds,

@@ -5,6 +5,7 @@ import { stableHash } from './stableHash';
 import { propertyTokenMap } from './propertyTokenMap';
 import { ExtendedStyleSheet } from './style-sheet';
 import { getComponentOrderResolve } from './getComponentOrderResolve';
+import { getStyleIds } from './resolver/getStyleIds';
 export const createConfig = <
   T extends GlueStackConfig<
     //@ts-ignore
@@ -94,14 +95,16 @@ const resolveTheme = (componentTheme: {}, config: any) => {
     config
   );
 
-  const styleIds = [
+  const mergedStyleIds = [
     ...extendedThemeBaseIDs,
     ...extendedThemeDescendantBaseIDs,
     ...extendedThemeVariantIDs,
     ...extendedThemeDescendantVariantIDs,
   ];
+  const toBeInjected = ExtendedStyleSheet.resolve(mergedStyleIds, config, {});
 
-  const toBeInjected = ExtendedStyleSheet.resolve(styleIds, config, {});
+  const styleIds = getStyleIds(_orderedResolved, {});
+
   return { toBeInjected, styleIds };
 };
 

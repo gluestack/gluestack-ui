@@ -8,15 +8,21 @@ const StyledColorMode = memo(
   styled(
     View,
     {
-      w: 100,
-      h: 100,
-      bg: '$red500',
+      'w': 100,
+      'h': 100,
+      'bg': '$red500',
 
-      _dark: {
+      '_dark': {
         bg: '$info600',
       },
+      ':hover': {
+        bg: '$purple500',
+      },
     },
-    {}
+    {},
+    {},
+    {},
+    'Box'
   )
 );
 
@@ -40,7 +46,7 @@ export function ColorMode() {
           Toggle {currectColorMode === 'dark' ? 'light' : 'dark'}
         </Text>
       </Pressable>
-      <StyledColorMode />
+      <StyledColorMode variant="blackbox" />
     </Wrapper>
   );
 }

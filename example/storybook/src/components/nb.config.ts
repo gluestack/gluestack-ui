@@ -648,7 +648,17 @@ export const config = createConfig({
   components: {
     Box: {
       theme: {
-        bg: '$amber200',
+        'bg': '$green500',
+        ':hover': {
+          bg: '$yellow400',
+        },
+        'variants': {
+          variant: {
+            blackbox: {
+              bg: '$black',
+            },
+          },
+        },
       },
     },
   },
