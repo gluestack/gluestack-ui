@@ -308,10 +308,12 @@ export type SxProps<
     GenericComponentProps,
     PLATFORM
   > & {
-    props?: RNProps &
-      RNStyledProps & {
-        as?: any;
-      };
+    props?:
+      | (RNProps &
+          RNStyledProps & {
+            as?: any;
+          })
+      | { [key: string]: any };
   } & Partial<{
       [key: string]: any;
     }>;
