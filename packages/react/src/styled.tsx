@@ -28,6 +28,7 @@ import {
   deepMergeObjects,
   resolveStringToken,
   shallowMerge,
+  deepMergeArray,
   // deepMergeArray,
 } from './utils';
 import { convertUtilityPropsToSX } from './core/convert-utility-to-sx';
@@ -1107,6 +1108,8 @@ export function verboseStyled<P, Variants>(
         propertyTokenMap,
       };
 
+      const EXTENDED_THEME = CONFIG?.components?.[`${componentName}`].theme;
+
       // Injecting style
       const toBeInjected = GluestackStyleSheet.resolve(
         orderedCSSIds,
@@ -1115,39 +1118,54 @@ export function verboseStyled<P, Variants>(
       );
       GluestackStyleSheet.inject(toBeInjected);
 
-      // Injecting Extended StyleSheet from Config
-      const ExtendedToBeInjected =
-        CONFIG?.components?.[`${componentName}`]?.theme.toBeInjected;
-      ExtendedToBeInjected && ExtendedStyleSheet.inject(ExtendedToBeInjected);
+      if (EXTENDED_THEME) {
+        theme = deepMerge(theme, EXTENDED_THEME);
+        theme.defaultProps = deepMerge(
+          theme.defaultProps,
+          EXTENDED_THEME.props
+        );
 
-      // GluestackStyleSheet.resolveByOrderResolved(
-      //   componentOrderResolvedBaseStyle,
-      //   'boot-base',
-      //   componentHash,
-      //   componentExtendedConfig,
-      //   CONFIG
-      // );
-      // GluestackStyleSheet.resolveByOrderResolved(
-      //   componentOrderResolvedVariantStyle,
-      //   'boot-variant',
-      //   componentHash,
-      //   componentExtendedConfig,
-      //   CONFIG
-      // );
-      // GluestackStyleSheet.resolveByOrderResolved(
-      //   descendantOrderResolvedBaseStyle,
-      //   'boot-descendant-base',
-      //   componentHash,
-      //   componentExtendedConfig,
-      //   CONFIG
-      // );
-      // GluestackStyleSheet.resolveByOrderResolved(
-      //   descendantOrderResolvedVariantStyle,
-      //   'boot-descendant-variant',
-      //   componentHash,
-      //   componentExtendedConfig,
-      //   CONFIG
-      // );
+        const componentHash = stableHash({
+          ...EXTENDED_THEME,
+          ...componentStyleConfig,
+          ...ExtendedConfig,
+        });
+
+        const {
+          orderedUnResolvedTheme: a,
+          componentOrderResolvedBaseStyle: b,
+          componentOrderResolvedVariantStyle: c,
+          descendantOrderResolvedBaseStyle: d,
+          descendantOrderResolvedVariantStyle: f,
+          styleCSSIdsArr: g,
+        } = updateOrderUnResolvedMap(
+          EXTENDED_THEME,
+          componentHash,
+          declarationType,
+          ExtendedConfig
+        );
+
+        componentOrderResolvedBaseStyle = b;
+        componentOrderResolvedVariantStyle = c;
+        descendantOrderResolvedBaseStyle = d;
+        descendantOrderResolvedVariantStyle = f;
+
+        let orderedCSSIds = g;
+
+        const styleIdsForExtendedTheme = getStyleIds(a, componentStyleConfig);
+
+        styleIds = deepMergeArray(styleIds, styleIdsForExtendedTheme);
+
+        const toBeInjected = GluestackStyleSheet.resolve(
+          orderedCSSIds,
+          CONFIG,
+          componentExtendedConfig
+        );
+
+        // run time
+        GluestackStyleSheet.inject(toBeInjected);
+      }
+
       Object.assign(styledSystemProps, CONFIG?.aliases);
 
       //@ts-ignore
