@@ -295,12 +295,9 @@ export type SxProps<
     PLATFORM
   >;
 } & {
-  [Key in `_${PLATFORMS}`]?: SxProps<
-    GenericComponentStyles,
-    Variants,
-    GenericComponentProps,
-    Key
-  >;
+  [Key in `_${PLATFORMS}`]?:
+    | SxProps<GenericComponentStyles, Variants, GenericComponentProps, Key>
+    | { [key: string]: any };
 } & {
   [Key in `_${string}`]?: SxProps<
     RNStyledProps,
@@ -308,10 +305,12 @@ export type SxProps<
     GenericComponentProps,
     PLATFORM
   > & {
-    props?: RNProps &
-      RNStyledProps & {
-        as?: any;
-      };
+    props?:
+      | (RNProps &
+          RNStyledProps & {
+            as?: any;
+          })
+      | { [key: string]: any };
   } & Partial<{
       [key: string]: any;
     }>;
