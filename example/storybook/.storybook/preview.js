@@ -48,7 +48,7 @@ export const parameters = {
           'CSS Variables Plugin',
         ],
         'configuration',
-        ['Theme Tokens', 'Breakpoints', 'SSR'],
+        ['Theme Tokens', 'Breakpoints', 'Components', 'Global Style', 'SSR'],
         'advanced',
         ['Architecture', 'Specificity', 'Babel Plugins'],
         'more',
