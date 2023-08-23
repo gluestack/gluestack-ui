@@ -10,32 +10,29 @@ pageDescription: gluestack-ui is a themed library, it provides different themes 
 showHeader: true
 ---
 
-import { Canvas, Meta, Story } from '@storybook/addon-docs';
-
-import {
-  AppProvider,
-  Box,
-  HStack,
-  Text,
-  Hoverable,
-  CodePreview,
-} from '@gluestack/design-system';
+import { Meta } from '@storybook/addon-docs';
 
 <Meta title="Core Concepts/Themed Library" />
 
 ## Themed Library
 
-`@gluestack-ui/themed` is a themed component library, it is a collection of pre-designed user interface components that are styled according to a specific theme or design language. These components are reusable, consistent, interactive and are accessible on web, iOS, and Android. This library helps in streamlining the development process by providing ready-made components, reducing the need for repetitive styling and development work.
+`@gluestack-ui/themed` is a themed component library, it is a collection of pre-designed user interface components that are styled according to a specific theme or design language. These components are reusable, consistent, interactive and are accessible on web, iOS, and Android.
 
-All the components of `@gluestack-ui/themed` are styled according to the default theme. This default theme not only ensures a consistent and polished visual identity but also serves as a solid foundation for your application's user interface. gluestack-ui simplifies the development process by wrapping your app within the GlueStackUIProvider and passing the configuration as a parameter, you instantly unlock the magic of seamless styling.
+All the components of `@gluestack-ui/themed` are styled according to the default theme. This default theme ensures a consistent and polished visual identity. gluestack-ui simplifies the development process by wrapping your app within the `GlueStackUIProvider` and passing the configuration as a parameter, you instantly unlock the magic of seamless styling.
 
 ## Architecture
 
-`@gluestack-ui/themed` provides
+We will try and understand how the components exported from `@gluestack-ui/themed` are created. First, we created styled components using [gluestack-style](https://style.gluestack.io/)(styling engine). We can use customized styles, theme tokens, dark and light mode, breakpoints etc with the help of `@gluestack-style/react`. All the themes, tokens, breakpoints and other styling information is defined in a config file. Then, we add accessibility, interactivity and other features to the components using `@gluestack-ui`(provides creator functions which takes in styled components and returns fully functional component). After creating fully accessible and interactive components we are bundling it into a new package `@gluestack-ui/themed` and then using it.
 
-- Customizable themes
-- Theme Tokens
-- Styled components
+<img src="/images/themed.png" />
+
+## Features
+
+`@gluestack-ui/themed` uses `@gluestack-style/react` for styling of components, it provides features like:
+
+- Tokens
+- Themes
+- Overwriting components base-styles
 
 `@gluestack-ui/themed` exports a config file where we can manipulate the theme tokens and add new themes. Theme tokens are standardized values that represent various design attributes, such as colors, typography settings, spacing, and more. These tokens serve as a consistent and centralized way to define and manage the visual properties of UI components across your application. Customizing these tokens can also be done, for more information refer to this [doc](https://ui.gluestack.io/docs/configuration/theme-tokens).
 
