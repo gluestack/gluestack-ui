@@ -28,7 +28,7 @@ import App from './App';
 <Heading color="black">Getting Started</Heading>
 
 <AppProvider>
-  <HStack space="md"  sx={{
+  <HStack space="md"  flex={1} sx={{
       '@lg': {
         flexDirection: 'row',
       },
@@ -38,7 +38,6 @@ import App from './App';
       mt={28}
       mb={24}
       h={180}
-      w={502}
        borderRadius="12px"
    borderWidth="1px"
  borderColor="rgba(38, 38, 38, 1)"  
@@ -47,11 +46,16 @@ import App from './App';
           background:
              'linear-gradient(329deg, rgba(0, 16, 71, 0.40) 0%, rgba(77, 77, 77, 0.00) 100%), linear-gradient(123deg, rgba(115, 41, 150, 0.60) 0%, rgba(15, 24, 86, 0.00) 100%)'
         },
+        '@base': {
+          minWidth: '$full',
+        },
+        '@lg': {
+          minWidth: '20%',
+        },
       }}
     >
       <Box
         h={180}
-        w={502}
         borderRadius="12px"
    borderWidth="1px"
  borderColor="rgba(38, 38, 38, 1)"  
@@ -76,19 +80,30 @@ import App from './App';
               mt={'$1'}
               codeBlockProps={{
                 bg: 'white',
-                h:"56px",
-                w:"454px",
                 borderRadius:"8px",
                 px:"16px",
                 py:"24px"
+              }}
+              sx={{
+                 '@lg': {
+                h:"56px",
+                w:"454px",
+              },
               }}
             />
           </VStack>
         </Box>
       </Box>
     </Box>
-    <Box mt={28} mb={24} h={180} w={502} bg="black">
-      <Box h={180} w={502} borderRadius="xl" borderColor="#262626">
+    <Box mt={28} mb={24} h={180}  bg="black" sx={{
+        '@base': {
+          minWidth: '$full',
+        },
+        '@lg': {
+          minWidth: '20%',
+        },
+    }}>
+      <Box h={180}  borderRadius="xl" borderColor="#262626">
         <Box p={24}>
           <VStack>
               <Heading color="white">Manual Installation</Heading>
@@ -103,7 +118,7 @@ import App from './App';
 
 <Heading color="black"> Try gluestack-ui </Heading>
 
-<HStack space="md"  sx={{
+<HStack space="md"  flex={1} sx={{
       '@lg': {
         flexDirection: 'row',
       },
@@ -116,15 +131,22 @@ import App from './App';
     mt={28}
     mb={24}
     h={112}
-    w={502}
+  
     sx={{
       _web: {
         background:
           'linear-gradient(329deg, rgba(0, 16, 71, 0.40) 0%, rgba(77, 77, 77, 0.00) 100%), linear-gradient(123deg, rgba(97, 85, 42, 0.60) 0%, rgba(15, 24, 86, 0.00) 100%)',
       },
+        '@base': {
+          minWidth: '$full',
+        },
+        '@lg': {
+          minWidth: '45%',
+          
+        },
     }}
   >
-    <Box h={112} w={502} borderRadius="$xl" borderColor="#262626">
+    <Box h={112}  borderRadius="$xl" borderColor="#262626">
       <Box p={24}>
         <VStack>
           <HStack alignItems="center" space="md" mb={10}>
@@ -145,22 +167,27 @@ import App from './App';
  borderColor="rgba(38, 38, 38, 1)"   
   mt={28}
     mb={24}
-    h={112}
-    w={502}
+    h={112} 
     sx={{
       _web: {
         background:
           'linear-gradient(138deg, rgba(3, 189, 153, 0.40) 0.96%, rgba(27, 155, 147, 0.13) 46.16%, rgba(15, 31, 81, 0.28) 85.56%)'
       },
+        '@base': {
+          minWidth: '$full',
+        },
+        '@lg': {
+          minWidth: '45%',
+        },
     }}
   >
     <Box
       h={112}
-      w={502}
     >
       <Box p={24}>
         <VStack>
           <HStack alignItems="center" space="md" mb={10}>
+          
            <Checkbox/>
             <Heading color="white" my={0}>Try gluestack-ui on CodeSandbox</Heading>
           </HStack>
@@ -224,6 +251,7 @@ import App from './App';
       href="/docs/getting-started/install-rn"
     />
   </HStack>
+
 </AppProvider>
 
 ```

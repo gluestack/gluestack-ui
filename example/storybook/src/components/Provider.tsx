@@ -12,7 +12,7 @@ TempProvider.displayName = 'Provider';
 
 export const Provider = ({ children }: any) => {
   return (
-    <TempProvider config={config.theme}>
+    <TempProvider config={config.theme} color="dark">
       <Box
         sx={{
           _dark: {

@@ -21,7 +21,7 @@ const Fold2 = memo(() => {
         borderRadius="$xl"
         borderWidth={1}
         borderColor="$borderDark800"
-        bg="$coolGray900"
+        bg="#071117"
         mt="$6"
         minHeight={234}
         sx={{
