@@ -53,5 +53,12 @@ export function injectComponentAndDescendantStyles(
     ...componentOrderResolvedVariantStyleIds,
     ...descendantOrderResolvedVariantStyleIds,
   ];
-  GluestackStyleSheet.resolve(styleCSSIdsArr, {}, {}, false);
+
+  const toBeInjected = GluestackStyleSheet.resolve(
+    styleCSSIdsArr,
+    {},
+    {},
+    false
+  );
+  GluestackStyleSheet.inject(toBeInjected);
 }

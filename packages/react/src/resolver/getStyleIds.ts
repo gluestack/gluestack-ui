@@ -127,7 +127,7 @@ export function getDescendantStyleIds(
 
 export function getStyleIds(
   orderedResolved: OrderedSXResolved,
-  componentStyleConfig: any
+  componentStyleConfig: any = {}
 ): {
   component: StyleIds;
   descendant: StyleIds;

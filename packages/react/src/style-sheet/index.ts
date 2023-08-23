@@ -49,7 +49,6 @@ export class StyleInjector {
     cssIds.forEach((cssId: string) => {
       if (this.#globalStyleMap.get(cssId)) {
         const styledResolved = this.#globalStyleMap.get(cssId);
-
         const theme = styledResolved?.original;
 
         if (resolve) {
@@ -82,13 +81,16 @@ export class StyleInjector {
       }
     });
 
+    return toBeInjected;
+  }
+
+  inject(toBeInjected: any) {
     Object.keys(toBeInjected).forEach((type) => {
       Object.keys(toBeInjected[type]).forEach((styleTag) => {
         this.injectStyles(toBeInjected[type][styleTag], type, styleTag);
       });
     });
   }
-
   resolveComponentTheme(
     componentTheme: any,
     theme: any,

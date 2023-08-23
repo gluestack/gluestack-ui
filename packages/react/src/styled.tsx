@@ -24,11 +24,12 @@ import type {
 } from './types';
 import {
   deepMerge,
-  // deepMergeArray,
   getResolvedTokenValueFromConfig,
   deepMergeObjects,
   resolveStringToken,
   shallowMerge,
+  deepMergeArray,
+  // deepMergeArray,
 } from './utils';
 import { convertUtilityPropsToSX } from './core/convert-utility-to-sx';
 import { useStyled } from './StyledProvider';
@@ -54,8 +55,13 @@ import {
   convertSxToSxVerbosed,
 } from './convertSxToSxVerbosed';
 import { stableHash } from './stableHash';
-import { DeclarationType, GluestackStyleSheet } from './style-sheet';
+import {
+  DeclarationType,
+  ExtendedStyleSheet,
+  GluestackStyleSheet,
+} from './style-sheet';
 import { CSSPropertiesMap } from './core/styled-system';
+import { updateOrderUnResolvedMap } from './updateOrderUnResolvedMap';
 // import { GluestackStyleSheet } from './style-sheet';
 const styledSystemProps = { ...CSSPropertiesMap };
 
@@ -759,78 +765,6 @@ export function getVariantProps(
 
 // BASE COLOR MODE RESOLUTION
 
-function updateOrderUnResolvedMap(
-  theme: any,
-  componentHash: string,
-  declarationType: string,
-  ExtendedConfig: any
-) {
-  const unresolvedTheme = styledToStyledResolved(theme, [], {}, false);
-  const orderedUnResolvedTheme =
-    styledResolvedToOrderedSXResolved(unresolvedTheme);
-
-  INTERNAL_updateCSSStyleInOrderedResolved(
-    orderedUnResolvedTheme,
-    componentHash,
-    true
-  );
-
-  const componentOrderResolvedBaseStyle = getComponentResolvedBaseStyle(
-    orderedUnResolvedTheme
-  );
-  const componentOrderResolvedVariantStyle = getComponentResolvedVariantStyle(
-    orderedUnResolvedTheme
-  );
-
-  const descendantOrderResolvedBaseStyle = getDescendantResolvedBaseStyle(
-    orderedUnResolvedTheme
-  );
-  const descendantOrderResolvedVariantStyle = getDescendantResolvedVariantStyle(
-    orderedUnResolvedTheme
-  );
-
-  const componentBaseStyleIds = GluestackStyleSheet.declare(
-    componentOrderResolvedBaseStyle,
-    declarationType + '-base',
-    componentHash ? componentHash : 'css-injected-boot-time',
-    ExtendedConfig
-  );
-  const descendantBaseStyleIds = GluestackStyleSheet.declare(
-    descendantOrderResolvedBaseStyle,
-    declarationType + '-descendant-base',
-    componentHash ? componentHash : 'css-injected-boot-time-descendant',
-    ExtendedConfig
-  );
-  const componentVariantStyleIds = GluestackStyleSheet.declare(
-    componentOrderResolvedVariantStyle,
-    declarationType + '-variant',
-    componentHash ? componentHash : 'css-injected-boot-time',
-    ExtendedConfig
-  );
-  const descendantVariantStyleIds = GluestackStyleSheet.declare(
-    descendantOrderResolvedVariantStyle,
-    declarationType + '-descendant-variant',
-    componentHash ? componentHash : 'css-injected-boot-time-descendant',
-    ExtendedConfig
-  );
-
-  const styleCSSIdsArr = [
-    ...componentBaseStyleIds,
-    ...descendantBaseStyleIds,
-    ...componentVariantStyleIds,
-    ...descendantVariantStyleIds,
-  ];
-
-  return {
-    orderedUnResolvedTheme,
-    componentOrderResolvedBaseStyle,
-    componentOrderResolvedVariantStyle,
-    descendantOrderResolvedBaseStyle,
-    descendantOrderResolvedVariantStyle,
-    styleCSSIdsArr,
-  };
-}
-
 const getStyleIdsFromMap = (
   CONFIG: any,
   ExtendedConfig: any,
@@ -884,13 +818,14 @@ export function verboseStyled<P, Variants>(
   componentStyleConfig: ConfigType = {},
   ExtendedConfig?: any,
   BUILD_TIME_PARAMS?: {
-    orderedResolved: OrderedSXResolved;
-    styleIds: {
+    orderedResolved?: OrderedSXResolved;
+    styleIds?: {
       component: StyleIds;
       descendant: StyleIds;
     };
     themeHash?: string;
-  }
+  },
+  componentName?: string
 ) {
   const componentHash = stableHash({
     ...theme,
@@ -950,10 +885,6 @@ export function verboseStyled<P, Variants>(
     component: StyleIds;
     descendant: StyleIds;
   };
-  let componentOrderResolvedBaseStyle: any = {};
-  let componentOrderResolvedVariantStyle: any = {};
-  let descendantOrderResolvedBaseStyle: any = {};
-  let descendantOrderResolvedVariantStyle: any = {};
   let orderedCSSIds: any = [];
   // const orderedUnResolvedTheme = updateOrderUnResolvedMap(
   //   theme,
@@ -976,28 +907,16 @@ export function verboseStyled<P, Variants>(
       );
     }
   } else {
-    const {
-      orderedUnResolvedTheme: a,
-      componentOrderResolvedBaseStyle: b,
-      componentOrderResolvedVariantStyle: c,
-      descendantOrderResolvedBaseStyle: d,
-      descendantOrderResolvedVariantStyle: f,
-      styleCSSIdsArr: g,
-    } = updateOrderUnResolvedMap(
+    const { styledIds: g, verbosedStyleIds } = updateOrderUnResolvedMap(
       theme,
       componentHash,
       declarationType,
       ExtendedConfig
     );
 
-    componentOrderResolvedBaseStyle = b;
-    componentOrderResolvedVariantStyle = c;
-    descendantOrderResolvedBaseStyle = d;
-    descendantOrderResolvedVariantStyle = f;
-
     orderedCSSIds = g;
 
-    styleIds = getStyleIds(a, componentStyleConfig);
+    styleIds = verbosedStyleIds;
   }
 
   if (BUILD_TIME_PARAMS?.styleIds) {
@@ -1101,43 +1020,39 @@ export function verboseStyled<P, Variants>(
         ...styledContext.config,
         propertyTokenMap,
       };
+      const EXTENDED_THEME =
+        componentName && CONFIG?.components?.[componentName]?.theme?.theme;
 
-      // GluestackStyleSheet.resolve(CONFIG);
-      // GluestackStyleSheet.injectInStyle();
+      // Injecting style
+      if (EXTENDED_THEME) {
+        theme.variants = deepMerge(theme.variants, EXTENDED_THEME.variants);
+        theme.defaultProps = deepMerge(
+          theme.defaultProps,
+          EXTENDED_THEME.props
+        );
+        // @ts-ignore
+        theme.props = deepMerge(theme.props, EXTENDED_THEME.props);
 
-      GluestackStyleSheet.resolve(
+        // Merge of Extended Config Style ID's with Component Style ID's
+        deepMergeArray(
+          styleIds,
+          CONFIG?.components?.[`${componentName}`]?.theme
+            ?.extendedVerbosedStyleIds
+        );
+        // Injecting Extended StyleSheet from Config
+        orderedCSSIds = [
+          ...orderedCSSIds,
+          ...CONFIG?.components?.[`${componentName}`]?.theme?.extendedStyleIds,
+        ];
+      }
+
+      const toBeInjected = GluestackStyleSheet.resolve(
         orderedCSSIds,
         CONFIG,
         componentExtendedConfig
       );
-      // GluestackStyleSheet.resolveByOrderResolved(
-      //   componentOrderResolvedBaseStyle,
-      //   'boot-base',
-      //   componentHash,
-      //   componentExtendedConfig,
-      //   CONFIG
-      // );
-      // GluestackStyleSheet.resolveByOrderResolved(
-      //   componentOrderResolvedVariantStyle,
-      //   'boot-variant',
-      //   componentHash,
-      //   componentExtendedConfig,
-      //   CONFIG
-      // );
-      // GluestackStyleSheet.resolveByOrderResolved(
-      //   descendantOrderResolvedBaseStyle,
-      //   'boot-descendant-base',
-      //   componentHash,
-      //   componentExtendedConfig,
-      //   CONFIG
-      // );
-      // GluestackStyleSheet.resolveByOrderResolved(
-      //   descendantOrderResolvedVariantStyle,
-      //   'boot-descendant-variant',
-      //   componentHash,
-      //   componentExtendedConfig,
-      //   CONFIG
-      // );
+
+      GluestackStyleSheet.inject(toBeInjected);
       Object.assign(styledSystemProps, CONFIG?.aliases);
 
       //@ts-ignore
@@ -1195,7 +1110,6 @@ export function verboseStyled<P, Variants>(
       incomingComponentProps
     );
 
-    //
     // passingProps is specific to current component
     const passingProps = deepMergeObjects(
       applyComponentPassingProps,
@@ -1716,13 +1630,14 @@ export function styled<P, Variants>(
   componentStyleConfig?: ConfigType,
   ExtendedConfig?: ExtendedConfigType,
   BUILD_TIME_PARAMS?: {
-    orderedResolved: OrderedSXResolved;
-    styleIds: {
+    orderedResolved?: OrderedSXResolved;
+    styleIds?: {
       component: StyleIds;
       descendant: StyleIds;
     };
     themeHash?: string;
-  }
+  },
+  componentName?: string
 ) {
   const DEBUG_TAG = componentStyleConfig?.DEBUG;
   const DEBUG =
@@ -1746,7 +1661,8 @@ export function styled<P, Variants>(
     sxConvertedObject,
     componentStyleConfig,
     ExtendedConfig,
-    BUILD_TIME_PARAMS
+    BUILD_TIME_PARAMS,
+    componentName
   );
 
   return StyledComponent;
