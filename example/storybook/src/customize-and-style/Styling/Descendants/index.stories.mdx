@@ -1,0 +1,42 @@
+---
+title: Descendants | gluestack-ui
+
+description: gluestack-ui provides an easy API to style children of the components.
+
+pageTitle: Descendants
+
+pageDescription: gluestack-ui provides an easy API to style children of the components.
+
+showHeader: true
+---
+
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="Customize and Style/Styling/Descendants" />
+
+## Descendants
+
+We can provide context based descendant styling with the help of gluestack-ui, i.e we can apply styles to the children of a component from the parent component.
+
+```jsx
+import { config } from './gluestack-ui.config';
+import { Box, Button, GluestackUIProvider } from '@gluestack-ui/react';
+
+export default function App() {
+  return (
+    <GluestackUIProvider config={config.theme}>
+      <Box justifyContent="center" alignItems="center" h="100%">
+        <Box alignItems="center">
+          <Button sx={{ _text: { color: 'red' } }}>
+            <Button.Text>Button</Button.Text>
+          </Button>
+        </Box>
+      </Box>
+    </GluestackUIProvider>
+  );
+}
+```
+
+In the above example we are applying styles to ButtonText by passing styles \_text property of sx in Button component.
+
+Expo snack link for the above example is provided [here](https://snack.expo.dev/@gluestack/gluestack-ui-descendant-styles) .

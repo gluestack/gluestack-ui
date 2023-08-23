@@ -1,0 +1,46 @@
+---
+title: Platform Specific | gluestack-ui
+
+description: gluestack-ui provides an easy way to apply different styles on android, ios and web.
+
+pageTitle: Platform Specific
+
+pageDescription: gluestack-ui provides an easy way to apply different styles on android, ios and web.
+
+showHeader: true
+---
+
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="Customize and Style/Styling/Platform Specific" />
+
+## Platform Specific
+
+We can provide platform specific styles in the sx prop of the component. The sx prop takes an object with \_ios, \_andorid and \_web specific styles.
+
+```jsx
+import { config } from './gluestack-ui.config';
+import { Box, Button, GluestackUIProvider } from '@gluestack-ui/themed';
+
+export default function App() {
+  return (
+    <GluestackUIProvider config={config.theme}>
+      <Box justifyContent="center" alignItems="center" h="100%">
+        <Box alignItems="center">
+          <Button
+            sx={{
+              _ios: { bg: '$red500' },
+              _web: { bg: '$green500' },
+              _android: { bg: '$yellow500' },
+            }}
+          >
+            <Button.Text>Button</Button.Text>
+          </Button>
+        </Box>
+      </Box>
+    </GluestackUIProvider>
+  );
+}
+```
+
+Expo snack link for above example is provided [here](https://snack.expo.dev/@gluestack/gluestack-ui-platform-specific).
