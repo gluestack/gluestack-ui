@@ -1646,8 +1646,7 @@ export function styled<P, Variants>(
       descendant: StyleIds;
     };
     themeHash?: string;
-  },
-  componentName?: string
+  }
 ) {
   const DEBUG_TAG = componentStyleConfig?.DEBUG;
   const DEBUG =
@@ -1671,8 +1670,7 @@ export function styled<P, Variants>(
     sxConvertedObject,
     componentStyleConfig,
     ExtendedConfig,
-    BUILD_TIME_PARAMS,
-    componentName
+    BUILD_TIME_PARAMS
   );
 
   return StyledComponent;
