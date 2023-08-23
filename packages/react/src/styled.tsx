@@ -55,11 +55,7 @@ import {
   convertSxToSxVerbosed,
 } from './convertSxToSxVerbosed';
 import { stableHash } from './stableHash';
-import {
-  DeclarationType,
-  ExtendedStyleSheet,
-  GluestackStyleSheet,
-} from './style-sheet';
+import { DeclarationType, GluestackStyleSheet } from './style-sheet';
 import { CSSPropertiesMap } from './core/styled-system';
 import { updateOrderUnResolvedMap } from './updateOrderUnResolvedMap';
 // import { GluestackStyleSheet } from './style-sheet';
@@ -911,7 +907,7 @@ export function verboseStyled<P, Variants>(
       theme,
       componentHash,
       declarationType,
-      ExtendedConfig
+      componentStyleConfig
     );
 
     orderedCSSIds = g;
@@ -1046,6 +1042,19 @@ export function verboseStyled<P, Variants>(
         ];
       }
 
+      //@ts-ignore
+      const globalStyle = styledContext.globalStyle;
+
+      if (globalStyle) {
+        const { globalStyleIds, globalVerbosedStyleIds, globalTheme } =
+          globalStyle;
+        theme.variants = deepMerge(theme.variants, globalTheme.variants);
+        // Merge of Extended Config Style ID's with Component Style ID's
+        deepMergeArray(styleIds, globalVerbosedStyleIds);
+        // Injecting Extended StyleSheet from Config
+        orderedCSSIds = [...orderedCSSIds, ...globalStyleIds];
+      }
+
       const toBeInjected = GluestackStyleSheet.resolve(
         orderedCSSIds,
         CONFIG,
@@ -1054,14 +1063,6 @@ export function verboseStyled<P, Variants>(
 
       GluestackStyleSheet.inject(toBeInjected);
       Object.assign(styledSystemProps, CONFIG?.aliases);
-
-      //@ts-ignore
-      const globalStyle = styledContext.globalStyle;
-
-      if (globalStyle) {
-        resolvePlatformTheme(globalStyle, Platform.OS);
-        theme = shallowMerge({ ...globalStyle }, theme);
-      }
 
       const {
         componentStyleIds: c,
@@ -1660,6 +1661,7 @@ export function styled<P, Variants>(
   }
 
   const sxConvertedObject = convertStyledToStyledVerbosed(theme);
+
   const StyledComponent = verboseStyled<P, Variants>(
     Component,
     sxConvertedObject,

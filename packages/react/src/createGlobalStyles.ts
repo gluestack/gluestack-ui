@@ -1,7 +1,22 @@
 import { convertStyledToStyledVerbosed } from './convertSxToSxVerbosed';
+import { stableHash } from './stableHash';
+import { updateOrderUnResolvedMap } from './updateOrderUnResolvedMap';
 
 export const createGlobalStyles = (globalStyle: object) => {
-  const verboseGlobalStyle = convertStyledToStyledVerbosed(globalStyle);
+  const versboseComponentTheme = convertStyledToStyledVerbosed(globalStyle);
+  const componentHash = stableHash({
+    ...globalStyle,
+  });
 
-  return verboseGlobalStyle;
+  const { styledIds, verbosedStyleIds } = updateOrderUnResolvedMap(
+    versboseComponentTheme,
+    componentHash,
+    'global',
+    {}
+  );
+  return {
+    globalStyleIds: styledIds,
+    globalVerbosedStyleIds: verbosedStyleIds,
+    globalTheme: versboseComponentTheme,
+  };
 };
