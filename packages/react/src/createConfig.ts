@@ -31,9 +31,8 @@ export const createConfig = <
 const resolveComponentThemes = (config: any) => {
   const newConfig = { ...config };
   delete config.components;
-  propertyTokenMap;
 
-  Object.keys(newConfig.components).forEach((componentName) => {
+  Object.keys(newConfig?.components ?? {}).forEach((componentName) => {
     const component = newConfig.components[componentName];
     if (component.theme) {
       component.theme = resolveTheme(
