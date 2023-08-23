@@ -2609,7 +2609,7 @@
     inline-style-prefixer "^6.0.1"
     normalize-css-color "^1.0.2"
 
-"@gluestack-style/react@^0.2.4":
+"@gluestack-style/react@^0.2.3":
   version "0.2.4"
   resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-0.2.4.tgz#9c5d346ecd03d145497eb80c05619d212b3f24ac"
   integrity sha512-nfaINgL3SCm07H3FHcixM6NF7NPlg27Kin7V0CjR4pZFRQBsmY58pW20zUW8DaKlzaGWlLNJ2nn0iuwVf5fldA==
