@@ -297,6 +297,59 @@ function getObjectFromAstNode(node) {
   return JSON.parse(objectCode);
 }
 
+function removePropertiesVisitor(path) {
+  if (path.node.type === 'ObjectProperty') {
+    const valueNode = path.node.value;
+    if (types.isStringLiteral(valueNode) || types.isNumericLiteral(valueNode)) {
+      path.remove();
+    }
+  }
+  if (
+    types.isObjectExpression(path.node) ||
+    types.isObjectProperty(path.node)
+  ) {
+    if (Array.isArray(path.get('properties')))
+      path.get('properties').forEach((propertyPath) => {
+        removePropertiesVisitor(propertyPath);
+      });
+  }
+}
+
+function addQuotesToObjectKeysIdentifiers(code) {
+  const ast = babel.parse(`var a = ${code}`, {
+    presets: [babelPresetTypeScript],
+    plugins: ['typescript'],
+    sourceType: 'module',
+  });
+
+  traverse(ast, {
+    ObjectProperty: (path) => {
+      removePropertiesVisitor(path);
+    },
+  });
+
+  let initAst;
+
+  traverse(ast, {
+    VariableDeclarator: (path) => {
+      initAst = path.node.init;
+    },
+  });
+
+  return initAst;
+}
+
+function getIdentifiersObjectFromAstNode(node) {
+  let objectCode = generate(node).code;
+
+  return addQuotesToObjectKeysIdentifiers(
+    objectCode.replace(
+      /\\"|"(?:\\"|[^"])*"|(\/\/.*|\/\*[\s\S]*?\*\/)/g,
+      (m, g) => (g ? '' : m)
+    )
+  );
+}
+
 const CONFIG = getExportedConfigFromFileString(getConfig());
 
 let ConfigDefault = CONFIG;
@@ -653,22 +706,22 @@ module.exports = function (b) {
               const propName = attribute.name.name;
               const propValue = attribute.value;
 
-              if (propValue.type === 'JSXExpressionContainer') {
+              if (t.isJSXExpressionContainer(propValue)) {
                 if (t.isIdentifier(propValue.expression)) {
                   propsToBePersist.push(attribute);
                 } else {
                   if (propName === 'sx') {
                     const objectProperties = propValue.expression.properties;
 
-                    const {
-                      result: sxPropsObject,
-                      propsToBePersist: sxPropsWithIdentfier,
-                    } =
+                    sxPropsWithIdentifier = getIdentifiersObjectFromAstNode(
+                      propValue.expression
+                    );
+
+                    const { result: sxPropsObject } =
                       convertExpressionContainerToStaticObject(
                         objectProperties
                       );
                     componentSXProp = sxPropsObject;
-                    sxPropsWithIdentifier = sxPropsWithIdentfier;
                   } else if (
                     t.isStringLiteral(propValue.expression) ||
                     t.isNumericLiteral(propValue.expression)
@@ -681,6 +734,8 @@ module.exports = function (b) {
                         }
                       );
                     }
+                  } else {
+                    propsToBePersist.push(attribute);
                   }
                 }
               } else if (styledSystemProps[propName]) {
@@ -802,16 +857,14 @@ module.exports = function (b) {
 
             jsxOpeningElementPath.node.attributes = propsToBePersist;
 
-            const propsWithIdentifierAst = generateObjectAstOfIdentifiers(
-              merge(sxPropsWithIdentifier, utilityPropsWithIdentifier)
-            );
-
-            jsxOpeningElementPath.node.attributes.push(
-              t.jsxAttribute(
-                t.jsxIdentifier('sx'),
-                t.jsxExpressionContainer(propsWithIdentifierAst)
-              )
-            );
+            if (sxPropsWithIdentifier) {
+              jsxOpeningElementPath.node.attributes.push(
+                t.jsxAttribute(
+                  t.jsxIdentifier('sx'),
+                  t.jsxExpressionContainer(sxPropsWithIdentifier)
+                )
+              );
+            }
             jsxOpeningElementPath.node.attributes.push(
               t.jsxAttribute(
                 t.jsxIdentifier('styledIds'),
