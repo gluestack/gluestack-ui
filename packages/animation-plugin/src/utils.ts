@@ -182,7 +182,7 @@ export function resolveStringToken(
       return tokenValue;
     } else {
       if (tokenScaleMap[propName]) {
-        if (!config?.tokens[token_scale]) {
+        if (!config || !config.tokens || !config.tokens[token_scale]) {
           throw new Error(
             'You cannot use tokens without wrapping the component with StyledProvider. Please wrap the component with a StyledProvider and pass theme config.'
           );
