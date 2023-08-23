@@ -18,6 +18,8 @@ import { Meta } from '@storybook/addon-docs';
 
 We can provide context based descendant styling with the help of gluestack-ui, i.e we can apply styles to the children of a component from the parent component.
 
+In the below example we are applying styles to ButtonText by passing styles \_text property in the sx prop of Button component.
+
 ```jsx
 import { config } from './gluestack-ui.config';
 import { Box, Button, GluestackUIProvider } from '@gluestack-ui/react';
@@ -36,7 +38,5 @@ export default function App() {
   );
 }
 ```
-
-In the above example we are applying styles to ButtonText by passing styles \_text property of sx in Button component.
 
 Expo snack link for the above example is provided [here](https://snack.expo.dev/@gluestack/gluestack-ui-descendant-styles) .
