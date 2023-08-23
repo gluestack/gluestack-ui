@@ -16,7 +16,7 @@ import {
   RemoveIcon,
   Box,
   FormControl,
-} from '../../../ui-components';
+} from '@gluestack-ui/themed';
 
 const CheckboxStory = ({ ...props }: any) => {
   const [values, setValues] = React.useState(['Label 1']);

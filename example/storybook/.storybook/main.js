@@ -17,6 +17,7 @@ module.exports = {
     '@storybook/addon-react-native-web',
     '@storybook/addon-docs',
   ],
+  staticDirs: ['../public'],
   framework: '@storybook/react',
   typescript: {
     reactDocgen: 'none',

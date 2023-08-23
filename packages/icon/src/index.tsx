@@ -1,1 +1,0 @@
-export { createIcon } from './createIcon';

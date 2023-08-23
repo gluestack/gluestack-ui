@@ -31,18 +31,11 @@ You can find detailed documentation for each component, including a list of prop
 
 ## Installing **gluestack-ui**
 
-To use gluestack-ui components, all you need to do is install the
-particular component that you want to use.
-
-Here's how you can add `Button` package in your project.
+To use gluestack-ui components, all you need to install `@gluestack-ui/themed` and its dependencies
 
 ```bash
-npx gluestack-ui@latest add button
+npm i @gluestack-ui/themed react-native-svg@13.4.0
 ```
-
-- Check if gluestack-ui is installed in project, if not it will create a gluestack-ui.config.ts (`js` works too) file which will have default theme.
-- It will create `GluestackUIProvider` (Wrapper component)
-- It will also install the required styled library (@gluestack-style/react) dependency and button package ( @gluestack-ui/button )
 
 ## Tech Stack
 
@@ -53,11 +46,10 @@ JavaScript, React, React Native, Styled System
 To use the `gluestack-ui` in your project, follow these steps:
 
 1. Wrap your application with the `GluestackUIProvider` provided by
-   **@gluestack-ui**.
+   **@gluestack-ui/themed**.
 
 ```jsx
-import { GluestackUIProvider } from './components';
-import { config } from './gluestack-ui.config';
+import { GluestackUIProvider, config } from '@gluestack-ui/themed';
 
 // Write this code snippet at the root of your application
 function App({ children }) {
@@ -70,7 +62,7 @@ function App({ children }) {
 2. Now you can start using components!:
 
 ```jsx
-import { Button } from './components';
+import { Button, ButtonText } from '@gluestack-ui/themed';
 
 function Example() {
   return (

@@ -1,7 +1,7 @@
 import { addParameters } from '@storybook/client-api';
 import { DocsContainer } from '@storybook/addon-docs/blocks';
-import { Center, GluestackUIProvider } from '../src/ui-components';
-import { config } from '../src/gluestack-ui.config';
+import { Center, GluestackUIProvider } from '@gluestack-ui/themed';
+import { config } from '@gluestack-ui/themed';
 import { useState } from 'react';
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
@@ -22,7 +22,22 @@ export const parameters = {
         ['Introduction', 'Accessibility'],
         'Getting Started',
         ['Installation'],
-
+        'Core Concepts',
+        ['Themed Library', 'Unstyled Components'],
+        'Customize and Style',
+        [
+          'Default Styles',
+          'Tokens',
+          'Overwriting',
+          'Styling',
+          [
+            'States',
+            'Color Mode',
+            'Responsive',
+            'Descendants',
+            'Platform Specific',
+          ],
+        ],
         'Configuration',
         ['Theme Tokens', 'Server-Side Rendering', 'React Server Components'],
         'Components',

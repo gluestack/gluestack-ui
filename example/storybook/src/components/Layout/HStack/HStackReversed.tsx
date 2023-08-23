@@ -1,7 +1,7 @@
 import type { ComponentStory } from '@storybook/react-native';
 
-import { HStack } from '../../../ui-components';
-import { Box } from '../../../ui-components';
+import { HStack } from '@gluestack-ui/themed';
+import { Box } from '@gluestack-ui/themed';
 import React from 'react';
 
 type MyHStackStory = ComponentStory<typeof HStack>;

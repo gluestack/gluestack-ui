@@ -24,7 +24,7 @@ import {
   InfoIcon,
 } from './Button';
 import { Icon, EditIcon, ArrowUpIcon, Heading } from './Button';
-import { Text, Input, InputInput, Box, HStack, VStack } from './Button';
+import { Text, Input, InputField, Box, HStack, VStack } from './Button';
 import { ThreeDotsIcon, ArrowLeftIcon, Center } from './Button';
 import { transformedCode } from '../../../utils';
 import {
@@ -404,7 +404,7 @@ A button with an icon integrates a visual symbol within the button component, en
     showArgsController={false}
     metaData={{
       code: `
-        <Button borderRadius='$full' size='lg' p='$4' bg='$indigo600' borderColor='$indigo600' >
+        <Button borderRadius='$full' size='lg' p='$3.5' bg='$indigo600' borderColor='$indigo600' >
           {\/* EditIcon is imported from 'lucide-react-native' *\/}
           <ButtonIcon as={EditIcon}/>
         </Button>
@@ -591,13 +591,13 @@ The button with full width component utilizes a button component, expanding its 
             </VStack>
             <VStack space='xl' py='$2'>
               <Input>
-                <InputInput
+                <InputField
                   py='$2'
                   placeholder="New password"
                 />
               </Input>
               <Input>
-                <InputInput
+                <InputField
                   py='$2'
                   placeholder="Confirm new password"
                 />
@@ -642,7 +642,7 @@ The button with full width component utilizes a button component, expanding its 
         Heading,
         Text,
         Input,
-        InputInput,
+        InputField,
         Icon,
         Center,
         ArrowLeftIcon,

@@ -11,7 +11,7 @@ import {
   VStack,
   Input,
   InputIcon,
-  InputInput,
+  InputField,
   FormControl,
   FormControlLabel,
   FormControlLabelText,
@@ -20,11 +20,11 @@ import {
   Text,
   Box,
   Icon,
-} from '../../../ui-components';
+} from '@gluestack-ui/themed';
 import { KeyboardAvoidingView, Platform } from 'react-native';
 import { createIcon } from '@gluestack-ui/icon';
 import { Svg, Path } from 'react-native-svg';
-import { styled, AsForwarder } from '@gluestack-style/react';
+import { styled, AsForwarder } from '@gluestack-ui/themed';
 
 const IconRoot: any = styled(
   AsForwarder,
@@ -121,7 +121,7 @@ function ActionsheetExample({
                 <InputIcon>
                   <Icon as={LeadingIcon} ml="$3" />
                 </InputIcon>
-                <InputInput placeholder="CVC/CVV" />
+                <InputField placeholder="CVC/CVV" />
               </Input>
               <Button onPress={handleClose} mt={20}>
                 <ButtonText>Pay $1000</ButtonText>

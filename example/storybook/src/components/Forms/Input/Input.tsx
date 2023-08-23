@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   Input,
-  InputInput,
+  InputField,
   InputIcon,
   Center,
   Button,
@@ -13,7 +13,7 @@ import {
   Icon,
   SearchIcon,
   FormControl,
-} from '../../../ui-components';
+} from '@gluestack-ui/themed';
 import { EyeIcon, EyeOffIcon } from 'lucide-react-native';
 import { useState } from 'react';
 
@@ -22,7 +22,7 @@ const InputStory = ({ ...props }: any) => {
 
   return (
     <Input {...props}>
-      <InputInput
+      <InputField
         onChange={(e: any) => {
           setValue(e.nativeEvent.text);
         }}
@@ -40,7 +40,7 @@ export default InputStory;
 
 export {
   Input,
-  InputInput,
+  InputField,
   InputIcon,
   Center,
   Button,

@@ -37,7 +37,7 @@ import {
   VStack,
   Input,
   InputIcon,
-  InputInput,
+  InputField,
   FormControl,
   FormControlLabel,
   FormControlLabelText,
@@ -62,7 +62,7 @@ import {
   Alert,
 } from '@gluestack/design-system';
 import Wrapper from '../../Wrapper';
-import { config } from '../../../gluestack-ui.config';
+import { config } from '@gluestack-ui/themed';
 
 ## Themed
 
@@ -571,7 +571,7 @@ Demonstrates a common UI pattern known as keyboard handling or keyboard scrollin
                   <InputIcon>
                    <Icon as={LeadingIcon} ml="$2" />
                   </InputIcon>
-                  <InputInput placeholder="CVC/CVV" />
+                  <InputField placeholder="CVC/CVV" />
                 </Input>
                 <Button onPress={handleClose} mt={20}>
                   <ButtonText>Pay $1000</ButtonText>
@@ -602,7 +602,7 @@ Demonstrates a common UI pattern known as keyboard handling or keyboard scrollin
         VStack,
         Input,
         InputIcon,
-        InputInput,
+        InputField,
         FormControl,
         FormControlLabel,
         FormControlLabelText,
@@ -1138,7 +1138,7 @@ function App(){
                   </FormControlLabelText>
                 </FormControlLabel>
                 <Input mt={5}>
-                  <InputInput placeholder="CVC/CVV"/>
+                  <InputField placeholder="CVC/CVV"/>
                 </Input>
                 <Button onPress={handleClose} mt={20}>
                   <ButtonText>Pay $1000</ButtonText>
@@ -1230,7 +1230,7 @@ function App(){
                   </FormControlLabelText>
                 </FormControlLabel>
                 <Input mt={5}>
-                  <InputInput placeholder="CVC/CVV"/>
+                  <InputField placeholder="CVC/CVV"/>
                 </Input>
                 <Button onPress={handleClose} mt={20}>
                   <ButtonText>Pay $1000</ButtonText>

@@ -6,7 +6,7 @@ import {
   Heading,
   Text,
   Icon,
-} from '../../../ui-components';
+} from '@gluestack-ui/themed';
 import {
   Modal,
   ModalBackdrop,
@@ -22,7 +22,7 @@ import {
   Input,
   ArrowLeftIcon,
   Link,
-} from '../../../ui-components';
+} from '@gluestack-ui/themed';
 
 const ModalStory = ({ showModal: showModalProp = true, ...props }) => {
   const [showModal, setShowModal] = React.useState(false);

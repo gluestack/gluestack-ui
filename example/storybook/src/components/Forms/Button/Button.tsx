@@ -1,5 +1,5 @@
 import type { ComponentStory } from '@storybook/react-native';
-import { Box, Center } from '../../../ui-components';
+import { Box, Center } from '@gluestack-ui/themed';
 import React from 'react';
 
 import {
@@ -18,8 +18,8 @@ import {
   VStack,
   ThreeDotsIcon,
   Input,
-  InputInput,
-} from '../../../ui-components';
+  InputField,
+} from '@gluestack-ui/themed';
 
 import { EditIcon, ArrowLeftIcon } from 'lucide-react-native';
 
@@ -53,7 +53,7 @@ export {
   VStack,
   ThreeDotsIcon,
   Input,
-  InputInput,
+  InputField,
   ArrowLeftIcon,
   Center,
 };

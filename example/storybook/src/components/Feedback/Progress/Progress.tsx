@@ -7,7 +7,7 @@ import {
   Text,
   Box,
   Heading,
-} from '../../../ui-components';
+} from '@gluestack-ui/themed';
 
 const ProgressStory = ({ value = 50, ...props }: any) => {
   return (

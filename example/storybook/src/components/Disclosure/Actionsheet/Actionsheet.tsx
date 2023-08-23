@@ -24,7 +24,7 @@ import {
   AddIcon,
   Image,
   Text,
-} from '../../../ui-components';
+} from '@gluestack-ui/themed';
 
 function ActionsheetStory({
   showActionsheet: showActionsheetProp = true,

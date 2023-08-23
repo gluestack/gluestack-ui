@@ -10,7 +10,7 @@ import {
   AlertCircleIcon,
   VStack,
   Icon,
-} from '../../../ui-components';
+} from '@gluestack-ui/themed';
 
 function AlertStory({ ...props }: any) {
   return (

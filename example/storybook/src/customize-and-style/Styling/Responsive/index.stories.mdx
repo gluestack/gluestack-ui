@@ -1,0 +1,64 @@
+---
+title: Responsive | gluestack-ui
+
+description: gluestack-ui provides an easy way to make responsive components, in this guide we will learn how to make components responsive.
+
+pageTitle: Responsive
+
+pageDescription: gluestack-ui provides an easy way to make responsive components, in this guide we will learn how to make components responsive.
+
+showHeader: true
+---
+
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="Customize and Style/Styling/Responsive" />
+
+## Responsive
+
+gluestack-ui components are responsive, to manage that we define different breakpoints according to which styles are applied.
+
+By default gluestack-style provide basic breakpoint.
+
+```jsx
+mediaQueries: {
+  base: '@media screen and (min-width: 0)',
+  sm: '@media screen and (min-width: 480px)',
+  md: '@media screen and (min-width: 768px)',
+  lg: '@media screen and (min-width: 992px)',
+  xl: '@media screen and (min-width: 1280px)',
+},
+```
+
+We can apply different styling based on different breakpoints like done in below example. In the above example in the sx props we are defining different styles for different breakpoints.
+
+```jsx
+import { Box, GluestackUIProvider, Text } from '@gluestack-ui/themed';
+
+export default function App() {
+  return (
+    <GluestackUIProvider>
+      <Box justifyContent="center" alignItems="center" h="100%">
+        <Box
+          sx={{
+            '@base': {
+              bg: '$red500',
+            },
+            '@md': {
+              bg: '$green500',
+            },
+            '@lg': {
+              bg: '$blue500',
+            },
+          }}
+          alignItems="center"
+        >
+          <Text>This is a box</Text>
+        </Box>
+      </Box>
+    </GluestackUIProvider>
+  );
+}
+```
+
+Expo snack link for the above example is provided [here](https://snack.expo.dev/@gluestack/gluestack-ui-responsive-style).

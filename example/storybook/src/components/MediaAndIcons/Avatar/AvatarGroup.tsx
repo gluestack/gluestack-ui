@@ -8,7 +8,7 @@ import {
   AvatarBadge,
   AvatarFallbackText,
   AvatarImage,
-} from '../../../ui-components';
+} from '@gluestack-ui/themed';
 import React from 'react';
 
 type CustomAvatarStory = ComponentStory<typeof Avatar>;

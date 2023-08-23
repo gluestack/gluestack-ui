@@ -9,7 +9,7 @@ import {
   FormControlErrorIcon,
   FormControlErrorText,
   Input,
-  InputInput,
+  InputField,
   Radio,
   RadioGroup,
   RadioIcon,
@@ -54,7 +54,7 @@ import {
   CheckIcon,
   AlertCircleIcon,
   ChevronDownIcon,
-} from '../../../ui-components';
+} from '@gluestack-ui/themed';
 
 const FormControlStory = ({ ...props }) => {
   return (
@@ -63,7 +63,7 @@ const FormControlStory = ({ ...props }) => {
         <FormControlLabelText>Password</FormControlLabelText>
       </FormControlLabel>
       <Input>
-        <InputInput
+        <InputField
           type="password"
           defaultValue="12345"
           placeholder="password"
@@ -104,7 +104,7 @@ export {
   FormControlErrorText,
   Box,
   Input,
-  InputInput,
+  InputField,
   Button,
   ButtonText,
   Radio,

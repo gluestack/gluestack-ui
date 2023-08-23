@@ -9,7 +9,7 @@ import {
   Heading,
   Button,
   ButtonText,
-} from '../../../ui-components';
+} from '@gluestack-ui/themed';
 
 const DividerStory = () => {
   return (
