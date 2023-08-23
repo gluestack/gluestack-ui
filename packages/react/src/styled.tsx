@@ -1046,6 +1046,19 @@ export function verboseStyled<P, Variants>(
         ];
       }
 
+      //@ts-ignore
+      const globalStyle = styledContext.globalStyle;
+
+      if (globalStyle) {
+        const { globalStyleIds, globalVerbosedStyleIds, globalTheme } =
+          globalStyle;
+        theme.variants = deepMerge(theme.variants, globalTheme.variants);
+        // Merge of Extended Config Style ID's with Component Style ID's
+        deepMergeArray(styleIds, globalVerbosedStyleIds);
+        // Injecting Extended StyleSheet from Config
+        orderedCSSIds = [...orderedCSSIds, ...globalStyleIds];
+      }
+
       const toBeInjected = GluestackStyleSheet.resolve(
         orderedCSSIds,
         CONFIG,
@@ -1054,14 +1067,6 @@ export function verboseStyled<P, Variants>(
 
       GluestackStyleSheet.inject(toBeInjected);
       Object.assign(styledSystemProps, CONFIG?.aliases);
-
-      //@ts-ignore
-      const globalStyle = styledContext.globalStyle;
-
-      if (globalStyle) {
-        resolvePlatformTheme(globalStyle, Platform.OS);
-        theme = shallowMerge({ ...globalStyle }, theme);
-      }
 
       const {
         componentStyleIds: c,
@@ -1641,7 +1646,8 @@ export function styled<P, Variants>(
       descendant: StyleIds;
     };
     themeHash?: string;
-  }
+  },
+  componentName?: string
 ) {
   const DEBUG_TAG = componentStyleConfig?.DEBUG;
   const DEBUG =
@@ -1665,7 +1671,8 @@ export function styled<P, Variants>(
     sxConvertedObject,
     componentStyleConfig,
     ExtendedConfig,
-    BUILD_TIME_PARAMS
+    BUILD_TIME_PARAMS,
+    componentName
   );
 
   return StyledComponent;

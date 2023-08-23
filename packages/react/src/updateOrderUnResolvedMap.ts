@@ -41,27 +41,35 @@ export function updateOrderUnResolvedMap(
     orderedUnResolvedTheme
   );
 
+  if (declarationType === 'global') {
+  }
   const componentBaseStyleIds = _GluestackStyleSheet.declare(
     componentOrderResolvedBaseStyle,
-    declarationType + '-base',
+    declarationType === 'global' ? declarationType : declarationType + '-base',
     componentHash ? componentHash : 'css-injected-boot-time',
     ExtendedConfig
   );
   const descendantBaseStyleIds = _GluestackStyleSheet.declare(
     descendantOrderResolvedBaseStyle,
-    declarationType + '-descendant-base',
+    declarationType === 'global'
+      ? declarationType
+      : declarationType + '-descendant-base',
     componentHash ? componentHash : 'css-injected-boot-time-descendant',
     ExtendedConfig
   );
   const componentVariantStyleIds = _GluestackStyleSheet.declare(
     componentOrderResolvedVariantStyle,
-    declarationType + '-variant',
+    declarationType === 'global'
+      ? declarationType
+      : declarationType + '-variant',
     componentHash ? componentHash : 'css-injected-boot-time',
     ExtendedConfig
   );
   const descendantVariantStyleIds = _GluestackStyleSheet.declare(
     descendantOrderResolvedVariantStyle,
-    declarationType + '-descendant-variant',
+    declarationType === 'global'
+      ? declarationType
+      : declarationType + '-descendant-variant',
     componentHash ? componentHash : 'css-injected-boot-time-descendant',
     ExtendedConfig
   );
