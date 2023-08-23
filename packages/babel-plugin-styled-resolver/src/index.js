@@ -653,31 +653,43 @@ module.exports = function (b) {
               const propName = attribute.name.name;
               const propValue = attribute.value;
 
-              if (
-                propValue.type === 'JSXExpressionContainer' &&
-                !t.isIdentifier(propValue.expression) &&
-                propName === 'sx'
-              ) {
-                const objectProperties = propValue.expression.properties;
-
-                const {
-                  result: sxPropsObject,
-                  propsToBePersist: sxPropsWithIdentfier,
-                } = convertExpressionContainerToStaticObject(objectProperties);
-                componentSXProp = sxPropsObject;
-                sxPropsWithIdentifier = sxPropsWithIdentfier;
-              } else if (styledSystemProps[propName]) {
-                if (propValue.type === 'JSXExpressionContainer') {
-                  utilityPropsWithIdentifier[propName] =
-                    propValue.expression.name;
+              if (propValue.type === 'JSXExpressionContainer') {
+                if (t.isIdentifier(propValue.expression)) {
+                  propsToBePersist.push(attribute);
                 } else {
-                  componentUtilityProps = Object.assign(
-                    componentUtilityProps ?? {},
-                    {
-                      [propName]: propValue.value,
+                  if (propName === 'sx') {
+                    const objectProperties = propValue.expression.properties;
+
+                    const {
+                      result: sxPropsObject,
+                      propsToBePersist: sxPropsWithIdentfier,
+                    } =
+                      convertExpressionContainerToStaticObject(
+                        objectProperties
+                      );
+                    componentSXProp = sxPropsObject;
+                    sxPropsWithIdentifier = sxPropsWithIdentfier;
+                  } else if (
+                    t.isStringLiteral(propValue.expression) ||
+                    t.isNumericLiteral(propValue.expression)
+                  ) {
+                    if (styledSystemProps[propName]) {
+                      componentUtilityProps = Object.assign(
+                        componentUtilityProps ?? {},
+                        {
+                          [propName]: propValue.expression.value,
+                        }
+                      );
                     }
-                  );
+                  }
                 }
+              } else if (styledSystemProps[propName]) {
+                componentUtilityProps = Object.assign(
+                  componentUtilityProps ?? {},
+                  {
+                    [propName]: propValue.value,
+                  }
+                );
               } else {
                 propsToBePersist.push(attribute);
               }
