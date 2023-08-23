@@ -2588,10 +2588,10 @@
   dependencies:
     "@legendapp/motion" "^2.2.0"
 
-"@gluestack-style/babel-plugin-styled-resolver@^0.1.14":
-  version "0.1.14"
-  resolved "https://registry.yarnpkg.com/@gluestack-style/babel-plugin-styled-resolver/-/babel-plugin-styled-resolver-0.1.14.tgz#1e3cd2dbdf91b5e9dcb8d34ab7df7aed1beea9bb"
-  integrity sha512-fgfuvCTngRZIbZf5prtoiZeOBaMtjEh4EJUIJygHY6iXscFuU6tnstnMnHqZdCd1dty+2E1DuwnG+JSKfYgYmA==
+"@gluestack-style/babel-plugin-styled-resolver@^0.1.15-alpha.0":
+  version "0.1.15-alpha.0"
+  resolved "https://registry.yarnpkg.com/@gluestack-style/babel-plugin-styled-resolver/-/babel-plugin-styled-resolver-0.1.15-alpha.0.tgz#776e0ba60cbdaeefcd966b6708dd0408d4a57213"
+  integrity sha512-Q0dDTW8QroqOxo5ZP9Ebq0wAAlVl6dOlOchT1LZlanRc2GzvAf12GZrTGdzYQybYh6oVNmoIQZn6/3zL6qfsow==
   dependencies:
     "@babel/core" "^7.20.5"
     "@babel/generator" "^7.20.5"
@@ -2601,7 +2601,7 @@
     "@babel/traverse" "^7.20.5"
     lodash.merge "^4.6.2"
 
-"@gluestack-style/react@0.1.33", "@gluestack-style/react@^0.1.28", "@gluestack-style/react@^0.1.33":
+"@gluestack-style/react@0.1.33", "@gluestack-style/react@^0.1.33":
   version "0.1.33"
   resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-0.1.33.tgz#cd18f38bf359527e4f79d223bb07e9024f40ba4f"
   integrity sha512-wBdoOA3i/cp0EcgJnwJgL1a8BATjbX/pCZgWm31N6sZOgCB4Phq7m0bDjfSpeJ8sKpOEDlUP5wYCo7Yww0mbqA==
@@ -2609,7 +2609,7 @@
     inline-style-prefixer "^6.0.1"
     normalize-css-color "^1.0.2"
 
-"@gluestack-style/react@^0.2.4":
+"@gluestack-style/react@^0.2.3", "@gluestack-style/react@^0.2.4":
   version "0.2.4"
   resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-0.2.4.tgz#9c5d346ecd03d145497eb80c05619d212b3f24ac"
   integrity sha512-nfaINgL3SCm07H3FHcixM6NF7NPlg27Kin7V0CjR4pZFRQBsmY58pW20zUW8DaKlzaGWlLNJ2nn0iuwVf5fldA==
@@ -3165,6 +3165,48 @@
     "@react-native-aria/focus" "^0.2.7"
     react-native-svg "13.4.0"
 
+"@gluestack-ui/themed@^0.1.5":
+  version "0.1.5"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/themed/-/themed-0.1.5.tgz#b61f681bd1e586e090c8cd5f5da723e2a7fd81eb"
+  integrity sha512-nR+OilGo8ogZhHDxH+l7r6sBx5QUOsRcS1IBlBzHUxLKCMcOVU4GE+wbi4HeEJpJve8Rq3HdrbtmauRzZ2L/ag==
+  dependencies:
+    "@expo/html-elements" latest
+    "@gluestack-style/animation-plugin" latest
+    "@gluestack-style/react" "^0.2.3"
+    "@gluestack-ui/actionsheet" latest
+    "@gluestack-ui/alert" latest
+    "@gluestack-ui/alert-dialog" latest
+    "@gluestack-ui/avatar" latest
+    "@gluestack-ui/button" latest
+    "@gluestack-ui/checkbox" "^0.1.17"
+    "@gluestack-ui/divider" latest
+    "@gluestack-ui/fab" latest
+    "@gluestack-ui/form-control" latest
+    "@gluestack-ui/hstack" latest
+    "@gluestack-ui/icon" latest
+    "@gluestack-ui/input" "^0.1.10"
+    "@gluestack-ui/link" latest
+    "@gluestack-ui/menu" latest
+    "@gluestack-ui/modal" latest
+    "@gluestack-ui/overlay" latest
+    "@gluestack-ui/popover" latest
+    "@gluestack-ui/pressable" latest
+    "@gluestack-ui/progress" latest
+    "@gluestack-ui/provider" latest
+    "@gluestack-ui/radio" latest
+    "@gluestack-ui/select" "^0.1.14"
+    "@gluestack-ui/slider" latest
+    "@gluestack-ui/spinner" latest
+    "@gluestack-ui/switch" latest
+    "@gluestack-ui/tabs" "^0.1.11"
+    "@gluestack-ui/textarea" "^0.1.12"
+    "@gluestack-ui/toast" latest
+    "@gluestack-ui/tooltip" "^0.1.15"
+    "@gluestack-ui/vstack" latest
+    "@legendapp/motion" latest
+    react "^18.2.0"
+    react-native-svg "13.4.0"
+
 "@gluestack-ui/toast@^0.1.7", "@gluestack-ui/toast@^0.1.8":
   version "0.1.14"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/toast/-/toast-0.1.14.tgz#e13501f4764017cb1036d0c4f394010982bb19d3"
@@ -3260,15 +3302,15 @@
   dependencies:
     "@gluestack-ui/utils" "^0.1.3"
 
-"@gluestack/design-system@^0.4.28":
-  version "0.4.37"
-  resolved "https://registry.yarnpkg.com/@gluestack/design-system/-/design-system-0.4.37.tgz#ac4020625a3643d0822715a938f0e4f67dca24ad"
-  integrity sha512-boAOeZIKcIs7HOjuF5kj7cAsokhJNjXalAJU9cI95V7wMc3RuGhKxn1mL0NIPwgiraiKO8K+cG8qOlsomebW0A==
+"@gluestack/design-system@0.4.67-alpha.0":
+  version "0.4.67-alpha.0"
+  resolved "https://registry.yarnpkg.com/@gluestack/design-system/-/design-system-0.4.67-alpha.0.tgz#2c69742a71cb9f1ef6927e7a695d1390f202b813"
+  integrity sha512-6I2yhCdu2UeJPOyTTvqKpx+Ha3FhyssokjIAZX1e9D9ZbYdKneYbDo+z6UTEapUkiV8ahhjxdOY+77JSv3WBrw==
   dependencies:
     "@expo/html-elements" "0.3.0"
     "@gluestack-style/animation-plugin" "^0.1.7"
-    "@gluestack-style/babel-plugin-styled-resolver" "^0.1.14"
-    "@gluestack-style/react" "^0.1.28"
+    "@gluestack-style/babel-plugin-styled-resolver" "^0.1.15-alpha.0"
+    "@gluestack-style/react" "^0.2.3"
     "@gluestack-ui/actionsheet" "^0.2.7"
     "@gluestack-ui/alert" "^0.1.4"
     "@gluestack-ui/alert-dialog" "^0.1.8"
@@ -11011,10 +11053,10 @@ expo-keep-awake@~12.0.1:
   resolved "https://registry.yarnpkg.com/expo-keep-awake/-/expo-keep-awake-12.0.1.tgz#19c5ab55391394ded3f6c262b0707c7140658a11"
   integrity sha512-hqeCnb4033TyuZaXs93zTK7rjVJ3bywXATyMmKmKkLEsH2PKBAl/VmjlCOPQL/2Ncqz6aj7Wo//tjeJTARBD4g==
 
-expo-linear-gradient@~12.0.1:
-  version "12.0.1"
-  resolved "https://registry.yarnpkg.com/expo-linear-gradient/-/expo-linear-gradient-12.0.1.tgz#452f793b0463ddf313aad431552f23acc85f5d64"
-  integrity sha512-TMl/wBTVQOliL4S3DS5Aa3UFfVySr0mdJEHLG6kfBdMCLkr+tfLI2rGyJ+scS7xgMsvhTIaurhf1+Z0sL3aLCg==
+expo-linear-gradient@^12.3.0:
+  version "12.3.0"
+  resolved "https://registry.yarnpkg.com/expo-linear-gradient/-/expo-linear-gradient-12.3.0.tgz#7abd8fedbf0138c86805aebbdfbbf5e5fa865f19"
+  integrity sha512-f9e+Oxe5z7fNQarTBZXilMyswlkbYWQHONVfq8MqmiEnW3h9XsxxmVJLG8uVQSQPUsbW+x1UUT/tnU6mkMWeLg==
 
 expo-modules-autolinking@1.0.2:
   version "1.0.2"

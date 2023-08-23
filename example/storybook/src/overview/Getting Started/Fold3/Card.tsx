@@ -2,7 +2,6 @@
 import React from 'react';
 import { Box, Text, VStack, Link } from '@gluestack/design-system';
 import NextImage from 'next/image';
-
 export const Card = ({
   title,
   name,
@@ -31,7 +30,7 @@ export const Card = ({
       <Link href="https://www.youtube.com/watch?v=EFTCeK8aXTU" isExternal>
         <Box h={200} width={327}>
           <NextImage
-            src="/images/talk.png"
+            src="https://i3.ytimg.com/vi/EFTCeK8aXTU/maxresdefault.jpg"
             alt="accessibility"
             fill={true}
             style={{
