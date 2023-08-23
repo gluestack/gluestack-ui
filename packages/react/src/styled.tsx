@@ -907,7 +907,7 @@ export function verboseStyled<P, Variants>(
       theme,
       componentHash,
       declarationType,
-      ExtendedConfig
+      componentStyleConfig
     );
 
     orderedCSSIds = g;
