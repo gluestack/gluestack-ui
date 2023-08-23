@@ -16,7 +16,7 @@ import { Meta } from '@storybook/addon-docs';
 
 import {
   Input,
-  InputInput,
+  InputField,
   InputIcon,
   Center,
   Box,
@@ -50,7 +50,7 @@ Note: We have added a new API for the components — you can avoid the use of ".
     metaData={{
       code: `
         <Input {...props}>
-          <InputInput
+          <InputField
               placeholder='Enter Text here'
           />
         </Input>
@@ -61,7 +61,7 @@ Note: We have added a new API for the components — you can avoid the use of ".
       scope: {
         Wrapper,
         Input,
-        InputInput,
+        InputField,
         InputIcon,
       },
       argsType: {
@@ -109,7 +109,7 @@ The structure provided below can help you identify and understand a Input compon
 ```jsx
 export default () => (
   <Input>
-    <InputInput />
+    <InputField />
     <InputIcon>{/* Some Icon Component */}</InputIcon>
   </Input>
 );
@@ -244,7 +244,7 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
   </TableContainer>
 </AppProvider>
 
-#### InputInput
+#### InputField
 
 Contains all TextInput related layout style props and actions.
 It inherits all the properties of React Native's [TextInput](https://reactnative.dev/docs/textInput#props) component.
@@ -376,7 +376,7 @@ The Input component integrates with an icon and a button, providing users with a
                     Email
                   </Text>
                   <Input>
-                    <InputInput
+                    <InputField
                       type="text"
                     />
                   </Input>
@@ -386,7 +386,7 @@ The Input component integrates with an icon and a button, providing users with a
                     Password
                   </Text>
                   <Input textAlign='center'>
-                    <InputInput
+                    <InputField
                       type={showPassword ? 'text' : 'password'}
                     />
                     <InputIcon pr='$3' onPress={handleState}>
@@ -416,7 +416,7 @@ The Input component integrates with an icon and a button, providing users with a
       scope: {
         Wrapper,
         Input,
-        InputInput,
+        InputField,
         InputIcon,
         Button,
         ButtonText,
@@ -448,7 +448,7 @@ The Input with Icons is a variation of the Input component that displays icons n
           <InputIcon pl='$3'>
             <Icon as={SearchIcon}/>
           </InputIcon>
-          <InputInput
+          <InputField
             placeholder="Search..."
           />
         </Input>
@@ -459,7 +459,7 @@ The Input with Icons is a variation of the Input component that displays icons n
       scope: {
         Wrapper,
         Input,
-        InputInput,
+        InputField,
         InputIcon,
         SearchIcon,
         Icon,
@@ -503,7 +503,7 @@ export default () => (
     <InputIcon pl="$3">
       <Icon as={SearchIcon} />
     </InputIcon>
-    <InputInput placeholder="your text goes here..." />
+    <InputField placeholder="your text goes here..." />
   </Input>
 );
 ```

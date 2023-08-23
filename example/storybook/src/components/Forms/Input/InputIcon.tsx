@@ -6,7 +6,7 @@ import {
   Icon,
   SearchIcon,
   InputIcon,
-  InputInput,
+  InputField,
 } from '@gluestack-ui/themed';
 import { EyeIcon, EyeOffIcon } from 'lucide-react-native';
 
@@ -16,7 +16,7 @@ const InputStory = ({ ...props }: any) => {
   return (
     <VStack space="md" w="$full">
       <Input {...props} size="sm">
-        <InputInput
+        <InputField
           onChange={(e: any) => {
             setValue(e.nativeEvent.text);
           }}
@@ -29,7 +29,7 @@ const InputStory = ({ ...props }: any) => {
       </Input>
 
       <Input {...props} size="md">
-        <InputInput
+        <InputField
           onChange={(e: any) => {
             setValue(e.nativeEvent.text);
           }}
@@ -42,7 +42,7 @@ const InputStory = ({ ...props }: any) => {
       </Input>
 
       <Input {...props} size="lg" isDisabled>
-        <InputInput
+        <InputField
           onChange={(e: any) => {
             setValue(e.nativeEvent.text);
           }}
@@ -55,7 +55,7 @@ const InputStory = ({ ...props }: any) => {
       </Input>
 
       <Input {...props} size="xl" isInvalid>
-        <InputInput
+        <InputField
           onChange={(e: any) => {
             setValue(e.nativeEvent.text);
           }}

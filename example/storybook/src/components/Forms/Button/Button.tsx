@@ -18,7 +18,7 @@ import {
   VStack,
   ThreeDotsIcon,
   Input,
-  InputInput,
+  InputField,
 } from '@gluestack-ui/themed';
 
 import { EditIcon, ArrowLeftIcon } from 'lucide-react-native';
@@ -53,7 +53,7 @@ export {
   VStack,
   ThreeDotsIcon,
   Input,
-  InputInput,
+  InputField,
   ArrowLeftIcon,
   Center,
 };

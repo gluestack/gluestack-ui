@@ -11,7 +11,7 @@ import {
   VStack,
   Input,
   InputIcon,
-  InputInput,
+  InputField,
   FormControl,
   FormControlLabel,
   FormControlLabelText,
@@ -121,7 +121,7 @@ function ActionsheetExample({
                 <InputIcon>
                   <Icon as={LeadingIcon} ml="$3" />
                 </InputIcon>
-                <InputInput placeholder="CVC/CVV" />
+                <InputField placeholder="CVC/CVV" />
               </Input>
               <Button onPress={handleClose} mt={20}>
                 <ButtonText>Pay $1000</ButtonText>

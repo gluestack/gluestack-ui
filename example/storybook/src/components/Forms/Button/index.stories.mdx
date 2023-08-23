@@ -24,7 +24,7 @@ import {
   InfoIcon,
 } from './Button';
 import { Icon, EditIcon, ArrowUpIcon, Heading } from './Button';
-import { Text, Input, InputInput, Box, HStack, VStack } from './Button';
+import { Text, Input, InputField, Box, HStack, VStack } from './Button';
 import { ThreeDotsIcon, ArrowLeftIcon, Center } from './Button';
 import { transformedCode } from '../../../utils';
 import {
@@ -591,13 +591,13 @@ The button with full width component utilizes a button component, expanding its 
             </VStack>
             <VStack space='xl' py='$2'>
               <Input>
-                <InputInput
+                <InputField
                   py='$2'
                   placeholder="New password"
                 />
               </Input>
               <Input>
-                <InputInput
+                <InputField
                   py='$2'
                   placeholder="Confirm new password"
                 />
@@ -642,7 +642,7 @@ The button with full width component utilizes a button component, expanding its 
         Heading,
         Text,
         Input,
-        InputInput,
+        InputField,
         Icon,
         Center,
         ArrowLeftIcon,
