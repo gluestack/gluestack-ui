@@ -1,5 +1,6 @@
-import { reduceAndResolveCompoundVariants, sxToSXResolved } from '.';
+import { reduceAndResolveCompoundVariants } from './reduceAndResolveCompoundVariants';
 import type { IVerbosedTheme, Path, StyledResolved } from '../types';
+import { sxToSXResolved } from './sxToSxResolved';
 
 export function styledToStyledResolved<Variants, P>(
   styled: IVerbosedTheme<Variants, P>,

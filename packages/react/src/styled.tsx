@@ -55,11 +55,7 @@ import {
   convertSxToSxVerbosed,
 } from './convertSxToSxVerbosed';
 import { stableHash } from './stableHash';
-import {
-  DeclarationType,
-  ExtendedStyleSheet,
-  GluestackStyleSheet,
-} from './style-sheet';
+import { DeclarationType, GluestackStyleSheet } from './style-sheet';
 import { CSSPropertiesMap } from './core/styled-system';
 import { updateOrderUnResolvedMap } from './updateOrderUnResolvedMap';
 // import { GluestackStyleSheet } from './style-sheet';
