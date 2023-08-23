@@ -27,4 +27,4 @@ export const InputField = AccessibleInput.Input;
 /**
  * @deprecated Use InputField instead.
  */
-export const InputField = AccessibleInput.Input;
+export const InputInput = AccessibleInput.Input;
