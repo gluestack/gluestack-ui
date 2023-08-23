@@ -3165,46 +3165,6 @@
     "@react-native-aria/focus" "^0.2.7"
     react-native-svg "13.4.0"
 
-"@gluestack-ui/themed@^0.1.1":
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/@gluestack-ui/themed/-/themed-0.1.1.tgz#207c91545ec4be9f05dca405c1b78a2b742ba2b4"
-  integrity sha512-IZxXAW/K5wRJT7elYkGEKVHi9G64+8Hem9GZNditOzmlZo8f9lRBafaaafxnv40DOrKPMvHGNM/uUnqjKJIUpQ==
-  dependencies:
-    "@expo/html-elements" latest
-    "@gluestack-style/animation-plugin" "^0.1.7"
-    "@gluestack-style/react" "^0.1.33"
-    "@gluestack-ui/actionsheet" latest
-    "@gluestack-ui/alert" latest
-    "@gluestack-ui/alert-dialog" latest
-    "@gluestack-ui/avatar" latest
-    "@gluestack-ui/button" latest
-    "@gluestack-ui/checkbox" latest
-    "@gluestack-ui/divider" latest
-    "@gluestack-ui/fab" latest
-    "@gluestack-ui/form-control" latest
-    "@gluestack-ui/hstack" latest
-    "@gluestack-ui/icon" latest
-    "@gluestack-ui/input" latest
-    "@gluestack-ui/link" latest
-    "@gluestack-ui/menu" latest
-    "@gluestack-ui/modal" latest
-    "@gluestack-ui/popover" latest
-    "@gluestack-ui/pressable" latest
-    "@gluestack-ui/progress" latest
-    "@gluestack-ui/provider" latest
-    "@gluestack-ui/radio" latest
-    "@gluestack-ui/select" latest
-    "@gluestack-ui/slider" latest
-    "@gluestack-ui/spinner" latest
-    "@gluestack-ui/switch" latest
-    "@gluestack-ui/tabs" latest
-    "@gluestack-ui/textarea" latest
-    "@gluestack-ui/toast" latest
-    "@gluestack-ui/tooltip" latest
-    "@gluestack-ui/vstack" latest
-    "@legendapp/motion" latest
-    react "^18.2.0"
-
 "@gluestack-ui/toast@^0.1.7", "@gluestack-ui/toast@^0.1.8":
   version "0.1.14"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/toast/-/toast-0.1.14.tgz#e13501f4764017cb1036d0c4f394010982bb19d3"
