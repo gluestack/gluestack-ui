@@ -368,7 +368,6 @@ export default styled(
           ':focus': {
             _web: {
               outlineWidth: '0',
-              boxShadow: '$primary.400 0px 0px 0px 2px',
             },
           },
 
@@ -393,7 +392,6 @@ export default styled(
             ':focus': {
               _web: {
                 outlineWidth: '0',
-                boxShadow: '$primary.500 0px 0px 0px 2px',
               },
             },
           },
