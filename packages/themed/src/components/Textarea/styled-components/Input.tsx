@@ -26,11 +26,14 @@ export default styled(
       },
     },
   },
-  { ancestorStyle: ['_input'], resolveProps: ['placeholderTextColor'] },
+  {
+    componentName: 'TextareaInput',
+    ancestorStyle: ['_input'],
+    resolveProps: ['placeholderTextColor'],
+  },
   {
     propertyTokenMap: {
       placeholderTextColor: 'colors',
     },
-    // aliases: {},
   }
 );

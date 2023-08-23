@@ -13,5 +13,8 @@ export default styled(
       color: '$textDark50',
     },
   },
-  { ancestorStyle: ['_text'] }
+  {
+    componentName: 'ToastTitle',
+    ancestorStyle: ['_text'],
+  }
 );

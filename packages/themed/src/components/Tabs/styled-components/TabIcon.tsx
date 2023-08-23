@@ -9,5 +9,8 @@ export default styled(
     display: 'flex',
     mr: 12,
   },
-  { ancestorStyle: ['_icon'] }
+  {
+    componentName: 'TabsTabIcon',
+    ancestorStyle: ['_icon'],
+  }
 );
