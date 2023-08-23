@@ -25,7 +25,7 @@ export default styled(
     },
   },
   {
-    componentName: 'GroupHSpacer',
+    componentName: 'ButtonGroupHSpacer',
     ancestorStyle: ['_groupHSpacer'],
   }
 );

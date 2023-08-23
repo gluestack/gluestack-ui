@@ -41,6 +41,6 @@ export default styled(
     },
   },
   {
-    componentName: 'ActionsheetBackdrop',
+    componentName: 'AlertDialogBackdrop',
   }
 );

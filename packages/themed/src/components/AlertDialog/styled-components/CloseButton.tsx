@@ -80,7 +80,7 @@ export default styled(
     },
   },
   {
-    componentName: 'ActionsheetCloseButton',
+    componentName: 'AlertDialogCloseButton',
     descendantStyle: ['_icon', '_text'],
   }
 );

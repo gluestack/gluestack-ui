@@ -5,7 +5,7 @@ export default styled(
   ActivityIndicator,
   {},
   {
-    componentName: 'Spinner',
+    componentName: 'ButtonSpinner',
     ancestorStyle: ['_spinner'],
     resolveProps: ['color'],
   }

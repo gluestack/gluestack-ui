@@ -38,7 +38,7 @@ export default styled(
     },
   },
   {
-    componentName: 'ActionsheetContent',
+    componentName: 'AlertDialogContent',
     ancestorStyle: ['_content'],
   }
 );
