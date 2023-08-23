@@ -118,6 +118,7 @@ export interface IConfigProps {
   descendantStyle: Array<string>;
   ancestorStyle: Array<string>;
   resolveProps: Array<string>;
+  componentName: string;
 }
 
 export type ConfigType = Partial<IConfigProps> & { [key: string]: any };
