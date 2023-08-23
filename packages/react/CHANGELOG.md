@@ -1,5 +1,29 @@
 # @gluestack-style/react
 
+## 0.2.4
+
+### Patch Changes
+
+- - Component extended theme [PR](https://github.com/gluestack/gluestack-style/pull/328)
+
+  - Resolver exports [PR](https://github.com/gluestack/gluestack-style/pull/330)
+  - Typing fixes for \_web prop [PR](https://github.com/gluestack/gluestack-style/pull/327)
+
+## 0.2.3
+
+### Patch Changes
+
+- Reduced DOM size for injected style tags [PR](https://github.com/gluestack/gluestack-style/pull/323)
+
+## 0.2.1
+
+### Patch Changes
+
+- Boot time performance improvments [PR](https://github.com/gluestack/gluestack-style/pull/318)
+- Typing improvement
+- Styled precedence order
+- AsForwarder style injection order
+
 ## 0.1.33
 
 ### Patch Changes

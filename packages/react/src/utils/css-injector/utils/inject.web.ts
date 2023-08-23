@@ -1,26 +1,23 @@
 import React from 'react';
 import { Platform } from 'react-native';
-
-type IWrapperType =
-  | 'global'
-  | 'boot-base'
-  | 'boot-descendant-base'
-  | 'boot-variant'
-  | 'boot-descendant-variant'
-  | 'passing-base'
-  | 'inline-base'
-  | 'inline-variant'
-  | 'boot-descendant'
-  | 'inline-descendant-base';
+import type { IWrapperType } from '../../../types';
 
 type IToBeFlushedStyles = { [key in IWrapperType]?: any };
 
 const toBeFlushedStyles: IToBeFlushedStyles = {
   'global': {},
+  'forwarded-base': {},
+  'forwarded-descendant-base': {},
+  'forwarded-variant': {},
+  'forwarded-descendant-variant': {},
   'boot-base': {},
   'boot-descendant-base': {},
   'boot-variant': {},
   'boot-descendant-variant': {},
+  'extended-base': {},
+  'extended-descendant-base': {},
+  'extended-variant': {},
+  'extended-descendant-variant': {},
   'passing-base': {},
   'inline-base': {},
   'inline-variant': {},
@@ -29,10 +26,18 @@ const toBeFlushedStyles: IToBeFlushedStyles = {
 
 const order: IWrapperType[] = [
   'global',
+  'forwarded-base',
+  'forwarded-descendant-base',
+  'forwarded-variant',
+  'forwarded-descendant-variant',
   'boot-base',
   'boot-descendant-base',
   'boot-variant',
   'boot-descendant-variant',
+  'extended-base',
+  'extended-descendant-base',
+  'extended-variant',
+  'extended-descendant-variant',
   'inline-descendant-base',
   'passing-base',
   'inline-variant',
