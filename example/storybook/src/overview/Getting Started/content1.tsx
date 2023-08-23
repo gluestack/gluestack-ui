@@ -1,4 +1,4 @@
-export const content = [
+export const content1 = [
   {
     title: 'Building gluestack-style',
     name: 'Sanket Sahu',

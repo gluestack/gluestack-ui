@@ -8,8 +8,8 @@ import {
   Link,
   Pressable,
 } from '@gluestack/design-system';
-import Expo from './SVG/Expo';
-import Checkbox from './SVG/Checkbox';
+import Expo from './Expo';
+import Checkbox from './Checkbox';
 
 function Card2() {
   return (

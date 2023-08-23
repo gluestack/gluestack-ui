@@ -1,5 +1,5 @@
 import React from 'react';
-import Fold3 from './Fold3';
+import Fold3 from './index';
 import { Box, VStack, Text } from '@gluestack/design-system';
 function Talk() {
   return (

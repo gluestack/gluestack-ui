@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import { Box } from '@gluestack/design-system';
-import { Card } from './Card';
-import { content } from './content';
+import { CardTalk } from './CardTalk';
+import { content1 } from './content1';
 
 const Fold3 = memo(() => {
   return (
@@ -13,9 +13,9 @@ const Fold3 = memo(() => {
         '@md': { mb: 20, flexDirection: 'row' },
       }}
     >
-      {content.map((item, index) => {
+      {content1.map((item, index) => {
         return (
-          <Card
+          <CardTalk
             key={index}
             title={item.title}
             name={item.name}

@@ -1,11 +1,11 @@
 import React from 'react';
-import FormControlDemo from './demos/FormControlDemo';
-import SliderDemo from './demos/SliderDemo';
-import SelectDemo from './demos/SelectDemo';
-import CheckboxDemo from './demos/CheckboxDemo';
-import BadgeDemo from './demos/BadgeDemo';
-import AvatarDemo from './demos/AvatarDemo';
-import ToastDemo from './demos/RadioDemo';
+import FormControlDemo from './FormControlDemo';
+import SliderDemo from './SliderDemo';
+import SelectDemo from './SelectDemo';
+import CheckboxDemo from './CheckboxDemo';
+import BadgeDemo from './BadgeDemo';
+import AvatarDemo from './AvatarDemo';
+import ToastDemo from './RadioDemo';
 
 export const content = [
   {

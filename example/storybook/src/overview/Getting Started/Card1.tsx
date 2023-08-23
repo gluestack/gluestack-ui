@@ -8,10 +8,10 @@ import {
   CodePreview,
   Link,
 } from '@gluestack/design-system';
-import Next from './SVG/Next';
-import MySvgComponent from './SVG/MySvgComponent';
-import Expo1 from './SVG/Expo1';
-import ReactN from './SVG/ReactN';
+import Next from './Next';
+import MySvgComponent from './MySvgComponent';
+import Expo1 from './Expo1';
+import ReactN from './ReactN';
 
 function Card1() {
   return (

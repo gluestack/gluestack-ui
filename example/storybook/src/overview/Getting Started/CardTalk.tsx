@@ -2,7 +2,7 @@
 import React from 'react';
 import { Box, Text, VStack, Link } from '@gluestack/design-system';
 import NextImage from 'next/image';
-export const Card = ({
+export const CardTalk = ({
   title,
   name,
   date,
