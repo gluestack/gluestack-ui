@@ -68,7 +68,7 @@ import {
   AddIcon,
   Image,
   Fab,
-  InputInput,
+  InputField,
   RadioGroup,
   RadioIndicator,
   RadioIcon,
@@ -185,7 +185,7 @@ export default function Home() {
           <FormControlLabelText>Password</FormControlLabelText>
         </FormControlLabel>
         <Input>
-          <InputInput
+          <InputField
             type="password"
             defaultValue="12345"
             placeholder="password"
@@ -209,7 +209,7 @@ export default function Home() {
         </FormControlError>
       </FormControl>
       <Input>
-        <InputInput placeholder="Enter Text here" />
+        <InputField placeholder="Enter Text here" />
       </Input>
       <Link href="https://gluestack.io/">
         <Text>gluestack</Text>

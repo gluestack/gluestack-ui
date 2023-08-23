@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   Input,
-  InputInput,
+  InputField,
   InputIcon,
   Center,
   Button,
@@ -22,7 +22,7 @@ const InputStory = ({ ...props }: any) => {
 
   return (
     <Input {...props}>
-      <InputInput
+      <InputField
         onChange={(e: any) => {
           setValue(e.nativeEvent.text);
         }}
@@ -40,7 +40,7 @@ export default InputStory;
 
 export {
   Input,
-  InputInput,
+  InputField,
   InputIcon,
   Center,
   Button,
