@@ -69,6 +69,7 @@ const StyledView = styled(
   },
   {
     ancestorStyle: ['_icon'],
+    componentName: 'Box',
     // resolveProps: ['size'],
     DEBUG: 'STYLED_ICON',
   },
