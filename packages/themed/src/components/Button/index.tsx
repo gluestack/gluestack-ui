@@ -21,7 +21,7 @@ const AccessbileButton = createButton({
 
 type IAccessbileButton = typeof AccessbileButton;
 
-interface ButtonType extends IAccessbileButton {
+interface Button extends IAccessbileButton {
   /**
    * @deprecated Use ButtonText instead.
    */
@@ -40,7 +40,7 @@ interface ButtonType extends IAccessbileButton {
   Icon: IAccessbileButton['Icon'];
 }
 
-export const Button = AccessbileButton as ButtonType;
+export const Button = AccessbileButton as Button;
 
 export const ButtonText = AccessbileButton.Text;
 export const ButtonGroup = AccessbileButton.Group;
