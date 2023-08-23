@@ -32,15 +32,16 @@ const resolveComponentThemes = (config: any) => {
   const newConfig = { ...config };
   delete config.components;
 
-  Object.keys(newConfig?.components ?? {}).forEach((componentName) => {
+  const configWithPropertyTokenMap = {
+    ...config,
+    propertyTokenMap,
+  };
+  Object.keys(newConfig?.components ?? {}).forEach((componentName: any) => {
     const component = newConfig.components[componentName];
     if (component.theme) {
       component.theme = resolveTheme(
         component.theme,
-        {
-          ...config,
-          propertyTokenMap,
-        },
+        configWithPropertyTokenMap,
         component?.componentConfig
       );
     }
