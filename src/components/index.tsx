@@ -38,5 +38,6 @@ export {
   GluestackUIProvider,
   GluestackUIStyledProvider,
   GluestackUIContextProvider,
+  NativeBaseProvider,
 } from './Provider';
 export * from './Icons/Icons';
