@@ -39,7 +39,7 @@ export const parameters = {
           ],
         ],
         'Configuration',
-        ['Theme Tokens', 'Server-Side Rendering', 'React Server Components'],
+        ['Server-Side Rendering', 'React Server Components'],
         'Components',
         [
           'Provider',
