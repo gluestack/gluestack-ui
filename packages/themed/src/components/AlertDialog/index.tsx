@@ -10,7 +10,7 @@ import {
 } from './styled-components';
 import { styled } from '../styled';
 
-export const AlertDialog = createAlertDialog({
+export const AccessibleAlertDialog = createAlertDialog({
   Root,
   Content,
   CloseButton,
@@ -22,9 +22,39 @@ export const AlertDialog = createAlertDialog({
   AnimatePresence: styled.Component,
 });
 
-export const AlertDialogContent = AlertDialog.Content;
-export const AlertDialogCloseButton = AlertDialog.CloseButton;
-export const AlertDialogHeader = AlertDialog.Header;
-export const AlertDialogFooter = AlertDialog.Footer;
-export const AlertDialogBody = AlertDialog.Body;
-export const AlertDialogBackdrop = AlertDialog.Backdrop;
+type IAlertDialog = typeof AccessibleAlertDialog;
+
+interface AlertDialog extends IAlertDialog {
+  /**
+   * @deprecated Use AlertDialogContent instead.
+   */
+  Content: IAlertDialog['Content'];
+  /**
+   * @deprecated Use AlertDialogCloseButton instead.
+   */
+  CloseButton: IAlertDialog['CloseButton'];
+  /**
+   * @deprecated Use AlertDialogHeader instead.
+   */
+  Header: IAlertDialog['Header'];
+  /**
+   * @deprecated Use AlertDialogFooter instead.
+   */
+  Footer: IAlertDialog['Footer'];
+  /**
+   * @deprecated Use AlertDialogBody instead.
+   */
+  Body: IAlertDialog['Body'];
+  /**
+   * @deprecated Use AlertDialogBackdrop instead.
+   */
+  Backdrop: IAlertDialog['Backdrop'];
+}
+
+export const AlertDialog = AccessibleAlertDialog as AlertDialog;
+export const AlertDialogContent = AccessibleAlertDialog.Content;
+export const AlertDialogCloseButton = AccessibleAlertDialog.CloseButton;
+export const AlertDialogHeader = AccessibleAlertDialog.Header;
+export const AlertDialogFooter = AccessibleAlertDialog.Footer;
+export const AlertDialogBody = AccessibleAlertDialog.Body;
+export const AlertDialogBackdrop = AccessibleAlertDialog.Backdrop;

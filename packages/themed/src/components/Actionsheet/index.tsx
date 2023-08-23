@@ -87,7 +87,7 @@ interface Actionsheet extends IAccessibleActionsheet {
   Icon: IAccessibleActionsheet['Icon'];
 }
 
-const Actionsheet = AccessibleActionsheet as Actionsheet;
+export const Actionsheet = AccessibleActionsheet as Actionsheet;
 
 export const ActionsheetContent = AccessibleActionsheet.Content;
 export const ActionsheetItem = AccessibleActionsheet.Item;

@@ -1,9 +1,25 @@
 import { createAlert } from '@gluestack-ui/alert';
 import { Root, Text, Icon } from './styled-components';
-export const Alert = createAlert({
+export const AccessibleAlert = createAlert({
   Root,
   Text,
   Icon,
 });
-export const AlertText = Alert.Text;
-export const AlertIcon = Alert.Icon;
+
+type IAccessibleAlert = typeof AccessibleAlert;
+
+interface Alert extends IAccessibleAlert {
+  /**
+   * @deprecated Use ActionsheetText instead.
+   */
+  Text: IAccessibleAlert['Text'];
+  /**
+   * @deprecated Use ActionsheetIcon instead.
+   */
+  Icon: IAccessibleAlert['Icon'];
+}
+
+export const Alert = AccessibleAlert as Alert;
+
+export const AlertText = AccessibleAlert.Text;
+export const AlertIcon = AccessibleAlert.Icon;
