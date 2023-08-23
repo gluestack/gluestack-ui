@@ -1,11 +1,8 @@
 import type { GlueStackConfig } from './types';
 import { convertStyledToStyledVerbosed } from './convertSxToSxVerbosed';
-import { styledToStyledResolved } from './resolver/styledResolved';
 import { stableHash } from './stableHash';
 import { propertyTokenMap } from './propertyTokenMap';
-import { ExtendedStyleSheet } from './style-sheet';
-import { getComponentOrderResolve } from './getComponentOrderResolve';
-import { getStyleIds } from './resolver/getStyleIds';
+import { updateOrderUnResolvedMap } from './updateOrderUnResolvedMap';
 export const createConfig = <
   T extends GlueStackConfig<
     //@ts-ignore
@@ -55,64 +52,23 @@ const resolveComponentThemes = (config: any) => {
 
 const resolveTheme = (
   componentTheme: {},
-  config: any,
+  _config: any,
   extendedConfig?: any
 ) => {
   const versboseComponentTheme = convertStyledToStyledVerbosed(componentTheme);
   const componentHash = stableHash({
     ...componentTheme,
   });
-  const styledResolvedTheme = styledToStyledResolved(
+
+  const { styledIds, verbosedStyleIds } = updateOrderUnResolvedMap(
     versboseComponentTheme,
-    [],
-    {
-      ...config,
-      propertyTokenMap: { ...propertyTokenMap, ...config?.propertyTokenMap },
-    }
+    componentHash,
+    'extended',
+    extendedConfig
   );
-  const [
-    componentOrderResolvedBaseStyle,
-    componentOrderResolvedVariantStyle,
-    descendantOrderResolvedBaseStyle,
-    descendantOrderResolvedVariantStyle,
-    _orderedResolved,
-  ] = getComponentOrderResolve(styledResolvedTheme, componentHash, true);
-
-  const extendedThemeBaseIDs = ExtendedStyleSheet.declare(
-    componentOrderResolvedBaseStyle,
-    'extended-base',
-    componentHash ? componentHash : 'css-injected-extended-time',
-    extendedConfig ?? {}
-  );
-  const extendedThemeDescendantBaseIDs = ExtendedStyleSheet.declare(
-    descendantOrderResolvedBaseStyle,
-    'extended-descendant-base',
-    componentHash ? componentHash : 'css-injected-extended-time-descendant',
-    extendedConfig ?? {}
-  );
-  const extendedThemeVariantIDs = ExtendedStyleSheet.declare(
-    componentOrderResolvedVariantStyle,
-    'extended-variant',
-    componentHash ? componentHash : 'css-injected-extended-time',
-    extendedConfig ?? {}
-  );
-  const extendedThemeDescendantVariantIDs = ExtendedStyleSheet.declare(
-    descendantOrderResolvedVariantStyle,
-    'extended-descendant-variant',
-    componentHash ? componentHash : 'css-injected-extended-time-descendant',
-    extendedConfig ?? {}
-  );
-
-  const mergedStyleIds = [
-    ...extendedThemeBaseIDs,
-    ...extendedThemeDescendantBaseIDs,
-    ...extendedThemeVariantIDs,
-    ...extendedThemeDescendantVariantIDs,
-  ];
-
-  const toBeInjected = ExtendedStyleSheet.resolve(mergedStyleIds, config, {});
-
-  const styleIds = getStyleIds(_orderedResolved, extendedConfig ?? {});
-
-  return { toBeInjected, styleIds, theme: versboseComponentTheme };
+  return {
+    extendedStyleIds: styledIds,
+    extendedVerbosedStyleIds: verbosedStyleIds,
+    theme: versboseComponentTheme,
+  };
 };

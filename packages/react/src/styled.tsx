@@ -1020,19 +1020,10 @@ export function verboseStyled<P, Variants>(
         ...styledContext.config,
         propertyTokenMap,
       };
-
       const EXTENDED_THEME =
         componentName && CONFIG?.components?.[componentName]?.theme?.theme;
 
       // Injecting style
-      const toBeInjected = GluestackStyleSheet.resolve(
-        orderedCSSIds,
-        CONFIG,
-        componentExtendedConfig
-      );
-
-      GluestackStyleSheet.inject(toBeInjected);
-
       if (EXTENDED_THEME) {
         theme.variants = deepMerge(theme.variants, EXTENDED_THEME.variants);
         theme.defaultProps = deepMerge(
@@ -1045,14 +1036,23 @@ export function verboseStyled<P, Variants>(
         // Merge of Extended Config Style ID's with Component Style ID's
         deepMergeArray(
           styleIds,
-          CONFIG?.components?.[`${componentName}`]?.theme.styleIds
+          CONFIG?.components?.[`${componentName}`]?.theme
+            ?.extendedVerbosedStyleIds
         );
         // Injecting Extended StyleSheet from Config
-        const ExtendedToBeInjected =
-          CONFIG?.components?.[`${componentName}`]?.theme.toBeInjected;
-        ExtendedToBeInjected && ExtendedStyleSheet.inject(ExtendedToBeInjected);
+        orderedCSSIds = [
+          ...orderedCSSIds,
+          ...CONFIG?.components?.[`${componentName}`]?.theme?.extendedStyleIds,
+        ];
       }
 
+      const toBeInjected = GluestackStyleSheet.resolve(
+        orderedCSSIds,
+        CONFIG,
+        componentExtendedConfig
+      );
+
+      GluestackStyleSheet.inject(toBeInjected);
       Object.assign(styledSystemProps, CONFIG?.aliases);
 
       //@ts-ignore

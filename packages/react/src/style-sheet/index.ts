@@ -49,7 +49,6 @@ export class StyleInjector {
     cssIds.forEach((cssId: string) => {
       if (this.#globalStyleMap.get(cssId)) {
         const styledResolved = this.#globalStyleMap.get(cssId);
-
         const theme = styledResolved?.original;
 
         if (resolve) {
