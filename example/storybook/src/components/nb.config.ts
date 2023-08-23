@@ -650,15 +650,17 @@ export const config = createConfig({
       theme: {
         'bg': '$green500',
         ':hover': {
-          bg: '$yellow400',
+          bg: '$gray600',
         },
-        'variants': {
-          variant: {
-            blackbox: {
-              bg: '$black',
-            },
-          },
+        '_dark': {
+          bg: '$yellow500',
         },
+        '_text': {
+          color: '$red500',
+        },
+      },
+      componentConfig: {
+        descendantStyle: ['_text'],
       },
     },
   },
