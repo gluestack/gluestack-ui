@@ -21,12 +21,11 @@ We can provide context based descendant styling with the help of gluestack-ui, i
 In the below example we are applying styles to ButtonText by passing styles \_text property in the sx prop of Button component.
 
 ```jsx
-import { config } from './gluestack-ui.config';
-import { Box, Button, GluestackUIProvider } from '@gluestack-ui/react';
+import { Box, Button, GluestackUIProvider } from '@gluestack-ui/themed';
 
 export default function App() {
   return (
-    <GluestackUIProvider config={config.theme}>
+    <GluestackUIProvider>
       <Box justifyContent="center" alignItems="center" h="100%">
         <Box alignItems="center">
           <Button sx={{ _text: { color: 'red' } }}>
