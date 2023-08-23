@@ -341,5 +341,8 @@ export default styled(
     },
   },
 
-  { descendantStyle: ['_input', '_icon'] }
+  {
+    componentName: 'Input',
+    descendantStyle: ['_input', '_icon'],
+  }
 );

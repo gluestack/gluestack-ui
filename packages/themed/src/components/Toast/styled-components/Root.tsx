@@ -110,5 +110,8 @@ export default styled(
       action: 'attention',
     },
   },
-  { descendantStyle: ['_icon', '_text'] }
+  {
+    componentName: 'Toast',
+    descendantStyle: ['_icon', '_text'],
+  }
 );

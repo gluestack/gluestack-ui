@@ -9,5 +9,7 @@ export default styled(
     justifyContent: 'flex-end',
     alignItems: 'center',
   },
-  {}
+  {
+    componentName: 'SelectActionsheet',
+  }
 );

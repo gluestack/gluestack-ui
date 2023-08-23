@@ -7,5 +7,7 @@ export default styled(
     width: '100%',
     height: '100%',
   },
-  {}
+  {
+    componentName: 'Actionsheet',
+  }
 );

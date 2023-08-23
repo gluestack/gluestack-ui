@@ -194,6 +194,7 @@ export default styled(
     },
   },
   {
+    componentName: 'Slider',
     descendantStyle: ['_thumb', '_track', '_filledTrack'],
   },
   {

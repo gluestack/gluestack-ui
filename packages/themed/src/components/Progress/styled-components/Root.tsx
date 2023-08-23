@@ -56,6 +56,7 @@ export default styled(
     },
   },
   {
+    componentName: 'Progress',
     descendantStyle: ['_filledTrack'],
   }
 );

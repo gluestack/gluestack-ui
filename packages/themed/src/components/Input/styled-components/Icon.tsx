@@ -12,5 +12,8 @@ export default styled(
       },
     },
   },
-  { descendantStyle: ['_icon'] }
+  {
+    componentName: 'InputIcon',
+    descendantStyle: ['_icon'],
+  }
 );

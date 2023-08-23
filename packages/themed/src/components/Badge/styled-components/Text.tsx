@@ -8,5 +8,8 @@ export default styled(
     fontFamily: '$body',
     textTransform: 'uppercase',
   },
-  { ancestorStyle: ['_text'] }
+  {
+    componentName: 'BadgeText',
+    ancestorStyle: ['_text'],
+  }
 );

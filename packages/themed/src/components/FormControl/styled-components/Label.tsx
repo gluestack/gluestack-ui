@@ -9,5 +9,8 @@ export default styled(
     alignItems: 'center',
     mb: '$1',
   },
-  { descendantStyle: ['_labelText'] }
+  {
+    componentName: 'FormControlLabel',
+    descendantStyle: ['_labelText'],
+  }
 );
