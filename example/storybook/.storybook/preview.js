@@ -19,7 +19,7 @@ export const parameters = {
       method: '',
       order: [
         'Overview',
-        ['Introduction', 'Accessibility'],
+        ['Introduction', 'Accessibility', 'Getting Started'],
         'Getting Started',
         ['Installation'],
         'Core Concepts',

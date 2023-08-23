@@ -28,7 +28,7 @@
     "@gluestack-ui/actionsheet": "^0.2.16",
     "@gluestack-ui/alert-dialog": "^0.1.14",
     "@gluestack-ui/pressable": "^0.1.9",
-    "@gluestack-ui/themed": "^0.1.1",
+    "@gluestack-ui/themed": "^0.1.3",
     "@gluestack-ui/transitions": "^0.1.9",
     "@gluestack/design-system": "^0.4.28",
     "@legendapp/motion": "^2.2.0",
