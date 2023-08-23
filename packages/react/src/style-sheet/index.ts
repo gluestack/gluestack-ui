@@ -136,6 +136,4 @@ export class StyleInjector {
 }
 
 const stylesheet = new StyleInjector();
-const extendedStyleSheet = new StyleInjector();
 export const GluestackStyleSheet = stylesheet;
-export const ExtendedStyleSheet = extendedStyleSheet;

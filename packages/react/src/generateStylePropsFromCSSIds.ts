@@ -1,5 +1,5 @@
 import { Dimensions, Platform } from 'react-native';
-import { ExtendedStyleSheet, GluestackStyleSheet } from './style-sheet';
+import { GluestackStyleSheet } from './style-sheet';
 
 export function getClosestBreakpoint(
   values: Record<string, any>,
@@ -140,10 +140,8 @@ export function generateStylePropsFromCSSIds(
   if (styleCSSIds.length > 0) {
     if (Platform.OS !== 'web') {
       const nativeStyleMap = GluestackStyleSheet.getStyleMap();
-      const extendedStyleMap = ExtendedStyleSheet.getStyleMap();
       styleCSSIds.forEach((cssId: any) => {
-        const nativeStyle =
-          nativeStyleMap.get(cssId) ?? extendedStyleMap.get(cssId);
+        const nativeStyle = nativeStyleMap.get(cssId);
 
         if (nativeStyle) {
           const queryCondition = nativeStyle?.meta?.queryCondition;
