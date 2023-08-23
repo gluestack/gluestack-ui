@@ -9,5 +9,7 @@ export default styled(
     borderRadius: '$full',
     position: 'absolute',
   },
-  {}
+  {
+    componentName: 'AvatarImage',
+  }
 );

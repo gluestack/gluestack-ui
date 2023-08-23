@@ -9,5 +9,7 @@ export default styled(
     alignItems: 'center',
     mt: '$1',
   },
-  {}
+  {
+    componentName: 'FormControlError',
+  }
 );

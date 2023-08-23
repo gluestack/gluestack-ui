@@ -24,5 +24,8 @@ export default styled(
       },
     },
   },
-  { ancestorStyle: ['_groupVSpacer'] }
+  {
+    componentName: 'GroupVSpacer',
+    ancestorStyle: ['_groupVSpacer'],
+  }
 );

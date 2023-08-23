@@ -16,5 +16,7 @@ export default styled(
       borderColor: '$borderDark700',
     },
   },
-  {}
+  {
+    componentName: 'AlertDialogFooter',
+  }
 );

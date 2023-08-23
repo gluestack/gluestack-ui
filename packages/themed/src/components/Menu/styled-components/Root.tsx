@@ -35,5 +35,7 @@ export const Root = styled(
       softShadow: '3',
     },
   },
-  {}
+  {
+    componentName: 'Menu',
+  }
 );

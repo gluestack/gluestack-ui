@@ -15,5 +15,8 @@ export default styled(
       color: '$textDark200',
     },
   },
-  { ancestorStyle: ['_text'] }
+  {
+    componentName: 'AlertText',
+    ancestorStyle: ['_text'],
+  }
 );

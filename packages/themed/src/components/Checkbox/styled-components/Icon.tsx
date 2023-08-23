@@ -49,6 +49,7 @@ export default styled(
     },
   },
   {
+    componentName: 'CheckboxIcon',
     ancestorStyle: ['_icon'],
   },
   {

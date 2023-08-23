@@ -80,6 +80,7 @@ export default styled(
     },
   },
   {
+    componentName: 'ActionsheetCloseButton',
     descendantStyle: ['_icon', '_text'],
   }
 );

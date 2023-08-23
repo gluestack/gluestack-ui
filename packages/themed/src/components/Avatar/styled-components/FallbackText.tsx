@@ -14,5 +14,8 @@ export default styled(
       cursor: 'default',
     },
   },
-  { ancestorStyle: ['_text'] }
+  {
+    componentName: 'AvatarFallbackText',
+    ancestorStyle: ['_text'],
+  }
 );

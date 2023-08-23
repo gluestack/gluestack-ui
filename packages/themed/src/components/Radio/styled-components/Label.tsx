@@ -65,6 +65,7 @@ export default styled(
     },
   },
   {
+    componentName: 'RadioLabel',
     ancestorStyle: ['_text'],
   }
 );

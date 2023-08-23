@@ -8,5 +8,7 @@ export default styled(
     paddingTop: 0,
     paddingBottom: '$2',
   },
-  {}
+  {
+    componentName: 'ModalBody',
+  }
 );

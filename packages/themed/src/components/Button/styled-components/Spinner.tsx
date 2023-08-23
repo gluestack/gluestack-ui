@@ -4,5 +4,9 @@ import { ActivityIndicator } from 'react-native';
 export default styled(
   ActivityIndicator,
   {},
-  { ancestorStyle: ['_spinner'], resolveProps: ['color'] }
+  {
+    componentName: 'Spinner',
+    ancestorStyle: ['_spinner'],
+    resolveProps: ['color'],
+  }
 );

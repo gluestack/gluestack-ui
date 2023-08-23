@@ -12,6 +12,7 @@ export default styled(
     },
   },
   {
+    componentName: 'AvatarGroup',
     descendantStyle: ['_avatar'],
   }
 );

@@ -2609,10 +2609,10 @@
     inline-style-prefixer "^6.0.1"
     normalize-css-color "^1.0.2"
 
-"@gluestack-style/react@^0.2.6":
-  version "0.2.6"
-  resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-0.2.6.tgz#c7fbe575b43ed3bb0f4b269f1020587a8f72a526"
-  integrity sha512-3GPrkuv9YWz0T9JsG1rsRBPmXHS7zQI/lVMwHN4GQXuCqGHCAcNrtZnyoXVqcGnJUGT5MV0x+QtiXMbFRdaF8Q==
+"@gluestack-style/react@^0.2.7":
+  version "0.2.7"
+  resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-0.2.7.tgz#f1d50a4ebdc8754d4466b196f1db0a0bcf9c62be"
+  integrity sha512-KfA8yW47uk19chX+Ib/y0HTHaitEIBfVoDD1GFdvUfUbVBGUks9lFqvxbFAnYsWaRgkf65/z5FstVwsls7ks1A==
   dependencies:
     inline-style-prefixer "^6.0.1"
     normalize-css-color "^1.0.2"

@@ -24,5 +24,8 @@ export default styled(
       },
     },
   },
-  { ancestorStyle: ['_groupHSpacer'] }
+  {
+    componentName: 'GroupHSpacer',
+    ancestorStyle: ['_groupHSpacer'],
+  }
 );
