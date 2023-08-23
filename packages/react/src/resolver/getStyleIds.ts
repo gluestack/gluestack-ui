@@ -1,4 +1,4 @@
-import { checkAndPush } from '.';
+import { checkAndPush } from './checkAndPush';
 import type { OrderedSXResolved, StyleIds } from '../types';
 
 export function getComponentResolved(orderedResolved: OrderedSXResolved) {
