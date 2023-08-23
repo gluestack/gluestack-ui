@@ -62,7 +62,7 @@ function App({ children }) {
 2. Now you can start using components!:
 
 ```jsx
-import { Button } from '@gluestack-ui/themed';
+import { Button, ButtonText } from '@gluestack-ui/themed';
 
 function Example() {
   return (
