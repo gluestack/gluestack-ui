@@ -84,7 +84,8 @@ export function resolveStringToken(
         ) {
           modifiedTokenScale = 'space';
         }
-        if (!config?.tokens || config?.tokens[modifiedTokenScale]) {
+
+        if (!config || !config.tokens || !config.tokens[token_scale]) {
           throw new Error(
             'You cannot use tokens without wrapping the component with StyledProvider. Please wrap the component with a StyledProvider and pass theme config.'
           );
