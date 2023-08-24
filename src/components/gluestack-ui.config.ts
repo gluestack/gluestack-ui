@@ -741,7 +741,7 @@ export const config = {
             elevation: 3,
             shadowOpacity: 0.1,
             _android: {
-              shadowColor: '$backgroundLight500',
+              shadowColor: '$light.500',
               elevation: 10,
               shadowOpacity: 0.1,
             },
@@ -756,7 +756,7 @@ export const config = {
             shadowOpacity: 0.1,
             elevation: 4,
             _android: {
-              shadowColor: '$backgroundLight500',
+              shadowColor: '$light.500',
               elevation: 15,
               shadowOpacity: 0.15,
             },
@@ -771,7 +771,7 @@ export const config = {
             shadowOpacity: 0.1,
             elevation: 10,
             _android: {
-              shadowColor: '$backgroundLight500',
+              shadowColor: '$light.500',
               elevation: 20,
               shadowOpacity: 0.2,
             },
