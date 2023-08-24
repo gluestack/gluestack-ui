@@ -1,6 +1,10 @@
 import React from 'react';
 import Fold2 from './index1';
 import { Box, VStack, Text } from '@gluestack/design-system';
+import Talk from './Talk';
+import Socail from './Socail';
+import Card1 from './Card1';
+import Card2 from './Card2';
 
 function App() {
   return (
@@ -19,3 +23,5 @@ function App() {
 }
 
 export default App;
+
+export { App, Talk, Socail, Card1, Card2 };
