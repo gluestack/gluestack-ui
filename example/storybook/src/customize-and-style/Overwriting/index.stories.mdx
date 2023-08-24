@@ -10,16 +10,27 @@ pageDescription: Overwriting of the default theme is important to create customi
 showHeader: true
 ---
 
-import { Canvas, Meta, Story } from '@storybook/addon-docs';
+import { Text, Center } from '@gluestack-ui/themed';
+import {
+  Box,
+  Button,
+  GluestackUIProvider,
+  config,
+  VStack,
+  ButtonText,
+} from '@gluestack-ui/themed';
+import { createConfig } from '@gluestack-ui/themed';
+import { transformedCode, transformedThemedCode } from '../../../utils';
+import Wrapper from '../../components/Wrapper';
 
 import {
   AppProvider,
-  Box,
-  HStack,
-  Text,
-  Hoverable,
   CodePreview,
+  Table,
+  TableContainer,
+  InlineCode,
 } from '@gluestack/design-system';
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 <Meta title="Customize and Style/Overwriting" />
 
@@ -57,10 +68,15 @@ components: {
 
 Refer to below code snippet for better understanding
 
-```jsx
-import { config, createConfig } from 'gluestack-ui/themed';
-
-const config = createConfig({
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+     function App(){
+      {/* Creating own theme using createConfig function */}
+  const themeConfig = createConfig({
     ...config.theme,
     aliases: {
       ...config.theme.aliases,
@@ -73,7 +89,7 @@ const config = createConfig({
         secondary: 'green',
       },
     },
-     components: {
+    components: {
       Button: {
         // write same component name which is passed in styled
         theme: {
@@ -91,7 +107,50 @@ const config = createConfig({
         },
       },
     },
-  } as const);
-```
+  });
+    return (
+<GluestackUIProvider config={themeConfig}>
+  <VStack
+          justifyContent="center"
+          alignItems="center"
+          height="100%"
+          space="md">
+          {/* Button with default theme */}
+          <Button>
+            <ButtonText>Hello world</ButtonText>
+          </Button>
+          {/* Using the created alias in the button */}
+          <Button newbg="$red900">
+            <ButtonText>Hello world</ButtonText>
+          </Button>
+          {/* Using the created alias in the button */}
+          <Button bg="$secondary">
+            <ButtonText>Hello world</ButtonText>
+          </Button>
+        </VStack>
+        </GluestackUIProvider>
+);
+}
+`,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'App');
+      },
+      scope: {
+        Wrapper,
+        Text,
+        Button,
+        Box,
+        ButtonText,
+        createConfig,
+        config,
+        GluestackUIProvider,
+        VStack,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+<br />
 
 Refer to [this](https://snack.expo.dev/@gluestack/createconfig) snack for live example.
