@@ -10,6 +10,23 @@ pageDescription: gluestack-ui provides an easy way to manage color modes, in thi
 showHeader: true
 ---
 
+import {
+  GluestackUIProvider,
+  Text,
+  Center,
+  Button,
+  Box,
+} from '@gluestack-ui/themed';
+import { transformedCode, transformedThemedCode } from '../../../../utils';
+import Wrapper from '../../../components/Wrapper';
+
+import {
+  AppProvider,
+  CodePreview,
+  Table,
+  TableContainer,
+  InlineCode,
+} from '@gluestack/design-system';
 import { Meta } from '@storybook/addon-docs';
 
 <Meta title="Customize and Style/Styling/Color Mode" />
@@ -20,50 +37,41 @@ We can apply different styles based on different color mode by defining \_dark a
 
 In the below example we are defining styles to be applied in dark mode in \_dark object and for light mode in \_light object.
 
-```jsx
-import { Box, Button, GluestackUIProvider } from '@gluestack-ui/themed';
-import { useState } from 'react';
-
-export default function App() {
-  const [theme, setTheme] = useState('light');
-  return (
-    <GluestackUIProvider colorMode={theme}>
-      <Box
-        justifyContent="center"
-        alignItems="center"
-        h="100%"
-        sx={{
-          _dark: {
-            bg: '$light900',
-          },
-          _light: {
-            bg: '$light200',
-          },
-        }}
-      >
-        <Button
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+     <>
+ <Button
           sx={{
             _dark: {
-              bg: '$red400',
+              bg: "$red400",
             },
             _light: {
-              bg: '$red600',
+              bg: "$red600",
             },
           }}
         >
           <Button.Text>Hello world</Button.Text>
         </Button>
-        <Button
-          onPress={() => {
-            setTheme(theme == 'light' ? 'dark' : 'light');
-          }}
-        >
-          <Button.Text>Toggle Theme</Button.Text>
-        </Button>
-      </Box>
-    </GluestackUIProvider>
-  );
-}
-```
+     </>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Text,
+        Button,
+        Box,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+<br />
 
 [Expo snack](https://snack.expo.dev/@gluestack/gluestack-ui-color-mode) link for managing color mode.

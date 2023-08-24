@@ -2609,10 +2609,10 @@
     inline-style-prefixer "^6.0.1"
     normalize-css-color "^1.0.2"
 
-"@gluestack-style/react@^0.2.6":
-  version "0.2.6"
-  resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-0.2.6.tgz#c7fbe575b43ed3bb0f4b269f1020587a8f72a526"
-  integrity sha512-3GPrkuv9YWz0T9JsG1rsRBPmXHS7zQI/lVMwHN4GQXuCqGHCAcNrtZnyoXVqcGnJUGT5MV0x+QtiXMbFRdaF8Q==
+"@gluestack-style/react@^0.2.7":
+  version "0.2.8"
+  resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-0.2.8.tgz#5ebe19d997b513e9ba11f44a012b1dfa1c1c4c24"
+  integrity sha512-CEJ/49CFfPNm0qVYWjaKz4xHK4MqmjYZ/PbBfDOZkiEBxEpgPBx900my7brCkRzVqvJlSaa2MCqsrY2W+3nvIA==
   dependencies:
     inline-style-prefixer "^6.0.1"
     normalize-css-color "^1.0.2"
@@ -2691,7 +2691,7 @@
   dependencies:
     "@gluestack-ui/utils" "^0.1.3"
 
-"@gluestack-ui/button@^0.1.15":
+"@gluestack-ui/button@^0.1.15", "@gluestack-ui/button@^0.1.23":
   version "0.1.23"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/button/-/button-0.1.23.tgz#216ed04c2d8b2bd013eff5713ca84a81ffc64140"
   integrity sha512-jRICNzctMteU9TWIFFYuI52L1W4C6Mm2r7ZcUJ1092n4qOCNzFTuXEZrIXH8seQaygmFIjty8XAWy9MMTS1kWA==
@@ -4844,7 +4844,7 @@
   resolved "https://registry.yarnpkg.com/@react-native/assets/-/assets-1.0.0.tgz#c6f9bf63d274bafc8e970628de24986b30a55c8e"
   integrity sha512-KrwSpS1tKI70wuKl68DwJZYEvXktDHdZMG0k2AXD/rJVSlB23/X2CB2cutVR0HwNMJIal9HOUOBB2rVfa6UGtQ==
 
-"@react-native/normalize-color@*", "@react-native/normalize-color@2.1.0", "@react-native/normalize-color@^2.0.0":
+"@react-native/normalize-color@*", "@react-native/normalize-color@2.1.0", "@react-native/normalize-color@^2.0.0", "@react-native/normalize-color@^2.1.0":
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/@react-native/normalize-color/-/normalize-color-2.1.0.tgz#939b87a9849e81687d3640c5efa2a486ac266f91"
   integrity sha512-Z1jQI2NpdFJCVgpY+8Dq/Bt3d+YUi1928Q+/CZm/oh66fzM0RUl54vvuXlPJKybH4pdCZey1eDTPaLHkMPNgWA==
@@ -14803,6 +14803,11 @@ memoize-one@^5.0.0:
   resolved "https://registry.yarnpkg.com/memoize-one/-/memoize-one-5.2.1.tgz#8337aa3c4335581839ec01c3d594090cebe8f00e"
   integrity sha512-zYiwtZUcYyXKo/np96AGZAckk+FWWsUdJ3cHGGmld7+AhvcWmQyGCYUh1hc4Q/pkOhb65dQR/pqCyK0cOaHz4Q==
 
+memoize-one@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/memoize-one/-/memoize-one-6.0.0.tgz#b2591b871ed82948aee4727dc6abceeeac8c1045"
+  integrity sha512-rkpe71W0N0c0Xz6QD0eJETuWAJGnJ9afsl1srmwPrI+yBCkge5EycXXbYRyvL29zZVUWQCY7InPRCv3GDXuZNw==
+
 memoizerific@^1.11.3:
   version "1.11.3"
   resolved "https://registry.yarnpkg.com/memoizerific/-/memoizerific-1.11.3.tgz#7c87a4646444c32d75438570905f2dbd1b1a805a"
@@ -17730,6 +17735,20 @@ react-native-web@^0.18.12:
     postcss-value-parser "^4.2.0"
     styleq "^0.1.2"
 
+react-native-web@^0.19.7:
+  version "0.19.7"
+  resolved "https://registry.yarnpkg.com/react-native-web/-/react-native-web-0.19.7.tgz#feac895c1390c91072cbfb53272f3bb92227ca3c"
+  integrity sha512-AaU4EKCrhdXaKJT3oVm3DH1LJxbA7VEe4TWKBSabGA6+b+CVH2SrCSEKc1pJjqK9iq3gxPcRWnPgrTQ6eHLRmQ==
+  dependencies:
+    "@babel/runtime" "^7.18.6"
+    "@react-native/normalize-color" "^2.1.0"
+    fbjs "^3.0.4"
+    inline-style-prefixer "^6.0.1"
+    memoize-one "^6.0.0"
+    nullthrows "^1.1.1"
+    postcss-value-parser "^4.2.0"
+    styleq "^0.1.3"
+
 react-native@^0.70.7:
   version "0.70.10"
   resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.70.10.tgz#fb4b05930c523dbfb3a6d606db14881fd7a310d6"
@@ -19440,7 +19459,7 @@ styled-jsx@5.1.1:
   dependencies:
     client-only "0.0.1"
 
-styleq@^0.1.2:
+styleq@^0.1.2, styleq@^0.1.3:
   version "0.1.3"
   resolved "https://registry.yarnpkg.com/styleq/-/styleq-0.1.3.tgz#8efb2892debd51ce7b31dc09c227ad920decab71"
   integrity sha512-3ZUifmCDCQanjeej1f6kyl/BeP/Vae5EYkQ9iJfUm/QwZvlgnZzyflqAsAWYURdtea8Vkvswu2GrC57h3qffcA==
