@@ -7,7 +7,8 @@ import {
 import { getStyleIds } from './resolver/getStyleIds';
 import { styledResolvedToOrderedSXResolved } from './resolver/orderedResolved';
 import { styledToStyledResolved } from './resolver/styledResolved';
-import { GluestackStyleSheet, type StyleInjector } from './style-sheet';
+import { GluestackStyleSheet } from './style-sheet';
+import type { StyleInjector } from './style-sheet';
 import { INTERNAL_updateCSSStyleInOrderedResolved } from './updateCSSStyleInOrderedResolved.web';
 
 export function updateOrderUnResolvedMap(
