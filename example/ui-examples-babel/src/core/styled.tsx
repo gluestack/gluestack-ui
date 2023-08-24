@@ -1,1 +1,1 @@
-export { styled } from '@gluestack-style/react';
+export { styled } from '../../../../packages/react';

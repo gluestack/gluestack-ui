@@ -12,7 +12,7 @@ module.exports = function (api) {
           configPath: path.join(__dirname, './gluestack-ui.config.ts'),
           configThemePath: ['theme'],
           filename: path.resolve(__dirname, './src/core/styled'),
-          outputLibrary: 'MEEEE',
+          uiLibraryPath: path.resolve(__dirname, './src/core'),
         },
       ],
       [

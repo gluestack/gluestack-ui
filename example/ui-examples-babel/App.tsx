@@ -1,17 +1,18 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import { SafeAreaView, StyleSheet, View } from 'react-native';
+import { SafeAreaView, StyleSheet } from 'react-native';
 import { config } from './gluestack-ui.config';
 import './styles';
-import { StyledProvider } from '@gluestack-style/react';
-import { styled } from './src/core/styled';
+import { StyledProvider } from '../../packages/react';
+import { Box, Heading } from './src/core';
 
-const Box = styled(View, {
-  bg: '$red500',
-  padding: '$10',
-});
-
+const bg = '$40';
+const abc = '$pink500';
 export default function App() {
+  const [hover, setHover] = React.useState(false);
+  const [active, setActive] = React.useState(false);
+
+  console.log(hover, active, '+++');
   return (
     <>
       {/* top SafeAreaView */}
@@ -25,8 +26,17 @@ export default function App() {
         {/* gluestack-ui provider */}
         <StyledProvider config={config.theme}>
           <Box
+            onHoverIn={() => setHover(true)}
+            onHoverOut={() => setHover(false)}
+            onPressIn={() => setActive(true)}
+            onPressOut={() => setActive(false)}
+            states={{
+              hover,
+              active,
+            }}
+            bg={{}}
             sx={{
-              bg: '$amber500',
+              bg: '$red500',
             }}
           />
         </StyledProvider>
