@@ -1,5 +1,14 @@
 # @gluestack-style/react
 
+## 0.2.4
+
+### Patch Changes
+
+- - Component extended theme [PR](https://github.com/gluestack/gluestack-style/pull/328)
+
+  - Resolver exports [PR](https://github.com/gluestack/gluestack-style/pull/330)
+  - Typing fixes for \_web prop [PR](https://github.com/gluestack/gluestack-style/pull/327)
+
 ## 0.2.3
 
 ### Patch Changes

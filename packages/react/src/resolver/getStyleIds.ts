@@ -1,4 +1,4 @@
-import { checkAndPush } from '.';
+import { checkAndPush } from './checkAndPush';
 import type { OrderedSXResolved, StyleIds } from '../types';
 
 export function getComponentResolved(orderedResolved: OrderedSXResolved) {
@@ -127,7 +127,7 @@ export function getDescendantStyleIds(
 
 export function getStyleIds(
   orderedResolved: OrderedSXResolved,
-  componentStyleConfig: any
+  componentStyleConfig: any = {}
 ): {
   component: StyleIds;
   descendant: StyleIds;

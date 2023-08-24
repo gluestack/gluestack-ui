@@ -72,6 +72,18 @@ export type GlueStackConfig<
   tokens: IToken;
   aliases: IGlobalAliases;
   globalStyle?: GlobalStyles<IGlobalAliases, IToken, IGlobalStyle>;
+  components?: {
+    [key: string]: {
+      theme: Partial<GlobalStyles<IGlobalAliases, IToken, IGlobalStyle>>;
+      componentConfig?: IConfigProps;
+    };
+  };
+};
+
+export type ComponentsThemeType<IGlobalAliases, IToken, IComponents> = {
+  [key: string]: {
+    theme: GlobalStyles<IGlobalAliases, IToken, IComponents>;
+  };
 };
 
 export type InferConfig<Conf> = Conf extends GlueStackConfig<
@@ -106,6 +118,7 @@ export interface IConfigProps {
   descendantStyle: Array<string>;
   ancestorStyle: Array<string>;
   resolveProps: Array<string>;
+  componentName: string;
 }
 
 export type ConfigType = Partial<IConfigProps> & { [key: string]: any };
@@ -295,12 +308,9 @@ export type SxProps<
     PLATFORM
   >;
 } & {
-  [Key in `_${PLATFORMS}`]?: SxProps<
-    GenericComponentStyles,
-    Variants,
-    GenericComponentProps,
-    Key
-  >;
+  [Key in `_${PLATFORMS}`]?:
+    | SxProps<GenericComponentStyles, Variants, GenericComponentProps, Key>
+    | { [key: string]: any };
 } & {
   [Key in `_${string}`]?: SxProps<
     RNStyledProps,
@@ -308,10 +318,12 @@ export type SxProps<
     GenericComponentProps,
     PLATFORM
   > & {
-    props?: RNProps &
-      RNStyledProps & {
-        as?: any;
-      };
+    props?:
+      | (RNProps &
+          RNStyledProps & {
+            as?: any;
+          })
+      | { [key: string]: any };
   } & Partial<{
       [key: string]: any;
     }>;
@@ -658,6 +670,10 @@ export type IWrapperType =
   | 'boot-descendant-base'
   | 'boot-variant'
   | 'boot-descendant-variant'
+  | 'extended-base'
+  | 'extended-descendant-base'
+  | 'extended-variant'
+  | 'extended-descendant-variant'
   | 'passing-base'
   | 'inline-base'
   | 'inline-variant'

@@ -1,20 +1,21 @@
-import type { StyleInjector } from './style-sheet/index';
 import {
   getComponentResolvedBaseStyle,
   getComponentResolvedVariantStyle,
   getDescendantResolvedBaseStyle,
   getDescendantResolvedVariantStyle,
 } from './resolver/getComponentStyle';
+import { getStyleIds } from './resolver/getStyleIds';
 import { styledResolvedToOrderedSXResolved } from './resolver/orderedResolved';
 import { styledToStyledResolved } from './resolver/styledResolved';
-import { INTERNAL_updateCSSStyleInOrderedResolved } from './updateCSSStyleInOrderedResolved';
+import { GluestackStyleSheet, type StyleInjector } from './style-sheet';
+import { INTERNAL_updateCSSStyleInOrderedResolved } from './updateCSSStyleInOrderedResolved.web';
 
 export function updateOrderUnResolvedMap(
   theme: any,
   componentHash: string,
   declarationType: string,
   ExtendedConfig: any,
-  GluestackStyleSheet: StyleInjector
+  _GluestackStyleSheet: StyleInjector = GluestackStyleSheet
 ) {
   const unresolvedTheme = styledToStyledResolved(theme, [], {}, false);
   const orderedUnResolvedTheme =
@@ -23,9 +24,7 @@ export function updateOrderUnResolvedMap(
   INTERNAL_updateCSSStyleInOrderedResolved(
     orderedUnResolvedTheme,
     componentHash,
-    true,
-    '',
-    false
+    true
   );
 
   const componentOrderResolvedBaseStyle = getComponentResolvedBaseStyle(
@@ -42,27 +41,35 @@ export function updateOrderUnResolvedMap(
     orderedUnResolvedTheme
   );
 
-  const componentBaseStyleIds = GluestackStyleSheet.declare(
+  if (declarationType === 'global') {
+  }
+  const componentBaseStyleIds = _GluestackStyleSheet.declare(
     componentOrderResolvedBaseStyle,
-    declarationType + '-base',
+    declarationType === 'global' ? declarationType : declarationType + '-base',
     componentHash ? componentHash : 'css-injected-boot-time',
     ExtendedConfig
   );
-  const descendantBaseStyleIds = GluestackStyleSheet.declare(
+  const descendantBaseStyleIds = _GluestackStyleSheet.declare(
     descendantOrderResolvedBaseStyle,
-    declarationType + '-descendant-base',
+    declarationType === 'global'
+      ? declarationType
+      : declarationType + '-descendant-base',
     componentHash ? componentHash : 'css-injected-boot-time-descendant',
     ExtendedConfig
   );
-  const componentVariantStyleIds = GluestackStyleSheet.declare(
+  const componentVariantStyleIds = _GluestackStyleSheet.declare(
     componentOrderResolvedVariantStyle,
-    declarationType + '-variant',
+    declarationType === 'global'
+      ? declarationType
+      : declarationType + '-variant',
     componentHash ? componentHash : 'css-injected-boot-time',
     ExtendedConfig
   );
-  const descendantVariantStyleIds = GluestackStyleSheet.declare(
+  const descendantVariantStyleIds = _GluestackStyleSheet.declare(
     descendantOrderResolvedVariantStyle,
-    declarationType + '-descendant-variant',
+    declarationType === 'global'
+      ? declarationType
+      : declarationType + '-descendant-variant',
     componentHash ? componentHash : 'css-injected-boot-time-descendant',
     ExtendedConfig
   );
@@ -74,8 +81,10 @@ export function updateOrderUnResolvedMap(
     ...descendantVariantStyleIds,
   ];
 
+  const verbosedStyleIds = getStyleIds(orderedUnResolvedTheme, ExtendedConfig);
+
   return {
-    orderedUnResolvedTheme,
-    styleCSSIdsArr,
+    styledIds: styleCSSIdsArr,
+    verbosedStyleIds,
   };
 }

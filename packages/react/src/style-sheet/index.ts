@@ -48,7 +48,6 @@ export class StyleInjector {
     cssIds.forEach((cssId: string) => {
       if (this.#globalStyleMap.get(cssId)) {
         const styledResolved = this.#globalStyleMap.get(cssId);
-
         const theme = styledResolved?.original;
 
         if (resolve) {
@@ -81,13 +80,16 @@ export class StyleInjector {
       }
     });
 
-    // Object.keys(toBeInjected).forEach((type) => {
-    //   Object.keys(toBeInjected[type]).forEach((styleTag) => {
-    //     this.injectStyles(toBeInjected[type][styleTag], type, styleTag);
-    //   });
-    // });
+    return toBeInjected;
   }
 
+  inject(toBeInjected: any) {
+    Object.keys(toBeInjected).forEach((type) => {
+      Object.keys(toBeInjected[type]).forEach((styleTag) => {
+        this.injectStyles(toBeInjected[type][styleTag], type, styleTag);
+      });
+    });
+  }
   resolveComponentTheme(
     componentTheme: any,
     theme: any,
@@ -123,34 +125,6 @@ export class StyleInjector {
     if (cssRuleset) {
       inject(`@media screen {${cssRuleset}}`, _wrapperType as any, _styleTagId);
     }
-  }
-
-  injectInStyle(cssIds: any) {
-    const toBeInjected: any = {};
-
-    cssIds.forEach((cssId: string) => {
-      if (this.#globalStyleMap.get(cssId)) {
-        const styledResolved = this.#globalStyleMap.get(cssId);
-
-        if (!toBeInjected[styledResolved.type])
-          toBeInjected[styledResolved.type] = {};
-        if (!toBeInjected[styledResolved.type][styledResolved.componentHash])
-          toBeInjected[styledResolved.type][styledResolved.componentHash] = '';
-        toBeInjected[styledResolved.type][styledResolved.componentHash] +=
-          styledResolved.meta.cssRuleset;
-
-        this.#globalStyleMap.set(styledResolved.meta.cssId, {
-          ...styledResolved,
-          value: styledResolved?.resolved,
-        });
-      }
-    });
-
-    Object.keys(toBeInjected).forEach((type) => {
-      Object.keys(toBeInjected[type]).forEach((styleTag) => {
-        this.injectStyles(toBeInjected[type][styleTag], type, styleTag);
-      });
-    });
   }
 }
 

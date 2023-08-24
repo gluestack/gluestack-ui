@@ -1,5 +1,5 @@
-import { SXResolvedToOrderedSXResolved } from '.';
 import type { OrderedSXResolved, StyledResolved } from '../types';
+import { SXResolvedToOrderedSXResolved } from './SXResolvedToOrderedSXResolved';
 
 export function styledResolvedToOrderedSXResolved(
   styledResolved: StyledResolved

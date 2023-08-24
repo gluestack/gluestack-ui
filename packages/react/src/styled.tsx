@@ -24,11 +24,12 @@ import type {
 } from './types';
 import {
   deepMerge,
-  // deepMergeArray,
   getResolvedTokenValueFromConfig,
   deepMergeObjects,
   resolveStringToken,
   shallowMerge,
+  deepMergeArray,
+  // deepMergeArray,
 } from './utils';
 import { convertUtilityPropsToSX } from './core/convert-utility-to-sx';
 import { useStyled } from './StyledProvider';
@@ -823,6 +824,7 @@ export function verboseStyled<P, Variants>(
     componentHash?: string;
   }
 ) {
+  const componentName = componentStyleConfig.componentName;
   const componentHash = stableHash({
     ...theme,
     ...componentStyleConfig,
@@ -899,18 +901,16 @@ export function verboseStyled<P, Variants>(
       );
     }
   } else {
-    const { orderedUnResolvedTheme: a, styleCSSIdsArr: g } =
-      updateOrderUnResolvedMap(
-        theme,
-        componentHash,
-        declarationType,
-        ExtendedConfig,
-        GluestackStyleSheet
-      );
+    const { styledIds: g, verbosedStyleIds } = updateOrderUnResolvedMap(
+      theme,
+      componentHash,
+      declarationType,
+      componentStyleConfig
+    );
 
     orderedCSSIds = g;
 
-    styleIds = getStyleIds(a, componentStyleConfig);
+    styleIds = verbosedStyleIds;
   }
 
   if (BUILD_TIME_PARAMS?.styleIds) {
@@ -1021,24 +1021,53 @@ export function verboseStyled<P, Variants>(
         ...styledContext.config,
         propertyTokenMap,
       };
+      const EXTENDED_THEME =
+        componentName && CONFIG?.components?.[componentName]?.theme?.theme;
 
-      GluestackStyleSheet.resolve(
-        orderedCSSIds,
-        CONFIG,
-        componentExtendedConfig
-      );
+      // Injecting style
+      if (EXTENDED_THEME) {
+        theme.variants = deepMerge(theme.variants, EXTENDED_THEME.variants);
+        theme.defaultProps = deepMerge(
+          theme.defaultProps,
+          EXTENDED_THEME.props
+        );
+        // @ts-ignore
+        theme.props = deepMerge(theme.props, EXTENDED_THEME.props);
 
-      GluestackStyleSheet.injectInStyle(orderedCSSIds);
-
-      Object.assign(styledSystemProps, CONFIG?.aliases);
+        // Merge of Extended Config Style ID's with Component Style ID's
+        deepMergeArray(
+          styleIds,
+          CONFIG?.components?.[`${componentName}`]?.theme
+            ?.extendedVerbosedStyleIds
+        );
+        // Injecting Extended StyleSheet from Config
+        orderedCSSIds = [
+          ...orderedCSSIds,
+          ...CONFIG?.components?.[`${componentName}`]?.theme?.extendedStyleIds,
+        ];
+      }
 
       //@ts-ignore
       const globalStyle = styledContext.globalStyle;
 
       if (globalStyle) {
-        resolvePlatformTheme(globalStyle, Platform.OS);
-        theme = shallowMerge({ ...globalStyle }, theme);
+        const { globalStyleIds, globalVerbosedStyleIds, globalTheme } =
+          globalStyle;
+        theme.variants = deepMerge(theme.variants, globalTheme.variants);
+        // Merge of Extended Config Style ID's with Component Style ID's
+        deepMergeArray(styleIds, globalVerbosedStyleIds);
+        // Injecting Extended StyleSheet from Config
+        orderedCSSIds = [...orderedCSSIds, ...globalStyleIds];
       }
+
+      const toBeInjected = GluestackStyleSheet.resolve(
+        orderedCSSIds,
+        CONFIG,
+        componentExtendedConfig
+      );
+
+      GluestackStyleSheet.inject(toBeInjected);
+      Object.assign(styledSystemProps, CONFIG?.aliases);
 
       const {
         componentStyleIds: c,
@@ -1087,7 +1116,6 @@ export function verboseStyled<P, Variants>(
       incomingComponentProps
     );
 
-    //
     // passingProps is specific to current component
     const passingProps = deepMergeObjects(
       applyComponentPassingProps,
@@ -1606,8 +1634,13 @@ export function verboseStyled<P, Variants>(
   };
 
   const StyledComp = React.forwardRef(NewComp);
-  StyledComp.displayName = Component?.displayName
-    ? 'Styled' + Component?.displayName
+
+  const displayName = componentStyleConfig.componentName
+    ? componentStyleConfig.componentName
+    : Component?.displayName;
+
+  StyledComp.displayName = displayName
+    ? 'Styled' + displayName
     : 'StyledComponent';
 
   return StyledComp;
@@ -1619,8 +1652,8 @@ export function styled<P, Variants>(
   componentStyleConfig?: ConfigType,
   ExtendedConfig?: ExtendedConfigType,
   BUILD_TIME_PARAMS?: {
-    orderedResolved: OrderedSXResolved;
-    styleIds: {
+    orderedResolved?: OrderedSXResolved;
+    styleIds?: {
       component: StyleIds;
       descendant: StyleIds;
     };
@@ -1644,6 +1677,7 @@ export function styled<P, Variants>(
   }
 
   const sxConvertedObject = convertStyledToStyledVerbosed(theme);
+
   const StyledComponent = verboseStyled<P, Variants>(
     Component,
     sxConvertedObject,

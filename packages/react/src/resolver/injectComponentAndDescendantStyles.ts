@@ -12,7 +12,7 @@ export function injectComponentAndDescendantStyles(
   styleTagId?: string,
   type: 'boot' | 'inline' = 'boot',
   _GluestackStyleSheet: StyleInjector = GluestackStyleSheet,
-  shouldInject: boolean = true
+  _shouldInject: boolean = true
 ) {
   const componentOrderResolvedBaseStyle =
     getComponentResolvedBaseStyle(orderedResolved);
@@ -55,9 +55,12 @@ export function injectComponentAndDescendantStyles(
     ...componentOrderResolvedVariantStyleIds,
     ...descendantOrderResolvedVariantStyleIds,
   ];
-  _GluestackStyleSheet.resolve(styleCSSIdsArr, {}, {}, false);
 
-  if (shouldInject) _GluestackStyleSheet.injectInStyle(styleCSSIdsArr);
-
-  return styleCSSIdsArr;
+  const toBeInjected = GluestackStyleSheet.resolve(
+    styleCSSIdsArr,
+    {},
+    {},
+    false
+  );
+  GluestackStyleSheet.inject(toBeInjected);
 }
