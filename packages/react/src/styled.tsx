@@ -1652,12 +1652,14 @@ export function styled<P, Variants>(
   componentStyleConfig?: ConfigType,
   ExtendedConfig?: ExtendedConfigType,
   BUILD_TIME_PARAMS?: {
-    orderedResolved?: OrderedSXResolved;
-    styleIds?: {
+    orderedResolved: OrderedSXResolved;
+    orderedStyleIdsArray?: any;
+    styleIds: {
       component: StyleIds;
       descendant: StyleIds;
     };
     themeHash?: string;
+    componentHash?: string;
   }
 ) {
   const DEBUG_TAG = componentStyleConfig?.DEBUG;
