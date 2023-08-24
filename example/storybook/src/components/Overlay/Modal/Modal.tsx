@@ -3,6 +3,7 @@ import {
   CloseIcon,
   Button,
   ButtonText,
+  ButtonIcon,
   Heading,
   Text,
   Icon,
@@ -20,6 +21,7 @@ import {
   HStack,
   CheckCircleIcon,
   Input,
+  InputField,
   ArrowLeftIcon,
   Link,
 } from '@gluestack-ui/themed';
@@ -109,6 +111,7 @@ export {
   CloseIcon,
   Button,
   ButtonText,
+  ButtonIcon,
   Text,
   Center,
   VStack,
@@ -117,6 +120,7 @@ export {
   Icon,
   CheckCircleIcon,
   Input,
+  InputField,
   ArrowLeftIcon,
   Link,
 };

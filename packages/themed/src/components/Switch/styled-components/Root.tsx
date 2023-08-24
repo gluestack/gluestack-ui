@@ -161,6 +161,7 @@ export default styled(
     },
   },
   {
+    componentName: 'Switch',
     resolveProps: [
       'thumbColor',
       'trackColor',

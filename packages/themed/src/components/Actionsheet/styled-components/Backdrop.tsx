@@ -31,5 +31,7 @@ export default styled(
       cursor: 'default',
     },
   },
-  {}
+  {
+    componentName: 'ActionsheetBackdrop',
+  }
 );

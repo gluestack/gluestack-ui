@@ -5,6 +5,7 @@ export default styled(
   View,
   {},
   {
+    componentName: 'Box',
     descendantStyle: ['_text'],
   }
 );

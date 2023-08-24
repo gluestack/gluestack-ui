@@ -7,5 +7,7 @@ export default styled(
     borderRadius: 9999,
     zIndex: -1,
   },
-  {}
+  {
+    componentName: 'SliderThumbInteraction',
+  }
 );

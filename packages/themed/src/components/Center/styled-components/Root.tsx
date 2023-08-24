@@ -42,5 +42,7 @@ export default styled(
       },
     },
   },
-  {}
+  {
+    componentName: 'Center',
+  }
 );

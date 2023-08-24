@@ -37,5 +37,8 @@ export default styled(
       softShadow: '3',
     },
   },
-  { ancestorStyle: ['_content'] }
+  {
+    componentName: 'AlertDialogContent',
+    ancestorStyle: ['_content'],
+  }
 );

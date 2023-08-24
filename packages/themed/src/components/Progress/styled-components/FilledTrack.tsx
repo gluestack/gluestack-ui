@@ -10,5 +10,8 @@ export default styled(
       bg: '$primary400',
     },
   },
-  { ancestorStyle: ['_filledTrack'] }
+  {
+    componentName: 'ProgressFilledTrack',
+    ancestorStyle: ['_filledTrack'],
+  }
 );

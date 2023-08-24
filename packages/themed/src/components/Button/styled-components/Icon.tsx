@@ -7,6 +7,7 @@ export default styled(
   Icon,
   {},
   {
+    componentName: 'ButtonIcon',
     ancestorStyle: ['_icon'],
   },
   {

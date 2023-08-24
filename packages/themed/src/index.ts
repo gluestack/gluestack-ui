@@ -7,4 +7,5 @@ export {
   useStyled,
   flush,
   AsForwarder,
+  createConfig,
 } from '@gluestack-style/react';

@@ -4,7 +4,6 @@
   "path": {},
   "compilerOptions": {
     "ignoreDeprecations": "5.0",
-    "emitDeclarationOnly": true,
     "noEmit": false,
     "declaration": true,
     "allowUnreachableCode": false,

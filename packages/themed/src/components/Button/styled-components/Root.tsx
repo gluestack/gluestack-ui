@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { styled } from '../../styled';
 import { Pressable } from 'react-native';
 
@@ -1031,6 +1030,7 @@ export default styled(
     },
   },
   {
+    componentName: 'Button',
     descendantStyle: ['_text', '_spinner', '_icon'],
     ancestorStyle: ['_button'],
   }

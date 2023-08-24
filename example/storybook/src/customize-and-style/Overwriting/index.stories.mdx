@@ -33,11 +33,11 @@ createConfig function takes an object as a parameter which takes in aliases, tok
 
 - aliases: This is useful when you want to use a shorter name for a token. For example, you can use bg instead of backgroundColor for the backgroundColor token.
 
-- tokens: This is where you define your design tokens. For more information refer [this](https://ui.gluestack.io/docs/configuration/theme-tokens) doc.
+- tokens: This is where you define your design tokens. For more information refer [this](https://style.gluestack.io/docs/configuration/theme-tokens) doc.
 
-- globalStyle: The styles written inside globalStyle are applied globally in the application.
+- globalStyle: The styles written inside globalStyle are applied globally in the application. For more information refer [this](https://style.gluestack.io/docs/configuration/global-style).
 
-- components: This is where you can define styles for different components based on keys. API will look something like this.
+- components: This is where you can define styles for different components based on keys. API will look something like this. For more information refer [this](https://style.gluestack.io/docs/configuration/customizing-components).
 
 ```bash
 components: {
@@ -55,11 +55,10 @@ components: {
   }
 ```
 
-> Note: This feature is still a work in progress and is not supported yet, we will release it soon.
+Refer to below code snippet for better understanding
 
 ```jsx
-import { createConfig } from 'gluestack-style/react';
-import { config } from 'gluestack-ui/themed';
+import { config, createConfig } from 'gluestack-ui/themed';
 
 const config = createConfig({
     ...config.theme,
@@ -72,6 +71,24 @@ const config = createConfig({
       colors: {
         ...config.theme.tokens.colors,
         secondary: 'green',
+      },
+    },
+     components: {
+      Button: {
+        // write same component name which is passed in styled
+        theme: {
+          bg: '$primary500',
+          variants: {
+            variant: {
+              secondary: {
+                bg: '$secondary500',
+              },
+            },
+          },
+        },
+        componentConfig: {
+          descendantStyle: ['_text'],
+        },
       },
     },
   } as const);

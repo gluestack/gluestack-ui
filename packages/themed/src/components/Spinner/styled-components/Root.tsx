@@ -15,6 +15,7 @@ export default styled(
     },
   },
   {
+    componentName: 'Spinner',
     resolveProps: ['color'],
   },
   {

@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { View } from 'react-native';
 import { styled } from '../../styled';
 
@@ -157,6 +156,9 @@ export default styled(
       size: 'md',
     },
   },
-  { descendantStyle: ['_input'] },
+  {
+    componentName: 'Textarea',
+    descendantStyle: ['_input'],
+  },
   {}
 );

@@ -35,6 +35,7 @@ export default styled(
     },
   },
   {
+    componentName: 'AlertIcon',
     ancestorStyle: ['_icon'],
   },
   {

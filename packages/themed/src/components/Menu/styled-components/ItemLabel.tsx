@@ -73,6 +73,7 @@ export const Label = styled(
     },
   },
   {
+    componentName: 'MenuLabel',
     ancestorStyle: ['_text'],
   }
 );

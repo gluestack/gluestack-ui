@@ -10,5 +10,7 @@ export default styled(
     alignItems: 'center',
     flexWrap: 'wrap',
   },
-  {}
+  {
+    componentName: 'ModalFooter',
+  }
 );

@@ -21,14 +21,13 @@ We can apply different styles based on different color mode by defining \_dark a
 In the below example we are defining styles to be applied in dark mode in \_dark object and for light mode in \_light object.
 
 ```jsx
-import { config } from './gluestack-ui.config';
-import { Box, Button, GluestackUIProvider } from '@gluestack-ui/react';
+import { Box, Button, GluestackUIProvider } from '@gluestack-ui/themed';
 import { useState } from 'react';
 
 export default function App() {
   const [theme, setTheme] = useState('light');
   return (
-    <GluestackUIProvider config={config.theme} colorMode={theme}>
+    <GluestackUIProvider colorMode={theme}>
       <Box
         justifyContent="center"
         alignItems="center"

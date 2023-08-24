@@ -16,6 +16,7 @@ export default styled(
     },
   },
   {
+    componentName: 'SelectActionsheetIcon',
     descendantStyle: ['_icon'],
   }
 );

@@ -33,20 +33,16 @@ mediaQueries: {
 We can apply different styling based on different breakpoints like done in below example. In the above example in the sx props we are defining different styles for different breakpoints.
 
 ```jsx
-import { config } from './gluestack-ui.config';
-import { Box, Button, GluestackUIProvider, Text } from '@gluestack-ui/react';
+import { Box, GluestackUIProvider, Text } from '@gluestack-ui/themed';
 
 export default function App() {
   return (
-    <GluestackUIProvider config={config.theme}>
+    <GluestackUIProvider>
       <Box justifyContent="center" alignItems="center" h="100%">
         <Box
           sx={{
             '@base': {
               bg: '$red500',
-            },
-            '@sm': {
-              bg: '$yellow500',
             },
             '@md': {
               bg: '$green500',

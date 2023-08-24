@@ -58,6 +58,7 @@ export default styled(
     },
   },
   {
+    componentName: 'FormControl',
     descendantStyle: [
       '_labelText',
       '_helperText',

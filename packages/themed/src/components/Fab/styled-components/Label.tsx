@@ -7,5 +7,8 @@ export default styled(
     color: '$textLight50',
     fontFamily: '$body',
   },
-  { ancestorStyle: ['_text'] }
+  {
+    componentName: 'FabLabel',
+    ancestorStyle: ['_text'],
+  }
 );
