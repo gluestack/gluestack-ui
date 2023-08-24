@@ -857,7 +857,7 @@ module.exports = function (b) {
 
             jsxOpeningElementPath.node.attributes = propsToBePersist;
 
-            if (sxPropsWithIdentifier) {
+            if (Object.keys(sxPropsWithIdentifier).length > 0) {
               jsxOpeningElementPath.node.attributes.push(
                 t.jsxAttribute(
                   t.jsxIdentifier('sx'),
