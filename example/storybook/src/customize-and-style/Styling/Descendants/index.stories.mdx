@@ -10,6 +10,23 @@ pageDescription: gluestack-ui provides an easy API to style children of the comp
 showHeader: true
 ---
 
+import {
+  GluestackUIProvider,
+  Text,
+  Center,
+  Button,
+  Box,
+} from '@gluestack-ui/themed';
+import { transformedCode, transformedThemedCode } from '../../../../utils';
+import Wrapper from '../../../components/Wrapper';
+
+import {
+  AppProvider,
+  CodePreview,
+  Table,
+  TableContainer,
+  InlineCode,
+} from '@gluestack/design-system';
 import { Meta } from '@storybook/addon-docs';
 
 <Meta title="Customize and Style/Styling/Descendants" />
@@ -20,22 +37,34 @@ We can provide context based descendant styling with the help of gluestack-ui, i
 
 In the below example we are applying styles to ButtonText by passing styles \_text property in the sx prop of Button component.
 
-```jsx
-import { Box, Button, GluestackUIProvider } from '@gluestack-ui/themed';
-
-export default function App() {
-  return (
-    <GluestackUIProvider>
-      <Box justifyContent="center" alignItems="center" h="100%">
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+       <Box justifyContent="center" alignItems="center" h="100%">
         <Box alignItems="center">
           <Button sx={{ _text: { color: 'red' } }}>
             <Button.Text>Button</Button.Text>
           </Button>
         </Box>
       </Box>
-    </GluestackUIProvider>
-  );
-}
-```
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Text,
+        Button,
+        Box,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+<br />
 
 Expo snack link for the above example is provided [here](https://snack.expo.dev/@gluestack/gluestack-ui-descendant-styles) .

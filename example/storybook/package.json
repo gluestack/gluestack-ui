@@ -27,6 +27,7 @@
     "@gluestack-style/react": "0.1.33",
     "@gluestack-ui/actionsheet": "^0.2.16",
     "@gluestack-ui/alert-dialog": "^0.1.14",
+    "@gluestack-ui/button": "^0.1.23",
     "@gluestack-ui/pressable": "^0.1.9",
     "@gluestack-ui/themed": "^0.1.5",
     "@gluestack-ui/transitions": "^0.1.9",
@@ -56,6 +57,7 @@
     "react": "^18.2.0",
     "react-native-safe-area-context": "^4.4.1",
     "react-native-svg": "13.4.0",
+    "react-native-web": "^0.19.7",
     "react-stately": "^3.21.0",
     "ts-jest": "^29.1.0",
     "uuidv4": "^6.2.13"
