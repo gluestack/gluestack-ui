@@ -22,11 +22,12 @@ const GluestackUIProvider = ({ children, ...props }: any) => {
 };
 
 const flattenTokens = (token: any) => {
-  let flattenToken = {};
+  const flattenToken = {};
   Object.keys(token).forEach((key) => {
     const tokenObj = token[key];
     if (typeof tokenObj === 'object') {
       Object.keys(tokenObj).forEach((tokenKey) => {
+        //@ts-ignore
         flattenToken[`${key}.${tokenKey}`] = tokenObj[tokenKey];
       });
     }
@@ -49,7 +50,7 @@ const convertTheme = (theme: any) => {
     }
   });
 
-  console.log(gluestackTheme, 'gluestack theme');
+  // console.log(gluestackTheme, 'gluestack theme');
   return gluestackTheme;
 };
 
