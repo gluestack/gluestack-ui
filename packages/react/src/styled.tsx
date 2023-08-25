@@ -1,21 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-console */
-import React, {
-  // JSXElementConstructor,
-  // Component,
-  useContext,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react';
+import React, { useContext, useEffect, useMemo, useRef, useState } from 'react';
 import type {
   ConfigType,
   OrderedSXResolved,
-  // Styled,
   StyleIds,
-  // DefaultAndState,
   ComponentProps,
   UtilityProps,
   IVerbosedTheme,
@@ -29,7 +19,6 @@ import {
   resolveStringToken,
   shallowMerge,
   deepMergeArray,
-  // deepMergeArray,
 } from './utils';
 import { convertUtilityPropsToSX } from './core/convert-utility-to-sx';
 import { useStyled } from './StyledProvider';
@@ -39,12 +28,7 @@ import { INTERNAL_updateCSSStyleInOrderedResolved } from './updateCSSStyleInOrde
 import { generateStylePropsFromCSSIds } from './generateStylePropsFromCSSIds';
 
 import { get, onChange } from './core/colorMode';
-import {
-  getComponentResolvedBaseStyle,
-  getComponentResolvedVariantStyle,
-  getDescendantResolvedBaseStyle,
-  getDescendantResolvedVariantStyle,
-} from './resolver/getComponentStyle';
+
 import { styledResolvedToOrderedSXResolved } from './resolver/orderedResolved';
 import { styledToStyledResolved } from './resolver/styledResolved';
 import { getStyleIds } from './resolver/getStyleIds';
@@ -58,7 +42,7 @@ import { stableHash } from './stableHash';
 import { DeclarationType, GluestackStyleSheet } from './style-sheet';
 import { CSSPropertiesMap } from './core/styled-system';
 import { updateOrderUnResolvedMap } from './updateOrderUnResolvedMap';
-// import { GluestackStyleSheet } from './style-sheet';
+
 const styledSystemProps = { ...CSSPropertiesMap };
 
 function isSubset(subset: any, set: any) {
