@@ -28,28 +28,34 @@ export function updateOrderUnResolvedMap(
     true
   );
 
-  const componentOrderResolvedBaseStyle = getComponentResolvedBaseStyle(
-    orderedUnResolvedTheme
-  );
-  const componentOrderResolvedVariantStyle = getComponentResolvedVariantStyle(
-    orderedUnResolvedTheme
-  );
+  // base style
+  const [
+    componentOrderResolvedBaseStyle,
+    componentOrderResolvedBaseStateStyle,
+  ] = getComponentResolvedBaseStyle(orderedUnResolvedTheme);
 
-  const descendantOrderResolvedBaseStyle = getDescendantResolvedBaseStyle(
-    orderedUnResolvedTheme
-  );
-  const descendantOrderResolvedVariantStyle = getDescendantResolvedVariantStyle(
-    orderedUnResolvedTheme
-  );
-
-  if (declarationType === 'global') {
-  }
   const componentBaseStyleIds = _GluestackStyleSheet.declare(
     componentOrderResolvedBaseStyle,
     declarationType === 'global' ? declarationType : declarationType + '-base',
     componentHash ? componentHash : 'css-injected-boot-time',
     ExtendedConfig
   );
+
+  const componentBaseStyleStateIds = _GluestackStyleSheet.declare(
+    componentOrderResolvedBaseStateStyle,
+    declarationType === 'global'
+      ? declarationType
+      : declarationType + '-base-state',
+    componentHash ? componentHash : 'css-injected-boot-time',
+    ExtendedConfig
+  );
+
+  // descendant base style
+
+  const [
+    descendantOrderResolvedBaseStyle,
+    descendantOrderResolvedBaseStateStyle,
+  ] = getDescendantResolvedBaseStyle(orderedUnResolvedTheme);
   const descendantBaseStyleIds = _GluestackStyleSheet.declare(
     descendantOrderResolvedBaseStyle,
     declarationType === 'global'
@@ -58,6 +64,21 @@ export function updateOrderUnResolvedMap(
     componentHash ? componentHash : 'css-injected-boot-time-descendant',
     ExtendedConfig
   );
+  const descendantBaseStateStyleIds = _GluestackStyleSheet.declare(
+    descendantOrderResolvedBaseStateStyle,
+    declarationType === 'global'
+      ? declarationType
+      : declarationType + '-descendant-base-state',
+    componentHash ? componentHash : 'css-injected-boot-time-descendant',
+    ExtendedConfig
+  );
+
+  // variant style
+  const [
+    componentOrderResolvedVariantStyle,
+    componentOrderResolvedVariantStateStyle,
+  ] = getComponentResolvedVariantStyle(orderedUnResolvedTheme);
+
   const componentVariantStyleIds = _GluestackStyleSheet.declare(
     componentOrderResolvedVariantStyle,
     declarationType === 'global'
@@ -66,6 +87,21 @@ export function updateOrderUnResolvedMap(
     componentHash ? componentHash : 'css-injected-boot-time',
     ExtendedConfig
   );
+  const componentVariantStateStyleIds = _GluestackStyleSheet.declare(
+    componentOrderResolvedVariantStateStyle,
+    declarationType === 'global'
+      ? declarationType
+      : declarationType + '-variant-state',
+    componentHash ? componentHash : 'css-injected-boot-time',
+    ExtendedConfig
+  );
+
+  // descendant variant style
+  const [
+    descendantOrderResolvedVariantStyle,
+    descendantOrderResolvedVariantStateStyle,
+  ] = getDescendantResolvedVariantStyle(orderedUnResolvedTheme);
+
   const descendantVariantStyleIds = _GluestackStyleSheet.declare(
     descendantOrderResolvedVariantStyle,
     declarationType === 'global'
@@ -74,12 +110,24 @@ export function updateOrderUnResolvedMap(
     componentHash ? componentHash : 'css-injected-boot-time-descendant',
     ExtendedConfig
   );
+  const descendantVariantStateStyleIds = _GluestackStyleSheet.declare(
+    descendantOrderResolvedVariantStateStyle,
+    declarationType === 'global'
+      ? declarationType
+      : declarationType + '-descendant-variant-state',
+    componentHash ? componentHash : 'css-injected-boot-time-descendant',
+    ExtendedConfig
+  );
 
   const styleCSSIdsArr = [
     ...componentBaseStyleIds,
+    ...componentBaseStyleStateIds,
     ...descendantBaseStyleIds,
+    ...descendantBaseStateStyleIds,
     ...componentVariantStyleIds,
+    ...componentVariantStateStyleIds,
     ...descendantVariantStyleIds,
+    ...descendantVariantStateStyleIds,
   ];
 
   const verbosedStyleIds = getStyleIds(orderedUnResolvedTheme, ExtendedConfig);
