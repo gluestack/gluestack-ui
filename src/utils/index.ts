@@ -308,6 +308,78 @@ export const renamePseudoMap: any = {
   // _light: '_light',
   // _dark: '_dark',
 };
+export const BASE_FONT_SIZE = 16;
+export const convertAbsoluteToRem = (px: number) => {
+  return `${px / BASE_FONT_SIZE}rem`;
+};
+export const convertAbsoluteToPx = (px: number) => {
+  return `${px}px`;
+};
+
+export const convertRemToAbsolute = (rem: number) => {
+  return rem * BASE_FONT_SIZE;
+};
+
+export const platformSpecificSpaceUnits = (theme: any, platform: string) => {
+  const scales = [
+    'space',
+    'sizes',
+    'fontSizes',
+    'radii',
+    'borderWidths',
+    'lineHeights',
+    'letterSpacings',
+  ];
+
+  const newTheme = { ...theme };
+
+  const isWeb = platform === 'web';
+  scales.forEach((key) => {
+    // const scale = get(theme, key, {});
+    //@ts-ignore
+    const scale = theme?.tokens?.[key] ?? {};
+
+    const newScale = { ...scale };
+    for (const scaleKey in scale) {
+      const val = scale[scaleKey];
+      if (typeof val !== 'object') {
+        const isAbsolute = typeof val === 'number';
+        const isPx = !isAbsolute && val.endsWith('px');
+        const isRem = !isAbsolute && val.endsWith('rem');
+        // const isEm = !isAbsolute && !isRem && val.endsWith('em');
+
+        // console.log(isRem, key, val, isAbsolute, 'scale here');
+
+        // If platform is web, we need to convert absolute unit to rem. e.g. 16 to 1rem
+        if (isWeb) {
+          // if (isAbsolute) {
+          //   newScale[scaleKey] = convertAbsoluteToRem(val);
+          // }
+          if (isAbsolute) {
+            newScale[scaleKey] = convertAbsoluteToPx(val);
+          }
+        }
+        // If platform is not web, we need to convert px unit to absolute and rem unit to absolute. e.g. 16px to 16. 1rem to 16.
+        else {
+          if (isRem) {
+            newScale[scaleKey] = convertRemToAbsolute(parseFloat(val));
+          } else if (isPx) {
+            newScale[scaleKey] = parseFloat(val);
+          }
+        }
+      }
+    }
+    if (newTheme.tokens) {
+      //@ts-ignore
+      newTheme.tokens[key] = newScale;
+    } else {
+      console.warn(
+        'No tokens found in config! Please pass config in Provider to resolve styles!'
+      );
+    }
+  });
+  return newTheme;
+};
 
 export function renamePseudoClasses(obj: any) {
   for (const key in obj) {
@@ -425,3 +497,16 @@ export function addDollarSignsToProps(obj: any, config: any) {
   }
   return newObj;
 }
+
+export const deepMerge = (target: any = {}, source: any) => {
+  for (const key in source) {
+    if (source.hasOwnProperty(key)) {
+      if (typeof target[key] === 'object' && typeof source[key] === 'object') {
+        deepMerge(target[key], source[key]);
+      } else {
+        target[key] = source[key];
+      }
+    }
+  }
+  return target;
+};

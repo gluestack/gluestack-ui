@@ -8,6 +8,9 @@ import { OverlayProvider } from '@gluestack-ui/overlay';
 import { ToastProvider } from '@gluestack-ui/toast';
 
 import { config } from '../gluestack-ui.config';
+import { convertTheme } from '../../utils/extendTheme';
+
+import { deepMerge } from '../../utils';
 
 const GluestackUIStyledProvider = createProvider({ StyledProvider });
 
@@ -21,57 +24,14 @@ const GluestackUIProvider = ({ children, ...props }: any) => {
   );
 };
 
-const flattenTokens = (token: any) => {
-  const flattenToken = {};
-  Object.keys(token).forEach((key) => {
-    const tokenObj = token[key];
-    if (typeof tokenObj === 'object') {
-      Object.keys(tokenObj).forEach((tokenKey) => {
-        //@ts-ignore
-        flattenToken[`${key}.${tokenKey}`] = tokenObj[tokenKey];
-      });
-    }
-  });
-
-  return flattenToken;
-};
-const convertTheme = (theme: any) => {
-  const gluestackTheme: any = {
-    tokens: {},
-    aliases: {},
-    components: {},
-  };
-  Object.keys(theme).forEach((key) => {
-    if (key === 'components') {
-      gluestackTheme.components = theme[key];
-    } else if (key === 'config') {
-    } else {
-      gluestackTheme.tokens[key] = flattenTokens(theme[key]);
-    }
-  });
-
-  // console.log(gluestackTheme, 'gluestack theme');
-  return gluestackTheme;
-};
-
-export const deepMerge = (target: any = {}, source: any) => {
-  for (const key in source) {
-    if (source.hasOwnProperty(key)) {
-      if (typeof target[key] === 'object' && typeof source[key] === 'object') {
-        deepMerge(target[key], source[key]);
-      } else {
-        target[key] = source[key];
-      }
-    }
-  }
-  return target;
-};
-
-const NativeBaseProvider = ({ children, ...props }: any) => {
+const NativeBaseProvider = ({ children, _enableRem = true, ...props }: any) => {
   const theme = props.theme;
 
   const gluestackCompatibleTheme = convertTheme(theme);
   const mergedTheme = deepMerge(config.theme, gluestackCompatibleTheme);
+  // const newtheme = enableRem
+  //   ? platformSpecificSpaceUnits(mergedTheme)
+  //   : mergedTheme;
 
   return (
     <GluestackUIStyledProvider {...props} config={mergedTheme}>
