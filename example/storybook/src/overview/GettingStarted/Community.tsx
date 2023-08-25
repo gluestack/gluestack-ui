@@ -37,14 +37,19 @@ export const Community = ({
         {communities.map((community, key) => {
           return (
             <Link
-              minWidth={330}
+              minWidth={300}
               sx={{
-                borderColor: '#D4D4D4',
-                _dark: {
+                '@lg': {
+                  maxWidth: 300,
+                },
+                '@sm': {
+                  flex: 1,
+                },
+                'borderColor': '#D4D4D4',
+                '_dark': {
                   borderColor: '$borderDark800',
                 },
               }}
-              flex={1}
               borderRadius="$xl"
               overflow="hidden"
               borderWidth="$1"
