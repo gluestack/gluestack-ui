@@ -8,24 +8,49 @@ import { getStyleIds } from './resolver/getStyleIds';
 import { styledResolvedToOrderedSXResolved } from './resolver/orderedResolved';
 import { styledToStyledResolved } from './resolver/styledResolved';
 import { GluestackStyleSheet, type StyleInjector } from './style-sheet';
-import { INTERNAL_updateCSSStyleInOrderedResolved } from './updateCSSStyleInOrderedResolved.web';
+import { INTERNAL_updateCSSStyleInOrderedResolved } from './updateCSSStyleInOrderedResolved';
+import { INTERNAL_updateCSSStyleInOrderedResolved as INTERNAL_updateCSSStyleInOrderedResolvedWeb } from './updateCSSStyleInOrderedResolved.web';
 
 export function updateOrderUnResolvedMap(
   theme: any,
   componentHash: string,
   declarationType: string,
   ExtendedConfig: any,
-  _GluestackStyleSheet: StyleInjector = GluestackStyleSheet
+  _GluestackStyleSheet: StyleInjector = GluestackStyleSheet,
+  platform: string = ''
 ) {
+  const prefixClassName = declarationType === 'inline' ? 'gs' : '';
+  const shouldGuessDescendants = declarationType === 'inline' ? true : false;
   const unresolvedTheme = styledToStyledResolved(theme, [], {}, false);
   const orderedUnResolvedTheme =
     styledResolvedToOrderedSXResolved(unresolvedTheme);
 
-  INTERNAL_updateCSSStyleInOrderedResolved(
-    orderedUnResolvedTheme,
-    componentHash,
-    true
-  );
+  // platform is useful incase of Babel plugin
+  if (platform === 'all') {
+    INTERNAL_updateCSSStyleInOrderedResolvedWeb(
+      orderedUnResolvedTheme,
+      componentHash,
+      true,
+      prefixClassName,
+      false
+    );
+  } else if (platform === 'web') {
+    INTERNAL_updateCSSStyleInOrderedResolvedWeb(
+      orderedUnResolvedTheme,
+      componentHash,
+      false,
+      prefixClassName,
+      false
+    );
+  } else {
+    INTERNAL_updateCSSStyleInOrderedResolved(
+      orderedUnResolvedTheme,
+      componentHash,
+      true,
+      prefixClassName,
+      false
+    );
+  }
 
   const componentOrderResolvedBaseStyle = getComponentResolvedBaseStyle(
     orderedUnResolvedTheme
@@ -81,7 +106,11 @@ export function updateOrderUnResolvedMap(
     ...descendantVariantStyleIds,
   ];
 
-  const verbosedStyleIds = getStyleIds(orderedUnResolvedTheme, ExtendedConfig);
+  const verbosedStyleIds = getStyleIds(
+    orderedUnResolvedTheme,
+    ExtendedConfig,
+    shouldGuessDescendants
+  );
 
   return {
     styledIds: styleCSSIdsArr,
