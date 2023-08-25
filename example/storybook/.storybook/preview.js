@@ -95,13 +95,11 @@ export const parameters = {
           'Install in React Native',
           'Building Design Systems',
         ],
-
         'Configuration',
         ['Server-Side Rendering', 'React Server Components'],
-
         'Advanced',
         ['Fonts', 'Animations', 'CLI'],
-        'Recipies',
+        'Recipes',
         ['Card'],
         'Resources',
         ['Todo-List', 'Kitchen Sink'],
