@@ -21,7 +21,11 @@ export default styled(
       },
     },
   },
-  { ancestorStyle: ['_input'], resolveProps: ['placeholderTextColor'] },
+  {
+    componentName: 'SelectInput',
+    ancestorStyle: ['_input'],
+    resolveProps: ['placeholderTextColor'],
+  },
   {
     propertyTokenMap: {
       placeholderTextColor: 'colors',

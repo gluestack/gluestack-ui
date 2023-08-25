@@ -41,6 +41,7 @@ export default styled(
   },
   {},
   {
+    componentName: 'Icon',
     propertyTokenMap: {
       stroke: 'colors',
     },

@@ -40,5 +40,7 @@ export default styled(
       cursor: 'default',
     },
   },
-  {}
+  {
+    componentName: 'AlertDialogBackdrop',
+  }
 );

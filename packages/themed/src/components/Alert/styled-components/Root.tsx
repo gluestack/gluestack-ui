@@ -103,5 +103,9 @@ export default styled(
       action: 'info',
     },
   },
-  { descendantStyle: ['_icon', '_text'], DEBUG: 'STYLED_ALERT' }
+  {
+    componentName: 'Alert',
+    descendantStyle: ['_icon', '_text'],
+    DEBUG: 'STYLED_ALERT',
+  }
 );

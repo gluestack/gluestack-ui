@@ -11,5 +11,7 @@ export default styled(
     alignItems: 'center',
     flexDirection: 'row',
   },
-  {}
+  {
+    componentName: 'ModalHeader',
+  }
 );

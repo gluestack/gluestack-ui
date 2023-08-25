@@ -6,5 +6,7 @@ export default styled(
   {
     width: '100%',
   },
-  {}
+  {
+    componentName: 'Tooltip',
+  }
 );

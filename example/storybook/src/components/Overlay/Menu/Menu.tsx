@@ -1,6 +1,7 @@
 import React from 'react';
 
 import {
+  Box,
   Button,
   ButtonText,
   GlobeIcon,
@@ -75,4 +76,5 @@ export {
   AddIcon,
   PaintBucket,
   PuzzleIcon,
+  Box,
 };

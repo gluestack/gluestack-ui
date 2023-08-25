@@ -9,5 +9,7 @@ export default styled(
       space: 'md',
     },
   },
-  {}
+  {
+    componentName: 'VStack',
+  }
 );
