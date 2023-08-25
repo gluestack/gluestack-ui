@@ -5,7 +5,7 @@ import { Motion } from '@legendapp/motion';
 export default styled(
   Motion.View,
   {
-    'bg': '$backgroundLight50',
+    'bg': '$backgroundLight.50',
     'rounded': '$lg',
     'overflow': 'hidden',
     ':initial': {
@@ -31,7 +31,7 @@ export default styled(
     },
 
     '_dark': {
-      bg: '$backgroundDark900',
+      bg: '$backgroundDark.900',
     },
     'defaultProps': {
       softShadow: '3',

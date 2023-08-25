@@ -5,12 +5,12 @@ export default styled(
   View,
   {
     p: '$4',
-    borderColor: '$borderLight300',
+    borderColor: '$borderLight.300',
     justifyContent: 'space-between',
     alignItems: 'center',
     flexDirection: 'row',
     _dark: {
-      borderColor: '$borderDark700',
+      borderColor: '$borderDark.700',
     },
   },
   {}

@@ -9,67 +9,67 @@ export default styled(
     'rounded': '$sm',
     'p': '$2',
     '_icon': {
-      color: '$backgroundLight400',
+      color: '$backgroundLight.400',
     },
     '_text': {
-      color: '$backgroundLight400',
+      color: '$backgroundLight.400',
     },
     ':hover': {
       _icon: {
-        color: '$backgroundLight700',
+        color: '$backgroundLight.700',
       },
       _text: {
-        color: '$backgroundLight700',
+        color: '$backgroundLight.700',
       },
     },
 
     ':active': {
       _icon: {
-        color: '$backgroundLight900',
+        color: '$backgroundLight.900',
       },
       _text: {
-        color: '$backgroundLight900',
+        color: '$backgroundLight.900',
       },
     },
 
     '_dark': {
       '_icon': {
-        color: '$backgroundLight400',
+        color: '$backgroundLight.400',
       },
       '_text': {
-        color: '$backgroundLight400',
+        color: '$backgroundLight.400',
       },
       ':hover': {
         _icon: {
-          color: '$backgroundDark200',
+          color: '$backgroundDark.200',
         },
         _text: {
-          color: '$backgroundLight200',
+          color: '$backgroundLight.200',
         },
       },
 
       ':active': {
         _icon: {
-          color: '$backgroundDark100',
+          color: '$backgroundDark.100',
         },
       },
     },
 
     ':focusVisible': {
-      bg: '$backgroundLight100',
+      bg: '$backgroundLight.100',
       _icon: {
-        color: '$backgroundLight900',
+        color: '$backgroundLight.900',
       },
       _text: {
-        color: '$backgroundLight900',
+        color: '$backgroundLight.900',
       },
       _dark: {
-        bg: '$backgroundDark700',
+        bg: '$backgroundDark.700',
         _icon: {
-          color: '$backgroundLight100',
+          color: '$backgroundLight.100',
         },
         _text: {
-          color: '$backgroundLight100',
+          color: '$backgroundLight.100',
         },
       },
     },
