@@ -16,29 +16,26 @@ import ReactN from './ReactN';
 function Card1() {
   return (
     <HStack
-      width={990}
-      space="xl"
+      my={'$6'}
+      gap={20}
       sx={{
         '@lg': {
           flexDirection: 'row',
         },
         'flexDirection': 'column',
       }}
+      w="$full"
     >
       <Box
-        width="48%"
-        bg="red"
-        mr="$4"
-        mt={28}
-        mb={24}
-        borderRadius="12px"
-        borderWidth="1px"
+        flex={1}
+        borderRadius={'$xl'}
+        borderWidth={'$1'}
         sx={{
-          'borderColor': '#D4D4D4',
-          '_dark': {
+          borderColor: '#D4D4D4',
+          _dark: {
             borderColor: 'rgba(38, 38, 38, 1)',
           },
-          '_web': {
+          _web: {
             background:
               'linear-gradient(329deg, rgba(0, 56, 255, 0.08) 0%, rgba(39, 87, 255, 0.00) 99.99%, rgba(0, 56, 255, 0.00) 100%), linear-gradient(123deg, rgba(233, 185, 255, 0.60) 0%, rgba(15, 24, 86, 0.00) 100%)',
             _dark: {
@@ -46,89 +43,63 @@ function Card1() {
                 'linear-gradient(329deg, rgba(0, 16, 71, 0.40) 0%, rgba(77, 77, 77, 0.00) 100%), linear-gradient(123deg, rgba(115, 41, 150, 0.60) 0%, rgba(15, 24, 86, 0.00) 100%)',
             },
           },
-          '@base': {
-            minWidth: '$full',
-          },
-          '@lg': {
-            minWidth: '20%',
-          },
         }}
       >
-        <Box h={180}>
-          <Box p={24}>
-            <VStack>
-              <HStack justifyContent="space-between" alignItems="center">
-                <Text
-                  fontSize={24}
-                  fontWeight="bold"
-                  fontFamily="Plus Jakarta Sans"
-                  my={0}
-                >
-                  Quickstart
-                </Text>
-                <MySvgComponent />
-              </HStack>
-              <CodePreview
-                metaData={{
-                  code: `npx gluestack`,
-                }}
-                language="bash"
-                showArgsController={false}
-                showComponentRenderer={false}
-                mb="$6"
-                w="$full"
-                mt="$6"
-                codeBlockProps={{
-                  bg: '$white',
-                  fontSize: 20,
-                }}
-              />
-            </VStack>
-          </Box>
+        <Box p={'$6'}>
+          <VStack space="md" justifyContent="center">
+            <HStack justifyContent="space-between" alignItems="center">
+              <Text
+                fontSize={'$2xl'}
+                fontWeight="bold"
+                fontFamily="Plus Jakarta Sans"
+                my={0}
+              >
+                Quickstart
+              </Text>
+              <MySvgComponent />
+            </HStack>
+            <CodePreview
+              metaData={{
+                code: `npx gluestack`,
+              }}
+              language="bash"
+              showArgsController={false}
+              showComponentRenderer={false}
+              codeBlockProps={{
+                bg: '$white',
+                fontSize: '$xl',
+              }}
+            />
+          </VStack>
         </Box>
       </Box>
       <Box
-        width="46%"
-        mt={28}
-        mb={24}
-        h={180}
-        borderRadius="12px"
-        borderWidth="1px"
+        flex={1}
+        borderRadius={'$xl'}
+        borderWidth={'$1'}
         sx={{
-          'borderColor': '#D4D4D4',
-          '_dark': {
+          borderColor: '#D4D4D4',
+          _dark: {
             borderColor: 'rgba(38, 38, 38, 1)',
+            bg: 'linear-gradient(150.32deg, #3E485B 18.15%, rgba(55, 65, 81, 0) 92.97%), linear-gradient(0deg, rgba(62, 72, 91, 0.2), rgba(62, 72, 91, 0.2)',
           },
-          '@base': {
-            minWidth: '$full',
-          },
-          '@lg': {
-            minWidth: '20%',
+          _light: {
+            background: 'rgb(212,226,255)',
+            opacity: '0.8',
           },
         }}
       >
-        <Box
-          h={180}
-          p={24}
-          sx={{
-            _light: {
-              background: 'rgb(212,226,255)',
-              opacity: '0.8',
-            },
-            _dark: {
-              bg: 'linear-gradient(150.32deg, #3E485B 18.15%, rgba(55, 65, 81, 0) 92.97%), linear-gradient(0deg, rgba(62, 72, 91, 0.2), rgba(62, 72, 91, 0.2)',
-            },
-          }}
-        >
-          <VStack>
+        <Box p={'$6'}>
+          <VStack space="md">
             <Text
-              fontSize={24}
+              fontSize={'$2xl'}
               fontWeight="bold"
               fontFamily="Plus Jakarta Sans"
+              space="md"
             >
               Manual Installation
             </Text>
-            <HStack space="sm" mt="$6">
+            <HStack flexWrap="wrap" gap={10}>
               <Link href="https://ui.gluestack.io/docs/guides/install-nextjs">
                 <Next />
               </Link>

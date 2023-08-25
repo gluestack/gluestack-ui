@@ -1,35 +1,26 @@
 //@ts-nocheck
 import React from 'react';
-import {
-  Box,
-  HStack,
-  VStack,
-  Text,
-  Link,
-  Pressable,
-} from '@gluestack/design-system';
+import { Box, HStack, VStack, Text, Link } from '@gluestack/design-system';
 import Expo from './Expo';
 import Checkbox from './Checkbox';
 
 function Card2() {
   return (
     <HStack
-      width={1010}
-      space="md"
+      my={'$6'}
+      gap={20}
       sx={{
         '@lg': {
           flexDirection: 'row',
         },
         'flexDirection': 'column',
       }}
+      w="$full"
     >
       <Box
-        borderRadius="12px"
-        borderWidth="1px"
-        mt={26}
-        mb={8}
-        h={112}
-        width="48%"
+        flex={1}
+        borderRadius={'$xl'}
+        borderWidth={'$1'}
         sx={{
           borderColor: '#D4D4D4',
           _dark: {
@@ -45,30 +36,24 @@ function Card2() {
           },
         }}
       >
-        <Box h={112} w={502} borderRadius="$xl" borderColor="#262626">
-          <Link href="https://snack.expo.dev/@gluestack/gluestack-ui-todos-example?platform=web&theme=dark">
-            <Box p={24}>
-              <VStack>
-                <HStack alignItems="center" space="md" mb={10}>
+        <Box borderRadius="$xl" borderColor="#262626">
+          <Link
+            href="https://snack.expo.dev/@gluestack/gluestack-ui-todos-example?platform=web&theme=dark"
+            isExternal
+          >
+            <Box p={'$6'}>
+              <VStack space="md">
+                <HStack alignItems="center" space="md">
                   <Expo />
-                  <Pressable
-                    sx={{
-                      ':hover': {
-                        textDecoration: 'underline',
-                        color: 'white',
-                      },
-                    }}
+                  <Text
+                    fontWeight="$medium"
+                    fontSize={'$xl'}
+                    fontFamily="Plus Jakarta Sans"
                   >
-                    <Text
-                      fontWeight="$medium"
-                      fontSize={20}
-                      fontFamily="Plus Jakarta Sans"
-                    >
-                      Try gluestack-ui on Snack
-                    </Text>
-                  </Pressable>
+                    Try gluestack-ui on Snack
+                  </Text>
                 </HStack>
-                <Text fontSize={16} fontWeight="$normal">
+                <Text fontSize={'$md'} fontWeight="$normal">
                   Get started without having to set up.
                 </Text>
               </VStack>
@@ -78,12 +63,9 @@ function Card2() {
       </Box>
 
       <Box
-        borderRadius="12px"
-        borderWidth="1px"
-        mt={28}
-        mb={24}
-        h={112}
-        width="48%"
+        flex={1}
+        borderRadius={'$xl'}
+        borderWidth={'$1'}
         sx={{
           borderColor: '#D4D4D4',
           _dark: {
@@ -99,34 +81,25 @@ function Card2() {
           },
         }}
       >
-        <Box h={112} w={502}>
-          <Link href="https://ui.gluestack.io/docs/guides/install-nextjs">
-            <Box p={24}>
-              <VStack>
-                <HStack alignItems="center" space="md" mb={10}>
-                  <Checkbox />
-                  <Pressable
-                    sx={{
-                      ':hover': {
-                        textDecoration: 'underline',
-                        color: 'white',
-                      },
-                    }}
-                    my={0}
-                  >
-                    {' '}
-                    <Text fontWeight="$medium" fontSize={20}>
-                      Try gluestack-ui on CodeSandbox
-                    </Text>
-                  </Pressable>
-                </HStack>
-                <Text fontSize={16} fontWeight="$normal">
-                  See how your app looks as you code.
+        <Link href="https://ui.gluestack.io/docs/guides/install-nextjs">
+          <Box p={'$6'}>
+            <VStack space="md">
+              <HStack alignItems="center" space="md">
+                <Checkbox />
+                <Text
+                  fontWeight="$medium"
+                  fontSize={'$xl'}
+                  fontFamily="Plus Jakarta Sans"
+                >
+                  Try gluestack-ui on CodeSandbox
                 </Text>
-              </VStack>
-            </Box>
-          </Link>
-        </Box>
+              </HStack>
+              <Text fontSize={'$md'} fontWeight="$normal">
+                See how your app looks as you code.
+              </Text>
+            </VStack>
+          </Box>
+        </Link>
       </Box>
     </HStack>
   );

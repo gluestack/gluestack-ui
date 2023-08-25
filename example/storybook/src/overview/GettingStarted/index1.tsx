@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import { Box, Text, VStack } from '@gluestack/design-system';
+import { Box, HStack, Text, VStack } from '@gluestack/design-system';
 import { Card } from './Card';
 import { content } from './content';
 import NextLink from 'next/link';
@@ -7,47 +7,36 @@ import { ArrowRightIcon } from '@gluestack-ui/themed';
 
 const Fold2 = memo(() => {
   return (
-    <Box
-      width="70vw"
+    <HStack
+      my={'$6'}
       flexDirection="column"
       flexWrap="wrap"
+      gap={20}
       sx={{
-        '@base': { mb: '$20' },
-        '@md': { mb: 24, flexDirection: 'row' },
+        '@lg': { flexDirection: 'row' },
       }}
     >
       {content.map((item, index) => {
         return <Card key={index} title={item.title} child={item.child} />;
       })}
       <Box
+        alignItems="center"
+        justifyContent="center"
+        flex={1}
+        minWidth={200}
+        minHeight={240}
         borderRadius="$xl"
         borderWidth={1}
-        mt="$6"
-        minHeight={234}
         sx={{
-          'borderColor': '#D4D4D4',
-          'bg': '#F5F5F5',
-          '_dark': {
+          borderColor: '#D4D4D4',
+          bg: '#F5F5F5',
+          _dark: {
             bg: '#071117',
             borderColor: '$borderDark800',
           },
-          '@md': {
-            width: '20%',
-          },
-          '@lg': {
-            height: 253,
-            mr: '$6',
-            flex: 1,
-          },
         }}
       >
-        <VStack
-          pt={57}
-          pb={107}
-          px="$6"
-          justifyContent="center"
-          alignItems="center"
-        >
+        <VStack px="$6" justifyContent="center" alignItems="center">
           <Text my={0} textAlign="center">
             30+ components
           </Text>
@@ -79,7 +68,7 @@ const Fold2 = memo(() => {
           </NextLink>
         </VStack>
       </Box>
-    </Box>
+    </HStack>
   );
 });
 

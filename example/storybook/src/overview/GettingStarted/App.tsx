@@ -8,9 +8,9 @@ import Card2 from './Card2';
 
 function App() {
   return (
-    <Box>
+    <Box my="$6">
       <VStack space="sm">
-        <Text fontWeight="$bold" fontSize={24}>
+        <Text fontWeight="$bold" fontSize={'$2xl'}>
           Explore Components
         </Text>
         <Text size="md">

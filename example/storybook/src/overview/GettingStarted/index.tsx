@@ -6,11 +6,12 @@ import { content1 } from './content1';
 const Fold3 = memo(() => {
   return (
     <Box
+      my={'$6'}
       flexDirection="column"
       flexWrap="wrap"
+      gap={20}
       sx={{
-        '@base': { mb: '$20' },
-        '@md': { mb: 20, flexDirection: 'row' },
+        '@lg': { flexDirection: 'row' },
       }}
     >
       {content1.map((item, index) => {
@@ -20,6 +21,9 @@ const Fold3 = memo(() => {
             title={item.title}
             name={item.name}
             date={item.date}
+            bannerImage={item.bannerImage}
+            isExternal={item.isExternal}
+            link={item.link}
           />
         );
       })}

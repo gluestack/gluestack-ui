@@ -1,20 +1,27 @@
 //@ts-nocheck
 import React from 'react';
 import { Box, Text, VStack, Link } from '@gluestack/design-system';
+import NextImage from 'next/image';
 export const CardTalk = ({
   title,
   name,
   date,
+  bannerImage,
+  link,
+  isExternal,
 }: {
   title: string;
   name: string;
   date: string;
+  bannerImage: string;
+  link: string;
+  isExternal: boolean;
 }) => {
   return (
     <Box
       borderRadius="$xl"
       borderWidth={1}
-      mt="$6"
+      maxWidth={327}
       sx={{
         borderColor: '#A3A3A3',
         background:
@@ -25,28 +32,18 @@ export const CardTalk = ({
             'linear-gradient(90deg, rgba(43, 39, 90, 0.20) 0%, rgba(43, 39, 90, 0.00) 100%), rgba(62, 72, 91, 0.20)',
         },
       }}
+      overflow="hidden"
     >
-      <Link href="https://www.youtube.com/watch?v=EFTCeK8aXTU" isExternal>
-        <Box h={200} width={327}>
-          <img src="/images/themed.png" alt="architecture" fill={true} />
-          {/* <Image
-          https://pbs.twimg.com/profile_images/1536383051038597121/yC2UDgyv_400x400.jpg
-            src="https://i3.ytimg.com/vi/EFTCeK8aXTU/maxresdefault.jpg"
-            alt="accessibility"
-            fill={true}
-            style={{
-              objectFit: 'cover',
-              borderTopLeftRadius: '12px',
-              borderTopRightRadius: '12px',
-            }}
-          /> */}
+      <Link href={link} isExternal={isExternal}>
+        <Box width={327} height={186}>
+          <NextImage src={bannerImage} alt="architecture" fill={true} />
         </Box>
-        <VStack py="$3" px="$6">
-          <Text py={0} pb="$3" fontSize="$xl" fontWeight="$inter">
+        <VStack py="$4" px="$6">
+          <Text pb="$3" fontSize="$xl" fontWeight="$medium">
             {title}
           </Text>
           <Text
-            py={0}
+            lineHeight={'$md'}
             sx={{
               color: '#404040',
               _dark: {
@@ -57,7 +54,6 @@ export const CardTalk = ({
             {name}
           </Text>
           <Text
-            py={0}
             sx={{
               color: '#404040',
               _dark: {

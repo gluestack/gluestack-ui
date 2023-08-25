@@ -3,7 +3,7 @@ import Fold3 from './index';
 import { Box, VStack, Text } from '@gluestack/design-system';
 function Talk() {
   return (
-    <Box w={1000}>
+    <Box>
       <VStack space="sm">
         <Text fontWeight="$bold" fontSize={24} fontFamily="Plus Jakarta Sans">
           Watch our talks

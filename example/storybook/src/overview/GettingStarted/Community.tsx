@@ -14,29 +14,22 @@ export const Community = ({
   communities: CommunityItem[];
 }) => {
   return (
-    <VStack
-      sx={{
-        '@base': {
-          mb: '$10',
-        },
-        '@md': {
-          mb: 100,
-        },
-      }}
-    >
-      <Box>
+    <Box my={'$6'}>
+      <VStack space="sm">
         <Text fontWeight="$bold" fontSize={24} fontFamily="Plus Jakarta Sans">
           Join our community
         </Text>
         <Text fontSize={16}>
           Be a part of this journey. Everyone is welcome!
         </Text>
-      </Box>
-      <Box
+      </VStack>
+      <HStack
+        my={'$6'}
+        flexDirection="column"
         flexWrap="wrap"
-        pt={10}
+        gap={20}
         sx={{
-          '@md': {
+          '@lg': {
             flexDirection: 'row',
           },
         }}
@@ -44,30 +37,10 @@ export const Community = ({
         {communities.map((community, key) => {
           return (
             <Link
+              minWidth={330}
               sx={{
-                '@base': {
-                  minWidth: '$full',
-                  mb: '$4',
-                },
-                '@md': {
-                  mb: '$0',
-                  ml: '$1.5',
-                  mr: '$1.5',
-                  mt: '$3',
-
-                  minWidth: '40%',
-                  maxWidth: '40%',
-                },
-                '@lg': {
-                  minWidth: '30%',
-                  maxWidth: '30%',
-                  mr: '$3',
-                  mt: '$3',
-                  display: 'flex',
-                  flex: 1,
-                },
-                'borderColor': '#D4D4D4',
-                '_dark': {
+                borderColor: '#D4D4D4',
+                _dark: {
                   borderColor: '$borderDark800',
                 },
               }}
@@ -79,7 +52,7 @@ export const Community = ({
               key={key}
               isExternal
             >
-              <VStack space="sm" p="$6" maxHeight={142}>
+              <VStack space="sm" p="$6">
                 <HStack
                   alignItems="center"
                   sx={{
@@ -115,8 +88,8 @@ export const Community = ({
             </Link>
           );
         })}
-      </Box>
-    </VStack>
+      </HStack>
+    </Box>
   );
 };
 
