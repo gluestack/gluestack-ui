@@ -146,8 +146,8 @@ Code-level contributions to `gluestack/gluestack-ui` come in the form of [pull r
 
 The process of proposing a change to `gluestack/gluestack-ui` can be summarized as follows:
 
-1. Fork the Gluestack repository and create your branch from `main`.
-2. Make the desired changes to Gluestack source. Use the `storybook` app to test them out.
+1. Fork the gluestack-ui repository and create your branch from `main`.
+2. Make the desired changes to gluestack-ui source. Use the `storybook` app to test them out.
 3. If you've added code that should be tested, add tests.
 4. If you've changed APIs, update the documentation, which is also available in the storybook.
 5. Ensure the test suite passes, either locally or on CI once you opened a pull request.
