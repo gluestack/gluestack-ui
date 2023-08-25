@@ -23,7 +23,7 @@ const Fold2 = memo(() => {
         alignItems="center"
         justifyContent="center"
         flex={1}
-        minWidth={200}
+        minWidth={240}
         minHeight={240}
         borderRadius="$xl"
         borderWidth={1}

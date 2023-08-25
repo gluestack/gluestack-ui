@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Text, VStack } from '@gluestack/design-system';
+import { Box, Text } from '@gluestack/design-system';
 
 export const Card = ({
   title,
@@ -10,7 +10,7 @@ export const Card = ({
 }) => {
   return (
     <Box
-      minWidth={200}
+      minWidth={240}
       minHeight={240}
       flex={1}
       borderRadius="$xl"
@@ -43,11 +43,10 @@ export const Card = ({
       >
         {child}
       </Box>
-      <VStack py="$3" px="$6" flex={1}>
-        <Text py={0} fontSize="$xl" fontWeight="$medium">
-          {title}
-        </Text>
-      </VStack>
+
+      <Text fontSize="$xl" fontWeight="$medium" my="$3" px="$6">
+        {title}
+      </Text>
     </Box>
   );
 };
