@@ -1225,6 +1225,7 @@ export function verboseStyled<P, Variants>(
     let orderedComponentSXResolved: any = [];
     let orderedPassingSXResolved: any = [];
     let sxStyleIds: any = {};
+    const isInjected = useRef(false);
 
     // if (BUILD_TIME_VERBOSED_STYLE_IDS) {
     //   sxStyleIds = BUILD_TIME_VERBOSED_STYLE_IDS;
@@ -1232,24 +1233,14 @@ export function verboseStyled<P, Variants>(
     //   GluestackStyleSheet.inject(BUILD_TIME_toBeInjected);
     // }
     if (
-      BUILD_TIME_STYLE_IDS ||
+      BUILD_TIME_ORDERED_RESOLVED.length > 0 ||
       Object.keys(filteredComponentSx).length > 0 ||
       Object.keys(filteredPassingSx).length > 0
     ) {
-      if (BUILD_TIME_ORDERED_RESOLVED.length > 0) {
-        const BUILD_toBeInjected = GluestackStyleSheet.update(
-          BUILD_TIME_ORDERED_RESOLVED
-        );
+      if (BUILD_TIME_ORDERED_RESOLVED.length > 0 && !isInjected.current) {
+        GluestackStyleSheet.update(BUILD_TIME_ORDERED_RESOLVED);
         GluestackStyleSheet.inject(BUILD_TIME_toBeInjected);
-      }
-
-      if (BUILD_TIME_STYLE_IDS) {
-        // sxStyleIds = BUILD_TIME_VERBOSED_STYLE_IDS;
-        // injectComponentAndDescendantStyles(
-        //   BUILD_TIME_ORDERED_RESOLVED,
-        //   BUILD_TIME_sxHash,
-        //   'inline'
-        // );
+        isInjected.current = true;
       }
       if (
         Object.keys(filteredComponentSx).length > 0 ||
