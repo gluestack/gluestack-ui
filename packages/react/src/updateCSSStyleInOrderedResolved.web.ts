@@ -76,6 +76,7 @@ export function INTERNAL_updateCSSStyleInOrderedResolved(
     } else {
       styleResolved.meta.cssId =
         objectHash +
+        '-' +
         stableHash({
           path: styleResolved?.meta?.path,
           data: styleResolved.original,
