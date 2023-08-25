@@ -1,6 +1,7 @@
 import { createAvatar } from '@gluestack-ui/avatar';
 import { Root, Badge, Group, Image, FallbackText } from './styled-components';
 import React, { cloneElement } from 'react';
+import { usePropResolution } from '../../hooks/usePropResolution';
 
 export const AccessibleAvatar = createAvatar({
   Root,
@@ -9,13 +10,42 @@ export const AccessibleAvatar = createAvatar({
   Image,
   FallbackText,
 });
-export const Avatar = AccessibleAvatar;
-export const AvatarBadge = AccessibleAvatar.Badge;
+// export const Avatar = AccessibleAvatar;
+// export const AvatarBadge = AccessibleAvatar.Badge;
 // export const AvatarGroup = AccessibleAvatar.Group;
 export const AvatarImage = AccessibleAvatar.Image;
 export const AvatarFallbackText = AccessibleAvatar.FallbackText;
 
+export const Avatar = ({ children, source, props }: any) => {
+  const resolvedPropForGluestack = usePropResolution(props);
+  return (
+    <AccessibleAvatar {...resolvedPropForGluestack}>
+      {typeof children !== 'string' ? (
+        children[0] ? (
+          children.map((child: any) => {
+            return typeof child !== 'string'
+              ? child
+              : typeof child === 'string' && (
+                  <AccessibleAvatar.FallbackText>
+                    {child}
+                  </AccessibleAvatar.FallbackText>
+                );
+          })
+        ) : (
+          children
+        )
+      ) : (
+        <AccessibleAvatar.FallbackText>
+          {children}
+        </AccessibleAvatar.FallbackText>
+      )}
+      <AccessibleAvatar.Image source={source} />
+    </AccessibleAvatar>
+  );
+};
+
 export const AvatarGroup = ({ children, max, props }: any) => {
+  const resolvedPropForGluestack = usePropResolution(props);
   const remainingAvatar = () => {
     const remainingAvatarNumber = children.length - max;
     return (
@@ -27,7 +57,7 @@ export const AvatarGroup = ({ children, max, props }: any) => {
     );
   };
   return (
-    <AccessibleAvatar.Group {...props}>
+    <AccessibleAvatar.Group {...resolvedPropForGluestack}>
       {max && max < children.length
         ? [...children.slice(0, max), remainingAvatar()].map(
             (child: any, index: any) => {
@@ -39,4 +69,12 @@ export const AvatarGroup = ({ children, max, props }: any) => {
   );
 };
 
-Avatar.Group = AccessibleAvatar.Group;
+export const AvatarBadge = (props: any) => {
+  const resolvedPropForGluestack = usePropResolution(props);
+  return <AccessibleAvatar.Badge {...resolvedPropForGluestack} />;
+};
+
+Avatar.Group = AvatarGroup;
+Avatar.Badge = AccessibleAvatar.Badge;
+Avatar.Image = AccessibleAvatar.Image;
+Avatar.FallbackText = AccessibleAvatar.FallbackText;
