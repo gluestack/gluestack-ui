@@ -1,5 +1,11 @@
 # @gluestack-ui/button
 
+## 0.0.2
+
+### Patch Changes
+
+- released package
+
 ## 0.1.23
 
 ### Patch Changes
