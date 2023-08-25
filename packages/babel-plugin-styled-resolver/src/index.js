@@ -62,8 +62,9 @@ const convertExpressionContainerToStaticObject = (
   propsToBePersist = {}
 ) => {
   properties?.forEach((property, index) => {
+    const nodeName = property.key.name ?? property.key.value;
     if (property.value.type === 'ObjectExpression') {
-      keyPath.push(property.key.value);
+      keyPath.push(nodeName);
       convertExpressionContainerToStaticObject(
         property.value.properties,
         result,
@@ -75,14 +76,14 @@ const convertExpressionContainerToStaticObject = (
       if (property.key.value) {
         setObjectKeyValue(
           propsToBePersist,
-          [...keyPath, property.key.value],
+          [...keyPath, nodeName],
           property.value.name
         );
       }
       if (property.key.name) {
         setObjectKeyValue(
           propsToBePersist,
-          [...keyPath, property.key.name],
+          [...keyPath, nodeName],
           property.value.name
         );
       }
@@ -298,7 +299,6 @@ function getObjectFromAstNode(node) {
 }
 
 function removePropertiesVisitor(path) {
-  const nodeName = path?.node?.key?.name ?? path?.node?.key?.value;
   if (path.node.type === 'ObjectProperty') {
     const valueNode = path.node.value;
     if (types.isStringLiteral(valueNode) || types.isNumericLiteral(valueNode)) {
@@ -307,11 +307,7 @@ function removePropertiesVisitor(path) {
   }
   if (
     types.isObjectExpression(path.node) ||
-    (types.isObjectProperty(path.node) &&
-      nodeName &&
-      nodeName.startsWith('_') &&
-      nodeName !== '_light' &&
-      nodeName !== '_dark')
+    types.isObjectProperty(path.node)
   ) {
     if (Array.isArray(path.get('properties')))
       path.get('properties').forEach((propertyPath) => {
@@ -771,6 +767,7 @@ module.exports = function (b) {
 
           if (sx) {
             const verbosedSx = convertSxToSxVerbosed(sx);
+            // console.log(JSON.stringify(componentSXProp, null, 2), '>>>>>>>');
 
             const inlineSxTheme = {
               baseStyle: verbosedSx,
@@ -784,83 +781,28 @@ module.exports = function (b) {
               }
             );
 
-            let resolvedStyles = styledToStyledResolved(
-              inlineSxTheme,
-              [],
-              componentExtendedConfig
-            );
-
-            let orderedResolved =
-              styledResolvedToOrderedSXResolved(resolvedStyles);
-
             let sxHash = stableHash(sx);
 
             if (outputLibrary) {
               sxHash = outputLibrary + '-' + sxHash;
             }
 
-            if (platform === 'all') {
-              INTERNAL_updateCSSStyleInOrderedResolvedWeb(
-                orderedResolved,
-                sxHash,
-                true,
-                'gs'
-              );
-            } else if (platform === 'web') {
-              INTERNAL_updateCSSStyleInOrderedResolvedWeb(
-                orderedResolved,
-                sxHash,
-                false,
-                'gs'
-              );
-            } else {
-              INTERNAL_updateCSSStyleInOrderedResolved(
-                orderedResolved,
-                sxHash,
-                true,
-                'gs'
-              );
-            }
-
-            const orderCSSIds = injectComponentAndDescendantStyles(
-              orderedResolved,
+            const { styledIds, verbosedStyleIds } = updateOrderUnResolvedMap(
+              inlineSxTheme,
               sxHash,
               'inline',
+              {},
               BUILD_TIME_GLUESTACK_STYLESHEET,
-              false
+              platform
             );
 
-            // let resolvedStyles = styledToStyledResolved(
-            //   inlineSxTheme,
-            //   [],
-            //   componentExtendedConfig
-            // );
-
-            // let orderedResolved =
-            //   styledResolvedToOrderedSXResolved(resolvedStyles);
-
-            // let sxHash = stableHash(sx);
-
-            // if (outputLibrary) {
-            //   sxHash = outputLibrary + '-' + sxHash;
-            // }
-
-            // const { styledIds, verbosedStyleIds } = updateOrderUnResolvedMap(
-            //   inlineSxTheme,
-            //   sxHash,
-            //   'inline',
-            //   {},
-            //   BUILD_TIME_GLUESTACK_STYLESHEET,
-            //   platform
-            // );
-
-            // const toBeInjected = BUILD_TIME_GLUESTACK_STYLESHEET.resolve(
-            //   styledIds,
-            //   componentExtendedConfig,
-            //   {},
-            //   true,
-            //   'inline'
-            // );
+            const toBeInjected = BUILD_TIME_GLUESTACK_STYLESHEET.resolve(
+              styledIds,
+              componentExtendedConfig,
+              {},
+              true,
+              'inline'
+            );
 
             const current_global_map =
               BUILD_TIME_GLUESTACK_STYLESHEET.getStyleMap();
@@ -868,29 +810,24 @@ module.exports = function (b) {
             const orderedResolvedTheme = [];
 
             current_global_map?.forEach((styledResolved) => {
-              if (orderCSSIds.includes(styledResolved?.meta?.cssId)) {
+              if (styledIds.includes(styledResolved?.meta?.cssId)) {
                 orderedResolvedTheme.push(styledResolved);
               }
             });
 
-            let styleIds = getStyleIds(
-              orderedResolved,
-              componentExtendedConfig
-            );
+            let styleIdsAst = generateObjectAst(verbosedStyleIds);
 
-            let styleIdsAst = generateObjectAst(styleIds);
-
-            // let toBeInjectedAst = generateObjectAst(toBeInjected);
+            let toBeInjectedAst = generateObjectAst(toBeInjected);
 
             let orderResolvedArrayExpression = [];
 
-            orderedResolved.forEach((styledResolved) => {
+            orderedResolvedTheme.forEach((styledResolved) => {
               let orderedResolvedAst = generateObjectAst(styledResolved);
               orderResolvedArrayExpression.push(orderedResolvedAst);
             });
 
             let orderedStyleIdsArrayAst = t.arrayExpression(
-              orderCSSIds?.map((cssId) => t.stringLiteral(cssId))
+              styledIds?.map((cssId) => t.stringLiteral(cssId))
             );
 
             jsxOpeningElementPath.node.attributes = propsToBePersist;
@@ -909,12 +846,12 @@ module.exports = function (b) {
                 t.jsxExpressionContainer(styleIdsAst)
               )
             );
-            // jsxOpeningElementPath.node.attributes.push(
-            //   t.jsxAttribute(
-            //     t.jsxIdentifier('toBeInjected'),
-            //     t.jsxExpressionContainer(toBeInjectedAst)
-            //   )
-            // );
+            jsxOpeningElementPath.node.attributes.push(
+              t.jsxAttribute(
+                t.jsxIdentifier('toBeInjected'),
+                t.jsxExpressionContainer(toBeInjectedAst)
+              )
+            );
             jsxOpeningElementPath.node.attributes.push(
               t.jsxAttribute(
                 t.jsxIdentifier('orderedResolved'),
