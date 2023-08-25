@@ -1,7 +1,6 @@
 //@ts-nocheck
 import React from 'react';
 import { Box, Text, VStack, Link } from '@gluestack/design-system';
-import NextImage from 'next/image';
 export const CardTalk = ({
   title,
   name,
@@ -29,7 +28,9 @@ export const CardTalk = ({
     >
       <Link href="https://www.youtube.com/watch?v=EFTCeK8aXTU" isExternal>
         <Box h={200} width={327}>
-          <NextImage
+          <img src="/images/themed.png" alt="architecture" fill={true} />
+          {/* <Image
+          https://pbs.twimg.com/profile_images/1536383051038597121/yC2UDgyv_400x400.jpg
             src="https://i3.ytimg.com/vi/EFTCeK8aXTU/maxresdefault.jpg"
             alt="accessibility"
             fill={true}
@@ -38,7 +39,7 @@ export const CardTalk = ({
               borderTopLeftRadius: '12px',
               borderTopRightRadius: '12px',
             }}
-          />
+          /> */}
         </Box>
         <VStack py="$3" px="$6">
           <Text py={0} pb="$3" fontSize="$xl" fontWeight="$inter">

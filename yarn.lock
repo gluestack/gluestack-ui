@@ -2609,10 +2609,10 @@
     inline-style-prefixer "^6.0.1"
     normalize-css-color "^1.0.2"
 
-"@gluestack-style/react@^0.2.6":
-  version "0.2.6"
-  resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-0.2.6.tgz#c7fbe575b43ed3bb0f4b269f1020587a8f72a526"
-  integrity sha512-3GPrkuv9YWz0T9JsG1rsRBPmXHS7zQI/lVMwHN4GQXuCqGHCAcNrtZnyoXVqcGnJUGT5MV0x+QtiXMbFRdaF8Q==
+"@gluestack-style/react@^0.2.3", "@gluestack-style/react@^0.2.7":
+  version "0.2.8"
+  resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-0.2.8.tgz#5ebe19d997b513e9ba11f44a012b1dfa1c1c4c24"
+  integrity sha512-CEJ/49CFfPNm0qVYWjaKz4xHK4MqmjYZ/PbBfDOZkiEBxEpgPBx900my7brCkRzVqvJlSaa2MCqsrY2W+3nvIA==
   dependencies:
     inline-style-prefixer "^6.0.1"
     normalize-css-color "^1.0.2"
@@ -3163,6 +3163,48 @@
     "@gluestack-ui/form-control" "^0.1.7"
     "@gluestack-ui/utils" "^0.1.3"
     "@react-native-aria/focus" "^0.2.7"
+    react-native-svg "13.4.0"
+
+"@gluestack-ui/themed@latest":
+  version "0.1.9"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/themed/-/themed-0.1.9.tgz#a6c91ab687d10c835800032744e3a8bf0822ffe8"
+  integrity sha512-vYXPl2I371moirkHMIcklQQ2bYFI3Iv4qeGdJr2YMGJFVxAsZjK2e1vCzynGxWF02k+cNFbbN/UKqSvGNDncNw==
+  dependencies:
+    "@expo/html-elements" latest
+    "@gluestack-style/animation-plugin" latest
+    "@gluestack-style/react" "^0.2.7"
+    "@gluestack-ui/actionsheet" latest
+    "@gluestack-ui/alert" latest
+    "@gluestack-ui/alert-dialog" latest
+    "@gluestack-ui/avatar" latest
+    "@gluestack-ui/button" latest
+    "@gluestack-ui/checkbox" "^0.1.17"
+    "@gluestack-ui/divider" latest
+    "@gluestack-ui/fab" latest
+    "@gluestack-ui/form-control" latest
+    "@gluestack-ui/hstack" latest
+    "@gluestack-ui/icon" latest
+    "@gluestack-ui/input" "^0.1.10"
+    "@gluestack-ui/link" latest
+    "@gluestack-ui/menu" latest
+    "@gluestack-ui/modal" latest
+    "@gluestack-ui/overlay" latest
+    "@gluestack-ui/popover" latest
+    "@gluestack-ui/pressable" latest
+    "@gluestack-ui/progress" latest
+    "@gluestack-ui/provider" latest
+    "@gluestack-ui/radio" latest
+    "@gluestack-ui/select" "^0.1.14"
+    "@gluestack-ui/slider" latest
+    "@gluestack-ui/spinner" latest
+    "@gluestack-ui/switch" latest
+    "@gluestack-ui/tabs" "^0.1.11"
+    "@gluestack-ui/textarea" "^0.1.12"
+    "@gluestack-ui/toast" latest
+    "@gluestack-ui/tooltip" "^0.1.15"
+    "@gluestack-ui/vstack" latest
+    "@legendapp/motion" latest
+    react "^18.2.0"
     react-native-svg "13.4.0"
 
 "@gluestack-ui/toast@^0.1.7", "@gluestack-ui/toast@^0.1.8":
