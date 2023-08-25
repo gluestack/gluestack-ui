@@ -60,14 +60,13 @@ function Card1() {
             </HStack>
             <CodePreview
               metaData={{
-                code: `npx gluestack`,
+                code: `npm create gluestack`,
               }}
               language="bash"
               showArgsController={false}
               showComponentRenderer={false}
               codeBlockProps={{
                 bg: '$white',
-                fontSize: '$xl',
               }}
             />
           </VStack>
