@@ -21,7 +21,7 @@ export const parameters = {
         'Overview',
         ['Introduction', 'Accessibility'],
         'Getting Started',
-        ['Installation'],
+        ['Installation', 'VS Code Extension', 'Figma Plugin'],
         'Core Concepts',
         ['Themed Library', 'Unstyled Components'],
         'Customize and Style',
