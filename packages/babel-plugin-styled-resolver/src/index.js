@@ -298,6 +298,7 @@ function getObjectFromAstNode(node) {
 }
 
 function removePropertiesVisitor(path) {
+  const nodeName = path?.node?.key?.name ?? path?.node?.key?.value;
   if (path.node.type === 'ObjectProperty') {
     const valueNode = path.node.value;
     if (types.isStringLiteral(valueNode) || types.isNumericLiteral(valueNode)) {
@@ -306,7 +307,11 @@ function removePropertiesVisitor(path) {
   }
   if (
     types.isObjectExpression(path.node) ||
-    types.isObjectProperty(path.node)
+    (types.isObjectProperty(path.node) &&
+      nodeName &&
+      nodeName.startsWith('_') &&
+      nodeName !== '_light' &&
+      nodeName !== '_dark')
   ) {
     if (Array.isArray(path.get('properties')))
       path.get('properties').forEach((propertyPath) => {
@@ -592,19 +597,17 @@ module.exports = function (b) {
               componentHash = outputLibrary + '-' + componentHash;
             }
 
-            const {
-              orderedUnResolvedTheme,
-              styleCSSIdsArr: orderedStyleIdsArray,
-            } = updateOrderUnResolvedMap(
+            const { styledIds, verbosedStyleIds } = updateOrderUnResolvedMap(
               verbosedTheme,
               componentHash,
               'boot',
-              ExtendedConfig,
-              BUILD_TIME_GLUESTACK_STYLESHEET
+              componentConfig,
+              BUILD_TIME_GLUESTACK_STYLESHEET,
+              platform
             );
 
-            BUILD_TIME_GLUESTACK_STYLESHEET.resolve(
-              orderedStyleIdsArray,
+            const toBeInjected = BUILD_TIME_GLUESTACK_STYLESHEET.resolve(
+              styledIds,
               componentExtendedConfig,
               ExtendedConfig
             );
@@ -615,21 +618,19 @@ module.exports = function (b) {
             const orderedResolvedTheme = [];
 
             current_global_map?.forEach((styledResolved) => {
-              if (orderedStyleIdsArray.includes(styledResolved?.meta?.cssId)) {
+              if (styledIds.includes(styledResolved?.meta?.cssId)) {
                 orderedResolvedTheme.push(styledResolved);
               }
             });
 
-            let styleIds = getStyleIds(orderedUnResolvedTheme, componentConfig);
+            let styleIdsAst = generateObjectAst(verbosedStyleIds);
 
-            let styleIdsAst = generateObjectAst(styleIds);
-
-            let componentHashAst = t.stringLiteral(componentHash);
+            let toBeInjectedAst = generateObjectAst(toBeInjected);
 
             let orderedResolvedAst = generateArrayAst(orderedResolvedTheme);
 
             let orderedStyleIdsArrayAst = t.arrayExpression(
-              orderedStyleIdsArray?.map((cssId) => t.stringLiteral(cssId))
+              styledIds?.map((cssId) => t.stringLiteral(cssId))
             );
 
             let resultParamsNode = t.objectExpression([
@@ -638,13 +639,16 @@ module.exports = function (b) {
                 orderedResolvedAst
               ),
               t.objectProperty(
-                t.stringLiteral('orderedStyleIdsArray'),
+                t.stringLiteral('toBeInjected'),
+                toBeInjectedAst
+              ),
+              t.objectProperty(
+                t.stringLiteral('styledIds'),
                 orderedStyleIdsArrayAst
               ),
-              t.objectProperty(t.stringLiteral('styleIds'), styleIdsAst),
               t.objectProperty(
-                t.stringLiteral('componentHash'),
-                componentHashAst
+                t.stringLiteral('verbosedStyleIds'),
+                styleIdsAst
               ),
             ]);
 
@@ -826,6 +830,38 @@ module.exports = function (b) {
               false
             );
 
+            // let resolvedStyles = styledToStyledResolved(
+            //   inlineSxTheme,
+            //   [],
+            //   componentExtendedConfig
+            // );
+
+            // let orderedResolved =
+            //   styledResolvedToOrderedSXResolved(resolvedStyles);
+
+            // let sxHash = stableHash(sx);
+
+            // if (outputLibrary) {
+            //   sxHash = outputLibrary + '-' + sxHash;
+            // }
+
+            // const { styledIds, verbosedStyleIds } = updateOrderUnResolvedMap(
+            //   inlineSxTheme,
+            //   sxHash,
+            //   'inline',
+            //   {},
+            //   BUILD_TIME_GLUESTACK_STYLESHEET,
+            //   platform
+            // );
+
+            // const toBeInjected = BUILD_TIME_GLUESTACK_STYLESHEET.resolve(
+            //   styledIds,
+            //   componentExtendedConfig,
+            //   {},
+            //   true,
+            //   'inline'
+            // );
+
             const current_global_map =
               BUILD_TIME_GLUESTACK_STYLESHEET.getStyleMap();
 
@@ -843,6 +879,8 @@ module.exports = function (b) {
             );
 
             let styleIdsAst = generateObjectAst(styleIds);
+
+            // let toBeInjectedAst = generateObjectAst(toBeInjected);
 
             let orderResolvedArrayExpression = [];
 
@@ -867,13 +905,19 @@ module.exports = function (b) {
             }
             jsxOpeningElementPath.node.attributes.push(
               t.jsxAttribute(
-                t.jsxIdentifier('styledIds'),
+                t.jsxIdentifier('verbosedStyleIds'),
                 t.jsxExpressionContainer(styleIdsAst)
               )
             );
+            // jsxOpeningElementPath.node.attributes.push(
+            //   t.jsxAttribute(
+            //     t.jsxIdentifier('toBeInjected'),
+            //     t.jsxExpressionContainer(toBeInjectedAst)
+            //   )
+            // );
             jsxOpeningElementPath.node.attributes.push(
               t.jsxAttribute(
-                t.jsxIdentifier('orderResolved'),
+                t.jsxIdentifier('orderedResolved'),
                 t.jsxExpressionContainer(
                   t.arrayExpression(orderResolvedArrayExpression)
                 )
@@ -884,7 +928,7 @@ module.exports = function (b) {
             );
             jsxOpeningElementPath.node.attributes.push(
               t.jsxAttribute(
-                t.jsxIdentifier('orderedStyleIdsArray'),
+                t.jsxIdentifier('styledIds'),
                 t.jsxExpressionContainer(orderedStyleIdsArrayAst)
               )
             );
