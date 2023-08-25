@@ -11,19 +11,19 @@ export interface IAccordionProps extends ViewProps {
    * When type is "single", allows closing content when clicking trigger for an open item.
    */
 
-  isCloseable?: boolean;
+  isCollapsible?: boolean;
 
   /**
    * The value of the item to expand when initially rendered when type is "multiple".
    */
 
-  defaultValue?: string[];
+  defaultValue?: string[] | string;
 
   /**
    * The controlled value of the item to expand when type is "multiple".
    */
 
-  value?: string[];
+  accordionValue?: string[];
 
   /**
    * Event handler called when the expanded state of an item changes and type is "single".
@@ -50,13 +50,19 @@ export interface IAccordionItemProps {
    */
 
   isDisabled?: boolean;
-
+  accordionValue?: string;
   children: JSX.Element | Array<JSX.Element>;
+  itemId?: string;
+}
+
+export interface IAccordionContentProps extends ViewProps {
+  itemId?: string;
 }
 
 export interface IAccordionTriggerProps extends PressableProps {
   isDisabled?: boolean;
   toggleContent?: () => void;
+  itemId?: string;
 }
 
 export type IAccordionComponentType<
@@ -71,9 +77,13 @@ export type IAccordionComponentType<
     (props: ItemProps & IAccordionItemProps) => JSX.Element
   >;
   Header: React.MemoExoticComponent<(props: HeaderProps) => JSX.Element>;
-  Trigger: React.MemoExoticComponent<(props: TriggerProps) => JSX.Element>;
+  Trigger: React.MemoExoticComponent<
+    (props: TriggerProps & IAccordionTriggerProps) => JSX.Element
+  >;
   // Icon: React.MemoExoticComponent<(props: IconProps) => JSX.Element>;
-  Content: React.MemoExoticComponent<(props: ContentProps) => JSX.Element>;
+  Content: React.MemoExoticComponent<
+    (props: ContentProps & IAccordionContentProps) => JSX.Element
+  >;
 
   Icon: React.MemoExoticComponent<(props: IconProps) => JSX.Element>;
 };

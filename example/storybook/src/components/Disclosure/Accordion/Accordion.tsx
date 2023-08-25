@@ -1,3 +1,4 @@
+import React from 'react';
 import type { ComponentStory } from '@storybook/react-native';
 import {
   Accordion,
@@ -9,101 +10,78 @@ import {
   ChevronDownIcon,
   Text,
 } from '../../../ui-components';
-import React from 'react';
-
 import { Button, ButtonText } from '../../../ui-components';
+import { AccordionProvider } from '../../../../../../packages/accordion/src/Context';
 
 type MyAccordionStory = ComponentStory<typeof Accordion>;
 
-const AccordionStory: MyAccordionStory = ({}: // text = 'Accordion',
-// ...props
-any) => {
+const AccordionStory: MyAccordionStory = ({}: any) => {
   return (
-    <Accordion>
-      <AccordionItem>
-        <AccordionHeader borderBottomWidth="$1" borderColor="$gray300">
-          <AccordionTrigger justifyContent="space-between" px="$0">
-            <Text color="$black" fontWeight="semibold">
-              Press me
-            </Text>
-            <AccordionIcon>
-              <ChevronDownIcon color="$black" />
-            </AccordionIcon>
-          </AccordionTrigger>
-          <AccordionContent>
-            <Text color="$black">
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi".
-            </Text>
-          </AccordionContent>
-        </AccordionHeader>
-      </AccordionItem>
+    <AccordionProvider>
+      <Accordion type={'multiple'} isCollapsible={false} isDisabled={false}>
+        <AccordionItem accordionValue={'item-1'}>
+          <AccordionHeader borderBottomWidth="$1" borderColor="$gray300">
+            <AccordionTrigger justifyContent="space-between" px="$0">
+              <Text fontWeight="semibold">
+                I’m tall when I’m young and I’m short when I’m old. What am I?
+              </Text>
+              <AccordionIcon>
+                <ChevronDownIcon />
+              </AccordionIcon>
+            </AccordionTrigger>
+            <AccordionContent>
+              <Text>A candle</Text>
+            </AccordionContent>
+          </AccordionHeader>
+        </AccordionItem>
 
-      <AccordionItem>
-        <AccordionHeader borderBottomWidth="$1" borderColor="$gray300">
-          <AccordionTrigger justifyContent="space-between" px="$0">
-            <Text color="$black" fontWeight="semibold">
-              Press me
-            </Text>
-            <AccordionIcon>
-              <ChevronDownIcon color="$black" />
-            </AccordionIcon>
-          </AccordionTrigger>
-          <AccordionContent>
-            <Text color="$black">
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi".
-            </Text>
-          </AccordionContent>
-        </AccordionHeader>
-      </AccordionItem>
+        <AccordionItem accordionValue={'item-2'}>
+          <AccordionHeader borderBottomWidth="$1" borderColor="$gray300">
+            <AccordionTrigger justifyContent="space-between" px="$0">
+              <Text fontWeight="semibold">
+                Which weighs more, a pound of feathers or a pound of bricks?
+              </Text>
+              <AccordionIcon>
+                <ChevronDownIcon />
+              </AccordionIcon>
+            </AccordionTrigger>
+            <AccordionContent>
+              <Text>Neither, they both weigh one pound.</Text>
+            </AccordionContent>
+          </AccordionHeader>
+        </AccordionItem>
 
-      <AccordionItem>
-        <AccordionHeader borderBottomWidth="$1" borderColor="$gray300">
-          <AccordionTrigger justifyContent="space-between" px="$0">
-            <Text color="$black" fontWeight="semibold">
-              Press me
-            </Text>
-            <AccordionIcon>
-              <ChevronDownIcon color="$black" />
-            </AccordionIcon>
-          </AccordionTrigger>
-          <AccordionContent>
-            <Text color="$black">
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi".
-            </Text>
-          </AccordionContent>
-        </AccordionHeader>
-      </AccordionItem>
+        <AccordionItem accordionValue={'item-3'}>
+          <AccordionHeader borderBottomWidth="$1" borderColor="$gray300">
+            <AccordionTrigger justifyContent="space-between" px="$0">
+              <Text fontWeight="semibold">
+                The more you take, the more you leave behind. What are they?
+              </Text>
+              <AccordionIcon>
+                <ChevronDownIcon />
+              </AccordionIcon>
+            </AccordionTrigger>
+            <AccordionContent>
+              <Text>Footprints.</Text>
+            </AccordionContent>
+          </AccordionHeader>
+        </AccordionItem>
 
-      <AccordionItem>
-        <AccordionHeader borderBottomWidth="$1" borderColor="$gray300">
-          <AccordionTrigger justifyContent="space-between" px="$0">
-            <Text color="$black" fontWeight="semibold">
-              Press me
-            </Text>
-            <AccordionIcon>
-              <ChevronDownIcon color="$black" />
-            </AccordionIcon>
-          </AccordionTrigger>
-          <AccordionContent>
-            <Text color="$black">
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi".
-            </Text>
-          </AccordionContent>
-        </AccordionHeader>
-      </AccordionItem>
-    </Accordion>
+        <AccordionItem accordionValue={'item-4'}>
+          <AccordionHeader borderBottomWidth="$1" borderColor="$gray300">
+            <AccordionTrigger justifyContent="space-between" px="$0">
+              <Text fontWeight="semibold">Press me</Text>
+              <AccordionIcon>
+                <ChevronDownIcon />
+              </AccordionIcon>
+            </AccordionTrigger>
+            <AccordionContent>
+              <Text>"I'm content 4"</Text>
+            </AccordionContent>
+          </AccordionHeader>
+        </AccordionItem>
+      </Accordion>
+    </AccordionProvider>
   );
 };
 

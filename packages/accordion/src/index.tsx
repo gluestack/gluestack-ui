@@ -5,6 +5,7 @@ import { AccordionTrigger } from './AccordionTrigger';
 import { AccordionContent } from './AccordionContent';
 import { IAccordionComponentType } from './types';
 import { AccordionIcon } from './AccordionIcon';
+import { AccordionHeader } from './AccordionHeader';
 
 export function createAccordion<
   AccordionProps,
@@ -30,7 +31,7 @@ export function createAccordion<
 }) {
   const Accordion = AccordionMain(Root) as any;
   Accordion.Item = AccordionItem(Item);
-  Accordion.Header = AccordionItem(Header);
+  Accordion.Header = AccordionHeader(Header);
   Accordion.Trigger = AccordionTrigger(Trigger);
   Accordion.Content = AccordionContent(Content);
   Accordion.Icon = AccordionIcon(Icon);
