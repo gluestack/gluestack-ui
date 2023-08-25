@@ -20,13 +20,15 @@ export class StyleInjector {
   ) {
     const styleIds: any = [];
     orderedSXResolved.forEach((styledResolved: any) => {
-      this.#globalStyleMap.set(styledResolved.meta.cssId, {
-        ...styledResolved,
-        type: _wrapperElementId,
-        componentHash: _styleTagId,
-        extendedConfig,
-      });
-      styleIds.push(styledResolved.meta.cssId);
+      if (styledResolved?.meta?.cssId) {
+        this.#globalStyleMap.set(styledResolved.meta.cssId, {
+          ...styledResolved,
+          type: _wrapperElementId,
+          componentHash: _styleTagId,
+          extendedConfig,
+        });
+        styleIds.push(styledResolved.meta.cssId);
+      }
     });
 
     return styleIds;
