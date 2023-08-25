@@ -35,7 +35,7 @@ export const CardTalk = ({
       overflow="hidden"
     >
       <Link href={link} isExternal={isExternal}>
-        <Box width={327} height={186}>
+        <Box width={327} height={165}>
           <NextImage src={bannerImage} alt="architecture" fill={true} />
         </Box>
         <VStack py="$4" px="$6">
