@@ -1,5 +1,11 @@
 # @gluestack-style/react
 
+## 0.2.9
+
+### Patch Changes
+
+- fix: customizing component specififcity issue
+
 ## 0.2.4
 
 ### Patch Changes
