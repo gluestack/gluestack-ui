@@ -3,8 +3,8 @@ import type { OrderedSXResolved } from '../types';
 export function getComponentResolvedBaseStyle(
   orderedResolved: OrderedSXResolved
 ) {
-  const componentOrderResolvedBaseStyle: Array<any> = [];
-  const componentOrderResolvedBaseStateStyle: Array<any> = [];
+  const componentOrderResolvedBaseStyle: OrderedSXResolved = [];
+  const componentOrderResolvedBaseStateStyle: OrderedSXResolved = [];
 
   orderedResolved &&
     orderedResolved.forEach((item: any) => {
@@ -31,8 +31,8 @@ export function getComponentResolvedBaseStyle(
 export function getComponentResolvedVariantStyle(
   orderedResolved: OrderedSXResolved
 ) {
-  const componentOrderResolvedVariantStyle: Array<any> = [];
-  const componentOrderResolvedVariantStateStyle: Array<any> = [];
+  const componentOrderResolvedVariantStyle: OrderedSXResolved = [];
+  const componentOrderResolvedVariantStateStyle: OrderedSXResolved = [];
 
   orderedResolved &&
     orderedResolved.forEach((item: any) => {
@@ -57,8 +57,8 @@ export function getComponentResolvedVariantStyle(
 export function getDescendantResolvedBaseStyle(
   orderedResolved: OrderedSXResolved
 ) {
-  const descendantOrderResolvedBaseStyle: Array<any> = [];
-  const descendantOrderResolvedBaseStateStyle: Array<any> = [];
+  const descendantOrderResolvedBaseStyle: OrderedSXResolved = [];
+  const descendantOrderResolvedBaseStateStyle: OrderedSXResolved = [];
 
   orderedResolved &&
     orderedResolved.forEach((item: any) => {
@@ -85,8 +85,8 @@ export function getDescendantResolvedBaseStyle(
 export function getDescendantResolvedVariantStyle(
   orderedResolved: OrderedSXResolved
 ) {
-  const descendantOrderResolvedVariantStyle: Array<any> = [];
-  const descendantOrderResolvedVariantStateStyle: Array<any> = [];
+  const descendantOrderResolvedVariantStyle: OrderedSXResolved = [];
+  const descendantOrderResolvedVariantStateStyle: OrderedSXResolved = [];
 
   orderedResolved &&
     orderedResolved.forEach((item: any) => {
