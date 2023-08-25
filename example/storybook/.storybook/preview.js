@@ -19,11 +19,11 @@ export const parameters = {
       method: '',
       order: [
         'Overview',
-        ['Introduction', 'Accessibility'],
+        ['Introduction'],
         'Getting Started',
         ['Installation', 'VS Code Extension', 'Figma Plugin'],
         'Core Concepts',
-        ['Themed Library', 'Unstyled Components'],
+        ['Themed Library', 'Unstyled Components', 'Accessibility'],
         'Performance',
         ['Overview', 'Benchmarks'],
         'Theme',
