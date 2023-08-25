@@ -11,8 +11,7 @@ export function injectComponentAndDescendantStyles(
   orderedResolved: OrderedSXResolved,
   styleTagId?: string,
   type: 'boot' | 'inline' = 'boot',
-  _GluestackStyleSheet: StyleInjector = GluestackStyleSheet,
-  _shouldInject: boolean = true
+  _GluestackStyleSheet: StyleInjector = GluestackStyleSheet
 ) {
   const componentOrderResolvedBaseStyle =
     getComponentResolvedBaseStyle(orderedResolved);
@@ -62,5 +61,8 @@ export function injectComponentAndDescendantStyles(
     {},
     false
   );
+
   GluestackStyleSheet.inject(toBeInjected);
+
+  return styleCSSIdsArr;
 }

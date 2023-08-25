@@ -35,7 +35,8 @@ export class StyleInjector {
     cssIds: any = [],
     CONFIG: any,
     ExtendedConfig: any,
-    resolve: any = true
+    resolve: any = true,
+    declarationType: string = 'boot'
   ) {
     let componentExtendedConfig = CONFIG;
 
@@ -56,7 +57,8 @@ export class StyleInjector {
             theme,
             componentExtendedConfig,
             styledResolved.componentHash,
-            CONFIG
+            CONFIG,
+            declarationType
           );
         }
 
@@ -83,6 +85,23 @@ export class StyleInjector {
     return toBeInjected;
   }
 
+  update(orderResolvedStyleMap: any) {
+    const toBeInjected: any = {};
+
+    orderResolvedStyleMap.forEach((styledResolved: any) => {
+      this.#globalStyleMap.set(styledResolved.meta.cssId, styledResolved);
+
+      if (!toBeInjected[styledResolved.type])
+        toBeInjected[styledResolved.type] = {};
+      if (!toBeInjected[styledResolved.type][styledResolved.componentHash])
+        toBeInjected[styledResolved.type][styledResolved.componentHash] = '';
+      toBeInjected[styledResolved.type][styledResolved.componentHash] +=
+        styledResolved.meta.cssRuleset;
+    });
+
+    return toBeInjected;
+  }
+
   inject(toBeInjected: any) {
     Object.keys(toBeInjected).forEach((type) => {
       Object.keys(toBeInjected[type]).forEach((styleTag) => {
@@ -90,13 +109,16 @@ export class StyleInjector {
       });
     });
   }
+
   resolveComponentTheme(
     componentTheme: any,
     theme: any,
     componentExtendedConfig: any,
     componentHashKey: any,
-    CONFIG: any
+    CONFIG: any,
+    declarationType: string = 'boot'
   ) {
+    const prefixClassName = declarationType === 'inline' ? 'gs' : '';
     componentTheme.resolved = StyledValueToCSSObject(
       theme,
       componentExtendedConfig
@@ -112,7 +134,11 @@ export class StyleInjector {
       componentTheme.meta.queryCondition = queryCondition;
     }
 
-    const cssData: any = getCSSIdAndRuleset(componentTheme, componentHashKey);
+    const cssData: any = getCSSIdAndRuleset(
+      componentTheme,
+      componentHashKey,
+      prefixClassName
+    );
 
     componentTheme.meta.cssRuleset = cssData.rules.style;
   }
