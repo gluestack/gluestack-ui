@@ -15,7 +15,7 @@ export function getComponentResolvedBaseStyle(
           item.meta.path?.includes('compoundVariants')
         )
       ) {
-        if (item.meta.path?.[item.meta.path.length - 2] === 'state') {
+        if (item.meta.path?.includes('state')) {
           componentOrderResolvedBaseStateStyle.push(item);
         } else {
           componentOrderResolvedBaseStyle.push(item);
@@ -41,7 +41,7 @@ export function getComponentResolvedVariantStyle(
         (item.meta.path?.includes('variants') ||
           item.meta.path?.includes('compoundVariants'))
       ) {
-        if (item.meta.path?.[item.meta.path.length - 2] === 'state') {
+        if (item.meta.path?.includes('state')) {
           componentOrderResolvedVariantStateStyle.push(item);
         } else {
           componentOrderResolvedVariantStyle.push(item);
@@ -69,7 +69,7 @@ export function getDescendantResolvedBaseStyle(
           item.meta.path?.includes('compoundVariants')
         )
       ) {
-        if (item.meta.path?.[item.meta.path.length - 2] === 'state') {
+        if (item.meta.path?.includes('state')) {
           descendantOrderResolvedBaseStateStyle.push(item);
         } else {
           descendantOrderResolvedBaseStyle.push(item);
@@ -95,7 +95,7 @@ export function getDescendantResolvedVariantStyle(
         (item.meta.path?.includes('variants') ||
           item.meta.path?.includes('compoundVariants'))
       ) {
-        if (item.meta.path?.[item.meta.path.length - 2] === 'state') {
+        if (item.meta.path?.includes('state')) {
           descendantOrderResolvedVariantStateStyle.push(item);
         } else {
           descendantOrderResolvedVariantStyle.push(item);
