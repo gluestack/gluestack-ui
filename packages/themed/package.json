@@ -62,7 +62,7 @@
     "@gluestack-ui/vstack": "latest",
     "@legendapp/motion": "latest",
     "react": "^18.2.0",
-    "react-native-svg": "13.4.0"
+    "react-native-svg": "^13.4.0"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.22.9",
