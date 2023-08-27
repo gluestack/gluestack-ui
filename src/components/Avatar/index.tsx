@@ -55,7 +55,7 @@ export const Avatar = ({ children, source, size, props }: any) => {
 };
 
 export const AvatarGroup = ({ children, max, props }: any) => {
-  // const resolvedPropForGluestack = usePropResolution(props);
+  const resolvedPropForGluestack = usePropResolution(props);
   const remainingAvatar = () => {
     const remainingAvatarNumber = children.length - max;
     return (
@@ -67,7 +67,7 @@ export const AvatarGroup = ({ children, max, props }: any) => {
     );
   };
   return (
-    <AccessibleAvatar.Group {...props}>
+    <AccessibleAvatar.Group {...resolvedPropForGluestack}>
       {max && max < children.length
         ? [...children.slice(0, max), remainingAvatar()].map(
             (child: any, index: any) => {
@@ -85,6 +85,4 @@ export const AvatarBadge = (props: any) => {
 };
 
 Avatar.Group = AvatarGroup;
-Avatar.Badge = AccessibleAvatar.Badge;
-Avatar.Image = AccessibleAvatar.Image;
-Avatar.FallbackText = AccessibleAvatar.FallbackText;
+Avatar.Badge = AvatarBadge;
