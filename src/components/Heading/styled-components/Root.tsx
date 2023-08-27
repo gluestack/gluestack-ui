@@ -1,7 +1,7 @@
 import { styled } from '../../styled';
 import { H1, H2, H3, H4, H5, H6 } from '@expo/html-elements';
 export default styled(H3, {
-  color: '$textLight900',
+  color: '$text.900',
   letterSpacing: '$sm',
   fontWeight: '$bold',
   fontFamily: '$heading',
@@ -9,7 +9,7 @@ export default styled(H3, {
   // Overrides expo-html default styling
   marginVertical: 0,
   _dark: {
-    color: '$textDark50',
+    color: '$text.50',
   },
   variants: {
     isTruncated: {
@@ -49,7 +49,7 @@ export default styled(H3, {
     },
     highlight: {
       true: {
-        bg: '$yellow500',
+        bg: '$yellow.500',
       },
     },
     size: {

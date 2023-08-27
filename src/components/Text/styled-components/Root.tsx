@@ -48,7 +48,7 @@ export default styled(
       },
       highlight: {
         true: {
-          bg: '$yellow500',
+          bg: '$yellow.500',
         },
       },
       size: {
