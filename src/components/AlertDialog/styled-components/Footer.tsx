@@ -10,10 +10,11 @@ export default styled(
     alignItems: 'center',
     flexWrap: 'wrap',
 
-    borderColor: '$borderLight300',
+    borderTopWidth: 1,
+    borderColor: '$muted.300',
 
     _dark: {
-      borderColor: '$borderDark700',
+      borderColor: '$muted.700',
     },
   },
   {}

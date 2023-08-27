@@ -9,67 +9,45 @@ export default styled(
     'rounded': '$sm',
     'p': '$2',
     '_icon': {
-      color: '$backgroundLight400',
-    },
-    '_text': {
-      color: '$backgroundLight400',
+      color: '$muted.500',
     },
     ':hover': {
+      bg: '$muted.200',
       _icon: {
-        color: '$backgroundLight700',
-      },
-      _text: {
-        color: '$backgroundLight700',
+        color: '$muted.700',
       },
     },
-
     ':active': {
+      bg: '$muted.300',
       _icon: {
-        color: '$backgroundLight900',
-      },
-      _text: {
-        color: '$backgroundLight900',
+        color: '$muted.900',
       },
     },
 
     '_dark': {
       '_icon': {
-        color: '$backgroundLight400',
-      },
-      '_text': {
-        color: '$backgroundLight400',
+        color: '$muted.400',
       },
       ':hover': {
-        _icon: {
-          color: '$backgroundDark200',
-        },
-        _text: {
-          color: '$backgroundLight200',
-        },
+        bg: 'muted.700',
       },
-
       ':active': {
+        bg: 'muted.600',
         _icon: {
-          color: '$backgroundDark100',
+          color: '$muted.100',
         },
       },
     },
 
     ':focusVisible': {
-      bg: '$backgroundLight100',
+      bg: '$muted.100',
       _icon: {
-        color: '$backgroundLight900',
-      },
-      _text: {
-        color: '$backgroundLight900',
+        color: '$muted.900',
       },
       _dark: {
-        bg: '$backgroundDark700',
+        bg: '$muted.700',
         _icon: {
-          color: '$backgroundLight100',
-        },
-        _text: {
-          color: '$backgroundLight100',
+          color: '$muted.100',
         },
       },
     },

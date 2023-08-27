@@ -265,6 +265,8 @@ export const config = {
         'dark.700': '#e4e4e7',
         'dark.800': '#f4f4f5',
         'dark.900': '#fafafa',
+        //
+
         'text.50': '#fafafa',
         'text.100': '#f5f5f5',
         'text.200': '#e5e5e5',
