@@ -9,7 +9,7 @@ export default styled(
     justifyContent: 'center',
     alignItems: 'center',
     position: 'relative',
-    bg: '$primary600',
+    bg: '$gray.400',
     variants: {
       withBadge: {},
       size: {
