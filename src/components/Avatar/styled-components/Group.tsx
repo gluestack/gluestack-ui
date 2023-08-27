@@ -9,6 +9,11 @@ export default styled(
     position: 'relative',
     _avatar: {
       ml: -10,
+      borderWidth: 2,
+      borderColor: 'white',
+      _dark: {
+        borderColor: '$trueGray.900',
+      },
     },
   },
   {
