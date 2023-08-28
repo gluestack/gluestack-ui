@@ -14,7 +14,6 @@ const animationPluginRoot = path.resolve(
   __dirname,
   '../../packages/animation-plugin/src'
 );
-
 const node_modules = path.join(workspaceRoot, 'node_modules');
 // const designSystem = path.resolve(__dirname, "../../../glustack-design-system");
 module.exports = async function (env, argv) {
@@ -23,8 +22,8 @@ module.exports = async function (env, argv) {
   config.module.rules.push({
     test: /\.(js|ts|tsx)$/,
     include: [
-      path.resolve(styledRoot, 'src'),
-      path.resolve(animationPluginRoot, 'src'),
+      path.resolve(styledRoot),
+      path.resolve(animationPluginRoot),
       // path.resolve(designSystem, "src"),
     ],
     use: 'babel-loader',

@@ -1,4 +1,5 @@
 import type { OrderedSXResolved, VerbosedSxResolved } from '../types';
+import { extractWidthValues } from '../utils';
 
 export function SXResolvedToOrderedSXResolved(
   sxResolved: VerbosedSxResolved
@@ -27,14 +28,43 @@ export function SXResolvedToOrderedSXResolved(
     });
   }
   if (sxResolved?.queriesResolved) {
+    const queriesResolved: any = {};
+    const breakpoints: any = [];
+    // order and push based on config media query order
     sxResolved.queriesResolved.forEach((queryResolved: any) => {
-      orderedSXResolved.push(
-        //@ts-ignore
+      const queryCondition =
+        queryResolved.resolved.value.styledValueResolvedWithMeta.meta
+          .queryCondition;
+      const currentBreakpoint: any = extractWidthValues(queryCondition);
 
-        ...SXResolvedToOrderedSXResolved(queryResolved.resolved.value)
-      );
+      if (currentBreakpoint.length === 1) {
+        breakpoints.push(currentBreakpoint[0]);
+        if (!queriesResolved[currentBreakpoint])
+          queriesResolved[currentBreakpoint] = [];
+
+        queriesResolved[currentBreakpoint].push(
+          ...SXResolvedToOrderedSXResolved(queryResolved.resolved.value)
+        );
+      } else {
+        orderedSXResolved.push(
+          ...SXResolvedToOrderedSXResolved(queryResolved.resolved.value)
+        );
+      }
+
+      // orderedSXResolved.push(
+      //   //@ts-ignore
+      //   ...SXResolvedToOrderedSXResolved(queryResolved.resolved.value)
+      // );
+    });
+
+    breakpoints.sort((a: any, b: any) => a - b);
+
+    breakpoints.forEach((currentBreakpoint: any) => {
+      if (queriesResolved[currentBreakpoint])
+        orderedSXResolved.push(...queriesResolved[currentBreakpoint]);
     });
   }
+
   if (sxResolved?.state) {
     Object.keys(sxResolved.state).forEach((key) => {
       //@ts-ignore

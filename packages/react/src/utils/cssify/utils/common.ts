@@ -11,32 +11,27 @@ const createCssRule = (
   css: string,
   dataType: string,
   prefixClassName: string,
-  prefixColorMode: string
+  prefixColorMode: string,
+  hasState: boolean
 ) => {
-  let rule;
   const dataMediaSelector = `[data-${dataType}~="${stringHash}"]`;
+  const stateRulePrefix = hasState ? '.gs' : '';
+  const inlineRulePrefix = prefixClassName ? `.${prefixClassName}` : '';
+  const colorModeRulePrefix = prefixColorMode
+    ? `.${prefixColorMode}${colorMode}`
+    : '';
+
+  const inlineAndStatePrefix = `${inlineRulePrefix}${stateRulePrefix}`;
 
   if (isMedia(mediaQuery) && isColorScheme(colorSchemeQuery)) {
-    // rule = `${mediaQuery} {${colorSchemeQuery} {${dataMediaSelector} ${css}} .${prefixColorMode}${colorMode} ${dataMediaSelector} ${css}}`;
-    rule = prefixClassName
-      ? `${mediaQuery} {.${prefixClassName}.${prefixColorMode}${colorMode} ${dataMediaSelector} ${css}}`
-      : `${mediaQuery} {.${prefixColorMode}${colorMode} ${dataMediaSelector} ${css}}`;
+    return `${mediaQuery} {${inlineAndStatePrefix}${colorModeRulePrefix} ${dataMediaSelector} ${css}}`;
   } else if (isMedia(mediaQuery)) {
-    rule = prefixClassName
-      ? `${mediaQuery} {.${prefixClassName} ${dataMediaSelector} ${css}}`
-      : `${mediaQuery} {${dataMediaSelector} ${css}}`;
+    return `${mediaQuery} {${inlineAndStatePrefix} ${dataMediaSelector} ${css}}`;
   } else if (isColorScheme(colorSchemeQuery)) {
-    // rule = `${colorSchemeQuery} {${dataMediaSelector} ${css}} .${prefixColorMode}${colorMode} ${dataMediaSelector} ${css}`;
-    rule = prefixClassName
-      ? `.${prefixClassName}.${prefixColorMode}${colorMode} ${dataMediaSelector} ${css}`
-      : `.${prefixColorMode}${colorMode} ${dataMediaSelector} ${css}`;
+    return `${inlineAndStatePrefix}${colorModeRulePrefix} ${dataMediaSelector} ${css}`;
   } else {
-    rule = prefixClassName
-      ? `.${prefixClassName} ${dataMediaSelector}${mediaQuery} ${css}`
-      : `${dataMediaSelector}${mediaQuery} ${css}`;
+    return `${inlineAndStatePrefix} ${dataMediaSelector}${mediaQuery} ${css}`;
   }
-
-  return rule;
 };
 
 function createQuery(condition: any) {
