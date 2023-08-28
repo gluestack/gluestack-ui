@@ -11,10 +11,10 @@ import {
 global.STORIES = [
   {
     titlePrefix: '',
-    directory: './src',
+    directory: './components',
     files: '**/*.stories.?(ts|tsx|js|jsx)',
     importPathMatcher:
-      '^\\.[\\\\/](?:src(?:\\/(?!\\.)(?:(?:(?!(?:^|\\/)\\.).)*?)\\/|\\/|$)(?!\\.)(?=.)[^/]*?\\.stories\\.(?:ts|tsx|js|jsx)?)$',
+      '^\\.[\\\\/](?:components(?:\\/(?!\\.)(?:(?:(?!(?:^|\\/)\\.).)*?)\\/|\\/|$)(?!\\.)(?=.)[^/]*?\\.stories\\.(?:ts|tsx|js|jsx)?)$',
   },
 ];
 

@@ -120,11 +120,11 @@ export default function App() {
           <GluestackUIProvider config={config.theme} colorMode={'light'}>
             {/* <ThemeContext.Provider value={{ colorMode, toggleColorMode }}> */}
             <Theme name="x">
-              <Box bg="$amber800"></Box>
-              <Box></Box>
+              {/* <Box bg="$amber800"></Box> */}
+              <Box bg="$red500"></Box>
             </Theme>
-            <Box bg="$amber50"></Box>
-            <Box></Box>
+            {/* <Box bg="$amber50"></Box>
+            <Box></Box> */}
             {/* <BaseButton>Hello Worlddddd</BaseButton>
               <ComposedButton>Hello</ComposedButton> */}
             {/* <HomestayPage /> */}

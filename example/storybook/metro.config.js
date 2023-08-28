@@ -1,8 +1,8 @@
 const { getDefaultConfig } = require('expo/metro-config');
 const path = require('path');
-const findWorkspaceRoot = require('find-yarn-workspace-root');
+// const findWorkspaceRoot = require('find-yarn-workspace-root');
 
-const workspaceRoot = findWorkspaceRoot(__dirname);
+const workspaceRoot = path.resolve(__dirname, '../..');
 const projectRoot = __dirname;
 const config = getDefaultConfig(projectRoot);
 
@@ -24,10 +24,10 @@ config.resolver.resolverMainFields = [
 config.transformer.getTransformOptions = async () => ({
   transform: {
     experimentalImportSupport: false,
-    inlineRequires: false,
+    inlineRequires: true,
   },
 });
 
-config.watchFolders = [...config.watchFolders, './.ondevice'];
+config.watchFolders = [...config.watchFolders];
 
 module.exports = config;
