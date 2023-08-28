@@ -28,11 +28,18 @@ export const parameters = {
         ['Overview', 'Benchmarks'],
         'Theme',
         [
-          'Overview',
-          'Default Theme',
-          'Customizing Theme',
-          'Customizing Fonts',
-          'Customizing Components',
+          'Default Styles',
+          'Tokens',
+          'Overwriting',
+          'Styling',
+          [
+            'States',
+            'Color Mode',
+            'Responsive',
+            'Descendants',
+            'Platform Specific',
+          ],
+          'Utitlity Props',
         ],
         'Styling',
         [
