@@ -54,21 +54,33 @@ export function INTERNAL_updateCSSStyleInOrderedResolved(
   orderedSXResolved: OrderedSXResolved,
   objectHash: string,
   keepOriginal: boolean = false,
-  prefixClassName = ''
+  prefixClassName = '',
+  shouldResolve = true
 ) {
   orderedSXResolved.forEach((styleResolved: StyledValueResolvedWithMeta) => {
-    const cssData: any = getCSSIdAndRuleset(
-      styleResolved,
-      objectHash,
-      prefixClassName
-    );
+    if (shouldResolve) {
+      const cssData: any = getCSSIdAndRuleset(
+        styleResolved,
+        objectHash,
+        prefixClassName
+      );
 
-    if (!keepOriginal) {
-      delete styleResolved.resolved;
-      delete styleResolved.original;
+      if (!keepOriginal) {
+        delete styleResolved.resolved;
+        delete styleResolved.original;
+      }
+      // console.log(styleResolved, 'CSS DATA');
+
+      styleResolved.meta.cssId = cssData.ids.style;
+      styleResolved.meta.cssRuleset = cssData.rules.style;
+    } else {
+      styleResolved.meta.cssId =
+        objectHash +
+        '-' +
+        stableHash({
+          path: styleResolved?.meta?.path,
+          data: styleResolved.original,
+        });
     }
-    // console.log(styleResolved, 'CSS DATA');
-    styleResolved.meta.cssId = cssData.ids.style;
-    styleResolved.meta.cssRuleset = cssData.rules.style;
   });
 }
