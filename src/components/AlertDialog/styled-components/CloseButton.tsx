@@ -5,6 +5,9 @@ import { styled } from '../../styled';
 export default styled(
   Pressable,
   {
+    'position': 'absolute',
+    'right': '$3',
+    'top': '$3',
     'zIndex': 1,
     'rounded': '$sm',
     'p': '$2',

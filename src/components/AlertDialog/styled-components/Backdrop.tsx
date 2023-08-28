@@ -40,5 +40,5 @@ export default styled(
       cursor: 'default',
     },
   },
-  {}
+  { ancestorStyle: ['_overlay'] }
 );
