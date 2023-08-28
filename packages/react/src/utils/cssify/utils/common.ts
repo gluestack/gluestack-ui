@@ -21,14 +21,16 @@ const createCssRule = (
     ? `.${prefixColorMode}${colorMode}`
     : '';
 
+  const inlineAndStatePrefix = `${inlineRulePrefix}${stateRulePrefix}`;
+
   if (isMedia(mediaQuery) && isColorScheme(colorSchemeQuery)) {
-    return `${mediaQuery} {${inlineRulePrefix}${stateRulePrefix}${colorModeRulePrefix} ${dataMediaSelector} ${css}}`;
+    return `${mediaQuery} {${inlineAndStatePrefix}${colorModeRulePrefix} ${dataMediaSelector} ${css}}`;
   } else if (isMedia(mediaQuery)) {
-    return `${mediaQuery} {${inlineRulePrefix}${stateRulePrefix} ${dataMediaSelector} ${css}}`;
+    return `${mediaQuery} {${inlineAndStatePrefix} ${dataMediaSelector} ${css}}`;
   } else if (isColorScheme(colorSchemeQuery)) {
-    return `${inlineRulePrefix}${stateRulePrefix}${colorModeRulePrefix} ${dataMediaSelector} ${css}`;
+    return `${inlineAndStatePrefix}${colorModeRulePrefix} ${dataMediaSelector} ${css}`;
   } else {
-    return `${inlineRulePrefix}${stateRulePrefix} ${dataMediaSelector}${mediaQuery} ${css}`;
+    return `${inlineAndStatePrefix} ${dataMediaSelector}${mediaQuery} ${css}`;
   }
 };
 
