@@ -37,6 +37,7 @@ export const parameters = {
             'Descendants',
             'Platform Specific',
           ],
+          'Utitlity Props',
         ],
         'Configuration',
         ['Server-Side Rendering', 'React Server Components'],
