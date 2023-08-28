@@ -34,12 +34,42 @@ const AlertDialogNew = forwardRef(({ children, ...props }: any, ref?: any) => {
   );
 });
 
+const AccessibleAlertDialogContent = forwardRef(
+  ({ children, ...props }: any, ref?: any) => {
+    return (
+      <AccessibleAlertDialog.Content {...props} ref={ref}>
+        {children}
+      </AccessibleAlertDialog.Content>
+    );
+  }
+);
+
+const AccessibleAlertDialogCloseButton = forwardRef(
+  ({ children, ...props }: any, ref?: any) => {
+    return (
+      <AccessibleAlertDialog.CloseButton {...props} ref={ref}>
+        {children}
+      </AccessibleAlertDialog.CloseButton>
+    );
+  }
+);
+
 const AccessibleAlertDialogHeader = forwardRef(
   ({ children, ...props }: any, ref?: any) => {
     return (
       <AccessibleAlertDialog.Header {...props} ref={ref}>
         <Heading>{children}</Heading>
       </AccessibleAlertDialog.Header>
+    );
+  }
+);
+
+const AccessibleAlertDialogFooter = forwardRef(
+  ({ children, ...props }: any, ref?: any) => {
+    return (
+      <AccessibleAlertDialog.Footer {...props} ref={ref}>
+        {children}
+      </AccessibleAlertDialog.Footer>
     );
   }
 );
@@ -57,7 +87,10 @@ const AccessibleAlertDialogBody = forwardRef(
 export const AlertDialog = {
   ...AccessibleAlertDialog,
   ...AlertDialogNew,
+  Content: AccessibleAlertDialogContent,
+  CloseButton: AccessibleAlertDialogCloseButton,
   Header: AccessibleAlertDialogHeader,
+  Footer: AccessibleAlertDialogFooter,
   Body: AccessibleAlertDialogBody,
 };
 
