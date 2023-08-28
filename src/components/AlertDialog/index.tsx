@@ -11,6 +11,7 @@ import {
 } from './styled-components';
 import { Heading } from '../Heading';
 import { Text } from '../Text';
+import { Icon, CloseIcon } from '../Icons';
 import { styled } from '../styled';
 
 export const AccessibleAlertDialog = createAlertDialog({
@@ -25,14 +26,21 @@ export const AccessibleAlertDialog = createAlertDialog({
   AnimatePresence: styled.Component,
 });
 
-const AlertDialogNew = forwardRef(({ children, ...props }: any, ref?: any) => {
-  return (
-    <AccessibleAlertDialog {...props} ref={ref}>
-      <AccessibleAlertDialog.Backdrop />
-      {children}
-    </AccessibleAlertDialog>
-  );
-});
+const AlertDialogNew = forwardRef(
+  (
+    { children, overlayVisible = true, backdropVisible = true, ...props }: any,
+    ref?: any
+  ) => {
+    return (
+      <AccessibleAlertDialog {...props} ref={ref}>
+        {overlayVisible && backdropVisible && (
+          <AccessibleAlertDialog.Backdrop />
+        )}
+        {children}
+      </AccessibleAlertDialog>
+    );
+  }
+);
 
 const AccessibleAlertDialogContent = forwardRef(
   ({ children, ...props }: any, ref?: any) => {
@@ -48,7 +56,7 @@ const AccessibleAlertDialogCloseButton = forwardRef(
   ({ children, ...props }: any, ref?: any) => {
     return (
       <AccessibleAlertDialog.CloseButton {...props} ref={ref}>
-        {children}
+        {children ? children : <Icon as={CloseIcon} />}
       </AccessibleAlertDialog.CloseButton>
     );
   }
