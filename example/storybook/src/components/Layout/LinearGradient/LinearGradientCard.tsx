@@ -8,22 +8,31 @@ import {
   ButtonIcon,
   Icon,
   EditIcon,
-  Image,
 } from '@gluestack-ui/themed';
 
 type MyLinearGradientStory = ComponentStory<typeof LinearGradient>;
 
 const LinearGradientCard: MyLinearGradientStory = () => {
   return (
-    <LinearGradient colors={['$purple400', '$blue400']}>
-      <Box px="$6" py="$11" justifyContent="center" alignItems="center">
-        <Image
-          size="xs"
-          w={265}
-          source={{
-            uri: 'https://ui.gluestack.io/_next/image?url=%2Ficon%2Flogo%2Fdark-mode.svg&w=384&q=75',
-          }}
-        />
+    <LinearGradient
+      colors={['$purple400', '$blue400', '$pink300']}
+      borderRadius="$md"
+    >
+      <Box width={250} py="$12">
+        <Text
+          fontSize="$xl"
+          pl="$2.5"
+          color="$white"
+          fontWeight="$thin"
+          fontStyle="italic"
+        >
+          Lilly James
+        </Text>
+        <Box bg="$fuchsia100" px="$2" mt="$4" alignItems="center">
+          <Text fontSize="$xs" color="$gray600">
+            Graphic Designer
+          </Text>
+        </Box>
       </Box>
     </LinearGradient>
   );
