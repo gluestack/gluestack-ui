@@ -1,13 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {
-  Pressable,
-  SafeAreaView,
-  ScrollView,
-  StyleSheet,
-  View,
-} from 'react-native';
-import { Button, GluestackUIProvider } from './gluestack-ui-components';
+import { SafeAreaView, StyleSheet, View } from 'react-native';
+import { GluestackUIProvider } from './gluestack-ui-components';
 import { config } from './gluestack-ui.config';
 import { SSRProvider } from '@react-native-aria/utils';
 import { useFonts } from 'expo-font';

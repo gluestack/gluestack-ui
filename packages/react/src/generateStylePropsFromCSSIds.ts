@@ -1,5 +1,6 @@
 import { Dimensions, Platform } from 'react-native';
 import { GluestackStyleSheet } from './style-sheet';
+import { extractWidthValues } from './utils';
 
 export function getClosestBreakpoint(
   values: Record<string, any>,
@@ -73,15 +74,6 @@ export function getClosestBreakpointValue(
   return index;
 }
 
-function getWidthFromMediaQuery(condition: string) {
-  var match = condition.match(/\(min-width:\s*(\d+)px\)/);
-  if (match) {
-    return parseInt(match[1]);
-  } else {
-    return null;
-  }
-}
-
 function isValidBreakpoint(config: any, queryCondition: any) {
   const windowWidth = Dimensions.get('window')?.width;
 
@@ -90,12 +82,25 @@ function isValidBreakpoint(config: any, queryCondition: any) {
     windowWidth
   );
 
-  if (
-    getWidthFromMediaQuery(queryCondition) !== null &&
-    // @ts-ignore
-    getWidthFromMediaQuery(queryCondition) <= currentBreakpointValue
-  ) {
-    return true;
+  const queryWidth = extractWidthValues(queryCondition);
+
+  if (queryWidth.length > 0) {
+    if (queryWidth.length === 1) {
+      if (
+        queryWidth[0] !== null &&
+        // @ts-ignore
+        queryWidth[0] <= currentBreakpointValue
+      ) {
+        return true;
+      }
+    } else {
+      if (
+        currentBreakpointValue >= queryWidth[0] &&
+        currentBreakpointValue <= queryWidth[1]
+      ) {
+        return true;
+      }
+    }
   }
 
   return false;

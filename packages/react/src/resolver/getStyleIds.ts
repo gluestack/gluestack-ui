@@ -109,11 +109,24 @@ export function getComponentStyleIds(arr: OrderedSXResolved): StyleIds {
 
 export function getDescendantStyleIds(
   arr: any,
-  descendantStyle: any = []
+  descendantStyle: any = [],
+  shoudGuessDescendants: boolean = false
 ): StyleIds {
   const ret: any = {};
-  // return ret;
-  descendantStyle.forEach((style: any) => {
+
+  const extractedDescendants = new Set(descendantStyle);
+
+  if (shoudGuessDescendants) {
+    arr.forEach((item: any) => {
+      if (item.meta.path.lastIndexOf('descendants') !== -1) {
+        const descendant =
+          item.meta.path[item.meta.path.lastIndexOf('descendants') + 1];
+        extractedDescendants.add(descendant);
+      }
+    });
+  }
+
+  extractedDescendants.forEach((style: any) => {
     const filteredOrderListByDescendant = arr.filter(
       (item: any) =>
         item.meta.path[item.meta.path.lastIndexOf('descendants') + 1] === style
@@ -122,12 +135,15 @@ export function getDescendantStyleIds(
     ret[style] = getComponentStyleIds(filteredOrderListByDescendant);
   });
 
+  // return ret;
+
   return ret;
 }
 
 export function getStyleIds(
   orderedResolved: OrderedSXResolved,
-  componentStyleConfig: any = {}
+  componentStyleConfig: any = {},
+  shoudGuessDescendants: boolean = false
 ): {
   component: StyleIds;
   descendant: StyleIds;
@@ -138,7 +154,8 @@ export function getStyleIds(
   const component = getComponentStyleIds(componentOrderResolved);
   const descendant = getDescendantStyleIds(
     descendantOrderResolved,
-    componentStyleConfig.descendantStyle
+    componentStyleConfig.descendantStyle,
+    shoudGuessDescendants
   );
 
   return {

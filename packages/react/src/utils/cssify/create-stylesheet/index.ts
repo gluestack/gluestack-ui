@@ -5,6 +5,7 @@ const createStyleSheet = (
   stylesObject: any,
   dataHash: string = 'media',
   prefixClassName: string = '',
+  hasState: boolean = false,
   prefixColorMode: string = 'gs-'
 ) => {
   if (!stylesObject) return { ids: {}, styles: {}, fullStyles: {} };
@@ -37,7 +38,8 @@ const createStyleSheet = (
       css,
       'style',
       prefixClassName,
-      prefixColorMode
+      prefixColorMode,
+      hasState
     );
 
     // console.log('hello css object', colorSchemeQuery, css, rule);

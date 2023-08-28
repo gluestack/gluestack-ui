@@ -800,12 +800,12 @@ export function verboseStyled<P, Variants>(
   componentStyleConfig: ConfigType = {},
   ExtendedConfig?: any,
   BUILD_TIME_PARAMS?: {
-    orderedResolved?: OrderedSXResolved;
-    styleIds?: {
+    orderedResolved: OrderedSXResolved;
+    verbosedStyleIds: {
       component: StyleIds;
       descendant: StyleIds;
     };
-    themeHash?: string;
+    styledIds: Array<string>;
   }
 ) {
   const componentName = componentStyleConfig.componentName;
@@ -826,15 +826,6 @@ export function verboseStyled<P, Variants>(
   }
 
   resolvePlatformTheme(theme, Platform.OS);
-
-  // GluestackStyleSheet.declare(
-  //   declarationType,
-  //   componentHash,
-  //   originalThemeHash,
-  //   theme,
-  //   ExtendedConfig,
-  //   componentStyleConfig
-  // );
 
   const DEBUG_TAG = componentStyleConfig?.DEBUG;
   const DEBUG =
@@ -879,8 +870,9 @@ export function verboseStyled<P, Variants>(
 
   if (BUILD_TIME_PARAMS?.orderedResolved) {
     orderedResolved = BUILD_TIME_PARAMS?.orderedResolved;
+    orderedCSSIds = BUILD_TIME_PARAMS?.styledIds;
 
-    injectComponentAndDescendantStyles(orderedResolved, 'boot');
+    GluestackStyleSheet.update(orderedResolved);
     if (DEBUG) {
       console.log(
         `%cOrder resolved build time`,
@@ -901,8 +893,8 @@ export function verboseStyled<P, Variants>(
     styleIds = verbosedStyleIds;
   }
 
-  if (BUILD_TIME_PARAMS?.styleIds) {
-    styleIds = BUILD_TIME_PARAMS?.styleIds;
+  if (BUILD_TIME_PARAMS?.verbosedStyleIds) {
+    styleIds = BUILD_TIME_PARAMS?.verbosedStyleIds;
     if (DEBUG) {
       console.log(
         `%cStyle Ids build time`,
@@ -982,8 +974,15 @@ export function verboseStyled<P, Variants>(
       as,
       children,
       //@ts-ignore
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      styledIds: BUILD_TIME_STYLE_IDS,
+      orderedResolved: BUILD_TIME_ORDERED_RESOLVED = [],
+      //@ts-ignore
+      verbosedStyleIds: BUILD_TIME_VERBOSED_STYLE_IDS = {},
+      //@ts-ignore
+      styledIds: BUILD_TIME_STYLE_IDS = [],
+      //@ts-ignore
+      toBeInjected: BUILD_TIME_toBeInjected = {},
+      //@ts-ignore
+      sxHash: BUILD_TIME_sxHash = '',
       ...componentProps
     }: Omit<P, keyof Variants> &
       Partial<ComponentProps<ITypeReactNativeStyles, Variants, P>> &
@@ -994,6 +993,7 @@ export function verboseStyled<P, Variants>(
     ref: React.ForwardedRef<P>
   ) => {
     const isClient = React.useRef(false);
+
     //@ts-ignore
     let themeDefaultProps = { ...theme.baseStyle?.props };
 
@@ -1259,12 +1259,26 @@ export function verboseStyled<P, Variants>(
     // const styleTagId = useRef(`style-tag-sx-${stableHash(sx)}`);
 
     // FOR SX RESOLUTION
-    let orderedComponentSXResolved = [];
+    let orderedComponentSXResolved: any = [];
+    let orderedPassingSXResolved: any = [];
     let sxStyleIds: any = {};
+    const isInjected = useRef(false);
 
-    if (BUILD_TIME_STYLE_IDS) {
-      sxStyleIds = BUILD_TIME_STYLE_IDS;
-    } else {
+    // if (BUILD_TIME_VERBOSED_STYLE_IDS) {
+    //   sxStyleIds = BUILD_TIME_VERBOSED_STYLE_IDS;
+    //   GluestackStyleSheet.update(BUILD_TIME_ORDERED_RESOLVED);
+    //   GluestackStyleSheet.inject(BUILD_TIME_toBeInjected);
+    // }
+    if (
+      BUILD_TIME_ORDERED_RESOLVED.length > 0 ||
+      Object.keys(filteredComponentSx).length > 0 ||
+      Object.keys(filteredPassingSx).length > 0
+    ) {
+      if (BUILD_TIME_ORDERED_RESOLVED.length > 0 && !isInjected.current) {
+        GluestackStyleSheet.update(BUILD_TIME_ORDERED_RESOLVED);
+        GluestackStyleSheet.inject(BUILD_TIME_toBeInjected);
+        isInjected.current = true;
+      }
       if (
         Object.keys(filteredComponentSx).length > 0 ||
         Object.keys(filteredPassingSx).length > 0
@@ -1273,71 +1287,73 @@ export function verboseStyled<P, Variants>(
         // console.setEndTimeStamp('INTERNAL_updateCSSStyleInOrderedResolved');
         // console.setStartTimeStamp('injectComponentAndDescendantStyles');
         // console.setEndTimeStamp('injectComponentAndDescendantStyles');
-        const orderedPassingSXResolved = injectSx(filteredPassingSx, 'passing');
-        const orderedSXResolved = [
-          ...orderedPassingSXResolved,
-          ...orderedComponentSXResolved,
-        ];
-        // console.setStartTimeStamp('getStyleIds');
-        sxStyleIds = getStyleIds(orderedSXResolved, componentStyleConfig);
-        ///
-        // Setting variants to sx property for inline variant resolution
-        //@ts-ignore
-        if (!sxStyleIds.component) {
-          sxStyleIds.component = {};
-        }
-        sxStyleIds.component.variants = componentStyleIds.variants;
-        //@ts-ignore
-        sxStyleIds.component.compoundVariants =
-          componentStyleIds.compoundVariants;
-        // console.setStartTimeStamp('setColorModeBaseStyleIds');
-        sxComponentStyleIds.current = sxStyleIds?.component;
-        sxDescendantStyleIds.current = sxStyleIds.descendant;
-        // 315ms
-        // SX component style
-        //@ts-ignore
-        const {
-          baseStyleCSSIds: sxBaseStyleCSSIds,
-          variantStyleCSSIds: sxVariantStyleCSSIds,
-          passingProps: sxPassingProps,
-        } = getMergedDefaultCSSIdsAndProps(
-          //@ts-ignore
-          sxComponentStyleIds.current,
-          variantProps,
-          theme,
-          incomingComponentProps
-        );
-
-        //@ts-ignore
-        // applySxStyleCSSIds.current = sxStyleCSSIds;
-        //@ts-ignore
-        applySxBaseStyleCSSIds.current = sxBaseStyleCSSIds;
-        //@ts-ignore
-        applySxVariantStyleCSSIds.current = sxVariantStyleCSSIds;
-        sxComponentPassingProps.current = sxPassingProps;
-
-        const {
-          componentBaseStyleFlatternStyleIdObject: a,
-          componentVariantFlatternStyleIdObject: b,
-          componentCompoundVariantFlatternStyleIdObject: c,
-        } = getFlattenStyleObjectFromStyleIds(sxComponentStyleIds.current);
-
-        if (sxDescendantStyleIds.current) {
-          Object.keys(sxDescendantStyleIds.current).forEach(
-            (currentDescendant: any) => {
-              sxDescendantFlattenStyles[currentDescendant] =
-                getFlattenStyleObjectFromStyleIds(
-                  sxDescendantStyleIds.current[currentDescendant]
-                );
-            }
-          );
-        }
-
-        sxBaseStyleFlatternStyleObject = a;
-        sxVariantFlatternStyleObject = b;
-        sxCompoundVariantFlatternStyleObject = c;
-        // SX descendants
+        orderedPassingSXResolved = injectSx(filteredPassingSx, 'passing');
       }
+
+      const orderedSXResolved = [
+        ...orderedPassingSXResolved,
+        ...orderedComponentSXResolved,
+        ...BUILD_TIME_ORDERED_RESOLVED,
+      ];
+      // console.setStartTimeStamp('getStyleIds');
+      sxStyleIds = getStyleIds(orderedSXResolved, componentStyleConfig);
+
+      ///
+      // Setting variants to sx property for inline variant resolution
+      //@ts-ignore
+      if (!sxStyleIds.component) {
+        sxStyleIds.component = {};
+      }
+      sxStyleIds.component.variants = componentStyleIds.variants;
+      //@ts-ignore
+      sxStyleIds.component.compoundVariants =
+        componentStyleIds.compoundVariants;
+      // console.setStartTimeStamp('setColorModeBaseStyleIds');
+      sxComponentStyleIds.current = sxStyleIds?.component;
+      sxDescendantStyleIds.current = sxStyleIds.descendant;
+      // 315ms
+      // SX component style
+      //@ts-ignore
+      const {
+        baseStyleCSSIds: sxBaseStyleCSSIds,
+        variantStyleCSSIds: sxVariantStyleCSSIds,
+        passingProps: sxPassingProps,
+      } = getMergedDefaultCSSIdsAndProps(
+        //@ts-ignore
+        sxComponentStyleIds.current,
+        variantProps,
+        theme,
+        incomingComponentProps
+      );
+      //@ts-ignore
+      // applySxStyleCSSIds.current = sxStyleCSSIds;
+      //@ts-ignore
+      applySxBaseStyleCSSIds.current = sxBaseStyleCSSIds;
+      //@ts-ignore
+      applySxVariantStyleCSSIds.current = sxVariantStyleCSSIds;
+      sxComponentPassingProps.current = sxPassingProps;
+
+      const {
+        componentBaseStyleFlatternStyleIdObject: a,
+        componentVariantFlatternStyleIdObject: b,
+        componentCompoundVariantFlatternStyleIdObject: c,
+      } = getFlattenStyleObjectFromStyleIds(sxComponentStyleIds.current);
+
+      if (sxDescendantStyleIds.current) {
+        Object.keys(sxDescendantStyleIds.current).forEach(
+          (currentDescendant: any) => {
+            sxDescendantFlattenStyles[currentDescendant] =
+              getFlattenStyleObjectFromStyleIds(
+                sxDescendantStyleIds.current[currentDescendant]
+              );
+          }
+        );
+      }
+
+      sxBaseStyleFlatternStyleObject = a;
+      sxVariantFlatternStyleObject = b;
+      sxCompoundVariantFlatternStyleObject = c;
+      // SX descendants
     }
 
     if (containsDescendant) {
@@ -1582,20 +1598,16 @@ export function verboseStyled<P, Variants>(
     // END: Unable to optimize because of useEffect overhead and stableHash to prevent rerender
 
     const styleCSSIds = [
-      ...mergedBaseStyleCSSIds,
       ...applyBaseStyleCSSIds,
       ...applyAncestorBaseStyleCSSIds,
-      ...mergedVariantStyleCSSIds,
       ...applyVariantStyleCSSIds,
       ...applyAncestorVariantStyleCSSIds,
       ...applyComponentStateBaseStyleIds,
       ...applyComponentStateVariantStyleIds,
       ...applySxVariantStyleCSSIds.current,
-      ...applySxStateBaseStyleCSSIds,
-      ...mergedSXVariantStyleCSSIds,
       ...applySxStateVariantStyleCSSIds,
-      ...mergedSXBaseStyleCSSIds,
       ...applySxBaseStyleCSSIds.current,
+      ...applySxStateBaseStyleCSSIds,
     ];
 
     Object.assign(resolvedInlineProps, applyComponentInlineProps);
@@ -1678,12 +1690,12 @@ export function styled<P, Variants>(
   componentStyleConfig?: ConfigType,
   ExtendedConfig?: ExtendedConfigType,
   BUILD_TIME_PARAMS?: {
-    orderedResolved?: OrderedSXResolved;
-    styleIds?: {
+    orderedResolved: OrderedSXResolved;
+    verbosedStyleIds: {
       component: StyleIds;
       descendant: StyleIds;
     };
-    themeHash?: string;
+    styledIds: Array<string>;
   }
 ) {
   const DEBUG_TAG = componentStyleConfig?.DEBUG;

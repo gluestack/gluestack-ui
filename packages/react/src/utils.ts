@@ -363,3 +363,19 @@ export const platformSpecificSpaceUnits = (theme: Config, platform: string) => {
   });
   return newTheme;
 };
+
+export function extractWidthValues(condition: string) {
+  const widthRegex = /\((min-width|max-width)?\s*:\s*(\d+)\s*(px)?\)/g;
+  const matches = [...condition.matchAll(widthRegex)];
+
+  const widthValues = [];
+  for (const match of matches) {
+    if (match[1]) {
+      widthValues.push(parseInt(match[2]));
+    } else {
+      widthValues.push(parseInt(match[2]));
+    }
+  }
+
+  return widthValues;
+}

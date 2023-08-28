@@ -1,4 +1,4 @@
-import { GluestackStyleSheet } from '../style-sheet';
+import { GluestackStyleSheet, StyleInjector } from '../style-sheet';
 import type { OrderedSXResolved } from '../types';
 import {
   getComponentResolvedBaseStyle,
@@ -10,7 +10,8 @@ import {
 export function injectComponentAndDescendantStyles(
   orderedResolved: OrderedSXResolved,
   styleTagId?: string,
-  type: 'boot' | 'inline' = 'boot'
+  type: 'boot' | 'inline' = 'boot',
+  _GluestackStyleSheet: StyleInjector = GluestackStyleSheet
 ) {
   const [
     componentOrderResolvedBaseStyle,
@@ -37,7 +38,7 @@ export function injectComponentAndDescendantStyles(
     ],
     type + '-base',
     styleTagId ? styleTagId : 'css-injected-boot-time',
-    false
+    {}
   );
   const descendantOrderResolvedBaseStyleIds = GluestackStyleSheet.declare(
     [
@@ -80,5 +81,8 @@ export function injectComponentAndDescendantStyles(
     {},
     false
   );
+
   GluestackStyleSheet.inject(toBeInjected);
+
+  return styleCSSIdsArr;
 }
