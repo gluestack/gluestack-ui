@@ -10,7 +10,6 @@ pageDescription: Overwriting of the default theme is important to create customi
 showHeader: true
 ---
 
-import { Text, Center } from '@gluestack-ui/themed';
 import {
   Box,
   Button,
@@ -18,8 +17,10 @@ import {
   config,
   VStack,
   ButtonText,
-} from '@gluestack-ui/themed';
-import { createConfig } from '@gluestack-ui/themed';
+  Text,
+  Center,
+} from './Overwriting';
+import { createConfig } from './Overwriting';
 import { transformedCode, transformedThemedCode } from '../../utils';
 import Wrapper from '../../components/Wrapper';
 

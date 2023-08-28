@@ -23,6 +23,7 @@ import {
   Input,
   AddIcon,
   Image,
+  config,
   Text,
 } from '@gluestack-ui/themed';
 
@@ -93,4 +94,5 @@ export {
   Image,
   Text,
   useState,
+  config,
 };
