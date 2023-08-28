@@ -5,15 +5,6 @@ const generate = require('@babel/generator').default;
 const babelPresetTypeScript = require('@babel/preset-typescript');
 const traverse = require('@babel/traverse').default;
 const types = require('@babel/types');
-const {
-  getStyleIds,
-} = require('@gluestack-style/react/lib/commonjs/resolver/getStyleIds');
-const {
-  styledResolvedToOrderedSXResolved,
-} = require('@gluestack-style/react/lib/commonjs/resolver/orderedResolved');
-const {
-  styledToStyledResolved,
-} = require('@gluestack-style/react/lib/commonjs/resolver/styledResolved');
 
 const {
   convertStyledToStyledVerbosed,
@@ -26,21 +17,77 @@ const {
   stableHash,
 } = require('@gluestack-style/react/lib/commonjs/stableHash');
 const {
-  INTERNAL_updateCSSStyleInOrderedResolved,
-} = require('@gluestack-style/react/lib/commonjs/updateCSSStyleInOrderedResolved');
-const {
-  INTERNAL_updateCSSStyleInOrderedResolved:
-    INTERNAL_updateCSSStyleInOrderedResolvedWeb,
-} = require('@gluestack-style/react/lib/commonjs/updateCSSStyleInOrderedResolved.web');
-const {
-  convertUtilityPropsToSX,
-} = require('@gluestack-style/react/lib/commonjs/core/convert-utility-to-sx');
-const {
   CSSPropertiesMap,
 } = require('@gluestack-style/react/lib/commonjs/core/styled-system');
+const {
+  StyleInjector,
+} = require('@gluestack-style/react/lib/commonjs/style-sheet/index');
+const {
+  updateOrderUnResolvedMap,
+} = require('@gluestack-style/react/lib/commonjs/updateOrderUnResolvedMap');
+const {
+  setObjectKeyValue,
+} = require('@gluestack-style/react/lib/commonjs/utils');
 
 const IMPORT_NAME = '@gluestack-style/react';
 let configThemePath = [];
+const BUILD_TIME_GLUESTACK_STYLESHEET = new StyleInjector();
+
+const convertExpressionContainerToStaticObject = (
+  properties,
+  result = {},
+  keyPath = [],
+  propsToBePersist = {}
+) => {
+  properties?.forEach((property, index) => {
+    const nodeName = property.key.name ?? property.key.value;
+    if (property.value.type === 'ObjectExpression') {
+      keyPath.push(nodeName);
+      convertExpressionContainerToStaticObject(
+        property.value.properties,
+        result,
+        keyPath,
+        propsToBePersist
+      );
+      keyPath.pop();
+    } else if (property.value.type === 'Identifier') {
+      if (property.key.value) {
+        setObjectKeyValue(
+          propsToBePersist,
+          [...keyPath, nodeName],
+          property.value.name
+        );
+      }
+      if (property.key.name) {
+        setObjectKeyValue(
+          propsToBePersist,
+          [...keyPath, nodeName],
+          property.value.name
+        );
+      }
+    } else {
+      if (property.key.value) {
+        setObjectKeyValue(
+          result,
+          [...keyPath, property.key.value],
+          property.value.value
+        );
+      }
+
+      if (property.key.name) {
+        setObjectKeyValue(
+          result,
+          [...keyPath, property.key.name],
+          property.value.value
+        );
+      }
+    }
+  });
+  return {
+    result,
+    propsToBePersist,
+  };
+};
 
 function addQuotesToObjectKeys(code) {
   const ast = babel.parse(`var a = ${code}`, {
@@ -227,6 +274,68 @@ function getObjectFromAstNode(node) {
   // console.log(objectCode, ' <==================|++++>> object code');
 
   return JSON.parse(objectCode);
+}
+
+function removeLiteralPropertiesFromObjectProperties(code) {
+  const ast = babel.parse(`var a = ${code}`, {
+    presets: [babelPresetTypeScript],
+    plugins: ['typescript'],
+    sourceType: 'module',
+  });
+
+  traverse(ast, {
+    ObjectExpression: (path) => {
+      path.traverse({
+        ObjectProperty(path) {
+          const { value } = path.node;
+
+          path.traverse({
+            StringLiteral: (stringPath) => {
+              stringPath;
+            },
+          });
+
+          if (
+            value.type === 'StringLiteral' ||
+            value.type === 'NumericLiteral'
+          ) {
+            path.remove();
+          }
+        },
+      });
+    },
+  });
+
+  let initAst;
+  // let modifiedAst = undefined;
+
+  // traverse(ast, {
+  //   ObjectProperty: (path) => {
+  //     if (!modifiedAst) {
+  //       modifiedAst = removeEmptyProperties(path.node);
+  //       path.node = modifiedAst;
+  //     }
+  //   },
+  // });
+
+  traverse(ast, {
+    VariableDeclarator: (path) => {
+      initAst = path.node.init;
+    },
+  });
+
+  return initAst;
+}
+
+function getIdentifiersObjectFromAstNode(node) {
+  let objectCode = generate(node).code;
+
+  return removeLiteralPropertiesFromObjectProperties(
+    objectCode.replace(
+      /\\"|"(?:\\"|[^"])*"|(\/\/.*|\/\*[\s\S]*?\*\/)/g,
+      (m, g) => (g ? '' : m)
+    )
+  );
 }
 
 const CONFIG = getExportedConfigFromFileString(getConfig());
@@ -423,9 +532,6 @@ module.exports = function (b) {
             let ExtendedConfig = getObjectFromAstNode(extendedThemeNode);
             let componentConfig = getObjectFromAstNode(componentConfigNode);
 
-            // if (outputLibrary) {
-            //   componentConfig = {...componentConfig, outputLibrary }
-            // }
             if (extendedThemeNode && tempPropertyResolverNode) {
               extendedThemeNode.properties.push(tempPropertyResolverNode);
             }
@@ -446,62 +552,69 @@ module.exports = function (b) {
 
             const verbosedTheme = convertStyledToStyledVerbosed(theme);
 
-            let resolvedStyles = styledToStyledResolved(
-              verbosedTheme,
-              [],
-              componentExtendedConfig
-            );
-
-            let orderedResolved =
-              styledResolvedToOrderedSXResolved(resolvedStyles);
-            // console.log('\n\n >>>>>>>>>>>>>>>>>>>>>\n');
-            // console.log(JSON.stringify(verbosedTheme));
-            // console.log('\n >>>>>>>>>>>>>>>>>>>>>\n\n');
-
-            let themeHash = stableHash({
-              ...verbosedTheme,
+            let componentHash = stableHash({
+              ...theme,
               ...componentConfig,
+              ...ExtendedConfig,
             });
 
             if (outputLibrary) {
-              themeHash = outputLibrary + '-' + themeHash;
+              componentHash = outputLibrary + '-' + componentHash;
             }
 
-            if (platform === 'all') {
-              INTERNAL_updateCSSStyleInOrderedResolvedWeb(
-                orderedResolved,
-                themeHash,
-                true
-              );
-            } else if (platform === 'web') {
-              INTERNAL_updateCSSStyleInOrderedResolvedWeb(
-                orderedResolved,
-                themeHash,
-                false
-              );
-            } else {
-              INTERNAL_updateCSSStyleInOrderedResolved(
-                orderedResolved,
-                themeHash,
-                true
-              );
-            }
+            const { styledIds, verbosedStyleIds } = updateOrderUnResolvedMap(
+              verbosedTheme,
+              componentHash,
+              'boot',
+              componentConfig,
+              BUILD_TIME_GLUESTACK_STYLESHEET,
+              platform
+            );
 
-            let styleIds = getStyleIds(orderedResolved, componentConfig);
+            const toBeInjected = BUILD_TIME_GLUESTACK_STYLESHEET.resolve(
+              styledIds,
+              componentExtendedConfig,
+              ExtendedConfig
+            );
 
-            let styleIdsAst = generateObjectAst(styleIds);
+            const current_global_map =
+              BUILD_TIME_GLUESTACK_STYLESHEET.getStyleMap();
 
-            let themeHashAst = t.stringLiteral(themeHash);
+            const orderedResolvedTheme = [];
 
-            let orderedResolvedAst = generateArrayAst(orderedResolved);
+            current_global_map?.forEach((styledResolved) => {
+              if (styledIds.includes(styledResolved?.meta?.cssId)) {
+                orderedResolvedTheme.push(styledResolved);
+              }
+            });
+
+            let styleIdsAst = generateObjectAst(verbosedStyleIds);
+
+            let toBeInjectedAst = generateObjectAst(toBeInjected);
+
+            let orderedResolvedAst = generateArrayAst(orderedResolvedTheme);
+
+            let orderedStyleIdsArrayAst = t.arrayExpression(
+              styledIds?.map((cssId) => t.stringLiteral(cssId))
+            );
 
             let resultParamsNode = t.objectExpression([
               t.objectProperty(
                 t.stringLiteral('orderedResolved'),
                 orderedResolvedAst
               ),
-              t.objectProperty(t.stringLiteral('styleIds'), styleIdsAst),
-              t.objectProperty(t.stringLiteral('themeHash'), themeHashAst),
+              t.objectProperty(
+                t.stringLiteral('toBeInjected'),
+                toBeInjectedAst
+              ),
+              t.objectProperty(
+                t.stringLiteral('styledIds'),
+                orderedStyleIdsArrayAst
+              ),
+              t.objectProperty(
+                t.stringLiteral('verbosedStyleIds'),
+                styleIdsAst
+              ),
             ]);
 
             while (args.length < 4) {
@@ -534,153 +647,211 @@ module.exports = function (b) {
           // console.log('\n >>>>>>>>>>>>>>>>>>>>>\n\n');
         }
       },
-      // JSXOpeningElement(jsxOpeningElementPath) {
-      //   if (
-      //     jsxOpeningElementPath.node.name &&
-      //     jsxOpeningElementPath.node.name.name &&
-      //     guessingStyledComponents.includes(
-      //       jsxOpeningElementPath.node.name.name
-      //     )
-      //   ) {
-      //     let propsToBePersist = [];
+      JSXOpeningElement(jsxOpeningElementPath) {
+        if (
+          jsxOpeningElementPath.node.name &&
+          jsxOpeningElementPath.node.name.name &&
+          guessingStyledComponents.includes(
+            jsxOpeningElementPath.node.name.name
+          )
+        ) {
+          let propsToBePersist = [];
+          let sxPropsWithIdentifier = {};
+          let utilityPropsWithIdentifier = {};
 
-      //     let mergedPropertyConfig = {
-      //       ...ConfigDefault?.propertyTokenMap,
-      //       ...propertyTokenMap,
-      //     };
+          let mergedPropertyConfig = {
+            ...ConfigDefault?.propertyTokenMap,
+            ...propertyTokenMap,
+          };
 
-      //     const styledSystemProps = {
-      //       ...CSSPropertiesMap,
-      //       ...CONFIG?.aliases,
-      //     };
+          const styledSystemProps = {
+            ...CSSPropertiesMap,
+            ...ConfigDefault?.aliases,
+          };
 
-      //     const attr = jsxOpeningElementPath.node.attributes;
-      //     attr.forEach((attribute, index) => {
-      //       if (t.isJSXAttribute(attribute)) {
-      //         const propName = attribute.name.name;
-      //         const propValue = attribute.value;
+          const attr = jsxOpeningElementPath.node.attributes;
+          attr.forEach((attribute, index) => {
+            if (t.isJSXAttribute(attribute)) {
+              const propName = attribute.name.name;
+              const propValue = attribute.value;
 
-      //         if (
-      //           propValue.type === 'JSXExpressionContainer' &&
-      //           !t.isIdentifier(propValue.expression) &&
-      //           propName === 'sx'
-      //         ) {
-      //           const objectProperties = propValue.expression;
+              if (t.isJSXExpressionContainer(propValue)) {
+                if (t.isIdentifier(propValue.expression)) {
+                  propsToBePersist.push(attribute);
+                } else {
+                  if (propName === 'sx') {
+                    const objectProperties = propValue.expression.properties;
 
-      //           componentSXProp = getObjectFromAstNode(objectProperties);
-      //         } else if (styledSystemProps[propName]) {
-      //           componentUtilityProps = Object.assign(
-      //             componentUtilityProps ?? {},
-      //             {
-      //               [propName]: propValue.value,
-      //             }
-      //           );
-      //         } else {
-      //           propsToBePersist.push(attribute);
-      //         }
-      //       }
-      //     });
+                    sxPropsWithIdentifier = getIdentifiersObjectFromAstNode(
+                      propValue.expression
+                    );
 
-      //     jsxOpeningElementPath.node.attributes.splice(
-      //       0,
-      //       jsxOpeningElementPath.node.attributes.length
-      //     );
+                    const { result: sxPropsObject } =
+                      convertExpressionContainerToStaticObject(
+                        objectProperties
+                      );
 
-      //     const sx = {
-      //       ...componentUtilityProps,
-      //       ...componentSXProp,
-      //     };
+                    // jsxOpeningElementPath.traverse({
+                    //   JSXExpressionContainer(jsxPath) {
+                    //     jsxPath.traverse({
+                    //       ObjectExpression(path) {
+                    //         removeEmptyProperties(path.node);
+                    //       },
+                    //     });
+                    //   },
+                    // });
+                    componentSXProp = sxPropsObject;
+                  } else if (
+                    t.isStringLiteral(propValue.expression) ||
+                    t.isNumericLiteral(propValue.expression)
+                  ) {
+                    if (styledSystemProps[propName]) {
+                      componentUtilityProps = Object.assign(
+                        componentUtilityProps ?? {},
+                        {
+                          [propName]: propValue.expression.value,
+                        }
+                      );
+                    }
+                  } else {
+                    propsToBePersist.push(attribute);
+                  }
+                }
+              } else if (styledSystemProps[propName]) {
+                componentUtilityProps = Object.assign(
+                  componentUtilityProps ?? {},
+                  {
+                    [propName]: propValue.value,
+                  }
+                );
+              } else {
+                propsToBePersist.push(attribute);
+              }
+            }
+          });
 
-      //     if (sx) {
-      //       const verbosedSx = convertSxToSxVerbosed(sx);
+          jsxOpeningElementPath.node.attributes.splice(
+            0,
+            jsxOpeningElementPath.node.attributes.length
+          );
 
-      //       const inlineSxTheme = {
-      //         baseStyle: verbosedSx,
-      //       };
+          for (const key in utilityPropsWithIdentifier) {
+            if (componentSXProp[key]) delete utilityPropsWithIdentifier[key];
+          }
 
-      //       let componentExtendedConfig = merge(
-      //         {},
-      //         {
-      //           ...ConfigDefault,
-      //           propertyTokenMap: { ...mergedPropertyConfig },
-      //         }
-      //       );
+          const sx = {
+            ...componentUtilityProps,
+            ...componentSXProp,
+          };
 
-      //       let resolvedStyles = styledToStyledResolved(
-      //         inlineSxTheme,
-      //         [],
-      //         componentExtendedConfig
-      //       );
+          if (sx) {
+            const verbosedSx = convertSxToSxVerbosed(sx);
 
-      //       let orderedResolved =
-      //         styledResolvedToOrderedSXResolved(resolvedStyles);
+            const inlineSxTheme = {
+              baseStyle: verbosedSx,
+            };
 
-      //       let sxHash = stableHash(sx);
+            let componentExtendedConfig = merge(
+              {},
+              {
+                ...ConfigDefault,
+                propertyTokenMap: { ...mergedPropertyConfig },
+              }
+            );
 
-      //       if (outputLibrary) {
-      //         sxHash = outputLibrary + '-' + sxHash;
-      //       }
+            let sxHash = stableHash(sx);
 
-      //       if (platform === 'all') {
-      //         INTERNAL_updateCSSStyleInOrderedResolvedWeb(
-      //           orderedResolved,
-      //           sxHash,
-      //           true,
-      //           'gs'
-      //         );
-      //       } else if (platform === 'web') {
-      //         INTERNAL_updateCSSStyleInOrderedResolvedWeb(
-      //           orderedResolved,
-      //           sxHash,
-      //           false,
-      //           'gs'
-      //         );
-      //       } else {
-      //         INTERNAL_updateCSSStyleInOrderedResolved(
-      //           orderedResolved,
-      //           sxHash,
-      //           true,
-      //           'gs'
-      //         );
-      //       }
+            if (outputLibrary) {
+              sxHash = outputLibrary + '-' + sxHash;
+            }
 
-      //       let styleIds = getStyleIds(
-      //         orderedResolved,
-      //         componentExtendedConfig
-      //       );
+            const { styledIds, verbosedStyleIds } = updateOrderUnResolvedMap(
+              inlineSxTheme,
+              sxHash,
+              'inline',
+              {},
+              BUILD_TIME_GLUESTACK_STYLESHEET,
+              platform
+            );
 
-      //       let styleIdsAst = generateObjectAst(styleIds);
+            const toBeInjected = BUILD_TIME_GLUESTACK_STYLESHEET.resolve(
+              styledIds,
+              componentExtendedConfig,
+              {},
+              true,
+              'inline'
+            );
 
-      //       let orderResolvedArrayExpression = [];
+            const current_global_map =
+              BUILD_TIME_GLUESTACK_STYLESHEET.getStyleMap();
 
-      //       orderedResolved.forEach((styledResolved) => {
-      //         let orderedResolvedAst = generateObjectAst(styledResolved);
-      //         orderResolvedArrayExpression.push(orderedResolvedAst);
-      //       });
+            const orderedResolvedTheme = [];
 
-      //       jsxOpeningElementPath.node.attributes = propsToBePersist;
-      //       jsxOpeningElementPath.node.attributes.push(
-      //         t.jsxAttribute(
-      //           t.jsxIdentifier('styledIds'),
-      //           t.jsxExpressionContainer(styleIdsAst)
-      //         )
-      //       );
-      //       jsxOpeningElementPath.node.attributes.push(
-      //         t.jsxAttribute(
-      //           t.jsxIdentifier('orderResolved'),
-      //           t.jsxExpressionContainer(
-      //             t.arrayExpression(orderResolvedArrayExpression)
-      //           )
-      //         )
-      //       );
-      //       jsxOpeningElementPath.node.attributes.push(
-      //         t.jsxAttribute(t.jsxIdentifier('sxHash'), t.stringLiteral(sxHash))
-      //       );
-      //     }
-      //     componentSXProp = undefined;
-      //     componentUtilityProps = undefined;
-      //   }
-      // },
+            current_global_map?.forEach((styledResolved) => {
+              if (styledIds.includes(styledResolved?.meta?.cssId)) {
+                orderedResolvedTheme.push(styledResolved);
+              }
+            });
+
+            let styleIdsAst = generateObjectAst(verbosedStyleIds);
+
+            let toBeInjectedAst = generateObjectAst(toBeInjected);
+
+            let orderResolvedArrayExpression = [];
+
+            orderedResolvedTheme.forEach((styledResolved) => {
+              let orderedResolvedAst = generateObjectAst(styledResolved);
+              orderResolvedArrayExpression.push(orderedResolvedAst);
+            });
+
+            let orderedStyleIdsArrayAst = t.arrayExpression(
+              styledIds?.map((cssId) => t.stringLiteral(cssId))
+            );
+
+            jsxOpeningElementPath.node.attributes = propsToBePersist;
+
+            if (Object.keys(sxPropsWithIdentifier).length > 0) {
+              jsxOpeningElementPath.node.attributes.push(
+                t.jsxAttribute(
+                  t.jsxIdentifier('sx'),
+                  t.jsxExpressionContainer(sxPropsWithIdentifier)
+                )
+              );
+            }
+            jsxOpeningElementPath.node.attributes.push(
+              t.jsxAttribute(
+                t.jsxIdentifier('verbosedStyleIds'),
+                t.jsxExpressionContainer(styleIdsAst)
+              )
+            );
+            jsxOpeningElementPath.node.attributes.push(
+              t.jsxAttribute(
+                t.jsxIdentifier('toBeInjected'),
+                t.jsxExpressionContainer(toBeInjectedAst)
+              )
+            );
+            jsxOpeningElementPath.node.attributes.push(
+              t.jsxAttribute(
+                t.jsxIdentifier('orderedResolved'),
+                t.jsxExpressionContainer(
+                  t.arrayExpression(orderResolvedArrayExpression)
+                )
+              )
+            );
+            jsxOpeningElementPath.node.attributes.push(
+              t.jsxAttribute(t.jsxIdentifier('sxHash'), t.stringLiteral(sxHash))
+            );
+            jsxOpeningElementPath.node.attributes.push(
+              t.jsxAttribute(
+                t.jsxIdentifier('styledIds'),
+                t.jsxExpressionContainer(orderedStyleIdsArrayAst)
+              )
+            );
+          }
+          componentSXProp = undefined;
+          componentUtilityProps = undefined;
+        }
+      },
     },
   };
 };
