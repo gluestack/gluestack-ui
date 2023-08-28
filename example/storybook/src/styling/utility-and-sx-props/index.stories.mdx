@@ -7,9 +7,255 @@ showHeader: true
 ---
 
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
+import { AppProvider, CodePreview } from '@gluestack/design-system';
+import {
+  Box,
+  Center,
+  HStack,
+  VStack,
+  GluestackUIProvider,
+  Pressable as GluestackUIPressable,
+  Text as GluestackUIText,
+  Image as GluestackUIImage,
+  Button,
+  ButtonText,
+} from '@gluestack-ui/themed';
+import { transformedCode, transformedCodeWithoutWrapper } from '../../utils';
+import Wrapper from '../../components/Wrapper';
+import { styled } from '@gluestack-style/react';
+
+import { Pressable, Text, View, Image, StyleSheet } from 'react-native';
+// import the createButton function
+import { createButton } from '@gluestack-ui/button';
 
 <Meta title="Styling/Utility and SX props" />
 
-## Utility and SX props
+## Utility Props
 
-WIP: Utility and SX props
+React Native has a great StyleSheet API which is optimal for component-based systems. `@gluestack-style/react` leverages it and adds a layer of utility props and constraint based designed tokens on top of it. `@gluestack-style/react` is used as styling engine for `@gluestack-ui/themed`.
+To understand utility props, let's take an example.
+
+### With React Native
+
+Let's try the traditional way of building the following card in React Native.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+        function Example() {
+          return (
+            <View style={styles.container}>
+              <View style={styles.topContainer}>
+                <View style={styles.metaContainer}>
+                  <View>
+                    <Text style={styles.timings}>Today @ 9PM</Text>
+                    <Text style={styles.description}>Let's talk about avatar!</Text>
+                  </View>
+                  <Pressable style={styles.button}>
+                    <Text style={styles.buttonText}>Remind me</Text>
+                  </Pressable>
+                </View>
+                <Image
+                  source={{
+                    uri: 'https://media.vanityfair.com/photos/5ba12e6d42b9d16f4545aa19/3:2/w_1998,h_1332,c_limit/t-Avatar-The-Last-Airbender-Live-Action.jpg',
+                  }}
+                  style={styles.avatar}
+                />
+              </View>
+            </View>
+          );
+        }
+        const styles = StyleSheet.create({
+        container: {
+        backgroundColor: '#0891b2',
+        paddingVertical: 16,
+        paddingHorizontal: 12,
+        borderRadius: 5,
+        alignSelf: 'center',
+        width: 375,
+        maxWidth: '100%',
+        },
+        timings: {
+        color: '#fff',
+        fontSize: '14px',
+        },
+        metaContainer: {
+        justifyContent: 'space-between',
+        },
+        topContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        },
+        avatar: {
+        height: 100,
+        width: 100,
+        borderRadius: 100,
+        },
+        description: {
+        color: 'white',
+        marginTop: 5,
+        fontSize: 20,
+        },
+        button: {
+        backgroundColor: '#22d3ee',
+        alignSelf: 'flex-start',
+        paddingHorizontal: 12,
+        paddingVertical: 4,
+        borderRadius: 2,
+        },
+        buttonText: {
+        fontWeight: 'bold',
+        color: 'white',
+        textTransform: 'uppercase',
+        fontSize: 14,
+        },
+        });
+`,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'Example');
+      },
+      scope: {
+        Wrapper,
+        createButton,
+        Pressable,
+        Text,
+        View,
+        Image,
+        StyleSheet,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+### With gluestack-ui
+
+Now let's try to build the same card using `@gluestack-ui/themed`.
+By using `@gluestack-ui/themed` components, you can apply styles directly in the layout using shorthands.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+   function Example() {
+        return (
+          <Box
+            bg="#0891b2"
+            py="$4"
+            px="$3"
+            rounded="$md"
+            height="132px"
+            width={375}
+            maxWidth="100%">
+            <HStack justifyContent="space-between" height="100%">
+              <Box justifyContent="space-between">
+                <VStack space="xs">
+                  <Text fontSize="$sm" color="$white">
+                    Today @ 9PM
+                  </Text>
+                  <Text color="$white" fontSize="$xl">
+                    Let's talk about avatar!
+                  </Text>
+                </VStack>
+                <Pressable
+                  rounded="$xs"
+                  bg="#22d3ee"
+                  alignSelf="flex-start"
+                  py="$1"
+                  px="$3">
+                  <ButtonText
+                    textTransform="uppercase"
+                    fontSize="$sm"
+                    fontWeight="$bold"
+                    color="$white">
+                    Remind me
+                  </ButtonText>
+                </Pressable>
+              </Box>
+              <Image
+                source={{
+                  uri: 'https://media.vanityfair.com/photos/5ba12e6d42b9d16f4545aa19/3:2/w_1998,h_1332,c_limit/t-Avatar-The-Last-Airbender-Live-Action.jpg',
+                }}
+                alt="Aang flying and surrounded by clouds"
+                height="100px"
+                rounded="$full"
+                width="100px"
+              />
+            </HStack>
+          </Box>
+        );
+      }
+`,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'Example');
+      },
+      scope: {
+        Wrapper,
+        Box,
+        HStack,
+        VStack,
+        createButton,
+        Pressable,
+        Text: GluestackUIText,
+        Pressable: GluestackUIPressable,
+        View,
+        Image: GluestackUIImage,
+        StyleSheet,
+        Button,
+        ButtonText,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+The above example demonstrates the usage of [utility props]("/docs/styling/utility-props") alongwith VStack, HStack components. This approach allows us to style components without using StyleSheet API.
+
+## SX Prop
+
+gluestack-style supports the sx prop for overriding styles.The sx prop enables passing an object supporting tokens, media queries, nesting, and token-aware values to the component.
+sx accepts the same style object as the base style.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+      <Button
+        size="lg"
+        sx={{
+            "marginBottom": '$4',
+            "bg": 'pink',
+            ":hover": {
+                "bg": 'orange',
+            },
+        }}
+      >
+        <ButtonText>Button</ButtonText>
+      </Button>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Button,
+        ButtonText,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+In this example, the button has a pink background instead of the default primary color, as the backgroundColor style is overridden using the sx prop
+The sx prop is particularly useful for theming and responsive styles, as it enables easy style changes for a component based on the theme or viewport size
+It is important to note that you should generally avoid using the sx prop, as it adds complexity to style calculations and may decrease performance
+
+Apart from productivity boosts and saving time, there are other benefits to styling components using utility props and sx prop. No need to name styles anymore, no need to define an object and think about naming it.
+Using utility-first and sx props, you can focus on creating reusable components instead of reusable stylesheets.Once you start writing styles this way, any other way will feel cumbersome.
