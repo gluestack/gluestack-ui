@@ -2,7 +2,12 @@ import { injectInStyle } from '../injectInStyle';
 import { StyledValueToCSSObject } from '../resolver';
 import type { OrderedSXResolved } from '../types';
 import { getCSSIdAndRuleset } from '../updateCSSStyleInOrderedResolved.web';
-import { deepMerge, resolveTokensFromConfig } from '../utils';
+import {
+  deepMerge,
+  resolveStringToken,
+  resolveTokensFromConfig,
+  resolvedTokenization,
+} from '../utils';
 import { inject } from '../utils/css-injector';
 export type DeclarationType = 'boot' | 'forwarded';
 export class StyleInjector {
@@ -104,6 +109,28 @@ export class StyleInjector {
       theme,
       componentExtendedConfig
     );
+    componentTheme.meta.themeCondition = {};
+    Object.keys(componentTheme.original).forEach((resolvedToken: any) => {
+      Object.keys(CONFIG.themes).forEach((themeName: any) => {
+        let theme = CONFIG.themes[themeName];
+        Object.keys(theme).forEach((tokenScale: any) => {
+          const tokenScaleValue = theme[tokenScale];
+          Object.keys(tokenScaleValue).forEach((token: any) => {
+            if (componentTheme.original[resolvedToken] === token) {
+              componentTheme.meta.themeCondition[themeName] =
+                resolvedTokenization(
+                  {
+                    [resolvedToken]: tokenScaleValue[token],
+                  },
+                  CONFIG
+                );
+            }
+          });
+        });
+      });
+
+      // componentTheme.original[originalToken] = resolveStringToken();
+    });
 
     delete componentTheme.meta.cssRuleset;
 

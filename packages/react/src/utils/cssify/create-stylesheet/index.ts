@@ -16,7 +16,7 @@ const createStyleSheet = (
   Object.keys(stylesObject).map((key) => {
     if (!stylesObject?.[key]) return;
 
-    let { condition, colorMode, style } = stylesObject[key];
+    let { condition, colorMode, style, themeCondition } = stylesObject[key];
 
     const mediaQuery = createQuery(condition);
 

@@ -20,7 +20,7 @@ import {
 } from '@expo-google-fonts/inter';
 import './styles';
 import HomestayPage from './kitchensink-components/HomestayPage';
-import { styled } from '@gluestack-style/react';
+import { styled, Theme } from '@gluestack-style/react';
 
 // const orderedSXResolved = [
 //   {
@@ -66,15 +66,15 @@ import { styled } from '@gluestack-style/react';
 
 // const Box = styled(View, {});
 
-const BaseButton = styled(Pressable, {
-  bg: '$amber500',
+const Box = styled(View, {
+  bg: '$primary100',
   h: '$10',
   w: '$10',
 });
 
-const ComposedButton = styled(BaseButton, {
-  bg: '$red500',
-});
+// const ComposedButton = styled(BaseButton, {
+//   bg: '$red500',
+// });
 
 type ThemeContextType = {
   colorMode?: 'dark' | 'light';
@@ -123,12 +123,18 @@ export default function App() {
       >
         {/* gluestack-ui provider */}
         <SSRProvider>
-          <GluestackUIProvider config={config.theme} colorMode={colorMode}>
-            <ThemeContext.Provider value={{ colorMode, toggleColorMode }}>
-              {/* <BaseButton>Hello Worlddddd</BaseButton>
+          <GluestackUIProvider config={config.theme} colorMode={'light'}>
+            {/* <ThemeContext.Provider value={{ colorMode, toggleColorMode }}> */}
+            <Theme name="x">
+              <Box bg="$amber800"></Box>
+              <Box></Box>
+            </Theme>
+            <Box bg="$amber50"></Box>
+            <Box></Box>
+            {/* <BaseButton>Hello Worlddddd</BaseButton>
               <ComposedButton>Hello</ComposedButton> */}
-              <HomestayPage />
-            </ThemeContext.Provider>
+            {/* <HomestayPage /> */}
+            {/* </ThemeContext.Provider> */}
           </GluestackUIProvider>
         </SSRProvider>
       </SafeAreaView>

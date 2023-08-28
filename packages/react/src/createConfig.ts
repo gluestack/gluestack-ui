@@ -1,5 +1,7 @@
 import type { GlueStackConfig } from './types';
 import { convertStyledToStyledVerbosed } from './convertSxToSxVerbosed';
+import { deepMerge, resolveStringToken } from './utils';
+
 import { stableHash } from './stableHash';
 import { propertyTokenMap } from './propertyTokenMap';
 import { updateOrderUnResolvedMap } from './updateOrderUnResolvedMap';
@@ -21,11 +23,36 @@ export const createConfig = <
       >
 ): T => {
   // @ts-ignore
-  if (!config.components) {
+  if (!config.components && !config.themes) {
     return config as any;
   }
   const newConfig = resolveComponentThemes(config);
-  return newConfig as any;
+  const newConfigWithThemesResolved = resolveThemes(newConfig);
+  return newConfigWithThemesResolved as any;
+};
+
+const resolveThemes = (config: any) => {
+  const newConfig = { ...config };
+  Object.keys(newConfig?.themes ?? {}).forEach((themeName: any) => {
+    let theme = newConfig.themes[themeName];
+    Object.keys(theme).forEach((tokenScale: any) => {
+      const tokenScaleValue = theme[tokenScale];
+      Object.keys(tokenScaleValue).forEach((token: any) => {
+        const tokenValue = resolveStringToken(
+          tokenScaleValue[token],
+          newConfig,
+          tokenScale,
+          ''
+        );
+        tokenScaleValue[token] = tokenValue;
+      });
+    });
+    // const tempCONFIG = JSON.parse(JSON.stringify(newConfig));
+    // delete tempCONFIG.themes;
+    // deepMerge(tempCONFIG, { tokens: { ...theme } });
+    // newConfig.themes[themeName] = tempCONFIG;
+  });
+  return newConfig;
 };
 
 const resolveComponentThemes = (config: any) => {

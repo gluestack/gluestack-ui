@@ -125,7 +125,8 @@ function getDataStyle(props: any, styleCSSIdsString: string) {
 export function generateStylePropsFromCSSIds(
   props: any,
   styleCSSIds: any,
-  config: any
+  config: any,
+  activeTheme: any
 ) {
   // console.setStartTimeStamp('generateStylePropsFromCSSIds');
   const propsStyles = Array.isArray(props?.style)
@@ -155,9 +156,26 @@ export function generateStylePropsFromCSSIds(
           } else {
             styleObj.push(styleSheet);
           }
+          if (nativeStyle.meta.themeCondition && activeTheme) {
+            console.log(activeTheme);
+            styleObj.push({
+              ...nativeStyle.meta.themeCondition[activeTheme],
+            });
+          }
         }
       });
     } else {
+      const nativeStyleMap = GluestackStyleSheet.getStyleMap();
+      styleCSSIds.forEach((cssId: any) => {
+        const nativeStyle = nativeStyleMap.get(cssId);
+        if (nativeStyle.meta.themeCondition && activeTheme) {
+          console.log(activeTheme);
+          styleObj.push({
+            ...nativeStyle.meta.themeCondition[activeTheme],
+          });
+        }
+      });
+
       styleCSSIdsString = styleCSSIds.join(' ');
     }
   }

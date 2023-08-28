@@ -131,7 +131,6 @@ export function updateOrderUnResolvedMap(
   ];
 
   const verbosedStyleIds = getStyleIds(orderedUnResolvedTheme, ExtendedConfig);
-
   return {
     styledIds: styleCSSIdsArr,
     verbosedStyleIds,

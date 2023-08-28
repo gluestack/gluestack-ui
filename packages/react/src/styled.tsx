@@ -19,9 +19,11 @@ import {
   resolveStringToken,
   shallowMerge,
   deepMergeArray,
+  resolvedTokenization,
 } from './utils';
 import { convertUtilityPropsToSX } from './core/convert-utility-to-sx';
 import { useStyled } from './StyledProvider';
+import { useTheme } from './Theme';
 import { propertyTokenMap } from './propertyTokenMap';
 import { Platform, StyleSheet } from 'react-native';
 import { INTERNAL_updateCSSStyleInOrderedResolved } from './updateCSSStyleInOrderedResolved';
@@ -922,6 +924,34 @@ export function verboseStyled<P, Variants>(
       [],
       componentExtendedConfig
     );
+    // console.log(sxStyledResolved);
+    sxStyledResolved.baseStyle.styledValueResolvedWithMeta.meta.themeCondition =
+      {};
+    const componentTheme: any =
+      sxStyledResolved.baseStyle.styledValueResolvedWithMeta;
+    Object.keys(componentTheme.original).forEach((resolvedToken: any) => {
+      Object.keys(CONFIG.themes).forEach((themeName: any) => {
+        let theme = CONFIG.themes[themeName];
+        Object.keys(theme).forEach((tokenScale: any) => {
+          const tokenScaleValue = theme[tokenScale];
+          Object.keys(tokenScaleValue).forEach((token: any) => {
+            if (componentTheme.original[resolvedToken] === token) {
+              componentTheme.meta.themeCondition[themeName] =
+                resolvedTokenization(
+                  {
+                    [resolvedToken]: tokenScaleValue[token],
+                  },
+                  CONFIG
+                );
+            }
+          });
+        });
+      });
+
+      // componentTheme.original[originalToken] = resolveStringToken();
+    });
+
+    // console.log(componentTheme);
 
     const sxHash = stableHash(sx);
     const orderedSXResolved =
@@ -985,6 +1015,8 @@ export function verboseStyled<P, Variants>(
     //200ms
     // let time = Date.now();
     const styledContext = useStyled();
+    const { theme: activeTheme } = useTheme();
+    console.log('>>>>>', activeTheme);
     const ancestorStyleContext = useContext(AncestorStyleContext);
     let incomingComponentProps = {};
     let remainingComponentProps = {};
@@ -995,11 +1027,32 @@ export function verboseStyled<P, Variants>(
 
     const COLOR_MODE: any = get();
 
+    // console.log(
+    //   JSON.stringify(themes),
+    //   JSON.stringify(CONFIG.tokens.colors.amber50),
+    //   activeTheme
+    // );
+
     if (!styleHashCreated) {
-      CONFIG = {
-        ...styledContext.config,
-        propertyTokenMap,
-      };
+      CONFIG = JSON.parse(
+        JSON.stringify({
+          ...styledContext.config,
+          propertyTokenMap,
+        })
+      );
+      // if (activeTheme) {
+      //   // console.log(CONFIG, activeTheme, 'CONFIG');
+      //   CONFIG = {
+      //     ...CONFIG,
+      //     ...CONFIG.themes[activeTheme],
+      //   };
+      // }
+      // const themes = { ...CONFIG.themes[activeTheme] };
+      // if (!activeTheme) {
+      //   console.log();
+      // }
+
+      // const themes = CONFIG.themes[activeTheme];
       const EXTENDED_THEME =
         componentName && CONFIG?.components?.[componentName]?.theme?.theme;
 
@@ -1254,6 +1307,7 @@ export function verboseStyled<P, Variants>(
           theme,
           incomingComponentProps
         );
+
         //@ts-ignore
         // applySxStyleCSSIds.current = sxStyleCSSIds;
         //@ts-ignore
@@ -1487,6 +1541,10 @@ export function verboseStyled<P, Variants>(
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [states]);
 
+    // useEffect(() => {
+    //   CONFIG = JSON.parse(JSON.stringify({ ...styledContext.config }));
+    //   console.log('THeme changes', styledContext.config);
+    // }, [activeTheme]);
     // 600ms
     const descendantCSSIds = useMemo(() => {
       if (!containsDescendant) {
@@ -1541,20 +1599,20 @@ export function verboseStyled<P, Variants>(
     ];
 
     Object.assign(resolvedInlineProps, applyComponentInlineProps);
-
     const resolvedStyleProps = generateStylePropsFromCSSIds(
       resolvedInlineProps,
       styleCSSIds,
-      CONFIG
+      CONFIG,
+      activeTheme
     );
-
     const AsComp: any = (as as any) || (passingProps.as as any) || undefined;
 
     let resolvedStyleMemo = [passingProps?.style, ...resolvedStyleProps?.style];
-
+    console.log(resolvedStyleMemo);
     if (Platform.OS === 'web') {
       resolvedStyleMemo = StyleSheet.flatten(resolvedStyleMemo);
     }
+
     // if (componentProps.debug === 'BOX_TEST') {
     //   return (
     //     <Component {...resolvedStyleProps} style={resolvedStyleMemo} ref={ref}>

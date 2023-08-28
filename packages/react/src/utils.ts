@@ -212,7 +212,6 @@ export function resolveTokensFromConfig(config: any, props: any) {
 
   Object.keys(props).map((prop: any) => {
     const value = props[prop];
-
     newProps[prop] = getResolvedTokenValueFromConfig(
       config,
       props,
