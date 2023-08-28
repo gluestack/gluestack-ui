@@ -1548,9 +1548,9 @@ export function verboseStyled<P, Variants>(
       ...applyComponentStateBaseStyleIds,
       ...applyComponentStateVariantStyleIds,
       ...applySxVariantStyleCSSIds.current,
-      ...applySxStateBaseStyleCSSIds,
       ...applySxStateVariantStyleCSSIds,
       ...applySxBaseStyleCSSIds.current,
+      ...applySxStateBaseStyleCSSIds,
     ];
 
     Object.assign(resolvedInlineProps, applyComponentInlineProps);

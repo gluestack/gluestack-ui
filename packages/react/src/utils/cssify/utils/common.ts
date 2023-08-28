@@ -11,7 +11,8 @@ const createCssRule = (
   css: string,
   dataType: string,
   prefixClassName: string,
-  prefixColorMode: string
+  prefixColorMode: string,
+  hasState: boolean
 ) => {
   let rule;
   const dataMediaSelector = `[data-${dataType}~="${stringHash}"]`;
@@ -23,17 +24,29 @@ const createCssRule = (
       : `${mediaQuery} {.${prefixColorMode}${colorMode} ${dataMediaSelector} ${css}}`;
   } else if (isMedia(mediaQuery)) {
     rule = prefixClassName
-      ? `${mediaQuery} {.${prefixClassName} ${dataMediaSelector} ${css}}`
-      : `${mediaQuery} {${dataMediaSelector} ${css}}`;
+      ? hasState
+        ? `${mediaQuery} {.${prefixClassName}.gs ${dataMediaSelector} ${css}}`
+        : `${mediaQuery} {.${prefixClassName} ${dataMediaSelector} ${css}}`
+      : hasState
+      ? `${mediaQuery} {.gs ${dataMediaSelector} ${css}}`
+      : `${mediaQuery} { ${dataMediaSelector} ${css}}`;
   } else if (isColorScheme(colorSchemeQuery)) {
     // rule = `${colorSchemeQuery} {${dataMediaSelector} ${css}} .${prefixColorMode}${colorMode} ${dataMediaSelector} ${css}`;
     rule = prefixClassName
-      ? `.${prefixClassName}.${prefixColorMode}${colorMode} ${dataMediaSelector} ${css}`
+      ? hasState
+        ? `.${prefixClassName}.gs.${prefixColorMode}${colorMode} ${dataMediaSelector} ${css}`
+        : `.${prefixClassName}.${prefixColorMode}${colorMode} ${dataMediaSelector} ${css}`
+      : hasState
+      ? `.gs.${prefixColorMode}${colorMode} ${dataMediaSelector} ${css}`
       : `.${prefixColorMode}${colorMode} ${dataMediaSelector} ${css}`;
   } else {
     rule = prefixClassName
-      ? `.${prefixClassName} ${dataMediaSelector}${mediaQuery} ${css}`
-      : `${dataMediaSelector}${mediaQuery} ${css}`;
+      ? hasState
+        ? `.${prefixClassName}.gs ${dataMediaSelector}${mediaQuery} ${css}`
+        : `.${prefixClassName} ${dataMediaSelector}${mediaQuery} ${css}`
+      : hasState
+      ? `.gs ${dataMediaSelector}${mediaQuery} ${css}`
+      : ` ${dataMediaSelector}${mediaQuery} ${css}`;
   }
 
   return rule;
