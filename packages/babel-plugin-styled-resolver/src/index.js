@@ -5,18 +5,6 @@ const generate = require('@babel/generator').default;
 const babelPresetTypeScript = require('@babel/preset-typescript');
 const traverse = require('@babel/traverse').default;
 const types = require('@babel/types');
-const {
-  getStyleIds,
-} = require('@gluestack-style/react/lib/commonjs/resolver/getStyleIds');
-const {
-  styledResolvedToOrderedSXResolved,
-} = require('@gluestack-style/react/lib/commonjs/resolver/orderedResolved');
-const {
-  styledToStyledResolved,
-} = require('@gluestack-style/react/lib/commonjs/resolver/styledResolved');
-const {
-  injectComponentAndDescendantStyles,
-} = require('@gluestack-style/react/lib/commonjs/resolver/injectComponentAndDescendantStyles');
 
 const {
   convertStyledToStyledVerbosed,
@@ -28,16 +16,6 @@ const {
 const {
   stableHash,
 } = require('@gluestack-style/react/lib/commonjs/stableHash');
-const {
-  INTERNAL_updateCSSStyleInOrderedResolved,
-} = require('@gluestack-style/react/lib/commonjs/updateCSSStyleInOrderedResolved');
-const {
-  INTERNAL_updateCSSStyleInOrderedResolved:
-    INTERNAL_updateCSSStyleInOrderedResolvedWeb,
-} = require('@gluestack-style/react/lib/commonjs/updateCSSStyleInOrderedResolved.web');
-const {
-  convertUtilityPropsToSX,
-} = require('@gluestack-style/react/lib/commonjs/core/convert-utility-to-sx');
 const {
   CSSPropertiesMap,
 } = require('@gluestack-style/react/lib/commonjs/core/styled-system');
@@ -298,25 +276,7 @@ function getObjectFromAstNode(node) {
   return JSON.parse(objectCode);
 }
 
-function removePropertiesVisitor(path) {
-  if (path.node.type === 'ObjectProperty') {
-    const valueNode = path.node.value;
-    if (types.isStringLiteral(valueNode) || types.isNumericLiteral(valueNode)) {
-      path.remove();
-    }
-  }
-  if (
-    types.isObjectExpression(path.node) ||
-    types.isObjectProperty(path.node)
-  ) {
-    if (Array.isArray(path.get('properties')))
-      path.get('properties').forEach((propertyPath) => {
-        removePropertiesVisitor(propertyPath);
-      });
-  }
-}
-
-function addQuotesToObjectKeysIdentifiers(code) {
+function removeLiteralPropertiesFromObjectProperties(code) {
   const ast = babel.parse(`var a = ${code}`, {
     presets: [babelPresetTypeScript],
     plugins: ['typescript'],
@@ -324,12 +284,39 @@ function addQuotesToObjectKeysIdentifiers(code) {
   });
 
   traverse(ast, {
-    ObjectProperty: (path) => {
-      removePropertiesVisitor(path);
+    ObjectExpression: (path) => {
+      path.traverse({
+        ObjectProperty(path) {
+          const { value } = path.node;
+
+          path.traverse({
+            StringLiteral: (stringPath) => {
+              stringPath;
+            },
+          });
+
+          if (
+            value.type === 'StringLiteral' ||
+            value.type === 'NumericLiteral'
+          ) {
+            path.remove();
+          }
+        },
+      });
     },
   });
 
   let initAst;
+  // let modifiedAst = undefined;
+
+  // traverse(ast, {
+  //   ObjectProperty: (path) => {
+  //     if (!modifiedAst) {
+  //       modifiedAst = removeEmptyProperties(path.node);
+  //       path.node = modifiedAst;
+  //     }
+  //   },
+  // });
 
   traverse(ast, {
     VariableDeclarator: (path) => {
@@ -343,7 +330,7 @@ function addQuotesToObjectKeysIdentifiers(code) {
 function getIdentifiersObjectFromAstNode(node) {
   let objectCode = generate(node).code;
 
-  return addQuotesToObjectKeysIdentifiers(
+  return removeLiteralPropertiesFromObjectProperties(
     objectCode.replace(
       /\\"|"(?:\\"|[^"])*"|(\/\/.*|\/\*[\s\S]*?\*\/)/g,
       (m, g) => (g ? '' : m)
@@ -357,21 +344,6 @@ let ConfigDefault = CONFIG;
 
 module.exports = function (b) {
   const { types: t } = b;
-
-  function generateObjectAstOfIdentifiers(obj) {
-    let properties = Object.keys(obj).map((key) => {
-      if (typeof obj[key] === 'object') {
-        return t.objectProperty(
-          t.stringLiteral(key),
-          generateObjectAstOfIdentifiers(obj[key])
-        );
-      } else {
-        return t.objectProperty(t.stringLiteral(key), t.identifier(obj[key]));
-      }
-    });
-
-    return t.objectExpression(properties.filter((property) => property));
-  }
 
   function generateObjectAst(obj) {
     let properties = Object.entries(obj).map(([key, value]) => {
@@ -560,9 +532,6 @@ module.exports = function (b) {
             let ExtendedConfig = getObjectFromAstNode(extendedThemeNode);
             let componentConfig = getObjectFromAstNode(componentConfigNode);
 
-            // if (outputLibrary) {
-            //   componentConfig = {...componentConfig, outputLibrary }
-            // }
             if (extendedThemeNode && tempPropertyResolverNode) {
               extendedThemeNode.properties.push(tempPropertyResolverNode);
             }
@@ -721,6 +690,16 @@ module.exports = function (b) {
                       convertExpressionContainerToStaticObject(
                         objectProperties
                       );
+
+                    // jsxOpeningElementPath.traverse({
+                    //   JSXExpressionContainer(jsxPath) {
+                    //     jsxPath.traverse({
+                    //       ObjectExpression(path) {
+                    //         removeEmptyProperties(path.node);
+                    //       },
+                    //     });
+                    //   },
+                    // });
                     componentSXProp = sxPropsObject;
                   } else if (
                     t.isStringLiteral(propValue.expression) ||
@@ -767,7 +746,6 @@ module.exports = function (b) {
 
           if (sx) {
             const verbosedSx = convertSxToSxVerbosed(sx);
-            // console.log(JSON.stringify(componentSXProp, null, 2), '>>>>>>>');
 
             const inlineSxTheme = {
               baseStyle: verbosedSx,
