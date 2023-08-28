@@ -2588,10 +2588,10 @@
   dependencies:
     "@legendapp/motion" "^2.2.0"
 
-"@gluestack-style/babel-plugin-styled-resolver@^0.1.14":
-  version "0.1.14"
-  resolved "https://registry.yarnpkg.com/@gluestack-style/babel-plugin-styled-resolver/-/babel-plugin-styled-resolver-0.1.14.tgz#1e3cd2dbdf91b5e9dcb8d34ab7df7aed1beea9bb"
-  integrity sha512-fgfuvCTngRZIbZf5prtoiZeOBaMtjEh4EJUIJygHY6iXscFuU6tnstnMnHqZdCd1dty+2E1DuwnG+JSKfYgYmA==
+"@gluestack-style/babel-plugin-styled-resolver@^0.1.15-alpha.0":
+  version "0.1.15-alpha.0"
+  resolved "https://registry.yarnpkg.com/@gluestack-style/babel-plugin-styled-resolver/-/babel-plugin-styled-resolver-0.1.15-alpha.0.tgz#776e0ba60cbdaeefcd966b6708dd0408d4a57213"
+  integrity sha512-Q0dDTW8QroqOxo5ZP9Ebq0wAAlVl6dOlOchT1LZlanRc2GzvAf12GZrTGdzYQybYh6oVNmoIQZn6/3zL6qfsow==
   dependencies:
     "@babel/core" "^7.20.5"
     "@babel/generator" "^7.20.5"
@@ -2601,18 +2601,18 @@
     "@babel/traverse" "^7.20.5"
     lodash.merge "^4.6.2"
 
-"@gluestack-style/react@0.1.33", "@gluestack-style/react@^0.1.28", "@gluestack-style/react@^0.1.33":
-  version "0.1.33"
-  resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-0.1.33.tgz#cd18f38bf359527e4f79d223bb07e9024f40ba4f"
-  integrity sha512-wBdoOA3i/cp0EcgJnwJgL1a8BATjbX/pCZgWm31N6sZOgCB4Phq7m0bDjfSpeJ8sKpOEDlUP5wYCo7Yww0mbqA==
+"@gluestack-style/react@0.2.9", "@gluestack-style/react@^0.2.9":
+  version "0.2.9"
+  resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-0.2.9.tgz#ed486f3f4c1526aefc248702fecc7b83ef8a9cc6"
+  integrity sha512-jWWc2Rksjjc4QQVJzo1hh9JvWJ2LLwvdTb9bbB3L5+tkKGKb4029W6m3xaxRmF05n6Yu3OOZGfIH7vigWMueHA==
   dependencies:
     inline-style-prefixer "^6.0.1"
     normalize-css-color "^1.0.2"
 
-"@gluestack-style/react@^0.2.7":
-  version "0.2.7"
-  resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-0.2.7.tgz#f1d50a4ebdc8754d4466b196f1db0a0bcf9c62be"
-  integrity sha512-KfA8yW47uk19chX+Ib/y0HTHaitEIBfVoDD1GFdvUfUbVBGUks9lFqvxbFAnYsWaRgkf65/z5FstVwsls7ks1A==
+"@gluestack-style/react@^0.1.33":
+  version "0.1.33"
+  resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-0.1.33.tgz#cd18f38bf359527e4f79d223bb07e9024f40ba4f"
+  integrity sha512-wBdoOA3i/cp0EcgJnwJgL1a8BATjbX/pCZgWm31N6sZOgCB4Phq7m0bDjfSpeJ8sKpOEDlUP5wYCo7Yww0mbqA==
   dependencies:
     inline-style-prefixer "^6.0.1"
     normalize-css-color "^1.0.2"
@@ -3260,15 +3260,15 @@
   dependencies:
     "@gluestack-ui/utils" "^0.1.3"
 
-"@gluestack/design-system@^0.4.28":
-  version "0.4.37"
-  resolved "https://registry.yarnpkg.com/@gluestack/design-system/-/design-system-0.4.37.tgz#ac4020625a3643d0822715a938f0e4f67dca24ad"
-  integrity sha512-boAOeZIKcIs7HOjuF5kj7cAsokhJNjXalAJU9cI95V7wMc3RuGhKxn1mL0NIPwgiraiKO8K+cG8qOlsomebW0A==
+"@gluestack/design-system@^0.4.70":
+  version "0.4.70"
+  resolved "https://registry.yarnpkg.com/@gluestack/design-system/-/design-system-0.4.70.tgz#149947c8582d82e1753ef1ff074e7becfbfa8fc0"
+  integrity sha512-093fvEAZmZ6O9H80gWc97/ltuj+HWQvqn6CQBHquvhUXN570NoN/Vl2To+ydtNHckM9ogp3P151d77mkfxIlTg==
   dependencies:
     "@expo/html-elements" "0.3.0"
     "@gluestack-style/animation-plugin" "^0.1.7"
-    "@gluestack-style/babel-plugin-styled-resolver" "^0.1.14"
-    "@gluestack-style/react" "^0.1.28"
+    "@gluestack-style/babel-plugin-styled-resolver" "^0.1.15-alpha.0"
+    "@gluestack-style/react" "^0.2.9"
     "@gluestack-ui/actionsheet" "^0.2.7"
     "@gluestack-ui/alert" "^0.1.4"
     "@gluestack-ui/alert-dialog" "^0.1.8"

@@ -20,7 +20,7 @@ import {
   ButtonText,
 } from '@gluestack-ui/themed';
 import { createConfig } from '@gluestack-ui/themed';
-import { transformedCode, transformedThemedCode } from '../../utils';
+import { transformedCode, transformedThemedCode } from '../../../utils';
 import Wrapper from '../../components/Wrapper';
 
 import {
@@ -75,7 +75,7 @@ Refer to below code snippet for better understanding
     metaData={{
       code: `
      function App(){
-      {/* Creating own theme using createConfig function */}
+      {/* Creating own theme */}
   const themeConfig = createConfig({
     ...config.theme,
     aliases: {
