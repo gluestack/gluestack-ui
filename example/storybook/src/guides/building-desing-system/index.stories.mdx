@@ -1,0 +1,93 @@
+---
+title: Building Design Systems | gluestack-ui
+description: Building Design Systems description
+pageTitle: Building Design Systems
+pageDescription: Building Design Systems description
+showHeader: true
+---
+
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+
+<Meta title="Guides/Building Design Systems" />
+
+## Building Design Systems
+
+Empower your development by creating a personalized design system with `gluestack-ui`.
+This enables you to build your own collection of components that match your vision.
+
+## Step 1: Create
+
+`@gluestack-ui/themed` – a meticulously organized monorepo. Begin shaping your design system by building upon this solid foundation.
+
+To create your own design system using gluestack-ui, follow these steps after forking the repository:
+
+### Rename library name
+
+- Open package.json - navigate to the root of your forked repository.
+- Change library name
+
+* Locate the name field in th package.json file and update it to `@myapp/components`
+
+```json
+//package.json
+{
+  "name": "@myapp/components"
+  // ...
+}
+```
+
+- This library will have all primitive components from `@gluestack-ui/themed` by default.
+
+## Step 2: Configuration
+
+### Theme Tokens
+
+- To configure theme and tokens you need to follow this documentation
+
+### Components
+
+- Create a custom component.
+
+* create a folder inside `components/Circle`
+* create a folder for all styling `styled-components`
+* write styling for the component in `Root.tsx`
+
+```jsx
+export const Root = styled(View, {
+  alignItems: 'center',
+  justifyContent: 'center',
+  borderRadius: 'full',
+  overflow: 'hidden',
+});
+```
+
+- For other like accessibility, events and other hooks create an index.tsx file and export this from here
+
+```jsx
+import { Root } from './styled-components';
+
+const Circle = (props) => {
+  return <Root {...props}>{props.children}</Root>;
+};
+```
+
+- And then export from index.tsx:
+
+```jsx
+export * from './Circle';
+```
+
+## Step 3: Build
+
+Now in you app add `@myapp/components` to your package.json and update your configuration.
+
+`next.config.js`
+
+## Step 4: Test
+
+In you app now you can import `Circle` component.
+
+```jsx
+import { Circle } from '@myapp/components';
+export default () => <Circle size="$large" />;
+```
