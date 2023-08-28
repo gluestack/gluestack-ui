@@ -18,19 +18,20 @@ const LinearGradientCard: MyLinearGradientStory = () => {
       colors={['$purple400', '$blue400', '$pink300']}
       borderRadius="$md"
     >
-      <Box width={250} py="$12">
+      <Box width={256} py="$12" justifyContent="center">
         <Text
           fontSize="$xl"
           pl="$2.5"
-          color="$white"
+          color="$black"
           fontWeight="$thin"
           fontStyle="italic"
+          textAlign="center"
         >
           Lilly James
         </Text>
-        <Box bg="$fuchsia100" px="$2" mt="$4" alignItems="center">
-          <Text fontSize="$xs" color="$gray600">
-            Graphic Designer
+        <Box bg="$fuchsia100" px="$2" mt="$4">
+          <Text fontSize="$xs" color="$gray600" textAlign="center">
+            Event Planner
           </Text>
         </Box>
       </Box>
