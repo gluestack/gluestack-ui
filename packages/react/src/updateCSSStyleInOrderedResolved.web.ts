@@ -8,6 +8,7 @@ export function getCSSIdAndRuleset(
   prefixClassName: string = ''
   // path: Path
 ) {
+  const hasState = styleValueResolvedWithMeta.meta.path?.includes('state');
   const toBeInjectedStyle: {
     style: any;
     condition?: any;
@@ -37,7 +38,8 @@ export function getCSSIdAndRuleset(
         path: styleValueResolvedWithMeta?.meta?.path,
         data: styleValueResolvedWithMeta.original,
       }),
-    prefixClassName
+    prefixClassName,
+    hasState
   );
 
   // var hr = stableHash({ hello: 'helloworld' });
