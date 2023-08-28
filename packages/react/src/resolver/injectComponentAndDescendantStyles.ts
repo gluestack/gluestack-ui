@@ -13,36 +13,56 @@ export function injectComponentAndDescendantStyles(
   type: 'boot' | 'inline' = 'boot',
   _GluestackStyleSheet: StyleInjector = GluestackStyleSheet
 ) {
-  const componentOrderResolvedBaseStyle =
-    getComponentResolvedBaseStyle(orderedResolved);
-  const componentOrderResolvedVariantStyle =
-    getComponentResolvedVariantStyle(orderedResolved);
-
-  const descendantOrderResolvedBaseStyle =
-    getDescendantResolvedBaseStyle(orderedResolved);
-  const descendantOrderResolvedVariantStyle =
-    getDescendantResolvedVariantStyle(orderedResolved);
-
-  const componentOrderResolvedBaseStyleIds = _GluestackStyleSheet.declare(
+  const [
     componentOrderResolvedBaseStyle,
+    componentOrderResolvedBaseStateStyle,
+  ] = getComponentResolvedBaseStyle(orderedResolved);
+  const [
+    componentOrderResolvedVariantStyle,
+    componentOrderResolvedVariantStateStyle,
+  ] = getComponentResolvedVariantStyle(orderedResolved);
+
+  const [
+    descendantOrderResolvedBaseStyle,
+    descendantOrderResolvedBaseStateStyle,
+  ] = getDescendantResolvedBaseStyle(orderedResolved);
+  const [
+    descendantOrderResolvedVariantStyle,
+    descendantOrderResolvedVariantStateStyle,
+  ] = getDescendantResolvedVariantStyle(orderedResolved);
+
+  const componentOrderResolvedBaseStyleIds = GluestackStyleSheet.declare(
+    [
+      ...componentOrderResolvedBaseStyle,
+      ...componentOrderResolvedBaseStateStyle,
+    ],
     type + '-base',
     styleTagId ? styleTagId : 'css-injected-boot-time',
     {}
   );
-  const descendantOrderResolvedBaseStyleIds = _GluestackStyleSheet.declare(
-    descendantOrderResolvedBaseStyle,
+  const descendantOrderResolvedBaseStyleIds = GluestackStyleSheet.declare(
+    [
+      ...descendantOrderResolvedBaseStyle,
+      ...descendantOrderResolvedBaseStateStyle,
+    ],
     type + '-descendant-base',
     styleTagId ? styleTagId : 'css-injected-boot-time-descendant',
     {}
   );
-  const componentOrderResolvedVariantStyleIds = _GluestackStyleSheet.declare(
-    componentOrderResolvedVariantStyle,
+  const componentOrderResolvedVariantStyleIds = GluestackStyleSheet.declare(
+    [
+      ...componentOrderResolvedVariantStyle,
+      ...componentOrderResolvedVariantStateStyle,
+    ],
     type + '-variant',
     styleTagId ? styleTagId : 'css-injected-boot-time',
     {}
   );
-  const descendantOrderResolvedVariantStyleIds = _GluestackStyleSheet.declare(
-    descendantOrderResolvedVariantStyle,
+  const descendantOrderResolvedVariantStyleIds = GluestackStyleSheet.declare(
+    [
+      ...descendantOrderResolvedVariantStyle,
+      ...descendantOrderResolvedVariantStateStyle,
+    ],
     type + '-descendant-variant',
     styleTagId ? styleTagId : 'css-injected-boot-time-descendant',
     {}

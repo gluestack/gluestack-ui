@@ -10,14 +10,27 @@ const toBeFlushedStyles: IToBeFlushedStyles = {
   'forwarded-descendant-base': {},
   'forwarded-variant': {},
   'forwarded-descendant-variant': {},
+  //base
   'boot-base': {},
-  'boot-descendant-base': {},
-  'boot-variant': {},
-  'boot-descendant-variant': {},
   'extended-base': {},
+  'boot-base-state': {},
+  'extended-base-state': {},
+  // descendant-base
+  'boot-descendant-base': {},
   'extended-descendant-base': {},
+  'boot-descendant-base-state': {},
+  'extended-descendant-base-state': {},
+  // variant
+  'boot-variant': {},
   'extended-variant': {},
+  'boot-variant-state': {},
+  'extended-variant-state': {},
+  // descendant-variant
+  'boot-descendant-variant': {},
   'extended-descendant-variant': {},
+  'boot-descendant-variant-state': {},
+  'extended-descendant-variant-state': {},
+  // inline
   'passing-base': {},
   'inline-base': {},
   'inline-variant': {},
@@ -30,14 +43,27 @@ const order: IWrapperType[] = [
   'forwarded-descendant-base',
   'forwarded-variant',
   'forwarded-descendant-variant',
+  // base
   'boot-base',
-  'boot-descendant-base',
-  'boot-variant',
-  'boot-descendant-variant',
   'extended-base',
+  'boot-base-state',
+  'extended-base-state',
+  // descendant-base
+  'boot-descendant-base',
   'extended-descendant-base',
+  'boot-descendant-base-state',
+  'extended-descendant-base-state',
+  // variant
+  'boot-variant',
   'extended-variant',
+  'boot-variant-state',
+  'extended-variant-state',
+  // descendant-variant
+  'boot-descendant-variant',
   'extended-descendant-variant',
+  'boot-descendant-variant-state',
+  'extended-descendant-variant-state',
+  // inline
   'inline-descendant-base',
   'passing-base',
   'inline-variant',
