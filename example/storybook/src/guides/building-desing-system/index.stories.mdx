@@ -19,12 +19,15 @@ This enables you to build your own collection of components that match your visi
 
 `@gluestack-ui/themed` – a meticulously organized monorepo. Begin shaping your design system by building upon this solid foundation.
 
+- This repo has a component library package `@gluestack-ui/themed` in `packages/themed`
+- This repo has a storybook setup in `example/storybook` for both React and React Native.
+
 To create your own design system using gluestack-ui, follow these steps after forking the repository:
 
-### Rename library name
-
-- Open package.json - navigate to the root of your forked repository.
 - Change library name
+
+* Open package.json -
+  navigate to the `packages/themed` of your forked repository. (You can rename the folder if you need)
 
 * Locate the name field in th package.json file and update it to `@myapp/components`
 
@@ -36,7 +39,9 @@ To create your own design system using gluestack-ui, follow these steps after fo
 }
 ```
 
-- This library will have all primitive components from `@gluestack-ui/themed` by default.
+- Update `tsconfig` and `babel.config.js` in `example/storybook`.
+
+- Now this library has all primitive components from `@gluestack-ui/themed` by default.
 
 ## Step 2: Configuration
 
@@ -45,6 +50,11 @@ To create your own design system using gluestack-ui, follow these steps after fo
 - To configure theme and tokens you need to follow this documentation
 
 ### Components
+
+- Customize a primitive component
+  You can customize styling of all primitive components.
+
+* All styling exist in `<ComponentName>/styled-components` for a particular component. You can add and modify property value and variants based on your need.
 
 - Create a custom component.
 
@@ -56,8 +66,16 @@ To create your own design system using gluestack-ui, follow these steps after fo
 export const Root = styled(View, {
   alignItems: 'center',
   justifyContent: 'center',
-  borderRadius: 'full',
+  borderRadius: '$full',
   overflow: 'hidden',
+  variants: {
+    size: {
+      large: {
+        width: 100,
+        height: 100,
+      },
+    },
+  },
 });
 ```
 
@@ -77,17 +95,33 @@ const Circle = (props) => {
 export * from './Circle';
 ```
 
-## Step 3: Build
+## Step 3: Test
 
-Now in you app add `@myapp/components` to your package.json and update your configuration.
-
-`next.config.js`
-
-## Step 4: Test
-
-In you app now you can import `Circle` component.
+In your storybook now you can import `Circle` component from your `@myapp/components` in storybook
 
 ```jsx
 import { Circle } from '@myapp/components';
-export default () => <Circle size="$large" />;
+export default () => <Circle size="large" />;
+```
+
+## Step 4: Publish
+
+Now you can publish your design system.
+
+## Step 5: Usage
+
+Now to use `@myapp/components` in your app you need add it to your package.json and update your configuration.
+
+`next.config.js`
+
+```jsx
+/** @type {import('next').NextConfig} */
+const { withGluestackUI } = require('@gluestack/ui-next-adapter');
+
+const nextConfig = {
+  reactStrictMode: true,
+  transpilePackages: ['@myapp/components'],
+};
+
+module.exports = withGluestackUI(nextConfig);
 ```
