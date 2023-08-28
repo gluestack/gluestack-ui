@@ -11,15 +11,14 @@ module.exports = function (api) {
             {
               alias: {
                 // For development, we want to alias the library to the source
-                ['@gluestack-style/react']: path.join(
-                  __dirname,
-                  '../../packages/react/src'
-                ),
-                ['@gluestack-style/animation-plugin']: path.join(
-                  __dirname,
-                  '../../packages/animation-plugin/src'
-                ),
-
+                // ['@gluestack-style/react']: path.join(
+                //   __dirname,
+                //   '../../packages/react/src'
+                // ),
+                // ['@gluestack-style/animation-plugin']: path.join(
+                //   __dirname,
+                //   '../../packages/animation-plugin/src'
+                // ),
                 // ['@dank-style/react']: path.join(
                 //   __dirname,
                 //   '../../packages/react/src'
