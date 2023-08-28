@@ -43,7 +43,7 @@
     "@gluestack-ui/icon": "latest",
     "@gluestack-ui/input": "^0.1.10",
     "@gluestack-ui/link": "latest",
-    "@gluestack-ui/linear-gradient": "0.0.2",
+    "@gluestack-ui/linear-gradient": "^0.0.2",
     "@gluestack-ui/menu": "latest",
     "@gluestack-ui/modal": "latest",
     "@gluestack-ui/overlay": "latest",
