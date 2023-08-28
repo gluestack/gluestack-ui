@@ -66,7 +66,11 @@ const AccessibleAlertDialogHeader = forwardRef(
   ({ children, ...props }: any, ref?: any) => {
     return (
       <AccessibleAlertDialog.Header {...props} ref={ref}>
-        <Heading>{children}</Heading>
+        {typeof children === 'string' ? (
+          <Heading>{children}</Heading>
+        ) : (
+          children
+        )}
       </AccessibleAlertDialog.Header>
     );
   }
@@ -86,7 +90,7 @@ const AccessibleAlertDialogBody = forwardRef(
   ({ children, ...props }: any, ref?: any) => {
     return (
       <AccessibleAlertDialog.Header {...props} ref={ref}>
-        <Text>{children}</Text>
+        {typeof children === 'string' ? <Text>{children}</Text> : children}
       </AccessibleAlertDialog.Header>
     );
   }

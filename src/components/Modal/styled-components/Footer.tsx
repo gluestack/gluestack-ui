@@ -9,6 +9,11 @@ export default styled(
     justifyContent: 'flex-end',
     alignItems: 'center',
     flexWrap: 'wrap',
+    borderTopWidth: 1,
+    borderColor: '$muted.300',
+    _dark: {
+      borderColor: '$muted.700',
+    },
   },
   {}
 );
