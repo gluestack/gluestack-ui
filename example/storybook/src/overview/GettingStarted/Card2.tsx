@@ -1,6 +1,13 @@
 //@ts-nocheck
 import React from 'react';
-import { Box, HStack, VStack, Text, Link } from '@gluestack/design-system';
+import {
+  Box,
+  HStack,
+  VStack,
+  Text,
+  Link,
+  Pressable,
+} from '@gluestack/design-system';
 import Expo from './Expo';
 import Checkbox from './Checkbox';
 
@@ -45,13 +52,22 @@ function Card2() {
               <VStack space="md">
                 <HStack alignItems="center" space="md">
                   <Expo />
-                  <Text
-                    fontWeight="$medium"
-                    fontSize={'$xl'}
-                    fontFamily="Plus Jakarta Sans"
+                  <Pressable
+                    sx={{
+                      ':hover': {
+                        textDecoration: 'underline',
+                        color: 'white',
+                      },
+                    }}
                   >
-                    Try gluestack-ui on Snack
-                  </Text>
+                    <Text
+                      fontWeight="$medium"
+                      fontSize={'$xl'}
+                      fontFamily="Plus Jakarta Sans"
+                    >
+                      Try gluestack-ui on Snack
+                    </Text>
+                  </Pressable>
                 </HStack>
                 <Text fontSize={'$md'} fontWeight="$normal">
                   Get started without having to set up.
@@ -86,13 +102,22 @@ function Card2() {
             <VStack space="md">
               <HStack alignItems="center" space="md">
                 <Checkbox />
-                <Text
-                  fontWeight="$medium"
-                  fontSize={'$xl'}
-                  fontFamily="Plus Jakarta Sans"
+                <Pressable
+                  sx={{
+                    ':hover': {
+                      textDecoration: 'underline',
+                      color: 'white',
+                    },
+                  }}
                 >
-                  Try gluestack-ui on CodeSandbox
-                </Text>
+                  <Text
+                    fontWeight="$medium"
+                    fontSize={'$xl'}
+                    fontFamily="Plus Jakarta Sans"
+                  >
+                    Try gluestack-ui on CodeSandbox
+                  </Text>
+                </Pressable>
               </HStack>
               <Text fontSize={'$md'} fontWeight="$normal">
                 See how your app looks as you code.
