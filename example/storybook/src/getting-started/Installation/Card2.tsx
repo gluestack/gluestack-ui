@@ -50,9 +50,10 @@ function Card2() {
           >
             <Box p={'$6'}>
               <VStack space="md">
-                <HStack alignItems="center" space="md">
+                <HStack w="$full" alignItems="center" space="md">
                   <Expo />
                   <Pressable
+                    flex={1}
                     sx={{
                       ':hover': {
                         textDecoration: 'underline',
@@ -100,9 +101,10 @@ function Card2() {
         <Link href="https://codesandbox.io/p/sandbox/github/gluestack/ui-codesandbox-template/tree/main">
           <Box p={'$6'}>
             <VStack space="md">
-              <HStack alignItems="center" space="md">
+              <HStack w="$full" alignItems="center" space="md">
                 <Checkbox />
                 <Pressable
+                  flex={1}
                   sx={{
                     ':hover': {
                       textDecoration: 'underline',
