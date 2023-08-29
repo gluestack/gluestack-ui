@@ -23,20 +23,34 @@ This enables you to build your own collection of components that match your visi
 
 To create your own design system using `gluestack-ui`, follow these steps after forking the repository:
 
-- Change library name
+### Change library name
 
-  - Navigate to the `packages/themed` of your forked repository and open `package.json`. (You can rename the folder if you need)
-  - Locate the name field in th `package.json` file and update it to `@myapp/components`
+- Navigate to the `packages/themed` of your forked repository and open `package.json`. (You can rename the folder if you need)
+- Locate the name field in th `package.json` file and update it to `@myapp/components`
 
-  ```json
-  //package.json
-  {
-    "name": "@myapp/components"
+```json
+//package.json
+{
+  "name": "@myapp/components"
+  // ...
+}
+```
+
+### Update configuration
+
+- `tsconfig.json`
+
+  ```jsx
+  // ... other configuration
+
+  "compilerOptions": {
     // ...
+      "paths": {
+        "@myapp/components": ["../../packages/themed/src"],
+      },
+      // ...
   }
   ```
-
-- Update `tsconfig` and `babel.config.js` in `example/storybook`.
 
 Now your library `@myapp/components` has all primitive components from `@gluestack-ui/themed` by default.
 
