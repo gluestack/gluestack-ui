@@ -1,8 +1,7 @@
 ---
-title: Default Theme | gluestack-ui
-description: Default Theme
-pageTitle: Default Theme
-pageDescription: Default Theme
+title: Default Tokens | gluestack-ui
+description: Default Tokens
+pageTitle: Default Tokens
 showHeader: true
 ---
 
@@ -12,19 +11,17 @@ import {
   SpaceComponent,
   OpacityComponent,
   ShadowsComponent,
-} from './DefaultComponets';
+} from './DefaultComponent';
 
-<Meta title="Theme/Default Theme" />
+<Meta title="Theme/Default Tokens" />
 
-`@gluestack-ui/themed` ships with default theme which can found in `config.theme`. It has Colors, Aliases, Typography, Size, Opacity, Shadows, Breakpoint. Theming in `@gluestack-ui/themed` is based on the [Styled System Theme Specification](https://github.com/system-ui/theme-specification).
+`@gluestack-ui/themed` ships with default Tokens which can found in `config.theme`. It has Colors, Aliases, Typography, Size, Opacity, Shadows, Breakpoint. Theming in `@gluestack-ui/themed` is based on the [Styled System Theme Specification](https://github.com/system-ui/theme-specification).
 
 ## Colors
 
 You can define your unique colors or override existing ones using the `createConfig` function under the `tokens` section.
 
 We recommend adding a palette that ranges from 50 to 900. Tools like [JSON Color Palette Generator](https://json-color-palette-generator.vercel.app), [Smart Swatch](https://smart-swatch.netlify.app/) or [Palx](https://palx.jxnblk.com/) are available to generate these palettes.
-
-### Default Color Palettes
 
 <ColorPaletteComponent />
 
@@ -66,7 +63,7 @@ You can define your opacity tokens or override existing ones using the `createCo
 
 <OpacityComponent />
 
-### Shadows
+## Shadows
 
 In `@gluestack-ui/themed` there are two types of shadows are provided by default.
 
