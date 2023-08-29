@@ -6,7 +6,6 @@ import {
   Box,
   config,
   GluestackUIProvider,
-  createConfig,
   Heading,
   Divider,
 } from '@gluestack-ui/themed';
@@ -48,67 +47,110 @@ for (const category in colorPalette) {
 
 sortedColorPalette.others = { ...colorPalette.others };
 
-const extendedTheme = createConfig({
-  ...config.theme,
-  components: {},
-});
 const ColorPaletteComponent = () => {
   return (
-    <GluestackUIProvider config={extendedTheme}>
-      <>
-        <VStack flex={1}>
-          {Object.keys(sortedColorPalette).map((category: string) => {
-            return (
-              <>
-                <Heading mb="$4" size="md">
-                  {category}
-                </Heading>
-                <HStack
-                  key={category}
-                  w="$full"
-                  mb="$4"
-                  flexWrap="wrap"
-                  sx={{
-                    _web: {
-                      gap: 16,
-                    },
-                  }}
-                >
-                  {Object.keys(sortedColorPalette[category]).map(
-                    (shade: string) => {
-                      return (
-                        <HStack flexBasis="30%">
-                          <Box
-                            key={shade}
-                            bg={sortedColorPalette[category][shade]}
-                            w="$12"
-                            h="$12"
-                            rounded="$lg"
-                            mr="$4"
-                          />
-                          <VStack>
-                            <Text>
-                              {category === 'others'
-                                ? `${shade}`
-                                : `${category}${shade}`}
-                            </Text>
-                            <Text>{sortedColorPalette[category][shade]}</Text>
-                          </VStack>
-                        </HStack>
-                      );
-                    }
-                  )}
-                </HStack>
-              </>
-            );
-          })}
-        </VStack>
-      </>
-    </GluestackUIProvider>
+    <>
+      <VStack flex={1}>
+        {Object.keys(sortedColorPalette).map((category: string) => {
+          return (
+            <>
+              <Heading mb="$4" size="md">
+                {category}
+              </Heading>
+              <HStack
+                key={category}
+                w="$full"
+                mb="$4"
+                flexWrap="wrap"
+                sx={{
+                  _web: {
+                    gap: 16,
+                  },
+                }}
+              >
+                {Object.keys(sortedColorPalette[category]).map(
+                  (shade: string) => {
+                    return (
+                      <HStack flexBasis="30%">
+                        <Box
+                          key={shade}
+                          bg={sortedColorPalette[category][shade]}
+                          w="$12"
+                          h="$12"
+                          rounded="$lg"
+                          mr="$4"
+                        />
+                        <VStack>
+                          <Text>
+                            {category === 'others'
+                              ? `${shade}`
+                              : `${category}${shade}`}
+                          </Text>
+                          <Text>{sortedColorPalette[category][shade]}</Text>
+                        </VStack>
+                      </HStack>
+                    );
+                  }
+                )}
+              </HStack>
+            </>
+          );
+        })}
+      </VStack>
+    </>
   );
 };
 
 const spaces: any = config.theme?.tokens.space;
+
+const sortedSpaceObject: any = spaces;
+
+// Convert the map to an array of key-value pairs for sorting
+const mapEntries = Object.entries(sortedSpaceObject);
+
+// Sort the map entries based on the keys
+mapEntries.sort(([keyA, valueA]: any, [keyB, valueB]: any) => {
+  // Treat 'px' as the smallest and 'full' as the largest
+  // Place '0' at the top
+  if (keyA === '0') return -1;
+  if (keyB === '0') return 1;
+
+  // Treat 'px' as the second smallest
+  if (keyA === 'px') return -1;
+  if (keyB === 'px') return 1;
+
+  // Treat 'full' as the largest
+  if (keyA === 'full') return 1;
+  if (keyB === 'full') return -1;
+
+  // Values with '%' should be grouped and sorted at the end
+  const isValueAPercentage = valueA.toString().includes('%');
+  const isValueBPercentage = valueB.toString().includes('%');
+  if (isValueAPercentage && !isValueBPercentage) return 1;
+  if (isValueBPercentage && !isValueAPercentage) return -1;
+
+  // Group values with the same denominator and sort them
+  const [numA, denomA] = keyA.split('/').map(parseFloat);
+  const [numB, denomB] = keyB.split('/').map(parseFloat);
+
+  if (!isNaN(numA) && !isNaN(denomA) && !isNaN(numB) && !isNaN(denomB)) {
+    if (denomA === denomB) {
+      return numA - numB;
+    } else {
+      return denomA - denomB; // Sort by denominator if they are different
+    }
+  }
+
+  // For numeric keys, compare them as numbers
+  if (!isNaN(numA) && !isNaN(numB)) {
+    return numA - numB;
+  }
+
+  // For other keys, compare them as strings
+  return keyA.localeCompare(keyB);
+});
+// const spaceElementsArray =
+// Create a new Map from the sorted map entries
 
 const SpaceComponent = () => {
   return (
@@ -123,19 +165,19 @@ const SpaceComponent = () => {
           </Text>
           <Text>Representation</Text>
         </HStack>
-        {Object.keys(spaces).map((space: string) => {
+        {mapEntries.map(([key, value]: any) => {
           return (
             <>
               <Divider my="$2" />
-              <HStack key={space} h="$8" alignItems="center">
+              <HStack key={key} h="$8" alignItems="center">
                 <Text w={100} mr="$4">
-                  {space}
+                  {key}
                 </Text>
                 <Text w={100} mr="$4">
-                  {spaces[space]}
+                  {value}
                 </Text>
                 <Box justifyContent="center" flex={1}>
-                  <Box bg="$primary500" w={spaces[space]} h="$4" />
+                  <Box bg="$primary500" w={value} h="$4" />
                 </Box>
               </HStack>
             </>
