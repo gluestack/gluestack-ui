@@ -21,7 +21,7 @@ export const parameters = {
         'Overview',
         ['Introduction'],
         'Getting Started',
-        ['Installation', 'VS Code Extension', 'Figma Plugin'],
+        ['Installation', 'VS Code Extension'],
         'Core Concepts',
         ['Themed Library', 'Unstyled Components', 'Accessibility'],
         'Performance',
@@ -87,7 +87,7 @@ export const parameters = {
         'Hooks',
         ['React Native ARIA'],
         'Production Optimizations',
-        ['Babel Plugin'],
+        ['With Babel Plugin'],
         'Guides',
         [
           'Install in Next.js',
