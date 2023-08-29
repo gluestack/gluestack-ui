@@ -22,21 +22,7 @@ import {
 
 ### Colors
 
-You can define your unique colors or override existing ones using the `createConfig` function under the `tokens` section, as demonstrated below.
-
-```jsx
-import { createConfig, config } from '@gluestack-ui/themed';
-
-const extendedConfig = createConfig({
-  ...config.theme,
-  tokens: {
-    ...config.theme.tokens,
-    colors: {
-      ...config.theme.tokens.colors,
-    },
-  },
-});
-```
+You can define your unique colors or override existing ones using the `createConfig` function under the `tokens` section.
 
 We recommend adding a palette that ranges from 50 to 900. Tools like [JSON Color Palette Generator](https://json-color-palette-generator.vercel.app),[Smart Swatch](https://smart-swatch.netlify.app/), or [Palx](https://palx.jxnblk.com/) are available to generate these palettes.
 
