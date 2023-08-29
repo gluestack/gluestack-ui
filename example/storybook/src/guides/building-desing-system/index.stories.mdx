@@ -14,9 +14,9 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 Empower your development by creating a personalized design system with `gluestack-ui`.
 This enables you to build your own collection of components that match your vision.
 
-### Step 1: Create 
+### Step 1: Create
 
-[`@gluestack-ui/themed`](https://https://github.com/gluestack/gluestack-ui) – a meticulously organized monorepo. Begin shaping your design system by forking this solid foundation.
+[`@gluestack-ui/themed` – a meticulously organized monorepo](https://https://github.com/gluestack/gluestack-ui). Begin shaping your design system by **forking** this [solid](https://https://github.com/gluestack/gluestack-ui) foundation.
 
 - This repo has a component library package `@gluestack-ui/themed` in `packages/themed`
 - This repo has a storybook setup in `example/storybook` for both React and React Native.
@@ -24,9 +24,10 @@ This enables you to build your own collection of components that match your visi
 To create your own design system using `gluestack-ui`, follow these steps after forking the repository:
 
 - Change library name
+
   - Navigate to the `packages/themed` of your forked repository and open `package.json`. (You can rename the folder if you need)
   - Locate the name field in th `package.json` file and update it to `@myapp/components`
-  
+
   ```json
   //package.json
   {
@@ -42,6 +43,7 @@ Now your library `@myapp/components` has all primitive components from `@gluesta
 ### Step 2: Configuration
 
 ### Theme Tokens
+
 Theme tokens and other configuration is present in `packages/themed/src/components/gluestack-ui.config.ts`. You have the flexibility to modify these tokens as per your requirements.
 
 Check [this](/docs/theme/customizing-theme) for more details.
@@ -107,7 +109,8 @@ Now you can publish your design system as a package from `packages/themed`.
 Once published, you can use `@myapp/components` in your app you need add it to your `package.json` and update your configuration.
 
 #### Next.js
-Update ***next.config.js***:
+
+Update **_next.config.js_**:
 
 ```jsx
 /** @type {import('next').NextConfig} */
@@ -122,7 +125,7 @@ module.exports = withGluestackUI(nextConfig);
 ```
 
 #### Expo
-No need to update any config for Expo. 
 
->Note: For production optimization you can have a look [here](/docs/production-optimizations/babel-plugin)
+No need to update any config for Expo.
 
+> Note: For production optimization you can have a look [here](/docs/production-optimizations/babel-plugin)
