@@ -9,12 +9,12 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 <Meta title="Guides/Building Design Systems" />
 
-## Building Design Systems
+# Building Design Systems
 
 Empower your development by creating a personalized design system with `gluestack-ui`.
 This enables you to build your own collection of components that match your vision.
 
-### Step 1: Create
+## Step 1: Create
 
 [`@gluestack-ui/themed` – a meticulously organized monorepo](https://https://github.com/gluestack/gluestack-ui). Begin shaping your design system by **forking** this [solid](https://https://github.com/gluestack/gluestack-ui) foundation.
 
@@ -40,7 +40,7 @@ To create your own design system using `gluestack-ui`, follow these steps after 
 
 Now your library `@myapp/components` has all primitive components from `@gluestack-ui/themed` by default.
 
-### Step 2: Configuration
+## Step 2: Configuration
 
 ### Theme Tokens
 
@@ -91,7 +91,7 @@ And then export from `index.tsx`
 export * from './Circle';
 ```
 
-### Step 3: Test
+## Step 3: Test
 
 In your storybook, now you can import `Circle` component from your `@myapp/components`.
 
@@ -100,11 +100,11 @@ import { Circle } from '@myapp/components';
 export default () => <Circle size="large" />;
 ```
 
-### Step 4: Publish
+## Step 4: Publish
 
 Now you can publish your design system as a package from `packages/themed`.
 
-### Step 5: Use
+## Step 5: Use
 
 Once published, you can use `@myapp/components` in your app you need add it to your `package.json` and update your configuration.
 
