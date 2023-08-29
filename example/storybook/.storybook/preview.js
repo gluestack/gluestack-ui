@@ -86,7 +86,7 @@ export const parameters = {
         'Hooks',
         ['React Native ARIA'],
         'Production Optimizations',
-        ['With Babel Plugin'],
+        ['With a Babel Plugin'],
         'Guides',
         [
           'Install in Next.js',
