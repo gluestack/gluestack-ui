@@ -7,21 +7,69 @@ showHeader: true
 ---
 
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
+import {
+  ColorPaletteComponent,
+  SpaceComponent,
+  OpacityComponent,
+  ShadowsComponent,
+} from './DefaultComponets';
 
 <Meta title="Theme/Default Theme" />
 
 ## Default Theme
 
-WIP: Default Theme
+`@gluestack-ui/themed` ships with default theme which can found in `config.theme`. It has Colors, Aliases, Typography, Size, Opacity, Shadows, Breakpoint. Theming in `@gluestack-ui/themed` is based on the [Styled System Theme Specification](https://github.com/system-ui/theme-specification).
 
 ### Colors
 
+You can define your unique colors or override existing ones using the `createConfig` function under the `tokens` section.
+
+We recommend adding a palette that ranges from 50 to 900. Tools like [JSON Color Palette Generator](https://json-color-palette-generator.vercel.app),[Smart Swatch](https://smart-swatch.netlify.app/), or [Palx](https://palx.jxnblk.com/) are available to generate these palettes.
+
+### Default Color Palettes
+
+<ColorPaletteComponent />
+
 ### Typography
 
-### Size
+To manage Typography options, the tokens object supports the following keys:
+
+- `fonts (font families)`
+- `fontSizes`
+- `fontWeights`
+- `lineHeights`
+- `letterSpacings`
+
+```jsx
+import { createConfig, config } from '@gluestack-ui/themed';
+
+const extendedConfig = createConfig({
+  ...config.theme,
+  tokens: {
+    ...config.theme.tokens,
+    fontSizes: {
+      ...config.theme.tokens.fontSizes,
+      newFontSize: 90,
+    },
+    ...// other tokens
+  },
+});
+```
+
+### Space
+
+The space key allows you to customize the global spacing and sizing scale for your project. By default these spacing value can be referenced by the padding, margin, and top, left, right, bottom props.
+
+<SpaceComponent />
 
 ### Opacity
 
+You can define your opacity tokens or override existing ones using the `createConfig` function under the `tokens` section.
+
+<OpacityComponent />
+
 ### Shadows
 
-### Breakpoint
+In `@gluestack-ui/themed` there are two types of shadows are provided by default.
+
+<ShadowsComponent />
