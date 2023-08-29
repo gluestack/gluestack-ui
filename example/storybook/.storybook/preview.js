@@ -19,7 +19,7 @@ export const parameters = {
       method: '',
       order: [
         'Overview',
-        ['Introduction'],
+        ['Introduction', 'Accessibility', 'Getting Started'],
         'Getting Started',
         ['Installation', 'VS Code Extension'],
         'Core Concepts',

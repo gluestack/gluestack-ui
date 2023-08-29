@@ -7,7 +7,12 @@ showHeader: true
 ---
 
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
-import { AppProvider, CodePreview } from '@gluestack/design-system';
+import {
+  AppProvider,
+  CodePreview,
+  Table,
+  TableContainer,
+} from '@gluestack/design-system';
 import {
   Box,
   Center,
@@ -305,22 +310,209 @@ The following table shows a list of every style prop and the properties within e
 
 <br />
 
-| Prop              | CSS Equivalent                 | Theme Key |
-| ----------------- | ------------------------------ | --------- |
-| m, margin         | margin                         | space     |
-| mt, marginTop     | margin-top                     | space     |
-| mr, marginRight   | margin-right                   | space     |
-| mb, marginBottom  | margin-bottom                  | space     |
-| ml, marginLeft    | margin-left                    | space     |
-| mx                | margin-left and margin-right   | space     |
-| my                | margin-top and margin-bottom   | space     |
-| p, padding        | padding                        | space     |
-| pt, paddingTop    | padding-top                    | space     |
-| pr, paddingRight  | padding-right                  | space     |
-| pb, paddingBottom | padding-bottom                 | space     |
-| pl, paddingLeft   | padding-left                   | space     |
-| px                | padding-left and padding-right | space     |
-| py                | padding-top and padding-bottom | space     |
+<AppProvider>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>CSS Equivalent</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Theme Key</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>m, margin</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>margin</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>space</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>mt, marginTop</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>margin-top</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>space</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>mr, marginRight</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>margin-right</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>space</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>mb, marginBottom</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>margin-bottom</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>space</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>ml, marginLeft</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>margin-left</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>space</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>mx</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>margin-left and margin-right</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>space</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>my</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>margin-top and margin-bottom</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>space</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>p, padding</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>padding</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>space</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>pt, paddingTop</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>padding-top</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>space</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>pr, paddingRight</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>padding-right</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>space</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>pb, paddingBottom</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>padding-bottom</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>space</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>pl, padding-left</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>paddingLeft</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>space</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>px</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>padding-left and padding-right</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>space</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>py</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>padding-top and padding-bottom</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>space</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</AppProvider>
 
 ### Color and background color
 
@@ -358,12 +550,79 @@ The following table shows a list of every style prop and the properties within e
 
 <br />
 
-| Prop           | CSS Eqquivalent  | Theme Key |
-| -------------- | ---------------- | --------- |
-| color          | color            | colors    |
-| bg, background | background       | colors    |
-| bgColor        | background-color | colors    |
-| opacity        | opacity          | -         |
+<AppProvider>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>CSS Equivalent</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Theme Key</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>color</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>color</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>colors</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>bg, background</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>background</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>colors</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>bgColor</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>background-color</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>colors</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>opacity</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>opacity</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</AppProvider>
 
 ### Typography
 
@@ -405,17 +664,144 @@ The following table shows a list of every style prop and the properties within e
 
 <br />
 
-| Prop           | CSS Eqquivalent | Theme Key      |
-| -------------- | --------------- | -------------- |
-| fontFamily     | font-family     | fonts          |
-| fontSize       | font-size       | fontSizes      |
-| fontWeight     | font-weight     | fontWeights    |
-| lineHeight     | line-height     | lineHeights    |
-| letterSpacing  | letter-spacing  | letterSpacings |
-| textAlign      | text-align      | -              |
-| fontStyle      | font-style      | -              |
-| textTransform  | text-transform  | -              |
-| textDecoration | text-decoration | -              |
+<AppProvider>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>CSS Equivalent</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Theme Key</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>FontFamily</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>font-family</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>fonts</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>FontSize</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>font-size</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>fontSizes</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>fontWeight</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>font-weight</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>fontWeights</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>lineHeight</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>line-height</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>lineHeights</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>letterSpacing</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>letter-spacing</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>letterSpacings</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>textAlign</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>text-align</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>fontStyle</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>font-style</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>textTransform</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>text-transform</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>textDecoration</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>text-decoration</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</AppProvider>
 
 ### Layout, width and height
 
@@ -456,19 +842,170 @@ The following table shows a list of every style prop and the properties within e
 
 <br />
 
-| Prop            | CSS Eqquivalent | Theme Key |
-| --------------- | --------------- | --------- |
-| w, width        | width           | sizes     |
-| h, height       | height          | sizes     |
-| minW, minWidth  | min-width       | sizes     |
-| maxW, maxWidth  | max-width       | sizes     |
-| minH, minHeight | min-height      | sizes     |
-| maxH, maxHeight | max-height      | sizes     |
-| d, display      | display         | -         |
-| verticalAlign   | vertical-align  | -         |
-| overflow        | overflow        | -         |
-| overflowX       | overflowX       | -         |
-| overflowY       | overflowY       | -         |
+<AppProvider>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>CSS Equivalent</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Theme Key</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>w, width</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>width</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>sizes</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>h, height</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>height</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>sizes</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>minW, minWidth</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>min-width</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>sizes</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>maxW, maxWidth</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>max-width</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>sizes</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>minH, minHeight</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>min-height</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>sizes</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>maxH, maxHeight</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>max-height</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>sizes</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>d, display</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>display</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>verticalAlign</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>vertical-align</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>overflow</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>overflow</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>overflowX</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>overflowX</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>overflowY</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>overflowY</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</AppProvider>
 
 ### Borders
 
@@ -516,20 +1053,183 @@ The following table shows a list of every style prop and the properties within e
 
 <br />
 
-| Prop              | CSS Eququivalent    | Theme Field  |
-| ----------------- | ------------------- | ------------ |
-| border            | border              | borders      |
-| borderWidth       | border-width        | borderWidths |
-| borderStyle       | border-style        | borderStyles |
-| borderColor       | border-color        | colors       |
-| borderTopWidth    | border-top-width    | borderWidths |
-| borderTopColor    | border-top-color    | colors       |
-| borderRightWidth  | border-right-width  | borderWidths |
-| borderRightColor  | border-right-color  | colors       |
-| borderBottomWidth | border-bottom-width | borderWidths |
-| borderBottomColor | border-bottom-color | colors       |
-| borderLeftWidth   | border-left-width   | borderWidths |
-| borderLeftColor   | border-left-color   | colors       |
+<AppProvider>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>CSS Equivalent</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Theme Key</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>border</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>border</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>borders</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>borderWidth</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>border-width</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>borderWidths</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>borderStyle</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>border-style</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>borderStyles</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>borderColor</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>border-color</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>colors</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>borderTopWidth</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>border-top-width</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>borderWidths</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>borderTopColor</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>border-top-color</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>colors</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>borderRightWidth</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>border-right-width</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>borderWidths</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>borderRightColor</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>border-right-color</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>colors</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>borderBottomWidth</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>border-bottom-width</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>borderWidths</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>borderBottomColor</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>border-bottom-color</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>colors</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>borderLeftWidth</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>border-left-width</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>borderWidths</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>borderLeftColor</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>border-left-color</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>colors</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</AppProvider>
 
 ### Borders Radius
 
@@ -562,13 +1262,92 @@ The following table shows a list of every style prop and the properties within e
 
 <br />
 
-| Prop                    | CSS Eququivalent           | Theme Field |
-| ----------------------- | -------------------------- | ----------- |
-| borderRadius            | border-radius              | radii       |
-| borderTopLeftRadius     | border-top-left-radius     | radii       |
-| borderTopRightRadius    | border-top-right-radius    | radii       |
-| borderBottomRightRadius | border-bottom-right-radius | radii       |
-| borderBottomLeftRadius  | border-bottom-left-radius  | radii       |
+<AppProvider>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>CSS Equivalent</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Theme Key</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>borderRadius</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>border-radius</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>radii</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>borderTopLeftRadius</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>border-top-left-radius</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>radii</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>borderTopRightRadius</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>border-top-right-radius</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>radii</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>borderBottomRightRadius</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>border-bottom-right-radius</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>radii</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>borderBottomLeftRadius</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>border-bottom-left-radius</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>radii</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</AppProvider>
 
 ### Position
 
@@ -615,14 +1394,105 @@ The following table shows a list of every style prop and the properties within e
 
 <br />
 
-| Prop     | CSS Equivalent | Theme Field |
-| -------- | -------------- | ----------- |
-| position | position       | -           |
-| zIndex   | z-index        | zIndices    |
-| top      | top            | space       |
-| right    | right          | space       |
-| bottom   | bottom         | space       |
-| left     | left           | space       |
+<AppProvider>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>CSS Equivalent</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Theme Key</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>position</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>position</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>zIndex</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>z-index</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>zIndices</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>top</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>top</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>space</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>right</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>right</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>space</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>bottom</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>bottom</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>space</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>left</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>left</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>space</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</AppProvider>
 
 ### Shadow
 
@@ -657,10 +1527,53 @@ The following table shows a list of every style prop and the properties within e
 
 <br />
 
-| Prop       | CSS Equivalent | Theme Field |
-| ---------- | -------------- | ----------- |
-| hardShadow | box-shadow     | shadows     |
-| softShadow | box-shadow     | shadows     |
+<AppProvider>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>CSS Equivalent</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Theme Key</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>hardShadow</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>box-shadow</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>shadows</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>softShadow</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>box-shadow</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>shadows</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</AppProvider>
 
 ## Underscore Props
 
@@ -704,10 +1617,42 @@ Provides a way to pass props to child components inside Composite componets.
 
 <br />
 
-| Prop    | Type                       | Description                                              |
-| ------- | -------------------------- | -------------------------------------------------------- |
-| \_stack | [IStackProps](stack#props) | Passed props will be provided to [`Stack`](stack) child. |
-| \_text  | [ITextProps](text#props)   | Passed props will be provided to [`Text`](text) child.   |
+<AppProvider>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>CSS Equivalent</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Theme Key</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>_text</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>TextProps</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>
+              Passed props will be provided to [`Text`](text) child.
+            </Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</AppProvider>
 
 ### Interaction Props
 
@@ -750,13 +1695,102 @@ Provides a way to pass props on certain interaction.
 
 <br />
 
-| Prop       | Type                    | Description                                     |
-| ---------- | ----------------------- | ----------------------------------------------- |
-| \_disabled | _Same as the component_ | Passed props will be applied on disabled state. |
-| \_focus    | _Same as the component_ | Passed props will be applied on focused state.  |
-| \_hover    | _Same as the component_ | Passed props will be applied on hovered state.  |
-| \_invalid  | _Same as the component_ | Passed props will be applied on invalid state.  |
-| \_pressed  | _Same as the component_ | Passed props will be applied on pressed state.  |
+<AppProvider>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>CSS Equivalent</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Theme Key</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>:disabled</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>Same as the component</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>
+              Passed props will be applied on disabled state.
+            </Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>:focus</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>Same as the component</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>
+              Passed props will be applied on focused state.
+            </Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>:hover</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>Same as the component</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>
+              Passed props will be applied on hovered state.
+            </Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>:invalid</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>Same as the component</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>
+              Passed props will be applied on invalid state.
+            </Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>:pressed</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>Same as the component</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>
+              Passed props will be applied on pressed state.
+            </Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</AppProvider>
 
 ### Platform Props
 
@@ -800,8 +1834,63 @@ Provides a way to pass props bassed on Platform (_android, ios or web_).
 
 <br />
 
-| Prop      | Type                    | Description                              |
-| --------- | ----------------------- | ---------------------------------------- |
-| \_android | _Same as the component_ | Passed props will be applied on android. |
-| \_ios     | _Same as the component_ | Passed props will be applied on ios.     |
-| \_web     | _Same as the component_ | Passed props will be applied on web.     |
+<AppProvider>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>CSS Equivalent</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Theme Key</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>_android</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>Same as the component</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>Passed props will be applied on android.</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>_ios</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>Same as the component</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>Passed props will be applied on ios.</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>_web</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>Same as the component</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>Passed props will be applied on web.</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</AppProvider>
