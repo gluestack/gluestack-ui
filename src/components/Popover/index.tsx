@@ -28,8 +28,6 @@ export const AccessiblePopover = createPopover({
   AnimatePresence: styled.Component,
 });
 
-let Pop = AccessiblePopover;
-
 const PopoverNew = forwardRef(
   (
     { children, overlayVisible = true, backdropVisible = true, ...props }: any,
@@ -42,7 +40,7 @@ const PopoverNew = forwardRef(
       </AccessiblePopover>
     );
   }
-);
+) as any;
 
 const AccessiblePopoverContent = forwardRef(
   ({ children, ...props }: any, ref?: any) => {
@@ -98,22 +96,10 @@ const AccessiblePopoverBody = forwardRef(
   }
 );
 
-Pop = {
-  ...AccessiblePopover,
-  ...PopoverNew,
-  Content: AccessiblePopoverContent,
-  CloseButton: AccessiblePopoverCloseButton,
-  Header: AccessiblePopoverHeader,
-  Footer: AccessiblePopoverFooter,
-  Body: AccessiblePopoverBody,
-};
+PopoverNew.Content = AccessiblePopoverContent as any;
+PopoverNew.CloseButton = AccessiblePopoverCloseButton as any;
+PopoverNew.Header = AccessiblePopoverHeader as any;
+PopoverNew.Footer = AccessiblePopoverFooter as any;
+PopoverNew.Body = AccessiblePopoverBody as any;
 
-export const Popover = Pop;
-
-// export const PopoverArrow = Popover.Arrow;
-// export const PopoverContent = Popover.Content;
-// export const PopoverHeader = Popover.Header;
-// export const PopoverFooter = Popover.Footer;
-// export const PopoverBody = Popover.Body;
-// export const PopoverBackdrop = Popover.Backdrop;
-// export const PopoverCloseButton = Popover.CloseButton;
+export const Popover = PopoverNew as typeof AccessiblePopover;

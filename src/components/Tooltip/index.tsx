@@ -10,8 +10,6 @@ export const AccessibleTooltip = createTooltip({
   //@ts-ignore
   AnimatePresence: styled.Component,
 });
-// export const TooltipContent = Tooltip.Content;
-// export const TooltipText = Tooltip.Text;
 
 const TooltipNew = forwardRef(
   ({ children, label, ...props }: any, ref?: any) => {
@@ -29,6 +27,6 @@ const TooltipNew = forwardRef(
       </AccessibleTooltip>
     );
   }
-);
+) as any;
 
-export const Tooltip = { ...AccessibleTooltip, ...TooltipNew };
+export const Tooltip = TooltipNew as typeof AccessibleTooltip;

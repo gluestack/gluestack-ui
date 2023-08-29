@@ -38,7 +38,7 @@ const ModalNew = forwardRef(
       </AccessibleModal>
     );
   }
-);
+) as any;
 
 const AccessibleModalContent = forwardRef(
   ({ children, ...props }: any, ref?: any) => {
@@ -94,19 +94,10 @@ const AccessibleModalBody = forwardRef(
   }
 );
 
-export const Modal = {
-  ...AccessibleModal,
-  ...ModalNew,
-  Content: AccessibleModalContent,
-  CloseButton: AccessibleModalCloseButton,
-  Header: AccessibleModalHeader,
-  Footer: AccessibleModalFooter,
-  Body: AccessibleModalBody,
-};
+ModalNew.Content = AccessibleModalContent as any;
+ModalNew.CloseButton = AccessibleModalCloseButton as any;
+ModalNew.Header = AccessibleModalHeader as any;
+ModalNew.Footer = AccessibleModalFooter as any;
+ModalNew.Body = AccessibleModalBody as any;
 
-// export const ModalContent = Modal.Content;
-// export const ModalCloseButton = Modal.CloseButton;
-// export const ModalHeader = Modal.Header;
-// export const ModalFooter = Modal.Footer;
-// export const ModalBody = Modal.Body;
-// export const ModalBackdrop = Modal.Backdrop;
+export const Modal = ModalNew as typeof AccessibleModal;

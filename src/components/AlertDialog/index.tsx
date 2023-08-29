@@ -40,7 +40,7 @@ const AlertDialogNew = forwardRef(
       </AccessibleAlertDialog>
     );
   }
-);
+) as any;
 
 const AccessibleAlertDialogContent = forwardRef(
   ({ children, ...props }: any, ref?: any) => {
@@ -96,15 +96,13 @@ const AccessibleAlertDialogBody = forwardRef(
   }
 );
 
-export const AlertDialog = {
-  ...AccessibleAlertDialog,
-  ...AlertDialogNew,
-  Content: AccessibleAlertDialogContent,
-  CloseButton: AccessibleAlertDialogCloseButton,
-  Header: AccessibleAlertDialogHeader,
-  Footer: AccessibleAlertDialogFooter,
-  Body: AccessibleAlertDialogBody,
-};
+AlertDialogNew.Content = AccessibleAlertDialogContent as any;
+AlertDialogNew.CloseButton = AccessibleAlertDialogCloseButton as any;
+AlertDialogNew.Header = AccessibleAlertDialogHeader as any;
+AlertDialogNew.Footer = AccessibleAlertDialogFooter as any;
+AlertDialogNew.Body = AccessibleAlertDialogBody as any;
+
+export const AlertDialog = AlertDialogNew as typeof AccessibleAlertDialog;
 
 // console.log(AlertDialog);
 
