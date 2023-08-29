@@ -1,0 +1,28 @@
+---
+title: Getting Started | gluestack-ui
+description: gluestack-ui is a React Native and React library that provides universal, styled, and accessible components. It includes keyboard accessibility and focus management features, making it a great choice for developers who prioritize accessibility and usability.
+toc: false
+---
+
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+
+<Meta title="Overview/Getting Started" />
+
+import { App, Talk, Socail, Card1, Card2 } from './App';
+
+import { AppProvider } from '@gluestack/design-system';
+
+# Getting Started
+
+<AppProvider>
+  <Card1 />
+</AppProvider>
+
+## Try gluestack-ui
+
+<AppProvider>
+  <Card2 />
+  <App />
+  <Talk />
+  <Socail />
+</AppProvider>
