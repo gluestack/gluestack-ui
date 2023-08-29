@@ -32,10 +32,8 @@
     "@gluestack-ui/utils": "^0.1.5"
   },
   "peerDependencies": {
-    "react": "*",
-    "react-dom": "*",
-    "react-native": "*",
-    "react-native-web": "*"
+    "react": ">=16",
+    "react-dom": ">=16"
   },
   "react-native-builder-bob": {
     "source": "src",
