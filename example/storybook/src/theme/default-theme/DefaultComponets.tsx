@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import {
   Text,
   VStack,
@@ -53,7 +53,7 @@ const ColorPaletteComponent = () => {
       <VStack flex={1}>
         {Object.keys(sortedColorPalette).map((category: string) => {
           return (
-            <>
+            <Fragment key={category}>
               <Heading mb="$4" size="md">
                 {category}
               </Heading>
@@ -93,7 +93,7 @@ const ColorPaletteComponent = () => {
                   }
                 )}
               </HStack>
-            </>
+            </Fragment>
           );
         })}
       </VStack>
@@ -167,7 +167,7 @@ const SpaceComponent = () => {
         </HStack>
         {mapEntries.map(([key, value]: any) => {
           return (
-            <>
+            <Fragment key={`${key}${value}`}>
               <Divider my="$2" />
               <HStack key={key} h="$8" alignItems="center">
                 <Text w={100} mr="$4">
@@ -180,7 +180,7 @@ const SpaceComponent = () => {
                   <Box bg="$primary500" w={value} h="$4" />
                 </Box>
               </HStack>
-            </>
+            </Fragment>
           );
         })}
       </VStack>
@@ -203,6 +203,7 @@ const OpacityComponent = () => {
       {Object.keys(opacity).map((op: string) => {
         return (
           <Box
+            key={opacity}
             sx={{
               _web: {
                 position: 'relative',
@@ -228,6 +229,9 @@ const OpacityComponent = () => {
                   top: '50%',
                   left: '50%',
                   transform: 'translate(-50%, -50%)',
+                },
+                _dark: {
+                  color: 'white',
                 },
               }}
             >
