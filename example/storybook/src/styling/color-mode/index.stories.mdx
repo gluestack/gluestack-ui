@@ -6,10 +6,68 @@ pageDescription: Color Mode description
 showHeader: true
 ---
 
-import { Canvas, Meta, Story } from '@storybook/addon-docs';
+import {
+  GluestackUIProvider,
+  Text,
+  Center,
+  Button,
+  Box,
+} from '@gluestack-ui/themed';
+import { transformedCode } from '../../utils';
+import Wrapper from '../../components/Wrapper';
+
+import {
+  AppProvider,
+  CodePreview,
+  Table,
+  TableContainer,
+  InlineCode,
+} from '@gluestack/design-system';
+import { Meta } from '@storybook/addon-docs';
 
 <Meta title="Styling/Color Mode" />
 
-## Color Mode
+## Color Modes
 
-WIP: Color Mode
+We can apply different styles based on different color mode by defining \_dark and \_light property in sx prop.
+
+In the below example we are defining styles to be applied in dark mode in \_dark object and for light mode in \_light object.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+     <>
+ <Button
+          sx={{
+            _dark: {
+              bg: "$red400",
+            },
+            _light: {
+              bg: "$red600",
+            },
+          }}
+        >
+          <Button.Text>Hello world</Button.Text>
+        </Button>
+     </>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Text,
+        Button,
+        Box,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+<br />
+
+[Expo snack](https://snack.expo.dev/@gluestack/gluestack-ui-color-mode) link for managing color mode.

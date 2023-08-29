@@ -19,9 +19,9 @@ export const parameters = {
       method: '',
       order: [
         'Overview',
-        ['Introduction'],
+        ['Introduction', 'Accessibility', 'Getting Started'],
         'Getting Started',
-        ['Installation', 'VS Code Extension', 'Figma Plugin'],
+        ['Installation', 'VS Code Extension'],
         'Core Concepts',
         ['Themed Library', 'Unstyled Components', 'Accessibility'],
         'Performance',
@@ -45,7 +45,6 @@ export const parameters = {
           'Platform Specific',
           'Variants',
         ],
-
         'Components',
         [
           'Provider',
@@ -87,7 +86,7 @@ export const parameters = {
         'Hooks',
         ['React Native ARIA'],
         'Production Optimizations',
-        ['Babel Plugin'],
+        ['With a Babel Plugin'],
         'Guides',
         [
           'Install in Next.js',
@@ -98,7 +97,7 @@ export const parameters = {
         'Configuration',
         ['Server-Side Rendering', 'React Server Components'],
         'Advanced',
-        ['Fonts', 'Animations', 'CLI'],
+        ['Fonts', 'Animations'],
         'Recipes',
         ['Card'],
         'Resources',
