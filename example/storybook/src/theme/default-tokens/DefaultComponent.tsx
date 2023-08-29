@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import {
   Text,
   VStack,
@@ -53,7 +53,7 @@ const ColorPaletteComponent = () => {
       <VStack flex={1}>
         {Object.keys(sortedColorPalette).map((category: string) => {
           return (
-            <>
+            <Fragment key={category}>
               <Heading mb="$4" size="md">
                 {category}
               </Heading>
@@ -93,7 +93,7 @@ const ColorPaletteComponent = () => {
                   }
                 )}
               </HStack>
-            </>
+            </Fragment>
           );
         })}
       </VStack>
@@ -167,7 +167,7 @@ const SpaceComponent = () => {
         </HStack>
         {mapEntries.map(([key, value]: any) => {
           return (
-            <>
+            <Fragment key={`${key}${value}`}>
               <Divider my="$2" />
               <HStack key={key} h="$8" alignItems="center">
                 <Text w={100} mr="$4">
@@ -180,7 +180,7 @@ const SpaceComponent = () => {
                   <Box bg="$primary500" w={value} h="$4" />
                 </Box>
               </HStack>
-            </>
+            </Fragment>
           );
         })}
       </VStack>
@@ -203,6 +203,7 @@ const OpacityComponent = () => {
       {Object.keys(opacity).map((op: string) => {
         return (
           <Box
+            key={opacity}
             sx={{
               _web: {
                 position: 'relative',
@@ -228,6 +229,9 @@ const OpacityComponent = () => {
                   top: '50%',
                   left: '50%',
                   transform: 'translate(-50%, -50%)',
+                },
+                _dark: {
+                  color: 'white',
                 },
               }}
             >
@@ -304,11 +308,78 @@ const ShadowsComponent = () => {
     </VStack>
   );
 };
+
+const borderWidths = config.theme?.tokens.borderWidths;
+const BorderWidthComponent = () => {
+  return (
+    <HStack
+      sx={{
+        _web: {
+          gap: 16,
+        },
+      }}
+    >
+      {Object.keys(borderWidths).map((borderWidth: any) => {
+        return (
+          <Box
+            key={borderWidth}
+            h="$20"
+            w="$20"
+            mb="$4"
+            bg="$primary500"
+            borderRadius="$lg"
+            borderColor="$purple600"
+            // @ts-ignore
+            borderWidth={`$${borderWidth}`}
+            justifyContent="center"
+            alignItems="center"
+          >
+            <Text color="$white">{borderWidth}</Text>
+          </Box>
+        );
+      })}
+    </HStack>
+  );
+};
+
+const radii = config.theme?.tokens.radii;
+const RadiiComponent = () => {
+  return (
+    <HStack
+      sx={{
+        _web: {
+          gap: 16,
+        },
+      }}
+    >
+      {Object.keys(radii).map((borderRadiusValue: any) => {
+        return (
+          <Box
+            key={borderRadiusValue}
+            h="$20"
+            w="$20"
+            mb="$4"
+            bg="$primary500"
+            // @ts-ignore
+            borderRadius={`$${borderRadiusValue}`}
+            justifyContent="center"
+            alignItems="center"
+          >
+            <Text color="$white">{borderRadiusValue}</Text>
+          </Box>
+        );
+      })}
+    </HStack>
+  );
+};
+
 export {
   ColorPaletteComponent,
   SpaceComponent,
   OpacityComponent,
   ShadowsComponent,
+  BorderWidthComponent,
+  RadiiComponent,
 };
 
 export { Text, VStack, HStack, Box };

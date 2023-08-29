@@ -16,15 +16,13 @@ Use config prop in `GluestackUIProvider` to change look and feel of your applica
 
 ### Default Theme
 
-`@gluestack-ui/themed` ships with default theme. You can use it by passing `config.theme` to `GluestackUIProvider`.
+The `@gluestack-ui/themed` package comes with a pre-configured default theme, seamlessly integrated within the GluestackUIProvider.
 
 ```jsx
-import { config, GlueStackUIProvider } from '@gluestack-ui/themed';
+import { GlueStackUIProvider } from '@gluestack-ui/themed';
 
 function App({ children }) {
-  return (
-    <GluestackUIProvider config={config.theme}>{children}</GluestackUIProvider>
-  );
+  return <GluestackUIProvider>{children}</GluestackUIProvider>;
 }
 ```
 
