@@ -1,0 +1,40 @@
+---
+title: Utility Functions | gluestack-style
+description: Create global CSS styles easily with createGlobalStylesWeb function, supporting aliases and tokens for easy integration. Only for web, with some limitations.
+canonical: https://style.gluestack.io/
+---
+
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+
+<Meta title="api/Utility Functions" />
+
+# Utility Functions
+
+## createGlobalStylesWeb()
+
+> ⚠️ This is a web-only utility function
+
+`createGlobalStylesWeb` is a utility function It takes a style object with aliases and tokens, resolves it, and returns a function. When invoked, this function injects the given style into **global CSS**.
+
+### How to use:
+
+`createGlobalStylesWeb` returns a callback function When this function is passed to the globalStyleInjector property of StyledProvider, it takes a configuration object and injects the styles globally inside a style tag with the ID 'global-styles'. This function supports class names, IDs, and all other CSS functionalities.
+
+### Example:
+
+```jsx
+const addGlobalCss = createGlobalStylesWeb({
+  '*': { margin: 0, padding: 0 },
+});
+
+<StyledProvider globalStyleInjector={addGlobalCss}>
+  <App />
+</StyledProvider>;
+```
+
+> ⚠️ The style object inside createGlobalStylesWeb only supports token resolution. It doesn't support state or color mode-specific properties, i.e., writing `:hover: {bg:”$red400”}` would not work.
+
+### Caveats:
+
+- To see the changes, you need to perform a hard refresh of the page, as hot reloading will not work.
+- If your component has a local propertyTokenMap or any component-specific configuration, these will not extend to the styles of that component.

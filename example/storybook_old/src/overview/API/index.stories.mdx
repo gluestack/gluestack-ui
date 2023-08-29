@@ -1,0 +1,349 @@
+---
+title: API | API's in gluestack-style
+description: A brief about all the API that you get from gluestack-style. With our styled function, you can easily extend existing components and make them customizable and themeable.
+---
+
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="Overview/API" />
+
+# API
+
+## styled()
+
+With our **`styled`** function, you can easily extend existing components and make them customizable and themeable.
+
+```jsx
+const StyledButton = styled(
+  Pressable,
+  {
+    bg: '$primary600',
+    px: '$6',
+    py: '$4',
+    _dark: {
+      bg: '$gray800',
+    },
+  },
+  {}, // componentConfig,
+  {} // extenedBaseConfig,
+);
+```
+
+## componentConfig
+
+1. **descendantStyle** is an array of string that denotes the descendants of that component that should respond to parents state. This is useful for creating complex styles that is dependent on the component that this prop is passed in.
+
+   ```jsx
+   {
+     descendantStyle: ['_text', '_spinner'];
+     // ancestorStyle: ['_text'];
+     // resolveProps: ['placeholderTextColor'];
+   }
+   ```
+
+2. **ancestorStyle** is an array of string that denotes the ancestors of that component. This is useful for creating complex styles that are dependent on the ancestor component.
+
+   ```jsx
+   {
+     // descendantStyle: ['_text', '_spinner'];
+     ancestorStyle: ['_text'];
+     // resolveProps: ['placeholderTextColor'];
+   }
+   ```
+
+   So if this component finds a parent component with `_text` prop, it will apply the styles to the component.
+
+3. **resolveProps** is an array of string that denotes the props that should be resolved. This is useful for props that are not passed into the style property rather goes in as a prop. For example, `placeholderTextColor` in TextInput.
+
+   ```jsx
+   {
+     // descendantStyle: ['_text', '_spinner'];
+     // ancestorStyle: ['_text'];
+     resolveProps: ['placeholderTextColor'];
+   }
+   ```
+
+   Note: For this to work you also need to add the prop in `propertyTokenMap`, that can be defined in the next parameter of styled function i.e. **extenedBaseConfig**.
+
+## extenedBaseConfig
+
+extendedBaseConfig is an object that let’s you extend the base config for the component. This is useful when you want to define some aliases, tokens, propertyTokenMap,
+and propertyResolver that is specific to the component.
+
+```jsx
+{
+  aliases: {
+    pTC: 'placeholderTextColor',
+  },
+  tokens: {
+    placeholderTextColor: 'placeholderTextColor',
+  },
+  propertyTokenMap: {
+    placeholderTextColor: 'colors',
+  },
+  propertyResolver: {
+    placeholderTextColor: (rawValue,resolver)=>{
+      return resolver(rawValue)
+    },
+  },
+
+  <StyledTextInput placeholder="Enter text" pTC="primary600" />
+}
+```
+
+this will merge the following to the base config (gluestack-style.config.js) for the scope of that component.
+
+## StyledProvider
+
+gluestack-style Style exports a StyledProvider component that can be used to configure your components. This is useful when you want to define some aliases, tokens, propertyTokenMap, propertyResolver and globalStyle at a global level throughout your app. You can define them in `gluestack-style.config.js` file and pass it to the StyledProvider.
+
+Apart from config StyledProvider also accepts colorMode, which denotes the current active colorMode of the application and globalStyleInjector, which is a function that can be used to inject global styles.
+
+```jsx
+import { StyledProvider, createConfig } from '@gluestack-style/react';
+
+const config = createConfig({
+  aliases: {
+    bg: 'backgroundColor',
+    bgColor: 'backgroundColor',
+    rounded: 'borderRadius',
+    h: 'height',
+    w: 'width',
+  },
+  tokens: {
+    colors: {
+      primary0: '#ffffff',
+      primary400: '#c084fc',
+      primary500: '#a855f7',
+      primary600: '#9333ea',
+    },
+    space: {
+      4: 16,
+      5: 20,
+      6: 24,
+    },
+    radii: {
+      sm: 4,
+      md: 6,
+    },
+    letterSpacings: {
+      md: 0,
+    },
+    lineHeights: {
+      sm: 20,
+      md: 22,
+    },
+    fontWeights: {
+      normal: '400',
+      medium: '500',
+    },
+    fontSizes: {
+      sm: 14,
+      md: 16,
+    },
+    mediaQueries: {
+      sm: '@media (min-width: 480px)',
+      md: '@media (min-width: 768px)',
+    },
+  },
+  globalStyle: {
+    variants: {
+      shadow: {
+        softShadow: {
+          shadowOffset: {
+            width: 0,
+            height: 0,
+          },
+          shadowRadius: 10,
+          shadowOpacity: 0.1,
+          _android: {
+            shadowColor: '$primary500',
+            elevation: 5,
+            shadowOpacity: 0.05,
+          },
+        },
+      },
+    },
+  },
+} as const);
+
+
+<StyledProvider config={config} >
+  <App />
+</StyledProvider>
+```
+
+## propertyResolver
+
+`propertyResolver` is an object that lets you define a custom resolver for a property or prop. This is useful when you want to define a custom resolver for a property.
+
+```tsx
+{
+  propertyResolver: {
+    backgroundColor: (rawValue,resolver)=>{
+      return hexToRGBA(resolver(rawValue),0.5)
+    },
+  },
+}
+```
+
+in the above example the backgroundColor will be resolved to a rgba value with opacity 0.5.
+
+The resolver function takes two arguments, the first one is the `rawValue` and the second one is the `resolver` function. The resolver function is used to resolve the rawValue to a token value.
+
+**Note**: The key in `propertyResolver` object should be the same as the key in `propertyTokenMap` i.e. it can only be a `property` **not** an `alias`.
+
+## mediaQueries
+
+`mediaQueries` is an object that lets you define a custom media queries(breakpoints) for your app. To configure mediaQueries in `@gluestack-style/react`, you can create a `gluestack-style.config.js` file where you define your mediaQueries and other configuration options.
+
+```tsx
+{
+  mediaQueries: {
+    base: '@media screen and (min-width: 0)',
+    sm: '@media screen and (min-width: 480px)',
+    md: '@media screen and (min-width: 768px)',
+    lg: '@media screen and (min-width: 992px)',
+    xl: '@media screen and (min-width: 1280px)',
+  },
+}
+```
+
+in your component style config you can write the following to make the component responsive.
+
+```tsx
+{
+  "@md": {
+    p: '$3',
+  },
+  "@lg": {
+    p: '$4',
+  },
+}
+```
+
+## Platform
+
+If your style demands of some different styling for different platforms, you can write platform specific styles like:
+
+```tsx
+const StyledInput = styled(
+  TextInput,
+  {
+    py: '$2',
+    bg: '$gray50',
+    borderRadius: '$2',
+    _dark: {
+      bg: '$gray800',
+    },
+    _web: {
+      px: '$3',
+    },
+    _ios: {
+      px: '$4',
+    },
+  },
+  componentConfig,
+  extenedBaseConfig
+);
+```
+
+## states
+
+If your component has different states than you can write state specific styles like:
+
+```tsx
+const StyledInput = styled(
+  TextInput,
+  {
+    'py': '$2',
+    'bg': '$gray50',
+    'borderRadius': '$2',
+    ':hover': {
+      bg: '$gray100',
+    },
+    ':disabled': {
+      bg: '$gray200',
+    },
+  },
+  componentConfig,
+  extenedBaseConfig
+);
+```
+
+These `states` styles are applied when your state gets `true`, these states are passed in `states` prop of the component.
+
+```tsx
+<StyledInput states={{ hover: true, disabled: true }} />
+```
+
+## colorMode
+
+If your component has different colorModes than you can write colorMode specific styles like:
+
+```tsx
+const StyledInput = styled(
+  TextInput,
+  {
+    py: '$2',
+    bg: '$gray50',
+    borderRadius: '$2',
+    _dark: {
+      bg: '$gray800',
+    },
+    _light: {
+      bg: '$gray50',
+    },
+  },
+  componentConfig,
+  extenedBaseConfig
+);
+```
+
+These `colorMode` styles are applied when your style colorMode matches with the active colorMode, the colorMode is passed in `colorMode` prop of the StyledProvider.
+
+```tsx
+<StyledProvider colorMode="dark">
+  <App />
+</StyledProvider>
+```
+
+## sx
+
+`sx` prop is a prop that lets you write inline styles for the component.
+
+```tsx
+const StyledInput = styled(
+  TextInput,
+  {
+    py: '$2',
+    bg: '$gray50',
+    borderRadius: '$2',
+  },
+  componentConfig,
+  extenedBaseConfig
+);
+
+<StyledInput sx={{ py: '$4' }} />;
+```
+
+**Note**: `sx` prop will override the styles defined in the component config. We highly recommend you to use this as little as possible. Mostly when you want to write some layout styles like margin or padding for the component.
+
+## Utility Props
+
+gluestack-style Style provides utility props that can be used to style the component. These props get converted to sx prop internally. There is a simple rule, all the utility props are the final property you want to get attached on the style of your component, It will override all other stylings except style prop.
+
+```jsx
+const StyledInput = styled(
+  TextInput,
+  {
+    py: '$2',
+    bg: '$gray50',
+    borderRadius: '$2',
+  },
+  componentConfig,
+  extenedBaseConfig
+);
+
+<StyledInput py="$4" bg="$gray800" />;
+```

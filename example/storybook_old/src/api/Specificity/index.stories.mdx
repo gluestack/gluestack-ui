@@ -1,0 +1,60 @@
+---
+title: Specificity | gluestack-style
+description: Improve your CSS specificity with getWeightBaseOnPath function - calculate the precedence of different styles and easily override. Learn more here!
+---
+
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+
+<Meta title="api/Specificity" />
+
+# Specificity
+
+Specificity order
+
+### API
+
+```jsx
+import React from 'react';
+import { View } from 'react-native';
+import { styled } from '@gluestack-style/react';
+
+const StyledButton = styled(
+  View,
+  {
+    borderRadius: 4,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    outlineWidth: 0,
+    m: 12,
+    variants: {
+      variant: {
+        bluebox: {
+          bg: '$blue400',
+        },
+      },
+      sizes: {
+        sm: {
+          px: '$3',
+          py: '$2',
+        },
+        md: {
+          px: '$4',
+          py: '$3',
+        },
+      },
+    },
+    defaultProps: {
+      size: 'md',
+      variant: 'bluebox',
+    },
+  },
+  {}
+);
+```
+
+### Usage
+
+<Canvas>
+  <Story id="api-stories-specificity--specificity" />
+</Canvas>

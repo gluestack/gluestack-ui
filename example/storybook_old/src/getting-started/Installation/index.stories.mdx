@@ -1,0 +1,52 @@
+---
+title: Installation | gluestack-style
+description: A Quick Installation guide for gluestack-style. To get started with gluestack-style, you'll need to install it using either npm or yarn.
+---
+
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+
+<Meta title="Getting Started/Installation" />
+
+import {
+  Hoverable,
+  Button,
+  AppProvider,
+  HStack,
+} from '@gluestack/design-system';
+
+# Installation
+
+gluestack-style provides support for [Expo](https://expo.dev/) and [Next.js](https://nextjs.org/) both.
+
+Refer the guides shown below to setup gluestack-style in your Expo or Next.js app.
+
+<AppProvider>
+  <HStack
+    space="md"
+    flex={1}
+    mb="$4"
+    sx={{
+      '@lg': {
+        flexDirection: 'row',
+      },
+      'flexDirection': 'column',
+    }}
+  >
+    <Hoverable
+      heading="Expo"
+      subHeading="Guide to install in an Expo project"
+      href="/docs/getting-started/install-expo"
+    />
+    <Hoverable
+      heading="Next.js"
+      subHeading="Guide to install in a Next.js project"
+      href="/docs/getting-started/install-nextjs"
+    />
+  </HStack>
+</AppProvider>
+
+## Summary
+
+Throughout this guide, we have provided detailed instructions on how to install `gluestack-style` in your Expo or Next.js application and configure its settings to ensure optimal performance. We highly recommend taking the time to familiarize yourself with the various aspects of gluestack-style, such as its configuration options and styled provider functionality, as well as the styled function.
+
+To get started, we suggest reviewing the [config](https://style.gluestack.io/docs/configuration/theme-tokens) and [provider](https://style.gluestack.io/docs/getting-started/styled-provider) sections to gain a deeper understanding of aliases and tokens works. Once you have a solid grasp of these concepts, you can begin experimenting with the [styled](https://style.gluestack.io/docs/getting-started/styled) function and applying it to your project as needed.

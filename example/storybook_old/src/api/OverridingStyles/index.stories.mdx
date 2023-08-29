@@ -1,0 +1,35 @@
+---
+title: Overriding styles with sx | gluestack-style
+description: The sx prop allows you to pass an object that supports tokens, media-queries, nesting and token-aware values to the component.
+---
+
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+
+<Meta title="api/Overriding Styles (sx)" />
+
+# Overriding Styles (sx)
+
+gluestack-style supports the sx prop for overriding styles.The sx prop enables passing an object supporting tokens, media queries, nesting, and token-aware values to the component.
+
+`sx` accepts the same style object as the base style.
+
+```tsx
+<Button
+  size="lg"
+  sx={{
+      "marginBottom": '$4',
+      "bg": 'pink',
+      ":hover": {
+          "bg": 'orange',
+      },
+  }}
+>
+  <Button.Text>Button</Button.Text>
+<Button>
+```
+
+In this example, the button has a pink background instead of the default primary color, as the backgroundColor style is overridden using the sx prop
+
+The sx prop is particularly useful for theming and responsive styles, as it enables easy style changes for a component based on the theme or viewport size
+
+It is important to note that you should generally avoid using the sx prop, as it adds complexity to style calculations and may decrease performance
