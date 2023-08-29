@@ -2,6 +2,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-console */
 import React, { useContext, useEffect, useMemo, useRef, useState } from 'react';
+
 import type {
   ConfigType,
   OrderedSXResolved,
@@ -916,6 +917,11 @@ export function verboseStyled<P, Variants>(
       [],
       componentExtendedConfig
     );
+    console.log(
+      '@@#',
+      sxStyledResolved,
+      JSON.stringify(sxStyledResolved, null, 2)
+    );
     // console.log(sxStyledResolved);
     sxStyledResolved.baseStyle.styledValueResolvedWithMeta.meta.themeCondition =
       {};
@@ -943,9 +949,54 @@ export function verboseStyled<P, Variants>(
       // componentTheme.original[originalToken] = resolveStringToken();
     });
 
-    // console.log(componentTheme);
+    const colorModeComponentThemes: any = sxStyledResolved.baseStyle?.colorMode;
+    if (colorModeComponentThemes) {
+      Object.keys(colorModeComponentThemes).forEach(
+        (colorModeComponentTheme: any) => {
+          // console.log(
+          //   '@@#>>',
+          //   colorModeComponentThemes[colorModeComponentTheme]
+          //     .styledValueResolvedWithMeta.meta.t
+          // );
+          if (
+            !colorModeComponentThemes[colorModeComponentTheme]
+              .styledValueResolvedWithMeta?.meta.themeCondition
+          ) {
+            colorModeComponentThemes[
+              colorModeComponentTheme
+            ].styledValueResolvedWithMeta.meta.themeCondition = {};
+          }
+
+          const componentTheme: any =
+            colorModeComponentThemes[colorModeComponentTheme]
+              .styledValueResolvedWithMeta;
+          Object.keys(componentTheme.original).forEach((resolvedToken: any) => {
+            Object.keys(CONFIG.themes).forEach((themeName: any) => {
+              let theme = CONFIG.themes[themeName];
+              Object.keys(theme).forEach((tokenScale: any) => {
+                const tokenScaleValue = theme[tokenScale];
+                Object.keys(tokenScaleValue).forEach((token: any) => {
+                  if (componentTheme.original[resolvedToken] === token) {
+                    componentTheme.meta.themeCondition[themeName] =
+                      resolvedTokenization(
+                        {
+                          [resolvedToken]: tokenScaleValue[token],
+                        },
+                        CONFIG
+                      );
+                  }
+                });
+              });
+            });
+
+            // componentTheme.original[originalToken] = resolveStringToken();
+          });
+        }
+      );
+    }
 
     const sxHash = stableHash(sx);
+
     const orderedSXResolved =
       styledResolvedToOrderedSXResolved(sxStyledResolved);
 
@@ -1016,7 +1067,7 @@ export function verboseStyled<P, Variants>(
     // let time = Date.now();
     const styledContext = useStyled();
     const { theme: activeTheme } = useTheme();
-    console.log('>>>>>', activeTheme);
+
     const ancestorStyleContext = useContext(AncestorStyleContext);
     let incomingComponentProps = {};
     let remainingComponentProps = {};
@@ -1620,7 +1671,6 @@ export function verboseStyled<P, Variants>(
     const AsComp: any = (as as any) || (passingProps.as as any) || undefined;
 
     let resolvedStyleMemo = [passingProps?.style, ...resolvedStyleProps?.style];
-    console.log(resolvedStyleMemo);
     if (Platform.OS === 'web') {
       resolvedStyleMemo = StyleSheet.flatten(resolvedStyleMemo);
     }

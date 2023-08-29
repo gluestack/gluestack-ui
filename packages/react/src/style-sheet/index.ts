@@ -53,7 +53,9 @@ export class StyleInjector {
 
     const toBeInjected: any = {};
 
-    cssIds.forEach((cssId: string) => {
+    cssIds?.forEach((cssId: string) => {
+      console.log('THememmmmmm', cssId, this.#globalStyleMap.get(cssId));
+
       if (this.#globalStyleMap.get(cssId)) {
         const styledResolved = this.#globalStyleMap.get(cssId);
         const theme = styledResolved?.original;
@@ -68,6 +70,7 @@ export class StyleInjector {
             declarationType
           );
         }
+        // console.log('THememmmmmm', toBeInjected);
 
         if (!toBeInjected[styledResolved.type])
           toBeInjected[styledResolved.type] = {};
@@ -81,11 +84,12 @@ export class StyleInjector {
         //   styledResolved?.type,
         //   styledResolved?.componentHash
         // );
-
-        this.#globalStyleMap.set(styledResolved.meta.cssId, {
-          ...styledResolved,
-          value: styledResolved?.resolved,
-        });
+        if (styledResolved) {
+          this.#globalStyleMap.set(styledResolved.meta.cssId, {
+            ...styledResolved,
+            value: styledResolved?.resolved,
+          });
+        }
       }
     });
 
@@ -131,6 +135,7 @@ export class StyleInjector {
       componentExtendedConfig
     );
     componentTheme.meta.themeCondition = {};
+    // Creating theme conditions for theme
     Object.keys(componentTheme.original).forEach((resolvedToken: any) => {
       Object.keys(CONFIG.themes).forEach((themeName: any) => {
         let theme = CONFIG.themes[themeName];
@@ -149,7 +154,6 @@ export class StyleInjector {
           });
         });
       });
-
       // componentTheme.original[originalToken] = resolveStringToken();
     });
 

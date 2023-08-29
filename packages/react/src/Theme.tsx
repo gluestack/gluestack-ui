@@ -1,3 +1,4 @@
+import { View } from 'react-native';
 import * as React from 'react';
 type Config = any;
 
@@ -17,9 +18,10 @@ export const Theme: React.FC<{
   };
   return (
     <ThemeContext.Provider value={contextValue}>
-      {children}
+      <View dataSet={{ 'theme-id': name }}>{children}</View>
     </ThemeContext.Provider>
   );
 };
+// Theme.displayName = 'Theme';
 
 export const useTheme = () => React.useContext(ThemeContext);

@@ -26,10 +26,12 @@ export function getCSSIdAndRuleset(
       styleValueResolvedWithMeta.meta.queryCondition;
   } else if (styleValueResolvedWithMeta.meta.colorMode) {
     toBeInjectedStyle.colorMode = styleValueResolvedWithMeta.meta.colorMode;
-  } else if (styleValueResolvedWithMeta.meta.themeCondition) {
+  }
+  if (styleValueResolvedWithMeta.meta.themeCondition) {
     toBeInjectedStyle.themeCondition =
       styleValueResolvedWithMeta.meta.themeCondition;
   }
+
   //@ts-ignore
   const cssObject = Cssify.create(
     { style: toBeInjectedStyle },

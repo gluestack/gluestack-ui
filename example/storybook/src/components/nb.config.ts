@@ -664,6 +664,20 @@ export const config = createConfig({
       },
     },
   },
+  themes: {
+    x: {
+      colors: {
+        $primary500: '$colors$red500',
+        $primary200: '$colors$red200',
+      },
+    },
+    y: {
+      colors: {
+        $primary200: '$colors$green200',
+        $primary500: '$colors$blue500',
+      },
+    },
+  },
 } as const);
 
 type ConfigType = typeof config;

@@ -170,17 +170,6 @@ export function generateStylePropsFromCSSIds(
         }
       });
     } else {
-      const nativeStyleMap = GluestackStyleSheet.getStyleMap();
-      styleCSSIds.forEach((cssId: any) => {
-        const nativeStyle = nativeStyleMap.get(cssId);
-        if (nativeStyle.meta.themeCondition && activeTheme) {
-          console.log(activeTheme);
-          styleObj.push({
-            ...nativeStyle.meta.themeCondition[activeTheme],
-          });
-        }
-      });
-
       styleCSSIdsString = styleCSSIds.join(' ');
     }
   }
