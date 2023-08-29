@@ -11,6 +11,8 @@ import {
   SpaceComponent,
   OpacityComponent,
   ShadowsComponent,
+  BorderWidthComponent,
+  RadiiComponent,
 } from './DefaultComponent';
 
 <Meta title="Theme/Default Tokens" />
@@ -70,3 +72,17 @@ In `@gluestack-ui/themed` there are two types of shadows are provided by default
 > Note: In the context of dark mode design, it's important to recognize that elevation serves as the primary tool for expressing hierarchy. Unlike in light mode, where shadows are used for this purpose, dark themes prioritize surface illumination. The higher the elevation, the lighter the surfaces become, ultimately improving visibility and clarity.
 
 <ShadowsComponent />
+
+## Borders
+
+### border widths
+
+`borderWidths` tokens are used to define the border radius of an element. You can define your radii tokens or override existing ones using the `createConfig` function under the `tokens` section.
+
+<BorderWidthComponent />
+
+### border radius
+
+`radii` tokens are used to define the border radius of an element. You can define your radii tokens or override existing ones using the `createConfig` function under the `tokens` section.
+
+<RadiiComponent />

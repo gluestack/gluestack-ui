@@ -308,11 +308,78 @@ const ShadowsComponent = () => {
     </VStack>
   );
 };
+
+const borderWidths = config.theme?.tokens.borderWidths;
+const BorderWidthComponent = () => {
+  return (
+    <HStack
+      sx={{
+        _web: {
+          gap: 16,
+        },
+      }}
+    >
+      {Object.keys(borderWidths).map((borderWidth: any) => {
+        return (
+          <Box
+            key={borderWidth}
+            h="$20"
+            w="$20"
+            mb="$4"
+            bg="$primary500"
+            borderRadius="$lg"
+            borderColor="$purple600"
+            // @ts-ignore
+            borderWidth={`$${borderWidth}`}
+            justifyContent="center"
+            alignItems="center"
+          >
+            <Text color="$white">{borderWidth}</Text>
+          </Box>
+        );
+      })}
+    </HStack>
+  );
+};
+
+const radii = config.theme?.tokens.radii;
+const RadiiComponent = () => {
+  return (
+    <HStack
+      sx={{
+        _web: {
+          gap: 16,
+        },
+      }}
+    >
+      {Object.keys(radii).map((borderRadiusValue: any) => {
+        return (
+          <Box
+            key={borderRadiusValue}
+            h="$20"
+            w="$20"
+            mb="$4"
+            bg="$primary500"
+            // @ts-ignore
+            borderRadius={`$${borderRadiusValue}`}
+            justifyContent="center"
+            alignItems="center"
+          >
+            <Text color="$white">{borderRadiusValue}</Text>
+          </Box>
+        );
+      })}
+    </HStack>
+  );
+};
+
 export {
   ColorPaletteComponent,
   SpaceComponent,
   OpacityComponent,
   ShadowsComponent,
+  BorderWidthComponent,
+  RadiiComponent,
 };
 
 export { Text, VStack, HStack, Box };
