@@ -19,6 +19,7 @@ import {
   Text,
   Center,
   Button,
+  ButtonText,
 } from '@gluestack-ui/themed';
 import { transformedCode, transformedThemedCode } from '../../../utils';
 import Wrapper from '../../../components/Wrapper';
@@ -48,7 +49,7 @@ Easiest way to change styling of states would be using sx prop which enables sta
         backgroundColor:"$red500"
         }
       }}>
-        <Button.Text>Hello world</Button.Text>
+        <ButtonText>Hello world</ButtonText>
       </Button>
       `,
       transformCode: (code) => {
@@ -58,6 +59,7 @@ Easiest way to change styling of states would be using sx prop which enables sta
         Wrapper,
         Text,
         Button,
+        ButtonText,
       },
       argsType: {},
     }}
