@@ -5,7 +5,6 @@ import { Motion } from '@legendapp/motion';
 export default styled(
   Motion.View,
   {
-    //@ts-ignore
     ':initial': {
       opacity: 0,
       scale: 0.5,
@@ -29,23 +28,23 @@ export default styled(
     },
 
     'py': '$1',
-    'px': '$3',
+    'px': '$2',
     'borderRadius': '$sm',
-    'bg': '$backgroundLight900',
+    'bg': '$muted.800',
 
     '_text': {
-      fontSize: '$xs',
-      color: '$textLight50',
+      fontSize: '$sm',
+      color: '$text.50',
     },
 
     '_dark': {
-      bg: '$backgroundDark800',
+      bg: '$muted.50',
       _text: {
-        color: '$textDark50',
+        color: '$text.900',
       },
     },
     'defaultProps': {
-      hardShadow: '2',
+      shadow: '6',
     },
   },
   { descendantStyle: ['_text'] }

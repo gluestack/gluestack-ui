@@ -53,10 +53,10 @@ const AccessibleAlertDialogContent = forwardRef(
 );
 
 const AccessibleAlertDialogCloseButton = forwardRef(
-  ({ children, ...props }: any, ref?: any) => {
+  ({ ...props }: any, ref?: any) => {
     return (
       <AccessibleAlertDialog.CloseButton {...props} ref={ref}>
-        {children ? children : <Icon as={CloseIcon} />}
+        <Icon as={CloseIcon} />
       </AccessibleAlertDialog.CloseButton>
     );
   }
@@ -89,9 +89,9 @@ const AccessibleAlertDialogFooter = forwardRef(
 const AccessibleAlertDialogBody = forwardRef(
   ({ children, ...props }: any, ref?: any) => {
     return (
-      <AccessibleAlertDialog.Header {...props} ref={ref}>
+      <AccessibleAlertDialog.Body {...props} ref={ref}>
         {typeof children === 'string' ? <Text>{children}</Text> : children}
-      </AccessibleAlertDialog.Header>
+      </AccessibleAlertDialog.Body>
     );
   }
 );

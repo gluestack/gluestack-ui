@@ -1,5 +1,5 @@
 // import React, { useEffect, useState } from 'react';
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { createButton } from '@gluestack-ui/button';
 import {
   Root,
@@ -11,7 +11,7 @@ import {
   Icon,
 } from './styled-components';
 // import { useStyled } from '@gluestack-style/react';
-import { usePropResolution } from '../../hooks/usePropResolution';
+// import { usePropResolution } from '../../hooks/usePropResolution';
 
 export const AccessibleButton = createButton({
   Root,
@@ -23,25 +23,37 @@ export const AccessibleButton = createButton({
   Icon,
 });
 
-//@ts-ignore
-export const Button = ({ children, ...props }) => {
-  const resolvedPropForGluestack = usePropResolution(props);
+let But = AccessibleButton;
+
+const ButtonNew = forwardRef(({ children, ...props }: any, ref?: any) => {
+  // const resolvedPropForGluestack = usePropResolution(props);
 
   return (
-    <AccessibleButton {...resolvedPropForGluestack}>
+    <AccessibleButton {...props} ref={ref}>
       {typeof children === 'string' ? (
         <AccessibleButton.Text>{children}</AccessibleButton.Text>
       ) : (
-        <>{children}</>
+        { children }
       )}
     </AccessibleButton>
   );
-};
+});
+
+// export const ButtonText = forwardRef(
+//   ({ children, ...props }: any, ref?: any) => {
+//     return (
+//       <AccessibleButton.Text {...props} ref={ref}>
+//         {children}
+//       </AccessibleButton.Text>
+//     );
+//   }
+// );
 
 //@ts-ignore
-export const ButtonText = ({ children, ...props }) => {
-  return <AccessibleButton.Text {...props}>{children}</AccessibleButton.Text>;
-};
+But = { ...AccessibleButton, ...ButtonNew, Group: AccessibleButton.Group };
+
+export const Button = But;
+
 // export const ButtonGroup = Button.Group;
 // export const ButtonSpinner = Button.Spinner;
 // export const ButtonIcon = Button.Icon;

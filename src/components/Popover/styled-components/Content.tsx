@@ -5,8 +5,10 @@ import { styled } from '../../styled';
 export default styled(
   Motion.View,
   {
-    'bg': '$backgroundLight50',
-    'rounded': '$lg',
+    'bg': '$muted.50',
+    'rounded': '$md',
+    'borderWidth': 1,
+    'borderColor': '$muted.300',
     'overflow': 'hidden',
     ':initial': {
       opacity: 0,
@@ -27,11 +29,12 @@ export default styled(
       },
     },
     '_dark': {
-      bg: '$backgroundDark900',
+      bg: '$muted.800',
+      borderColor: '$muted.700',
     },
 
     'defaultProps': {
-      softShadow: '3',
+      shadow: '6',
     },
   },
   { ancestorStyle: ['_content'] }

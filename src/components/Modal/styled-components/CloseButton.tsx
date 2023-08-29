@@ -15,15 +15,15 @@ export default styled(
     },
     ':hover': {
       bg: '$muted.200',
-      _icon: {
-        color: '$muted.700',
-      },
+      // _icon: {
+      //   color: '$muted.700',
+      // },
     },
     ':active': {
       bg: '$muted.300',
-      _icon: {
-        color: '$muted.900',
-      },
+      // _icon: {
+      //   color: '$muted.900',
+      // },
     },
 
     '_dark': {
@@ -35,22 +35,22 @@ export default styled(
       },
       ':active': {
         bg: 'muted.600',
-        _icon: {
-          color: '$muted.100',
-        },
+        // _icon: {
+        //   color: '$muted.100',
+        // },
       },
     },
 
     ':focusVisible': {
       bg: '$muted.100',
-      _icon: {
-        color: '$muted.900',
-      },
+      // _icon: {
+      //   color: '$muted.900',
+      // },
       _dark: {
         bg: '$muted.700',
-        _icon: {
-          color: '$muted.100',
-        },
+        // _icon: {
+        //   color: '$muted.100',
+        // },
       },
     },
 

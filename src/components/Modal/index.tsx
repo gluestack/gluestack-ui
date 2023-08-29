@@ -51,10 +51,10 @@ const AccessibleModalContent = forwardRef(
 );
 
 const AccessibleModalCloseButton = forwardRef(
-  ({ children, ...props }: any, ref?: any) => {
+  ({ ...props }: any, ref?: any) => {
     return (
       <AccessibleModal.CloseButton {...props} ref={ref}>
-        {children ? children : <Icon as={CloseIcon} />}
+        <Icon as={CloseIcon} />
       </AccessibleModal.CloseButton>
     );
   }
@@ -87,9 +87,9 @@ const AccessibleModalFooter = forwardRef(
 const AccessibleModalBody = forwardRef(
   ({ children, ...props }: any, ref?: any) => {
     return (
-      <AccessibleModal.Header {...props} ref={ref}>
+      <AccessibleModal.Body {...props} ref={ref}>
         {typeof children === 'string' ? <Text>{children}</Text> : children}
-      </AccessibleModal.Header>
+      </AccessibleModal.Body>
     );
   }
 );

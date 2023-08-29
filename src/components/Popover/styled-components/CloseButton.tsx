@@ -6,74 +6,81 @@ export default styled(
   Pressable,
   {
     'zIndex': 1,
+    'position': 'absolute',
+    'right': '$3',
+    'top': '$3',
     'p': '$2',
     'rounded': '$sm',
     '_icon': {
-      color: '$backgroundLight400',
+      color: '$muted.500',
     },
     '_text': {
-      color: '$backgroundLight400',
+      color: '$muted.500',
     },
 
     ':hover': {
-      _icon: {
-        color: '$backgroundLight700',
-      },
-      _text: {
-        color: '$backgroundLight700',
-      },
+      bg: '$muted.200',
+      // _icon: {
+      //   color: '$muted.700',
+      // },
+      // _text: {
+      //   color: '$muted.700',
+      // },
     },
 
     ':active': {
-      _icon: {
-        color: '$backgroundLight900',
-      },
-      _text: {
-        color: '$backgroundLight900',
-      },
+      bg: '$muted.300',
+      // _icon: {
+      //   color: '$muted.900',
+      // },
+      // _text: {
+      //   color: '$muted.900',
+      // },
     },
 
     '_dark': {
       '_icon': {
-        color: '$backgroundDark400',
+        color: '$muted.400',
       },
       '_text': {
-        color: '$backgroundDark400',
+        color: '$muted.400',
       },
       ':hover': {
-        _icon: {
-          color: '$backgroundDark200',
-        },
-        _text: {
-          color: '$backgroundDark200',
-        },
+        bg: '$muted.700',
+        // _icon: {
+        //   color: '$muted.200',
+        // },
+        // _text: {
+        //   color: '$muted.200',
+        // },
       },
 
       ':active': {
-        _icon: {
-          color: '$backgroundDark100',
-        },
-        _text: {
-          color: '$backgroundDark100',
-        },
+        bg: '$muted.600',
+        // _icon: {
+        //   color: '$muted.100',
+        // },
+        // _text: {
+        //   color: '$muted.100',
+        // },
       },
     },
     ':focusVisible': {
-      bg: '$backgroundLight100',
-      _icon: {
-        color: '$backgroundLight900',
-      },
-      _text: {
-        color: '$backgroundLight900',
-      },
+      bg: '$muted.100',
+      // _icon: {
+      //   color: '$muted.900',
+      // },
+      // _text: {
+      //   color: '$muted.900',
+      // },
       _dark: {
-        bg: '$backgroundDark700',
-        _icon: {
-          color: '$backgroundLight100',
-        },
-        _text: {
-          color: '$backgroundLight100',
-        },
+        bg: '$muted.700',
+        // _icon: {
+        //   color: '$muted.100',
+        // },
+        // _text: {
+        //   color: '$muted.100',
+        // },
       },
     },
 
