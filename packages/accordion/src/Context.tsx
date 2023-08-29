@@ -34,9 +34,7 @@ export const AccordionProvider: React.FC<Props> = ({ children }: Props) => {
         //do not toggle if not collapsible
         setOpenItems((prevOpenItems: string[]) => {
           const isItemAlreadyOpen = prevOpenItems.includes(accordionValue);
-          return isItemAlreadyOpen
-            ? prevOpenItems
-            : [...prevOpenItems, accordionValue];
+          return isItemAlreadyOpen ? prevOpenItems : [accordionValue];
         });
       }
     } else {
