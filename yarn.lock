@@ -2601,18 +2601,18 @@
     "@babel/traverse" "^7.20.5"
     lodash.merge "^4.6.2"
 
-"@gluestack-style/react@0.1.33", "@gluestack-style/react@^0.1.33":
-  version "0.1.33"
-  resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-0.1.33.tgz#cd18f38bf359527e4f79d223bb07e9024f40ba4f"
-  integrity sha512-wBdoOA3i/cp0EcgJnwJgL1a8BATjbX/pCZgWm31N6sZOgCB4Phq7m0bDjfSpeJ8sKpOEDlUP5wYCo7Yww0mbqA==
+"@gluestack-style/react@^0.2.11":
+  version "0.2.11"
+  resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-0.2.11.tgz#b02419c44129931320f0bf8e20077ee9caa42a6d"
+  integrity sha512-pVzBkvN9Xwr5ik3Vh5jV6w4kzOfDe3Y+LHQZRVJFO+25PSvkArcT61Y14jOguCrh+6ka/jaX6LfQoS2Xn9TlcQ==
   dependencies:
     inline-style-prefixer "^6.0.1"
     normalize-css-color "^1.0.2"
 
-"@gluestack-style/react@^0.2.3", "@gluestack-style/react@^0.2.7":
-  version "0.2.8"
-  resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-0.2.8.tgz#5ebe19d997b513e9ba11f44a012b1dfa1c1c4c24"
-  integrity sha512-CEJ/49CFfPNm0qVYWjaKz4xHK4MqmjYZ/PbBfDOZkiEBxEpgPBx900my7brCkRzVqvJlSaa2MCqsrY2W+3nvIA==
+"@gluestack-style/react@^0.2.11-alpha.0":
+  version "0.2.11-alpha.0"
+  resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-0.2.11-alpha.0.tgz#890724f7def8e0d98108b1949c9989eaef4d689b"
+  integrity sha512-rKGIegrfpjhp32Eop/ZjIHp6JUVYNO56ONUMVQU/1cXSFueEqhhDEmh2d1Kl6nQtmyLQEdotSlpflugyTxt2QQ==
   dependencies:
     inline-style-prefixer "^6.0.1"
     normalize-css-color "^1.0.2"
@@ -3302,15 +3302,15 @@
   dependencies:
     "@gluestack-ui/utils" "^0.1.3"
 
-"@gluestack/design-system@0.4.67":
-  version "0.4.67"
-  resolved "https://registry.yarnpkg.com/@gluestack/design-system/-/design-system-0.4.67.tgz#2e79c6b912a78e68621a6a411a628ec4afcafc60"
-  integrity sha512-AJ1nlcd2aIuNP98Nt80wSsc9nfo9n9Dp3SsAnJycAaPW0RiBRcp3kHktKIBd2XEG5NYkZrlXtM8W+PwmMDw+ig==
+"@gluestack/design-system@^0.4.70":
+  version "0.4.70"
+  resolved "https://registry.yarnpkg.com/@gluestack/design-system/-/design-system-0.4.70.tgz#149947c8582d82e1753ef1ff074e7becfbfa8fc0"
+  integrity sha512-093fvEAZmZ6O9H80gWc97/ltuj+HWQvqn6CQBHquvhUXN570NoN/Vl2To+ydtNHckM9ogp3P151d77mkfxIlTg==
   dependencies:
     "@expo/html-elements" "0.3.0"
     "@gluestack-style/animation-plugin" "^0.1.7"
     "@gluestack-style/babel-plugin-styled-resolver" "^0.1.15-alpha.0"
-    "@gluestack-style/react" "^0.2.3"
+    "@gluestack-style/react" "^0.2.9"
     "@gluestack-ui/actionsheet" "^0.2.7"
     "@gluestack-ui/alert" "^0.1.4"
     "@gluestack-ui/alert-dialog" "^0.1.8"

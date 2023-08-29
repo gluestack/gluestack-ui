@@ -1,0 +1,66 @@
+---
+title: Descendants | gluestack-ui
+description: Descendants description
+pageTitle: Descendants
+pageDescription: Descendants description
+showHeader: true
+---
+
+import {
+  GluestackUIProvider,
+  Text,
+  Center,
+  Button,
+  Box,
+} from '@gluestack-ui/themed';
+import { transformedCode, transformedThemedCode } from '../../utils';
+import Wrapper from '../../components/Wrapper';
+
+import {
+  AppProvider,
+  CodePreview,
+  Table,
+  TableContainer,
+  InlineCode,
+} from '@gluestack/design-system';
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="Styling/Descendants" />
+
+## Descendants
+
+We can provide context based descendant styling with the help of gluestack-ui, i.e we can apply styles to the children of a component from the parent component.
+
+In the below example we are applying styles to ButtonText by passing styles \_text property in the sx prop of Button component.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+       <Box justifyContent="center" alignItems="center" h="100%">
+        <Box alignItems="center">
+          <Button sx={{ _text: { color: 'red' } }}>
+            <Button.Text>Button</Button.Text>
+          </Button>
+        </Box>
+      </Box>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Text,
+        Button,
+        Box,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+<br />
+
+Expo snack link for the above example is provided [here](https://snack.expo.dev/@gluestack/gluestack-ui-descendant-styles) .

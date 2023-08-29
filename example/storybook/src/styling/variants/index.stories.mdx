@@ -1,0 +1,132 @@
+---
+title: Variants | gluestack-ui
+description: Variants description
+pageTitle: Variants
+pageDescription: Variants description
+showHeader: true
+---
+
+import { Text, Center } from '@gluestack-ui/themed';
+import {
+  Box,
+  Button,
+  GluestackUIProvider,
+  config,
+  VStack,
+  ButtonText,
+} from '@gluestack-ui/themed';
+import { createConfig } from '@gluestack-ui/themed';
+import { transformedCode } from '../../utils';
+import Wrapper from '../../components/Wrapper';
+import {
+  AppProvider,
+  CodePreview,
+  Table,
+  TableContainer,
+  InlineCode,
+} from '@gluestack/design-system';
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+
+<Meta title="Styling/Variants" />
+
+## Variants
+
+Creating variants of components in a UI component library is crucial for maintaining a consistent user experience across web, IOS, and Android platforms.
+We can create different variants of components using gluestack-style.
+
+To update components styles, we need to create a new which extends the default config and we can style the components aditionally.
+
+To create a new variant of a Button Component, just import the `createConfig` function from `@gluestack-style/react` and the pass the below object to the function. Inside the components object define the component name which is imported from `@gluestack-ui/themed` library, and then all the styles that needs to be applied on the component.
+
+```jsx
+ {
+  components: {
+      Button: {
+        // write same component name which is passed in styled
+        theme: {
+          bg: '$primary500',
+          variants: {
+            variant: {
+              ghost: {
+                backgroundColor: '$red500',
+                _text: {
+                  color: '$white',
+                },
+              },
+            },
+          },
+        },
+        componentConfig: {
+          descendantStyle: ['_text'],
+        },
+      },
+    }
+  }
+```
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+     function App(){
+      {/* Creating own theme using createConfig function */}
+   const themeConfig = createConfig({
+    ...config.theme,
+    components: {
+      Button: {
+        // write same component name which is passed in styled
+        theme: {
+          bg: '$primary500',
+          variants: {
+            variant: {
+              ghost: {
+                backgroundColor: '$red500',
+                _text: {
+                  color: '$white',
+                },
+              },
+            },
+          },
+        },
+        componentConfig: {
+          descendantStyle: ['_text'],
+        },
+      },
+    },
+  });
+    return (
+ <GluestackUIProvider config={themeConfig}>
+        <Box justifyContent="center" alignItems="center" height="100%">
+          {/* Button with default theme */}
+          <Button variant="ghost">
+            <ButtonText>Hello world</ButtonText>
+          </Button>
+        </Box>
+      </GluestackUIProvider>
+);
+}
+`,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'App');
+      },
+      scope: {
+        Wrapper,
+        Text,
+        Button,
+        Box,
+        ButtonText,
+        createConfig,
+        config,
+        GluestackUIProvider,
+        VStack,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+You can refer to [this](/docs/theme/customizing-components) link for detailed information related to customizing theme of components.
+
+Refer to [this](https://snack.expo.dev/@gluestack/variants-example) for live expo snack example.

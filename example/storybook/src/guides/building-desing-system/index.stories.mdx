@@ -1,0 +1,127 @@
+---
+title: Building Design Systems | gluestack-ui
+description: Building Design Systems description
+pageTitle: Building Design Systems
+pageDescription: Building Design Systems description
+showHeader: true
+---
+
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+
+<Meta title="Guides/Building Design Systems" />
+
+## Building Design Systems
+
+Empower your development by creating a personalized design system with `gluestack-ui`.
+This enables you to build your own collection of components that match your vision.
+
+## Step 1: Create
+
+`@gluestack-ui/themed` – a meticulously organized monorepo. Begin shaping your design system by building upon this solid foundation.
+
+- This repo has a component library package `@gluestack-ui/themed` in `packages/themed`
+- This repo has a storybook setup in `example/storybook` for both React and React Native.
+
+To create your own design system using gluestack-ui, follow these steps after forking the repository:
+
+- Change library name
+
+* Open package.json-
+  navigate to the `packages/themed` of your forked repository. (You can rename the folder if you need)
+
+* Locate the name field in th package.json file and update it to `@myapp/components`
+
+```json
+//package.json
+{
+  "name": "@myapp/components"
+  // ...
+}
+```
+
+- Update `tsconfig` and `babel.config.js` in `example/storybook`.
+
+- Now this library has all primitive components from `@gluestack-ui/themed` by default.
+
+## Step 2: Configuration
+
+### Theme Tokens
+
+- To configure theme and tokens you need to follow this documentation
+
+### Components
+
+- Customize a primitive component
+  You can customize styling of all primitive components.
+
+* All styling exist in `<ComponentName>/styled-components` for a particular component. You can add and modify property value and variants based on your need.
+
+- Create a custom component.
+
+* create a folder inside `components/Circle`
+* create a folder for all styling `styled-components`
+* write styling for the component in `Root.tsx`
+
+```jsx
+export const Root = styled(View, {
+  alignItems: 'center',
+  justifyContent: 'center',
+  borderRadius: '$full',
+  overflow: 'hidden',
+  variants: {
+    size: {
+      large: {
+        width: 100,
+        height: 100,
+      },
+    },
+  },
+});
+```
+
+- For other like accessibility, events and other hooks create an index.tsx file and export this from here
+
+```jsx
+import { Root } from './styled-components';
+
+const Circle = (props) => {
+  return <Root {...props}>{props.children}</Root>;
+};
+```
+
+- And then export from index.tsx:
+
+```jsx
+export * from './Circle';
+```
+
+## Step 3: Test
+
+In your storybook now you can import `Circle` component from your `@myapp/components` in storybook
+
+```jsx
+import { Circle } from '@myapp/components';
+export default () => <Circle size="large" />;
+```
+
+## Step 4: Publish
+
+Now you can publish your design system.
+
+## Step 5: Usage
+
+Now to use `@myapp/components` in your app you need add it to your package.json and update your configuration.
+
+`next.config.js`
+
+```jsx
+/** @type {import('next').NextConfig} */
+const { withGluestackUI } = require('@gluestack/ui-next-adapter');
+
+const nextConfig = {
+  reactStrictMode: true,
+  transpilePackages: ['@myapp/components'],
+};
+
+module.exports = withGluestackUI(nextConfig);
+```

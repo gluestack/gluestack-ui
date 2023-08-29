@@ -1,0 +1,89 @@
+---
+title: Responsive | gluestack-ui
+description: Responsive description
+pageTitle: Responsive
+pageDescription: Responsive description
+showHeader: true
+---
+
+import { Meta } from '@storybook/addon-docs';
+
+import {
+  GluestackUIProvider,
+  Text,
+  Box,
+  Center,
+  Button,
+} from '@gluestack-ui/themed';
+import { transformedCode, transformedThemedCode } from '../../utils';
+import Wrapper from '../../components/Wrapper';
+
+import {
+  AppProvider,
+  CodePreview,
+  Table,
+  TableContainer,
+  InlineCode,
+} from '@gluestack/design-system';
+
+<Meta title="Styling/Responsive" />
+
+## Responsive
+
+gluestack-ui components are responsive, to manage that we define different breakpoints according to which styles are applied.
+
+By default gluestack-style provide basic breakpoint.
+
+```jsx
+mediaQueries: {
+  base: '@media screen and (min-width: 0)',
+  sm: '@media screen and (min-width: 480px)',
+  md: '@media screen and (min-width: 768px)',
+  lg: '@media screen and (min-width: 992px)',
+  xl: '@media screen and (min-width: 1280px)',
+},
+```
+
+We can apply different styling based on different breakpoints like done in below example. In the above example in the sx props we are defining different styles for different breakpoints.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+      <Box justifyContent="center" alignItems="center" h="100%">
+        <Box
+          sx={{
+            '@base': {
+              bg: '$red500',
+            },
+            '@md': {
+              bg: '$green500',
+            },
+            '@lg': {
+              bg: '$blue500',
+            },
+          }}
+          alignItems="center"
+        >
+          <Text>This is a box</Text>
+        </Box>
+      </Box>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Text,
+        Box,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+<br />
+
+Expo snack link for the above example is provided [here](https://snack.expo.dev/@gluestack/gluestack-ui-responsive-style).
