@@ -81,7 +81,7 @@ function Card2() {
           },
         }}
       >
-        <Link href="https://ui.gluestack.io/docs/guides/install-nextjs">
+        <Link href="https://codesandbox.io/p/sandbox/github/gluestack/ui-codesandbox-template/tree/main">
           <Box p={'$6'}>
             <VStack space="md">
               <HStack alignItems="center" space="md">

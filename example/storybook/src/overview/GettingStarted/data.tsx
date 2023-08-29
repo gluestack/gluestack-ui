@@ -33,7 +33,7 @@ export const communities = [
   {
     name: 'Stackoverflow',
     icon: <Stackoverflow />,
-    link: 'https://discord.gg/95qQ84nf6f',
+    link: 'https://stackoverflow.com/questions/tagged/gluestack',
     description:
       'Receive firsthand assistance from our community of developers.',
   },
