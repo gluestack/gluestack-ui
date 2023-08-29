@@ -45,7 +45,6 @@ export const parameters = {
           'Platform Specific',
           'Variants',
         ],
-
         'Components',
         [
           'Provider',
@@ -98,7 +97,7 @@ export const parameters = {
         'Configuration',
         ['Server-Side Rendering', 'React Server Components'],
         'Advanced',
-        ['Fonts', 'Animations', 'CLI'],
+        ['Fonts', 'Animations'],
         'Recipes',
         ['Card'],
         'Resources',
