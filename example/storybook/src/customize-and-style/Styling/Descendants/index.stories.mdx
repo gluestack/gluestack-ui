@@ -16,6 +16,7 @@ import {
   Center,
   Button,
   Box,
+  ButtonText,
 } from '@gluestack-ui/themed';
 import { transformedCode, transformedThemedCode } from '../../../utils';
 import Wrapper from '../../../components/Wrapper';
@@ -46,7 +47,7 @@ In the below example we are applying styles to ButtonText by passing styles \_te
        <Box justifyContent="center" alignItems="center" h="100%">
         <Box alignItems="center">
           <Button sx={{ _text: { color: 'red' } }}>
-            <Button.Text>Button</Button.Text>
+            <ButtonText>Button</ButtonText>
           </Button>
         </Box>
       </Box>
@@ -59,6 +60,7 @@ In the below example we are applying styles to ButtonText by passing styles \_te
         Text,
         Button,
         Box,
+        ButtonText,
       },
       argsType: {},
     }}
