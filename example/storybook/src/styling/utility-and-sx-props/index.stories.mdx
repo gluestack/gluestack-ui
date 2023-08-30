@@ -221,8 +221,8 @@ The above example demonstrates the usage of [utility props]("/docs/styling/utili
 
 # SX Prop
 
-gluestack-style supports the sx prop for overriding styles.The sx prop enables passing an object supporting tokens, media queries, nesting, and token-aware values to the component.
-sx accepts the same style object as the base style.
+gluestack-style supports the `sx` prop for overriding styles.The `sx` prop enables passing an object supporting tokens, media queries, nesting, and token-aware values to the component.
+`sx` accepts the same style object as the base style.
 
 <AppProvider>
   <CodePreview
@@ -256,12 +256,12 @@ sx accepts the same style object as the base style.
   />
 </AppProvider>
 
-In this example, the button has a pink background instead of the default primary color, as the backgroundColor style is overridden using the sx prop
-The sx prop is particularly useful for theming and responsive styles, as it enables easy style changes for a component based on the theme or viewport size
-It is important to note that you should generally avoid using the sx prop, as it adds complexity to style calculations and may decrease performance
+In this example, the button has a pink background instead of the default primary color, as the backgroundColor style is overridden using the `sx` prop.
+The `sx` prop is particularly useful for theming and responsive styles, as it enables easy style changes for a component based on the theme or viewport size.
+It is important to note that you should generally avoid using the `sx` prop, as it adds complexity to style calculations and may decrease performance.
 
-Apart from productivity boosts and saving time, there are other benefits to styling components using utility props and sx prop. No need to name styles anymore, no need to define an object and think about naming it.
-Using utility-first and sx props, you can focus on creating reusable components instead of reusable stylesheets.Once you start writing styles this way, any other way will feel cumbersome.
+Apart from productivity boosts and saving time, there are other benefits to styling components using utility props and `sx` prop. No need to name styles anymore, no need to define an object and think about naming it.
+Using utility-first and `sx` props, you can focus on creating reusable components instead of reusable stylesheets.Once you start writing styles this way, any other way will feel cumbersome.
 
 ## Supported Utility Props
 
