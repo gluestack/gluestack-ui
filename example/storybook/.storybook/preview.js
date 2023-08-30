@@ -101,7 +101,7 @@ export const parameters = {
         'Recipes',
         ['Card'],
         'Resources',
-        ['Todo-List', 'Kitchen Sink'],
+        ['Todo-List', 'Dashboard App'],
         'Migration',
         ['NativeBase to gluestack-ui'],
         'More',
