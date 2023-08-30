@@ -19,10 +19,10 @@ import {
 # Theme Tokens
 
 gluestack-ui components internally utilize theme tokens by consuming them within all styled components.
-Theme and token configurations are exported under the name `config` from the `@gluestack-ui/themed` . This `config` can be passed to the `GluestackUIProvider`, allowing you to provide the necessary theme and styling information for the gluestack-ui components. This approach enables a centralized and consistent theming system across your application's UI components.
+Theme and token configurations are exported under the name `config` from the `@gluestack-ui/themed`. This `config` can be passed to the `GluestackUIProvider`, enabling you to provide the necessary theme and styling information for the gluestack-ui components. This approach enables a centralized and consistent theming system across your application's UI components.
 
 ```jsx
-import { config, GluestackUIProvider } from 'gluestack-ui/react';
+import { config, GluestackUIProvider } from 'gluestack-ui/themed';
 
 function App() {
   return (
@@ -37,12 +37,12 @@ For the latest theme configurations, you can refer to the following link: [glues
 
 # Update Tokens
 
-If you are using default config provided by `@gluestack-ui/themed`, you can directly update the version of `@gluestack-ui/themed`.
+If you are using the default config provided by `@gluestack-ui/themed`, you can directly update the version of `@gluestack-ui/themed`.
 
-You can also create a custom theme using `createConfig` from `@gluestack-style/react` and pass it to `GluestackUIProvider`.
+You can also create a custom theme using `createConfig` from `@gluestack-style/themed` and pass it to `GluestackUIProvider`.
 
 ```jsx
-import { createConfig } from 'gluestack-style/react';
+import { createConfig } from 'gluestack-style/themed';
 
 const customTheme = createConfig({
   aliases: {
