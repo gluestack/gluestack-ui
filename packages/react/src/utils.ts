@@ -390,13 +390,19 @@ export function addThemeConditionInMeta(originalThemeObject: any, CONFIG: any) {
       Object.keys(theme).forEach((tokenScale: any) => {
         const tokenScaleValue = theme[tokenScale];
         Object.keys(tokenScaleValue).forEach((token: any) => {
+          if (!themeObject.meta.themeCondition[themeName]) {
+            themeObject.meta.themeCondition[themeName] = {};
+          }
           if (themeObject.original[resolvedToken] === token) {
-            themeObject.meta.themeCondition[themeName] = resolvedTokenization(
-              {
-                [resolvedToken]: tokenScaleValue[token],
-              },
-              CONFIG
-            );
+            themeObject.meta.themeCondition[themeName] = {
+              ...themeObject.meta.themeCondition[themeName],
+              ...resolvedTokenization(
+                {
+                  [resolvedToken]: tokenScaleValue[token],
+                },
+                CONFIG
+              ),
+            };
           }
         });
       });

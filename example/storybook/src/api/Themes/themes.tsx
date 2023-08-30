@@ -1,27 +1,18 @@
 import React from 'react';
-import { View, Text as RNText } from 'react-native';
+import { View, Text as RNText, Pressable } from 'react-native';
 import { styled, StyledProvider, Theme } from '@gluestack-style/react';
 import { Wrapper } from '../../components/Wrapper';
 
-const StyledButton = styled(
-  View,
+const StyledLinkButton = styled(
+  Pressable,
   {
     borderRadius: 4,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
     m: '$3',
+    bg: '$backgroundDark300',
     variants: {
-      variant: {
-        redbox: {
-          'bg': '$red400',
-          'px': '$4',
-          'py': '$3',
-          ':hover': {
-            bg: '$amber500',
-          },
-        },
-      },
       size: {
         sm: {
           px: '$4',
@@ -31,30 +22,8 @@ const StyledButton = styled(
           px: '$5',
           py: '$4',
         },
-        naya: {},
       },
     },
-    compoundVariants: [
-      {
-        variant: 'redbox',
-        size: 'md',
-        value: {
-          'borderWidth': 2,
-          ':hover': {
-            bg: '$blue400',
-          },
-        },
-      },
-      {
-        variant: 'redbox',
-        size: 'md',
-        value: {
-          borderWidth: 2,
-          borderColor: '$amber200',
-          bg: '$amber400',
-        },
-      },
-    ],
 
     defaultProps: {
       size: 'md',
@@ -69,6 +38,8 @@ const Box = styled(View, {});
 const Text = styled(RNText, { color: '$textColor' });
 
 export function Themes({ ...args }) {
+  const [theme, setTheme] = React.useState('2000s');
+  const themes = ['2000s', '2010s', '2020s'];
   return (
     <Wrapper>
       <View
@@ -77,13 +48,34 @@ export function Themes({ ...args }) {
           alignItems: 'center',
         }}
       >
-        <Theme>
-          <Box>
-            <Box>
-              <Text>Header</Text>
+        <Theme name={theme}>
+          <Box
+            h="200px"
+            w="400px"
+            bg="$backgroundDark100"
+            borderWidth="$borderWidth"
+            borderColor="$borderColor"
+            borderRadius={'$borderRadius'}
+            overflow="hidden"
+          >
+            <Box flexDirection="row" p="$2" w="$full" bg="$headerColor">
+              <Text color="$textColor">Header {theme}</Text>
+              <Box flex={1}></Box>
+              <Text>X</Text>
             </Box>
           </Box>
         </Theme>
+        <Box flexDirection="row">
+          {themes.map((theme) => (
+            <StyledLinkButton
+              key={theme}
+              onPress={() => setTheme(theme)}
+              size="sm"
+            >
+              <Text>{theme}</Text>
+            </StyledLinkButton>
+          ))}
+        </Box>
       </View>
     </Wrapper>
   );

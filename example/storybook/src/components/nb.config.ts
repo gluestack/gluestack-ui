@@ -64,6 +64,14 @@ export const config = createConfig({
   tokens: {
     colors: {
       backgroundColor: '#ffffff',
+      backgroundColorAlpha10: '#ffffff1a',
+      backgroundColorAlpha20: '#ffffff33',
+      backgroundColorAlpha30: '#ffffff4d',
+      backgroundColorAlpha40: '#ffffff66',
+      backgroundColorAlpha50: '#ffffff80',
+      headerColor: '#e11d48',
+      textColor: '#000000',
+      borderColor: '#000000',
       rose50: '#fff1f2',
       rose100: '#ffe4e6',
       rose200: '#fecdd3',
@@ -544,6 +552,7 @@ export const config = createConfig({
       'full': '100%',
     },
     borderWidths: {
+      'borderWidth': 1,
       '0': 0,
       '1': 1,
       '2': 2,
@@ -551,7 +560,7 @@ export const config = createConfig({
       '8': 8,
     },
     radii: {
-      'borderRoundness': 0,
+      'borderRadius': 0,
       'none': 0,
       'xs': 2,
       'sm': 4,
@@ -647,42 +656,47 @@ export const config = createConfig({
       100: 1,
     },
   } as const,
-  components: {
-    Box: {
-      theme: {
-        'bg': '$green500',
-        ':hover': {
-          bg: '$gray600',
-        },
-        '_dark': {
-          bg: '$yellow500',
-        },
-        '_text': {
-          color: '$red500',
-        },
-      },
-      componentConfig: {
-        descendantStyle: ['_text'],
-      },
-    },
-  },
   themes: {
-    x: {
+    '2000s': {
       colors: {
-        $backgroundColor: '#ffff6f',
-        $backgroundColorDark: '#ff2f6f',
+        $backgroundColor: '#ffffff',
+        $headerColor: '#e11d48',
+        $textColor: '#ffffff',
+        $borderColor: '$colors$gray400',
+      },
+      borderWidths: {
+        $borderWidth: '$space$0.5',
       },
       radii: {
-        $borderRoundness: '1',
+        $borderRadius: '$radii$sm',
       },
     },
-    y: {
+    '2010s': {
       colors: {
-        $backgroundColorDark: '#ff2f6f',
-        $backgroundColor: '#000000',
+        $backgroundColor: '#ffffff',
+        $headerColor: '#e11d48',
+        $textColor: '#000000',
+        $borderColor: '#000000',
+      },
+      borderWidths: {
+        $borderWidth: '$space$0.5',
       },
       radii: {
-        $borderRoundness: '1',
+        $borderRadius: '$radii$lg',
+      },
+    },
+    '2020s': {
+      colors: {
+        $backgroundColor: '#ffffff',
+        $headerColor: '#e11d487a',
+        $textColor: '#e41d4f',
+        $borderColor: '#000000',
+      },
+      borderWidths: {
+        $borderWidth: '$space$0',
+      },
+      radii: {
+        $borderRadius: '$radii$xl',
       },
     },
   },
