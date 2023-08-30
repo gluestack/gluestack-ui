@@ -27,8 +27,11 @@ export function getCSSIdAndRuleset(
   } else if (styleValueResolvedWithMeta.meta.colorMode) {
     toBeInjectedStyle.colorMode = styleValueResolvedWithMeta.meta.colorMode;
   }
+  // @ts-ignore
   if (styleValueResolvedWithMeta.meta.themeCondition) {
+    // @ts-ignore
     toBeInjectedStyle.themeCondition =
+      // @ts-ignore
       styleValueResolvedWithMeta.meta.themeCondition;
   }
 
@@ -45,7 +48,6 @@ export function getCSSIdAndRuleset(
     prefixClassName,
     hasState
   );
-  // console.log(cssObject);
 
   // var hr = stableHash({ hello: 'helloworld' });
 

@@ -917,7 +917,6 @@ export function verboseStyled<P, Variants>(
       [],
       componentExtendedConfig
     );
-    // console.log(sxStyledResolved);
 
     let componentTheme: any =
       // @ts-ignore
@@ -1543,10 +1542,6 @@ export function verboseStyled<P, Variants>(
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [states]);
 
-    // useEffect(() => {
-    //   CONFIG = JSON.parse(JSON.stringify({ ...styledContext.config }));
-    //   console.log('THeme changes', styledContext.config);
-    // }, [activeTheme]);
     // 600ms
     const descendantCSSIds = useMemo(() => {
       if (!containsDescendant) {
