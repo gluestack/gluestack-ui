@@ -29,8 +29,9 @@ export const parameters = {
         'Theme',
         [
           'Overview',
-          'Default Tokens',
-          'Customizing Tokens',
+          'Theme Tokens',
+          'Default Theme',
+          'Customizing Theme',
           'Customizing Fonts',
           'Customizing Components',
         ],
