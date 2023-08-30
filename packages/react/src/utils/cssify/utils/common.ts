@@ -14,7 +14,7 @@ const createCssRule = (
   prefixColorMode: string,
   hasState: boolean,
   themeCondition: any,
-  themeCss: any
+  themeCssObj: any
 ) => {
   const dataMediaSelector = `[data-${dataType}~="${stringHash}"]`;
   const stateRulePrefix = hasState ? '.gs' : '';
@@ -30,65 +30,24 @@ const createCssRule = (
   } else if (isMedia(mediaQuery)) {
     rule = `${mediaQuery} {${inlineAndStatePrefix} ${dataMediaSelector} ${css}}`;
   } else if (isColorScheme(colorSchemeQuery)) {
-    console.log(
-      '>>><<<',
-      colorModeRulePrefix,
-      css,
-      themeCondition,
-      '>>><<<',
-      // rule,
-      // JSON.stringify(colorModeRulePrefix),
-      // inlineAndStatePrefix,
-      dataMediaSelector,
-      mediaQuery,
-      `${inlineAndStatePrefix}${colorModeRulePrefix} ${dataMediaSelector} ${css}`
-      // inlineRulePrefix
-      // `${colorModeRulePrefix}${inlineAndStatePrefix} [data-theme-id~="${themeName}"] ${dataMediaSelector} ${css}`
-    );
     rule = `${inlineAndStatePrefix}${colorModeRulePrefix} ${dataMediaSelector} ${css}`;
-  }
-  // else if(themeCondition) {
-
-  //   rule = `${inlineAndStatePrefix} ${dataMediaSelector}${mediaQuery} ${css}`;
-  // }
-  else {
+  } else {
     rule = `${inlineAndStatePrefix}${
       Object.keys(themeCondition).length === 0 ? inlineAndStatePrefix : ''
     } ${dataMediaSelector}${mediaQuery} ${css}`;
   }
-  //   //         `[data-theme-id~="${themeName}"] ${dataMediaSelector} ${themeCss[themeName]}
-  //   // ${inlineAndStatePrefix} [data-theme-id~="${themeName}"] ${dataMediaSelector} ${themeCss[themeName]}
-  //   // .gs-dark ${inlineAndStatePrefix} [data-theme-id~="${themeName}"] ${dataMediaSelector} ${themeCss[themeName]}
-  //   // .gs-light ${inlineAndStatePrefix} [data-theme-id~="${themeName}"] ${dataMediaSelector} ${themeCss[themeName]}
-  //   // .gs-dark${inlineAndStatePrefix} [data-theme-id~="${themeName}"] ${dataMediaSelector} ${css}
-  //   // .gs-light${inlineAndStatePrefix} [data-theme-id~="${themeName}"] ${dataMediaSelector} ${css}
-  //   //  `
-  // );
 
   if (themeCondition) {
-    // if (themeCondition) {
-
     const themeConditionString = Object.keys(themeCondition)
       .map((themeName) => {
-        // console.log(
-        //   '>>><<<',
-        //   css,
-        //   JSON.stringify(colorModeRulePrefix),
-        //   inlineAndStatePrefix
-        //   // `${colorModeRulePrefix}${inlineAndStatePrefix} [data-theme-id~="${themeName}"] ${dataMediaSelector} ${themeCss[themeName]}`
-        // );
         return `
-        [data-theme-id~="${themeName}"] ${dataMediaSelector} ${themeCss[themeName]}
-        ${inlineAndStatePrefix} [data-theme-id~="${themeName}"] ${dataMediaSelector} ${themeCss[themeName]}
-        ${colorModeRulePrefix}${inlineAndStatePrefix} [data-theme-id~="${themeName}"] ${dataMediaSelector} ${themeCss[themeName]}
+        [data-theme-id~="${themeName}"] ${dataMediaSelector} ${themeCssObj[themeName]}
+        ${inlineAndStatePrefix} [data-theme-id~="${themeName}"] ${dataMediaSelector} ${themeCssObj[themeName]}
+        ${colorModeRulePrefix}${inlineAndStatePrefix} [data-theme-id~="${themeName}"] ${dataMediaSelector} ${themeCssObj[themeName]}
         `;
       })
       .join('\n');
-    // .gs-dark  [data-theme-id~="${themeName}"] ${dataMediaSelector} ${themeCss[themeName]}
-    // .gs-light [data-theme-id~="${themeName}"] ${dataMediaSelector} ${themeCss[themeName]}
-    // .gs-dark${inlineAndStatePrefix} [data-theme-id~="${themeName}"] ${dataMediaSelector} ${css}
-    // .gs-light${inlineAndStatePrefix} [data-theme-id~="${themeName}"] ${dataMediaSelector} ${css}
-    // }
+    // themeCondition is of higher specificity than the rest of the rules
     rule = ` \n${themeConditionString}\n ${rule} `;
   }
 

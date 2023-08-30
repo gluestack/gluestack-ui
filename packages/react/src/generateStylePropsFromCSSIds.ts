@@ -138,7 +138,6 @@ export function generateStylePropsFromCSSIds(
     ? props?.style
     : [props?.style];
 
-  // console.log(styleCSSIds, 'style css id');
   // for RN
   const styleObj: any = [];
   let styleCSSIdsString: any = '';
@@ -148,7 +147,6 @@ export function generateStylePropsFromCSSIds(
       const nativeStyleMap = GluestackStyleSheet.getStyleMap();
       styleCSSIds.forEach((cssId: any) => {
         const nativeStyle = nativeStyleMap.get(cssId);
-
         if (nativeStyle) {
           const queryCondition = nativeStyle?.meta?.queryCondition;
           const styleSheetIds = nativeStyle?.value;
@@ -162,7 +160,6 @@ export function generateStylePropsFromCSSIds(
             styleObj.push(styleSheet);
           }
           if (nativeStyle.meta.themeCondition && activeTheme) {
-            console.log(activeTheme);
             styleObj.push({
               ...nativeStyle.meta.themeCondition[activeTheme],
             });

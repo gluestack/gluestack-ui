@@ -3,9 +3,8 @@ import type { OrderedSXResolved } from '../types';
 import { getCSSIdAndRuleset } from '../updateCSSStyleInOrderedResolved.web';
 import {
   deepMerge,
-  resolveStringToken,
   resolveTokensFromConfig,
-  resolvedTokenization,
+  addThemeConditionInMeta,
 } from '../utils';
 import { inject } from '../utils/css-injector';
 export type DeclarationType = 'boot' | 'forwarded';
@@ -54,8 +53,6 @@ export class StyleInjector {
     const toBeInjected: any = {};
 
     cssIds?.forEach((cssId: string) => {
-      console.log('THememmmmmm', cssId, this.#globalStyleMap.get(cssId));
-
       if (this.#globalStyleMap.get(cssId)) {
         const styledResolved = this.#globalStyleMap.get(cssId);
         const theme = styledResolved?.original;
@@ -70,7 +67,6 @@ export class StyleInjector {
             declarationType
           );
         }
-        // console.log('THememmmmmm', toBeInjected);
 
         if (!toBeInjected[styledResolved.type])
           toBeInjected[styledResolved.type] = {};
@@ -134,28 +130,7 @@ export class StyleInjector {
       theme,
       componentExtendedConfig
     );
-    componentTheme.meta.themeCondition = {};
-    // Creating theme conditions for theme
-    Object.keys(componentTheme.original).forEach((resolvedToken: any) => {
-      Object.keys(CONFIG.themes).forEach((themeName: any) => {
-        let theme = CONFIG.themes[themeName];
-        Object.keys(theme).forEach((tokenScale: any) => {
-          const tokenScaleValue = theme[tokenScale];
-          Object.keys(tokenScaleValue).forEach((token: any) => {
-            if (componentTheme.original[resolvedToken] === token) {
-              componentTheme.meta.themeCondition[themeName] =
-                resolvedTokenization(
-                  {
-                    [resolvedToken]: tokenScaleValue[token],
-                  },
-                  CONFIG
-                );
-            }
-          });
-        });
-      });
-      // componentTheme.original[originalToken] = resolveStringToken();
-    });
+    addThemeConditionInMeta(componentTheme, CONFIG);
 
     // delete componentTheme.meta.cssRuleset;
 

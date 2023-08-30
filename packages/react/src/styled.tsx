@@ -20,7 +20,7 @@ import {
   resolveStringToken,
   shallowMerge,
   deepMergeArray,
-  resolvedTokenization,
+  addThemeConditionInMeta,
 } from './utils';
 import { convertUtilityPropsToSX } from './core/convert-utility-to-sx';
 import { useStyled } from './StyledProvider';
@@ -917,47 +917,19 @@ export function verboseStyled<P, Variants>(
       [],
       componentExtendedConfig
     );
-    console.log(
-      '@@#',
-      sxStyledResolved,
-      JSON.stringify(sxStyledResolved, null, 2)
-    );
     // console.log(sxStyledResolved);
-    sxStyledResolved.baseStyle.styledValueResolvedWithMeta.meta.themeCondition =
-      {};
-    const componentTheme: any =
-      sxStyledResolved.baseStyle.styledValueResolvedWithMeta;
-    Object.keys(componentTheme.original).forEach((resolvedToken: any) => {
-      Object.keys(CONFIG.themes).forEach((themeName: any) => {
-        let theme = CONFIG.themes[themeName];
-        Object.keys(theme).forEach((tokenScale: any) => {
-          const tokenScaleValue = theme[tokenScale];
-          Object.keys(tokenScaleValue).forEach((token: any) => {
-            if (componentTheme.original[resolvedToken] === token) {
-              componentTheme.meta.themeCondition[themeName] =
-                resolvedTokenization(
-                  {
-                    [resolvedToken]: tokenScaleValue[token],
-                  },
-                  CONFIG
-                );
-            }
-          });
-        });
-      });
 
-      // componentTheme.original[originalToken] = resolveStringToken();
-    });
+    let componentTheme: any =
+      // @ts-ignore
+      sxStyledResolved.baseStyle.styledValueResolvedWithMeta;
+
+    // sxStyledResolved.baseStyle.styledValueResolvedWithMeta =
+    addThemeConditionInMeta(componentTheme, CONFIG);
 
     const colorModeComponentThemes: any = sxStyledResolved.baseStyle?.colorMode;
     if (colorModeComponentThemes) {
       Object.keys(colorModeComponentThemes).forEach(
         (colorModeComponentTheme: any) => {
-          // console.log(
-          //   '@@#>>',
-          //   colorModeComponentThemes[colorModeComponentTheme]
-          //     .styledValueResolvedWithMeta.meta.t
-          // );
           if (
             !colorModeComponentThemes[colorModeComponentTheme]
               .styledValueResolvedWithMeta?.meta.themeCondition
@@ -967,30 +939,11 @@ export function verboseStyled<P, Variants>(
             ].styledValueResolvedWithMeta.meta.themeCondition = {};
           }
 
-          const componentTheme: any =
+          let componentTheme: any =
             colorModeComponentThemes[colorModeComponentTheme]
               .styledValueResolvedWithMeta;
-          Object.keys(componentTheme.original).forEach((resolvedToken: any) => {
-            Object.keys(CONFIG.themes).forEach((themeName: any) => {
-              let theme = CONFIG.themes[themeName];
-              Object.keys(theme).forEach((tokenScale: any) => {
-                const tokenScaleValue = theme[tokenScale];
-                Object.keys(tokenScaleValue).forEach((token: any) => {
-                  if (componentTheme.original[resolvedToken] === token) {
-                    componentTheme.meta.themeCondition[themeName] =
-                      resolvedTokenization(
-                        {
-                          [resolvedToken]: tokenScaleValue[token],
-                        },
-                        CONFIG
-                      );
-                  }
-                });
-              });
-            });
 
-            // componentTheme.original[originalToken] = resolveStringToken();
-          });
+          addThemeConditionInMeta(componentTheme, CONFIG);
         }
       );
     }
@@ -1078,12 +1031,6 @@ export function verboseStyled<P, Variants>(
 
     const COLOR_MODE: any = get();
 
-    // console.log(
-    //   JSON.stringify(themes),
-    //   JSON.stringify(CONFIG.tokens.colors.amber50),
-    //   activeTheme
-    // );
-
     if (!styleHashCreated) {
       CONFIG = JSON.parse(
         JSON.stringify({
@@ -1091,19 +1038,7 @@ export function verboseStyled<P, Variants>(
           propertyTokenMap,
         })
       );
-      // if (activeTheme) {
-      //   // console.log(CONFIG, activeTheme, 'CONFIG');
-      //   CONFIG = {
-      //     ...CONFIG,
-      //     ...CONFIG.themes[activeTheme],
-      //   };
-      // }
-      // const themes = { ...CONFIG.themes[activeTheme] };
-      // if (!activeTheme) {
-      //   console.log();
-      // }
 
-      // const themes = CONFIG.themes[activeTheme];
       const EXTENDED_THEME =
         componentName && CONFIG?.components?.[componentName]?.theme?.theme;
 
@@ -1674,30 +1609,6 @@ export function verboseStyled<P, Variants>(
     if (Platform.OS === 'web') {
       resolvedStyleMemo = StyleSheet.flatten(resolvedStyleMemo);
     }
-
-    // if (componentProps.debug === 'BOX_TEST') {
-    //   return (
-    //     <Component {...resolvedStyleProps} style={resolvedStyleMemo} ref={ref}>
-    //       {children}
-    //     </Component>
-    //   );
-    // }
-    // if (componentProps.debug === 'BOX_TEST') {
-    //   // if (!AsComp) {
-    //   // console.log(componentProps, 'component props');
-    //   return (
-    //     <Component {...resolvedStyleProps} style={resolvedStyleMemo} ref={ref}>
-    //       {children}
-    //     </Component>
-    //   );
-    //   // } else {
-    //   //   return (
-    //   //     <AsComp {...resolvedStyleProps} style={resolvedStyleMemo} ref={ref}>
-    //   //       {children}
-    //   //     </AsComp>
-    //   //   );
-    //   // }
-    // }
 
     const component = !AsComp ? (
       <Component {...resolvedStyleProps} style={resolvedStyleMemo} ref={ref}>

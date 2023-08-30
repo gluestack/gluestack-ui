@@ -379,3 +379,28 @@ export function extractWidthValues(condition: string) {
 
   return widthValues;
 }
+
+export function addThemeConditionInMeta(originalThemeObject: any, CONFIG: any) {
+  let themeObject = originalThemeObject;
+  themeObject.meta.themeCondition = {};
+  // Creating theme conditions for theme
+  Object.keys(themeObject.original).forEach((resolvedToken: any) => {
+    Object.keys(CONFIG.themes).forEach((themeName: any) => {
+      let theme = CONFIG.themes[themeName];
+      Object.keys(theme).forEach((tokenScale: any) => {
+        const tokenScaleValue = theme[tokenScale];
+        Object.keys(tokenScaleValue).forEach((token: any) => {
+          if (themeObject.original[resolvedToken] === token) {
+            themeObject.meta.themeCondition[themeName] = resolvedTokenization(
+              {
+                [resolvedToken]: tokenScaleValue[token],
+              },
+              CONFIG
+            );
+          }
+        });
+      });
+    });
+  });
+  return themeObject;
+}

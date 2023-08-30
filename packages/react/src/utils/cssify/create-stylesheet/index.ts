@@ -27,14 +27,13 @@ const createStyleSheet = (
 
     const css = createDeclarationBlock(style);
 
-    const themeCss = {} as any;
+    const themeCssObj = {} as any;
     if (themeCondition) {
       Object.keys(themeCondition).forEach((themeName) => {
         const themeConditionValue = themeCondition[themeName];
-        themeCss[themeName] = createDeclarationBlock(themeConditionValue);
+        themeCssObj[themeName] = createDeclarationBlock(themeConditionValue);
       });
     }
-    // console.log('themeCondition', themeCondition, themeCss);
     // console.log(css, style, 'css', mediaQuery, 'mediaQuery', colorSchemeQuery);
 
     // const stringHash = `cssinjected-${hash(`${key}${css}`)}`;
@@ -50,7 +49,7 @@ const createStyleSheet = (
       prefixColorMode,
       hasState,
       themeCondition,
-      themeCss
+      themeCssObj
     );
 
     // console.log('hello css object', colorSchemeQuery, css, rule);
