@@ -1,5 +1,7 @@
 import { Root, Content, Text } from './styled-components';
 import { createTooltip } from '@gluestack-ui/tooltip';
+// import type { InterfaceTooltipProps } from '@gluestack-ui/tooltip/lib/typescript/types';
+
 import { styled } from '../styled';
 import React, { cloneElement, forwardRef } from 'react';
 
@@ -11,8 +13,15 @@ export const AccessibleTooltip = createTooltip({
   AnimatePresence: styled.Component,
 });
 
+type ParameterTypesOLD = Omit<
+  Parameters<typeof AccessibleTooltip>[0],
+  'trigger'
+>;
+
+type ParameterTypesNEW = ParameterTypesOLD & { label: string };
+
 const TooltipNew = forwardRef(
-  ({ children, label, ...props }: any, ref?: any) => {
+  ({ children, label, ...props }: ParameterTypesNEW, ref?: any) => {
     return (
       <AccessibleTooltip
         {...props}
@@ -29,4 +38,4 @@ const TooltipNew = forwardRef(
   }
 ) as any;
 
-export const Tooltip = TooltipNew as typeof AccessibleTooltip;
+export const Tooltip = TooltipNew as React.FC<ParameterTypesNEW>;
