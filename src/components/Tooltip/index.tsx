@@ -20,7 +20,7 @@ type ParameterTypesOLD = Omit<
 
 type ParameterTypesNEW = ParameterTypesOLD & { label: string };
 
-const TooltipNew = forwardRef(
+export const Tooltip = forwardRef(
   ({ children, label, ...props }: ParameterTypesNEW, ref?: any) => {
     return (
       <AccessibleTooltip
@@ -36,6 +36,4 @@ const TooltipNew = forwardRef(
       </AccessibleTooltip>
     );
   }
-) as any;
-
-export const Tooltip = TooltipNew as React.FC<ParameterTypesNEW>;
+);
