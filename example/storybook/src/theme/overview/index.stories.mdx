@@ -16,7 +16,7 @@ Use config prop in `GluestackUIProvider` to change look and feel of your applica
 The `@gluestack-ui/themed` package comes with a pre-configured default theme, seamlessly integrated within the GluestackUIProvider.
 
 ```jsx
-import { GlueStackUIProvider } from '@gluestack-ui/themed';
+import { GluestackUIProvider } from '@gluestack-ui/themed';
 
 function App({ children }) {
   return <GluestackUIProvider>{children}</GluestackUIProvider>;
@@ -30,7 +30,7 @@ You can also customize your own theme by extending default theme by using create
 ```jsx
 import {
   config,
-  GlueStackUIProvider,
+  GluestackUIProvider,
   createConfig,
   Box,
 } from '@gluestack-ui/themed';
@@ -63,7 +63,7 @@ You can add custom theme for components by extending default config and adding t
 import {
   createConfig,
   config,
-  GlueStackUIProvider,
+  GluestackUIProvider,
   Button,
   ButtonText,
 } from '@gluestack-ui/themed';
@@ -104,7 +104,7 @@ You add global styles by extending default config and adding your own global sty
 import {
   createConfig,
   config,
-  GlueStackUIProvider,
+  GluestackUIProvider,
   Button,
   ButtonText,
 } from '@gluestack-ui/themed';

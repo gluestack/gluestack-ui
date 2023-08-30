@@ -49,7 +49,7 @@ sortedColorPalette.others = { ...colorPalette.others };
 
 const ColorPaletteComponent = () => {
   return (
-    <>
+    <GluestackUIProvider>
       <VStack flex={1}>
         {Object.keys(sortedColorPalette).map((category: string) => {
           return (
@@ -97,7 +97,7 @@ const ColorPaletteComponent = () => {
           );
         })}
       </VStack>
-    </>
+    </GluestackUIProvider>
   );
 };
 
@@ -192,184 +192,192 @@ const opacity: any = config.theme?.tokens.opacity;
 
 const OpacityComponent = () => {
   return (
-    <HStack
-      flexWrap="wrap"
-      sx={{
-        _web: {
-          gap: 16,
-        },
-      }}
-    >
-      {Object.keys(opacity).map((op: string) => {
-        return (
-          <Box
-            key={opacity}
-            sx={{
-              _web: {
-                position: 'relative',
-              },
-            }}
-          >
+    <GluestackUIProvider>
+      <HStack
+        flexWrap="wrap"
+        sx={{
+          _web: {
+            gap: 16,
+          },
+        }}
+      >
+        {Object.keys(opacity).map((op: string) => {
+          return (
             <Box
-              rounded="$lg"
-              key={op}
-              bg="$cyan400"
-              w="$16"
-              h="$16"
-              opacity={opacity[op]}
-              justifyContent="center"
-              alignItems="center"
-            />
-            <Text
-              opacity={1}
-              color="$textDark800"
-              position="absolute"
+              key={opacity}
               sx={{
                 _web: {
-                  top: '50%',
-                  left: '50%',
-                  transform: 'translate(-50%, -50%)',
-                },
-                _dark: {
-                  color: 'white',
+                  position: 'relative',
                 },
               }}
             >
-              {op}
-            </Text>
-          </Box>
-        );
-      })}
-    </HStack>
+              <Box
+                rounded="$lg"
+                key={op}
+                bg="$cyan400"
+                w="$16"
+                h="$16"
+                opacity={opacity[op]}
+                justifyContent="center"
+                alignItems="center"
+              />
+              <Text
+                opacity={1}
+                color="$textDark800"
+                position="absolute"
+                sx={{
+                  _web: {
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                  },
+                  _dark: {
+                    color: 'white',
+                  },
+                }}
+              >
+                {op}
+              </Text>
+            </Box>
+          );
+        })}
+      </HStack>
+    </GluestackUIProvider>
   );
 };
 
 const ShadowsComponent = () => {
   return (
-    <VStack>
-      <Heading size="sm" mb="$4">
-        Hard Shadows
-      </Heading>
-      <HStack
-        sx={{
-          _web: {
-            gap: 16,
-          },
-        }}
-      >
-        {['1', '2', '3', '4', '5'].map((shadow: string) => {
-          return (
-            <Box
-              key={shadow}
-              h="$20"
-              w="$20"
-              rounded="$lg"
-              mb="$4"
-              bg="$primary500"
-              // @ts-ignore
-              hardShadow={shadow}
-              alignItems="center"
-              justifyContent="center"
-            >
-              <Text color="$white">{shadow}</Text>
-            </Box>
-          );
-        })}
-      </HStack>
-      <Heading size="sm" mb="$4">
-        Soft Shadows
-      </Heading>
-      <HStack
-        sx={{
-          _web: {
-            gap: 16,
-          },
-        }}
-      >
-        {['1', '2', '3', '4', '5'].map((shadow: string) => {
-          return (
-            <Box
-              key={shadow}
-              h="$20"
-              w="$20"
-              rounded="$lg"
-              mb="$4"
-              bg="$primary500"
-              // @ts-ignore
-              softShadow={shadow}
-              alignItems="center"
-              justifyContent="center"
-            >
-              <Text color="$white">{shadow}</Text>
-            </Box>
-          );
-        })}
-      </HStack>
-    </VStack>
+    <GluestackUIProvider>
+      <VStack>
+        <Heading size="sm" mb="$4">
+          Hard Shadows
+        </Heading>
+        <HStack
+          sx={{
+            _web: {
+              gap: 16,
+            },
+          }}
+        >
+          {['1', '2', '3', '4', '5'].map((shadow: string) => {
+            return (
+              <Box
+                key={shadow}
+                h="$20"
+                w="$20"
+                rounded="$lg"
+                mb="$4"
+                bg="$primary500"
+                // @ts-ignore
+                hardShadow={shadow}
+                alignItems="center"
+                justifyContent="center"
+              >
+                <Text color="$white">{shadow}</Text>
+              </Box>
+            );
+          })}
+        </HStack>
+        <Heading size="sm" mb="$4">
+          Soft Shadows
+        </Heading>
+        <HStack
+          sx={{
+            _web: {
+              gap: 16,
+            },
+          }}
+        >
+          {['1', '2', '3', '4', '5'].map((shadow: string) => {
+            return (
+              <Box
+                key={shadow}
+                h="$20"
+                w="$20"
+                rounded="$lg"
+                mb="$4"
+                bg="$primary500"
+                // @ts-ignore
+                softShadow={shadow}
+                alignItems="center"
+                justifyContent="center"
+              >
+                <Text color="$white">{shadow}</Text>
+              </Box>
+            );
+          })}
+        </HStack>
+      </VStack>
+    </GluestackUIProvider>
   );
 };
 
 const borderWidths = config.theme?.tokens.borderWidths;
 const BorderWidthComponent = () => {
   return (
-    <HStack
-      sx={{
-        _web: {
-          gap: 16,
-        },
-      }}
-    >
-      {Object.keys(borderWidths).map((borderWidth: any) => {
-        return (
-          <Box
-            key={borderWidth}
-            h="$20"
-            w="$20"
-            mb="$4"
-            bg="$primary500"
-            borderRadius="$lg"
-            borderColor="$purple600"
-            // @ts-ignore
-            borderWidth={`$${borderWidth}`}
-            justifyContent="center"
-            alignItems="center"
-          >
-            <Text color="$white">{borderWidth}</Text>
-          </Box>
-        );
-      })}
-    </HStack>
+    <GluestackUIProvider>
+      <HStack
+        sx={{
+          _web: {
+            gap: 16,
+          },
+        }}
+      >
+        {Object.keys(borderWidths).map((borderWidth: any) => {
+          return (
+            <Box
+              key={borderWidth}
+              h="$20"
+              w="$20"
+              mb="$4"
+              bg="$primary500"
+              borderRadius="$lg"
+              borderColor="$purple600"
+              // @ts-ignore
+              borderWidth={`$${borderWidth}`}
+              justifyContent="center"
+              alignItems="center"
+            >
+              <Text color="$white">{borderWidth}</Text>
+            </Box>
+          );
+        })}
+      </HStack>
+    </GluestackUIProvider>
   );
 };
 
 const radii = config.theme?.tokens.radii;
 const RadiiComponent = () => {
   return (
-    <HStack
-      sx={{
-        _web: {
-          gap: 16,
-        },
-      }}
-    >
-      {Object.keys(radii).map((borderRadiusValue: any) => {
-        return (
-          <Box
-            key={borderRadiusValue}
-            h="$20"
-            w="$20"
-            mb="$4"
-            bg="$primary500"
-            // @ts-ignore
-            borderRadius={`$${borderRadiusValue}`}
-            justifyContent="center"
-            alignItems="center"
-          >
-            <Text color="$white">{borderRadiusValue}</Text>
-          </Box>
-        );
-      })}
-    </HStack>
+    <GluestackUIProvider>
+      <HStack
+        sx={{
+          _web: {
+            gap: 16,
+          },
+        }}
+      >
+        {Object.keys(radii).map((borderRadiusValue: any) => {
+          return (
+            <Box
+              key={borderRadiusValue}
+              h="$20"
+              w="$20"
+              mb="$4"
+              bg="$primary500"
+              // @ts-ignore
+              borderRadius={`$${borderRadiusValue}`}
+              justifyContent="center"
+              alignItems="center"
+            >
+              <Text color="$white">{borderRadiusValue}</Text>
+            </Box>
+          );
+        })}
+      </HStack>
+    </GluestackUIProvider>
   );
 };
 
