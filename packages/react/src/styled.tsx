@@ -1031,12 +1031,10 @@ export function verboseStyled<P, Variants>(
     const COLOR_MODE: any = get();
 
     if (!styleHashCreated) {
-      CONFIG = JSON.parse(
-        JSON.stringify({
-          ...styledContext.config,
-          propertyTokenMap,
-        })
-      );
+      CONFIG = {
+        ...styledContext.config,
+        propertyTokenMap,
+      };
 
       const EXTENDED_THEME =
         componentName && CONFIG?.components?.[componentName]?.theme?.theme;

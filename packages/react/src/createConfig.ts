@@ -1,6 +1,6 @@
 import type { GlueStackConfig } from './types';
 import { convertStyledToStyledVerbosed } from './convertSxToSxVerbosed';
-import { deepMerge, resolveStringToken } from './utils';
+import { resolveStringToken } from './utils';
 
 import { stableHash } from './stableHash';
 import { propertyTokenMap } from './propertyTokenMap';
@@ -26,9 +26,16 @@ export const createConfig = <
   if (!config.components && !config.themes) {
     return config as any;
   }
-  const newConfig = resolveComponentThemes(config);
-  const newConfigWithThemesResolved = resolveThemes(newConfig);
-  return newConfigWithThemesResolved as any;
+  let newConfig = config;
+  if (config.components) {
+    newConfig = resolveComponentThemes(config);
+  }
+  // @ts-ignore
+  if (config.themes) {
+    const newConfigWithThemesResolved = resolveThemes(newConfig);
+    return newConfigWithThemesResolved as any;
+  }
+  return newConfig as any;
 };
 
 const resolveThemes = (config: any) => {

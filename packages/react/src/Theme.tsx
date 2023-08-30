@@ -13,11 +13,15 @@ export const Theme: React.FC<{
   children?: React.ReactNode;
   name?: any;
 }> = ({ name, children }) => {
-  const contextValue = {
-    theme: name,
-  };
+  const contextValue = React.useMemo(() => {
+    return {
+      theme: name,
+    };
+  }, [name]);
+
   return (
     <ThemeContext.Provider value={contextValue}>
+      {/* @ts-ignore */}
       <View dataSet={{ 'theme-id': name }}>{children}</View>
     </ThemeContext.Provider>
   );
