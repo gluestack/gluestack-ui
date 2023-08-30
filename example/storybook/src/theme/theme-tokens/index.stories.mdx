@@ -2,10 +2,6 @@
 title: Theme Tokens | gluestack-ui
 
 description: gluestack-ui uses tokens to store design-related values such as colors, typography, spacing, and more. They are a way of centralizing the values in a single location.
-
-pageTitle: Theme Tokens
-
-pageDescription: gluestack-ui uses tokens to store design-related values such as colors, typography, spacing, and more. They are a way of centralizing the values in a single location.
 ---
 
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
@@ -20,7 +16,7 @@ import {
 
 <Meta title="Theme/Theme Tokens" />
 
-## Theme Tokens
+# Theme Tokens
 
 gluestack-ui components internally utilize theme tokens by consuming them within all styled components.
 Theme and token configurations are exported under the name `config` from the `@gluestack-ui/themed` . This `config` can be passed to the `GluestackUIProvider`, allowing you to provide the necessary theme and styling information for the gluestack-ui components. This approach enables a centralized and consistent theming system across your application's UI components.
@@ -39,7 +35,7 @@ function App() {
 
 For the latest theme configurations, you can refer to the following link: [gluestack-ui-config.ts](https://github.com/gluestack/gluestack-ui/blob/patch/example/storybook/src/gluestack-ui.config.ts.) in the [gluestack-ui](https://github.com/gluestack/gluestack-ui) repository.
 
-## Update Tokens
+# Update Tokens
 
 If you are using default config provided by `@gluestack-ui/themed`, you can directly update the version of `@gluestack-ui/themed`.
 

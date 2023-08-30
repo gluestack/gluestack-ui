@@ -1,9 +1,6 @@
 ---
 title: Default Tokens | gluestack-ui
 description: gluestack-ui ships with default tokens that provide access to theme values and lets you build and customize your own themed components. It has colors, typography, size, opacity, shadows, breakpoints and more.
-pageTitle: Default Tokens
-pageDescription: gluestack-ui ships with default tokens that provide access to theme values and lets you build and customize your own themed components. It has colors, typography, size, opacity, shadows, breakpoints and more.
-showHeader: true
 ---
 
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
@@ -20,7 +17,7 @@ import {
 
 Theming in `@gluestack-ui/themed` is based on the [Styled System Theme Specification](https://github.com/system-ui/theme-specification).
 
-## Colors
+# Colors
 
 You can define your unique colors or override existing ones using the `createConfig` function under the `tokens` section.
 
@@ -28,7 +25,7 @@ We recommend adding a palette that ranges from 50 to 900. Tools like [JSON Color
 
 <ColorPaletteComponent />
 
-## Typography
+# Typography
 
 To manage Typography options, the tokens object supports the following keys:
 
@@ -54,19 +51,19 @@ const extendedConfig = createConfig({
 });
 ```
 
-## Space
+# Space
 
 The space key allows you to customize the global spacing and sizing scale for your project. By default these spacing value can be referenced by the padding, margin, and top, left, right, bottom props.
 
 <SpaceComponent />
 
-## Opacity
+# Opacity
 
 You can define your opacity tokens or override existing ones using the `createConfig` function under the `tokens` section.
 
 <OpacityComponent />
 
-## Shadows
+# Shadows
 
 In `@gluestack-ui/themed` there are two types of shadows are provided by default.
 
@@ -74,15 +71,15 @@ In `@gluestack-ui/themed` there are two types of shadows are provided by default
 
 <ShadowsComponent />
 
-## Borders
+# Borders
 
-### border widths
+## border widths
 
 `borderWidths` tokens are used to define the border radius of an element. You can define your radii tokens or override existing ones using the `createConfig` function under the `tokens` section.
 
 <BorderWidthComponent />
 
-### border radius
+## border radius
 
 `radii` tokens are used to define the border radius of an element. You can define your radii tokens or override existing ones using the `createConfig` function under the `tokens` section.
 

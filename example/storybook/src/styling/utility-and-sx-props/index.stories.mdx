@@ -1,9 +1,6 @@
 ---
 title: Utility and SX props | gluestack-ui
-description: Utility and SX props description
-pageTitle: Utility and SX props
-pageDescription: Utility and SX props description
-showHeader: true
+description: Utility and SX props
 ---
 
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
@@ -36,10 +33,10 @@ import { createButton } from '@gluestack-ui/button';
 
 <Meta title="Styling/Utility and SX props" />
 
-## Utility Props
+# Utility Props
 
 React Native has a great StyleSheet API which is optimal for component-based systems. `@gluestack-style/react` leverages it and adds a layer of utility props and constraint based designed tokens on top of it. `@gluestack-style/react` is used as styling engine for `@gluestack-ui/themed`.
-To understand utility props, let's take an example. [Link to Margin and Padding](#margin-and-padding)
+To understand utility props, let's take an example.
 
 ### With React Native
 
@@ -222,7 +219,7 @@ By using `@gluestack-ui/themed` components, you can apply styles directly in the
 
 The above example demonstrates the usage of [utility props]("/docs/styling/utility-props") alongwith VStack, HStack components. This approach allows us to style components without using StyleSheet API.
 
-## SX Prop
+# SX Prop
 
 gluestack-style supports the sx prop for overriding styles.The sx prop enables passing an object supporting tokens, media queries, nesting, and token-aware values to the component.
 sx accepts the same style object as the base style.
