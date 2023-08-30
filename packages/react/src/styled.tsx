@@ -2,6 +2,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-console */
 import React, { useContext, useEffect, useMemo, useRef, useState } from 'react';
+
 import type {
   ConfigType,
   OrderedSXResolved,
@@ -19,9 +20,11 @@ import {
   resolveStringToken,
   shallowMerge,
   deepMergeArray,
+  addThemeConditionInMeta,
 } from './utils';
 import { convertUtilityPropsToSX } from './core/convert-utility-to-sx';
 import { useStyled } from './StyledProvider';
+import { useTheme } from './Theme';
 import { propertyTokenMap } from './propertyTokenMap';
 import { Platform, StyleSheet } from 'react-native';
 import { INTERNAL_updateCSSStyleInOrderedResolved } from './updateCSSStyleInOrderedResolved';
@@ -915,7 +918,37 @@ export function verboseStyled<P, Variants>(
       componentExtendedConfig
     );
 
+    let componentTheme: any =
+      // @ts-ignore
+      sxStyledResolved.baseStyle.styledValueResolvedWithMeta;
+
+    // sxStyledResolved.baseStyle.styledValueResolvedWithMeta =
+    addThemeConditionInMeta(componentTheme, CONFIG);
+
+    const colorModeComponentThemes: any = sxStyledResolved.baseStyle?.colorMode;
+    if (colorModeComponentThemes) {
+      Object.keys(colorModeComponentThemes).forEach(
+        (colorModeComponentTheme: any) => {
+          if (
+            !colorModeComponentThemes[colorModeComponentTheme]
+              .styledValueResolvedWithMeta?.meta.themeCondition
+          ) {
+            colorModeComponentThemes[
+              colorModeComponentTheme
+            ].styledValueResolvedWithMeta.meta.themeCondition = {};
+          }
+
+          let componentTheme: any =
+            colorModeComponentThemes[colorModeComponentTheme]
+              .styledValueResolvedWithMeta;
+
+          addThemeConditionInMeta(componentTheme, CONFIG);
+        }
+      );
+    }
+
     const sxHash = stableHash(sx);
+
     const orderedSXResolved =
       styledResolvedToOrderedSXResolved(sxStyledResolved);
 
@@ -985,6 +1018,8 @@ export function verboseStyled<P, Variants>(
     //200ms
     // let time = Date.now();
     const styledContext = useStyled();
+    const { theme: activeTheme } = useTheme();
+
     const ancestorStyleContext = useContext(AncestorStyleContext);
     let incomingComponentProps = {};
     let remainingComponentProps = {};
@@ -1000,6 +1035,7 @@ export function verboseStyled<P, Variants>(
         ...styledContext.config,
         propertyTokenMap,
       };
+
       const EXTENDED_THEME =
         componentName && CONFIG?.components?.[componentName]?.theme?.theme;
 
@@ -1554,43 +1590,18 @@ export function verboseStyled<P, Variants>(
     ];
 
     Object.assign(resolvedInlineProps, applyComponentInlineProps);
-
     const resolvedStyleProps = generateStylePropsFromCSSIds(
       resolvedInlineProps,
       styleCSSIds,
-      CONFIG
+      CONFIG,
+      activeTheme
     );
-
     const AsComp: any = (as as any) || (passingProps.as as any) || undefined;
 
     let resolvedStyleMemo = [passingProps?.style, ...resolvedStyleProps?.style];
-
     if (Platform.OS === 'web') {
       resolvedStyleMemo = StyleSheet.flatten(resolvedStyleMemo);
     }
-    // if (componentProps.debug === 'BOX_TEST') {
-    //   return (
-    //     <Component {...resolvedStyleProps} style={resolvedStyleMemo} ref={ref}>
-    //       {children}
-    //     </Component>
-    //   );
-    // }
-    // if (componentProps.debug === 'BOX_TEST') {
-    //   // if (!AsComp) {
-    //   // console.log(componentProps, 'component props');
-    //   return (
-    //     <Component {...resolvedStyleProps} style={resolvedStyleMemo} ref={ref}>
-    //       {children}
-    //     </Component>
-    //   );
-    //   // } else {
-    //   //   return (
-    //   //     <AsComp {...resolvedStyleProps} style={resolvedStyleMemo} ref={ref}>
-    //   //       {children}
-    //   //     </AsComp>
-    //   //   );
-    //   // }
-    // }
 
     const component = !AsComp ? (
       <Component {...resolvedStyleProps} style={resolvedStyleMemo} ref={ref}>

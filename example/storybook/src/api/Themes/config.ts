@@ -1,6 +1,4 @@
-import { createConfig } from '@gluestack-style/react';
-
-export const config = createConfig({
+export const config = {
   aliases: {
     bg: 'backgroundColor',
     backgroundColor: 'backgroundColor',
@@ -64,6 +62,14 @@ export const config = createConfig({
   tokens: {
     colors: {
       backgroundColor: '#ffffff',
+      backgroundColorAlpha10: '#ffffff1a',
+      backgroundColorAlpha20: '#ffffff33',
+      backgroundColorAlpha30: '#ffffff4d',
+      backgroundColorAlpha40: '#ffffff66',
+      backgroundColorAlpha50: '#ffffff80',
+      headerColor: '#e11d48',
+      textColor: '#000000',
+      borderColor: '#000000',
       rose50: '#fff1f2',
       rose100: '#ffe4e6',
       rose200: '#fecdd3',
@@ -123,7 +129,6 @@ export const config = createConfig({
       indigo600: '#4f46e5',
       indigo700: '#4338ca',
       indigo800: '#3730a3',
-      indigo800_50: '#3730a380',
       indigo900: '#312e81',
       blue50: '#eff6ff',
       blue100: '#dbeafe',
@@ -551,7 +556,7 @@ export const config = createConfig({
       '8': 8,
     },
     radii: {
-      'borderRoundness': 0,
+      'borderRadius': 4,
       'none': 0,
       'xs': 2,
       'sm': 4,
@@ -647,47 +652,7 @@ export const config = createConfig({
       100: 1,
     },
   } as const,
-  components: {
-    Box: {
-      theme: {
-        'bg': '$green500',
-        ':hover': {
-          bg: '$gray600',
-        },
-        '_dark': {
-          bg: '$yellow500',
-        },
-        '_text': {
-          color: '$red500',
-        },
-      },
-      componentConfig: {
-        descendantStyle: ['_text'],
-      },
-    },
-  },
-  themes: {
-    x: {
-      colors: {
-        $backgroundColor: '#ffff6f',
-        $backgroundColorDark: '#ff2f6f',
-      },
-      radii: {
-        $borderRoundness: '1',
-      },
-    },
-    y: {
-      colors: {
-        $backgroundColorDark: '#ff2f6f',
-        $backgroundColor: '#000000',
-      },
-      radii: {
-        $borderRoundness: '1',
-      },
-    },
-  },
-} as const);
-
+};
 type ConfigType = typeof config;
 
 declare module '@gluestack-style/react' {

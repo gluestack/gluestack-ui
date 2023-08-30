@@ -13,14 +13,62 @@ import {
   Inter_900Black,
 } from '@expo-google-fonts/inter';
 import './styles';
-import { styled } from '@gluestack-style/react';
 import HomestayPage from './kitchensink-components/HomestayPage';
-// import HomestayPage from './kitchensink-components/HomestayPage';
+import { styled, Theme } from '@gluestack-style/react';
+
+// const orderedSXResolved = [
+//   {
+//     meta: {
+//       path: ['baseStyle'],
+//       weight: 101,
+//       cssId: '14kw9po-go7kdf',
+//       cssRuleset:
+//         '.gs [data-style~="14kw9po-go7kdf"] {background-color:rgba(239,68,68,1.00);height:80px;width:80px;}',
+//     },
+//     original: {
+//       bg: '$red500',
+//       h: '$10',
+//       w: '$10',
+//     },
+//     resolved: {
+//       backgroundColor: '#ef4444',
+//       height: '40px',
+//       width: '40px',
+//     },
+//   },
+// ];
+
+// const sxHash = '14kw9po';
+
+// function injectBuildTimeSx() {
+//   injectComponentAndDescendantStyles(orderedSXResolved, sxHash, 'inline');
+// }
+
+// const styledIds = {
+//   component: {
+//     baseStyle: {
+//       ids: ['14kw9po-go7kdf'],
+//       props: {},
+//     },
+//     compoundVariants: [],
+//     variants: [],
+//   },
+//   decendant: {},
+// };
+
+// injectBuildTimeSx();
+
+// const Box = styled(View, {});
 
 const Box = styled(View, {
-  bg: '$red500',
-  padding: '$10',
+  bg: '$primary100',
+  h: '$10',
+  w: '$10',
 });
+
+// const ComposedButton = styled(BaseButton, {
+//   bg: '$red500',
+// });
 
 type ThemeContextType = {
   colorMode?: 'dark' | 'light';
@@ -69,17 +117,18 @@ export default function App() {
       >
         {/* gluestack-ui provider */}
         <SSRProvider>
-          <GluestackUIProvider config={config.theme} colorMode={colorMode}>
-            <ThemeContext.Provider value={{ colorMode, toggleColorMode }}>
-              {/* <BaseButton>Hello Worlddddd</BaseButton>
+          <GluestackUIProvider config={config.theme} colorMode={'light'}>
+            {/* <ThemeContext.Provider value={{ colorMode, toggleColorMode }}> */}
+            <Theme name="x">
+              {/* <Box bg="$amber800"></Box> */}
+              <Box bg="$red500"></Box>
+            </Theme>
+            {/* <Box bg="$amber50"></Box>
+            <Box></Box> */}
+            {/* <BaseButton>Hello Worlddddd</BaseButton>
               <ComposedButton>Hello</ComposedButton> */}
-              <Box
-                sx={{
-                  bg: '$amber500',
-                }}
-              />
-              <HomestayPage />
-            </ThemeContext.Provider>
+            {/* <HomestayPage /> */}
+            {/* </ThemeContext.Provider> */}
           </GluestackUIProvider>
         </SSRProvider>
       </SafeAreaView>

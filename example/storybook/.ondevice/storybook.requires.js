@@ -11,10 +11,10 @@ import {
 global.STORIES = [
   {
     titlePrefix: '',
-    directory: './src',
+    directory: './components',
     files: '**/*.stories.?(ts|tsx|js|jsx)',
     importPathMatcher:
-      '^\\.[\\\\/](?:src(?:\\/(?!\\.)(?:(?:(?!(?:^|\\/)\\.).)*?)\\/|\\/|$)(?!\\.)(?=.)[^/]*?\\.stories\\.(?:ts|tsx|js|jsx)?)$',
+      '^\\.[\\\\/](?:components(?:\\/(?!\\.)(?:(?:(?!(?:^|\\/)\\.).)*?)\\/|\\/|$)(?!\\.)(?=.)[^/]*?\\.stories\\.(?:ts|tsx|js|jsx)?)$',
   },
 ];
 
@@ -52,7 +52,7 @@ const getStories = () => {
     // "./src/api/AsForwarder/AsForwarder.stories.tsx": require("../src/api/AsForwarder/AsForwarder.stories.tsx"),
     // "./src/api/ColorModeBasedStyles/ColorMode.stories.tsx": require("../src/api/ColorModeBasedStyles/ColorMode.stories.tsx"),
     // "./src/api/CompoundVariants/CompoundVarinats.stories.tsx": require("../src/api/CompoundVariants/CompoundVarinats.stories.tsx"),
-    // "./src/api/createStyled/createStyled.stories.tsx": require("../src/api/createStyled/createStyled.stories.tsx"),
+    './src/api/createStyled/createStyled.stories.tsx': require('../src/api/createStyled/createStyled.stories.tsx'),
     './src/api/DescendantsStyles/ContextBasedStyles.stories.tsx': require('../src/api/DescendantsStyles/ContextBasedStyles.stories.tsx'),
     // "./src/api/MultipleProvder/MultipleProvider.stories.tsx": require("../src/api/MultipleProvder/MultipleProvider.stories.tsx"),
     // "./src/api/PlatformBasedStyles/PlatformBasedStyles.stories.tsx": require("../src/api/PlatformBasedStyles/PlatformBasedStyles.stories.tsx"),
