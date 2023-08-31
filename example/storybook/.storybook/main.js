@@ -1,7 +1,15 @@
 const path = require('path');
-module.exports = {
-  stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
 
+// console.log(path.resolve('../../', 'node_modules/@gluestack-style/react'));
+module.exports = {
+  stories: [
+    '../src/**/*.stories.mdx',
+    '../src/**/*.stories.@(js|jsx|ts|tsx)',
+    // '../src/overview/**/*.stories.mdx',
+    // '../src/overview/**/*.stories.@(js|jsx|ts|tsx)',
+    // '../src/getting-started/**/*.stories.mdx',
+    // '../src/getting-started/**/*.stories.@(js|jsx|ts|tsx)',
+  ],
   addons: [
     'storybook-dark-mode',
     '@storybook/addon-links',

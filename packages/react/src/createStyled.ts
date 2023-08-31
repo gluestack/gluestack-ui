@@ -1,5 +1,5 @@
 import { styled } from './styled';
-import type { ConfigType, ITheme } from './types';
+import type { IComponentStyleConfig, ITheme } from './types';
 
 export interface IStyledPlugin {
   styledUtils?: IStyled;
@@ -15,10 +15,10 @@ export class IStyled {
 }
 
 export const createStyled = (plugins: any) => {
-  let styledComponent = <P, Variants>(
+  let styledComponent = <P, Variants, ConCom>(
     Component: React.ComponentType<P>,
     styledObject: ITheme<Variants, P>,
-    compConfig: ConfigType = {},
+    compConfig: IComponentStyleConfig<ConCom> = {},
     extendedConfig: any = {}
   ) => {
     let styledObj: any = styledObject;
@@ -26,7 +26,7 @@ export const createStyled = (plugins: any) => {
       styledObj = plugins[pluginName]?.inputMiddleWare(styledObj);
     }
 
-    let NewComp = styled<P, Variants>(
+    let NewComp = styled<P, Variants, ConCom>(
       Component,
       styledObj,
       compConfig,

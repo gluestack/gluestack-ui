@@ -136,7 +136,7 @@ export function ContextBasedStylesContent() {
   // useEffect(() => {
   //   console.log(Date.now() - timeTaken.current, 'hello');
   // }, [state]);
-
+  return <Text>hello</Text>;
   return (
     <>
       <RNPressable

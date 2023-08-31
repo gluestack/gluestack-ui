@@ -1,8 +1,0 @@
-example
-packages/**/example
-
-# packages/**/example
-# !.build/test.js
-
-ui/packages/ui/.ondevice
-babel.config.js

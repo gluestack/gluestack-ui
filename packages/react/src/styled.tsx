@@ -2,8 +2,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-console */
 import React, { useContext, useEffect, useMemo, useRef, useState } from 'react';
+
 import type {
-  ConfigType,
   OrderedSXResolved,
   StyleIds,
   ComponentProps,
@@ -11,6 +11,7 @@ import type {
   IVerbosedTheme,
   ITheme,
   ExtendedConfigType,
+  IComponentStyleConfig,
 } from './types';
 import {
   deepMerge,
@@ -19,9 +20,11 @@ import {
   resolveStringToken,
   shallowMerge,
   deepMergeArray,
+  addThemeConditionInMeta,
 } from './utils';
 import { convertUtilityPropsToSX } from './core/convert-utility-to-sx';
 import { useStyled } from './StyledProvider';
+import { useTheme } from './Theme';
 import { propertyTokenMap } from './propertyTokenMap';
 import { Platform, StyleSheet } from 'react-native';
 import { INTERNAL_updateCSSStyleInOrderedResolved } from './updateCSSStyleInOrderedResolved';
@@ -792,10 +795,10 @@ const getStyleIdsFromMap = (
 
 // END BASE COLOR MODE RESOLUTION
 
-export function verboseStyled<P, Variants>(
+export function verboseStyled<P, Variants, ComCon>(
   Component: React.ComponentType<P>,
   theme: Partial<IVerbosedTheme<Variants, P>>,
-  componentStyleConfig: ConfigType = {},
+  componentStyleConfig: IComponentStyleConfig<ComCon> = {},
   ExtendedConfig?: any,
   BUILD_TIME_PARAMS?: {
     orderedResolved: OrderedSXResolved;
@@ -806,7 +809,7 @@ export function verboseStyled<P, Variants>(
     styledIds: Array<string>;
   }
 ) {
-  const componentName = componentStyleConfig.componentName;
+  const componentName = componentStyleConfig?.componentName;
   const componentHash = stableHash({
     ...theme,
     ...componentStyleConfig,
@@ -825,6 +828,7 @@ export function verboseStyled<P, Variants>(
 
   resolvePlatformTheme(theme, Platform.OS);
 
+  // @ts-ignore
   const DEBUG_TAG = componentStyleConfig?.DEBUG;
   const DEBUG =
     process.env.NODE_ENV === 'development' && DEBUG_TAG ? false : false;
@@ -915,7 +919,37 @@ export function verboseStyled<P, Variants>(
       componentExtendedConfig
     );
 
+    let componentTheme: any =
+      // @ts-ignore
+      sxStyledResolved.baseStyle.styledValueResolvedWithMeta;
+
+    // sxStyledResolved.baseStyle.styledValueResolvedWithMeta =
+    addThemeConditionInMeta(componentTheme, CONFIG);
+
+    const colorModeComponentThemes: any = sxStyledResolved.baseStyle?.colorMode;
+    if (colorModeComponentThemes) {
+      Object.keys(colorModeComponentThemes).forEach(
+        (colorModeComponentTheme: any) => {
+          if (
+            !colorModeComponentThemes[colorModeComponentTheme]
+              .styledValueResolvedWithMeta?.meta.themeCondition
+          ) {
+            colorModeComponentThemes[
+              colorModeComponentTheme
+            ].styledValueResolvedWithMeta.meta.themeCondition = {};
+          }
+
+          let componentTheme: any =
+            colorModeComponentThemes[colorModeComponentTheme]
+              .styledValueResolvedWithMeta;
+
+          addThemeConditionInMeta(componentTheme, CONFIG);
+        }
+      );
+    }
+
     const sxHash = stableHash(sx);
+
     const orderedSXResolved =
       styledResolvedToOrderedSXResolved(sxStyledResolved);
 
@@ -955,7 +989,7 @@ export function verboseStyled<P, Variants>(
       sxHash: BUILD_TIME_sxHash = '',
       ...componentProps
     }: Omit<P, keyof Variants> &
-      Partial<ComponentProps<ITypeReactNativeStyles, Variants, P>> &
+      Partial<ComponentProps<ITypeReactNativeStyles, Variants, P, ComCon>> &
       Partial<UtilityProps<ITypeReactNativeStyles>> & {
         as?: any;
         children?: any;
@@ -985,6 +1019,8 @@ export function verboseStyled<P, Variants>(
     //200ms
     // let time = Date.now();
     const styledContext = useStyled();
+    const { theme: activeTheme } = useTheme();
+
     const ancestorStyleContext = useContext(AncestorStyleContext);
     let incomingComponentProps = {};
     let remainingComponentProps = {};
@@ -1000,6 +1036,7 @@ export function verboseStyled<P, Variants>(
         ...styledContext.config,
         propertyTokenMap,
       };
+
       const EXTENDED_THEME =
         componentName && CONFIG?.components?.[componentName]?.theme?.theme;
 
@@ -1554,43 +1591,18 @@ export function verboseStyled<P, Variants>(
     ];
 
     Object.assign(resolvedInlineProps, applyComponentInlineProps);
-
     const resolvedStyleProps = generateStylePropsFromCSSIds(
       resolvedInlineProps,
       styleCSSIds,
-      CONFIG
+      CONFIG,
+      activeTheme
     );
-
     const AsComp: any = (as as any) || (passingProps.as as any) || undefined;
 
     let resolvedStyleMemo = [passingProps?.style, ...resolvedStyleProps?.style];
-
     if (Platform.OS === 'web') {
       resolvedStyleMemo = StyleSheet.flatten(resolvedStyleMemo);
     }
-    // if (componentProps.debug === 'BOX_TEST') {
-    //   return (
-    //     <Component {...resolvedStyleProps} style={resolvedStyleMemo} ref={ref}>
-    //       {children}
-    //     </Component>
-    //   );
-    // }
-    // if (componentProps.debug === 'BOX_TEST') {
-    //   // if (!AsComp) {
-    //   // console.log(componentProps, 'component props');
-    //   return (
-    //     <Component {...resolvedStyleProps} style={resolvedStyleMemo} ref={ref}>
-    //       {children}
-    //     </Component>
-    //   );
-    //   // } else {
-    //   //   return (
-    //   //     <AsComp {...resolvedStyleProps} style={resolvedStyleMemo} ref={ref}>
-    //   //       {children}
-    //   //     </AsComp>
-    //   //   );
-    //   // }
-    // }
 
     const component = !AsComp ? (
       <Component {...resolvedStyleProps} style={resolvedStyleMemo} ref={ref}>
@@ -1616,8 +1628,8 @@ export function verboseStyled<P, Variants>(
 
   const StyledComp = React.forwardRef(NewComp);
 
-  const displayName = componentStyleConfig.componentName
-    ? componentStyleConfig.componentName
+  const displayName = componentStyleConfig?.componentName
+    ? componentStyleConfig?.componentName
     : Component?.displayName;
 
   StyledComp.displayName = displayName
@@ -1627,10 +1639,10 @@ export function verboseStyled<P, Variants>(
   return StyledComp;
 }
 
-export function styled<P, Variants>(
+export function styled<P, Variants, ComCon>(
   Component: React.ComponentType<P>,
   theme: ITheme<Variants, P>,
-  componentStyleConfig?: ConfigType,
+  componentStyleConfig?: IComponentStyleConfig<ComCon>,
   ExtendedConfig?: ExtendedConfigType,
   BUILD_TIME_PARAMS?: {
     orderedResolved: OrderedSXResolved;
@@ -1641,6 +1653,7 @@ export function styled<P, Variants>(
     styledIds: Array<string>;
   }
 ) {
+  // @ts-ignore
   const DEBUG_TAG = componentStyleConfig?.DEBUG;
   const DEBUG =
     process.env.NODE_ENV === 'development' && DEBUG_TAG ? false : false;
@@ -1659,7 +1672,7 @@ export function styled<P, Variants>(
 
   const sxConvertedObject = convertStyledToStyledVerbosed(theme);
 
-  const StyledComponent = verboseStyled<P, Variants>(
+  const StyledComponent = verboseStyled<P, Variants, ComCon>(
     Component,
     sxConvertedObject,
     componentStyleConfig,

@@ -1,6 +1,4 @@
-import { createConfig } from '@gluestack-style/react';
-
-export const config = createConfig({
+export const config = {
   aliases: {
     bg: 'backgroundColor',
     backgroundColor: 'backgroundColor',
@@ -131,7 +129,6 @@ export const config = createConfig({
       indigo600: '#4f46e5',
       indigo700: '#4338ca',
       indigo800: '#3730a3',
-      indigo800_50: '#3730a380',
       indigo900: '#312e81',
       blue50: '#eff6ff',
       blue100: '#dbeafe',
@@ -552,7 +549,6 @@ export const config = createConfig({
       'full': '100%',
     },
     borderWidths: {
-      'borderWidth': 1,
       '0': 0,
       '1': 1,
       '2': 2,
@@ -560,7 +556,7 @@ export const config = createConfig({
       '8': 8,
     },
     radii: {
-      'borderRadius': 0,
+      'borderRadius': 4,
       'none': 0,
       'xs': 2,
       'sm': 4,
@@ -656,65 +652,7 @@ export const config = createConfig({
       100: 1,
     },
   } as const,
-  themes: {
-    '2000s': {
-      colors: {
-        $backgroundColor: '#ffffff',
-        $headerColor: '#e11d48',
-        $textColor: '#ffffff',
-        $borderColor: '$colors$gray400',
-      },
-      borderWidths: {
-        $borderWidth: '$space$0.5',
-      },
-      radii: {
-        $borderRadius: '$radii$sm',
-      },
-    },
-    '2010s': {
-      colors: {
-        $backgroundColor: '#ffffff',
-        $headerColor: '#e11d48',
-        $textColor: '#000000',
-        $borderColor: '#000000',
-      },
-      borderWidths: {
-        $borderWidth: '$space$0.5',
-      },
-      radii: {
-        $borderRadius: '$radii$lg',
-      },
-    },
-    '2020s': {
-      colors: {
-        $backgroundColor: '#ffffff',
-        $headerColor: '#e11d487a',
-        $textColor: '#e41d4f',
-        $borderColor: '#000000',
-      },
-      borderWidths: {
-        $borderWidth: '$space$0',
-      },
-      radii: {
-        $borderRadius: '$radii$xl',
-      },
-    },
-  },
-  components: {
-    Box: {
-      theme: {
-        variants: {
-          variant: {
-            newVariant: {
-              bg: '$red500',
-            },
-          },
-        },
-      },
-    },
-  },
-} as const);
-
+};
 type ConfigType = typeof config;
 
 declare module '@gluestack-style/react' {
