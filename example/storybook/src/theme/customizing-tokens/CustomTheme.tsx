@@ -31,6 +31,7 @@ const extendedConfig = createConfig({
     },
   },
 });
+
 const Wrapper = ({ children, ...props }: any) => {
   return (
     <Provider config={extendedConfig} {...props}>
