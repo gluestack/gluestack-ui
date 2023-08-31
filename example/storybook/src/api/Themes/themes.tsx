@@ -48,31 +48,60 @@ export function Themes({ ...args }) {
           alignItems: 'center',
         }}
       >
-        <Theme name={theme}>
-          <Box
-            h="200px"
-            w="400px"
-            bg="$backgroundDark100"
-            borderWidth="$borderWidth"
-            borderColor="$borderColor"
-            borderRadius={'$borderRadius'}
-            overflow="hidden"
-          >
-            <Box flexDirection="row" p="$2" w="$full" bg="$headerColor">
-              <Text color="$textColor">Header {theme}</Text>
-              <Box flex={1}></Box>
-              <Text>X</Text>
-            </Box>
-          </Box>
-        </Theme>
-        <Box flexDirection="row">
-          {themes.map((theme) => (
-            <StyledLinkButton
-              key={theme}
-              onPress={() => setTheme(theme)}
-              size="sm"
+        <Box
+          flexDirection="row"
+          p="$2"
+          pr="$4"
+          w="$full"
+          bg="$blue800"
+          borderTopRightRadius={'$md'}
+          borderTopLeftRadius={'$md'}
+        >
+          <Text color="$white">Theme Switcher</Text>
+          <Box flex={1}></Box>
+          <Text color="$white">x</Text>
+        </Box>
+        <Box
+          bg="$gray100"
+          h="440px"
+          w="600px"
+          alignItems="center"
+          justifyContent="center"
+        >
+          <Theme name={theme}>
+            <Box
+              mx="auto"
+              h="200px"
+              w="400px"
+              bg="$backgroundColor"
+              borderWidth="$borderWidth"
+              borderColor="$borderColor"
+              borderRadius={'$borderRadius'}
+              overflow="hidden"
             >
-              <Text>{theme}</Text>
+              <Box
+                flexDirection="row"
+                p="$2"
+                pr="$4"
+                w="$full"
+                bg="$headerColor"
+              >
+                <Text color="$textColor">Explorer from {theme}</Text>
+                <Box flex={1}></Box>
+                <Text>x</Text>
+              </Box>
+            </Box>
+          </Theme>
+        </Box>
+        <Box flexDirection="row">
+          {themes.map((themeName) => (
+            <StyledLinkButton
+              key={themeName}
+              onPress={() => setTheme(themeName)}
+              size="sm"
+              bg={themeName !== theme ? '$backgroundDark300' : '$green400'}
+            >
+              <Text>{themeName}</Text>
             </StyledLinkButton>
           ))}
         </Box>
