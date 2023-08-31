@@ -1653,6 +1653,7 @@ export function styled<P, Variants, ComCon>(
     styledIds: Array<string>;
   }
 ) {
+  // @ts-ignore
   const DEBUG_TAG = componentStyleConfig?.DEBUG;
   const DEBUG =
     process.env.NODE_ENV === 'development' && DEBUG_TAG ? false : false;
