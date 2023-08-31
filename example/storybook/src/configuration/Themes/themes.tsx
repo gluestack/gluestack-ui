@@ -34,7 +34,11 @@ const StyledLinkButton = styled(
     DEBUG: 'Button',
   }
 );
-const Box = styled(View, {});
+const Box = styled(View, {
+  // '@md': {
+  //   p: '$20',
+  // },
+});
 const Text = styled(RNText, { color: '$textColor' });
 
 export function Themes({ ...args }) {
