@@ -18,6 +18,8 @@ import { Wrapper } from '../../components/Wrapper';
 // import { AddIcon } from '@gluestack/design-system';
 import { createIcon } from '@gluestack-ui/icon';
 import { Svg } from 'react-native-svg';
+import { FlatList } from 'react-native';
+import { StyledText, StyledView } from '../AsForwarder/AsForwarder';
 
 // const Box = styled(View, {
 //   bg: '$backgroundDark300',
@@ -107,6 +109,7 @@ export function ContextBasedStyles() {
   );
 }
 
+const MyFlatList = styled(FlatList, {}, {});
 const styleshet = StyleSheet.create({
   style: {
     backgroundColor: 'blue',
@@ -136,7 +139,52 @@ export function ContextBasedStylesContent() {
   // useEffect(() => {
   //   console.log(Date.now() - timeTaken.current, 'hello');
   // }, [state]);
+
+  const DATA = [
+    {
+      id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+      title: 'First Item',
+    },
+    {
+      id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+      title: 'Second Item',
+    },
+    {
+      id: '58694a0f-3da1-471f-bd96-145571e29d72',
+      title: 'Third Item',
+    },
+  ];
+
+  return (
+    <MyFlatList
+      data={DATA}
+      bounces={false}
+      // horizontal
+      showsHorizontalScrollIndicator={false}
+      // numColumns={2}
+      sx={{
+        props: { numColumns: 2 },
+        // _light: {
+        // props: {
+        //   // numColumns: 2,
+        // },
+        // },
+      }}
+      renderItem={({ item }: { item: any }) => {
+        return (
+          <Box mr={'$2'} sx={{ props: {} }}>
+            <StyledText>Hello</StyledText>
+          </Box>
+        );
+      }}
+      keyExtractor={(item, index) => 'key' + index}
+      ItemSeparatorComponent={() => <Box w="4" />}
+    />
+  );
+
+  // return <MyFlatList></MyFlatList>;
   return <Text>hello</Text>;
+
   return (
     <>
       <RNPressable
