@@ -121,12 +121,14 @@ export interface IConfigProps {
   componentName: string;
 }
 
-export type IComponentStyleConfig<ComCon = unknown> = Partial<{
-  descendantStyle: Array<string>;
-  ancestorStyle: Array<string>;
-  resolveProps: Array<string>;
-  componentName: ComCon;
-}>;
+export type IComponentStyleConfig<ComCon = unknown> = Partial<
+  {
+    descendantStyle: Array<string>;
+    ancestorStyle: Array<string>;
+    resolveProps: Array<string>;
+    componentName: ComCon;
+  } & { [key: string]: any }
+>;
 export type ConfigType = Partial<IConfigProps> & { [key: string]: any };
 
 export type Config = {
