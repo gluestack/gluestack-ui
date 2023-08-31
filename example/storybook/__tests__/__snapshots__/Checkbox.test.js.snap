@@ -1,0 +1,1060 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Checkbox component isDisabled 1`] = `
+<div
+  className="css-view-175oi2r"
+  data-style="1mk50wr-1q64x7k 14bja7p-1q64x7k n7aciq-1q64x7k"
+  dir={null}
+>
+  <div
+    className="css-view-175oi2r"
+    data-style="y9czwk-1hh0pc0 14bja7p-1q64x7k yljpgc-5lm9f0"
+    dir={null}
+  >
+    <div
+      aria-disabled={true}
+      aria-label="Checkbox Group"
+      className="css-view-175oi2r"
+      data-style="xuddv0-1q64x7k"
+      dir={null}
+      id="checkbox-group"
+      role="group"
+    >
+      <label
+        aria-label="Checkbox"
+        className="css-view-175oi2r"
+        data-style="2fjcr2-1mdhnmt 2fjcr2-1ebsp7h 2fjcr2-r3q1zx 14bja7p-1q64x7k jyo3sk-w9iemt"
+        dir={null}
+        id="checkbox-1"
+      >
+        <div
+          onBlur={null}
+          onFocus={null}
+          style={
+            {
+              "border": 0,
+              "clip": "rect(0 0 0 0)",
+              "clipPath": "inset(50%)",
+              "height": "1px",
+              "margin": "-1px",
+              "overflow": "hidden",
+              "padding": 0,
+              "position": "absolute",
+              "whiteSpace": "nowrap",
+              "width": "1px",
+            }
+          }
+        >
+          <input
+            aria-label="Label 1"
+            checked={true}
+            disabled={true}
+            onBlur={[Function]}
+            onChange={[Function]}
+            onClick={[Function]}
+            onDragStart={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchCancel={[Function]}
+            onTouchEnd={[Function]}
+            onTouchMove={[Function]}
+            onTouchStart={[Function]}
+            type="checkbox"
+            value="Label 1"
+          />
+        </div>
+        <div
+          className="css-view-175oi2r"
+          data-style="1o4azxd-1jvh2c 1o4azxd-1hkypfz 1o4azxd-11wy4tg 14bja7p-1q64x7k bwxc0z-ygf2ke"
+          dir={null}
+        >
+          <svg
+            data-style="1e6697e-i3qx1q 1e6697e-mf2bik 1e6697e-11wy4tg td3hmt-1xhetgp td3hmt-1374l6k"
+            fill="none"
+            role="img"
+            states={
+              {
+                "checked": true,
+                "disabled": true,
+                "focusVisible": undefined,
+                "focused": undefined,
+                "hover": undefined,
+                "indeterminate": true,
+                "invalid": undefined,
+                "pressed": undefined,
+                "readOnly": undefined,
+              }
+            }
+            viewBox="0 0 24 24"
+          >
+            <g>
+              <path
+                d="M20 6L9 17L4 12"
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+              />
+            </g>
+          </svg>
+        </div>
+        <div
+          className="css-text-1rynq56"
+          data-style="1l03e70-q863cm 1l03e70-314322 1l03e70-11wy4tg"
+          dir="auto"
+        >
+          Label 1
+        </div>
+      </label>
+      <label
+        aria-label="Checkbox"
+        className="css-view-175oi2r"
+        data-style="2fjcr2-1mdhnmt 2fjcr2-1ebsp7h 2fjcr2-r3q1zx 14bja7p-1q64x7k jyo3sk-w9iemt"
+        dir={null}
+        id="checkbox-2"
+      >
+        <div
+          onBlur={null}
+          onFocus={null}
+          style={
+            {
+              "border": 0,
+              "clip": "rect(0 0 0 0)",
+              "clipPath": "inset(50%)",
+              "height": "1px",
+              "margin": "-1px",
+              "overflow": "hidden",
+              "padding": 0,
+              "position": "absolute",
+              "whiteSpace": "nowrap",
+              "width": "1px",
+            }
+          }
+        >
+          <input
+            aria-label="Label 2"
+            checked={false}
+            disabled={true}
+            onBlur={[Function]}
+            onChange={[Function]}
+            onClick={[Function]}
+            onDragStart={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchCancel={[Function]}
+            onTouchEnd={[Function]}
+            onTouchMove={[Function]}
+            onTouchStart={[Function]}
+            type="checkbox"
+            value="Label 2"
+          />
+        </div>
+        <div
+          className="css-view-175oi2r"
+          data-style="1o4azxd-1jvh2c 1o4azxd-11wy4tg 14bja7p-1q64x7k bwxc0z-ygf2ke"
+          dir={null}
+        />
+        <div
+          className="css-text-1rynq56"
+          data-style="1l03e70-q863cm 1l03e70-11wy4tg"
+          dir="auto"
+        >
+          Label 2
+        </div>
+      </label>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Checkbox component isInvalid 1`] = `
+<div
+  className="css-view-175oi2r"
+  data-style="1mk50wr-1q64x7k 14bja7p-1q64x7k n7aciq-1q64x7k"
+  dir={null}
+>
+  <div
+    className="css-view-175oi2r"
+    data-style="y9czwk-1hh0pc0 14bja7p-1q64x7k yljpgc-5lm9f0"
+    dir={null}
+  >
+    <div
+      aria-label="Checkbox Group"
+      className="css-view-175oi2r"
+      data-style="xuddv0-1q64x7k"
+      dir={null}
+      id="checkbox-group"
+      role="group"
+    >
+      <label
+        aria-label="Checkbox"
+        className="css-view-175oi2r"
+        data-style="2fjcr2-1mdhnmt 2fjcr2-1ebsp7h 14bja7p-1q64x7k jyo3sk-w9iemt"
+        dir={null}
+        id="checkbox-1"
+      >
+        <div
+          onBlur={null}
+          onFocus={null}
+          style={
+            {
+              "border": 0,
+              "clip": "rect(0 0 0 0)",
+              "clipPath": "inset(50%)",
+              "height": "1px",
+              "margin": "-1px",
+              "overflow": "hidden",
+              "padding": 0,
+              "position": "absolute",
+              "whiteSpace": "nowrap",
+              "width": "1px",
+            }
+          }
+        >
+          <input
+            aria-label="Label 1"
+            checked={true}
+            disabled={false}
+            onBlur={[Function]}
+            onChange={[Function]}
+            onClick={[Function]}
+            onDragStart={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchCancel={[Function]}
+            onTouchEnd={[Function]}
+            onTouchMove={[Function]}
+            onTouchStart={[Function]}
+            type="checkbox"
+            value="Label 1"
+          />
+        </div>
+        <div
+          className="css-view-175oi2r"
+          data-style="1o4azxd-1jvh2c 1o4azxd-1hkypfz 1o4azxd-vlfdr3 14bja7p-1q64x7k bwxc0z-ygf2ke"
+          dir={null}
+        >
+          <svg
+            data-style="1e6697e-i3qx1q 1e6697e-mf2bik td3hmt-1xhetgp td3hmt-1374l6k"
+            fill="none"
+            role="img"
+            states={
+              {
+                "checked": true,
+                "disabled": undefined,
+                "focusVisible": undefined,
+                "focused": undefined,
+                "hover": undefined,
+                "indeterminate": true,
+                "invalid": true,
+                "pressed": undefined,
+                "readOnly": undefined,
+              }
+            }
+            viewBox="0 0 24 24"
+          >
+            <g>
+              <path
+                d="M20 6L9 17L4 12"
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+              />
+            </g>
+          </svg>
+        </div>
+        <div
+          className="css-text-1rynq56"
+          data-style="1l03e70-q863cm 1l03e70-314322"
+          dir="auto"
+        >
+          Label 1
+        </div>
+      </label>
+      <label
+        aria-label="Checkbox"
+        className="css-view-175oi2r"
+        data-style="2fjcr2-1mdhnmt 2fjcr2-1ebsp7h 14bja7p-1q64x7k jyo3sk-w9iemt"
+        dir={null}
+        id="checkbox-2"
+      >
+        <div
+          onBlur={null}
+          onFocus={null}
+          style={
+            {
+              "border": 0,
+              "clip": "rect(0 0 0 0)",
+              "clipPath": "inset(50%)",
+              "height": "1px",
+              "margin": "-1px",
+              "overflow": "hidden",
+              "padding": 0,
+              "position": "absolute",
+              "whiteSpace": "nowrap",
+              "width": "1px",
+            }
+          }
+        >
+          <input
+            aria-label="Label 2"
+            checked={false}
+            disabled={false}
+            onBlur={[Function]}
+            onChange={[Function]}
+            onClick={[Function]}
+            onDragStart={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchCancel={[Function]}
+            onTouchEnd={[Function]}
+            onTouchMove={[Function]}
+            onTouchStart={[Function]}
+            type="checkbox"
+            value="Label 2"
+          />
+        </div>
+        <div
+          className="css-view-175oi2r"
+          data-style="1o4azxd-1jvh2c 1o4azxd-vlfdr3 14bja7p-1q64x7k bwxc0z-ygf2ke"
+          dir={null}
+        />
+        <div
+          className="css-text-1rynq56"
+          data-style="1l03e70-q863cm"
+          dir="auto"
+        >
+          Label 2
+        </div>
+      </label>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Checkbox component isReadOnly 1`] = `
+<div
+  className="css-view-175oi2r"
+  data-style="1mk50wr-1q64x7k 14bja7p-1q64x7k n7aciq-1q64x7k"
+  dir={null}
+>
+  <div
+    className="css-view-175oi2r"
+    data-style="y9czwk-1hh0pc0 14bja7p-1q64x7k yljpgc-5lm9f0"
+    dir={null}
+  >
+    <div
+      aria-label="Checkbox Group"
+      className="css-view-175oi2r"
+      data-style="xuddv0-1q64x7k"
+      dir={null}
+      id="checkbox-group"
+      role="group"
+    >
+      <label
+        aria-label="Checkbox"
+        className="css-view-175oi2r"
+        data-style="2fjcr2-1mdhnmt 2fjcr2-1ebsp7h 14bja7p-1q64x7k jyo3sk-w9iemt"
+        dir={null}
+        id="checkbox-1"
+      >
+        <div
+          onBlur={null}
+          onFocus={null}
+          style={
+            {
+              "border": 0,
+              "clip": "rect(0 0 0 0)",
+              "clipPath": "inset(50%)",
+              "height": "1px",
+              "margin": "-1px",
+              "overflow": "hidden",
+              "padding": 0,
+              "position": "absolute",
+              "whiteSpace": "nowrap",
+              "width": "1px",
+            }
+          }
+        >
+          <input
+            aria-label="Label 1"
+            aria-readonly={true}
+            checked={true}
+            disabled={false}
+            onBlur={[Function]}
+            onChange={[Function]}
+            onClick={[Function]}
+            onDragStart={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchCancel={[Function]}
+            onTouchEnd={[Function]}
+            onTouchMove={[Function]}
+            onTouchStart={[Function]}
+            type="checkbox"
+            value="Label 1"
+          />
+        </div>
+        <div
+          className="css-view-175oi2r"
+          data-style="1o4azxd-1jvh2c 1o4azxd-1hkypfz 14bja7p-1q64x7k bwxc0z-ygf2ke"
+          dir={null}
+        >
+          <svg
+            data-style="1e6697e-i3qx1q 1e6697e-mf2bik td3hmt-1xhetgp td3hmt-1374l6k"
+            fill="none"
+            role="img"
+            states={
+              {
+                "checked": true,
+                "disabled": undefined,
+                "focusVisible": undefined,
+                "focused": undefined,
+                "hover": undefined,
+                "indeterminate": true,
+                "invalid": undefined,
+                "pressed": undefined,
+                "readOnly": undefined,
+              }
+            }
+            viewBox="0 0 24 24"
+          >
+            <g>
+              <path
+                d="M20 6L9 17L4 12"
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+              />
+            </g>
+          </svg>
+        </div>
+        <div
+          className="css-text-1rynq56"
+          data-style="1l03e70-q863cm 1l03e70-314322"
+          dir="auto"
+        >
+          Label 1
+        </div>
+      </label>
+      <label
+        aria-label="Checkbox"
+        className="css-view-175oi2r"
+        data-style="2fjcr2-1mdhnmt 2fjcr2-1ebsp7h 14bja7p-1q64x7k jyo3sk-w9iemt"
+        dir={null}
+        id="checkbox-2"
+      >
+        <div
+          onBlur={null}
+          onFocus={null}
+          style={
+            {
+              "border": 0,
+              "clip": "rect(0 0 0 0)",
+              "clipPath": "inset(50%)",
+              "height": "1px",
+              "margin": "-1px",
+              "overflow": "hidden",
+              "padding": 0,
+              "position": "absolute",
+              "whiteSpace": "nowrap",
+              "width": "1px",
+            }
+          }
+        >
+          <input
+            aria-label="Label 2"
+            aria-readonly={true}
+            checked={false}
+            disabled={false}
+            onBlur={[Function]}
+            onChange={[Function]}
+            onClick={[Function]}
+            onDragStart={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchCancel={[Function]}
+            onTouchEnd={[Function]}
+            onTouchMove={[Function]}
+            onTouchStart={[Function]}
+            type="checkbox"
+            value="Label 2"
+          />
+        </div>
+        <div
+          className="css-view-175oi2r"
+          data-style="1o4azxd-1jvh2c 14bja7p-1q64x7k bwxc0z-ygf2ke"
+          dir={null}
+        />
+        <div
+          className="css-text-1rynq56"
+          data-style="1l03e70-q863cm"
+          dir="auto"
+        >
+          Label 2
+        </div>
+      </label>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Checkbox component size lg 1`] = `
+<div
+  className="css-view-175oi2r"
+  data-style="1mk50wr-1q64x7k 14bja7p-1q64x7k n7aciq-1q64x7k"
+  dir={null}
+>
+  <div
+    className="css-view-175oi2r"
+    data-style="y9czwk-1hh0pc0 14bja7p-1q64x7k yljpgc-5lm9f0"
+    dir={null}
+  >
+    <div
+      aria-label="Checkbox Group"
+      className="css-view-175oi2r"
+      data-style="xuddv0-1q64x7k"
+      dir={null}
+      id="checkbox-group"
+      role="group"
+    >
+      <label
+        aria-label="Checkbox"
+        className="css-view-175oi2r"
+        data-style="2fjcr2-1mdhnmt 2fjcr2-ksaz4x 2fjcr2-ksaz4x 14bja7p-1q64x7k jyo3sk-w9iemt"
+        dir={null}
+        id="checkbox-1"
+      >
+        <div
+          onBlur={null}
+          onFocus={null}
+          style={
+            {
+              "border": 0,
+              "clip": "rect(0 0 0 0)",
+              "clipPath": "inset(50%)",
+              "height": "1px",
+              "margin": "-1px",
+              "overflow": "hidden",
+              "padding": 0,
+              "position": "absolute",
+              "whiteSpace": "nowrap",
+              "width": "1px",
+            }
+          }
+        >
+          <input
+            aria-label="Label 1"
+            checked={true}
+            disabled={false}
+            onBlur={[Function]}
+            onChange={[Function]}
+            onClick={[Function]}
+            onDragStart={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchCancel={[Function]}
+            onTouchEnd={[Function]}
+            onTouchMove={[Function]}
+            onTouchStart={[Function]}
+            type="checkbox"
+            value="Label 1"
+          />
+        </div>
+        <div
+          className="css-view-175oi2r"
+          data-style="1o4azxd-1jvh2c 2fjcr2-1tbck4z 1o4azxd-1hkypfz 14bja7p-1q64x7k bwxc0z-ygf2ke"
+          dir={null}
+        >
+          <svg
+            data-style="1e6697e-i3qx1q 1e6697e-mf2bik td3hmt-1xhetgp td3hmt-1374l6k"
+            fill="none"
+            role="img"
+            states={
+              {
+                "checked": true,
+                "disabled": undefined,
+                "focusVisible": undefined,
+                "focused": undefined,
+                "hover": undefined,
+                "indeterminate": true,
+                "invalid": undefined,
+                "pressed": undefined,
+                "readOnly": undefined,
+              }
+            }
+            viewBox="0 0 24 24"
+          >
+            <g>
+              <path
+                d="M20 6L9 17L4 12"
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+              />
+            </g>
+          </svg>
+        </div>
+        <div
+          className="css-text-1rynq56"
+          data-style="1l03e70-q863cm 2fjcr2-16we7vb 1l03e70-314322"
+          dir="auto"
+        >
+          Label 1
+        </div>
+      </label>
+      <label
+        aria-label="Checkbox"
+        className="css-view-175oi2r"
+        data-style="2fjcr2-1mdhnmt 2fjcr2-ksaz4x 2fjcr2-ksaz4x 14bja7p-1q64x7k jyo3sk-w9iemt"
+        dir={null}
+        id="checkbox-2"
+      >
+        <div
+          onBlur={null}
+          onFocus={null}
+          style={
+            {
+              "border": 0,
+              "clip": "rect(0 0 0 0)",
+              "clipPath": "inset(50%)",
+              "height": "1px",
+              "margin": "-1px",
+              "overflow": "hidden",
+              "padding": 0,
+              "position": "absolute",
+              "whiteSpace": "nowrap",
+              "width": "1px",
+            }
+          }
+        >
+          <input
+            aria-label="Label 2"
+            checked={false}
+            disabled={false}
+            onBlur={[Function]}
+            onChange={[Function]}
+            onClick={[Function]}
+            onDragStart={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchCancel={[Function]}
+            onTouchEnd={[Function]}
+            onTouchMove={[Function]}
+            onTouchStart={[Function]}
+            type="checkbox"
+            value="Label 2"
+          />
+        </div>
+        <div
+          className="css-view-175oi2r"
+          data-style="1o4azxd-1jvh2c 2fjcr2-1tbck4z 14bja7p-1q64x7k bwxc0z-ygf2ke"
+          dir={null}
+        />
+        <div
+          className="css-text-1rynq56"
+          data-style="1l03e70-q863cm 2fjcr2-16we7vb"
+          dir="auto"
+        >
+          Label 2
+        </div>
+      </label>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Checkbox component size md 1`] = `
+<div
+  className="css-view-175oi2r"
+  data-style="1mk50wr-1q64x7k 14bja7p-1q64x7k n7aciq-1q64x7k"
+  dir={null}
+>
+  <div
+    className="css-view-175oi2r"
+    data-style="y9czwk-1hh0pc0 14bja7p-1q64x7k yljpgc-5lm9f0"
+    dir={null}
+  >
+    <div
+      aria-label="Checkbox Group"
+      className="css-view-175oi2r"
+      data-style="xuddv0-1q64x7k"
+      dir={null}
+      id="checkbox-group"
+      role="group"
+    >
+      <label
+        aria-label="Checkbox"
+        className="css-view-175oi2r"
+        data-style="2fjcr2-1mdhnmt 2fjcr2-1ebsp7h 2fjcr2-1ebsp7h 14bja7p-1q64x7k jyo3sk-w9iemt"
+        dir={null}
+        id="checkbox-1"
+      >
+        <div
+          onBlur={null}
+          onFocus={null}
+          style={
+            {
+              "border": 0,
+              "clip": "rect(0 0 0 0)",
+              "clipPath": "inset(50%)",
+              "height": "1px",
+              "margin": "-1px",
+              "overflow": "hidden",
+              "padding": 0,
+              "position": "absolute",
+              "whiteSpace": "nowrap",
+              "width": "1px",
+            }
+          }
+        >
+          <input
+            aria-label="Label 1"
+            checked={true}
+            disabled={false}
+            onBlur={[Function]}
+            onChange={[Function]}
+            onClick={[Function]}
+            onDragStart={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchCancel={[Function]}
+            onTouchEnd={[Function]}
+            onTouchMove={[Function]}
+            onTouchStart={[Function]}
+            type="checkbox"
+            value="Label 1"
+          />
+        </div>
+        <div
+          className="css-view-175oi2r"
+          data-style="1o4azxd-1jvh2c 2fjcr2-10d27qj 1o4azxd-1hkypfz 14bja7p-1q64x7k bwxc0z-ygf2ke"
+          dir={null}
+        >
+          <svg
+            data-style="1e6697e-i3qx1q 1e6697e-mf2bik td3hmt-1xhetgp td3hmt-1374l6k"
+            fill="none"
+            role="img"
+            states={
+              {
+                "checked": true,
+                "disabled": undefined,
+                "focusVisible": undefined,
+                "focused": undefined,
+                "hover": undefined,
+                "indeterminate": true,
+                "invalid": undefined,
+                "pressed": undefined,
+                "readOnly": undefined,
+              }
+            }
+            viewBox="0 0 24 24"
+          >
+            <g>
+              <path
+                d="M20 6L9 17L4 12"
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+              />
+            </g>
+          </svg>
+        </div>
+        <div
+          className="css-text-1rynq56"
+          data-style="1l03e70-q863cm 2fjcr2-11hczkh 1l03e70-314322"
+          dir="auto"
+        >
+          Label 1
+        </div>
+      </label>
+      <label
+        aria-label="Checkbox"
+        className="css-view-175oi2r"
+        data-style="2fjcr2-1mdhnmt 2fjcr2-1ebsp7h 2fjcr2-1ebsp7h 14bja7p-1q64x7k jyo3sk-w9iemt"
+        dir={null}
+        id="checkbox-2"
+      >
+        <div
+          onBlur={null}
+          onFocus={null}
+          style={
+            {
+              "border": 0,
+              "clip": "rect(0 0 0 0)",
+              "clipPath": "inset(50%)",
+              "height": "1px",
+              "margin": "-1px",
+              "overflow": "hidden",
+              "padding": 0,
+              "position": "absolute",
+              "whiteSpace": "nowrap",
+              "width": "1px",
+            }
+          }
+        >
+          <input
+            aria-label="Label 2"
+            checked={false}
+            disabled={false}
+            onBlur={[Function]}
+            onChange={[Function]}
+            onClick={[Function]}
+            onDragStart={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchCancel={[Function]}
+            onTouchEnd={[Function]}
+            onTouchMove={[Function]}
+            onTouchStart={[Function]}
+            type="checkbox"
+            value="Label 2"
+          />
+        </div>
+        <div
+          className="css-view-175oi2r"
+          data-style="1o4azxd-1jvh2c 2fjcr2-10d27qj 14bja7p-1q64x7k bwxc0z-ygf2ke"
+          dir={null}
+        />
+        <div
+          className="css-text-1rynq56"
+          data-style="1l03e70-q863cm 2fjcr2-11hczkh"
+          dir="auto"
+        >
+          Label 2
+        </div>
+      </label>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Checkbox component size sm 1`] = `
+<div
+  className="css-view-175oi2r"
+  data-style="1mk50wr-1q64x7k 14bja7p-1q64x7k n7aciq-1q64x7k"
+  dir={null}
+>
+  <div
+    className="css-view-175oi2r"
+    data-style="y9czwk-1hh0pc0 14bja7p-1q64x7k yljpgc-5lm9f0"
+    dir={null}
+  >
+    <div
+      aria-label="Checkbox Group"
+      className="css-view-175oi2r"
+      data-style="xuddv0-1q64x7k"
+      dir={null}
+      id="checkbox-group"
+      role="group"
+    >
+      <label
+        aria-label="Checkbox"
+        className="css-view-175oi2r"
+        data-style="2fjcr2-1mdhnmt 2fjcr2-1ksor04 2fjcr2-1ksor04 14bja7p-1q64x7k jyo3sk-w9iemt"
+        dir={null}
+        id="checkbox-1"
+      >
+        <div
+          onBlur={null}
+          onFocus={null}
+          style={
+            {
+              "border": 0,
+              "clip": "rect(0 0 0 0)",
+              "clipPath": "inset(50%)",
+              "height": "1px",
+              "margin": "-1px",
+              "overflow": "hidden",
+              "padding": 0,
+              "position": "absolute",
+              "whiteSpace": "nowrap",
+              "width": "1px",
+            }
+          }
+        >
+          <input
+            aria-label="Label 1"
+            checked={true}
+            disabled={false}
+            onBlur={[Function]}
+            onChange={[Function]}
+            onClick={[Function]}
+            onDragStart={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchCancel={[Function]}
+            onTouchEnd={[Function]}
+            onTouchMove={[Function]}
+            onTouchStart={[Function]}
+            type="checkbox"
+            value="Label 1"
+          />
+        </div>
+        <div
+          className="css-view-175oi2r"
+          data-style="1o4azxd-1jvh2c 2fjcr2-1rh3r0r 1o4azxd-1hkypfz 14bja7p-1q64x7k bwxc0z-ygf2ke"
+          dir={null}
+        >
+          <svg
+            data-style="1e6697e-i3qx1q 1e6697e-mf2bik td3hmt-1xhetgp td3hmt-1374l6k"
+            fill="none"
+            role="img"
+            states={
+              {
+                "checked": true,
+                "disabled": undefined,
+                "focusVisible": undefined,
+                "focused": undefined,
+                "hover": undefined,
+                "indeterminate": true,
+                "invalid": undefined,
+                "pressed": undefined,
+                "readOnly": undefined,
+              }
+            }
+            viewBox="0 0 24 24"
+          >
+            <g>
+              <path
+                d="M20 6L9 17L4 12"
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+              />
+            </g>
+          </svg>
+        </div>
+        <div
+          className="css-text-1rynq56"
+          data-style="1l03e70-q863cm 2fjcr2-1q2dyj6 1l03e70-314322"
+          dir="auto"
+        >
+          Label 1
+        </div>
+      </label>
+      <label
+        aria-label="Checkbox"
+        className="css-view-175oi2r"
+        data-style="2fjcr2-1mdhnmt 2fjcr2-1ksor04 2fjcr2-1ksor04 14bja7p-1q64x7k jyo3sk-w9iemt"
+        dir={null}
+        id="checkbox-2"
+      >
+        <div
+          onBlur={null}
+          onFocus={null}
+          style={
+            {
+              "border": 0,
+              "clip": "rect(0 0 0 0)",
+              "clipPath": "inset(50%)",
+              "height": "1px",
+              "margin": "-1px",
+              "overflow": "hidden",
+              "padding": 0,
+              "position": "absolute",
+              "whiteSpace": "nowrap",
+              "width": "1px",
+            }
+          }
+        >
+          <input
+            aria-label="Label 2"
+            checked={false}
+            disabled={false}
+            onBlur={[Function]}
+            onChange={[Function]}
+            onClick={[Function]}
+            onDragStart={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchCancel={[Function]}
+            onTouchEnd={[Function]}
+            onTouchMove={[Function]}
+            onTouchStart={[Function]}
+            type="checkbox"
+            value="Label 2"
+          />
+        </div>
+        <div
+          className="css-view-175oi2r"
+          data-style="1o4azxd-1jvh2c 2fjcr2-1rh3r0r 14bja7p-1q64x7k bwxc0z-ygf2ke"
+          dir={null}
+        />
+        <div
+          className="css-text-1rynq56"
+          data-style="1l03e70-q863cm 2fjcr2-1q2dyj6"
+          dir="auto"
+        >
+          Label 2
+        </div>
+      </label>
+    </div>
+  </div>
+</div>
+`;

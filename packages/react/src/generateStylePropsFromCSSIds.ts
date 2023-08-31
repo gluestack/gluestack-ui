@@ -130,14 +130,14 @@ function getDataStyle(props: any, styleCSSIdsString: string) {
 export function generateStylePropsFromCSSIds(
   props: any,
   styleCSSIds: any,
-  config: any
+  config: any,
+  activeTheme: any
 ) {
   // console.setStartTimeStamp('generateStylePropsFromCSSIds');
   const propsStyles = Array.isArray(props?.style)
     ? props?.style
     : [props?.style];
 
-  // console.log(styleCSSIds, 'style css id');
   // for RN
   const styleObj: any = [];
   let styleCSSIdsString: any = '';
@@ -147,7 +147,6 @@ export function generateStylePropsFromCSSIds(
       const nativeStyleMap = GluestackStyleSheet.getStyleMap();
       styleCSSIds.forEach((cssId: any) => {
         const nativeStyle = nativeStyleMap.get(cssId);
-
         if (nativeStyle) {
           const queryCondition = nativeStyle?.meta?.queryCondition;
           const styleSheetIds = nativeStyle?.value;
@@ -159,6 +158,11 @@ export function generateStylePropsFromCSSIds(
             }
           } else {
             styleObj.push(styleSheet);
+          }
+          if (nativeStyle.meta.themeCondition && activeTheme) {
+            styleObj.push({
+              ...nativeStyle.meta.themeCondition[activeTheme],
+            });
           }
         }
       });

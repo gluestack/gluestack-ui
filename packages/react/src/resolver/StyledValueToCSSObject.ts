@@ -8,6 +8,5 @@ export function StyledValueToCSSObject(
   if (!input) {
     return {};
   }
-  // return input;
   return resolvedTokenization(input, CONFIG);
 }

@@ -27,6 +27,13 @@ export function getCSSIdAndRuleset(
   } else if (styleValueResolvedWithMeta.meta.colorMode) {
     toBeInjectedStyle.colorMode = styleValueResolvedWithMeta.meta.colorMode;
   }
+  // @ts-ignore
+  if (styleValueResolvedWithMeta.meta.themeCondition) {
+    // @ts-ignore
+    toBeInjectedStyle.themeCondition =
+      // @ts-ignore
+      styleValueResolvedWithMeta.meta.themeCondition;
+  }
 
   //@ts-ignore
   const cssObject = Cssify.create(

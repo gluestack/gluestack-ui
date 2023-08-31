@@ -1,7 +1,11 @@
 import { StyledValueToCSSObject } from '../resolver';
 import type { OrderedSXResolved } from '../types';
 import { getCSSIdAndRuleset } from '../updateCSSStyleInOrderedResolved.web';
-import { deepMerge, resolveTokensFromConfig } from '../utils';
+import {
+  deepMerge,
+  resolveTokensFromConfig,
+  addThemeConditionInMeta,
+} from '../utils';
 import { inject } from '../utils/css-injector';
 export type DeclarationType = 'boot' | 'forwarded';
 export class StyleInjector {
@@ -48,7 +52,7 @@ export class StyleInjector {
 
     const toBeInjected: any = {};
 
-    cssIds.forEach((cssId: string) => {
+    cssIds?.forEach((cssId: string) => {
       if (this.#globalStyleMap.get(cssId)) {
         const styledResolved = this.#globalStyleMap.get(cssId);
         const theme = styledResolved?.original;
@@ -76,11 +80,12 @@ export class StyleInjector {
         //   styledResolved?.type,
         //   styledResolved?.componentHash
         // );
-
-        this.#globalStyleMap.set(styledResolved.meta.cssId, {
-          ...styledResolved,
-          value: styledResolved?.resolved,
-        });
+        if (styledResolved) {
+          this.#globalStyleMap.set(styledResolved.meta.cssId, {
+            ...styledResolved,
+            value: styledResolved?.resolved,
+          });
+        }
       }
     });
 
@@ -125,6 +130,7 @@ export class StyleInjector {
       theme,
       componentExtendedConfig
     );
+    addThemeConditionInMeta(componentTheme, CONFIG);
 
     // delete componentTheme.meta.cssRuleset;
 

@@ -2,7 +2,7 @@
   "private": true,
   "workspaces": [
     "packages/*",
-    "example/*"
+    "example/storybook"
   ],
   "scripts": {
     "test": "bash ./scripts/test.sh",
@@ -19,6 +19,7 @@
   "devDependencies": {
     "@changesets/cli": "^2.25.2",
     "@commitlint/config-conventional": "^17.3.0",
+    "@jest/create-cache-key-function": "^29.6.3",
     "@react-native-community/eslint-config": "^3.2.0",
     "commitlint": "^17.3.0",
     "eslint": "^8.29.0",
