@@ -105,9 +105,9 @@ export type Aliases = GSConfig['aliases'];
 export type Components = GSConfig['components'];
 export type IMediaQueries = keyof GSConfig['tokens']['mediaQueries'];
 
-export type SxStyleProps<GenericComponentStyles, Variants> = {
-  sx?: SxProps<GenericComponentStyles, Variants> & {
-    [Key in `@${IMediaQueries}`]?: SxProps<GenericComponentStyles, Variants>;
+export type SxStyleProps<GenericComponentStyles, Variants, P> = {
+  sx?: SxProps<GenericComponentStyles, Variants, P> & {
+    [Key in `@${IMediaQueries}`]?: SxProps<GenericComponentStyles, Variants, P>;
   };
 };
 
@@ -540,7 +540,7 @@ export interface GSConfig
 /********************* COMPONENT PROPS TYPE *****************************************/
 
 export type ComponentProps<GenericComponentStyles, Variants, P, ComCon> =
-  SxStyleProps<GenericComponentStyles, Variants> & {
+  SxStyleProps<GenericComponentStyles, Variants, P> & {
     states?: {
       [K in IState]?: boolean;
     };
