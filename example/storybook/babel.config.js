@@ -15,6 +15,10 @@ module.exports = function (api) {
                   __dirname,
                   '../../packages/react/src'
                 ),
+                ['@gluestack-style/animation-plugin']: path.join(
+                  __dirname,
+                  '../../packages/animation-plugin/src'
+                ),
                 // ['@gluestack-style/animation-plugin']: path.join(
                 //   __dirname,
                 //   '../../packages/animation-plugin/src'

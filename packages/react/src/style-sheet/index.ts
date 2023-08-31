@@ -135,9 +135,16 @@ export class StyleInjector {
     // delete componentTheme.meta.cssRuleset;
 
     if (componentTheme.meta && componentTheme.meta.queryCondition) {
+      // console.log(
+      //   JSON.parse(JSON.stringify(CONFIG)),
+      //   componentTheme.meta,
+      //   componentTheme.meta.queryCondition
+      // );
+
       const queryCondition = resolveTokensFromConfig(CONFIG, {
         condition: componentTheme.meta.queryCondition,
       })?.condition;
+      // console.log(JSON.parse(JSON.stringify(CONFIG)), queryCondition);
 
       componentTheme.meta.queryCondition = queryCondition;
     }

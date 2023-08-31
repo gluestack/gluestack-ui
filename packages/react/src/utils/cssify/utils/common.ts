@@ -33,7 +33,9 @@ const createCssRule = (
     rule = `${inlineAndStatePrefix}${colorModeRulePrefix} ${dataMediaSelector} ${css}`;
   } else {
     rule = `${inlineAndStatePrefix}${
-      Object.keys(themeCondition).length === 0 ? inlineAndStatePrefix : ''
+      themeCondition && Object.keys(themeCondition).length === 0
+        ? inlineAndStatePrefix
+        : ''
     } ${dataMediaSelector}${mediaQuery} ${css}`;
   }
 
