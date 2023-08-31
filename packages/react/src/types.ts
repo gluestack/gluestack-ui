@@ -287,22 +287,41 @@ type StylePropsType<GenericComponentStyles = AliasesProps, PLATFORM = ''> =
       AliasesProps<RNStyles<GenericComponentStyles>>)
   | (PLATFORM extends '_web' ? TokenizedRNStyleProps<CSSProperties> : {});
 
+type PassingPropsType<GenericComponentStyles, Variants, GenericComponentProps> =
+  {
+    props?: Partial<
+      GenericComponentProps &
+        RNStyles<GenericComponentStyles> &
+        AliasesProps<RNStyles<GenericComponentStyles>> & {
+          as?: any;
+        } & {
+          [Key in keyof MergeNested<
+            VariantType<
+              Variants,
+              GenericComponentStyles,
+              GenericComponentProps
+            >,
+            GlobalVariants
+          >]?: keyof MergeNested<
+            VariantType<
+              Variants,
+              GenericComponentStyles,
+              GenericComponentProps
+            >,
+            GlobalVariants
+          >[Key];
+        }
+    >;
+  };
+
 export type SxProps<
   GenericComponentStyles = AliasesProps,
   Variants = unknown,
   GenericComponentProps = unknown,
   PLATFORM = ''
 > = Partial<
-  | StylePropsType<GenericComponentStyles, PLATFORM>
-  | {
-      props?: Partial<
-        GenericComponentProps & {
-          [Key in keyof Variants]?: keyof Variants[Key];
-        } & Partial<StylePropsType<GenericComponentStyles, PLATFORM>> & {
-            as?: any;
-          }
-      >;
-    }
+  StylePropsType<GenericComponentStyles, PLATFORM> &
+    PassingPropsType<GenericComponentStyles, Variants, GenericComponentProps>
 > & {
   [Key in `_${COLORMODES}`]?: SxProps<
     GenericComponentStyles,
@@ -318,23 +337,25 @@ export type SxProps<
     PLATFORM
   >;
 } & {
-  [Key in `_${PLATFORMS}`]?:
-    | SxProps<GenericComponentStyles, Variants, GenericComponentProps, Key>
-    | { [key: string]: any };
+  [Key in `_${PLATFORMS}`]?: SxProps<
+    GenericComponentStyles,
+    Variants,
+    GenericComponentProps,
+    Key
+  > &
+    PassingPropsType<GenericComponentStyles, Variants, GenericComponentProps> &
+    Partial<{
+      [key: string]: any;
+    }>;
 } & {
   [Key in `_${string}`]?: SxProps<
     RNStyledProps,
     Variants,
     GenericComponentProps,
     PLATFORM
-  > & {
-    props?:
-      | (RNProps &
-          RNStyledProps & {
-            as?: any;
-          })
-      | { [key: string]: any };
-  } & Partial<{
+  > &
+    PassingPropsType<GenericComponentStyles, Variants, GenericComponentProps> &
+    Partial<{
       [key: string]: any;
     }>;
 };
@@ -346,7 +367,7 @@ export type VariantType<
 > =
   | {
       [Key1 in keyof Variants]: {
-        [Key in keyof Variants[Key1] | (string & {})]: Partial<
+        [Key in keyof Variants[Key1]]: Partial<
           SxProps<GenericComponentStyles, Variants> & {
             [K in `@${IMediaQueries}`]?: SxProps<
               GenericComponentStyles,
