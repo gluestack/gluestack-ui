@@ -10,9 +10,17 @@ import { ToastProvider } from '@gluestack-ui/toast';
 import { config } from './../gluestack-ui.config';
 const GluestackUIStyledProvider = createProvider({ StyledProvider });
 
-const GluestackUIProvider = ({ children, ...props }: any) => {
+type GluestackUIProviderProps = Partial<
+  React.ComponentProps<typeof GluestackUIStyledProvider>
+>;
+
+const GluestackUIProvider = ({
+  children,
+  config: configProp = config.theme,
+  ...props
+}: GluestackUIProviderProps) => {
   return (
-    <GluestackUIStyledProvider config={config.theme} {...props}>
+    <GluestackUIStyledProvider config={configProp} {...props}>
       <OverlayProvider>
         <ToastProvider>{children}</ToastProvider>
       </OverlayProvider>
