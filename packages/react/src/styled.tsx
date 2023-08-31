@@ -1169,7 +1169,7 @@ export function verboseStyled<P, Variants, ComCon>(
       componentStyleConfig.resolveProps &&
       Object.keys(componentExtendedConfig).length > 0
     ) {
-      componentStyleConfig.resolveProps.forEach((toBeResovledProp) => {
+      componentStyleConfig.resolveProps.forEach((toBeResovledProp: any) => {
         if (applyComponentInlineProps[toBeResovledProp]) {
           let value = applyComponentInlineProps[toBeResovledProp];
           if (
