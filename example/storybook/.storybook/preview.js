@@ -133,11 +133,11 @@ export const decorators = [
       }
     }
     return (
-      // <GluestackUIProvider config={config.theme} colorMode={getColorMode()}>
-      //   <Center>
-      <Story />
-      //   </Center>
-      // </GluestackUIProvider>
+      <GluestackUIProvider config={config.theme} colorMode={getColorMode()}>
+        <Center>
+          <Story />
+        </Center>
+      </GluestackUIProvider>
     );
   },
 ];
