@@ -109,7 +109,13 @@ export function ContextBasedStyles() {
   );
 }
 
-const MyFlatList = styled(FlatList, {}, {});
+const MyFlatList = styled(
+  FlatList,
+  {},
+  {
+    componentName: 'MyFlatList',
+  }
+);
 const styleshet = StyleSheet.create({
   style: {
     backgroundColor: 'blue',
@@ -163,12 +169,9 @@ export function ContextBasedStylesContent() {
       showsHorizontalScrollIndicator={false}
       // numColumns={2}
       sx={{
-        props: { numColumns: 2 },
-        // _light: {
-        // props: {
-        //   // numColumns: 2,
-        // },
-        // },
+        _web: {
+          props: { bg: '$red500', numColumns: 2 },
+        },
       }}
       renderItem={({ item }: { item: any }) => {
         return (
