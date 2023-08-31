@@ -1,7 +1,7 @@
 import type { ComponentMeta } from '@storybook/react-native';
 import { Themes } from './themes';
 const MyThemesMeta: ComponentMeta<typeof Themes> = {
-  title: 'api/stories/themes',
+  title: 'configuration/stories/themes',
   component: Themes,
 };
 
