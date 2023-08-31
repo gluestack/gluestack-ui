@@ -1,63 +1,25 @@
 import React from 'react';
-import { createIcon } from '@gluestack-ui/icon';
-import { Root } from '../styled-components';
+import { createIcon } from '../styled-components';
 
 import { Path } from 'react-native-svg';
 
 const CloseIcon = createIcon({
-  Root,
   viewBox: '0 0 24 24',
-  path: (
-    <>
-      <Path
-        d="M18 6L6 18"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <Path
-        d="M6 6L18 18"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </>
-  ),
+  d: 'M12 9.77778L4.22222 2L2 4.22222L9.77778 12L2 19.7778L4.22222 22L12 14.2222L19.7778 22L22 19.7778L14.2222 12L22 4.22222L19.7778 2L12 9.77778Z',
 });
 
-const CloseCircleIcon = createIcon({
-  Root,
-  viewBox: '0 0 24 24',
+const SmallCloseIcon = createIcon({
+  viewBox: '0 0 16 16',
   path: (
-    <>
-      <Path
-        d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <Path
-        d="M15 9L9 15"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <Path
-        d="M9 9L15 15"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </>
+    <Path
+      d="M9.41 8l2.29-2.29c.19-.18.3-.43.3-.71a1.003 1.003 0 0 0-1.71-.71L8 6.59l-2.29-2.3a1.003 1.003 0 0 0-1.42 1.42L6.59 8 4.3 10.29c-.19.18-.3.43-.3.71a1.003 1.003 0 0 0 1.71.71L8 9.41l2.29 2.29c.18.19.43.3.71.3a1.003 1.003 0 0 0 .71-1.71L9.41 8z"
+      fillRule="evenodd"
+      fill="currentColor"
+    />
   ),
 });
 
 CloseIcon.displayName = 'CloseIcon';
-CloseCircleIcon.displayName = 'CloseCircleIcon';
+SmallCloseIcon.displayName = 'SmallCloseIcon';
 
-export { CloseIcon, CloseCircleIcon };
+export { CloseIcon, SmallCloseIcon };

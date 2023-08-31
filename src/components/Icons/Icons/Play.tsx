@@ -1,29 +1,8 @@
-import { createIcon } from '@gluestack-ui/icon';
-import React from 'react';
-import { Path } from 'react-native-svg';
-import { Root } from '../styled-components';
+import { createIcon } from '../styled-components';
 
-const PlayIcon: any = createIcon({
-  Root,
+const PlayIcon = createIcon({
   viewBox: '0 0 24 24',
-  path: (
-    <>
-      <Path
-        d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <Path
-        d="M10 8L16 12L10 16V8Z"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </>
-  ),
+  d: 'M12 0C5.376 0 0 5.376 0 12C0 18.624 5.376 24 12 24C18.624 24 24 18.624 24 12C24 5.376 18.624 0 12 0ZM9.6 17.4V6.6L16.8 12L9.6 17.4Z',
 });
 
 PlayIcon.displayName = 'PlayIcon';

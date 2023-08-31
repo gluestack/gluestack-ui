@@ -1,10 +1,8 @@
-import { createIcon } from '@gluestack-ui/icon';
+import { createIcon } from '../styled-components';
 import React from 'react';
 import { Path } from 'react-native-svg';
-import { Root } from '../styled-components';
 
-const AtSignIcon: any = createIcon({
-  Root,
+const AtSignIcon = createIcon({
   viewBox: '0 0 24 24',
   path: (
     <>

@@ -1,54 +1,29 @@
-import { createIcon } from '@gluestack-ui/icon';
-import { AsForwarder } from '@gluestack-style/react';
-import { styled } from '../styled';
+import { createIcon as createIconUI } from '@gluestack-ui/icon';
+import React, { forwardRef } from 'react';
+import { StyledIcon } from './Root';
+import { createIcon } from './styled-components';
 
-const StyledIcon: any = styled(
-  AsForwarder,
-  {
-    color: '$backgroundLight800',
-    _dark: {
-      color: '$backgroundDark400',
-    },
-    variants: {
-      size: {
-        xs: {
-          h: '$3.5',
-          w: '$3.5',
-        },
-        sm: {
-          h: '$4',
-          w: '$4',
-        },
-        md: {
-          h: '$3.5',
-          w: '$3.5',
-        },
-        lg: {
-          h: '$5',
-          w: '$5',
-        },
-        xl: {
-          h: '$6',
-          w: '$6',
-        },
-      },
-    },
-    defaultProps: {
-      size: 'md',
-    },
-  },
-  {
-    ancestorStyle: ['_icon'],
-  },
-  {
-    propertyTokenMap: {
-      stroke: 'colors',
-    },
-  }
-);
-
-export const Icon = createIcon({
+export const AccessibleIcon = createIconUI({
   Root: StyledIcon,
 });
 
+export const Icon = forwardRef(
+  ({ children, as, viewBox, ...props }: any, ref?: any) => {
+    let IconForward;
+    if (as) {
+      IconForward = as;
+    } else if (typeof viewBox === 'string') {
+      const NewIcon = createIcon({
+        viewBox: viewBox,
+        path: children,
+      });
+      IconForward = NewIcon;
+    } else if (children) {
+      IconForward = children;
+    }
+    return <AccessibleIcon as={IconForward} {...props} ref={ref} />;
+  }
+) as typeof AccessibleIcon;
+
 export * from './Icons';
+export * from './styled-components';

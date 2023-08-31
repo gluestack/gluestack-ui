@@ -1,29 +1,8 @@
-import { createIcon } from '@gluestack-ui/icon';
-import React from 'react';
-import { Path } from 'react-native-svg';
-import { Root } from '../styled-components';
+import { createIcon } from '../styled-components';
 
-const AddIcon: any = createIcon({
-  Root,
+const AddIcon = createIcon({
   viewBox: '0 0 24 24',
-  path: (
-    <>
-      <Path
-        d="M12 5V19"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <Path
-        d="M5 12H19"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </>
-  ),
+  d: 'M13.25 10.75V2H10.75V10.75H2V13.25H10.75V22H13.25V13.25H22V10.75H13.25Z',
 });
 
 AddIcon.displayName = 'AddIcon';

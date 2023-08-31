@@ -7,31 +7,55 @@ export default styled(
     props: {
       fill: 'none',
     },
-    color: '$backgroundLight800',
+    color: '$muted.800',
     _dark: {
-      color: '$backgroundDark400',
+      color: '$muted.400',
     },
     variants: {
       size: {
-        xs: {
-          h: 12,
-          w: 12,
+        '2xs': {
+          h: '$2',
+          w: '$2',
         },
-        sm: {
-          h: 16,
-          w: 16,
+        'xs': {
+          h: '$3',
+          w: '$3',
         },
-        md: {
-          h: 18,
-          w: 18,
+        'sm': {
+          h: '$4',
+          w: '$4',
         },
-        lg: {
-          h: 20,
-          w: 20,
+        'md': {
+          h: '$5',
+          w: '$5',
         },
-        xl: {
-          h: 24,
-          w: 24,
+        'lg': {
+          h: '$6',
+          w: '$6',
+        },
+        'xl': {
+          h: '$7',
+          w: '$7',
+        },
+        '2xl': {
+          h: '$8',
+          w: '$8',
+        },
+        '3xl': {
+          h: '$9',
+          w: '$9',
+        },
+        '4xl': {
+          h: '$10',
+          w: '$10',
+        },
+        '5xl': {
+          h: '$12',
+          w: '$12',
+        },
+        '6xl': {
+          h: '$16',
+          w: '$16',
         },
       },
     },

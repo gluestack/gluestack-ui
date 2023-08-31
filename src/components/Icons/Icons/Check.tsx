@@ -1,48 +1,16 @@
-import React from 'react';
-import { createIcon } from '@gluestack-ui/icon';
-import { Root } from '../styled-components';
-import { Path } from 'react-native-svg';
+import { createIcon } from '../styled-components';
 
-const CheckIcon = createIcon({
-  Root,
+export const CheckIcon = createIcon({
   viewBox: '0 0 24 24',
-  path: (
-    <>
-      <Path
-        d="M20 6L9 17L4 12"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </>
-  ),
+  d: 'M8.53115 15.1856L3.96198 10.744L2 12.6512L8.53115 19L22 5.9072L20.038 4L8.53115 15.1856Z',
 });
 
-const CheckCircleIcon = createIcon({
-  Root,
+export const CheckCircleIcon = createIcon({
   viewBox: '0 0 24 24',
-  path: (
-    <>
-      <Path
-        d="M12 22C17.523 22 22 17.523 22 12C22 6.477 17.523 2 12 2C6.477 2 2 6.477 2 12C2 17.523 6.477 22 12 22Z"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <Path
-        d="M9 12L11 14L15 10"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </>
-  ),
+  d: 'M12 24C18.6274 24 24 18.6274 24 12C24 5.37258 18.6274 0 12 0C5.37258 0 0 5.37258 0 12C0 18.6274 5.37258 24 12 24ZM7.17719 11.2464L9.91869 13.9114L16.8228 7.2L18 8.34432L9.91869 16.2L6 12.3907L7.17719 11.2464Z',
 });
 
 CheckIcon.displayName = 'CheckIcon';
 CheckCircleIcon.displayName = 'CheckCircleIcon';
 
-export { CheckIcon, CheckCircleIcon };
+// export { CheckIcon, CheckCircleIcon };
