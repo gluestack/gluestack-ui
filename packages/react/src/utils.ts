@@ -385,7 +385,7 @@ export function addThemeConditionInMeta(originalThemeObject: any, CONFIG: any) {
   themeObject.meta.themeCondition = {};
   // Creating theme conditions for theme
   Object.keys(themeObject.original).forEach((resolvedToken: any) => {
-    Object.keys(CONFIG.themes).forEach((themeName: any) => {
+    Object.keys(CONFIG.themes ?? {}).forEach((themeName: any) => {
       let theme = CONFIG.themes[themeName];
       Object.keys(theme).forEach((tokenScale: any) => {
         const tokenScaleValue = theme[tokenScale];

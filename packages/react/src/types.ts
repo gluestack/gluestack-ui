@@ -293,11 +293,13 @@ export type SxProps<
 > = Partial<
   | StylePropsType<GenericComponentStyles, PLATFORM>
   | {
-      props?: GenericComponentProps & {
-        [Key in keyof Variants]?: keyof Variants[Key];
-      } & Partial<StylePropsType<GenericComponentStyles, PLATFORM>> & {
-          as?: any;
-        };
+      props?: Partial<
+        GenericComponentProps & {
+          [Key in keyof Variants]?: keyof Variants[Key];
+        } & Partial<StylePropsType<GenericComponentStyles, PLATFORM>> & {
+            as?: any;
+          }
+      >;
     }
 > & {
   [Key in `_${COLORMODES}`]?: SxProps<
