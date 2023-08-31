@@ -12,5 +12,5 @@ export default styled(
   },
   {
     componentName: 'ModalFooter',
-  }
+  } as const
 );

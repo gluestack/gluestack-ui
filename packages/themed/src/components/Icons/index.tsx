@@ -39,7 +39,8 @@ const StyledIcon: any = styled(
   },
   {
     ancestorStyle: ['_icon'],
-  },
+    componentName: 'Icon',
+  } as const,
   {
     propertyTokenMap: {
       stroke: 'colors',

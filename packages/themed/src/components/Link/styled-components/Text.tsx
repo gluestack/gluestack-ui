@@ -83,5 +83,5 @@ export default styled(
   {
     componentName: 'LinkText',
     ancestorStyle: ['_text'],
-  }
+  } as const
 );

@@ -82,5 +82,5 @@ export default styled(
   {
     componentName: 'AlertDialogCloseButton',
     descendantStyle: ['_icon', '_text'],
-  }
+  } as const
 );

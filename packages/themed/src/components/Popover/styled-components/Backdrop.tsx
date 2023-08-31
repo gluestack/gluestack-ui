@@ -42,5 +42,5 @@ export default styled(
   },
   {
     componentName: 'PopoverBackdrop',
-  }
+  } as const
 );

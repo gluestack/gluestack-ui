@@ -14,5 +14,5 @@ export default styled(
   {
     componentName: 'FormControlHelperText',
     ancestorStyle: ['_helperText'],
-  }
+  } as const
 );

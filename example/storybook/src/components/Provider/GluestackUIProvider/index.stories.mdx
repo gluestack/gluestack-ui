@@ -78,60 +78,6 @@ The structure provided below can help you identify and understand a GluestackUIP
 export default () => <GluestackUIProvider>{children}</GluestackUIProvider>;
 ```
 
-### Examples
-
-The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
-
-#### Multiple providers
-
-A Provider component used with multiple providers establishes a context for sharing data or functionality across different parts of an application, enabling seamless communication and coordination between multiple provider instances within a user interface.
-
-<AppProvider>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
-        function App(){
-          return (
-            <GluestackUIProvider config={config.theme}>
-              <Button
-                bg="$amber500"
-                mb="$5"
-              >
-                <ButtonText sx={{
-                  _light: {
-                    color: 'black',
-                  }
-                }}>Hello</ButtonText>
-              </Button>
-              <GluestackUIProvider
-              config={config.theme}
-              >
-                <Button bg="$red500">
-                  <ButtonText color="$black">Hello</ButtonText>
-                </Button>
-              </GluestackUIProvider>
-            </GluestackUIProvider>
-          )
-        }
-      `,
-      transformCode: (code) => {
-        return transformedCode(code, 'function', 'App');
-      },
-      scope: {
-        GluestackUIProvider,
-        Button,
-        Text,
-        config,
-        Wrapper,
-        ButtonText,
-      },
-      argsType: {},
-    }}
-  />
-</AppProvider>
-
 ## Advanced
 
 We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.

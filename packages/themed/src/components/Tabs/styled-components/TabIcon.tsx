@@ -12,5 +12,5 @@ export default styled(
   {
     componentName: 'TabsTabIcon',
     ancestorStyle: ['_icon'],
-  }
+  } as const
 );

@@ -65,5 +65,5 @@ export default styled(
       '_errorText',
       '_labelAstrick',
     ],
-  }
+  } as const
 );

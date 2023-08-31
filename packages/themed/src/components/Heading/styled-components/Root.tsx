@@ -125,5 +125,5 @@ export default styled(
   },
   {
     componentName: 'Heading',
-  }
+  } as const
 );

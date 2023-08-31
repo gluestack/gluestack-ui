@@ -59,6 +59,5 @@ export default styled(
   {
     componentName: 'SelectActionsheetItem',
     descendantStyle: ['_text'],
-    DEBUG: 'ACTIONSHEET_ITEM',
-  }
+  } as const
 );

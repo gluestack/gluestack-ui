@@ -8,5 +8,5 @@ export default styled(
   },
   {
     componentName: 'Tooltip',
-  }
+  } as const
 );

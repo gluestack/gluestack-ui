@@ -13,5 +13,5 @@ export default styled(
   {
     componentName: 'ProgressFilledTrack',
     ancestorStyle: ['_filledTrack'],
-  }
+  } as const
 );

@@ -15,5 +15,5 @@ export default styled(
   },
   {
     componentName: 'AlertDialogHeader',
-  }
+  } as const
 );

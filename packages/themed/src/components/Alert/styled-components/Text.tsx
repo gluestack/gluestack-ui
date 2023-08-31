@@ -18,5 +18,5 @@ export default styled(
   {
     componentName: 'AlertText',
     ancestorStyle: ['_text'],
-  }
+  } as const
 );
