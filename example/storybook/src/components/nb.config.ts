@@ -700,6 +700,19 @@ export const config = createConfig({
       },
     },
   },
+  components: {
+    Box: {
+      theme: {
+        variants: {
+          variant: {
+            newVariant: {
+              bg: '$red500',
+            },
+          },
+        },
+      },
+    },
+  },
 } as const);
 
 type ConfigType = typeof config;

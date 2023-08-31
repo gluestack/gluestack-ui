@@ -102,7 +102,7 @@ export type CreateGenericConfig = GlueStackConfig<
 
 // All Aliases
 export type Aliases = GSConfig['aliases'];
-
+export type Components = GSConfig['components'];
 export type IMediaQueries = keyof GSConfig['tokens']['mediaQueries'];
 
 export type SxStyleProps<GenericComponentStyles, Variants> = {
@@ -121,6 +121,12 @@ export interface IConfigProps {
   componentName: string;
 }
 
+export type IComponentStyleConfig<ComCon = unknown> = Partial<{
+  descendantStyle: Array<string>;
+  ancestorStyle: Array<string>;
+  resolveProps: Array<string>;
+  componentName: ComCon;
+}>;
 export type ConfigType = Partial<IConfigProps> & { [key: string]: any };
 
 export type Config = {
@@ -533,29 +539,48 @@ export interface GSConfig
 
 /********************* COMPONENT PROPS TYPE *****************************************/
 
-export type ComponentProps<GenericComponentStyles, Variants, P> = SxStyleProps<
-  GenericComponentStyles,
-  Variants
-> & {
-  states?: {
-    [K in IState]?: boolean;
-  };
-} & (GSConfig['globalStyle'] extends object
-    ? {
-        [Key in keyof MergeNested<
-          GlobalVariants,
-          Variants
-        >]?: keyof MergeNested<GlobalVariants, Variants>[Key] extends
-          | 'true'
-          | 'false'
-          ? boolean
-          : keyof MergeNested<GlobalVariants, Variants>[Key];
-      } & Omit<P, keyof Variants>
-    : {
-        [Key in keyof Variants]?: keyof Variants[Key] extends 'true' | 'false'
-          ? boolean
-          : keyof Variants[Key];
-      });
+export type ComponentProps<GenericComponentStyles, Variants, P, ComCon> =
+  SxStyleProps<GenericComponentStyles, Variants> & {
+    states?: {
+      [K in IState]?: boolean;
+    };
+  } & (GSConfig['globalStyle'] extends object
+      ? {
+          [Key in keyof MergeNestedThree<
+            GlobalVariants,
+            Variants,
+            // @ts-ignore
+            Components[`${ComCon}`]['theme']['variants']
+          >]?: keyof MergeNestedThree<
+            GlobalVariants,
+            Variants,
+            // @ts-ignore
+            Components[`${ComCon}`]['theme']['variants']
+          >[Key] extends 'true' | 'false'
+            ? boolean
+            : keyof MergeNestedThree<
+                GlobalVariants,
+                Variants,
+                // @ts-ignore
+                Components[`${ComCon}`]['theme']['variants']
+              >[Key];
+        } & Omit<P, keyof Variants>
+      : {
+          [Key in keyof MergeNested<
+            Variants,
+            // @ts-ignore
+            Components[`${ComCon}`]['theme']['variants']
+          >]?: keyof MergeNested<
+            Variants, // @ts-ignore
+            Components[`${ComCon}`]['theme']['variants']
+          >[Key] extends 'true' | 'false'
+            ? boolean
+            : keyof MergeNested<
+                Variants,
+                // @ts-ignore
+                Components[`${ComCon}`]['theme']['variants']
+              >[Key];
+        });
 
 export type UtilityProps<GenericComponentStyles> = TokenizedRNStyleProps<
   GetRNStyles<GenericComponentStyles>
@@ -604,6 +629,8 @@ type MergeNested<T, U> = T extends object
       }
     : T
   : U;
+
+type MergeNestedThree<T, U, W> = MergeNested<MergeNested<T, U>, W>;
 
 export type RNStyles<GenericComponentStyles> = TokenizedRNStyleProps<
   UnionToIntersection<
