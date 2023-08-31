@@ -660,7 +660,7 @@ export const config = createConfig({
     '2000s': {
       colors: {
         $backgroundColor: '#ffffff',
-        $headerColor: '#e11d48',
+        $headerColor: '$colors$blue600',
         $textColor: '#ffffff',
         $borderColor: '$colors$gray400',
       },
@@ -674,8 +674,8 @@ export const config = createConfig({
     '2010s': {
       colors: {
         $backgroundColor: '#ffffff',
-        $headerColor: '#e11d48',
-        $textColor: '#000000',
+        $headerColor: '$colors$blue700',
+        $textColor: '$colors$white',
         $borderColor: '#000000',
       },
       borderWidths: {
@@ -687,13 +687,13 @@ export const config = createConfig({
     },
     '2020s': {
       colors: {
-        $backgroundColor: '#ffffff',
-        $headerColor: '#e11d487a',
-        $textColor: '#e41d4f',
-        $borderColor: '#000000',
+        $backgroundColor: '#ffffff7a',
+        $headerColor: '$colors$blue400',
+        $textColor: '$colors$blue900',
+        $borderColor: '$colors$gray300',
       },
       borderWidths: {
-        $borderWidth: '$space$0',
+        $borderWidth: '$space$px',
       },
       radii: {
         $borderRadius: '$radii$xl',

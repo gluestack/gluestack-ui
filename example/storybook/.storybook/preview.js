@@ -50,6 +50,7 @@ export const parameters = {
         'configuration',
         [
           'Theme Tokens',
+          'Themes',
           'Breakpoints',
           'Global Style',
           'Customizing Components',
