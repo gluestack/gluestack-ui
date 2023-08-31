@@ -123,9 +123,9 @@ export interface IConfigProps {
 
 export type IComponentStyleConfig<ComCon = unknown> = Partial<
   {
-    descendantStyle: Array<string>;
-    ancestorStyle: Array<string>;
-    resolveProps: Array<string>;
+    descendantStyle: any;
+    ancestorStyle: any;
+    resolveProps: any;
     componentName: ComCon;
   } & { [key: string]: any }
 >;
