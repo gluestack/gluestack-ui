@@ -76,332 +76,332 @@ Contains all the parts of a collapsible section.
 <AppProvider>
   <TableContainer>
     <Table>
-      <TableTHead>
-        <TableTR>
-          <TableTH>
-            <TableTText>Prop</TableTText>
-          </TableTH>
-          <TableTH>
-            <TableTText>Type</TableTText>
-          </TableTH>
-          <TableTH>
-            <TableTText>Default</TableTText>
-          </TableTH>
-          <TableTH>
-            <TableTText>Description</TableTText>
-          </TableTH>
-        </TableTR>
-      </TableTHead>
-      <TableTBody>
-        <TableTR>
-          <TableTD>
-            <TableTText>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Type</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Default</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Description</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
               <InlineCode>size</InlineCode>
-            </TableTText>
-          </TableTD>
-          <TableTD>
-            <TableTText>"sm" | "md" |"lg"</TableTText>
-          </TableTD>
-          <TableTD>
-            <TableTText>"md"</TableTText>
-          </TableTD>
-          <TableTD>
-            <TableTText>{`The overall size of the entire table.`}</TableTText>
-          </TableTD>
-        </TableTR>
-        <TableTR>
-          <TableTD>
-            <TableTText>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>"sm" | "md" |"lg"</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>"md"</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`The overall size of the entire table.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
               <InlineCode>isHeaderSticky</InlineCode>
-            </TableTText>
-          </TableTD>
-          <TableTD>
-            <TableTText>boolean</TableTText>
-          </TableTD>
-          <TableTD>
-            <TableTText>false</TableTText>
-          </TableTD>
-          <TableTD>
-            <TableTText>{`When true, keeps the table header sticky to top when you scroll inside the table.`}</TableTText>
-          </TableTD>
-        </TableTR>
-      </TableTBody>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`When true, keeps the table header sticky to top when you scroll inside the table.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
     </Table>
   </TableContainer>
 </AppProvider>
 
-#### TableHead
+#### Table.Head
 
 A component to contain table headers with titles. It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
-#### TableRow
+#### Table.Row
 
 A component to show a single row inside of a table. It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
 <AppProvider>
   <TableContainer>
     <Table>
-      <TableTHead>
-        <TableTR>
-          <TableTH>
-            <TableTText>Prop</TableTText>
-          </TableTH>
-          <TableTH>
-            <TableTText>Type</TableTText>
-          </TableTH>
-          <TableTH>
-            <TableTText>Default</TableTText>
-          </TableTH>
-          <TableTH>
-            <TableTText>Description</TableTText>
-          </TableTH>
-        </TableTR>
-      </TableTHead>
-      <TableTBody>
-        <TableTR>
-          <TableTD>
-            <TableTText>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Type</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Default</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Description</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
               <InlineCode>isSelected</InlineCode>
-            </TableTText>
-          </TableTD>
-          <TableTD>
-            <TableTText>boolean</TableTText>
-          </TableTD>
-          <TableTD>
-            <TableTText>false</TableTText>
-          </TableTD>
-          <TableTD>
-            <TableTText>{`If true, the table row will have the selected shading.`}</TableTText>
-          </TableTD>
-        </TableTR>
-      </TableTBody>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`If true, the table row will have the selected shading.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
     </Table>
   </TableContainer>
 </AppProvider>
 
-#### TableBody
+#### Table.Body
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
-#### TableHeader
+#### Table.Header
 
 A component to show a single heading inside of a table head. It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
-#### TableData
+#### Table.Data
 
 A component to show a single data cell inside of a table. It inherits all the properties of React Native [View](https://reactnative.dev/docs/view) component.
 
-#### TableText
+#### Table.Text
 
-A component to show text of a table heading, it must be wrapped with `TableHeader` or `TableData` for appropriate styling. It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text) component.
+A component to show text of a table heading, it must be wrapped with `Table.Header` or `Table.Data` for appropriate styling. It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text) component.
 
-#### TableCaption
+#### Table.Caption
 
 It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text) component.
 
 <AppProvider>
   <TableContainer>
     <Table>
-      <TableTHead>
-        <TableTR>
-          <TableTH>
-            <TableTText>Prop</TableTText>
-          </TableTH>
-          <TableTH>
-            <TableTText>Type</TableTText>
-          </TableTH>
-          <TableTH>
-            <TableTText>Default</TableTText>
-          </TableTH>
-          <TableTH>
-            <TableTText>Description</TableTText>
-          </TableTH>
-        </TableTR>
-      </TableTHead>
-      <TableTBody>
-        <TableTR>
-          <TableTD>
-            <TableTText>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Type</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Default</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Description</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
               <InlineCode>placement</InlineCode>
-            </TableTText>
-          </TableTD>
-          <TableTD>
-            <TableTText>"top" | "bottom"</TableTText>
-          </TableTD>
-          <TableTD>
-            <TableTText>"bottom"</TableTText>
-          </TableTD>
-          <TableTD>
-            <TableTText>{`If true, the table row will have the selected shading.`}</TableTText>
-          </TableTD>
-        </TableTR>
-      </TableTBody>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>"top" | "bottom"</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>"bottom"</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`If true, the table row will have the selected shading.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
     </Table>
   </TableContainer>
 </AppProvider>
 
-#### TablePagination
+#### Table.Pagination
 
 A component to show pagination for data table.
 
 <AppProvider>
   <TableContainer>
     <Table>
-      <TableTHead>
-        <TableTR>
-          <TableTH>
-            <TableTText>Prop</TableTText>
-          </TableTH>
-          <TableTH>
-            <TableTText>Type</TableTText>
-          </TableTH>
-          <TableTH>
-            <TableTText>Default</TableTText>
-          </TableTH>
-          <TableTH>
-            <TableTText>Description</TableTText>
-          </TableTH>
-        </TableTR>
-      </TableTHead>
-      <TableTBody>
-        <TableTR>
-          <TableTD>
-            <TableTText>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Type</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Default</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Description</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
               <InlineCode>page</InlineCode>
-            </TableTText>
-          </TableTD>
-          <TableTD>
-            <TableTText>number</TableTText>
-          </TableTD>
-          <TableTD>
-            <TableTText>0</TableTText>
-          </TableTD>
-          <TableTD>
-            <TableTText>{`The zero-based index of the current page.`}</TableTText>
-          </TableTD>
-        </TableTR>
-        <TableTR>
-          <TableTD>
-            <TableTText>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>number</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>0</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`The zero-based index of the current page.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
               <InlineCode>rowsPerPage</InlineCode>
-            </TableTText>
-          </TableTD>
-          <TableTD>
-            <TableTText>number</TableTText>
-          </TableTD>
-          <TableTD>
-            <TableTText>-1</TableTText>
-          </TableTD>
-          <TableTD>
-            <TableTText>{`The number of rows per page. Set -1 to display all the rows.`}</TableTText>
-          </TableTD>
-        </TableTR>
-        <TableTR>
-          <TableTD>
-            <TableTText>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>number</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-1</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`The number of rows per page. Set -1 to display all the rows.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
               <InlineCode>onPageChange</InlineCode>
-            </TableTText>
-          </TableTD>
-          <TableTD>
-            <TableTText>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>
               function(event: any | null, page: number) => void
-            </TableTText>
-          </TableTD>
-          <TableTD>
-            <TableTText>-</TableTText>
-          </TableTD>
-          <TableTD>
-            <TableTText>{`Callback fired when the page is changed.`}</TableTText>
-          </TableTD>
-        </TableTR>
-        <TableTR>
-          <TableTD>
-            <TableTText>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Callback fired when the page is changed.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
               <InlineCode>onRowsPerPageChange</InlineCode>
-            </TableTText>
-          </TableTD>
-          <TableTD>
-            <TableTText>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>
               function(event: any | null, rowsPerPage: number) => void
-            </TableTText>
-          </TableTD>
-          <TableTD>
-            <TableTText>-</TableTText>
-          </TableTD>
-          <TableTD>
-            <TableTText>{`Callback fired when the number of rows per page is changed.`}</TableTText>
-          </TableTD>
-        </TableTR>
-        <TableTR>
-          <TableTD>
-            <TableTText>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Callback fired when the number of rows per page is changed.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
               <InlineCode>rowsPerPage</InlineCode>
-            </TableTText>
-          </TableTD>
-          <TableTD>
-            <TableTText>number</TableTText>
-          </TableTD>
-          <TableTD>
-            <TableTText>-1</TableTText>
-          </TableTD>
-          <TableTD>
-            <TableTText>{`The number of rows per page. Set -1 to display all the rows.`}</TableTText>
-          </TableTD>
-        </TableTR>
-        <TableTR>
-          <TableTD>
-            <TableTText>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>number</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-1</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`The number of rows per page. Set -1 to display all the rows.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
               <InlineCode>rowsPerPage</InlineCode>
-            </TableTText>
-          </TableTD>
-          <TableTD>
-            <TableTText>number</TableTText>
-          </TableTD>
-          <TableTD>
-            <TableTText>-1</TableTText>
-          </TableTD>
-          <TableTD>
-            <TableTText>{`The number of rows per page. Set -1 to display all the rows.`}</TableTText>
-          </TableTD>
-        </TableTR>
-        <TableTR>
-          <TableTD>
-            <TableTText>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>number</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-1</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`The number of rows per page. Set -1 to display all the rows.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
               <InlineCode>rowsPerPage</InlineCode>
-            </TableTText>
-          </TableTD>
-          <TableTD>
-            <TableTText>number</TableTText>
-          </TableTD>
-          <TableTD>
-            <TableTText>-1</TableTText>
-          </TableTD>
-          <TableTD>
-            <TableTText>{`The number of rows per page. Set -1 to display all the rows.`}</TableTText>
-          </TableTD>
-        </TableTR>
-      </TableTBody>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>number</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-1</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`The number of rows per page. Set -1 to display all the rows.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
     </Table>
   </TableContainer>
 </AppProvider>
 
-#### TablePaginationFirstPageButton
+#### Table.Pagination.FirstPageButton
 
 A component to navigate to the first page of the table.
 
-#### TablePaginationPreviousButton
+#### Table.Pagination.PreviousButton
 
 A component to navigate to the previous page of the table.
 
-#### TablePaginationPageStats
+#### Table.Pagination.PageStats
 
 A component to show the current page and total pages of the table.
 
-#### TablePaginationNextButton
+#### Table.Pagination.NextButton
 
 A component to navigate to the next page of the table.
 
-#### TablePaginationLastPageButton
+#### Table.Pagination.LastPageButton
 
 A component to navigate to the last page of the table.
 
