@@ -111,13 +111,14 @@ const createCssRule = (
   const colorModeRulePrefix = prefixColorMode
     ? `.${prefixColorMode}${colorMode}`
     : '';
+  const mediaQueryPrefix = `.gs`;
 
   const inlineAndStatePrefix = `${inlineRulePrefix}${stateRulePrefix}`;
 
   if (isMedia(mediaQuery) && isColorScheme(colorSchemeQuery)) {
-    return `${mediaQuery} {${inlineAndStatePrefix}${colorModeRulePrefix} ${dataMediaSelector} ${css}}`;
+    return `${mediaQuery} {${mediaQueryPrefix}${inlineAndStatePrefix}${colorModeRulePrefix} ${dataMediaSelector} ${css}}`;
   } else if (isMedia(mediaQuery)) {
-    return `${mediaQuery} {${inlineAndStatePrefix} ${dataMediaSelector} ${css}}`;
+    return `${mediaQuery} {${mediaQueryPrefix}${inlineAndStatePrefix} ${dataMediaSelector} ${css}}`;
   } else if (isColorScheme(colorSchemeQuery)) {
     return `${inlineAndStatePrefix}${colorModeRulePrefix} ${dataMediaSelector} ${css}`;
   } else {
