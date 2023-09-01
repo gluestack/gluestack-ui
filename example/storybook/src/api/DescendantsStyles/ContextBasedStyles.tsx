@@ -20,7 +20,7 @@ import { Wrapper } from '../../components/Wrapper';
 const Box = styled(
   View,
   {
-    // 'bg': '$red500',
+    'bg': '$red500',
     // 'bg': '$red600',
     'w': 100,
     'h': 100,
@@ -28,9 +28,10 @@ const Box = styled(
       bg: '$red600',
     },
     '@base': {
-      // _light: {
       bg: '$green500',
-      // },
+    },
+    ':hover': {
+      bg: '$red500',
     },
   },
   {
@@ -50,9 +51,12 @@ export function ContextBasedStyles() {
 export function ContextBasedStylesContent() {
   // return <MyFlatList></MyFlatList>;
   return (
-    <Theme name={'modern'}>
-      <Box></Box>
-    </Theme>
+    <>
+      <Theme name={'modern'}>
+        <Box states={{ hover: true }}></Box>
+      </Theme>
+      <Box states={{ hover: true }}></Box>
+    </>
   );
 
   return (

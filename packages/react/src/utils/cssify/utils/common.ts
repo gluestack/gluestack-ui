@@ -26,9 +26,9 @@ const createCssRule = (
   const inlineAndStatePrefix = `${inlineRulePrefix}${stateRulePrefix}`;
   let rule = '';
   if (isMedia(mediaQuery) && isColorScheme(colorSchemeQuery)) {
-    rule = `${mediaQuery} {${inlineAndStatePrefix}${colorModeRulePrefix} ${dataMediaSelector} ${css}}`;
+    rule = `${mediaQuery} {.gs${inlineAndStatePrefix}${colorModeRulePrefix} ${dataMediaSelector} ${css}}`;
   } else if (isMedia(mediaQuery)) {
-    rule = `${mediaQuery} {${inlineAndStatePrefix} ${dataMediaSelector} ${css}}`;
+    rule = `${mediaQuery} {.gs${inlineAndStatePrefix} ${dataMediaSelector} ${css}}`;
   } else if (isColorScheme(colorSchemeQuery)) {
     rule = `${inlineAndStatePrefix}${colorModeRulePrefix} ${dataMediaSelector} ${css}`;
   } else {
