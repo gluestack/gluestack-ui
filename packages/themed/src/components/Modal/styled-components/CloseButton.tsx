@@ -85,5 +85,5 @@ export default styled(
   {
     componentName: 'ModalCloseButton',
     descendantStyle: ['_icon', '_text'],
-  }
+  } as const
 );

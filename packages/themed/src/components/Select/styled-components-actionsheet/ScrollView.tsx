@@ -9,5 +9,5 @@ export default styled(
   },
   {
     componentName: 'SelectActionsheetScrollView',
-  }
+  } as const
 );

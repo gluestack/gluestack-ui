@@ -10,5 +10,5 @@ export default styled(
   },
   {
     componentName: 'SelectActionsheetIndicatorWrapper',
-  }
+  } as const
 );

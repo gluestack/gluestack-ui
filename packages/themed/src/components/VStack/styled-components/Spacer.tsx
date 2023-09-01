@@ -35,5 +35,5 @@ export default styled(
   },
   {
     componentName: 'VStackSpacer',
-  }
+  } as const
 );

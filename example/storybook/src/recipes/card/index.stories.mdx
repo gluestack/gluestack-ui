@@ -1,11 +1,115 @@
 ---
 title: Card | gluestack-ui
-description: Card
-tag: coming-soon
+description: Card component recipe using components of gluestack-ui
 ---
+
+import { transformedCode } from '../../utils';
+
+import {
+  AppProvider,
+  CodePreview,
+  Table,
+  TableContainer,
+  InlineCode,
+  AddIcon,
+  InfoIcon,
+  Alert,
+} from '@gluestack/design-system';
+import Wrapper from '../../components/Wrapper';
+import {
+  Box,
+  Image,
+  VStack,
+  Text,
+  Heading,
+  Link,
+  config,
+} from '@gluestack-ui/themed';
 
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 <Meta title="Recipes/Card" />
 
 # Card
+
+A card is a flexible and extensible content container. It comes in caries shapes and sizes and here we'll make few of them.
+
+## Most Commonly used design
+
+A card component is a common and widely used UI element which helps to display related information or content in a visually cohesive and organized manner. Below is the implementation of card component usign `gluestack-ui`.
+
+<AppProvider config={config.theme}>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+        function App () {
+          return (   
+            <Box
+            maxWidth='$64'
+            borderColor='$borderLight200'
+            borderRadius='$lg'
+            borderWidth='$1'
+            my="$4"
+            overflow="hidden"
+            sx={{
+              "@base": {
+              mx: '$5',
+              },
+              "@lg":{
+                my:"0"
+              },
+              "_dark": {
+                bg:"$backgroundDark900",
+                borderColor: '$borderDark800'
+              },
+            }}
+          >
+            <Box >
+              <Image
+                h={150}
+                source={{
+                  uri: 'https://drive.google.com/uc?export=view&id=1h1e89BtQCp6JdGiKo92dlf5bjHC8hLjt',
+                }}        
+              />
+            </Box>
+            <VStack px='$6' pt='$4' pb='$6'>
+              <Text _dark={{color:"$textLight200"}} fontSize='$sm'  my='$1.5'>
+              August 16, 2023
+              </Text>
+              <Heading _dark={{color:"$textLight200"}} size='sm' >
+              Fresho Orange 
+            </Heading>
+            <Text my='$1.5' _dark={{color:"$textLight200"}} fontSize='$xs'>
+              Oranges are a great source of vitamin C, which is essential for a healthy immune system. Oranges are a great source of vitamin C,
+              which is important for maintaining a healthy immune system.
+              </Text>
+              <Text _dark={{color:"$textLight200"}} my='$1.5' fontSize='$xs' isTruncated="true">
+              Vitamin C also helps with the absorption of iron and the production of collagen, which supports healthy skin, teeth, and bones.
+              </Text>   
+              <Link href="https://gluestack.io/" isExternal>
+                <Text fontSize='$sm' color='$pink600'>
+                Find out more
+                </Text>
+              </Link>
+            </VStack>
+          </Box>    
+              ) 
+        }
+`,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'App');
+      },
+      scope: {
+        Wrapper,
+        Box,
+        Image,
+        VStack,
+        Text,
+        Heading,
+        Link,
+      },
+    }}
+  />
+</AppProvider>

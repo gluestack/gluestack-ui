@@ -18,5 +18,5 @@ export default styled(
   },
   {
     componentName: 'AlertDialogFooter',
-  }
+  } as const
 );

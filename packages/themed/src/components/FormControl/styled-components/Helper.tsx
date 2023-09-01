@@ -11,5 +11,5 @@ export default styled(
   },
   {
     componentName: 'FormControlHelper',
-  }
+  } as const
 );

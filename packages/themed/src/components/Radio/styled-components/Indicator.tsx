@@ -111,5 +111,5 @@ export default styled(
   {
     componentName: 'RadioIndicator',
     ancestorStyle: ['_indicator'],
-  }
+  } as const
 );

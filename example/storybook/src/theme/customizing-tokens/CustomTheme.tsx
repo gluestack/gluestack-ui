@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Box,
+  Box as DefaultBox,
   Center,
   StyledProvider,
   config,
@@ -11,7 +11,7 @@ import { createProvider } from '@gluestack-ui/provider';
 const Provider = createProvider({ StyledProvider }) as any;
 Provider.displayName = 'CustomProvider';
 
-const NewBox = styled(Box, {}, {});
+const Box = styled(DefaultBox, {}, {});
 const extendedConfig = createConfig({
   ...config.theme,
   tokens: {
@@ -37,7 +37,7 @@ const extendedConfig = createConfig({
 const Wrapper = ({ children, ...props }: any) => {
   return (
     <Provider config={extendedConfig} {...props}>
-      <NewBox
+      <Box
         sx={{
           _ios: {
             h: '100%',
@@ -46,7 +46,7 @@ const Wrapper = ({ children, ...props }: any) => {
         {...props}
       >
         <Center h="100%">{children}</Center>
-      </NewBox>
+      </Box>
     </Provider>
   );
 };

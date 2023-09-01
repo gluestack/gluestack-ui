@@ -14,5 +14,5 @@ export default styled(
   {
     componentName: 'FormControlLabelText',
     ancestorStyle: ['_labelText'],
-  }
+  } as const
 );

@@ -65,5 +65,5 @@ export default styled(
     componentName: 'TabsTab',
     descendantStyle: ['_title', '_icon'],
     ancestorStyle: ['_tab'],
-  }
+  } as const
 );

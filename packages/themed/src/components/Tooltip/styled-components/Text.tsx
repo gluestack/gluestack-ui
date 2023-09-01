@@ -12,5 +12,5 @@ export default styled(
   {
     componentName: 'TooltipText',
     ancestorStyle: ['_text'],
-  }
+  } as const
 );

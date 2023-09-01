@@ -52,5 +52,5 @@ export default styled(
   {
     componentName: 'Link',
     descendantStyle: ['_text'],
-  }
+  } as const
 );

@@ -9,5 +9,5 @@ export default styled(
   },
   {
     componentName: 'Actionsheet',
-  }
+  } as const
 );

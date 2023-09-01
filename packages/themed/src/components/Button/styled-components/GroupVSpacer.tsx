@@ -27,5 +27,5 @@ export default styled(
   {
     componentName: 'ButtonGroupVSpacer',
     ancestorStyle: ['_groupVSpacer'],
-  }
+  } as const
 );

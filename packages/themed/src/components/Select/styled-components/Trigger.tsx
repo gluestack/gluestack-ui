@@ -358,5 +358,5 @@ export default styled(
   {
     componentName: 'SelectTrigger',
     descendantStyle: ['_input', '_icon'],
-  }
+  } as const
 );

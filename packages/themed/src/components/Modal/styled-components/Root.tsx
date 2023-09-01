@@ -28,5 +28,5 @@ export default styled(
   {
     componentName: 'Modal',
     descendantStyle: ['_content'],
-  }
+  } as const
 );

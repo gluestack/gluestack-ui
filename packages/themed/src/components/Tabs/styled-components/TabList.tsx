@@ -12,5 +12,5 @@ export default styled(
   {
     componentName: 'TabsTabList',
     descendantStyle: ['_tab'],
-  }
+  } as const
 );

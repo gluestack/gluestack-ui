@@ -27,7 +27,7 @@ export default styled(
     componentName: 'InputField',
     ancestorStyle: ['_input'],
     resolveProps: ['placeholderTextColor'],
-  },
+  } as const,
   {
     propertyTokenMap: {
       placeholderTextColor: 'colors',

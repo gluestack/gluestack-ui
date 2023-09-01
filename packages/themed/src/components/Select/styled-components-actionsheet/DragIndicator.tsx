@@ -14,5 +14,5 @@ export default styled(
   },
   {
     componentName: 'SelectActionsheetDragIndicator',
-  }
+  } as const
 );

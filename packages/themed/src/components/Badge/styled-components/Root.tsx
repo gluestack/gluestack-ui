@@ -168,5 +168,5 @@ export default styled(
   {
     componentName: 'Badge',
     descendantStyle: ['_text', '_icon'],
-  }
+  } as const
 );
