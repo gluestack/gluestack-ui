@@ -41,7 +41,14 @@ import {
   BadgePlusIcon,
 } from './Badge';
 import { transformedCode } from '../../../utils';
-import { AppProvider, CodePreview, Text } from '@gluestack/design-system';
+import {
+  AppProvider,
+  CodePreview,
+  Text,
+  Table,
+  TableContainer,
+  InlineCode,
+} from '@gluestack/design-system';
 import Wrapper from '../../Wrapper';
 
 ## Themed
@@ -143,6 +150,71 @@ It inherits all the properties of React Native's [Text](https://reactnative.dev/
 #### BadgeIcon
 
 Contains all Icon related layout style props and actions. It inherits all the properties of gluestack Style's [AsForwarder](https://style.gluestack.io/docs/api/as-forwarder) component.
+
+### Props
+
+#### Badge
+
+<AppProvider>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Name</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Value</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Default</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>action</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>error | warning | success | info | muted</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        ,<Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>variant</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>solid | outline</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+        </Table.TR>,
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>size</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>sm | md | lg</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</AppProvider>
 
 ### Examples
 

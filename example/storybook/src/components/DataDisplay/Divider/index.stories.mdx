@@ -18,8 +18,13 @@ import { Divider, VStack, HStack } from './Divider';
 import { Center, Text, Button, ButtonText } from './Divider';
 import { Box, Heading } from './Divider';
 import { transformedCode } from '../../../utils';
-import { AppProvider, CodePreview } from '@gluestack/design-system';
-
+import {
+  AppProvider,
+  CodePreview,
+  Table,
+  TableContainer,
+  InlineCode,
+} from '@gluestack/design-system';
 import Wrapper from '../../Wrapper';
 
 ## Themed
@@ -81,6 +86,45 @@ The following section contains a comprehensive list of the component's reference
 #### Divider
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+### Props
+
+#### Divider
+
+<AppProvider>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Name</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Value</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Default</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>orientation</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>vertical | horizontal</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</AppProvider>
 
 ### Examples
 
