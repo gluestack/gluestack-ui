@@ -1,6 +1,10 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import { SafeAreaView, StyleSheet, View } from 'react-native';
+import {
+  SafeAreaView,
+  StyleSheet,
+  //  View
+} from 'react-native';
 import { GluestackUIProvider } from './gluestack-ui-components';
 import { config } from './gluestack-ui.config';
 import { SSRProvider } from '@react-native-aria/utils';
@@ -14,7 +18,7 @@ import {
 } from '@expo-google-fonts/inter';
 import './styles';
 import HomestayPage from './kitchensink-components/HomestayPage';
-import { styled, Theme } from '@gluestack-style/react';
+// import { styled } from '@gluestack-style/react';
 
 // const orderedSXResolved = [
 //   {
@@ -60,11 +64,11 @@ import { styled, Theme } from '@gluestack-style/react';
 
 // const Box = styled(View, {});
 
-const Box = styled(View, {
-  bg: '$primary100',
-  h: '$10',
-  w: '$10',
-});
+// const Box = styled(View, {
+//   bg: '$primary100',
+//   h: '$10',
+//   w: '$10',
+// });
 
 // const ComposedButton = styled(BaseButton, {
 //   bg: '$red500',
@@ -117,18 +121,14 @@ export default function App() {
       >
         {/* gluestack-ui provider */}
         <SSRProvider>
-          <GluestackUIProvider config={config.theme} colorMode={'light'}>
-            {/* <ThemeContext.Provider value={{ colorMode, toggleColorMode }}> */}
-            <Theme name="x">
-              {/* <Box bg="$amber800"></Box> */}
+          <GluestackUIProvider config={config.theme} colorMode={colorMode}>
+            {/* <Theme name="x">
+              <Box bg="$primary100"></Box>
               <Box bg="$red500"></Box>
-            </Theme>
-            {/* <Box bg="$amber50"></Box>
-            <Box></Box> */}
-            {/* <BaseButton>Hello Worlddddd</BaseButton>
-              <ComposedButton>Hello</ComposedButton> */}
-            {/* <HomestayPage /> */}
-            {/* </ThemeContext.Provider> */}
+            </Theme> */}
+            <ThemeContext.Provider value={{ colorMode, toggleColorMode }}>
+              <HomestayPage />
+            </ThemeContext.Provider>
           </GluestackUIProvider>
         </SSRProvider>
       </SafeAreaView>
