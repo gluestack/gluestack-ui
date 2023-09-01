@@ -3,7 +3,7 @@ import {
   Box as DefaultBox,
   Center,
   StyledProvider,
-  config,
+  config as defaultConfig,
   createConfig,
   styled,
 } from '@gluestack-ui/themed';
@@ -12,12 +12,12 @@ const Provider = createProvider({ StyledProvider }) as any;
 Provider.displayName = 'CustomProvider';
 
 const Box = styled(DefaultBox, {}, {});
-const extendedConfig = createConfig({
-  ...config.theme,
+const config = createConfig({
+  ...defaultConfig.theme,
   tokens: {
-    ...config.theme.tokens,
+    ...defaultConfig.theme.tokens,
     colors: {
-      ...config.theme.tokens.colors,
+      ...defaultConfig.theme.tokens.colors,
       primary0: '#ffffff',
       primary50: '#a3fff4',
       primary100: '#82fff0',
@@ -36,7 +36,7 @@ const extendedConfig = createConfig({
 
 const Wrapper = ({ children, ...props }: any) => {
   return (
-    <Provider config={extendedConfig} {...props}>
+    <Provider config={config} {...props}>
       <Box
         sx={{
           _ios: {
