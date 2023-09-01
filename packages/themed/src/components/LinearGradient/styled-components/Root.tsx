@@ -4,7 +4,6 @@ import { styled } from '../../styled';
 export default styled(
   LinearGradient,
   {},
-
   {
     resolveProps: ['colors'],
   },

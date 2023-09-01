@@ -7,7 +7,7 @@ import {
   Button,
   ButtonIcon,
   Icon,
-  EditIcon,
+  AddIcon,
   Pressable,
 } from '@gluestack-ui/themed';
 
@@ -15,12 +15,9 @@ type MyLinearGradientStory = ComponentStory<typeof LinearGradient>;
 
 const LinearGradientPressable: MyLinearGradientStory = () => {
   return (
-    <LinearGradient
-      colors={['$fuchsia200', '$fuchsia800', '$purple400']}
-      borderRadius="$full"
-    >
+    <LinearGradient colors={['$cyan400', '$green400']} borderRadius="$full">
       <Pressable p="$4">
-        <Icon as={EditIcon} color="$white" />
+        <Icon as={AddIcon} color="$white" />
       </Pressable>
     </LinearGradient>
   );
@@ -28,4 +25,4 @@ const LinearGradientPressable: MyLinearGradientStory = () => {
 
 export default LinearGradientPressable;
 
-export { LinearGradient, Box, Text, Button, ButtonIcon, Icon, EditIcon };
+export { LinearGradient, Box, Text, Button, ButtonIcon, Icon, AddIcon };

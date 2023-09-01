@@ -7,9 +7,9 @@ import {
   Button,
   ButtonIcon,
   Icon,
-  EditIcon,
   Pressable,
   Image,
+  AddIcon,
 } from '@gluestack-ui/themed';
 type MyLinearGradientStory = ComponentStory<typeof LinearGradient>;
 
@@ -30,7 +30,7 @@ export {
   Button,
   ButtonIcon,
   Icon,
-  EditIcon,
   Pressable,
   Image,
+  AddIcon,
 };
