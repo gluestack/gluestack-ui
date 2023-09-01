@@ -2686,10 +2686,10 @@
     "@babel/traverse" "^7.20.5"
     lodash.merge "^4.6.2"
 
-"@gluestack-style/react@0.2.11", "@gluestack-style/react@0.2.17", "@gluestack-style/react@^0.2.17", "@gluestack-style/react@^0.2.7", "@gluestack-style/react@^0.2.9":
-  version "0.2.17"
-  resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-0.2.17.tgz#8af4c3dedbbd9421e776dee687575702d7ceb692"
-  integrity sha512-EDs8rOuuWrnHfIj2UdeCiSA5f8zyZRdJwkmIobfTxSdYbWlJd0Axy41pXckaZDEuyZeCQCUtBiL95hTjC8exzw==
+"@gluestack-style/react@0.2.11", "@gluestack-style/react@0.2.20", "@gluestack-style/react@^0.2.20", "@gluestack-style/react@^0.2.7", "@gluestack-style/react@^0.2.9":
+  version "0.2.20"
+  resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-0.2.20.tgz#1ef12be3b0d3fa3db773c90d1ed5b0575661a232"
+  integrity sha512-TiQI2FQ8jGVi7VGFAE+7nXb8kBYaBfCambvpdXw5nh+osKf2dt51hJKCdu4/WnAgAuhtUPp9my0pHCFJYpLPQg==
   dependencies:
     inline-style-prefixer "^6.0.1"
     normalize-css-color "^1.0.2"
@@ -11168,6 +11168,11 @@ expo-linear-gradient@^12.3.0:
   version "12.3.0"
   resolved "https://registry.yarnpkg.com/expo-linear-gradient/-/expo-linear-gradient-12.3.0.tgz#7abd8fedbf0138c86805aebbdfbbf5e5fa865f19"
   integrity sha512-f9e+Oxe5z7fNQarTBZXilMyswlkbYWQHONVfq8MqmiEnW3h9XsxxmVJLG8uVQSQPUsbW+x1UUT/tnU6mkMWeLg==
+
+expo-linear-gradient@~12.0.1:
+  version "12.0.1"
+  resolved "https://registry.yarnpkg.com/expo-linear-gradient/-/expo-linear-gradient-12.0.1.tgz#452f793b0463ddf313aad431552f23acc85f5d64"
+  integrity sha512-TMl/wBTVQOliL4S3DS5Aa3UFfVySr0mdJEHLG6kfBdMCLkr+tfLI2rGyJ+scS7xgMsvhTIaurhf1+Z0sL3aLCg==
 
 expo-modules-autolinking@1.0.2:
   version "1.0.2"
