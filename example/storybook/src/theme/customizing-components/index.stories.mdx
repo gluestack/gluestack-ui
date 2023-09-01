@@ -21,10 +21,10 @@ You can add custom theme for components by extending default config and adding t
    ```js
    // gluestack-ui.config.ts
 
-   import { createConfig, config } from '@gluestack-ui/themed';
+   import { createConfig, config as defaultConfig, } from '@gluestack-ui/themed';
 
-   const extendedConfig = createConfig({
-     ...config.theme,
+   const config = createConfig({
+     ...defaultConfig.theme,
      components: {
        Button: {
          theme: {
@@ -53,7 +53,7 @@ You can add custom theme for components by extending default config and adding t
    });
 
    // Get the type of Config
-   type ConfigType = typeof extendedConfig;
+   type ConfigType = typeof config;
 
    // Extend the internal styled config
    declare module "@gluestack-style/react" {
@@ -69,15 +69,15 @@ You can add custom theme for components by extending default config and adding t
 // App.tsx
 import {
   createConfig,
-  config,
   GluestackUIProvider,
   Button,
   ButtonText,
 } from '@gluestack-ui/themed';
-import { extendedConfig } from './gluestack-ui.config.ts';
+import { config } from './gluestack-ui.config.ts';
+
 function App({ children }) {
   return (
-    <GluestackUIProvider config={extendedConfig}>
+    <GluestackUIProvider config={config}>
       <Button variant="ghost">
         <ButtonText>Hello World</ButtonText>
       </Button>

@@ -5,15 +5,15 @@ import {
   ButtonText,
   Center,
   StyledProvider,
-  config,
+  config as defaultConfig,
   createConfig,
 } from '@gluestack-ui/themed';
 import { createProvider } from '@gluestack-ui/provider';
 const Provider = createProvider({ StyledProvider }) as any;
 Provider.displayName = 'CustomProvider';
 
-const extendedConfig = createConfig({
-  ...config.theme,
+const config = createConfig({
+  ...defaultConfig.theme,
   components: {
     Button: {
       theme: {
@@ -51,7 +51,7 @@ const extendedConfig = createConfig({
 });
 const Wrapper = ({ children, ...props }: any) => {
   return (
-    <Provider config={extendedConfig} {...props} colorMode="dark">
+    <Provider config={config} {...props} colorMode="dark">
       <Box
         sx={{
           _ios: {

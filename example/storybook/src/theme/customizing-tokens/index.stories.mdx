@@ -15,17 +15,18 @@ import { AppProvider, CodePreview, Text } from '@gluestack/design-system';
 
 `@gluestack-ui/themed` ships with default theme which can found in `config.theme`. It has Colors, Aliases, Typography, Size, Opacity, Shadows, Breakpoint tokens. You can override any of these tokens.
 
-You can edit all the tokens of the theme in `config`.
-but for recipe we will update primary color token of the theme. In order to change the primary color of the theme, first create a file `gluestack-ui.config.ts`. In this file you need to update the token of `colors` primary. we can do that using createConfig as demonstrated below. Don't forget to add type definition for the new token at the end.
+You can customize all the tokens of the theme in `config`. For this recipe we will update primary color token of the theme. In order to change the primary color of the theme, first create a file `gluestack-ui.config.ts`. In this file you need to update the token of `colors` primary. we can do that using createConfig as demonstrated below. Don't forget to add type definition for the new token at the end.
 
 ```js
-import { createConfig, config } from '@gluestack-ui/themed';
-const extendedConfig = createConfig({
-  ...config.theme,
+//gluestack-ui.config.ts
+
+import { createConfig, config as defaultConfig } from '@gluestack-ui/themed';
+const config = createConfig({
+  ...defaultConfig.theme,
   tokens: {
-    ...config.theme.tokens,
+    ...defaultConfig.theme.tokens,
     colors: {
-      ...config.theme.tokens.colors,
+      ...defaultConfig.theme.tokens.colors,
       primary0: '#ffffff',
       primary50: '#a3fff4',
       primary100: '#82fff0',
@@ -42,8 +43,10 @@ const extendedConfig = createConfig({
   },
 });
 
+export { config }
+
 // Get the type of Config
-type ConfigType = typeof extendedConfig;
+type ConfigType = typeof config;
 
 // Extend the internal styled config
 declare module "@gluestack-style/react" {
