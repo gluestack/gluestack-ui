@@ -22,6 +22,7 @@
     "update-snapshot": "jest -u"
   },
   "dependencies": {
+    "@babel/parser": "^7.22.14",
     "@expo/html-elements": "^0.4.2",
     "@geometricpanda/storybook-addon-iframe": "^0.2.2",
     "@gluestack-style/animation-plugin": "latest",
