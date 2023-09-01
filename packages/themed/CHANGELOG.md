@@ -1,5 +1,11 @@
 # @gluestack-ui/themed
 
+## 0.1.14
+
+### Patch Changes
+
+- Version issue and install issues fixes [#942](https://github.com/gluestack/gluestack-ui/pull/942)
+
 ## 0.1.13
 
 ### Feature
