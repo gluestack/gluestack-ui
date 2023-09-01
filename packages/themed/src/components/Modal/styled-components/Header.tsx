@@ -13,5 +13,5 @@ export default styled(
   },
   {
     componentName: 'ModalHeader',
-  }
+  } as const
 );

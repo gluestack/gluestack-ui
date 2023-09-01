@@ -3,7 +3,7 @@ name: Trigger gluestack-style-website | Create PR when pushed to master
 on:
   push:
     branches:
-      - main
+      - documentation
 
 jobs:
   build:

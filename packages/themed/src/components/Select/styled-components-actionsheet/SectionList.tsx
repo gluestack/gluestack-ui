@@ -9,5 +9,5 @@ export default styled(
   },
   {
     componentName: 'SelectActionsheetSectionList',
-  }
+  } as const
 );

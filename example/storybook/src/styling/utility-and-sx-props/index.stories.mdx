@@ -1,0 +1,1894 @@
+---
+title: Utility and SX props | gluestack-ui
+description: Utility and SX props
+---
+
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+import {
+  AppProvider,
+  CodePreview,
+  Table,
+  TableContainer,
+  InlineCode,
+} from '@gluestack/design-system';
+import {
+  Box,
+  Center,
+  HStack,
+  VStack,
+  GluestackUIProvider,
+  Pressable as GluestackUIPressable,
+  Text as GluestackUIText,
+  Image as GluestackUIImage,
+  Button,
+  ButtonText,
+} from '@gluestack-ui/themed';
+import { transformedCode } from '../../utils';
+import Wrapper from '../../components/Wrapper';
+import { styled } from '@gluestack-style/react';
+
+import { Pressable, Text, View, Image, StyleSheet } from 'react-native';
+// import the createButton function
+import { createButton } from '@gluestack-ui/button';
+
+<Meta title="Styling/Utility and SX props" />
+
+# Utility Props
+
+React Native has a great StyleSheet API which is optimal for component-based systems. `@gluestack-style/react` leverages it and adds a layer of utility props and constraint based designed tokens on top of it. `@gluestack-style/react` is used as styling engine for `@gluestack-ui/themed`.
+To understand utility props, let's take an example.
+
+### With React Native
+
+Let's try the traditional way of building the following card in React Native.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+        function Example() {
+          return (
+            <View style={styles.container}>
+              <View style={styles.topContainer}>
+                <View style={styles.metaContainer}>
+                  <View>
+                    <Text style={styles.timings}>Today @ 9PM</Text>
+                    <Text style={styles.description}>Let's talk about avatar!</Text>
+                  </View>
+                  <Pressable style={styles.button}>
+                    <Text style={styles.buttonText}>Remind me</Text>
+                  </Pressable>
+                </View>
+                <Image
+                  source={{
+                    uri: 'https://media.vanityfair.com/photos/5ba12e6d42b9d16f4545aa19/3:2/w_1998,h_1332,c_limit/t-Avatar-The-Last-Airbender-Live-Action.jpg',
+                  }}
+                  style={styles.avatar}
+                />
+              </View>
+            </View>
+          );
+        }
+        const styles = StyleSheet.create({
+        container: {
+        backgroundColor: '#0891b2',
+        paddingVertical: 16,
+        paddingHorizontal: 12,
+        borderRadius: 5,
+        alignSelf: 'center',
+        width: 375,
+        maxWidth: '100%',
+        },
+        timings: {
+        color: '#fff',
+        fontSize: '14px',
+        },
+        metaContainer: {
+        justifyContent: 'space-between',
+        },
+        topContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        },
+        avatar: {
+        height: 100,
+        width: 100,
+        borderRadius: 100,
+        },
+        description: {
+        color: 'white',
+        marginTop: 5,
+        fontSize: 20,
+        },
+        button: {
+        backgroundColor: '#22d3ee',
+        alignSelf: 'flex-start',
+        paddingHorizontal: 12,
+        paddingVertical: 4,
+        borderRadius: 2,
+        },
+        buttonText: {
+        fontWeight: 'bold',
+        color: 'white',
+        textTransform: 'uppercase',
+        fontSize: 14,
+        },
+        });
+`,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'Example');
+      },
+      scope: {
+        Wrapper,
+        createButton,
+        Pressable,
+        Text,
+        View,
+        Image,
+        StyleSheet,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+### With gluestack-ui
+
+Now let's try to build the same card using `@gluestack-ui/themed`.
+By using `@gluestack-ui/themed` components, you can apply styles directly in the layout using shorthands.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+   function Example() {
+        return (
+          <Box
+            bg="#0891b2"
+            py="$4"
+            px="$3"
+            rounded="$md"
+            height="132px"
+            width={375}
+            maxWidth="100%">
+            <HStack justifyContent="space-between" height="100%">
+              <Box justifyContent="space-between">
+                <VStack space="xs">
+                  <Text fontSize="$sm" color="$white">
+                    Today @ 9PM
+                  </Text>
+                  <Text color="$white" fontSize="$xl">
+                    Let's talk about avatar!
+                  </Text>
+                </VStack>
+                <Pressable
+                  rounded="$xs"
+                  bg="#22d3ee"
+                  alignSelf="flex-start"
+                  py="$1"
+                  px="$3">
+                  <ButtonText
+                    textTransform="uppercase"
+                    fontSize="$sm"
+                    fontWeight="$bold"
+                    color="$white">
+                    Remind me
+                  </ButtonText>
+                </Pressable>
+              </Box>
+              <Image
+                source={{
+                  uri: 'https://media.vanityfair.com/photos/5ba12e6d42b9d16f4545aa19/3:2/w_1998,h_1332,c_limit/t-Avatar-The-Last-Airbender-Live-Action.jpg',
+                }}
+                alt="Aang flying and surrounded by clouds"
+                height="100px"
+                rounded="$full"
+                width="100px"
+              />
+            </HStack>
+          </Box>
+        );
+      }
+`,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'Example');
+      },
+      scope: {
+        Wrapper,
+        Box,
+        HStack,
+        VStack,
+        createButton,
+        Pressable,
+        Text: GluestackUIText,
+        Pressable: GluestackUIPressable,
+        View,
+        Image: GluestackUIImage,
+        StyleSheet,
+        Button,
+        ButtonText,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+The above example demonstrates the usage of [utility props]("/docs/styling/utility-props") alongwith VStack, HStack components. This approach allows us to style components without using StyleSheet API.
+
+# SX Prop
+
+gluestack-ui supports the `sx` prop for overriding styles. The `sx` prop enables passing an object supporting tokens, media queries, nesting, and token-aware values to the component.
+sx accepts the same style object as the base style.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+      <Button
+        size="lg"
+        sx={{
+            "marginBottom": '$4',
+            "bg": 'pink',
+            ":hover": {
+                "bg": 'orange',
+            },
+        }}
+      >
+        <ButtonText>Button</ButtonText>
+      </Button>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Button,
+        ButtonText,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+In this example, the button has a pink background instead of the default primary color, as the backgroundColor style is overridden using the `sx` prop.
+The `sx` prop is particularly useful for theming and responsive styles, as it enables easy style changes for a component based on the theme or viewport size.
+It is important to note that you should generally avoid using the `sx` prop, as it adds complexity to style calculations and may decrease performance.
+
+Apart from productivity boosts and saving time, there are other benefits to styling components using utility props and `sx` prop. No need to name styles anymore, no need to define an object and think about naming it.
+Using utility-first and `sx` props, you can focus on creating reusable components instead of reusable stylesheets.Once you start writing styles this way, any other way will feel cumbersome.
+
+## Supported Utility Props
+
+The following table shows a list of every style prop and the properties within each group.
+
+### Margin and padding
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+     <>
+      <Box borderRadius="$md" bg="$primary200" m="$2" p="$5" />
+      <Box borderRadius="$md" bg="$primary200" mx="auto" px="$20" py="$5"  />
+      <Box  borderRadius="$md"
+        bg="$primary200"
+        sx={{
+          '@sm': { m: '$2' },
+          '@lg': {
+            m: '$3',
+          },
+        }}
+        mt="$2"
+        pt="$10"
+        pr="$10" />
+     </>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Text: GluestackUIText,
+        Button,
+        Box,
+        ButtonText,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+<br />
+
+<AppProvider>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>CSS Equivalent</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Theme Key</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>m, margin</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>margin</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>space</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>mt, marginTop</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>margin-top</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>space</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>mr, marginRight</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>margin-right</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>space</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>mb, marginBottom</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>margin-bottom</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>space</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>ml, marginLeft</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>margin-left</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>space</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>mx</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>margin-left and margin-right</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>space</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>my</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>margin-top and margin-bottom</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>space</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>p, padding</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>padding</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>space</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>pt, paddingTop</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>padding-top</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>space</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>pr, paddingRight</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>padding-right</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>space</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>pb, paddingBottom</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>padding-bottom</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>space</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>pl, padding-left</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>paddingLeft</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>space</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>px</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>padding-left and padding-right</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>space</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>py</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>padding-top and padding-bottom</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>space</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</AppProvider>
+
+### Color and background color
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+     <>
+        <Box p="$5" m="$2" borderRadius="$md" bg="#fdba74" />
+      <Box p="$5" m="$2" borderRadius="$md" bgColor="$lightBlue200" py="$3">
+        <Text color="red.500" fontWeight="bold">
+          {' '}
+          I ❤️ Gluestack
+        </Text>
+      </Box>
+      <Box p="$5" m="$2" borderRadius="$md" backgroundColor="$indigo300" />
+     </>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Text: GluestackUIText,
+        Button,
+        Box,
+        ButtonText,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+<br />
+
+<AppProvider>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>CSS Equivalent</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Theme Key</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>color</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>color</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>colors</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>bg, background</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>background</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>colors</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>bgColor</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>background-color</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>colors</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>opacity</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>opacity</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</AppProvider>
+
+### Typography
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+     <>
+         <Text m="$2" fontSize="md">
+        Sample Text{' '}
+      </Text>
+      <Text m="$2" fontSize={32} textDecoration="underline">
+        Sample Text{' '}
+      </Text>
+      <Text m="$2" fontSize="2em" fontWeight="bold">
+        Sample Text{' '}
+      </Text>
+      <Text m="$2" textAlign={['left', 'center']}>
+        Sample Text{' '}
+      </Text>
+     </>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Text: GluestackUIText,
+        Button,
+        Box,
+        ButtonText,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+<br />
+
+<AppProvider>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>CSS Equivalent</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Theme Key</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>FontFamily</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>font-family</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>fonts</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>FontSize</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>font-size</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>fontSizes</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>fontWeight</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>font-weight</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>fontWeights</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>lineHeight</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>line-height</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>lineHeights</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>letterSpacing</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>letter-spacing</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>letterSpacings</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>textAlign</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>text-align</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>fontStyle</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>font-style</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>textTransform</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>text-transform</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>textDecoration</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>text-decoration</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</AppProvider>
+
+### Layout, width and height
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+     <>
+ <Box
+        m="$2"
+        borderRadius="$md"
+        bg="$primary200"
+        width="100%"
+        height="$8"
+      />
+      <Box m="$2" borderRadius="$md" bg="$primary200" w="75%" h="32px" />
+      <Box m="$2" borderRadius="$md" bg="$primary200" w="50%" h="$8" />
+      <Box m="$2" borderRadius="$md" bg="$primary200" w={256} />
+      <Box m="$2" borderRadius="$md" bg="$primary200" w="40px" h="$8" />
+     </>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Text: GluestackUIText,
+        Button,
+        Box,
+        ButtonText,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+<br />
+
+<AppProvider>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>CSS Equivalent</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Theme Key</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>w, width</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>width</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>sizes</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>h, height</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>height</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>sizes</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>minW, minWidth</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>min-width</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>sizes</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>maxW, maxWidth</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>max-width</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>sizes</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>minH, minHeight</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>min-height</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>sizes</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>maxH, maxHeight</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>max-height</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>sizes</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>d, display</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>display</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>verticalAlign</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>vertical-align</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>overflow</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>overflow</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>overflowX</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>overflowX</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>overflowY</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>overflowY</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</AppProvider>
+
+### Borders
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+     <>
+      <Box p="$5" m="$2" borderRadius="$md" bg="$primary200" borderWidth="$1" />
+      <Box
+        p="$5"
+        m="$2"
+        borderRadius="$md"
+        bg="$primary200"
+        borderWidth="$2"
+        borderColor="$red400"
+      />
+      <Box
+        p="$5"
+        m="$2"
+        borderRadius="$md"
+        bg="$primary200"
+        borderWidth="$2"
+        borderBottomColor="$red500"
+        borderTopWidth="$4"
+      />
+     </>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Text: GluestackUIText,
+        Button,
+        Box,
+        ButtonText,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+<br />
+
+<AppProvider>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>CSS Equivalent</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Theme Key</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>border</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>border</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>borders</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>borderWidth</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>border-width</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>borderWidths</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>borderStyle</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>border-style</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>borderStyles</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>borderColor</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>border-color</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>colors</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>borderTopWidth</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>border-top-width</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>borderWidths</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>borderTopColor</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>border-top-color</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>colors</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>borderRightWidth</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>border-right-width</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>borderWidths</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>borderRightColor</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>border-right-color</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>colors</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>borderBottomWidth</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>border-bottom-width</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>borderWidths</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>borderBottomColor</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>border-bottom-color</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>colors</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>borderLeftWidth</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>border-left-width</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>borderWidths</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>borderLeftColor</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>border-left-color</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>colors</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</AppProvider>
+
+### Borders Radius
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+     <>
+      <Box p="$5" m="$2" bg="$primary200"  borderRadius="$md" />
+      <Box p="$5" m="$2" bg="$primary200"  borderRadius="$full" />
+      <Box p="$5" m="$2" bg="$primary200" borderTopLeftRadius="$lg" borderBottomRightRadius="$md" />
+     </>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Text: GluestackUIText,
+        Button,
+        Box,
+        ButtonText,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+<br />
+
+<AppProvider>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>CSS Equivalent</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Theme Key</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>borderRadius</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>border-radius</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>radii</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>borderTopLeftRadius</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>border-top-left-radius</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>radii</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>borderTopRightRadius</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>border-top-right-radius</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>radii</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>borderBottomRightRadius</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>border-bottom-right-radius</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>radii</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>borderBottomLeftRadius</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>border-bottom-left-radius</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>radii</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</AppProvider>
+
+### Position
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+     <>
+      <Box    p="$5"
+      m="$2"
+      borderRadius="$md"
+      bg="$primary200" position="absolute" left="$64" p="$7" />
+      <Box    p="$5"
+      m="$2"
+      borderRadius="$md"
+       bgColor="$orange300" zIndex={2} position="relative" />
+      <Box
+         p="$5"
+      m="$2"
+      borderRadius="$md"
+        backgroundColor="$indigo300"
+        position="absolute"
+        right="$32"
+        p="$7"
+      />
+     </>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Text: GluestackUIText,
+        Button,
+        Box,
+        ButtonText,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+<br />
+
+<AppProvider>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>CSS Equivalent</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Theme Key</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>position</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>position</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>zIndex</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>z-index</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>zIndices</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>top</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>top</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>space</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>right</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>right</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>space</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>bottom</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>bottom</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>space</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>left</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>left</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>space</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</AppProvider>
+
+### Shadow
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+     <>
+      <Box p="$5" m="$2" borderRadius="$md" bg="$primary200" softShadow="$1" />
+      <Box p="$5" m="$2" borderRadius="$md" bg="$primary200" softShadow="$3" />
+      <Box p="$5" m="$2" borderRadius="$md" bg="$primary200" hardShadow="$5" />
+      <Box p="$5" m="$2" borderRadius="$md" bg="$primary200" hardShadow="$7" />
+      <Box p="$5" m="$2" borderRadius="$md" bg="$primary200" hardShadow="$9" />
+     </>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Text: GluestackUIText,
+        Button,
+        Box,
+        ButtonText,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+<br />
+
+<AppProvider>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>CSS Equivalent</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Theme Key</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>hardShadow</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>box-shadow</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>shadows</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>softShadow</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>box-shadow</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>shadows</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</AppProvider>
+
+## Underscore Props
+
+### Internal Props
+
+Provides a way to pass props to child components inside Composite componets.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+     <>
+       <Button
+    sx={{bg:"$primary400",_text:{
+       color: '$secondary900',
+        fontSize: '$xs',
+        fontWeight: '$bold',
+    }}}
+    >
+       <ButtonText>
+            Sample Text</ButtonText>
+    </Button>
+     </>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Text: GluestackUIText,
+        Button,
+        Box,
+        ButtonText,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+<br />
+
+<AppProvider>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>CSS Equivalent</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Theme Key</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>_text</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>TextProps</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>
+              Passed props will be provided to [`Text`](text) child.
+            </Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</AppProvider>
+
+### Interaction Props
+
+Provides a way to pass props on certain interaction.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+     <>
+       <Button
+      sx={{
+        ':hover': {
+          // below props will only be applied on button is pressed
+          bg: '$red300',
+        },
+      }}
+    >
+       <ButtonText>
+            Sample Text</ButtonText>
+    </Button>
+     </>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Text: GluestackUIText,
+        Button,
+        Box,
+        ButtonText,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+<br />
+
+<AppProvider>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>CSS Equivalent</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Theme Key</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>:disabled</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>Same as the component</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>
+              Passed props will be applied on disabled state.
+            </Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>:focus</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>Same as the component</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>
+              Passed props will be applied on focused state.
+            </Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>:hover</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>Same as the component</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>
+              Passed props will be applied on hovered state.
+            </Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>:invalid</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>Same as the component</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>
+              Passed props will be applied on invalid state.
+            </Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>:pressed</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>Same as the component</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>
+              Passed props will be applied on pressed state.
+            </Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</AppProvider>
+
+### Platform Props
+
+Provides a way to pass props bassed on Platform (_android, ios or web_).
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+     <>
+      <Button
+          sx={{
+            _web: {
+              bg: '$primary300',
+            },
+            _ios: { bg: "$red500" },
+            _android: { bg: "$yellow500" },
+          }}
+        >
+        <ButtonText>
+            Sample Text</ButtonText>
+      </Button>
+     </>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Text: GluestackUIText,
+        Button,
+        Box,
+        ButtonText,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+<br />
+
+<AppProvider>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>CSS Equivalent</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Theme Key</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>_android</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>Same as the component</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>Passed props will be applied on android.</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>_ios</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>Same as the component</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>Passed props will be applied on ios.</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>_web</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>Same as the component</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>Passed props will be applied on web.</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</AppProvider>

@@ -17,5 +17,5 @@ export default styled(
   {
     componentName: 'ActionsheetItemText',
     ancestorStyle: ['_text'],
-  }
+  } as const
 );

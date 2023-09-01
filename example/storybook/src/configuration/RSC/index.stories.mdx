@@ -17,3 +17,5 @@ Server Component is a new concept that has been introduced in React 18, and been
 Although gluestack-ui components run on client side because of interactions and runtime JavaScript. We have exported all gluestack-ui components with `"use client"` narrative.
 
 You can [install](/docs/getting-started/install-nextjs) Next.js app router + gluestack-ui application for more details on how to use gluestack-ui components inside a server component.
+
+Note: We have added a new API for the components — you can avoid the use of "." when using a component. For example, you can now use `<ButtonText>` instead of `<Button.Text>`. This is to accommodate new changes to the RSC, which does not support "." as per [this](https://github.com/vercel/next.js/issues/51593) issue. You can still use the older format, but if you want to use RSC, we recommend skipping the "."

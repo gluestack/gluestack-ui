@@ -68,5 +68,5 @@ export default styled(
   {
     componentName: 'CheckboxLabel',
     ancestorStyle: ['_text'],
-  }
+  } as const
 );

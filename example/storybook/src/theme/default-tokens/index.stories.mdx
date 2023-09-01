@@ -1,0 +1,89 @@
+---
+title: Default Tokens | gluestack-ui
+description: gluestack-ui ships with default tokens that provide access to theme values and lets you build and customize your own themed components. It has colors, typography, size, opacity, shadows, breakpoints and more.
+pageTitle: Default Tokens
+pageDescription: gluestack-ui ships with default tokens that provide access to theme values and lets you build and customize your own themed components. It has colors, typography, size, opacity, shadows, breakpoints and more.
+showHeader: true
+---
+
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+import {
+  ColorPaletteComponent,
+  SpaceComponent,
+  OpacityComponent,
+  ShadowsComponent,
+  BorderWidthComponent,
+  RadiiComponent,
+} from './DefaultComponent';
+
+<Meta title="Theme/Default Tokens" />
+
+Theming in `@gluestack-ui/themed` is based on the [Styled System Theme Specification](https://github.com/system-ui/theme-specification).
+
+## Colors
+
+You can define your unique colors or override existing ones using the `createConfig` function under the `tokens` section.
+
+We recommend adding a palette that ranges from 50 to 900. Tools like [JSON Color Palette Generator](https://json-color-palette-generator.vercel.app), [Smart Swatch](https://smart-swatch.netlify.app/) or [Palx](https://palx.jxnblk.com/) are available to generate these palettes.
+
+<ColorPaletteComponent />
+
+## Typography
+
+To manage Typography options, the tokens object supports the following keys:
+
+- `fonts (font families)`
+- `fontSizes`
+- `fontWeights`
+- `lineHeights`
+- `letterSpacings`
+
+```jsx
+import { createConfig, config } from '@gluestack-ui/themed';
+
+const extendedConfig = createConfig({
+  ...config.theme,
+  tokens: {
+    ...config.theme.tokens,
+    fontSizes: {
+      ...config.theme.tokens.fontSizes,
+      newFontSize: 90,
+    },
+    ...// other tokens
+  },
+});
+```
+
+## Space
+
+The space key allows you to customize the global spacing and sizing scale for your project. By default these spacing value can be referenced by the padding, margin, and top, left, right, bottom props.
+
+<SpaceComponent />
+
+## Opacity
+
+You can define your opacity tokens or override existing ones using the `createConfig` function under the `tokens` section.
+
+<OpacityComponent />
+
+## Shadows
+
+In `@gluestack-ui/themed` there are two types of shadows are provided by default.
+
+> Note: In the context of dark mode design, it's important to recognize that elevation serves as the primary tool for expressing hierarchy. Unlike in light mode, where shadows are used for this purpose, dark themes prioritize surface illumination. The higher the elevation, the lighter the surfaces become, ultimately improving visibility and clarity.
+
+<ShadowsComponent />
+
+## Borders
+
+### border widths
+
+`borderWidths` tokens are used to define the border radius of an element. You can define your radii tokens or override existing ones using the `createConfig` function under the `tokens` section.
+
+<BorderWidthComponent />
+
+### border radius
+
+`radii` tokens are used to define the border radius of an element. You can define your radii tokens or override existing ones using the `createConfig` function under the `tokens` section.
+
+<RadiiComponent />

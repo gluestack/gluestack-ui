@@ -1,0 +1,83 @@
+---
+title: Customizing Tokens | gluestack-ui
+description: Customizing Theme description
+showHeader: false
+---
+
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+import { Box, Wrapper } from './CustomTheme';
+import { transformedCode } from '../../utils';
+import { AppProvider, CodePreview, Text } from '@gluestack/design-system';
+
+<Meta title="Theme/Customizing Tokens" />
+
+# Customizing Tokens
+
+`@gluestack-ui/themed` ships with default theme which can found in `config.theme`. It has Colors, Aliases, Typography, Size, Opacity, Shadows, Breakpoint tokens. You can override any of these tokens.
+
+You can edit all the tokens of the theme in `config`.
+but for recipe we will update primary color token of the theme. In order to change the primary color of the theme, first create a file `gluestack-ui.config.ts`. In this file you need to update the token of `colors` primary. we can do that using createConfig as demonstrated below. Don't forget to add type definition for the new token at the end.
+
+```js
+import { createConfig, config } from '@gluestack-ui/themed';
+const extendedConfig = createConfig({
+  ...config.theme,
+  tokens: {
+    ...config.theme.tokens,
+    colors: {
+      ...config.theme.tokens.colors,
+      primary0: '#ffffff',
+      primary50: '#a3fff4',
+      primary100: '#82fff0',
+      primary200: '#61ffed',
+      primary300: '#45fae5',
+      primary400: '#24f9e1',
+      primary500: '#17f3d9',
+      primary600: '#12e4cb',
+      primary700: '#17ccb7',
+      primary800: '#1ab5a3',
+      primary900: '#1c9f90',
+      primary950: '#000000',
+    },
+  },
+});
+
+// Get the type of Config
+type ConfigType = typeof extendedConfig;
+
+// Extend the internal styled config
+declare module "@gluestack-style/react" {
+  interface ICustomConfig extends ConfigType {}
+}
+```
+
+By utilizing this approach, you can seamlessly modify the primary color tokens of the theme while maintaining the overall theme configuration intact.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+<Box
+  bg="$primary500"
+  p="$5"
+  rounded="$lg"
+>
+  <Text color="$primary700">
+    Box with new primary color
+  </Text>
+</Box>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Box,
+        Text,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>

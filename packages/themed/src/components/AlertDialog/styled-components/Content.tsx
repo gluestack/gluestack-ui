@@ -40,5 +40,5 @@ export default styled(
   {
     componentName: 'AlertDialogContent',
     ancestorStyle: ['_content'],
-  }
+  } as const
 );

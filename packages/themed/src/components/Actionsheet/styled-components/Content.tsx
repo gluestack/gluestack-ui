@@ -30,5 +30,5 @@ export default styled(
   {
     componentName: 'ActionsheetContent',
     descendantStyle: ['_sectionHeaderBackground'],
-  }
+  } as const
 );

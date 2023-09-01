@@ -106,6 +106,5 @@ export default styled(
   {
     componentName: 'Alert',
     descendantStyle: ['_icon', '_text'],
-    DEBUG: 'STYLED_ALERT',
-  }
+  } as const
 );

@@ -51,5 +51,5 @@ export default styled(
   },
   {
     componentName: 'Image',
-  }
+  } as const
 );

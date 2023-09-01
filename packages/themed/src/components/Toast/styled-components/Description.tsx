@@ -16,5 +16,5 @@ export default styled(
   {
     componentName: 'ToastDescription',
     ancestorStyle: ['_text'],
-  }
+  } as const
 );

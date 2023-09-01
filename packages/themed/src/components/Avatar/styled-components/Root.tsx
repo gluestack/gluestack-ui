@@ -106,6 +106,5 @@ export default styled(
     componentName: 'Avatar',
     descendantStyle: ['_badge', '_text'],
     ancestorStyle: ['_avatar'],
-    DEBUG: 'AVATAR',
-  }
+  } as const
 );

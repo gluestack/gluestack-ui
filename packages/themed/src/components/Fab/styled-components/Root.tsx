@@ -183,5 +183,5 @@ export default styled(
   {
     componentName: 'Fab',
     descendantStyle: ['_text', '_icon'],
-  }
+  } as const
 );

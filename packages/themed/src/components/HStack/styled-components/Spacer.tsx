@@ -35,5 +35,5 @@ export default styled(
   },
   {
     componentName: 'HStackSpacer',
-  }
+  } as const
 );

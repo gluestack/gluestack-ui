@@ -63,5 +63,5 @@ export default styled(
   {
     componentName: 'Checkbox',
     descendantStyle: ['_icon', '_text', '_indicator'],
-  }
+  } as const
 );

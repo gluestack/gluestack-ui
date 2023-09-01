@@ -61,5 +61,5 @@ export default styled(
   {
     componentName: 'SliderThumb',
     ancestorStyle: ['_thumb'],
-  }
+  } as const
 );

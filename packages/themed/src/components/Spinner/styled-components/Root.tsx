@@ -17,7 +17,7 @@ export default styled(
   {
     componentName: 'Spinner',
     resolveProps: ['color'],
-  },
+  } as const,
   {
     propertyTokenMap: {
       size: 'size',

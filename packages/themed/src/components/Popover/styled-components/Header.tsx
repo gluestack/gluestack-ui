@@ -12,5 +12,5 @@ export default styled(
   },
   {
     componentName: 'PopoverHeader',
-  }
+  } as const
 );

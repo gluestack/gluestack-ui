@@ -18,7 +18,8 @@ import {
   Center,
   Button,
   Box,
-} from './Platform-specific';
+  ButtonText,
+} from '@gluestack-ui/themed';
 import { transformedCode, transformedThemedCode } from '../../../utils';
 import Wrapper from '../../../components/Wrapper';
 
@@ -50,7 +51,7 @@ We can provide platform specific styles in the sx prop of the component. The sx 
               _web: { bg: '$green500' },
               _android: { bg: '$yellow500' },
             }}>
-            <Button.Text>Button</Button.Text>
+            <ButtonText>Button</ButtonText>
           </Button>
         </Box>
       </Box>
@@ -63,6 +64,7 @@ We can provide platform specific styles in the sx prop of the component. The sx 
         Text,
         Button,
         Box,
+        ButtonText,
       },
       argsType: {},
     }}
