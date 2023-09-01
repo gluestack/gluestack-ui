@@ -21,7 +21,7 @@ function template(propsArr, fileName) {
       <Table.TBody>
      ${propsArr.map((prop) => {
        return `
-          <Table.TR>
+          \n<Table.TR>
           <Table.TD>
             <Table.TText>
               <InlineCode>${prop.key}</InlineCode>
@@ -42,6 +42,14 @@ function template(propsArr, fileName) {
 </AppProvider>
 `;
 }
+
+const componetPropsMap = [
+  {
+    name: 'View',
+    extends:
+      'Badge component is created using View component from reacr-native. It extends all the props supported by [React Native View](https://reactnative.dev/docs/view#props) and all the supported [utility props](https://ui.gluestack.io/docs/styling/utility-and-sx-props)',
+  },
+];
 
 module.exports = {
   template,

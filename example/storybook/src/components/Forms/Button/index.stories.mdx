@@ -365,8 +365,9 @@ The following are the lists of all the libraries and packages the component reli
 - `@react-native-aria/interactions`
 
 ### Props
-         
-         
+
+Button component is created using Pressable component from react-native. It extends all the props supported by [React Native Pressable](https://reactnative.dev/docs/pressable#props) and all the supported [utility props](https://ui.gluestack.io/docs/styling/utility-and-sx-props) and the props mentioned below.
+
 #### Button
 
 <AppProvider>
@@ -386,22 +387,22 @@ The following are the lists of all the libraries and packages the component reli
         </Table.TR>
       </Table.THead>
       <Table.TBody>
-     
-          <Table.TR>
+        <Table.TR>
           <Table.TD>
             <Table.TText>
               <InlineCode>action</InlineCode>
             </Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>primary | secondary | positive | negative | default</Table.TText>
+            <Table.TText>
+              primary | secondary | positive | negative | default
+            </Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>-</Table.TText>
+            <Table.TText>primary</Table.TText>
           </Table.TD>
         </Table.TR>
-      ,
-          <Table.TR>
+        <Table.TR>
           <Table.TD>
             <Table.TText>
               <InlineCode>variant</InlineCode>
@@ -411,11 +412,10 @@ The following are the lists of all the libraries and packages the component reli
             <Table.TText>link | outline | solid</Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>-</Table.TText>
+            <Table.TText>solid</Table.TText>
           </Table.TD>
         </Table.TR>
-      ,
-          <Table.TR>
+        <Table.TR>
           <Table.TD>
             <Table.TText>
               <InlineCode>size</InlineCode>
@@ -425,15 +425,13 @@ The following are the lists of all the libraries and packages the component reli
             <Table.TText>xs | sm | md | lg | xl</Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>-</Table.TText>
+            <Table.TText>md</Table.TText>
           </Table.TD>
         </Table.TR>
-      
       </Table.TBody>
     </Table>
   </TableContainer>
 </AppProvider>
-
 
 ### Examples
 

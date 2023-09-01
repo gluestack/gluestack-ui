@@ -156,8 +156,9 @@ We have outlined the various features that ensure the Fab component is accessibl
 - VoiceOver: When the Progress is focused, the screen reader will announce it's a progress and it's current progress indicator.
 
 ### Props
-         
-         
+
+Progess component is created using View component from react-native. It extends all the props supported by [React Native View](https://reactnative.dev/docs/view#props) and all the supported [utility props](https://ui.gluestack.io/docs/styling/utility-and-sx-props) and the props mentioned below.
+
 #### Progress
 
 <AppProvider>
@@ -177,8 +178,7 @@ We have outlined the various features that ensure the Fab component is accessibl
         </Table.TR>
       </Table.THead>
       <Table.TBody>
-     
-          <Table.TR>
+        <Table.TR>
           <Table.TD>
             <Table.TText>
               <InlineCode>size</InlineCode>
@@ -188,15 +188,13 @@ We have outlined the various features that ensure the Fab component is accessibl
             <Table.TText>xs | sm | md | lg | xl | 2xl</Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>-</Table.TText>
+            <Table.TText>md</Table.TText>
           </Table.TD>
         </Table.TR>
-      
       </Table.TBody>
     </Table>
   </TableContainer>
 </AppProvider>
-
 
 ### Examples
 

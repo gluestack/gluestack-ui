@@ -11,7 +11,6 @@ export default styled(
     position: 'relative',
     bg: '$primary600',
     variants: {
-      withBadge: {},
       size: {
         'xs': {
           w: '$6',
