@@ -5,11 +5,13 @@ import {
   StyledProvider,
   config,
   createConfig,
+  styled,
 } from '@gluestack-ui/themed';
 import { createProvider } from '@gluestack-ui/provider';
 const Provider = createProvider({ StyledProvider }) as any;
 Provider.displayName = 'CustomProvider';
 
+const NewBox = styled(Box, {}, {});
 const extendedConfig = createConfig({
   ...config.theme,
   tokens: {
@@ -35,7 +37,7 @@ const extendedConfig = createConfig({
 const Wrapper = ({ children, ...props }: any) => {
   return (
     <Provider config={extendedConfig} {...props}>
-      <Box
+      <NewBox
         sx={{
           _ios: {
             h: '100%',
@@ -44,7 +46,7 @@ const Wrapper = ({ children, ...props }: any) => {
         {...props}
       >
         <Center h="100%">{children}</Center>
-      </Box>
+      </NewBox>
     </Provider>
   );
 };
