@@ -1,15 +1,17 @@
 import React from 'react';
 import {
-  Box,
+  Box as DefaultBox,
   Center,
   StyledProvider,
   config,
   createConfig,
+  styled,
 } from '@gluestack-ui/themed';
 import { createProvider } from '@gluestack-ui/provider';
 const Provider = createProvider({ StyledProvider }) as any;
 Provider.displayName = 'CustomProvider';
 
+const Box = styled(DefaultBox, {}, {});
 const extendedConfig = createConfig({
   ...config.theme,
   tokens: {

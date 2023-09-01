@@ -9,7 +9,7 @@ export default styled(
   {
     componentName: 'BadgeIcon',
     ancestorStyle: ['_icon'],
-  },
+  } as const,
   {
     propertyTokenMap: {
       stroke: 'colors',

@@ -33,5 +33,5 @@ export default styled(
   },
   {
     componentName: 'ActionsheetBackdrop',
-  }
+  } as const
 );

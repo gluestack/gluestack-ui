@@ -118,5 +118,5 @@ export default styled(
   },
   {
     componentName: 'Text',
-  }
+  } as const
 );

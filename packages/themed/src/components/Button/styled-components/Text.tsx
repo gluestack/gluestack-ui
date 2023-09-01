@@ -12,5 +12,5 @@ export default styled(
   {
     componentName: 'ButtonText',
     ancestorStyle: ['_text'],
-  }
+  } as const
 );

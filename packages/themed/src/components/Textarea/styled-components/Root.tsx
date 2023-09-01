@@ -159,6 +159,6 @@ export default styled(
   {
     componentName: 'Textarea',
     descendantStyle: ['_input'],
-  },
+  } as const,
   {}
 );

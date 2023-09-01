@@ -26,5 +26,5 @@ export default styled(
   },
   {
     componentName: 'Divider',
-  }
+  } as const
 );

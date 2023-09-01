@@ -9,5 +9,5 @@ export default styled(
   },
   {
     componentName: 'ActionsheetVirtualizedList',
-  }
+  } as const
 );

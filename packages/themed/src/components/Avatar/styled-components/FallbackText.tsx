@@ -17,5 +17,5 @@ export default styled(
   {
     componentName: 'AvatarFallbackText',
     ancestorStyle: ['_text'],
-  }
+  } as const
 );

@@ -18,5 +18,5 @@ export const Backdrop = styled(
   },
   {
     componentName: 'MenuBackdrop',
-  }
+  } as const
 );

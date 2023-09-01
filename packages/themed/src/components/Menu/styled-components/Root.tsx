@@ -37,5 +37,5 @@ export const Root = styled(
   },
   {
     componentName: 'Menu',
-  }
+  } as const
 );

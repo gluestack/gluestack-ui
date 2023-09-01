@@ -17,5 +17,5 @@ export default styled(
   {
     componentName: 'AvatarBadge',
     ancestorStyle: ['_badge'],
-  }
+  } as const
 );

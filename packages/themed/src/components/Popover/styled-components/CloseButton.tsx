@@ -85,5 +85,5 @@ export default styled(
   {
     componentName: 'PopoverCloseButton',
     descendantStyle: ['_icon', '_text'],
-  }
+  } as const
 );
