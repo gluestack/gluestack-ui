@@ -105,9 +105,19 @@ export type Aliases = GSConfig['aliases'];
 export type Components = GSConfig['components'];
 export type IMediaQueries = keyof GSConfig['tokens']['mediaQueries'];
 
-export type SxStyleProps<GenericComponentStyles, Variants, P> = {
-  sx?: SxProps<GenericComponentStyles, Variants, P> & {
-    [Key in `@${IMediaQueries}`]?: SxProps<GenericComponentStyles, Variants, P>;
+export type SxStyleProps<
+  GenericComponentStyles,
+  Variants,
+  GenericComponentProps
+> = {
+  sx?: SxProps<GenericComponentStyles, Variants, GenericComponentProps> & {
+    [Key in `@${IMediaQueries}`]?: SxProps<
+      GenericComponentStyles,
+      Variants,
+      GenericComponentProps,
+      '',
+      Key
+    >;
   };
 };
 
@@ -259,7 +269,9 @@ export type StyledThemeProps<
   [Key in `@${IMediaQueries}`]: SxProps<
     GenericComponentStyles,
     Variants,
-    GenericComponentProps
+    GenericComponentProps,
+    '',
+    Key
   >;
 } & {
   variants: VariantType<
@@ -287,63 +299,83 @@ type StylePropsType<GenericComponentStyles = AliasesProps, PLATFORM = ''> =
       AliasesProps<RNStyles<GenericComponentStyles>>)
   | (PLATFORM extends '_web' ? TokenizedRNStyleProps<CSSProperties> : {});
 
-type PassingPropsType<GenericComponentStyles, Variants, GenericComponentProps> =
-  {
-    props?: Partial<
-      GenericComponentProps &
-        RNStyles<GenericComponentStyles> &
-        AliasesProps<RNStyles<GenericComponentStyles>> & {
-          as?: any;
-        } & {
-          [Key in keyof MergeNested<
-            VariantType<
-              Variants,
-              GenericComponentStyles,
-              GenericComponentProps
-            >,
-            GlobalVariants
-          >]?: keyof MergeNested<
-            VariantType<
-              Variants,
-              GenericComponentStyles,
-              GenericComponentProps
-            >,
-            GlobalVariants
-          >[Key];
-        }
-    >;
-  };
+type PassingPropsType<
+  GenericComponentStyles,
+  Variants,
+  GenericComponentProps,
+  MediaQuery
+> = MediaQuery extends ''
+  ? {
+      props?: Partial<
+        GenericComponentProps &
+          RNStyles<GenericComponentStyles> &
+          AliasesProps<RNStyles<GenericComponentStyles>> & {
+            as?: any;
+          } & {
+            [Key in keyof MergeNested<
+              VariantType<
+                Variants,
+                GenericComponentStyles,
+                GenericComponentProps
+              >,
+              GlobalVariants
+            >]?: keyof MergeNested<
+              VariantType<
+                Variants,
+                GenericComponentStyles,
+                GenericComponentProps
+              >,
+              GlobalVariants
+            >[Key];
+          }
+      >;
+    }
+  : {};
 
 export type SxProps<
   GenericComponentStyles = AliasesProps,
   Variants = unknown,
   GenericComponentProps = unknown,
-  PLATFORM = ''
+  PLATFORM = '',
+  MediaQuery = ''
 > = Partial<
   StylePropsType<GenericComponentStyles, PLATFORM> &
-    PassingPropsType<GenericComponentStyles, Variants, GenericComponentProps>
+    PassingPropsType<
+      GenericComponentStyles,
+      Variants,
+      GenericComponentProps,
+      MediaQuery
+    >
 > & {
   [Key in `_${COLORMODES}`]?: SxProps<
     GenericComponentStyles,
     Variants,
     GenericComponentProps,
-    PLATFORM
+    PLATFORM,
+    MediaQuery
   >;
 } & {
   [Key in `:${IState}`]?: SxProps<
     GenericComponentStyles,
     Variants,
     GenericComponentProps,
-    PLATFORM
+    PLATFORM,
+    MediaQuery
   >;
 } & {
   [Key in `_${PLATFORMS}`]?: SxProps<
     GenericComponentStyles,
     Variants,
     GenericComponentProps,
-    Key
+    Key,
+    MediaQuery
   > &
-    PassingPropsType<GenericComponentStyles, Variants, GenericComponentProps> &
+    PassingPropsType<
+      GenericComponentStyles,
+      Variants,
+      GenericComponentProps,
+      MediaQuery
+    > &
     Partial<{
       [key: string]: any;
     }>;
@@ -352,9 +384,15 @@ export type SxProps<
     RNStyledProps,
     Variants,
     GenericComponentProps,
-    PLATFORM
+    PLATFORM,
+    MediaQuery
   > &
-    PassingPropsType<GenericComponentStyles, Variants, GenericComponentProps> &
+    PassingPropsType<
+      GenericComponentStyles,
+      Variants,
+      GenericComponentProps,
+      MediaQuery
+    > &
     Partial<{
       [key: string]: any;
     }>;
@@ -372,7 +410,9 @@ export type VariantType<
             [K in `@${IMediaQueries}`]?: SxProps<
               GenericComponentStyles,
               Variants,
-              GenericComponentProps
+              GenericComponentProps,
+              '',
+              K
             >;
           }
         >;
