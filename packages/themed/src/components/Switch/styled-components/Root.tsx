@@ -170,7 +170,7 @@ export default styled(
       'activeThumbColor',
       'ios_backgroundColor',
     ],
-  },
+  } as const,
   {
     propertyTokenMap: {
       trackColor: 'colors',

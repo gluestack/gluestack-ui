@@ -1,9 +1,6 @@
 ---
 title: Utility and SX props | gluestack-ui
-description: Utility and SX props description
-pageTitle: Utility and SX props
-pageDescription: Utility and SX props description
-showHeader: true
+description: Utility and SX props
 ---
 
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
@@ -12,6 +9,7 @@ import {
   CodePreview,
   Table,
   TableContainer,
+  InlineCode,
 } from '@gluestack/design-system';
 import {
   Box,
@@ -35,7 +33,7 @@ import { createButton } from '@gluestack-ui/button';
 
 <Meta title="Styling/Utility and SX props" />
 
-## Utility Props
+# Utility Props
 
 React Native has a great StyleSheet API which is optimal for component-based systems. `@gluestack-style/react` leverages it and adds a layer of utility props and constraint based designed tokens on top of it. `@gluestack-style/react` is used as styling engine for `@gluestack-ui/themed`.
 To understand utility props, let's take an example.
@@ -221,9 +219,9 @@ By using `@gluestack-ui/themed` components, you can apply styles directly in the
 
 The above example demonstrates the usage of [utility props]("/docs/styling/utility-props") alongwith VStack, HStack components. This approach allows us to style components without using StyleSheet API.
 
-## SX Prop
+# SX Prop
 
-gluestack-style supports the sx prop for overriding styles.The sx prop enables passing an object supporting tokens, media queries, nesting, and token-aware values to the component.
+gluestack-ui supports the `sx` prop for overriding styles. The `sx` prop enables passing an object supporting tokens, media queries, nesting, and token-aware values to the component.
 sx accepts the same style object as the base style.
 
 <AppProvider>
@@ -258,12 +256,12 @@ sx accepts the same style object as the base style.
   />
 </AppProvider>
 
-In this example, the button has a pink background instead of the default primary color, as the backgroundColor style is overridden using the sx prop
-The sx prop is particularly useful for theming and responsive styles, as it enables easy style changes for a component based on the theme or viewport size
-It is important to note that you should generally avoid using the sx prop, as it adds complexity to style calculations and may decrease performance
+In this example, the button has a pink background instead of the default primary color, as the backgroundColor style is overridden using the `sx` prop.
+The `sx` prop is particularly useful for theming and responsive styles, as it enables easy style changes for a component based on the theme or viewport size.
+It is important to note that you should generally avoid using the `sx` prop, as it adds complexity to style calculations and may decrease performance.
 
-Apart from productivity boosts and saving time, there are other benefits to styling components using utility props and sx prop. No need to name styles anymore, no need to define an object and think about naming it.
-Using utility-first and sx props, you can focus on creating reusable components instead of reusable stylesheets.Once you start writing styles this way, any other way will feel cumbersome.
+Apart from productivity boosts and saving time, there are other benefits to styling components using utility props and `sx` prop. No need to name styles anymore, no need to define an object and think about naming it.
+Using utility-first and `sx` props, you can focus on creating reusable components instead of reusable stylesheets.Once you start writing styles this way, any other way will feel cumbersome.
 
 ## Supported Utility Props
 

@@ -1,15 +1,42 @@
 ---
 title: Todo-List | gluestack-ui
-description: Todo-List description
-pageTitle: Todo-List
-pageDescription: Todo-List description
-showHeader: true
+description: Todo-List
+toc: false
 ---
 
+import {
+  GluestackUIProvider,
+  HStack,
+  Text,
+  Pressable,
+  Icon,
+  AddIcon,
+  Button,
+  Box,
+  config,
+} from '@gluestack-ui/themed';
+import { transformedCode } from '../../utils';
+import Wrapper from '../../components/Wrapper';
+import {
+  AppProvider,
+  CodePreview,
+  Table,
+  TableContainer,
+  InlineCode,
+} from '@gluestack/design-system';
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
+
+<script async src="https://snack.expo.dev/embed.js"></script>
 
 <Meta title="Resources/Todo-List" />
 
-## Todo-List
+# Todo-List
 
-WIP: Todo-List
+A simple To Do App made using `@gluestack-ui/themed`.
+
+<iframe
+  src="https://snack.expo.dev/embedded/@gluestack/gluestack-ui-todos-example?iframeId=mv6tjd6wte&preview=true&platform=web&theme=dark"
+  style={{ width: '70vw', height: '60vh', border: '0px' }}
+/>
+
+<br />

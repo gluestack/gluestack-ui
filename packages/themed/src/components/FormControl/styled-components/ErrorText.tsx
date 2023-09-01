@@ -15,5 +15,5 @@ export default styled(
   {
     componentName: 'FormControlErrorText',
     ancestorStyle: ['_errorText'],
-  }
+  } as const
 );

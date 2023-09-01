@@ -18,5 +18,5 @@ export default styled(
   },
   {
     componentName: 'PopoverFooter',
-  }
+  } as const
 );

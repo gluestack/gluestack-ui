@@ -28,5 +28,5 @@ export default styled(
   {
     componentName: 'Popover',
     descendantStyle: ['_content'],
-  }
+  } as const
 );

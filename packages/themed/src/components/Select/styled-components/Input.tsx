@@ -25,7 +25,7 @@ export default styled(
     componentName: 'SelectInput',
     ancestorStyle: ['_input'],
     resolveProps: ['placeholderTextColor'],
-  },
+  } as const,
   {
     propertyTokenMap: {
       placeholderTextColor: 'colors',

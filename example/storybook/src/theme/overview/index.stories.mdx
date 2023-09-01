@@ -1,15 +1,135 @@
 ---
 title: Theme Overview | gluestack-ui
-description: Theme Overview description
-pageTitle: Theme Overview
-pageDescription: Theme Overview description
-showHeader: true
+description: Theme Overview
 ---
 
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 <Meta title="Theme/Overview" />
 
-## Theme Overview
+# Theme Overview
 
-WIP: Theme Overview
+Use config prop in `GluestackUIProvider` to change look and feel of your application.
+
+### Default Theme
+
+The `@gluestack-ui/themed` package comes with a pre-configured default theme, seamlessly integrated within the GluestackUIProvider.
+
+```jsx
+import { GluestackUIProvider } from '@gluestack-ui/themed';
+
+function App({ children }) {
+  return <GluestackUIProvider>{children}</GluestackUIProvider>;
+}
+```
+
+### Custom Theme
+
+You can also customize your own theme by extending default theme by using createConfig function.
+
+```jsx
+import {
+  config,
+  GluestackUIProvider,
+  createConfig,
+  Box,
+} from '@gluestack-ui/themed';
+
+const extendedConfig = createConfig({
+  ...config.theme,
+  aliases: {
+    ...config.theme.aliases,
+    jc: 'justifyContent',
+  },
+});
+
+function App({ children }) {
+  return (
+    <GluestackUIProvider config={extendedConfig}>
+      <Box jc="center">
+        <Box />
+        <Box />
+      </Box>
+    </GluestackUIProvider>
+  );
+}
+```
+
+### Customizing Theme for Components
+
+You can add custom theme for components by extending default config and adding theme for specific component in createConfig function.
+
+```jsx
+import {
+  createConfig,
+  config,
+  GluestackUIProvider,
+  Button,
+  ButtonText,
+} from '@gluestack-ui/themed';
+
+const extendedConfig = createConfig({
+  ...config.theme,
+  components: {
+    Button: {
+      theme: {
+        variants: {
+          variant: {
+            ghost: {
+              bg: '$grey500',
+            },
+          },
+        },
+      },
+    },
+  },
+});
+
+function App({ children }) {
+  return (
+    <GluestackUIProvider config={extendedConfig}>
+      <Button variant="ghost">
+        <ButtonText>Hello World</ButtonText>
+      </Button>
+    </GluestackUIProvider>
+  );
+}
+```
+
+### Adding global styles
+
+You add global styles by extending default config and adding your own global styles in createConfig function.
+
+```jsx
+import {
+  createConfig,
+  config,
+  GluestackUIProvider,
+  Button,
+  ButtonText,
+} from '@gluestack-ui/themed';
+
+const extendedConfig = createConfig({
+  ...config.theme,
+  globalStyles: {
+    ...config.theme.globalStyles,
+    variants: {
+      variant: {
+        blackBackground: {
+          bg: '$black',
+        },
+      },
+    },
+  },
+});
+
+function App() {
+  return (
+    <GluestackUIProvider config={extendedConfig}>
+      <Button variant="blackBackground">
+        <ButtonText>Hello World</ButtonText>
+      </Button>
+    </GluestackUIProvider>
+  );
+}
+```

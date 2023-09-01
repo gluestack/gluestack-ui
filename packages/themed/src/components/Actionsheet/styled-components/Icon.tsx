@@ -18,5 +18,5 @@ export default styled(
   {
     componentName: 'ActionsheetIcon',
     descendantStyle: ['_icon'],
-  }
+  } as const
 );

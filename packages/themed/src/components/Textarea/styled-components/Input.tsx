@@ -30,7 +30,7 @@ export default styled(
     componentName: 'TextareaInput',
     ancestorStyle: ['_input'],
     resolveProps: ['placeholderTextColor'],
-  },
+  } as const,
   {
     propertyTokenMap: {
       placeholderTextColor: 'colors',

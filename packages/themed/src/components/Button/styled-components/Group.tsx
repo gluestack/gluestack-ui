@@ -117,5 +117,5 @@ export default styled(
   {
     componentName: 'ButtonGroup',
     descendantStyle: ['_button', '_groupHSpacer', '_groupVSpacer'],
-  }
+  } as const
 );

@@ -11,5 +11,5 @@ export default styled(
   },
   {
     componentName: 'AvatarImage',
-  }
+  } as const
 );

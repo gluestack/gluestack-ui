@@ -1,15 +1,112 @@
 ---
 title: Customizing Components | gluestack-ui
-description: Customizing Components description
-pageTitle: Customizing Components
-pageDescription: Customizing Components description
-showHeader: true
+description: Customizing Components
+showHeader: false
 ---
 
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
+import { Button, ButtonText, Wrapper } from './CustomComponent';
+import { transformedCode } from '../../utils';
+import { AppProvider, CodePreview, Text } from '@gluestack/design-system';
+
 <Meta title="Theme/Customizing Components" />
 
-## Customizing Components
+# Customizing Components
 
-WIP: Customizing Components
+You can add custom theme for components by extending default config and adding theme for specific component in createConfig function.
+
+1. create a file `gluestack-ui.config.ts`. Let's add new variant for Button component called ghost. as shown below.
+
+   ```js
+   // gluestack-ui.config.ts
+
+   import { createConfig, config } from '@gluestack-ui/themed';
+
+   const extendedConfig = createConfig({
+     ...config.theme,
+     components: {
+       Button: {
+         theme: {
+           variants: {
+             variant: {
+               ghost: {
+                 'bg': '$transparent',
+                 '_text': {
+                   color: '$primary600',
+                 },
+                 ':hover': {
+                   bg: '$primary200',
+                   _text: {
+                     color: '$dark900',
+                   },
+                 },
+                 ':active': {
+                   bg: '$primary100',
+                 },
+               },
+             },
+           },
+         },
+       },
+     },
+   });
+
+   // Get the type of Config
+   type ConfigType = typeof extendedConfig;
+
+   // Extend the internal styled config
+   declare module "@gluestack-style/react" {
+     interface ICustomConfig extends ConfigType {}
+   }
+   ```
+
+2. import the extendedConfig in App.tsx and pass it to GluestackUIProvider. Now you can use the new variant in Button
+
+   .
+
+```jsx
+// App.tsx
+import {
+  createConfig,
+  config,
+  GluestackUIProvider,
+  Button,
+  ButtonText,
+} from '@gluestack-ui/themed';
+import { extendedConfig } from './gluestack-ui.config.ts';
+function App({ children }) {
+  return (
+    <GluestackUIProvider config={extendedConfig}>
+      <Button variant="ghost">
+        <ButtonText>Hello World</ButtonText>
+      </Button>
+    </GluestackUIProvider>
+  );
+}
+```
+
+By utilizing this approach, you can seamlessly add variant to Button component.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+<Button variant="ghost">
+    <ButtonText>Hello World</ButtonText>
+</Button>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Button,
+        ButtonText,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>

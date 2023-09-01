@@ -19,7 +19,7 @@ export const parameters = {
       method: '',
       order: [
         'Overview',
-        ['Introduction', 'Accessibility', 'Getting Started'],
+        ['Introduction'],
         'Getting Started',
         ['Installation', 'VS Code Extension'],
         'Core Concepts',
@@ -29,8 +29,8 @@ export const parameters = {
         'Theme',
         [
           'Overview',
-          'Default Theme',
-          'Customizing Theme',
+          'Default Tokens',
+          'Customizing Tokens',
           'Customizing Fonts',
           'Customizing Components',
         ],
@@ -86,7 +86,7 @@ export const parameters = {
         'Hooks',
         ['React Native ARIA'],
         'Production Optimizations',
-        ['With Babel Plugin'],
+        ['With a Babel Plugin'],
         'Guides',
         [
           'Install in Next.js',
@@ -101,7 +101,7 @@ export const parameters = {
         'Recipes',
         ['Card'],
         'Resources',
-        ['Todo-List', 'Kitchen Sink'],
+        ['Todo-List', 'Dashboard App'],
         'Migration',
         ['NativeBase to gluestack-ui'],
         'More',

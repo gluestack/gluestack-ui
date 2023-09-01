@@ -334,15 +334,13 @@ export default styled(
         },
       },
     },
-
     'defaultProps': {
       size: 'md',
       variant: 'outline',
     },
   },
-
   {
     componentName: 'Input',
     descendantStyle: ['_input', '_icon'],
-  }
+  } as const
 );

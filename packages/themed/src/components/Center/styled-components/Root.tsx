@@ -44,5 +44,5 @@ export default styled(
   },
   {
     componentName: 'Center',
-  }
+  } as const
 );

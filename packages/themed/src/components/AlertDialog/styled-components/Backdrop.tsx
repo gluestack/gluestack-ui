@@ -43,5 +43,5 @@ export default styled(
   },
   {
     componentName: 'AlertDialogBackdrop',
-  }
+  } as const
 );

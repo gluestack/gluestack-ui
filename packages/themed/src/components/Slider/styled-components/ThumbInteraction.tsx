@@ -9,5 +9,5 @@ export default styled(
   },
   {
     componentName: 'SliderThumbInteraction',
-  }
+  } as const
 );

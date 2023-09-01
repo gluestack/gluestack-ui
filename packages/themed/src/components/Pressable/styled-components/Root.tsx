@@ -17,5 +17,5 @@ export default styled(
   },
   {
     componentName: 'Pressable',
-  }
+  } as const
 );

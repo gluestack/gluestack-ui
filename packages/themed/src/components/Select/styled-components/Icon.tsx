@@ -37,7 +37,7 @@ export default styled(
   {
     componentName: 'SelectIcon',
     ancestorStyle: ['_icon'],
-  },
+  } as const,
   {
     propertyTokenMap: {
       stroke: 'colors',

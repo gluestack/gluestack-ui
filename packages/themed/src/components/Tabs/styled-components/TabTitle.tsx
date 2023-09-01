@@ -9,5 +9,5 @@ export default styled(
   {
     componentName: 'TabsTabTitle',
     ancestorStyle: ['_title'],
-  }
+  } as const
 );

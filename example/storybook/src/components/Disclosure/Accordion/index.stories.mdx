@@ -33,14 +33,14 @@ The structure provided below can help you identify and understand Accordion comp
 ```jsx
 export default () => (
   <Accordion>
-    <Accordion.Item>
-      <Accordion.Header>
-        <Accordion.Trigger>
-          <Accordion.Icon />
-        </Accordion.Trigger>
-      </Accordion.Header>
-      <Accordion.Content />
-    </Accordion.Item>
+    <AccordionItem>
+      <AccordionHeader>
+        <AccordionTrigger>
+          <AccordionIcon />
+        </AccordionTrigger>
+      </AccordionHeader>
+      <AccordionContent />
+    </AccordionItem>
   </Accordion>
 );
 ```
@@ -263,7 +263,7 @@ Toggles the collapsed state of its associated item. It inherits all the properti
 
 Contains all the collapsible content for an item. It inherits all the properties of React Native [View](https://reactnative.dev/docs/view) component.
 
-#### Accordion.Icon
+#### AccordionIcon
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
@@ -332,33 +332,33 @@ export const Accordion = createAccordion({
 // Using the accordion component
 export default () => (
   <Accordion>
-    <Accordion.Item>
-      <Accordion.Header>
-        <Accordion.Trigger>
+    <AccordionItem>
+      <AccordionHeader>
+        <AccordionTrigger>
           <Text>Accordion Item 1</Text>
-          <Accordion.Icon>
+          <AccordionIcon>
             <AddIcon />
-          </Accordion.Icon>
-        </Accordion.Trigger>
-      </Accordion.Header>
-      <Accordion.Content>
+          </AccordionIcon>
+        </AccordionTrigger>
+      </AccordionHeader>
+      <AccordionContent>
         <Text>Accordion Content 1</Text>
-      </Accordion.Content>
-    </Accordion.Item>
+      </AccordionContent>
+    </AccordionItem>
     {/* ... */}
-    <Accordion.Item>
-      <Accordion.Header>
-        <Accordion.Trigger>
+    <AccordionItem>
+      <AccordionHeader>
+        <AccordionTrigger>
           <Text>Accordion Item 4</Text>
-          <Accordion.Icon>
+          <AccordionIcon>
             <AddIcon />
-          </Accordion.Icon>
-        </Accordion.Trigger>
-      </Accordion.Header>
-      <Accordion.Content>
+          </AccordionIcon>
+        </AccordionTrigger>
+      </AccordionHeader>
+      <AccordionContent>
         <Text>Accordion Content 4</Text>
-      </Accordion.Content>
-    </Accordion.Item>
+      </AccordionContent>
+    </AccordionItem>
   </Accordion>
 );
 ```

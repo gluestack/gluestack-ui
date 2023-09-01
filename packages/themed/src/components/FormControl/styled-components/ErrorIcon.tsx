@@ -16,7 +16,7 @@ export default styled(
   {
     componentName: 'FormControlErrorIcon',
     ancestorStyle: ['_icon'],
-  },
+  } as const,
   {
     propertyTokenMap: {
       stroke: 'colors',

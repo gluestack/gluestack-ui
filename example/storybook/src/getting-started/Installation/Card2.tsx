@@ -45,14 +45,15 @@ function Card2() {
       >
         <Box borderRadius="$xl" borderColor="#262626">
           <Link
-            href="https://snack.expo.dev/@gluestack/gluestack-ui-todos-example?platform=web&theme=dark"
+            href="https://snack.expo.dev/@gluestack/try-now-gluestack-ui"
             isExternal
           >
             <Box p={'$6'}>
               <VStack space="md">
-                <HStack alignItems="center" space="md">
+                <HStack w="$full" alignItems="center" space="md">
                   <Expo />
                   <Pressable
+                    flex={1}
                     sx={{
                       ':hover': {
                         textDecoration: 'underline',
@@ -97,12 +98,13 @@ function Card2() {
           },
         }}
       >
-        <Link href="https://codesandbox.io/p/sandbox/github/gluestack/ui-codesandbox-template/tree/main">
+        <Link href="https://codesandbox.io/p/sandbox/try-now-next-codesandbox-zl8npm?file=/pages/index.js:1,1">
           <Box p={'$6'}>
             <VStack space="md">
-              <HStack alignItems="center" space="md">
+              <HStack w="$full" alignItems="center" space="md">
                 <Checkbox />
                 <Pressable
+                  flex={1}
                   sx={{
                     ':hover': {
                       textDecoration: 'underline',

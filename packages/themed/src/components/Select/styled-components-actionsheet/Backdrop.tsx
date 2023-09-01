@@ -34,5 +34,5 @@ export default styled(
   },
   {
     componentName: 'SelectActionsheetBackdrop',
-  }
+  } as const
 );

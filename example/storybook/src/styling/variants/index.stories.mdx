@@ -1,9 +1,6 @@
 ---
 title: Variants | gluestack-ui
-description: Variants description
-pageTitle: Variants
-pageDescription: Variants description
-showHeader: true
+description: Variants
 ---
 
 import { Text, Center } from '@gluestack-ui/themed';
@@ -29,9 +26,9 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 <Meta title="Styling/Variants" />
 
-## Variants
+# Variants
 
-Creating variants of components in a UI component library is crucial for maintaining a consistent user experience across web, IOS, and Android platforms.
+Creating variants of components in a UI component library is crucial for maintaining a consistent user experience across `web`, `IOS`, and `Android` platforms.
 We can create different variants of components using gluestack-style.
 
 To update components styles, we need to create a new which extends the default config and we can style the components aditionally.
@@ -50,7 +47,7 @@ To create a new variant of a Button Component, just import the `createConfig` fu
               ghost: {
                 backgroundColor: '$red500',
                 _text: {
-                  color: '$white',
+                  color: 'white',
                 },
               },
             },
@@ -79,6 +76,9 @@ To create a new variant of a Button Component, just import the `createConfig` fu
         // write same component name which is passed in styled
         theme: {
           bg: '$primary500',
+          props:{
+            variant:"ghost",
+          },
           variants: {
             variant: {
               ghost: {
@@ -97,10 +97,10 @@ To create a new variant of a Button Component, just import the `createConfig` fu
     },
   });
     return (
- <GluestackUIProvider config={themeConfig}>
+     <GluestackUIProvider config={themeConfig}>
         <Box justifyContent="center" alignItems="center" height="100%">
           {/* Button with default theme */}
-          <Button variant="ghost">
+          <Button>
             <ButtonText>Hello world</ButtonText>
           </Button>
         </Box>

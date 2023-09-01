@@ -11,5 +11,5 @@ export default styled(
   {
     componentName: 'BadgeText',
     ancestorStyle: ['_text'],
-  }
+  } as const
 );

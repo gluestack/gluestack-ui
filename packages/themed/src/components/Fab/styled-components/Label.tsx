@@ -10,5 +10,5 @@ export default styled(
   {
     componentName: 'FabLabel',
     ancestorStyle: ['_text'],
-  }
+  } as const
 );
