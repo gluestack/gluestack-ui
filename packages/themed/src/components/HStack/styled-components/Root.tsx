@@ -10,5 +10,7 @@ export default styled(
       space: 'md',
     },
   },
-  {}
+  {
+    componentName: 'HStack',
+  } as const
 );

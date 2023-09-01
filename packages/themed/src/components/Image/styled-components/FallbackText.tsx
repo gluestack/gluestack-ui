@@ -9,5 +9,7 @@ export default styled(
     bg: '$amber500',
     p: 10,
   },
-  {}
+  {
+    componentName: 'ImageFallbackText',
+  } as const
 );

@@ -26,5 +26,8 @@ export default styled(
       pointerEvents: 'box-none',
     },
   },
-  { descendantStyle: ['_content'] }
+  {
+    componentName: 'AlertDialog',
+    descendantStyle: ['_content'],
+  } as const
 );

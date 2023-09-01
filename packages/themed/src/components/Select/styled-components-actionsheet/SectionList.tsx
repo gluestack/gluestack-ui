@@ -7,5 +7,7 @@ export default styled(
     w: '$full',
     h: 'auto',
   },
-  {}
+  {
+    componentName: 'SelectActionsheetSectionList',
+  } as const
 );

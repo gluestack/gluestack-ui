@@ -12,5 +12,7 @@ export default styled(
       bg: '$backgroundDark500',
     },
   },
-  {}
+  {
+    componentName: 'ActionsheetDragIndicator',
+  } as const
 );

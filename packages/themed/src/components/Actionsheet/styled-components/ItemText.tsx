@@ -14,5 +14,8 @@ export default styled(
       color: '$textDark100',
     },
   },
-  { ancestorStyle: ['_text'] }
+  {
+    componentName: 'ActionsheetItemText',
+    ancestorStyle: ['_text'],
+  } as const
 );

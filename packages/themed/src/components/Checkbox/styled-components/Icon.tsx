@@ -49,8 +49,9 @@ export default styled(
     },
   },
   {
+    componentName: 'CheckboxIcon',
     ancestorStyle: ['_icon'],
-  },
+  } as const,
   {
     propertyTokenMap: {
       stroke: 'colors',

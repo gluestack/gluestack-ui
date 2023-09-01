@@ -48,5 +48,8 @@ export default styled(
       hardShadow: '2',
     },
   },
-  { descendantStyle: ['_text'] }
+  {
+    componentName: 'TooltipContent',
+    descendantStyle: ['_text'],
+  } as const
 );

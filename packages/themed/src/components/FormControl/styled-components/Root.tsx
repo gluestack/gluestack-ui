@@ -58,11 +58,12 @@ export default styled(
     },
   },
   {
+    componentName: 'FormControl',
     descendantStyle: [
       '_labelText',
       '_helperText',
       '_errorText',
       '_labelAstrick',
     ],
-  }
+  } as const
 );

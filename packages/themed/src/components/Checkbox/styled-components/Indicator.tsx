@@ -111,6 +111,7 @@ export default styled(
     },
   },
   {
+    componentName: 'CheckboxIndicator',
     ancestorStyle: ['_indicator'],
-  }
+  } as const
 );

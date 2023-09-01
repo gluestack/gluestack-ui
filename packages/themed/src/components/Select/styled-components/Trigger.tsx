@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { styled } from '../../styled';
 import { Pressable } from 'react-native';
 
@@ -356,5 +355,8 @@ export default styled(
     },
   },
 
-  { descendantStyle: ['_input', '_icon'] }
+  {
+    componentName: 'SelectTrigger',
+    descendantStyle: ['_input', '_icon'],
+  } as const
 );

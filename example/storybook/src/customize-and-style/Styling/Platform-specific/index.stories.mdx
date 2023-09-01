@@ -12,18 +12,37 @@ showHeader: true
 
 import { Meta } from '@storybook/addon-docs';
 
+import {
+  GluestackUIProvider,
+  Text,
+  Center,
+  Button,
+  Box,
+  ButtonText,
+} from '@gluestack-ui/themed';
+import { transformedCode, transformedThemedCode } from '../../../utils';
+import Wrapper from '../../../components/Wrapper';
+
+import {
+  AppProvider,
+  CodePreview,
+  Table,
+  TableContainer,
+  InlineCode,
+} from '@gluestack/design-system';
+
 <Meta title="Customize and Style/Styling/Platform Specific" />
 
 ## Platform Specific
 
 We can provide platform specific styles in the sx prop of the component. The sx prop takes an object with \_ios, \_andorid and \_web specific styles.
 
-```jsx
-import { Box, Button, GluestackUIProvider } from '@gluestack-ui/themed';
-
-export default function App() {
-  return (
-    <GluestackUIProvider>
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
       <Box justifyContent="center" alignItems="center" h="100%">
         <Box alignItems="center">
           <Button
@@ -31,15 +50,27 @@ export default function App() {
               _ios: { bg: '$red500' },
               _web: { bg: '$green500' },
               _android: { bg: '$yellow500' },
-            }}
-          >
-            <Button.Text>Button</Button.Text>
+            }}>
+            <ButtonText>Button</ButtonText>
           </Button>
         </Box>
       </Box>
-    </GluestackUIProvider>
-  );
-}
-```
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Text,
+        Button,
+        Box,
+        ButtonText,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+<br />
 
 Expo snack link for above example is provided [here](https://snack.expo.dev/@gluestack/gluestack-ui-platform-specific).

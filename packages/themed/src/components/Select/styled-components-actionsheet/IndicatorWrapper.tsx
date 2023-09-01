@@ -8,5 +8,7 @@ export default styled(
     w: '100%',
     alignItems: 'center',
   },
-  {}
+  {
+    componentName: 'SelectActionsheetIndicatorWrapper',
+  } as const
 );

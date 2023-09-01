@@ -60,6 +60,7 @@ export const Item = styled(
     'cursor': 'pointer',
   },
   {
+    componentName: 'MenuItem',
     descendantStyle: ['_text'],
-  }
+  } as const
 );

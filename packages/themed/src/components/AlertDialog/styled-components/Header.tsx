@@ -13,5 +13,7 @@ export default styled(
       borderColor: '$borderDark700',
     },
   },
-  {}
+  {
+    componentName: 'AlertDialogHeader',
+  } as const
 );

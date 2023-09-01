@@ -9,5 +9,8 @@ export default styled(
     //@ts-ignore
     userSelect: 'none',
   },
-  { ancestorStyle: ['_text'], DEBUG: 'STYLEDBUTTONTEXT' }
+  {
+    componentName: 'TooltipText',
+    ancestorStyle: ['_text'],
+  } as const
 );

@@ -10,5 +10,7 @@ export default styled(
     alignItems: 'center',
     flexDirection: 'row',
   },
-  {}
+  {
+    componentName: 'PopoverHeader',
+  } as const
 );

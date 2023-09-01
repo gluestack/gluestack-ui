@@ -12,6 +12,7 @@ export default styled(
       //@ts-ignore
       trackColor: { false: '$backgroundLight300', true: '$primary600' },
       thumbColor: '$backgroundLight0',
+      //@ts-ignore
       activeThumbColor: '$backgroundLight0',
 
       // for ios specifically in unchecked state
@@ -114,6 +115,7 @@ export default styled(
         //@ts-ignore
         trackColor: { false: '$backgroundDark700', true: '$primary500' },
         thumbColor: '$backgroundDark0',
+        //@ts-ignore
         activeThumbColor: '$backgroundDark0',
       },
       ':invalid': {
@@ -161,13 +163,14 @@ export default styled(
     },
   },
   {
+    componentName: 'Switch',
     resolveProps: [
       'thumbColor',
       'trackColor',
       'activeThumbColor',
       'ios_backgroundColor',
     ],
-  },
+  } as const,
   {
     propertyTokenMap: {
       trackColor: 'colors',

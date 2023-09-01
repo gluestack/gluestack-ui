@@ -40,6 +40,7 @@ export const Item = styled(
     },
   },
   {
+    componentName: 'MenuItem',
     descendantStyle: ['_text'],
-  }
+  } as const
 );

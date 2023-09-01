@@ -13,5 +13,8 @@ export default styled(
     fontStyle: 'normal',
     fontSize: '$sm',
   },
-  { ancestorStyle: ['_text'] }
+  {
+    componentName: 'ToastDescription',
+    ancestorStyle: ['_text'],
+  } as const
 );

@@ -14,5 +14,8 @@ export default styled(
     borderColor: 'white',
     borderWidth: 2,
   },
-  { ancestorStyle: ['_badge'] }
+  {
+    componentName: 'AvatarBadge',
+    ancestorStyle: ['_badge'],
+  } as const
 );

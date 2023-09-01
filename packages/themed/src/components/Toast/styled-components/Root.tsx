@@ -1,4 +1,3 @@
-//@ts-nocheck
 import { styled } from '../../styled';
 import { View } from 'react-native';
 
@@ -110,5 +109,8 @@ export default styled(
       action: 'attention',
     },
   },
-  { descendantStyle: ['_icon', '_text'] }
+  {
+    componentName: 'Toast',
+    descendantStyle: ['_icon', '_text'],
+  } as const
 );

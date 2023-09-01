@@ -58,5 +58,8 @@ export default styled(
       hardShadow: '1',
     },
   },
-  { ancestorStyle: ['_thumb'] }
+  {
+    componentName: 'SliderThumb',
+    ancestorStyle: ['_thumb'],
+  } as const
 );

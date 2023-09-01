@@ -41,7 +41,8 @@ export default styled(
     },
   },
   {
+    componentName: 'RadioIcon',
     ancestorStyle: ['_icon'],
     resolveProps: ['color'],
-  }
+  } as const
 );

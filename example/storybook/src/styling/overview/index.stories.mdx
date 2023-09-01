@@ -1,0 +1,49 @@
+---
+title: Styling Overview | gluestack-ui
+description: gluestack-ui has its own styling engine `@gluestack-style/react` which makes styling of components easy.
+---
+
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+
+<Meta title="Styling/Overview" />
+
+# Styling Overview
+
+All the components of `@gluestack-ui/themed` by default are styled. Default styling is provided by our styling engine [`@gluestack-style/react`](https://style.gluestack.io/docs/overview/introduction) and it is defined in [`gluestack-ui.config.ts`](https://github.com/gluestack/gluestack-ui/blob/main/example/storybook/src/gluestack-ui.config.ts) file. Config file exports an object which is passed inside the `GluetackUIProvider`(a Wrapper component that applies the theme to all the children).
+
+```jsx
+import { config, GluestackUIProvider } from '@gluestack-ui/themed';
+
+function App({ children }) {
+  return (
+    <GluestackUIProvider config={config.theme}>{children}</GluestackUIProvider>
+  );
+}
+```
+
+The imported config contains a theme object which contains all the configuration, the structure looks something like the following:
+
+```bash
+{
+  "theme": {
+    "aliases": {
+      # Adding bg as alias of background Color
+      "bg": "backgroundColor"
+    },
+    "tokens": {
+      # All the tokens are defined here like colors, borderWidths, radii, breakpoints, mediaQueries ....
+    },
+    "globalStyle": {
+      # All the global style is defined here
+    }
+  }
+}
+```
+
+The theme object has aliases, tokens and global style.
+
+- aliases: This is useful when you want to use a shorter name for a token. For example, you can use bg instead of backgroundColor for the backgroundColor token.
+
+- tokens: This is where you define your design tokens. Tokens helps us to maintain consistent designs.
+
+- globalStyle: The styles written inside globalStyle are applied globally in the application.

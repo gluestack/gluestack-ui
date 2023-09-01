@@ -1,8 +1,8 @@
 //@ts-nocheck
 import { UL } from '@expo/html-elements';
 import { styled } from '../../styled';
-import { createMotionAnimatedComponent } from '@legendapp/motion';
-const MotionUL = createMotionAnimatedComponent(UL);
+import { createMotionAnimatedComponent, Motion } from '@legendapp/motion';
+const MotionUL = createMotionAnimatedComponent(UL) as typeof Motion.Pressable;
 export const Root = styled(
   MotionUL,
   {
@@ -35,5 +35,7 @@ export const Root = styled(
       softShadow: '3',
     },
   },
-  {}
+  {
+    componentName: 'Menu',
+  } as const
 );

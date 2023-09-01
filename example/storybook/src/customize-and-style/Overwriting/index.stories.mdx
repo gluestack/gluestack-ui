@@ -10,16 +10,27 @@ pageDescription: Overwriting of the default theme is important to create customi
 showHeader: true
 ---
 
-import { Canvas, Meta, Story } from '@storybook/addon-docs';
+import { Text, Center } from '@gluestack-ui/themed';
+import {
+  Box,
+  Button,
+  GluestackUIProvider,
+  config,
+  VStack,
+  ButtonText,
+} from '@gluestack-ui/themed';
+import { createConfig } from '@gluestack-ui/themed';
+import { transformedCode, transformedThemedCode } from '../../utils';
+import Wrapper from '../../components/Wrapper';
 
 import {
   AppProvider,
-  Box,
-  HStack,
-  Text,
-  Hoverable,
   CodePreview,
+  Table,
+  TableContainer,
+  InlineCode,
 } from '@gluestack/design-system';
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 <Meta title="Customize and Style/Overwriting" />
 
@@ -33,11 +44,11 @@ createConfig function takes an object as a parameter which takes in aliases, tok
 
 - aliases: This is useful when you want to use a shorter name for a token. For example, you can use bg instead of backgroundColor for the backgroundColor token.
 
-- tokens: This is where you define your design tokens. For more information refer [this](https://ui.gluestack.io/docs/configuration/theme-tokens) doc.
+- tokens: This is where you define your design tokens. For more information refer [this](https://style.gluestack.io/docs/configuration/theme-tokens) doc.
 
-- globalStyle: The styles written inside globalStyle are applied globally in the application.
+- globalStyle: The styles written inside globalStyle are applied globally in the application. For more information refer [this](https://style.gluestack.io/docs/configuration/global-style).
 
-- components: This is where you can define styles for different components based on keys. API will look something like this.
+- components: This is where you can define styles for different components based on keys. API will look something like this. For more information refer [this](https://style.gluestack.io/docs/configuration/customizing-components).
 
 ```bash
 components: {
@@ -55,13 +66,17 @@ components: {
   }
 ```
 
-> Note: This feature is still a work in progress and is not supported yet, we will release it soon.
+Refer to below code snippet for better understanding
 
-```jsx
-import { createConfig } from 'gluestack-style/react';
-import { config } from 'gluestack-ui/themed';
-
-const config = createConfig({
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+     function App(){
+      {/* Creating own theme */}
+  const themeConfig = createConfig({
     ...config.theme,
     aliases: {
       ...config.theme.aliases,
@@ -74,7 +89,68 @@ const config = createConfig({
         secondary: 'green',
       },
     },
-  } as const);
-```
+    components: {
+      Button: {
+        // write same component name which is passed in styled
+        theme: {
+          bg: '$primary500',
+          variants: {
+            variant: {
+              secondary: {
+                bg: '$secondary500',
+              },
+            },
+          },
+        },
+        componentConfig: {
+          descendantStyle: ['_text'],
+        },
+      },
+    },
+  });
+    return (
+<GluestackUIProvider config={themeConfig}>
+  <VStack
+          justifyContent="center"
+          alignItems="center"
+          height="100%"
+          space="md">
+          {/* Button with default theme */}
+          <Button>
+            <ButtonText>Hello world</ButtonText>
+          </Button>
+          {/* Using the created alias in the button */}
+          <Button newbg="$red900">
+            <ButtonText>Hello world</ButtonText>
+          </Button>
+          {/* Using the created alias in the button */}
+          <Button bg="$secondary">
+            <ButtonText>Hello world</ButtonText>
+          </Button>
+        </VStack>
+        </GluestackUIProvider>
+);
+}
+`,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'App');
+      },
+      scope: {
+        Wrapper,
+        Text,
+        Button,
+        Box,
+        ButtonText,
+        createConfig,
+        config,
+        GluestackUIProvider,
+        VStack,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+<br />
 
 Refer to [this](https://snack.expo.dev/@gluestack/createconfig) snack for live example.

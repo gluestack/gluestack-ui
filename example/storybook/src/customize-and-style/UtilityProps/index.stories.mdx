@@ -1,0 +1,581 @@
+---
+title: Utility Props | gluestack-ui
+
+description: gluestack-ui uses tokens to store design-related values such as colors, typography, spacing, and more. They are a way of centralizing the values in a single location.
+
+pageTitle: Utility Props
+
+pageDescription: gluestack-ui uses tokens to store design-related values such as colors, typography, spacing, and more. They are a way of centralizing the values in a single location.
+
+showHeader: true
+---
+
+import {
+  GluestackUIProvider,
+  Text,
+  Center,
+  Button,
+  Box,
+  ButtonText,
+} from '@gluestack-ui/themed';
+import { transformedCode, transformedThemedCode } from '../../utils';
+import Wrapper from '../../components/Wrapper';
+
+import {
+  AppProvider,
+  CodePreview,
+  Table,
+  TableContainer,
+  InlineCode,
+} from '@gluestack/design-system';
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="Customize and Style/Utility Props" />
+
+Style props are a way to alter the style of a component by simply passing props to it. It helps to save time by providing helpful shorthand ways to style components.
+
+## Style Props
+
+The following table shows a list of every style prop and the properties within each group.
+
+### Margin and padding
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+     <>
+      <Box borderRadius="$md" bg="$primary200" m="$2" p="$5" />
+      <Box borderRadius="$md" bg="$primary200" mx="auto" px="$20" py="$5"  />
+      <Box  borderRadius="$md"
+        bg="$primary200"
+        sx={{
+          '@sm': { m: '$2' },
+          '@lg': {
+            m: '$3',
+          },
+        }}
+        mt="$2"
+        pt="$10"
+        pr="$10" />
+     </>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Text,
+        Button,
+        Box,
+        ButtonText,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+<br />
+
+| Prop              | CSS Equivalent                 | Theme Key |
+| ----------------- | ------------------------------ | --------- |
+| m, margin         | margin                         | space     |
+| mt, marginTop     | margin-top                     | space     |
+| mr, marginRight   | margin-right                   | space     |
+| mb, marginBottom  | margin-bottom                  | space     |
+| ml, marginLeft    | margin-left                    | space     |
+| mx                | margin-left and margin-right   | space     |
+| my                | margin-top and margin-bottom   | space     |
+| p, padding        | padding                        | space     |
+| pt, paddingTop    | padding-top                    | space     |
+| pr, paddingRight  | padding-right                  | space     |
+| pb, paddingBottom | padding-bottom                 | space     |
+| pl, paddingLeft   | padding-left                   | space     |
+| px                | padding-left and padding-right | space     |
+| py                | padding-top and padding-bottom | space     |
+
+### Color and background color
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+     <>
+        <Box p="$5" m="$2" borderRadius="$md" bg="#fdba74" />
+      <Box p="$5" m="$2" borderRadius="$md" bgColor="$lightBlue200" py="$3">
+        <Text color="red.500" fontWeight="bold">
+          {' '}
+          I ❤️ Gluestack
+        </Text>
+      </Box>
+      <Box p="$5" m="$2" borderRadius="$md" backgroundColor="$indigo300" />
+     </>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Text,
+        Button,
+        Box,
+        ButtonText,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+<br />
+
+| Prop           | CSS Eqquivalent  | Theme Key |
+| -------------- | ---------------- | --------- |
+| color          | color            | colors    |
+| bg, background | background       | colors    |
+| bgColor        | background-color | colors    |
+| opacity        | opacity          | -         |
+
+### Typography
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+     <>
+         <Text m="$2" fontSize="md">
+        Sample Text{' '}
+      </Text>
+      <Text m="$2" fontSize={32} textDecoration="underline">
+        Sample Text{' '}
+      </Text>
+      <Text m="$2" fontSize="2em" fontWeight="bold">
+        Sample Text{' '}
+      </Text>
+      <Text m="$2" textAlign={['left', 'center']}>
+        Sample Text{' '}
+      </Text>
+     </>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Text,
+        Button,
+        Box,
+        ButtonText,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+<br />
+
+| Prop           | CSS Eqquivalent | Theme Key      |
+| -------------- | --------------- | -------------- |
+| fontFamily     | font-family     | fonts          |
+| fontSize       | font-size       | fontSizes      |
+| fontWeight     | font-weight     | fontWeights    |
+| lineHeight     | line-height     | lineHeights    |
+| letterSpacing  | letter-spacing  | letterSpacings |
+| textAlign      | text-align      | -              |
+| fontStyle      | font-style      | -              |
+| textTransform  | text-transform  | -              |
+| textDecoration | text-decoration | -              |
+
+### Layout, width and height
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+     <>
+ <Box
+        m="$2"
+        borderRadius="$md"
+        bg="$primary200"
+        width="100%"
+        height="$8"
+      />
+      <Box m="$2" borderRadius="$md" bg="$primary200" w="75%" h="32px" />
+      <Box m="$2" borderRadius="$md" bg="$primary200" w="50%" h="$8" />
+      <Box m="$2" borderRadius="$md" bg="$primary200" w={256} />
+      <Box m="$2" borderRadius="$md" bg="$primary200" w="40px" h="$8" />
+     </>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Text,
+        Button,
+        Box,
+        ButtonText,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+<br />
+
+| Prop            | CSS Eqquivalent | Theme Key |
+| --------------- | --------------- | --------- |
+| w, width        | width           | sizes     |
+| h, height       | height          | sizes     |
+| minW, minWidth  | min-width       | sizes     |
+| maxW, maxWidth  | max-width       | sizes     |
+| minH, minHeight | min-height      | sizes     |
+| maxH, maxHeight | max-height      | sizes     |
+| d, display      | display         | -         |
+| verticalAlign   | vertical-align  | -         |
+| overflow        | overflow        | -         |
+| overflowX       | overflowX       | -         |
+| overflowY       | overflowY       | -         |
+
+### Borders
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+     <>
+      <Box p="$5" m="$2" borderRadius="$md" bg="$primary200" borderWidth="$1" />
+      <Box
+        p="$5"
+        m="$2"
+        borderRadius="$md"
+        bg="$primary200"
+        borderWidth="$2"
+        borderColor="$red400"
+      />
+      <Box
+        p="$5"
+        m="$2"
+        borderRadius="$md"
+        bg="$primary200"
+        borderWidth="$2"
+        borderBottomColor="$red500"
+        borderTopWidth="$4"
+      />
+     </>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Text,
+        Button,
+        Box,
+        ButtonText,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+<br />
+
+| Prop              | CSS Eququivalent    | Theme Field  |
+| ----------------- | ------------------- | ------------ |
+| border            | border              | borders      |
+| borderWidth       | border-width        | borderWidths |
+| borderStyle       | border-style        | borderStyles |
+| borderColor       | border-color        | colors       |
+| borderTopWidth    | border-top-width    | borderWidths |
+| borderTopColor    | border-top-color    | colors       |
+| borderRightWidth  | border-right-width  | borderWidths |
+| borderRightColor  | border-right-color  | colors       |
+| borderBottomWidth | border-bottom-width | borderWidths |
+| borderBottomColor | border-bottom-color | colors       |
+| borderLeftWidth   | border-left-width   | borderWidths |
+| borderLeftColor   | border-left-color   | colors       |
+
+### Borders Radius
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+     <>
+      <Box p="$5" m="$2" bg="$primary200"  borderRadius="$md" />
+      <Box p="$5" m="$2" bg="$primary200"  borderRadius="$full" />
+      <Box p="$5" m="$2" bg="$primary200" borderTopLeftRadius="$lg" borderBottomRightRadius="$md" />
+     </>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Text,
+        Button,
+        Box,
+        ButtonText,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+<br />
+
+| Prop                    | CSS Eququivalent           | Theme Field |
+| ----------------------- | -------------------------- | ----------- |
+| borderRadius            | border-radius              | radii       |
+| borderTopLeftRadius     | border-top-left-radius     | radii       |
+| borderTopRightRadius    | border-top-right-radius    | radii       |
+| borderBottomRightRadius | border-bottom-right-radius | radii       |
+| borderBottomLeftRadius  | border-bottom-left-radius  | radii       |
+
+### Position
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+     <>
+      <Box    p="$5"
+      m="$2"
+      borderRadius="$md"
+      bg="$primary200" position="absolute" left="$64" p="$7" />
+      <Box    p="$5"
+      m="$2"
+      borderRadius="$md"
+       bgColor="$orange300" zIndex={2} position="relative" />
+      <Box
+         p="$5"
+      m="$2"
+      borderRadius="$md"
+        backgroundColor="$indigo300"
+        position="absolute"
+        right="$32"
+        p="$7"
+      />
+     </>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Text,
+        Button,
+        Box,
+        ButtonText,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+<br />
+
+| Prop     | CSS Equivalent | Theme Field |
+| -------- | -------------- | ----------- |
+| position | position       | -           |
+| zIndex   | z-index        | zIndices    |
+| top      | top            | space       |
+| right    | right          | space       |
+| bottom   | bottom         | space       |
+| left     | left           | space       |
+
+### Shadow
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+     <>
+      <Box p="$5" m="$2" borderRadius="$md" bg="$primary200" softShadow="$1" />
+      <Box p="$5" m="$2" borderRadius="$md" bg="$primary200" softShadow="$3" />
+      <Box p="$5" m="$2" borderRadius="$md" bg="$primary200" hardShadow="$5" />
+      <Box p="$5" m="$2" borderRadius="$md" bg="$primary200" hardShadow="$7" />
+      <Box p="$5" m="$2" borderRadius="$md" bg="$primary200" hardShadow="$9" />
+     </>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Text,
+        Button,
+        Box,
+        ButtonText,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+<br />
+
+| Prop       | CSS Equivalent | Theme Field |
+| ---------- | -------------- | ----------- |
+| hardShadow | box-shadow     | shadows     |
+| softShadow | box-shadow     | shadows     |
+
+## Underscore Props
+
+### Internal Props
+
+Provides a way to pass props to child components inside Composite componets.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+     <>
+       <Button
+    sx={{_text:{
+       color: '$secondary900',
+        fontSize: '$xs',
+        fontWeight: '$bold',
+    }}}
+    >
+       <ButtonText>
+            Sample Text</ButtonText>
+    </Button>
+     </>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Text,
+        Button,
+        Box,
+        ButtonText,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+<br />
+
+| Prop    | Type                       | Description                                              |
+| ------- | -------------------------- | -------------------------------------------------------- |
+| \_stack | [IStackProps](stack#props) | Passed props will be provided to [`Stack`](stack) child. |
+| \_text  | [ITextProps](text#props)   | Passed props will be provided to [`Text`](text) child.   |
+
+### Interaction Props
+
+Provides a way to pass props on certain interaction.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+     <>
+       <Button
+      sx={{
+        ':hover': {
+          // below props will only be applied on button is pressed
+          bg: '$red300',
+        },
+      }}
+    >
+       <ButtonText>
+            Sample Text</ButtonText>
+    </Button>
+     </>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Text,
+        Button,
+        Box,
+        ButtonText,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+<br />
+
+| Prop       | Type                    | Description                                     |
+| ---------- | ----------------------- | ----------------------------------------------- |
+| \_disabled | _Same as the component_ | Passed props will be applied on disabled state. |
+| \_focus    | _Same as the component_ | Passed props will be applied on focused state.  |
+| \_hover    | _Same as the component_ | Passed props will be applied on hovered state.  |
+| \_invalid  | _Same as the component_ | Passed props will be applied on invalid state.  |
+| \_pressed  | _Same as the component_ | Passed props will be applied on pressed state.  |
+
+### Platform Props
+
+Provides a way to pass props bassed on Platform (_android, ios or web_).
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+     <>
+      <Button
+          sx={{
+            _web: {
+              bg: '$primary300',
+            },
+            _ios: { bg: "$red500" },
+            _android: { bg: "$yellow500" },
+          }}
+        >
+        <ButtonText>
+            Sample Text</ButtonText>
+      </Button>
+     </>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Text,
+        Button,
+        Box,
+        ButtonText,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+<br />
+
+| Prop      | Type                    | Description                              |
+| --------- | ----------------------- | ---------------------------------------- |
+| \_android | _Same as the component_ | Passed props will be applied on android. |
+| \_ios     | _Same as the component_ | Passed props will be applied on ios.     |
+| \_web     | _Same as the component_ | Passed props will be applied on web.     |

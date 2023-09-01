@@ -7,5 +7,7 @@ export default styled(
     px: '$4',
     py: '$2',
   },
-  {}
+  {
+    componentName: 'AlertDialogBody',
+  } as const
 );

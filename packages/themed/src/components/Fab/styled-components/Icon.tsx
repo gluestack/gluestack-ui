@@ -7,8 +7,9 @@ export default styled(
   Icon,
   {},
   {
+    componentName: 'FabIcon',
     ancestorStyle: ['_icon'],
-  },
+  } as const,
   {
     propertyTokenMap: {
       stroke: 'colors',

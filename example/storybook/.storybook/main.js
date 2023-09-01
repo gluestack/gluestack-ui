@@ -16,6 +16,7 @@ module.exports = {
     '@storybook/addon-essentials',
     '@storybook/addon-react-native-web',
     '@storybook/addon-docs',
+    '@geometricpanda/storybook-addon-iframe',
   ],
   staticDirs: ['../public'],
   framework: '@storybook/react',

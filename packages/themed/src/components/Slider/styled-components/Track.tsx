@@ -25,6 +25,7 @@ export default styled(
     },
   },
   {
+    componentName: 'SliderTrack',
     ancestorStyle: ['_track'],
-  }
+  } as const
 );

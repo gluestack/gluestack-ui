@@ -16,5 +16,7 @@ export const Backdrop = styled(
       cursor: 'default',
     },
   },
-  {}
+  {
+    componentName: 'MenuBackdrop',
+  } as const
 );

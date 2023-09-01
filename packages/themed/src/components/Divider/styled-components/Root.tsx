@@ -24,5 +24,7 @@ export default styled(
       orientation: 'horizontal',
     },
   },
-  {}
+  {
+    componentName: 'Divider',
+  } as const
 );
