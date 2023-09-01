@@ -2686,10 +2686,10 @@
     "@babel/traverse" "^7.20.5"
     lodash.merge "^4.6.2"
 
-"@gluestack-style/react@0.2.11", "@gluestack-style/react@0.2.20", "@gluestack-style/react@^0.2.20", "@gluestack-style/react@^0.2.7", "@gluestack-style/react@^0.2.9":
-  version "0.2.20"
-  resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-0.2.20.tgz#1ef12be3b0d3fa3db773c90d1ed5b0575661a232"
-  integrity sha512-TiQI2FQ8jGVi7VGFAE+7nXb8kBYaBfCambvpdXw5nh+osKf2dt51hJKCdu4/WnAgAuhtUPp9my0pHCFJYpLPQg==
+"@gluestack-style/react@0.2.11", "@gluestack-style/react@0.2.21", "@gluestack-style/react@^0.2.21", "@gluestack-style/react@^0.2.7", "@gluestack-style/react@^0.2.9":
+  version "0.2.21"
+  resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-0.2.21.tgz#542161305f7ac1396545c28f94c034906c098378"
+  integrity sha512-Y936+/qx4FUd7QPK1fdQwfGWheTOanhdXEXbFeIkkdHq1oHuabJJq+pwHalfdnJ/mR0gi7PdYTJ3uNmsE26y/g==
   dependencies:
     inline-style-prefixer "^6.0.1"
     normalize-css-color "^1.0.2"
