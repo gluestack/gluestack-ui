@@ -1,7 +1,5 @@
-import React from 'react';
 import type { ComponentMeta } from '@storybook/react-native';
 import Button from './Button';
-import DocsContainer from '@storybook/addon-docs';
 import ButtonIsLoadingExample from './ButtonLoading';
 import ButtonSizesExample from './ButtonSizes';
 import ButtonStylesExample from './ButtonStyles';
@@ -41,12 +39,6 @@ const ButtonMeta: ComponentMeta<typeof Button> = {
       table: {
         defaultValue: { summary: 'md' },
       },
-    },
-  },
-  parameters: {
-    docs: {
-      container: DocsContainer,
-      page: () => <></>,
     },
   },
 };

@@ -2,8 +2,9 @@ import React from 'react';
 import type { ComponentMeta } from '@storybook/react-native';
 import { DocsContainer } from '@storybook/addon-docs';
 import ButtonGroupStory from './ButtonGroup';
+import Button from './Button';
 
-const ButtonGroupMeta: ComponentMeta<any> = {
+const ButtonGroupMeta: ComponentMeta<typeof Button> = {
   title: 'stories/FORMS/Button',
   component: ButtonGroupStory,
   args: {
