@@ -7,7 +7,7 @@ import {
   useToast,
 } from '@gluestack-ui/themed';
 
-const ToastBasic = ({ placement = 'top', ...props }: any) => {
+const ToastPlacement = ({ placement = 'top', ...props }: any) => {
   const toast = useToast();
   return (
     <Button
@@ -29,4 +29,4 @@ const ToastBasic = ({ placement = 'top', ...props }: any) => {
   );
 };
 
-export default ToastBasic;
+export default ToastPlacement;
