@@ -11,7 +11,6 @@ const ButtonMeta: ComponentMeta<typeof Button> = {
   args: {
     action: 'primary',
     variant: 'solid',
-    // @ts-ignore
     text: 'Button',
     size: 'md',
   },
