@@ -19,14 +19,6 @@ const TextareaMeta: ComponentMeta<typeof TextareaStory> = {
     },
   },
   args: { size: 'md', isInvalid: false, isDisabled: false },
-  parameters: {
-    docs: {
-      description: {
-        component:
-          'The **Textarea** component helps create multi-line text inputs.',
-      },
-    },
-  },
 };
 
 export default TextareaMeta;
