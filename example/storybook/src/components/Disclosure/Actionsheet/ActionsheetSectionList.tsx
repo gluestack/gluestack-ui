@@ -13,7 +13,7 @@ import {
   Button,
 } from '@gluestack-ui/themed';
 
-const ActionsheetExample = ({
+const ActionsheetWithSectionlist = ({
   showActionsheet: showActionsheetProp = true,
   ...props
 }) => {
@@ -79,6 +79,6 @@ const ActionsheetExample = ({
   );
 };
 
-export default ActionsheetExample;
+export default ActionsheetWithSectionlist;
 
 export { Actionsheet, Button };
