@@ -5,7 +5,7 @@ import { Button, ButtonIcon, ButtonText } from '@gluestack-ui/themed';
 
 type MyButtonStory = ComponentStory<typeof Button>;
 
-const ButtonWithIconsTemp: MyButtonStory = ({}) => {
+const ButtonWithIcons: MyButtonStory = ({}) => {
   return (
     <HStack space="md">
       <Button>
@@ -20,4 +20,4 @@ const ButtonWithIconsTemp: MyButtonStory = ({}) => {
   );
 };
 
-export default ButtonWithIconsTemp;
+export default ButtonWithIcons;

@@ -16,7 +16,7 @@ import {
   Icon,
 } from '@gluestack-ui/themed';
 
-const SelectStory = ({ size = 'md', variant = 'outline', ...props }: any) => {
+const SelectBasic = ({ size = 'md', variant = 'outline', ...props }: any) => {
   return (
     <Select {...props}>
       <SelectTrigger size={size} variant={variant}>
@@ -51,7 +51,7 @@ const SelectStory = ({ size = 'md', variant = 'outline', ...props }: any) => {
   );
 };
 
-export default SelectStory;
+export default SelectBasic;
 
 export {
   Center,

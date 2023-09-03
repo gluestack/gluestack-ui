@@ -17,7 +17,7 @@ import {
   Icon,
 } from '@gluestack-ui/themed';
 
-const SelectStory = ({ isDisabled, isInvalid, ...props }: any) => {
+const SelectWithScrollView = ({ isDisabled, isInvalid, ...props }: any) => {
   // variables
   const data = useMemo(
     () =>
@@ -53,6 +53,6 @@ const SelectStory = ({ isDisabled, isInvalid, ...props }: any) => {
   );
 };
 
-export default SelectStory;
+export default SelectWithScrollView;
 
 export { Center, Select, Icon, ChevronDownIcon };

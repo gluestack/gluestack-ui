@@ -7,12 +7,13 @@ import ButtonSizesExample from './ButtonSizes';
 import ButtonStylesExample from './ButtonStyles';
 import ButtonWithIconsTemp from './ButtonWithIcon';
 
-const ButtonMeta: ComponentMeta<any> = {
+const ButtonMeta: ComponentMeta<typeof Button> = {
   title: 'stories/FORMS/Button',
   component: Button,
   args: {
     action: 'primary',
     variant: 'solid',
+    // @ts-ignore
     text: 'Button',
     size: 'md',
   },
@@ -84,12 +85,10 @@ ButtonWithIcon.parameters = {
 
 export default ButtonMeta;
 
-export { Button };
-
-export { ButtonWithIcon };
-
-export { ButtonStyles };
-
-export { ButtonSizes };
-
-export { ButtonLoading };
+export {
+  Button,
+  ButtonIsLoadingExample,
+  ButtonSizesExample,
+  ButtonStylesExample,
+  ButtonWithIconsTemp,
+};

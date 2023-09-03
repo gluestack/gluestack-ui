@@ -19,13 +19,6 @@ const ActionsheetMeta: ComponentMeta<typeof Actionsheet> = {
   args: {
     showActionsheet: true,
   },
-  parameters: {
-    docs: {
-      description: {
-        component: '**markdown** description goes here',
-      },
-    },
-  },
 };
 
 export default ActionsheetMeta;

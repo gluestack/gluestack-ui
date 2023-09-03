@@ -32,7 +32,7 @@ const colors = [
   { label: 'Pink', value: 'pink-key', isDisabled: true },
   { label: 'Green', value: 'green-key' },
 ];
-const SelectStory = ({ size, variant, ...props }: any) => {
+const SelectWithFormControl = ({ size, variant, ...props }: any) => {
   const items = colors.map((c) => {
     return (
       <SelectItem
@@ -87,7 +87,7 @@ const SelectStory = ({ size, variant, ...props }: any) => {
   );
 };
 
-export default SelectStory;
+export default SelectWithFormControl;
 
 export {
   Center,

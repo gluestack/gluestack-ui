@@ -68,27 +68,8 @@ import {
   FacebookIcon,
 } from 'lucide-react-native';
 
-const IconStory = () => {
+const Icons = () => {
   return (
-    // <VStack space="lg">
-    //   <HStack space="md">
-    //     <Icon as={Cake} {...props} />
-    //     <Icon as={MenuIcon} />
-    //   </HStack>
-
-    //   <HStack space="md">
-    //     <Icon as={Cake} sx={{ h: 40, w: 40, color: 'red' }} />
-    //     <Icon as={MenuIcon} sx={{ h: 40, w: 40, color: 'red' }} />
-    //   </HStack>
-
-    //   <HStack space="md">
-    //     <Icon as={Cake} size="xl" />
-    //     <Icon as={MenuIcon} size="xl" />
-    //   </HStack>
-
-    //   <HStack space="md">
-    //     <Icon as={Cake} color="$primary500" />
-    //   </HStack>
     <HStack flexWrap="wrap">
       <Icon as={AddIcon} m="$2" w="$4" h="$4" />
       <Icon as={ArrowLeftIcon} m="$2" w="$4" h="$4" />
@@ -145,11 +126,10 @@ const IconStory = () => {
       <Icon as={GlobeIcon} m="$2" w="$4" h="$4" />
       <Icon as={ThreeDotsIcon} m="$2" w="$4" h="$4" />
     </HStack>
-    // </VStack>
   );
 };
 
-export default IconStory;
+export default Icons;
 
 export {
   AddIcon,

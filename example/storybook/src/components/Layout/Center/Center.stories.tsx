@@ -2,7 +2,7 @@ import type { ComponentMeta } from '@storybook/react-native';
 import Center from './Center';
 import Shapes from './Shapes';
 
-const CenterMeta: ComponentMeta<any> = {
+const CenterMeta: ComponentMeta<typeof Center> = {
   title: 'stories/LAYOUT/Center',
   component: Center,
   argTypes: {},
@@ -10,17 +10,5 @@ const CenterMeta: ComponentMeta<any> = {
 };
 
 export default CenterMeta;
-
-// type MyCustomCenterStory = ComponentStory<typeof Center>;
-
-// export const AExample: MyCustomCenterStory = ({ ...props }) => {
-//   return (
-//     <Center sx={{ bg: '$green500', h: 200, w: 200 }}>
-//       <Text sx={{ color: 'white', fontWeight: 'bold' }} {...props}>
-//         CENTERED
-//       </Text>
-//     </Center>
-//   );
-// };
 
 export { Center, Shapes };
