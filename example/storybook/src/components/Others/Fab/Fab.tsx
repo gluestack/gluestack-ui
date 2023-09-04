@@ -15,10 +15,12 @@ import {
   VStack,
   HStack,
   Avatar,
+  AvatarImage,
   Heading,
   Text,
   Divider,
   Image,
+  CheckboxIcon,
 } from '@gluestack-ui/themed';
 
 import { CheckIcon, EditIcon, ShoppingCartIcon } from 'lucide-react-native';
@@ -57,6 +59,7 @@ export {
   VStack,
   HStack,
   Avatar,
+  AvatarImage,
   Heading,
   Text,
   Divider,
@@ -64,6 +67,7 @@ export {
   Checkbox,
   CheckboxIndicator,
   CheckboxLabel,
+  CheckboxIcon,
   CheckIcon,
   Image,
   Link,
