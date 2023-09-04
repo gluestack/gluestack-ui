@@ -1,19 +1,29 @@
 import React from 'react';
 import {
-  Button,
+  Button as DefaultButton,
   Box,
-  ButtonText,
+  ButtonText as DefaultButtonText,
   Center,
   StyledProvider,
-  config,
+  config as defaultConfig,
   createConfig,
+  styled,
 } from '@gluestack-ui/themed';
 import { createProvider } from '@gluestack-ui/provider';
 const Provider = createProvider({ StyledProvider }) as any;
 Provider.displayName = 'CustomProvider';
 
-const extendedConfig = createConfig({
-  ...config.theme,
+const config = createConfig({
+  ...defaultConfig.theme,
+  tokens: {
+    ...defaultConfig.theme.tokens,
+    colors: {
+      ...defaultConfig.theme.tokens.colors,
+      primary600_alpha_10: '#1a91ff1a',
+      primary600_alpha_20: '#1a91ff33',
+    },
+  },
+
   components: {
     Button: {
       theme: {
@@ -25,10 +35,16 @@ const extendedConfig = createConfig({
                 color: '$primary600',
               },
               ':hover': {
-                bg: '$primary200',
+                _text: {
+                  color: '$primary600',
+                },
+                bg: '$primary600_alpha_10',
               },
               ':active': {
-                bg: '$primary100',
+                _text: {
+                  color: '$primary600',
+                },
+                bg: '$primary600_alpha_20',
               },
               '_dark': {
                 'bg': '$transparent',
@@ -36,34 +52,57 @@ const extendedConfig = createConfig({
                   color: '$primary600',
                 },
                 ':hover': {
-                  bg: '$primary200',
+                  _text: {
+                    color: '$primary600',
+                  },
+                  bg: '$primary600_alpha_10',
                 },
                 ':active': {
-                  bg: '$primary100',
+                  _text: {
+                    color: '$primary600',
+                  },
+                  bg: '$primary600_alpha_20',
                 },
               },
             },
           },
         },
       },
+      componentConfig: {
+        descendantStyle: ['_text'],
+      },
     },
   },
 });
-const Wrapper = ({ children, ...props }: any) => {
+const Wrapper = ({ children }: any) => {
   return (
-    <Provider config={extendedConfig} {...props} colorMode="dark">
+    <Provider config={config} colorMode="dark">
       <Box
         sx={{
           _ios: {
             h: '100%',
           },
         }}
-        {...props}
       >
         <Center h="100%">{children}</Center>
       </Box>
     </Provider>
   );
 };
+
+const Button = styled(
+  DefaultButton,
+  {},
+  {
+    componentName: 'Button',
+  }
+);
+const ButtonText = styled(
+  DefaultButtonText,
+  {},
+  {
+    componentName: 'ButtonText',
+  }
+);
 
 export { Button, ButtonText, Wrapper };

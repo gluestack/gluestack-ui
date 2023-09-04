@@ -72,16 +72,15 @@ const customTheme = createConfig({
   globalStyle: {
     // ...
   },
-})
+});
 
 function App() {
   return (
-    <GluestackUIProvider config={customTheme} />
+    <GluestackUIProvider config={customTheme}>
       <App />
     </GluestackUIProvider>
-  )
+  );
 }
-
 ```
 
 - aliases: This is useful when you want to use a shorter name for a token. For example, you can use `bg` instead of `backgroundColor` for the `backgroundColor` token.

@@ -30,6 +30,7 @@ import {
   CodePreview,
   Table,
   InlineCode,
+  TableContainer,
 } from '@gluestack/design-system';
 
 import Wrapper from '../../Wrapper';
@@ -116,6 +117,60 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
 #### AlertText
 
 Contains all spinner related layout style props and actions. It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text) component.
+
+### Props
+
+Alert component is created using View component from react-native. It extends all the props supported by [React Native View](https://reactnative.dev/docs/view#props) and all the supported [utility props](https://ui.gluestack.io/docs/styling/utility-and-sx-props) and the props mentioned below.
+
+#### Alert
+
+<AppProvider>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Name</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Value</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Default</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>action</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>error | warning | success | info | muted</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>info</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>variant</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>solid | outline | accent</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>solid</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</AppProvider>
 
 ### Examples
 

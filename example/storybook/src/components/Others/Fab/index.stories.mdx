@@ -19,11 +19,12 @@ import {
   Checkbox,
   CheckboxIndicator,
   CheckboxLabel,
+  CheckboxIcon,
   CheckIcon,
   ShoppingCartIcon,
   Image,
 } from './Fab';
-import { HStack, VStack, Avatar } from './Fab';
+import { HStack, VStack, Avatar, AvatarImage } from './Fab';
 import { Heading, Text, Divider } from './Fab';
 import { transformedCode } from '../../../utils';
 import { AddIcon, EditIcon } from './Fab';
@@ -288,6 +289,63 @@ The following are the lists of all the libraries and packages the component reli
 - `@react-native-aria/focus`
 - `@react-native-aria/interactions`
 
+### Props
+
+Fab component is created using Pressable component from react-native. It extends all the props supported by [React Native Pressable](https://reactnative.dev/docs/pressable#props) and all the supported [utility props](https://ui.gluestack.io/docs/styling/utility-and-sx-props) and the props mentioned below.
+
+#### Fab
+
+<AppProvider>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Name</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Value</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Default</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>size</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>sm | md | lg</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>md</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>placement</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>
+              top right | top left | bottom right | bottom left | top center |
+              bottom center
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>bottom right</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</AppProvider>
+
 ### Examples
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
@@ -386,6 +444,7 @@ A Fab component with an icon adds a visually striking and easily recognizable bu
         VStack,
         HStack,
         Avatar,
+        AvatarImage,
         Heading,
         Text,
       },
@@ -605,6 +664,7 @@ A Fab component with placement options allows for flexible positioning of the bu
         Checkbox,
         CheckboxIndicator,
         CheckboxLabel,
+        CheckboxIcon,
         CheckIcon,
         Fab,
         FabIcon,
