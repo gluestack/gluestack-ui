@@ -103,7 +103,9 @@ const createCssRule = (
   dataType: string,
   prefixClassName: string,
   prefixColorMode: string,
-  hasState: boolean
+  hasState: boolean,
+  themeCondition: any,
+  themeCssObj: any
 ) => {
   const dataMediaSelector = `[data-${dataType}~="${stringHash}"]`;
   const stateRulePrefix = hasState ? '.gs' : '';
@@ -113,16 +115,31 @@ const createCssRule = (
   const mediaQueryPrefix = `.gs`;
 
   const inlineAndStatePrefix = `${inlineRulePrefix}${stateRulePrefix}`;
-
+  let rule = ``;
   if (isMedia(mediaQuery) && isColorScheme(colorSchemeQuery)) {
-    return `${mediaQuery} {${mediaQueryPrefix}${inlineAndStatePrefix}${colorModeRulePrefix} ${dataMediaSelector} ${css}}`;
+    rule = `${mediaQuery} {${mediaQueryPrefix}${inlineAndStatePrefix}${colorModeRulePrefix} ${dataMediaSelector} ${css}}`;
   } else if (isMedia(mediaQuery)) {
-    return `${mediaQuery} {${mediaQueryPrefix}${inlineAndStatePrefix} ${dataMediaSelector} ${css}}`;
+    rule = `${mediaQuery} {${mediaQueryPrefix}${inlineAndStatePrefix} ${dataMediaSelector} ${css}}`;
   } else if (isColorScheme(colorSchemeQuery)) {
-    return `${inlineAndStatePrefix}${colorModeRulePrefix} ${dataMediaSelector} ${css}`;
+    rule = `${inlineAndStatePrefix}${colorModeRulePrefix} ${dataMediaSelector} ${css}`;
   } else {
-    return `${inlineAndStatePrefix} ${dataMediaSelector}${mediaQuery} ${css}`;
+    rule = `${inlineAndStatePrefix} ${dataMediaSelector}${mediaQuery} ${css}`;
   }
+
+  if (themeCondition) {
+    const themeConditionString = Object.keys(themeCondition)
+      .map((themeName) => {
+        return `
+        [data-theme-id~="${themeName}"] ${dataMediaSelector} ${themeCssObj[themeName]}
+        ${inlineAndStatePrefix} [data-theme-id~="${themeName}"] ${dataMediaSelector} ${themeCssObj[themeName]}
+        ${colorModeRulePrefix}${inlineAndStatePrefix} [data-theme-id~="${themeName}"] ${dataMediaSelector} ${themeCssObj[themeName]}
+        `;
+      })
+      .join('\n');
+    // themeCondition is of higher specificity than the rest of the rules
+    rule = ` \n${themeConditionString}\n ${rule} `;
+  }
+  return rule;
 };
 
 function createQuery(condition: any) {

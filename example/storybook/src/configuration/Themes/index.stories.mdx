@@ -7,7 +7,12 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 <Meta title="configuration/Themes" />
 
-import { styled, StyledProvider } from '@gluestack-style/react';
+import {
+  styled,
+  StyledProvider,
+  Theme,
+  createConfig,
+} from '@gluestack-style/react';
 import { Pressable, Text as RNText, View } from 'react-native';
 import { Button, AppProvider, CodePreview } from '@gluestack/design-system';
 import { config } from './config';
@@ -24,12 +29,12 @@ import { useState } from 'react';
     metaData={{
       scope: {
         styled,
-        Text,
         View,
         RNText,
         Pressable,
+        Theme,
         Provider: StyledProvider,
-        config: config(),
+        config: config,
         useState,
       },
       code: `
@@ -66,10 +71,8 @@ import { useState } from 'react';
           );
           const Box = styled(View, {});
           const Text = styled(RNText, { color: '$textColor' });
-          const [theme, setTheme] = React.useState('2000s');
-          const themes = ['2000s', '2010s', '2020s'];
           return (
-            <Provider config={config}>
+            <Provider config={config()}>
               <View
                 style={{
                   justifyContent: 'center',
@@ -96,7 +99,7 @@ import { useState } from 'react';
                   alignItems="center"
                   justifyContent="center"
                 >
-                  <Theme {...props}>
+                  <Theme name="2000s">
                     <Box
                       mx="auto"
                       h="200px"
@@ -114,24 +117,12 @@ import { useState } from 'react';
                         w="$full"
                         bg="$headerColor"
                       >
-                        <Text color="$textColor">Explorer from {theme}</Text>
+                        <Text color="$textColor">Explorer</Text>
                         <Box flex={1}></Box>
                         <Text>x</Text>
                       </Box>
                     </Box>
                   </Theme>
-                </Box>
-                <Box flexDirection="row">
-                  {themes.map((themeName) => (
-                    <StyledLinkButton
-                      key={themeName}
-                      onPress={() => setTheme(themeName)}
-                      size="sm"
-                      bg={themeName !== theme ? '$backgroundDark300' : '$green400'}
-                    >
-                      <Text>{themeName}</Text>
-                    </StyledLinkButton>
-                  ))}
                 </Box>
               </View>
             </Provider>
@@ -198,6 +189,8 @@ Now you have your themes defined, you can use them in your app. How to use it yo
 ## How to use a Theme?
 
 To use a theme you need to import the `Theme` component from `@gluestack-style/react` package. **Theme** component accepts a `name` prop which is the name of the theme you want to use.
+
+> **Important**: `Theme` adds a View to the DOM tree.
 
 ```tsx
 import { styled, StyledProvider, Theme } from '@gluestack-style/react';

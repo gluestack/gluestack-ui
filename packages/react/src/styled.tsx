@@ -925,34 +925,34 @@ export function verboseStyled<P, Variants, ComCon>(
       componentExtendedConfig
     );
 
-    // let componentTheme: any =
-    //   // @ts-ignore
-    //   sxStyledResolved.baseStyle.styledValueResolvedWithMeta;
+    let componentTheme: any =
+      // @ts-ignore
+      sxStyledResolved.baseStyle.styledValueResolvedWithMeta;
 
     // sxStyledResolved.baseStyle.styledValueResolvedWithMeta =
-    // addThemeConditionInMeta(componentTheme, CONFIG);
+    addThemeConditionInMeta(componentTheme, CONFIG);
 
-    // const colorModeComponentThemes: any = sxStyledResolved.baseStyle?.colorMode;
-    // if (colorModeComponentThemes) {
-    //   Object.keys(colorModeComponentThemes).forEach(
-    //     (colorModeComponentTheme: any) => {
-    //       if (
-    //         !colorModeComponentThemes[colorModeComponentTheme]
-    //           .styledValueResolvedWithMeta?.meta.themeCondition
-    //       ) {
-    //         colorModeComponentThemes[
-    //           colorModeComponentTheme
-    //         ].styledValueResolvedWithMeta.meta.themeCondition = {};
-    //       }
+    const colorModeComponentThemes: any = sxStyledResolved.baseStyle?.colorMode;
+    if (colorModeComponentThemes) {
+      Object.keys(colorModeComponentThemes).forEach(
+        (colorModeComponentTheme: any) => {
+          if (
+            !colorModeComponentThemes[colorModeComponentTheme]
+              .styledValueResolvedWithMeta?.meta.themeCondition
+          ) {
+            colorModeComponentThemes[
+              colorModeComponentTheme
+            ].styledValueResolvedWithMeta.meta.themeCondition = {};
+          }
 
-    //       let componentTheme: any =
-    //         colorModeComponentThemes[colorModeComponentTheme]
-    //           .styledValueResolvedWithMeta;
+          let componentTheme: any =
+            colorModeComponentThemes[colorModeComponentTheme]
+              .styledValueResolvedWithMeta;
 
-    //       addThemeConditionInMeta(componentTheme, CONFIG);
-    //     }
-    //   );
-    // }
+          addThemeConditionInMeta(componentTheme, CONFIG);
+        }
+      );
+    }
 
     const sxHash = stableHash(sx);
 
