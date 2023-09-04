@@ -1,6 +1,6 @@
 import type { IStyled, IStyledPlugin } from '../createStyled';
 import { deepMerge } from '../utils';
-import { injectGlobalCss } from '@dank-style/css-injector';
+import { injectGlobalCss } from '../utils/css-injector';
 import React, { useMemo } from 'react';
 import { useStyled } from '../StyledProvider';
 import { propertyTokenMap } from '../propertyTokenMap';
@@ -31,7 +31,7 @@ export class AddCssTokenVariables implements IStyledPlugin {
     this.name = 'AddCssTokenVariables';
   }
 
-  createCssVariables(tokens: any, prefix = 'dank-') {
+  createCssVariables(tokens: any, prefix = 'gluestack-') {
     let cssVariables = '';
     for (const [key, value] of Object.entries(tokens)) {
       const variableName = `${prefix}${key}`;

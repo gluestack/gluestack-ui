@@ -4,7 +4,7 @@ const PROPS = 'props';
 const DESCENDANTS = 'descendants';
 
 // ------------------------------------------- Reserved keys -------------------------------------------
-const reservedKeys = {
+const reservedKeys: any = {
   state: {
     ':indeterminate': 'indeterminate',
     ':checked': 'checked',
@@ -115,10 +115,12 @@ export function resolveStyledPropsRecursively(
   sxVerbosed: any = {},
   breakpoint: any = ''
 ) {
+  // console.setStartTimeStamp('resolvedStyledPropsRecursively', 'boot');
+
   const themeKeys = Object.keys(theme);
 
   themeKeys?.forEach((prop) => {
-    if (prop?.startsWith(':')) {
+    if (reservedKeys.state[prop]) {
       path.push(STATE, prop.slice(1));
       resolveStyledPropsRecursively(theme[prop], path, sxVerbosed, breakpoint);
       path.pop();
@@ -167,13 +169,15 @@ export function resolveStyledPropsRecursively(
   });
 
   //if (theme.props) console.log(sxVerbosed);
-
+  // console.setEndTimeStamp('resolvedStyledPropsRecursively', 'boot');
   return sxVerbosed;
 }
 
 // ------------------------------------------- Variant & Size resolution -------------------------------------------
 
 function resolveVariantSize(theme: any) {
+  // console.setStartTimeStamp('resolveVariantSize');
+
   if (!theme) return {};
 
   const themeKey = Object?.keys(theme);
@@ -184,19 +188,21 @@ function resolveVariantSize(theme: any) {
     setObjectKeyValue(verbosedVariantAndSize, [prop], sxVerbosedConvertedProps);
   });
 
+  // console.setEndTimeStamp('resolveVariantSize');
   return verbosedVariantAndSize;
 }
 
 // ------------------------------------------- sx to verbosed final props -------------------------------------------
 
 export function convertStyledToStyledVerbosed(theme: any) {
+  // console.setStartTimeStamp('converStyledToStyledVerbosed', 'boot');
+
   const {
     variants = {},
     compoundVariants = [],
     defaultProps = {},
     ...restTheme
   } = theme;
-
   const verbosedStyledTheme: any = {
     baseStyle: {},
     variants: {},
@@ -252,11 +258,13 @@ export function convertStyledToStyledVerbosed(theme: any) {
     verbosedStyledTheme.props = restTheme.props || {};
   }
 */
+  // console.setEndTimeStamp('converStyledToStyledVerbosed', 'boot');
 
   return verbosedStyledTheme;
 }
 
 export function convertSxToSxVerbosed(sx: any) {
+  if (!sx) return {};
   const sxVerboseTheme = resolveStyledPropsRecursively(sx);
   return sxVerboseTheme;
 }

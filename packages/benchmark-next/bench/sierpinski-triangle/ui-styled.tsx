@@ -26,7 +26,7 @@
 import React from 'react';
 import { TestRunner } from '../TestRunner';
 import { interpolatePurples, interpolateBuPu, interpolateRdPu } from 'd3-scale-chromatic';
-import { styled } from '@dank-style/react';
+import { styled } from '@gluestack-style/react';
 import { View } from 'react-native';
 
 const Box = styled(

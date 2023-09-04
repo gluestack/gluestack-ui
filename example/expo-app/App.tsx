@@ -1,61 +1,33 @@
 // import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, TextInput } from 'react-native';
 
-// import { StyledProvider, styled } from '@dank-style/react';
 import { StyledProvider, styled } from '../../packages/react/src/index';
-import { config } from './dank.config';
+import { config } from './gluestack-style.config';
 
 const StyledView = styled(
-  View,
+  TextInput,
   {
-    borderRadius: 9999,
-    justifyContent: 'center',
-    alignItems: 'center',
+    p: '$2',
+    // @ts-ignore
+    multiline: true,
+    textAlignVertical: 'top',
     h: 100,
-    w: 100,
-    position: 'relative',
-    bg: '$primary600',
-
-    variants: {
-      size: {
-        md: {
-          w: '$12',
-          h: '$12',
-          bg: '$red500',
-
-          _badge: {
-            w: 14,
-            h: 14,
-          },
-
-          _text: {
-            fontSize: 17,
-          },
-        },
-      },
-    },
-
-    defaultProps: {
-      size: 'md',
-    },
+    w: 300,
+    outlineColor: '$primary600',
   },
-  {
-    descendantStyle: ['_badge', '_text'],
-    DEBUG: 'AVATAR',
-  }
+  { ancestorStyle: ['_input'] }
 );
 
 // console.log(StyledView, 'styled view here');
 
 // console.timeEnd('make view');
 
-const StyledText = styled(Text, { color: '$red400' }, {});
+// const StyledText = styled(Text, { color: '$red400' }, {});
 export default function App() {
   return (
     <StyledProvider config={config}>
       <View style={styles.container}>
-        <StyledView></StyledView>
-        <StyledText>Hello world 2</StyledText>
+        <StyledView placeholder="hello"></StyledView>
       </View>
     </StyledProvider>
   );

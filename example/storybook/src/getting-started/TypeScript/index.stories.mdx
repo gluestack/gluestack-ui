@@ -1,5 +1,5 @@
 ---
-title: TypeScript | Dank
+title: TypeScript | gluestack-style
 description: Learn how to use TypeScript for defining aliases and tokens in design systems. Achieve consistency in UI building using design tokens.
 ---
 
@@ -9,75 +9,101 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 # TypeScript
 
-To enable TypeScript for aliases and tokens, we’ll follow below steps:
+To enable TypeScript for aliases and tokens, follow the steps below:
 
 ```jsx
-// Dank style config
-export const config = {
+//gluestack style config
+import { createConfig } from '@gluestack-style/react';
+
+export const config = createConfig({
   aliases: {
     bg: 'backgroundColor',
     p: 'padding',
     m: 'margin',
-		/* ... */
+    /* ... */
   },
-	tokens: {
-		colors: {
+  tokens: {
+    colors: {
       rose50: '#fff1f2',
       rose100: '#ffe4e6',
-			/* ... */
-    },
-		space: {
-			'0': 0,
-      '0.5': 2,
-			/* ... */
-		},
-    fontSizes: {
       /* ... */
     },
     fonts: {
       /* ... */
     },
-	}
-} as const;
+    space: {
+    '0': 0,
+    '0.5': 2,
+    /* ... */
+    },
+    fontSizes: {
+      /* ... */
+    },
+  },
+  globalStyle: {
+    /* ... */
+  },
+} as const);
 
 // Get the type of Config
 type ConfigType = typeof config;
 
 // Extend the internal styled config
-declare module '@dank-style/react' {
+declare module '@gluestack-style/react' {
   interface ICustomConfig extends ConfigType {}
 }
 ```
 
 - `aliases`: Define any prop you want to expand style value, the key is alias and the value is style property which you want to resolve that alias.
 
-- `tokens`: Tokens in Design are the values or constants required to construct a design system. These values can represent **spacing**, **color**, **typography** etc. Design tokens help to achieve consistency in building user interfaces across all platforms.
+- `tokens`: Tokens in design are the values or constants required to construct a design system. These values can represent **spacing**, **color**, **typography** etc. Design tokens help to achieve consistency in building user interfaces across all platforms.
+
+- `globalStyle`: refers to the styles that are applied globally application. It allows you to define styles that will be applied to all styled elements or a specific set of styled elements throughout your project. It can be used to create global variant like shadow, or backgrounds,
 
 ### Steps to define config:
 
-1. Define config with type assertion.
+1. Use createConfig function to create config with type assertion.
 
 ```jsx
-const config = {
-	aliases: {
+import { createConfig } from '@gluestack-style/react';
+
+export const config = createConfig({
+  aliases: {
     bg: 'backgroundColor',
     p: 'padding',
+    m: 'margin',
     /* ... */
   },
-	tokens: {
-    colors: {/* ... */},
-    space: {/* ... */},
-    fontSizes: {/* ... */},
+  tokens: {
+    colors: {
+      rose50: '#fff1f2',
+      rose100: '#ffe4e6',
+      /* ... */
+    },
+    fonts: {
+      /* ... */
+    },
+    space: {
+    '0': 0,
+    '0.5': 2,
+    /* ... */
+    },
+    fontSizes: {
+      /* ... */
+    },
   },
-} as const
+  globalStyle: {
+    /* ... */
+  },
+} as const);
 ```
 
-### Why type assertion?
+### Why use type assertion?
 
 Because we need information about the type of value to define the type of aliases and their corresponding tokens.
-Example: We have alias `bg` which will be mapped to the `colors` token and has style property `backgroundColor`, so we have an internal property map for tokens (i.e. `backgroundColor` will map to `colors` internally) through which we will eventually define which alias will map to which token.
+For example, we have the alias `bg` which will be mapped to the `colors` token and has style property `backgroundColor`, so we have an internal property map for tokens (i.e. `backgroundColor` will map to `colors` internally) through which we will eventually define which alias will map to which token.
 
-**1. Get the type of config using `typeof` operator.**
+**1. Get the type of config using the `typeof` operator.**
 
 ```jsx
 // Get the type of Config
@@ -88,7 +114,7 @@ type ConfigType = typeof config;
 
 ```jsx
 // Extend the internal styled config
-declare module '@dank-style/react' {
+declare module '@gluestack-style/react' {
   interface ICustomConfig extends ConfigType {}
 }
 ```

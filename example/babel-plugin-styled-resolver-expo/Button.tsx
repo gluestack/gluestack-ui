@@ -1,5 +1,5 @@
 import { Pressable } from 'react-native';
-import { styled } from '@dank-style/react';
+import { styled } from '@gluestack-style/react';
 export const Button = styled(
   Pressable,
   {

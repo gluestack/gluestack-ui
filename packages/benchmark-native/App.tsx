@@ -3,7 +3,6 @@ import React from 'react';
 import // StyleSheet,
 // Text, View
 'react-native';
-// import { styled, StyledProvider } from 'dank-style';
 // import { config } from './nb.config';
 import { NavigationContainer } from '@react-navigation/native';
 // import { createStackNavigator } from '@react-navigation/stack';

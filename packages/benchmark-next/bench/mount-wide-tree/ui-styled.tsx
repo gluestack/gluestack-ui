@@ -2,7 +2,7 @@
 import React from 'react';
 import { TestComponentProps, TestRunner } from '../TestRunner';
 import { Tree } from '../utils/Tree';
-import { styled } from '@dank-style/react';
+import { styled } from '@gluestack-style/react';
 import { View } from 'react-native';
 
 const StyledView: any = styled(

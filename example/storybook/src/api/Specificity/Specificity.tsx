@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import { styled } from '@dank-style/react';
+import { styled } from '@gluestack-style/react';
 import { Wrapper } from '../../components/Wrapper';
 
 const StyledButton = styled(
@@ -14,12 +14,12 @@ const StyledButton = styled(
     'backgroundColor': '$red400',
     'padding': '$3',
 
-    '@sm': {
-      'bg': '$blue400',
-      ':hover': {
-        bg: '$purple500',
-      },
-    },
+    // '@sm': {
+    //   'bg': '$blue400',
+    //   ':hover': {
+    //     bg: '$purple500',
+    //   },
+    // },
 
     'variants': {
       variant: {
@@ -34,13 +34,18 @@ const StyledButton = styled(
     ':hover': {
       bg: '$yellow500',
     },
+    '_dark': {
+      bg: '$blue500',
+    },
+
+    'bg': '$amber400',
   },
   {}
 );
 
 export function Specificity({ ...args }) {
   return (
-    <Wrapper>
+    <Wrapper colorMode="dark">
       <View
         style={{
           justifyContent: 'center',
@@ -51,6 +56,17 @@ export function Specificity({ ...args }) {
           {...args}
           variant="redbox"
           states={{ hover: true }}
+          bg="$red500"
+          sx={{
+            '_dark': {
+              bg: '$blue500',
+            },
+            '@md': {
+              _dark: {
+                bg: '$green400',
+              },
+            },
+          }}
           // sx={{ style: { bg: '$amber400' } }}
         >
           <Text>bluebox - sm</Text>

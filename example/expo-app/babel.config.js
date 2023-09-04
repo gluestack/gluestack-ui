@@ -6,16 +6,12 @@ module.exports = function (api) {
     presets: ['babel-preset-expo'],
     plugins: [
       // process.env.NODE_ENV === "production" ? myBabel : {},
-      // [myBabel, { filename: '../../packages/react/src/index' }],
+      [myBabel, { filename: '../../packages/react/src/index' }],
       [
         'module-resolver',
         {
           alias: {
             // For development, we want to alias the library to the source
-            ['@dank-style/css-injector']: path.join(
-              __dirname,
-              '../../packages/css-injector/src/index'
-            ),
           },
         },
       ],

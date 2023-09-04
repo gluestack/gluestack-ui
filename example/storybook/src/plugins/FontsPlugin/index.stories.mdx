@@ -1,12 +1,16 @@
 ---
-title: Fonts Plugin | Dank
-description: Dank provides a Plugin to unify font family styles across platforms.
-canonical: https://dank.style/
+title: Fonts Plugin | gluestack-style
+description: gluestack-style provides a Plugin to unify font family styles across platforms.
+canonical: https://style.gluestack.io/
 ---
 
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
 import { Text } from 'react-native';
-import { StyledProvider, createStyled, FontResolver } from '@dank-style/react';
+import {
+  StyledProvider,
+  createStyled,
+  FontResolver,
+} from '@gluestack-style/react';
 import { config } from '../../components/nb.config';
 import { AppProvider, CodePreview } from '@gluestack/design-system';
 
@@ -14,17 +18,17 @@ import { AppProvider, CodePreview } from '@gluestack/design-system';
 
 # Fonts Plugin
 
-The font plugin is a plugin for the styled function that provides a unified approach for passing font families in your styles. It allows you to specify font families using an object with fontFamily, fontWeight, and fontStyle properties. On mobile platforms such as Expo, the plugin maps these properties to a single string font family using a mapFonts callback function. On the web, the font family object is passed through without modification.
+The font plugin, a utility for the styled function, provides a unified way to pass font families to your styles. It lets you specify a styled object with fontFamily, fontWeight, and fontStyle properties.
 
 ## Usage:
 
-Add the `FontResolver` plugin in your createStyled array. You can pass a mapFonts callback function to the constructor to customize the font resolution logic.
+Include the FontResolver plugin in your createStyled function. To customize font resolution, pass a mapFonts callback function to the constructor.
 
 ```js
 const styledFonts = createStyled([new FontResolver()]);
 ```
 
-Original styled object that will be processed by mapFonts
+Below is an example of an original styled object that will be processed by mapFonts
 
 ```js
 {
@@ -34,7 +38,11 @@ Original styled object that will be processed by mapFonts
 }
 ```
 
-By default, the `mapFonts` function will remove any spaces from the fontFamily property, concatenate the fontWeight property with its corresponding weight name (e.g. 800ExtraBold), and capitalize the first letter of the fontStyle property. This follows the [expo-google-fonts](https://github.com/expo/google-fonts/tree/master/font-packages/dev#readme) naming convention
+The `mapFonts` function is responsible for merging font styles in a unified format, based on the specified strategy. The strategy is determined by the `STYLE_FONT_RESOLVER_STRATEGY` environment variable, which can be set to either `expo` or `web`.
+
+If the strategy is set to 'expo', the function will adhere to the ['expo-google-fonts'](https://github.com/expo/google-fonts/tree/master/font-packages/dev#readme) naming convention. This involves removing any spaces from the fontFamily property, concatenating the fontWeight property with the corresponding weight name (e.g., '800ExtraBold'), and capitalizing the first letter of the fontStyle property.If the strategy is set to 'web', the function will adhere to a web naming convention. In either case, the `mapFonts` function will merge the font styles into a unified format that can be used by the application.
+
+Below is an example of a resolved fonts object
 
 ```js
 {
@@ -42,7 +50,7 @@ By default, the `mapFonts` function will remove any spaces from the fontFamily p
 }
 ```
 
-## Example:
+### Example:
 
 <AppProvider>
   <CodePreview
@@ -62,7 +70,11 @@ By default, the `mapFonts` function will remove any spaces from the fontFamily p
           fontFamily: 'Nunito Sans',
           fontWeight: 800,
           fontStyle: 'italic',
-          fontSize: '$xl'
+          fontSize: '$xl',
+          color: '$black',
+          _dark: {
+            color: '$white'
+          },
         });
         return (
          <Provider config={config}>
@@ -79,9 +91,9 @@ By default, the `mapFonts` function will remove any spaces from the fontFamily p
 
 <br />
 
-### mapFonts:
+## mapFonts:
 
-If you want to use a different naming convention for your fonts, you can provide a custom `mapFonts` function to the font plugin constructor.
+To use a different naming convention for your fonts, provide a custom mapFonts function to the font plugin constructor.
 
 ```js
 const styledFonts = createStyled([

@@ -3,20 +3,15 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@dank-style/react": ["../../packages/react/src"],
-      // "@dank-style/design-system": [
-      //   "../../../../glustack-design-system/src/index"
-      // ],
-      "@dank-style/color-mode": ["../../packages/color-mode/src/index"]
+      "@gluestack-style/react": ["../../packages/react/src"],
+      "react-native": ["./node_modules/react-native-web"]
     },
     "emitDeclarationOnly": true,
     "noEmit": false,
     "declaration": true,
     "allowUnreachableCode": false,
     "allowUnusedLabels": true,
-    "preserveSymlinks": true,
     "esModuleInterop": true,
-    "importsNotUsedAsValues": "error",
     "forceConsistentCasingInFileNames": true,
     "jsx": "react",
     "lib": ["esnext", "dom"],
@@ -33,5 +28,6 @@
     "strict": true,
     "target": "esnext"
   },
-  "exclude": ["components", "lib", "node_modules", "storybookDocsComponents"]
+  "exclude": ["lib", "node_modules", "storybookDocsComponents", "__tests__"],
+  "include": ["src"]
 }

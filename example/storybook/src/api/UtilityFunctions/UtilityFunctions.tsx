@@ -1,5 +1,5 @@
 import React from 'react';
-import { createGlobalStylesWeb, styled } from '@dank-style/react';
+import { createGlobalStylesWeb, styled } from '@gluestack-style/react';
 import { Wrapper } from '../../components/Wrapper';
 import { View, Text } from 'react-native';
 
@@ -36,7 +36,19 @@ export function UtilityFunctions() {
     },
   });
   return (
-    <Wrapper globalStyleInjector={addGlobalCss}>
+    <Wrapper
+      globalStyles={{
+        '.test': { p: '$8', bg: '$amber400' },
+        'body': {
+          bg: '$coolGray800',
+        },
+        '#hash': {
+          bg: '$amber700',
+          alignItems: 'center',
+          justifyContent: 'center',
+        },
+      }}
+    >
       <div className="test"></div>
       <StyledView nativeID="hash">
         <StyledText>Hello World</StyledText>

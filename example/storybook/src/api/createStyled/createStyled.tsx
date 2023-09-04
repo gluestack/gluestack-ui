@@ -1,35 +1,57 @@
 import React from 'react';
-import { View, Text } from 'react-native';
-import { createStyled, AddCssTokenVariables } from '@dank-style/react';
-import { Wrapper } from '../../components/Wrapper';
+import { View } from 'react-native';
+import {
+  // createStyled,
+  // AddCssTokenVariables,
+  styled,
+  Theme,
+} from '@gluestack-style/react';
+import Wrapper from '../../components/Wrapper';
 
-const styledCustomized = createStyled([new AddCssTokenVariables({})]);
+// const styledCustomized = createStyled([new AddCssTokenVariables({})]);
 
-const StyledView = styledCustomized(
-  View,
-  {
-    w: 100,
-    h: 200,
-    bg: '$blue500',
+const Box = styled(View, {
+  w: 100,
+  h: 200,
+  bg: '$primary200',
+  _dark: {
+    bg: '$green500',
   },
-  {
-    descendantStyle: ['_text'],
-  }
-);
+});
 
-const StyledText = styledCustomized(
-  Text,
-  {},
-  {
-    ancestorStyle: ['_text'],
-  }
-);
-export function CreateStyled({ ...args }: any) {
+export function CreateStyled() {
   return (
     <Wrapper>
-      <StyledView {...args}>
-        <StyledText>Hello World</StyledText>
-      </StyledView>
+      <Theme name="x">
+        <Box
+          // bg="$primary200"
+          bg="red"
+          sx={{
+            //   // _light: {
+            //   //   bg: '$red700',
+            //   // },
+            _dark: {
+              bg: '$yellow500',
+            },
+          }}
+        ></Box>
+        {/* <Box></Box> */}
+      </Theme>
+
+      <Box
+      // bg="$primary200"
+
+      // sx={{
+      //   _light: {
+      //     bg: '$red700',
+      //   },
+      //   _dark: {
+      //     bg: '$primary500',
+      //   },
+      // }}
+      ></Box>
+
+      {/* <Box></Box> */}
     </Wrapper>
   );
 }

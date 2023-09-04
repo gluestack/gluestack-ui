@@ -5,7 +5,7 @@ const { TerserPlugin } = require('next/dist/compiled/terser');
 const { withExpo } = require('@expo/next-adapter');
 const withFonts = require('next-fonts');
 const withPlugins = require('next-compose-plugins');
-const withTM = require('next-transpile-modules')(['react-native-web', '@dank-style/react', 'native-base']);
+const withTM = require('next-transpile-modules')(['react-native-web', '@gluestack-style/react', 'native-base']);
 const path = require('path');
 
 const nextConfig = {
@@ -20,7 +20,6 @@ const nextConfig = {
       ...config.resolve.alias,
       'react-dom$': 'react-dom/profiling',
       'scheduler/tracing': 'scheduler/tracing-profiling',
-      // '@dank-style/react': path.resolve(__dirname, '../react/src'),
     };
 
     //

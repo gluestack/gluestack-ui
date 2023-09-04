@@ -1,5 +1,5 @@
 /** @type {import('next').NextConfig} */
-const { withExpo } = require('@expo/next-adapter');
+// const { withExpo } = require('@expo/next-adapter');
 const withPlugins = require('next-compose-plugins');
 const withFonts = require('next-fonts');
 const path = require('path');
@@ -7,8 +7,8 @@ const withTM = require('next-transpile-modules')([
   'react-native-web',
   '@expo/html-elements',
   '@expo/vector-icons',
-  '@dank-style/react',
-  '@dank-style/cssify',
+  'react-native',
+  'react-native-web',
 ]);
 
 const findWorkspaceRoot = require('find-yarn-workspace-root');
@@ -30,7 +30,10 @@ const nextConfig = {
       'react-dom': path.resolve(node_modules, 'react-dom'),
       'react-native-web': path.resolve(node_modules, 'react-native-web'),
       '@expo/html-elements': path.resolve(node_modules, '@expo/html-elements'),
-      '@dank-style/react': path.resolve(node_modules, '@dank-style/react'),
+      '@gluestack-style/react': path.resolve(
+        node_modules,
+        '@gluestack-style/react'
+      ),
     };
     config.resolve.extensions = [
       '.web.js',
@@ -49,6 +52,6 @@ const nextConfig = {
 };
 
 module.exports = withPlugins(
-  [withTM, [withExpo, { projectRoot: __dirname }]],
+  [withTM, [{ projectRoot: __dirname }]],
   nextConfig
 );

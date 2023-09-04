@@ -1,6 +1,9 @@
 import React from 'react';
+import Svg from 'react-native-svg';
 
-export function AsForwarder({ as, children, ...props }: any) {
+const AsForwarder = ({ as, children, ...props }: any) => {
   const As: any = as;
-  return <As {...props}>{children}</As>;
-}
+  return as ? <As {...props}>{children}</As> : <Svg {...props}>{children}</Svg>;
+};
+AsForwarder.displayName = '__AsForwarder__';
+export { AsForwarder };

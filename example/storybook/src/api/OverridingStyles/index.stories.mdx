@@ -1,5 +1,5 @@
 ---
-title: Overriding styles with sx | Dank
+title: Overriding styles with sx | gluestack-style
 description: The sx prop allows you to pass an object that supports tokens, media-queries, nesting and token-aware values to the component.
 ---
 
@@ -9,7 +9,7 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 # Overriding Styles (sx)
 
-Dank supports the use of an **`sx`** prop to override styles. The **`sx`** prop allows you to pass an object that supports tokens, media-queries, nesting and token-aware values to the component.
+gluestack-style supports the sx prop for overriding styles.The sx prop enables passing an object supporting tokens, media queries, nesting, and token-aware values to the component.
 
 `sx` accepts the same style object as the base style.
 
@@ -28,8 +28,8 @@ Dank supports the use of an **`sx`** prop to override styles. The **`sx`** prop 
 <Button>
 ```
 
-In this example, the button will have a pink background instead of default primary, because we have overridden the backgroundColor style by passing it in the **`sx`** prop.
+In this example, the button has a pink background instead of the default primary color, as the backgroundColor style is overridden using the sx prop
 
-The **`sx`** prop is particularly useful when working with theming and responsive styles, as it allows you to easily change the styles of a component based on the theme or viewport size.
+The sx prop is particularly useful for theming and responsive styles, as it enables easy style changes for a component based on the theme or viewport size
 
-It is also important to note that you should always avoid using `sx` prop as it adds to the complexity of style calculations and hence decreases your performance.
+It is important to note that you should generally avoid using the sx prop, as it adds complexity to style calculations and may decrease performance

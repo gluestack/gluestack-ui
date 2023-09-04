@@ -1,6 +1,6 @@
 ---
-title: StyledProvider | Dank
-description: Dank Style exports a StyledProvider component, a higher-order component that wraps your entire application and provides the library's configuration options.
+title: StyledProvider | gluestack-style
+description: gluestack-style Style exports a StyledProvider component, a higher-order component that wraps your entire application and provides the library's configuration options.
 ---
 
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
@@ -9,7 +9,7 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 # StyledProvider
 
-Dank Style exports a **`StyledProvider`** component that can be used to configure the library.
+**`gluestack-style`** exports a **`StyledProvider`** component that can be used to configure the library.
 
 The **`StyledProvider`** component is a higher-order component that wraps your entire application and provides the library's configuration options through its **`config`** prop.
 
@@ -18,33 +18,72 @@ You can use the **`StyledProvider`** component to set global options, such as br
 Here is an example of how you can use the **`StyledProvider`** component to configure the library:
 
 ```jsx
-import { StyledProvider } from '@dank-style/react';
+import { StyledProvider, createConfig } from '@gluestack-style/react';
 
-const config = {
+const config = createConfig({
   aliases: {
     bg: 'backgroundColor',
-    p: 'padding',
-    // ...,
-    rounded: 'borderRadius'
+    bgColor: 'backgroundColor',
+    rounded: 'borderRadius',
+    h: 'height',
+    w: 'width',
   },
   tokens: {
-    colors:{
-      "primary50" : "#F3F4F6",
-      "primary100" : "#E5E7EB",
-      "primary200" : "#D1D5DB",
-      // ...,
-      "primary900" : "#1F2937",
-    }
-    // ...,
-    borderRadius: {
-      "none": 0,
-      "sm": 2,
-      "md": 4,
-      "lg": 8,
-      "full": 9999,
+    colors: {
+      primary0: '#ffffff',
+      primary400: '#c084fc',
+      primary500: '#a855f7',
+      primary600: '#9333ea',
+    },
+    space: {
+      4: 16,
+      5: 20,
+      6: 24,
+    },
+    radii: {
+      sm: 4,
+      md: 6,
+    },
+    letterSpacings: {
+      md: 0,
+    },
+    lineHeights: {
+      sm: 20,
+      md: 22,
+    },
+    fontWeights: {
+      normal: '400',
+      medium: '500',
+    },
+    fontSizes: {
+      sm: 14,
+      md: 16,
+    },
+    mediaQueries: {
+      sm: '@media (min-width: 480px)',
+      md: '@media (min-width: 768px)',
     },
   },
-};
+  globalStyle: {
+    variants: {
+      shadow: {
+        softShadow: {
+          shadowOffset: {
+            width: 0,
+            height: 0,
+          },
+          shadowRadius: 10,
+          shadowOpacity: 0.1,
+          _android: {
+            shadowColor: '$primary500',
+            elevation: 5,
+            shadowOpacity: 0.05,
+          },
+        },
+      },
+    },
+  },
+} as const);
 
 const App = () => (
   <StyledProvider config={config}>
@@ -59,17 +98,17 @@ It's important to note that the **`StyledProvider`** needs to be placed at the t
 
 Once you have wrapped your application with the **`StyledProvider`**, you will be able to use the breakpoints, theme and other configs throughout your application.
 
-### ColorMode
+### Color Mode:
 
 To switch between color modes, the UI library may provide a toggle button or some other mechanism that can be used to change the color mode. When the color mode is changed, the library updates the colors used throughout the interface to match the new mode.
 
-To implement this the `StyledProvider` accepts a `colorMode` prop. Just handle your colorMode and pass your current colorMode in this prop and all your components will start reacting to your colorMode changes.
+To implement this the `StyledProvider` accepts a `colorMode` prop. Just handle your **`colorMode`** and pass your current **`colorMode`** in this prop and all your components will start reacting to your colorMode changes.
 
 ```jsx
 import React from 'react';
 import { View, Pressable, Text } from 'react-native';
-import { styled, StyledProvider } from '@dank-style/react';
-import { config } from './dank.config';
+import { styled, StyledProvider } from '@gluestack-style/react';
+import { config } from './gluestack-style.config';
 const StyledComponent = styled(
   View,
   {
@@ -109,7 +148,7 @@ export function ColorMode({ ...args }) {
 }
 ```
 
-### globalStyleInjector
+### Global Style Injector:
 
 The `StyledProvider` accepts a `globalStyleInjector` prop. This prop is a function that will be called with config. You can use this function to inject global styles into your application.
 
@@ -120,8 +159,8 @@ import {
   styled,
   StyledProvider,
   createGlobalStylesWeb,
-} from '@dank-style/react';
-import { config } from './dank.config';
+} from '@gluestack-style/react';
+import { config } from './gluestack-style.config';
 
 const globalStyles = createGlobalStylesWeb({
   'body': {

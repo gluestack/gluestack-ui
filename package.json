@@ -2,21 +2,24 @@
   "private": true,
   "workspaces": [
     "packages/*",
-    "example/*"
+    "example/storybook"
   ],
   "scripts": {
+    "test": "bash ./scripts/test.sh",
     "dev": "turbo run dev",
-    "build": "turbo run build --filter=@dank-style* --no-cache",
-    "test": "echo 1",
+    "build": "turbo run build --filter=@gluestack-style* --no-cache",
     "clean": "turbo run clean && rm -rf node_modules",
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\" --ignore-path .gitignore",
     "release": "changeset publish",
     "prepare": "husky install",
-    "lint": "eslint packages/**/**/src --ext .ts,.tsx --config .eslintrc"
+    "lint": "eslint packages/**/**/src --ext .ts,.tsx --config .eslintrc",
+    "storybook": "cd example/storybook && yarn storybook",
+    "kitchensink:web": "cd example/ui-examples && yarn web"
   },
   "devDependencies": {
     "@changesets/cli": "^2.25.2",
     "@commitlint/config-conventional": "^17.3.0",
+    "@jest/create-cache-key-function": "^29.6.3",
     "@react-native-community/eslint-config": "^3.2.0",
     "commitlint": "^17.3.0",
     "eslint": "^8.29.0",
@@ -29,8 +32,5 @@
     "turbo": "latest",
     "typescript": "^4.9.4"
   },
-  "packageManager": "yarn@1.22.17",
-  "dependencies": {
-    "@gluestack/design-system": "^0.1.56"
-  }
+  "packageManager": "yarn@1.22.17"
 }

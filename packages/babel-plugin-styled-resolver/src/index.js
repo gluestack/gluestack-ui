@@ -5,30 +5,89 @@ const generate = require('@babel/generator').default;
 const babelPresetTypeScript = require('@babel/preset-typescript');
 const traverse = require('@babel/traverse').default;
 const types = require('@babel/types');
-const {
-  styledResolvedToOrderedSXResolved,
-  styledToStyledResolved,
-  getStyleIds,
-} = require('@dank-style/react/lib/commonjs/resolver');
 
 const {
   convertStyledToStyledVerbosed,
   convertSxToSxVerbosed,
-} = require('@dank-style/react/lib/commonjs/convertSxToSxVerbosed');
+} = require('@gluestack-style/react/lib/commonjs/convertSxToSxVerbosed');
 const {
   propertyTokenMap,
-} = require('@dank-style/react/lib/commonjs/propertyTokenMap');
-const { stableHash } = require('@dank-style/react/lib/commonjs/stableHash');
+} = require('@gluestack-style/react/lib/commonjs/propertyTokenMap');
 const {
-  INTERNAL_updateCSSStyleInOrderedResolved,
-} = require('@dank-style/react/lib/commonjs/updateCSSStyleInOrderedResolved');
+  stableHash,
+} = require('@gluestack-style/react/lib/commonjs/stableHash');
 const {
-  INTERNAL_updateCSSStyleInOrderedResolved:
-    INTERNAL_updateCSSStyleInOrderedResolvedWeb,
-} = require('@dank-style/react/lib/commonjs/updateCSSStyleInOrderedResolved.web');
+  CSSPropertiesMap,
+} = require('@gluestack-style/react/lib/commonjs/core/styled-system');
+const {
+  StyleInjector,
+} = require('@gluestack-style/react/lib/commonjs/style-sheet/index');
+const {
+  updateOrderUnResolvedMap,
+} = require('@gluestack-style/react/lib/commonjs/updateOrderUnResolvedMap');
+const {
+  setObjectKeyValue,
+} = require('@gluestack-style/react/lib/commonjs/utils');
 
-const DANK_IMPORT_NAME = '@dank-style/react';
+const IMPORT_NAME = '@gluestack-style/react';
 let configThemePath = [];
+const BUILD_TIME_GLUESTACK_STYLESHEET = new StyleInjector();
+
+const convertExpressionContainerToStaticObject = (
+  properties,
+  result = {},
+  keyPath = [],
+  propsToBePersist = {}
+) => {
+  properties?.forEach((property, index) => {
+    const nodeName = property.key.name ?? property.key.value;
+    if (property.value.type === 'ObjectExpression') {
+      keyPath.push(nodeName);
+      convertExpressionContainerToStaticObject(
+        property.value.properties,
+        result,
+        keyPath,
+        propsToBePersist
+      );
+      keyPath.pop();
+    } else if (property.value.type === 'Identifier') {
+      if (property.key.value) {
+        setObjectKeyValue(
+          propsToBePersist,
+          [...keyPath, nodeName],
+          property.value.name
+        );
+      }
+      if (property.key.name) {
+        setObjectKeyValue(
+          propsToBePersist,
+          [...keyPath, nodeName],
+          property.value.name
+        );
+      }
+    } else {
+      if (property.key.value) {
+        setObjectKeyValue(
+          result,
+          [...keyPath, property.key.value],
+          property.value.value
+        );
+      }
+
+      if (property.key.name) {
+        setObjectKeyValue(
+          result,
+          [...keyPath, property.key.name],
+          property.value.value
+        );
+      }
+    }
+  });
+  return {
+    result,
+    propsToBePersist,
+  };
+};
 
 function addQuotesToObjectKeys(code) {
   const ast = babel.parse(`var a = ${code}`, {
@@ -77,7 +136,7 @@ const { exit } = require('process');
 const checkIfPathIsAbsolute = (path) => {
   return path.startsWith('/');
 };
-function getDankConfig(configPath) {
+function getConfig(configPath) {
   if (configPath) {
     return fs.readFileSync(
       path.join(
@@ -87,29 +146,29 @@ function getDankConfig(configPath) {
       'utf8'
     );
   }
-  const isDankConfigJSExist = fs.existsSync(
-    path.join(process.cwd(), './dank.config.js')
+  const isConfigJSExist = fs.existsSync(
+    path.join(process.cwd(), './gluestack-style.config.js')
   );
   const isGlueStackUIConfigJSExist = fs.existsSync(
     path.join(process.cwd(), './gluestack-ui.config.js')
   );
-  const isDankConfigTSExist = fs.existsSync(
-    path.join(process.cwd(), './dank.config.ts')
+  const isConfigTSExist = fs.existsSync(
+    path.join(process.cwd(), './gluestack-style.config.ts')
   );
   const isGlueStackUIConfigTSExist = fs.existsSync(
     path.join(process.cwd(), './gluestack-ui.config.ts')
   );
 
-  if (isDankConfigTSExist) {
+  if (isConfigTSExist) {
     return fs.readFileSync(
-      path.join(process.cwd(), './dank.config.ts'),
+      path.join(process.cwd(), './gluestack-style.config.ts'),
       'utf8'
     );
   }
 
-  if (isDankConfigJSExist) {
+  if (isConfigJSExist) {
     return fs.readFileSync(
-      path.join(process.cwd(), './dank.config.js'),
+      path.join(process.cwd(), './gluestack-style.config.js'),
       'utf8'
     );
   }
@@ -139,6 +198,7 @@ function getExportedConfigFromFileString(fileData) {
   }
 
   fileData = fileData?.replace(/as const/g, '');
+
   const ast = babel.parse(fileData, {
     presets: [babelPresetTypeScript],
     plugins: ['typescript'],
@@ -147,6 +207,20 @@ function getExportedConfigFromFileString(fileData) {
   });
 
   let config = {};
+
+  traverse(ast, {
+    CallExpression: (path) => {
+      const { callee, arguments: args } = path.node;
+      if (
+        types.isIdentifier(callee, { name: 'createConfig' }) &&
+        args.length === 1 &&
+        types.isObjectExpression(args[0])
+      ) {
+        path.replaceWith(args[0]);
+      }
+    },
+  });
+
   traverse(ast, {
     ExportNamedDeclaration: (path) => {
       path.traverse({
@@ -155,6 +229,7 @@ function getExportedConfigFromFileString(fileData) {
         },
       });
     },
+
     Identifier: (path) => {
       if (path.node.name === 'undefined') {
         //path.remove();
@@ -166,6 +241,7 @@ function getExportedConfigFromFileString(fileData) {
   let objectCode = generate(config).code;
   objectCode = objectCode?.replace(/\/\/.*|\/\*[\s\S]*?\*\//g, '');
   objectCode = addQuotesToObjectKeys(objectCode)?.replace(/'/g, '"');
+
   return JSON.parse(objectCode);
 }
 function replaceSingleQuotes(str) {
@@ -200,7 +276,93 @@ function getObjectFromAstNode(node) {
   return JSON.parse(objectCode);
 }
 
-const CONFIG = getExportedConfigFromFileString(getDankConfig());
+function removeLiteralPropertiesFromObjectProperties(code) {
+  const ast = babel.parse(`var a = ${code}`, {
+    presets: [babelPresetTypeScript],
+    plugins: ['typescript'],
+    sourceType: 'module',
+  });
+
+  traverse(ast, {
+    ObjectExpression: (path) => {
+      path.traverse({
+        ObjectProperty(path) {
+          const { value } = path.node;
+
+          path.traverse({
+            StringLiteral: (stringPath) => {
+              stringPath;
+            },
+          });
+
+          if (
+            value.type === 'StringLiteral' ||
+            value.type === 'NumericLiteral'
+          ) {
+            path.remove();
+          }
+        },
+      });
+    },
+  });
+
+  let initAst;
+  // let modifiedAst = undefined;
+
+  // traverse(ast, {
+  //   ObjectProperty: (path) => {
+  //     if (!modifiedAst) {
+  //       modifiedAst = removeEmptyProperties(path.node);
+  //       path.node = modifiedAst;
+  //     }
+  //   },
+  // });
+
+  traverse(ast, {
+    VariableDeclarator: (path) => {
+      initAst = path.node.init;
+    },
+  });
+
+  return initAst;
+}
+
+function getIdentifiersObjectFromAstNode(node) {
+  let objectCode = generate(node).code;
+
+  return removeLiteralPropertiesFromObjectProperties(
+    objectCode.replace(
+      /\\"|"(?:\\"|[^"])*"|(\/\/.*|\/\*[\s\S]*?\*\/)/g,
+      (m, g) => (g ? '' : m)
+    )
+  );
+}
+
+function isStyledImportedFromLibrary(styled, importName) {
+  if (styled.includes(importName)) {
+    return true;
+  }
+}
+
+function isStyledImportFromAbsolutePath(styled, importName) {
+  for (const styledPath of styled) {
+    const filePath = styledPath.split('/');
+    filePath.pop();
+
+    const absoluteStyledImportPath = path.resolve(
+      filePath.join('/'),
+      importName
+    );
+
+    if (importName === absoluteStyledImportPath) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
+const CONFIG = getExportedConfigFromFileString(getConfig());
 
 let ConfigDefault = CONFIG;
 
@@ -225,6 +387,8 @@ module.exports = function (b) {
           t.stringLiteral(key),
           t.arrayExpression(elements)
         );
+      } else if (typeof value === 'boolean') {
+        return t.objectProperty(t.stringLiteral(key), t.booleanLiteral(value));
       } else {
         return t.objectProperty(
           t.stringLiteral(key),
@@ -252,29 +416,44 @@ module.exports = function (b) {
   }
 
   let styledImportName = '';
+  let styledAlias = '';
+  let styledAliasImportedName = '';
   let tempPropertyResolverNode;
   let isValidConfig = true;
-  let isWeb = false;
-  let sourceFileName = DANK_IMPORT_NAME;
+  let platform = 'all';
   let currentFileName = 'file not found!';
   let configPath;
+  let outputLibrary;
+  let componentSXProp;
+  let componentUtilityProps;
+  const guessingStyledComponents = [];
+  const styled = ['@gluestack-style/react'];
+  const components = ['@gluestack-ui/themed'];
 
   return {
     name: 'ast-transform', // not required
     visitor: {
-      ImportDeclaration(path, state) {
-        sourceFileName = state?.opts?.filename || DANK_IMPORT_NAME;
+      ImportDeclaration(importPath, state) {
         currentFileName = state.file.opts.filename;
+        styledAlias = state?.opts?.styledAlias;
+        outputLibrary = state?.opts?.outputLibrary || outputLibrary;
+
         if (state?.opts?.configPath) {
           configPath = state?.opts?.configPath;
         }
+
         if (state?.opts?.configThemePath) {
           configThemePath = state?.opts?.configThemePath;
+        }
+        if (state?.opts?.platform) {
+          platform = state?.opts?.platform;
+        } else {
+          platform = 'all';
         }
 
         if (configPath) {
           ConfigDefault = getExportedConfigFromFileString(
-            getDankConfig(configPath)
+            getConfig(configPath)
           );
         }
 
@@ -282,28 +461,62 @@ module.exports = function (b) {
           ConfigDefault = ConfigDefault?.[path];
         });
         configThemePath = [];
-        isWeb = state.opts.web ? true : false;
 
         if (!currentFileName.includes('node_modules')) {
           if (currentFileName.includes('.web.')) {
-            isWeb = true;
+            platform = 'web';
           } else if (checkWebFileExists(currentFileName)) {
-            isWeb = false;
+            platform = 'native';
           }
         }
-        if (path.node.source.value === sourceFileName) {
-          path.traverse({
+
+        if (state?.opts?.styled && Array.isArray(state?.opts?.styled)) {
+          styled.push(...state?.opts?.styled);
+        }
+
+        if (state?.opts?.components && Array.isArray(state?.opts?.components)) {
+          components.push(...state?.opts?.components);
+        }
+
+        const importName = importPath.node.source.value;
+
+        if (
+          isStyledImportFromAbsolutePath(components, importName) ||
+          isStyledImportedFromLibrary(components, importName)
+        ) {
+          importPath.traverse({
+            ImportSpecifier(importSpecifierPath) {
+              guessingStyledComponents.push(
+                importSpecifierPath.node.local.name
+              );
+            },
+          });
+        }
+
+        if (
+          isStyledImportFromAbsolutePath(styled, importName) ||
+          isStyledImportedFromLibrary(styled, importName)
+        ) {
+          importPath.traverse({
             ImportSpecifier(importSpecifierPath) {
               if (importSpecifierPath.node.imported.name === 'styled') {
                 styledImportName = importSpecifierPath.node.local.name;
+              }
+              if (importSpecifierPath.node.imported.name === styledAlias) {
+                styledAliasImportedName = importSpecifierPath.node.local.name;
               }
             },
           });
         }
       },
-      CallExpression(path) {
-        if (path.node.callee.name === styledImportName) {
-          path.traverse({
+      CallExpression(callExpressionPath) {
+        if (
+          callExpressionPath.node.callee.name === styledAliasImportedName ||
+          callExpressionPath.node.callee.name === styledImportName
+        ) {
+          if (callExpressionPath?.parent?.id?.name)
+            guessingStyledComponents.push(callExpressionPath.parent.id.name);
+          callExpressionPath.traverse({
             ObjectProperty(ObjectPath) {
               if (t.isIdentifier(ObjectPath.node.value)) {
                 if (ObjectPath.node.value.name === 'undefined') {
@@ -314,101 +527,134 @@ module.exports = function (b) {
           });
 
           if (isValidConfig) {
-            let args = path.node.arguments;
+            let args = callExpressionPath.node.arguments;
 
             let componentThemeNode = args[1];
             // optional case
             let componentConfigNode = args[2] ?? t.objectExpression([]);
             let extendedThemeNode = args[3] ?? t.objectExpression([]);
 
-            // args[1] = t.objectExpression([]);
+            if (
+              !(
+                t.isIdentifier(componentThemeNode) ||
+                t.isIdentifier(componentConfigNode) ||
+                t.isIdentifier(extendedThemeNode)
+              )
+            ) {
+              // args[1] = t.objectExpression([]);
 
-            let extendedThemeNodeProps = [];
-            if (extendedThemeNode && extendedThemeNode?.properties) {
-              extendedThemeNode?.properties.forEach((prop) => {
-                if (prop.key.name === 'propertyResolver') {
-                  tempPropertyResolverNode = prop;
-                } else {
-                  extendedThemeNodeProps.push(prop);
+              let extendedThemeNodeProps = [];
+              if (extendedThemeNode && extendedThemeNode?.properties) {
+                extendedThemeNode?.properties.forEach((prop) => {
+                  if (prop.key.name === 'propertyResolver') {
+                    tempPropertyResolverNode = prop;
+                  } else {
+                    extendedThemeNodeProps.push(prop);
+                  }
+                });
+                extendedThemeNode.properties = extendedThemeNodeProps;
+              }
+
+              let theme = getObjectFromAstNode(componentThemeNode);
+              let ExtendedConfig = getObjectFromAstNode(extendedThemeNode);
+              let componentConfig = getObjectFromAstNode(componentConfigNode);
+
+              if (extendedThemeNode && tempPropertyResolverNode) {
+                extendedThemeNode.properties.push(tempPropertyResolverNode);
+              }
+
+              // getExportedConfigFromFileString(ConfigDefault);
+              let mergedPropertyConfig = {
+                ...ConfigDefault?.propertyTokenMap,
+                ...propertyTokenMap,
+              };
+              let componentExtendedConfig = merge(
+                {},
+                {
+                  ...ConfigDefault,
+                  propertyTokenMap: { ...mergedPropertyConfig },
+                },
+                ExtendedConfig
+              );
+
+              const verbosedTheme = convertStyledToStyledVerbosed(theme);
+
+              let componentHash = stableHash({
+                ...theme,
+                ...componentConfig,
+                ...ExtendedConfig,
+              });
+
+              if (outputLibrary) {
+                componentHash = outputLibrary + '-' + componentHash;
+              }
+
+              const { styledIds, verbosedStyleIds } = updateOrderUnResolvedMap(
+                verbosedTheme,
+                componentHash,
+                'boot',
+                componentConfig,
+                BUILD_TIME_GLUESTACK_STYLESHEET,
+                platform
+              );
+
+              const toBeInjected = BUILD_TIME_GLUESTACK_STYLESHEET.resolve(
+                styledIds,
+                componentExtendedConfig,
+                ExtendedConfig
+              );
+
+              const current_global_map =
+                BUILD_TIME_GLUESTACK_STYLESHEET.getStyleMap();
+
+              const orderedResolvedTheme = [];
+
+              current_global_map?.forEach((styledResolved) => {
+                if (styledIds.includes(styledResolved?.meta?.cssId)) {
+                  orderedResolvedTheme.push(styledResolved);
                 }
               });
-              extendedThemeNode.properties = extendedThemeNodeProps;
-            }
 
-            let theme = getObjectFromAstNode(componentThemeNode);
-            let ExtendedConfig = getObjectFromAstNode(extendedThemeNode);
-            let componentConfig = getObjectFromAstNode(componentConfigNode);
-            if (extendedThemeNode && tempPropertyResolverNode) {
-              extendedThemeNode.properties.push(tempPropertyResolverNode);
-            }
+              let styleIdsAst = generateObjectAst(verbosedStyleIds);
 
-            // getExportedConfigFromFileString(ConfigDefault);
-            let mergedPropertyConfig = {
-              ...ConfigDefault?.propertyTokenMap,
-              ...propertyTokenMap,
-            };
-            let componentExtendedConfig = merge(
-              {},
-              {
-                ...ConfigDefault,
-                propertyTokenMap: { ...mergedPropertyConfig },
-              },
-              ExtendedConfig
-            );
+              let toBeInjectedAst = generateObjectAst(toBeInjected);
 
-            const verbosedTheme = convertStyledToStyledVerbosed(theme);
+              let orderedResolvedAst = generateArrayAst(orderedResolvedTheme);
 
-            let resolvedStyles = styledToStyledResolved(
-              verbosedTheme,
-              [],
-              componentExtendedConfig
-            );
-
-            let orderedResolved =
-              styledResolvedToOrderedSXResolved(resolvedStyles);
-            // console.log('\n\n >>>>>>>>>>>>>>>>>>>>>\n');
-            // console.log(JSON.stringify(verbosedTheme));
-            // console.log('\n >>>>>>>>>>>>>>>>>>>>>\n\n');
-
-            const themeHash = stableHash(verbosedTheme);
-
-            if (isWeb) {
-              INTERNAL_updateCSSStyleInOrderedResolvedWeb(
-                orderedResolved,
-                themeHash
+              let orderedStyleIdsArrayAst = t.arrayExpression(
+                styledIds?.map((cssId) => t.stringLiteral(cssId))
               );
-            } else {
-              INTERNAL_updateCSSStyleInOrderedResolved(
-                orderedResolved,
-                themeHash
-              );
-            }
 
-            let styleIds = getStyleIds(orderedResolved, componentConfig);
+              let resultParamsNode = t.objectExpression([
+                t.objectProperty(
+                  t.stringLiteral('orderedResolved'),
+                  orderedResolvedAst
+                ),
+                t.objectProperty(
+                  t.stringLiteral('toBeInjected'),
+                  toBeInjectedAst
+                ),
+                t.objectProperty(
+                  t.stringLiteral('styledIds'),
+                  orderedStyleIdsArrayAst
+                ),
+                t.objectProperty(
+                  t.stringLiteral('verbosedStyleIds'),
+                  styleIdsAst
+                ),
+              ]);
 
-            let styleIdsAst = generateObjectAst(styleIds);
-            let themeHashAst = t.stringLiteral(themeHash);
-
-            let orderedResolvedAst = generateArrayAst(orderedResolved);
-
-            let resultParamsNode = t.objectExpression([
-              t.objectProperty(
-                t.stringLiteral('orderedResolved'),
-                orderedResolvedAst
-              ),
-              t.objectProperty(t.stringLiteral('styleIds'), styleIdsAst),
-              t.objectProperty(t.stringLiteral('themeHash'), themeHashAst),
-            ]);
-
-            while (args.length < 4) {
-              args.push(t.objectExpression([]));
-            }
-            if (!args[4]) {
-              args.push(resultParamsNode);
-            } else {
-              args[4] = resultParamsNode;
+              while (args.length < 4) {
+                args.push(t.objectExpression([]));
+              }
+              if (!args[4]) {
+                args.push(resultParamsNode);
+              } else {
+                args[4] = resultParamsNode;
+              }
             }
           }
+
           // console.log(
           //   '<==================|++++>> final ',
           //   generate(path.node).code
@@ -427,6 +673,211 @@ module.exports = function (b) {
 
           // console.log('final', generate(path.node).code);
           // console.log('\n >>>>>>>>>>>>>>>>>>>>>\n\n');
+        }
+      },
+      JSXOpeningElement(jsxOpeningElementPath) {
+        if (
+          jsxOpeningElementPath.node.name &&
+          jsxOpeningElementPath.node.name.name &&
+          guessingStyledComponents.includes(
+            jsxOpeningElementPath.node.name.name
+          )
+        ) {
+          let propsToBePersist = [];
+          let sxPropsWithIdentifier = {};
+          let utilityPropsWithIdentifier = {};
+
+          let mergedPropertyConfig = {
+            ...ConfigDefault?.propertyTokenMap,
+            ...propertyTokenMap,
+          };
+
+          const styledSystemProps = {
+            ...CSSPropertiesMap,
+            ...ConfigDefault?.aliases,
+          };
+
+          const attr = jsxOpeningElementPath.node.attributes;
+          attr.forEach((attribute, index) => {
+            if (t.isJSXAttribute(attribute)) {
+              const propName = attribute.name.name;
+              const propValue = attribute.value;
+
+              if (t.isJSXExpressionContainer(propValue)) {
+                if (t.isIdentifier(propValue.expression)) {
+                  propsToBePersist.push(attribute);
+                } else {
+                  if (propName === 'sx') {
+                    const objectProperties = propValue.expression.properties;
+
+                    sxPropsWithIdentifier = getIdentifiersObjectFromAstNode(
+                      propValue.expression
+                    );
+
+                    const { result: sxPropsObject } =
+                      convertExpressionContainerToStaticObject(
+                        objectProperties
+                      );
+
+                    // jsxOpeningElementPath.traverse({
+                    //   JSXExpressionContainer(jsxPath) {
+                    //     jsxPath.traverse({
+                    //       ObjectExpression(path) {
+                    //         removeEmptyProperties(path.node);
+                    //       },
+                    //     });
+                    //   },
+                    // });
+                    componentSXProp = sxPropsObject;
+                  } else if (
+                    t.isStringLiteral(propValue.expression) ||
+                    t.isNumericLiteral(propValue.expression)
+                  ) {
+                    if (styledSystemProps[propName]) {
+                      componentUtilityProps = Object.assign(
+                        componentUtilityProps ?? {},
+                        {
+                          [propName]: propValue.expression.value,
+                        }
+                      );
+                    }
+                  } else {
+                    propsToBePersist.push(attribute);
+                  }
+                }
+              } else if (styledSystemProps[propName]) {
+                componentUtilityProps = Object.assign(
+                  componentUtilityProps ?? {},
+                  {
+                    [propName]: propValue.value,
+                  }
+                );
+              } else {
+                propsToBePersist.push(attribute);
+              }
+            }
+          });
+
+          jsxOpeningElementPath.node.attributes.splice(
+            0,
+            jsxOpeningElementPath.node.attributes.length
+          );
+
+          for (const key in utilityPropsWithIdentifier) {
+            if (componentSXProp[key]) delete utilityPropsWithIdentifier[key];
+          }
+
+          const sx = {
+            ...componentUtilityProps,
+            ...componentSXProp,
+          };
+
+          if (sx) {
+            const verbosedSx = convertSxToSxVerbosed(sx);
+
+            const inlineSxTheme = {
+              baseStyle: verbosedSx,
+            };
+
+            let componentExtendedConfig = merge(
+              {},
+              {
+                ...ConfigDefault,
+                propertyTokenMap: { ...mergedPropertyConfig },
+              }
+            );
+
+            let sxHash = stableHash(sx);
+
+            if (outputLibrary) {
+              sxHash = outputLibrary + '-' + sxHash;
+            }
+
+            const { styledIds, verbosedStyleIds } = updateOrderUnResolvedMap(
+              inlineSxTheme,
+              sxHash,
+              'inline',
+              {},
+              BUILD_TIME_GLUESTACK_STYLESHEET,
+              platform
+            );
+
+            const toBeInjected = BUILD_TIME_GLUESTACK_STYLESHEET.resolve(
+              styledIds,
+              componentExtendedConfig,
+              {},
+              true,
+              'inline'
+            );
+
+            const current_global_map =
+              BUILD_TIME_GLUESTACK_STYLESHEET.getStyleMap();
+
+            const orderedResolvedTheme = [];
+
+            current_global_map?.forEach((styledResolved) => {
+              if (styledIds.includes(styledResolved?.meta?.cssId)) {
+                orderedResolvedTheme.push(styledResolved);
+              }
+            });
+
+            let styleIdsAst = generateObjectAst(verbosedStyleIds);
+
+            let toBeInjectedAst = generateObjectAst(toBeInjected);
+
+            let orderResolvedArrayExpression = [];
+
+            orderedResolvedTheme.forEach((styledResolved) => {
+              let orderedResolvedAst = generateObjectAst(styledResolved);
+              orderResolvedArrayExpression.push(orderedResolvedAst);
+            });
+
+            let orderedStyleIdsArrayAst = t.arrayExpression(
+              styledIds?.map((cssId) => t.stringLiteral(cssId))
+            );
+
+            jsxOpeningElementPath.node.attributes = propsToBePersist;
+
+            if (Object.keys(sxPropsWithIdentifier).length > 0) {
+              jsxOpeningElementPath.node.attributes.push(
+                t.jsxAttribute(
+                  t.jsxIdentifier('sx'),
+                  t.jsxExpressionContainer(sxPropsWithIdentifier)
+                )
+              );
+            }
+            jsxOpeningElementPath.node.attributes.push(
+              t.jsxAttribute(
+                t.jsxIdentifier('verbosedStyleIds'),
+                t.jsxExpressionContainer(styleIdsAst)
+              )
+            );
+            jsxOpeningElementPath.node.attributes.push(
+              t.jsxAttribute(
+                t.jsxIdentifier('toBeInjected'),
+                t.jsxExpressionContainer(toBeInjectedAst)
+              )
+            );
+            jsxOpeningElementPath.node.attributes.push(
+              t.jsxAttribute(
+                t.jsxIdentifier('orderedResolved'),
+                t.jsxExpressionContainer(
+                  t.arrayExpression(orderResolvedArrayExpression)
+                )
+              )
+            );
+            jsxOpeningElementPath.node.attributes.push(
+              t.jsxAttribute(t.jsxIdentifier('sxHash'), t.stringLiteral(sxHash))
+            );
+            jsxOpeningElementPath.node.attributes.push(
+              t.jsxAttribute(
+                t.jsxIdentifier('styledIds'),
+                t.jsxExpressionContainer(orderedStyleIdsArrayAst)
+              )
+            );
+          }
+          componentSXProp = undefined;
+          componentUtilityProps = undefined;
         }
       },
     },

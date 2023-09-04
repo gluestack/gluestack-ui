@@ -3,7 +3,7 @@ name: Release
 on:
   push:
     branches:
-      - master
+      - main
 
 concurrency: ${{ github.workflow }}-${{ github.ref || github.run_id }}
 
@@ -21,7 +21,9 @@ jobs:
           node-version: 16.x
 
       - name: Install Dependencies
-        run: yarn
+        run: |
+          yarn
+          yarn build
 
       - name: Create Release Pull Request or Publish to npm
         id: changesets
@@ -33,23 +35,23 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Get published package version
-        id: version
-        run: |
-          for row in $(echo "${array}" | jq -r '.[] | @base64'); do
-              _jq() {
-              echo ${row} | base64 --decode | jq -r ${1}
-              }
-            PACKAGENAME=$(echo $(_jq '.name'))
-            PACKAGEVERSION=$(echo $(_jq '.version'))
-            if [ $PACKAGENAME = "@dank-style/storybook" ]
-            then
-              echo "::set-output name=version::$PACKAGEVERSION"
-              echo "::set-output name=updateStorybook::1"
-            fi
-          done
-        env:
-          array: ${{ steps.changesets.outputs.publishedPackages }}
+      # - name: Get published package version
+      #   id: version
+      #   run: |
+      #     for row in $(echo "${array}" | jq -r '.[] | @base64'); do
+      #         _jq() {
+      #         echo ${row} | base64 --decode | jq -r ${1}
+      #         }
+      #       PACKAGENAME=$(echo $(_jq '.name'))
+      #       PACKAGEVERSION=$(echo $(_jq '.version'))
+      #       if [ $PACKAGENAME = "@dank-style/storybook" ]
+      #       then
+      #         echo "::set-output name=version::$PACKAGEVERSION"
+      #         echo "::set-output name=updateStorybook::1"
+      #       fi
+      #     done
+      #   env:
+      #     array: ${{ steps.changesets.outputs.publishedPackages }}
 
       # - name: Emit repository_dispatch
       #   if: steps.version.outputs.updateStorybook == 1
@@ -75,6 +77,6 @@ jobs:
           # You can pass in multiple channels to post to by providing a comma-delimited list of channel IDs.
           channel-id: ${{ secrets.SLACK_CHANNEL_ID }}
           # For posting a simple plain text message
-          slack-message: "A new version of ${{ github.event.repository.name }} was published!\n${{ toJSON(steps.changesets.outputs.publishedPackages) }}"
+          slack-message: "A new package was published in ${{ github.event.repository.name }}!\n${{ toJSON(steps.changesets.outputs.publishedPackages) }}"
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}

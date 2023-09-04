@@ -10,22 +10,28 @@
     "build": "bob build"
   },
   "dependencies": {
-    "@dank-style/babel-plugin-styled-resolver": "^0.1.1",
-    "@dank-style/react": "*",
+    "@gluestack-style/babel-plugin-styled-resolver": "^0.1.0",
+    "@gluestack-style/react": "^0.1.33",
     "expo": "~47.0.12",
     "expo-status-bar": "~1.4.2",
     "react": "18.1.0",
     "react-native": "0.70.5"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.9"
+    "@babel/core": "^7.12.9",
+    "react-native-web": "^0.18.12"
   },
   "private": true,
   "react-native-builder-bob": {
     "source": "src",
     "output": "lib",
     "targets": [
-      "commonjs",
+      [
+        "commonjs",
+        {
+          "configFile": true
+        }
+      ],
       [
         "module",
         {

@@ -1,4 +1,6 @@
-export const config = {
+import { createConfig } from '@gluestack-style/react';
+
+export const config = createConfig({
   aliases: {
     bg: 'backgroundColor',
     backgroundColor: 'backgroundColor',
@@ -764,11 +766,11 @@ export const config = {
     'xl': '@media (min-width: 1280px)',
     '2xl': '@media (min-width: 1536px)',
   },
-};
+});
 
 type ConfigType = typeof config;
 
-declare module '@dank-style/react' {
+declare module '@gluestack-style/react' {
   interface ICustomConfig extends ConfigType {}
 }
 

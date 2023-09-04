@@ -1,13 +1,13 @@
 ---
-title: Variants | Dank
-description: Dank allows you to easily create different variations of a component with different styles for more flexibility and reusability of components.
+title: Variants | gluestack-style
+description: gluestack-style allows you to easily create different variations of a component with different styles for more flexibility and reusability of components.
 ---
 
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 <Meta title="api/Variants" />
 
-import { styled, StyledProvider } from '@dank-style/react';
+import { styled, StyledProvider } from '@gluestack-style/react';
 import { Pressable, Text } from 'react-native';
 import { Button, AppProvider, CodePreview } from '@gluestack/design-system';
 import { config } from './config';
@@ -15,11 +15,11 @@ import { useState } from 'react';
 
 # Variants
 
-Dank allows you to easily create different variations of a component with different styles.
+gluestack-style allows you to easily create different variations of a component with different styles.
 
-**Using variant props in a UI component library allows for more flexibility and reusability of components**.
+**Using variant props in a UI component library enhances flexibility and reusability of components**.
 
-### Adding a variant
+### Adding Variants
 
 <AppProvider>
   <CodePreview
@@ -76,7 +76,7 @@ Dank allows you to easily create different variations of a component with differ
   />
 </AppProvider>
 
-### Multiple variants
+### Multiple Variants
 
 <AppProvider>
   <CodePreview
@@ -152,7 +152,7 @@ Dank allows you to easily create different variations of a component with differ
   />
 </AppProvider>
 
-### Boolean variants
+### Boolean Variants
 
 <AppProvider>
   <CodePreview
@@ -220,9 +220,9 @@ Dank allows you to easily create different variations of a component with differ
   />
 </AppProvider>
 
-### Compound variants
+### Compound Variants
 
-The `compoundVariants` feature allows you to set styles for a variant based on a combination of other variants. This means that you can specify different styles for a variant depending on the values of other variants that are being used.
+The compoundVariants feature enables setting styles for a variant based on a combination of other variants. This allows specifying different styles for a variant, depending on the values of other variants in use.
 
 > **Note:** `compoundVariants` is an array of objects that contain a `value` key and variants. The `value` key accepts the same style object as the sx style.
 

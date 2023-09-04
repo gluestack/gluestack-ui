@@ -1,6 +1,6 @@
 // @ts-nocheck
 import React from 'react';
-import { createStyled, AddCssTokenVariables } from '@dank-style/react';
+import { createStyled, AddCssTokenVariables } from '@gluestack-style/react';
 import { Wrapper } from '../../components/Wrapper';
 import { View, Text } from 'react-native';
 const styledCssTokensVariables = createStyled([new AddCssTokenVariables({})]);
@@ -31,8 +31,8 @@ export function CSSVariables() {
       <StyledView>
         <StyledText
           style={{
-            color: 'var(--dank-colors-orange300)',
-            margin: 'var(--dank-space-4)',
+            color: 'var(--gluestack-style-colors-orange300)',
+            margin: 'var(--gluestack-style-space-4)',
           }}
         >
           Hello World

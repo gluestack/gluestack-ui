@@ -11,19 +11,28 @@ module.exports = function (api) {
             {
               alias: {
                 // For development, we want to alias the library to the source
-                ['@dank-style/react']: path.join(__dirname, '../../react/src'),
-                ['@dank-style/media-query']: path.join(
+                ['@gluestack-style/react']: path.join(
+                  __dirname,
+                  '../../react/src'
+                ),
+                ['@gluestack-style/media-query']: path.join(
                   __dirname,
                   '../media-query/src'
                 ),
-                ['@dank-style/css-injector']: path.join(
+                ['@gluestack-style/css-injector']: path.join(
                   __dirname,
                   '../css-injector/src'
                 ),
 
-                ['@dank-style/cssify']: path.join(__dirname, '../cssify/src'),
-                ['@dank-style/config']: path.join(__dirname, '../config/src'),
-                ['@dank-style/convert-utility-to-sx']: path.join(
+                ['@gluestack-style/cssify']: path.join(
+                  __dirname,
+                  '../cssify/src'
+                ),
+                ['@gluestack-style/config']: path.join(
+                  __dirname,
+                  '../config/src'
+                ),
+                ['@gluestack-style/convert-utility-to-sx']: path.join(
                   __dirname,
                   '../convert-utility-to-sx'
                 ),
