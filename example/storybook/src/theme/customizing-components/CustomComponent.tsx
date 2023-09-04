@@ -14,6 +14,15 @@ Provider.displayName = 'CustomProvider';
 
 const config = createConfig({
   ...defaultConfig.theme,
+  tokens: {
+    ...defaultConfig.theme.tokens,
+    colors: {
+      ...defaultConfig.theme.tokens.colors,
+      primary600_alpha_10: '#1a91ff1a',
+      primary600_alpha_20: '#1a91ff33',
+    },
+  },
+
   components: {
     Button: {
       theme: {
@@ -25,10 +34,16 @@ const config = createConfig({
                 color: '$primary600',
               },
               ':hover': {
-                bg: '$primary200',
+                _text: {
+                  color: '$primary600',
+                },
+                bg: '$primary600_alpha_10',
               },
               ':active': {
-                bg: '$primary100',
+                _text: {
+                  color: '$primary600',
+                },
+                bg: '$primary600_alpha_20',
               },
               '_dark': {
                 'bg': '$transparent',
@@ -36,29 +51,37 @@ const config = createConfig({
                   color: '$primary600',
                 },
                 ':hover': {
-                  bg: '$primary200',
+                  _text: {
+                    color: '$primary600',
+                  },
+                  bg: '$primary600_alpha_10',
                 },
                 ':active': {
-                  bg: '$primary100',
+                  _text: {
+                    color: '$primary600',
+                  },
+                  bg: '$primary600_alpha_20',
                 },
               },
             },
           },
         },
       },
+      componentConfig: {
+        descendantStyle: ['_text'],
+      },
     },
   },
 });
-const Wrapper = ({ children, ...props }: any) => {
+const Wrapper = ({ children }: any) => {
   return (
-    <Provider config={config} {...props} colorMode="dark">
+    <Provider config={config} colorMode="dark">
       <Box
         sx={{
           _ios: {
             h: '100%',
           },
         }}
-        {...props}
       >
         <Center h="100%">{children}</Center>
       </Box>
