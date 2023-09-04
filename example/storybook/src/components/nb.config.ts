@@ -657,49 +657,49 @@ export const config = createConfig({
     },
   } as const,
   themes: {
-    // '2000s': {
-    //   colors: {
-    //     $backgroundColor: '#ffffff',
-    //     $headerColor: '$colors$blue600',
-    //     $textColor: '#ffffff',
-    //     $borderColor: '$colors$gray400',
-    //   },
-    //   borderWidths: {
-    //     $borderWidth: '$space$0.5',
-    //   },
-    //   radii: {
-    //     $borderRadius: '$radii$sm',
-    //   },
-    // },
-    // '2010s': {
-    //   colors: {
-    //     $backgroundColor: '#ffffff',
-    //     $headerColor: '$colors$blue700',
-    //     $textColor: '$colors$white',
-    //     $borderColor: '#000000',
-    //   },
-    //   borderWidths: {
-    //     $borderWidth: '$space$0.5',
-    //   },
-    //   radii: {
-    //     $borderRadius: '$radii$lg',
-    //   },
-    // },
-    // '2020s': {
-    //   colors: {
-    //     $backgroundColor: '#ffffff7a',
-    //     $headerColor: '$colors$blue400',
-    //     $textColor: '$colors$blue900',
-    //     $borderColor: '$colors$gray300',
-    //   },
-    //   borderWidths: {
-    //     $borderWidth: '$space$px',
-    //   },
-    //   radii: {
-    //     $borderRadius: '$radii$xl',
-    //   },
-    // },
-    modern: {
+    '2000s': {
+      colors: {
+        $backgroundColor: '#ffffff',
+        $headerColor: '$colors$blue600',
+        $textColor: '#ffffff',
+        $borderColor: '$colors$gray400',
+      },
+      borderWidths: {
+        $borderWidth: '$space$0.5',
+      },
+      radii: {
+        $borderRadius: '$radii$sm',
+      },
+    },
+    '2010s': {
+      colors: {
+        $backgroundColor: '#ffffff',
+        $headerColor: '$colors$blue700',
+        $textColor: '$colors$white',
+        $borderColor: '#000000',
+      },
+      borderWidths: {
+        $borderWidth: '$space$0.5',
+      },
+      radii: {
+        $borderRadius: '$radii$lg',
+      },
+    },
+    '2020s': {
+      colors: {
+        $backgroundColor: '#ffffff7a',
+        $headerColor: '$colors$blue400',
+        $textColor: '$colors$blue900',
+        $borderColor: '$colors$gray300',
+      },
+      borderWidths: {
+        $borderWidth: '$space$px',
+      },
+      radii: {
+        $borderRadius: '$radii$xl',
+      },
+    },
+    'modern': {
       colors: {
         $red500: 'green',
         // $headerColor: '$colors$blue600',
