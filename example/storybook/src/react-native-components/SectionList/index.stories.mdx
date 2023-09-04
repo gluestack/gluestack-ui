@@ -1,0 +1,121 @@
+---
+title: SectionList | gluestack-ui | Installation, Usage, and API
+
+description: A performant interface for rendering sectioned lists, supporting the most handy features. It is embedded react-native `SectionList` with all utility props of `gluestack-ui/themed`.
+
+pageTitle: SectionList
+
+pageDescription: A performant interface for rendering sectioned lists, supporting the most handy features. It is embedded react-native `SectionList` with all utility props of `gluestack-ui/themed`
+
+showHeader: true
+---
+
+import { Meta } from '@storybook/addon-docs';
+import { useRef, useEffect, useState } from 'react';
+
+<Meta title="React Native Components/SectionList" />
+
+import { data, Center, Heading, Text, SectionList } from './SectionList';
+import { transformedCode } from '../../../utils';
+import { AppProvider, CodePreview } from '@gluestack/design-system';
+import Wrapper from '../../components/Wrapper';
+
+## Themed
+
+Following is the default implementation of the **SectionList** component without any additional customization. This serves as a starting point for users who are new to this library and want to learn about the basic functionality and appearance of the component.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+  <Center h="$80" w="100%">
+      <SectionList
+        minWidth={300}
+        mb="$4"
+        sections={data}
+        keyExtractor={(item, index) => item + index}
+        renderItem={({ item }) => (
+          <Center py="$4" bg={item}>
+            <Text color="$black">
+              {typeof item === 'string' ? item.slice(-3) : ''}
+            </Text>
+          </Center>
+        )}
+        renderSectionHeader={({ section: { title } }) => (
+          <Center>
+            <Heading fontSize="$xl" mt="$8" pb="$4">
+              {title}
+            </Heading>
+          </Center>
+        )}
+      />
+    </Center>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        data,
+        Center,
+        Heading,
+        Text,
+        SectionList,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+<br />
+
+> Note: You can refer [here](https://github.com/gluestack/gluestack-ui/tree/main/packages/themed/src/components/SectionList/styled-components) to learn about default styling of SectionList component
+
+### Import
+
+To use the component in your project, run the command below into your import statement. This will import the component from your components folder.
+
+```bash
+import { SectionList } from '@gluestack-ui/themed';
+```
+
+### Anatomy
+
+The structure provided below can help you identify and understand a SectionList component's various parts.
+
+```jsx
+export default () => <SectionList />;
+```
+
+### API Reference
+
+The following section contains a comprehensive list of the component's references, including descriptions, properties, types, and default behavior. This information is readily available for you to access, helping you effectively utilize the component library in your projects.
+
+### SectionList
+
+It inherits all the properties of React Native's [SectionList](https://reactnative.dev/docs/SectionList) component.
+
+## Unstyled
+
+We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
+
+### Customizing the SectionList
+
+For customizing the SectionList, you have to map styled view to SectionList. You can refer [style.gluestack.io](https://style.gluestack.io/) for more information on how to use styled components.
+
+#### Usage
+
+Default styling of the component can be found in the `components/SectionList` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/tree/main/packages/themed/src/components/SectionList/styled-components) of the styled `SectionList` component.
+
+```jsx
+// import the styles
+import { Root } from '../components/core/SectionList/styled-components';
+
+// mapping the SectionList to root component
+const SectionList = Root;
+
+// using the SectionList component
+export default () => <SectionList />;
+```
