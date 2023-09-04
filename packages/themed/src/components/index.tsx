@@ -18,6 +18,7 @@ export * from './FormControl';
 export * from './Input';
 export * from './Image';
 export * from './Link';
+export * from './LinearGradient';
 export * from './Menu';
 export * from './Modal';
 export * from './Popover';
