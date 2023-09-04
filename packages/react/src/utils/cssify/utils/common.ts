@@ -108,9 +108,8 @@ const createCssRule = (
   const dataMediaSelector = `[data-${dataType}~="${stringHash}"]`;
   const stateRulePrefix = hasState ? '.gs' : '';
   const inlineRulePrefix = prefixClassName ? `.${prefixClassName}` : '';
-  const colorModeRulePrefix = prefixColorMode
-    ? `.${prefixColorMode}${colorMode}`
-    : '';
+  const colorModeRulePrefix =
+    prefixColorMode && colorMode ? `.${prefixColorMode}${colorMode}` : '';
   const mediaQueryPrefix = `.gs`;
 
   const inlineAndStatePrefix = `${inlineRulePrefix}${stateRulePrefix}`;
