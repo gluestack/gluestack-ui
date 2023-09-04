@@ -396,61 +396,61 @@ export function renamePseudoClasses(obj: any) {
   return obj;
 }
 
-// function convertResponsiveToPseudoClasses(obj: any, config: any) {
-//   let newObj = {};
-//   for (const key in obj) {
-//     const propName = key;
-//     const propValue = obj[key];
+function convertResponsiveToPseudoClasses(obj: any, config: any) {
+  let newObj = {};
+  for (const key in obj) {
+    const propName = key;
+    const propValue = obj[key];
 
-//     if (Array.isArray(propValue)) {
-//       const breakPoints = config.tokens.breakpoints;
-//       const breakPointsKeys = Object.keys(breakPoints);
-//       propValue.forEach((value, index) => {
-//         newObj[`@${breakPointsKeys[index]}`] = { [propName]: value };
-//       });
-//     } else if (typeof propValue === 'object' && !propName.startsWith('_')) {
-//       const breakPoints = config.tokens.breakpoints;
-//       const breakPointsKeys = Object.keys(breakPoints);
-//       Object.keys(propValue).forEach((value) => {
-//         newObj[`@${value}`] = { [propName]: propValue[value] };
-//       });
-//     } else if (typeof propValue === 'object') {
-//       newObj[key] = convertResponsiveToPseudoClasses(propValue, config);
-//     } else {
-//       newObj[key] = propValue;
-//     }
-//   }
-//   return newObj;
-// }
-// export function convertToSXForStateColorModeMediaQuery(
-//   inputObj: any,
-//   _config: any
-// ) {
-//   let newObj: any = {
-//     // ...obj,
-//     sx: {},
-//   };
+    if (Array.isArray(propValue)) {
+      const breakPoints = config.tokens.breakpoints;
+      const breakPointsKeys = Object.keys(breakPoints);
+      propValue.forEach((value, index) => {
+        newObj[`@${breakPointsKeys[index]}`] = { [propName]: value };
+      });
+    } else if (typeof propValue === 'object' && !propName.startsWith('_')) {
+      const breakPoints = config.tokens.breakpoints;
+      const breakPointsKeys = Object.keys(breakPoints);
+      Object.keys(propValue).forEach((value) => {
+        newObj[`@${value}`] = { [propName]: propValue[value] };
+      });
+    } else if (typeof propValue === 'object') {
+      newObj[key] = convertResponsiveToPseudoClasses(propValue, config);
+    } else {
+      newObj[key] = propValue;
+    }
+  }
+  return newObj;
+}
+export function convertToSXForStateColorModeMediaQuery(
+  inputObj: any,
+  _config: any
+) {
+  let newObj: any = {
+    // ...obj,
+    sx: {},
+  };
 
-//   const obj = convertResponsiveToPseudoClasses(inputObj, _config);
+  const obj = convertResponsiveToPseudoClasses(inputObj, _config);
 
-//   const newPseudoClass = renamePseudoClasses(obj);
+  const newPseudoClass = renamePseudoClasses(obj);
 
-//   for (const key in newPseudoClass) {
-//     const propName = key;
-//     const propValue = obj[key];
-//     if (
-//       propName.startsWith('_') ||
-//       propName.startsWith(':') ||
-//       propName.startsWith('@')
-//     ) {
-//       newObj.sx[propName] = propValue;
-//     } else {
-//       newObj[propName] = propValue;
-//     }
-//   }
+  for (const key in newPseudoClass) {
+    const propName = key;
+    const propValue = obj[key];
+    if (
+      propName.startsWith('_') ||
+      propName.startsWith(':') ||
+      propName.startsWith('@')
+    ) {
+      newObj.sx[propName] = propValue;
+    } else {
+      newObj[propName] = propValue;
+    }
+  }
 
-//   return newObj;
-// }
+  return newObj;
+}
 
 function addDollarSign(propertyName: any, propValue: any, config: any) {
   if (CSSPropertiesMap.hasOwnProperty(propertyName)) {
