@@ -11,6 +11,7 @@ import {
   Icon,
   Heading,
   Tooltip,
+  TooltipContent,
   Button,
   Center,
 } from '@gluestack-ui/themed';
@@ -69,6 +70,7 @@ export {
   Icon,
   Heading,
   Tooltip,
+  TooltipContent,
   Button,
   Center,
 };
