@@ -3,6 +3,17 @@ title: Themes | gluestack-style
 description: gluestack-style allows you to easily create themes for your app with different values for a particular token for more flexibility and reusability of tokens.
 ---
 
+import { styled, StyledProvider, Theme } from '@gluestack-style/react';
+import { Pressable, Text as RNText, View } from 'react-native';
+import {
+  Button,
+  AppProvider,
+  CodePreview,
+  Text,
+} from '@gluestack/design-system';
+import { config } from '@/docs-components/gluestack-style/configuration/Themes/config';
+import { useState } from 'react';
+
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 <Meta title="configuration/Themes" />
@@ -36,6 +47,7 @@ import { useState } from 'react';
         Provider: StyledProvider,
         config: config,
         useState,
+        Theme,
       },
       code: `
         function App() {
