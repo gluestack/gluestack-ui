@@ -1,0 +1,78 @@
+---
+title: StatusBar | gluestack-ui | Installation, Usage, and API
+
+description: A performant interface for rendering basic, flat lists, supporting the most handy features. It is embedded react-native `StatusBar` with all utility props of `gluestack-ui/themed`.
+
+pageTitle: StatusBar
+
+pageDescription: A performant interface for rendering basic, flat lists, supporting the most handy features. It is embedded react-native `StatusBar` with all utility props of `gluestack-ui/themed`
+
+showHeader: true
+---
+
+import { Meta } from '@storybook/addon-docs';
+import { useRef, useEffect, useState } from 'react';
+
+<Meta title="React Native Components/StatusBar" />
+
+## Themed
+
+Following is the default implementation of the **StatusBar** component without any additional customization. This serves as a starting point for users who are new to this library and want to learn about the basic functionality and appearance of the component.
+
+> Note: StatusBar component is an iOS/Android only component, please try the example on the respective devices.
+
+<iframe
+  src="https://snack.expo.dev/embedded/@gluestack/statusbar-example-gluestack-ui?iframeId=ejpussm57k&preview=true&platform=web&theme=light"
+  style={{ width: '70vw', height: '60vh', border: '0px' }}
+/>
+
+<br />
+
+> Note: You can refer [here](https://github.com/gluestack/gluestack-ui/tree/main/packages/themed/src/components/StatusBar/styled-components) to learn about default styling of StatusBar component
+
+### Import
+
+To use the component in your project, run the command below into your import statement. This will import the component from your components folder.
+
+```bash
+import { StatusBar } from '@gluestack-ui/themed';
+```
+
+### Anatomy
+
+The structure provided below can help you identify and understand a StatusBar component's various parts.
+
+```jsx
+export default () => <StatusBar />;
+```
+
+### API Reference
+
+The following section contains a comprehensive list of the component's references, including descriptions, properties, types, and default behavior. This information is readily available for you to access, helping you effectively utilize the component library in your projects.
+
+### StatusBar
+
+It inherits all the properties of React Native's [StatusBar](https://reactnative.dev/docs/StatusBar) component.
+
+## Unstyled
+
+We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
+
+### Customizing the StatusBar
+
+For customizing the StatusBar, you have to map styled view to StatusBar. You can refer [style.gluestack.io](https://style.gluestack.io/) for more information on how to use styled components.
+
+#### Usage
+
+Default styling of the component can be found in the `components/StatusBar` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/tree/main/packages/themed/src/components/StatusBar/styled-components) of the styled `StatusBar` component.
+
+```jsx
+// import the styles
+import { Root } from '../components/core/StatusBar/styled-components';
+
+// mapping the StatusBar to root component
+const StatusBar = Root;
+
+// using the StatusBar component
+export default () => <StatusBar />;
+```
