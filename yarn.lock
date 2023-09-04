@@ -2493,7 +2493,15 @@
     inline-style-prefixer "^6.0.1"
     normalize-css-color "^1.0.2"
 
-"@gluestack-ui/actionsheet@^0.2.16", "@gluestack-ui/actionsheet@^0.2.7":
+"@gluestack-style/react@^0.2.11", "@gluestack-style/react@^0.2.11-alpha.0", "@gluestack-style/react@^0.2.9":
+  version "0.2.21"
+  resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-0.2.21.tgz#542161305f7ac1396545c28f94c034906c098378"
+  integrity sha512-Y936+/qx4FUd7QPK1fdQwfGWheTOanhdXEXbFeIkkdHq1oHuabJJq+pwHalfdnJ/mR0gi7PdYTJ3uNmsE26y/g==
+  dependencies:
+    inline-style-prefixer "^6.0.1"
+    normalize-css-color "^1.0.2"
+
+"@gluestack-ui/actionsheet@^0.2.16", "@gluestack-ui/actionsheet@^0.2.7", "@gluestack-ui/actionsheet@latest":
   version "0.2.16"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/actionsheet/-/actionsheet-0.2.16.tgz#052a733966c517450a3cd6f832932ccf77924867"
   integrity sha512-BogHlHAO8PClTUeZDzizI5sb900xFNUZKNDI4KMyi4xo4/etWJRFAeM7W+OZL5bCcuXHrBHQa2fQNVBKdudqGw==

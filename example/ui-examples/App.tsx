@@ -3,7 +3,7 @@ import React from 'react';
 import {
   SafeAreaView,
   StyleSheet,
-  View,
+  // View,
   //  View
 } from 'react-native';
 import { GluestackUIProvider } from './gluestack-ui-components';
@@ -18,14 +18,14 @@ import {
   Inter_900Black,
 } from '@expo-google-fonts/inter';
 import './styles';
-import { styled } from '@gluestack-style/react';
+// import { styled } from '@gluestack-style/react';
 import HomestayPage from './kitchensink-components/HomestayPage';
 
-const Box = styled(View, {
-  bg: '$primary100',
-  h: '$10',
-  w: '$10',
-});
+// const Box = styled(View, {
+//   bg: '$primary100',
+//   h: '$10',
+//   w: '$10',
+// });
 
 type ThemeContextType = {
   colorMode?: 'dark' | 'light';
