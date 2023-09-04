@@ -24,7 +24,7 @@ import {
 } from './utils';
 import { convertUtilityPropsToSX } from './core/convert-utility-to-sx';
 import { useStyled } from './StyledProvider';
-import { useTheme } from './Theme';
+// import { useTheme } from './Theme';
 import { propertyTokenMap } from './propertyTokenMap';
 import { Platform, StyleSheet } from 'react-native';
 import { INTERNAL_updateCSSStyleInOrderedResolved } from './updateCSSStyleInOrderedResolved';
@@ -707,9 +707,15 @@ export function getVariantProps(
 
   if (restProps) {
     variantTypes?.forEach((variant) => {
-      if (props.hasOwnProperty(variant)) {
+      if (
+        props.hasOwnProperty(variant) &&
+        theme.variants[variant]?.[props[variant]]
+      ) {
         variantProps[variant] = props[variant];
-        if (shouldDeleteVariants) delete restProps[variant];
+
+        if (shouldDeleteVariants) {
+          delete restProps[variant];
+        }
       }
     });
   }
@@ -919,34 +925,34 @@ export function verboseStyled<P, Variants, ComCon>(
       componentExtendedConfig
     );
 
-    let componentTheme: any =
-      // @ts-ignore
-      sxStyledResolved.baseStyle.styledValueResolvedWithMeta;
+    // let componentTheme: any =
+    //   // @ts-ignore
+    //   sxStyledResolved.baseStyle.styledValueResolvedWithMeta;
 
     // sxStyledResolved.baseStyle.styledValueResolvedWithMeta =
-    addThemeConditionInMeta(componentTheme, CONFIG);
+    // addThemeConditionInMeta(componentTheme, CONFIG);
 
-    const colorModeComponentThemes: any = sxStyledResolved.baseStyle?.colorMode;
-    if (colorModeComponentThemes) {
-      Object.keys(colorModeComponentThemes).forEach(
-        (colorModeComponentTheme: any) => {
-          if (
-            !colorModeComponentThemes[colorModeComponentTheme]
-              .styledValueResolvedWithMeta?.meta.themeCondition
-          ) {
-            colorModeComponentThemes[
-              colorModeComponentTheme
-            ].styledValueResolvedWithMeta.meta.themeCondition = {};
-          }
+    // const colorModeComponentThemes: any = sxStyledResolved.baseStyle?.colorMode;
+    // if (colorModeComponentThemes) {
+    //   Object.keys(colorModeComponentThemes).forEach(
+    //     (colorModeComponentTheme: any) => {
+    //       if (
+    //         !colorModeComponentThemes[colorModeComponentTheme]
+    //           .styledValueResolvedWithMeta?.meta.themeCondition
+    //       ) {
+    //         colorModeComponentThemes[
+    //           colorModeComponentTheme
+    //         ].styledValueResolvedWithMeta.meta.themeCondition = {};
+    //       }
 
-          let componentTheme: any =
-            colorModeComponentThemes[colorModeComponentTheme]
-              .styledValueResolvedWithMeta;
+    //       let componentTheme: any =
+    //         colorModeComponentThemes[colorModeComponentTheme]
+    //           .styledValueResolvedWithMeta;
 
-          addThemeConditionInMeta(componentTheme, CONFIG);
-        }
-      );
-    }
+    //       addThemeConditionInMeta(componentTheme, CONFIG);
+    //     }
+    //   );
+    // }
 
     const sxHash = stableHash(sx);
 
@@ -1020,7 +1026,7 @@ export function verboseStyled<P, Variants, ComCon>(
     //200ms
     // let time = Date.now();
     const styledContext = useStyled();
-    const { theme: activeTheme } = useTheme();
+    // const { theme: activeTheme } = useTheme();
 
     const ancestorStyleContext = useContext(AncestorStyleContext);
     let incomingComponentProps = {};
@@ -1119,7 +1125,8 @@ export function verboseStyled<P, Variants, ComCon>(
 
     Object.assign(themeDefaultProps, incomingComponentProps);
 
-    const { variantProps } = getVariantProps(themeDefaultProps, theme);
+    const { variantProps, restProps: componentPropsWithoutVariants } =
+      getVariantProps(themeDefaultProps, theme);
 
     const {
       baseStyleCSSIds: applyBaseStyleCSSIds,
@@ -1143,7 +1150,7 @@ export function verboseStyled<P, Variants, ComCon>(
 
     const { sx: filteredComponentSx, rest: filteredComponentRemainingProps } =
       convertUtiltiyToSXFromProps(
-        componentProps,
+        componentPropsWithoutVariants,
         styledSystemProps,
         componentStyleConfig
       );
@@ -1619,8 +1626,8 @@ export function verboseStyled<P, Variants, ComCon>(
     const resolvedStyleProps = generateStylePropsFromCSSIds(
       resolvedInlineProps,
       styleCSSIds,
-      CONFIG,
-      activeTheme
+      CONFIG
+      // activeTheme
     );
     const AsComp: any = (as as any) || (passingProps.as as any) || undefined;
 

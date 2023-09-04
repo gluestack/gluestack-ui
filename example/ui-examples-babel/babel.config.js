@@ -11,8 +11,10 @@ module.exports = function (api) {
         {
           configPath: path.join(__dirname, './gluestack-ui.config.ts'),
           configThemePath: ['theme'],
-          filename: path.resolve(__dirname, './src/core/styled'),
-          uiLibraryPath: path.resolve(__dirname, './src/core'),
+          styled: ['@gluestack-style/react', '../../packages/react'],
+          components: ['@gluesatck-ui/themed'],
+          // filename: path.resolve(__dirname, './src/core/styled'),
+          // uiLibraryPath: path.resolve(__dirname, './src/core'),
         },
       ],
       [
