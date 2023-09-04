@@ -1,0 +1,182 @@
+---
+title: FlatList | gluestack-ui | Installation, Usage, and API
+
+description: A performant interface for rendering basic, flat lists, supporting the most handy features. It is embedded react-native `FlatList` with all utility props of `gluestack-ui/themed`.
+
+pageTitle: FlatList
+
+pageDescription: A performant interface for rendering basic, flat lists, supporting the most handy features. It is embedded react-native `FlatList` with all utility props of `gluestack-ui/themed`
+
+showHeader: true
+---
+
+import { Meta } from '@storybook/addon-docs';
+import { useRef, useEffect, useState } from 'react';
+
+<Meta title="React Native Components/FlatList" />
+
+import {
+  HStack,
+  Avatar,
+  Text,
+  VStack,
+  Box,
+  Heading,
+  AvatarImage,
+  FlatList,
+  data,
+} from './FlatList';
+import { transformedCode } from '../../../utils';
+import { AppProvider, CodePreview } from '@gluestack/design-system';
+import Wrapper from '../../components/Wrapper';
+
+## Themed
+
+Following is the default implementation of the **FlatList** component without any additional customization. This serves as a starting point for users who are new to this library and want to learn about the basic functionality and appearance of the component.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+ <Box py="$10">
+    <Heading size="xl" p="$4" pb="$3">Inbox</Heading>
+  <FlatList
+        data={data}
+         renderItem={({ item }) => (
+          <Box
+            borderBottomWidth="$1"
+            borderColor="$trueGray800"
+            sx={{
+              '_dark': {
+                borderColor: '$trueGray100',
+              },
+              '@base': {
+                pl: 0,
+                pr: 0,
+              },
+              '@sm': {
+                pl: '$4',
+                pr: '$5',
+              },
+            }}
+            py="$2"
+          >
+            <HStack space="md" justifyContent="space-between">
+              <Avatar size="md">
+                <AvatarImage source={{ uri: item.avatarUrl }} />
+              </Avatar>
+              <VStack>
+                <Text
+                  color="$coolGray800"
+                  fontWeight="$bold"
+                  sx={{
+                    _dark: {
+                      color: '$warmGray100',
+                    },
+                  }}
+                >
+                  {item.fullName}
+                </Text>
+                <Text
+                  color="$coolGray600"
+                  sx={{
+                    _dark: {
+                      color: '$warmGray200',
+                    },
+                  }}
+                >
+                  {item.recentText}
+                </Text>
+              </VStack>
+              <Text
+                fontSize="$xs"
+                color="$coolGray800"
+                alignSelf="flex-start"
+                sx={{
+                  _dark: {
+                    color: '$warmGray100',
+                  },
+                }}
+              >
+                {item.timeStamp}
+              </Text>
+            </HStack>
+          </Box>
+        )}
+        keyExtractor={(item) => item.id}
+      />
+    </Box>
+`,
+transformCode: (code) => {
+return transformedCode(code);
+},
+scope: {
+Wrapper,
+HStack,
+Avatar,
+Text,
+VStack,
+Box,
+Heading,
+AvatarImage,
+FlatList,
+data
+},
+argsType: {},
+}}
+/>
+
+</AppProvider>
+
+<br />
+
+> Note: You can refer [here](https://github.com/gluestack/gluestack-ui/tree/main/packages/themed/src/components/FlatList/styled-components) to learn about default styling of FlatList component
+
+### Import
+
+To use the component in your project, run the command below into your import statement. This will import the component from your components folder.
+
+```bash
+import { FlatList } from '@gluestack-ui/themed';
+```
+
+### Anatomy
+
+The structure provided below can help you identify and understand a FlatList component's various parts.
+
+```jsx
+export default () => <FlatList />;
+```
+
+### API Reference
+
+The following section contains a comprehensive list of the component's references, including descriptions, properties, types, and default behavior. This information is readily available for you to access, helping you effectively utilize the component library in your projects.
+
+#### Box
+
+It inherits all the properties of React Native's [FlatList](https://reactnative.dev/docs/FlatList) component.
+
+## Unstyled
+
+We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
+
+### Customizing the FlatList
+
+For customizing the FlatList, you have to map styled view to FlatList. You can refer [style.gluestack.io](https://style.gluestack.io/) for more information on how to use styled components.
+
+#### Usage
+
+Default styling of the component can be found in the `components/FlatList` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/tree/main/packages/themed/src/components/FlatList/styled-components) of the styled `FlatList` component.
+
+```jsx
+// import the styles
+import { Root } from '../components/core/FlatList/styled-components';
+
+// mapping the FlatList to root component
+const FlatList = Root;
+
+// using the FlatList component
+export default () => <FlatList />;
+```
