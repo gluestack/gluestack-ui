@@ -707,9 +707,15 @@ export function getVariantProps(
 
   if (restProps) {
     variantTypes?.forEach((variant) => {
-      if (props.hasOwnProperty(variant)) {
+      if (
+        props.hasOwnProperty(variant) &&
+        theme.variants[variant]?.[props[variant]]
+      ) {
         variantProps[variant] = props[variant];
-        if (shouldDeleteVariants) delete restProps[variant];
+
+        if (shouldDeleteVariants) {
+          delete restProps[variant];
+        }
       }
     });
   }
@@ -1119,7 +1125,8 @@ export function verboseStyled<P, Variants, ComCon>(
 
     Object.assign(themeDefaultProps, incomingComponentProps);
 
-    const { variantProps } = getVariantProps(themeDefaultProps, theme);
+    const { variantProps, restProps: componentPropsWithoutVariants } =
+      getVariantProps(themeDefaultProps, theme);
 
     const {
       baseStyleCSSIds: applyBaseStyleCSSIds,
@@ -1143,7 +1150,7 @@ export function verboseStyled<P, Variants, ComCon>(
 
     const { sx: filteredComponentSx, rest: filteredComponentRemainingProps } =
       convertUtiltiyToSXFromProps(
-        componentProps,
+        componentPropsWithoutVariants,
         styledSystemProps,
         componentStyleConfig
       );
