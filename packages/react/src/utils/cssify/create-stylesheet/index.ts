@@ -17,12 +17,7 @@ const createStyleSheet = (
   Object.keys(stylesObject).map((key) => {
     if (!stylesObject?.[key]) return;
 
-    let {
-      condition,
-      colorMode,
-      style,
-      //  themeCondition
-    } = stylesObject[key];
+    let { condition, colorMode, style, themeCondition } = stylesObject[key];
 
     const mediaQuery = createQuery(condition);
 
@@ -32,13 +27,13 @@ const createStyleSheet = (
 
     const css = createDeclarationBlock(style);
 
-    // const themeCssObj = {} as any;
-    // if (themeCondition) {
-    //   Object.keys(themeCondition).forEach((themeName) => {
-    //     const themeConditionValue = themeCondition[themeName];
-    //     themeCssObj[themeName] = createDeclarationBlock(themeConditionValue);
-    //   });
-    // }
+    const themeCssObj = {} as any;
+    if (themeCondition) {
+      Object.keys(themeCondition).forEach((themeName) => {
+        const themeConditionValue = themeCondition[themeName];
+        themeCssObj[themeName] = createDeclarationBlock(themeConditionValue);
+      });
+    }
     // console.log(css, style, 'css', mediaQuery, 'mediaQuery', colorSchemeQuery);
 
     // const stringHash = `cssinjected-${hash(`${key}${css}`)}`;
@@ -52,12 +47,10 @@ const createStyleSheet = (
       'style',
       prefixClassName,
       prefixColorMode,
-      hasState
-      // themeCondition,
-      // themeCssObj
+      hasState,
+      themeCondition,
+      themeCssObj
     );
-
-    // console.log('hello css object', colorSchemeQuery, css, rule);
 
     delete cleanStyles[key];
 
