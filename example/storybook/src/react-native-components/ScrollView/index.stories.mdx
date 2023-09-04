@@ -4,9 +4,177 @@ description: ScrollView
 pageTitle: ScrollView
 pageDescription: ScrollView
 showHeader: true
-tag: coming-soon
 ---
 
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
+import { transformedCode } from '../../../utils';
+import {
+  AppProvider,
+  CodePreview,
+  Text,
+  Table,
+  TableContainer,
+  InlineCode,
+} from '@gluestack/design-system';
+import Wrapper from '../../components/Wrapper';
+import { ScrollView } from './ScrollView';
+import {
+  VStack,
+  Center,
+  Heading,
+  GluestackUIProvider,
+  config,
+} from '@gluestack-ui/themed';
 
 <Meta title="React Native Components/ScrollView" />
+
+Provides a scrolling container that can host multiple components and views.
+
+### Import
+
+To use the component in your project, run the command below into your import statement. This will import the component from your components folder.
+
+```bash
+import { ScrollView } from '@gluestack-ui/themed';
+```
+
+### Anatomy
+
+The structure provided below can help you identify and understand a badge component's various parts.
+
+```jsx
+export default () => <ScrollView></ScrollView>;
+```
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+      <>
+        <ScrollView h="$80" w="$80">
+        <Center mt="$3" mb="$4">
+          <Heading fontSize="xl">Primary</Heading>
+        </Center>
+        <VStack flex={1}>
+          {Object.keys(config.theme.tokens.colors).map((key, index) => {
+            if (
+              key.includes('primary') &&
+              !(
+                key.includes('600') ||
+                key.includes('700') ||
+                key.includes('800') ||
+                key.includes('900') ||
+                key.includes('950')
+              )
+            )
+              return (
+                <Center py="$4" bg={config.theme.tokens.colors[key]}>
+                  {key}
+                </Center>
+              );
+          })}
+        </VStack>
+        <Center mt="$10" mb="$4">
+          <Heading fontSize="$xl">Yellow</Heading>
+        </Center>
+        <VStack flex="1">
+          {Object.keys(config.theme.tokens.colors).map((key, index) => {
+            if (
+              key.includes('yellow') &&
+              !(
+                key.includes('600') ||
+                key.includes('700') ||
+                key.includes('800') ||
+                key.includes('900') ||
+                key.includes('950')
+              )
+            )
+              return (
+                <Center py="$4" bg={config.theme.tokens.colors[key]}>
+                  {key}
+                </Center>
+              );
+          })}
+        </VStack>
+        <Center mt="$10" mb="$4">
+          <Heading fontSize="$xl">Violet</Heading>
+        </Center>
+        <VStack flex="1">
+          {Object.keys(config.theme.tokens.colors).map((key, index) => {
+            if (
+              key.includes('violet') &&
+              !(
+                key.includes('600') ||
+                key.includes('700') ||
+                key.includes('800') ||
+                key.includes('900') ||
+                key.includes('950')
+              )
+            )
+              return (
+                <Center py="$4" bg={config.theme.tokens.colors[key]}>
+                  {key}
+                </Center>
+              );
+          })}
+        </VStack>
+      </ScrollView>
+</>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        ScrollView,
+        Center,
+        Heading,
+        VStack,
+        config,
+      },
+    }}
+  />
+</AppProvider>
+
+### Props
+
+ScrollView component is created using ScrollView component from react-native. It extends all the props supported by [React Native ScrollView](https://reactnative.dev/docs/scrollview#props) and all the supported [utility props](https://ui.gluestack.io/docs/styling/utility-and-sx-props) and the props mentioned below.
+
+#### ScrollView
+
+<AppProvider>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Name</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Value</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Default</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>children</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>any</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</AppProvider>
