@@ -1,12 +1,13 @@
 import React from 'react';
 import {
-  Button,
+  Button as DefaultButton,
   Box,
-  ButtonText,
+  ButtonText as DefaultButtonText,
   Center,
   StyledProvider,
   config as defaultConfig,
   createConfig,
+  styled,
 } from '@gluestack-ui/themed';
 import { createProvider } from '@gluestack-ui/provider';
 const Provider = createProvider({ StyledProvider }) as any;
@@ -88,5 +89,20 @@ const Wrapper = ({ children }: any) => {
     </Provider>
   );
 };
+
+const Button = styled(
+  DefaultButton,
+  {},
+  {
+    componentName: 'Button',
+  }
+);
+const ButtonText = styled(
+  DefaultButtonText,
+  {},
+  {
+    componentName: 'ButtonText',
+  }
+);
 
 export { Button, ButtonText, Wrapper };
