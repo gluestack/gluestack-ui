@@ -3,10 +3,6 @@ import { styled } from '../../styled';
 
 export default styled(
   Text,
-  {
-    fontWeight: '$medium',
-    fontFamily: '$body',
-    textTransform: 'uppercase',
-  },
+  { fontSize: '$xs', fontWeight: '$medium' },
   { ancestorStyle: ['_text'] }
 );

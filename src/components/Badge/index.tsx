@@ -1,18 +1,48 @@
 import { Root, Icon, Text } from './styled-components';
+// import { usePropResolution } from '../../hooks/usePropResolution';
+import React, { forwardRef } from 'react';
 
-const Badge: any = Root;
-Badge.Icon = Icon;
-Badge.Text = Text;
+const AccessibleBadge: any = Root;
+AccessibleBadge.Icon = Icon;
+AccessibleBadge.Text = Text;
 
 type RootProps = React.ComponentProps<typeof Root>;
 type IconProps = React.ComponentProps<typeof Icon>;
-type TextProps = React.ComponentProps<typeof Text>;
 
-type IBadgeComponentType = ((props: RootProps) => JSX.Element) & {
-  Icon: (props: IconProps) => JSX.Element;
-  Text: (props: TextProps) => JSX.Element;
-};
-
-const BadgeMain = Badge as IBadgeComponentType;
-
-export { BadgeMain as Badge, Icon as BadgeIcon, Text as BadgeText };
+export const Badge = forwardRef(
+  (
+    {
+      children,
+      leftIcon,
+      rightIcon,
+      startIcon,
+      endIcon,
+      ...props
+    }: RootProps & {
+      leftIcon?: IconProps;
+      startIcon?: IconProps;
+      rightIcon?: IconProps;
+      endIcon?: IconProps;
+    },
+    ref?: any
+  ) => {
+    // const resolvedPropForGluestack = usePropResolution(props);
+    return (
+      <AccessibleBadge {...props} ref={ref}>
+        {leftIcon ? (
+          <AccessibleBadge.Icon as={leftIcon} />
+        ) : (
+          startIcon && <Icon as={startIcon} />
+        )}
+        {typeof children === 'string' && (
+          <AccessibleBadge.Text>{children}</AccessibleBadge.Text>
+        )}
+        {rightIcon ? (
+          <AccessibleBadge.Icon as={rightIcon} />
+        ) : (
+          endIcon && <Icon as={endIcon} />
+        )}
+      </AccessibleBadge>
+    );
+  }
+);
