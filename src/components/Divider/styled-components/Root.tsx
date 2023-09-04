@@ -4,18 +4,18 @@ import { styled } from '../../styled';
 export default styled(
   View,
   {
-    bg: '$backgroundLight200',
+    bg: '$muted.300',
     _dark: {
-      bg: '$backgroundLight800',
+      bg: '$muted.600',
     },
     variants: {
       orientation: {
         vertical: {
-          width: '$px',
+          width: 1,
           height: '100%',
         },
         horizontal: {
-          height: '$px',
+          height: 1,
           width: '100%',
         },
       },
