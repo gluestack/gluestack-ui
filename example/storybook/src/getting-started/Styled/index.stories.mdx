@@ -32,7 +32,7 @@ const StyledButton = styled(
     },
   },
   componentConfig,
-  extenedBaseConfig
+  extendedBaseConfig
 );
 ```
 
@@ -47,7 +47,7 @@ To configure **`styled`**, create a **`gluestack-style.config.ts`** file (**`.j
 - Component
 - componentStyleConfig
 - componentConfig
-- extenedBaseConfig
+- extendedBaseConfig
 
 ### componentConfig
 
@@ -79,11 +79,11 @@ To configure **`styled`**, create a **`gluestack-style.config.ts`** file (**`.j
    }
    ```
 
-   Note: For this to work you also need to add the prop in `propertyTokenMap`, that can be defined in the next parameter of styled function i.e. **extenedBaseConfig**.
+   Note: For this to work you also need to add the prop in `propertyTokenMap`, that can be defined in the next parameter of styled function i.e. **extendedBaseConfig**.
 
-### extenedBaseConfig
+### extendedBaseConfig
 
-**`extenedBaseConfig`** is a object that lets you extend the base config for the component. This is useful when you want to define some aliases, tokens, propertyTokenMap,
+**`extendedBaseConfig`** is a object that lets you extend the base config for the component. This is useful when you want to define some aliases, tokens, propertyTokenMap,
 and propertyResolver that is specific to the component.
 
 ```tsx
