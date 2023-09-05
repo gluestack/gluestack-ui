@@ -32,7 +32,7 @@ export const Badge = forwardRef(
         {leftIcon ? (
           <AccessibleBadge.Icon as={leftIcon} />
         ) : (
-          startIcon && <Icon as={startIcon} />
+          startIcon && <AccessibleBadge.Icon as={startIcon} />
         )}
         {typeof children === 'string' && (
           <AccessibleBadge.Text>{children}</AccessibleBadge.Text>
@@ -40,7 +40,7 @@ export const Badge = forwardRef(
         {rightIcon ? (
           <AccessibleBadge.Icon as={rightIcon} />
         ) : (
-          endIcon && <Icon as={endIcon} />
+          endIcon && <AccessibleBadge.Icon as={endIcon} />
         )}
       </AccessibleBadge>
     );
