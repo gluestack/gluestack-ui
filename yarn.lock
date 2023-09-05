@@ -2691,7 +2691,23 @@
     "@babel/traverse" "^7.20.5"
     lodash.merge "^4.6.2"
 
-"@gluestack-style/react@0.2.11", "@gluestack-style/react@0.2.20", "@gluestack-style/react@^0.2.20", "@gluestack-style/react@^0.2.7", "@gluestack-style/react@^0.2.9":
+"@gluestack-style/react@0.2.11":
+  version "0.2.11"
+  resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-0.2.11.tgz#b02419c44129931320f0bf8e20077ee9caa42a6d"
+  integrity sha512-pVzBkvN9Xwr5ik3Vh5jV6w4kzOfDe3Y+LHQZRVJFO+25PSvkArcT61Y14jOguCrh+6ka/jaX6LfQoS2Xn9TlcQ==
+  dependencies:
+    inline-style-prefixer "^6.0.1"
+    normalize-css-color "^1.0.2"
+
+"@gluestack-style/react@^0.2.26":
+  version "0.2.26"
+  resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-0.2.26.tgz#6dea340a1e98c9613ba775826ee2a9b0de456ec6"
+  integrity sha512-/TnlaNy+kItQWveo4OGr2RRwHwCH/aRFP8NZKJiUpnzqu7zCP2t4PrZJIY6zD429wzbA7QQYINuZVquaIUbz1g==
+  dependencies:
+    inline-style-prefixer "^6.0.1"
+    normalize-css-color "^1.0.2"
+
+"@gluestack-style/react@^0.2.7", "@gluestack-style/react@^0.2.9":
   version "0.2.20"
   resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-0.2.20.tgz#1ef12be3b0d3fa3db773c90d1ed5b0575661a232"
   integrity sha512-TiQI2FQ8jGVi7VGFAE+7nXb8kBYaBfCambvpdXw5nh+osKf2dt51hJKCdu4/WnAgAuhtUPp9my0pHCFJYpLPQg==
@@ -2877,6 +2893,13 @@
   integrity sha512-Si/aAG/a4B8pALWAD8rmbFLutADaXc69X7XJcNLtqElz+L/Skj3aWREVuzUwNnHQf0SyEuQ1nB5sYyniR5DstA==
   dependencies:
     "@gluestack-ui/utils" "^0.1.6"
+
+"@gluestack-ui/hstack@^0.1.9":
+  version "0.1.9"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/hstack/-/hstack-0.1.9.tgz#224fe60caf66c7cd159a5094c37d82145336cc54"
+  integrity sha512-VHpqjtXtMtSVD+OPSFYA49ea71qn/oxaM3DZsOef4lkF/YAbXzp8F58G4UxU0FDqnXFoLTKcsC+FsDSkJGYqvA==
+  dependencies:
+    "@gluestack-ui/utils" "^0.1.5"
 
 "@gluestack-ui/hstack@latest":
   version "0.1.6"
@@ -3378,6 +3401,13 @@
   dependencies:
     "@react-native-aria/focus" "^0.2.7"
     react-native-svg "13.4.0"
+
+"@gluestack-ui/vstack@^0.1.10":
+  version "0.1.10"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/vstack/-/vstack-0.1.10.tgz#c27c6ea7e3ab29be44ee7ff6380b87b886814879"
+  integrity sha512-DMDyFXT6uLIwLwofDmjawsn1eTUKS47Xue4wdMq5StzUFMEgYByIuKyq+q6Kc5NEYVozwNoYi9aazbpd6n1Kng==
+  dependencies:
+    "@gluestack-ui/utils" "^0.1.5"
 
 "@gluestack-ui/vstack@^0.1.6":
   version "0.1.9"

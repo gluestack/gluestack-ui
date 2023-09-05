@@ -1,4 +1,3 @@
-import type { ComponentStory } from '@storybook/react-native';
 import { Box, Center } from '@gluestack-ui/themed';
 import React from 'react';
 
@@ -23,9 +22,7 @@ import {
 
 import { EditIcon, ArrowLeftIcon } from 'lucide-react-native';
 
-type MyButtonStory = ComponentStory<typeof Button>;
-
-const ButtonStory: MyButtonStory = ({ text = 'Button', ...props }: any) => {
+const ButtonBasic = ({ text = 'Button', ...props }: any) => {
   return (
     <Button {...props}>
       <ButtonText>{text}</ButtonText>
@@ -33,7 +30,7 @@ const ButtonStory: MyButtonStory = ({ text = 'Button', ...props }: any) => {
   );
 };
 
-export default ButtonStory;
+export default ButtonBasic;
 
 export {
   Button,

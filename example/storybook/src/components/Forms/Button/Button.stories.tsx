@@ -1,13 +1,11 @@
-import React from 'react';
 import type { ComponentMeta } from '@storybook/react-native';
 import Button from './Button';
-import DocsContainer from '@storybook/addon-docs';
 import ButtonIsLoadingExample from './ButtonLoading';
 import ButtonSizesExample from './ButtonSizes';
 import ButtonStylesExample from './ButtonStyles';
 import ButtonWithIconsTemp from './ButtonWithIcon';
 
-const ButtonMeta: ComponentMeta<any> = {
+const ButtonMeta: ComponentMeta<typeof Button> = {
   title: 'stories/FORMS/Button',
   component: Button,
   args: {
@@ -40,12 +38,6 @@ const ButtonMeta: ComponentMeta<any> = {
       table: {
         defaultValue: { summary: 'md' },
       },
-    },
-  },
-  parameters: {
-    docs: {
-      container: DocsContainer,
-      page: () => <></>,
     },
   },
 };
@@ -84,12 +76,10 @@ ButtonWithIcon.parameters = {
 
 export default ButtonMeta;
 
-export { Button };
-
-export { ButtonWithIcon };
-
-export { ButtonStyles };
-
-export { ButtonSizes };
-
-export { ButtonLoading };
+export {
+  Button,
+  ButtonIsLoadingExample,
+  ButtonSizesExample,
+  ButtonStylesExample,
+  ButtonWithIconsTemp,
+};

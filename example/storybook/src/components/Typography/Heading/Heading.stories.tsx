@@ -11,7 +11,7 @@ const HeadingMeta: ComponentMeta<typeof Heading> = {
     },
   },
   args: {
-    text: `I'm the heading`,
+    text: "I'm the heading",
     size: '2xl',
   },
 };

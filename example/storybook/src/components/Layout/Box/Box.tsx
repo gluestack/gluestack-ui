@@ -1,7 +1,7 @@
 import { Text, Box } from '@gluestack-ui/themed';
 import React from 'react';
 
-const BoxStory: any = ({
+const BoxBasic: any = ({
   bg = 'red500',
   w = '100',
   h = '100',
@@ -23,6 +23,6 @@ const BoxStory: any = ({
   );
 };
 
-export default BoxStory;
+export default BoxBasic;
 
 export { Text, Box };

@@ -1,5 +1,11 @@
 # @gluestack-ui/themed
 
+## 0.1.15
+
+### Patch Changes
+
+- gluestack style version bump
+
 ## 0.1.14
 
 ### Patch Changes

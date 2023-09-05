@@ -6,7 +6,7 @@ import React from 'react';
 
 type MyHStackStory = ComponentStory<typeof HStack>;
 
-const HStackReversedExample: MyHStackStory = ({ space, ...props }) => {
+const HStackReversed: MyHStackStory = ({ space, ...props }) => {
   return (
     <HStack space={space} mt="$5" {...props} reversed>
       <Box sx={{ w: 100, h: 100, bg: '$blue300' }} />
@@ -17,4 +17,4 @@ const HStackReversedExample: MyHStackStory = ({ space, ...props }) => {
   );
 };
 
-export default HStackReversedExample;
+export default HStackReversed;

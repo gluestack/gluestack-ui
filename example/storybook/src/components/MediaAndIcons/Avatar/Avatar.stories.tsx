@@ -3,7 +3,7 @@ import Avatar from './Avatar';
 import AvatarGroupExample from './AvatarGroup';
 import AvatarSizeExample from './AvatarSizes';
 
-const AvatarMeta: ComponentMeta<any> = {
+const AvatarMeta: ComponentMeta<typeof Avatar> = {
   title: 'stories/MEDIA AND ICONS/Avatar',
   component: Avatar,
   args: {
