@@ -4,10 +4,10 @@
 
 ### Patch Changes
 
-- - Version updated @gluestack-ui/hstack, @gluestack-ui/vstack.
+- Version updated @gluestack-ui/hstack, @gluestack-ui/vstack.
   - Support for gap property in HStack, VStack.
   - `space` typing suggestion in HStack, Vstack.
-  - Version updated `@gluestack-style/react`
+- Version updated `@gluestack-style/react`
   - Dyanmic variable resolution in colorMode sx prop.
 
 ## 0.1.15
