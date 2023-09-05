@@ -12,11 +12,11 @@ export default styled(
       orientation: {
         vertical: {
           width: '$px',
-          height: '100%',
+          height: '$full',
         },
         horizontal: {
           height: '$px',
-          width: '100%',
+          width: '$full',
         },
       },
     },

@@ -517,60 +517,70 @@ export default styled(
           px: '$3.5',
           h: '$8',
           _icon: {
-            h: '$3',
-            w: '$3',
+            props: {
+              size: '2xs',
+            },
           },
           _text: {
-            fontSize: '$xs',
-            lineHeight: '$sm',
+            props: {
+              size: 'xs',
+            },
           },
         },
         sm: {
           px: '$4',
           h: '$9',
           _icon: {
-            h: '$4',
-            w: '$4',
+            props: {
+              size: 'sm',
+            },
           },
           _text: {
-            fontSize: '$sm',
-            lineHeight: '$sm',
+            props: {
+              size: 'sm',
+            },
           },
         },
         md: {
           px: '$5',
           h: '$10',
           _icon: {
-            h: '$4.5',
-            w: '$4.5',
+            props: {
+              size: 'md',
+            },
           },
           _text: {
-            fontSize: '$md',
-            lineHeight: '$md',
+            props: {
+              size: 'md',
+            },
           },
         },
         lg: {
           px: '$6',
           h: '$11',
           _icon: {
-            h: '$4.5',
-            w: '$4.5',
+            props: {
+              size: 'md',
+            },
           },
           _text: {
-            fontSize: '$lg',
-            lineHeight: '$xl',
+            props: {
+              size: 'lg',
+            },
           },
         },
         xl: {
           px: '$7',
           h: '$12',
           _icon: {
-            h: '$5',
-            w: '$5',
+            props: {
+              size: 'lg',
+            },
           },
           _text: {
-            fontSize: '$xl',
-            lineHeight: '$xl',
+            props: {
+              size: 'xl',
+            },
           },
         },
       },

@@ -32,3 +32,5 @@ export const MenuIcon = createIcon({
     </>
   ),
 });
+
+MenuIcon.displayName = 'MenuIcon';

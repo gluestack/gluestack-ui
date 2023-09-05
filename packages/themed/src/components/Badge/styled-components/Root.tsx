@@ -123,34 +123,42 @@ export default styled(
         sm: {
           px: '$2',
           _icon: {
-            h: 12,
-            w: 12,
+            // props: {
+            //   size: '2xs',
+            // },
+            h: '$3',
+            w: '$3',
           },
           _text: {
-            fontSize: '$2xs',
-            lineHeight: '$2xs',
+            props: {
+              size: '2xs',
+            },
           },
         },
         md: {
           px: '$2',
           _icon: {
-            h: 14,
-            w: 14,
+            // props: {
+            //   size: 'xs',
+            // },
+            h: '$3.5',
+            w: '$3.5',
           },
           _text: {
-            fontSize: '$xs',
-            lineHeight: '$sm',
+            props: {
+              size: 'xs',
+            },
           },
         },
         lg: {
           px: '$2',
           _icon: {
-            h: 16,
-            w: 16,
+            // props: { size: 'sm' },
+            h: '$4',
+            w: '$4',
           },
           _text: {
-            fontSize: '$sm',
-            lineHeight: '$sm',
+            props: { size: 'sm' },
           },
         },
       },
