@@ -699,6 +699,20 @@ export const config = createConfig({
         $borderRadius: '$radii$xl',
       },
     },
+    'modern': {
+      colors: {
+        $red500: 'green',
+        // $headerColor: '$colors$blue600',
+        // $textColor: '#ffffff',
+        // $borderColor: '$colors$gray400',
+      },
+      // borderWidths: {
+      //   $borderWidth: '$space$0.5',
+      // },
+      // radii: {
+      //   $borderRadius: '$radii$sm',
+      // },
+    },
   },
   components: {
     Box: {

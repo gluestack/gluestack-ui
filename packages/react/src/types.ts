@@ -63,6 +63,11 @@ export type CreateConfig = {
   globalStyle?: CreateGenericConfig['globalStyle'];
 };
 
+export type ThemeStyles<Tokens> = {
+  // @ts-ignore
+  [key: string]: Tokens;
+};
+
 // Generic Creator
 export type GlueStackConfig<
   IToken extends Tokens,
@@ -72,6 +77,8 @@ export type GlueStackConfig<
   tokens: IToken;
   aliases: IGlobalAliases;
   globalStyle?: GlobalStyles<IGlobalAliases, IToken, IGlobalStyle>;
+  plugins?: Array<any>;
+  themes?: ThemeStyles<Tokens>;
   components?: {
     [key: string]: {
       theme: Partial<GlobalStyles<IGlobalAliases, IToken, IGlobalStyle>>;

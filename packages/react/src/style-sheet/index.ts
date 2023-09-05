@@ -4,7 +4,7 @@ import { getCSSIdAndRuleset } from '../updateCSSStyleInOrderedResolved.web';
 import {
   deepMerge,
   resolveTokensFromConfig,
-  // addThemeConditionInMeta,
+  addThemeConditionInMeta,
 } from '../utils';
 import { inject } from '../utils/css-injector';
 export type DeclarationType = 'boot' | 'forwarded';
@@ -130,7 +130,7 @@ export class StyleInjector {
       theme,
       componentExtendedConfig
     );
-    // addThemeConditionInMeta(componentTheme, CONFIG);
+    addThemeConditionInMeta(componentTheme, CONFIG);
 
     // delete componentTheme.meta.cssRuleset;
 
