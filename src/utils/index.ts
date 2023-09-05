@@ -338,6 +338,7 @@ export const platformSpecificSpaceUnits = (theme: any, platform: string) => {
   const isWeb = platform === 'web';
   scales.forEach((key) => {
     // const scale = get(theme, key, {});
+    //TODO: fix this ts-ignore
     //@ts-ignore
     const scale = theme?.tokens?.[key] ?? {};
 
@@ -372,6 +373,7 @@ export const platformSpecificSpaceUnits = (theme: any, platform: string) => {
       }
     }
     if (newTheme.tokens) {
+      //TODO: fix this ts-ignore
       //@ts-ignore
       newTheme.tokens[key] = newScale;
     } else {
@@ -397,7 +399,7 @@ export function renamePseudoClasses(obj: any) {
 }
 
 function convertResponsiveToPseudoClasses(obj: any, config: any) {
-  let newObj = {};
+  const newObj = {};
   for (const key in obj) {
     const propName = key;
     const propValue = obj[key];
@@ -406,27 +408,36 @@ function convertResponsiveToPseudoClasses(obj: any, config: any) {
       const breakPoints = config.tokens.breakpoints;
       const breakPointsKeys = Object.keys(breakPoints);
       propValue.forEach((value, index) => {
+        //TODO: fix this ts-ignore
+        //@ts-ignore
         newObj[`@${breakPointsKeys[index]}`] = { [propName]: value };
       });
     } else if (typeof propValue === 'object' && !propName.startsWith('_')) {
-      const breakPoints = config.tokens.breakpoints;
-      const breakPointsKeys = Object.keys(breakPoints);
+      // const breakPoints = config.tokens.breakpoints;
+      // const breakPointsKeys = Object.keys(breakPoints);
       Object.keys(propValue).forEach((value) => {
+        //TODO: fix this ts-ignore
+        //@ts-ignore
         newObj[`@${value}`] = { [propName]: propValue[value] };
       });
     } else if (typeof propValue === 'object') {
+      //TODO: fix this ts-ignore
+      //@ts-ignore
       newObj[key] = convertResponsiveToPseudoClasses(propValue, config);
     } else {
+      //TODO: fix this ts-ignore
+      //@ts-ignore
       newObj[key] = propValue;
     }
   }
   return newObj;
 }
+
 export function convertToSXForStateColorModeMediaQuery(
   inputObj: any,
   _config: any
 ) {
-  let newObj: any = {
+  const newObj: any = {
     // ...obj,
     sx: {},
   };
@@ -437,6 +448,8 @@ export function convertToSXForStateColorModeMediaQuery(
 
   for (const key in newPseudoClass) {
     const propName = key;
+    //TODO: fix this ts-ignore
+    //@ts-ignore
     const propValue = obj[key];
     if (
       propName.startsWith('_') ||
@@ -473,24 +486,34 @@ export function addDollarSignsToProps(obj: any, config: any) {
 
   for (const key in obj) {
     let propertyName = key;
-    let propValue = obj[key];
+    const propValue = obj[key];
     if (config.aliases.hasOwnProperty(key)) {
       propertyName = config.aliases[key];
     }
 
     if (Array.isArray(propValue)) {
+      //TODO: fix this ts-ignore
+      //@ts-ignore
       const newPropValue = [];
       propValue.forEach((value) => {
         newPropValue.push(addDollarSign(propertyName, value, config));
       });
+      //TODO: fix this ts-ignore
+      //@ts-ignore
       newObj[key] = newPropValue;
     } else if (typeof propValue === 'object' && key.startsWith('_')) {
       newObj[key] = addDollarSignsToProps(obj[key], config);
     } else if (typeof propValue === 'object') {
       const newPropValue = {};
 
-      Object.keys(propValue).forEach((key) => {
-        newPropValue[key] = addDollarSign(propertyName, propValue[key], config);
+      Object.keys(propValue).forEach((keyProp) => {
+        //TODO: fix this ts-ignore
+        //@ts-ignore
+        newPropValue[keyProp] = addDollarSign(
+          propertyName,
+          propValue[keyProp],
+          config
+        );
       });
       newObj[key] = newPropValue;
     } else {
