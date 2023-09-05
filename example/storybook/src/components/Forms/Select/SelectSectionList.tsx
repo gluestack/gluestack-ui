@@ -18,7 +18,7 @@ import {
   Icon,
 } from '@gluestack-ui/themed';
 
-const SelectStory = ({ isDisabled, isInvalid, ...props }: any) => {
+const SelectWithSectionList = ({ isDisabled, isInvalid, ...props }: any) => {
   const DATA = [
     {
       title: 'Main dishes',
@@ -72,6 +72,6 @@ const SelectStory = ({ isDisabled, isInvalid, ...props }: any) => {
   );
 };
 
-export default SelectStory;
+export default SelectWithSectionList;
 
 export { Center, Select, Icon, ChevronDownIcon };

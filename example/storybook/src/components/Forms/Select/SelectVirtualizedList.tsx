@@ -17,7 +17,11 @@ import {
   Icon,
 } from '@gluestack-ui/themed';
 
-const SelectStory = ({ isDisabled, isInvalid, ...props }: any) => {
+const SelectWithVirtualizedList = ({
+  isDisabled,
+  isInvalid,
+  ...props
+}: any) => {
   const getItem = (_data: any, index: number): any => ({
     id: Math.random().toString(12).substring(0),
     title: _data[index],
@@ -66,6 +70,6 @@ const SelectStory = ({ isDisabled, isInvalid, ...props }: any) => {
   );
 };
 
-export default SelectStory;
+export default SelectWithVirtualizedList;
 
 export { Center, Select, Icon, ChevronDownIcon };

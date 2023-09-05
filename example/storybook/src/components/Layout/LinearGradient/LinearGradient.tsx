@@ -13,7 +13,7 @@ import {
 } from '@gluestack-ui/themed';
 type MyLinearGradientStory = ComponentStory<typeof LinearGradient>;
 
-const LinearGradientStory: MyLinearGradientStory = () => {
+const LinearGradientBasic: MyLinearGradientStory = () => {
   return (
     <LinearGradient colors={['$purple400', '$red400']} p="$5">
       <Text color="white">This is a Box</Text>
@@ -21,7 +21,7 @@ const LinearGradientStory: MyLinearGradientStory = () => {
   );
 };
 
-export default LinearGradientStory;
+export default LinearGradientBasic;
 
 export {
   LinearGradient,

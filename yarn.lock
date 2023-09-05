@@ -401,7 +401,7 @@
     chalk "^2.4.2"
     js-tokens "^4.0.0"
 
-"@babel/parser@^7.1.0", "@babel/parser@^7.12.11", "@babel/parser@^7.12.7", "@babel/parser@^7.13.16", "@babel/parser@^7.14.0", "@babel/parser@^7.14.7", "@babel/parser@^7.20.0", "@babel/parser@^7.20.13", "@babel/parser@^7.20.5", "@babel/parser@^7.20.7", "@babel/parser@^7.22.5":
+"@babel/parser@^7.1.0", "@babel/parser@^7.12.11", "@babel/parser@^7.12.7", "@babel/parser@^7.13.16", "@babel/parser@^7.14.0", "@babel/parser@^7.14.7", "@babel/parser@^7.20.0", "@babel/parser@^7.20.5", "@babel/parser@^7.20.7", "@babel/parser@^7.22.5":
   version "7.22.5"
   resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.22.5.tgz#721fd042f3ce1896238cf1b341c77eb7dee7dbea"
   integrity sha512-DFZMC9LJUG9PLOclRC32G63UXwzqS2koQC8dkx+PLdmt1xSePYpbT/NbsrJy8Q/muXz7o/h/d4A7Fuyixm559Q==
@@ -410,6 +410,11 @@
   version "7.22.13"
   resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.22.13.tgz#23fb17892b2be7afef94f573031c2f4b42839a2b"
   integrity sha512-3l6+4YOvc9wx7VlCSw4yQfcBo01ECA8TicQfbnCPuCEpRQrf+gTUyGdxNw+pyTUyywp6JRD1w0YQs9TpBXYlkw==
+
+"@babel/parser@^7.22.14":
+  version "7.22.14"
+  resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.22.14.tgz#c7de58e8de106e88efca42ce17f0033209dfd245"
+  integrity sha512-1KucTHgOvaw/LzCVrEOAyXkr9rQlp0A1HiHRYnSUE9dmb8PvPW7o5sscg+5169r54n3vGlbx6GevTE/Iw/P3AQ==
 
 "@babel/plugin-bugfix-safari-id-destructuring-collision-in-function-expression@^7.22.5":
   version "7.22.5"
@@ -2686,7 +2691,7 @@
     "@babel/traverse" "^7.20.5"
     lodash.merge "^4.6.2"
 
-"@gluestack-style/react@0.2.11", "@gluestack-style/react@0.2.21", "@gluestack-style/react@^0.2.21", "@gluestack-style/react@^0.2.7", "@gluestack-style/react@^0.2.9":
+"@gluestack-style/react@0.2.11", "@gluestack-style/react@0.2.21", "@gluestack-style/react@^0.2.26", "@gluestack-style/react@^0.2.7", "@gluestack-style/react@^0.2.9":
   version "0.2.21"
   resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-0.2.21.tgz#542161305f7ac1396545c28f94c034906c098378"
   integrity sha512-Y936+/qx4FUd7QPK1fdQwfGWheTOanhdXEXbFeIkkdHq1oHuabJJq+pwHalfdnJ/mR0gi7PdYTJ3uNmsE26y/g==
@@ -2872,6 +2877,13 @@
   integrity sha512-Si/aAG/a4B8pALWAD8rmbFLutADaXc69X7XJcNLtqElz+L/Skj3aWREVuzUwNnHQf0SyEuQ1nB5sYyniR5DstA==
   dependencies:
     "@gluestack-ui/utils" "^0.1.6"
+
+"@gluestack-ui/hstack@^0.1.9":
+  version "0.1.9"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/hstack/-/hstack-0.1.9.tgz#224fe60caf66c7cd159a5094c37d82145336cc54"
+  integrity sha512-VHpqjtXtMtSVD+OPSFYA49ea71qn/oxaM3DZsOef4lkF/YAbXzp8F58G4UxU0FDqnXFoLTKcsC+FsDSkJGYqvA==
+  dependencies:
+    "@gluestack-ui/utils" "^0.1.5"
 
 "@gluestack-ui/hstack@latest":
   version "0.1.6"
@@ -3373,6 +3385,13 @@
   dependencies:
     "@react-native-aria/focus" "^0.2.7"
     react-native-svg "13.4.0"
+
+"@gluestack-ui/vstack@^0.1.10":
+  version "0.1.10"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/vstack/-/vstack-0.1.10.tgz#c27c6ea7e3ab29be44ee7ff6380b87b886814879"
+  integrity sha512-DMDyFXT6uLIwLwofDmjawsn1eTUKS47Xue4wdMq5StzUFMEgYByIuKyq+q6Kc5NEYVozwNoYi9aazbpd6n1Kng==
+  dependencies:
+    "@gluestack-ui/utils" "^0.1.5"
 
 "@gluestack-ui/vstack@^0.1.6":
   version "0.1.9"

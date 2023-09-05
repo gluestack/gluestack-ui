@@ -1,0 +1,219 @@
+---
+title: KeyboardAvoidingView | gluestack-ui
+description: KeyboardAvoidingView
+pageTitle: KeyboardAvoidingView
+pageDescription: KeyboardAvoidingView
+showHeader: true
+---
+
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+import { transformedCode } from '../../utils';
+import {
+  AppProvider,
+  CodePreview,
+  Table,
+  TableContainer,
+  InlineCode,
+} from '@gluestack/design-system';
+import { Platform } from 'react-native';
+import Wrapper from '../../components/Wrapper';
+import { KeyboardAvoidingView } from './KeyboardAvoidingView';
+import {
+  GluestackUIProvider,
+  Button,
+  Center,
+  FormControl,
+  FormControlLabelText,
+  Text,
+  VStack,
+  InputIcon,
+  HStack,
+  LeadingIcon,
+  InputField,
+  Box,
+  Actionsheet,
+  ActionsheetBackdrop,
+  ActionsheetContent,
+  ActionsheetDragIndicator,
+  ActionsheetDragIndicatorWrapper,
+  ActionsheetItem,
+  ActionsheetItemText,
+  FormControlLabel,
+  Input,
+  Image,
+  Icon,
+  ButtonText,
+  config,
+} from '@gluestack-ui/themed';
+
+<Meta title="React Native Components/KeyboardAvoidingView" />
+
+## Themed
+
+Provides a view that moves out of the way of virtual keyboard automatically. It solves the common problem of views needing to move out of the way of the virtual keyboard. It can automatically adjust either its height, position, or bottom padding based on the keyboard height.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+       function App() {
+    const [showActionsheet, setShowActionsheet] = React.useState(false);
+    const handleClose = () => setShowActionsheet(!showActionsheet);
+    return (
+    <KeyboardAvoidingView
+    behavior={Platform.OS === 'ios' ? 'height' : 'height'}
+    style={{ flex: 1,zIndex:999 }}>
+    <Center h="100%" zIndex={999}>
+    <Button onPress={handleClose}>
+    <Button.Text>Open</Button.Text>
+    </Button>
+    <Actionsheet
+          isOpen={showActionsheet}
+          onClose={handleClose} zIndex={999}
+        >
+          <ActionsheetBackdrop />
+          <ActionsheetContent maxHeight="75%" zIndex={999}>
+            <ActionsheetDragIndicatorWrapper>
+              <ActionsheetDragIndicator />
+            </ActionsheetDragIndicatorWrapper>
+            <VStack w="$full" p={20}>
+              <HStack justifyContent="center" alignItems="center" space="md">
+                <Box
+                  w={50}
+                  h="$full"
+                  px="$2"
+                  borderWidth={1}
+                  borderStyle="solid"
+                  borderColor="$borderLight300"
+                  rounded="$sm"
+                >
+                  <Image
+                    source={{ uri: 'https://i.imgur.com/UwTLr26.png' }}
+                    flex={1}
+                    resizeMode="contain"
+                  />
+                </Box>
+                <VStack flex={1}>
+                  <Text fontWeight="$bold">Mastercard</Text>
+                  <Text>Card ending in 2345</Text>
+                </VStack>
+              </HStack>
+              <FormControl mt={36}>
+                <FormControlLabel>
+                  <FormControlLabelText>
+                    Confirm security code
+                  </FormControlLabelText>
+                </FormControlLabel>
+                <Input w="$full">
+                  <InputIcon>
+                   <Icon as={LeadingIcon} ml="$2" />
+                  </InputIcon>
+                  <InputField placeholder="CVC/CVV" />
+                </Input>
+                <Button onPress={handleClose} mt={20}>
+                  <ButtonText>Pay $1000</ButtonText>
+                </Button>
+              </FormControl>
+            </VStack>
+          </ActionsheetContent>
+        </Actionsheet>
+    </Center>
+    </KeyboardAvoidingView>
+    );
+}
+`,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'App');
+      },
+      scope: {
+        Wrapper,
+        GluestackUIProvider,
+        Button,
+        config,
+        Center,
+        FormControlLabel,
+        FormControlLabelText,
+        FormControl,
+        Text,
+        VStack,
+        InputField,
+        ButtonText,
+        InputIcon,
+        LeadingIcon,
+        HStack,
+        Box,
+        Actionsheet,
+        ActionsheetBackdrop,
+        ActionsheetContent,
+        ActionsheetDragIndicator,
+        ActionsheetDragIndicatorWrapper,
+        ActionsheetItem,
+        ActionsheetItemText,
+        Input,
+        Image,
+        Icon,
+        Platform,
+        KeyboardAvoidingView,
+      },
+    }}
+  />
+</AppProvider>
+
+### Import
+
+To use the component in your project, run the command below into your import statement. This will import the component from your components folder.
+
+```bash
+import { KeyboardAvoidingView } from '@gluestack-ui/themed';
+```
+
+### Anatomy
+
+The structure provided below can help you identify and understand a badge component's various parts.
+
+```jsx
+export default () => <KeyboardAvoidingView></KeyboardAvoidingView>;
+```
+
+### Props
+
+gluestack-ui KeyboardAvoidingView component is created using KeyboardAvoidingView component from react-native. It extends all the props supported by [React Native KeyboardAvoidingView](https://reactnative.dev/docs/keyboardAvoidingView#props), [React Native View](https://reactnative.dev/docs/view#props),[utility props](https://ui.gluestack.io/docs/styling/utility-and-sx-props) and the props mentioned below.
+
+#### View
+
+<AppProvider>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Name</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Value</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Default</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>children</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>any</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</AppProvider>

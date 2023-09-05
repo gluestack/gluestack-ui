@@ -18,7 +18,7 @@ import {
 } from '@gluestack-ui/themed';
 import { Edit, Command } from 'lucide-react-native';
 
-const TooltipStory = ({
+const TooltipBasic = ({
   showTooltip: showTooltipProp = true,
   placement = 'bottom',
   text = 'Hello world',
@@ -45,7 +45,7 @@ const TooltipStory = ({
   );
 };
 
-export default TooltipStory;
+export default TooltipBasic;
 
 export {
   Tooltip,

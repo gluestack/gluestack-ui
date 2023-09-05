@@ -12,16 +12,16 @@ import {
   Icon,
 } from '@gluestack-ui/themed';
 
-function AlertStory({ ...props }: any) {
+const AlertBasic = ({ ...props }: any) => {
   return (
     <Alert {...props}>
       <AlertIcon as={InfoIcon} mr="$3" />
       <AlertText>Selection successfully moved!</AlertText>
     </Alert>
   );
-}
+};
 
-export default AlertStory;
+export default AlertBasic;
 
 export {
   Alert,
