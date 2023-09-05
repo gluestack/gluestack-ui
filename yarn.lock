@@ -2699,10 +2699,10 @@
     inline-style-prefixer "^6.0.1"
     normalize-css-color "^1.0.2"
 
-"@gluestack-style/react@^0.2.24":
-  version "0.2.24"
-  resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-0.2.24.tgz#a424bdcf1f04827029d8de42fd89f8f571c5ed21"
-  integrity sha512-03dPvnqXuZiAwFEcTPeLJcgy/vPQBqrvFx59ZLsB0sT09SpeRy5Vn9qlIwbiH6uORHR0ACK2frwMdZ529rZcIA==
+"@gluestack-style/react@^0.2.26":
+  version "0.2.26"
+  resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-0.2.26.tgz#6dea340a1e98c9613ba775826ee2a9b0de456ec6"
+  integrity sha512-/TnlaNy+kItQWveo4OGr2RRwHwCH/aRFP8NZKJiUpnzqu7zCP2t4PrZJIY6zD429wzbA7QQYINuZVquaIUbz1g==
   dependencies:
     inline-style-prefixer "^6.0.1"
     normalize-css-color "^1.0.2"
@@ -2893,6 +2893,13 @@
   integrity sha512-Si/aAG/a4B8pALWAD8rmbFLutADaXc69X7XJcNLtqElz+L/Skj3aWREVuzUwNnHQf0SyEuQ1nB5sYyniR5DstA==
   dependencies:
     "@gluestack-ui/utils" "^0.1.6"
+
+"@gluestack-ui/hstack@^0.1.9":
+  version "0.1.9"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/hstack/-/hstack-0.1.9.tgz#224fe60caf66c7cd159a5094c37d82145336cc54"
+  integrity sha512-VHpqjtXtMtSVD+OPSFYA49ea71qn/oxaM3DZsOef4lkF/YAbXzp8F58G4UxU0FDqnXFoLTKcsC+FsDSkJGYqvA==
+  dependencies:
+    "@gluestack-ui/utils" "^0.1.5"
 
 "@gluestack-ui/hstack@latest":
   version "0.1.6"
@@ -3394,6 +3401,13 @@
   dependencies:
     "@react-native-aria/focus" "^0.2.7"
     react-native-svg "13.4.0"
+
+"@gluestack-ui/vstack@^0.1.10":
+  version "0.1.10"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/vstack/-/vstack-0.1.10.tgz#c27c6ea7e3ab29be44ee7ff6380b87b886814879"
+  integrity sha512-DMDyFXT6uLIwLwofDmjawsn1eTUKS47Xue4wdMq5StzUFMEgYByIuKyq+q6Kc5NEYVozwNoYi9aazbpd6n1Kng==
+  dependencies:
+    "@gluestack-ui/utils" "^0.1.5"
 
 "@gluestack-ui/vstack@^0.1.6":
   version "0.1.9"
