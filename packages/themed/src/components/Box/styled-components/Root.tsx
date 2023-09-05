@@ -3,5 +3,4 @@ import { styled } from '../../styled';
 
 export default styled(View, {}, {
   componentName: 'Box',
-  descendantStyle: ['_text'],
 } as const);
