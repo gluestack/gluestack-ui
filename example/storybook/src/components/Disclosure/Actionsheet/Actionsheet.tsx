@@ -31,10 +31,10 @@ import {
   Text,
 } from '@gluestack-ui/themed';
 
-function ActionsheetStory({
+const ActionsheetBasic = ({
   showActionsheet: showActionsheetProp = true,
   ...props
-}: any) {
+}: any) => {
   const [showActionsheet, setShowActionsheet] = React.useState(false);
 
   const handleClose = () => setShowActionsheet(false);
@@ -68,9 +68,9 @@ function ActionsheetStory({
       </ActionsheetContent>
     </Actionsheet>
   );
-}
+};
 
-export default ActionsheetStory;
+export default ActionsheetBasic;
 
 export {
   Actionsheet,

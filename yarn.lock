@@ -401,7 +401,7 @@
     chalk "^2.4.2"
     js-tokens "^4.0.0"
 
-"@babel/parser@^7.1.0", "@babel/parser@^7.12.11", "@babel/parser@^7.12.7", "@babel/parser@^7.13.16", "@babel/parser@^7.14.0", "@babel/parser@^7.14.7", "@babel/parser@^7.20.0", "@babel/parser@^7.20.13", "@babel/parser@^7.20.5", "@babel/parser@^7.20.7", "@babel/parser@^7.22.5":
+"@babel/parser@^7.1.0", "@babel/parser@^7.12.11", "@babel/parser@^7.12.7", "@babel/parser@^7.13.16", "@babel/parser@^7.14.0", "@babel/parser@^7.14.7", "@babel/parser@^7.20.0", "@babel/parser@^7.20.5", "@babel/parser@^7.20.7", "@babel/parser@^7.22.5":
   version "7.22.5"
   resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.22.5.tgz#721fd042f3ce1896238cf1b341c77eb7dee7dbea"
   integrity sha512-DFZMC9LJUG9PLOclRC32G63UXwzqS2koQC8dkx+PLdmt1xSePYpbT/NbsrJy8Q/muXz7o/h/d4A7Fuyixm559Q==
@@ -410,6 +410,11 @@
   version "7.22.13"
   resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.22.13.tgz#23fb17892b2be7afef94f573031c2f4b42839a2b"
   integrity sha512-3l6+4YOvc9wx7VlCSw4yQfcBo01ECA8TicQfbnCPuCEpRQrf+gTUyGdxNw+pyTUyywp6JRD1w0YQs9TpBXYlkw==
+
+"@babel/parser@^7.22.14":
+  version "7.22.14"
+  resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.22.14.tgz#c7de58e8de106e88efca42ce17f0033209dfd245"
+  integrity sha512-1KucTHgOvaw/LzCVrEOAyXkr9rQlp0A1HiHRYnSUE9dmb8PvPW7o5sscg+5169r54n3vGlbx6GevTE/Iw/P3AQ==
 
 "@babel/plugin-bugfix-safari-id-destructuring-collision-in-function-expression@^7.22.5":
   version "7.22.5"
@@ -2686,10 +2691,26 @@
     "@babel/traverse" "^7.20.5"
     lodash.merge "^4.6.2"
 
-"@gluestack-style/react@0.2.11", "@gluestack-style/react@0.2.21", "@gluestack-style/react@^0.2.21", "@gluestack-style/react@^0.2.7", "@gluestack-style/react@^0.2.9":
-  version "0.2.21"
-  resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-0.2.21.tgz#542161305f7ac1396545c28f94c034906c098378"
-  integrity sha512-Y936+/qx4FUd7QPK1fdQwfGWheTOanhdXEXbFeIkkdHq1oHuabJJq+pwHalfdnJ/mR0gi7PdYTJ3uNmsE26y/g==
+"@gluestack-style/react@0.2.11":
+  version "0.2.11"
+  resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-0.2.11.tgz#b02419c44129931320f0bf8e20077ee9caa42a6d"
+  integrity sha512-pVzBkvN9Xwr5ik3Vh5jV6w4kzOfDe3Y+LHQZRVJFO+25PSvkArcT61Y14jOguCrh+6ka/jaX6LfQoS2Xn9TlcQ==
+  dependencies:
+    inline-style-prefixer "^6.0.1"
+    normalize-css-color "^1.0.2"
+
+"@gluestack-style/react@^0.2.26":
+  version "0.2.26"
+  resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-0.2.26.tgz#6dea340a1e98c9613ba775826ee2a9b0de456ec6"
+  integrity sha512-/TnlaNy+kItQWveo4OGr2RRwHwCH/aRFP8NZKJiUpnzqu7zCP2t4PrZJIY6zD429wzbA7QQYINuZVquaIUbz1g==
+  dependencies:
+    inline-style-prefixer "^6.0.1"
+    normalize-css-color "^1.0.2"
+
+"@gluestack-style/react@^0.2.7", "@gluestack-style/react@^0.2.9":
+  version "0.2.20"
+  resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-0.2.20.tgz#1ef12be3b0d3fa3db773c90d1ed5b0575661a232"
+  integrity sha512-TiQI2FQ8jGVi7VGFAE+7nXb8kBYaBfCambvpdXw5nh+osKf2dt51hJKCdu4/WnAgAuhtUPp9my0pHCFJYpLPQg==
   dependencies:
     inline-style-prefixer "^6.0.1"
     normalize-css-color "^1.0.2"

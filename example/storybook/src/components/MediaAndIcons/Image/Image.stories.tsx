@@ -11,16 +11,8 @@ const ImageMeta: ComponentMeta<typeof Image> = {
   },
 };
 
-const ImageSizes = ImageSizesStory.bind({});
-
-ImageSizes.parameters = {
-  controls: {
-    exclude: /.*/g,
-  },
-};
-
 export default ImageMeta;
 
 export { Image };
 
-export { ImageSizes };
+export { ImageSizesStory };

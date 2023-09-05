@@ -31,14 +31,6 @@ const ToastMeta: ComponentMeta<typeof Toast> = {
     action: 'muted',
     variant: 'solid',
   },
-  parameters: {
-    docs: {
-      description: {
-        component: `**Toast** displays alerts on top of an overlay. The **Toast** terminates itself when the close button is clicked or after a preset timeout — the default is 5 seconds. The component also allows users to give feedback when an action is completed.
-        Toasts can also be configured to pop up at different areas of the application window—top or bottom. More than one instance of toast can be present onscreen at one time.`,
-      },
-    },
-  },
 };
 
 export default ToastMeta;

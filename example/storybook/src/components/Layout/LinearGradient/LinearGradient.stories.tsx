@@ -1,13 +1,13 @@
 import type { ComponentMeta } from '@storybook/react-native';
 
-import LinearGradientStory from './LinearGradient';
+import LinearGradient from './LinearGradient';
 import LinearGradientPressable from './LinearGradientPressable';
 import LinearGradientCard from './LinearGradientCard';
 
-const LinearGradientMeta: ComponentMeta<typeof LinearGradientStory> = {
+const LinearGradientMeta: ComponentMeta<typeof LinearGradient> = {
   title: 'stories/LAYOUT/LinearGradient',
-  component: LinearGradientStory,
+  component: LinearGradient,
 };
 
-export { LinearGradientStory, LinearGradientPressable, LinearGradientCard };
+export { LinearGradient, LinearGradientPressable, LinearGradientCard };
 export default LinearGradientMeta;
