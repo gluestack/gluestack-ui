@@ -24,6 +24,7 @@ import {
   Heading,
   GluestackUIProvider,
   config,
+  Text,
 } from '@gluestack-ui/themed';
 
 <Meta title="React Native Components/ScrollView" />
@@ -71,7 +72,7 @@ export default () => <ScrollView></ScrollView>;
             )
               return (
                 <Center py="$4" bg={config.theme.tokens.colors[key]}>
-                  {key}
+                  <Text>{key}</Text>
                 </Center>
               );
           })}
@@ -93,7 +94,7 @@ export default () => <ScrollView></ScrollView>;
             )
               return (
                 <Center py="$4" bg={config.theme.tokens.colors[key]}>
-                  {key}
+                  <Text>{key}</Text>
                 </Center>
               );
           })}
@@ -115,7 +116,7 @@ export default () => <ScrollView></ScrollView>;
             )
               return (
                 <Center py="$4" bg={config.theme.tokens.colors[key]}>
-                  {key}
+                 <Text>{key}</Text>
                 </Center>
               );
           })}
@@ -133,6 +134,7 @@ export default () => <ScrollView></ScrollView>;
         Heading,
         VStack,
         config,
+        Text,
       },
     }}
   />
