@@ -525,6 +525,7 @@ export const config = {
         md: 768,
         lg: 992,
         xl: 1280,
+        xxl: 2000,
       },
       mediaQueries: {
         base: '@media screen and (min-width: 0)',
