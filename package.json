@@ -1,6 +1,6 @@
 {
   "name": "@gluestack-ui/themed-native-base",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "description": "A universal themed components for React Native, Next.js & React",
