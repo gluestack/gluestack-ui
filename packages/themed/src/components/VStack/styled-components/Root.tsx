@@ -38,9 +38,6 @@ export default styled(
         },
       },
     },
-    defaultProps: {
-      space: 'md',
-    },
   },
   {
     componentName: 'VStack',

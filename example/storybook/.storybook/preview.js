@@ -89,7 +89,7 @@ export const parameters = {
           ['Fab'],
         ],
         'React Native Components',
-        ['FlatList', 'ScrollView', 'SectionList', 'StatusBar'],
+        ['FlatList', 'ScrollView','View', 'KeyboardAvoidingView', 'SectionList', 'StatusBar'],
         'Hooks',
         ['React Native ARIA'],
         'Production Optimizations',

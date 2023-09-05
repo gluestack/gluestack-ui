@@ -1,5 +1,11 @@
 # @gluestack-ui/themed
 
+## 0.1.18
+
+### Patch Changes
+
+- Removed default gap from VStack and HStack
+
 ## 0.1.17
 
 ### Patch Changes

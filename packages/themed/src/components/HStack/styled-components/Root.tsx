@@ -38,9 +38,6 @@ export default styled(
         },
       },
     },
-    props: {
-      space: 'md',
-    },
   },
   {
     componentName: 'HStack',
