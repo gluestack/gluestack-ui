@@ -22,7 +22,7 @@
     "prepare": "tsc",
     "watch": "tsc --watch",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "clean": "rm -rf lib"
+    "clean": "rm -rf build"
   },
   "author": "",
   "license": "ISC",
