@@ -33,7 +33,7 @@ import {
   BadgePlusIcon,
 } from 'lucide-react-native';
 
-const BadgeStory = ({ text = 'New feature', ...props }: any) => {
+const BadgeBasic = ({ text = 'New feature', ...props }: any) => {
   return (
     <Badge {...props}>
       <BadgeText>{text}</BadgeText>
@@ -42,7 +42,7 @@ const BadgeStory = ({ text = 'New feature', ...props }: any) => {
   );
 };
 
-export default BadgeStory;
+export default BadgeBasic;
 
 export {
   Center,

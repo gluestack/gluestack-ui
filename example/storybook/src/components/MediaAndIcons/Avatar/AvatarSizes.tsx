@@ -11,7 +11,7 @@ import React from 'react';
 
 type CustomAvatarStory = ComponentStory<typeof Avatar>;
 
-const AvatarSizeExample: CustomAvatarStory = () => {
+const AvatarSizes: CustomAvatarStory = () => {
   return (
     <VStack space="md" alignItems="center" h="100%" justifyContent="center">
       {['xs', 'sm', 'md', 'lg', 'xl', '2xl'].map((size, index) => (
@@ -29,4 +29,4 @@ const AvatarSizeExample: CustomAvatarStory = () => {
   );
 };
 
-export default AvatarSizeExample;
+export default AvatarSizes;

@@ -26,7 +26,7 @@ import {
   Link,
 } from '@gluestack-ui/themed';
 
-const ModalStory = ({ showModal: showModalProp = true, ...props }) => {
+const ModalBasic = ({ showModal: showModalProp = true, ...props }) => {
   const [showModal, setShowModal] = React.useState(false);
   const ref = React.useRef(null);
   return (
@@ -98,7 +98,7 @@ const ModalStory = ({ showModal: showModalProp = true, ...props }) => {
   );
 };
 
-export default ModalStory;
+export default ModalBasic;
 
 export {
   Modal,

@@ -26,14 +26,6 @@ const TextMeta: ComponentMeta<typeof Text> = {
     text: 'Hello world',
     size: 'md',
   },
-  parameters: {
-    docs: {
-      description: {
-        component:
-          '**Text** allows the rendering of text and paragraphs within an interface.',
-      },
-    },
-  },
 };
 
 export default TextMeta;

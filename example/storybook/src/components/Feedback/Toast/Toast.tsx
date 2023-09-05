@@ -15,7 +15,7 @@ import {
 } from '@gluestack-ui/themed';
 import { MessageCircle, AlertTriangleIcon } from 'lucide-react-native';
 
-const ToastStory = ({ placement = 'top', ...props }: any) => {
+const ToastBasic = ({ placement = 'top', ...props }: any) => {
   const toast = useToast();
   return (
     <Button
@@ -48,7 +48,7 @@ const ToastStory = ({ placement = 'top', ...props }: any) => {
   );
 };
 
-export default ToastStory;
+export default ToastBasic;
 
 export {
   Toast,

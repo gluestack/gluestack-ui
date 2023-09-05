@@ -34,28 +34,28 @@ The structure provided below can help you identify and understand a Table compon
 export default () => (
   <TableContainer>
     <Table>
-      <Table.Head>
-        <Table.Row>
-          <Table.Header>
-            <Table.Text />
-          </Table.Header>
-        </Table.Row>
-      </Table.Head>
-      <Table.Body>
-        <Table.Row>
-          <Table.Data>
-            <Table.Text />
-          </Table.Data>
-        </Table.Row>
-      </Table.Body>
-      <Table.Caption />
-      <Table.Pagination>
-        <Table.Pagination.FirstPageButton />
-        <Table.Pagination.PreviousButton />
-        <Table.Pagination.PageStats />
-        <Table.Pagination.NextButton />
-        <Table.Pagination.LastPageButton />
-      </Table.Pagination>
+      <TableHead>
+        <TableRow>
+          <TableHeader>
+            <TableText />
+          </TableHeader>
+        </TableRow>
+      </TableHead>
+      <TableBody>
+        <TableRow>
+          <TableData>
+            <TableText />
+          </TableData>
+        </TableRow>
+      </TableBody>
+      <TableCaption />
+      <TablePagination>
+        <TablePaginationFirstPageButton />
+        <TablePaginationPreviousButton />
+        <TablePaginationPageStats />
+        <TablePaginationNextButton />
+        <TablePaginationLastPageButton />
+      </TablePagination>
     </Table>
   </TableContainer>
 );
@@ -481,62 +481,62 @@ export const { Table, TableContainer } = createTable({
 export default () => (
   <TableContainer>
     <Table>
-      <Table.Head>
-        <Table.Row>
-          <Table.Header>
-            <Table.Text>Prop</Table.Text>
-          </Table.Header>
-          <Table.Header>
-            <Table.Text>Description</Table.Text>
-          </Table.Header>
-          <Table.Header>
-            <Table.Text>Default</Table.Text>
-          </Table.Header>
-        </Table.Row>
-      </Table.Head>
-      <Table.Body>
-        <Table.Row>
-          <Table.Data>
-            <Table.Text>Prop1</Table.Text>
-          </Table.Data>
-          <Table.Data>
-            <Table.Text>Prop1 description</Table.Text>
-          </Table.Data>
-          <Table.Data>
-            <Table.Text>default value</Table.Text>
-          </Table.Data>
-        </Table.Row>
-        <Table.Row>
-          <Table.Data>
-            <Table.Text>Prop2</Table.Text>
-          </Table.Data>
-          <Table.Data>
-            <Table.Text>Prop2 description</Table.Text>
-          </Table.Data>
-          <Table.Data>
-            <Table.Text>default value</Table.Text>
-          </Table.Data>
-        </Table.Row>
-        <Table.Row>
-          <Table.Data>
-            <Table.Text>Prop3</Table.Text>
-          </Table.Data>
-          <Table.Data>
-            <Table.Text>Prop3 description</Table.Text>
-          </Table.Data>
-          <Table.Data>
-            <Table.Text>default value</Table.Text>
-          </Table.Data>
-        </Table.Row>
-      </Table.Body>
-      <Table.Caption />
-      <Table.Pagination rowsPerPage={1}>
-        <Table.Pagination.FirstPageButton />
-        <Table.Pagination.PreviousButton />
-        <Table.Pagination.PageStats />
-        <Table.Pagination.NextButton />
-        <Table.Pagination.LastPageButton />
-      </Table.Pagination>
+      <TableHead>
+        <TableRow>
+          <TableHeader>
+            <TableText>Prop</TableText>
+          </TableHeader>
+          <TableHeader>
+            <TableText>Description</TableText>
+          </TableHeader>
+          <TableHeader>
+            <TableText>Default</TableText>
+          </TableHeader>
+        </TableRow>
+      </TableHead>
+      <TableBody>
+        <TableRow>
+          <TableData>
+            <TableText>Prop1</TableText>
+          </TableData>
+          <TableData>
+            <TableText>Prop1 description</TableText>
+          </TableData>
+          <TableData>
+            <TableText>default value</TableText>
+          </TableData>
+        </TableRow>
+        <TableRow>
+          <TableData>
+            <TableText>Prop2</TableText>
+          </TableData>
+          <TableData>
+            <TableText>Prop2 description</TableText>
+          </TableData>
+          <TableData>
+            <TableText>default value</TableText>
+          </TableData>
+        </TableRow>
+        <TableRow>
+          <TableData>
+            <TableText>Prop3</TableText>
+          </TableData>
+          <TableData>
+            <TableText>Prop3 description</TableText>
+          </TableData>
+          <TableData>
+            <TableText>default value</TableText>
+          </TableData>
+        </TableRow>
+      </TableBody>
+      <TableCaption />
+      <TablePagination rowsPerPage={1}>
+        <TablePaginationFirstPageButton />
+        <TablePaginationPreviousButton />
+        <TablePaginationPageStats />
+        <TablePaginationNextButton />
+        <TablePaginationLastPageButton />
+      </TablePagination>
     </Table>
   </TableContainer>
 );

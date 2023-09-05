@@ -16,68 +16,103 @@ import { AppProvider, CodePreview, Text } from '@gluestack/design-system';
 
 You can add custom theme for components by extending default config and adding theme for specific component in createConfig function.
 
-1. create a file `gluestack-ui.config.ts`. Let's add new variant for Button component called ghost. as shown below.
+### Step 1: Create a config file.
 
-   ```js
-   // gluestack-ui.config.ts
+Let's create a config file `gluestack-ui.config.ts` in your project and add a new variant for `Button` component called `ghost` as shown below.
 
-   import { createConfig, config } from '@gluestack-ui/themed';
+```js
+// gluestack-ui.config.ts
 
-   const extendedConfig = createConfig({
-     ...config.theme,
-     components: {
-       Button: {
-         theme: {
-           variants: {
-             variant: {
-               ghost: {
-                 'bg': '$transparent',
+import { createConfig, config as defaultConfig, } from '@gluestack-ui/themed';
+
+   const config = createConfig({
+   ...defaultConfig.theme,
+   tokens: {
+     ...defaultConfig.theme.tokens,
+     colors: {
+       ...defaultConfig.theme.tokens.colors,
+       primary600_alpha_10: '#1a91ff1a',
+       primary600_alpha_20: '#1a91ff33',
+     },
+   },
+
+   components: {
+     Button: {
+       theme: {
+         variants: {
+           variant: {
+             ghost: {
+               'bg': 'transparent',
+               '_text': {
+                 color: '$primary600',
+               },
+               ':hover': {
+                 _text: {
+                   color: '$primary600',
+                 },
+                 bg: '$primary600_alpha_10',
+               },
+               ':active': {
+                 _text: {
+                   color: '$primary600',
+                 },
+                 bg: '$primary600_alpha_20',
+               },
+               '_dark': {
+                 'bg': 'transparent',
                  '_text': {
                    color: '$primary600',
                  },
                  ':hover': {
-                   bg: '$primary200',
                    _text: {
-                     color: '$dark900',
+                     color: '$primary600',
                    },
+                   bg: '$primary600_alpha_10',
                  },
                  ':active': {
-                   bg: '$primary100',
+                   _text: {
+                     color: '$primary600',
+                   },
+                   bg: '$primary600_alpha_20',
                  },
                },
              },
            },
          },
        },
+       componentConfig: {
+         descendantStyle: ['_text'],
+       },
      },
-   });
+   },
+ });
 
-   // Get the type of Config
-   type ConfigType = typeof extendedConfig;
+// Get the type of Config
+type ConfigType = typeof config;
 
-   // Extend the internal styled config
-   declare module "@gluestack-style/react" {
-     interface ICustomConfig extends ConfigType {}
-   }
-   ```
+// Extend the internal styled config
+declare module "@gluestack-style/react" {
+  interface ICustomConfig extends ConfigType {}
+}
+```
 
-2. import the extendedConfig in App.tsx and pass it to GluestackUIProvider. Now you can use the new variant in Button
+### Step 2: Use your config.
 
-   .
+Import the `config` from `gluestack-ui.config.ts` and pass it to GluestackUIProvider. Now you can use the new variant in Button.
 
 ```jsx
 // App.tsx
 import {
   createConfig,
-  config,
   GluestackUIProvider,
   Button,
   ButtonText,
 } from '@gluestack-ui/themed';
-import { extendedConfig } from './gluestack-ui.config.ts';
+import { config } from './gluestack-ui.config.ts';
+
 function App({ children }) {
   return (
-    <GluestackUIProvider config={extendedConfig}>
+    <GluestackUIProvider config={config}>
       <Button variant="ghost">
         <ButtonText>Hello World</ButtonText>
       </Button>

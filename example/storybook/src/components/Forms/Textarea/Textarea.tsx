@@ -10,7 +10,7 @@ import {
   FormControlLabelText,
 } from '@gluestack-ui/themed';
 
-const TextareaStory = ({ ...props }: any) => {
+const TextareaBasic = ({ ...props }: any) => {
   return (
     <Textarea {...props} mx="$2">
       <TextareaInput placeholder="Your text goes here..." />
@@ -18,7 +18,7 @@ const TextareaStory = ({ ...props }: any) => {
   );
 };
 
-export default TextareaStory;
+export default TextareaBasic;
 
 export {
   Textarea,
