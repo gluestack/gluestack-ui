@@ -10,4 +10,4 @@ export {
   createConfig,
 } from '@gluestack-style/react';
 
-export { useBreakpointValue } from './hooks';
+export { useBreakpointValue, useTheme, useToken } from './hooks';
