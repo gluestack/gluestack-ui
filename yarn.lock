@@ -2894,6 +2894,13 @@
   dependencies:
     "@gluestack-ui/utils" "^0.1.6"
 
+"@gluestack-ui/hstack@^0.1.9":
+  version "0.1.9"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/hstack/-/hstack-0.1.9.tgz#224fe60caf66c7cd159a5094c37d82145336cc54"
+  integrity sha512-VHpqjtXtMtSVD+OPSFYA49ea71qn/oxaM3DZsOef4lkF/YAbXzp8F58G4UxU0FDqnXFoLTKcsC+FsDSkJGYqvA==
+  dependencies:
+    "@gluestack-ui/utils" "^0.1.5"
+
 "@gluestack-ui/hstack@latest":
   version "0.1.6"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/hstack/-/hstack-0.1.6.tgz#d4f8bdddc79f2c45072bbc46d33777df770338b0"
@@ -3394,6 +3401,13 @@
   dependencies:
     "@react-native-aria/focus" "^0.2.7"
     react-native-svg "13.4.0"
+
+"@gluestack-ui/vstack@^0.1.10":
+  version "0.1.10"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/vstack/-/vstack-0.1.10.tgz#c27c6ea7e3ab29be44ee7ff6380b87b886814879"
+  integrity sha512-DMDyFXT6uLIwLwofDmjawsn1eTUKS47Xue4wdMq5StzUFMEgYByIuKyq+q6Kc5NEYVozwNoYi9aazbpd6n1Kng==
+  dependencies:
+    "@gluestack-ui/utils" "^0.1.5"
 
 "@gluestack-ui/vstack@^0.1.6":
   version "0.1.9"
