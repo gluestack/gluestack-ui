@@ -14,14 +14,14 @@ export const ButtonGroup = (
         isAttached,
         isDisabled,
         children,
-        reversed,
+        isReversed,
         ...props
       }: any,
       ref?: any
     ) => {
       let computedChildren;
       let childrenArray = React.Children.toArray(flattenChildren(children));
-      childrenArray = reversed ? [...childrenArray].reverse() : childrenArray;
+      childrenArray = isReversed ? [...childrenArray].reverse() : childrenArray;
 
       if (childrenArray) {
         computedChildren = childrenArray.map((child: any, index: number) => {
