@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Switch, VStack, Text, HStack } from '@gluestack-ui/themed';
 
-const SwitchStory = ({ isDisabled = false, ...props }: any) => {
+const SwitchBasic = ({ isDisabled = false, ...props }: any) => {
   const [isEnabled, setIsEnabled] = useState(true);
   return (
     <Switch
@@ -14,6 +14,6 @@ const SwitchStory = ({ isDisabled = false, ...props }: any) => {
   );
 };
 
-export default SwitchStory;
+export default SwitchBasic;
 
 export { Switch, VStack, Text, HStack };

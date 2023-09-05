@@ -9,7 +9,7 @@ import {
   RadioLabel,
 } from '@gluestack-ui/themed';
 
-const RadioGroup = ({
+const RadioGroupBasic = ({
   size,
   isDisabled = false,
   isInvalid = false,
@@ -77,4 +77,4 @@ const RadioGroup = ({
   );
 };
 
-export default RadioGroup;
+export default RadioGroupBasic;

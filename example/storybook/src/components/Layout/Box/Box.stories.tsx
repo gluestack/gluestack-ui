@@ -1,4 +1,3 @@
-import React from 'react';
 import type { ComponentMeta } from '@storybook/react-native';
 import Box from './Box';
 import BoxWithRef from './BoxWithRef';
@@ -9,27 +8,7 @@ const BoxMeta: ComponentMeta<typeof Box> = {
 
   args: { bg: 'red500', w: 100, h: 100 },
   parameters: {
-    docs: {
-      page: () => (
-        <>
-          <div
-            style={{
-              backgroundColor: '#bbf7d0',
-              padding: 12,
-            }}
-          >
-            <p>Tip: Common use cases for Box component are:</p>
-            <ul>
-              <li>Create responsive layouts with ease.</li>
-              <li>
-                Provide a shorthand to pass styles via props (bg instead of
-                backgroundColor).
-              </li>
-            </ul>
-          </div>
-        </>
-      ),
-    },
+    docs: {},
   },
 };
 
