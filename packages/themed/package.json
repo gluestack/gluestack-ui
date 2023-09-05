@@ -86,8 +86,8 @@
     "@types/react-native": "^0.72.2",
     "react": ">=16",
     "react-dom": ">=16",
-    "react-native": "^0.72.3",
-    "react-native-web": "^0.19.7"
+    "react-native": ">=0.72",
+    "react-native-web": ">=0.19"
   },
   "release-it": {
     "git": {
