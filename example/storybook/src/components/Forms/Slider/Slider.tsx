@@ -18,7 +18,7 @@ import {
 
 import { Volume, Volume2Icon, LightbulbIcon } from 'lucide-react-native';
 
-const SliderStory = ({
+const SliderBasic = ({
   value: valueProp = 60,
   ...props
 }: {
@@ -53,7 +53,7 @@ const SliderStory = ({
   );
 };
 
-export default SliderStory;
+export default SliderBasic;
 
 export {
   Slider,

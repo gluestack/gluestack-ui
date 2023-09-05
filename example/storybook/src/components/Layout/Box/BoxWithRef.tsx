@@ -4,7 +4,7 @@ import React from 'react';
 
 type MyCustomBoxStory = ComponentStory<typeof Box>;
 
-const BoxWithRefExample: MyCustomBoxStory = ({ ...props }: any) => {
+const BoxWithRef: MyCustomBoxStory = ({ ...props }: any) => {
   const myRef = React.useRef({});
   React.useEffect(() => {
     const styleObj = {
@@ -21,4 +21,4 @@ const BoxWithRefExample: MyCustomBoxStory = ({ ...props }: any) => {
   return <Box {...props} sx={{ h: 100, w: 100, bg: '$red500' }} ref={myRef} />;
 };
 
-export default BoxWithRefExample;
+export default BoxWithRef;

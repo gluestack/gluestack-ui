@@ -18,7 +18,7 @@ import {
   FormControl,
 } from '@gluestack-ui/themed';
 
-const CheckboxStory = ({ ...props }: any) => {
+const CheckboxGroupBasic = ({ ...props }: any) => {
   const [values, setValues] = React.useState(['Label 1']);
 
   return (
@@ -72,7 +72,7 @@ const CheckboxStory = ({ ...props }: any) => {
   );
 };
 
-export default CheckboxStory;
+export default CheckboxGroupBasic;
 
 export {
   Center,

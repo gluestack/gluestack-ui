@@ -27,7 +27,7 @@ import {
 
 import { PhoneIcon, Clock3Icon, MailIcon } from 'lucide-react-native';
 
-const PopoverStory = ({
+const PopoverBasic = ({
   showPopover: showPopoverProp = true,
   placement = 'bottom',
 }: any) => {
@@ -80,7 +80,7 @@ const PopoverStory = ({
   );
 };
 
-export default PopoverStory;
+export default PopoverBasic;
 
 export {
   Text,
