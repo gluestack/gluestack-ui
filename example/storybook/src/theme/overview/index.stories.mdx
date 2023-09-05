@@ -96,6 +96,55 @@ function App({ children }) {
 }
 ```
 
+### Switching between Multiple Themes
+
+If you want to switch theme on the fly, you will need to create multiple theme in the config inside createConfig function.
+
+```jsx
+import { createConfig, config } from '@gluestack-ui/themed';
+
+export const config = createConfig({
+  ...config.theme,
+  themes: {
+    classic: {
+      colors: {
+        $primary: '$colors.$brown400',
+        $secondary: '$colors.$brown100',
+      },
+    },
+    modern: {
+      colors: {
+        $primary: '$colors.$red400',
+        $secondary: '$colors.$red100',
+      },
+    },
+  },
+});
+```
+
+Now, to actually use this newly created themes, you will need to use the `Theme` component.
+
+```jsx
+import { styled,Button,ButtonText GluestackUIProvider, Theme } from '@gluestack-ui/themed';
+import { config } from './config';
+
+export const App = () => {
+  return (
+    <GluestackUIProvider config={config}>
+      <Theme name="classic">
+        <Button>
+          <ButtonText>Classic Button</ButtonText>
+        </Button>
+      </Theme>
+    </GluestackUIProvider>
+  );
+};
+```
+
+`Theme` component is a wrapper component that will apply the theme to all the children components. If component is not wrapped inside Theme, than default tokens from config will be used. `Theme` component accepts a name prop which is the name of the theme you want to use.
+
+> **Important**: `Theme` adds a View to the DOM tree.
+
 ### Adding global styles
 
 You add global styles by extending default config and adding your own global styles in createConfig function.
