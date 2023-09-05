@@ -25,27 +25,44 @@ function App({ children }) {
 
 ### Custom Theme
 
-You can also customize your own theme by extending default theme by using createConfig function.
+You can also customize your own theme by extending default theme by using createConfig function. Create a file `gluestack-ui.config.ts` in your project root and add following code.
 
 ```jsx
+// gluestack-ui.config.ts
 import {
-  config,
+  config as defaultConfig,
   GluestackUIProvider,
   createConfig,
   Box,
 } from '@gluestack-ui/themed';
 
-const extendedConfig = createConfig({
-  ...config.theme,
+export const config = createConfig({
+  ...defaultConfig.theme,
   aliases: {
-    ...config.theme.aliases,
+    ...defaultConfig.theme.aliases,
     jc: 'justifyContent',
   },
 });
 
+// Get the type of Config
+type ConfigType = typeof config;
+
+// Extend the internal styled config
+declare module "@gluestack-style/react" {
+  interface ICustomConfig extends ConfigType {}
+}
+
+```
+
+Now you can use this config in your app.
+
+```jsx
+import { GluestackUIProvider, Box } from '@gluestack-ui/themed';
+import { config } from './gluestack-ui.config.ts';
+
 function App({ children }) {
   return (
-    <GluestackUIProvider config={extendedConfig}>
+    <GluestackUIProvider config={config}>
       <Box jc="center">
         <Box />
         <Box />
