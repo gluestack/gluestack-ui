@@ -1,44 +1,18 @@
-# @gluestack-ui/themed
+# @gluestack-ui/themed-native-base
 
 ## Installation
 
 To use gluestack-ui components, all you need to do is install the
-`@gluestack-ui/themed` package:
+`@gluestack-ui/themed-native-base` package:
 
 ```sh
-$ yarn add @gluestack-ui/themed
+$ yarn add @gluestack-ui/themed-native-base
 
 # or
 
-$ npm i @gluestack-ui/themed
+$ npm i @gluestack-ui/themed-native-base
 ```
 
 ## Usage
 
-A button component is a graphical user interface element that enables users to act by clicking or tapping. It can be customized in size, shape, color, and behavior to fit the design of the application or website. Here's an example how to use this package to create one:
-
-```jsx
-import { createButton } from '@gluestack-ui/themed';
-import {
-  Root,
-  Text,
-  Group,
-  GroupHSpacer,
-  GroupVSpacer,
-  Spinner,
-  Icon,
-} from '@gluestack-ui/themed';
-
-export const Button = createButton({
-  Root,
-  Text,
-  Group,
-  GroupHSpacer,
-  GroupVSpacer,
-  Spinner,
-  Icon,
-});
-```
-
-More guides on how to get started are available
-[here](https://ui.gluestack.io/).
+Just change your import from NativeBase to Gluestack-ui/themed-native-base, and all the components along with provider should work as is.
