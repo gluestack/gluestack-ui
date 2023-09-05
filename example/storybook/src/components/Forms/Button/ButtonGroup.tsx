@@ -5,7 +5,7 @@ import React from 'react';
 
 type MyButtonStory = ComponentStory<typeof Button>;
 
-const ButtonGroupBasic: MyButtonStory = ({ ...props }) => {
+const ButtonGroupStory: MyButtonStory = ({ ...props }) => {
   return (
     // @ts-ignore
     <ButtonGroup {...props}>
@@ -22,4 +22,4 @@ const ButtonGroupBasic: MyButtonStory = ({ ...props }) => {
   );
 };
 
-export default ButtonGroupBasic;
+export default ButtonGroupStory;

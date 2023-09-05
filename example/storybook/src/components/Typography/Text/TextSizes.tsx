@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Center, Text } from '@gluestack-ui/themed';
 
-const TextSizes = () => {
+const SizeTextStory = () => {
   const sizes = [
     'xs',
     'sm',
@@ -24,4 +24,4 @@ const TextSizes = () => {
   );
 };
 
-export default TextSizes;
+export default SizeTextStory;

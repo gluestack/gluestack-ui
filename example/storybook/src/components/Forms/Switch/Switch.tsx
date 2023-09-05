@@ -1,19 +1,18 @@
 import React, { useState } from 'react';
 import { Switch, VStack, Text, HStack } from '@gluestack-ui/themed';
 
-const SwitchBasic = ({ isDisabled = false, ...props }: any) => {
+const SwitchStory = ({ ...props }: any) => {
   const [isEnabled, setIsEnabled] = useState(true);
   return (
     <Switch
       defaultValue={true}
-      value={isEnabled}
+      value={isEnabled || props.isEnabled}
       onValueChange={(val: any) => setIsEnabled(val)}
-      isDisabled={isDisabled}
       {...props}
     />
   );
 };
 
-export default SwitchBasic;
+export default SwitchStory;
 
 export { Switch, VStack, Text, HStack };

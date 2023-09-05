@@ -1,9 +1,9 @@
 import type { ComponentMeta } from '@storybook/react-native';
-import Radio from './Radio';
+import RadioStory from './Radio';
 
-const RadioMeta: ComponentMeta<typeof Radio> = {
+const RadioMeta: ComponentMeta<typeof RadioStory> = {
   title: 'stories/FORMS/Radio',
-  component: Radio,
+  component: RadioStory,
   argTypes: {
     size: {
       control: {
@@ -31,4 +31,4 @@ const RadioMeta: ComponentMeta<typeof Radio> = {
 
 export default RadioMeta;
 
-export { Radio };
+export { RadioStory };

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Image } from '@gluestack-ui/themed';
 
-const ImageBasic = ({
+const ImageStory = ({
   uri = 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg',
 }: any) => {
   return (
@@ -14,6 +14,6 @@ const ImageBasic = ({
   );
 };
 
-export default ImageBasic;
+export default ImageStory;
 
 export { Image };

@@ -13,10 +13,10 @@ import {
 } from '@gluestack-ui/themed';
 import { useEffect } from 'react';
 
-const ActionsheetWithVirtualizedList = ({
+function ActionsheetExample({
   showActionsheet: showActionsheetProp = true,
   ...props
-}) => {
+}) {
   const [showActionsheet, setShowActionsheet] = React.useState(
     props.showActionsheet
   );
@@ -40,7 +40,17 @@ const ActionsheetWithVirtualizedList = ({
   const Item = useCallback(
     ({ title }: any) => (
       <ActionsheetItem onPress={handleClose}>
-        <ActionsheetItemText>{title}</ActionsheetItemText>
+        <ActionsheetItemText
+          dataSet={{
+            'component-props': JSON.stringify({
+              'is-text-style': true,
+              'component-name': 'Text',
+              'size': 'md',
+            }),
+          }}
+        >
+          {title}
+        </ActionsheetItemText>
       </ActionsheetItem>
     ),
     [handleClose]
@@ -76,8 +86,8 @@ const ActionsheetWithVirtualizedList = ({
       </ActionsheetContent>
     </Actionsheet>
   );
-};
+}
 
-export default ActionsheetWithVirtualizedList;
+export default ActionsheetExample;
 
 export { Actionsheet, Button };

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Center, Pressable, Text } from '@gluestack-ui/themed';
 
-const PressableBasic = ({ ...props }: any) => {
+const PressableStory = ({ ...props }: any) => {
   return (
     <Pressable
       // eslint-disable-next-line no-console
@@ -22,6 +22,6 @@ const PressableBasic = ({ ...props }: any) => {
   );
 };
 
-export default PressableBasic;
+export default PressableStory;
 
 export { Pressable, Center };

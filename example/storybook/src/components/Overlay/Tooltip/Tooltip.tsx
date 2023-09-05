@@ -18,7 +18,7 @@ import {
 } from '@gluestack-ui/themed';
 import { Edit, Command } from 'lucide-react-native';
 
-const TooltipBasic = ({
+const TooltipStory = ({
   showTooltip: showTooltipProp = true,
   placement = 'bottom',
   text = 'Hello world',
@@ -45,9 +45,40 @@ const TooltipBasic = ({
   );
 };
 
-export default TooltipBasic;
+const FigmaTooltipStory = ({
+  showTooltip: _showTooltipProp = true,
+  _placement = 'bottom',
+  ...props
+}: any) => {
+  2;
+  return (
+    <Tooltip
+      {...props}
+      offset={10}
+      placement="bottom"
+      isOpen={true}
+      // eslint-disable-next-line react/no-unstable-nested-components
+      trigger={(triggerProps: any) => {
+        return (
+          <Box w={200} h={100} py="$20" alignItems="center">
+            <Button {...triggerProps}>
+              <Button.Text>More</Button.Text>
+            </Button>
+          </Box>
+        );
+      }}
+    >
+      <Tooltip.Content>
+        <Tooltip.Text>Hello world!</Tooltip.Text>
+      </Tooltip.Content>
+    </Tooltip>
+  );
+};
+
+export default FigmaTooltipStory;
 
 export {
+  TooltipStory,
   Tooltip,
   TooltipContent,
   TooltipText,

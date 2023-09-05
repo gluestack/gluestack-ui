@@ -11,66 +11,41 @@ const ButtonMeta: ComponentMeta<typeof Button> = {
   args: {
     action: 'primary',
     variant: 'solid',
-    text: 'Button',
     size: 'md',
+    isHovered: false,
+    isPressed: false,
+    isFocusVisible: false,
+    isDisabled: false,
   },
   argTypes: {
     action: {
       control: 'select',
-      description: 'The action of button.',
       options: ['primary', 'secondary', 'positive', 'negative'],
-      table: {
-        defaultValue: { summary: 'primary' },
-      },
     },
     variant: {
       control: 'select',
-      options: ['link', 'outline', 'solid'],
-      description: 'The style of button.',
-      table: {
-        defaultValue: { summary: 'primary' },
-      },
+      options: ['solid', 'outline', 'link'],
     },
     size: {
       control: 'select',
       options: ['xs', 'sm', 'md', 'lg', 'xl'],
-      description: 'The size of the button.',
-      table: {
-        defaultValue: { summary: 'md' },
-      },
     },
-  },
-};
-
-const ButtonLoading = ButtonIsLoadingExample.bind({});
-
-ButtonLoading.parameters = {
-  controls: {
-    exclude: /.*/g,
-  },
-};
-
-const ButtonSizes = ButtonSizesExample.bind({});
-
-ButtonSizes.parameters = {
-  controls: {
-    exclude: /.*/g,
-  },
-};
-
-const ButtonStyles = ButtonStylesExample.bind({});
-
-ButtonStyles.parameters = {
-  controls: {
-    exclude: /.*/g,
-  },
-};
-
-const ButtonWithIcon = ButtonWithIconsTemp.bind({});
-
-ButtonWithIcon.parameters = {
-  controls: {
-    exclude: /.*/g,
+    isHovered: {
+      control: 'boolean',
+      options: [true, false],
+    },
+    isPressed: {
+      control: 'boolean',
+      options: [true, false],
+    },
+    isFocusVisible: {
+      control: 'boolean',
+      options: [true, false],
+    },
+    isDisabled: {
+      control: 'boolean',
+      options: [true, false],
+    },
   },
 };
 

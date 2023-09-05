@@ -6,7 +6,7 @@ import { VStack } from '@gluestack-ui/themed';
 
 type MyVStackStory = ComponentStory<typeof VStack>;
 
-const VStackReversed: MyVStackStory = ({ space, ...props }) => {
+const VStackReversedExample: MyVStackStory = ({ space, ...props }) => {
   return (
     <VStack space={space} mt="$5" {...props} reversed>
       <Box sx={{ w: 100, h: 100, rounded: '$sm', bg: '$blue300' }} />
@@ -17,4 +17,4 @@ const VStackReversed: MyVStackStory = ({ space, ...props }) => {
   );
 };
 
-export default VStackReversed;
+export default VStackReversedExample;

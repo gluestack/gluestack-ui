@@ -10,7 +10,7 @@ import {
 
 type MyButtonStory = ComponentStory<typeof Button>;
 
-const ButtonAllSizes: MyButtonStory = ({}) => {
+const ButtonSizesExample: MyButtonStory = ({}) => {
   const sizes = ['xs', 'sm', 'md', 'lg', 'xl'];
   return (
     <VStack space="md" justifyContent="center" alignItems="center">
@@ -26,4 +26,4 @@ const ButtonAllSizes: MyButtonStory = ({}) => {
   );
 };
 
-export default ButtonAllSizes;
+export default ButtonSizesExample;

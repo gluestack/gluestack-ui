@@ -7,8 +7,6 @@ import {
   Heading,
   Text,
   Icon,
-} from '@gluestack-ui/themed';
-import {
   Modal,
   ModalBackdrop,
   ModalContent,
@@ -26,7 +24,7 @@ import {
   Link,
 } from '@gluestack-ui/themed';
 
-const ModalBasic = ({ showModal: showModalProp = true, ...props }) => {
+const ModalStory = ({ showModal: showModalProp = true, ...props }) => {
   const [showModal, setShowModal] = React.useState(false);
   const ref = React.useRef(null);
   return (
@@ -98,9 +96,76 @@ const ModalBasic = ({ showModal: showModalProp = true, ...props }) => {
   );
 };
 
-export default ModalBasic;
+const FigmaModalStory = ({ _showModal, ...props }: any) => {
+  return (
+    <Modal isOpen={true} {...props} my="$16" _experimentalOverlay={false}>
+      <Modal.Content>
+        <Modal.Header>
+          <Heading maxWidth="80%">Engage with Modals</Heading>
+          <Modal.CloseButton>
+            <Icon
+              as={CloseIcon}
+              dataSet={{
+                'component-props': JSON.stringify({
+                  'instance': true,
+                  'instance-name': 'Icon',
+                  'name': 'CloseIcon',
+                  'size': 'md',
+                }),
+              }}
+            />
+          </Modal.CloseButton>
+        </Modal.Header>
+        <Modal.Body>
+          <Text fontSize="$sm">
+            Elevate user interactions with our versatile modals. Seamlessly
+            integrate notifications, forms, and media displays. Make an impact
+            effortlessly.
+          </Text>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button
+            variant="outline"
+            size="sm"
+            action="secondary"
+            mr="$3"
+            dataSet={{
+              'component-props': JSON.stringify({
+                'instance': true,
+                'instance-name': 'Button-outline',
+                'size': 'sm',
+                'action': 'secondary',
+                'state': 'default',
+              }),
+            }}
+          >
+            <Button.Text>Cancel</Button.Text>
+          </Button>
+          <Button
+            size="sm"
+            action="positive"
+            dataSet={{
+              'component-props': JSON.stringify({
+                'instance': true,
+                'instance-name': 'Button-solid',
+                'size': 'sm',
+                'action': 'positive',
+                'state': 'default',
+              }),
+            }}
+          >
+            <Button.Text>Explore</Button.Text>
+          </Button>
+        </Modal.Footer>
+      </Modal.Content>
+    </Modal>
+  );
+};
+
+export default FigmaModalStory;
 
 export {
+  ModalStory,
   Modal,
   ModalBackdrop,
   ModalContent,

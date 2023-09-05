@@ -4,16 +4,26 @@ import React from 'react';
 
 type MyCenterStory = ComponentStory<typeof Center>;
 
-const CenterBasic: MyCenterStory = () => {
+const CenterStory: MyCenterStory = () => {
   return (
     <Center bg="$primary500" h={200} w={300}>
-      <Text color="white" fontWeight="$bold">
+      <Text
+        color="white"
+        fontWeight="$bold"
+        dataSet={{
+          'component-props': JSON.stringify({
+            'is-text-style': true,
+            'component-name': 'Text',
+            'size': 'md',
+          }),
+        }}
+      >
         This is the center.
       </Text>
     </Center>
   );
 };
 
-export default CenterBasic;
+export default CenterStory;
 
 export { Text, Center };

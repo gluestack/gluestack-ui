@@ -6,7 +6,7 @@ import React from 'react';
 
 type MyButtonStory = ComponentStory<typeof Button>;
 
-const ButtonAllVariants: MyButtonStory = ({}) => {
+const ButtonStylesExample: MyButtonStory = ({}) => {
   const variants = ['solid', 'outline', 'link'];
   return (
     <VStack space="md">
@@ -21,4 +21,4 @@ const ButtonAllVariants: MyButtonStory = ({}) => {
   );
 };
 
-export default ButtonAllVariants;
+export default ButtonStylesExample;
