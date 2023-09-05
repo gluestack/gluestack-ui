@@ -29,7 +29,7 @@
   "dependencies": {
     "@expo/html-elements": "latest",
     "@gluestack-style/animation-plugin": "latest",
-    "@gluestack-style/react": "^0.2.24",
+    "@gluestack-style/react": "^0.2.26",
     "@gluestack-ui/actionsheet": "latest",
     "@gluestack-ui/alert": "latest",
     "@gluestack-ui/alert-dialog": "latest",
