@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, Center } from '@gluestack-ui/themed';
 
-const TextStory = ({ size = 'md', text = 'Hello world', ...props }: any) => {
+const TextBasic = ({ size = 'md', text = 'Hello world', ...props }: any) => {
   return (
     <Text size={size} {...props}>
       {text}
@@ -9,6 +9,6 @@ const TextStory = ({ size = 'md', text = 'Hello world', ...props }: any) => {
   );
 };
 
-export default TextStory;
+export default TextBasic;
 
 export { Text, Center };

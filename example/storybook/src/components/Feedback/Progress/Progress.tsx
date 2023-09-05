@@ -9,7 +9,7 @@ import {
   Heading,
 } from '@gluestack-ui/themed';
 
-const ProgressStory = ({ value = 50, ...props }: any) => {
+const ProgressBasic = ({ value = 50, ...props }: any) => {
   return (
     <Progress w="70%" value={value} {...props}>
       <ProgressFilledTrack />
@@ -17,6 +17,6 @@ const ProgressStory = ({ value = 50, ...props }: any) => {
   );
 };
 
-export default ProgressStory;
+export default ProgressBasic;
 
 export { Progress, ProgressFilledTrack, VStack, Text, Box, Heading };

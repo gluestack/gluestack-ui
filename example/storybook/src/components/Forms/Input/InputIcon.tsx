@@ -10,7 +10,7 @@ import {
 } from '@gluestack-ui/themed';
 import { EyeIcon, EyeOffIcon } from 'lucide-react-native';
 
-const InputStory = ({ ...props }: any) => {
+const InputWithIcon = ({ ...props }: any) => {
   const [value, setValue] = React.useState('');
 
   return (
@@ -70,6 +70,6 @@ const InputStory = ({ ...props }: any) => {
   );
 };
 
-export default InputStory;
+export default InputWithIcon;
 
 export { Input, VStack, Icon, SearchIcon, EyeIcon, EyeOffIcon };

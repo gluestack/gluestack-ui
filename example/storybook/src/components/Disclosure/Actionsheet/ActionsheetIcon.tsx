@@ -19,10 +19,10 @@ import {
 } from '@gluestack-ui/themed';
 import { useEffect } from 'react';
 
-function ActionsheetExample({
+const ActionsheetWithIcon = ({
   showActionsheet: showActionsheetProp = true,
   ...props
-}) {
+}) => {
   const [showActionsheet, setShowActionsheet] = React.useState(
     props.showActionsheet
   );
@@ -77,9 +77,9 @@ function ActionsheetExample({
       </ActionsheetContent>
     </Actionsheet>
   );
-}
+};
 
-export default ActionsheetExample;
+export default ActionsheetWithIcon;
 
 export {
   Actionsheet,

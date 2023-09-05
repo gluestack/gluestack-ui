@@ -11,7 +11,7 @@ import {
   ButtonText,
 } from '@gluestack-ui/themed';
 
-const DividerStory = () => {
+const DividerBasic = () => {
   return (
     <VStack space="md" sx={{ justifyContent: 'center', alignItems: 'center' }}>
       <HStack
@@ -42,7 +42,7 @@ const DividerStory = () => {
   );
 };
 
-export default DividerStory;
+export default DividerBasic;
 
 export {
   Text,

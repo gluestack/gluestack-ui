@@ -1,11 +1,11 @@
 import type { ComponentMeta } from '@storybook/react-native';
 
-import LinkStory from './Link';
+import Link from './Link';
 
-const LinkMeta: ComponentMeta<typeof LinkStory> = {
+const LinkMeta: ComponentMeta<typeof Link> = {
   title: 'stories/FORMS/Link',
-  component: LinkStory,
+  component: Link,
 };
 
-export { LinkStory };
+export { Link };
 export default LinkMeta;
