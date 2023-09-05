@@ -2,8 +2,7 @@
 title: Performance Benchmarks | gluestack-ui
 description: Performance Benchmarks
 pageTitle: Performance Benchmarks
-tag: coming-soon
-pageDescription: Performance Benchmarks description
+pageDescription: Performance tests and comparisons.
 ---
 
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
@@ -11,3 +10,37 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 <Meta title="Performance/Benchmarks" />
 
 # Performance Benchmarks
+
+In this benchmark we will compare the performance of vanilla React Native, NativeBase, gluestack-ui and tamang-ui using nearly all the same features and styles. For gluestack-ui and NativeBase we rendered 50, 100 Box components and for react-native and tamang-ui we rendered View component with same styles.
+
+Running gluestack-ui is 20% slower as compared to vanilla React Native. Major performance improvement is done with the help of babel plugin which pre calculates the style at build time. Note that the performance is much better on web because we directly use css injected on boot time rather than attaching style on runtime.
+
+## Simple Component
+
+Lets try rendering a simple Box/View component with same styles.
+
+### 50 renders
+
+Timing rendering a 50 Box component.
+
+### 100 renders
+
+Timing rendering a 100 Box component.
+
+## Component with Variants
+
+Adding variants to the component. Rendering time is shown below.
+
+## Component with Inline styles
+
+We added inline styling to the component, rendering time is shown below.
+
+## Component with interactive styles
+
+We added interactive styles like hovered, focused, pressed. Rendering time is mentioned below.
+
+## Login Screen
+
+We created a basic login screen using all the important components like Buttons, Input, Checkbox, radio etc. The render time is shown below.
+
+## Complex dashboard application
