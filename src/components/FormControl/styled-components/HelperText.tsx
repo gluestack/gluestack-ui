@@ -6,9 +6,9 @@ export default styled(
   {
     fontSize: '$xs',
     fontFamily: '$body',
-    color: '$textLight500',
+    color: '$text.500',
     _dark: {
-      color: '$textDark400',
+      color: '$text.400',
     },
   },
   { ancestorStyle: ['_helperText'] }

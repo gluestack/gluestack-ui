@@ -4,10 +4,9 @@ import { Text } from 'react-native';
 export default styled(
   Text,
   {
-    ml: '$1',
-    color: '$error700',
+    color: '$error.600',
     _dark: {
-      color: '$error400',
+      color: '$error.500',
     },
   },
   { ancestorStyle: ['_labelAstrick'] }

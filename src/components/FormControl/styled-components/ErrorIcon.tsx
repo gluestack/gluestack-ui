@@ -6,9 +6,9 @@ const Icon = styled(AsForwarder, {}, {});
 export default styled(
   Icon,
   {
-    color: '$error700',
+    color: '$error.600',
     _dark: {
-      color: '$error400',
+      color: '$error.500',
     },
     h: '$4',
     w: '$4',

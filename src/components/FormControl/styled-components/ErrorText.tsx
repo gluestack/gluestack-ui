@@ -6,10 +6,9 @@ export default styled(
   {
     fontSize: '$xs',
     fontFamily: '$body',
-    color: '$error700',
-    ml: '$1',
+    color: '$error.600',
     _dark: {
-      color: '$error400',
+      color: '$error.500',
     },
   },
   { ancestorStyle: ['_errorText'] }
