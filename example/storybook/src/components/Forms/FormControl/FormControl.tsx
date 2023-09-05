@@ -59,7 +59,7 @@ import {
   ChevronDownIcon,
 } from '@gluestack-ui/themed';
 
-const FormControlStory = ({ ...props }) => {
+const FormControlBasic = ({ ...props }) => {
   return (
     <FormControl {...props}>
       <FormControlLabel>
@@ -94,7 +94,7 @@ const FormControlStory = ({ ...props }) => {
   );
 };
 
-export default FormControlStory;
+export default FormControlBasic;
 
 export {
   FormControl,

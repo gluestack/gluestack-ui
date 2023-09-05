@@ -22,13 +22,6 @@ const AlertDialogMeta: ComponentMeta<typeof AlertDialog> = {
     size: 'md',
     showAlertDialog: true,
   },
-  parameters: {
-    docs: {
-      description: {
-        component: '**markdown** description goes here',
-      },
-    },
-  },
 };
 
 export default AlertDialogMeta;

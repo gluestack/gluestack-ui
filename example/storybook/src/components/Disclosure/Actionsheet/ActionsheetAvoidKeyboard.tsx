@@ -62,10 +62,10 @@ const LeadingIcon = createIcon({
   ),
 });
 
-function ActionsheetExample({
+const ActionsheetWithKeyboardAvoidingView = ({
   showActionsheet: showActionsheetProp = true,
   ...props
-}) {
+}) => {
   const [showActionsheet, setShowActionsheet] = React.useState(
     props.showActionsheet
   );
@@ -132,9 +132,9 @@ function ActionsheetExample({
       </Actionsheet>
     </KeyboardAvoidingView>
   );
-}
+};
 
-export default ActionsheetExample;
+export default ActionsheetWithKeyboardAvoidingView;
 
 export {
   Actionsheet,

@@ -1,12 +1,12 @@
 import type { ComponentMeta } from '@storybook/react-native';
-import IconStory from './Icon';
+import Icon from './Icon';
 
-const IconMeta: ComponentMeta<any> = {
+const IconMeta: ComponentMeta<typeof Icon> = {
   title: 'stories/MEDIA AND ICONS/Icons',
-  component: IconStory,
+  component: Icon,
   argTypes: {},
   args: {},
 };
 
 export default IconMeta;
-export { IconStory };
+export { Icon };

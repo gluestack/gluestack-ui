@@ -13,7 +13,7 @@ import React from 'react';
 
 type CustomAvatarStory = ComponentStory<typeof Avatar>;
 
-const AvatarGroupExample: CustomAvatarStory = ({ size = 'md', badge }: any) => {
+const AvatarGroupBasic: CustomAvatarStory = ({ size = 'md', badge }: any) => {
   return (
     <HStack space="md" h="100%" justifyContent="center" alignItems="center">
       <AvatarGroup>
@@ -58,4 +58,4 @@ const AvatarGroupExample: CustomAvatarStory = ({ size = 'md', badge }: any) => {
   );
 };
 
-export default AvatarGroupExample;
+export default AvatarGroupBasic;
