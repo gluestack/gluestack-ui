@@ -1,4 +1,6 @@
-export const config = {
+import { createConfig } from '@gluestack-style/react';
+
+export const config = createConfig({
   aliases: {
     bg: 'backgroundColor',
     backgroundColor: 'backgroundColor',
@@ -59,121 +61,17 @@ export const config = {
     // Media Query
     condition: 'condition',
   } as const,
-
   tokens: {
-    shadows: {
-      'none': {
-        shadowColor: 'transparent',
-        shadowOffset: {
-          width: 0,
-          height: 0,
-        },
-        shadowOpacity: 0,
-        shadowRadius: 0,
-        elevation: 0,
-      },
-      '0': {
-        shadowColor: 'black',
-        shadowOffset: {
-          width: 0,
-          height: 1,
-        },
-        shadowOpacity: 0.18,
-        shadowRadius: 1.0,
-        elevation: 1,
-      },
-      '1': {
-        shadowColor: '$red500',
-        shadowOffset: {
-          width: 0,
-          height: 1,
-        },
-        shadowOpacity: 0.2,
-        shadowRadius: 1.41,
-        elevation: 2,
-      },
-      '2': {
-        shadowColor: 'black',
-        shadowOffset: {
-          width: 0,
-          height: 1,
-        },
-        shadowOpacity: 0.22,
-        shadowRadius: 2.22,
-        elevation: 3,
-      },
-      '3': {
-        shadowColor: 'black',
-        shadowOffset: {
-          width: 0,
-          height: 2,
-        },
-        shadowOpacity: 0.23,
-        shadowRadius: 2.62,
-        elevation: 4,
-      },
-      '4': {
-        shadowColor: 'black',
-        shadowOffset: {
-          width: 0,
-          height: 2,
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 3.84,
-        elevation: 5,
-      },
-      '5': {
-        shadowColor: 'black',
-        shadowOffset: {
-          width: 0,
-          height: 3,
-        },
-        shadowOpacity: 0.27,
-        shadowRadius: 4.65,
-        elevation: 6,
-      },
-      '6': {
-        shadowColor: 'black',
-        shadowOffset: {
-          width: 0,
-          height: 3,
-        },
-        shadowOpacity: 0.29,
-        shadowRadius: 4.65,
-        elevation: 7,
-      },
-      '7': {
-        shadowColor: 'black',
-        shadowOffset: {
-          width: 0,
-          height: 4,
-        },
-        shadowOpacity: 0.3,
-        shadowRadius: 4.65,
-        elevation: 8,
-      },
-      '8': {
-        shadowColor: 'black',
-        shadowOffset: {
-          width: 0,
-          height: 4,
-        },
-        shadowOpacity: 0.32,
-        shadowRadius: 5.46,
-        elevation: 9,
-      },
-      '9': {
-        shadowColor: 'black',
-        shadowOffset: {
-          width: 0,
-          height: 5,
-        },
-        shadowOpacity: 0.34,
-        shadowRadius: 6.27,
-        elevation: 10,
-      },
-    },
     colors: {
+      backgroundColor: '#ffffff',
+      backgroundColorAlpha10: '#ffffff1a',
+      backgroundColorAlpha20: '#ffffff33',
+      backgroundColorAlpha30: '#ffffff4d',
+      backgroundColorAlpha40: '#ffffff66',
+      backgroundColorAlpha50: '#ffffff80',
+      headerColor: '#e11d48',
+      textColor: '#000000',
+      borderColor: '#000000',
       rose50: '#fff1f2',
       rose100: '#ffe4e6',
       rose200: '#fecdd3',
@@ -654,6 +552,7 @@ export const config = {
       'full': '100%',
     },
     borderWidths: {
+      'borderWidth': 1,
       '0': 0,
       '1': 1,
       '2': 2,
@@ -661,6 +560,7 @@ export const config = {
       '8': 8,
     },
     radii: {
+      'borderRadius': 0,
       'none': 0,
       'xs': 2,
       'sm': 4,
@@ -756,16 +656,78 @@ export const config = {
       100: 1,
     },
   } as const,
-  //TODO: Update this after media queries are implemented
-  mediaQueries: {
-    'base': '@media (min-width: 0px)',
-    'sm': '@media (min-width: 480px)',
-    'md': '@media (min-width: 768px)',
-    'lg': '@media (min-width: 992px)',
-    'xl': '@media (min-width: 1280px)',
-    '2xl': '@media (min-width: 1536px)',
+  themes: {
+    '2000s': {
+      colors: {
+        $backgroundColor: '#ffffff',
+        $headerColor: '$colors$blue600',
+        $textColor: '#ffffff',
+        $borderColor: '$colors$gray400',
+      },
+      borderWidths: {
+        $borderWidth: '$space$0.5',
+      },
+      radii: {
+        $borderRadius: '$radii$sm',
+      },
+    },
+    '2010s': {
+      colors: {
+        $backgroundColor: '#ffffff',
+        $headerColor: '$colors$blue700',
+        $textColor: '$colors$white',
+        $borderColor: '#000000',
+      },
+      borderWidths: {
+        $borderWidth: '$space$0.5',
+      },
+      radii: {
+        $borderRadius: '$radii$lg',
+      },
+    },
+    '2020s': {
+      colors: {
+        $backgroundColor: '#ffffff7a',
+        $headerColor: '$colors$blue400',
+        $textColor: '$colors$blue900',
+        $borderColor: '$colors$gray300',
+      },
+      borderWidths: {
+        $borderWidth: '$space$px',
+      },
+      radii: {
+        $borderRadius: '$radii$xl',
+      },
+    },
+    'modern': {
+      colors: {
+        $red500: 'green',
+        // $headerColor: '$colors$blue600',
+        // $textColor: '#ffffff',
+        // $borderColor: '$colors$gray400',
+      },
+      // borderWidths: {
+      //   $borderWidth: '$space$0.5',
+      // },
+      // radii: {
+      //   $borderRadius: '$radii$sm',
+      // },
+    },
   },
-};
+  components: {
+    Box: {
+      theme: {
+        variants: {
+          variant: {
+            newVariant: {
+              bg: '$red500',
+            },
+          },
+        },
+      },
+    },
+  },
+} as const);
 
 type ConfigType = typeof config;
 

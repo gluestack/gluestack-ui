@@ -1,6 +1,14 @@
 {
   "name": "@gluestack-style/animation-plugin",
-  "version": "0.1.3",
+  "version": "0.1.8",
+  "description": "A gluestack-style plugin for animation properties, utilizing animation libraries.",
+  "keywords": [
+    "react",
+    "native",
+    "react-native",
+    "animation",
+    "transition"
+  ],
   "main": "lib/commonjs/index",
   "types": "lib/typescript/index.d.ts",
   "module": "lib/module/index",
@@ -17,7 +25,7 @@
     "@legendapp/motion": "^2.2.0"
   },
   "devDependencies": {
-    "@gluestack-style/react": "*",
+    "@gluestack-style/react": "^0.1.11",
     "@types/react": "^18.0.22",
     "@types/react-native": "^0.69.15",
     "babel-plugin-transform-remove-console": "^6.9.4",

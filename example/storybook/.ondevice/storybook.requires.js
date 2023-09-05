@@ -8,6 +8,16 @@ import {
   clearDecorators,
 } from '@storybook/react-native';
 
+global.STORIES = [
+  {
+    titlePrefix: '',
+    directory: './components',
+    files: '**/*.stories.?(ts|tsx|js|jsx)',
+    importPathMatcher:
+      '^\\.[\\\\/](?:components(?:\\/(?!\\.)(?:(?:(?!(?:^|\\/)\\.).)*?)\\/|\\/|$)(?!\\.)(?=.)[^/]*?\\.stories\\.(?:ts|tsx|js|jsx)?)$',
+  },
+];
+
 import '@storybook/addon-ondevice-notes/register';
 import '@storybook/addon-ondevice-controls/register';
 import '@storybook/addon-ondevice-backgrounds/register';
@@ -38,61 +48,27 @@ try {
 } catch {}
 
 const getStories = () => {
-  return [
-    // require('../src/overview/API'),
-    // require('../src/components/Test/Test.stories.tsx'),
-
-    // require('../src/hooks/Example.stories.tsx'),
-
-    // require('../src/recipes/BaseStyle/BaseStyle.stories.tsx'),
-    // require('../src/recipes/BaseStyleSX/BaseStyleSX.stories.tsx'),
-    require('../src/api/ColorModeBasedStyles/ColorMode.stories.tsx'),
-    require('../src/api/Variants/BaseStyleVariantSizes.stories.tsx'),
-    require('../src/api/AsForwarder/AsForwarder.stories.tsx'),
-    // require('../src/recipes/ButtonSizes/ButtonSizes.stories.tsx'),
-    // require('../src/recipes/ButtonStateProps/ButtonStateProps.stories.tsx'),
-    // require('../src/recipes/ButtonVariant/ButtonVariant.stories.tsx'),
-    // require('../src/api/ColorModeBasedStyles/ColorMode.stories.tsx'),
-    // require('../src/recipes/Descendants/Descendants.stories.tsx'),
-    // require('../src/recipes/Icons/Icons.stories.tsx'),
-    // require('../src/recipes/LinearGradient/LinearGradient.stories.tsx'),
-    // require('../src/recipes/MediaQuery/MediaQuery.stories.tsx'),
-    // require('../src/recipes/PlatformProps/PlatformProps.stories.tsx'),
-    // require('../src/recipes/PropertyResolver/PropertyResolver.stories.tsx'),
-    // require('../src/recipes/PropertyTokenMap/PropertyTokenMap.stories.tsx'),
-    // require('../src/recipes/ResolveProps/ResolveProps.stories.tsx'),
-    // require('../src/recipes/StateColorMode/StateColorMode.stories.tsx'),
-    // require('../src/recipes/StateMediaQuery/StateMediaQuery.stories.tsx'),
-    // require('../src/recipes/StatePlatform/StatePlatform.stories.tsx'),
-    // require('../src/recipes/StyleId/StyleId.stories.tsx'),
-    // require('../src/recipes/SxProps/SxProps.stories.tsx'),
-    // require('../src/recipes/UtilityProps/UtilityProps.stories.tsx'),
-
-    // require('../components/Icon/Icon.stories.tsx'),
-
-    // require('../components/Icon/Icon.stories.tsx'),
-    // require('../components/Pressable/Pressable.stories.tsx'),
-    // require('../components/FormControl/FormControl.stories.tsx'),
-    // require('../components/Icons/Icons.stories.tsx'),
-    // require('../components/Avatar/Avatar.stories.tsx'),
-    // require('../components/Button/Button.stories.tsx'),
-    // require('../components/Center/Center.stories.tsx'),
-    // require('../components/Switch/Switch.stories.tsx'),
-    // require('../components/Checkbox/Checkbox.stories.tsx'),
-    // require('../components/Heading/Heading.stories.tsx'),
-    // require('../components/HStack/HStack.stories.tsx'),
-    // require('../components/Image/Image.stories.tsx'),
-    // require('../components/Input/Input.stories.tsx'),
-    // require('../components/Image/Image.stories.tsx'),
-    // require('../components/Modal/Modal.stories.tsx'),
-    // require('../components/Slider/Slider.stories.tsx'),
-    // require('../components/Badge/Badge.stories.tsx'),
-    // require('../components/Divider/Divider.stories.tsx'),
-    // require('../components/AlertDialog/AlertDialog.stories.tsx'),
-    // require('../components/Fab/Fab.stories.tsx'),
-    // require('../components/IconButton/IconButton.stories.tsx'),
-    // require('../components/Progress/Progress.stories.tsx'),
-  ];
+  return {
+    // "./src/api/AsForwarder/AsForwarder.stories.tsx": require("../src/api/AsForwarder/AsForwarder.stories.tsx"),
+    // "./src/api/ColorModeBasedStyles/ColorMode.stories.tsx": require("../src/api/ColorModeBasedStyles/ColorMode.stories.tsx"),
+    // "./src/api/CompoundVariants/CompoundVarinats.stories.tsx": require("../src/api/CompoundVariants/CompoundVarinats.stories.tsx"),
+    './src/api/createStyled/createStyled.stories.tsx': require('../src/api/createStyled/createStyled.stories.tsx'),
+    './src/api/DescendantsStyles/ContextBasedStyles.stories.tsx': require('../src/api/DescendantsStyles/ContextBasedStyles.stories.tsx'),
+    // "./src/api/MultipleProvder/MultipleProvider.stories.tsx": require("../src/api/MultipleProvder/MultipleProvider.stories.tsx"),
+    // "./src/api/PlatformBasedStyles/PlatformBasedStyles.stories.tsx": require("../src/api/PlatformBasedStyles/PlatformBasedStyles.stories.tsx"),
+    // "./src/api/PropertyResolver/PropertyResolver.stories.tsx": require("../src/api/PropertyResolver/PropertyResolver.stories.tsx"),
+    // "./src/api/PropsPassing/PropsPassing.stories.tsx": require("../src/api/PropsPassing/PropsPassing.stories.tsx"),
+    // "./src/api/ResponsiveStyles/ResponsiveStyles.stories.tsx": require("../src/api/ResponsiveStyles/ResponsiveStyles.stories.tsx"),
+    // "./src/api/Specificity/Specificity.stories.tsx": require("../src/api/Specificity/Specificity.stories.tsx"),
+    // "./src/api/StateBasesStyles/ButtonStateProps.stories.tsx": require("../src/api/StateBasesStyles/ButtonStateProps.stories.tsx"),
+    // "./src/api/SxStyleResolution/SxStyleResolution.stories.tsx": require("../src/api/SxStyleResolution/SxStyleResolution.stories.tsx"),
+    // "./src/api/Typescript/Typescript.stories.tsx": require("../src/api/Typescript/Typescript.stories.tsx"),
+    // "./src/api/UtilityFunctions/UtilityFunctions.stories.tsx": require("../src/api/UtilityFunctions/UtilityFunctions.stories.tsx"),
+    // "./src/api/Variants/BaseStyleVariantSizes.stories.tsx": require("../src/api/Variants/BaseStyleVariantSizes.stories.tsx"),
+    // "./src/plugins/AnimationPlugin/Animation.stories.tsx": require("../src/plugins/AnimationPlugin/Animation.stories.tsx"),
+    // "./src/plugins/CSSVariables/CSSVariables.stories.tsx": require("../src/plugins/CSSVariables/CSSVariables.stories.tsx"),
+    // "./src/plugins/FontsPlugin/FontsPlugin.stories.tsx": require("../src/plugins/FontsPlugin/FontsPlugin.stories.tsx"),
+  };
 };
 
 configure(getStories, module, false);

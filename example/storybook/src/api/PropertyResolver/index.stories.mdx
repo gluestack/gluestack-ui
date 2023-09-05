@@ -159,19 +159,22 @@ export default PropertyResolver;
 > **Note:** The Property Resolver is locally scoped so if you define it in a components config then it will only modify that property value for that particular component. To apply this functionality globally, define it in the gluestack-style.config.js/ts file as shown below.
 
 ```tsx
-export const config = {
+import { createConfig } from '@gluestack-style/react';
+
+export const config = createConfig({
   aliases: {
     bg: 'backgroundColor',
     backgroundColor: 'backgroundColor',
-    ...,
-    condition: 'condition',
+    // ...
   },
-
   tokens: {
-    ...,
+    // ...
   },
-	propertyResolver:{
-		backgroundColor: (rawValue, resolver) => {
+  globalStyle: {
+    // ...
+  },
+  propertyResolver: {
+    backgroundColor: (rawValue, resolver) => {
       if (rawValue.includes(':alpha-')) {
         let opacity = resolver(rawValue.split(':alpha-')[1], 'opacity');
         let value = rawValue.split(':alpha-')[0];
@@ -180,8 +183,8 @@ export const config = {
         return resolver(rawValue);
       }
     },
-	}
-};
+  },
+} as const);
 ```
 
 > Warning: We strongly advise against using this feature" as this can impact your performance since this needs to be resolved on the fly and can not be optimised at build time.

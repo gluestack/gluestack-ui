@@ -1,3 +1,4 @@
+// import { stableHash } from './stableHash';
 import type { Config } from './types';
 
 // --------------------------------- 3. Preparing style map for Css Injection based on precedence --------------------------------------
@@ -57,6 +58,7 @@ export function resolveStringToken(
   propName: any,
   scale?: any
 ) {
+  // console.setStartTimeStamp('resolveStringToken');
   let typeofResult = 'string';
   const token_scale = scale ?? tokenScaleMap[propName];
 
@@ -75,12 +77,27 @@ export function resolveStringToken(
       return tokenValue;
     } else {
       if (tokenScaleMap[propName]) {
+        let modifiedTokenScale = token_scale;
         if (
-          config?.tokens[token_scale] &&
-          config?.tokens[token_scale].hasOwnProperty(splitCurrentToken[0])
+          token_scale === 'sizes' &&
+          !config?.tokens[token_scale]?.hasOwnProperty(splitCurrentToken[0])
+        ) {
+          modifiedTokenScale = 'space';
+        }
+
+        if (!config || !config.tokens) {
+          throw new Error(
+            'You cannot use tokens without wrapping the component with StyledProvider. Please wrap the component with a StyledProvider and pass theme config.'
+          );
+        }
+        if (
+          config?.tokens[modifiedTokenScale] &&
+          config?.tokens[modifiedTokenScale].hasOwnProperty(
+            splitCurrentToken[0]
+          )
         ) {
           const tokenValue =
-            config?.tokens?.[token_scale]?.[splitCurrentToken[0]];
+            config?.tokens?.[modifiedTokenScale]?.[splitCurrentToken[0]];
           typeofResult = typeof tokenValue;
 
           if (typeof tokenValue !== 'undefined' && tokenValue !== null) {
@@ -96,6 +113,7 @@ export function resolveStringToken(
 
   let finalResult = result;
 
+  // console.setEndTimeStamp('resolveStringToken');
   if (finalResult.length !== 0 && finalResult[0] === '') {
     return undefined;
   } else {
@@ -110,8 +128,14 @@ export function resolveStringToken(
 }
 
 export const getTokenFromConfig = (config: any, prop: any, value: any) => {
+  // console.setStartTimeStamp('getTokenFromConfig');
   const aliasTokenType = config.propertyTokenMap[prop];
 
+  let IsNegativeToken = false;
+  if (typeof value === 'string' && value.startsWith('-')) {
+    IsNegativeToken = true;
+    value = value.slice(1);
+  }
   // const tokenScale = config?.tokens?.[aliasTokenType];
   let token;
 
@@ -144,8 +168,17 @@ export const getTokenFromConfig = (config: any, prop: any, value: any) => {
     } else {
       token = value;
     }
-    // console.log(token, typeof token, prop, '******');
   }
+
+  if (IsNegativeToken) {
+    if (typeof token === 'number') {
+      token = -token;
+    } else if (typeof token === 'string') {
+      token = `-${token}`;
+    }
+  }
+
+  // console.setEndTimeStamp('getTokenFromConfig');
 
   return token;
 };
@@ -179,7 +212,6 @@ export function resolveTokensFromConfig(config: any, props: any) {
 
   Object.keys(props).map((prop: any) => {
     const value = props[prop];
-
     newProps[prop] = getResolvedTokenValueFromConfig(
       config,
       props,
@@ -187,18 +219,21 @@ export function resolveTokensFromConfig(config: any, props: any) {
       value
     );
   });
-  // console.log('&&&&&', newProps);
 
   return newProps;
 }
 
 export function resolvedTokenization(props: any, config: any) {
+  // console.setStartTimeStamp('resolvedTokenization');
   const aliasedResolvedProps = resolveAliasesFromConfig(config, props);
   const newProps = resolveTokensFromConfig(config, aliasedResolvedProps);
+  // console.setEndTimeStamp('resolvedTokenization');
   return newProps;
 }
 // ----------------------------------------------------- 6. Theme Boot Resolver -----------------------------------------------------
 export const deepMerge = (target: any = {}, source: any) => {
+  // console.setStartTimeStamp('deepMerge');
+
   for (const key in source) {
     if (source.hasOwnProperty(key)) {
       if (typeof target[key] === 'object' && typeof source[key] === 'object') {
@@ -208,7 +243,13 @@ export const deepMerge = (target: any = {}, source: any) => {
       }
     }
   }
+  // console.setEndTimeStamp('deepMerge');
   return target;
+};
+
+export const shallowMerge = (target: any = {}, source: any) => {
+  // console.setStartTimeStamp('deepMerge');
+  return Object.assign(target, source);
 };
 
 export function deepMergeObjects(...objects: any) {
@@ -322,3 +363,50 @@ export const platformSpecificSpaceUnits = (theme: Config, platform: string) => {
   });
   return newTheme;
 };
+
+export function extractWidthValues(condition: string) {
+  const widthRegex = /\((min-width|max-width)?\s*:\s*(\d+)\s*(px)?\)/g;
+  const matches = [...condition.matchAll(widthRegex)];
+
+  const widthValues = [];
+  for (const match of matches) {
+    if (match[1]) {
+      widthValues.push(parseInt(match[2]));
+    } else {
+      widthValues.push(parseInt(match[2]));
+    }
+  }
+
+  return widthValues;
+}
+
+export function addThemeConditionInMeta(originalThemeObject: any, CONFIG: any) {
+  let themeObject = originalThemeObject;
+  themeObject.meta.themeCondition = {};
+  // Creating theme conditions for theme
+  Object.keys(themeObject.original).forEach((resolvedToken: any) => {
+    Object.keys(CONFIG.themes ?? {}).forEach((themeName: any) => {
+      let theme = CONFIG.themes[themeName];
+      Object.keys(theme).forEach((tokenScale: any) => {
+        const tokenScaleValue = theme[tokenScale];
+        Object.keys(tokenScaleValue).forEach((token: any) => {
+          if (!themeObject.meta.themeCondition[themeName]) {
+            themeObject.meta.themeCondition[themeName] = {};
+          }
+          if (themeObject.original[resolvedToken] === token) {
+            themeObject.meta.themeCondition[themeName] = {
+              ...themeObject.meta.themeCondition[themeName],
+              ...resolvedTokenization(
+                {
+                  [resolvedToken]: tokenScaleValue[token],
+                },
+                CONFIG
+              ),
+            };
+          }
+        });
+      });
+    });
+  });
+  return themeObject;
+}

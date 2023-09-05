@@ -1,0 +1,38 @@
+{
+  "expo": {
+    "name": "kitchensink-app",
+    "slug": "kitchensink-app",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "jsEngine": "hermes",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true,
+      "jsEngine": "hermes",
+      "bundleIdentifier": "com.meenumakkar.ui-kitchensink"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.meenumakkar.clitestexpo"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "runtimeVersion": {
+      "policy": "sdkVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/72e83d84-acc2-4675-a0a8-95d0f5fea5b4"
+    }
+  }
+}

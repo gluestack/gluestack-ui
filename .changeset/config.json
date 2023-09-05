@@ -5,12 +5,13 @@
   "fixed": [],
   "linked": [],
   "access": "public",
-  "baseBranch": "master",
+  "baseBranch": "main",
   "updateInternalDependencies": "patch",
   "ignore": [
     "expo-app",
     "babel-gluestack-style-resolver-example",
     "example-storybook",
-    "next-example-styled"
+    "next-example-styled",
+    "benchmark-next"
   ]
 }

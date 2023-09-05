@@ -5,27 +5,33 @@ import { propertyTokenMap } from './propertyTokenMap';
 import type { COLORMODES } from './types';
 import { platformSpecificSpaceUnits } from './utils';
 import { createGlobalStylesWeb } from './createGlobalStylesWeb';
-
+import { createGlobalStyles } from './createGlobalStyles';
 type Config = any;
+let colorModeSet = false;
 
 export const defaultConfig: { config: Config; colorMode: COLORMODES } = {
   config: {},
   colorMode: 'light',
 };
 
-// interface ConfigContextData {
-//   config: Config;
-//   setConfig: (config: Config) => void;
-// }
-
 const defaultContextData: Config = defaultConfig;
-
 const StyledContext = React.createContext<Config>(defaultContextData);
 
-// type IContext = {
-//   config: Config;
-//   colorMode?: COLORMODES;
-// };
+const setCurrentColorMode = (inputColorMode: string) => {
+  if (inputColorMode) {
+    // console.log(get(), '>>>>>>');
+    const currentColorMode = get();
+    if (currentColorMode !== inputColorMode) {
+      set(inputColorMode);
+    }
+    colorModeSet = true;
+  }
+
+  // if (inputColorMode) {
+  //   set(inputColorMode === 'dark' ? 'dark' : 'light');
+  //   colorModeSet = true;
+  // }
+};
 export const StyledProvider: React.FC<{
   config: Config;
   colorMode?: COLORMODES;
@@ -35,7 +41,6 @@ export const StyledProvider: React.FC<{
   const currentConfig = React.useMemo(() => {
     //TODO: Add this later
     return platformSpecificSpaceUnits(config, Platform.OS);
-    // return config;
   }, [config]);
 
   if (Platform.OS === 'web' && globalStyles) {
@@ -48,6 +53,15 @@ export const StyledProvider: React.FC<{
   }, [colorMode]);
 
   React.useEffect(() => {
+    // Add gs class name
+    if (Platform.OS === 'web') {
+      document.documentElement.classList.add(`gs`);
+      document.documentElement.classList.add(`gs-${currentColorMode}`);
+    }
+
+    // GluestackStyleSheet.resolve({ ...config, propertyTokenMap });
+    // GluestackStyleSheet.injectInStyle();
+
     onChange((currentColor: string) => {
       // only for web
       if (Platform.OS === 'web') {
@@ -59,46 +73,24 @@ export const StyledProvider: React.FC<{
         document.documentElement.classList.add(`gs-${currentColor}`);
       }
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  React.useEffect(() => {
-    if (currentColorMode) {
-      set(currentColorMode === 'dark' ? 'dark' : 'light');
-    }
 
-    if (Platform.OS === 'web') {
-      document.documentElement.classList.add(`gs-${get()}`);
-    }
+  React.useEffect(() => {
+    setCurrentColorMode(currentColorMode);
   }, [currentColorMode]);
 
-  React.useEffect(() => {
-    if (Platform.OS === 'web') {
-      document.documentElement.classList.add(`gs`);
-    }
-  }, []);
-
-  // Set colormode server side
-  if (typeof window === 'undefined') {
-    if (Platform.OS === 'web' && currentColorMode) {
-      set(currentColorMode === 'dark' ? 'dark' : 'light');
-    }
+  // // Set colormode for the first time
+  if (!colorModeSet) {
+    setCurrentColorMode(currentColorMode);
   }
 
-  let contextValue;
-  if (Platform.OS === 'web') {
-    // This if statement technically breaks the rules of hooks, but is safe
-    // because the condition never changes after mounting.
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    contextValue = React.useMemo(() => {
-      return { config: currentConfig };
-    }, [currentConfig]);
-  } else {
-    // This if statement technically breaks the rules of hooks, but is safe
-    // because the condition never changes after mounting.
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    contextValue = React.useMemo(() => {
-      return { config: currentConfig, colorMode: currentColorMode };
-    }, [currentConfig, currentColorMode]);
-  }
+  const globalStyleMap =
+    config?.globalStyle && createGlobalStyles(config.globalStyle);
+
+  const contextValue = React.useMemo(() => {
+    return { config: currentConfig, globalStyle: globalStyleMap };
+  }, [currentConfig, globalStyleMap]);
 
   return (
     <StyledContext.Provider value={contextValue}>

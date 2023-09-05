@@ -1,29 +1,73 @@
 import React from 'react';
 import { Platform } from 'react-native';
-
-type IWrapperType =
-  | 'global'
-  | 'boot'
-  | 'inline'
-  | 'boot-descendant'
-  | 'inline-descendant';
+import type { IWrapperType } from '../../../types';
 
 type IToBeFlushedStyles = { [key in IWrapperType]?: any };
 
 const toBeFlushedStyles: IToBeFlushedStyles = {
   'global': {},
-  'boot': {},
-  'boot-descendant': {},
-  'inline': {},
-  'inline-descendant': {},
+  'forwarded-base': {},
+  'forwarded-descendant-base': {},
+  'forwarded-variant': {},
+  'forwarded-descendant-variant': {},
+  //base
+  'boot-base': {},
+  'extended-base': {},
+  'boot-base-state': {},
+  'extended-base-state': {},
+  // descendant-base
+  'boot-descendant-base': {},
+  'extended-descendant-base': {},
+  'boot-descendant-base-state': {},
+  'extended-descendant-base-state': {},
+  // variant
+  'boot-variant': {},
+  'extended-variant': {},
+  'boot-variant-state': {},
+  'extended-variant-state': {},
+  // descendant-variant
+  'boot-descendant-variant': {},
+  'extended-descendant-variant': {},
+  'boot-descendant-variant-state': {},
+  'extended-descendant-variant-state': {},
+  // inline
+  'passing-base': {},
+  'inline-base': {},
+  'inline-variant': {},
+  'inline-descendant-base': {},
 };
 
 const order: IWrapperType[] = [
   'global',
-  'boot',
-  'boot-descendant',
-  'inline-descendant',
-  'inline',
+  'forwarded-base',
+  'forwarded-descendant-base',
+  'forwarded-variant',
+  'forwarded-descendant-variant',
+  // base
+  'boot-base',
+  'extended-base',
+  'boot-base-state',
+  'extended-base-state',
+  // descendant-base
+  'boot-descendant-base',
+  'extended-descendant-base',
+  'boot-descendant-base-state',
+  'extended-descendant-base-state',
+  // variant
+  'boot-variant',
+  'extended-variant',
+  'boot-variant-state',
+  'extended-variant-state',
+  // descendant-variant
+  'boot-descendant-variant',
+  'extended-descendant-variant',
+  'boot-descendant-variant-state',
+  'extended-descendant-variant-state',
+  // inline
+  'inline-descendant-base',
+  'passing-base',
+  'inline-variant',
+  'inline-base',
 ];
 
 if (typeof window !== 'undefined') {
@@ -32,7 +76,6 @@ if (typeof window !== 'undefined') {
   if (Platform.OS === 'web') {
     order.forEach((orderKey) => {
       let wrapperElement = document.getElementById(orderKey);
-
       if (!wrapperElement) {
         wrapperElement = document.createElement('div');
         wrapperElement.id = orderKey;
@@ -41,6 +84,15 @@ if (typeof window !== 'undefined') {
     });
   }
 }
+
+const createStyle = (styleTagId: any, css: any) => {
+  //
+  let style = document.createElement('style');
+  style.id = styleTagId;
+  style.appendChild(document.createTextNode(''));
+  style.innerHTML = css;
+  return style;
+};
 
 export const injectCss = (
   css: any,
@@ -59,37 +111,17 @@ export const injectCss = (
   }
 
   if (typeof window !== 'undefined') {
-    const styleTag = document.getElementById(styleTagId);
+    let wrapperElement = document.querySelector('#' + wrapperType);
 
-    if (!styleTag) {
-      // inject(`@media screen {${toBeInjectedCssRules}}`, type, styleTagId);
-      // modifiedStylesheet = (() => {
-      let style = document.getElementById(styleTagId);
-      let wrapperElement = document.getElementById(wrapperType);
+    if (wrapperElement) {
+      let style = wrapperElement.querySelector(`[id='${styleTagId}']`);
 
       if (!style) {
-        style = document.createElement('style');
-        style.id = styleTagId;
-        style.appendChild(document.createTextNode(''));
-        style.innerHTML = css;
-
-        // console.log(css, style, 'KKKKKK');
-      }
-
-      if (wrapperElement) {
+        style = createStyle(styleTagId, css);
+        // wrapperElement.insertBefore(style, wrapperElement.firstChild);
         wrapperElement.appendChild(style);
       }
     }
-    //  else {
-    //   if (wrapperType === 'global') {
-    //     const style = document.getElementById(styleTagId);
-    //     const sheet = style?.sheet;
-    //     sheet?.insertRule(css);
-    //   }
-    // }
-    // @ts-ignore
-    // return style.sheet;
-    // })();
   }
 
   // if (modifiedStylesheet && modifiedStylesheet.insertRule) {

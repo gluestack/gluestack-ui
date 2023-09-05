@@ -1,0 +1,217 @@
+---
+title: Themes | gluestack-style
+description: gluestack-style allows you to easily create themes for your app with different values for a particular token for more flexibility and reusability of tokens.
+---
+
+import { styled, StyledProvider, Theme } from '@gluestack-style/react';
+import { Pressable, Text as RNText, View } from 'react-native';
+import { Button, AppProvider, CodePreview } from '@gluestack/design-system';
+import { useState } from 'react';
+import { config } from './config';
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+
+<Meta title="configuration/Themes" />
+
+# Themes
+
+`@gluestack-style/react` allows you to easily create themes for your app with different values for a particular token for more flexibility and reusability of tokens.
+
+> **Note**: Themes is an **optional** feature, you can use gluestack-style without themes.
+
+<AppProvider>
+  <CodePreview
+    metaData={{
+      scope: {
+        styled,
+        View,
+        RNText,
+        Pressable,
+        Theme,
+        Provider: StyledProvider,
+        config: config,
+        useState,
+        Theme,
+      },
+      code: `
+        function App() {
+          const StyledLinkButton = styled(
+            Pressable,
+            {
+              borderRadius: 4,
+              flexDirection: 'row',
+              justifyContent: 'center',
+              alignItems: 'center',
+              m: '$3',
+              bg: '$backgroundDark300',
+              variants: {
+                size: {
+                  sm: {
+                    px: '$4',
+                    py: '$3',
+                  },
+                  md: {
+                    px: '$5',
+                    py: '$4',
+                  },
+                },
+              },
+              defaultProps: {
+                size: 'md',
+                variant: 'redbox',
+              },
+            },
+            {
+              DEBUG: 'Button',
+            }
+          );
+          const Box = styled(View, {});
+          const Text = styled(RNText, { color: '$textColor' });
+          return (
+            <Provider config={config()}>
+              <View
+                style={{
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}
+              >
+                <Box
+                  flexDirection="row"
+                  p="$2"
+                  pr="$4"
+                  w="$full"
+                  bg="$blue800"
+                  borderTopRightRadius={'$md'}
+                  borderTopLeftRadius={'$md'}
+                >
+                  <Text color="$white">Theme Switcher</Text>
+                  <Box flex={1}></Box>
+                  <Text color="$white">x</Text>
+                </Box>
+                <Box
+                  bg="$gray100"
+                  h="440px"
+                  w="600px"
+                  alignItems="center"
+                  justifyContent="center"
+                >
+                  <Theme {...props}>
+                    <Box
+                      mx="auto"
+                      h="200px"
+                      w="400px"
+                      bg="$backgroundColor"
+                      borderWidth="$borderWidth"
+                      borderColor="$borderColor"
+                      borderRadius={'$borderRadius'}
+                      overflow="hidden"
+                    >
+                      <Box
+                        flexDirection="row"
+                        p="$2"
+                        pr="$4"
+                        w="$full"
+                        bg="$headerColor"
+                      >
+                        <Text color="$textColor">Explorer</Text>
+                        <Box flex={1}></Box>
+                        <Text>x</Text>
+                      </Box>
+                    </Box>
+                  </Theme>
+                </Box>
+              </View>
+            </Provider>
+          );
+      }`,
+      argsType: {
+        name: {
+          control: 'select',
+          options: ['2000s', '2010s', '2020s'],
+          default: '2000s',
+        },
+      },
+    }}
+  />
+</AppProvider>
+
+## How to create a Theme?
+
+To create a theme you need to create a config, you need to use the `createConfig` function from `@gluestack-style/react` package.
+
+```tsx
+import { createConfig } from '@gluestack-style/react';
+
+export const config = createConfig({
+  aliases: {
+    // aliases
+  },
+  tokens: {
+    colors: {
+      primary: '#000',
+      secondary: '#fff',
+      // ...
+      red300: '#000',
+      red400: '#000',
+      red500: '#000',
+      // ...
+      brown300: '#000',
+      brown400: '#000',
+      brown500: '#000',
+      // ...
+    },
+    // ...
+    themes: {
+      classic:{
+        colors: {
+          $primary: '$colors.$brown400',
+          $secondary: '$colors.$brown100',
+        },
+      },
+      modern:{
+        colors: {
+          $primary: '$colors.$red400',
+          $secondary: '$colors.$red100',
+        },
+      },
+      }
+    }
+  },
+});
+```
+
+Now you have your themes defined, you can use them in your app. How to use it you ask?
+
+## How to use a Theme?
+
+To use a theme you need to import the `Theme` component from `@gluestack-style/react` package. **Theme** component accepts a `name` prop which is the name of the theme you want to use.
+
+> **Important**: `Theme` adds a View to the DOM tree.
+
+```tsx
+import { styled, StyledProvider, Theme } from '@gluestack-style/react';
+import { Pressable } from 'react-native';
+import { config } from './config';
+
+const Button = styled(Pressable, {
+  backgroundColor: '$primary',
+  padding: '$3',
+});
+
+const ButtonText = styled(Pressable, {
+  color: '$secondary',
+});
+
+export const App = () => {
+  return (
+    <StyledProvider config={config}>
+      <Theme theme="classic">
+        <Button>
+          <ButtonText>Classic Button</ButtonText>
+        </Button>
+      </Theme>
+    </StyledProvider>
+  );
+};
+```
+
+> **Note**: Components must be wrapped inside the `Theme` component to use the theme. Else default tokens from config will be used.

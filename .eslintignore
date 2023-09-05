@@ -8,6 +8,7 @@ packages/**/cli.js
 packages/ui/components
 packages/**/example
 
+
 # packages/**/example
 # !.build/test.js
 
@@ -16,3 +17,6 @@ babel.config.js
 
 example/storybook
 example/expo-app
+example/ui-examples
+example/ui-examples-babel
+example/next

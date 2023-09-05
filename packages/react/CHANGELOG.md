@@ -1,5 +1,139 @@
 # @gluestack-style/react
 
+## 0.2.9
+
+### Patch Changes
+
+- fix: customizing component specififcity issue
+
+## 0.2.4
+
+### Patch Changes
+
+- - Component extended theme [PR](https://github.com/gluestack/gluestack-style/pull/328)
+
+  - Resolver exports [PR](https://github.com/gluestack/gluestack-style/pull/330)
+  - Typing fixes for \_web prop [PR](https://github.com/gluestack/gluestack-style/pull/327)
+
+## 0.2.3
+
+### Patch Changes
+
+- Reduced DOM size for injected style tags [PR](https://github.com/gluestack/gluestack-style/pull/323)
+
+## 0.2.1
+
+### Patch Changes
+
+- Boot time performance improvments [PR](https://github.com/gluestack/gluestack-style/pull/318)
+- Typing improvement
+- Styled precedence order
+- AsForwarder style injection order
+
+## 0.1.33
+
+### Patch Changes
+
+- - Injection order fixes when compose a style component into another component
+
+## 0.1.32
+
+### Patch Changes
+
+- - Prop resolution issue when composing on styled component into another.
+
+## 0.1.31
+
+### Patch Changes
+
+- - Global style media query typing fixes
+
+## 0.1.30
+
+### Patch Changes
+
+- fix: typing issues of decendant style
+
+## 0.1.29
+
+### Patch Changes
+
+- - Compound variant resolution fixes
+
+## 0.1.28
+
+### Patch Changes
+
+- - Global style merging issue fixes
+
+## 0.1.27
+
+### Patch Changes
+
+- - Hotfix: Responsive style style resolution crash with global style
+
+## 0.1.26
+
+### Patch Changes
+
+- Global style support
+- `createConfig` for type-safe
+
+- Variant specificity issue. Component variant will have higher specificity than ancestor style.
+
+## 0.1.24
+
+### Patch Changes
+
+- fix: Typing fixes for descendants styles
+
+## 0.1.20
+
+### Patch Changes
+
+- Hotfix - remove context provider id
+
+## 0.1.19
+
+### Patch Changes
+
+- - Multiple provider theme hash
+
+## 0.1.18
+
+### Patch Changes
+
+- Size token resolution
+
+## 0.1.17
+
+### Patch Changes
+
+- Default value updated for all CSS properties
+
+## 0.1.16
+
+### Patch Changes
+
+- - transform array resolution in plugin
+  - default style property for flex and flexDirection
+
+  - Advanced docs for babel plugin
+
+## 0.1.14
+
+### Patch Changes
+
+- Feature
+
+  - Negative token resolution
+
+## 0.1.12
+
+### Patch Changes
+
+- dependancy issues and removed unwanted code
+
 ## 0.1.0
 
 ### Changes

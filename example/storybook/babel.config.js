@@ -15,7 +15,14 @@ module.exports = function (api) {
                   __dirname,
                   '../../packages/react/src'
                 ),
-
+                ['@gluestack-style/animation-plugin']: path.join(
+                  __dirname,
+                  '../../packages/animation-plugin/src'
+                ),
+                // ['@gluestack-style/animation-plugin']: path.join(
+                //   __dirname,
+                //   '../../packages/animation-plugin/src'
+                // ),
                 // ['@dank-style/react']: path.join(
                 //   __dirname,
                 //   '../../packages/react/src'
@@ -32,6 +39,7 @@ module.exports = function (api) {
             },
           ]
         : ['babel-plugin-react-docgen-typescript', { exclude: 'node_modules' }],
+      '@babel/plugin-transform-modules-commonjs',
     ],
   };
 };

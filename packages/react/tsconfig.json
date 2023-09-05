@@ -5,6 +5,7 @@
     "@gluestack-style/react": ["./src"]
   },
   "compilerOptions": {
+    "ignoreDeprecations": "5.0",
     "emitDeclarationOnly": true,
     "noEmit": false,
     "declaration": true,
@@ -12,7 +13,6 @@
     "allowUnusedLabels": true,
     "esModuleInterop": true,
     "importsNotUsedAsValues": "error",
-    "ignoreDeprecations": "5.0",
     "forceConsistentCasingInFileNames": true,
     "jsx": "react",
     "lib": ["esnext", "dom"],
