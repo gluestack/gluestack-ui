@@ -1,10 +1,9 @@
 import React from 'react';
 import { BellIcon, Center } from '@gluestack-ui/themed';
 
-import { Alert, AlertIcon, AlertText } from '@gluestack-ui/themed';
+import { Alert, AlertIcon, AlertText, InfoIcon } from '@gluestack-ui/themed';
 import {
   AlertCircleIcon,
-  Info,
   CheckCircle2Icon,
   XCircle,
 } from 'lucide-react-native';
@@ -14,13 +13,13 @@ function AlertVariants({ variant }: any) {
     <Center>
       <Alert action="info" variant={variant} mb={4}>
         <AlertIcon
-          as={Info}
+          as={InfoIcon}
           mr="$3"
           dataSet={{
             'component-props': JSON.stringify({
               'instance': true,
               'instance-name': 'Icon',
-              'name': 'Info',
+              'name': 'InfoIcon',
               'size': 'md',
             }),
           }}
@@ -34,7 +33,7 @@ function AlertVariants({ variant }: any) {
             }),
           }}
         >
-          Unlock the power of knowledge with the following information. Get
+          Unlock the power of knowledge with the following information.
         </AlertText>
       </Alert>
       <Alert action="success" variant={variant} mb={4}>

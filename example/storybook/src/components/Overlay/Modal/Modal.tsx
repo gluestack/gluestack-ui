@@ -98,10 +98,27 @@ const ModalStory = ({ showModal: showModalProp = true, ...props }) => {
 
 const FigmaModalStory = ({ _showModal, ...props }: any) => {
   return (
-    <Modal isOpen={true} {...props} my="$16" _experimentalOverlay={false}>
+    <Modal
+      isOpen={true}
+      {...props}
+      py="$16"
+      bg="#00000080"
+      _experimentalOverlay={false}
+    >
       <Modal.Content>
         <Modal.Header>
-          <Heading maxWidth="80%">Engage with Modals</Heading>
+          <Heading
+            maxWidth="80%"
+            dataSet={{
+              'component-props': JSON.stringify({
+                'is-text-style': true,
+                'component-name': 'Heading',
+                'size': 'lg',
+              }),
+            }}
+          >
+            Engage with Modals
+          </Heading>
           <Modal.CloseButton>
             <Icon
               as={CloseIcon}
@@ -117,7 +134,16 @@ const FigmaModalStory = ({ _showModal, ...props }: any) => {
           </Modal.CloseButton>
         </Modal.Header>
         <Modal.Body>
-          <Text fontSize="$sm">
+          <Text
+            size="sm"
+            dataSet={{
+              'component-props': JSON.stringify({
+                'is-text-style': true,
+                'component-name': 'Text',
+                'size': 'sm',
+              }),
+            }}
+          >
             Elevate user interactions with our versatile modals. Seamlessly
             integrate notifications, forms, and media displays. Make an impact
             effortlessly.

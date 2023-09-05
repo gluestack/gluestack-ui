@@ -1,4 +1,3 @@
-// @ts-nocheck
 import type { ComponentStory } from '@storybook/react-native';
 
 import {
@@ -22,7 +21,11 @@ const TextSizeMap = new Map([
   ['2xl', '5xl'],
 ]);
 
-const AvatarGroupExample: CustomAvatarStory = ({ size = 'md', badge }: any) => {
+const AvatarGroupExample: CustomAvatarStory = ({
+  size = 'md',
+  badge,
+  ...props
+}: any) => {
   return (
     <HStack space="md" h="100%" justifyContent="center" alignItems="center">
       <AvatarGroup>

@@ -24,16 +24,16 @@ import {
   MenuIcon,
   MenuItem,
   MenuItemLabel,
+  GlobeIcon,
 } from '@gluestack-ui/themed';
 import {
   PaintBucket,
   PuzzleIcon,
-  GlobeIcon,
   BadgeCheckIcon,
   BadgePlusIcon,
 } from 'lucide-react-native';
 
-const BadgeStory = ({ text = 'New feature', ...props }: any) => {
+const BadgeStory = ({ text = 'NEW FEATURE', ...props }: any) => {
   let badgeIconAndTextSize = '';
   switch (props.size) {
     case 'sm':

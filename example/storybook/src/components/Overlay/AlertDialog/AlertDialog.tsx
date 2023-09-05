@@ -121,7 +121,13 @@ const FigmaAlertDialogStory = ({
   ...props
 }) => {
   return (
-    <AlertDialog isOpen={true} my="$16" _experimentalOverlay={false} {...props}>
+    <AlertDialog
+      isOpen={true}
+      py="$16"
+      bg="#00000080"
+      _experimentalOverlay={false}
+      {...props}
+    >
       <AlertDialogContent>
         <AlertDialogHeader>
           <Heading

@@ -98,16 +98,16 @@ const FigmaPopoverStory = ({
           return (
             <Box w={1200} pt={300} pb={100} alignItems="center">
               <Button {...triggerProps}>
-                <Button.Text>Popover</Button.Text>
+                <ButtonText>Popover</ButtonText>
               </Button>
             </Box>
           );
         }}
       >
-        <Popover.Content>
-          <Popover.Header>
+        <PopoverContent>
+          <PopoverHeader>
             <Heading>Welcome!</Heading>
-            <Popover.CloseButton>
+            <PopoverCloseButton>
               <Icon
                 as={CloseIcon}
                 dataSet={{
@@ -119,20 +119,20 @@ const FigmaPopoverStory = ({
                   }),
                 }}
               />
-            </Popover.CloseButton>
-          </Popover.Header>
-          <Popover.Body>
+            </PopoverCloseButton>
+          </PopoverHeader>
+          <PopoverBody>
             <Text>
               Join the product tour and start creating your own checklist. Are
               you ready to jump in?
             </Text>
-          </Popover.Body>
-          <Popover.Footer>
+          </PopoverBody>
+          <PopoverFooter>
             <Text size="xs" flex={1}>
               Step 2 of 3
             </Text>
             {/* @ts-ignore */}
-            <Button.Group space="md">
+            <ButtonGroup space="md">
               <Button
                 variant="outline"
                 action="secondary"
@@ -146,7 +146,7 @@ const FigmaPopoverStory = ({
                   }),
                 }}
               >
-                <Button.Text>Back</Button.Text>
+                <ButtonText>Back</ButtonText>
               </Button>
               <Button
                 dataSet={{
@@ -159,11 +159,11 @@ const FigmaPopoverStory = ({
                   }),
                 }}
               >
-                <Button.Text>Next</Button.Text>
+                <ButtonText>Next</ButtonText>
               </Button>
-            </Button.Group>
-          </Popover.Footer>
-        </Popover.Content>
+            </ButtonGroup>
+          </PopoverFooter>
+        </PopoverContent>
       </Popover>
     </Center>
   );

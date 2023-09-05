@@ -14,6 +14,7 @@ const ButtonIsLoadingExample: MyButtonStory = ({}) => {
         disabled={isLoading}
         focusable={!isLoading}
         opacity={isLoading ? 0.4 : 1}
+        action="negative"
       >
         <ButtonSpinner color="white" />
       </Button>
@@ -21,6 +22,7 @@ const ButtonIsLoadingExample: MyButtonStory = ({}) => {
         disabled={isLoading}
         focusable={!isLoading}
         opacity={isLoading ? 0.4 : 1}
+        action="negative"
       >
         <ButtonSpinner color="white" mr="$2" />
         <ButtonText>Submitting</ButtonText>
@@ -29,6 +31,7 @@ const ButtonIsLoadingExample: MyButtonStory = ({}) => {
         disabled={isLoading}
         focusable={!isLoading}
         opacity={isLoading ? 0.4 : 1}
+        action="negative"
       >
         <ButtonText>Submitting</ButtonText>
         <ButtonSpinner color="white" ml="$2" />

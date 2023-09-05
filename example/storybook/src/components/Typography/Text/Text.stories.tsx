@@ -9,6 +9,7 @@ const TextMeta: ComponentMeta<typeof Text> = {
     size: {
       control: 'select',
       options: [
+        '2xs',
         'xs',
         'sm',
         'md',
@@ -19,12 +20,31 @@ const TextMeta: ComponentMeta<typeof Text> = {
         '4xl',
         '5xl',
         '6xl',
+        '7xl',
+        '8xl',
+        '9xl',
+      ],
+    },
+    fontWeight: {
+      control: 'select',
+      options: [
+        'hairline',
+        'thin',
+        'light',
+        'normal',
+        'medium',
+        'semibold',
+        'bold',
+        'extrabold',
+        'black',
+        // 'extraBlack',
       ],
     },
   },
   args: {
     text: 'Hello world',
     size: 'md',
+    fontWeight: 'medium',
   },
 };
 

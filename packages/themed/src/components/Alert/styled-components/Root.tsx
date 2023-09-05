@@ -5,7 +5,7 @@ import { styled } from '../../styled';
 export default styled(
   View,
   {
-    alignItems: 'flex-start',
+    alignItems: 'center',
     p: '$3',
     flexDirection: 'row',
     borderRadius: '$sm',

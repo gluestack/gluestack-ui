@@ -71,11 +71,9 @@ const FigmaMenuStory = ({ ...props }) => {
       // eslint-disable-next-line react/no-unstable-nested-components
       trigger={({ ...triggerProps }) => {
         return (
-          <Box w={1200} pt={300} pb={20} alignItems="center">
-            <Button {...triggerProps}>
-              <Button.Text>Menu</Button.Text>
-            </Button>
-          </Box>
+          <Button {...triggerProps}>
+            <ButtonText>Menu</ButtonText>
+          </Button>
         );
       }}
     >

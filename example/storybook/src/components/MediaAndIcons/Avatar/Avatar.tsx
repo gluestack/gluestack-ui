@@ -15,14 +15,14 @@ import {
 } from '@gluestack-ui/themed';
 import { User } from 'lucide-react-native';
 
-const TextSizeMap = new Map([
-  ['xs', '2xs'],
-  ['sm', 'xs'],
-  ['md', 'md'],
-  ['lg', 'xl'],
-  ['xl', '3xl'],
-  ['2xl', '5xl'],
-]);
+const TextSizeMap: any = {
+  'xs': '2xs',
+  'sm': 'xs',
+  'md': 'md',
+  'lg': 'xl',
+  'xl': '3xl',
+  '2xl': '5xl',
+};
 
 type CustomAvatarStory = ComponentStory<typeof Avatar>;
 
@@ -40,7 +40,7 @@ const AvatarStory: CustomAvatarStory = ({
           'component-props': JSON.stringify({
             'is-text-style': true,
             'component-name': 'Text',
-            'size': TextSizeMap.get(props.size || 'md'),
+            'size': TextSizeMap[size],
           }),
         }}
       >
