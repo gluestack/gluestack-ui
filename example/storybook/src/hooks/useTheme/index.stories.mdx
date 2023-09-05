@@ -1,0 +1,28 @@
+---
+title: useTheme | gluestack-ui
+description: useTheme
+showHeader: false
+---
+
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+
+<Meta title="Hooks/useTheme" />
+
+# useTheme
+
+**useTheme** is a custom hook to call theme object from the context.
+
+### Import
+
+To use the useTheme in your project, import `useTheme` from `@gluestack-ui/themed`. as Demonstrated below.
+
+```jsx
+import { useTheme } from '@gluestack-ui/themed';
+```
+
+```jsx
+function Example() {
+  const theme = useTheme();
+  return <Box>{/* Do something with the theme */}</Box>;
+}
+```
