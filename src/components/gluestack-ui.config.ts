@@ -350,6 +350,7 @@ export const config = {
         'primary.400': '#22d3ee',
         'primary.500': '#06b6d4',
         'primary.600': '#0891b2',
+        'primary.600.alpha0.1': '#0891b21a',
         'primary.700': '#0e7490',
         'primary.800': '#155e75',
         'primary.900': '#164e63',
