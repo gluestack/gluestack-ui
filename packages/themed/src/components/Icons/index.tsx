@@ -14,22 +14,42 @@ const StyledIcon: any = styled(
         xs: {
           h: '$3.5',
           w: '$3.5',
+          props: {
+            //@ts-ignore
+            size: 14,
+          },
         },
         sm: {
           h: '$4',
           w: '$4',
+          props: {
+            //@ts-ignore
+            size: 16,
+          },
         },
         md: {
           h: '$3.5',
           w: '$3.5',
+          props: {
+            //@ts-ignore
+            size: 18,
+          },
         },
         lg: {
           h: '$5',
           w: '$5',
+          props: {
+            //@ts-ignore
+            size: 20,
+          },
         },
         xl: {
           h: '$6',
           w: '$6',
+          props: {
+            //@ts-ignore
+            size: 24,
+          },
         },
       },
     },
