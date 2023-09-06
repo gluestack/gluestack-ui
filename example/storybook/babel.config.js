@@ -25,7 +25,7 @@ function getAliases() {
   return {
     // For development, we want to alias the library to the source
     '@gluestack-ui/themed': path.join(__dirname, '../../packages/themed/src'),
-    'react-native': path.join(__dirname, '../../node_modules/react-native-web'),
+    // 'react-native': path.join(__dirname, '../../node_modules/react-native-web'),
 
     // '@gluestack-ui/vstack': path.join(__dirname, '../../packages/vstack/src'),
     // '@gluestack-ui/tooltip': path.join(__dirname, '../../packages/tooltip/src'),

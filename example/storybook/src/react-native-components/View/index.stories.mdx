@@ -1,0 +1,115 @@
+---
+title: View | gluestack-ui
+description: View
+pageTitle: View
+pageDescription: View
+showHeader: true
+---
+
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+import { transformedCode } from '../../../utils';
+import {
+  AppProvider,
+  CodePreview,
+  Table,
+  TableContainer,
+  InlineCode,
+} from '@gluestack/design-system';
+import Wrapper from '../../components/Wrapper';
+import { View } from './View';
+import { Text, Heading } from '@gluestack-ui/themed';
+
+<Meta title="React Native Components/View" />
+
+## Themed
+
+The most fundamental component for building a UI.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+      <>
+       <View p="$4">
+      <Heading>
+        A component library for the{" "}
+        <Heading color="$emerald400">React Ecosystem</Heading>
+      </Heading>
+      <Text pt="$3">
+        gluestack-ui is a simple, modular and accessible component library that
+        gives you building blocks to build you React applications.
+      </Text>
+    </View>
+</>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Text,
+        Heading,
+        View,
+      },
+    }}
+  />
+</AppProvider>
+
+### Import
+
+To use the component in your project, run the command below into your import statement. This will import the component from your components folder.
+
+```bash
+import { View } from '@gluestack-ui/themed';
+```
+
+### Anatomy
+
+The structure provided below can help you identify and understand a badge component's various parts.
+
+```jsx
+export default () => <View></View>;
+```
+
+### Props
+
+gluestack-ui View component is created using View component from react-native. It extends all the props supported by [React Native View](https://reactnative.dev/docs/view#props), [utility props](https://ui.gluestack.io/docs/styling/utility-and-sx-props) and the props mentioned below.
+
+#### View
+
+<AppProvider>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Name</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Value</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Default</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>children</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>any</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</AppProvider>
