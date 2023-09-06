@@ -1723,15 +1723,34 @@ export function verboseStyled<P, Variants, ComCon>(
       resolvedStyleMemo = StyleSheet.flatten(resolvedStyleMemo);
     }
 
-    const component = !AsComp ? (
-      <Component {...resolvedStyleProps} style={resolvedStyleMemo} ref={ref}>
-        {children}
-      </Component>
-    ) : (
-      <AsComp {...resolvedStyleProps} style={resolvedStyleMemo} ref={ref}>
-        {children}
-      </AsComp>
-    );
+    let component;
+    if (AsComp) {
+      //@ts-ignore
+      if (Component.isStyledComponent) {
+        component = (
+          <Component
+            {...resolvedStyleProps}
+            style={resolvedStyleMemo}
+            as={AsComp}
+            ref={ref}
+          >
+            {children}
+          </Component>
+        );
+      } else {
+        component = (
+          <AsComp {...resolvedStyleProps} style={resolvedStyleMemo} ref={ref}>
+            {children}
+          </AsComp>
+        );
+      }
+    } else {
+      component = (
+        <Component {...resolvedStyleProps} style={resolvedStyleMemo} ref={ref}>
+          {children}
+        </Component>
+      );
+    }
 
     if (containsDescendant) {
       return (
@@ -1754,6 +1773,9 @@ export function verboseStyled<P, Variants, ComCon>(
   StyledComp.displayName = displayName
     ? 'Styled' + displayName
     : 'StyledComponent';
+
+  //@ts-ignore
+  StyledComp.isStyledComponent = true;
 
   return StyledComp;
 }
