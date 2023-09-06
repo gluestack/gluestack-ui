@@ -45,34 +45,124 @@ const ActionsheetWithIcon = ({
           <ActionsheetDragIndicator />
         </ActionsheetDragIndicatorWrapper>
         <ActionsheetItem onPress={handleClose}>
-          <ActionsheetIcon>
-            <Icon as={TrashIcon} />
-          </ActionsheetIcon>
-          <ActionsheetItemText>Delete</ActionsheetItemText>
+          <ActionsheetIcon
+            as={TrashIcon}
+            dataSet={{
+              'component-props': JSON.stringify({
+                'instance': true,
+                'instance-name': 'Icon',
+                'name': 'TrashIcon',
+                'size': 'sm',
+              }),
+            }}
+          />
+          <ActionsheetItemText
+            dataSet={{
+              'component-props': JSON.stringify({
+                'is-text-style': true,
+                'component-name': 'Text',
+                'size': 'md',
+              }),
+            }}
+          >
+            Delete
+          </ActionsheetItemText>
         </ActionsheetItem>
         <ActionsheetItem onPress={handleClose}>
-          <ActionsheetIcon>
-            <Icon as={ShareIcon} />
-          </ActionsheetIcon>
-          <ActionsheetItemText>Share</ActionsheetItemText>
+          <ActionsheetIcon
+            as={ShareIcon}
+            dataSet={{
+              'component-props': JSON.stringify({
+                'instance': true,
+                'instance-name': 'Icon',
+                'name': 'ShareIcon',
+                'size': 'sm',
+              }),
+            }}
+          />
+          <ActionsheetItemText
+            dataSet={{
+              'component-props': JSON.stringify({
+                'is-text-style': true,
+                'component-name': 'Text',
+                'size': 'md',
+              }),
+            }}
+          >
+            Share
+          </ActionsheetItemText>
         </ActionsheetItem>
         <ActionsheetItem onPress={handleClose}>
-          <ActionsheetIcon>
-            <Icon as={PlayIcon} />
-          </ActionsheetIcon>
-          <ActionsheetItemText>Play</ActionsheetItemText>
+          <ActionsheetIcon
+            as={PlayIcon}
+            dataSet={{
+              'component-props': JSON.stringify({
+                'instance': true,
+                'instance-name': 'Icon',
+                'name': 'PlayIcon',
+                'size': 'sm',
+              }),
+            }}
+          />
+          <ActionsheetItemText
+            dataSet={{
+              'component-props': JSON.stringify({
+                'is-text-style': true,
+                'component-name': 'Text',
+                'size': 'md',
+              }),
+            }}
+          >
+            Play
+          </ActionsheetItemText>
         </ActionsheetItem>
         <ActionsheetItem onPress={handleClose}>
-          <ActionsheetIcon>
-            <Icon as={FavouriteIcon} />
-          </ActionsheetIcon>
-          <ActionsheetItemText>Favourite</ActionsheetItemText>
+          <ActionsheetIcon
+            as={FavouriteIcon}
+            dataSet={{
+              'component-props': JSON.stringify({
+                'instance': true,
+                'instance-name': 'Icon',
+                'name': 'FavouriteIcon',
+                'size': 'sm',
+              }),
+            }}
+          />
+          <ActionsheetItemText
+            dataSet={{
+              'component-props': JSON.stringify({
+                'is-text-style': true,
+                'component-name': 'Text',
+                'size': 'md',
+              }),
+            }}
+          >
+            Favourite
+          </ActionsheetItemText>
         </ActionsheetItem>
         <ActionsheetItem onPress={handleClose}>
-          <ActionsheetIcon>
-            <Icon as={CloseIcon} />
-          </ActionsheetIcon>
-          <ActionsheetItemText>Cancel</ActionsheetItemText>
+          <ActionsheetIcon
+            as={CloseIcon}
+            dataSet={{
+              'component-props': JSON.stringify({
+                'instance': true,
+                'instance-name': 'Icon',
+                'name': 'CloseIcon',
+                'size': 'sm',
+              }),
+            }}
+          />
+          <ActionsheetItemText
+            dataSet={{
+              'component-props': JSON.stringify({
+                'is-text-style': true,
+                'component-name': 'Text',
+                'size': 'md',
+              }),
+            }}
+          >
+            Cancel
+          </ActionsheetItemText>
         </ActionsheetItem>
       </ActionsheetContent>
     </Actionsheet>

@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { View } from 'react-native';
 import { styled } from '../../styled';
 
@@ -22,7 +21,7 @@ export default styled(
           },
 
           _text: {
-            fontSize: '$2xs',
+            props: { size: '2xs' },
           },
         },
 
@@ -36,7 +35,7 @@ export default styled(
           },
 
           _text: {
-            fontSize: '$xs',
+            props: { size: 'xs' },
           },
         },
 
@@ -50,7 +49,7 @@ export default styled(
           },
 
           _text: {
-            fontSize: '$md',
+            props: { size: 'md' },
           },
         },
 
@@ -64,7 +63,7 @@ export default styled(
           },
 
           _text: {
-            fontSize: '$xl',
+            props: { size: 'xl' },
           },
         },
 
@@ -78,7 +77,7 @@ export default styled(
           },
 
           _text: {
-            fontSize: '$3xl',
+            props: { size: '3xl' },
           },
         },
 
@@ -92,7 +91,7 @@ export default styled(
           },
 
           _text: {
-            fontSize: '$5xl',
+            props: { size: '5xl' },
           },
         },
       },

@@ -75,3 +75,5 @@ export const SunIcon = createIcon({
     </>
   ),
 });
+
+SunIcon.displayName = 'SunIcon';

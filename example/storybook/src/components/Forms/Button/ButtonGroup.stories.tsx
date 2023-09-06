@@ -1,12 +1,9 @@
-import React from 'react';
 import type { ComponentMeta } from '@storybook/react-native';
-import { DocsContainer } from '@storybook/addon-docs';
-import ButtonGroupStory from './ButtonGroup';
-import Button from './Button';
+import ButtonGroup from './ButtonGroup';
 
-const ButtonGroupMeta: ComponentMeta<typeof Button> = {
+const ButtonGroupMeta: ComponentMeta<any> = {
   title: 'stories/FORMS/Button',
-  component: ButtonGroupStory,
+  component: ButtonGroup,
   args: {
     space: 'md',
     isAttached: true,
@@ -16,27 +13,25 @@ const ButtonGroupMeta: ComponentMeta<typeof Button> = {
     space: {
       control: 'select',
       options: ['xs', 'sm', 'md', 'lg', 'xl'],
-      description: 'The space between the buttons.',
-      table: {
-        defaultValue: { summary: 'md' },
-      },
-    },
-    isAttached: {
-      control: 'boolean',
-      options: [true, false],
     },
     direction: {
       control: 'select',
       options: ['row', 'column'],
     },
-  },
-  parameters: {
-    docs: {
-      container: DocsContainer,
-      page: () => <></>,
+    isAttached: {
+      control: 'boolean',
+      options: [true, false],
+    },
+    isDisabled: {
+      control: 'boolean',
+      options: [true, false],
+    },
+    isReversed: {
+      control: 'boolean',
+      options: [true, false],
     },
   },
 };
 
 export default ButtonGroupMeta;
-export { ButtonGroupStory as ButtonGroup };
+export { ButtonGroup };

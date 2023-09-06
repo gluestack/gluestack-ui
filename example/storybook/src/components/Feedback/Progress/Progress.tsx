@@ -11,7 +11,7 @@ import {
 
 const ProgressBasic = ({ value = 50, ...props }: any) => {
   return (
-    <Progress w="70%" value={value} {...props}>
+    <Progress w={800} value={value} {...props}>
       <ProgressFilledTrack />
     </Progress>
   );

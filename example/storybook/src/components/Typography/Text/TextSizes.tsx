@@ -4,6 +4,7 @@ import { Center, Text } from '@gluestack-ui/themed';
 
 const TextSizes = () => {
   const sizes = [
+    '2xs',
     'xs',
     'sm',
     'md',

@@ -1,4 +1,3 @@
-import type { ComponentStory } from '@storybook/react-native';
 import React from 'react';
 import {
   Box,
@@ -11,9 +10,8 @@ import {
   Image,
   AddIcon,
 } from '@gluestack-ui/themed';
-type MyLinearGradientStory = ComponentStory<typeof LinearGradient>;
 
-const LinearGradientBasic: MyLinearGradientStory = () => {
+const LinearGradientBasic = () => {
   return (
     <LinearGradient colors={['$purple400', '$red400']} p="$5">
       <Text color="white">This is a Box</Text>
