@@ -1,10 +1,26 @@
 # @gluestack-ui/themed
 
-## 0.1.17
+## 0.1.19
 
 ### Patch Changes
 
 - Fixing the version issue and Theme component not exported
+
+## 0.1.18
+
+### Patch Changes
+
+- Removed default gap from VStack and HStack
+
+## 0.1.17
+
+### Patch Changes
+
+- Version updated @gluestack-ui/hstack, @gluestack-ui/vstack.
+  - Support for gap property in HStack, VStack.
+  - `space` typing suggestion in HStack, Vstack.
+- Version updated `@gluestack-style/react`
+  - Dyanmic variable resolution in colorMode sx prop.
 
 ## 0.1.15
 
