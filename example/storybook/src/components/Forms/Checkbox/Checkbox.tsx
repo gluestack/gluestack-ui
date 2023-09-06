@@ -24,8 +24,6 @@ const CheckboxStory = ({ ...props }: any) => {
   return (
     <CheckboxGroup
       accessibilityLabel="Checkbox Group"
-      isDisabled={props.isDisabled}
-      isReadOnly={props.isReadOnly}
       value={values}
       onChange={setValues}
       {...props}
