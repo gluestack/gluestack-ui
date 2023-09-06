@@ -31,9 +31,7 @@ You can also customize your own theme by extending default theme by using create
 // gluestack-ui.config.ts
 import {
   config as defaultConfig,
-  GluestackUIProvider,
   createConfig,
-  Box,
 } from '@gluestack-ui/themed';
 
 export const config = createConfig({
@@ -77,16 +75,14 @@ function App({ children }) {
 You can add custom theme for components by extending default config and adding theme for specific component in createConfig function.
 
 ```jsx
+// gluestack-ui.config.ts
 import {
+  config as defaultConfig,
   createConfig,
-  config,
-  GluestackUIProvider,
-  Button,
-  ButtonText,
 } from '@gluestack-ui/themed';
 
-const extendedConfig = createConfig({
-  ...config.theme,
+export const config = createConfig({
+  ...defaultConfig.theme,
   components: {
     Button: {
       theme: {
@@ -102,9 +98,25 @@ const extendedConfig = createConfig({
   },
 });
 
+// Get the type of Config
+type ConfigType = typeof config;
+
+// Extend the internal styled config
+declare module "@gluestack-style/react" {
+  interface ICustomConfig extends ConfigType {}
+}
+
+```
+
+Now you can see your customized component in your app. Just pass the created config to GluestackUIProvider.
+
+```jsx
+import { GluestackUIProvider, Button, ButtonText } from '@gluestack-ui/themed';
+import { config } from './gluestack-ui.config.ts';
+
 function App({ children }) {
   return (
-    <GluestackUIProvider config={extendedConfig}>
+    <GluestackUIProvider config={config}>
       <Button variant="ghost">
         <ButtonText>Hello World</ButtonText>
       </Button>
@@ -113,23 +125,87 @@ function App({ children }) {
 }
 ```
 
+### Switching between Multiple Themes
+
+If you want to switch theme on the fly, you will need to create multiple theme in the config inside createConfig function. Create a file `gluestack-ui.config.ts` in your project root and add following code.
+
+```jsx
+// gluestack-ui.config.ts
+import { createConfig, config as defaultConfig } from '@gluestack-ui/themed';
+
+export const config = createConfig({
+  ...defaultConfig.theme,
+  themes: {
+    ...defaultConfig.theme.themes,
+    classic: {
+      colors: {
+        $primary: '$colors.$brown400',
+        $secondary: '$colors.$brown100',
+      },
+    },
+    modern: {
+      colors: {
+        $primary: '$colors.$red400',
+        $secondary: '$colors.$red100',
+      },
+    },
+  },
+});
+
+// Get the type of Config
+type ConfigType = typeof config;
+
+// Extend the internal styled config
+declare module "@gluestack-style/react" {
+  interface ICustomConfig extends ConfigType {}
+}
+
+```
+
+Now, to actually use this newly created themes, you will need to use the `Theme` component.
+
+```jsx
+import {
+  styled,
+  Button,
+  ButtonText,
+  GluestackUIProvider,
+  Theme,
+} from '@gluestack-ui/themed';
+import { config } from './gluestack-ui.config.ts';
+
+export const App = () => {
+  return (
+    <GluestackUIProvider config={config}>
+      <Theme name="classic">
+        <Button>
+          <ButtonText>Classic Button</ButtonText>
+        </Button>
+      </Theme>
+    </GluestackUIProvider>
+  );
+};
+```
+
+`Theme` component is a wrapper component that will apply the theme to all the children components. If component is not wrapped inside Theme, than default tokens from config will be used. `Theme` component accepts a name prop which is the name of the theme you want to use.
+
+> **Important**: `Theme` adds a View to the DOM tree.
+
 ### Adding global styles
 
 You add global styles by extending default config and adding your own global styles in createConfig function.
 
 ```jsx
+// gluestack-ui.config.ts
 import {
+  config as defaultConfig,
   createConfig,
-  config,
-  GluestackUIProvider,
-  Button,
-  ButtonText,
 } from '@gluestack-ui/themed';
 
-const extendedConfig = createConfig({
-  ...config.theme,
+export const config = createConfig({
+  ...defaultConfig.theme,
   globalStyles: {
-    ...config.theme.globalStyles,
+    ...defaultConfig.theme.globalStyles,
     variants: {
       variant: {
         blackBackground: {
@@ -140,9 +216,24 @@ const extendedConfig = createConfig({
   },
 });
 
+// Get the type of Config
+type ConfigType = typeof config;
+
+// Extend the internal styled config
+declare module "@gluestack-style/react" {
+  interface ICustomConfig extends ConfigType {}
+}
+```
+
+Now you can test your added globalStyles in your app. Just pass the created config to GluestackUIProvider.
+
+```jsx
+import { GluestackUIProvider, Button, ButtonText } from '@gluestack-ui/themed';
+import { config } from './gluestack-ui.config.ts';
+
 function App() {
   return (
-    <GluestackUIProvider config={extendedConfig}>
+    <GluestackUIProvider config={config}>
       <Button variant="blackBackground">
         <ButtonText>Hello World</ButtonText>
       </Button>
