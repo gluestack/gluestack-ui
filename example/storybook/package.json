@@ -26,7 +26,7 @@
     "@expo/html-elements": "^0.4.2",
     "@geometricpanda/storybook-addon-iframe": "^0.2.2",
     "@gluestack-style/animation-plugin": "latest",
-    "@gluestack-style/react": "0.2.11",
+    "@gluestack-style/react": "^0.2.26",
     "@gluestack-ui/actionsheet": "^0.2.16",
     "@gluestack-ui/alert-dialog": "^0.1.14",
     "@gluestack-ui/button": "^0.1.23",
