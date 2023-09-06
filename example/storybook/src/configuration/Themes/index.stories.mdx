@@ -1,16 +1,15 @@
----
-title: Themes | gluestack-style
-description: gluestack-style allows you to easily create themes for your app with different values for a particular token for more flexibility and reusability of tokens.
----
+import Meta from '@/components/Meta';
+
+<Meta
+  pageTitle="Themes | gluestack-style"
+  description="gluestack-style allows you to easily create themes for your app with different values for a particular token for more flexibility and reusability of tokens."
+/>
 
 import { styled, StyledProvider, Theme } from '@gluestack-style/react';
 import { Pressable, Text as RNText, View } from 'react-native';
 import { Button, AppProvider, CodePreview } from '@gluestack/design-system';
 import { useState } from 'react';
-import { config } from './config';
-import { Canvas, Meta, Story } from '@storybook/addon-docs';
-
-<Meta title="configuration/Themes" />
+import { config } from '@/docs-components/gluestack-style/configuration/Themes/config';
 
 # Themes
 
@@ -30,7 +29,6 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
         Provider: StyledProvider,
         config: config,
         useState,
-        Theme,
       },
       code: `
         function App() {
@@ -89,16 +87,15 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
                 </Box>
                 <Box
                   bg="$gray100"
-                  h="440px"
-                  w="600px"
+                  h="400px"
+                  w="350px"
                   alignItems="center"
                   justifyContent="center"
                 >
                   <Theme {...props}>
                     <Box
-                      mx="auto"
                       h="200px"
-                      w="400px"
+                      w="200px"
                       bg="$backgroundColor"
                       borderWidth="$borderWidth"
                       borderColor="$borderColor"
