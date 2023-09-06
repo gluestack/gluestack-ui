@@ -1,6 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable no-console */
 import React, { useContext, useEffect, useMemo, useRef, useState } from 'react';
 
 import type {
@@ -20,11 +18,9 @@ import {
   resolveStringToken,
   shallowMerge,
   deepMergeArray,
-  addThemeConditionInMeta,
 } from './utils';
 import { convertUtilityPropsToSX } from './core/convert-utility-to-sx';
 import { useStyled } from './StyledProvider';
-// import { useTheme } from './Theme';
 import { propertyTokenMap } from './propertyTokenMap';
 import { Platform, StyleSheet } from 'react-native';
 import { INTERNAL_updateCSSStyleInOrderedResolved } from './updateCSSStyleInOrderedResolved';
@@ -110,46 +106,33 @@ function convertUtiltiyToSXFromProps(
 
 function getStateStyleCSSFromStyleIdsAndProps(
   flatternStyleIdObject: any,
-  states: any,
-  colorMode: any
+  currentStateArray: any
 ) {
   const stateStyleCSSIds: Array<any> = [];
   let props = {};
 
-  let stateColorMode: any = {};
-  if (colorMode || states) {
-    stateColorMode = {
-      ...states,
-      [colorMode]: true,
-    };
+  Object.keys(flatternStyleIdObject).forEach((styleId) => {
+    const styleIdKeyArray = styleId.split('.');
 
-    Object.keys(flatternStyleIdObject).forEach((styleId) => {
-      const styleIdKeyArray = styleId.split('.');
+    const filteredStyleIdKeyArray = styleIdKeyArray.filter(
+      (item) => item !== 'colorMode' && item !== 'state' && item !== 'props'
+    );
 
-      const filteredStyleIdKeyArray = styleIdKeyArray.filter(
-        (item) => item !== 'colorMode' && item !== 'state' && item !== 'props'
-      );
-
-      const currentStateArray = Object.keys(stateColorMode).filter(
-        (key) => stateColorMode[key] === true
-      );
-
-      if (styleId.includes('ids')) {
-        // if (type === 'inline' && ) {
-        // stateStyleCSSIds.push(...flatternStyleIdObject[styleId]);
-        // }
-      } else if (
-        styleId.includes('props') &&
-        isSubset(filteredStyleIdKeyArray, currentStateArray)
-      ) {
-        props = deepMergeObjects(props, flatternStyleIdObject[styleId]);
-      } else {
-        if (isSubset(filteredStyleIdKeyArray, currentStateArray)) {
-          stateStyleCSSIds.push(...flatternStyleIdObject[styleId]);
-        }
+    if (styleId.includes('ids')) {
+      // if (type === 'inline' && ) {
+      // stateStyleCSSIds.push(...flatternStyleIdObject[styleId]);
+      // }
+    } else if (
+      styleId.includes('props') &&
+      isSubset(filteredStyleIdKeyArray, currentStateArray)
+    ) {
+      props = deepMergeObjects(props, flatternStyleIdObject[styleId]);
+    } else {
+      if (isSubset(filteredStyleIdKeyArray, currentStateArray)) {
+        stateStyleCSSIds.push(...flatternStyleIdObject[styleId]);
       }
-    });
-  }
+    }
+  });
 
   return { cssIds: stateStyleCSSIds, passingProps: props };
 }
@@ -215,7 +198,11 @@ function getMergedDefaultCSSIdsAndProps(
     baseStyleCSSIds.push(...componentStyleIds?.baseStyle?.ids);
     props = deepMergeObjects(props, componentStyleIds?.baseStyle?.props);
   }
-  let passingVariantProps = getVariantProps(props, theme).variantProps;
+  let passingVariantProps = {};
+
+  // if (props) {
+  passingVariantProps = getVariantProps(props, theme).variantProps;
+  // }
 
   const mergedVariantProps = shallowMerge(
     { ...passingVariantProps },
@@ -388,6 +375,24 @@ function setStateAndColorModeCssIdsAndProps(
   componentDescendantStyleIds: any,
   sxDescendantStyleIds: any
 ) {
+  if (!componentStyleIds) {
+    return {
+      baseStyleCSSIds: [],
+      variantStyleCSSIds: [],
+      passingProps: {},
+    };
+  }
+  let stateColorMode: any = {};
+  let currentStateArray: any = [];
+  if (colorMode || states) {
+    stateColorMode = {
+      ...states,
+      [colorMode]: true,
+    };
+    currentStateArray = Object.keys(stateColorMode).filter(
+      (key) => stateColorMode[key] === true
+    );
+  }
   const {
     baseStyleCSSIds: mergedBaseStyleCSSIds,
     variantStyleCSSIds: mergedVariantStyleCSSIds,
@@ -401,10 +406,9 @@ function setStateAndColorModeCssIdsAndProps(
     colorMode,
     theme,
     componentVariantFlatternStyleIdObject,
-    componentCompoundVariantFlatternStyleIdObject
+    componentCompoundVariantFlatternStyleIdObject,
+    currentStateArray
   );
-
-  // console.log(componentCompoundVariantFlatternStyleIdObject, '>>>>>>>');
 
   // for sx props
   const {
@@ -420,16 +424,17 @@ function setStateAndColorModeCssIdsAndProps(
     colorMode,
     theme,
     sxVariantFlatternStyleObject,
-    sxCompoundVariantFlatternStyleObject
+    sxCompoundVariantFlatternStyleObject,
+    currentStateArray
   );
 
-  // // for descendants
+  // for descendants
   const mergedDescendantsStyle: any = {};
 
-  //   componentBaseStyleFlatternStyleIdObject
-  // componentVariantFlatternStyleIdObject
-  // componentCompoundVariantFlatternStyleIdObject
-  if (componentDescendantStyleIds) {
+  if (
+    componentDescendantStyleIds &&
+    Object.keys(componentDescendantStyleIds).length > 0
+  ) {
     Object.keys(componentDescendantStyleIds).forEach((key) => {
       const {
         baseStyleCSSIds: descendantBaseStyleCSSIds,
@@ -450,7 +455,8 @@ function setStateAndColorModeCssIdsAndProps(
         ],
         componentDescendantFlattenStyleObject[key]?.[
           'componentCompoundVariantFlatternStyleIdObject'
-        ]
+        ],
+        currentStateArray
       );
       mergedDescendantsStyle[key] = {
         baseStyleCSSIds: descendantBaseStyleCSSIds,
@@ -460,9 +466,12 @@ function setStateAndColorModeCssIdsAndProps(
     });
   }
 
-  // // for sx descendants
+  // for sx descendants
   const mergedSxDescendantsStyle: any = {};
-  if (sxDescendantStyleIds.current) {
+  if (
+    sxDescendantStyleIds.current &&
+    Object.keys(sxDescendantStyleIds.current).length > 0
+  ) {
     Object.keys(sxDescendantStyleIds.current).forEach((key) => {
       const {
         baseStyleCSSIds: sxDescendantBaseStyleCSSIds,
@@ -483,7 +492,8 @@ function setStateAndColorModeCssIdsAndProps(
         ],
         sxDescendantFlattenStyleObject[key]?.[
           'componentCompoundVariantFlatternStyleIdObject'
-        ]
+        ],
+        currentStateArray
       );
 
       mergedSxDescendantsStyle[key] = {
@@ -509,12 +519,13 @@ function setStateAndColorModeCssIdsAndProps(
 function getMergedStateAndColorModeCSSIdsAndProps(
   componentStyleIds: any,
   componentBaseStyleFlatternStyleIdObject: any,
-  states: any,
+  _states: any,
   incomingVariantProps: any,
-  COLOR_MODE: 'light' | 'dark',
+  _COLOR_MODE: 'light' | 'dark',
   theme: any,
   componentVariantFlatternStyleIdObject: any,
-  componentCompoundVariantFlatternStyleIdObject: any
+  componentCompoundVariantFlatternStyleIdObject: any,
+  currentStateArray: any
 ) {
   if (!componentStyleIds) {
     return {
@@ -532,8 +543,7 @@ function getMergedStateAndColorModeCSSIdsAndProps(
     const { cssIds: stateStleCSSFromStyleIds, passingProps: stateStyleProps } =
       getStateStyleCSSFromStyleIdsAndProps(
         componentBaseStyleFlatternStyleIdObject,
-        states,
-        COLOR_MODE
+        currentStateArray
       );
 
     push_unique(stateBaseStyleCSSIds, stateStleCSSFromStyleIds);
@@ -561,12 +571,10 @@ function getMergedStateAndColorModeCSSIdsAndProps(
           passingProps: stateStyleProps,
         } = getStateStyleCSSFromStyleIdsAndProps(
           componentVariantFlatternStyleIdObject[variantObjectPath],
-          states,
-          COLOR_MODE
+          currentStateArray
         );
 
         push_unique(stateVariantStyleCSSIds, stateStleCSSFromStyleIds);
-        // stateVariantStyleCSSIds.push(...stateStleCSSFromStyleIds);
 
         props = deepMergeObjects(props, stateStyleProps);
       }
@@ -583,14 +591,11 @@ function getMergedStateAndColorModeCSSIdsAndProps(
             cssIds: stateStleCSSFromStyleIds,
             passingProps: stateStyleProps,
           } = getStateStyleCSSFromStyleIdsAndProps(
-            //@ts-ignore
             componentCompoundVariantFlatternStyleIdObject[index],
-            states,
-            COLOR_MODE
+            currentStateArray
           );
 
           push_unique(stateVariantStyleCSSIds, stateStleCSSFromStyleIds);
-          // stateVariantStyleCSSIds.push(...stateStleCSSFromStyleIds);
 
           props = deepMergeObjects(props, stateStyleProps);
         }
@@ -606,8 +611,6 @@ function getMergedStateAndColorModeCSSIdsAndProps(
 }
 
 function getAncestorCSSStyleIds(compConfig: any, context: any) {
-  // console.setStartTimeStamp('getAncestorCSSStyleIds');
-
   let ancestorBaseStyleIds: any[] = [];
   let ancestorVariantStyleIds: any[] = [];
   let ancestorPassingProps: any = {};
@@ -623,7 +626,6 @@ function getAncestorCSSStyleIds(compConfig: any, context: any) {
       });
     }
   }
-  // console.setEndTimeStamp('getAncestorCSSStyleIds');
 
   return {
     baseStyleCSSIds: ancestorBaseStyleIds,
@@ -633,8 +635,6 @@ function getAncestorCSSStyleIds(compConfig: any, context: any) {
 }
 
 function mergeArraysInObjects(...objects: any) {
-  // console.setStartTimeStamp('mergeArraysInObjects');
-
   const merged: any = {};
 
   for (const object of objects) {
@@ -655,19 +655,11 @@ function mergeArraysInObjects(...objects: any) {
       );
     });
   }
-  // console.setEndTimeStamp('mergeArraysInObjects');
 
   return merged;
 }
 
-// let resolvedComponentMap = new Map<Component, any>();
-
-// function isAlreadyResolved(Component) {
-
-// }
 function resolvePlatformTheme(theme: any, platform: any) {
-  // console.setStartTimeStamp('resolvePlatformTheme', 'boot');
-
   if (typeof theme === 'object') {
     Object.keys(theme).forEach((themeKey) => {
       if (themeKey !== 'style' && themeKey !== 'defaultProps') {
@@ -691,7 +683,6 @@ function resolvePlatformTheme(theme: any, platform: any) {
       }
     });
   }
-  // console.setEndTimeStamp('resolvePlatformTheme', 'boot');
 }
 
 export function getVariantProps(
@@ -699,8 +690,6 @@ export function getVariantProps(
   theme: any,
   shouldDeleteVariants: boolean = true
 ) {
-  // console.setStartTimeStamp('getVariantProps');
-
   const variantTypes = theme?.variants ? Object.keys(theme.variants) : [];
   const variantProps: any = {};
   const restProps = { ...props };
@@ -724,35 +713,7 @@ export function getVariantProps(
     variantProps,
     restProps,
   };
-
-  // console.setEndTimeStamp('getVariantProps');
 }
-
-// const styledResolved = styledToStyledResolved(theme, [], CONFIG);
-// const orderedResovled = styledResolvedToOrderedSXResolved(styledResolved);
-
-// INTERNAL_updateCSSStyleInOrderedResolved(orderedResovled);
-// //set css ruleset
-// globalOrderedList.push(...orderedResovled);
-
-// // StyleIds
-// const componentStyleIds = getComponentStyleIds(
-//   orderedResovled.filter((item) => !item.meta.path?.includes('descendants'))
-// );
-
-// if (componentStyleConfig.DEBUG === 'INPUT') {
-//   // console.log(componentStyleIds, 'hello state here >>');
-// }
-
-// // Descendants
-// const descendantStyleIds = getDescendantStyleIds(
-//   orderedResovled.filter((item) => item.meta.path?.includes('descendants')),
-//   componentStyleConfig.descendantStyle
-// );
-
-//
-
-// BASE COLOR MODE RESOLUTION
 
 const getStyleIdsFromMap = (
   CONFIG: any,
@@ -799,8 +760,6 @@ const getStyleIdsFromMap = (
   return componentStyleObject;
 };
 
-// END BASE COLOR MODE RESOLUTION
-
 export function verboseStyled<P, Variants, ComCon>(
   Component: React.ComponentType<P>,
   theme: Partial<IVerbosedTheme<Variants, P>>,
@@ -812,6 +771,7 @@ export function verboseStyled<P, Variants, ComCon>(
       component: StyleIds;
       descendant: StyleIds;
     };
+    toBeInjected: any;
     styledIds: Array<string>;
   }
 ) {
@@ -822,10 +782,6 @@ export function verboseStyled<P, Variants, ComCon>(
     ...ExtendedConfig,
   });
 
-  // const styledSystemProps = shallowMerge(CSSPropertiesMap, CONFIG?.aliases);
-
-  // const originalThemeHash = stableHash(theme);
-
   let declarationType: DeclarationType = 'boot';
 
   if (Component.displayName === '__AsForwarder__') {
@@ -834,22 +790,9 @@ export function verboseStyled<P, Variants, ComCon>(
 
   resolvePlatformTheme(theme, Platform.OS);
 
-  // @ts-ignore
-  const DEBUG_TAG = componentStyleConfig?.DEBUG;
-  const DEBUG =
-    process.env.NODE_ENV === 'development' && DEBUG_TAG ? false : false;
-
-  if (DEBUG) {
-    console.group(
-      `%cVerboseStyled()`,
-      'background: #4b5563; color: #d97706; font-weight: 700; padding: 2px 8px;'
-    );
-    console.log(
-      `%c${DEBUG_TAG} verbosed theme`,
-      'background: #4b5563; color: #16a34a; font-weight: 700; padding: 2px 8px;',
-      theme
-    );
-  }
+  // const DEBUG_TAG = componentStyleConfig?.DEBUG;
+  // const DEBUG =
+  //   process.env.NODE_ENV === 'development' && DEBUG_TAG ? false : false;
 
   //@ts-ignore
   type ITypeReactNativeStyles = P['style'];
@@ -881,13 +824,6 @@ export function verboseStyled<P, Variants, ComCon>(
     orderedCSSIds = BUILD_TIME_PARAMS?.styledIds;
 
     GluestackStyleSheet.update(orderedResolved);
-    if (DEBUG) {
-      console.log(
-        `%cOrder resolved build time`,
-        'background: #4b5563; color: #16a34a; font-weight: 700; padding: 2px 8px;',
-        orderedResolved
-      );
-    }
   } else {
     const { styledIds: g, verbosedStyleIds } = updateOrderUnResolvedMap(
       theme,
@@ -903,13 +839,6 @@ export function verboseStyled<P, Variants, ComCon>(
 
   if (BUILD_TIME_PARAMS?.verbosedStyleIds) {
     styleIds = BUILD_TIME_PARAMS?.verbosedStyleIds;
-    if (DEBUG) {
-      console.log(
-        `%cStyle Ids build time`,
-        'background: #4b5563; color: #16a34a; font-weight: 700; padding: 2px 8px;',
-        styleIds
-      );
-    }
   }
 
   function injectSx(sx: any, type: any = 'inline') {
@@ -925,35 +854,6 @@ export function verboseStyled<P, Variants, ComCon>(
       componentExtendedConfig
     );
 
-    // let componentTheme: any =
-    //   // @ts-ignore
-    //   sxStyledResolved.baseStyle.styledValueResolvedWithMeta;
-
-    // sxStyledResolved.baseStyle.styledValueResolvedWithMeta =
-    // addThemeConditionInMeta(componentTheme, CONFIG);
-
-    // const colorModeComponentThemes: any = sxStyledResolved.baseStyle?.colorMode;
-    // if (colorModeComponentThemes) {
-    //   Object.keys(colorModeComponentThemes).forEach(
-    //     (colorModeComponentTheme: any) => {
-    //       if (
-    //         !colorModeComponentThemes[colorModeComponentTheme]
-    //           .styledValueResolvedWithMeta?.meta.themeCondition
-    //       ) {
-    //         colorModeComponentThemes[
-    //           colorModeComponentTheme
-    //         ].styledValueResolvedWithMeta.meta.themeCondition = {};
-    //       }
-
-    //       let componentTheme: any =
-    //         colorModeComponentThemes[colorModeComponentTheme]
-    //           .styledValueResolvedWithMeta;
-
-    //       addThemeConditionInMeta(componentTheme, CONFIG);
-    //     }
-    //   );
-    // }
-
     const sxHash = stableHash(sx);
 
     const orderedSXResolved =
@@ -966,7 +866,13 @@ export function verboseStyled<P, Variants, ComCon>(
       'gs'
     );
 
-    injectComponentAndDescendantStyles(orderedSXResolved, sxHash, type);
+    injectComponentAndDescendantStyles(
+      orderedSXResolved,
+      sxHash,
+      type,
+      GluestackStyleSheet,
+      Platform.OS
+    );
 
     return orderedSXResolved;
   }
@@ -974,6 +880,8 @@ export function verboseStyled<P, Variants, ComCon>(
   // END BASE COLOR MODE RESOLUTION
 
   let CONFIG: any = {};
+  let isInjected = false;
+  let sxStyleIds: any = {};
 
   const containsDescendant =
     componentStyleConfig?.descendantStyle &&
@@ -988,11 +896,9 @@ export function verboseStyled<P, Variants, ComCon>(
       //@ts-ignore
       verbosedStyleIds: BUILD_TIME_VERBOSED_STYLE_IDS = {},
       //@ts-ignore
-      styledIds: BUILD_TIME_STYLE_IDS = [],
-      //@ts-ignore
       toBeInjected: BUILD_TIME_toBeInjected = {},
-      //@ts-ignore
-      sxHash: BUILD_TIME_sxHash = '',
+      // styledIds: BUILD_TIME_STYLE_IDS = [],
+      // sxHash: BUILD_TIME_sxHash = '',
       ...componentProps
     }: Omit<P, keyof Variants> &
       Partial<ComponentProps<ITypeReactNativeStyles, Variants, P, ComCon>> &
@@ -1004,9 +910,10 @@ export function verboseStyled<P, Variants, ComCon>(
   ) => {
     const isClient = React.useRef(false);
 
-    //@ts-ignore
+    //@ts-ignore style: 222ms
     let themeDefaultProps = { ...theme.baseStyle?.props };
 
+    // 240ms
     const sxComponentStyleIds = useRef({});
     const sxDescendantStyleIds: any = useRef({});
 
@@ -1083,13 +990,26 @@ export function verboseStyled<P, Variants, ComCon>(
         orderedCSSIds = [...orderedCSSIds, ...globalStyleIds];
       }
 
-      const toBeInjected = GluestackStyleSheet.resolve(
-        orderedCSSIds,
-        CONFIG,
-        componentExtendedConfig
-      );
+      if (
+        !BUILD_TIME_PARAMS ||
+        !BUILD_TIME_PARAMS?.orderedResolved ||
+        BUILD_TIME_PARAMS?.orderedResolved.length === 0
+      ) {
+        const toBeInjected = GluestackStyleSheet.resolve(
+          orderedCSSIds,
+          CONFIG,
+          componentExtendedConfig
+        );
+        if (Platform.OS === 'web') {
+          GluestackStyleSheet.inject(toBeInjected);
+        }
+      } else {
+        if (Platform.OS === 'web') {
+          //@ts-ignore
+          GluestackStyleSheet.inject(BUILD_TIME_PARAMS.toBeInjected);
+        }
+      }
 
-      GluestackStyleSheet.inject(toBeInjected);
       Object.assign(styledSystemProps, CONFIG?.aliases);
 
       const {
@@ -1236,25 +1156,81 @@ export function verboseStyled<P, Variants, ComCon>(
     // FOR SX RESOLUTION
     let orderedComponentSXResolved: any = [];
     let orderedPassingSXResolved: any = [];
-    let sxStyleIds: any = {};
-    const isInjected = useRef(false);
 
-    // if (BUILD_TIME_VERBOSED_STYLE_IDS) {
-    //   sxStyleIds = BUILD_TIME_VERBOSED_STYLE_IDS;
-    //   GluestackStyleSheet.update(BUILD_TIME_ORDERED_RESOLVED);
-    //   GluestackStyleSheet.inject(BUILD_TIME_toBeInjected);
-    // }
+    if (BUILD_TIME_ORDERED_RESOLVED.length > 0 && !isClient.current) {
+      if (!isInjected) {
+        GluestackStyleSheet.update(BUILD_TIME_ORDERED_RESOLVED);
+        if (Platform.OS === 'web') {
+          GluestackStyleSheet.inject(BUILD_TIME_toBeInjected);
+        }
+        isInjected = true;
+      }
+      sxStyleIds = BUILD_TIME_VERBOSED_STYLE_IDS;
+
+      if (!sxStyleIds.component) {
+        sxStyleIds.component = {};
+      }
+      sxStyleIds.component.variants = componentStyleIds.variants;
+      //@ts-ignore
+      sxStyleIds.component.compoundVariants =
+        componentStyleIds.compoundVariants;
+      // console.setStartTimeStamp('setColorModeBaseStyleIds');
+      sxComponentStyleIds.current = sxStyleIds?.component;
+      sxDescendantStyleIds.current = sxStyleIds.descendant;
+      // 315ms
+      // SX component style
+      //@ts-ignore
+      const {
+        baseStyleCSSIds: sxBaseStyleCSSIds,
+        variantStyleCSSIds: sxVariantStyleCSSIds,
+        passingProps: sxPassingProps,
+      } = getMergedDefaultCSSIdsAndProps(
+        //@ts-ignore
+        sxComponentStyleIds.current,
+        variantProps,
+        theme,
+        incomingComponentProps
+      );
+      //@ts-ignore
+      // applySxStyleCSSIds.current = sxStyleCSSIds;
+      //@ts-ignore
+      applySxBaseStyleCSSIds.current = sxBaseStyleCSSIds;
+      //@ts-ignore
+      applySxVariantStyleCSSIds.current = sxVariantStyleCSSIds;
+      sxComponentPassingProps.current = sxPassingProps;
+
+      const {
+        componentBaseStyleFlatternStyleIdObject: a,
+        componentVariantFlatternStyleIdObject: b,
+        componentCompoundVariantFlatternStyleIdObject: c,
+      } = getFlattenStyleObjectFromStyleIds(sxComponentStyleIds.current);
+
+      if (sxDescendantStyleIds.current && containsDescendant) {
+        Object.keys(sxDescendantStyleIds.current).forEach(
+          (currentDescendant: any) => {
+            sxDescendantFlattenStyles[currentDescendant] =
+              getFlattenStyleObjectFromStyleIds(
+                sxDescendantStyleIds.current[currentDescendant]
+              );
+          }
+        );
+      }
+
+      sxBaseStyleFlatternStyleObject = a;
+      sxVariantFlatternStyleObject = b;
+      sxCompoundVariantFlatternStyleObject = c;
+    }
+
     if (
-      BUILD_TIME_ORDERED_RESOLVED.length > 0 ||
       Object.keys(filteredComponentSx).length > 0 ||
       Object.keys(filteredPassingSx).length > 0
     ) {
       function injectAndUpdateSXProps() {
-        if (
-          Object.keys(filteredComponentSx).length > 0 ||
-          Object.keys(filteredPassingSx).length > 0
-        ) {
+        if (Object.keys(filteredComponentSx).length > 0) {
           orderedComponentSXResolved = injectSx(filteredComponentSx, 'inline');
+        }
+
+        if (Object.keys(filteredPassingSx).length > 0) {
           orderedPassingSXResolved = injectSx(filteredPassingSx, 'passing');
         }
 
@@ -1341,12 +1317,6 @@ export function verboseStyled<P, Variants, ComCon>(
         applyComponentInlineProps = applyComponentInlinePropsUpdated;
       }
 
-      if (BUILD_TIME_ORDERED_RESOLVED.length > 0 && !isInjected.current) {
-        GluestackStyleSheet.update(BUILD_TIME_ORDERED_RESOLVED);
-        GluestackStyleSheet.inject(BUILD_TIME_toBeInjected);
-        isInjected.current = true;
-      }
-
       //// refactor end ....
 
       const {
@@ -1355,7 +1325,7 @@ export function verboseStyled<P, Variants, ComCon>(
         componentCompoundVariantFlatternStyleIdObject: c,
       } = getFlattenStyleObjectFromStyleIds(sxComponentStyleIds.current);
 
-      if (sxDescendantStyleIds.current) {
+      if (sxDescendantStyleIds.current && containsDescendant) {
         Object.keys(sxDescendantStyleIds.current).forEach(
           (currentDescendant: any) => {
             sxDescendantFlattenStyles[currentDescendant] =
@@ -1385,10 +1355,10 @@ export function verboseStyled<P, Variants, ComCon>(
 
     let mergedBaseStyleCSSIds: any = [];
     let mergedVariantStyleCSSIds: any = [];
-    let stateProps = [];
+    // let stateProps = [];
     let mergedSXBaseStyleCSSIds: any = [];
     let mergedSXVariantStyleCSSIds: any = [];
-    let mergedSxStateProps: any = [];
+    // let mergedSxStateProps: any = [];
     let mergedSxDescendantsStyle: any = {};
     let mergedDescendantsStyle: any = {};
 
@@ -1397,10 +1367,10 @@ export function verboseStyled<P, Variants, ComCon>(
       const {
         mergedBaseStyleCSSIds: a,
         mergedVariantStyleCSSIds: b,
-        stateProps: c,
+        // stateProps: c,
         mergedSXBaseStyleCSSIds: d,
         mergedSXVariantStyleCSSIds: e,
-        mergedSxStateProps: f,
+        // mergedSxStateProps: f,
         mergedSxDescendantsStyle: g,
         mergedDescendantsStyle: h,
       } = setStateAndColorModeCssIdsAndProps(
@@ -1424,10 +1394,10 @@ export function verboseStyled<P, Variants, ComCon>(
 
       mergedBaseStyleCSSIds = a;
       mergedVariantStyleCSSIds = b;
-      stateProps = c;
+      // stateProps = c;
       mergedSXBaseStyleCSSIds = d;
       mergedSXVariantStyleCSSIds = e;
-      mergedSxStateProps = f;
+      // mergedSxStateProps = f;
       mergedSxDescendantsStyle = g;
       // setComponentStatePassingProps(stateProps);
       // setSxStatePassingProps(mergedSxStateProps);
@@ -1682,25 +1652,13 @@ export function styled<P, Variants, ComCon>(
       component: StyleIds;
       descendant: StyleIds;
     };
+    toBeInjected: any;
     styledIds: Array<string>;
   }
 ) {
-  // @ts-ignore
-  const DEBUG_TAG = componentStyleConfig?.DEBUG;
-  const DEBUG =
-    process.env.NODE_ENV === 'development' && DEBUG_TAG ? false : false;
-
-  if (DEBUG) {
-    console.group(
-      `%cStyled()`,
-      'background: #4b5563; color: #d97706; font-weight: 700; padding: 2px 8px;'
-    );
-    console.log(
-      `%c${DEBUG_TAG} theme`,
-      'background: #4b5563; color: #16a34a; font-weight: 700; padding: 2px 8px;',
-      theme
-    );
-  }
+  // const DEBUG_TAG = componentStyleConfig?.DEBUG;
+  // const DEBUG =
+  //   process.env.NODE_ENV === 'development' && DEBUG_TAG ? false : false;
 
   const sxConvertedObject = convertStyledToStyledVerbosed(theme);
 
