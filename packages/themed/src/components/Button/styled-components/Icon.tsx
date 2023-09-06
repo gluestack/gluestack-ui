@@ -1,7 +1,7 @@
 import { styled } from '../../styled';
-import { Icon } from '../../Icons';
+import { StyledIcon } from '../../Icons';
 
-export default styled(Icon, {}, {
+export default styled(StyledIcon, {}, {
   componentName: 'ButtonIcon',
   ancestorStyle: ['_icon'],
 } as const);

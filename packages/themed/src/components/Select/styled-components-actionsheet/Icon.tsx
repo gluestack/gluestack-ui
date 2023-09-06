@@ -1,9 +1,8 @@
-// @ts-nocheck
 import { styled } from '../../styled';
-import { Icon } from '../../Icons';
+import { StyledIcon } from '../../Icons';
 
 export default styled(
-  Icon,
+  StyledIcon,
   {
     w: '$4',
     h: '$4',

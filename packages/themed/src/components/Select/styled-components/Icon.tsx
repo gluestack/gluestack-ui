@@ -1,8 +1,8 @@
 import { styled } from '../../styled';
-import { Icon } from '../../Icons';
+import { StyledIcon } from '../../Icons';
 
 export default styled(
-  Icon,
+  StyledIcon,
   {},
   {
     componentName: 'SelectIcon',

@@ -1,4 +1,3 @@
-// @ts-nocheck
 import type { ComponentStory } from '@storybook/react-native';
 import {
   VStack,
