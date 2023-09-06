@@ -12,7 +12,7 @@ function App() {
     <GluestackUIProvider>
       <Box my="$6">
         <VStack space="sm">
-          <Text fontWeight="$bold" fontSize={'$2xl'}>
+          <Text fontWeight="$bold" fontSize="$2xl">
             Explore Components
           </Text>
           <Text size="md">
