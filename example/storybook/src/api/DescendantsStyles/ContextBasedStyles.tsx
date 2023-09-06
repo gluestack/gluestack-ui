@@ -24,6 +24,7 @@ const Pressable = styled(
   {
     bg: '$red500',
     p: '$2',
+
     // 'bg': '$red600',
     // 'w': 100,
     // 'h': 100,
