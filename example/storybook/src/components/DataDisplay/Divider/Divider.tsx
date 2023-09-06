@@ -11,34 +11,22 @@ import {
   ButtonText,
 } from '@gluestack-ui/themed';
 
-const DividerBasic = () => {
+const DividerBasic = ({ ...props }: any) => {
   return (
-    <VStack space="md" sx={{ justifyContent: 'center', alignItems: 'center' }}>
-      <HStack
-        sx={{
-          h: 40,
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <Text>Simple</Text>
-        <Divider orientation="vertical" sx={{ mx: '$3' }} />
-        <Text>Easy</Text>
-        <Divider sx={{ mx: '$3' }} orientation="vertical" />
-        <Text>Beautiful</Text>
-      </HStack>
-      <VStack
-        sx={{
-          w: 100,
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <Text>Firefox</Text>
-        <Divider orientation="horizontal" sx={{ my: '$2' }} />
-        <Text>Chrome</Text>
-      </VStack>
-    </VStack>
+    <HStack
+      flexDirection={props.orientation === 'vertical' ? 'row' : 'column'}
+      h={props.orientation === 'vertical' ? 30 : 'auto'}
+      alignItems="center"
+      justifyContent="center"
+    >
+      <Heading size="sm" fontWeight="$semibold">
+        Firefox
+      </Heading>
+      <Divider {...props} m="$3" />
+      <Heading size="sm" fontWeight="$semibold">
+        Chrome
+      </Heading>
+    </HStack>
   );
 };
 

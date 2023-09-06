@@ -1,11 +1,6 @@
-import type { ComponentStory } from '@storybook/react-native';
 import { Button, ButtonGroup, ButtonText } from '@gluestack-ui/themed';
-
 import React from 'react';
-
-type MyButtonStory = ComponentStory<typeof Button>;
-
-const ButtonGroupBasic: MyButtonStory = ({ ...props }) => {
+const ButtonGroupBasic = ({ ...props }) => {
   return (
     // @ts-ignore
     <ButtonGroup {...props}>

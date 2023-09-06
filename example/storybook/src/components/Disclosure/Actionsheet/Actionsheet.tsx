@@ -50,19 +50,19 @@ const ActionsheetBasic = ({
         <ActionsheetDragIndicatorWrapper>
           <ActionsheetDragIndicator />
         </ActionsheetDragIndicatorWrapper>
-        <ActionsheetItem onPress={handleClose} isDisabled>
+        <ActionsheetItem>
           <ActionsheetItemText>Delete</ActionsheetItemText>
         </ActionsheetItem>
-        <ActionsheetItem onPress={handleClose}>
+        <ActionsheetItem>
           <ActionsheetItemText>Share</ActionsheetItemText>
         </ActionsheetItem>
-        <ActionsheetItem onPress={handleClose}>
+        <ActionsheetItem>
           <ActionsheetItemText>Play</ActionsheetItemText>
         </ActionsheetItem>
-        <ActionsheetItem onPress={handleClose}>
+        <ActionsheetItem>
           <ActionsheetItemText>Favourite</ActionsheetItemText>
         </ActionsheetItem>
-        <ActionsheetItem onPress={handleClose}>
+        <ActionsheetItem>
           <ActionsheetItemText>Cancel</ActionsheetItemText>
         </ActionsheetItem>
       </ActionsheetContent>
