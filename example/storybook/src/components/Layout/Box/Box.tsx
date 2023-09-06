@@ -1,7 +1,7 @@
 import { Text, Box } from '@gluestack-ui/themed';
 import React from 'react';
 
-const BoxBasic: any = ({
+const BoxStory: any = ({
   bg = 'red500',
   w = '100',
   h = '100',
@@ -16,13 +16,23 @@ const BoxBasic: any = ({
       justifyContent="center"
       alignItems="center"
     >
-      <Text color="white" fontWeight="$bold">
+      <Text
+        color="white"
+        fontWeight="$bold"
+        dataSet={{
+          'component-props': JSON.stringify({
+            'is-text-style': true,
+            'component-name': 'Text',
+            'size': 'md',
+          }),
+        }}
+      >
         BOX
       </Text>
     </Box>
   );
 };
 
-export default BoxBasic;
+export default BoxStory;
 
 export { Text, Box };

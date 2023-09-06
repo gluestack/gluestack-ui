@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { styled } from '../../styled';
 import { View } from 'react-native';
 export default styled(
@@ -9,21 +8,21 @@ export default styled(
     variants: {
       orientation: {
         horizontal: {
-          w: '100%',
+          w: '$full',
           _track: {
-            width: '100%',
+            width: '$full',
           },
           _filledTrack: {
-            height: '100%',
+            height: '$full',
           },
         },
         vertical: {
-          h: '100%',
+          h: '$full',
           _track: {
-            height: '100%',
+            height: '$full',
           },
           _filledTrack: {
-            width: '100%',
+            width: '$full',
           },
         },
       },

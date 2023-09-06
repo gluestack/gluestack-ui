@@ -2691,7 +2691,7 @@
     "@babel/traverse" "^7.20.5"
     lodash.merge "^4.6.2"
 
-"@gluestack-style/react@0.2.11", "@gluestack-style/react@0.2.26", "@gluestack-style/react@^0.2.26", "@gluestack-style/react@^0.2.7", "@gluestack-style/react@^0.2.9":
+"@gluestack-style/react@^0.2.26", "@gluestack-style/react@^0.2.7", "@gluestack-style/react@^0.2.9":
   version "0.2.26"
   resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-0.2.26.tgz#6dea340a1e98c9613ba775826ee2a9b0de456ec6"
   integrity sha512-/TnlaNy+kItQWveo4OGr2RRwHwCH/aRFP8NZKJiUpnzqu7zCP2t4PrZJIY6zD429wzbA7QQYINuZVquaIUbz1g==

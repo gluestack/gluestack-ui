@@ -6,14 +6,16 @@ export const Item = styled(
     'p': '$3',
     'flexDirection': 'row',
     'alignItems': 'center',
+
     ':hover': {
       bg: '$backgroundLight100',
     },
 
     ':disabled': {
       'opacity': 0.4,
-      // @ts-ignore
-      'cursor': 'not-allowed',
+      '_web': {
+        cursor: 'not-allowed',
+      },
       ':focus': {
         bg: 'transparent',
       },
@@ -35,6 +37,16 @@ export const Item = styled(
       outlineStyle: 'none',
     },
 
+    ':focusVisible': {
+      // @ts-ignore
+      outlineWidth: '$0.5',
+      outlineColor: '$primary700',
+      outlineStyle: 'solid',
+      _dark: {
+        outlineColor: '$primary300',
+      },
+    },
+
     '_dark': {
       ':hover': {
         bg: '$backgroundDark800',
@@ -48,16 +60,9 @@ export const Item = styled(
         bg: '$backgroundDark800',
       },
     },
-    ':focusVisible': {
-      // @ts-ignore
-      outlineWidth: '$0.5',
-      outlineColor: '$primary700',
-      outlineStyle: 'solid',
-      _dark: {
-        outlineColor: '$primary300',
-      },
+    '_web': {
+      cursor: 'pointer',
     },
-    'cursor': 'pointer',
   },
   {
     componentName: 'MenuItem',

@@ -7,9 +7,6 @@ const BoxMeta: ComponentMeta<typeof Box> = {
   component: Box,
 
   args: { bg: 'red500', w: 100, h: 100 },
-  parameters: {
-    docs: {},
-  },
 };
 
 BoxWithRef.parameters = {
@@ -22,4 +19,4 @@ export default BoxMeta;
 
 export { Box };
 
-export { BoxWithRef };
+// export { BoxWithRef };

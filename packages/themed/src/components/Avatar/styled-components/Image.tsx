@@ -4,8 +4,8 @@ import { styled } from '../../styled';
 export default styled(
   Image,
   {
-    w: '100%',
-    h: '100%',
+    w: '$full',
+    h: '$full',
     borderRadius: '$full',
     position: 'absolute',
   },

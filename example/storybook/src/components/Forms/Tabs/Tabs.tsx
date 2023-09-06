@@ -10,7 +10,7 @@ import {
   Center,
 } from '@gluestack-ui/themed';
 
-const TabsBasic = () => {
+const TabsStory = () => {
   return (
     <Tabs w="$full" value="tab1">
       <TabsTabList>
@@ -39,7 +39,7 @@ const TabsBasic = () => {
   );
 };
 
-export default TabsBasic;
+export default TabsStory;
 
 export {
   Tabs,

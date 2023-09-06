@@ -9,9 +9,7 @@ export default styled(
     justifyContent: 'flex-end',
     alignItems: 'center',
     flexWrap: 'wrap',
-
     borderColor: '$borderLight300',
-
     _dark: {
       borderColor: '$borderDark700',
     },
