@@ -18,3 +18,5 @@ export const RemoveIcon = createIcon({
     </>
   ),
 });
+
+RemoveIcon.displayName = 'RemoveIcon';

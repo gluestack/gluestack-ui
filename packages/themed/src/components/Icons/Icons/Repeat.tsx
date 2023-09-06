@@ -85,6 +85,7 @@ const Repeat1Icon: any = createIcon({
     </>
   ),
 });
+
 Repeat1Icon.displayName = 'Repeat1Icon';
 
 export { RepeatIcon, Repeat1Icon };
