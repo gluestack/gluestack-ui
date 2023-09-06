@@ -19,7 +19,7 @@ function Card1() {
   return (
     <Box my="$6">
       <Box
-        gap={20}
+        gap="$5"
         mb="$6"
         sx={{
           '@lg': {
@@ -31,8 +31,8 @@ function Card1() {
       >
         <Box
           flex={1}
-          borderRadius={'$xl'}
-          borderWidth={'$1'}
+          borderRadius="$xl"
+          borderWidth="$1"
           sx={{
             borderColor: '#D4D4D4',
             _dark: {
@@ -48,14 +48,14 @@ function Card1() {
             },
           }}
         >
-          <Box p={'$6'}>
+          <Box p="$6">
             <VStack space="lg" justifyContent="center">
               <HStack justifyContent="space-between" alignItems="center">
                 <Text
-                  fontSize={'$2xl'}
+                  fontSize="$2xl"
                   fontWeight="bold"
                   fontFamily="Plus Jakarta Sans"
-                  my={0}
+                  my="$0"
                 >
                   Quickstart
                 </Text>
@@ -78,8 +78,8 @@ function Card1() {
         </Box>
         <Box
           flex={1}
-          borderRadius={'$xl'}
-          borderWidth={'$1'}
+          borderRadius="$xl"
+          borderWidth="$1"
           sx={{
             borderColor: '#D4D4D4',
             _dark: {
@@ -92,10 +92,10 @@ function Card1() {
             },
           }}
         >
-          <Box p={'$6'}>
+          <Box p="$6">
             <VStack space="lg">
               <Text
-                fontSize={'$2xl'}
+                fontSize="$2xl"
                 fontWeight="bold"
                 fontFamily="Plus Jakarta Sans"
                 space="md"
@@ -119,7 +119,7 @@ function Card1() {
       </Box>
 
       <Box
-        gap={20}
+        gap="$5"
         sx={{
           '@lg': {
             flexDirection: 'row',
@@ -130,8 +130,8 @@ function Card1() {
       >
         <Box
           flex={1}
-          borderRadius={'$xl'}
-          borderWidth={'$1'}
+          borderRadius="$xl"
+          borderWidth="$1"
           sx={{
             borderColor: '#D4D4D4',
             _dark: {
@@ -143,10 +143,10 @@ function Card1() {
             },
           }}
         >
-          <Box p={'$6'}>
+          <Box p="$6">
             <VStack space="lg">
               <Text
-                fontSize={'$2xl'}
+                fontSize="$2xl"
                 fontWeight="bold"
                 fontFamily="Plus Jakarta Sans"
                 space="md"
@@ -161,8 +161,8 @@ function Card1() {
         </Box>
         <Box
           flex={1}
-          borderRadius={'$xl'}
-          borderWidth={'$1'}
+          borderRadius="$xl"
+          borderWidth="$1"
           sx={{
             borderColor: '#D4D4D4',
             _dark: {
@@ -174,11 +174,11 @@ function Card1() {
             },
           }}
         >
-          <Box p={'$6'}>
+          <Box p="$6">
             <VStack space="lg">
               <HStack alignItems="center">
                 <Text
-                  fontSize={'$2xl'}
+                  fontSize="$2xl"
                   fontWeight="bold"
                   fontFamily="Plus Jakarta Sans"
                   space="md"
