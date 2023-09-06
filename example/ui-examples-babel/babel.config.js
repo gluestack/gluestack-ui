@@ -11,10 +11,7 @@ module.exports = function (api) {
         {
           configPath: path.join(__dirname, './gluestack-ui.config.ts'),
           configThemePath: ['theme'],
-          styled: ['@gluestack-style/react', '../../packages/react'],
-          components: ['@gluesatck-ui/themed'],
-          // filename: path.resolve(__dirname, './src/core/styled'),
-          // uiLibraryPath: path.resolve(__dirname, './src/core'),
+          components: [path.join(__dirname, './gluestack-components')],
         },
       ],
       [
@@ -22,10 +19,10 @@ module.exports = function (api) {
         {
           alias: {
             // For development, we want to alias the library to the source
-            // ['@gluestack-style/react']: path.join(
-            //   __dirname,
-            //   '../../packages/react/src'
-            // ),
+            ['@gluestack-style/react']: path.join(
+              __dirname,
+              '../../packages/react/src'
+            ),
             // ['@gluestack-style/animation-plugin']: path.join(
             //   __dirname,
             //   '../../packages/animation-plugin/src'
