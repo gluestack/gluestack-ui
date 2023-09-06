@@ -40,7 +40,7 @@ const FabBasic = ({
       sx={{ _web: { w: 300, h: 300 } }}
     >
       <Fab placement={placement} {...props}>
-        {showIcon && <FabIcon as={MenuIcon} mr="$1" />}
+        {showIcon && <FabIcon as={MenuIcon} mr={showLabel ? '$1' : '$0'} />}
         {showLabel && <FabLabel>Menu</FabLabel>}
       </Fab>
     </Box>

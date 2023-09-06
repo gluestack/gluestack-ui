@@ -45,33 +45,23 @@ const ActionsheetWithIcon = ({
           <ActionsheetDragIndicator />
         </ActionsheetDragIndicatorWrapper>
         <ActionsheetItem onPress={handleClose}>
-          <ActionsheetIcon>
-            <Icon as={TrashIcon} />
-          </ActionsheetIcon>
+          <ActionsheetIcon as={TrashIcon} />
           <ActionsheetItemText>Delete</ActionsheetItemText>
         </ActionsheetItem>
         <ActionsheetItem onPress={handleClose}>
-          <ActionsheetIcon>
-            <Icon as={ShareIcon} />
-          </ActionsheetIcon>
+          <ActionsheetIcon as={ShareIcon} />
           <ActionsheetItemText>Share</ActionsheetItemText>
         </ActionsheetItem>
         <ActionsheetItem onPress={handleClose}>
-          <ActionsheetIcon>
-            <Icon as={PlayIcon} />
-          </ActionsheetIcon>
+          <ActionsheetIcon as={PlayIcon} />
           <ActionsheetItemText>Play</ActionsheetItemText>
         </ActionsheetItem>
         <ActionsheetItem onPress={handleClose}>
-          <ActionsheetIcon>
-            <Icon as={FavouriteIcon} />
-          </ActionsheetIcon>
+          <ActionsheetIcon as={FavouriteIcon} />
           <ActionsheetItemText>Favourite</ActionsheetItemText>
         </ActionsheetItem>
         <ActionsheetItem onPress={handleClose}>
-          <ActionsheetIcon>
-            <Icon as={CloseIcon} />
-          </ActionsheetIcon>
+          <ActionsheetIcon as={CloseIcon} />
           <ActionsheetItemText>Cancel</ActionsheetItemText>
         </ActionsheetItem>
       </ActionsheetContent>
