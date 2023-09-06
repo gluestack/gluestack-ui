@@ -7,6 +7,7 @@ import {
   Text,
   CodePreview,
   Link,
+  LogoTag,
 } from '@gluestack/design-system';
 import Next from './Next';
 import MySvgComponent from './MySvgComponent';
@@ -16,10 +17,10 @@ import VsCode from './VsCode';
 
 function Card1() {
   return (
-    <>
-      <HStack
-        my={'$6'}
+    <Box my="$6">
+      <Box
         gap={20}
+        mb="$6"
         sx={{
           '@lg': {
             flexDirection: 'row',
@@ -48,7 +49,7 @@ function Card1() {
           }}
         >
           <Box p={'$6'}>
-            <VStack space="md" justifyContent="center">
+            <VStack space="lg" justifyContent="center">
               <HStack justifyContent="space-between" alignItems="center">
                 <Text
                   fontSize={'$2xl'}
@@ -70,6 +71,7 @@ function Card1() {
                 codeBlockProps={{
                   bg: '$white',
                 }}
+                mb="$0"
               />
             </VStack>
           </Box>
@@ -91,7 +93,7 @@ function Card1() {
           }}
         >
           <Box p={'$6'}>
-            <VStack space="md">
+            <VStack space="lg">
               <Text
                 fontSize={'$2xl'}
                 fontWeight="bold"
@@ -114,10 +116,9 @@ function Card1() {
             </VStack>
           </Box>
         </Box>
-      </HStack>
+      </Box>
 
-      <HStack
-        my={'$6'}
+      <Box
         gap={20}
         sx={{
           '@lg': {
@@ -134,7 +135,7 @@ function Card1() {
           sx={{
             borderColor: '#D4D4D4',
             _dark: {
-              borderColor: '#3E485B',
+              borderColor: 'rgba(38, 38, 38, 1)',
             },
             _web: {
               background:
@@ -143,7 +144,7 @@ function Card1() {
           }}
         >
           <Box p={'$6'}>
-            <VStack space="md">
+            <VStack space="lg">
               <Text
                 fontSize={'$2xl'}
                 fontWeight="bold"
@@ -174,28 +175,27 @@ function Card1() {
           }}
         >
           <Box p={'$6'}>
-            <VStack space="md">
-              <Text
-                fontSize={'$2xl'}
-                fontWeight="bold"
-                fontFamily="Plus Jakarta Sans"
-                space="md"
-              >
-                Head Starter Kit
-              </Text>
+            <VStack space="lg">
+              <HStack alignItems="center">
+                <Text
+                  fontSize={'$2xl'}
+                  fontWeight="bold"
+                  fontFamily="Plus Jakarta Sans"
+                  space="md"
+                >
+                  Head Starter Kit
+                </Text>
+                <LogoTag tag="coming soon" />
+              </HStack>
               <HStack flexWrap="wrap" gap={10}>
-                <Link href="https://ui.gluestack.io/docs/guides/install-nextjs">
-                  <Next />
-                </Link>
-                <Link href="https://ui.gluestack.io/docs/guides/install-expo">
-                  <Expo1 />
-                </Link>
+                <Next />
+                <Expo1 />
               </HStack>
             </VStack>
           </Box>
         </Box>
-      </HStack>
-    </>
+      </Box>
+    </Box>
   );
 }
 
