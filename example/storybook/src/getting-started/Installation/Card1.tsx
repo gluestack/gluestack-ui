@@ -34,9 +34,9 @@ function Card1() {
           borderRadius="$xl"
           borderWidth="$1"
           sx={{
-            borderColor: '#D4D4D4',
+            borderColor: '$trueGray300',
             _dark: {
-              borderColor: 'rgba(38, 38, 38, 1)',
+              borderColor: 'trueGray800',
             },
             _web: {
               background:
@@ -81,9 +81,9 @@ function Card1() {
           borderRadius="$xl"
           borderWidth="$1"
           sx={{
-            borderColor: '#D4D4D4',
+            borderColor: '$trueGray300',
             _dark: {
-              borderColor: 'rgba(38, 38, 38, 1)',
+              borderColor: '$trueGray800',
               bg: 'linear-gradient(150.32deg, #3E485B 18.15%, rgba(55, 65, 81, 0) 92.97%), linear-gradient(0deg, rgba(62, 72, 91, 0.2), rgba(62, 72, 91, 0.2)',
             },
             _light: {
@@ -102,7 +102,7 @@ function Card1() {
               >
                 Manual Installation
               </Text>
-              <HStack flexWrap="wrap" gap={10}>
+              <HStack flexWrap="wrap" gap="$2.5">
                 <Link href="https://ui.gluestack.io/docs/guides/install-nextjs">
                   <Next />
                 </Link>
@@ -133,9 +133,9 @@ function Card1() {
           borderRadius="$xl"
           borderWidth="$1"
           sx={{
-            borderColor: '#D4D4D4',
+            borderColor: '$trueGray300',
             _dark: {
-              borderColor: 'rgba(38, 38, 38, 1)',
+              borderColor: '$trueGray800',
             },
             _web: {
               background:
@@ -164,9 +164,9 @@ function Card1() {
           borderRadius="$xl"
           borderWidth="$1"
           sx={{
-            borderColor: '#D4D4D4',
+            borderColor: '$trueGray300',
             _dark: {
-              borderColor: 'rgba(38, 38, 38, 1)',
+              borderColor: '$trueGray800',
             },
             _web: {
               background:
@@ -187,7 +187,7 @@ function Card1() {
                 </Text>
                 <LogoTag tag="coming soon" />
               </HStack>
-              <HStack flexWrap="wrap" gap={10}>
+              <HStack flexWrap="wrap" gap="$2.5">
                 <Next />
                 <Expo1 />
               </HStack>
