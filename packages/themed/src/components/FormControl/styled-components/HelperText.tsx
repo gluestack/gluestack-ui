@@ -4,8 +4,9 @@ import { Text } from '../../Text';
 export default styled(
   Text,
   {
-    fontSize: '$xs',
-    fontFamily: '$body',
+    props: {
+      size: 'xs',
+    },
     color: '$textLight500',
     _dark: {
       color: '$textDark400',

@@ -8,8 +8,9 @@ export default styled(
     _dark: {
       color: '$error400',
     },
-    h: '$4',
-    w: '$4',
+    props: {
+      size: 'sm',
+    },
   },
   {
     componentName: 'FormControlErrorIcon',

@@ -5,7 +5,6 @@ export default styled(
   Text,
   {
     fontWeight: '$medium',
-    fontFamily: '$body',
     color: '$textLight900',
     _dark: {
       color: '$textDark50',
