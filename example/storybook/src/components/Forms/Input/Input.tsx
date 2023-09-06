@@ -17,8 +17,24 @@ import {
 import { EyeIcon, EyeOffIcon } from 'lucide-react-native';
 import { useState } from 'react';
 
-const InputBasic = ({ ...props }: any) => {
+const InputStory = ({ ...props }: any) => {
   const [value, setValue] = React.useState('');
+
+  let inputIconSize = '';
+  switch (props.size) {
+    case 'sm':
+      inputIconSize = 'xs';
+      break;
+    case 'md':
+      inputIconSize = 'sm';
+      break;
+    case 'lg':
+      inputIconSize = 'lg';
+      break;
+    case 'xl':
+      inputIconSize = 'xl';
+      break;
+  }
 
   return (
     <Input {...props}>
@@ -28,15 +44,32 @@ const InputBasic = ({ ...props }: any) => {
         }}
         value={value}
         placeholder="Enter Text here"
+        dataSet={{
+          'component-props': JSON.stringify({
+            'is-text-style': true,
+            'component-name': 'Text',
+            'size': props.size,
+          }),
+        }}
       />
       <InputIcon pr="$4">
-        <Icon as={SearchIcon} />
+        <Icon
+          as={SearchIcon}
+          dataSet={{
+            'component-props': JSON.stringify({
+              'instance': true,
+              'instance-name': 'Icon',
+              'name': 'SearchIcon',
+              'size': inputIconSize,
+            }),
+          }}
+        />
       </InputIcon>
     </Input>
   );
 };
 
-export default InputBasic;
+export default InputStory;
 
 export {
   Input,

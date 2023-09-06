@@ -33,3 +33,5 @@ export const HelpCircleIcon = createIcon({
     </>
   ),
 });
+
+HelpCircleIcon.displayName = 'HelpCircleIcon';

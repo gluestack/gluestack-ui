@@ -7,7 +7,7 @@ import {
   useToast,
 } from '@gluestack-ui/themed';
 
-const ToastDuplicatePrevent = ({ placement = 'top', ...props }: any) => {
+const DuplicateToastPrevent = ({ placement = 'top', ...props }: any) => {
   const toast = useToast();
   const idTest = 'test-id';
   return (
@@ -21,7 +21,17 @@ const ToastDuplicatePrevent = ({ placement = 'top', ...props }: any) => {
             render: ({ id }) => {
               return (
                 <Toast>
-                  <ToastTitle>Hello World Toast {id}</ToastTitle>
+                  <ToastTitle
+                    dataSet={{
+                      'component-props': JSON.stringify({
+                        'is-text-style': true,
+                        'component-name': 'Text',
+                        'size': 'md',
+                      }),
+                    }}
+                  >
+                    Hello World Toast {id}
+                  </ToastTitle>
                 </Toast>
               );
             },
@@ -29,9 +39,19 @@ const ToastDuplicatePrevent = ({ placement = 'top', ...props }: any) => {
         }
       }}
     >
-      <ButtonText>Press Me</ButtonText>
+      <ButtonText
+        dataSet={{
+          'component-props': JSON.stringify({
+            'is-text-style': true,
+            'component-name': 'Text',
+            'size': 'md',
+          }),
+        }}
+      >
+        Press Me
+      </ButtonText>
     </Button>
   );
 };
 
-export default ToastDuplicatePrevent;
+export default DuplicateToastPrevent;

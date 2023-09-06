@@ -2,7 +2,7 @@ import React from 'react';
 
 import { VStack, Box } from '@gluestack-ui/themed';
 
-const VStackBasic = ({ space, reversed, ...props }: any) => {
+const VStackStory = ({ space, reversed, ...props }: any) => {
   return (
     <VStack
       space={space}
@@ -19,6 +19,6 @@ const VStackBasic = ({ space, reversed, ...props }: any) => {
   );
 };
 
-export default VStackBasic;
+export default VStackStory;
 
 export { Box, VStack };

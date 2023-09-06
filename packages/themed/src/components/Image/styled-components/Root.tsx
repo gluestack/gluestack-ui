@@ -4,7 +4,7 @@ import { styled } from '../../styled';
 export default styled(
   Image,
   {
-    maxWidth: '100%',
+    maxWidth: '$full',
 
     variants: {
       size: {

@@ -7,8 +7,6 @@ import {
   CloseIcon,
   Text,
   Icon,
-} from '@gluestack-ui/themed';
-import {
   Modal,
   ModalBackdrop,
   ModalContent,
@@ -21,7 +19,7 @@ import {
   Heading,
 } from '@gluestack-ui/themed';
 
-const MultipleModals = ({ ...props }: any) => {
+const MultipleModalStory = ({ ...props }: any) => {
   const [showModal, setShowModal] = React.useState(false);
   const [showModal2, setShowModal2] = React.useState(false);
 
@@ -120,4 +118,4 @@ const MultipleModals = ({ ...props }: any) => {
   );
 };
 
-export default MultipleModals;
+export default MultipleModalStory;

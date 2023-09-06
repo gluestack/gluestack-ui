@@ -13,10 +13,10 @@ import {
 } from '@gluestack-ui/themed';
 import { useEffect } from 'react';
 
-const ActionsheetWithFlatList = ({
+function ActionsheetExample({
   showActionsheet: showActionsheetProp = true,
   ...props
-}) => {
+}) {
   const [showActionsheet, setShowActionsheet] = React.useState(
     props.showActionsheet
   );
@@ -48,7 +48,17 @@ const ActionsheetWithFlatList = ({
   const Item = useCallback(
     ({ title }: any) => (
       <ActionsheetItem onPress={handleClose}>
-        <ActionsheetItemText>{title}</ActionsheetItemText>
+        <ActionsheetItemText
+          dataSet={{
+            'component-props': JSON.stringify({
+              'is-text-style': true,
+              'component-name': 'Text',
+              'size': 'md',
+            }),
+          }}
+        >
+          {title}
+        </ActionsheetItemText>
       </ActionsheetItem>
     ),
     [handleClose]
@@ -73,8 +83,8 @@ const ActionsheetWithFlatList = ({
       </ActionsheetContent>
     </Actionsheet>
   );
-};
+}
 
-export default ActionsheetWithFlatList;
+export default ActionsheetExample;
 
 export { Actionsheet, Button };

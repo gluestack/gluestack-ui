@@ -25,7 +25,7 @@ import {
 
 import { CheckIcon, EditIcon, ShoppingCartIcon } from 'lucide-react-native';
 
-const FabBasic = ({
+const FabStory = ({
   placement = 'bottom right',
   showLabel = true,
   showIcon = true,
@@ -40,16 +40,63 @@ const FabBasic = ({
       sx={{ _web: { w: 300, h: 300 } }}
     >
       <Fab placement={placement} {...props}>
-        {showIcon && <FabIcon as={MenuIcon} mr={showLabel ? '$1' : '$0'} />}
+        {showIcon && (
+          <FabIcon
+            as={MenuIcon}
+            mr={showLabel ? '$1' : '$0'}
+            dataSet={{
+              'component-props': JSON.stringify({
+                'instance': true,
+                'instance-name': 'Icon',
+                'name': 'CloseIcon',
+                'size': 'md',
+              }),
+            }}
+          />
+        )}
         {showLabel && <FabLabel>Menu</FabLabel>}
       </Fab>
     </Box>
   );
 };
 
-export default FabBasic;
+const FigmaFabStory = ({
+  placement = 'bottom right',
+  showLabel = true,
+  _showIcon = true,
+  ...props
+}: any) => {
+  return (
+    <Box
+      position="relative"
+      bg="$trueGray200"
+      h="$full"
+      w="$full"
+      sx={{ _web: { w: 300, h: 300 } }}
+    >
+      <Fab placement={placement} {...props}>
+        <Fab.Icon
+          as={MenuIcon}
+          mr={showLabel ? '$1' : '$0'}
+          dataSet={{
+            'component-props': JSON.stringify({
+              'instance': true,
+              'instance-name': 'Icon',
+              'name': 'MenuIcon',
+              'size': 'md',
+            }),
+          }}
+        />
+        {showLabel && <Fab.Label>Menu</Fab.Label>}
+      </Fab>
+    </Box>
+  );
+};
+
+export default FigmaFabStory;
 
 export {
+  FabStory,
   Fab,
   FabIcon,
   FabLabel,

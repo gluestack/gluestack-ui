@@ -8,11 +8,10 @@ export default styled(
     'flexDirection': 'row',
     'alignItems': 'center',
     'rounded': '$sm',
-    'w': '100%',
+    'w': '$full',
 
     ':disabled': {
       opacity: 0.4,
-      // @ts-ignore
       _web: {
         // @ts-ignore
         pointerEvents: 'all !important',

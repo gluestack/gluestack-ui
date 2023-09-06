@@ -1,22 +1,20 @@
-// @ts-nocheck
 import { styled } from '../../styled';
-import { View } from 'react-native';
+import { StyledIcon } from '../../Icons';
 
 export default styled(
-  View,
+  StyledIcon,
   {
-    w: '$4',
-    h: '$4',
-    mr: '$2',
-    _icon: {
-      color: '$backgroundLight500',
-      _dark: {
-        color: '$backgroundDark400',
-      },
+    props: {
+      size: 'sm',
+    },
+    color: '$backgroundLight500',
+    _dark: {
+      //@ts-ignore
+      color: '$backgroundDark400',
     },
   },
   {
     componentName: 'ActionsheetIcon',
-    descendantStyle: ['_icon'],
+    ancestorStyle: ['_icon'],
   } as const
 );

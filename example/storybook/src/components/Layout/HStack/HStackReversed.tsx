@@ -2,9 +2,9 @@ import { HStack } from '@gluestack-ui/themed';
 import { Box } from '@gluestack-ui/themed';
 import React from 'react';
 
-const HStackReversed = ({ space, ...props }) => {
+const HStackReversed = ({ ...props }) => {
   return (
-    <HStack space={space} mt="$5" {...props} reversed>
+    <HStack mt="$5" {...props} reversed>
       <Box sx={{ w: 100, h: 100, bg: '$blue300' }} />
       <Box sx={{ w: 100, h: 100, bg: '$blue400' }} />
       <Box sx={{ w: 100, h: 100, bg: '$blue500' }} />

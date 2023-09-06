@@ -18,14 +18,12 @@ import {
   FormControl,
 } from '@gluestack-ui/themed';
 
-const CheckboxGroupBasic = ({ ...props }: any) => {
+const CheckboxStory = ({ ...props }: any) => {
   const [values, setValues] = React.useState(['Label 1']);
 
   return (
     <CheckboxGroup
       accessibilityLabel="Checkbox Group"
-      isDisabled={props.isDisabled}
-      isReadOnly={props.isReadOnly}
       value={values}
       onChange={setValues}
       {...props}
@@ -72,7 +70,7 @@ const CheckboxGroupBasic = ({ ...props }: any) => {
   );
 };
 
-export default CheckboxGroupBasic;
+export default CheckboxStory;
 
 export {
   Center,
