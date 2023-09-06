@@ -1,5 +1,11 @@
 # @gluestack-ui/themed
 
+## 0.1.17
+
+### Patch Changes
+
+- Fixing the version issue and Theme component not exported
+
 ## 0.1.15
 
 ### Patch Changes
