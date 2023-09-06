@@ -47,6 +47,7 @@ function Card2() {
           <Link
             href="https://snack.expo.dev/@gluestack/try-now-gluestack-ui"
             isExternal
+            target="_blank"
           >
             <Box p="$6">
               <VStack space="md">
@@ -58,6 +59,7 @@ function Card2() {
                       ':hover': {
                         textDecoration: 'underline',
                         color: 'white',
+                        boxShadow: 'none',
                       },
                     }}
                   >
@@ -98,7 +100,11 @@ function Card2() {
           },
         }}
       >
-        <Link href="https://codesandbox.io/p/sandbox/try-now-next-codesandbox-zl8npm?file=/pages/index.js:1,1">
+        <Link
+          href="https://codesandbox.io/p/sandbox/try-now-next-codesandbox-zl8npm?file=/pages/index.js:1,1"
+          target="_blank"
+          isExternal
+        >
           <Box p="$6">
             <VStack space="md">
               <HStack w="$full" alignItems="center" space="md">
@@ -109,6 +115,7 @@ function Card2() {
                     ':hover': {
                       textDecoration: 'underline',
                       color: '$white',
+                      boxShadow: 'none',
                     },
                   }}
                 >

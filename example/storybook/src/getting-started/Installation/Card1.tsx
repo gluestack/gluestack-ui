@@ -6,7 +6,6 @@ import {
   VStack,
   Text,
   CodePreview,
-  Link,
   LogoTag,
 } from '@gluestack/design-system';
 import Next from './Next';
@@ -14,6 +13,7 @@ import MySvgComponent from './MySvgComponent';
 import Expo1 from './Expo1';
 import ReactN from './ReactN';
 import VsCode from './VsCode';
+import Link from 'next/link';
 
 function Card1() {
   return (
@@ -36,7 +36,7 @@ function Card1() {
           sx={{
             borderColor: '$trueGray300',
             _dark: {
-              borderColor: 'trueGray800',
+              borderColor: '$trueGray800',
             },
             _web: {
               background:
@@ -103,13 +103,13 @@ function Card1() {
                 Manual Installation
               </Text>
               <HStack flexWrap="wrap" gap="$2.5">
-                <Link href="https://ui.gluestack.io/docs/guides/install-nextjs">
+                <Link href="/docs/guides/install-nextjs">
                   <Next />
                 </Link>
-                <Link href="https://ui.gluestack.io/docs/guides/install-expo">
+                <Link href="/docs/guides/install-expo">
                   <Expo1 />
                 </Link>
-                <Link href="https://ui.gluestack.io/docs/guides/install-rn">
+                <Link href="/docs/guides/install-rn">
                   <ReactN />
                 </Link>
               </HStack>
@@ -154,7 +154,7 @@ function Card1() {
                 VS Code Extension
               </Text>
               <HStack>
-                <Link href="https://ui.gluestack.io/docs/getting-started/vscode-extension">
+                <Link href="/docs/getting-started/vscode-extension">
                   <VsCode />
                 </Link>
               </HStack>
