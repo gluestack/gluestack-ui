@@ -4,8 +4,8 @@ import { styled } from '../../styled';
 export default styled(
   View,
   {
-    width: '100%',
-    height: '100%',
+    width: '$full',
+    height: '$full',
     justifyContent: 'flex-end',
     alignItems: 'center',
   },

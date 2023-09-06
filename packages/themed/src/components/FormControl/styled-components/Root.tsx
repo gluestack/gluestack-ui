@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { View } from 'react-native';
 import { styled } from '../../styled';
 
@@ -10,44 +9,44 @@ export default styled(
       size: {
         sm: {
           _labelText: {
-            fontSize: '$sm',
+            props: { size: 'sm' },
           },
           _labelAstrick: {
-            fontSize: '$sm',
+            props: { size: 'sm' },
           },
           _helperText: {
-            fontSize: '$xs',
+            props: { size: 'xs' },
           },
           _errorText: {
-            fontSize: '$xs',
+            props: { size: 'xs' },
           },
         },
         md: {
           _labelText: {
-            fontSize: '$md',
+            props: { size: 'md' },
           },
           _labelAstrick: {
-            fontSize: '$md',
+            props: { size: 'md' },
           },
           _helperText: {
-            fontSize: '$sm',
+            props: { size: 'sm' },
           },
           _errorText: {
-            fontSize: '$sm',
+            props: { size: 'sm' },
           },
         },
         lg: {
           _labelText: {
-            fontSize: '$lg',
+            props: { size: 'lg' },
           },
           _labelAstrick: {
-            fontSize: '$lg',
+            props: { size: 'lg' },
           },
           _helperText: {
-            fontSize: '$md',
+            props: { size: 'md' },
           },
           _errorText: {
-            fontSize: '$md',
+            props: { size: 'md' },
           },
         },
       },

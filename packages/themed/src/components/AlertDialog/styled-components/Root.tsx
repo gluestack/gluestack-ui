@@ -1,28 +1,26 @@
-// @ts-nocheck
 import { View } from 'react-native';
 import { styled } from '../../styled';
 
 export default styled(
   View,
   {
-    width: '100%',
-    height: '100%',
+    w: '$full',
+    h: '$full',
     justifyContent: 'center',
     alignItems: 'center',
 
     variants: {
       size: {
-        xs: { _content: { width: '60%', maxWidth: 360 } },
-        sm: { _content: { width: '70%', maxWidth: 420 } },
-        md: { _content: { width: '80%', maxWidth: 510 } },
-        lg: { _content: { width: '90%', maxWidth: 640 } },
-        full: { _content: { width: '100%' } },
+        xs: { _content: { w: '60%', maxWidth: 360 } },
+        sm: { _content: { w: '70%', maxWidth: 420 } },
+        md: { _content: { w: '80%', maxWidth: 510 } },
+        lg: { _content: { w: '90%', maxWidth: 640 } },
+        full: { _content: { w: '$full' } },
       },
     },
     defaultProps: { size: 'md' },
 
     _web: {
-      //@ts-ignore
       pointerEvents: 'box-none',
     },
   },
