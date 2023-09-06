@@ -8,4 +8,6 @@ export {
   flush,
   AsForwarder,
   createConfig,
+  Theme,
+  useTheme,
 } from '@gluestack-style/react';
