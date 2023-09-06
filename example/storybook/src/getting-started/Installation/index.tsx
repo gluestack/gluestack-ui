@@ -6,10 +6,10 @@ import { content1 } from './content1';
 const Fold3 = memo(() => {
   return (
     <Box
-      my={'$6'}
+      my="$6"
       flexDirection="column"
       flexWrap="wrap"
-      gap={20}
+      gap="$5"
       sx={{
         '@lg': { flexDirection: 'row' },
       }}

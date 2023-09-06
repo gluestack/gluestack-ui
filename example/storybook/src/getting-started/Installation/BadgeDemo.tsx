@@ -9,7 +9,7 @@ import {
 
 const BadgeDemo = () => {
   return (
-    <HStack style={{ margin: 'auto' }}>
+    <HStack mx="auto">
       <Badge size="md" variant="solid" borderRadius="$none" action="success">
         <BadgeText>New feature</BadgeText>
         <BadgeIcon as={GlobeIcon} ml="$2" />

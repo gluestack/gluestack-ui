@@ -5,7 +5,7 @@ function Talk() {
   return (
     <Box>
       <VStack space="sm">
-        <Text fontWeight="$bold" fontSize={24} fontFamily="Plus Jakarta Sans">
+        <Text fontWeight="$bold" fontSize="$2xl" fontFamily="Plus Jakarta Sans">
           Watch our talks
         </Text>
         <Text size="md">
