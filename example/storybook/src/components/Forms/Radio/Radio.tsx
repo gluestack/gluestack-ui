@@ -40,12 +40,13 @@ const RadioStory = ({
         value="Label 1"
         accessibilityLabel="Radio"
         onChange={(nextValue: boolean) => console.log(nextValue, 'nextValue')}
+        mb="$2"
         {...props}
       >
         <RadioIndicator>
           <RadioIcon as={CircleIcon} />
         </RadioIndicator>
-        <RadioLabel>Label 1</RadioLabel>
+        <RadioLabel ml="$2">Label 1</RadioLabel>
       </Radio>
       <Radio
         isDisabled={isDisabled}
@@ -54,11 +55,12 @@ const RadioStory = ({
         value="Label 2"
         accessibilityLabel="Radio"
         onChange={(nextValue: boolean) => console.log(nextValue, 'nextValue')}
+        mb="$2"
       >
         <RadioIndicator>
           <RadioIcon as={CircleIcon} />
         </RadioIndicator>
-        <RadioLabel>Label 2</RadioLabel>
+        <RadioLabel ml="$2">Label 2</RadioLabel>
       </Radio>
       <Radio
         isDisabled={isDisabled}
@@ -69,11 +71,12 @@ const RadioStory = ({
         onChange={(isSelected: boolean) =>
           console.log(isSelected, 'isSelected')
         }
+        mb="$2"
       >
         <RadioIndicator>
           <RadioIcon as={CircleIcon} />
         </RadioIndicator>
-        <RadioLabel>Label 3</RadioLabel>
+        <RadioLabel ml="$2">Label 3</RadioLabel>
       </Radio>
     </RadioGroup>
   );
