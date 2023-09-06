@@ -1,13 +1,9 @@
 import type { ComponentMeta } from '@storybook/react-native';
-import React from 'react';
 import Link from './Link';
 
-const LinkStory = ({ ...props }: any) => {
-  return <Link {...props} />;
-};
-const LinkMeta: ComponentMeta<typeof LinkStory> = {
+const LinkMeta: ComponentMeta<typeof Link> = {
   title: 'stories/FORMS/Link',
-  component: LinkStory,
+  component: Link,
   argTypes: {
     isHovered: {
       control: 'boolean',
@@ -34,5 +30,5 @@ const LinkMeta: ComponentMeta<typeof LinkStory> = {
   },
 };
 
-export { LinkStory };
+export { Link };
 export default LinkMeta;

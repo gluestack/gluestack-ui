@@ -1,6 +1,6 @@
 import type { ComponentMeta } from '@storybook/react-native';
 import HStack from './HStack';
-import HStackReversedExample from './HStackReversed';
+import HStackReversed from './HStackReversed';
 
 const HStackMeta: ComponentMeta<typeof HStack> = {
   title: 'stories/LAYOUT/HStack',
@@ -20,13 +20,6 @@ const HStackMeta: ComponentMeta<typeof HStack> = {
   },
 };
 
-const HStackReversed: any = HStackReversedExample.bind({});
-
-HStackReversed.parameters = {
-  controls: {
-    exclude: /.*/g,
-  },
-};
 export default HStackMeta;
 
 export { HStack };

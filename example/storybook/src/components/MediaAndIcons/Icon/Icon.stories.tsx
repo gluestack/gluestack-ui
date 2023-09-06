@@ -1,5 +1,5 @@
 import type { ComponentMeta } from '@storybook/react-native';
-import IconStory, {
+import Icon, {
   AddIcon,
   AlertCircleIcon,
   ArrowUpIcon,
@@ -57,9 +57,9 @@ import IconStory, {
   UnlockIcon,
 } from './AllIcon';
 
-const IconMeta: ComponentMeta<any> = {
+const IconMeta: ComponentMeta<typeof Icon> = {
   title: 'stories/MEDIA AND ICONS/Icons',
-  component: IconStory,
+  component: Icon,
   argTypes: {
     size: {
       control: 'select',
@@ -133,4 +133,4 @@ const IconMeta: ComponentMeta<any> = {
 };
 
 export default IconMeta;
-export { IconStory };
+export { Icon };

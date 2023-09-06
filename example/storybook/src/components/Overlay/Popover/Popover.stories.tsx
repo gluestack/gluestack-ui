@@ -1,5 +1,5 @@
 import type { ComponentMeta } from '@storybook/react-native';
-import { PopoverStory as Popover } from './Popover';
+import Popover from './Popover';
 
 const PopoverMeta: ComponentMeta<typeof Popover> = {
   title: 'stories/OVERLAY/Popover',

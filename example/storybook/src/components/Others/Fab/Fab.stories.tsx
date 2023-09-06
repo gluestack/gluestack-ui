@@ -1,5 +1,5 @@
 import type { ComponentMeta } from '@storybook/react-native';
-import { FabStory as Fab } from './Fab';
+import Fab from './Fab';
 
 const FabMeta: ComponentMeta<typeof Fab> = {
   title: 'stories/OTHERS/Fab',

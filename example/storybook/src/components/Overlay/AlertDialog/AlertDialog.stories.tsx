@@ -1,5 +1,5 @@
 import type { ComponentMeta } from '@storybook/react-native';
-import { AlertDialogStory as AlertDialog } from './AlertDialog';
+import AlertDialog from './AlertDialog';
 
 const AlertDialogMeta: ComponentMeta<typeof AlertDialog> = {
   title: 'stories/OVERLAY/AlertDialog',

@@ -1,5 +1,5 @@
 import type { ComponentMeta } from '@storybook/react-native';
-import { TooltipStory as Tooltip } from './Tooltip';
+import Tooltip from './Tooltip';
 
 const TooltipMeta: ComponentMeta<typeof Tooltip> = {
   title: 'stories/OVERLAY/Tooltip',

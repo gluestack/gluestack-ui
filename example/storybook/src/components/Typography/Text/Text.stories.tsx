@@ -34,7 +34,6 @@ const TextMeta: ComponentMeta<typeof Text> = {
         'bold',
         'extrabold',
         'black',
-        // 'extraBlack',
       ],
     },
   },

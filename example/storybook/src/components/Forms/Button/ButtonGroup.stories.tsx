@@ -1,9 +1,9 @@
 import type { ComponentMeta } from '@storybook/react-native';
-import ButtonGroupStory from './ButtonGroup';
+import ButtonGroup from './ButtonGroup';
 
 const ButtonGroupMeta: ComponentMeta<any> = {
   title: 'stories/FORMS/Button',
-  component: ButtonGroupStory,
+  component: ButtonGroup,
   args: {
     space: 'md',
     isAttached: true,
@@ -34,4 +34,4 @@ const ButtonGroupMeta: ComponentMeta<any> = {
 };
 
 export default ButtonGroupMeta;
-export { ButtonGroupStory as ButtonGroup };
+export { ButtonGroup };
