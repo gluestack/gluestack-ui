@@ -704,8 +704,8 @@ export function getVariantProps(
         variantProps[variant] = props[variant];
 
         restProps = {
-          ...restProps,
           ...theme?.variants[variant][props[variant]]?.props,
+          ...restProps,
         };
 
         if (shouldDeleteVariants) {
@@ -924,7 +924,6 @@ export function verboseStyled<P, Variants, ComCon>(
 
   const NewComp = (
     {
-      as,
       children,
       //@ts-ignore
       orderedResolved: BUILD_TIME_ORDERED_RESOLVED = [],
@@ -1722,10 +1721,7 @@ export function verboseStyled<P, Variants, ComCon>(
       // activeTheme
     );
     const AsComp: any =
-      (as as any) ||
-      resolvedStyleProps.as ||
-      (passingProps.as as any) ||
-      undefined;
+      resolvedStyleProps.as || (passingProps.as as any) || undefined;
 
     let resolvedStyleMemo = [passingProps?.style, ...resolvedStyleProps?.style];
     if (Platform.OS === 'web') {
