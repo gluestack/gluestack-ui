@@ -153,9 +153,11 @@ function Card1() {
               >
                 VS Code Extension
               </Text>
-              <Link href="https://ui.gluestack.io/docs/guides/install-rn">
-                <VsCode />
-              </Link>
+              <HStack>
+                <Link href="https://ui.gluestack.io/docs/getting-started/vscode-extension">
+                  <VsCode />
+                </Link>
+              </HStack>
             </VStack>
           </Box>
         </Box>
