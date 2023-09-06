@@ -693,7 +693,7 @@ export function getVariantProps(
 ) {
   const variantTypes = theme?.variants ? Object.keys(theme.variants) : [];
   const variantProps: any = {};
-  const restProps = { ...props };
+  let restProps = { ...props };
 
   if (restProps) {
     variantTypes?.forEach((variant) => {
@@ -702,6 +702,11 @@ export function getVariantProps(
         theme.variants[variant]?.[props[variant]]
       ) {
         variantProps[variant] = props[variant];
+
+        restProps = {
+          ...restProps,
+          ...theme?.variants[variant][props[variant]]?.props,
+        };
 
         if (shouldDeleteVariants) {
           delete restProps[variant];
@@ -1716,12 +1721,18 @@ export function verboseStyled<P, Variants, ComCon>(
       CONFIG
       // activeTheme
     );
-    const AsComp: any = (as as any) || (passingProps.as as any) || undefined;
+    const AsComp: any =
+      (as as any) ||
+      resolvedStyleProps.as ||
+      (passingProps.as as any) ||
+      undefined;
 
     let resolvedStyleMemo = [passingProps?.style, ...resolvedStyleProps?.style];
     if (Platform.OS === 'web') {
       resolvedStyleMemo = StyleSheet.flatten(resolvedStyleMemo);
     }
+
+    delete resolvedStyleProps?.as;
 
     let component;
     if (AsComp) {
