@@ -13,7 +13,7 @@ import MySvgComponent from './MySvgComponent';
 import Expo1 from './Expo1';
 import ReactN from './ReactN';
 import VsCode from './VsCode';
-import Link from 'next/link';
+import NextLink from 'next/link';
 
 function Card1() {
   return (
@@ -103,15 +103,15 @@ function Card1() {
                 Manual Installation
               </Text>
               <HStack flexWrap="wrap" gap="$2.5">
-                <Link href="/docs/guides/install-nextjs">
+                <NextLink href="/docs/guides/install-nextjs">
                   <Next />
-                </Link>
-                <Link href="/docs/guides/install-expo">
+                </NextLink>
+                <NextLink href="/docs/guides/install-expo">
                   <Expo1 />
-                </Link>
-                <Link href="/docs/guides/install-rn">
+                </NextLink>
+                <NextLink href="/docs/guides/install-rn">
                   <ReactN />
-                </Link>
+                </NextLink>
               </HStack>
             </VStack>
           </Box>
@@ -154,9 +154,9 @@ function Card1() {
                 VS Code Extension
               </Text>
               <HStack>
-                <Link href="/docs/getting-started/vscode-extension">
+                <NextLink href="/docs/getting-started/vscode-extension">
                   <VsCode />
-                </Link>
+                </NextLink>
               </HStack>
             </VStack>
           </Box>
