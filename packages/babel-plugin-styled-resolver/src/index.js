@@ -346,15 +346,7 @@ function isStyledImportedFromLibrary(styled, importName) {
 
 function isStyledImportFromAbsolutePath(styled, importName) {
   for (const styledPath of styled) {
-    const filePath = styledPath.split('/');
-    filePath.pop();
-
-    const absoluteStyledImportPath = path.resolve(
-      filePath.join('/'),
-      importName
-    );
-
-    if (importName === absoluteStyledImportPath) {
+    if (importName === styledPath) {
       return true;
     }
   }
@@ -429,6 +421,8 @@ module.exports = function (b) {
   const guessingStyledComponents = [];
   const styled = ['@gluestack-style/react'];
   const components = ['@gluestack-ui/themed'];
+  let isStyledPathConfigured = false;
+  let isComponentsPathConfigured = false;
 
   return {
     name: 'ast-transform', // not required
@@ -470,18 +464,39 @@ module.exports = function (b) {
           }
         }
 
-        if (state?.opts?.styled && Array.isArray(state?.opts?.styled)) {
+        if (
+          state?.opts?.styled &&
+          Array.isArray(state?.opts?.styled) &&
+          !isStyledPathConfigured
+        ) {
           styled.push(...state?.opts?.styled);
+          isStyledPathConfigured = true;
         }
 
-        if (state?.opts?.components && Array.isArray(state?.opts?.components)) {
+        if (
+          state?.opts?.components &&
+          Array.isArray(state?.opts?.components) &&
+          !isComponentsPathConfigured
+        ) {
           components.push(...state?.opts?.components);
+          isComponentsPathConfigured = true;
         }
 
         const importName = importPath.node.source.value;
 
+        let filePath = state.file.opts.filename.split('/');
+        filePath.pop();
+
+        const absoluteStyledImportPath = path.resolve(
+          filePath.join('/'),
+          importName
+        );
+
         if (
-          isStyledImportFromAbsolutePath(components, importName) ||
+          isStyledImportFromAbsolutePath(
+            components,
+            absoluteStyledImportPath
+          ) ||
           isStyledImportedFromLibrary(components, importName)
         ) {
           importPath.traverse({
@@ -494,7 +509,7 @@ module.exports = function (b) {
         }
 
         if (
-          isStyledImportFromAbsolutePath(styled, importName) ||
+          isStyledImportFromAbsolutePath(styled, absoluteStyledImportPath) ||
           isStyledImportedFromLibrary(styled, importName)
         ) {
           importPath.traverse({
@@ -529,150 +544,162 @@ module.exports = function (b) {
           if (isValidConfig) {
             let args = callExpressionPath.node.arguments;
 
-            let componentThemeNode = args[1];
-            // optional case
-            let componentConfigNode = args[2] ?? t.objectExpression([]);
-            let extendedThemeNode = args[3] ?? t.objectExpression([]);
-
             if (
               !(
-                t.isIdentifier(componentThemeNode) ||
-                t.isIdentifier(componentConfigNode) ||
-                t.isIdentifier(extendedThemeNode)
+                t.isIdentifier(args[1]) &&
+                t.isIdentifier(args[2]) &&
+                t.isIdentifier(args[3])
               )
             ) {
-              // args[1] = t.objectExpression([]);
+              let componentThemeNode = args[1];
+              // optional case
+              let componentConfigNode = args[2] ?? t.objectExpression([]);
+              let extendedThemeNode = args[3] ?? t.objectExpression([]);
 
-              let extendedThemeNodeProps = [];
-              if (extendedThemeNode && extendedThemeNode?.properties) {
-                extendedThemeNode?.properties.forEach((prop) => {
-                  if (prop.key.name === 'propertyResolver') {
-                    tempPropertyResolverNode = prop;
-                  } else {
-                    extendedThemeNodeProps.push(prop);
-                  }
-                });
-                extendedThemeNode.properties = extendedThemeNodeProps;
-              }
+              if (
+                !(
+                  t.isIdentifier(componentThemeNode) ||
+                  t.isIdentifier(componentConfigNode) ||
+                  t.isIdentifier(extendedThemeNode)
+                )
+              ) {
+                // args[1] = t.objectExpression([]);
 
-              let theme = getObjectFromAstNode(componentThemeNode);
-              let ExtendedConfig = getObjectFromAstNode(extendedThemeNode);
-              let componentConfig = getObjectFromAstNode(componentConfigNode);
-
-              if (extendedThemeNode && tempPropertyResolverNode) {
-                extendedThemeNode.properties.push(tempPropertyResolverNode);
-              }
-
-              // getExportedConfigFromFileString(ConfigDefault);
-              let mergedPropertyConfig = {
-                ...ConfigDefault?.propertyTokenMap,
-                ...propertyTokenMap,
-              };
-              let componentExtendedConfig = merge(
-                {},
-                {
-                  ...ConfigDefault,
-                  propertyTokenMap: { ...mergedPropertyConfig },
-                },
-                ExtendedConfig
-              );
-
-              const verbosedTheme = convertStyledToStyledVerbosed(theme);
-
-              let componentHash = stableHash({
-                ...theme,
-                ...componentConfig,
-                ...ExtendedConfig,
-              });
-
-              if (outputLibrary) {
-                componentHash = outputLibrary + '-' + componentHash;
-              }
-
-              const { styledIds, verbosedStyleIds } = updateOrderUnResolvedMap(
-                verbosedTheme,
-                componentHash,
-                'boot',
-                componentConfig,
-                BUILD_TIME_GLUESTACK_STYLESHEET,
-                platform
-              );
-
-              const toBeInjected = BUILD_TIME_GLUESTACK_STYLESHEET.resolve(
-                styledIds,
-                componentExtendedConfig,
-                ExtendedConfig
-              );
-
-              const current_global_map =
-                BUILD_TIME_GLUESTACK_STYLESHEET.getStyleMap();
-
-              const orderedResolvedTheme = [];
-
-              current_global_map?.forEach((styledResolved) => {
-                if (styledIds.includes(styledResolved?.meta?.cssId)) {
-                  orderedResolvedTheme.push(styledResolved);
+                let extendedThemeNodeProps = [];
+                if (extendedThemeNode && extendedThemeNode?.properties) {
+                  extendedThemeNode?.properties.forEach((prop) => {
+                    if (prop.key.name === 'propertyResolver') {
+                      tempPropertyResolverNode = prop;
+                    } else {
+                      extendedThemeNodeProps.push(prop);
+                    }
+                  });
+                  extendedThemeNode.properties = extendedThemeNodeProps;
                 }
-              });
 
-              let styleIdsAst = generateObjectAst(verbosedStyleIds);
+                let theme = getObjectFromAstNode(componentThemeNode);
+                let ExtendedConfig = getObjectFromAstNode(extendedThemeNode);
+                let componentConfig = getObjectFromAstNode(componentConfigNode);
 
-              let toBeInjectedAst = generateObjectAst(toBeInjected);
+                if (extendedThemeNode && tempPropertyResolverNode) {
+                  extendedThemeNode.properties.push(tempPropertyResolverNode);
+                }
 
-              let orderedResolvedAst = generateArrayAst(orderedResolvedTheme);
+                // getExportedConfigFromFileString(ConfigDefault);
+                let mergedPropertyConfig = {
+                  ...ConfigDefault?.propertyTokenMap,
+                  ...propertyTokenMap,
+                };
+                let componentExtendedConfig = merge(
+                  {},
+                  {
+                    ...ConfigDefault,
+                    propertyTokenMap: { ...mergedPropertyConfig },
+                  },
+                  ExtendedConfig
+                );
 
-              let orderedStyleIdsArrayAst = t.arrayExpression(
-                styledIds?.map((cssId) => t.stringLiteral(cssId))
-              );
+                if (theme && Object.keys(theme).length > 0) {
+                  const verbosedTheme = convertStyledToStyledVerbosed(theme);
 
-              let resultParamsNode = t.objectExpression([
-                t.objectProperty(
-                  t.stringLiteral('orderedResolved'),
-                  orderedResolvedAst
-                ),
-                t.objectProperty(
-                  t.stringLiteral('toBeInjected'),
-                  toBeInjectedAst
-                ),
-                t.objectProperty(
-                  t.stringLiteral('styledIds'),
-                  orderedStyleIdsArrayAst
-                ),
-                t.objectProperty(
-                  t.stringLiteral('verbosedStyleIds'),
-                  styleIdsAst
-                ),
-              ]);
+                  let componentHash = stableHash({
+                    ...theme,
+                    ...componentConfig,
+                    ...ExtendedConfig,
+                  });
 
-              while (args.length < 4) {
-                args.push(t.objectExpression([]));
-              }
-              if (!args[4]) {
-                args.push(resultParamsNode);
-              } else {
-                args[4] = resultParamsNode;
+                  if (outputLibrary) {
+                    componentHash = outputLibrary + '-' + componentHash;
+                  }
+
+                  const { styledIds, verbosedStyleIds } =
+                    updateOrderUnResolvedMap(
+                      verbosedTheme,
+                      componentHash,
+                      'boot',
+                      componentConfig,
+                      BUILD_TIME_GLUESTACK_STYLESHEET,
+                      platform
+                    );
+
+                  const toBeInjected = BUILD_TIME_GLUESTACK_STYLESHEET.resolve(
+                    styledIds,
+                    componentExtendedConfig,
+                    ExtendedConfig
+                  );
+
+                  const current_global_map =
+                    BUILD_TIME_GLUESTACK_STYLESHEET.getStyleMap();
+
+                  const orderedResolvedTheme = [];
+
+                  current_global_map?.forEach((styledResolved) => {
+                    if (styledIds.includes(styledResolved?.meta?.cssId)) {
+                      orderedResolvedTheme.push(styledResolved);
+                    }
+                  });
+
+                  let styleIdsAst = generateObjectAst(verbosedStyleIds);
+
+                  let toBeInjectedAst = generateObjectAst(toBeInjected);
+
+                  let orderedResolvedAst =
+                    generateArrayAst(orderedResolvedTheme);
+
+                  let orderedStyleIdsArrayAst = t.arrayExpression(
+                    styledIds?.map((cssId) => t.stringLiteral(cssId))
+                  );
+
+                  let resultParamsNode = t.objectExpression([
+                    t.objectProperty(
+                      t.stringLiteral('orderedResolved'),
+                      orderedResolvedAst
+                    ),
+                    t.objectProperty(
+                      t.stringLiteral('toBeInjected'),
+                      toBeInjectedAst
+                    ),
+                    t.objectProperty(
+                      t.stringLiteral('styledIds'),
+                      orderedStyleIdsArrayAst
+                    ),
+                    t.objectProperty(
+                      t.stringLiteral('verbosedStyleIds'),
+                      styleIdsAst
+                    ),
+                  ]);
+
+                  while (args.length < 4) {
+                    args.push(t.objectExpression([]));
+                  }
+                  if (!args[4]) {
+                    args.push(resultParamsNode);
+                  } else {
+                    args[4] = resultParamsNode;
+                  }
+                }
               }
             }
+
+            // console.log(
+            //   '<==================|++++>> final ',
+            //   generate(path.node).code
+            // );
+            // console.log(
+            //   args,
+            //   // resolvedStyles,
+            //   // orderedResolved,
+            //   // ...path.node.arguments,
+            //   // generate(resultParamsNode).code,
+            //   // resultParamsNode,
+            //   // generate(path.node).code,
+            //   'code'
+            // );
+            // console.log('\n\n >>>>>>>>>>>>>>>>>>>>>\n');
+
+            // console.log('final', generate(path.node).code);
+            // console.log('\n >>>>>>>>>>>>>>>>>>>>>\n\n');
           }
-
-          // console.log(
-          //   '<==================|++++>> final ',
-          //   generate(path.node).code
-          // );
-          // console.log(
-          //   args,
-          //   // resolvedStyles,
-          //   // orderedResolved,
-          //   // ...path.node.arguments,
-          //   // generate(resultParamsNode).code,
-          //   // resultParamsNode,
-          //   // generate(path.node).code,
-          //   'code'
-          // );
-          // console.log('\n\n >>>>>>>>>>>>>>>>>>>>>\n');
-
-          // console.log('final', generate(path.node).code);
-          // console.log('\n >>>>>>>>>>>>>>>>>>>>>\n\n');
         }
       },
       JSXOpeningElement(jsxOpeningElementPath) {
@@ -767,12 +794,14 @@ module.exports = function (b) {
             if (componentSXProp[key]) delete utilityPropsWithIdentifier[key];
           }
 
+          jsxOpeningElementPath.node.attributes = propsToBePersist;
+
           const sx = {
             ...componentUtilityProps,
             ...componentSXProp,
           };
 
-          if (sx) {
+          if (Object.keys(sx).length > 0) {
             const verbosedSx = convertSxToSxVerbosed(sx);
 
             const inlineSxTheme = {
@@ -836,16 +865,6 @@ module.exports = function (b) {
               styledIds?.map((cssId) => t.stringLiteral(cssId))
             );
 
-            jsxOpeningElementPath.node.attributes = propsToBePersist;
-
-            if (Object.keys(sxPropsWithIdentifier).length > 0) {
-              jsxOpeningElementPath.node.attributes.push(
-                t.jsxAttribute(
-                  t.jsxIdentifier('sx'),
-                  t.jsxExpressionContainer(sxPropsWithIdentifier)
-                )
-              );
-            }
             jsxOpeningElementPath.node.attributes.push(
               t.jsxAttribute(
                 t.jsxIdentifier('verbosedStyleIds'),
@@ -876,6 +895,20 @@ module.exports = function (b) {
               )
             );
           }
+
+          if (
+            sxPropsWithIdentifier &&
+            sxPropsWithIdentifier.properties &&
+            sxPropsWithIdentifier.properties.length > 0
+          ) {
+            jsxOpeningElementPath.node.attributes.push(
+              t.jsxAttribute(
+                t.jsxIdentifier('sx'),
+                t.jsxExpressionContainer(sxPropsWithIdentifier)
+              )
+            );
+          }
+
           componentSXProp = undefined;
           componentUtilityProps = undefined;
         }
