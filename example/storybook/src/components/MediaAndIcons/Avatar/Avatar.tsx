@@ -24,26 +24,15 @@ const AvatarBasic: CustomAvatarStory = ({
   fallbackText = 'John Doe',
 }: any) => {
   return (
-    <HStack space="md" h="100%" justifyContent="center" alignItems="center">
-      <Avatar size={size}>
-        <AvatarFallbackText>{fallbackText}</AvatarFallbackText>
-        <AvatarImage
-          source={{
-            uri: uri,
-          }}
-        />
-        {badge && <AvatarBadge />}
-      </Avatar>
-      <Avatar size={size}>
-        <AvatarFallbackText>{fallbackText}</AvatarFallbackText>
-        <AvatarImage
-          source={{
-            uri: 'https://broken.link',
-          }}
-        />
-        {badge && <AvatarBadge />}
-      </Avatar>
-    </HStack>
+    <Avatar size={size}>
+      <AvatarFallbackText>{fallbackText}</AvatarFallbackText>
+      <AvatarImage
+        source={{
+          uri: uri,
+        }}
+      />
+      {badge && <AvatarBadge />}
+    </Avatar>
   );
 };
 
