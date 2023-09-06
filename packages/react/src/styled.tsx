@@ -18,6 +18,7 @@ import {
   resolveStringToken,
   shallowMerge,
   deepMergeArray,
+  addThemeConditionInMeta,
 } from './utils';
 import { convertUtilityPropsToSX } from './core/convert-utility-to-sx';
 import { useStyled } from './StyledProvider';
@@ -854,6 +855,35 @@ export function verboseStyled<P, Variants, ComCon>(
       componentExtendedConfig
     );
 
+    let componentTheme: any =
+      // @ts-ignore
+      sxStyledResolved.baseStyle.styledValueResolvedWithMeta;
+
+    // sxStyledResolved.baseStyle.styledValueResolvedWithMeta =
+    addThemeConditionInMeta(componentTheme, CONFIG);
+
+    const colorModeComponentThemes: any = sxStyledResolved.baseStyle?.colorMode;
+    if (colorModeComponentThemes) {
+      Object.keys(colorModeComponentThemes).forEach(
+        (colorModeComponentTheme: any) => {
+          if (
+            !colorModeComponentThemes[colorModeComponentTheme]
+              .styledValueResolvedWithMeta?.meta.themeCondition
+          ) {
+            colorModeComponentThemes[
+              colorModeComponentTheme
+            ].styledValueResolvedWithMeta.meta.themeCondition = {};
+          }
+
+          let componentTheme: any =
+            colorModeComponentThemes[colorModeComponentTheme]
+              .styledValueResolvedWithMeta;
+
+          addThemeConditionInMeta(componentTheme, CONFIG);
+        }
+      );
+    }
+
     const sxHash = stableHash(sx);
 
     const orderedSXResolved =
@@ -1362,6 +1392,11 @@ export function verboseStyled<P, Variants, ComCon>(
     let mergedSxDescendantsStyle: any = {};
     let mergedDescendantsStyle: any = {};
 
+    const applySxStateBaseStyleCSSIds = useRef(mergedSXBaseStyleCSSIds);
+    const applySxDescendantStateStyleCSSIdsAndPropsWithKey = useRef(
+      mergedSxDescendantsStyle
+    );
+
     if (!isClient.current) {
       isClient.current = true;
       const {
@@ -1403,6 +1438,79 @@ export function verboseStyled<P, Variants, ComCon>(
       // setSxStatePassingProps(mergedSxStateProps);
 
       mergedDescendantsStyle = h;
+    } else {
+      //TODO: start: refactor for sx state + colormode + dynamic variable
+      // for sx state props
+      let stateColorMode: any = {};
+      let currentStateArray: any = [];
+      if (COLOR_MODE || states) {
+        stateColorMode = {
+          ...states,
+          [COLOR_MODE]: true,
+        };
+        currentStateArray = Object.keys(stateColorMode).filter(
+          (key) => stateColorMode[key] === true
+        );
+      }
+
+      // MUST REFACTOR: setStateAndColorModeCssIdsAndProps
+      const {
+        baseStyleCSSIds: mergedSXBaseStyleCSSIds,
+      }: // variantStyleCSSIds: mergedSXVariantStyleCSSIds,
+      // passingProps: mergedSxStateProps,
+      any = getMergedStateAndColorModeCSSIdsAndProps(
+        sxComponentStyleIds.current,
+        //@ts-ignore
+        sxBaseStyleFlatternStyleObject,
+        states,
+        variantProps,
+        COLOR_MODE,
+        theme,
+        sxVariantFlatternStyleObject,
+        sxCompoundVariantFlatternStyleObject,
+        currentStateArray
+      );
+      applySxStateBaseStyleCSSIds.current = mergedSXBaseStyleCSSIds;
+
+      const mergedSxDescendantsStyle: any = {};
+      if (sxDescendantStyleIds.current) {
+        Object.keys(sxDescendantStyleIds.current).forEach((key) => {
+          const {
+            baseStyleCSSIds: sxDescendantBaseStyleCSSIds,
+            variantStyleCSSIds: sxDescendantVariantStyleCSSIds,
+            passingProps: mergedPassingProps,
+          } = getMergedStateAndColorModeCSSIdsAndProps(
+            //@ts-ignore
+            sxDescendantStyleIds.current,
+            sxDescendantFlattenStyles[key]?.[
+              'componentBaseStyleFlatternStyleIdObject'
+            ],
+            states,
+            variantProps,
+            COLOR_MODE,
+            theme,
+            sxDescendantFlattenStyles[key]?.[
+              'componentVariantFlatternStyleIdObject'
+            ],
+            sxDescendantFlattenStyles[key]?.[
+              'componentCompoundVariantFlatternStyleIdObject'
+            ],
+            currentStateArray
+          );
+
+          mergedSxDescendantsStyle[key] = {
+            baseStyleCSSIds: sxDescendantBaseStyleCSSIds,
+            variantStyleCSSIds: sxDescendantVariantStyleCSSIds,
+            passingProps: mergedPassingProps,
+          };
+        });
+
+        applySxDescendantStateStyleCSSIdsAndPropsWithKey.current =
+          mergedSxDescendantsStyle;
+      }
+      // MUST REFACTOR END: setStateAndColorModeCssIdsAndProps
+
+      //TODO: end: refactor for sx state + colormode + dynamic variable
     }
 
     const [
@@ -1414,19 +1522,21 @@ export function verboseStyled<P, Variants, ComCon>(
       setApplyComponentStateVariantStyleIds,
     ] = useState(mergedVariantStyleCSSIds);
 
-    const [applySxStateBaseStyleCSSIds, setApplyStateSxBaseStyleCSSIds] =
-      useState(mergedSXBaseStyleCSSIds);
-    const [applySxStateVariantStyleCSSIds, setApplyStateSxVariantStyleCSSIds] =
-      useState(mergedSXVariantStyleCSSIds);
+    // const [applySxStateBaseStyleCSSIds, setApplyStateSxBaseStyleCSSIds] =
+    //   useState(mergedSXBaseStyleCSSIds);
+
+    // const [applySxStateVariantStyleCSSIds, setApplyStateSxVariantStyleCSSIds] =
+    //   useState(mergedSXVariantStyleCSSIds);
+    const applySxStateVariantStyleCSSIds = useRef(mergedSXVariantStyleCSSIds);
 
     const [
       applyDescendantStateStyleCSSIdsAndPropsWithKey,
       setApplyDescendantStateStyleCSSIdsAndPropsWithKey,
     ] = useState(mergedDescendantsStyle);
-    const [
-      applySxDescendantStateStyleCSSIdsAndPropsWithKey,
-      setApplySxDescendantStateStyleCSSIdsAndPropsWithKey,
-    ] = useState(mergedSxDescendantsStyle);
+    // const [
+    //   applySxDescendantStateStyleCSSIdsAndPropsWithKey,
+    //   setApplySxDescendantStateStyleCSSIdsAndPropsWithKey,
+    // ] = useState(mergedSxDescendantsStyle);
 
     // START: Unable to optimize because of useEffect overhead and stableHash to prevent rerender
     useEffect(() => {
@@ -1463,15 +1573,19 @@ export function verboseStyled<P, Variants, ComCon>(
         setApplyComponentStateBaseStyleIds(mergedBaseStyleCSSIds);
         setApplyComponentStateVariantStyleIds(mergedVariantStyleCSSIds);
         setComponentStatePassingProps(stateProps);
-        setApplyStateSxBaseStyleCSSIds(mergedSXBaseStyleCSSIds);
-        setApplyStateSxVariantStyleCSSIds(mergedSXVariantStyleCSSIds);
+        applySxStateBaseStyleCSSIds.current = mergedSXBaseStyleCSSIds;
+        // setApplyStateSxBaseStyleCSSIds();
+        applySxStateVariantStyleCSSIds.current = mergedSXVariantStyleCSSIds;
+        // setApplyStateSxVariantStyleCSSIds(mergedSXVariantStyleCSSIds);
         setSxStatePassingProps(mergedSxStateProps);
         setApplyDescendantStateStyleCSSIdsAndPropsWithKey(
           mergedDescendantsStyle
         );
-        setApplySxDescendantStateStyleCSSIdsAndPropsWithKey(
-          mergedSxDescendantsStyle
-        );
+        applySxDescendantStateStyleCSSIdsAndPropsWithKey.current =
+          mergedSxDescendantsStyle;
+        // setApplySxDescendantStateStyleCSSIdsAndPropsWithKey(
+        //   mergedSxDescendantsStyle
+        // );
       });
       // remove onchage listener on unmount
       () =>
@@ -1530,15 +1644,19 @@ export function verboseStyled<P, Variants, ComCon>(
         setApplyComponentStateBaseStyleIds(mergedBaseStyleCSSIds);
         setApplyComponentStateVariantStyleIds(mergedVariantStyleCSSIds);
         setComponentStatePassingProps(stateProps);
-        setApplyStateSxBaseStyleCSSIds(mergedSXBaseStyleCSSIds);
-        setApplyStateSxVariantStyleCSSIds(mergedSXVariantStyleCSSIds);
+        applySxStateBaseStyleCSSIds.current = mergedSXBaseStyleCSSIds;
+        // setApplyStateSxBaseStyleCSSIds(mergedSXBaseStyleCSSIds);
+        applySxStateVariantStyleCSSIds.current = mergedSXVariantStyleCSSIds;
+        // setApplyStateSxVariantStyleCSSIds(mergedSXVariantStyleCSSIds);
         setSxStatePassingProps(mergedSxStateProps);
         setApplyDescendantStateStyleCSSIdsAndPropsWithKey(
           mergedDescendantsStyle
         );
-        setApplySxDescendantStateStyleCSSIdsAndPropsWithKey(
-          mergedSxDescendantsStyle
-        );
+        applySxDescendantStateStyleCSSIdsAndPropsWithKey.current =
+          mergedSxDescendantsStyle;
+        // setApplySxDescendantStateStyleCSSIdsAndPropsWithKey(
+        //   mergedSxDescendantsStyle
+        // );
       }
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [states]);
@@ -1552,7 +1670,7 @@ export function verboseStyled<P, Variants, ComCon>(
         if (
           applyDescendantsStyleCSSIdsAndPropsWithKey ||
           applyDescendantStateStyleCSSIdsAndPropsWithKey ||
-          applySxDescendantStateStyleCSSIdsAndPropsWithKey ||
+          applySxDescendantStateStyleCSSIdsAndPropsWithKey.current ||
           applySxDescendantStyleCSSIdsAndPropsWithKey ||
           ancestorStyleContext
         ) {
@@ -1560,7 +1678,7 @@ export function verboseStyled<P, Variants, ComCon>(
             applyDescendantsStyleCSSIdsAndPropsWithKey,
             applyDescendantStateStyleCSSIdsAndPropsWithKey,
             applySxDescendantStyleCSSIdsAndPropsWithKey.current,
-            applySxDescendantStateStyleCSSIdsAndPropsWithKey,
+            applySxDescendantStateStyleCSSIdsAndPropsWithKey.current,
             ancestorStyleContext
           );
         } else {
@@ -1571,7 +1689,7 @@ export function verboseStyled<P, Variants, ComCon>(
     }, [
       stableHash(applyDescendantsStyleCSSIdsAndPropsWithKey),
       stableHash(applyDescendantStateStyleCSSIdsAndPropsWithKey),
-      stableHash(applySxDescendantStateStyleCSSIdsAndPropsWithKey),
+      stableHash(applySxDescendantStateStyleCSSIdsAndPropsWithKey.current),
       ancestorStyleContext,
     ]);
 
@@ -1587,11 +1705,10 @@ export function verboseStyled<P, Variants, ComCon>(
       ...applyComponentStateBaseStyleIds,
       ...applyComponentStateVariantStyleIds,
       ...applySxVariantStyleCSSIds.current,
-      ...applySxStateVariantStyleCSSIds,
+      ...applySxStateVariantStyleCSSIds.current,
       ...applySxBaseStyleCSSIds.current,
-      ...applySxStateBaseStyleCSSIds,
+      ...applySxStateBaseStyleCSSIds.current,
     ];
-
     Object.assign(resolvedInlineProps, applyComponentInlineProps);
     const resolvedStyleProps = generateStylePropsFromCSSIds(
       resolvedInlineProps,
