@@ -118,6 +118,20 @@ function addQuotesToObjectKeys(code) {
   let initAst;
 
   traverse(ast, {
+    ObjectProperty: (path) => {
+      if (types.isIdentifier(path?.node?.value)) {
+        path.remove();
+      }
+      if (types.isTemplateLiteral(path?.node?.value)) {
+        path.remove();
+      }
+      if (types.isConditionalExpression(path?.node?.value)) {
+        path.remove();
+      }
+    },
+  });
+
+  traverse(ast, {
     VariableDeclarator: (path) => {
       initAst = path.node.init;
     },
@@ -263,6 +277,8 @@ function replaceSingleQuotes(str) {
 function getObjectFromAstNode(node) {
   let objectCode = generate(node).code;
 
+  objectCode = objectCode?.replace(/as const/g, '');
+
   objectCode = addQuotesToObjectKeys(
     objectCode.replace(
       /\\"|"(?:\\"|[^"])*"|(\/\/.*|\/\*[\s\S]*?\*\/)/g,
@@ -338,19 +354,27 @@ function getIdentifiersObjectFromAstNode(node) {
   );
 }
 
-function isStyledImportedFromLibrary(styled, importName) {
-  if (styled.includes(importName)) {
+function isImportedFromLibrary(libraries, importName) {
+  if (libraries.includes(importName)) {
     return true;
   }
+  return false;
 }
 
-function isStyledImportFromAbsolutePath(styled, importName) {
-  for (const styledPath of styled) {
-    if (importName === styledPath) {
-      return true;
-    }
-  }
+function isImportFromAbsolutePath(
+  absolutePaths,
+  filePath,
+  importedAbsolutePath
+) {
+  filePath.pop();
 
+  const finalAbsolutePath = path.resolve(
+    filePath.join('/'),
+    importedAbsolutePath
+  );
+  if (absolutePaths.includes(finalAbsolutePath)) {
+    return true;
+  }
   return false;
 }
 
@@ -485,19 +509,10 @@ module.exports = function (b) {
         const importName = importPath.node.source.value;
 
         let filePath = state.file.opts.filename.split('/');
-        filePath.pop();
-
-        const absoluteStyledImportPath = path.resolve(
-          filePath.join('/'),
-          importName
-        );
 
         if (
-          isStyledImportFromAbsolutePath(
-            components,
-            absoluteStyledImportPath
-          ) ||
-          isStyledImportedFromLibrary(components, importName)
+          isImportFromAbsolutePath(components, filePath, importName) ||
+          isImportedFromLibrary(components, importName)
         ) {
           importPath.traverse({
             ImportSpecifier(importSpecifierPath) {
@@ -509,8 +524,8 @@ module.exports = function (b) {
         }
 
         if (
-          isStyledImportFromAbsolutePath(styled, absoluteStyledImportPath) ||
-          isStyledImportedFromLibrary(styled, importName)
+          isImportFromAbsolutePath(styled, filePath, importName) ||
+          isImportedFromLibrary(styled, importName)
         ) {
           importPath.traverse({
             ImportSpecifier(importSpecifierPath) {
@@ -544,139 +559,130 @@ module.exports = function (b) {
           if (isValidConfig) {
             let args = callExpressionPath.node.arguments;
 
+            let componentThemeNode = args[1];
+            // optional case
+            let componentConfigNode = args[2] ?? t.objectExpression([]);
+            let extendedThemeNode = args[3] ?? t.objectExpression([]);
+
             if (
               !(
-                t.isIdentifier(args[1]) &&
-                t.isIdentifier(args[2]) &&
-                t.isIdentifier(args[3])
+                t.isIdentifier(componentThemeNode) ||
+                t.isIdentifier(componentConfigNode) ||
+                t.isIdentifier(extendedThemeNode)
               )
             ) {
-              let componentThemeNode = args[1];
-              // optional case
-              let componentConfigNode = args[2] ?? t.objectExpression([]);
-              let extendedThemeNode = args[3] ?? t.objectExpression([]);
+              // args[1] = t.objectExpression([]);
 
-              if (
-                !(
-                  t.isIdentifier(componentThemeNode) ||
-                  t.isIdentifier(componentConfigNode) ||
-                  t.isIdentifier(extendedThemeNode)
-                )
-              ) {
-                // args[1] = t.objectExpression([]);
+              let extendedThemeNodeProps = [];
+              if (extendedThemeNode && extendedThemeNode?.properties) {
+                extendedThemeNode?.properties.forEach((prop) => {
+                  if (prop.key.name === 'propertyResolver') {
+                    tempPropertyResolverNode = prop;
+                  } else {
+                    extendedThemeNodeProps.push(prop);
+                  }
+                });
+                extendedThemeNode.properties = extendedThemeNodeProps;
+              }
 
-                let extendedThemeNodeProps = [];
-                if (extendedThemeNode && extendedThemeNode?.properties) {
-                  extendedThemeNode?.properties.forEach((prop) => {
-                    if (prop.key.name === 'propertyResolver') {
-                      tempPropertyResolverNode = prop;
-                    } else {
-                      extendedThemeNodeProps.push(prop);
-                    }
-                  });
-                  extendedThemeNode.properties = extendedThemeNodeProps;
+              let theme = getObjectFromAstNode(componentThemeNode);
+              let ExtendedConfig = getObjectFromAstNode(extendedThemeNode);
+              let componentConfig = getObjectFromAstNode(componentConfigNode);
+
+              if (extendedThemeNode && tempPropertyResolverNode) {
+                extendedThemeNode.properties.push(tempPropertyResolverNode);
+              }
+
+              // getExportedConfigFromFileString(ConfigDefault);
+              let mergedPropertyConfig = {
+                ...ConfigDefault?.propertyTokenMap,
+                ...propertyTokenMap,
+              };
+              let componentExtendedConfig = merge(
+                {},
+                {
+                  ...ConfigDefault,
+                  propertyTokenMap: { ...mergedPropertyConfig },
+                },
+                ExtendedConfig
+              );
+
+              if (theme && Object.keys(theme).length > 0) {
+                const verbosedTheme = convertStyledToStyledVerbosed(theme);
+
+                let componentHash = stableHash({
+                  ...theme,
+                  ...componentConfig,
+                  ...ExtendedConfig,
+                });
+
+                if (outputLibrary) {
+                  componentHash = outputLibrary + '-' + componentHash;
                 }
 
-                let theme = getObjectFromAstNode(componentThemeNode);
-                let ExtendedConfig = getObjectFromAstNode(extendedThemeNode);
-                let componentConfig = getObjectFromAstNode(componentConfigNode);
+                const { styledIds, verbosedStyleIds } =
+                  updateOrderUnResolvedMap(
+                    verbosedTheme,
+                    componentHash,
+                    'boot',
+                    componentConfig,
+                    BUILD_TIME_GLUESTACK_STYLESHEET,
+                    platform
+                  );
 
-                if (extendedThemeNode && tempPropertyResolverNode) {
-                  extendedThemeNode.properties.push(tempPropertyResolverNode);
-                }
-
-                // getExportedConfigFromFileString(ConfigDefault);
-                let mergedPropertyConfig = {
-                  ...ConfigDefault?.propertyTokenMap,
-                  ...propertyTokenMap,
-                };
-                let componentExtendedConfig = merge(
-                  {},
-                  {
-                    ...ConfigDefault,
-                    propertyTokenMap: { ...mergedPropertyConfig },
-                  },
+                const toBeInjected = BUILD_TIME_GLUESTACK_STYLESHEET.resolve(
+                  styledIds,
+                  componentExtendedConfig,
                   ExtendedConfig
                 );
 
-                if (theme && Object.keys(theme).length > 0) {
-                  const verbosedTheme = convertStyledToStyledVerbosed(theme);
+                const current_global_map =
+                  BUILD_TIME_GLUESTACK_STYLESHEET.getStyleMap();
 
-                  let componentHash = stableHash({
-                    ...theme,
-                    ...componentConfig,
-                    ...ExtendedConfig,
-                  });
+                const orderedResolvedTheme = [];
 
-                  if (outputLibrary) {
-                    componentHash = outputLibrary + '-' + componentHash;
+                current_global_map?.forEach((styledResolved) => {
+                  if (styledIds.includes(styledResolved?.meta?.cssId)) {
+                    orderedResolvedTheme.push(styledResolved);
                   }
+                });
 
-                  const { styledIds, verbosedStyleIds } =
-                    updateOrderUnResolvedMap(
-                      verbosedTheme,
-                      componentHash,
-                      'boot',
-                      componentConfig,
-                      BUILD_TIME_GLUESTACK_STYLESHEET,
-                      platform
-                    );
+                let styleIdsAst = generateObjectAst(verbosedStyleIds);
 
-                  const toBeInjected = BUILD_TIME_GLUESTACK_STYLESHEET.resolve(
-                    styledIds,
-                    componentExtendedConfig,
-                    ExtendedConfig
-                  );
+                let toBeInjectedAst = generateObjectAst(toBeInjected);
 
-                  const current_global_map =
-                    BUILD_TIME_GLUESTACK_STYLESHEET.getStyleMap();
+                let orderedResolvedAst = generateArrayAst(orderedResolvedTheme);
 
-                  const orderedResolvedTheme = [];
+                let orderedStyleIdsArrayAst = t.arrayExpression(
+                  styledIds?.map((cssId) => t.stringLiteral(cssId))
+                );
 
-                  current_global_map?.forEach((styledResolved) => {
-                    if (styledIds.includes(styledResolved?.meta?.cssId)) {
-                      orderedResolvedTheme.push(styledResolved);
-                    }
-                  });
+                let resultParamsNode = t.objectExpression([
+                  t.objectProperty(
+                    t.stringLiteral('orderedResolved'),
+                    orderedResolvedAst
+                  ),
+                  t.objectProperty(
+                    t.stringLiteral('toBeInjected'),
+                    toBeInjectedAst
+                  ),
+                  t.objectProperty(
+                    t.stringLiteral('styledIds'),
+                    orderedStyleIdsArrayAst
+                  ),
+                  t.objectProperty(
+                    t.stringLiteral('verbosedStyleIds'),
+                    styleIdsAst
+                  ),
+                ]);
 
-                  let styleIdsAst = generateObjectAst(verbosedStyleIds);
-
-                  let toBeInjectedAst = generateObjectAst(toBeInjected);
-
-                  let orderedResolvedAst =
-                    generateArrayAst(orderedResolvedTheme);
-
-                  let orderedStyleIdsArrayAst = t.arrayExpression(
-                    styledIds?.map((cssId) => t.stringLiteral(cssId))
-                  );
-
-                  let resultParamsNode = t.objectExpression([
-                    t.objectProperty(
-                      t.stringLiteral('orderedResolved'),
-                      orderedResolvedAst
-                    ),
-                    t.objectProperty(
-                      t.stringLiteral('toBeInjected'),
-                      toBeInjectedAst
-                    ),
-                    t.objectProperty(
-                      t.stringLiteral('styledIds'),
-                      orderedStyleIdsArrayAst
-                    ),
-                    t.objectProperty(
-                      t.stringLiteral('verbosedStyleIds'),
-                      styleIdsAst
-                    ),
-                  ]);
-
-                  while (args.length < 4) {
-                    args.push(t.objectExpression([]));
-                  }
-                  if (!args[4]) {
-                    args.push(resultParamsNode);
-                  } else {
-                    args[4] = resultParamsNode;
-                  }
+                while (args.length < 4) {
+                  args.push(t.objectExpression([]));
+                }
+                if (!args[4]) {
+                  args.push(resultParamsNode);
+                } else {
+                  args[4] = resultParamsNode;
                 }
               }
             }
@@ -731,7 +737,10 @@ module.exports = function (b) {
               const propValue = attribute.value;
 
               if (t.isJSXExpressionContainer(propValue)) {
-                if (t.isIdentifier(propValue.expression)) {
+                if (
+                  t.isIdentifier(propValue.expression) ||
+                  t.isConditionalExpression(propValue.expression)
+                ) {
                   propsToBePersist.push(attribute);
                 } else {
                   if (propName === 'sx') {
