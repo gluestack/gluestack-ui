@@ -6,6 +6,7 @@ export default styled(
   {
     color: '$error700',
     _dark: {
+      //@ts-ignore
       color: '$error400',
     },
     props: {
