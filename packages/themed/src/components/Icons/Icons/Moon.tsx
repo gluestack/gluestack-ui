@@ -18,3 +18,5 @@ export const MoonIcon = createIcon({
     </>
   ),
 });
+
+MoonIcon.displayName = 'MoonIcon';

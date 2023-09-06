@@ -15,8 +15,29 @@ import {
 const AlertBasic = ({ ...props }: any) => {
   return (
     <Alert {...props}>
-      <AlertIcon as={InfoIcon} mr="$3" />
-      <AlertText>Selection successfully moved!</AlertText>
+      <AlertIcon
+        as={InfoIcon}
+        mr="$3"
+        dataSet={{
+          'component-props': JSON.stringify({
+            'instance': true,
+            'instance-name': 'Icon',
+            'name': 'InfoIcon',
+            'size': 'md',
+          }),
+        }}
+      />
+      <AlertText
+        dataSet={{
+          'component-props': JSON.stringify({
+            'is-text-style': true,
+            'component-name': 'Text',
+            'size': 'md',
+          }),
+        }}
+      >
+        Selection successfully moved!
+      </AlertText>
     </Alert>
   );
 };

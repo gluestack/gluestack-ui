@@ -20,33 +20,7 @@ const VStackMeta: ComponentMeta<typeof VStack> = {
   },
 };
 
-// export const VStackReversedStory: ComponentMeta<typeof VStack> = {
-//   title: 'stories/LAYOUT/VStack',
-//   component: VStackReversedExample,
-//   argTypes: {
-//     space: {
-//       control: 'select',
-//       options: ['xs', 'sm', 'md', 'lg', 'xl'],
-//     },
-//     reversed: {
-//       control: 'boolean',
-//     },
-//   },
-//   args: {
-//     space: 'md',
-//     reversed: true,
-//   },
-// };
-
-const VStackReversed = VStackReversedExample.bind({});
-
-VStackReversed.parameters = {
-  controls: {
-    exclude: /.*/g,
-  },
-};
-
 export default VStackMeta;
 
 export { VStack };
-export { VStackReversed };
+export { VStackReversedExample };

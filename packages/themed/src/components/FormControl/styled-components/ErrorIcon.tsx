@@ -1,25 +1,20 @@
 import { styled } from '../../styled';
-import { AsForwarder } from '@gluestack-style/react';
-
-const Icon = styled(AsForwarder, {}, {});
+import { StyledIcon } from '../../Icons';
 
 export default styled(
-  Icon,
+  StyledIcon,
   {
     color: '$error700',
     _dark: {
+      //@ts-ignore
       color: '$error400',
     },
-    h: '$4',
-    w: '$4',
+    props: {
+      size: 'sm',
+    },
   },
   {
     componentName: 'FormControlErrorIcon',
     ancestorStyle: ['_icon'],
-  } as const,
-  {
-    propertyTokenMap: {
-      stroke: 'colors',
-    },
-  }
+  } as const
 );

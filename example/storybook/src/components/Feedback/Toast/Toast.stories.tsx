@@ -28,7 +28,7 @@ const ToastMeta: ComponentMeta<typeof Toast> = {
   },
   args: {
     placement: 'bottom',
-    action: 'muted',
+    action: 'attention',
     variant: 'solid',
   },
 };
