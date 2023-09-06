@@ -55,11 +55,11 @@ function Card2() {
                   <Expo />
                   <Pressable
                     flex={1}
+                    focusable={false}
                     sx={{
                       ':hover': {
                         textDecoration: 'underline',
                         color: 'white',
-                        boxShadow: 'none',
                       },
                     }}
                   >
@@ -111,11 +111,11 @@ function Card2() {
                 <Checkbox />
                 <Pressable
                   flex={1}
+                  focusable={false}
                   sx={{
                     ':hover': {
                       textDecoration: 'underline',
                       color: '$white',
-                      boxShadow: 'none',
                     },
                   }}
                 >
