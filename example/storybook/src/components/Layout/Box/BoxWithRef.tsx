@@ -1,10 +1,7 @@
-import type { ComponentStory } from '@storybook/react-native';
 import { Box } from '@gluestack-ui/themed';
 import React from 'react';
 
-type MyCustomBoxStory = ComponentStory<typeof Box>;
-
-const BoxWithRef: MyCustomBoxStory = ({ ...props }: any) => {
+const BoxWithRef = ({ ...props }: any) => {
   const myRef = React.useRef({});
   React.useEffect(() => {
     const styleObj = {

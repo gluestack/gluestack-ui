@@ -1,6 +1,4 @@
 // @ts-nocheck
-import type { ComponentStory } from '@storybook/react-native';
-
 import {
   HStack,
   Avatar,
@@ -11,9 +9,7 @@ import {
 } from '@gluestack-ui/themed';
 import React from 'react';
 
-type CustomAvatarStory = ComponentStory<typeof Avatar>;
-
-const AvatarGroupBasic: CustomAvatarStory = ({ size = 'md', badge }: any) => {
+const AvatarGroupBasic = ({ size = 'md', badge }: any) => {
   return (
     <HStack space="md" h="100%" justifyContent="center" alignItems="center">
       <AvatarGroup>
