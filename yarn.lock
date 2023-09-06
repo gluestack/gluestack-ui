@@ -2671,10 +2671,17 @@
     react-is "^17.0.2"
     styled-components "5.2.1"
 
-"@gluestack-style/animation-plugin@^0.1.7", "@gluestack-style/animation-plugin@^0.1.9", "@gluestack-style/animation-plugin@latest":
+"@gluestack-style/animation-plugin@0.1.9":
   version "0.1.9"
   resolved "https://registry.yarnpkg.com/@gluestack-style/animation-plugin/-/animation-plugin-0.1.9.tgz#8a5171284a956d0f9e4168e84fccdc554678c033"
   integrity sha512-XRABkR1OpiWF7V8hF6DYcmEEFOSUVKuDy5YDjpJpusyU6qJUujYEn6o2298VzDN214ndu2p8nq4+Fw7p5nMidw==
+  dependencies:
+    "@legendapp/motion" "^2.2.0"
+
+"@gluestack-style/animation-plugin@^0.1.7", "@gluestack-style/animation-plugin@latest":
+  version "0.1.7"
+  resolved "https://registry.yarnpkg.com/@gluestack-style/animation-plugin/-/animation-plugin-0.1.7.tgz#c9feae42684a48f2b5ece932681837d4b3ce7104"
+  integrity sha512-m7ujr80KHL/QP9Z47NGPT6+KhSjVQPjTBtpnHb+9SH5gj3JNavPtWYbwG58yph/Yk1yAtYoZk8rgg2G9r/wo7w==
   dependencies:
     "@legendapp/motion" "^2.2.0"
 
@@ -2691,18 +2698,10 @@
     "@babel/traverse" "^7.20.5"
     lodash.merge "^4.6.2"
 
-"@gluestack-style/react@^0.2.27", "@gluestack-style/react@^0.2.7", "@gluestack-style/react@^0.2.9":
-  version "0.2.27"
-  resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-0.2.27.tgz#9973e14070d4a0ce12ae1c6ac6aa880d71b0c7d4"
-  integrity sha512-GZUC64Pi/raIjji9cXxkqzBcAkPbxxnme//cBV77g/VzpI4eNU+15jFvJMN1fYXEEPu7vSqB2DawtMgzgGa9qQ==
-  dependencies:
-    inline-style-prefixer "^6.0.1"
-    normalize-css-color "^1.0.2"
-
-"@gluestack-style/react@^0.2.29":
-  version "0.2.29"
-  resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-0.2.29.tgz#258bd3e447d080ffd93793b3c324773d43ad9b5f"
-  integrity sha512-oYasZNEJNdqsfy56mdVUP6HYUBPctE9D8LrMTq/9qMzW31NuYzvEIjSBm53Zw3+UEyERqF/Fb36YbwLiwTeALw==
+"@gluestack-style/react@0.2.11", "@gluestack-style/react@0.2.31", "@gluestack-style/react@^0.2.31", "@gluestack-style/react@^0.2.7", "@gluestack-style/react@^0.2.9":
+  version "0.2.31"
+  resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-0.2.31.tgz#2e15dcae3ae7952bf32f798f982994182828e2d7"
+  integrity sha512-u98uNlwT/GYqMO/Zt+hVUXgyW1LnKaQRFjcvqVots2xGXXAKtFTpiZ6PF81b2dXKd78GpNOVQ1MqYYeJzHu28Q==
   dependencies:
     inline-style-prefixer "^6.0.1"
     normalize-css-color "^1.0.2"

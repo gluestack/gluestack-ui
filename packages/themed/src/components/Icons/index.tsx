@@ -23,7 +23,7 @@ export const StyledIcon: any = styled(
           h: '$3.5',
           w: '$3.5',
           props: {
-            // @ts-ignore
+            //@ts-ignore
             size: 14,
           },
         },
@@ -31,15 +31,15 @@ export const StyledIcon: any = styled(
           h: '$4',
           w: '$4',
           props: {
-            // @ts-ignore
+            //@ts-ignore
             size: 16,
           },
         },
         'md': {
-          h: '$4.5',
-          w: '$4.5',
+          h: '$3.5',
+          w: '$3.5',
           props: {
-            // @ts-ignore
+            //@ts-ignore
             size: 18,
           },
         },
@@ -47,7 +47,7 @@ export const StyledIcon: any = styled(
           h: '$5',
           w: '$5',
           props: {
-            // @ts-ignore
+            //@ts-ignore
             size: 20,
           },
         },
@@ -55,7 +55,7 @@ export const StyledIcon: any = styled(
           h: '$6',
           w: '$6',
           props: {
-            // @ts-ignore
+            //@ts-ignore
             size: 24,
           },
         },

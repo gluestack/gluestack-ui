@@ -1,4 +1,3 @@
-// @ts-nocheck
 import {
   HStack,
   Avatar,
@@ -18,7 +17,7 @@ const TextSizeMap = new Map([
   ['2xl', '5xl'],
 ]);
 
-const AvatarGroupBasic = ({ size = 'md', badge }: any) => {
+const AvatarGroupBasic = ({ size = 'md', badge, ...props }: any) => {
   return (
     <HStack space="md" h="100%" justifyContent="center" alignItems="center">
       <AvatarGroup>

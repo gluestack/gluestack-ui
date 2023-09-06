@@ -25,7 +25,7 @@ import {
 
 import { CheckIcon, EditIcon, ShoppingCartIcon } from 'lucide-react-native';
 
-const FabStory = ({
+const FabBasic = ({
   placement = 'bottom right',
   showLabel = true,
   showIcon = true,
@@ -93,10 +93,11 @@ const FigmaFabStory = ({
   );
 };
 
-export default FigmaFabStory;
+export default FabBasic;
 
 export {
-  FabStory,
+  FabBasic,
+  FigmaFabStory,
   Fab,
   FabIcon,
   FabLabel,

@@ -16,7 +16,7 @@ import {
   Icon,
 } from '@gluestack-ui/themed';
 
-const SelectStory = ({ size = 'md', variant = 'outline', ...props }: any) => {
+const SelectBasic = ({ size = 'md', variant = 'outline', ...props }: any) => {
   let selectIconSize = '';
   switch (size) {
     case 'sm':
@@ -75,7 +75,7 @@ const SelectStory = ({ size = 'md', variant = 'outline', ...props }: any) => {
   );
 };
 
-export default SelectStory;
+export default SelectBasic;
 
 export {
   Center,

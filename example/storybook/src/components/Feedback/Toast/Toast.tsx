@@ -59,7 +59,7 @@ const ToastFigmaStory = ({ _placement = 'top', ...props }: any) => {
   );
 };
 
-const ToastStory = ({ placement = 'top', ...props }: any) => {
+const ToastBasic = ({ placement = 'top', ...props }: any) => {
   const toast = useToast();
 
   return (
@@ -131,10 +131,11 @@ const ToastStory = ({ placement = 'top', ...props }: any) => {
   );
 };
 
-export default ToastFigmaStory;
+export default ToastBasic;
 
 export {
-  ToastStory,
+  ToastBasic,
+  ToastFigmaStory,
   Toast,
   ToastTitle,
   ToastDescription,

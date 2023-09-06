@@ -11,7 +11,7 @@ import {
   ButtonText,
 } from '@gluestack-ui/themed';
 
-const DividerBasic = ({ ...props }: any) => {
+const DividerBasic = ({ ...props }) => {
   return (
     <HStack
       flexDirection={props.orientation === 'vertical' ? 'row' : 'column'}
