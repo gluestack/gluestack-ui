@@ -334,7 +334,7 @@ type PassingPropsType<
               >,
               GlobalVariants
             >[Key];
-          }
+          } & { [Key: string]: any }
       >;
     }
   : {};
