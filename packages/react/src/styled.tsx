@@ -24,7 +24,7 @@ import {
 } from './utils';
 import { convertUtilityPropsToSX } from './core/convert-utility-to-sx';
 import { useStyled } from './StyledProvider';
-// import { useTheme } from './Theme';
+import { useTheme } from './Theme';
 import { propertyTokenMap } from './propertyTokenMap';
 import { Platform, StyleSheet } from 'react-native';
 import { INTERNAL_updateCSSStyleInOrderedResolved } from './updateCSSStyleInOrderedResolved';
@@ -1026,7 +1026,7 @@ export function verboseStyled<P, Variants, ComCon>(
     //200ms
     // let time = Date.now();
     const styledContext = useStyled();
-    // const { theme: activeTheme } = useTheme();
+    const { theme: activeTheme } = useTheme();
 
     const ancestorStyleContext = useContext(AncestorStyleContext);
     let incomingComponentProps = {};
@@ -1702,8 +1702,8 @@ export function verboseStyled<P, Variants, ComCon>(
     const resolvedStyleProps = generateStylePropsFromCSSIds(
       resolvedInlineProps,
       styleCSSIds,
-      CONFIG
-      // activeTheme
+      CONFIG,
+      activeTheme
     );
     const AsComp: any = (as as any) || (passingProps.as as any) || undefined;
 
