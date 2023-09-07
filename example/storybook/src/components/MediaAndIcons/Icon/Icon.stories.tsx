@@ -55,7 +55,7 @@ import Icon, {
   ThreeDotsIcon,
   TrashIcon,
   UnlockIcon,
-} from './AllIcon';
+} from './AllIcons';
 
 const IconMeta: ComponentMeta<typeof Icon> = {
   title: 'stories/MEDIA AND ICONS/Icons',
