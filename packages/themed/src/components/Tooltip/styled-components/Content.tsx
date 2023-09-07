@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { styled } from '../../styled';
 import { Motion } from '@legendapp/motion';
 

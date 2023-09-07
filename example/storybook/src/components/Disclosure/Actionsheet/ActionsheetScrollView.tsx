@@ -42,7 +42,17 @@ const ActionsheetWithScrollView = ({
   const renderItem = useCallback(
     (item: any) => (
       <ActionsheetItem onPress={handleClose} key={item}>
-        <ActionsheetItemText>{item}</ActionsheetItemText>
+        <ActionsheetItemText
+          dataSet={{
+            'component-props': JSON.stringify({
+              'is-text-style': true,
+              'component-name': 'Text',
+              'size': 'md',
+            }),
+          }}
+        >
+          {item}
+        </ActionsheetItemText>
       </ActionsheetItem>
     ),
     [handleClose]

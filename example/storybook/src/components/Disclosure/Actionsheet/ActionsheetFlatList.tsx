@@ -48,7 +48,17 @@ const ActionsheetWithFlatList = ({
   const Item = useCallback(
     ({ title }: any) => (
       <ActionsheetItem onPress={handleClose}>
-        <ActionsheetItemText>{title}</ActionsheetItemText>
+        <ActionsheetItemText
+          dataSet={{
+            'component-props': JSON.stringify({
+              'is-text-style': true,
+              'component-name': 'Text',
+              'size': 'md',
+            }),
+          }}
+        >
+          {title}
+        </ActionsheetItemText>
       </ActionsheetItem>
     ),
     [handleClose]

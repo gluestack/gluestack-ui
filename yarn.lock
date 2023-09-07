@@ -2671,6 +2671,13 @@
     react-is "^17.0.2"
     styled-components "5.2.1"
 
+"@gluestack-style/animation-plugin@0.1.9":
+  version "0.1.9"
+  resolved "https://registry.yarnpkg.com/@gluestack-style/animation-plugin/-/animation-plugin-0.1.9.tgz#8a5171284a956d0f9e4168e84fccdc554678c033"
+  integrity sha512-XRABkR1OpiWF7V8hF6DYcmEEFOSUVKuDy5YDjpJpusyU6qJUujYEn6o2298VzDN214ndu2p8nq4+Fw7p5nMidw==
+  dependencies:
+    "@legendapp/motion" "^2.2.0"
+
 "@gluestack-style/animation-plugin@^0.1.7", "@gluestack-style/animation-plugin@latest":
   version "0.1.7"
   resolved "https://registry.yarnpkg.com/@gluestack-style/animation-plugin/-/animation-plugin-0.1.7.tgz#c9feae42684a48f2b5ece932681837d4b3ce7104"
@@ -2691,10 +2698,10 @@
     "@babel/traverse" "^7.20.5"
     lodash.merge "^4.6.2"
 
-"@gluestack-style/react@0.2.11", "@gluestack-style/react@0.2.26", "@gluestack-style/react@^0.2.26", "@gluestack-style/react@^0.2.7", "@gluestack-style/react@^0.2.9":
-  version "0.2.26"
-  resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-0.2.26.tgz#6dea340a1e98c9613ba775826ee2a9b0de456ec6"
-  integrity sha512-/TnlaNy+kItQWveo4OGr2RRwHwCH/aRFP8NZKJiUpnzqu7zCP2t4PrZJIY6zD429wzbA7QQYINuZVquaIUbz1g==
+"@gluestack-style/react@0.2.32", "@gluestack-style/react@^0.2.29", "@gluestack-style/react@^0.2.32", "@gluestack-style/react@^0.2.7", "@gluestack-style/react@^0.2.9":
+  version "0.2.32"
+  resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-0.2.32.tgz#66c41b14aa84b6e241c2b329c6321334d5db8a2b"
+  integrity sha512-KhkRPdMUgt/IMYE1JPo0Oqh8bido9qg0S61PFxXAqx8NeKw5CxNtrXMJfsBEy57D+xy5FaJHOGDTCUn7fZy5Tw==
   dependencies:
     inline-style-prefixer "^6.0.1"
     normalize-css-color "^1.0.2"
@@ -3158,7 +3165,7 @@
     "@gluestack-ui/utils" "^0.1.3"
     "@react-native-aria/focus" "^0.2.7"
 
-"@gluestack-ui/slider@^0.1.3":
+"@gluestack-ui/slider@0.1.10", "@gluestack-ui/slider@^0.1.3":
   version "0.1.10"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/slider/-/slider-0.1.10.tgz#77197a58e978f3af688400d5a28897f03faea694"
   integrity sha512-QVYUswUoImF6odPrOiktmUH/t+rOC01JcEP/dJPQxOadMXy0DEnjJp3whTNglYzIHw5NbNlCjiztUfLZa2ZguA==

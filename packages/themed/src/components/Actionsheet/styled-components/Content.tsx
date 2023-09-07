@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { Motion } from '@legendapp/motion';
 import { styled } from '../../styled';
 
@@ -8,7 +7,7 @@ export default styled(
     alignItems: 'center',
     borderTopLeftRadius: '$3xl',
     borderTopRightRadius: '$3xl',
-    height: '100%',
+    h: '$full',
     p: '$2',
     bg: '$backgroundLight0',
     _sectionHeaderBackground: {

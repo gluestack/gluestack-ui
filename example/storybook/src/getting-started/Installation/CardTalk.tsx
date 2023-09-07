@@ -23,7 +23,7 @@ export const CardTalk = ({
       borderWidth={1}
       maxWidth={327}
       sx={{
-        borderColor: '#A3A3A3',
+        borderColor: '$trueGray400',
         background:
           'linear-gradient(90deg, rgba(240, 239, 255, 0.20) 0%, rgba(205, 201, 255, 0.00) 100%), rgba(187, 210, 255, 0.20)',
         _dark: {
@@ -43,11 +43,11 @@ export const CardTalk = ({
             {title}
           </Text>
           <Text
-            lineHeight={'$md'}
+            lineHeight="$md"
             sx={{
-              color: '#404040',
+              color: '$trueGray700',
               _dark: {
-                color: '#A3A3A3',
+                color: '$trueGray400',
               },
             }}
           >
@@ -55,9 +55,9 @@ export const CardTalk = ({
           </Text>
           <Text
             sx={{
-              color: '#404040',
+              color: '$trueGray700',
               _dark: {
-                color: '#A3A3A3',
+                color: '$trueGray400',
               },
             }}
             fontSize="$sm"

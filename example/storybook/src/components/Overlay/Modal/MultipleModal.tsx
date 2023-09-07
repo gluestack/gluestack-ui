@@ -7,8 +7,6 @@ import {
   CloseIcon,
   Text,
   Icon,
-} from '@gluestack-ui/themed';
-import {
   Modal,
   ModalBackdrop,
   ModalContent,

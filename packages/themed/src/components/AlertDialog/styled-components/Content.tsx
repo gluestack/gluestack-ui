@@ -1,4 +1,3 @@
-//@ts-nocheck
 import { styled } from '../../styled';
 import { Motion } from '@legendapp/motion';
 
@@ -8,6 +7,7 @@ export default styled(
     'bg': '$backgroundLight50',
     'rounded': '$lg',
     'overflow': 'hidden',
+    // @ts-ignore
     ':initial': {
       scale: 0.9,
       opacity: 0,
