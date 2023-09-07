@@ -1751,7 +1751,7 @@ export function verboseStyled<P, Variants, ComCon>(
     let component;
     if (AsComp) {
       //@ts-ignore
-      if (Component.isStyledComponent) {
+      if (Component.isComposedComponent) {
         component = (
           <Component
             {...resolvedStyleProps}
@@ -1798,6 +1798,13 @@ export function verboseStyled<P, Variants, ComCon>(
   StyledComp.displayName = displayName
     ? 'Styled' + displayName
     : 'StyledComponent';
+
+  //@ts-ignore
+
+  if (Component.isStyledComponent) {
+    //@ts-ignore
+    StyledComp.isComposedComponent = true;
+  }
 
   //@ts-ignore
   StyledComp.isStyledComponent = true;
