@@ -8,7 +8,7 @@ import {
   XCircle,
 } from 'lucide-react-native';
 
-function AlertVariants({ variant }: any) {
+const AlertVariants = ({ variant }: any) => {
   return (
     <Center>
       <Alert action="info" variant={variant} mb={4}>
@@ -145,7 +145,7 @@ function AlertVariants({ variant }: any) {
       </Alert>
     </Center>
   );
-}
+};
 
 export default AlertVariants;
 export { Alert };
