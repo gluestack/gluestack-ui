@@ -2678,6 +2678,13 @@
   dependencies:
     "@legendapp/motion" "^2.2.0"
 
+"@gluestack-style/animation-plugin@^0.1.11":
+  version "0.1.11"
+  resolved "https://registry.yarnpkg.com/@gluestack-style/animation-plugin/-/animation-plugin-0.1.11.tgz#2908c2fedc5b982ae56ce36933938010c2a6002a"
+  integrity sha512-Cgz224l2X52iZrsjICV8M/8yMo0EHuWefdrWuwP9iXp5Z1BGxpSr7ahcHK5hhltg9FNhjxYYfPTMmvtEC0KmOQ==
+  dependencies:
+    "@legendapp/motion" "^2.2.0"
+
 "@gluestack-style/animation-plugin@^0.1.7", "@gluestack-style/animation-plugin@latest":
   version "0.1.7"
   resolved "https://registry.yarnpkg.com/@gluestack-style/animation-plugin/-/animation-plugin-0.1.7.tgz#c9feae42684a48f2b5ece932681837d4b3ce7104"
@@ -2698,7 +2705,23 @@
     "@babel/traverse" "^7.20.5"
     lodash.merge "^4.6.2"
 
-"@gluestack-style/react@0.2.11", "@gluestack-style/react@0.2.31", "@gluestack-style/react@^0.2.31", "@gluestack-style/react@^0.2.7", "@gluestack-style/react@^0.2.9":
+"@gluestack-style/react@^0.2.32":
+  version "0.2.32"
+  resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-0.2.32.tgz#66c41b14aa84b6e241c2b329c6321334d5db8a2b"
+  integrity sha512-KhkRPdMUgt/IMYE1JPo0Oqh8bido9qg0S61PFxXAqx8NeKw5CxNtrXMJfsBEy57D+xy5FaJHOGDTCUn7fZy5Tw==
+  dependencies:
+    inline-style-prefixer "^6.0.1"
+    normalize-css-color "^1.0.2"
+
+"@gluestack-style/react@^0.2.33":
+  version "0.2.33"
+  resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-0.2.33.tgz#44b25fa19f73873cae9caa37b509420f83a584e3"
+  integrity sha512-Yc0fYNsQtnMWtqeInsh7YegrhMB9OJwXHkrv3LN9jVJdH1uSeMl3uVwN0h8nFgY6YneaSNPqc31n+tcafoGEQQ==
+  dependencies:
+    inline-style-prefixer "^6.0.1"
+    normalize-css-color "^1.0.2"
+
+"@gluestack-style/react@^0.2.9":
   version "0.2.31"
   resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-0.2.31.tgz#2e15dcae3ae7952bf32f798f982994182828e2d7"
   integrity sha512-u98uNlwT/GYqMO/Zt+hVUXgyW1LnKaQRFjcvqVots2xGXXAKtFTpiZ6PF81b2dXKd78GpNOVQ1MqYYeJzHu28Q==
@@ -3270,14 +3293,14 @@
     "@react-native-aria/focus" "^0.2.7"
     react-native-svg "13.4.0"
 
-"@gluestack-ui/themed@latest":
-  version "0.1.9"
-  resolved "https://registry.yarnpkg.com/@gluestack-ui/themed/-/themed-0.1.9.tgz#a6c91ab687d10c835800032744e3a8bf0822ffe8"
-  integrity sha512-vYXPl2I371moirkHMIcklQQ2bYFI3Iv4qeGdJr2YMGJFVxAsZjK2e1vCzynGxWF02k+cNFbbN/UKqSvGNDncNw==
+"@gluestack-ui/themed@^0.1.20":
+  version "0.1.20"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/themed/-/themed-0.1.20.tgz#b23691b99eef9d6fa7f6495c6a19786288576d81"
+  integrity sha512-YFYGtm1s7SXtHH6P1JaDPpRhpkpbRE1btFNOpgALrHwk9L13q0KaNANGRdrMCCAN/7kEYIpuAqSWrwyApAa1mA==
   dependencies:
     "@expo/html-elements" latest
-    "@gluestack-style/animation-plugin" latest
-    "@gluestack-style/react" "^0.2.7"
+    "@gluestack-style/animation-plugin" "0.1.9"
+    "@gluestack-style/react" "^0.2.32"
     "@gluestack-ui/actionsheet" latest
     "@gluestack-ui/alert" latest
     "@gluestack-ui/alert-dialog" latest
@@ -3287,9 +3310,10 @@
     "@gluestack-ui/divider" latest
     "@gluestack-ui/fab" latest
     "@gluestack-ui/form-control" latest
-    "@gluestack-ui/hstack" latest
+    "@gluestack-ui/hstack" "^0.1.9"
     "@gluestack-ui/icon" latest
     "@gluestack-ui/input" "^0.1.10"
+    "@gluestack-ui/linear-gradient" "^0.0.2"
     "@gluestack-ui/link" latest
     "@gluestack-ui/menu" latest
     "@gluestack-ui/modal" latest
@@ -3300,15 +3324,16 @@
     "@gluestack-ui/provider" latest
     "@gluestack-ui/radio" latest
     "@gluestack-ui/select" "^0.1.14"
-    "@gluestack-ui/slider" latest
+    "@gluestack-ui/slider" "0.1.10"
     "@gluestack-ui/spinner" latest
     "@gluestack-ui/switch" latest
     "@gluestack-ui/tabs" "^0.1.11"
     "@gluestack-ui/textarea" "^0.1.12"
     "@gluestack-ui/toast" latest
     "@gluestack-ui/tooltip" "^0.1.15"
-    "@gluestack-ui/vstack" latest
+    "@gluestack-ui/vstack" "^0.1.10"
     "@legendapp/motion" latest
+    expo-linear-gradient "~12.0.1"
     react "^18.2.0"
     react-native-svg "13.4.0"
 
