@@ -19,6 +19,11 @@ import { AddIcon, Box, Icon } from '@gluestack/design-system';
 // import { AddIcon } from '@gluestack/design-system';
 import { AlertCircle, Circle } from 'lucide-react-native';
 
+const styleshet = StyleSheet.create({
+  style: {
+    padding: 12,
+  },
+});
 const Pressable = styled(
   RNPressable,
   {
@@ -136,11 +141,11 @@ export function ContextBasedStylesContent() {
   //   </>
   // );
 
-  return (
-    <>
-      <MyNewIcon as={AlertCircle} size="sm"></MyNewIcon>
-    </>
-  );
+  // return (
+  //   <>
+  //     <MyNewIcon as={AlertCircle} size="sm"></MyNewIcon>
+  //   </>
+  // );
   return (
     <>
       <RNPressable
@@ -170,6 +175,23 @@ export function ContextBasedStylesContent() {
   );
 }
 
+const renderItem = (item: any) => (
+  <Pressable
+    key={item}
+    // sx={{
+    //   bg: '$amber400',
+    // }}
+  >
+    {/* <RNText>{item}</RNText> */}
+  </Pressable>
+);
+
+const renderItem2 = (item: any) => (
+  <RNPressable key={item} style={styleshet.style}>
+    {/* <RNText>{item}</RNText>r */}
+  </RNPressable>
+);
+
 const MyList = React.memo(() => {
   const time = React.useRef(Date.now());
   useEffect(() => {
@@ -177,34 +199,12 @@ const MyList = React.memo(() => {
   }, []);
   const data = useMemo(
     () =>
-      Array(1)
+      Array(100)
         .fill(0)
         .map((_, index) => `Item ${index}`),
     []
   );
 
-  const renderItem = useCallback(
-    (item: any) => (
-      <Pressable
-        key={item}
-        sx={{
-          bg: '$amber400',
-        }}
-      >
-        {/* <RNText>{item}</RNText> */}
-      </Pressable>
-    ),
-    []
-  );
-
-  // const renderItem2 = useCallback(
-  //   (item: any) => (
-  //     <RNPressable key={item} style={styleshet.style}>
-  //       <RNText>{item}</RNText>r
-  //     </RNPressable>
-  //   ),
-  //   []
-  // );
   return <>{data.map(renderItem)}</>;
 });
 export default ContextBasedStyles;
