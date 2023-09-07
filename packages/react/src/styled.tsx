@@ -1128,14 +1128,6 @@ export function verboseStyled<P, Variants, ComCon>(
       containsSX = true;
     }
 
-    console.log(
-      containsSX,
-      filteredComponentSx,
-      componentName,
-      BUILD_TIME_ORDERED_RESOLVED,
-      'contains sx'
-    );
-
     let { states, ...applyComponentInlineProps }: any = remainingComponentProps;
 
     // const STABLEHASH_states = stableHash(states);
