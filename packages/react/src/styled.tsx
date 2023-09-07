@@ -43,7 +43,6 @@ import { stableHash } from './stableHash';
 import { DeclarationType, GluestackStyleSheet } from './style-sheet';
 import { CSSPropertiesMap } from './core/styled-system';
 import { updateOrderUnResolvedMap } from './updateOrderUnResolvedMap';
-import { useTheme } from './Theme';
 
 const styledSystemProps = { ...CSSPropertiesMap };
 
