@@ -1,5 +1,11 @@
 # @gluestack-ui/themed
 
+## 0.1.21
+
+### Patch Changes
+
+- - Icon size issue fixes on web
+
 ## 0.1.20
 
 ### Patch Changes
