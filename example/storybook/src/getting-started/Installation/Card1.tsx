@@ -154,7 +154,7 @@ function Card1() {
                 VS Code Extension
               </Text>
               <HStack>
-                <NextLink href="/docs/getting-started/vscode-extension">
+                <NextLink href="/docs/getting-started/vscode-extensions">
                   <VsCode />
                 </NextLink>
               </HStack>
