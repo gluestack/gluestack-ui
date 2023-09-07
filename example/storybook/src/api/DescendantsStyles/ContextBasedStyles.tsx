@@ -13,12 +13,20 @@ import {
   StyleSheet,
   View,
 } from 'react-native';
-import { AsForwarder, styled, Theme } from '@gluestack-style/react';
+import {
+  AsForwarder,
+  createStyled,
+  styled1,
+  Theme,
+} from '@gluestack-style/react';
 import { Wrapper } from '../../components/Wrapper';
 import { AddIcon, Box, Icon } from '@gluestack/design-system';
 // import { AddIcon } from '@gluestack/design-system';
 import { AlertCircle, Circle } from 'lucide-react-native';
 
+import { AnimationResolver } from '@gluestack-style/animation-plugin';
+
+const styled = createStyled([new AnimationResolver({})]);
 const styleshet = StyleSheet.create({
   style: {
     padding: 12,
@@ -26,6 +34,31 @@ const styleshet = StyleSheet.create({
 });
 const Pressable = styled(
   RNPressable,
+  {
+    bg: '$red500',
+    p: '$2',
+
+    // 'bg': '$red600',
+    // 'w': 100,
+    // 'h': 100,
+    // '_light': {
+    //   bg: '$red600',
+    // },
+    // '@base': {
+    //   bg: '$blue500',
+    // },
+    // ':hover': {
+    //   bg: '$red500',
+    // },
+  },
+  {
+    componentName: 'Pressable',
+    // descendantStyle: ['_text'],
+  }
+);
+
+const Pressable1 = styled(
+  Pressable,
   {
     bg: '$red500',
     p: '$2',
@@ -63,16 +96,16 @@ const MyIcon = styled(
     variants: {
       size: {
         sm: {
-          width: 32,
-          height: 32,
-          props: {
-            size: 32,
-          },
+          width: 10,
+          height: 10,
+          // props: {
+          //   size: 32,
+          // },
         },
         md: {
-          props: {
-            size: 32,
-          },
+          // props: {
+          //   size: 32,
+          // },
           width: '$4',
           height: '$4',
         },
@@ -88,16 +121,48 @@ const MyIcon = styled(
 );
 
 const MyNewIcon = styled(
-  MyIcon,
-  {},
+  AsForwarder,
+  {
+    variants: {
+      size: {
+        sm: {
+          width: 12,
+          height: 12,
+          // props: {
+          //   size: 32,
+          // },
+        },
+        md: {
+          width: 32,
+          height: 32,
+          // props: {
+          //   size: 32,
+          // },
+        },
+      },
+    },
+    props: {
+      size: 'md',
+    },
+  },
   {
     componentName: 'MyNewIcon',
   }
 );
+
+// console.log(
+//   MyIcon.isComposedComponent,
+//   MyIcon.isStyledComponent,
+//   // MyNewIcon.isComposedComponent,
+//   // MyNewIcon.isStyledComponent,
+//   'composed here'
+// );
+
 export function ContextBasedStyles() {
   return (
     <Wrapper colorMode="dark">
-      <ContextBasedStylesContent />
+      <MyIcon bg="$blue500" size="sm" />
+      <MyNewIcon as={MyIcon} bg="$red500" size="sm" />
     </Wrapper>
   );
 }
