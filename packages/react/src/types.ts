@@ -326,15 +326,16 @@ type PassingPropsType<
                 GenericComponentProps
               >,
               GlobalVariants
-            >]?: keyof MergeNested<
-              VariantType<
-                Variants,
-                GenericComponentStyles,
-                GenericComponentProps
-              >,
-              GlobalVariants
-            >[Key];
-          }
+            >]?:
+              | keyof MergeNested<
+                  VariantType<
+                    Variants,
+                    GenericComponentStyles,
+                    GenericComponentProps
+                  >,
+                  GlobalVariants
+                >[Key];
+          } & { [Key: string]: any }
       >;
     }
   : {};
@@ -389,14 +390,14 @@ export type SxProps<
 } & {
   [Key in `_${string}`]?: SxProps<
     RNStyledProps,
-    Variants,
+    {},
     GenericComponentProps,
     PLATFORM,
     MediaQuery
   > &
     PassingPropsType<
       GenericComponentStyles,
-      Variants,
+      {},
       GenericComponentProps,
       MediaQuery
     > &

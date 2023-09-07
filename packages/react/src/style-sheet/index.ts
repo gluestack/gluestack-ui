@@ -109,7 +109,7 @@ export class StyleInjector {
     return toBeInjected;
   }
 
-  inject(toBeInjected: any) {
+  inject(toBeInjected: any = {}) {
     Object.keys(toBeInjected).forEach((type) => {
       Object.keys(toBeInjected[type]).forEach((styleTag) => {
         this.injectStyles(toBeInjected[type][styleTag], type, styleTag);

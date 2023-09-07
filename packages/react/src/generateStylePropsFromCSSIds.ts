@@ -182,6 +182,7 @@ export function generateStylePropsFromCSSIds(
     'data-style': getDataStyle(props, styleCSSIdsString),
     'style': propsStyles ? [...styleObj, ...propsStyles] : styleObj,
     'dataSet': {
+      ...props?.dataSet,
       style: getDataStyle(props, styleCSSIdsString),
     },
   });
