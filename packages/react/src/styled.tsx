@@ -22,6 +22,7 @@ import {
 } from './utils';
 import { convertUtilityPropsToSX } from './core/convert-utility-to-sx';
 import { useStyled } from './StyledProvider';
+import { useTheme } from './Theme';
 import { propertyTokenMap } from './propertyTokenMap';
 import { Platform, StyleSheet } from 'react-native';
 import { INTERNAL_updateCSSStyleInOrderedResolved } from './updateCSSStyleInOrderedResolved';
