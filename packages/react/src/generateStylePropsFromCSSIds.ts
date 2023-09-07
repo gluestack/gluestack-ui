@@ -130,8 +130,8 @@ function getDataStyle(props: any, styleCSSIdsString: string) {
 export function generateStylePropsFromCSSIds(
   props: any,
   styleCSSIds: any,
-  config: any
-  // activeTheme: any
+  config: any,
+  activeTheme: any
 ) {
   // console.setStartTimeStamp('generateStylePropsFromCSSIds');
   const propsStyles = Array.isArray(props?.style)
@@ -159,11 +159,11 @@ export function generateStylePropsFromCSSIds(
           } else {
             styleObj.push(styleSheet);
           }
-          // if (nativeStyle.meta.themeCondition && activeTheme) {
-          //   styleObj.push({
-          //     ...nativeStyle.meta.themeCondition[activeTheme],
-          //   });
-          // }
+          if (nativeStyle.meta.themeCondition && activeTheme) {
+            styleObj.push({
+              ...nativeStyle.meta.themeCondition[activeTheme],
+            });
+          }
         }
       });
     } else {
