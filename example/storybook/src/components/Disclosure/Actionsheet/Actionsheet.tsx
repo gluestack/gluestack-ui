@@ -32,7 +32,7 @@ import {
   Center,
 } from '@gluestack-ui/themed';
 
-function ActionsheetBasic({ showActionsheetProp, ...props }: any) {
+const ActionsheetBasic = ({ showActionsheetProp, ...props }: any) => {
   const [showActionsheet, setShowActionsheet] = React.useState(false);
 
   const handleClose = () => setShowActionsheet(false);
@@ -71,7 +71,7 @@ function ActionsheetBasic({ showActionsheetProp, ...props }: any) {
       </Actionsheet>
     </Center>
   );
-}
+};
 
 function FigmaActionsheetStory({ ...props }: any) {
   return (

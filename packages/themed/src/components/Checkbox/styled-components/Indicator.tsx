@@ -8,7 +8,6 @@ export default styled(
     'alignItems': 'center',
     'borderColor': '$borderLight400',
     'bg': '$transparent',
-    'borderWidth': 2,
     'borderRadius': 4,
 
     '_web': {
