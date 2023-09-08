@@ -1,58 +1,189 @@
-import React from 'react';
-import { useState } from 'react';
-import { Button, StyleSheet, Text, View } from 'react-native';
+import React, {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 
-import Gluestack from './BenchGlueStack';
-import ReactNative from './BenchReactNative';
-import TimedRender from './TimedRender';
+import {
+  Pressable as RNPressable,
+  Text as RNText,
+  StyleSheet,
+  View,
+} from 'react-native';
+import {
+  AsForwarder,
+  styled,
+  Theme,
+  StyledProvider,
+} from '@gluestack-style/react';
+import { config } from './gluestack-ui.config';
 
-export default function App() {
-  const [styleType, setStyleType] = useState<any>(undefined);
+const styleshet = StyleSheet.create({
+  style: {
+    padding: 12,
+    backgroundColor: 'red',
+    margin: 4,
+  },
+});
 
-  const onStyleTypePress = (curry) => () => {
-    setStyleType(curry);
-  };
+const Pressable = styled(
+  RNPressable,
+  {
+    bg: '$blue500',
+    p: '$2',
+    m: '$1',
 
-  const renderStyleLibrary = () => {
-    switch (styleType) {
-      case 'Gluestack':
-        return <Gluestack />;
-      case 'React Native':
-        return <ReactNative />;
-      default:
-        return null;
-    }
-  };
+    // 'bg': '$red600',
+    // 'w': 100,
+    // 'h': 100,
+    // '_light': {
+    //   bg: '$red600',
+    // },
+    // '@base': {
+    //   bg: '$blue500',
+    // },
+    // ':hover': {
+    //   bg: '$red500',
+    // },
+  },
+  {
+    componentName: 'Pressable1',
+    // descendantStyle: ['_text'],
+  }
+);
 
+const Text = styled(
+  RNText,
+  {},
+  {
+    componentName: 'Text',
+  }
+);
+export function ContextBasedStyles() {
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>Tap a style library to start rendering</Text>
-      <Button title="React Native" onPress={onStyleTypePress('React Native')} />
-      <Button title="Gluestack" onPress={onStyleTypePress('Gluestack')} />
-      {styleType ? (
-        <TimedRender key={styleType}>
-          <Text style={styles.text}>
-            Rendering with <Text style={styles.bold}>{styleType}</Text>
-          </Text>
-        </TimedRender>
-      ) : null}
-      {renderStyleLibrary()}
-    </View>
+    <StyledProvider config={config.theme} colorMode="dark">
+      <ContextBasedStylesContent />
+    </StyledProvider>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    // alignItems: "center",
-    backgroundColor: '#fff',
-    // flex: 1,
-    // justifyContent: "center",
-  },
-  text: {
-    marginVertical: 12,
-  },
-  bold: {
-    fontWeight: 'bold',
-    fontSize: 16,
-  },
+export function ContextBasedStylesContent() {
+  const [state, setState] = useState(false);
+
+  // const color = tabName ? '$red500' : '$green500';
+  // return (
+  //   <>
+  //     {/* <Theme name={'modern'}>
+  //       <Box states={{ hover: true }}></Box>
+  //     </Theme>
+  //     <Box states={{ hover: true }}></Box> */}
+  //     {/* <Icon as={Circle} size="md" color="$red500" />
+  //     <Pressable
+  //       onPress={() => {
+  //         handleTabChange(!tabName);
+  //       }}
+  //       bg="$amber400"
+  //       h="$50"
+  //       w="$50"
+  //     >
+  //       <Text
+  //         sx={{
+  //           _dark: {
+  //             color: tabName ? '$red500' : '$green500',
+  //           },
+  //         }}
+  //       >
+  //         hello world
+  //       </Text>
+  //     </Pressable> */}
+  //   </>
+  // );
+
+  // return (
+  //   <>
+  //     <MyNewIcon as={AlertCircle} size="sm"></MyNewIcon>
+  //   </>
+  // );
+  return (
+    <>
+      <RNPressable
+        onPress={() => {
+          setState(!state);
+        }}
+        style={{
+          height: 50,
+          width: 200,
+          backgroundColor: 'red',
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          top: 132,
+        }}
+      >
+        <Text style={{ color: 'black' }}>{state ? 'Unmount' : 'Mount'}</Text>
+      </RNPressable>
+      {/* <MyPressable>
+        <RNText>Hello</RNText>
+      </MyPressable> */}
+      {/* {state && <MyList />
+      } */}
+      {/* <Box pointerEvents="none" style={{ display: state ? 'flex' : 'none' }}> */}
+      {state && <MyList />}
+      {/* </Box> */}
+    </>
+  );
+}
+
+const renderItem = (item: any) => (
+  <Pressable
+    key={item}
+    sx={{
+      bg: '$amber400',
+    }}
+  >
+    {/* <RNText>{item}</RNText> */}
+  </Pressable>
+);
+
+const renderItem2 = (item: any) => (
+  <RNPressable key={item} style={styleshet.style}>
+    {/* <RNText>{item}</RNText>r */}
+  </RNPressable>
+);
+
+const MyList = React.memo(() => {
+  const time = React.useRef(Date.now());
+  const [endTime, setEndTime] = React.useState(0);
+  useEffect(() => {
+    const end = Date.now() - time.current;
+    console.log(end, '>>>');
+    setEndTime(end);
+  }, []);
+  const data = useMemo(
+    () =>
+      Array(100)
+        .fill(0)
+        .map((_, index) => `Item ${index}`),
+    []
+  );
+
+  return (
+    <>
+      <Text
+        style={{
+          position: 'absolute',
+          top: 100,
+          zIndex: 999,
+          color: 'blue',
+        }}
+      >
+        {endTime}
+      </Text>
+      {data.map(renderItem)}
+    </>
+  );
 });
+export default ContextBasedStyles;
