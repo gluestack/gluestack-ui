@@ -81,9 +81,7 @@
     "webpack-cli": "^5.1.4"
   },
   "peerDependencies": {
-    "@gluestack-style/animation-plugin": "latest",
-    "@gluestack-style/react": ">=0.2.26",
-    "@types/react-native": "^0.72.2",
+    "@types/react-native": ">0.72",
     "react": ">=16",
     "react-dom": ">=16",
     "react-native": ">=0.72",
