@@ -1,11 +1,10 @@
-import { Text } from 'react-native';
+import { Text } from '../../Text';
 import { styled } from '../../styled';
 
 export default styled(
   Text,
   {
     'color': '$textLight600',
-    'fontFamily': '$body',
     ':checked': {
       color: '$textLight900',
     },
@@ -23,7 +22,6 @@ export default styled(
     },
     ':active': {
       'color': '$textLight900',
-
       ':checked': {
         color: '$textLight900',
       },

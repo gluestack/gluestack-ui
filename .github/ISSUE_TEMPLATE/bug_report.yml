@@ -55,10 +55,13 @@ body:
       label: 'Platform'
       description: 'The platform(s) this issue occurred on'
       options:
-        - label: 'Android'
         - label: 'Expo'
-        - label: 'iOS'
+        - label: 'React Native CLI'
         - label: 'Next'
+        - label: 'Web'
+        - label: 'Android'
+        - label: 'iOS'
+        
   - type: 'input'
     id: 'other-platform'
     attributes:

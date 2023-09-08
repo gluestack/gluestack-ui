@@ -12,8 +12,14 @@ export default styled(
       size: {
         lg: {
           _text: {
-            fontSize: '$lg',
-            lineHeight: '$xl',
+            props: {
+              size: 'lg',
+            },
+          },
+          _icon: {
+            props: {
+              size: 'md',
+            },
           },
           _indicator: {
             p: 2,
@@ -23,8 +29,14 @@ export default styled(
         },
         md: {
           _text: {
-            fontSize: '$md',
-            lineHeight: '$md',
+            props: {
+              size: 'md',
+            },
+          },
+          _icon: {
+            props: {
+              size: 'sm',
+            },
           },
           _indicator: {
             p: 1.5,
@@ -34,8 +46,14 @@ export default styled(
         },
         sm: {
           _text: {
-            fontSize: '$sm',
-            lineHeight: '$sm',
+            props: {
+              size: 'sm',
+            },
+          },
+          _icon: {
+            props: {
+              size: '2xs',
+            },
           },
           _indicator: {
             p: 1,

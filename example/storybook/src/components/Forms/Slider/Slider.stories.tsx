@@ -41,7 +41,6 @@ const SliderMeta: ComponentMeta<typeof Slider> = {
       options: [true, false],
     },
   },
-  //@ts-ignore
   args: {
     value: 30,
     size: 'md',
