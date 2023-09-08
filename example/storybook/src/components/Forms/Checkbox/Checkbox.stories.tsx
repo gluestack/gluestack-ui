@@ -8,19 +8,23 @@ const CheckboxMeta: ComponentMeta<typeof Checkbox> = {
     size: {
       control: 'select',
       options: ['sm', 'md', 'lg'],
-      description: 'The size of the button.',
-      table: {
-        defaultValue: { summary: 'md' },
-      },
+    },
+    isChecked: {
+      type: 'boolean',
+      options: [true, false],
     },
     isInvalid: {
       type: 'boolean',
+      options: [true, false],
     },
     isDisabled: {
       type: 'boolean',
+      options: [true, false],
     },
     isReadOnly: {
       type: 'boolean',
+      figmaIgnore: true,
+      options: [true, false],
     },
   },
   args: {
@@ -28,6 +32,7 @@ const CheckboxMeta: ComponentMeta<typeof Checkbox> = {
     isInvalid: false,
     isDisabled: false,
     isReadOnly: false,
+    isChecked: false,
   },
 };
 
