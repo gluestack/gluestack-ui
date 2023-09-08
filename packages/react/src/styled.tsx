@@ -1183,38 +1183,7 @@ export function verboseStyled<P, Variants, ComCon>(
 
     // passingProps is specific to current component
 
-    const passingProps = deepMergeObjects(
-      applyComponentPassingProps,
-      componentStatePassingProps,
-      sxComponentPassingProps.current,
-      applySxStatePassingProps.current
-    );
-
-    const { sx: filteredComponentSx, rest: filteredComponentRemainingProps } =
-      convertUtiltiyToSXFromProps(
-        componentPropsWithoutVariants,
-        styledSystemProps,
-        componentStyleConfig
-      );
-
-    let { sx: filteredPassingSx, rest: filteredPassingRemainingProps } =
-      convertUtiltiyToSXFromProps(
-        shallowMerge({ ...passingProps }, applyAncestorPassingProps),
-        styledSystemProps,
-        componentStyleConfig
-      );
-
-    let containsSX = false;
-    Object.assign(remainingComponentProps, filteredPassingRemainingProps);
-    Object.assign(remainingComponentProps, filteredComponentRemainingProps);
-    if (
-      Object.keys(filteredComponentSx).length > 0 ||
-      Object.keys(filteredPassingSx).length > 0
-    ) {
-      containsSX = true;
-    }
-
-    let applyComponentInlineProps: any = remainingComponentProps;
+    let applyComponentInlineProps: any = componentPropsWithoutVariants;
 
     // const STABLEHASH_states = stableHash(states);
     // 520ms
@@ -1261,6 +1230,37 @@ export function verboseStyled<P, Variants, ComCon>(
           delete applyComponentInlineProps[toBeResovledProp];
         }
       });
+    }
+
+    const passingProps = deepMergeObjects(
+      applyComponentPassingProps,
+      componentStatePassingProps,
+      sxComponentPassingProps.current,
+      applySxStatePassingProps.current
+    );
+
+    const { sx: filteredComponentSx, rest: filteredComponentRemainingProps } =
+      convertUtiltiyToSXFromProps(
+        componentPropsWithoutVariants,
+        styledSystemProps,
+        componentStyleConfig
+      );
+
+    let { sx: filteredPassingSx, rest: filteredPassingRemainingProps } =
+      convertUtiltiyToSXFromProps(
+        shallowMerge({ ...passingProps }, applyAncestorPassingProps),
+        styledSystemProps,
+        componentStyleConfig
+      );
+
+    let containsSX = false;
+    Object.assign(remainingComponentProps, filteredPassingRemainingProps);
+    Object.assign(remainingComponentProps, filteredComponentRemainingProps);
+    if (
+      Object.keys(filteredComponentSx).length > 0 ||
+      Object.keys(filteredPassingSx).length > 0
+    ) {
+      containsSX = true;
     }
 
     let applyDescendantsStyleCSSIdsAndPropsWithKey = {};
