@@ -1,5 +1,12 @@
 # @gluestack-ui/themed
 
+## 0.1.31
+
+### Patch Changes
+
+- Top position issue with `overlay` components.
+- `react-native-svg` version issue.
+
 ## 0.1.30
 
 ### Patch Changes
