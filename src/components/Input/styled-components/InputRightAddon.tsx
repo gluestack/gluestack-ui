@@ -3,13 +3,19 @@ import { styled } from '../../styled';
 import { View } from 'react-native';
 import { Text } from '../../Text';
 
-const InputRightAddonStyled = styled(View, {
-  p: '0.5rem',
-  borderLeftWidth: 0,
-  borderWidth: '$1',
-  borderColor: '$muted.300',
-  borderRadius: '$sm',
-});
+const InputRightAddonStyled = styled(
+  View,
+  {
+    p: '0.5rem',
+    borderLeftWidth: 0,
+    borderWidth: '$1',
+    borderColor: '$muted.300',
+    borderRadius: '$sm',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  { descendantStyle: ['_text'] }
+);
 
 export const InputRightAddon = forwardRef(
   (
