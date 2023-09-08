@@ -24,7 +24,7 @@ export function Actionsheet<T>(StyledActionsheet: React.ComponentType<T>) {
         unmountOnExit = true,
         snapPoints = [50],
         // @ts-ignore
-        _experimentalOverlay = true,
+        _experimentalOverlay = false,
         ...props
       }: T & IActionsheetProps,
       ref?: any

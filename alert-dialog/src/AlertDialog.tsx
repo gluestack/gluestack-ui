@@ -24,7 +24,7 @@ export const AlertDialog = <T,>(StyledAlertDialog: React.ComponentType<T>) =>
         animationPreset = 'fade',
         unmountOnExit = true,
         // @ts-ignore
-        _experimentalOverlay = true,
+        _experimentalOverlay = false,
         ...props
       }: T & IAlertDialogProps,
       ref?: any

@@ -22,7 +22,7 @@ const Modal = (StyledModal: any) =>
         closeOnOverlayClick = true,
         isKeyboardDismissable = true,
         unmountOnExit = true,
-        _experimentalOverlay = true,
+        _experimentalOverlay = false,
         ...props
       }: any,
       ref?: any
