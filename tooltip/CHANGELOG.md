@@ -1,5 +1,11 @@
 # @gluestack-ui/tooltip
 
+## 0.1.16
+
+### Patch Changes
+
+- fix: default value of \_experimentalOverlay to false
+
 ## 0.1.15
 
 ### Patch Changes
