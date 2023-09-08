@@ -1,5 +1,11 @@
 # @gluestack-ui/themed
 
+## 0.1.22
+
+### Patch Changes
+
+- - State passing props resolution fixes.
+
 ## 0.1.21
 
 ### Patch Changes
