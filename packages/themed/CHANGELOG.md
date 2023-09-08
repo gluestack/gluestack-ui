@@ -1,5 +1,11 @@
 # @gluestack-ui/themed
 
+## 0.1.30
+
+### Patch Changes
+
+- - Icon size issue with `lucide-react-native` icons
+
 ## 0.1.27
 
 ### Patch Changes
