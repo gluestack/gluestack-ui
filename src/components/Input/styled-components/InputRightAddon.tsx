@@ -13,6 +13,10 @@ const InputRightAddonStyled = styled(
     borderRadius: '$sm',
     alignItems: 'center',
     justifyContent: 'center',
+    _dark: {
+      borderColor: '$muted.700',
+      bg: '$muted.800',
+    },
   },
   { descendantStyle: ['_text'] }
 );
