@@ -1,5 +1,11 @@
 # @gluestack-ui/actionsheet
 
+## 0.2.17
+
+### Patch Changes
+
+- fix: default value of \_experimentalOverlay to false
+
 ## 0.2.16
 
 ### Patch Changes
