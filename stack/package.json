@@ -29,8 +29,7 @@
   },
   "dependencies": {
     "@gluestack-ui/utils": "^0.1.5",
-    "@react-native-aria/focus": "^0.2.7",
-    "react-native-svg": "13.4.0"
+    "@react-native-aria/focus": "^0.2.7"
   },
   "peerDependencies": {
     "react": ">=16",
