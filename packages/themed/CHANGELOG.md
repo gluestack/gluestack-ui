@@ -1,5 +1,12 @@
 # @gluestack-ui/themed
 
+## 0.1.26
+
+### Patch Changes
+
+- - `@gluestack-style/react` version updated
+  - Passing prop issue fixes
+
 ## 0.1.25
 
 ### Patch Changes
