@@ -1,5 +1,11 @@
 # @gluestack-ui/slider
 
+## 0.1.11
+
+### Patch Changes
+
+- fix: figma refactor
+
 ## 0.1.10
 
 ### Patch Changes

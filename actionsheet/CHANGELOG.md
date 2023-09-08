@@ -1,5 +1,11 @@
 # @gluestack-ui/actionsheet
 
+## 0.2.18
+
+### Patch Changes
+
+- fix: figma refactor
+
 ## 0.2.17
 
 ### Patch Changes
