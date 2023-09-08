@@ -15,7 +15,7 @@
     "@expo/html-elements": "latest",
     "@expo/webpack-config": "18.1.0",
     "@gluestack-style/animation-plugin": "latest",
-    "@gluestack-style/react": "0.1.31",
+    "@gluestack-style/react": "^0.2.32-alpha.0",
     "@gluestack-ui/actionsheet": "latest",
     "@gluestack-ui/alert": "latest",
     "@gluestack-ui/alert-dialog": "latest",

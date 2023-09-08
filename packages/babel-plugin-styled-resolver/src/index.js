@@ -539,13 +539,31 @@ module.exports = function (b) {
           });
         }
       },
+      AssignmentExpression(expressionPath, state) {
+        if (
+          expressionPath?.node?.right?.callee?.name ===
+            styledAliasImportedName ||
+          expressionPath?.node?.right?.callee?.name === styledImportName
+        ) {
+          // console.log(expressionPath.node, '>>>>>');
+          let componentName = expressionPath?.parent?.id?.name;
+
+          if (componentName) {
+            guessingStyledComponents.push(componentName);
+          }
+        }
+      },
+
       CallExpression(callExpressionPath) {
         if (
           callExpressionPath.node.callee.name === styledAliasImportedName ||
           callExpressionPath.node.callee.name === styledImportName
         ) {
-          if (callExpressionPath?.parent?.id?.name)
-            guessingStyledComponents.push(callExpressionPath.parent.id.name);
+          let componentName = callExpressionPath?.parent?.id?.name;
+
+          if (componentName) {
+            guessingStyledComponents.push(componentName);
+          }
           callExpressionPath.traverse({
             ObjectProperty(ObjectPath) {
               if (t.isIdentifier(ObjectPath.node.value)) {
