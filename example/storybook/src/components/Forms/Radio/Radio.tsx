@@ -1,7 +1,5 @@
-import React from 'react';
 /* eslint-disable no-console */
-// @ts-ignore
-import { CircleIcon } from '@gluestack-ui/themed';
+import React from 'react';
 import {
   Center,
   Radio,
@@ -15,68 +13,85 @@ import {
   Heading,
   Text,
   FormControl,
+  CircleIcon,
 } from '@gluestack-ui/themed';
 
-const RadioBasic = ({
-  size,
-  isDisabled,
-  isInvalid,
-  isReadOnly,
-  ...props
-}: any) => {
-  const [values, setValues] = React.useState();
+const RadioBasic = ({ ...props }: any) => {
+  const [values, setValues] = React.useState('Label 1');
+
+  const iconSize: any = {
+    sm: '2xs',
+    md: 'sm',
+    lg: 'md',
+  };
 
   return (
-    <RadioGroup
-      isDisabled={isDisabled}
-      isReadOnly={isReadOnly}
-      value={values}
-      onChange={setValues}
-    >
+    <RadioGroup value={values} onChange={setValues}>
       <Radio
-        isDisabled={isDisabled}
-        isInvalid={isInvalid}
-        size={size}
-        value="Label 1"
-        accessibilityLabel="Radio"
-        onChange={(nextValue: boolean) => console.log(nextValue, 'nextValue')}
-        mb="$2"
         {...props}
-      >
-        <RadioIndicator>
-          <RadioIcon as={CircleIcon} />
-        </RadioIndicator>
-        <RadioLabel ml="$2">Label 1</RadioLabel>
-      </Radio>
-      <Radio
-        isDisabled={isDisabled}
-        isInvalid={isInvalid}
-        size={size}
-        value="Label 2"
-        accessibilityLabel="Radio"
+        value="Label 1"
+        aria-label="Radio"
         onChange={(nextValue: boolean) => console.log(nextValue, 'nextValue')}
         mb="$2"
       >
         <RadioIndicator>
-          <RadioIcon as={CircleIcon} />
+          <RadioIcon
+            as={CircleIcon}
+            dataSet={{
+              'component-props': JSON.stringify({
+                'instance': true,
+                'instance-name': 'Icon',
+                'name': 'CircleIcon',
+                'size': iconSize[props.size],
+              }),
+            }}
+          />
         </RadioIndicator>
-        <RadioLabel ml="$2">Label 2</RadioLabel>
+        <RadioLabel
+          ml="$2"
+          dataSet={{
+            'component-props': JSON.stringify({
+              'is-text-style': true,
+              'component-name': 'Text',
+              'size': props.size,
+            }),
+          }}
+        >
+          Label 1
+        </RadioLabel>
       </Radio>
       <Radio
-        isDisabled={isDisabled}
-        isInvalid={isInvalid}
-        size={size}
-        value="Label 3"
-        accessibilityLabel="Radio"
-        onChange={(isSelected: boolean) =>
-          console.log(isSelected, 'isSelected')
-        }
+        {...props}
+        value="Label 2"
+        aria-label="Radio"
+        onChange={(nextValue: boolean) => console.log(nextValue, 'nextValue')}
         mb="$2"
       >
         <RadioIndicator>
-          <RadioIcon as={CircleIcon} />
+          <RadioIcon
+            as={CircleIcon}
+            dataSet={{
+              'component-props': JSON.stringify({
+                'instance': true,
+                'instance-name': 'Icon',
+                'name': 'CircleIcon',
+                'size': iconSize[props.size],
+              }),
+            }}
+          />
         </RadioIndicator>
-        <RadioLabel ml="$2">Label 3</RadioLabel>
+        <RadioLabel
+          ml="$2"
+          dataSet={{
+            'component-props': JSON.stringify({
+              'is-text-style': true,
+              'component-name': 'Text',
+              'size': props.size,
+            }),
+          }}
+        >
+          Label 2
+        </RadioLabel>
       </Radio>
     </RadioGroup>
   );
