@@ -55,12 +55,12 @@ const Pressable = styled(
     //     test: 'sm',
     //   },
     // },
-    _dark: {
-      // bg: '$amber200',
-      props: {
-        bg: 3 < 2 ? '$yellow400' : 'blue',
-      },
-    },
+    // _dark: {
+    //   // bg: '$amber200',
+    //   props: {
+    //     bg: 3 < 2 ? '$yellow400' : 'blue',
+    //   },
+    // },
 
     // '@xl': {
     //   props: {
@@ -180,10 +180,56 @@ const MyIcon = styled(
 //   'composed here'
 // );
 
+const Box1 = styled(
+  View,
+  {
+    // bg: '$amber400',
+    // h: 100,
+    // w: 100,
+    // _dark: {
+    //   props: {
+    //     bg: '$red500',
+    //   },
+    // },
+    _text: {
+      color: '$red500',
+    },
+  },
+  {
+    descendantStyle: ['_text'],
+  }
+);
+
+const Text1 = styled(Text, {}, { ancestorStyle: ['_text'] });
 export function ContextBasedStyles() {
   return (
     <Wrapper colorMode="dark">
-      <Pressable></Pressable>
+      <ContextBasedStylesContent></ContextBasedStylesContent>
+      {/* <Pressable></Pressable> */}
+      {/* <Box1
+        sx={{
+          'bg': '$amber400',
+          'h': 100,
+          'w': 100,
+          // '_dark': {
+          'props': {
+            bg: '$red500',
+            // },
+          },
+          // },
+          ':hover': {
+            bg: '$green400',
+          },
+          '_text': {
+            props: {
+              color: '$white',
+            },
+          },
+        }}
+        states={{ hover: true }}
+      >
+        <Text1>Hello</Text1>
+      </Box1> */}
       {/* <MyIcon bg="$blue500" size="sm" />
       <StyledIcon as={MyIcon} bg="$red500" size="sm" /> */}
     </Wrapper>
@@ -287,7 +333,7 @@ const MyList = React.memo(() => {
   }, []);
   const data = useMemo(
     () =>
-      Array(100)
+      Array(1)
         .fill(0)
         .map((_, index) => `Item ${index}`),
     []
