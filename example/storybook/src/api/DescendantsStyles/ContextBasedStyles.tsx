@@ -50,6 +50,28 @@ const Pressable = styled(
     // ':hover': {
     //   bg: '$red500',
     // },
+    // '@sm': {
+    //   props: {
+    //     test: 'sm',
+    //   },
+    // },
+    _dark: {
+      // bg: '$amber200',
+      props: {
+        bg: 3 < 2 ? '$yellow400' : 'blue',
+      },
+    },
+
+    // '@xl': {
+    //   props: {
+    //     bg: '$green500',
+    //   },
+    // },
+
+    // 'props': {
+    //   bg: '$blue400',
+    //   // test: 'hello',
+    // },
   },
   {
     componentName: 'Pressable',
@@ -90,7 +112,7 @@ const Text = styled(
   }
 );
 
-const MyIcon = styled(
+const StyledIcon = styled(
   AsForwarder,
   {
     variants: {
@@ -120,8 +142,8 @@ const MyIcon = styled(
   }
 );
 
-const MyNewIcon = styled(
-  AsForwarder,
+const MyIcon = styled(
+  StyledIcon,
   {
     variants: {
       size: {
@@ -161,8 +183,9 @@ const MyNewIcon = styled(
 export function ContextBasedStyles() {
   return (
     <Wrapper colorMode="dark">
-      <MyIcon bg="$blue500" size="sm" />
-      <MyNewIcon as={MyIcon} bg="$red500" size="sm" />
+      <Pressable></Pressable>
+      {/* <MyIcon bg="$blue500" size="sm" />
+      <StyledIcon as={MyIcon} bg="$red500" size="sm" /> */}
     </Wrapper>
   );
 }
