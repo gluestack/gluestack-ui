@@ -4,6 +4,7 @@ import { View } from 'react-native';
 export default styled(
   View,
   {
+    //@ts-ignore
     'fontFamily': '$body',
     'borderRadius': '$sm',
     'flexDirection': 'row',
@@ -19,7 +20,7 @@ export default styled(
     '_web': {
       outlineWidth: '$0',
       overflow: 'auto',
-      lineHeight: '$lg', // Todo: Move to _web inside size so that sm and xs don't have this much height
+      lineHeight: '$lg',
       outline: 'none',
       cursor: 'auto',
     },
@@ -192,7 +193,7 @@ export default styled(
             bg: '$primary.600.alpha0.1',
           },
           ':hover': {
-            borderWidth: '1',
+            borderWidth: '$1',
             _disabled: {
               borderWidth: '$0',
             },
@@ -218,6 +219,7 @@ export default styled(
           '_web': {
             ':focus': {
               outlineWidth: '$0',
+              boxShadow: 'none',
             },
           },
         },
@@ -263,5 +265,5 @@ export default styled(
     },
   },
 
-  { descendantStyle: ['_input', '_icon'] }
+  { descendantStyle: ['_input', '_icon'], ancestorStyle: ['_inputBox'] }
 );

@@ -7,7 +7,7 @@ export default styled(
     props: {
       fill: 'none',
     },
-    color: '$muted.800',
+    color: '$muted.500',
     _dark: {
       color: '$muted.400',
     },

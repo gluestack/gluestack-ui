@@ -12,5 +12,8 @@ export default styled(
       },
     },
   },
-  { descendantStyle: ['_icon'] }
+  {
+    descendantStyle: ['_icon'],
+    ancestorStyle: ['_icon'],
+  }
 );
