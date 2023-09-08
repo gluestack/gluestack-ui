@@ -12,7 +12,7 @@ import { Box, AppProvider } from '@gluestack/design-system';
 
 ### @gluestack-style/babel-plugin-styled-resolver
 
-@gluestack-style/babel-plugin-styled-resolver transpiles your `styled` function calls and resolves the `component styling` in build time. It also generates all the `CSS rules` and style ids based on which these CSS styles are applied on the component. Doing this saves tons of time on runtime because all your style calculation is already done and all your app has to do is to inject this style into a style tag and viola! All your styles appear instantaneously. This helps us to improve the performance of the apps 5-6 times.
+@gluestack-style/babel-plugin-styled-resolver transpiles your `styled` function calls and resolves the `component styling` in build time. It also generates all the `CSS rules` and style ids based on which these CSS styles are applied on the component. Doing this saves tons of time on runtime because all your style calculation is already done and all your app has to do is to inject this style into a style tag and viola! All your styles appear instantaneously. This helps us to improve the performance of the apps 5-6 times. If you provide the `components` option then it also resolves the inline styles of the components created using `@gluestack-style/react`.
 
 ### **Let us see how this Babel plugin works.**
 
@@ -168,7 +168,7 @@ module.exports = function (api) {
 };
 ```
 
-- `libraryName`: The `libraryName` option is useful in scenarios where you are exporting the styled function from a different library. This option allows you to specify the name of the library that provides the styled function. By default, the plugin assumes that the styled function is exported from `@gluestack-style/react`. However, with the `libraryName` option, you can customize it to match the actual library name where the styled function is defined.
+- `styled`: The `styled` option allows you to specify the library name & file path of the styled function. This option is useful in scenarios where you are exporting the styled function from a different library. By default, the plugin assumes that the styled function is exported from `@gluestack-style/react`. However, with the `styled` option, you can customize it to match the actual library & file name where the styled function is defined.
 
 ```js
 // babel.config.js
@@ -183,7 +183,10 @@ module.exports = function (api) {
       [
         gluestackStyleResolver,
         {
-          libraryName: '@gluestack-style/react', // Specify the library name from where the styled function is exported
+          styled: [
+            '@gluestack-style/react', // import path of the styled function
+            path.resolve(__dirname, './gluestack-ui-components/core/styled'), // file path of the styled function
+          ],
         },
       ],
     ],
@@ -191,7 +194,9 @@ module.exports = function (api) {
 };
 ```
 
-- `filename`: The filename option enables you to specify the file path of the styled function.
+- `components`: The `components` option allows you to specify the library/import_path name & file path of components created using `@gluestack-style/react`. This option is useful in scenarios where you are creating a custom component with the styled function and using it with inline styles. If you want to resolve those inline styles on build time just define this option with the library name and file path of the components folder or library.
+
+> **Note**: Even using this option if you have extended your config, added aliases, tokens or propertyResolver to a StyledComponent then it will not be resolved on build time. It will be resolved on runtime.
 
 ```js
 // babel.config.js
@@ -206,7 +211,10 @@ module.exports = function (api) {
       [
         gluestackStyleResolver,
         {
-          filename: path.resolve(__dirname, './core/styled'), // Specify the file path of the styled function
+          components: [
+            '@gluestack-ui/themed', // import path of the components folder or library name
+            path.resolve(__dirname, './gluestack-ui-components/core/component'), // file path of the components folder
+          ],
         },
       ],
     ],

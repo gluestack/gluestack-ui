@@ -13,14 +13,74 @@ import {
   StyleSheet,
   View,
 } from 'react-native';
-import { AsForwarder, styled, Theme } from '@gluestack-style/react';
+import {
+  AsForwarder,
+  createStyled,
+  styled1,
+  Theme,
+} from '@gluestack-style/react';
 import { Wrapper } from '../../components/Wrapper';
 import { AddIcon, Box, Icon } from '@gluestack/design-system';
 // import { AddIcon } from '@gluestack/design-system';
 import { AlertCircle, Circle } from 'lucide-react-native';
 
+import { AnimationResolver } from '@gluestack-style/animation-plugin';
+
+const styled = createStyled([new AnimationResolver({})]);
+const styleshet = StyleSheet.create({
+  style: {
+    padding: 12,
+  },
+});
 const Pressable = styled(
   RNPressable,
+  {
+    bg: '$red500',
+    p: '$2',
+
+    // 'bg': '$red600',
+    // 'w': 100,
+    // 'h': 100,
+    // '_light': {
+    //   bg: '$red600',
+    // },
+    // '@base': {
+    //   bg: '$blue500',
+    // },
+    // ':hover': {
+    //   bg: '$red500',
+    // },
+    // '@sm': {
+    //   props: {
+    //     test: 'sm',
+    //   },
+    // },
+    _dark: {
+      // bg: '$amber200',
+      props: {
+        bg: 3 < 2 ? '$yellow400' : 'blue',
+      },
+    },
+
+    // '@xl': {
+    //   props: {
+    //     bg: '$green500',
+    //   },
+    // },
+
+    // 'props': {
+    //   bg: '$blue400',
+    //   // test: 'hello',
+    // },
+  },
+  {
+    componentName: 'Pressable',
+    // descendantStyle: ['_text'],
+  }
+);
+
+const Pressable1 = styled(
+  Pressable,
   {
     bg: '$red500',
     p: '$2',
@@ -52,22 +112,22 @@ const Text = styled(
   }
 );
 
-const MyIcon = styled(
+const StyledIcon = styled(
   AsForwarder,
   {
     variants: {
       size: {
         sm: {
-          width: 32,
-          height: 32,
-          props: {
-            size: 32,
-          },
+          width: 10,
+          height: 10,
+          // props: {
+          //   size: 32,
+          // },
         },
         md: {
-          props: {
-            size: 32,
-          },
+          // props: {
+          //   size: 32,
+          // },
           width: '$4',
           height: '$4',
         },
@@ -82,17 +142,50 @@ const MyIcon = styled(
   }
 );
 
-const MyNewIcon = styled(
-  MyIcon,
-  {},
+const MyIcon = styled(
+  StyledIcon,
+  {
+    variants: {
+      size: {
+        sm: {
+          width: 12,
+          height: 12,
+          // props: {
+          //   size: 32,
+          // },
+        },
+        md: {
+          width: 32,
+          height: 32,
+          // props: {
+          //   size: 32,
+          // },
+        },
+      },
+    },
+    props: {
+      size: 'md',
+    },
+  },
   {
     componentName: 'MyNewIcon',
   }
 );
+
+// console.log(
+//   MyIcon.isComposedComponent,
+//   MyIcon.isStyledComponent,
+//   // MyNewIcon.isComposedComponent,
+//   // MyNewIcon.isStyledComponent,
+//   'composed here'
+// );
+
 export function ContextBasedStyles() {
   return (
     <Wrapper colorMode="dark">
-      <ContextBasedStylesContent />
+      <Pressable></Pressable>
+      {/* <MyIcon bg="$blue500" size="sm" />
+      <StyledIcon as={MyIcon} bg="$red500" size="sm" /> */}
     </Wrapper>
   );
 }
@@ -136,11 +229,11 @@ export function ContextBasedStylesContent() {
   //   </>
   // );
 
-  return (
-    <>
-      <MyNewIcon as={AlertCircle} size="sm"></MyNewIcon>
-    </>
-  );
+  // return (
+  //   <>
+  //     <MyNewIcon as={AlertCircle} size="sm"></MyNewIcon>
+  //   </>
+  // );
   return (
     <>
       <RNPressable
@@ -170,6 +263,23 @@ export function ContextBasedStylesContent() {
   );
 }
 
+const renderItem = (item: any) => (
+  <Pressable
+    key={item}
+    // sx={{
+    //   bg: '$amber400',
+    // }}
+  >
+    {/* <RNText>{item}</RNText> */}
+  </Pressable>
+);
+
+const renderItem2 = (item: any) => (
+  <RNPressable key={item} style={styleshet.style}>
+    {/* <RNText>{item}</RNText>r */}
+  </RNPressable>
+);
+
 const MyList = React.memo(() => {
   const time = React.useRef(Date.now());
   useEffect(() => {
@@ -177,34 +287,12 @@ const MyList = React.memo(() => {
   }, []);
   const data = useMemo(
     () =>
-      Array(1)
+      Array(100)
         .fill(0)
         .map((_, index) => `Item ${index}`),
     []
   );
 
-  const renderItem = useCallback(
-    (item: any) => (
-      <Pressable
-        key={item}
-        sx={{
-          bg: '$amber400',
-        }}
-      >
-        {/* <RNText>{item}</RNText> */}
-      </Pressable>
-    ),
-    []
-  );
-
-  // const renderItem2 = useCallback(
-  //   (item: any) => (
-  //     <RNPressable key={item} style={styleshet.style}>
-  //       <RNText>{item}</RNText>r
-  //     </RNPressable>
-  //   ),
-  //   []
-  // );
   return <>{data.map(renderItem)}</>;
 });
 export default ContextBasedStyles;
