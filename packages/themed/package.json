@@ -1,6 +1,6 @@
 {
   "name": "@gluestack-ui/themed",
-  "version": "0.1.23",
+  "version": "0.1.24",
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "description": "A universal themed components for React Native, Next.js & React",
@@ -81,7 +81,7 @@
     "webpack-cli": "^5.1.4"
   },
   "peerDependencies": {
-    "@types/react-native": ">0.72",
+    "@types/react-native": ">=0.72",
     "react": ">=16",
     "react-dom": ">=16",
     "react-native": ">=0.72",
