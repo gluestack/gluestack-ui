@@ -32,7 +32,7 @@
     "@gluestack-ui/utils": "^0.1.5",
     "@gluestack-ui/provider": "^0.1.6",
     "@react-native-aria/focus": "^0.2.7",
-    "react-native-svg": "13.4.0"
+    "react-native-svg": "^13.4.x"
   },
   "peerDependencies": {
     "react": ">=16",
