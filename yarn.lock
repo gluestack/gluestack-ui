@@ -2706,10 +2706,10 @@
     inline-style-prefixer "^6.0.1"
     normalize-css-color "^1.0.2"
 
-"@gluestack-style/react@^0.2.34":
-  version "0.2.34"
-  resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-0.2.34.tgz#ceb832cad8a216bd408834ad8138398a20ca1ed7"
-  integrity sha512-mrq3NKp5gSGpdj7OhTJ3GgF8wxtxdKJA4+T8iynUe7cumTCa/WpH/MvKSAynFW5y7k4y5xCy04xr/FTOI1R/KA==
+"@gluestack-style/react@^0.2.35":
+  version "0.2.35"
+  resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-0.2.35.tgz#58822809599252616f2faad84f7763318772a28a"
+  integrity sha512-IDQjosUQYqfqlgnDNmmDsYKQLEsSJL2ZWvptcnsMlcONrkDE/hk+yLgp4CbGFEMcxiQYORCCI+O+65S0lpZz2Q==
   dependencies:
     inline-style-prefixer "^6.0.1"
     normalize-css-color "^1.0.2"
