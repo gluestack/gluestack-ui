@@ -23,6 +23,8 @@ export function Actionsheet<T>(StyledActionsheet: React.ComponentType<T>) {
         finalFocusRef,
         unmountOnExit = true,
         snapPoints = [50],
+        // @ts-ignore
+        _experimentalOverlay = false,
         ...props
       }: T & IActionsheetProps,
       ref?: any

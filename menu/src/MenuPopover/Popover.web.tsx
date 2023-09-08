@@ -4,6 +4,7 @@ import { usePopover, DismissButton, Overlay } from '@react-aria/overlays';
 import { MenuContext } from '../MenuContext';
 export function Popover({
   StyledBackdrop, // @ts-ignore
+  _experimentalOverlay = false,
   ...props
 }: any) {
   const ref = React.useRef(null);
