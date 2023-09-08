@@ -42,6 +42,7 @@ export interface IButtonGroupProps {
    * If true, button will be atttached together.
    */
   isAttached?: boolean;
+  reversed?: boolean;
   isReversed?: boolean;
 }
 
