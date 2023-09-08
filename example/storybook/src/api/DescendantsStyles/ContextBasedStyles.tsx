@@ -22,7 +22,7 @@ import {
 import { Wrapper } from '../../components/Wrapper';
 import { AddIcon, Box, Icon } from '@gluestack/design-system';
 // import { AddIcon } from '@gluestack/design-system';
-import { AlertCircle, Circle } from 'lucide-react-native';
+import { AlertCircle, Circle, Sun } from 'lucide-react-native';
 
 import { AnimationResolver } from '@gluestack-style/animation-plugin';
 
@@ -115,6 +115,7 @@ const Text = styled(
 const StyledIcon = styled(
   AsForwarder,
   {
+    bg: '$red500',
     variants: {
       size: {
         sm: {
@@ -131,10 +132,14 @@ const StyledIcon = styled(
           width: '$4',
           height: '$4',
         },
+        lg: {
+          // props: {
+          //   size: 32,
+          // },
+          width: '$6',
+          height: '$6',
+        },
       },
-    },
-    props: {
-      size: 'sm',
     },
   },
   {
@@ -145,24 +150,6 @@ const StyledIcon = styled(
 const MyIcon = styled(
   StyledIcon,
   {
-    variants: {
-      size: {
-        sm: {
-          width: 12,
-          height: 12,
-          // props: {
-          //   size: 32,
-          // },
-        },
-        md: {
-          width: 32,
-          height: 32,
-          // props: {
-          //   size: 32,
-          // },
-        },
-      },
-    },
     props: {
       size: 'md',
     },
@@ -204,7 +191,8 @@ const Text1 = styled(Text, {}, { ancestorStyle: ['_text'] });
 export function ContextBasedStyles() {
   return (
     <Wrapper colorMode="dark">
-      <ContextBasedStylesContent></ContextBasedStylesContent>
+      <MyIcon as={Sun} size={32}></MyIcon>
+      {/* <ContextBasedStylesContent></ContextBasedStylesContent> */}
       {/* <Pressable></Pressable> */}
       {/* <Box1
         sx={{
