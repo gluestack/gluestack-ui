@@ -278,8 +278,6 @@ export class FontResolver implements IStyledPlugin, FontPlugin {
 
     //@ts-ignore
     Comp.isStyledComponent = NewComp.isStyledComponent;
-    //@ts-ignore
-    Comp.isComposedComponent = NewComp.isComposedComponent;
 
     return Comp;
   }
