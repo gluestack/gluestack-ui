@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { useState } from 'react';
 import {
   Box,
@@ -7,6 +6,7 @@ import {
   Text,
   LogoTag,
   Button,
+  Link,
 } from '@gluestack/design-system';
 import Next from './Next';
 import MySvgComponent from './MySvgComponent';
@@ -105,12 +105,6 @@ function Card1() {
                   },
                 }}
               >
-                {/* <NextImage
-                  src="/images/tilde.svg"
-                  width="49"
-                  height="25"
-                  alt="tilde"
-                /> */}
                 <Tilde />
                 <Text
                   fontSize="$lg"
@@ -292,13 +286,13 @@ function Card1() {
               </HStack>
               <HStack flexWrap="wrap" gap="$2.5">
                 <Next />
-                <NextLink
+                <Link
                   href="https://github.com/gluestack/expo-head-starter-kit"
                   isExternal
                   target="_blank"
                 >
                   <Expo1 />
-                </NextLink>
+                </Link>
               </HStack>
             </VStack>
           </Box>

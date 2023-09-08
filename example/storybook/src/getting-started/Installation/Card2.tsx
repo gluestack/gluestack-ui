@@ -1,4 +1,3 @@
-//@ts-nocheck
 import React from 'react';
 import { Box, HStack, VStack, Text, Link } from '@gluestack/design-system';
 import Expo from './Expo';

@@ -1,4 +1,3 @@
-//@ts-nocheck
 import { LayoutContext } from '@gluestack/design-system';
 import React, { useContext } from 'react';
 
