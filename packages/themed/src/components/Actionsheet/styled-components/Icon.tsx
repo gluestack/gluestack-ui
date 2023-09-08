@@ -1,5 +1,5 @@
 import { styled } from '../../styled';
-import { StyledIcon } from '../../Icons';
+import { StyledIcon } from '../../Icons/styled-components';
 
 export default styled(
   StyledIcon,

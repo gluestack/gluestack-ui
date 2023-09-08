@@ -1,5 +1,5 @@
 import { styled } from '../../styled';
-import { StyledIcon } from '../../Icons';
+import { StyledIcon } from '../../Icons/styled-components';
 
 export default styled(
   StyledIcon,
@@ -11,6 +11,9 @@ export default styled(
     _dark: {
       //@ts-ignore
       color: '$backgroundDark400',
+    },
+    props: {
+      size: 'md',
     },
   },
   {
