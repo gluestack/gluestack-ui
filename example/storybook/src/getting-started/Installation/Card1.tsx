@@ -165,23 +165,7 @@ function Card1() {
                       },
                     }}
                   >
-                    {copied ? (
-                      // <NextImage
-                      //   src="/images/copied.svg"
-                      //   width="20"
-                      //   height="20"
-                      //   alt="copied"
-                      // />
-                      <Copied />
-                    ) : (
-                      // <NextImage
-                      //   src="/images/copy.svg"
-                      //   width="20"
-                      //   height="20"
-                      //   alt="copy"
-                      // />
-                      <Copy />
-                    )}
+                    {copied ? <Copied /> : <Copy />}
                   </Button>
                 ) : null}
               </HStack>
@@ -308,7 +292,13 @@ function Card1() {
               </HStack>
               <HStack flexWrap="wrap" gap="$2.5">
                 <Next />
-                <Expo1 />
+                <NextLink
+                  href="https://github.com/gluestack/expo-head-starter-kit"
+                  isExternal
+                  target="_blank"
+                >
+                  <Expo1 />
+                </NextLink>
               </HStack>
             </VStack>
           </Box>
