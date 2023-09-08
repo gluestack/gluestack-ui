@@ -975,7 +975,7 @@ export function verboseStyled<P, Variants, ComCon>(
 
     const ancestorStyleContext = useContext(AncestorStyleContext);
     let incomingComponentProps = {};
-    let remainingComponentProps = {};
+    let applyComponentInlineProps = {};
     let sxBaseStyleFlatternStyleObject = {};
     let sxVariantFlatternStyleObject = {};
     let sxCompoundVariantFlatternStyleObject = {};
@@ -1183,7 +1183,7 @@ export function verboseStyled<P, Variants, ComCon>(
 
     // passingProps is specific to current component
 
-    let applyComponentInlineProps: any = componentPropsWithoutVariants;
+    // let applyComponentInlineProps: any = componentPropsWithoutVariants;
 
     // const STABLEHASH_states = stableHash(states);
     // 520ms
@@ -1195,8 +1195,8 @@ export function verboseStyled<P, Variants, ComCon>(
       Object.keys(componentExtendedConfig).length > 0
     ) {
       componentStyleConfig.resolveProps.forEach((toBeResovledProp: any) => {
-        if (applyComponentInlineProps[toBeResovledProp]) {
-          let value = applyComponentInlineProps[toBeResovledProp];
+        if (componentPropsWithoutVariants[toBeResovledProp]) {
+          let value = componentPropsWithoutVariants[toBeResovledProp];
           if (
             CONFIG.propertyResolver &&
             CONFIG.propertyResolver.props &&
@@ -1222,12 +1222,12 @@ export function verboseStyled<P, Variants, ComCon>(
             resolvedInlineProps[toBeResovledProp] =
               getResolvedTokenValueFromConfig(
                 componentExtendedConfig,
-                applyComponentInlineProps,
+                componentPropsWithoutVariants,
                 toBeResovledProp,
-                applyComponentInlineProps[toBeResovledProp]
+                componentPropsWithoutVariants[toBeResovledProp]
               );
           }
-          delete applyComponentInlineProps[toBeResovledProp];
+          delete componentPropsWithoutVariants[toBeResovledProp];
         }
       });
     }
@@ -1254,8 +1254,9 @@ export function verboseStyled<P, Variants, ComCon>(
       );
 
     let containsSX = false;
-    Object.assign(remainingComponentProps, filteredPassingRemainingProps);
-    Object.assign(remainingComponentProps, filteredComponentRemainingProps);
+    Object.assign(applyComponentInlineProps, filteredPassingRemainingProps);
+    Object.assign(applyComponentInlineProps, filteredComponentRemainingProps);
+
     if (
       Object.keys(filteredComponentSx).length > 0 ||
       Object.keys(filteredPassingSx).length > 0
@@ -1541,14 +1542,15 @@ export function verboseStyled<P, Variants, ComCon>(
         injectAndUpdateSXProps(filteredPassingSx);
 
         Object.assign(
-          remainingComponentProps,
+          applyComponentInlineProps,
           filteredPassingRemainingPropsUpdated
         );
-        Object.assign(remainingComponentProps, filteredComponentRemainingProps);
-        applyComponentInlineProps = remainingComponentProps;
-      }
 
-      //// refactor end ....
+        Object.assign(
+          applyComponentInlineProps,
+          filteredComponentRemainingProps
+        );
+      }
     }
 
     if (containsDescendant) {
@@ -1747,6 +1749,7 @@ export function verboseStyled<P, Variants, ComCon>(
       ...applySxStateBaseStyleCSSIds.current,
     ];
     Object.assign(resolvedInlineProps, applyComponentInlineProps);
+
     const resolvedStyleProps = generateStylePropsFromCSSIds(
       resolvedInlineProps,
       styleCSSIds,
