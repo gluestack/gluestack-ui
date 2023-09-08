@@ -6,6 +6,7 @@ pageDescription: Performance tests and comparisons.
 ---
 
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
+import { Graph } from './Progress';
 
 <Meta title="Performance/Benchmarks" />
 
@@ -22,6 +23,15 @@ Lets try rendering a simple Box/View component with same styles.
 ### 50 renders
 
 Timing rendering a 50 Box component.
+
+<Graph
+  data={{
+    'Tamang-ui': 108,
+    'Nativebase': 400,
+    'gluestack-ui': 80,
+    'react-native': 60,
+  }}
+/>
 
 ### 100 renders
 
