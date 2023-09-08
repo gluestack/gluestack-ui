@@ -6,19 +6,29 @@ const RadioMeta: ComponentMeta<typeof Radio> = {
   component: Radio,
   argTypes: {
     size: {
-      control: {
-        type: 'select',
-        options: ['sm', 'md', 'lg'],
-      },
+      control: 'select',
+      options: ['sm', 'md', 'lg'],
     },
     isInvalid: {
       type: 'boolean',
+      options: [true, false],
     },
     isDisabled: {
       type: 'boolean',
+      options: [true, false],
+    },
+    isHovered: {
+      type: 'boolean',
+      options: [true, false],
+    },
+    isFocusVisible: {
+      type: 'boolean',
+      options: [true, false],
     },
     isReadOnly: {
       type: 'boolean',
+      figmaIgnore: true,
+      options: [true, false],
     },
   },
   args: {
@@ -26,6 +36,8 @@ const RadioMeta: ComponentMeta<typeof Radio> = {
     isInvalid: false,
     isDisabled: false,
     isReadOnly: false,
+    isHovered: false,
+    isFocusVisible: false,
   },
 };
 
