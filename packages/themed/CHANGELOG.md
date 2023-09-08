@@ -1,5 +1,11 @@
 # @gluestack-ui/themed
 
+## 0.1.27
+
+### Patch Changes
+
+- - `@glustack-style/react` version updated
+
 ## 0.1.26
 
 ### Patch Changes
