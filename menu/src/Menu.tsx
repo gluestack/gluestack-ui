@@ -29,7 +29,7 @@ export const Menu = ({
         shouldFlip = true,
         trigger,
         shouldOverlapWithTrigger,
-        _experimentalOverlay = true,
+        _experimentalOverlay = false,
         ...props
       }: any,
       ref?: any

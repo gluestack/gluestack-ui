@@ -28,7 +28,7 @@ export const Popover = forwardRef(
       focusScope = true,
       StyledBackdrop,
       // @ts-ignore
-      _experimentalOverlay = true,
+      _experimentalOverlay = false,
       ...props
     }: any,
     ref: any

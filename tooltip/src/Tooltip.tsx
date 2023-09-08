@@ -30,7 +30,7 @@ function Tooltip<StyledTooltipProp>(
         shouldOverlapWithTrigger = false,
         shouldFlip = true,
         // @ts-ignore
-        _experimentalOverlay = true,
+        _experimentalOverlay = false,
         ...props
       }: ITooltipProps,
       ref?: any

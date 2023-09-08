@@ -26,7 +26,7 @@ export const Popover = (StyledPopover: any) =>
         isKeyboardDismissable = true,
         shouldFlip,
         // @ts-ignore
-        _experimentalOverlay = true,
+        _experimentalOverlay = false,
         ...props
       }: any,
       ref?: any
