@@ -1,5 +1,12 @@
 # @gluestack-ui/themed
 
+## 0.1.25
+
+### Patch Changes
+
+- Removed unwanted react native svg dependencies.
+- Styling fixes for checkbox and radio.
+
 ## 0.1.22
 
 ### Patch Changes
