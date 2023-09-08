@@ -1,5 +1,11 @@
 # @gluestack-ui/input
 
+## 0.1.11
+
+### Patch Changes
+
+- fix: secure text input
+
 ## 0.1.10
 
 ### Patch Changes
