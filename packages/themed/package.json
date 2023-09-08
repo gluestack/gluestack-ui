@@ -1,6 +1,6 @@
 {
   "name": "@gluestack-ui/themed",
-  "version": "0.1.27",
+  "version": "0.1.28",
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "description": "A universal themed components for React Native, Next.js & React",
@@ -29,7 +29,7 @@
   "dependencies": {
     "@expo/html-elements": "latest",
     "@gluestack-style/animation-plugin": "^0.1.11",
-    "@gluestack-style/react": "^0.2.35",
+    "@gluestack-style/react": "^0.2.36",
     "@gluestack-ui/actionsheet": "latest",
     "@gluestack-ui/alert": "latest",
     "@gluestack-ui/alert-dialog": "latest",
@@ -70,6 +70,7 @@
     "@babel/preset-env": "^7.22.9",
     "@babel/preset-react": "^7.22.5",
     "@babel/preset-typescript": "^7.22.5",
+    "@gluestack-style/react": "^0.2.35",
     "@types/react-native": "^0.71.6",
     "file-loader": "^6.2.0",
     "react-native": "^0.70.7",
