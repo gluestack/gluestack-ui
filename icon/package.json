@@ -1,7 +1,7 @@
 {
   "name": "@gluestack-ui/icon",
   "description": "A universal headless icon component for React Native, Next.js & React",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/index.d.ts",
@@ -29,8 +29,8 @@
     "typescript": "^4.7.4"
   },
   "dependencies": {
-    "@gluestack-ui/utils": "^0.1.5",
     "@gluestack-ui/provider": "^0.1.6",
+    "@gluestack-ui/utils": "^0.1.5",
     "@react-native-aria/focus": "^0.2.7",
     "react-native-svg": "13.4.0"
   },
