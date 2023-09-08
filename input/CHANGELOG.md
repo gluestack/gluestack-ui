@@ -1,5 +1,13 @@
 # @gluestack-ui/input
 
+## 0.1.12
+
+### Patch Changes
+
+- fix: removing unwanted react native svg deps
+- Updated dependencies
+  - @gluestack-ui/utils@0.1.9
+
 ## 0.1.11
 
 ### Patch Changes

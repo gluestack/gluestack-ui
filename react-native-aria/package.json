@@ -1,6 +1,6 @@
 {
   "name": "@gluestack-ui/react-native-aria",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/index.d.ts",
