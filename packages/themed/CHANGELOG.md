@@ -1,5 +1,11 @@
 # @gluestack-ui/themed
 
+## 0.1.32
+
+### Patch Changes
+
+- fix: react native svg dependancy
+
 ## 0.1.31
 
 ### Patch Changes
