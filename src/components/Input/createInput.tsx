@@ -11,8 +11,8 @@ const AccessibleInput = createInput({
 
 type InputProps = Parameters<typeof AccessibleInput>[0] &
   Parameters<typeof AccessibleInput.Input>[0] & {
-    InputLeftElement: any;
-    InputRightElement: any;
+    InputLeftElement?: any;
+    InputRightElement?: any;
   };
 
 export const Input = forwardRef(
