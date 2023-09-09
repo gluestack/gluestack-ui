@@ -44,7 +44,7 @@
     "@gluestack-ui/input": "^0.1.12",
     "@gluestack-ui/linear-gradient": "^0.0.3",
     "@gluestack-ui/link": "latest",
-    "@gluestack-ui/menu": "^0.2.17",
+    "@gluestack-ui/menu": "^0.2.18",
     "@gluestack-ui/modal": "^0.1.19",
     "@gluestack-ui/overlay": "latest",
     "@gluestack-ui/popover": "^0.1.20",
