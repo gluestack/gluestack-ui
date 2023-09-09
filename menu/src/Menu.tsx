@@ -72,7 +72,7 @@ export const Menu = ({
         });
       };
 
-      if (!_experimentalOverlay) {
+      if (_experimentalOverlay) {
         return (
           <MenuContext.Provider value={{ onClose: handleClose, showBackdrop }}>
             {updatedTrigger()}
