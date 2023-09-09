@@ -1,5 +1,11 @@
 # @gluestack-ui/menu
 
+## 0.2.17
+
+### Patch Changes
+
+- fix: figma refactor
+
 ## 0.2.16
 
 ### Patch Changes
