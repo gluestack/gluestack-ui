@@ -3031,10 +3031,10 @@
     "@react-native-aria/focus" "^0.2.8"
     "@react-native-aria/interactions" "^0.2.10"
 
-"@gluestack-ui/menu@^0.2.17":
-  version "0.2.17"
-  resolved "https://registry.yarnpkg.com/@gluestack-ui/menu/-/menu-0.2.17.tgz#1a3e2d332d424e5593d67e438cb3e048c8cfe283"
-  integrity sha512-/klFy9XPzstGcPSr2x7M5KXe294lT2YcLLvi40WEUMvt0/7MHUp28v/a0AKOLEJUPtc7y1MaB+QNsrGemWw2pA==
+"@gluestack-ui/menu@^0.2.18":
+  version "0.2.18"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/menu/-/menu-0.2.18.tgz#54445f49f09f7a04b4bbd7e8d8dd90d8abccb670"
+  integrity sha512-Wp59WhWVzoNba1t+fcSZViCtwyDFXIXEZj4fKu8ijD4/IWBN+hBT39Ep634sQGf1oufuBEMBPapAGiZf+YANaA==
   dependencies:
     "@gluestack-ui/hooks" "^0.1.2"
     "@gluestack-ui/overlay" "^0.1.7"
