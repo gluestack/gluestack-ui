@@ -2698,7 +2698,7 @@
     "@babel/traverse" "^7.20.5"
     lodash.merge "^4.6.2"
 
-"@gluestack-style/react@0.2.38", "@gluestack-style/react@^0.2.33", "@gluestack-style/react@^0.2.9":
+"@gluestack-style/react@0.2.38", "@gluestack-style/react@^0.2.33", "@gluestack-style/react@^0.2.38", "@gluestack-style/react@^0.2.9":
   version "0.2.38"
   resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-0.2.38.tgz#71dd361cacad31213bd28fcf1afa3b447ab1232f"
   integrity sha512-j3H47R68RUZP4ocKEsLPEBxrserW5nJNp5TBIS+jWFdECFT/XAhU+xmoc7AGYrRKW6ETw3iIYumfalmPmNkvRA==
@@ -3031,10 +3031,10 @@
     "@react-native-aria/focus" "^0.2.8"
     "@react-native-aria/interactions" "^0.2.10"
 
-"@gluestack-ui/menu@^0.2.17":
-  version "0.2.17"
-  resolved "https://registry.yarnpkg.com/@gluestack-ui/menu/-/menu-0.2.17.tgz#1a3e2d332d424e5593d67e438cb3e048c8cfe283"
-  integrity sha512-/klFy9XPzstGcPSr2x7M5KXe294lT2YcLLvi40WEUMvt0/7MHUp28v/a0AKOLEJUPtc7y1MaB+QNsrGemWw2pA==
+"@gluestack-ui/menu@^0.2.18":
+  version "0.2.18"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/menu/-/menu-0.2.18.tgz#54445f49f09f7a04b4bbd7e8d8dd90d8abccb670"
+  integrity sha512-Wp59WhWVzoNba1t+fcSZViCtwyDFXIXEZj4fKu8ijD4/IWBN+hBT39Ep634sQGf1oufuBEMBPapAGiZf+YANaA==
   dependencies:
     "@gluestack-ui/hooks" "^0.1.2"
     "@gluestack-ui/overlay" "^0.1.7"
