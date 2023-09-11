@@ -9,6 +9,13 @@ import type { ISliderThumbProps } from './types';
 import { useFocusRing, useFocus } from '@react-native-aria/focus';
 import { composeEventHandlers } from '@gluestack-ui/utils';
 
+const positionMap = new Map([
+  ['horizontal true', 'right'],
+  ['horizontal false', 'left'],
+  ['vertical true', 'top'],
+  ['vertical false', 'bottom'],
+]);
+
 function SliderThumb<StyledSliderThumb, StyledSliderThumbInteraction>(
   StyledSliderThumb: React.ComponentType<StyledSliderThumb>,
   StyledSliderThumbInteraction: React.ComponentType<StyledSliderThumbInteraction>
@@ -59,33 +66,35 @@ function SliderThumb<StyledSliderThumb, StyledSliderThumbInteraction>(
           inputRef,
           orientation: orientation,
         },
-        state
+        state,
+        isReversed
       );
       const { isFocusVisible, focusProps: focusRingProps }: any =
         useFocusRing();
       const { isFocused, focusProps } = useFocus();
 
       const thumbStyles: any = {
-        bottom: isReversed
-          ? orientation === 'vertical'
-            ? `${state.getThumbPercent(0) * 100}%`
-            : undefined
-          : orientation === 'vertical'
-          ? `${state.getThumbPercent(0) * 100}%`
-          : undefined,
-        left: isReversed
-          ? orientation !== 'vertical'
-            ? `${state.getThumbPercent(0) * 100}%`
-            : undefined
-          : orientation !== 'vertical'
-          ? `${state.getThumbPercent(0) * 100}%`
-          : undefined,
         transform:
           orientation === 'vertical'
-            ? [{ translateY: thumbSize?.height / 2 }]
-            : [{ translateX: -thumbSize?.height / 2 }],
+            ? [
+                {
+                  translateY: isReversed
+                    ? -thumbSize?.height / 2
+                    : thumbSize?.height / 2,
+                },
+              ]
+            : [
+                {
+                  translateX: isReversed
+                    ? thumbSize?.height / 2
+                    : -thumbSize?.height / 2,
+                },
+              ],
       };
 
+      thumbStyles[`${positionMap.get(`${orientation} ${isReversed}`)}`] = `${
+        state.getThumbPercent(0) * 100
+      }%`;
       thumbStyles?.transform?.push({
         scale: state.isThumbDragging(0) ? scaleOnPressed : 1,
       });

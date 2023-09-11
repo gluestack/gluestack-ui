@@ -29,12 +29,12 @@
     "typescript": "^4.9.4"
   },
   "dependencies": {
-    "@gluestack-ui/hooks": "^0.1.2",
     "@gluestack-ui/form-control": "^0.1.10",
+    "@gluestack-ui/hooks": "^0.1.2",
+    "@gluestack-ui/utils": "^0.1.9",
     "@react-aria/visually-hidden": "^3.8.1",
-    "@gluestack-ui/utils": "^0.1.5",
     "@react-native-aria/interactions": "^0.2.8",
-    "@react-native-aria/slider": "^0.2.5-alpha.2",
+    "@react-native-aria/slider": "^0.2.7",
     "@react-stately/slider": "^3.2.4"
   },
   "peerDependencies": {
