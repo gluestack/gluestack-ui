@@ -72,18 +72,34 @@ const order: IWrapperType[] = [
   'inline-base-state',
 ];
 
+const WRAPPER_BLOCK_PREFIX = 'gs-injected';
+
 if (typeof window !== 'undefined') {
   //TODO: remvoe platform dependency
   // Test on all the platforms
   if (Platform.OS === 'web') {
+    // create a wrapper div for all injected styles
+
+    // append this wrapper div in
+    let wrapperBlockDiv = document.getElementById(WRAPPER_BLOCK_PREFIX);
+
+    if (!wrapperBlockDiv) {
+      const createdWrapperBlockDiv = document.createElement('div');
+      createdWrapperBlockDiv.id = WRAPPER_BLOCK_PREFIX;
+      wrapperBlockDiv = document.head.appendChild(createdWrapperBlockDiv);
+    }
+
+    // document.head
+
     order.forEach((orderKey) => {
       let wrapperElement = document.getElementById(
-        `gluestack-style-injected-styles-${orderKey}`
+        `${WRAPPER_BLOCK_PREFIX}-${orderKey}`
       );
       if (!wrapperElement) {
         wrapperElement = document.createElement('div');
-        wrapperElement.id = `gluestack-style-injected-styles-${orderKey}`;
-        document.head.appendChild(wrapperElement);
+        wrapperElement.id = `${WRAPPER_BLOCK_PREFIX}-${orderKey}`;
+
+        wrapperBlockDiv?.appendChild(wrapperElement);
       }
     });
   }
@@ -115,7 +131,7 @@ export const injectCss = (
 
   if (typeof window !== 'undefined') {
     let wrapperElement = document.querySelector(
-      '#' + `gluestack-style-injected-styles-${wrapperType}`
+      '#' + `${WRAPPER_BLOCK_PREFIX}-${wrapperType}`
     );
     if (wrapperElement) {
       let style = wrapperElement.querySelector(`[id='${styleTagId}']`);
@@ -146,6 +162,7 @@ export const flush = () => {
     const styleChildren: any = [];
     Object.keys(toBeFlushedStyles[orderKey]).forEach((styleTagId) => {
       let rules = toBeFlushedStyles[orderKey][styleTagId];
+
       styleChildren.push(
         React.createElement('style', {
           id: styleTagId,
@@ -161,8 +178,8 @@ export const flush = () => {
       React.createElement(
         'div',
         {
-          id: `gluestack-style-injected-styles-${orderKey}`,
-          key: `gluestack-style-injected-styles-${orderKey}`,
+          id: `${WRAPPER_BLOCK_PREFIX}-${orderKey}`,
+          key: `${WRAPPER_BLOCK_PREFIX}-${orderKey}`,
         },
         styleChildren
       )
@@ -197,5 +214,14 @@ export const flush = () => {
   //   );
   // });
 
-  return toBeFlushedStylesGlobal;
+  // create a wrapper div that contains all injected style
+
+  // return wrapper div
+
+  const toBeFlushedStylesWrrapperDiv = React.createElement('div', {
+    id: WRAPPER_BLOCK_PREFIX,
+    children: toBeFlushedStylesGlobal,
+  });
+
+  return toBeFlushedStylesWrrapperDiv;
 };
