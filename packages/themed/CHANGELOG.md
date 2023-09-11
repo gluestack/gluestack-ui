@@ -1,5 +1,11 @@
 # @gluestack-ui/themed
 
+## 0.1.35
+
+### Patch Changes
+
+- fixed slider on ios and icon version upgrade
+
 ## 0.1.34
 
 ### Patch Changes
