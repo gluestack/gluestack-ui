@@ -1,5 +1,11 @@
 # @gluestack-ui/themed
 
+## 0.1.34
+
+### Patch Changes
+
+- - Peer dependencies updated
+
 ## 0.1.33
 
 ### Patch Changes
