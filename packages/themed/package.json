@@ -1,6 +1,6 @@
 {
   "name": "@gluestack-ui/themed",
-  "version": "0.1.32",
+  "version": "0.1.35-alpha.0",
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "description": "A universal themed components for React Native, Next.js & React",
@@ -41,7 +41,6 @@
     "@gluestack-ui/hstack": "^0.1.9",
     "@gluestack-ui/icon": "^0.1.8",
     "@gluestack-ui/input": "^0.1.12",
-    "@gluestack-ui/linear-gradient": "^0.0.3",
     "@gluestack-ui/link": "latest",
     "@gluestack-ui/menu": "^0.2.18",
     "@gluestack-ui/modal": "^0.1.19",
@@ -60,8 +59,7 @@
     "@gluestack-ui/toast": "latest",
     "@gluestack-ui/tooltip": "^0.1.16",
     "@gluestack-ui/vstack": "^0.1.10",
-    "@legendapp/motion": "latest",
-    "expo-linear-gradient": "~12.0.1"
+    "@legendapp/motion": "latest"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.22.9",
@@ -70,23 +68,23 @@
     "@gluestack-style/react": "^0.2.38",
     "@types/react-native": "^0.71.6",
     "file-loader": "^6.2.0",
+    "react": "^18.2.0",
     "react-native": "^0.70.7",
     "react-native-web": "^0.18.12",
     "ts-loader": "^9.4.4",
     "typescript": "^5.1.6",
     "url-loader": "^4.1.1",
     "webpack": "^5.88.2",
-    "webpack-cli": "^5.1.4",
-    "react": "^18.2.0"
+    "webpack-cli": "^5.1.4"
   },
   "peerDependencies": {
+    "@gluestack-style/react": ">=0.2.38",
+    "@types/react-native": ">=0.72",
     "react": ">=16",
     "react-dom": ">=16",
     "react-native": ">=0.72",
-    "react-native-web": ">=0.19",
-    "@types/react-native": ">=0.72",
-    "@gluestack-style/react": ">=0.2.38",
-    "react-native-svg": "13.4.0"
+    "react-native-svg": "13.4.0",
+    "react-native-web": ">=0.19"
   },
   "release-it": {
     "git": {
