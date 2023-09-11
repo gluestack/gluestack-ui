@@ -35,6 +35,7 @@ const toBeFlushedStyles: IToBeFlushedStyles = {
   'inline-base': {},
   'inline-variant': {},
   'inline-descendant-base': {},
+  'inline-base-state': {},
 };
 
 const order: IWrapperType[] = [
@@ -68,6 +69,7 @@ const order: IWrapperType[] = [
   'passing-base',
   'inline-variant',
   'inline-base',
+  'inline-base-state',
 ];
 
 if (typeof window !== 'undefined') {
