@@ -48,7 +48,8 @@ interface SliderThumbOptions extends AriaSliderThumbProps {
  */
 export function useSliderThumb(
   opts: SliderThumbOptions,
-  state: SliderState
+  state: SliderState,
+  isReversed?: boolean
 ): SliderThumbAria {
   let {
     index,
@@ -89,7 +90,7 @@ export function useSliderThumb(
 
   const stateRef = useRef<SliderState>(null);
   stateRef.current = state;
-  let reverseX = direction === 'rtl';
+  let reverseX = isReversed || direction === 'rtl';
   let currentPosition = useRef<number>(null);
   let { moveProps } = useMove({
     onMoveStart() {
