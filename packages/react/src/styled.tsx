@@ -932,8 +932,6 @@ export function verboseStyled<P, Variants, ComCon>(
       //@ts-ignore
       verbosedStyleIds: BUILD_TIME_VERBOSED_STYLE_IDS = {},
       //@ts-ignore
-      toBeInjected: BUILD_TIME_toBeInjected = {},
-      //@ts-ignore
       states,
       // styledIds: BUILD_TIME_STYLE_IDS = [],
       // sxHash: BUILD_TIME_sxHash = '',
@@ -947,7 +945,6 @@ export function verboseStyled<P, Variants, ComCon>(
     ref: React.ForwardedRef<P>
   ) => {
     const isClient = React.useRef(false);
-
     //@ts-ignore style: 222ms
     let themeDefaultProps = { ...theme.baseStyle?.props };
 
@@ -1289,9 +1286,11 @@ export function verboseStyled<P, Variants, ComCon>(
 
     if (BUILD_TIME_ORDERED_RESOLVED.length > 0 && !isClient.current) {
       if (!isInjected) {
-        GluestackStyleSheet.update(BUILD_TIME_ORDERED_RESOLVED);
+        const toBeInjected = GluestackStyleSheet.update(
+          BUILD_TIME_ORDERED_RESOLVED
+        );
         if (Platform.OS === 'web') {
-          GluestackStyleSheet.inject(BUILD_TIME_toBeInjected);
+          GluestackStyleSheet.inject(toBeInjected);
         }
         isInjected = true;
       }

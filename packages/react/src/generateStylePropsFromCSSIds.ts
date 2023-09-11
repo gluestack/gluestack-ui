@@ -149,7 +149,7 @@ export function generateStylePropsFromCSSIds(
         const nativeStyle = nativeStyleMap.get(cssId);
         if (nativeStyle) {
           const queryCondition = nativeStyle?.meta?.queryCondition;
-          const styleSheetIds = nativeStyle?.value;
+          const styleSheetIds = nativeStyle?.resolved;
           const styleSheet = styleSheetIds;
 
           if (queryCondition) {
