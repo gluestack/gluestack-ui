@@ -155,7 +155,7 @@ export const injectGlobalCss = (
   injectCss(css, 'global', styleTagID);
 };
 
-export const flush = () => {
+export const flush = (): Array<any> => {
   let toBeFlushedStylesGlobal = [] as any;
 
   order.forEach((orderKey) => {
@@ -223,5 +223,7 @@ export const flush = () => {
     children: toBeFlushedStylesGlobal,
   });
 
-  return toBeFlushedStylesWrrapperDiv;
+  // return an array of elements
+
+  return [toBeFlushedStylesWrrapperDiv];
 };
