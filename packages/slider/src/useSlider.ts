@@ -60,8 +60,14 @@ export function useSlider(
       const clickPosition = isVertical ? clientY : clientX;
       const offset = clickPosition - trackPosition;
       let percent = offset / size;
-      if (reverseX || isVertical) {
-        percent = 1 - percent;
+      if (reverseX) {
+        if (!isVertical) {
+          percent = 1 - percent;
+        }
+      } else {
+        if (isVertical) {
+          percent = 1 - percent;
+        }
       }
       let value = state.getPercentValue(percent);
       // to find the closet thumb we split the array based on the first thumb position to the "right/end" of the click.

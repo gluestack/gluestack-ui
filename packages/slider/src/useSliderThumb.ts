@@ -66,8 +66,14 @@ export function useSliderThumb(
       }
 
       let delta = isVertical ? deltaY : deltaX;
-      if (isVertical || reverseX) {
-        delta = -delta;
+      if (reverseX) {
+        if (!isVertical) {
+          delta = -delta;
+        }
+      } else {
+        if (isVertical) {
+          delta = -delta;
+        }
       }
       currentPosition.current += delta;
       stateRef.current.setThumbPercent(
