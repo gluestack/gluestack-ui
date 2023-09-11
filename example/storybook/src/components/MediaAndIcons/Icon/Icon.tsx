@@ -128,3 +128,5 @@ export {
   FacebookIcon,
   PlayIcon,
 };
+
+export { VStack, HStack } from '@gluestack-ui/themed';
