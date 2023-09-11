@@ -918,7 +918,6 @@ export function verboseStyled<P, Variants, ComCon>(
 
   let CONFIG: any = {};
   let isInjected = false;
-  let sxStyleIds: any = {};
 
   const containsDescendant =
     componentStyleConfig?.descendantStyle &&
@@ -945,7 +944,7 @@ export function verboseStyled<P, Variants, ComCon>(
     ref: React.ForwardedRef<P>
   ) => {
     const isClient = React.useRef(false);
-    const isFirstRender = React.useRef(false);
+
     //@ts-ignore style: 222ms
     let themeDefaultProps = { ...theme.baseStyle?.props };
 
@@ -974,10 +973,10 @@ export function verboseStyled<P, Variants, ComCon>(
     const ancestorStyleContext = useContext(AncestorStyleContext);
     let incomingComponentProps = {};
     let applyComponentInlineProps = {};
-    let sxBaseStyleFlatternStyleObject = {};
-    let sxVariantFlatternStyleObject = {};
-    let sxCompoundVariantFlatternStyleObject = {};
-    let sxDescendantFlattenStyles: any = {};
+    const sxBaseStyleFlatternStyleObject = React.useRef({});
+    const sxVariantFlatternStyleObject = React.useRef({});
+    const sxCompoundVariantFlatternStyleObject = React.useRef({});
+    const sxDescendantFlattenStyles: any = React.useRef({});
 
     const COLOR_MODE: any = get();
 
@@ -1096,10 +1095,6 @@ export function verboseStyled<P, Variants, ComCon>(
       incomingComponentProps
     );
 
-    ///
-
-    ///
-
     let mergedBaseStyleCSSIds: any = [];
     let mergedVariantStyleCSSIds: any = [];
     let stateProps = [];
@@ -1108,6 +1103,77 @@ export function verboseStyled<P, Variants, ComCon>(
     let mergedSxStateProps: any = [];
     let mergedSxDescendantsStyle: any = {};
     let mergedDescendantsStyle: any = {};
+
+    let orderedComponentSXResolved: any = [];
+    let orderedPassingSXResolved: any = [];
+    const sxStyleIds: any = React.useRef(BUILD_TIME_VERBOSED_STYLE_IDS);
+
+    if (BUILD_TIME_ORDERED_RESOLVED.length > 0 && !isClient.current) {
+      if (!isInjected) {
+        const toBeInjected = GluestackStyleSheet.update(
+          BUILD_TIME_ORDERED_RESOLVED
+        );
+
+        if (Platform.OS === 'web') {
+          GluestackStyleSheet.inject(toBeInjected);
+        }
+        isInjected = true;
+      }
+      sxStyleIds.current = BUILD_TIME_VERBOSED_STYLE_IDS;
+
+      if (!sxStyleIds.current.component) {
+        sxStyleIds.current.component = {};
+      }
+      sxStyleIds.current.component.variants = componentStyleIds.variants;
+      //@ts-ignore
+      sxStyleIds.current.component.compoundVariants =
+        componentStyleIds.compoundVariants;
+      // console.setStartTimeStamp('setColorModeBaseStyleIds');
+      sxComponentStyleIds.current = sxStyleIds.current?.component;
+      sxDescendantStyleIds.current = sxStyleIds.current.descendant;
+      // 315ms
+      // SX component style
+      //@ts-ignore
+      const {
+        baseStyleCSSIds: sxBaseStyleCSSIds,
+        variantStyleCSSIds: sxVariantStyleCSSIds,
+        passingProps: sxPassingProps,
+      } = getMergedDefaultCSSIdsAndProps(
+        //@ts-ignore
+        sxComponentStyleIds.current,
+        variantProps,
+        theme,
+        incomingComponentProps
+      );
+      //@ts-ignore
+      // applySxStyleCSSIds.current = sxStyleCSSIds;
+      //@ts-ignore
+      applySxBaseStyleCSSIds.current = sxBaseStyleCSSIds;
+      //@ts-ignore
+      applySxVariantStyleCSSIds.current = sxVariantStyleCSSIds;
+      sxComponentPassingProps.current = sxPassingProps;
+
+      const {
+        componentBaseStyleFlatternStyleIdObject: a,
+        componentVariantFlatternStyleIdObject: b,
+        componentCompoundVariantFlatternStyleIdObject: c,
+      } = getFlattenStyleObjectFromStyleIds(sxComponentStyleIds.current);
+
+      if (sxDescendantStyleIds.current && containsDescendant) {
+        Object.keys(sxDescendantStyleIds.current).forEach(
+          (currentDescendant: any) => {
+            sxDescendantFlattenStyles.current[currentDescendant] =
+              getFlattenStyleObjectFromStyleIds(
+                sxDescendantStyleIds.current[currentDescendant]
+              );
+          }
+        );
+      }
+
+      sxBaseStyleFlatternStyleObject.current = a;
+      sxVariantFlatternStyleObject.current = b;
+      sxCompoundVariantFlatternStyleObject.current = c;
+    }
 
     if (!isClient.current) {
       const {
@@ -1130,10 +1196,10 @@ export function verboseStyled<P, Variants, ComCon>(
         componentVariantFlatternStyleIdObject,
         componentCompoundVariantFlatternStyleIdObject,
         componentDescendantFlattenStyles,
-        sxBaseStyleFlatternStyleObject,
-        sxVariantFlatternStyleObject,
-        sxCompoundVariantFlatternStyleObject,
-        sxDescendantFlattenStyles,
+        sxBaseStyleFlatternStyleObject.current,
+        sxVariantFlatternStyleObject.current,
+        sxCompoundVariantFlatternStyleObject.current,
+        sxDescendantFlattenStyles.current,
         componentDescendantStyleIds,
         sxDescendantStyleIds
       );
@@ -1273,84 +1339,6 @@ export function verboseStyled<P, Variants, ComCon>(
         );
     }
 
-    // ancestorCSSStyleId
-
-    // const [applySxStyleCSSIds, setApplySxStyleCSSIds] = useState([]);
-
-    // SX resolution
-
-    // const styleTagId = useRef(`style-tag-sx-${stableHash(sx)}`);
-
-    // FOR SX RESOLUTION
-    let orderedComponentSXResolved: any = [];
-    let orderedPassingSXResolved: any = [];
-
-    if (BUILD_TIME_ORDERED_RESOLVED.length > 0 && !isClient.current) {
-      if (!isInjected) {
-        const toBeInjected = GluestackStyleSheet.update(
-          BUILD_TIME_ORDERED_RESOLVED
-        );
-        if (Platform.OS === 'web') {
-          GluestackStyleSheet.inject(toBeInjected);
-        }
-        isInjected = true;
-      }
-      sxStyleIds = BUILD_TIME_VERBOSED_STYLE_IDS;
-
-      if (!sxStyleIds.component) {
-        sxStyleIds.component = {};
-      }
-      sxStyleIds.component.variants = componentStyleIds.variants;
-      //@ts-ignore
-      sxStyleIds.component.compoundVariants =
-        componentStyleIds.compoundVariants;
-      // console.setStartTimeStamp('setColorModeBaseStyleIds');
-      sxComponentStyleIds.current = sxStyleIds?.component;
-      sxDescendantStyleIds.current = sxStyleIds.descendant;
-      // 315ms
-      // SX component style
-      //@ts-ignore
-      const {
-        baseStyleCSSIds: sxBaseStyleCSSIds,
-        variantStyleCSSIds: sxVariantStyleCSSIds,
-        passingProps: sxPassingProps,
-      } = getMergedDefaultCSSIdsAndProps(
-        //@ts-ignore
-        sxComponentStyleIds.current,
-        variantProps,
-        theme,
-        incomingComponentProps
-      );
-      //@ts-ignore
-      // applySxStyleCSSIds.current = sxStyleCSSIds;
-      //@ts-ignore
-      applySxBaseStyleCSSIds.current = sxBaseStyleCSSIds;
-      //@ts-ignore
-      applySxVariantStyleCSSIds.current = sxVariantStyleCSSIds;
-      sxComponentPassingProps.current = sxPassingProps;
-
-      const {
-        componentBaseStyleFlatternStyleIdObject: a,
-        componentVariantFlatternStyleIdObject: b,
-        componentCompoundVariantFlatternStyleIdObject: c,
-      } = getFlattenStyleObjectFromStyleIds(sxComponentStyleIds.current);
-
-      if (sxDescendantStyleIds.current && containsDescendant) {
-        Object.keys(sxDescendantStyleIds.current).forEach(
-          (currentDescendant: any) => {
-            sxDescendantFlattenStyles[currentDescendant] =
-              getFlattenStyleObjectFromStyleIds(
-                sxDescendantStyleIds.current[currentDescendant]
-              );
-          }
-        );
-      }
-
-      sxBaseStyleFlatternStyleObject = a;
-      sxVariantFlatternStyleObject = b;
-      sxCompoundVariantFlatternStyleObject = c;
-    }
-
     function injectAndUpdateSXProps(filteredPassingSx: any) {
       if (Object.keys(filteredComponentSx).length > 0) {
         orderedComponentSXResolved = injectSx(filteredComponentSx, 'inline');
@@ -1366,21 +1354,21 @@ export function verboseStyled<P, Variants, ComCon>(
         ...BUILD_TIME_ORDERED_RESOLVED,
       ];
       // console.setStartTimeStamp('getStyleIds');
-      sxStyleIds = getStyleIds(orderedSXResolved, componentStyleConfig);
+      sxStyleIds.current = getStyleIds(orderedSXResolved, componentStyleConfig);
 
       ///
       // Setting variants to sx property for inline variant resolution
       //@ts-ignore
-      if (!sxStyleIds.component) {
-        sxStyleIds.component = {};
+      if (!sxStyleIds.current.component) {
+        sxStyleIds.current.component = {};
       }
-      sxStyleIds.component.variants = componentStyleIds.variants;
+      sxStyleIds.current.component.variants = componentStyleIds.variants;
       //@ts-ignore
-      sxStyleIds.component.compoundVariants =
+      sxStyleIds.current.component.compoundVariants =
         componentStyleIds.compoundVariants;
       // console.setStartTimeStamp('setColorModeBaseStyleIds');
-      sxComponentStyleIds.current = sxStyleIds?.component;
-      sxDescendantStyleIds.current = sxStyleIds.descendant;
+      sxComponentStyleIds.current = sxStyleIds.current?.component;
+      sxDescendantStyleIds.current = sxStyleIds.current.descendant;
       // 315ms
       // SX component style
       //@ts-ignore
@@ -1403,12 +1391,7 @@ export function verboseStyled<P, Variants, ComCon>(
       applySxVariantStyleCSSIds.current = sxVariantStyleCSSIds;
       sxComponentPassingProps.current = sxPassingProps;
     }
-    // if (containsSX) {
-    //   //TODO: Refactor for initial passing props .....
-    //   // SX descendants
-    // }
 
-    // For subsequest renders sx resolution for dynmic values
     if (containsSX) {
       injectAndUpdateSXProps(filteredPassingSx);
 
@@ -1421,7 +1404,7 @@ export function verboseStyled<P, Variants, ComCon>(
       if (sxDescendantStyleIds.current && containsDescendant) {
         Object.keys(sxDescendantStyleIds.current).forEach(
           (currentDescendant: any) => {
-            sxDescendantFlattenStyles[currentDescendant] =
+            sxDescendantFlattenStyles.current[currentDescendant] =
               getFlattenStyleObjectFromStyleIds(
                 sxDescendantStyleIds.current[currentDescendant]
               );
@@ -1429,9 +1412,9 @@ export function verboseStyled<P, Variants, ComCon>(
         );
       }
 
-      sxBaseStyleFlatternStyleObject = a;
-      sxVariantFlatternStyleObject = b;
-      sxCompoundVariantFlatternStyleObject = c;
+      sxBaseStyleFlatternStyleObject.current = a;
+      sxVariantFlatternStyleObject.current = b;
+      sxCompoundVariantFlatternStyleObject.current = c;
 
       //TODO: start: refactor for sx state + colormode + dynamic variable
       // for sx state props
@@ -1457,13 +1440,13 @@ export function verboseStyled<P, Variants, ComCon>(
       } = getMergedStateAndColorModeCSSIdsAndProps(
         sxComponentStyleIds.current,
         //@ts-ignore
-        sxBaseStyleFlatternStyleObject,
+        sxBaseStyleFlatternStyleObject.current,
         states,
         variantProps,
         COLOR_MODE,
         theme,
-        sxVariantFlatternStyleObject,
-        sxCompoundVariantFlatternStyleObject,
+        sxVariantFlatternStyleObject.current,
+        sxCompoundVariantFlatternStyleObject.current,
         currentStateArray
       );
 
@@ -1481,17 +1464,17 @@ export function verboseStyled<P, Variants, ComCon>(
           } = getMergedStateAndColorModeCSSIdsAndProps(
             //@ts-ignore
             sxDescendantStyleIds.current,
-            sxDescendantFlattenStyles[key]?.[
+            sxDescendantFlattenStyles.current[key]?.[
               'componentBaseStyleFlatternStyleIdObject'
             ],
             states,
             variantProps,
             COLOR_MODE,
             theme,
-            sxDescendantFlattenStyles[key]?.[
+            sxDescendantFlattenStyles.current[key]?.[
               'componentVariantFlatternStyleIdObject'
             ],
-            sxDescendantFlattenStyles[key]?.[
+            sxDescendantFlattenStyles.current[key]?.[
               'componentCompoundVariantFlatternStyleIdObject'
             ],
             currentStateArray
@@ -1569,10 +1552,6 @@ export function verboseStyled<P, Variants, ComCon>(
       setApplyComponentStateBaseStyleIds,
     ] = useState(mergedBaseStyleCSSIds);
 
-    if (!isClient.current) {
-      isClient.current = true;
-    }
-
     // START: Unable to optimize because of useEffect overhead and stableHash to prevent rerender
     useEffect(() => {
       onChange((colorMode: any) => {
@@ -1597,10 +1576,10 @@ export function verboseStyled<P, Variants, ComCon>(
           componentVariantFlatternStyleIdObject,
           componentCompoundVariantFlatternStyleIdObject,
           componentDescendantFlattenStyles,
-          sxBaseStyleFlatternStyleObject,
+          sxBaseStyleFlatternStyleObject.current,
           sxVariantFlatternStyleObject,
           sxCompoundVariantFlatternStyleObject,
-          sxDescendantFlattenStyles,
+          sxDescendantFlattenStyles.current,
           componentDescendantStyleIds,
           sxDescendantStyleIds
         );
@@ -1639,10 +1618,10 @@ export function verboseStyled<P, Variants, ComCon>(
             componentVariantFlatternStyleIdObject,
             componentCompoundVariantFlatternStyleIdObject,
             componentDescendantFlattenStyles,
-            sxBaseStyleFlatternStyleObject,
+            sxBaseStyleFlatternStyleObject.current,
             sxVariantFlatternStyleObject,
             sxCompoundVariantFlatternStyleObject,
-            sxDescendantFlattenStyles,
+            sxDescendantFlattenStyles.current,
             componentDescendantStyleIds,
             sxDescendantStyleIds
           );
@@ -1650,7 +1629,7 @@ export function verboseStyled<P, Variants, ComCon>(
     }, []);
 
     useEffect(() => {
-      if (states && isFirstRender.current) {
+      if (states && isClient.current) {
         const {
           mergedBaseStyleCSSIds,
           mergedVariantStyleCSSIds,
@@ -1671,10 +1650,10 @@ export function verboseStyled<P, Variants, ComCon>(
           componentVariantFlatternStyleIdObject,
           componentCompoundVariantFlatternStyleIdObject,
           componentDescendantFlattenStyles,
-          sxBaseStyleFlatternStyleObject,
+          sxBaseStyleFlatternStyleObject.current,
           sxVariantFlatternStyleObject,
           sxCompoundVariantFlatternStyleObject,
-          sxDescendantFlattenStyles,
+          sxDescendantFlattenStyles.current,
           componentDescendantStyleIds,
           sxDescendantStyleIds
         );
@@ -1697,7 +1676,9 @@ export function verboseStyled<P, Variants, ComCon>(
         //   mergedSxDescendantsStyle
         // );
       }
-      isFirstRender.current = true;
+      if (!isClient.current) {
+        isClient.current = true;
+      }
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [states]);
 

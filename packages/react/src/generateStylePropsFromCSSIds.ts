@@ -147,11 +147,10 @@ export function generateStylePropsFromCSSIds(
       const nativeStyleMap = GluestackStyleSheet.getStyleMap();
       styleCSSIds.forEach((cssId: any) => {
         const nativeStyle = nativeStyleMap.get(cssId);
+
         if (nativeStyle) {
           const queryCondition = nativeStyle?.meta?.queryCondition;
-          const styleSheetIds = nativeStyle?.resolved;
-          const styleSheet = styleSheetIds;
-
+          const styleSheet = nativeStyle?.resolved;
           if (queryCondition) {
             if (isValidBreakpoint(config, queryCondition)) {
               styleObj.push(styleSheet);
