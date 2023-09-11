@@ -447,6 +447,7 @@ module.exports = function (b) {
   const components = ['@gluestack-ui/themed'];
   let isStyledPathConfigured = false;
   let isComponentsPathConfigured = false;
+  let targetPlatform = process.env.GLUESTACK_STYLE_TARGET;
 
   return {
     name: 'ast-transform', // not required
@@ -884,6 +885,17 @@ module.exports = function (b) {
             let orderResolvedArrayExpression = [];
 
             orderedResolvedTheme.forEach((styledResolved) => {
+              if (targetPlatform === 'native') {
+                delete styledResolved.original;
+                delete styledResolved.value;
+                delete styledResolved.meta.cssRulesSet;
+                delete styledResolved.meta.weight;
+                delete styledResolved.meta.weight;
+                delete styledResolved.type;
+                delete styledResolved.componentHash;
+                delete styledResolved.extendedConfig;
+                delete styledResolved.value;
+              }
               let orderedResolvedAst = generateObjectAst(styledResolved);
               orderResolvedArrayExpression.push(orderedResolvedAst);
             });
@@ -900,25 +912,10 @@ module.exports = function (b) {
             );
             jsxOpeningElementPath.node.attributes.push(
               t.jsxAttribute(
-                t.jsxIdentifier('toBeInjected'),
-                t.jsxExpressionContainer(toBeInjectedAst)
-              )
-            );
-            jsxOpeningElementPath.node.attributes.push(
-              t.jsxAttribute(
                 t.jsxIdentifier('orderedResolved'),
                 t.jsxExpressionContainer(
                   t.arrayExpression(orderResolvedArrayExpression)
                 )
-              )
-            );
-            jsxOpeningElementPath.node.attributes.push(
-              t.jsxAttribute(t.jsxIdentifier('sxHash'), t.stringLiteral(sxHash))
-            );
-            jsxOpeningElementPath.node.attributes.push(
-              t.jsxAttribute(
-                t.jsxIdentifier('styledIds'),
-                t.jsxExpressionContainer(orderedStyleIdsArrayAst)
               )
             );
           }
