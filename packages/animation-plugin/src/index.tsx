@@ -182,12 +182,12 @@ export class AnimationResolver implements IStyledPlugin {
     return resolvedStyledObject;
   }
 
-  componentMiddleWare({ NewComp, extendedConfig }: any) {
+  componentMiddleWare({ Component, ExtendedConfig }: any) {
     const styledConfig = this.#childrenExitPropsMap;
 
     this.#childrenExitPropsMap = {};
 
-    const Component = React.forwardRef((props: any, ref?: any) => {
+    const NewComponent = React.forwardRef((props: any, ref?: any) => {
       const { sx, ...rest } = props;
 
       const styledContext = useStyled();
@@ -199,8 +199,8 @@ export class AnimationResolver implements IStyledPlugin {
         [styledContext.config]
       );
       this.#extendedConfig = CONFIG;
-      if (extendedConfig) {
-        this.#extendedConfig = deepMerge(CONFIG, extendedConfig);
+      if (ExtendedConfig) {
+        this.#extendedConfig = deepMerge(CONFIG, ExtendedConfig);
       }
 
       let tokenizedAnimatedProps: any = {};
@@ -251,7 +251,7 @@ export class AnimationResolver implements IStyledPlugin {
         : {};
 
       return (
-        <NewComp
+        <Component
           {...animatedProps}
           sx={resolvedAnimatedStyledWithStyledObject}
           {...restProps}
@@ -260,21 +260,22 @@ export class AnimationResolver implements IStyledPlugin {
       );
     });
 
-    //@ts-ignore
-    Component.styled = {};
-    //@ts-ignore
-    Component.styled.config = {};
-    //@ts-ignore
-    Component.styled.config = styledConfig;
+    if (NewComponent) {
+      //@ts-ignore
+      NewComponent.styled = {};
+      //@ts-ignore
+      NewComponent.styled.config = {};
+      //@ts-ignore
+      NewComponent.styled.config = styledConfig;
 
-    //@ts-ignore
-    Component.isStyledComponent = NewComp.isStyledComponent;
-    //@ts-ignore
-    Component.isComposedComponent = NewComp.isComposedComponent;
+      //@ts-ignore
+      NewComponent.isStyledComponent = Component?.isStyledComponent;
+      //@ts-ignore
+      NewComponent.isComposedComponent = Component?.isComposedComponent;
 
-    Component.displayName = 'StyledComponent';
-
-    return Component;
+      NewComponent.displayName = 'StyledComponent';
+      return NewComponent;
+    }
   }
 
   wrapperComponentMiddleWare() {

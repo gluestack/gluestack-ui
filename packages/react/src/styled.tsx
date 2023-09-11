@@ -43,6 +43,7 @@ import { stableHash } from './stableHash';
 import { DeclarationType, GluestackStyleSheet } from './style-sheet';
 import { CSSPropertiesMap } from './core/styled-system';
 import { updateOrderUnResolvedMap } from './updateOrderUnResolvedMap';
+import { getInstalledPlugins } from './createConfig';
 
 const styledSystemProps = { ...CSSPropertiesMap };
 
@@ -1842,15 +1843,48 @@ export function styled<P, Variants, ComCon>(
   // const DEBUG =
   //   process.env.NODE_ENV === 'development' && DEBUG_TAG ? false : false;
 
+  let styledObj: any = theme;
+
+  const plugins = getInstalledPlugins();
+
+  for (const pluginName in plugins) {
+    styledObj = plugins[pluginName]?.inputMiddleWare(styledObj, true, true);
+  }
+  theme = styledObj;
   const sxConvertedObject = convertStyledToStyledVerbosed(theme);
 
-  const StyledComponent = verboseStyled<P, Variants, ComCon>(
+  let StyledComponent = verboseStyled<P, Variants, ComCon>(
     Component,
     sxConvertedObject,
     componentStyleConfig,
     ExtendedConfig,
     BUILD_TIME_PARAMS
   );
+  plugins?.reverse();
+  for (const pluginName in plugins) {
+    if (plugins[pluginName]?.componentMiddleWare) {
+      StyledComponent = plugins[pluginName]?.componentMiddleWare({
+        Component: StyledComponent,
+        theme,
+        componentStyleConfig,
+        ExtendedConfig,
+      });
+    }
+  }
+
+  for (const pluginName in plugins) {
+    const compWrapper =
+      typeof plugins[pluginName].wrapperComponentMiddleWare === 'function'
+        ? plugins[pluginName].wrapperComponentMiddleWare()
+        : null;
+
+    if (compWrapper) {
+      for (const key of Object.keys(compWrapper)) {
+        // @ts-ignore
+        StyledComponent[key] = compWrapper[key];
+      }
+    }
+  }
 
   return StyledComponent;
 }

@@ -2,10 +2,8 @@ import React from 'react';
 import { Wrapper } from '../../components/Wrapper';
 import { Motion } from '@legendapp/motion';
 import { Pressable, View } from 'react-native';
-import { createStyled } from '@gluestack-style/react';
+import { styled } from '@gluestack-style/react';
 import { AnimationResolver } from '@gluestack-style/animation-plugin';
-
-const styled = createStyled([new AnimationResolver()]) as any;
 
 const images = [require('./1.png'), require('./2.png'), require('./3.png')];
 
@@ -37,31 +35,31 @@ export function AnimationPlugin() {
           'aspectRatio': 1 * 1.4,
         }}
       >
-        <styled.Component>
-          <StyledMotionImage
-            style={{
-              width: '100%',
-              height: '100%',
-              position: 'absolute',
-            }}
-            source={{ uri: images[imageIndex] }}
-            key={`image-${imageIndex}-${Math.random()}`}
-            sx={{
-              ':initial': {
-                x: xPosition,
-                opacity: 0,
-              },
-              ':exit': {
-                zIndex: 0,
-                x: -xPosition,
-                opacity: 0,
-              },
-              ':transition': {
-                x: { type: 'spring', stiffness: 200, damping: 23 },
-              },
-            }}
-          />
-        </styled.Component>
+        {/* <styled.Component> */}
+        <StyledMotionImage
+          style={{
+            width: '100%',
+            height: '100%',
+            position: 'absolute',
+          }}
+          source={{ uri: images[imageIndex] }}
+          key={`image-${imageIndex}-${Math.random()}`}
+          sx={{
+            ':initial': {
+              x: xPosition,
+              opacity: 0,
+            },
+            ':exit': {
+              zIndex: 0,
+              x: -xPosition,
+              opacity: 0,
+            },
+            ':transition': {
+              x: { type: 'spring', stiffness: 200, damping: 23 },
+            },
+          }}
+        />
+        {/* </styled.Component> */}
       </Box>
       <Pressable
         accessibilityRole="button"
