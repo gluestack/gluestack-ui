@@ -20,7 +20,6 @@ export * from './Input';
 export * from './Image';
 export * from './KeyboardAvoidingView';
 export * from './Link';
-export * from './LinearGradient';
 export * from './Menu';
 export * from './Modal';
 export * from './Popover';
