@@ -32,7 +32,8 @@ interface SliderAria {
 export function useSlider(
   props: AriaSliderProps,
   state: SliderState,
-  trackLayout: any
+  trackLayout: any,
+  isReversed?: boolean
 ): SliderAria {
   let { labelProps, fieldProps } = useLabel(props);
 
@@ -48,6 +49,7 @@ export function useSlider(
     clientY: number
   ) => {
     const direction = isRTL() ? 'rtl' : undefined;
+    const reverseX = isReversed || direction === 'rtl';
     if (
       !props.isDisabled &&
       state.values.every((_, i) => !state.isThumbDragging(i))
@@ -58,7 +60,7 @@ export function useSlider(
       const clickPosition = isVertical ? clientY : clientX;
       const offset = clickPosition - trackPosition;
       let percent = offset / size;
-      if (direction === 'rtl' || isVertical) {
+      if (reverseX || isVertical) {
         percent = 1 - percent;
       }
       let value = state.getPercentValue(percent);

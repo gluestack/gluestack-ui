@@ -32,7 +32,8 @@ function useSliderWeb(
     left: number;
     x: number;
     y: number;
-  }
+  },
+  isReversed?: boolean
 ): SliderAria {
   let { labelProps, fieldProps } = useLabel(props);
 
@@ -53,7 +54,8 @@ function useSliderWeb(
 
   const stateRef = useRef<SliderState>(null);
   stateRef.current = state;
-  const reverseX = direction === 'rtl';
+  const reverseX = isReversed || direction === 'rtl';
+
   const currentPosition = useRef<number>(null);
   const { moveProps } = useMove({
     onMoveStart() {
@@ -112,7 +114,7 @@ function useSliderWeb(
       const clickPosition = isVertical ? clientY : clientX;
       const offset = clickPosition - trackPosition;
       let percent = offset / size;
-      if (direction === 'rtl' || isVertical) {
+      if (reverseX || isVertical) {
         percent = 1 - percent;
       }
       let value = state.getPercentValue(percent);
@@ -232,8 +234,18 @@ function useSliderWeb(
   };
 }
 
-export const useSlider = (props: any, state: any, ref: any) => {
-  let { groupProps: webGroupProps, ...rest } = useSliderWeb(props, state, ref);
+export const useSlider = (
+  props: any,
+  state: any,
+  ref: any,
+  isReversed?: boolean
+) => {
+  let { groupProps: webGroupProps, ...rest } = useSliderWeb(
+    props,
+    state,
+    ref,
+    isReversed
+  );
   let groupProps = mapDomPropsToRN(webGroupProps);
   let labelProps = mapDomPropsToRN(rest.labelProps);
   return { groupProps, ...rest, labelProps };
