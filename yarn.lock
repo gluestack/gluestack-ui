@@ -2698,7 +2698,7 @@
     "@babel/traverse" "^7.20.5"
     lodash.merge "^4.6.2"
 
-"@gluestack-style/react@0.2.38", "@gluestack-style/react@^0.2.33", "@gluestack-style/react@^0.2.9":
+"@gluestack-style/react@^0.2.33", "@gluestack-style/react@^0.2.38", "@gluestack-style/react@^0.2.9":
   version "0.2.38"
   resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-0.2.38.tgz#71dd361cacad31213bd28fcf1afa3b447ab1232f"
   integrity sha512-j3H47R68RUZP4ocKEsLPEBxrserW5nJNp5TBIS+jWFdECFT/XAhU+xmoc7AGYrRKW6ETw3iIYumfalmPmNkvRA==
@@ -3004,14 +3004,15 @@
     "@react-native-aria/interactions" "^0.2.8"
     react-native-svg "13.4.0"
 
-"@gluestack-ui/linear-gradient@^0.0.3":
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/@gluestack-ui/linear-gradient/-/linear-gradient-0.0.3.tgz#0ac82b05af4b26a96617dd904719f85cfd2e40e2"
-  integrity sha512-eU7Zgh6gyi6vEnZJ91R2A4mPznNHc7xjDDXjMu4JukBw0X/sldShBWPCBh5aJXDETWw7sdEl2Uowjs67QLax7A==
+"@gluestack-ui/linear-gradient@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/linear-gradient/-/linear-gradient-0.1.0.tgz#35cd4997fd3f69f8c592dfd3ce89fa335041bd93"
+  integrity sha512-U28C7lxiBCczBwhk9n0F73leZ+n00/Wa+fmQ7snxunvbqaCUaMXPzslsZYEK9EsU9VRoC+jfRtWjwA0EaWYTmA==
   dependencies:
     "@gluestack-ui/utils" "0.1.9"
     "@react-native-aria/focus" "^0.2.8"
     "@react-native-aria/interactions" "^0.2.10"
+    expo-linear-gradient "12.3.0"
 
 "@gluestack-ui/link@^0.1.6":
   version "0.1.10"
@@ -11293,15 +11294,10 @@ expo-keep-awake@~12.0.1:
   resolved "https://registry.yarnpkg.com/expo-keep-awake/-/expo-keep-awake-12.0.1.tgz#19c5ab55391394ded3f6c262b0707c7140658a11"
   integrity sha512-hqeCnb4033TyuZaXs93zTK7rjVJ3bywXATyMmKmKkLEsH2PKBAl/VmjlCOPQL/2Ncqz6aj7Wo//tjeJTARBD4g==
 
-expo-linear-gradient@^12.3.0:
+expo-linear-gradient@12.3.0, expo-linear-gradient@^12.3.0:
   version "12.3.0"
   resolved "https://registry.yarnpkg.com/expo-linear-gradient/-/expo-linear-gradient-12.3.0.tgz#7abd8fedbf0138c86805aebbdfbbf5e5fa865f19"
   integrity sha512-f9e+Oxe5z7fNQarTBZXilMyswlkbYWQHONVfq8MqmiEnW3h9XsxxmVJLG8uVQSQPUsbW+x1UUT/tnU6mkMWeLg==
-
-expo-linear-gradient@~12.0.1:
-  version "12.0.1"
-  resolved "https://registry.yarnpkg.com/expo-linear-gradient/-/expo-linear-gradient-12.0.1.tgz#452f793b0463ddf313aad431552f23acc85f5d64"
-  integrity sha512-TMl/wBTVQOliL4S3DS5Aa3UFfVySr0mdJEHLG6kfBdMCLkr+tfLI2rGyJ+scS7xgMsvhTIaurhf1+Z0sL3aLCg==
 
 expo-modules-autolinking@1.0.2:
   version "1.0.2"

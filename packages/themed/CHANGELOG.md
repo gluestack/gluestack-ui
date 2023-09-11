@@ -1,5 +1,17 @@
 # @gluestack-ui/themed
 
+## 0.1.34
+
+### Patch Changes
+
+- - Peer dependencies updated
+
+## 0.1.33
+
+### Patch Changes
+
+- Menu top position on native devices
+
 ## 0.1.32
 
 ### Patch Changes
