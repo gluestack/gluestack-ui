@@ -945,6 +945,7 @@ export function verboseStyled<P, Variants, ComCon>(
     ref: React.ForwardedRef<P>
   ) => {
     const isClient = React.useRef(false);
+    const isFirstRender = React.useRef(false);
     //@ts-ignore style: 222ms
     let themeDefaultProps = { ...theme.baseStyle?.props };
 
@@ -1649,7 +1650,7 @@ export function verboseStyled<P, Variants, ComCon>(
     }, []);
 
     useEffect(() => {
-      if (states) {
+      if (states && isFirstRender.current) {
         const {
           mergedBaseStyleCSSIds,
           mergedVariantStyleCSSIds,
@@ -1696,6 +1697,7 @@ export function verboseStyled<P, Variants, ComCon>(
         //   mergedSxDescendantsStyle
         // );
       }
+      isFirstRender.current = true;
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [states]);
 
