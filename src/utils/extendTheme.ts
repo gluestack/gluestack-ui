@@ -12,13 +12,13 @@ export const flattenTokens = (token: any) => {
 
   return flattenToken;
 };
-export const convertTheme = (theme: any) => {
+export const convertTheme = (theme: any = {}) => {
   const gluestackTheme: any = {
     tokens: {},
     aliases: {},
     components: {},
   };
-  Object.keys(theme).forEach((key) => {
+  Object.keys(theme ?? {}).forEach((key) => {
     if (key === 'components') {
       gluestackTheme.components = theme[key];
     } else if (key === 'config') {
