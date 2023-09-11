@@ -137,16 +137,27 @@ export function ContextBasedStylesContent() {
   );
 }
 
-const renderItem = (item: any) => (
-  <Pressable
-    key={item}
-    sx={{
-      bg: '$amber400',
-    }}
-  >
-    {/* <RNText>{item}</RNText> */}
-  </Pressable>
-);
+const RenderItem = (item: any) => {
+  const [active, setActive] = React.useState(false);
+  return (
+    <Pressable
+      key={item}
+      onPressIn={() => setActive(true)}
+      onPressOut={() => setActive(false)}
+      states={{
+        active,
+      }}
+      sx={{
+        'bg': '$amber400',
+        ':active': {
+          bg: '$pink500',
+        },
+      }}
+    >
+      {/* <RNText>{item}</RNText> */}
+    </Pressable>
+  );
+};
 
 const renderItem2 = (item: any) => (
   <RNPressable key={item} style={styleshet.style}>
@@ -164,7 +175,7 @@ const MyList = React.memo(() => {
   }, []);
   const data = useMemo(
     () =>
-      Array(100)
+      Array(1000)
         .fill(0)
         .map((_, index) => `Item ${index}`),
     []
@@ -182,7 +193,9 @@ const MyList = React.memo(() => {
       >
         {endTime}
       </Text>
-      {data.map(renderItem)}
+      {data.map((_, k) => (
+        <RenderItem key={k} />
+      ))}
     </>
   );
 });

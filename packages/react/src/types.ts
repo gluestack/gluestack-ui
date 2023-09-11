@@ -785,7 +785,8 @@ export type IWrapperType =
   | 'passing-base'
   | 'inline-base'
   | 'inline-variant'
-  | 'inline-descendant-base';
+  | 'inline-descendant-base'
+  | 'inline-base-state';
 
 export type GlobalStyleMap = Map<
   IWrapperType,
