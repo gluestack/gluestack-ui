@@ -10,7 +10,6 @@ function SliderFilledTrack<StyledSliderFilledTrack>(
     const _ref = React.useRef(null);
 
     const {
-      isReversed,
       state,
       trackLayout,
       orientation,
@@ -28,13 +27,9 @@ function SliderFilledTrack<StyledSliderFilledTrack>(
 
     const getSliderTrackPosition = () => {
       if (orientation === 'vertical') {
-        return isReversed
-          ? trackLayout.height * state.getThumbPercent(0)
-          : trackLayout.height * state.getThumbPercent(0);
+        return trackLayout.height * state.getThumbPercent(0);
       } else {
-        return isReversed
-          ? trackLayout.width * state.getThumbPercent(0)
-          : trackLayout.width * state.getThumbPercent(0);
+        return trackLayout.width * state.getThumbPercent(0);
       }
     };
 
