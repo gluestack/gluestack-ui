@@ -5,8 +5,6 @@ export default styled(
   TextInput,
   {
     p: '$2',
-    //@ts-ignore
-    multiline: true,
     color: '$textLight900',
     textAlignVertical: 'top',
     flex: 1,
