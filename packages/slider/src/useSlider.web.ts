@@ -71,8 +71,14 @@ function useSliderWeb(
       }
 
       let delta = isVertical ? deltaY : deltaX;
-      if (isVertical || reverseX) {
-        delta = -delta;
+      if (reverseX) {
+        if (!isVertical) {
+          delta = -delta;
+        }
+      } else {
+        if (isVertical) {
+          delta = -delta;
+        }
       }
 
       currentPosition.current += delta;
@@ -114,8 +120,14 @@ function useSliderWeb(
       const clickPosition = isVertical ? clientY : clientX;
       const offset = clickPosition - trackPosition;
       let percent = offset / size;
-      if (reverseX || isVertical) {
-        percent = 1 - percent;
+      if (reverseX) {
+        if (!isVertical) {
+          percent = 1 - percent;
+        }
+      } else {
+        if (isVertical) {
+          percent = 1 - percent;
+        }
       }
       let value = state.getPercentValue(percent);
 

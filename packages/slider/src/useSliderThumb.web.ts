@@ -107,7 +107,7 @@ export function useSliderThumb(
       if (pointerType === 'keyboard') {
         // (invert left/right according to language direction) + (according to vertical)
         let delta =
-          ((reverseX ? -deltaX : deltaX) + (isVertical ? -deltaY : -deltaY)) *
+          ((reverseX ? -deltaX : deltaX) + (reverseX ? deltaY : -deltaY)) *
           stateRef.current.step;
         currentPosition.current += delta * size;
         stateRef.current.setThumbValue(
@@ -116,8 +116,14 @@ export function useSliderThumb(
         );
       } else {
         let delta = isVertical ? deltaY : deltaX;
-        if (isVertical || reverseX) {
-          delta = -delta;
+        if (reverseX) {
+          if (!isVertical) {
+            delta = -delta;
+          }
+        } else {
+          if (isVertical) {
+            delta = -delta;
+          }
         }
         currentPosition.current += delta;
         stateRef.current.setThumbPercent(
