@@ -75,10 +75,12 @@ if (typeof window !== 'undefined') {
   // Test on all the platforms
   if (Platform.OS === 'web') {
     order.forEach((orderKey) => {
-      let wrapperElement = document.getElementById(orderKey);
+      let wrapperElement = document.getElementById(
+        `gluestack-style-injected-styles-${orderKey}`
+      );
       if (!wrapperElement) {
         wrapperElement = document.createElement('div');
-        wrapperElement.id = orderKey;
+        wrapperElement.id = `gluestack-style-injected-styles-${orderKey}`;
         document.head.appendChild(wrapperElement);
       }
     });
@@ -100,7 +102,6 @@ export const injectCss = (
   styleTagId: string
 ) => {
   // let modifiedStylesheet = {} as any;
-
   if (!toBeFlushedStyles[wrapperType]) {
     toBeFlushedStyles[wrapperType] = {};
   }
@@ -111,8 +112,9 @@ export const injectCss = (
   }
 
   if (typeof window !== 'undefined') {
-    let wrapperElement = document.querySelector('#' + wrapperType);
-
+    let wrapperElement = document.querySelector(
+      '#' + `gluestack-style-injected-styles-${wrapperType}`
+    );
     if (wrapperElement) {
       let style = wrapperElement.querySelector(`[id='${styleTagId}']`);
 
@@ -157,8 +159,8 @@ export const flush = () => {
       React.createElement(
         'div',
         {
-          id: orderKey,
-          key: orderKey,
+          id: `gluestack-style-injected-styles-${orderKey}`,
+          key: `gluestack-style-injected-styles-${orderKey}`,
         },
         styleChildren
       )
