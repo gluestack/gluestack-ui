@@ -1,0 +1,86 @@
+---
+title: gluestack-ui LinearGradient | Recipe
+
+description: This is a recipe for using LinearGradients with gluestack-ui
+
+pageTitle: LinearGradient
+
+pageDescription: This is a recipe for using LinearGradients with gluestack-ui
+
+showHeader: true
+---
+
+<script async src="https://snack.expo.dev/embed.js"></script>
+
+<Meta title="Recipes/Linear-Gradient" />
+
+# LinearGradient
+
+A LinearGradient component is a reusable graphical element that helps create linear gradients as background or styling effects within UI elements. A linear gradient is a gradual transition between two or more colors, creating a smooth progression of color changes along a straight line.
+
+## Usage in Expo project
+
+<iframe
+  src="https://snack.expo.dev/embedded/@gluestack/gluestack-ui-linear-gradient?iframeId=mv6tjd6wte&preview=true&platform=web&theme=dark"
+  style={{ width: '70vw', height: '60vh', border: '0px' }}
+/>
+
+```jsx
+import { LinearGradient } from 'expo-linear-gradient';
+import { styled } from '@gluestack-ui/themed';
+
+const MyLinearGradient = styled(
+  LinearGradient,
+  {},
+
+  {
+    resolveProps: ['colors'],
+  },
+  {
+    propertyTokenMap: {
+      colors: 'colors',
+    },
+    propertyResolver: {
+      colors: (rawValue: any, resolver: any) => {
+        rawValue.forEach((color: any, index: number) => {
+          rawValue[index] = resolver(color);
+        });
+        return rawValue;
+      },
+    },
+  }
+);
+```
+
+<br />
+
+## Usage in React Native project
+
+Create a LinearGradient styled component using `react-native-linear-gradient` from [react-native-linear-gradient](https://www.npmjs.com/package/react-native-linear-gradient) and `styled` from `@gluestack-ui/themed` and use it in your application.
+
+```jsx
+import LinearGradient from 'react-native-linear-gradient';
+import { styled } from '@gluestack-ui/themed';
+
+const MyLinearGradient = styled(
+  LinearGradient,
+  {},
+
+  {
+    resolveProps: ['colors'],
+  },
+  {
+    propertyTokenMap: {
+      colors: 'colors',
+    },
+    propertyResolver: {
+      colors: (rawValue: any, resolver: any) => {
+        rawValue.forEach((color: any, index: number) => {
+          rawValue[index] = resolver(color);
+        });
+        return rawValue;
+      },
+    },
+  }
+);
+```
