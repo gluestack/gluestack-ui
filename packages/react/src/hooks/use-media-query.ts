@@ -28,19 +28,24 @@ const calculateQuery = (
   }
   switch (key) {
     case 'maxWidth':
+      // @ts-ignore
       retval = !isNil(val) ? width <= val : undefined;
       break;
     case 'minWidth':
+      // @ts-ignore
       retval = !isNil(val) ? width >= val : undefined;
       break;
     case 'maxHeight':
+      // @ts-ignore
       retval = !isNil(val) ? height <= val : undefined;
       break;
     case 'minHeight':
+      // @ts-ignore
       retval = !isNil(val) ? height >= val : undefined;
       break;
     case 'orientation':
       if (!isNil(val)) {
+        // @ts-ignore
         if (width > height) {
           retval = val === 'landscape';
         } else {
