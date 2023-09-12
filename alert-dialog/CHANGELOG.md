@@ -1,5 +1,11 @@
 # @gluestack-ui/alert-dialog
 
+## 0.1.16
+
+### Patch Changes
+
+- Fixed overlay components to take overlay
+
 ## 0.1.15
 
 ### Patch Changes

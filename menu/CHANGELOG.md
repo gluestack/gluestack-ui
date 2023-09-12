@@ -1,5 +1,11 @@
 # @gluestack-ui/menu
 
+## 0.2.19
+
+### Patch Changes
+
+- Fixed overlay components to take overlay
+
 ## 0.2.18
 
 ### Patch Changes
