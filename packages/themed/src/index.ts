@@ -1,6 +1,6 @@
 'use client';
 export * from './components';
-export { config } from './components/gluestack-ui.config';
+export { config, UIConfig } from './components/gluestack-ui.config';
 
 export {
   StyledProvider,
