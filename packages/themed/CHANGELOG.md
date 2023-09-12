@@ -1,5 +1,24 @@
 # @gluestack-ui/themed
 
+## 0.1.38
+
+### Patch Changes
+
+- Fixed multiline waring in `Textarea` [#1051](https://github.com/gluestack/gluestack-ui/pull/1051).
+- Added typing support for external config. [#1060](https://github.com/gluestack/gluestack-ui/pull/1060)
+
+## 0.1.37
+
+### Patch Changes
+
+- Fixed overlay components
+
+## 0.1.36
+
+### Patch Changes
+
+- - Removed `LinearGradient` component (Please follow this [link](https://snack.expo.dev/@gluestack/gluestack-ui-linear-gradient) for LinearGradient implementation)
+
 ## 0.1.35
 
 ### Patch Changes
