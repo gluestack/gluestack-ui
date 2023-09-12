@@ -73,7 +73,7 @@ const Modal = (StyledModal: any) =>
         visible,
       ]);
 
-      if (!_experimentalOverlay) {
+      if (_experimentalOverlay) {
         return (
           <ModalContext.Provider value={contextValue}>
             <StyledModal {...remainingProps} ref={ref}>

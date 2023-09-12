@@ -127,7 +127,7 @@ export const Popover = (StyledPopover: any) =>
         shouldFlip,
       ]);
 
-      if (!_experimentalOverlay) {
+      if (_experimentalOverlay) {
         return (
           <>
             {updatedTrigger(targetRef)}

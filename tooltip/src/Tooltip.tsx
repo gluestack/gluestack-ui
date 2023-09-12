@@ -121,7 +121,7 @@ function Tooltip<StyledTooltipProp>(
         callback: () => setIsOpen(false),
       });
 
-      if (!_experimentalOverlay) {
+      if (_experimentalOverlay) {
         return (
           <>
             {updatedTrigger(targetRef)}
