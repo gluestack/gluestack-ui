@@ -16,6 +16,7 @@ export function useBreakpointValue(values: BreakPointValue) {
   const windowWidth = useWindowDimensions()?.width;
   const theme = useStyled();
   const breakpoints = theme?.config?.tokens?.breakpoints;
+
   if (!breakpoints) {
     console.warn('No breakpoints found in config');
     return values;
