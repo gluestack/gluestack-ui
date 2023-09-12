@@ -70,7 +70,8 @@ function Slider<StyledSliderProps>(
       const { trackProps } = useSlider(
         props as unknown as any,
         state,
-        trackLayout
+        trackLayout,
+        isReversed
       );
       const contextValue = React.useMemo(() => {
         return {
