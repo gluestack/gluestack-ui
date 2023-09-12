@@ -9,6 +9,8 @@ export default styled(
     textAlignVertical: 'top',
     flex: 1,
     props: {
+      // @ts-ignore
+      multiline: true,
       placeholderTextColor: '$textLight500',
     },
     _dark: {
