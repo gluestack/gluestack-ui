@@ -1,5 +1,12 @@
 # @gluestack-ui/themed
 
+## 0.1.38
+
+### Patch Changes
+
+- Fixed multiline waring in `Textarea` [#1051](https://github.com/gluestack/gluestack-ui/pull/1051).
+- Added typing support for external config. [#1060](https://github.com/gluestack/gluestack-ui/pull/1060)
+
 ## 0.1.37
 
 ### Patch Changes
