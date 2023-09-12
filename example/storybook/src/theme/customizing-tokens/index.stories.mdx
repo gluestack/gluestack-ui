@@ -49,8 +49,8 @@ export { config }
 type ConfigType = typeof config;
 
 // Extend the internal styled config
-declare module "@gluestack-style/react" {
-  interface ICustomConfig extends ConfigType {}
+declare module "@gluestack-ui/themed" {
+  interface UIConfig extends ConfigType {}
 }
 ```
 
