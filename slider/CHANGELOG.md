@@ -1,5 +1,11 @@
 # @gluestack-ui/slider
 
+## 0.1.12
+
+### Patch Changes
+
+- Reversed functionality fixed
+
 ## 0.1.11
 
 ### Patch Changes
