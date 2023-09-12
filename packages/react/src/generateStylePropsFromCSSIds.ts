@@ -130,8 +130,8 @@ function getDataStyle(props: any, styleCSSIdsString: string) {
 export function generateStylePropsFromCSSIds(
   props: any,
   styleCSSIds: any,
-  config: any
-  // activeTheme: any
+  config: any,
+  activeTheme: any
 ) {
   // console.setStartTimeStamp('generateStylePropsFromCSSIds');
   const propsStyles = Array.isArray(props?.style)
@@ -147,11 +147,10 @@ export function generateStylePropsFromCSSIds(
       const nativeStyleMap = GluestackStyleSheet.getStyleMap();
       styleCSSIds.forEach((cssId: any) => {
         const nativeStyle = nativeStyleMap.get(cssId);
+
         if (nativeStyle) {
           const queryCondition = nativeStyle?.meta?.queryCondition;
-          const styleSheetIds = nativeStyle?.value;
-          const styleSheet = styleSheetIds;
-
+          const styleSheet = nativeStyle?.resolved;
           if (queryCondition) {
             if (isValidBreakpoint(config, queryCondition)) {
               styleObj.push(styleSheet);
@@ -159,11 +158,11 @@ export function generateStylePropsFromCSSIds(
           } else {
             styleObj.push(styleSheet);
           }
-          // if (nativeStyle.meta.themeCondition && activeTheme) {
-          //   styleObj.push({
-          //     ...nativeStyle.meta.themeCondition[activeTheme],
-          //   });
-          // }
+          if (nativeStyle.meta.themeCondition && activeTheme) {
+            styleObj.push({
+              ...nativeStyle.meta.themeCondition[activeTheme],
+            });
+          }
         }
       });
     } else {
@@ -182,6 +181,7 @@ export function generateStylePropsFromCSSIds(
     'data-style': getDataStyle(props, styleCSSIdsString),
     'style': propsStyles ? [...styleObj, ...propsStyles] : styleObj,
     'dataSet': {
+      ...props?.dataSet,
       style: getDataStyle(props, styleCSSIdsString),
     },
   });

@@ -11,7 +11,8 @@ export function injectComponentAndDescendantStyles(
   orderedResolved: OrderedSXResolved,
   styleTagId?: string,
   type: 'boot' | 'inline' = 'boot',
-  _GluestackStyleSheet: StyleInjector = GluestackStyleSheet
+  _GluestackStyleSheet: StyleInjector = GluestackStyleSheet,
+  platform: string = ''
 ) {
   const [
     componentOrderResolvedBaseStyle,
@@ -82,7 +83,9 @@ export function injectComponentAndDescendantStyles(
     false
   );
 
-  GluestackStyleSheet.inject(toBeInjected);
+  if (platform === 'web') {
+    GluestackStyleSheet.inject(toBeInjected);
+  }
 
   return styleCSSIdsArr;
 }

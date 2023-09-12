@@ -267,6 +267,11 @@ export class AnimationResolver implements IStyledPlugin {
     //@ts-ignore
     Component.styled.config = styledConfig;
 
+    //@ts-ignore
+    Component.isStyledComponent = NewComp.isStyledComponent;
+    //@ts-ignore
+    Component.isComposedComponent = NewComp.isComposedComponent;
+
     Component.displayName = 'StyledComponent';
 
     return Component;

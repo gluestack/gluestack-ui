@@ -275,6 +275,10 @@ export class FontResolver implements IStyledPlugin, FontPlugin {
 
       return <NewComp sx={resolvedSxProps} {...rest} ref={ref} />;
     });
+
+    //@ts-ignore
+    Comp.isStyledComponent = NewComp.isStyledComponent;
+
     return Comp;
   }
 }

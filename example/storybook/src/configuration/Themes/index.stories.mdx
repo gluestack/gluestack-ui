@@ -30,7 +30,6 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
         Provider: StyledProvider,
         config: config,
         useState,
-        Theme,
       },
       code: `
         function App() {
@@ -89,16 +88,15 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
                 </Box>
                 <Box
                   bg="$gray100"
-                  h="440px"
-                  w="600px"
+                  h="400px"
+                  w="350px"
                   alignItems="center"
                   justifyContent="center"
                 >
                   <Theme {...props}>
                     <Box
-                      mx="auto"
                       h="200px"
-                      w="400px"
+                      w="200px"
                       bg="$backgroundColor"
                       borderWidth="$borderWidth"
                       borderColor="$borderColor"
@@ -160,21 +158,20 @@ export const config = createConfig({
       // ...
     },
     // ...
-    themes: {
-      classic:{
-        colors: {
-          $primary: '$colors.$brown400',
-          $secondary: '$colors.$brown100',
-        },
+  },
+  themes: {
+    classic: {
+      colors: {
+        $primary: '$colors.$brown400',
+        $secondary: '$colors.$brown100',
       },
-      modern:{
-        colors: {
-          $primary: '$colors.$red400',
-          $secondary: '$colors.$red100',
-        },
+    },
+    modern: {
+      colors: {
+        $primary: '$colors.$red400',
+        $secondary: '$colors.$red100',
       },
-      }
-    }
+    },
   },
 });
 ```
