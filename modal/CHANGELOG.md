@@ -1,5 +1,11 @@
 # @gluestack-ui/modal
 
+## 0.1.20
+
+### Patch Changes
+
+- Fixed overlay components to take overlay
+
 ## 0.1.19
 
 ### Patch Changes

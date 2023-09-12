@@ -1,5 +1,11 @@
 # @gluestack-ui/tooltip
 
+## 0.1.17
+
+### Patch Changes
+
+- Fixed overlay components to take overlay
+
 ## 0.1.16
 
 ### Patch Changes

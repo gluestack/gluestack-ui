@@ -1,6 +1,6 @@
 {
   "name": "@gluestack-ui/popover",
-  "version": "0.1.20",
+  "version": "0.1.21",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/index.d.ts",
