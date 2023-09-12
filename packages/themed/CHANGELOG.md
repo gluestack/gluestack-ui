@@ -1,5 +1,11 @@
 # @gluestack-ui/themed
 
+## 0.1.37
+
+### Patch Changes
+
+- Fixed overlay components
+
 ## 0.1.36
 
 ### Patch Changes
