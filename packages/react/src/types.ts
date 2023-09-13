@@ -250,7 +250,7 @@ export type GlobalStyles<AliasTypes, TokenTypes, Variants> = GlobalVariantSx<
     AliasTypes,
     TokenTypes
   >;
-  compundVariants?: readonly GlobalCompoundVariant<
+  compoundVariants?: readonly GlobalCompoundVariant<
     'variants' extends keyof Variants ? Variants['variants'] : unknown,
     AliasTypes,
     TokenTypes

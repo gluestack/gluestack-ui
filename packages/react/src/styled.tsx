@@ -723,6 +723,57 @@ export function getVariantProps(
   };
 }
 
+function resolveInlineProps(
+  componentStyleConfig: any,
+  componentExtendedConfig: any,
+  props: any,
+  CONFIG: any
+) {
+  let resolvedInlineProps = {};
+  if (
+    componentStyleConfig.resolveProps &&
+    Object.keys(componentExtendedConfig).length > 0
+  ) {
+    componentStyleConfig.resolveProps.forEach((toBeResovledProp: any) => {
+      if (props[toBeResovledProp]) {
+        let value = props[toBeResovledProp];
+        if (
+          CONFIG.propertyResolver &&
+          CONFIG.propertyResolver.props &&
+          CONFIG.propertyResolver.props[toBeResovledProp]
+        ) {
+          let transformer = CONFIG.propertyResolver.props[toBeResovledProp];
+          let aliasTokenType = CONFIG.propertyTokenMap[toBeResovledProp];
+          let token = transformer(
+            value,
+            (value1: any, scale = aliasTokenType) =>
+              resolveStringToken(
+                value1,
+                CONFIG,
+                CONFIG.propertyTokenMap,
+                toBeResovledProp,
+                scale
+              )
+          );
+          //@ts-ignore
+          resolvedInlineProps[toBeResovledProp] = token;
+        } else {
+          //@ts-ignore
+          resolvedInlineProps[toBeResovledProp] =
+            getResolvedTokenValueFromConfig(
+              componentExtendedConfig,
+              props,
+              toBeResovledProp,
+              props[toBeResovledProp]
+            );
+        }
+        delete props[toBeResovledProp];
+      }
+    });
+  }
+  return resolvedInlineProps;
+}
+
 const getStyleIdsFromMap = (
   CONFIG: any,
   ExtendedConfig: any,
@@ -1253,48 +1304,12 @@ export function verboseStyled<P, Variants, ComCon>(
     // 520ms
 
     // Inline prop based style resolution TODO: Diagram insertion
-    const resolvedInlineProps = {};
-    if (
-      componentStyleConfig.resolveProps &&
-      Object.keys(componentExtendedConfig).length > 0
-    ) {
-      componentStyleConfig.resolveProps.forEach((toBeResovledProp: any) => {
-        if (componentPropsWithoutVariants[toBeResovledProp]) {
-          let value = componentPropsWithoutVariants[toBeResovledProp];
-          if (
-            CONFIG.propertyResolver &&
-            CONFIG.propertyResolver.props &&
-            CONFIG.propertyResolver.props[toBeResovledProp]
-          ) {
-            let transformer = CONFIG.propertyResolver.props[toBeResovledProp];
-            let aliasTokenType = CONFIG.propertyTokenMap[toBeResovledProp];
-            let token = transformer(
-              value,
-              (value1: any, scale = aliasTokenType) =>
-                resolveStringToken(
-                  value1,
-                  CONFIG,
-                  CONFIG.propertyTokenMap,
-                  toBeResovledProp,
-                  scale
-                )
-            );
-            //@ts-ignore
-            resolvedInlineProps[toBeResovledProp] = token;
-          } else {
-            //@ts-ignore
-            resolvedInlineProps[toBeResovledProp] =
-              getResolvedTokenValueFromConfig(
-                componentExtendedConfig,
-                componentPropsWithoutVariants,
-                toBeResovledProp,
-                componentPropsWithoutVariants[toBeResovledProp]
-              );
-          }
-          delete componentPropsWithoutVariants[toBeResovledProp];
-        }
-      });
-    }
+    const resolvedInlineProps = resolveInlineProps(
+      componentStyleConfig,
+      componentExtendedConfig,
+      componentPropsWithoutVariants,
+      CONFIG
+    );
 
     const passingProps = deepMergeObjects(
       applyComponentPassingProps,
@@ -1319,6 +1334,7 @@ export function verboseStyled<P, Variants, ComCon>(
 
     let containsSX = false;
     Object.assign(applyComponentInlineProps, filteredPassingRemainingProps);
+    Object.assign(applyComponentInlineProps, resolvedInlineProps);
     Object.assign(applyComponentInlineProps, filteredComponentRemainingProps);
 
     if (
@@ -1524,10 +1540,21 @@ export function verboseStyled<P, Variants, ComCon>(
 
         injectAndUpdateSXProps(filteredPassingSx);
 
+        const resolvedPassingRemainingProps = resolveInlineProps(
+          componentStyleConfig,
+          componentExtendedConfig,
+          filteredPassingRemainingPropsUpdated,
+          CONFIG
+        );
+
         Object.assign(
           applyComponentInlineProps,
           filteredPassingRemainingPropsUpdated
         );
+
+        Object.assign(applyComponentInlineProps, resolvedPassingRemainingProps);
+
+        Object.assign(applyComponentInlineProps, resolvedInlineProps);
 
         Object.assign(
           applyComponentInlineProps,
