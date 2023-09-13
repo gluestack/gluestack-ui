@@ -1,7 +1,7 @@
 import { AsForwarder } from '@gluestack-style/react';
 import { styled } from '@gluestack-style/react';
 
-export const StyledIcon: any = styled(
+export const StyledIcon = styled(
   AsForwarder,
   {
     color: '$backgroundLight800',
