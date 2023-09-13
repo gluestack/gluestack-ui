@@ -48,6 +48,7 @@ export const Input = (StyledInput: any) =>
       return (
         <StyledInput
           {...props}
+          type={type}
           states={{
             focus: isFocused,
             invalid: isInvalid,
