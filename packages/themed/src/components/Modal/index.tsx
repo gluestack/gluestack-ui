@@ -8,7 +8,6 @@ import {
   Body,
   Backdrop,
 } from './styled-components';
-import { styled } from '../styled';
 
 export const Modal = createModal({
   Root,
@@ -19,7 +18,7 @@ export const Modal = createModal({
   Body,
   Backdrop,
   //@ts-ignore
-  AnimatePresence: styled.Component,
+  AnimatePresence: Content.AnimatePresence,
 });
 export const ModalContent = Modal.Content;
 export const ModalCloseButton = Modal.CloseButton;

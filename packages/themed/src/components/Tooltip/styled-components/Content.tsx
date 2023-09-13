@@ -1,10 +1,10 @@
-import { styled } from '../../styled';
+import { AnimationResolver } from '@gluestack-style/animation-plugin';
+import { styled } from '@gluestack-style/react';
 import { Motion } from '@legendapp/motion';
 
 export default styled(
   Motion.View,
   {
-    //@ts-ignore
     ':initial': {
       opacity: 0,
       scale: 0.5,
@@ -37,6 +37,7 @@ export default styled(
       color: '$textLight50',
     },
 
+    // @ts-ignore
     '_dark': {
       bg: '$backgroundDark800',
       _text: {
@@ -50,5 +51,8 @@ export default styled(
   {
     componentName: 'TooltipContent',
     descendantStyle: ['_text'],
-  } as const
+  } as const,
+  {
+    plugins: [new AnimationResolver({})],
+  }
 );
