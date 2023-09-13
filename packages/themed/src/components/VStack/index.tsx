@@ -1,6 +1,6 @@
-import { createVStack } from '@gluestack-ui/vstack';
 import { Root } from './styled-components';
 
-export const VStack = createVStack({
-  Root,
-});
+const VStack = Root;
+VStack.displayName = 'VStack';
+
+export { VStack };
