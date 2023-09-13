@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { createMotionAnimatedComponent, Motion } from '@legendapp/motion';
 import { Pressable } from 'react-native';
 import { styled } from '@gluestack-style/react';
@@ -10,7 +11,6 @@ const MotionPressable = createMotionAnimatedComponent(
 export default styled(
   MotionPressable,
   {
-    //@ts-ignore
     ':initial': {
       opacity: 0,
     },
