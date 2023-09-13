@@ -38,9 +38,9 @@ const Box = styled(Motion.View, {
 
 gluestack-ui also provides a set of overlay components that can be used to create a modal-like experience. All the animation props works out of the box with these components. However, to animate component on exit you need to pass [AnimatePresence](https://legendapp.com/open-source/motion/animate-presence/) while creating component.
 
-If you are using [@legendapp/motion](https://legendapp.com/open-source/motion/), you can use `styled.Component`, which internally uses `AnimatePresence` from `@legendapp/motion`.
+If you are using [@legendapp/motion](https://legendapp.com/open-source/motion/), you can use `<component-name>.AnimatePresence`, which internally uses `AnimatePresence` from `@legendapp/motion`.
 
-### Why styled.Component and not AnimatePresence from @legendapp/motion?
+### Why ComponentName.AnimatePresence and not AnimatePresence from @legendapp/motion?
 
 For exit animation, `@legendapp/motion` internally loops over children and tries to find the `exit` prop directly. However, with our wrapper component, we can pass the `exit` prop to the component, and it will work as expected with `AnimatePresence`.
 
@@ -52,7 +52,7 @@ For exit animation, `@legendapp/motion` internally loops over children and tries
 export const Tooltip = createTooltip({
   Root,
   Content,
-  AnimatePresence: styled.Component, // Can be AnimatePresence from the library you are using
+  AnimatePresence: Content.AnimatePresence, // Can be AnimatePresence from the library you are using
 });
 ```
 

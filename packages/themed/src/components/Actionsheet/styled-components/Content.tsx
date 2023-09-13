@@ -1,5 +1,6 @@
 import { Motion } from '@legendapp/motion';
-import { styled } from '../../styled';
+import { styled } from '@gluestack-style/react';
+import { AnimationResolver } from '@gluestack-style/animation-plugin';
 
 export default styled(
   Motion.View,
@@ -13,12 +14,14 @@ export default styled(
     _sectionHeaderBackground: {
       bg: '$backgroundLight0',
     },
+    // @ts-ignore
     _dark: {
       bg: '$backgroundDark900',
       _sectionHeaderBackground: {
         bg: '$backgroundDark900',
       },
     },
+    // @ts-ignore
     _web: {
       userSelect: 'none',
     },
@@ -29,5 +32,8 @@ export default styled(
   {
     componentName: 'ActionsheetContent',
     descendantStyle: ['_sectionHeaderBackground'],
-  } as const
+  } as const,
+  {
+    plugins: [new AnimationResolver({})],
+  }
 );

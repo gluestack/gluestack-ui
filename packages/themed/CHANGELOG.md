@@ -1,5 +1,11 @@
 # @gluestack-ui/themed
 
+## 0.1.39
+
+### Patch Changes
+
+- Updated Actionsheet, VStack, HStack and Input Creator Versions.
+
 ## 0.1.38
 
 ### Patch Changes

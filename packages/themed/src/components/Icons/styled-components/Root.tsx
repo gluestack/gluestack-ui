@@ -1,5 +1,5 @@
 import { AsForwarder } from '@gluestack-style/react';
-import { styled } from '../../styled';
+import { styled } from '@gluestack-style/react';
 
 export const StyledIcon: any = styled(
   AsForwarder,
@@ -65,7 +65,6 @@ export const StyledIcon: any = styled(
     // },
   },
   {
-    ancestorStyle: ['_icon'],
     componentName: 'Icon',
   } as const,
   {
