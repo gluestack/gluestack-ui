@@ -1,6 +1,6 @@
+import { createHStack } from '@gluestack-ui/hstack';
 import { Root } from './styled-components';
 
-const HStack = Root;
-HStack.displayName = 'HStack';
-
-export { HStack };
+export const HStack = createHStack({
+  Root,
+});
