@@ -43,6 +43,7 @@ import { stableHash } from './stableHash';
 import { DeclarationType, GluestackStyleSheet } from './style-sheet';
 import { CSSPropertiesMap } from './core/styled-system';
 import { updateOrderUnResolvedMap } from './updateOrderUnResolvedMap';
+import { getInstalledPlugins } from './createConfig';
 
 const styledSystemProps = { ...CSSPropertiesMap };
 
@@ -819,7 +820,7 @@ const getStyleIdsFromMap = (
   return componentStyleObject;
 };
 
-export function verboseStyled<P, Variants, ComCon>(
+export function verboseStyled<P, Variants, ComCon, PluginType>(
   Component: React.ComponentType<P>,
   theme: Partial<IVerbosedTheme<Variants, P>>,
   componentStyleConfig: IComponentStyleConfig<ComCon> = {},
@@ -987,7 +988,9 @@ export function verboseStyled<P, Variants, ComCon>(
       // sxHash: BUILD_TIME_sxHash = '',
       ...componentProps
     }: Omit<P, keyof Variants> &
-      Partial<ComponentProps<ITypeReactNativeStyles, Variants, P, ComCon>> &
+      Partial<
+        ComponentProps<ITypeReactNativeStyles, Variants, P, ComCon, PluginType>
+      > &
       Partial<UtilityProps<ITypeReactNativeStyles>> & {
         as?: any;
         children?: any;
@@ -996,28 +999,19 @@ export function verboseStyled<P, Variants, ComCon>(
   ) => {
     const isClient = React.useRef(false);
 
-    //@ts-ignore style: 222ms
+    //@ts-ignore
     let themeDefaultProps = { ...theme.baseStyle?.props };
 
-    // 240ms
     const sxComponentStyleIds = useRef({});
     const sxDescendantStyleIds: any = useRef({});
 
     const sxComponentPassingProps = useRef({});
 
-    // const applySxStyleCSSIds = useRef([]);
     const applySxBaseStyleCSSIds = useRef([]);
     const applySxVariantStyleCSSIds = useRef([]);
 
     const applySxDescendantStyleCSSIdsAndPropsWithKey = useRef({});
 
-    // const [applySxStateStyleCSSIds, setApplyStateSxStyleCSSIds] = useState([]);
-    // const [componentStatePassingProps, setComponentStatePassingProps] =
-    //   useState({});
-    // const [sxStatePassingProps, setSxStatePassingProps] = useState({});
-
-    //200ms
-    // let time = Date.now();
     const styledContext = useStyled();
     const { theme: activeTheme } = useTheme();
 
@@ -1832,11 +1826,11 @@ export function verboseStyled<P, Variants, ComCon>(
   return StyledComp;
 }
 
-export function styled<P, Variants, ComCon>(
+export function styled<P, Variants, ComCon, PluginType = []>(
   Component: React.ComponentType<P>,
-  theme: ITheme<Variants, P>,
+  theme: ITheme<Variants, P, PluginType>,
   componentStyleConfig?: IComponentStyleConfig<ComCon>,
-  ExtendedConfig?: ExtendedConfigType,
+  ExtendedConfig?: ExtendedConfigType<PluginType>,
   BUILD_TIME_PARAMS?: {
     orderedResolved: OrderedSXResolved;
     verbosedStyleIds: {
@@ -1851,15 +1845,58 @@ export function styled<P, Variants, ComCon>(
   // const DEBUG =
   //   process.env.NODE_ENV === 'development' && DEBUG_TAG ? false : false;
 
+  let styledObj = theme;
+  // @ts-ignore
+  let plugins: PluginType = [...getInstalledPlugins()];
+  if (ExtendedConfig?.plugins) {
+    // @ts-ignore
+    plugins = [...plugins, ...ExtendedConfig?.plugins];
+  }
+
+  for (const pluginName in plugins) {
+    // @ts-ignore
+    styledObj = plugins[pluginName]?.inputMiddleWare<P>(styledObj, true, true);
+  }
+  theme = styledObj;
   const sxConvertedObject = convertStyledToStyledVerbosed(theme);
 
-  const StyledComponent = verboseStyled<P, Variants, ComCon>(
+  let StyledComponent = verboseStyled<P, Variants, ComCon, PluginType>(
     Component,
     sxConvertedObject,
     componentStyleConfig,
     ExtendedConfig,
     BUILD_TIME_PARAMS
   );
+  // @ts-ignore
+  plugins?.reverse();
+  for (const pluginName in plugins) {
+    // @ts-ignore
+    if (plugins[pluginName]?.componentMiddleWare) {
+      // @ts-ignore
+      StyledComponent = plugins[pluginName]?.componentMiddleWare({
+        Component: StyledComponent,
+        theme,
+        componentStyleConfig,
+        ExtendedConfig,
+      });
+    }
+  }
+
+  for (const pluginName in plugins) {
+    const compWrapper =
+      // @ts-ignore
+      typeof plugins[pluginName].wrapperComponentMiddleWare === 'function'
+        ? // @ts-ignore
+          plugins[pluginName].wrapperComponentMiddleWare()
+        : null;
+
+    if (compWrapper) {
+      for (const key of Object.keys(compWrapper)) {
+        // @ts-ignore
+        StyledComponent[key] = compWrapper[key];
+      }
+    }
+  }
 
   return StyledComponent;
 }
