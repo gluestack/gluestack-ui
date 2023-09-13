@@ -1,8 +1,7 @@
 import React, { forwardRef, useCallback, useRef, useState } from 'react';
-import { ImageProps } from 'react-native';
-import type { IImageProps } from './types';
-export const Image = <T,>(StyledImage: React.ComponentType<T>) =>
-  forwardRef(({ ...props }: T & ImageProps & IImageProps, ref?: any) => {
+
+export const Image = (StyledImage: any) =>
+  forwardRef(({ ...props }: any, ref?: any) => {
     const { source, src, alt, ...resolvedProps } = props;
 
     const finalSource: any = useRef(null);
@@ -35,7 +34,7 @@ export const Image = <T,>(StyledImage: React.ComponentType<T>) =>
         accessibilityLabel={alt}
         accessibilityRole={props?.accessibilityRole || 'image'}
         alt={alt}
-        {...(resolvedProps as any)}
+        {...resolvedProps}
         ref={ref}
       />
     );
