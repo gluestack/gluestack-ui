@@ -287,6 +287,7 @@ export class AnimationResolver implements IStyledPlugin {
       NewComponent.displayName = 'StyledComponent';
       return NewComponent;
     }
+    return null;
   }
 
   wrapperComponentMiddleWare() {
