@@ -1,5 +1,17 @@
 # @gluestack-ui/popover
 
+## 0.1.21
+
+### Patch Changes
+
+- Fixed overlay components to take overlay
+
+## 0.1.20
+
+### Patch Changes
+
+- fix: default value of \_experimentalOverlay to false
+
 ## 0.1.19
 
 ### Patch Changes

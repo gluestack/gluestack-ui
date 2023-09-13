@@ -1,5 +1,18 @@
 # @gluestack-ui/button
 
+## 0.1.25
+
+### Patch Changes
+
+- fix: figma refactor
+
+## 0.1.24
+
+### Patch Changes
+
+- Updated dependencies
+  - @gluestack-ui/utils@0.1.9
+
 ## 0.1.23
 
 ### Patch Changes

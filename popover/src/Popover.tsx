@@ -26,7 +26,7 @@ export const Popover = (StyledPopover: any) =>
         isKeyboardDismissable = true,
         shouldFlip,
         // @ts-ignore
-        _experimentalOverlay = true,
+        _experimentalOverlay = false,
         ...props
       }: any,
       ref?: any
@@ -127,7 +127,7 @@ export const Popover = (StyledPopover: any) =>
         shouldFlip,
       ]);
 
-      if (!_experimentalOverlay) {
+      if (_experimentalOverlay) {
         return (
           <>
             {updatedTrigger(targetRef)}

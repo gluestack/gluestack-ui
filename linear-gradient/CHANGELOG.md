@@ -1,5 +1,12 @@
 # @gluestack-ui/button
 
+## 0.0.3
+
+### Patch Changes
+
+- Updated dependencies
+  - @gluestack-ui/utils@0.1.9
+
 ## 0.0.2
 
 ### Patch Changes

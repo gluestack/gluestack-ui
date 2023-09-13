@@ -1,5 +1,11 @@
 # @gluestack-ui/react-native-aria
 
+## 0.1.5
+
+### Patch Changes
+
+- fix: removing unwanted react native svg deps
+
 ## 0.1.4
 
 ### Patch Changes

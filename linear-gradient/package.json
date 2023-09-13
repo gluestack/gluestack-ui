@@ -1,6 +1,6 @@
 {
   "name": "@gluestack-ui/linear-gradient",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/index.d.ts",
@@ -31,7 +31,6 @@
     "storybook": "cd example/native/storybook && yarn web"
   },
   "devDependencies": {
-    "expo-linear-gradient": "12.3.0",
     "@types/react": "^18.0.22",
     "@types/react-native": "^0.69.15",
     "babel-plugin-transform-remove-console": "^6.9.4",
@@ -44,9 +43,10 @@
     "typescript": "^4.7.4"
   },
   "dependencies": {
+    "@gluestack-ui/utils": "0.1.9",
     "@react-native-aria/focus": "^0.2.8",
     "@react-native-aria/interactions": "^0.2.10",
-    "@gluestack-ui/utils": "0.1.8"
+    "expo-linear-gradient": "12.3.0"
   },
   "peerDependencies": {
     "react": ">=16",

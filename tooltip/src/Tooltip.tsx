@@ -30,7 +30,7 @@ function Tooltip<StyledTooltipProp>(
         shouldOverlapWithTrigger = false,
         shouldFlip = true,
         // @ts-ignore
-        _experimentalOverlay = true,
+        _experimentalOverlay = false,
         ...props
       }: ITooltipProps,
       ref?: any
@@ -121,7 +121,7 @@ function Tooltip<StyledTooltipProp>(
         callback: () => setIsOpen(false),
       });
 
-      if (!_experimentalOverlay) {
+      if (_experimentalOverlay) {
         return (
           <>
             {updatedTrigger(targetRef)}

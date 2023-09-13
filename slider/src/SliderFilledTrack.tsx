@@ -10,7 +10,6 @@ function SliderFilledTrack<StyledSliderFilledTrack>(
     const _ref = React.useRef(null);
 
     const {
-      isReversed,
       state,
       trackLayout,
       orientation,
@@ -19,17 +18,18 @@ function SliderFilledTrack<StyledSliderFilledTrack>(
       isHovered,
       isPressed,
       isFocusVisible,
+      isHoveredProp,
+      isDisabledProp,
+      isFocusedProp,
+      isFocusVisibleProp,
+      isPressedProp,
     } = React.useContext(SliderContext);
 
     const getSliderTrackPosition = () => {
       if (orientation === 'vertical') {
-        return isReversed
-          ? trackLayout.height - trackLayout.height * state.getThumbPercent(0)
-          : trackLayout.height * state.getThumbPercent(0);
+        return trackLayout.height * state.getThumbPercent(0);
       } else {
-        return isReversed
-          ? trackLayout.width - trackLayout.width * state.getThumbPercent(0)
-          : trackLayout.width * state.getThumbPercent(0);
+        return trackLayout.width * state.getThumbPercent(0);
       }
     };
 
@@ -39,17 +39,18 @@ function SliderFilledTrack<StyledSliderFilledTrack>(
       orientation === 'vertical'
         ? { height: sliderTrackPosition }
         : { width: sliderTrackPosition };
+
     return (
       <StyledSliderFilledTrack
         {...props}
         ref={mergeRefs([_ref, ref])}
         style={{ ...style, ...positionProps }}
         states={{
-          hover: isHovered,
-          disabled: isDisabled,
-          focus: isFocused,
-          focusVisible: isFocusVisible,
-          active: isPressed,
+          hover: isHovered || isHoveredProp,
+          disabled: isDisabled || isDisabledProp,
+          focus: isFocused || isFocusedProp,
+          focusVisible: isFocusVisible || isFocusVisibleProp,
+          active: isPressed || isPressedProp,
         }}
         disabled={isDisabled}
         focusable={Platform.OS === 'web' ? false : undefined}

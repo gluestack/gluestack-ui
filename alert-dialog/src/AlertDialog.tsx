@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, { forwardRef } from 'react';
 import { View } from 'react-native';
 import { AlertDialogContext } from './Context';
@@ -24,7 +25,7 @@ export const AlertDialog = <T,>(StyledAlertDialog: React.ComponentType<T>) =>
         animationPreset = 'fade',
         unmountOnExit = true,
         // @ts-ignore
-        _experimentalOverlay = true,
+        _experimentalOverlay = false,
         ...props
       }: T & IAlertDialogProps,
       ref?: any
@@ -74,7 +75,7 @@ export const AlertDialog = <T,>(StyledAlertDialog: React.ComponentType<T>) =>
         visible,
       ]);
 
-      if (!_experimentalOverlay) {
+      if (_experimentalOverlay) {
         return (
           <AlertDialogContext.Provider value={contextValue}>
             <StyledAlertDialog {...(props as T)} ref={ref}>

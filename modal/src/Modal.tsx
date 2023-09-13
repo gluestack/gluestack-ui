@@ -22,7 +22,7 @@ const Modal = (StyledModal: any) =>
         closeOnOverlayClick = true,
         isKeyboardDismissable = true,
         unmountOnExit = true,
-        _experimentalOverlay = true,
+        _experimentalOverlay = false,
         ...props
       }: any,
       ref?: any
@@ -73,7 +73,7 @@ const Modal = (StyledModal: any) =>
         visible,
       ]);
 
-      if (!_experimentalOverlay) {
+      if (_experimentalOverlay) {
         return (
           <ModalContext.Provider value={contextValue}>
             <StyledModal {...remainingProps} ref={ref}>

@@ -29,7 +29,7 @@ export const Menu = ({
         shouldFlip = true,
         trigger,
         shouldOverlapWithTrigger,
-        _experimentalOverlay = true,
+        _experimentalOverlay = false,
         ...props
       }: any,
       ref?: any
@@ -72,7 +72,7 @@ export const Menu = ({
         });
       };
 
-      if (!_experimentalOverlay) {
+      if (_experimentalOverlay) {
         return (
           <MenuContext.Provider value={{ onClose: handleClose, showBackdrop }}>
             {updatedTrigger()}

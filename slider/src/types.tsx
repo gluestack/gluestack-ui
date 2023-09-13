@@ -44,6 +44,10 @@ export interface InterfaceSliderProps {
   sliderTrackHeight?: (string & {}) | number;
   /**Prop applied to change size of slider thumb */
   thumbSize?: (string & {}) | number;
+  isHovered?: boolean;
+  isFocused?: boolean;
+  isFocusVisible?: boolean;
+  isPressed?: boolean;
 }
 
 export interface ISliderTrackProps {

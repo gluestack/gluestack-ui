@@ -43,6 +43,7 @@ export interface IButtonGroupProps {
    */
   isAttached?: boolean;
   reversed?: boolean;
+  isReversed?: boolean;
 }
 
 export type IButtonComponentType<

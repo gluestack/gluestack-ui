@@ -9,8 +9,19 @@ function SliderTrack<StyledSliderTrackProps>(
   return forwardRef(({ children, style, ...props }: any, ref?: any) => {
     const _ref = React.useRef(null);
     const { isHovered } = useHover({}, _ref);
-    const { trackProps, onTrackLayout, isDisabled } =
-      React.useContext(SliderContext);
+    const {
+      trackProps,
+      onTrackLayout,
+      isFocused,
+      isFocusVisible,
+      isDisabled,
+      isPressed,
+      isHoveredProp,
+      isDisabledProp,
+      isFocusedProp,
+      isFocusVisibleProp,
+      isPressedProp,
+    } = React.useContext(SliderContext);
 
     return (
       <StyledSliderTrack
@@ -21,7 +32,13 @@ function SliderTrack<StyledSliderTrackProps>(
         {...props}
         isDisabled={isDisabled}
         focusable={false}
-        states={{ hover: isHovered, disabled: isDisabled }}
+        states={{
+          hover: isHovered || isHoveredProp,
+          disabled: isDisabled || isDisabledProp,
+          focus: isFocused || isFocusedProp,
+          focusVisible: isFocusVisible || isFocusVisibleProp,
+          active: isPressed || isPressedProp,
+        }}
         disabled={isDisabled}
       >
         {children}
