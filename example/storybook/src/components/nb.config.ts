@@ -1,3 +1,4 @@
+import { AnimationResolver } from '@gluestack-style/animation-plugin';
 import { createConfig } from '@gluestack-style/react';
 
 export const config = createConfig({
