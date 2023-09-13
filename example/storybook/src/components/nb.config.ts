@@ -728,7 +728,6 @@ export const config = createConfig({
       },
     },
   },
-  plugins: [new AnimationResolver({})],
 } as const);
 
 type ConfigType = typeof config;

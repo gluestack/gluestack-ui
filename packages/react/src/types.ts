@@ -63,10 +63,16 @@ export type CreateConfig = {
   globalStyle?: CreateGenericConfig['globalStyle'];
 };
 
-export type ThemeStyles<Tokens> = {
-  // @ts-ignore
-  [key: string]: Tokens;
-};
+export type ThemeStyles<IToken> = Partial<{
+  [key: string]: {
+    [key in keyof IToken]?: {
+      // @ts-ignore
+      [k in `$${keyof IToken[key]}`]?:  // @ts-ignore
+        | `$${key}$${keyof IToken[key]}`
+        | (String & {});
+    };
+  };
+}>;
 
 // Generic Creator
 export type GlueStackConfig<
@@ -78,7 +84,7 @@ export type GlueStackConfig<
   aliases: IGlobalAliases;
   globalStyle?: GlobalStyles<IGlobalAliases, IToken, IGlobalStyle>;
   plugins?: Array<any>;
-  themes?: ThemeStyles<Tokens>;
+  themes?: ThemeStyles<IToken>;
   components?: {
     [key: string]: {
       theme: Partial<GlobalStyles<IGlobalAliases, IToken, IGlobalStyle>>;
@@ -164,9 +170,10 @@ type PropsResolveType = {
   props?: Partial<ResolverType>;
 };
 type PropertyResolverType = PropsResolveType & ResolverType;
-export type ExtendedConfigType = {
+export type ExtendedConfigType<T> = {
   propertyTokenMap?: PropertyTokenMapType;
   propertyResolver?: PropertyResolverType;
+  plugins?: T;
 };
 
 /*********************** GLOBAL STYLE TYPES ****************************************/
@@ -259,19 +266,23 @@ export type GlobalStyles<AliasTypes, TokenTypes, Variants> = GlobalVariantSx<
 
 /*********************** USER THEME / SX TYPES ****************************************/
 
-export type ITheme<Variants, P> = Partial<
+export type ITheme<Variants, P, PluginType> = Partial<
   //@ts-ignore
-  StyledThemeProps<Variants, P['style'], P>
+  StyledThemeProps<Variants, P['style'], P, PluginType>
 >;
 
 export type StyledThemeProps<
   Variants,
   GenericComponentStyles,
-  GenericComponentProps
+  GenericComponentProps,
+  PluginType
 > = SxProps<
   GenericComponentStyles,
   Variants & GlobalVariants,
-  GenericComponentProps
+  GenericComponentProps,
+  '',
+  '',
+  PluginType
 > & {
   [Key in `@${IMediaQueries}`]: SxProps<
     GenericComponentStyles,
@@ -345,7 +356,8 @@ export type SxProps<
   Variants = unknown,
   GenericComponentProps = unknown,
   PLATFORM = '',
-  MediaQuery = ''
+  MediaQuery = '',
+  PluginType = []
 > = Partial<
   StylePropsType<GenericComponentStyles, PLATFORM> &
     PassingPropsType<
@@ -355,6 +367,14 @@ export type SxProps<
       MediaQuery
     >
 > & {
+  [key in keyof UnionToIntersection<
+    // @ts-ignore
+    ReturnType<PluginType[number]['inputMiddleWare']>
+  >]: UnionToIntersection<
+    // @ts-ignore
+    ReturnType<PluginType[number]['inputMiddleWare']>
+  >[key];
+} & {
   [Key in `_${COLORMODES}`]?: SxProps<
     GenericComponentStyles,
     Variants,

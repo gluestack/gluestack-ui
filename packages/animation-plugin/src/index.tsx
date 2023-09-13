@@ -83,7 +83,7 @@ function resolveVariantAnimationProps(variantProps: any, styledObject: any) {
 
 export class AnimationResolver implements IStyledPlugin {
   name: 'AnimationResolver';
-  styledUtils: IStyled | undefined = {
+  styledUtils = {
     aliases: {
       ':animate': 'animate',
       ':initial': 'initial',
@@ -95,7 +95,7 @@ export class AnimationResolver implements IStyledPlugin {
       ':whileTap': 'whileTap',
       ':whileHover': 'whileHover',
       ':onAnimationComplete': 'onAnimationComplete',
-    },
+    } as const,
   };
 
   register(styledUtils: any) {
@@ -105,11 +105,14 @@ export class AnimationResolver implements IStyledPlugin {
         ...styledUtils?.aliases,
       };
 
+      // @ts-ignore
       this.styledUtils.tokens = {
+        // @ts-ignore
         ...this.styledUtils?.tokens,
         ...styledUtils?.tokens,
       };
 
+      // @ts-ignore
       this.styledUtils.ref = styledUtils?.ref;
     }
   }
@@ -123,9 +126,14 @@ export class AnimationResolver implements IStyledPlugin {
 
   #extendedConfig: any = {};
 
-  inputMiddleWare(styledObj: any = {}, shouldUpdateConfig: any = true) {
+  inputMiddleWare<P>(
+    styledObj = {},
+    shouldUpdateConfig: any = true
+  ): {
+    // @ts-ignore
+    [key in keyof typeof this.styledUtils.aliases]: P[(typeof this.styledUtils.aliases)[key]];
+  } {
     // this.#childrenExitPropsMap = deepClone(styledObj);
-
     const resolvedAnimatedProps = this.updateStyledObject(
       styledObj,
       shouldUpdateConfig
@@ -136,6 +144,7 @@ export class AnimationResolver implements IStyledPlugin {
     );
 
     if (shouldUpdateConfig) {
+      // @ts-ignore
       return styledObj;
     }
 
@@ -161,6 +170,7 @@ export class AnimationResolver implements IStyledPlugin {
         keyPath.pop();
       }
 
+      // @ts-ignore
       if (aliases && aliases?.[prop]) {
         if (shouldUpdateConfig) {
           // this.#childrenExitPropsMap[prop] = styledObject[prop];
@@ -171,6 +181,7 @@ export class AnimationResolver implements IStyledPlugin {
           );
         }
         const value = styledObject[prop];
+        // @ts-ignore
         keyPath.push('props', aliases[prop]);
         setObjectKeyValue(resolvedStyledObject, keyPath, value);
         keyPath.pop();
@@ -245,9 +256,9 @@ export class AnimationResolver implements IStyledPlugin {
       Object.keys(restProps?.states ?? {}).forEach((state: any) => {
         isState = restProps.states[state] ? true : false;
       });
-
       const animatedProps = !isState
-        ? resolvedAnimatedStyledWithStyledObject?.props
+        ? // @ts-ignore
+          resolvedAnimatedStyledWithStyledObject?.props
         : {};
 
       return (

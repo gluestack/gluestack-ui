@@ -1824,11 +1824,11 @@ export function verboseStyled<P, Variants, ComCon>(
   return StyledComp;
 }
 
-export function styled<P, Variants, ComCon>(
+export function styled<P, Variants, ComCon, PluginType = []>(
   Component: React.ComponentType<P>,
-  theme: ITheme<Variants, P>,
+  theme: ITheme<Variants, P, PluginType>,
   componentStyleConfig?: IComponentStyleConfig<ComCon>,
-  ExtendedConfig?: ExtendedConfigType,
+  ExtendedConfig?: ExtendedConfigType<PluginType>,
   BUILD_TIME_PARAMS?: {
     orderedResolved: OrderedSXResolved;
     verbosedStyleIds: {
@@ -1843,12 +1843,17 @@ export function styled<P, Variants, ComCon>(
   // const DEBUG =
   //   process.env.NODE_ENV === 'development' && DEBUG_TAG ? false : false;
 
-  let styledObj: any = theme;
-
-  const plugins = getInstalledPlugins();
+  let styledObj = theme;
+  // @ts-ignore
+  let plugins: PluginType = [...getInstalledPlugins()];
+  if (ExtendedConfig?.plugins) {
+    // @ts-ignore
+    plugins = [...plugins, ...ExtendedConfig?.plugins];
+  }
 
   for (const pluginName in plugins) {
-    styledObj = plugins[pluginName]?.inputMiddleWare(styledObj, true, true);
+    // @ts-ignore
+    styledObj = plugins[pluginName]?.inputMiddleWare<P>(styledObj, true, true);
   }
   theme = styledObj;
   const sxConvertedObject = convertStyledToStyledVerbosed(theme);
@@ -1860,9 +1865,12 @@ export function styled<P, Variants, ComCon>(
     ExtendedConfig,
     BUILD_TIME_PARAMS
   );
+  // @ts-ignore
   plugins?.reverse();
   for (const pluginName in plugins) {
+    // @ts-ignore
     if (plugins[pluginName]?.componentMiddleWare) {
+      // @ts-ignore
       StyledComponent = plugins[pluginName]?.componentMiddleWare({
         Component: StyledComponent,
         theme,
@@ -1874,8 +1882,10 @@ export function styled<P, Variants, ComCon>(
 
   for (const pluginName in plugins) {
     const compWrapper =
+      // @ts-ignore
       typeof plugins[pluginName].wrapperComponentMiddleWare === 'function'
-        ? plugins[pluginName].wrapperComponentMiddleWare()
+        ? // @ts-ignore
+          plugins[pluginName].wrapperComponentMiddleWare()
         : null;
 
     if (compWrapper) {
