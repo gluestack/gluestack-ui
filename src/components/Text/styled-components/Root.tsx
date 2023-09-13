@@ -10,6 +10,10 @@ export default styled(
     fontStyle: 'normal',
     letterSpacing: '$md',
 
+    _dark: {
+      color: '$text.50',
+    },
+
     variants: {
       isTruncated: {
         true: {
@@ -110,10 +114,6 @@ export default styled(
 
     defaultProps: {
       size: 'md',
-    },
-
-    _dark: {
-      color: '$text.50',
     },
   },
   { ancestorStyle: ['_text'] }

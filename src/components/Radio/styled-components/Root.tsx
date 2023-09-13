@@ -5,11 +5,127 @@ import { styled } from '../../styled';
 export default styled(
   Pressable,
   {
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start',
+    'flexDirection': 'row',
+    'justifyContent': 'flex-start',
+    'alignItems': 'center',
+    'gap': 8,
 
-    variants: {
+    'borderWidth': 2,
+    'borderRadius': 'full',
+    'p': 1,
+
+    '_indicator': {
+      bg: '$muted.50',
+      borderColor: '$muted.400',
+    },
+    ':checked': {
+      '_indicator': {
+        borderColor: `$primary.600`,
+      },
+      '_icon': {
+        color: `$primary.600`,
+      },
+      ':hover': {
+        '_indicator': {
+          borderColor: `$primary.700`,
+        },
+        '_icon': { color: `$primary.700` },
+        ':disabled': {
+          _indicator: {
+            borderColor: `$primary.600`,
+          },
+          _icon: {
+            color: `$primary.600`,
+          },
+        },
+      },
+      ':active': {
+        _indicator: {
+          borderColor: `$primary.800`,
+        },
+        _icon: { color: `$primary.800` },
+      },
+    },
+
+    ':hover': {
+      '_indicator': {
+        borderColor: '$muted.500',
+      },
+      ':disabled': {
+        _indicator: {
+          borderColor: '$muted.400',
+        },
+      },
+      ':checked': {
+        _indicator: { borderColor: `$primary.600` },
+      },
+    },
+
+    ':active': {
+      _indicator: {
+        borderColor: '$muted.600',
+      },
+    },
+
+    ':invalid': {
+      _indicator: {
+        borderColor: '$error.600',
+      },
+    },
+
+    '_dark': {
+      'bg': '$muted.900',
+      'borderColor': '$muted.500',
+
+      ':checked': {
+        'borderColor': `$primary.500`,
+        '_icon': {
+          color: `$primary.500`,
+        },
+        ':hover': {
+          'borderColor': `$primary.400`,
+          '_icon': { color: `$primary.400` },
+          ':disabled': {
+            borderColor: `$primary.500`,
+            _icon: {
+              color: `$primary.500`,
+            },
+          },
+        },
+        ':active': {
+          borderColor: `$primary.300`,
+          _icon: { color: `$primary.300` },
+        },
+      },
+
+      ':hover': {
+        borderColor: '$muted.400',
+        _disabled: {
+          borderColor: '$muted.500',
+        },
+        _checked: { borderColor: `$primary.600` },
+      },
+
+      ':active': {
+        borderColor: '$muted.300',
+      },
+
+      ':invalid': {
+        borderColor: '$error.500',
+      },
+    },
+
+    ':disabled': {
+      _web: {
+        cursor: 'not-allowed',
+      },
+      opacity: 0.6,
+      _icon: {
+        bg: 'transparent',
+      },
+    },
+
+    'variants': {
       size: {
         lg: {
           _text: {
@@ -17,9 +133,8 @@ export default styled(
             lineHeight: '$xl',
           },
           _indicator: {
-            p: 2,
-            h: '$6',
-            w: '$6',
+            h: '$7',
+            w: '$7',
           },
         },
 
@@ -29,9 +144,8 @@ export default styled(
             lineHeight: '$md',
           },
           _indicator: {
-            p: 1.5,
-            h: '$5',
-            w: '$5',
+            h: '$6',
+            w: '$6',
           },
         },
 
@@ -42,19 +156,19 @@ export default styled(
           },
 
           _indicator: {
-            p: 1,
-            h: '$4',
-            w: '$4',
+            h: '$5',
+            w: '$5',
           },
         },
       },
     },
 
-    defaultProps: {
+    'defaultProps': {
       size: 'md',
     },
   },
   {
     descendantStyle: ['_icon', '_text', '_indicator'],
+    ancestorStyle: ['_radio'],
   }
 );
