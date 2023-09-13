@@ -59,11 +59,11 @@ function App({ children }) {
 }
 ```
 
-1. Now you can use `@gluestack-style/react` to style your components by using the `styled` function provided by the library. For example:
+2. Now you can use `@gluestack-style/react` to style your components by using the `styled` function provided by the library. For example:
 
 ```jsx
 import React from 'react';
-import { styled } from '@gluestack-style/react';
+import { styled, StyledProvider } from '@gluestack-style/react';
 
 const StyledButton = styled(
   Pressable,

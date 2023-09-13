@@ -257,7 +257,7 @@ export type GlobalStyles<AliasTypes, TokenTypes, Variants> = GlobalVariantSx<
     AliasTypes,
     TokenTypes
   >;
-  compundVariants?: readonly GlobalCompoundVariant<
+  compoundVariants?: readonly GlobalCompoundVariant<
     'variants' extends keyof Variants ? Variants['variants'] : unknown,
     AliasTypes,
     TokenTypes
@@ -805,7 +805,8 @@ export type IWrapperType =
   | 'passing-base'
   | 'inline-base'
   | 'inline-variant'
-  | 'inline-descendant-base';
+  | 'inline-descendant-base'
+  | 'inline-base-state';
 
 export type GlobalStyleMap = Map<
   IWrapperType,
