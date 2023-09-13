@@ -1,13 +1,9 @@
-import { HStack as HStackMain } from './HStack';
-
 export function createHStack<StyledHStackProps>({
   Root,
 }: {
   Root: React.ComponentType<StyledHStackProps>;
 }) {
-  const HStack = HStackMain(Root);
+  Root.displayName = 'HStack';
 
-  HStack.displayName = 'HStack';
-
-  return HStack;
+  return Root;
 }
