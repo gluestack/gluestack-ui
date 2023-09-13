@@ -126,12 +126,12 @@ export class AnimationResolver implements IStyledPlugin {
 
   #extendedConfig: any = {};
 
-  inputMiddleWare<P>(
+  inputMiddleWare(
     styledObj = {},
     shouldUpdateConfig: any = true
   ): {
     // @ts-ignore
-    [key in keyof typeof this.styledUtils.aliases]: P[(typeof this.styledUtils.aliases)[key]];
+    [key in keyof typeof this.styledUtils.aliases]: (typeof this.styledUtils.aliases)[key];
   } {
     // this.#childrenExitPropsMap = deepClone(styledObj);
     const resolvedAnimatedProps = this.updateStyledObject(
