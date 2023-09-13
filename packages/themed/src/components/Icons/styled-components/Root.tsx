@@ -1,5 +1,5 @@
 import { AsForwarder } from '@gluestack-style/react';
-import { styled } from '../../styled';
+import { styled } from '@gluestack-style/react';
 
 export const StyledIcon: any = styled(
   AsForwarder,

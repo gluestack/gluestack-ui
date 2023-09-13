@@ -1,6 +1,7 @@
 import { Pressable } from 'react-native';
 import { createMotionAnimatedComponent, Motion } from '@legendapp/motion';
-import { styled } from '../../styled';
+import { styled } from '@gluestack-style/react';
+import { AnimationResolver } from '@gluestack-style/animation-plugin';
 
 //@ts-ignore
 const MotionPressable = createMotionAnimatedComponent(
@@ -10,7 +11,6 @@ const MotionPressable = createMotionAnimatedComponent(
 export default styled(
   MotionPressable,
   {
-    //@ts-ignore
     ':initial': {
       opacity: 0,
     },
@@ -35,14 +35,19 @@ export default styled(
     'right': 0,
     'bottom': 0,
     'bg': '$backgroundLight950',
+    // @ts-ignore
     '_dark': {
       bg: '$backgroundDark950',
     },
+    // @ts-ignore
     '_web': {
       cursor: 'default',
     },
   },
   {
     componentName: 'PopoverBackdrop',
-  } as const
+  } as const,
+  {
+    plugins: [new AnimationResolver({})],
+  }
 );
