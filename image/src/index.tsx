@@ -1,14 +1,14 @@
 import type React from 'react';
 import { Image as ImageMain } from './Image';
 import type { IImageComponentType } from './types';
-export function createImage<ImageProps>({
+export function createImage<StyledImage>({
   Root,
 }: {
-  Root: React.ComponentType<ImageProps>;
+  Root: React.ComponentType<StyledImage>;
 }) {
   const Image = ImageMain(Root) as any;
 
   Image.displayName = 'Image';
 
-  return Image as IImageComponentType<ImageProps>;
+  return Image as IImageComponentType<StyledImage>;
 }
