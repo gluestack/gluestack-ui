@@ -820,7 +820,7 @@ const getStyleIdsFromMap = (
   return componentStyleObject;
 };
 
-export function verboseStyled<P, Variants, ComCon>(
+export function verboseStyled<P, Variants, ComCon, PluginType>(
   Component: React.ComponentType<P>,
   theme: Partial<IVerbosedTheme<Variants, P>>,
   componentStyleConfig: IComponentStyleConfig<ComCon> = {},
@@ -988,7 +988,9 @@ export function verboseStyled<P, Variants, ComCon>(
       // sxHash: BUILD_TIME_sxHash = '',
       ...componentProps
     }: Omit<P, keyof Variants> &
-      Partial<ComponentProps<ITypeReactNativeStyles, Variants, P, ComCon>> &
+      Partial<
+        ComponentProps<ITypeReactNativeStyles, Variants, P, ComCon, PluginType>
+      > &
       Partial<UtilityProps<ITypeReactNativeStyles>> & {
         as?: any;
         children?: any;
@@ -997,28 +999,19 @@ export function verboseStyled<P, Variants, ComCon>(
   ) => {
     const isClient = React.useRef(false);
 
-    //@ts-ignore style: 222ms
+    //@ts-ignore
     let themeDefaultProps = { ...theme.baseStyle?.props };
 
-    // 240ms
     const sxComponentStyleIds = useRef({});
     const sxDescendantStyleIds: any = useRef({});
 
     const sxComponentPassingProps = useRef({});
 
-    // const applySxStyleCSSIds = useRef([]);
     const applySxBaseStyleCSSIds = useRef([]);
     const applySxVariantStyleCSSIds = useRef([]);
 
     const applySxDescendantStyleCSSIdsAndPropsWithKey = useRef({});
 
-    // const [applySxStateStyleCSSIds, setApplyStateSxStyleCSSIds] = useState([]);
-    // const [componentStatePassingProps, setComponentStatePassingProps] =
-    //   useState({});
-    // const [sxStatePassingProps, setSxStatePassingProps] = useState({});
-
-    //200ms
-    // let time = Date.now();
     const styledContext = useStyled();
     const { theme: activeTheme } = useTheme();
 
@@ -1867,7 +1860,7 @@ export function styled<P, Variants, ComCon, PluginType = []>(
   theme = styledObj;
   const sxConvertedObject = convertStyledToStyledVerbosed(theme);
 
-  let StyledComponent = verboseStyled<P, Variants, ComCon>(
+  let StyledComponent = verboseStyled<P, Variants, ComCon, PluginType>(
     Component,
     sxConvertedObject,
     componentStyleConfig,

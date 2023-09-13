@@ -121,17 +121,27 @@ export type IMediaQueries = keyof GSConfig['tokens']['mediaQueries'];
 export type SxStyleProps<
   GenericComponentStyles,
   Variants,
-  GenericComponentProps
+  GenericComponentProps,
+  PluginType
 > = {
-  sx?: SxProps<GenericComponentStyles, Variants, GenericComponentProps> & {
-    [Key in `@${IMediaQueries}`]?: SxProps<
+  sx?: Partial<
+    SxProps<
       GenericComponentStyles,
       Variants,
       GenericComponentProps,
       '',
-      Key
-    >;
-  };
+      '',
+      PluginType
+    > & {
+      [Key in `@${IMediaQueries}`]?: SxProps<
+        GenericComponentStyles,
+        Variants,
+        GenericComponentProps,
+        '',
+        Key
+      >;
+    }
+  >;
 };
 
 //@ts-ignore
@@ -351,6 +361,37 @@ type PassingPropsType<
     }
   : {};
 
+type PluginPropsType<
+  PluginType,
+  GenericComponentProps,
+  GenericComponentStyles,
+  PLATFORM
+> = {
+  [key in keyof UnionToIntersection<
+    // @ts-ignore
+    ReturnType<PluginType[number]['inputMiddleWare']>
+  >]: Partial<
+    UnionToIntersection<
+      // @ts-ignore
+      ReturnType<PluginType[number]['inputMiddleWare']>
+    >[key] extends keyof GenericComponentProps
+      ? StylePropsType<GenericComponentStyles, PLATFORM> &
+          GenericComponentProps[UnionToIntersection<
+            // @ts-ignore
+            ReturnType<PluginType[number]['inputMiddleWare']>
+          >[key]]
+      : UnionToIntersection<
+          // @ts-ignore
+          ReturnType<PluginType[number]['inputMiddleWare']>
+        >[key] extends keyof GenericComponentStyles
+      ? GenericComponentStyles[UnionToIntersection<
+          // @ts-ignore
+          ReturnType<PluginType[number]['inputMiddleWare']>
+        >[key]]
+      : any
+  >;
+};
+
 export type SxProps<
   GenericComponentStyles = AliasesProps,
   Variants = unknown,
@@ -366,65 +407,81 @@ export type SxProps<
       GenericComponentProps,
       MediaQuery
     >
-> & {
-  [key in keyof UnionToIntersection<
-    // @ts-ignore
-    ReturnType<PluginType[number]['inputMiddleWare']>
-  >]: UnionToIntersection<
-    // @ts-ignore
-    ReturnType<PluginType[number]['inputMiddleWare']>
-  >[key];
-} & {
-  [Key in `_${COLORMODES}`]?: SxProps<
-    GenericComponentStyles,
-    Variants,
+> &
+  PluginPropsType<
+    PluginType,
     GenericComponentProps,
-    PLATFORM,
-    MediaQuery
-  >;
-} & {
-  [Key in `:${IState}`]?: SxProps<
     GenericComponentStyles,
-    Variants,
-    GenericComponentProps,
-    PLATFORM,
-    MediaQuery
-  >;
-} & {
-  [Key in `_${PLATFORMS}`]?: SxProps<
-    GenericComponentStyles,
-    Variants,
-    GenericComponentProps,
-    Key,
-    MediaQuery
-  > &
-    PassingPropsType<
+    PLATFORM
+  > & {
+    [Key in `_${COLORMODES}`]?: SxProps<
       GenericComponentStyles,
       Variants,
       GenericComponentProps,
+      PLATFORM,
       MediaQuery
     > &
-    Partial<{
-      [key: string]: any;
-    }>;
-} & {
-  [Key in `_${string}`]?: SxProps<
-    RNStyledProps,
-    {},
-    GenericComponentProps,
-    PLATFORM,
-    MediaQuery
-  > &
-    PassingPropsType<
+      PluginPropsType<
+        PluginType,
+        GenericComponentProps,
+        GenericComponentStyles,
+        PLATFORM
+      >;
+  } & {
+    [Key in `:${IState}`]?: SxProps<
       GenericComponentStyles,
+      Variants,
+      GenericComponentProps,
+      PLATFORM,
+      MediaQuery
+    > &
+      PluginPropsType<
+        PluginType,
+        GenericComponentProps,
+        GenericComponentStyles,
+        PLATFORM
+      >;
+  } & {
+    [Key in `_${PLATFORMS}`]?: SxProps<
+      GenericComponentStyles,
+      Variants,
+      GenericComponentProps,
+      Key,
+      MediaQuery
+    > &
+      PluginPropsType<
+        PluginType,
+        GenericComponentProps,
+        GenericComponentStyles,
+        PLATFORM
+      > &
+      PassingPropsType<
+        GenericComponentStyles,
+        Variants,
+        GenericComponentProps,
+        MediaQuery
+      > &
+      Partial<{
+        [key: string]: any;
+      }>;
+  } & {
+    [Key in `_${string}`]?: SxProps<
+      RNStyledProps,
       {},
       GenericComponentProps,
+      PLATFORM,
       MediaQuery
     > &
-    Partial<{
-      [key: string]: any;
-    }>;
-};
+      PassingPropsType<
+        GenericComponentStyles,
+        {},
+        GenericComponentProps,
+        MediaQuery
+      > &
+      Partial<{
+        [key: string]: any;
+      }>;
+  };
 
 export type VariantType<
   Variants,
@@ -632,48 +689,53 @@ export interface GSConfig
 
 /********************* COMPONENT PROPS TYPE *****************************************/
 
-export type ComponentProps<GenericComponentStyles, Variants, P, ComCon> =
-  SxStyleProps<GenericComponentStyles, Variants, P> & {
-    states?: {
-      [K in IState]?: boolean;
-    };
-  } & (GSConfig['globalStyle'] extends object
-      ? {
-          [Key in keyof MergeNestedThree<
-            GlobalVariants,
-            Variants,
-            // @ts-ignore
-            Components[`${ComCon}`]['theme']['variants']
-          >]?: keyof MergeNestedThree<
-            GlobalVariants,
-            Variants,
-            // @ts-ignore
-            Components[`${ComCon}`]['theme']['variants']
-          >[Key] extends 'true' | 'false'
-            ? boolean
-            : keyof MergeNestedThree<
-                GlobalVariants,
-                Variants,
-                // @ts-ignore
-                Components[`${ComCon}`]['theme']['variants']
-              >[Key];
-        } & Omit<P, keyof Variants>
-      : {
-          [Key in keyof MergeNested<
-            Variants,
-            // @ts-ignore
-            Components[`${ComCon}`]['theme']['variants']
-          >]?: keyof MergeNested<
-            Variants, // @ts-ignore
-            Components[`${ComCon}`]['theme']['variants']
-          >[Key] extends 'true' | 'false'
-            ? boolean
-            : keyof MergeNested<
-                Variants,
-                // @ts-ignore
-                Components[`${ComCon}`]['theme']['variants']
-              >[Key];
-        });
+export type ComponentProps<
+  GenericComponentStyles,
+  Variants,
+  P,
+  ComCon,
+  PluginType
+> = SxStyleProps<GenericComponentStyles, Variants, P, PluginType> & {
+  states?: {
+    [K in IState]?: boolean;
+  };
+} & (GSConfig['globalStyle'] extends object
+    ? {
+        [Key in keyof MergeNestedThree<
+          GlobalVariants,
+          Variants,
+          // @ts-ignore
+          Components[`${ComCon}`]['theme']['variants']
+        >]?: keyof MergeNestedThree<
+          GlobalVariants,
+          Variants,
+          // @ts-ignore
+          Components[`${ComCon}`]['theme']['variants']
+        >[Key] extends 'true' | 'false'
+          ? boolean
+          : keyof MergeNestedThree<
+              GlobalVariants,
+              Variants,
+              // @ts-ignore
+              Components[`${ComCon}`]['theme']['variants']
+            >[Key];
+      } & Omit<P, keyof Variants>
+    : {
+        [Key in keyof MergeNested<
+          Variants,
+          // @ts-ignore
+          Components[`${ComCon}`]['theme']['variants']
+        >]?: keyof MergeNested<
+          Variants, // @ts-ignore
+          Components[`${ComCon}`]['theme']['variants']
+        >[Key] extends 'true' | 'false'
+          ? boolean
+          : keyof MergeNested<
+              Variants,
+              // @ts-ignore
+              Components[`${ComCon}`]['theme']['variants']
+            >[Key];
+      });
 
 export type UtilityProps<GenericComponentStyles> = TokenizedRNStyleProps<
   GetRNStyles<GenericComponentStyles>
