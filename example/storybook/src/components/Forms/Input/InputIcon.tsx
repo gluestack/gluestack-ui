@@ -6,6 +6,7 @@ import {
   Icon,
   SearchIcon,
   InputIcon,
+  InputSlot,
   InputField,
 } from '@gluestack-ui/themed';
 import { EyeIcon, EyeOffIcon } from 'lucide-react-native';
@@ -23,9 +24,9 @@ const InputWithIcon = ({ ...props }: any) => {
           value={value}
           placeholder="Enter Text here"
         />
-        <InputIcon pr="$4">
-          <Icon as={SearchIcon} />
-        </InputIcon>
+        <InputSlot pr="$4">
+          <InputIcon as={SearchIcon} />
+        </InputSlot>
       </Input>
 
       <Input {...props} size="md">
@@ -36,9 +37,9 @@ const InputWithIcon = ({ ...props }: any) => {
           value={value}
           placeholder="Enter Text here"
         />
-        <InputIcon pr="$4">
-          <Icon as={SearchIcon} />
-        </InputIcon>
+        <InputSlot pr="$4">
+          <InputIcon as={SearchIcon} />
+        </InputSlot>
       </Input>
 
       <Input {...props} size="lg" isDisabled>
@@ -49,9 +50,9 @@ const InputWithIcon = ({ ...props }: any) => {
           value={value}
           placeholder="Enter Text here"
         />
-        <InputIcon pr="$4">
-          <Icon as={SearchIcon} />
-        </InputIcon>
+        <InputSlot pr="$4">
+          <InputIcon as={SearchIcon} />
+        </InputSlot>
       </Input>
 
       <Input {...props} size="xl" isInvalid>
@@ -62,9 +63,9 @@ const InputWithIcon = ({ ...props }: any) => {
           value={value}
           placeholder="Enter Text here"
         />
-        <InputIcon pr="$4">
-          <Icon as={SearchIcon} />
-        </InputIcon>
+        <InputSlot pr="$4">
+          <InputIcon as={SearchIcon} />
+        </InputSlot>
       </Input>
     </VStack>
   );

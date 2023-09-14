@@ -2705,7 +2705,7 @@
     "@babel/traverse" "^7.20.5"
     lodash.merge "^4.6.2"
 
-"@gluestack-style/react@0.2.43", "@gluestack-style/react@^0.2.33", "@gluestack-style/react@^0.2.43", "@gluestack-style/react@^0.2.9":
+"@gluestack-style/react@0.2.43", "@gluestack-style/react@^0.2.42", "@gluestack-style/react@^0.2.43", "@gluestack-style/react@^0.2.9":
   version "0.2.43"
   resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-0.2.43.tgz#1e1cf0fd9b3ab6d2396453a19feb14ba35575768"
   integrity sha512-yZLuvZ9HQhqHkFN/e01oKvPNKFAT4DXAVqj/5qZeSO4PkRVSZ/DxnxnKjKU0zRVbc+LSDLxjzEZzSWrFFSyyUw==
@@ -2985,10 +2985,10 @@
     "@react-native-aria/focus" "^0.2.7"
     react-native-svg "13.4.0"
 
-"@gluestack-ui/input@^0.1.13":
-  version "0.1.13"
-  resolved "https://registry.yarnpkg.com/@gluestack-ui/input/-/input-0.1.13.tgz#8ad4f036c649ff425e89df7ccd9e6fa2b0d8130e"
-  integrity sha512-UbhJM3Ax/SwCD1shqPv72ChJmGnaZ+1mfjq2mPNImQ75PJ7mo3JV6+eXDKY/tqxshGXbltJl3LdZjlNQY02hxw==
+"@gluestack-ui/input@^0.1.16":
+  version "0.1.16"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/input/-/input-0.1.16.tgz#cfc52fddbe8a98c917d210c88e70c3ba59d54698"
+  integrity sha512-A5TK5Yu6JAAQ+9Obb16l4QqwPRz55xXiXftCyHohz0B/GdTmHPnnSbTxbPGtOPCCAlebPcg8PAr6BYV0qY7emA==
   dependencies:
     "@gluestack-ui/form-control" "^0.1.10"
     "@gluestack-ui/utils" "^0.1.9"
@@ -3405,7 +3405,18 @@
     "@react-native-aria/focus" "^0.2.7"
     react-native-svg "13.4.0"
 
-"@gluestack-ui/toast@^0.1.14", "@gluestack-ui/toast@^0.1.7", "@gluestack-ui/toast@^0.1.8":
+"@gluestack-ui/toast@^0.1.15":
+  version "0.1.15"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/toast/-/toast-0.1.15.tgz#226153f73ab1c3b5536926bcaaabbaeeb2d7b9d9"
+  integrity sha512-Ogo56WJXTyJ/gSHfimI6/dJHYukDVzmZ5uSfxRGl6YhWWEW24HKyWbvn7IOsZUwWUPbCZl91JFxCBZ2H9NAc7w==
+  dependencies:
+    "@gluestack-ui/hooks" "^0.1.2"
+    "@gluestack-ui/overlay" "^0.1.7"
+    "@gluestack-ui/transitions" "^0.1.8"
+    "@gluestack-ui/utils" "^0.1.5"
+    "@react-native-aria/focus" "^0.2.7"
+
+"@gluestack-ui/toast@^0.1.7", "@gluestack-ui/toast@^0.1.8":
   version "0.1.14"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/toast/-/toast-0.1.14.tgz#e13501f4764017cb1036d0c4f394010982bb19d3"
   integrity sha512-rKEjrNPUeDwi6nND+yQ5A1XaIRHfghmi+b6lAhOJgJJC2eneAhzcj0rzK4S5IftayYh/8XPHJYK7RCGqzNuw/Q==
