@@ -51,10 +51,11 @@ export interface IInputProps {
   onBlur?: any;
 }
 
-export type IInputComponentType<Root, Icon, Input> = ((
+export type IInputComponentType<Root, Icon, Slot, Input> = ((
   props: Root & IInputFieldProps
 ) => JSX.Element) & {
   Icon: (props: Icon) => JSX.Element;
+  Slot: (props: Slot) => JSX.Element;
   Input: (props: Input & IInputProps) => JSX.Element;
 };
 
