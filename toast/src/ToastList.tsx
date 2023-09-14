@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import { ToastContext } from './Toast';
+import { ToastContext } from './ToastContext';
 import { Overlay } from '@gluestack-ui/overlay';
 import { PresenceTransition } from '@gluestack-ui/transitions';
 import { SafeAreaView } from 'react-native';

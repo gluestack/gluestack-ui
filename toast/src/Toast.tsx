@@ -1,19 +1,7 @@
-import React, { useState, createContext, useMemo } from 'react';
+import React, { useState, useMemo } from 'react';
 import { ToastList } from './ToastList';
-import type { IToastInfo, IToast, IToastProps, IToastContext } from './types';
-
-export const ToastContext = createContext<IToastContext>({
-  toastInfo: {},
-  setToastInfo: () => {},
-  setToast: () => {},
-  removeToast: () => {},
-  hideAll: () => {},
-  isActive: () => false,
-  visibleToasts: {},
-  setVisibleToasts: () => {},
-  hideToast: () => {},
-});
-
+import type { IToastInfo, IToast, IToastProps } from './types';
+import { ToastContext } from './ToastContext';
 export const ToastProvider = ({ children }: { children: any }) => {
   const [toastInfo, setToastInfo] = useState<IToastInfo>({});
   const [visibleToasts, setVisibleToasts] = useState<{
