@@ -78,8 +78,9 @@ export default styled(
   StyledIcon,
   {
     props: {
-      fill: 'none',
       size: 'md',
+      //@ts-ignore
+      fill: 'none',
     },
     color: '$backgroundLight800',
     _dark: {
