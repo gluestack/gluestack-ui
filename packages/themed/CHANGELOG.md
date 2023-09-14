@@ -1,5 +1,11 @@
 # @gluestack-ui/themed
 
+## 0.1.41
+
+### Patch Changes
+
+- Changed API for Input: Added InputSlot and InputIcon
+
 ## 0.1.40
 
 ### Patch Changes
