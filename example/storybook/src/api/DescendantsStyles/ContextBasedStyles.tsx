@@ -13,12 +13,7 @@ import {
   StyleSheet,
   View,
 } from 'react-native';
-import {
-  AsForwarder,
-  createStyled,
-  styled1,
-  Theme,
-} from '@gluestack-style/react';
+import { AsForwarder, createStyled, styled } from '@gluestack-style/react';
 import { Wrapper } from '../../components/Wrapper';
 import { AddIcon, Box, Icon } from '@gluestack/design-system';
 // import { AddIcon } from '@gluestack/design-system';
@@ -26,7 +21,6 @@ import { AlertCircle, Circle, Sun } from 'lucide-react-native';
 
 import { AnimationResolver } from '@gluestack-style/animation-plugin';
 
-const styled = createStyled([new AnimationResolver({})]);
 const styleshet = StyleSheet.create({
   style: {
     padding: 12,
@@ -37,7 +31,6 @@ const Pressable = styled(
   {
     bg: '$red500',
     p: '$2',
-
     // 'bg': '$red600',
     // 'w': 100,
     // 'h': 100,
@@ -115,32 +108,34 @@ const Text = styled(
 const StyledIcon = styled(
   AsForwarder,
   {
-    bg: '$red500',
-    variants: {
-      size: {
-        sm: {
-          width: 10,
-          height: 10,
-          // props: {
-          //   size: 32,
-          // },
-        },
-        md: {
-          // props: {
-          //   size: 32,
-          // },
-          width: '$4',
-          height: '$4',
-        },
-        lg: {
-          // props: {
-          //   size: 32,
-          // },
-          width: '$6',
-          height: '$6',
-        },
-      },
-    },
+    bg: '$amber100',
+    bgColor: '$amber100',
+
+    // variants: {
+    //   size: {
+    //     sm: {
+    //       width: 10,
+    //       height: 10,
+    //       // props: {
+    //       //   size: 32,
+    //       // },
+    //     },
+    //     md: {
+    //       // props: {
+    //       //   size: 32,
+    //       // },
+    //       width: '$4',
+    //       height: '$4',
+    //     },
+    //     lg: {
+    //       // props: {
+    //       //   size: 32,
+    //       // },
+    //       width: '$6',
+    //       height: '$6',
+    //     },
+    //   },
+    // },
   },
   {
     componentName: 'MyIcon',
