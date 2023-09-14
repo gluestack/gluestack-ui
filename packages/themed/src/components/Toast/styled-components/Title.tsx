@@ -1,5 +1,5 @@
 import { Text } from '../../Text';
-import { styled } from '../../styled';
+import { styled } from '@gluestack-style/react';
 
 export default styled(
   Text,

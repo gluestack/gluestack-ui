@@ -40,8 +40,5 @@
     "turbo": "latest",
     "typescript": "5.1.6"
   },
-  "resolutions": {
-    "@gluestack-style/react": "0.2.38"
-  },
   "packageManager": "yarn@1.22.17"
 }

@@ -1,5 +1,4 @@
 import { createPopover } from '@gluestack-ui/popover';
-import { styled } from '../styled';
 import {
   Root,
   Arrow,
@@ -21,7 +20,7 @@ export const Popover = createPopover({
   Backdrop,
   CloseButton,
   //@ts-ignore
-  AnimatePresence: styled.Component,
+  AnimatePresence: Content.AnimatePresence,
 });
 export const PopoverArrow = Popover.Arrow;
 export const PopoverContent = Popover.Content;

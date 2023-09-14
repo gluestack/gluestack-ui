@@ -8,7 +8,6 @@ import {
   Body,
   Backdrop,
 } from './styled-components';
-import { styled } from '../styled';
 
 export const AccessibleAlertDialog = createAlertDialog({
   Root,
@@ -19,7 +18,7 @@ export const AccessibleAlertDialog = createAlertDialog({
   Body,
   Backdrop,
   //@ts-ignore
-  AnimatePresence: styled.Component,
+  AnimatePresence: Content.AnimatePresence,
 });
 
 type IAlertDialog = typeof AccessibleAlertDialog;

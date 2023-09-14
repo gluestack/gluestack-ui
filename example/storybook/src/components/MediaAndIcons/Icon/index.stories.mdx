@@ -28,7 +28,9 @@ import { Repeat1Icon, SearchIcon, SettingsIcon, LoaderIcon } from './Icon';
 import { StarIcon, SunIcon, ClockIcon, UnlockIcon } from './Icon';
 import { EyeIcon, EyeOffIcon, CloseCircleIcon, ShareIcon } from './Icon';
 import { CircleIcon, FavouriteIcon, GlobeIcon, PlayIcon } from './Icon';
-import { ThreeDotsIcon } from './Icon';
+import { ThreeDotsIcon, createIcon } from './Icon';
+
+import { Path, Rect } from 'react-native-svg';
 
 import {
   Camera,
@@ -295,8 +297,8 @@ Below is a list of all of the icons in the library.
 
 #### SVG & Custom Icons
 
-We can directly create Icon using createIcon function exported from `@gluestack-ui/icon` and use it by passing it in `as` prop in Icon.
-CreateIcon function takes StyledIcon, viewBox, d, path as parameters. We can take svgs from other icon libraries like fluent, react-icons etc.
+We can directly create Icon using createIcon function exported from `@gluestack-ui/themed` and use it by passing it in `as` prop in Icon.
+CreateIcon function takes viewBox, d, path etc as parameters. We can use svgs from other icon libraries like fluent, react-icons etc.
 
 <AppProvider>
   <CodePreview
@@ -304,24 +306,32 @@ CreateIcon function takes StyledIcon, viewBox, d, path as parameters. We can tak
     showArgsController={false}
     metaData={{
       code: `
-      <VStack space="md" alignItems='center'>
-            <Icon as={EyeIcon}  color="$green500" />
-            <Icon as={EyeIcon} color="$primary500" />
-            <Icon as={EyeIcon} size="xl" />
-            <Icon
-              as={EyeIcon}
-              sx={{ h: "$10", w: "$10", color: 'red' }}
-            />
-      </VStack>
-`,
+        const GluestackIcon = createIcon({
+          viewBox: '0 0 32 32',
+          path: (
+            <>
+              {/* Rect, Path is imported from react-native-svg */}
+              <Rect width="32" height="32" rx="2" fill="currentColor"/>
+              <Path d="M9.5 14.6642L15.9999 9.87633V12.1358L9.5 16.9236V14.6642Z" fill="white"/>
+              <Path d="M22.5 14.6642L16.0001 9.87639V12.1359L22.5 16.9237V14.6642Z" fill="white"/>
+              <Path d="M9.5 19.8641L15.9999 15.0763V17.3358L9.5 22.1236V19.8641Z" fill="white"/>
+              <Path d="M22.5 19.8642L16.0001 15.0764V17.3358L22.5 22.1237V19.8642Z" fill="white"/>
+            </>
+          ),
+        });
+      function App () {
+        return <Icon as={GluestackIcon} color='black' size='xl'/>;
+      }
+      `,
       transformCode: (code) => {
-        return transformedCode(code);
+        return transformedCode(code, 'function', 'App');
       },
       scope: {
         Wrapper,
-        VStack,
-        EyeIcon,
+        createIcon,
         Icon,
+        Path,
+        Rect,
       },
       argsType: {},
     }}
