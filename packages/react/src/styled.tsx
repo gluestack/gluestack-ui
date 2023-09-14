@@ -300,7 +300,10 @@ const getMergeDescendantsStyleCSSIdsAndPropsWithKey = (
   return descendantStyleObj;
 };
 
-const AncestorStyleContext = React.createContext({});
+const AncestorStyleContext = React.createContext({
+  sx: {},
+  component: {},
+});
 //
 
 // window['globalStyleMap'] = globalStyleMap;
@@ -1118,9 +1121,19 @@ export function verboseStyled<P, Variants, ComCon, PluginType>(
       passingProps: applyAncestorPassingProps,
       baseStyleCSSIds: applyAncestorBaseStyleCSSIds,
       variantStyleIds: applyAncestorVariantStyleCSSIds,
-    } = getAncestorCSSStyleIds(componentStyleConfig, ancestorStyleContext);
+    } = getAncestorCSSStyleIds(
+      componentStyleConfig,
+      ancestorStyleContext.component
+    );
+
+    const {
+      passingProps: applySxAncestorPassingProps,
+      baseStyleCSSIds: applySxAncestorBaseStyleCSSIds,
+      variantStyleIds: applySxAncestorVariantStyleCSSIds,
+    } = getAncestorCSSStyleIds(componentStyleConfig, ancestorStyleContext.sx);
 
     Object.assign(incomingComponentProps, applyAncestorPassingProps);
+    Object.assign(incomingComponentProps, applySxAncestorPassingProps);
     Object.assign(incomingComponentProps, componentProps);
 
     Object.assign(themeDefaultProps, incomingComponentProps);
@@ -1716,13 +1729,21 @@ export function verboseStyled<P, Variants, ComCon, PluginType>(
           applySxDescendantStyleCSSIdsAndPropsWithKey ||
           ancestorStyleContext
         ) {
-          return mergeArraysInObjects(
-            applyDescendantsStyleCSSIdsAndPropsWithKey,
-            applyDescendantStateStyleCSSIdsAndPropsWithKey,
+          const sxDescendantCSSIds = mergeArraysInObjects(
             applySxDescendantStyleCSSIdsAndPropsWithKey.current,
             applySxDescendantStateStyleCSSIdsAndPropsWithKey.current,
-            ancestorStyleContext
+            ancestorStyleContext.component
           );
+          const componentDescendantCSSIds = mergeArraysInObjects(
+            applyDescendantsStyleCSSIdsAndPropsWithKey,
+            applyDescendantStateStyleCSSIdsAndPropsWithKey,
+            ancestorStyleContext.sx
+          );
+
+          return {
+            component: componentDescendantCSSIds,
+            sx: sxDescendantCSSIds,
+          };
         } else {
           return {};
         }
@@ -1746,11 +1767,17 @@ export function verboseStyled<P, Variants, ComCon, PluginType>(
       ...applyAncestorVariantStyleCSSIds,
       ...applyComponentStateBaseStyleIds,
       ...applyComponentStateVariantStyleIds,
+
+      ...applySxAncestorBaseStyleCSSIds,
+      ...applySxAncestorVariantStyleCSSIds,
+
+      // ...applySxAncestorBaseStyleCSSIds,
       ...applySxVariantStyleCSSIds.current,
       ...applySxStateVariantStyleCSSIds.current,
       ...applySxBaseStyleCSSIds.current,
       ...applySxStateBaseStyleCSSIds.current,
     ];
+
     Object.assign(resolvedInlineProps, applyComponentInlineProps);
 
     const resolvedStyleProps = generateStylePropsFromCSSIds(
@@ -1759,6 +1786,7 @@ export function verboseStyled<P, Variants, ComCon, PluginType>(
       CONFIG,
       activeTheme
     );
+
     const AsComp: any =
       resolvedStyleProps.as || (passingProps.as as any) || undefined;
 
