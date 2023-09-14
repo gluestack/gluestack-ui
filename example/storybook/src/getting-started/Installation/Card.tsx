@@ -36,7 +36,7 @@ export const Card = ({
           borderBottomColor: '$trueGray300',
           bg: '$trueGray50',
           _dark: {
-            borderColor: '$borderDark800',
+            borderBottomColor: '$borderDark800',
             bg: '#0C0E12',
           },
         }}
