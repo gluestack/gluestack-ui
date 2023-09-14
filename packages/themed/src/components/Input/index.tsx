@@ -1,9 +1,10 @@
 import { createInput } from '@gluestack-ui/input';
-import { Root, Icon, StyledInput } from './styled-components';
+import { Root, Icon, Slot, StyledInput } from './styled-components';
 
 export const AccessibleInput = createInput({
   Root,
   Icon,
+  Slot,
   Input: StyledInput,
 });
 
@@ -15,6 +16,10 @@ interface Input extends IAccessibleInput {
    */
   Icon: IAccessibleInput['Icon'];
   /**
+   * @deprecated Use InputIcon instead.
+   */
+  Slot: IAccessibleInput['Slot'];
+  /**
    * @deprecated Use InputField instead.
    */
   Input: IAccessibleInput['Input'];
@@ -22,6 +27,7 @@ interface Input extends IAccessibleInput {
 
 export const Input = AccessibleInput as Input;
 export const InputIcon = AccessibleInput.Icon;
+export const InputSlot = AccessibleInput.Slot;
 export const InputField = AccessibleInput.Input;
 
 /**
