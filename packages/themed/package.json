@@ -1,6 +1,6 @@
 {
   "name": "@gluestack-ui/themed",
-  "version": "0.1.40",
+  "version": "0.1.41",
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "description": "A universal themed components for React Native, Next.js & React",
@@ -40,7 +40,7 @@
     "@gluestack-ui/form-control": "^0.1.10",
     "@gluestack-ui/hstack": "^0.1.11",
     "@gluestack-ui/icon": "^0.1.9",
-    "@gluestack-ui/input": "^0.1.13",
+    "@gluestack-ui/input": "^0.1.16",
     "@gluestack-ui/link": "^0.1.10",
     "@gluestack-ui/menu": "^0.2.19",
     "@gluestack-ui/modal": "^0.1.20",
@@ -56,7 +56,7 @@
     "@gluestack-ui/switch": "^0.1.12",
     "@gluestack-ui/tabs": "^0.1.11",
     "@gluestack-ui/textarea": "^0.1.13",
-    "@gluestack-ui/toast": "^0.1.14",
+    "@gluestack-ui/toast": "^0.1.15",
     "@gluestack-ui/tooltip": "^0.1.17",
     "@gluestack-ui/vstack": "^0.1.11",
     "@legendapp/motion": "latest"

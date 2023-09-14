@@ -38,6 +38,7 @@ import {
   VStack,
   Input,
   InputIcon,
+  InputSlot,
   InputField,
   FormControl,
   FormControlLabel,
@@ -566,9 +567,9 @@ Demonstrates a common UI pattern known as keyboard handling or keyboard scrollin
                   </FormControlLabelText>
                 </FormControlLabel>
                 <Input w="$full">
-                  <InputIcon>
-                   <Icon as={LeadingIcon} ml="$2" />
-                  </InputIcon>
+                  <InputSlot>
+                   <InputIcon as={LeadingIcon} ml="$2" />
+                  </InputSlot>
                   <InputField placeholder="CVC/CVV" />
                 </Input>
                 <Button onPress={handleClose} mt={20}>
@@ -600,6 +601,7 @@ Demonstrates a common UI pattern known as keyboard handling or keyboard scrollin
         VStack,
         Input,
         InputIcon,
+        InputSlot,
         InputField,
         FormControl,
         FormControlLabel,

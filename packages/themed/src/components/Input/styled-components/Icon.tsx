@@ -1,19 +1,15 @@
 import { styled } from '@gluestack-style/react';
-import { Pressable } from 'react-native';
+import { StyledIcon } from '../../Icons/styled-components';
 
 export default styled(
-  Pressable,
+  StyledIcon,
   {
-    justifyContent: 'center',
-    alignItems: 'center',
-    _web: {
-      ':disabled': {
-        cursor: 'not-allowed',
-      },
+    props: {
+      size: 'md',
     },
   },
   {
     componentName: 'InputIcon',
-    descendantStyle: ['_icon'],
+    ancestorStyle: ['_icon'],
   } as const
 );
