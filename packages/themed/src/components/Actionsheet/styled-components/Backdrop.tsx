@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { createMotionAnimatedComponent, Motion } from '@legendapp/motion';
 import { Pressable } from 'react-native';
 import { styled } from '@gluestack-style/react';

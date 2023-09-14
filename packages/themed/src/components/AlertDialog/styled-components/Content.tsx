@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { AnimationResolver } from '@gluestack-style/animation-plugin';
 import { styled } from '@gluestack-style/react';
 import { Motion } from '@legendapp/motion';
@@ -8,6 +9,7 @@ export default styled(
     'bg': '$backgroundLight50',
     'rounded': '$lg',
     'overflow': 'hidden',
+    //@ts-ignore
     ':initial': {
       scale: 0.9,
       opacity: 0,
