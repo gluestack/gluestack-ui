@@ -1,5 +1,5 @@
 import { StatusBar } from 'react-native';
-import { styled } from '../../styled';
+import { styled } from '@gluestack-style/react';
 
 export default styled(StatusBar, {}, {
   componentName: 'StatusBar',

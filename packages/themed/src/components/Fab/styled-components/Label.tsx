@@ -1,11 +1,10 @@
-import { styled } from '../../styled';
-import { Text } from 'react-native';
+import { styled } from '@gluestack-style/react';
+import { Text } from '../../Text';
 
 export default styled(
   Text,
   {
     color: '$textLight50',
-    fontFamily: '$body',
   },
   {
     componentName: 'FabLabel',

@@ -1,14 +1,10 @@
-import { AsForwarder } from '@gluestack-style/react';
-import { styled } from '../../styled';
-const Icon = styled(AsForwarder, {}, {});
+// @ts-nocheck
+import { styled } from '@gluestack-style/react';
+import { StyledIcon } from '../../Icons/styled-components';
 
 export default styled(
-  Icon,
+  StyledIcon,
   {
-    'w': '100%',
-    'h': '100%',
-    'justifyContent': 'center',
-    'alignItems': 'center',
     ':checked': {
       color: '$backgroundLight0',
     },
@@ -21,30 +17,6 @@ export default styled(
       },
       ':disabled': {
         opacity: 0.4,
-      },
-    },
-    'variants': {
-      size: {
-        xs: {
-          h: 12,
-          w: 12,
-        },
-        sm: {
-          h: 16,
-          w: 16,
-        },
-        md: {
-          h: 18,
-          w: 18,
-        },
-        lg: {
-          h: 20,
-          w: 20,
-        },
-        xl: {
-          h: 24,
-          w: 24,
-        },
       },
     },
   },

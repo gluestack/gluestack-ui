@@ -1,4 +1,4 @@
-import { styled } from '../../styled';
+import { styled } from '@gluestack-style/react';
 import { View } from 'react-native';
 
 export default styled(
@@ -61,41 +61,53 @@ export default styled(
         xl: {
           h: '$12',
           _input: {
-            fontSize: '$xl',
+            props: {
+              size: 'xl',
+            },
           },
           _icon: {
-            h: '$6',
-            w: '$6',
+            props: {
+              size: 'xl',
+            },
           },
         },
         lg: {
           h: '$11',
           _input: {
-            fontSize: '$lg',
+            props: {
+              size: 'lg',
+            },
           },
           _icon: {
-            h: '$5',
-            w: '$5',
+            props: {
+              size: 'lg',
+            },
           },
         },
         md: {
           h: '$10',
           _input: {
-            fontSize: '$md',
+            props: {
+              size: 'md',
+            },
           },
           _icon: {
-            h: '$4',
-            w: '$4',
+            props: {
+              size: 'sm',
+            },
           },
         },
         sm: {
           h: '$9',
           _input: {
-            fontSize: '$sm',
+            props: {
+              size: 'sm',
+            },
           },
           _icon: {
-            h: '$3.5',
-            w: '$3.5',
+            props: {
+              size: 'xs',
+            },
           },
         },
       },
@@ -334,6 +346,7 @@ export default styled(
         },
       },
     },
+
     'defaultProps': {
       size: 'md',
       variant: 'outline',

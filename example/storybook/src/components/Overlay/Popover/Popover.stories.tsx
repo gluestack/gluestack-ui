@@ -5,8 +5,13 @@ const PopoverMeta: ComponentMeta<typeof Popover> = {
   title: 'stories/OVERLAY/Popover',
   component: Popover,
   argTypes: {
+    size: {
+      control: 'select',
+      options: ['xs', 'sm', 'md', 'lg', 'full'],
+    },
     placement: {
       control: 'select',
+      figmaIgnore: true,
       options: [
         'bottom',
         'bottom left',
@@ -24,10 +29,12 @@ const PopoverMeta: ComponentMeta<typeof Popover> = {
     },
     showPopover: {
       control: 'boolean',
+      figmaIgnore: true,
       options: [true, false],
     },
   },
   args: {
+    size: 'md',
     placement: 'bottom',
     showPopover: true,
   },

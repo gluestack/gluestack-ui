@@ -1,22 +1,23 @@
-// @ts-nocheck
-import { styled } from '../../styled';
-import { View } from 'react-native';
+import { styled } from '@gluestack-style/react';
+import { StyledIcon } from '../../Icons/styled-components';
 
 export default styled(
-  View,
+  StyledIcon,
   {
     w: '$4',
     h: '$4',
     mr: '$2',
-    _icon: {
-      color: '$backgroundLight500',
-      _dark: {
-        color: '$backgroundDark400',
-      },
+    color: '$backgroundLight500',
+    _dark: {
+      //@ts-ignore
+      color: '$backgroundDark400',
+    },
+    props: {
+      size: 'md',
     },
   },
   {
     componentName: 'SelectActionsheetIcon',
-    descendantStyle: ['_icon'],
+    ancestorStyle: ['_icon'],
   } as const
 );

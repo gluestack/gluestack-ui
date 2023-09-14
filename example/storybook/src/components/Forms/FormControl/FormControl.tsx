@@ -80,12 +80,7 @@ const FormControlBasic = ({ ...props }) => {
       </FormControlHelper>
 
       <FormControlError>
-        <FormControlErrorIcon>
-          <Icon
-            as={AlertCircleIcon}
-            sx={{ color: '$red500', height: '$3', width: '$3' }}
-          />
-        </FormControlErrorIcon>
+        <FormControlErrorIcon as={AlertCircleIcon} />
         <FormControlErrorText>
           Atleast 6 characters are required.
         </FormControlErrorText>

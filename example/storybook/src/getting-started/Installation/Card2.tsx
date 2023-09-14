@@ -1,21 +1,13 @@
-//@ts-nocheck
 import React from 'react';
-import {
-  Box,
-  HStack,
-  VStack,
-  Text,
-  Link,
-  Pressable,
-} from '@gluestack/design-system';
+import { Box, HStack, VStack, Text, Link } from '@gluestack/design-system';
 import Expo from './Expo';
 import Checkbox from './Checkbox';
 
 function Card2() {
   return (
     <HStack
-      my={'$6'}
-      gap={20}
+      my="$6"
+      gap="$5"
       sx={{
         '@lg': {
           flexDirection: 'row',
@@ -26,12 +18,12 @@ function Card2() {
     >
       <Box
         flex={1}
-        borderRadius={'$xl'}
-        borderWidth={'$1'}
+        borderRadius="$xl"
+        borderWidth="$1"
         sx={{
-          borderColor: '#D4D4D4',
+          borderColor: '$trueGray300',
           _dark: {
-            borderColor: 'rgba(38, 38, 38, 1)',
+            borderColor: '$trueGray800',
           },
           _web: {
             background:
@@ -43,34 +35,41 @@ function Card2() {
           },
         }}
       >
-        <Box borderRadius="$xl" borderColor="#262626">
+        <Box borderRadius="$xl" borderColor="$trueGray800">
           <Link
             href="https://snack.expo.dev/@gluestack/try-now-gluestack-ui"
             isExternal
+            target="_blank"
+            sx={{
+              '_text': {
+                color: '$trueGray900',
+                textDecorationLine: 'none',
+              },
+              '_dark': {
+                _text: {
+                  color: '$textDark50',
+                },
+              },
+              ':hover': {
+                _text: {
+                  textDecorationLine: 'underline',
+                },
+              },
+            }}
           >
-            <Box p={'$6'}>
+            <Box p="$6">
               <VStack space="md">
                 <HStack w="$full" alignItems="center" space="md">
                   <Expo />
-                  <Pressable
-                    flex={1}
-                    sx={{
-                      ':hover': {
-                        textDecoration: 'underline',
-                        color: 'white',
-                      },
-                    }}
+                  <Link.Text
+                    fontWeight="$medium"
+                    fontSize="$xl"
+                    fontFamily="Plus Jakarta Sans"
                   >
-                    <Text
-                      fontWeight="$medium"
-                      fontSize={'$xl'}
-                      fontFamily="Plus Jakarta Sans"
-                    >
-                      Try gluestack-ui on Snack
-                    </Text>
-                  </Pressable>
+                    Try gluestack-ui on Snack
+                  </Link.Text>
                 </HStack>
-                <Text fontSize={'$md'} fontWeight="$normal">
+                <Text fontSize="$md" fontWeight="$normal">
                   Get started without having to set up.
                 </Text>
               </VStack>
@@ -81,12 +80,12 @@ function Card2() {
 
       <Box
         flex={1}
-        borderRadius={'$xl'}
-        borderWidth={'$1'}
+        borderRadius="$xl"
+        borderWidth="$1"
         sx={{
-          borderColor: '#D4D4D4',
+          borderColor: '$trueGray300',
           _dark: {
-            borderColor: 'rgba(38, 38, 38, 1)',
+            borderColor: '$trueGray800',
           },
           _web: {
             background:
@@ -98,30 +97,40 @@ function Card2() {
           },
         }}
       >
-        <Link href="https://codesandbox.io/p/sandbox/try-now-next-codesandbox-zl8npm?file=/pages/index.js:1,1">
-          <Box p={'$6'}>
+        <Link
+          href="https://codesandbox.io/p/sandbox/try-now-next-codesandbox-zl8npm?file=/pages/index.js:1,1"
+          target="_blank"
+          isExternal
+          sx={{
+            '_text': {
+              color: '$trueGray900',
+              textDecorationLine: 'none',
+            },
+            '_dark': {
+              _text: {
+                color: '$textDark50',
+              },
+            },
+            ':hover': {
+              _text: {
+                textDecorationLine: 'underline',
+              },
+            },
+          }}
+        >
+          <Box p="$6">
             <VStack space="md">
               <HStack w="$full" alignItems="center" space="md">
                 <Checkbox />
-                <Pressable
-                  flex={1}
-                  sx={{
-                    ':hover': {
-                      textDecoration: 'underline',
-                      color: 'white',
-                    },
-                  }}
+                <Link.Text
+                  fontWeight="$medium"
+                  fontSize="$xl"
+                  fontFamily="Plus Jakarta Sans"
                 >
-                  <Text
-                    fontWeight="$medium"
-                    fontSize={'$xl'}
-                    fontFamily="Plus Jakarta Sans"
-                  >
-                    Try gluestack-ui on CodeSandbox
-                  </Text>
-                </Pressable>
+                  Try gluestack-ui on CodeSandbox
+                </Link.Text>
               </HStack>
-              <Text fontSize={'$md'} fontWeight="$normal">
+              <Text fontSize="$md" fontWeight="$normal">
                 See how your app looks as you code.
               </Text>
             </VStack>

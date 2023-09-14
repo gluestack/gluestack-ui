@@ -1,5 +1,5 @@
 import { View } from 'react-native';
-import { styled } from '../../styled';
+import { styled } from '@gluestack-style/react';
 
 export default styled(
   View,
@@ -12,11 +12,11 @@ export default styled(
       orientation: {
         vertical: {
           width: '$px',
-          height: '100%',
+          height: '$full',
         },
         horizontal: {
           height: '$px',
-          width: '100%',
+          width: '$full',
         },
       },
     },

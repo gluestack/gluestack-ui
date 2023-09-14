@@ -8,10 +8,10 @@ import { ArrowRightIcon } from '@gluestack-ui/themed';
 const Fold2 = memo(() => {
   return (
     <HStack
-      my={'$6'}
+      my="$6"
       flexDirection="column"
       flexWrap="wrap"
-      gap={20}
+      gap="$5"
       sx={{
         '@lg': { flexDirection: 'row' },
       }}
@@ -28,8 +28,8 @@ const Fold2 = memo(() => {
         borderRadius="$xl"
         borderWidth={1}
         sx={{
-          borderColor: '#D4D4D4',
-          bg: '#F5F5F5',
+          borderColor: '$trueGray300',
+          bg: '$trueGray100',
           _dark: {
             bg: '#071117',
             borderColor: '$borderDark800',
@@ -58,13 +58,13 @@ const Fold2 = memo(() => {
               fontWeight="$bold"
               sx={{
                 _dark: {
-                  color: '#0077E6',
+                  color: '$darkBlue500',
                 },
               }}
             >
               See All
             </Text>
-            <ArrowRightIcon color="#0077E6" w="$5" h="$5" ml="$1" />
+            <ArrowRightIcon color="$darkBlue500" w="$5" h="$5" ml="$1" />
           </NextLink>
         </VStack>
       </Box>

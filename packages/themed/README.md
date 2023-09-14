@@ -6,11 +6,11 @@ To use gluestack-ui components, all you need to do is install the
 `@gluestack-ui/themed` package:
 
 ```sh
-$ yarn add @gluestack-ui/themed
+$ yarn add @gluestack-ui/themed @gluestack-style/react react-native-svg@13.4.0
 
 # or
 
-$ npm i @gluestack-ui/themed
+$ npm i @gluestack-ui/themed @gluestack-style/react react-native-svg@13.4.0
 ```
 
 ## Usage

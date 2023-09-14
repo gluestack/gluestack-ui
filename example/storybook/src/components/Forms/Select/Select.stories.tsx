@@ -13,25 +13,25 @@ const SelectMeta: ComponentMeta<typeof Select> = {
   argTypes: {
     size: {
       control: 'select',
-      options: ['xl', 'lg', 'md', 'sm'],
+      options: ['sm', 'md', 'lg', 'xl'],
     },
     variant: {
       control: 'select',
-      options: ['underlined', 'outline', 'rounded'],
-    },
-    isDisabled: {
-      control: 'boolean',
-      options: [true, false],
+      options: ['outline', 'underlined', 'rounded'],
     },
     isInvalid: {
       control: 'boolean',
       options: [true, false],
     },
-    isReadOnly: {
+    isHovered: {
       control: 'boolean',
       options: [true, false],
     },
-    isRequired: {
+    isFocused: {
+      control: 'boolean',
+      options: [true, false],
+    },
+    isDisabled: {
       control: 'boolean',
       options: [true, false],
     },
@@ -40,8 +40,8 @@ const SelectMeta: ComponentMeta<typeof Select> = {
     size: 'md',
     isDisabled: false,
     isInvalid: false,
-    isReadOnly: false,
-    isRequired: true,
+    isHovered: false,
+    isFocused: false,
     variant: 'outline',
   },
 };

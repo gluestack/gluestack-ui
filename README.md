@@ -49,13 +49,11 @@ To use the `gluestack-ui` in your project, follow these steps:
    **@gluestack-ui/themed**.
 
 ```jsx
-import { GluestackUIProvider, config } from '@gluestack-ui/themed';
+import { GluestackUIProvider } from '@gluestack-ui/themed';
 
 // Write this code snippet at the root of your application
 function App({ children }) {
-  return (
-    <GluestackUIProvider config={config.theme}>{children}</GluestackUIProvider>
-  );
+  return <GluestackUIProvider>{children}</GluestackUIProvider>;
 }
 ```
 

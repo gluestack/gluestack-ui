@@ -1,4 +1,4 @@
-import { styled } from '../../styled';
+import { styled } from '@gluestack-style/react';
 import { Pressable } from 'react-native';
 
 export default styled(
@@ -8,11 +8,10 @@ export default styled(
     'flexDirection': 'row',
     'alignItems': 'center',
     'rounded': '$sm',
-    'w': '100%',
+    'w': '$full',
 
     ':disabled': {
       opacity: 0.4,
-      // @ts-ignore
       _web: {
         // @ts-ignore
         pointerEvents: 'all !important',

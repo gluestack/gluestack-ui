@@ -1,5 +1,5 @@
-//@ts-nocheck
-import { styled } from '../../styled';
+import { AnimationResolver } from '@gluestack-style/animation-plugin';
+import { styled } from '@gluestack-style/react';
 import { Motion } from '@legendapp/motion';
 
 export default styled(
@@ -30,6 +30,7 @@ export default styled(
       },
     },
 
+    // @ts-ignore
     '_dark': {
       bg: '$backgroundDark900',
     },
@@ -40,5 +41,8 @@ export default styled(
   {
     componentName: 'AlertDialogContent',
     ancestorStyle: ['_content'],
-  } as const
+  } as const,
+  {
+    plugins: [new AnimationResolver({})],
+  }
 );

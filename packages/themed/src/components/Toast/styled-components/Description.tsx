@@ -1,5 +1,5 @@
-import { Text } from 'react-native';
-import { styled } from '../../styled';
+import { Text } from '../../Text';
+import { styled } from '@gluestack-style/react';
 
 export default styled(
   Text,
@@ -8,10 +8,9 @@ export default styled(
     _dark: {
       color: '$textDark200',
     },
-    fontWeight: '$normal',
-    fontFamily: '$body',
-    fontStyle: 'normal',
-    fontSize: '$sm',
+    props: {
+      size: 'sm',
+    },
   },
   {
     componentName: 'ToastDescription',

@@ -1,6 +1,7 @@
 import { createMotionAnimatedComponent, Motion } from '@legendapp/motion';
 import { Pressable } from 'react-native';
-import { styled } from '../../styled';
+import { styled } from '@gluestack-style/react';
+import { AnimationResolver } from '@gluestack-style/animation-plugin';
 
 const MotionPressable = createMotionAnimatedComponent(
   Pressable
@@ -25,14 +26,19 @@ export default styled(
     'right': 0,
     'bottom': 0,
     'bg': '$backgroundLight950',
+    // @ts-ignore
     '_dark': {
       bg: '$backgroundDark950',
     },
+    // @ts-ignore
     '_web': {
       cursor: 'default',
     },
   },
   {
     componentName: 'SelectActionsheetBackdrop',
-  } as const
+  } as const,
+  {
+    plugins: [new AnimationResolver({})],
+  }
 );

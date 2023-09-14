@@ -20,7 +20,6 @@ export * from './Input';
 export * from './Image';
 export * from './KeyboardAvoidingView';
 export * from './Link';
-export * from './LinearGradient';
 export * from './Menu';
 export * from './Modal';
 export * from './Popover';
@@ -40,10 +39,10 @@ export * from './Tabs';
 export * from './Tooltip';
 export * from './View';
 export * from './VStack';
-export { styled } from './styled';
 export {
   GluestackUIProvider,
   GluestackUIStyledProvider,
   GluestackUIContextProvider,
 } from './Provider';
 export * from './Icons/Icons';
+export { styled } from '@gluestack-style/react';

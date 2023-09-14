@@ -1,14 +1,11 @@
-import { Text } from 'react-native';
-import { styled } from '../../styled';
+import { Heading } from '../../Heading';
+import { styled } from '@gluestack-style/react';
 
 export default styled(
-  Text,
+  Heading,
   {
     color: '$textLight500',
-    fontSize: '$sm',
-    fontFamily: '$body',
-    fontWeight: '$bold',
-    lineHeight: '$xs',
+    props: { size: 'xs' },
     textTransform: 'uppercase',
     p: '$3',
     _dark: {

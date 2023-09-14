@@ -15,7 +15,6 @@ const AlertDialogMeta: ComponentMeta<typeof AlertDialog> = {
     },
     showAlertDialog: {
       control: 'boolean',
-      options: [true, false],
     },
   },
   args: {

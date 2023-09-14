@@ -1,11 +1,10 @@
-import { Text } from 'react-native';
-import { styled } from '../../styled';
+import { Text } from '../../Text';
+import { styled } from '@gluestack-style/react';
 
 export default styled(
   Text,
   {
     'color': '$textLight600',
-    'fontFamily': '$body',
     ':checked': {
       color: '$textLight900',
     },
@@ -23,7 +22,6 @@ export default styled(
     },
     ':active': {
       'color': '$textLight900',
-
       ':checked': {
         color: '$textLight900',
       },

@@ -1,55 +1,14 @@
 import { createIcon } from '@gluestack-ui/icon';
-import { AsForwarder } from '@gluestack-style/react';
-import { styled } from '../styled';
-
-const StyledIcon: any = styled(
-  AsForwarder,
-  {
-    color: '$backgroundLight800',
-    _dark: {
-      color: '$backgroundDark400',
-    },
-    variants: {
-      size: {
-        xs: {
-          h: '$3.5',
-          w: '$3.5',
-        },
-        sm: {
-          h: '$4',
-          w: '$4',
-        },
-        md: {
-          h: '$3.5',
-          w: '$3.5',
-        },
-        lg: {
-          h: '$5',
-          w: '$5',
-        },
-        xl: {
-          h: '$6',
-          w: '$6',
-        },
-      },
-    },
-    defaultProps: {
-      size: 'md',
-    },
-  },
-  {
-    ancestorStyle: ['_icon'],
-    componentName: 'Icon',
-  } as const,
-  {
-    propertyTokenMap: {
-      stroke: 'colors',
-    },
-  }
-);
+import Root from './styled-components/Root';
+import { Root as IconRoot } from './styled-components';
 
 export const Icon = createIcon({
-  Root: StyledIcon,
+  Root,
 });
 
 export * from './Icons';
+type ParameterTypes = Omit<Parameters<typeof createIcon>[0], 'Root'>;
+const createIconUI = ({ ...props }: ParameterTypes) =>
+  createIcon({ Root: IconRoot, ...props });
+
+export { createIconUI as createIcon };

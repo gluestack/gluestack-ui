@@ -1,6 +1,5 @@
-// @ts-nocheck
 import { View } from 'react-native';
-import { styled } from '../../styled';
+import { styled } from '@gluestack-style/react';
 
 export default styled(
   View,

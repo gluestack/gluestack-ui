@@ -1,5 +1,4 @@
-//@ts-nocheck
-import { styled } from '../../styled';
+import { styled } from '@gluestack-style/react';
 import { TextInput } from 'react-native';
 
 export default styled(
@@ -9,7 +8,7 @@ export default styled(
       w: '$full',
     },
     flex: 1,
-    h: '100%',
+    h: '$full',
     color: '$textLight900',
     props: {
       placeholderTextColor: '$textLight500',

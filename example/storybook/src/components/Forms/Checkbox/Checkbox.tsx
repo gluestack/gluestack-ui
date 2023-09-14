@@ -24,8 +24,6 @@ const CheckboxGroupBasic = ({ ...props }: any) => {
   return (
     <CheckboxGroup
       accessibilityLabel="Checkbox Group"
-      isDisabled={props.isDisabled}
-      isReadOnly={props.isReadOnly}
       value={values}
       onChange={setValues}
       {...props}
@@ -72,9 +70,47 @@ const CheckboxGroupBasic = ({ ...props }: any) => {
   );
 };
 
+const FigmaCheckboxStory = ({ ...props }: any) => {
+  const iconSize: any = {
+    sm: '2xs',
+    md: 'sm',
+    lg: 'md',
+  };
+
+  return (
+    <Checkbox {...props} nativeID="checkbox-1">
+      <CheckboxIndicator mr="$2">
+        <CheckboxIcon
+          as={CheckIcon}
+          dataSet={{
+            'component-props': JSON.stringify({
+              'instance': true,
+              'instance-name': 'Icon',
+              'name': 'CheckIcon',
+              'size': iconSize[props.size],
+            }),
+          }}
+        />
+      </CheckboxIndicator>
+      <CheckboxLabel
+        dataSet={{
+          'component-props': JSON.stringify({
+            'is-text-style': true,
+            'component-name': 'Text',
+            'size': props.size,
+          }),
+        }}
+      >
+        Label 1
+      </CheckboxLabel>
+    </Checkbox>
+  );
+};
+
 export default CheckboxGroupBasic;
 
 export {
+  FigmaCheckboxStory,
   Center,
   Text,
   CheckIcon,

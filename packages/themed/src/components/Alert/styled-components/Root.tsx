@@ -1,11 +1,10 @@
-// @ts-nocheck
 import { View } from 'react-native';
-import { styled } from '../../styled';
+import { styled } from '@gluestack-style/react';
 
 export default styled(
   View,
   {
-    alignItems: 'flex-start',
+    alignItems: 'center',
     p: '$3',
     flexDirection: 'row',
     borderRadius: '$sm',

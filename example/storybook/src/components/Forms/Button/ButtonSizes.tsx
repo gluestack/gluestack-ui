@@ -1,5 +1,4 @@
 import React from 'react';
-import type { ComponentStory } from '@storybook/react-native';
 import {
   Button,
   ButtonText,
@@ -8,9 +7,7 @@ import {
   AddIcon,
 } from '@gluestack-ui/themed';
 
-type MyButtonStory = ComponentStory<typeof Button>;
-
-const ButtonAllSizes: MyButtonStory = ({}) => {
+const ButtonAllSizes = ({}) => {
   const sizes = ['xs', 'sm', 'md', 'lg', 'xl'];
   return (
     <VStack space="md" justifyContent="center" alignItems="center">

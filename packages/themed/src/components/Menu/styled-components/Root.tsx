@@ -1,6 +1,7 @@
 //@ts-nocheck
 import { UL } from '@expo/html-elements';
-import { styled } from '../../styled';
+import { AnimationResolver } from '@gluestack-style/animation-plugin';
+import { styled } from '@gluestack-style/react';
 import { createMotionAnimatedComponent, Motion } from '@legendapp/motion';
 const MotionUL = createMotionAnimatedComponent(UL) as typeof Motion.Pressable;
 export const Root = styled(
@@ -37,5 +38,8 @@ export const Root = styled(
   },
   {
     componentName: 'Menu',
-  } as const
+  } as const,
+  {
+    plugins: [new AnimationResolver({})],
+  }
 );

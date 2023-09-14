@@ -865,7 +865,6 @@ import {
   Body,
   Backdrop,
 } from '../components/core/modal/styled-components';
-import { styled } from '../components/styled';
 
 // import the createModal function
 import { createModal } from '@gluestack-ui/modal';
@@ -879,7 +878,7 @@ const Modal = createModal({
   Footer,
   Body,
   Backdrop,
-  AnimatePresence: styled.Component, // Can be AnimatePresence from the library you are using
+  AnimatePresence: Content.AnimatePresence, // Can be AnimatePresence from the library you are using
 });
 
 // Using the modal component

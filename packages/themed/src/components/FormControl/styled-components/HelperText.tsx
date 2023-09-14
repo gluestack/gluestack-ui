@@ -1,11 +1,12 @@
-import { styled } from '../../styled';
-import { Text } from 'react-native';
+import { styled } from '@gluestack-style/react';
+import { Text } from '../../Text';
 
 export default styled(
   Text,
   {
-    fontSize: '$xs',
-    fontFamily: '$body',
+    props: {
+      size: 'xs',
+    },
     color: '$textLight500',
     _dark: {
       color: '$textDark400',

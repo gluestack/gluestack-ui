@@ -1,6 +1,5 @@
-// @ts-nocheck
 import { Pressable } from 'react-native';
-import { styled } from '../../styled';
+import { styled } from '@gluestack-style/react';
 
 export default styled(
   Pressable,

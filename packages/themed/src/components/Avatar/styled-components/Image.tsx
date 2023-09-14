@@ -1,11 +1,11 @@
 import { Image } from 'react-native';
-import { styled } from '../../styled';
+import { styled } from '@gluestack-style/react';
 
 export default styled(
   Image,
   {
-    w: '100%',
-    h: '100%',
+    w: '$full',
+    h: '$full',
     borderRadius: '$full',
     position: 'absolute',
   },

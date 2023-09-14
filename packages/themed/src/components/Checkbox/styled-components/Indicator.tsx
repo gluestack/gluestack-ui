@@ -1,5 +1,5 @@
 import { View } from 'react-native';
-import { styled } from '../../styled';
+import { styled } from '@gluestack-style/react';
 
 export default styled(
   View,
@@ -8,7 +8,6 @@ export default styled(
     'alignItems': 'center',
     'borderColor': '$borderLight400',
     'bg': '$transparent',
-    'borderWidth': 2,
     'borderRadius': 4,
 
     '_web': {

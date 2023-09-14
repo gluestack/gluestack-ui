@@ -14,20 +14,20 @@ export const Community = ({
   communities: CommunityItem[];
 }) => {
   return (
-    <Box my={'$6'}>
+    <Box my="$6">
       <VStack space="sm">
-        <Text fontWeight="$bold" fontSize={24} fontFamily="Plus Jakarta Sans">
+        <Text fontWeight="$bold" fontSize="$2xl" fontFamily="Plus Jakarta Sans">
           Join our community
         </Text>
-        <Text fontSize={16}>
+        <Text fontSize="$md">
           Be a part of this journey. Everyone is welcome!
         </Text>
       </VStack>
       <HStack
-        my={'$6'}
+        my="$6"
         flexDirection="column"
         flexWrap="wrap"
-        gap={20}
+        gap="$5"
         sx={{
           '@lg': {
             flexDirection: 'row',
@@ -45,7 +45,7 @@ export const Community = ({
                 '@sm': {
                   flex: 1,
                 },
-                'borderColor': '#D4D4D4',
+                'borderColor': '$trueGray300',
                 '_dark': {
                   borderColor: '$borderDark800',
                 },
@@ -61,9 +61,9 @@ export const Community = ({
                 <HStack
                   alignItems="center"
                   sx={{
-                    color: '#000000',
+                    color: '$black',
                     _dark: {
-                      color: '#FFFFFF',
+                      color: '$white',
                     },
                   }}
                 >
@@ -79,7 +79,7 @@ export const Community = ({
                 </HStack>
                 <Text
                   sx={{
-                    color: '#525252',
+                    color: '$trueGray600',
                     _dark: {
                       color: '$textDark400',
                     },

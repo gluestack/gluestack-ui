@@ -1,11 +1,9 @@
-import { Text } from 'react-native';
-import { styled } from '../../styled';
+import { Text } from '../../Text';
+import { styled } from '@gluestack-style/react';
 
 export default styled(
   Text,
   {
-    fontWeight: '$medium',
-    fontFamily: '$body',
     textTransform: 'uppercase',
   },
   {

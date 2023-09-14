@@ -65,11 +65,29 @@ const ActionsheetWithSectionlist = ({
           keyExtractor={(item: any, index: any) => item + index}
           renderItem={({ item }: any) => (
             <ActionsheetItem onPress={handleClose}>
-              <ActionsheetItemText>{item}</ActionsheetItemText>
+              <ActionsheetItemText
+                dataSet={{
+                  'component-props': JSON.stringify({
+                    'is-text-style': true,
+                    'component-name': 'Text',
+                    'size': 'md',
+                  }),
+                }}
+              >
+                {item}
+              </ActionsheetItemText>
             </ActionsheetItem>
           )}
           renderSectionHeader={({ section: { title, data } }: any) => (
-            <ActionsheetSectionHeaderText>
+            <ActionsheetSectionHeaderText
+              dataSet={{
+                'component-props': JSON.stringify({
+                  'is-text-style': true,
+                  'component-name': 'Heading',
+                  'size': 'xs',
+                }),
+              }}
+            >
               {title} ({data.length})
             </ActionsheetSectionHeaderText>
           )}

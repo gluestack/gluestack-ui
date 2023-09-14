@@ -16,8 +16,8 @@ export const Card = ({
       borderRadius="$xl"
       borderWidth={1}
       sx={{
-        borderColor: '#D4D4D4',
-        bg: '#F5F5F5',
+        borderColor: '$trueGray300',
+        bg: '$trueGray100',
         _dark: {
           bg: '#071117',
           borderColor: '$borderDark800',
@@ -33,10 +33,10 @@ export const Card = ({
         borderTopLeftRadius="$xl"
         borderTopRightRadius="$xl"
         sx={{
-          borderBottomColor: '#D4D4D4',
-          bg: '#FAFAFA',
+          borderBottomColor: '$trueGray300',
+          bg: '$trueGray50',
           _dark: {
-            borderBottomColor: '#313848',
+            borderColor: '$borderDark800',
             bg: '#0C0E12',
           },
         }}

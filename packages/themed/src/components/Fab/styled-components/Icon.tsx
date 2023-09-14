@@ -1,18 +1,15 @@
-import { styled } from '../../styled';
-import { AsForwarder } from '@gluestack-style/react';
-
-const Icon = styled(AsForwarder, {}, {});
+import { styled } from '@gluestack-style/react';
+import { StyledIcon } from '../../Icons/styled-components';
 
 export default styled(
-  Icon,
-  {},
+  StyledIcon,
+  {
+    props: {
+      size: 'md',
+    },
+  },
   {
     componentName: 'FabIcon',
     ancestorStyle: ['_icon'],
-  } as const,
-  {
-    propertyTokenMap: {
-      stroke: 'colors',
-    },
-  }
+  } as const
 );

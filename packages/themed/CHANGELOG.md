@@ -1,5 +1,127 @@
 # @gluestack-ui/themed
 
+## 0.1.39
+
+### Patch Changes
+
+- Updated Actionsheet, VStack, HStack and Input Creator Versions.
+
+## 0.1.38
+
+### Patch Changes
+
+- Fixed multiline waring in `Textarea` [#1051](https://github.com/gluestack/gluestack-ui/pull/1051).
+- Added typing support for external config. [#1060](https://github.com/gluestack/gluestack-ui/pull/1060)
+
+## 0.1.37
+
+### Patch Changes
+
+- Fixed overlay components
+
+## 0.1.36
+
+### Patch Changes
+
+- - Removed `LinearGradient` component (Please follow this [link](https://snack.expo.dev/@gluestack/gluestack-ui-linear-gradient) for LinearGradient implementation)
+
+## 0.1.35
+
+### Patch Changes
+
+- fixed slider on ios and icon version upgrade
+
+## 0.1.34
+
+### Patch Changes
+
+- - Peer dependencies updated
+
+## 0.1.33
+
+### Patch Changes
+
+- Menu top position on native devices
+
+## 0.1.32
+
+### Patch Changes
+
+- fix: react native svg dependancy
+
+## 0.1.31
+
+### Patch Changes
+
+- Top position issue with `overlay` components.
+- `react-native-svg` version issue.
+
+## 0.1.30
+
+### Patch Changes
+
+- - Icon size issue with `lucide-react-native` icons
+
+## 0.1.27
+
+### Patch Changes
+
+- - `@glustack-style/react` version updated
+
+## 0.1.26
+
+### Patch Changes
+
+- - `@gluestack-style/react` version updated
+  - Passing prop issue fixes
+
+## 0.1.25
+
+### Patch Changes
+
+- Removed unwanted react native svg dependencies.
+- Styling fixes for checkbox and radio.
+
+## 0.1.22
+
+### Patch Changes
+
+- - State passing props resolution fixes.
+
+## 0.1.21
+
+### Patch Changes
+
+- - Icon size issue fixes on web
+
+## 0.1.20
+
+### Patch Changes
+
+- Updated version of @gluestack-style/react
+
+## 0.1.19
+
+### Patch Changes
+
+- Fixing the version issue and Theme component not exported
+
+## 0.1.18
+
+### Patch Changes
+
+- Removed default gap from VStack and HStack
+
+## 0.1.17
+
+### Patch Changes
+
+- Version updated @gluestack-ui/hstack, @gluestack-ui/vstack.
+  - Support for gap property in HStack, VStack.
+  - `space` typing suggestion in HStack, Vstack.
+- Version updated `@gluestack-style/react`
+  - Dyanmic variable resolution in colorMode sx prop.
+
 ## 0.1.15
 
 ### Patch Changes

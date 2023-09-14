@@ -1,16 +1,16 @@
-import { styled } from '../../styled';
+import { styled } from '@gluestack-style/react';
 import { TextInput } from 'react-native';
 
 export default styled(
   TextInput,
   {
     p: '$2',
-    //@ts-ignore
-    multiline: true,
     color: '$textLight900',
     textAlignVertical: 'top',
     flex: 1,
     props: {
+      // @ts-ignore
+      multiline: true,
       placeholderTextColor: '$textLight500',
     },
     _dark: {
