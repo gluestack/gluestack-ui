@@ -305,7 +305,7 @@ CreateIcon function takes viewBox, d, path etc as parameters. We can use svgs fr
 - Pass svg props such as `viewBox` in `createIcon` directly.
 - Copy the svg code without the SVG tag directly into the function argument `Path` or `D` or whichever prop justifies your svg.
 - Replace HTML SVG tags (e.g., `<path>`, `<rect>` etc) with the corresponding React Native SVG components (e.g., `<Path>`, `<Rect>` etc).
-- For any color property (i.e. fill, strokeColor etc), if you want to override that color, pass "currentColor" instead of a colorCode.
+- For any color property (i.e. fill, stroke etc), if you want to override that color, pass "currentColor" instead of a colorCode.
 
 Before :
 `<path fill="#FF0000" d="M10 10L20 20" /> `
