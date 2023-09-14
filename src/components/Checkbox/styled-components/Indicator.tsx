@@ -6,10 +6,12 @@ export default styled(
   {
     'justifyContent': 'center',
     'alignItems': 'center',
-    'borderColor': '$borderLight400',
-    'bg': '$transparent',
+    'bg': '$muted.50',
+    'borderColor': '$muted.400',
     'borderWidth': 2,
-    'borderRadius': 4,
+    'borderRadius': '$sm',
+    'opacity': 1,
+    'p': 2,
 
     '_web': {
       ':focusVisible': {
@@ -23,90 +25,65 @@ export default styled(
     },
 
     ':checked': {
-      borderColor: '$primary600',
-      bg: '$primary600',
-    },
-
-    ':hover': {
-      'borderColor': '$borderLight500',
-      'bg': 'transparent',
-      ':invalid': {
-        borderColor: '$error700',
-      },
-      ':checked': {
-        'bg': '$primary700',
-        'borderColor': '$primary700',
-        ':disabled': {
-          'borderColor': '$primary600',
-          'bg': '$primary600',
-          'opacity': 0.4,
-          ':invalid': {
-            borderColor: '$error700',
-          },
-        },
-      },
-      ':disabled': {
-        'borderColor': '$borderLight400',
-        ':invalid': {
-          borderColor: '$error700',
-        },
-      },
-    },
-
-    ':active': {
-      bg: '$primary800',
-      borderColor: '$primary800',
-    },
-    ':invalid': {
-      borderColor: '$error700',
-    },
-    ':disabled': {
-      opacity: 0.4,
-    },
-
-    '_dark': {
-      'borderColor': '$borderDark500',
-      'bg': '$transparent',
-
-      ':checked': {
-        borderColor: '$primary500',
-        bg: '$primary500',
-      },
+      'borderColor': `$primary.600`,
+      'bg': `$primary.600`,
       ':hover': {
-        'borderColor': '$borderDark400',
-        'bg': 'transparent',
-        ':invalid': {
-          borderColor: '$error400',
-        },
-        ':checked': {
-          'bg': '$primary400',
-          'borderColor': '$primary400',
-          ':disabled': {
-            'borderColor': '$primary500',
-            'bg': '$primary500',
-            'opacity': 0.4,
-            ':invalid': {
-              borderColor: '$error400',
-            },
-          },
-        },
+        'borderColor': `$primary.700`,
+        'bg': `$primary.700`,
         ':disabled': {
-          'borderColor': '$borderDark500',
-          ':invalid': {
-            borderColor: '$error400',
-          },
+          borderColor: `$primary.600`,
+          bg: `$primary.600`,
         },
       },
       ':active': {
-        bg: '$primary300',
-        borderColor: '$primary300',
+        borderColor: `$primary.800`,
+        bg: `$primary.800`,
       },
+    },
 
-      ':invalid': {
-        borderColor: '$error400',
-      },
+    ':hover': {
+      'borderColor': '$muted.500',
       ':disabled': {
-        opacity: 0.4,
+        borderColor: '$muted.400',
+      },
+    },
+    ':active': {
+      borderColor: '$muted.600',
+    },
+    ':invalid': {
+      borderColor: '$error.600',
+    },
+
+    '_dark': {
+      'bg': '$muted.900',
+      'borderColor': '$muted.500',
+      ':checked': {
+        'borderColor': `$primary.500`,
+        'bg': `$primary.500`,
+        ':hover': {
+          'borderColor': `$primary.400`,
+          'bg': `$primary.400`,
+          ':disabled': {
+            borderColor: `$primary.500`,
+            bg: `$primary.500`,
+          },
+        },
+        ':active': {
+          borderColor: `$primary.300`,
+          bg: `$primary.300`,
+        },
+      },
+      ':hover': {
+        borderColor: '$muted.400',
+        _disabled: {
+          borderColor: '$muted.500',
+        },
+      },
+      ':active': {
+        borderColor: '$muted.300',
+      },
+      ':invalid': {
+        borderColor: '$error.500',
       },
     },
   },

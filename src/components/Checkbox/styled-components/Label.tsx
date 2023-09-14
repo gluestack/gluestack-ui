@@ -4,27 +4,27 @@ import { styled } from '../../styled';
 export default styled(
   Text,
   {
-    'color': '$textLight600',
+    'color': '$muted.600',
     ':checked': {
-      color: '$textLight900',
+      color: '$muted.900',
     },
     ':hover': {
-      'color': '$textLight900',
+      'color': '$muted.900',
       ':checked': {
-        'color': '$textLight900',
+        'color': '$muted.900',
         ':disabled': {
-          color: '$textLight900',
+          color: '$muted.900',
         },
       },
       ':disabled': {
-        color: '$textLight600',
+        color: '$muted.600',
       },
     },
     ':active': {
-      'color': '$textLight900',
+      'color': '$muted.900',
 
       ':checked': {
-        color: '$textLight900',
+        color: '$muted.900',
       },
     },
 
@@ -39,28 +39,28 @@ export default styled(
     },
 
     '_dark': {
-      'color': '$textDark400',
+      'color': '$muted.400',
       ':checked': {
-        color: '$textDark100',
+        color: '$muted.100',
       },
       ':hover': {
-        'color': '$textDark100',
+        'color': '$muted.100',
         ':checked': {
-          'color': '$textDark100',
+          'color': '$muted.100',
           ':disabled': {
-            color: '$textDark100',
+            color: '$muted.100',
           },
         },
       },
       ':disabled': {
-        color: '$textDark100',
+        color: '$muted.100',
       },
 
       ':active': {
-        'color': '$textDark100',
+        'color': '$muted.100',
 
         ':checked': {
-          color: '$textDark100',
+          color: '$muted.100',
         },
       },
     },

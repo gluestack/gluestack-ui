@@ -10,14 +10,14 @@ export default styled(
     'justifyContent': 'center',
     'alignItems': 'center',
     ':checked': {
-      color: '$backgroundLight0',
+      color: `$muted.50`,
     },
     ':disabled': {
       opacity: 0.4,
     },
     '_dark': {
       ':checked': {
-        color: '$backgroundDark0',
+        color: `muted.900`,
       },
       ':disabled': {
         opacity: 0.4,

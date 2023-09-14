@@ -4,14 +4,11 @@ import { styled } from '../styled';
 export const StyledIcon: any = styled(
   AsForwarder,
   {
-    'color': '$muted.500',
-    ':hover': {
-      color: 'red',
-    },
-    '_dark': {
+    color: '$muted.500',
+    _dark: {
       color: '$muted.400',
     },
-    'variants': {
+    variants: {
       size: {
         '2xs': {
           h: '$2',
@@ -59,7 +56,7 @@ export const StyledIcon: any = styled(
         },
       },
     },
-    'defaultProps': {
+    defaultProps: {
       size: 'md',
     },
   },
