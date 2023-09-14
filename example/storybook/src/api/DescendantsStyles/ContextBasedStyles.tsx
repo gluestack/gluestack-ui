@@ -26,56 +26,23 @@ const styleshet = StyleSheet.create({
     padding: 12,
   },
 });
+
 const Pressable = styled(
   RNPressable,
   {
-    bg: '$red500',
+    bg: '$red200',
     p: '$2',
-    // 'bg': '$red600',
-    // 'w': 100,
-    // 'h': 100,
-    // '_light': {
-    //   bg: '$red600',
-    // },
-    // '@base': {
-    //   bg: '$blue500',
-    // },
-    // ':hover': {
-    //   bg: '$red500',
-    // },
-    // '@sm': {
-    //   props: {
-    //     test: 'sm',
-    //   },
-    // },
-    // _dark: {
-    //   // bg: '$amber200',
-    //   props: {
-    //     bg: 3 < 2 ? '$yellow400' : 'blue',
-    //   },
-    // },
-
-    // '@xl': {
-    //   props: {
-    //     bg: '$green500',
-    //   },
-    // },
-
-    // 'props': {
-    //   bg: '$blue400',
-    //   // test: 'hello',
-    // },
   },
   {
     componentName: 'Pressable',
-    // descendantStyle: ['_text'],
+    descendantStyle: ['_text'],
   }
 );
 
 const Pressable1 = styled(
   Pressable,
   {
-    bg: '$red500',
+    bg: '$red200',
     p: '$2',
 
     // 'bg': '$red600',
@@ -106,11 +73,15 @@ const Text = styled(
 );
 
 const StyledIcon = styled(
-  AsForwarder,
+  View,
   {
     bg: '$amber100',
     bgColor: '$amber100',
-
+    variants: {
+      size: {
+        sm: {},
+      },
+    },
     // variants: {
     //   size: {
     //     sm: {
@@ -182,11 +153,48 @@ const Box1 = styled(
   }
 );
 
-const Text1 = styled(Text, {}, { ancestorStyle: ['_text'] });
+const Text1 = styled(
+  Text,
+  {
+    // _dark: {
+    //   color: '$green500',
+    // },
+    // variants: {
+    //   variant: {
+    //     sm: {
+    //       color: '$red500',
+    //     },
+    //     lg: {
+    //       color: '$blue500',
+    //     },
+    //   },
+    // },
+    _dark: {
+      color: '$black',
+    },
+  },
+  { ancestorStyle: ['_text'], componentName: 'TEXT' }
+);
 export function ContextBasedStyles() {
   return (
     <Wrapper colorMode="dark">
-      <MyIcon as={Sun} size={32}></MyIcon>
+      <Pressable
+        focusable={true}
+        sx={{
+          _text: {
+            color: '$blue500',
+            // props: {
+            //   variant: 'sm',
+            // },
+            // _dark: {
+            //   color: '$yellow500',
+            // },
+          },
+        }}
+      >
+        <Text1>Hello world</Text1>
+      </Pressable>
+      {/* <MyIcon as={Sun} size></MyIcon> */}
       {/* <ContextBasedStylesContent></ContextBasedStylesContent> */}
       {/* <Pressable></Pressable> */}
       {/* <Box1
