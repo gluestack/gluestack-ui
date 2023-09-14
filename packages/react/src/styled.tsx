@@ -823,7 +823,7 @@ const getStyleIdsFromMap = (
   return componentStyleObject;
 };
 
-export function verboseStyled<P, Variants, ComCon, PluginType>(
+export function verboseStyled<P, Variants, ComCon, PluginType = unknown>(
   Component: React.ComponentType<P>,
   theme: Partial<IVerbosedTheme<Variants, P>>,
   componentStyleConfig: IComponentStyleConfig<ComCon> = {},
@@ -1854,7 +1854,7 @@ export function verboseStyled<P, Variants, ComCon, PluginType>(
   return StyledComp;
 }
 
-export function styled<P, Variants, ComCon, PluginType = []>(
+export function styled<P, Variants, ComCon, PluginType = unknown>(
   Component: React.ComponentType<P>,
   theme: ITheme<Variants, P, PluginType>,
   componentStyleConfig?: IComponentStyleConfig<ComCon>,
