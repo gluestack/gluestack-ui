@@ -10,7 +10,7 @@
 
 ### Patch Changes
 
-- 0.1.42
+- Changed API for Input: Added InputSlot and InputIcon
 
 ## 0.1.40
 
