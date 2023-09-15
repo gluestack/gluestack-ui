@@ -43,6 +43,7 @@ import { stableHash } from './stableHash';
 import { DeclarationType, GluestackStyleSheet } from './style-sheet';
 import { CSSPropertiesMap } from './core/styled-system';
 import { updateOrderUnResolvedMap } from './updateOrderUnResolvedMap';
+import { getInstalledPlugins } from './createConfig';
 
 const styledSystemProps = { ...CSSPropertiesMap };
 
@@ -299,7 +300,10 @@ const getMergeDescendantsStyleCSSIdsAndPropsWithKey = (
   return descendantStyleObj;
 };
 
-const AncestorStyleContext = React.createContext({});
+const AncestorStyleContext = React.createContext({
+  sx: {},
+  component: {},
+});
 //
 
 // window['globalStyleMap'] = globalStyleMap;
@@ -723,6 +727,57 @@ export function getVariantProps(
   };
 }
 
+function resolveInlineProps(
+  componentStyleConfig: any,
+  componentExtendedConfig: any,
+  props: any,
+  CONFIG: any
+) {
+  let resolvedInlineProps = {};
+  if (
+    componentStyleConfig.resolveProps &&
+    Object.keys(componentExtendedConfig).length > 0
+  ) {
+    componentStyleConfig.resolveProps.forEach((toBeResovledProp: any) => {
+      if (props[toBeResovledProp]) {
+        let value = props[toBeResovledProp];
+        if (
+          CONFIG.propertyResolver &&
+          CONFIG.propertyResolver.props &&
+          CONFIG.propertyResolver.props[toBeResovledProp]
+        ) {
+          let transformer = CONFIG.propertyResolver.props[toBeResovledProp];
+          let aliasTokenType = CONFIG.propertyTokenMap[toBeResovledProp];
+          let token = transformer(
+            value,
+            (value1: any, scale = aliasTokenType) =>
+              resolveStringToken(
+                value1,
+                CONFIG,
+                CONFIG.propertyTokenMap,
+                toBeResovledProp,
+                scale
+              )
+          );
+          //@ts-ignore
+          resolvedInlineProps[toBeResovledProp] = token;
+        } else {
+          //@ts-ignore
+          resolvedInlineProps[toBeResovledProp] =
+            getResolvedTokenValueFromConfig(
+              componentExtendedConfig,
+              props,
+              toBeResovledProp,
+              props[toBeResovledProp]
+            );
+        }
+        delete props[toBeResovledProp];
+      }
+    });
+  }
+  return resolvedInlineProps;
+}
+
 const getStyleIdsFromMap = (
   CONFIG: any,
   ExtendedConfig: any,
@@ -768,7 +823,7 @@ const getStyleIdsFromMap = (
   return componentStyleObject;
 };
 
-export function verboseStyled<P, Variants, ComCon>(
+export function verboseStyled<P, Variants, ComCon, PluginType = unknown>(
   Component: React.ComponentType<P>,
   theme: Partial<IVerbosedTheme<Variants, P>>,
   componentStyleConfig: IComponentStyleConfig<ComCon> = {},
@@ -936,7 +991,9 @@ export function verboseStyled<P, Variants, ComCon>(
       // sxHash: BUILD_TIME_sxHash = '',
       ...componentProps
     }: Omit<P, keyof Variants> &
-      Partial<ComponentProps<ITypeReactNativeStyles, Variants, P, ComCon>> &
+      Partial<
+        ComponentProps<ITypeReactNativeStyles, Variants, P, ComCon, PluginType>
+      > &
       Partial<UtilityProps<ITypeReactNativeStyles>> & {
         as?: any;
         children?: any;
@@ -945,28 +1002,19 @@ export function verboseStyled<P, Variants, ComCon>(
   ) => {
     const isClient = React.useRef(false);
 
-    //@ts-ignore style: 222ms
+    //@ts-ignore
     let themeDefaultProps = { ...theme.baseStyle?.props };
 
-    // 240ms
     const sxComponentStyleIds = useRef({});
     const sxDescendantStyleIds: any = useRef({});
 
     const sxComponentPassingProps = useRef({});
 
-    // const applySxStyleCSSIds = useRef([]);
     const applySxBaseStyleCSSIds = useRef([]);
     const applySxVariantStyleCSSIds = useRef([]);
 
     const applySxDescendantStyleCSSIdsAndPropsWithKey = useRef({});
 
-    // const [applySxStateStyleCSSIds, setApplyStateSxStyleCSSIds] = useState([]);
-    // const [componentStatePassingProps, setComponentStatePassingProps] =
-    //   useState({});
-    // const [sxStatePassingProps, setSxStatePassingProps] = useState({});
-
-    //200ms
-    // let time = Date.now();
     const styledContext = useStyled();
     const { theme: activeTheme } = useTheme();
 
@@ -1073,9 +1121,19 @@ export function verboseStyled<P, Variants, ComCon>(
       passingProps: applyAncestorPassingProps,
       baseStyleCSSIds: applyAncestorBaseStyleCSSIds,
       variantStyleIds: applyAncestorVariantStyleCSSIds,
-    } = getAncestorCSSStyleIds(componentStyleConfig, ancestorStyleContext);
+    } = getAncestorCSSStyleIds(
+      componentStyleConfig,
+      ancestorStyleContext.component
+    );
+
+    const {
+      passingProps: applySxAncestorPassingProps,
+      baseStyleCSSIds: applySxAncestorBaseStyleCSSIds,
+      variantStyleIds: applySxAncestorVariantStyleCSSIds,
+    } = getAncestorCSSStyleIds(componentStyleConfig, ancestorStyleContext.sx);
 
     Object.assign(incomingComponentProps, applyAncestorPassingProps);
+    Object.assign(incomingComponentProps, applySxAncestorPassingProps);
     Object.assign(incomingComponentProps, componentProps);
 
     Object.assign(themeDefaultProps, incomingComponentProps);
@@ -1253,48 +1311,12 @@ export function verboseStyled<P, Variants, ComCon>(
     // 520ms
 
     // Inline prop based style resolution TODO: Diagram insertion
-    const resolvedInlineProps = {};
-    if (
-      componentStyleConfig.resolveProps &&
-      Object.keys(componentExtendedConfig).length > 0
-    ) {
-      componentStyleConfig.resolveProps.forEach((toBeResovledProp: any) => {
-        if (componentPropsWithoutVariants[toBeResovledProp]) {
-          let value = componentPropsWithoutVariants[toBeResovledProp];
-          if (
-            CONFIG.propertyResolver &&
-            CONFIG.propertyResolver.props &&
-            CONFIG.propertyResolver.props[toBeResovledProp]
-          ) {
-            let transformer = CONFIG.propertyResolver.props[toBeResovledProp];
-            let aliasTokenType = CONFIG.propertyTokenMap[toBeResovledProp];
-            let token = transformer(
-              value,
-              (value1: any, scale = aliasTokenType) =>
-                resolveStringToken(
-                  value1,
-                  CONFIG,
-                  CONFIG.propertyTokenMap,
-                  toBeResovledProp,
-                  scale
-                )
-            );
-            //@ts-ignore
-            resolvedInlineProps[toBeResovledProp] = token;
-          } else {
-            //@ts-ignore
-            resolvedInlineProps[toBeResovledProp] =
-              getResolvedTokenValueFromConfig(
-                componentExtendedConfig,
-                componentPropsWithoutVariants,
-                toBeResovledProp,
-                componentPropsWithoutVariants[toBeResovledProp]
-              );
-          }
-          delete componentPropsWithoutVariants[toBeResovledProp];
-        }
-      });
-    }
+    const resolvedInlineProps = resolveInlineProps(
+      componentStyleConfig,
+      componentExtendedConfig,
+      componentPropsWithoutVariants,
+      CONFIG
+    );
 
     const passingProps = deepMergeObjects(
       applyComponentPassingProps,
@@ -1319,6 +1341,7 @@ export function verboseStyled<P, Variants, ComCon>(
 
     let containsSX = false;
     Object.assign(applyComponentInlineProps, filteredPassingRemainingProps);
+    Object.assign(applyComponentInlineProps, resolvedInlineProps);
     Object.assign(applyComponentInlineProps, filteredComponentRemainingProps);
 
     if (
@@ -1524,10 +1547,21 @@ export function verboseStyled<P, Variants, ComCon>(
 
         injectAndUpdateSXProps(filteredPassingSx);
 
+        const resolvedPassingRemainingProps = resolveInlineProps(
+          componentStyleConfig,
+          componentExtendedConfig,
+          filteredPassingRemainingPropsUpdated,
+          CONFIG
+        );
+
         Object.assign(
           applyComponentInlineProps,
           filteredPassingRemainingPropsUpdated
         );
+
+        Object.assign(applyComponentInlineProps, resolvedPassingRemainingProps);
+
+        Object.assign(applyComponentInlineProps, resolvedInlineProps);
 
         Object.assign(
           applyComponentInlineProps,
@@ -1695,13 +1729,21 @@ export function verboseStyled<P, Variants, ComCon>(
           applySxDescendantStyleCSSIdsAndPropsWithKey ||
           ancestorStyleContext
         ) {
-          return mergeArraysInObjects(
-            applyDescendantsStyleCSSIdsAndPropsWithKey,
-            applyDescendantStateStyleCSSIdsAndPropsWithKey,
+          const sxDescendantCSSIds = mergeArraysInObjects(
             applySxDescendantStyleCSSIdsAndPropsWithKey.current,
             applySxDescendantStateStyleCSSIdsAndPropsWithKey.current,
-            ancestorStyleContext
+            ancestorStyleContext.component
           );
+          const componentDescendantCSSIds = mergeArraysInObjects(
+            applyDescendantsStyleCSSIdsAndPropsWithKey,
+            applyDescendantStateStyleCSSIdsAndPropsWithKey,
+            ancestorStyleContext.sx
+          );
+
+          return {
+            component: componentDescendantCSSIds,
+            sx: sxDescendantCSSIds,
+          };
         } else {
           return {};
         }
@@ -1725,11 +1767,17 @@ export function verboseStyled<P, Variants, ComCon>(
       ...applyAncestorVariantStyleCSSIds,
       ...applyComponentStateBaseStyleIds,
       ...applyComponentStateVariantStyleIds,
+
+      ...applySxAncestorBaseStyleCSSIds,
+      ...applySxAncestorVariantStyleCSSIds,
+
+      // ...applySxAncestorBaseStyleCSSIds,
       ...applySxVariantStyleCSSIds.current,
       ...applySxStateVariantStyleCSSIds.current,
       ...applySxBaseStyleCSSIds.current,
       ...applySxStateBaseStyleCSSIds.current,
     ];
+
     Object.assign(resolvedInlineProps, applyComponentInlineProps);
 
     const resolvedStyleProps = generateStylePropsFromCSSIds(
@@ -1738,6 +1786,7 @@ export function verboseStyled<P, Variants, ComCon>(
       CONFIG,
       activeTheme
     );
+
     const AsComp: any =
       resolvedStyleProps.as || (passingProps.as as any) || undefined;
 
@@ -1805,11 +1854,11 @@ export function verboseStyled<P, Variants, ComCon>(
   return StyledComp;
 }
 
-export function styled<P, Variants, ComCon>(
+export function styled<P, Variants, ComCon, PluginType = unknown>(
   Component: React.ComponentType<P>,
-  theme: ITheme<Variants, P>,
+  theme: ITheme<Variants, P, PluginType>,
   componentStyleConfig?: IComponentStyleConfig<ComCon>,
-  ExtendedConfig?: ExtendedConfigType,
+  ExtendedConfig?: ExtendedConfigType<PluginType>,
   BUILD_TIME_PARAMS?: {
     orderedResolved: OrderedSXResolved;
     verbosedStyleIds: {
@@ -1824,15 +1873,58 @@ export function styled<P, Variants, ComCon>(
   // const DEBUG =
   //   process.env.NODE_ENV === 'development' && DEBUG_TAG ? false : false;
 
+  let styledObj = theme;
+  // @ts-ignore
+  let plugins: PluginType = [...getInstalledPlugins()];
+  if (ExtendedConfig?.plugins) {
+    // @ts-ignore
+    plugins = [...plugins, ...ExtendedConfig?.plugins];
+  }
+
+  for (const pluginName in plugins) {
+    // @ts-ignore
+    styledObj = plugins[pluginName]?.inputMiddleWare<P>(styledObj, true, true);
+  }
+  theme = styledObj;
   const sxConvertedObject = convertStyledToStyledVerbosed(theme);
 
-  const StyledComponent = verboseStyled<P, Variants, ComCon>(
+  let StyledComponent = verboseStyled<P, Variants, ComCon, PluginType>(
     Component,
     sxConvertedObject,
     componentStyleConfig,
     ExtendedConfig,
     BUILD_TIME_PARAMS
   );
+  // @ts-ignore
+  plugins?.reverse();
+  for (const pluginName in plugins) {
+    // @ts-ignore
+    if (plugins[pluginName]?.componentMiddleWare) {
+      // @ts-ignore
+      StyledComponent = plugins[pluginName]?.componentMiddleWare({
+        Component: StyledComponent,
+        theme,
+        componentStyleConfig,
+        ExtendedConfig,
+      });
+    }
+  }
+
+  for (const pluginName in plugins) {
+    const compWrapper =
+      // @ts-ignore
+      typeof plugins[pluginName].wrapperComponentMiddleWare === 'function'
+        ? // @ts-ignore
+          plugins[pluginName].wrapperComponentMiddleWare()
+        : null;
+
+    if (compWrapper) {
+      for (const key of Object.keys(compWrapper)) {
+        // @ts-ignore
+        StyledComponent[key] = compWrapper[key];
+      }
+    }
+  }
 
   return StyledComponent;
 }

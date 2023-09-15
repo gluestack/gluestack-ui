@@ -2,22 +2,27 @@ import React from 'react';
 import { Wrapper } from '../../components/Wrapper';
 import { Motion } from '@legendapp/motion';
 import { Pressable, View } from 'react-native';
-import { createStyled } from '@gluestack-style/react';
+import { FontResolver, styled } from '@gluestack-style/react';
 import { AnimationResolver } from '@gluestack-style/animation-plugin';
-
-const styled = createStyled([new AnimationResolver()]) as any;
 
 const images = [require('./1.png'), require('./2.png'), require('./3.png')];
 
 const Box = styled(View, {});
 
-const StyledMotionImage = styled(Motion.Image, {
-  ':animate': {
-    zIndex: 1,
-    x: 0,
-    opacity: 1,
+const StyledMotionImage = styled(
+  Motion.Image,
+  {
+    ':animate': {
+      zIndex: 1,
+      x: 0,
+      opacity: 1,
+    },
   },
-});
+  {},
+  {
+    plugins: [new AnimationResolver({})],
+  }
+);
 
 export function AnimationPlugin() {
   const [imageIndex, setImageIndex] = React.useState(0);
@@ -37,7 +42,8 @@ export function AnimationPlugin() {
           'aspectRatio': 1 * 1.4,
         }}
       >
-        <styled.Component>
+        {/* @ts-ignore */}
+        <StyledMotionImage.AnimatePresence>
           <StyledMotionImage
             style={{
               width: '100%',
@@ -47,6 +53,7 @@ export function AnimationPlugin() {
             source={{ uri: images[imageIndex] }}
             key={`image-${imageIndex}-${Math.random()}`}
             sx={{
+              // @ts-ignore
               ':initial': {
                 x: xPosition,
                 opacity: 0,
@@ -61,7 +68,8 @@ export function AnimationPlugin() {
               },
             }}
           />
-        </styled.Component>
+          {/* @ts-ignore */}
+        </StyledMotionImage.AnimatePresence>
       </Box>
       <Pressable
         accessibilityRole="button"

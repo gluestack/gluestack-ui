@@ -97,20 +97,26 @@ function addQuotesToObjectKeys(code) {
   });
 
   traverse(ast, {
-    ObjectProperty: (path) => {
-      if (types.isTemplateLiteral(path.node.value)) {
-        path.node.value = types.stringLiteral(
-          path.node.value.quasis[0].value.raw
+    ObjectProperty: (objectPropertyPath) => {
+      if (types.isTemplateLiteral(objectPropertyPath.node.value)) {
+        objectPropertyPath.node.value = types.stringLiteral(
+          objectPropertyPath.node.value.quasis[0].value.raw
         );
       }
-      if (types.isIdentifier(path.node.key)) {
-        path.node.key = types.stringLiteral(path.node.key.name);
+      if (types.isIdentifier(objectPropertyPath.node.key)) {
+        objectPropertyPath.node.key = types.stringLiteral(
+          objectPropertyPath.node.key.name
+        );
       }
-      if (types.isNumericLiteral(path.node.key)) {
-        path.node.key = types.stringLiteral(path.node.key.extra.raw);
+      if (types.isNumericLiteral(objectPropertyPath.node.key)) {
+        objectPropertyPath.node.key = types.stringLiteral(
+          objectPropertyPath.node.key.extra.raw
+        );
       }
-      if (types.isStringLiteral(path.node.value)) {
-        path.node.value = types.stringLiteral(path.node.value.value);
+      if (types.isStringLiteral(objectPropertyPath.node.value)) {
+        objectPropertyPath.node.value = types.stringLiteral(
+          objectPropertyPath.node.value.value
+        );
       }
     },
   });
@@ -118,22 +124,37 @@ function addQuotesToObjectKeys(code) {
   let initAst;
 
   traverse(ast, {
-    ObjectProperty: (path) => {
-      if (types.isIdentifier(path?.node?.value)) {
-        path.remove();
-      }
-      if (types.isTemplateLiteral(path?.node?.value)) {
-        path.remove();
-      }
-      if (types.isConditionalExpression(path?.node?.value)) {
-        path.remove();
+    ObjectProperty: (objectPropertyPath) => {
+      if (types.isArrayExpression(objectPropertyPath?.node?.value)) {
+        let arrayElements = objectPropertyPath.node.value.elements;
+        const dynamicElementsIndex = [];
+        arrayElements.forEach((element, index) => {
+          if (
+            types.isNewExpression(element) ||
+            types.isIdentifier(element) ||
+            types.isTemplateLiteral(element)
+          ) {
+            dynamicElementsIndex.push(index);
+          }
+        });
+
+        arrayElements = arrayElements.filter(
+          (element, index) => !dynamicElementsIndex.includes(index)
+        );
+        objectPropertyPath.node.value.elements = arrayElements;
+      } else if (
+        types.isIdentifier(objectPropertyPath?.node?.value) ||
+        types.isTemplateLiteral(objectPropertyPath?.node?.value) ||
+        types.isConditionalExpression(objectPropertyPath?.node?.value)
+      ) {
+        objectPropertyPath.remove();
       }
     },
   });
 
   traverse(ast, {
-    VariableDeclarator: (path) => {
-      initAst = path.node.init;
+    VariableDeclarator: (variableDeclaratorPath) => {
+      initAst = variableDeclaratorPath.node.init;
     },
   });
 

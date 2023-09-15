@@ -83,7 +83,7 @@ function resolveVariantAnimationProps(variantProps: any, styledObject: any) {
 
 export class AnimationResolver implements IStyledPlugin {
   name: 'AnimationResolver';
-  styledUtils: IStyled | undefined = {
+  styledUtils = {
     aliases: {
       ':animate': 'animate',
       ':initial': 'initial',
@@ -95,7 +95,7 @@ export class AnimationResolver implements IStyledPlugin {
       ':whileTap': 'whileTap',
       ':whileHover': 'whileHover',
       ':onAnimationComplete': 'onAnimationComplete',
-    },
+    } as const,
   };
 
   register(styledUtils: any) {
@@ -105,11 +105,14 @@ export class AnimationResolver implements IStyledPlugin {
         ...styledUtils?.aliases,
       };
 
+      // @ts-ignore
       this.styledUtils.tokens = {
+        // @ts-ignore
         ...this.styledUtils?.tokens,
         ...styledUtils?.tokens,
       };
 
+      // @ts-ignore
       this.styledUtils.ref = styledUtils?.ref;
     }
   }
@@ -123,9 +126,14 @@ export class AnimationResolver implements IStyledPlugin {
 
   #extendedConfig: any = {};
 
-  inputMiddleWare(styledObj: any = {}, shouldUpdateConfig: any = true) {
+  inputMiddleWare(
+    styledObj = {},
+    shouldUpdateConfig: any = true
+  ): {
+    // @ts-ignore
+    [key in keyof typeof this.styledUtils.aliases]: (typeof this.styledUtils.aliases)[key];
+  } {
     // this.#childrenExitPropsMap = deepClone(styledObj);
-
     const resolvedAnimatedProps = this.updateStyledObject(
       styledObj,
       shouldUpdateConfig
@@ -136,6 +144,7 @@ export class AnimationResolver implements IStyledPlugin {
     );
 
     if (shouldUpdateConfig) {
+      // @ts-ignore
       return styledObj;
     }
 
@@ -161,6 +170,7 @@ export class AnimationResolver implements IStyledPlugin {
         keyPath.pop();
       }
 
+      // @ts-ignore
       if (aliases && aliases?.[prop]) {
         if (shouldUpdateConfig) {
           // this.#childrenExitPropsMap[prop] = styledObject[prop];
@@ -171,6 +181,7 @@ export class AnimationResolver implements IStyledPlugin {
           );
         }
         const value = styledObject[prop];
+        // @ts-ignore
         keyPath.push('props', aliases[prop]);
         setObjectKeyValue(resolvedStyledObject, keyPath, value);
         keyPath.pop();
@@ -182,12 +193,12 @@ export class AnimationResolver implements IStyledPlugin {
     return resolvedStyledObject;
   }
 
-  componentMiddleWare({ NewComp, extendedConfig }: any) {
+  componentMiddleWare({ Component, ExtendedConfig }: any) {
     const styledConfig = this.#childrenExitPropsMap;
 
     this.#childrenExitPropsMap = {};
 
-    const Component = React.forwardRef((props: any, ref?: any) => {
+    const NewComponent = React.forwardRef((props: any, ref?: any) => {
       const { sx, ...rest } = props;
 
       const styledContext = useStyled();
@@ -199,8 +210,8 @@ export class AnimationResolver implements IStyledPlugin {
         [styledContext.config]
       );
       this.#extendedConfig = CONFIG;
-      if (extendedConfig) {
-        this.#extendedConfig = deepMerge(CONFIG, extendedConfig);
+      if (ExtendedConfig) {
+        this.#extendedConfig = deepMerge(CONFIG, ExtendedConfig);
       }
 
       let tokenizedAnimatedProps: any = {};
@@ -245,13 +256,13 @@ export class AnimationResolver implements IStyledPlugin {
       Object.keys(restProps?.states ?? {}).forEach((state: any) => {
         isState = restProps.states[state] ? true : false;
       });
-
       const animatedProps = !isState
-        ? resolvedAnimatedStyledWithStyledObject?.props
+        ? // @ts-ignore
+          resolvedAnimatedStyledWithStyledObject?.props
         : {};
 
       return (
-        <NewComp
+        <Component
           {...animatedProps}
           sx={resolvedAnimatedStyledWithStyledObject}
           {...restProps}
@@ -260,21 +271,23 @@ export class AnimationResolver implements IStyledPlugin {
       );
     });
 
-    //@ts-ignore
-    Component.styled = {};
-    //@ts-ignore
-    Component.styled.config = {};
-    //@ts-ignore
-    Component.styled.config = styledConfig;
+    if (NewComponent) {
+      //@ts-ignore
+      NewComponent.styled = {};
+      //@ts-ignore
+      NewComponent.styled.config = {};
+      //@ts-ignore
+      NewComponent.styled.config = styledConfig;
 
-    //@ts-ignore
-    Component.isStyledComponent = NewComp.isStyledComponent;
-    //@ts-ignore
-    Component.isComposedComponent = NewComp.isComposedComponent;
+      //@ts-ignore
+      NewComponent.isStyledComponent = Component?.isStyledComponent;
+      //@ts-ignore
+      NewComponent.isComposedComponent = Component?.isComposedComponent;
 
-    Component.displayName = 'StyledComponent';
-
-    return Component;
+      NewComponent.displayName = 'StyledComponent';
+      return NewComponent;
+    }
+    return null;
   }
 
   wrapperComponentMiddleWare() {
