@@ -53,9 +53,7 @@ import { GluestackUIProvider } from '@gluestack-ui/themed';
 
 // Write this code snippet at the root of your application
 function App({ children }) {
-  return (
-    <GluestackUIProvider>{children}</GluestackUIProvider>
-  );
+  return <GluestackUIProvider>{children}</GluestackUIProvider>;
 }
 ```
 

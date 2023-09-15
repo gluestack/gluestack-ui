@@ -1,6 +1,6 @@
 {
   "name": "@gluestack-ui/themed",
-  "version": "0.1.39",
+  "version": "0.1.42",
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "description": "A universal themed components for React Native, Next.js & React",
@@ -83,7 +83,7 @@
     "react": ">=16",
     "react-dom": ">=16",
     "react-native": ">=0.72",
-    "react-native-svg": "13.4.0",
+    "react-native-svg": ">=13.4.0",
     "react-native-web": ">=0.19"
   },
   "release-it": {
