@@ -5,11 +5,7 @@ export function VStack<StyledVStackProps>(
   Root: React.ComponentType<StyledVStackProps>
 ) {
   return forwardRef(
-    (
-      { children, ...props }: StyledVStackProps & IVStackProps,
-      ref?: any
-    ) => {
-
+    ({ children, ...props }: StyledVStackProps & IVStackProps, ref?: any) => {
       return (
         <Root ref={ref} {...(props as StyledVStackProps)}>
           {children}

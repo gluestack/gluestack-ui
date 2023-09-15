@@ -22,7 +22,8 @@ export const ButtonGroup = (
     ) => {
       let computedChildren;
       let childrenArray = React.Children.toArray(flattenChildren(children));
-      childrenArray = (isReversed || reversed) ? [...childrenArray].reverse() : childrenArray;
+      childrenArray =
+        isReversed || reversed ? [...childrenArray].reverse() : childrenArray;
 
       if (childrenArray) {
         computedChildren = childrenArray.map((child: any, index: number) => {
