@@ -148,6 +148,7 @@ export type SxStyleProps<
   PluginType
 > = {
   sx?: Partial<
+    // @ts-ignore
     SxProps<
       GenericComponentStyles,
       Variants,
@@ -309,6 +310,7 @@ export type StyledThemeProps<
   GenericComponentStyles,
   GenericComponentProps,
   PluginType
+  // @ts-ignore
 > = SxProps<
   GenericComponentStyles,
   Variants & GlobalVariants,
@@ -384,6 +386,14 @@ type PassingPropsType<
     }
   : {};
 
+// PluginPropsType<
+// PluginType,
+// GenericComponentProps,
+// GenericComponentStyles,
+// PLATFORM
+// >
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 type PluginPropsType<
   PluginType,
   GenericComponentProps,
@@ -420,8 +430,8 @@ export type SxProps<
   Variants = unknown,
   GenericComponentProps = unknown,
   PLATFORM = '',
-  MediaQuery = '',
-  PluginType = []
+  MediaQuery = ''
+  // PluginType = []
 > = Partial<
   StylePropsType<GenericComponentStyles, PLATFORM> &
     PassingPropsType<
@@ -430,81 +440,57 @@ export type SxProps<
       GenericComponentProps,
       MediaQuery
     >
-> &
-  PluginPropsType<
-    PluginType,
-    GenericComponentProps,
+> & {
+  [Key in `_${COLORMODES}`]?: SxProps<
     GenericComponentStyles,
-    PLATFORM
-  > & {
-    [Key in `_${COLORMODES}`]?: SxProps<
+    Variants,
+    GenericComponentProps,
+    PLATFORM,
+    MediaQuery
+  >;
+} & {
+  [Key in `:${IState}`]?: SxProps<
+    GenericComponentStyles,
+    Variants,
+    GenericComponentProps,
+    PLATFORM,
+    MediaQuery
+  >;
+} & {
+  [Key in `_${PLATFORMS}`]?: SxProps<
+    GenericComponentStyles,
+    Variants,
+    GenericComponentProps,
+    Key,
+    MediaQuery
+  > &
+    PassingPropsType<
       GenericComponentStyles,
       Variants,
       GenericComponentProps,
-      PLATFORM,
       MediaQuery
     > &
-      PluginPropsType<
-        PluginType,
-        GenericComponentProps,
-        GenericComponentStyles,
-        PLATFORM
-      >;
-  } & {
-    [Key in `:${IState}`]?: SxProps<
+    Partial<{
+      [key: string]: any;
+    }>;
+} & {
+  [Key in `_${string}`]?: SxProps<
+    RNStyledProps,
+    {},
+    GenericComponentProps,
+    PLATFORM,
+    MediaQuery
+  > &
+    PassingPropsType<
       GenericComponentStyles,
-      Variants,
-      GenericComponentProps,
-      PLATFORM,
-      MediaQuery
-    > &
-      PluginPropsType<
-        PluginType,
-        GenericComponentProps,
-        GenericComponentStyles,
-        PLATFORM
-      >;
-  } & {
-    [Key in `_${PLATFORMS}`]?: SxProps<
-      GenericComponentStyles,
-      Variants,
-      GenericComponentProps,
-      Key,
-      MediaQuery
-    > &
-      PluginPropsType<
-        PluginType,
-        GenericComponentProps,
-        GenericComponentStyles,
-        PLATFORM
-      > &
-      PassingPropsType<
-        GenericComponentStyles,
-        Variants,
-        GenericComponentProps,
-        MediaQuery
-      > &
-      Partial<{
-        [key: string]: any;
-      }>;
-  } & {
-    [Key in `_${string}`]?: SxProps<
-      RNStyledProps,
       {},
       GenericComponentProps,
-      PLATFORM,
       MediaQuery
     > &
-      PassingPropsType<
-        GenericComponentStyles,
-        {},
-        GenericComponentProps,
-        MediaQuery
-      > &
-      Partial<{
-        [key: string]: any;
-      }>;
-  };
+    Partial<{
+      [key: string]: any;
+    }>;
+};
 
 export type VariantType<
   Variants,

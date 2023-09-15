@@ -1,3 +1,5 @@
+// @ts-nocheck
+/* eslint-disable */
 import React, { forwardRef, useEffect, useState } from 'react';
 import { useGetMountTime } from '../../use-get-mount-time';
 import {
@@ -523,3 +525,4 @@ const AmenitiesSection = () => {
 };
 
 export default ListYourPlaceModal;
+/* eslint-disable */

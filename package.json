@@ -32,5 +32,6 @@
     "turbo": "latest",
     "typescript": "^4.9.4"
   },
-  "packageManager": "yarn@1.22.17"
+  "packageManager": "yarn@1.22.17",
+  "version": "0.2.46"
 }

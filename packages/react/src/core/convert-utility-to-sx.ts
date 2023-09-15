@@ -1,13 +1,5 @@
 import { deepMerge } from './utils';
-import {
-  CSSPropertiesMap,
-  // reservedKeys
-} from './styled-system';
-import {
-  // getObjectParentProperty,
-  setObjectKeyValue,
-} from './utils';
-import { shallowMerge } from '../utils';
+import { setObjectKeyValue } from './utils';
 
 // const resolveResponsiveProps = (
 //   sxPropsConvertedObj: any,

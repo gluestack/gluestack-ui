@@ -300,7 +300,10 @@ const getMergeDescendantsStyleCSSIdsAndPropsWithKey = (
   return descendantStyleObj;
 };
 
-const AncestorStyleContext = React.createContext({});
+const AncestorStyleContext = React.createContext({
+  sx: {},
+  component: {},
+});
 //
 
 // window['globalStyleMap'] = globalStyleMap;
@@ -820,7 +823,7 @@ const getStyleIdsFromMap = (
   return componentStyleObject;
 };
 
-export function verboseStyled<P, Variants, ComCon, PluginType>(
+export function verboseStyled<P, Variants, ComCon, PluginType = unknown>(
   Component: React.ComponentType<P>,
   theme: Partial<IVerbosedTheme<Variants, P>>,
   componentStyleConfig: IComponentStyleConfig<ComCon> = {},
@@ -1118,9 +1121,19 @@ export function verboseStyled<P, Variants, ComCon, PluginType>(
       passingProps: applyAncestorPassingProps,
       baseStyleCSSIds: applyAncestorBaseStyleCSSIds,
       variantStyleIds: applyAncestorVariantStyleCSSIds,
-    } = getAncestorCSSStyleIds(componentStyleConfig, ancestorStyleContext);
+    } = getAncestorCSSStyleIds(
+      componentStyleConfig,
+      ancestorStyleContext.component
+    );
+
+    const {
+      passingProps: applySxAncestorPassingProps,
+      baseStyleCSSIds: applySxAncestorBaseStyleCSSIds,
+      variantStyleIds: applySxAncestorVariantStyleCSSIds,
+    } = getAncestorCSSStyleIds(componentStyleConfig, ancestorStyleContext.sx);
 
     Object.assign(incomingComponentProps, applyAncestorPassingProps);
+    Object.assign(incomingComponentProps, applySxAncestorPassingProps);
     Object.assign(incomingComponentProps, componentProps);
 
     Object.assign(themeDefaultProps, incomingComponentProps);
@@ -1706,7 +1719,10 @@ export function verboseStyled<P, Variants, ComCon, PluginType>(
     // 600ms
     const descendantCSSIds = useMemo(() => {
       if (!containsDescendant) {
-        return {};
+        return {
+          component: {},
+          sx: {},
+        };
       }
       const ids = (() => {
         if (
@@ -1716,15 +1732,26 @@ export function verboseStyled<P, Variants, ComCon, PluginType>(
           applySxDescendantStyleCSSIdsAndPropsWithKey ||
           ancestorStyleContext
         ) {
-          return mergeArraysInObjects(
-            applyDescendantsStyleCSSIdsAndPropsWithKey,
-            applyDescendantStateStyleCSSIdsAndPropsWithKey,
+          const sxDescendantCSSIds = mergeArraysInObjects(
             applySxDescendantStyleCSSIdsAndPropsWithKey.current,
             applySxDescendantStateStyleCSSIdsAndPropsWithKey.current,
-            ancestorStyleContext
+            ancestorStyleContext.component
           );
+          const componentDescendantCSSIds = mergeArraysInObjects(
+            applyDescendantsStyleCSSIdsAndPropsWithKey,
+            applyDescendantStateStyleCSSIdsAndPropsWithKey,
+            ancestorStyleContext.sx
+          );
+
+          return {
+            component: componentDescendantCSSIds,
+            sx: sxDescendantCSSIds,
+          };
         } else {
-          return {};
+          return {
+            component: {},
+            sx: {},
+          };
         }
       })();
       return ids;
@@ -1746,11 +1773,17 @@ export function verboseStyled<P, Variants, ComCon, PluginType>(
       ...applyAncestorVariantStyleCSSIds,
       ...applyComponentStateBaseStyleIds,
       ...applyComponentStateVariantStyleIds,
+
+      ...applySxAncestorBaseStyleCSSIds,
+      ...applySxAncestorVariantStyleCSSIds,
+
+      // ...applySxAncestorBaseStyleCSSIds,
       ...applySxVariantStyleCSSIds.current,
       ...applySxStateVariantStyleCSSIds.current,
       ...applySxBaseStyleCSSIds.current,
       ...applySxStateBaseStyleCSSIds.current,
     ];
+
     Object.assign(resolvedInlineProps, applyComponentInlineProps);
 
     const resolvedStyleProps = generateStylePropsFromCSSIds(
@@ -1759,6 +1792,7 @@ export function verboseStyled<P, Variants, ComCon, PluginType>(
       CONFIG,
       activeTheme
     );
+
     const AsComp: any =
       resolvedStyleProps.as || (passingProps.as as any) || undefined;
 
@@ -1826,7 +1860,7 @@ export function verboseStyled<P, Variants, ComCon, PluginType>(
   return StyledComp;
 }
 
-export function styled<P, Variants, ComCon, PluginType = []>(
+export function styled<P, Variants, ComCon, PluginType = unknown>(
   Component: React.ComponentType<P>,
   theme: ITheme<Variants, P, PluginType>,
   componentStyleConfig?: IComponentStyleConfig<ComCon>,

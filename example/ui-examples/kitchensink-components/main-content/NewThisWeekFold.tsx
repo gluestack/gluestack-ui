@@ -8,7 +8,7 @@ import {
   Pressable,
 } from '../../gluestack-ui-components';
 import { ScrollView } from 'react-native';
-import { ChevronLeft, ChevronRight, Scroll } from 'lucide-react-native';
+import { ChevronLeft, ChevronRight } from 'lucide-react-native';
 
 const data = [
   {

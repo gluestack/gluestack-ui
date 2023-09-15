@@ -73,6 +73,7 @@ export type {
   IStyledPlugin,
   IStyled,
   IAnimationDriverPlugin,
+  GSConfig,
 } from './types';
 export { createStyled } from './createStyled';
 
@@ -87,3 +88,4 @@ export * from './plugins';
 export { INTERNAL_updateCSSStyleInOrderedResolved } from './updateCSSStyleInOrderedResolved';
 export { createConfig } from './createConfig';
 export * from './core';
+export * from './hooks';

@@ -18,6 +18,9 @@ import {
   createStyled,
   styled1,
   Theme,
+  useBreakpointValue,
+  useStyled,
+  useToken,
 } from '@gluestack-style/react';
 import { Wrapper } from '../../components/Wrapper';
 import { AddIcon, Box, Icon } from '@gluestack/design-system';
@@ -26,63 +29,28 @@ import { AlertCircle, Circle, Sun } from 'lucide-react-native';
 
 import { AnimationResolver } from '@gluestack-style/animation-plugin';
 
-const styled = createStyled([new AnimationResolver({})]);
 const styleshet = StyleSheet.create({
   style: {
     padding: 12,
   },
 });
+
 const Pressable = styled(
   RNPressable,
   {
-    bg: '$red500',
+    bg: '$red200',
     p: '$2',
-
-    // 'bg': '$red600',
-    // 'w': 100,
-    // 'h': 100,
-    // '_light': {
-    //   bg: '$red600',
-    // },
-    // '@base': {
-    //   bg: '$blue500',
-    // },
-    // ':hover': {
-    //   bg: '$red500',
-    // },
-    // '@sm': {
-    //   props: {
-    //     test: 'sm',
-    //   },
-    // },
-    // _dark: {
-    //   // bg: '$amber200',
-    //   props: {
-    //     bg: 3 < 2 ? '$yellow400' : 'blue',
-    //   },
-    // },
-
-    // '@xl': {
-    //   props: {
-    //     bg: '$green500',
-    //   },
-    // },
-
-    // 'props': {
-    //   bg: '$blue400',
-    //   // test: 'hello',
-    // },
   },
   {
     componentName: 'Pressable',
-    // descendantStyle: ['_text'],
+    descendantStyle: ['_text'],
   }
 );
 
 const Pressable1 = styled(
   Pressable,
   {
-    bg: '$red500',
+    bg: '$red200',
     p: '$2',
 
     // 'bg': '$red600',
@@ -113,34 +81,40 @@ const Text = styled(
 );
 
 const StyledIcon = styled(
-  AsForwarder,
+  View,
   {
-    bg: '$red500',
+    bg: '$amber100',
+    bgColor: '$amber100',
     variants: {
       size: {
-        sm: {
-          width: 10,
-          height: 10,
-          // props: {
-          //   size: 32,
-          // },
-        },
-        md: {
-          // props: {
-          //   size: 32,
-          // },
-          width: '$4',
-          height: '$4',
-        },
-        lg: {
-          // props: {
-          //   size: 32,
-          // },
-          width: '$6',
-          height: '$6',
-        },
+        sm: {},
       },
     },
+    // variants: {
+    //   size: {
+    //     sm: {
+    //       width: 10,
+    //       height: 10,
+    //       // props: {
+    //       //   size: 32,
+    //       // },
+    //     },
+    //     md: {
+    //       // props: {
+    //       //   size: 32,
+    //       // },
+    //       width: '$4',
+    //       height: '$4',
+    //     },
+    //     lg: {
+    //       // props: {
+    //       //   size: 32,
+    //       // },
+    //       width: '$6',
+    //       height: '$6',
+    //     },
+    //   },
+    // },
   },
   {
     componentName: 'MyIcon',
@@ -187,12 +161,33 @@ const Box1 = styled(
   }
 );
 
-const Text1 = styled(Text, {}, { ancestorStyle: ['_text'] });
+const Text1 = styled(
+  Text,
+  {
+    // _dark: {
+    //   color: '$green500',
+    // },
+    // variants: {
+    //   variant: {
+    //     sm: {
+    //       color: '$red500',
+    //     },
+    //     lg: {
+    //       color: '$blue500',
+    //     },
+    //   },
+    // },
+    _dark: {
+      color: '$black',
+    },
+  },
+  { ancestorStyle: ['_text'], componentName: 'TEXT' }
+);
 export function ContextBasedStyles() {
   return (
     <Wrapper colorMode="dark">
       <MyIcon as={Sun} size={32}></MyIcon>
-      {/* <ContextBasedStylesContent></ContextBasedStylesContent> */}
+      <ContextBasedStylesContent></ContextBasedStylesContent>
       {/* <Pressable></Pressable> */}
       {/* <Box1
         sx={{
@@ -233,6 +228,10 @@ export function ContextBasedStylesContent() {
   const handleTabChange = (tabName: any) => {
     setTabName(tabName);
   };
+
+  const value = useToken('colors', 'red500');
+
+  console.log(value, 'value here');
 
   // const color = tabName ? '$red500' : '$green500';
   // return (

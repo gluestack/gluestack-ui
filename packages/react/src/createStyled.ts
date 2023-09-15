@@ -2,10 +2,9 @@ import { styled } from './styled';
 import type { IComponentStyleConfig, ITheme } from './types';
 
 export const createStyled = (plugins: any) => {
-  let styledComponent = <P, Variants, ConCom>(
+  let styledComponent = <P, Variants, ConCom, PluginType>(
     Component: React.ComponentType<P>,
-    // @ts-ignore
-    styledObject: ITheme<Variants, P>,
+    styledObject: ITheme<Variants, P, PluginType>,
     compConfig: IComponentStyleConfig<ConCom> = {},
     extendedConfig: any = {}
   ) => {

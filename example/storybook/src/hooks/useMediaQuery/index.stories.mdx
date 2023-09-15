@@ -1,0 +1,76 @@
+---
+title: useMediaQuery | gluestack-style
+description: Learn to use the useMediaQuery hook in React Native for detecting media query matches and creating responsive UI elements, despite limitations like performance impacts and lack of typings.
+canonical: https://style.gluestack.io/
+---
+
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+import { Text, View } from 'react-native';
+import { Button, AppProvider, CodePreview } from '@gluestack/design-system';
+import { config } from '../../components/nb.config';
+import { StyledProvider, styled } from '@gluestack-style/react';
+import { useMediaQuery } from './maxWidth';
+
+<Meta title="hooks/useMediaQuery" />
+
+# useMediaQuery
+
+The useMediaQuery custom hook is designed to assist in detecting matches between one or more media queries. However, due to the lack of native support for media queries in React Native, the capabilities of useMediaQuery are somewhat constrained.
+
+## Import:
+
+```bash
+import { useMediaQuery } from '@gluestack-style/react';
+```
+
+### Example:
+
+<AppProvider>
+  <CodePreview
+    mb="$6"
+    showArgsController={false}
+    metaData={{
+      scope: {
+        styled,
+        Provider: StyledProvider,
+        config,
+        Text,
+        View,
+        useMediaQuery,
+      },
+      code: `
+        function MediaQuery() {
+          const StyledBox = styled(View, {
+            w: 300,
+            h: 300,
+            bg: '$green500',
+            justifyContent: 'center',
+            alignItems: 'center',
+            variants: {
+              size: {
+                lg: {
+                  bg: '$blue500',
+                },
+              },
+            },
+          });
+          const StyledText = styled(Text, {
+            color: '$white',
+            fontSize: '$xl',
+          });
+          const [isSmallScreen] = useMediaQuery({
+              maxWidth: 700,
+          });
+          return (
+              <Provider config={config}>
+                <StyledBox size={isSmallScreen ? 'sm' : 'lg'}>
+                  <StyledText>{isSmallScreen ? 'Mobile' : 'Desktop'}</StyledText>
+                </StyledBox>
+              </Provider>
+          );
+        }
+      `,
+    }}
+/>
+
+</AppProvider>
