@@ -90,7 +90,7 @@ export const parameters = {
           'StatusBar',
         ],
         'Hooks',
-        ['React Native ARIA'],
+        ['React Native ARIA', 'useToken', 'useBreakpointValue', 'useColorMode'],
         'Production Optimizations',
         ['With a Babel Plugin'],
         'Guides',
