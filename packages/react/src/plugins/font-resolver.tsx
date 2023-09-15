@@ -140,7 +140,7 @@ export class FontResolver implements IStyledPlugin, FontPlugin {
     this.mapFonts = mapFonts || this.mapFonts;
   }
 
-  inputMiddleWare(styledObj: any = {}, shouldUpdate: boolean = true) {
+  inputMiddleWare(styledObj: any = {}, shouldUpdate: boolean = true): void {
     const modifiedStyledObject = this.fontHandler(styledObj, shouldUpdate);
 
     if (shouldUpdate) {

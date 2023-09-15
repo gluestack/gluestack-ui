@@ -1,33 +1,34 @@
+// @ts-nocheck
 import React, {
-  useCallback,
+  // useCallback,
   useEffect,
-  useLayoutEffect,
+  // useLayoutEffect,
   useMemo,
-  useRef,
+  // useRef,
   useState,
 } from 'react';
 
 import {
   Pressable as RNPressable,
   Text as RNText,
-  StyleSheet,
-  View,
+  // StyleSheet,
+  // View,
 } from 'react-native';
 import {
-  AsForwarder,
+  // AsForwarder,
   styled,
-  Theme,
+  // Theme,
   StyledProvider,
 } from '@gluestack-style/react';
 import { config } from './gluestack-ui.config';
 
-const styleshet = StyleSheet.create({
-  style: {
-    padding: 12,
-    backgroundColor: 'red',
-    margin: 4,
-  },
-});
+// const styleshet = StyleSheet.create({
+//   style: {
+//     padding: 12,
+//     backgroundColor: 'red',
+//     margin: 4,
+//   },
+// });
 
 const Pressable = styled(
   RNPressable,
@@ -118,7 +119,7 @@ export function ContextBasedStylesContent() {
           width: 200,
           backgroundColor: 'red',
           position: 'absolute',
-          top: 0,
+          // top: 0,
           left: 0,
           top: 132,
         }}
@@ -137,34 +138,45 @@ export function ContextBasedStylesContent() {
   );
 }
 
-const renderItem = (item: any) => (
-  <Pressable
-    key={item}
-    sx={{
-      bg: '$amber400',
-    }}
-  >
-    {/* <RNText>{item}</RNText> */}
-  </Pressable>
-);
+const RenderItem = (item: any) => {
+  const [active, setActive] = React.useState(false);
+  return (
+    <Pressable
+      key={item}
+      onPressIn={() => setActive(true)}
+      onPressOut={() => setActive(false)}
+      states={{
+        active,
+      }}
+      sx={{
+        'bg': '$amber400',
+        ':active': {
+          bg: '$pink500',
+        },
+      }}
+    >
+      {/* <RNText>{item}</RNText> */}
+    </Pressable>
+  );
+};
 
-const renderItem2 = (item: any) => (
-  <RNPressable key={item} style={styleshet.style}>
-    {/* <RNText>{item}</RNText>r */}
-  </RNPressable>
-);
+// const renderItem2 = (item: any) => (
+//   <RNPressable key={item} style={styleshet.style}>
+//     {/* <RNText>{item}</RNText>r */}
+//   </RNPressable>
+// );
 
 const MyList = React.memo(() => {
   const time = React.useRef(Date.now());
   const [endTime, setEndTime] = React.useState(0);
   useEffect(() => {
     const end = Date.now() - time.current;
-    console.log(end, '>>>');
+    // console.log(end, '>>>');
     setEndTime(end);
   }, []);
   const data = useMemo(
     () =>
-      Array(100)
+      Array(1000)
         .fill(0)
         .map((_, index) => `Item ${index}`),
     []
@@ -182,7 +194,9 @@ const MyList = React.memo(() => {
       >
         {endTime}
       </Text>
-      {data.map(renderItem)}
+      {data.map((_, k) => (
+        <RenderItem key={k} />
+      ))}
     </>
   );
 });
