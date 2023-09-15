@@ -1,5 +1,11 @@
 # @gluestack-ui/themed
 
+## 0.1.43
+
+### Patch Changes
+
+- - Exported style core hooks `useToken`, `useColorMode` and `useBreakpointValue`
+
 ## 0.1.42
 
 ### Patch Changes
