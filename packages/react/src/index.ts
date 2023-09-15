@@ -65,7 +65,13 @@ export {
   convertStyledToStyledVerbosed,
   convertSxToSxVerbosed,
 } from './convertSxToSxVerbosed';
-export type { Tokens, Aliases, AliasesProps, ICustomConfig } from './types';
+export type {
+  Tokens,
+  Aliases,
+  AliasesProps,
+  ICustomConfig,
+  GSConfig,
+} from './types';
 export { createStyled } from './createStyled';
 export type { IStyledPlugin, IStyled } from './createStyled';
 export { createGlobalStylesWeb } from './createGlobalStylesWeb';
