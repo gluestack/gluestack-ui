@@ -1,0 +1,41 @@
+---
+title: useColorMode | gluestack-ui
+description: useColorMode
+showHeader: false
+---
+
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+
+<Meta title="Hooks/useColorMode" />
+
+# useColorMode
+
+**useColorMode** is a custom hook which return current color mode.
+
+### Import
+
+To use the `useColorMode` in your project, import `useColorMode` from `@gluestack-ui/themed` as demonstrated below.
+
+```jsx
+import { useColorMode } from '@gluestack-ui/themed';
+```
+
+Let's use our `useColorMode` value to give background color to `View` from `react-native`.
+
+```jsx
+import { View } from 'react-native';
+import { useColorMode } from '@gluestack-ui/themed';
+
+function Example() {
+  const colorMode = useColorMode();
+  return (
+    <View
+      style={{
+        width: 100,
+        height: 100,
+        backgroundColor: colorMode === 'light' ? 'white' : 'black',
+      }}
+    />
+  );
+}
+```
