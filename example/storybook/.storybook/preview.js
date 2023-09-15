@@ -40,6 +40,7 @@ export const parameters = {
           'Utility Functions',
           'AsForwarder',
         ],
+
         'plugins',
         [
           'Intro to Plugins',
@@ -47,6 +48,8 @@ export const parameters = {
           'Animation Plugin',
           'CSS Variables Plugin',
         ],
+        'hooks',
+        ['useBreakPointValue', 'useColorMode', 'useToken'],
         'configuration',
         [
           'Theme Tokens',

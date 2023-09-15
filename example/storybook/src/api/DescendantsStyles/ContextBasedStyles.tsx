@@ -13,7 +13,15 @@ import {
   StyleSheet,
   View,
 } from 'react-native';
-import { AsForwarder, createStyled, styled } from '@gluestack-style/react';
+import {
+  AsForwarder,
+  createStyled,
+  styled1,
+  Theme,
+  useBreakpointValue,
+  useStyled,
+  useToken,
+} from '@gluestack-style/react';
 import { Wrapper } from '../../components/Wrapper';
 import { AddIcon, Box, Icon } from '@gluestack/design-system';
 // import { AddIcon } from '@gluestack/design-system';
@@ -178,24 +186,8 @@ const Text1 = styled(
 export function ContextBasedStyles() {
   return (
     <Wrapper colorMode="dark">
-      <Pressable
-        focusable={true}
-        sx={{
-          _text: {
-            color: '$blue500',
-            // props: {
-            //   variant: 'sm',
-            // },
-            // _dark: {
-            //   color: '$yellow500',
-            // },
-          },
-        }}
-      >
-        <Text1>Hello world</Text1>
-      </Pressable>
-      {/* <MyIcon as={Sun} size></MyIcon> */}
-      {/* <ContextBasedStylesContent></ContextBasedStylesContent> */}
+      <MyIcon as={Sun} size={32}></MyIcon>
+      <ContextBasedStylesContent></ContextBasedStylesContent>
       {/* <Pressable></Pressable> */}
       {/* <Box1
         sx={{
@@ -236,6 +228,10 @@ export function ContextBasedStylesContent() {
   const handleTabChange = (tabName: any) => {
     setTabName(tabName);
   };
+
+  const value = useToken('colors', 'red500');
+
+  console.log(value, 'value here');
 
   // const color = tabName ? '$red500' : '$green500';
   // return (
