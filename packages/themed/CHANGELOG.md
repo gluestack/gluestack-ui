@@ -1,5 +1,11 @@
 # @gluestack-ui/themed
 
+## 0.1.43
+
+### Patch Changes
+
+- Added `@gluestack-ui/image` Image package to themed
+
 ## 0.1.42
 
 ### Patch Changes
