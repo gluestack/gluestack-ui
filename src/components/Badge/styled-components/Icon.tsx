@@ -3,6 +3,7 @@ import { AsForwarder } from '@gluestack-style/react';
 
 const Icon = styled(
   AsForwarder,
+  {},
   {
     ancestorStyle: ['_icon'],
   },

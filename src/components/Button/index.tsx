@@ -23,25 +23,59 @@ export const AccessibleButton = createButton({
   Icon,
 });
 
-let But = AccessibleButton;
+export const Button = forwardRef(
+  (
+    {
+      children,
+      isLoading,
+      isDisabled,
+      isLoadingText,
+      spinnerPlacement,
+      leftIcon,
+      rightIcon,
+      startIcon,
+      endIcon,
+      ...props
+    }: any,
+    ref?: any
+  ) => {
+    const resolvedPropForGluestack = usePropResolution(props);
 
-const ButtonNew = forwardRef(({ children, ...props }: any, ref?: any) => {
-  const resolvedPropForGluestack = usePropResolution(props);
-
-  // if (props.colorScheme) {
-  //   const colorSchemeSx = getColorSchemeSX();
-  // }
-
-  return (
-    <AccessibleButton {...resolvedPropForGluestack} ref={ref}>
-      {typeof children === 'string' ? (
-        <AccessibleButton.Text>{children}</AccessibleButton.Text>
-      ) : (
-        { children }
-      )}
-    </AccessibleButton>
-  );
-});
+    return (
+      <AccessibleButton
+        {...resolvedPropForGluestack}
+        ref={ref}
+        isDisabled={isLoading || isDisabled}
+      >
+        {leftIcon ? (
+          <AccessibleButton.Icon as={leftIcon} />
+        ) : (
+          startIcon && <AccessibleButton.Icon as={startIcon} />
+        )}
+        {isLoading && spinnerPlacement === 'start' && (
+          <AccessibleButton.Spinner />
+        )}
+        {isLoading ? (
+          isLoadingText && (
+            <AccessibleButton.Text>{isLoadingText}</AccessibleButton.Text>
+          )
+        ) : typeof children === 'string' ? (
+          <AccessibleButton.Text>{children}</AccessibleButton.Text>
+        ) : (
+          { children }
+        )}
+        {isLoading && spinnerPlacement === 'end' && (
+          <AccessibleButton.Spinner />
+        )}
+        {rightIcon ? (
+          <AccessibleButton.Icon as={rightIcon} />
+        ) : (
+          endIcon && <AccessibleButton.Icon as={endIcon} />
+        )}
+      </AccessibleButton>
+    );
+  }
+);
 
 // export const ButtonText = forwardRef(
 //   ({ children, ...props }: any, ref?: any) => {
@@ -54,18 +88,4 @@ const ButtonNew = forwardRef(({ children, ...props }: any, ref?: any) => {
 // );
 
 //@ts-ignore
-But = { ...AccessibleButton, ...ButtonNew, Group: AccessibleButton.Group };
-
-export const Button = But;
-
-// export const ButtonGroup = Button.Group;
-// export const ButtonSpinner = Button.Spinner;
-// export const ButtonIcon = Button.Icon;
-
-// const ButtonTemp = ({ children, ...props }) => {
-//   return <AccessibleButton>{children}</AccessibleButton>;
-// };
-
-// const Button = ButtonTemp;
-// Button.Text = AccessibleButton.Text;
-// export const Button = ButtonTemp;
+Button.Group = AccessibleButton.Group;

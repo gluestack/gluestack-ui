@@ -3,6 +3,15 @@ import { ActivityIndicator } from 'react-native';
 
 export default styled(
   ActivityIndicator,
-  {},
-  { ancestorStyle: ['_spinner'], resolveProps: ['color'] }
+  {
+    props: {
+      color: '$white',
+    },
+    alignSelf: 'center',
+  },
+  {
+    componentName: 'ButtonSpinner',
+    ancestorStyle: ['_spinner'],
+    resolveProps: ['color'],
+  }
 );

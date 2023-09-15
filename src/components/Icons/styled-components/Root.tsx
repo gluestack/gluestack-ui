@@ -5,6 +5,7 @@ export default styled(
   AsForwarder,
   {
     props: {
+      // @ts-ignore
       fill: 'none',
     },
     color: '$muted.500',
