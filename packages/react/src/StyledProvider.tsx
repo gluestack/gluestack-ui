@@ -85,12 +85,17 @@ export const StyledProvider: React.FC<{
     setCurrentColorMode(currentColorMode);
   }
 
+  const [animationDriverData, setAnimationDriverData] = React.useState();
   const globalStyleMap =
     config?.globalStyle && createGlobalStyles(config.globalStyle);
-
   const contextValue = React.useMemo(() => {
-    return { config: currentConfig, globalStyle: globalStyleMap };
-  }, [currentConfig, globalStyleMap]);
+    return {
+      config: currentConfig,
+      globalStyle: globalStyleMap,
+      animationDriverData,
+      setAnimationDriverData,
+    };
+  }, [currentConfig, globalStyleMap, animationDriverData]);
 
   return (
     <StyledContext.Provider value={contextValue}>

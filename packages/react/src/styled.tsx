@@ -1853,7 +1853,12 @@ export function styled<P, Variants, ComCon, PluginType = []>(
 
   for (const pluginName in plugins) {
     // @ts-ignore
-    styledObj = plugins[pluginName]?.inputMiddleWare<P>(styledObj, true, true);
+    [styledObj, , , Component] = plugins[pluginName]?.inputMiddleWare<P>(
+      styledObj,
+      true,
+      true,
+      Component
+    );
   }
   theme = styledObj;
   const sxConvertedObject = convertStyledToStyledVerbosed(theme);
@@ -1865,6 +1870,10 @@ export function styled<P, Variants, ComCon, PluginType = []>(
     ExtendedConfig,
     BUILD_TIME_PARAMS
   );
+
+  // @ts-ignore
+  StyledComponent.isAnimatedComponent = Component.isAnimatedComponent;
+
   // @ts-ignore
   plugins?.reverse();
   for (const pluginName in plugins) {
@@ -1879,22 +1888,21 @@ export function styled<P, Variants, ComCon, PluginType = []>(
       });
     }
   }
+  // for (const pluginName in plugins) {
+  //   const compWrapper =
+  //     // @ts-ignore
+  //     typeof plugins[pluginName].wrapperComponentMiddleWare === 'function'
+  //       ? // @ts-ignore
+  //         plugins[pluginName].wrapperComponentMiddleWare()
+  //       : null;
 
-  for (const pluginName in plugins) {
-    const compWrapper =
-      // @ts-ignore
-      typeof plugins[pluginName].wrapperComponentMiddleWare === 'function'
-        ? // @ts-ignore
-          plugins[pluginName].wrapperComponentMiddleWare()
-        : null;
-
-    if (compWrapper) {
-      for (const key of Object.keys(compWrapper)) {
-        // @ts-ignore
-        StyledComponent[key] = compWrapper[key];
-      }
-    }
-  }
+  //   if (compWrapper) {
+  //     for (const key of Object.keys(compWrapper)) {
+  //       // @ts-ignore
+  //       StyledComponent[key] = compWrapper[key];
+  //     }
+  //   }
+  // }
 
   return StyledComponent;
 }

@@ -1,17 +1,19 @@
 import React from 'react';
 import { Wrapper } from '../../components/Wrapper';
-import { Motion } from '@legendapp/motion';
 import { Pressable, View } from 'react-native';
-import { FontResolver, styled } from '@gluestack-style/react';
-import { AnimationResolver } from '@gluestack-style/animation-plugin';
+import {
+  styled,
+  AnimatedImage,
+  AnimatedAnimatePresence,
+} from '@gluestack-style/react';
 
 const images = [require('./1.png'), require('./2.png'), require('./3.png')];
 
 const Box = styled(View, {});
-
 const StyledMotionImage = styled(
-  Motion.Image,
+  AnimatedImage,
   {
+    // @ts-ignore
     ':animate': {
       zIndex: 1,
       x: 0,
@@ -19,9 +21,7 @@ const StyledMotionImage = styled(
     },
   },
   {},
-  {
-    plugins: [new AnimationResolver({})],
-  }
+  {}
 );
 
 export function AnimationPlugin() {
@@ -42,8 +42,7 @@ export function AnimationPlugin() {
           'aspectRatio': 1 * 1.4,
         }}
       >
-        {/* @ts-ignore */}
-        <StyledMotionImage.AnimatePresence>
+        <AnimatedAnimatePresence>
           <StyledMotionImage
             style={{
               width: '100%',
@@ -68,8 +67,7 @@ export function AnimationPlugin() {
               },
             }}
           />
-          {/* @ts-ignore */}
-        </StyledMotionImage.AnimatePresence>
+        </AnimatedAnimatePresence>
       </Box>
       <Pressable
         accessibilityRole="button"

@@ -1,5 +1,5 @@
 {
-  "name": "@gluestack-style/animation-plugin",
+  "name": "@gluestack-style/moti-driver",
   "version": "0.1.11",
   "description": "A gluestack-style plugin for animation properties, utilizing animation libraries.",
   "keywords": [
@@ -22,7 +22,11 @@
     "clean": "rm -rf lib"
   },
   "dependencies": {
-    "@legendapp/motion": "^2.2.0"
+    "moti": "^0.26.0"
+  },
+  "peerDependencies": {
+    "react-native-reanimated": ">=3.5.1",
+    "react-native-gesture-handler": ">=2.12.1"
   },
   "devDependencies": {
     "@gluestack-style/react": "^0.1.11",

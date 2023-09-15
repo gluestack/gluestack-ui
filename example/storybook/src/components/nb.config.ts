@@ -1,5 +1,5 @@
-import { AnimationResolver } from '@gluestack-style/animation-plugin';
-import { createConfig } from '@gluestack-style/react';
+import { MotionAnimationDriver } from '@gluestack-style/legend-motion-driver';
+import { createConfig, AnimationResolver } from '@gluestack-style/react';
 
 export const config = createConfig({
   aliases: {
@@ -715,6 +715,7 @@ export const config = createConfig({
       // },
     },
   },
+  plugins: [new AnimationResolver(MotionAnimationDriver)],
   components: {
     Box: {
       theme: {

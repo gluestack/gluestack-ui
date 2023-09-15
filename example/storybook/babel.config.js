@@ -15,9 +15,9 @@ module.exports = function (api) {
                   __dirname,
                   '../../packages/react/src'
                 ),
-                ['@gluestack-style/animation-plugin']: path.join(
+                ['@gluestack-style/legend-motion-driver']: path.join(
                   __dirname,
-                  '../../packages/animation-plugin/src'
+                  '../../packages/animation-legend-motion-driver/src'
                 ),
                 // ['@gluestack-style/animation-plugin']: path.join(
                 //   __dirname,

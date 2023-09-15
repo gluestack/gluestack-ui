@@ -1,20 +1,18 @@
 {
-  "extends": "expo/tsconfig.base",
+  "include": ["./src"],
+  "exclude": ["node_modules", "example"],
+  "path": {
+    "@gluestack-style/react": ["../react/src"]
+  },
   "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@gluestack-style/react": ["../../packages/react/src"],
-      "@gluestack-style/legend-motion-driver": [
-        "../../packages/animation-legend-motion-driver/src"
-      ],
-      "react-native": ["./node_modules/react-native-web"]
-    },
     "emitDeclarationOnly": true,
     "noEmit": false,
+    "baseUrl": ".",
     "declaration": true,
     "allowUnreachableCode": false,
     "allowUnusedLabels": true,
     "esModuleInterop": true,
+    "importsNotUsedAsValues": "error",
     "forceConsistentCasingInFileNames": true,
     "jsx": "react",
     "lib": ["esnext", "dom"],
@@ -30,7 +28,5 @@
     "skipLibCheck": true,
     "strict": true,
     "target": "esnext"
-  },
-  "exclude": ["lib", "node_modules", "storybookDocsComponents", "__tests__"],
-  "include": ["src"]
+  }
 }

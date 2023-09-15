@@ -33,6 +33,29 @@ export type COLORMODES = 'dark' | 'light';
 
 /*************************** CORE TYPES *************************************************/
 
+export interface IStyledPlugin {
+  config?: IStyled;
+  register(styledUtils: IStyled): void;
+  inputMiddleWare(styledObj: any): void;
+  componentMiddleWare?(props: any): void;
+}
+export interface IAnimationDriverPlugin {
+  config?: IStyled;
+  register(styledUtils: IStyled): void;
+  engine: any;
+}
+
+export class IAnimationResolver {
+  aliases?: any;
+  tokens?: any;
+  ref?: any;
+}
+export class IStyled {
+  aliases?: any;
+  tokens?: any;
+  ref?: any;
+}
+
 export interface Tokens {
   colors?: { [key: GenericKey]: Record<string, any> & {} };
   sizes?: { [key: GenericKey]: Record<string, any> & {} };

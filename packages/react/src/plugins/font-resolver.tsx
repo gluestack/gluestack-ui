@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import type { IStyled, IStyledPlugin } from '../createStyled';
+import type { IStyled, IStyledPlugin } from '../types';
 import { useStyled } from '../StyledProvider';
 import { propertyTokenMap } from '../propertyTokenMap';
 import { deepMerge, deepMergeObjects, setObjectKeyValue } from '../utils';

@@ -23,7 +23,6 @@
   },
   "dependencies": {
     "@expo/html-elements": "^0.4.2",
-    "@gluestack-style/animation-plugin": "latest",
     "@gluestack-style/react": "^0.2.11-alpha.0",
     "@gluestack-ui/actionsheet": "^0.2.16",
     "@gluestack-ui/alert-dialog": "^0.1.14",
@@ -98,6 +97,7 @@
     "react": "*",
     "react-dom": "*",
     "react-native": "*",
+    "@gluestack-style/legend-motion-driver": "*",
     "react-native-web": "*"
   },
   "react-native-builder-bob": {
