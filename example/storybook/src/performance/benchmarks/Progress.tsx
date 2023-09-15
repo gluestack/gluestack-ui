@@ -1,44 +1,56 @@
-import {
-  Progress,
-  ProgressFilledTrack,
-  Text,
-  HStack,
-  VStack,
-} from '@gluestack-ui/themed';
+import { Text, HStack, VStack, Box } from '@gluestack-ui/themed';
 import React from 'react';
 
 export function Graph({ data }: { data: any }) {
-  let colorMap: any = {
-    'Nativebase': '$orange500',
-    'Tamang-ui': '$green500',
-    'gluestack-ui': '$pink500',
-    'react-native': '$purple500',
+  const colorMap: any = {
+    'gluestack-ui': '$primary500',
+    'React Native': '#61dafb',
+    'Nativebase': '$cyan600',
+    'Tamagui': '#d6409f',
+    'Styled Components': '$yellow500',
   };
 
+  const maxValue = Math.max(...Object.values(data).map((stat: any) => stat));
+
   return (
-    <VStack>
+    <VStack space="sm">
       {Object.keys(data).map((key) => {
+        const width = `${Math.round((data[key] / maxValue) * 100)}%`;
+
         return (
-          <HStack space="md">
-            <VStack w={80}>
-              <Text fontSize={'$sm'}>{key}</Text>
-            </VStack>
+          <HStack space="md" alignItems="center">
             <VStack>
-              <Progress
-                value={100}
-                h={20}
-                borderRadius={'$sm'}
-                w={data[key] * 2}
-                size="md"
+              <Text
+                sx={{
+                  _web: { whiteSpace: 'nowrap' },
+                  w: 120,
+                  fontSize: '$sm',
+                  textAlign: 'right',
+                  fontWeight: key === 'gluestack-ui' ? '$semibold' : '$normal',
+                }}
               >
-                <ProgressFilledTrack
-                  h={20}
-                  borderRadius={'$sm'}
-                  bgColor={colorMap[key] ?? '$primary500'}
-                />
-              </Progress>
+                {key}
+              </Text>
             </VStack>
-            <Text fontSize={'$xs'}>{data[key]} ms</Text>
+            <HStack space="md" alignItems="center" flex={0.7}>
+              <Box
+                h={'$5'}
+                w={width}
+                borderRadius={'$sm'}
+                bgColor={colorMap[key] ?? '$primary500'}
+              />
+              <Text
+                fontSize="$xs"
+                flex={1}
+                sx={{
+                  _web: {
+                    whiteSpace: 'nowrap',
+                  },
+                }}
+              >
+                {data[key]} ms
+              </Text>
+            </HStack>
           </HStack>
         );
       })}
