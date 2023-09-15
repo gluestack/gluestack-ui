@@ -23,7 +23,7 @@ export function Graph({ data }: { data: any }) {
               <Text
                 sx={{
                   _web: { whiteSpace: 'nowrap' },
-                  w: 120,
+                  w: 130,
                   fontSize: '$sm',
                   textAlign: 'right',
                   fontWeight: key === 'gluestack-ui' ? '$semibold' : '$normal',
