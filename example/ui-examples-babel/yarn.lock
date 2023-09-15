@@ -1982,10 +1982,10 @@
   dependencies:
     "@legendapp/motion" "^2.2.0"
 
-"@gluestack-style/babel-plugin-styled-resolver@latest":
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/@gluestack-style/babel-plugin-styled-resolver/-/babel-plugin-styled-resolver-0.2.0.tgz#b040c6943d52cf086bc64ec89aed8e984c0ebd8b"
-  integrity sha512-5AXRUF0DNsLV2SVitWBM0k2WHM5bnRoy4blpyKO69gPTVXXTThwT8+S4XMtSQRock+WR+vtgAnwO3h0DaiRukA==
+"@gluestack-style/babel-plugin-styled-resolver@^0.2.6-alpha.0":
+  version "0.2.6-alpha.0"
+  resolved "https://registry.yarnpkg.com/@gluestack-style/babel-plugin-styled-resolver/-/babel-plugin-styled-resolver-0.2.6-alpha.0.tgz#d4ad918faaf73a163a25e7aaf755b4a3f39694ce"
+  integrity sha512-9IebHI3wiabta0RyGCav5N6tgB4s8k4rjKW/aK1VqoEL2D+QaEGGSEOyX5+MdlZRDWgoVCMbFVQkqMuF33d+GQ==
   dependencies:
     "@babel/core" "^7.20.5"
     "@babel/generator" "^7.20.5"
@@ -1995,10 +1995,10 @@
     "@babel/traverse" "^7.20.5"
     lodash.merge "^4.6.2"
 
-"@gluestack-style/react@^0.2.32-alpha.0":
-  version "0.2.32-alpha.0"
-  resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-0.2.32-alpha.0.tgz#44fc228f49e64a9c5e2ddd1207c2abf9d092aae6"
-  integrity sha512-MvKh5P9M0r26h7ZnBht+hG7j1wsGBmgXUlK2NW6x3K4bE78Ji0BafZvu5ba4vn/+9BBAYQatKOD0Gvt6q2hDfQ==
+"@gluestack-style/react@^0.2.46-alpha.0":
+  version "0.2.46"
+  resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-0.2.46.tgz#c408f4c05a7374690c8ebd952aa95b0a1d390c4e"
+  integrity sha512-ujpOIrt/b08svtUSLn4wSCn548H7lIe3oHlBCTHwDvmjheuVsXyIrECtNBA+mrL5mtkCaBmkB9iUJTWD601V+A==
   dependencies:
     inline-style-prefixer "^6.0.1"
     normalize-css-color "^1.0.2"
