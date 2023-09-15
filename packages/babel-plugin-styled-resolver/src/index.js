@@ -464,7 +464,7 @@ module.exports = function (b) {
   let componentSXProp;
   let componentUtilityProps;
   const guessingStyledComponents = [];
-  const styled = ['@gluestack-style/react'];
+  const styled = ['@gluestack-style/react', '@gluestack-ui/themed'];
   const components = ['@gluestack-ui/themed'];
   let isStyledPathConfigured = false;
   let isComponentsPathConfigured = false;
