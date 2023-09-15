@@ -88,4 +88,5 @@ export {
   EyeIcon,
   EyeOffIcon,
   FormControl,
+  InputSlot,
 };

@@ -45,4 +45,3 @@ export {
   GluestackUIContextProvider,
 } from './Provider';
 export * from './Icons/Icons';
-export { styled } from '@gluestack-style/react';

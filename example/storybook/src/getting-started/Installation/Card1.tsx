@@ -274,18 +274,21 @@ function Card1() {
         >
           <Box p="$6">
             <VStack space="lg">
-              <HStack alignItems="center" flexWrap="wrap">
-                <Text
-                  fontSize="$2xl"
-                  fontWeight="bold"
-                  fontFamily="Plus Jakarta Sans"
-                >
-                  Head Starter Kit
-                </Text>
-                <LogoTag tag="coming soon" />
-              </HStack>
+              <Text
+                fontSize="$2xl"
+                fontWeight="bold"
+                fontFamily="Plus Jakarta Sans"
+              >
+                Head Starter Kit
+              </Text>
               <HStack flexWrap="wrap" gap="$2.5">
-                <Next />
+                <Link
+                  href="https://github.com/gluestack/next-head-starter-kit"
+                  isExternal
+                  target="_blank"
+                  >
+                  <Next />
+                </Link>
                 <Link
                   href="https://github.com/gluestack/expo-head-starter-kit"
                   isExternal
