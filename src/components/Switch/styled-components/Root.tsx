@@ -1,26 +1,106 @@
 import { styled } from '../../styled';
 import { Switch } from 'react-native';
+import { colorScheme } from '../../../utils';
+
+const colorSchemes = Object.fromEntries(
+  colorScheme.map((color) => [
+    color,
+    {
+      'props': { trackColor: { true: `${color}.600` } },
+      ':hover': {
+        props: { trackColor: { true: `${color}.700` } },
+      },
+
+      '_dark': {
+        'props': { trackColor: { true: `${color}.500` } },
+        ':hover': {
+          props: { trackColor: { true: `${color}.400` } },
+        },
+      },
+    },
+  ])
+);
 
 export default styled(
   Switch,
   {
-    'props': {
-      // todo: add support for this in style.gluestack.io
-      // trackColor: { false: '$backgroundLight300', true: '$primary600' },
-
-      // hacky fix for the above
-      //@ts-ignore
-      trackColor: { false: '$backgroundLight300', true: '$primary600' },
-      thumbColor: '$backgroundLight0',
-      activeThumbColor: '$backgroundLight0',
-
-      // for ios specifically in unchecked state
-      ios_backgroundColor: '$backgroundLight300',
-    },
+    //
     'borderRadius': '$full',
-    'variants': {
-      //@ts-ignore
+    ':disabled': {
+      opacity: 0.4,
+    },
+    ':invalid': {
+      _web: {
+        boxShadow: `0 0 0 2px $error.600`,
+      },
+      _android: {
+        borderColor: '$error.600',
+        borderWidth: 2,
+        borderRadius: 12,
+      },
+    },
+    'props': {
+      thumbColor: '$muted.50',
+      activeThumbColor: '$muted.50',
+      trackColor: { false: '$muted.300', true: '$primary.600' },
+      // for ios specifically in unchecked state
+      ios_backgroundColor: '$muted.300',
+    },
+    ':hover': {
+      props: {
+        trackColor: { false: '$muted.400', true: '$primary.700' },
+        // for ios specifically in unchecked state
+        ios_backgroundColor: '$muted.400',
+      },
+    },
 
+    '_dark': {
+      'props': {
+        trackColor: { false: '$muted.700', true: '$primary.500' },
+        // for ios specifically in unchecked state
+        ios_backgroundColor: '$muted.700',
+      },
+      ':hover': {
+        props: {
+          trackColor: { false: '$muted.600', true: '$primary.400' },
+          // for ios specifically in unchecked state
+          ios_backgroundColor: '$muted.600',
+        },
+      },
+      ':invalid': {
+        _web: {
+          boxShadow: `0 0 0 2px $error.500`,
+        },
+        _android: {
+          borderColor: '$error.500',
+          borderWidth: 2,
+          borderRadius: 12,
+        },
+      },
+    },
+
+    '_web': {
+      'borderWidth': 0,
+      'outlineWidth': 10,
+      'outlineColor': '$yellow.400',
+      '_dark': {
+        outlineWidth: 0,
+      },
+      ':focus': {
+        outlineWidth: 0,
+        outlineColor: '$yellow.400',
+        _dark: {
+          outlineWidth: 0,
+        },
+      },
+      'cursor': 'pointer',
+      ':disabled': {
+        cursor: 'not-allowed',
+      },
+    },
+
+    'variants': {
+      colorScheme: colorSchemes,
       size: {
         sm: {
           transform: [
@@ -36,128 +116,14 @@ export default styled(
               scale: 1.25,
             },
           ],
-        },
-      },
-    },
-    '_web': {
-      ':focus': {
-        outlineWidth: 0,
-        outlineColor: '$primary700',
-        outlineStyle: 'solid',
-        _dark: {
-          // @ts-ignore
-          outlineColor: '$primary600',
-          outlineWidth: 0,
-          outlineStyle: 'solid',
+          margin: 1,
         },
       },
     },
 
     'defaultProps': {
       size: 'md',
-    },
-    ':disabled': {
-      '_web': {
-        'cursor': 'pointer',
-        ':disabled': {
-          cursor: 'not-allowed',
-        },
-      },
-      'opacity': 0.4,
-      //@ts-ignore
-      'trackColor': { false: '$backgroundLight300', true: '$primary600' },
-      // for ios specifically in unchecked state
-      'ios_backgroundColor': '$backgroundLight300',
-      ':hover': {
-        props: {
-          //@ts-ignore
-          trackColor: { false: '$backgroundLight300', true: '$primary600' },
-        },
-      },
-    },
-    ':invalid': {
-      borderColor: '$error700',
-      borderRadius: 12,
-      borderWidth: 2,
-    },
-    ':hover': {
-      'props': {
-        // todo: add support for this in style.gluestack.io
-        // trackColor: { false: '$backgroundLight400', true: '$primary700' },
-
-        // hacky fix for the above
-        //@ts-ignore
-
-        trackColor: { false: '$backgroundLight400', true: '$primary700' },
-        ios_backgroundColor: '$backgroundLight400',
-      },
-      ':invalid': {
-        props: {
-          // todo: add support for this in style.gluestack.io
-          // trackColor: { false: '$backgroundLight400', true: '$primary700' },
-
-          // hacky fix for the above
-          //@ts-ignore
-
-          trackColor: { false: '$backgroundLight300', true: '$primary700' },
-        },
-      },
-    },
-    ':checked': {
-      props: {
-        //@ts-ignore
-        thumbColor: '$backgroundLight0',
-      },
-    },
-    '_dark': {
-      'props': {
-        //@ts-ignore
-        trackColor: { false: '$backgroundDark700', true: '$primary500' },
-        thumbColor: '$backgroundDark0',
-        activeThumbColor: '$backgroundDark0',
-      },
-      ':invalid': {
-        borderColor: '$error400',
-        borderRadius: 12,
-        borderWidth: 2,
-      },
-      ':hover': {
-        'props': {
-          //@ts-ignore
-          trackColor: { false: '$backgroundDark600', true: '$primary600' },
-          ios_backgroundColor: '$backgroundLight400',
-        },
-        ':invalid': {
-          props: {
-            // todo: add support for this in style.gluestack.io
-            // trackColor: { false: '$backgroundLight400', true: '$primary700' },
-
-            // hacky fix for the above
-            //@ts-ignore
-
-            trackColor: { false: '$backgroundDark700', true: '$primary600' },
-          },
-        },
-      },
-      ':disabled': {
-        '_web': {
-          'cursor': 'pointer',
-          ':disabled': {
-            cursor: 'not-allowed',
-          },
-        },
-        'opacity': 0.4,
-        //@ts-ignore
-        'trackColor': { false: '$backgroundLight300', true: '$primary500' },
-        // for ios specifically in unchecked state
-        'ios_backgroundColor': '$backgroundLight300',
-        ':hover': {
-          props: {
-            //@ts-ignore
-            trackColor: { false: '$backgroundDark700', true: '$primary500' },
-          },
-        },
-      },
+      colorScheme: 'primary',
     },
   },
   {
