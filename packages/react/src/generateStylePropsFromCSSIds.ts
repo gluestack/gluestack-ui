@@ -74,8 +74,12 @@ export function getClosestBreakpointValue(
   return index;
 }
 
-function isValidBreakpoint(config: any, queryCondition: any) {
-  const windowWidth = Dimensions.get('window')?.width;
+export function isValidBreakpoint(
+  config: any,
+  queryCondition: any,
+  width: any = Dimensions.get('window')?.width
+) {
+  const windowWidth = width;
 
   const currentBreakpointValue = getClosestBreakpointValue(
     config.tokens.mediaQueries,

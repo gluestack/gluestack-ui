@@ -14,7 +14,6 @@
     "@expo/html-elements": "latest",
     "@expo/webpack-config": "18.1.0",
     "@gluestack-style/animation-plugin": "latest",
-    "@gluestack-style/react": "^0.2.32-alpha.0",
     "@gluestack-ui/actionsheet": "latest",
     "@gluestack-ui/alert": "latest",
     "@gluestack-ui/alert-dialog": "latest",
@@ -66,7 +65,9 @@
     "react": "18.1.0",
     "react-dom": "18.2.0",
     "react-native": "0.70.8",
-    "react-native-svg": "13.4.0"
+    "react-native-svg": "13.4.0",
+    "@gluestack-style/babel-plugin-styled-resolver": "^0.2.6-alpha.0",
+    "@gluestack-style/react": "^0.2.46-alpha.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
