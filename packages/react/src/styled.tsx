@@ -1719,7 +1719,10 @@ export function verboseStyled<P, Variants, ComCon, PluginType = unknown>(
     // 600ms
     const descendantCSSIds = useMemo(() => {
       if (!containsDescendant) {
-        return {};
+        return {
+          component: {},
+          sx: {},
+        };
       }
       const ids = (() => {
         if (
@@ -1745,7 +1748,10 @@ export function verboseStyled<P, Variants, ComCon, PluginType = unknown>(
             sx: sxDescendantCSSIds,
           };
         } else {
-          return {};
+          return {
+            component: {},
+            sx: {},
+          };
         }
       })();
       return ids;
