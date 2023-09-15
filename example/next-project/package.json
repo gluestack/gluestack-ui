@@ -35,6 +35,7 @@
     "@gluestack-ui/checkbox": "latest",
     "@gluestack-ui/divider": "latest",
     "@gluestack-ui/fab": "latest",
+    "@gluestack-ui/image": "latest",
     "@gluestack-ui/form-control": "latest",
     "@gluestack-ui/hstack": "latest",
     "@expo/html-elements": "latest",
