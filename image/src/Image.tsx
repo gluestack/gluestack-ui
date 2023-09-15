@@ -1,28 +1,14 @@
-import React, { forwardRef, useCallback, useRef, useState } from 'react';
+import React, { forwardRef } from 'react';
 
 export const Image = (StyledImage: any) =>
   forwardRef(({ ...props }: any, ref?: any) => {
-    const { source, src, alt, ...resolvedProps } = props;
-
-    const finalSource: any = useRef(null);
-
-    const getSource = useCallback(() => {
-      if (source) {
-        finalSource.current = source;
-      } else if (src) {
-        finalSource.current = { uri: src };
-      }
-      return finalSource.current;
-    }, [source, src]);
-
-    const [renderedSource, setSource] = useState(getSource());
-
-    React.useEffect(() => {
-      setSource(getSource());
-      return () => {
-        finalSource.current = null;
+    let source = props.source;
+    if (!props.source.uri) {
+      source = {
+        uri: props.source.default ? props.source.default.src : props.source,
       };
-    }, [source, src, getSource]);
+    }
+    const { alt, ...resolvedProps } = props;
 
     if (typeof alt !== 'string') {
       console.warn('Please pass alt prop to Image component');
@@ -30,11 +16,11 @@ export const Image = (StyledImage: any) =>
 
     return (
       <StyledImage
-        source={renderedSource}
-        accessibilityLabel={alt}
+        {...resolvedProps}
+        source={source}
+        accessibilityLabel={props?.accessibilityLabel || alt}
         accessibilityRole={props?.accessibilityRole || 'image'}
         alt={alt}
-        {...resolvedProps}
         ref={ref}
       />
     );
