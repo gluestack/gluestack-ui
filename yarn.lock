@@ -2993,6 +2993,15 @@
     "@react-native-aria/focus" "^0.2.7"
     react-native-svg "13.4.0"
 
+"@gluestack-ui/image@^0.1.0", "@gluestack-ui/image@latest":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/image/-/image-0.1.0.tgz#9b0f3f7931032ffe5f44151da7f178c07c9ad609"
+  integrity sha512-5DgviRxrCW+emZgwMvhJtR4yN+XEetJhv11V9+Nxp0dEe9JzXwnDhJ9XRk6GO8/3pQJhJROsgywlrv9NooYhFg==
+  dependencies:
+    "@gluestack-ui/utils" "0.1.9"
+    "@react-native-aria/focus" "^0.2.8"
+    "@react-native-aria/interactions" "^0.2.10"
+
 "@gluestack-ui/input@^0.1.16":
   version "0.1.16"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/input/-/input-0.1.16.tgz#cfc52fddbe8a98c917d210c88e70c3ba59d54698"
