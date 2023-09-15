@@ -1,5 +1,11 @@
 # @gluestack-ui/themed
 
+## 0.1.40
+
+### Patch Changes
+
+- Fix: Version issue in build
+
 ## 0.1.39
 
 ### Patch Changes
