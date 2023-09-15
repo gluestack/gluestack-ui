@@ -12,45 +12,73 @@ import { Graph } from './Progress';
 
 # Performance Benchmarks
 
-In this benchmark we will compare the performance of vanilla React Native, NativeBase, gluestack-ui and tamang-ui using nearly all the same features and styles. For gluestack-ui and NativeBase we rendered 50, 100 Box components and for react-native and tamang-ui we rendered View component with same styles.
+`gluestack-ui` harnesses the power of [`gluestack-style`](https://style.gluestack.io), a universal and highly performant styling library, to create beautifully styled components. **With a babel plugin for pre-computing styles during the build process, and runtime performance optimizations, gluestack-style delivers high performance styling, even in the most demanding applications.**
 
-Running gluestack-ui is 20% slower as compared to vanilla React Native. Major performance improvement is done with the help of babel plugin which pre calculates the style at build time. Note that the performance is much better on web because we directly use css injected on boot time rather than attaching style on runtime.
+# React Native
+
+We performed the [benchmarks](https://github.com/gluestack/gluestack-ui-benchmarks) with some famous React Native libraries like gluestack-ui, tamagui, NativeBase, Styled Components and React Native built-in styling.
+
+**In each case we have rendered 1000 components with styling of each library. Results are average of 5 mounts.**
+
+> **All the benchmarks were measured in production enviornment on iPhone 13.**
 
 ## Simple Component
 
-Lets try rendering a simple Box/View component with same styles.
-
-### 50 renders
-
-Timing rendering a 50 Box component.
+Time to render simple themed component,
 
 <Graph
   data={{
-    'Tamang-ui': 108,
-    'Nativebase': 400,
-    'gluestack-ui': 80,
-    'react-native': 60,
+    'gluestack-ui': 153,
+    'React Native': 76,
+    'Nativebase': 529,
+    'Tamagui': 160,
+    'Styled Components': 91,
   }}
 />
 
-### 100 renders
+## Component with variants
 
-Timing rendering a 100 Box component.
+Time to render component with variants,
 
-## Component with Variants
+<Graph
+  data={{
+    'gluestack-ui': 164,
+    'React Native': 76,
+    'Nativebase': 666,
+    'Tamagui': 186,
+    'Styled Components': 103,
+  }}
+/>
 
-Adding variants to the component. Rendering time is shown below.
+## Component with default theme and inline styles
 
-## Component with Inline styles
+Component with default themes, variants, inline and state styles,
 
-We added inline styling to the component, rendering time is shown below.
+<Graph
+  data={{
+    'gluestack-ui': 395,
+    'React Native': 195,
+    'Nativebase': 1207,
+    'Tamagui': 533,
+    'Styled Components': 239,
+  }}
+/>
 
-## Component with interactive styles
+## Layout using HStack, VStack, Image and Text
 
-We added interactive styles like hovered, focused, pressed. Rendering time is mentioned below.
+Layout using HStack, VStack, Image and Text with render list of 28 items.
 
-## Login Screen
+<Graph
+  data={{
+    'gluestack-ui': 120,
+    'React Native': 69,
+    'Nativebase': 491,
+    'Tamagui': 90,
+  }}
+/>
 
-We created a basic login screen using all the important components like Buttons, Input, Checkbox, radio etc. The render time is shown below.
+> Note: This test was taken from [Tamagui](https://github.com/tamagui/tamagui/tree/24ac758bbe5d6ff2f67f25071df4286e0594f578/starters/benchmark).
 
-## Complex dashboard application
+# Web
+
+Coming soon...

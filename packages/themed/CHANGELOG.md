@@ -1,11 +1,17 @@
 # @gluestack-ui/themed
 
+## 0.1.44
+
+### Patch Changes
+
+- Added `@gluestack-ui/image` Image Package to themed
+
 ## 0.1.43
 
 ### Patch Changes
 
 - Exported style core hooks `useToken`, `useColorMode` and `useBreakpointValue`
-  
+
 ### Dependency Updates
 
 - Please update `@gluestack-style/react` to `0.2.47` for compatibility and improved functionality/

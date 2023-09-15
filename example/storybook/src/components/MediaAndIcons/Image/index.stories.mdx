@@ -107,6 +107,8 @@ We provide in-depth information on how to customize and extend the component's f
 
 ### Customizing the Image
 
+We have a function called `createImage` which can be used to create a custom image component. This function takes in a configuration object which contains the styled components that you want to use for the Image.
+
 For customizing the Image, you have to map styled Image to Image. You can refer [style.gluestack.io](https://style.gluestack.io/) for more information on how to use styled components.
 
 #### How to use Next.js Image
@@ -127,10 +129,17 @@ props: {
   borderRadius: '$full',
 }
 
+// import the createImage function
+import { createImage } from '@gluestack-ui/image';
+
+// Understanding the API
+const Image = createImage({
+  Root: StyledImage
+});
+
 // you can also https://style.gluestack.io/docs/getting-started/styled to style the component
 
-
-export default () => <StyledImage />;
+export default () => <Image />;
 ```
 
 #### How to use Expo Image
@@ -143,7 +152,15 @@ import Image from 'expo-image';
 // Using the Expo Image component
 const StyledImage = styled(Image, styling, componentConfig, extenedBaseConfig);
 
-export default () => <StyledImage />;
+// import the createImage function
+import { createImage } from '@gluestack-ui/image';
+
+// Understanding the API
+const Image = createImage({
+  Root: StyledImage,
+});
+
+export default () => <Image />;
 ```
 
 #### Usage
@@ -154,8 +171,13 @@ Default styling of the component can be found in the `components/core/image` fil
 // import the styles
 import { Root } from '../components/core/image/styled-components';
 
-// mapping the Image to root component
-const Image = Root;
+// import the createImage function
+import { createImage } from '@gluestack-ui/image';
+
+// Understanding the API
+const Image = createImage({
+  Root: StyledImage,
+});
 
 // Using the Image component
 export default () => <Image />;
