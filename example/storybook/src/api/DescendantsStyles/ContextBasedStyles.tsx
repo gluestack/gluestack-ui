@@ -18,6 +18,9 @@ import {
   createStyled,
   styled1,
   Theme,
+  useBreakpointValue,
+  useStyled,
+  useToken,
 } from '@gluestack-style/react';
 import { Wrapper } from '../../components/Wrapper';
 import { AddIcon, Box, Icon } from '@gluestack/design-system';
@@ -192,7 +195,7 @@ export function ContextBasedStyles() {
   return (
     <Wrapper colorMode="dark">
       <MyIcon as={Sun} size={32}></MyIcon>
-      {/* <ContextBasedStylesContent></ContextBasedStylesContent> */}
+      <ContextBasedStylesContent></ContextBasedStylesContent>
       {/* <Pressable></Pressable> */}
       {/* <Box1
         sx={{
@@ -233,6 +236,10 @@ export function ContextBasedStylesContent() {
   const handleTabChange = (tabName: any) => {
     setTabName(tabName);
   };
+
+  const value = useToken('colors', 'red500');
+
+  console.log(value, 'value here');
 
   // const color = tabName ? '$red500' : '$green500';
   // return (
