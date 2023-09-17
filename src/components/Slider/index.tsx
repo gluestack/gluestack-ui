@@ -1,3 +1,4 @@
+import React, { forwardRef } from 'react';
 import { createSlider } from '@gluestack-ui/slider';
 
 import {
@@ -7,14 +8,56 @@ import {
   FilledTrack,
   ThumbInteraction,
 } from './styled-components';
+import { usePropResolution } from '../../hooks/usePropResolution';
 
-export const Slider = createSlider({
+const AccessibleSlider = createSlider({
   Root,
   Thumb,
   Track,
   FilledTrack,
   ThumbInteraction,
 });
-export const SliderThumb = Slider.Thumb;
-export const SliderTrack = Slider.Track;
-export const SliderFilledTrack = Slider.FilledTrack;
+
+const SliderNew = forwardRef(
+  (
+    { children, ...props }: React.ComponentProps<typeof AccessibleSlider>,
+    ref?: any
+  ) => {
+    const resolvedProps = usePropResolution(props);
+    return (
+      <AccessibleSlider {...resolvedProps} ref={ref}>
+        {children}
+      </AccessibleSlider>
+    );
+  }
+) as any;
+
+SliderNew.Thumb = forwardRef(
+  ({ ...props }: React.ComponentProps<typeof AccessibleSlider>, ref?: any) => {
+    const resolvedProps = usePropResolution(props);
+    return <AccessibleSlider.Thumb {...resolvedProps} ref={ref} />;
+  }
+) as any;
+
+SliderNew.Track = forwardRef(
+  (
+    { children, ...props }: React.ComponentProps<typeof AccessibleSlider>,
+    ref?: any
+  ) => {
+    const resolvedProps = usePropResolution(props);
+    return (
+      <AccessibleSlider.Track {...resolvedProps} ref={ref}>
+        {children}
+      </AccessibleSlider.Track>
+    );
+  }
+) as any;
+
+SliderNew.FilledTrack = forwardRef(
+  ({ ...props }: React.ComponentProps<typeof AccessibleSlider>, ref?: any) => {
+    const resolvedProps = usePropResolution(props);
+    return <AccessibleSlider.FilledTrack {...resolvedProps} ref={ref} />;
+  }
+) as any;
+
+export const Slider = SliderNew as typeof AccessibleSlider;

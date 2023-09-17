@@ -1,29 +1,84 @@
-// @ts-nocheck
 import { styled } from '../../styled';
 import { View } from 'react-native';
+import { colorScheme } from '../../../utils';
+
+const colorSchemes = Object.fromEntries(
+  colorScheme.map((color) => [
+    color,
+    {
+      _thumb: {
+        'bg': `$${color}.600`,
+        ':hover': {
+          _web: {
+            outlineColor: `$${color}.300`,
+          },
+        },
+        ':focus': {
+          _web: {
+            outlineColor: `$${color}.400`,
+          },
+        },
+        ':active': {
+          borderColor: `$${color}.300`,
+          _web: {
+            outlineColor: `$${color}.300`,
+          },
+        },
+
+        '_dark': {
+          'bg': `$${color}.500`,
+          ':hover': {
+            _web: {
+              outlineColor: `$${color}.800`,
+            },
+          },
+          ':focus': {
+            _web: {
+              outlineColor: `$${color}.400`,
+            },
+          },
+          ':active': {
+            borderColor: `$${color}.800`,
+            _web: {
+              outlineColor: `$${color}.800`,
+            },
+          },
+        },
+      },
+      _filledTrack: {
+        bg: `$${color}.600`,
+        _dark: {
+          bg: `$${color}.500`,
+        },
+      },
+    },
+  ])
+);
+
 export default styled(
   View,
   {
     justifyContent: 'center',
     alignItems: 'center',
     variants: {
+      colorScheme: colorSchemes,
       orientation: {
         horizontal: {
           w: '100%',
           _track: {
-            width: '100%',
+            w: '100%',
           },
           _filledTrack: {
-            height: '100%',
+            h: '100%',
           },
         },
         vertical: {
           h: '100%',
           _track: {
-            height: '100%',
+            h: '100%',
           },
           _filledTrack: {
-            width: '100%',
+            w: '100%',
           },
         },
       },
@@ -58,7 +113,7 @@ export default styled(
         size: 'sm',
         value: {
           _track: {
-            height: '$1',
+            h: '$1',
             flexDirection: 'row',
           },
         },
@@ -69,7 +124,7 @@ export default styled(
         isReversed: true,
         value: {
           _track: {
-            height: '$1',
+            h: '$1',
             flexDirection: 'row-reverse',
           },
         },
@@ -79,7 +134,7 @@ export default styled(
         size: 'md',
         value: {
           _track: {
-            height: 5,
+            h: 5,
             flexDirection: 'row',
           },
         },
@@ -90,7 +145,7 @@ export default styled(
         isReversed: true,
         value: {
           _track: {
-            height: 5,
+            h: 5,
             flexDirection: 'row-reverse',
           },
         },
@@ -100,7 +155,7 @@ export default styled(
         size: 'lg',
         value: {
           _track: {
-            height: '$1.5',
+            h: '$1.5',
             flexDirection: 'row',
           },
         },
@@ -111,7 +166,7 @@ export default styled(
         isReversed: true,
         value: {
           _track: {
-            height: '$1.5',
+            h: '$1.5',
             flexDirection: 'row-reverse',
           },
         },
@@ -132,7 +187,7 @@ export default styled(
         isReversed: true,
         value: {
           _track: {
-            width: '$1',
+            w: '$1',
             flexDirection: 'column',
           },
         },
@@ -142,7 +197,7 @@ export default styled(
         size: 'md',
         value: {
           _track: {
-            width: 5,
+            w: 5,
             flexDirection: 'column-reverse',
           },
         },
@@ -153,7 +208,7 @@ export default styled(
         isReversed: true,
         value: {
           _track: {
-            width: 5,
+            w: 5,
             flexDirection: 'column',
           },
         },
@@ -163,7 +218,7 @@ export default styled(
         size: 'lg',
         value: {
           _track: {
-            width: '$1.5',
+            w: '$1.5',
             flexDirection: 'column-reverse',
           },
         },
@@ -174,7 +229,7 @@ export default styled(
         isReversed: true,
         value: {
           _track: {
-            width: '$1.5',
+            w: '$1.5',
             flexDirection: 'column',
           },
         },

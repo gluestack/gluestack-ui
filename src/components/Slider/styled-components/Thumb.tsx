@@ -4,58 +4,69 @@ import { Pressable } from 'react-native';
 export default styled(
   Pressable,
   {
-    'bg': '$primary500',
-    '_dark': {
-      bg: '$primary400',
-    },
-    'position': 'absolute',
     'borderRadius': '$full',
+    'zIndex': 999,
+    'alignItems': 'center',
+    'justifyContent': 'center',
+    'position': 'absolute',
+    'bg': `$primary.600`,
+    ':hover': {
+      _web: {
+        outlineWidth: '4px',
+        outlineColor: '$primary.300',
+        outlineStyle: 'solid',
+      },
+    },
     ':focus': {
-      bg: '$primary600',
-      _dark: {
-        bg: '$primary300',
+      _web: {
+        outlineWidth: '4px',
+        outlineColor: '$primary.400',
+        outlineStyle: 'solid',
       },
     },
     ':active': {
-      bg: '$primary600',
-      _dark: {
-        bg: '$primary300',
-      },
-    },
-    ':hover': {
-      bg: '$primary600',
-      _dark: {
-        bg: '$primary300',
-      },
-    },
-    ':disabled': {
-      bg: '$primary500',
-      _dark: {
-        bg: '$primary500',
-      },
-    },
-    '_web': {
-      //@ts-ignore
-      'cursor': 'pointer',
-      ':active': {
-        outlineWidth: 4,
+      borderWidth: 8,
+      borderColor: `$primary.300`,
+      _web: {
+        borderWidth: 0,
+        outlineWidth: '8px',
+        outlineColor: '$primary.300',
         outlineStyle: 'solid',
-        outlineColor: '$primary400',
-        _dark: {
-          outlineColor: '$primary500',
+      },
+    },
+
+    '_dark': {
+      'bg': `$primary.500`,
+      ':hover': {
+        _web: {
+          outlineWidth: '4px',
+          outlineColor: '$primary.800',
+          outlineStyle: 'solid',
         },
       },
       ':focus': {
-        outlineWidth: 4,
-        outlineStyle: 'solid',
-        outlineColor: '$primary400',
-        _dark: {
-          outlineColor: '$primary500',
+        _web: {
+          outlineWidth: '4px',
+          outlineColor: '$primary.400',
+          outlineStyle: 'solid',
+        },
+      },
+      ':active': {
+        borderWidth: 8,
+        borderColor: `$primary.800`,
+        _web: {
+          borderWidth: 0,
+          outlineWidth: '8px',
+          outlineColor: '$primary.800',
+          outlineStyle: 'solid',
         },
       },
     },
+    '_web': {
+      cursor: 'pointer',
+    },
     'defaultProps': {
-      hardShadow: '1',
+      shadow: '6',
     },
   },
   { ancestorStyle: ['_thumb'] }
