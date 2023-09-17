@@ -13,7 +13,7 @@ import {
 // import { useStyled } from '@gluestack-style/react';
 import { usePropResolution } from '../../hooks/usePropResolution';
 
-export const AccessibleButton = createButton({
+const AccessibleButton = createButton({
   Root,
   Text,
   Group,
@@ -59,10 +59,10 @@ export const Button = forwardRef(
           isLoadingText && (
             <AccessibleButton.Text>{isLoadingText}</AccessibleButton.Text>
           )
-        ) : typeof children === 'string' ? (
+        ) : children && typeof children === 'string' ? (
           <AccessibleButton.Text>{children}</AccessibleButton.Text>
         ) : (
-          { children }
+          children && { children }
         )}
         {isLoading && spinnerPlacement === 'end' && (
           <AccessibleButton.Spinner />

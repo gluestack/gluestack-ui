@@ -11,6 +11,7 @@ export * from './Checkbox';
 export * from './HStack';
 export * from './Pressable';
 export * from './Icons';
+export * from './IconButton';
 export * from './Heading';
 export * from './Divider';
 export * from './Fab';
