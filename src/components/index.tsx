@@ -1,6 +1,7 @@
 'use client';
 export * from './Button';
 export * from './Actionsheet';
+export * from './AspectRatio';
 export * from './Alert';
 export * from './AlertDialog';
 export * from './Avatar';
