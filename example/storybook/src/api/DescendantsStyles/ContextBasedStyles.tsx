@@ -17,7 +17,6 @@ import {
   AsForwarder,
   createStyled,
   styled,
-  styled1,
   Theme,
   useBreakpointValue,
   useColorMode,
@@ -42,6 +41,16 @@ const Pressable = styled(
   {
     bg: '$red200',
     p: '$2',
+    props: {
+      variant: 'solid',
+    },
+    variants: {
+      variant: {
+        solid: {
+          bg: '$red400',
+        },
+      },
+    },
   },
   {
     componentName: 'Pressable',
@@ -315,6 +324,12 @@ export function ContextBasedStylesContent() {
 const renderItem = (item: any) => (
   <Pressable
     key={item}
+    variant="solid"
+    sx={{
+      props: {
+        variant: 'solid',
+      },
+    }}
     // sx={{
     //   bg: '$amber400',
     // }}
