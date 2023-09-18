@@ -1,8 +1,6 @@
 ---
 title: Performance Benchmarks | gluestack-ui
-description: Performance Benchmarks
-pageTitle: Performance Benchmarks
-pageDescription: Performance tests and comparisons.
+description: gluestack-ui harnesses the power of gluestack-style, a universal and highly performant styling library, to create beautifully styled components. With a babel plugin for pre-computing styles during the build process, and runtime performance optimizations, gluestack-style delivers high performance styling, even in the most demanding applications.
 ---
 
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
@@ -24,56 +22,58 @@ We performed the [benchmarks](https://github.com/gluestack/gluestack-ui-benchmar
 
 ## Simple Component
 
-Time to render simple themed component.
+The time it takes to render a simple themed component. We've developed a Box component using View with some default styles.
 
 <Graph
   data={{
     'gluestack-ui': 153,
     'React Native': 76,
-    'NativeBase': 529,
     'Tamagui': 160,
     'Styled Components': 91,
+    'NativeBase': 529,
   }}
 />
 
 ## Component with variants
 
-Time to render component with variants.
+The time needed to render a component with different variations. We've developed a Box component using View with default styles and multiple variants.
 
 <Graph
   data={{
     'gluestack-ui': 164,
     'React Native': 76,
-    'NativeBase': 666,
     'Tamagui': 186,
     'Styled Components': 103,
+    'NativeBase': 666,
   }}
 />
 
+> Styled Components doesn't have built-in support for variants. We've incorporated prop-based variants into Styled Components.
+
 ## Component with default theme and inline styles
 
-Component with default themes, variants, inline and state styles.
+A component with default themes, variations, inline styles, and state styles. We've designed a Button component using Pressable with default style, variations, state style, and inline styles.
 
 <Graph
   data={{
     'gluestack-ui': 395,
     'React Native': 195,
-    'NativeBase': 1207,
     'Tamagui': 533,
     'Styled Components': 239,
+    'NativeBase': 1207,
   }}
 />
 
 ## Layout using HStack, VStack, Image and Text
 
-Layout using HStack, VStack, Image and Text with render list of 28 items.
+Creating a layout with HStack, VStack, Image, and Text to display a list of 28 items. We've utilized components from the following libraries for this purpose.
 
 <Graph
   data={{
     'gluestack-ui': 120,
     'React Native': 69,
-    'NativeBase': 491,
     'Tamagui': 90,
+    'NativeBase': 491,
   }}
 />
 
@@ -81,4 +81,4 @@ Layout using HStack, VStack, Image and Text with render list of 28 items.
 
 # Web
 
-We are actively working benchmarks for web, updates will be available soon.
+We are actively working on benchmarks for web, updates will be available soon.
