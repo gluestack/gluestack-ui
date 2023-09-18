@@ -9,6 +9,7 @@ export * from './Box';
 export * from './Center';
 export * from './Container';
 export * from './Checkbox';
+export * from './Flex';
 export * from './HStack';
 export * from './Pressable';
 export * from './Icons';
