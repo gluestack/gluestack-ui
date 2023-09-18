@@ -70,12 +70,10 @@ const compoundVariants = colorScheme
           },
         },
         ':hover': {
-          bg: `$${color}.600`,
-          opacity: 0.1,
+          bg: `$${color}.600.alpha0.1`,
         },
         ':active': {
-          bg: `$${color}.600`,
-          opacity: 0.2,
+          bg: `$${color}.600.alpha0.2`,
         },
 
         '_dark': {
@@ -92,12 +90,10 @@ const compoundVariants = colorScheme
             },
           },
           ':hover': {
-            bg: `$${color}.500`,
-            opacity: 0.1,
+            bg: `$${color}.500.alpha0.1`,
           },
           ':active': {
-            bg: `$${color}.500`,
-            opacity: 0.2,
+            bg: `$${color}.500.alpha0.2`,
           },
         },
       },
