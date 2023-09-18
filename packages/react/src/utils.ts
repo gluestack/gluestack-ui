@@ -253,7 +253,8 @@ export const shallowMerge = (target: any = {}, source: any) => {
 };
 
 export function deepMergeObjects(...objects: any) {
-  const isObject = (obj: any) => obj && typeof obj === 'object';
+  const isObject = (obj: any) =>
+    obj && typeof obj === 'object' && !Array.isArray(obj);
 
   return objects.reduce((prev: any, obj: any) => {
     if (isObject(prev) && isObject(obj)) {
@@ -262,9 +263,13 @@ export function deepMergeObjects(...objects: any) {
           if (!prev[key] || !isObject(prev[key])) {
             prev[key] = {};
           }
-          prev[key] = deepMerge(prev[key], obj[key]);
+          prev[key] = deepMergeObjects(prev[key], obj[key]);
         } else {
-          prev[key] = obj[key];
+          if (Array.isArray(obj[key]) && Array.isArray(prev[key])) {
+            prev[key] = prev[key].concat(obj[key]); // Merge arrays without converting to an object
+          } else {
+            prev[key] = obj[key];
+          }
         }
       });
     }
