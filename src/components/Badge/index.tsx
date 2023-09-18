@@ -1,13 +1,15 @@
-import { Root, Icon, Text } from './styled-components';
+import {
+  Root,
+  Icon as AccessibleBadgeIcon,
+  Text as AccessibleBadgeText,
+} from './styled-components';
 // import { usePropResolution } from '../../hooks/usePropResolution';
 import React, { forwardRef } from 'react';
 
-const AccessibleBadge: any = Root;
-AccessibleBadge.Icon = Icon;
-AccessibleBadge.Text = Text;
+const AccessibleBadge = Root;
 
 type RootProps = React.ComponentProps<typeof Root>;
-type IconProps = React.ComponentProps<typeof Icon>;
+type IconProps = React.ComponentProps<typeof AccessibleBadgeIcon>;
 
 export const Badge = forwardRef(
   (
@@ -30,17 +32,17 @@ export const Badge = forwardRef(
     return (
       <AccessibleBadge {...props} ref={ref}>
         {leftIcon ? (
-          <AccessibleBadge.Icon as={leftIcon} />
+          <AccessibleBadgeIcon as={leftIcon} />
         ) : (
-          startIcon && <AccessibleBadge.Icon as={startIcon} />
+          startIcon && <AccessibleBadgeIcon as={startIcon} />
         )}
         {typeof children === 'string' && (
-          <AccessibleBadge.Text>{children}</AccessibleBadge.Text>
+          <AccessibleBadgeText>{children}</AccessibleBadgeText>
         )}
         {rightIcon ? (
-          <AccessibleBadge.Icon as={rightIcon} />
+          <AccessibleBadgeIcon as={rightIcon} />
         ) : (
-          endIcon && <AccessibleBadge.Icon as={endIcon} />
+          endIcon && <AccessibleBadgeIcon as={endIcon} />
         )}
       </AccessibleBadge>
     );
