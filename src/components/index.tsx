@@ -34,6 +34,7 @@ export * from './Toast';
 export * from './Tabs';
 export * from './Tooltip';
 export * from './VStack';
+export * from './ZStack';
 export { styled } from './styled';
 export {
   GluestackUIProvider,
