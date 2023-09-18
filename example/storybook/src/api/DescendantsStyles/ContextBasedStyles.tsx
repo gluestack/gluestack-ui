@@ -19,6 +19,7 @@ import {
   styled,
   Theme,
   useBreakpointValue,
+  useColorMode,
   useStyled,
   useToken,
 } from '@gluestack-style/react';
@@ -194,8 +195,17 @@ const Text1 = styled(
   { ancestorStyle: ['_text'], componentName: 'TEXT' }
 );
 export function ContextBasedStyles() {
+  const [state, setState] = useState(false);
+
   return (
-    <Wrapper colorMode="dark">
+    <Wrapper colorMode={state ? 'dark' : 'light'}>
+      <Pressable
+        onPress={() => {
+          setState(!state);
+        }}
+      >
+        <Text>color mode: {state ? 'dark' : 'light'}</Text>
+      </Pressable>
       <MyIcon as={Sun} size={32}></MyIcon>
       <ContextBasedStylesContent></ContextBasedStylesContent>
       {/* <Pressable></Pressable> */}
@@ -239,10 +249,15 @@ export function ContextBasedStylesContent() {
     setTabName(tabName);
   };
 
-  const value = useToken('colors', 'red500');
-
-  console.log(value, 'value here');
-
+  // const value = useToken('colors', 'red500');
+  // const value = useBreakpointValue({
+  //   base: 'base',
+  //   sm: 'sm',
+  //   md: 'md',
+  //   // md: 'md',
+  // });
+  const colorMode = useColorMode();
+  console.log(colorMode, 'color mode');
   // const color = tabName ? '$red500' : '$green500';
   // return (
   //   <>
