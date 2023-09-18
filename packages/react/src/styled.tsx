@@ -823,7 +823,7 @@ const getStyleIdsFromMap = (
   return componentStyleObject;
 };
 
-export function verboseStyled<P, Variants, ComCon, PluginType = unknown>(
+export function verboseStyled<P, Variants, ComCon>(
   Component: React.ComponentType<P>,
   theme: Partial<IVerbosedTheme<Variants, P>>,
   componentStyleConfig: IComponentStyleConfig<ComCon> = {},
@@ -991,9 +991,7 @@ export function verboseStyled<P, Variants, ComCon, PluginType = unknown>(
       // sxHash: BUILD_TIME_sxHash = '',
       ...componentProps
     }: Omit<P, keyof Variants> &
-      Partial<
-        ComponentProps<ITypeReactNativeStyles, Variants, P, ComCon, PluginType>
-      > &
+      Partial<ComponentProps<ITypeReactNativeStyles, Variants, P, ComCon>> &
       Partial<UtilityProps<ITypeReactNativeStyles>> & {
         as?: any;
         children?: any;
@@ -1862,7 +1860,7 @@ export function verboseStyled<P, Variants, ComCon, PluginType = unknown>(
 
 export function styled<P, Variants, ComCon, PluginType = unknown>(
   Component: React.ComponentType<P>,
-  theme: ITheme<Variants, P, PluginType>,
+  theme: ITheme<Variants, P>,
   componentStyleConfig?: IComponentStyleConfig<ComCon>,
   ExtendedConfig?: ExtendedConfigType<PluginType>,
   BUILD_TIME_PARAMS?: {
@@ -1894,7 +1892,7 @@ export function styled<P, Variants, ComCon, PluginType = unknown>(
   theme = styledObj;
   const sxConvertedObject = convertStyledToStyledVerbosed(theme);
 
-  let StyledComponent = verboseStyled<P, Variants, ComCon, PluginType>(
+  let StyledComponent = verboseStyled<P, Variants, ComCon>(
     Component,
     sxConvertedObject,
     componentStyleConfig,
