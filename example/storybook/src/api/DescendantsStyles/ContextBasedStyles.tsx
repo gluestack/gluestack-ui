@@ -16,6 +16,7 @@ import {
 import {
   AsForwarder,
   createStyled,
+  styled,
   styled1,
   Theme,
   useBreakpointValue,
@@ -229,7 +230,13 @@ export function ContextBasedStylesContent() {
     setTabName(tabName);
   };
 
-  const value = useToken('colors', 'red500');
+  // const value = useToken('colors', 'red500');
+  const value = useBreakpointValue({
+    base: 'base',
+    sm: 'sm',
+    md: 'md',
+    // md: 'md',
+  });
 
   console.log(value, 'value here');
 

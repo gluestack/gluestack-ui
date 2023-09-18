@@ -9,23 +9,46 @@ type BreakPointValue = Partial<{
   [key in keyof ICustomConfig['tokens']['breakpoints']]: any;
 }>;
 
+function getLastValidObject(mediaQueries: any) {
+  for (let i = mediaQueries.length - 1; i >= 0; i--) {
+    if (mediaQueries[i].isValid) {
+      return mediaQueries[i];
+    }
+  }
+  return null; // No valid object found
+}
+
 export function useBreakpointValue(values: BreakPointValue) {
   let { width } = useWindowDimensions();
   const theme = useStyled();
   const mediaQueries = theme?.config?.tokens?.mediaQueries;
 
-  let validBreakpoints: any = [];
+  let mediaQueriesBreakpoints: any = [];
+
   Object.keys(mediaQueries).forEach((key: any) => {
     const currentBreakpoint: any = extractWidthValues(mediaQueries[key]);
     const isValid = isValidBreakpoint(theme.config, mediaQueries[key], width);
-    if (isValid) {
-      validBreakpoints.push({ key: key, value: currentBreakpoint[0] });
-    }
+    mediaQueriesBreakpoints.push({
+      key: key,
+      breakpoint: currentBreakpoint[0],
+      query: mediaQueries[key],
+      isValid: isValid,
+    });
   });
 
-  if (validBreakpoints.length === 0) {
+  mediaQueriesBreakpoints.sort((a: any, b: any) => a.breakpoint - b.breakpoint);
+
+  mediaQueriesBreakpoints.forEach((breakpoint: any, index: any) => {
+    breakpoint.value = values[breakpoint.key]
+      ? values[breakpoint.key]
+      : mediaQueriesBreakpoints[index - 1].value;
+  });
+
+  const lastValidObject = getLastValidObject(mediaQueriesBreakpoints);
+
+  if (!lastValidObject) {
     return values;
   }
-  validBreakpoints.sort((a: any, b: any) => a.value - b.value);
-  return values[validBreakpoints[validBreakpoints.length - 1].key];
+
+  return lastValidObject.value;
 }
