@@ -3,12 +3,12 @@ import {
   Icon as AccessibleBadgeIcon,
   Text as AccessibleBadgeText,
 } from './styled-components';
-// import { usePropResolution } from '../../hooks/usePropResolution';
+import { usePropResolution } from '../../hooks/usePropResolution';
 import React, { forwardRef } from 'react';
 
 const AccessibleBadge = Root;
 
-type RootProps = React.ComponentProps<typeof Root>;
+type RootProps = React.ComponentProps<typeof AccessibleBadge>;
 type IconProps = React.ComponentProps<typeof AccessibleBadgeIcon>;
 
 export const Badge = forwardRef(
@@ -28,9 +28,9 @@ export const Badge = forwardRef(
     },
     ref?: any
   ) => {
-    // const resolvedPropForGluestack = usePropResolution(props);
+    const resolvedPropForGluestack = usePropResolution(props);
     return (
-      <AccessibleBadge {...props} ref={ref}>
+      <AccessibleBadge {...resolvedPropForGluestack} ref={ref}>
         {leftIcon ? (
           <AccessibleBadgeIcon as={leftIcon} />
         ) : (
