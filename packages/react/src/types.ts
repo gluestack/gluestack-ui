@@ -193,7 +193,9 @@ export type GlobalVariantSx<Aliases, Tokens, Variants, PLATFORM = ''> = Partial<
     RNStyledProps &
     GlobalVariantAliasesProps<Aliases, Tokens> & {
       [k in keyof Variants]?: keyof Variants[k];
-    };
+    } & {
+      as?: any;
+    } & Partial<{ [Key: string]: any }>;
 } & {
   [Key in `_${COLORMODES}`]?: GlobalVariantSx<
     Aliases,
