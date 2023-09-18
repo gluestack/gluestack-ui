@@ -30,6 +30,7 @@ export * from './Radio';
 export * from './Select';
 export * from './Slider';
 export * from './Spinner';
+export * from './Stack';
 export * from './Switch';
 export * from './Textarea';
 export * from './Toast';
