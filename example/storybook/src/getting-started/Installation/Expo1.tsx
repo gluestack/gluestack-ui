@@ -6,14 +6,14 @@ function Expo1() {
   const { colorMode } = useContext(LayoutContext);
   return colorMode === 'light' ? (
     <svg
-      width="112"
-      height="72"
+      width={112}
+      height={72}
       viewBox="0 0 112 72"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
       <g filter="url(#filter0_ii_10404_112250)">
-        <rect width="112" height="72" rx="8" fill="white" />
+        <rect width={112} height={72} rx={8} fill="white" />
         <path
           d="M30.7416 33.7781C30.7865 33.6983 30.8521 33.6326 30.9312 33.5879C31.0104 33.5433 31.1 33.5215 31.1905 33.525C31.2893 33.5199 31.3877 33.5405 31.4764 33.5848C31.5651 33.6291 31.6412 33.6956 31.6975 33.7781C32.8836 35.431 34.8409 38.723 36.2845 41.1503C37.2256 42.7339 37.949 43.9499 38.0983 44.1048C38.6554 44.6827 39.4188 44.3232 39.8631 43.6644C40.2157 43.2105 40.4118 42.6517 40.4214 42.0739C40.4214 41.7433 34.0901 29.7961 33.4521 28.802C32.838 27.8461 32.6386 27.6045 31.5938 27.6045H30.8031C29.7572 27.6045 29.6057 27.8461 28.9927 28.802C28.3547 29.8007 22.0234 41.7433 22.0234 42.0739C22.033 42.6517 22.2291 43.2105 22.5817 43.6644C23.0261 44.3232 23.7894 44.685 24.3465 44.1048C24.4947 43.9499 25.2181 42.7339 26.1604 41.1503C27.6062 38.7218 29.5556 35.4299 30.7416 33.7781Z"
           fill="#0072BC"
@@ -26,14 +26,14 @@ function Expo1() {
       <defs>
         <filter
           id="filter0_ii_10404_112250"
-          x="0"
-          y="0"
-          width="112"
-          height="72"
+          x={0}
+          y={0}
+          width={112}
+          height={72}
           filterUnits="userSpaceOnUse"
-          color-interpolation-filters="sRGB"
+          colorInterpolationFilters="sRGB"
         >
-          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feFlood floodOpacity={0} result="BackgroundImageFix" />
           <feBlend
             mode="normal"
             in="SourceGraphic"
@@ -47,13 +47,13 @@ function Expo1() {
             result="hardAlpha"
           />
           <feMorphology
-            radius="1"
+            radius={1}
             operator="erode"
             in="SourceAlpha"
             result="effect1_innerShadow_10404_112250"
           />
           <feOffset />
-          <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1" />
+          <feComposite in2="hardAlpha" operator="arithmetic" k2={-1} k3={1} />
           <feColorMatrix
             type="matrix"
             values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.06 0"
@@ -69,8 +69,8 @@ function Expo1() {
             values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
             result="hardAlpha"
           />
-          <feOffset dx="-1" dy="-1" />
-          <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1" />
+          <feOffset dx={-1} dy={-1} />
+          <feComposite in2="hardAlpha" operator="arithmetic" k2={-1} k3={1} />
           <feColorMatrix
             type="matrix"
             values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.08 0"
@@ -85,18 +85,18 @@ function Expo1() {
     </svg>
   ) : (
     <svg
-      width="112"
-      height="72"
+      width={112}
+      height={72}
       viewBox="0 0 112 72"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
       <g filter="url(#filter0_ii_10256_68778)">
-        <rect width="112" height="72" rx="8" fill="white" fill-opacity="0.16" />
+        <rect width={112} height={72} rx={8} fill="white" fillOpacity="0.16" />
         <rect
-          width="112"
-          height="72"
-          rx="8"
+          width={112}
+          height={72}
+          rx={8}
           fill="url(#paint0_radial_10256_68778)"
         />
         <path
@@ -111,14 +111,14 @@ function Expo1() {
       <defs>
         <filter
           id="filter0_ii_10256_68778"
-          x="0"
-          y="0"
-          width="112"
-          height="72"
+          x={0}
+          y={0}
+          width={112}
+          height={72}
           filterUnits="userSpaceOnUse"
-          color-interpolation-filters="sRGB"
+          colorInterpolationFilters="sRGB"
         >
-          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feFlood floodOpacity={0} result="BackgroundImageFix" />
           <feBlend
             mode="normal"
             in="SourceGraphic"
@@ -132,13 +132,13 @@ function Expo1() {
             result="hardAlpha"
           />
           <feMorphology
-            radius="1"
+            radius={1}
             operator="erode"
             in="SourceAlpha"
             result="effect1_innerShadow_10256_68778"
           />
           <feOffset />
-          <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1" />
+          <feComposite in2="hardAlpha" operator="arithmetic" k2={-1} k3={1} />
           <feColorMatrix
             type="matrix"
             values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.06 0"
@@ -154,8 +154,8 @@ function Expo1() {
             values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
             result="hardAlpha"
           />
-          <feOffset dx="-1" dy="-1" />
-          <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1" />
+          <feOffset dx={-1} dy={-1} />
+          <feComposite in2="hardAlpha" operator="arithmetic" k2={-1} k3={1} />
           <feColorMatrix
             type="matrix"
             values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.08 0"
@@ -168,14 +168,14 @@ function Expo1() {
         </filter>
         <radialGradient
           id="paint0_radial_10256_68778"
-          cx="0"
-          cy="0"
-          r="1"
+          cx={0}
+          cy={0}
+          r={1}
           gradientUnits="userSpaceOnUse"
           gradientTransform="translate(56 36) rotate(32.7352) scale(66.5733 60.5649)"
         >
-          <stop stop-color="white" stop-opacity="0.08" />
-          <stop offset="1" stop-color="white" stop-opacity="0" />
+          <stop stopColor="white" stopOpacity="0.08" />
+          <stop offset={1} stopColor="white" stopOpacity={0} />
         </radialGradient>
       </defs>
     </svg>
