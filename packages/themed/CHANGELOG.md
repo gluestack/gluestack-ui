@@ -1,5 +1,11 @@
 # @gluestack-ui/themed
 
+## 0.1.46
+
+### Patch Changes
+
+- @gluestack-style/react version bump
+
 ## 0.1.45
 
 ### Patch Changes
