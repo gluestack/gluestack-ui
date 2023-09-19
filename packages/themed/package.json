@@ -29,6 +29,7 @@
   "dependencies": {
     "@expo/html-elements": "latest",
     "@gluestack-style/animation-plugin": "^0.1.12",
+    "@gluestack-style/react": "^0.2.49",
     "@gluestack-ui/actionsheet": "^0.2.20",
     "@gluestack-ui/alert": "^0.1.8",
     "@gluestack-ui/alert-dialog": "^0.1.16",
@@ -66,7 +67,7 @@
     "@babel/preset-env": "^7.22.9",
     "@babel/preset-react": "^7.22.5",
     "@babel/preset-typescript": "^7.22.5",
-    "@gluestack-style/react": "^0.2.45",
+    "@gluestack-style/react": "^0.2.49",
     "@types/react-native": "^0.71.6",
     "file-loader": "^6.2.0",
     "react": "^18.2.0",
