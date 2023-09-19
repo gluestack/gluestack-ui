@@ -9,7 +9,7 @@ import React from 'react';
 
 const InputDemo = () => {
   return (
-    <Input>
+    <Input w="90%">
       <InputSlot pl="$3">
         <InputIcon as={SearchIcon} />
       </InputSlot>

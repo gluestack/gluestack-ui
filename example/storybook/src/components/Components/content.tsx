@@ -18,6 +18,16 @@ import SpinnerDemo from './Demos/SpinnerDemo';
 import ButtonDemo from './Demos/ButtonDemo';
 import InputDemo from './Demos/InputDemo';
 import LinkDemo from './Demos/LinkDemo';
+import PressableDemo from './Demos/PressableDemo';
+import RadioDemo from './Demos/RadioDemo';
+import SwitchDemo from './Demos/SwitchDemo';
+import TextAreaDemo from './Demos/TeaxtAreaDemo';
+import TooltipDemo from './Demos/TooltipDemo';
+import IconDemo from './Demos/IconDemo';
+import ImageDemo from './Demos/ImageDemo';
+import FabDemo from './Demos/FabDemo';
+import CenterDemo from './Demos/CenterDemo';
+import AlertDialogDemo from './Demos/AlertDialogDemo';
 
 export const content = [
   {
@@ -96,6 +106,46 @@ export const content = [
   {
     title: 'Link',
     child: <LinkDemo />,
+  },
+  {
+    title: 'Pressable',
+    child: <PressableDemo />,
+  },
+  {
+    title: 'Radio',
+    child: <RadioDemo />,
+  },
+  {
+    title: 'Switch',
+    child: <SwitchDemo />,
+  },
+  {
+    title: 'TextArea',
+    child: <TextAreaDemo />,
+  },
+  {
+    title: 'Tooltip',
+    child: <TooltipDemo />,
+  },
+  {
+    title: 'Icon',
+    child: <IconDemo />,
+  },
+  {
+    title: 'Image',
+    child: <ImageDemo />,
+  },
+  {
+    title: 'Fab',
+    child: <FabDemo />,
+  },
+  {
+    title: 'Center',
+    child: <CenterDemo />,
+  },
+  {
+    title: 'AlertDialog',
+    child: <AlertDialogDemo />,
   },
 ];
 

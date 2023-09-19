@@ -17,13 +17,6 @@ export const ComponentCard = ({
       sx={{
         '@md': {
           flex: 1,
-          minWidth: '48%',
-        },
-        '@lg': {
-          minWidth: '30%',
-        },
-        '@xl': {
-          minWidth: '23%',
         },
         '_dark': {
           borderColor: '$borderDark800',
