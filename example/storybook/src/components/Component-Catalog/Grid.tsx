@@ -7,6 +7,7 @@ export const Grid = () => {
   return (
     <>
       <Box
+        mb="$6"
         flexDirection="column"
         gap="$6"
         sx={{
@@ -33,7 +34,12 @@ export const Grid = () => {
         }}
       >
         {content.map((item, index) => (
-          <ComponentCard key={index} title={item.title} child={item.child} />
+          <ComponentCard
+            key={index}
+            title={item.title}
+            child={item.child}
+            padding={item.padding}
+          />
         ))}
       </Box>
     </>

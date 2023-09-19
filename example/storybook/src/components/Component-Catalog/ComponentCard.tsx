@@ -4,9 +4,12 @@ import { Box, Text, VStack } from '@gluestack/design-system';
 export const ComponentCard = ({
   title,
   child,
+  padding,
 }: {
   title: string;
   child: React.ReactNode;
+  padding?: string;
+  props?: any;
 }) => {
   return (
     <VStack
@@ -24,13 +27,13 @@ export const ComponentCard = ({
       }}
     >
       <Box
-        p="$6"
+        minHeight={236}
+        padding={padding ? padding : '$6'}
         borderTopLeftRadius="$xl"
         borderTopRightRadius="$xl"
         borderBottomWidth={1}
         borderBottomColor="$trueGray300"
         bg="$trueGray50"
-        minHeight={180}
         justifyContent="center"
         alignItems="center"
         sx={{

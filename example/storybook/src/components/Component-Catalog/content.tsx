@@ -28,6 +28,9 @@ import ImageDemo from './Demos/ImageDemo';
 import FabDemo from './Demos/FabDemo';
 import CenterDemo from './Demos/CenterDemo';
 import AlertDialogDemo from './Demos/AlertDialogDemo';
+import ModalDemo from './Demos/ModalDemo';
+import MenuDemo from './Demos/MenuDemo';
+import PopoverDemo from './Demos/PopoverDemo';
 
 export const content = [
   {
@@ -146,6 +149,22 @@ export const content = [
   {
     title: 'AlertDialog',
     child: <AlertDialogDemo />,
+    padding: '$0',
+  },
+  {
+    title: 'Modal',
+    child: <ModalDemo />,
+    padding: '$0',
+  },
+  {
+    title: 'Menu',
+    child: <MenuDemo />,
+    padding: '$0',
+  },
+  {
+    title: 'Popover',
+    child: <PopoverDemo />,
+    padding: '$0',
   },
 ];
 

@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  Center,
   Button,
   ButtonText,
   AlertDialog,
@@ -8,20 +7,26 @@ import {
   AlertDialogContent,
   AlertDialogHeader,
   Heading,
-  AlertDialogCloseButton,
   Icon,
-  CloseIcon,
+  HStack,
   AlertDialogBody,
   Text,
   AlertDialogFooter,
-  ButtonGroup,
+  CheckCircleIcon,
 } from '@gluestack-ui/themed';
 
 const AlertDialogDemo = () => {
-  const [showAlertDialog, setShowAlertDialog] = React.useState(false);
+  const [showAlertDialog, setShowAlertDialog] = React.useState(true);
+  const [showButton, setShowButton] = React.useState(false);
   return (
-    <Center>
-      <Button onPress={() => setShowAlertDialog(true)}>
+    <>
+      <Button
+        display={showButton ? 'flex' : 'none'}
+        onPress={() => {
+          setShowAlertDialog(true);
+          setShowButton(false);
+        }}
+      >
         <ButtonText>Click me</ButtonText>
       </Button>
       <AlertDialog
@@ -34,43 +39,39 @@ const AlertDialogDemo = () => {
       >
         <AlertDialogBackdrop />
         <AlertDialogContent>
-          <AlertDialogHeader>
-            <Heading size="lg">Deactivate account</Heading>
-            <AlertDialogCloseButton>
-              <Icon as={CloseIcon} />
-            </AlertDialogCloseButton>
+          <AlertDialogHeader borderBottomWidth="$0">
+            <HStack space="sm" alignItems="center">
+              <Icon
+                as={CheckCircleIcon}
+                color="$success700"
+                sx={{
+                  _dark: {
+                    color: '$success300',
+                  },
+                }}
+              />
+              <Heading size="lg">Order placed</Heading>
+            </HStack>
           </AlertDialogHeader>
           <AlertDialogBody>
-            <Text size="sm">
-              Are you sure you want to deactivate your account? Your data will
-              be permanently removed and cannot be undone.
-            </Text>
+            <Text size="sm">Congratulations, your order has been placed!</Text>
           </AlertDialogBody>
-          <AlertDialogFooter>
-            <ButtonGroup>
-              <Button
-                variant="outline"
-                action="secondary"
-                onPress={() => {
-                  setShowAlertDialog(false);
-                }}
-              >
-                <ButtonText>Cancel</ButtonText>
-              </Button>
-              <Button
-                bg="$error600"
-                action="negative"
-                onPress={() => {
-                  setShowAlertDialog(false);
-                }}
-              >
-                <ButtonText>Deactivate</ButtonText>
-              </Button>
-            </ButtonGroup>
+          <AlertDialogFooter borderTopWidth="$0">
+            <Button
+              variant="outline"
+              size="sm"
+              action="secondary"
+              onPress={() => {
+                setShowAlertDialog(false);
+                setShowButton(true);
+              }}
+            >
+              <ButtonText>Okay</ButtonText>
+            </Button>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
-    </Center>
+    </>
   );
 };
 
