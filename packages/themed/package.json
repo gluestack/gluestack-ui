@@ -66,7 +66,7 @@
     "@babel/preset-env": "^7.22.9",
     "@babel/preset-react": "^7.22.5",
     "@babel/preset-typescript": "^7.22.5",
-    "@gluestack-style/react": "^0.2.45",
+    "@gluestack-style/react": "^0.2.49",
     "@types/react-native": "^0.71.6",
     "file-loader": "^6.2.0",
     "react": "^18.2.0",
