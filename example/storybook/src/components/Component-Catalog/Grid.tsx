@@ -24,12 +24,12 @@ export const Grid = () => {
               gridTemplateColumns: 'repeat(3, 1fr)',
             },
           },
-          // '@xl': {
-          //   _web: {
-          //     display: 'grid',
-          //     gridTemplateColumns: 'repeat(4, 1fr)',
-          //   },
-          // },
+          '@xl': {
+            _web: {
+              display: 'grid',
+              gridTemplateColumns: 'repeat(4, 1fr)',
+            },
+          },
         }}
       >
         {content.map((item, index) => (
