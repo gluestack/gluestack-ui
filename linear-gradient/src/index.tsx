@@ -1,14 +1,9 @@
-import type React from 'react';
-import { LinearGradient as LinearGradientMain } from './LinearGradient';
-
-export function createLinearGradient<LinearGradientProps>({
+export function createLinearGradient<StyledLinearGradientProps>({
   Root,
 }: {
-  Root: React.ComponentType<LinearGradientProps>;
+  Root: React.ComponentType<StyledLinearGradientProps>;
 }) {
-  const LinearGradient = LinearGradientMain(Root) as any;
+  Root.displayName = 'LinearGradient';
 
-  LinearGradient.displayName = 'LinearGradient';
-
-  return LinearGradient as React.ComponentType<LinearGradientProps>;
+  return Root;
 }
