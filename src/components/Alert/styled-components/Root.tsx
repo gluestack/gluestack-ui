@@ -1,106 +1,128 @@
 // @ts-nocheck
 import { View } from 'react-native';
 import { styled } from '../../styled';
+import { colorScheme } from '../../../utils';
+
+const colorSchemes = Object.fromEntries(
+  colorScheme.map((color) => [color, {}])
+);
+
+const compoundVariants = colorScheme
+  .map((color) => [
+    {
+      colorScheme: color,
+      variant: 'solid',
+      value: {
+        bg: `$${color}.700`,
+        _dark: {
+          bg: `$${color}.600`,
+        },
+        _icon: { color: `$muted.50` },
+      },
+    },
+    {
+      colorScheme: color,
+      variant: 'left-accent',
+      value: {
+        borderLeftWidth: 4,
+        bg: `$${color}.200`,
+        _icon: { color: `$${color}.700` },
+        borderColor: `$${color}.700`,
+        _dark: {
+          bg: `$${color}.200`,
+          _icon: { color: `$${color}.600` },
+          borderColor: `$${color}.600`,
+        },
+      },
+    },
+    {
+      colorScheme: color,
+      variant: 'top-accent',
+      value: {
+        borderTopWidth: 4,
+        bg: `4${color}.200`,
+        _icon: { color: `$${color}.700` },
+        borderColor: `$${color}.700`,
+        _dark: {
+          bg: `$${color}.200`,
+          _icon: { color: `$${color}.600` },
+          borderColor: `$${color}.600`,
+        },
+      },
+    },
+    {
+      colorScheme: color,
+      variant: 'outline',
+      value: {
+        borderWidth: 1,
+        _icon: { color: `$${color}.700` },
+        borderColor: `$${color}.700`,
+        _dark: {
+          _icon: { color: `$${color}.600` },
+          borderColor: `$${color}.600`,
+        },
+      },
+    },
+    {
+      colorScheme: color,
+      variant: 'subtle',
+      value: {
+        bg: `$${color}.200`,
+        _icon: { color: `$${color}.700` },
+        _dark: {
+          bg: `$${color}.200`,
+          _icon: { color: `$${color}.600` },
+        },
+      },
+    },
+    {
+      colorScheme: color,
+      variant: 'outline-light',
+      value: {
+        borderWidth: 1,
+        _icon: { color: `$${color}.700` },
+        borderColor: `$${color}.700.alpha0.4`,
+        _dark: {
+          _icon: { color: `$${color}.600` },
+          borderColor: `$${color}.600.alpha0.4`,
+        },
+      },
+    },
+  ])
+  .flat();
 
 export default styled(
   View,
   {
-    alignItems: 'flex-start',
-    p: '$3',
     flexDirection: 'row',
+    justifyContent: 'flex-start',
+    flexShrink: 1,
     borderRadius: '$sm',
-    variants: {
-      action: {
-        error: {
-          bg: '$backgroundLightError',
-          borderColor: '$error300',
-          _icon: {
-            color: '$error500',
-          },
-          _dark: {
-            bg: '$backgroundDarkError',
-            borderColor: '$error700',
-            _icon: {
-              color: '$error500',
-            },
-          },
-        },
-        warning: {
-          bg: '$backgroundLightWarning',
-          borderColor: '$warning300',
-          _icon: {
-            color: '$warning500',
-          },
-          _dark: {
-            bg: '$backgroundDarkWarning',
-            borderColor: '$warning700',
-            _icon: {
-              color: '$warning500',
-            },
-          },
-        },
-        success: {
-          bg: '$backgroundLightSuccess',
-          borderColor: '$success300',
-          _icon: {
-            color: '$success500',
-          },
-          _dark: {
-            bg: '$backgroundDarkSuccess',
-            borderColor: '$success700',
-            _icon: {
-              color: '$success500',
-            },
-          },
-        },
-        info: {
-          bg: '$backgroundLightInfo',
-          borderColor: '$info300',
-          _icon: {
-            color: '$info500',
-          },
-          _dark: {
-            bg: '$backgroundDarkInfo',
-            borderColor: '$info700',
-            _icon: {
-              color: '$info500',
-            },
-          },
-        },
-        muted: {
-          bg: '$backgroundLightMuted',
-          borderColor: '$secondary300',
-          _icon: {
-            color: '$secondary500',
-          },
-          _dark: {
-            bg: '$backgroundDarkMuted',
-            borderColor: '$secondary700',
-            _icon: {
-              color: '$secondary500',
-            },
-          },
-        },
-      },
-
-      variant: {
-        solid: {},
-        outline: {
-          borderWidth: '$1',
-          bg: '$white',
-          _dark: {
-            bg: '$black',
-          },
-        },
-        accent: {
-          borderLeftWidth: '$4',
-        },
+    // alignItems: 'center',
+    p: '$3',
+    _icon: {
+      props: {
+        size: 'md',
       },
     },
 
+    variants: {
+      colorScheme: colorSchemes,
+      variant: {
+        'solid': {},
+        'left-accent': {},
+        'top-accent': {},
+        'outline': {},
+        'subtle': {},
+        'outline-light': {},
+      },
+    },
+
+    compoundVariants: compoundVariants,
+
     defaultProps: {
-      variant: 'solid',
-      action: 'info',
+      variant: 'subtle',
+      colorScheme: 'info',
     },
   },
   { descendantStyle: ['_icon', '_text'], DEBUG: 'STYLED_ALERT' }
