@@ -7,6 +7,8 @@ import {
   PopoverContent,
   AvatarFallbackText,
   PopoverBody,
+  HStack,
+  CircleIcon,
 } from '@gluestack-ui/themed';
 import React from 'react';
 
@@ -15,8 +17,8 @@ const PopoverDemo = () => {
 
   return (
     <Box>
-      {/* PhoneIcon, Clock3Icon, MailIcon are imported from 'lucide-react-native' */}
       <Popover
+        _experimentalOverlay={true}
         offset={6}
         placement="bottom"
         isOpen={showPopover}
@@ -36,14 +38,17 @@ const PopoverDemo = () => {
           );
         }}
       >
-        <PopoverContent w="auto" pt="$0">
-          {/* <PopoverHeader>
-            <Heading fontSize="$sm">Status</Heading>
-          </PopoverHeader> */}
-          <PopoverBody>
-            <Text size="sm" pl="$1.5">
+        <PopoverContent w={130} ml={-55}>
+          <PopoverBody p="$2.5">
+            <Text size="sm" pl="$1.5" mb="$1.5">
               Kevin James
             </Text>
+            <HStack alignItems="center">
+              <CircleIcon color="$green700" h="$2" w="$2" />
+              <Text size="xs" pl="$1.5">
+                Active
+              </Text>
+            </HStack>
           </PopoverBody>
         </PopoverContent>
       </Popover>

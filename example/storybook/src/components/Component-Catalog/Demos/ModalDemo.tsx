@@ -32,6 +32,7 @@ const ModalDemo = () => {
         <ButtonText>Show Modal</ButtonText>
       </Button>
       <Modal
+        initialFocusRef={React.useRef(null)}
         isOpen={showModal}
         onClose={() => {
           setShowModal(false);
@@ -46,7 +47,7 @@ const ModalDemo = () => {
           <ModalHeader>
             <Heading size="md">Delete Folder</Heading>
             <ModalCloseButton>
-              <Icon as={CloseIcon} />
+              <Icon as={CloseIcon} w={18} h={18} />
             </ModalCloseButton>
           </ModalHeader>
           <ModalBody>
@@ -63,7 +64,7 @@ const ModalDemo = () => {
                 setShowButton(true);
               }}
             >
-              <ButtonText>Cancel</ButtonText>
+              <ButtonText>No</ButtonText>
             </Button>
             <Button
               size="sm"
@@ -75,7 +76,7 @@ const ModalDemo = () => {
                 setShowButton(true);
               }}
             >
-              <ButtonText>Delete</ButtonText>
+              <ButtonText>Yes</ButtonText>
             </Button>
           </ModalFooter>
         </ModalContent>

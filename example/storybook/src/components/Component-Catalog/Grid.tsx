@@ -25,7 +25,7 @@ export const Grid = () => {
               gridTemplateColumns: 'repeat(3, 1fr)',
             },
           },
-          '@xl': {
+          '@xxl': {
             _web: {
               display: 'grid',
               gridTemplateColumns: 'repeat(4, 1fr)',
@@ -39,6 +39,7 @@ export const Grid = () => {
             title={item.title}
             child={item.child}
             padding={item.padding}
+            href={item.href}
           />
         ))}
       </Box>

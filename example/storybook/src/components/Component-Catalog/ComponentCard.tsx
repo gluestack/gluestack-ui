@@ -1,15 +1,18 @@
 import React from 'react';
 import { Box, Text, VStack } from '@gluestack/design-system';
+import NextLink from 'next/link';
 
 export const ComponentCard = ({
   title,
   child,
   padding,
+  href,
 }: {
   title: string;
   child: React.ReactNode;
   padding?: string;
   props?: any;
+  href: string;
 }) => {
   return (
     <VStack
@@ -45,16 +48,24 @@ export const ComponentCard = ({
       >
         {child}
       </Box>
-
-      <Text
-        fontSize="$xl"
-        fontWeight="$medium"
-        lineHeight="$xl"
-        px="$6"
-        py="$3"
+      <NextLink
+        href={href}
+        style={{
+          textDecoration: 'none',
+        }}
       >
-        {title}
-      </Text>
+        <Box>
+          <Text
+            fontSize="$xl"
+            fontWeight="$medium"
+            lineHeight="$xl"
+            px="$6"
+            py="$4"
+          >
+            {title}
+          </Text>
+        </Box>
+      </NextLink>
     </VStack>
   );
 };

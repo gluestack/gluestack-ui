@@ -31,142 +31,191 @@ import AlertDialogDemo from './Demos/AlertDialogDemo';
 import ModalDemo from './Demos/ModalDemo';
 import MenuDemo from './Demos/MenuDemo';
 import PopoverDemo from './Demos/PopoverDemo';
+import ActionsheetDemo from './Demos/ActionsheetDemo';
 
 export const content = [
   {
-    title: 'Select',
-    child: <SelectDemo />,
-  },
-  {
-    title: 'Checkbox',
-    child: <CheckboxDemo />,
-  },
-  {
-    title: 'Slider',
-    child: <SliderDemo />,
-  },
-  {
-    title: 'FormControl',
-    child: <FormControlDemo />,
-  },
-  {
-    title: 'Badge',
-    child: <BadgeDemo />,
-  },
-  {
-    title: 'Toast',
-    child: <ToastDemo />,
-  },
-
-  {
-    title: 'Avatar',
-    child: <AvatarDemo />,
-  },
-  {
-    title: 'Heading',
-    child: <HeadingDemo />,
-  },
-  {
-    title: 'Text',
-    child: <TextDemo />,
-  },
-  {
-    title: 'Box',
-    child: <BoxDemo />,
-  },
-  {
-    title: 'Divider',
-    child: <DividerDemo />,
-  },
-  {
-    title: 'HStack',
-    child: <HStackDemo />,
-  },
-  {
-    title: 'VStack',
-    child: <VStackDemo />,
-  },
-  {
-    title: 'Alert',
-    child: <AlertDemo />,
-  },
-  {
-    title: 'Progress',
-    child: <ProgressDemo />,
-  },
-  {
-    title: 'Spinner',
-    child: <SpinnerDemo />,
-  },
-  {
-    title: 'Button',
-    child: <ButtonDemo />,
-  },
-  {
-    title: 'Input',
-    child: <InputDemo />,
-  },
-  {
-    title: 'Link',
-    child: <LinkDemo />,
-  },
-  {
-    title: 'Pressable',
-    child: <PressableDemo />,
-  },
-  {
-    title: 'Radio',
-    child: <RadioDemo />,
-  },
-  {
-    title: 'Switch',
-    child: <SwitchDemo />,
-  },
-  {
-    title: 'TextArea',
-    child: <TextAreaDemo />,
-  },
-  {
-    title: 'Tooltip',
-    child: <TooltipDemo />,
-  },
-  {
-    title: 'Icon',
-    child: <IconDemo />,
-  },
-  {
-    title: 'Image',
-    child: <ImageDemo />,
-  },
-  {
-    title: 'Fab',
-    child: <FabDemo />,
-  },
-  {
-    title: 'Center',
-    child: <CenterDemo />,
+    title: 'Actionsheet',
+    child: <ActionsheetDemo />,
+    padding: '$0',
+    href: '/docs/components/disclosure/actionsheet',
   },
   {
     title: 'AlertDialog',
     child: <AlertDialogDemo />,
     padding: '$0',
+    href: '/docs/components/overlay/alertdialog',
   },
   {
-    title: 'Modal',
-    child: <ModalDemo />,
-    padding: '$0',
+    title: 'Alert',
+    child: <AlertDemo />,
+    href: '/docs/components/feedback/alert',
+  },
+  {
+    title: 'Avatar',
+    child: <AvatarDemo />,
+    href: '/docs/components/media-and-icons/avatar',
+  },
+
+  {
+    title: 'Badge',
+    child: <BadgeDemo />,
+    href: '/docs/components/data-display/badge',
+  },
+  {
+    title: 'Box',
+    child: <BoxDemo />,
+    href: '/docs/components/layout/box',
+  },
+  {
+    title: 'Button',
+    child: <ButtonDemo />,
+    href: '/docs/components/forms/button',
+  },
+
+  {
+    title: 'Center',
+    child: <CenterDemo />,
+    href: '/docs/components/layout/center',
+  },
+  {
+    title: 'Checkbox',
+    child: <CheckboxDemo />,
+    href: '/docs/components/forms/checkbox',
+  },
+
+  {
+    title: 'Divider',
+    child: <DividerDemo />,
+    href: '/docs/components/data-display/divider',
+  },
+
+  {
+    title: 'Fab',
+    child: <FabDemo />,
+    href: '/docs/components/others/fab',
+  },
+  {
+    title: 'FormControl',
+    child: <FormControlDemo />,
+    href: '/docs/components/forms/form-control',
+  },
+  {
+    title: 'Heading',
+    child: <HeadingDemo />,
+    href: '/docs/components/typography/heading',
+  },
+  {
+    title: 'HStack',
+    child: <HStackDemo />,
+    href: '/docs/components/layout/hstack',
+  },
+
+  {
+    title: 'Icon',
+    child: <IconDemo />,
+    href: '/docs/components/media-and-icons/icon',
+  },
+  {
+    title: 'Image',
+    child: <ImageDemo />,
+    href: '/docs/components/media-and-icons/image',
+  },
+  {
+    title: 'Input',
+    child: <InputDemo />,
+    href: '/docs/components/forms/input',
+  },
+
+  {
+    title: 'Link',
+    child: <LinkDemo />,
+    href: '/docs/components/forms/link',
   },
   {
     title: 'Menu',
     child: <MenuDemo />,
     padding: '$0',
+    href: '/docs/components/overlay/menu',
   },
+
+  {
+    title: 'Modal',
+    child: <ModalDemo />,
+    padding: '$0',
+    href: '/docs/components/overlay/modal',
+  },
+
   {
     title: 'Popover',
     child: <PopoverDemo />,
     padding: '$0',
+    href: '/docs/components/overlay/popover',
+  },
+  {
+    title: 'Pressable',
+    child: <PressableDemo />,
+    href: '/docs/components/forms/pressable',
+  },
+  {
+    title: 'Progress',
+    child: <ProgressDemo />,
+    href: '/docs/components/feedback/progress',
+  },
+
+  {
+    title: 'Radio',
+    child: <RadioDemo />,
+    href: '/docs/components/forms/radio',
+  },
+
+  {
+    title: 'Select',
+    child: <SelectDemo />,
+    href: '/docs/components/forms/select',
+  },
+
+  {
+    title: 'Slider',
+    child: <SliderDemo />,
+    href: '/docs/components/forms/slider',
+  },
+  {
+    title: 'Spinner',
+    child: <SpinnerDemo />,
+    href: '/docs/components/feedback/spinner',
+  },
+  {
+    title: 'Switch',
+    child: <SwitchDemo />,
+    href: '/docs/components/forms/switch',
+  },
+
+  {
+    title: 'Text',
+    child: <TextDemo />,
+    href: '/docs/components/typography/text',
+  },
+  {
+    title: 'TextArea',
+    child: <TextAreaDemo />,
+    href: '/docs/components/forms/textarea',
+  },
+  {
+    title: 'Toast',
+    child: <ToastDemo />,
+    href: '/docs/components/feedback/toast',
+  },
+
+  {
+    title: 'Tooltip',
+    child: <TooltipDemo />,
+    href: '/docs/components/overlay/tooltip',
+  },
+
+  {
+    title: 'VStack',
+    child: <VStackDemo />,
+    href: '/docs/components/layout/vstack',
   },
 ];
-
-//A trick for creating a grid layout
-export const emptyBoxes = [1, 2, 3, 4];

@@ -30,6 +30,7 @@ const AlertDialogDemo = () => {
         <ButtonText>Click me</ButtonText>
       </Button>
       <AlertDialog
+        initialFocusRef={React.useRef(null)}
         isOpen={showAlertDialog}
         onClose={() => {
           setShowAlertDialog(false);
@@ -43,6 +44,8 @@ const AlertDialogDemo = () => {
             <HStack space="sm" alignItems="center">
               <Icon
                 as={CheckCircleIcon}
+                w={18}
+                h={18}
                 color="$success700"
                 sx={{
                   _dark: {
