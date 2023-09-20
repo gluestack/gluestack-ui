@@ -11,8 +11,7 @@ const ToastDemo = () => {
     <Toast action="info" variant="accent">
       <VStack space="xs">
         <ToastTitle>Info</ToastTitle>
-        <ToastDescription>Your order has</ToastDescription>
-        <ToastDescription>been received.</ToastDescription>
+        <ToastDescription>Add a note here</ToastDescription>
       </VStack>
     </Toast>
   );

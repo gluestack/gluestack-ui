@@ -29,8 +29,8 @@ import FabDemo from './Demos/FabDemo';
 import CenterDemo from './Demos/CenterDemo';
 import AlertDialogDemo from './Demos/AlertDialogDemo';
 import ModalDemo from './Demos/ModalDemo';
-import MenuDemo from './Demos/MenuDemo';
-import PopoverDemo from './Demos/PopoverDemo';
+// import MenuDemo from './Demos/MenuDemo';
+// import PopoverDemo from './Demos/PopoverDemo';
 import ActionsheetDemo from './Demos/ActionsheetDemo';
 
 export const content = [
@@ -132,12 +132,13 @@ export const content = [
     child: <LinkDemo />,
     href: '/docs/components/forms/link',
   },
-  {
-    title: 'Menu',
-    child: <MenuDemo />,
-    padding: '$0',
-    href: '/docs/components/overlay/menu',
-  },
+
+  // {
+  //   title: 'Menu',
+  //   child: <MenuDemo />,
+  //   padding: '$0',
+  //   href: '/docs/components/overlay/menu',
+  // },
 
   {
     title: 'Modal',
@@ -146,12 +147,13 @@ export const content = [
     href: '/docs/components/overlay/modal',
   },
 
-  {
-    title: 'Popover',
-    child: <PopoverDemo />,
-    padding: '$0',
-    href: '/docs/components/overlay/popover',
-  },
+  // {
+  //   title: 'Popover',
+  //   child: <PopoverDemo />,
+  //   padding: '$0',
+  //   href: '/docs/components/overlay/popover',
+  // },
+
   {
     title: 'Pressable',
     child: <PressableDemo />,
