@@ -3043,6 +3043,16 @@
     "@react-native-aria/interactions" "^0.2.8"
     react-native-svg "13.4.0"
 
+"@gluestack-ui/linear-gradient@^0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/linear-gradient/-/linear-gradient-0.1.1.tgz#6b32ac0ea0816fc8040861daaebc332edcc1baaf"
+  integrity sha512-riDwCcRyhqHGo+0w2pVIE1I2FwbHas5dLHmsA15t74R/U2jKTgESoqKueUwg74Ao9S0MibnJrI1/SyfiIXjNjA==
+  dependencies:
+    "@gluestack-ui/utils" "0.1.9"
+    "@react-native-aria/focus" "^0.2.8"
+    "@react-native-aria/interactions" "^0.2.10"
+    expo-linear-gradient "12.3.0"
+
 "@gluestack-ui/linear-gradient@latest":
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/linear-gradient/-/linear-gradient-0.1.0.tgz#35cd4997fd3f69f8c592dfd3ce89fa335041bd93"
