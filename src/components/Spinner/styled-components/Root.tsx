@@ -6,11 +6,11 @@ export default styled(
   ActivityIndicator,
   {
     props: {
-      color: '$primary500',
+      color: '$primary.600',
     },
     _dark: {
       props: {
-        color: '$primary400',
+        color: '$primary.400',
       },
     },
   },
