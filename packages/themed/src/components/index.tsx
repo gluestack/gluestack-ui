@@ -19,6 +19,7 @@ export * from './FormControl';
 export * from './Input';
 export * from './Image';
 export * from './KeyboardAvoidingView';
+export * from './LinearGradient';
 export * from './Link';
 export * from './Menu';
 export * from './Modal';

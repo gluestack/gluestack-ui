@@ -40,6 +40,7 @@
     "@gluestack-ui/hstack": "latest",
     "@expo/html-elements": "latest",
     "@gluestack-ui/input": "latest",
+    "@gluestack-ui/linear-gradient": "latest",
     "@gluestack-ui/link": "latest",
     "@gluestack-ui/menu": "latest",
     "@gluestack-ui/modal": "latest",

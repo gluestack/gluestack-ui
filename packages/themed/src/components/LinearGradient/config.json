@@ -1,0 +1,4 @@
+{
+  "dependencies": { "@gluestack-ui/linear-gradient": "latest" },
+  "keywords": ["components", "core"]
+}

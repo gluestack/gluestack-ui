@@ -1,0 +1,223 @@
+---
+title: gluestack-ui LinearGradient Component | Installation, Usage, and API
+
+description: A LinearGradient component is a reusable graphical element that helps create linear gradients as background or styling effects within UI elements. A linear gradient is a gradual transition between two or more colors, creating a smooth progression of color changes along a straight line.
+
+pageTitle: LinearGradient
+
+pageDescription: A LinearGradient component is a reusable graphical element that helps create linear gradients as background or styling effects within UI elements. A linear gradient is a gradual transition between two or more colors, creating a smooth progression of color changes along a straight line.
+
+showHeader: true
+---
+
+import { Meta } from '@storybook/addon-docs';
+import { useRef, useEffect, useState } from 'react';
+
+<Meta title="components/Layout/LinearGradient" />
+
+import {
+  LinearGradient,
+  Box,
+  Pressable,
+  Icon,
+  EditIcon,
+  Text,
+} from './LinearGradient';
+import { transformedCode } from '../../../utils';
+import { AppProvider, CodePreview } from '@gluestack/design-system';
+
+import Wrapper from '../../Wrapper';
+
+## Themed
+
+Following is the default implementation of the **LinearGradient** component without any additional customization. This serves as a starting point for users who are new to this library and want to learn about the basic functionality and appearance of the component.
+
+Different projects have different dependents of linear gradients. For e.g. , in Expo, it will have the dependency of [expo-linear-gradient](https://docs.expo.dev/versions/latest/sdk/linear-gradient/). In React Native, it will have the dependency of [react-native-linear-gradient](https://www.npmjs.com/package/react-native-linear-gradient). So, we can add the dependency of linear gradient in the `package.json` file of the project and extend the component config with the `LinearGradient` component.
+
+You can refer to [this](https://ui.gluestack.io/docs/theme/customizing-components) for customizing the component.
+
+### Extended config
+
+```jsx
+// gluestack-ui.config.ts
+
+import { createConfig, config as defaultConfig, } from '@gluestack-ui/themed';
+import { LinearGradient } from 'expo-linear-gradient';
+   const config = createConfig({
+   ...defaultConfig.theme,
+   components: {
+     LinearGradient: {
+       theme: {
+        props:{
+          as: LinearGradient,
+        }
+       },
+     },
+   },
+ });
+
+// Get the type of Config
+type ConfigType = typeof config;
+
+// Extend the internal ui config
+declare module "@gluestack-ui/themed" {
+  interface UIConfig extends ConfigType {}
+}
+
+```
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+<LinearGradient  colors={['$purple400', '$red400']} p="$5">
+  <Text color="white">
+    This is a Box
+  </Text>
+</LinearGradient>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Text,
+        LinearGradient,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+<br />
+
+### Import
+
+To use the component in your project, run the command below into your import statement. This will import the component from your components folder.
+
+```bash
+import { LinearGradient } from '@gluestack-ui/themed';
+```
+
+### Anatomy
+
+The structure provided below can help you identify and understand a LinearGradient component's various parts.
+
+```jsx
+export default () => <LinearGradient />;
+```
+
+### API Reference
+
+The following section contains a comprehensive list of the component's references, including descriptions, properties, types, and default behavior. This information is readily available for you to access, helping you effectively utilize the component library in your projects.
+
+#### LinearGradient
+
+It inherits all the properties of Expo's [LinearGradient](https://docs.expo.dev/versions/latest/sdk/linear-gradient/) component.
+
+### Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+#### Pressable with Linear Gradient
+
+A Pressable used with a LinearGradient component adds unique visual styling to enhance the user experience and improve the overall look and feel of the Pressable component.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+    <LinearGradient colors={['$cyan400', '$green400']} borderRadius="$full">
+      <Pressable p="$4">
+        <Icon as={EditIcon} color="$white" />
+      </Pressable>
+    </LinearGradient>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Pressable,
+        Icon,
+        EditIcon,
+        LinearGradient,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### Card with Linear Gradient
+
+LinearGradient component can also be used with a card like layout to create a unique visual effect.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+    <LinearGradient
+      colors={['$purple400', '$blue400', '$pink300']}
+      borderRadius="$md"
+    >
+      <Box width={256} py="$12" justifyContent="center">
+        <Text
+          fontSize="$xl"
+          pl="$2.5"
+          color="$black"
+          fontWeight="$thin"
+          fontStyle="italic"
+          textAlign="center"
+        >
+          Lilly James
+        </Text>
+        <Box bg="$fuchsia100" px="$2" mt="$4">
+          <Text fontSize="$xs" color="$gray600" textAlign="center">
+            Event Planner
+          </Text>
+        </Box>
+      </Box>
+    </LinearGradient>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Box,
+        Text,
+        LinearGradient,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+## Unstyled
+
+We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
+
+### Customizing the LinearGradient
+
+For customizing the LinearGradient, you have to map styled [LinearGradient](https://docs.expo.dev/versions/latest/sdk/linear-gradient/) to LinearGradient. You can refer [style.gluestack.io](https://style.gluestack.io/) for more information on how to use styled components.
+
+#### Usage
+
+Default styling of the component can be found in the `components/linear-gradient` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/tree/main/example/storybook/src/components/Layout/LinearGradient) of the styled `LinearGradient` component.
+
+```jsx
+// import the styles
+import { Root } from '../components/core/linear-gradient/styled-components';
+
+// mapping the LinearGradient to root component
+const LinearGradient = Root;
+
+// using the LinearGradient component
+export default () => <LinearGradient />;
+```
