@@ -3043,6 +3043,16 @@
     "@react-native-aria/interactions" "^0.2.8"
     react-native-svg "13.4.0"
 
+"@gluestack-ui/linear-gradient@latest":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/linear-gradient/-/linear-gradient-0.1.0.tgz#35cd4997fd3f69f8c592dfd3ce89fa335041bd93"
+  integrity sha512-U28C7lxiBCczBwhk9n0F73leZ+n00/Wa+fmQ7snxunvbqaCUaMXPzslsZYEK9EsU9VRoC+jfRtWjwA0EaWYTmA==
+  dependencies:
+    "@gluestack-ui/utils" "0.1.9"
+    "@react-native-aria/focus" "^0.2.8"
+    "@react-native-aria/interactions" "^0.2.10"
+    expo-linear-gradient "12.3.0"
+
 "@gluestack-ui/link@^0.1.10", "@gluestack-ui/link@^0.1.6":
   version "0.1.10"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/link/-/link-0.1.10.tgz#5a01ad0d2cf98c312f3eb1f2b04cf5e86a21ce64"
@@ -11339,7 +11349,7 @@ expo-keep-awake@~12.0.1:
   resolved "https://registry.yarnpkg.com/expo-keep-awake/-/expo-keep-awake-12.0.1.tgz#19c5ab55391394ded3f6c262b0707c7140658a11"
   integrity sha512-hqeCnb4033TyuZaXs93zTK7rjVJ3bywXATyMmKmKkLEsH2PKBAl/VmjlCOPQL/2Ncqz6aj7Wo//tjeJTARBD4g==
 
-expo-linear-gradient@^12.3.0:
+expo-linear-gradient@12.3.0, expo-linear-gradient@^12.3.0:
   version "12.3.0"
   resolved "https://registry.yarnpkg.com/expo-linear-gradient/-/expo-linear-gradient-12.3.0.tgz#7abd8fedbf0138c86805aebbdfbbf5e5fa865f19"
   integrity sha512-f9e+Oxe5z7fNQarTBZXilMyswlkbYWQHONVfq8MqmiEnW3h9XsxxmVJLG8uVQSQPUsbW+x1UUT/tnU6mkMWeLg==

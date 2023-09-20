@@ -81,6 +81,7 @@ const getStories = () => {
     require('../src/components/Feedback/Toast/Toast.stories.tsx'),
     require('../src/components/Overlay/Tooltip/Tooltip.stories.tsx'),
     require('../src/components/Layout/VStack/VStack.stories.tsx'),
+    require('../src/components/Layout/LinearGradient/LinearGradient.stories.tsx'),
     require('../src/components/Forms/Tabs/Tabs.stories.tsx'),
     require('../src/components/MediaAndIcons/Image/Image.stories.tsx'),
   ];

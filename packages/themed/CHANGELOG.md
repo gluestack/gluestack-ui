@@ -1,5 +1,11 @@
 # @gluestack-ui/themed
 
+## 0.1.47
+
+### Patch Changes
+
+- Added linear gradient as a component
+
 ## 0.1.46
 
 ### Patch Changes
