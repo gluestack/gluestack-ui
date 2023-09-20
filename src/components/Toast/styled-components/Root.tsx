@@ -12,72 +12,72 @@ export default styled(
     variants: {
       action: {
         error: {
-          bg: '$backgroundLightError',
-          borderColor: '$error300',
+          bg: '$backgroundLight.Error',
+          borderColor: '$error.300',
           _icon: {
-            color: '$error500',
+            color: '$error.500',
           },
           _dark: {
-            bg: '$backgroundDarkError',
-            borderColor: '$error700',
+            bg: '$backgroundDark.Error',
+            borderColor: '$error.700',
             _icon: {
-              color: '$error500',
+              color: '$error.500',
             },
           },
         },
         warning: {
-          bg: '$backgroundLightWarning',
-          borderColor: '$warning300',
+          bg: '$backgroundLight.Warning',
+          borderColor: '$warning.300',
           _icon: {
-            color: '$warning500',
+            color: '$warning.500',
           },
           _dark: {
-            bg: '$backgroundDarkWarning',
-            borderColor: '$warning700',
+            bg: '$backgroundDark.Warning',
+            borderColor: '$warning.700',
             _icon: {
-              color: '$warning500',
+              color: '$warning.500',
             },
           },
         },
         success: {
-          bg: '$backgroundLightSuccess',
-          borderColor: '$success300',
+          bg: '$backgroundLight.Success',
+          borderColor: '$success.300',
           _icon: {
-            color: '$success500',
+            color: '$success.500',
           },
           _dark: {
-            bg: '$backgroundDarkSuccess',
-            borderColor: '$success700',
+            bg: '$backgroundDark.Success',
+            borderColor: '$success.700',
             _icon: {
-              color: '$warning500',
+              color: '$warning.500',
             },
           },
         },
         info: {
-          bg: '$backgroundLightInfo',
-          borderColor: '$info300',
+          bg: '$backgroundLight.Info',
+          borderColor: '$info.300',
           _icon: {
-            color: '$info500',
+            color: '$info.500',
           },
           _dark: {
-            bg: '$backgroundDarkInfo',
-            borderColor: '$info700',
+            bg: '$backgroundDark.Info',
+            borderColor: '$info.700',
             _icon: {
-              color: '$info500',
+              color: '$info.500',
             },
           },
         },
         attention: {
-          bg: '$backgroundLightMuted',
-          borderColor: '$secondary300',
+          bg: '$backgroundLight.Muted',
+          borderColor: '$secondary.300',
           _icon: {
-            color: '$secondary600',
+            color: '$secondary.600',
           },
           _dark: {
-            bg: '$backgroundDarkMuted',
-            borderColor: '$secondary700',
+            bg: '$backgroundDark.Muted',
+            borderColor: '$secondary.700',
             _icon: {
-              color: '$secondary400',
+              color: '$secondary.400',
             },
           },
         },
