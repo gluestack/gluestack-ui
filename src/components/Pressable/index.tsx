@@ -5,7 +5,7 @@ import { usePropResolution } from '../../hooks/usePropResolution';
 export const Pressable = ({
   children,
   ...props
-}: Parameters<typeof AccessiblePressable>[0]) => {
+}: React.ComponentProps<typeof AccessiblePressable>) => {
   const resolvedProps = usePropResolution(props);
   return <AccessiblePressable {...resolvedProps} children={children} />;
 };

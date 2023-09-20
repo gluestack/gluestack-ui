@@ -7,7 +7,7 @@ export const AccessibleIcon = createIconUI({
   Root: StyledIcon,
 });
 
-type IProps = Parameters<typeof AccessibleIcon>[0];
+type IProps = React.ComponentProps<typeof AccessibleIcon>;
 
 export const Icon = forwardRef(
   ({ children, as, viewBox, ...props }: IProps, ref?: any) => {

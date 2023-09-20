@@ -14,7 +14,7 @@ export const AccessibleTooltip = createTooltip({
 });
 
 type ParameterTypesOLD = Omit<
-  Parameters<typeof AccessibleTooltip>[0],
+  React.ComponentProps<typeof AccessibleTooltip>,
   'trigger'
 >;
 

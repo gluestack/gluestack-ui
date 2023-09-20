@@ -8,7 +8,7 @@ const InputGroupStyled = styled(View, {
 
 export const InputGroup = forwardRef(
   (
-    { children, ...props }: Parameters<typeof InputGroupStyled>[0],
+    { children, ...props }: React.ComponentProps<typeof InputGroupStyled>,
     ref?: any
   ) => {
     const ChildrenStyled = Children.map(children, (child, index) => {

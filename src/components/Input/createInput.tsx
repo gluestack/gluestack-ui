@@ -9,8 +9,8 @@ const AccessibleInput = createInput({
   Input: StyledInput,
 });
 
-type InputProps = Parameters<typeof AccessibleInput>[0] &
-  Parameters<typeof AccessibleInput.Input>[0] & {
+type InputProps = React.ComponentProps<typeof AccessibleInput> &
+  React.ComponentProps<typeof AccessibleInput.Input> & {
     InputLeftElement?: any;
     InputRightElement?: any;
   };

@@ -23,7 +23,7 @@ const InputRightAddonStyled = styled(
 
 export const InputRightAddon = forwardRef(
   (
-    { children, ...props }: Parameters<typeof InputRightAddonStyled>[0],
+    { children, ...props }: React.ComponentProps<typeof InputRightAddonStyled>,
     ref?: any
   ) => (
     <InputRightAddonStyled {...props} ref={ref}>
