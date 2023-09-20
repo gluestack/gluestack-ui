@@ -1,5 +1,5 @@
 import React from 'react';
-import { config } from '@gluestack-ui/themed';
+import { config } from './config';
 import { StyledProvider } from '@gluestack-ui/themed';
 import { createProvider } from '@gluestack-ui/provider';
 import { Box } from './Layout/Box/Box';
@@ -11,7 +11,7 @@ Provider.displayName = 'Provider';
 
 const Wrapper = ({ children, ...props }: any) => {
   return (
-    <Provider config={config.theme} {...props}>
+    <Provider config={config} {...props}>
       <Box
         sx={{
           _ios: {
