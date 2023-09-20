@@ -1,11 +1,17 @@
 // @ts-nocheck
-import { styled } from '../../styled';
+import { styled } from '@gluestack-style/react';
 import { Pressable } from 'react-native';
+import { colorScheme } from '../../../utils';
+import { colorSchemeResolver } from '../../../plugins/colorScheme/colorScheme';
+import { colorSchemeResolve } from './colorSchemeResolve';
+
+const colorSchemes = Object.fromEntries(
+  colorScheme.map((color) => [color, {}])
+);
 
 export default styled(
   Pressable,
   {
-    'bg': '$primary500',
     'rounded': '$full',
     'zIndex': 20,
     'p': 16,
@@ -14,116 +20,37 @@ export default styled(
     'alignItems': 'center',
     'justifyContent': 'center',
     'position': 'absolute',
-    ':hover': {
-      bg: '$primary600',
-    },
-
-    ':active': {
-      bg: '$primary700',
-    },
+    'gap': 6,
 
     ':disabled': {
       opacity: 0.4,
-      _web: {
-        // @ts-ignore
-        pointerEvents: 'all !important',
-        cursor: 'not-allowed',
-      },
-    },
-
-    '_text': {
-      color: '$textLight50',
-      fontWeight: '$normal',
-      _dark: {
-        _text: {
-          color: '$textDark50',
-        },
-      },
-    },
-
-    '_icon': {
-      'color': '$textLight50',
-      ':hover': {
-        color: '$textLight0',
-      },
-      ':active': {
-        color: '$textLight0',
-      },
-      '_dark': {
-        _icon: {
-          'color': '$textDark0',
-          ':hover': {
-            color: '$textDark0',
-          },
-          ':active': {
-            color: '$textDark0',
-          },
-        },
-      },
-    },
-
-    '_dark': {
-      'bg': '$primary400',
-      ':hover': {
-        bg: '$primary500',
-      },
-      ':active': {
-        bg: '$primary600',
-      },
-      ':disabled': {
-        opacity: 0.4,
-        _web: {
-          cursor: 'not-allowed',
-        },
-      },
     },
 
     '_web': {
       ':focusVisible': {
-        outlineWidth: 2,
-        outlineColor: '$primary700',
-        outlineStyle: 'solid',
-        _dark: {
-          outlineColor: '$primary300',
+        outlineWidth: '0',
+        style: { boxShadow: `$primary400 0px 0px 0px 2px` },
+      },
+      ':disabled': {
+        cursor: 'not-allowed',
+      },
+      '_dark': {
+        ':focusVisible': {
+          outlineWidth: '0',
+          style: { boxShadow: `$primary500 0px 0px 0px 2px` },
         },
       },
     },
 
     'variants': {
-      size: {
-        sm: {
-          px: '$2.5',
-          py: '$2.5',
-          _text: {
-            fontSize: '$sm',
-          },
-          _icon: {
-            h: 16,
-            w: 16,
-          },
-        },
-        md: {
-          px: '$3',
-          py: '$3',
-          _text: {
-            fontSize: '$md',
-          },
-          _icon: {
-            h: 18,
-            w: 18,
-          },
-        },
-        lg: {
-          px: '$4',
-          py: '$4',
-          _text: {
-            fontSize: '$lg',
-          },
-          _icon: {
-            h: 18,
-            w: 18,
-          },
-        },
+      colorScheme: colorSchemes,
+
+      variant: {
+        ghost: {},
+        outline: {},
+        solid: {},
+        subtle: {},
+        link: {},
       },
 
       placement: {
@@ -137,50 +64,79 @@ export default styled(
           left: '$4',
         },
 
-        'bottom right': {
+        'bottom-right': {
           bottom: '$4',
           right: '$4',
         },
 
-        'bottom left': {
+        'bottom-left': {
           bottom: '$4',
           left: '$4',
         },
 
-        'top center': {
+        'top-center': {
           top: '$4',
           alignSelf: 'center',
-          // TODO: fix this, this is correct way, but React Native doesn't support this on Native
-          // left: '50%',
-          // transform: [
-          //   {
-          //     // @ts-ignore
-          //     translateX: '-50%',
-          //   },
-          // ],
         },
 
-        'bottom center': {
+        'bottom-center': {
           bottom: '$4',
           alignSelf: 'center',
-          // TODO: fix this, this is correct way, but React Native doesn't support this on Native
-          // left: '50%',
-          // transform: [
-          //   {
-          //     // @ts-ignore
-          //     translateX: '-50%',
-          //   },
-          // ],
+        },
+      },
+
+      size: {
+        lg: {
+          _text: {
+            fontSize: '$md',
+          },
+          _icon: {
+            h: '$5',
+            w: '$5',
+          },
+        },
+        md: {
+          _text: {
+            fontSize: '$sm',
+          },
+          _icon: {
+            h: '$4',
+            w: '$4',
+          },
+        },
+        sm: {
+          _text: {
+            fontSize: '$xs',
+          },
+          _icon: {
+            h: '$4',
+            w: '$4',
+          },
+        },
+        xs: {
+          _text: {
+            fontSize: '$2xs',
+          },
+          _icon: {
+            h: '$3',
+            w: '$3',
+          },
         },
       },
     },
+
     'defaultProps': {
-      placement: 'bottom right',
+      shadow: '7',
+      placement: 'bottom-right',
+      variant: 'solid',
+      colorScheme: 'primary',
       size: 'md',
-      hardShadow: '2',
     },
   },
   {
     descendantStyle: ['_text', '_icon'],
+  },
+  {
+    plugins: [new colorSchemeResolver(colorSchemeResolve)],
   }
 );

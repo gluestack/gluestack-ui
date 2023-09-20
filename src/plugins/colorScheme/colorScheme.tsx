@@ -20,7 +20,7 @@ export class colorSchemeResolver implements IStyledPlugin {
     return ({ ...componentProps }: any) => {
       let colorSchemeStyle = {};
       if (componentProps.colorScheme) {
-        colorSchemeStyle = this.callback(componentProps.colorScheme);
+        colorSchemeStyle = this.callback(componentProps);
       }
       return <Component {...componentProps} sx={colorSchemeStyle} />;
     };

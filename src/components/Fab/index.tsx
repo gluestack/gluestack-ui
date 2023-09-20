@@ -1,6 +1,28 @@
+import React, { forwardRef } from 'react';
 import { createFab } from '@gluestack-ui/fab';
 import { Root, Label, Icon } from './styled-components';
+import { usePropResolution } from '../../hooks/usePropResolution';
 
-export const Fab = createFab({ Root, Label, Icon });
-export const FabLabel = Fab.Label;
-export const FabIcon = Fab.Icon;
+const AccessibleFab = createFab({ Root, Label, Icon });
+
+type IFabProps = React.ComponentProps<typeof AccessibleFab>;
+type IExtraProps = { label?: string; icon?: any };
+
+export const Fab = forwardRef(
+  (
+    { colorScheme = 'primary', icon, label, ...props }: IFabProps & IExtraProps,
+    ref?: any
+  ) => {
+    const resolvedPropForGluestack = usePropResolution(props);
+    return (
+      <AccessibleFab
+        colorScheme={colorScheme}
+        {...resolvedPropForGluestack}
+        ref={ref}
+      >
+        {icon && <AccessibleFab.Icon as={icon} />}
+        {label && <AccessibleFab.Label>{label}</AccessibleFab.Label>}
+      </AccessibleFab>
+    );
+  }
+);
