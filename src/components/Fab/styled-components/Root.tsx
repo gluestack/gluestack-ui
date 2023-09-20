@@ -3,7 +3,7 @@ import { styled } from '@gluestack-style/react';
 import { Pressable } from 'react-native';
 import { colorScheme } from '../../../utils';
 import { colorSchemeResolver } from '../../../plugins/colorScheme/colorScheme';
-import { colorSchemeResolve } from './colorSchemeResolve';
+import { colorSchemeResolveFn } from '../colorScheme-resolver/colorSchemeResolve';
 
 const colorSchemes = Object.fromEntries(
   colorScheme.map((color) => [color, {}])
@@ -137,6 +137,6 @@ export default styled(
     descendantStyle: ['_text', '_icon'],
   },
   {
-    plugins: [new colorSchemeResolver(colorSchemeResolve)],
+    plugins: [new colorSchemeResolver(colorSchemeResolveFn)],
   }
 );

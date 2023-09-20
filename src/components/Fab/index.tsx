@@ -10,13 +10,20 @@ type IExtraProps = { label?: string; icon?: any };
 
 export const Fab = forwardRef(
   (
-    { colorScheme = 'primary', icon, label, ...props }: IFabProps & IExtraProps,
+    {
+      colorScheme = 'primary',
+      variant = 'solid',
+      icon,
+      label,
+      ...props
+    }: IFabProps & IExtraProps,
     ref?: any
   ) => {
     const resolvedPropForGluestack = usePropResolution(props);
     return (
       <AccessibleFab
         colorScheme={colorScheme}
+        variant={variant}
         {...resolvedPropForGluestack}
         ref={ref}
       >

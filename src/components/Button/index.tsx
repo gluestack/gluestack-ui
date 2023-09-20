@@ -47,6 +47,8 @@ const NewButton = forwardRef(
       rightIcon,
       startIcon,
       endIcon,
+      colorScheme = 'primary',
+      variant = 'solid',
       ...props
     }: IButtonProps & IOtherProps,
     ref?: any
@@ -54,6 +56,8 @@ const NewButton = forwardRef(
     const resolvedPropForGluestack = usePropResolution(props);
     return (
       <AccessibleButton
+        colorScheme={colorScheme}
+        variant={variant}
         {...resolvedPropForGluestack}
         ref={ref}
         isDisabled={isLoading || isDisabled}

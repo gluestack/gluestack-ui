@@ -1,4 +1,4 @@
-export function colorSchemeResolve({ ...props }: any) {
+export function colorSchemeResolveFn({ ...props }: any) {
   let value = {};
   if (props.colorScheme) {
     const color = props.colorScheme;
@@ -191,9 +191,7 @@ export function colorSchemeResolve({ ...props }: any) {
           },
         };
         break;
-      default:
-        value = {};
     }
   }
-  return { ...value };
+  return value;
 }

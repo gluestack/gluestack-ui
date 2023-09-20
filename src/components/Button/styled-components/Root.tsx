@@ -3,7 +3,7 @@ import { styled } from '@gluestack-style/react';
 import { Pressable } from 'react-native';
 import { colorScheme } from '../../../utils';
 import { colorSchemeResolver } from '../../../plugins/colorScheme/colorScheme';
-import { colorSchemeResolve } from './colorSchemeResolve';
+import { colorSchemeResolveFn } from '../colorScheme-resolver/colorSchemeResolve';
 
 const colorSchemes = Object.fromEntries(
   colorScheme.map((color) => [color, {}])
@@ -51,8 +51,8 @@ export default styled(
 
       size: {
         lg: {
-          px: '3',
-          py: '3',
+          px: '$3',
+          py: '$3',
           _text: {
             fontSize: '$md',
           },
@@ -62,8 +62,8 @@ export default styled(
           },
         },
         md: {
-          px: '3',
-          py: '2.5',
+          px: '$3',
+          py: '$2.5',
           _text: {
             fontSize: '$sm',
           },
@@ -73,8 +73,8 @@ export default styled(
           },
         },
         sm: {
-          px: '3',
-          py: '2',
+          px: '$3',
+          py: '$2',
           _text: {
             fontSize: '$xs',
           },
@@ -84,8 +84,8 @@ export default styled(
           },
         },
         xs: {
-          px: '3',
-          py: '2',
+          px: '$3',
+          py: '$2',
           _text: {
             fontSize: '$2xs',
           },
@@ -108,6 +108,6 @@ export default styled(
     ancestorStyle: ['_button'],
   },
   {
-    plugins: [new colorSchemeResolver(colorSchemeResolve)],
+    plugins: [new colorSchemeResolver(colorSchemeResolveFn)],
   }
 );
