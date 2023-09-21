@@ -86,6 +86,6 @@ export { AsForwarder } from './AsForwarder';
 export * from './plugins';
 
 export { INTERNAL_updateCSSStyleInOrderedResolved } from './updateCSSStyleInOrderedResolved';
-export { createConfig } from './createConfig';
+export { createConfig, getInstalledPlugins } from './createConfig';
 export * from './core';
 export * from './hooks';

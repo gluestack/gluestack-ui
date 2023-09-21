@@ -76,6 +76,7 @@ export type AliasesType = {
   [key: string]: keyof RNStyledProps;
 };
 
+export type GlobalPluginType = [];
 export type GenericAliases = {};
 export type GenericGlobalStyle = {
   // variants: {};
@@ -101,12 +102,13 @@ export type ThemeStyles<IToken> = Partial<{
 export type GlueStackConfig<
   IToken extends Tokens,
   IGlobalAliases,
-  IGlobalStyle
+  IGlobalStyle,
+  PluginType = []
 > = {
   tokens: IToken;
   aliases: IGlobalAliases;
   globalStyle?: GlobalStyles<IGlobalAliases, IToken, IGlobalStyle>;
-  plugins?: Array<any>;
+  plugins?: PluginType;
   themes?: ThemeStyles<IToken>;
   components?: {
     [key: string]: {
@@ -125,19 +127,22 @@ export type ComponentsThemeType<IGlobalAliases, IToken, IComponents> = {
 export type InferConfig<Conf> = Conf extends GlueStackConfig<
   infer A,
   infer C,
-  infer D
+  infer D,
+  infer B
 >
-  ? GlueStackConfig<A, C, D>
+  ? GlueStackConfig<A, C, D, B>
   : any;
 
 export type CreateGenericConfig = GlueStackConfig<
   Tokens,
   GenericAliases,
-  GenericGlobalStyle
+  GenericGlobalStyle,
+  GlobalPluginType
 >;
 
 // All Aliases
 export type Aliases = GSConfig['aliases'];
+export type Plugins = GSConfig['plugins'];
 export type Components = GSConfig['components'];
 export type IMediaQueries = keyof GSConfig['tokens']['mediaQueries'];
 
@@ -204,10 +209,10 @@ type PropsResolveType = {
   props?: Partial<ResolverType>;
 };
 type PropertyResolverType = PropsResolveType & ResolverType;
-export type ExtendedConfigType<T> = {
+export type ExtendedConfigType = {
   propertyTokenMap?: PropertyTokenMapType;
   propertyResolver?: PropertyResolverType;
-  plugins?: T;
+  plugins?: Array<any>;
 };
 
 /*********************** GLOBAL STYLE TYPES ****************************************/
@@ -300,37 +305,44 @@ export type GlobalStyles<AliasTypes, TokenTypes, Variants> = GlobalVariantSx<
 
 /*********************** USER THEME / SX TYPES ****************************************/
 
-export type ITheme<Variants, P, PluginType> = Partial<
-  //@ts-ignore
-  StyledThemeProps<Variants, P['style'], P, PluginType>
+export type ITheme<Variants, P> = Partial<
+  StyledThemeProps<
+    Variants,
+    //@ts-ignore
+    P['style'],
+    P,
+    //@ts-ignore
+    P['animationComponentGluestack'] extends true ? Plugins : []
+  >
 >;
 
 export type StyledThemeProps<
   Variants,
   GenericComponentStyles,
   GenericComponentProps,
-  PluginType
-  // @ts-ignore
+  PluginTypes
 > = SxProps<
   GenericComponentStyles,
   Variants & GlobalVariants,
   GenericComponentProps,
   '',
   '',
-  PluginType
+  PluginTypes
 > & {
   [Key in `@${IMediaQueries}`]: SxProps<
     GenericComponentStyles,
     Variants,
     GenericComponentProps,
     '',
-    Key
+    Key,
+    PluginTypes
   >;
 } & {
   variants: VariantType<
     Variants,
     GenericComponentStyles,
-    GenericComponentProps
+    GenericComponentProps,
+    PluginTypes
   >;
   // sizes?: SizeTypeNew<Sizes, X>;
   compoundVariants?: Array<
@@ -338,10 +350,20 @@ export type StyledThemeProps<
   >;
   defaultProps?: {
     [Key in keyof MergeNested<
-      VariantType<Variants, GenericComponentStyles, GenericComponentProps>,
+      VariantType<
+        Variants,
+        GenericComponentStyles,
+        GenericComponentProps,
+        PluginTypes
+      >,
       GlobalVariants
     >]?: keyof MergeNested<
-      VariantType<Variants, GenericComponentStyles, GenericComponentProps>,
+      VariantType<
+        Variants,
+        GenericComponentStyles,
+        GenericComponentProps,
+        PluginTypes
+      >,
       GlobalVariants
     >[Key];
   } & { [key: string]: any };
@@ -386,13 +408,22 @@ type PassingPropsType<
     }
   : {};
 
-// PluginPropsType<
-// PluginType,
-// GenericComponentProps,
-// GenericComponentStyles,
-// PLATFORM
-// >
-
+type AnimatedPropsType = {
+  opacity: number | string;
+  x: number | string | {};
+  y: number | string | {};
+  scale: any;
+  scaleX: any;
+  scaleY: any;
+  skewX: any;
+  skewY: any;
+  perspective: any;
+  rotate: number;
+  rotateY: number;
+  rotateZ: number;
+  matrix: any;
+};
+// componentDriver
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 type PluginPropsType<
   PluginType,
@@ -403,26 +434,9 @@ type PluginPropsType<
   [key in keyof UnionToIntersection<
     // @ts-ignore
     ReturnType<PluginType[number]['inputMiddleWare']>
-  >]: Partial<
-    UnionToIntersection<
-      // @ts-ignore
-      ReturnType<PluginType[number]['inputMiddleWare']>
-    >[key] extends keyof GenericComponentProps
-      ? StylePropsType<GenericComponentStyles, PLATFORM> &
-          GenericComponentProps[UnionToIntersection<
-            // @ts-ignore
-            ReturnType<PluginType[number]['inputMiddleWare']>
-          >[key]]
-      : UnionToIntersection<
-          // @ts-ignore
-          ReturnType<PluginType[number]['inputMiddleWare']>
-        >[key] extends keyof GenericComponentStyles
-      ? GenericComponentStyles[UnionToIntersection<
-          // @ts-ignore
-          ReturnType<PluginType[number]['inputMiddleWare']>
-        >[key]]
-      : any
-  >;
+  >]: Partial<AnimatedPropsType> &
+    Partial<StylePropsType<GenericComponentStyles, PLATFORM>> &
+    Partial<GenericComponentProps>;
 };
 
 export type SxProps<
@@ -430,8 +444,8 @@ export type SxProps<
   Variants = unknown,
   GenericComponentProps = unknown,
   PLATFORM = '',
-  MediaQuery = ''
-  // PluginType = []
+  MediaQuery = '',
+  PluginType = []
 > = Partial<
   StylePropsType<GenericComponentStyles, PLATFORM> &
     PassingPropsType<
@@ -440,73 +454,87 @@ export type SxProps<
       GenericComponentProps,
       MediaQuery
     >
-> & {
-  [Key in `_${COLORMODES}`]?: SxProps<
-    GenericComponentStyles,
-    Variants,
-    GenericComponentProps,
-    PLATFORM,
-    MediaQuery
-  >;
-} & {
-  [Key in `:${IState}`]?: SxProps<
-    GenericComponentStyles,
-    Variants,
-    GenericComponentProps,
-    PLATFORM,
-    MediaQuery
-  >;
-} & {
-  [Key in `_${PLATFORMS}`]?: SxProps<
-    GenericComponentStyles,
-    Variants,
-    GenericComponentProps,
-    Key,
-    MediaQuery
-  > &
-    PassingPropsType<
+> &
+  Partial<
+    PluginPropsType<
+      PluginType,
+      GenericComponentProps,
+      GenericComponentStyles,
+      PLATFORM
+    >
+  > & {
+    [Key in `_${COLORMODES}`]?: SxProps<
       GenericComponentStyles,
       Variants,
       GenericComponentProps,
-      MediaQuery
-    > &
-    Partial<{
-      [key: string]: any;
-    }>;
-} & {
-  [Key in `_${string}`]?: SxProps<
-    RNStyledProps,
-    {},
-    GenericComponentProps,
-    PLATFORM,
-    MediaQuery
-  > &
-    PassingPropsType<
+      PLATFORM,
+      MediaQuery,
+      PluginType
+    >;
+  } & {
+    [Key in `:${IState}`]?: SxProps<
       GenericComponentStyles,
+      Variants,
+      GenericComponentProps,
+      PLATFORM,
+      MediaQuery,
+      PluginType
+    >;
+  } & {
+    [Key in `_${PLATFORMS}`]?: SxProps<
+      GenericComponentStyles,
+      Variants,
+      GenericComponentProps,
+      Key,
+      MediaQuery,
+      PluginType
+    > &
+      PassingPropsType<
+        GenericComponentStyles,
+        Variants,
+        GenericComponentProps,
+        MediaQuery
+      > &
+      Partial<{
+        [key: string]: any;
+      }>;
+  } & {
+    [Key in `_${string}`]?: SxProps<
+      RNStyledProps,
       {},
       GenericComponentProps,
-      MediaQuery
+      PLATFORM,
+      MediaQuery,
+      PluginType
     > &
-    Partial<{
-      [key: string]: any;
-    }>;
-};
+      PassingPropsType<
+        GenericComponentStyles,
+        {},
+        GenericComponentProps,
+        MediaQuery
+      > &
+      Partial<{
+        [key: string]: any;
+      }>;
+  };
 
 export type VariantType<
   Variants,
   GenericComponentStyles,
-  GenericComponentProps
+  GenericComponentProps,
+  PluginTypes = []
 > =
   | {
       [Key1 in keyof Variants]: {
         [Key in keyof Variants[Key1]]: Partial<
-          SxProps<GenericComponentStyles, Variants> & {
+          SxProps<GenericComponentStyles, Variants, '', '', PluginTypes> & {
             [K in `@${IMediaQueries}`]?: SxProps<
               GenericComponentStyles,
               Variants,
               GenericComponentProps,
               '',
-              K
+              K,
+              PluginTypes
             >;
           }
         >;

@@ -84,30 +84,51 @@ export class AnimationResolver implements IStyledPlugin {
   name: 'AnimationResolver';
   componentDriver: IAnimationDriverPlugin;
   config = {
-    aliases: {} as const,
+    aliases: {
+      ':animate': 'animate',
+      ':initial': 'initial',
+      ':exit': 'exit',
+      ':initialProps': 'initialProps',
+      ':animateProps': 'animateProps',
+      ':transition': 'transition',
+      ':transformOrigin': 'transformOrigin',
+      ':whileTap': 'whileTap',
+      ':whileHover': 'whileHover',
+      ':onAnimationComplete': 'onAnimationComplete',
+    } as const,
     tokens: {} as const,
+    animatedPropMap: {} as any,
   };
 
   AnimatePresenceComp = React.Fragment;
 
   register(config: any) {
     if (this.config) {
-      this.config.aliases = {
-        ...this.config?.aliases,
-        ...config?.aliases,
-      };
+      if (config?.aliases) {
+        this.config.aliases = {
+          ...this.config?.aliases,
+          ...config?.aliases,
+        };
+      }
 
-      this.config.tokens = {
-        ...this.config?.tokens,
-        ...config?.tokens,
-      };
-
+      if (config?.tokens) {
+        this.config.tokens = {
+          ...this.config?.tokens,
+          ...config?.tokens,
+        };
+      }
+      if (config?.animatedPropMap) {
+        this.config.animatedPropMap = {
+          ...this.config?.animatedPropMap,
+          ...config?.animatedPropMap,
+        };
+      }
       // @ts-ignore
       this.config.ref = config?.ref;
     }
   }
 
-  constructor(ComponentDriverClass: IAnimationDriverPlugin, config: any = {}) {
+  constructor(ComponentDriverClass: any, config: any = {}) {
     // @ts-ignore
     const componentDriver = new ComponentDriverClass(config);
     this.name = 'AnimationResolver';
@@ -171,6 +192,7 @@ export class AnimationResolver implements IStyledPlugin {
         return [styledObj, shouldUpdateConfig, _, AnimatedComponent];
       }
 
+      // @ts-ignore
       return [
         resolvedStyledObjectWithAnimatedProps,
         shouldUpdateConfig,
@@ -178,6 +200,7 @@ export class AnimationResolver implements IStyledPlugin {
         AnimatedComponent,
       ];
     }
+    // @ts-ignore
     return [styledObj, shouldUpdateConfig, _, Component];
   }
 
@@ -188,6 +211,7 @@ export class AnimationResolver implements IStyledPlugin {
     keyPath: string[] = []
   ) {
     const aliases = this.config?.aliases;
+    const animatedPropMap = this.config?.animatedPropMap;
     for (const prop in styledObject) {
       if (typeof styledObject[prop] === 'object') {
         keyPath.push(prop);
@@ -218,8 +242,18 @@ export class AnimationResolver implements IStyledPlugin {
         keyPath.pop();
         delete styledObject[prop];
       }
+
+      if (animatedPropMap && animatedPropMap[prop]) {
+        this.renameObjectKey(styledObject, prop, animatedPropMap[prop]);
+      }
     }
     return resolvedStyledObject;
+  }
+
+  renameObjectKey(obj: any, from: string, to: string) {
+    obj[to] = obj[from];
+    delete obj[from];
+    return obj;
   }
 
   componentMiddleWare({ Component, ExtendedConfig }: any) {

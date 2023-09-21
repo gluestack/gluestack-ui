@@ -4,7 +4,8 @@ import type {
   // @ts-ignore
   IAnimationResolver,
 } from '@gluestack-style/react';
-
+import 'react-native-reanimated';
+import 'react-native-gesture-handler';
 import {
   MotiImage,
   MotiView,
@@ -12,6 +13,7 @@ import {
   MotiScrollView,
   MotiSafeAreaView,
   MotiProgressBar,
+  AnimatePresence,
 } from 'moti';
 
 let Moti = {
@@ -21,11 +23,12 @@ let Moti = {
   ScrollView: MotiScrollView,
   SafeAreaView: MotiSafeAreaView,
   ProgressBar: MotiProgressBar,
+  AnimatePresence,
 };
 export class MotiAnimationDriver implements IAnimationDriverPlugin {
   name: 'MotiAnimationDriver';
-  LibraryImports = Moti;
-  styledUtils = {
+  engine = Moti;
+  config = {
     aliases: {
       ':animate': 'animate',
       ':initial': 'from',
@@ -38,29 +41,33 @@ export class MotiAnimationDriver implements IAnimationDriverPlugin {
       ':whileHover': 'whileHover',
       ':onAnimationComplete': 'onAnimationComplete',
     } as const,
+    animatedPropMap: {
+      x: 'translateX',
+      y: 'translateY',
+    } as const,
   };
 
-  register(styledUtils: any) {
-    if (this.styledUtils) {
-      this.styledUtils.aliases = {
-        ...this.styledUtils?.aliases,
-        ...styledUtils?.aliases,
+  register(config: any) {
+    if (this.config) {
+      this.config.aliases = {
+        ...this.config?.aliases,
+        ...config?.aliases,
       };
 
       // @ts-ignore
-      this.styledUtils.tokens = {
+      this.config.tokens = {
         // @ts-ignore
-        ...this.styledUtils?.tokens,
-        ...styledUtils?.tokens,
+        ...this.config?.tokens,
+        ...config?.tokens,
       };
 
       // @ts-ignore
-      this.styledUtils.ref = styledUtils?.ref;
+      this.config.ref = config?.ref;
     }
   }
 
-  constructor(styledUtils?: IAnimationResolver) {
-    this.register(styledUtils);
+  constructor(config?: IAnimationResolver) {
+    this.register(config);
     this.name = 'MotiAnimationDriver';
   }
 }

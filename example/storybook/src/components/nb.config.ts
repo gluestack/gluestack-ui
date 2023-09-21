@@ -1,4 +1,5 @@
 import { MotionAnimationDriver } from '@gluestack-style/legend-motion-driver';
+// import { MotiAnimationDriver } from '@gluestack-style/moti-driver';
 import { createConfig, AnimationResolver } from '@gluestack-style/react';
 
 export const config = createConfig({

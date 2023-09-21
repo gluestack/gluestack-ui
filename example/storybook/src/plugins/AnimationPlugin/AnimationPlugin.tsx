@@ -1,6 +1,6 @@
 import React from 'react';
 import { Wrapper } from '../../components/Wrapper';
-import { Pressable, View } from 'react-native';
+import { Pressable, View, Text } from 'react-native';
 import {
   styled,
   AnimatedImage,
@@ -8,12 +8,10 @@ import {
 } from '@gluestack-style/react';
 
 const images = [require('./1.png'), require('./2.png'), require('./3.png')];
-
 const Box = styled(View, {});
 const StyledMotionImage = styled(
   AnimatedImage,
   {
-    // @ts-ignore
     ':animate': {
       zIndex: 1,
       x: 0,
@@ -49,10 +47,12 @@ export function AnimationPlugin() {
               height: '100%',
               position: 'absolute',
             }}
+            // For Mobile
+            // source={images[imageIndex]}
+            // For Web
             source={{ uri: images[imageIndex] }}
             key={`image-${imageIndex}-${Math.random()}`}
             sx={{
-              // @ts-ignore
               ':initial': {
                 x: xPosition,
                 opacity: 0,
@@ -63,7 +63,11 @@ export function AnimationPlugin() {
                 opacity: 0,
               },
               ':transition': {
-                x: { type: 'spring', stiffness: 200, damping: 23 },
+                x: {
+                  type: 'spring',
+                  stiffness: 200,
+                  damping: 23,
+                },
               },
             }}
           />
@@ -87,7 +91,7 @@ export function AnimationPlugin() {
           setImageIndex((prev) => (prev + 1) % images.length);
         }}
       >
-        {'‣'}
+        <Text>{'‣'}</Text>
       </Pressable>
       <Pressable
         accessibilityRole="button"
@@ -108,7 +112,7 @@ export function AnimationPlugin() {
           setImageIndex((prev) => (prev - 1 + images.length) % images.length);
         }}
       >
-        {'‣'}
+        <Text>{'‣'}</Text>
       </Pressable>
     </Wrapper>
   );

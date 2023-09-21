@@ -1,28 +1,60 @@
 import React from 'react';
 import { useStyled } from '..';
-
-const AnimatedText = (props: React.PropsWithChildren) => {
+import type {
+  ImageProps,
+  PressableProps,
+  ViewProps,
+  TextProps,
+  ScrollViewProps,
+  FlatListProps,
+  SectionListProps,
+} from 'react-native';
+const AnimatedText = (
+  props: TextProps & {
+    animationComponentGluestack: true;
+  }
+) => {
   return <React.Fragment {...props}></React.Fragment>;
 };
-const AnimatedView = (props: React.PropsWithChildren) => {
+const AnimatedView = (
+  props: ViewProps & {
+    animationComponentGluestack: true;
+  }
+) => {
   return <React.Fragment {...props}></React.Fragment>;
 };
-const AnimatedPressable = (props: React.PropsWithChildren) => {
+const AnimatedPressable = (
+  props: PressableProps & {
+    animationComponentGluestack: true;
+  }
+) => {
+  // @ts-ignore
   return <React.Fragment {...props}></React.Fragment>;
 };
-const AnimatedImage = (props: React.PropsWithChildren) => {
+const AnimatedImage = (
+  props: ImageProps & {
+    animationComponentGluestack: true;
+  }
+) => {
+  // @ts-ignore
   return <React.Fragment {...props}></React.Fragment>;
 };
-const AnimatedScrollView = (props: React.PropsWithChildren) => {
+const AnimatedScrollView = (
+  props: ScrollViewProps & { animationComponentGluestack: true }
+) => {
   return <React.Fragment {...props}></React.Fragment>;
 };
 const AnimatedSafeAreaView = (props: React.PropsWithChildren) => {
   return <React.Fragment {...props}></React.Fragment>;
 };
-const AnimatedFlatList = (props: React.PropsWithChildren) => {
+const AnimatedFlatList = (
+  props: FlatListProps<any> & { animationComponentGluestack: true }
+) => {
   return <React.Fragment {...props}></React.Fragment>;
 };
-const AnimatedSectionList = (props: React.PropsWithChildren) => {
+const AnimatedSectionList = (
+  props: SectionListProps<any> & { animationComponentGluestack: true }
+) => {
   return <React.Fragment {...props}></React.Fragment>;
 };
 const AnimatedAnimatePresence = React.forwardRef(

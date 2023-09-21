@@ -7,6 +7,9 @@
       "@gluestack-style/legend-motion-driver": [
         "../../packages/animation-legend-motion-driver/src"
       ],
+      "@gluestack-style/moti-driver": [
+        "../../packages/animation-moti-driver/src"
+      ],
       "react-native": ["./node_modules/react-native-web"]
     },
     "emitDeclarationOnly": true,
