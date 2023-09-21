@@ -24,10 +24,10 @@ module.exports = function (api) {
                   __dirname,
                   '../../packages/animation-moti-driver/src'
                 ),
-                // ['@gluestack-style/animation-plugin']: path.join(
-                //   __dirname,
-                //   '../../packages/animation-plugin/src'
-                // ),
+                ['@gluestack-style/animation-resolver']: path.join(
+                  __dirname,
+                  '../../packages/animation-resolver/src'
+                ),
                 // ['@dank-style/react']: path.join(
                 //   __dirname,
                 //   '../../packages/react/src'

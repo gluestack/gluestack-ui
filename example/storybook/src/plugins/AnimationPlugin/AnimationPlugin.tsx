@@ -1,11 +1,11 @@
 import React from 'react';
 import { Wrapper } from '../../components/Wrapper';
 import { Pressable, View, Text } from 'react-native';
+import { styled } from '@gluestack-style/react';
 import {
-  styled,
   AnimatedImage,
   AnimatedAnimatePresence,
-} from '@gluestack-style/react';
+} from '@gluestack-style/animation-resolver';
 
 const images = [require('./1.png'), require('./2.png'), require('./3.png')];
 const Box = styled(View, {});

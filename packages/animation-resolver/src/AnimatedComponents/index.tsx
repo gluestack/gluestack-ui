@@ -1,5 +1,5 @@
 import React from 'react';
-import { useStyled } from '..';
+import { useStyled } from '@gluestack-style/react';
 import type {
   ImageProps,
   PressableProps,
