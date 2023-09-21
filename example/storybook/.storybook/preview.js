@@ -1,7 +1,7 @@
 import { addParameters } from '@storybook/client-api';
 import { DocsContainer } from '@storybook/addon-docs/blocks';
 import { Center, GluestackUIProvider } from '@gluestack-ui/themed';
-import { config } from './config';
+import { config } from './gluestack-ui.config';
 import { useState } from 'react';
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
