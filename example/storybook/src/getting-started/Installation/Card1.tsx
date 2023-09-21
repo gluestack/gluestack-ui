@@ -4,7 +4,6 @@ import {
   HStack,
   VStack,
   Text,
-  LogoTag,
   Button,
   Link,
 } from '@gluestack/design-system';
@@ -17,6 +16,7 @@ import NextLink from 'next/link';
 import Tilde from './Tilde';
 import Copied from './Copied';
 import Copy from './Copy';
+import Figma from './Figma';
 
 function Card1() {
   const [copied, setCopied] = useState(false);
@@ -255,6 +255,46 @@ function Card1() {
             </VStack>
           </Box>
         </Box>
+
+        <Box
+          borderRadius="$xl"
+          borderWidth="$1"
+          sx={{
+            '@lg': {
+              flex: 1,
+            },
+            'borderColor': '$trueGray300',
+            '_dark': {
+              borderColor: '$trueGray800',
+            },
+            '_web': {
+              background:
+                'linear-gradient(99deg, rgba(20, 82, 119, 0.20) 5.76%, rgba(197, 58, 148, 0.20) 87.08%)',
+            },
+          }}
+        >
+          <Box p="$6">
+            <VStack space="lg">
+              <Text
+                fontSize="$2xl"
+                fontWeight="bold"
+                fontFamily="Plus Jakarta Sans"
+              >
+                Figma UI Kit
+              </Text>
+              <HStack flexWrap="wrap" gap="$2.5">
+                <Link
+                  href="https://github.com/gluestack/next-head-starter-kit"
+                  isExternal
+                  target="_blank"
+                >
+                  <Figma />
+                </Link>
+              </HStack>
+            </VStack>
+          </Box>
+        </Box>
+
         <Box
           borderRadius="$xl"
           borderWidth="$1"
@@ -286,7 +326,7 @@ function Card1() {
                   href="https://github.com/gluestack/next-head-starter-kit"
                   isExternal
                   target="_blank"
-                  >
+                >
                   <Next />
                 </Link>
                 <Link
