@@ -196,10 +196,5 @@ export default styled(
   {
     componentName: 'Slider',
     descendantStyle: ['_thumb', '_track', '_filledTrack'],
-  } as const,
-  {
-    aliases: {
-      orientation: 'orientation',
-    },
-  }
+  } as const
 );
