@@ -284,7 +284,7 @@ function Card1() {
               </Text>
               <HStack flexWrap="wrap" gap="$2.5">
                 <Link
-                  href="https://github.com/gluestack/next-head-starter-kit"
+                  href="https://www.figma.com/@gluestack"
                   isExternal
                   target="_blank"
                 >
