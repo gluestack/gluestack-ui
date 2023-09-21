@@ -12,6 +12,7 @@ import {
 } from './styled-components';
 // import { useStyled } from '@gluestack-style/react';
 import { usePropResolution } from '../../hooks/usePropResolution';
+import { GenericComponentType } from '../../types';
 
 export const AccessibleButton = createButton({
   Root,
@@ -103,8 +104,15 @@ const NewGroupButton = forwardRef(
   }
 );
 
-export const Button = NewButton as typeof NewButton & {
-  Group: typeof NewGroupButton;
-};
+const ButtonTemp = NewButton as any;
+ButtonTemp.Group = NewGroupButton;
 
-Button.Group = NewGroupButton;
+export type IButtonComponentType<Button, Group> =
+  GenericComponentType<Button> & {
+    Group: GenericComponentType<Group>;
+  };
+
+export const Button = ButtonTemp as IButtonComponentType<
+  typeof NewButton,
+  typeof NewGroupButton
+>;
