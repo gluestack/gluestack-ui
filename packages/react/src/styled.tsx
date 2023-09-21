@@ -1033,28 +1033,32 @@ export function verboseStyled<P, Variants, ComCon>(
       };
 
       const EXTENDED_THEME =
-        componentName && CONFIG?.components?.[componentName]?.theme?.theme;
+        componentName && CONFIG?.components?.[componentName];
 
       // Injecting style
       if (EXTENDED_THEME) {
-        theme.variants = deepMerge(theme.variants, EXTENDED_THEME.variants);
+        theme.variants = deepMerge(
+          theme.variants,
+          EXTENDED_THEME?.theme?.variants
+        );
         theme.defaultProps = deepMerge(
           theme.defaultProps,
-          EXTENDED_THEME.props
+          EXTENDED_THEME?.props
         );
         // @ts-ignore
-        theme.props = deepMerge(theme.props, EXTENDED_THEME.props);
+        theme.props = deepMerge(theme.props, EXTENDED_THEME?.theme?.props);
 
         // Merge of Extended Config Style ID's with Component Style ID's
         deepMergeArray(
           styleIds,
-          CONFIG?.components?.[`${componentName}`]?.theme
-            ?.extendedVerbosedStyleIds
+          CONFIG?.components?.[`${componentName}`]?.BUILD_TIME_PARAMS
+            ?.verbosedStyleIds
         );
         // Injecting Extended StyleSheet from Config
         orderedCSSIds = [
           ...orderedCSSIds,
-          ...CONFIG?.components?.[`${componentName}`]?.theme?.extendedStyleIds,
+          ...CONFIG?.components?.[`${componentName}`]?.BUILD_TIME_PARAMS
+            ?.styledIds,
         ];
       }
 

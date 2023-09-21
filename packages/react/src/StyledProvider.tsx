@@ -6,12 +6,18 @@ import type { COLORMODES } from './types';
 import { platformSpecificSpaceUnits } from './utils';
 import { createGlobalStylesWeb } from './createGlobalStylesWeb';
 import { createGlobalStyles } from './createGlobalStyles';
+import { resolveComponentThemes } from './createConfig';
 type Config = any;
 let colorModeSet = false;
 
-export const defaultConfig: { config: Config; colorMode: COLORMODES } = {
+export const defaultConfig: {
+  config: Config;
+  colorMode: COLORMODES;
+  components: any;
+} = {
   config: {},
   colorMode: 'light',
+  components: {},
 };
 
 const defaultContextData: Config = defaultConfig;
@@ -37,7 +43,8 @@ export const StyledProvider: React.FC<{
   colorMode?: COLORMODES;
   children?: React.ReactNode;
   globalStyles?: any;
-}> = ({ config, colorMode, children, globalStyles }) => {
+  components: any;
+}> = ({ config, colorMode, children, globalStyles, components }) => {
   const currentConfig = React.useMemo(() => {
     //TODO: Add this later
     return platformSpecificSpaceUnits(config, Platform.OS);
@@ -89,8 +96,14 @@ export const StyledProvider: React.FC<{
     config?.globalStyle && createGlobalStyles(config.globalStyle);
 
   const contextValue = React.useMemo(() => {
-    return { config: currentConfig, globalStyle: globalStyleMap };
-  }, [currentConfig, globalStyleMap]);
+    return {
+      config: {
+        ...currentConfig,
+        components: resolveComponentThemes(currentConfig, components),
+      },
+      globalStyle: globalStyleMap,
+    };
+  }, [currentConfig, globalStyleMap, components]);
 
   return (
     <StyledContext.Provider value={contextValue}>

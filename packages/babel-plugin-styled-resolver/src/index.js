@@ -469,6 +469,10 @@ module.exports = function (b) {
   let isStyledPathConfigured = false;
   let isComponentsPathConfigured = false;
   let targetPlatform = process.env.GLUESTACK_STYLE_TARGET;
+  let createStyleImportedName = '';
+  let createComponentsImportedName = '';
+  const CREATE_STYLE = 'createStyle';
+  const CREATE_COMPONENTS = 'createComponents';
 
   return {
     name: 'ast-transform', // not required
@@ -553,6 +557,15 @@ module.exports = function (b) {
             ImportSpecifier(importSpecifierPath) {
               if (importSpecifierPath.node.imported.name === 'styled') {
                 styledImportName = importSpecifierPath.node.local.name;
+              }
+              if (importSpecifierPath.node.imported.name === CREATE_STYLE) {
+                createStyleImportedName = importSpecifierPath.node.local.name;
+              }
+              if (
+                importSpecifierPath.node.imported.name === CREATE_COMPONENTS
+              ) {
+                createComponentsImportedName =
+                  importSpecifierPath.node.local.name;
               }
               if (importSpecifierPath.node.imported.name === styledAlias) {
                 styledAliasImportedName = importSpecifierPath.node.local.name;
@@ -745,6 +758,125 @@ module.exports = function (b) {
 
             // console.log('final', generate(path.node).code);
             // console.log('\n >>>>>>>>>>>>>>>>>>>>>\n\n');
+          }
+        }
+        if (callExpressionPath.node.callee.name === createStyleImportedName) {
+          callExpressionPath.traverse({
+            ObjectProperty(ObjectPath) {
+              if (t.isIdentifier(ObjectPath.node.value)) {
+                if (ObjectPath.node.value.name === 'undefined') {
+                  ObjectPath.remove();
+                }
+              }
+            },
+          });
+
+          if (isValidConfig) {
+            let args = callExpressionPath.node.arguments;
+
+            let componentThemeNode = args[0];
+            let componentConfigNode = args[1] ?? t.objectExpression([]);
+
+            if (
+              !(
+                t.isIdentifier(componentThemeNode) ||
+                t.isIdentifier(componentConfigNode)
+              )
+            ) {
+              let theme = getObjectFromAstNode(componentThemeNode);
+              let componentConfig = getObjectFromAstNode(componentConfigNode);
+
+              // getExportedConfigFromFileString(ConfigDefault);
+              let mergedPropertyConfig = {
+                ...ConfigDefault?.propertyTokenMap,
+                ...propertyTokenMap,
+              };
+              let componentExtendedConfig = merge(
+                {},
+                {
+                  ...ConfigDefault,
+                  propertyTokenMap: { ...mergedPropertyConfig },
+                }
+              );
+
+              if (theme && Object.keys(theme).length > 0) {
+                const verbosedTheme = convertStyledToStyledVerbosed(theme);
+
+                let componentHash = stableHash({
+                  ...theme,
+                  ...componentConfig,
+                });
+
+                if (outputLibrary) {
+                  componentHash = outputLibrary + '-' + componentHash;
+                }
+
+                const { styledIds, verbosedStyleIds } =
+                  updateOrderUnResolvedMap(
+                    verbosedTheme,
+                    componentHash,
+                    'boot',
+                    componentConfig,
+                    BUILD_TIME_GLUESTACK_STYLESHEET,
+                    platform
+                  );
+
+                const toBeInjected = BUILD_TIME_GLUESTACK_STYLESHEET.resolve(
+                  styledIds,
+                  componentExtendedConfig,
+                  {}
+                );
+
+                const current_global_map =
+                  BUILD_TIME_GLUESTACK_STYLESHEET.getStyleMap();
+
+                const orderedResolvedTheme = [];
+
+                current_global_map?.forEach((styledResolved) => {
+                  if (styledIds.includes(styledResolved?.meta?.cssId)) {
+                    orderedResolvedTheme.push(styledResolved);
+                  }
+                });
+
+                let styleIdsAst = generateObjectAst(verbosedStyleIds);
+
+                let toBeInjectedAst = generateObjectAst(toBeInjected);
+
+                let orderedResolvedAst = generateArrayAst(orderedResolvedTheme);
+
+                let orderedStyleIdsArrayAst = t.arrayExpression(
+                  styledIds?.map((cssId) => t.stringLiteral(cssId))
+                );
+
+                let resultParamsNode = t.objectExpression([
+                  t.objectProperty(
+                    t.stringLiteral('orderedResolved'),
+                    orderedResolvedAst
+                  ),
+                  t.objectProperty(
+                    t.stringLiteral('toBeInjected'),
+                    toBeInjectedAst
+                  ),
+                  t.objectProperty(
+                    t.stringLiteral('styledIds'),
+                    orderedStyleIdsArrayAst
+                  ),
+                  t.objectProperty(
+                    t.stringLiteral('verbosedStyleIds'),
+                    styleIdsAst
+                  ),
+                ]);
+
+                while (args.length < 3) {
+                  args.push(t.objectExpression([]));
+                }
+                if (!args[2]) {
+                  args.push(resultParamsNode);
+                } else {
+                  args[2] = resultParamsNode;
+                }
+              }
+            }
           }
         }
       },

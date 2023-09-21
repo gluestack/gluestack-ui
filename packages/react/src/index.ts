@@ -70,6 +70,7 @@ export type {
   Aliases,
   AliasesProps,
   ICustomConfig,
+  ICustomComponents,
   GSConfig,
 } from './types';
 export { createStyled } from './createStyled';
@@ -81,6 +82,9 @@ export { createGlobalStylesWeb } from './createGlobalStylesWeb';
 export { AsForwarder } from './AsForwarder';
 
 export { AddCssTokenVariables, FontResolver } from './plugins';
+
+export { createStyle } from './createStyle';
+export { createComponents } from './createComponents';
 
 export { INTERNAL_updateCSSStyleInOrderedResolved } from './updateCSSStyleInOrderedResolved';
 export { createConfig } from './createConfig';
