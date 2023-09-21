@@ -1,5 +1,11 @@
 # @gluestack-ui/themed
 
+## 0.1.49
+
+### Patch Changes
+
+- - Switch trackColor, thumbColor, activeThumbColor, activeTrackColor resolution in sx props
+
 ## 0.1.48
 
 ### Patch Changes
