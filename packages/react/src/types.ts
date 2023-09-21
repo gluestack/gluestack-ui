@@ -85,12 +85,6 @@ export type GlueStackConfig<
   globalStyle?: GlobalStyles<IGlobalAliases, IToken, IGlobalStyle>;
   plugins?: Array<any>;
   themes?: ThemeStyles<IToken>;
-  components?: {
-    [key: string]: {
-      theme: Partial<GlobalStyles<IGlobalAliases, IToken, IGlobalStyle>>;
-      componentConfig?: IComponentStyleConfig;
-    };
-  };
 };
 
 export type ComponentsThemeType<IGlobalAliases, IToken, IComponents> = {
@@ -108,6 +102,12 @@ export type InferConfig<Conf> = Conf extends GlueStackConfig<
   : any;
 
 export type CreateGenericConfig = GlueStackConfig<
+  Tokens,
+  GenericAliases,
+  GenericGlobalStyle
+>;
+
+export type CreateGenericComponents = GlueStackConfig<
   Tokens,
   GenericAliases,
   GenericGlobalStyle
@@ -139,14 +139,12 @@ export type SxStyleProps<
 //@ts-ignore
 type GlobalVariants = GSConfig['globalStyle']['variants'];
 
-export type IComponentStyleConfig<ComCon = unknown> = Partial<
-  {
-    descendantStyle: any;
-    ancestorStyle: any;
-    resolveProps: any;
-    componentName: ComCon;
-  } & { [key: string]: any }
->;
+export type IComponentStyleConfig<ComCon = any> = Partial<{
+  descendantStyle: any;
+  ancestorStyle: any;
+  resolveProps: any;
+  componentName: ComCon;
+}>;
 
 export type Config = {
   alias: { [K: string]: any };
@@ -650,9 +648,18 @@ export type StyleIds = {
 
 export interface ICustomConfig {}
 
+export interface ICustomComponents {}
+
 export interface GSConfig
   extends Omit<CreateGenericConfig, keyof ICustomConfig>,
-    ICustomConfig {}
+    ICustomConfig,
+    GenericComponents {
+  components: ICustomComponents;
+}
+
+interface GenericComponents {
+  components: {};
+}
 
 /********************* COMPONENT PROPS TYPE *****************************************/
 
@@ -848,3 +855,20 @@ export type GlobalStyleMap = Map<
     }>;
   }>
 >;
+
+export type ExtendedTheme<Variants> = ITheme<
+  Variants,
+  ViewProps | ImageProps | TextProps
+>;
+
+// export type CreateStyle<Component> = {
+//   // theme: Component['theme'] &
+//   //   ITheme<Component['theme']['variants'], ViewProps | ImageProps | TextProps>;
+//   // componentConfig?: Omit<IComponentStyleConfig, 'componentName'>;
+//   theme: ITheme<Component['variants'], ViewProps | ImageProps | TextProps>;
+//   componentConfig?: IComponentStyleConfig;
+// };
+
+export type CreateComponents<Component> = {
+  [key in keyof Component]: Component[key]; // CreateStyle<Component[key]>;
+};
