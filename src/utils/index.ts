@@ -122,7 +122,7 @@ const space = 'space';
 const transitions = 'transitions';
 const zIndices = 'zIndices';
 
-export const propertyTokenMap: any = {
+export const propertyTokenMap = {
   gap: space,
   gridGap: space,
   columnGap: space,
