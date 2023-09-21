@@ -1,5 +1,11 @@
 # @gluestack-ui/themed
 
+## 0.1.48
+
+### Patch Changes
+
+- Icon fill accepts token now
+
 ## 0.1.47
 
 ### Patch Changes

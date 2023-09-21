@@ -406,15 +406,15 @@
   resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.22.5.tgz#721fd042f3ce1896238cf1b341c77eb7dee7dbea"
   integrity sha512-DFZMC9LJUG9PLOclRC32G63UXwzqS2koQC8dkx+PLdmt1xSePYpbT/NbsrJy8Q/muXz7o/h/d4A7Fuyixm559Q==
 
+"@babel/parser@^7.20.13":
+  version "7.22.16"
+  resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.22.16.tgz#180aead7f247305cce6551bea2720934e2fa2c95"
+  integrity sha512-+gPfKv8UWeKKeJTUxe59+OobVcrYHETCsORl61EmSkmgymguYk/X5bp7GuUIXaFsc6y++v8ZxPsLSSuujqDphA==
+
 "@babel/parser@^7.22.11":
   version "7.22.13"
   resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.22.13.tgz#23fb17892b2be7afef94f573031c2f4b42839a2b"
   integrity sha512-3l6+4YOvc9wx7VlCSw4yQfcBo01ECA8TicQfbnCPuCEpRQrf+gTUyGdxNw+pyTUyywp6JRD1w0YQs9TpBXYlkw==
-
-"@babel/parser@^7.22.14":
-  version "7.22.14"
-  resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.22.14.tgz#c7de58e8de106e88efca42ce17f0033209dfd245"
-  integrity sha512-1KucTHgOvaw/LzCVrEOAyXkr9rQlp0A1HiHRYnSUE9dmb8PvPW7o5sscg+5169r54n3vGlbx6GevTE/Iw/P3AQ==
 
 "@babel/plugin-bugfix-safari-id-destructuring-collision-in-function-expression@^7.22.5":
   version "7.22.5"
@@ -2705,10 +2705,18 @@
     "@babel/traverse" "^7.20.5"
     lodash.merge "^4.6.2"
 
-"@gluestack-style/react@^0.2.42", "@gluestack-style/react@^0.2.49":
+"@gluestack-style/react@^0.2.49":
   version "0.2.49"
   resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-0.2.49.tgz#24374279eadd769874c454b6f9114a289abd913c"
   integrity sha512-1j7q/zN+AIO3nnyMieS6EDmMr1prk9uU9cThYlSxs6HpaULdQbAptX1mPVE3YfSIZ4cTEqkPU4PPb6oyEIxMlQ==
+  dependencies:
+    inline-style-prefixer "^6.0.1"
+    normalize-css-color "^1.0.2"
+
+"@gluestack-style/react@^0.2.50":
+  version "0.2.50"
+  resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-0.2.50.tgz#13273ea738f93f5f12b56763f5020a02df7d2674"
+  integrity sha512-UzCPnmjFBI6gBgrmtpC+rwBvLm3zA1t8XmFZ5SY4R+VJXbaou2emWnhd2XWplCCpHMhaGTB2YUx3rDQTjTcfCQ==
   dependencies:
     inline-style-prefixer "^6.0.1"
     normalize-css-color "^1.0.2"
@@ -3042,6 +3050,16 @@
     "@react-native-aria/focus" "^0.2.7"
     "@react-native-aria/interactions" "^0.2.8"
     react-native-svg "13.4.0"
+
+"@gluestack-ui/linear-gradient@^0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/linear-gradient/-/linear-gradient-0.1.1.tgz#6b32ac0ea0816fc8040861daaebc332edcc1baaf"
+  integrity sha512-riDwCcRyhqHGo+0w2pVIE1I2FwbHas5dLHmsA15t74R/U2jKTgESoqKueUwg74Ao9S0MibnJrI1/SyfiIXjNjA==
+  dependencies:
+    "@gluestack-ui/utils" "0.1.9"
+    "@react-native-aria/focus" "^0.2.8"
+    "@react-native-aria/interactions" "^0.2.10"
+    expo-linear-gradient "12.3.0"
 
 "@gluestack-ui/linear-gradient@latest":
   version "0.1.0"

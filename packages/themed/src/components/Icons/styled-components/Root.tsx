@@ -60,16 +60,15 @@ export const StyledIcon = styled(
         },
       },
     },
-    // defaultProps: {
-    //   size: 'md',
-    // },
   },
   {
     componentName: 'Icon',
+    resolveProps: ['stroke', 'fill'],
   } as const,
   {
     propertyTokenMap: {
       stroke: 'colors',
+      fill: 'colors',
     },
   }
 );
@@ -88,10 +87,5 @@ export default styled(
       color: '$backgroundDark400',
     },
   },
-  {},
-  {
-    propertyTokenMap: {
-      stroke: 'colors',
-    },
-  }
+  {}
 );
