@@ -1733,14 +1733,14 @@ export function verboseStyled<P, Variants, ComCon, PluginType = unknown>(
           ancestorStyleContext
         ) {
           const sxDescendantCSSIds = mergeArraysInObjects(
+            ancestorStyleContext.sx,
             applySxDescendantStyleCSSIdsAndPropsWithKey.current,
-            applySxDescendantStateStyleCSSIdsAndPropsWithKey.current,
-            ancestorStyleContext.component
+            applySxDescendantStateStyleCSSIdsAndPropsWithKey.current
           );
           const componentDescendantCSSIds = mergeArraysInObjects(
+            ancestorStyleContext.component,
             applyDescendantsStyleCSSIdsAndPropsWithKey,
-            applyDescendantStateStyleCSSIdsAndPropsWithKey,
-            ancestorStyleContext.sx
+            applyDescendantStateStyleCSSIdsAndPropsWithKey
           );
 
           return {
