@@ -4,14 +4,11 @@ import { styled } from '../../styled';
 export default styled(
   Text,
   {
-    fontWeight: '$medium',
+    color: '$text.50',
+    fontWeight: '$bold',
     fontFamily: '$body',
     fontSize: '$md',
     lineHeight: '$md',
-    color: '$textLight.900',
-    _dark: {
-      color: '$textDark.50',
-    },
   },
-  { ancestorStyle: ['_text'] }
+  { ancestorStyle: ['_title'] }
 );

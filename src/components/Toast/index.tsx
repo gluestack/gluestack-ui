@@ -1,7 +1,6 @@
 import { Root, Title, Description } from './styled-components';
-import { createToast, createToastHook } from '@gluestack-ui/toast';
-
-export const useToast = createToastHook();
+import { createToast } from '@gluestack-ui/toast';
+export * from './hook';
 
 export const Toast = createToast({
   Root,

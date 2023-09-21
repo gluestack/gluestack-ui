@@ -1,13 +1,13 @@
 // @ts-nocheck
 import { styled } from '@gluestack-style/react';
 import { Pressable } from 'react-native';
-import { colorScheme } from '../../../utils';
+// import { colorScheme } from '../../../utils';
 import { colorSchemeResolver } from '../../../plugins/colorScheme/colorScheme';
 import { colorSchemeResolveFn } from '../colorScheme-resolver/colorSchemeResolve';
 
-const colorSchemes = Object.fromEntries(
-  colorScheme.map((color) => [color, {}])
-);
+// const colorSchemes = Object.fromEntries(
+//   colorScheme.map((color) => [color, {}])
+// );
 
 export default styled(
   Pressable,
@@ -43,7 +43,7 @@ export default styled(
     },
 
     'variants': {
-      colorScheme: colorSchemes,
+      // colorScheme: colorSchemes,
 
       variant: {
         ghost: {},

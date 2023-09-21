@@ -2,7 +2,7 @@ import { styled } from '@gluestack-style/react';
 import { View } from 'react-native';
 import { colorScheme } from '../../../utils';
 import { colorSchemeResolveFn } from '../colorScheme-resolver/colorSchemeResolve';
-import { colorSchemeResolver } from '../../../plugins/colorScheme/colorScheme';
+import { ColorSchemeResolver } from '../../../plugins/colorScheme/colorScheme';
 
 const colorSchemes = Object.fromEntries(
   colorScheme.map((color) => [color, {}])
@@ -50,6 +50,6 @@ export default styled(
     descendantStyle: ['_filledTrack'],
   },
   {
-    plugins: [new colorSchemeResolver(colorSchemeResolveFn)],
+    plugins: [new ColorSchemeResolver(colorSchemeResolveFn)],
   }
 );

@@ -47,6 +47,8 @@ const NewButton = forwardRef(
       rightIcon,
       startIcon,
       endIcon,
+      // Todo: fix this typing
+      // @ts-ignore
       colorScheme = 'primary',
       variant = 'solid',
       ...props

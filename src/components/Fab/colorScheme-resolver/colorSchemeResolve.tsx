@@ -1,7 +1,9 @@
 export function colorSchemeResolveFn({ ...props }: any) {
   let value = {};
+
   if (props.colorScheme) {
     const color = props.colorScheme;
+
     const variant = props.variant;
     switch (variant) {
       case 'ghost':

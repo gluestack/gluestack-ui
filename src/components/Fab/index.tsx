@@ -11,6 +11,8 @@ type IExtraProps = { label?: string; icon?: any };
 export const Fab = forwardRef(
   (
     {
+      // Todo: fix this typing
+      // @ts-ignore
       colorScheme = 'primary',
       variant = 'solid',
       icon,
