@@ -1,6 +1,6 @@
 import { AnimationResolver } from '@gluestack-style/animation-resolver';
-import { MotionAnimationDriver } from '@gluestack-style/legend-motion-driver';
-// import { MotiAnimationDriver } from '@gluestack-style/moti-driver';
+import { MotionAnimationDriver } from '@gluestack-style/legend-motion-animation-driver';
+// import { MotiAnimationDriver } from '@gluestack-style/moti-animation-driver';
 import { createConfig } from '@gluestack-style/react';
 
 export const config = createConfig({

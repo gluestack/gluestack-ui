@@ -1,11 +1,13 @@
 {
-  "name": "@gluestack-style/moti-driver",
+  "name": "@gluestack-style/moti-animation-driver",
   "version": "0.1.11",
-  "description": "A gluestack-style plugin for animation properties, utilizing animation libraries.",
+  "description": "A gluestack-style driver for using moti animation with animation resolver plugin.",
   "keywords": [
     "react",
     "native",
     "react-native",
+    "moti",
+    "driver",
     "animation",
     "transition"
   ],
@@ -21,15 +23,14 @@
     "build": "bob build",
     "clean": "rm -rf lib"
   },
-  "dependencies": {
-    "moti": "^0.26.0"
-  },
   "peerDependencies": {
+    "moti": ">=0.26.0",
     "react-native-reanimated": ">=3.5.1",
-    "react-native-gesture-handler": ">=2.12.1"
+    "react-native-gesture-handler": ">=2.12.1",
+    "@gluestack-style/react": ">=0.2.49"
   },
   "devDependencies": {
-    "@gluestack-style/react": "^0.1.11",
+    "@gluestack-style/react": "^0.2.49",
     "@types/react": "^18.0.22",
     "@types/react-native": "^0.69.15",
     "babel-plugin-transform-remove-console": "^6.9.4",

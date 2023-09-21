@@ -16,13 +16,13 @@ module.exports = function (api) {
                   __dirname,
                   '../../packages/react/src'
                 ),
-                ['@gluestack-style/legend-motion-driver']: path.join(
+                ['@gluestack-style/legend-motion-animation-driver']: path.join(
                   __dirname,
                   '../../packages/animation-legend-motion-driver/src'
                 ),
                 ['@gluestack-style/moti-driver']: path.join(
                   __dirname,
-                  '../../packages/animation-moti-driver/src'
+                  '../../packages/animation-moti-animation-driver/src'
                 ),
                 ['@gluestack-style/animation-resolver']: path.join(
                   __dirname,

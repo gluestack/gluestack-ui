@@ -97,8 +97,9 @@
     "typescript": "^5.1.6"
   },
   "peerDependencies": {
-    "@gluestack-style/legend-motion-driver": "*",
-    "@gluestack-style/moti-driver": "*",
+    "@gluestack-style/legend-motion-animation-driver": "*",
+    "@gluestack-style/moti-animation-driver": "*",
+    "@gluestack-style/animation-resolver": "*",
     "react": "*",
     "react-dom": "*",
     "react-native": "*",

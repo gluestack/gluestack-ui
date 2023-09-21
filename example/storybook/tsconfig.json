@@ -4,10 +4,10 @@
     "baseUrl": ".",
     "paths": {
       "@gluestack-style/react": ["../../packages/react/src"],
-      "@gluestack-style/legend-motion-driver": [
+      "@gluestack-style/legend-motion-animation-driver": [
         "../../packages/animation-legend-motion-driver/src"
       ],
-      "@gluestack-style/moti-driver": [
+      "@gluestack-style/moti-animation-driver": [
         "../../packages/animation-moti-driver/src"
       ],
       "@gluestack-style/animation-resolver": [
