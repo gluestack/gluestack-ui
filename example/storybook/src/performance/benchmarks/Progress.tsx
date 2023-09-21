@@ -5,15 +5,28 @@ export function Graph({ data }: { data: any }) {
   const colorMap: any = {
     'gluestack-ui': '$primary500',
     'React Native': '#61dafb',
-    'Nativebase': '$cyan600',
     'Tamagui': '#d6409f',
     'Styled Components': '$yellow500',
+    'NativeBase': '$cyan600',
   };
 
   const maxValue = Math.max(...Object.values(data).map((stat: any) => stat));
 
   return (
-    <VStack space="sm">
+    <VStack
+      space="sm"
+      pl="$12"
+      pr="$4"
+      py="$12"
+      bg="#fbfbfb"
+      rounded="$md"
+      sx={{
+        _dark: {
+          bg: '$backgroundDark950',
+        },
+      }}
+      mb="$8"
+    >
       {Object.keys(data).map((key) => {
         const width = `${Math.round((data[key] / maxValue) * 100)}%`;
 
@@ -23,7 +36,7 @@ export function Graph({ data }: { data: any }) {
               <Text
                 sx={{
                   _web: { whiteSpace: 'nowrap' },
-                  w: 120,
+                  w: 130,
                   fontSize: '$sm',
                   textAlign: 'right',
                   fontWeight: key === 'gluestack-ui' ? '$semibold' : '$normal',
