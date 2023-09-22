@@ -209,11 +209,6 @@ function colorSchemeResolveFn({ ...props }: any) {
   if (props.colorScheme) {
     const color = props.colorScheme;
     value = {
-      '_indicator': {
-        bg: '$muted.50',
-        borderColor: '$muted.400',
-      },
-
       ':checked': {
         '_indicator': {
           borderColor: `$${color}.600`,
@@ -242,49 +237,9 @@ function colorSchemeResolveFn({ ...props }: any) {
           },
           _icon: { color: `$${color}.800` },
         },
-
-        ':invalid': {
-          _indicator: {
-            borderColor: '$error.600',
-          },
-        },
-      },
-
-      ':hover': {
-        '_indicator': {
-          borderColor: '$muted.500',
-        },
-        ':disabled': {
-          _indicator: {
-            borderColor: '$muted.400',
-          },
-        },
-        ':checked': {
-          _indicator: {
-            borderColor: `$${color}.600`,
-          },
-        },
-      },
-
-      ':active': {
-        _indicator: {
-          borderColor: '$muted.600',
-        },
-      },
-
-      ':invalid': {
-        bg: '$green.500',
-        // _indicator: {
-        //   borderColor: '$error.600',
-        // },
       },
 
       '_dark': {
-        '_indicator': {
-          bg: '$muted.900',
-          borderColor: '$muted.500',
-        },
-
         ':checked': {
           '_indicator': {
             borderColor: `$${color}.500`,
@@ -314,33 +269,17 @@ function colorSchemeResolveFn({ ...props }: any) {
           },
         },
 
-        ':hover': {
-          '_indicator': {
-            borderColor: '$muted.400',
-          },
-          ':disabled': {
-            _indicator: {
-              borderColor: '$muted.500',
-            },
-          },
-          ':checked': {
-            _indicator: {
-              borderColor: `$${color}.600`,
-            },
-          },
-        },
+        // ':active': {
+        //   _indicator: {
+        //     borderColor: '$muted.300',
+        //   },
+        // },
 
-        ':active': {
-          _indicator: {
-            borderColor: '$muted.300',
-          },
-        },
-
-        ':invalid': {
-          _indicator: {
-            borderColor: '$error.500',
-          },
-        },
+        // ':invalid': {
+        //   _indicator: {
+        //     borderColor: '$error.500',
+        //   },
+        // },
       },
 
       '_web': {
