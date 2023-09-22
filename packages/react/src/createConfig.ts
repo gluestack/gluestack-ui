@@ -102,7 +102,6 @@ export const resolveComponentThemes = (config: any, components: any) => {
       );
     } else {
       GluestackStyleSheet.update(component.BUILD_TIME_PARAMS?.orderedResolved);
-      GluestackStyleSheet.inject(component.BUILD_TIME_PARAMS?.toBeInjected);
       newComponents[componentName] = component;
     }
   });
@@ -128,10 +127,8 @@ const resolveTheme = (
   );
 
   return {
-    BUILD_TIME_PARAMS: {
-      styledIds,
-      verbosedStyleIds,
-    },
+    styledIds,
+    verbosedStyleIds,
     theme: versboseComponentTheme,
   };
 };

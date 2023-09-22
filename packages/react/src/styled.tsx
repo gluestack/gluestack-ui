@@ -1047,19 +1047,26 @@ export function verboseStyled<P, Variants, ComCon>(
         );
         // @ts-ignore
         theme.props = deepMerge(theme.props, EXTENDED_THEME?.theme?.props);
-
-        // Merge of Extended Config Style ID's with Component Style ID's
-        deepMergeArray(
-          styleIds,
-          CONFIG?.components?.[`${componentName}`]?.BUILD_TIME_PARAMS
-            ?.verbosedStyleIds
-        );
-        // Injecting Extended StyleSheet from Config
-        orderedCSSIds = [
-          ...orderedCSSIds,
-          ...CONFIG?.components?.[`${componentName}`]?.BUILD_TIME_PARAMS
-            ?.styledIds,
-        ];
+        if (Object.keys(EXTENDED_THEME?.BUILD_TIME_PARAMS ?? {}).length > 0) {
+          const EXTENDED_THEME_BUILD_TIME_PARAMS =
+            EXTENDED_THEME?.BUILD_TIME_PARAMS;
+          deepMergeArray(
+            styleIds,
+            EXTENDED_THEME_BUILD_TIME_PARAMS?.verbosedStyleIds
+          );
+          GluestackStyleSheet.inject(
+            EXTENDED_THEME_BUILD_TIME_PARAMS?.toBeInjected
+          );
+        } else {
+          // Merge of Extended Config Style ID's with Component Style ID's
+          deepMergeArray(styleIds, EXTENDED_THEME?.verbosedStyleIds);
+          const extendedStylesToBeInjected = GluestackStyleSheet.resolve(
+            EXTENDED_THEME?.styledIds,
+            CONFIG,
+            componentExtendedConfig
+          );
+          GluestackStyleSheet.inject(extendedStylesToBeInjected);
+        }
       }
 
       //@ts-ignore

@@ -6,7 +6,6 @@ import type { COLORMODES } from './types';
 import { platformSpecificSpaceUnits } from './utils';
 import { createGlobalStylesWeb } from './createGlobalStylesWeb';
 import { createGlobalStyles } from './createGlobalStyles';
-import { resolveComponentThemes } from './createConfig';
 type Config = any;
 let colorModeSet = false;
 
@@ -99,7 +98,7 @@ export const StyledProvider: React.FC<{
     return {
       config: {
         ...currentConfig,
-        components: resolveComponentThemes(currentConfig, components),
+        components,
       },
       globalStyle: globalStyleMap,
     };
