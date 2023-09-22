@@ -29,13 +29,5 @@ export default styled(
         return resolveColor;
       },
     },
-    // @ts-ignore
-    aliases: {
-      thumbColor: 'thumbColor',
-      activeThumbColor: 'activeThumbColor',
-      activeTrackColor: 'activeTrackColor',
-      trackColor: 'trackColor',
-      ios_backgroundColor: 'ios_backgroundColor',
-    },
   }
 );

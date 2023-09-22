@@ -1,0 +1,8 @@
+import { createStyle } from '@gluestack-ui/themed';
+
+export default createStyle({
+  width: '$full',
+  height: '$full',
+  justifyContent: 'flex-end',
+  alignItems: 'center',
+});

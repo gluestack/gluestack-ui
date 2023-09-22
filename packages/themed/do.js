@@ -8,7 +8,7 @@ function processFile(filePath) {
   content = content.replace(/^import\s+.*?['";]\n/gm, '');
 
   // Add the new import statement
-  content = `import { createConfigStyle } from "@gluestack-ui/unstyled";\n${content}`;
+  content = `import { createStyle } from "@gluestack-ui/themed";\n${content}`;
 
   // Write the modified content back to the file
   fs.writeFileSync(filePath, content);
