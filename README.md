@@ -34,7 +34,7 @@ You can find detailed documentation for each component, including a list of prop
 To use gluestack-ui components, all you need to install `@gluestack-ui/themed` and its dependencies
 
 ```bash
-npm i @gluestack-ui/themed react-native-svg@13.4.0
+npm i @gluestack-ui/themed @gluestack-style/react react-native-svg@13.4.0
 ```
 
 ## Tech Stack
