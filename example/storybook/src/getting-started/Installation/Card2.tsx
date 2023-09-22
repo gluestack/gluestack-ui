@@ -40,6 +40,7 @@ function Card2() {
             href="https://snack.expo.dev/@gluestack/try-now-gluestack-ui"
             isExternal
             target="_blank"
+            borderRadius="$lg"
             sx={{
               '_text': {
                 color: '$trueGray900',
@@ -101,6 +102,7 @@ function Card2() {
           href="https://codesandbox.io/p/sandbox/try-now-next-codesandbox-zl8npm?file=/pages/index.js:1,1"
           target="_blank"
           isExternal
+          borderRadius="$lg"
           sx={{
             '_text': {
               color: '$trueGray900',
