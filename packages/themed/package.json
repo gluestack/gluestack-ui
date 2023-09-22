@@ -1,6 +1,6 @@
 {
   "name": "@gluestack-ui/themed",
-  "version": "0.1.49",
+  "version": "0.1.50",
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "description": "A universal themed components for React Native, Next.js & React",
@@ -67,7 +67,7 @@
     "@babel/preset-env": "^7.22.9",
     "@babel/preset-react": "^7.22.5",
     "@babel/preset-typescript": "^7.22.5",
-    "@gluestack-style/react": "^0.2.49",
+    "@gluestack-style/react": "^0.2.51",
     "@types/react-native": "^0.71.6",
     "file-loader": "^6.2.0",
     "react": "^18.2.0",

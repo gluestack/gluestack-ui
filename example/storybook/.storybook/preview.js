@@ -46,6 +46,7 @@ export const parameters = {
         ],
         'Components',
         [
+          'Component Catalog',
           'Provider',
           ['GluestackUIProvider'],
           'Typography',
