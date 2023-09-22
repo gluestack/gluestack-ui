@@ -1,20 +1,10 @@
 import { createButton } from '@gluestack-ui/button';
-import {
-  Root,
-  Text,
-  Group,
-  GroupHSpacer,
-  GroupVSpacer,
-  Spinner,
-  Icon,
-} from './styled-components';
+import { Root, Text, Group, Spinner, Icon } from './styled-components';
 
 const AccessbileButton = createButton({
   Root,
   Text,
   Group,
-  GroupHSpacer,
-  GroupVSpacer,
   Spinner,
   Icon,
 });
