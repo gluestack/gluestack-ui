@@ -49,20 +49,12 @@ export interface IButtonGroupProps {
 export type IButtonComponentType<
   ButtonProps,
   GroupProps,
-  GroupHSpacerProps,
-  GroupVSpacerProps,
   SpinnerProps,
   TextProps,
   IconProps
 > = ((props: ButtonProps & IButtonProps) => JSX.Element) & {
   Group: React.MemoExoticComponent<
     (props: GroupProps & IButtonGroupProps) => JSX.Element
-  >;
-  GroupHSpacerProps: React.MemoExoticComponent<
-    (props: GroupHSpacerProps) => JSX.Element
-  >;
-  GroupVSpacerProps: React.MemoExoticComponent<
-    (props: GroupVSpacerProps) => JSX.Element
   >;
   Spinner: React.MemoExoticComponent<(props: SpinnerProps) => JSX.Element>;
   Text: React.MemoExoticComponent<(props: TextProps) => JSX.Element>;
