@@ -1,11 +1,11 @@
 import React, { forwardRef } from 'react';
-import { Button } from '../Button';
+import { AccessibleButton, Button } from '../Button';
+import { GenericComponentType } from '../../types';
 
-export const IconButton = forwardRef(
-  (
-    { icon, ...props }: React.ComponentProps<typeof Button> & { icon: any },
-    ref?: any
-  ) => {
-    return <Button {...props} ref={ref} leftIcon={icon} />;
-  }
-);
+const IconButtonTemp = forwardRef(({ icon, ...props }: any, ref?: any) => {
+  return <Button {...props} ref={ref} leftIcon={icon} />;
+});
+
+export const IconButton = IconButtonTemp as GenericComponentType<
+  typeof AccessibleButton
+>;
