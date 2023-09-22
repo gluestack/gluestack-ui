@@ -5,6 +5,20 @@ type aliases = typeof config.theme.aliases;
 type tokens = typeof config.theme.tokens;
 type propertyTokenMap = typeof propertyTokenMap;
 
+type colors = typeof config.theme.tokens.colors;
+
+// type ExtractPrefix<T extends string> = T extends `${infer Prefix}.`
+//   ? Prefix
+//   : '';
+
+// type a = keyof typeof config.theme.tokens.colors;
+
+export type IColorSchemes = keyof {
+  [K in keyof colors as K extends `${infer Prefix}.500`
+    ? Prefix
+    : 'rest']: true;
+};
+
 export type ResponsiveValue<T> =
   | T
   | null
@@ -63,7 +77,7 @@ export type GenericPropTypes<ComponentPropsType> = Omit<
     >;
   }>;
 
-export type GenericComponentType<PropType> = (
+export type GenericComponentType<PropType, ExtraProps = {}> = (
   //@ts-ignore
   // props: GenericPropTypes<React.ComponentProps<PropType>> &
   props: Omit<
@@ -72,5 +86,6 @@ export type GenericComponentType<PropType> = (
     keyof aliases | keyof propertyTokenMap
   > &
     //@ts-ignore
-    GenericSXType<ConvertKeys<React.ComponentProps<PropType>['sx']>>
+    GenericSXType<ConvertKeys<React.ComponentProps<PropType>['sx']>> &
+    ExtraProps
 ) => JSX.Element;
