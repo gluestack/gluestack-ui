@@ -2844,10 +2844,10 @@
     "@react-native-aria/focus" "^0.2.8"
     "@react-native-aria/interactions" "^0.2.10"
 
-"@gluestack-ui/button@^0.1.25":
-  version "0.1.25"
-  resolved "https://registry.yarnpkg.com/@gluestack-ui/button/-/button-0.1.25.tgz#a85c9683a5597d85604950e5532d08368496fb3a"
-  integrity sha512-38YoY3pyCysysrIr8xdAKpiOgPiO4REP3Hn9vLpa7FZs6HlSp1WMHd60yF6rtdnaGyKT0YvHkcb2YEvrj1Ux9A==
+"@gluestack-ui/button@^0.1.26":
+  version "0.1.26"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/button/-/button-0.1.26.tgz#1f66707e18f75524d47581298896bc0a3d9f41dd"
+  integrity sha512-TIZkqpTJwEn87QqmrimGKXaGZvbDhJxxRBDYq3UZlLG2j95RZ0bLwO1bLEIcE8KXJc6sGUWEvLj/4efGhijyXw==
   dependencies:
     "@gluestack-ui/utils" "0.1.9"
     "@react-native-aria/focus" "^0.2.8"

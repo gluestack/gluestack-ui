@@ -1,6 +1,6 @@
 {
   "name": "@gluestack-ui/themed",
-  "version": "0.1.50",
+  "version": "0.1.51",
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "description": "A universal themed components for React Native, Next.js & React",
@@ -33,7 +33,7 @@
     "@gluestack-ui/alert": "^0.1.8",
     "@gluestack-ui/alert-dialog": "^0.1.16",
     "@gluestack-ui/avatar": "^0.1.10",
-    "@gluestack-ui/button": "^0.1.25",
+    "@gluestack-ui/button": "^0.1.26",
     "@gluestack-ui/checkbox": "^0.1.17",
     "@gluestack-ui/divider": "^0.1.5",
     "@gluestack-ui/fab": "^0.1.12",
