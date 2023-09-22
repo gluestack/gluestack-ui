@@ -5,13 +5,13 @@ import {
 } from './styled-components';
 import { usePropResolution } from '../../hooks/usePropResolution';
 import React, { forwardRef } from 'react';
+import { GenericComponentType } from '../../types';
 
 const AccessibleBadge = Root;
 
 type RootProps = React.ComponentProps<typeof AccessibleBadge>;
-type IconProps = React.ComponentProps<typeof AccessibleBadgeIcon>;
 
-export const Badge = forwardRef(
+const BadgeTemp = forwardRef(
   (
     {
       // Todo: fix this typing
@@ -24,10 +24,10 @@ export const Badge = forwardRef(
       endIcon,
       ...props
     }: RootProps & {
-      leftIcon?: IconProps;
-      startIcon?: IconProps;
-      rightIcon?: IconProps;
-      endIcon?: IconProps;
+      leftIcon?: any;
+      startIcon?: any;
+      rightIcon?: any;
+      endIcon?: any;
     },
     ref?: any
   ) => {
@@ -55,3 +55,9 @@ export const Badge = forwardRef(
     );
   }
 );
+
+const BadgeNew = BadgeTemp as any;
+
+export type IBadgeComponentType<Badge> = GenericComponentType<Badge>;
+
+export const Badge = BadgeNew as IBadgeComponentType<typeof BadgeTemp>;

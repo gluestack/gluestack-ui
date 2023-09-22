@@ -41,7 +41,7 @@ const AlertDialogTemp = forwardRef(
       </AccessibleAlertDialog>
     );
   }
-) as any;
+);
 
 const AccessibleAlertDialogContent = forwardRef(
   ({ children, ...props }: any, ref?: any) => {
@@ -121,9 +121,9 @@ export type IAlertDialogComponentType<
 
 export const AlertDialog = AlertDialogNew as IAlertDialogComponentType<
   typeof AlertDialogTemp,
-  typeof AlertDialogTemp.Content,
-  typeof AlertDialogTemp.CloseButton,
-  typeof AlertDialogTemp.Header,
-  typeof AlertDialogTemp.Footer,
-  typeof AlertDialogTemp.Body
+  typeof AccessibleAlertDialogContent,
+  typeof AccessibleAlertDialogCloseButton,
+  typeof AccessibleAlertDialogHeader,
+  typeof AccessibleAlertDialogFooter,
+  typeof AccessibleAlertDialogBody
 >;

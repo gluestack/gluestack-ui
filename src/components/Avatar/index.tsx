@@ -2,6 +2,7 @@ import { createAvatar } from '@gluestack-ui/avatar';
 import { Root, Badge, Group, Image, FallbackText } from './styled-components';
 import React, { Children, cloneElement } from 'react';
 import { usePropResolution } from '../../hooks/usePropResolution';
+import { GenericComponentType } from '../../types';
 
 const AccessibleAvatar = createAvatar({
   Root,
@@ -10,13 +11,15 @@ const AccessibleAvatar = createAvatar({
   Image,
   FallbackText,
 });
-// export const Avatar = AccessibleAvatar;
-// export const AvatarBadge = AccessibleAvatar.Badge;
-// export const AvatarGroup = AccessibleAvatar.Group;
-// export const AvatarImage = AccessibleAvatar.Image;
-// export const AvatarFallbackText = AccessibleAvatar.FallbackText;
 
-export const Avatar = ({ children, source, size, props }: any) => {
+const AvatarTemp = ({
+  children,
+  source,
+  size,
+  ...props
+}: React.ComponentProps<typeof AccessibleAvatar> & {
+  source: React.ComponentProps<typeof AccessibleAvatar.Image>['source'];
+}) => {
   const resolvedPropForGluestack = usePropResolution(props);
   const GuiChildren = Children.map(children, (child) => {
     if (typeof child === 'string') {
@@ -29,32 +32,17 @@ export const Avatar = ({ children, source, size, props }: any) => {
   });
   return (
     <AccessibleAvatar size={size} {...resolvedPropForGluestack}>
-      {/* {typeof children !== 'string' ? (
-        children[0] ? (
-          children.map(({ child, index }: any) => {
-            return typeof child !== 'string'
-              ? child
-              : typeof child === 'string' && (
-                  <AccessibleAvatar.FallbackText key={index}>
-                    {child}
-                  </AccessibleAvatar.FallbackText>
-                );
-          })
-        ) : (
-          children
-        )
-      ) : (
-        <AccessibleAvatar.FallbackText>
-          {children}
-        </AccessibleAvatar.FallbackText>
-      )} */}
       {GuiChildren}
       <AccessibleAvatar.Image source={source} />
     </AccessibleAvatar>
   );
 };
 
-export const AvatarGroup = ({ children, max, props }: any) => {
+const AvatarGroupTemp = ({
+  children,
+  max = -1,
+  ...props
+}: React.ComponentProps<typeof AccessibleAvatar.Group> & { max?: number }) => {
   const resolvedPropForGluestack = usePropResolution(props);
   const remainingAvatar = () => {
     const remainingAvatarNumber = children.length - max;
@@ -68,7 +56,7 @@ export const AvatarGroup = ({ children, max, props }: any) => {
   };
   return (
     <AccessibleAvatar.Group {...resolvedPropForGluestack}>
-      {max && max < children.length
+      {max && max < children.length && max > 0
         ? [...children.slice(0, max), remainingAvatar()].map(
             (child: any, index: any) => {
               return cloneElement(child, { key: index });
@@ -79,10 +67,25 @@ export const AvatarGroup = ({ children, max, props }: any) => {
   );
 };
 
-export const AvatarBadge = (props: any) => {
+const AvatarBadgeTemp = (
+  props: React.ComponentProps<typeof AccessibleAvatar.Badge>
+) => {
   const resolvedPropForGluestack = usePropResolution(props);
   return <AccessibleAvatar.Badge {...resolvedPropForGluestack} />;
 };
 
-Avatar.Group = AvatarGroup;
-Avatar.Badge = AvatarBadge;
+const AvatarNew = AvatarTemp as any;
+AvatarNew.Group = AvatarGroupTemp;
+AvatarNew.Badge = AvatarBadgeTemp;
+
+export type IAvatarComponentType<Avatar, Group, BadgeTemp> =
+  GenericComponentType<Avatar> & {
+    Group: GenericComponentType<Group>;
+    Badge: GenericComponentType<BadgeTemp>;
+  };
+
+export const Avatar = AvatarNew as IAvatarComponentType<
+  typeof AvatarTemp,
+  typeof AvatarGroupTemp,
+  typeof AvatarBadgeTemp
+>;

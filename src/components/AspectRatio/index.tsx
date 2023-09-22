@@ -23,6 +23,6 @@ const AspectRatioNew = AspectRatioTemp as any;
 export type IAspectRatioComponentType<AspectRatio> =
   GenericComponentType<AspectRatio>;
 
-export const AlertDialog = AspectRatioNew as IAspectRatioComponentType<
+export const AspectRatio = AspectRatioNew as IAspectRatioComponentType<
   typeof AspectRatioTemp
 >;
