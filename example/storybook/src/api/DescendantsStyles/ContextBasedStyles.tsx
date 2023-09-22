@@ -11,6 +11,7 @@ import {
   Pressable as RNPressable,
   Text as RNText,
   StyleSheet,
+  Switch,
   View,
 } from 'react-native';
 import {
@@ -29,6 +30,7 @@ import { AddIcon, Box, Icon } from '@gluestack/design-system';
 import { AlertCircle, Circle, Sun } from 'lucide-react-native';
 
 import { AnimationResolver } from '@gluestack-style/animation-plugin';
+import { ScrollView } from 'react-native';
 
 const styleshet = StyleSheet.create({
   style: {
@@ -194,6 +196,9 @@ const Text1 = styled(
   },
   { ancestorStyle: ['_text'], componentName: 'TEXT' }
 );
+
+const StyledSwitch = styled(ScrollView, {});
+
 export function ContextBasedStyles() {
   const [state, setState] = useState(false);
 
@@ -206,7 +211,38 @@ export function ContextBasedStyles() {
       >
         <Text>color mode: {state ? 'dark' : 'light'}</Text>
       </Pressable>
-      <MyIcon as={Sun} size={32}></MyIcon>
+
+      <StyledSwitch
+        height={200}
+        width={200}
+        sx={{
+          props: {
+            contentContainerStyle: {
+              // backgroundColor: 'blue',
+            },
+          },
+        }}
+
+        // trackColor={{ false: '$green500', true: '$primary600' }}
+        // thumbColor="$red500"
+        // sx={{
+        //   props: { trackColor: { false: '$blue500', true: '$primary600' } },
+        // }}
+      >
+        <View
+          style={{ height: 100, width: 100, backgroundColor: 'red' }}
+        ></View>
+      </StyledSwitch>
+
+      {/* 
+      <StyledSwitch
+        // trackColor={{ false: '$green500', true: '$primary600' }}
+        thumbColor="$red500"
+        sx={{
+          props: { trackColor: { false: '$blue500', true: '$primary600' } },
+        }}
+      ></StyledSwitch> */}
+
       <ContextBasedStylesContent></ContextBasedStylesContent>
       {/* <Pressable></Pressable> */}
       {/* <Box1
@@ -249,15 +285,12 @@ export function ContextBasedStylesContent() {
     setTabName(tabName);
   };
 
-  // const value = useToken('colors', 'red500');
-  // const value = useBreakpointValue({
-  //   base: 'base',
-  //   sm: 'sm',
-  //   md: 'md',
-  //   // md: 'md',
-  // });
-  const colorMode = useColorMode();
-  console.log(colorMode, 'color mode');
+  const value = useBreakpointValue({
+    base: true,
+    sm: false,
+  });
+
+  console.log(value, 'value here');
   // const color = tabName ? '$red500' : '$green500';
   // return (
   //   <>

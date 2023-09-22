@@ -28,6 +28,7 @@ export function useBreakpointValue(values: BreakPointValue) {
   Object.keys(mediaQueries).forEach((key: any) => {
     const currentBreakpoint: any = extractWidthValues(mediaQueries[key]);
     const isValid = isValidBreakpoint(theme.config, mediaQueries[key], width);
+
     mediaQueriesBreakpoints.push({
       key: key,
       breakpoint: currentBreakpoint[0],
@@ -39,7 +40,7 @@ export function useBreakpointValue(values: BreakPointValue) {
   mediaQueriesBreakpoints.sort((a: any, b: any) => a.breakpoint - b.breakpoint);
 
   mediaQueriesBreakpoints.forEach((breakpoint: any, index: any) => {
-    breakpoint.value = values[breakpoint.key]
+    breakpoint.value = values.hasOwnProperty(breakpoint.key)
       ? values[breakpoint.key]
       : mediaQueriesBreakpoints[index - 1].value;
   });

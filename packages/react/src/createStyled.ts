@@ -15,9 +15,9 @@ export class IStyled {
 }
 
 export const createStyled = (plugins: any) => {
-  let styledComponent = <P, Variants, ConCom, PluginType>(
+  let styledComponent = <P, Variants, ConCom>(
     Component: React.ComponentType<P>,
-    styledObject: ITheme<Variants, P, PluginType>,
+    styledObject: ITheme<Variants, P>,
     compConfig: IComponentStyleConfig<ConCom> = {},
     extendedConfig: any = {}
   ) => {

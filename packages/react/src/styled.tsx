@@ -1145,10 +1145,17 @@ export function verboseStyled<P, Variants, ComCon>(
     Object.assign(incomingComponentProps, applySxAncestorPassingProps);
     Object.assign(incomingComponentProps, componentProps);
 
-    Object.assign(themeDefaultProps, incomingComponentProps);
+    const {
+      variantProps: defaultVariantProps,
+      restProps: defaultComponentPropsWithoutVariants,
+    } = getVariantProps(themeDefaultProps, theme);
 
-    const { variantProps, restProps: componentPropsWithoutVariants } =
-      getVariantProps(themeDefaultProps, theme);
+    const {
+      variantProps: inlineVariantProps,
+      restProps: inlineComponentPropsWithoutVariants,
+    } = getVariantProps(incomingComponentProps, theme);
+
+    const variantProps = Object.assign(defaultVariantProps, inlineVariantProps);
 
     const {
       baseStyleCSSIds: applyBaseStyleCSSIds,
@@ -1320,10 +1327,17 @@ export function verboseStyled<P, Variants, ComCon>(
     // 520ms
 
     // Inline prop based style resolution TODO: Diagram insertion
-    const resolvedInlineProps = resolveInlineProps(
+    const defaultResolvedInlineProps = resolveInlineProps(
       componentStyleConfig,
       componentExtendedConfig,
-      componentPropsWithoutVariants,
+      defaultComponentPropsWithoutVariants,
+      CONFIG
+    );
+
+    const inlineResolvedInlineProps = resolveInlineProps(
+      componentStyleConfig,
+      componentExtendedConfig,
+      inlineComponentPropsWithoutVariants,
       CONFIG
     );
 
@@ -1336,7 +1350,10 @@ export function verboseStyled<P, Variants, ComCon>(
 
     const { sx: filteredComponentSx, rest: filteredComponentRemainingProps } =
       convertUtiltiyToSXFromProps(
-        componentPropsWithoutVariants,
+        Object.assign(
+          defaultComponentPropsWithoutVariants,
+          inlineComponentPropsWithoutVariants
+        ),
         styledSystemProps,
         componentStyleConfig
       );
@@ -1350,7 +1367,9 @@ export function verboseStyled<P, Variants, ComCon>(
 
     let containsSX = false;
     Object.assign(applyComponentInlineProps, filteredPassingRemainingProps);
-    Object.assign(applyComponentInlineProps, resolvedInlineProps);
+    Object.assign(applyComponentInlineProps, defaultResolvedInlineProps);
+
+    Object.assign(applyComponentInlineProps, inlineResolvedInlineProps);
     Object.assign(applyComponentInlineProps, filteredComponentRemainingProps);
 
     if (
@@ -1563,6 +1582,21 @@ export function verboseStyled<P, Variants, ComCon>(
           CONFIG
         );
 
+        // if (componentName === 'Switch') {
+        //   console.log(
+        //     // passingPropsUpdated,
+        //     // resolvedPassingRemainingProps,
+        //     resolvedInlineProps,
+        //     // componentStyleConfig,
+        //     '>>>>>>'
+        //   );
+        // }
+
+        // Object.assign(applyComponentInlineProps, defaultResolvedInlineProps);
+        // Object.assign(applyComponentInlineProps, filteredPassingRemainingProps);
+        // Object.assign(applyComponentInlineProps, defaultInlineResolvedInlineProps);
+        // Object.assign(applyComponentInlineProps, filteredComponentRemainingProps);
+
         Object.assign(
           applyComponentInlineProps,
           filteredPassingRemainingPropsUpdated
@@ -1570,7 +1604,7 @@ export function verboseStyled<P, Variants, ComCon>(
 
         Object.assign(applyComponentInlineProps, resolvedPassingRemainingProps);
 
-        Object.assign(applyComponentInlineProps, resolvedInlineProps);
+        Object.assign(applyComponentInlineProps, inlineResolvedInlineProps);
 
         Object.assign(
           applyComponentInlineProps,
@@ -1742,14 +1776,14 @@ export function verboseStyled<P, Variants, ComCon>(
           ancestorStyleContext
         ) {
           const sxDescendantCSSIds = mergeArraysInObjects(
+            ancestorStyleContext.sx,
             applySxDescendantStyleCSSIdsAndPropsWithKey.current,
-            applySxDescendantStateStyleCSSIdsAndPropsWithKey.current,
-            ancestorStyleContext.component
+            applySxDescendantStateStyleCSSIdsAndPropsWithKey.current
           );
           const componentDescendantCSSIds = mergeArraysInObjects(
+            ancestorStyleContext.component,
             applyDescendantsStyleCSSIdsAndPropsWithKey,
-            applyDescendantStateStyleCSSIdsAndPropsWithKey,
-            ancestorStyleContext.sx
+            applyDescendantStateStyleCSSIdsAndPropsWithKey
           );
 
           return {
@@ -1793,10 +1827,10 @@ export function verboseStyled<P, Variants, ComCon>(
       ...applySxStateBaseStyleCSSIds.current,
     ];
 
-    Object.assign(resolvedInlineProps, applyComponentInlineProps);
+    // Object.assign(resolvedInlineProps, applyComponentInlineProps);
 
     const resolvedStyleProps = generateStylePropsFromCSSIds(
-      resolvedInlineProps,
+      applyComponentInlineProps,
       styleCSSIds,
       CONFIG,
       activeTheme
