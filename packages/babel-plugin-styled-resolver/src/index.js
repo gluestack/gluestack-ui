@@ -89,6 +89,24 @@ const convertExpressionContainerToStaticObject = (
   };
 };
 
+function findThemeAndComponentConfig(node) {
+  let themeNode = null;
+  let componentConfigNode = null;
+  node.forEach((prop) => {
+    const propKey = prop.key.name ? prop.key.name : prop.key.value;
+    if (propKey === 'theme') {
+      themeNode = prop;
+    } else if (propKey === 'componentConfig') {
+      componentConfigNode = prop;
+    }
+  });
+
+  return {
+    themeNode,
+    componentConfigNode,
+  };
+}
+
 function addQuotesToObjectKeys(code) {
   const ast = babel.parse(`var a = ${code}`, {
     presets: [babelPresetTypeScript],
@@ -222,6 +240,9 @@ function getConfig(configPath) {
     );
   }
 }
+
+function getBuildTimeParams(theme, componentConfig, extendedConfig) {}
+
 function getSurroundingCharacters(string, index) {
   let start = Math.max(0, index - 5);
   let end = Math.min(string.length, index + 6);
@@ -588,7 +609,6 @@ module.exports = function (b) {
           }
         }
       },
-
       CallExpression(callExpressionPath) {
         if (
           callExpressionPath.node.callee.name === styledAliasImportedName ||
@@ -815,7 +835,7 @@ module.exports = function (b) {
                   updateOrderUnResolvedMap(
                     verbosedTheme,
                     componentHash,
-                    'boot',
+                    'extended',
                     componentConfig,
                     BUILD_TIME_GLUESTACK_STYLESHEET,
                     platform
@@ -878,6 +898,121 @@ module.exports = function (b) {
               }
             }
           }
+        }
+        if (
+          callExpressionPath.node.callee.name === createComponentsImportedName
+        ) {
+          callExpressionPath.traverse({
+            ObjectProperty(ObjectPath) {
+              if (t.isIdentifier(ObjectPath.node.value)) {
+                if (ObjectPath.node.value.name === 'undefined') {
+                  ObjectPath.remove();
+                }
+              }
+            },
+          });
+          const fnArgPropeties =
+            callExpressionPath.node.arguments[0].properties;
+          fnArgPropeties.forEach((property) => {
+            const { themeNode, componentConfigNode } =
+              findThemeAndComponentConfig(property.value.properties);
+
+            if (isValidConfig) {
+              let theme = themeNode
+                ? getObjectFromAstNode(themeNode?.value)
+                : {};
+              let componentConfig = componentConfigNode
+                ? getObjectFromAstNode(componentConfigNode?.value)
+                : {};
+
+              let mergedPropertyConfig = {
+                ...ConfigDefault?.propertyTokenMap,
+                ...propertyTokenMap,
+              };
+              let componentExtendedConfig = merge(
+                {},
+                {
+                  ...ConfigDefault,
+                  propertyTokenMap: { ...mergedPropertyConfig },
+                }
+              );
+
+              if (theme && Object.keys(theme).length > 0) {
+                const verbosedTheme = convertStyledToStyledVerbosed(theme);
+
+                let componentHash = stableHash({
+                  ...theme,
+                  ...componentConfig,
+                });
+
+                if (outputLibrary) {
+                  componentHash = outputLibrary + '-' + componentHash;
+                }
+
+                const { styledIds, verbosedStyleIds } =
+                  updateOrderUnResolvedMap(
+                    verbosedTheme,
+                    componentHash,
+                    'extended',
+                    componentConfig,
+                    BUILD_TIME_GLUESTACK_STYLESHEET,
+                    platform
+                  );
+
+                const toBeInjected = BUILD_TIME_GLUESTACK_STYLESHEET.resolve(
+                  styledIds,
+                  componentExtendedConfig,
+                  {}
+                );
+
+                const current_global_map =
+                  BUILD_TIME_GLUESTACK_STYLESHEET.getStyleMap();
+
+                const orderedResolvedTheme = [];
+
+                current_global_map?.forEach((styledResolved) => {
+                  if (styledIds.includes(styledResolved?.meta?.cssId)) {
+                    orderedResolvedTheme.push(styledResolved);
+                  }
+                });
+
+                let styleIdsAst = generateObjectAst(verbosedStyleIds);
+
+                let toBeInjectedAst = generateObjectAst(toBeInjected);
+
+                let orderedResolvedAst = generateArrayAst(orderedResolvedTheme);
+
+                let orderedStyleIdsArrayAst = t.arrayExpression(
+                  styledIds?.map((cssId) => t.stringLiteral(cssId))
+                );
+
+                let resultParamsNode = t.objectExpression([
+                  t.objectProperty(
+                    t.stringLiteral('orderedResolved'),
+                    orderedResolvedAst
+                  ),
+                  t.objectProperty(
+                    t.stringLiteral('toBeInjected'),
+                    toBeInjectedAst
+                  ),
+                  t.objectProperty(
+                    t.stringLiteral('styledIds'),
+                    orderedStyleIdsArrayAst
+                  ),
+                  t.objectProperty(
+                    t.stringLiteral('verbosedStyleIds'),
+                    styleIdsAst
+                  ),
+                ]);
+                property.value.properties.push(
+                  t.objectProperty(
+                    t.stringLiteral('BUILD_TIME_PARAMS'),
+                    resultParamsNode
+                  )
+                );
+              }
+            }
+          });
         }
       },
       JSXOpeningElement(jsxOpeningElementPath) {
