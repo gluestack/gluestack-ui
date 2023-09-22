@@ -3,7 +3,7 @@ import { Root, Spacer } from './styled-components';
 import { usePropResolution } from '../../hooks/usePropResolution';
 import React, { forwardRef } from 'react';
 
-export const AccessibleHStack = createHStack({
+const AccessibleHStack = createHStack({
   Root,
   Spacer,
 });

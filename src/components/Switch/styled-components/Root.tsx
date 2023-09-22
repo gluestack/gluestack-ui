@@ -1,25 +1,6 @@
-import { styled } from '../../styled';
+import { styled } from '@gluestack-style/react';
 import { Switch } from 'react-native';
-import { colorScheme } from '../../../utils';
-
-const colorSchemes = Object.fromEntries(
-  colorScheme.map((color) => [
-    color,
-    {
-      'props': { trackColor: { true: `${color}.600` } },
-      ':hover': {
-        props: { trackColor: { true: `${color}.700` } },
-      },
-
-      '_dark': {
-        'props': { trackColor: { true: `${color}.500` } },
-        ':hover': {
-          props: { trackColor: { true: `${color}.400` } },
-        },
-      },
-    },
-  ])
-);
+import { ColorSchemeResolver } from '../../../plugins/colorScheme/colorScheme';
 
 export default styled(
   Switch,
@@ -100,7 +81,6 @@ export default styled(
     },
 
     'variants': {
-      colorScheme: colorSchemes,
       size: {
         sm: {
           transform: [
@@ -150,6 +130,7 @@ export default styled(
         return resolveColor;
       },
     },
+    //@ts-ignore
     aliases: {
       thumbColor: 'thumbColor',
       activeThumbColor: 'activeThumbColor',
@@ -157,5 +138,28 @@ export default styled(
       trackColor: 'trackColor',
       ios_backgroundColor: 'ios_backgroundColor',
     },
+    plugins: [new ColorSchemeResolver(colorSchemeResolveFn)],
   }
 );
+
+function colorSchemeResolveFn({ ...props }: any) {
+  if (props.colorScheme) {
+    const color = props.colorScheme;
+
+    const value = {
+      'props': { trackColor: { true: `${color}.600` } },
+      ':hover': {
+        props: { trackColor: { true: `${color}.700` } },
+      },
+
+      '_dark': {
+        'props': { trackColor: { true: `${color}.500` } },
+        ':hover': {
+          props: { trackColor: { true: `${color}.400` } },
+        },
+      },
+    };
+    return value;
+  }
+  return {};
+}

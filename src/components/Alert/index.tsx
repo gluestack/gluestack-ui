@@ -23,7 +23,9 @@ const AlertNew = forwardRef(
   (
     {
       status: statusProp,
-      colorScheme: colorSchemeProp,
+      // Todo: fix this typing
+      // @ts-ignore
+      colorScheme: colorSchemeProp = 'info',
       children,
       ...props
     }: React.ComponentProps<typeof AccessibleAlert> & IStatus,

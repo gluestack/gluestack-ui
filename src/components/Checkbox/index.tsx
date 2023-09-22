@@ -4,7 +4,7 @@ import { createCheckbox } from '@gluestack-ui/checkbox';
 import { CheckIcon } from '../Icons';
 import { usePropResolution } from '../../hooks/usePropResolution';
 
-export const AccessibleCheckbox = createCheckbox({
+const AccessibleCheckbox = createCheckbox({
   Root,
   Indicator,
   Icon,
@@ -13,10 +13,14 @@ export const AccessibleCheckbox = createCheckbox({
 });
 
 export const Checkbox = forwardRef(
-  ({ children, icon, ...props }: any, ref?: any) => {
+  ({ colorScheme = 'primary', children, icon, ...props }: any, ref?: any) => {
     const resolvedProps = usePropResolution(props);
     return (
-      <AccessibleCheckbox {...resolvedProps} ref={ref}>
+      <AccessibleCheckbox
+        colorScheme={colorScheme}
+        {...resolvedProps}
+        ref={ref}
+      >
         <AccessibleCheckbox.Indicator>
           {icon ? (
             <AccessibleCheckbox.Icon as={icon} />

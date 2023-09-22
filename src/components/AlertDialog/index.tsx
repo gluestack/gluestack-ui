@@ -14,7 +14,7 @@ import { Text } from '../Text';
 import { Icon, CloseIcon } from '../Icons';
 import { styled } from '../styled';
 
-export const AccessibleAlertDialog = createAlertDialog({
+const AccessibleAlertDialog = createAlertDialog({
   Root,
   Content,
   CloseButton,

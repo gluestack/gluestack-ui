@@ -1,59 +1,6 @@
-import { styled } from '../../styled';
+import { styled } from '@gluestack-style/react';
 import { View } from 'react-native';
-import { colorScheme } from '../../../utils';
-
-const colorSchemes = Object.fromEntries(
-  colorScheme.map((color) => [
-    color,
-    {
-      _thumb: {
-        'bg': `$${color}.600`,
-        ':hover': {
-          _web: {
-            outlineColor: `$${color}.300`,
-          },
-        },
-        ':focus': {
-          _web: {
-            outlineColor: `$${color}.400`,
-          },
-        },
-        ':active': {
-          borderColor: `$${color}.300`,
-          _web: {
-            outlineColor: `$${color}.300`,
-          },
-        },
-
-        '_dark': {
-          'bg': `$${color}.500`,
-          ':hover': {
-            _web: {
-              outlineColor: `$${color}.800`,
-            },
-          },
-          ':focus': {
-            _web: {
-              outlineColor: `$${color}.400`,
-            },
-          },
-          ':active': {
-            borderColor: `$${color}.800`,
-            _web: {
-              outlineColor: `$${color}.800`,
-            },
-          },
-        },
-      },
-      _filledTrack: {
-        bg: `$${color}.600`,
-        _dark: {
-          bg: `$${color}.500`,
-        },
-      },
-    },
-  ])
-);
+import { ColorSchemeResolver } from '../../../plugins/colorScheme/colorScheme';
 
 export default styled(
   View,
@@ -61,7 +8,6 @@ export default styled(
     justifyContent: 'center',
     alignItems: 'center',
     variants: {
-      colorScheme: colorSchemes,
       orientation: {
         horizontal: {
           w: '100%',
@@ -255,5 +201,64 @@ export default styled(
     aliases: {
       orientation: 'orientation',
     },
+  },
+  {
+    plugins: [new ColorSchemeResolver(colorSchemeResolveFn)],
   }
 );
+
+function colorSchemeResolveFn({ ...props }: any) {
+  let value = {};
+  if (props.colorScheme) {
+    const color = props.colorScheme;
+    value = {
+      _thumb: {
+        'bg': `$${color}.600`,
+        ':hover': {
+          _web: {
+            outlineColor: `$${color}.300`,
+          },
+        },
+        ':focus': {
+          _web: {
+            outlineColor: `$${color}.400`,
+          },
+        },
+        ':active': {
+          borderColor: `$${color}.300`,
+          _web: {
+            outlineColor: `$${color}.300`,
+          },
+        },
+
+        '_dark': {
+          'bg': `$${color}.500`,
+          ':hover': {
+            _web: {
+              outlineColor: `$${color}.800`,
+            },
+          },
+          ':focus': {
+            _web: {
+              outlineColor: `$${color}.400`,
+            },
+          },
+          ':active': {
+            borderColor: `$${color}.800`,
+            _web: {
+              outlineColor: `$${color}.800`,
+            },
+          },
+        },
+      },
+      _filledTrack: {
+        bg: `$${color}.600`,
+        _dark: {
+          bg: `$${color}.500`,
+        },
+      },
+    };
+  }
+
+  return value;
+}

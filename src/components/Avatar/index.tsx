@@ -3,7 +3,7 @@ import { Root, Badge, Group, Image, FallbackText } from './styled-components';
 import React, { Children, cloneElement } from 'react';
 import { usePropResolution } from '../../hooks/usePropResolution';
 
-export const AccessibleAvatar = createAvatar({
+const AccessibleAvatar = createAvatar({
   Root,
   Badge,
   Group,

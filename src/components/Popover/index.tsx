@@ -15,7 +15,7 @@ import { Text } from '../Text';
 import { Icon, CloseIcon } from '../Icons';
 import React, { forwardRef } from 'react';
 
-export const AccessiblePopover = createPopover({
+const AccessiblePopover = createPopover({
   Root,
   Arrow,
   Content,

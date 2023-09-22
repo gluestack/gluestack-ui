@@ -5,7 +5,7 @@ import { createTooltip } from '@gluestack-ui/tooltip';
 import { styled } from '../styled';
 import React, { cloneElement, forwardRef } from 'react';
 
-export const AccessibleTooltip = createTooltip({
+const AccessibleTooltip = createTooltip({
   Root,
   Content,
   Text,

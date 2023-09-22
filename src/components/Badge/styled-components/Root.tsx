@@ -1,65 +1,7 @@
 // @ts-nocheck
 import { View } from 'react-native';
-import { styled } from '../../styled';
-import { colorScheme } from '../../../utils';
-
-const actions = Object.fromEntries(colorScheme.map((color) => [color, {}]));
-
-const compoundVariants = colorScheme
-  .map((color) => {
-    return [
-      {
-        colorScheme: `${color}`,
-        variant: 'solid',
-        value: {
-          _text: {
-            color: '$text.50',
-          },
-          _icon: {
-            color: '$text.50',
-          },
-          bg: `$${color}.600`,
-          borderWidth: '$1',
-          borderColor: 'transparent',
-          borderRadius: '$xs',
-        },
-      },
-      {
-        colorScheme: `${color}`,
-        variant: 'outline',
-        value: {
-          _text: { color: `$${color}.600` },
-          _icon: { color: `$${color}.600` },
-          borderColor: `$${color}.600`,
-          _dark: {
-            _text: {
-              color: `$${color}.300`,
-            },
-            _icon: {
-              color: `$${color}.300`,
-            },
-            borderColor: `$${color}.300`,
-          },
-          borderRadius: '$xs',
-          borderWidth: '$1',
-        },
-      },
-      {
-        colorScheme: `${color}`,
-        variant: 'subtle',
-        value: {
-          _text: { color: `$${color}.900` },
-          _icon: { color: `$${color}.900` },
-          bg: `$${color}.100`,
-          _dark: { bg: `$${color}.300` },
-          borderWidth: '$1',
-          borderRadius: '$xs',
-          borderColor: 'transparent',
-        },
-      },
-    ];
-  })
-  .flatMap((arr) => arr);
+import { styled } from '@gluestack-style/react';
+import { ColorSchemeResolver } from '../../../plugins/colorScheme/colorScheme';
 
 export default styled(
   View,
@@ -77,8 +19,6 @@ export default styled(
     },
 
     'variants': {
-      colorScheme: actions,
-
       variant: {
         solid: {},
         outline: {},
@@ -119,15 +59,71 @@ export default styled(
       },
     },
 
-    'compoundVariants': compoundVariants,
-
     'defaultProps': {
-      colorScheme: 'success',
       variant: 'subtle',
       size: 'md',
     },
   },
   {
     descendantStyle: ['_text', '_icon'],
+  },
+  {
+    plugins: [new ColorSchemeResolver(colorSchemeResolveFn)],
   }
 );
+
+function colorSchemeResolveFn({ ...props }: any) {
+  let value = {};
+  if (props.colorScheme) {
+    const color = props.colorScheme;
+    const variant = props.variant;
+    switch (variant) {
+      case 'solid':
+        value = {
+          _text: {
+            color: '$text.50',
+          },
+          _icon: {
+            color: '$text.50',
+          },
+          bg: `$${color}.600`,
+          borderWidth: '$1',
+          borderColor: 'transparent',
+          borderRadius: '$xs',
+        };
+        break;
+      case 'outline':
+        value = {
+          _text: { color: `$${color}.600` },
+          _icon: { color: `$${color}.600` },
+          borderColor: `$${color}.600`,
+          _dark: {
+            _text: {
+              color: `$${color}.300`,
+            },
+            _icon: {
+              color: `$${color}.300`,
+            },
+            borderColor: `$${color}.300`,
+          },
+          borderRadius: '$xs',
+          borderWidth: '$1',
+        };
+        break;
+      case 'subtle':
+        value = {
+          _text: { color: `$${color}.900` },
+          _icon: { color: `$${color}.900` },
+          bg: `$${color}.100`,
+          _dark: { bg: `$${color}.300` },
+          borderWidth: '$1',
+          borderRadius: '$xs',
+          borderColor: 'transparent',
+        };
+        break;
+      default:
+        value = {};
+    }
+  }
+  return value;
+}

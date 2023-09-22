@@ -1,4 +1,3 @@
-// import React, { useEffect, useState } from 'react';
 import React, { forwardRef } from 'react';
 import { createButton } from '@gluestack-ui/button';
 import {
@@ -10,11 +9,11 @@ import {
   Spinner,
   Icon,
 } from './styled-components';
-// import { useStyled } from '@gluestack-style/react';
+
 import { usePropResolution } from '../../hooks/usePropResolution';
 import { GenericComponentType } from '../../types';
 
-export const AccessibleButton = createButton({
+const AccessibleButton = createButton({
   Root,
   Text,
   Group,
@@ -65,11 +64,12 @@ const NewButton = forwardRef(
         ref={ref}
         isDisabled={isLoading || isDisabled}
       >
-        {leftIcon ? (
-          <AccessibleButton.Icon as={leftIcon} />
-        ) : (
-          startIcon && <AccessibleButton.Icon as={startIcon} />
-        )}
+        {!isLoading &&
+          (leftIcon ? (
+            <AccessibleButton.Icon as={leftIcon} />
+          ) : (
+            startIcon && <AccessibleButton.Icon as={startIcon} />
+          ))}
         {isLoading && spinnerPlacement === 'start' && (
           <AccessibleButton.Spinner />
         )}
@@ -85,11 +85,12 @@ const NewButton = forwardRef(
         {isLoading && spinnerPlacement === 'end' && (
           <AccessibleButton.Spinner />
         )}
-        {rightIcon ? (
-          <AccessibleButton.Icon as={rightIcon} />
-        ) : (
-          endIcon && <AccessibleButton.Icon as={endIcon} />
-        )}
+        {!isLoading &&
+          (rightIcon ? (
+            <AccessibleButton.Icon as={rightIcon} />
+          ) : (
+            endIcon && <AccessibleButton.Icon as={endIcon} />
+          ))}
       </AccessibleButton>
     );
   }

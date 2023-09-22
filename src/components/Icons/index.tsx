@@ -3,7 +3,7 @@ import React, { forwardRef } from 'react';
 import { StyledIcon } from './Root';
 import { createIcon } from './styled-components';
 
-export const AccessibleIcon = createIconUI({
+const AccessibleIcon = createIconUI({
   Root: StyledIcon,
 });
 

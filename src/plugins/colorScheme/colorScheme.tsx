@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import type { IStyledPlugin } from '@gluestack-style/react';
 
 export class ColorSchemeResolver implements IStyledPlugin {
@@ -22,20 +22,23 @@ export class ColorSchemeResolver implements IStyledPlugin {
   }
 
   componentMiddleWare({ Component }: any) {
-    return ({ key, ...componentProps }: any) => {
+    return forwardRef(({ key, ...componentProps }: any, ref?: any) => {
       let colorSchemeStyle = {};
 
       if (componentProps.colorScheme) {
         colorSchemeStyle = this.callback(componentProps);
       }
+      // for debug purpose only
+      // console.log('colorSchemeStyle',colorSchemeStyle, 'componentProps.colorScheme',componentProps.colorScheme);
 
       return (
         <Component
           {...componentProps}
-          sx={colorSchemeStyle}
-          key={key ?? componentProps.colorScheme}
+          sx={{ ...colorSchemeStyle, ...componentProps.sx }}
+          key={key ?? key + '_' + componentProps.colorScheme}
+          ref={ref}
         />
       );
-    };
+    });
   }
 }

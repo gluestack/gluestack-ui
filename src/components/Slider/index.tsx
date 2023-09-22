@@ -20,12 +20,17 @@ const AccessibleSlider = createSlider({
 
 const SliderNew = forwardRef(
   (
-    { children, ...props }: React.ComponentProps<typeof AccessibleSlider>,
+    {
+      //@ts-ignore
+      colorScheme = 'primary',
+      children,
+      ...props
+    }: React.ComponentProps<typeof AccessibleSlider>,
     ref?: any
   ) => {
     const resolvedProps = usePropResolution(props);
     return (
-      <AccessibleSlider {...resolvedProps} ref={ref}>
+      <AccessibleSlider colorScheme={colorScheme} {...resolvedProps} ref={ref}>
         {children}
       </AccessibleSlider>
     );

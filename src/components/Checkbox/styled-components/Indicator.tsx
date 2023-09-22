@@ -16,10 +16,10 @@ export default styled(
     '_web': {
       ':focusVisible': {
         outlineWidth: '2px',
-        outlineColor: '$primary700',
+        outlineColor: '$primary.700',
         outlineStyle: 'solid',
         _dark: {
-          outlineColor: '$primary300',
+          outlineColor: '$primary.300',
         },
       },
     },

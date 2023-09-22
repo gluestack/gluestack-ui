@@ -467,8 +467,10 @@ export function convertToSXForStateColorModeMediaQuery(
 
 function addDollarSign(propertyName: any, propValue: any, config: any) {
   if (CSSPropertiesMap.hasOwnProperty(propertyName)) {
+    //@ts-ignore
     const tokenAvailable = config.tokens[propertyTokenMap[propertyName]]
-      ? config.tokens[propertyTokenMap[propertyName]][propValue]
+      ? //@ts-ignore
+        config.tokens[propertyTokenMap[propertyName]][propValue]
       : undefined;
 
     if (tokenAvailable === undefined) {

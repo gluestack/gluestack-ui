@@ -14,6 +14,9 @@ type IconProps = React.ComponentProps<typeof AccessibleBadgeIcon>;
 export const Badge = forwardRef(
   (
     {
+      // Todo: fix this typing
+      // @ts-ignore
+      colorScheme = 'success',
       children,
       leftIcon,
       rightIcon,
@@ -30,7 +33,11 @@ export const Badge = forwardRef(
   ) => {
     const resolvedPropForGluestack = usePropResolution(props);
     return (
-      <AccessibleBadge {...resolvedPropForGluestack} ref={ref}>
+      <AccessibleBadge
+        colorScheme={colorScheme}
+        {...resolvedPropForGluestack}
+        ref={ref}
+      >
         {leftIcon ? (
           <AccessibleBadgeIcon as={leftIcon} />
         ) : (

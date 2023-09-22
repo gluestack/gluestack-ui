@@ -30,8 +30,8 @@ export default styled(
     'py': '$1',
     'px': '$2',
     'borderRadius': '$sm',
-    'bg': '$muted.800',
 
+    'bg': '$muted.800',
     '_text': {
       fontSize: '$sm',
       color: '$text.50',

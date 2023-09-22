@@ -1,7 +1,6 @@
 import { styled } from '@gluestack-style/react';
 import { View } from 'react-native';
 import { colorScheme } from '../../../utils';
-import { colorSchemeResolveFn } from '../colorScheme-resolver/colorSchemeResolve';
 import { ColorSchemeResolver } from '../../../plugins/colorScheme/colorScheme';
 
 const colorSchemes = Object.fromEntries(
@@ -53,3 +52,22 @@ export default styled(
     plugins: [new ColorSchemeResolver(colorSchemeResolveFn)],
   }
 );
+
+function colorSchemeResolveFn({ ...props }: any) {
+  if (props.colorScheme) {
+    const color = props.colorScheme;
+
+    const value = {
+      _filledTrack: {
+        bg: `$${color}.600`,
+      },
+      _dark: {
+        _filledTrack: {
+          bg: `$${color}.400`,
+        },
+      },
+    };
+    return value;
+  }
+  return {};
+}
