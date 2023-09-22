@@ -2705,18 +2705,18 @@
     "@babel/traverse" "^7.20.5"
     lodash.merge "^4.6.2"
 
-"@gluestack-style/react@^0.2.49":
-  version "0.2.49"
-  resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-0.2.49.tgz#24374279eadd769874c454b6f9114a289abd913c"
-  integrity sha512-1j7q/zN+AIO3nnyMieS6EDmMr1prk9uU9cThYlSxs6HpaULdQbAptX1mPVE3YfSIZ4cTEqkPU4PPb6oyEIxMlQ==
-  dependencies:
-    inline-style-prefixer "^6.0.1"
-    normalize-css-color "^1.0.2"
-
 "@gluestack-style/react@^0.2.50":
   version "0.2.50"
   resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-0.2.50.tgz#13273ea738f93f5f12b56763f5020a02df7d2674"
   integrity sha512-UzCPnmjFBI6gBgrmtpC+rwBvLm3zA1t8XmFZ5SY4R+VJXbaou2emWnhd2XWplCCpHMhaGTB2YUx3rDQTjTcfCQ==
+  dependencies:
+    inline-style-prefixer "^6.0.1"
+    normalize-css-color "^1.0.2"
+
+"@gluestack-style/react@^0.2.51":
+  version "0.2.51"
+  resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-0.2.51.tgz#0cfcca4f97f908ed3a352bd7e2336d436cc22415"
+  integrity sha512-21TLr+e7KneP8N1d1iMKG6npMdYb/oPN/t5KZ/2kns2mg9NVCrfVmVuuMYKo+Xcej95BFOHuGuomskzLwdK1HQ==
   dependencies:
     inline-style-prefixer "^6.0.1"
     normalize-css-color "^1.0.2"

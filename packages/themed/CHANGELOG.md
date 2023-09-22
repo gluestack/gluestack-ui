@@ -1,5 +1,11 @@
 # @gluestack-ui/themed
 
+## 0.1.50
+
+### Patch Changes
+
+- - Radio Icon render issue on native devices
+
 ## 0.1.49
 
 ### Patch Changes
