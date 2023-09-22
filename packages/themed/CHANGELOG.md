@@ -1,5 +1,11 @@
 # @gluestack-ui/themed
 
+## 0.1.51
+
+### Patch Changes
+
+- fixed buttongroup spacer issue
+
 ## 0.1.50
 
 ### Patch Changes
