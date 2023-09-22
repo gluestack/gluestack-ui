@@ -12,5 +12,8 @@ export const createStyle = <T, Variants>(
     BUILD_TIME_PARAMS,
   };
 
-  return createdStyles;
+  return createdStyles as {
+    theme: T & ITheme<Variants, ViewProps | ImageProps | TextProps>;
+    componentConfig?: Omit<IComponentStyleConfig, 'componentName'>;
+  };
 };

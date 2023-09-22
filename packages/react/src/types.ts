@@ -861,12 +861,12 @@ export type ExtendedTheme<Variants> = ITheme<
   ViewProps | ImageProps | TextProps
 >;
 
-export type CreateStyle<Component> = {
-  theme: Component &
-    ITheme<Component['variants'], ViewProps | ImageProps | TextProps>;
-  componentConfig?: Omit<IComponentStyleConfig, 'componentName'>;
-};
+// export type CreateStyle<Component> = {
+//   theme: Component &
+//     ITheme<Component['variants'], ViewProps | ImageProps | TextProps>;
+//   componentConfig?: Omit<IComponentStyleConfig, 'componentName'>;
+// };
 
-export type CreateComponents<Component> = {
-  [key in keyof Component]: Component[key];
+export type CreateComponents<T> = {
+  [key in keyof T]: T[key];
 };
