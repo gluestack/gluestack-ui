@@ -11,7 +11,7 @@ import {
 } from './styled-components';
 
 import { usePropResolution } from '../../hooks/usePropResolution';
-import { GenericComponentType } from '../../types';
+import { GenericComponentType, IColorSchemes } from '../../types';
 
 export const AccessibleButton = createButton({
   Root,
@@ -22,6 +22,14 @@ export const AccessibleButton = createButton({
   Spinner,
   Icon,
 });
+
+type IButtonProps = {
+  leftIcon?: any;
+  rightIcon?: any;
+  startIcon?: any;
+  endIcon?: any;
+  colorScheme?: IColorSchemes;
+};
 
 const NewButton = forwardRef(
   (
@@ -96,10 +104,12 @@ const NewGroupButton = forwardRef(({ children, ...props }: any, ref?: any) => {
 const ButtonTemp = NewButton as any;
 ButtonTemp.Group = NewGroupButton;
 
-export type IButtonComponentType<Button, Group> =
-  GenericComponentType<Button> & {
-    Group: GenericComponentType<Group>;
-  };
+export type IButtonComponentType<Button, Group> = GenericComponentType<
+  Button,
+  IButtonProps
+> & {
+  Group: GenericComponentType<Group>;
+};
 
 export const Button = ButtonTemp as IButtonComponentType<
   typeof AccessibleButton,
