@@ -13,7 +13,7 @@ import {
 import { usePropResolution } from '../../hooks/usePropResolution';
 import { GenericComponentType } from '../../types';
 
-const AccessibleButton = createButton({
+export const AccessibleButton = createButton({
   Root,
   Text,
   Group,
@@ -22,18 +22,6 @@ const AccessibleButton = createButton({
   Spinner,
   Icon,
 });
-
-type IButtonGroupProps = React.ComponentProps<typeof AccessibleButton.Group>;
-type IButtonProps = React.ComponentProps<typeof AccessibleButton>;
-type IOtherProps = {
-  isLoading?: boolean;
-  isLoadingText?: string;
-  spinnerPlacement?: 'start' | 'end';
-  leftIcon?: any;
-  rightIcon?: any;
-  startIcon?: any;
-  endIcon?: any;
-};
 
 const NewButton = forwardRef(
   (
@@ -52,7 +40,7 @@ const NewButton = forwardRef(
       colorScheme = 'primary',
       variant = 'solid',
       ...props
-    }: IButtonProps & IOtherProps,
+    }: any,
     ref?: any
   ) => {
     const resolvedPropForGluestack = usePropResolution(props);
@@ -96,16 +84,14 @@ const NewButton = forwardRef(
   }
 );
 
-const NewGroupButton = forwardRef(
-  ({ children, ...props }: IButtonGroupProps, ref?: any) => {
-    const resolvedPropForGluestack = usePropResolution(props);
-    return (
-      <AccessibleButton.Group {...resolvedPropForGluestack} ref={ref}>
-        {children}
-      </AccessibleButton.Group>
-    );
-  }
-);
+const NewGroupButton = forwardRef(({ children, ...props }: any, ref?: any) => {
+  const resolvedPropForGluestack = usePropResolution(props);
+  return (
+    <AccessibleButton.Group {...resolvedPropForGluestack} ref={ref}>
+      {children}
+    </AccessibleButton.Group>
+  );
+});
 
 const ButtonTemp = NewButton as any;
 ButtonTemp.Group = NewGroupButton;
@@ -116,6 +102,6 @@ export type IButtonComponentType<Button, Group> =
   };
 
 export const Button = ButtonTemp as IButtonComponentType<
-  typeof NewButton,
-  typeof NewGroupButton
+  typeof AccessibleButton,
+  typeof AccessibleButton.Group
 >;
