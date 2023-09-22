@@ -1,6 +1,7 @@
 import React, { forwardRef } from 'react';
 import { createAlert } from '@gluestack-ui/alert';
 import { Root, Text, Icon } from './styled-components';
+import { GenericComponentType } from '../../types';
 
 const AccessibleAlert = createAlert({
   Root,
@@ -42,8 +43,14 @@ const AlertNew = forwardRef(
   }
 );
 
-export const Alert = AlertNew as typeof AlertNew & {
-  Icon: typeof AlertNewIcon;
+const AlertTemp = AlertNew as any;
+AlertTemp.Icon = AlertNewIcon;
+
+export type IAlertComponentType<Alert, Icon> = GenericComponentType<Alert> & {
+  Icon: GenericComponentType<Icon>;
 };
 
-Alert.Icon = AlertNewIcon;
+export const Alert = AlertTemp as IAlertComponentType<
+  typeof AlertNew,
+  typeof AlertNewIcon
+>;
