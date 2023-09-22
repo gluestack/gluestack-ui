@@ -13,6 +13,7 @@ import { Heading } from '../Heading';
 import { Text } from '../Text';
 import { Icon, CloseIcon } from '../Icons';
 import { styled } from '../styled';
+import { GenericComponentType } from '../../types';
 
 const AccessibleAlertDialog = createAlertDialog({
   Root,
@@ -26,7 +27,7 @@ const AccessibleAlertDialog = createAlertDialog({
   AnimatePresence: styled.Component,
 });
 
-const AlertDialogNew = forwardRef(
+const AlertDialogTemp = forwardRef(
   (
     { children, overlayVisible = true, backdropVisible = true, ...props }: any,
     ref?: any
@@ -96,19 +97,33 @@ const AccessibleAlertDialogBody = forwardRef(
   }
 );
 
-AlertDialogNew.Content = AccessibleAlertDialogContent as any;
-AlertDialogNew.CloseButton = AccessibleAlertDialogCloseButton as any;
-AlertDialogNew.Header = AccessibleAlertDialogHeader as any;
-AlertDialogNew.Footer = AccessibleAlertDialogFooter as any;
-AlertDialogNew.Body = AccessibleAlertDialogBody as any;
+const AlertDialogNew = AlertDialogTemp as any;
+AlertDialogNew.Content = AccessibleAlertDialogContent;
+AlertDialogNew.CloseButton = AccessibleAlertDialogCloseButton;
+AlertDialogNew.Header = AccessibleAlertDialogHeader;
+AlertDialogNew.Footer = AccessibleAlertDialogFooter;
+AlertDialogNew.Body = AccessibleAlertDialogBody;
 
-export const AlertDialog = AlertDialogNew as typeof AccessibleAlertDialog;
+export type IAlertDialogComponentType<
+  AlertDialog,
+  Content,
+  CloseButton,
+  Header,
+  Footer,
+  Body
+> = GenericComponentType<AlertDialog> & {
+  Content: GenericComponentType<Content>;
+  CloseButton: GenericComponentType<CloseButton>;
+  Header: GenericComponentType<Header>;
+  Footer: GenericComponentType<Footer>;
+  Body: GenericComponentType<Body>;
+};
 
-// console.log(AlertDialog);
-
-// AlertDialog.Content = AccessibleAlertDialog.Content;
-// AlertDialog.CloseButton = AccessibleAlertDialog.CloseButton;
-// AlertDialog.Header = AccessibleAlertDialogHeader;
-// AlertDialog.Footer = AccessibleAlertDialog.Footer;
-// AlertDialog.Body = AccessibleAlertDialogBody;
-// AlertDialog.Backdrop = AccessibleAlertDialog.Backdrop;
+export const AlertDialog = AlertDialogNew as IAlertDialogComponentType<
+  typeof AlertDialogTemp,
+  typeof AlertDialogTemp.Content,
+  typeof AlertDialogTemp.CloseButton,
+  typeof AlertDialogTemp.Header,
+  typeof AlertDialogTemp.Footer,
+  typeof AlertDialogTemp.Body
+>;
