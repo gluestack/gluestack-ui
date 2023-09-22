@@ -199,8 +199,8 @@ function Card1() {
                 <NextLink
                   href="/docs/guides/install-nextjs"
                   style={{
-                    borderRadius: '8px',
-                    height: '72px',
+                    borderRadius: 8,
+                    height: 72,
                   }}
                 >
                   <Next />
@@ -208,8 +208,8 @@ function Card1() {
                 <NextLink
                   href="/docs/guides/install-expo"
                   style={{
-                    borderRadius: '8px',
-                    height: '72px',
+                    borderRadius: 8,
+                    height: 72,
                   }}
                 >
                   <Expo1 />
@@ -217,8 +217,8 @@ function Card1() {
                 <NextLink
                   href="/docs/guides/install-rn"
                   style={{
-                    borderRadius: '8px',
-                    height: '72px',
+                    borderRadius: 8,
+                    height: 72,
                   }}
                 >
                   <ReactN />
@@ -269,8 +269,8 @@ function Card1() {
                 <NextLink
                   href="/docs/getting-started/vscode-extensions"
                   style={{
-                    borderRadius: '8px',
-                    height: '72px',
+                    borderRadius: 8,
+                    height: 72,
                   }}
                 >
                   <VsCode />
