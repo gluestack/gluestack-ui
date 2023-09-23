@@ -109,7 +109,7 @@ export const resolveComponentThemes = (config: any, components: any) => {
   return newComponents;
 };
 
-const resolveTheme = (
+export const resolveTheme = (
   componentTheme: {},
   _config: any,
   extendedConfig?: any

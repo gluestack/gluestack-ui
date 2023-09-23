@@ -21,7 +21,10 @@ export function updateOrderUnResolvedMap(
   platform: string = ''
 ) {
   const prefixClassName = declarationType === 'inline' ? 'gs' : '';
-  const shouldGuessDescendants = declarationType === 'inline' ? true : false;
+  const shouldGuessDescendants =
+    declarationType === 'inline' || declarationType === 'extended'
+      ? true
+      : false;
   const unresolvedTheme = styledToStyledResolved(theme, [], {}, false);
   const orderedUnResolvedTheme =
     styledResolvedToOrderedSXResolved(unresolvedTheme);
