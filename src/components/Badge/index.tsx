@@ -1,21 +1,23 @@
 import {
-  Root,
+  Root as AccessibleBadge,
   Icon as AccessibleBadgeIcon,
   Text as AccessibleBadgeText,
 } from './styled-components';
 import { usePropResolution } from '../../hooks/usePropResolution';
 import React, { forwardRef } from 'react';
-import { GenericComponentType } from '../../types';
+import { GenericComponentType, IColorSchemes } from '../../types';
 
-const AccessibleBadge = Root;
-
-type RootProps = React.ComponentProps<typeof AccessibleBadge>;
+type IBadgeProps = {
+  colorScheme?: IColorSchemes;
+  leftIcon?: any;
+  startIcon?: any;
+  rightIcon?: any;
+  endIcon?: any;
+};
 
 const BadgeTemp = forwardRef(
   (
     {
-      // Todo: fix this typing
-      // @ts-ignore
       colorScheme = 'success',
       children,
       leftIcon,
@@ -23,12 +25,7 @@ const BadgeTemp = forwardRef(
       startIcon,
       endIcon,
       ...props
-    }: RootProps & {
-      leftIcon?: any;
-      startIcon?: any;
-      rightIcon?: any;
-      endIcon?: any;
-    },
+    }: any,
     ref?: any
   ) => {
     const resolvedPropForGluestack = usePropResolution(props);
@@ -58,6 +55,9 @@ const BadgeTemp = forwardRef(
 
 const BadgeNew = BadgeTemp as any;
 
-export type IBadgeComponentType<Badge> = GenericComponentType<Badge>;
+export type IBadgeComponentType<Badge> = GenericComponentType<
+  Badge,
+  IBadgeProps
+>;
 
-export const Badge = BadgeNew as IBadgeComponentType<typeof BadgeTemp>;
+export const Badge = BadgeNew as IBadgeComponentType<typeof AccessibleBadge>;

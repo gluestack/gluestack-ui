@@ -42,7 +42,7 @@ export * from './Switch';
 export * from './Tabs';
 export * from './Text';
 export * from './Textarea';
-export * from './Toast';
+export { useToast } from './Toast';
 export * from './Tooltip';
 export * from './VStack';
 export * from './ZStack';

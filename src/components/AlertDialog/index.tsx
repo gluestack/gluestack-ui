@@ -27,21 +27,14 @@ const AccessibleAlertDialog = createAlertDialog({
   AnimatePresence: styled.Component,
 });
 
-const AlertDialogTemp = forwardRef(
-  (
-    { children, overlayVisible = true, backdropVisible = true, ...props }: any,
-    ref?: any
-  ) => {
-    return (
-      <AccessibleAlertDialog {...props} ref={ref}>
-        {overlayVisible && backdropVisible && (
-          <AccessibleAlertDialog.Backdrop />
-        )}
-        {children}
-      </AccessibleAlertDialog>
-    );
-  }
-);
+const AlertDialogTemp = forwardRef(({ children, ...props }: any, ref?: any) => {
+  return (
+    <AccessibleAlertDialog {...props} ref={ref}>
+      <AccessibleAlertDialog.Backdrop />
+      {children}
+    </AccessibleAlertDialog>
+  );
+});
 
 const AccessibleAlertDialogContent = forwardRef(
   ({ children, ...props }: any, ref?: any) => {
@@ -120,10 +113,10 @@ export type IAlertDialogComponentType<
 };
 
 export const AlertDialog = AlertDialogNew as IAlertDialogComponentType<
-  typeof AlertDialogTemp,
-  typeof AccessibleAlertDialogContent,
-  typeof AccessibleAlertDialogCloseButton,
-  typeof AccessibleAlertDialogHeader,
-  typeof AccessibleAlertDialogFooter,
-  typeof AccessibleAlertDialogBody
+  typeof AccessibleAlertDialog,
+  typeof AccessibleAlertDialog.Content,
+  typeof AccessibleAlertDialog.CloseButton,
+  typeof AccessibleAlertDialog.Header,
+  typeof AccessibleAlertDialog.Footer,
+  typeof AccessibleAlertDialog.Body
 >;

@@ -1,7 +1,16 @@
+import React, { Children, cloneElement, forwardRef } from 'react';
 import { createInput } from '@gluestack-ui/input';
-import { Root, Icon, StyledInput } from './styled-components';
+import {
+  Root,
+  Icon,
+  StyledInput,
+  AccessibleInputGroup,
+  AccessibleInputLeftAddon,
+  AccessibleInputRightAddon,
+} from './styled-components';
+import { Text } from '../Text';
 import { usePropResolution } from '../../hooks/usePropResolution';
-import React, { forwardRef } from 'react';
+import { GenericComponentType } from '../../types';
 
 const AccessibleInput = createInput({
   Root,
@@ -9,50 +18,21 @@ const AccessibleInput = createInput({
   Input: StyledInput,
 });
 
-type InputProps = React.ComponentProps<typeof AccessibleInput> &
-  React.ComponentProps<typeof AccessibleInput.Input> & {
-    InputLeftElement?: any;
-    InputRightElement?: any;
-  };
+type InputProps = {
+  InputLeftElement?: any;
+  InputRightElement?: any;
+  placeholder?: string;
+};
 
-export const Input = forwardRef(
+const InputTemp = forwardRef(
   (
-    {
-      //@ts-ignore
-      size,
-      variant,
-      isInvalid,
-      isDisabled,
-      isFocused,
-      isFullWidth,
-      isTVSelectable,
-      isHovered,
-      isReadOnly,
-      isRequired,
-      InputLeftElement,
-      InputRightElement,
-      placeholder,
-      ...props
-    }: InputProps,
+    { InputLeftElement, InputRightElement, placeholder, ...props }: any,
     ref?: any
   ) => {
     const resolvedProps = usePropResolution(props);
     // const stateProps = {};
     return (
-      <AccessibleInput
-        size={size}
-        variant={variant}
-        isInvalid={isInvalid}
-        isDisabled={isDisabled}
-        isFocused={isFocused}
-        isFullWidth={isFullWidth}
-        isTVSelectable={isTVSelectable}
-        isReadOnly={isReadOnly}
-        isRequired={isRequired}
-        isHovered={isHovered}
-        ref={ref}
-        {...resolvedProps}
-      >
+      <AccessibleInput ref={ref} {...resolvedProps}>
         {InputLeftElement && (
           <AccessibleInput.Icon ml="0.5rem">
             <Icon as={InputLeftElement} />
@@ -68,3 +48,73 @@ export const Input = forwardRef(
     );
   }
 );
+
+export type IInputComponentType<Input> = GenericComponentType<
+  Input,
+  InputProps
+>;
+
+export const Input = InputTemp as IInputComponentType<typeof AccessibleInput>;
+
+const InputGroupTemp = forwardRef(({ children, ...props }: any, ref?: any) => {
+  const ChildrenStyled = Children.map(children, (child, index) => {
+    if (index === 0)
+      return cloneElement(child, {
+        borderTopRightRadius: 0,
+        borderBottomRightRadius: 0,
+      });
+    if (index === Children.count(children) - 1)
+      return cloneElement(child, {
+        borderTopLeftRadius: 0,
+        borderBottomLeftRadius: 0,
+      });
+
+    return cloneElement(child, {
+      borderRadius: 0,
+    });
+  });
+  return (
+    <AccessibleInputGroup {...props} ref={ref}>
+      {ChildrenStyled}
+    </AccessibleInputGroup>
+  );
+});
+
+export type IInputGroupComponentType<InputGroup> =
+  GenericComponentType<InputGroup>;
+
+export const InputGroup = InputGroupTemp as IInputGroupComponentType<
+  typeof AccessibleInputGroup
+>;
+
+const InputLeftAddonTemp = forwardRef(
+  ({ children, ...props }: any, ref?: any) => (
+    <AccessibleInputLeftAddon {...props} ref={ref}>
+      {typeof children === 'string' ? <Text>{children}</Text> : children}
+    </AccessibleInputLeftAddon>
+  )
+);
+
+export type IInputLeftAddonComponentType<InputLeftAddon> =
+  GenericComponentType<InputLeftAddon>;
+
+export const InputLeftAddon =
+  InputLeftAddonTemp as IInputLeftAddonComponentType<
+    typeof AccessibleInputLeftAddon
+  >;
+
+const InputRightAddonTemp = forwardRef(
+  ({ children, ...props }: any, ref?: any) => (
+    <AccessibleInputRightAddon {...props} ref={ref}>
+      {typeof children === 'string' ? <Text>{children}</Text> : children}
+    </AccessibleInputRightAddon>
+  )
+);
+
+export type IInputRightAddonComponentType<InputRightAddon> =
+  GenericComponentType<InputRightAddon>;
+
+export const InputRightAddon =
+  InputRightAddonTemp as IInputRightAddonComponentType<
+    typeof AccessibleInputRightAddon
+  >;

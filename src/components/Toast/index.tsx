@@ -7,5 +7,3 @@ export const Toast = createToast({
   Title,
   Description,
 });
-export const ToastTitle = Toast.Title;
-export const ToastDescription = Toast.Description;

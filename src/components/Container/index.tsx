@@ -1,16 +1,22 @@
 import React, { forwardRef } from 'react';
 
-import { Root } from './styled-components';
+import { Root as AccessibleContainer } from './styled-components';
 
 import { usePropResolution } from '../../hooks/usePropResolution';
+import { GenericComponentType } from '../../types';
 
-export const Container = forwardRef(
-  ({ children, ...props }: any, ref?: any) => {
-    const resolvedPropForGluestack = usePropResolution(props);
-    return (
-      <Root {...resolvedPropForGluestack} ref={ref}>
-        {children}
-      </Root>
-    );
-  }
-);
+const ContainerTemp = forwardRef(({ children, ...props }: any, ref?: any) => {
+  const resolvedPropForGluestack = usePropResolution(props);
+  return (
+    <AccessibleContainer {...resolvedPropForGluestack} ref={ref}>
+      {children}
+    </AccessibleContainer>
+  );
+});
+
+export type IContainerComponentType<Container> =
+  GenericComponentType<Container>;
+
+export const Container = ContainerTemp as IContainerComponentType<
+  typeof AccessibleContainer
+>;

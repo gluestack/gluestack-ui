@@ -4,19 +4,13 @@ import { createDivider } from '@gluestack-ui/divider';
 const AccessibleDivider = createDivider({ Root });
 
 import type { GSConfig } from '@gluestack-style/react';
+import { GenericComponentType } from '../../types';
 //TODO: not exposed now, will need to export it and release a new version of @gluestack-style/react.
 
-type IDividerProps = React.ComponentProps<typeof AccessibleDivider>;
+type IDividerProps = { thickness?: number | GSConfig['tokens']['space'] };
 
-export const Divider = forwardRef(
-  (
-    {
-      thickness,
-      orientation,
-      ...props
-    }: IDividerProps & { thickness?: number | GSConfig['tokens']['space'] },
-    ref?: any
-  ) => {
+const DividerTemp = forwardRef(
+  ({ thickness, orientation, ...props }: any, ref?: any) => {
     let thicknessProp = {};
     if (thickness) {
       if (orientation === 'vertical') thicknessProp = { w: thickness };
@@ -32,3 +26,12 @@ export const Divider = forwardRef(
     );
   }
 );
+
+export type IDividerComponentType<Divider> = GenericComponentType<
+  Divider,
+  IDividerProps
+>;
+
+export const Divider = DividerTemp as IDividerComponentType<
+  typeof AccessibleDivider
+>;

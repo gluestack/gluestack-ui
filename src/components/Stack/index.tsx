@@ -1,30 +1,31 @@
 import React, { forwardRef } from 'react';
-
-import { Root } from './styled-components';
-type IProps = Omit<React.ComponentProps<typeof Root>, 'direction'>;
-
+import { Root as AccessibleStack } from './styled-components';
 import { usePropResolution } from '../../hooks/usePropResolution';
+import { GenericComponentType } from '../../types';
+
+type IProps = Omit<React.ComponentProps<typeof AccessibleStack>, 'direction'>;
 
 type StackProps = {
-  direction?: React.ComponentProps<typeof Root>['flexDirection'];
-  space?: React.ComponentProps<typeof Root>['gap'];
+  direction?: React.ComponentProps<typeof AccessibleStack>['flexDirection'];
+  space?: React.ComponentProps<typeof AccessibleStack>['gap'];
 };
 
-export const Stack = forwardRef(
-  (
-    { children, direction, space, ...props }: IProps & StackProps,
-    ref?: any
-  ) => {
+const StackTemp = forwardRef(
+  ({ children, direction, ...props }: IProps & StackProps, ref?: any) => {
     const resolvedPropForGluestack = usePropResolution(props);
     return (
-      <Root
+      <AccessibleStack
         flexDirection={direction}
-        gap={space}
+        gap={resolvedPropForGluestack.space}
         {...resolvedPropForGluestack}
         ref={ref}
       >
         {children}
-      </Root>
+      </AccessibleStack>
     );
   }
 );
+
+export type IStackComponentType<Stack> = GenericComponentType<Stack>;
+
+export const Stack = StackTemp as IStackComponentType<typeof StackTemp>;

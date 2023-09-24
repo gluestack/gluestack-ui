@@ -1,22 +1,25 @@
 import React, { Children, cloneElement, forwardRef } from 'react';
 
-import { Root } from './styled-components';
+import { Root as AccessibleZStack } from './styled-components';
 
 import { usePropResolution } from '../../hooks/usePropResolution';
+import { GenericComponentType } from '../../types';
 
-type IProps = React.ComponentProps<typeof Root>;
+const ZStackTemp = forwardRef(({ children, ...props }: any, ref?: any) => {
+  const resolvedPropForGluestack = usePropResolution(props);
 
-export const ZStack = forwardRef(
-  ({ children, ...props }: IProps, ref?: any) => {
-    const resolvedPropForGluestack = usePropResolution(props);
+  const GuiChildren = Children.map(children, (child) =>
+    cloneElement(child, { position: 'absolute' })
+  );
+  return (
+    <AccessibleZStack {...resolvedPropForGluestack} ref={ref}>
+      {GuiChildren}
+    </AccessibleZStack>
+  );
+});
 
-    const GuiChildren = Children.map(children, (child) =>
-      cloneElement(child, { position: 'absolute' })
-    );
-    return (
-      <Root {...resolvedPropForGluestack} ref={ref}>
-        {GuiChildren}
-      </Root>
-    );
-  }
-);
+export type IZStackComponentType<ZStack> = GenericComponentType<ZStack>;
+
+export const ZStack = ZStackTemp as IZStackComponentType<
+  typeof AccessibleZStack
+>;

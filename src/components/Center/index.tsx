@@ -1,8 +1,19 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { usePropResolution } from '../../hooks/usePropResolution';
-import { Root } from './styled-components';
+import { Root as AccessibleCenter } from './styled-components';
+import { GenericComponentType } from '../../types';
 
-export const Center = ({ children, ...props }: any) => {
+const CenterTemp = forwardRef(({ children, ...props }: any, ref?: any) => {
   const resolvedPropForGluestack = usePropResolution(props);
-  return <Root {...resolvedPropForGluestack}>{children}</Root>;
-};
+  return (
+    <AccessibleCenter {...resolvedPropForGluestack} ref={ref}>
+      {children}
+    </AccessibleCenter>
+  );
+});
+
+export type ICenterComponentType<Center> = GenericComponentType<Center>;
+
+export const Center = CenterTemp as ICenterComponentType<
+  typeof AccessibleCenter
+>;

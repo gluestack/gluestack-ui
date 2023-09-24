@@ -4,6 +4,7 @@ import { createRadio } from '@gluestack-ui/radio';
 import { usePropResolution } from '../../hooks/usePropResolution';
 import React from 'react';
 import { CircleIcon } from '../Icons';
+import { GenericComponentType, IColorSchemes } from '../../types';
 
 const AccessibleRadio = createRadio({
   Root,
@@ -18,13 +19,9 @@ const AccessibleRadioGroup = forwardRef(
     // const resolvedProps = usePropResolution(props);
     return <AccessibleRadio.Group children={children} {...props} ref={ref} />;
   }
-);
+) as any;
 
-// const AccessibleRadioIcon = AccessibleRadio.Icon;
-// const AccessibleRadioIndicator = AccessibleRadio.Indicator;
-// const AccessibleRadioLabel = AccessibleRadio.Label;
-
-export const Radio = forwardRef(
+const RadioTemp = forwardRef(
   ({ colorScheme = 'primary', children, ...props }: any, ref?: any) => {
     const resolvedProps = usePropResolution(props);
 
@@ -43,4 +40,16 @@ export const Radio = forwardRef(
   }
 ) as any;
 
-Radio.Group = AccessibleRadioGroup;
+RadioTemp.Group = AccessibleRadioGroup;
+
+export type IRadioComponentType<Radio, Group> = GenericComponentType<
+  Radio,
+  { colorScheme: IColorSchemes }
+> & {
+  Group: GenericComponentType<Group>;
+};
+
+export const Radio = RadioTemp as IRadioComponentType<
+  typeof AccessibleRadio,
+  typeof AccessibleRadio.Group
+>;

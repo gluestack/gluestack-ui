@@ -13,7 +13,7 @@ import {
 import { usePropResolution } from '../../hooks/usePropResolution';
 import { GenericComponentType, IColorSchemes } from '../../types';
 
-export const AccessibleButton = createButton({
+const AccessibleButton = createButton({
   Root,
   Text,
   Group,

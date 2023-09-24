@@ -2,20 +2,23 @@ import { createSwitch } from '@gluestack-ui/switch';
 import { Root } from './styled-components';
 import { usePropResolution } from '../../hooks/usePropResolution';
 import React, { forwardRef } from 'react';
+import { GenericComponentType } from '../../types';
 
 const AccessibleSwitch = createSwitch({
   Root,
 });
 
 type ISwitchProps = React.ComponentProps<typeof AccessibleSwitch>;
-//  & {
-//   offTrackColor: string;
-//   onTrackColor: string;
-//   onThumbColor: string;
-//   offThumbColor: string;
-// };
+type IColorProps = React.ComponentProps<typeof AccessibleSwitch>['bgColor'];
 
-export const Switch = forwardRef(
+type IExtraProps = {
+  offTrackColor: IColorProps;
+  onTrackColor: IColorProps;
+  onThumbColor: IColorProps;
+  offThumbColor: IColorProps;
+};
+
+const SwitchTemp = forwardRef(
   (
     {
       // offTrackColor,
@@ -23,7 +26,7 @@ export const Switch = forwardRef(
       // onThumbColor,
       // offThumbColor,
       ...props
-    }: ISwitchProps,
+    }: ISwitchProps & IExtraProps,
     ref?: any
   ) => {
     const resolvedProps = usePropResolution(props);
@@ -39,3 +42,7 @@ export const Switch = forwardRef(
     return <AccessibleSwitch {...resolvedProps} ref={ref} />;
   }
 );
+
+export type ISwitchComponentType<Switch> = GenericComponentType<Switch>;
+
+export const Switch = SwitchTemp as ISwitchComponentType<typeof SwitchTemp>;

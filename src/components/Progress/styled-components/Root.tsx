@@ -1,11 +1,7 @@
 import { styled } from '@gluestack-style/react';
 import { View } from 'react-native';
-import { colorScheme } from '../../../utils';
-import { ColorSchemeResolver } from '../../../plugins/colorScheme/colorScheme';
 
-const colorSchemes = Object.fromEntries(
-  colorScheme.map((color) => [color, {}])
-);
+import { ColorSchemeResolver } from '../../../plugins/colorScheme/colorScheme';
 
 export default styled(
   View,
@@ -17,7 +13,6 @@ export default styled(
     borderRadius: '$full',
     w: '100%',
     variants: {
-      colorScheme: colorSchemes,
       size: {
         'xs': {
           h: '$1',

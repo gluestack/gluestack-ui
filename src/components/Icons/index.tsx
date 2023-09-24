@@ -2,15 +2,22 @@ import { createIcon as createIconUI } from '@gluestack-ui/icon';
 import React, { forwardRef } from 'react';
 import { StyledIcon } from './Root';
 import { createIcon } from './styled-components';
+// import { GenericComponentType } from '../../types';
 
 const AccessibleIcon = createIconUI({
   Root: StyledIcon,
 });
 
-type IProps = React.ComponentProps<typeof AccessibleIcon>;
-
 export const Icon = forwardRef(
-  ({ children, as, viewBox, ...props }: IProps, ref?: any) => {
+  (
+    {
+      children,
+      as,
+      viewBox,
+      ...props
+    }: React.ComponentProps<typeof AccessibleIcon> & { viewBox?: string },
+    ref?: any
+  ) => {
     let IconForward;
     if (as) {
       IconForward = as;
@@ -29,3 +36,12 @@ export const Icon = forwardRef(
 
 export * from './Icons';
 export * from './styled-components';
+
+// export type IIconComponentType<Icon> = GenericComponentType<
+//   Icon,
+//   { viewBox?: string; as?: any }
+// >;
+
+// export const Icon = IconTemp as IIconComponentType<typeof AccessibleIcon>;
+
+//type issue with icon

@@ -1,8 +1,19 @@
-import React from 'react';
-import { Root } from './styled-components';
+import React, { forwardRef } from 'react';
+import { Root as AccessibleHeading } from './styled-components';
 import { usePropResolution } from '../../hooks/usePropResolution';
+import { GenericComponentType } from '../../types';
 
-export const Heading = ({ children, ...props }: any) => {
+const HeadingTemp = forwardRef(({ children, ...props }: any, ref?: any) => {
   const resolvedPropForGluestack = usePropResolution(props);
-  return <Root {...resolvedPropForGluestack}>{children}</Root>;
-};
+  return (
+    <AccessibleHeading {...resolvedPropForGluestack} ref={ref}>
+      {children}
+    </AccessibleHeading>
+  );
+});
+
+export type IHeadingComponentType<Heading> = GenericComponentType<Heading>;
+
+export const Heading = HeadingTemp as IHeadingComponentType<
+  typeof AccessibleHeading
+>;

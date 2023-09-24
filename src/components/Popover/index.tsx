@@ -14,6 +14,7 @@ import { Heading } from '../Heading';
 import { Text } from '../Text';
 import { Icon, CloseIcon } from '../Icons';
 import React, { forwardRef } from 'react';
+import { GenericComponentType } from '../../types';
 
 const AccessiblePopover = createPopover({
   Root,
@@ -102,4 +103,26 @@ PopoverNew.Header = AccessiblePopoverHeader as any;
 PopoverNew.Footer = AccessiblePopoverFooter as any;
 PopoverNew.Body = AccessiblePopoverBody as any;
 
-export const Popover = PopoverNew as typeof AccessiblePopover;
+export type IPopoverComponentType<
+  Popover,
+  Content,
+  CloseButton,
+  Header,
+  Footer,
+  Body
+> = GenericComponentType<Popover> & {
+  Content: GenericComponentType<Content>;
+  CloseButton: GenericComponentType<CloseButton>;
+  Header: GenericComponentType<Header>;
+  Footer: GenericComponentType<Footer>;
+  Body: GenericComponentType<Body>;
+};
+
+export const Popover = PopoverNew as IPopoverComponentType<
+  typeof AccessiblePopover,
+  typeof AccessiblePopover.Content,
+  typeof AccessiblePopover.CloseButton,
+  typeof AccessiblePopover.Header,
+  typeof AccessiblePopover.Footer,
+  typeof AccessiblePopover.Body
+>;

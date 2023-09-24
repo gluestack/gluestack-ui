@@ -1,9 +1,7 @@
-import React, { forwardRef } from 'react';
 import { styled } from '../../styled';
 import { View } from 'react-native';
-import { Text } from '../../Text';
 
-const InputRightAddonStyled = styled(
+export const AccessibleInputRightAddon = styled(
   View,
   {
     p: '0.5rem',
@@ -19,15 +17,4 @@ const InputRightAddonStyled = styled(
     },
   },
   { descendantStyle: ['_text'] }
-);
-
-export const InputRightAddon = forwardRef(
-  (
-    { children, ...props }: React.ComponentProps<typeof InputRightAddonStyled>,
-    ref?: any
-  ) => (
-    <InputRightAddonStyled {...props} ref={ref}>
-      {typeof children === 'string' ? <Text>{children}</Text> : children}
-    </InputRightAddonStyled>
-  )
 );

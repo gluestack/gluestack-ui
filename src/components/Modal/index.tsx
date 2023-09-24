@@ -13,6 +13,7 @@ import { Heading } from '../Heading';
 import { Text } from '../Text';
 import { Icon, CloseIcon } from '../Icons';
 import { styled } from '../styled';
+import { GenericComponentType } from '../../types';
 
 const AccessibleModal = createModal({
   Root,
@@ -100,4 +101,26 @@ ModalNew.Header = AccessibleModalHeader as any;
 ModalNew.Footer = AccessibleModalFooter as any;
 ModalNew.Body = AccessibleModalBody as any;
 
-export const Modal = ModalNew as typeof AccessibleModal;
+export type IModalComponentType<
+  Modal,
+  Content,
+  CloseButton,
+  Header,
+  Footer,
+  Body
+> = GenericComponentType<Modal> & {
+  Content: GenericComponentType<Content>;
+  CloseButton: GenericComponentType<CloseButton>;
+  Header: GenericComponentType<Header>;
+  Footer: GenericComponentType<Footer>;
+  Body: GenericComponentType<Body>;
+};
+
+export const Modal = ModalNew as IModalComponentType<
+  typeof AccessibleModal,
+  typeof AccessibleModal.Content,
+  typeof AccessibleModal.CloseButton,
+  typeof AccessibleModal.Header,
+  typeof AccessibleModal.Footer,
+  typeof AccessibleModal.Body
+>;

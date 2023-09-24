@@ -2,23 +2,15 @@ import React, { forwardRef } from 'react';
 import { createFab } from '@gluestack-ui/fab';
 import { Root, Label, Icon } from './styled-components';
 import { usePropResolution } from '../../hooks/usePropResolution';
+import { GenericComponentType } from '../../types';
 
 const AccessibleFab = createFab({ Root, Label, Icon });
 
-type IFabProps = React.ComponentProps<typeof AccessibleFab>;
-type IExtraProps = { label?: string; icon?: any };
+type IFabProps = { label?: string; icon?: any };
 
-export const Fab = forwardRef(
+const FabTemp = forwardRef(
   (
-    {
-      // Todo: fix this typing
-      // @ts-ignore
-      colorScheme = 'primary',
-      variant = 'solid',
-      icon,
-      label,
-      ...props
-    }: IFabProps & IExtraProps,
+    { colorScheme = 'primary', variant = 'solid', icon, label, ...props }: any,
     ref?: any
   ) => {
     const resolvedPropForGluestack = usePropResolution(props);
@@ -35,3 +27,7 @@ export const Fab = forwardRef(
     );
   }
 );
+
+export type IFabComponentType<Fab> = GenericComponentType<Fab, IFabProps>;
+
+export const Fab = FabTemp as IFabComponentType<typeof AccessibleFab>;

@@ -1,28 +1,34 @@
 import React, { forwardRef } from 'react';
 
-import { Root } from './styled-components';
-type IProps = React.ComponentProps<typeof Root>;
-type ratio = { ratio: React.ComponentProps<typeof Root>['aspectRatio'] };
+import { Root as AccessibleAspectRatio } from './styled-components';
+
+type IRatio = {
+  ratio: React.ComponentProps<typeof AccessibleAspectRatio>['aspectRatio'];
+};
 
 import { usePropResolution } from '../../hooks/usePropResolution';
 import { GenericComponentType } from '../../types';
 
 const AspectRatioTemp = forwardRef(
-  ({ children, ratio, ...props }: IProps & ratio, ref?: any) => {
+  ({ children, ratio, ...props }: any, ref?: any) => {
     const resolvedPropForGluestack = usePropResolution(props);
     return (
-      <Root aspectRatio={ratio} {...resolvedPropForGluestack} ref={ref}>
+      <AccessibleAspectRatio
+        aspectRatio={ratio}
+        {...resolvedPropForGluestack}
+        ref={ref}
+      >
         {children}
-      </Root>
+      </AccessibleAspectRatio>
     );
   }
 );
 
-const AspectRatioNew = AspectRatioTemp as any;
+export type IAspectRatioComponentType<AspectRatio> = GenericComponentType<
+  AspectRatio,
+  IRatio
+>;
 
-export type IAspectRatioComponentType<AspectRatio> =
-  GenericComponentType<AspectRatio>;
-
-export const AspectRatio = AspectRatioNew as IAspectRatioComponentType<
-  typeof AspectRatioTemp
+export const AspectRatio = AspectRatioTemp as IAspectRatioComponentType<
+  typeof AccessibleAspectRatio
 >;

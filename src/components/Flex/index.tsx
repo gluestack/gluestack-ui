@@ -1,25 +1,22 @@
 import React, { forwardRef } from 'react';
 
-import { Root } from './styled-components';
-type IProps = React.ComponentProps<typeof Root>;
+import { Root as AccessibleFlex } from './styled-components';
 
 import { usePropResolution } from '../../hooks/usePropResolution';
+import { GenericComponentType } from '../../types';
 
-type FlexProps = {
-  direction?: React.ComponentProps<typeof Root>['flexDirection'];
-  wrap?: React.ComponentProps<typeof Root>['flexWrap'];
-  align?: React.ComponentProps<typeof Root>['alignItems'];
-  justify?: React.ComponentProps<typeof Root>['justifyContent'];
+type IFlexProps = {
+  direction?: React.ComponentProps<typeof AccessibleFlex>['flexDirection'];
+  wrap?: React.ComponentProps<typeof AccessibleFlex>['flexWrap'];
+  align?: React.ComponentProps<typeof AccessibleFlex>['alignItems'];
+  justify?: React.ComponentProps<typeof AccessibleFlex>['justifyContent'];
 };
 
-export const Flex = forwardRef(
-  (
-    { children, direction, wrap, align, justify, ...props }: IProps & FlexProps,
-    ref?: any
-  ) => {
+const FlexTemp = forwardRef(
+  ({ children, direction, wrap, align, justify, ...props }: any, ref?: any) => {
     const resolvedPropForGluestack = usePropResolution(props);
     return (
-      <Root
+      <AccessibleFlex
         flexDirection={direction}
         flexWrap={wrap}
         alignItems={align}
@@ -28,7 +25,11 @@ export const Flex = forwardRef(
         ref={ref}
       >
         {children}
-      </Root>
+      </AccessibleFlex>
     );
   }
 );
+
+export type IFlexComponentType<Flex> = GenericComponentType<Flex, IFlexProps>;
+
+export const Flex = FlexTemp as IFlexComponentType<typeof AccessibleFlex>;

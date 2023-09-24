@@ -1,10 +1,17 @@
 import React, { forwardRef } from 'react';
-import { Root } from './styled-components';
+import { Root as AccessibleImage } from './styled-components';
 import { usePropResolution } from '../../hooks/usePropResolution';
+import { GenericComponentType } from '../../types';
 
-export const Image = forwardRef(
-  ({ source, alt, ...props }: React.ComponentProps<typeof Root>, ref?: any) => {
+export const ImageTemp = forwardRef(
+  ({ source, alt, ...props }: any, ref?: any) => {
     const resolvedProps = usePropResolution(props);
-    return <Root {...resolvedProps} source={source} alt={alt} ref={ref} />;
+    return (
+      <AccessibleImage {...resolvedProps} source={source} alt={alt} ref={ref} />
+    );
   }
 );
+
+export type IImageComponentType<Image> = GenericComponentType<Image>;
+
+export const Image = ImageTemp as IImageComponentType<typeof AccessibleImage>;
