@@ -41,6 +41,13 @@ module.exports = {
       use: 'babel-loader',
     });
 
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      '@gluestack-ui/themed': path.join(
+        __dirname,
+        '../../../packages/themed/src'
+      ),
+    };
     config.module.rules.push({
       test: /\.mjs$/,
       include: /node_modules/,
