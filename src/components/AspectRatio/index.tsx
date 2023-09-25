@@ -6,7 +6,7 @@ type IRatio = {
   ratio: React.ComponentProps<typeof AccessibleAspectRatio>['aspectRatio'];
 };
 
-import { usePropResolution } from '../../hooks/usePropResolution';
+import { usePropResolution } from '../../hooks';
 import { GenericComponentType } from '../../types';
 
 const AspectRatioTemp = forwardRef(

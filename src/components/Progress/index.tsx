@@ -1,7 +1,7 @@
 import { createProgress } from '@gluestack-ui/progress';
 import { Root, FilledTrack } from './styled-components';
 import React, { forwardRef } from 'react';
-import { usePropResolution } from '../../hooks/usePropResolution';
+import { usePropResolution } from '../../hooks';
 import { GenericComponentType, IColorSchemes } from '../../types';
 
 const AccessibleProgress = createProgress({

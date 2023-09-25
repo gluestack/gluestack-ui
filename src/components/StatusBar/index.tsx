@@ -2,7 +2,7 @@ import React, { forwardRef } from 'react';
 
 import { Root as AccessibleStatusBar } from './styled-components';
 
-import { usePropResolution } from '../../hooks/usePropResolution';
+import { usePropResolution } from '../../hooks';
 import { GenericComponentType } from '../../types';
 
 const StatusBarTemp = forwardRef(({ children, ...props }: any, ref?: any) => {

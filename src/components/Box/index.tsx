@@ -2,7 +2,7 @@ import React, { forwardRef } from 'react';
 
 import { Root as AccessibleBox } from './styled-components';
 
-import { usePropResolution } from '../../hooks/usePropResolution';
+import { usePropResolution } from '../../hooks';
 import { GenericComponentType } from '../../types';
 
 const BoxTemp = forwardRef(({ children, ...props }: any, ref?: any) => {

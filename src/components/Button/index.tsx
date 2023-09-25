@@ -10,7 +10,7 @@ import {
   Icon,
 } from './styled-components';
 
-import { usePropResolution } from '../../hooks/usePropResolution';
+import { usePropResolution } from '../../hooks';
 import { GenericComponentType, IColorSchemes } from '../../types';
 
 const AccessibleButton = createButton({

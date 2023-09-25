@@ -1,6 +1,6 @@
 import { createHStack } from '@gluestack-ui/hstack';
 import { Root, Spacer } from './styled-components';
-import { usePropResolution } from '../../hooks/usePropResolution';
+import { usePropResolution } from '../../hooks';
 import React, { forwardRef } from 'react';
 import { GenericComponentType } from '../../types';
 

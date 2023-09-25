@@ -2,7 +2,7 @@ import React, { forwardRef } from 'react';
 
 import { Root as AccessibleKeyboardAvoidingView } from './styled-components';
 
-import { usePropResolution } from '../../hooks/usePropResolution';
+import { usePropResolution } from '../../hooks';
 import { GenericComponentType } from '../../types';
 
 const KeyboardAvoidingViewTemp = forwardRef(

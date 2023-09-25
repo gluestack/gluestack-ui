@@ -3,7 +3,7 @@ import { Text } from '../Text';
 import { createLink } from '@gluestack-ui/link';
 import { forwardRef } from 'react';
 import React from 'react';
-import { usePropResolution } from '../../hooks/usePropResolution';
+import { usePropResolution } from '../../hooks';
 // import { GenericComponentType } from '../../types';
 
 const AccessibleLink = createLink({

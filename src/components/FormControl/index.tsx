@@ -11,7 +11,7 @@ import {
   Helper,
   HelperText,
 } from './styled-components';
-import { usePropResolution } from '../../hooks/usePropResolution';
+import { usePropResolution } from '../../hooks';
 import { GenericComponentType } from '../../types';
 
 const AccessibleFormControl = createFormControl({

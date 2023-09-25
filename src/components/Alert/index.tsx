@@ -2,7 +2,7 @@ import React, { forwardRef } from 'react';
 import { createAlert } from '@gluestack-ui/alert';
 import { Root, Text, Icon } from './styled-components';
 import { GenericComponentType, IColorSchemes } from '../../types';
-import { usePropResolution } from '../../hooks/usePropResolution';
+import { usePropResolution } from '../../hooks';
 
 const AccessibleAlert = createAlert({
   Root,

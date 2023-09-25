@@ -9,7 +9,7 @@ import {
   AccessibleInputRightAddon,
 } from './styled-components';
 import { Text } from '../Text';
-import { usePropResolution } from '../../hooks/usePropResolution';
+import { usePropResolution } from '../../hooks';
 import { GenericComponentType } from '../../types';
 
 const AccessibleInput = createInput({

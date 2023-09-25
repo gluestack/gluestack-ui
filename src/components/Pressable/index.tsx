@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react';
 import { Pressable as AccessiblePressable } from './styled-components';
-import { usePropResolution } from '../../hooks/usePropResolution';
+import { usePropResolution } from '../../hooks';
 import { GenericComponentType } from '../../types';
 
 const PressableTemp = forwardRef(({ children, ...props }: any, ref?: any) => {
