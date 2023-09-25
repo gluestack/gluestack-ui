@@ -1,5 +1,6 @@
 'use client';
 export * from './components';
+export * from './hooks';
 export { config } from './components/gluestack-ui.config';
 
 export {

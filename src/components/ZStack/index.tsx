@@ -2,7 +2,7 @@ import React, { Children, cloneElement, forwardRef } from 'react';
 
 import { Root as AccessibleZStack } from './styled-components';
 
-import { usePropResolution } from '../../hooks';
+import { usePropResolution } from '../../hooks/usePropResolution';
 import { GenericComponentType } from '../../types';
 
 const ZStackTemp = forwardRef(({ children, ...props }: any, ref?: any) => {

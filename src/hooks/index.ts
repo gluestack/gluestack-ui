@@ -1,2 +1,2 @@
 export * from './useDisclose';
-export * from './usePropResolution';
+export * from './useColorMode';

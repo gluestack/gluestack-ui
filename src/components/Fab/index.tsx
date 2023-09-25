@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
 import { createFab } from '@gluestack-ui/fab';
 import { Root, Label, Icon } from './styled-components';
-import { usePropResolution } from '../../hooks';
+import { usePropResolution } from '../../hooks/usePropResolution';
 import { GenericComponentType } from '../../types';
 
 const AccessibleFab = createFab({ Root, Label, Icon });

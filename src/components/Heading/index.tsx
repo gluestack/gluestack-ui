@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react';
 import { Root as AccessibleHeading } from './styled-components';
-import { usePropResolution } from '../../hooks';
+import { usePropResolution } from '../../hooks/usePropResolution';
 import { GenericComponentType } from '../../types';
 
 const HeadingTemp = forwardRef(({ children, ...props }: any, ref?: any) => {

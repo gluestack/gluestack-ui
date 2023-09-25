@@ -1,6 +1,6 @@
 import { createSwitch } from '@gluestack-ui/switch';
 import { Root } from './styled-components';
-import { usePropResolution } from '../../hooks';
+import { usePropResolution } from '../../hooks/usePropResolution';
 import React, { forwardRef } from 'react';
 import { GenericComponentType } from '../../types';
 

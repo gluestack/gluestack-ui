@@ -2,7 +2,7 @@ import React, { forwardRef } from 'react';
 
 import { Root as AccessibleFlex } from './styled-components';
 
-import { usePropResolution } from '../../hooks';
+import { usePropResolution } from '../../hooks/usePropResolution';
 import { GenericComponentType } from '../../types';
 
 type IFlexProps = {

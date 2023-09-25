@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react';
-import { usePropResolution } from '../../hooks';
+import { usePropResolution } from '../../hooks/usePropResolution';
 import { Root as AccessibleCenter } from './styled-components';
 import { GenericComponentType } from '../../types';
 

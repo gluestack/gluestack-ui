@@ -8,7 +8,7 @@ import {
   FilledTrack,
   ThumbInteraction,
 } from './styled-components';
-import { usePropResolution } from '../../hooks';
+import { usePropResolution } from '../../hooks/usePropResolution';
 import { GenericComponentType } from '../../types';
 
 const AccessibleSlider = createSlider({

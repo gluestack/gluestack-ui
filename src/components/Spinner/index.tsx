@@ -1,7 +1,7 @@
 import { createSpinner } from '@gluestack-ui/spinner';
 import { Root } from './styled-components';
 import React, { forwardRef } from 'react';
-import { usePropResolution } from '../../hooks';
+import { usePropResolution } from '../../hooks/usePropResolution';
 import { GenericComponentType } from '../../types';
 
 const AccessibleSpinner = createSpinner({ Root });

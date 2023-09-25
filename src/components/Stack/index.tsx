@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react';
 import { Root as AccessibleStack } from './styled-components';
-import { usePropResolution } from '../../hooks';
+import { usePropResolution } from '../../hooks/usePropResolution';
 import { GenericComponentType } from '../../types';
 
 type IProps = Omit<React.ComponentProps<typeof AccessibleStack>, 'direction'>;

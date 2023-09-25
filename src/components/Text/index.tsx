@@ -1,5 +1,5 @@
 import React from 'react';
-import { usePropResolution } from '../../hooks';
+import { usePropResolution } from '../../hooks/usePropResolution';
 import { Root as AccessibleText } from './styled-components';
 import { GenericComponentType } from '../../types';
 

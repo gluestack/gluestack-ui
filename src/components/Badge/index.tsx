@@ -3,7 +3,7 @@ import {
   Icon as AccessibleBadgeIcon,
   Text as AccessibleBadgeText,
 } from './styled-components';
-import { usePropResolution } from '../../hooks';
+import { usePropResolution } from '../../hooks/usePropResolution';
 import React, { forwardRef } from 'react';
 import { GenericComponentType, IColorSchemes } from '../../types';
 

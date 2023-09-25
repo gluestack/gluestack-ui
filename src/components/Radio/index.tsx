@@ -1,7 +1,7 @@
 import { forwardRef } from 'react';
 import { Root, Group, Icon, Indicator, Label } from './styled-components';
 import { createRadio } from '@gluestack-ui/radio';
-import { usePropResolution } from '../../hooks';
+import { usePropResolution } from '../../hooks/usePropResolution';
 import React from 'react';
 import { CircleIcon } from '../Icons';
 import { GenericComponentType, IColorSchemes } from '../../types';

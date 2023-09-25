@@ -1,7 +1,7 @@
 import { createAvatar } from '@gluestack-ui/avatar';
 import { Root, Badge, Group, Image, FallbackText } from './styled-components';
 import React, { Children, cloneElement, forwardRef } from 'react';
-import { usePropResolution } from '../../hooks';
+import { usePropResolution } from '../../hooks/usePropResolution';
 import { GenericComponentType } from '../../types';
 
 const AccessibleAvatar = createAvatar({
