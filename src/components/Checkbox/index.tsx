@@ -53,7 +53,7 @@ const CheckboxGroupTemp = forwardRef(
 );
 
 const CheckboxNew = CheckboxTemp as any;
-CheckboxNew.Grooup = CheckboxGroupTemp;
+CheckboxNew.Group = CheckboxGroupTemp;
 
 export type ICheckboxComponentType<Checkbox, Group> = GenericComponentType<
   Checkbox,
