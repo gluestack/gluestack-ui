@@ -1,4 +1,3 @@
-//@ts-nocheck
 import { useStyled } from '@gluestack-style/react';
 
 import {
