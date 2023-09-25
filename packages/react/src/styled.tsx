@@ -1041,12 +1041,14 @@ export function verboseStyled<P, Variants, ComCon>(
           theme.variants,
           EXTENDED_THEME?.theme?.variants
         );
-        theme.defaultProps = deepMerge(
+        //@ts-ignore
+        theme.baseStyle.props = deepMerge(
           theme.defaultProps,
-          EXTENDED_THEME?.props
+          EXTENDED_THEME?.theme?.baseStyle.props
         );
-        // @ts-ignore
-        theme.props = deepMerge(theme.props, EXTENDED_THEME?.theme?.props);
+
+        //@ts-ignore
+        Object.assign(themeDefaultProps, theme?.baseStyle?.props);
         if (Object.keys(EXTENDED_THEME?.BUILD_TIME_PARAMS ?? {}).length > 0) {
           const EXTENDED_THEME_BUILD_TIME_PARAMS =
             EXTENDED_THEME?.BUILD_TIME_PARAMS;
