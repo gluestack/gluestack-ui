@@ -11,9 +11,6 @@ export default styled(
     resolveProps: ['contentContainerStyle'],
   } as const,
   {
-    propertyTokenMap: {
-      contentContainerStyle: 'colors',
-    },
     propertyResolver: {
       contentContainerStyle: (rawValue, resolver) => {
         // eslint-disable-next-line react-hooks/rules-of-hooks

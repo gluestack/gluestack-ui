@@ -1,6 +1,34 @@
 import { KeyboardAvoidingView } from 'react-native';
-import { styled } from '@gluestack-style/react';
+import { styled, useStyled } from '@gluestack-style/react';
+// @ts-ignore
+import { propertyTokenMap } from '@gluestack-style/react/lib/module/propertyTokenMap';
 
-export default styled(KeyboardAvoidingView, {}, {
-  componentName: 'KeyboardAvoidingView',
-} as const);
+export default styled(
+  KeyboardAvoidingView,
+  {},
+  {
+    componentName: 'KeyboardAvoidingView',
+    resolveProps: ['contentContainerStyle'],
+  } as const,
+  {
+    propertyResolver: {
+      contentContainerStyle: (rawValue, resolver) => {
+        // eslint-disable-next-line react-hooks/rules-of-hooks
+        const aliases = useStyled()?.config?.aliases;
+        const newValue = {} as Record<any, string>;
+        Object.entries(rawValue).forEach(([key, value]) => {
+          if (Object.hasOwn(aliases, key)) {
+            newValue[`${aliases[key]}`] = resolver(
+              value,
+              propertyTokenMap[aliases[key]]
+            );
+          } else {
+            newValue[`${key}`] = resolver(value, propertyTokenMap[key]);
+          }
+        });
+        rawValue = newValue;
+        return rawValue;
+      },
+    },
+  }
+);
