@@ -1,8 +1,10 @@
 {
   "name": "@gluestack-ui/themed",
-  "version": "0.1.51",
+  "version": "0.1.52-alpha.0",
   "main": "build/index.js",
   "types": "build/index.d.ts",
+  "module": "build/index",
+  "sideEffects": false,
   "description": "A universal themed components for React Native, Next.js & React",
   "keywords": [
     "react",
