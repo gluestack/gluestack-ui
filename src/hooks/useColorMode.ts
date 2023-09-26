@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { HooksContext } from '../components/Provider';
 
-export const useColorMode = () => {
+export function useColorMode() {
   const { colorMode, setColorMode } = useContext(HooksContext) as {
     colorMode: string;
     setColorMode: any;
@@ -12,4 +12,4 @@ export const useColorMode = () => {
     );
   };
   return { colorMode, toggleColorMode };
-};
+}
