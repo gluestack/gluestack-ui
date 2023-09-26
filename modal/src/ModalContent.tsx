@@ -1,7 +1,12 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, { forwardRef } from 'react';
 import { ModalContext } from './Context';
-import { Platform, findNodeHandle, AccessibilityInfo } from 'react-native';
+import {
+  Platform,
+  findNodeHandle,
+  AccessibilityInfo,
+  Keyboard,
+} from 'react-native';
 import { FocusScope } from '@react-native-aria/focus';
 import { OverlayAnimatePresence } from './OverlayAnimatePresence';
 import { useDialog } from '@react-native-aria/dialog';
@@ -39,16 +44,13 @@ const ModalContent = (StyledModalContent: any, AnimatePresence?: any) =>
 
     React.useEffect(() => {
       if (visible) {
+        Keyboard.dismiss();
         if (initialFocusRef && initialFocusRef?.current) {
-          if (initialFocusRef.current.hasOwnProperty('focus')) {
-            initialFocusRef?.current?.focus();
-          }
+          initialFocusRef?.current?.focus();
         }
       } else {
         if (finalFocusRef && finalFocusRef?.current) {
-          if (finalFocusRef.current.hasOwnProperty('focus')) {
-            finalFocusRef?.current?.focus();
-          }
+          finalFocusRef?.current?.focus();
         }
       }
     }, [initialFocusRef, finalFocusRef, visible]);
