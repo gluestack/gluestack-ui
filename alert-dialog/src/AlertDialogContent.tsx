@@ -1,6 +1,11 @@
 import React, { forwardRef } from 'react';
 import { AlertDialogContext } from './Context';
-import { Platform, AccessibilityInfo, findNodeHandle } from 'react-native';
+import {
+  Platform,
+  AccessibilityInfo,
+  findNodeHandle,
+  Keyboard,
+} from 'react-native';
 import { FocusScope } from '@react-native-aria/focus';
 import { OverlayAnimatePresence } from './OverlayAnimatePresence';
 import { useDialog } from '@react-native-aria/dialog';
@@ -41,6 +46,7 @@ const AlertDialogContent = (
 
     React.useEffect(() => {
       if (visible) {
+        Keyboard.dismiss();
         if (initialFocusRef && initialFocusRef?.current) {
           initialFocusRef?.current?.focus();
         }
