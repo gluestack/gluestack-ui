@@ -1,5 +1,11 @@
 # @gluestack-ui/themed
 
+## 0.1.53
+
+### Patch Changes
+
+- Fixed overlay components backdrop interactivity issue
+
 ## 0.1.52
 
 ### Patch Changes
