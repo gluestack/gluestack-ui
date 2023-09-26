@@ -32,7 +32,7 @@
     "@babel/preset-typescript": "^7.22.5",
     "@expo/html-elements": "latest",
     "@gluestack-style/animation-plugin": "latest",
-    "@gluestack-style/react": "^0.2.46",
+    "@gluestack-style/react": "^0.2.51",
     "@gluestack-ui/actionsheet": "latest",
     "@gluestack-ui/alert": "latest",
     "@gluestack-ui/alert-dialog": "latest",

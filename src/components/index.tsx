@@ -16,6 +16,7 @@ export * from './Flex';
 export * from './FlatList';
 export * from './FormControl';
 export * from './Heading';
+export * from './Hidden';
 export * from './HStack';
 export * from './IconButton';
 export * from './Icons';
