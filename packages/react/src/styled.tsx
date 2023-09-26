@@ -1036,29 +1036,42 @@ export function verboseStyled<P, Variants, ComCon>(
       };
 
       const EXTENDED_THEME =
-        componentName && CONFIG?.components?.[componentName]?.theme?.theme;
+        componentName && CONFIG?.components?.[componentName];
 
       // Injecting style
       if (EXTENDED_THEME) {
-        theme.variants = deepMerge(theme.variants, EXTENDED_THEME.variants);
-        theme.defaultProps = deepMerge(
+        theme.variants = deepMerge(
+          theme.variants,
+          EXTENDED_THEME?.theme?.variants
+        );
+        //@ts-ignore
+        theme.baseStyle.props = deepMerge(
           theme.defaultProps,
-          EXTENDED_THEME.props
+          EXTENDED_THEME?.theme?.baseStyle.props
         );
-        // @ts-ignore
-        theme.props = deepMerge(theme.props, EXTENDED_THEME.props);
 
-        // Merge of Extended Config Style ID's with Component Style ID's
-        deepMergeArray(
-          styleIds,
-          CONFIG?.components?.[`${componentName}`]?.theme
-            ?.extendedVerbosedStyleIds
-        );
-        // Injecting Extended StyleSheet from Config
-        orderedCSSIds = [
-          ...orderedCSSIds,
-          ...CONFIG?.components?.[`${componentName}`]?.theme?.extendedStyleIds,
-        ];
+        //@ts-ignore
+        Object.assign(themeDefaultProps, theme?.baseStyle?.props);
+        if (Object.keys(EXTENDED_THEME?.BUILD_TIME_PARAMS ?? {}).length > 0) {
+          const EXTENDED_THEME_BUILD_TIME_PARAMS =
+            EXTENDED_THEME?.BUILD_TIME_PARAMS;
+          deepMergeArray(
+            styleIds,
+            EXTENDED_THEME_BUILD_TIME_PARAMS?.verbosedStyleIds
+          );
+          GluestackStyleSheet.inject(
+            EXTENDED_THEME_BUILD_TIME_PARAMS?.toBeInjected
+          );
+        } else {
+          // Merge of Extended Config Style ID's with Component Style ID's
+          deepMergeArray(styleIds, EXTENDED_THEME?.verbosedStyleIds);
+          const extendedStylesToBeInjected = GluestackStyleSheet.resolve(
+            EXTENDED_THEME?.styledIds,
+            CONFIG,
+            componentExtendedConfig
+          );
+          GluestackStyleSheet.inject(extendedStylesToBeInjected);
+        }
       }
 
       //@ts-ignore

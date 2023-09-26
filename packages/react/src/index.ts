@@ -70,6 +70,7 @@ export type {
   Aliases,
   AliasesProps,
   ICustomConfig,
+  ICustomComponents,
   IStyledPlugin,
   IStyled,
   IAnimationDriverPlugin,
@@ -84,6 +85,9 @@ export { createGlobalStylesWeb } from './createGlobalStylesWeb';
 export { AsForwarder } from './AsForwarder';
 
 export * from './plugins';
+
+export { createStyle } from './createStyle';
+export { createComponents } from './createComponents';
 
 export { INTERNAL_updateCSSStyleInOrderedResolved } from './updateCSSStyleInOrderedResolved';
 export { createConfig, getInstalledPlugins } from './createConfig';

@@ -9,9 +9,14 @@ import { createGlobalStyles } from './createGlobalStyles';
 type Config = any;
 let colorModeSet = false;
 
-export const defaultConfig: { config: Config; colorMode: COLORMODES } = {
+export const defaultConfig: {
+  config: Config;
+  colorMode: COLORMODES;
+  components: any;
+} = {
   config: {},
   colorMode: 'light',
+  components: {},
 };
 
 const defaultContextData: Config = defaultConfig;
@@ -37,7 +42,8 @@ export const StyledProvider: React.FC<{
   colorMode?: COLORMODES;
   children?: React.ReactNode;
   globalStyles?: any;
-}> = ({ config, colorMode, children, globalStyles }) => {
+  components: any;
+}> = ({ config, colorMode, children, globalStyles, components }) => {
   const currentConfig = React.useMemo(() => {
     //TODO: Add this later
     return platformSpecificSpaceUnits(config, Platform.OS);
@@ -90,12 +96,15 @@ export const StyledProvider: React.FC<{
     config?.globalStyle && createGlobalStyles(config.globalStyle);
   const contextValue = React.useMemo(() => {
     return {
-      config: currentConfig,
+      config: {
+        ...currentConfig,
+        components,
+      },
       globalStyle: globalStyleMap,
       animationDriverData,
       setAnimationDriverData,
     };
-  }, [currentConfig, globalStyleMap, animationDriverData]);
+  }, [currentConfig, globalStyleMap, components, animationDriverData]);
 
   return (
     <StyledContext.Provider value={contextValue}>

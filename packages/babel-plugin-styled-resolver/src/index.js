@@ -89,6 +89,24 @@ const convertExpressionContainerToStaticObject = (
   };
 };
 
+function findThemeAndComponentConfig(node) {
+  let themeNode = null;
+  let componentConfigNode = null;
+  node.forEach((prop) => {
+    const propKey = prop.key.name ? prop.key.name : prop.key.value;
+    if (propKey === 'theme') {
+      themeNode = prop;
+    } else if (propKey === 'componentConfig') {
+      componentConfigNode = prop;
+    }
+  });
+
+  return {
+    themeNode,
+    componentConfigNode,
+  };
+}
+
 function addQuotesToObjectKeys(code) {
   const ast = babel.parse(`var a = ${code}`, {
     presets: [babelPresetTypeScript],
@@ -222,11 +240,97 @@ function getConfig(configPath) {
     );
   }
 }
-function getSurroundingCharacters(string, index) {
-  let start = Math.max(0, index - 5);
-  let end = Math.min(string.length, index + 6);
-  return string.slice(start, end);
+
+function getBuildTimeParams(
+  theme,
+  componentConfig,
+  extendedConfig,
+  outputLibrary,
+  platform,
+  type
+) {
+  let mergedPropertyConfig = {
+    ...ConfigDefault?.propertyTokenMap,
+    ...propertyTokenMap,
+  };
+  let componentExtendedConfig = merge(
+    {},
+    {
+      ...ConfigDefault,
+      propertyTokenMap: { ...mergedPropertyConfig },
+    }
+  );
+
+  if (theme && Object.keys(theme).length > 0) {
+    const verbosedTheme = convertStyledToStyledVerbosed(theme);
+
+    let componentHash = stableHash({
+      ...theme,
+      ...componentConfig,
+    });
+
+    if (outputLibrary) {
+      componentHash = outputLibrary + '-' + componentHash;
+    }
+
+    const { styledIds, verbosedStyleIds } = updateOrderUnResolvedMap(
+      verbosedTheme,
+      componentHash,
+      type,
+      componentConfig,
+      BUILD_TIME_GLUESTACK_STYLESHEET,
+      platform
+    );
+
+    const toBeInjected = BUILD_TIME_GLUESTACK_STYLESHEET.resolve(
+      styledIds,
+      componentExtendedConfig,
+      {}
+    );
+
+    const current_global_map = BUILD_TIME_GLUESTACK_STYLESHEET.getStyleMap();
+
+    const orderedResolvedTheme = [];
+
+    current_global_map?.forEach((styledResolved) => {
+      if (styledIds.includes(styledResolved?.meta?.cssId)) {
+        orderedResolvedTheme.push(styledResolved);
+      }
+    });
+
+    const styleIdsAst = generateObjectAst(verbosedStyleIds);
+
+    const toBeInjectedAst = generateObjectAst(toBeInjected);
+
+    const orderedResolvedAst = generateArrayAst(orderedResolvedTheme);
+
+    const orderedStyleIdsArrayAst = types.arrayExpression(
+      styledIds?.map((cssId) => types.stringLiteral(cssId))
+    );
+
+    const resultParamsNode = types.objectExpression([
+      types.objectProperty(
+        types.stringLiteral('orderedResolved'),
+        orderedResolvedAst
+      ),
+      types.objectProperty(
+        types.stringLiteral('toBeInjected'),
+        toBeInjectedAst
+      ),
+      types.objectProperty(
+        types.stringLiteral('styledIds'),
+        orderedStyleIdsArrayAst
+      ),
+      types.objectProperty(
+        types.stringLiteral('verbosedStyleIds'),
+        styleIdsAst
+      ),
+    ]);
+    return resultParamsNode;
+  }
+  return null;
 }
+
 function getExportedConfigFromFileString(fileData) {
   if (!fileData) {
     return {};
@@ -375,6 +479,48 @@ function getIdentifiersObjectFromAstNode(node) {
   );
 }
 
+function generateObjectAst(obj) {
+  let properties = Object.entries(obj).map(([key, value]) => {
+    if (typeof value === 'undefined') {
+      return;
+    } else if (typeof value === 'object' && !Array.isArray(value)) {
+      return types.objectProperty(
+        types.stringLiteral(key),
+        generateObjectAst(value)
+      );
+    } else if (typeof value === 'object' && Array.isArray(value)) {
+      let elements = value.map((obj) => {
+        if (typeof obj === 'string') {
+          return types.stringLiteral(obj);
+        } else {
+          return generateObjectAst(obj);
+        }
+      });
+      return types.objectProperty(
+        types.stringLiteral(key),
+        types.arrayExpression(elements)
+      );
+    } else if (typeof value === 'boolean') {
+      return types.objectProperty(
+        types.stringLiteral(key),
+        types.booleanLiteral(value)
+      );
+    } else {
+      return types.objectProperty(
+        types.stringLiteral(key),
+        typeof value === 'number'
+          ? types.numericLiteral(value)
+          : types.stringLiteral(value)
+      );
+    }
+  });
+
+  return types.objectExpression(properties.filter((property) => property));
+}
+function generateArrayAst(arr) {
+  return types.arrayExpression(arr.map((obj) => generateObjectAst(obj)));
+}
+
 function isImportedFromLibrary(libraries, importName) {
   if (libraries.includes(importName)) {
     return true;
@@ -406,41 +552,6 @@ let ConfigDefault = CONFIG;
 module.exports = function (b) {
   const { types: t } = b;
 
-  function generateObjectAst(obj) {
-    let properties = Object.entries(obj).map(([key, value]) => {
-      if (typeof value === 'undefined') {
-        return;
-      } else if (typeof value === 'object' && !Array.isArray(value)) {
-        return t.objectProperty(t.stringLiteral(key), generateObjectAst(value));
-      } else if (typeof value === 'object' && Array.isArray(value)) {
-        let elements = value.map((obj) => {
-          if (typeof obj === 'string') {
-            return t.stringLiteral(obj);
-          } else {
-            return generateObjectAst(obj);
-          }
-        });
-        return t.objectProperty(
-          t.stringLiteral(key),
-          t.arrayExpression(elements)
-        );
-      } else if (typeof value === 'boolean') {
-        return t.objectProperty(t.stringLiteral(key), t.booleanLiteral(value));
-      } else {
-        return t.objectProperty(
-          t.stringLiteral(key),
-          typeof value === 'number'
-            ? t.numericLiteral(value)
-            : t.stringLiteral(value)
-        );
-      }
-    });
-
-    return t.objectExpression(properties.filter((property) => property));
-  }
-  function generateArrayAst(arr) {
-    return t.arrayExpression(arr.map((obj) => generateObjectAst(obj)));
-  }
   function checkWebFileExists(filePath) {
     if (filePath.includes('node_modules')) {
       return false;
@@ -469,6 +580,10 @@ module.exports = function (b) {
   let isStyledPathConfigured = false;
   let isComponentsPathConfigured = false;
   let targetPlatform = process.env.GLUESTACK_STYLE_TARGET;
+  let createStyleImportedName = '';
+  let createComponentsImportedName = '';
+  const CREATE_STYLE = 'createStyle';
+  const CREATE_COMPONENTS = 'createComponents';
 
   return {
     name: 'ast-transform', // not required
@@ -554,6 +669,15 @@ module.exports = function (b) {
               if (importSpecifierPath.node.imported.name === 'styled') {
                 styledImportName = importSpecifierPath.node.local.name;
               }
+              if (importSpecifierPath.node.imported.name === CREATE_STYLE) {
+                createStyleImportedName = importSpecifierPath.node.local.name;
+              }
+              if (
+                importSpecifierPath.node.imported.name === CREATE_COMPONENTS
+              ) {
+                createComponentsImportedName =
+                  importSpecifierPath.node.local.name;
+              }
               if (importSpecifierPath.node.imported.name === styledAlias) {
                 styledAliasImportedName = importSpecifierPath.node.local.name;
               }
@@ -575,28 +699,35 @@ module.exports = function (b) {
           }
         }
       },
-
       CallExpression(callExpressionPath) {
-        if (
-          callExpressionPath.node.callee.name === styledAliasImportedName ||
-          callExpressionPath.node.callee.name === styledImportName
-        ) {
-          let componentName = callExpressionPath?.parent?.id?.name;
-
-          if (componentName) {
-            guessingStyledComponents.push(componentName);
-          }
-          callExpressionPath.traverse({
-            ObjectProperty(ObjectPath) {
-              if (t.isIdentifier(ObjectPath.node.value)) {
-                if (ObjectPath.node.value.name === 'undefined') {
-                  ObjectPath.remove();
+        if (isValidConfig) {
+          const calleeName = callExpressionPath.node.callee.name;
+          if (
+            calleeName === styledAliasImportedName ||
+            calleeName === styledImportName ||
+            calleeName === createComponentsImportedName ||
+            calleeName === createStyleImportedName
+          ) {
+            callExpressionPath.traverse({
+              ObjectProperty(ObjectPath) {
+                if (t.isIdentifier(ObjectPath.node.value)) {
+                  if (ObjectPath.node.value.name === 'undefined') {
+                    ObjectPath.remove();
+                  }
                 }
-              }
-            },
-          });
+              },
+            });
+          }
+          if (
+            calleeName === styledAliasImportedName ||
+            calleeName === styledImportName
+          ) {
+            let componentName = callExpressionPath?.parent?.id?.name;
 
-          if (isValidConfig) {
+            if (componentName) {
+              guessingStyledComponents.push(componentName);
+            }
+
             let args = callExpressionPath.node.arguments;
 
             let componentThemeNode = args[1];
@@ -633,89 +764,16 @@ module.exports = function (b) {
                 extendedThemeNode.properties.push(tempPropertyResolverNode);
               }
 
-              // getExportedConfigFromFileString(ConfigDefault);
-              let mergedPropertyConfig = {
-                ...ConfigDefault?.propertyTokenMap,
-                ...propertyTokenMap,
-              };
-              let componentExtendedConfig = merge(
-                {},
-                {
-                  ...ConfigDefault,
-                  propertyTokenMap: { ...mergedPropertyConfig },
-                },
-                ExtendedConfig
+              const resultParamsNode = getBuildTimeParams(
+                theme,
+                componentConfig,
+                ExtendedConfig,
+                outputLibrary,
+                platform,
+                'boot'
               );
 
-              if (theme && Object.keys(theme).length > 0) {
-                const verbosedTheme = convertStyledToStyledVerbosed(theme);
-
-                let componentHash = stableHash({
-                  ...theme,
-                  ...componentConfig,
-                  ...ExtendedConfig,
-                });
-
-                if (outputLibrary) {
-                  componentHash = outputLibrary + '-' + componentHash;
-                }
-
-                const { styledIds, verbosedStyleIds } =
-                  updateOrderUnResolvedMap(
-                    verbosedTheme,
-                    componentHash,
-                    'boot',
-                    componentConfig,
-                    BUILD_TIME_GLUESTACK_STYLESHEET,
-                    platform
-                  );
-
-                const toBeInjected = BUILD_TIME_GLUESTACK_STYLESHEET.resolve(
-                  styledIds,
-                  componentExtendedConfig,
-                  ExtendedConfig
-                );
-
-                const current_global_map =
-                  BUILD_TIME_GLUESTACK_STYLESHEET.getStyleMap();
-
-                const orderedResolvedTheme = [];
-
-                current_global_map?.forEach((styledResolved) => {
-                  if (styledIds.includes(styledResolved?.meta?.cssId)) {
-                    orderedResolvedTheme.push(styledResolved);
-                  }
-                });
-
-                let styleIdsAst = generateObjectAst(verbosedStyleIds);
-
-                let toBeInjectedAst = generateObjectAst(toBeInjected);
-
-                let orderedResolvedAst = generateArrayAst(orderedResolvedTheme);
-
-                let orderedStyleIdsArrayAst = t.arrayExpression(
-                  styledIds?.map((cssId) => t.stringLiteral(cssId))
-                );
-
-                let resultParamsNode = t.objectExpression([
-                  t.objectProperty(
-                    t.stringLiteral('orderedResolved'),
-                    orderedResolvedAst
-                  ),
-                  t.objectProperty(
-                    t.stringLiteral('toBeInjected'),
-                    toBeInjectedAst
-                  ),
-                  t.objectProperty(
-                    t.stringLiteral('styledIds'),
-                    orderedStyleIdsArrayAst
-                  ),
-                  t.objectProperty(
-                    t.stringLiteral('verbosedStyleIds'),
-                    styleIdsAst
-                  ),
-                ]);
-
+              if (resultParamsNode) {
                 while (args.length < 4) {
                   args.push(t.objectExpression([]));
                 }
@@ -745,6 +803,92 @@ module.exports = function (b) {
 
             // console.log('final', generate(path.node).code);
             // console.log('\n >>>>>>>>>>>>>>>>>>>>>\n\n');
+          }
+          if (calleeName === createStyleImportedName) {
+            let args = callExpressionPath.node.arguments;
+
+            let componentThemeNode = args[0];
+            let componentConfigNode = args[1] ?? t.objectExpression([]);
+
+            if (
+              !(
+                t.isIdentifier(componentThemeNode) ||
+                t.isIdentifier(componentConfigNode)
+              )
+            ) {
+              let theme = getObjectFromAstNode(componentThemeNode);
+              let componentConfig = getObjectFromAstNode(componentConfigNode);
+
+              const resultParamsNode = getBuildTimeParams(
+                theme,
+                componentConfig,
+                {},
+                outputLibrary,
+                platform,
+                'extended'
+              );
+
+              if (resultParamsNode) {
+                while (args.length < 3) {
+                  args.push(t.objectExpression([]));
+                }
+                if (!args[2]) {
+                  args.push(resultParamsNode);
+                } else {
+                  args[2] = resultParamsNode;
+                }
+              }
+            }
+          }
+          if (calleeName === createComponentsImportedName) {
+            /*
+          extended theme components AST
+          {
+            box: {
+              theme: {},
+            },
+            button: {
+              theme: {},
+            },
+          }
+          */
+            const extendedThemeComponents =
+              callExpressionPath.node.arguments[0].properties;
+            extendedThemeComponents.forEach((property) => {
+              if (
+                !t.isIdentifier(property.value) &&
+                !t.isTemplateLiteral(property.value) &&
+                !t.isConditionalExpression(property.value)
+              ) {
+                const { themeNode, componentConfigNode } =
+                  findThemeAndComponentConfig(property.value.properties);
+
+                let theme = themeNode
+                  ? getObjectFromAstNode(themeNode?.value)
+                  : {};
+                let componentConfig = componentConfigNode
+                  ? getObjectFromAstNode(componentConfigNode?.value)
+                  : {};
+
+                const resultParamsNode = getBuildTimeParams(
+                  theme,
+                  componentConfig,
+                  {},
+                  outputLibrary,
+                  platform,
+                  'extended'
+                );
+
+                if (resultParamsNode) {
+                  property.value.properties.push(
+                    t.objectProperty(
+                      t.stringLiteral('BUILD_TIME_PARAMS'),
+                      resultParamsNode
+                    )
+                  );
+                }
+              }
+            });
           }
         }
       },

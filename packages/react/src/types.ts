@@ -110,12 +110,6 @@ export type GlueStackConfig<
   globalStyle?: GlobalStyles<IGlobalAliases, IToken, IGlobalStyle>;
   plugins?: PluginType;
   themes?: ThemeStyles<IToken>;
-  components?: {
-    [key: string]: {
-      theme: Partial<GlobalStyles<IGlobalAliases, IToken, IGlobalStyle>>;
-      componentConfig?: IComponentStyleConfig;
-    };
-  };
 };
 
 export type ComponentsThemeType<IGlobalAliases, IToken, IComponents> = {
@@ -138,6 +132,12 @@ export type CreateGenericConfig = GlueStackConfig<
   GenericAliases,
   GenericGlobalStyle,
   GlobalPluginType
+>;
+
+export type CreateGenericComponents = GlueStackConfig<
+  Tokens,
+  GenericAliases,
+  GenericGlobalStyle
 >;
 
 // All Aliases
@@ -176,14 +176,12 @@ export type SxStyleProps<
 //@ts-ignore
 type GlobalVariants = GSConfig['globalStyle']['variants'];
 
-export type IComponentStyleConfig<ComCon = unknown> = Partial<
-  {
-    descendantStyle: any;
-    ancestorStyle: any;
-    resolveProps: any;
-    componentName: ComCon;
-  } & { [key: string]: any }
->;
+export type IComponentStyleConfig<ComCon = any> = Partial<{
+  descendantStyle: any;
+  ancestorStyle: any;
+  resolveProps: any;
+  componentName: ComCon;
+}>;
 
 export type Config = {
   alias: { [K: string]: any };
@@ -730,9 +728,18 @@ export type StyleIds = {
 
 export interface ICustomConfig {}
 
+export interface ICustomComponents {}
+
 export interface GSConfig
   extends Omit<CreateGenericConfig, keyof ICustomConfig>,
-    ICustomConfig {}
+    ICustomConfig,
+    GenericComponents {
+  components: ICustomComponents;
+}
+
+interface GenericComponents {
+  components: {};
+}
 
 /********************* COMPONENT PROPS TYPE *****************************************/
 
@@ -849,9 +856,9 @@ export type RNStyles<GenericComponentStyles> = TokenizedRNStyleProps<
   >
 >;
 
-type UnionToIntersection<U> = (U extends any ? (k: U) => void : never) extends (
-  k: infer I
-) => void
+export type UnionToIntersection<U> = (
+  U extends any ? (k: U) => void : never
+) extends (k: infer I) => void
   ? I
   : never;
 
@@ -937,3 +944,18 @@ export type GlobalStyleMap = Map<
     }>;
   }>
 >;
+
+export type ExtendedTheme<Variants> = ITheme<
+  Variants,
+  ViewProps | ImageProps | TextProps
+>;
+
+// export type CreateStyle<Component> = {
+//   theme: Component &
+//     ITheme<Component['variants'], ViewProps | ImageProps | TextProps>;
+//   componentConfig?: Omit<IComponentStyleConfig, 'componentName'>;
+// };
+
+export type CreateComponents<T> = {
+  [key in keyof T]: T[key];
+};
