@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react';
-import { Path, G } from './nbSvg';
+import { Path, G } from 'react-native-svg';
 
 interface CreateIconOptions {
   Root?: any;
