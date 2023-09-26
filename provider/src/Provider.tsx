@@ -2,43 +2,30 @@ import React from 'react';
 import { Platform } from 'react-native';
 import { keyboardDismissHandlerManager } from '@react-native-aria/interactions';
 
-export const GluestackUIContext = React.createContext<any>({});
+export const Provider = ({ StyledProvider }: any) => {
+  const ProviderImpl: React.FC<any> = ({ children, ...props }) => {
+    React.useEffect(() => {
+      let escapeKeyListener: any = null;
 
-export const GluestackUIContextProvider = ({ children, ...props }: any) => {
-  React.useEffect(() => {
-    let escapeKeyListener: any = null;
-
-    if (Platform.OS === 'web') {
-      escapeKeyListener = (e: KeyboardEvent) => {
-        if (e.key === 'Escape') {
-          if (keyboardDismissHandlerManager.length() > 0) {
-            const lastHandler: any = keyboardDismissHandlerManager.pop();
-            lastHandler();
+      if (Platform.OS === 'web') {
+        escapeKeyListener = (e: KeyboardEvent) => {
+          if (e.key === 'Escape') {
+            if (keyboardDismissHandlerManager.length() > 0) {
+              const lastHandler: any = keyboardDismissHandlerManager.pop();
+              lastHandler();
+            }
           }
+        };
+        document.addEventListener('keydown', escapeKeyListener);
+      }
+
+      return () => {
+        if (Platform.OS === 'web') {
+          document.removeEventListener('keydown', escapeKeyListener);
         }
       };
-      document.addEventListener('keydown', escapeKeyListener);
-    }
-
-    return () => {
-      if (Platform.OS === 'web') {
-        document.removeEventListener('keydown', escapeKeyListener);
-      }
-    };
-  }, []);
-  return (
-    <GluestackUIContext.Provider {...props}>
-      {children}
-    </GluestackUIContext.Provider>
-  );
-};
-
-export const Provider = ({ StyledProvider }: any) => {
-  return ({ children, ...props }: any) => {
-    return (
-      <GluestackUIContextProvider>
-        <StyledProvider {...props}>{children}</StyledProvider>
-      </GluestackUIContextProvider>
-    );
+    }, []);
+    return <StyledProvider {...props}>{children}</StyledProvider>;
   };
+  return ProviderImpl;
 };
