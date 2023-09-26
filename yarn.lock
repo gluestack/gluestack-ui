@@ -2835,7 +2835,7 @@
   dependencies:
     "@gluestack-ui/utils" "^0.1.3"
 
-"@gluestack-ui/button@^0.1.26":
+"@gluestack-ui/button@^0.1.15", "@gluestack-ui/button@^0.1.26":
   version "0.1.26"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/button/-/button-0.1.26.tgz#1f66707e18f75524d47581298896bc0a3d9f41dd"
   integrity sha512-TIZkqpTJwEn87QqmrimGKXaGZvbDhJxxRBDYq3UZlLG2j95RZ0bLwO1bLEIcE8KXJc6sGUWEvLj/4efGhijyXw==
@@ -2953,6 +2953,15 @@
   integrity sha512-+n0Lf3FM/OnH7lbW+g+9Jf3ETuIY82O3k8kHfe2BotijdWc3fUkI+IYaNjveZG81FhkbBKipP9kUPCEnq1Pppg==
   dependencies:
     "@gluestack-ui/utils" "^0.1.3"
+
+"@gluestack-ui/icon@^0.1.10":
+  version "0.1.10"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/icon/-/icon-0.1.10.tgz#e641162807473b1e4e7b9586e914c472aa3853c3"
+  integrity sha512-5sSWG9R3jCdUWcLAc3qII1F+rETAEKRYYHXJNJo+IhmbxWABE93DAWIGSICuFl6WFN35hen/pp01iWKQdnnRng==
+  dependencies:
+    "@gluestack-ui/provider" "^0.1.6"
+    "@gluestack-ui/utils" "^0.1.5"
+    "@react-native-aria/focus" "^0.2.7"
 
 "@gluestack-ui/icon@^0.1.3":
   version "0.1.6"
@@ -3235,6 +3244,15 @@
   dependencies:
     "@gluestack-ui/utils" "^0.1.3"
 
+"@gluestack-ui/provider@0.1.9":
+  version "0.1.9"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/provider/-/provider-0.1.9.tgz#9956de72f462633671c57e3d16e575b6a8d19e0a"
+  integrity sha512-23H9YxiIo3Jt9vyygjHm985V2ByVjozA8M4Tw3rrXFu0wSHnlV86P4ZZVnM3zzDTA2AgBXsEkC9AIkHiyrKNMQ==
+  dependencies:
+    "@react-native-aria/interactions" "^0.2.10"
+    tsconfig "7"
+    typescript "^4.9.4"
+
 "@gluestack-ui/provider@^0.1.3", "@gluestack-ui/provider@^0.1.4", "@gluestack-ui/provider@^0.1.6", "@gluestack-ui/provider@^0.1.7":
   version "0.1.7"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/provider/-/provider-0.1.7.tgz#d71783c70cbfbac9a5dd0b1006e8dae66818b6a3"
@@ -3440,6 +3458,47 @@
     "@gluestack-ui/utils" "^0.1.3"
     "@react-native-aria/focus" "^0.2.7"
     react-native-svg "13.4.0"
+
+"@gluestack-ui/themed@^0.1.51":
+  version "0.1.51"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/themed/-/themed-0.1.51.tgz#868b8c76fa8d5d6ee23a0ae9e2674a84a8cd5e43"
+  integrity sha512-zCLxeZEif//vbbiCxoLwGTPORPd7O3YWOpgszIj1iPwU4KKiSXkOpQ3edVbt62idMdzkTAwWJxXpaoRKp33kTw==
+  dependencies:
+    "@expo/html-elements" latest
+    "@gluestack-style/animation-plugin" "^0.1.12"
+    "@gluestack-ui/actionsheet" "^0.2.20"
+    "@gluestack-ui/alert" "^0.1.8"
+    "@gluestack-ui/alert-dialog" "^0.1.16"
+    "@gluestack-ui/avatar" "^0.1.10"
+    "@gluestack-ui/button" "^0.1.26"
+    "@gluestack-ui/checkbox" "^0.1.17"
+    "@gluestack-ui/divider" "^0.1.5"
+    "@gluestack-ui/fab" "^0.1.12"
+    "@gluestack-ui/form-control" "^0.1.10"
+    "@gluestack-ui/hstack" "^0.1.11"
+    "@gluestack-ui/icon" "^0.1.9"
+    "@gluestack-ui/image" "^0.1.1"
+    "@gluestack-ui/input" "^0.1.16"
+    "@gluestack-ui/linear-gradient" "^0.1.1"
+    "@gluestack-ui/link" "^0.1.10"
+    "@gluestack-ui/menu" "^0.2.19"
+    "@gluestack-ui/modal" "^0.1.20"
+    "@gluestack-ui/overlay" "^0.1.8"
+    "@gluestack-ui/popover" "^0.1.21"
+    "@gluestack-ui/pressable" "^0.1.9"
+    "@gluestack-ui/progress" "^0.1.7"
+    "@gluestack-ui/provider" "^0.1.7"
+    "@gluestack-ui/radio" "^0.1.18"
+    "@gluestack-ui/select" "^0.1.14"
+    "@gluestack-ui/slider" "^0.1.11"
+    "@gluestack-ui/spinner" "^0.1.10"
+    "@gluestack-ui/switch" "^0.1.12"
+    "@gluestack-ui/tabs" "^0.1.11"
+    "@gluestack-ui/textarea" "^0.1.13"
+    "@gluestack-ui/toast" "^0.1.15"
+    "@gluestack-ui/tooltip" "^0.1.17"
+    "@gluestack-ui/vstack" "^0.1.11"
+    "@legendapp/motion" latest
 
 "@gluestack-ui/toast@^0.1.15":
   version "0.1.15"
