@@ -1,3 +1,6 @@
+import { AnimationResolver } from '@gluestack-style/animation-resolver';
+import { MotionAnimationDriver } from '@gluestack-style/legend-motion-animation-driver';
+
 export const config = {
   componentPath: '/components',
   theme: {
@@ -691,5 +694,6 @@ export const config = {
         },
       },
     },
+    plugins: [new AnimationResolver(MotionAnimationDriver)],
   },
 } as const;
