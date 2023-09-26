@@ -76,7 +76,7 @@ export type AliasesType = {
   [key: string]: keyof RNStyledProps;
 };
 
-export type GlobalPluginType = [];
+export type GlobalPluginType = unknown;
 export type GenericAliases = {};
 export type GenericGlobalStyle = {
   // variants: {};
@@ -113,7 +113,7 @@ export type GlueStackConfig<
   components?: {
     [key: string]: {
       theme: Partial<GlobalStyles<IGlobalAliases, IToken, IGlobalStyle>>;
-      componentConfig?: IConfigProps;
+      componentConfig?: IComponentStyleConfig;
     };
   };
 };
@@ -153,7 +153,6 @@ export type SxStyleProps<
   PluginType
 > = {
   sx?: Partial<
-    // @ts-ignore
     SxProps<
       GenericComponentStyles,
       Variants,
@@ -167,7 +166,8 @@ export type SxStyleProps<
         Variants,
         GenericComponentProps,
         '',
-        Key
+        Key,
+        PluginType
       >;
     }
   >;
@@ -175,13 +175,6 @@ export type SxStyleProps<
 
 //@ts-ignore
 type GlobalVariants = GSConfig['globalStyle']['variants'];
-
-export interface IConfigProps {
-  descendantStyle: Array<string>;
-  ancestorStyle: Array<string>;
-  resolveProps: Array<string>;
-  componentName: string;
-}
 
 export type IComponentStyleConfig<ComCon = unknown> = Partial<
   {
@@ -191,7 +184,6 @@ export type IComponentStyleConfig<ComCon = unknown> = Partial<
     componentName: ComCon;
   } & { [key: string]: any }
 >;
-export type ConfigType = Partial<IConfigProps> & { [key: string]: any };
 
 export type Config = {
   alias: { [K: string]: any };
@@ -238,7 +230,9 @@ export type GlobalVariantSx<Aliases, Tokens, Variants, PLATFORM = ''> = Partial<
     RNStyledProps &
     GlobalVariantAliasesProps<Aliases, Tokens> & {
       [k in keyof Variants]?: keyof Variants[k];
-    };
+    } & {
+      as?: any;
+    } & Partial<{ [Key: string]: any }>;
 } & {
   [Key in `_${COLORMODES}`]?: GlobalVariantSx<
     Aliases,
@@ -308,11 +302,13 @@ export type GlobalStyles<AliasTypes, TokenTypes, Variants> = GlobalVariantSx<
 export type ITheme<Variants, P> = Partial<
   StyledThemeProps<
     Variants,
-    //@ts-ignore
-    P['style'],
+    'style' extends keyof P ? P['style'] : {},
     P,
-    //@ts-ignore
-    P['animationComponentGluestack'] extends true ? Plugins : []
+    'animationComponentGluestack' extends keyof P
+      ? P['animationComponentGluestack'] extends true
+        ? Plugins
+        : unknown
+      : unknown
   >
 >;
 
@@ -378,7 +374,8 @@ type PassingPropsType<
   GenericComponentStyles,
   Variants,
   GenericComponentProps,
-  MediaQuery
+  MediaQuery,
+  PluginType
 > = MediaQuery extends ''
   ? {
       props?: Partial<
@@ -391,7 +388,8 @@ type PassingPropsType<
               VariantType<
                 Variants,
                 GenericComponentStyles,
-                GenericComponentProps
+                GenericComponentProps,
+                PluginType
               >,
               GlobalVariants
             >]?:
@@ -399,7 +397,8 @@ type PassingPropsType<
                   VariantType<
                     Variants,
                     GenericComponentStyles,
-                    GenericComponentProps
+                    GenericComponentProps,
+                    PluginType
                   >,
                   GlobalVariants
                 >[Key];
@@ -445,89 +444,100 @@ export type SxProps<
   GenericComponentProps = unknown,
   PLATFORM = '',
   MediaQuery = '',
-  PluginType = []
-> = Partial<
-  StylePropsType<GenericComponentStyles, PLATFORM> &
-    PassingPropsType<
-      GenericComponentStyles,
-      Variants,
-      GenericComponentProps,
-      MediaQuery
+  PluginType = unknown
+> =
+  | Partial<
+      StylePropsType<GenericComponentStyles, PLATFORM> &
+        PassingPropsType<
+          GenericComponentStyles,
+          Variants,
+          GenericComponentProps,
+          MediaQuery,
+          PluginType
+        >
     >
-> &
-  Partial<
-    PluginPropsType<
-      PluginType,
-      GenericComponentProps,
-      GenericComponentStyles,
-      PLATFORM
-    >
-  > & {
-    [Key in `_${COLORMODES}`]?: SxProps<
-      GenericComponentStyles,
-      Variants,
-      GenericComponentProps,
-      PLATFORM,
-      MediaQuery,
-      PluginType
-    >;
-  } & {
-    [Key in `:${IState}`]?: SxProps<
-      GenericComponentStyles,
-      Variants,
-      GenericComponentProps,
-      PLATFORM,
-      MediaQuery,
-      PluginType
-    >;
-  } & {
-    [Key in `_${PLATFORMS}`]?: SxProps<
-      GenericComponentStyles,
-      Variants,
-      GenericComponentProps,
-      Key,
-      MediaQuery,
-      PluginType
-    > &
-      PassingPropsType<
+  | (Partial<
+      PluginPropsType<
+        PluginType,
+        GenericComponentProps,
+        GenericComponentStyles,
+        PLATFORM
+      >
+    > & {
+      [Key in `_${COLORMODES}`]?: SxProps<
         GenericComponentStyles,
         Variants,
         GenericComponentProps,
-        MediaQuery
-      > &
-      Partial<{
-        [key: string]: any;
-      }>;
-  } & {
-    [Key in `_${string}`]?: SxProps<
-      RNStyledProps,
-      {},
-      GenericComponentProps,
-      PLATFORM,
-      MediaQuery,
-      PluginType
-    > &
-      PassingPropsType<
+        PLATFORM,
+        MediaQuery,
+        PluginType
+      >;
+    } & {
+      [Key in `:${IState}`]?: SxProps<
         GenericComponentStyles,
+        Variants,
+        GenericComponentProps,
+        PLATFORM,
+        MediaQuery,
+        PluginType
+      >;
+    } & {
+      [Key in `_${PLATFORMS}`]?: SxProps<
+        GenericComponentStyles,
+        Variants,
+        GenericComponentProps,
+        Key,
+        MediaQuery,
+        PluginType
+      > &
+        PassingPropsType<
+          GenericComponentStyles,
+          Variants,
+          GenericComponentProps,
+          MediaQuery,
+          PluginType
+        > &
+        Partial<{
+          [key: string]: any;
+        }>;
+    } & {
+      [Key in `_${string}`]?: SxProps<
+        RNStyledProps,
         {},
         GenericComponentProps,
-        MediaQuery
+        PLATFORM,
+        MediaQuery,
+        PluginType
       > &
-      Partial<{
-        [key: string]: any;
-      }>;
-  };
+        PassingPropsType<
+          GenericComponentStyles,
+          {},
+          GenericComponentProps,
+          MediaQuery,
+          PluginType
+        > &
+        Partial<{
+          [key: string]: any;
+        }>;
+    });
 
 export type VariantType<
   Variants,
   GenericComponentStyles,
   GenericComponentProps,
-  PluginTypes = []
+  PluginTypes
 > =
   | {
       [Key1 in keyof Variants]: {
         [Key in keyof Variants[Key1]]: Partial<
-          SxProps<GenericComponentStyles, Variants, '', '', PluginTypes> & {
+          SxProps<
+            GenericComponentStyles,
+            Variants,
+            GenericComponentProps,
+            '',
+            '',
+            PluginTypes
+          > & {
             [K in `@${IMediaQueries}`]?: SxProps<
               GenericComponentStyles,
               Variants,

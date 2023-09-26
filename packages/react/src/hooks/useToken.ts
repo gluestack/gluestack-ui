@@ -1,4 +1,5 @@
-import { useStyled, ICustomConfig } from '@gluestack-style/react';
+import { useStyled } from '../StyledProvider';
+import type { ICustomConfig } from '../types';
 
 /**
  *
