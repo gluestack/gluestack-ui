@@ -1,29 +1,30 @@
+// @ts-nocheck
 import React, {
-  useCallback,
-  useEffect,
-  useLayoutEffect,
-  useMemo,
-  useRef,
+  // useCallback,
+  // useEffect,
+  // useLayoutEffect,
+  // useMemo,
+  // useRef,
   useState,
 } from 'react';
 
 import {
-  Pressable as RNPressable,
-  Text as RNText,
-  StyleSheet,
+  // Pressable as RNPressable,
+  // Text as RNText,
+  // StyleSheet,
   View,
   Pressable,
   Text,
 } from 'react-native';
 import {
-  AsForwarder,
+  // AsForwarder,
   styled,
-  Theme,
+  // Theme,
   StyledProvider,
 } from '@gluestack-style/react';
 import { config } from './gluestack-ui.config';
-import { createMotionAnimatedComponent, Motion } from '@legendapp/motion';
-import { AnimationResolver } from '@gluestack-style/animation-plugin';
+// import { createMotionAnimatedComponent, Motion } from '@legendapp/motion';
+// import { AnimationResolver } from '@gluestack-style/animation-plugin';
 
 const Box = styled(View, {
   bg: '$yellow500',

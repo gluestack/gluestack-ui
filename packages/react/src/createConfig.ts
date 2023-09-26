@@ -6,12 +6,14 @@ import { stableHash } from './stableHash';
 import { propertyTokenMap } from './propertyTokenMap';
 import { updateOrderUnResolvedMap } from './updateOrderUnResolvedMap';
 
-var globalPluginStore: any = [];
-
-function setGlobalPluginStore(plugins: Array<any>) {
-  globalPluginStore.push(...plugins);
+var globalPluginStore: never[] = [];
+function setGlobalPluginStore(plugins: any) {
+  if (plugins) {
+    // @ts-ignore
+    globalPluginStore.push(...plugins);
+  }
+  return getGlobalPluginStore();
 }
-
 function getGlobalPluginStore() {
   return globalPluginStore;
 }
@@ -25,7 +27,8 @@ export const createConfig = <
     //@ts-ignore
     T['tokens'],
     T['aliases'],
-    T['globalStyle']
+    T['globalStyle'],
+    T['plugins']
   >
 >(
   config:
@@ -34,13 +37,14 @@ export const createConfig = <
         //@ts-ignore
         T['tokens'],
         T['aliases'],
-        T['globalStyle']
+        T['globalStyle'],
+        T['plugins']
       >
 ): T => {
   if (config.plugins) {
-    setGlobalPluginStore(config.plugins);
+    config.plugins = setGlobalPluginStore(config.plugins);
   }
-  delete config.plugins;
+  // delete config.plugins;
 
   if (
     !config.components &&

@@ -70,19 +70,22 @@ export type {
   Aliases,
   AliasesProps,
   ICustomConfig,
+  IStyledPlugin,
+  IStyled,
+  IAnimationDriverPlugin,
   GSConfig,
 } from './types';
 export { createStyled } from './createStyled';
-export type { IStyledPlugin, IStyled } from './createStyled';
+
 export { createGlobalStylesWeb } from './createGlobalStylesWeb';
 // export { styled };
 // export { flush } from './utils/css-injector';
 
 export { AsForwarder } from './AsForwarder';
 
-export { AddCssTokenVariables, FontResolver } from './plugins';
+export * from './plugins';
 
 export { INTERNAL_updateCSSStyleInOrderedResolved } from './updateCSSStyleInOrderedResolved';
-export { createConfig } from './createConfig';
+export { createConfig, getInstalledPlugins } from './createConfig';
 export * from './core';
 export * from './hooks';

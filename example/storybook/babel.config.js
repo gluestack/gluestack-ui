@@ -5,6 +5,7 @@ module.exports = function (api) {
   return {
     presets: ['babel-preset-expo'],
     plugins: [
+      'react-native-reanimated/plugin',
       process.env.NODE_ENV !== 'production'
         ? [
             'module-resolver',
@@ -15,14 +16,18 @@ module.exports = function (api) {
                   __dirname,
                   '../../packages/react/src'
                 ),
-                ['@gluestack-style/animation-plugin']: path.join(
+                ['@gluestack-style/legend-motion-animation-driver']: path.join(
                   __dirname,
-                  '../../packages/animation-plugin/src'
+                  '../../packages/animation-legend-motion-driver/src'
                 ),
-                // ['@gluestack-style/animation-plugin']: path.join(
-                //   __dirname,
-                //   '../../packages/animation-plugin/src'
-                // ),
+                ['@gluestack-style/moti-driver']: path.join(
+                  __dirname,
+                  '../../packages/animation-moti-animation-driver/src'
+                ),
+                ['@gluestack-style/animation-resolver']: path.join(
+                  __dirname,
+                  '../../packages/animation-resolver/src'
+                ),
                 // ['@dank-style/react']: path.join(
                 //   __dirname,
                 //   '../../packages/react/src'
