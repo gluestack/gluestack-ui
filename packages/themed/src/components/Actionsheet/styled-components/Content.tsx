@@ -8,7 +8,7 @@ export default styled(
     alignItems: 'center',
     borderTopLeftRadius: '$3xl',
     borderTopRightRadius: '$3xl',
-    h: '$full',
+    maxHeight: '70%',
     p: '$2',
     bg: '$backgroundLight0',
     _sectionHeaderBackground: {
