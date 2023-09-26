@@ -87,11 +87,6 @@ export interface InterfaceTooltipProps {
    * @default true
    */
   shouldFlip?: boolean;
-  /**
-   * Closes tooltip when clicked outside.
-   * @default true
-   */
-  closeOnOverlayClick?: boolean;
 }
 
 export type IToolTipComponentType<
