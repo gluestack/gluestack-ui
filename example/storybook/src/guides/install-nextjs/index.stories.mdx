@@ -241,8 +241,7 @@ For Next.js Page Router just add `GluestackUIProvider` to the root of your app a
 ```jsx
 import '@/styles/globals.css';
 import type { AppProps } from 'next/app';
-import { GluestackUIProvider } from '../components';
-import { config } from '../gluestack-ui.config';
+import { config, GluestackUIProvider } from '@gluestack-ui/themed';
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
