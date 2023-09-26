@@ -2954,6 +2954,15 @@
   dependencies:
     "@gluestack-ui/utils" "^0.1.3"
 
+"@gluestack-ui/icon@^0.1.10":
+  version "0.1.10"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/icon/-/icon-0.1.10.tgz#e641162807473b1e4e7b9586e914c472aa3853c3"
+  integrity sha512-5sSWG9R3jCdUWcLAc3qII1F+rETAEKRYYHXJNJo+IhmbxWABE93DAWIGSICuFl6WFN35hen/pp01iWKQdnnRng==
+  dependencies:
+    "@gluestack-ui/provider" "^0.1.6"
+    "@gluestack-ui/utils" "^0.1.5"
+    "@react-native-aria/focus" "^0.2.7"
+
 "@gluestack-ui/icon@^0.1.3":
   version "0.1.6"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/icon/-/icon-0.1.6.tgz#f823f9e345989abdb89f50cd3af456300aadd679"
@@ -3234,6 +3243,15 @@
   integrity sha512-Y0BGG+I1IOuYOybQoGAM2herb8evg9QDG2NkiQ/7ERQRO4i0Um5SFlNsgNgjdS5VLVKxi/zHe1R6NOruwpQCqw==
   dependencies:
     "@gluestack-ui/utils" "^0.1.3"
+
+"@gluestack-ui/provider@0.1.9":
+  version "0.1.9"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/provider/-/provider-0.1.9.tgz#9956de72f462633671c57e3d16e575b6a8d19e0a"
+  integrity sha512-23H9YxiIo3Jt9vyygjHm985V2ByVjozA8M4Tw3rrXFu0wSHnlV86P4ZZVnM3zzDTA2AgBXsEkC9AIkHiyrKNMQ==
+  dependencies:
+    "@react-native-aria/interactions" "^0.2.10"
+    tsconfig "7"
+    typescript "^4.9.4"
 
 "@gluestack-ui/provider@^0.1.3", "@gluestack-ui/provider@^0.1.4", "@gluestack-ui/provider@^0.1.6", "@gluestack-ui/provider@^0.1.7":
   version "0.1.7"
