@@ -823,7 +823,7 @@ const getStyleIdsFromMap = (
   return componentStyleObject;
 };
 
-export function verboseStyled<P, Variants, ComCon, PluginType = unknown>(
+export function verboseStyled<P, Variants, ComCon>(
   Component: React.ComponentType<P>,
   theme: Partial<IVerbosedTheme<Variants, P>>,
   componentStyleConfig: IComponentStyleConfig<ComCon> = {},
@@ -992,15 +992,7 @@ export function verboseStyled<P, Variants, ComCon, PluginType = unknown>(
       ...componentProps
     }: Omit<
       Omit<P, keyof Variants> &
-        Partial<
-          ComponentProps<
-            ITypeReactNativeStyles,
-            Variants,
-            P,
-            ComCon,
-            PluginType
-          >
-        > &
+        Partial<ComponentProps<ITypeReactNativeStyles, Variants, P, ComCon>> &
         Partial<UtilityProps<ITypeReactNativeStyles>> & {
           as?: any;
           children?: any;
