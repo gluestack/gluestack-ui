@@ -1,19 +1,12 @@
-import { createStyle } from '@gluestack-ui/themed';
+import { createStyle } from '@gluestack-style/react';
 
-export default createStyle(
-  Text,
-  {
-    mx: '$2',
-    props: {
-      size: 'md',
-    },
-    color: '$textLight800',
-    _dark: {
-      color: '$textDark100',
-    },
+export const ActionsheetItemText = createStyle({
+  mx: '$2',
+  props: {
+    size: 'md',
   },
-  {
-    componentName: 'ActionsheetItemText',
-    ancestorStyle: ['_text'],
-  } as const
-);
+  color: '$textLight800',
+  _dark: {
+    color: '$textDark100',
+  },
+});

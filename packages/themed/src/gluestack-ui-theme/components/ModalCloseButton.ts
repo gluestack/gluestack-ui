@@ -1,6 +1,6 @@
-import { createStyle } from '@gluestack-ui/themed';
+import { createStyle } from '@gluestack-style/react';
 
-export default createStyle({
+export const ModalCloseButton = createStyle({
   'zIndex': 1,
   'p': '$2',
   'rounded': '$sm',

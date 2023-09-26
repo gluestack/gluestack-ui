@@ -6,6 +6,7 @@ import {
   Pressable,
   Text,
   Box,
+  components,
 } from '@gluestack-ui/themed';
 import { config } from '@gluestack-ui/themed';
 
@@ -17,7 +18,11 @@ const ProviderStory = () => {
     colorMode === 'light' ? setColorMode('dark') : setColorMode('light');
   };
   return (
-    <GluestackUIProvider config={config.theme} colorMode={colorMode}>
+    <GluestackUIProvider
+      config={config.theme}
+      colorMode={colorMode}
+      components={components}
+    >
       <Box w={100}>
         <Button onPress={toggleColorMode}>
           <ButtonText>Change Mode</ButtonText>

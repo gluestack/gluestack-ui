@@ -1,6 +1,6 @@
-import { createStyle } from '@gluestack-ui/themed';
+import { createStyle } from '@gluestack-style/react';
 
-export default createStyle({
+export const Fab = createStyle({
   'bg': '$primary500',
   'rounded': '$full',
   'zIndex': 20,

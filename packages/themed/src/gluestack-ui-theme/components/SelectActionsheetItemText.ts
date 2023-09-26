@@ -1,6 +1,6 @@
-import { createStyle } from '@gluestack-ui/themed';
+import { createStyle } from '@gluestack-style/react';
 
-export default createStyle({
+export const SelectActionsheetItemText = createStyle({
   mx: '$2',
   fontSize: '$md',
   fontFamily: '$body',

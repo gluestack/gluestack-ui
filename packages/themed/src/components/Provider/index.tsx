@@ -1,13 +1,11 @@
 import React from 'react';
-import {
-  createProvider,
-  GluestackUIContextProvider,
-} from '@gluestack-ui/provider';
+import { createProvider } from '@gluestack-ui/provider';
 import { StyledProvider } from '@gluestack-style/react';
 import { OverlayProvider } from '@gluestack-ui/overlay';
 import { ToastProvider } from '@gluestack-ui/toast';
 
-import { config } from './../gluestack-ui.config';
+import { components } from '../../gluestack-ui-theme';
+import { config } from '../../gluestack-ui-theme/gluestack-ui.config';
 const GluestackUIStyledProvider = createProvider({ StyledProvider });
 
 type GluestackUIProviderProps = Partial<
@@ -20,7 +18,11 @@ const GluestackUIProvider = ({
   ...props
 }: GluestackUIProviderProps) => {
   return (
-    <GluestackUIStyledProvider config={configProp} {...props}>
+    <GluestackUIStyledProvider
+      config={configProp}
+      components={components}
+      {...props}
+    >
       <OverlayProvider>
         <ToastProvider>{children}</ToastProvider>
       </OverlayProvider>
@@ -28,8 +30,4 @@ const GluestackUIProvider = ({
   );
 };
 
-export {
-  GluestackUIProvider,
-  GluestackUIStyledProvider,
-  GluestackUIContextProvider,
-};
+export { GluestackUIProvider, GluestackUIStyledProvider };

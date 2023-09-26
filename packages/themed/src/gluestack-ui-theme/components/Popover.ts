@@ -1,7 +1,6 @@
-import { createStyle } from '@gluestack-ui/themed';
-//@ts-nocheck
+import { createStyle } from '@gluestack-style/react';
 
-export default createStyle({
+export const Popover = createStyle({
   width: '$full',
   height: '$full',
   justifyContent: 'center',

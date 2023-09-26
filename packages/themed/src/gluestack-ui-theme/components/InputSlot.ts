@@ -1,17 +1,11 @@
-import { createStyle } from '@gluestack-ui/themed';
+import { createStyle } from '@gluestack-style/react';
 
-export default createStyle(
-  {
-    justifyContent: 'center',
-    alignItems: 'center',
-    _web: {
-      ':disabled': {
-        cursor: 'not-allowed',
-      },
+export const InputSlot = createStyle({
+  justifyContent: 'center',
+  alignItems: 'center',
+  _web: {
+    ':disabled': {
+      cursor: 'not-allowed',
     },
   },
-  {
-    componentName: 'InputSlot',
-    descendantStyle: ['_icon'],
-  } as const
-);
+});

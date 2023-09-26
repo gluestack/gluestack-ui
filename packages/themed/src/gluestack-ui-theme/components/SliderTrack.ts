@@ -1,6 +1,6 @@
-import { createStyle } from '@gluestack-ui/themed';
+import { createStyle } from '@gluestack-style/react';
 
-export default createStyle({
+export const SliderTrack = createStyle({
   // h: '100%',
   // w: '100%',
   bg: '$backgroundLight300',

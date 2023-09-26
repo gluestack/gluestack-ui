@@ -1,6 +1,6 @@
-import { createStyle } from '@gluestack-ui/themed';
+import { createStyle } from '@gluestack-style/react';
 
-export default createStyle({
+export const HStack = createStyle({
   flexDirection: 'row',
   variants: {
     space: {

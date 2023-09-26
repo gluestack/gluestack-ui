@@ -1,7 +1,6 @@
-import { createStyle } from '@gluestack-ui/themed';
-//@ts-nocheck
+import { createStyle } from '@gluestack-style/react';
 
-export default createStyle({
+export const TooltipContent = createStyle({
   ':initial': {
     opacity: 0,
     scale: 0.5,

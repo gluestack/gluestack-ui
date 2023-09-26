@@ -1,6 +1,7 @@
-import { createStyle } from '@gluestack-ui/themed';
+import { createStyle } from '@gluestack-style/react';
 import { H1, H2, H3, H4, H5, H6 } from '@expo/html-elements';
-export default createStyle({
+
+export const Heading = createStyle({
   color: '$textLight900',
   letterSpacing: '$sm',
   fontWeight: '$bold',

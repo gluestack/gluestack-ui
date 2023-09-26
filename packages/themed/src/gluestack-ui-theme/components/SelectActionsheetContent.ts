@@ -1,6 +1,6 @@
-import { createStyle } from '@gluestack-ui/themed';
+import { createStyle } from '@gluestack-style/react';
 
-export default createStyle({
+export const SelectActionsheetContent = createStyle({
   alignItems: 'center',
   borderTopLeftRadius: '$3xl',
   borderTopRightRadius: '$3xl',

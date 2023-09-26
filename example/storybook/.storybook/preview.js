@@ -1,6 +1,6 @@
 import { addParameters } from '@storybook/client-api';
 import { DocsContainer } from '@storybook/addon-docs/blocks';
-import { Center, GluestackUIProvider } from '@gluestack-ui/themed';
+import { Center, components, GluestackUIProvider } from '@gluestack-ui/themed';
 import { config } from '@gluestack-ui/themed';
 import { useState } from 'react';
 export const parameters = {
@@ -169,7 +169,11 @@ addParameters({
       }
       return (
         <DocsContainer context={context}>
-          <GluestackUIProvider config={config.theme} colorMode={getColorMode()}>
+          <GluestackUIProvider
+            config={config.theme}
+            components={components}
+            colorMode={getColorMode()}
+          >
             {children}
           </GluestackUIProvider>
         </DocsContainer>

@@ -39,9 +39,5 @@ export * from './Tabs';
 export * from './Tooltip';
 export * from './View';
 export * from './VStack';
-export {
-  GluestackUIProvider,
-  GluestackUIStyledProvider,
-  GluestackUIContextProvider,
-} from './Provider';
+export { GluestackUIProvider, GluestackUIStyledProvider } from './Provider';
 export * from './Icons/Icons';

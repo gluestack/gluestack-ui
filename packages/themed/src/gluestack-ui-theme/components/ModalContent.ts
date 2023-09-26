@@ -1,5 +1,6 @@
-import { createStyle } from '@gluestack-ui/themed';
-export default createStyle({
+import { createStyle } from '@gluestack-style/react';
+
+export const ModalContent = createStyle({
   'bg': '$backgroundLight50',
   'rounded': '$lg',
   'overflow': 'hidden',

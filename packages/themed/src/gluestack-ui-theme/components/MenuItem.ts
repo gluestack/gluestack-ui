@@ -1,5 +1,6 @@
-import { createStyle } from '@gluestack-ui/themed';
-export default createStyle({
+import { createStyle } from '@gluestack-style/react';
+
+export const MenuItem = createStyle({
   'p': '$3',
   'flexDirection': 'row',
   'alignItems': 'center',

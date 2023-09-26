@@ -1,6 +1,6 @@
-import { createStyle } from '@gluestack-ui/themed';
+import { createStyle } from '@gluestack-style/react';
 
-export default createStyle({
+export const InputField = createStyle({
   flex: 1,
   color: '$textLight900',
   props: {

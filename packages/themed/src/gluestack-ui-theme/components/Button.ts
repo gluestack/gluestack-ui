@@ -1,6 +1,6 @@
-import { createStyle } from '@gluestack-ui/themed';
+import { createStyle } from '@gluestack-style/react';
 
-export default createStyle({
+export const Button = createStyle({
   'borderRadius': '$sm',
   'backgroundColor': '$primary500',
   'flexDirection': 'row',
@@ -1015,7 +1015,7 @@ export default createStyle({
     },
   ],
 
-  'defaultProps': {
+  'props': {
     size: 'md',
     variant: 'solid',
     action: 'primary',

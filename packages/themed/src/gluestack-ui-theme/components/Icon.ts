@@ -1,4 +1,4 @@
-import { createStyle } from '@gluestack-ui/themed';
+import { createStyle } from '@gluestack-style/react';
 
 export const BaseIcon = createStyle({
   color: '$backgroundLight800',

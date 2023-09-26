@@ -1,6 +1,6 @@
-import { createStyle } from '@gluestack-ui/themed';
+import { createStyle } from '@gluestack-style/react';
 
-export default createStyle({
+export const Input = createStyle({
   'borderWidth': 1,
   'borderColor': '$backgroundLight300',
   'borderRadius': '$sm',

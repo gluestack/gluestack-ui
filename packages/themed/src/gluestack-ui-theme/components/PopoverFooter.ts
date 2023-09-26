@@ -1,6 +1,6 @@
-import { createStyle } from '@gluestack-ui/themed';
+import { createStyle } from '@gluestack-style/react';
 
-export default createStyle({
+export const PopoverFooter = createStyle({
   p: '$4',
   flexDirection: 'row',
   justifyContent: 'flex-end',

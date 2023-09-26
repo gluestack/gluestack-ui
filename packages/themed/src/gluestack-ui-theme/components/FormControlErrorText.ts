@@ -1,6 +1,6 @@
-import { createStyle } from '@gluestack-ui/themed';
-// import { Text } from '@gluestack-ui/ui';
-export default createStyle({
+import { createStyle } from '@gluestack-style/react';
+
+export const FormControlErrorText = createStyle({
   ml: '$1',
   color: '$error700',
   _dark: {

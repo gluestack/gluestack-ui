@@ -1,6 +1,6 @@
-import { createStyle } from '@gluestack-ui/themed';
+import { createStyle } from '@gluestack-style/react';
 
-export default createStyle({
+export const ButtonText = createStyle({
   color: '$textLight0',
   _web: {
     userSelect: 'none',

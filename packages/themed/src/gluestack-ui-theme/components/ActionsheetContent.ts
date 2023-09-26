@@ -1,6 +1,6 @@
-import { createStyle } from '@gluestack-ui/themed';
+import { createStyle } from '@gluestack-style/react';
 
-export default createStyle({
+export const ActionsheetContent = createStyle({
   alignItems: 'center',
   borderTopLeftRadius: '$3xl',
   borderTopRightRadius: '$3xl',
@@ -10,14 +10,12 @@ export default createStyle({
   _sectionHeaderBackground: {
     bg: '$backgroundLight0',
   },
-  // @ts-ignore
   _dark: {
     bg: '$backgroundDark900',
     _sectionHeaderBackground: {
       bg: '$backgroundDark900',
     },
   },
-  // @ts-ignore
   _web: {
     userSelect: 'none',
   },

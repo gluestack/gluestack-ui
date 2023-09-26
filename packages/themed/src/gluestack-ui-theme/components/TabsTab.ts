@@ -1,5 +1,6 @@
-import { createStyle } from '@gluestack-ui/themed';
-export default createStyle({
+import { createStyle } from '@gluestack-style/react';
+
+export const TabsTab = createStyle({
   'bg': 'transparent',
   '_web': {
     outlineWidth: 0,

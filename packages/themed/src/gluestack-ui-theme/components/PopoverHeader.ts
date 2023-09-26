@@ -1,6 +1,6 @@
-import { createStyle } from '@gluestack-ui/themed';
+import { createStyle } from '@gluestack-style/react';
 
-export default createStyle({
+export const PopoverHeader = createStyle({
   p: '$4',
   pb: '$2',
   justifyContent: 'space-between',

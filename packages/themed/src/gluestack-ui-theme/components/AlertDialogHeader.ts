@@ -1,6 +1,6 @@
-import { createStyle } from '@gluestack-ui/themed';
+import { createStyle } from '@gluestack-style/react';
 
-export default createStyle({
+export const AlertDialogHeader = createStyle({
   p: '$4',
   borderColor: '$borderLight300',
   justifyContent: 'space-between',

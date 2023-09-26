@@ -1,6 +1,6 @@
-import { createStyle } from '@gluestack-ui/themed';
+import { createStyle } from '@gluestack-style/react';
 
-export default createStyle({
+export const MenuBackdrop = createStyle({
   position: 'absolute',
   top: 0,
   bottom: 0,
