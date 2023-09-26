@@ -6,6 +6,7 @@ import {
   findNodeHandle,
   AccessibilityInfo,
   Platform,
+  Keyboard,
 } from 'react-native';
 import { ActionsheetContext } from './context';
 import { ActionsheetContentProvider } from './ActionsheetContentContext';
@@ -79,14 +80,14 @@ function ActionsheetContent<T>(
       }, [visible, contentRef]);
 
       React.useEffect(() => {
-        const finalRefVal = finalFocusRef ? finalFocusRef.current : null;
         if (visible) {
+          Keyboard.dismiss();
           if (initialFocusRef && initialFocusRef.current) {
             initialFocusRef.current.focus();
           }
         } else {
-          if (finalRefVal) {
-            finalRefVal.focus();
+          if (finalFocusRef && finalFocusRef.current) {
+            finalFocusRef.current.focus();
           }
         }
       }, [initialFocusRef, finalFocusRef, visible]);
