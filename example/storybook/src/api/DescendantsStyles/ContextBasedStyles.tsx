@@ -11,16 +11,14 @@ import {
   Pressable as RNPressable,
   Text as RNText,
   StyleSheet,
-  Switch,
   View,
 } from 'react-native';
 import {
   AsForwarder,
   createStyled,
-  styled,
+  styled1,
   Theme,
   useBreakpointValue,
-  useColorMode,
   useStyled,
   useToken,
 } from '@gluestack-style/react';
@@ -30,7 +28,6 @@ import { AddIcon, Box, Icon } from '@gluestack/design-system';
 import { AlertCircle, Circle, Sun } from 'lucide-react-native';
 
 import { AnimationResolver } from '@gluestack-style/animation-plugin';
-import { ScrollView } from 'react-native';
 
 const styleshet = StyleSheet.create({
   style: {
@@ -43,16 +40,6 @@ const Pressable = styled(
   {
     bg: '$red200',
     p: '$2',
-    props: {
-      variant: 'solid',
-    },
-    variants: {
-      variant: {
-        solid: {
-          bg: '$red400',
-        },
-      },
-    },
   },
   {
     componentName: 'Pressable',
@@ -196,53 +183,10 @@ const Text1 = styled(
   },
   { ancestorStyle: ['_text'], componentName: 'TEXT' }
 );
-
-const StyledSwitch = styled(ScrollView, {});
-
 export function ContextBasedStyles() {
-  const [state, setState] = useState(false);
-
   return (
-    <Wrapper colorMode={state ? 'dark' : 'light'}>
-      <Pressable
-        onPress={() => {
-          setState(!state);
-        }}
-      >
-        <Text>color mode: {state ? 'dark' : 'light'}</Text>
-      </Pressable>
-
-      <StyledSwitch
-        height={200}
-        width={200}
-        sx={{
-          props: {
-            contentContainerStyle: {
-              // backgroundColor: 'blue',
-            },
-          },
-        }}
-
-        // trackColor={{ false: '$green500', true: '$primary600' }}
-        // thumbColor="$red500"
-        // sx={{
-        //   props: { trackColor: { false: '$blue500', true: '$primary600' } },
-        // }}
-      >
-        <View
-          style={{ height: 100, width: 100, backgroundColor: 'red' }}
-        ></View>
-      </StyledSwitch>
-
-      {/* 
-      <StyledSwitch
-        // trackColor={{ false: '$green500', true: '$primary600' }}
-        thumbColor="$red500"
-        sx={{
-          props: { trackColor: { false: '$blue500', true: '$primary600' } },
-        }}
-      ></StyledSwitch> */}
-
+    <Wrapper colorMode="dark">
+      <MyIcon as={Sun} size={32}></MyIcon>
       <ContextBasedStylesContent></ContextBasedStylesContent>
       {/* <Pressable></Pressable> */}
       {/* <Box1
@@ -285,12 +229,10 @@ export function ContextBasedStylesContent() {
     setTabName(tabName);
   };
 
-  const value = useBreakpointValue({
-    base: true,
-    sm: false,
-  });
+  const value = useToken('colors', 'red500');
 
   console.log(value, 'value here');
+
   // const color = tabName ? '$red500' : '$green500';
   // return (
   //   <>
@@ -357,12 +299,6 @@ export function ContextBasedStylesContent() {
 const renderItem = (item: any) => (
   <Pressable
     key={item}
-    variant="solid"
-    sx={{
-      props: {
-        variant: 'solid',
-      },
-    }}
     // sx={{
     //   bg: '$amber400',
     // }}

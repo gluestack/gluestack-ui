@@ -990,12 +990,15 @@ export function verboseStyled<P, Variants, ComCon>(
       // styledIds: BUILD_TIME_STYLE_IDS = [],
       // sxHash: BUILD_TIME_sxHash = '',
       ...componentProps
-    }: Omit<P, keyof Variants> &
-      Partial<ComponentProps<ITypeReactNativeStyles, Variants, P, ComCon>> &
-      Partial<UtilityProps<ITypeReactNativeStyles>> & {
-        as?: any;
-        children?: any;
-      },
+    }: Omit<
+      Omit<P, keyof Variants> &
+        Partial<ComponentProps<ITypeReactNativeStyles, Variants, P, ComCon>> &
+        Partial<UtilityProps<ITypeReactNativeStyles>> & {
+          as?: any;
+          children?: any;
+        },
+      'animationComponentGluestack'
+    >,
     ref: React.ForwardedRef<P>
   ) => {
     const isClient = React.useRef(false);
@@ -1905,11 +1908,11 @@ export function verboseStyled<P, Variants, ComCon>(
   return StyledComp;
 }
 
-export function styled<P, Variants, ComCon, PluginType = unknown>(
+export function styled<P, Variants, ComCon>(
   Component: React.ComponentType<P>,
   theme: ITheme<Variants, P>,
   componentStyleConfig?: IComponentStyleConfig<ComCon>,
-  ExtendedConfig?: ExtendedConfigType<PluginType>,
+  ExtendedConfig?: ExtendedConfigType,
   BUILD_TIME_PARAMS?: {
     orderedResolved: OrderedSXResolved;
     verbosedStyleIds: {
@@ -1925,8 +1928,8 @@ export function styled<P, Variants, ComCon, PluginType = unknown>(
   //   process.env.NODE_ENV === 'development' && DEBUG_TAG ? false : false;
 
   let styledObj = theme;
-  // @ts-ignore
-  let plugins: PluginType = [...getInstalledPlugins()];
+  let plugins = [...getInstalledPlugins()];
+
   if (ExtendedConfig?.plugins) {
     // @ts-ignore
     plugins = [...plugins, ...ExtendedConfig?.plugins];
@@ -1934,7 +1937,12 @@ export function styled<P, Variants, ComCon, PluginType = unknown>(
 
   for (const pluginName in plugins) {
     // @ts-ignore
-    styledObj = plugins[pluginName]?.inputMiddleWare<P>(styledObj, true, true);
+    [styledObj, , , Component] = plugins[pluginName]?.inputMiddleWare<P>(
+      styledObj,
+      true,
+      true,
+      Component
+    );
   }
   theme = styledObj;
   const sxConvertedObject = convertStyledToStyledVerbosed(theme);
@@ -1946,6 +1954,10 @@ export function styled<P, Variants, ComCon, PluginType = unknown>(
     ExtendedConfig,
     BUILD_TIME_PARAMS
   );
+
+  // @ts-ignore
+  StyledComponent.isAnimatedComponent = Component.isAnimatedComponent;
+
   // @ts-ignore
   plugins?.reverse();
   for (const pluginName in plugins) {
@@ -1960,22 +1972,21 @@ export function styled<P, Variants, ComCon, PluginType = unknown>(
       });
     }
   }
+  // for (const pluginName in plugins) {
+  //   const compWrapper =
+  //     // @ts-ignore
+  //     typeof plugins[pluginName].wrapperComponentMiddleWare === 'function'
+  //       ? // @ts-ignore
+  //         plugins[pluginName].wrapperComponentMiddleWare()
+  //       : null;
 
-  for (const pluginName in plugins) {
-    const compWrapper =
-      // @ts-ignore
-      typeof plugins[pluginName].wrapperComponentMiddleWare === 'function'
-        ? // @ts-ignore
-          plugins[pluginName].wrapperComponentMiddleWare()
-        : null;
-
-    if (compWrapper) {
-      for (const key of Object.keys(compWrapper)) {
-        // @ts-ignore
-        StyledComponent[key] = compWrapper[key];
-      }
-    }
-  }
+  //   if (compWrapper) {
+  //     for (const key of Object.keys(compWrapper)) {
+  //       // @ts-ignore
+  //       StyledComponent[key] = compWrapper[key];
+  //     }
+  //   }
+  // }
 
   return StyledComponent;
 }

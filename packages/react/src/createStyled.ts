@@ -1,19 +1,6 @@
 import { styled } from './styled';
 import type { IComponentStyleConfig, ITheme } from './types';
 
-export interface IStyledPlugin {
-  styledUtils?: IStyled;
-  register(styledUtils: IStyled): void;
-  inputMiddleWare(styledObj: any): void;
-  componentMiddleWare?(props: any): void;
-}
-
-export class IStyled {
-  aliases?: any;
-  tokens?: any;
-  ref?: any;
-}
-
 export const createStyled = (plugins: any) => {
   let styledComponent = <P, Variants, ConCom>(
     Component: React.ComponentType<P>,

@@ -91,9 +91,9 @@ export const StyledProvider: React.FC<{
     setCurrentColorMode(currentColorMode);
   }
 
+  const [animationDriverData, setAnimationDriverData] = React.useState();
   const globalStyleMap =
     config?.globalStyle && createGlobalStyles(config.globalStyle);
-
   const contextValue = React.useMemo(() => {
     return {
       config: {
@@ -101,8 +101,10 @@ export const StyledProvider: React.FC<{
         components,
       },
       globalStyle: globalStyleMap,
+      animationDriverData,
+      setAnimationDriverData,
     };
-  }, [currentConfig, globalStyleMap, components]);
+  }, [currentConfig, globalStyleMap, components, animationDriverData]);
 
   return (
     <StyledContext.Provider value={contextValue}>
