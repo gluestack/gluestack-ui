@@ -15,7 +15,7 @@
     "ios",
     "nextjs"
   ],
-  "version": "0.1.8",
+  "version": "0.1.9-alpha.0",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/index.d.ts",
@@ -42,7 +42,6 @@
     "tsconfig": "*"
   },
   "dependencies": {
-    "@gluestack-ui/utils": "^0.1.5",
     "@react-native-aria/interactions": "^0.2.10",
     "tsconfig": "7",
     "typescript": "^4.9.4"
