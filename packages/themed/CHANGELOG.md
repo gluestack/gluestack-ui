@@ -1,5 +1,11 @@
 # @gluestack-ui/themed
 
+## 0.1.52
+
+### Patch Changes
+
+- fixed provider warnings
+
 ## 0.1.51
 
 ### Patch Changes
