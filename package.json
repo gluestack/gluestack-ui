@@ -64,6 +64,7 @@
     "@gluestack-ui/tooltip": "latest",
     "@gluestack-ui/vstack": "latest",
     "@legendapp/motion": "latest",
+    "@react-native-clipboard/clipboard": "^1.12.1",
     "file-loader": "^6.2.0",
     "react-native-svg": "13.4.0",
     "ts-loader": "^9.4.4",
