@@ -2835,7 +2835,7 @@
   dependencies:
     "@gluestack-ui/utils" "^0.1.3"
 
-"@gluestack-ui/button@^0.1.26":
+"@gluestack-ui/button@^0.1.15", "@gluestack-ui/button@^0.1.26":
   version "0.1.26"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/button/-/button-0.1.26.tgz#1f66707e18f75524d47581298896bc0a3d9f41dd"
   integrity sha512-TIZkqpTJwEn87QqmrimGKXaGZvbDhJxxRBDYq3UZlLG2j95RZ0bLwO1bLEIcE8KXJc6sGUWEvLj/4efGhijyXw==
