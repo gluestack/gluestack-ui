@@ -10,14 +10,14 @@ export default styled(
     },
     flex: 1,
     h: '100%',
-    color: '$textLight900',
+    color: '$textLight.900',
     props: {
-      placeholderTextColor: '$textLight500',
+      placeholderTextColor: '$textLight.500',
     },
     _dark: {
-      color: '$textDark50',
+      color: '$textDark.50',
       props: {
-        placeholderTextColor: '$textDark400',
+        placeholderTextColor: '$textDark.400',
       },
     },
   },
