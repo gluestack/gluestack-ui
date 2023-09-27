@@ -1,10 +1,13 @@
 import { useState } from 'react';
-import { useClipboard as useClipboardNative } from '@react-native-clipboard/clipboard';
+import * as Clipboard from 'expo-clipboard';
 
 export function useClipboard() {
   const [hasCopied, setHasCopied] = useState(false);
-  const [value, setValue] = useClipboardNative();
-  const onCopy = (copiedValue: string) => {
+  const [value, setValue] = useState('');
+  const onCopy = async (copiedValue: string) => {
+    if (Clipboard) {
+      await Clipboard.setStringAsync(copiedValue);
+    }
     setValue(copiedValue);
     setHasCopied(true);
   };
