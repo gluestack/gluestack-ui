@@ -1,21 +1,21 @@
-type LiteralUnion<T extends U, U = string> = T | (U & {});
+import { GSConfig } from '@gluestack-style/react';
+
+type IMediaQueries = keyof GSConfig['tokens']['mediaQueries'];
 
 type IHiddenProps = {
   /**
    * The from prop takes breakpoint from which the wrapped component is hidden.
    */
-  from?: LiteralUnion<'base' | 'sm' | 'md' | 'lg' | 'xl' | '2xl'>;
+  from?: IMediaQueries;
   /**
    * The till prop takes breakpoint till which the wrapped component is hidden.
    */
-  till?: LiteralUnion<'base' | 'sm' | 'md' | 'lg' | 'xl' | '2xl'>;
+  till?: IMediaQueries;
   /**
    * The only prop takes array of breakpoints on which the wrapped component is hidden.
    * It hides the component starting from that breakpoint to the next breakpoint.
    */
-  only?:
-    | LiteralUnion<'base' | 'sm' | 'md' | 'lg' | 'xl' | '2xl'>
-    | Array<LiteralUnion<'base' | 'sm' | 'md' | 'lg' | 'xl' | '2xl'>>;
+  only?: IMediaQueries | IMediaQueries[];
   /**
    * The colormode takes the mode on which the wrapped component must be hidden.
    */
@@ -23,9 +23,7 @@ type IHiddenProps = {
   /**
    * The platform takes the platform as string or array for the multiple on which the wrapped component must be hidden.
    */
-  platform?:
-    | LiteralUnion<'ios' | 'android' | 'web'>
-    | Array<LiteralUnion<'ios' | 'android' | 'web'>>;
+  platform?: 'ios' | 'android' | 'web' | Array<'ios' | 'android' | 'web'>;
   /**
    *
    */
