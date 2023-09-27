@@ -2729,10 +2729,10 @@
     inline-style-prefixer "^6.0.1"
     normalize-css-color "^1.0.2"
 
-"@gluestack-ui/actionsheet@^0.2.16", "@gluestack-ui/actionsheet@^0.2.7":
-  version "0.2.16"
-  resolved "https://registry.yarnpkg.com/@gluestack-ui/actionsheet/-/actionsheet-0.2.16.tgz#052a733966c517450a3cd6f832932ccf77924867"
-  integrity sha512-BogHlHAO8PClTUeZDzizI5sb900xFNUZKNDI4KMyi4xo4/etWJRFAeM7W+OZL5bCcuXHrBHQa2fQNVBKdudqGw==
+"@gluestack-ui/actionsheet@0.2.24":
+  version "0.2.24"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/actionsheet/-/actionsheet-0.2.24.tgz#4718b0452d1268a01a23970717f5219c871c76ad"
+  integrity sha512-UJdebV6kxnEPDYUsCY4hh7lTdB7mwYs73o7eK6iHT4nHGUZXPTUOjZg8dea3z6L8IRTRwi8gMDRB9ciKWKY15A==
   dependencies:
     "@gluestack-ui/hooks" "^0.1.2"
     "@gluestack-ui/overlay" "^0.1.7"
@@ -2742,10 +2742,23 @@
     "@react-native-aria/focus" "^0.2.8"
     "@react-native-aria/interactions" "^0.2.10"
 
-"@gluestack-ui/actionsheet@^0.2.22":
-  version "0.2.22"
-  resolved "https://registry.yarnpkg.com/@gluestack-ui/actionsheet/-/actionsheet-0.2.22.tgz#db157a99842e947ad0b36e28924446eef20b9e49"
-  integrity sha512-6uT8THKGu7F5rsfGYtY05iCUp49oncDeBX6X3eXq17xFdfpPtn4htcsNXu07FqlKaIgEOr66xenCMj9LDNId9Q==
+"@gluestack-ui/actionsheet@^0.2.21":
+  version "0.2.23"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/actionsheet/-/actionsheet-0.2.23.tgz#75eaf7d445e8c166e4eae34f82172405e162d2fe"
+  integrity sha512-/cmczR+rKyOdEzOjIXc+8ZCifUcqpWwaeB9akmjMJRSm/HhH8UvjvoG3sN5c62mNef/g6GakM5G2MKGj8Uz1/w==
+  dependencies:
+    "@gluestack-ui/hooks" "^0.1.2"
+    "@gluestack-ui/overlay" "^0.1.7"
+    "@gluestack-ui/transitions" "^0.1.8"
+    "@gluestack-ui/utils" "^0.1.5"
+    "@react-native-aria/dialog" "0.1.1"
+    "@react-native-aria/focus" "^0.2.8"
+    "@react-native-aria/interactions" "^0.2.10"
+
+"@gluestack-ui/actionsheet@^0.2.7":
+  version "0.2.16"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/actionsheet/-/actionsheet-0.2.16.tgz#052a733966c517450a3cd6f832932ccf77924867"
+  integrity sha512-BogHlHAO8PClTUeZDzizI5sb900xFNUZKNDI4KMyi4xo4/etWJRFAeM7W+OZL5bCcuXHrBHQa2fQNVBKdudqGw==
   dependencies:
     "@gluestack-ui/hooks" "^0.1.2"
     "@gluestack-ui/overlay" "^0.1.7"
@@ -2768,10 +2781,10 @@
     "@react-native-aria/focus" "^0.2.8"
     "@react-native-aria/interactions" "^0.2.10"
 
-"@gluestack-ui/alert-dialog@^0.1.14", "@gluestack-ui/alert-dialog@^0.1.8":
-  version "0.1.14"
-  resolved "https://registry.yarnpkg.com/@gluestack-ui/alert-dialog/-/alert-dialog-0.1.14.tgz#a494d17f68ce351dbd97c2dbd511562c506e1340"
-  integrity sha512-B16Ocr/m7mwaOht+9HJaNzn2psSrX1OHxJYRcDjigBvPtzTmQqG6MQvV/XKXqrd93AzQxlTmNDI5Hvvzl62Jsg==
+"@gluestack-ui/alert-dialog@^0.1.17":
+  version "0.1.17"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/alert-dialog/-/alert-dialog-0.1.17.tgz#6814e21e43bdb7eff6f70b13a1559901e2abda1a"
+  integrity sha512-VJ8DHGd36XwqJrEWSa0zZUBZ54VirfGEhpqJN5u5FL3HPDc65FRB7oqy5CKGuJHfcTvrAEibkubAqSNb2m8y2Q==
   dependencies:
     "@gluestack-ui/hooks" "^0.1.2"
     "@gluestack-ui/overlay" "^0.1.7"
@@ -2780,10 +2793,10 @@
     "@react-native-aria/focus" "^0.2.8"
     "@react-native-aria/interactions" "^0.2.10"
 
-"@gluestack-ui/alert-dialog@^0.1.17":
-  version "0.1.17"
-  resolved "https://registry.yarnpkg.com/@gluestack-ui/alert-dialog/-/alert-dialog-0.1.17.tgz#6814e21e43bdb7eff6f70b13a1559901e2abda1a"
-  integrity sha512-VJ8DHGd36XwqJrEWSa0zZUBZ54VirfGEhpqJN5u5FL3HPDc65FRB7oqy5CKGuJHfcTvrAEibkubAqSNb2m8y2Q==
+"@gluestack-ui/alert-dialog@^0.1.8":
+  version "0.1.14"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/alert-dialog/-/alert-dialog-0.1.14.tgz#a494d17f68ce351dbd97c2dbd511562c506e1340"
+  integrity sha512-B16Ocr/m7mwaOht+9HJaNzn2psSrX1OHxJYRcDjigBvPtzTmQqG6MQvV/XKXqrd93AzQxlTmNDI5Hvvzl62Jsg==
   dependencies:
     "@gluestack-ui/hooks" "^0.1.2"
     "@gluestack-ui/overlay" "^0.1.7"
@@ -3450,6 +3463,47 @@
     "@react-native-aria/focus" "^0.2.7"
     react-native-svg "13.4.0"
 
+"@gluestack-ui/themed@*":
+  version "0.1.53"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/themed/-/themed-0.1.53.tgz#ca6ac88f3c3058087d957df7e64ca8e75e639c55"
+  integrity sha512-3HTPCZ9R08nIh+YEXiFIumdys/p6JOxdkPUgKh80Q4epne3PIz1BxEfxeNLh8G6wT4GS7dcCLwjMx0EoyccX9w==
+  dependencies:
+    "@expo/html-elements" latest
+    "@gluestack-style/animation-plugin" "^0.1.12"
+    "@gluestack-ui/actionsheet" "^0.2.21"
+    "@gluestack-ui/alert" "^0.1.8"
+    "@gluestack-ui/alert-dialog" "^0.1.17"
+    "@gluestack-ui/avatar" "^0.1.10"
+    "@gluestack-ui/button" "^0.1.26"
+    "@gluestack-ui/checkbox" "^0.1.17"
+    "@gluestack-ui/divider" "^0.1.5"
+    "@gluestack-ui/fab" "^0.1.12"
+    "@gluestack-ui/form-control" "^0.1.10"
+    "@gluestack-ui/hstack" "^0.1.11"
+    "@gluestack-ui/icon" "^0.1.10"
+    "@gluestack-ui/image" "^0.1.1"
+    "@gluestack-ui/input" "^0.1.16"
+    "@gluestack-ui/linear-gradient" "^0.1.1"
+    "@gluestack-ui/link" "^0.1.10"
+    "@gluestack-ui/menu" "^0.2.19"
+    "@gluestack-ui/modal" "^0.1.21"
+    "@gluestack-ui/overlay" "^0.1.8"
+    "@gluestack-ui/popover" "^0.1.22"
+    "@gluestack-ui/pressable" "^0.1.9"
+    "@gluestack-ui/progress" "^0.1.7"
+    "@gluestack-ui/provider" "0.1.9"
+    "@gluestack-ui/radio" "^0.1.18"
+    "@gluestack-ui/select" "^0.1.14"
+    "@gluestack-ui/slider" "^0.1.11"
+    "@gluestack-ui/spinner" "^0.1.10"
+    "@gluestack-ui/switch" "^0.1.12"
+    "@gluestack-ui/tabs" "^0.1.11"
+    "@gluestack-ui/textarea" "^0.1.13"
+    "@gluestack-ui/toast" "^0.1.15"
+    "@gluestack-ui/tooltip" "^0.1.18"
+    "@gluestack-ui/vstack" "^0.1.11"
+    "@legendapp/motion" latest
+
 "@gluestack-ui/toast@^0.1.15":
   version "0.1.15"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/toast/-/toast-0.1.15.tgz#226153f73ab1c3b5536926bcaaabbaeeb2d7b9d9"
@@ -3519,7 +3573,7 @@
     "@react-native-aria/interactions" "^0.2.10"
     "@react-native-aria/overlays" "0.3.7"
 
-"@gluestack-ui/transitions@^0.1.6", "@gluestack-ui/transitions@^0.1.8", "@gluestack-ui/transitions@^0.1.9":
+"@gluestack-ui/transitions@^0.1.6", "@gluestack-ui/transitions@^0.1.8":
   version "0.1.9"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/transitions/-/transitions-0.1.9.tgz#9f8334017f006237539f28d3ee50c802fe3c0a03"
   integrity sha512-Ly9sWpaR6ocSNIvM1kyTuQPf3eFVKigGPJkp37EkrUCqvsznlCvEErf6wcGnwWGyONlokRubF3YZvNWuR/P3xQ==
