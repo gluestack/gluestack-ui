@@ -11,7 +11,7 @@ function Pressable<T>(StyledPressable: React.ComponentType<T>) {
         children,
         ...props
       }: T &
-        Omit<PressableProps, 'children'> & {
+        Omit<PressableProps, 'children'> & { tabIndex?: 0 | -1 } & {
           children?:
             | (({
                 hovered,

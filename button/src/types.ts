@@ -21,6 +21,10 @@ export interface InterfaceButtonProps extends PressableProps {
    * If true, the button will be disabled.
    */
   isDisabled?: boolean;
+  /**
+   * If 0, the button will be foucusable
+   */
+  tabIndex?: 0 | -1;
 }
 
 export interface IButtonGroupProps {
