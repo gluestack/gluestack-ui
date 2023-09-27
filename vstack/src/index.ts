@@ -1,14 +1,8 @@
-import { VStack as VStackMain } from './VStack';
-
-export function createVStack<VStackProps, VStackSpacerProps>({
+export function createVStack<VStackProps>({
   Root,
-  Spacer,
 }: {
   Root: React.ComponentType<VStackProps>;
-  Spacer: React.ComponentType<VStackSpacerProps>;
 }) {
-  const VStack = VStackMain(Root, Spacer);
-
-  VStack.displayName = 'VStack';
-  return VStack;
+  Root.displayName = 'VStack';
+  return Root;
 }

@@ -2,11 +2,7 @@ import React from 'react';
 import { View } from 'react-native';
 import { usePopover, DismissButton, Overlay } from '@react-aria/overlays';
 import { MenuContext } from '../MenuContext';
-export function Popover({
-  StyledBackdrop, // @ts-ignore
-  _experimentalOverlay = true,
-  ...props
-}: any) {
+export function Popover({ StyledBackdrop, ...props }: any) {
   const ref = React.useRef(null);
   const { state, children } = props;
   const { onClose } = React.useContext(MenuContext);
@@ -23,16 +19,6 @@ export function Popover({
     return null;
   }
 
-  if (!_experimentalOverlay) {
-    return (
-      // @ts-ignore
-      <View {...popoverProps} ref={ref}>
-        <DismissButton onDismiss={state.close} />
-        {children}
-        <DismissButton onDismiss={state.close} />
-      </View>
-    );
-  }
   return (
     <Overlay>
       <StyledBackdrop

@@ -1,19 +1,15 @@
 import React, { forwardRef } from 'react';
 import { flattenChildren } from '@gluestack-ui/utils';
 
-export const ButtonGroup = (
-  StyledButtonGroup: any,
-  StyledButtonGroupHSpacer: any,
-  StyledButtonGroupVSpacer: any
-) =>
+export const ButtonGroup = (StyledButtonGroup: any) =>
   forwardRef(
     (
       {
-        space,
         direction = 'row',
         isAttached,
         isDisabled,
         children,
+        isReversed,
         reversed,
         ...props
       }: any,
@@ -21,7 +17,8 @@ export const ButtonGroup = (
     ) => {
       let computedChildren;
       let childrenArray = React.Children.toArray(flattenChildren(children));
-      childrenArray = reversed ? [...childrenArray].reverse() : childrenArray;
+      childrenArray =
+        isReversed || reversed ? [...childrenArray].reverse() : childrenArray;
 
       if (childrenArray) {
         computedChildren = childrenArray.map((child: any, index: number) => {
@@ -67,13 +64,6 @@ export const ButtonGroup = (
           return (
             <React.Fragment key={child.key ?? `spaced-child-${index}`}>
               {clonedChild}
-
-              {index < childrenArray.length - 1 &&
-                (direction === 'column' ? (
-                  <StyledButtonGroupVSpacer space={!isAttached ? space : 0} />
-                ) : (
-                  <StyledButtonGroupHSpacer space={!isAttached ? space : 0} />
-                ))}
             </React.Fragment>
           );
         });

@@ -6,6 +6,7 @@ import {
   findNodeHandle,
   AccessibilityInfo,
   Platform,
+  Keyboard,
 } from 'react-native';
 import { ActionsheetContext } from './context';
 import { ActionsheetContentProvider } from './ActionsheetContentContext';
@@ -22,7 +23,13 @@ function ActionsheetContent<T>(
 ) {
   return forwardRef(
     (
-      { children, focusable = true, ...props }: T & IActionsheetContentProps,
+      {
+        children,
+        focusable = true,
+        // @ts-ignore
+        _experimentalContent = false,
+        ...props
+      }: T & IActionsheetContentProps,
       ref?: any
     ) => {
       const {
@@ -40,6 +47,12 @@ function ActionsheetContent<T>(
       const pan = React.useRef(new Animated.ValueXY()).current;
       const contentSheetHeight = React.useRef(0);
 
+      const [contentSheetHeightState, setContentSheetHeightState] =
+        React.useState(0);
+
+      const [animatedViewSheetHeight, setAnimatedViewSheetHeight] =
+        React.useState(0);
+
       const animationDefaultConfig = {
         type: 'timing',
         duration: 200,
@@ -50,10 +63,12 @@ function ActionsheetContent<T>(
         handleClose,
       ]);
 
-      const contentSheetAnimatePosition = React.useMemo(
-        () => windowHeight - snapPoints[0] * windowHeight * 0.01,
-        [snapPoints]
-      );
+      const contentSheetAnimatePosition = React.useMemo(() => {
+        if (!snapPoints) {
+          return animatedViewSheetHeight - contentSheetHeightState;
+        }
+        return windowHeight - snapPoints[0] * windowHeight * 0.01;
+      }, [snapPoints, animatedViewSheetHeight, contentSheetHeightState]);
 
       const contentRef = React.useRef(null);
       React.useEffect(() => {
@@ -64,7 +79,6 @@ function ActionsheetContent<T>(
             AccessibilityInfo.setAccessibilityFocus(reactTag);
             AccessibilityInfo.setAccessibilityFocus(reactTag);
             AccessibilityInfo.setAccessibilityFocus(reactTag);
-
             AccessibilityInfo.setAccessibilityFocus(reactTag);
             AccessibilityInfo.setAccessibilityFocus(reactTag);
             AccessibilityInfo.setAccessibilityFocus(reactTag);
@@ -74,14 +88,14 @@ function ActionsheetContent<T>(
       }, [visible, contentRef]);
 
       React.useEffect(() => {
-        const finalRefVal = finalFocusRef ? finalFocusRef.current : null;
         if (visible) {
+          Keyboard.dismiss();
           if (initialFocusRef && initialFocusRef.current) {
             initialFocusRef.current.focus();
           }
         } else {
-          if (finalRefVal) {
-            finalRefVal.focus();
+          if (finalFocusRef && finalFocusRef.current) {
+            finalFocusRef.current.focus();
           }
         }
       }, [initialFocusRef, finalFocusRef, visible]);
@@ -90,12 +104,40 @@ function ActionsheetContent<T>(
 
       const mergedRef = mergeRefs([ref, contentRef]);
 
+      if (_experimentalContent) {
+        return (
+          <StyledActionsheetContent
+            transition={animationDefaultConfig}
+            {...(props as T)}
+            ref={mergedRef}
+            {...dialogProps}
+            onLayout={(event: any) => {
+              const { height } = event.nativeEvent.layout;
+              contentSheetHeight.current = height;
+            }}
+          >
+            <ActionsheetContentProvider
+              contentSheetHeight={contentSheetHeight}
+              pan={pan}
+              handleClose={handleCloseCallback}
+              handleCloseBackdrop={handleCloseBackdrop}
+            >
+              {children}
+            </ActionsheetContentProvider>
+          </StyledActionsheetContent>
+        );
+      }
+
       return (
         <Animated.View
           style={{
             transform: [{ translateY: pan.y }],
             width: '100%',
             height: '100%',
+          }}
+          onLayout={(event) => {
+            const { height } = event.nativeEvent.layout;
+            setAnimatedViewSheetHeight(height);
           }}
           pointerEvents="box-none"
         >
@@ -118,11 +160,19 @@ function ActionsheetContent<T>(
                 exit={{
                   y: windowHeight,
                 }}
+                height={
+                  snapPoints ? snapPoints[0] * windowHeight * 0.01 : undefined
+                }
                 transition={animationDefaultConfig}
                 {...(props as T)}
                 ref={mergedRef}
                 focusable={Platform.OS === 'web' ? focusable : undefined}
                 {...dialogProps}
+                onLayout={(event: any) => {
+                  const { height } = event.nativeEvent.layout;
+                  contentSheetHeight.current = height;
+                  setContentSheetHeightState(height);
+                }}
               >
                 <ActionsheetContentProvider
                   contentSheetHeight={contentSheetHeight}

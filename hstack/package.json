@@ -1,7 +1,7 @@
 {
   "name": "@gluestack-ui/hstack",
   "description": "A universal headless hstack component for React Native, Next.js & React",
-  "version": "0.1.8",
+  "version": "0.1.11",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/index.d.ts",
@@ -22,7 +22,7 @@
     "babel-plugin-transform-remove-console": "^6.9.4",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
-    "react-native": "^0.70.3",
+    "react-native": "^0.72.4",
     "react-native-builder-bob": "^0.20.1",
     "react-native-web": "^0.18.1",
     "tsconfig": "7",

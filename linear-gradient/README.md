@@ -1,24 +1,24 @@
-# @gluestack-ui/button
+# @gluestack-ui/linear-gradient
 
 ## Installation
 
-To use `@gluestack-ui/button`, all you need to do is install the
-`@gluestack-ui/button` package:
+To use `@gluestack-ui/linear-gradient`, all you need to do is install the
+`@gluestack-ui/linear-gradient` package:
 
 ```sh
-$ yarn add @gluestack-ui/button
+$ yarn add @gluestack-ui/linear-gradient
 
 # or
 
-$ npm i @gluestack-ui/button
+$ npm i @gluestack-ui/linear-gradient
 ```
 
 ## Usage
 
-A button component is a graphical user interface element that enables users to act by clicking or tapping. It can be customized in size, shape, color, and behavior to fit the design of the application or website. Here's an example how to use this package to create one:
+A linear-gradient component is a graphical user interface element that enables users to act by clicking or tapping. It can be customized in size, shape, color, and behavior to fit the design of the application or website. Here's an example how to use this package to create one:
 
 ```jsx
-import { createButton } from '@gluestack-ui/button';
+import { createLinearGradient } from '@gluestack-ui/linear-gradient';
 import {
   Root,
   Text,
@@ -29,7 +29,7 @@ import {
   Icon,
 } from './styled-components';
 
-export const Button = createButton({
+export const LinearGradient = createLinearGradient({
   Root,
   Text,
   Group,
@@ -40,9 +40,9 @@ export const Button = createButton({
 });
 ```
 
-## Customizing the Button:
+## Customizing the LinearGradient:
 
-Default styling of all these components can be found in the components/core/button file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/ui-components/Button/index.tsx) of the styled `Button` components.
+Default styling of all these components can be found in the components/core/linear-gradient file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/ui-components/LinearGradient/index.tsx) of the styled `LinearGradient` components.
 
 ```jsx
 // import the styles
@@ -53,13 +53,13 @@ import {
   GroupHSpacer,
   GroupVSpacer,
   Spinner,
-} from '../components/core/button/styled-components';
+} from '../components/core/linear-gradient/styled-components';
 
-// import the createButton function
-import { createButton } from '@gluestack-ui/button';
+// import the createLinearGradient function
+import { createLinearGradient } from '@gluestack-ui/linear-gradient';
 
 // Understanding the API
-const Button = createButton({
+const LinearGradient = createLinearGradient({
   Root,
   Text,
   Group,
@@ -68,17 +68,17 @@ const Button = createButton({
   Spinner,
 });
 
-// Using the button component
+// Using the linear-gradient component
 export default () => (
-  <ButtonGroup>
-    <Button>
-      <ButtonText />
-      <ButtonSpinner />
-      <ButtonIcon />
-    </Button>
-  </ButtonGroup>
+  <LinearGradientGroup>
+    <LinearGradient>
+      <LinearGradientText />
+      <LinearGradientSpinner />
+      <LinearGradientIcon />
+    </LinearGradient>
+  </LinearGradientGroup>
 );
 ```
 
 More guides on how to get started are available
-[here](https://ui.gluestack.io/docs/components/forms/button).
+[here](https://ui.gluestack.io/docs/components/forms/linear-gradient).

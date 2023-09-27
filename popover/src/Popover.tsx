@@ -18,6 +18,7 @@ export const Popover = (StyledPopover: any) =>
         initialFocusRef,
         finalFocusRef,
         useRNModal,
+        focusScope = true,
         trapFocus = true,
         placement = 'bottom',
         shouldOverlapWithTrigger = false,
@@ -26,7 +27,7 @@ export const Popover = (StyledPopover: any) =>
         isKeyboardDismissable = true,
         shouldFlip,
         // @ts-ignore
-        _experimentalOverlay = true,
+        _experimentalOverlay = false,
         ...props
       }: any,
       ref?: any
@@ -103,6 +104,7 @@ export const Popover = (StyledPopover: any) =>
           shouldOverlapWithTrigger,
           crossOffset,
           offset,
+          focusScope,
           trapFocus,
           shouldFlip,
         };
@@ -123,11 +125,12 @@ export const Popover = (StyledPopover: any) =>
         shouldOverlapWithTrigger,
         crossOffset,
         offset,
+        focusScope,
         trapFocus,
         shouldFlip,
       ]);
 
-      if (!_experimentalOverlay) {
+      if (_experimentalOverlay) {
         return (
           <>
             {updatedTrigger(targetRef)}

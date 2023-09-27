@@ -9,30 +9,24 @@ export function createButton<
   ButtonProps,
   TextProps,
   GroupProps,
-  GroupHSpacerProps,
-  GroupVSpacerProps,
   SpinnerProps,
   IconProps
 >({
   Root,
   Text,
   Group,
-  GroupHSpacer,
-  GroupVSpacer,
   Spinner,
   Icon,
 }: {
   Root: React.ComponentType<ButtonProps>;
   Text: React.ComponentType<TextProps>;
   Group: React.ComponentType<GroupProps>;
-  GroupHSpacer: React.ComponentType<GroupHSpacerProps>;
-  GroupVSpacer: React.ComponentType<GroupVSpacerProps>;
   Spinner: React.ComponentType<SpinnerProps>;
   Icon: React.ComponentType<IconProps>;
 }) {
   const Button = ButtonMain(Root) as any;
   Button.Text = ButtonText(Text);
-  Button.Group = ButtonGroup(Group, GroupHSpacer, GroupVSpacer);
+  Button.Group = ButtonGroup(Group);
   Button.Spinner = ButtonSpinner(Spinner);
   Button.Icon = ButtonIcon(Icon);
 
@@ -45,8 +39,6 @@ export function createButton<
   return Button as IButtonComponentType<
     ButtonProps,
     GroupProps,
-    GroupHSpacerProps,
-    GroupVSpacerProps,
     SpinnerProps,
     TextProps,
     IconProps

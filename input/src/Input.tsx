@@ -13,6 +13,7 @@ export const Input = (StyledInput: any) =>
         accessibilityLabel = 'Input Field',
         accessibilityHint,
         accessibilityRole = 'text',
+        secureTextEntry,
         ...props
       }: any,
       ref?: any
@@ -47,6 +48,7 @@ export const Input = (StyledInput: any) =>
       return (
         <StyledInput
           {...props}
+          type={type}
           states={{
             focus: isFocused,
             invalid: isInvalid,
@@ -57,7 +59,7 @@ export const Input = (StyledInput: any) =>
             disabled: isDisabled || inputProps.isDisabled,
           }}
           disabled={isDisabled || inputProps.isDisabled}
-          secureTextEntry={type === 'password'}
+          secureTextEntry={secureTextEntry || type === 'password'}
           accessible
           accessibilityLabel={accessibilityLabel}
           accessibilityHint={accessibilityHint}

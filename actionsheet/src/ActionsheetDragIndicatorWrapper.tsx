@@ -7,8 +7,13 @@ export function ActionsheetDragIndicatorWrapper<T>(
   StyledActionsheetDragIndicatorWrapper: React.ComponentType<T>
 ) {
   return forwardRef((props: T, ref?: any) => {
-    const { pan, handleClose, handleCloseBackdrop, snapPoints } =
-      useActionsheetContent('ActionsheetContentContext');
+    const {
+      pan,
+      handleClose,
+      handleCloseBackdrop,
+      snapPoints,
+      contentSheetHeight,
+    } = useActionsheetContent('ActionsheetContentContext');
 
     const handleCloseRef = React.useRef(null);
     const panResponder = React.useRef(
@@ -25,21 +30,38 @@ export function ActionsheetDragIndicatorWrapper<T>(
           }
         },
         onPanResponderRelease: (_e, gestureState) => {
-          const contentSheetHeight =
-            windowHeight * (parseFloat(snapPoints[0]) * 0.01);
-          if (contentSheetHeight / 4 < gestureState.dy) {
-            handleCloseBackdrop();
-            Animated.timing(pan, {
-              toValue: { x: 0, y: contentSheetHeight },
-              duration: 200,
-              useNativeDriver: true,
-            }).start(handleClose);
+          if (!snapPoints) {
+            if (contentSheetHeight.current / 4 < gestureState.dy) {
+              handleCloseBackdrop();
+              Animated.timing(pan, {
+                toValue: { x: 0, y: contentSheetHeight.current },
+                duration: 200,
+                useNativeDriver: true,
+              }).start(handleClose);
+            } else {
+              Animated.spring(pan, {
+                toValue: { x: 0, y: 0 },
+                overshootClamping: true,
+                useNativeDriver: true,
+              }).start();
+            }
           } else {
-            Animated.spring(pan, {
-              toValue: { x: 0, y: 0 },
-              overshootClamping: true,
-              useNativeDriver: true,
-            }).start();
+            const contentSheetHeightWithSnapPoint =
+              windowHeight * (parseFloat(snapPoints[0]) * 0.01);
+            if (contentSheetHeightWithSnapPoint / 4 < gestureState.dy) {
+              handleCloseBackdrop();
+              Animated.timing(pan, {
+                toValue: { x: 0, y: contentSheetHeightWithSnapPoint },
+                duration: 200,
+                useNativeDriver: true,
+              }).start(handleClose);
+            } else {
+              Animated.spring(pan, {
+                toValue: { x: 0, y: 0 },
+                overshootClamping: true,
+                useNativeDriver: true,
+              }).start();
+            }
           }
         },
       })

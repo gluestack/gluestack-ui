@@ -1,18 +1,18 @@
 {
-  "name": "@gluestack-ui/linear-gradient",
-  "version": "0.1.0",
+  "name": "@gluestack-ui/image",
+  "version": "0.1.1",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/index.d.ts",
   "react-native": "src/index",
   "source": "src/index",
   "typings": "lib/typescript/index.d.ts",
-  "description": "A universal headless LinearGradient component for React Native, Next.js & React",
+  "description": "A universal headless Button component for React Native, Next.js & React",
   "keywords": [
     "react",
     "native",
     "react-native",
-    "linear-gradient",
+    "button",
     "gluestack-ui",
     "universal",
     "headless",
@@ -45,8 +45,7 @@
   "dependencies": {
     "@gluestack-ui/utils": "0.1.9",
     "@react-native-aria/focus": "^0.2.8",
-    "@react-native-aria/interactions": "^0.2.10",
-    "expo-linear-gradient": "12.3.0"
+    "@react-native-aria/interactions": "^0.2.10"
   },
   "peerDependencies": {
     "react": ">=16",

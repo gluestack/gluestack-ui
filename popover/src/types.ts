@@ -81,9 +81,11 @@ export interface InterfacePopoverProps {
    * @default false
    */
   useRNModal?: boolean;
-  /**
-   * Props applied on backdrop.
+
+  /* If true, it will not allow to interact with anything outside the popover
+   * @default true
    */
+  focusScope?: boolean;
 }
 
 export type IPopoverComponentType<

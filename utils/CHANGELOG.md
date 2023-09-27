@@ -1,5 +1,11 @@
 # @gluestack-ui/utils
 
+## 0.1.9
+
+### Patch Changes
+
+- fix: removing unwanted react native svg deps
+
 ## 0.1.8
 
 ### Patch Changes

@@ -1,5 +1,17 @@
 # @gluestack-ui/icon
 
+## 0.1.8
+
+### Patch Changes
+
+- fix: react native svg version issue
+
+## 0.1.7
+
+### Patch Changes
+
+- fix: lucide icon issue
+
 ## 0.1.6
 
 ### Patch Changes

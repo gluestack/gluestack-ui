@@ -1,5 +1,29 @@
 # @gluestack-ui/menu
 
+## 0.2.19
+
+### Patch Changes
+
+- Fixed overlay components to take overlay
+
+## 0.2.18
+
+### Patch Changes
+
+- fix: top position issue on native
+
+## 0.2.17
+
+### Patch Changes
+
+- fix: figma refactor
+
+## 0.2.16
+
+### Patch Changes
+
+- fix: default value of \_experimentalOverlay to false
+
 ## 0.2.15
 
 ### Patch Changes

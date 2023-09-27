@@ -22,9 +22,9 @@ export function Actionsheet<T>(StyledActionsheet: React.ComponentType<T>) {
         initialFocusRef,
         finalFocusRef,
         unmountOnExit = true,
-        snapPoints = [50],
+        snapPoints,
         // @ts-ignore
-        _experimentalOverlay = true,
+        _experimentalOverlay = false,
         ...props
       }: T & IActionsheetProps,
       ref?: any
@@ -77,20 +77,6 @@ export function Actionsheet<T>(StyledActionsheet: React.ComponentType<T>) {
         finalFocusRef,
         snapPoints,
       ]);
-
-      if (!_experimentalOverlay) {
-        return (
-          <ActionsheetContext.Provider value={contextValue}>
-            <StyledActionsheet
-              ref={ref}
-              style={[StyleSheet.absoluteFill]}
-              {...(props as T)}
-            >
-              {children}
-            </StyledActionsheet>
-          </ActionsheetContext.Provider>
-        );
-      }
 
       return (
         <Overlay

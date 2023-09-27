@@ -1,11 +1,16 @@
 import React, { forwardRef } from 'react';
 import { useKeyboardDismissable } from '@gluestack-ui/hooks';
 import { usePopover } from './PopoverContext';
-import { Platform, findNodeHandle, AccessibilityInfo } from 'react-native';
+import {
+  Platform,
+  findNodeHandle,
+  AccessibilityInfo,
+  Keyboard,
+} from 'react-native';
 import { mergeRefs } from '@gluestack-ui/utils';
 import { useOverlayPosition } from '@react-native-aria/overlays';
 import { OverlayAnimatePresence } from './OverlayAnimatePresence';
-import { FocusScope } from '@react-native-aria/focus';
+import { FocusScope as FocusScopeAria } from '@react-native-aria/focus';
 import { useDialog } from '@react-native-aria/dialog';
 import { PopoverContentProvider } from './PopoverContext';
 
@@ -30,6 +35,7 @@ const PopoverContent = (StyledPopoverContent: any, AnimatePresence?: any) =>
       trapFocus,
       handleClose,
       shouldFlip,
+      focusScope,
     } = value;
 
     const contentRef = React.useRef(null);
@@ -46,18 +52,21 @@ const PopoverContent = (StyledPopoverContent: any, AnimatePresence?: any) =>
       { initialFocusRef, ...props },
       contentRef
     );
-    React.useEffect(() => {
-      const finalFocusRefCurrentVal = finalFocusRef?.current;
-      if (initialFocusRef && initialFocusRef.current) {
-        initialFocusRef.current.focus();
-      }
 
-      return () => {
-        if (finalFocusRefCurrentVal) {
-          finalFocusRefCurrentVal.focus();
+    React.useEffect(() => {
+      if (isOpen) {
+        if (focusScope) {
+          Keyboard.dismiss();
         }
-      };
-    }, [finalFocusRef, initialFocusRef]);
+        if (initialFocusRef && initialFocusRef?.current) {
+          initialFocusRef?.current?.focus();
+        }
+      } else {
+        if (finalFocusRef && finalFocusRef?.current) {
+          finalFocusRef?.current?.focus();
+        }
+      }
+    }, [initialFocusRef, finalFocusRef, isOpen, focusScope]);
 
     useKeyboardDismissable({
       enabled: true,
@@ -111,13 +120,23 @@ const PopoverContent = (StyledPopoverContent: any, AnimatePresence?: any) =>
               ...style,
             }}
           >
-            <FocusScope contain={trapFocus} restoreFocus autoFocus>
+            <FocusScopeComponent contain={trapFocus} restoreFocus autoFocus>
               {children}
-            </FocusScope>
+            </FocusScopeComponent>
           </StyledPopoverContent>
         </OverlayAnimatePresence>
       </PopoverContentProvider>
     );
   });
+
+const FocusScopeComponent = ({ trapFocus, focusScope, children }: any) => {
+  if (focusScope)
+    return (
+      <FocusScopeAria contain={trapFocus} restoreFocus autoFocus>
+        {children}
+      </FocusScopeAria>
+    );
+  return children;
+};
 
 export default PopoverContent;
