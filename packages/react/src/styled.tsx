@@ -10,6 +10,7 @@ import type {
   ITheme,
   ExtendedConfigType,
   IComponentStyleConfig,
+  StyledConfig,
 } from './types';
 import {
   deepMerge,
@@ -978,7 +979,7 @@ export function verboseStyled<P, Variants, ComCon>(
     componentStyleConfig?.descendantStyle &&
     componentStyleConfig?.descendantStyle?.length > 0;
 
-  const NewComp = (
+  const StyledComponent = (
     {
       children,
       //@ts-ignore
@@ -1892,7 +1893,7 @@ export function verboseStyled<P, Variants, ComCon>(
     return component;
   };
 
-  const StyledComp = React.forwardRef(NewComp);
+  const StyledComp = React.forwardRef(StyledComponent);
 
   const displayName = componentStyleConfig?.componentName
     ? componentStyleConfig?.componentName
@@ -1905,7 +1906,7 @@ export function verboseStyled<P, Variants, ComCon>(
   //@ts-ignore
   StyledComp.isStyledComponent = true;
 
-  return StyledComp;
+  return StyledComp as typeof StyledComp & { styledConfig?: StyledConfig };
 }
 
 export function styled<P, Variants, ComCon>(
