@@ -160,7 +160,7 @@ function ActionsheetContent<T>(
                 exit={{
                   y: windowHeight,
                 }}
-                height={snapPoints ? contentSheetAnimatePosition : undefined}
+                height={snapPoints ? '100%' : undefined}
                 transition={animationDefaultConfig}
                 {...(props as T)}
                 ref={mergedRef}
