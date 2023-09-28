@@ -1,7 +1,7 @@
+import { AnimatedView } from '@gluestack-style/animation-resolver';
 import { styled } from '@gluestack-style/react';
-import { Motion } from '@legendapp/motion';
 
-export default styled(Motion.View, {}, {
+export default styled(AnimatedView, {}, {
   componentName: 'TooltipContent',
   descendantStyle: ['_text'],
 } as const);

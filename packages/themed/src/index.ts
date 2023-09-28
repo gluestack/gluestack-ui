@@ -1,8 +1,7 @@
 'use client';
 
-export { components } from './gluestack-ui-theme';
-
+export { config, components } from './gluestack-ui-theme/gluestack-ui.config';
 export * from './components';
-export { config, UIConfig } from './components/gluestack-ui.config';
+export { UIConfig } from './gluestack-ui-theme';
 
 export * from '@gluestack-style/react';
