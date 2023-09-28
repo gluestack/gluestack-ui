@@ -14,17 +14,11 @@ export type IAvatarComponentType<
   GroupProps,
   ImageProps,
   FallbackTextProps
-> = React.ForwardRefExoticComponent<
-  (props: IAvatarProps & AvatarProps) => JSX.Element
-> & {
-  Badge: React.ForwardRefExoticComponent<(props: BadgeProps) => JSX.Element>;
-  Group: React.ForwardRefExoticComponent<
-    (props: GroupProps & IAvatarGroupProps) => JSX.Element
-  >;
-  Image: React.ForwardRefExoticComponent<(props: ImageProps) => JSX.Element>;
-  FallbackText: React.ForwardRefExoticComponent<
-    (props: FallbackTextProps) => JSX.Element
-  >;
+> = React.ForwardRefExoticComponent<IAvatarProps & AvatarProps> & {
+  Badge: React.ForwardRefExoticComponent<BadgeProps>;
+  Group: React.ForwardRefExoticComponent<GroupProps & IAvatarGroupProps>;
+  Image: React.ForwardRefExoticComponent<ImageProps>;
+  FallbackText: React.ForwardRefExoticComponent<FallbackTextProps>;
 };
 
 export type IAvatarProps = InterfaceAvatarProps;

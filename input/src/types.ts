@@ -52,14 +52,10 @@ export interface IInputProps {
 }
 
 export type IInputComponentType<Root, Icon, Slot, Input> =
-  React.ForwardRefExoticComponent<
-    (props: Root & IInputFieldProps) => JSX.Element
-  > & {
-    Icon: React.ForwardRefExoticComponent<(props: Icon) => JSX.Element>;
-    Slot: React.ForwardRefExoticComponent<(props: Slot) => JSX.Element>;
-    Input: React.ForwardRefExoticComponent<
-      (props: Input & IInputProps) => JSX.Element
-    >;
+  React.ForwardRefExoticComponent<Root & IInputFieldProps> & {
+    Icon: React.ForwardRefExoticComponent<Icon>;
+    Slot: React.ForwardRefExoticComponent<Slot>;
+    Input: React.ForwardRefExoticComponent<Input & IInputProps>;
   };
 
 // export type InputProps = Partial<IInputProps>;

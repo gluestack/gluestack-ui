@@ -97,22 +97,14 @@ export type IPopoverComponentType<
   BodyProps,
   BackdropProps,
   CloseButtonProps
-> = React.ForwardRefExoticComponent<
-  (props: IPopoverProps & PopoverProps) => JSX.Element
-> & {
-  Body: React.ForwardRefExoticComponent<(props: BodyProps) => JSX.Element>;
-  CloseButton: React.ForwardRefExoticComponent<
-    (props: CloseButtonProps) => JSX.Element
-  >;
-  Content: React.ForwardRefExoticComponent<
-    (props: ContentProps) => JSX.Element
-  >;
-  Footer: React.ForwardRefExoticComponent<(props: FooterProps) => JSX.Element>;
-  Header: React.ForwardRefExoticComponent<(props: HeaderProps) => JSX.Element>;
-  Arrow: React.ForwardRefExoticComponent<(props: ArrowProps) => JSX.Element>;
-  Backdrop: React.ForwardRefExoticComponent<
-    (props: BackdropProps) => JSX.Element
-  >;
+> = React.ForwardRefExoticComponent<IPopoverProps & PopoverProps> & {
+  Body: React.ForwardRefExoticComponent<BodyProps>;
+  CloseButton: React.ForwardRefExoticComponent<CloseButtonProps>;
+  Content: React.ForwardRefExoticComponent<ContentProps>;
+  Footer: React.ForwardRefExoticComponent<FooterProps>;
+  Header: React.ForwardRefExoticComponent<HeaderProps>;
+  Arrow: React.ForwardRefExoticComponent<ArrowProps>;
+  Backdrop: React.ForwardRefExoticComponent<BackdropProps>;
 };
 
 export type IPopoverProps = InterfacePopoverProps;

@@ -38,52 +38,20 @@ export type ISelectComponentType<
   SelectFlatListProps,
   SelectSectionListProps,
   SelectSectionHeaderTextProps
-> = React.ForwardRefExoticComponent<
-  (props: SelectProps & ISelectProps) => JSX.Element
-> & {
-  Trigger: React.ForwardRefExoticComponent<
-    (props: SelectTriggerProps) => JSX.Element
-  >;
-  Input: React.ForwardRefExoticComponent<
-    (props: SelectInputProps) => JSX.Element
-  >;
-  Icon: React.ForwardRefExoticComponent<
-    (props: SelectIconProps) => JSX.Element
-  >;
-  Portal: React.ForwardRefExoticComponent<
-    (props: SelectPortalProps) => JSX.Element
-  >;
-  Backdrop: React.ForwardRefExoticComponent<
-    (props: SelectBackdropProps) => JSX.Element
-  >;
-  Content: React.ForwardRefExoticComponent<
-    (props: SelectContentProps) => JSX.Element
-  >;
-  DragIndicator: React.ForwardRefExoticComponent<
-    (props: SelectDragIndicatorProps) => JSX.Element
-  >;
-  DragIndicatorWrapper: React.ForwardRefExoticComponent<
-    (props: SelectDragIndicatorWrapperProps) => JSX.Element
-  >;
-  Item: React.ForwardRefExoticComponent<
-    (props: ISelectItemProps & SelectItemProps) => JSX.Element
-  >;
-  ItemText: React.ForwardRefExoticComponent<
-    (props: SelectItemTextProps) => JSX.Element
-  >;
-  ScrollView: React.ForwardRefExoticComponent<
-    (props: SelectScrollViewProps) => JSX.Element
-  >;
-  VirtualizedList: React.ForwardRefExoticComponent<
-    (props: SelectVirtualizedListProps) => JSX.Element
-  >;
-  FlatList: React.ForwardRefExoticComponent<
-    (props: SelectFlatListProps) => JSX.Element
-  >;
-  SectionList: React.ForwardRefExoticComponent<
-    (props: SelectSectionListProps) => JSX.Element
-  >;
-  SectionHeaderText: React.ForwardRefExoticComponent<
-    (props: SelectSectionHeaderTextProps) => JSX.Element
-  >;
+> = React.ForwardRefExoticComponent<SelectProps & ISelectProps> & {
+  Trigger: React.ForwardRefExoticComponent<SelectTriggerProps>;
+  Input: React.ForwardRefExoticComponent<SelectInputProps>;
+  Icon: React.ForwardRefExoticComponent<SelectIconProps>;
+  Portal: React.ForwardRefExoticComponent<SelectPortalProps>;
+  Backdrop: React.ForwardRefExoticComponent<SelectBackdropProps>;
+  Content: React.ForwardRefExoticComponent<SelectContentProps>;
+  DragIndicator: React.ForwardRefExoticComponent<SelectDragIndicatorProps>;
+  DragIndicatorWrapper: React.ForwardRefExoticComponent<SelectDragIndicatorWrapperProps>;
+  Item: React.ForwardRefExoticComponent<ISelectItemProps & SelectItemProps>;
+  ItemText: React.ForwardRefExoticComponent<SelectItemTextProps>;
+  ScrollView: React.ForwardRefExoticComponent<SelectScrollViewProps>;
+  VirtualizedList: React.ForwardRefExoticComponent<SelectVirtualizedListProps>;
+  FlatList: React.ForwardRefExoticComponent<SelectFlatListProps>;
+  SectionList: React.ForwardRefExoticComponent<SelectSectionListProps>;
+  SectionHeaderText: React.ForwardRefExoticComponent<SelectSectionHeaderTextProps>;
 };

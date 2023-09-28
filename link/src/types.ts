@@ -28,8 +28,6 @@ export type IUseLinkProp = {
 };
 
 export type ILinkComponentType<Root, TextProps> =
-  React.ForwardRefExoticComponent<
-    (props: Root & InterfaceLinkProps) => JSX.Element
-  > & {
-    Text: React.ForwardRefExoticComponent<(props: TextProps) => JSX.Element>;
+  React.ForwardRefExoticComponent<Root & InterfaceLinkProps> & {
+    Text: React.ForwardRefExoticComponent<TextProps>;
   };

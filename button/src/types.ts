@@ -56,17 +56,11 @@ export type IButtonComponentType<
   SpinnerProps,
   TextProps,
   IconProps
-> = React.ForwardRefExoticComponent<
-  (props: ButtonProps & IButtonProps) => JSX.Element
-> & {
-  Group: React.ForwardRefExoticComponent<
-    (props: GroupProps & IButtonGroupProps) => JSX.Element
-  >;
-  Spinner: React.ForwardRefExoticComponent<
-    (props: SpinnerProps) => JSX.Element
-  >;
-  Text: React.ForwardRefExoticComponent<(props: TextProps) => JSX.Element>;
-  Icon: React.ForwardRefExoticComponent<(props: IconProps) => JSX.Element>;
+> = React.ForwardRefExoticComponent<ButtonProps & IButtonProps> & {
+  Group: React.ForwardRefExoticComponent<GroupProps & IButtonGroupProps>;
+  Spinner: React.ForwardRefExoticComponent<SpinnerProps>;
+  Text: React.ForwardRefExoticComponent<TextProps>;
+  Icon: React.ForwardRefExoticComponent<IconProps>;
 };
 
 export type IButtonProps = InterfaceButtonProps;

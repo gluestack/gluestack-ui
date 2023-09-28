@@ -35,21 +35,17 @@ export type IFormControlComponentType<
   LabelAstrick,
   Helper,
   HelperText
-> = React.ForwardRefExoticComponent<
-  (props: Root & InterfaceFormControlProps) => JSX.Element
-> & {
-  Error: React.ForwardRefExoticComponent<(props: Error) => JSX.Element> & {
-    Text: React.ForwardRefExoticComponent<(props: ErrorText) => JSX.Element>;
-    Icon: React.ForwardRefExoticComponent<(props: ErrorIcon) => JSX.Element>;
+> = React.ForwardRefExoticComponent<Root & InterfaceFormControlProps> & {
+  Error: React.ForwardRefExoticComponent<Error> & {
+    Text: React.ForwardRefExoticComponent<ErrorText>;
+    Icon: React.ForwardRefExoticComponent<ErrorIcon>;
   };
-  Label: React.ForwardRefExoticComponent<(props: Label) => JSX.Element> & {
-    Text: React.ForwardRefExoticComponent<(props: LabelText) => JSX.Element>;
-    Astrick: React.ForwardRefExoticComponent<
-      (props: LabelAstrick) => JSX.Element
-    >;
+  Label: React.ForwardRefExoticComponent<Label> & {
+    Text: React.ForwardRefExoticComponent<LabelText>;
+    Astrick: React.ForwardRefExoticComponent<LabelAstrick>;
   };
-  Helper: React.ForwardRefExoticComponent<(props: Helper) => JSX.Element> & {
-    Text: React.ForwardRefExoticComponent<(props: HelperText) => JSX.Element>;
+  Helper: React.ForwardRefExoticComponent<Helper> & {
+    Text: React.ForwardRefExoticComponent<HelperText>;
   };
 };
 export type IFormControlProps = InterfaceFormControlProps;

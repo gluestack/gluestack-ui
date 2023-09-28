@@ -5,5 +5,5 @@ export interface IImageProps {
 }
 
 export type IImageComponentType<StyledImage> = React.ForwardRefExoticComponent<
-  (props: IImageProps & Omit<StyledImage, 'source' | 'alt'>) => JSX.Element
+  IImageProps & Omit<StyledImage, 'source' | 'alt'>
 >;

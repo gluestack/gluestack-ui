@@ -59,27 +59,13 @@ export type IAlertDialogComponentType<
   StyledAlertDialogFooter,
   StyledAlertDialogBody,
   StyledAlertDialogBackdrop
-> = React.ForwardRefExoticComponent<
-  (props: StyledAlertDialog & IAlertDialogProps) => JSX.Element
-> & {
-  Content: React.ForwardRefExoticComponent<
-    (props: StyledAlertDialogContent) => JSX.Element
-  >;
-  CloseButton: React.ForwardRefExoticComponent<
-    (props: StyledAlertDialogCloseButton) => JSX.Element
-  >;
-  Header: React.ForwardRefExoticComponent<
-    (props: StyledAlertDialogHeader) => JSX.Element
-  >;
-  Footer: React.ForwardRefExoticComponent<
-    (props: StyledAlertDialogFooter) => JSX.Element
-  >;
-  Body: React.ForwardRefExoticComponent<
-    (props: StyledAlertDialogBody) => JSX.Element
-  >;
-  Backdrop: React.ForwardRefExoticComponent<
-    (props: StyledAlertDialogBackdrop) => JSX.Element
-  >;
+> = React.ForwardRefExoticComponent<StyledAlertDialog & IAlertDialogProps> & {
+  Content: React.ForwardRefExoticComponent<StyledAlertDialogContent>;
+  CloseButton: React.ForwardRefExoticComponent<StyledAlertDialogCloseButton>;
+  Header: React.ForwardRefExoticComponent<StyledAlertDialogHeader>;
+  Footer: React.ForwardRefExoticComponent<StyledAlertDialogFooter>;
+  Body: React.ForwardRefExoticComponent<StyledAlertDialogBody>;
+  Backdrop: React.ForwardRefExoticComponent<StyledAlertDialogBackdrop>;
 };
 
 export type IAlertDialogProps = InterfaceAlertDialogProps;

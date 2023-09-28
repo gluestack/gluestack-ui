@@ -18,12 +18,8 @@ export interface InterfaceProgressProps {
 }
 
 export type IProgressComponentType<ProgressProps, ProgressFilledTrackProps> =
-  React.ForwardRefExoticComponent<
-    (props: ProgressProps & InterfaceProgressProps) => JSX.Element
-  > & {
-    FilledTrack: React.ForwardRefExoticComponent<
-      (props: ProgressFilledTrackProps) => JSX.Element
-    >;
+  React.ForwardRefExoticComponent<ProgressProps & InterfaceProgressProps> & {
+    FilledTrack: React.ForwardRefExoticComponent<ProgressFilledTrackProps>;
   };
 
 export type IProgressProps = InterfaceProgressProps;

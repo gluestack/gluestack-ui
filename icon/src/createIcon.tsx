@@ -31,7 +31,7 @@ interface CreateIconOptions {
 export interface IIconProps extends ViewProps {}
 
 export type IIconComponentType<IconProps> = React.ForwardRefExoticComponent<
-  (props: IconProps & IIconProps) => JSX.Element
+  IconProps & IIconProps
 >;
 
 const ChildPath = ({ element, fill, stroke: pathStroke }: any) => {

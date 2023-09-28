@@ -23,17 +23,11 @@ export interface ICheckboxGroup {
 }
 
 export type ICheckboxComponentType<Root, Indicator, Icon, Label, Group> =
-  React.ForwardRefExoticComponent<
-    (props: Root & InterfaceCheckbox) => JSX.Element
-  > & {
-    Indicator: React.ForwardRefExoticComponent<
-      (props: Indicator) => JSX.Element
-    >;
-    Icon: React.ForwardRefExoticComponent<(props: Icon) => JSX.Element>;
-    Label: React.ForwardRefExoticComponent<(props: Label) => JSX.Element>;
-    Group: React.ForwardRefExoticComponent<
-      (props: Group & ICheckboxGroup) => JSX.Element
-    >;
+  React.ForwardRefExoticComponent<Root & InterfaceCheckbox> & {
+    Indicator: React.ForwardRefExoticComponent<Indicator>;
+    Icon: React.ForwardRefExoticComponent<Icon>;
+    Label: React.ForwardRefExoticComponent<Label>;
+    Group: React.ForwardRefExoticComponent<Group & ICheckboxGroup>;
   };
 
 export type ICheckboxProps = InterfaceCheckbox;

@@ -19,7 +19,7 @@ export interface IInterfaceSwitchProps {
 }
 
 export type ISwitchComponentType<SwitchProps> = React.ForwardRefExoticComponent<
-  (props: SwitchProps & IInterfaceSwitchProps) => JSX.Element
+  SwitchProps & IInterfaceSwitchProps
 >;
 
 export type ISwitchProps = IInterfaceSwitchProps;
