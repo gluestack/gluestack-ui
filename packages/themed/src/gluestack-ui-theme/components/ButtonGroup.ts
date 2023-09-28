@@ -40,12 +40,6 @@ export const ButtonGroup = createStyle({
             },
           },
         },
-        _groupHSpacer: {
-          size: '$sm',
-        },
-        _groupVSpacer: {
-          size: '$sm',
-        },
       },
       md: {
         _button: {
