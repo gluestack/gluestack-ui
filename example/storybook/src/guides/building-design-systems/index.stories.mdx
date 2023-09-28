@@ -1,8 +1,6 @@
 ---
 title: Building Design Systems | gluestack-ui
-description: Building Design Systems
-pageTitle: Building Design Systems
-pageDescription: Building Design Systems description
+description: In this guide, we will provide a step-by-step walkthrough on how to create your own design system
 ---
 
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
@@ -18,15 +16,15 @@ This enables you to build your own collection of components that match your visi
 
 If you are planning to build your own design system, you can direclty **fork** [`@gluestack-ui/themed`](https://github.com/gluestack/gluestack-ui) – a meticulously organized monorepo and begin shaping your design system upon this solid foundation.
 
-- This includes a component library package `@gluestack-ui/themed` in `packages/themed`
-- This includes a storybook in `example/storybook` for both React and React Native.
+- This includes a component library package `@gluestack-ui/themed` in `packages/themed` directory.
+- This includes a storybook for both React and React Native in `example/storybook` directory.
 
 Follow these steps after **forking** this repository:
 
 ### Change library name
 
-- Navigate to the `packages/themed` and open `package.json`. (You can rename the folder if you need)
-- Locate the `name` field in the `package.json` file and update it to `@myapp/components`
+- Navigate to the `packages/themed` and open `package.json`. (You can rename the folder if you need).
+- Locate the `name` field in the `package.json` file and update it to `@myapp/components`.
 
   ```json
   //package.json
@@ -36,9 +34,15 @@ Follow these steps after **forking** this repository:
   }
   ```
 
-### Update configuration
+  Now your library `@myapp/components` has all primitive components from `@gluestack-ui/themed` by default.
 
-- `tsconfig.json`
+### Update storybook configuration
+
+Navigate to the `example/storybook` and make updates to the specified files below.
+
+- **_tsconfig.json_**:
+
+  You'll need to update `paths` in `tsconfig.json` for TypeScript import resolution.
 
   ```jsx
   // ... other configuration
@@ -51,7 +55,25 @@ Follow these steps after **forking** this repository:
   }
   ```
 
-Now your library `@myapp/components` has all primitive components from `@gluestack-ui/themed` by default.
+- **_babel.config.js_**:
+  You'll need to update `alias` in `babel.config.ts` file incase you've renamed the folder `packages/themed`.
+  ```jsx
+  // ... other configuration
+    plugins: [
+         [
+            'module-resolver',
+            {
+              alias: {
+                '@gluestack-ui/themed': path.join(
+                __dirname,
+                '../../packages/<component-folder-name>/src'
+              ),
+              }
+            },
+          ]
+    ],
+  // ... other configuration
+  ```
 
 ## Step 2: Customize Tokens and Components
 
@@ -97,7 +119,7 @@ To create your own custom commponent. You need to follow these steps:
   };
   ```
 
-- And then export from `packages/themed/src/components/index.tsx`;
+- And then export from `packages/themed/src/components/index.tsx`
   ```jsx
   // other components
   export * from './Circle';
@@ -105,7 +127,7 @@ To create your own custom commponent. You need to follow these steps:
 
 ## Step 3: Test Your Package
 
-In the storybook present in `exmaple/storybook`, now you can import `Circle` component from your `@myapp/components`.
+Now you can import and test your component.
 
 ```jsx
 import { Circle } from '@myapp/components';

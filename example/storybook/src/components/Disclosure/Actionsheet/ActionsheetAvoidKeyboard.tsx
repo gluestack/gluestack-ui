@@ -79,14 +79,16 @@ const ActionsheetWithKeyboardAvoidingView = ({
 
   return (
     // @ts-ignore
-    <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : ''}>
+    <KeyboardAvoidingView
+      behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+    >
       <Actionsheet
         isOpen={showActionsheet || showActionsheetProp}
         onClose={handleClose}
         {...props}
       >
         <ActionsheetBackdrop />
-        <ActionsheetContent maxHeight="75%">
+        <ActionsheetContent>
           <ActionsheetDragIndicatorWrapper>
             <ActionsheetDragIndicator />
           </ActionsheetDragIndicatorWrapper>
@@ -194,4 +196,6 @@ export {
   Icon,
   LeadingIcon,
   IconRoot,
+  KeyboardAvoidingView,
+  Platform,
 };

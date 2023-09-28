@@ -18,12 +18,6 @@ export const ButtonGroup = createStyle({
             },
           },
         },
-        _groupHSpacer: {
-          size: '$xs',
-        },
-        _groupVSpacer: {
-          size: '$xs',
-        },
       },
       sm: {
         _button: {
@@ -56,12 +50,6 @@ export const ButtonGroup = createStyle({
             },
           },
         },
-        _groupHSpacer: {
-          size: '$md',
-        },
-        _groupVSpacer: {
-          size: '$md',
-        },
       },
       lg: {
         _button: {
@@ -77,12 +65,6 @@ export const ButtonGroup = createStyle({
               size: 'lg',
             },
           },
-        },
-        _groupHSpacer: {
-          size: '$lg',
-        },
-        _groupVSpacer: {
-          size: '$lg',
         },
       },
       xl: {
@@ -108,9 +90,36 @@ export const ButtonGroup = createStyle({
         },
       },
     },
+    space: {
+      'xs': {
+        gap: '$1',
+      },
+      'sm': {
+        gap: '$2',
+      },
+      'md': {
+        gap: '$3',
+      },
+      'lg': {
+        gap: '$4',
+      },
+      'xl': {
+        gap: '$5',
+      },
+      '2xl': {
+        gap: '$6',
+      },
+      '3xl': {
+        gap: '$7',
+      },
+      '4xl': {
+        gap: '$8',
+      },
+    },
   },
 
   defaultProps: {
     size: 'md',
+    space: 'sm',
   },
 });
