@@ -1,7 +1,6 @@
 import { AnimationResolver } from '@gluestack-style/animation-resolver';
 import { MotionAnimationDriver } from '@gluestack-style/legend-motion-animation-driver';
-import { createComponents, createConfig } from '@gluestack-style/react';
-import * as componentStyles from './components';
+import { createConfig } from '@gluestack-style/react';
 
 export const config = {
   componentPath: '/components',
@@ -700,4 +699,26 @@ export const config = {
   }),
 } as const;
 
-export const components = createComponents(componentStyles);
+type Config = typeof config.theme; // Assuming `config` is defined elsewhere
+
+console.log(config, 'fff');
+
+export interface UIConfig {}
+
+type UIConfigType = UIConfig;
+
+type MergeTypes<T, S> = {
+  [K in keyof T | keyof S]: K extends keyof S
+    ? S[K]
+    : K extends keyof T
+    ? T[K]
+    : any;
+};
+
+type MergedConfigType = MergeTypes<Config, UIConfigType>;
+
+interface CustomExtendedConfig extends MergedConfigType {}
+
+declare module '@gluestack-style/react' {
+  interface ICustomConfig extends CustomExtendedConfig {}
+}
