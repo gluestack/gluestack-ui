@@ -25,6 +25,7 @@ const AlertNew = forwardRef(
     {
       status: statusProp,
       colorScheme: colorSchemeProp = 'info',
+      variant = 'subtle',
       children,
       ...props
     }: any,
@@ -34,7 +35,7 @@ const AlertNew = forwardRef(
     if (colorSchemeProp) status = { colorScheme: colorSchemeProp };
     if (statusProp) status = { colorScheme: statusProp };
     return (
-      <AccessibleAlert {...props} ref={ref} {...status}>
+      <AccessibleAlert {...props} ref={ref} {...status} variant={variant}>
         {children}
       </AccessibleAlert>
     );
