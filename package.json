@@ -2,7 +2,7 @@
   "private": true,
   "workspaces": [
     "packages/*",
-    "example/*"
+    "example/storybook"
   ],
   "scripts": {
     "dev": "turbo run dev",

@@ -3,5 +3,5 @@ import { View } from 'react-native';
 
 export default styled(View, {}, {
   componentName: 'ButtonGroup',
-  descendantStyle: ['_button', '_groupHSpacer', '_groupVSpacer'],
+  descendantStyle: ['_button'],
 } as const);

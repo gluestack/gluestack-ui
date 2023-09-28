@@ -1,8 +1,10 @@
 import { withBackgrounds } from '@storybook/addon-ondevice-backgrounds';
 import { addParameters } from '@storybook/client-api';
-import { GluestackUIProvider } from '@gluestack-ui/themed';
+import { GluestackUIProvider, Center } from '@gluestack-ui/themed';
 import { config } from '@gluestack-ui/themed';
 import { useState } from 'react';
+
+import { View } from 'react-native';
 
 // export const decorators = [];
 //
@@ -47,7 +49,9 @@ export const decorators = [
     }
     return (
       <GluestackUIProvider config={config.theme}>
-        <Story />
+        <Center h="$full">
+          <Story />
+        </Center>
       </GluestackUIProvider>
     );
   },

@@ -1,4 +1,3 @@
-//@ts-nocheck
 import { View } from 'react-native';
 import { styled } from '@gluestack-style/react';
 

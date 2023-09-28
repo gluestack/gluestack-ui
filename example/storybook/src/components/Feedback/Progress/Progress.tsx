@@ -7,13 +7,25 @@ import {
   Text,
   Box,
   Heading,
+  Center,
 } from '@gluestack-ui/themed';
 
 const ProgressBasic = ({ value = 50, ...props }: any) => {
   return (
-    <Progress w={800} value={value} {...props}>
-      <ProgressFilledTrack />
-    </Progress>
+    <Center>
+      <Progress
+        sx={{
+          w: 300,
+          _web: {
+            w: 800,
+          },
+        }}
+        value={value}
+        {...props}
+      >
+        <ProgressFilledTrack />
+      </Progress>
+    </Center>
   );
 };
 

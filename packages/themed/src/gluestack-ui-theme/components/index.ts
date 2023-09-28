@@ -85,6 +85,7 @@ export * from './PopoverBody';
 export * from './PopoverCloseButton';
 export * from './PopoverFooter';
 export * from './PopoverHeader';
+export * from './PopoverContent';
 export * from './Pressable';
 export * from './Progress';
 export * from './ProgressFilledTrack';
