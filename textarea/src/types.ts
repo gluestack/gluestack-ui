@@ -41,8 +41,11 @@ export interface IInputProps {
   type?: 'text' | 'password';
 }
 
-export type ITextareaComponentType<Root, Input> = ((
-  props: Root & ITextareaProps
-) => JSX.Element) & {
-  Input: (props: Input & IInputProps) => JSX.Element;
-};
+export type ITextareaComponentType<Root, Input> =
+  React.ForwardRefExoticComponent<
+    (props: Root & ITextareaProps) => JSX.Element
+  > & {
+    Input: React.ForwardRefExoticComponent<
+      (props: Input & IInputProps) => JSX.Element
+    >;
+  };

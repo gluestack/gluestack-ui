@@ -15,11 +15,25 @@ export type ITabsComponentType<
   TabPanelProps,
   TabTitleProps,
   TabIconProps
-> = ((props: TabsProps & ITabsProps) => JSX.Element) & {
-  Tab: (props: TabProps & ITabProps) => JSX.Element;
-  TabPanels: (props: TabPanelsProps) => JSX.Element;
-  TabList: (props: TabListProps) => JSX.Element;
-  TabPanel: (props: TabPanelProps & ITabPanelProps) => JSX.Element;
-  TabTitle: (props: TabTitleProps) => JSX.Element;
-  TabIcon: (props: TabIconProps) => JSX.Element;
+> = React.ForwardRefExoticComponent<
+  (props: TabsProps & ITabsProps) => JSX.Element
+> & {
+  Tab: React.ForwardRefExoticComponent<
+    (props: TabProps & ITabProps) => JSX.Element
+  >;
+  TabPanels: React.ForwardRefExoticComponent<
+    (props: TabPanelsProps) => JSX.Element
+  >;
+  TabList: React.ForwardRefExoticComponent<
+    (props: TabListProps) => JSX.Element
+  >;
+  TabPanel: React.ForwardRefExoticComponent<
+    (props: TabPanelProps & ITabPanelProps) => JSX.Element
+  >;
+  TabTitle: React.ForwardRefExoticComponent<
+    (props: TabTitleProps) => JSX.Element
+  >;
+  TabIcon: React.ForwardRefExoticComponent<
+    (props: TabIconProps) => JSX.Element
+  >;
 };

@@ -18,8 +18,8 @@ export interface IInterfaceSwitchProps {
   isInvalid?: boolean;
 }
 
-export type ISwitchComponentType<SwitchProps> = (
-  props: SwitchProps & IInterfaceSwitchProps
-) => JSX.Element;
+export type ISwitchComponentType<SwitchProps> = React.ForwardRefExoticComponent<
+  (props: SwitchProps & IInterfaceSwitchProps) => JSX.Element
+>;
 
 export type ISwitchProps = IInterfaceSwitchProps;

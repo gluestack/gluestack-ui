@@ -81,14 +81,16 @@ export type ISliderComponentType<
   StyledSliderThumb,
   StyledSliderTrack,
   StyledSliderFilledTrack
-> = ((props: StyledSlider & ISliderProps) => JSX.Element) & {
-  Thumb: React.MemoExoticComponent<
+> = React.ForwardRefExoticComponent<
+  (props: StyledSlider & ISliderProps) => JSX.Element
+> & {
+  Thumb: React.ForwardRefExoticComponent<
     (props: StyledSliderThumb & ISliderThumbProps) => JSX.Element
   >;
-  Track: React.MemoExoticComponent<
+  Track: React.ForwardRefExoticComponent<
     (props: StyledSliderTrack & ISliderTrackProps) => JSX.Element
   >;
-  FilledTrack: React.MemoExoticComponent<
+  FilledTrack: React.ForwardRefExoticComponent<
     (props: StyledSliderFilledTrack & ISliderTrackFilledProps) => JSX.Element
   >;
 };

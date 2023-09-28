@@ -62,21 +62,43 @@ export type IActionsheetComponentType<
   SectionListProps,
   SectionHeaderTextProps,
   IconProps
-> = ((props: ActionsheetProps & IActionsheetProps) => JSX.Element) & {
-  Content: (
-    props: ContentProps & InterfaceActionsheetContentProps
-  ) => JSX.Element;
-  Item: (props: ItemProps & InterfaceActionsheetItemProps) => JSX.Element;
-  ItemText: (props: ItemTextProps) => JSX.Element;
-  DragIndicator: (props: DragIndicatorProps) => JSX.Element;
-  Backdrop: (props: BackdropProps) => JSX.Element;
-  DragIndicatorWrapper: (props: IndicatorWrapperProps) => JSX.Element;
-  ScrollView: (props: ScrollViewProps) => JSX.Element;
-  VirtualizedList: (props: VirtualizedListProps) => JSX.Element;
-  FlatList: (props: FlatListProps) => JSX.Element;
-  SectionList: (props: SectionListProps) => JSX.Element;
-  SectionHeaderText: (props: SectionHeaderTextProps) => JSX.Element;
-  Icon: (props: IconProps) => JSX.Element;
+> = React.ForwardRefExoticComponent<
+  (props: ActionsheetProps & IActionsheetProps) => JSX.Element
+> & {
+  Content: React.ForwardRefExoticComponent<
+    (props: ContentProps & InterfaceActionsheetContentProps) => JSX.Element
+  >;
+  Item: React.ForwardRefExoticComponent<
+    (props: ItemProps & InterfaceActionsheetItemProps) => JSX.Element
+  >;
+  ItemText: React.ForwardRefExoticComponent<
+    (props: ItemTextProps) => JSX.Element
+  >;
+  DragIndicator: React.ForwardRefExoticComponent<
+    (props: DragIndicatorProps) => JSX.Element
+  >;
+  Backdrop: React.ForwardRefExoticComponent<
+    (props: BackdropProps) => JSX.Element
+  >;
+  DragIndicatorWrapper: React.ForwardRefExoticComponent<
+    (props: IndicatorWrapperProps) => JSX.Element
+  >;
+  ScrollView: React.ForwardRefExoticComponent<
+    (props: ScrollViewProps) => JSX.Element
+  >;
+  VirtualizedList: React.ForwardRefExoticComponent<
+    (props: VirtualizedListProps) => JSX.Element
+  >;
+  FlatList: React.ForwardRefExoticComponent<
+    (props: FlatListProps) => JSX.Element
+  >;
+  SectionList: React.ForwardRefExoticComponent<
+    (props: SectionListProps) => JSX.Element
+  >;
+  SectionHeaderText: React.ForwardRefExoticComponent<
+    (props: SectionHeaderTextProps) => JSX.Element
+  >;
+  Icon: React.ForwardRefExoticComponent<(props: IconProps) => JSX.Element>;
 };
 
 export type IActionsheetProps = InterfaceActionsheetProps;

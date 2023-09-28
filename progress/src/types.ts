@@ -17,12 +17,13 @@ export interface InterfaceProgressProps {
   children?: any;
 }
 
-export type IProgressComponentType<ProgressProps, ProgressFilledTrackProps> = ((
-  props: ProgressProps & InterfaceProgressProps
-) => JSX.Element) & {
-  FilledTrack: React.MemoExoticComponent<
-    (props: ProgressFilledTrackProps) => JSX.Element
-  >;
-};
+export type IProgressComponentType<ProgressProps, ProgressFilledTrackProps> =
+  React.ForwardRefExoticComponent<
+    (props: ProgressProps & InterfaceProgressProps) => JSX.Element
+  > & {
+    FilledTrack: React.ForwardRefExoticComponent<
+      (props: ProgressFilledTrackProps) => JSX.Element
+    >;
+  };
 
 export type IProgressProps = InterfaceProgressProps;

@@ -93,11 +93,13 @@ export type IToolTipComponentType<
   StyledTooltip,
   StyledTooltipContent,
   TextProps
-> = ((props: StyledTooltip & ITooltipProps) => JSX.Element) & {
-  Content: React.MemoExoticComponent<
+> = React.ForwardRefExoticComponent<
+  (props: StyledTooltip & ITooltipProps) => JSX.Element
+> & {
+  Content: React.ForwardRefExoticComponent<
     (props: StyledTooltipContent) => JSX.Element
   >;
-  Text: React.MemoExoticComponent<(props: TextProps) => JSX.Element>;
+  Text: React.ForwardRefExoticComponent<(props: TextProps) => JSX.Element>;
 };
 
 export type ITooltipProps = InterfaceTooltipProps;

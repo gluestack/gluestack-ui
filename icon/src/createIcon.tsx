@@ -1,4 +1,5 @@
 import React, { forwardRef } from 'react';
+import { ViewProps } from 'react-native';
 import { Path, G } from 'react-native-svg';
 
 interface CreateIconOptions {
@@ -27,11 +28,11 @@ interface CreateIconOptions {
   type?: any;
 }
 
-export interface IIconProps {}
+export interface IIconProps extends ViewProps {}
 
-export type IIconComponentType<IconProps> = (
-  props: IconProps & IIconProps
-) => JSX.Element;
+export type IIconComponentType<IconProps> = React.ForwardRefExoticComponent<
+  (props: IconProps & IIconProps) => JSX.Element
+>;
 
 const ChildPath = ({ element, fill, stroke: pathStroke }: any) => {
   const pathStrokeColor = pathStroke || '';
@@ -53,7 +54,7 @@ export function createIcon<IconProps>({
   d,
   ...initialProps
 }: { Root: React.ComponentType<IconProps> } & CreateIconOptions) {
-  const createdIcon = (props: any, ref?: any) => {
+  const IconTemp = forwardRef((props: any, ref?: any) => {
     let children = path;
     if (d && (!path || Object.keys(path).length === 0)) {
       children = <Path fill="currentColor" d={d} />;
@@ -109,8 +110,8 @@ export function createIcon<IconProps>({
         ) : null}
       </Root>
     );
-  };
-  const Icon = forwardRef(createdIcon);
-  Icon.displayName = 'Icon';
-  return Icon as IIconComponentType<IconProps>;
+  });
+
+  const Icon = IconTemp as IIconComponentType<IconProps>;
+  return Icon;
 }
