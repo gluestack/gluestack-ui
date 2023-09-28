@@ -140,6 +140,9 @@ export default styled(
             },
             ':focus': {
               'borderBottomColor': '$error700',
+              '_web': {
+                boxShadow: 'inset 0 -1px 0 0 $error700',
+              },
               ':hover': {
                 borderBottomColor: '$error700',
                 _web: {
@@ -173,6 +176,9 @@ export default styled(
               },
               ':focus': {
                 'borderBottomColor': '$error400',
+                '_web': {
+                  boxShadow: 'inset 0 -1px 0 0 $error400',
+                },
                 ':hover': {
                   borderBottomColor: '$error400',
                   _web: {
@@ -215,6 +221,9 @@ export default styled(
             },
             ':focus': {
               'borderColor': '$error700',
+              '_web': {
+                boxShadow: 'inset 0 0 0 1px $error700',
+              },
               ':hover': {
                 borderColor: '$error700',
                 _web: {
@@ -248,6 +257,9 @@ export default styled(
               },
               ':focus': {
                 'borderColor': '$error400',
+                '_web': {
+                  boxShadow: 'inset 0 0 0 1px $error400',
+                },
                 ':hover': {
                   borderColor: '$error400',
                   _web: {
@@ -292,6 +304,9 @@ export default styled(
             },
             ':focus': {
               'borderColor': '$error700',
+              '_web': {
+                boxShadow: 'inset 0 0 0 1px $error700',
+              },
               ':hover': {
                 borderColor: '$error700',
                 _web: {
@@ -326,6 +341,9 @@ export default styled(
               },
               ':focus': {
                 'borderColor': '$error400',
+                '_web': {
+                  boxShadow: 'inset 0 0 0 1px $error400',
+                },
                 ':hover': {
                   borderColor: '$error400',
                   _web: {

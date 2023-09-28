@@ -1,5 +1,4 @@
 import React from 'react';
-
 import {
   Center,
   Text,
@@ -26,7 +25,6 @@ const CheckboxGroupBasic = ({ ...props }: any) => {
       accessibilityLabel="Checkbox Group"
       value={values}
       onChange={setValues}
-      {...props}
       nativeID="checkbox-group"
     >
       <Checkbox
@@ -82,6 +80,7 @@ const FigmaCheckboxStory = ({ ...props }: any) => {
       <CheckboxIndicator mr="$2">
         <CheckboxIcon
           as={CheckIcon}
+          // @ts-ignore
           dataSet={{
             'component-props': JSON.stringify({
               'instance': true,
@@ -93,6 +92,7 @@ const FigmaCheckboxStory = ({ ...props }: any) => {
         />
       </CheckboxIndicator>
       <CheckboxLabel
+        // @ts-ignore
         dataSet={{
           'component-props': JSON.stringify({
             'is-text-style': true,
