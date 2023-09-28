@@ -4,8 +4,10 @@ import { StyledProvider } from '@gluestack-style/react';
 import { OverlayProvider } from '@gluestack-ui/overlay';
 import { ToastProvider } from '@gluestack-ui/toast';
 
-import { components } from '../../gluestack-ui-theme';
-import { config } from '../../gluestack-ui-theme/gluestack-ui.config';
+import {
+  components,
+  config,
+} from '../../gluestack-ui-theme/gluestack-ui.config';
 const GluestackUIStyledProvider = createProvider({ StyledProvider });
 
 type GluestackUIProviderProps = Partial<

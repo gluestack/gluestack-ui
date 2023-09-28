@@ -2678,6 +2678,13 @@
   dependencies:
     "@legendapp/motion" "^2.2.0"
 
+"@gluestack-style/animation-plugin@^0.1.12":
+  version "0.1.12"
+  resolved "https://registry.yarnpkg.com/@gluestack-style/animation-plugin/-/animation-plugin-0.1.12.tgz#887b57097397817c31fef25c8c53af381c11633e"
+  integrity sha512-lkj8iY5JBnhroUkP5gWE1zEpocb5GAK/G9SxL8DdWYQrsWOFpXr/mF/K67Dbxiv/n4B9BVff7sNTAddju+4UAw==
+  dependencies:
+    "@legendapp/motion" "^2.2.0"
+
 "@gluestack-style/animation-plugin@^0.1.7", "@gluestack-style/animation-plugin@latest":
   version "0.1.7"
   resolved "https://registry.yarnpkg.com/@gluestack-style/animation-plugin/-/animation-plugin-0.1.7.tgz#c9feae42684a48f2b5ece932681837d4b3ce7104"
@@ -2708,10 +2715,10 @@
   resolved "https://registry.yarnpkg.com/@gluestack-style/legend-motion-animation-driver/-/legend-motion-animation-driver-0.0.1.tgz#474692877525f274e81f222d93f4c2af3a4d42a9"
   integrity sha512-uASI3nENOd/zqnxzW66Ipkm3rjdapEIhs+TLgRAAazXdZxElImRtWvl1cuOiX/sn49QojlVefrd26uJVpVngZw==
 
-"@gluestack-style/react@^0.2.52-alpha.5":
-  version "0.2.52-alpha.5"
-  resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-0.2.52-alpha.5.tgz#74eed13e495d7f08a2e271d5dd72b0dc3cf55170"
-  integrity sha512-zmshhE6jYYOW+iGmArB9+RtDiPEgumXcDnTfZX1AyH+fYT1yPGLj11aK9z/7q6z6Th5xLFiD9kOyXTuJNSWXRg==
+"@gluestack-style/react@0.2.53-alpha.6":
+  version "0.2.53-alpha.6"
+  resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-0.2.53-alpha.6.tgz#5f874070933dfaaf1cce0e0833f541ae4c719684"
+  integrity sha512-ogHw3YBl6ZjcJHVwM2nznmI/MEWrtlIeDOkNbnzHZrKlJendBxsciDIu9cEaLGhd9bM+q8ZPmfgsnnKy/YPiAQ==
   dependencies:
     inline-style-prefixer "^6.0.1"
     normalize-css-color "^1.0.2"

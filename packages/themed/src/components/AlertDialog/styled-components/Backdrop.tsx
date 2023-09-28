@@ -1,11 +1,6 @@
-import { createMotionAnimatedComponent, Motion } from '@legendapp/motion';
-import { Pressable } from 'react-native';
 import { styled } from '@gluestack-style/react';
+import { AnimatedPressable } from '@gluestack-style/animation-resolver';
 
-const MotionPressable = createMotionAnimatedComponent(
-  Pressable
-) as typeof Motion.Pressable;
-
-export default styled(MotionPressable, {}, {
+export default styled(AnimatedPressable, {}, {
   componentName: 'AlertDialogBackdrop',
 } as const);
