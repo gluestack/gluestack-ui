@@ -7,7 +7,5 @@ export const createProvider = <StyledProviderProps>({
 }) => {
   const GluestackUIStyledProvider = MainProvider({ StyledProvider });
   GluestackUIStyledProvider.displayName = 'GluestackUIStyledProvider';
-  return GluestackUIStyledProvider as React.ExoticComponent<
-    (props: StyledProviderProps) => JSX.Element
-  >;
+  return GluestackUIStyledProvider as React.ExoticComponent<StyledProviderProps>;
 };
