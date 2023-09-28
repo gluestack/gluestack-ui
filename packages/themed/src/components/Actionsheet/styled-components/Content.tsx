@@ -8,7 +8,6 @@ export default styled(
     alignItems: 'center',
     borderTopLeftRadius: '$3xl',
     borderTopRightRadius: '$3xl',
-    h: '$full',
     p: '$2',
     bg: '$backgroundLight0',
     _sectionHeaderBackground: {

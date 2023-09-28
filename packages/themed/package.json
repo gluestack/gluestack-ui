@@ -1,6 +1,6 @@
 {
   "name": "@gluestack-ui/themed",
-  "version": "0.1.53",
+  "version": "0.1.54",
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "module": "build/index",
@@ -31,7 +31,7 @@
   "dependencies": {
     "@expo/html-elements": "latest",
     "@gluestack-style/animation-plugin": "^0.1.12",
-    "@gluestack-ui/actionsheet": "^0.2.21",
+    "@gluestack-ui/actionsheet": "0.2.24",
     "@gluestack-ui/alert": "^0.1.8",
     "@gluestack-ui/alert-dialog": "^0.1.17",
     "@gluestack-ui/avatar": "^0.1.10",
