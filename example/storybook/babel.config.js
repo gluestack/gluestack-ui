@@ -8,7 +8,7 @@ module.exports = function (api) {
         ? [
             'module-resolver',
             {
-              '@gluestack-ui/themed': path.join(
+              ['@gluestack-ui/themed']: path.join(
                 __dirname,
                 '../../packages/themed/src'
               ),
