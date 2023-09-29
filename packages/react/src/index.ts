@@ -87,9 +87,13 @@ export { AsForwarder } from './AsForwarder';
 export * from './plugins';
 
 export { createStyle } from './createStyle';
-export { createComponents } from './createComponents';
 
 export { INTERNAL_updateCSSStyleInOrderedResolved } from './updateCSSStyleInOrderedResolved';
-export { createConfig, getInstalledPlugins } from './createConfig';
+export {
+  createConfig,
+  getInstalledPlugins,
+  createComponents,
+  getInstalledComponents,
+} from './createConfig';
 export * from './core';
 export * from './hooks';

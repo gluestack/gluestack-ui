@@ -7,6 +7,8 @@ import { propertyTokenMap } from './propertyTokenMap';
 import { updateOrderUnResolvedMap } from './updateOrderUnResolvedMap';
 import { GluestackStyleSheet } from './style-sheet';
 
+/********************* PLUGINS *****************************/
+
 var globalPluginStore: never[] = [];
 function setGlobalPluginStore(plugins: any) {
   if (plugins) {
@@ -22,6 +24,34 @@ function getGlobalPluginStore() {
 export function getInstalledPlugins() {
   return getGlobalPluginStore();
 }
+
+/********************* CREATE COMPONENTS *****************************/
+
+var globalComponentsStore: any = {};
+
+function setGlobalComponentsStore(components: any) {
+  if (components) {
+    // @ts-ignore
+    globalComponentsStore = {
+      ...globalComponentsStore,
+      ...components,
+    };
+  }
+  return getGlobalComponentsStore();
+}
+
+function getGlobalComponentsStore() {
+  return globalComponentsStore;
+}
+
+export function getInstalledComponents() {
+  return getGlobalComponentsStore();
+}
+
+export const createComponents = <T>(components: T): T => {
+  const ret = setGlobalComponentsStore(resolveComponentThemes({}, components));
+  return ret;
+};
 
 export const createConfig = <
   T extends GlueStackConfig<
@@ -133,6 +163,6 @@ export const resolveTheme = (
   return {
     styledIds,
     verbosedStyleIds,
-    theme: versboseComponentTheme,
+    theme: componentTheme,
   };
 };
