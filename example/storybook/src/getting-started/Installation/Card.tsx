@@ -13,7 +13,6 @@ export const Card = ({
 }) => {
   return (
     <Box
-      maxWidth={300}
       minWidth={240}
       minHeight={240}
       flex={1}

@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import { Box, HStack, Text, VStack } from '@gluestack/design-system';
+import { Box, Text, VStack } from '@gluestack/design-system';
 import { Card } from './Card';
 import { content } from './content';
 import NextLink from 'next/link';
@@ -7,13 +7,32 @@ import { ArrowRightIcon } from '@gluestack-ui/themed';
 
 const Fold2 = memo(() => {
   return (
-    <HStack
+    <Box
       my="$6"
       flexDirection="column"
       flexWrap="wrap"
       gap="$5"
       sx={{
-        '@lg': { flexDirection: 'row' },
+        '@md': {
+          flexWrap: 'wrap',
+          flexDirection: 'row',
+          _web: {
+            display: 'grid',
+            gridTemplateColumns: 'repeat(2, 1fr)',
+          },
+        },
+        '@lg': {
+          _web: {
+            display: 'grid',
+            gridTemplateColumns: 'repeat(3, 1fr)',
+          },
+        },
+        '@xxl': {
+          _web: {
+            display: 'grid',
+            gridTemplateColumns: 'repeat(4, 1fr)',
+          },
+        },
       }}
     >
       {content.map((item, index) => {
@@ -33,7 +52,6 @@ const Fold2 = memo(() => {
         }}
       >
         <Box
-          maxWidth={300}
           alignItems="center"
           justifyContent="center"
           flex={1}
@@ -57,12 +75,11 @@ const Fold2 = memo(() => {
             <Text mb="$6" my={0} textAlign="center">
               for React, Next.js & React Native
             </Text>
-            <Box flexDirection="row">
+            <Box flexDirection="row" alignItems="center">
               <Text
                 color="$primary400"
                 fontSize="$lg"
                 lineHeight="$md"
-                fontWeight="$bold"
                 sx={{
                   _dark: {
                     color: '$darkBlue500',
@@ -76,7 +93,7 @@ const Fold2 = memo(() => {
           </VStack>
         </Box>
       </NextLink>
-    </HStack>
+    </Box>
   );
 });
 

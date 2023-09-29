@@ -44,7 +44,7 @@ export const content = [
     title: 'AlertDialog',
     child: <AlertDialogDemo />,
     padding: '$0',
-    href: '/docs/components/overlay/alertdialog',
+    href: '/docs/components/overlay/alert-dialog',
   },
   {
     title: 'Alert',
