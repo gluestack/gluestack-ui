@@ -9,7 +9,7 @@ import {
 
 const ToastDemo = () => {
   return (
-    <Toast nativeId={1} action="info" variant="accent">
+    <Toast nativeID={1} action="info" variant="accent">
       <VStack space="xs">
         <ToastTitle>Info</ToastTitle>
         <ToastDescription>Your order has</ToastDescription>
