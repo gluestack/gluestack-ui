@@ -701,8 +701,6 @@ export const config = {
 
 type Config = typeof config.theme; // Assuming `config` is defined elsewhere
 
-console.log(config, 'fff');
-
 export interface UIConfig {}
 
 type UIConfigType = UIConfig;

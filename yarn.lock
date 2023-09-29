@@ -2538,10 +2538,18 @@
   resolved "https://registry.yarnpkg.com/@gluestack-style/legend-motion-animation-driver/-/legend-motion-animation-driver-0.0.1.tgz#474692877525f274e81f222d93f4c2af3a4d42a9"
   integrity sha512-uASI3nENOd/zqnxzW66Ipkm3rjdapEIhs+TLgRAAazXdZxElImRtWvl1cuOiX/sn49QojlVefrd26uJVpVngZw==
 
-"@gluestack-style/react@^0.2.52-alpha.5":
-  version "0.2.52-alpha.5"
-  resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-0.2.52-alpha.5.tgz#74eed13e495d7f08a2e271d5dd72b0dc3cf55170"
-  integrity sha512-zmshhE6jYYOW+iGmArB9+RtDiPEgumXcDnTfZX1AyH+fYT1yPGLj11aK9z/7q6z6Th5xLFiD9kOyXTuJNSWXRg==
+"@gluestack-style/react@^0.2.50":
+  version "0.2.51"
+  resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-0.2.51.tgz#0cfcca4f97f908ed3a352bd7e2336d436cc22415"
+  integrity sha512-21TLr+e7KneP8N1d1iMKG6npMdYb/oPN/t5KZ/2kns2mg9NVCrfVmVuuMYKo+Xcej95BFOHuGuomskzLwdK1HQ==
+  dependencies:
+    inline-style-prefixer "^6.0.1"
+    normalize-css-color "^1.0.2"
+
+"@gluestack-style/react@^0.2.53-alpha.7":
+  version "0.2.53-alpha.7"
+  resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-0.2.53-alpha.7.tgz#d76d5f7f69090476d4c44c72aab33fdf242d9de5"
+  integrity sha512-f9cZn53zzoNY45+C+phFG6uFRL+kp8qI0eoTZocS/gtOP8//okK83wEPD1H9cXhJdoKshwFB9SZPNDeD5cedAQ==
   dependencies:
     inline-style-prefixer "^6.0.1"
     normalize-css-color "^1.0.2"
@@ -2580,10 +2588,10 @@
     "@react-native-aria/focus" "^0.2.8"
     "@react-native-aria/interactions" "^0.2.10"
 
-"@gluestack-ui/alert-dialog@^0.1.16":
-  version "0.1.16"
-  resolved "https://registry.yarnpkg.com/@gluestack-ui/alert-dialog/-/alert-dialog-0.1.16.tgz#5b9e85ed6d67d9d90659a2162453024596f36e57"
-  integrity sha512-tFfRXkIngFaX+jC8G0LOEsfx/V2jW7V1Tmi1kIcw2cvvBDXtH1o6dU8dABiGW0nzyE0HQpzIxYwPByFoGJp7VA==
+"@gluestack-ui/alert-dialog@^0.1.17":
+  version "0.1.18"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/alert-dialog/-/alert-dialog-0.1.18.tgz#059b32b633d4486f5becc5fe38cf7c08d26aaa86"
+  integrity sha512-+T6degPVZvdyz0UBy03a/0Nr0+Ry/EMPq3R3oX9DFaDVP2bM4FF7LyuoleWdGr8OP49qYKWiSXDvz8XPbv/vsA==
   dependencies:
     "@gluestack-ui/hooks" "^0.1.2"
     "@gluestack-ui/overlay" "^0.1.7"
@@ -2743,15 +2751,6 @@
     "@gluestack-ui/utils" "^0.1.5"
     "@react-native-aria/focus" "^0.2.7"
 
-"@gluestack-ui/icon@^0.1.10":
-  version "0.1.10"
-  resolved "https://registry.yarnpkg.com/@gluestack-ui/icon/-/icon-0.1.10.tgz#e641162807473b1e4e7b9586e914c472aa3853c3"
-  integrity sha512-5sSWG9R3jCdUWcLAc3qII1F+rETAEKRYYHXJNJo+IhmbxWABE93DAWIGSICuFl6WFN35hen/pp01iWKQdnnRng==
-  dependencies:
-    "@gluestack-ui/provider" "^0.1.6"
-    "@gluestack-ui/utils" "^0.1.5"
-    "@react-native-aria/focus" "^0.2.7"
-
 "@gluestack-ui/icon@^0.1.3":
   version "0.1.6"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/icon/-/icon-0.1.6.tgz#f823f9e345989abdb89f50cd3af456300aadd679"
@@ -2791,6 +2790,16 @@
     "@react-native-aria/focus" "^0.2.7"
     "@react-native-aria/interactions" "^0.2.8"
     react-native-svg "13.4.0"
+
+"@gluestack-ui/linear-gradient@^0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/linear-gradient/-/linear-gradient-0.1.1.tgz#6b32ac0ea0816fc8040861daaebc332edcc1baaf"
+  integrity sha512-riDwCcRyhqHGo+0w2pVIE1I2FwbHas5dLHmsA15t74R/U2jKTgESoqKueUwg74Ao9S0MibnJrI1/SyfiIXjNjA==
+  dependencies:
+    "@gluestack-ui/utils" "0.1.9"
+    "@react-native-aria/focus" "^0.2.8"
+    "@react-native-aria/interactions" "^0.2.10"
+    expo-linear-gradient "12.3.0"
 
 "@gluestack-ui/link@^0.1.11":
   version "0.1.11"
@@ -3171,14 +3180,6 @@
   integrity sha512-VG0ai84YHuWpePDoa+UrgJTFERJBXbM3rGPRCtHIMjvGMWviyzQXSVU7k5iu5YUgaLhADSK+c/pww9bK9MZzgw==
   dependencies:
     "@react-native-aria/focus" "^0.2.7"
-
-"@gluestack-ui/utils@^0.1.0", "@gluestack-ui/utils@^0.1.3", "@gluestack-ui/utils@^0.1.4", "@gluestack-ui/utils@^0.1.5", "@gluestack-ui/utils@^0.1.6":
-  version "0.1.8"
-  resolved "https://registry.yarnpkg.com/@gluestack-ui/utils/-/utils-0.1.8.tgz#f6567ca81d73f440e5ced5d6ed9648048fbd1f5c"
-  integrity sha512-BGQiZLYZZX6UR1taR2KRM66UL8JTKhU/XkYub102n4jgPKZVcYa3U1k8uFMCnbmjH3E3qT0SvFOiYWSSRTB+sg==
-  dependencies:
-    "@react-native-aria/focus" "^0.2.7"
-    react-native-svg "13.4.0"
 
 "@gluestack-ui/utils@latest":
   version "0.1.6"
@@ -10491,7 +10492,7 @@ expo-keep-awake@~11.0.1:
   resolved "https://registry.yarnpkg.com/expo-keep-awake/-/expo-keep-awake-11.0.1.tgz#ee354465892a94040ffe09901b85b469e7d54fb3"
   integrity sha512-44ZjgLE4lnce2d40Pv8xsjMVc6R5GvgHOwZfkLYtGmgYG9TYrEJeEj5UfSeweXPL3pBFhXKfFU8xpGYMaHdP0A==
 
-expo-linear-gradient@^12.3.0:
+expo-linear-gradient@12.3.0, expo-linear-gradient@^12.3.0:
   version "12.3.0"
   resolved "https://registry.yarnpkg.com/expo-linear-gradient/-/expo-linear-gradient-12.3.0.tgz#7abd8fedbf0138c86805aebbdfbbf5e5fa865f19"
   integrity sha512-f9e+Oxe5z7fNQarTBZXilMyswlkbYWQHONVfq8MqmiEnW3h9XsxxmVJLG8uVQSQPUsbW+x1UUT/tnU6mkMWeLg==
