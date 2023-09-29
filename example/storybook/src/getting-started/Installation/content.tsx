@@ -11,12 +11,12 @@ export const content = [
   {
     title: 'Select',
     child: <SelectDemo />,
-    href: '/docs/components/form/select',
+    href: '/docs/components/forms/select',
   },
   {
     title: 'Checkbox',
     child: <CheckboxDemo />,
-    href: '/docs/components/form/checkbox',
+    href: '/docs/components/forms/checkbox',
   },
   {
     title: 'Toast',
@@ -26,7 +26,7 @@ export const content = [
   {
     title: 'FormControl',
     child: <FormControlDemo />,
-    href: '/docs/components/form/form-control',
+    href: '/docs/components/forms/form-control',
   },
   {
     title: 'Badge',
@@ -36,12 +36,12 @@ export const content = [
   {
     title: 'Avatar',
     child: <AvatarDemo />,
-    href: '/docs/components/data-display/avatar',
+    href: '/docs/components/media-and-icons/avatar',
   },
 
   {
     title: 'Slider',
     child: <SliderDemo />,
-    href: '/docs/components/form/slider',
+    href: '/docs/components/forms/slider',
   },
 ];
