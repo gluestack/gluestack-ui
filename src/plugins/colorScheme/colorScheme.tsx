@@ -23,20 +23,41 @@ export class ColorSchemeResolver implements IStyledPlugin {
 
   componentMiddleWare({ Component }: any) {
     return forwardRef(({ key, ...componentProps }: any, ref?: any) => {
-      let colorSchemeStyle = {};
+      let colorSchemeSx: any = {};
+      let colorSchemePassingPropsSx: any = {};
 
-      if (componentProps.colorScheme) {
-        colorSchemeStyle = this.callback(componentProps);
+      const { sx, colorScheme, ...restProps } = componentProps;
+
+      if (colorScheme) {
+        let colorSchemeStyle = this.callback(componentProps);
+
+        Object.keys(colorSchemeStyle).forEach((styleKey) => {
+          if (
+            styleKey.startsWith('_') ||
+            styleKey.startsWith(':') ||
+            styleKey.startsWith('@')
+          ) {
+            colorSchemeSx[styleKey] = colorSchemeStyle[styleKey];
+          } else {
+            colorSchemePassingPropsSx[styleKey] = colorSchemeStyle[styleKey];
+          }
+        });
       }
-      // for debug purpose only
-      // console.log('colorSchemeStyle',colorSchemeStyle, 'componentProps.colorScheme',componentProps.colorScheme);
+
+      const toBeAppliedSx = {
+        ...sx,
+        ...colorSchemeSx,
+        props: {
+          sx: colorSchemePassingPropsSx,
+        },
+      };
 
       return (
         <Component
-          {...componentProps}
-          sx={{ ...colorSchemeStyle, ...componentProps.sx }}
-          key={key ?? key + '_' + componentProps.colorScheme}
+          {...restProps}
+          key={key ?? key + '_' + colorScheme}
           ref={ref}
+          sx={toBeAppliedSx}
         />
       );
     });
