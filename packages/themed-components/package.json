@@ -1,6 +1,6 @@
 {
   "name": "@gluestack-ui/themed-components",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "module": "build/index",
@@ -29,16 +29,12 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@gluestack-style/react": "^0.2.53-alpha.7"
+    "@gluestack-style/react": "^0.2.53-alpha.7",
+    "@gluestack-ui/themed": "^0.1.53"
   },
   "peerDependencies": {
     "@gluestack-style/react": ">=0.2.38",
-    "@types/react-native": ">=0.72",
-    "react": ">=16",
-    "react-dom": ">=16",
-    "react-native": ">=0.72",
-    "react-native-svg": ">=13.4.0",
-    "react-native-web": ">=0.19"
+    "@gluestack-ui/themed": ">0.1"
   },
   "release-it": {
     "git": {
