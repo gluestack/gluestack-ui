@@ -1,5 +1,6 @@
 import { addParameters } from '@storybook/client-api';
 import { DocsContainer } from '@storybook/addon-docs/blocks';
+import { components } from '@gluestack-ui/themed-components';
 import { Center, GluestackUIProvider, config } from '@gluestack-ui/themed';
 import { useState } from 'react';
 export const parameters = {
@@ -138,8 +139,13 @@ export const decorators = [
         return isDark ? 'dark' : 'light';
       }
     }
+    console.log(components);
     return (
-      <GluestackUIProvider config={config.theme} colorMode={getColorMode()}>
+      <GluestackUIProvider
+        config={config.theme}
+        colorMode={getColorMode()}
+        components={components}
+      >
         <Center>
           <Story />
         </Center>

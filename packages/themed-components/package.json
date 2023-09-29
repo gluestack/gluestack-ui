@@ -1,0 +1,55 @@
+{
+  "name": "@gluestack-ui/themed-components",
+  "version": "0.0.1",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
+  "module": "build/index",
+  "sideEffects": false,
+  "description": "A universal themed components for React Native, Next.js & React",
+  "keywords": [
+    "react",
+    "native",
+    "react-native",
+    "gluestack-ui",
+    "universal",
+    "headless",
+    "typescript",
+    "component",
+    "android",
+    "ios",
+    "nextjs"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "prepare": "tsc",
+    "watch": "tsc --watch",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "clean": "rm -rf lib"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@gluestack-style/react": "^0.2.53-alpha.7"
+  },
+  "peerDependencies": {
+    "@gluestack-style/react": ">=0.2.38",
+    "@types/react-native": ">=0.72",
+    "react": ">=16",
+    "react-dom": ">=16",
+    "react-native": ">=0.72",
+    "react-native-svg": ">=13.4.0",
+    "react-native-web": ">=0.19"
+  },
+  "release-it": {
+    "git": {
+      "commitMessage": "chore: release ${version}",
+      "tagName": "v${version}"
+    },
+    "npm": {
+      "publish": true
+    },
+    "github": {
+      "release": true
+    }
+  }
+}
