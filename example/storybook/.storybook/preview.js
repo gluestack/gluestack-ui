@@ -19,7 +19,7 @@ export const parameters = {
       method: '',
       order: [
         'Overview',
-        ['Introduction'],
+        ['Introduction', 'Component Catalog'],
         'Getting Started',
         ['Installation', 'VS Code Extensions'],
         'Core Concepts',
@@ -46,7 +46,6 @@ export const parameters = {
         ],
         'Components',
         [
-          'Component Catalog',
           'Provider',
           ['GluestackUIProvider'],
           'Typography',
