@@ -1,19 +1,10 @@
-import {
-  Input,
-  InputField,
-  InputIcon,
-  InputSlot,
-  SearchIcon,
-} from '@gluestack-ui/themed';
+import { Input, InputField } from '@gluestack-ui/themed';
 import React from 'react';
 
 const InputDemo = () => {
   return (
     <Input w="90%">
-      <InputSlot pl="$3">
-        <InputIcon as={SearchIcon} />
-      </InputSlot>
-      <InputField placeholder="Search..." />
+      <InputField placeholder="Enter Text here" />
     </Input>
   );
 };

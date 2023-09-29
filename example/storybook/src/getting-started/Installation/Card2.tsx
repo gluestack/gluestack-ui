@@ -41,34 +41,34 @@ function Card2() {
             isExternal
             target="_blank"
             borderRadius="$lg"
-            sx={{
-              '_text': {
-                color: '$trueGray900',
-                textDecorationLine: 'none',
-              },
-              '_dark': {
-                _text: {
-                  color: '$textDark50',
-                },
-              },
-              ':hover': {
-                _text: {
-                  textDecorationLine: 'underline',
-                },
-              },
-            }}
+            // sx={{
+            //   '_text': {
+            //     color: '$trueGray900',
+            //     textDecorationLine: 'none',
+            //   },
+            //   '_dark': {
+            //     _text: {
+            //       color: '$textDark50',
+            //     },
+            //   },
+            //   ':hover': {
+            //     _text: {
+            //       textDecorationLine: 'underline',
+            //     },
+            //   },
+            // }}
           >
             <Box p="$6">
               <VStack space="md">
                 <HStack w="$full" alignItems="center" space="md">
                   <Expo />
-                  <Link.Text
+                  <Text
                     fontWeight="$medium"
                     fontSize="$xl"
                     fontFamily="Plus Jakarta Sans"
                   >
                     Try gluestack-ui on Snack
-                  </Link.Text>
+                  </Text>
                 </HStack>
                 <Text fontSize="$md" fontWeight="$normal">
                   Get started without having to set up.
@@ -103,34 +103,34 @@ function Card2() {
           target="_blank"
           isExternal
           borderRadius="$lg"
-          sx={{
-            '_text': {
-              color: '$trueGray900',
-              textDecorationLine: 'none',
-            },
-            '_dark': {
-              _text: {
-                color: '$textDark50',
-              },
-            },
-            ':hover': {
-              _text: {
-                textDecorationLine: 'underline',
-              },
-            },
-          }}
+          // sx={{
+          //   '_text': {
+          //     color: '$trueGray900',
+          //     textDecorationLine: 'none',
+          //   },
+          //   '_dark': {
+          //     _text: {
+          //       color: '$textDark50',
+          //     },
+          //   },
+          //   ':hover': {
+          //     _text: {
+          //       textDecorationLine: 'underline',
+          //     },
+          //   },
+          // }}
         >
           <Box p="$6">
             <VStack space="md">
               <HStack w="$full" alignItems="center" space="md">
                 <Checkbox />
-                <Link.Text
+                <Text
                   fontWeight="$medium"
                   fontSize="$xl"
                   fontFamily="Plus Jakarta Sans"
                 >
                   Try gluestack-ui on CodeSandbox
-                </Link.Text>
+                </Text>
               </HStack>
               <Text fontSize="$md" fontWeight="$normal">
                 See how your app looks as you code.
