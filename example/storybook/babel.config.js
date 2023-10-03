@@ -14,22 +14,22 @@ module.exports = function (api) {
                   __dirname,
                   '../../packages/themed/src'
                 ),
-                '@gluestack-ui/themed-components': path.join(
+                '@gluestack-ui/config': path.join(
                   __dirname,
-                  '../../packages/themed-components/src'
+                  '../../packages/config/src/gluestack-ui.config'
                 ),
-                '@gluestack-style/react': path.join(
-                  __dirname,
-                  '../../../dank-style/packages/react/src'
-                ),
-                '@gluestack-style/animation-resolver': path.join(
-                  __dirname,
-                  '../../../dank-style/packages/animation-resolver/src'
-                ),
-                '@gluestack-style/legend-motion-animation-driver': path.join(
-                  __dirname,
-                  '../../../dank-style/packages/animation-legend-motion-driver/src'
-                ),
+                // '@gluestack-style/react': path.join(
+                //   __dirname,
+                //   '../../../dank-style/packages/react/src'
+                // ),
+                // '@gluestack-style/animation-resolver': path.join(
+                //   __dirname,
+                //   '../../../dank-style/packages/animation-resolver/src'
+                // ),
+                // '@gluestack-style/legend-motion-animation-driver': path.join(
+                //   __dirname,
+                //   '../../../dank-style/packages/animation-legend-motion-driver/src'
+                // ),
               },
             },
           ]

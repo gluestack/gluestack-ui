@@ -3150,6 +3150,50 @@
     "@gluestack-ui/vstack" "^0.1.11"
     "@legendapp/motion" latest
 
+"@gluestack-ui/themed@^0.1.55-alpha.0":
+  version "0.1.55-alpha.0"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/themed/-/themed-0.1.55-alpha.0.tgz#3daebdbb70b1c9e6593c9a733ee279694986bd16"
+  integrity sha512-sb+etok8cZice+Cqpho+bpDumMBvM29IdYNAA5hUDoq8mDZTR66kg9TNjKUWMctLTs752rlmTN8GidFxbJqS6g==
+  dependencies:
+    "@expo/html-elements" latest
+    "@gluestack-style/animation-plugin" "^0.1.12"
+    "@gluestack-style/animation-resolver" "^0.0.1"
+    "@gluestack-style/legend-motion-animation-driver" "^0.0.1"
+    "@gluestack-ui/actionsheet" "^0.2.25"
+    "@gluestack-ui/alert" "^0.1.9"
+    "@gluestack-ui/alert-dialog" "^0.1.17"
+    "@gluestack-ui/avatar" "^0.1.11"
+    "@gluestack-ui/button" "^0.1.27"
+    "@gluestack-ui/checkbox" "^0.1.18"
+    "@gluestack-ui/divider" "^0.1.5"
+    "@gluestack-ui/fab" "^0.1.13"
+    "@gluestack-ui/form-control" "^0.1.11"
+    "@gluestack-ui/hstack" "^0.1.11"
+    "@gluestack-ui/icon" "^0.1.14"
+    "@gluestack-ui/image" "^0.1.2"
+    "@gluestack-ui/input" "^0.1.17"
+    "@gluestack-ui/linear-gradient" "^0.1.1"
+    "@gluestack-ui/link" "^0.1.11"
+    "@gluestack-ui/menu" "^0.2.20"
+    "@gluestack-ui/modal" "^0.1.22"
+    "@gluestack-ui/overlay" "^0.1.8"
+    "@gluestack-ui/popover" "^0.1.23"
+    "@gluestack-ui/pressable" "^0.1.9"
+    "@gluestack-ui/progress" "^0.1.8"
+    "@gluestack-ui/provider" "^0.1.10"
+    "@gluestack-ui/radio" "^0.1.19"
+    "@gluestack-ui/select" "^0.1.15"
+    "@gluestack-ui/slider" "^0.1.13"
+    "@gluestack-ui/spinner" "^0.1.10"
+    "@gluestack-ui/switch" "^0.1.13"
+    "@gluestack-ui/tabs" "^0.1.12"
+    "@gluestack-ui/textarea" "^0.1.14"
+    "@gluestack-ui/themed-components" "*"
+    "@gluestack-ui/toast" "^0.1.16"
+    "@gluestack-ui/tooltip" "^0.1.19"
+    "@gluestack-ui/vstack" "^0.1.11"
+    "@legendapp/motion" latest
+
 "@gluestack-ui/toast@^0.1.15", "@gluestack-ui/toast@^0.1.16":
   version "0.1.16"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/toast/-/toast-0.1.16.tgz#8e78a7e928b4a43237dd89324c427aaf9f7415e9"
