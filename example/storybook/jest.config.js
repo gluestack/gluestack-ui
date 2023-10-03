@@ -45,6 +45,7 @@ module.exports = {
       '../../packages/textarea/src'
     ),
     '@gluestack-ui/input': path.join(__dirname, '../../packages/input/src'),
+    '@gluestack-ui/image': path.join(__dirname, '../../packages/image/src'),
     '@gluestack-ui/switch': path.join(__dirname, '../../packages/switch/src'),
     '@gluestack-ui/avatar': path.join(__dirname, '../../packages/avatar/src'),
     '@gluestack-ui/radio': path.join(__dirname, '../../packages/radio/src'),

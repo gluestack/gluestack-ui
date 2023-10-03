@@ -1,19 +1,19 @@
-import { LayoutContext } from '@gluestack/design-system';
 import React, { useContext } from 'react';
+import { LayoutContext } from '@gluestack/design-system';
 
 function Next() {
   const { colorMode } = useContext(LayoutContext);
   return colorMode === 'light' ? (
     <svg
-      width="92"
-      height="72"
+      width={92}
+      height={72}
       viewBox="0 0 92 72"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
       <g filter="url(#filter0_ii_10404_112242)">
-        <rect width="92" height="72" rx="8" fill="white" />
-        <g clip-path="url(#clip0_10404_112242)">
+        <rect width={92} height={72} rx={8} fill="white" />
+        <g clipPath="url(#clip0_10404_112242)">
           <path
             d="M56.5391 29.5892H67.6866V31.6467H63.2645V42.4712H61.0533V31.6467H56.5391V29.5892Z"
             fill="black"
@@ -31,8 +31,8 @@ function Next() {
             fill="black"
           />
           <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
+            fillRule="evenodd"
+            clipRule="evenodd"
             d="M27.1421 42.4712L16.7638 29.5839H14V42.4658H16.2111V32.3374L24.3644 42.4712H27.1421Z"
             fill="black"
           />
@@ -53,14 +53,14 @@ function Next() {
       <defs>
         <filter
           id="filter0_ii_10404_112242"
-          x="0"
-          y="0"
-          width="92"
-          height="72"
+          x={0}
+          y={0}
+          width={92}
+          height={72}
           filterUnits="userSpaceOnUse"
-          color-interpolation-filters="sRGB"
+          colorInterpolationFilters="sRGB"
         >
-          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feFlood floodOpacity={0} result="BackgroundImageFix" />
           <feBlend
             mode="normal"
             in="SourceGraphic"
@@ -74,13 +74,13 @@ function Next() {
             result="hardAlpha"
           />
           <feMorphology
-            radius="1"
+            radius={1}
             operator="erode"
             in="SourceAlpha"
             result="effect1_innerShadow_10404_112242"
           />
           <feOffset />
-          <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1" />
+          <feComposite in2="hardAlpha" operator="arithmetic" k2={-1} k3={1} />
           <feColorMatrix
             type="matrix"
             values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.06 0"
@@ -96,8 +96,8 @@ function Next() {
             values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
             result="hardAlpha"
           />
-          <feOffset dx="-1" dy="-1" />
-          <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1" />
+          <feOffset dx={-1} dy={-1} />
+          <feComposite in2="hardAlpha" operator="arithmetic" k2={-1} k3={1} />
           <feColorMatrix
             type="matrix"
             values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.08 0"
@@ -120,21 +120,21 @@ function Next() {
     </svg>
   ) : (
     <svg
-      width="92"
-      height="72"
+      width={92}
+      height={72}
       viewBox="0 0 92 72"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
       <g filter="url(#filter0_ii_10256_68770)">
-        <rect width="92" height="72" rx="8" fill="white" fill-opacity="0.16" />
+        <rect width={92} height={72} rx={8} fill="white" fillOpacity="0.16" />
         <rect
-          width="92"
-          height="72"
-          rx="8"
+          width={92}
+          height={72}
+          rx={8}
           fill="url(#paint0_radial_10256_68770)"
         />
-        <g clip-path="url(#clip0_10256_68770)">
+        <g clipPath="url(#clip0_10256_68770)">
           <path
             d="M56.5391 29.5892H67.6866V31.6467H63.2645V42.4712H61.0533V31.6467H56.5391V29.5892Z"
             fill="white"
@@ -152,8 +152,8 @@ function Next() {
             fill="white"
           />
           <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
+            fillRule="evenodd"
+            clipRule="evenodd"
             d="M27.1421 42.4712L16.7638 29.5839H14V42.4658H16.2111V32.3374L24.3644 42.4712H27.1421Z"
             fill="white"
           />
@@ -174,14 +174,14 @@ function Next() {
       <defs>
         <filter
           id="filter0_ii_10256_68770"
-          x="0"
-          y="0"
-          width="92"
-          height="72"
+          x={0}
+          y={0}
+          width={92}
+          height={72}
           filterUnits="userSpaceOnUse"
-          color-interpolation-filters="sRGB"
+          colorInterpolationFilters="sRGB"
         >
-          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feFlood floodOpacity={0} result="BackgroundImageFix" />
           <feBlend
             mode="normal"
             in="SourceGraphic"
@@ -195,13 +195,13 @@ function Next() {
             result="hardAlpha"
           />
           <feMorphology
-            radius="1"
+            radius={1}
             operator="erode"
             in="SourceAlpha"
             result="effect1_innerShadow_10256_68770"
           />
           <feOffset />
-          <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1" />
+          <feComposite in2="hardAlpha" operator="arithmetic" k2={-1} k3={1} />
           <feColorMatrix
             type="matrix"
             values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.06 0"
@@ -217,8 +217,8 @@ function Next() {
             values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
             result="hardAlpha"
           />
-          <feOffset dx="-1" dy="-1" />
-          <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1" />
+          <feOffset dx={-1} dy={-1} />
+          <feComposite in2="hardAlpha" operator="arithmetic" k2={-1} k3={1} />
           <feColorMatrix
             type="matrix"
             values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.08 0"
@@ -231,14 +231,14 @@ function Next() {
         </filter>
         <radialGradient
           id="paint0_radial_10256_68770"
-          cx="0"
-          cy="0"
-          r="1"
+          cx={0}
+          cy={0}
+          r={1}
           gradientUnits="userSpaceOnUse"
           gradientTransform="translate(46 36) rotate(38.047) scale(58.4123 56.7004)"
         >
-          <stop stop-color="white" stop-opacity="0.08" />
-          <stop offset="1" stop-color="white" stop-opacity="0" />
+          <stop stopColor="white" stopOpacity="0.08" />
+          <stop offset={1} stopColor="white" stopOpacity={0} />
         </radialGradient>
         <clipPath id="clip0_10256_68770">
           <rect

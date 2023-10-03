@@ -12,7 +12,35 @@ import { AppProvider, Box } from '@gluestack/design-system';
 
 ### @gluestack-style/babel-plugin-styled-resolver
 
-@gluestack-style/babel-plugin-styled-resolver transpiles your `themed` component inline sttyles and resolves the `component styling` in build time. It also generates all the `CSS rules` and style ids based on which these CSS styles are applied on the component. Doing this saves tons of time on runtime because all your style calculation is already done and all your app has to do is to inject this style into a style tag and viola! All your styles appear instantaneously.
+@gluestack-style/babel-plugin-styled-resolver transpiles your `themed` component inline styles and resolves the `component styling` in build time. It also generates all the `CSS rules` and style ids based on which these CSS styles are applied on the component. Doing this saves tons of time on runtime because all your style calculation is already done and all your app has to do is inject this style into a style tag and viola! All your styles appear instantaneously.
+
+## Installation Steps:
+
+1. Installing babel-plugin-styled-resolver:
+
+   ```bash
+   yarn add @gluestack-style/babel-plugin-styled-resolver
+   ```
+
+2. Add Babel plugin to your app babel.config.js
+
+   ```bash
+   const path = require('path');
+   const gluestackStyleResolver = require('@gluestack-style/babel-plugin-styled-resolver');
+   module.exports = function (api) {
+     api.cache(true);
+     return {
+       presets: ['babel-preset-expo'],
+       plugins: [
+         gluestackStyleResolver,
+       ],
+     };
+   };
+   ```
+
+3. Just make sure your `babel.config.js` and `gluestack-ui.config.js/ts` are in the same directory. We suggest you keep both of them at the root of your app codebase. If you can't, then use the `configPath` option to specify the path of the `gluestack-ui.config.js/ts` file.
+
+> **Note:** We already provide you with the plugin config for `@gluestack-ui/themed`. So you have to do minimal configuration to get it working.
 
 ### **Let us see how this Babel plugin works.**
 
@@ -20,7 +48,7 @@ import { AppProvider, Box } from '@gluestack/design-system';
 - Once it finds the component, it fetches the component props.
 - Then it resolves the styling and generates the CSS rules and corresponding style ids.
 - Once resolved it removes the resolved inline props from the component and passes the resolved data into the following props `verbosedStyleIds`, `toBeInjected`, & `orderedResolved`.
-- Now when the components recieves these props it straightway just passes the style id that should be applied according to the condition the component is in.
+- Now when the components receive these props it straightway just pass the style id that should be applied according to the condition the component is in.
 
 Here’s a small diagram explaining how the flow works:
 
@@ -54,34 +82,6 @@ Here’s a small diagram explaining how the flow works:
 </AppProvider>
 
 Your code gets transpiled in the build files like this:
-
-## Installation Steps:
-
-1. Installing babel-plugin-styled-resolver:
-
-   ```bash
-   yarn add @gluestack-style/babel-plugin-styled-resolver
-   ```
-
-2. Add Babel plugin to your app babel.config.js
-
-   ```bash
-   const path = require('path');
-   const gluestackStyleResolver = require('@gluestack-style/babel-plugin-styled-resolver');
-   module.exports = function (api) {
-     api.cache(true);
-     return {
-       presets: ['babel-preset-expo'],
-       plugins: [
-         gluestackStyleResolver,
-       ],
-     };
-   };
-   ```
-
-3. Just make sure your `babel.config.js` and `gluestack-ui.config.js/ts` are in the same directory. We suggest you keep both of them at the root of your app codebase. If you can't, then use the `configPath` option to specify the path of the `gluestack-ui.config.js/ts` file.
-
-> **Note:** We already provide you with the plugin config for `@gluestack-ui/themed`. So you have to do minimal configuration to get it working.
 
 ## Advanced
 

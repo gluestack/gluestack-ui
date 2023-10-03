@@ -3,6 +3,7 @@ import {
   Input,
   InputField,
   InputIcon,
+  InputSlot,
   Center,
   Button,
   ButtonText,
@@ -52,8 +53,8 @@ const InputBasic = ({ ...props }: any) => {
           }),
         }}
       />
-      <InputIcon pr="$4">
-        <Icon
+      <InputSlot pr="$4">
+        <InputIcon
           as={SearchIcon}
           dataSet={{
             'component-props': JSON.stringify({
@@ -64,7 +65,7 @@ const InputBasic = ({ ...props }: any) => {
             }),
           }}
         />
-      </InputIcon>
+      </InputSlot>
     </Input>
   );
 };
@@ -87,4 +88,5 @@ export {
   EyeIcon,
   EyeOffIcon,
   FormControl,
+  InputSlot,
 };

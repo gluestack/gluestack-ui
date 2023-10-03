@@ -1,4 +1,5 @@
-import { styled } from '../../styled';
+// @ts-nocheck
+import { styled } from '@gluestack-style/react';
 import { View } from 'react-native';
 export default styled(
   View,
@@ -195,10 +196,5 @@ export default styled(
   {
     componentName: 'Slider',
     descendantStyle: ['_thumb', '_track', '_filledTrack'],
-  } as const,
-  {
-    aliases: {
-      orientation: 'orientation',
-    },
-  }
+  } as const
 );

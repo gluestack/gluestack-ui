@@ -367,22 +367,6 @@ Contains all button related layout style props and actions. It inherits all the 
             <Table.TText>{`The content to display inside the Modal`}</Table.TText>
           </Table.TD>
         </Table.TR>
-        <Table.TR>
-          <Table.TD>
-            <Table.TText>
-              <InlineCode>unmountOnExit</InlineCode>
-            </Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>boolean</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>true</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>{`If true, removes the component from the DOM when it is not visible. Animation and accessibility won't work when false.`}</Table.TText>
-          </Table.TD>
-        </Table.TR>
       </Table.TBody>
     </Table>
   </TableContainer>
@@ -865,7 +849,6 @@ import {
   Body,
   Backdrop,
 } from '../components/core/modal/styled-components';
-import { styled } from '../components/styled';
 
 // import the createModal function
 import { createModal } from '@gluestack-ui/modal';
@@ -879,7 +862,7 @@ const Modal = createModal({
   Footer,
   Body,
   Backdrop,
-  AnimatePresence: styled.Component, // Can be AnimatePresence from the library you are using
+  AnimatePresence: Content.AnimatePresence, // Can be AnimatePresence from the library you are using
 });
 
 // Using the modal component

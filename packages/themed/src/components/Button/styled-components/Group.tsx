@@ -1,4 +1,4 @@
-import { styled } from '../../styled';
+import { styled } from '@gluestack-style/react';
 import { View } from 'react-native';
 
 export default styled(
@@ -21,12 +21,6 @@ export default styled(
               },
             },
           },
-          _groupHSpacer: {
-            size: '$xs',
-          },
-          _groupVSpacer: {
-            size: '$xs',
-          },
         },
         sm: {
           _button: {
@@ -42,12 +36,6 @@ export default styled(
                 size: 'sm',
               },
             },
-          },
-          _groupHSpacer: {
-            size: '$sm',
-          },
-          _groupVSpacer: {
-            size: '$sm',
           },
         },
         md: {
@@ -65,12 +53,6 @@ export default styled(
               },
             },
           },
-          _groupHSpacer: {
-            size: '$md',
-          },
-          _groupVSpacer: {
-            size: '$md',
-          },
         },
         lg: {
           _button: {
@@ -86,12 +68,6 @@ export default styled(
                 size: 'lg',
               },
             },
-          },
-          _groupHSpacer: {
-            size: '$lg',
-          },
-          _groupVSpacer: {
-            size: '$lg',
           },
         },
         xl: {
@@ -117,14 +93,40 @@ export default styled(
           },
         },
       },
+      space: {
+        'xs': {
+          gap: '$1',
+        },
+        'sm': {
+          gap: '$2',
+        },
+        'md': {
+          gap: '$3',
+        },
+        'lg': {
+          gap: '$4',
+        },
+        'xl': {
+          gap: '$5',
+        },
+        '2xl': {
+          gap: '$6',
+        },
+        '3xl': {
+          gap: '$7',
+        },
+        '4xl': {
+          gap: '$8',
+        },
+      },
     },
 
     defaultProps: {
       size: 'md',
+      space: 'sm',
     },
   },
   {
-    componentName: 'ButtonGroup',
-    descendantStyle: ['_button', '_groupHSpacer', '_groupVSpacer'],
-  } as const
+    descendantStyle: ['_button'],
+  }
 );

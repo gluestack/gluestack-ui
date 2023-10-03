@@ -18,6 +18,7 @@ import {
   Input,
   InputField,
   InputIcon,
+  InputSlot,
   Center,
   Box,
   FormControl,
@@ -108,7 +109,9 @@ The structure provided below can help you identify and understand a Input compon
 export default () => (
   <Input>
     <InputField />
-    <InputIcon>{/* Some Icon Component */}</InputIcon>
+    <InputSlot>
+      <InputIcon>{/* Some Icon Component */}</InputIcon>
+    </InputSlot>
   </Input>
 );
 ```
@@ -441,10 +444,10 @@ The Input component integrates with an icon and a button, providing users with a
                     <InputField
                       type={showPassword ? 'text' : 'password'}
                     />
-                    <InputIcon pr='$3' onPress={handleState}>
+                    <InputSlot pr='$3' onPress={handleState}>
                       {/* EyeIcon, EyeOffIcon are both imported from 'lucide-react-native' */}
-                      <Icon as={showPassword ? EyeIcon : EyeOffIcon}  color='$darkBlue500'/>
-                    </InputIcon>
+                      <InputIcon as={showPassword ? EyeIcon : EyeOffIcon}  color='$darkBlue500'/>
+                    </InputSlot>
                   </Input>
                 </VStack>
                 <Button
@@ -480,6 +483,7 @@ The Input component integrates with an icon and a button, providing users with a
         EyeIcon,
         EyeOffIcon,
         FormControl,
+        InputSlot,
       },
       argsType: {},
     }}
@@ -497,9 +501,9 @@ The Input with Icons is a variation of the Input component that displays icons n
     metaData={{
       code: `
         <Input>
-          <InputIcon pl='$3'>
-            <Icon as={SearchIcon}/>
-          </InputIcon>
+          <InputSlot pl='$3'>
+            <InputIcon as={SearchIcon}/>
+          </InputSlot>
           <InputField
             placeholder="Search..."
           />
@@ -515,10 +519,12 @@ The Input with Icons is a variation of the Input component that displays icons n
         InputIcon,
         SearchIcon,
         Icon,
+        InputSlot,
       },
       argsType: {},
     }}
-  />
+/>
+
 </AppProvider>
 
 ## Unstyled
@@ -552,9 +558,9 @@ const InputField = createInput({
 // Using the input component
 export default () => (
   <Input>
-    <InputIcon pl="$3">
-      <Icon as={SearchIcon} />
-    </InputIcon>
+    <InputSlot pl="$3">
+      <InputIcon as={SearchIcon} />
+    </InputSlot>
     <InputField placeholder="your text goes here..." />
   </Input>
 );

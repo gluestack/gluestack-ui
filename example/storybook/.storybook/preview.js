@@ -1,7 +1,7 @@
 import { addParameters } from '@storybook/client-api';
 import { DocsContainer } from '@storybook/addon-docs/blocks';
 import { Center, GluestackUIProvider } from '@gluestack-ui/themed';
-import { config } from '@gluestack-ui/themed';
+import { config } from './gluestack-ui.config';
 import { useState } from 'react';
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
@@ -46,6 +46,7 @@ export const parameters = {
         ],
         'Components',
         [
+          'Component Catalog',
           'Provider',
           ['GluestackUIProvider'],
           'Typography',
@@ -90,7 +91,7 @@ export const parameters = {
           'StatusBar',
         ],
         'Hooks',
-        ['React Native ARIA'],
+        ['React Native ARIA', 'useToken', 'useBreakpointValue', 'useColorMode'],
         'Production Optimizations',
         ['With a Babel Plugin'],
         'Guides',
@@ -105,7 +106,7 @@ export const parameters = {
         'Advanced',
         ['Fonts', 'Animations'],
         'Recipes',
-        ['Card'],
+        ['Card', 'LinearGradient'],
         'Resources',
         ['Todo-List', 'Dashboard App'],
         'Migration',
@@ -139,7 +140,7 @@ export const decorators = [
       }
     }
     return (
-      <GluestackUIProvider config={config.theme} colorMode={getColorMode()}>
+      <GluestackUIProvider config={config} colorMode={getColorMode()}>
         <Center>
           <Story />
         </Center>
@@ -169,7 +170,7 @@ addParameters({
       }
       return (
         <DocsContainer context={context}>
-          <GluestackUIProvider config={config.theme} colorMode={getColorMode()}>
+          <GluestackUIProvider config={config} colorMode={getColorMode()}>
             {children}
           </GluestackUIProvider>
         </DocsContainer>

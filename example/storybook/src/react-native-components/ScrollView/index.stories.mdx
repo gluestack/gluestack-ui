@@ -1,9 +1,6 @@
 ---
 title: ScrollView | gluestack-ui
-description: ScrollView
-pageTitle: ScrollView
-pageDescription: ScrollView
-showHeader: true
+description: Provides a scrolling container that can host multiple components and views.
 ---
 
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
@@ -28,23 +25,9 @@ import {
 
 <Meta title="React Native Components/ScrollView" />
 
+# ScrollView
+
 Provides a scrolling container that can host multiple components and views.
-
-### Import
-
-To use the component in your project, run the command below into your import statement. This will import the component from your components folder.
-
-```bash
-import { ScrollView } from '@gluestack-ui/themed';
-```
-
-### Anatomy
-
-The structure provided below can help you identify and understand a badge component's various parts.
-
-```jsx
-export default () => <ScrollView></ScrollView>;
-```
 
 <AppProvider>
   <CodePreview
@@ -138,6 +121,26 @@ export default () => <ScrollView></ScrollView>;
     }}
   />
 </AppProvider>
+
+<br />
+
+> Note: You can refer [here](https://github.com/gluestack/gluestack-ui/tree/main/packages/themed/src/components/ScrollView/styled-components) to learn about default styling of FlatList component
+
+### Import
+
+To use the component in your project, run the command below into your import statement. This will import the component from your components folder.
+
+```bash
+import { ScrollView } from '@gluestack-ui/themed';
+```
+
+### Anatomy
+
+The structure provided below can help you identify and understand a badge component's various parts.
+
+```jsx
+export default () => <ScrollView></ScrollView>;
+```
 
 ### Props
 

@@ -1,6 +1,7 @@
 //@ts-nocheck
 import { Motion } from '@legendapp/motion';
-import { styled } from '../../styled';
+import { styled } from '@gluestack-style/react';
+import { AnimationResolver } from '@gluestack-style/animation-plugin';
 
 export default styled(
   Motion.View,
@@ -29,6 +30,7 @@ export default styled(
         duration: 250,
       },
     },
+    // @ts-ignore
     '_dark': {
       bg: '$backgroundDark900',
     },
@@ -40,5 +42,8 @@ export default styled(
   {
     componentName: 'ModalContent',
     ancestorStyle: ['_content'],
-  } as const
+  } as const,
+  {
+    plugins: [new AnimationResolver({})],
+  }
 );

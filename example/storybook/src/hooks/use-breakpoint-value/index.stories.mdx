@@ -1,0 +1,49 @@
+---
+title: useBreakpointValue | gluestack-ui
+description: useBreakpointValue is a custom hook to returns the value for the current breakpoint based on the provided responsive values object
+showHeader: false
+---
+
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+
+<Meta title="Hooks/useBreakpointValue" />
+
+# useBreakpointValue
+
+**useBreakpointValue** is a custom hook to returns the value for the current breakpoint based on the provided responsive values object. It is also responsive to window resizing and returning the appropriate value according to the new window size.
+
+### Import
+
+To use the `useBreakpointValue` in your project, import `useBreakpointValue` from `@gluestack-ui/themed` as demonstrated below.
+
+```jsx
+import { useBreakpointValue } from '@gluestack-ui/themed';
+```
+
+```jsx
+const BreakPointValue = () => {
+  const flexDir = useBreakpointValue({
+    base: 'column',
+    sm: 'row',
+  });
+
+  return (
+    <View
+      style={{
+        flexDirection: flexDir,
+        gap: 10,
+      }}
+    >
+      <StyledBox>
+        <StyledText>Universal</StyledText>
+      </StyledBox>
+      <StyledBox>
+        <StyledText>Performant</StyledText>
+      </StyledBox>
+      <StyledBox>
+        <StyledText>Accessible</StyledText>
+      </StyledBox>
+    </View>
+  );
+};
+```

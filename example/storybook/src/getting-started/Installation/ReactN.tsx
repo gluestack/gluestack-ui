@@ -6,22 +6,22 @@ function ReactN() {
   const { colorMode } = useContext(LayoutContext);
   return colorMode === 'light' ? (
     <svg
-      width="167"
-      height="72"
+      width={167}
+      height={72}
       viewBox="0 0 167 72"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
       <g filter="url(#filter0_ii_10404_112255)">
-        <rect width="167" height="72" rx="8" fill="white" />
-        <g clip-path="url(#clip0_10404_112255)">
+        <rect width={167} height={72} rx={8} fill="white" />
+        <g clipPath="url(#clip0_10404_112255)">
           <mask
             id="mask0_10404_112255"
             maskUnits="userSpaceOnUse"
-            x="18"
-            y="26"
-            width="23"
-            height="20"
+            x={18}
+            y={26}
+            width={23}
+            height={20}
           >
             <path d="M40.9104 26H18.7109V46H40.9104V26Z" fill="white" />
           </mask>
@@ -33,17 +33,17 @@ function ReactN() {
             <path
               d="M29.8134 40.7627C35.6517 40.7627 40.3846 38.6308 40.3846 36.0008C40.3846 33.3709 35.6517 31.2389 29.8134 31.2389C23.9751 31.2389 19.2422 33.3709 19.2422 36.0008C19.2422 38.6308 23.9751 40.7627 29.8134 40.7627Z"
               stroke="#149ECA"
-              stroke-width="1.05819"
+              strokeWidth="1.05819"
             />
             <path
               d="M25.6914 38.3822C28.6106 43.4435 32.8215 46.4805 35.0968 45.1655C37.372 43.8506 36.85 38.6816 33.9309 33.6203C31.0117 28.559 26.8008 25.5219 24.5256 26.8369C22.2503 28.1519 22.7723 33.3209 25.6914 38.3822Z"
               stroke="#149ECA"
-              stroke-width="1.05819"
+              strokeWidth="1.05819"
             />
             <path
               d="M25.6914 33.6198C22.7723 38.6811 22.2503 43.8501 24.5256 45.1651C26.8008 46.4801 31.0117 43.443 33.9309 38.3817C36.85 33.3204 37.372 28.1514 35.0968 26.8365C32.8215 25.5215 28.6106 28.5585 25.6914 33.6198Z"
               stroke="#149ECA"
-              stroke-width="1.05819"
+              strokeWidth="1.05819"
             />
           </g>
         </g>
@@ -55,14 +55,14 @@ function ReactN() {
       <defs>
         <filter
           id="filter0_ii_10404_112255"
-          x="0"
-          y="0"
-          width="167"
-          height="72"
+          x={0}
+          y={0}
+          width={167}
+          height={72}
           filterUnits="userSpaceOnUse"
-          color-interpolation-filters="sRGB"
+          colorInterpolationFilters="sRGB"
         >
-          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feFlood floodOpacity={0} result="BackgroundImageFix" />
           <feBlend
             mode="normal"
             in="SourceGraphic"
@@ -76,13 +76,13 @@ function ReactN() {
             result="hardAlpha"
           />
           <feMorphology
-            radius="1"
+            radius={1}
             operator="erode"
             in="SourceAlpha"
             result="effect1_innerShadow_10404_112255"
           />
           <feOffset />
-          <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1" />
+          <feComposite in2="hardAlpha" operator="arithmetic" k2={-1} k3={1} />
           <feColorMatrix
             type="matrix"
             values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.06 0"
@@ -98,8 +98,8 @@ function ReactN() {
             values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
             result="hardAlpha"
           />
-          <feOffset dx="-1" dy="-1" />
-          <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1" />
+          <feOffset dx={-1} dy={-1} />
+          <feComposite in2="hardAlpha" operator="arithmetic" k2={-1} k3={1} />
           <feColorMatrix
             type="matrix"
             values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.08 0"
@@ -113,7 +113,7 @@ function ReactN() {
         <clipPath id="clip0_10404_112255">
           <rect
             width="22.5"
-            height="20"
+            height={20}
             fill="white"
             transform="translate(18.7109 26)"
           />
@@ -122,18 +122,18 @@ function ReactN() {
     </svg>
   ) : (
     <svg
-      width="167"
-      height="72"
+      width={167}
+      height={72}
       viewBox="0 0 167 72"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
       <g filter="url(#filter0_ii_10256_68839)">
-        <rect width="167" height="72" rx="8" fill="white" fill-opacity="0.16" />
+        <rect width={167} height={72} rx={8} fill="white" fillOpacity="0.16" />
         <rect
-          width="167"
-          height="72"
-          rx="8"
+          width={167}
+          height={72}
+          rx={8}
           fill="url(#paint0_radial_10256_68839)"
         />
         <path
@@ -160,14 +160,14 @@ function ReactN() {
       <defs>
         <filter
           id="filter0_ii_10256_68839"
-          x="0"
-          y="0"
-          width="167"
-          height="72"
+          x={0}
+          y={0}
+          width={167}
+          height={72}
           filterUnits="userSpaceOnUse"
-          color-interpolation-filters="sRGB"
+          colorInterpolationFilters="sRGB"
         >
-          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feFlood floodOpacity={0} result="BackgroundImageFix" />
           <feBlend
             mode="normal"
             in="SourceGraphic"
@@ -181,13 +181,13 @@ function ReactN() {
             result="hardAlpha"
           />
           <feMorphology
-            radius="1"
+            radius={1}
             operator="erode"
             in="SourceAlpha"
             result="effect1_innerShadow_10256_68839"
           />
           <feOffset />
-          <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1" />
+          <feComposite in2="hardAlpha" operator="arithmetic" k2={-1} k3={1} />
           <feColorMatrix
             type="matrix"
             values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.06 0"
@@ -203,8 +203,8 @@ function ReactN() {
             values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
             result="hardAlpha"
           />
-          <feOffset dx="-1" dy="-1" />
-          <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1" />
+          <feOffset dx={-1} dy={-1} />
+          <feComposite in2="hardAlpha" operator="arithmetic" k2={-1} k3={1} />
           <feColorMatrix
             type="matrix"
             values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.08 0"
@@ -217,14 +217,14 @@ function ReactN() {
         </filter>
         <radialGradient
           id="paint0_radial_10256_68839"
-          cx="0"
-          cy="0"
-          r="1"
+          cx={0}
+          cy={0}
+          r={1}
           gradientUnits="userSpaceOnUse"
           gradientTransform="translate(83.5 36) rotate(23.3227) scale(90.9299 66.1169)"
         >
-          <stop stop-color="white" stop-opacity="0.08" />
-          <stop offset="1" stop-color="white" stop-opacity="0" />
+          <stop stopColor="white" stopOpacity="0.08" />
+          <stop offset={1} stopColor="white" stopOpacity={0} />
         </radialGradient>
       </defs>
     </svg>

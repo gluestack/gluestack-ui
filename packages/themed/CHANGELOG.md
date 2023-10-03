@@ -1,5 +1,105 @@
 # @gluestack-ui/themed
 
+## 0.1.55
+
+### Patch Changes
+
+- Fixed component apis
+
+## 0.1.53
+
+### Patch Changes
+
+- Fixed overlay components backdrop interactivity issue
+
+## 0.1.52
+
+### Patch Changes
+
+- fixed provider warnings
+
+## 0.1.51
+
+### Patch Changes
+
+- fixed buttongroup spacer issue
+
+## 0.1.50
+
+### Patch Changes
+
+- - Radio Icon render issue on native devices
+
+## 0.1.49
+
+### Patch Changes
+
+- - Switch trackColor, thumbColor, activeThumbColor, activeTrackColor resolution in sx props
+
+## 0.1.48
+
+### Patch Changes
+
+- Icon fill accepts token now
+
+## 0.1.47
+
+### Patch Changes
+
+- Added linear gradient as a component
+
+## 0.1.46
+
+### Patch Changes
+
+- @gluestack-style/react version bump
+
+## 0.1.45
+
+### Patch Changes
+
+- Fixed image on expo
+
+## 0.1.44
+
+### Patch Changes
+
+- Added `@gluestack-ui/image` Image Package to themed
+
+## 0.1.43
+
+### Patch Changes
+
+- Exported style core hooks `useToken`, `useColorMode` and `useBreakpointValue`
+
+### Dependency Updates
+
+- Please update `@gluestack-style/react` to `0.2.47` for compatibility and improved functionality/
+
+## 0.1.42
+
+### Patch Changes
+
+- Fixed peer dependency for react-native-svg
+
+## 0.1.41
+
+### Patch Changes
+
+- Changed API for Input: Added InputSlot and InputIcon
+
+## 0.1.40
+
+### Patch Changes
+
+- Fix: Version issue in build
+
+## 0.1.39
+
+### Patch Changes
+
+- Updated Actionsheet, VStack, HStack and Input Creator Versions.
+
 ## 0.1.38
 
 ### Patch Changes

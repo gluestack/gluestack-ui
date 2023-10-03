@@ -1,5 +1,5 @@
 import { View } from 'react-native';
-import { styled } from '../../styled';
+import { styled } from '@gluestack-style/react';
 
 export default styled(
   View,
@@ -53,8 +53,10 @@ export default styled(
     },
 
     ':active': {
-      bg: '$primary800',
-      borderColor: '$primary800',
+      ':checked': {
+        bg: '$primary800',
+        borderColor: '$primary800',
+      },
     },
     ':invalid': {
       borderColor: '$error700',
@@ -97,8 +99,10 @@ export default styled(
         },
       },
       ':active': {
-        bg: '$primary300',
-        borderColor: '$primary300',
+        ':checked': {
+          bg: '$primary300',
+          borderColor: '$primary300',
+        },
       },
 
       ':invalid': {

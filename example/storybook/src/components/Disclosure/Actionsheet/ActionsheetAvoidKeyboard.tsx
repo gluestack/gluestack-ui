@@ -11,6 +11,7 @@ import {
   VStack,
   Input,
   InputIcon,
+  InputSlot,
   InputField,
   FormControl,
   FormControlLabel,
@@ -78,14 +79,16 @@ const ActionsheetWithKeyboardAvoidingView = ({
 
   return (
     // @ts-ignore
-    <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : ''}>
+    <KeyboardAvoidingView
+      behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+    >
       <Actionsheet
         isOpen={showActionsheet || showActionsheetProp}
         onClose={handleClose}
         {...props}
       >
         <ActionsheetBackdrop />
-        <ActionsheetContent maxHeight="75%">
+        <ActionsheetContent>
           <ActionsheetDragIndicatorWrapper>
             <ActionsheetDragIndicator />
           </ActionsheetDragIndicatorWrapper>
@@ -147,9 +150,9 @@ const ActionsheetWithKeyboardAvoidingView = ({
                 </FormControlLabelText>
               </FormControlLabel>
               <Input isFullWidth={true} {...props}>
-                <InputIcon>
-                  <Icon as={LeadingIcon} ml="$3" />
-                </InputIcon>
+                <InputSlot>
+                  <InputIcon as={LeadingIcon} ml="$3" />
+                </InputSlot>
                 <InputField placeholder="CVC/CVV" />
               </Input>
               <Button onPress={handleClose} mt={20}>
@@ -181,6 +184,7 @@ export {
   VStack,
   Input,
   InputIcon,
+  InputSlot,
   InputField,
   FormControl,
   FormControlLabel,
@@ -192,4 +196,6 @@ export {
   Icon,
   LeadingIcon,
   IconRoot,
+  KeyboardAvoidingView,
+  Platform,
 };

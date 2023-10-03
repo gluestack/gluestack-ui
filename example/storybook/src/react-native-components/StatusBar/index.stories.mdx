@@ -1,13 +1,7 @@
 ---
-title: StatusBar | gluestack-ui | Installation, Usage, and API
+title: StatusBar | gluestack-ui
 
 description: Component to control the app's status bar. The status bar is the zone, typically at the top of the screen, that displays the current time, Wi-Fi and cellular network information, battery level and/or other status icons. It is embedded react-native `StatusBar` with all utility props of `gluestack-ui/themed`.
-
-pageTitle: StatusBar
-
-pageDescription: Component to control the app's status bar. The status bar is the zone, typically at the top of the screen, that displays the current time, Wi-Fi and cellular network information, battery level and/or other status icons. It is embedded react-native `StatusBar` with all utility props of `gluestack-ui/themed`
-
-showHeader: true
 ---
 
 import { Meta } from '@storybook/addon-docs';
@@ -15,15 +9,15 @@ import { useRef, useEffect, useState } from 'react';
 
 <Meta title="React Native Components/StatusBar" />
 
-## Themed
+# StatusBar
 
 Following is the default implementation of the **StatusBar** component without any additional customization. This serves as a starting point for users who are new to this library and want to learn about the basic functionality and appearance of the component.
 
 > Note: StatusBar component is an iOS/Android only component, please try the example on the respective devices.
 
 <iframe
-  src="https://snack.expo.dev/embedded/@gluestack/statusbar-example-gluestack-ui?iframeId=ejpussm57k&preview=true&platform=web&theme=light"
-  style={{ width: '70vw', height: '60vh', border: '0px' }}
+  src="https://snack.expo.dev/embedded/@gluestack/statusbar-example-gluestack-ui?iframeId=ejpussm57k&preview=true&platform=web&theme=dark"
+  style={{ width: '100%', height: '60vh', border: '0px' }}
 />
 
 <br />
@@ -53,26 +47,3 @@ The following section contains a comprehensive list of the component's reference
 ### StatusBar
 
 It inherits all the properties of React Native's [StatusBar](https://reactnative.dev/docs/StatusBar) component.
-
-## Unstyled
-
-We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
-
-### Customizing the StatusBar
-
-For customizing the StatusBar, you have to map styled view to StatusBar. You can refer [style.gluestack.io](https://style.gluestack.io/) for more information on how to use styled components.
-
-#### Usage
-
-Default styling of the component can be found in the `components/StatusBar` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/tree/main/packages/themed/src/components/StatusBar/styled-components) of the styled `StatusBar` component.
-
-```jsx
-// import the styles
-import { Root } from '../components/core/StatusBar/styled-components';
-
-// mapping the StatusBar to root component
-const StatusBar = Root;
-
-// using the StatusBar component
-export default () => <StatusBar />;
-```

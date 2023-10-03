@@ -1,7 +1,7 @@
 import { AsForwarder } from '@gluestack-style/react';
-import { styled } from '../../styled';
+import { styled } from '@gluestack-style/react';
 
-export const StyledIcon: any = styled(
+export const StyledIcon = styled(
   AsForwarder,
   {
     color: '$backgroundLight800',
@@ -60,17 +60,15 @@ export const StyledIcon: any = styled(
         },
       },
     },
-    // defaultProps: {
-    //   size: 'md',
-    // },
   },
   {
-    ancestorStyle: ['_icon'],
     componentName: 'Icon',
+    resolveProps: ['stroke', 'fill'],
   } as const,
   {
     propertyTokenMap: {
       stroke: 'colors',
+      fill: 'colors',
     },
   }
 );
@@ -79,8 +77,9 @@ export default styled(
   StyledIcon,
   {
     props: {
-      fill: 'none',
       size: 'md',
+      //@ts-ignore
+      fill: 'none',
     },
     color: '$backgroundLight800',
     _dark: {
@@ -88,10 +87,5 @@ export default styled(
       color: '$backgroundDark400',
     },
   },
-  {},
-  {
-    propertyTokenMap: {
-      stroke: 'colors',
-    },
-  }
+  {}
 );

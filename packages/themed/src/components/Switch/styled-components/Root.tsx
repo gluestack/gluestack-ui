@@ -1,4 +1,4 @@
-import { styled } from '../../styled';
+import { styled } from '@gluestack-style/react';
 import { Switch } from 'react-native';
 
 export default styled(
@@ -186,13 +186,6 @@ export default styled(
         };
         return resolveColor;
       },
-    },
-    aliases: {
-      thumbColor: 'thumbColor',
-      activeThumbColor: 'activeThumbColor',
-      activeTrackColor: 'activeTrackColor',
-      trackColor: 'trackColor',
-      ios_backgroundColor: 'ios_backgroundColor',
     },
   }
 );
