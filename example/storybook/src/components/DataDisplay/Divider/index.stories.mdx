@@ -27,10 +27,6 @@ import {
 } from '@gluestack/design-system';
 import Wrapper from '../../Wrapper';
 
-## Themed
-
-Following is the default implementation of the **Divider** component without any additional customization. This serves as a starting point for users who are new to this library and want to learn about the basic functionality and appearance of the component. You can refer [here](https://github.com/gluestack/gluestack-ui/tree/main/packages/themed/src/components/Divider/styled-components) to learn about default styling of Divider component.
-
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
@@ -63,11 +59,13 @@ Following is the default implementation of the **Divider** component without any
 
 <br />
 
+## API Reference
+
 ### Import
 
 To use the component in your project, run the command below into your import statement. This will import the component from your components folder.
 
-```bash
+```jsx
 import { Divider } from '@gluestack-ui/themed';
 ```
 
@@ -79,13 +77,17 @@ The structure provided below can help you identify and understand a divider comp
 export default () => <Divider />;
 ```
 
-### API Reference
+### Component Props
 
-The following section contains a comprehensive list of the component's references, including descriptions, properties, types, and default behavior. This information is readily available for you to access, helping you effectively utilize the component library in your projects.
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
 
 #### Divider
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+## Themed
+
+The themed version of the component is a pre-styled version of the component, which allows you to quickly integrate the component into your project. The component's design and functionality are fully defined, allowing you to focus on the more important aspects of your project.
 
 ### Props
 
@@ -443,6 +445,12 @@ A Divider component with added content allows for the inclusion of additional te
 
 ## Unstyled
 
+All the components in `gluestack-ui` are unstyled by default. To customize your UI using the extendedTheme, please refer to this [link](https://gluestack.io/ui/docs/theme/customizing-components). The import names of components serve as keys to customize each component.
+
+<!--
+
+### Advanced
+
 We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
 
 ### Customizing the Divider
@@ -468,3 +476,4 @@ const Divider = createDivider({
 // Using the Divider component
 export default () => <Divider />;
 ```
+-->
