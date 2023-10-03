@@ -85,7 +85,6 @@ export const Popover = ({
         onRequestClose={handleClose}
         isKeyboardDismissable
         useRNModal={useRNModal}
-        unmountOnExit
       >
         <PopoverProvider
           value={{

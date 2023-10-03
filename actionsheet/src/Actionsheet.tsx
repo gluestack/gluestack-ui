@@ -21,7 +21,6 @@ export function Actionsheet<T>(StyledActionsheet: React.ComponentType<T>) {
         useRNModal,
         initialFocusRef,
         finalFocusRef,
-        unmountOnExit = true,
         snapPoints,
         // @ts-ignore
         _experimentalOverlay = false,
@@ -86,7 +85,6 @@ export function Actionsheet<T>(StyledActionsheet: React.ComponentType<T>) {
           useRNModal={useRNModal}
           // @ts-ignore
           style={overlayStyle}
-          unmountOnExit={unmountOnExit}
         >
           <ActionsheetContext.Provider value={contextValue}>
             <StyledActionsheet

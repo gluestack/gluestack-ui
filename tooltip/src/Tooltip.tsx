@@ -156,7 +156,7 @@ function Tooltip<StyledTooltipProp>(
       return (
         <>
           {updatedTrigger(targetRef)}
-          <Overlay isOpen={isOpen} onRequestClose={handleClose} unmountOnExit>
+          <Overlay isOpen={isOpen} onRequestClose={handleClose}>
             <TooltipProvider
               value={{
                 placement,

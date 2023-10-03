@@ -71,7 +71,12 @@ export const ButtonGroup = (StyledButtonGroup: any) =>
 
       if (computedChildren)
         return (
-          <StyledButtonGroup flexDirection={direction} {...props} ref={ref}>
+          <StyledButtonGroup
+            flexDirection={direction}
+            {...props}
+            ref={ref}
+            gap={isAttached === true && 0}
+          >
             {computedChildren}
           </StyledButtonGroup>
         );

@@ -31,7 +31,6 @@ export interface InterfaceActionsheetProps {
   isKeyboardDismissable?: boolean;
   children?: any;
   animationPreset?: 'fade' | 'slide' | 'none';
-  unmountOnExit?: boolean;
   snapPoints?: Array<number>;
 }
 

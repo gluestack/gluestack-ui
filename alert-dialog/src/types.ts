@@ -48,7 +48,6 @@ export interface InterfaceAlertDialogProps {
    */
   useRNModal?: boolean;
   children?: any;
-  unmountOnExit?: boolean;
 }
 
 export type IAlertDialogComponentType<
