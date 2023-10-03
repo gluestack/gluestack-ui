@@ -6,18 +6,18 @@ module.exports = function (api) {
   return {
     presets: ['babel-preset-expo'],
     plugins: [
-      [
-        myBabel,
-        {
-          configPath: path.join(__dirname, './gluestack-ui.config.ts'),
-          configThemePath: ['theme'],
-          styled: [
-            '@gluestack-style/react',
-            path.resolve(__dirname, './gluestack-ui-components/core/styled'),
-          ],
-          components: ['@gluesatck-ui/themed'],
-        },
-      ],
+      // [
+      //   myBabel,
+      //   {
+      //     configPath: path.join(__dirname, './gluestack-ui.config.ts'),
+      //     configThemePath: ['theme'],
+      //     styled: [
+      //       '@gluestack-style/react',
+      //       path.join(__dirname, '../../packages/react/src'),
+      //     ],
+      //     components: ['@gluesatck-ui/themed'],
+      //   },
+      // ],
       [
         'module-resolver',
         {
@@ -26,6 +26,18 @@ module.exports = function (api) {
             ['@gluestack-style/react']: path.join(
               __dirname,
               '../../packages/react/src'
+            ),
+            ['@gluestack-style/animation-resolver']: path.join(
+              __dirname,
+              '../../packages/animation-resolver/src'
+            ),
+            ['@gluestack-style/legend-motion-animation-driver']: path.join(
+              __dirname,
+              '../../packages/animation-legend-motion-driver/src'
+            ),
+            ['@gluestack-ui/themed']: path.join(
+              __dirname,
+              '../../../gluestack-ui/packages/themed'
             ),
             // ['@gluestack-style/animation-plugin']: path.join(
             //   __dirname,
