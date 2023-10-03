@@ -57,6 +57,21 @@ This example demonstrates a themed version of the component, highlighting its de
       },
       scope: { Button, ButtonText, ButtonIcon, Wrapper, Icon, AddIcon },
       argsType: {
+        size: {
+          control: 'select',
+          options: ['xs', 'sm', 'md', 'lg'],
+          default: 'md',
+        },
+        variant: {
+          control: 'select',
+          options: ['solid', 'outline', 'link'],
+          default: 'solid',
+        },
+        action: {
+          control: 'select',
+          options: ['primary', 'secondary', 'positive', 'negative'],
+          default: 'primary',
+        },
         isDisabled: {
           control: 'boolean',
         },
