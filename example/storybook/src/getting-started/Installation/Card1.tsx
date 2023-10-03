@@ -197,7 +197,7 @@ function Card1() {
               </Text>
               <HStack flexWrap="wrap" gap="$2.5">
                 <NextLink
-                  href="/docs/guides/install-nextjs"
+                  href="/ui/docs/guides/install-nextjs"
                   style={{
                     borderRadius: 8,
                     height: 72,
@@ -206,7 +206,7 @@ function Card1() {
                   <Next />
                 </NextLink>
                 <NextLink
-                  href="/docs/guides/install-expo"
+                  href="/ui/docs/guides/install-expo"
                   style={{
                     borderRadius: 8,
                     height: 72,
@@ -215,7 +215,7 @@ function Card1() {
                   <Expo1 />
                 </NextLink>
                 <NextLink
-                  href="/docs/guides/install-rn"
+                  href="/ui/docs/guides/install-rn"
                   style={{
                     borderRadius: 8,
                     height: 72,
@@ -267,7 +267,7 @@ function Card1() {
               </Text>
               <HStack>
                 <NextLink
-                  href="/docs/getting-started/vscode-extensions"
+                  href="/ui/docs/getting-started/vscode-extensions"
                   style={{
                     borderRadius: 8,
                     height: 72,
