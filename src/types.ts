@@ -43,8 +43,8 @@ type ConvertKeys<T> = {
 export type GenericSXType<SXType> = {
   [K in keyof SXType]: K extends `_${string}`
     ? GenericSXType<ConvertKeys<SXType[K]>>
-    : //@ts-ignore
-      ResponsiveValue<
+    : ResponsiveValue<
+        //@ts-ignore
         ReplaceDollar<SXType[K]> | number | (string & {}) | undefined
       >;
 };
