@@ -349,7 +349,7 @@ The Examples section provides visual representations of the different variants o
 
 ## Unstyled
 
-We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
+All the components in `gluestack-ui` are unstyled by default. To customize your UI using the extendedTheme, please refer to this [link](https://gluestack.io/ui/docs/theme/customizing-components). The import names of components serve as keys to customize each component.
 
 <!--
 
@@ -383,7 +383,7 @@ export default () => (
 
 -->
 
-#### How to use Next.js Link
+### How to use Next.js Link
 
 By default, Link component uses an anchor tag on web and pressable on native. If you want to use Next.js Link component on web, you have to create a new styled component for link and map it to Link component. You can also change the already present styled-component for link on the path `./components/core/link/styled-components` in your project. For web specific styling, you can create a file with `.web` extension. For example, if you want to create a custom link component, you can create a file named `Linktsx` and `Linkweb.tsx` in the same directory. The `.web` file will be used only on web and the `Linktsx` file will be used on native.
 
