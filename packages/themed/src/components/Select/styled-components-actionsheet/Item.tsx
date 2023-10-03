@@ -55,7 +55,7 @@ export default styled(
     },
   },
   {
-    componentName: 'SelectActionsheetItem',
+    componentName: 'SelectItem',
     descendantStyle: ['_text'],
   } as const
 );

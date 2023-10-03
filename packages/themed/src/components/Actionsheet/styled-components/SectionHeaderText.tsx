@@ -14,6 +14,6 @@ export default styled(
   },
   {
     componentName: 'ActionsheetSectionHeaderText',
-    ancestorStyle: ['_sectionHeaderBackground'],
+    ancestorStyle: ['_sectionHeaderText'],
   } as const
 );

@@ -36,7 +36,7 @@ export default styled(
     },
   },
   {
-    componentName: 'SelectActionsheetBackdrop',
+    componentName: 'SelectBackdrop',
   } as const,
   {
     plugins: [new AnimationResolver({})],

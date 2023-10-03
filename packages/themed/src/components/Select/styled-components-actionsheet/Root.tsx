@@ -10,6 +10,6 @@ export default styled(
     alignItems: 'center',
   },
   {
-    componentName: 'SelectActionsheet',
+    componentName: 'SelectPortal',
   } as const
 );

@@ -8,6 +8,6 @@ export default styled(
     h: 'auto',
   },
   {
-    componentName: 'SelectActionsheetVirtualizedList',
+    componentName: 'SelectVirtualizedList',
   } as const
 );

@@ -10,13 +10,13 @@ export default styled(
     borderTopRightRadius: '$3xl',
     p: '$2',
     bg: '$backgroundLight0',
-    _sectionHeaderBackground: {
+    _sectionHeaderText: {
       bg: '$backgroundLight0',
     },
     // @ts-ignore
     _dark: {
       bg: '$backgroundDark900',
-      _sectionHeaderBackground: {
+      _sectionHeaderText: {
         bg: '$backgroundDark900',
       },
     },
@@ -30,7 +30,7 @@ export default styled(
   },
   {
     componentName: 'ActionsheetContent',
-    descendantStyle: ['_sectionHeaderBackground'],
+    descendantStyle: ['_sectionHeaderText'],
   } as const,
   {
     plugins: [new AnimationResolver({})],

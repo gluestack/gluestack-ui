@@ -8,6 +8,6 @@ export default styled(
     h: 'auto',
   },
   {
-    componentName: 'SelectActionsheetScrollView',
+    componentName: 'SelectScrollView',
   } as const
 );

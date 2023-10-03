@@ -9,6 +9,6 @@ export default styled(
     alignItems: 'center',
   },
   {
-    componentName: 'SelectActionsheetIndicatorWrapper',
+    componentName: 'SelectDragIndicatorWrapper',
   } as const
 );

@@ -13,6 +13,6 @@ export default styled(
     },
   },
   {
-    componentName: 'SelectActionsheetDragIndicator',
+    componentName: 'SelectDragIndicator',
   } as const
 );

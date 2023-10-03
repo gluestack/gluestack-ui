@@ -16,7 +16,7 @@ export default styled(
     },
   },
   {
-    componentName: 'SelectActionsheetSectionHeaderText',
-    ancestorStyle: ['_sectionHeaderBackground'],
+    componentName: 'SelectSectionHeaderText',
+    ancestorStyle: ['_sectionHeaderText'],
   } as const
 );

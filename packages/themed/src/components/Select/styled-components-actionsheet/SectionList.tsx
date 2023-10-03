@@ -8,6 +8,6 @@ export default styled(
     h: 'auto',
   },
   {
-    componentName: 'SelectActionsheetSectionList',
+    componentName: 'SelectSectionList',
   } as const
 );
