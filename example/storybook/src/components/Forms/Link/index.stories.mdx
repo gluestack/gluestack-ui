@@ -26,10 +26,6 @@ import {
 
 import Wrapper from '../../Wrapper';
 
-## Themed
-
-Following is the default implementation of the **Link** component without any additional customization. This serves as a starting point for users who are new to this library and want to learn about the basic functionality and appearance of the component. You can refer [here](https://github.com/gluestack/gluestack-ui/tree/main/packages/themed/src/components/Link/styled-components) to learn about default styling of Link component.
-
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
@@ -55,6 +51,8 @@ Following is the default implementation of the **Link** component without any ad
 
 <br />
 
+## API Reference
+
 ### Import
 
 To use the component in your project, run the command below into your import statement. This will import the component from your components folder.
@@ -75,9 +73,9 @@ export default () => (
 );
 ```
 
-### API Reference
+### Component Props
 
-The following section contains a comprehensive list of the component's references, including descriptions, properties, types, and default behavior. This information is readily available for you to access, helping you effectively utilize the component library in your projects.
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
 
 #### Link
 
@@ -191,6 +189,38 @@ It inherits all the properties of React Native's [Pressable](https://reactnative
   </TableContainer>
 </AppProvider>
 
+**Descendants Styling Props**
+Props to style child components.
+
+<AppProvider>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Sx Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Description</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>_text</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Prop to style LinkText Component`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</AppProvider>
+
 #### LinkText
 
 Contains all text related layout style props and actions. It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text) component.
@@ -208,13 +238,9 @@ We have outlined the various features that ensure the Link component is accessib
 
 - VoiceOver: When a link receives focus, screen readers should announce a descriptive link name.
 
-### Dependencies
+## Themed
 
-The following are the lists of all the libraries and packages the component relies on. This information will help you ensure that your project has all the necessary dependencies installed to use the component.
-
-- `@gluestack-ui/utils`
-- `@react-native-aria/focus`
-- `@react-native-aria/interactions`
+The themed version of the component is a pre-styled version of the component, which allows you to quickly integrate the component into your project. The component's design and functionality are fully defined, allowing you to focus on the more important aspects of your project.
 
 ### Props
 
@@ -325,6 +351,8 @@ The Examples section provides visual representations of the different variants o
 
 We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
 
+<!--
+
 ### Customizing the Link
 
 We have a function called `createLink` which can be used to create a custom link component. This function takes in a configuration object which contains the styled components that you want to use for the link. You can refer [style.gluestack.io](https://style.gluestack.io/) for more information on how to use styled components.
@@ -352,6 +380,8 @@ export default () => (
   </Link>
 );
 ```
+
+-->
 
 #### How to use Next.js Link
 
