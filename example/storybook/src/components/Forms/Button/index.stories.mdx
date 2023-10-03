@@ -37,10 +37,6 @@ import {
 
 import Wrapper from '../../Wrapper';
 
-## Usage
-
-This example demonstrates a themed version of the component, highlighting its design and functionality.
-
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
@@ -57,21 +53,6 @@ This example demonstrates a themed version of the component, highlighting its de
       },
       scope: { Button, ButtonText, ButtonIcon, Wrapper, Icon, AddIcon },
       argsType: {
-        size: {
-          control: 'select',
-          options: ['xs', 'sm', 'md', 'lg'],
-          default: 'md',
-        },
-        variant: {
-          control: 'select',
-          options: ['solid', 'outline', 'link'],
-          default: 'solid',
-        },
-        action: {
-          control: 'select',
-          options: ['primary', 'secondary', 'positive', 'negative'],
-          default: 'primary',
-        },
         isDisabled: {
           control: 'boolean',
         },
@@ -85,7 +66,7 @@ This example demonstrates a themed version of the component, highlighting its de
 
 <br />
 
-## API Documentation
+## API Reference
 
 ### Import
 
@@ -111,9 +92,9 @@ export default () => (
 );
 ```
 
-### Component API Reference
+### Component Props
 
-The following section contains a comprehensive list of the component's references, including descriptions, properties, types, and default behavior. This information is readily available for you to access, helping you effectively utilize the component library in your projects.
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
 
 #### Button
 
@@ -232,7 +213,7 @@ Props to style child components.
             </Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>{`Props to style the child text Component`}</Table.TText>
+            <Table.TText>{`Prop to style ButtonText Component`}</Table.TText>
           </Table.TD>
         </Table.TR>
         <Table.TR>
@@ -242,7 +223,7 @@ Props to style child components.
             </Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>{`Props to style the child icon Component`}</Table.TText>
+            <Table.TText>{`Prop to style ButtonIcon Component`}</Table.TText>
           </Table.TD>
         </Table.TR>
         <Table.TR>
@@ -252,7 +233,7 @@ Props to style child components.
             </Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>{`Props to style the child spinner Component`}</Table.TText>
+            <Table.TText>{`Prop to style ButtonSpinner Component`}</Table.TText>
           </Table.TD>
         </Table.TR>
       </Table.TBody>
@@ -401,7 +382,7 @@ Props to style child components.
             </Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>{`Props to style the child button Component`}</Table.TText>
+            <Table.TText>{`Prop to style Button Component`}</Table.TText>
           </Table.TD>
         </Table.TR>
       </Table.TBody>
@@ -866,11 +847,13 @@ The custom button component leverages the functionality of a button component wh
 
 All the components in `gluestack-ui` are unstyled by default. To customize your UI using the extendedTheme, please refer to this [link](https://gluestack.io/ui/docs/theme/customizing-components). The import names of components serve as keys to customize each component.
 
-### Advance
+<!--
+
+### Advanced
 
 We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
 
-#### Customizing the Button
+#### Create your own Button
 
 We have a function called `createButton` which can be used to create a custom button component. This function takes in a configuration object which contains the styled components that you want to use for the button. You can refer [style.gluestack.io](https://style.gluestack.io/) for more information on how to use styled components.
 
@@ -911,3 +894,4 @@ export default () => (
   </ButtonGroup>
 );
 ```
+-->
