@@ -74,6 +74,41 @@ The following section contains a comprehensive list of the component's reference
 
 It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable) component.
 
+### Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+#### Pressable child elements according to its states
+
+You can change the child elements according to the states of Pressable component.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+ <Pressable p="$16" bg="$primary500" sx={{':hover':{ bg:"$primary400"}}}>
+   {({ pressed }) => (
+        <Text color={pressed ? 'pink' : 'yellow'}>PRESSABLE</Text>
+      )}
+</Pressable>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Pressable,
+        Text,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+Similarly, you can change the child elements according to other states of Pressable component and i.e. `focus` , `hover` , `pressed` , `disabled` and `focusVisible`.
+
 ### Dependencies
 
 The following are the lists of all the libraries and packages the component relies on. This information will help you ensure that your project has all the necessary dependencies installed to use the component.

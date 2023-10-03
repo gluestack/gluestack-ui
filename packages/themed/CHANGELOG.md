@@ -1,5 +1,41 @@
 # @gluestack-ui/themed
 
+## 0.1.55
+
+### Patch Changes
+
+- Fixed component apis
+
+## 0.1.53
+
+### Patch Changes
+
+- Fixed overlay components backdrop interactivity issue
+
+## 0.1.52
+
+### Patch Changes
+
+- fixed provider warnings
+
+## 0.1.51
+
+### Patch Changes
+
+- fixed buttongroup spacer issue
+
+## 0.1.50
+
+### Patch Changes
+
+- - Radio Icon render issue on native devices
+
+## 0.1.49
+
+### Patch Changes
+
+- - Switch trackColor, thumbColor, activeThumbColor, activeTrackColor resolution in sx props
+
 ## 0.1.48
 
 ### Patch Changes

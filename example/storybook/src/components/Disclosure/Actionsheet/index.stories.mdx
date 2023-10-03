@@ -46,6 +46,8 @@ import {
   FormControlHelper,
   FormControlHelperText,
   HStack,
+  KeyboardAvoidingView,
+  Platform,
 } from './ActionsheetAvoidKeyboard';
 import { LeadingIcon, IconRoot } from './ActionsheetAvoidKeyboard';
 import { Image, Text, Box } from './ActionsheetAvoidKeyboard';
@@ -356,38 +358,6 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
         <Table.TR>
           <Table.TD>
             <Table.TText>
-              <InlineCode>unmountOnExit</InlineCode>
-            </Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>boolean</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>true</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>{`If true, removes the component from the DOM when it is not visible. Animation and accessibility won't work when false.`}</Table.TText>
-          </Table.TD>
-        </Table.TR>
-        <Table.TR>
-          <Table.TD>
-            <Table.TText>
-              <InlineCode>animationPreset</InlineCode>
-            </Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>slide | fade</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>slide</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>{`Specifies the animation preset for the Actionsheet`}</Table.TText>
-          </Table.TD>
-        </Table.TR>
-        <Table.TR>
-          <Table.TD>
-            <Table.TText>
               <InlineCode>children</InlineCode>
             </Table.TText>
           </Table.TD>
@@ -515,6 +485,8 @@ The Examples section provides visual representations of the different variants o
 
 Demonstrates a common UI pattern known as keyboard handling or keyboard scrolling, in which an input field is automatically scrolled into view when the user taps on it and the keyboard appears. This improves usability and ensures that the input field is always visible and accessible, even when the keyboard is blocking part of the screen.
 
+**Without SnapPoints**
+
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
@@ -529,6 +501,7 @@ Demonstrates a common UI pattern known as keyboard handling or keyboard scrollin
                 <Button onPress={handleClose}>
                   <ButtonText>Open</ButtonText>
                 </Button>
+          <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
          <Actionsheet
           isOpen={showActionsheet}
           onClose={handleClose}
@@ -579,10 +552,11 @@ Demonstrates a common UI pattern known as keyboard handling or keyboard scrollin
             </VStack>
           </ActionsheetContent>
         </Actionsheet>
-            </>
+    </KeyboardAvoidingView>
+ </>
           );
         }
-  `,
+`,
       transformCode: (code) => {
         return transformedCode(code, 'function', 'App');
       },
@@ -613,6 +587,126 @@ Demonstrates a common UI pattern known as keyboard handling or keyboard scrollin
         Icon,
         LeadingIcon,
         IconRoot,
+        KeyboardAvoidingView,
+        Platform,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+**With SnapPoints**
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+        function App(){
+          const [showActionsheet, setShowActionsheet] = React.useState(false);
+          const handleClose = () => setShowActionsheet(!showActionsheet);
+            return (
+      <>
+        <Button onPress={handleClose}>
+            <ButtonText>Open</ButtonText>
+        </Button>
+         <Actionsheet
+          isOpen={showActionsheet}
+          onClose={handleClose}
+          snapPoints={[50]}
+        >
+        <KeyboardAvoidingView
+        behavior="position"
+        // eslint-disable-next-line react-native/no-inline-styles
+        style={{
+          position: 'relative',
+          flex: 1,
+          justifyContent: 'flex-end',
+        }}
+      >
+          <ActionsheetBackdrop />
+          <ActionsheetContent maxHeight="75%">
+            <ActionsheetDragIndicatorWrapper>
+              <ActionsheetDragIndicator />
+            </ActionsheetDragIndicatorWrapper>
+            <VStack w="$full" p={20}>
+              <HStack justifyContent="center" alignItems="center" space="md">
+                <Box
+                  w={50}
+                  h="$full"
+                  px="$2"
+                  borderWidth={1}
+                  borderStyle="solid"
+                  borderColor="$borderLight300"
+                  rounded="$sm"
+                >
+                  <Image
+                    source={{ uri: 'https://i.imgur.com/UwTLr26.png' }}
+                    flex={1}
+                    resizeMode="contain"
+                  />
+                </Box>
+                <VStack flex={1}>
+                  <Text fontWeight="$bold">Mastercard</Text>
+                  <Text>Card ending in 2345</Text>
+                </VStack>
+              </HStack>
+              <FormControl mt={36}>
+                <FormControlLabel>
+                  <FormControlLabelText>
+                    Confirm security code
+                  </FormControlLabelText>
+                </FormControlLabel>
+                <Input w="$full">
+                  <InputSlot>
+                   <InputIcon as={LeadingIcon} ml="$2" />
+                  </InputSlot>
+                  <InputField placeholder="CVC/CVV" />
+                </Input>
+                <Button onPress={handleClose} mt={20}>
+                  <ButtonText>Pay $1000</ButtonText>
+                </Button>
+              </FormControl>
+            </VStack>
+          </ActionsheetContent>
+    </KeyboardAvoidingView>
+</Actionsheet>
+ </>
+);}
+`,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'App');
+      },
+      scope: {
+        Wrapper,
+        Actionsheet,
+        ActionsheetBackdrop,
+        ActionsheetContent,
+        ActionsheetDragIndicator,
+        ActionsheetDragIndicatorWrapper,
+        ActionsheetItem,
+        ActionsheetItemText,
+        Button,
+        ButtonText,
+        ButtonText,
+        VStack,
+        Input,
+        InputIcon,
+        InputSlot,
+        InputField,
+        FormControl,
+        FormControlLabel,
+        FormControlLabelText,
+        HStack,
+        Image,
+        Text,
+        Box,
+        Icon,
+        LeadingIcon,
+        IconRoot,
+        KeyboardAvoidingView,
+        Platform,
       },
       argsType: {},
     }}
@@ -744,6 +838,7 @@ The Actionsheet with Virtualized List includes a virtualized list for better per
             <ActionsheetDragIndicator />
           </ActionsheetDragIndicatorWrapper>
           <ActionsheetVirtualizedList
+            h="$56"
             data={data}
             initialNumToRender={5}
             renderItem={({ item }) => <Item title={item.title} />}
@@ -899,6 +994,7 @@ Default styling of the component can be found in the `components/actionsheet` fi
             <ActionsheetDragIndicator />
           </ActionsheetDragIndicatorWrapper>
            <ActionsheetSectionList
+            h="$56"
             sections={DATA}
             keyExtractor={(item, index) => item + index}
             renderItem={({ item }) => (
