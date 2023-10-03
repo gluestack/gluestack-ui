@@ -38,10 +38,6 @@ import {
 
 import Wrapper from '../../Wrapper';
 
-## Themed
-
-Following is the default implementation of the **Checkbox** component without any additional customization. This serves as a starting point for users who are new to this library and want to learn about the basic functionality and appearance of the component. You can refer [here](https://github.com/gluestack/gluestack-ui/tree/main/packages/themed/src/components/Checkbox/styled-components) to learn about default styling of Checkbox component.
-
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
@@ -70,11 +66,6 @@ Following is the default implementation of the **Checkbox** component without an
         Icon,
       },
       argsType: {
-        size: {
-          control: 'select',
-          options: ['sm', 'md', 'lg'],
-          default: 'md',
-        },
         isInvalid: {
           control: 'boolean',
         },
@@ -87,6 +78,8 @@ Following is the default implementation of the **Checkbox** component without an
 </AppProvider>
 
 <br />
+
+## API Reference
 
 ### Import
 
@@ -113,9 +106,9 @@ export default () => (
 );
 ```
 
-### API Reference
+### Component Props
 
-The following section contains a comprehensive list of the component's references, including descriptions, properties, types, and default behavior. This information is readily available for you to access, helping you effectively utilize the component library in your projects.
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
 
 #### Checkbox
 
@@ -310,11 +303,63 @@ Contains all Checkbox related layout style props and actions. It inherits all th
   </TableContainer>
 </AppProvider>
 
+**Descendants Styling Props**
+Props to style child components.
+
+<AppProvider>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Sx Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Description</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>_text</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Prop to style CheckboxLabel Component`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>_icon</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Prop to style CheckboxIcon Component`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>_indicator</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Prop to style CheckboxIndicator Component`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</AppProvider>
+
 #### CheckboxIndicator
 
 Contains all indicators related layout style props and actions. It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
-### CheckboxIcon
+#### CheckboxIcon
 
 Contains all Icon related layout style props and actions. It inherits all the properties of gluestack Style's [AsForwarder](https://style.gluestack.io/docs/api/as-forwarder) component.
 
@@ -472,6 +517,10 @@ The following are the lists of all the libraries and packages the component reli
 - `@gluestack-ui/form-control`
 - `@gluestack-ui/themed-native-aria`
 - `@gluestack-ui/utils`
+
+## Themed
+
+The themed version of the component is a pre-styled version of the component, which allows you to quickly integrate the component into your project. The component's design and functionality are fully defined, allowing you to focus on the more important aspects of your project.
 
 ### Props
 
@@ -996,8 +1045,9 @@ function CheckboxExample(){
 
 ## Unstyled
 
-We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
+All the components in `gluestack-ui` are unstyled by default. To customize your UI using the extendedTheme, please refer to this [link](https://gluestack.io/ui/docs/theme/customizing-components). The import names of components serve as keys to customize each component.
 
+<!--
 ### Customizing the Checkbox
 
 We have a function called `createCheckbox` which can be used to create a custom checkbox component. This function takes in a configuration object which contains the styled components that you want to use for the checkbox. You can refer [style.gluestack.io](https://style.gluestack.io/) for more information on how to use styled components.
@@ -1040,6 +1090,8 @@ export default () => (
   </CheckboxGroup>
 );
 ```
+
+-->
 
 ## Spec Doc
 
