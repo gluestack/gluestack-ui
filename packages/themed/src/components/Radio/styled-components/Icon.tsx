@@ -4,6 +4,8 @@ import { StyledIcon } from '../../Icons/styled-components';
 export default styled(
   StyledIcon,
   {
+    'w': '$full',
+    'h': '$full',
     'borderRadius': '$full',
     ':checked': {
       'color': '$primary600',
