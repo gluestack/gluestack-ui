@@ -42,7 +42,6 @@ export const StyledProvider: React.FC<{
   colorMode?: COLORMODES;
   children?: React.ReactNode;
   globalStyles?: any;
-  components: any;
 }> = ({ config, colorMode, children, globalStyles }) => {
   const currentConfig = React.useMemo(() => {
     //TODO: Add this later
