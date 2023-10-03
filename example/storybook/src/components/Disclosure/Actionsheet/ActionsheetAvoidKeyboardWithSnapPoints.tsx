@@ -22,7 +22,7 @@ import {
   Box,
   Icon,
 } from '@gluestack-ui/themed';
-import { KeyboardAvoidingView, Platform } from 'react-native';
+import { KeyboardAvoidingView } from 'react-native';
 import { createIcon } from '@gluestack-ui/icon';
 import { Svg, Path } from 'react-native-svg';
 import { styled, AsForwarder } from '@gluestack-ui/themed';
@@ -63,7 +63,7 @@ const LeadingIcon = createIcon({
   ),
 });
 
-const ActionsheetWithKeyboardAvoidingView = ({
+const ActionsheetWithKeyboardAvoidingViewWithSnapPoints = ({
   showActionsheet: showActionsheetProp = true,
   ...props
 }) => {
@@ -78,14 +78,20 @@ const ActionsheetWithKeyboardAvoidingView = ({
   const handleClose = () => setShowActionsheet(false);
 
   return (
-    // @ts-ignore
-    <KeyboardAvoidingView
-      behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+    <Actionsheet
+      isOpen={showActionsheet || showActionsheetProp}
+      onClose={handleClose}
+      snapPoints={[50]}
+      {...props}
     >
-      <Actionsheet
-        isOpen={showActionsheet || showActionsheetProp}
-        onClose={handleClose}
-        {...props}
+      <KeyboardAvoidingView
+        behavior="position"
+        // eslint-disable-next-line react-native/no-inline-styles
+        style={{
+          position: 'relative',
+          flex: 1,
+          justifyContent: 'flex-end',
+        }}
       >
         <ActionsheetBackdrop />
         <ActionsheetContent>
@@ -112,6 +118,7 @@ const ActionsheetWithKeyboardAvoidingView = ({
               <VStack flex={1}>
                 <Text
                   fontWeight="$bold"
+                  // @ts-ignore
                   dataSet={{
                     'component-props': JSON.stringify({
                       'is-text-style': true,
@@ -123,6 +130,7 @@ const ActionsheetWithKeyboardAvoidingView = ({
                   Mastercard
                 </Text>
                 <Text
+                  // @ts-ignore
                   dataSet={{
                     'component-props': JSON.stringify({
                       'is-text-style': true,
@@ -138,6 +146,7 @@ const ActionsheetWithKeyboardAvoidingView = ({
             <FormControl mt={36}>
               <FormControlLabel>
                 <FormControlLabelText
+                  // @ts-ignore
                   dataSet={{
                     'component-props': JSON.stringify({
                       'is-text-style': true,
@@ -157,6 +166,7 @@ const ActionsheetWithKeyboardAvoidingView = ({
               </Input>
               <Button onPress={handleClose} mt={20}>
                 <ButtonText
+                  // @ts-ignore
                   dataSet={{
                     'component-props': JSON.stringify({
                       'is-text-style': true,
@@ -171,12 +181,12 @@ const ActionsheetWithKeyboardAvoidingView = ({
             </FormControl>
           </VStack>
         </ActionsheetContent>
-      </Actionsheet>
-    </KeyboardAvoidingView>
+      </KeyboardAvoidingView>
+    </Actionsheet>
   );
 };
 
-export default ActionsheetWithKeyboardAvoidingView;
+export default ActionsheetWithKeyboardAvoidingViewWithSnapPoints;
 
 export {
   Actionsheet,
@@ -196,6 +206,4 @@ export {
   Icon,
   LeadingIcon,
   IconRoot,
-  KeyboardAvoidingView,
-  Platform,
 };

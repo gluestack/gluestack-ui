@@ -61,6 +61,7 @@ const ActionsheetWithSectionlist = ({
           <ActionsheetDragIndicator />
         </ActionsheetDragIndicatorWrapper>
         <ActionsheetSectionList
+          h="$56"
           sections={DATA}
           keyExtractor={(item: any, index: any) => item + index}
           renderItem={({ item }: any) => (
