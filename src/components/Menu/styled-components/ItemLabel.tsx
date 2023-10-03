@@ -1,5 +1,5 @@
 import { Text } from 'react-native';
-import { styled } from '../../styled';
+import { styled } from '@gluestack-style/react';
 
 export const Label = styled(
   Text,

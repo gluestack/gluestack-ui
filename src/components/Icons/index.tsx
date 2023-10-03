@@ -1,14 +1,13 @@
 import { createIcon as createIconUI } from '@gluestack-ui/icon';
 import React, { forwardRef } from 'react';
-import { StyledIcon } from './Root';
-import { createIcon } from './styled-components';
-// import { GenericComponentType } from '../../types';
+import { createIcon, Root } from './styled-components';
+import { GenericComponentType } from '../../types';
 
 const AccessibleIcon = createIconUI({
-  Root: StyledIcon,
+  Root: Root,
 });
 
-export const Icon = forwardRef(
+const IconTemp = forwardRef(
   (
     {
       children,
@@ -35,13 +34,12 @@ export const Icon = forwardRef(
 );
 
 export * from './Icons';
-export * from './styled-components';
 
-// export type IIconComponentType<Icon> = GenericComponentType<
-//   Icon,
-//   { viewBox?: string; as?: any }
-// >;
+export type IIconComponentType<Icon> = GenericComponentType<
+  Icon,
+  { viewBox?: string; as?: any }
+>;
 
-// export const Icon = IconTemp as IIconComponentType<typeof AccessibleIcon>;
+export const Icon = IconTemp as IIconComponentType<typeof Root>;
 
 //type issue with icon

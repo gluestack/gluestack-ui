@@ -11,8 +11,6 @@ export function useToast() {
 
   type ISXProps = React.ComponentProps<typeof Root>['sx'];
 
-  // let x: ISXProps = { width: '$1' };
-
   const useOldToast = createToastHook()();
 
   const close = useOldToast.close;

@@ -1,5 +1,5 @@
 import { Text } from 'react-native';
-import { styled } from '../../styled';
+import { styled } from '@gluestack-style/react';
 
 export default styled(
   Text,
@@ -14,5 +14,8 @@ export default styled(
       cursor: 'default',
     },
   },
-  { ancestorStyle: ['_text'] }
+  {
+    componentName: 'AvatarFallbackText',
+    ancestorStyle: ['_text'],
+  } as const
 );

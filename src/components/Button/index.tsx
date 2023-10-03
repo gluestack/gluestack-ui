@@ -1,14 +1,6 @@
 import React, { forwardRef } from 'react';
 import { createButton } from '@gluestack-ui/button';
-import {
-  Root,
-  Text,
-  Group,
-  GroupHSpacer,
-  GroupVSpacer,
-  Spinner,
-  Icon,
-} from './styled-components';
+import { Root, Text, Group, Spinner, Icon } from './styled-components';
 
 import { usePropResolution } from '../../hooks/usePropResolution';
 import { GenericComponentType, IColorSchemes } from '../../types';
@@ -17,8 +9,6 @@ const AccessibleButton = createButton({
   Root,
   Text,
   Group,
-  GroupHSpacer,
-  GroupVSpacer,
   Spinner,
   Icon,
 });
@@ -38,7 +28,7 @@ const NewButton = forwardRef(
       isLoading,
       isDisabled,
       isLoadingText,
-      spinnerPlacement,
+      spinnerPlacement = 'start',
       leftIcon,
       rightIcon,
       startIcon,

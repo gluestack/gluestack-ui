@@ -46,7 +46,7 @@ export * from './StatusBar';
 export { styled } from './styled';
 export * from './Switch';
 export * from './Tabs';
-export * from './Text';
+export { Text } from './Text';
 export * from './Textarea';
 export { useToast } from './Toast';
 export * from './Tooltip';

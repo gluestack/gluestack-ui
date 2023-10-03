@@ -1,6 +1,5 @@
-// @ts-nocheck
 import { View } from 'react-native';
-import { styled } from '../../styled';
+import { styled } from '@gluestack-style/react';
 
 export default styled(
   View,
@@ -52,9 +51,11 @@ export default styled(
     defaultProps: { size: 'md' },
 
     _web: {
-      //@ts-ignore
       pointerEvents: 'box-none',
     },
   },
-  { descendantStyle: ['_content'] }
+  {
+    componentName: 'AlertDialog',
+    descendantStyle: ['_content'],
+  } as const
 );

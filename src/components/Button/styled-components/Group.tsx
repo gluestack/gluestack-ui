@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { styled } from '../../styled';
+import { styled } from '@gluestack-style/react';
 import { View } from 'react-native';
 
 export default styled(
@@ -20,12 +20,6 @@ export default styled(
               lineHeight: '$sm',
             },
           },
-          _groupHSpacer: {
-            size: '$xs',
-          },
-          _groupVSpacer: {
-            size: '$xs',
-          },
         },
         sm: {
           _button: {
@@ -39,12 +33,6 @@ export default styled(
               fontSize: '$sm',
               lineHeight: '$sm',
             },
-          },
-          _groupHSpacer: {
-            size: '$sm',
-          },
-          _groupVSpacer: {
-            size: '$sm',
           },
         },
         md: {
@@ -60,12 +48,6 @@ export default styled(
               lineHeight: '$md',
             },
           },
-          _groupHSpacer: {
-            size: '$md',
-          },
-          _groupVSpacer: {
-            size: '$md',
-          },
         },
         lg: {
           _button: {
@@ -79,12 +61,6 @@ export default styled(
               fontSize: '$lg',
               lineHeight: '$xl',
             },
-          },
-          _groupHSpacer: {
-            size: '$lg',
-          },
-          _groupVSpacer: {
-            size: '$lg',
           },
         },
         xl: {
@@ -100,21 +76,43 @@ export default styled(
               lineHeight: '$xl',
             },
           },
-          _groupHSpacer: {
-            size: '$xl',
-          },
-          _groupVSpacer: {
-            size: '$xl',
-          },
+        },
+      },
+      space: {
+        'xs': {
+          gap: '$1',
+        },
+        'sm': {
+          gap: '$2',
+        },
+        'md': {
+          gap: '$3',
+        },
+        'lg': {
+          gap: '$4',
+        },
+        'xl': {
+          gap: '$5',
+        },
+        '2xl': {
+          gap: '$6',
+        },
+        '3xl': {
+          gap: '$7',
+        },
+        '4xl': {
+          gap: '$8',
         },
       },
     },
 
     defaultProps: {
       size: 'md',
+      space: 'sm',
     },
   },
   {
-    descendantStyle: ['_button', '_groupHSpacer', '_groupVSpacer'],
-  }
+    componentName: 'ButtonGroup',
+    descendantStyle: ['_button'],
+  } as const
 );

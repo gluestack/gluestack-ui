@@ -55,6 +55,7 @@ const AccessibleModalCloseButton = forwardRef(
   ({ ...props }: any, ref?: any) => {
     return (
       <AccessibleModal.CloseButton {...props} ref={ref}>
+        {/*@ts-ignore */}
         <Icon as={CloseIcon} />
       </AccessibleModal.CloseButton>
     );

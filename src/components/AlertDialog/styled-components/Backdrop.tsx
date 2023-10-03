@@ -1,8 +1,8 @@
 import { createMotionAnimatedComponent } from '@legendapp/motion';
 import { Pressable } from 'react-native';
-import { styled } from '../../styled';
+import { styled } from '@gluestack-style/react';
+import { AnimationResolver } from '@gluestack-style/animation-plugin';
 
-//@ts-ignore
 const MotionPressable = createMotionAnimatedComponent(Pressable);
 
 export default styled(
@@ -40,5 +40,11 @@ export default styled(
       cursor: 'default',
     },
   },
-  { ancestorStyle: ['_backdrop'] }
+  {
+    ancestorStyle: ['_backdrop'],
+    componentName: 'AlertDialogBackdrop',
+  } as const,
+  {
+    plugins: [new AnimationResolver({})],
+  }
 );

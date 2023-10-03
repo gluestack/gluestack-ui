@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { styled } from '../../styled';
+import { styled } from '@gluestack-style/react';
 import { Motion } from '@legendapp/motion';
 
 export default styled(

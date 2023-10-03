@@ -1,5 +1,5 @@
 import { View } from 'react-native';
-import { styled } from '../../styled';
+import { styled } from '@gluestack-style/react';
 
 export default styled(
   View,
@@ -18,5 +18,8 @@ export default styled(
     borderWidth: 2,
     zIndex: 900,
   },
-  { ancestorStyle: ['_badge'] }
+  {
+    componentName: 'AvatarBadge',
+    ancestorStyle: ['_badge'],
+  } as const
 );

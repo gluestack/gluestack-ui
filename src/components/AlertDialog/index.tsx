@@ -12,7 +12,6 @@ import {
 import { Heading } from '../Heading';
 import { Text } from '../Text';
 import { Icon, CloseIcon } from '../Icons';
-import { styled } from '../styled';
 import { GenericComponentType } from '../../types';
 
 const AccessibleAlertDialog = createAlertDialog({
@@ -24,7 +23,7 @@ const AccessibleAlertDialog = createAlertDialog({
   Body,
   Backdrop,
   //@ts-ignore
-  AnimatePresence: styled.Component,
+  AnimatePresence: Content.AnimatePresence,
 });
 
 const AlertDialogTemp = forwardRef(({ children, ...props }: any, ref?: any) => {
@@ -50,6 +49,7 @@ const AccessibleAlertDialogCloseButton = forwardRef(
   ({ ...props }: any, ref?: any) => {
     return (
       <AccessibleAlertDialog.CloseButton {...props} ref={ref}>
+        {/*@ts-ignore */}
         <Icon as={CloseIcon} />
       </AccessibleAlertDialog.CloseButton>
     );

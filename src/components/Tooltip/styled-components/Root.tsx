@@ -1,4 +1,4 @@
-import { styled } from '../../styled';
+import { styled } from '@gluestack-style/react';
 import { View } from 'react-native';
 
 export default styled(
@@ -6,5 +6,7 @@ export default styled(
   {
     width: '100%',
   },
-  {}
+  {
+    componentName: 'Tooltip',
+  } as const
 );

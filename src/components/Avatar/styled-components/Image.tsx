@@ -1,5 +1,5 @@
 import { Image } from 'react-native';
-import { styled } from '../../styled';
+import { styled } from '@gluestack-style/react';
 
 export default styled(
   Image,
@@ -9,5 +9,7 @@ export default styled(
     borderRadius: '$full',
     position: 'absolute',
   },
-  {}
+  {
+    componentName: 'AvatarImage',
+  } as const
 );

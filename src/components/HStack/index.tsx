@@ -1,12 +1,11 @@
 import { createHStack } from '@gluestack-ui/hstack';
-import { Root, Spacer } from './styled-components';
+import { Root } from './styled-components';
 import { usePropResolution } from '../../hooks/usePropResolution';
 import React, { forwardRef } from 'react';
 import { GenericComponentType } from '../../types';
 
 const AccessibleHStack = createHStack({
   Root,
-  Spacer,
 });
 
 const HStackTemp = forwardRef(({ children, ...props }: any, ref?: any) => {

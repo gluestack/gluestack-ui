@@ -1,5 +1,5 @@
 import { Pressable } from 'react-native';
-import { styled } from '../../styled';
+import { styled } from '@gluestack-style/react';
 
 export default styled(
   Pressable,
@@ -60,6 +60,7 @@ export default styled(
     },
   },
   {
+    componentName: 'AlertDialogCloseButton',
     descendantStyle: ['_icon', '_text'],
-  }
+  } as const
 );

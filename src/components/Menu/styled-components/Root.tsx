@@ -1,6 +1,6 @@
 //@ts-nocheck
 import { UL } from '@expo/html-elements';
-import { styled } from '../../styled';
+import { styled } from '@gluestack-style/react';
 import { createMotionAnimatedComponent } from '@legendapp/motion';
 const MotionUL = createMotionAnimatedComponent(UL);
 export const Root = styled(

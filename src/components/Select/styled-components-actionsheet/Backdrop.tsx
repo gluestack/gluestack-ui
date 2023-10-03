@@ -1,6 +1,6 @@
 import { createMotionAnimatedComponent } from '@legendapp/motion';
 import { Pressable } from 'react-native';
-import { styled } from '../../styled';
+import { styled } from '@gluestack-style/react';
 
 //@ts-ignore
 const MotionPressable = createMotionAnimatedComponent(Pressable);

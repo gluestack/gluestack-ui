@@ -57,6 +57,7 @@ const AccessiblePopoverCloseButton = forwardRef(
   ({ ...props }: any, ref?: any) => {
     return (
       <AccessiblePopover.CloseButton {...props} ref={ref}>
+        {/*@ts-ignore */}
         <Icon as={CloseIcon} />
       </AccessiblePopover.CloseButton>
     );

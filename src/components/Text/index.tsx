@@ -13,3 +13,5 @@ const TextTemp = ({ children, ...props }: any) => {
 export type ITextComponentType<Text> = GenericComponentType<Text>;
 
 export const Text = TextTemp as ITextComponentType<typeof AccessibleText>;
+
+export { AccessibleText };

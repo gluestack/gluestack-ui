@@ -21,7 +21,7 @@ const FabTemp = forwardRef(
         {...resolvedPropForGluestack}
         ref={ref}
       >
-        {icon && <AccessibleFab.Icon as={icon} />}
+        {icon && <AccessibleFab.Icon {...icon.props} />}
         {label && <AccessibleFab.Label>{label}</AccessibleFab.Label>}
       </AccessibleFab>
     );

@@ -1,12 +1,11 @@
 import { createVStack } from '@gluestack-ui/vstack';
-import { Root, Spacer } from './styled-components';
+import { Root } from './styled-components';
 import { usePropResolution } from '../../hooks/usePropResolution';
 import React, { forwardRef } from 'react';
 import { GenericComponentType } from '../../types';
 
 const AccessibleVStack = createVStack({
   Root,
-  Spacer,
 });
 
 const VStackTemp = forwardRef(({ children, ...props }: any, ref?: any) => {

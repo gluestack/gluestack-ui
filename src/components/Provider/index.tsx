@@ -1,6 +1,7 @@
 import React, { createContext, useState } from 'react';
 import {
   createProvider,
+  //@ts-ignore
   GluestackUIContextProvider,
 } from '@gluestack-ui/provider';
 import { StyledProvider, useColorMode } from '@gluestack-style/react';

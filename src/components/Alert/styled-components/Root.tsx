@@ -9,7 +9,6 @@ export default styled(
     justifyContent: 'flex-start',
     flexShrink: 1,
     borderRadius: '$sm',
-    // alignItems: 'center',
     p: '$3',
 
     variants: {

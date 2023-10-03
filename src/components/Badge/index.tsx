@@ -18,7 +18,8 @@ type IBadgeProps = {
 const BadgeTemp = forwardRef(
   (
     {
-      colorScheme = 'success',
+      colorScheme = 'muted',
+      variant = 'subtle',
       children,
       leftIcon,
       rightIcon,
@@ -32,6 +33,7 @@ const BadgeTemp = forwardRef(
     return (
       <AccessibleBadge
         colorScheme={colorScheme}
+        variant={variant}
         {...resolvedPropForGluestack}
         ref={ref}
       >

@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { View } from 'react-native';
 import { styled } from '@gluestack-style/react';
 import { ColorSchemeResolver } from '../../../plugins/colorScheme/colorScheme';
@@ -6,12 +5,14 @@ import { ColorSchemeResolver } from '../../../plugins/colorScheme/colorScheme';
 export default styled(
   View,
   {
-    'borderRadius': '$xs',
     'flexDirection': 'row',
     'justifyContent': 'center',
+    'alignItems': 'center',
+    'borderRadius': '$xs',
+    'borderWidth': '$1',
     'px': '$2',
     'py': '$0.5',
-    'alignItems': 'center',
+    //@ts-ignore
     'gap': '0.25rem',
 
     ':disabled': {
@@ -65,10 +66,11 @@ export default styled(
     },
   },
   {
+    componentName: 'Badge',
     descendantStyle: ['_text', '_icon'],
-  },
+  } as const,
   {
-    plugins: [new ColorSchemeResolver(colorSchemeResolveFn)],
+    plugins: [new ColorSchemeResolver(colorSchemeResolveFn, 'badge')],
   }
 );
 
@@ -87,9 +89,7 @@ function colorSchemeResolveFn({ ...props }: any) {
             color: '$text.50',
           },
           bg: `$${color}.600`,
-          borderWidth: '$1',
           borderColor: 'transparent',
-          borderRadius: '$xs',
         };
         break;
       case 'outline':
@@ -106,8 +106,6 @@ function colorSchemeResolveFn({ ...props }: any) {
             },
             borderColor: `$${color}.300`,
           },
-          borderRadius: '$xs',
-          borderWidth: '$1',
         };
         break;
       case 'subtle':
@@ -116,8 +114,6 @@ function colorSchemeResolveFn({ ...props }: any) {
           _icon: { color: `$${color}.900` },
           bg: `$${color}.100`,
           _dark: { bg: `$${color}.300` },
-          borderWidth: '$1',
-          borderRadius: '$xs',
           borderColor: 'transparent',
         };
         break;

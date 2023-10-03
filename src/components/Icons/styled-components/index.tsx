@@ -9,3 +9,6 @@ const createIconNew = (props: ParameterTypes) => {
 };
 
 export { createIconNew as createIcon };
+
+export { default as Root } from './Root';
+export { StyledIcon } from './Root';

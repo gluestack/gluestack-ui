@@ -84,6 +84,9 @@ export default styled(
             fontSize: '$md',
           },
           _icon: {
+            props: {
+              size: 20,
+            },
             h: '$5',
             w: '$5',
           },
@@ -126,8 +129,9 @@ export default styled(
     },
   },
   {
+    componentName: 'Fab',
     descendantStyle: ['_text', '_icon'],
-  },
+  } as const,
   {
     plugins: [new ColorSchemeResolver(colorSchemeResolveFn)],
   }

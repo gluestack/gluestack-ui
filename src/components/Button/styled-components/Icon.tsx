@@ -1,17 +1,15 @@
-import { styled } from '../../styled';
-import { AsForwarder } from '@gluestack-style/react';
-
-const Icon = styled(AsForwarder, {}, {});
+import { styled } from '@gluestack-style/react';
+import { StyledIcon } from '../../Icons/styled-components';
 
 export default styled(
-  Icon,
-  {},
+  StyledIcon,
   {
-    ancestorStyle: ['_icon'],
+    props: {
+      size: 'md',
+    },
   },
   {
-    propertyTokenMap: {
-      stroke: 'colors',
-    },
-  }
+    componentName: 'ButtonIcon',
+    ancestorStyle: ['_icon'],
+  } as const
 );

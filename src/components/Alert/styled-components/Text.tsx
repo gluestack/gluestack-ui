@@ -1,19 +1,13 @@
-import { Text } from 'react-native';
-import { styled } from '../../styled';
+import { AccessibleText as Text } from '../../Text';
+import { styled } from '@gluestack-style/react';
 
 export default styled(
   Text,
   {
     flex: 1,
-    color: '$textLight700',
-    fontWeight: '$normal',
-    fontFamily: '$body',
-    fontStyle: 'normal',
-    fontSize: '$md',
-    lineHeight: '$md',
-    _dark: {
-      color: '$textDark200',
-    },
   },
-  { ancestorStyle: ['_text'] }
+  {
+    componentName: 'AlertText',
+    ancestorStyle: ['_text'],
+  } as const
 );

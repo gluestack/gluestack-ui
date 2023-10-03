@@ -96,9 +96,10 @@ export default styled(
     },
   },
   {
+    componentName: 'Button',
     descendantStyle: ['_text', '_spinner', '_icon'],
     ancestorStyle: ['_button'],
-  },
+  } as const,
   {
     plugins: [new ColorSchemeResolver(colorSchemeResolveFn)],
   }

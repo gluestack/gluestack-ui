@@ -12,6 +12,7 @@ import { Text } from '../Text';
 import { usePropResolution } from '../../hooks/usePropResolution';
 import { GenericComponentType } from '../../types';
 
+//@ts-ignore
 const AccessibleInput = createInput({
   Root,
   Icon,
