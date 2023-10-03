@@ -142,6 +142,11 @@ import Wrapper from '../../Wrapper';
         Box,
       },
       argsType: {
+        size: {
+          control: 'select',
+          options: ['sm', 'md', 'lg'],
+          default: 'md',
+        },
         isDisabled: {
           control: 'boolean',
           default: false,
