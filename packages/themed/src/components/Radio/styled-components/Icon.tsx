@@ -5,6 +5,8 @@ const Icon = styled(AsForwarder, {}, {});
 export default styled(
   Icon,
   {
+    'w': '$full',
+    'h': '$full',
     'borderRadius': '$full',
     ':checked': {
       'color': '$primary600',

@@ -16,11 +16,6 @@ export default styled(
               size: 'lg',
             },
           },
-          _icon: {
-            props: {
-              size: 'md',
-            },
-          },
           _indicator: {
             p: 2,
             h: '$6',
@@ -33,11 +28,6 @@ export default styled(
               size: 'md',
             },
           },
-          _icon: {
-            props: {
-              size: 'sm',
-            },
-          },
           _indicator: {
             p: 1.5,
             h: '$5',
@@ -48,11 +38,6 @@ export default styled(
           _text: {
             props: {
               size: 'sm',
-            },
-          },
-          _icon: {
-            props: {
-              size: '2xs',
             },
           },
           _indicator: {

@@ -46,3 +46,4 @@ export {
   GluestackUIContextProvider,
 } from './Provider';
 export * from './Icons/Icons';
+export * from './gluestack-ui.config';

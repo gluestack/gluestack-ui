@@ -7,6 +7,7 @@ const FabMeta: ComponentMeta<typeof Fab> = {
   argTypes: {
     placement: {
       control: 'select',
+      figmaIgnore: true,
       options: [
         'top right',
         'top left',
