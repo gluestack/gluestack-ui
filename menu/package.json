@@ -15,7 +15,7 @@
     "ios",
     "nextjs"
   ],
-  "version": "0.2.20",
+  "version": "0.2.21",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/index.d.ts",
