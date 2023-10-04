@@ -29,16 +29,16 @@ export function getInstalledPlugins() {
 
 var globalComponentsStore: any = {};
 
-function setGlobalComponentsStore(components: any) {
-  if (components) {
-    // @ts-ignore
-    globalComponentsStore = {
-      ...globalComponentsStore,
-      ...components,
-    };
-  }
-  return getGlobalComponentsStore();
-}
+// function setGlobalComponentsStore(components: any) {
+//   if (components) {
+//     // @ts-ignore
+//     globalComponentsStore = {
+//       ...globalComponentsStore,
+//       ...components,
+//     };
+//   }
+//   return getGlobalComponentsStore();
+// }
 
 function getGlobalComponentsStore() {
   return globalComponentsStore;
@@ -49,8 +49,8 @@ export function getInstalledComponents() {
 }
 
 export const createComponents = <T>(components: T): T => {
-  const ret = setGlobalComponentsStore(resolveComponentThemes({}, components));
-  return ret;
+  // const ret = setGlobalComponentsStore(resolveComponentThemes({}, components));
+  return components;
 };
 
 export const createConfig = <

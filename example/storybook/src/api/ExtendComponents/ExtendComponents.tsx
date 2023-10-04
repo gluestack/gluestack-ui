@@ -14,18 +14,18 @@ import { config } from '../../components/nb.config';
 config.components = {
   Box: {
     theme: {
-      'bg': '$red500',
-      'p': '$10',
+      bg: '$red500',
+      p: '$10',
       // props: {
-      ':initial': {
-        scale: 0.5,
-      },
-      ':animate': {
-        scale: 1,
-      },
-      'props': {
-        p: '$5',
-      },
+      // ':initial': {
+      //   scale: 0.5,
+      // },
+      // ':animate': {
+      //   scale: 1,
+      // },
+      // props: {
+      //   p: '$5',
+      // },
       // },
     },
   },

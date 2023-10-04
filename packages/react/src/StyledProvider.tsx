@@ -100,9 +100,9 @@ export const StyledProvider: React.FC<{
       {},
       currentConfig.components
     );
-    currentConfig.components = resolvedComponents;
+
     return {
-      config: currentConfig,
+      config: { ...currentConfig, components: resolvedComponents },
       globalStyle: globalStyleMap,
       animationDriverData,
       setAnimationDriverData,
