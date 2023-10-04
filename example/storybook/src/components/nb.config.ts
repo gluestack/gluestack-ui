@@ -735,15 +735,15 @@ export const config = createConfig({
 
 type ConfigType = typeof config;
 
-export const components = createComponents({
-  Box: {
-    theme: {
-      bg: '$amber400',
-      h: 100,
-      w: 100,
-    },
-  },
-});
+// export const components = createComponents({
+//   Box: {
+//     theme: {
+//       bg: '$amber400',
+//       h: 100,
+//       w: 100,
+//     },
+//   },
+// });
 
 declare module '@gluestack-style/react' {
   interface ICustomConfig extends ConfigType {}

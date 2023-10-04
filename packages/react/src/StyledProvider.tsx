@@ -6,6 +6,7 @@ import type { COLORMODES } from './types';
 import { platformSpecificSpaceUnits } from './utils';
 import { createGlobalStylesWeb } from './createGlobalStylesWeb';
 import { createGlobalStyles } from './createGlobalStyles';
+import { resolveComponentThemes } from './createConfig';
 type Config = any;
 let colorModeSet = false;
 
@@ -93,7 +94,13 @@ export const StyledProvider: React.FC<{
   const [animationDriverData, setAnimationDriverData] = React.useState();
   const globalStyleMap =
     config?.globalStyle && createGlobalStyles(config.globalStyle);
+
   const contextValue = React.useMemo(() => {
+    const resolvedComponents = resolveComponentThemes(
+      {},
+      currentConfig.components
+    );
+    currentConfig.components = resolvedComponents;
     return {
       config: currentConfig,
       globalStyle: globalStyleMap,

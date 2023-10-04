@@ -1035,45 +1035,71 @@ export function verboseStyled<P, Variants, ComCon>(
         ...styledContext.config,
         propertyTokenMap,
       };
+      // for extended components
 
-      // const EXTENDED_THEME =
-      //   componentName && CONFIG?.components?.[componentName];
+      const EXTENDED_THEME =
+        componentStyleConfig.componentName &&
+        CONFIG?.components?.[componentStyleConfig.componentName];
 
-      // // Injecting style
-      // if (EXTENDED_THEME) {
-      //   theme.variants = deepMerge(
-      //     theme.variants,
-      //     EXTENDED_THEME?.theme?.variants
-      //   );
-      //   //@ts-ignore
-      //   theme.baseStyle.props = deepMerge(
-      //     theme.defaultProps,
-      //     EXTENDED_THEME?.theme?.baseStyle.props
-      //   );
+      // middleware logic
 
-      //@ts-ignore
-      // Object.assign(themeDefaultProps, theme?.baseStyle?.props);
-      //   if (Object.keys(EXTENDED_THEME?.BUILD_TIME_PARAMS ?? {}).length > 0) {
-      //     const EXTENDED_THEME_BUILD_TIME_PARAMS =
-      //       EXTENDED_THEME?.BUILD_TIME_PARAMS;
-      //     deepMergeArray(
-      //       styleIds,
-      //       EXTENDED_THEME_BUILD_TIME_PARAMS?.verbosedStyleIds
-      //     );
-      //     GluestackStyleSheet.inject(
-      //       EXTENDED_THEME_BUILD_TIME_PARAMS?.toBeInjected
-      //     );
-      //   } else {
-      //     // Merge of Extended Config Style ID's with Component Style ID's
-      //     deepMergeArray(styleIds, EXTENDED_THEME?.verbosedStyleIds);
-      //     const extendedStylesToBeInjected = GluestackStyleSheet.resolve(
-      //       EXTENDED_THEME?.styledIds,
-      //       CONFIG,
-      //       componentExtendedConfig
-      //     );
-      //     GluestackStyleSheet.inject(extendedStylesToBeInjected);
-      //   }
-      // }
+      // Injecting style
+      if (EXTENDED_THEME) {
+        // RUN Middlewares
+
+        theme = deepMerge(theme, EXTENDED_THEME?.theme);
+        //@ts-ignore
+        // theme.baseStyle.props = deepMerge(
+        //   theme.defaultProps,
+        //   EXTENDED_THEME?.theme?.baseStyle.props
+        // );
+
+        // @ts-ignore
+        Object.assign(themeDefaultProps, theme?.baseStyle?.props);
+        if (Object.keys(EXTENDED_THEME?.BUILD_TIME_PARAMS ?? {}).length > 0) {
+          const EXTENDED_THEME_BUILD_TIME_PARAMS =
+            EXTENDED_THEME?.BUILD_TIME_PARAMS;
+          deepMergeArray(
+            styleIds,
+            EXTENDED_THEME_BUILD_TIME_PARAMS?.verbosedStyleIds
+          );
+          GluestackStyleSheet.inject(
+            EXTENDED_THEME_BUILD_TIME_PARAMS?.toBeInjected
+          );
+        } else {
+          // Merge of Extended Config Style ID's with Component Style ID's
+          deepMergeArray(styleIds, EXTENDED_THEME?.verbosedStyleIds);
+          const extendedStylesToBeInjected = GluestackStyleSheet.resolve(
+            EXTENDED_THEME?.styledIds,
+            CONFIG,
+            componentExtendedConfig
+          );
+          GluestackStyleSheet.inject(extendedStylesToBeInjected);
+        }
+      }
+
+      if (CONFIG.plugins) {
+        // move inside stylehash created
+        // let plugins = [...getInstalledPlugins()];
+
+        // merge compnent plugins
+
+        // console.log(EXTENDED_THEME, '>>>>>');
+
+        // if (CONFIG?.plugins) {
+        //   // @ts-ignore
+        //   plugins = [...plugins, ...CONFIG?.plugins];
+        // }
+
+        for (const pluginName in CONFIG.plugins) {
+          // @ts-ignore
+          [theme, , , Component] = CONFIG.plugins[
+            pluginName
+          ]?.inputMiddleWare<P>(theme, true, true, Component);
+        }
+      }
+
+      // for extended components end
 
       //@ts-ignore
       const globalStyle = styledContext.globalStyle;
@@ -1853,6 +1879,7 @@ export function verboseStyled<P, Variants, ComCon>(
     delete resolvedStyleProps?.as;
 
     let component;
+
     if (AsComp) {
       //@ts-ignore
       if (Component.isStyledComponent) {
@@ -1889,6 +1916,25 @@ export function verboseStyled<P, Variants, ComCon>(
       );
     }
     // }
+
+    if (CONFIG.plugins) {
+      let StyledComponent = component;
+      // plugins?.reverse();
+      for (const pluginName in CONFIG.plugins) {
+        // @ts-ignore
+        if (CONFIG.plugins[pluginName]?.componentMiddleWare) {
+          // @ts-ignore
+          StyledComponent = CONFIG.plugins[pluginName]?.componentMiddleWare({
+            Component: component,
+            theme,
+            componentStyleConfig,
+            ExtendedConfig,
+          });
+        }
+      }
+
+      return StyledComponent;
+    }
 
     return component;
   };
@@ -1930,7 +1976,7 @@ export function styled<P, Variants, ComCon>(
 
   const componentName = componentStyleConfig?.componentName;
   const extendedThemeConfig = getInstalledComponents()[componentName];
-  const componentExtendedTheme = extendedThemeConfig?.theme;
+  // const componentExtendedTheme = extendedThemeConfig?.theme;
   const componentExtended_build_time_params =
     extendedThemeConfig?.BUILD_TIME_PARAMS;
   let mergedBuildTimeParams: any;
@@ -1942,29 +1988,33 @@ export function styled<P, Variants, ComCon>(
     );
   }
 
-  let styledObj = { ...theme };
-  if (componentExtendedTheme) {
-    styledObj = deepMerge({ ...theme }, { ...componentExtendedTheme });
-  }
+  // let styledObj = { ...theme };
+  // if (componentExtendedTheme) {
+  //   styledObj = deepMerge({ ...theme }, { ...componentExtendedTheme });
+  // }
 
-  let plugins = [...getInstalledPlugins()];
+  // // move inside stylehash created
+  // let plugins = [...getInstalledPlugins()];
 
-  if (ExtendedConfig?.plugins) {
-    // @ts-ignore
-    plugins = [...plugins, ...ExtendedConfig?.plugins];
-  }
+  // if (ExtendedConfig?.plugins) {
+  //   // @ts-ignore
+  //   plugins = [...plugins, ...ExtendedConfig?.plugins];
+  // }
 
-  for (const pluginName in plugins) {
-    // @ts-ignore
-    [styledObj, , , Component] = plugins[pluginName]?.inputMiddleWare<P>(
-      styledObj,
-      true,
-      true,
-      Component
-    );
-  }
+  // for (const pluginName in plugins) {
+  //   // @ts-ignore
+  //   [styledObj, , , Component] = plugins[pluginName]?.inputMiddleWare<P>(
+  //     styledObj,
+  //     true,
+  //     true,
+  //     Component
+  //   );
+  // }
 
-  theme = styledObj;
+  // theme = styledObj;
+
+  // move inside stylehash created
+
   const sxConvertedObject = convertStyledToStyledVerbosed(theme);
 
   let StyledComponent = verboseStyled<P, Variants, ComCon>(
@@ -1978,20 +2028,24 @@ export function styled<P, Variants, ComCon>(
   // @ts-ignore
   StyledComponent.isAnimatedComponent = Component.isAnimatedComponent;
 
+  // move before returning component from verboseStyled
+
   // @ts-ignore
-  plugins?.reverse();
-  for (const pluginName in plugins) {
-    // @ts-ignore
-    if (plugins[pluginName]?.componentMiddleWare) {
-      // @ts-ignore
-      StyledComponent = plugins[pluginName]?.componentMiddleWare({
-        Component: StyledComponent,
-        theme,
-        componentStyleConfig,
-        ExtendedConfig,
-      });
-    }
-  }
+  // plugins?.reverse();
+  // for (const pluginName in plugins) {
+  //   // @ts-ignore
+  //   if (plugins[pluginName]?.componentMiddleWare) {
+  //     // @ts-ignore
+  //     StyledComponent = plugins[pluginName]?.componentMiddleWare({
+  //       Component: StyledComponent,
+  //       theme,
+  //       componentStyleConfig,
+  //       ExtendedConfig,
+  //     });
+  //   }
+  // }
+  // move before returning component from verboseStyled
+
   // for (const pluginName in plugins) {
   //   const compWrapper =
   //     // @ts-ignore

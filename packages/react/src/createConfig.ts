@@ -163,6 +163,6 @@ export const resolveTheme = (
   return {
     styledIds,
     verbosedStyleIds,
-    theme: componentTheme,
+    theme: versboseComponentTheme,
   };
 };

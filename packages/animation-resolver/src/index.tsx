@@ -234,8 +234,14 @@ export class AnimationResolver implements IStyledPlugin {
           );
         }
         const value = styledObject[prop];
+
+        if (keyPath[keyPath.length - 1] === 'style') {
+          keyPath.pop();
+        }
         // @ts-ignore
         keyPath.push('props', aliases[prop]);
+        // setObjectKeyValue(resolvedStyledObject, keyPath, value);
+
         setObjectKeyValue(resolvedStyledObject, keyPath, value);
         keyPath.pop();
         keyPath.pop();
