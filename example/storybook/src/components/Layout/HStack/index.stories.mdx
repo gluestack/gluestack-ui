@@ -87,6 +87,18 @@ This section provides a comprehensive reference list for the component props, de
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
+### Accessibility
+
+The accessibility of a HStack is primarily determined by the accessibility information of the components it contains. When you pass an accessible component inside a HStack, its accessibility attributes, such as labels and hints, will be utilized by assistive technologies like screen readers.
+
+## Themed
+
+The themed version of the component is a pre-styled version of the component, which allows you to quickly integrate the component into your project. The component's design and functionality are fully defined, allowing you to focus on the more important aspects of your project.
+
+### Props
+
+HStack component is created using View component from react-native. It extends all the props supported by [React Native View](https://reactnative.dev/docs/view#props), [utility props](https://ui.gluestack.io/docs/styling/utility-and-sx-props) and the props mentioned below.
+
 <AppProvider>
   <TableContainer>
     <Table>
@@ -143,14 +155,6 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
     </Table>
   </TableContainer>
 </AppProvider>
-
-### Accessibility
-
-The accessibility of a HStack is primarily determined by the accessibility information of the components it contains. When you pass an accessible component inside a HStack, its accessibility attributes, such as labels and hints, will be utilized by assistive technologies like screen readers.
-
-## Themed
-
-The themed version of the component is a pre-styled version of the component, which allows you to quickly integrate the component into your project. The component's design and functionality are fully defined, allowing you to focus on the more important aspects of your project.
 
 ### Examples
 

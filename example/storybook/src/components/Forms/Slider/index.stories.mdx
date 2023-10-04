@@ -150,34 +150,18 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
         <Table.TR>
           <Table.TD>
             <Table.TText>
-              <InlineCode>size</InlineCode>
+              <InlineCode>onChange</InlineCode>
             </Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>'sm' | 'md' | 'lg'</Table.TText>
+            <Table.TText>{'(value: number) => void'}</Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>'md'</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>To change the size of slider thumb .</Table.TText>
-          </Table.TD>
-        </Table.TR>
-        <Table.TR>
-          <Table.TD>
-            <Table.TText>
-              <InlineCode>orientation</InlineCode>
-            </Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>'vertical' | 'horizantal'</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>'horizantal'</Table.TText>
+            <Table.TText>-</Table.TText>
           </Table.TD>
           <Table.TD>
             <Table.TText>
-              Set the orientation of Slider to vertical or horizantal
+              Function called when the state of the Slider changes.
             </Table.TText>
           </Table.TD>
         </Table.TR>
@@ -200,17 +184,19 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
         <Table.TR>
           <Table.TD>
             <Table.TText>
-              <InlineCode>isReversed</InlineCode>
+              <InlineCode>isReadOnly</InlineCode>
             </Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>bool</Table.TText>
+            <Table.TText>boolean</Table.TText>
           </Table.TD>
           <Table.TD>
             <Table.TText>false</Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>To reverse the order of Slider</Table.TText>
+            <Table.TText>
+              To manually set read-only to the checkbox.
+            </Table.TText>
           </Table.TD>
         </Table.TR>
         <Table.TR>
@@ -307,24 +293,6 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
           </Table.TD>
           <Table.TD>
             <Table.TText> The slider's step value.</Table.TText>
-          </Table.TD>
-        </Table.TR>
-        <Table.TR>
-          <Table.TD>
-            <Table.TText>
-              <InlineCode>isReadOnly</InlineCode>
-            </Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>boolean</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>false</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>
-              To manually set read-only to the checkbox.
-            </Table.TText>
           </Table.TD>
         </Table.TR>
       </Table.TBody>
