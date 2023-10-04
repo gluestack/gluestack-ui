@@ -1,6 +1,6 @@
 {
   "name": "@gluestack-ui/themed",
-  "version": "0.2.0-alpha.5",
+  "version": "0.2.0-alpha.7",
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "module": "build/index",
@@ -64,8 +64,6 @@
     "@gluestack-ui/switch": "^0.1.13",
     "@gluestack-ui/tabs": "^0.1.12",
     "@gluestack-ui/textarea": "^0.1.14",
-    "@gluestack-ui/themed": "^0.2.0-alpha.5",
-    "@gluestack-ui/themed-components": "*",
     "@gluestack-ui/toast": "^0.1.16",
     "@gluestack-ui/tooltip": "^0.1.19",
     "@gluestack-ui/vstack": "^0.1.11",
@@ -88,7 +86,7 @@
     "webpack-cli": "^5.1.4"
   },
   "peerDependencies": {
-    "@gluestack-style/react": ">=0.2.38",
+    "@gluestack-style/react": ">=0.2",
     "@types/react-native": ">=0.72",
     "react": ">=16",
     "react-dom": ">=16",
