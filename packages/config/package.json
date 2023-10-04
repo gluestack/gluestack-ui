@@ -1,6 +1,6 @@
 {
   "name": "@gluestack-ui/config",
-  "version": "0.1.1-alpha.0",
+  "version": "0.1.2",
   "main": "build/gluestack-ui.config.js",
   "types": "build/gluestack-ui.config.d.ts",
   "module": "build/gluestack-ui.config",
@@ -29,10 +29,12 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@gluestack-style/react": "^0.2.53-alpha.9"
+    "@gluestack-style/react": "^0.2.54-alpha.1",
+    "@gluestack-ui/themed": "^0.1.53"
   },
   "peerDependencies": {
-    "@gluestack-style/react": ">=0.2.38"
+    "@gluestack-style/react": ">=0.2",
+    "@gluestack-ui/themed": ">=0.1"
   },
   "release-it": {
     "git": {
@@ -45,5 +47,6 @@
     "github": {
       "release": true
     }
-  }
+  },
+  "dependencies": {}
 }
