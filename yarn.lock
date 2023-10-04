@@ -2554,6 +2554,14 @@
     inline-style-prefixer "^6.0.1"
     normalize-css-color "^1.0.2"
 
+"@gluestack-style/react@^0.2.53-alpha.8":
+  version "0.2.53-alpha.8"
+  resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-0.2.53-alpha.8.tgz#43eb3ba2b0d90567bb2a94bd058b370a40cd57bf"
+  integrity sha512-Zet3RGDPTOXlg9wiovPbJKbX/GU++4U5cwbk9BfMruEQ48DZR6SqxDh7UXo7x0gql6Z3gw+z+kMp71KQyhy0MQ==
+  dependencies:
+    inline-style-prefixer "^6.0.1"
+    normalize-css-color "^1.0.2"
+
 "@gluestack-style/react@^0.2.9":
   version "0.2.43"
   resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-0.2.43.tgz#1e1cf0fd9b3ab6d2396453a19feb14ba35575768"
@@ -3108,6 +3116,11 @@
     "@gluestack-ui/utils" "^0.1.5"
     "@react-native-aria/focus" "^0.2.7"
     react-native-svg "13.4.0"
+
+"@gluestack-ui/themed-components@*":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/themed-components/-/themed-components-0.1.0.tgz#873224340afc78cf288436071c2560a0a254654c"
+  integrity sha512-bI7Cf8FSXy3Rfu/gX2wJ3AQum1X+s162oX6IhkMwAzdg7abreFNjDPJRAW5fNnr7lwuK6tHxkdylmB01seVo1Q==
 
 "@gluestack-ui/themed@^0.1.53":
   version "0.1.53"
