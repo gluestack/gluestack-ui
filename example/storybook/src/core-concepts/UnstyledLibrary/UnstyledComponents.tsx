@@ -1,2 +1,8 @@
-import { Center, GluestackUIProvider } from '@gluestack-ui/themed';
-export { Center, GluestackUIProvider };
+import {
+  Center,
+  GluestackUIProvider,
+  Button,
+  ButtonText,
+  ButtonGroup,
+} from '@gluestack-ui/themed';
+export { Center, GluestackUIProvider, Button, ButtonText, ButtonGroup };

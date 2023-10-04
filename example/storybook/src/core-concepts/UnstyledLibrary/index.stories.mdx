@@ -5,13 +5,21 @@ description: In this guide we will learn in depth about the right way to create 
 
 pageTitle: Unstyled Library
 
-pageDescription: In this guide we will learn in depth about the right way to create unstyled library.
+pageDescription: In this guide we will learn in depth about the right way to create unstyled components.
+
+showHeader: true
 ---
 
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
 import { AppProvider, CodePreview } from '@gluestack/design-system';
-import { Center, GluestackUIProvider } from './UnstyledComponents';
-import { transformedCode } from '../../utils';
+import {
+  Center,
+  GluestackUIProvider,
+  Button,
+  ButtonGroup,
+  ButtonText,
+} from './UnstyledComponents';
+import { transformedCode, transformedThemedCode } from '../../utils';
 import Wrapper from '../../components/Wrapper';
 import { styled } from '@gluestack-style/react';
 import {
@@ -37,7 +45,59 @@ import { createButton } from '@gluestack-ui/button';
 
 In this guide we will learn how we can create unstyled library using `@gluestack-ui`.
 
-Note: Using unstyled library is recommended in case you are building your own design system and want to create everything from scratch.
+## Default Components
+
+By default, when you use `@gluestack-ui/themed`, you get plain, unstyled components.
+
+But, it also comes with a package called `gluestack-ui/config`, which has ready-made styles for all the components. So, you can choose these styles if you like.
+
+And, the cool part is, you can even create your own unique style if you want to give these components a personal touch.
+
+> Note: If you want to create your own design system with these components, it's advisable to refer to the customization guide available [guide](https://ui.gluestack.io).
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+    function App() {
+      return (
+        <GluestackUIProvider>
+          <ButtonGroup>
+            <Button backgroundColor='purple' padding={12}>
+              <ButtonText color='white'>Hello world</ButtonText>
+            </Button>
+          </ButtonGroup>
+        </GluestackUIProvider>
+      );
+    }
+`,
+      scope: {
+        Wrapper,
+        styled,
+        createButton,
+        Pressable,
+        RNText,
+        View,
+        ActivityIndicator,
+        Button,
+        ButtonGroup,
+        ButtonText,
+        GluestackUIProvider,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+When we use the `GluestackUIProvider`, it doesn't come with any predefined styles. So, by default, all the components you get from `@gluestack-ui/themed` are unstyled.
+
+However, you can make these components look the way you want by adding your own unique styles.
+
+## Custom Components
+
+> Note: Using custom components is recommended in case you are building your own design system and want to create everything from scratch.
 
 Lets try creating an unstyled Button component
 

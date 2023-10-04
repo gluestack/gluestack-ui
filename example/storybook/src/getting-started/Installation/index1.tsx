@@ -44,7 +44,7 @@ const Fold2 = memo(() => {
             for React, Next.js & React Native
           </Text>
           <NextLink
-            href="/docs/components/layout/box"
+            href="/docs/overview/component-catalog"
             style={{
               textDecoration: 'none',
               display: 'flex',
