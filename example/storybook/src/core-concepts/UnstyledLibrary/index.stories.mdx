@@ -1,11 +1,11 @@
 ---
-title: Unstyled Components | gluestack-ui
+title: Unstyled Library | gluestack-ui
 
-description: In this guide we will learn in depth about the right way to create unstyled components.
+description: In this guide we will learn in depth about the right way to create unstyled library.
 
-pageTitle: Unstyled Components
+pageTitle: Unstyled Library
 
-pageDescription: In this guide we will learn in depth about the right way to create unstyled components.
+pageDescription: In this guide we will learn in depth about the right way to create unstyled library.
 ---
 
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
@@ -31,13 +31,13 @@ import { createButton } from '@gluestack-ui/button';
 //   CodePreview,
 // } from '@gluestack/design-system';
 
-<Meta title="Core Concepts/Unstyled Components" />
+<Meta title="Core Concepts/Unstyled Library" />
 
-# Unstyled Components
+# Unstyled Library
 
-In this guide we will learn how we can create unstyled components using `@gluestack-ui`.
+In this guide we will learn how we can create unstyled library using `@gluestack-ui`.
 
-Note: Using unstyled components is recommended in case you are building your own design system and want to create everything from scratch.
+Note: Using unstyled library is recommended in case you are building your own design system and want to create everything from scratch.
 
 Lets try creating an unstyled Button component
 
@@ -93,6 +93,6 @@ We utilize a function named `createButton` for the creation of a customized butt
   />
 </AppProvider>
 
-In the above example, we are creating an accessible, universal `Button` component by using `createButton` function exported by `@gluestack-ui/button` package. We create various unstyled components using the API employed by `styled` function. These components are then passed as arguments to `createButton` function. Likewise, for each component, there exists a distinct package and API, specified in the documentation of the respective components.
+In the above example, we are creating an accessible, universal `Button` component by using `createButton` function exported by `@gluestack-ui/button` package. We create various unstyled library using the API employed by `styled` function. These components are then passed as arguments to `createButton` function. Likewise, for each component, there exists a distinct package and API, specified in the documentation of the respective components.
 
 Styling these components is achieved with the aid of the `@gluestack-style/react` library. We generate styled components and encapsulate them within an object, which is then provided as input to the function.

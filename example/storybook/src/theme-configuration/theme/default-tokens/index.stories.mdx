@@ -16,7 +16,7 @@ import {
   RadiiComponent,
 } from './DefaultComponent';
 
-<Meta title="Theme/Default Tokens" />
+<Meta title="Configuration Theme/Theme/Default Tokens" />
 
 Theming in `@gluestack-ui/themed` is based on the [Styled System Theme Specification](https://github.com/system-ui/theme-specification).
 
@@ -39,14 +39,15 @@ To manage Typography options, the tokens object supports the following keys:
 - `letterSpacings`
 
 ```jsx
-import { createConfig, config } from '@gluestack-ui/themed';
+import { createConfig } from '@gluestack-ui/themed';
+import {config as defaultConfig } from '@gluestack-ui/config';
 
-const extendedConfig = createConfig({
-  ...config.theme,
+const config = createConfig({
+  ...defaultConfig,
   tokens: {
-    ...config.theme.tokens,
+    ...defaultConfig.tokens,
     fontSizes: {
-      ...config.theme.tokens.fontSizes,
+      ...defaultConfig.tokens.fontSizes,
       newFontSize: 90,
     },
     ...// other tokens
