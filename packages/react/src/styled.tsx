@@ -44,7 +44,7 @@ import { stableHash } from './stableHash';
 import { DeclarationType, GluestackStyleSheet } from './style-sheet';
 import { CSSPropertiesMap } from './core/styled-system';
 import { updateOrderUnResolvedMap } from './updateOrderUnResolvedMap';
-import { getInstalledPlugins, getInstalledComponents } from './createConfig';
+import { resolveComponentTheme } from './createConfig';
 
 const styledSystemProps = { ...CSSPropertiesMap };
 
@@ -1047,12 +1047,12 @@ export function verboseStyled<P, Variants, ComCon>(
       if (EXTENDED_THEME) {
         // RUN Middlewares
 
-        theme = deepMerge(theme, EXTENDED_THEME?.theme);
-        //@ts-ignore
-        // theme.baseStyle.props = deepMerge(
-        //   theme.defaultProps,
-        //   EXTENDED_THEME?.theme?.baseStyle.props
-        // );
+        const resolvedComponentExtendedTheme = resolveComponentTheme(
+          CONFIG,
+          EXTENDED_THEME
+        );
+
+        theme = deepMerge(theme, resolvedComponentExtendedTheme.theme);
 
         // @ts-ignore
         Object.assign(themeDefaultProps, theme?.baseStyle?.props);
@@ -1068,9 +1068,12 @@ export function verboseStyled<P, Variants, ComCon>(
           );
         } else {
           // Merge of Extended Config Style ID's with Component Style ID's
-          deepMergeArray(styleIds, EXTENDED_THEME?.verbosedStyleIds);
+          deepMergeArray(
+            styleIds,
+            resolvedComponentExtendedTheme?.verbosedStyleIds
+          );
           const extendedStylesToBeInjected = GluestackStyleSheet.resolve(
-            EXTENDED_THEME?.styledIds,
+            resolvedComponentExtendedTheme?.styledIds,
             CONFIG,
             componentExtendedConfig
           );
@@ -1974,18 +1977,17 @@ export function styled<P, Variants, ComCon>(
   // const DEBUG =
   //   process.env.NODE_ENV === 'development' && DEBUG_TAG ? false : false;
 
-  const componentName = componentStyleConfig?.componentName;
-  const extendedThemeConfig = getInstalledComponents()[componentName];
+  // const componentName = componentStyleConfig?.componentName;
   // const componentExtendedTheme = extendedThemeConfig?.theme;
-  const componentExtended_build_time_params =
-    extendedThemeConfig?.BUILD_TIME_PARAMS;
-  let mergedBuildTimeParams: any;
+  // const componentExtended_build_time_params =
+  //   extendedThemeConfig?.BUILD_TIME_PARAMS;
+  // let mergedBuildTimeParams: any;
 
   if (BUILD_TIME_PARAMS) {
-    mergedBuildTimeParams = deepMergeArray(
-      { ...BUILD_TIME_PARAMS },
-      { ...componentExtended_build_time_params }
-    );
+    // mergedBuildTimeParams = deepMergeArray(
+    //   { ...BUILD_TIME_PARAMS },
+    //   { ...componentExtended_build_time_params }
+    // );
   }
 
   // let styledObj = { ...theme };
@@ -2022,7 +2024,7 @@ export function styled<P, Variants, ComCon>(
     sxConvertedObject,
     componentStyleConfig,
     ExtendedConfig,
-    mergedBuildTimeParams
+    BUILD_TIME_PARAMS
   );
 
   // @ts-ignore

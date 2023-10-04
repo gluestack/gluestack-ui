@@ -49,7 +49,6 @@ export function getInstalledComponents() {
 }
 
 export const createComponents = <T>(components: T): T => {
-  // const ret = setGlobalComponentsStore(resolveComponentThemes({}, components));
   return components;
 };
 
@@ -113,6 +112,29 @@ const resolveThemes = (config: any) => {
     // newConfig.themes[themeName] = tempCONFIG;
   });
   return newConfig;
+};
+
+export const resolveComponentTheme = (config: any, componentTheme: any) => {
+  const configWithPropertyTokenMap = config;
+
+  let resolvedTheme = componentTheme;
+  const component = componentTheme;
+
+  if (
+    Object.keys(component?.BUILD_TIME_PARAMS ?? {}).length === 0 &&
+    component.theme
+  ) {
+    resolvedTheme = resolveTheme(
+      component.theme,
+      configWithPropertyTokenMap,
+      component?.componentConfig
+    );
+  } else {
+    GluestackStyleSheet.update(component.BUILD_TIME_PARAMS?.orderedResolved);
+    resolvedTheme = component;
+  }
+
+  return resolvedTheme;
 };
 
 export const resolveComponentThemes = (config: any, components: any) => {
