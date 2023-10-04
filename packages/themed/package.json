@@ -1,6 +1,6 @@
 {
   "name": "@gluestack-ui/themed",
-  "version": "0.2.0-alpha.3",
+  "version": "0.2.0-alpha.7",
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "module": "build/index",
@@ -85,7 +85,7 @@
     "webpack-cli": "^5.1.4"
   },
   "peerDependencies": {
-    "@gluestack-style/react": ">=0.2.38",
+    "@gluestack-style/react": ">=0.2",
     "@types/react-native": ">=0.72",
     "react": ">=16",
     "react-dom": ">=16",
