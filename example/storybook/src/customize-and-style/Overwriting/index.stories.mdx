@@ -78,15 +78,15 @@ Refer to below code snippet for better understanding
      function App(){
       {/* Creating own theme */}
   const themeConfig = createConfig({
-    ...config.theme,
+    ...config,
     aliases: {
-      ...config.theme.aliases,
+      ...config.aliases,
       newbg: 'backgroundColor',
     },
     tokens: {
-      ...config.theme.tokens,
+      ...config.tokens,
       colors: {
-        ...config.theme.tokens.colors,
+        ...config.tokens.colors,
         secondary: 'green',
       },
     },
