@@ -44,7 +44,7 @@ export const StyledProvider: React.FC<{
   children?: React.ReactNode;
   globalStyles?: any;
 }> = ({ config, colorMode, children, globalStyles }) => {
-  const currentConfig = React.useMemo(() => {
+  const currentConfig: any = React.useMemo(() => {
     //TODO: Add this later
     return platformSpecificSpaceUnits(config, Platform.OS);
   }, [config]);
