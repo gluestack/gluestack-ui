@@ -1,6 +1,6 @@
 {
   "name": "@gluestack-style/moti-animation-driver",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "A gluestack-style driver for using moti animation with animation resolver plugin.",
   "keywords": [
     "react",
@@ -24,10 +24,10 @@
     "clean": "rm -rf lib"
   },
   "peerDependencies": {
-    "@gluestack-style/react": ">=0.2.49",
-    "moti": ">=0.26.0",
-    "react-native-gesture-handler": ">=2.12.1",
-    "react-native-reanimated": ">=3.5.1"
+    "@gluestack-style/react": ">=0.2",
+    "moti": ">=0.26",
+    "react-native-gesture-handler": ">=2.12",
+    "react-native-reanimated": ">=3.5"
   },
   "devDependencies": {
     "@gluestack-style/react": "^0.2.49",
