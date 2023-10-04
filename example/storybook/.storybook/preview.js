@@ -23,7 +23,7 @@ export const parameters = {
         'Getting Started',
         ['Installation', 'VS Code Extensions'],
         'Core Concepts',
-        ['Themed Library', 'Unstyled Components', 'Accessibility'],
+        ['Themed Library', 'Unstyled Library', 'Accessibility'],
         'Performance',
         ['Overview', 'Benchmarks'],
         'Theme',
