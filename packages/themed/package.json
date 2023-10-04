@@ -31,7 +31,7 @@
   "dependencies": {
     "@expo/html-elements": "latest",
     "@gluestack-style/animation-plugin": "^0.1.12",
-    "@gluestack-style/animation-resolver": "^0.0.1",
+    "@gluestack-style/animation-resolver": "^0.1.0-alpha.1",
     "@gluestack-style/legend-motion-animation-driver": "^0.0.1",
     "@gluestack-ui/actionsheet": "^0.2.25",
     "@gluestack-ui/alert": "^0.1.9",

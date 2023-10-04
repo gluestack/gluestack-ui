@@ -2520,6 +2520,11 @@
   resolved "https://registry.yarnpkg.com/@gluestack-style/animation-resolver/-/animation-resolver-0.0.1.tgz#ea3831a076ce5dde794bf4c132185578ef114d04"
   integrity sha512-vqcglbcLTCdzvtn6lCKMGc35pXpxpxtCu3SFSt8FSPqfFU8aGDmmAu267dp8XeuH/BHmvcpqLUwSazt4S5y2QA==
 
+"@gluestack-style/animation-resolver@^0.1.0-alpha.1":
+  version "0.1.0-alpha.1"
+  resolved "https://registry.yarnpkg.com/@gluestack-style/animation-resolver/-/animation-resolver-0.1.0-alpha.1.tgz#46de582340cad2d8ae75af6c92a1c6e1869447e4"
+  integrity sha512-5SE9WoP5cUWS0hJWV37KK/RKqNcwWPCoRv/RTdppyBVbOriUjOAHXYXOKOYnCIO9SJ0xX6beeMtAXbcyvxaidg==
+
 "@gluestack-style/babel-plugin-styled-resolver@^0.1.15-alpha.0":
   version "0.1.15-alpha.0"
   resolved "https://registry.yarnpkg.com/@gluestack-style/babel-plugin-styled-resolver/-/babel-plugin-styled-resolver-0.1.15-alpha.0.tgz#776e0ba60cbdaeefcd966b6708dd0408d4a57213"
@@ -2538,26 +2543,18 @@
   resolved "https://registry.yarnpkg.com/@gluestack-style/legend-motion-animation-driver/-/legend-motion-animation-driver-0.0.1.tgz#474692877525f274e81f222d93f4c2af3a4d42a9"
   integrity sha512-uASI3nENOd/zqnxzW66Ipkm3rjdapEIhs+TLgRAAazXdZxElImRtWvl1cuOiX/sn49QojlVefrd26uJVpVngZw==
 
-"@gluestack-style/react@^0.2.50":
-  version "0.2.51"
-  resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-0.2.51.tgz#0cfcca4f97f908ed3a352bd7e2336d436cc22415"
-  integrity sha512-21TLr+e7KneP8N1d1iMKG6npMdYb/oPN/t5KZ/2kns2mg9NVCrfVmVuuMYKo+Xcej95BFOHuGuomskzLwdK1HQ==
+"@gluestack-style/react@^0.2.54-alpha.1":
+  version "0.2.54-alpha.1"
+  resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-0.2.54-alpha.1.tgz#9cc232205fc496514fb4ee2e11d3c5dd24351ecb"
+  integrity sha512-U9m/5ourAYaXKRkHBmGl84Tat38U+0Y+AH7MgiTn1nfNJRtKWeRlTzNYAHYYQdMaZASyDhj4a3J4lQ7UhxCkqA==
   dependencies:
     inline-style-prefixer "^6.0.1"
     normalize-css-color "^1.0.2"
 
-"@gluestack-style/react@^0.2.53-alpha.10":
-  version "0.2.53-alpha.10"
-  resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-0.2.53-alpha.10.tgz#1d695053a45ea1c4a95463e889662b8d27de2d53"
-  integrity sha512-RumNnyNXK3cN/JwALh/KJClB2G0bNMBRwfFbsi2JlM9PENX10UnZt3iH6YrYVef9+Nqfpd73DZmfIs9f63IecA==
-  dependencies:
-    inline-style-prefixer "^6.0.1"
-    normalize-css-color "^1.0.2"
-
-"@gluestack-style/react@^0.2.53-alpha.7":
-  version "0.2.53-alpha.7"
-  resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-0.2.53-alpha.7.tgz#d76d5f7f69090476d4c44c72aab33fdf242d9de5"
-  integrity sha512-f9cZn53zzoNY45+C+phFG6uFRL+kp8qI0eoTZocS/gtOP8//okK83wEPD1H9cXhJdoKshwFB9SZPNDeD5cedAQ==
+"@gluestack-style/react@^0.2.54-alpha.3":
+  version "0.2.54-alpha.3"
+  resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-0.2.54-alpha.3.tgz#e4bee33bb7d9812107b799caca9af070bf0cdcbe"
+  integrity sha512-rq8PqGxd6HgjN9H/+4s45D5ga7rpHUOf5gjqpJNjtObPpjhWDuJKEn1bNlgI6LlG5V9qzDkpJcow5K3BBciFuA==
   dependencies:
     inline-style-prefixer "^6.0.1"
     normalize-css-color "^1.0.2"
