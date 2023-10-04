@@ -111,6 +111,6 @@ export default styled(
   },
   {
     componentName: 'Toast',
-    descendantStyle: ['_icon', '_text'],
+    descendantStyle: ['_icon', '_title', '_description'],
   } as const
 );
