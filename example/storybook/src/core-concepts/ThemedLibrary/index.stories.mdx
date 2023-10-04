@@ -20,7 +20,7 @@ All the components of `@gluestack-ui/themed` are styled according to the default
 
 ## Architecture
 
-We will try and understand how the components exported from `@gluestack-ui/themed` are created. Initially, we generate styled components using the [gluestack-style](https://style.gluestack.io/) styling engine. This allows us to customize styles, use theme tokens, provide styling for dark and light modes, and respond to different screen sizes using `@gluestack-style/react`. The specifics like themes, tokens, and breakpoints are defined in a configuration file.
+We will try and understand how the components exported from `@gluestack-ui/themed` are created. Initially, we generate styled components using the [gluestack-style](/style) styling engine. This allows us to customize styles, use theme tokens, provide styling for dark and light modes, and respond to different screen sizes using `@gluestack-style/react`. The specifics like themes, tokens, and breakpoints are defined in a configuration file.
 
 After that, we enhance the components with accessibility features, interactivity, and more using `@gluestack-ui`. This library provides creator functions that take our styled components and transform them into fully functional components. Once our components are both user-friendly and interactive, we bundle them together into a new package called `@gluestack-ui/themed`, which we can then easily use in our projects.
 
@@ -34,10 +34,10 @@ After that, we enhance the components with accessibility features, interactivity
 - Themes
 - Overwriting components base styles
 
-`@gluestack-ui/themed` exports a config file that allows us to manipulate the theme tokens and add new themes. Theme tokens are standardized values that represent various design attributes, such as colors, typography settings, spacing, and more. These tokens serve as a consistent and centralized way to define and manage the visual properties of UI components across your application. Customizing these tokens can also be done, for more information refer to this [doc](https://ui.gluestack.io/docs/theme/customizing-tokens).
+`@gluestack-ui/themed` exports a config file that allows us to manipulate the theme tokens and add new themes. Theme tokens are standardized values that represent various design attributes, such as colors, typography settings, spacing, and more. These tokens serve as a consistent and centralized way to define and manage the visual properties of UI components across your application. Customizing these tokens can also be done, for more information refer to this [doc](/ui/docs/theme/customizing-tokens).
 
 Support for multiple themes is also available. This can be achieved by updating the config file and adjusting the tokens accordingly for different themes.
 
-Component styling is accomplished through [`@gluestack-style/react`](https://style.gluestack.io/). You can customize the styles of each component, and detailed information related to that is available [here](https://ui.gluestack.io/docs/theme/customizing-components).
+Component styling is accomplished through [`@gluestack-style/react`](/style). You can customize the styles of each component, and detailed information related to that is available [here](/ui/docs/theme/customizing-components).
 
 <img src="/images/architecture.png" />

@@ -162,7 +162,7 @@ Contains all Checkbox related layout style props and actions. It inherits all th
             </Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>function</Table.TText>
+            <Table.TText>`(value: boolean) => void`</Table.TText>
           </Table.TD>
           <Table.TD>
             <Table.TText>-</Table.TText>
@@ -181,7 +181,7 @@ Contains all Checkbox related layout style props and actions. It inherits all th
             <Table.TText>bool</Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>true</Table.TText>
+            <Table.TText>false</Table.TText>
           </Table.TD>
           <Table.TD>
             <Table.TText>{`If true, the checkbox will be initially checked.`}</Table.TText>
@@ -366,7 +366,7 @@ Contains all indicators related layout style props and actions. It inherits all 
 
 #### CheckboxIcon
 
-Contains all Icon related layout style props and actions. It inherits all the properties of gluestack Style's [AsForwarder](https://style.gluestack.io/docs/api/as-forwarder) component.
+Contains all Icon related layout style props and actions. It inherits all the properties of gluestack Style's [AsForwarder](/style/docs/api/as-forwarder) component.
 
 #### CheckboxLabel
 
@@ -419,7 +419,7 @@ Contains all Group related layout style props and actions. It inherits all the p
             </Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>function</Table.TText>
+            <Table.TText>`(values: Array<string>) => void`</Table.TText>
           </Table.TD>
           <Table.TD>
             <Table.TText>-</Table.TText>
@@ -517,7 +517,7 @@ The themed version of the component is a pre-styled version of the component, wh
 
 ### Props
 
-Checkbox component is created using Pressable component from react-native. It extends all the props supported by [React Native Pressable](https://reactnative.dev/docs/pressable#props), [utility props](https://ui.gluestack.io/docs/styling/utility-and-sx-props) and the props mentioned below.
+Checkbox component is created using Pressable component from react-native. It extends all the props supported by [React Native Pressable](https://reactnative.dev/docs/pressable#props), [utility props](/ui/docs/styling/utility-and-sx-props) and the props mentioned below.
 
 #### Checkbox
 
@@ -1043,11 +1043,11 @@ All the components in `gluestack-ui` are unstyled by default. To customize your 
 <!--
 ### Customizing the Checkbox
 
-We have a function called `createCheckbox` which can be used to create a custom checkbox component. This function takes in a configuration object which contains the styled components that you want to use for the checkbox. You can refer [style.gluestack.io](https://style.gluestack.io/) for more information on how to use styled components.
+We have a function called `createCheckbox` which can be used to create a custom checkbox component. This function takes in a configuration object which contains the styled components that you want to use for the checkbox. You can refer [gluestack.io/style](/style) for more information on how to use styled components.
 
 #### Usage
 
-Default styling of all these components can be found in the `components/core/checkbox` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/tree/main/example/storybook/src/ui-components/Checkbox) of the styled `Checkbox` components.
+Default styling of all these components can be found in the `components/core/checkbox` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/main/packages/themed/src/components/Checkbox) of the styled `Checkbox` components.
 
 ```jsx
 // import the styles

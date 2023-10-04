@@ -357,22 +357,6 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
             <Table.TText>{`Specifies the animation preset for the AlertDialog`}</Table.TText>
           </Table.TD>
         </Table.TR>
-        <Table.TR>
-          <Table.TD>
-            <Table.TText>
-              <InlineCode>unmountOnExit</InlineCode>
-            </Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>boolean</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>true</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>{`If true, removes the component from the DOM when it is not visible. Animation and accessibility won't work when false.`}</Table.TText>
-          </Table.TD>
-        </Table.TR>
       </Table.TBody>
     </Table>
   </TableContainer>
@@ -487,7 +471,7 @@ The themed version of the component is a pre-styled version of the component, wh
 
 ### Props
 
-AlertDialog component is created using View component from react-native. It extends all the props supported by [React Native View](https://reactnative.dev/docs/view#props), [utility props](https://ui.gluestack.io/docs/styling/utility-and-sx-props) and the props mentioned below.
+AlertDialog component is created using View component from react-native. It extends all the props supported by [React Native View](https://reactnative.dev/docs/view#props), [utility props](/ui/docs/styling/utility-and-sx-props) and the props mentioned below.
 
 #### AlertDialog
 
@@ -731,13 +715,13 @@ We provide in-depth information on how to customize and extend the component's f
 
 ### Customizing the AlertDialog
 
-We have a function called `createAlertDialog` which can be used to create a custom alert-dialog component. This function takes in a configuration object which contains the styled components that you want to use for the alert-dialog. You can refer [style.gluestack.io](https://style.gluestack.io/) for more information on how to use styled components.
+We have a function called `createAlertDialog` which can be used to create a custom alert-dialog component. This function takes in a configuration object which contains the styled components that you want to use for the alert-dialog. You can refer [gluestack.io/style](/style) for more information on how to use styled components.
 
-You can read more on how to animate components [here](https://ui.gluestack.io/docs/advanced/animations).
+You can read more on how to animate components [here](/ui/docs/advanced/animations).
 
 #### Usage
 
-Default styling of all these components can be found in the `components/core/alert-dialog` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/tree/main/example/storybook/src/ui-components/AlertDialog) of the styled `AlertDialog` components.
+Default styling of all these components can be found in the `components/core/alert-dialog` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/main/packages/themed/src/components/AlertDialog) of the styled `AlertDialog` components.
 
 ```jsx
 // import the styles

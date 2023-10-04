@@ -284,6 +284,24 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
         <Table.TR>
           <Table.TD>
             <Table.TText>
+              <InlineCode>focusScope</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>true</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>
+              Whether focus should be outside of popover or not
+            </Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
               <InlineCode>shouldFlip</InlineCode>
             </Table.TText>
           </Table.TD>
@@ -543,22 +561,6 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
             </Table.TText>
           </Table.TD>
         </Table.TR>
-        <Table.TR>
-          <Table.TD>
-            <Table.TText>
-              <InlineCode>unmountOnExit</InlineCode>
-            </Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>boolean</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>true</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>{`If true, removes the component from the DOM when it is not visible. Animation and accessibility won't work when false.`}</Table.TText>
-          </Table.TD>
-        </Table.TR>
       </Table.TBody>
     </Table>
   </TableContainer>
@@ -683,7 +685,7 @@ The themed version of the component is a pre-styled version of the component, wh
 
 ### Props
 
-Popover component is created using ScrollView component from react-native. It extends all the props supported by [React Native ScrollView](https://reactnative.dev/docs/scrollview#props), [utility props](https://ui.gluestack.io/docs/styling/utility-and-sx-props) and the props mentioned below.
+Popover component is created using ScrollView component from react-native. It extends all the props supported by [React Native ScrollView](https://reactnative.dev/docs/scrollview#props), [utility props](/ui/docs/styling/utility-and-sx-props) and the props mentioned below.
 
 #### Popover
 
@@ -867,13 +869,13 @@ We provide in-depth information on how to customize and extend the component's f
 
 ### Customizing the Popover
 
-We have a function called `createPopover` which can be used to create a custom popover component. This function takes in a configuration object which contains the styled components that you want to use for the Popover You can refer [style.gluestack.io](https://style.gluestack.io/) for more information on how to use styled components.
+We have a function called `createPopover` which can be used to create a custom popover component. This function takes in a configuration object which contains the styled components that you want to use for the Popover You can refer [gluestack.io/style](/style) for more information on how to use styled components.
 
-You can read more on how to animate components [here](https://ui.gluestack.io/docs/advanced/animations).
+You can read more on how to animate components [here](/ui/docs/advanced/animations).
 
 #### Usage
 
-Default styling of all these components can be found in the `components/core/popover` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/tree/main/example/storybook/src/components/Overlay/Popover) of the styled `Popover` components.
+Default styling of all these components can be found in the `components/core/popover` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/main/packages/themed/src/components/Popover) of the styled `Popover` components.
 
 ```jsx
 // import the styles

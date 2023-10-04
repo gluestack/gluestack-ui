@@ -38,186 +38,186 @@ export const content = [
     title: 'Actionsheet',
     child: <ActionsheetDemo />,
     padding: '$0',
-    href: '/docs/components/disclosure/actionsheet',
+    href: '/ui/docs/components/disclosure/actionsheet',
   },
   {
     title: 'AlertDialog',
     child: <AlertDialogDemo />,
     padding: '$0',
-    href: '/docs/components/overlay/alert-dialog',
+    href: '/ui/docs/components/overlay/alert-dialog',
   },
   {
     title: 'Alert',
     child: <AlertDemo />,
-    href: '/docs/components/feedback/alert',
+    href: '/ui/docs/components/feedback/alert',
   },
   {
     title: 'Avatar',
     child: <AvatarDemo />,
-    href: '/docs/components/media-and-icons/avatar',
+    href: '/ui/docs/components/media-and-icons/avatar',
   },
 
   {
     title: 'Badge',
     child: <BadgeDemo />,
-    href: '/docs/components/data-display/badge',
+    href: '/ui/docs/components/data-display/badge',
   },
   {
     title: 'Box',
     child: <BoxDemo />,
-    href: '/docs/components/layout/box',
+    href: '/ui/docs/components/layout/box',
   },
   {
     title: 'Button',
     child: <ButtonDemo />,
-    href: '/docs/components/forms/button',
+    href: '/ui/docs/components/forms/button',
   },
 
   {
     title: 'Center',
     child: <CenterDemo />,
-    href: '/docs/components/layout/center',
+    href: '/ui/docs/components/layout/center',
   },
   {
     title: 'Checkbox',
     child: <CheckboxDemo />,
-    href: '/docs/components/forms/checkbox',
+    href: '/ui/docs/components/forms/checkbox',
   },
 
   {
     title: 'Divider',
     child: <DividerDemo />,
-    href: '/docs/components/data-display/divider',
+    href: '/ui/docs/components/data-display/divider',
   },
 
   {
     title: 'Fab',
     child: <FabDemo />,
-    href: '/docs/components/others/fab',
+    href: '/ui/docs/components/others/fab',
   },
   {
     title: 'FormControl',
     child: <FormControlDemo />,
-    href: '/docs/components/forms/form-control',
+    href: '/ui/docs/components/forms/form-control',
   },
   {
     title: 'Heading',
     child: <HeadingDemo />,
-    href: '/docs/components/typography/heading',
+    href: '/ui/docs/components/typography/heading',
   },
   {
     title: 'HStack',
     child: <HStackDemo />,
-    href: '/docs/components/layout/hstack',
+    href: '/ui/docs/components/layout/hstack',
   },
 
   {
     title: 'Icon',
     child: <IconDemo />,
-    href: '/docs/components/media-and-icons/icon',
+    href: '/ui/docs/components/media-and-icons/icon',
   },
   {
     title: 'Image',
     child: <ImageDemo />,
-    href: '/docs/components/media-and-icons/image',
+    href: '/ui/docs/components/media-and-icons/image',
   },
   {
     title: 'Input',
     child: <InputDemo />,
-    href: '/docs/components/forms/input',
+    href: '/ui/docs/components/forms/input',
   },
 
   {
     title: 'Link',
     child: <LinkDemo />,
-    href: '/docs/components/forms/link',
+    href: '/ui/docs/components/forms/link',
   },
 
   // {
   //   title: 'Menu',
   //   child: <MenuDemo />,
   //   padding: '$0',
-  //   href: '/docs/components/overlay/menu',
+  //   href: '/ui/docs/components/overlay/menu',
   // },
 
   {
     title: 'Modal',
     child: <ModalDemo />,
     padding: '$0',
-    href: '/docs/components/overlay/modal',
+    href: '/ui/docs/components/overlay/modal',
   },
 
   // {
   //   title: 'Popover',
   //   child: <PopoverDemo />,
   //   padding: '$0',
-  //   href: '/docs/components/overlay/popover',
+  //   href: '/ui/docs/components/overlay/popover',
   // },
 
   {
     title: 'Pressable',
     child: <PressableDemo />,
-    href: '/docs/components/forms/pressable',
+    href: '/ui/docs/components/forms/pressable',
   },
   {
     title: 'Progress',
     child: <ProgressDemo />,
-    href: '/docs/components/feedback/progress',
+    href: '/ui/docs/components/feedback/progress',
   },
 
   {
     title: 'Radio',
     child: <RadioDemo />,
-    href: '/docs/components/forms/radio',
+    href: '/ui/docs/components/forms/radio',
   },
 
   {
     title: 'Select',
     child: <SelectDemo />,
-    href: '/docs/components/forms/select',
+    href: '/ui/docs/components/forms/select',
   },
 
   {
     title: 'Slider',
     child: <SliderDemo />,
-    href: '/docs/components/forms/slider',
+    href: '/ui/docs/components/forms/slider',
   },
   {
     title: 'Spinner',
     child: <SpinnerDemo />,
-    href: '/docs/components/feedback/spinner',
+    href: '/ui/docs/components/feedback/spinner',
   },
   {
     title: 'Switch',
     child: <SwitchDemo />,
-    href: '/docs/components/forms/switch',
+    href: '/ui/docs/components/forms/switch',
   },
 
   {
     title: 'Text',
     child: <TextDemo />,
-    href: '/docs/components/typography/text',
+    href: '/ui/docs/components/typography/text',
   },
   {
     title: 'TextArea',
     child: <TextAreaDemo />,
-    href: '/docs/components/forms/textarea',
+    href: '/ui/docs/components/forms/textarea',
   },
   {
     title: 'Toast',
     child: <ToastDemo />,
-    href: '/docs/components/feedback/toast',
+    href: '/ui/docs/components/feedback/toast',
   },
 
   {
     title: 'Tooltip',
     child: <TooltipDemo />,
-    href: '/docs/components/overlay/tooltip',
+    href: '/ui/docs/components/overlay/tooltip',
   },
 
   {
     title: 'VStack',
     child: <VStackDemo />,
-    href: '/docs/components/layout/vstack',
+    href: '/ui/docs/components/layout/vstack',
   },
 ];
