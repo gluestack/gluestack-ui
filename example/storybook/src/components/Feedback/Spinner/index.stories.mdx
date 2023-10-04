@@ -20,10 +20,6 @@ import { AppProvider, CodePreview } from '@gluestack/design-system';
 
 import Wrapper from '../../Wrapper';
 
-## Themed
-
-Following is the default implementation of the **Spinner** component without any additional customization. This serves as a starting point for users who are new to this library and want to learn about the basic functionality and appearance of the component. You can refer [here](https://github.com/gluestack/gluestack-ui/tree/main/packages/themed/src/components/Spinner/styled-components) to learn about default styling of Spinner component.
-
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
@@ -49,11 +45,13 @@ Following is the default implementation of the **Spinner** component without any
 
 <br />
 
+## API Reference
+
 ### Import
 
 To use the component in your project, run the command below into your import statement. This will import the component from your components folder.
 
-```bash
+```jsx
 import { Spinner } from '@gluestack-ui/themed';
 ```
 
@@ -65,9 +63,9 @@ The structure provided below can help you identify and understand a Spinner comp
 export default () => <Spinner />;
 ```
 
-### API Reference
+### Component Props
 
-The following section contains a comprehensive list of the component's references, including descriptions, properties, types, and default behavior. This information is readily available for you to access, helping you effectively utilize the component library in your projects.
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
 
 #### Spinner
 
@@ -151,6 +149,12 @@ A Spinner component with a color scheme enhances visual appeal by incorporating 
 
 ## Unstyled
 
+All the components in `gluestack-ui` are unstyled by default. To customize your UI using the extendedTheme, please refer to this [link](https://gluestack.io/ui/docs/theme/customizing-components). The import names of components serve as keys to customize each component.
+
+<!--
+
+### Advanced
+
 We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
 
 ### Customizing the Spinner
@@ -176,3 +180,4 @@ const Spinner = createSpinner({
 // Using the spinner component
 export default () => <Spinner />;
 ```
+-->
