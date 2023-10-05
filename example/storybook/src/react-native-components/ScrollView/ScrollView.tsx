@@ -29,10 +29,12 @@ export default function ScrollViewStory() {
               )
             )
               return (
+                // @ts-ignore
                 <Center py="$4" bg={config.tokens.colors[key]}>
                   <Text>{key}</Text>
                 </Center>
               );
+            return null; // add this line to fix Problem 1
           })}
         </VStack>
         <Center mt="$10" mb="$4">

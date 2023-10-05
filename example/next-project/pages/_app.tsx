@@ -6,7 +6,7 @@ import { config } from '../../storybook/src/gluestack-ui.config';
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <GluestackUIProvider config={config.theme}>
+    <GluestackUIProvider config={config}>
       <Component {...pageProps} />
     </GluestackUIProvider>
   );
