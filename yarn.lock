@@ -2632,15 +2632,6 @@
     "@react-native-aria/focus" "^0.2.8"
     "@react-native-aria/interactions" "^0.2.10"
 
-"@gluestack-ui/button@^0.1.28":
-  version "0.1.28"
-  resolved "https://registry.yarnpkg.com/@gluestack-ui/button/-/button-0.1.28.tgz#6a0d08a7f608776d1b8727c8dc3f159e96219bad"
-  integrity sha512-8kneGmqcLnbLDbjOQDIuLK1Go6movKNQPiHC9n7TCOiMmoVZPnqohuZ0cN6Nxc87owd20D2BeIYaqg64ZTWP/A==
-  dependencies:
-    "@gluestack-ui/utils" "0.1.9"
-    "@react-native-aria/focus" "^0.2.8"
-    "@react-native-aria/interactions" "^0.2.10"
-
 "@gluestack-ui/checkbox@^0.1.12":
   version "0.1.17"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/checkbox/-/checkbox-0.1.17.tgz#4ebadec4b428d3d65b8983a6d4547bdae7a5f3ee"
