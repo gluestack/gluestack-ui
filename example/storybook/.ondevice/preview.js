@@ -1,13 +1,10 @@
 import { withBackgrounds } from '@storybook/addon-ondevice-backgrounds';
 import { addParameters } from '@storybook/client-api';
-import { GluestackUIProvider, Center } from '@gluestack-ui/themed';
-import { config } from '@gluestack-ui/themed';
+import { GluestackUIProvider, Box, VStack } from '@gluestack-ui/themed';
+import { config } from '@gluestack-ui/config';
+
 import { useState } from 'react';
 
-import { View } from 'react-native';
-
-// export const decorators = [];
-//
 export const parameters = {
   backgrounds: {
     default: 'plain',
@@ -48,10 +45,10 @@ export const decorators = [
       }
     }
     return (
-      <GluestackUIProvider config={config.theme}>
-        <Center h="$full">
+      <GluestackUIProvider config={config}>
+        <Box flex={1} p="$10">
           <Story />
-        </Center>
+        </Box>
       </GluestackUIProvider>
     );
   },
@@ -78,7 +75,7 @@ addParameters({
       }
       return (
         <DocsContainer context={context}>
-          <GluestackUIProvider config={config.theme} colorMode={getColorMode()}>
+          <GluestackUIProvider config={config} colorMode={getColorMode()}>
             {children}
           </GluestackUIProvider>
         </DocsContainer>
