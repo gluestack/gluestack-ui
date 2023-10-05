@@ -60,6 +60,9 @@ import Icon, {
 const IconMeta: ComponentMeta<typeof Icon> = {
   title: 'stories/MEDIA AND ICONS/Icons',
   component: Icon,
+  metaInfo: {
+    clusteringOrder: [['name', 'displayName'], 'size'],
+  },
   argTypes: {
     size: {
       control: 'select',
