@@ -1,13 +1,6 @@
 import { SectionList } from 'react-native';
 import { styled } from '@gluestack-style/react';
 
-export default styled(
-  SectionList,
-  {
-    w: '$full',
-    h: 'auto',
-  },
-  {
-    componentName: 'ActionsheetSectionList',
-  } as const
-);
+export default styled(SectionList, {}, {
+  componentName: 'ActionsheetSectionList',
+} as const);

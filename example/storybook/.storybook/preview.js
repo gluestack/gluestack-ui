@@ -1,7 +1,7 @@
 import { addParameters } from '@storybook/client-api';
 import { DocsContainer } from '@storybook/addon-docs/blocks';
+import { config } from '@gluestack-ui/config';
 import { Center, GluestackUIProvider } from '@gluestack-ui/themed';
-import { config } from './gluestack-ui.config';
 import { useState } from 'react';
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
@@ -23,15 +23,15 @@ export const parameters = {
         'Getting Started',
         ['Installation', 'VS Code Extensions'],
         'Core Concepts',
-        ['Themed Library', 'Unstyled Components', 'Accessibility'],
+        ['Themed Library', 'Unstyled Library', 'Accessibility'],
         'Performance',
         ['Overview', 'Benchmarks'],
-        'Theme',
+        'Configuration Theme',
         [
           'Overview',
-          'Default Tokens',
-          'Customizing Tokens',
-          'Customizing Components',
+          'Theme',
+          ['Default Tokens', 'Default Components'],
+          'Customizing Theme',
         ],
         'Styling',
         [
@@ -46,6 +46,7 @@ export const parameters = {
         ],
         'Components',
         [
+          'All Components',
           'Provider',
           ['GluestackUIProvider'],
           'Typography',
@@ -139,7 +140,11 @@ export const decorators = [
       }
     }
     return (
-      <GluestackUIProvider config={config} colorMode={getColorMode()}>
+      <GluestackUIProvider
+        config={config}
+        // colorMode={getColorMode()}
+        // components={components}
+      >
         <Center>
           <Story />
         </Center>
@@ -167,6 +172,7 @@ addParameters({
           return isDark ? 'dark' : 'light';
         }
       }
+
       return (
         <DocsContainer context={context}>
           <GluestackUIProvider config={config} colorMode={getColorMode()}>

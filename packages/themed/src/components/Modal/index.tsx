@@ -1,3 +1,4 @@
+import { AnimatedAnimatePresence } from '@gluestack-style/animation-resolver';
 import { createModal } from '@gluestack-ui/modal';
 import {
   Root,
@@ -18,7 +19,7 @@ export const Modal = createModal({
   Body,
   Backdrop,
   //@ts-ignore
-  AnimatePresence: Content.AnimatePresence,
+  AnimatePresence: AnimatedAnimatePresence,
 });
 export const ModalContent = Modal.Content;
 export const ModalCloseButton = Modal.CloseButton;

@@ -1,7 +1,7 @@
 import { AsForwarder } from '@gluestack-style/react';
 import { styled } from '@gluestack-style/react';
 
-export const StyledIcon = styled(
+export const BaseIcon = styled(
   AsForwarder,
   {
     color: '$backgroundLight800',
@@ -62,7 +62,7 @@ export const StyledIcon = styled(
     },
   },
   {
-    componentName: 'Icon',
+    componentName: 'BaseIcon',
     resolveProps: ['stroke', 'fill'],
   } as const,
   {
@@ -74,7 +74,7 @@ export const StyledIcon = styled(
 );
 
 export default styled(
-  StyledIcon,
+  BaseIcon,
   {
     props: {
       size: 'md',
@@ -87,5 +87,5 @@ export default styled(
       color: '$backgroundDark400',
     },
   },
-  {}
+  { componentName: 'Icon' }
 );
