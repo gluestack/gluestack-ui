@@ -66,4 +66,4 @@ styledObject = {
 ```
 
 More guides on how to get started are available
-[here](https://style.gluestack.io/).
+[here](https://gluestack.io/style).
