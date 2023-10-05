@@ -36,7 +36,7 @@
     "@gluestack-ui/alert": "^0.1.9",
     "@gluestack-ui/alert-dialog": "^0.1.19",
     "@gluestack-ui/avatar": "^0.1.11",
-    "@gluestack-ui/button": "0.1.29",
+    "@gluestack-ui/button": "^0.1.29",
     "@gluestack-ui/checkbox": "^0.1.18",
     "@gluestack-ui/config": "1.0.0-alpha.0",
     "@gluestack-ui/divider": "^0.1.5",
