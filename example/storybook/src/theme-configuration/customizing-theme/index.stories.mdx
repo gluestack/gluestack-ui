@@ -1,12 +1,16 @@
 ---
-title: Customizing Tokens | gluestack-ui
+title: Customizing Theme | gluestack-ui
 description: Customizing Theme description
-showHeader: false
+showHeader: true
 ---
 
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
 import { Box, Wrapper as CustomThemeWrapper } from './CustomTheme';
-import { Button, ButtonText, Wrapper } from './CustomComponent';
+import {
+  Button,
+  ButtonText,
+  Wrapper as CustomComponentTheme,
+} from './CustomComponent';
 import { transformedCode } from '../../utils';
 import { AppProvider, CodePreview, Text } from '@gluestack/design-system';
 
@@ -248,7 +252,7 @@ By utilizing this approach, you can seamlessly add variant to Button component.
         return transformedCode(code);
       },
       scope: {
-        Wrapper,
+        Wrapper: CustomComponentTheme,
         Button,
         ButtonText,
       },

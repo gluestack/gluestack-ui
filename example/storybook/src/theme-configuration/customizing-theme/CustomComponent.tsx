@@ -9,51 +9,20 @@ import {
   styled,
   createComponents,
 } from '@gluestack-ui/themed';
+
 import { config as defaultConfig } from '@gluestack-ui/config';
 import { createProvider } from '@gluestack-ui/provider';
 const Provider = createProvider({ StyledProvider }) as any;
 Provider.displayName = 'CustomProvider';
 
 const componentTheme = createComponents({
+  ...defaultConfig.components,
   Button: {
     theme: {
       variants: {
         variant: {
           ghost: {
-            'bg': 'transparent',
-            '_text': {
-              color: '$primary600',
-            },
-            ':hover': {
-              _text: {
-                color: '$primary600',
-              },
-              bg: '$primary600_alpha_10',
-            },
-            ':active': {
-              _text: {
-                color: '$primary600',
-              },
-              bg: '$primary600_alpha_20',
-            },
-            '_dark': {
-              'bg': 'transparent',
-              '_text': {
-                color: '$primary600',
-              },
-              ':hover': {
-                _text: {
-                  color: '$primary600',
-                },
-                bg: '$primary600_alpha_10',
-              },
-              ':active': {
-                _text: {
-                  color: '$primary600',
-                },
-                bg: '$primary600_alpha_20',
-              },
-            },
+            bg: 'transparent',
           },
         },
       },
@@ -75,7 +44,6 @@ const config = createConfig({
     },
   },
   components: {
-    ...defaultConfig.components,
     ...componentTheme,
   },
 });
