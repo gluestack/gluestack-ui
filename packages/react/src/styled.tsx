@@ -667,7 +667,7 @@ function mergeArraysInObjects(...objects: any) {
   return merged;
 }
 
-function resolvePlatformTheme(theme: any, platform: any) {
+export function resolvePlatformTheme(theme: any, platform: any) {
   if (typeof theme === 'object') {
     Object.keys(theme).forEach((themeKey) => {
       if (themeKey !== 'style' && themeKey !== 'defaultProps') {
