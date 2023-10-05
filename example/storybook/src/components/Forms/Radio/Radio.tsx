@@ -19,12 +19,6 @@ import {
 const RadioBasic = ({ ...props }: any) => {
   const [values, setValues] = React.useState('Label 1');
 
-  const iconSize: any = {
-    sm: '2xs',
-    md: 'sm',
-    lg: 'md',
-  };
-
   return (
     <RadioGroup value={values} onChange={setValues}>
       <Radio
@@ -35,17 +29,7 @@ const RadioBasic = ({ ...props }: any) => {
         mb="$2"
       >
         <RadioIndicator>
-          <RadioIcon
-            as={CircleIcon}
-            dataSet={{
-              'component-props': JSON.stringify({
-                'instance': true,
-                'instance-name': 'Icon',
-                'name': 'CircleIcon',
-                'size': iconSize[props.size],
-              }),
-            }}
-          />
+          <RadioIcon as={CircleIcon} />
         </RadioIndicator>
         <RadioLabel
           ml="$2"
@@ -68,17 +52,7 @@ const RadioBasic = ({ ...props }: any) => {
         mb="$2"
       >
         <RadioIndicator>
-          <RadioIcon
-            as={CircleIcon}
-            dataSet={{
-              'component-props': JSON.stringify({
-                'instance': true,
-                'instance-name': 'Icon',
-                'name': 'CircleIcon',
-                'size': iconSize[props.size],
-              }),
-            }}
-          />
+          <RadioIcon as={CircleIcon} />
         </RadioIndicator>
         <RadioLabel
           ml="$2"

@@ -124,6 +124,7 @@ const FigmaAlertDialogStory = ({
     <AlertDialog
       isOpen={true}
       py="$16"
+      w={1230}
       bg="#00000080"
       _experimentalOverlay={false}
       {...props}
