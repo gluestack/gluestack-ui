@@ -42,3 +42,4 @@ export * from './View';
 export * from './VStack';
 export { GluestackUIProvider, GluestackUIStyledProvider } from './Provider';
 export * from './Icons/Icons';
+export * from './gluestack-ui.config';
