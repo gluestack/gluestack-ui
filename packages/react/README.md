@@ -10,7 +10,7 @@
 
 ## Documentation
 
-You can find detailed documentation for each component, including a list of props and examples, in https://style.gluestack.io/docs website.
+You can find detailed documentation for each component, including a list of props and examples, in https://gluestack.io/styledocs website.
 
 ## Installation
 
@@ -70,4 +70,4 @@ export const App = () => {
 ```
 
 More guides on how to get started are available
-[here](https://style.gluestack.io/).
+[here](https://gluestack.io/style).
