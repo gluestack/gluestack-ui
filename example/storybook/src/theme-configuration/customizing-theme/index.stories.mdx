@@ -1,5 +1,5 @@
 ---
-title: Customizing Theme | gluestack-ui
+title: Customizing Theme
 description: Customizing Theme description
 showHeader: true
 ---
@@ -16,19 +16,13 @@ import { AppProvider, CodePreview, Text } from '@gluestack/design-system';
 
 <Meta title="Theme Configuration/Customizing Theme" />
 
-# Customizing Theme
-
 The `@gluestack-ui/themed` UI library is intentionally designed as an unstyled library, providing you with the flexibility to style your components as you prefer. For users looking for a seamless integration experience, we offer the `@gluestack-ui/config` package, which comes with pre-configured theme that can easily be integrated with `@gluestack-ui/themed` for a convenient styling solution.
 
 ## Customizing Tokens
 
-Customizing tokens allows you to tailor the core design elements of the @gluestack-ui/themed library to match your project's unique visual identity. To customize tokens, follow these steps:
+Customizing tokens allows you to tailor the core design elements of the `@gluestack-ui/themed` library to match your project's unique visual identity.
 
-1. **Eject Theme**: Run following command to eject the theme.
-
-```bash
-npx gluestack-ui eject-theme
-```
+1. **Clone Config**: Currently inorder to customize tokens you need to copy config and update the tokens as per your requirements. you can find default config file [here](https://github.com/gluestack/gluestack-ui/tree/main/packages/config). To customize tokens, follow these steps after cloning the config:
 
 2. **Update Tokens**: go to `config/gluestack-ui.config.ts` file. Update the tokens as per your requirements.
 
@@ -108,13 +102,9 @@ By utilizing this approach, you can seamlessly modify the primary color tokens o
 
 ## Customizing Components
 
-Customizing components allows you to fine-tune the appearance and behavior of individual UI components within the `@gluestack-ui/themed`. To customize components, follow these steps:
+Customizing components allows you to fine-tune the appearance and behavior of individual UI components within the `@gluestack-ui/themed`.
 
-1. **Eject Theme**: Run following command to eject the theme.
-
-```bash
-npx gluestack-ui eject-theme
-```
+1. **Clone Config**: Currently inorder to customize components theme you need to copy config and update the components theme as per your requirements. you can find default config file [here](https://github.com/gluestack/gluestack-ui/tree/main/packages/config).
 
 2. **Update Tokens**: you can find all of your components theme inside `config/theme` folder. you can find theme file for each component. For example, if you want to customize `Button` component, you can find its theme file at `config/theme/Button.ts`. Update component theme as per your requirements.
 
@@ -140,13 +130,9 @@ function App() {
 
 Customizing animations allows you to change the animation behavior of all the animatable UI components within the `@gluestack-ui/themed`. Currently customization is limited to the using `moti` or `legend-motion` for Animated Components and is supported via a driver plugin system, To customize animations, follow these steps:
 
-1. **Eject Theme**: Run following command to eject the theme.
+1. **Clone Config**: Currently inorder to change animation you need to copy config and update the animation as per your requirements. you can find default config file [here](https://github.com/gluestack/gluestack-ui/tree/main/packages/config).
 
-```bash
-npx gluestack-ui eject-theme
-```
-
-2. **Update Tokens**: go to `config/gluestack-ui.config.ts` file. Update the `plugins` property as per your requirements.
+2. **Update Plugins**: go to `config/gluestack-ui.config.ts` file. Update the `plugins` property as per your requirements.
 
 ```jsx
 //gluestack-ui.config.ts
