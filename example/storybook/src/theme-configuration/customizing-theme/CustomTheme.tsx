@@ -3,21 +3,21 @@ import {
   Box as DefaultBox,
   Center,
   StyledProvider,
-  config as defaultConfig,
   createConfig,
   styled,
 } from '@gluestack-ui/themed';
+import { config as defaultConfig } from '@gluestack-ui/config';
 import { createProvider } from '@gluestack-ui/provider';
 const Provider = createProvider({ StyledProvider }) as any;
 Provider.displayName = 'CustomProvider';
 
 const Box = styled(DefaultBox, {}, {});
 const config = createConfig({
-  ...defaultConfig.theme,
+  ...defaultConfig,
   tokens: {
-    ...defaultConfig.theme.tokens,
+    ...defaultConfig.tokens,
     colors: {
-      ...defaultConfig.theme.tokens.colors,
+      ...defaultConfig.tokens.colors,
       primary0: '#ffffff',
       primary50: '#a3fff4',
       primary100: '#82fff0',

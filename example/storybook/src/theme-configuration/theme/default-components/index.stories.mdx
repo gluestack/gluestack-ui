@@ -1,0 +1,26 @@
+---
+title: Defalut Components Theme | gluestack-ui
+description: gluestack-ui ships with defalut components theme that provide access to theme values.
+---
+
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+
+<Meta title="Configuration Theme/Theme/Default Components" />
+
+## Default Components Theme
+
+The `@gluestack-ui/config` package comes with a pre-configured default theme, which can be integrated with the `GluestackUIProvider` as demonstrated below.
+
+### Usage
+
+```jsx
+import { config } from '@gluestack-ui/config';
+
+function App() {
+  return (
+    <GluestackUIProvider config={config}>
+      {/* Your app code */}
+    </GluestackUIProvider>
+  );
+}
+```

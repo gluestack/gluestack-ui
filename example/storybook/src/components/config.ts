@@ -1,11 +1,11 @@
 // gluestack-ui.config.ts
 import { LinearGradient } from 'expo-linear-gradient';
-import { createConfig } from '@gluestack-ui/themed';
+import { createComponents, createConfig } from '@gluestack-ui/themed';
 import { config as defaultConfig } from '@gluestack-ui/config';
-
 export const config = createConfig({
   ...defaultConfig,
-  components: {
+  components: createComponents({
+    ...defaultConfig.components,
     LinearGradient: {
       theme: {
         props: {
@@ -14,7 +14,7 @@ export const config = createConfig({
         },
       },
     },
-  },
+  }),
 });
 
 // Get the type of Config

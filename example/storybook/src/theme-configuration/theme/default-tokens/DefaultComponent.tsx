@@ -4,13 +4,13 @@ import {
   VStack,
   HStack,
   Box,
-  config,
   GluestackUIProvider,
   Heading,
   Divider,
 } from '@gluestack-ui/themed';
+import { config } from '@gluestack-ui/config';
 
-const colors: any = config.theme?.tokens.colors;
+const colors: any = config.tokens.colors;
 
 const colorPalette: any = {
   primary: {},
@@ -71,7 +71,7 @@ const ColorPaletteComponent = () => {
                 {Object.keys(sortedColorPalette[category]).map(
                   (shade: string) => {
                     return (
-                      <HStack flexBasis="30%">
+                      <HStack flexBasis="30%" key={shade}>
                         <Box
                           key={shade}
                           bg={sortedColorPalette[category][shade]}
@@ -101,7 +101,7 @@ const ColorPaletteComponent = () => {
   );
 };
 
-const spaces: any = config.theme?.tokens.space;
+const spaces: any = config.tokens.space;
 
 const sortedSpaceObject: any = spaces;
 
@@ -188,7 +188,7 @@ const SpaceComponent = () => {
   );
 };
 
-const opacity: any = config.theme?.tokens.opacity;
+const opacity: any = config.tokens.opacity;
 
 const OpacityComponent = () => {
   return (
@@ -313,7 +313,7 @@ const ShadowsComponent = () => {
   );
 };
 
-const borderWidths = config.theme?.tokens.borderWidths;
+const borderWidths = config.tokens.borderWidths;
 const BorderWidthComponent = () => {
   return (
     <GluestackUIProvider>
@@ -348,7 +348,7 @@ const BorderWidthComponent = () => {
   );
 };
 
-const radii = config.theme?.tokens.radii;
+const radii = config.tokens.radii;
 const RadiiComponent = () => {
   return (
     <GluestackUIProvider>
