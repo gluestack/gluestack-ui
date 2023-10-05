@@ -20,7 +20,7 @@ All the components of `@gluestack-ui/themed` are styled according to the default
 
 ## Architecture
 
-We will try and understand how the components exported from `@gluestack-ui/themed` are created. Initially, we generate styled components using the [gluestack-style](/style) styling engine. This allows us to customize styles, use theme tokens, provide styling for dark and light modes, and respond to different screen sizes using `@gluestack-style/react`. The specifics like themes, tokens, and breakpoints are defined in a configuration file.
+We will try and understand how the components exported from `@gluestack-ui/themed` are created. Initially, we generate styled components using the [gluestack-style](https://style.gluestack.io/styleis allows us to customize styles, use theme tokens, provide styling for dark and light modes, and respond to different screen sizes using `@gluestack-style/react`. The specifics like themes, tokens, and breakpoints are defined in a configuration file.
 
 After that, we enhance the components with accessibility features, interactivity, and more using `@gluestack-ui`. This library provides creator functions that take our styled components and transform them into fully functional components. Once our components are both user-friendly and interactive, we bundle them together into a new package called `@gluestack-ui/themed`, which we can then easily use in our projects.
 
@@ -38,6 +38,6 @@ After that, we enhance the components with accessibility features, interactivity
 
 Support for multiple themes is also available. This can be achieved by updating the config file and adjusting the tokens accordingly for different themes.
 
-Component styling is accomplished through [`@gluestack-style/react`](/style). You can customize the styles of each component, and detailed information related to that is available [here](/ui/docs/theme/customizing-components).
+Component styling is accomplished through [`@gluestack-style/react`](https://style.gluestack.io/style the styles of each component, and detailed information related to that is available [here](/ui/docs/theme/customizing-components).
 
 <img src="/images/architecture.png" />
