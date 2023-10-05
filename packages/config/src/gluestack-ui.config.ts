@@ -699,28 +699,20 @@ export const gluestackUIConfig = createConfig({
 
 type Config = typeof gluestackUIConfig; // Assuming `config` is defined elsewhere
 
-export interface UIConfig {}
-
-type UIConfigType = UIConfig;
-
-type MergeTypes<T, S> = {
-  [K in keyof T | keyof S]: K extends keyof S
-    ? S[K]
-    : K extends keyof T
-    ? T[K]
-    : any;
-};
-
-type MergedConfigType = MergeTypes<Config, UIConfigType>;
-
-interface CustomExtendedConfig extends MergedConfigType {}
-export const componentsConfig = createComponents(componentsTheme);
-
 type Components = typeof componentsConfig;
 
-declare module '@gluestack-style/react' {
-  interface ICustomConfig extends CustomExtendedConfig {}
-  interface ICustomComponents extends Components {}
+export const componentsConfig = createComponents(componentsTheme);
+
+export type { UIConfig, UIComponents } from '@gluestack-ui/themed';
+
+export interface IConfig {}
+export interface IComponents {}
+
+declare module '@gluestack-ui/themed' {
+  interface UIConfig extends Omit<Config, keyof IConfig>, IConfig {}
+  interface UIComponents
+    extends Omit<Components, keyof IComponents>,
+      IComponents {}
 }
 
 export const config = {

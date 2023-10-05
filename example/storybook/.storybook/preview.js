@@ -26,9 +26,8 @@ export const parameters = {
         ['Themed Library', 'Unstyled Library', 'Accessibility'],
         'Performance',
         ['Overview', 'Benchmarks'],
-        'Configuration Theme',
+        'Theme Configuration',
         [
-          'Overview',
           'Theme',
           ['Default Tokens', 'Default Components'],
           'Customizing Theme',
