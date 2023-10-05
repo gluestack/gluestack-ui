@@ -29,11 +29,8 @@ You can also customize your own theme by extending default theme by using create
 
 ```jsx
 // gluestack-ui.config.ts
-import {
-  config as defaultConfig,
-  createConfig,
-} from '@gluestack-ui/themed';
-
+import { createConfig } from '@gluestack-ui/themed';
+import { config as defaultConfig } from "@gluestack-ui/config";
 export const config = createConfig({
   ...defaultConfig.theme,
   aliases: {
@@ -76,10 +73,8 @@ You can add custom theme for components by extending default config and adding t
 
 ```jsx
 // gluestack-ui.config.ts
-import {
-  config as defaultConfig,
-  createConfig,
-} from '@gluestack-ui/themed';
+import { createConfig } from '@gluestack-ui/themed';
+import { config as defaultConfig } from "@gluestack-ui/config";
 
 export const config = createConfig({
   ...defaultConfig.theme,
@@ -131,7 +126,8 @@ If you want to switch theme on the fly, you will need to create multiple theme i
 
 ```jsx
 // gluestack-ui.config.ts
-import { createConfig, config as defaultConfig } from '@gluestack-ui/themed';
+import { createConfig } from '@gluestack-ui/themed';
+import { config as defaultConfig } from "@gluestack-ui/config";
 
 export const config = createConfig({
   ...defaultConfig.theme,
@@ -197,10 +193,8 @@ You add global styles by extending default config and adding your own global sty
 
 ```jsx
 // gluestack-ui.config.ts
-import {
-  config as defaultConfig,
-  createConfig,
-} from '@gluestack-ui/themed';
+import { createConfig } from '@gluestack-ui/themed';
+import { config as defaultConfig } from "@gluestack-ui/config";
 
 export const config = createConfig({
   ...defaultConfig.theme,
