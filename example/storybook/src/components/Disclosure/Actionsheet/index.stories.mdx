@@ -53,26 +53,20 @@ import { Image, Text, Box } from './ActionsheetAvoidKeyboard';
 import { Icon, TrashIcon, ShareIcon } from './ActionsheetIcon';
 import { PlayIcon, FavouriteIcon, CloseIcon } from './ActionsheetIcon';
 import { transformedCode } from '../../../utils';
-<<<<<<< HEAD
+import {
+  AppProvider,
+  CodePreview,
+  Table,
+  TableContainer,
+  InlineCode,
+  AddIcon,
+  InfoIcon,
+  Alert,
+} from '@gluestack/design-system';
 import { config } from '@gluestack-ui/config';
+import Wrapper from '../../Wrapper';
 
-=======
-
-> > > > > > > 1a81f21a26c06568d31f32a93fb9614922693279
-> > > > > > > import {
-> > > > > > > AppProvider,
-> > > > > > > CodePreview,
-> > > > > > > Table,
-> > > > > > > TableContainer,
-> > > > > > > InlineCode,
-> > > > > > > AddIcon,
-> > > > > > > InfoIcon,
-> > > > > > > Alert,
-> > > > > > > } from '@gluestack/design-system';
-> > > > > > > import { config } from '@gluestack-ui/config';
-> > > > > > > import Wrapper from '../../Wrapper';
-
-<AppProvider>
+<AppProvider config={config}>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -88,7 +82,7 @@ function App(){
         </Button>
         <Actionsheet isOpen={showActionsheet} onClose={handleClose} zIndex={999}>
           <ActionsheetBackdrop />
-          <ActionsheetContent zIndex={999}>
+          <ActionsheetContent h='$72' zIndex={999}>
             <ActionsheetDragIndicatorWrapper>
               <ActionsheetDragIndicator />
             </ActionsheetDragIndicatorWrapper>
