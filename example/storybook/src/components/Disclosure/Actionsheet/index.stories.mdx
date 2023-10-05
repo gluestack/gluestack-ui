@@ -32,7 +32,6 @@ import {
   ActionsheetSectionHeaderText,
   Button,
   ButtonText,
-  config,
 } from './Actionsheet';
 import {
   VStack,
@@ -54,7 +53,6 @@ import { Image, Text, Box } from './ActionsheetAvoidKeyboard';
 import { Icon, TrashIcon, ShareIcon } from './ActionsheetIcon';
 import { PlayIcon, FavouriteIcon, CloseIcon } from './ActionsheetIcon';
 import { transformedCode } from '../../../utils';
-
 import {
   AppProvider,
   CodePreview,
@@ -65,9 +63,10 @@ import {
   InfoIcon,
   Alert,
 } from '@gluestack/design-system';
+import { config } from '@gluestack-ui/config';
 import Wrapper from '../../Wrapper';
 
-<AppProvider config={config.theme}>
+<AppProvider config={config}>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
