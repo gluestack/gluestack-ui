@@ -1,5 +1,11 @@
 # @gluestack-ui/themed
 
+## 0.1.55
+
+### Patch Changes
+
+- Fixed component apis
+
 ## 0.1.53
 
 ### Patch Changes

@@ -3,5 +3,5 @@ import { View } from 'react-native';
 
 export default styled(View, {}, {
   componentName: 'Toast',
-  descendantStyle: ['_icon', '_text'],
+  descendantStyle: ['_icon', '_title', '_description'],
 } as const);
