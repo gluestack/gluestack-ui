@@ -13,9 +13,9 @@ import {
   InlineCode,
 } from '@gluestack/design-system';
 import { Platform } from 'react-native';
-import Wrapper from '../../components/Wrapper';
-import { KeyboardAvoidingView } from './KeyboardAvoidingView';
 import {
+  KeyboardAvoidingView,
+  Wrapper,
   GluestackUIProvider,
   Button,
   Center,
@@ -25,7 +25,6 @@ import {
   VStack,
   InputIcon,
   HStack,
-  LeadingIcon,
   InputField,
   InputSlot,
   Box,
@@ -107,7 +106,7 @@ Provides a view that moves out of the way of virtual keyboard automatically. It 
                 </FormControlLabel>
                 <Input w="$full">
                   <InputSlot>
-                   <InputIcon as={LeadingIcon} ml="$2" />
+                   <InputIcon as={InputIcon} ml="$2" />
                   </InputSlot>
                   <InputField placeholder="CVC/CVV" />
                 </Input>
@@ -141,7 +140,6 @@ Provides a view that moves out of the way of virtual keyboard automatically. It 
         InputSlot,
         ButtonText,
         InputIcon,
-        LeadingIcon,
         HStack,
         Box,
         Actionsheet,

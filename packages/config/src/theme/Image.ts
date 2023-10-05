@@ -44,4 +44,7 @@ export const Image = createStyle({
       },
     },
   },
+  defaultProps: {
+    size: 'md',
+  },
 });

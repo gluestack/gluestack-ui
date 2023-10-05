@@ -100,7 +100,7 @@ A Box component with a ref property enables the direct reference and manipulatio
     metaData={{
       code: `
         function App () {
-          const myRef = useRef({});
+          const myRef = useRef<any>({});
           useEffect(() => {
             const styleObj = {
               borderWidth: 2,

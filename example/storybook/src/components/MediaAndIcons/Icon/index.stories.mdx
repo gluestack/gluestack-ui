@@ -40,7 +40,12 @@ import {
 } from 'lucide-react-native';
 
 import { transformedCode } from '../../../utils';
-import { AppProvider, CodePreview, Table } from '@gluestack/design-system';
+import {
+  AppProvider,
+  CodePreview,
+  Table,
+  TableContainer,
+} from '@gluestack/design-system';
 
 import Wrapper from '../../Wrapper';
 
@@ -110,6 +115,51 @@ The Icon components inherits all the properties that third party library provide
 We have outlined the various features that ensure the Icon component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards.
 
 Role: img is passed
+
+## Themed
+
+The themed version of the component is a pre-styled version of the component, which allows you to quickly integrate the component into your project. The component's design and functionality are fully defined, allowing you to focus on the more important aspects of your project.
+
+### Props
+
+Icon component is created using AsForwarder component from @gluestack-style/react. It extends all the props supported by [gluestack-ui AsForwarder](https://gluestack.io/style/docs/api/as-forwarder), [utility props](/ui/docs/styling/utility-and-sx-props) and the props mentioned below.
+
+#### Image
+
+<AppProvider>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Name</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Value</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Default</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>size</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{'2xs | xs | sm | md | lg | xl'}</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>md</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</AppProvider>
 
 ### Examples
 

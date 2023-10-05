@@ -7,6 +7,7 @@ import {
 } from '@gluestack-ui/themed';
 import { config } from '@gluestack-ui/config';
 import React from 'react';
+import Wrapper from '../../components/Wrapper';
 
 export default function ScrollViewStory() {
   return (
@@ -84,3 +85,14 @@ export default function ScrollViewStory() {
     </Center>
   );
 }
+
+export {
+  VStack,
+  Center,
+  Heading,
+  GluestackUIProvider,
+  ScrollView,
+  Text,
+} from '@gluestack-ui/themed';
+
+export { config, Wrapper };
