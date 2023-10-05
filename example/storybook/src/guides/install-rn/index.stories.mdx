@@ -10,9 +10,9 @@ pageDescription: In this guide, we will walk you through the steps required to a
 showHeader: true
 ---
 
-import { Canvas, Meta, Story } from '@storybook/addon-docs';
+import { Canvas, Meta, Story } from "@storybook/addon-docs";
 
-import { AppProvider, Link, Box, HStack, Text } from '@gluestack/design-system';
+import { AppProvider, Link, Box, HStack, Text } from "@gluestack/design-system";
 
 <Meta title="Guides/Install in React Native" />
 
@@ -49,18 +49,18 @@ The `GluestackUIProvider` is a component that provides aliases and tokens throug
 You can update your `App.tsx` file as follows:
 
 ```jsx
-import { GluestackUIProvider, Text } from '@gluestack-ui/themed';
-import { config } from '@gluestack-ui/config';
+import { GluestackUIProvider, Text } from "@gluestack-ui/themed";
+import { config } from "@gluestack-ui/config";
 
 export default function App() {
   return (
-    <GluestackUIProvider config={config.theme}>
+    <GluestackUIProvider config={config}>
       <Text>Hello World!</Text>
     </GluestackUIProvider>
   );
 }
 ```
 
-This ensures that all components are wrapped with `<GluestackUIProvider />`, and the theme from `gluestack-ui.config.ts` is applied.
+This ensures that all components are wrapped with `<GluestackUIProvider />`, and the theme from `@gluestack-ui/config` is applied.
 
 This guide should help you get started with gluestack-ui in your expo project. If you run into any issues or have further questions, please refer to the official documentation or community forums.

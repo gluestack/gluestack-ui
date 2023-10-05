@@ -12,7 +12,7 @@ showHeader: true
 tag: alpha
 ---
 
-import { Meta } from '@storybook/addon-docs';
+import { Meta } from "@storybook/addon-docs";
 
 <Meta title="components/Disclosure/Actionsheet" />
 
@@ -33,7 +33,7 @@ import {
   Button,
   ButtonText,
   config,
-} from './Actionsheet';
+} from "./Actionsheet";
 import {
   VStack,
   Input,
@@ -48,12 +48,12 @@ import {
   HStack,
   KeyboardAvoidingView,
   Platform,
-} from './ActionsheetAvoidKeyboard';
-import { LeadingIcon, IconRoot } from './ActionsheetAvoidKeyboard';
-import { Image, Text, Box } from './ActionsheetAvoidKeyboard';
-import { Icon, TrashIcon, ShareIcon } from './ActionsheetIcon';
-import { PlayIcon, FavouriteIcon, CloseIcon } from './ActionsheetIcon';
-import { transformedCode } from '../../../utils';
+} from "./ActionsheetAvoidKeyboard";
+import { LeadingIcon, IconRoot } from "./ActionsheetAvoidKeyboard";
+import { Image, Text, Box } from "./ActionsheetAvoidKeyboard";
+import { Icon, TrashIcon, ShareIcon } from "./ActionsheetIcon";
+import { PlayIcon, FavouriteIcon, CloseIcon } from "./ActionsheetIcon";
+import { transformedCode } from "../../../utils";
 
 import {
   AppProvider,
@@ -64,10 +64,10 @@ import {
   AddIcon,
   InfoIcon,
   Alert,
-} from '@gluestack/design-system';
-import Wrapper from '../../Wrapper';
+} from "@gluestack/design-system";
+import Wrapper from "../../Wrapper";
 
-<AppProvider config={config.theme}>
+<AppProvider config={config}>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -109,7 +109,7 @@ function App(){
 }
 `,
       transformCode: (code) => {
-        return transformedCode(code, 'function', 'App');
+        return transformedCode(code, "function", "App");
       },
       scope: {
         Button,
@@ -622,7 +622,7 @@ Demonstrates a common UI pattern known as keyboard handling or keyboard scrollin
         }
 `,
       transformCode: (code) => {
-        return transformedCode(code, 'function', 'App');
+        return transformedCode(code, "function", "App");
       },
       scope: {
         Wrapper,
@@ -740,7 +740,7 @@ Demonstrates a common UI pattern known as keyboard handling or keyboard scrollin
 );}
 `,
       transformCode: (code) => {
-        return transformedCode(code, 'function', 'App');
+        return transformedCode(code, "function", "App");
       },
       scope: {
         Wrapper,
@@ -838,7 +838,7 @@ The Actionsheet with Icons is a variation of the Actionsheet component that disp
         }
   `,
       transformCode: (code) => {
-        return transformedCode(code, 'function', 'App');
+        return transformedCode(code, "function", "App");
       },
       scope: {
         Actionsheet,
@@ -917,7 +917,7 @@ The Actionsheet with Virtualized List includes a virtualized list for better per
 }
 `,
       transformCode: (code) => {
-        return transformedCode(code, 'function', 'App');
+        return transformedCode(code, "function", "App");
       },
       scope: {
         Actionsheet,
@@ -994,7 +994,7 @@ The Actionsheet with Flat List is a variation of the Actionsheet component that 
 }
 `,
       transformCode: (code) => {
-        return transformedCode(code, 'function', 'App');
+        return transformedCode(code, "function", "App");
       },
       scope: {
         Actionsheet,
@@ -1079,7 +1079,7 @@ Default styling of the component can be found in the `components/actionsheet` fi
 }
 `,
       transformCode: (code) => {
-        return transformedCode(code, 'function', 'App');
+        return transformedCode(code, "function", "App");
       },
       scope: {
         Actionsheet,
