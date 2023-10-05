@@ -1,5 +1,6 @@
 import { View, Center, Heading, Text } from '@gluestack-ui/themed';
 import React from 'react';
+import Wrapper from '../../components/Wrapper';
 
 export default function ViewStory() {
   return (
@@ -17,3 +18,5 @@ export default function ViewStory() {
     </Center>
   );
 }
+
+export { View, Center, Heading, Text, Wrapper };
