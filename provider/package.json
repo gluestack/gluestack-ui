@@ -36,7 +36,7 @@
     "babel-plugin-transform-remove-console": "^6.9.4",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
-    "react-native": "^0.70.3",
+    "react-native": "^0.72.4",
     "react-native-builder-bob": "^0.20.1",
     "react-native-web": "^0.18.1",
     "tsconfig": "*"
