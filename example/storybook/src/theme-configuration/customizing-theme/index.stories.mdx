@@ -153,13 +153,14 @@ npx gluestack-ui eject-theme
 
 import { config as defaultConfig } from '@gluestack-ui/config';
 import { createConfig } from '@gluestack-ui/themed';
-import { AnimationResolver } from '@gluestack-ui/animation-resolver';
-import { MotionDriver } from '@gluestack-ui/legend-motion-animation-driver';
-import { MotiDriver } from '@gluestack-ui/moti-animation-driver';
+import { AnimationResolver } from '@gluestack-style/animation-resolver';
+import { MotionDriver } from '@gluestack-style/legend-motion-animation-driver';
+import { MotiDriver } from '@gluestack-style/moti-animation-driver';
 
 export const config = createConfig({
   ...defaultConfig
   plugins: [
+    ...defaultConfig.plugins,
     // using legend-motion
     new AnimationResolver(MotionDriver,{
       // You can override animated aliases here if you want by default driver have support for all the animated components aliases required.
