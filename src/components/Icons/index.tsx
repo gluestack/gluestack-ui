@@ -42,4 +42,4 @@ export type IIconComponentType<Icon> = GenericComponentType<
 
 export const Icon = IconTemp as IIconComponentType<typeof Root>;
 
-//type issue with icon
+export { createIcon };
