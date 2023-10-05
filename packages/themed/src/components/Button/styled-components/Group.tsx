@@ -8,88 +8,39 @@ export default styled(
       size: {
         xs: {
           _button: {
-            px: '$3.5',
-            h: '$8',
-            _icon: {
-              props: {
-                size: '2xs',
-              },
-            },
-            _text: {
-              props: {
-                size: 'xs',
-              },
+            props: {
+              size: 'xs',
             },
           },
         },
         sm: {
           _button: {
-            px: '$4',
-            h: '$9',
-            _icon: {
-              props: {
-                size: 'sm',
-              },
-            },
-            _text: {
-              props: {
-                size: 'sm',
-              },
+            props: {
+              size: 'sm',
             },
           },
         },
         md: {
           _button: {
-            px: '$5',
-            h: '$10',
-            _icon: {
-              props: {
-                size: 'md',
-              },
-            },
-            _text: {
-              props: {
-                size: 'md',
-              },
+            props: {
+              size: 'md',
             },
           },
         },
         lg: {
           _button: {
-            px: '$6',
-            h: '$11',
-            _icon: {
-              props: {
-                size: 'md',
-              },
-            },
-            _text: {
-              props: {
-                size: 'lg',
-              },
+            props: {
+              size: 'lg',
             },
           },
         },
         xl: {
           _button: {
-            px: '$7',
-            h: '$12',
-            _icon: {
-              props: {
-                size: 'lg',
-              },
-            },
-            _text: {
+            _button: {
               props: {
                 size: 'xl',
               },
             },
-          },
-          _groupHSpacer: {
-            size: '$xl',
-          },
-          _groupVSpacer: {
-            size: '$xl',
           },
         },
       },
@@ -127,6 +78,7 @@ export default styled(
     },
   },
   {
+    componentName: 'ButtonGroup',
     descendantStyle: ['_button'],
   }
 );
