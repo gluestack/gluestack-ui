@@ -12,5 +12,3 @@ export const CheckCircleIcon = createIcon({
 
 CheckIcon.displayName = 'CheckIcon';
 CheckCircleIcon.displayName = 'CheckCircleIcon';
-
-// export { CheckIcon, CheckCircleIcon };
