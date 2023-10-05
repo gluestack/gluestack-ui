@@ -1,6 +1,6 @@
 {
   "name": "@gluestack-style/animation-resolver",
-  "version": "0.1.0-alpha.1",
+  "version": "0.1.0-alpha.2",
   "description": "A gluestack-style plugin for resolving animation properties, utilizing animation libraries.",
   "keywords": [
     "react",
