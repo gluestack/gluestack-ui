@@ -7,10 +7,12 @@ type ParameterTypes = Omit<Parameters<typeof createIcon>[0], 'Root'>;
 
 const createIconNB = (props: ParameterTypes) => {
   const Icon = createIcon({ Root, ...props });
-  const CreatedIcon = forwardRef(({ ...propsIcon }) => {
-    const resolvedProps = usePropResolution(propsIcon);
-    return <Icon {...resolvedProps} />;
-  });
+  const CreatedIcon = forwardRef(
+    ({ ...propsIcon }: React.ComponentProps<typeof Icon>, ref?: any) => {
+      const resolvedProps = usePropResolution(propsIcon);
+      return <Icon {...resolvedProps} ref={ref} />;
+    }
+  );
   return CreatedIcon;
 };
 
