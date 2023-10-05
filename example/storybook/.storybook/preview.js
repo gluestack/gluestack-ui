@@ -26,12 +26,11 @@ export const parameters = {
         ['Themed Library', 'Unstyled Library', 'Accessibility'],
         'Performance',
         ['Overview', 'Benchmarks'],
-        'Theme',
+        'Theme Configuration',
         [
-          'Overview',
-          'Default Tokens',
-          'Customizing Tokens',
-          'Customizing Components',
+          'Theme',
+          ['Default Tokens', 'Default Components'],
+          'Customizing Theme',
         ],
         'Styling',
         [
@@ -46,7 +45,7 @@ export const parameters = {
         ],
         'Components',
         [
-          'Component Catalog',
+          'All Components',
           'Provider',
           ['GluestackUIProvider'],
           'Typography',
