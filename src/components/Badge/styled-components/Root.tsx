@@ -13,7 +13,11 @@ export default styled(
     'px': '$2',
     'py': '$0.5',
     //@ts-ignore
-    'gap': '0.25rem',
+    'gap': 4,
+    '_web': {
+      //@ts-ignore
+      gap: '0.25rem',
+    },
 
     ':disabled': {
       opacity: 0.5,
@@ -94,8 +98,13 @@ function colorSchemeResolveFn({ ...props }: any) {
         break;
       case 'outline':
         value = {
-          _text: { color: `$${color}.600` },
-          _icon: { color: `$${color}.600` },
+          _text: {
+            color: `$${color}.600`,
+          },
+          _icon: {
+            color: `$${color}.600`,
+            fontWeight: '$medium',
+          },
           borderColor: `$${color}.600`,
           _dark: {
             _text: {
@@ -110,10 +119,17 @@ function colorSchemeResolveFn({ ...props }: any) {
         break;
       case 'subtle':
         value = {
-          _text: { color: `$${color}.900` },
-          _icon: { color: `$${color}.900` },
+          _text: {
+            color: `$${color}.900`,
+          },
+          _icon: {
+            color: `$${color}.900`,
+            fontWeight: '$medium',
+          },
           bg: `$${color}.100`,
-          _dark: { bg: `$${color}.300` },
+          _dark: {
+            bg: `$${color}.300`,
+          },
           borderColor: 'transparent',
         };
         break;
