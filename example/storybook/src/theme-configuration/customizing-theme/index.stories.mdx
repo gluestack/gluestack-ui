@@ -122,7 +122,59 @@ npx gluestack-ui eject-theme
 
 ```jsx
 // App.tsx
-import { GluestackUIProvider } from '@gluestack-ui/themed';
+import { GluestackUIProvider, Button, ButtonText } from '@gluestack-ui/themed';
+import { config } from './config/gluestack-ui.config';
+
+function App() {
+  return (
+    <GluestackUIProvider config={config}>
+      <Button>
+        <ButtonText>Button</ButtonText>
+      </Button>
+    </GluestackUIProvider>
+  );
+}
+```
+
+## Customizing Animations
+
+Customizing animations allows you to change the animation behavior of all the animatable UI components within the `@gluestack-ui/themed`. Currently customization is limited to the using `moti` or `legend-motion` for Animated Components and is supported via a driver plugin system, To customize animations, follow these steps:
+
+1. **Eject Theme**: Run following command to eject the theme.
+
+```bash
+npx gluestack-ui eject-theme
+```
+
+2. **Update Tokens**: go to `config/gluestack-ui.config.ts` file. Update the `plugins` property as per your requirements.
+
+```jsx
+//gluestack-ui.config.ts
+
+import { config as defaultConfig } from '@gluestack-ui/config';
+import { createConfig } from '@gluestack-ui/themed';
+import { AnimationResolver } from '@gluestack-ui/animation-resolver';
+import { MotionDriver } from '@gluestack-ui/legend-motion-animation-driver';
+import { MotiDriver } from '@gluestack-ui/moti-animation-driver';
+
+export const config = createConfig({
+  ...defaultConfig
+  plugins: [
+    // using legend-motion
+    new AnimationResolver(MotionDriver,{
+      // You can override animated aliases here if you want by default driver have support for all the animated components aliases required.
+    }),
+    // using moti
+    // new AnimationResolver(MotiDriver),
+  ],
+});
+```
+
+3. **Apply Config**: Apply the config to the `GluestackUIProvider`.
+
+```jsx
+// App.tsx
+import { GluestackUIProvider, Button, ButtonText } from '@gluestack-ui/themed';
 import { config } from './config/gluestack-ui.config';
 
 function App() {
