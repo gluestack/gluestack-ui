@@ -53,7 +53,7 @@ npm i @gluestack-ui/themed @gluestack-style/react @gluestack/ui-next-adapter rea
 
 ### Step 2: Server-side rendering (SSR)
 
-It's also recommended to set up your server-side rendering (SSR) correctly. To do this, you will need to use the `flush()` function exported by the [@gluestack-style/react](https://style.gluestack.io/docs/configuration/ssr).
+It's also recommended to set up your server-side rendering (SSR) correctly. To do this, you will need to use the `flush()` function exported by the [@gluestack-style/react](/ui/docs/configuration/ssr).
 
 #### Next.js App Routers (which supports React Server Components)
 
@@ -241,7 +241,8 @@ For Next.js Page Router just add `GluestackUIProvider` to the root of your app a
 ```jsx
 import '@/styles/globals.css';
 import type { AppProps } from 'next/app';
-import { config, GluestackUIProvider } from '@gluestack-ui/themed';
+import { GluestackUIProvider } from '@gluestack-ui/themed';
+import { config } from '@gluestack-ui/config';
 
 export default function App({ Component, pageProps }: AppProps) {
   return (

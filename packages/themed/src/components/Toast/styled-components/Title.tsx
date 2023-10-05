@@ -3,5 +3,5 @@ import { styled } from '@gluestack-style/react';
 
 export default styled(Text, {}, {
   componentName: 'ToastTitle',
-  ancestorStyle: ['_text'],
+  ancestorStyle: ['_title'],
 } as const);

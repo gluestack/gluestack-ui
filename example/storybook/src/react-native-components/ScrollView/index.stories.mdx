@@ -19,9 +19,9 @@ import {
   Center,
   Heading,
   GluestackUIProvider,
-  config,
   Text,
 } from '@gluestack-ui/themed';
+import { config } from '@gluestack-ui/config';
 
 <Meta title="React Native Components/ScrollView" />
 
@@ -41,7 +41,7 @@ Provides a scrolling container that can host multiple components and views.
           <Heading fontSize="xl">Primary</Heading>
         </Center>
         <VStack flex={1}>
-          {Object.keys(config.theme.tokens.colors).map((key, index) => {
+          {Object.keys(config.tokens.colors).map((key, index) => {
             if (
               key.includes('primary') &&
               !(
@@ -53,7 +53,7 @@ Provides a scrolling container that can host multiple components and views.
               )
             )
               return (
-                <Center py="$4" bg={config.theme.tokens.colors[key]}>
+                <Center py="$4" bg={config.tokens.colors[key]}>
                   <Text>{key}</Text>
                 </Center>
               );
@@ -63,7 +63,7 @@ Provides a scrolling container that can host multiple components and views.
           <Heading fontSize="$xl">Yellow</Heading>
         </Center>
         <VStack flex="1">
-          {Object.keys(config.theme.tokens.colors).map((key, index) => {
+          {Object.keys(config.tokens.colors).map((key, index) => {
             if (
               key.includes('yellow') &&
               !(
@@ -75,7 +75,7 @@ Provides a scrolling container that can host multiple components and views.
               )
             )
               return (
-                <Center py="$4" bg={config.theme.tokens.colors[key]}>
+                <Center py="$4" bg={config.tokens.colors[key]}>
                   <Text>{key}</Text>
                 </Center>
               );
@@ -85,7 +85,7 @@ Provides a scrolling container that can host multiple components and views.
           <Heading fontSize="$xl">Violet</Heading>
         </Center>
         <VStack flex="1">
-          {Object.keys(config.theme.tokens.colors).map((key, index) => {
+          {Object.keys(config.tokens.colors).map((key, index) => {
             if (
               key.includes('violet') &&
               !(
@@ -97,7 +97,7 @@ Provides a scrolling container that can host multiple components and views.
               )
             )
               return (
-                <Center py="$4" bg={config.theme.tokens.colors[key]}>
+                <Center py="$4" bg={config.tokens.colors[key]}>
                  <Text>{key}</Text>
                 </Center>
               );
@@ -144,7 +144,7 @@ export default () => <ScrollView></ScrollView>;
 
 ### Props
 
-gluestack-ui ScrollView component is created using ScrollView component from react-native. It extends all the props supported by [React Native ScrollView](https://reactnative.dev/docs/scrollview#props), [utility props](https://ui.gluestack.io/docs/styling/utility-and-sx-props) and the props mentioned below.
+gluestack-ui ScrollView component is created using ScrollView component from react-native. It extends all the props supported by [React Native ScrollView](https://reactnative.dev/docs/scrollview#props), [utility props](/ui/docs/styling/utility-and-sx-props) and the props mentioned below.
 
 #### ScrollView
 

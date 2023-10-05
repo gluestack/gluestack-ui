@@ -1,6 +1,6 @@
 {
   "name": "@gluestack-ui/config",
-  "version": "0.1.2",
+  "version": "1.0.0-alpha.0",
   "main": "build/gluestack-ui.config.js",
   "types": "build/gluestack-ui.config.d.ts",
   "module": "build/gluestack-ui.config",
@@ -29,7 +29,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@gluestack-style/react": "^0.2.54-alpha.1",
+    "@gluestack-style/react": "^0.2.54-alpha.3",
     "@gluestack-ui/themed": "^0.1.53"
   },
   "peerDependencies": {

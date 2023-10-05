@@ -1,9 +1,10 @@
 {
   "include": ["./src"],
   "exclude": ["node_modules", "example"],
-  "path": {},
+  "path": {
+    "@gluestack-ui/themed": ["../themed/src"]
+  },
   "compilerOptions": {
-    "ignoreDeprecations": "5.0",
     "noEmit": false,
     "declaration": true,
     "allowUnreachableCode": false,

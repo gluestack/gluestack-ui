@@ -44,10 +44,6 @@ import { AppProvider, CodePreview, Table } from '@gluestack/design-system';
 
 import Wrapper from '../../Wrapper';
 
-## Themed
-
-Following is the default implementation of the **Icon** component without any additional customization. This serves as a starting point for users who are new to this library and want to learn about the basic functionality and appearance of the component. You can refer [here](https://github.com/gluestack/gluestack-ui/tree/main/packages/themed/src/components/Icons/styled-components) to learn about default styling of Icon component.
-
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
@@ -77,11 +73,13 @@ Following is the default implementation of the **Icon** component without any ad
 
 <br />
 
+## API Reference
+
 ### Import
 
 To use the component in your project, run the command below into your import statement. This will import the component from your components folder.
 
-```bash
+```jsx
 import { Icon } from '@gluestack-ui/themed';
 ```
 
@@ -93,9 +91,9 @@ The structure provided below can help you identify and understand a Icon compone
 export default () => <Icon as={} />;
 ```
 
-### API Reference
+### Component Props
 
-The following section contains a comprehensive list of the component's references, including descriptions, properties, types, and default behavior. This information is readily available for you to access, helping you effectively utilize the component library in your projects.
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
 
 #### Icon
 
@@ -112,13 +110,6 @@ The Icon components inherits all the properties that third party library provide
 We have outlined the various features that ensure the Icon component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards.
 
 Role: img is passed
-
-### Dependencies
-
-The following are the lists of all the libraries and packages the component relies on. This information will help you ensure that your project has all the necessary dependencies installed to use the component.
-
-- `@gluestack-ui/utils`
-- `react-native-svg`
 
 ### Examples
 
@@ -300,7 +291,7 @@ Below is a list of all of the icons in the library.
 We can directly create Icon using createIcon function exported from `@gluestack-ui/themed` and use it by passing it in `as` prop in `Icon` component.
 CreateIcon function takes viewBox, d, path etc as parameters. We can use svgs from other icon libraries like fluent, react-icons etc.
 
-###### Notes to remember while using createIcon function
+##### Notes to remember while using createIcon function
 
 - Pass svg props such as `viewBox` in `createIcon` directly.
 - Copy the svg code without the SVG tag directly into the function argument `Path` or `D` or whichever prop justifies your svg.
@@ -352,19 +343,25 @@ After :
   />
 </AppProvider>
 
-> gluestack-ui provides a set of pre created icons that can be used directly in our app and can also integrate third party icons using [AsForwarder](https://style.gluestack.io/docs/api/as-forwarder) from [gluestack-style](https://style.gluestack.io/)
+> gluestack-ui provides a set of pre created icons that can be used directly in our app and can also integrate third party icons using [AsForwarder](/style/docs/api/as-forwarder) from [gluestack-style](/style)
 
 ## Unstyled
+
+All the components in `gluestack-ui` are unstyled by default. To customize your UI using the extendedTheme, please refer to this [link](https://gluestack.io/ui/docs/theme/customizing-components). The import names of components serve as keys to customize each component.
+
+<!--
+
+### Advanced
 
 We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
 
 ### Customizing the Icon
 
-We have a function called `createIcon` which can be used to create a custom icon component. This function takes in a configuration object which contains the styled components that you want to use for the icon. You can refer [style.gluestack.io](https://style.gluestack.io/) for more information on how to use styled components.
+We have a function called `createIcon` which can be used to create a custom icon component. This function takes in a configuration object which contains the styled components that you want to use for the icon. You can refer [gluestack.io/style](/style) for more information on how to use styled components.
 
 #### Usage
 
-Default styling of all these components can be found in the `./components/core/icon` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/tree/main/example/storybook/src/ui-components/Icons) of the styled `Icon` components.
+Default styling of all these components can be found in the `./components/core/icon` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/main/packages/themed/src/components/Icons) of the styled `Icon` components.
 
 ```jsx
 // import the styles
@@ -381,3 +378,4 @@ const Icon = createIcon({
 // Using the icon component
 export default () => <Icon />;
 ```
+-->

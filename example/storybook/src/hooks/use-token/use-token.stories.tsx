@@ -1,5 +1,5 @@
 import type { ComponentMeta } from '@storybook/react-native';
-import { config } from '@gluestack-ui/themed';
+import { config } from '@gluestack-ui/config';
 import useToken from './useToken';
 const UseTokenMeta: ComponentMeta<typeof useToken> = {
   title: 'stories/hooks/useToken',
@@ -15,7 +15,7 @@ const UseTokenMeta: ComponentMeta<typeof useToken> = {
     },
     token: {
       control: 'select',
-      options: [...Object.keys(config.theme.tokens.colors)],
+      options: [...Object.keys(config.tokens.colors)],
     },
   },
 };

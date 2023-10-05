@@ -19,19 +19,18 @@ export const parameters = {
       method: '',
       order: [
         'Overview',
-        ['Introduction'],
+        ['Introduction', 'Component Catalog'],
         'Getting Started',
         ['Installation', 'VS Code Extensions'],
         'Core Concepts',
         ['Themed Library', 'Unstyled Library', 'Accessibility'],
         'Performance',
         ['Overview', 'Benchmarks'],
-        'Theme',
+        'Theme Configuration',
         [
-          'Overview',
-          'Default Tokens',
-          'Customizing Tokens',
-          'Customizing Components',
+          'Theme',
+          ['Default Tokens', 'Default Components'],
+          'Customizing Theme',
         ],
         'Styling',
         [
@@ -46,7 +45,7 @@ export const parameters = {
         ],
         'Components',
         [
-          'Component Catalog',
+          'All Components',
           'Provider',
           ['GluestackUIProvider'],
           'Typography',
