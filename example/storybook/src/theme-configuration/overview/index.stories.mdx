@@ -32,9 +32,9 @@ You can also customize your own theme by extending default theme by using create
 import { createConfig } from '@gluestack-ui/themed';
 import { config as defaultConfig } from "@gluestack-ui/config";
 export const config = createConfig({
-  ...defaultConfig.theme,
+  ...defaultConfig,
   aliases: {
-    ...defaultConfig.theme.aliases,
+    ...defaultConfig.aliases,
     jc: 'justifyContent',
   },
 });
@@ -77,7 +77,7 @@ import { createConfig } from '@gluestack-ui/themed';
 import { config as defaultConfig } from "@gluestack-ui/config";
 
 export const config = createConfig({
-  ...defaultConfig.theme,
+  ...defaultConfig,
   components: {
     Button: {
       theme: {
@@ -130,9 +130,9 @@ import { createConfig } from '@gluestack-ui/themed';
 import { config as defaultConfig } from "@gluestack-ui/config";
 
 export const config = createConfig({
-  ...defaultConfig.theme,
+  ...defaultConfig,
   themes: {
-    ...defaultConfig.theme.themes,
+    ...defaultConfig.themes,
     classic: {
       colors: {
         $primary: '$colors.$brown400',
@@ -197,9 +197,9 @@ import { createConfig } from '@gluestack-ui/themed';
 import { config as defaultConfig } from "@gluestack-ui/config";
 
 export const config = createConfig({
-  ...defaultConfig.theme,
+  ...defaultConfig,
   globalStyles: {
-    ...defaultConfig.theme.globalStyles,
+    ...defaultConfig.globalStyles,
     variants: {
       variant: {
         blackBackground: {

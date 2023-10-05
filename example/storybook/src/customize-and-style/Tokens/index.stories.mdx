@@ -20,12 +20,13 @@ gluestack-ui components internally utilize theme tokens by consuming them within
 Theme and token configurations are exported under the name `config` from the `@gluestack-ui/themed` . This `config` can be passed to the `GluestackUIProvider`, allowing you to provide the necessary theme and styling information for the gluestack-ui components. This approach enables a centralized and consistent theming system across your application's UI components.
 
 ```jsx
-import { config, GluestackUIProvider } from 'gluestack-ui/react';
+import { GluestackUIProvider } from 'gluestack-ui/themed';
+import { config } from '@gluestack-ui/config';
 
 function App() {
   return (
-    <GluestackUIProvider config={config.theme}>
-      <App />
+    <GluestackUIProvider config={config}>
+      {/* Your code goes here */}
     </GluestackUIProvider>
   );
 }

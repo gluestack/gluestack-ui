@@ -699,7 +699,7 @@ export const config = {
   }),
 } as const;
 
-type Config = typeof config.theme; // Assuming `config` is defined elsewhere
+type Config = typeof config; // Assuming `config` is defined elsewhere
 
 export interface UIConfig {}
 
