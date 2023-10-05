@@ -32,4 +32,4 @@ module.exports = function (api) {
 Just make sure your babel.config.js and gluestack-style.config.js/ts are in the same directory. We suggest you keep both of them at the root of your app codebase.
 
 More guides on how to get started are available
-[here](https://style.gluestack.io/).
+[here](https://gluestack.io/style).
