@@ -32,7 +32,7 @@ export * from './Progress';
 export {
   GluestackUIProvider,
   GluestackUIStyledProvider,
-  GluestackUIContextProvider,
+  // GluestackUIContextProvider,
   NativeBaseProvider,
 } from './Provider';
 export * from './Radio';

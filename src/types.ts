@@ -90,4 +90,4 @@ export type GenericComponentType<PropType, ExtraProps = {}, Omitprops = {}> = (
     //@ts-ignore
     GenericSXType<ConvertKeys<React.ComponentProps<PropType>['sx']>> &
     ExtraProps
-) => React.JSX.Element;
+) => JSX.Element;

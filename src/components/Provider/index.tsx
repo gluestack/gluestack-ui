@@ -1,9 +1,5 @@
 import React, { createContext, useState } from 'react';
-import {
-  createProvider,
-  //@ts-ignore
-  GluestackUIContextProvider,
-} from '@gluestack-ui/provider';
+import { createProvider } from '@gluestack-ui/provider';
 import { StyledProvider, useColorMode } from '@gluestack-style/react';
 import { OverlayProvider } from '@gluestack-ui/overlay';
 import { ToastProvider } from '@gluestack-ui/toast';
@@ -15,6 +11,8 @@ import { deepMerge } from '../../utils';
 
 const GluestackUIStyledProvider = createProvider({ StyledProvider });
 
+export const HooksContext = createContext({});
+
 const GluestackUIProvider = ({ children, ...props }: any) => {
   return (
     <GluestackUIStyledProvider {...props}>
@@ -24,8 +22,6 @@ const GluestackUIProvider = ({ children, ...props }: any) => {
     </GluestackUIStyledProvider>
   );
 };
-
-export const HooksContext = createContext({});
 
 const NativeBaseProvider = ({ children, _enableRem = true, ...props }: any) => {
   const [colorMode, setColorMode] = useState(useColorMode());
@@ -39,22 +35,15 @@ const NativeBaseProvider = ({ children, _enableRem = true, ...props }: any) => {
 
   return (
     <HooksContext.Provider value={{ colorMode, setColorMode }}>
-      <GluestackUIStyledProvider
+      <GluestackUIProvider
         colorMode={colorMode}
         config={mergedTheme}
         {...props}
       >
-        <OverlayProvider>
-          <ToastProvider>{children}</ToastProvider>
-        </OverlayProvider>
-      </GluestackUIStyledProvider>
+        {children}
+      </GluestackUIProvider>
     </HooksContext.Provider>
   );
 };
 
-export {
-  GluestackUIProvider,
-  GluestackUIStyledProvider,
-  GluestackUIContextProvider,
-  NativeBaseProvider,
-};
+export { GluestackUIProvider, GluestackUIStyledProvider, NativeBaseProvider };
