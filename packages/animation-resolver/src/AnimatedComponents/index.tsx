@@ -9,66 +9,96 @@ import type {
   FlatListProps,
   SectionListProps,
 } from 'react-native';
+
+const getAnimationResolverPlugin: any = (plugins: any[]) => {
+  let pluginData;
+  plugins.forEach((plugin) => {
+    if (plugin.name === 'AnimationResolver') {
+      pluginData = plugin;
+    }
+  });
+
+  return pluginData;
+};
+
+const animatedComponent = (componentName: string, _props: any) => {
+  return React.forwardRef(({ ...props }: any, ref: any) => {
+    const ctx = useStyled();
+    // let animationDriverData = ctx?.config?.plugins[0]?.componentDriver;
+
+    let animationDriverData: any = getAnimationResolverPlugin(
+      ctx?.config?.plugins
+    )?.componentDriver;
+
+    if (animationDriverData?.engine[componentName]) {
+      const Component = animationDriverData.engine[componentName];
+      return <Component {...props} ref={ref} />;
+    }
+    return <React.Fragment {..._props} {...props} ref={ref}></React.Fragment>;
+  });
+};
+
 const AnimatedText = (
   props: TextProps & {
     animationComponentGluestack: true;
   }
 ) => {
-  return <React.Fragment {...props}></React.Fragment>;
+  const Component = animatedComponent('Text', props);
+  return <Component {...props} />;
 };
 const AnimatedView = (
   props: ViewProps & {
     animationComponentGluestack: true;
   }
 ) => {
-  return <React.Fragment {...props}></React.Fragment>;
+  const Component = animatedComponent('props', props);
+  return <Component {...props} />;
 };
+
 const AnimatedPressable = (
   props: PressableProps & {
     animationComponentGluestack: true;
   }
 ) => {
   // @ts-ignore
-  return <React.Fragment {...props}></React.Fragment>;
+  const Component = animatedComponent('Pressable', props);
+  return <Component {...props} />;
 };
 const AnimatedImage = (
   props: ImageProps & {
     animationComponentGluestack: true;
   }
 ) => {
-  // @ts-ignore
-  return <React.Fragment {...props}></React.Fragment>;
+  const Component = animatedComponent('Image', props);
+  return <Component {...props} />;
 };
 const AnimatedScrollView = (
   props: ScrollViewProps & { animationComponentGluestack: true }
 ) => {
-  return <React.Fragment {...props}></React.Fragment>;
+  const Component = animatedComponent('ScrollView', props);
+  return <Component {...props} />;
 };
 const AnimatedSafeAreaView = (props: React.PropsWithChildren) => {
-  return <React.Fragment {...props}></React.Fragment>;
+  const Component = animatedComponent('SafeAreaView', props);
+  return <Component {...props} />;
 };
 const AnimatedFlatList = (
   props: FlatListProps<any> & { animationComponentGluestack: true }
 ) => {
-  return <React.Fragment {...props}></React.Fragment>;
+  const Component = animatedComponent('FlatList', props);
+  return <Component {...props} />;
 };
 const AnimatedSectionList = (
   props: SectionListProps<any> & { animationComponentGluestack: true }
 ) => {
-  return <React.Fragment {...props}></React.Fragment>;
+  const Component = animatedComponent('SectionList', props);
+  return <Component {...props} />;
 };
-const AnimatedAnimatePresence = React.forwardRef(
-  ({ ...props }: any, ref: any) => {
-    const ctx = useStyled();
-    let animationDriverData = ctx.animationDriverData;
-    if (animationDriverData?.engine.AnimatePresence) {
-      return (
-        <animationDriverData.engine.AnimatePresence {...props} ref={ref} />
-      );
-    }
-    return <React.Fragment {...props} ref={ref}></React.Fragment>;
-  }
-);
+const AnimatePresence = (props: any) => {
+  const Component = animatedComponent('AnimatePresence', props);
+  return <Component {...props} />;
+};
+
 AnimatedText.displayName = 'Gluestack-AnimatedResolver-AnimatedText';
 AnimatedView.displayName = 'Gluestack-AnimatedResolver-AnimatedView';
 AnimatedPressable.displayName = 'Gluestack-AnimatedResolver-AnimatedPressable';
@@ -80,7 +110,7 @@ AnimatedSafeAreaView.displayName =
 AnimatedFlatList.displayName = 'Gluestack-AnimatedResolver-AnimatedFlatList';
 AnimatedSectionList.displayName =
   'Gluestack-AnimatedResolver-AnimatedSectionList';
-AnimatedAnimatePresence.displayName =
+AnimatePresence.displayName =
   'Gluestack-AnimatedResolver-AnimatedAnimatePresence';
 
 export {
@@ -92,5 +122,5 @@ export {
   AnimatedSafeAreaView,
   AnimatedFlatList,
   AnimatedSectionList,
-  AnimatedAnimatePresence,
+  AnimatePresence,
 };
