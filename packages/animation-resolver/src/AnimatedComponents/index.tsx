@@ -32,7 +32,7 @@ const animatedComponent = (componentName: string, _props: any) => {
 
     if (animationDriverData?.engine[componentName]) {
       const Component = animationDriverData.engine[componentName];
-      return <Component {...props} ref={ref} />;
+      return <Component {..._props} {...props} ref={ref} />;
     }
     return <React.Fragment {..._props} {...props} ref={ref}></React.Fragment>;
   });
@@ -94,10 +94,7 @@ const AnimatedSectionList = (
   const Component = animatedComponent('SectionList', props);
   return <Component {...props} />;
 };
-const AnimatePresence = (props: any) => {
-  const Component = animatedComponent('AnimatePresence', props);
-  return <Component {...props} />;
-};
+const AnimatePresence = animatedComponent('AnimatePresence', {});
 
 AnimatedText.displayName = 'Gluestack-AnimatedResolver-AnimatedText';
 AnimatedView.displayName = 'Gluestack-AnimatedResolver-AnimatedView';

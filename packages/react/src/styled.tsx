@@ -861,6 +861,7 @@ export function verboseStyled<P, Variants, ComCon>(
   //@ts-ignore
   type ITypeReactNativeStyles = P['style'];
   let styleHashCreated = false;
+  let pluginData: any;
   let orderedResolved: OrderedSXResolved;
   let componentStyleIds: any = {};
   let componentDescendantStyleIds: any = {}; // StyleIds = {};
@@ -1883,6 +1884,28 @@ export function verboseStyled<P, Variants, ComCon>(
 
     delete resolvedStyleProps?.as;
 
+    // }
+
+    if (plugins) {
+      // plugins?.reverse();
+      plugins.reverse();
+      for (const pluginName in plugins) {
+        // @ts-ignore
+        if (plugins[pluginName]?.componentMiddleWare) {
+          // @ts-ignore
+          Component = plugins[pluginName]?.componentMiddleWare({
+            Component: Component,
+            theme,
+            componentStyleConfig,
+            ExtendedConfig,
+          });
+
+          //@ts-ignore
+          pluginData = Component.styled;
+        }
+      }
+    }
+
     let component;
 
     if (AsComp) {
@@ -1912,38 +1935,22 @@ export function verboseStyled<P, Variants, ComCon>(
         </Component>
       );
     }
-    // }
-
-    let styledComponent = component;
-    if (plugins) {
-      // plugins?.reverse();
-      plugins.reverse();
-      for (const pluginName in plugins) {
-        // @ts-ignore
-        if (plugins[pluginName]?.componentMiddleWare) {
-          // @ts-ignore
-          styledComponent = plugins[pluginName]?.componentMiddleWare({
-            Component: component,
-            theme,
-            componentStyleConfig,
-            ExtendedConfig,
-          });
-        }
-      }
-    }
 
     if (containsDescendant) {
       return (
         <AncestorStyleContext.Provider value={descendantCSSIds}>
-          {styledComponent}
+          {component}
         </AncestorStyleContext.Provider>
       );
     }
 
-    return styledComponent;
+    return component;
   };
 
   const StyledComp = React.forwardRef(StyledComponent);
+
+  //@ts-ignore
+  StyledComp.getStyledData = () => pluginData;
 
   const displayName = componentStyleConfig?.componentName
     ? componentStyleConfig?.componentName

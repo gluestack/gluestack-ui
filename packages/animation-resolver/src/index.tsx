@@ -263,7 +263,7 @@ export class AnimationResolver implements IStyledPlugin {
   }
 
   componentMiddleWare({ Component, ExtendedConfig }: any) {
-    if (Component && Component.isAnimatedComponent) {
+    if (Component && Component?.isAnimatedComponent) {
       const styledConfig = this.#childrenExitPropsMap;
 
       this.#childrenExitPropsMap = {};
@@ -351,13 +351,12 @@ export class AnimationResolver implements IStyledPlugin {
         NewComponent.styled.config = {};
         //@ts-ignore
         NewComponent.styled.config = styledConfig;
-
         //@ts-ignore
         NewComponent.isStyledComponent = Component?.isStyledComponent;
         //@ts-ignore
         NewComponent.isComposedComponent = Component?.isComposedComponent;
 
-        NewComponent.displayName = 'StyledComponent';
+        NewComponent.displayName = Component?.displayName;
         return NewComponent;
       }
     } else {
