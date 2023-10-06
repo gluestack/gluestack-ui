@@ -121,20 +121,19 @@ export function ContextBasedStyles() {
   return (
     <Wrapper colorMode="dark">
       {/* <StyledIcon as={CameraIcon} /> */}
-      <Text1
-        data-style="hell"
+      {/* <Text1
+        // data-style="hell"
         sx={{
           color: '$red500',
         }}
       >
         vdkbkdfbv
-      </Text1>
+      </Text1> */}
       <MyLink
         href={'/'}
         sx={{
           color: '$red500',
         }}
-        data-style="kkkk"
       >
         next link
       </MyLink>
