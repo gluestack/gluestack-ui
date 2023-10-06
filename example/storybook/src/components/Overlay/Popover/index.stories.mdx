@@ -55,10 +55,6 @@ import {
 
 import Wrapper from '../../Wrapper';
 
-## Themed
-
-Following is the default implementation of the **Popover** component without any additional customization. This serves as a starting point for users who are new to this library and want to learn about the basic functionality and appearance of the component. You can refer [here](https://github.com/gluestack/gluestack-ui/tree/main/packages/themed/src/components/Popover/styled-components) to learn about default styling of Popover component.
-
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
@@ -175,6 +171,8 @@ Following is the default implementation of the **Popover** component without any
 
 <br />
 
+## API Reference
+
 ### Import
 
 To use the component in your project, run the command below into your import statement. This will import the component from your components folder.
@@ -202,9 +200,9 @@ export default () => (
 );
 ```
 
-### API Reference
+### Component Props
 
-The following section contains a comprehensive list of the component's references, including descriptions, properties, types, and default behavior. This information is readily available for you to access, helping you effectively utilize the component library in your projects.
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
 
 #### Popover
 
@@ -568,6 +566,39 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
   </TableContainer>
 </AppProvider>
 
+**Descendants Styling Props**
+Props to style child components.
+
+<AppProvider>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Sx Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Description</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>_content</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Prop to style PopoverContent Component`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+
+  </TableContainer>
+</AppProvider>
+
 #### PopoverBackdrop
 
 It is React Native's [Pressable](https://reactnative.dev/docs/pressable) component, created using [@legendapp/motion's](https://legendapp.com/open-source/motion/) `createMotionAnimatedComponent` function to add animation to the component. You can use any declarative animation library you prefer.
@@ -593,6 +624,49 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
 
 It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable) component.
 
+**Descendants Styling Props**
+Props to style child components.
+
+<AppProvider>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Sx Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Description</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>_text</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Prop to style PopoverCloseButton  Text Component`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+         <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>_icon</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Prop to style PopoverCloseButton  Icon Component`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+
+  </TableContainer>
+</AppProvider>
+
 ### Accessibility
 
 We have outlined the various features that ensure the Popover component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards. It adheres to the [Dialog WAI-ARIA design pattern.](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/).
@@ -605,21 +679,13 @@ We have outlined the various features that ensure the Popover component is acces
 - `Shift + Tab`: Moves focus to the previous focusable element.
 - `Esc`: Closes the popover and moves focus to PopoverTrigger.
 
-### Dependencies
+## Themed
 
-The following are the lists of all the libraries and packages the component relies on. This information will help you ensure that your project has all the necessary dependencies installed to use the component.
-
-- `@gluestack-ui/hooks`
-- `@gluestack-ui/overlay`
-- `@gluestack-ui/utils`
-- `@react-native-aria/focus`
-- `@react-native-aria/interactions`
-- `@react-native-aria/overlays`
-- `@react-native-aria/dialog`
+The themed version of the component is a pre-styled version of the component, which allows you to quickly integrate the component into your project. The component's design and functionality are fully defined, allowing you to focus on the more important aspects of your project.
 
 ### Props
 
-Popover component is created using ScrollView component from react-native. It extends all the props supported by [React Native ScrollView](https://reactnative.dev/docs/scrollview#props), [utility props](https://ui.gluestack.io/docs/styling/utility-and-sx-props) and the props mentioned below.
+Popover component is created using ScrollView component from react-native. It extends all the props supported by [React Native ScrollView](https://reactnative.dev/docs/scrollview#props), [utility props](/ui/docs/styling/utility-and-sx-props) and the props mentioned below.
 
 #### Popover
 
@@ -793,17 +859,23 @@ A popover component can enhance the avatar by providing additional information a
 
 ## Unstyled
 
+All the components in `gluestack-ui` are unstyled by default. To customize your UI using the extendedTheme, please refer to this [link](https://gluestack.io/ui/docs/theme/customizing-components). The import names of components serve as keys to customize each component.
+
+<!--
+
+### Advanced
+
 We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
 
-### Customizing the Popover
+### Customizing the Popoverhttps://style.gluestack.io/style
 
-We have a function called `createPopover` which can be used to create a custom popover component. This function takes in a configuration object which contains the styled components that you want to use for the Popover You can refer [style.gluestack.io](https://style.gluestack.io/) for more information on how to use styled components.
+We have a function called `createPopover` which can be used to create a custom popover component. This function takes in a configuration object which contains the styled components that you want to use for the Popover You can refer [gluestack.io/style](/style) for more information on how to use styled components.
 
-You can read more on how to animate components [here](https://ui.gluestack.io/docs/advanced/animations).
+You can read more on how to animate components [here](/ui/docs/advanced/animations).
 
 #### Usage
 
-Default styling of all these components can be found in the `components/core/popover` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/tree/main/example/storybook/src/components/Overlay/Popover) of the styled `Popover` components.
+Default styling of all these components can be found in the `components/core/popover` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/main/packages/themed/src/components/Popover) of the styled `Popover` components.
 
 ```jsx
 // import the styles
@@ -848,3 +920,4 @@ export default () => (
   </Popover>
 );
 ```
+-->

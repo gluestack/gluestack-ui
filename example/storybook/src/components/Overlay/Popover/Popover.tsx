@@ -30,10 +30,12 @@ import { PhoneIcon, Clock3Icon, MailIcon } from 'lucide-react-native';
 const PopoverBasic = ({
   showPopover: showPopoverProp = true,
   placement = 'bottom',
+  size = 'md',
 }: any) => {
   return (
     <Center w={1200} h={800}>
       <Popover
+        size={size}
         offset={10}
         isOpen={showPopoverProp}
         placement={placement}
@@ -47,7 +49,7 @@ const PopoverBasic = ({
         }}
       >
         <PopoverBackdrop />
-        <PopoverContent maxWidth="$96">
+        <PopoverContent>
           <PopoverHeader>
             <Heading>Welcome!</Heading>
             <PopoverCloseButton>

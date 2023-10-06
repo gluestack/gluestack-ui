@@ -3,7 +3,7 @@ import React from 'react';
 import { Path } from 'react-native-svg';
 import { Root } from '../styled-components';
 
-const FavouriteIcon: any = createIcon({
+const FavouriteIcon = createIcon({
   Root,
   viewBox: '0 0 24 24',
   path: (

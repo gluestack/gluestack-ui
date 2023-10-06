@@ -2,14 +2,14 @@ import { Box } from '@gluestack-ui/themed';
 import React from 'react';
 
 const BoxWithRef = ({ ...props }: any) => {
-  const myRef = React.useRef({});
+  const myRef = React.useRef<any>({});
   React.useEffect(() => {
     const styleObj = {
       borderWidth: 8,
       borderRadius: 4,
       borderColor: '#22D3EE',
     };
-    // @ts-ignore
+
     myRef.current.setNativeProps({
       style: styleObj,
     });

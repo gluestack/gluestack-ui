@@ -12,9 +12,7 @@ import {
   TableContainer,
   InlineCode,
 } from '@gluestack/design-system';
-import Wrapper from '../../components/Wrapper';
-import { View } from './View';
-import { Text, Heading } from '@gluestack-ui/themed';
+import { View, Text, Heading, Wrapper } from './View';
 
 <Meta title="React Native Components/View" />
 
@@ -28,7 +26,6 @@ The most fundamental component for building a UI.
     showArgsController={false}
     metaData={{
       code: `
-      <>
        <View p="$4">
       <Heading>
         A component library for the{" "}
@@ -39,7 +36,6 @@ The most fundamental component for building a UI.
         gives you building blocks to build you React applications.
       </Text>
     </View>
-</>
 `,
       transformCode: (code) => {
         return transformedCode(code);
@@ -76,7 +72,7 @@ export default () => <View></View>;
 
 ### Props
 
-gluestack-ui View component is created using View component from react-native. It extends all the props supported by [React Native View](https://reactnative.dev/docs/view#props), [utility props](https://ui.gluestack.io/docs/styling/utility-and-sx-props) and the props mentioned below.
+gluestack-ui View component is created using View component from react-native. It extends all the props supported by [React Native View](https://reactnative.dev/docs/view#props), [utility props](/ui/docs/styling/utility-and-sx-props) and the props mentioned below.
 
 #### View
 

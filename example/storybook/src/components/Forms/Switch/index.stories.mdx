@@ -29,10 +29,6 @@ import {
 
 import Wrapper from '../../Wrapper';
 
-## Themed
-
-Following is the default implementation of the **Switch** component without any additional customization. This serves as a starting point for users who are new to this library and want to learn about the basic functionality and appearance of the component. You can refer [here](https://github.com/gluestack/gluestack-ui/tree/main/packages/themed/src/components/Switch/styled-components) to learn about default styling of Switch component.
-
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
@@ -61,6 +57,8 @@ Following is the default implementation of the **Switch** component without any 
 
 <br />
 
+## API Reference
+
 ### Import
 
 To use the component in your project, run the command below into your import statement. This will import the component from your components folder.
@@ -77,9 +75,9 @@ The structure provided below can help you identify and understand a Switch compo
 export default () => <Switch />;
 ```
 
-### API Reference
+### Component Props
 
-The following section contains a comprehensive list of the component's references, including descriptions, properties, types, and default behavior. This information is readily available for you to access, helping you effectively utilize the component library in your projects.
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
 
 #### Switch
 
@@ -236,19 +234,13 @@ We have outlined the various features that ensure the Button component is access
 
 - VoiceOver: When the switch is focused, the screen reader will announce the switch's action and its current state.
 
-### Dependencies
+## Themed
 
-The following are the lists of all the libraries and packages the component relies on. This information will help you ensure that your project has all the necessary dependencies installed to use the component.
-
-- `@gluestack-ui/utils`
-- `@gluestack-ui/form-control`
-- `@react-native-aria/focus`
-- `@react-native-aria/interactions`
-- `@react-stately/toggle`
+The themed version of the component is a pre-styled version of the component, which allows you to quickly integrate the component into your project. The component's design and functionality are fully defined, allowing you to focus on the more important aspects of your project.
 
 ### Props
 
-Switch component is created using Switch component from react-native. It extends all the props supported by [React Native Switch](https://reactnative.dev/docs/switch#props), [utility props](https://ui.gluestack.io/docs/styling/utility-and-sx-props) and the props mentioned below.
+Switch component is created using Switch component from react-native. It extends all the props supported by [React Native Switch](https://reactnative.dev/docs/switch#props), [utility props](/ui/docs/styling/utility-and-sx-props) and the props mentioned below.
 
 #### Switch
 
@@ -410,21 +402,21 @@ An example of a switch component being used with a different color scheme.
       },
       argsType: {},
     }}
-/>
-
+  />
 </AppProvider>
 
 ## Unstyled
 
 We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
 
+<!--
 ### Customizing the Switch
 
-We have a function called `createSwitch` which can be used to create a custom switch component. This function takes in a configuration object which contains the styled components that you want to use for the switch. You can refer [style.gluestack.io](https://style.gluestack.io/) for more information on how to use styled components.
+We have a function called `createSwitch` which can be used to create a custom switch component. This function takes in a configuration object which contains the styled components that you want to use for the switch. You can refer [gluestack.io/style](https://style.gluestack.io/styleon on how to use styled components.
 
 #### Usage
 
-Default styling of all these components can be found in the `components/core/switch` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/tree/main/example/storybook/src/ui-components/Switch) of the styled `Switch` components.
+Default styling of all these components can be found in the `components/core/switch` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/main/packages/themed/src/components/Switch) of the styled `Switch` components.
 
 ```jsx
 // import the styles
@@ -441,3 +433,4 @@ const Switch = createSwitch({
 // Using the switch component
 export default () => <Switch />;
 ```
+-->

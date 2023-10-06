@@ -3,7 +3,7 @@ import React from 'react';
 import { Path } from 'react-native-svg';
 import { Root } from '../styled-components';
 
-const EyeIcon: any = createIcon({
+const EyeIcon = createIcon({
   Root,
   viewBox: '0 0 24 24',
   path: (
@@ -28,7 +28,7 @@ const EyeIcon: any = createIcon({
 
 EyeIcon.displayName = 'EyeIcon';
 
-const EyeOffIcon: any = createIcon({
+const EyeOffIcon = createIcon({
   Root,
   viewBox: '0 0 24 24',
   path: (

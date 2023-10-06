@@ -196,13 +196,31 @@ function Card1() {
                 Manual Installation
               </Text>
               <HStack flexWrap="wrap" gap="$2.5">
-                <NextLink href="/docs/guides/install-nextjs">
+                <NextLink
+                  href="/ui/docs/guides/install-nextjs"
+                  style={{
+                    borderRadius: 8,
+                    height: 72,
+                  }}
+                >
                   <Next />
                 </NextLink>
-                <NextLink href="/docs/guides/install-expo">
+                <NextLink
+                  href="/ui/docs/guides/install-expo"
+                  style={{
+                    borderRadius: 8,
+                    height: 72,
+                  }}
+                >
                   <Expo1 />
                 </NextLink>
-                <NextLink href="/docs/guides/install-rn">
+                <NextLink
+                  href="/ui/docs/guides/install-rn"
+                  style={{
+                    borderRadius: 8,
+                    height: 72,
+                  }}
+                >
                   <ReactN />
                 </NextLink>
               </HStack>
@@ -248,7 +266,13 @@ function Card1() {
                 VS Code Extension
               </Text>
               <HStack>
-                <NextLink href="/docs/getting-started/vscode-extensions">
+                <NextLink
+                  href="/ui/docs/getting-started/vscode-extensions"
+                  style={{
+                    borderRadius: 8,
+                    height: 72,
+                  }}
+                >
                   <VsCode />
                 </NextLink>
               </HStack>
@@ -287,6 +311,7 @@ function Card1() {
                   href="https://www.figma.com/@gluestack"
                   isExternal
                   target="_blank"
+                  borderRadius="$lg"
                 >
                   <Figma />
                 </Link>
@@ -326,6 +351,7 @@ function Card1() {
                   href="https://github.com/gluestack/next-head-starter-kit"
                   isExternal
                   target="_blank"
+                  borderRadius="$lg"
                 >
                   <Next />
                 </Link>
@@ -333,6 +359,7 @@ function Card1() {
                   href="https://github.com/gluestack/expo-head-starter-kit"
                   isExternal
                   target="_blank"
+                  borderRadius="$lg"
                 >
                   <Expo1 />
                 </Link>

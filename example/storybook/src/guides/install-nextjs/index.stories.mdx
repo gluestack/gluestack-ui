@@ -53,11 +53,11 @@ npm i @gluestack-ui/themed @gluestack-style/react @gluestack/ui-next-adapter rea
 
 ### Step 2: Server-side rendering (SSR)
 
-It's also recommended to set up your server-side rendering (SSR) correctly. To do this, you will need to use the `flush()` function exported by the [@gluestack-style/react](https://style.gluestack.io/docs/configuration/ssr).
+It's also recommended to set up your server-side rendering (SSR) correctly. To do this, you will need to use the `flush()` function exported by the [@gluestack-ui/themed](/ui/docs/configuration/ssr).
 
 #### Next.js App Routers (which supports React Server Components)
 
-- For Next.js App Routers we will create a new `registry.tsx` file in the root of your project and use the flush function from `@gluestack-style/react`:
+- For Next.js App Routers we will create a new `registry.tsx` file in the root of your project and use the flush function from `@gluestack-ui/themed`:
 
 ```jsx
 'use client';
@@ -68,7 +68,7 @@ import { StyleRegistry, createStyleRegistry } from 'styled-jsx';
 import { Html, Head, Main, NextScript } from 'next/document';
 // @ts-ignore
 import { AppRegistry } from 'react-native-web';
-import { flush } from '@gluestack-style/react';
+import { flush } from '@gluestack-ui/themed';
 
 export default function StyledJsxRegistry({
   children,
@@ -190,17 +190,15 @@ module.exports = withGluestackUI(nextConfig);
 // app/providers.tsx
 'use client';
 
-import { GluestackUIProvider } from '../components';
-import { config } from '../gluestack-ui.config';
+import { GluestackUIProvider } from '@gluestack-ui/themed';
+import { config } from '@gluestack-ui/config';
 
 export function Providers({ children }: { children: React.ReactNode }) {
-  return (
-    <GluestackUIProvider config={config.theme}>{children}</GluestackUIProvider>
-  );
+  return <GluestackUIProvider config={config}>{children}</GluestackUIProvider>;
 }
 ```
 
-This component returns a `GluestackUIProvider` component which wraps the `children` with the theme from `gluestack-ui.config.ts` file.
+This component returns a `GluestackUIProvider` component which wraps the `children` with the theme from `@gluestack-ui/config` file.
 
 - After creating `providers.tsx` file, we need to wrap the exported `GluestackUIProvider` component around the `children` in `layout.tsx` file. The code in `layout.tsx` file at this point of time will look like this:
 
@@ -241,17 +239,18 @@ For Next.js Page Router just add `GluestackUIProvider` to the root of your app a
 ```jsx
 import '@/styles/globals.css';
 import type { AppProps } from 'next/app';
-import { config, GluestackUIProvider } from '@gluestack-ui/themed';
+import { GluestackUIProvider } from '@gluestack-ui/themed';
+import { config } from '@gluestack-ui/config';
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <GluestackUIProvider config={config.theme}>
+    <GluestackUIProvider config={config}>
       <Component {...pageProps} />
     </GluestackUIProvider>
   );
 }
 ```
 
-This ensures that all components are wrapped with `<GluestackUIProvider />`, and the theme from `gluestack-ui.config.ts` is applied.
+This ensures that all components are wrapped with `<GluestackUIProvider />`, and the theme from `@gluestack-ui/config` is applied.
 
 This guide should help you get started with gluestack-ui in your expo project. If you run into any issues or have further questions, please refer to the official documentation or community forums.
