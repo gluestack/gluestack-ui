@@ -4,7 +4,7 @@ import { Pressable, View, Text } from 'react-native';
 import { styled } from '@gluestack-style/react';
 import {
   AnimatedImage,
-  AnimatedAnimatePresence,
+  AnimatePresence,
 } from '@gluestack-style/animation-resolver';
 
 const images = [require('./1.png'), require('./2.png'), require('./3.png')];
@@ -40,7 +40,7 @@ export function AnimationPlugin() {
           'aspectRatio': 1 * 1.4,
         }}
       >
-        <AnimatedAnimatePresence>
+        <AnimatePresence>
           <StyledMotionImage
             style={{
               width: '100%',
@@ -71,7 +71,7 @@ export function AnimationPlugin() {
               },
             }}
           />
-        </AnimatedAnimatePresence>
+        </AnimatePresence>
       </Box>
       <Pressable
         accessibilityRole="button"
