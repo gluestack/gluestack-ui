@@ -10,7 +10,7 @@
 
 ## Documentation
 
-You can find detailed documentation for each component, including a list of props and examples, in https://gluestack.io/styledocs website.
+You can find detailed documentation for each component, including a list of props and examples, in https://gluestack.io/style/docs website.
 
 ## Installation
 
