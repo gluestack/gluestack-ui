@@ -40,13 +40,15 @@ import {
 } from 'lucide-react-native';
 
 import { transformedCode } from '../../../utils';
-import { AppProvider, CodePreview, Table } from '@gluestack/design-system';
+import {
+  AppProvider,
+  CodePreview,
+  Table,
+  TableContainer,
+  InlineCode,
+} from '@gluestack/design-system';
 
 import Wrapper from '../../Wrapper';
-
-## Themed
-
-Following is the default implementation of the **Icon** component without any additional customization. This serves as a starting point for users who are new to this library and want to learn about the basic functionality and appearance of the component. You can refer [here](https://github.com/gluestack/gluestack-ui/tree/main/packages/themed/src/components/Icons/styled-components) to learn about default styling of Icon component.
 
 <AppProvider>
   <CodePreview
@@ -77,11 +79,13 @@ Following is the default implementation of the **Icon** component without any ad
 
 <br />
 
+## API Reference
+
 ### Import
 
 To use the component in your project, run the command below into your import statement. This will import the component from your components folder.
 
-```bash
+```jsx
 import { Icon } from '@gluestack-ui/themed';
 ```
 
@@ -93,9 +97,9 @@ The structure provided below can help you identify and understand a Icon compone
 export default () => <Icon as={} />;
 ```
 
-### API Reference
+### Component Props
 
-The following section contains a comprehensive list of the component's references, including descriptions, properties, types, and default behavior. This information is readily available for you to access, helping you effectively utilize the component library in your projects.
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
 
 #### Icon
 
@@ -113,12 +117,50 @@ We have outlined the various features that ensure the Icon component is accessib
 
 Role: img is passed
 
-### Dependencies
+## Themed
 
-The following are the lists of all the libraries and packages the component relies on. This information will help you ensure that your project has all the necessary dependencies installed to use the component.
+The themed version of the component is a pre-styled version of the component, which allows you to quickly integrate the component into your project. The component's design and functionality are fully defined, allowing you to focus on the more important aspects of your project.
 
-- `@gluestack-ui/utils`
-- `react-native-svg`
+### Props
+
+Icon component is created using AsForwarder component from @gluestack-style/react. It extends all the props supported by [gluestack-ui AsForwarder](https://gluestack.io/style/docs/api/as-forwarder), [utility props](/ui/docs/styling/utility-and-sx-props) and the props mentioned below.
+
+#### Image
+
+<AppProvider>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Name</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Value</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Default</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>size</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{'2xs | xs | sm | md | lg | xl'}</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>md</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</AppProvider>
 
 ### Examples
 
@@ -356,6 +398,12 @@ After :
 
 ## Unstyled
 
+All the components in `gluestack-ui` are unstyled by default. To customize your UI using the extendedTheme, please refer to this [link](https://gluestack.io/ui/docs/theme/customizing-components). The import names of components serve as keys to customize each component.
+
+<!--
+
+### Advanced
+
 We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
 
 ### Customizing the Icon
@@ -381,3 +429,4 @@ const Icon = createIcon({
 // Using the icon component
 export default () => <Icon />;
 ```
+-->

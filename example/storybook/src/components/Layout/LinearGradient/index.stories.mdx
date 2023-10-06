@@ -41,10 +41,11 @@ You can refer to [this](https://ui.gluestack.io/docs/theme/customizing-component
 ```jsx
 // gluestack-ui.config.ts
 
-import { createConfig, config as defaultConfig, } from '@gluestack-ui/themed';
+import { createConfig } from '@gluestack-ui/themed';
+import { config as defaultConfig } from "@gluestack-ui/config";
 import { LinearGradient } from 'expo-linear-gradient';
    const config = createConfig({
-   ...defaultConfig.theme,
+   ...defaultConfig,
    components: {
      LinearGradient: {
        theme: {

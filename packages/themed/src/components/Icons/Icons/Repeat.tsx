@@ -3,7 +3,7 @@ import React from 'react';
 import { Path } from 'react-native-svg';
 import { Root } from '../styled-components';
 
-const RepeatIcon: any = createIcon({
+const RepeatIcon = createIcon({
   Root,
   viewBox: '0 0 24 24',
   path: (
@@ -42,7 +42,7 @@ const RepeatIcon: any = createIcon({
 
 RepeatIcon.displayName = 'RepeatIcon';
 
-const Repeat1Icon: any = createIcon({
+const Repeat1Icon = createIcon({
   Root,
   viewBox: '0 0 24 24',
   path: (

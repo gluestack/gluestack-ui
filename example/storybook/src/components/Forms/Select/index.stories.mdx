@@ -53,10 +53,6 @@ import {
 
 import Wrapper from '../../Wrapper';
 
-## Themed
-
-Following is the default implementation of the **Select** component without any additional customization. This serves as a starting point for users who are new to this library and want to learn about the basic functionality and appearance of the component. You can refer [here](https://github.com/gluestack/gluestack-ui/tree/main/packages/themed/src/components/Select/styled-components) to learn about default styling of Select component.
-
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
@@ -131,6 +127,8 @@ Following is the default implementation of the **Select** component without any 
 
 <br />
 
+## API Reference
+
 ### Import
 
 To use the component in your project, run the command below into your import statement. This will import the component from your components folder.
@@ -165,9 +163,9 @@ export default () => (
 );
 ```
 
-### API Reference
+### Component Props
 
-The following section contains a comprehensive list of the component's references, including descriptions, properties, types, and default behavior. This information is readily available for you to access, helping you effectively utilize the component library in your projects.
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
 
 #### Select
 
@@ -327,6 +325,22 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
         <Table.TR>
           <Table.TD>
             <Table.TText>
+              <InlineCode>selectedLabel</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>string</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Sets the initial selected Label for a select component.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
               <InlineCode>defaultValue</InlineCode>
             </Table.TText>
           </Table.TD>
@@ -397,6 +411,48 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
 
 It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable) component.
 
+**Descendants Styling Props**
+Props to style child components.
+
+<AppProvider>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Sx Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Description</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>_icon</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Prop to style SelectIcon Component`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>_input</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Prop to style SelectInput Component`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</AppProvider>
+
 #### SelectInput
 
 It inherits all the properties of React Native's [TextInput](https://reactnative.dev/docs/textInput) component.
@@ -411,23 +467,55 @@ It is internally mapped wth gluestack-ui's [Actionsheet](/ui/docs/components/dis
 
 #### SelectBackdrop
 
-It is internally mapped wth gluestack-ui's [Actionsheet.Backdrop](/ui/docs/components/disclosure/actionsheet) component, which is React Native's [Pressable](https://reactnative.dev/docs/pressable) component, created using [@legendapp/motion's](https://legendapp.com/open-source/motion/) `createMotionAnimatedComponent` function to add animation to the component. You can use any declarative animation library you prefer.
+It is internally mapped wth gluestack-ui's [ActionsheetBackdrop](https://ui.gluestack.io/docs/components/disclosure/actionsheet) component, which is React Native's [Pressable](https://reactnative.dev/docs/pressable) component, created using [@legendapp/motion's](https://legendapp.com/open-source/motion/) `createMotionAnimatedComponent` function to add animation to the component. You can use any declarative animation library you prefer.
 
 #### SelectContent
 
-It is internally mapped wth gluestack-ui's [Actionsheet.Content](/ui/docs/components/disclosure/actionsheet) component, which inherits all the properties of [@legendapp/motion's](https://legendapp.com/open-source/motion/) [Motion.View](https://legendapp.com/open-source/motion/overview/) component. With this ActionSheet component, you have the flexibility to use any declarative animation library that suits your needs.
+It is internally mapped wth gluestack-ui's [ActionsheetContent](https://ui.gluestack.io/docs/components/disclosure/actionsheet) component, which inherits all the properties of [@legendapp/motion's](https://legendapp.com/open-source/motion/) [Motion.View](https://legendapp.com/open-source/motion/overview/) component. With this ActionSheet component, you have the flexibility to use any declarative animation library that suits your needs.
+
+**Descendants Styling Props**
+Props to style child components.
+
+<AppProvider>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Sx Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Description</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>_sectionHeaderBackground</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Prop to style SelectActionsheetSectionHeaderText Component`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</AppProvider>
 
 #### SelectDragIndicatorWrapper
 
-It is internally mapped wth gluestack-ui's [Actionsheet.DragIndicatorWrapper](/ui/docs/components/disclosure/actionsheet) component, which inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+It is internally mapped wth gluestack-ui's [ActionsheetDragIndicatorWrapper](https://ui.gluestack.io/docs/components/disclosure/actionsheet) component, which inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
 #### SelectDragIndicator
 
-It is internally mapped wth gluestack-ui's [Actionsheet.DragIndicator](/ui/docs/components/disclosure/actionsheet) component, which inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+It is internally mapped wth gluestack-ui's [ActionsheetDragIndicator](https://ui.gluestack.io/docs/components/disclosure/actionsheet) component, which inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
 #### SelectItem
 
-It internally uses gluestack-ui's [Actionsheet.Item](/ui/docs/components/disclosure/actionsheet) and [Actionsheet.ItemText](/ui/docs/components/disclosure/actionsheet) component, which inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable) component.
+It internally uses gluestack-ui's [ActionsheetItem](https://ui.gluestack.io/docs/components/disclosure/actionsheet) and [Actionsheet.ItemText](https://ui.gluestack.io/docs/components/disclosure/actionsheet) component, which inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable) component.
 
 <AppProvider>
   <TableContainer>
@@ -502,6 +590,38 @@ It internally uses gluestack-ui's [Actionsheet.Item](/ui/docs/components/disclos
   </TableContainer>
 </AppProvider>
 
+**Descendants Styling Props**
+Props to style child components.
+
+<AppProvider>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Sx Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Description</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>_text</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Prop to style SelectItemText Component`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</AppProvider>
+
 #### SelectScrollView
 
 It is internally mapped wth gluestack-ui's [Actionsheet.ScrollView](/ui/docs/components/disclosure/actionsheet) component, which inherits all the properties of React Native's [ScrollView](https://reactnative.dev/docs/scrollview#props) component.
@@ -539,14 +659,9 @@ We have outlined the various features that ensure the Select component is access
 
 - VoiceOver: When the select is focused, the screen reader will announce the select content.
 
-### Dependencies
+## Themed
 
-The following are the lists of all the libraries and packages the component relies on. This information will help you ensure that your project has all the necessary dependencies installed to use the component.
-
-- `@gluestack-ui/utils`
-- `@react-native-aria/focus`
-- `@gluestack-ui/hooks`
-- `@gluestack-ui/form-control`
+The themed version of the component is a pre-styled version of the component, which allows you to quickly integrate the component into your project. The component's design and functionality are fully defined, allowing you to focus on the more important aspects of your project.
 
 ### Props
 
@@ -688,8 +803,9 @@ The Select component with FormControl example demonstrates how to manage its sta
 
 ## Unstyled
 
-We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
+All the components in `gluestack-ui` are unstyled by default. To customize your UI using the extendedTheme, please refer to this [link](https://gluestack.io/ui/docs/theme/customizing-components). The import names of components serve as keys to customize each component.
 
+<!--
 ### Customizing the Select
 
 We have a function called `createSelect` which can be used to create a custom select component. This function takes in a configuration object which contains the styled components that you want to use for the select. You can refer [gluestack.io/style](https://style.gluestack.io/styleon on how to use styled components.
@@ -790,3 +906,4 @@ export default () => (
   </Select>
 );
 ```
+-->

@@ -37,10 +37,6 @@ import {
 
 import Wrapper from '../../Wrapper';
 
-## Themed
-
-Following is the default implementation of the **Tooltip** component without any additional customization. This serves as a starting point for users who are new to this library and want to learn about the basic functionality and appearance of the component. You can refer [here](https://github.com/gluestack/gluestack-ui/tree/main/packages/themed/src/components/Tooltip/styled-components) to learn about default styling of Tooltip component.
-
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
@@ -100,12 +96,13 @@ Following is the default implementation of the **Tooltip** component without any
 
 <br />
 
+## API Reference
+
 ### Import
 
 To use the component in your project, run the command below into your import statement. This will import the component from your components folder.
 
 ```jsx
-// import the component from your components folder
 import { Tooltip } from '@gluestack-ui/themed';
 ```
 
@@ -123,9 +120,9 @@ export default () => (
 );
 ```
 
-### API Reference
+### Component Props
 
-The following section contains a comprehensive list of the component's references, including descriptions, properties, types, and default behavior. This information is readily available for you to access, helping you effectively utilize the component library in your projects.
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
 
 #### Tooltip
 
@@ -436,20 +433,42 @@ Contains all text related layout style props and actions. It inherits all the pr
 
 Contains all backdrop related layout style props and actions. It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
+**Descendants Styling Props**
+Props to style child components.
+
+<AppProvider>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Sx Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Description</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>_text</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Prop to style TooltipText Component`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+
+  </TableContainer>
+</AppProvider>
+
 ### Accessibility
 
 We have outlined the various features that ensure the Tooltip component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards. It adheres to the [ WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/).
-
-### Dependencies
-
-The following are the lists of all the libraries and packages the component relies on. This information will help you ensure that your project has all the necessary dependencies installed to use the component.
-
-- `@gluestack-ui/hooks`
-- `@gluestack-ui/overlay`
-- `@gluestack-ui/utils`
-- `@react-native-aria/focus`
-- `@react-native-aria/interactions`
-- `@react-native-aria/overlays`
 
 ### Examples
 
@@ -616,6 +635,12 @@ A tooltip component with an icon is a user interface element that provides conte
 
 ## Unstyled
 
+All the components in `gluestack-ui` are unstyled by default. To customize your UI using the extendedTheme, please refer to this [link](https://gluestack.io/ui/docs/theme/customizing-components). The import names of components serve as keys to customize each component.
+
+<!--
+
+### Advanced
+
 We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
 
 ### Customizing the Tooltip
@@ -651,3 +676,4 @@ export default () => (
   </Tooltip>
 );
 ```
+-->

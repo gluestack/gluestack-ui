@@ -1,0 +1,188 @@
+---
+title: Customizing Theme
+description: Customizing the theme in gluestack-ui involves defining a theme configuration and applying it using GluestackUIProvider, enabling you to style your application's visual elements according to your design preferences.
+showHeader: true
+---
+
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+import { Box, Wrapper as CustomThemeWrapper } from './CustomTheme';
+import {
+  Button,
+  ButtonText,
+  Wrapper as CustomComponentTheme,
+} from './CustomComponent';
+import { transformedCode } from '../../utils';
+import { AppProvider, CodePreview, Text } from '@gluestack/design-system';
+
+<Meta title="Theme Configuration/Customizing Theme" />
+
+The `@gluestack-ui/themed` UI library is intentionally designed as an unstyled library, providing you with the flexibility to style your components as you prefer. For users looking for a seamless integration experience, we offer the `@gluestack-ui/config` package, which comes with pre-configured theme that can easily be integrated with `@gluestack-ui/themed` for a convenient styling solution.
+
+## Customizing Tokens
+
+Customizing tokens allows you to tailor the core design elements of the `@gluestack-ui/themed` library to match your project's unique visual identity. To customize tokens, follow these steps:
+
+1. **Eject Theme**: Run following command to eject the theme. This will create a config folder in your project root directory.
+
+```bash
+npx gluestack-ui-scripts eject-theme
+```
+
+2. **Update Tokens**: go to `config/gluestack-ui.config.ts` file. Update the tokens as per your requirements.
+
+```jsx
+//gluestack-ui.config.ts
+
+export const config = createConfig({
+  // ...Theme config
+  tokens: {
+    colors: {
+      // replacing primary color
+      primary0: '#ffffff',
+      primary50: '#a3fff4',
+      primary100: '#82fff0',
+      primary200: '#61ffed',
+      primary300: '#45fae5',
+      primary400: '#24f9e1',
+      primary500: '#17f3d9',
+      primary600: '#12e4cb',
+      primary700: '#17ccb7',
+      primary800: '#1ab5a3',
+      primary900: '#1c9f90',
+      primary950: '#000000',
+    },
+  },
+});
+```
+
+3. **Apply Config**: Apply the config to the `GluestackUIProvider`.
+
+```jsx
+// App.tsx
+import { GluestackUIProvider } from '@gluestack-ui/themed';
+import { config } from './config/gluestack-ui.config';
+
+function App() {
+  return (
+    <GluestackUIProvider config={config}>
+      {/* Your app code here */}
+    </GluestackUIProvider>
+  );
+}
+```
+
+You can customize all the tokens of the theme in `config`. For a complete list of tokens and default values, please check [default Tokens](https://gluestack.io/ui/docs/theme/default-tokens).
+
+By utilizing this approach, you can seamlessly modify the primary color tokens of the theme while maintaining the overall theme configuration intact.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+<Box
+  bg="$primary500"
+  p="$5"
+  rounded="$lg"
+>
+  <Text color="$primary700">
+    Box with new primary color
+  </Text>
+</Box>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper: CustomThemeWrapper,
+        Box,
+        Text,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+## Customizing Components
+
+Customizing components allows you to fine-tune the appearance and behavior of individual UI components within the `@gluestack-ui/themed`. To customize components, follow these steps:
+
+1. **Eject Theme**: Run following command to eject the theme. This will create a config folder
+
+```bash
+npx gluestack-ui-scripts eject-theme
+```
+
+2. **Update Tokens**: you can find all of your components theme inside `config/theme` folder. you can find theme file for each component. For example, if you want to customize `Button` component, you can find its theme file at `config/theme/Button.ts`. Update component theme as per your requirements.
+
+3. **Apply Config**: Apply the config to the `GluestackUIProvider`.
+
+```jsx
+// App.tsx
+import { GluestackUIProvider, Button, ButtonText } from '@gluestack-ui/themed';
+import { config } from './config/gluestack-ui.config';
+
+function App() {
+  return (
+    <GluestackUIProvider config={config}>
+      <Button>
+        <ButtonText>Button</ButtonText>
+      </Button>
+    </GluestackUIProvider>
+  );
+}
+```
+
+## Customizing Animations
+
+Customizing animations allows you to change the animation behavior of all the animatable UI components within the `@gluestack-ui/themed`. Currently customization is limited to the using `moti` or `legend-motion` for Animated Components and is supported via a driver plugin system, To customize animations, follow these steps:
+
+1. **Eject Theme**: Run following command to eject the theme. This will create a config folder
+
+```bash
+npx gluestack-ui-scripts eject-theme
+```
+
+2. **Update Plugins**: go to `config/gluestack-ui.config.ts` file. Update the `plugins` property as per your requirements.
+
+```jsx
+//gluestack-ui.config.ts
+
+import { config as defaultConfig } from '@gluestack-ui/config';
+import { createConfig } from '@gluestack-ui/themed';
+import { AnimationResolver } from '@gluestack-style/animation-resolver';
+import { MotionDriver } from '@gluestack-style/legend-motion-animation-driver';
+import { MotiDriver } from '@gluestack-style/moti-animation-driver';
+
+export const config = createConfig({
+  ...defaultConfig
+  plugins: [
+    ...defaultConfig.plugins,
+    // using legend-motion
+    new AnimationResolver(MotionDriver,{
+      // You can override animated aliases here if you want by default driver have support for all the animated components aliases required.
+    }),
+    // using moti
+    // new AnimationResolver(MotiDriver),
+  ],
+});
+```
+
+3. **Apply Config**: Apply the config to the `GluestackUIProvider`.
+
+```jsx
+// App.tsx
+import { GluestackUIProvider, Button, ButtonText } from '@gluestack-ui/themed';
+import { config } from './config/gluestack-ui.config';
+
+function App() {
+  return (
+    <GluestackUIProvider config={config}>
+      <Button>
+        <ButtonText>Button</ButtonText>
+      </Button>
+    </GluestackUIProvider>
+  );
+}
+```

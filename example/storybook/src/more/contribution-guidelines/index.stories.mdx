@@ -59,8 +59,7 @@ You can request a new feature by submitting an issue to our [GitHub Repository](
 
 ### Issue submission guidelines
 
-Before you submit your issue search the archive, maybe your question was already answered. If your issue appears to be a bug, and hasn't been reported, open a new issue. Help us to maximize
-the effort we can spend fixing issues and adding new features, by not reporting duplicate issues.
+Before you submit your issue, search the archive, maybe your question was already answered. If your issue appears to be a bug, and hasn't been reported, open a new issue. Help us to maximize the effort we can spend fixing issues and adding new features, by not reporting duplicate issues.
 
 The "[new issue](https://github.com/gluestack/gluestack-ui/issues/new)" form contains a number of prompts that you should fill out to
 make it easier to understand and categorize the issue.
@@ -77,6 +76,8 @@ with quickly:
   causing the problem (line of code or commit)
 
 ### Setting up your development environment:
+
+#### To make changes in the styles of the components:
 
 1. Fork this repository.
 
@@ -123,10 +124,62 @@ with quickly:
    ```
 
 9. To start app directly on Android
-   `bash
-yarn android
-`
-   and start making the changes in packages that gluestack-ui provides and check the changes in storybook.
+   ```bash
+   yarn android
+   ```
+
+Changes made to the component styles will be reflected in the storybook.
+
+#### To make changes in the component packages (API, accessibility, etc.):
+
+1. Fork [this](https://github.com/gluestack/gluestack-ui-unstyled) repository.
+
+2. Clone your fork of `gluestack/gluestack-ui-unstyled`:
+
+   ```git
+   git clone git@github.com:${YOUR_USERNAME}/gluestack/gluestack-ui-unstyled.git
+   ```
+
+3. Navigate to ui-unstyled
+
+   ```
+   cd gluestack-ui-unstyled
+   ```
+
+4. Add main repo remote:
+
+   ```git
+   git remote add origin git@github.com:gluestack/gluestack-ui-unstyled.git
+   ```
+
+5. Install dependencies:
+
+   ```bash
+   yarn
+   ```
+
+6. Move over to the storybook :
+
+   ```bash
+   cd example/storybook
+   ```
+
+7. Start the storybook, local aliasing of packages has been created.
+
+   ```bash
+   yarn storybook
+   ```
+
+8. To start app directly on IOS
+
+   ```bash
+   yarn ios
+   ```
+
+9. To start app directly on Android
+   ```bash
+   yarn android
+   ```
 
 ## Contributing Code
 
@@ -145,3 +198,11 @@ The process of proposing a change to `gluestack-ui` can be summarized as follows
 9. Review and address comments on your pull request.
 
 If all goes well, your pull request will be merged. If it is not merged, maintainers will do their best to explain the reason why.
+
+```
+
+```
+
+```
+
+```

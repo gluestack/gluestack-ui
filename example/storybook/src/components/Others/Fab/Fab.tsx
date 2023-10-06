@@ -67,13 +67,7 @@ const FigmaFabStory = ({
   ...props
 }: any) => {
   return (
-    <Box
-      position="relative"
-      bg="$trueGray200"
-      h="$full"
-      w="$full"
-      sx={{ _web: { w: 300, h: 300 } }}
-    >
+    <Box sx={{ _web: { w: 250, h: 80 } }}>
       <Fab placement={placement} {...props}>
         <Fab.Icon
           as={MenuIcon}
