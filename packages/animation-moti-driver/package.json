@@ -1,6 +1,6 @@
 {
   "name": "@gluestack-style/moti-animation-driver",
-  "version": "1.0.0-alpha.0",
+  "version": "1.0.0",
   "description": "A gluestack-style driver for using moti animation with animation resolver plugin.",
   "keywords": [
     "react",
