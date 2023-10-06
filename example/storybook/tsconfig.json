@@ -4,8 +4,14 @@
     "baseUrl": ".",
     "paths": {
       "@gluestack-style/react": ["../../packages/react/src"],
-      "@gluestack-style/animation-plugin": [
-        "../../packages/animation-plugin/src"
+      "@gluestack-style/legend-motion-animation-driver": [
+        "../../packages/animation-legend-motion-driver/src"
+      ],
+      "@gluestack-style/moti-animation-driver": [
+        "../../packages/animation-moti-driver/src"
+      ],
+      "@gluestack-style/animation-resolver": [
+        "../../packages/animation-resolver/src"
       ],
       "react-native": ["./node_modules/react-native-web"]
     },

@@ -1,12 +1,15 @@
 {
-  "name": "@gluestack-style/animation-plugin",
-  "version": "0.1.12",
-  "description": "A gluestack-style plugin for animation properties, utilizing animation libraries.",
+  "name": "@gluestack-style/legend-motion-animation-driver",
+  "version": "1.0.1",
+  "description": "A gluestack-style plugin for animation support using legendapp motion library",
   "keywords": [
     "react",
     "native",
     "react-native",
     "animation",
+    "legendapp",
+    "motion",
+    "driver",
     "transition"
   ],
   "main": "lib/commonjs/index",
@@ -21,11 +24,12 @@
     "build": "bob build",
     "clean": "rm -rf lib"
   },
-  "dependencies": {
-    "@legendapp/motion": "^2.2.0"
+  "peerDependencies": {
+    "@gluestack-style/react": ">=0.2",
+    "@legendapp/motion": ">=2.2"
   },
   "devDependencies": {
-    "@gluestack-style/react": "^0.1.11",
+    "@gluestack-style/react": "^1.0.1",
     "@types/react": "^18.0.22",
     "@types/react-native": "^0.69.15",
     "babel-plugin-transform-remove-console": "^6.9.4",

@@ -1,16 +1,16 @@
 import React from 'react';
 import { Wrapper } from '../../components/Wrapper';
-import { Motion } from '@legendapp/motion';
-import { Pressable, View } from 'react-native';
-import { FontResolver, styled } from '@gluestack-style/react';
-import { AnimationResolver } from '@gluestack-style/animation-plugin';
+import { Pressable, View, Text } from 'react-native';
+import { styled } from '@gluestack-style/react';
+import {
+  AnimatedImage,
+  AnimatePresence,
+} from '@gluestack-style/animation-resolver';
 
 const images = [require('./1.png'), require('./2.png'), require('./3.png')];
-
 const Box = styled(View, {});
-
 const StyledMotionImage = styled(
-  Motion.Image,
+  AnimatedImage,
   {
     ':animate': {
       zIndex: 1,
@@ -19,9 +19,7 @@ const StyledMotionImage = styled(
     },
   },
   {},
-  {
-    plugins: [new AnimationResolver({})],
-  }
+  {}
 );
 
 export function AnimationPlugin() {
@@ -42,18 +40,19 @@ export function AnimationPlugin() {
           'aspectRatio': 1 * 1.4,
         }}
       >
-        {/* @ts-ignore */}
-        <StyledMotionImage.AnimatePresence>
+        <AnimatePresence>
           <StyledMotionImage
             style={{
               width: '100%',
               height: '100%',
               position: 'absolute',
             }}
+            // For Mobile
+            // source={images[imageIndex]}
+            // For Web
             source={{ uri: images[imageIndex] }}
             key={`image-${imageIndex}-${Math.random()}`}
             sx={{
-              // @ts-ignore
               ':initial': {
                 x: xPosition,
                 opacity: 0,
@@ -64,12 +63,15 @@ export function AnimationPlugin() {
                 opacity: 0,
               },
               ':transition': {
-                x: { type: 'spring', stiffness: 200, damping: 23 },
+                x: {
+                  type: 'spring',
+                  stiffness: 200,
+                  damping: 23,
+                },
               },
             }}
           />
-          {/* @ts-ignore */}
-        </StyledMotionImage.AnimatePresence>
+        </AnimatePresence>
       </Box>
       <Pressable
         accessibilityRole="button"
@@ -89,7 +91,7 @@ export function AnimationPlugin() {
           setImageIndex((prev) => (prev + 1) % images.length);
         }}
       >
-        {'‣'}
+        <Text>{'‣'}</Text>
       </Pressable>
       <Pressable
         accessibilityRole="button"
@@ -110,7 +112,7 @@ export function AnimationPlugin() {
           setImageIndex((prev) => (prev - 1 + images.length) % images.length);
         }}
       >
-        {'‣'}
+        <Text>{'‣'}</Text>
       </Pressable>
     </Wrapper>
   );

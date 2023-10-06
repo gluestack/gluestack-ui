@@ -5,13 +5,20 @@ import { resolveStringToken } from './utils';
 import { stableHash } from './stableHash';
 import { propertyTokenMap } from './propertyTokenMap';
 import { updateOrderUnResolvedMap } from './updateOrderUnResolvedMap';
+import { GluestackStyleSheet } from './style-sheet';
+import { resolvePlatformTheme } from './styled';
+import { Platform } from 'react-native';
 
-var globalPluginStore: any = [];
+/********************* PLUGINS *****************************/
 
-function setGlobalPluginStore(plugins: Array<any>) {
-  globalPluginStore.push(...plugins);
+var globalPluginStore: never[] = [];
+function setGlobalPluginStore(plugins: any) {
+  if (plugins) {
+    // @ts-ignore
+    globalPluginStore.push(...plugins);
+  }
+  return getGlobalPluginStore();
 }
-
 function getGlobalPluginStore() {
   return globalPluginStore;
 }
@@ -20,12 +27,40 @@ export function getInstalledPlugins() {
   return getGlobalPluginStore();
 }
 
+/********************* CREATE COMPONENTS *****************************/
+
+var globalComponentsStore: any = {};
+
+// function setGlobalComponentsStore(components: any) {
+//   if (components) {
+//     // @ts-ignore
+//     globalComponentsStore = {
+//       ...globalComponentsStore,
+//       ...components,
+//     };
+//   }
+//   return getGlobalComponentsStore();
+// }
+
+function getGlobalComponentsStore() {
+  return globalComponentsStore;
+}
+
+export function getInstalledComponents() {
+  return getGlobalComponentsStore();
+}
+
+export const createComponents = <T>(components: T): T => {
+  return components;
+};
+
 export const createConfig = <
   T extends GlueStackConfig<
     //@ts-ignore
     T['tokens'],
     T['aliases'],
-    T['globalStyle']
+    T['globalStyle'],
+    T['plugins']
   >
 >(
   config:
@@ -34,32 +69,27 @@ export const createConfig = <
         //@ts-ignore
         T['tokens'],
         T['aliases'],
-        T['globalStyle']
+        T['globalStyle'],
+        T['plugins']
       >
 ): T => {
   if (config.plugins) {
-    setGlobalPluginStore(config.plugins);
+    config.plugins = setGlobalPluginStore(config.plugins);
   }
-  delete config.plugins;
+  // delete config.plugins;
 
-  if (
-    !config.components &&
-    // @ts-ignore
-    !config.themes
-  ) {
+  if (!config.themes) {
     return config as any;
   }
-  let newConfig = config;
-  if (config.components) {
-    newConfig = resolveComponentThemes(config);
-  }
+  // if (config.components) {
+  //   newConfig = resolveComponentThemes(config);
+  // }
 
-  // @ts-ignore
   if (config.themes) {
-    const newConfigWithThemesResolved = resolveThemes(newConfig);
+    const newConfigWithThemesResolved = resolveThemes(config);
     return newConfigWithThemesResolved as any;
   }
-  return newConfig as any;
+  return config as any;
 };
 
 const resolveThemes = (config: any) => {
@@ -86,36 +116,68 @@ const resolveThemes = (config: any) => {
   return newConfig;
 };
 
-const resolveComponentThemes = (config: any) => {
-  const newConfig = { ...config };
-  delete config.components;
+export const resolveComponentTheme = (config: any, componentTheme: any) => {
+  const configWithPropertyTokenMap = config;
 
+  let resolvedTheme = componentTheme;
+  const component = componentTheme;
+
+  if (
+    Object.keys(component?.BUILD_TIME_PARAMS ?? {}).length === 0 &&
+    component.theme
+  ) {
+    resolvedTheme = resolveTheme(
+      component.theme,
+      configWithPropertyTokenMap,
+      component?.componentConfig
+    );
+  } else {
+    GluestackStyleSheet.update(component.BUILD_TIME_PARAMS?.orderedResolved);
+    resolvedTheme = component;
+  }
+
+  return resolvedTheme;
+};
+
+export const resolveComponentThemes = (config: any, components: any) => {
+  let newComponents: any = {};
   const configWithPropertyTokenMap = {
     ...config,
     propertyTokenMap,
   };
-  Object.keys(newConfig?.components ?? {}).forEach((componentName: any) => {
-    const component = newConfig.components[componentName];
-    if (component.theme) {
-      component.theme = resolveTheme(
+
+  Object.keys(components ?? {}).forEach((componentName: any) => {
+    const component = components[componentName];
+
+    if (
+      Object.keys(component?.BUILD_TIME_PARAMS ?? {}).length === 0 &&
+      component.theme
+    ) {
+      newComponents[componentName] = resolveTheme(
         component.theme,
         configWithPropertyTokenMap,
         component?.componentConfig
       );
+    } else {
+      GluestackStyleSheet.update(component.BUILD_TIME_PARAMS?.orderedResolved);
+      newComponents[componentName] = component;
     }
   });
 
-  return newConfig;
+  return newComponents;
 };
 
-const resolveTheme = (
+export const resolveTheme = (
   componentTheme: {},
   _config: any,
   extendedConfig?: any
 ) => {
   const versboseComponentTheme = convertStyledToStyledVerbosed(componentTheme);
+
+  resolvePlatformTheme(versboseComponentTheme, Platform.OS);
+
   const componentHash = stableHash({
-    ...componentTheme,
+    ...versboseComponentTheme,
   });
 
   const { styledIds, verbosedStyleIds } = updateOrderUnResolvedMap(
@@ -124,9 +186,10 @@ const resolveTheme = (
     'extended',
     extendedConfig
   );
+
   return {
-    extendedStyleIds: styledIds,
-    extendedVerbosedStyleIds: verbosedStyleIds,
+    styledIds,
+    verbosedStyleIds,
     theme: versboseComponentTheme,
   };
 };

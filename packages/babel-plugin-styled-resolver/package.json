@@ -1,6 +1,6 @@
 {
   "name": "@gluestack-style/babel-plugin-styled-resolver",
-  "version": "0.2.6",
+  "version": "1.0.0-alpha.0",
   "description": "A gluestack-style babel plugin that transpiles your styled function calls and resolves the component styling in build time.",
   "keywords": [
     "css-in-js",
@@ -20,7 +20,7 @@
     "dev:web": "cd example/native && yarn web --clear"
   },
   "peerDependencies": {
-    "@gluestack-style/react": "^0.1.11"
+    "@gluestack-style/react": ">=0.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.19.3",

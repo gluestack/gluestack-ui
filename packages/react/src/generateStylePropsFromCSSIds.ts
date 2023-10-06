@@ -90,11 +90,7 @@ export function isValidBreakpoint(
 
   if (queryWidth.length > 0) {
     if (queryWidth.length === 1) {
-      if (
-        queryWidth[0] !== null &&
-        // @ts-ignore
-        queryWidth[0] <= currentBreakpointValue
-      ) {
+      if (queryWidth[0] !== null && queryWidth[0] <= currentBreakpointValue) {
         return true;
       }
     } else {
@@ -137,7 +133,6 @@ export function generateStylePropsFromCSSIds(
   config: any,
   activeTheme: any
 ) {
-  // console.setStartTimeStamp('generateStylePropsFromCSSIds');
   const propsStyles = Array.isArray(props?.style)
     ? props?.style
     : [props?.style];
@@ -174,30 +169,14 @@ export function generateStylePropsFromCSSIds(
     }
   }
 
-  // console.setEndTimeStamp('generateStylePropsFromCSSIds');
-  // return props;
-  // Object.assign(props., {
-  //   dataSet:
-  //   style: getDataStyle(props, styleCSSIdsString),
-  // });
-
   Object.assign(props, {
-    'data-style': getDataStyle(props, styleCSSIdsString),
     'style': propsStyles ? [...styleObj, ...propsStyles] : styleObj,
     'dataSet': {
       ...props?.dataSet,
       style: getDataStyle(props, styleCSSIdsString),
     },
+    // DONOT REMOVE THIS LINE, THIS IS FOR SPECIFIC COMPONENTS LIKE next/link
+    'data-style': getDataStyle(props, styleCSSIdsString),
   });
   return props;
-  // return {
-  //   ...props,
-  //   'dataSet': {
-  //     ...props.dataSet,
-  //     // TODO: this below line causes recalculate style on web
-  //     style: getDataStyle(props, styleCSSIdsString),
-  //   },
-  //   'data-style': getDataStyle(props, styleCSSIdsString),
-  //   'style': propsStyles ? [...styleObj, ...propsStyles] : styleObj,
-  // };
 }

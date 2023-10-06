@@ -1,4 +1,4 @@
-import type { IStyled, IStyledPlugin } from '../createStyled';
+import type { IStyled, IStyledPlugin } from '../types';
 import { deepMerge } from '../utils';
 import { injectGlobalCss } from '../utils/css-injector';
 import React, { useMemo } from 'react';

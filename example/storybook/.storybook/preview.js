@@ -35,7 +35,6 @@ export const parameters = {
           'Overriding Styles (sx)',
           'Overriding Styles (Utility Props)',
           'Property Resolver',
-          'createStyled()',
           'Props Passing',
           'Utility Functions',
           'AsForwarder',
