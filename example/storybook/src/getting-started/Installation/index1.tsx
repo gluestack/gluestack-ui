@@ -46,7 +46,7 @@ const Fold2 = memo(() => {
         );
       })}
       <NextLink
-        href="/ui/docs/components/layout/box"
+        href="/ui/docs/overview/all-components"
         style={{
           textDecoration: 'none',
         }}

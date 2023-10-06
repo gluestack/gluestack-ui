@@ -1,6 +1,6 @@
 {
   "name": "@gluestack-ui/themed",
-  "version": "1.0.0-alpha.0",
+  "version": "1.0.0-alpha.1",
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "module": "build/index",
@@ -30,8 +30,8 @@
   "license": "ISC",
   "dependencies": {
     "@expo/html-elements": "latest",
-    "@gluestack-style/animation-resolver": "^1.0.0-alpha.0",
-    "@gluestack-style/legend-motion-animation-driver": "^1.0.0-alpha.0",
+    "@gluestack-style/animation-resolver": "^1.0.0-alpha.1",
+    "@gluestack-style/legend-motion-animation-driver": "^1.0.0-alpha.2",
     "@gluestack-ui/actionsheet": "^0.2.25",
     "@gluestack-ui/alert": "^0.1.9",
     "@gluestack-ui/alert-dialog": "^0.1.19",
@@ -71,7 +71,7 @@
     "@babel/preset-env": "^7.22.9",
     "@babel/preset-react": "^7.22.5",
     "@babel/preset-typescript": "^7.22.5",
-    "@gluestack-style/react": "^1.0.0-alpha.0",
+    "@gluestack-style/react": "^1.0.0-alpha.2",
     "@types/react-native": "^0.71.6",
     "file-loader": "^6.2.0",
     "react": "^18.2.0",

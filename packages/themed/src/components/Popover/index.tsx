@@ -1,4 +1,4 @@
-import { AnimatedAnimatePresence } from '@gluestack-style/animation-resolver';
+import { AnimatePresence } from '@gluestack-style/animation-resolver';
 import { createPopover } from '@gluestack-ui/popover';
 import {
   Root,
@@ -21,7 +21,7 @@ export const Popover = createPopover({
   Backdrop,
   CloseButton,
   //@ts-ignore
-  AnimatePresence: AnimatedAnimatePresence,
+  AnimatePresence: AnimatePresence,
 });
 export const PopoverArrow = Popover.Arrow;
 export const PopoverContent = Popover.Content;
