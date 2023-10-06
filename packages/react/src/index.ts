@@ -75,6 +75,7 @@ export type {
   IStyled,
   IAnimationDriverPlugin,
   GSConfig,
+  IAnimationResolver,
 } from './types';
 export { createStyled } from './createStyled';
 

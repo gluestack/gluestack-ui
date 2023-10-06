@@ -1,9 +1,7 @@
-import {
-  useStyled,
-  // @ts-ignore
-  type IAnimationDriverPlugin,
-  // @ts-ignore
-  type IAnimationResolver,
+import { useStyled } from '@gluestack-style/react';
+import type {
+  IAnimationDriverPlugin,
+  IAnimationResolver,
 } from '@gluestack-style/react';
 import React, { useMemo } from 'react';
 import {
