@@ -105,8 +105,9 @@ const AnimatePresence = React.forwardRef(
 
     React.Children.toArray(children).forEach((child: any) => {
       if (
-        child?.type?.displayName &&
-        child?.type?.displayName.includes('Gluestack-AnimatedResolver')
+        (child?.type?.displayName &&
+          child?.type?.displayName.includes('Gluestack-AnimatedResolver')) ||
+        child?.type?.isStyledComponent
       ) {
         let tokenizedAnimatedProps: any = {};
         const animationAliases = {};
