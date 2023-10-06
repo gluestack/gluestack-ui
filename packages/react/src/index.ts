@@ -81,7 +81,7 @@ export { createStyled } from './createStyled';
 export { createGlobalStylesWeb } from './createGlobalStylesWeb';
 // export { styled };
 // export { flush } from './utils/css-injector';
-
+export { propertyTokenMap } from './propertyTokenMap';
 export { AsForwarder } from './AsForwarder';
 
 export * from './plugins';
