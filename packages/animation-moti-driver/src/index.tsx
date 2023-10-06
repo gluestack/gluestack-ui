@@ -1,7 +1,5 @@
 import type {
-  // @ts-ignore
   IAnimationDriverPlugin,
-  // @ts-ignore
   IAnimationResolver,
 } from '@gluestack-style/react';
 import 'react-native-reanimated';
