@@ -1,6 +1,10 @@
+import { AnimationResolver } from '@gluestack-style/animation-resolver';
+import { MotionAnimationDriver } from '@gluestack-style/legend-motion-animation-driver';
+import { createConfig } from '@gluestack-style/react';
+
 export const config = {
   componentPath: '/components',
-  theme: {
+  theme: createConfig({
     aliases: {
       bg: 'backgroundColor',
       bgColor: 'backgroundColor',
@@ -691,9 +695,11 @@ export const config = {
         },
       },
     },
-  },
+    plugins: [new AnimationResolver(MotionAnimationDriver)],
+  }),
 } as const;
-type Config = typeof config.theme;
+
+type Config = typeof config; // Assuming `config` is defined elsewhere
 
 export interface UIConfig {}
 

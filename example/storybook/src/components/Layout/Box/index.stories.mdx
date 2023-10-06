@@ -23,7 +23,7 @@ import Wrapper from '../../Wrapper';
 
 ## Themed
 
-Following is the default implementation of the **Box** component without any additional customization. This serves as a starting point for users who are new to this library and want to learn about the basic functionality and appearance of the component. 
+Following is the default implementation of the **Box** component without any additional customization. This serves as a starting point for users who are new to this library and want to learn about the basic functionality and appearance of the component.
 
 <AppProvider>
   <CodePreview
@@ -57,7 +57,6 @@ Following is the default implementation of the **Box** component without any add
 
 > Note: You can refer [here](https://github.com/gluestack/gluestack-ui/tree/main/packages/themed/src/components/Box/styled-components) to learn about default styling of Box component
 
-
 ### Import
 
 To use the component in your project, run the command below into your import statement. This will import the component from your components folder.
@@ -74,13 +73,17 @@ The structure provided below can help you identify and understand a Box componen
 export default () => <Box />;
 ```
 
-### API Reference
+### Component Props
 
-The following section contains a comprehensive list of the component's references, including descriptions, properties, types, and default behavior. This information is readily available for you to access, helping you effectively utilize the component library in your projects.
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
 
 #### Box
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+## Themed
+
+The themed version of the component is a pre-styled version of the component, which allows you to quickly integrate the component into your project. The component's design and functionality are fully defined, allowing you to focus on the more important aspects of your project.
 
 ### Examples
 
@@ -97,7 +100,7 @@ A Box component with a ref property enables the direct reference and manipulatio
     metaData={{
       code: `
         function App () {
-          const myRef = useRef({});
+          const myRef = useRef<any>({});
           useEffect(() => {
             const styleObj = {
               borderWidth: 2,
@@ -124,15 +127,16 @@ A Box component with a ref property enables the direct reference and manipulatio
 
 ## Unstyled
 
-We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
+All the components in `gluestack-ui` are unstyled by default. To customize your UI using the extendedTheme, please refer to this [link](https://gluestack.io/ui/docs/theme/customizing-components). The import names of components serve as keys to customize each component.
 
+<!--
 ### Customizing the Box
 
-For customizing the Box, you have to map styled view to Box. You can refer [style.gluestack.io](https://style.gluestack.io/) for more information on how to use styled components.
+For customizing the Box, you have to map styled view to Box. You can refer [gluestack.io/style](/style) for more information on how to use styled components.
 
 #### Usage
 
-Default styling of the component can be found in the `components/box` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/main/example/storybook/src/ui-components/Box) of the styled `Box` component.
+Default styling of the component can be found in the `components/box` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/main/packages/themed/src/components/Box) of the styled `Box` component.
 
 ```jsx
 // import the styles
@@ -144,3 +148,5 @@ const Box = Root;
 // using the Box component
 export default () => <Box />;
 ```
+
+-->

@@ -37,10 +37,6 @@ import {
 
 import Wrapper from '../../Wrapper';
 
-## Themed
-
-Following is the default implementation of the **Button** component without any additional customization. This serves as a starting point for users who are new to this library and want to learn about the basic functionality and appearance of the component. You can refer [here](https://github.com/gluestack/gluestack-ui/tree/main/packages/themed/src/components/Button/styled-components) to learn about default styling of Button component.
-
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
@@ -85,6 +81,8 @@ Following is the default implementation of the **Button** component without any 
 
 <br />
 
+## API Reference
+
 ### Import
 
 To use the component in your project, run the command below into your import statement. This will import the component from your components folder.
@@ -109,9 +107,9 @@ export default () => (
 );
 ```
 
-### API Reference
+### Component Props
 
-The following section contains a comprehensive list of the component's references, including descriptions, properties, types, and default behavior. This information is readily available for you to access, helping you effectively utilize the component library in your projects.
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
 
 #### Button
 
@@ -199,6 +197,58 @@ Contains all button related layout style props and actions. It inherits all the 
           </Table.TD>
           <Table.TD>
             <Table.TText>{`To manually set disable to the button.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</AppProvider>
+
+**Descendants Styling Props**
+Props to style child components.
+
+<AppProvider>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Sx Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Description</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>_text</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Prop to style ButtonText Component`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>_icon</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Prop to style ButtonIcon Component`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>_spinner</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Prop to style ButtonSpinner Component`}</Table.TText>
           </Table.TD>
         </Table.TR>
       </Table.TBody>
@@ -323,12 +373,44 @@ Contains all group related layout style props and actions. It inherits all the p
   </TableContainer>
 </AppProvider>
 
+**Descendants Styling Props**
+Props to style child components.
+
+<AppProvider>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Sx Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Description</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>_button</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Prop to style Button Component`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</AppProvider>
+
 #### ButtonSpinner
 
 Contains all spinner related layout style props and actions.
 It inherits all the properties of React Native's [ActivityIndicator](https://reactnative.dev/docs/activityindicator) component.
 
-### ButtonIcon
+#### ButtonIcon
 
 Contains all Icon related layout style props and actions. It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
@@ -352,21 +434,17 @@ We have outlined the various features that ensure the Button component is access
 
 - VoiceOver: When the button is focused, the screen reader will announce the button's label and its current state.
 
-#### Focus Management
+### Focus Management
 
 - The `onFocus` and `onBlur` props to manage focus states and provide visual cues to users. This is especially important for users who rely on keyboard navigation.
 
-### Dependencies
+## Themed
 
-The following are the lists of all the libraries and packages the component relies on. This information will help you ensure that your project has all the necessary dependencies installed to use the component.
-
-- `@gluestack-ui/utils`
-- `@react-native-aria/focus`
-- `@react-native-aria/interactions`
+The themed version of the component is a pre-styled version of the component, which allows you to quickly integrate the component into your project. The component's design and functionality are fully defined, allowing you to focus on the more important aspects of your project.
 
 ### Props
 
-Button component is created using Pressable component from react-native. It extends all the props supported by [React Native Pressable](https://reactnative.dev/docs/pressable#props), [utility props](https://ui.gluestack.io/docs/styling/utility-and-sx-props) and the props mentioned below.
+Button component is created using Pressable component from react-native. It extends all the props supported by [React Native Pressable](https://reactnative.dev/docs/pressable#props), [utility props](/ui/docs/styling/utility-and-sx-props) and the props mentioned below.
 
 #### Button
 
@@ -395,7 +473,7 @@ Button component is created using Pressable component from react-native. It exte
           </Table.TD>
           <Table.TD>
             <Table.TText>
-              primary | secondary | positive | negative | default
+              {'primary | secondary | positive | negative | default'}
             </Table.TText>
           </Table.TD>
           <Table.TD>
@@ -774,15 +852,21 @@ The custom button component leverages the functionality of a button component wh
 
 ## Unstyled
 
+All the components in `gluestack-ui` are unstyled by default. To customize your UI using the extendedTheme, please refer to this [link](https://gluestack.io/ui/docs/theme/customizing-components). The import names of components serve as keys to customize each component.
+
+<!--
+
+### Advanced
+
 We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
 
-### Customizing the Button
+#### Create your own Button
 
-We have a function called `createButton` which can be used to create a custom button component. This function takes in a configuration object which contains the styled components that you want to use for the button. You can refer [style.gluestack.io](https://style.gluestack.io/) for more information on how to use styled components.
+We have a function called `createButton` which can be used to create a custom button component. This function takes in a configuration object which contains the styled components that you want to use for the button. You can refer [gluestack.io/style](/style) for more information on how to use styled components.
 
-#### Usage
+#### Implementation
 
-Default styling of all these components can be found in the `components/core/button` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/tree/main/example/storybook/src/ui-components/Button) of the styled `Button` components.
+Default styling of all these components can be found in the `components/core/button` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/main/packages/themed/src/components/Button) of the styled `Button` components.
 
 ```jsx
 // import the styles
@@ -790,9 +874,8 @@ import {
   Root,
   Text,
   Group,
-  GroupHSpacer,
-  GroupVSpacer,
   Spinner,
+  Icon,
 } from '../components/core/button/styled-components';
 
 // import the createButton function
@@ -803,9 +886,8 @@ const Button = createButton({
   Root,
   Text,
   Group,
-  GroupHSpacer,
-  GroupVSpacer,
   Spinner,
+  Icon,
 });
 
 // Using the button component
@@ -819,3 +901,4 @@ export default () => (
   </ButtonGroup>
 );
 ```
+-->
