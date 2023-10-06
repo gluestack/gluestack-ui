@@ -2501,10 +2501,10 @@
   dependencies:
     "@legendapp/motion" "^2.2.0"
 
-"@gluestack-style/animation-resolver@^1.0.0-alpha.0":
-  version "1.0.0-alpha.0"
-  resolved "https://registry.yarnpkg.com/@gluestack-style/animation-resolver/-/animation-resolver-1.0.0-alpha.0.tgz#ad8e8c8d1ac71497e70f13e7e402dd59f65f3eb6"
-  integrity sha512-mnhn7KEnJvJGEa9ceE2CQ3DJO7r69sUrpK4vlbXz044yxIlyEos3zCk+cBIXzFWuAW65HxyHR/D4RXDCZFNEXg==
+"@gluestack-style/animation-resolver@^1.0.0-alpha.1":
+  version "1.0.0-alpha.1"
+  resolved "https://registry.yarnpkg.com/@gluestack-style/animation-resolver/-/animation-resolver-1.0.0-alpha.1.tgz#9333d91697e4f9241ecb6e4c09d205a9c469c402"
+  integrity sha512-IiqhKlwzMbfRwDfjfgEG7zTaENVtv5y5aF5mhinyu6cnr+Z0gjVQloFfP/lDVBTcrHALzUN7ubbyiRbFC1f2dg==
 
 "@gluestack-style/babel-plugin-styled-resolver@^0.1.15-alpha.0":
   version "0.1.15-alpha.0"
@@ -2519,10 +2519,10 @@
     "@babel/traverse" "^7.20.5"
     lodash.merge "^4.6.2"
 
-"@gluestack-style/legend-motion-animation-driver@^1.0.0-alpha.0":
-  version "1.0.0-alpha.0"
-  resolved "https://registry.yarnpkg.com/@gluestack-style/legend-motion-animation-driver/-/legend-motion-animation-driver-1.0.0-alpha.0.tgz#84b4322aacfe9e0ad7466bf5f449823c5377f8fa"
-  integrity sha512-SQF0RQGbJfUGSUKfoYZQN0C2pl+CVkEvppMswJ+FwmMgYIg8Q/AL1Xs34rmERjax5Dh1bZmZdLpszReYcydxVA==
+"@gluestack-style/legend-motion-animation-driver@^1.0.0-alpha.2":
+  version "1.0.0-alpha.2"
+  resolved "https://registry.yarnpkg.com/@gluestack-style/legend-motion-animation-driver/-/legend-motion-animation-driver-1.0.0-alpha.2.tgz#1d3947e04fee543d6ced8816d657d0b596fa61d2"
+  integrity sha512-sDnywg2SGMR9Xvv65vucnJ06s0vRKuzpLs/H2If+I+Tm3+IBKfy0pOtRGp9VkuCD71kdG4uDuR4D/8YzaGYTig==
 
 "@gluestack-style/react@^0.2.9":
   version "0.2.43"
@@ -2532,10 +2532,10 @@
     inline-style-prefixer "^6.0.1"
     normalize-css-color "^1.0.2"
 
-"@gluestack-style/react@^1.0.0-alpha.0":
-  version "1.0.0-alpha.0"
-  resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-1.0.0-alpha.0.tgz#48eed2ed273f8c4a15c4efae9089d81260f92245"
-  integrity sha512-90fQvodsYtDmcqjH/jFY2PLIx/tEbtImIynTO+0SIJZY4njVkf/jrHObbkPRprgMLS1JsZLV/Oh2T9zqAv6ygQ==
+"@gluestack-style/react@^1.0.0-alpha.2":
+  version "1.0.0-alpha.2"
+  resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-1.0.0-alpha.2.tgz#6dd7008b025de9737c34a17ab285941badd9f2e7"
+  integrity sha512-hr3hfimtvYX/TiyJDbk/AKRVFWEbevXaQzsAXccFlslUhMIuM6mdjhimVFK17gDF1Fo3LcVL5B+8Ia2cpVIxYg==
   dependencies:
     inline-style-prefixer "^6.0.1"
     normalize-css-color "^1.0.2"
@@ -2614,21 +2614,12 @@
   dependencies:
     "@gluestack-ui/utils" "^0.1.5"
 
-"@gluestack-ui/button@0.1.29":
+"@gluestack-ui/button@^0.1.15", "@gluestack-ui/button@^0.1.29":
   version "0.1.29"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/button/-/button-0.1.29.tgz#cd3b0522f32fa332e15d6203be566713eb8d930b"
   integrity sha512-CUMZajrveDT36obhb385xQb1Cf50T301Y0ExNNcSffvbYb9TwPgWfawlkPrsk9JhHqWxQaK1McyVx+y4fYEHeg==
   dependencies:
     "@gluestack-ui/utils" "0.1.9"
-    "@react-native-aria/focus" "^0.2.8"
-    "@react-native-aria/interactions" "^0.2.10"
-
-"@gluestack-ui/button@^0.1.29":
-  version "0.1.29"
-  resolved "https://registry.yarnpkg.com/@gluestack-ui/button/-/button-0.1.29.tgz#cd3b0522f32fa332e15d6203be566713eb8d930b"
-  integrity sha512-CUMZajrveDT36obhb385xQb1Cf50T301Y0ExNNcSffvbYb9TwPgWfawlkPrsk9JhHqWxQaK1McyVx+y4fYEHeg==
-  dependencies:
-    "@gluestack-ui/utils" "0.1.8"
     "@react-native-aria/focus" "^0.2.8"
     "@react-native-aria/interactions" "^0.2.10"
 
@@ -3158,20 +3149,20 @@
     "@react-native-aria/focus" "^0.2.7"
     react-native-svg "13.4.0"
 
-"@gluestack-ui/utils@0.1.8", "@gluestack-ui/utils@^0.1.3", "@gluestack-ui/utils@^0.1.5", "@gluestack-ui/utils@^0.1.6":
-  version "0.1.8"
-  resolved "https://registry.yarnpkg.com/@gluestack-ui/utils/-/utils-0.1.8.tgz#f6567ca81d73f440e5ced5d6ed9648048fbd1f5c"
-  integrity sha512-BGQiZLYZZX6UR1taR2KRM66UL8JTKhU/XkYub102n4jgPKZVcYa3U1k8uFMCnbmjH3E3qT0SvFOiYWSSRTB+sg==
-  dependencies:
-    "@react-native-aria/focus" "^0.2.7"
-    react-native-svg "13.4.0"
-
 "@gluestack-ui/utils@0.1.9", "@gluestack-ui/utils@^0.1.9":
   version "0.1.9"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/utils/-/utils-0.1.9.tgz#16d362e0fc9eda64f8d855f90d9d63c84dbb3c0e"
   integrity sha512-VG0ai84YHuWpePDoa+UrgJTFERJBXbM3rGPRCtHIMjvGMWviyzQXSVU7k5iu5YUgaLhADSK+c/pww9bK9MZzgw==
   dependencies:
     "@react-native-aria/focus" "^0.2.7"
+
+"@gluestack-ui/utils@^0.1.3", "@gluestack-ui/utils@^0.1.5", "@gluestack-ui/utils@^0.1.6":
+  version "0.1.8"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/utils/-/utils-0.1.8.tgz#f6567ca81d73f440e5ced5d6ed9648048fbd1f5c"
+  integrity sha512-BGQiZLYZZX6UR1taR2KRM66UL8JTKhU/XkYub102n4jgPKZVcYa3U1k8uFMCnbmjH3E3qT0SvFOiYWSSRTB+sg==
+  dependencies:
+    "@react-native-aria/focus" "^0.2.7"
+    react-native-svg "13.4.0"
 
 "@gluestack-ui/utils@latest":
   version "0.1.6"

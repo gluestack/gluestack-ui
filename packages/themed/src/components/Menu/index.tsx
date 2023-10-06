@@ -1,4 +1,4 @@
-import { AnimatedAnimatePresence } from '@gluestack-style/animation-resolver';
+import { AnimatePresence } from '@gluestack-style/animation-resolver';
 import { createMenu } from '@gluestack-ui/menu';
 import { Root, Item, Label, Backdrop } from './styled-components';
 
@@ -8,7 +8,7 @@ export const Menu = createMenu({
   Label,
   Backdrop,
   //@ts-ignore
-  AnimatePresence: AnimatedAnimatePresence,
+  AnimatePresence: AnimatePresence,
 });
 export const MenuItem = Menu.Item;
 export const MenuItemLabel = Menu.ItemLabel;
