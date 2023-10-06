@@ -24,7 +24,12 @@ For users looking for a seamless integration experience, we offer the `@gluestac
 
 ## Architecture
 
+<<<<<<< HEAD
 We will try and understand how the components exported from `@gluestack-ui/themed` are created. Initially, we generate unstyled components using the [gluestack-style](https://style.gluestack.io/) styling engine. This allows us to customize styles, use theme tokens, provide styling for dark and light modes, and respond to different screen sizes using `@gluestack-style/react`. The specifics like themes, tokens, breakpoints and component themes are defined in a configuration file.
+=======
+We will try and understand how the components exported from `@gluestack-ui/themed` are created. Initially, we generate styled components using the [gluestack-style](https://style.gluestack.io/styleis allows us to customize styles, use theme tokens, provide styling for dark and light modes, and respond to different screen sizes using `@gluestack-style/react`. The specifics like themes, tokens, and breakpoints are defined in a configuration file.
+
+> > > > > > > 3610c9730d72bea332b700ba8dba1e29327351cc
 
 After that, we enhance the components with accessibility features, interactivity, and more using `@gluestack-ui`. This library provides creator functions that take our components and transform them into fully functional components. Once our components are both user-friendly and interactive, we bundle them together into a new package called `@gluestack-ui/themed`, which we can then easily use in our project. This package is also themeable, and we can create new themes and use them in our project by passing it to `GluestackUIProvider`. `@gluestack-ui/config` provides a default theme config which can be passed to `GluestackUIProvider`. You can view default theme config [here](https://github.com/gluestack/gluestack-ui/tree/main/packages/config). To see all the components with the default theme, please visit [All Components](https://gluestack.io/ui/docs/overview/all-components)."
 

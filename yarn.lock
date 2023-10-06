@@ -2501,10 +2501,10 @@
   dependencies:
     "@legendapp/motion" "^2.2.0"
 
-"@gluestack-style/animation-resolver@^1.0.0-alpha.1":
-  version "1.0.0-alpha.1"
-  resolved "https://registry.yarnpkg.com/@gluestack-style/animation-resolver/-/animation-resolver-1.0.0-alpha.1.tgz#9333d91697e4f9241ecb6e4c09d205a9c469c402"
-  integrity sha512-IiqhKlwzMbfRwDfjfgEG7zTaENVtv5y5aF5mhinyu6cnr+Z0gjVQloFfP/lDVBTcrHALzUN7ubbyiRbFC1f2dg==
+"@gluestack-style/animation-resolver@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@gluestack-style/animation-resolver/-/animation-resolver-1.0.0.tgz#e95a5d8c9086510ede321c578f2109a165d44acf"
+  integrity sha512-lrrRwJNa4yLmPzf4KSWKahbE3RpPtkkn1pnQvQ882Kdi1TclYaT123Uy70tRrrRfGi0WsU0Ze8kmpWqyCxdnTA==
 
 "@gluestack-style/babel-plugin-styled-resolver@^0.1.15-alpha.0":
   version "0.1.15-alpha.0"
@@ -2519,10 +2519,10 @@
     "@babel/traverse" "^7.20.5"
     lodash.merge "^4.6.2"
 
-"@gluestack-style/legend-motion-animation-driver@^1.0.0-alpha.2":
-  version "1.0.0-alpha.2"
-  resolved "https://registry.yarnpkg.com/@gluestack-style/legend-motion-animation-driver/-/legend-motion-animation-driver-1.0.0-alpha.2.tgz#1d3947e04fee543d6ced8816d657d0b596fa61d2"
-  integrity sha512-sDnywg2SGMR9Xvv65vucnJ06s0vRKuzpLs/H2If+I+Tm3+IBKfy0pOtRGp9VkuCD71kdG4uDuR4D/8YzaGYTig==
+"@gluestack-style/legend-motion-animation-driver@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@gluestack-style/legend-motion-animation-driver/-/legend-motion-animation-driver-1.0.1.tgz#4bb99513e8ba8ecae6d959c526c7dfa9e9decfd4"
+  integrity sha512-y8rJtjaU851JQpp7ERQOX9yIeufmqxBDLtV98sdnLXDtxai0PVSURWohWGRnYPEhhiEEQt7S6/1c0A25X0b/PA==
 
 "@gluestack-style/react@^0.2.9":
   version "0.2.43"
@@ -2532,10 +2532,10 @@
     inline-style-prefixer "^6.0.1"
     normalize-css-color "^1.0.2"
 
-"@gluestack-style/react@^1.0.0-alpha.2":
-  version "1.0.0-alpha.2"
-  resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-1.0.0-alpha.2.tgz#6dd7008b025de9737c34a17ab285941badd9f2e7"
-  integrity sha512-hr3hfimtvYX/TiyJDbk/AKRVFWEbevXaQzsAXccFlslUhMIuM6mdjhimVFK17gDF1Fo3LcVL5B+8Ia2cpVIxYg==
+"@gluestack-style/react@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-1.0.0.tgz#26ae4716e26b9bcacdcab211830a02de3cb09366"
+  integrity sha512-80tc0JL9xpDXKOqlZ8QZwnaO4lm/Z28c6Qxc1BE8Mtu4TGN+yvP8AcQtTZeI0ov2ZlmYWpVI4UWZstMurN5X8w==
   dependencies:
     inline-style-prefixer "^6.0.1"
     normalize-css-color "^1.0.2"
@@ -2649,10 +2649,10 @@
     "@react-native-aria/interactions" "^0.2.10"
     "@react-stately/checkbox" "^3.4.2"
 
-"@gluestack-ui/config@1.0.0-alpha.0":
-  version "1.0.0-alpha.0"
-  resolved "https://registry.yarnpkg.com/@gluestack-ui/config/-/config-1.0.0-alpha.0.tgz#cc462d6ecc7b9e2f8cea6e236f75b02373a3a375"
-  integrity sha512-4G4Lh5wvsiQmuOcNng5+jPw01RhKnVkGA7c9jKtLwzIy+XLKBHQ8zz2YigXFmbe2jahCtAck0mI1FD/AS3otFA==
+"@gluestack-ui/config@1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/config/-/config-1.0.0.tgz#58cabadc737d2f65f1cca890cd5f9a1bb6e71fb4"
+  integrity sha512-3R3ZMBWQHSqY8w0AnHDj3kGB+FQofVdU921QQLGhmASODOH/79v3v3pBxGkT17TPuXbBmbPQEqGbbKqZSFn0rw==
 
 "@gluestack-ui/divider@^0.1.3", "@gluestack-ui/divider@^0.1.5":
   version "0.1.5"
