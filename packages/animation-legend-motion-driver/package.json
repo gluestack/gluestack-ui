@@ -1,6 +1,6 @@
 {
   "name": "@gluestack-style/legend-motion-animation-driver",
-  "version": "0.0.1",
+  "version": "1.0.0-alpha.2",
   "description": "A gluestack-style plugin for animation support using legendapp motion library",
   "keywords": [
     "react",
@@ -25,8 +25,8 @@
     "clean": "rm -rf lib"
   },
   "peerDependencies": {
-    "@legendapp/motion": ">=2.2.0",
-    "@gluestack-style/react": ">=0.2.49"
+    "@gluestack-style/react": ">=0.2",
+    "@legendapp/motion": ">=2.2"
   },
   "devDependencies": {
     "@gluestack-style/react": ">=0.2.49",

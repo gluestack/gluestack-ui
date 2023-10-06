@@ -14,7 +14,19 @@ const animationPluginRoot = path.resolve(
   __dirname,
   '../../packages/animation-plugin/src'
 );
+const animationResolverRoot = path.resolve(
+  __dirname,
+  '../../packages/animation-resolver/src'
+);
+const legendMotinDriverRoot = path.resolve(
+  __dirname,
+  '../../packages/animation-legend-motion-driver/src'
+);
 const node_modules = path.join(__dirname, '../../node_modules');
+const gluestackThemed = path.join(
+  __dirname,
+  '../../../gluestack-ui/packages/themed'
+);
 // const designSystem = path.resolve(__dirname, "../../../glustack-design-system");
 module.exports = async function (env, argv) {
   const config = await createExpoWebpackConfigAsync(env, argv);
@@ -24,6 +36,9 @@ module.exports = async function (env, argv) {
     include: [
       path.resolve(styledRoot),
       path.resolve(animationPluginRoot),
+      path.resolve(animationResolverRoot),
+      path.resolve(legendMotinDriverRoot),
+      path.resolve(gluestackThemed),
       // path.resolve(designSystem, "src"),
     ],
     use: 'babel-loader',

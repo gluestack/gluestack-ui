@@ -1,7 +1,7 @@
 import { AnimationResolver } from '@gluestack-style/animation-resolver';
 import { MotionAnimationDriver } from '@gluestack-style/legend-motion-animation-driver';
 // import { MotiAnimationDriver } from '@gluestack-style/moti-animation-driver';
-import { createConfig } from '@gluestack-style/react';
+import { createComponents, createConfig } from '@gluestack-style/react';
 
 export const config = createConfig({
   aliases: {
@@ -734,6 +734,16 @@ export const config = createConfig({
 } as const);
 
 type ConfigType = typeof config;
+
+// export const components = createComponents({
+//   Box: {
+//     theme: {
+//       bg: '$amber400',
+//       h: 100,
+//       w: 100,
+//     },
+//   },
+// });
 
 declare module '@gluestack-style/react' {
   interface ICustomConfig extends ConfigType {}

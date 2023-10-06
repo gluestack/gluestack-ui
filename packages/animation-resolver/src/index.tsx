@@ -172,7 +172,7 @@ export class AnimationResolver implements IStyledPlugin {
         AnimatedComponent.isAnimatedComponent = true;
       }
       if (!AnimatedComponent) {
-        AnimatedComponent = React.Fragment;
+        AnimatedComponent = Component;
       }
 
       // this.#childrenExitPropsMap = deepClone(styledObj);
@@ -186,12 +186,13 @@ export class AnimationResolver implements IStyledPlugin {
         resolvedAnimatedProps
       );
 
-      if (shouldUpdateConfig) {
-        // @ts-ignore
-        return [styledObj, shouldUpdateConfig, _, AnimatedComponent];
-      }
+      // if (shouldUpdateConfig) {
+      //   // @ts-ignore
+      //   return [styledObj, shouldUpdateConfig, _, AnimatedComponent];
+      // }
 
       // @ts-ignore
+
       return [
         resolvedStyledObjectWithAnimatedProps,
         shouldUpdateConfig,
@@ -234,12 +235,18 @@ export class AnimationResolver implements IStyledPlugin {
           );
         }
         const value = styledObject[prop];
+
+        if (keyPath[keyPath.length - 1] === 'style') {
+          keyPath.pop();
+        }
         // @ts-ignore
         keyPath.push('props', aliases[prop]);
+        // setObjectKeyValue(resolvedStyledObject, keyPath, value);
+
         setObjectKeyValue(resolvedStyledObject, keyPath, value);
         keyPath.pop();
         keyPath.pop();
-        delete styledObject[prop];
+        // delete styledObject[prop];
       }
 
       if (animatedPropMap && animatedPropMap[prop]) {
@@ -256,7 +263,7 @@ export class AnimationResolver implements IStyledPlugin {
   }
 
   componentMiddleWare({ Component, ExtendedConfig }: any) {
-    if (Component && Component.isAnimatedComponent) {
+    if (Component && Component?.isAnimatedComponent) {
       const styledConfig = this.#childrenExitPropsMap;
 
       this.#childrenExitPropsMap = {};
@@ -326,6 +333,7 @@ export class AnimationResolver implements IStyledPlugin {
           ? // @ts-ignore
             resolvedAnimatedStyledWithStyledObject?.props
           : {};
+
         return (
           <Component
             {...animatedProps}
@@ -343,13 +351,12 @@ export class AnimationResolver implements IStyledPlugin {
         NewComponent.styled.config = {};
         //@ts-ignore
         NewComponent.styled.config = styledConfig;
-
         //@ts-ignore
         NewComponent.isStyledComponent = Component?.isStyledComponent;
         //@ts-ignore
         NewComponent.isComposedComponent = Component?.isComposedComponent;
 
-        NewComponent.displayName = 'StyledComponent';
+        NewComponent.displayName = Component?.displayName;
         return NewComponent;
       }
     } else {

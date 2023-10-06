@@ -42,9 +42,8 @@ export const StyledProvider: React.FC<{
   colorMode?: COLORMODES;
   children?: React.ReactNode;
   globalStyles?: any;
-  components?: any;
-}> = ({ config, colorMode, children, globalStyles, components }) => {
-  const currentConfig = React.useMemo(() => {
+}> = ({ config, colorMode, children, globalStyles }) => {
+  const currentConfig: any = React.useMemo(() => {
     //TODO: Add this later
     return platformSpecificSpaceUnits(config, Platform.OS);
   }, [config]);
@@ -94,17 +93,15 @@ export const StyledProvider: React.FC<{
   const [animationDriverData, setAnimationDriverData] = React.useState();
   const globalStyleMap =
     config?.globalStyle && createGlobalStyles(config.globalStyle);
+
   const contextValue = React.useMemo(() => {
     return {
-      config: {
-        ...currentConfig,
-        components,
-      },
+      config: currentConfig,
       globalStyle: globalStyleMap,
       animationDriverData,
       setAnimationDriverData,
     };
-  }, [currentConfig, globalStyleMap, components, animationDriverData]);
+  }, [currentConfig, globalStyleMap, animationDriverData]);
 
   return (
     <StyledContext.Provider value={contextValue}>

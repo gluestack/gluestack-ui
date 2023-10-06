@@ -15,8 +15,10 @@ import {
 import {
   Motion,
   AnimatePresence as MotionAnimatePresence,
+  createMotionAnimatedComponent,
 } from '@legendapp/motion';
 import { propertyTokenMap } from './propertyTokenMap';
+import { Pressable } from 'react-native';
 
 function tokenizeAnimationPropsFromConfig(
   props: any = {},
@@ -102,11 +104,16 @@ const AnimatePresence = React.forwardRef(
     );
 
     React.Children.toArray(children).forEach((child: any) => {
-      if (child?.type?.displayName === 'StyledComponent') {
+      if (
+        (child?.type?.displayName &&
+          child?.type?.displayName.includes('Gluestack-AnimatedResolver')) ||
+        child?.type?.isStyledComponent
+      ) {
         let tokenizedAnimatedProps: any = {};
         const animationAliases = {};
 
-        const componentStyledObject = child?.type?.styled?.config;
+        const componentStyledObject = child?.type?.getStyledData()?.config;
+
         const { variantProps, restProps } = getVariantProps(
           child?.props,
           componentStyledObject
@@ -114,25 +121,20 @@ const AnimatePresence = React.forwardRef(
 
         const config = CONFIG;
 
-        if (child.type.styled.resolvedProps) {
-          tokenizedAnimatedProps = child?.type?.styled?.resolvedProps;
-        } else {
-          const variantStyledObject = resolveVariantAnimationProps(
-            variantProps,
-            componentStyledObject
-          );
-          const componentStyledObjectWithVariants = deepMergeObjects(
-            componentStyledObject,
-            variantStyledObject
-          );
-          tokenizedAnimatedProps = tokenizeAnimationPropsFromConfig(
-            componentStyledObjectWithVariants,
-            config,
-            animationAliases
-          );
+        const variantStyledObject = resolveVariantAnimationProps(
+          variantProps,
+          componentStyledObject
+        );
 
-          child.type.styled.resolvedProps = tokenizedAnimatedProps;
-        }
+        const componentStyledObjectWithVariants = deepMergeObjects(
+          componentStyledObject,
+          variantStyledObject
+        );
+        tokenizedAnimatedProps = tokenizeAnimationPropsFromConfig(
+          componentStyledObjectWithVariants,
+          config,
+          animationAliases
+        );
 
         const tokenizedSxAnimationProps: any = tokenizeAnimationPropsFromConfig(
           child?.props?.sx,
@@ -147,14 +149,15 @@ const AnimatePresence = React.forwardRef(
         );
 
         const clonedChild = React.cloneElement(child, {
-          exit: mergedAnimatedProps?.[':exit'],
           ...restProps,
+          exit: mergedAnimatedProps?.baseStyle?.[':exit'],
         });
         clonedChildren.push(clonedChild);
       } else {
         clonedChildren.push(child);
       }
     });
+
     return (
       <MotionAnimatePresence ref={ref} {...props}>
         {clonedChildren}
@@ -162,9 +165,13 @@ const AnimatePresence = React.forwardRef(
     );
   }
 );
+
+const AnimatedPressable = createMotionAnimatedComponent(
+  Pressable
+) as React.ComponentType<typeof Pressable>;
 export class MotionAnimationDriver implements IAnimationDriverPlugin {
   name: 'MotionAnimationDriver';
-  engine = { ...Motion, AnimatePresence };
+  engine = { ...Motion, Pressable: AnimatedPressable, AnimatePresence };
   config = {
     aliases: {
       ':animate': 'animate',
