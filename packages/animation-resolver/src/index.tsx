@@ -172,7 +172,7 @@ export class AnimationResolver implements IStyledPlugin {
         AnimatedComponent.isAnimatedComponent = true;
       }
       if (!AnimatedComponent) {
-        AnimatedComponent = React.Fragment;
+        AnimatedComponent = Component;
       }
 
       // this.#childrenExitPropsMap = deepClone(styledObj);
@@ -186,12 +186,13 @@ export class AnimationResolver implements IStyledPlugin {
         resolvedAnimatedProps
       );
 
-      if (shouldUpdateConfig) {
-        // @ts-ignore
-        return [styledObj, shouldUpdateConfig, _, AnimatedComponent];
-      }
+      // if (shouldUpdateConfig) {
+      //   // @ts-ignore
+      //   return [styledObj, shouldUpdateConfig, _, AnimatedComponent];
+      // }
 
       // @ts-ignore
+
       return [
         resolvedStyledObjectWithAnimatedProps,
         shouldUpdateConfig,
@@ -245,7 +246,7 @@ export class AnimationResolver implements IStyledPlugin {
         setObjectKeyValue(resolvedStyledObject, keyPath, value);
         keyPath.pop();
         keyPath.pop();
-        delete styledObject[prop];
+        // delete styledObject[prop];
       }
 
       if (animatedPropMap && animatedPropMap[prop]) {
@@ -332,6 +333,7 @@ export class AnimationResolver implements IStyledPlugin {
           ? // @ts-ignore
             resolvedAnimatedStyledWithStyledObject?.props
           : {};
+
         return (
           <Component
             {...animatedProps}

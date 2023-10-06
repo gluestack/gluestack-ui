@@ -6,6 +6,8 @@ import { stableHash } from './stableHash';
 import { propertyTokenMap } from './propertyTokenMap';
 import { updateOrderUnResolvedMap } from './updateOrderUnResolvedMap';
 import { GluestackStyleSheet } from './style-sheet';
+import { resolvePlatformTheme } from './styled';
+import { Platform } from 'react-native';
 
 /********************* PLUGINS *****************************/
 
@@ -171,8 +173,11 @@ export const resolveTheme = (
   extendedConfig?: any
 ) => {
   const versboseComponentTheme = convertStyledToStyledVerbosed(componentTheme);
+
+  resolvePlatformTheme(versboseComponentTheme, Platform.OS);
+
   const componentHash = stableHash({
-    ...componentTheme,
+    ...versboseComponentTheme,
   });
 
   const { styledIds, verbosedStyleIds } = updateOrderUnResolvedMap(
