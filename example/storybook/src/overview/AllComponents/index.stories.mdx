@@ -15,12 +15,13 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 <Meta title="Overview/All Components" />
 
 import { AppProvider } from '@gluestack/design-system';
+import { config } from '@gluestack-ui/config';
 import { Grid } from './Grid';
 
 # Components
 
 30+ responsive components for every screen and style
 
-<AppProvider>
+<AppProvider config={config}>
   <Grid />
 </AppProvider>
