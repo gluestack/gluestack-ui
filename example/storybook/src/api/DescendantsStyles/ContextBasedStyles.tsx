@@ -6,6 +6,8 @@ import { Wrapper } from '../../components/Wrapper';
 import { AnimatedView } from '@gluestack-style/animation-resolver';
 import { CameraIcon } from 'lucide-react-native';
 
+import Link from 'next/link';
+import { Pressable } from 'react-native';
 export const BaseIcon = styled(
   AsForwarder,
   {
@@ -114,11 +116,27 @@ const Text1 = styled(
   }
 );
 
+const MyLink = styled(Link, {});
 export function ContextBasedStyles() {
   return (
     <Wrapper colorMode="dark">
       {/* <StyledIcon as={CameraIcon} /> */}
-      <Text1 data-style="hell">vdkbkdfbv</Text1>
+      {/* <Text1
+        // data-style="hell"
+        sx={{
+          color: '$red500',
+        }}
+      >
+        vdkbkdfbv
+      </Text1> */}
+      <MyLink
+        href={'/'}
+        sx={{
+          color: '$red500',
+        }}
+      >
+        next link
+      </MyLink>
     </Wrapper>
   );
 }

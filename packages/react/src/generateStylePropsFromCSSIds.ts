@@ -170,11 +170,13 @@ export function generateStylePropsFromCSSIds(
   }
 
   Object.assign(props, {
-    style: propsStyles ? [...styleObj, ...propsStyles] : styleObj,
-    dataSet: {
+    'style': propsStyles ? [...styleObj, ...propsStyles] : styleObj,
+    'dataSet': {
       ...props?.dataSet,
       style: getDataStyle(props, styleCSSIdsString),
     },
+    // DONOT REMOVE THIS LINE, THIS IS FOR SPECIFIC COMPONENTS LIKE next/link
+    'data-style': getDataStyle(props, styleCSSIdsString),
   });
   return props;
 }
