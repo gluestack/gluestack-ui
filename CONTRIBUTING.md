@@ -159,4 +159,4 @@ If all goes well, your pull request will be merged. If it is not merged, maintai
 
 ## <a name="docs"></a> Helping with Documentation
 
-The `gluestack-style` documentation is hosted as part of the `gluestack` repository. The website itself is located at <https://style.gluestack.io/>. If there's anything you'd like to change in the docs, you can get started by clicking on the "Edit" button located on the bottom left of most pages on the website.
+The `gluestack-style` documentation is hosted as part of the `gluestack` repository. The website itself is located at <https://gluestack.io/style>. If there's anything you'd like to change in the docs, you can get started by clicking on the "Edit" button located on the bottom left of most pages on the website.
