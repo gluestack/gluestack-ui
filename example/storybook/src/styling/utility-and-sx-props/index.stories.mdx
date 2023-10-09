@@ -26,16 +26,14 @@ import {
 import { transformedCode } from '../../utils';
 import Wrapper from '../../components/Wrapper';
 import { styled } from '@gluestack-style/react';
-
 import { Pressable, Text, View, Image, StyleSheet } from 'react-native';
-// import the createButton function
 import { createButton } from '@gluestack-ui/button';
 
 <Meta title="Styling/Utility and SX props" />
 
 # Utility Props
 
-React Native has a great StyleSheet API which is optimal for component-based systems. [@gluestack-style/react](https://style.gluestack.io) leverages it and adds a layer of utility props and constraint based designed tokens on top of it. `@gluestack-style/react` is used as styling engine for `@gluestack-ui/themed`.
+React Native has a great StyleSheet API which is optimal for component-based systems. [**`@gluestack-style/react`**](https://style.gluestack.io) leverages it and adds a layer of utility props and constraint based designed tokens on top of it. **gluestack-style** is used as styling engine for [**`@gluestack-ui/themed`**](https://github.com/gluestack/gluestack-ui/blob/main/packages/themed).
 To understand utility props, let's take an example.
 
 ### With React Native (without gluestack-ui)
@@ -136,8 +134,9 @@ Let's try the traditional way of building the following card in React Native.
 
 ### With gluestack-ui
 
-Now let's try to build the same card using `@gluestack-ui/themed`.
-By using `@gluestack-ui/themed` components, you can apply styles directly in the layout using shorthands.
+Let's try to build the same card using **`@gluestack-ui/themed`**. Since it is unstyled by default, we'll need to provide the [`config`](https://github.com/gluestack/gluestack-ui/blob/main/packages/config/src/gluestack-ui.config.ts) file from **`@gluestack-ui/config`** to the `GluetackUIProvider`. All the aliases are defined in config.
+
+Once this is set up, you can easily apply styles to the layout using shorthands when working with **`@gluestack-ui/themed`** components.
 
 <AppProvider>
   <CodePreview
@@ -1668,7 +1667,7 @@ Provides a way to pass props on certain interaction.
        <Button
       sx={{
         ':hover': {
-          // below props will only be applied on button is pressed
+          // below props will only be applied on button is hovered
           bg: '$red300',
         },
       }}
@@ -1775,7 +1774,7 @@ Provides a way to pass props on certain interaction.
         <Table.TR>
           <Table.TD>
             <Table.TText>
-              <InlineCode>:pressed</InlineCode>
+              <InlineCode>:active</InlineCode>
             </Table.TText>
           </Table.TD>
           <Table.TD>

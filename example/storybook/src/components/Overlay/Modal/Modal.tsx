@@ -102,6 +102,7 @@ const FigmaModalStory = ({ _showModal, ...props }: any) => {
       isOpen={true}
       {...props}
       py="$16"
+      w={1230}
       bg="#00000080"
       _experimentalOverlay={false}
     >

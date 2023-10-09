@@ -4,7 +4,6 @@ import {
   HStack,
   VStack,
   Text,
-  LogoTag,
   Button,
   Link,
 } from '@gluestack/design-system';
@@ -17,6 +16,7 @@ import NextLink from 'next/link';
 import Tilde from './Tilde';
 import Copied from './Copied';
 import Copy from './Copy';
+import Figma from './Figma';
 
 function Card1() {
   const [copied, setCopied] = useState(false);
@@ -196,13 +196,31 @@ function Card1() {
                 Manual Installation
               </Text>
               <HStack flexWrap="wrap" gap="$2.5">
-                <NextLink href="/docs/guides/install-nextjs">
+                <NextLink
+                  href="/ui/docs/guides/install-nextjs"
+                  style={{
+                    borderRadius: 8,
+                    height: 72,
+                  }}
+                >
                   <Next />
                 </NextLink>
-                <NextLink href="/docs/guides/install-expo">
+                <NextLink
+                  href="/ui/docs/guides/install-expo"
+                  style={{
+                    borderRadius: 8,
+                    height: 72,
+                  }}
+                >
                   <Expo1 />
                 </NextLink>
-                <NextLink href="/docs/guides/install-rn">
+                <NextLink
+                  href="/ui/docs/guides/install-rn"
+                  style={{
+                    borderRadius: 8,
+                    height: 72,
+                  }}
+                >
                   <ReactN />
                 </NextLink>
               </HStack>
@@ -248,13 +266,60 @@ function Card1() {
                 VS Code Extension
               </Text>
               <HStack>
-                <NextLink href="/docs/getting-started/vscode-extensions">
+                <NextLink
+                  href="/ui/docs/getting-started/vscode-extensions"
+                  style={{
+                    borderRadius: 8,
+                    height: 72,
+                  }}
+                >
                   <VsCode />
                 </NextLink>
               </HStack>
             </VStack>
           </Box>
         </Box>
+
+        <Box
+          borderRadius="$xl"
+          borderWidth="$1"
+          sx={{
+            '@lg': {
+              flex: 1,
+            },
+            'borderColor': '$trueGray300',
+            '_dark': {
+              borderColor: '$trueGray800',
+            },
+            '_web': {
+              background:
+                'linear-gradient(99deg, rgba(20, 82, 119, 0.20) 5.76%, rgba(197, 58, 148, 0.20) 87.08%)',
+            },
+          }}
+        >
+          <Box p="$6">
+            <VStack space="lg">
+              <Text
+                fontSize="$2xl"
+                fontWeight="bold"
+                fontFamily="Plus Jakarta Sans"
+              >
+                Figma UI Kit
+              </Text>
+              <HStack flexWrap="wrap" gap="$2.5">
+                <Link
+                  href="https://www.figma.com/@gluestack"
+                  isExternal
+                  target="_blank"
+                  borderRadius="$lg"
+                >
+                  <Figma />
+                </Link>
+              </HStack>
+            </VStack>
+          </Box>
+        </Box>
+
         <Box
           borderRadius="$xl"
           borderWidth="$1"
@@ -286,13 +351,15 @@ function Card1() {
                   href="https://github.com/gluestack/next-head-starter-kit"
                   isExternal
                   target="_blank"
-                  >
+                  borderRadius="$lg"
+                >
                   <Next />
                 </Link>
                 <Link
                   href="https://github.com/gluestack/expo-head-starter-kit"
                   isExternal
                   target="_blank"
+                  borderRadius="$lg"
                 >
                   <Expo1 />
                 </Link>

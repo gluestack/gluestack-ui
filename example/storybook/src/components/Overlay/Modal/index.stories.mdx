@@ -56,10 +56,6 @@ import {
 
 import Wrapper from '../../Wrapper';
 
-## Themed
-
-Following is the default implementation of the **Modal** component without any additional customization. This serves as a starting point for users who are new to this library and want to learn about the basic functionality and appearance of the component. You can refer [here](https://github.com/gluestack/gluestack-ui/tree/main/packages/themed/src/components/Modal/styled-components) to learn about default styling of Modal component.
-
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
@@ -152,11 +148,13 @@ Following is the default implementation of the **Modal** component without any a
 
 <br />
 
+## API Reference
+
 ### Import
 
 To use the component in your project, run the command below into your import statement. This will import the component from your components folder.
 
-```bash
+```jsx
 import { Modal } from '@gluestack-ui/themed';
 ```
 
@@ -179,13 +177,13 @@ export default () => (
 );
 ```
 
-### API Reference
+### Component Props
 
-The following section contains a comprehensive list of the component's references, including descriptions, properties, types, and default behavior. This information is readily available for you to access, helping you effectively utilize the component library in your projects.
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
 
 #### Modal
 
-Contains all button related layout style props and actions. It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable#props) component.
+Contains all View related layout style props and actions. It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
 
 <AppProvider>
   <TableContainer>
@@ -367,20 +365,36 @@ Contains all button related layout style props and actions. It inherits all the 
             <Table.TText>{`The content to display inside the Modal`}</Table.TText>
           </Table.TD>
         </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</AppProvider>
+
+**Descendants Styling Props**
+Props to style child components.
+
+<AppProvider>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Sx Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Description</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
         <Table.TR>
           <Table.TD>
             <Table.TText>
-              <InlineCode>unmountOnExit</InlineCode>
+              <InlineCode>_content</InlineCode>
             </Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>boolean</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>true</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>{`If true, removes the component from the DOM when it is not visible. Animation and accessibility won't work when false.`}</Table.TText>
+            <Table.TText>{`Prop to style ModalContent Component`}</Table.TText>
           </Table.TD>
         </Table.TR>
       </Table.TBody>
@@ -445,6 +459,49 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
+**Descendants Styling Props**
+Props to style child components.
+
+<AppProvider>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Sx Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Description</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>_text</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Prop to style ModalCloseButton  Text Component`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+         <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>_icon</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Prop to style ModalCloseButton  Icon Component`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+
+  </TableContainer>
+</AppProvider>
+
 #### ModalBody
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
@@ -457,21 +514,13 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
 
 We have outlined the various features that ensure the Modal component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards. It uses React Native ARIA [@react-native-aria/focus](https://react-native-aria.geekyants.com/docs/) which follows the [Dialog Modal WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/).
 
-### Dependencies
+## Themed
 
-The following are the lists of all the libraries and packages the component relies on. This information will help you ensure that your project has all the necessary dependencies installed to use the component.
-
-- `@gluestack-ui/hooks`
-- `@gluestack-ui/overlay`
-- `@gluestack-ui/utils`
-- `@react-native-aria/focus`
-- `@react-native-aria/interactions`
-- `@react-native-aria/overlays`
-- `@react-native-aria/dialog`
+The themed version of the component is a pre-styled version of the component, which allows you to quickly integrate the component into your project. The component's design and functionality are fully defined, allowing you to focus on the more important aspects of your project.
 
 ### Props
 
-Modal component is created using View component from react-native. It extends all the props supported by [React Native View](https://reactnative.dev/docs/view#props), [utility props](https://ui.gluestack.io/docs/styling/utility-and-sx-props) and the props mentioned below.
+Modal component is created using View component from react-native. It extends all the props supported by [React Native View](https://reactnative.dev/docs/view#props), [utility props](/ui/docs/styling/utility-and-sx-props) and the props mentioned below.
 
 #### Modal
 
@@ -842,17 +891,23 @@ A versatile modal component offering different sizes to accommodate various cont
 
 ## Unstyled
 
+All the components in `gluestack-ui` are unstyled by default. To customize your UI using the extendedTheme, please refer to this [link](https://gluestack.io/ui/docs/theme-configuration/customizing-theme). The import names of components serve as keys to customize each component.
+
+<!--
+
+### Advanced
+
 We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
 
 ### Customizing the Modal
 
-We have a function called `createModal` which can be used to create a custom Modal component. This function takes in a configuration object which contains the styled components that you want to use for the modal. You can refer [style.gluestack.io](https://style.gluestack.io/) for more information on how to use styled components.
+We have a function called `createModal` which can be used to create a custom Modal component. This function takes in a configuration object which contains the styled components that you want to use for the modal. You can refer [gluestack.io/style](/style) for more information on how to use styled components.
 
-You can read more on how to animate components [here](https://ui.gluestack.io/docs/advanced/animations).
+You can read more on how to animate components [here](/ui/docs/advanced/animations).
 
 #### Usage
 
-Default styling of all these components can be found in the `components/core/modal` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/tree/main/example/storybook/src/ui-components/Modal) of the styled `Modal` components.
+Default styling of all these components can be found in the `components/core/modal` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/main/packages/themed/src/components/Modal) of the styled `Modal` components.
 
 ```jsx
 // import the styles
@@ -862,7 +917,7 @@ import {
   CloseButton,
   Header,
   Footer,
-  Body,
+  Body,https://style.gluestack.io/style
   Backdrop,
 } from '../components/core/modal/styled-components';
 
@@ -907,3 +962,4 @@ export default () => (
   </Modal>
 );
 ```
+-->

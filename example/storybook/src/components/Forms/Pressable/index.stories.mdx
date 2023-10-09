@@ -20,10 +20,6 @@ import { AppProvider, CodePreview, Text } from '@gluestack/design-system';
 
 import Wrapper from '../../Wrapper';
 
-## Themed
-
-Following is the default implementation of the **Pressable** component without any additional customization. This serves as a starting point for users who are new to this library and want to learn about the basic functionality and appearance of the component. You can refer [here](https://github.com/gluestack/gluestack-ui/tree/main/packages/themed/src/components/Pressable/styled-components) to learn about default styling of Pressable component.
-
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
@@ -50,6 +46,8 @@ Following is the default implementation of the **Pressable** component without a
 
 <br />
 
+## API Reference
+
 ### Import
 
 To use the component in your project, run the command below into your import statement. This will import the component from your components folder.
@@ -66,33 +64,62 @@ The structure provided below can help you identify and understand a Pressable co
 export default () => <Pressable />;
 ```
 
-### API Reference
+### Component Props
 
-The following section contains a comprehensive list of the component's references, including descriptions, properties, types, and default behavior. This information is readily available for you to access, helping you effectively utilize the component library in your projects.
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
 
 #### Pressable
 
 It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable) component.
 
-### Dependencies
+### Examples
 
-The following are the lists of all the libraries and packages the component relies on. This information will help you ensure that your project has all the necessary dependencies installed to use the component.
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
-- `@gluestack-ui/utils`
-- `@react-native-aria/focus`
-- `@react-native-aria/interactions`
+#### Pressable child elements according to its states
+
+You can change the child elements according to the states of Pressable component.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+ <Pressable p="$16" bg="$primary500" sx={{':hover':{ bg:"$primary400"}}}>https://style.gluestack.io/style
+   {({ pressed }) => (
+        <Text color={pressed ? 'pink' : 'yellow'}>PRESSABLE</Text>
+      )}
+</Pressable>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Pressable,
+        Text,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+Similarly, you can change the child elements according to other states of Pressable
+component and i.e. `focus` , `hover` , `pressed` , `disabled` and `focusVisible`.
 
 ## Unstyled
 
-We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
+All the components in `gluestack-ui` are unstyled by default. To customize your UI using the extendedTheme, please refer to this [link](https://gluestack.io/ui/docs/theme-configuration/customizing-theme). The import names of components serve as keys to customize each component.
 
+<!--
 ### Customizing the Pressable
 
-For customizing the Pressable, you have to map styled view to Pressable. You can refer [style.gluestack.io](https://style.gluestack.io/) for more information on how to use styled components.
+For customizing the Pressable, you have to map styled view to Pressable. You can refer [gluestack.io/style](/style) for more information on how to use styled components.
 
 #### Usage
 
-Default styling of the component can be found in the `components/pressable` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/main/example/storybook/src/ui-components/Pressable) of the styled `Pressable` component.
+Default styling of the component can be found in the `components/pressable` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/main/packages/themed/src/components/Pressable) of the styled `Pressable` component.
 
 ```jsx
 // import the styles
@@ -104,3 +131,5 @@ const Pressable = Root;
 // using the Pressable component
 export default () => <Pressable />;
 ```
+
+-->

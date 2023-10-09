@@ -7,19 +7,19 @@ showHeader: true
 ---
 
 import { Meta } from '@storybook/addon-docs';
-import { config } from '@gluestack-ui/themed';
+import { config } from '@gluestack-ui/config';
 
 <Meta title="components/Provider/GluestackUIProvider" />
+
 import {
   GluestackUIProvider,
   Pressable,
   Button,
   Box,
   ButtonText,
-} from './Provider';
+} from '@gluestack-ui/themed';
 import { transformedCode } from '../../../utils';
 import { AppProvider, CodePreview, Text } from '@gluestack/design-system';
-
 import Wrapper from '../../Wrapper';
 
 ## Basic
@@ -34,7 +34,7 @@ Following is the default implementation of the **GluestackUIProvider** component
       code: `
         function App(){
           return (
-                <GluestackUIProvider config={config.theme}>
+                <GluestackUIProvider config={config}>
                   <Button>
                     <ButtonText>Hello World</ButtonText>
                   </Button>
@@ -75,7 +75,9 @@ import { GluestackUIProvider } from '@gluestack-ui/themed';
 The structure provided below can help you identify and understand a GluestackUIProvider component's various parts.
 
 ```jsx
-export default () => <GluestackUIProvider>{children}</GluestackUIProvider>;
+export default () => (
+  <GluestackUIProvider config={config}>{children}</GluestackUIProvider>
+);
 ```
 
 ## Advanced
@@ -89,9 +91,10 @@ We have also exported all the providers separately so that you can use them indi
 To use only config and styled functionalities, you can use `GluestackUIStyledProvider` component.
 
 ```jsx
-import { GluestackUIStyledProvider, config } from '@gluestack-ui/themed';
+import { GluestackUIStyledProvider } from '@gluestack-ui/themed';
+import { config } from '@gluestack-ui/config';
 
-<GluestackUIStyledProvider config={config.theme}>
+<GluestackUIStyledProvider config={config}>
   <Button>
     <ButtonText>Hello World</ButtonText>
   </Button>
@@ -118,10 +121,7 @@ To create your own provider, here is the example of how you can create your own 
 
 ```jsx
 import React from 'react';
-import {
-  createProvider,
-  GluestackUIContextProvider,
-} from '@gluestack-ui/provider';
+import { createProvider } from '@gluestack-ui/provider';
 import { StyledProvider } from '@gluestack-style/react';
 import { OverlayProvider } from '@gluestack-ui/overlay';
 import { ToastProvider } from '@gluestack-ui/toast';
@@ -141,16 +141,17 @@ const GluestackUIProvider = ({ children, ...props }: any) => {
 
 ### Customizing the Provider
 
-We have a function called `createProvider` which can be used to create provider with `StyledProvider` exported from `@gluestack-style/react`. You can pass configuration object which consists theme. You can change the theme object specific to your brand. Refer [style.gluestack.io](https://style.gluestack.io/) for more information on how to create a theme.
+We have a function called `createProvider` which can be used to create provider with `StyledProvider` exported from `@gluestack-style/react`. You can pass configuration object which consists theme. You can change the theme object specific to your brand. Refer [gluestack.io/style](/style) for more information on how to create a theme.
 
 #### Usage
 
+https://style.gluestack.io/style
 You can import the config For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/tree/main/example/storybook/src/ui-components/Provider).
 
 ```jsx
 // import the createProvider function
 import { createProvider } from '@gluestack-ui/provider';
-import { config } from '../gluestack.config';
+import { config } from '@gluestack-ui/config';
 import { StyledProvider } from '@gluestack-style/react';
 
 export const Provider = createProvider({
@@ -159,7 +160,7 @@ export const Provider = createProvider({
 
 // Using the Provider component
 export default () => (
-  <Provider config={config.theme}>
+  <Provider config={config}>
     <Text />
   </Provider>
 );

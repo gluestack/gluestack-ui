@@ -69,7 +69,9 @@ const ActionsheetWithScrollView = ({
         <ActionsheetDragIndicatorWrapper>
           <ActionsheetDragIndicator />
         </ActionsheetDragIndicatorWrapper>
-        <ActionsheetScrollView>{data.map(renderItem)}</ActionsheetScrollView>
+        <ActionsheetScrollView h="$56">
+          {data.map(renderItem)}
+        </ActionsheetScrollView>
       </ActionsheetContent>
     </Actionsheet>
   );

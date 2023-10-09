@@ -30,10 +30,12 @@ import { PhoneIcon, Clock3Icon, MailIcon } from 'lucide-react-native';
 const PopoverBasic = ({
   showPopover: showPopoverProp = true,
   placement = 'bottom',
+  size = 'md',
 }: any) => {
   return (
     <Center w={1200} h={800}>
       <Popover
+        size={size}
         offset={10}
         isOpen={showPopoverProp}
         placement={placement}
@@ -47,7 +49,7 @@ const PopoverBasic = ({
         }}
       >
         <PopoverBackdrop />
-        <PopoverContent maxWidth="$96">
+        <PopoverContent>
           <PopoverHeader>
             <Heading>Welcome!</Heading>
             <PopoverCloseButton>
@@ -96,7 +98,7 @@ const FigmaPopoverStory = ({
         // eslint-disable-next-line react/no-unstable-nested-components
         trigger={(triggerProps) => {
           return (
-            <Box w={1200} pt={300} pb={100} alignItems="center">
+            <Box w={1200} h={500} pt={300} pb={50} alignItems="center">
               <Button {...triggerProps}>
                 <ButtonText>Popover</ButtonText>
               </Button>

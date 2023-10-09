@@ -44,10 +44,6 @@ import {
 
 import Wrapper from '../../Wrapper';
 
-## Themed
-
-Following is the default implementation of the **Slider** component without any additional customization. This serves as a starting point for users who are new to this library and want to learn about the basic functionality and appearance of the component. You can refer [here](https://github.com/gluestack/gluestack-ui/tree/main/packages/themed/src/components/Slider/styled-components) to learn about default styling of Divider component.
-
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
@@ -98,6 +94,8 @@ Following is the default implementation of the **Slider** component without any 
 
 <br />
 
+## API Reference
+
 ### Import
 
 To use the component in your project, run the command below into your import statement. This will import the component from your components folder.
@@ -121,17 +119,13 @@ export default () => (
 );
 ```
 
-### API Reference
+### Component Props
 
-The following section contains a comprehensive list of the component's references, including descriptions, properties, types, and default behavior. This information is readily available for you to access, helping you effectively utilize the component library in your projects.
-
-#### Box
-
-It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
 
 #### Slider
 
-The wrapper that provides context and functionality for all children.
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
 <AppProvider>
   <TableContainer>
@@ -156,34 +150,18 @@ The wrapper that provides context and functionality for all children.
         <Table.TR>
           <Table.TD>
             <Table.TText>
-              <InlineCode>size</InlineCode>
+              <InlineCode>onChange</InlineCode>
             </Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>'sm' | 'md' | 'lg'</Table.TText>
+            <Table.TText>{'(value: number) => void'}</Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>'md'</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>To change the size of slider thumb .</Table.TText>
-          </Table.TD>
-        </Table.TR>
-        <Table.TR>
-          <Table.TD>
-            <Table.TText>
-              <InlineCode>orientation</InlineCode>
-            </Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>'vertical' | 'horizantal'</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>'horizantal'</Table.TText>
+            <Table.TText>-</Table.TText>
           </Table.TD>
           <Table.TD>
             <Table.TText>
-              Set the orientation of Slider to vertical or horizantal
+              Function called when the state of the Slider changes.
             </Table.TText>
           </Table.TD>
         </Table.TR>
@@ -206,17 +184,19 @@ The wrapper that provides context and functionality for all children.
         <Table.TR>
           <Table.TD>
             <Table.TText>
-              <InlineCode>isReversed</InlineCode>
+              <InlineCode>isReadOnly</InlineCode>
             </Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>bool</Table.TText>
+            <Table.TText>boolean</Table.TText>
           </Table.TD>
           <Table.TD>
             <Table.TText>false</Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>To reverse the order of Slider</Table.TText>
+            <Table.TText>
+              To manually set read-only to the checkbox.
+            </Table.TText>
           </Table.TD>
         </Table.TR>
         <Table.TR>
@@ -315,40 +295,76 @@ The wrapper that provides context and functionality for all children.
             <Table.TText> The slider's step value.</Table.TText>
           </Table.TD>
         </Table.TR>
-        <Table.TR>
-          <Table.TD>
-            <Table.TText>
-              <InlineCode>isReadOnly</InlineCode>
-            </Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>boolean</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>false</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>
-              To manually set read-only to the checkbox.
-            </Table.TText>
-          </Table.TD>
-        </Table.TR>
       </Table.TBody>
     </Table>
   </TableContainer>
 </AppProvider>
 
+**Descendants Styling Props**
+Props to style child components.
+
+<AppProvider>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Sx Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Description</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>_thumb</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Prop to style SliderThumb Component`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>_track</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Prop to style SliderTrack Component`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>_filledTrack</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Prop to style SliderFilledTrack Component`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+
+      </Table.TBody>
+    </Table>
+
+  </TableContainer>
+</AppProvider>
+
 #### SliderTrack
 
-The empty part of the slider that shows the track.
+It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/Pressable) component.
 
 #### SliderFilledTrack
 
-The filled part of the slider.
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
 #### SliderThumb
 
-The handle that is used to change the slider value.
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
 ### Features
 
@@ -371,21 +387,13 @@ We have outlined the various features that ensure the Slider component is access
 
 - VoiceOver: When the slider is focused, the screen reader will announce the sider's value.
 
-### Dependencies
+## Themed
 
-The following are the lists of all the libraries and packages the component relies on. This information will help you ensure that your project has all the necessary dependencies installed to use the component.
-
-- `@gluestack-ui/utils`
-- `@react-native-aria/interactions`
-- `@gluestack-ui/hooks`
-- `@gluestack-ui/form-control`,
-- `@react-aria/visually-hidden`
-- `@react-native-aria/slider`
-- `@react-stately/slider`
+The themed version of the component is a pre-styled version of the component, which allows you to quickly integrate the component into your project. The component's design and functionality are fully defined, allowing you to focus on the more important aspects of your project.
 
 ### Props
 
-Slider component is created using View component from react-native. It extends all the props supported by [React Native View](https://reactnative.dev/docs/view#props), [utility props](https://ui.gluestack.io/docs/styling/utility-and-sx-props) and the props mentioned below.
+Slider component is created using View component from react-native. It extends all the props supported by [React Native View](https://reactnative.dev/docs/view#props), [utility props](/ui/docs/styling/utility-and-sx-props) and the props mentioned below.
 
 #### Slider
 
@@ -853,15 +861,17 @@ function App(){
 
 ## Unstyled
 
-We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
+All the components in `gluestack-ui` are unstyled by default. To customize your UI using the extendedTheme, please refer to this [link](https://gluestack.io/ui/docs/theme-configuration/customizing-theme). The import names of components serve as keys to customize each component.
+
+<!--
 
 ### Customizing the Slider
 
-For customizing the Slider, you have to map styled view to Slider You can refer [style.gluestack.io](https://style.gluestack.io/) for more information on how to use styled components.
+For customizing the Slider, you have to map styled view to Slider You can refer [gluestack.io/style](https://style.gluestack.io/styleon on how to use styled components.
 
 #### Usage
 
-Default styling of the component can be found in the `components/slider` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/tree/main/example/storybook/src/ui-components/Slider) of the styled `Slider` component.
+Default styling of the component can be found in the `components/slider` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/main/packages/themed/src/components/Slider) of the styled `Slider` component.
 
 ```jsx
 // import the styles
@@ -895,3 +905,5 @@ export default () => (
   </Slider>
 );
 ```
+
+-->

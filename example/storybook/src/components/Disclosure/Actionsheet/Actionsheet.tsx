@@ -28,10 +28,10 @@ import {
   InputSlot,
   AddIcon,
   Image,
-  config,
   Text,
   Center,
 } from '@gluestack-ui/themed';
+import { config } from '@gluestack-ui/config';
 
 const ActionsheetBasic = ({ showActionsheetProp, ...props }: any) => {
   const [showActionsheet, setShowActionsheet] = React.useState(false);

@@ -19,6 +19,7 @@ export * from './FormControl';
 export * from './Input';
 export * from './Image';
 export * from './KeyboardAvoidingView';
+export * from './LinearGradient';
 export * from './Link';
 export * from './Menu';
 export * from './Modal';
@@ -39,9 +40,6 @@ export * from './Tabs';
 export * from './Tooltip';
 export * from './View';
 export * from './VStack';
-export {
-  GluestackUIProvider,
-  GluestackUIStyledProvider,
-  GluestackUIContextProvider,
-} from './Provider';
+export { GluestackUIProvider, GluestackUIStyledProvider } from './Provider';
 export * from './Icons/Icons';
+export * from './gluestack-ui.config';

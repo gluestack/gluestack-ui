@@ -1,0 +1,52 @@
+{
+  "name": "@gluestack-ui/config",
+  "version": "1.0.0",
+  "main": "build/gluestack-ui.config.js",
+  "types": "build/gluestack-ui.config.d.ts",
+  "module": "build/gluestack-ui.config",
+  "sideEffects": false,
+  "description": "Themed configuration for gluestack-ui components",
+  "keywords": [
+    "react",
+    "native",
+    "react-native",
+    "gluestack-ui",
+    "universal",
+    "headless",
+    "typescript",
+    "component",
+    "android",
+    "ios",
+    "nextjs"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "prepare": "tsc",
+    "watch": "tsc --watch",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "clean": "rm -rf lib"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@gluestack-style/react": "^0.2.54-alpha.3",
+    "@gluestack-ui/themed": "^0.1.53"
+  },
+  "peerDependencies": {
+    "@gluestack-style/react": ">=0.2",
+    "@gluestack-ui/themed": ">=0.1"
+  },
+  "release-it": {
+    "git": {
+      "commitMessage": "chore: release ${version}",
+      "tagName": "v${version}"
+    },
+    "npm": {
+      "publish": true
+    },
+    "github": {
+      "release": true
+    }
+  },
+  "dependencies": {}
+}

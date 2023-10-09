@@ -13,9 +13,9 @@ import {
   InlineCode,
 } from '@gluestack/design-system';
 import { Platform } from 'react-native';
-import Wrapper from '../../components/Wrapper';
-import { KeyboardAvoidingView } from './KeyboardAvoidingView';
 import {
+  KeyboardAvoidingView,
+  Wrapper,
   GluestackUIProvider,
   Button,
   Center,
@@ -25,8 +25,8 @@ import {
   VStack,
   InputIcon,
   HStack,
-  LeadingIcon,
   InputField,
+  InputSlot,
   Box,
   Actionsheet,
   ActionsheetBackdrop,
@@ -40,8 +40,9 @@ import {
   Image,
   Icon,
   ButtonText,
-  config,
 } from '@gluestack-ui/themed';
+
+import { config } from '@gluestack-ui/config';
 
 <Meta title="React Native Components/KeyboardAvoidingView" />
 
@@ -105,7 +106,7 @@ Provides a view that moves out of the way of virtual keyboard automatically. It 
                 </FormControlLabel>
                 <Input w="$full">
                   <InputSlot>
-                   <InputIcon as={LeadingIcon} ml="$2" />
+                   <InputIcon as={InputIcon} ml="$2" />
                   </InputSlot>
                   <InputField placeholder="CVC/CVV" />
                 </Input>
@@ -121,9 +122,6 @@ Provides a view that moves out of the way of virtual keyboard automatically. It 
     );
 }
 `,
-      transformCode: (code) => {
-        return transformedCode(code, 'function', 'App');
-      },
       scope: {
         Wrapper,
         GluestackUIProvider,
@@ -136,9 +134,9 @@ Provides a view that moves out of the way of virtual keyboard automatically. It 
         Text,
         VStack,
         InputField,
+        InputSlot,
         ButtonText,
         InputIcon,
-        LeadingIcon,
         HStack,
         Box,
         Actionsheet,
@@ -160,7 +158,7 @@ Provides a view that moves out of the way of virtual keyboard automatically. It 
 
 <br />
 
-> Note: You can refer [here](https://github.com/gluestack/gluestack-ui/tree/main/packages/themed/src/components/KeyboaardAvoidingView/styled-components) to learn about default styling of FlatList component
+> Note: You can refer [here](https://github.com/gluestack/gluestack-ui/tree/main/packages/themed/src/components/KeyboardAvoidingView/styled-components) to learn about default styling of FlatList component
 
 ### Import
 
@@ -180,7 +178,7 @@ export default () => <KeyboardAvoidingView></KeyboardAvoidingView>;
 
 ### Props
 
-gluestack-ui KeyboardAvoidingView component is created using KeyboardAvoidingView component from react-native. It extends all the props supported by [React Native KeyboardAvoidingView](https://reactnative.dev/docs/keyboardAvoidingView#props), [React Native View](https://reactnative.dev/docs/view#props),[utility props](https://ui.gluestack.io/docs/styling/utility-and-sx-props) and the props mentioned below.
+gluestack-ui KeyboardAvoidingView component is created using KeyboardAvoidingView component from react-native. It extends all the props supported by [React Native KeyboardAvoidingView](https://reactnative.dev/docs/keyboardAvoidingView#props), [React Native View](https://reactnative.dev/docs/view#props),[utility props](/ui/docs/styling/utility-and-sx-props) and the props mentioned below.
 
 #### View
 

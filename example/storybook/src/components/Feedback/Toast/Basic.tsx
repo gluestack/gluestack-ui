@@ -16,7 +16,7 @@ const ToastPlacement = ({ placement = 'top', ...props }: any) => {
           placement: placement,
           render: ({ id }) => {
             return (
-              <Toast nativeId={id} {...props}>
+              <Toast nativeID={id} {...props}>
                 <ToastTitle
                   dataSet={{
                     'component-props': JSON.stringify({

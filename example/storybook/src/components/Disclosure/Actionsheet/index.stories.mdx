@@ -9,7 +9,7 @@ pageDescription: The Actionsheet component presents a set of options to the user
 
 showHeader: true
 
-tag: alpha
+tag: beta
 ---
 
 import { Meta } from '@storybook/addon-docs';
@@ -32,7 +32,6 @@ import {
   ActionsheetSectionHeaderText,
   Button,
   ButtonText,
-  config,
 } from './Actionsheet';
 import {
   VStack,
@@ -46,13 +45,14 @@ import {
   FormControlHelper,
   FormControlHelperText,
   HStack,
+  KeyboardAvoidingView,
+  Platform,
 } from './ActionsheetAvoidKeyboard';
 import { LeadingIcon, IconRoot } from './ActionsheetAvoidKeyboard';
 import { Image, Text, Box } from './ActionsheetAvoidKeyboard';
 import { Icon, TrashIcon, ShareIcon } from './ActionsheetIcon';
 import { PlayIcon, FavouriteIcon, CloseIcon } from './ActionsheetIcon';
 import { transformedCode } from '../../../utils';
-
 import {
   AppProvider,
   CodePreview,
@@ -63,13 +63,10 @@ import {
   InfoIcon,
   Alert,
 } from '@gluestack/design-system';
+import { config } from '@gluestack-ui/config';
 import Wrapper from '../../Wrapper';
 
-## Themed
-
-Following is the default implementation of the **Actionsheet** component without any additional customization. This serves as a starting point for users who are new to this library and want to learn about the basic functionality and appearance of the component. You can refer [here](https://github.com/gluestack/gluestack-ui/tree/main/packages/themed/src/components/Actionsheet/styled-components) to learn about default styling of Actionsheet component.
-
-<AppProvider config={config.theme}>
+<AppProvider config={config}>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -85,7 +82,7 @@ function App(){
         </Button>
         <Actionsheet isOpen={showActionsheet} onClose={handleClose} zIndex={999}>
           <ActionsheetBackdrop />
-          <ActionsheetContent zIndex={999}>
+          <ActionsheetContent h='$72' zIndex={999}>
             <ActionsheetDragIndicatorWrapper>
               <ActionsheetDragIndicator />
             </ActionsheetDragIndicatorWrapper>
@@ -133,6 +130,8 @@ function App(){
 
 <br />
 
+## API Reference
+
 ### Import
 
 To use the component in your project, run the command below into your import statement. This will import the component from your components folder.
@@ -161,9 +160,9 @@ export default () => (
 );
 ```
 
-### API Reference
+### Component Props
 
-The following section contains a comprehensive list of the component's references, including descriptions, properties, types, and default behavior. This information is readily available for you to access, helping you effectively utilize the component library in your projects.
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
 
 #### Actionsheet
 
@@ -356,38 +355,6 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
         <Table.TR>
           <Table.TD>
             <Table.TText>
-              <InlineCode>unmountOnExit</InlineCode>
-            </Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>boolean</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>true</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>{`If true, removes the component from the DOM when it is not visible. Animation and accessibility won't work when false.`}</Table.TText>
-          </Table.TD>
-        </Table.TR>
-        <Table.TR>
-          <Table.TD>
-            <Table.TText>
-              <InlineCode>animationPreset</InlineCode>
-            </Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>slide | fade</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>slide</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>{`Specifies the animation preset for the Actionsheet`}</Table.TText>
-          </Table.TD>
-        </Table.TR>
-        <Table.TR>
-          <Table.TD>
-            <Table.TText>
               <InlineCode>children</InlineCode>
             </Table.TText>
           </Table.TD>
@@ -432,6 +399,38 @@ It is React Native's [Pressable](https://reactnative.dev/docs/pressable) compone
 
 It inherits all the properties of [@legendapp/motion's](https://legendapp.com/open-source/motion/) [Motion.View](https://legendapp.com/open-source/motion/overview/) component. With this Actionsheet component, you have the flexibility to use any declarative animation library that suits your needs.
 
+**Descendants Styling Props**
+Props to style child components.
+
+<AppProvider>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Sx Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Description</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>_sectionHeaderText</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Prop to style ActionsheetSectionHeaderText Component`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</AppProvider>
+
 #### ActionsheetDragIndicatorWrapper
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
@@ -443,6 +442,48 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
 #### ActionsheetItem
 
 It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable) component.
+
+**Descendants Styling Props**
+Props to style child components.
+
+<AppProvider>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Sx Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Description</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>_text</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Prop to style ActionsheetItemText Component`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>_icon</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Prop to style ActionsheetIcon Component`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</AppProvider>
 
 #### ActionsheetItemText
 
@@ -495,17 +536,9 @@ We have outlined the various features that ensure the Actionsheet component is a
 
 - VoiceOver: When the actionsheet is focused, the screen reader will announce the button group .
 
-### Dependencies
+## Themed
 
-The following are the lists of all the libraries and packages the component relies on. This information will help you ensure that your project has all the necessary dependencies installed to use the component.
-
-- `@gluestack-ui/hooks`
-- `@gluestack-ui/overlay`
-- `@gluestack-ui/transitions`
-- `@gluestack-ui/utils`
-- `@react-native-aria/focus`
-- `@react-native-aria/interactions`
-- `@react-native-aria/dialog`
+The themed version of the component is a pre-styled version of the component, which allows you to quickly integrate the component into your project. The component's design and functionality are fully defined, allowing you to focus on the more important aspects of your project.
 
 ## Examples
 
@@ -514,6 +547,8 @@ The Examples section provides visual representations of the different variants o
 ### Keyboard handling
 
 Demonstrates a common UI pattern known as keyboard handling or keyboard scrolling, in which an input field is automatically scrolled into view when the user taps on it and the keyboard appears. This improves usability and ensures that the input field is always visible and accessible, even when the keyboard is blocking part of the screen.
+
+**Without SnapPoints**
 
 <AppProvider>
   <CodePreview
@@ -529,6 +564,7 @@ Demonstrates a common UI pattern known as keyboard handling or keyboard scrollin
                 <Button onPress={handleClose}>
                   <ButtonText>Open</ButtonText>
                 </Button>
+          <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
          <Actionsheet
           isOpen={showActionsheet}
           onClose={handleClose}
@@ -579,10 +615,11 @@ Demonstrates a common UI pattern known as keyboard handling or keyboard scrollin
             </VStack>
           </ActionsheetContent>
         </Actionsheet>
-            </>
+    </KeyboardAvoidingView>
+ </>
           );
         }
-  `,
+`,
       transformCode: (code) => {
         return transformedCode(code, 'function', 'App');
       },
@@ -613,6 +650,126 @@ Demonstrates a common UI pattern known as keyboard handling or keyboard scrollin
         Icon,
         LeadingIcon,
         IconRoot,
+        KeyboardAvoidingView,
+        Platform,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+**With SnapPoints**
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+        function App(){
+          const [showActionsheet, setShowActionsheet] = React.useState(false);
+          const handleClose = () => setShowActionsheet(!showActionsheet);
+            return (
+      <>
+        <Button onPress={handleClose}>
+            <ButtonText>Open</ButtonText>
+        </Button>
+         <Actionsheet
+          isOpen={showActionsheet}
+          onClose={handleClose}
+          snapPoints={[50]}
+        >
+        <KeyboardAvoidingView
+        behavior="position"
+        // eslint-disable-next-line react-native/no-inline-styles
+        style={{
+          position: 'relative',
+          flex: 1,
+          justifyContent: 'flex-end',
+        }}
+      >
+          <ActionsheetBackdrop />
+          <ActionsheetContent maxHeight="75%">
+            <ActionsheetDragIndicatorWrapper>
+              <ActionsheetDragIndicator />
+            </ActionsheetDragIndicatorWrapper>
+            <VStack w="$full" p={20}>
+              <HStack justifyContent="center" alignItems="center" space="md">
+                <Box
+                  w={50}
+                  h="$full"
+                  px="$2"
+                  borderWidth={1}
+                  borderStyle="solid"
+                  borderColor="$borderLight300"
+                  rounded="$sm"
+                >
+                  <Image
+                    source={{ uri: 'https://i.imgur.com/UwTLr26.png' }}
+                    flex={1}
+                    resizeMode="contain"
+                  />
+                </Box>
+                <VStack flex={1}>
+                  <Text fontWeight="$bold">Mastercard</Text>
+                  <Text>Card ending in 2345</Text>
+                </VStack>
+              </HStack>
+              <FormControl mt={36}>
+                <FormControlLabel>
+                  <FormControlLabelText>
+                    Confirm security code
+                  </FormControlLabelText>
+                </FormControlLabel>
+                <Input w="$full">
+                  <InputSlot>
+                   <InputIcon as={LeadingIcon} ml="$2" />
+                  </InputSlot>
+                  <InputField placeholder="CVC/CVV" />
+                </Input>
+                <Button onPress={handleClose} mt={20}>
+                  <ButtonText>Pay $1000</ButtonText>
+                </Button>
+              </FormControl>
+            </VStack>
+          </ActionsheetContent>
+    </KeyboardAvoidingView>
+</Actionsheet>
+ </>
+);}
+`,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'App');
+      },
+      scope: {
+        Wrapper,
+        Actionsheet,
+        ActionsheetBackdrop,
+        ActionsheetContent,
+        ActionsheetDragIndicator,
+        ActionsheetDragIndicatorWrapper,
+        ActionsheetItem,
+        ActionsheetItemText,
+        Button,
+        ButtonText,
+        ButtonText,
+        VStack,
+        Input,
+        InputIcon,
+        InputSlot,
+        InputField,
+        FormControl,
+        FormControlLabel,
+        FormControlLabelText,
+        HStack,
+        Image,
+        Text,
+        Box,
+        Icon,
+        LeadingIcon,
+        IconRoot,
+        KeyboardAvoidingView,
+        Platform,
       },
       argsType: {},
     }}
@@ -744,6 +901,7 @@ The Actionsheet with Virtualized List includes a virtualized list for better per
             <ActionsheetDragIndicator />
           </ActionsheetDragIndicatorWrapper>
           <ActionsheetVirtualizedList
+            h="$56"
             data={data}
             initialNumToRender={5}
             renderItem={({ item }) => <Item title={item.title} />}
@@ -859,7 +1017,7 @@ The Actionsheet with Flat List is a variation of the Actionsheet component that 
 
 The Actionsheet with SectionList is a variation of the Actionsheet component that displays a sectioned list of options. It's commonly used in apps to organize options into different categories or sections for better readability and navigation.
 
-Default styling of the component can be found in the `components/actionsheet` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/tree/patch/example/storybook/src/ui-components/Actionsheet) of the styled `Actionsheet` component.
+Default styling of the component can be found in the `components/actionsheet` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/main/packages/themed/src/components/Actionsheet) of the styled `Actionsheet` component.
 
 <AppProvider>
   <CodePreview
@@ -899,6 +1057,7 @@ Default styling of the component can be found in the `components/actionsheet` fi
             <ActionsheetDragIndicator />
           </ActionsheetDragIndicatorWrapper>
            <ActionsheetSectionList
+            h="$56"
             sections={DATA}
             keyExtractor={(item, index) => item + index}
             renderItem={({ item }) => (
@@ -942,7 +1101,7 @@ Default styling of the component can be found in the `components/actionsheet` fi
 
 ## Unstyled
 
-We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
+All the components in `gluestack-ui` are unstyled by default. To customize your UI using the extendedTheme, please refer to this [link](https://gluestack.io/ui/docs/theme-configuration/customizing-theme). The import names of components serve as keys to customize each component.
 
 <!--
 
@@ -1514,7 +1673,7 @@ function App(){
   ActionsheetItem,
   ActionsheetItemText,
       VStack,
-      HStack,
+      HStack,https://style.gluestack.io/style
       Icon,
       Box,
       FormControl,
@@ -1606,17 +1765,15 @@ function App(){
 </AppProvider>
 
 
--->
-
 ### Customizing the Actionsheet
 
-We have a function called `createActionsheet` which can be used to create a custom actionsheet component. This function takes in a configuration object which contains the styled components that you want to use for the Actionsheet You can refer [style.gluestack.io](https://style.gluestack.io/) for more information on how to use styled components.
+We have a function called `createActionsheet` which can be used to create a custom actionsheet component. This function takes in a configuration object which contains the styled components that you want to use for the Actionsheet You can refer [gluestack.io/style](/style) for more information on how to use styled components.
 
-You can read more on how to animate components [here](https://ui.gluestack.io/docs/advanced/animations).
+You can read more on how to animate components [here](/ui/docs/advanced/animations).
 
 #### Usage
 
-Default styling of all these components can be found in the `components/core/actionsheet` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/tree/main/example/storybook/src/ui-components/Actionsheet) of the styled `Actionsheet` components.
+Default styling of all these components can be found in the `components/core/actionsheet` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/main/packages/themed/src/components/Actionsheet) of the styled `Actionsheet` components.
 
 ```jsx
 // import the styles
@@ -1659,3 +1816,5 @@ export default () => (
   </Actionsheet>
 );
 ```
+
+-->

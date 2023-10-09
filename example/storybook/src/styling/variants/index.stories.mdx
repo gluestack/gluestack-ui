@@ -8,10 +8,10 @@ import {
   Box,
   Button,
   GluestackUIProvider,
-  config,
   VStack,
   ButtonText,
 } from '@gluestack-ui/themed';
+import { config } from '@gluestack-ui/config';
 import { createConfig } from '@gluestack-ui/themed';
 import { transformedCode } from '../../utils';
 import Wrapper from '../../components/Wrapper';
@@ -28,12 +28,11 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 # Variants
 
-Creating variants of components in a UI component library is crucial for maintaining a consistent user experience across `web`, `iOS`, and `Android` platforms.
-We can create different variants of components using gluestack-style.
+Creating variants of components in a UI component library is crucial for maintaining a consistent user experience across `web`, `iOS`, and `android` platforms. We can create different variants of components using **gluestack-style**.
 
-To update components styles, we need to create a new which extends the default config and we can style the components aditionally.
+To update components styles, we need to create a new config which extends the default [`config`](https://github.com/gluestack/gluestack-ui/blob/main/packages/config/src/gluestack-ui.config.ts) file imported from [**`@gluestack-ui/config`**](https://github.com/gluestack/gluestack-ui/blob/main/packages/config) and pass it inside the `GluetackUIProvider`, then we can style the components aditionally.
 
-To create a new variant of a Button Component, just import the `createConfig` function from `@gluestack-style/react` and the pass the below object to the function. Inside the components object define the component name which is imported from `@gluestack-ui/themed` library, and then all the styles that needs to be applied on the component.
+To create a new variant of a Button Component, just import the `createConfig` function from **`@gluestack-style/react`** and the pass the below object to the function. Inside the components object define the component name which is imported from **`@gluestack-ui/themed`** library, and then all the styles that needs to be applied on the component.
 
 ```jsx
  {
@@ -70,7 +69,7 @@ To create a new variant of a Button Component, just import the `createConfig` fu
      function App(){
       {/* Creating own theme using createConfig function */}
    const themeConfig = createConfig({
-    ...config.theme,
+    ...config,
     components: {
       Button: {
         // write same component name which is passed in styled
@@ -127,6 +126,6 @@ To create a new variant of a Button Component, just import the `createConfig` fu
   />
 </AppProvider>
 
-You can refer to [this](/docs/theme/customizing-components) link for detailed information related to customizing theme of components.
+You can refer to [this](/ui/docs/theme-configuration/customizing-theme) link for detailed information related to customizing theme of components.
 
 Refer to [this](https://snack.expo.dev/@gluestack/variants-example) for live expo snack example.
