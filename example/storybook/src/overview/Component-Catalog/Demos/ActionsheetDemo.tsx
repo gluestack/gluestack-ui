@@ -23,6 +23,7 @@ const ActionsheetDemo = () => {
         isOpen={showActionsheet}
         onClose={handleClose}
         zIndex={999}
+        snapPoints={[50]}
         _experimentalOverlay={showActionsheet}
       >
         <ActionsheetBackdrop />
