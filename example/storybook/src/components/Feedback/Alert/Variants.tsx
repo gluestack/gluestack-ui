@@ -11,10 +11,9 @@ import {
 const AlertVariants = ({ variant }: any) => {
   return (
     <Center>
-      <Alert action="info" variant={variant} mb={4}>
+      <Alert action="info" variant={variant} mb={4} gap="$3">
         <AlertIcon
           as={InfoIcon}
-          mr="$3"
           dataSet={{
             'component-props': JSON.stringify({
               'instance': true,
@@ -36,10 +35,9 @@ const AlertVariants = ({ variant }: any) => {
           Unlock the power of knowledge with the following information.
         </AlertText>
       </Alert>
-      <Alert action="success" variant={variant} mb={4}>
+      <Alert action="success" variant={variant} mb={4} gap="$3">
         <AlertIcon
           as={CheckCircle2Icon}
-          mr="$3"
           dataSet={{
             'component-props': JSON.stringify({
               'instance': true,
@@ -63,10 +61,9 @@ const AlertVariants = ({ variant }: any) => {
           yourself on the back. You've earned it!
         </AlertText>
       </Alert>
-      <Alert action="error" variant={variant} mb={4}>
+      <Alert action="error" variant={variant} mb={4} gap="$3">
         <AlertIcon
           as={XCircle}
-          mr="$3"
           dataSet={{
             'component-props': JSON.stringify({
               'instance': true,
@@ -89,10 +86,9 @@ const AlertVariants = ({ variant }: any) => {
           are already on the case. Please hold tight while we fix the issue
         </AlertText>
       </Alert>
-      <Alert action="warning" variant={variant} mb={4}>
+      <Alert action="warning" variant={variant} mb={4} gap="$3">
         <AlertIcon
           as={AlertCircleIcon}
-          mr="$3"
           dataSet={{
             'component-props': JSON.stringify({
               'instance': true,
@@ -116,10 +112,9 @@ const AlertVariants = ({ variant }: any) => {
           of 'aha!' moments
         </AlertText>
       </Alert>
-      <Alert action="muted" variant={variant}>
+      <Alert action="muted" variant={variant} gap="$3">
         <AlertIcon
           as={BellIcon}
-          mr="$3"
           dataSet={{
             'component-props': JSON.stringify({
               'instance': true,

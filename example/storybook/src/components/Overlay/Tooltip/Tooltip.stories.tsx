@@ -7,6 +7,7 @@ const TooltipMeta: ComponentMeta<typeof Tooltip> = {
   argTypes: {
     placement: {
       control: 'select',
+      figmaIgnore: true,
       options: [
         'bottom',
         'bottom left',
