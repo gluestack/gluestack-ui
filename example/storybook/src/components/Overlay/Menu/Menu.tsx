@@ -34,24 +34,24 @@ const MenuBasic = ({ placement = 'bottom' }: any) => {
           );
         }}
       >
-        <MenuItem key="Community" textValue="Community">
-          <Icon as={GlobeIcon} size="sm" mr="$2" />
+        <MenuItem key="Community" textValue="Community" gap="$2">
+          <Icon as={GlobeIcon} size="sm" />
           <MenuItemLabel size="sm">Community</MenuItemLabel>
         </MenuItem>
-        <MenuItem key="Plugins" textValue="Plugins">
-          <Icon as={PuzzleIcon} size={16} mr="$2" />
+        <MenuItem key="Plugins" textValue="Plugins" gap="$2">
+          <Icon as={PuzzleIcon} size={16} />
           <MenuItemLabel size="sm">Plugins</MenuItemLabel>
         </MenuItem>
-        <MenuItem key="Theme" textValue="Theme">
-          <Icon as={PaintBucket} size={16} mr="$2" />
+        <MenuItem key="Theme" textValue="Theme" gap="$2">
+          <Icon as={PaintBucket} size={16} />
           <MenuItemLabel size="sm">Theme</MenuItemLabel>
         </MenuItem>
-        <MenuItem key="Settings" textValue="Settings">
-          <Icon as={SettingsIcon} size="sm" mr="$2" />
+        <MenuItem key="Settings" textValue="Settings" gap="$2">
+          <Icon as={SettingsIcon} size="sm" />
           <MenuItemLabel size="sm">Settings</MenuItemLabel>
         </MenuItem>
-        <MenuItem key="Add account" textValue="Add account">
-          <Icon as={AddIcon} size="sm" mr="$2" />
+        <MenuItem key="Add account" textValue="Add account" gap="$2">
+          <Icon as={AddIcon} size="sm" />
           <MenuItemLabel size="sm">Add account</MenuItemLabel>
         </MenuItem>
       </Menu>
@@ -64,7 +64,7 @@ const FigmaMenuStory = ({ ...props }) => {
     <Menu
       {...props}
       // @ts-ignore
-      _experimentalOverlay={false}
+      _experimentalOverlay={true}
       isOpen={true}
       placement="bottom"
       offset={30}
@@ -77,7 +77,7 @@ const FigmaMenuStory = ({ ...props }) => {
         );
       }}
     >
-      <Menu.Item key="Community" textValue="Community">
+      <Menu.Item key="Community" textValue="Community" gap="$2">
         <Icon
           as={GlobeIcon}
           dataSet={{
@@ -89,11 +89,10 @@ const FigmaMenuStory = ({ ...props }) => {
             }),
           }}
           size="sm"
-          mr="$2"
         />
         <Menu.ItemLabel size="sm">Community</Menu.ItemLabel>
       </Menu.Item>
-      <Menu.Item key="Plugins" textValue="Plugins">
+      <Menu.Item key="Plugins" textValue="Plugins" gap="$2">
         <Icon
           as={PuzzleIcon}
           dataSet={{
@@ -105,11 +104,10 @@ const FigmaMenuStory = ({ ...props }) => {
             }),
           }}
           size="sm"
-          mr="$2"
         />
         <Menu.ItemLabel size="sm">Plugins</Menu.ItemLabel>
       </Menu.Item>
-      <Menu.Item key="Theme" textValue="Theme">
+      <Menu.Item key="Theme" textValue="Theme" gap="$2">
         <Icon
           as={PaintBucket}
           dataSet={{
@@ -121,11 +119,10 @@ const FigmaMenuStory = ({ ...props }) => {
             }),
           }}
           size="sm"
-          mr="$2"
         />
         <Menu.ItemLabel size="sm">Theme</Menu.ItemLabel>
       </Menu.Item>
-      <Menu.Item key="Settings" textValue="Settings">
+      <Menu.Item key="Settings" textValue="Settings" gap="$2">
         <Icon
           as={SettingsIcon}
           dataSet={{
@@ -137,11 +134,10 @@ const FigmaMenuStory = ({ ...props }) => {
             }),
           }}
           size="sm"
-          mr="$2"
         />
         <Menu.ItemLabel size="sm">Settings</Menu.ItemLabel>
       </Menu.Item>
-      <Menu.Item key="Add account" textValue="Add account">
+      <Menu.Item key="Add account" textValue="Add account" gap="$2">
         <Icon
           as={AddIcon}
           dataSet={{
@@ -153,7 +149,6 @@ const FigmaMenuStory = ({ ...props }) => {
             }),
           }}
           size="sm"
-          mr="$2"
         />
         <Menu.ItemLabel size="sm">Add account</Menu.ItemLabel>
       </Menu.Item>

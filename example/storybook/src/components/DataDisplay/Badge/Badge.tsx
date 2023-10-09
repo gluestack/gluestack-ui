@@ -47,7 +47,7 @@ const BadgeBasic = ({ text = 'NEW FEATURE', ...props }: any) => {
       break;
   }
   return (
-    <Badge {...props}>
+    <Badge {...props} gap="$1">
       <BadgeText
         dataSet={{
           'component-props': JSON.stringify({
@@ -60,7 +60,6 @@ const BadgeBasic = ({ text = 'NEW FEATURE', ...props }: any) => {
         {text}
       </BadgeText>
       <BadgeIcon
-        ml="$1"
         as={GlobeIcon}
         dataSet={{
           'component-props': JSON.stringify({

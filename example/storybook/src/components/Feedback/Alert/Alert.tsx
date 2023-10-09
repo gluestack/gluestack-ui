@@ -14,10 +14,9 @@ import {
 
 const AlertBasic = ({ ...props }: any) => {
   return (
-    <Alert {...props}>
+    <Alert {...props} gap="$3">
       <AlertIcon
         as={InfoIcon}
-        mr="$3"
         dataSet={{
           'component-props': JSON.stringify({
             'instance': true,

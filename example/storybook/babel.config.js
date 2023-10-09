@@ -10,14 +10,14 @@ module.exports = function (api) {
             'module-resolver',
             {
               alias: {
-                // '@gluestack-ui/themed': path.join(
-                //   __dirname,
-                //   '../../packages/themed/src'
-                // ),
-                // '@gluestack-ui/config': path.join(
-                //   __dirname,
-                //   '../../packages/config/src/gluestack-ui.config'
-                // ),
+                '@gluestack-ui/themed': path.join(
+                  __dirname,
+                  '../../packages/themed/src'
+                ),
+                '@gluestack-ui/config': path.join(
+                  __dirname,
+                  '../../packages/config/src/gluestack-ui.config'
+                ),
                 // '@gluestack-style/react': path.join(
                 //   __dirname,
                 //   '../../../dank-style/packages/react/src'

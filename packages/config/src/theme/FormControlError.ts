@@ -5,4 +5,5 @@ export const FormControlError = createStyle({
   justifyContent: 'flex-start',
   alignItems: 'center',
   mt: '$1',
+  gap: '$1',
 });
