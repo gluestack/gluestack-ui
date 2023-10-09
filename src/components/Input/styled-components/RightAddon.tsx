@@ -1,11 +1,11 @@
 import { styled } from '@gluestack-style/react';
 import { View } from 'react-native';
 
-export const AccessibleInputLeftAddon = styled(
+export default styled(
   View,
   {
     p: '0.5rem',
-    borderRightWidth: 0,
+    borderLeftWidth: 0,
     borderWidth: '$1',
     borderColor: '$muted.300',
     borderRadius: '$sm',
@@ -17,8 +17,8 @@ export const AccessibleInputLeftAddon = styled(
     },
   },
   {
-    componentName: 'InputLeftAddon',
+    componentName: 'InputRightAddon',
     descendantStyle: ['_text'],
-    ancestorStyle: ['_inputleftaddon'],
+    ancestorStyle: ['_inputrightaddon'],
   } as const
 );

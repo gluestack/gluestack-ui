@@ -10,6 +10,8 @@ const AccessibleHStack = createHStack({
 
 const HStackTemp = forwardRef(({ children, ...props }: any, ref?: any) => {
   const resolvedPropForGluestack = usePropResolution(props);
+  // console.log('props', props);
+  // console.log('resolvedPropForGluestack', resolvedPropForGluestack);
   return (
     <AccessibleHStack
       {...resolvedPropForGluestack}

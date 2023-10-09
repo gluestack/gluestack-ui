@@ -4,10 +4,10 @@ import {
   Root,
   Icon,
   Slot,
-  StyledInput,
-  AccessibleInputGroup,
-  AccessibleInputLeftAddon,
-  AccessibleInputRightAddon,
+  Input as StyledInput,
+  Group as StyledInputGroup,
+  LeftAddon as StyledInputLeftAddon,
+  RightAddon as StyledInputRightAddon,
 } from './styled-components';
 import { Text } from '../Text';
 import { usePropResolution } from '../../hooks/usePropResolution';
@@ -68,9 +68,9 @@ const InputGroupTemp = forwardRef(({ children, ...props }: any, ref?: any) => {
     });
   });
   return (
-    <AccessibleInputGroup {...props} ref={ref}>
+    <StyledInputGroup {...props} ref={ref}>
       {ChildrenStyled}
-    </AccessibleInputGroup>
+    </StyledInputGroup>
   );
 });
 
@@ -78,14 +78,14 @@ export type IInputGroupComponentType<InputGroup> =
   GenericComponentType<InputGroup>;
 
 export const InputGroup = InputGroupTemp as IInputGroupComponentType<
-  typeof AccessibleInputGroup
+  typeof StyledInputGroup
 >;
 
 const InputLeftAddonTemp = forwardRef(
   ({ children, ...props }: any, ref?: any) => (
-    <AccessibleInputLeftAddon {...props} ref={ref}>
+    <StyledInputLeftAddon {...props} ref={ref}>
       {typeof children === 'string' ? <Text>{children}</Text> : children}
-    </AccessibleInputLeftAddon>
+    </StyledInputLeftAddon>
   )
 );
 
@@ -94,14 +94,14 @@ export type IInputLeftAddonComponentType<InputLeftAddon> =
 
 export const InputLeftAddon =
   InputLeftAddonTemp as IInputLeftAddonComponentType<
-    typeof AccessibleInputLeftAddon
+    typeof StyledInputLeftAddon
   >;
 
 const InputRightAddonTemp = forwardRef(
   ({ children, ...props }: any, ref?: any) => (
-    <AccessibleInputRightAddon {...props} ref={ref}>
+    <StyledInputRightAddon {...props} ref={ref}>
       {typeof children === 'string' ? <Text>{children}</Text> : children}
-    </AccessibleInputRightAddon>
+    </StyledInputRightAddon>
   )
 );
 
@@ -110,5 +110,5 @@ export type IInputRightAddonComponentType<InputRightAddon> =
 
 export const InputRightAddon =
   InputRightAddonTemp as IInputRightAddonComponentType<
-    typeof AccessibleInputRightAddon
+    typeof StyledInputRightAddon
   >;

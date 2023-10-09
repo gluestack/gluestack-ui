@@ -1,7 +1,7 @@
 import { styled } from '@gluestack-style/react';
 import { View } from 'react-native';
 
-export const AccessibleInputGroup = styled(
+export default styled(
   View,
   {
     flexDirection: 'row',

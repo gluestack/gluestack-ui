@@ -21,6 +21,7 @@ export const config = {
       mr: 'marginRight',
       ml: 'marginLeft',
       rounded: 'borderRadius',
+      space: 'gap',
     } as const,
     tokens: {
       colors: {
