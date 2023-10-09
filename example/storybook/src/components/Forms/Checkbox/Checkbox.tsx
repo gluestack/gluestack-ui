@@ -107,6 +107,8 @@ const FigmaCheckboxStory = ({ ...props }: any) => {
   );
 };
 
+CheckboxGroupBasic.description = 'This is a basic Checkbox component example';
+
 export default CheckboxGroupBasic;
 
 export {

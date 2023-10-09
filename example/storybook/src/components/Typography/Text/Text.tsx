@@ -14,6 +14,9 @@ const TextBasic = ({
   );
 };
 
+TextBasic.description =
+  'This is a basic Text component example. Texts are used to show the content of a section or page.';
+
 export default TextBasic;
 
 export { Text, Center };

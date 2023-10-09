@@ -89,6 +89,9 @@ const ActionsheetWithVirtualizedList = ({
   );
 };
 
+ActionsheetWithVirtualizedList.description =
+  'This is an example of actionsheet with items rendered using VirtualizedList ';
+
 export default ActionsheetWithVirtualizedList;
 
 export { Actionsheet, Button };

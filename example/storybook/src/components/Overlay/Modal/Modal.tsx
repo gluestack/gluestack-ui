@@ -189,6 +189,9 @@ const FigmaModalStory = ({ _showModal, ...props }: any) => {
   );
 };
 
+FigmaModalStory.description =
+  'This is a basic Modal component example. A Modal is a window on top of the primary content to draw the users attention to important information or actions. It provides a focused and interruptive way to interact with the application.';
+
 export default ModalBasic;
 
 export {

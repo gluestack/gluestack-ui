@@ -98,6 +98,9 @@ const ActionsheetWithSectionlist = ({
   );
 };
 
+ActionsheetWithSectionlist.description =
+  'This is an example of actionsheet with items rendered using SectionList ';
+
 export default ActionsheetWithSectionlist;
 
 export { Actionsheet, Button };

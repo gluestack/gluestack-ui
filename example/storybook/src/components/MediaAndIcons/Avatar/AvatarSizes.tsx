@@ -44,4 +44,7 @@ const AvatarSizes = () => {
   );
 };
 
+AvatarSizes.description =
+  'This is a basic Avatar component example. An avatar is a graphical representation of a user with different sizes.';
+
 export default AvatarSizes;

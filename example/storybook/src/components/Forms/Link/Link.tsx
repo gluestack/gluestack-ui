@@ -22,6 +22,9 @@ const LinkBasic = ({ ...props }: any) => {
   );
 };
 
+LinkBasic.description =
+  'This is a basic Link component example.  A link is a component that users can tap to navigate to a new page.';
+
 export default LinkBasic;
 
 export { Link, LinkText, ArrowUpRightIcon, Icon, HStack, Text };
