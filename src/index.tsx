@@ -15,6 +15,7 @@ import {
   AnimatePresence as MotionAnimatePresence,
   createMotionAnimatedComponent,
 } from '@legendapp/motion';
+import { MotionSvg } from '@legendapp/motion/svg';
 import { propertyTokenMap } from './propertyTokenMap';
 import { Pressable } from 'react-native';
 
@@ -167,9 +168,17 @@ const AnimatePresence = React.forwardRef(
 const AnimatedPressable = createMotionAnimatedComponent(
   Pressable
 ) as React.ComponentType<typeof Pressable>;
+
+const MotionComponents = {
+  ...Motion,
+  ...MotionSvg,
+  Pressable: AnimatedPressable,
+  AnimatePresence,
+};
+
 export class MotionAnimationDriver implements IAnimationDriverPlugin {
   name: 'MotionAnimationDriver';
-  engine = { ...Motion, Pressable: AnimatedPressable, AnimatePresence };
+  engine = MotionComponents;
   config = {
     aliases: {
       ':animate': 'animate',
