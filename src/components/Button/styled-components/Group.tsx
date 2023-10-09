@@ -107,7 +107,7 @@ export default styled(
 
     defaultProps: {
       size: 'md',
-      space: 'sm',
+      space: '$2',
     },
   },
   {

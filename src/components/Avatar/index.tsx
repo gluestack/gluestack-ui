@@ -34,8 +34,10 @@ const AvatarTemp = forwardRef(
 );
 
 const AvatarGroupTemp = forwardRef(
-  ({ children, max = -1, ...props }: any, ref?: any) => {
-    const resolvedPropForGluestack = usePropResolution(props);
+  ({ children, max = -1, space, ...props }: any, ref?: any) => {
+    let spaceStyleObj = {};
+    if (space) spaceStyleObj = { _avatar: { ml: 0 } };
+    const resolvedPropForGluestack = usePropResolution({ ...props, space });
     const remainingAvatar = () => {
       const remainingAvatarNumber = children.length - max;
       return (
@@ -47,7 +49,11 @@ const AvatarGroupTemp = forwardRef(
       );
     };
     return (
-      <AccessibleAvatar.Group {...resolvedPropForGluestack} ref={ref}>
+      <AccessibleAvatar.Group
+        {...resolvedPropForGluestack}
+        sx={spaceStyleObj}
+        ref={ref}
+      >
         {max && max < children.length && max > 0
           ? [...children.slice(0, max), remainingAvatar()].map(
               (child: any, index: any) => {
@@ -85,3 +91,5 @@ export const Avatar = AvatarNew as IAvatarComponentType<
   typeof AccessibleAvatar.Group,
   typeof AccessibleAvatar.Badge
 >;
+
+<Avatar.Group />;
