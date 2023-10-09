@@ -6,5 +6,7 @@ export default styled(
   {
     p: '$3',
   },
-  {}
+  {
+    componentName: 'PopoverBody',
+  } as const
 );

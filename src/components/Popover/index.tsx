@@ -1,5 +1,4 @@
 import { createPopover } from '@gluestack-ui/popover';
-import { styled } from '../styled';
 import {
   Root,
   Arrow,
@@ -12,7 +11,7 @@ import {
 } from './styled-components';
 import { Heading } from '../Heading';
 import { Text } from '../Text';
-import { Icon, CloseIcon } from '../Icons';
+import { CloseIcon } from '../Icons';
 import React, { forwardRef } from 'react';
 import { GenericComponentType } from '../../types';
 
@@ -26,7 +25,7 @@ const AccessiblePopover = createPopover({
   Backdrop,
   CloseButton,
   //@ts-ignore
-  AnimatePresence: styled.Component,
+  AnimatePresence: Content.AnimatePresence,
 });
 
 const PopoverNew = forwardRef(
@@ -58,7 +57,7 @@ const AccessiblePopoverCloseButton = forwardRef(
     return (
       <AccessiblePopover.CloseButton {...props} ref={ref}>
         {/*@ts-ignore */}
-        <Icon as={CloseIcon} />
+        <CloseIcon />
       </AccessiblePopover.CloseButton>
     );
   }

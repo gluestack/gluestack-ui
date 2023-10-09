@@ -10,6 +10,7 @@ export default styled(
     },
   },
   {
+    componentName: 'SliderFilledTrack',
     ancestorStyle: ['_filledTrack'],
-  }
+  } as const
 );

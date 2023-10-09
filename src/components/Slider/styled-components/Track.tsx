@@ -12,6 +12,7 @@ export default styled(
     overflow: 'hidden',
   },
   {
+    componentName: 'SliderTrack',
     ancestorStyle: ['_track'],
-  }
+  } as const
 );

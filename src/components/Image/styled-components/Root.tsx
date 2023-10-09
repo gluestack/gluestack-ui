@@ -4,7 +4,7 @@ import { styled } from '@gluestack-style/react';
 export default styled(
   Image,
   {
-    maxWidth: '100%',
+    maxWidth: '$full',
 
     variants: {
       size: {
@@ -49,5 +49,7 @@ export default styled(
       },
     },
   },
-  {}
+  {
+    componentName: 'Image',
+  } as const
 );

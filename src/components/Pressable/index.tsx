@@ -1,7 +1,10 @@
 import React, { forwardRef } from 'react';
-import { Pressable as AccessiblePressable } from './styled-components';
+import { Root } from './styled-components';
+import { createPressable } from '@gluestack-ui/pressable';
 import { usePropResolution } from '../../hooks/usePropResolution';
 import { GenericComponentType } from '../../types';
+
+const AccessiblePressable = createPressable({ Root });
 
 const PressableTemp = forwardRef(({ children, ...props }: any, ref?: any) => {
   const resolvedProps = usePropResolution(props);

@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { Pressable } from 'react-native';
 import { styled } from '@gluestack-style/react';
 
@@ -20,22 +19,22 @@ export default styled(
 
     ':hover': {
       bg: '$muted.200',
-      // _icon: {
-      //   color: '$muted.700',
-      // },
-      // _text: {
-      //   color: '$muted.700',
-      // },
+      _icon: {
+        color: '$muted.700',
+      },
+      _text: {
+        color: '$muted.700',
+      },
     },
 
     ':active': {
       bg: '$muted.300',
-      // _icon: {
-      //   color: '$muted.900',
-      // },
-      // _text: {
-      //   color: '$muted.900',
-      // },
+      _icon: {
+        color: '$muted.900',
+      },
+      _text: {
+        color: '$muted.900',
+      },
     },
 
     '_dark': {
@@ -47,40 +46,40 @@ export default styled(
       },
       ':hover': {
         bg: '$muted.700',
-        // _icon: {
-        //   color: '$muted.200',
-        // },
-        // _text: {
-        //   color: '$muted.200',
-        // },
+        _icon: {
+          color: '$muted.200',
+        },
+        _text: {
+          color: '$muted.200',
+        },
       },
 
       ':active': {
         bg: '$muted.600',
-        // _icon: {
-        //   color: '$muted.100',
-        // },
-        // _text: {
-        //   color: '$muted.100',
-        // },
+        _icon: {
+          color: '$muted.100',
+        },
+        _text: {
+          color: '$muted.100',
+        },
       },
     },
     ':focusVisible': {
       bg: '$muted.100',
-      // _icon: {
-      //   color: '$muted.900',
-      // },
-      // _text: {
-      //   color: '$muted.900',
-      // },
+      _icon: {
+        color: '$muted.900',
+      },
+      _text: {
+        color: '$muted.900',
+      },
       _dark: {
         bg: '$muted.700',
-        // _icon: {
-        //   color: '$muted.100',
-        // },
-        // _text: {
-        //   color: '$muted.100',
-        // },
+        _icon: {
+          color: '$muted.100',
+        },
+        _text: {
+          color: '$muted.100',
+        },
       },
     },
 
@@ -90,6 +89,7 @@ export default styled(
     },
   },
   {
+    componentName: 'PopoverCloseButton',
     descendantStyle: ['_icon', '_text'],
-  }
+  } as const
 );

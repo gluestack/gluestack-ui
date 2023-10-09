@@ -1,4 +1,3 @@
-//@ts-nocheck
 import { View } from 'react-native';
 import { styled } from '@gluestack-style/react';
 
@@ -55,5 +54,8 @@ export default styled(
       pointerEvents: 'box-none',
     },
   },
-  { descendantStyle: ['_content'] }
+  {
+    componentName: 'Modal',
+    descendantStyle: ['_content'],
+  } as const
 );

@@ -6,5 +6,8 @@ export default styled(
   {
     alignItems: 'flex-start',
   },
-  {}
+  {
+    componentName: 'RadioGroup',
+    descendantStyle: ['_radio'],
+  } as const
 );

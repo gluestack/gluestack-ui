@@ -11,5 +11,8 @@ export default styled(
       color: '$text.400',
     },
   },
-  { ancestorStyle: ['_helperText'] }
+  {
+    componentName: 'FormControlHelperText',
+    ancestorStyle: ['_helperText'],
+  } as const
 );

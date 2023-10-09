@@ -10,5 +10,8 @@ export default styled(
     fontSize: '$md',
     lineHeight: '$md',
   },
-  { ancestorStyle: ['_title'] }
+  {
+    componentName: 'ToastTitle',
+    ancestorStyle: ['_title'],
+  } as const
 );

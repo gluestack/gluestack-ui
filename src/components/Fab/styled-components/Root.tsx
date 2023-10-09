@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { styled } from '@gluestack-style/react';
 import { Pressable } from 'react-native';
 
@@ -24,6 +23,7 @@ export default styled(
     '_web': {
       ':focusVisible': {
         outlineWidth: '0',
+        // @ts-ignore
         style: { boxShadow: `$primary400 0px 0px 0px 2px` },
       },
       ':disabled': {
@@ -32,6 +32,7 @@ export default styled(
       '_dark': {
         ':focusVisible': {
           outlineWidth: '0',
+          // @ts-ignore
           style: { boxShadow: `$primary500 0px 0px 0px 2px` },
         },
       },

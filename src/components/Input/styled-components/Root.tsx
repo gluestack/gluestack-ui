@@ -264,6 +264,9 @@ export default styled(
       variant: 'outline',
     },
   },
-
-  { descendantStyle: ['_input', '_icon'], ancestorStyle: ['_inputBox'] }
+  {
+    componentName: 'Input',
+    descendantStyle: ['_input', '_icon'],
+    ancestorStyle: ['_inputBox'],
+  } as const
 );

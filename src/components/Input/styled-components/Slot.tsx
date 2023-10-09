@@ -4,9 +4,8 @@ import { Pressable } from 'react-native';
 export default styled(
   Pressable,
   {
-    _text: {
-      textDecorationLine: 'underline',
-    },
+    justifyContent: 'center',
+    alignItems: 'center',
     _web: {
       ':disabled': {
         cursor: 'not-allowed',
@@ -14,7 +13,7 @@ export default styled(
     },
   },
   {
-    componentName: 'Link',
-    descendantStyle: ['_text'],
+    componentName: 'InputSlot',
+    descendantStyle: ['_icon'],
   } as const
 );

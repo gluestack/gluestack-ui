@@ -16,5 +16,9 @@ export const AccessibleInputLeftAddon = styled(
       bg: '$muted.800',
     },
   },
-  { descendantStyle: ['_text'] }
+  {
+    componentName: 'InputLeftAddon',
+    descendantStyle: ['_text'],
+    ancestorStyle: ['_inputleftaddon'],
+  } as const
 );

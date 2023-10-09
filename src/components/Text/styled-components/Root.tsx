@@ -116,5 +116,8 @@ export default styled(
       size: 'md',
     },
   },
-  { ancestorStyle: ['_text'] }
+  {
+    componentName: 'Text',
+    ancestorStyle: ['_text'],
+  } as const
 );

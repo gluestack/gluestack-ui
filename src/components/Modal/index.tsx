@@ -11,8 +11,7 @@ import {
 } from './styled-components';
 import { Heading } from '../Heading';
 import { Text } from '../Text';
-import { Icon, CloseIcon } from '../Icons';
-import { styled } from '../styled';
+import { CloseIcon } from '../Icons';
 import { GenericComponentType } from '../../types';
 
 const AccessibleModal = createModal({
@@ -24,7 +23,7 @@ const AccessibleModal = createModal({
   Body,
   Backdrop,
   //@ts-ignore
-  AnimatePresence: styled.Component,
+  AnimatePresence: Content.AnimatePresence,
 });
 
 const ModalNew = forwardRef(
@@ -55,8 +54,7 @@ const AccessibleModalCloseButton = forwardRef(
   ({ ...props }: any, ref?: any) => {
     return (
       <AccessibleModal.CloseButton {...props} ref={ref}>
-        {/*@ts-ignore */}
-        <Icon as={CloseIcon} />
+        <CloseIcon />
       </AccessibleModal.CloseButton>
     );
   }

@@ -32,7 +32,6 @@ export * from './Progress';
 export {
   GluestackUIProvider,
   GluestackUIStyledProvider,
-  // GluestackUIContextProvider,
   NativeBaseProvider,
 } from './Provider';
 export * from './Radio';
@@ -43,7 +42,6 @@ export * from './Slider';
 export * from './Spinner';
 export * from './Stack';
 export * from './StatusBar';
-export { styled } from './styled';
 export * from './Switch';
 export * from './Tabs';
 export { Text } from './Text';

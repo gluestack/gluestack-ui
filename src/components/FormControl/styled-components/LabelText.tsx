@@ -12,5 +12,8 @@ export default styled(
       color: '$muted.50',
     },
   },
-  { ancestorStyle: ['_labelText'] }
+  {
+    componentName: 'FormControlLabelText',
+    ancestorStyle: ['_labelText'],
+  } as const
 );

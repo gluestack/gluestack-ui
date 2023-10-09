@@ -14,5 +14,7 @@ export default styled(
       borderColor: '$muted.700',
     },
   },
-  {}
+  {
+    componentName: 'ModalHeader',
+  } as const
 );

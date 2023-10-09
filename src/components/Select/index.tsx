@@ -1,6 +1,5 @@
 import { createSelect } from '@gluestack-ui/select';
 import { createActionsheet } from '@gluestack-ui/actionsheet';
-import { styled } from '../styled';
 
 import {
   Root,
@@ -40,7 +39,7 @@ const Actionsheet = createActionsheet({
   SectionList,
   SectionHeaderText,
   // @ts-ignore
-  AnimatePresence: styled.Component,
+  AnimatePresence: Content.AnimatePresence,
 });
 
 export const Select = createSelect(

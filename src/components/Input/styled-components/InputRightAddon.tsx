@@ -16,5 +16,9 @@ export const AccessibleInputRightAddon = styled(
       bg: '$muted.800',
     },
   },
-  { descendantStyle: ['_text'] }
+  {
+    componentName: 'InputRightAddon',
+    descendantStyle: ['_text'],
+    ancestorStyle: ['_inputrightaddon'],
+  } as const
 );

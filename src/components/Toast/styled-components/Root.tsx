@@ -21,5 +21,8 @@ export default styled(
       shadow: '6',
     },
   },
-  { descendantStyle: ['_icon', '_title', '_description'] }
+  {
+    componentName: 'Toast',
+    descendantStyle: ['_icon', '_title', '_description'],
+  } as const
 );

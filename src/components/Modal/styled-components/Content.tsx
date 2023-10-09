@@ -1,6 +1,6 @@
-//@ts-nocheck
 import { Motion } from '@legendapp/motion';
 import { styled } from '@gluestack-style/react';
+import { AnimationResolver } from '@gluestack-style/animation-plugin';
 
 export default styled(
   Motion.View,
@@ -8,6 +8,7 @@ export default styled(
     'bg': '$muted.50',
     'rounded': '$lg',
     'overflow': 'hidden',
+    //@ts-ignore
     ':initial': {
       scale: 0.9,
       opacity: 0,
@@ -37,5 +38,11 @@ export default styled(
       shadow: '1',
     },
   },
-  { ancestorStyle: ['_content'] }
+  {
+    componentName: 'ModalContent',
+    ancestorStyle: ['_content'],
+  } as const,
+  {
+    plugins: [new AnimationResolver({})],
+  }
 );

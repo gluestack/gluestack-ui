@@ -9,5 +9,8 @@ export default styled(
       color: '$error.500',
     },
   },
-  { ancestorStyle: ['_labelAstrick'] }
+  {
+    componentName: 'FormControlErrorText',
+    ancestorStyle: ['_labelAstrick'],
+  } as const
 );

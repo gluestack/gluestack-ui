@@ -1,7 +1,10 @@
 import React, { forwardRef } from 'react';
-import { Root as AccessibleImage } from './styled-components';
+import { Root } from './styled-components';
+import { createImage } from '@gluestack-ui/image';
 import { usePropResolution } from '../../hooks/usePropResolution';
 import { GenericComponentType } from '../../types';
+
+const AccessibleImage = createImage({ Root });
 
 export const ImageTemp = forwardRef(
   ({ source, alt, ...props }: any, ref?: any) => {

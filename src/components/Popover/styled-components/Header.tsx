@@ -15,5 +15,7 @@ export default styled(
       borderColor: '$muted.700',
     },
   },
-  {}
+  {
+    componentName: 'PopoverHeader',
+  } as const
 );

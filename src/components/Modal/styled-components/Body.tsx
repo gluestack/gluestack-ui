@@ -6,5 +6,7 @@ export default styled(
   {
     p: '$4',
   },
-  {}
+  {
+    componentName: 'ModalBody',
+  } as const
 );

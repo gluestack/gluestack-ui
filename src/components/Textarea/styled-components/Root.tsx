@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { View } from 'react-native';
 import { styled } from '@gluestack-style/react';
 
@@ -79,7 +78,6 @@ export default styled(
     '_dark': {
       'flexDirection': 'row',
       'alignItems': 'center',
-      // justifyContent: 'space-between',
       'overflow': 'hidden',
       '_input': {
         props: {
@@ -230,6 +228,8 @@ export default styled(
       size: 'md',
     },
   },
-  { descendantStyle: ['_input'] },
-  {}
+  {
+    componentName: 'Textarea',
+    descendantStyle: ['_input'],
+  } as const
 );

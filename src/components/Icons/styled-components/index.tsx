@@ -7,10 +7,11 @@ type IParameterTypes = Omit<Parameters<typeof createIcon>[0], 'Root'>;
 
 const createIconNB = (props: IParameterTypes) => {
   const Icon = createIcon({ Root, ...props });
+  // return Icon;
   //
   type ISize = React.ComponentProps<typeof Icon>['size'];
   type IProps = Omit<React.ComponentProps<typeof Icon>, 'size'> & {
-    size: ISize | number;
+    size?: ISize | number;
   };
   //
   const CreatedIcon = forwardRef(
@@ -23,6 +24,8 @@ const createIconNB = (props: IParameterTypes) => {
   );
   return CreatedIcon;
 };
+
+// const createIconNB = (props: IParameterTypes) => createIcon({ Root, ...props });
 
 export { createIconNB as createIcon };
 

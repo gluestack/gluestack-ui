@@ -1,11 +1,12 @@
-//@ts-nocheck
 import { UL } from '@expo/html-elements';
+import { AnimationResolver } from '@gluestack-style/animation-plugin';
 import { styled } from '@gluestack-style/react';
 import { createMotionAnimatedComponent } from '@legendapp/motion';
 const MotionUL = createMotionAnimatedComponent(UL);
 export const Root = styled(
   MotionUL,
   {
+    //@ts-ignore
     ':initial': {
       opacity: 0,
     },
@@ -35,5 +36,10 @@ export const Root = styled(
       softShadow: '3',
     },
   },
-  {}
+  {
+    componentName: 'Menu',
+  } as const,
+  {
+    plugins: [new AnimationResolver({})],
+  }
 );

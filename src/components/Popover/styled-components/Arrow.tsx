@@ -11,5 +11,7 @@ export default styled(
       borderColor: '$muted.700',
     },
   },
-  {}
+  {
+    componentName: 'PopoverArrow',
+  } as const
 );

@@ -107,13 +107,14 @@ export default styled(
     },
   },
   {
+    componentName: 'Switch',
     resolveProps: [
       'thumbColor',
       'trackColor',
       'activeThumbColor',
       'ios_backgroundColor',
     ],
-  },
+  } as const,
   {
     propertyTokenMap: {
       trackColor: 'colors',

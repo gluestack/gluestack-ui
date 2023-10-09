@@ -103,7 +103,10 @@ export const StyledIcon = styled(
       size: 'md',
     },
   },
-  {},
+  {
+    componentName: 'Icon',
+    resolveProps: ['stroke', 'fill'],
+  } as const,
   {
     propertyTokenMap: {
       stroke: 'colors',

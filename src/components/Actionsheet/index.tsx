@@ -1,5 +1,4 @@
 import { createActionsheet } from '@gluestack-ui/actionsheet';
-import { styled } from '../styled';
 import {
   Root,
   Content,
@@ -31,7 +30,7 @@ export const Actionsheet = createActionsheet({
   SectionHeaderText,
   Icon,
   //@ts-ignore
-  AnimatePresence: styled.Component,
+  AnimatePresence: Content.AnimatePresence,
 });
 
 export const ActionsheetContent = Actionsheet.Content;

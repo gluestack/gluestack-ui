@@ -12,5 +12,7 @@ export default styled(
     //@ts-ignore
     gap: '0.25rem',
   },
-  {}
+  {
+    componentName: 'FormControlError',
+  } as const
 );

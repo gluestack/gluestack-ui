@@ -1,6 +1,6 @@
-//@ts-nocheck
 import { Motion } from '@legendapp/motion';
 import { styled } from '@gluestack-style/react';
+import { AnimationResolver } from '@gluestack-style/animation-plugin';
 
 export default styled(
   Motion.View,
@@ -10,6 +10,7 @@ export default styled(
     'borderWidth': 1,
     'borderColor': '$muted.300',
     'overflow': 'hidden',
+    //@ts-ignore
     ':initial': {
       opacity: 0,
     },
@@ -37,5 +38,11 @@ export default styled(
       shadow: '6',
     },
   },
-  { ancestorStyle: ['_content'] }
+  {
+    componentName: 'PopoverContent',
+    ancestorStyle: ['_content'],
+  } as const,
+  {
+    plugins: [new AnimationResolver({})],
+  }
 );

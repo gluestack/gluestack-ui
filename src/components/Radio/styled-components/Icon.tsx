@@ -1,15 +1,15 @@
-import { AsForwarder } from '@gluestack-style/react';
 import { styled } from '@gluestack-style/react';
-const Icon = styled(AsForwarder, {}, {});
+import { StyledIcon } from '../../Icons/styled-components';
 
 export default styled(
-  Icon,
+  StyledIcon,
   {
     h: '$full',
     w: '$full',
   },
   {
+    componentName: 'RadioIcon',
     ancestorStyle: ['_icon'],
     resolveProps: ['color'],
-  }
+  } as const
 );

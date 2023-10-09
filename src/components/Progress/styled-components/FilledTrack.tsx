@@ -11,5 +11,8 @@ export default styled(
     h: '$full',
     borderRadius: '$full',
   },
-  { ancestorStyle: ['_filledTrack'] }
+  {
+    componentName: 'ProgressFilledTrack',
+    ancestorStyle: ['_filledTrack'],
+  } as const
 );

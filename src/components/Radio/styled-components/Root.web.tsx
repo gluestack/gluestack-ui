@@ -196,9 +196,10 @@ export default styled(
     },
   },
   {
+    componentName: 'Radio',
     descendantStyle: ['_icon', '_text', '_indicator'],
     ancestorStyle: ['_radio'],
-  },
+  } as const,
   {
     plugins: [new ColorSchemeResolver(colorSchemeResolveFn)],
   }

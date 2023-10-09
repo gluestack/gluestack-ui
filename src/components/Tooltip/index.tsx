@@ -1,7 +1,6 @@
 import React, { cloneElement, forwardRef } from 'react';
 import { Root, Content, Text } from './styled-components';
 import { createTooltip } from '@gluestack-ui/tooltip';
-import { styled } from '../styled';
 import { GenericComponentType } from '../../types';
 
 const AccessibleTooltip = createTooltip({
@@ -9,7 +8,7 @@ const AccessibleTooltip = createTooltip({
   Content,
   Text,
   //@ts-ignore
-  AnimatePresence: styled.Component,
+  AnimatePresence: Content.AnimatePresence,
 });
 
 const TooltipTemp = forwardRef(

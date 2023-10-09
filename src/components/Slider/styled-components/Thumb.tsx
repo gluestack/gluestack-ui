@@ -69,5 +69,8 @@ export default styled(
       shadow: '6',
     },
   },
-  { ancestorStyle: ['_thumb'] }
+  {
+    componentName: 'SliderThumb',
+    ancestorStyle: ['_thumb'],
+  } as const
 );

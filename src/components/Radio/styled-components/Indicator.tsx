@@ -15,7 +15,8 @@ export default styled(
     'my': '0.25rem',
   },
   {
+    componentName: 'RadioIndicator',
     ancestorStyle: ['_indicator'],
     descendantStyle: ['_icon'],
-  }
+  } as const
 );
