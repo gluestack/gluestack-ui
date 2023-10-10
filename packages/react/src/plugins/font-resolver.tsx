@@ -140,14 +140,19 @@ export class FontResolver implements IStyledPlugin, FontPlugin {
     this.mapFonts = mapFonts || this.mapFonts;
   }
 
-  inputMiddleWare(styledObj: any = {}, shouldUpdate: boolean = true): void {
+  inputMiddleWare(
+    styledObj: any = {},
+    shouldUpdate: boolean = true,
+    _?: boolean,
+    Component?: React.ComponentType
+  ) {
     const modifiedStyledObject = this.fontHandler(styledObj, shouldUpdate);
 
     if (shouldUpdate) {
-      return styledObj;
+      return [styledObj, shouldUpdate, _, Component];
     }
 
-    return modifiedStyledObject;
+    return [modifiedStyledObject, shouldUpdate, _, Component];
   }
 
   #fontFamily: any = {};
@@ -204,14 +209,16 @@ export class FontResolver implements IStyledPlugin, FontPlugin {
           fontWeightsTokens: this.#fontWeightsTokenConfig,
         });
 
-        if (styledObject[styledObjectKey]) this.mapFonts(styledObject);
+        if (styledObject[styledObjectKey]) {
+          this.mapFonts(styledObject);
+        }
       }
     }
 
     return styledObject;
   }
 
-  componentMiddleWare({ NewComp, extendedConfig }: any) {
+  componentMiddleWare({ Component: NewComp, extendedConfig }: any) {
     const styledConfig = this.#fontFamily;
     this.#fontFamily = {};
 
@@ -268,16 +275,38 @@ export class FontResolver implements IStyledPlugin, FontPlugin {
 
       const sxPropsWithThemeProps = deepMerge(sx, componentStyledObject);
 
-      const resolvedSxProps = this.inputMiddleWare(
+      const [resolvedSxProps, , ,] = this.inputMiddleWare(
         sxPropsWithThemeProps,
-        false
+        false,
+        false,
+        NewComp
       );
 
-      return <NewComp sx={resolvedSxProps} {...rest} ref={ref} />;
+      const styles = Array.isArray(rest.style)
+        ? [...rest?.style, resolvedSxProps]
+        : resolvedSxProps;
+
+      return <NewComp {...rest} style={styles} ref={ref} />;
     });
 
     //@ts-ignore
-    Comp.isStyledComponent = NewComp.isStyledComponent;
+    Comp.styled = {};
+    //@ts-ignore
+    Comp.styled.config = {};
+    //@ts-ignore
+    Comp.styled.config = {
+      ...styledConfig?.config,
+      ...NewComp?.styled?.config,
+    };
+
+    //@ts-ignore
+    Comp.isStyledComponent = NewComp?.isStyledComponent;
+    //@ts-ignore
+    Comp.isComposedComponent = NewComp?.isComposedComponent;
+    //@ts-ignore
+    Comp.isAnimatedComponent = NewComp?.isAnimatedComponent;
+
+    Comp.displayName = NewComp?.displayName;
 
     return Comp;
   }

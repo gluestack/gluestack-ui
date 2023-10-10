@@ -837,7 +837,8 @@ export function verboseStyled<P, Variants, ComCon>(
     };
     toBeInjected: any;
     styledIds: Array<string>;
-  }
+  },
+  nonVerbosedTheme?: any
 ) {
   // const componentName = componentStyleConfig?.componentName;
   const componentHash = stableHash({
@@ -1049,6 +1050,8 @@ export function verboseStyled<P, Variants, ComCon>(
       if (EXTENDED_THEME) {
         // RUN Middlewares
 
+        nonVerbosedTheme = deepMerge(nonVerbosedTheme, EXTENDED_THEME.theme);
+
         const resolvedComponentExtendedTheme = resolveComponentTheme(
           CONFIG,
           EXTENDED_THEME
@@ -1096,13 +1099,11 @@ export function verboseStyled<P, Variants, ComCon>(
       if (plugins) {
         for (const pluginName in plugins) {
           // @ts-ignore
-          [theme, , , Component] = plugins[pluginName]?.inputMiddleWare<P>(
-            theme,
-            true,
-            true,
-            Component
-          );
+          [nonVerbosedTheme, , , Component] = plugins[
+            pluginName
+          ]?.inputMiddleWare<P>(nonVerbosedTheme, true, true, Component);
         }
+        nonVerbosedTheme = convertStyledToStyledVerbosed(nonVerbosedTheme);
       }
 
       // for extended components end
@@ -1887,8 +1888,6 @@ export function verboseStyled<P, Variants, ComCon>(
     // }
 
     if (plugins) {
-      // plugins?.reverse();
-      plugins.reverse();
       for (const pluginName in plugins) {
         // @ts-ignore
         if (plugins[pluginName]?.componentMiddleWare) {
@@ -1901,12 +1900,20 @@ export function verboseStyled<P, Variants, ComCon>(
           });
 
           //@ts-ignore
-          pluginData = Component.styled;
+          pluginData = { ...pluginData, ...Component?.styled };
         }
       }
     }
 
     let component;
+
+    const propsToBePassedInToPlugin =
+      plugins?.length > 0
+        ? {
+            ...variantProps,
+            sx: componentProps.sx,
+          }
+        : {};
 
     if (AsComp) {
       //@ts-ignore
@@ -1914,6 +1921,7 @@ export function verboseStyled<P, Variants, ComCon>(
         component = (
           <Component
             {...resolvedStyleProps}
+            {...propsToBePassedInToPlugin}
             style={resolvedStyleMemo}
             as={AsComp}
             ref={ref}
@@ -1930,7 +1938,12 @@ export function verboseStyled<P, Variants, ComCon>(
       }
     } else {
       component = (
-        <Component {...resolvedStyleProps} style={resolvedStyleMemo} ref={ref}>
+        <Component
+          {...resolvedStyleProps}
+          {...propsToBePassedInToPlugin}
+          style={resolvedStyleMemo}
+          ref={ref}
+        >
           {children}
         </Component>
       );
@@ -1981,6 +1994,7 @@ export function styled<P, Variants, ComCon>(
     styledIds: Array<string>;
   }
 ) {
+  const nonVerbosedTheme = theme;
   // const DEBUG_TAG = componentStyleConfig?.DEBUG;
   // const DEBUG =
   //   process.env.NODE_ENV === 'development' && DEBUG_TAG ? false : false;
@@ -2032,7 +2046,8 @@ export function styled<P, Variants, ComCon>(
     sxConvertedObject,
     componentStyleConfig,
     ExtendedConfig,
-    BUILD_TIME_PARAMS
+    BUILD_TIME_PARAMS,
+    nonVerbosedTheme
   );
 
   // @ts-ignore

@@ -210,10 +210,37 @@ export class AnimationResolver implements IStyledPlugin {
     resolvedStyledObject: any = {},
     keyPath: string[] = []
   ) {
-    const aliases = this.config?.aliases;
+    const aliases: any = this.config?.aliases;
     const animatedPropMap = this.config?.animatedPropMap;
+
     for (const prop in styledObject) {
-      if (typeof styledObject[prop] === 'object') {
+      if (aliases && aliases?.[prop]) {
+        let isStyleKey = false;
+        if (shouldUpdateConfig) {
+          // this.#childrenExitPropsMap[prop] = styledObject[prop];
+          if (keyPath[keyPath.length - 1] === 'style') {
+            isStyleKey = true;
+            keyPath.pop();
+          }
+          setObjectKeyValue(
+            this.#childrenExitPropsMap,
+            [...keyPath, prop],
+            styledObject[prop]
+          );
+        }
+        const value = styledObject[prop];
+
+        // @ts-ignore
+        keyPath.push('props', aliases[prop]);
+        // setObjectKeyValue(resolvedStyledObject, keyPath, value);
+
+        setObjectKeyValue(resolvedStyledObject, keyPath, value);
+        keyPath.pop();
+        keyPath.pop();
+        if (isStyleKey) keyPath.push('style');
+
+        delete styledObject[prop];
+      } else if (typeof styledObject[prop] === 'object') {
         keyPath.push(prop);
         this.updateStyledObject(
           styledObject[prop],
@@ -225,29 +252,6 @@ export class AnimationResolver implements IStyledPlugin {
       }
 
       // @ts-ignore
-      if (aliases && aliases?.[prop]) {
-        if (shouldUpdateConfig) {
-          // this.#childrenExitPropsMap[prop] = styledObject[prop];
-          setObjectKeyValue(
-            this.#childrenExitPropsMap,
-            [...keyPath, prop],
-            styledObject[prop]
-          );
-        }
-        const value = styledObject[prop];
-
-        if (keyPath[keyPath.length - 1] === 'style') {
-          keyPath.pop();
-        }
-        // @ts-ignore
-        keyPath.push('props', aliases[prop]);
-        // setObjectKeyValue(resolvedStyledObject, keyPath, value);
-
-        setObjectKeyValue(resolvedStyledObject, keyPath, value);
-        keyPath.pop();
-        keyPath.pop();
-        // delete styledObject[prop];
-      }
 
       if (animatedPropMap && animatedPropMap[prop]) {
         this.renameObjectKey(styledObject, prop, animatedPropMap[prop]);
@@ -334,14 +338,7 @@ export class AnimationResolver implements IStyledPlugin {
             resolvedAnimatedStyledWithStyledObject?.props
           : {};
 
-        return (
-          <Component
-            {...animatedProps}
-            sx={resolvedAnimatedStyledWithStyledObject}
-            {...restProps}
-            ref={ref}
-          />
-        );
+        return <Component {...animatedProps} {...restProps} ref={ref} />;
       });
 
       if (NewComponent) {
@@ -349,14 +346,19 @@ export class AnimationResolver implements IStyledPlugin {
         NewComponent.styled = {};
         //@ts-ignore
         NewComponent.styled.config = {};
+
         //@ts-ignore
-        NewComponent.styled.config = styledConfig;
+        NewComponent.styled.config = {
+          ...Component?.styled?.config,
+          ...styledConfig,
+        };
         //@ts-ignore
         NewComponent.isStyledComponent = Component?.isStyledComponent;
         //@ts-ignore
         NewComponent.isComposedComponent = Component?.isComposedComponent;
 
         NewComponent.displayName = Component?.displayName;
+
         return NewComponent;
       }
     } else {
