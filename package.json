@@ -69,6 +69,7 @@
     "expo-linear-gradient": "latest",
     "file-loader": "^6.2.0",
     "react-native-svg": "13.4.0",
+    "tinycolor2": "^1.6.0",
     "ts-loader": "^9.4.4",
     "typescript": "^5.1.6",
     "url-loader": "^4.1.1",
