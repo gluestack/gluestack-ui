@@ -42,10 +42,6 @@ import {
 
 import Wrapper from '../../Wrapper';
 
-## Themed
-
-Following is the default implementation of the **AlertDialog** component without any additional customization. This serves as a starting point for users who are new to this library and want to learn about the basic functionality and appearance of the component. You can refer [here](https://github.com/gluestack/gluestack-ui/tree/main/packages/themed/src/components/AlertDialog/styled-components) to learn about default styling of AlertDialog component.
-
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
@@ -135,18 +131,22 @@ Following is the default implementation of the **AlertDialog** component without
 
 <br />
 
+## API Reference
+
 ### Import
 
 To use the component in your project, run the command below into your import statement. This will import the component from your components folder.
 
-```bash
-import {  AlertDialog,
+```jsx
+import {
+  AlertDialog,
   AlertDialogBackdrop,
   AlertDialogContent,
   AlertDialogHeader,
   AlertDialogCloseButton,
   AlertDialogFooter,
-  AlertDialogBody, } from '@gluestack-ui/themed';
+  AlertDialogBody,
+} from '@gluestack-ui/themed';
 ```
 
 ### Anatomy
@@ -168,14 +168,14 @@ export default () => (
 );
 ```
 
-### API Reference
+### Component Props
 
-The following section contains a comprehensive list of the component's references, including descriptions, properties, types, and default behavior. This information is readily available for you to access, helping you effectively utilize the component library in your projects.
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
 
 #### AlertDialog
 
-Contains all button related layout style props and actions.
-It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable) component.
+Contains all View related layout style props and actions.
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
 <AppProvider>
   <TableContainer>
@@ -357,24 +357,41 @@ It inherits all the properties of React Native's [Pressable](https://reactnative
             <Table.TText>{`Specifies the animation preset for the AlertDialog`}</Table.TText>
           </Table.TD>
         </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</AppProvider>
+
+**Descendants Styling Props**
+Props to style child components.
+
+<AppProvider>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Sx Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Description</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
         <Table.TR>
           <Table.TD>
             <Table.TText>
-              <InlineCode>unmountOnExit</InlineCode>
+              <InlineCode>_content</InlineCode>
             </Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>boolean</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>true</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>{`If true, removes the component from the DOM when it is not visible. Animation and accessibility won't work when false.`}</Table.TText>
+            <Table.TText>{`Prop to style AlertDialogContent Component`}</Table.TText>
           </Table.TD>
         </Table.TR>
       </Table.TBody>
     </Table>
+
   </TableContainer>
 </AppProvider>
 
@@ -389,6 +406,48 @@ It is [@legendapp/motion's](https://legendapp.com/open-source/motion/) [Motion.V
 #### AlertDialogCloseButton
 
 It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable) component.
+
+**Descendants Styling Props**
+Props to style child components.
+
+<AppProvider>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Sx Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Description</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>_text</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Prop to style AlertDialogCloseButton  Text Component`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>_icon</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Prop to style AlertDialogCloseButton  Icon Component`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</AppProvider>
 
 #### AlertDialogHeader
 
@@ -406,20 +465,13 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
 
 We have outlined the various features that ensure the AlertDialog component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards.It uses React Native ARIA [@react-native-aria/focus](https://react-native-aria.geekyants.com/) which follows the [WAI-ARIA Alert and Message Dialogs Pattern](https://www.w3.org/WAI/ARIA/apg/patterns/alertdialog/).
 
-### Dependencies
+## Themed
 
-The following are the lists of all the libraries and packages the component relies on. This information will help you ensure that your project has all the necessary dependencies installed to use the component.
-
-- `@gluestack-ui/utils`
-- `@react-native-aria/focus`
-- `@react-native-aria/interactions`
-- `@gluestack-ui/hooks`
-- `@gluestack-ui/overlay`
-- `@react-native-aria/dialog`
+The themed version of the component is a pre-styled version of the component, which allows you to quickly integrate the component into your project. The component's design and functionality are fully defined, allowing you to focus on the more important aspects of your project.
 
 ### Props
 
-AlertDialog component is created using View component from react-native. It extends all the props supported by [React Native View](https://reactnative.dev/docs/view#props), [utility props](https://ui.gluestack.io/docs/styling/utility-and-sx-props) and the props mentioned below.
+AlertDialog component is created using View component from react-native. It extends all the props supported by [React Native View](https://reactnative.dev/docs/view#props), [utility props](/ui/docs/styling/utility-and-sx-props) and the props mentioned below.
 
 #### AlertDialog
 
@@ -459,6 +511,8 @@ AlertDialog component is created using View component from react-native. It exte
 </AppProvider>
 
 ### Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
 #### AlertDialog with semantic icon
 
@@ -651,17 +705,23 @@ An AlertDialog component with adjustable sizes, providing flexible and visually 
 
 ## Unstyled
 
+All the components in `gluestack-ui` are unstyled by default. To customize your UI using the extendedTheme, please refer to this [link](https://gluestack.io/ui/docs/theme-configuration/customizing-theme). The import names of components serve as keys to customize each component.
+
+<!--
+
+### Advanced
+
 We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
 
 ### Customizing the AlertDialog
 
-We have a function called `createAlertDialog` which can be used to create a custom alert-dialog component. This function takes in a configuration object which contains the styled components that you want to use for the alert-dialog. You can refer [style.gluestack.io](https://style.gluestack.io/) for more information on how to use styled components.
+We have a function called `createAlertDialog` which can be used to create a custom alert-dialog component. This function takes in a configuration object which contains the styled components that you want to use for the alert-dialog. You can refer [gluestack.io/style](/style) for more information on how to use styled components.
 
-You can read more on how to animate components [here](https://ui.gluestack.io/docs/advanced/animations).
+You can read more on how to animate components [here](/ui/docs/advanced/animations).
 
 #### Usage
 
-Default styling of all these components can be found in the `components/core/alert-dialog` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/tree/main/example/storybook/src/ui-components/AlertDialog) of the styled `AlertDialog` components.
+Default styling of all these components can be found in the `components/core/alert-dialog` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/main/packages/themed/src/components/AlertDialog) of the styled `AlertDialog` components.
 
 ```jsx
 // import the styles
@@ -715,3 +775,4 @@ export default () => (
   </AlertDialog>
 );
 ```
+-->

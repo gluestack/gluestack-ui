@@ -35,10 +35,6 @@ import {
 
 import Wrapper from '../../Wrapper';
 
-## Themed
-
-Alert allows you to show the type of action such as `info`, `success`, `error`, `warning`, and `muted` and variant such as `solid`,`accent`,`outline`. You can refer [here](https://github.com/gluestack/gluestack-ui/tree/main/packages/themed/src/components/Alert/styled-components) to learn about default styling of Alert component.
-
 <AppProvider>
   <CodePreview
     _rendererWrapper={{ px: '$2.5' }}
@@ -81,11 +77,13 @@ Alert allows you to show the type of action such as `info`, `success`, `error`, 
 
 <br />
 
+## API Reference
+
 ### Import
 
 To use the component in your project, run the command below into your import statement. This will import the component from your components folder.
 
-```bash
+```jsx
 import { Alert, AlertIcon, AlertText } from '@gluestack-ui/themed';
 ```
 
@@ -102,13 +100,55 @@ export default () => (
 );
 ```
 
-### API Reference
+### Component Props
 
-The following section contains a comprehensive list of the component's references, including descriptions, properties, types, and default behavior. This information is readily available for you to access, helping you effectively utilize the component library in your projects.
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
 
 #### Alert
 
 Contains all alert related layout style props and actions. It inherits all the properties of React Native's [View](https://reactnative.dev/docs/pressable) component.
+
+**Descendants Styling Props**
+Props to style child components.
+
+<AppProvider>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Sx Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Description</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>_text</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Prop to style AlertText Component`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>_icon</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Prop to style AlertIcon Component`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</AppProvider>
 
 #### AlertIcon
 
@@ -118,9 +158,13 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
 
 Contains all spinner related layout style props and actions. It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text) component.
 
+## Themed
+
+The themed version of the component is a pre-styled version of the component, which allows you to quickly integrate the component into your project. The component's design and functionality are fully defined, allowing you to focus on the more important aspects of your project.
+
 ### Props
 
-Alert component is created using View component from react-native. It extends all the props supported by [React Native View](https://reactnative.dev/docs/view#props), [utility props](https://ui.gluestack.io/docs/styling/utility-and-sx-props) and the props mentioned below.
+Alert component is created using View component from react-native. It extends all the props supported by [React Native View](https://reactnative.dev/docs/view#props), [utility props](/ui/docs/styling/utility-and-sx-props) and the props mentioned below.
 
 #### Alert
 
@@ -218,15 +262,35 @@ An example of an alert component with a heading, which further contains another 
 
 ## Unstyled
 
+All the components in `gluestack-ui` are unstyled by default. To customize your UI using the extendedTheme, please refer to this [link](https://gluestack.io/ui/docs/theme-configuration/customizing-theme). The import names of components serve as keys to customize each component.
+
+## Spec Doc
+
+Explore the comprehensive details of the Alert in this document, including its implementation details, checklist, and potential future additions. Dive into the thought process behind the component and gain insights into its development journey.
+
+<iframe
+  style={{
+    borderRadius: '8px',
+    border: ' 1px solid rgba(0, 0, 0, 0.1)',
+    aspectRatio: 736 / 585,
+  }}
+  src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FNcXOxqKbdnGsLQNex3H76u%2F%25C2%25A0%25F0%259F%2593%259Agluestack-UI-handbook%3Fpage-id%3D5653%253A34732%26type%3Ddesign%26node-id%3D5658-36648%26viewport%3D1433%252C11%252C0.08%26t%3DWy4Bx2pKvlcvatlJ-1%26scaling%3Dcontain%26starting-point-node-id%3D5658%253A36648%26mode%3Ddesign"
+  allowFullScreen
+/>
+
+<!--
+
+### Advanced
+
 We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
 
 ### Customizing the Alert
 
-We have a function called `createAlert` which can be used to create a custom alert component. This function takes in a configuration object which contains the styled components that you want to use for the Alert You can refer [style.gluestack.io](https://style.gluestack.io/) for more information on how to use styled components.
+We have a function called `createAlert` which can be used to create a custom alert component. This function takes in a configuration object which contains the styled components that you want to use for the Alert You can refer [gluestack.io/style](/style/docs/getting-started/styled) on how to use styled components.
 
 #### Usage
 
-Default styling of all these components can be found in the `components/core/alert` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/tree/main/example/storybook/src/ui-components/Alert) of the styled `Alert` components.
+Default styling of all these components can be found in the `components/core/alert` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/main/packages/themed/src/components/Alert) of the styled `Alert` components.
 
 ```jsx
 // import the styles
@@ -245,3 +309,4 @@ export default () => (
   </Alert>
 );
 ```
+-->

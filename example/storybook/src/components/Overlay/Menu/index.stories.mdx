@@ -9,7 +9,7 @@ pageDescription: The Menu component creates a user-friendly dropdown interface t
 
 showHeader: true
 
-tag: alpha
+tag: beta
 ---
 
 import { Meta } from '@storybook/addon-docs';
@@ -40,10 +40,6 @@ import {
 } from '@gluestack/design-system';
 
 import Wrapper from '../../Wrapper';
-
-## Themed
-
-Following is the default implementation of the **Menu** component without any additional customization. This serves as a starting point for users who are new to this library and want to learn about the basic functionality and appearance of the component. You can refer [here](https://github.com/gluestack/gluestack-ui/tree/main/packages/themed/src/components/Menu/styled-components) to learn about default styling of Menu component.
 
 <AppProvider>
   <CodePreview
@@ -122,11 +118,13 @@ Following is the default implementation of the **Menu** component without any ad
 
 <br />
 
+## API Reference
+
 ### Import
 
 To use the component in your project, run the command below into your import statement. This will import the component from your components folder.
 
-```bash
+```jsx
 import { Menu } from '@gluestack-ui/themed';
 ```
 
@@ -144,9 +142,9 @@ export default () => (
 );
 ```
 
-### API Reference
+### Component Props
 
-The following section contains a comprehensive list of the component's references, including descriptions, properties, types, and default behavior. This information is readily available for you to access, helping you effectively utilize the component library in your projects.
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
 
 #### Menu
 
@@ -445,6 +443,38 @@ Contains all button related layout style props and actions. It inherits all the 
   </TableContainer>
 </AppProvider>
 
+**Descendants Styling Props**
+Props to style child components.
+
+<AppProvider>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Sx Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Description</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>_text</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Prop to style MenuItemLabel Component`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</AppProvider>
+
 #### MenuItemLabel
 
 Contains all text related layout style props and actions. It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text) component.
@@ -459,20 +489,6 @@ Contains all text related layout style props and actions. It inherits all the pr
 We have outlined the various features that ensure the Menu component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards.
 
 Adheres to the [MENU WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/menubar/).
-
-### Dependencies
-
-The following are the lists of all the libraries and packages the component relies on. This information will help you ensure that your project has all the necessary dependencies installed to use the component.
-
-- `@gluestack-ui/overlay`
-- `@gluestack-ui/utils`
-- `@gluestack-ui/hooks`
-- `@react-native-aria/focus`
-- `@react-native-aria/interactions`
-- `@react-native-aria/menu`
-- `@react-native-aria/overlays`
-- `react-stately`
-- `@react-stately/utils`
 
 ### Examples
 
@@ -656,15 +672,21 @@ Our Menu component supports dynamic disabling of menu items, enabling you to con
 
 ## Unstyled
 
+All the components in `gluestack-ui` are unstyled by default. To customize your UI using the extendedTheme, please refer to this [link](https://gluestack.io/ui/docs/theme-configuration/customizing-theme). The import names of components serve as keys to customize each component.
+
+<!--
+
+### Advanced
+
 We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
 
 ### Customizing the Menu
 
-We have a function called `createMenu` which can be used to create a custom menu component. This function takes in a configuration object which contains the styled components that you want to use for the Menu You can refer [style.gluestack.io](https://style.gluestack.io/) for more information on how to use styled components.
+We have a function called `createMenu` which can be used to create a custom menu component. This function takes in a configuration object which contains the styled components that you want to use for the Menu You can refer [gluestack.io/style](/style/docs/getting-started/styled) on how to use styled components.
 
 #### Usage
 
-Default styling of all these components can be found in the `components/core/menu` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/tree/main/example/storybook/src/components/Overlay/Menu) of the styled `Menu` components.
+Default styling of all these components can be found in the `components/core/menu` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/main/packages/themed/src/components/Menu) of the styled `Menu` components.
 
 ```jsx
 // import the styles
@@ -695,3 +717,4 @@ export default () => (
   </Menu>
 );
 ```
+-->

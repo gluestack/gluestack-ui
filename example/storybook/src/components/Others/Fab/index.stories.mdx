@@ -255,7 +255,7 @@ It inherits all the properties of React Native's [Text](https://reactnative.dev/
 
 #### FabIcon
 
-Contains all Icon related layout style props and actions. It inherits all the properties of Gluestack Style's [AsForwarder](https://style.gluestack.io/docs/api/as-forwarder) component.
+Contains all Icon related layout style props and actions. It inherits all the properties of Gluestack Style's [AsForwarder](/style/docs/api/as-forwarder) component.
 
 ### Features
 
@@ -291,7 +291,7 @@ The following are the lists of all the libraries and packages the component reli
 
 ### Props
 
-Fab component is created using Pressable component from react-native. It extends all the props supported by [React Native Pressable](https://reactnative.dev/docs/pressable#props), [utility props](https://ui.gluestack.io/docs/styling/utility-and-sx-props) and the props mentioned below.
+Fab component is created using Pressable component from react-native. It extends all the props supported by [React Native Pressable](https://reactnative.dev/docs/pressable#props), [utility props](/ui/docs/styling/utility-and-sx-props) and the props mentioned below.
 
 #### Fab
 
@@ -769,11 +769,11 @@ We provide in-depth information on how to customize and extend the component's f
 
 ### Customizing the Fab
 
-We have a function called `createFab` which can be used to create a custom fab component. This function takes in a configuration object which contains the styled components that you want to use for the fab. You can refer [style.gluestack.io](https://style.gluestack.io/) for more information on how to use styled components.
+We have a function called `createFab` which can be used to create a custom fab component. This function takes in a configuration object which contains the styled components that you want to use for the fab. You can refer [gluestack.io/style](/style/docs/getting-started/styled) on how to use styled components.
 
 #### Usage
 
-Default styling of all these components can be found in the `components/core/fab` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/tree/main/example/storybook/src/ui-components/Fab) of the styled `Fab` components.
+Default styling of all these components can be found in the `components/core/fab` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/main/packages/themed/src/components/Fab) of the styled `Fab` components.
 
 ```jsx
 // import the styles
@@ -796,3 +796,17 @@ export default () => (
   </Fab>
 );
 ```
+
+## Spec Doc
+
+Explore the comprehensive details of the Fab in this document, including its implementation details, checklist, and potential future additions. Dive into the thought process behind the component and gain insights into its development journey.
+
+<iframe
+  style={{
+    borderRadius: '8px',
+    border: ' 1px solid rgba(0, 0, 0, 0.1)',
+    aspectRatio: 736 / 585,
+  }}
+  src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FNcXOxqKbdnGsLQNex3H76u%2F%25C2%25A0%25F0%259F%2593%259Agluestack-UI-handbook%3Fpage-id%3D5970%253A34594%26type%3Ddesign%26node-id%3D6003-25845%26viewport%3D1146%252C245%252C0.06%26t%3DhEvNAQ5keRN1oIyi-1%26scaling%3Dcontain%26starting-point-node-id%3D6003%253A25845%26mode%3Ddesign"
+  allowFullScreen
+/>

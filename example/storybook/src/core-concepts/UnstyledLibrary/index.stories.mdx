@@ -1,0 +1,146 @@
+---
+title: Unstyled Library | gluestack-ui
+
+description: In this guide we will learn in depth about the right way to create unstyled library.
+
+pageTitle: Unstyled Library
+
+pageDescription: In this guide we will learn in depth about the right way to create unstyled components.
+
+showHeader: true
+---
+
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+import { AppProvider, CodePreview } from '@gluestack/design-system';
+import {
+  Center,
+  GluestackUIProvider,
+  Button,
+  ButtonGroup,
+  ButtonText,
+} from './UnstyledComponents';
+import { transformedCode, transformedThemedCode } from '../../utils';
+import Wrapper from '../../components/Wrapper';
+import { styled } from '@gluestack-style/react';
+import {
+  ActivityIndicator,
+  Pressable,
+  Text as RNText,
+  View,
+} from 'react-native';
+// import the createButton function
+import { createButton } from '@gluestack-ui/button';
+// import {
+//   AppProvider,
+//   Box,
+//   HStack,
+//   Text,
+//   Hoverable,
+//   CodePreview,
+// } from '@gluestack/design-system';
+
+<Meta title="Core Concepts/Unstyled Library" />
+
+## Introduction
+
+gluestack-ui provides a collection of unstyled components that can be styled according to a specific theme or design language. These components are reusable, consistent, interactive, and are accessible on the web, iOS, and Android.
+
+## Key Features
+
+- **Unstyled by Default:** All gluestack-ui components are unstyled by default, allowing users to define their own styles or use a styling library. Read more
+- **Optional Styling:** Users have the choice to apply custom styles to components, tailoring the appearance to match their project's requirements and design language. [Read more](https://ui.gluestack.io/docs/theme/customizing-components)
+- **Accessibility:** Components are designed to be functional, and accessible, and follow the WAI-ARIA Authoring Practices guidelines, ensuring a seamless user experience. [Read more](https://ui.gluestack.io/docs/overview/accessibility)
+- **Lightweight:** gluestack-ui is lightweight, promoting better performance and faster load times. [Read more](https://ui.gluestack.io/docs/performance/overview)
+
+## Styling Options
+
+The `gluestack-ui` provides multiple flexible styling options to customize the appearance of components according to your preferences.
+
+## Default Components
+
+By default, when you use `@gluestack-ui/themed`, you get plain, unstyled components.
+
+But, it also comes with a package called `@gluestack-ui/config`, which has ready-made styles for all the components. So, you can choose these styles if you like. Please visit [Themed Library](https://gluestack.io/ui/docs/core-concepts/themed-library) for more information.
+
+And, the cool part is, you can even create your own unique style if you want to give these components a personal touch.
+
+> Note: If you want to create your own design system with these components, it's advisable to refer to the customization guide available [guide](https://gluestack.io/ui/docs/guides/building-design-systems).
+
+```jsx
+import { GluestackUIProvider, Button, ButtonText } from '@gluestack-ui/themed';
+function App() {
+  return (
+    <GluestackUIProvider>
+      <Button backgroundColor="purple" padding={12}>
+        <ButtonText color="white">Hello world</ButtonText>
+      </Button>
+    </GluestackUIProvider>
+  );
+}
+```
+
+When we use the `GluestackUIProvider`, it doesn't come with any pre-defined styles. So, by default, all the components you get from `@gluestack-ui/themed` are unstyled.
+
+However, you can make these components look the way you want by adding your own unique styles.
+
+## Custom Components
+
+> Note: Using custom components is recommended in case you are building your own design system and want to create everything from scratch.
+
+Let's try creating an unstyled Button component
+
+We utilize a function named `createButton` for the creation of a customized button component. This function accepts a configuration object that contains the styled components you wish to apply to the button. For guidance on the usage of styled components, you can refer [gluestack.io/style](/style) function expects an object containing the styled components that can be tailored to meet your specifications. These styled components can be generated using the `styled` function, which is exported by `@gluestack-style/react`. Here is a basic example provided below.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+    function App() {
+      const Root = styled(Pressable, {});
+      const Text = styled(RNText, {});
+      const Group = styled(View, {});
+      const GroupHSpacer = styled(View, {});
+      const GroupVSpacer = styled(View, {});
+      const Spinner = styled(ActivityIndicator, {});
+      // Understanding the API
+      const Button = createButton({
+        Root,
+        Text,
+        Group,
+        GroupHSpacer,
+        GroupVSpacer,
+        Spinner,
+      });
+      return (
+        <Button.Group>
+          <Button>
+            <Button.Text sx={{_dark:{
+              color:"white"
+            }}}>Hello world</Button.Text>
+          </Button>
+        </Button.Group>
+      );
+    }
+`,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'App');
+      },
+      scope: {
+        Wrapper,
+        styled,
+        createButton,
+        Pressable,
+        RNText,
+        View,
+        ActivityIndicator,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+In the above example, we are creating an accessible, universal `Button` component by using `createButton` function exported by `@gluestack-ui/button` package. We create various unstyled library using the API employed by `styled` function. These components are then passed as arguments to `createButton` function. Likewise, for each component, there exists a distinct package and API, specified in the documentation of the respective components.
+
+Styling these components is achieved with the aid of the `@gluestack-style/react` library. We generate styled components and encapsulate them within an object, which is then provided as input to the function.

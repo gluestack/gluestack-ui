@@ -1,0 +1,107 @@
+---
+title: Increamental Adoption | gluestack-ui
+description: While building @gluestack-ui/themed we felt the same pain as you do now, hence we completely support incremental adoption.
+---
+
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+
+<Meta title="Getting Started/Increamental Adoption" />
+
+# Increamental Adoption
+
+Incremental adoption is a strategy for implementing changes gradually instead of all at once. It allows for a smoother transition and minimizes disruption to existing systems and processes. By taking small steps and making incremental improvements, organizations can mitigate risks and ensure that the changes are well-received by stakeholders. This approach is particularly useful for complex projects or when there is resistance to change.
+
+## Some Pre-Requisites:
+
+### If you are building a Web-only app:
+
+- Install React Native Web
+  - `npm install react-dom react-native-web`
+  - For build-time optimizations, install the babel plugin as well - `npm install --save-dev babel-plugin-react-native-web`
+- If it’s a typescript project install React Native types as well - `npm i @types/react-native`
+- Install `@gluestack-ui/themed` and follow the steps mentioned in the [Docs](https://ui.gluestack.io/docs/guides/install-nextjs) according to your use case.
+
+### If you are building a universal app:
+
+- Install `@gluestack-ui/themed`
+  - Follow [these](https://gluestack.io/ui/docs/guides/install-expo) steps if you are using Expo
+  - Follow [these](https://gluestack.io/ui/docs/guides/install-rn) steps if you are using React Native Bare App.
+
+## How to incremently add @gluestack-ui/themed to your Project?
+
+Suppose you have a project that is already deployed on production and you are using a component library named `X-Components`. Now, since your app/website is becoming popular you want to provide a smooth and fast experience to all your users, but you want to start today and gradually update by keeping on improving your app.
+
+Don’t worry, we’ve got your back! All you need to get started is 4 steps-
+
+- Install all the prerequisites (Which most probably you already did).
+- Create a config file named `gluestack-ui.config.ts` and export your config from there.
+- Use `GluestackUIProvider` and wrap the root of your app.
+- Now you can replace your components that you were importing from `X-Components`, with Box from `@gluestack-ui/themed`
+
+That’s it!
+
+Similarly, when needed you can replace the components from `X-Components` with components from `@gluestack-ui/themed`. By following this approach, you can incrementally adopt `@gluestack-ui/themed` and improve your app step by step.
+
+## What if you had some customizations in older components?
+
+If you had made customizations to the older components from `X-Components` or the design from `X-Components` is completely different from `@gluestack-ui/themed`, you can still incorporate those customizations into the new components from `@gluestack-ui/themed`. The theming capabilities of `@gluestack-ui/themed` allow you to customize the appearance of the components to match your specific requirements.
+
+There are 2 ways you can customize your theme:
+
+- Using `createComponents` & `createStyle` API:
+
+  ```jsx
+  // gluestack-ui.config.ts
+  export const config = createConfig({
+    aliases: {},
+    tokens: {},
+    themes: {},
+    globalStyles: {}
+  } as const);
+
+  type Config = typeof config;
+
+  // components
+  export const components = createComponents({
+    Box: createStyle({
+       theme: {},
+       componentConfig: {
+        descendants: [],
+        ancestors: [],
+        resolvedProps: [],
+       },
+    }),
+    Text: createStyle( {
+      ...
+   })
+  })
+
+  type Components = typeof components;
+
+  declare module '@gluestack-style/react' {
+    interface ICustomConfig extends Config {}
+    interface ICustomComponents extends Components {}
+  }
+  ```
+
+  ```jsx
+  // App.tsx
+  import { config, components } from './gluestack-ui.config.ts';
+
+  export default function ({ children }) {
+    return (
+      <StyledProvider config={config} components={components}>
+        {children}
+      </StyledProvider>
+    );
+  }
+  ```
+
+### API Reference
+
+- `createConfig` - To define core config
+- `createStyle` - Defines `style/theme` of component
+- `createComponents`Define key value pair of component name and theme
+
+- Using npx cli tool or copying the theme folder and eject the complete styling of `@gluestack-ui/themed`.
+  - on the root of your project run `npx gluestack-ui-scripts eject-theme` or you can copy this [folder](https://github.com/gluestack/gluestack-ui/tree/main/packages/config/src) in your project and import everything from this folder and

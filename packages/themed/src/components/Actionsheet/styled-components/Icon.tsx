@@ -1,20 +1,7 @@
 import { styled } from '@gluestack-style/react';
 import { StyledIcon } from '../../Icons/styled-components';
 
-export default styled(
-  StyledIcon,
-  {
-    props: {
-      size: 'sm',
-    },
-    color: '$backgroundLight500',
-    _dark: {
-      //@ts-ignore
-      color: '$backgroundDark400',
-    },
-  },
-  {
-    componentName: 'ActionsheetIcon',
-    ancestorStyle: ['_icon'],
-  } as const
-);
+export default styled(StyledIcon, {}, {
+  componentName: 'ActionsheetIcon',
+  ancestorStyle: ['_icon'],
+} as const);

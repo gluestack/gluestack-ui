@@ -6,6 +6,7 @@ import ActionsheetVirtualizedList from './ActionsheetVirtualizedList';
 import ActionsheetSectionList from './ActionsheetSectionList';
 import ActionsheetIcon from './ActionsheetIcon';
 import ActionsheetAvoidKeyboard from './ActionsheetAvoidKeyboard';
+import ActionsheetWithKeyboardAvoidingViewWithSnapPoints from './ActionsheetAvoidKeyboardWithSnapPoints';
 
 const ActionsheetMeta: ComponentMeta<typeof Actionsheet> = {
   title: 'stories/DISCLOSURE/Actionsheet',
@@ -22,4 +23,5 @@ export {
   ActionsheetVirtualizedList,
   ActionsheetSectionList,
   ActionsheetAvoidKeyboard,
+  ActionsheetWithKeyboardAvoidingViewWithSnapPoints,
 };

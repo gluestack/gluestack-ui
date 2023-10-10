@@ -34,17 +34,18 @@ Following is the default implementation of the **LinearGradient** component with
 
 Different projects have different dependents of linear gradients. For e.g. , in Expo, it will have the dependency of [expo-linear-gradient](https://docs.expo.dev/versions/latest/sdk/linear-gradient/). In React Native, it will have the dependency of [react-native-linear-gradient](https://www.npmjs.com/package/react-native-linear-gradient). So, we can add the dependency of linear gradient in the `package.json` file of the project and extend the component config with the `LinearGradient` component.
 
-You can refer to [this](https://ui.gluestack.io/docs/theme/customizing-components) for customizing the component.
+You can refer to [this](https://ui.gluestack.io/docs/theme-configuration/customizing-theme) for customizing the component.
 
 ### Extended config
 
 ```jsx
 // gluestack-ui.config.ts
 
-import { createConfig, config as defaultConfig, } from '@gluestack-ui/themed';
+import { createConfig } from '@gluestack-ui/themed';
+import { config as defaultConfig } from "@gluestack-ui/config";
 import { LinearGradient } from 'expo-linear-gradient';
    const config = createConfig({
-   ...defaultConfig.theme,
+   ...defaultConfig,
    components: {
      LinearGradient: {
        theme: {
@@ -205,11 +206,11 @@ We provide in-depth information on how to customize and extend the component's f
 
 ### Customizing the LinearGradient
 
-For customizing the LinearGradient, you have to map styled [LinearGradient](https://docs.expo.dev/versions/latest/sdk/linear-gradient/) to LinearGradient. You can refer [style.gluestack.io](https://style.gluestack.io/) for more information on how to use styled components.
+For customizing the LinearGradient, you have to map styled [LinearGradient](https://docs.expo.dev/versions/latest/sdk/linear-gradient/) to LinearGradient. You can refer [gluestack.io/style](/style) for more information on how to use styled components.
 
 #### Usage
 
-Default styling of the component can be found in the `components/linear-gradient` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/tree/main/example/storybook/src/components/Layout/LinearGradient) of the styled `LinearGradient` component.
+Default styling of the component can be found in the `components/linear-gradient` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/main/packages/themed/src/components/LinearGradient) of the styled `LinearGradient` component.
 
 ```jsx
 // import the styles
