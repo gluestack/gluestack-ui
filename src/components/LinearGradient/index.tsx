@@ -21,6 +21,6 @@ const LinearGradientNew = LinearGradientTemp as any;
 export type ILinearGradientComponentType<LinearGradient> =
   GenericComponentType<LinearGradient>;
 
-export const LinearGradient = LinearGradientNew as GenericComponentType<
+export const LinearGradient = LinearGradientNew as ILinearGradientComponentType<
   typeof AccessibleLinearGradient
 >;

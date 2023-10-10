@@ -16,6 +16,6 @@ const BoxTemp = forwardRef(({ children, ...props }: any, ref?: any) => {
 
 const BoxNew = BoxTemp as any;
 
-export type IBoxComponentType<Box> = GenericComponentType<Box>;
+export const Box = BoxNew as IBoxComponentType<typeof AccessibleBox>;
 
-export const Box = BoxNew as GenericComponentType<typeof AccessibleBox>;
+export type IBoxComponentType<Box> = GenericComponentType<Box>;
