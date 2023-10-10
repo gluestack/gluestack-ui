@@ -91,7 +91,7 @@ const FigmaPopoverStory = ({
     <Center w="$full" h="$full">
       <Popover
         {...props}
-        _experimentalOverlay={false}
+        _experimentalOverlay={true}
         offset={30}
         isOpen={true}
         placement="top"

@@ -7,6 +7,7 @@ const MenuMeta: ComponentMeta<typeof Menu> = {
   argTypes: {
     placement: {
       control: 'select',
+      figmaIgnore: true,
       options: [
         'bottom',
         'bottom end',
