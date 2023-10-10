@@ -91,5 +91,3 @@ export const Avatar = AvatarNew as IAvatarComponentType<
   typeof AccessibleAvatar.Group,
   typeof AccessibleAvatar.Badge
 >;
-
-<Avatar.Group />;
