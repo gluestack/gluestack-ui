@@ -9,5 +9,5 @@ export const Menu = createMenu({
   //@ts-ignore
   AnimatePresence: Root.AnimatePresence,
 });
-export const MenuItem = Menu.Item;
-export const MenuItemLabel = Menu.ItemLabel;
+// export const MenuItem = Menu.Item;
+// export const MenuItemLabel = Menu.ItemLabel;
