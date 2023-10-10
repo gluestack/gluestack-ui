@@ -1030,7 +1030,9 @@ export function verboseStyled<P, Variants, ComCon>(
     const sxCompoundVariantFlatternStyleObject = React.useRef({});
     const sxDescendantFlattenStyles: any = React.useRef({});
 
-    const COLOR_MODE: any = get();
+    const COLOR_MODE: any = styledContext._experimentalNestedProvider
+      ? styledContext.colorMode
+      : get();
 
     if (!styleHashCreated) {
       CONFIG = {
