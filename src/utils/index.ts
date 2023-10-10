@@ -13,8 +13,8 @@ export const CSSPropertiesMap = {
   bottom: 'auto',
   direction: 'ltr',
   display: 'flex',
-  end: 'auto',
-  start: 'auto',
+  // end: 'auto',
+  // start: 'auto',
   flex: 'none',
   flexDirection: 'column',
   flexBasis: 'auto',
@@ -400,36 +400,47 @@ export function renamePseudoClasses(obj: any) {
 
 function convertResponsiveToPseudoClasses(obj: any, config: any) {
   const newObj = {};
+  //@ts-ignore
+  // newObj.props = {};
   for (const key in obj) {
     const propName = key;
     const propValue = obj[key];
 
-    if (Array.isArray(propValue)) {
-      const breakPoints = config.tokens.breakpoints;
-      const breakPointsKeys = Object.keys(breakPoints);
-      propValue.forEach((value, index) => {
+    if (checkIfPropIsStyle(key, config)) {
+      if (Array.isArray(propValue)) {
+        const breakPoints = config.tokens.breakpoints;
+        const breakPointsKeys = Object.keys(breakPoints);
+        propValue.forEach((value, index) => {
+          //TODO: fix this ts-ignore
+          //@ts-ignore
+          newObj[`@${breakPointsKeys[index]}`] = { [propName]: value };
+        });
+      } else if (typeof propValue === 'object' && !propName.startsWith('_')) {
+        // const breakPoints = config.tokens.breakpoints;
+        // const breakPointsKeys = Object.keys(breakPoints);
+        Object.keys(propValue).forEach((value) => {
+          //TODO: fix this ts-ignore
+          //@ts-ignore
+          newObj[`@${value}`] = { [propName]: propValue[value] };
+        });
+      } else if (typeof propValue === 'object') {
         //TODO: fix this ts-ignore
         //@ts-ignore
-        newObj[`@${breakPointsKeys[index]}`] = { [propName]: value };
-      });
-    } else if (typeof propValue === 'object' && !propName.startsWith('_')) {
-      // const breakPoints = config.tokens.breakpoints;
-      // const breakPointsKeys = Object.keys(breakPoints);
-      Object.keys(propValue).forEach((value) => {
+        newObj[key] = convertResponsiveToPseudoClasses(propValue, config);
+      } else {
         //TODO: fix this ts-ignore
         //@ts-ignore
-        newObj[`@${value}`] = { [propName]: propValue[value] };
-      });
-    } else if (typeof propValue === 'object') {
-      //TODO: fix this ts-ignore
-      //@ts-ignore
-      newObj[key] = convertResponsiveToPseudoClasses(propValue, config);
+        newObj[key] = propValue;
+      }
     } else {
-      //TODO: fix this ts-ignore
       //@ts-ignore
       newObj[key] = propValue;
+      //@ts-ignore
+      // newObj.props = { ...newObj.props, [key]: propValue };
+      // console.log('------', { ...newObj.props, [key]: propValue });
     }
   }
+  // console.log('newObj', newObj);
   return newObj;
 }
 
@@ -537,3 +548,25 @@ export const deepMerge = (target: any = {}, source: any) => {
   }
   return target;
 };
+
+function checkIfPropIsStyle(key: any, theme: any) {
+  // console.log(
+  //   'CSSPropertiesMap key',
+  //   key,
+  //   CSSPropertiesMap.hasOwnProperty(key)
+  // );
+  // console.log(
+  //   'propertyTokenMap key',
+  //   key,
+  //   propertyTokenMap.hasOwnProperty(key)
+  // );
+  // console.log('theme.aliases key', key, theme.aliases.hasOwnProperty(key));
+  // console.log('config', theme);
+  if (
+    CSSPropertiesMap.hasOwnProperty(key) ||
+    propertyTokenMap.hasOwnProperty(key) ||
+    theme.aliases.hasOwnProperty(key)
+  )
+    return true;
+  return false;
+}

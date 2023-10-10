@@ -23,6 +23,7 @@ export * from './Icons';
 export * from './Image';
 export * from './Input';
 export * from './KeyboardAvoidingView';
+export * from './LinearGradient';
 export * from './Link';
 export * from './Menu';
 export * from './Modal';

@@ -66,6 +66,7 @@
     "@gluestack-ui/vstack": "latest",
     "@legendapp/motion": "latest",
     "expo-clipboard": "^4.5.0",
+    "expo-linear-gradient": "latest",
     "file-loader": "^6.2.0",
     "react-native-svg": "13.4.0",
     "ts-loader": "^9.4.4",
