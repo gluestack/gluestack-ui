@@ -85,7 +85,7 @@ function colorSchemeResolveFn({ ...props }: any) {
       case 'top-accent':
         value = {
           borderTopWidth: 4,
-          bg: `4${color}.200`,
+          bg: `$${color}.200`,
           _icon: { color: `$${color}.700` },
           borderColor: `$${color}.700`,
           _dark: {
