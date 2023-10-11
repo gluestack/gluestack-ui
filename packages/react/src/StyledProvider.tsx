@@ -6,6 +6,7 @@ import type { COLORMODES } from './types';
 import { platformSpecificSpaceUnits } from './utils';
 import { createGlobalStylesWeb } from './createGlobalStylesWeb';
 import { createGlobalStyles } from './createGlobalStyles';
+
 type Config = any;
 let colorModeSet = false;
 
@@ -50,6 +51,11 @@ export const StyledProvider: React.FC<{
   globalStyles,
   _experimentalNestedProvider,
 }) => {
+  const inlineStyleMap: any = React.useRef({
+    initialStyleInjected: false,
+  });
+  inlineStyleMap.current.initialStyleInjected = false;
+
   const currentConfig: any = React.useMemo(() => {
     //TODO: Add this later
     return platformSpecificSpaceUnits(config, Platform.OS);
@@ -107,6 +113,38 @@ export const StyledProvider: React.FC<{
     setCurrentColorMode(currentColorMode);
   }, [currentColorMode]);
 
+  React.useLayoutEffect(() => {
+    if (Platform.OS === 'web') {
+      const toBeInjectedStyles: any = {};
+
+      if (inlineStyleMap.current.initialStyleInjected) {
+        return;
+      }
+
+      Object.keys(inlineStyleMap.current).forEach((key: any) => {
+        if (key !== 'initialStyleInjected') {
+          const styles = inlineStyleMap.current[key];
+          if (!toBeInjectedStyles[key]) {
+            toBeInjectedStyles[key] = document.createDocumentFragment();
+          }
+
+          styles.forEach((style: any) => {
+            if (!document.getElementById(style.id)) {
+              toBeInjectedStyles[key].appendChild(style);
+            }
+          });
+        }
+      });
+      Object.keys(toBeInjectedStyles).forEach((key) => {
+        let wrapperElement = document.querySelector('#' + key);
+        if (wrapperElement) {
+          wrapperElement.appendChild(toBeInjectedStyles[key]);
+        }
+        // delete inlineStyleMap.current[key];
+      });
+      inlineStyleMap.current.initialStyleInjected = true;
+    }
+  });
   // // Set colormode for the first time
   if (!colorModeSet) {
     setCurrentColorMode(currentColorMode);
@@ -122,6 +160,7 @@ export const StyledProvider: React.FC<{
       globalStyle: globalStyleMap,
       animationDriverData,
       setAnimationDriverData,
+      inlineStyleMap: inlineStyleMap.current,
     };
     if (_experimentalNestedProvider) {
       //@ts-ignore

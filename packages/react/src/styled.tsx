@@ -906,7 +906,7 @@ export function verboseStyled<P, Variants, ComCon>(
     styleIds = BUILD_TIME_PARAMS?.verbosedStyleIds;
   }
 
-  function injectSx(sx: any, type: any = 'inline') {
+  function injectSx(sx: any, type: any = 'inline', inlineStyleMap?: any) {
     const inlineSxTheme = {
       baseStyle: sx,
     };
@@ -965,7 +965,8 @@ export function verboseStyled<P, Variants, ComCon>(
       sxHash,
       type,
       GluestackStyleSheet,
-      Platform.OS
+      Platform.OS,
+      inlineStyleMap
     );
 
     return orderedSXResolved;
@@ -1059,7 +1060,6 @@ export function verboseStyled<P, Variants, ComCon>(
         // const resolvedComponentExtendedTheme = EXTENDED_THEME;
 
         theme = deepMerge(theme, resolvedComponentExtendedTheme.theme);
-
         // @ts-ignore
         Object.assign(themeDefaultProps, theme?.baseStyle?.props);
         if (Object.keys(EXTENDED_THEME?.BUILD_TIME_PARAMS ?? {}).length > 0) {
@@ -1070,7 +1070,8 @@ export function verboseStyled<P, Variants, ComCon>(
             EXTENDED_THEME_BUILD_TIME_PARAMS?.verbosedStyleIds
           );
           GluestackStyleSheet.inject(
-            EXTENDED_THEME_BUILD_TIME_PARAMS?.toBeInjected
+            EXTENDED_THEME_BUILD_TIME_PARAMS?.toBeInjected,
+            styledContext.inlineStyleMap
           );
         } else {
           // Merge of Extended Config Style ID's with Component Style ID's
@@ -1084,7 +1085,10 @@ export function verboseStyled<P, Variants, ComCon>(
             CONFIG,
             componentExtendedConfig
           );
-          GluestackStyleSheet.inject(extendedStylesToBeInjected);
+          GluestackStyleSheet.inject(
+            extendedStylesToBeInjected,
+            styledContext.inlineStyleMap
+          );
         }
       }
 
@@ -1133,12 +1137,18 @@ export function verboseStyled<P, Variants, ComCon>(
           componentExtendedConfig
         );
         if (Platform.OS === 'web') {
-          GluestackStyleSheet.inject(toBeInjected);
+          GluestackStyleSheet.inject(
+            toBeInjected,
+            styledContext.inlineStyleMap
+          );
         }
       } else {
         if (Platform.OS === 'web') {
           //@ts-ignore
-          GluestackStyleSheet.inject(BUILD_TIME_PARAMS.toBeInjected);
+          GluestackStyleSheet.inject(
+            BUILD_TIME_PARAMS.toBeInjected,
+            styledContext.inlineStyleMap
+          );
         }
       }
 
@@ -1229,7 +1239,10 @@ export function verboseStyled<P, Variants, ComCon>(
         );
 
         if (Platform.OS === 'web') {
-          GluestackStyleSheet.inject(toBeInjected);
+          GluestackStyleSheet.inject(
+            toBeInjected,
+            styledContext.inlineStyleMap
+          );
         }
         isInjected = true;
       }
@@ -1432,11 +1445,19 @@ export function verboseStyled<P, Variants, ComCon>(
 
     function injectAndUpdateSXProps(filteredPassingSx: any) {
       if (Object.keys(filteredComponentSx).length > 0) {
-        orderedComponentSXResolved = injectSx(filteredComponentSx, 'inline');
+        orderedComponentSXResolved = injectSx(
+          filteredComponentSx,
+          'inline',
+          styledContext.inlineStyleMap
+        );
       }
 
       if (Object.keys(filteredPassingSx).length > 0) {
-        orderedPassingSXResolved = injectSx(filteredPassingSx, 'passing');
+        orderedPassingSXResolved = injectSx(
+          filteredPassingSx,
+          'passing',
+          styledContext.inlineStyleMap
+        );
       }
 
       const orderedSXResolved = [
