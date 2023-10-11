@@ -29,6 +29,7 @@ const FabBasic = ({
   placement = 'bottom right',
   showLabel = true,
   showIcon = true,
+  colorMode,
   ...props
 }: any) => {
   return (
@@ -47,8 +48,9 @@ const FabBasic = ({
               'component-props': JSON.stringify({
                 'instance': true,
                 'instance-name': 'Icon',
-                'name': 'CloseIcon',
+                'as': 'CloseIcon',
                 'size': 'md',
+                'colorMode': colorMode,
               }),
             }}
           />

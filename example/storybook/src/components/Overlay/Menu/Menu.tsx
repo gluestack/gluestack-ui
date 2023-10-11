@@ -59,7 +59,7 @@ const MenuBasic = ({ placement = 'bottom' }: any) => {
   );
 };
 
-const FigmaMenuStory = ({ ...props }) => {
+const FigmaMenuStory = ({ colorMode, ...props }) => {
   return (
     <Menu
       {...props}
@@ -84,13 +84,25 @@ const FigmaMenuStory = ({ ...props }) => {
             'component-props': JSON.stringify({
               'instance': true,
               'instance-name': 'Icon',
-              'name': 'GlobeIcon',
+              'as': 'GlobeIcon',
               'size': 'sm',
+              'colorMode': colorMode,
             }),
           }}
           size="sm"
         />
-        <Menu.ItemLabel size="sm">Community</Menu.ItemLabel>
+        <Menu.ItemLabel
+          size="sm"
+          dataSet={{
+            'component-props': JSON.stringify({
+              'is-text-style': true,
+              'component-name': 'Text',
+              'size': 'sm',
+            }),
+          }}
+        >
+          Community
+        </Menu.ItemLabel>
       </Menu.Item>
       <Menu.Item key="Plugins" textValue="Plugins" gap="$2">
         <Icon
@@ -99,13 +111,25 @@ const FigmaMenuStory = ({ ...props }) => {
             'component-props': JSON.stringify({
               'instance': true,
               'instance-name': 'Icon',
-              'name': 'PuzzleIcon',
+              'as': 'PuzzleIcon',
               'size': 'sm',
+              'colorMode': colorMode,
             }),
           }}
           size="sm"
         />
-        <Menu.ItemLabel size="sm">Plugins</Menu.ItemLabel>
+        <Menu.ItemLabel
+          size="sm"
+          dataSet={{
+            'component-props': JSON.stringify({
+              'is-text-style': true,
+              'component-name': 'Text',
+              'size': 'sm',
+            }),
+          }}
+        >
+          Plugins
+        </Menu.ItemLabel>
       </Menu.Item>
       <Menu.Item key="Theme" textValue="Theme" gap="$2">
         <Icon
@@ -114,13 +138,25 @@ const FigmaMenuStory = ({ ...props }) => {
             'component-props': JSON.stringify({
               'instance': true,
               'instance-name': 'Icon',
-              'name': 'PaintBucket',
+              'as': 'PaintBucket',
               'size': 'sm',
+              'colorMode': colorMode,
             }),
           }}
           size="sm"
         />
-        <Menu.ItemLabel size="sm">Theme</Menu.ItemLabel>
+        <Menu.ItemLabel
+          size="sm"
+          dataSet={{
+            'component-props': JSON.stringify({
+              'is-text-style': true,
+              'component-name': 'Text',
+              'size': 'sm',
+            }),
+          }}
+        >
+          Theme
+        </Menu.ItemLabel>
       </Menu.Item>
       <Menu.Item key="Settings" textValue="Settings" gap="$2">
         <Icon
@@ -129,13 +165,25 @@ const FigmaMenuStory = ({ ...props }) => {
             'component-props': JSON.stringify({
               'instance': true,
               'instance-name': 'Icon',
-              'name': 'SettingsIcon',
+              'as': 'SettingsIcon',
               'size': 'sm',
+              'colorMode': colorMode,
             }),
           }}
           size="sm"
         />
-        <Menu.ItemLabel size="sm">Settings</Menu.ItemLabel>
+        <Menu.ItemLabel
+          size="sm"
+          dataSet={{
+            'component-props': JSON.stringify({
+              'is-text-style': true,
+              'component-name': 'Text',
+              'size': 'sm',
+            }),
+          }}
+        >
+          Settings
+        </Menu.ItemLabel>
       </Menu.Item>
       <Menu.Item key="Add account" textValue="Add account" gap="$2">
         <Icon
@@ -144,13 +192,25 @@ const FigmaMenuStory = ({ ...props }) => {
             'component-props': JSON.stringify({
               'instance': true,
               'instance-name': 'Icon',
-              'name': 'AddIcon',
+              'as': 'AddIcon',
               'size': 'sm',
+              'colorMode': colorMode,
             }),
           }}
           size="sm"
         />
-        <Menu.ItemLabel size="sm">Add account</Menu.ItemLabel>
+        <Menu.ItemLabel
+          size="sm"
+          dataSet={{
+            'component-props': JSON.stringify({
+              'is-text-style': true,
+              'component-name': 'Text',
+              'size': 'sm',
+            }),
+          }}
+        >
+          Add account
+        </Menu.ItemLabel>
       </Menu.Item>
     </Menu>
   );

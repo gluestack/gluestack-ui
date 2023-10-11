@@ -85,6 +85,7 @@ const PopoverBasic = ({
 const FigmaPopoverStory = ({
   showPopover: _showPopoverProp = true,
   _placement = 'bottom',
+  colorMode,
   ...props
 }: any) => {
   return (
@@ -116,8 +117,9 @@ const FigmaPopoverStory = ({
                   'component-props': JSON.stringify({
                     'instance': true,
                     'instance-name': 'Icon',
-                    'name': 'CloseIcon',
+                    'as': 'CloseIcon',
                     'size': 'md',
+                    'colorMode': colorMode,
                   }),
                 }}
               />
@@ -145,6 +147,7 @@ const FigmaPopoverStory = ({
                     'size': 'md',
                     'action': 'secondary',
                     'state': 'default',
+                    'colorMode': colorMode,
                   }),
                 }}
               >
@@ -158,6 +161,7 @@ const FigmaPopoverStory = ({
                     'size': 'sm',
                     'action': 'primary',
                     'state': 'default',
+                    'colorMode': colorMode,
                   }),
                 }}
               >
