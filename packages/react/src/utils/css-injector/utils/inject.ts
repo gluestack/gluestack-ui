@@ -5,13 +5,16 @@ type IWrapperType =
   | 'boot-descendant'
   | 'inline-descendant';
 
+export const WRAPPER_BLOCK_PREFIX = 'gs-injected';
+
 export const hasCss = (_id: any, _text: any) => {};
 
 export const addCss = (_id: any, _text: any) => {};
 export const injectCss = (
   _css: any,
   _wrapperType: IWrapperType,
-  _styleTagId: string
+  _styleTagId: string,
+  _inlineStyleMap?: any
 ) => {};
 export const injectGlobalCss = (
   _css: any,

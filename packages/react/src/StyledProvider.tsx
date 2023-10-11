@@ -1,11 +1,12 @@
 import { get, onChange, set } from './core/colorMode';
 import * as React from 'react';
-import { Platform } from 'react-native';
+import { Platform, View } from 'react-native';
 import { propertyTokenMap } from './propertyTokenMap';
 import type { COLORMODES } from './types';
 import { platformSpecificSpaceUnits } from './utils';
 import { createGlobalStylesWeb } from './createGlobalStylesWeb';
 import { createGlobalStyles } from './createGlobalStyles';
+
 type Config = any;
 let colorModeSet = false;
 
@@ -42,7 +43,19 @@ export const StyledProvider: React.FC<{
   colorMode?: COLORMODES;
   children?: React.ReactNode;
   globalStyles?: any;
-}> = ({ config, colorMode, children, globalStyles }) => {
+  _experimentalNestedProvider: boolean;
+}> = ({
+  config,
+  colorMode,
+  children,
+  globalStyles,
+  _experimentalNestedProvider,
+}) => {
+  const inlineStyleMap: any = React.useRef({
+    initialStyleInjected: false,
+  });
+  inlineStyleMap.current.initialStyleInjected = false;
+
   const currentConfig: any = React.useMemo(() => {
     //TODO: Add this later
     return platformSpecificSpaceUnits(config, Platform.OS);
@@ -57,11 +70,22 @@ export const StyledProvider: React.FC<{
     return colorMode ?? get() ?? 'light';
   }, [colorMode]);
 
+  const _experimentalNestedProviderRef = React.useRef(null);
   React.useEffect(() => {
+    let documentElement: any = null;
+
+    if (Platform.OS === 'web') {
+      if (_experimentalNestedProvider) {
+        // write own code for nested colorMode
+        documentElement = _experimentalNestedProviderRef.current;
+      } else {
+        documentElement = document.documentElement;
+      }
+    }
     // Add gs class name
     if (Platform.OS === 'web') {
-      document.documentElement.classList.add(`gs`);
-      document.documentElement.classList.add(`gs-${currentColorMode}`);
+      documentElement.classList.add(`gs`);
+      documentElement.classList.add(`gs-${currentColorMode}`);
     }
 
     // GluestackStyleSheet.resolve({ ...config, propertyTokenMap });
@@ -69,13 +93,17 @@ export const StyledProvider: React.FC<{
 
     onChange((currentColor: string) => {
       // only for web
-      if (Platform.OS === 'web') {
-        if (currentColor === 'dark') {
-          document.documentElement.classList.remove(`gs-light`);
-        } else {
-          document.documentElement.classList.remove(`gs-dark`);
+      if (!_experimentalNestedProvider) {
+        const documentElement = document.documentElement;
+
+        if (Platform.OS === 'web') {
+          if (currentColor === 'dark') {
+            documentElement.classList.remove(`gs-light`);
+          } else {
+            documentElement.classList.remove(`gs-dark`);
+          }
+          documentElement.classList.add(`gs-${currentColor}`);
         }
-        document.documentElement.classList.add(`gs-${currentColor}`);
       }
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -85,6 +113,38 @@ export const StyledProvider: React.FC<{
     setCurrentColorMode(currentColorMode);
   }, [currentColorMode]);
 
+  React.useLayoutEffect(() => {
+    if (Platform.OS === 'web') {
+      const toBeInjectedStyles: any = {};
+
+      if (inlineStyleMap.current.initialStyleInjected) {
+        return;
+      }
+
+      Object.keys(inlineStyleMap.current).forEach((key: any) => {
+        if (key !== 'initialStyleInjected') {
+          const styles = inlineStyleMap.current[key];
+          if (!toBeInjectedStyles[key]) {
+            toBeInjectedStyles[key] = document.createDocumentFragment();
+          }
+
+          styles.forEach((style: any) => {
+            if (!document.getElementById(style.id)) {
+              toBeInjectedStyles[key].appendChild(style);
+            }
+          });
+        }
+      });
+      Object.keys(toBeInjectedStyles).forEach((key) => {
+        let wrapperElement = document.querySelector('#' + key);
+        if (wrapperElement) {
+          wrapperElement.appendChild(toBeInjectedStyles[key]);
+        }
+        // delete inlineStyleMap.current[key];
+      });
+      inlineStyleMap.current.initialStyleInjected = true;
+    }
+  });
   // // Set colormode for the first time
   if (!colorModeSet) {
     setCurrentColorMode(currentColorMode);
@@ -95,19 +155,37 @@ export const StyledProvider: React.FC<{
     config?.globalStyle && createGlobalStyles(config.globalStyle);
 
   const contextValue = React.useMemo(() => {
-    return {
+    const styledData = {
       config: currentConfig,
       globalStyle: globalStyleMap,
       animationDriverData,
       setAnimationDriverData,
+      inlineStyleMap: inlineStyleMap.current,
     };
+
+    if (_experimentalNestedProvider) {
+      //@ts-ignore
+      styledData._experimentalNestedProvider = _experimentalNestedProvider;
+      //@ts-ignore
+      styledData.colorMode = colorMode;
+    }
+    return styledData;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentConfig, globalStyleMap, animationDriverData]);
 
-  return (
+  const providerComponent = (
     <StyledContext.Provider value={contextValue}>
       {children}
     </StyledContext.Provider>
   );
+
+  if (_experimentalNestedProvider) {
+    return (
+      <View ref={_experimentalNestedProviderRef}>{providerComponent}</View>
+    );
+  } else {
+    return <>{providerComponent}</>;
+  }
 };
 
 export const useStyled = () => React.useContext(StyledContext);
