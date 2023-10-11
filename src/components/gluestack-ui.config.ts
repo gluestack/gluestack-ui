@@ -1204,7 +1204,7 @@ export const config = {
     },
   },
 } as const;
-type Config = typeof config.theme;
+export type Config = typeof config.theme;
 declare module '@gluestack-style/react' {
   interface ICustomConfig extends Config {}
 }
