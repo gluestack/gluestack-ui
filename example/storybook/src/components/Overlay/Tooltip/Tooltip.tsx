@@ -76,6 +76,9 @@ const FigmaTooltipStory = ({
   );
 };
 
+TooltipBasic.description =
+  'This is a basic Tooltip component example.  A tooltip is a popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.';
+
 export default TooltipBasic;
 
 export {

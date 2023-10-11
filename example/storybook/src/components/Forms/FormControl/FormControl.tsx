@@ -89,6 +89,9 @@ const FormControlBasic = ({ ...props }) => {
   );
 };
 
+FormControlBasic.description =
+  'This is a basic FormControl component example.  A form control is a component that users can interact with to enter or select data.';
+
 export default FormControlBasic;
 
 export {

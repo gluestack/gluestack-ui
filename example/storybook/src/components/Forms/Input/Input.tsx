@@ -70,6 +70,9 @@ const InputBasic = ({ ...props }: any) => {
   );
 };
 
+InputBasic.description =
+  'This is a basic Input component example. Inputs are used to capture data from users.';
+
 export default InputBasic;
 
 export {

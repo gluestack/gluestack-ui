@@ -222,6 +222,9 @@ const FigmaAlertDialogStory = ({
   );
 };
 
+AlertDialogBasic.description =
+  'This is a basic AlertDialog component example. Alerts are used to communicate a state that affects a system, feature or page';
+
 export default AlertDialogBasic;
 
 export {

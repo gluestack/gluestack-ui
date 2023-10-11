@@ -17,4 +17,7 @@ const ButtonWithIcons = ({}) => {
   );
 };
 
+ButtonWithIcons.description =
+  'This is an example of a Button with icons.  A button is a component that users can tap to trigger an action.';
+
 export default ButtonWithIcons;

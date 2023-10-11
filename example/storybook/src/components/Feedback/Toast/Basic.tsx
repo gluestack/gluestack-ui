@@ -49,4 +49,7 @@ const ToastPlacement = ({ placement = 'top', ...props }: any) => {
   );
 };
 
+ToastPlacement.description =
+  'This is a basic Toast component example. Toasts are used to communicate a state that affects a system, feature or page';
+
 export default ToastPlacement;

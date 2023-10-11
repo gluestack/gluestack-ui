@@ -156,6 +156,9 @@ const FigmaMenuStory = ({ ...props }) => {
   );
 };
 
+MenuBasic.description =
+  'This is a basic Menu component example.The Menu component creates a user-friendly dropdown interface that can be utilized to present a range of options or actions. This feature ensures accessibility and ease of use for the user.';
+
 export default MenuBasic;
 
 export {

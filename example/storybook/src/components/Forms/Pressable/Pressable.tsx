@@ -22,6 +22,9 @@ const PressableBasic = ({ ...props }: any) => {
   );
 };
 
+PressableBasic.description =
+  'This is a basic Pressable component example. Pressable components are used to show a loading state of a component or page.';
+
 export default PressableBasic;
 
 export { Pressable, Center };

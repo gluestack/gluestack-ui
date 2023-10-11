@@ -41,6 +41,9 @@ const AlertBasic = ({ ...props }: any) => {
   );
 };
 
+AlertBasic.description =
+  'This is a basic Alert component example. Alerts are used to communicate a state that affects a system, feature or page';
+
 export default AlertBasic;
 
 export {

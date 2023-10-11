@@ -75,6 +75,9 @@ const SelectBasic = ({ size = 'md', variant = 'outline', ...props }: any) => {
   );
 };
 
+SelectBasic.description =
+  'This is a basic Select component example. Selects are used to select an option from a list of options.';
+
 export default SelectBasic;
 
 export {

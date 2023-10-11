@@ -102,4 +102,7 @@ const AvatarGroupBasic = ({ size = 'md', badge, ...props }: any) => {
   );
 };
 
+AvatarGroupBasic.description =
+  'This is a basic AvatarGroup component example. AvatarGroup is a wrapper component that renders a group of avatars.';
+
 export default AvatarGroupBasic;

@@ -171,6 +171,8 @@ const FigmaPopoverStory = ({
   );
 };
 
+PopoverBasic.description = `Popover is a non-modal dialog that floats around a trigger element. It is used to display contextual information or UI. It is triggered by clicking, tapping, or hovering on an element.`;
+
 export default PopoverBasic;
 
 export {
