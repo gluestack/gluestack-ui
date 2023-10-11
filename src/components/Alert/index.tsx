@@ -36,7 +36,10 @@ const AlertNew = forwardRef(
   ) => {
     let status = {};
     let contextValue = { status: '' };
-    if (colorSchemeProp) status = { colorScheme: colorSchemeProp };
+    if (colorSchemeProp) {
+      status = { colorScheme: colorSchemeProp };
+      contextValue = { status: colorSchemeProp };
+    }
     if (statusProp) {
       status = { colorScheme: statusProp };
       contextValue = { status: statusProp };
@@ -58,7 +61,7 @@ const AlertNewIcon = forwardRef(({ as, ...props }: any, ref?: any) => {
   if (as) {
     asIcon = as;
   } else if (status) {
-    if (status === 'info') asIcon = InfoIcon;
+    asIcon = InfoIcon;
     if (status === 'success') asIcon = CheckCircleIcon;
     if (status === 'warning') asIcon = WarningIcon;
     if (status === 'error') asIcon = WarningTwoIcon;
