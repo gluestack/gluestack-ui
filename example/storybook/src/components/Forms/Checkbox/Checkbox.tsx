@@ -102,7 +102,7 @@ const FigmaCheckboxStory = ({ ...props }: any) => {
           }),
         }}
       >
-        Label 1
+        Label
       </CheckboxLabel>
     </Checkbox>
   );

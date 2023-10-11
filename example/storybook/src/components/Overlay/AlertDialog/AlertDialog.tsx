@@ -121,6 +121,11 @@ const FigmaAlertDialogStory = ({
       py="$16"
       w={1230}
       bg="#00000080"
+      sx={{
+        _dark: {
+          bg: '#ffffff80',
+        },
+      }}
       _experimentalOverlay={true}
       {...props}
     >
