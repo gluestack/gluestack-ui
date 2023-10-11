@@ -68,6 +68,7 @@
     "expo-clipboard": "^4.5.0",
     "expo-linear-gradient": "latest",
     "file-loader": "^6.2.0",
+    "lodash.get": "^4.4.2",
     "react-native-svg": "13.4.0",
     "tinycolor2": "^1.6.0",
     "ts-loader": "^9.4.4",
@@ -84,7 +85,7 @@
   "peerDependencies": {
     "@gluestack-style/animation-plugin": "latest",
     "@types/react-native": "^0.72.2",
-    "react": ">=16",
+    "react": "17.0.1",
     "react-dom": ">=16",
     "react-native": "^0.72.3",
     "react-native-web": "^0.19.7"

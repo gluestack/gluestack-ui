@@ -17,9 +17,6 @@ export function useContrastText(bg: string, color?: string) {
 
   const [accessibleColors] = useAccessibleColors();
 
-  // if (useNativeBaseConfig('NativeBaseConfigProvider').disableContrastText) {
-  //   return trueColor;
-  // }
   if (!accessibleColors) {
     return trueColor;
   }
