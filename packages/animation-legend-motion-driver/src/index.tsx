@@ -1,62 +1,15 @@
-import { useStyled } from '@gluestack-style/react';
 import type {
   IAnimationDriverPlugin,
   IAnimationResolver,
 } from '@gluestack-style/react';
-import React, { useMemo } from 'react';
-import {
-  deepMerge,
-  deepMergeObjects,
-  setObjectKeyValue,
-  resolvedTokenization,
-} from './utils';
+import React from 'react';
+import { deepMerge } from './utils';
 import {
   Motion,
   AnimatePresence as MotionAnimatePresence,
   createMotionAnimatedComponent,
 } from '@legendapp/motion';
-import { propertyTokenMap } from './propertyTokenMap';
 import { Pressable } from 'react-native';
-
-function tokenizeAnimationPropsFromConfig(
-  props: any = {},
-  config: any,
-  animationAliases: any,
-  path: any = [],
-  tokenizedAnimatedProps: any = {}
-) {
-  for (const prop in props) {
-    if (Array.isArray(props[prop])) {
-      path.push(prop);
-      setObjectKeyValue(tokenizedAnimatedProps, path, props[prop]);
-      path.pop();
-    } else if (animationAliases[prop]) {
-      path.push(prop);
-      const tokenizedValue = resolvedTokenization(props[prop], config);
-      setObjectKeyValue(tokenizedAnimatedProps, path, tokenizedValue);
-      path.pop();
-    } else if (typeof props[prop] === 'object') {
-      path.push(prop);
-      const tokenizedValue = resolvedTokenization(props[prop], config);
-      setObjectKeyValue(tokenizedAnimatedProps, path, tokenizedValue);
-      // path.pop();
-      tokenizeAnimationPropsFromConfig(
-        props[prop],
-        config,
-        animationAliases,
-        path,
-        tokenizedAnimatedProps
-      );
-      path.pop();
-    } else {
-      path.push(prop);
-      setObjectKeyValue(tokenizedAnimatedProps, path, props[prop]);
-      path.pop();
-    }
-  }
-
-  return tokenizedAnimatedProps;
-}
 
 function getVariantProps(props: any, theme: any) {
   const variantTypes = theme?.variants ? Object.keys(theme.variants) : [];
@@ -91,15 +44,7 @@ function resolveVariantAnimationProps(variantProps: any, styledObject: any) {
 
 const AnimatePresence = React.forwardRef(
   ({ children, ...props }: any, ref?: any) => {
-    const ctx = useStyled();
     const clonedChildren: any = [];
-    const CONFIG = useMemo(
-      () => ({
-        ...ctx.config,
-        propertyTokenMap,
-      }),
-      [ctx.config]
-    );
 
     React.Children.toArray(children).forEach((child: any) => {
       if (
@@ -107,49 +52,30 @@ const AnimatePresence = React.forwardRef(
           child?.type?.displayName.includes('Gluestack-AnimatedResolver')) ||
         child?.type?.isStyledComponent
       ) {
-        let tokenizedAnimatedProps: any = {};
-        const animationAliases = {};
-
         const componentStyledObject = child?.type?.getStyledData()?.config;
 
         const { variantProps, restProps } = getVariantProps(
-          child?.props,
+          { ...componentStyledObject?.props, ...child?.props },
           componentStyledObject
         );
 
-        const config = CONFIG;
-
-        const variantStyledObject = resolveVariantAnimationProps(
+        const variantStyledObject: any = resolveVariantAnimationProps(
           variantProps,
           componentStyledObject
         );
 
-        const componentStyledObjectWithVariants = deepMergeObjects(
-          componentStyledObject,
-          variantStyledObject
-        );
-        tokenizedAnimatedProps = tokenizeAnimationPropsFromConfig(
-          componentStyledObjectWithVariants,
-          config,
-          animationAliases
-        );
-
-        const tokenizedSxAnimationProps: any = tokenizeAnimationPropsFromConfig(
-          child?.props?.sx,
-          config,
-          animationAliases
-        );
-
-        const mergedAnimatedProps = deepMergeObjects(
-          {},
-          tokenizedSxAnimationProps,
-          tokenizedAnimatedProps
-        );
+        const exit = {
+          ...componentStyledObject?.[':exit'],
+          ...variantStyledObject?.[':exit'],
+          ...restProps?.sx?.[':exit'],
+          ...restProps?.exit,
+        };
 
         const clonedChild = React.cloneElement(child, {
+          exit,
           ...restProps,
-          exit: mergedAnimatedProps?.baseStyle?.[':exit'],
         });
+
         clonedChildren.push(clonedChild);
       } else {
         clonedChildren.push(child);
