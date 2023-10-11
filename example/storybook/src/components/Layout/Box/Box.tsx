@@ -33,6 +33,8 @@ const BoxBasic: any = ({
   );
 };
 
+BoxBasic.description = 'This is a basic Box component example.';
+
 export default BoxBasic;
 
 export { Text, Box };

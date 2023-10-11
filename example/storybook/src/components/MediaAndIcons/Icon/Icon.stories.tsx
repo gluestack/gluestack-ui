@@ -1,31 +1,31 @@
 import type { ComponentMeta } from '@storybook/react-native';
 import {
+  Icon,
   AddIcon,
   AlertCircleIcon,
-  ArrowDownIcon,
-  ArrowLeftIcon,
-  ArrowRightIcon,
   ArrowUpIcon,
+  ArrowDownIcon,
+  ArrowRightIcon,
+  ArrowLeftIcon,
   AtSignIcon,
   BellIcon,
   CalendarDaysIcon,
-  CheckCircleIcon,
   CheckIcon,
+  CheckCircleIcon,
+  ChevronUpIcon,
   ChevronDownIcon,
   ChevronLeftIcon,
   ChevronRightIcon,
-  ChevronUpIcon,
   ChevronsLeftIcon,
   ChevronsRightIcon,
   ChevronsUpDownIcon,
   CircleIcon,
   ClockIcon,
-  CloseCircleIcon,
   CloseIcon,
+  CloseCircleIcon,
   CopyIcon,
   DownloadIcon,
   EditIcon,
-  ExternalLinkIcon,
   EyeIcon,
   EyeOffIcon,
   FavouriteIcon,
@@ -34,6 +34,7 @@ import {
   HelpCircleIcon,
   InfoIcon,
   LinkIcon,
+  ExternalLinkIcon,
   LoaderIcon,
   LockIcon,
   MailIcon,
@@ -44,8 +45,8 @@ import {
   PhoneIcon,
   PlayIcon,
   RemoveIcon,
-  Repeat1Icon,
   RepeatIcon,
+  Repeat1Icon,
   SearchIcon,
   SettingsIcon,
   ShareIcon,
@@ -55,21 +56,24 @@ import {
   ThreeDotsIcon,
   TrashIcon,
   UnlockIcon,
-} from '@gluestack-ui/themed';
-import Icon from './Icon';
+} from './Icon';
 
 const IconMeta: ComponentMeta<typeof Icon> = {
   title: 'stories/MEDIA AND ICONS/Icons',
   component: Icon,
+  // metaInfo is required for figma generation
+  // @ts-ignore
   metaInfo: {
-    clusteringOrder: [['name', 'displayName'], 'size'],
+    clusteringOrder: [['as', 'displayName'], 'size'],
+    componentDescription:
+      'Icons are often used to enhance the usability and accessibility of digital products by providing users with clear and intuitive visual cues. It serves as an intuitive and easily recognizable way to communicate with users.',
   },
   argTypes: {
     size: {
       control: 'select',
       options: ['xl', 'lg', 'md', 'sm', 'xs', '2xs'],
     },
-    name: {
+    as: {
       control: 'select',
       options: [
         AddIcon,
@@ -132,7 +136,7 @@ const IconMeta: ComponentMeta<typeof Icon> = {
   },
   args: {
     size: 'md',
-    name: AddIcon,
+    as: AddIcon,
   },
 };
 

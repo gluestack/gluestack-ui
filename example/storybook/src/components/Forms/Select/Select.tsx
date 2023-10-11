@@ -16,7 +16,12 @@ import {
   Icon,
 } from '@gluestack-ui/themed';
 
-const SelectBasic = ({ size = 'md', variant = 'outline', ...props }: any) => {
+const SelectBasic = ({
+  size = 'md',
+  variant = 'outline',
+  colorMode,
+  ...props
+}: any) => {
   let selectIconSize = '';
   switch (size) {
     case 'sm':
@@ -45,8 +50,9 @@ const SelectBasic = ({ size = 'md', variant = 'outline', ...props }: any) => {
             'component-props': JSON.stringify({
               'instance': true,
               'instance-name': 'Icon',
-              'name': 'ChevronDownIcon',
+              'as': 'ChevronDownIcon',
               'size': selectIconSize,
+              'colorMode': colorMode,
             }),
           }}
         />
@@ -74,6 +80,9 @@ const SelectBasic = ({ size = 'md', variant = 'outline', ...props }: any) => {
     </Select>
   );
 };
+
+SelectBasic.description =
+  'This is a basic Select component example. Selects are used to select an option from a list of options.';
 
 export default SelectBasic;
 

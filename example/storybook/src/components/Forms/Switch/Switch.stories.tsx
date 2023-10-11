@@ -4,6 +4,11 @@ import Switch from './Switch';
 const SwitchMeta: ComponentMeta<typeof Switch> = {
   title: 'stories/FORMS/Switch',
   component: Switch,
+  // metaInfo is required for figma generation
+  // @ts-ignore
+  metaInfo: {
+    componentDescription: `The Switch component offers a stylish alternative to the Checkbox, allowing users to enable or disable an option with a sleek sliding motion.`,
+  },
   argTypes: {
     size: {
       control: 'select',

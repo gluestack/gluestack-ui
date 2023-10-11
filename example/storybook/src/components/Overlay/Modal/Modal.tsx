@@ -95,7 +95,7 @@ const ModalBasic = ({ showModal: showModalProp = true, ...props }) => {
   );
 };
 
-const FigmaModalStory = ({ _showModal, ...props }: any) => {
+const FigmaModalStory = ({ _showModal, colorMode, ...props }: any) => {
   return (
     <Modal
       isOpen={true}
@@ -103,6 +103,11 @@ const FigmaModalStory = ({ _showModal, ...props }: any) => {
       py="$16"
       w={1230}
       bg="#00000080"
+      sx={{
+        _dark: {
+          bg: '#ffffff80',
+        },
+      }}
       _experimentalOverlay={true}
     >
       <ModalContent>
@@ -126,8 +131,9 @@ const FigmaModalStory = ({ _showModal, ...props }: any) => {
                 'component-props': JSON.stringify({
                   'instance': true,
                   'instance-name': 'Icon',
-                  'name': 'CloseIcon',
+                  'as': 'CloseIcon',
                   'size': 'md',
+                  'colorMode': colorMode,
                 }),
               }}
             />
@@ -161,6 +167,7 @@ const FigmaModalStory = ({ _showModal, ...props }: any) => {
                 'size': 'sm',
                 'action': 'secondary',
                 'state': 'default',
+                'colorMode': colorMode,
               }),
             }}
           >
@@ -176,6 +183,7 @@ const FigmaModalStory = ({ _showModal, ...props }: any) => {
                 'size': 'sm',
                 'action': 'positive',
                 'state': 'default',
+                'colorMode': colorMode,
               }),
             }}
           >
@@ -186,6 +194,9 @@ const FigmaModalStory = ({ _showModal, ...props }: any) => {
     </Modal>
   );
 };
+
+FigmaModalStory.description =
+  'This is a basic Modal component example. A Modal is a window on top of the primary content to draw the users attention to important information or actions. It provides a focused and interruptive way to interact with the application.';
 
 export default ModalBasic;
 

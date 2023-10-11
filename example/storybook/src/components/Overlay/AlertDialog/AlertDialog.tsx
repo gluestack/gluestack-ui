@@ -113,6 +113,7 @@ const AlertDialogBasic = ({
 
 const FigmaAlertDialogStory = ({
   showAlertDialog: _showAlertDialogProp = true,
+  colorMode,
   ...props
 }) => {
   return (
@@ -121,6 +122,11 @@ const FigmaAlertDialogStory = ({
       py="$16"
       w={1230}
       bg="#00000080"
+      sx={{
+        _dark: {
+          bg: '#ffffff80',
+        },
+      }}
       _experimentalOverlay={true}
       {...props}
     >
@@ -144,8 +150,9 @@ const FigmaAlertDialogStory = ({
                 'component-props': JSON.stringify({
                   'instance': true,
                   'instance-name': 'Icon',
-                  'name': 'CloseIcon',
+                  'as': 'CloseIcon',
                   'size': 'md',
+                  'colorMode': colorMode,
                 }),
               }}
             />
@@ -177,6 +184,7 @@ const FigmaAlertDialogStory = ({
                 'size': 'md',
                 'action': 'secondary',
                 'state': 'default',
+                'colorMode': colorMode,
               }),
             }}
           >
@@ -201,6 +209,7 @@ const FigmaAlertDialogStory = ({
                 'size': 'md',
                 'action': 'negative',
                 'state': 'default',
+                'colorMode': colorMode,
               }),
             }}
           >
@@ -221,6 +230,9 @@ const FigmaAlertDialogStory = ({
     </AlertDialog>
   );
 };
+
+AlertDialogBasic.description =
+  'This is a basic AlertDialog component example. Alerts are used to communicate a state that affects a system, feature or page';
 
 export default AlertDialogBasic;
 

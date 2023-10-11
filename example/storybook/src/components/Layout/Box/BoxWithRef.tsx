@@ -18,4 +18,7 @@ const BoxWithRef = ({ ...props }: any) => {
   return <Box {...props} sx={{ h: 100, w: 100, bg: '$red500' }} ref={myRef} />;
 };
 
+BoxWithRef.description =
+  'This is a basic Box component example with styling using ref. Box is a primitive component.';
+
 export default BoxWithRef;

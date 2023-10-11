@@ -72,6 +72,9 @@ const SelectWithSectionList = ({ isDisabled, isInvalid, ...props }: any) => {
   );
 };
 
+SelectWithSectionList.displayName =
+  'SelectWithSectionList is an example of how to use Select with list that uses SectionList on native';
+
 export default SelectWithSectionList;
 
 export { Center, Select, Icon, ChevronDownIcon };

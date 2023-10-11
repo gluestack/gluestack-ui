@@ -69,7 +69,7 @@ const CheckboxGroupBasic = ({ ...props }: any) => {
   );
 };
 
-const FigmaCheckboxStory = ({ ...props }: any) => {
+const FigmaCheckboxStory = ({ colorMode, ...props }: any) => {
   const iconSize: any = {
     sm: '2xs',
     md: 'sm',
@@ -86,8 +86,9 @@ const FigmaCheckboxStory = ({ ...props }: any) => {
             'component-props': JSON.stringify({
               'instance': true,
               'instance-name': 'Icon',
-              'name': 'CheckIcon',
+              'as': 'CheckIcon',
               'size': iconSize[props.size],
+              'colorMode': colorMode,
             }),
           }}
         />
@@ -102,11 +103,13 @@ const FigmaCheckboxStory = ({ ...props }: any) => {
           }),
         }}
       >
-        Label 1
+        Label
       </CheckboxLabel>
     </Checkbox>
   );
 };
+
+CheckboxGroupBasic.description = 'This is a basic Checkbox component example';
 
 export default CheckboxGroupBasic;
 

@@ -33,7 +33,7 @@ import {
   BadgePlusIcon,
 } from 'lucide-react-native';
 
-const BadgeBasic = ({ text = 'NEW FEATURE', ...props }: any) => {
+const BadgeBasic = ({ text = 'NEW FEATURE', colorMode, ...props }: any) => {
   let badgeIconAndTextSize = '';
   switch (props.size) {
     case 'sm':
@@ -65,14 +65,18 @@ const BadgeBasic = ({ text = 'NEW FEATURE', ...props }: any) => {
           'component-props': JSON.stringify({
             'instance': true,
             'instance-name': 'Icon',
-            'name': 'GlobeIcon',
+            'as': 'GlobeIcon',
             'size': badgeIconAndTextSize,
+            'colorMode': colorMode,
           }),
         }}
       />
     </Badge>
   );
 };
+
+BadgeBasic.description =
+  'This is a basic Badge component example. The badge component lets you quickly and easily add status indicators to your interface for improved usability. They are designed to be attention-grabbing and quickly convey important information.';
 
 export default BadgeBasic;
 

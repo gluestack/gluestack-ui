@@ -39,4 +39,7 @@ const ButtonIsLoading = ({}) => {
   );
 };
 
+ButtonIsLoading.description =
+  'This is an example of a Button with a loading state.  A button is a component that users can tap to trigger an action.';
+
 export default ButtonIsLoading;

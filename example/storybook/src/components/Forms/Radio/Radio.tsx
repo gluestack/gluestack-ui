@@ -69,6 +69,9 @@ const RadioBasic = ({ ...props }: any) => {
   );
 };
 
+RadioBasic.description =
+  'This is a basic Radio component example. Radio buttons are used to select a single option from a list of options.';
+
 export default RadioBasic;
 
 export {

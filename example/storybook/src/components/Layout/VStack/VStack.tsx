@@ -19,6 +19,9 @@ const VStackBasic = ({ space, reversed, ...props }: any) => {
   );
 };
 
+VStackBasic.description =
+  'This is a basic VStack component example. VStack is a primitive component to layout its children vertically.';
+
 export default VStackBasic;
 
 export { Box, VStack };

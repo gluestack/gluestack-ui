@@ -18,7 +18,7 @@ import {
 import { EyeIcon, EyeOffIcon } from 'lucide-react-native';
 import { useState } from 'react';
 
-const InputBasic = ({ ...props }: any) => {
+const InputBasic = ({ colorMode, ...props }: any) => {
   const [value, setValue] = React.useState('');
 
   let inputIconSize = '';
@@ -60,8 +60,9 @@ const InputBasic = ({ ...props }: any) => {
             'component-props': JSON.stringify({
               'instance': true,
               'instance-name': 'Icon',
-              'name': 'SearchIcon',
+              'as': 'SearchIcon',
               'size': inputIconSize,
+              'colorMode': colorMode,
             }),
           }}
         />
@@ -69,6 +70,9 @@ const InputBasic = ({ ...props }: any) => {
     </Input>
   );
 };
+
+InputBasic.description =
+  'This is a basic Input component example. Inputs are used to capture data from users.';
 
 export default InputBasic;
 

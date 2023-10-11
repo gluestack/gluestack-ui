@@ -5,6 +5,11 @@ import AlertVariants from './Variants';
 const AlertMeta: ComponentMeta<typeof Alert> = {
   title: 'stories/FEEDBACK/Alert',
   component: Alert,
+  // metaInfo is required for figma generation
+  // @ts-ignore
+  metaInfo: {
+    componentDescription: `Alerts are used to communicate the status of a system, feature, or page. They indicate a specific state that may require attention from the user.`,
+  },
   argTypes: {
     variant: {
       control: 'select',

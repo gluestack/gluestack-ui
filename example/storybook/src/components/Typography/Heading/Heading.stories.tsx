@@ -4,6 +4,11 @@ import Heading from './Heading';
 const HeadingMeta: ComponentMeta<typeof Heading> = {
   title: 'stories/TYPOGRAPHY/Heading',
   component: Heading,
+  // metaInfo is required for figma generation
+  // @ts-ignore
+  metaInfo: {
+    componentDescription: `Heading component gives you the ability to create headings for your page with different sizes and symantics from h1 to h6.`,
+  },
   argTypes: {
     size: {
       control: 'select',
