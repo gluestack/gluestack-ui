@@ -33,7 +33,7 @@ const PopoverBasic = ({
   size = 'md',
 }: any) => {
   return (
-    <Center w={1200} h={800}>
+    <Box w={1200} h={800}>
       <Popover
         size={size}
         offset={10}
@@ -78,7 +78,7 @@ const PopoverBasic = ({
           </PopoverFooter>
         </PopoverContent>
       </Popover>
-    </Center>
+    </Box>
   );
 };
 
@@ -88,7 +88,7 @@ const FigmaPopoverStory = ({
   ...props
 }: any) => {
   return (
-    <Center w="$full" h="$full">
+    <Box w="$full" h="$full">
       <Popover
         {...props}
         _experimentalOverlay={true}
@@ -167,7 +167,7 @@ const FigmaPopoverStory = ({
           </PopoverFooter>
         </PopoverContent>
       </Popover>
-    </Center>
+    </Box>
   );
 };
 

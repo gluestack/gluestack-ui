@@ -30,6 +30,7 @@ const MenuMeta: ComponentMeta<typeof Menu> = {
     },
     showMenu: {
       control: 'boolean',
+      figmaIgnore: true,
       options: [true, false],
     },
   },
