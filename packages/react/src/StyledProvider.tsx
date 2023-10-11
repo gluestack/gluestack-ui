@@ -93,7 +93,7 @@ export const StyledProvider: React.FC<{
 
     onChange((currentColor: string) => {
       // only for web
-      if (!_experimentalNestedProviderRef) {
+      if (!_experimentalNestedProvider) {
         const documentElement = document.documentElement;
 
         if (Platform.OS === 'web') {
@@ -162,6 +162,7 @@ export const StyledProvider: React.FC<{
       setAnimationDriverData,
       inlineStyleMap: inlineStyleMap.current,
     };
+
     if (_experimentalNestedProvider) {
       //@ts-ignore
       styledData._experimentalNestedProvider = _experimentalNestedProvider;
