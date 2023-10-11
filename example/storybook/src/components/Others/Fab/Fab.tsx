@@ -39,11 +39,10 @@ const FabBasic = ({
       w="$full"
       sx={{ _web: { w: 300, h: 300 } }}
     >
-      <Fab placement={placement} {...props}>
+      <Fab placement={placement} gap="$1" {...props}>
         {showIcon && (
           <FabIcon
             as={MenuIcon}
-            mr={showLabel ? '$1' : '$0'}
             dataSet={{
               'component-props': JSON.stringify({
                 'instance': true,
@@ -68,10 +67,9 @@ const FigmaFabStory = ({
 }: any) => {
   return (
     <Box sx={{ _web: { w: 250, h: 80 } }}>
-      <Fab placement={placement} {...props}>
-        <Fab.Icon
+      <Fab placement={placement} {...props} gap="$1">
+        <FabIcon
           as={MenuIcon}
-          mr={showLabel ? '$1' : '$0'}
           dataSet={{
             'component-props': JSON.stringify({
               'instance': true,

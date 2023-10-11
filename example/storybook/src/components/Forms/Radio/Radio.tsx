@@ -20,19 +20,18 @@ const RadioBasic = ({ ...props }: any) => {
   const [values, setValues] = React.useState('Label 1');
 
   return (
-    <RadioGroup value={values} onChange={setValues}>
+    <RadioGroup value={values} onChange={setValues} gap="$2">
       <Radio
         {...props}
         value="Label 1"
         aria-label="Radio"
         onChange={(nextValue: boolean) => console.log(nextValue, 'nextValue')}
-        mb="$2"
+        gap="$2"
       >
         <RadioIndicator>
           <RadioIcon as={CircleIcon} />
         </RadioIndicator>
         <RadioLabel
-          ml="$2"
           dataSet={{
             'component-props': JSON.stringify({
               'is-text-style': true,
@@ -49,13 +48,12 @@ const RadioBasic = ({ ...props }: any) => {
         value="Label 2"
         aria-label="Radio"
         onChange={(nextValue: boolean) => console.log(nextValue, 'nextValue')}
-        mb="$2"
+        gap="$2"
       >
         <RadioIndicator>
           <RadioIcon as={CircleIcon} />
         </RadioIndicator>
         <RadioLabel
-          ml="$2"
           dataSet={{
             'component-props': JSON.stringify({
               'is-text-style': true,

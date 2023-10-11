@@ -20,8 +20,9 @@ const ButtonIsLoading = ({}) => {
         focusable={!isLoading}
         opacity={isLoading ? 0.4 : 1}
         action="negative"
+        gap="$2"
       >
-        <ButtonSpinner color="white" mr="$2" />
+        <ButtonSpinner color="white" />
         <ButtonText>Submitting</ButtonText>
       </Button>
       <Button
@@ -29,9 +30,10 @@ const ButtonIsLoading = ({}) => {
         focusable={!isLoading}
         opacity={isLoading ? 0.4 : 1}
         action="negative"
+        gap="$2"
       >
         <ButtonText>Submitting</ButtonText>
-        <ButtonSpinner color="white" ml="$2" />
+        <ButtonSpinner color="white" />
       </Button>
     </HStack>
   );

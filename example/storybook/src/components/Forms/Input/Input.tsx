@@ -53,7 +53,7 @@ const InputBasic = ({ ...props }: any) => {
           }),
         }}
       />
-      <InputSlot pr="$4">
+      <InputSlot pr={props.variant === 'underlined' ? '$0' : '$4'}>
         <InputIcon
           as={SearchIcon}
           dataSet={{

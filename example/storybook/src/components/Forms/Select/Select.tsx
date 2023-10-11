@@ -38,8 +38,8 @@ const SelectBasic = ({ size = 'md', variant = 'outline', ...props }: any) => {
       <SelectTrigger size={size} variant={variant}>
         <SelectInput placeholder="Select option" />
         <SelectIcon
-          mr={variant === 'underlined' ? 0 : '$3'}
-          ml={variant === 'underlined' ? '$3' : 0}
+          pr={variant === 'underlined' ? 0 : '$3'}
+          pl={variant === 'underlined' ? '$3' : 0}
           as={ChevronDownIcon}
           dataSet={{
             'component-props': JSON.stringify({
