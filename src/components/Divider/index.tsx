@@ -5,6 +5,7 @@ const AccessibleDivider = createDivider({ Root });
 
 import type { GSConfig } from '@gluestack-style/react';
 import { GenericComponentType } from '../../types';
+import { usePropResolution } from '../../hooks/usePropResolution';
 //TODO: not exposed now, will need to export it and release a new version of @gluestack-style/react.
 
 type IDividerProps = { thickness?: number | GSConfig['tokens']['space'] };
@@ -16,11 +17,12 @@ const DividerTemp = forwardRef(
       if (orientation === 'vertical') thicknessProp = { w: thickness };
       else thicknessProp = { h: thickness };
     }
+    const resolvedProps = usePropResolution(props);
     return (
       <AccessibleDivider
-        {...thicknessProp}
+        {...resolvedProps}
         orientation={orientation ? orientation : 'horizontal'}
-        {...props}
+        {...thicknessProp}
         ref={ref}
       />
     );
