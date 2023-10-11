@@ -4,6 +4,11 @@ import Link from './Link';
 const LinkMeta: ComponentMeta<typeof Link> = {
   title: 'stories/FORMS/Link',
   component: Link,
+  // metaInfo is required for figma generation
+  // @ts-ignore
+  metaInfo: {
+    componentDescription: `With links, users can navigate seamlessly throughout a website. This component has a hyperlinked appearance for a user-friendly experience.`,
+  },
   argTypes: {
     isHovered: {
       control: 'boolean',

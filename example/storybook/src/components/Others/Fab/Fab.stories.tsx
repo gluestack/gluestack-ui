@@ -4,6 +4,11 @@ import Fab from './Fab';
 const FabMeta: ComponentMeta<typeof Fab> = {
   title: 'stories/OTHERS/Fab',
   component: Fab,
+  // metaInfo is required for figma generation
+  // @ts-ignore
+  metaInfo: {
+    componentDescription: `The Floating Action Button (FAB) is a dynamic button that stays visible and provides access to a primary action throughout the user's journey in the application. It is a powerful UI element that adds a touch of elegance and convenience to the user experience.`,
+  },
   argTypes: {
     placement: {
       control: 'select',

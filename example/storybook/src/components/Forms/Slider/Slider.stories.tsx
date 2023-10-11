@@ -4,6 +4,11 @@ import Slider from './Slider';
 const SliderMeta: ComponentMeta<typeof Slider> = {
   title: 'stories/FORMS/Slider',
   component: Slider,
+  // metaInfo is required for figma generation
+  // @ts-ignore
+  metaInfo: {
+    componentDescription: `The Slider component enables an intuitive selection of values within a designated range. Users can easily adjust their selection by sliding a visual indicator along the track.`,
+  },
   argTypes: {
     value: {
       control: { type: 'number', min: 1, max: 100 },

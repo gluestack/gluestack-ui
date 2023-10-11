@@ -5,6 +5,11 @@ import TextSizes from './TextSizes';
 const TextMeta: ComponentMeta<typeof Text> = {
   title: 'stories/TYPOGRAPHY/Text',
   component: Text,
+  // metaInfo is required for figma generation
+  // @ts-ignore
+  metaInfo: {
+    componentDescription: `Text component, which supports paragraphs and other formatting options.`,
+  },
   argTypes: {
     size: {
       control: 'select',
