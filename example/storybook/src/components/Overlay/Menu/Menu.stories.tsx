@@ -4,6 +4,11 @@ import Menu from './Menu';
 const MenuMeta: ComponentMeta<typeof Menu> = {
   title: 'stories/OVERLAY/Menu',
   component: Menu,
+  // metaInfo is required for figma generation
+  // @ts-ignore
+  metaInfo: {
+    componentDescription: `The Menu component creates a user-friendly dropdown interface that can be utilized to present a range of options or actions. This feature ensures accessibility and ease of use for the user.`,
+  },
   argTypes: {
     placement: {
       control: 'select',
