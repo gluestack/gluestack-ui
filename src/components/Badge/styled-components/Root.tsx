@@ -88,9 +88,11 @@ function colorSchemeResolveFn({ ...props }: any) {
         value = {
           _text: {
             color: '$text.50',
+            fontWeight: '$medium',
           },
           _icon: {
             color: '$text.50',
+            fontWeight: '$medium',
           },
           bg: `$${color}.600`,
           borderColor: 'transparent',
@@ -100,6 +102,7 @@ function colorSchemeResolveFn({ ...props }: any) {
         value = {
           _text: {
             color: `$${color}.600`,
+            fontWeight: '$medium',
           },
           _icon: {
             color: `$${color}.600`,
@@ -121,6 +124,7 @@ function colorSchemeResolveFn({ ...props }: any) {
         value = {
           _text: {
             color: `$${color}.900`,
+            fontWeight: '$medium',
           },
           _icon: {
             color: `$${color}.900`,
