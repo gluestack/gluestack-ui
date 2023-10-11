@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import type { IStyled, IStyledPlugin } from '../types';
 import { useStyled } from '../StyledProvider';
 import { propertyTokenMap } from '../propertyTokenMap';
-import { deepMerge, deepMergeObjects, setObjectKeyValue } from '../utils';
+import { deepMerge, setObjectKeyValue } from '../utils';
 import { getVariantProps } from '../styled';
 
 const fontWeights: any = {
@@ -218,11 +218,11 @@ export class FontResolver implements IStyledPlugin, FontPlugin {
     return styledObject;
   }
 
-  componentMiddleWare({ Component: NewComp, extendedConfig }: any) {
+  componentMiddleWare({ Component: InputComponent, extendedConfig }: any) {
     const styledConfig = this.#fontFamily;
     this.#fontFamily = {};
 
-    const Comp = React.forwardRef((props: any, ref: any) => {
+    const OutputComponent = React.forwardRef((props: any, ref: any) => {
       const styledContext = useStyled();
       const CONFIG = useMemo(
         () => ({
@@ -249,12 +249,9 @@ export class FontResolver implements IStyledPlugin, FontPlugin {
         variantProps,
         styledConfig
       );
-      let componentStyledObject = deepMergeObjects(
-        styledConfig,
-        variantStyledObject
-      );
+      let componentStyledObject = deepMerge(styledConfig, variantStyledObject);
 
-      delete componentStyledObject.variants;
+      // delete componentStyledObject.variants;
 
       const { sx, fontWeight, fontFamily, fontStyle, ...rest } = restProps;
 
@@ -279,35 +276,31 @@ export class FontResolver implements IStyledPlugin, FontPlugin {
         sxPropsWithThemeProps,
         false,
         false,
-        NewComp
+        () => <></>
       );
 
-      const styles = Array.isArray(rest.style)
-        ? [...rest?.style, resolvedSxProps]
-        : resolvedSxProps;
-
-      return <NewComp {...rest} style={styles} ref={ref} />;
+      return <InputComponent {...rest} sx={resolvedSxProps} ref={ref} />;
     });
 
     //@ts-ignore
-    Comp.styled = {};
+    OutputComponent.styled = {};
     //@ts-ignore
-    Comp.styled.config = {};
+    OutputComponent.styled.config = {};
     //@ts-ignore
-    Comp.styled.config = {
+    OutputComponent.styled.config = {
       ...styledConfig?.config,
-      ...NewComp?.styled?.config,
+      ...InputComponent?.styled?.config,
     };
 
     //@ts-ignore
-    Comp.isStyledComponent = NewComp?.isStyledComponent;
+    OutputComponent.isStyledComponent = InputComponent?.isStyledComponent;
     //@ts-ignore
-    Comp.isComposedComponent = NewComp?.isComposedComponent;
+    OutputComponent.isComposedComponent = InputComponent?.isComposedComponent;
     //@ts-ignore
-    Comp.isAnimatedComponent = NewComp?.isAnimatedComponent;
+    OutputComponent.isAnimatedComponent = InputComponent?.isAnimatedComponent;
 
-    Comp.displayName = NewComp?.displayName;
+    OutputComponent.displayName = InputComponent?.displayName;
 
-    return Comp;
+    return OutputComponent;
   }
 }

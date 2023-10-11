@@ -1887,23 +1887,26 @@ export function verboseStyled<P, Variants, ComCon>(
 
     // }
 
-    if (plugins) {
-      for (const pluginName in plugins) {
-        // @ts-ignore
-        if (plugins[pluginName]?.componentMiddleWare) {
+    const ComponentWithPlugin = React.useMemo(() => {
+      if (plugins) {
+        for (const pluginName in plugins) {
           // @ts-ignore
-          Component = plugins[pluginName]?.componentMiddleWare({
-            Component: Component,
-            theme,
-            componentStyleConfig,
-            ExtendedConfig,
-          });
+          if (plugins[pluginName]?.componentMiddleWare) {
+            // @ts-ignore
+            Component = plugins[pluginName]?.componentMiddleWare({
+              Component: Component,
+              theme,
+              componentStyleConfig,
+              ExtendedConfig,
+            });
 
-          //@ts-ignore
-          pluginData = { ...pluginData, ...Component?.styled };
+            //@ts-ignore
+            pluginData = { ...pluginData, ...Component?.styled };
+          }
         }
       }
-    }
+      return Component;
+    }, []);
 
     let component;
 
@@ -1919,7 +1922,7 @@ export function verboseStyled<P, Variants, ComCon>(
       //@ts-ignore
       if (Component.isStyledComponent) {
         component = (
-          <Component
+          <ComponentWithPlugin
             {...resolvedStyleProps}
             {...propsToBePassedInToPlugin}
             style={resolvedStyleMemo}
@@ -1927,7 +1930,7 @@ export function verboseStyled<P, Variants, ComCon>(
             ref={ref}
           >
             {children}
-          </Component>
+          </ComponentWithPlugin>
         );
       } else {
         component = (
@@ -1938,14 +1941,14 @@ export function verboseStyled<P, Variants, ComCon>(
       }
     } else {
       component = (
-        <Component
+        <ComponentWithPlugin
           {...resolvedStyleProps}
           {...propsToBePassedInToPlugin}
           style={resolvedStyleMemo}
           ref={ref}
         >
           {children}
-        </Component>
+        </ComponentWithPlugin>
       );
     }
 
