@@ -12,7 +12,7 @@ import {
   Icon,
 } from '@gluestack-ui/themed';
 
-const AlertBasic = ({ ...props }: any) => {
+const AlertBasic = ({ colorMode, ...props }: any) => {
   return (
     <Alert {...props} gap="$3">
       <AlertIcon
@@ -21,8 +21,9 @@ const AlertBasic = ({ ...props }: any) => {
           'component-props': JSON.stringify({
             'instance': true,
             'instance-name': 'Icon',
-            'name': 'InfoIcon',
+            'as': 'InfoIcon',
             'size': 'md',
+            'colorMode': colorMode,
           }),
         }}
       />

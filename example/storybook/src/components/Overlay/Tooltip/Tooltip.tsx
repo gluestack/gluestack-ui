@@ -70,7 +70,17 @@ const FigmaTooltipStory = ({
       }}
     >
       <TooltipContent>
-        <TooltipText>Hello world!</TooltipText>
+        <TooltipText
+          dataSet={{
+            'component-props': JSON.stringify({
+              'is-text-style': true,
+              'component-name': 'Text',
+              'size': 'md',
+            }),
+          }}
+        >
+          Hello world!
+        </TooltipText>
       </TooltipContent>
     </Tooltip>
   );

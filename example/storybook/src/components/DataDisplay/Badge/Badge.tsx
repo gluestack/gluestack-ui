@@ -33,7 +33,7 @@ import {
   BadgePlusIcon,
 } from 'lucide-react-native';
 
-const BadgeBasic = ({ text = 'NEW FEATURE', ...props }: any) => {
+const BadgeBasic = ({ text = 'NEW FEATURE', colorMode, ...props }: any) => {
   let badgeIconAndTextSize = '';
   switch (props.size) {
     case 'sm':
@@ -65,8 +65,9 @@ const BadgeBasic = ({ text = 'NEW FEATURE', ...props }: any) => {
           'component-props': JSON.stringify({
             'instance': true,
             'instance-name': 'Icon',
-            'name': 'GlobeIcon',
+            'as': 'GlobeIcon',
             'size': badgeIconAndTextSize,
+            'colorMode': colorMode,
           }),
         }}
       />

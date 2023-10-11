@@ -113,6 +113,7 @@ const AlertDialogBasic = ({
 
 const FigmaAlertDialogStory = ({
   showAlertDialog: _showAlertDialogProp = true,
+  colorMode,
   ...props
 }) => {
   return (
@@ -149,8 +150,9 @@ const FigmaAlertDialogStory = ({
                 'component-props': JSON.stringify({
                   'instance': true,
                   'instance-name': 'Icon',
-                  'name': 'CloseIcon',
+                  'as': 'CloseIcon',
                   'size': 'md',
+                  'colorMode': colorMode,
                 }),
               }}
             />
@@ -182,6 +184,7 @@ const FigmaAlertDialogStory = ({
                 'size': 'md',
                 'action': 'secondary',
                 'state': 'default',
+                'colorMode': colorMode,
               }),
             }}
           >
@@ -206,6 +209,7 @@ const FigmaAlertDialogStory = ({
                 'size': 'md',
                 'action': 'negative',
                 'state': 'default',
+                'colorMode': colorMode,
               }),
             }}
           >

@@ -95,7 +95,7 @@ const ModalBasic = ({ showModal: showModalProp = true, ...props }) => {
   );
 };
 
-const FigmaModalStory = ({ _showModal, ...props }: any) => {
+const FigmaModalStory = ({ _showModal, colorMode, ...props }: any) => {
   return (
     <Modal
       isOpen={true}
@@ -131,8 +131,9 @@ const FigmaModalStory = ({ _showModal, ...props }: any) => {
                 'component-props': JSON.stringify({
                   'instance': true,
                   'instance-name': 'Icon',
-                  'name': 'CloseIcon',
+                  'as': 'CloseIcon',
                   'size': 'md',
+                  'colorMode': colorMode,
                 }),
               }}
             />
@@ -166,6 +167,7 @@ const FigmaModalStory = ({ _showModal, ...props }: any) => {
                 'size': 'sm',
                 'action': 'secondary',
                 'state': 'default',
+                'colorMode': colorMode,
               }),
             }}
           >
@@ -181,6 +183,7 @@ const FigmaModalStory = ({ _showModal, ...props }: any) => {
                 'size': 'sm',
                 'action': 'positive',
                 'state': 'default',
+                'colorMode': colorMode,
               }),
             }}
           >
