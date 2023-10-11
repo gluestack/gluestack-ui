@@ -1,7 +1,35 @@
 import React from 'react';
-import { styled } from '@gluestack-style/react';
+import { styled, useStyled } from '@gluestack-style/react';
 import { usePropResolution } from '../hooks/usePropResolution';
+import { addDollarSignsToProps, convertToSXForStateColorModeMediaQuery } from '../utils';
 
+const transformTheme = (componentTheme: any) => {
+  const styledContext = useStyled();
+
+  const propsWithDollarSigns = addDollarSignsToProps(
+    {
+      ...componentTheme.baseStyle, variants: {
+        variant: {
+          ...componentTheme.variants
+        }, size: {
+          ...componentTheme.sizes
+        }
+      },
+      props: {
+        ...componentTheme.defaultProps
+      }
+    },
+    styledContext.config
+  );
+
+
+  const sxProps = convertToSXForStateColorModeMediaQuery(
+    propsWithDollarSigns,
+    styledContext.config
+  );
+
+  return sxProps
+}
 export default function Factory<P>(
   Component: React.ComponentType<P>,
   componentTheme?: {
@@ -11,24 +39,14 @@ export default function Factory<P>(
     defaultProps?: Object
   }
 ) {
+  const StyledComponent: any = styled(Component, transformTheme(componentTheme));
   return React.forwardRef(
-    ({ children, _state, }: any, ref: any) => {
+    ({ children, _state, ...props }: any, ref: any) => {
       if (componentTheme) {
-        let finalTheme: any = {
-          ...usePropResolution(componentTheme.baseStyle), variants: {
-            variant: {
-              ...usePropResolution(componentTheme.variants)
-            }, size: {
-              ...usePropResolution(componentTheme.sizes)
-            }
-          },
-          props: {
-            ...usePropResolution(componentTheme.defaultProps)
-          }
-        }
+        let inlineProps: any = usePropResolution(props);
         // const resolvedPropForGluestack = usePropResolution(props);
-        const StyledComponent: any = styled(Component, finalTheme);
-        return <StyledComponent ref={ref}>{children}</StyledComponent>;
+
+        return <StyledComponent ref={ref} {...inlineProps}>{children}</StyledComponent>;
       } else {
         // FIX: Typings
         // @ts-ignore
