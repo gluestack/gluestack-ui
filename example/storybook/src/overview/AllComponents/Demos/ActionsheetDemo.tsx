@@ -22,11 +22,10 @@ const ActionsheetDemo = () => {
       <Actionsheet
         isOpen={showActionsheet}
         onClose={handleClose}
-        zIndex={999}
-        _experimentalOverlay={showActionsheet}
+        snapPoints={[25]}
       >
         <ActionsheetBackdrop />
-        <ActionsheetContent zIndex={999}>
+        <ActionsheetContent>
           <ActionsheetDragIndicatorWrapper>
             <ActionsheetDragIndicator />
           </ActionsheetDragIndicatorWrapper>
