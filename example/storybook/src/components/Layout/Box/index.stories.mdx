@@ -21,9 +21,7 @@ import { AppProvider, CodePreview, Text } from '@gluestack/design-system';
 
 import Wrapper from '../../Wrapper';
 
-## Themed
-
-Following is the default implementation of the **Box** component without any additional customization. This serves as a starting point for users who are new to this library and want to learn about the basic functionality and appearance of the component.
+This is an illustration of the `Box` when using the default configuration provided by `@gluestack-ui/config`.
 
 <AppProvider>
   <CodePreview
@@ -55,13 +53,11 @@ Following is the default implementation of the **Box** component without any add
 
 <br />
 
-> Note: You can refer [here](https://github.com/gluestack/gluestack-ui/tree/main/packages/themed/src/components/Box/styled-components) to learn about default styling of Box component
-
 ### Import
 
 To use this component in your project, include the following import statement in your file.
 
-```bash
+```jsx
 import { Box } from '@gluestack-ui/themed';
 ```
 
@@ -83,7 +79,7 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
 
 ## Themed
 
-The themed version of the component is a pre-styled version of the component, which allows you to quickly integrate the component into your project. The component's design and functionality are fully defined, allowing you to focus on the more important aspects of your project.
+The themed version of the component is a pre-styled version of the component, which allows you to quickly integrate the component into your project. The component's design and functionality are fully defined, allowing you to focus on the more important aspects of your project. To know more about Themed Library please visit this [link](https://gluestack.io/ui/docs/core-concepts/themed-library).
 
 ### Examples
 
@@ -107,9 +103,11 @@ A Box component with a ref property enables the direct reference and manipulatio
               borderRadius: 4,
               borderColor: '#1A91FF',
             };
-            myRef.current.setNativeProps({
+          if(myRef.current && myRef.current.setNativeProps){
+             myRef.current.setNativeProps({
               style: styleObj,
-            });
+             });
+            }
           }, [myRef]);
         return (
           <Box sx={{ h: 100, w: 100, bg: '$primary100'}} ref={myRef} />
