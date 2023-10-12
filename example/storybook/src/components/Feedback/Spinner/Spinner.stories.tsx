@@ -4,6 +4,11 @@ import Spinner from './Spinner';
 const SpinnerMeta: ComponentMeta<typeof Spinner> = {
   title: 'stories/FEEDBACK/Spinner',
   component: Spinner,
+  // metaInfo is required for figma generation
+  // @ts-ignore
+  metaInfo: {
+    componentDescription: `Spinners are designed to give visual cues to users that an action is being processed or that a change or result is expected.`,
+  },
   argTypes: {
     size: {
       control: 'select',

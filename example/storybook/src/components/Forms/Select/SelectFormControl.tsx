@@ -87,6 +87,9 @@ const SelectWithFormControl = ({ size, variant, ...props }: any) => {
   );
 };
 
+SelectWithFormControl.description =
+  'This is a Select component example used with formcontrol to show error and helper text.';
+
 export default SelectWithFormControl;
 
 export {

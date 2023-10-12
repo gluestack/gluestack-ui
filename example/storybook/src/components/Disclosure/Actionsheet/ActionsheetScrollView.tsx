@@ -76,6 +76,8 @@ const ActionsheetWithScrollView = ({
     </Actionsheet>
   );
 };
+ActionsheetWithScrollView.description =
+  'This is an example of an Actionsheet with a list of items inside a ScrollView.';
 
 export default ActionsheetWithScrollView;
 

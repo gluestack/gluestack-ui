@@ -63,6 +63,9 @@ const SelectWithFlatList = ({ isDisabled, isInvalid, ...props }: any) => {
   );
 };
 
+SelectWithFlatList.description =
+  'This is an example of Select component with FlatList. Selects with flatlist can be used when you have a large number of options and you want to optimize the performance of the list by using FlatList.';
+
 export default SelectWithFlatList;
 
 export { Center, Select, Icon, ChevronDownIcon };

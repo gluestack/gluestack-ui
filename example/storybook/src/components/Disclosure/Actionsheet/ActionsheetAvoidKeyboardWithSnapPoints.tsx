@@ -186,6 +186,9 @@ const ActionsheetWithKeyboardAvoidingViewWithSnapPoints = ({
   );
 };
 
+ActionsheetWithKeyboardAvoidingViewWithSnapPoints.description =
+  'This is a basic Actionsheet component example. Actionsheets are used to display a list of actions that can be performed on a page.';
+
 export default ActionsheetWithKeyboardAvoidingViewWithSnapPoints;
 
 export {

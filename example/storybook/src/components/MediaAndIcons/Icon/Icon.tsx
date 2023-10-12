@@ -62,9 +62,12 @@ import {
 
 import { ChromeIcon, InstagramIcon, FacebookIcon } from 'lucide-react-native';
 
-const IconBasic = ({ size, name, ...props }: any) => {
-  return <Icon as={name} size={size} {...props} />;
+const IconBasic = ({ size, ...props }: any) => {
+  return <Icon size={size} {...props} />;
 };
+
+IconBasic.description =
+  'This is a basic Icon component example. Icons are used to communicate a state that affects a system, feature or page';
 
 export default IconBasic;
 

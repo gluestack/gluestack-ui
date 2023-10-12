@@ -51,12 +51,11 @@ const ModalBasic = ({ showModal: showModalProp = true, ...props }) => {
             effortlessly.
           </Text>
         </ModalBody>
-        <ModalFooter>
+        <ModalFooter gap="$3">
           <Button
             variant="outline"
             size="sm"
             action="secondary"
-            mr="$3"
             onPress={() => {
               setShowModal(false);
             }}
@@ -96,7 +95,7 @@ const ModalBasic = ({ showModal: showModalProp = true, ...props }) => {
   );
 };
 
-const FigmaModalStory = ({ _showModal, ...props }: any) => {
+const FigmaModalStory = ({ _showModal, colorMode, ...props }: any) => {
   return (
     <Modal
       isOpen={true}
@@ -104,10 +103,15 @@ const FigmaModalStory = ({ _showModal, ...props }: any) => {
       py="$16"
       w={1230}
       bg="#00000080"
-      _experimentalOverlay={false}
+      sx={{
+        _dark: {
+          bg: '#ffffff80',
+        },
+      }}
+      _experimentalOverlay={true}
     >
-      <Modal.Content>
-        <Modal.Header>
+      <ModalContent>
+        <ModalHeader>
           <Heading
             maxWidth="80%"
             dataSet={{
@@ -120,21 +124,22 @@ const FigmaModalStory = ({ _showModal, ...props }: any) => {
           >
             Engage with Modals
           </Heading>
-          <Modal.CloseButton>
+          <ModalCloseButton>
             <Icon
               as={CloseIcon}
               dataSet={{
                 'component-props': JSON.stringify({
                   'instance': true,
                   'instance-name': 'Icon',
-                  'name': 'CloseIcon',
+                  'as': 'CloseIcon',
                   'size': 'md',
+                  'colorMode': colorMode,
                 }),
               }}
             />
-          </Modal.CloseButton>
-        </Modal.Header>
-        <Modal.Body>
+          </ModalCloseButton>
+        </ModalHeader>
+        <ModalBody>
           <Text
             size="sm"
             dataSet={{
@@ -149,13 +154,12 @@ const FigmaModalStory = ({ _showModal, ...props }: any) => {
             integrate notifications, forms, and media displays. Make an impact
             effortlessly.
           </Text>
-        </Modal.Body>
-        <Modal.Footer>
+        </ModalBody>
+        <ModalFooter gap="$3">
           <Button
             variant="outline"
             size="sm"
             action="secondary"
-            mr="$3"
             dataSet={{
               'component-props': JSON.stringify({
                 'instance': true,
@@ -163,10 +167,11 @@ const FigmaModalStory = ({ _showModal, ...props }: any) => {
                 'size': 'sm',
                 'action': 'secondary',
                 'state': 'default',
+                'colorMode': colorMode,
               }),
             }}
           >
-            <Button.Text>Cancel</Button.Text>
+            <ButtonText>Cancel</ButtonText>
           </Button>
           <Button
             size="sm"
@@ -178,16 +183,20 @@ const FigmaModalStory = ({ _showModal, ...props }: any) => {
                 'size': 'sm',
                 'action': 'positive',
                 'state': 'default',
+                'colorMode': colorMode,
               }),
             }}
           >
-            <Button.Text>Explore</Button.Text>
+            <ButtonText>Explore</ButtonText>
           </Button>
-        </Modal.Footer>
-      </Modal.Content>
+        </ModalFooter>
+      </ModalContent>
     </Modal>
   );
 };
+
+FigmaModalStory.description =
+  'This is a basic Modal component example. A Modal is a window on top of the primary content to draw the users attention to important information or actions. It provides a focused and interruptive way to interact with the application.';
 
 export default ModalBasic;
 

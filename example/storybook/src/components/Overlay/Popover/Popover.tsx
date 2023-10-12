@@ -33,7 +33,7 @@ const PopoverBasic = ({
   size = 'md',
 }: any) => {
   return (
-    <Center w={1200} h={800}>
+    <Box w={1200} h={800}>
       <Popover
         size={size}
         offset={10}
@@ -78,20 +78,21 @@ const PopoverBasic = ({
           </PopoverFooter>
         </PopoverContent>
       </Popover>
-    </Center>
+    </Box>
   );
 };
 
 const FigmaPopoverStory = ({
   showPopover: _showPopoverProp = true,
   _placement = 'bottom',
+  colorMode,
   ...props
 }: any) => {
   return (
-    <Center w="$full" h="$full">
+    <Box w="$full" h="$full">
       <Popover
         {...props}
-        _experimentalOverlay={false}
+        _experimentalOverlay={true}
         offset={30}
         isOpen={true}
         placement="top"
@@ -116,8 +117,9 @@ const FigmaPopoverStory = ({
                   'component-props': JSON.stringify({
                     'instance': true,
                     'instance-name': 'Icon',
-                    'name': 'CloseIcon',
+                    'as': 'CloseIcon',
                     'size': 'md',
+                    'colorMode': colorMode,
                   }),
                 }}
               />
@@ -145,6 +147,7 @@ const FigmaPopoverStory = ({
                     'size': 'md',
                     'action': 'secondary',
                     'state': 'default',
+                    'colorMode': colorMode,
                   }),
                 }}
               >
@@ -158,6 +161,7 @@ const FigmaPopoverStory = ({
                     'size': 'sm',
                     'action': 'primary',
                     'state': 'default',
+                    'colorMode': colorMode,
                   }),
                 }}
               >
@@ -167,9 +171,11 @@ const FigmaPopoverStory = ({
           </PopoverFooter>
         </PopoverContent>
       </Popover>
-    </Center>
+    </Box>
   );
 };
+
+PopoverBasic.description = `Popover is a non-modal dialog that floats around a trigger element. It is used to display contextual information or UI. It is triggered by clicking, tapping, or hovering on an element.`;
 
 export default PopoverBasic;
 

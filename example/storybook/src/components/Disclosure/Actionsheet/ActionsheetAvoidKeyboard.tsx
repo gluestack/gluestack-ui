@@ -176,6 +176,9 @@ const ActionsheetWithKeyboardAvoidingView = ({
   );
 };
 
+ActionsheetWithKeyboardAvoidingView.description =
+  'This is an example of an Actionsheet component with KeyboardAvoidingView. This is used to avoid the keyboard when it is opened.';
+
 export default ActionsheetWithKeyboardAvoidingView;
 
 export {

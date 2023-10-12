@@ -29,6 +29,9 @@ const ProgressBasic = ({ value = 50, ...props }: any) => {
   );
 };
 
+ProgressBasic.description =
+  'This is a basic Progress component example. Progress components are used to show the progress of a task.';
+
 export default ProgressBasic;
 
 export { Progress, ProgressFilledTrack, VStack, Text, Box, Heading };
