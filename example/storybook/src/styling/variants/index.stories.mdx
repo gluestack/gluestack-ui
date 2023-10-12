@@ -1,7 +1,6 @@
----
-title: Variants | gluestack-ui
-description: Variants
----
+import Meta from '@/components/Meta';
+
+<Meta pageTitle="Variants | gluestack-ui" description="Variants" />
 
 import { Text, Center } from '@gluestack-ui/themed';
 import {
@@ -13,8 +12,8 @@ import {
 } from '@gluestack-ui/themed';
 import { config } from '@gluestack-ui/config';
 import { createConfig } from '@gluestack-ui/themed';
-import { transformedCode } from '../../utils';
-import Wrapper from '../../components/Wrapper';
+import { transformedCode } from '@/docs-components/ui/utils';
+import Wrapper from '@/docs-components/ui/components/Wrapper';
 import {
   AppProvider,
   CodePreview,
@@ -22,9 +21,6 @@ import {
   TableContainer,
   InlineCode,
 } from '@gluestack/design-system';
-import { Canvas, Meta, Story } from '@storybook/addon-docs';
-
-<Meta title="Styling/Variants" />
 
 # Variants
 
@@ -32,71 +28,78 @@ Creating variants of components in a UI component library is crucial for maintai
 
 To update components styles, we need to create a new config which extends the default [`config`](https://github.com/gluestack/gluestack-ui/blob/main/packages/config/src/gluestack-ui.config.ts) file imported from [**`@gluestack-ui/config`**](https://github.com/gluestack/gluestack-ui/blob/main/packages/config) and pass it inside the `GluetackUIProvider`, then we can style the components additionally.
 
-To create a new variant of a Button Component, just import the `createConfig` function from **`@gluestack-style/react`** and the pass the below object to the function. Inside the components object define the component name which is imported from **`@gluestack-ui/themed`** library, and then all the styles that needs to be applied on the component.
+To create a new variant or extend styling of a Button Component, just create a config file `gluestack-ui.config.ts` in your project root. Now import import the `createConfig` function from **`@gluestack-style/react`** and pass the `config` object to the function. Inside the components object define the component name which is imported from **`@gluestack-ui/themed`** library, and then all the styles that needs to be applied on the component.
 
 ```jsx
- {
-  components: {
-      Button: {
-        // write same component name which is passed in styled
-        theme: {
-          bg: '$primary500',
-          variants: {
-            variant: {
-              ghost: {
-                backgroundColor: '$red500',
-                _text: {
-                  color: 'white',
-                },
+// gluestack-ui.config.ts
+import { config as gluestackUIConfig } from "@gluestack-ui/config";
+import { createConfig, createComponents } from "@gluestack-style/react";
+
+export const customConfig = createConfig({
+  // ... other configuration
+  components: createComponents({
+    Button: {
+      // write same component name which is passed in styled
+      theme: {
+        bg: "$primary500",
+        variants: {
+          variant: {
+            ghost: {
+              backgroundColor: "$red500",
+              _text: {
+                color: "white",
               },
             },
           },
-        },
-        componentConfig: {
-          descendantStyle: ['_text'],
         },
       },
-    }
-  }
-```
-
-<AppProvider>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
-     function App(){
-      {/* Creating own theme using createConfig function */}
-   const themeConfig = createConfig({
-    ...config,
-    components: {
-      Button: {
-        // write same component name which is passed in styled
-        theme: {
-          bg: '$primary500',
-          props:{
-            variant:"ghost",
-          },
-          variants: {
-            variant: {
-              ghost: {
-                backgroundColor: '$red500',
-                _text: {
-                  color: '$white',
-                },
-              },
-            },
-          },
-        },
-        componentConfig: {
-          descendantStyle: ['_text'],
-        },
+      componentConfig: {
+        descendantStyle: ["_text"],
       },
     },
-  });
+  }),
+  // ... other configuration
+});
+
+// Merge with default configuration provided by @gluestack-ui/config
+const export config = deepMerge(gluestackUIConfig, customConfig);
+
+type Config = typeof config;
+type Components = typeof components;
+
+declare module '@gluestack-ui/themed' {
+  interface UIConfig extends Config {}
+  interface UIComponents extends Components {}
+}
+
+```
+
+Now you can pass this config to `GluestackUIProvider`.
+
+<AppProvider>
+  <Center>
+    <Button
+      sx={{
+        backgroundColor: '$red500',
+        _text: {
+          color: 'white',
+        },
+      }}
+    >
+      <ButtonText>Hello world</ButtonText>
+    </Button>
+  </Center>
+</AppProvider>
+<br />
+
+```jsx
+//App.tsx
+import {config} from './gluestack-ui.config.ts';
+import {GluestackUIProvider, Box, Button, ButtonText} from './gluestack-ui.config.ts';
+
+function App(){
     return (
-     <GluestackUIProvider config={themeConfig}>
+     <GluestackUIProvider config={config}>
         <Box justifyContent="center" alignItems="center" height="100%">
           {/* Button with default theme */}
           <Button>
@@ -105,26 +108,7 @@ To create a new variant of a Button Component, just import the `createConfig` fu
         </Box>
       </GluestackUIProvider>
 );
-}
-`,
-      transformCode: (code) => {
-        return transformedCode(code, 'function', 'App');
-      },
-      scope: {
-        Wrapper,
-        Text,
-        Button,
-        Box,
-        ButtonText,
-        createConfig,
-        config,
-        GluestackUIProvider,
-        VStack,
-      },
-      argsType: {},
-    }}
-  />
-</AppProvider>
+```
 
 You can refer to [this](/ui/docs/theme-configuration/customizing-theme) link for detailed information related to customizing theme of components.
 

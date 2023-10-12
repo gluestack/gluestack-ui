@@ -31,7 +31,7 @@ npx gluestack-ui-scripts eject-theme
 2. **Update Tokens**: go to `config/gluestack-ui.config.ts` file. Update the tokens as per your requirements.
 
 ```jsx
-//gluestack-ui.config.ts
+// gluestack-ui.config.ts
 
 export const config = createConfig({
   // ...Theme config
@@ -53,6 +53,15 @@ export const config = createConfig({
     },
   },
 });
+
+type Config = typeof config;
+type Components = typeof components;
+
+declare module '@gluestack-ui/themed' {
+  interface UIConfig extends Config {}
+  interface UIComponents extends Components {}
+}
+
 ```
 
 3. **Apply Config**: Apply the config to the `GluestackUIProvider`.
@@ -167,6 +176,15 @@ export const config = createConfig({
     // new AnimationResolver(MotiDriver),
   ],
 });
+
+type Config = typeof config;
+type Components = typeof components;
+
+declare module '@gluestack-ui/themed' {
+  interface UIConfig extends Config {}
+  interface UIComponents extends Components {}
+}
+
 ```
 
 3. **Apply Config**: Apply the config to the `GluestackUIProvider`.
