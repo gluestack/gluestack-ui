@@ -27,6 +27,8 @@ import {
 
 import Wrapper from '../../Wrapper';
 
+This is an illustration of a **Themed HStack** component with default configuration.
+
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
@@ -65,7 +67,7 @@ import Wrapper from '../../Wrapper';
 
 ### Import
 
-To use the component in your project, run the command below into your import statement. This will import the component from your components folder.
+To use this component in your project, include the following import statement in your file.
 
 ```bash
 import { HStack } from '@gluestack-ui/themed';
@@ -93,7 +95,7 @@ The accessibility of a HStack is primarily determined by the accessibility infor
 
 ## Themed
 
-The themed version of the component is a pre-styled version of the component, which allows you to quickly integrate the component into your project. The component's design and functionality are fully defined, allowing you to focus on the more important aspects of your project.
+The themed version of the component is a pre-styled version of the component, which allows you to quickly integrate the component into your project. The component's design and functionality are fully defined, allowing you to focus on the more important aspects of your project. To know more about Themed Library please visit this [link](https://gluestack.io/ui/docs/core-concepts/themed-library).
 
 ### Props
 
@@ -156,13 +158,15 @@ HStack component is created using View component from react-native. It extends a
   </TableContainer>
 </AppProvider>
 
+> Note: These props are exclusively applicable when utilizing the default configuration of gluestack-ui/config. If you are using a custom theme, these props may not be available.
+
 ### Examples
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
 #### HStack Reversed
 
-An Hstack component with the reversed prop reverses the order of horizontally stacked elements, allowing for customized layouts and visual arrangements of content within a user interface.
+An HStack component with the reversed prop reverses the order of horizontally stacked elements, allowing for customized layouts and visual arrangements of content within a user interface.
 
 <AppProvider>
   <CodePreview
@@ -192,7 +196,7 @@ We provide in-depth information on how to customize and extend the component's f
 <!--
 ### Customizing the HStack
 
-We have a function called `createHStack` which can be used to create a custom HStack component. This function takes in a configuration object which contains the styled components that you want to use for the HStack. You can refer [gluestack.io/style](https://style.gluestack.io/styleon on how to use styled components.
+We have a function called `createHStack` which can be used to create a custom HStack component. This function takes in a configuration object which contains the styled components that you want to use for the HStack. You can refer [gluestack.io/style](/style/docs/getting-started/styled) on how to use styled components.
 
 #### Usage
 

@@ -49,7 +49,7 @@ sortedColorPalette.others = { ...colorPalette.others };
 
 const ColorPaletteComponent = () => {
   return (
-    <GluestackUIProvider>
+    <GluestackUIProvider config={config}>
       <VStack flex={1}>
         {Object.keys(sortedColorPalette).map((category: string) => {
           return (
@@ -154,7 +154,7 @@ mapEntries.sort(([keyA, valueA]: any, [keyB, valueB]: any) => {
 
 const SpaceComponent = () => {
   return (
-    <GluestackUIProvider>
+    <GluestackUIProvider config={config}>
       <VStack>
         <HStack h="$8" alignItems="center">
           <Text w={100} mr="$4">
@@ -192,7 +192,7 @@ const opacity: any = config.tokens.opacity;
 
 const OpacityComponent = () => {
   return (
-    <GluestackUIProvider>
+    <GluestackUIProvider config={config}>
       <HStack
         flexWrap="wrap"
         sx={{
@@ -248,7 +248,7 @@ const OpacityComponent = () => {
 
 const ShadowsComponent = () => {
   return (
-    <GluestackUIProvider>
+    <GluestackUIProvider config={config}>
       <VStack>
         <Heading size="sm" mb="$4">
           Hard Shadows
@@ -316,7 +316,7 @@ const ShadowsComponent = () => {
 const borderWidths = config.tokens.borderWidths;
 const BorderWidthComponent = () => {
   return (
-    <GluestackUIProvider>
+    <GluestackUIProvider config={config}>
       <HStack
         sx={{
           _web: {
@@ -351,7 +351,7 @@ const BorderWidthComponent = () => {
 const radii = config.tokens.radii;
 const RadiiComponent = () => {
   return (
-    <GluestackUIProvider>
+    <GluestackUIProvider config={config}>
       <HStack
         sx={{
           _web: {

@@ -27,6 +27,8 @@ import {
 
 import Wrapper from '../../Wrapper';
 
+This is an illustration of a **Themed VStack** component with default configuration.
+
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
@@ -71,7 +73,7 @@ import Wrapper from '../../Wrapper';
 
 ### Import
 
-To use the component in your project, run the command below into your import statement. This will import the component from your components folder.
+To use this component in your project, include the following import statement in your file.
 
 ```jsx
 import { VStack } from '@gluestack-ui/themed';
@@ -85,9 +87,23 @@ The structure provided below can help you identify and understand a VStack compo
 export default () => <VStack />;
 ```
 
+### Component Props
+
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
+
+#### VStack
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+### Accessibility
+
+The accessibility of a VStack is primarily determined by the accessibility information of the components it contains. When you pass an accessible component inside a VStack, its accessibility attributes, such as labels and hints, will be utilized by assistive technologies like screen readers.
+
+In essence, the VStack acts as a container that inherits and propagates the accessibility attributes of its child views.
+
 ## Themed
 
-The themed version of the component is a pre-styled version of the component, which allows you to quickly integrate the component into your project. The component's design and functionality are fully defined, allowing you to focus on the more important aspects of your project.
+The themed version of the component is a pre-styled version of the component, which allows you to quickly integrate the component into your project. The component's design and functionality are fully defined, allowing you to focus on the more important aspects of your project. To know more about Themed Library please visit this [link](https://gluestack.io/ui/docs/core-concepts/themed-library).
 
 ### Props
 
@@ -152,11 +168,7 @@ VStack component is created using View component from react-native. It extends a
   </TableContainer>
 </AppProvider>
 
-### Accessibility
-
-The accessibility of a VStack is primarily determined by the accessibility information of the components it contains. When you pass an accessible component inside a VStack, its accessibility attributes, such as labels and hints, will be utilized by assistive technologies like screen readers.
-
-In essence, the VStack acts as a container that inherits and propagates the accessibility attributes of its child views.
+> Note: These props are exclusively applicable when utilizing the default configuration of gluestack-ui/config. If you are using a custom theme, these props may not be available.
 
 ### Examples
 
@@ -164,7 +176,7 @@ The Examples section provides visual representations of the different variants o
 
 #### VStack Reversed
 
-A Vstack component with the reversed prop reverses the order of vertically stacked elements, enabling customized vertical layouts and visual arrangements of content within a user interface.
+A VStack component with the reversed prop reverses the order of vertically stacked elements, enabling customized vertical layouts and visual arrangements of content within a user interface.
 
 <AppProvider>
   <CodePreview
@@ -190,7 +202,7 @@ A Vstack component with the reversed prop reverses the order of vertically stack
 
 ## Unstyled
 
-All the components in `gluestack-ui` are unstyled by default. To customize your UI using the extendedTheme, please refer to this [link](https://gluestack.io/ui/docs/theme/customizing-components). The import names of components serve as keys to customize each component.
+All the components in `gluestack-ui` are unstyled by default. To customize your UI using the extendedTheme, please refer to this [link](https://gluestack.io/ui/docs/theme-configuration/customizing-theme). The import names of components serve as keys to customize each component.
 
 <!--
 
@@ -200,7 +212,7 @@ We provide in-depth information on how to customize and extend the component's f
 
 ### Customizing the VStack
 
-We have a function called `createVStack` which can be used to create a custom VStack component. This function takes in a configuration object which contains the styled components that you want to use for the VStack. You can refer [gluestack.io/style](https://style.gluestack.io/styleon on how to use styled components.
+We have a function called `createVStack` which can be used to create a custom VStack component. This function takes in a configuration object which contains the styled components that you want to use for the VStack. You can refer [gluestack.io/style](/style/docs/getting-started/styled) on how to use styled components.
 
 #### Usage
 

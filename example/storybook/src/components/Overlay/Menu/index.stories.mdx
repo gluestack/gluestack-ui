@@ -9,7 +9,7 @@ pageDescription: The Menu component creates a user-friendly dropdown interface t
 
 showHeader: true
 
-tag: alpha
+tag: beta
 ---
 
 import { Meta } from '@storybook/addon-docs';
@@ -40,6 +40,8 @@ import {
 } from '@gluestack/design-system';
 
 import Wrapper from '../../Wrapper';
+
+This is an illustration of a **Themed Menu** component with default configuration.
 
 <AppProvider>
   <CodePreview
@@ -122,7 +124,7 @@ import Wrapper from '../../Wrapper';
 
 ### Import
 
-To use the component in your project, run the command below into your import statement. This will import the component from your components folder.
+To use this component in your project, include the following import statement in your file.
 
 ```jsx
 import { Menu } from '@gluestack-ui/themed';
@@ -325,7 +327,7 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
           </Table.TD>
           <Table.TD>
             <Table.TText>
-              Item keys in this collection will be disbaled.
+              Item keys in this collection will be disabled.
             </Table.TText>
           </Table.TD>
         </Table.TR>
@@ -672,7 +674,7 @@ Our Menu component supports dynamic disabling of menu items, enabling you to con
 
 ## Unstyled
 
-All the components in `gluestack-ui` are unstyled by default. To customize your UI using the extendedTheme, please refer to this [link](https://gluestack.io/ui/docs/theme/customizing-components). The import names of components serve as keys to customize each component.
+All the components in `gluestack-ui` are unstyled by default. To customize your UI using the extendedTheme, please refer to this [link](https://gluestack.io/ui/docs/theme-configuration/customizing-theme). The import names of components serve as keys to customize each component.
 
 <!--
 
@@ -682,7 +684,7 @@ We provide in-depth information on how to customize and extend the component's f
 
 ### Customizing the Menu
 
-We have a function called `createMenu` which can be used to create a custom menu component. This function takes in a configuration object which contains the styled components that you want to use for the Menu You can refer [gluestack.io/style](https://style.gluestack.io/styleon on how to use styled components.
+We have a function called `createMenu` which can be used to create a custom menu component. This function takes in a configuration object which contains the styled components that you want to use for the Menu You can refer [gluestack.io/style](/style/docs/getting-started/styled) on how to use styled components.
 
 #### Usage
 

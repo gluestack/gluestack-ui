@@ -33,6 +33,8 @@ import {
 
 import Wrapper from '../../Wrapper';
 
+This is an illustration of a **Themed Progress** component with default configuration.
+
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
@@ -64,7 +66,7 @@ import Wrapper from '../../Wrapper';
 
 ### Import
 
-To use the component in your project, run the command below into your import statement. This will import the component from your components folder.
+To use this component in your project, include the following import statement in your file.
 
 ```jsx
 import { Progress } from '@gluestack-ui/themed';
@@ -181,11 +183,11 @@ We have outlined the various features that ensure the Fab component is accessibl
 
 ## Themed
 
-The themed version of the component is a pre-styled version of the component, which allows you to quickly integrate the component into your project. The component's design and functionality are fully defined, allowing you to focus on the more important aspects of your project.
+The themed version of the component is a pre-styled version of the component, which allows you to quickly integrate the component into your project. The component's design and functionality are fully defined, allowing you to focus on the more important aspects of your project. To know more about Themed Library please visit this [link](https://gluestack.io/ui/docs/core-concepts/themed-library).
 
 ### Props
 
-Progess component is created using View component from react-native. It extends all the props supported by [React Native View](https://reactnative.dev/docs/view#props), [utility props](/ui/docs/styling/utility-and-sx-props) and the props mentioned below.
+Progress component is created using View component from react-native. It extends all the props supported by [React Native View](https://reactnative.dev/docs/view#props), [utility props](/ui/docs/styling/utility-and-sx-props) and the props mentioned below.
 
 #### Progress
 
@@ -223,6 +225,8 @@ Progess component is created using View component from react-native. It extends 
     </Table>
   </TableContainer>
 </AppProvider>
+
+> Note: These props are exclusively applicable when utilizing the default configuration of gluestack-ui/config. If you are using a custom theme, these props may not be available.
 
 ### Examples
 
@@ -315,7 +319,7 @@ You can customize the progress bar. Below is the example where we have change th
         <Progress value={46} w={410} h={8} bg="$lime100">
           <ProgressFilledTrack h={8} bg="$lime500" />
         </Progress>
-        <Text sizze="md">14GB</Text>
+        <Text size="md">14GB</Text>
         </VStack>
       `,
       transformCode: (code) => {
@@ -336,7 +340,7 @@ You can customize the progress bar. Below is the example where we have change th
 
 ## Unstyled
 
-All the components in `gluestack-ui` are unstyled by default. To customize your UI using the extendedTheme, please refer to this [link](https://gluestack.io/ui/docs/theme/customizing-components). The import names of components serve as keys to customize each component.
+All the components in `gluestack-ui` are unstyled by default. To customize your UI using the extendedTheme, please refer to this [link](https://gluestack.io/ui/docs/theme-configuration/customizing-theme). The import names of components serve as keys to customize each component.
 
 <!--
 
@@ -346,7 +350,7 @@ We provide in-depth information on how to customize and extend the component's f
 
 ### Customizing the Progress
 
-For customizing the Progress, you have to map styled view to Progress You can refer [gluestack.io/style](https://style.gluestack.io/styleon on how to use styled components.
+For customizing the Progress, you have to map styled view to Progress You can refer [gluestack.io/style](/style/docs/getting-started/styled) on how to use styled components.
 
 #### Usage
 

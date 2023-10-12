@@ -38,6 +38,8 @@ import {
 
 import Wrapper from '../../Wrapper';
 
+This is an illustration of a **Themed Checkbox** component with default configuration.
+
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
@@ -88,7 +90,7 @@ import Wrapper from '../../Wrapper';
 
 ### Import
 
-To use the component in your project, run the command below into your import statement. This will import the component from your components folder.
+To use this component in your project, include the following import statement in your file.
 
 ```bash
 import { Checkbox } from '@gluestack-ui/themed';
@@ -366,7 +368,7 @@ Contains all indicators related layout style props and actions. It inherits all 
 
 #### CheckboxIcon
 
-Contains all Icon related layout style props and actions. It inherits all the properties of gluestack Style's [AsForwarder](https://style.gluestack.io/styleer) component.
+Contains all Icon related layout style props and actions. It inherits all the properties of gluestack Style's [AsForwarder](/style/docs/api/as-forwarder) component.
 
 #### CheckboxLabel
 
@@ -508,12 +510,12 @@ We have outlined the various features that ensure the Checkbox component is acce
 
 - Setting the `accessibilityState`.
 - In error state, `accessibilityInvalid` will be passed to indicate that the radio input has an error, and providing support for an `accessibilityErrorMessage` to describe the error in more detail.
-- In disabled state, `accessibilityElementsHidden` will be passed to make radio input unfocusable.
+- In disabled state, `accessibilityElementsHidden` will be passed to make radio input not focusable.
 - In required state, `accessibilityRequired` will be passed to indicate that the radio input is required.
 
 ## Themed
 
-The themed version of the component is a pre-styled version of the component, which allows you to quickly integrate the component into your project. The component's design and functionality are fully defined, allowing you to focus on the more important aspects of your project.
+The themed version of the component is a pre-styled version of the component, which allows you to quickly integrate the component into your project. The component's design and functionality are fully defined, allowing you to focus on the more important aspects of your project. To know more about Themed Library please visit this [link](https://gluestack.io/ui/docs/core-concepts/themed-library).
 
 ### Props
 
@@ -555,6 +557,8 @@ Checkbox component is created using Pressable component from react-native. It ex
     </Table>
   </TableContainer>
 </AppProvider>
+
+> Note: These props are exclusively applicable when utilizing the default configuration of gluestack-ui/config. If you are using a custom theme, these props may not be available.
 
 ### Examples
 
@@ -773,9 +777,9 @@ A checkbox component integrated with form control enhances the user experience b
                 <CheckboxIndicator mr="$2">
                   <CheckboxIcon as={CheckIcon}/>
                 </CheckboxIndicator>
-                 <CheckboxLabel>Sponsorhip</CheckboxLabel>
+                 <CheckboxLabel>Sponsorship</CheckboxLabel>
               </Checkbox>
-              <Text size="sm">Subscibe to newsletters for updates</Text>
+              <Text size="sm">Subscribe to newsletters for updates</Text>
            </VStack>
             </FormControl>
         `,
@@ -1038,12 +1042,12 @@ function CheckboxExample(){
 
 ## Unstyled
 
-All the components in `gluestack-ui` are unstyled by default. To customize your UI using the extendedTheme, please refer to this [link](https://gluestack.io/ui/docs/theme/customizing-components). The import names of components serve as keys to customize each component.
+All the components in `gluestack-ui` are unstyled by default. To customize your UI using the extendedTheme, please refer to this [link](https://gluestack.io/ui/docs/theme-configuration/customizing-theme). The import names of components serve as keys to customize each component.
 
 <!--
 ### Customizing the Checkbox
 
-We have a function called `createCheckbox` which can be used to create a custom checkbox component. This function takes in a configuration object which contains the styled components that you want to use for the checkbox. You can refer [gluestack.io/style](https://style.gluestack.io/styleon on how to use styled components.
+We have a function called `createCheckbox` which can be used to create a custom checkbox component. This function takes in a configuration object which contains the styled components that you want to use for the checkbox. You can refer [gluestack.io/style](/style/docs/getting-started/styled) on how to use styled components.
 
 #### Usage
 
