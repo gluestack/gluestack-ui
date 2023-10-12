@@ -11,21 +11,21 @@ import { Platform } from 'react-native';
 
 /********************* PLUGINS *****************************/
 
-var globalPluginStore: never[] = [];
-function setGlobalPluginStore(plugins: any) {
-  if (plugins) {
-    // @ts-ignore
-    globalPluginStore.push(...plugins);
-  }
-  return getGlobalPluginStore();
-}
-function getGlobalPluginStore() {
-  return globalPluginStore;
-}
+// var globalPluginStore: never[] = [];
+// function setGlobalPluginStore(plugins: any) {
+//   if (plugins) {
+//     // @ts-ignore
+//     globalPluginStore.push(...plugins);
+//   }
+//   return getGlobalPluginStore();
+// }
+// function getGlobalPluginStore() {
+//   return globalPluginStore;
+// }
 
-export function getInstalledPlugins() {
-  return getGlobalPluginStore();
-}
+// export function getInstalledPlugins() {
+//   return getGlobalPluginStore();
+// }
 
 /********************* CREATE COMPONENTS *****************************/
 
@@ -74,7 +74,7 @@ export const createConfig = <
       >
 ): T => {
   if (config.plugins) {
-    config.plugins = setGlobalPluginStore(config.plugins);
+    // config.plugins = setGlobalPluginStore(config.plugins);
   }
   // delete config.plugins;
 

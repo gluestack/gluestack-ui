@@ -13,6 +13,32 @@ import {
   MotiProgressBar,
   AnimatePresence,
 } from 'moti';
+import {
+  Svg as RNSvg,
+  Rect as RNRect,
+  Circle as RNCircle,
+  Ellipse as RNEllipse,
+  Line as RNLine,
+  Polyline as RNPolyline,
+  Path as RNPath,
+  TSpan as RNTSpan,
+  TextPath as RNTextPath,
+  G as RNG,
+  ClipPath as RNClipPath,
+} from 'react-native-svg';
+import { motifySvg } from 'moti/svg';
+
+const Svg = motifySvg(RNSvg);
+const Rect = motifySvg(RNRect);
+const Circle = motifySvg(RNCircle);
+const Ellipse = motifySvg(RNEllipse);
+const Line = motifySvg(RNLine);
+const Polyline = motifySvg(RNPolyline);
+const Path = motifySvg(RNPath);
+const TSpan = motifySvg(RNTSpan);
+const TextPath = motifySvg(RNTextPath);
+const G = motifySvg(RNG);
+const ClipPath = motifySvg(RNClipPath);
 
 let Moti = {
   Image: MotiImage,
@@ -21,6 +47,17 @@ let Moti = {
   ScrollView: MotiScrollView,
   SafeAreaView: MotiSafeAreaView,
   ProgressBar: MotiProgressBar,
+  Svg,
+  Rect,
+  Circle,
+  Ellipse,
+  Line,
+  Polyline,
+  Path,
+  TSpan,
+  TextPath,
+  G,
+  ClipPath,
   AnimatePresence,
 };
 export class MotiAnimationDriver implements IAnimationDriverPlugin {
