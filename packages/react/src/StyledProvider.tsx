@@ -93,7 +93,7 @@ export const StyledProvider: React.FC<{
 
     onChange((currentColor: string) => {
       // only for web
-      if (!_experimentalNestedProvider) {
+      if (Platform.OS === 'web' && !_experimentalNestedProvider) {
         const documentElement = document.documentElement;
 
         if (Platform.OS === 'web') {
