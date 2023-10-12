@@ -9,34 +9,30 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 # Universal
 
-Central to `gluestack-ui` is its key feature: universality. This fundamentally transforms our approach to UI development, breaking away from the conventional method of distinct development for web and mobile platforms.
+All `@gluestack-ui/themed` components are universal out of the box, eliminating the need for separate development for both web and mobile platforms, which is the traditional approach.
 
 With `gluestack-ui`, developers can now craft beautiful interfaces with a single set of code that seamlessly operates across all devices, removing the need for the tedious and time-consuming process of crafting and maintaining two separate codebases for distinct platforms.
-
-`gluestack-ui` is compatible with the popular frameworks, React, Next.js, Expo and React Native, allowing devs from all backgrounds to code universally.
-
-## Design Considerations
 
 You can also use `gluestack-ui` to create styles specific to a particular platform such as Web, iOS or Android. using `_web`, `_ios` and `_android` respectively.
 
 ```jsx
-import { Button ,ButtonText} from 'gluestack-ui/themed';
+import { Button, ButtonText} from 'gluestack-ui/themed';
 
-function ButtonExample {
+function App {
 
-return (
-  <Button _web={{ backgroundColor: 'red' }} _ios={{ backgroundColor: 'blue' }} _android={{ backgroundColor: 'green' }}>
-   <ButtonText>Hello World</ButtonText>
-  </Button>
-)
+  return (
+    <Button 
+        sx={{ 
+          _web: { backgroundColor: 'red' },  
+          _ios: { backgroundColor: 'blue' },  
+          _android: { backgroundColor: 'green' } 
+        }}>
+     <ButtonText>Hello World</ButtonText>
+    </Button>
+  )
 }
 ```
 
-While this feature is available, we advise against extensive utilization. Although this approach permits a tailored experience for each platform, it can introduce complexity and increased maintenance effort due to the necessity for extra logic in handling platform-specific props.
-
-Therefore, finding the right equilibrium between delivering a personalized experience and ensuring a manageable codebase is of utmost importance.
-
 ## Component Showcase
 
-Discover how gluestack-ui delivers a smooth and consistent user experience across various device types.
-You can view live example [here](https://ui-kitchensink.gluestack.io/).
+Discover how gluestack-ui delivers a smooth and consistent user experience across various device types. You can view live example [here](https://ui-kitchensink.gluestack.io/).
