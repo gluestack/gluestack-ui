@@ -22,7 +22,7 @@ const ActionsheetDemo = () => {
       <Actionsheet
         isOpen={showActionsheet}
         onClose={handleClose}
-        snapPoints={[25]}
+        snapPoints={[50]}
       >
         <ActionsheetBackdrop />
         <ActionsheetContent>
