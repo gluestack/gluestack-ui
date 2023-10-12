@@ -85,6 +85,20 @@ The structure provided below can help you identify and understand a VStack compo
 export default () => <VStack />;
 ```
 
+### Component Props
+
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
+
+#### VStack
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+### Accessibility
+
+The accessibility of a VStack is primarily determined by the accessibility information of the components it contains. When you pass an accessible component inside a VStack, its accessibility attributes, such as labels and hints, will be utilized by assistive technologies like screen readers.
+
+In essence, the VStack acts as a container that inherits and propagates the accessibility attributes of its child views.
+
 ## Themed
 
 The themed version of the component is a pre-styled version of the component, which allows you to quickly integrate the component into your project. The component's design and functionality are fully defined, allowing you to focus on the more important aspects of your project.
@@ -152,11 +166,7 @@ VStack component is created using View component from react-native. It extends a
   </TableContainer>
 </AppProvider>
 
-### Accessibility
-
-The accessibility of a VStack is primarily determined by the accessibility information of the components it contains. When you pass an accessible component inside a VStack, its accessibility attributes, such as labels and hints, will be utilized by assistive technologies like screen readers.
-
-In essence, the VStack acts as a container that inherits and propagates the accessibility attributes of its child views.
+> Note: These props are exclusively applicable when utilizing the default configuration of gluestack-ui/config. If you are using a custom theme, these props may not be available.
 
 ### Examples
 
