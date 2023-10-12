@@ -208,17 +208,7 @@ export type ExtendedConfigType = {
 /*********************** GLOBAL STYLE TYPES ****************************************/
 
 export type GlobalVariantAliasesProps<Aliases, Tokens> =
-  | RemoveNever<{
-      [key in keyof Aliases]?: Aliases[key] extends keyof RNStyledProps
-        ? Aliases[key] extends keyof PropertyTokenType
-          ? PropertyTokenType[Aliases[key]] extends keyof Tokens
-            ?
-                | StringifyToken<keyof Tokens[PropertyTokenType[Aliases[key]]]>
-                | ExtendRNStyle<RNStyledProps, Aliases[key]>
-            : never
-          : any
-        : any;
-    }>
+  | AliasesProps<RNStyledProps, Aliases, Tokens>
   | RNStyledProps;
 
 export type GlobalVariantSx<Aliases, Tokens, Variants, PLATFORM = ''> = Partial<
@@ -812,20 +802,29 @@ export type RemoveNever<T> = {
   [K in FilteredKeys<T>]: T[K];
 };
 
+type WithNegativeValue<T> = T extends string | number ? T | `-${T}` : T;
 // Mapping tokens with scale value of alaises
-export type AliasesProps<GenericComponentStyles = Aliases> = RemoveNever<{
+export type AliasesProps<
+  GenericComponentStyles = RNStyledProps,
+  Aliases = GSConfig['aliases'],
+  Tokens = GSConfig['tokens']
+> = RemoveNever<{
   [key in keyof Aliases]?: Aliases[key] extends keyof GenericComponentStyles
-    ? PropertyTokenType[Aliases[key]] extends 'sizes'
+    ? //@ts-expect-error
+      PropertyTokenType[Aliases[key]] extends 'sizes'
       ?
-          | StringifyToken<
-              keyof GSConfig['tokens'][PropertyTokenType[Aliases[key]]]
-            >
-          | StringifyToken<keyof GSConfig['tokens']['space']>
+          | WithSizeNegativeValue<Tokens>
           | ExtendRNStyle<GenericComponentStyles, Aliases[key]>
-      :
-          | StringifyToken<
-              keyof GSConfig['tokens'][PropertyTokenType[Aliases[key]]]
+      : //@ts-expect-error
+      PropertyTokenType[Aliases[key]] extends 'space'
+      ?
+          | WithNegativeValue<
+              //@ts-expect-error
+              StringifyToken<keyof Tokens[PropertyTokenType[Aliases[key]]]>
             >
+          | ExtendRNStyle<GenericComponentStyles, Aliases[key]>
+      : //@ts-expect-error
+        | StringifyToken<keyof Tokens[PropertyTokenType[Aliases[key]]]>
           | ExtendRNStyle<GenericComponentStyles, Aliases[key]>
     : never;
 }>;
@@ -887,15 +886,34 @@ export type ExtendRNStyle<GenericComponentStyles, key> =
     : //@ts-ignore
       GenericComponentStyles[key];
 
-export type TokenizedRNStyleProps<GenericComponentStyles> = {
+type WithSizeNegativeValue<Tokens> = keyof Tokens extends 'sizes'
+  ? WithNegativeValue<
+      //@ts-expect-error
+      | StringifyToken<keyof Tokens['sizes']>
+      //@ts-expect-error
+      | StringifyToken<keyof Tokens['space']>
+    >
+  : //@ts-expect-error
+    WithNegativeValue<StringifyToken<keyof Tokens['space']>>;
+
+export type TokenizedRNStyleProps<
+  GenericComponentStyles,
+  Tokens = GSConfig['tokens']
+> = {
   [key in keyof GenericComponentStyles]?: key extends keyof PropertyTokenType
     ? PropertyTokenType[key] extends 'sizes'
       ?
-          | StringifyToken<keyof GSConfig['tokens']['space']>
-          | StringifyToken<keyof GSConfig['tokens'][PropertyTokenType[key]]>
+          | WithSizeNegativeValue<Tokens>
+          | ExtendRNStyle<GenericComponentStyles, key>
+      : PropertyTokenType[key] extends 'space'
+      ?
+          | WithNegativeValue<
+              //@ts-expect-error
+              StringifyToken<keyof Tokens[PropertyTokenType[key]]>
+            >
           | ExtendRNStyle<GenericComponentStyles, key>
       : //@ts-ignore
-        | StringifyToken<keyof GSConfig['tokens'][PropertyTokenType[key]]>
+        | StringifyToken<keyof Tokens[PropertyTokenType[key]]>
           | ExtendRNStyle<GenericComponentStyles, key>
     : GenericComponentStyles[key];
 };
