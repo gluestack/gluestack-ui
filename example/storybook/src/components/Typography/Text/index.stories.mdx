@@ -26,6 +26,8 @@ import {
   InlineCode,
 } from '@gluestack/design-system';
 
+This is an illustration of a **Themed Text** component with default configuration.
+
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
@@ -54,7 +56,7 @@ import {
 
 ### Import
 
-To use the component in your project, run the command below into your import statement. This will import the component from your components folder.
+To use this component in your project, include the following import statement in your file.
 
 ```jsx
 import { Text } from '@gluestack-ui/themed';
@@ -78,7 +80,7 @@ It inherits all the properties of React Native's [Text](https://reactnative.dev/
 
 ## Themed
 
-The themed version of the component is a pre-styled version of the component, which allows you to quickly integrate the component into your project. The component's design and functionality are fully defined, allowing you to focus on the more important aspects of your project.
+The themed version of the component is a pre-styled version of the component, which allows you to quickly integrate the component into your project. The component's design and functionality are fully defined, allowing you to focus on the more important aspects of your project. To know more about Themed Library please visit this [link](https://gluestack.io/ui/docs/core-concepts/themed-library).
 
 ### Props
 
@@ -213,6 +215,8 @@ Text component is created using Text component from react-native. It extends all
     </Table>
   </TableContainer>
 </AppProvider>
+
+> Note: These props are exclusively applicable when utilizing the default configuration of gluestack-ui/config. If you are using a custom theme, these props may not be available.
 
 ### Examples
 
@@ -385,7 +389,7 @@ Text component also accepts some shorthands for basic quick styling.
 
 ## Unstyled
 
-All the components in `gluestack-ui` are unstyled by default. To customize your UI using the extendedTheme, please refer to this [link](https://gluestack.io/ui/docs/theme/customizing-components). The import names of components serve as keys to customize each component.
+All the components in `gluestack-ui` are unstyled by default. To customize your UI using the extendedTheme, please refer to this [link](https://gluestack.io/ui/docs/theme-configuration/customizing-theme). The import names of components serve as keys to customize each component.
 
 <!--
 
@@ -395,7 +399,7 @@ We provide in-depth information on how to customize and extend the component's f
 
 ### Customizing the Text
 
-For customizing the Text, you have to map styled view to Text. You can refer [gluestack.io/style](https://style.gluestack.io/styleon on how to use styled components.
+For customizing the Text, you have to map styled view to Text. You can refer [gluestack.io/style](/style/docs/getting-started/styled) on how to use styled components.
 
 #### Usage
 

@@ -20,6 +20,8 @@ import { AppProvider, CodePreview, Text } from '@gluestack/design-system';
 
 import Wrapper from '../../Wrapper';
 
+This is an illustration of a **Themed Pressable** component with default configuration.
+
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
@@ -50,7 +52,7 @@ import Wrapper from '../../Wrapper';
 
 ### Import
 
-To use the component in your project, run the command below into your import statement. This will import the component from your components folder.
+To use this component in your project, include the following import statement in your file.
 
 ```bash
 import { Pressable } from '@gluestack-ui/themed';
@@ -86,7 +88,7 @@ You can change the child elements according to the states of Pressable component
     showArgsController={false}
     metaData={{
       code: `
- <Pressable p="$16" bg="$primary500" sx={{':hover':{ bg:"$primary400"}}}>https://style.gluestack.io/style
+ <Pressable p="$16" bg="$primary500" sx={{':hover':{ bg:"$primary400"}}}>
    {({ pressed }) => (
         <Text color={pressed ? 'pink' : 'yellow'}>PRESSABLE</Text>
       )}
@@ -110,7 +112,7 @@ component and i.e. `focus` , `hover` , `pressed` , `disabled` and `focusVisible`
 
 ## Unstyled
 
-All the components in `gluestack-ui` are unstyled by default. To customize your UI using the extendedTheme, please refer to this [link](https://gluestack.io/ui/docs/theme/customizing-components). The import names of components serve as keys to customize each component.
+All the components in `gluestack-ui` are unstyled by default. To customize your UI using the extendedTheme, please refer to this [link](https://gluestack.io/ui/docs/theme-configuration/customizing-theme). The import names of components serve as keys to customize each component.
 
 <!--
 ### Customizing the Pressable

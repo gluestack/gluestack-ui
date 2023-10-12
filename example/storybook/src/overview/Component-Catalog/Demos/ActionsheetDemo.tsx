@@ -26,7 +26,7 @@ const ActionsheetDemo = () => {
         _experimentalOverlay={showActionsheet}
       >
         <ActionsheetBackdrop />
-        <ActionsheetContent zIndex={999}>
+        <ActionsheetContent zIndex={999} height={'50%'}>
           <ActionsheetDragIndicatorWrapper>
             <ActionsheetDragIndicator />
           </ActionsheetDragIndicatorWrapper>

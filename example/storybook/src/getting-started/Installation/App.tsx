@@ -6,10 +6,11 @@ import Socail from './Socail';
 import Card1 from './Card1';
 import Card2 from './Card2';
 import { GluestackUIProvider } from '@gluestack-ui/themed';
+import { config } from '@gluestack-ui/config';
 
 function App() {
   return (
-    <GluestackUIProvider>
+    <GluestackUIProvider config={config}>
       <Box my="$6">
         <VStack space="sm">
           <Text fontWeight="$bold" fontSize="$2xl">

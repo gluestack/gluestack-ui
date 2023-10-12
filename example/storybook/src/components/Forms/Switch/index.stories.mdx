@@ -29,6 +29,8 @@ import {
 
 import Wrapper from '../../Wrapper';
 
+This is an illustration of a **Themed Switch** component with default configuration.
+
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
@@ -61,7 +63,7 @@ import Wrapper from '../../Wrapper';
 
 ### Import
 
-To use the component in your project, run the command below into your import statement. This will import the component from your components folder.
+To use this component in your project, include the following import statement in your file.
 
 ```bash
 import { Switch } from '@gluestack-ui/themed';
@@ -197,13 +199,13 @@ It inherits all the properties of React Native's [Switch](https://reactnative.de
             <Table.TText>false</Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>{`The defaultvalue of the switch. If true the switch will be turned on initially.`}</Table.TText>
+            <Table.TText>{`The defaultValue of the switch. If true the switch will be turned on initially.`}</Table.TText>
           </Table.TD>
         </Table.TR>
         <Table.TR>
           <Table.TD>
             <Table.TText>
-              <InlineCode>onToogle</InlineCode>
+              <InlineCode>onToggle</InlineCode>
             </Table.TText>
           </Table.TD>
           <Table.TD>
@@ -236,7 +238,7 @@ We have outlined the various features that ensure the Button component is access
 
 ## Themed
 
-The themed version of the component is a pre-styled version of the component, which allows you to quickly integrate the component into your project. The component's design and functionality are fully defined, allowing you to focus on the more important aspects of your project.
+The themed version of the component is a pre-styled version of the component, which allows you to quickly integrate the component into your project. The component's design and functionality are fully defined, allowing you to focus on the more important aspects of your project. To know more about Themed Library please visit this [link](https://gluestack.io/ui/docs/core-concepts/themed-library).
 
 ### Props
 
@@ -278,6 +280,8 @@ Switch component is created using Switch component from react-native. It extends
     </Table>
   </TableContainer>
 </AppProvider>
+
+> Note: These props are exclusively applicable when utilizing the default configuration of gluestack-ui/config. If you are using a custom theme, these props may not be available.
 
 ### Examples
 
@@ -409,10 +413,24 @@ An example of a switch component being used with a different color scheme.
 
 We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
 
+## Spec Doc
+
+Explore the comprehensive details of the Switch in this document, including its implementation details, checklist, and potential future additions. Dive into the thought process behind the component and gain insights into its development journey.
+
+<iframe
+  style={{
+    borderRadius: '8px',
+    border: ' 1px solid rgba(0, 0, 0, 0.1)',
+    aspectRatio: 736 / 585,
+  }}
+  src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FNcXOxqKbdnGsLQNex3H76u%2F%25C2%25A0%25F0%259F%2593%259Agluestack-UI-handbook%3Fpage-id%3D5970%253A30699%26type%3Ddesign%26node-id%3D5970-32506%26viewport%3D659%252C250%252C0.03%26t%3DYxQQpkFNh6esETpC-1%26scaling%3Dcontain%26starting-point-node-id%3D5970%253A32506%26mode%3Ddesign"
+  allowFullScreen
+/>
+
 <!--
 ### Customizing the Switch
 
-We have a function called `createSwitch` which can be used to create a custom switch component. This function takes in a configuration object which contains the styled components that you want to use for the switch. You can refer [gluestack.io/style](https://style.gluestack.io/styleon on how to use styled components.
+We have a function called `createSwitch` which can be used to create a custom switch component. This function takes in a configuration object which contains the styled components that you want to use for the switch. You can refer [gluestack.io/style](/style/docs/getting-started/styled) on how to use styled components.
 
 #### Usage
 
