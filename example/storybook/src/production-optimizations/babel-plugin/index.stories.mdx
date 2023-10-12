@@ -3,8 +3,8 @@ title: With a Babel Plugin | gluestack-ui
 description: With a Babel Plugin
 ---
 
-import { Canvas, Meta, Story } from "@storybook/addon-docs";
-import { AppProvider, Box } from "@gluestack/design-system";
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+import { AppProvider, Box } from '@gluestack/design-system';
 
 <Meta title="Production Optimizations/With a Babel Plugin" />
 
@@ -12,7 +12,7 @@ import { AppProvider, Box } from "@gluestack/design-system";
 
 ### @gluestack-style/babel-plugin-styled-resolver
 
-`@gluestack-style/babel-plugin-styled-resolver` transpiles your `themed` component inline styles and resolves the `component styling` in build time. It also generates all the `CSS rules` and style ids based on which these CSS styles are applied on the component. Doing this saves tons of time on runtime because all your style calculation is already done and all your app has to do is inject this style into a style tag and viola! All your styles appear instantaneously.
+`@gluestack-style/babel-plugin-styled-resolver` transpile your `themed` component inline styles and resolves the `component styling` in build time. It also generates all the `CSS rules` and style ids based on which these CSS styles are applied on the component. Doing this saves tons of time on runtime because all your style calculation is already done and all your app has to do is inject this style into a style tag and viola! All your styles appear instantaneously.
 
 ## Installation Steps:
 
@@ -35,7 +35,7 @@ import { AppProvider, Box } from "@gluestack/design-system";
    };
    ```
 
-3. Add `GLUESTACK_STYLE_TARGET` enviornment variable, 'native' or 'web' depending on platform to remove unwanted props and data
+3. Add `GLUESTACK_STYLE_TARGET` environment variable, 'native' or 'web' depending on platform to remove unwanted props and data
 
    Below is an example of how you can add this in your `expo app`, you can change it depending on the project,
 
@@ -48,7 +48,7 @@ import { AppProvider, Box } from "@gluestack/design-system";
      },
    ```
 
-   - We added the `GLUESTACK_STYLE_TARGE` with values 'native' or 'web' environment variable to our enviornment variable so that it can automatically get rid of extra props and data that it doesn't need, depending on the platform.
+   - We added the `GLUESTACK_STYLE_TARGE` with values 'native' or 'web' environment variable to our environment variable so that it can automatically get rid of extra props and data that it doesn't need, depending on the platform.
 
 4. Just make sure your `babel.config.js` and `gluestack-ui.config.js/ts` are in the same directory. We suggest you keep both of them at the root of your app codebase. If you can't, then use the `configPath` option to specify the path of the `gluestack-ui.config.js/ts` file.
 
@@ -68,7 +68,7 @@ Here’s a small diagram explaining how the flow works:
   <Box
     sx={{
       _dark: {
-        display: "none",
+        display: 'none',
       },
     }}
   >
@@ -81,7 +81,7 @@ Here’s a small diagram explaining how the flow works:
   <Box
     sx={{
       _light: {
-        display: "none",
+        display: 'none',
       },
     }}
   >
@@ -102,20 +102,20 @@ The `@gluestack-style/babel-plugin-styled-resolver` plugin offers advanced funct
 - `configPath`: The `configPath` option allows you to define the path to the configuration file. This configuration file contains the aliases and tokens used by the plugin. By default, the plugin assumes that the configuration file is located in the same directory as the `babel.config.js` file.
 
 ```js
-const path = require("path");
-const gluestackStyleResolver = require("@gluestack-style/babel-plugin-styled-resolver");
+const path = require('path');
+const gluestackStyleResolver = require('@gluestack-style/babel-plugin-styled-resolver');
 
 module.exports = function (api) {
   api.cache(true);
   return {
-    presets: ["babel-preset-expo"],
+    presets: ['babel-preset-expo'],
     plugins: [
       [
         gluestackStyleResolver,
         {
           configPath: path.resolve(
             __dirname,
-            "./config/gluestack-ui.config.js" // Specify the path of the config file
+            './config/gluestack-ui.config.js' // Specify the path of the config file
           ),
         },
       ],
@@ -130,7 +130,7 @@ if your config file looks like below:
 
 ```js
 const config = {
-  componentPath: "/core/components",
+  componentPath: '/core/components',
   theme: {
     aliases: {},
     tokens: {},
@@ -142,18 +142,18 @@ You can use the following babel config:
 
 ```js
 // babel.config.js
-const path = require("path");
-const gluestackStyleResolver = require("@gluestack-style/babel-plugin-styled-resolver");
+const path = require('path');
+const gluestackStyleResolver = require('@gluestack-style/babel-plugin-styled-resolver');
 
 module.exports = function (api) {
   api.cache(true);
   return {
-    presets: ["babel-preset-expo"],
+    presets: ['babel-preset-expo'],
     plugins: [
       [
         gluestackStyleResolver,
         {
-          configThemePath: ["config", "theme"], // Specify the path of the theme object in your config file
+          configThemePath: ['config', 'theme'], // Specify the path of the theme object in your config file
         },
       ],
     ],
@@ -165,18 +165,18 @@ module.exports = function (api) {
 
 ```js
 // babel.config.js
-const path = require("path");
-const gluestackStyleResolver = require("@gluestack-style/babel-plugin-styled-resolver");
+const path = require('path');
+const gluestackStyleResolver = require('@gluestack-style/babel-plugin-styled-resolver');
 
 module.exports = function (api) {
   api.cache(true);
   return {
-    presets: ["babel-preset-expo"],
+    presets: ['babel-preset-expo'],
     plugins: [
       [
         gluestackStyleResolver,
         {
-          styledAlias: "myStyled", // Specify your styled aliases function name if different
+          styledAlias: 'myStyled', // Specify your styled aliases function name if different
         },
       ],
     ],
@@ -188,20 +188,20 @@ module.exports = function (api) {
 
 ```js
 // babel.config.js
-const path = require("path");
-const gluestackStyleResolver = require("@gluestack-style/babel-plugin-styled-resolver");
+const path = require('path');
+const gluestackStyleResolver = require('@gluestack-style/babel-plugin-styled-resolver');
 
 module.exports = function (api) {
   api.cache(true);
   return {
-    presets: ["babel-preset-expo"],
+    presets: ['babel-preset-expo'],
     plugins: [
       [
         gluestackStyleResolver,
         {
           styled: [
-            "@gluestack-style/react", // import path of the styled function
-            path.resolve(__dirname, "./gluestack-ui-components/core/styled"), // file path of the styled function
+            '@gluestack-style/react', // import path of the styled function
+            path.resolve(__dirname, './gluestack-ui-components/core/styled'), // file path of the styled function
           ],
         },
       ],
@@ -216,20 +216,20 @@ module.exports = function (api) {
 
 ```js
 // babel.config.js
-const path = require("path");
-const gluestackStyleResolver = require("@gluestack-style/babel-plugin-styled-resolver");
+const path = require('path');
+const gluestackStyleResolver = require('@gluestack-style/babel-plugin-styled-resolver');
 
 module.exports = function (api) {
   api.cache(true);
   return {
-    presets: ["babel-preset-expo"],
+    presets: ['babel-preset-expo'],
     plugins: [
       [
         gluestackStyleResolver,
         {
           components: [
-            "@gluestack-ui/themed", // import path of the components folder or library name
-            path.resolve(__dirname, "./gluestack-ui-components/core/component"), // file path of the components folder
+            '@gluestack-ui/themed', // import path of the components folder or library name
+            path.resolve(__dirname, './gluestack-ui-components/core/component'), // file path of the components folder
           ],
         },
       ],
