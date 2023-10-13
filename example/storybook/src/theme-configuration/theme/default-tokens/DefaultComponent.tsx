@@ -358,6 +358,7 @@ const RadiiComponent = () => {
             gap: 16,
           },
         }}
+        flexWrap="wrap"
       >
         {Object.keys(radii).map((borderRadiusValue: any) => {
           return (
