@@ -15,30 +15,24 @@ $ npm i @gluestack-ui/themed @gluestack-style/react react-native-svg@13.4.0
 
 ## Usage
 
-A button component is a graphical user interface element that enables users to act by clicking or tapping. It can be customized in size, shape, color, and behavior to fit the design of the application or website. Here's an example how to use this package to create one:
+A button component is a graphical user interface element that enables users to act by clicking or tapping. It can be customized in size, shape, color, and behavior to fit the design of the application or website. Here's an example:
 
 ```jsx
-import { createButton } from '@gluestack-ui/themed';
-import {
-  Root,
-  Text,
-  Group,
-  GroupHSpacer,
-  GroupVSpacer,
-  Spinner,
-  Icon,
-} from '@gluestack-ui/themed';
+import { Button, GluestackUIProvider } from '@gluestack-ui/themed';
+import { config } from '@gluestack-ui/config';
 
-export const Button = createButton({
-  Root,
-  Text,
-  Group,
-  GroupHSpacer,
-  GroupVSpacer,
-  Spinner,
-  Icon,
-});
+export default function App () {
+ return (
+    <GluestackUIProvider config={config}>
+     <Button>
+      <ButtonText>
+        Hello world!
+      </ButtonText>
+     <Button>
+    </GluestackUIProvider>
+  )
+}
 ```
 
 More guides on how to get started are available
-[here](https://ui.gluestack.io/).
+[here](https://gluestack.io/).
