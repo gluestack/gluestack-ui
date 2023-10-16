@@ -65,6 +65,7 @@ export interface Tokens {
   breakpoints?: { [key: GenericKey]: Record<string, any> & {} };
   mediaQueries?: { [key: GenericKey]: Record<string, any> & {} };
   letterSpacings?: { [key: GenericKey]: Record<string, any> & {} };
+  opacity?: { [key: GenericKey]: Record<string, any> & {} };
   lineHeights?: { [key: GenericKey]: any };
   fontWeights?: { [key: GenericKey]: any };
   fonts?: { [key: GenericKey]: any };
