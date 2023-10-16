@@ -6,6 +6,7 @@ import {
 } from '../utils';
 
 const transformTheme = (componentTheme: any) => {
+  // FIX: Remove Hook from here
   const styledContext = useStyled();
   let transformedTheme: any = {
     variants: {
