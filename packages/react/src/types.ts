@@ -888,14 +888,12 @@ export type ExtendRNStyle<GenericComponentStyles, key> =
       GenericComponentStyles[key];
 
 type WithSizeNegativeValue<Tokens> = keyof Tokens extends 'sizes'
-  ? WithNegativeValue<
-      //@ts-expect-error
-      | StringifyToken<keyof Tokens['sizes']>
+  ? //@ts-expect-error
+    | StringifyToken<keyof Tokens['sizes']>
       //@ts-expect-error
       | StringifyToken<keyof Tokens['space']>
-    >
   : //@ts-expect-error
-    WithNegativeValue<StringifyToken<keyof Tokens['space']>>;
+    StringifyToken<keyof Tokens['space']>;
 
 export type TokenizedRNStyleProps<
   GenericComponentStyles,
