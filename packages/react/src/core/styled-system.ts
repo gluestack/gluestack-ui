@@ -9,6 +9,10 @@ export const CSSPropertiesMap = {
   borderTopWidth: '0',
   borderEndWidth: '0',
   borderStartWidth: '0',
+  borderEndEndRadius: '0',
+  borderStartStartRadius: '0',
+  borderStartEndRadius: '0',
+  borderEndStartRadius: '0',
   borderWidth: '0',
   bottom: 'auto',
   direction: 'ltr',
@@ -65,6 +69,9 @@ export const CSSPropertiesMap = {
   borderBottomLeftRadius: '0',
   borderBottomRightRadius: '0',
   borderColor: 'initial',
+  borderBlockColor: 'initial',
+  borderBlockEndColor: 'initial',
+  borderBlockStartColor: 'initial',
   borderRadius: '0',
   borderTopLeftRadius: '0',
   borderTopRightRadius: '0',
@@ -92,6 +99,7 @@ export const CSSPropertiesMap = {
   textShadowOffset: '0px 0px',
   textShadowRadius: '0',
   textAlignVertical: 'auto',
+  verticalAlign: 'auto',
   letterSpacing: 'normal',
   textDecorationColor: 'initial',
   textDecorationStyle: 'solid',
@@ -101,6 +109,7 @@ export const CSSPropertiesMap = {
   borderStartColor: 'initial',
   borderTopEndRadius: '0',
   borderTopStartRadius: '0',
+  userSelect: 'auto',
 };
 
 export const reservedKeys = {
