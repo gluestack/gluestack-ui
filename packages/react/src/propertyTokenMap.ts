@@ -127,6 +127,15 @@ export const propertyTokenMap = {
   textDecorationColor: colors,
   shadowColor: colors,
 
+  borderBlockColor: colors,
+  borderBlockEndColor: colors,
+  borderBlockStartColor: colors,
+
+  borderEndEndRadius: radii,
+  borderStartStartRadius: radii,
+  borderStartEndRadius: radii,
+  borderEndStartRadius: radii,
+
   shadowOpacity: opacity,
   opacity: opacity,
 
