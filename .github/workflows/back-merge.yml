@@ -12,10 +12,9 @@ jobs:
 
     steps:
       - name: Check Out Code
-        uses: actions/checkout@v2
-
-      - name: Create Backmerge PR
-        run: |
-          hub pull-request -h main -b patch -m "BackMerge: Main -> Patch"
-        env:
-          GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
+        uses: devops-infra/action-pull-request@v0.5.3
+        with:
+          github_token: ${{ secrets.MY_GITHUB_TOKEN }}
+          source_branch: main
+          target_branch: patch
+          title: 'Backmerge Main -> Patch'
