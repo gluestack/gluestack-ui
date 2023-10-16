@@ -7,6 +7,7 @@ import { GenericComponentType } from '../../types';
 
 const BoxTemp = forwardRef(({ children, ...props }: any, ref?: any) => {
   const resolvedPropForGluestack = usePropResolution(props);
+
   return (
     <AccessibleBox {...resolvedPropForGluestack} ref={ref}>
       {children}
