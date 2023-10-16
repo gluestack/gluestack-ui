@@ -50,6 +50,7 @@ export default styled(
             fontSize: '$md',
           },
           _icon: {
+            fontSize: 'xl',
             h: '$5',
             w: '$5',
           },
@@ -61,6 +62,7 @@ export default styled(
             fontSize: '$sm',
           },
           _icon: {
+            fontSize: '$md',
             h: '$4',
             w: '$4',
           },
@@ -72,6 +74,7 @@ export default styled(
             fontSize: '$xs',
           },
           _icon: {
+            fontSize: '$md',
             h: '$4',
             w: '$4',
           },
@@ -83,6 +86,7 @@ export default styled(
             fontSize: '$2xs',
           },
           _icon: {
+            fontSize: '$xs',
             h: '$3',
             w: '$3',
           },
