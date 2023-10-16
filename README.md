@@ -1,4 +1,4 @@
-# gluestack-ui (beta)
+# gluestack-ui
 
 <h3 align="center">
   <a href="https://github.com/gluestack/gluestack-ui">
@@ -13,7 +13,7 @@
 
 ## Documentation
 
-You can find detailed documentation for each component, including a list of props and examples, in https://ui.gluestack.io/docs website.
+You can find detailed documentation for each component, including a list of props and examples, in https://gluestack.io/ui/docs website.
 
 ## Features
 
@@ -73,7 +73,7 @@ function Example() {
 ```
 
 More guides on how to get started are available
-[here](https://ui.gluestack.io/docs).
+[here](https://gluestack.io/ui/docs).
 
 ## Contributing
 
@@ -81,4 +81,4 @@ We welcome contributions to the `gluestack-ui`. If you have an idea for a new co
 
 ## License
 
-Licensed under the MIT License, Copyright © 2023 GeekyAnts. See [LICENSE](https://github.com/gluestack/ui/blob/master/LICENSE) for more information.
+Licensed under the MIT License, Copyright © 2023 GeekyAnts. See [LICENSE](https://github.com/gluestack/gluestack-ui/blob/master/LICENSE) for more information.
