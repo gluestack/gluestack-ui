@@ -88,7 +88,7 @@ export const App = () => {
 ```
 
 More guides on how to get started are available
-[here](https://gluestack.io/style).
+[here](https://gluestack.io/style/docs).
 
 ## Contributing
 
@@ -96,4 +96,4 @@ We welcome contributions to the `gluestack-style`! If you have an idea for a new
 
 ## License
 
-Licensed under the MIT License, Copyright © 2021 GeekyAnts. See [LICENSE](https://github.com/gluestack/gluestack-style/blob/master/LICENSE) for more information.
+Licensed under the MIT License, Copyright © 2021 GeekyAnts. See [LICENSE](https://github.com/gluestack/gluestack-style/blob/main/LICENSE) for more information.
