@@ -7,6 +7,27 @@ export const StyledIcon = styled(
     _dark: {
       color: '$muted.400',
     },
+  },
+  {
+    componentName: 'Icon',
+    resolveProps: ['stroke', 'fill'],
+    ancestorStyle: ['_icon'],
+  } as const,
+  {
+    propertyTokenMap: {
+      stroke: 'colors',
+      fill: 'colors',
+    },
+  }
+);
+
+export default styled(
+  StyledIcon,
+  {
+    color: '$muted.500',
+    _dark: {
+      color: '$muted.400',
+    },
     variants: {
       size: {
         '2xs': {
@@ -102,31 +123,12 @@ export const StyledIcon = styled(
     defaultProps: {
       size: 'md',
     },
-  },
-  {
-    componentName: 'Icon',
-    resolveProps: ['stroke', 'fill'],
-  } as const,
-  {
-    propertyTokenMap: {
-      stroke: 'colors',
-      fill: 'colors',
-    },
-  }
-);
-
-export default styled(
-  StyledIcon,
-  {
     props: {
-      size: 'md',
       //@ts-ignore
       fill: 'none',
     },
-    color: '$muted.500',
-    _dark: {
-      color: '$muted.400',
-    },
   },
-  {}
+  {
+    ancestorStyle: ['_icon'],
+  } as const
 );
