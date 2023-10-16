@@ -30,11 +30,11 @@
   "license": "ISC",
   "devDependencies": {
     "@gluestack-style/react": "^0.2.54-alpha.3",
-    "@gluestack-ui/themed": "^0.1.53"
+    "@gluestack-ui/themed": "^1.0.6"
   },
   "peerDependencies": {
     "@gluestack-style/react": ">=0.2",
-    "@gluestack-ui/themed": ">=0.1"
+    "@gluestack-ui/themed": ">=1.0.6"
   },
   "release-it": {
     "git": {
