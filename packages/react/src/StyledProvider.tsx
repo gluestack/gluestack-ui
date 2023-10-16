@@ -43,7 +43,7 @@ export const StyledProvider: React.FC<{
   colorMode?: COLORMODES;
   children?: React.ReactNode;
   globalStyles?: any;
-  _experimentalNestedProvider: boolean;
+  _experimentalNestedProvider?: boolean;
 }> = ({
   config,
   colorMode,

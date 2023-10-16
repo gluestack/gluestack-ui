@@ -5,7 +5,6 @@ import type {
   OrderedSXResolved,
   StyleIds,
   ComponentProps,
-  UtilityProps,
   IVerbosedTheme,
   ITheme,
   ExtendedConfigType,
@@ -996,12 +995,7 @@ export function verboseStyled<P, Variants, ComCon>(
       // sxHash: BUILD_TIME_sxHash = '',
       ...componentProps
     }: Omit<
-      Omit<P, keyof Variants> &
-        Partial<ComponentProps<ITypeReactNativeStyles, Variants, P, ComCon>> &
-        Partial<UtilityProps<ITypeReactNativeStyles>> & {
-          as?: any;
-          children?: any;
-        },
+      ComponentProps<ITypeReactNativeStyles, Variants, P, ComCon>,
       'animationComponentGluestack'
     >,
     ref: React.ForwardedRef<P>

@@ -65,6 +65,7 @@ export interface Tokens {
   breakpoints?: { [key: GenericKey]: Record<string, any> & {} };
   mediaQueries?: { [key: GenericKey]: Record<string, any> & {} };
   letterSpacings?: { [key: GenericKey]: Record<string, any> & {} };
+  opacity?: { [key: GenericKey]: Record<string, any> & {} };
   lineHeights?: { [key: GenericKey]: any };
   fontWeights?: { [key: GenericKey]: any };
   fonts?: { [key: GenericKey]: any };
@@ -734,61 +735,71 @@ interface GenericComponents {
 /********************* COMPONENT PROPS TYPE *****************************************/
 
 export type ComponentProps<GenericComponentStyles, Variants, P, ComCon> =
-  SxStyleProps<
-    GenericComponentStyles,
-    Variants,
-    P,
-    'animationComponentGluestack' extends keyof P
-      ? P['animationComponentGluestack'] extends true
-        ? Plugins
-        : []
-      : []
-  > & {
-    states?: {
-      [K in IState]?: boolean;
-    };
-  } & (GSConfig['globalStyle'] extends object
-      ? {
-          [Key in keyof MergeNestedThree<
-            GlobalVariants,
-            Variants,
-            // @ts-ignore
-            Components[`${ComCon}`]['theme']['variants']
-          >]?: keyof MergeNestedThree<
-            GlobalVariants,
-            Variants,
-            // @ts-ignore
-            Components[`${ComCon}`]['theme']['variants']
-          >[Key] extends 'true' | 'false'
-            ? boolean
-            : keyof MergeNestedThree<
-                GlobalVariants,
-                Variants,
-                // @ts-ignore
-                Components[`${ComCon}`]['theme']['variants']
-              >[Key];
-        } & Omit<P, keyof Variants>
-      : {
-          [Key in keyof MergeNested<
-            Variants,
-            // @ts-ignore
-            Components[`${ComCon}`]['theme']['variants']
-          >]?: keyof MergeNested<
-            Variants, // @ts-ignore
-            Components[`${ComCon}`]['theme']['variants']
-          >[Key] extends 'true' | 'false'
-            ? boolean
-            : keyof MergeNested<
-                Variants,
-                // @ts-ignore
-                Components[`${ComCon}`]['theme']['variants']
-              >[Key];
-        });
+  Partial<
+    Omit<P, keyof Variants> &
+      SxStyleProps<
+        GenericComponentStyles,
+        Variants,
+        P,
+        'animationComponentGluestack' extends keyof P
+          ? P['animationComponentGluestack'] extends true
+            ? Plugins
+            : []
+          : []
+      > & {
+        as?: any;
+        children?: any;
+      } & UtilityProps<GenericComponentStyles, P> & {
+        states?: {
+          [K in IState]?: boolean;
+        };
+      } & (GSConfig['globalStyle'] extends object
+        ? {
+            [Key in keyof MergeNestedThree<
+              GlobalVariants,
+              Variants,
+              // @ts-ignore
+              Components[`${ComCon}`]['theme']['variants']
+            >]?: keyof MergeNestedThree<
+              GlobalVariants,
+              Variants,
+              // @ts-ignore
+              Components[`${ComCon}`]['theme']['variants']
+            >[Key] extends 'true' | 'false'
+              ? boolean
+              : keyof MergeNestedThree<
+                  GlobalVariants,
+                  Variants,
+                  // @ts-ignore
+                  Components[`${ComCon}`]['theme']['variants']
+                >[Key];
+          } & Omit<P, keyof Variants>
+        : {
+            [Key in keyof MergeNested<
+              Variants,
+              // @ts-ignore
+              Components[`${ComCon}`]['theme']['variants']
+            >]?: keyof MergeNested<
+              Variants, // @ts-ignore
+              Components[`${ComCon}`]['theme']['variants']
+            >[Key] extends 'true' | 'false'
+              ? boolean
+              : keyof MergeNested<
+                  Variants,
+                  // @ts-ignore
+                  Components[`${ComCon}`]['theme']['variants']
+                >[Key];
+          })
+  >;
 
-export type UtilityProps<GenericComponentStyles> = TokenizedRNStyleProps<
-  GetRNStyles<GenericComponentStyles>
+export type UtilityProps<GenericComponentStyles, GenericComponentProps> = Omit<
+  TokenizedRNStyleProps<GetRNStyles<GenericComponentStyles>>,
+  keyof GenericComponentProps
 > &
-  AliasesProps<RNStyles<GenericComponentStyles>>;
+  Omit<
+    AliasesProps<RNStyles<GenericComponentStyles>>,
+    keyof GenericComponentProps
+  >;
 
 /********************* UTILITY TYPE *****************************************/
 
@@ -887,14 +898,12 @@ export type ExtendRNStyle<GenericComponentStyles, key> =
       GenericComponentStyles[key];
 
 type WithSizeNegativeValue<Tokens> = keyof Tokens extends 'sizes'
-  ? WithNegativeValue<
-      //@ts-expect-error
-      | StringifyToken<keyof Tokens['sizes']>
+  ? //@ts-expect-error
+    | StringifyToken<keyof Tokens['sizes']>
       //@ts-expect-error
       | StringifyToken<keyof Tokens['space']>
-    >
   : //@ts-expect-error
-    WithNegativeValue<StringifyToken<keyof Tokens['space']>>;
+    StringifyToken<keyof Tokens['space']>;
 
 export type TokenizedRNStyleProps<
   GenericComponentStyles,
