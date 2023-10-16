@@ -450,7 +450,6 @@ export function convertToSXForStateColorModeMediaQuery(
 ) {
   const newObj: any = {
     // ...obj,
-    sx: {},
   };
 
   const obj = convertResponsiveToPseudoClasses(inputObj, _config);
@@ -467,7 +466,10 @@ export function convertToSXForStateColorModeMediaQuery(
       propName.startsWith(':') ||
       propName.startsWith('@')
     ) {
-      newObj.sx[propName] = propValue;
+      newObj[propName] = convertToSXForStateColorModeMediaQuery(
+        propValue,
+        _config
+      );
     } else {
       newObj[propName] = propValue;
     }
@@ -483,7 +485,7 @@ function addDollarSign(propertyName: any, propValue: any, config: any) {
       ? //@ts-ignore
         config.tokens[propertyTokenMap[propertyName]][propValue]
       : undefined;
-
+    // console.log(tokenAvailable, 'TOLEN AVAILABLE', propertyName);
     if (tokenAvailable === undefined) {
       return propValue;
     } else {
@@ -533,6 +535,7 @@ export function addDollarSignsToProps(obj: any, config: any) {
       newObj[key] = addDollarSign(propertyName, propValue, config);
     }
   }
+
   return newObj;
 }
 
