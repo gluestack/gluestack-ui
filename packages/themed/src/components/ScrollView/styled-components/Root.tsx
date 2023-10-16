@@ -1,7 +1,5 @@
 import { ScrollView } from 'react-native';
-import { styled, useStyled } from '@gluestack-style/react';
-// @ts-ignore
-import { propertyTokenMap } from '@gluestack-style/react/lib/module/propertyTokenMap';
+import { styled, useStyled, propertyTokenMap } from '@gluestack-style/react';
 
 export default styled(
   ScrollView,
@@ -14,15 +12,17 @@ export default styled(
     propertyResolver: {
       contentContainerStyle: (rawValue, resolver) => {
         // eslint-disable-next-line react-hooks/rules-of-hooks
-        const aliases = useStyled()?.config?.aliases;
+        const aliases: any = useStyled()?.config?.aliases;
         const newValue = {} as Record<any, string>;
-        Object.entries(rawValue).forEach(([key, value]) => {
+        Object.entries(rawValue).forEach(([key, value]: any) => {
           if (Object.hasOwn(aliases, key)) {
             newValue[`${aliases[key]}`] = resolver(
               value,
+              //@ts-ignore
               propertyTokenMap[aliases[key]]
             );
           } else {
+            //@ts-ignore
             newValue[`${key}`] = resolver(value, propertyTokenMap[key]);
           }
         });

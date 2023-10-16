@@ -1,7 +1,6 @@
 import { KeyboardAvoidingView } from 'react-native';
 import { styled, useStyled } from '@gluestack-style/react';
-// @ts-ignore
-import { propertyTokenMap } from '@gluestack-style/react/lib/module/propertyTokenMap';
+import { propertyTokenMap } from '@gluestack-style/react';
 
 export default styled(
   KeyboardAvoidingView,
@@ -20,9 +19,11 @@ export default styled(
           if (Object.hasOwn(aliases, key)) {
             newValue[`${aliases[key]}`] = resolver(
               value,
+              //@ts-ignore
               propertyTokenMap[aliases[key]]
             );
           } else {
+            //@ts-ignore
             newValue[`${key}`] = resolver(value, propertyTokenMap[key]);
           }
         });
