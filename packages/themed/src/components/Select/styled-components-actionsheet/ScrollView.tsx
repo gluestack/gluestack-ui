@@ -1,4 +1,4 @@
-import { ScrollView } from 'react-native';
+import { ScrollView } from '../../ScrollView';
 import { styled } from '@gluestack-style/react';
 
 export default styled(

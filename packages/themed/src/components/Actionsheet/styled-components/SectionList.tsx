@@ -1,4 +1,4 @@
-import { SectionList } from 'react-native';
+import { SectionList } from '../../SectionList';
 import { styled } from '@gluestack-style/react';
 
 export default styled(
