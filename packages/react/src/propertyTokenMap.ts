@@ -128,6 +128,7 @@ export const propertyTokenMap = {
   shadowColor: colors,
 
   shadowOpacity: opacity,
+  opacity: opacity,
 
   shadow: shadows,
   // Media Query
