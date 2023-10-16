@@ -79,14 +79,16 @@ const ActionsheetWithKeyboardAvoidingView = ({
 
   return (
     // @ts-ignore
-    <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : ''}>
+    <KeyboardAvoidingView
+      behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+    >
       <Actionsheet
         isOpen={showActionsheet || showActionsheetProp}
         onClose={handleClose}
         {...props}
       >
         <ActionsheetBackdrop />
-        <ActionsheetContent maxHeight="75%">
+        <ActionsheetContent>
           <ActionsheetDragIndicatorWrapper>
             <ActionsheetDragIndicator />
           </ActionsheetDragIndicatorWrapper>
@@ -174,6 +176,9 @@ const ActionsheetWithKeyboardAvoidingView = ({
   );
 };
 
+ActionsheetWithKeyboardAvoidingView.description =
+  'This is an example of an Actionsheet component with KeyboardAvoidingView. This is used to avoid the keyboard when it is opened.';
+
 export default ActionsheetWithKeyboardAvoidingView;
 
 export {
@@ -194,4 +199,6 @@ export {
   Icon,
   LeadingIcon,
   IconRoot,
+  KeyboardAvoidingView,
+  Platform,
 };

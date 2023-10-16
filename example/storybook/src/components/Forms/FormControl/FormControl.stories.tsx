@@ -4,6 +4,11 @@ import FormControl from './FormControl';
 const FormControlMeta: ComponentMeta<typeof FormControl> = {
   title: 'stories/FORMS/FormControl',
   component: FormControl,
+  // metaInfo is required for figma generation
+  // @ts-ignore
+  metaInfo: {
+    componentDescription: `By using FormControl, developers can provide important context to form elements. This context can include whether the element is invalid, disabled, or required.`,
+  },
   argTypes: {
     isInvalid: {
       control: 'boolean',

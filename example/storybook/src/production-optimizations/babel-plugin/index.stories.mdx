@@ -12,7 +12,7 @@ import { AppProvider, Box } from '@gluestack/design-system';
 
 ### @gluestack-style/babel-plugin-styled-resolver
 
-@gluestack-style/babel-plugin-styled-resolver transpiles your `themed` component inline styles and resolves the `component styling` in build time. It also generates all the `CSS rules` and style ids based on which these CSS styles are applied on the component. Doing this saves tons of time on runtime because all your style calculation is already done and all your app has to do is inject this style into a style tag and viola! All your styles appear instantaneously.
+`@gluestack-style/babel-plugin-styled-resolver` transpile your `themed` component inline styles and resolves the `component styling` in build time. It also generates all the `CSS rules` and style ids based on which these CSS styles are applied on the component. Doing this saves tons of time on runtime because all your style calculation is already done and all your app has to do is inject this style into a style tag and viola! All your styles appear instantaneously.
 
 ## Installation Steps:
 
@@ -26,19 +26,31 @@ import { AppProvider, Box } from '@gluestack/design-system';
 
    ```bash
    const path = require('path');
-   const gluestackStyleResolver = require('@gluestack-style/babel-plugin-styled-resolver');
    module.exports = function (api) {
      api.cache(true);
      return {
        presets: ['babel-preset-expo'],
-       plugins: [
-         gluestackStyleResolver,
-       ],
+       plugins: ['@gluestack-style/babel-plugin-styled-resolver'],
      };
    };
    ```
 
-3. Just make sure your `babel.config.js` and `gluestack-ui.config.js/ts` are in the same directory. We suggest you keep both of them at the root of your app codebase. If you can't, then use the `configPath` option to specify the path of the `gluestack-ui.config.js/ts` file.
+3. Add `GLUESTACK_STYLE_TARGET` environment variable, 'native' or 'web' depending on platform to remove unwanted props and data
+
+   Below is an example of how you can add this in your `expo app`, you can change it depending on the project,
+
+   ```
+     "scripts": {
+       "start": "GLUESTACK_STYLE_TARGET=native expo start -c",
+       "web": "GLUESTACK_STYLE_TARGET=web expo start --web -c",
+       "android": "GLUESTACK_STYLE_TARGET=native expo start --android -c",
+       "ios": "GLUESTACK_STYLE_TARGET=native expo start --ios -c",
+     },
+   ```
+
+   - We added the `GLUESTACK_STYLE_TARGE` with values 'native' or 'web' environment variable to our environment variable so that it can automatically get rid of extra props and data that it doesn't need, depending on the platform.
+
+4. Just make sure your `babel.config.js` and `gluestack-ui.config.js/ts` are in the same directory. We suggest you keep both of them at the root of your app codebase. If you can't, then use the `configPath` option to specify the path of the `gluestack-ui.config.js/ts` file.
 
 > **Note:** We already provide you with the plugin config for `@gluestack-ui/themed`. So you have to do minimal configuration to get it working.
 

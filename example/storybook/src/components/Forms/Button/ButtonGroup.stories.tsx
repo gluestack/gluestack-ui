@@ -4,6 +4,11 @@ import ButtonGroup from './ButtonGroup';
 const ButtonGroupMeta: ComponentMeta<any> = {
   title: 'stories/FORMS/Button',
   component: ButtonGroup,
+  // metaInfo is required for figma generation
+  // @ts-ignore
+  metaInfo: {
+    componentDescription: `Buttons can be grouped together as individual segments of related actions.`,
+  },
   args: {
     space: 'md',
     isAttached: true,

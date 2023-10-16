@@ -54,4 +54,7 @@ const ToastDuplicatePrevent = ({ placement = 'top', ...props }: any) => {
   );
 };
 
+ToastDuplicatePrevent.description =
+  'This is an example for preventing duplicate toasts. Toasts are used to communicate a state that affects a system, feature or page';
+
 export default ToastDuplicatePrevent;

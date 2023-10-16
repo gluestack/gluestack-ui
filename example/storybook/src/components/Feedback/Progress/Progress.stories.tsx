@@ -4,6 +4,11 @@ import Progress from './Progress';
 const ProgressMeta: ComponentMeta<typeof Progress> = {
   title: 'stories/FEEDBACK/Progress',
   component: Progress,
+  // metaInfo is required for figma generation
+  // @ts-ignore
+  metaInfo: {
+    componentDescription: `The Progress component is designed to display the progress of a task that involves multiple steps and takes some time to complete.`,
+  },
   argTypes: {
     value: {
       type: 'number',

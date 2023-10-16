@@ -43,6 +43,9 @@ const SliderBasic = ({ value: valueProp = 60, ...props }: any) => {
   );
 };
 
+SliderBasic.description =
+  'This is a basic Slider component example. Sliders are used to select a value from a range of values.';
+
 export default SliderBasic;
 
 export {

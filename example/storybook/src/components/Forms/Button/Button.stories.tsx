@@ -8,6 +8,11 @@ import ButtonWithIconsTemp from './ButtonWithIcon';
 const ButtonMeta: ComponentMeta<typeof Button> = {
   title: 'stories/FORMS/Button',
   component: Button,
+  // metaInfo is required for figma generation
+  // @ts-ignore
+  metaInfo: {
+    componentDescription: `A button component is a graphical user interface element that enables users to act by clicking or tapping.`,
+  },
   args: {
     action: 'primary',
     variant: 'solid',

@@ -118,4 +118,6 @@ const MultipleModals = ({ ...props }: any) => {
   );
 };
 
+MultipleModals.description =
+  'This is an example of multiple modals. Multiple modals can be opened at the same time. Here we have two modals where second modal is opened from first modal.';
 export default MultipleModals;

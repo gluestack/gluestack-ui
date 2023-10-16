@@ -71,6 +71,9 @@ const InputWithIcon = ({ ...props }: any) => {
   );
 };
 
+InputWithIcon.description =
+  'This is an example of Input component with icon. Inputs are used to capture data from users.';
+
 export default InputWithIcon;
 
 export { Input, VStack, Icon, SearchIcon, EyeIcon, EyeOffIcon };

@@ -85,6 +85,9 @@ const ActionsheetWithFlatList = ({
   );
 };
 
+ActionsheetWithFlatList.description =
+  'This is an example of actionsheet with items rendered using FlatList';
+
 export default ActionsheetWithFlatList;
 
 export { Actionsheet, Button };

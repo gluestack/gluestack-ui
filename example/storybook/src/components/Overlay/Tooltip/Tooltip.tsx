@@ -57,23 +57,37 @@ const FigmaTooltipStory = ({
       offset={10}
       placement="bottom"
       isOpen={true}
+      _experimentalOverlay={true}
       // eslint-disable-next-line react/no-unstable-nested-components
       trigger={(triggerProps: any) => {
         return (
           <Box w={200} h={100} py="$20" alignItems="center">
             <Button {...triggerProps}>
-              <Button.Text>More</Button.Text>
+              <ButtonText>More</ButtonText>
             </Button>
           </Box>
         );
       }}
     >
-      <Tooltip.Content>
-        <Tooltip.Text>Hello world!</Tooltip.Text>
-      </Tooltip.Content>
+      <TooltipContent>
+        <TooltipText
+          dataSet={{
+            'component-props': JSON.stringify({
+              'is-text-style': true,
+              'component-name': 'Text',
+              'size': 'md',
+            }),
+          }}
+        >
+          Hello world!
+        </TooltipText>
+      </TooltipContent>
     </Tooltip>
   );
 };
+
+TooltipBasic.description =
+  'This is a basic Tooltip component example.  A tooltip is a popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.';
 
 export default TooltipBasic;
 

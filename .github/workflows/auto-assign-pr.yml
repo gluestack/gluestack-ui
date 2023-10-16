@@ -11,6 +11,6 @@ jobs:
       - name: 'Auto-assign PR'
         uses: pozil/auto-assign-issue@v1
         with:
-            repo-token: ${{ secrets.MY_GITHUB_TOKEN }}
-            teams: gluestack-ui-reviewers
-            numOfAssignee: 1
+          repo-token: ${{ secrets.MY_GITHUB_TOKEN }}
+          teams: gluestack-ui-reviewers
+          numOfAssignee: 1

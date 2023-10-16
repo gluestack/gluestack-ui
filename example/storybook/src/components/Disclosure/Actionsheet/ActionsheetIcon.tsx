@@ -169,6 +169,8 @@ const ActionsheetWithIcon = ({
   );
 };
 
+ActionsheetWithIcon.description = `This is an example of an Actionsheet component with Icons. This is to represent how to use icons in Actionsheet.`;
+
 export default ActionsheetWithIcon;
 
 export {

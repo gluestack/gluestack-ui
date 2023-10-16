@@ -20,6 +20,9 @@ const LinearGradientStory = ({ ...props }: any) => {
   );
 };
 
+LinearGradientStory.description =
+  'This is a basic LinearGradient component example. LinearGradients are used to add gradients to components.';
+
 export default LinearGradientStory;
 
 export {

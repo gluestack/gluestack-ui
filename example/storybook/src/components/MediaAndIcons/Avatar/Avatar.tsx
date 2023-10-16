@@ -53,6 +53,9 @@ const AvatarBasic = ({
   );
 };
 
+AvatarBasic.description =
+  'This is a basic Avatar component example. An avatar is a graphical representation of a user.';
+
 export default AvatarBasic;
 
 export {

@@ -50,6 +50,9 @@ const DividerBasic = ({ ...props }) => {
   );
 };
 
+DividerBasic.description =
+  'This is a basic Divider component example.  A divider is a thin line that groups content in lists and layouts.';
+
 export default DividerBasic;
 
 export {

@@ -28,10 +28,10 @@ import {
   InputSlot,
   AddIcon,
   Image,
-  config,
   Text,
   Center,
 } from '@gluestack-ui/themed';
+import { config } from '@gluestack-ui/config';
 
 const ActionsheetBasic = ({ showActionsheetProp, ...props }: any) => {
   const [showActionsheet, setShowActionsheet] = React.useState(false);
@@ -150,6 +150,9 @@ function FigmaActionsheetStory({ ...props }: any) {
     </Box>
   );
 }
+
+ActionsheetBasic.description =
+  'This is a basic Actionsheet component example. Actionsheets are used to display a list of actions that can be performed on a page.';
 
 export default ActionsheetBasic;
 

@@ -16,15 +16,8 @@ import {
   Alert,
 } from '@gluestack/design-system';
 import Wrapper from '../../components/Wrapper';
-import {
-  Box,
-  Image,
-  VStack,
-  Text,
-  Heading,
-  Link,
-  config,
-} from '@gluestack-ui/themed';
+import { Box, Image, VStack, Text, Heading, Link } from '@gluestack-ui/themed';
+import { config } from '@gluestack-ui/config';
 
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
@@ -36,9 +29,9 @@ A card is a flexible and extensible content container. It comes in caries shapes
 
 ## Most Commonly used design
 
-A card component is a common and widely used UI element which helps to display related information or content in a visually cohesive and organized manner. Below is the implementation of card component usign `gluestack-ui`.
+A card component is a common and widely used UI element which helps to display related information or content in a visually cohesive and organized manner. Below is the implementation of card component using `gluestack-ui`.
 
-<AppProvider config={config.theme}>
+<AppProvider config={config}>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -79,7 +72,7 @@ A card component is a common and widely used UI element which helps to display r
               August 16, 2023
               </Text>
               <Heading _dark={{color:"$textLight200"}} size='sm' >
-              Fresho Orange 
+              Fresh Orange 
             </Heading>
             <Text my='$1.5' _dark={{color:"$textLight200"}} fontSize='$xs'>
               Oranges are a great source of vitamin C, which is essential for a healthy immune system. Oranges are a great source of vitamin C,

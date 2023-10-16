@@ -2,7 +2,7 @@ import { HStack } from '@gluestack-ui/themed';
 import { Box } from '@gluestack-ui/themed';
 import React from 'react';
 
-const HStackReversed = ({ space, ...props }) => {
+const HStackReversed = ({ space, ...props }: any) => {
   return (
     <HStack space={space} mt="$5" {...props} reversed>
       <Box sx={{ w: 100, h: 100, bg: '$blue300' }} />
@@ -12,5 +12,8 @@ const HStackReversed = ({ space, ...props }) => {
     </HStack>
   );
 };
+
+HStackReversed.description =
+  'This is a basic HStack component example. HStack is a primitive component to layout its children horizontally.';
 
 export default HStackReversed;

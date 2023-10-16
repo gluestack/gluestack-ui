@@ -6,6 +6,7 @@
     "ignoreDeprecations": "5.0",
     "noEmit": false,
     "declaration": true,
+    "allowJs": true,
     "allowUnreachableCode": false,
     "allowUnusedLabels": true,
     "esModuleInterop": true,

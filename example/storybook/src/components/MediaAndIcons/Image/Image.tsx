@@ -14,6 +14,8 @@ const ImageBasic = ({
   );
 };
 
+ImageBasic.description = 'This is a basic Image component example.';
+
 export default ImageBasic;
 
 export { Image };

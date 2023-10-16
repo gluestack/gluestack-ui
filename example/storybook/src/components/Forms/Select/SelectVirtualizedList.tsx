@@ -70,6 +70,9 @@ const SelectWithVirtualizedList = ({
   );
 };
 
+SelectWithVirtualizedList.displayName =
+  'SelectWithVirtualizedList is an example of how to use Select with list that uses VirtualizedList on native';
+
 export default SelectWithVirtualizedList;
 
 export { Center, Select, Icon, ChevronDownIcon };

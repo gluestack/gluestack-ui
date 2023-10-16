@@ -76,6 +76,7 @@ const ActionsheetWithVirtualizedList = ({
           <ActionsheetDragIndicator />
         </ActionsheetDragIndicatorWrapper>
         <ActionsheetVirtualizedList
+          h="$56"
           data={data}
           initialNumToRender={5}
           renderItem={({ item }: any) => <Item title={item.title} />}
@@ -87,6 +88,9 @@ const ActionsheetWithVirtualizedList = ({
     </Actionsheet>
   );
 };
+
+ActionsheetWithVirtualizedList.description =
+  'This is an example of actionsheet with items rendered using VirtualizedList ';
 
 export default ActionsheetWithVirtualizedList;
 

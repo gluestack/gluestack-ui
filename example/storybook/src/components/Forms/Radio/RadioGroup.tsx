@@ -77,4 +77,7 @@ const RadioGroupBasic = ({
   );
 };
 
+RadioGroupBasic.description =
+  'This is a basic RadioGroup component example. RadioGroups are form elements that allow users to select one option from a set.';
+
 export default RadioGroupBasic;

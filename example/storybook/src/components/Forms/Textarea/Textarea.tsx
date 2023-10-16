@@ -18,6 +18,9 @@ const TextareaBasic = ({ ...props }: any) => {
   );
 };
 
+TextareaBasic.description =
+  'This is a basic Textarea component example. Textareas are used to get multiline input from the user.';
+
 export default TextareaBasic;
 
 export {

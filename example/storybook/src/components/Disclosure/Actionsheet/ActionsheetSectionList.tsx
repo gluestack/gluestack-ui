@@ -61,6 +61,7 @@ const ActionsheetWithSectionlist = ({
           <ActionsheetDragIndicator />
         </ActionsheetDragIndicatorWrapper>
         <ActionsheetSectionList
+          h="$56"
           sections={DATA}
           keyExtractor={(item: any, index: any) => item + index}
           renderItem={({ item }: any) => (
@@ -96,6 +97,9 @@ const ActionsheetWithSectionlist = ({
     </Actionsheet>
   );
 };
+
+ActionsheetWithSectionlist.description =
+  'This is an example of actionsheet with items rendered using SectionList ';
 
 export default ActionsheetWithSectionlist;
 

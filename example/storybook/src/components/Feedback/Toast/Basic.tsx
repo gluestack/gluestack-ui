@@ -16,7 +16,7 @@ const ToastPlacement = ({ placement = 'top', ...props }: any) => {
           placement: placement,
           render: ({ id }) => {
             return (
-              <Toast nativeId={id} {...props}>
+              <Toast nativeID={id} {...props}>
                 <ToastTitle
                   dataSet={{
                     'component-props': JSON.stringify({
@@ -48,5 +48,8 @@ const ToastPlacement = ({ placement = 'top', ...props }: any) => {
     </Button>
   );
 };
+
+ToastPlacement.description =
+  'This is a basic Toast component example. Toasts are used to communicate a state that affects a system, feature or page';
 
 export default ToastPlacement;

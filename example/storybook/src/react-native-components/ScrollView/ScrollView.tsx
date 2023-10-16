@@ -1,22 +1,23 @@
-import React from 'react';
 import {
-  Center,
   ScrollView,
-  VStack,
+  Center,
   Heading,
-  config,
+  VStack,
   Text,
 } from '@gluestack-ui/themed';
+import { config } from '@gluestack-ui/config';
+import React from 'react';
+import Wrapper from '../../components/Wrapper';
 
-const ScrollViewStory = () => {
+export default function ScrollViewStory() {
   return (
-    <>
+    <Center>
       <ScrollView h="$80" w="$80">
         <Center mt="$3" mb="$4">
           <Heading fontSize="xl">Primary</Heading>
         </Center>
         <VStack flex={1}>
-          {Object.keys(config.theme.tokens.colors).map((key) => {
+          {Object.keys(config.tokens.colors).map((key: any) => {
             if (
               key.includes('primary') &&
               !(
@@ -29,18 +30,18 @@ const ScrollViewStory = () => {
             )
               return (
                 // @ts-ignore
-                <Center py="$4" bg={config.theme.tokens.colors[key]}>
+                <Center py="$4" bg={config.tokens.colors[key]}>
                   <Text>{key}</Text>
                 </Center>
               );
-            return null;
+            return null; // add this line to fix Problem 1
           })}
         </VStack>
         <Center mt="$10" mb="$4">
           <Heading fontSize="$xl">Yellow</Heading>
         </Center>
         <VStack flex={1}>
-          {Object.keys(config.theme.tokens.colors).map((key) => {
+          {Object.keys(config.tokens.colors).map((key: any) => {
             if (
               key.includes('yellow') &&
               !(
@@ -50,22 +51,21 @@ const ScrollViewStory = () => {
                 key.includes('900') ||
                 key.includes('950')
               )
-            )
+            ) {
               return (
                 // @ts-ignore
-                <Center py="$4" bg={config.theme.tokens.colors[key]}>
+                <Center py="$4" bg={config.tokens.colors[key]}>
                   <Text>{key}</Text>
                 </Center>
               );
-
-            return null;
+            } else return null;
           })}
         </VStack>
         <Center mt="$10" mb="$4">
           <Heading fontSize="$xl">Violet</Heading>
         </Center>
         <VStack flex={1}>
-          {Object.keys(config.theme.tokens.colors).map((key) => {
+          {Object.keys(config.tokens.colors).map((key: any) => {
             if (
               key.includes('violet') &&
               !(
@@ -75,20 +75,28 @@ const ScrollViewStory = () => {
                 key.includes('900') ||
                 key.includes('950')
               )
-            )
+            ) {
               return (
                 // @ts-ignore
-                <Center py="$4" bg={config.theme.tokens.colors[key]}>
+                <Center py="$4" bg={config.tokens.colors[key]}>
                   <Text>{key}</Text>
                 </Center>
               );
-            return null;
+            } else return null;
           })}
         </VStack>
       </ScrollView>
-    </>
+    </Center>
   );
-};
+}
 
-export default ScrollViewStory;
-export { ScrollView } from '@gluestack-ui/themed';
+export {
+  VStack,
+  Center,
+  Heading,
+  GluestackUIProvider,
+  ScrollView,
+  Text,
+} from '@gluestack-ui/themed';
+
+export { config, Wrapper };

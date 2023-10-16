@@ -1,5 +1,4 @@
 const path = require('path');
-
 // console.log(path.resolve('../../', 'node_modules/@gluestack-style/react'));
 module.exports = {
   stories: [

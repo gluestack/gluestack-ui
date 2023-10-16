@@ -12,6 +12,9 @@ const HStackBasic = ({ space, reversed, ...props }: any) => {
   );
 };
 
+HStackBasic.description =
+  'This is a basic HStack component example. HStack is a primitive component.';
+
 export default HStackBasic;
 
 export { Box, HStack };

@@ -21,6 +21,9 @@ const CenterBasic = () => {
   );
 };
 
+CenterBasic.description =
+  'This is a basic Center component example. A center is a layout component that centers its children.';
+
 export default CenterBasic;
 
 export { Text, Center };

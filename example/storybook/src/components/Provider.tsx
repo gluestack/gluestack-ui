@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { config } from '@gluestack-ui/themed';
+import { config } from '@gluestack-ui/config';
 import { StyledProvider } from '@gluestack-ui/themed';
 import { createProvider } from '@gluestack-ui/themed';
 
@@ -12,7 +12,7 @@ TempProvider.displayName = 'Provider';
 
 export const Provider = ({ children }: any) => {
   return (
-    <TempProvider config={config.theme}>
+    <TempProvider config={config}>
       <Box
         sx={{
           _dark: {

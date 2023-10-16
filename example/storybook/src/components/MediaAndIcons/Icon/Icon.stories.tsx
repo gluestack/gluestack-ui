@@ -1,5 +1,6 @@
 import type { ComponentMeta } from '@storybook/react-native';
-import Icon, {
+import {
+  Icon,
   AddIcon,
   AlertCircleIcon,
   ArrowUpIcon,
@@ -55,17 +56,24 @@ import Icon, {
   ThreeDotsIcon,
   TrashIcon,
   UnlockIcon,
-} from './AllIcons';
+} from './Icon';
 
 const IconMeta: ComponentMeta<typeof Icon> = {
   title: 'stories/MEDIA AND ICONS/Icons',
   component: Icon,
+  // metaInfo is required for figma generation
+  // @ts-ignore
+  metaInfo: {
+    clusteringOrder: [['as', 'displayName'], 'size'],
+    componentDescription:
+      'Icons are often used to enhance the usability and accessibility of digital products by providing users with clear and intuitive visual cues. It serves as an intuitive and easily recognizable way to communicate with users.',
+  },
   argTypes: {
     size: {
       control: 'select',
       options: ['xl', 'lg', 'md', 'sm', 'xs', '2xs'],
     },
-    name: {
+    as: {
       control: 'select',
       options: [
         AddIcon,
@@ -128,7 +136,7 @@ const IconMeta: ComponentMeta<typeof Icon> = {
   },
   args: {
     size: 'md',
-    name: AddIcon,
+    as: AddIcon,
   },
 };
 

@@ -69,11 +69,15 @@ const ActionsheetWithScrollView = ({
         <ActionsheetDragIndicatorWrapper>
           <ActionsheetDragIndicator />
         </ActionsheetDragIndicatorWrapper>
-        <ActionsheetScrollView>{data.map(renderItem)}</ActionsheetScrollView>
+        <ActionsheetScrollView h="$56">
+          {data.map(renderItem)}
+        </ActionsheetScrollView>
       </ActionsheetContent>
     </Actionsheet>
   );
 };
+ActionsheetWithScrollView.description =
+  'This is an example of an Actionsheet with a list of items inside a ScrollView.';
 
 export default ActionsheetWithScrollView;
 
