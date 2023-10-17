@@ -25,7 +25,6 @@ function ActionsheetContent<T>(
     (
       {
         children,
-        focusable = true,
         // @ts-ignore
         _experimentalContent = false,
         ...props
@@ -134,12 +133,12 @@ function ActionsheetContent<T>(
             transform: [{ translateY: pan.y }],
             width: '100%',
             height: '100%',
+            pointerEvents: 'box-none',
           }}
           onLayout={(event) => {
             const { height } = event.nativeEvent.layout;
             setAnimatedViewSheetHeight(height);
           }}
-          pointerEvents="box-none"
         >
           <FocusScope
             contain={trapFocus}
@@ -166,7 +165,7 @@ function ActionsheetContent<T>(
                 transition={animationDefaultConfig}
                 {...(props as T)}
                 ref={mergedRef}
-                focusable={Platform.OS === 'web' ? focusable : undefined}
+                tabIndex={Platform.OS === 'web' ? 0 : undefined}
                 {...dialogProps}
                 onLayout={(event: any) => {
                   const { height } = event.nativeEvent.layout;

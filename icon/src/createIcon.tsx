@@ -65,7 +65,7 @@ export function createIcon<IconProps>({
       ...props,
     };
 
-    const { focusable, stroke, color, ...resolvedProps } = finalProps;
+    const { stroke, color, ...resolvedProps } = finalProps;
     let type = resolvedProps.type;
     if (type === undefined) {
       type = 'svg';
@@ -92,7 +92,6 @@ export function createIcon<IconProps>({
       <Root
         {...resolvedProps}
         {...colorProps}
-        focusable={focusable}
         accessibilityRole="image"
         ref={ref}
         {...sizeProps}

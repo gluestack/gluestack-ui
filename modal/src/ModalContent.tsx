@@ -13,7 +13,7 @@ import { useDialog } from '@react-native-aria/dialog';
 import { mergeRefs } from '@gluestack-ui/utils';
 
 const ModalContent = (StyledModalContent: any, AnimatePresence?: any) =>
-  forwardRef(({ children, focusable = false, ...props }: any, ref?: any) => {
+  forwardRef(({ children, ...props }: any, ref?: any) => {
     const { initialFocusRef, finalFocusRef, handleClose, visible } =
       React.useContext(ModalContext);
 
@@ -72,7 +72,7 @@ const ModalContent = (StyledModalContent: any, AnimatePresence?: any) =>
             aria-modal="true"
             accessibilityRole={Platform.OS === 'web' ? 'dialog' : undefined}
             accessibilityViewIsModal
-            focusable={Platform.OS === 'web' ? focusable : undefined}
+            tabIndex={Platform.OS === 'web' ? -1 : undefined}
             {...dialogProps}
           >
             {children}

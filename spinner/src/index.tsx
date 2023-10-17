@@ -6,7 +6,7 @@ export function createSpinner<SpinnerProps>({
   Root.displayName = 'Spinner';
   Root.defaultProps = {
     // @ts-ignore
-    focusable: true,
+    tabIndex: 0,
     accessibilityLabel: 'loading',
   };
   return Root;

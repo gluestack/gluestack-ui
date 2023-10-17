@@ -143,7 +143,7 @@ function Tooltip<StyledTooltipProp>(
                 accessibilityRole={
                   Platform.OS === 'web' ? 'tooltip' : undefined
                 }
-                focussable={false}
+                tabIndex={-1}
                 nativeID={tooltipID}
               >
                 {children}

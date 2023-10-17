@@ -24,7 +24,7 @@ export const InputSlot = (StyledInputSlot: any) =>
           if (onPress) onPress();
         }}
         accessibilityElementsHidden={true}
-        focusable={false}
+        tabIndex={-1}
         ref={ref}
         {...props}
       >

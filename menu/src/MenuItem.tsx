@@ -83,7 +83,7 @@ export function MenuItem({
   return (
     <StyledMenuItem
       ref={ref}
-      focusable={focusable === undefined ? false : focusable}
+      tabIndex={focusable === undefined ? -1 : focusable}
       {...restMenuProps}
       states={{
         hover: isHovered,

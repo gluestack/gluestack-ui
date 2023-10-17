@@ -24,7 +24,7 @@ export function Popover({ StyledBackdrop, ...props }: any) {
       <StyledBackdrop
         {...underlayProps}
         onPress={onClose}
-        focusable={false}
+        tabIndex={-1}
         aria-hidden={true}
       />
       {/** @ts-ignore -web only*/}

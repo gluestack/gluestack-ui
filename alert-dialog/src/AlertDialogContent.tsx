@@ -15,7 +15,7 @@ const AlertDialogContent = (
   StyledAlertDialogContent: any,
   AnimatePresence?: any
 ) =>
-  forwardRef(({ children, focusable = false, ...props }: any, ref?: any) => {
+  forwardRef(({ children, ...props }: any, ref?: any) => {
     const { initialFocusRef, finalFocusRef, handleClose, visible } =
       React.useContext(AlertDialogContext);
 
@@ -77,7 +77,7 @@ const AlertDialogContent = (
               Platform.OS === 'web' ? 'alertdialog' : undefined
             }
             accessibilityViewIsModal
-            focusable={Platform.OS === 'web' ? focusable : undefined}
+            tabIndex={Platform.OS === 'web' ? -1 : undefined}
             {...dialogProps}
           >
             {children}

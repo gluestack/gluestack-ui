@@ -37,7 +37,7 @@ export const SelectTrigger = (StyledSelectTrigger: any) =>
         accessibilityLabel={accessibilityLabel}
         accessibilityRole="button"
         ref={mergeRefs([ref, hoverRef])}
-        focusable={false}
+        tabIndex={-1}
         {...props}
       >
         {children}

@@ -19,11 +19,10 @@ export const SelectInput = (StyledSelectInput: any) =>
         disabled={isDisabled}
         aria-hidden={true}
         editable={false}
-        focusable={false}
+        tabIndex={-1}
         importantForAccessibility="no"
         placeholder={placeholder}
         value={label ? label : value ? value : ''}
-        pointerEvents="none"
         onChangeText={(text: string) => setValue(text)}
         {...props}
       />

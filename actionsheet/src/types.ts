@@ -43,7 +43,6 @@ export interface InterfaceActionsheetItemProps extends PressableProps {
 }
 
 export interface InterfaceActionsheetContentProps {
-  focusable?: boolean;
   children?: any;
 }
 

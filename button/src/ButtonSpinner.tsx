@@ -5,7 +5,7 @@ export const ButtonSpinner = (StyledButtonSpinner: any) =>
     return (
       <StyledButtonSpinner
         {...props}
-        accessible
+        tabIndex={0}
         accessibilityLabel="loading"
         ref={ref}
       />

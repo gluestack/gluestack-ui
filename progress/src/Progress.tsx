@@ -20,7 +20,7 @@ const useProgress = ({
 
   return {
     'accessible': true,
-    'focusable': true,
+    'tabIndex': 1,
     'role': 'progressbar',
     'aria-valuemin': min,
     'aria-valuemax': max,

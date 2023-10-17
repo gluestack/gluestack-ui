@@ -113,7 +113,7 @@ const PopoverContent = (StyledPopoverContent: any, AnimatePresence?: any) =>
             isOpen={isOpen}
             collapsable={false}
             {...dialogProps}
-            focusable={Platform.OS === 'web' ? false : undefined}
+            tabIndex={Platform.OS === 'web' ? -1 : undefined}
             style={{
               position: 'absolute',
               ...overlayProps?.style,

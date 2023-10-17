@@ -53,7 +53,7 @@ function SliderFilledTrack<StyledSliderFilledTrack>(
           active: isPressed || isPressedProp,
         }}
         disabled={isDisabled}
-        focusable={Platform.OS === 'web' ? false : undefined}
+        tabIndex={Platform.OS === 'web' ? -1 : undefined}
       />
     );
   });
