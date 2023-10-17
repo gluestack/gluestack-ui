@@ -13,6 +13,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+        with:
+          fetch-depth: '0'
 
       - name: Create Backmerge PR
         uses: devops-infra/action-pull-request@v0.5.3
