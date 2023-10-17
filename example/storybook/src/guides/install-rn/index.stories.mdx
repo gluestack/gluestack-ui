@@ -10,9 +10,9 @@ pageDescription: In this guide, we will walk you through the steps required to a
 showHeader: true
 ---
 
-import { Canvas, Meta, Story } from "@storybook/addon-docs";
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
-import { AppProvider, Link, Box, HStack, Text } from "@gluestack/design-system";
+import { AppProvider, Link, Box, HStack, Text } from '@gluestack/design-system';
 
 <Meta title="Guides/Install in React Native" />
 
@@ -42,6 +42,20 @@ OR
 npm i @gluestack-ui/themed @gluestack-style/react react-native-svg@13.4.0
 ```
 
+### Step 1.5: Default Themed.(Optional)
+
+`@gluestack-ui/themed` is intentionally designed as an unstyled library, providing you with the flexibility to style your components as you prefer. However, if you want to use the default theme, you can install `@gluestack-ui/config` as well.
+
+```bash
+yarn add @gluestack-ui/config@latest
+```
+
+OR
+
+```bash
+npm i @gluestack-ui/config@latest
+```
+
 ### Step 2: Configure the GluestackUIProvider
 
 The `GluestackUIProvider` is a component that provides aliases and tokens throughout your app, using React's Context API. It should be added to the root of your app.
@@ -49,8 +63,8 @@ The `GluestackUIProvider` is a component that provides aliases and tokens throug
 You can update your `App.tsx` file as follows:
 
 ```jsx
-import { GluestackUIProvider, Text } from "@gluestack-ui/themed";
-import { config } from "@gluestack-ui/config";
+import { GluestackUIProvider, Text } from '@gluestack-ui/themed';
+import { config } from '@gluestack-ui/config'; // Optional if you want to use default theme
 
 export default function App() {
   return (
