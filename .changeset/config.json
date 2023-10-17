@@ -7,11 +7,5 @@
   "access": "public",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
-  "ignore": [
-    "expo-app",
-    "babel-gluestack-style-resolver-example",
-    "example-storybook",
-    "next-example-styled",
-    "benchmark-next"
-  ]
+  "ignore": ["benchmark-next", "@gluestack/ui-storybook"]
 }
