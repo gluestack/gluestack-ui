@@ -29,10 +29,12 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@gluestack-style/react": "^1.0.5"
+    "@gluestack-style/react": "^1.0.5",
+    "@gluestack-ui/themed": "^1.0.5"
   },
   "peerDependencies": {
-    "@gluestack-style/react": ">=1.0"
+    "@gluestack-style/react": ">=1.0",
+    "@gluestack-style/themed": ">=1.0"
   },
   "release-it": {
     "git": {

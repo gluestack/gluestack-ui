@@ -51,6 +51,20 @@ npm i @gluestack-ui/themed @gluestack-style/react @gluestack/ui-next-adapter rea
 
 ```
 
+### Step 1.5: Default Themed.(Optional)
+
+`@gluestack-ui/themed` is intentionally designed as an unstyled library, providing you with the flexibility to style your components as you prefer. However, if you want to use the default theme, you can install `@gluestack-ui/config` as well.
+
+```bash
+yarn add @gluestack-ui/config@latest
+```
+
+OR
+
+```bash
+npm i @gluestack-ui/config@latest
+```
+
 ### Step 2: Server-side rendering (SSR)
 
 It's also recommended to set up your server-side rendering (SSR) correctly. To do this, you will need to use the `flush()` function exported by the [@gluestack-ui/themed](/ui/docs/configuration/ssr).
@@ -191,7 +205,7 @@ module.exports = withGluestackUI(nextConfig);
 'use client';
 
 import { GluestackUIProvider } from '@gluestack-ui/themed';
-import { config } from '@gluestack-ui/config';
+import { config } from '@gluestack-ui/config'; // Optional if you want to use default theme
 
 export function Providers({ children }: { children: React.ReactNode }) {
   return <GluestackUIProvider config={config}>{children}</GluestackUIProvider>;
@@ -240,7 +254,7 @@ For Next.js Page Router just add `GluestackUIProvider` to the root of your app a
 import '@/styles/globals.css';
 import type { AppProps } from 'next/app';
 import { GluestackUIProvider } from '@gluestack-ui/themed';
-import { config } from '@gluestack-ui/config';
+import { config } from '@gluestack-ui/config'; // Optional if you want to use default theme
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
