@@ -51,6 +51,14 @@ const ButtonMeta: ComponentMeta<typeof Button> = {
       control: 'boolean',
       options: [true, false],
     },
+    leftIcon: {
+      control: 'boolean',
+      options: [false, true],
+    },
+    rightIcon: {
+      control: 'boolean',
+      options: [false, true],
+    },
   },
 };
 

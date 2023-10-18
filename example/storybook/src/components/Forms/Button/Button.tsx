@@ -22,9 +22,24 @@ import {
 
 import { EditIcon, ArrowLeftIcon } from 'lucide-react-native';
 
-const ButtonBasic = ({ ...props }: any) => {
+const ButtonBasic = ({ leftIcon, rightIcon, colorMode, ...props }: any) => {
   return (
     <Button {...props}>
+      {leftIcon && (
+        <ButtonIcon
+          as={AddIcon}
+          dataSet={{
+            'component-props': JSON.stringify({
+              'instance': true,
+              'instance-name': 'Icon',
+              'as': 'AddIcon',
+              'size': 'md',
+              'colorMode': colorMode,
+            }),
+          }}
+        />
+      )}
+
       <ButtonText
         dataSet={{
           'component-props': JSON.stringify({
@@ -36,6 +51,21 @@ const ButtonBasic = ({ ...props }: any) => {
       >
         Button
       </ButtonText>
+
+      {rightIcon && (
+        <ButtonIcon
+          as={AddIcon}
+          dataSet={{
+            'component-props': JSON.stringify({
+              'instance': true,
+              'instance-name': 'Icon',
+              'as': 'AddIcon',
+              'size': 'md',
+              'colorMode': colorMode,
+            }),
+          }}
+        />
+      )}
     </Button>
   );
 };

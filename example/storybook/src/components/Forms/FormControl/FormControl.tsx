@@ -10,6 +10,8 @@ import {
   FormControlErrorText,
   Input,
   InputField,
+  InputSlot,
+  InputIcon,
   Radio,
   RadioGroup,
   RadioIcon,
@@ -57,9 +59,10 @@ import {
   CheckIcon,
   AlertCircleIcon,
   ChevronDownIcon,
+  EyeOffIcon,
 } from '@gluestack-ui/themed';
 
-const FormControlBasic = ({ colorMode, ...props }) => {
+const FormControlBasic = ({ colorMode, ...props }: any) => {
   let inputState = 'default';
   if (props.isInvalid) {
     inputState = 'isInvalid';
@@ -97,6 +100,20 @@ const FormControlBasic = ({ colorMode, ...props }) => {
           defaultValue="12345"
           placeholder="password"
         />
+        <InputSlot pr={props.variant === 'underlined' ? '$0' : '$4'}>
+          <InputIcon
+            as={EyeOffIcon}
+            dataSet={{
+              'component-props': JSON.stringify({
+                'instance': true,
+                'instance-name': 'Icon',
+                'as': 'EyeOffIcon',
+                'size': 'sm',
+                'colorMode': colorMode,
+              }),
+            }}
+          />
+        </InputSlot>
       </Input>
 
       <FormControlHelper>

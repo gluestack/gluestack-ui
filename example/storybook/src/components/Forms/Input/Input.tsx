@@ -12,10 +12,10 @@ import {
   Text,
   Heading,
   Icon,
-  SearchIcon,
+  EyeOffIcon,
   FormControl,
 } from '@gluestack-ui/themed';
-import { EyeIcon, EyeOffIcon } from 'lucide-react-native';
+import { EyeIcon } from 'lucide-react-native';
 import { useState } from 'react';
 
 const InputBasic = ({ colorMode, ...props }: any) => {
@@ -44,7 +44,7 @@ const InputBasic = ({ colorMode, ...props }: any) => {
           setValue(e.nativeEvent.text);
         }}
         value={value}
-        placeholder="Enter Text here"
+        placeholder="Password"
         dataSet={{
           'component-props': JSON.stringify({
             'is-text-style': true,
@@ -55,12 +55,12 @@ const InputBasic = ({ colorMode, ...props }: any) => {
       />
       <InputSlot pr={props.variant === 'underlined' ? '$0' : '$4'}>
         <InputIcon
-          as={SearchIcon}
+          as={EyeOffIcon}
           dataSet={{
             'component-props': JSON.stringify({
               'instance': true,
               'instance-name': 'Icon',
-              'as': 'SearchIcon',
+              'as': 'EyeOffIcon',
               'size': inputIconSize,
               'colorMode': colorMode,
             }),
