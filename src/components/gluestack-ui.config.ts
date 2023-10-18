@@ -1,4 +1,4 @@
-import { hexToRgba } from '../utils';
+import { resolveAlphaColors } from '../utils';
 
 export const config = {
   componentPath: '/components',
@@ -1187,24 +1187,9 @@ export const config = {
       },
     },
     propertyResolver: {
-      backgroundColor: (rawValue: any, resolver: any) => {
-        if (rawValue.includes(':alpha.')) {
-          const opacity = resolver(rawValue.split(':alpha.')[1], 'opacity');
-          const value = rawValue.split(':alpha-')[0];
-          return hexToRgba(resolver(value), opacity);
-        } else {
-          return resolver(rawValue);
-        }
-      },
-      color: (rawValue: any, resolver: any) => {
-        if (rawValue.includes(':alpha.')) {
-          const opacity = resolver(rawValue.split(':alpha.')[1], 'opacity');
-          const value = rawValue.split(':alpha-')[0];
-          return hexToRgba(resolver(value), opacity);
-        } else {
-          return resolver(rawValue);
-        }
-      },
+      backgroundColor: resolveAlphaColors,
+      color: resolveAlphaColors,
+      borderColor: resolveAlphaColors,
     },
   },
 } as const;
