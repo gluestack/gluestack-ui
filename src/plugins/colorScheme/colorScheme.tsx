@@ -17,24 +17,19 @@ export class ColorSchemeResolver implements IStyledPlugin {
     this.from = from;
   }
 
-  inputMiddleWare(
-    _styledObj: any = {},
-    _shouldUpdate: boolean = true,
-    _: boolean = false,
-    Component: any
-  ) {
-    return [_styledObj, _shouldUpdate, _, Component];
+  inputMiddleWare(...args: any) {
+    return args;
   }
 
   componentMiddleWare({ Component }: any) {
     return forwardRef(({ key, ...componentProps }: any, ref?: any) => {
-      let colorSchemeSx: any = {};
-      let colorSchemePassingPropsSx: any = {};
+      const colorSchemeSx: any = {};
+      const colorSchemePassingPropsSx: any = {};
 
       const { sx, colorScheme, ...restProps } = componentProps;
 
       if (colorScheme) {
-        let colorSchemeStyle = this.callback(componentProps);
+        const colorSchemeStyle = this.callback(componentProps);
 
         Object.keys(colorSchemeStyle).forEach((styleKey) => {
           if (
