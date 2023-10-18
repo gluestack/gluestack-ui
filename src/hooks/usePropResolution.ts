@@ -17,10 +17,13 @@ export function usePropResolution(props: any) {
     propsWithDollarSigns,
     styledContext.config
   );
-
+  if (!sxProps.hasOwnProperty('sx')) {
+    sxProps.sx = {};
+  }
   Object.keys(sxProps).forEach((key) => {
     const propName = key;
     const propValue = sxProps[key];
+
     if (
       propName.startsWith('_') ||
       propName.startsWith(':') ||

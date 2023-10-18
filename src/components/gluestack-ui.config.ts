@@ -1186,6 +1186,7 @@ export const config = {
         },
       },
     },
+    plugins: [],
     propertyResolver: {
       backgroundColor: (rawValue: any, resolver: any) => {
         if (rawValue.includes(':alpha.')) {
