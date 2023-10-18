@@ -1,5 +1,11 @@
 # @gluestack-style/react
 
+## 1.0.7
+
+### Patch Changes
+
+- fix: component typings
+
 ## 0.2.9
 
 ### Patch Changes

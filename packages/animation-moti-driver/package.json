@@ -24,13 +24,13 @@
     "clean": "rm -rf lib"
   },
   "peerDependencies": {
-    "@gluestack-style/react": ">=0.2",
+    "@gluestack-style/react": ">=1.0.7",
     "moti": ">=0.26",
     "react-native-gesture-handler": ">=2.12",
     "react-native-reanimated": ">=3.5"
   },
   "devDependencies": {
-    "@gluestack-style/react": "^0.2.49",
+    "@gluestack-style/react": "^1.0.7",
     "@types/react": "^18.0.22",
     "@types/react-native": "^0.69.15",
     "babel-plugin-transform-remove-console": "^6.9.4",
