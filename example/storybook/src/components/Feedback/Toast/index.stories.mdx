@@ -643,7 +643,7 @@ A dismissable Toast component offers users the ability to dismiss or close the t
                   placement: 'top',
                   render: ({ id }) => {
                     return (
-                      <Toast bg='$success700' nativeID={id}>
+                      <Toast bg='$success700' nativeID={`toast-${id}`}>
                         <Icon as={CheckIcon} color='$white' mt='$1' mr='$3' />
                         <VStack space='xs'>
                         <ToastTitle color='$textLight50' >Download Complete</ToastTitle>
@@ -706,7 +706,7 @@ A Toast component with custom duration allows for specifying the length of time 
                   duration: duration,
                   render: ({ id }) => {
                     return (
-                      <Toast bg='$secondary700' nativeID={id} p='$3'>
+                      <Toast bg='$secondary700' nativeID={`toast-${id}`} p='$3'>
                         <Icon as={MessageCircle}  color='$white' mt='$1' mr='$3' />
                         <VStack space='xs'>
                         <ToastTitle color='$textLight50'>New Message</ToastTitle>
@@ -774,7 +774,7 @@ A Toast component with preserve toast functionality retains the notification on 
                   duration: null,
                   render: ({ id }) => {
                     return (
-                      <Toast bg='$error700' nativeID={id} p='$3'>
+                      <Toast bg='$error700' nativeID={`toast-${id}`} p='$3'>
                         <Icon as={AlertTriangleIcon} color='$white' mt='$1' mr='$3' />
                         <VStack space='xs'>
                         <ToastTitle color='$textLight50' >Account Security Alert</ToastTitle>
@@ -883,7 +883,7 @@ export default () => {
           placement: placement,
           render: ({ id }) => {
             return (
-              <Toast nativeID={id}>
+              <Toast nativeID={`toast-${id}`}>
                 <ToastTitle>Hello World Toast {id}</ToastTitle>
               </Toast>
             );

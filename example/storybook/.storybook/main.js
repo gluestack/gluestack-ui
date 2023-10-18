@@ -47,6 +47,14 @@ module.exports = {
         '../../../packages/themed/src'
       ),
     };
+
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      '@gluestack-ui/config': path.join(
+        __dirname,
+        '../../../packages/config/src/gluestack-ui.config'
+      ),
+    };
     config.module.rules.push({
       test: /\.mjs$/,
       include: /node_modules/,
