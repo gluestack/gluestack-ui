@@ -45,7 +45,7 @@ export function useMenu<T>(
 ): MenuAria {
   return {
     menuProps: {
-      accessibilityRole: 'menu',
+      role: 'menu',
     },
   };
 }

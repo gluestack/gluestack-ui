@@ -20,7 +20,7 @@ export function useDisclosureButton(props: PressableProps, state: ToggleState) {
     buttonProps: mergeProps(props, {
       onPress,
       ...ariaProps,
-      accessibilityRole: 'button',
+      role: 'button',
     }),
   };
 }

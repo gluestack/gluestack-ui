@@ -138,7 +138,7 @@ export function useTooltipTrigger(
 
   return {
     triggerProps: {
-      accessibilityDescribedBy: state.isOpen ? tooltipId : undefined,
+     "aria-describedby": state.isOpen ? tooltipId : undefined,
       //@ts-ignore
       ...mergeProps(focusableProps, hoverProps, pressProps),
     },

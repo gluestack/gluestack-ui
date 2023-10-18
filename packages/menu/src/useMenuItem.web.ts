@@ -193,7 +193,7 @@ export function useMenuItem<T>(
     menuItemProps: {
       ...mapDomPropsToRN(ariaProps),
       ...mergeProps(pressProps, hoverProps, keyboardProps),
-      accessibilityRole: 'button',
+      role: 'button',
     },
     labelProps: {
       nativeID: labelId,

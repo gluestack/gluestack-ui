@@ -51,16 +51,14 @@ export function useToggle(
 
   return {
     inputProps: mergeProps(props, {
-      disabled: isDisabled,
-      required: isRequired,
-      readOnly: isReadOnly,
+      'disabled': isDisabled,
+      'required': isRequired,
+      'readOnly': isReadOnly,
       value,
       name,
       ...pressProps,
-      accessibilityLabel: label,
-      accessibilityState: {
-        disabled: isDisabled,
-      },
+      'aria-label': label,
+      'aria-disabled': isDisabled,
     }),
   };
 }

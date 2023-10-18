@@ -75,11 +75,9 @@ export function useMenuItem<T>(
 
   return {
     menuItemProps: {
-      accessibilityRole: 'menuitem',
-      accessibilityState: {
-        selected: isSelected,
-        disabled: isDisabled,
-      },
+      'role': 'menuitem',
+      'aria-selected': isSelected,
+      'aria-disabled': isDisabled,
       ...pressProps,
     },
     labelProps: {},

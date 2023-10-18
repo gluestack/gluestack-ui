@@ -26,10 +26,8 @@ export function useCheckboxGroup(
 
   return {
     groupProps: mergeProps(domProps, {
-      accessibilityState: {
-        disabled: isDisabled,
-      },
-      accessibilityLabel: getLabel(props),
+      ' aria-disabled': isDisabled,
+      'aria-label': getLabel(props),
     }),
     labelProps: {},
   };

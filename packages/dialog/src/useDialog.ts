@@ -24,7 +24,6 @@ export interface DialogAria {
 }
 
 export interface DialogProps extends AriaDialogProps {
-  accessibilityLabel?: 'string';
 }
 
 /**

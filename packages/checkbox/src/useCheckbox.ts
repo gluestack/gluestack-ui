@@ -29,12 +29,10 @@ export function useCheckbox(
 
   return {
     inputProps: mergeProps(inputProps, {
-      checked: isSelected,
-      accessibilityRole: 'checkbox',
-      accessibilityState: {
-        checked: isIndeterminate ? 'mixed' : isSelected,
-        disabled: props.isDisabled,
-      },
+      'checked': isSelected,
+      'role': 'checkbox',
+      'aria-checked': isIndeterminate ? 'mixed' : isSelected,
+      'aria-disabled': props.isDisabled,
     }),
   };
 }
