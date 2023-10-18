@@ -28,7 +28,6 @@ export default styled(
   },
   {
     descendantStyle: ['_icon', '_text'],
-    DEBUG: 'STYLED_ALERT',
   },
   {
     plugins: [new ColorSchemeResolver(colorSchemeResolveFn)],
