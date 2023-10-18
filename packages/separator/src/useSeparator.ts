@@ -13,8 +13,7 @@ export interface SeparatorProps extends DOMProps, AriaLabelingProps {
 export interface SeparatorAria {
   /** Props for the separator element. */
   separatorProps: {
-    'accessibilityRole': any;
-    'accessibilityOrientation'?: string;
+    'role': any;
     'aria-orientation'?: string;
   };
 }
@@ -35,9 +34,8 @@ export function useSeparator(props: SeparatorProps): SeparatorAria {
   return {
     separatorProps: {
       ...props,
-      'accessibilityRole': 'separator',
+      'role': 'separator',
       'aria-orientation': ariaOrientation,
-      'accessibilityOrientation': ariaOrientation,
     },
   };
 }

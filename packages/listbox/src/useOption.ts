@@ -65,9 +65,7 @@ export function useOption<T>(
   return {
     optionProps: {
       ...pressProps,
-      accessibilityState: {
-        isSelected,
-      },
+      'aria-selected': isSelected,
     },
     labelProps: {},
     descriptionProps: {},

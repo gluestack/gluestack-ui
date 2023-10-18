@@ -10,12 +10,12 @@
  * governing permissions and limitations under the License.
  */
 
-import { HTMLAttributes, RefObject } from "react";
-import { OverlayTriggerState } from "@react-stately/overlays";
+import { HTMLAttributes, RefObject } from 'react';
+import { OverlayTriggerState } from '@react-stately/overlays';
 
 interface OverlayTriggerProps {
   /** Type of overlay that is opened by the trigger. */
-  type: "dialog" | "menu" | "listbox" | "tree" | "grid";
+  type: 'dialog' | 'menu' | 'listbox' | 'tree' | 'grid';
 }
 
 interface OverlayTriggerAria {
@@ -37,9 +37,7 @@ export function useOverlayTrigger(
 ): OverlayTriggerAria {
   return {
     triggerProps: {
-      accessibilityState: {
-        expanded: state.isOpen,
-      },
+      'aria-expanded': state.isOpen,
     },
     overlayProps: {},
   };

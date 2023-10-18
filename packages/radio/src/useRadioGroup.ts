@@ -1,6 +1,6 @@
-import type { AriaRadioGroupProps } from "@react-types/radio";
-import type { RadioGroupState } from "@react-stately/radio";
-import { getLabel } from "@react-native-aria/utils";
+import type { AriaRadioGroupProps } from '@react-types/radio';
+import type { RadioGroupState } from '@react-stately/radio';
+import { getLabel } from '@react-native-aria/utils';
 
 export interface RNAriaRadioGroupProps extends AriaRadioGroupProps {
   children?: React.ReactNode;
@@ -27,11 +27,9 @@ export function useRadioGroup(
 
   return {
     radioGroupProps: {
-      accessibilityLabel: getLabel(props),
-      accessibilityRole: "radiogroup",
-      accessibilityState: {
-        disabled: isDisabled,
-      },
+      'aria-label': getLabel(props),
+      'role': 'radiogroup',
+      'aria-disabled': isDisabled,
     },
     labelProps: {},
   };

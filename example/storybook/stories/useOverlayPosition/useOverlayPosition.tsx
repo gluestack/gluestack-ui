@@ -112,8 +112,8 @@ export default function Trigger({ placement }: any) {
       <Pressable
         {...buttonProps}
         ref={ref}
-        accessibilityRole="button"
-        accessibilityLabel="Click here to perform some actions"
+        role="button"
+        aria-label="Click here to perform some actions"
       >
         <View
           style={{

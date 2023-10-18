@@ -22,9 +22,7 @@ export interface DialogAria {
   titleProps: DOMAttributes;
 }
 
-export interface DialogProps extends AriaDialogProps {
-  accessibilityLabel?: 'string';
-}
+export interface DialogProps extends AriaDialogProps {}
 
 /**
  * Provides the behavior and accessibility implementation for a dialog component.
@@ -34,17 +32,12 @@ export interface DialogProps extends AriaDialogProps {
 import { useDialog as useDialogAria } from '@react-aria/dialog';
 import { mapDomPropsToRN } from '@react-native-aria/utils';
 
-const mapRNPropsToDomProps = (props) => {
-  const newProps = { ...props, 'aria-label': props.accessibilityLabel };
-  return newProps;
-};
-
 export function useDialog(
   props: DialogProps,
   ref: RefObject<FocusableElement>
 ): DialogAria {
-  const newProps = mapRNPropsToDomProps(props);
-  const params = useDialogAria(newProps, ref);
+  const params = useDialogAria(props, ref);
+  params.dialogProps = params.dialogProps;
   params.dialogProps = mapDomPropsToRN(params.dialogProps);
 
   return params;

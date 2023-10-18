@@ -82,7 +82,7 @@ export function ComboBox(props) {
             <Text
               //@ts-ignore
               // Web only prop
-              accessibilityHidden={true}
+              aria-hidden={true}
               style={{ padding: 2 }}
             >
               ▼

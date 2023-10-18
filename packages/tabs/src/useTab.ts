@@ -20,22 +20,20 @@ export function useTab<T>(
   let isSelected = key === selectedKey;
 
   const onPress = () => {
-      manager.select(key);
-  }
+    manager.select(key);
+  };
 
   let isDisabled = propsDisabled || state.disabledKeys.has(key);
 
   let { pressProps } = usePress({ onPress, isDisabled });
- 
-  const tabProps  = {
+
+  const tabProps = {
     ...pressProps,
-    accessibilityState: {
-        selected: isSelected
-    },
-    accessibilityRole: 'tab',
-  }
-  
+    'aria-selected': isSelected,
+    'role': 'tab',
+  };
+
   return {
-    tabProps
+    tabProps,
   };
 }

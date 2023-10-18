@@ -63,14 +63,12 @@ export function useRadio(
     inputProps: mergeProps(props, {
       ...pressProps,
       checked,
-      disabled: preventChanges,
+      'disabled': preventChanges,
       value,
-      accessibilityLabel: label,
-      accessibilityRole: 'radio',
-      accessibilityState: {
-        disabled: preventChanges,
-        checked,
-      },
+      'aria-label': label,
+      'role': 'radio',
+      'aria-disabled': preventChanges,
+      'aria-checked': checked,
     }),
   };
 }

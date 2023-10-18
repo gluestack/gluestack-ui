@@ -147,7 +147,7 @@ export function ControlledSwitch() {
   const { isFocusVisible, focusProps } = useFocusRing();
   const inputRef = useRef(null);
   let { inputProps } = useSwitch(
-    { accessibilityLabel: "Example switch" },
+    { "aria-label": "Example switch" },
     state,
     inputRef
   );

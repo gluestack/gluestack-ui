@@ -3,9 +3,9 @@ import { useId } from '@react-aria/utils';
 
 interface AriaMenuSectionProps {
   /** The heading for the section. */
-  heading?: ReactNode;
+  'heading'?: ReactNode;
   /** An accessibility label for the section. Required if `heading` is not present. */
-  accessibilityLabel?: string;
+  'aria-label'?: string;
 }
 
 interface MenuSectionAria {
@@ -25,13 +25,13 @@ interface MenuSectionAria {
  * @param props - Props for the section.
  */
 export function useMenuSection(props: AriaMenuSectionProps): MenuSectionAria {
-  let { heading, accessibilityLabel } = props;
+  let { heading, 'aria-label': ariaLabel } = props;
   let headingId = useId();
 
   return {
     itemProps: {
       //@ts-ignore
-      accessibilityRole: 'presentation',
+      role: 'presentation',
     },
     headingProps: heading
       ? {
@@ -39,19 +39,13 @@ export function useMenuSection(props: AriaMenuSectionProps): MenuSectionAria {
           // We hide the heading from assistive technology, and only use it
           // as a label for the nested group.
           'nativeID': headingId,
-          // RN Web < 0.14
           'aria-hidden': true,
-          // RN Web >= 0.15
-          'accessibilityHidden': true,
         }
       : {},
     groupProps: {
-      'accessibilityRole': 'group',
-      accessibilityLabel,
-      // RN Web < 0.14
+      'role': 'group',
+      'aria-label': ariaLabel,
       'aria-labelledby': heading ? headingId : undefined,
-      // RN Web >= 0.15
-      'accessibilityLabelledBy': heading ? headingId : undefined,
     },
   };
 }

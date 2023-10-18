@@ -54,7 +54,7 @@ export function OverlayContainerExample(props: any) {
     <View style={{ marginLeft: "auto", marginRight: "auto" }}>
       <Pressable
         ref={ref}
-        accessibilityRole="button"
+        role="button"
         onPress={() => setVisible(!visible)}
         style={{
           backgroundColor: "#F3F4F6",

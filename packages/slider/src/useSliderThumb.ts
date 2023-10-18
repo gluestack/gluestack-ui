@@ -111,14 +111,14 @@ export function useSliderThumb(
   return {
     inputProps: {
       ...fieldProps,
-      disabled: isDisabled,
-      accessibilityRole: 'adjustable',
-      accessibilityValue: {
+      'disabled': isDisabled,
+      'role': 'adjustable',
+      'aria-value': {
         min: state.getThumbMinValue(index),
         max: state.getThumbMaxValue(index),
         now: state.getThumbValue(index),
       },
-      accessibilityActions: [
+      'accessibilityActions': [
         {
           name: 'increment',
           label: 'Increment',

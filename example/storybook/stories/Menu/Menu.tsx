@@ -53,7 +53,7 @@ export function MenuButton(props) {
       <Pressable
         {...menuTriggerProps}
         ref={ref}
-        accessibilityLabel="Click here to perform some actions"
+        aria-label="Click here to perform some actions"
       >
         <View
           style={{
@@ -78,7 +78,7 @@ export function MenuButton(props) {
               <MenuPopup
                 {...props}
                 isOpen={state.isOpen}
-                accessibilityLabel={props.label}
+                aria-label={props.label}
                 domProps={menuProps}
                 autoFocus={state.focusStrategy}
                 onClose={state.close}
@@ -160,7 +160,7 @@ const MenuSection = (props: any) => {
   let { item, state, onAction } = props;
   let { itemProps, headingProps, groupProps } = useMenuSection({
     heading: item.rendered,
-    accessibilityLabel: item["aria-label"],
+   "aria-label": item["aria-label"],
   });
 
   let { separatorProps } = useSeparator({});

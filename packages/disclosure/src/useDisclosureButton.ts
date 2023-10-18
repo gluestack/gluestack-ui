@@ -8,15 +8,11 @@ export function useDisclosureButton(
 ) {
   const onPress = state.toggle;
 
-  const accessibilityState = props.accessibilityState || {};
-
-  accessibilityState.expanded = state.isSelected;
-
   return {
     buttonProps: mergeProps(props, {
       onPress,
-      accessibilityState,
-      accessibilityRole: 'button',
+      'aria-expanded': state.isSelected,
+      'role': 'button',
     }),
   };
 }

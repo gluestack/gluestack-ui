@@ -38,11 +38,9 @@ export function useButton(props: RNAriaButtonProps): ButtonAria {
   });
 
   const mergedProps = mergeProps(pressProps, rest, {
-    accessibilityState: {
-      disabled: isDisabled,
-    },
-    accessibilityRole: 'button',
-    disabled: isDisabled,
+    'aria-disabled': isDisabled,
+    'role': 'button',
+    'disabled': isDisabled,
   });
 
   return {

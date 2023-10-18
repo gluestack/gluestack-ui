@@ -13,11 +13,10 @@ export function useTabs<T>(
   _state: TabsState<T>,
   _ref: any
 ): TabsAria {
-
   return {
     tabListProps: {
-        accessibilityRole: "tablist"
+      role: 'tablist',
     },
-    tabPanelProps: {}
+    tabPanelProps: {},
   };
 }

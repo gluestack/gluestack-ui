@@ -10,12 +10,12 @@
  * governing permissions and limitations under the License.
  */
 
-import type { AriaSwitchProps } from "@react-types/switch";
-import type { RefObject } from "react";
-import type { ToggleState } from "@react-stately/toggle";
-import { useToggle } from "@react-native-aria/toggle";
-import type { AccessibilityProps, AccessibilityRole } from "react-native";
-import { mergeProps } from "@react-aria/utils";
+import type { AriaSwitchProps } from '@react-types/switch';
+import type { RefObject } from 'react';
+import type { ToggleState } from '@react-stately/toggle';
+import { useToggle } from '@react-native-aria/toggle';
+import type { AccessibilityProps, AccessibilityRole } from 'react-native';
+import { mergeProps } from '@react-aria/utils';
 
 export interface SwitchAria {
   /** Props for the input element. */
@@ -39,13 +39,12 @@ export function useSwitch(
 
   return {
     inputProps: mergeProps(inputProps, {
-      accessibilityRole: "switch" as AccessibilityRole,
-      checked: isSelected,
-      accessible: true,
-      accessibilityState: {
-        ...inputProps.accessibilityState,
-        checked: isSelected,
-      },
+      'role': 'switch' as AccessibilityRole,
+      'checked': isSelected,
+      'accessible': true,
+      'aria-checked': isSelected,
+      'aria-disabled': props.isDisabled,
+      'aria-readonly': props.isReadOnly,
     }),
   };
 }
