@@ -498,7 +498,10 @@ function addDollarSign(propertyName: any, propValue: any, config: any) {
 
 export function addDollarSignsToProps(obj: any, config: any) {
   const newObj: any = {};
-
+  if (!(Object.keys(obj).length > 0)) {
+    return;
+  }
+  // console.log(config);
   for (const key in obj) {
     let propertyName = key;
     const propValue = obj[key];

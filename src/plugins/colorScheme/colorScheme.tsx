@@ -17,8 +17,13 @@ export class ColorSchemeResolver implements IStyledPlugin {
     this.from = from;
   }
 
-  inputMiddleWare(_styledObj: any = {}, _shouldUpdate: boolean = true) {
-    return _styledObj;
+  inputMiddleWare(
+    _styledObj: any = {},
+    _shouldUpdate: boolean = true,
+    _: boolean = false,
+    Component: any
+  ) {
+    return [_styledObj, _shouldUpdate, _, Component];
   }
 
   componentMiddleWare({ Component }: any) {

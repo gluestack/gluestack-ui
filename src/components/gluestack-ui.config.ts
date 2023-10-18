@@ -1186,6 +1186,7 @@ export const config = {
         },
       },
     },
+    plugins: [],
     propertyResolver: {
       backgroundColor: resolveAlphaColors,
       color: resolveAlphaColors,

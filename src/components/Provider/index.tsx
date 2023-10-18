@@ -3,7 +3,6 @@ import { createProvider } from '@gluestack-ui/provider';
 import { StyledProvider, useColorMode } from '@gluestack-style/react';
 import { OverlayProvider } from '@gluestack-ui/overlay';
 import { ToastProvider } from '@gluestack-ui/toast';
-
 import { config } from '../gluestack-ui.config';
 import { convertTheme } from '../../utils/extendTheme';
 
@@ -25,14 +24,14 @@ const GluestackUIProvider = ({ children, ...props }: any) => {
 
 const NativeBaseProvider = ({ children, _enableRem = true, ...props }: any) => {
   const [colorMode, setColorMode] = useState(useColorMode());
-  const theme = props.theme;
+  const theme = props.config;
 
   const gluestackCompatibleTheme = convertTheme(theme);
   const mergedTheme = deepMerge(config.theme, gluestackCompatibleTheme);
   // const newtheme = enableRem
   //   ? platformSpecificSpaceUnits(mergedTheme)
   //   : mergedTheme;
-
+  // console.log(props, "PROPS", mergedTheme);
   return (
     <HooksContext.Provider value={{ colorMode, setColorMode }}>
       <GluestackUIProvider

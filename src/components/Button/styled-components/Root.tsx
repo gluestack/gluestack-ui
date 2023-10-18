@@ -306,5 +306,6 @@ function colorSchemeResolveFn({ ...props }: any) {
         value = {};
     }
   }
+
   return value;
 }
