@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "@expo/html-elements": "^0.4.2",
-    "@gluestack-style/react": "1.0.6",
+    "@gluestack-style/react": "1.0.7",
     "@gluestack-ui/actionsheet": "^0.2.16",
     "@gluestack-ui/alert-dialog": "^0.1.14",
     "@gluestack-ui/button": "^0.1.23",

@@ -10,6 +10,7 @@ import type {
   ExtendedConfigType,
   IComponentStyleConfig,
   StyledConfig,
+  UtilityProps,
 } from './types';
 import {
   deepMerge,
@@ -995,7 +996,12 @@ export function verboseStyled<P, Variants, ComCon>(
       // sxHash: BUILD_TIME_sxHash = '',
       ...componentProps
     }: Omit<
-      ComponentProps<ITypeReactNativeStyles, Variants, P, ComCon>,
+      Omit<P, keyof Variants> &
+        Partial<ComponentProps<ITypeReactNativeStyles, Variants, P, ComCon>> &
+        Partial<UtilityProps<ITypeReactNativeStyles, P>> & {
+          as?: any;
+          children?: any;
+        },
       'animationComponentGluestack'
     >,
     ref: React.ForwardedRef<P>
