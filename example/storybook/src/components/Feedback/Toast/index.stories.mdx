@@ -643,7 +643,7 @@ A dismissable Toast component offers users the ability to dismiss or close the t
                   placement: 'top',
                   render: ({ id }) => {
                     return (
-                      <Toast bg='$success700' nativeID={`toast-${id}`}>
+                      <Toast bg='$success700' nativeID={id}>
                         <Icon as={CheckIcon} color='$white' mt='$1' mr='$3' />
                         <VStack space='xs'>
                         <ToastTitle color='$textLight50' >Download Complete</ToastTitle>
