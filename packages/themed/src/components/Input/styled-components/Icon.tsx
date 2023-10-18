@@ -1,7 +1,7 @@
 import { styled } from '@gluestack-style/react';
-import { StyledIcon } from '../../Icons/styled-components';
+import { BaseIcon } from '../../Icons/styled-components';
 
-export default styled(StyledIcon, {}, {
+export default styled(BaseIcon, {}, {
   componentName: 'InputIcon',
   ancestorStyle: ['_icon'],
 } as const);
