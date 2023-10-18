@@ -774,7 +774,7 @@ A Toast component with preserve toast functionality retains the notification on 
                   duration: null,
                   render: ({ id }) => {
                     return (
-                      <Toast bg='$error700' nativeID={`toast-${id}`} p='$3'>
+                      <Toast bg='$error700' nativeID={"toast-" +id} p='$3'>
                         <Icon as={AlertTriangleIcon} color='$white' mt='$1' mr='$3' />
                         <VStack space='xs'>
                         <ToastTitle color='$textLight50' >Account Security Alert</ToastTitle>
