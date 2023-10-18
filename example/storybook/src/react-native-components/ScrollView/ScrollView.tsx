@@ -40,8 +40,8 @@ export default function ScrollViewStory() {
         <Center mt="$10" mb="$4">
           <Heading fontSize="$xl">Yellow</Heading>
         </Center>
-        <VStack flex="1">
-          {Object.keys(config.tokens.colors).map((key) => {
+        <VStack flex={1}>
+          {Object.keys(config.tokens.colors).map((key: any) => {
             if (
               key.includes('yellow') &&
               !(
@@ -51,19 +51,21 @@ export default function ScrollViewStory() {
                 key.includes('900') ||
                 key.includes('950')
               )
-            )
+            ) {
               return (
+                // @ts-ignore
                 <Center py="$4" bg={config.tokens.colors[key]}>
                   <Text>{key}</Text>
                 </Center>
               );
+            } else return null;
           })}
         </VStack>
         <Center mt="$10" mb="$4">
           <Heading fontSize="$xl">Violet</Heading>
         </Center>
-        <VStack flex="1">
-          {Object.keys(config.tokens.colors).map((key) => {
+        <VStack flex={1}>
+          {Object.keys(config.tokens.colors).map((key: any) => {
             if (
               key.includes('violet') &&
               !(
@@ -73,12 +75,14 @@ export default function ScrollViewStory() {
                 key.includes('900') ||
                 key.includes('950')
               )
-            )
+            ) {
               return (
+                // @ts-ignore
                 <Center py="$4" bg={config.tokens.colors[key]}>
                   <Text>{key}</Text>
                 </Center>
               );
+            } else return null;
           })}
         </VStack>
       </ScrollView>

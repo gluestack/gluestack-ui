@@ -1,5 +1,11 @@
 # @gluestack-ui/themed
 
+## 1.0.6
+
+### Patch Changes
+
+- `containerStyle` support sx props.
+
 ## 0.1.56
 
 ### Patch Changes
