@@ -29,7 +29,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@gluestack-style/react": "^1.0.5",
+    "@gluestack-style/react": "^1.0.7",
     "@gluestack-ui/themed": "^1.0.5"
   },
   "peerDependencies": {
@@ -47,6 +47,5 @@
     "github": {
       "release": true
     }
-  },
-  "dependencies": {}
+  }
 }
