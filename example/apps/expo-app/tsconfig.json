@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "paths": {
+      "@gluestack-ui/config": [
+        "../../../packages/config/src/gluestack-ui.config"
+      ],
+      "@gluestack-ui/themed": ["../../../packages/themed/src"]
+    }
+  },
+  "extends": "expo/tsconfig.base"
+}
