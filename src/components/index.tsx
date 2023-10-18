@@ -39,6 +39,7 @@ export * from './Radio';
 export * from './ScrollView';
 export * from './SectionList';
 export * from './Select';
+export * from './Skeleton';
 export * from './Slider';
 export * from './Spinner';
 export * from './Stack';
