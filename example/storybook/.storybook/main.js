@@ -46,6 +46,10 @@ module.exports = {
         __dirname,
         '../../../packages/themed/src'
       ),
+      '@gluestack-ui/config': path.join(
+        __dirname,
+        '../../../packages/config/src/gluestack-ui.config'
+      ),
     };
 
     config.resolve.alias = {
