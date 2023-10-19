@@ -48,6 +48,7 @@ export const Tab = <StyledTab,>(StyledTab: React.ComponentType<StyledTab>) =>
               pressProps.onPressIn
             )}
             onPressOut={() => onChange(value)}
+            onPress={composeEventHandlers(props?.onPress, pressProps.onPress)}
             // @ts-ignore - web only
             onHoverIn={composeEventHandlers(
               props?.onHoverIn,
