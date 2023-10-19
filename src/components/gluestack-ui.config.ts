@@ -1207,9 +1207,10 @@ export const config = {
         }
       },
     },
+    components: {},
   },
 } as const;
 export type Config = typeof config.theme;
-declare module '@gluestack-style/react' {
-  interface ICustomConfig extends Config {}
-}
+// declare module '@gluestack-style/react' {
+//   interface ICustomConfig extends Config {}
+// }

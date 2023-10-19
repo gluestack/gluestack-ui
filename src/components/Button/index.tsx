@@ -39,7 +39,6 @@ const NewButton = forwardRef(
     ref?: any
   ) => {
     const resolvedPropForGluestack = usePropResolution(props);
-    // console.log(props, resolvedPropForGluestack, "HERRREEE")
     return (
       <AccessibleButton
         colorScheme={colorScheme}
