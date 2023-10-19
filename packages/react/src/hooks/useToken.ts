@@ -11,5 +11,5 @@ export const useToken = (tokenScale: string, token: string) => {
   const theme: ICustomConfig = useStyled();
   // @ts-ignore
   const themeTokens = theme.config.tokens;
-  return themeTokens?.[`${tokenScale}`]?.[`${token}`];
+  return themeTokens?.[`${tokenScale}`]?.[`${token}`] ?? token;
 };

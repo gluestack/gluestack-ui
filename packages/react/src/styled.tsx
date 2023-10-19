@@ -1198,7 +1198,7 @@ export function verboseStyled<P, Variants, ComCon>(
 
     const {
       variantProps: defaultVariantProps,
-      restProps: defaultComponentPropsWithoutVariants,
+      restProps: defaultThemePropsWithoutVariants,
     } = getVariantProps(themeDefaultProps, theme);
 
     const {
@@ -1384,7 +1384,7 @@ export function verboseStyled<P, Variants, ComCon>(
     const defaultResolvedInlineProps = resolveInlineProps(
       componentStyleConfig,
       componentExtendedConfig,
-      defaultComponentPropsWithoutVariants,
+      defaultThemePropsWithoutVariants,
       CONFIG
     );
 
@@ -1404,17 +1404,19 @@ export function verboseStyled<P, Variants, ComCon>(
 
     const { sx: filteredComponentSx, rest: filteredComponentRemainingProps } =
       convertUtiltiyToSXFromProps(
-        Object.assign(
-          defaultComponentPropsWithoutVariants,
-          inlineComponentPropsWithoutVariants
-        ),
+        // Object.assign(
+        //   defaultThemePropsWithoutVariants,
+        inlineComponentPropsWithoutVariants,
         styledSystemProps,
         componentStyleConfig
       );
 
     let { sx: filteredPassingSx, rest: filteredPassingRemainingProps } =
       convertUtiltiyToSXFromProps(
-        shallowMerge({ ...passingProps }, applyAncestorPassingProps),
+        shallowMerge(
+          { ...defaultThemePropsWithoutVariants, ...passingProps },
+          applyAncestorPassingProps
+        ),
         styledSystemProps,
         componentStyleConfig
       );
