@@ -40,7 +40,7 @@ const ActionsheetBasic = ({ showActionsheetProp, ...props }: any) => {
 
   return (
     <Center>
-      <Button onPress={() => setShowActionsheet(true)}>
+      <Button>
         <ButtonText>Open</ButtonText>
       </Button>
       <Actionsheet
