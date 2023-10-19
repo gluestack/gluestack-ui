@@ -39,7 +39,7 @@ const PopoverCloseButton = (StyledPopoverCloseButton: any) =>
 
       return (
         <StyledPopoverCloseButton
-          accessibilityRole="button"
+          role="button"
           states={{
             hover: isHoveredProp || isHovered,
             focus: isFocusedProp || isFocused,

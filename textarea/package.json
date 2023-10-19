@@ -31,7 +31,7 @@
   "dependencies": {
     "@gluestack-ui/form-control": "^0.1.10",
     "@gluestack-ui/utils": "^0.1.9",
-    "@react-native-aria/focus": "^0.2.7"
+    "@react-native-aria/focus": "^0.2.9"
   },
   "peerDependencies": {
     "react": ">=16",

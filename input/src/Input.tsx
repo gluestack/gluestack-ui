@@ -10,9 +10,7 @@ export const Input = (StyledInput: any) =>
         children,
         onKeyPress,
         type = 'text',
-        accessibilityLabel = 'Input Field',
-        accessibilityHint,
-        accessibilityRole = 'text',
+        'aria-label': ariaLabel = 'Input Field',
         secureTextEntry,
         ...props
       }: any,
@@ -61,16 +59,12 @@ export const Input = (StyledInput: any) =>
           disabled={isDisabled || inputProps.isDisabled}
           secureTextEntry={secureTextEntry || type === 'password'}
           accessible
-          accessibilityLabel={accessibilityLabel}
-          accessibilityHint={accessibilityHint}
-          accessibilityRole={accessibilityRole}
-          accessibilityRequired={isRequired || inputProps.isRequired}
-          accessibilityInvalid={isInvalid || inputProps.isInvalid}
-          accessibilityState={{
-            invalid: isInvalid || inputProps.isInvalid,
-            disabled: isDisabled || inputProps.isDisabled,
-            selected: isFocused,
-          }}
+          aria-label={ariaLabel}
+          aria-required={isRequired || inputProps.isRequired}
+          aria-invalid={isInvalid || inputProps.isInvalid}
+          aria-disabled={isDisabled || inputProps.isDisabled}
+          aria-selected={isFocused}
+          // ios accessibility
           accessibilityElementsHidden={isDisabled}
           editable={isDisabled || isReadOnly ? false : true}
           onKeyPress={(e: any) => {

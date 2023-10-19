@@ -47,7 +47,7 @@
     "@gluestack-ui/overlay": "^0.1.7",
     "@gluestack-ui/transitions": "^0.1.8",
     "@gluestack-ui/utils": "^0.1.5",
-    "@react-native-aria/focus": "^0.2.7"
+    "@react-native-aria/focus": "^0.2.9"
   },
   "peerDependencies": {
     "react": ">=16",

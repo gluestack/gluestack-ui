@@ -37,7 +37,7 @@ export function useLink(props: IUseLinkProp) {
   return {
     linkProps: {
       ...platformLinkProps,
-      accessibilityRole: 'link' as AccessibilityRole,
+      role: 'link' as AccessibilityRole,
       accessible: true,
     },
   };

@@ -11,8 +11,6 @@ export function Switch(StyledSwitch: any) {
         isDisabled,
         isInvalid,
         defaultValue,
-        accessibilityLabel,
-        accessibilityHint,
         onToggle,
         value,
         onValueChange,
@@ -47,8 +45,6 @@ export function Switch(StyledSwitch: any) {
             invalid: isInvalid || combinedProps.isInvalid,
             checked: value || checked,
           }}
-          accessibilityLabel={accessibilityLabel}
-          accessibilityHint={accessibilityHint}
           disabled={disabled || isDisabled || combinedProps.isDisabled}
           onValueChange={(val: boolean) => {
             onValueChange && onValueChange(val);

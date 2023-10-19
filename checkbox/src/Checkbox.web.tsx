@@ -49,8 +49,7 @@ export const Checkbox = (StyledCheckbox: any) =>
         useCheckboxGroupItem(
           {
             ...combinedProps,
-            'aria-label':
-              combinedProps['aria-label'] ?? combinedProps.accessibilityLabel,
+            'aria-label': combinedProps['aria-label'],
             'value': combinedProps.value,
           },
           checkboxGroupContext.state,
@@ -61,8 +60,7 @@ export const Checkbox = (StyledCheckbox: any) =>
         useCheckbox(
           {
             ...combinedProps,
-            'aria-label':
-              combinedProps['aria-label'] ?? combinedProps.accessibilityLabel,
+            'aria-label': combinedProps['aria-label'],
           },
           state,
           //@ts-ignore
@@ -89,6 +87,8 @@ export const Checkbox = (StyledCheckbox: any) =>
     return (
       <StyledCheckbox
         {...contextCombinedProps}
+        role="label"
+        // remove in future, role="label" is not supported in react-native-web, PR is open
         accessibilityRole="label"
         ref={mergedRef}
         states={{

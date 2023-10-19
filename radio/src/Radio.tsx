@@ -54,7 +54,7 @@ const RadioComponent = memo(
           {...inputProps}
           {...props}
           ref={ref}
-          accessibilityRole="radio"
+          role="radio"
           onPressIn={composeEventHandlers(onPressIn, pressProps.onPressIn)}
           onPressOut={composeEventHandlers(onPressOut, pressProps.onPressOut)}
           // @ts-ignore - web only
@@ -130,7 +130,7 @@ const Radio = (StyledRadio: any) =>
       const { inputProps } = useRadio(
         {
           ...combinedProps,
-          'aria-label': props['aria-label'] ?? props.accessibilityLabel,
+          'aria-label': props['aria-label'],
           children,
         },
         contextState.state.state ?? {},

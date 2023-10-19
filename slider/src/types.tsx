@@ -7,10 +7,6 @@ export interface InterfaceSliderProps {
   onChange?: (value: number) => void;
   children?: any;
   /**
-   * Text description of slider. This will be announced by screen reader/
-   */
-  accessibilityLabel?: string;
-  /**
    * If true, the value will be incremented or decremented in reverse.
    */
   isReversed?: boolean;

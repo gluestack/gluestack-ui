@@ -16,6 +16,7 @@ const PopoverBackdrop = (StyledPopoverBackdrop: any, AnimatePresence?: any) =>
           ref={ref}
           {...props}
           onPress={handleClose}
+          // for ios
           accessibilityElementsHidden
           importantForAccessibility="no-hide-descendants"
           aria-hidden={true}

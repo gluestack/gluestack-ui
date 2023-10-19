@@ -46,10 +46,10 @@
     "@gluestack-ui/hooks": "^0.1.2",
     "@gluestack-ui/overlay": "^0.1.7",
     "@gluestack-ui/utils": "^0.1.5",
-    "@react-native-aria/dialog": "^0.1.1",
-    "@react-native-aria/focus": "^0.2.8",
-    "@react-native-aria/interactions": "^0.2.10",
-    "@react-native-aria/overlays": "0.3.7"
+    "@react-native-aria/dialog": "^0.0.3",
+    "@react-native-aria/focus": "^0.2.9",
+    "@react-native-aria/interactions": "^0.2.11",
+    "@react-native-aria/overlays": "^0.3.10"
   },
   "peerDependencies": {
     "react": ">=16",

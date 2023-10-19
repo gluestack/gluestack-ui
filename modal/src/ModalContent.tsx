@@ -70,7 +70,7 @@ const ModalContent = (StyledModalContent: any, AnimatePresence?: any) =>
             ref={mergedRef}
             onAccessibilityEscape={handleClose}
             aria-modal="true"
-            accessibilityRole={Platform.OS === 'web' ? 'dialog' : undefined}
+            role={Platform.OS === 'web' ? 'dialog' : undefined}
             accessibilityViewIsModal
             tabIndex={Platform.OS === 'web' ? -1 : undefined}
             {...dialogProps}

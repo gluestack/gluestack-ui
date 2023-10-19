@@ -15,7 +15,7 @@ export const TabPanel = <StyledTabPanel,>(
 
         return (
           <StyledTabPanel
-            accessibilityRole={Platform.OS === 'web' ? 'tabpanel' : undefined}
+            role={Platform.OS === 'web' ? 'tabpanel' : undefined}
             {...(props as StyledTabPanel)}
             style={{ display: isActive ? 'flex' : 'none' }}
             ref={ref}

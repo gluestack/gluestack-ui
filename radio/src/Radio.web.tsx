@@ -58,6 +58,8 @@ const RadioComponent = memo(
         <StyledRadio
           {...props}
           {...restProps}
+          role="label"
+          // remove in future, role="label" is not supported in react-native-web, PR is open
           accessibilityRole="label"
           ref={_ref}
           onMouseDown={handlePressIn}
@@ -130,7 +132,7 @@ const Radio = (StyledRadio: any) =>
       const radioState = useRadio(
         {
           ...combinedProps,
-          'aria-label': props['aria-label'] ?? props.accessibilityLabel,
+          'aria-label': props['aria-label'],
           children,
         },
         contextState.state.state ?? {},

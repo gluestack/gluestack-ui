@@ -101,14 +101,14 @@ export function useFormControl(props: any) {
 
   return {
     ...cleanProps,
-    nativeID: nativeID,
-    disabled: isDisabled || field?.isDisabled,
-    readOnly: isReadOnly || field?.isReadOnly,
-    required: isRequired || field?.isRequired,
-    accessibilityInvalid: ariaAttr(isInvalid || field?.isInvalid),
-    accessibilityRequired: ariaAttr(isRequired || field?.isRequired),
-    accessibilityReadOnly: ariaAttr(isReadOnly || field?.isReadOnly),
-    accessibilityDescribedBy: ariaDescribedBy || undefined,
+    'nativeID': nativeID,
+    'disabled': isDisabled || field?.isDisabled,
+    'readOnly': isReadOnly || field?.isReadOnly,
+    'required': isRequired || field?.isRequired,
+    'aria-invalid': ariaAttr(isInvalid || field?.isInvalid),
+    'aria-required': ariaAttr(isRequired || field?.isRequired),
+    'aria-readonly': ariaAttr(isReadOnly || field?.isReadOnly),
+    'aria-describedby': ariaDescribedBy || undefined,
   };
 }
 

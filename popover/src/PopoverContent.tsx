@@ -76,7 +76,7 @@ const PopoverContent = (StyledPopoverContent: any, AnimatePresence?: any) =>
     const accessibilityProps =
       Platform.OS === 'web'
         ? ({
-            'accessibilityRole': 'dialog',
+            'role': 'dialog',
             'aria-labelledby': headerMounted ? headerId : undefined,
             'aria-describedby': bodyMounted ? bodyId : undefined,
           } as any)

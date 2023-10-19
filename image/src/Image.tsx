@@ -25,8 +25,8 @@ export const Image = (StyledImage: any) =>
       <StyledImage
         {...resolvedProps}
         source={source}
-        accessibilityLabel={props?.accessibilityLabel || alt}
-        accessibilityRole={props?.accessibilityRole || 'image'}
+        aria-label={props?.['aria-label'] || alt}
+        role={props?.role || 'image'}
         alt={alt}
         ref={ref}
       />

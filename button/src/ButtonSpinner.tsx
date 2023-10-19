@@ -6,7 +6,7 @@ export const ButtonSpinner = (StyledButtonSpinner: any) =>
       <StyledButtonSpinner
         {...props}
         tabIndex={0}
-        accessibilityLabel="loading"
+        aria-label="loading"
         ref={ref}
       />
     );

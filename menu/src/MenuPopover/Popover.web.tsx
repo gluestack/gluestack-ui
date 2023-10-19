@@ -25,6 +25,8 @@ export function Popover({ StyledBackdrop, ...props }: any) {
         {...underlayProps}
         onPress={onClose}
         tabIndex={-1}
+        // ios
+        accessibilityElementsHidden
         aria-hidden={true}
       />
       {/** @ts-ignore -web only*/}

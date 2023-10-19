@@ -27,11 +27,6 @@ const useProgress = ({
     'aria-valuenow': valueWidth,
     'aria-valuetext': `${valueWidth}%`,
     valueWidth,
-    'accessibilityRole': 'progressbar',
-    'accessibilityValueNow': valueWidth,
-    'accessibilityValueMin': min,
-    'accessibilityValueMax': max,
-    'accessibilityValueText': `${valueWidth}%`,
   };
 };
 

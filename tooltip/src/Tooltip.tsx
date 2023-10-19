@@ -82,7 +82,6 @@ function Tooltip<StyledTooltipProp>(
           {
             'ref': reference,
             'collapsable': false,
-            'accessibilityDescribedBy': isOpen ? tooltipID : undefined,
             'onPress': composeEventHandlers<any>(
               // newChildren.props.onPress,
               () => {
@@ -140,9 +139,7 @@ function Tooltip<StyledTooltipProp>(
               <StyledTooltip
                 {...(props as StyledTooltipProp)}
                 ref={ref}
-                accessibilityRole={
-                  Platform.OS === 'web' ? 'tooltip' : undefined
-                }
+                role={Platform.OS === 'web' ? 'tooltip' : undefined}
                 tabIndex={-1}
                 nativeID={tooltipID}
               >
@@ -172,9 +169,7 @@ function Tooltip<StyledTooltipProp>(
               <StyledTooltip
                 {...(props as StyledTooltipProp)}
                 ref={ref}
-                accessibilityRole={
-                  Platform.OS === 'web' ? 'tooltip' : undefined
-                }
+                role={Platform.OS === 'web' ? 'tooltip' : undefined}
                 focussable={false}
                 nativeID={tooltipID}
               >

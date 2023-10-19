@@ -112,6 +112,7 @@ export const Popover = ({
           <StyledBackdrop
             onPress={onClose}
             tabIndex={-1}
+            // for ios
             accessibilityElementsHidden
             importantForAccessibility="no-hide-descendants"
             aria-hidden={true}

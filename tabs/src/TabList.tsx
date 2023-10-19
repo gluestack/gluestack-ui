@@ -25,11 +25,7 @@ export const TabList = <StyledTabList,>(
         );
 
         return (
-          <StyledTabList
-            accessibilityRole="tablist"
-            {...(props as StyledTabList)}
-            ref={ref}
-          >
+          <StyledTabList role="tablist" {...(props as StyledTabList)} ref={ref}>
             {modifiedTabList}
           </StyledTabList>
         );

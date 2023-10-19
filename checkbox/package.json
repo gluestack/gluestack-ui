@@ -46,9 +46,10 @@
     "@gluestack-ui/form-control": "^0.1.10",
     "@gluestack-ui/utils": "^0.1.5",
     "@react-aria/visually-hidden": "^3.8.1",
-    "@react-native-aria/checkbox": "^0.2.3",
-    "@react-native-aria/focus": "^0.2.8",
-    "@react-native-aria/interactions": "^0.2.10",
+    "@react-native-aria/checkbox": "^0.2.6",
+    "@react-native-aria/utils": "^0.2.10",
+    "@react-native-aria/focus": "^0.2.9",
+    "@react-native-aria/interactions": "^0.2.11",
     "@react-stately/checkbox": "^3.4.2"
   },
   "peerDependencies": {

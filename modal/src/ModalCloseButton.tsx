@@ -28,7 +28,7 @@ const ModalCloseButton = (StyledModalCloseButton: any) =>
 
     return (
       <StyledModalCloseButton
-        accessibilityRole="button"
+        role="button"
         ref={ref}
         onPressIn={composeEventHandlers(onPressIn, pressProps.onPressIn)}
         onPressOut={composeEventHandlers(onPressOut, pressProps.onPressOut)}

@@ -92,7 +92,7 @@ export function createIcon<IconProps>({
       <Root
         {...resolvedProps}
         {...colorProps}
-        accessibilityRole="image"
+        role="image"
         ref={ref}
         {...sizeProps}
       >

@@ -13,7 +13,7 @@ export function Divider<T>(StyledDivider: React.ComponentType<T>) {
           {...(props as T & ViewProps & IDividerProps)}
           aria-orientation={orientation}
           //@ts-ignore web only role
-          accessibilityRole={Platform.OS === 'web' ? 'separator' : undefined}
+          role={Platform.OS === 'web' ? 'separator' : undefined}
         >
           {children}
         </StyledDivider>
