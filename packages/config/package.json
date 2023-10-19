@@ -34,7 +34,7 @@
   },
   "peerDependencies": {
     "@gluestack-style/react": ">=1.0",
-    "@gluestack-style/themed": ">=1.0"
+    "@gluestack-ui/themed": ">=1.0"
   },
   "release-it": {
     "git": {
