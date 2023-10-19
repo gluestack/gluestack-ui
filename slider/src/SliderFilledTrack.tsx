@@ -49,7 +49,7 @@ function SliderFilledTrack<StyledSliderFilledTrack>(
           ? { height: sliderTrackPosition }
           : { width: sliderTrackPosition };
 
-      if (_experimentalSliderFilledTrack || true) {
+      if (_experimentalSliderFilledTrack) {
         positionProps =
           orientation === 'vertical'
             ? { height: _experimentalSliderFilledTrackValue }
