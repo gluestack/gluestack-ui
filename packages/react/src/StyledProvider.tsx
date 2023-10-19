@@ -152,7 +152,7 @@ export const StyledProvider: React.FC<{
 
   const [animationDriverData, setAnimationDriverData] = React.useState();
   const globalStyleMap =
-    config?.globalStyle && createGlobalStyles(config.globalStyle);
+    config?.globalStyle && createGlobalStyles(config.globalStyle, Platform);
 
   const contextValue = React.useMemo(() => {
     const styledData = {
