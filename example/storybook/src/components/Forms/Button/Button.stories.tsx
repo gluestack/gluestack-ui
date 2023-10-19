@@ -53,10 +53,12 @@ const ButtonMeta: ComponentMeta<typeof Button> = {
     },
     leftIcon: {
       control: 'boolean',
+      vscodeIgnore: true,
       options: [false, true],
     },
     rightIcon: {
       control: 'boolean',
+      vscodeIgnore: true,
       options: [false, true],
     },
   },

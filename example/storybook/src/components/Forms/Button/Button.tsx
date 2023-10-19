@@ -22,7 +22,30 @@ import {
 
 import { EditIcon, ArrowLeftIcon } from 'lucide-react-native';
 
-const ButtonBasic = ({ leftIcon, rightIcon, colorMode, ...props }: any) => {
+const ButtonBasic = ({ ...props }: any) => {
+  return (
+    <Button {...props}>
+      <ButtonText
+        dataSet={{
+          'component-props': JSON.stringify({
+            'is-text-style': true,
+            'component-name': 'Text',
+            'size': props.size,
+          }),
+        }}
+      >
+        Button
+      </ButtonText>
+    </Button>
+  );
+};
+
+const FigmaButtonStory = ({
+  leftIcon,
+  rightIcon,
+  colorMode,
+  ...props
+}: any) => {
   return (
     <Button {...props}>
       {leftIcon && (
@@ -76,6 +99,7 @@ ButtonBasic.description =
 export default ButtonBasic;
 
 export {
+  FigmaButtonStory,
   Button,
   ButtonText,
   ButtonIcon,
