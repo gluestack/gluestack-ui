@@ -1,82 +1,77 @@
 import { Root as AccessibleSkeleton } from './styled-components';
 
 import { GenericComponentType } from '../../types';
-import React, { forwardRef, useState, useEffect } from 'react';
-import { Animated } from 'react-native';
+import React, { forwardRef } from 'react';
+import createSkeleton from './createSkeleton';
+import { usePropResolution } from '../../hooks/usePropResolution';
+import { useColorMode, useToken } from '../../hooks';
 
-const SkeletonTemp = forwardRef(
+const SkeletonTemp = createSkeleton(AccessibleSkeleton);
+
+const SkeletonNew = forwardRef(
   (
     {
-      fadeDuration,
-      speed,
+      fadeDuration = 0.1,
+      speed = 0.1,
       startColor,
       endColor,
-      children,
       isLoaded = false,
+      children,
+      size,
       ...props
     }: any,
     ref?: any
   ) => {
-    const backgroundColor = new Animated.Value(0);
-    const [animationLoop, setAnimationLoop] = useState<
-      Animated.CompositeAnimation | undefined
-    >(undefined);
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    useEffect(startLoopAnimation, []);
-
-    function startLoopAnimation() {
-      const animationDuration = fadeDuration * 1000 * (1 / speed); // Convert seconds to milliseconds
-
-      const firstAnimation = Animated.timing(backgroundColor, {
-        toValue: 1,
-        duration: animationDuration / 2, // Half of the total duration
-        useNativeDriver: false,
-      });
-
-      const secondAnimation = Animated.timing(backgroundColor, {
-        toValue: 0,
-        duration: animationDuration / 2, // Half of the total duration
-        useNativeDriver: false,
-      });
-
-      const loop = Animated.loop(
-        Animated.sequence([firstAnimation, secondAnimation]),
-        {
-          iterations: -1, // Infinite loop
-        }
-      );
-      setAnimationLoop(loop);
-      loop.start();
+    let ISizeProps = {};
+    if (size) {
+      ISizeProps = { height: size, width: size };
     }
-
-    const bgColor = backgroundColor.interpolate({
-      inputRange: [0, 1],
-      outputRange: [startColor || 'grey', endColor || 'transparent'],
-    });
-
-    const style = {
-      backgroundColor: bgColor,
-      height: '100%',
-      width: '100%',
-    };
-
-    if (isLoaded && animationLoop) animationLoop.stop();
-
-    return isLoaded ? (
-      children
-    ) : (
-      <AccessibleSkeleton {...props} ref={ref}>
-        <Animated.View style={style}>{children}</Animated.View>
-      </AccessibleSkeleton>
+    const resolvedProps = usePropResolution(props);
+    const { colorMode } = useColorMode();
+    let startColorToken = '';
+    if (startColor) startColorToken = startColor;
+    else {
+      startColorToken = colorMode === 'light' ? 'muted.600' : 'muted.200';
+    }
+    const startClr = useToken('colors', startColorToken);
+    const endClr = useToken('colors', endColor);
+    return (
+      <SkeletonTemp
+        fadeDuration={fadeDuration}
+        speed={speed}
+        startColor={startClr}
+        endColor={endClr ?? 'transparent'}
+        isLoaded={isLoaded}
+        children={children}
+        {...ISizeProps}
+        {...resolvedProps}
+        ref={ref}
+      />
     );
   }
-);
+) as any;
 
-const SkeletonNew = SkeletonTemp as any;
+type IColorToken = React.ComponentProps<typeof AccessibleSkeleton>['bg'];
+type ISizeToken = React.ComponentProps<typeof AccessibleSkeleton>['h'];
 
+//TODO: remove this when fixed from GenericComponentType
+type ReplaceDollar<T> = T extends `$${infer N}` ? N : never;
+type IColor = ReplaceDollar<IColorToken>;
+type ISize = ReplaceDollar<ISizeToken> | number;
+//
+type ISkeletonComponentProps = {
+  fadeDuration?: number;
+  speed?: number;
+  startColor?: IColor;
+  endColor?: IColor;
+  isLoaded?: false;
+  size?: ISize;
+};
 export const Skeleton = SkeletonNew as ISkeletonComponentType<
   typeof AccessibleSkeleton
 >;
 
-export type ISkeletonComponentType<Skeleton> = GenericComponentType<Skeleton>;
+export type ISkeletonComponentType<Skeleton> = GenericComponentType<
+  Skeleton,
+  ISkeletonComponentProps
+>;
