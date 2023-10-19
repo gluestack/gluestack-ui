@@ -63,7 +63,7 @@ This is an illustration of a **Themed Toast** component with default configurati
                   placement:"top",
                   render: ({ id }) => {
                     return (
-                       <Toast nativeID={id} {...props}>
+                       <Toast nativeID={`toast-${id}`} {...props}>
                        <VStack space="xs">
                         <ToastTitle>New Message</ToastTitle>
                         <ToastDescription >
@@ -446,7 +446,7 @@ A versatile Toast component with customizable actions, enabling users to take va
                             placement:"top",
                             render: ({ id }) => {
                               return (
-                                <Toast nativeID={id} action={action.actionType}>
+                                <Toast nativeID={`toast-${id}`} action={action.actionType}>
                                   <VStack space="xs">
                                     <ToastTitle>{action.title}</ToastTitle>
                                     <ToastDescription >
@@ -510,7 +510,7 @@ A versatile Toast component with multiple variants, offering different styles an
                   placement:"top",
                   render: ({ id }) => {
                     return (
-                      <Toast nativeID={id} {...props} action='success'>
+                      <Toast nativeID={`toast-${id}`} {...props} action='success'>
                        <VStack space="xs">
                         <ToastTitle>Attention!</ToastTitle>
                         <ToastDescription >
@@ -580,7 +580,7 @@ A Toast component with different placement options allows for the flexible posit
                   placement: placement,
                   render: ({ id }) => {
                     return (
-                      <Toast nativeId={id}>
+                      <Toast nativeID={`toast-${id}`}>
                         <ToastDescription>{placements[placement]}</ToastDescription>
                       </Toast>
                     );
