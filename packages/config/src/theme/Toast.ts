@@ -96,9 +96,7 @@ export const Toast = createStyle({
   m: '$3',
 
   _web: {
-    props: {
-      pointerEvents: 'auto',
-    },
+    pointerEvents: 'auto',
   },
   defaultProps: {
     hardShadow: '5',

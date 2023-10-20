@@ -34,7 +34,7 @@ export const CheckboxLabel = createStyle({
     WebkitUserSelect: 'none',
     msUserSelect: 'none',
   },
-
+  'userSelect': 'none',
   '_dark': {
     'color': '$textDark400',
     ':checked': {

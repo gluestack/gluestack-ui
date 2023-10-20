@@ -30,3 +30,13 @@ module.exports = function (api) {
     ],
   };
 };
+function getAliases() {
+  return {
+    // For development, we want to alias the library to the source
+    '@gluestack-ui/themed': path.join(__dirname, '../../packages/themed/src'),
+    '@gluestack-ui/config': path.join(
+      __dirname,
+      '../../packages/config/src/gliesstack-ui.config'
+    ),
+  };
+}
