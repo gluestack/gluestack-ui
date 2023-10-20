@@ -1,5 +1,11 @@
 # @gluestack-ui/themed
 
+## 1.0.8
+
+### Patch Changes
+
+- Updated all the components with new version of react-native and react-native-web
+
 ## 1.0.7
 
 ### Patch Changes
