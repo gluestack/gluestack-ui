@@ -23,7 +23,7 @@ When you want to use a specific font in your application, you have to follow two
 
 For this section, we will focus on loading fonts from [Google](https://fonts.google.com/)
 
-### **For Expo projects**
+### For Expo projects
 
 To load **Google fonts** in Expo, we have to install `expo-font` & follow following steps:
 
@@ -55,8 +55,7 @@ import {
   Inter_500Medium,
   Inter_600SemiBold,
   Inter_700Bold,
-  Inter_900Black,
-} from "@expo-google-fonts/inter";
+  Inter_900Black, } from "@expo-google-fonts/inter";
 ```
 
 5. Load the font in your application.
@@ -94,7 +93,7 @@ import { useFonts } from 'expo-font';
   });
 ```
 
-### **For Next.js projects**
+### For Next.js projects
 
 To load **google-fonts** in Next.js application, we have to follow following steps:
 
@@ -112,15 +111,15 @@ To load **local-fonts** in Next.js application, we have to follow following step
 1. Download the font files and add them to the `public/assets` folder.
 2. Add the css to attach font files to the font family in the `global.css` file in the `styles` folder.
 
-```bash
+```css
 @font-face {
-  font-family: "inter";
+  font-family: 'inter';
   src: url('/assets/inter/Inter-Regular.ttf');
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
-  font-family: "inter";
+  font-family: 'inter';
   src: url('/asset/inter/Inter-Bold.ttf');
   font-weight: bold;
   font-style: normal;
@@ -132,7 +131,7 @@ To load **local-fonts** in Next.js application, we have to follow following step
 You already have the font loaded in your application, now you can apply the font in your application.
 Add the font name in the `gluestack.config.js` file in the `fonts` object. If you are confused where to find the fonts config object? Please go through [this](https://gluestack.io/ui/docs/theme-configuration/theme/default-tokens) documentation (specifically the typography section).
 
-```bash
+```js
 fonts: {
   heading: "inter", // Heading component uses this by default
   body: "inter", // Text component uses this by default
@@ -145,7 +144,7 @@ fonts: {
 In gluestack-ui, components are styled using `styled` provided by `@gluestack-style/react` package, [check here](/style)
 This package provides a simple way to use fonts using the FontResolver plugin.
 
-```bash
+```js
 import { FontResolver } from '@gluestack-style/react';
 
 // const fontMapper = (style: any) => {
@@ -154,9 +153,11 @@ import { FontResolver } from '@gluestack-style/react';
 export const config = {
   aliases: {},
   tokens: {},
-  plugins: [new FontResolver({
-    // mapFonts: fontMapper,
-  })],
+  plugins: [
+    new FontResolver({
+      // mapFonts: fontMapper,
+    }),
+  ],
 };
 
 const StyledText = styled(Text, {
@@ -165,7 +166,6 @@ const StyledText = styled(Text, {
   fontStyle: 'regular',
   fontSize: '$xl',
 });
-
 ```
 
 You can use the `styled` function to style your components. For gluestack-ui components, we have used this styled function to style the components.
