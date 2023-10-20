@@ -1,21 +1,19 @@
-# @gluestack-ui/themed
+# @gluestack-ui/hooks
 
 ## Installation
 
-To use gluestack-ui components, all you need to do is install the
-`@gluestack-ui/themed` package:
+To use gluestack-ui hooks, all you need to do is install the
+`@gluestack-ui/hooks` package:
 
 ```sh
-$ yarn add @gluestack-ui/themed @gluestack-style/react react-native-svg@13.4.0
+$ yarn add @gluestack-ui/hooks
 
 # or
 
-$ npm i @gluestack-ui/themed @gluestack-style/react react-native-svg@13.4.0
+$ npm i @gluestack-ui/hooks
 ```
 
 ## Usage
-
-A button component is a graphical user interface element that enables users to act by clicking or tapping. It can be customized in size, shape, color, and behavior to fit the design of the application or website. Here's an example how to use this package to create one:
 
 ```jsx
 import { useContrastText } from '@gluestack-ui/hooks';

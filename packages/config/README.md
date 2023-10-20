@@ -15,8 +15,6 @@ $ npm i @gluestack-ui/config
 
 ## Usage
 
-A button component is a graphical user interface element that enables users to act by clicking or tapping. It can be customized in size, shape, color, and behavior to fit the design of the application or website. Here's an example how to use this package to create one:
-
 ```jsx
 import { GluestackUIProvider } from '@gluestack-ui/themed';
 import { config } from '@@gluestack-ui/config';
