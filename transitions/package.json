@@ -29,9 +29,9 @@
     "typescript": "^4.9.4"
   },
   "dependencies": {
-    "@gluestack-ui/overlay": "^0.1.7",
+    "@gluestack-ui/overlay": "^0.1.12",
     "@gluestack-ui/react-native-aria": "^0.1.5",
-    "@gluestack-ui/utils": "^0.1.9",
+    "@gluestack-ui/utils": "^0.1.12",
     "@react-native-aria/focus": "^0.2.9"
   },
   "peerDependencies": {
