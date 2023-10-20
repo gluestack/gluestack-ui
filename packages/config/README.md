@@ -1,16 +1,16 @@
-# @gluestack-ui/themed
+# @gluestack-ui/config
 
 ## Installation
 
-To use gluestack-ui components, all you need to do is install the
-`@gluestack-ui/themed` package:
+To use `@gluestack-ui/config`, all you need to do is install the
+`@gluestack-ui/config` package:
 
 ```sh
-$ yarn add @gluestack-ui/themed @gluestack-style/react react-native-svg@13.4.0
+$ yarn add @gluestack-ui/config
 
 # or
 
-$ npm i @gluestack-ui/themed @gluestack-style/react react-native-svg@13.4.0
+$ npm i @gluestack-ui/config
 ```
 
 ## Usage
@@ -18,27 +18,17 @@ $ npm i @gluestack-ui/themed @gluestack-style/react react-native-svg@13.4.0
 A button component is a graphical user interface element that enables users to act by clicking or tapping. It can be customized in size, shape, color, and behavior to fit the design of the application or website. Here's an example how to use this package to create one:
 
 ```jsx
-import { createButton } from '@gluestack-ui/themed';
-import {
-  Root,
-  Text,
-  Group,
-  GroupHSpacer,
-  GroupVSpacer,
-  Spinner,
-  Icon,
-} from '@gluestack-ui/themed';
+import { GluestackUIProvider } from '@gluestack-ui/themed';
+import { config } from '@@gluestack-ui/config';
 
-export const Button = createButton({
-  Root,
-  Text,
-  Group,
-  GroupHSpacer,
-  GroupVSpacer,
-  Spinner,
-  Icon,
-});
+function App() {
+  return (
+    <GluestackUIProvider config={config}>
+      {/* Your code goes here*/}
+    </GluestackUIProvider>
+  );
+}
 ```
 
 More guides on how to get started are available
-[here](https://ui.gluestack.io/).
+[here](https://gluestack.io/ui/docs/core-concepts/themed-library).

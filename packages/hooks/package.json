@@ -1,0 +1,59 @@
+{
+  "name": "@gluestack-ui/hooks",
+  "version": "1.0.0",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
+  "module": "build/index",
+  "sideEffects": false,
+  "description": "gluestack-ui hooks",
+  "keywords": [
+    "react",
+    "native",
+    "react-native",
+    "gluestack-ui",
+    "hooks",
+    "universal",
+    "headless",
+    "typescript",
+    "component",
+    "android",
+    "ios",
+    "nextjs"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "prepare": "tsc",
+    "watch": "tsc --watch",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "clean": "rm -rf lib"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@gluestack-style/react": "^1.0.7",
+    "@types/react-native": "^0.71.6",
+    "react": "^18.2.0",
+    "react-native": "^0.72.0",
+    "react-native-web": "^0.18.12",
+    "ts-loader": "^9.4.4",
+    "typescript": "^5.1.6"
+  },
+  "peerDependencies": {
+    "@gluestack-style/react": ">=1.0"
+  },
+  "release-it": {
+    "git": {
+      "commitMessage": "chore: release ${version}",
+      "tagName": "v${version}"
+    },
+    "npm": {
+      "publish": true
+    },
+    "github": {
+      "release": true
+    }
+  },
+  "dependencies": {
+    "@react-native-community/clipboard": "^1.5.1"
+  }
+}
