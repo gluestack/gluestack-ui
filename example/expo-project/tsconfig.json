@@ -3,7 +3,8 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@gluestack-ui/themed": ["../../packages/themed/src"]
+      "@gluestack-ui/themed": ["../../packages/themed/src"],
+      "@gluestack-ui/config": ["../../packages/config/src/gluestack-ui.config"]
     },
     "emitDeclarationOnly": true,
     "noEmit": false,

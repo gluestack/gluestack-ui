@@ -58,7 +58,7 @@
     "@gluestack-ui/vstack": "latest"
   },
   "devDependencies": {
-    "react-native-web": "^0.18.12",
-    "react-native": "^0.70.7"
+    "react-native-web": "^0.19.9",
+    "react-native": "^0.72.4"
   }
 }
