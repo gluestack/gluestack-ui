@@ -9,42 +9,42 @@ export default styled(
     variants: {
       size: {
         '2xs': {
-          w: '$6',
-          h: '$6',
+          width: '$6',
+          height: '$6',
         },
 
         'xs': {
-          w: '$10',
-          h: '$10',
+          width: '$10',
+          height: '$10',
         },
 
         'sm': {
-          w: '$16',
-          h: '$16',
+          width: '$16',
+          height: '$16',
         },
 
         'md': {
-          w: '$20',
-          h: '$20',
+          width: '$20',
+          height: '$20',
         },
 
         'lg': {
-          w: '$24',
-          h: '$24',
+          width: '$24',
+          height: '$24',
         },
 
         'xl': {
-          w: '$32',
-          h: '$32',
+          width: '$32',
+          height: '$32',
         },
 
         '2xl': {
-          w: '$64',
-          h: '$64',
+          width: '$64',
+          height: '$64',
         },
         'full': {
-          w: '$full',
-          h: '$full',
+          width: '$full',
+          height: '$full',
         },
       },
     },

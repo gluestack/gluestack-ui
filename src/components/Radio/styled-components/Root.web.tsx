@@ -13,7 +13,7 @@ export default styled(
     'gap': '0.5rem',
 
     // '_indicator': {
-    //   bg: '$muted.50',
+    //   backgroundColor: '$muted.50',
     //   borderColor: '$muted.400',
     // },
     // ':checked': {
@@ -74,7 +74,7 @@ export default styled(
     // // dark mode
     // '_dark': {
     //   '_indicator': {
-    //     bg: '$muted.900',
+    //     backgroundColor: '$muted.900',
     //     borderColor: '$muted.500',
     //   },
 
@@ -140,7 +140,7 @@ export default styled(
       },
       opacity: 0.6,
       _icon: {
-        bg: 'transparent',
+        backgroundColor: 'transparent',
       },
     },
 
@@ -160,32 +160,38 @@ export default styled(
       size: {
         lg: {
           _text: {
+            // @ts-ignore
             fontSize: '$lg',
+            // @ts-ignore
             lineHeight: '$xl',
           },
           _indicator: {
-            h: '$7',
-            w: '$7',
+            height: '$7',
+            width: '$7',
           },
         },
         md: {
           _text: {
+            // @ts-ignore
             fontSize: '$md',
+            // @ts-ignore
             lineHeight: '$md',
           },
           _indicator: {
-            h: '$6',
-            w: '$6',
+            height: '$6',
+            width: '$6',
           },
         },
         sm: {
           _text: {
+            // @ts-ignore
             fontSize: '$sm',
+            // @ts-ignore
             lineHeight: '$sm',
           },
           _indicator: {
-            h: '$5',
-            w: '$5',
+            height: '$5',
+            width: '$5',
           },
         },
       },

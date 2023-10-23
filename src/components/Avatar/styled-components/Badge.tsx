@@ -4,9 +4,10 @@ import { styled } from '@gluestack-style/react';
 export default styled(
   View,
   {
-    w: '$5',
-    h: '$5',
-    bg: '$success.600',
+    width: '$5',
+    height: '$5',
+    backgroundColor: '$success.600',
+    // @ts-ignore
     borderRadius: '$full',
     position: 'absolute',
     right: 0,
@@ -15,6 +16,7 @@ export default styled(
     _dark: {
       borderColor: '$muted.900',
     },
+    // @ts-ignore
     borderWidth: 2,
     zIndex: 900,
   },

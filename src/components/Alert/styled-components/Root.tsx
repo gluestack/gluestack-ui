@@ -8,8 +8,9 @@ export default styled(
     flexDirection: 'row',
     justifyContent: 'flex-start',
     flexShrink: 1,
+    // @ts-ignore
     borderRadius: '$sm',
-    p: '$3',
+    padding: '$3',
 
     variants: {
       variant: {
@@ -43,15 +44,16 @@ function colorSchemeResolveFn({ ...props }: any) {
     switch (variant) {
       case 'solid':
         value = {
-          bg: `$${color}.700`,
+          backgroundColor: `$${color}.700`,
           _dark: {
-            bg: `$${color}.600`,
+            backgroundColor: `$${color}.600`,
           },
           _icon: { color: `$muted.50` },
         };
         break;
       case 'outline-light':
         value = {
+          // @ts-ignore
           borderWidth: 1,
           _icon: { color: `$${color}.700` },
           borderColor: `$${color}.700.alpha0.4`,
@@ -63,16 +65,17 @@ function colorSchemeResolveFn({ ...props }: any) {
         break;
       case 'subtle':
         value = {
-          bg: `$${color}.200`,
+          backgroundColor: `$${color}.200`,
           _icon: { color: `$${color}.700` },
           _dark: {
-            bg: `$${color}.200`,
+            backgroundColor: `$${color}.200`,
             _icon: { color: `$${color}.600` },
           },
         };
         break;
       case 'outline':
         value = {
+          // @ts-ignore
           borderWidth: 1,
           _icon: { color: `$${color}.700` },
           borderColor: `$${color}.700`,
@@ -85,11 +88,11 @@ function colorSchemeResolveFn({ ...props }: any) {
       case 'top-accent':
         value = {
           borderTopWidth: 4,
-          bg: `$${color}.200`,
+          backgroundColor: `$${color}.200`,
           _icon: { color: `$${color}.700` },
           borderColor: `$${color}.700`,
           _dark: {
-            bg: `$${color}.200`,
+            backgroundColor: `$${color}.200`,
             _icon: { color: `$${color}.600` },
             borderColor: `$${color}.600`,
           },
@@ -98,11 +101,11 @@ function colorSchemeResolveFn({ ...props }: any) {
       case 'left-accent':
         value = {
           borderLeftWidth: 4,
-          bg: `$${color}.200`,
+          backgroundColor: `$${color}.200`,
           _icon: { color: `$${color}.700` },
           borderColor: `$${color}.700`,
           _dark: {
-            bg: `$${color}.200`,
+            backgroundColor: `$${color}.200`,
             _icon: { color: `$${color}.600` },
             borderColor: `$${color}.600`,
           },

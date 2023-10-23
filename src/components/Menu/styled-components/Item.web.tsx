@@ -3,11 +3,12 @@ import { LI } from '@expo/html-elements';
 export const Item = styled(
   LI,
   {
+    // @ts-ignore
     'p': '$3',
     'flexDirection': 'row',
     'alignItems': 'center',
     ':hover': {
-      bg: '$backgroundLight100',
+      backgroundColor: '$backgroundLight100',
     },
 
     ':disabled': {
@@ -15,21 +16,21 @@ export const Item = styled(
       // @ts-ignore
       'cursor': 'not-allowed',
       ':focus': {
-        bg: 'transparent',
+        backgroundColor: 'transparent',
       },
       '_dark': {
         ':focus': {
-          bg: 'transparent',
+          backgroundColor: 'transparent',
         },
       },
     },
 
     ':active': {
-      bg: '$backgroundLight200',
+      backgroundColor: '$backgroundLight200',
     },
 
     ':focus': {
-      bg: '$backgroundLight100',
+      backgroundColor: '$backgroundLight100',
       // @ts-ignore
       outlineWidth: '$0',
       outlineStyle: 'none',
@@ -37,15 +38,15 @@ export const Item = styled(
 
     '_dark': {
       ':hover': {
-        bg: '$backgroundDark800',
+        backgroundColor: '$backgroundDark800',
       },
 
       ':active': {
-        bg: '$backgroundDark700',
+        backgroundColor: '$backgroundDark700',
       },
 
       ':focus': {
-        bg: '$backgroundDark800',
+        backgroundColor: '$backgroundDark800',
       },
     },
     ':focusVisible': {

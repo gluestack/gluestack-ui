@@ -6,8 +6,10 @@ import { ColorSchemeResolver } from '../../../plugins/colorScheme/colorScheme';
 export default styled(
   Pressable,
   {
+    // @ts-ignore
     'rounded': '$full',
     'zIndex': 20,
+    // @ts-ignore
     'p': 16,
     'flexDirection': 'row',
 
@@ -82,41 +84,45 @@ export default styled(
       size: {
         lg: {
           _text: {
+            // @ts-ignore
             fontSize: '$md',
           },
           _icon: {
             props: {
               size: 20,
             },
-            h: '$5',
-            w: '$5',
+            height: '$5',
+            width: '$5',
           },
         },
         md: {
           _text: {
+            // @ts-ignore
             fontSize: '$sm',
           },
           _icon: {
-            h: '$4',
-            w: '$4',
+            height: '$4',
+            width: '$4',
           },
         },
         sm: {
           _text: {
+            // @ts-ignore
             fontSize: '$xs',
           },
           _icon: {
-            h: '$4',
-            w: '$4',
+            height: '$4',
+            width: '$4',
           },
         },
         xs: {
           _text: {
+            // @ts-ignore
             fontSize: '$2xs',
           },
           _icon: {
-            h: '$3',
-            w: '$3',
+            height: '$3',
+            width: '$3',
           },
         },
       },
@@ -160,10 +166,10 @@ function colorSchemeResolveFn({ ...props }: any) {
             },
           },
           ':hover': {
-            bg: `$${color}.300.alpha0.1`,
+            backgroundColor: `$${color}.300.alpha0.1`,
           },
           ':active': {
-            bg: `$${color}.400.alpha0.2`,
+            backgroundColor: `$${color}.400.alpha0.2`,
           },
 
           '_dark': {
@@ -179,16 +185,17 @@ function colorSchemeResolveFn({ ...props }: any) {
               },
             },
             ':hover': {
-              bg: `$${color}.500.alpha0.1`,
+              backgroundColor: `$${color}.500.alpha0.1`,
             },
             ':active': {
-              bg: `$${color}.500.alpha0.2`,
+              backgroundColor: `$${color}.500.alpha0.2`,
             },
           },
         };
         break;
       case 'outline':
         value = {
+          // @ts-ignore
           'borderWidth': 1,
           'borderColor': '$muted.300',
           '_text': {
@@ -203,10 +210,10 @@ function colorSchemeResolveFn({ ...props }: any) {
             },
           },
           ':hover': {
-            bg: `$${color}.600.alpha0.1`,
+            backgroundColor: `$${color}.600.alpha0.1`,
           },
           ':active': {
-            bg: `$${color}.600.alpha0.2`,
+            backgroundColor: `$${color}.600.alpha0.2`,
           },
 
           '_dark': {
@@ -223,10 +230,10 @@ function colorSchemeResolveFn({ ...props }: any) {
               },
             },
             ':hover': {
-              bg: `$${color}.500.alpha0.1`,
+              backgroundColor: `$${color}.500.alpha0.1`,
             },
             ':active': {
-              bg: `$${color}.500.alpha0.2`,
+              backgroundColor: `$${color}.500.alpha0.2`,
             },
           },
         };
@@ -244,27 +251,30 @@ function colorSchemeResolveFn({ ...props }: any) {
               color: `$text.50`,
             },
           },
+          // @ts-ignore
           'bg': `$${color}.600`,
           ':hover': {
-            bg: `$${color}.700`,
+            backgroundColor: `$${color}.700`,
           },
           ':active': {
-            bg: `$${color}.800`,
+            backgroundColor: `$${color}.800`,
           },
 
           '_dark': {
+            // @ts-ignore
             'bg': `$${color}.600`,
             ':hover': {
-              bg: `$${color}.700`,
+              backgroundColor: `$${color}.700`,
             },
             ':active': {
-              bg: `$${color}.800`,
+              backgroundColor: `$${color}.800`,
             },
           },
         };
         break;
       case 'subtle':
         value = {
+          // @ts-ignore
           'bg': `$${color}.100`,
           '_text': {
             color: `$${color}.900`,
@@ -278,19 +288,20 @@ function colorSchemeResolveFn({ ...props }: any) {
             },
           },
           ':hover': {
-            bg: `$${color}.200`,
+            backgroundColor: `$${color}.200`,
           },
           ':active': {
-            bg: `$${color}.300`,
+            backgroundColor: `$${color}.300`,
           },
 
           '_dark': {
+            // @ts-ignore
             'bg': `$${color}.300`,
             ':hover': {
-              bg: `$${color}.200`,
+              backgroundColor: `$${color}.200`,
             },
             ':active': {
-              bg: `$${color}.100`,
+              backgroundColor: `$${color}.100`,
             },
           },
         };

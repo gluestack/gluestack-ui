@@ -1,4 +1,4 @@
-import { deepMerge } from './index';
+import { deepMerge, transformTheme } from './index';
 import { config } from '../components/gluestack-ui.config';
 import {
   addDollarSignsToProps,
@@ -36,80 +36,6 @@ export const convertTheme = (theme: any = {}) => {
 
   // console.log(gluestackTheme, 'gluestack theme');
   return gluestackTheme;
-};
-
-const transformTheme = (componentTheme: any) => {
-  const { baseStyle, variants, sizes, defaultProps, ...rest } = componentTheme;
-  let sxProps = addDollarSignsToProps(rest, config.theme);
-
-  let transformedTheme: any = {
-    variants: {
-      variant: {},
-      size: {},
-    },
-    defaultProps: {},
-    ...sxProps,
-  };
-
-  if (baseStyle) {
-    const propsWithDollarSigns = addDollarSignsToProps(baseStyle, config.theme);
-    sxProps = convertToSXForStateColorModeMediaQuery(
-      propsWithDollarSigns,
-      config
-    );
-  }
-  // const baseStylePropsWithDollarSigns = addDollarSignsToProps(
-  //   propsWithDollarSigns,
-  //   config
-  // );
-
-  // Transforms NativeBase Properties to Gluestack
-
-  // transformedTheme = { ...transformedTheme, ...sxProps };
-
-  // Mapping variants
-  if (componentTheme.variants) {
-    Object.keys(variants).forEach((variant) => {
-      const propsWithDollarSigns = addDollarSignsToProps(
-        variants[variant],
-        config.theme
-      );
-      const sxProps = convertToSXForStateColorModeMediaQuery(
-        propsWithDollarSigns,
-        config.theme
-      );
-      transformedTheme.variants.variant[variant] = sxProps;
-    });
-  }
-
-  // Mapping Sizes
-  if (componentTheme.sizes) {
-    Object.keys(sizes).forEach((size) => {
-      const propsWithDollarSigns = addDollarSignsToProps(
-        sizes[size],
-        config.theme
-      );
-      const sxProps = convertToSXForStateColorModeMediaQuery(
-        propsWithDollarSigns,
-        config.theme
-      );
-      transformedTheme.variants.size[size] = sxProps;
-    });
-  }
-
-  // Mapping Default Props
-  if (componentTheme.defaultProps) {
-    const propsWithDollarSigns = addDollarSignsToProps(
-      defaultProps,
-      config.theme
-    );
-    const sxProps = convertToSXForStateColorModeMediaQuery(
-      propsWithDollarSigns,
-      config.theme
-    );
-    transformedTheme.defaultProps = sxProps;
-  }
-  return transformedTheme;
 };
 
 function convertNBColorsToGluestackColors(colors: any) {
@@ -200,6 +126,9 @@ export function extendTheme<Theme>(tempTheme: Theme) {
   }
   let finalTheme: any = {};
   let gluestackStyles: any = theme;
+  const clonedConfig: typeof config = JSON.parse(
+    JSON.stringify(config)
+  ) as typeof config;
 
   if (theme.components) {
     const componentTheme = theme.components;
@@ -208,7 +137,7 @@ export function extendTheme<Theme>(tempTheme: Theme) {
     Object.keys(componentTheme).map((component) => {
       componentsTheme[component] = { theme: {} };
       componentsTheme[component].theme = {
-        ...transformTheme(componentTheme[component]),
+        ...transformTheme(componentTheme[component], clonedConfig),
       };
     });
     finalTheme['components'] = componentsTheme;
@@ -228,9 +157,6 @@ export function extendTheme<Theme>(tempTheme: Theme) {
       }
     });
   }
-  const clonedConfig: typeof config = JSON.parse(
-    JSON.stringify(config)
-  ) as typeof config;
 
   const mergedTheme = deepMerge(
     deepMerge(clonedConfig.theme, convertTheme(finalTheme)),

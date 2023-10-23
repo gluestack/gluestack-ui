@@ -4,11 +4,12 @@ import { View } from 'react-native';
 export default styled(
   View,
   {
-    bg: '$primary.600',
+    backgroundColor: '$primary.600',
     _dark: {
-      bg: '$primary.400',
+      backgroundColor: '$primary.400',
     },
-    h: '$full',
+    height: '$full',
+    // @ts-ignore
     borderRadius: '$full',
   },
   {

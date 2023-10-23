@@ -4,8 +4,8 @@ import { StyledIcon } from '../../Icons/styled-components';
 export default styled(
   StyledIcon,
   {
-    h: '$full',
-    w: '$full',
+    height: '$full',
+    width: '$full',
   },
   {
     componentName: 'RadioIcon',

@@ -5,9 +5,11 @@ export default styled(
   Text,
   {
     mx: '$2',
+    // @ts-ignore
     fontSize: '$md',
     fontFamily: '$body',
     fontWeight: '$normal',
+    // @ts-ignore
     lineHeight: '$md',
     color: '$textLight800',
     _dark: {

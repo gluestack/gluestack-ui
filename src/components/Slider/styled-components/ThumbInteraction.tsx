@@ -4,6 +4,7 @@ import { View } from 'react-native';
 export default styled(
   View,
   {
+    // @ts-ignore
     borderRadius: '$full',
     zIndex: -1,
   },

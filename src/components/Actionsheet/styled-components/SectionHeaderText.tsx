@@ -5,12 +5,14 @@ export default styled(
   Text,
   {
     color: '$textLight500',
+    // @ts-ignore
     fontSize: '$sm',
     fontFamily: '$body',
     fontWeight: '$bold',
+    // @ts-ignore
     lineHeight: '$xs',
     textTransform: 'uppercase',
-    p: '$3',
+    padding: '$3',
     _dark: {
       color: '$textDark400',
     },

@@ -576,3 +576,77 @@ function checkIfPropIsStyle(key: any, theme: any) {
     return true;
   return false;
 }
+
+export const transformTheme = (componentTheme: any, config: any) => {
+  const { baseStyle, variants, sizes, defaultProps, ...rest } = componentTheme;
+  let sxProps = addDollarSignsToProps(rest, config.theme);
+
+  let transformedTheme: any = {
+    variants: {
+      variant: {},
+      size: {},
+    },
+    defaultProps: {},
+    ...sxProps,
+  };
+
+  if (baseStyle) {
+    const propsWithDollarSigns = addDollarSignsToProps(baseStyle, config.theme);
+    sxProps = convertToSXForStateColorModeMediaQuery(
+      propsWithDollarSigns,
+      config
+    );
+  }
+  // const baseStylePropsWithDollarSigns = addDollarSignsToProps(
+  //   propsWithDollarSigns,
+  //   config
+  // );
+
+  // Transforms NativeBase Properties to Gluestack
+
+  // transformedTheme = { ...transformedTheme, ...sxProps };
+
+  // Mapping variants
+  if (componentTheme.variants) {
+    Object.keys(variants).forEach((variant) => {
+      const propsWithDollarSigns = addDollarSignsToProps(
+        variants[variant],
+        config.theme
+      );
+      const sxProps = convertToSXForStateColorModeMediaQuery(
+        propsWithDollarSigns,
+        config.theme
+      );
+      transformedTheme.variants.variant[variant] = sxProps;
+    });
+  }
+
+  // Mapping Sizes
+  if (componentTheme.sizes) {
+    Object.keys(sizes).forEach((size) => {
+      const propsWithDollarSigns = addDollarSignsToProps(
+        sizes[size],
+        config.theme
+      );
+      const sxProps = convertToSXForStateColorModeMediaQuery(
+        propsWithDollarSigns,
+        config.theme
+      );
+      transformedTheme.variants.size[size] = sxProps;
+    });
+  }
+
+  // Mapping Default Props
+  if (componentTheme.defaultProps) {
+    const propsWithDollarSigns = addDollarSignsToProps(
+      defaultProps,
+      config.theme
+    );
+    const sxProps = convertToSXForStateColorModeMediaQuery(
+      propsWithDollarSigns,
+      config.theme
+    );
+    transformedTheme.defaultProps = sxProps;
+  }
+  return transformedTheme;
+};

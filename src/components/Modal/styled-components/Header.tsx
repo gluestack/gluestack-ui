@@ -4,7 +4,7 @@ import { styled } from '@gluestack-style/react';
 export default styled(
   View,
   {
-    p: '$4',
+    padding: '$4',
     justifyContent: 'space-between',
     alignItems: 'center',
     flexDirection: 'row',

@@ -4,11 +4,13 @@ import { TextInput } from 'react-native';
 export default styled(
   TextInput,
   {
-    bg: 'transparent',
+    backgroundColor: 'transparent',
     flex: 1,
-    w: '$full',
-    h: '$full',
+    width: '$full',
+    height: '$full',
+    // @ts-ignore
     py: '$2',
+    // @ts-ignore
     px: '$3',
     color: '$text.900',
     props: {

@@ -4,10 +4,11 @@ import { Pressable } from 'react-native';
 export default styled(
   Pressable,
   {
-    bg: '$muted.200',
+    backgroundColor: '$muted.200',
     _dark: {
-      bg: '$muted.700',
+      backgroundColor: '$muted.700',
     },
+    // @ts-ignore
     borderRadius: '$lg',
     overflow: 'hidden',
   },

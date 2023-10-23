@@ -6,12 +6,15 @@ export default styled(
   {
     //@ts-ignore
     'fontFamily': '$body',
+    // @ts-ignore
     'borderWidth': 1,
     'borderColor': '$muted.300',
+    // @ts-ignore
     'borderRadius': '$sm',
     'flexDirection': 'row',
     'alignItems': 'center',
     'overflow': 'hidden',
+    // @ts-ignore
     'w': '100%',
     'h': 100,
     ':disabled': {
@@ -24,6 +27,7 @@ export default styled(
     '_web': {
       outlineWidth: '$0',
       overflow: 'auto',
+      // @ts-ignore
       lineHeight: '$lg',
       outline: 'none',
       cursor: 'auto',
@@ -46,6 +50,7 @@ export default styled(
       },
     },
     ':focus': {
+      // @ts-ignore
       'bg': '$primary.600.alpha0.1',
       'borderColor': '$primary.600',
       ':hover': { borderColor: '$primary.600' },
@@ -127,22 +132,26 @@ export default styled(
       size: {
         xl: {
           _input: {
+            // @ts-ignore
             fontSize: '$xl',
           },
         },
 
         lg: {
           _input: {
+            // @ts-ignore
             fontSize: '$lg',
           },
         },
         md: {
           _input: {
+            // @ts-ignore
             fontSize: '$md',
           },
         },
         sm: {
           _input: {
+            // @ts-ignore
             fontSize: '$sm',
           },
         },

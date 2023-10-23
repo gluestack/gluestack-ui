@@ -5,8 +5,11 @@ import { AnimationResolver } from '@gluestack-style/animation-plugin';
 export default styled(
   Motion.View,
   {
+    // @ts-ignore
     'bg': '$muted.50',
+    // @ts-ignore
     'rounded': '$md',
+    // @ts-ignore
     'borderWidth': 1,
     'borderColor': '$muted.300',
     'overflow': 'hidden',
@@ -30,7 +33,7 @@ export default styled(
       },
     },
     '_dark': {
-      bg: '$muted.800',
+      backgroundColor: '$muted.800',
       borderColor: '$muted.700',
     },
 

@@ -4,9 +4,9 @@ import { View } from 'react-native';
 export default styled(
   View,
   {
-    w: '$4',
-    h: '$4',
-    mr: '$2',
+    width: '$4',
+    height: '$4',
+    marginRight: '$2',
     _icon: {
       color: '$backgroundLight500',
       _dark: {

@@ -64,6 +64,7 @@ const InputGroupTemp = forwardRef(({ children, ...props }: any, ref?: any) => {
       });
 
     return cloneElement(child, {
+      // @ts-ignore
       borderRadius: 0,
     });
   });

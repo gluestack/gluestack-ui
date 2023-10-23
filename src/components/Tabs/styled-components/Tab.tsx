@@ -4,6 +4,7 @@ import { Pressable } from 'react-native';
 export default styled(
   Pressable,
   {
+    // @ts-ignore
     'bg': 'transparent',
     '_web': {
       outlineWidth: 0,
@@ -12,11 +13,15 @@ export default styled(
     'variants': {
       size: {
         md: {
+          // @ts-ignore
           px: '$4',
+          // @ts-ignore
           py: '$2',
 
           _text: {
+            // @ts-ignore
             fontSize: '$md',
+            // @ts-ignore
             lineHeight: '$md',
           },
         },
@@ -27,15 +32,18 @@ export default styled(
       size: 'md',
     },
     ':hover': {
-      // bg: '$secondary50_alpha_20',
+      // backgroundColor: '$secondary50_alpha_20',
+      // @ts-ignore
       borderRadius: '$full',
     },
     ':active': {
-      // bg: '$secondary50_alpha_10',
+      // backgroundColor: '$secondary50_alpha_10',
+      // @ts-ignore
       borderRadius: '$full',
     },
     ':focus': {
-      // bg: '$secondary50_alpha_20',
+      // backgroundColor: '$secondary50_alpha_20',
+      // @ts-ignore
       borderRadius: '$full',
     },
     ':disabled': {
@@ -44,15 +52,18 @@ export default styled(
 
     '_dark': {
       ':hover': {
-        bg: '$backgroundLight500',
+        backgroundColor: '$backgroundLight500',
+        // @ts-ignore
         borderRadius: '$full',
       },
       ':active': {
-        bg: '$backgroundLight400',
+        backgroundColor: '$backgroundLight400',
+        // @ts-ignore
         borderRadius: '$full',
       },
       ':focus': {
-        bg: '$backgroundLight400',
+        backgroundColor: '$backgroundLight400',
+        // @ts-ignore
         borderRadius: '$full',
       },
       ':disabled': {

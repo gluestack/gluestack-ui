@@ -37,7 +37,7 @@ const AvatarGroupTemp = forwardRef(
   ({ children, max = -1, space, ...props }: any, ref?: any) => {
     // TODO: fix later
     // let spaceStyleObj = {};
-    // if (space) spaceStyleObj = { _avatar: { ml: 0 } };
+    // if (space) spaceStyleObj = { _avatar: { marginLeft: 0 } };
     const resolvedPropForGluestack = usePropResolution({
       ...props,
       space,
@@ -56,10 +56,10 @@ const AvatarGroupTemp = forwardRef(
       <AccessibleAvatar.Group {...resolvedPropForGluestack} ref={ref}>
         {max && max < children.length && max > 0
           ? [...children.slice(0, max), remainingAvatar()].map(
-              (child: any, index: any) => {
-                return cloneElement(child, { key: index });
-              }
-            )
+            (child: any, index: any) => {
+              return cloneElement(child, { key: index });
+            }
+          )
           : children}
       </AccessibleAvatar.Group>
     );

@@ -9,14 +9,14 @@ export class ColorSchemeResolver implements IStyledPlugin {
   from?: string;
   // no other use
 
-  register() {}
+  register() { }
 
   constructor(callback: any, from?: any) {
     this.name = 'ColorSchemeResolver';
     this.callback = callback;
     this.from = from;
   }
-
+  // @ts-ignore
   inputMiddleWare(
     _styledObj: any = {},
     _shouldUpdate: boolean = true,

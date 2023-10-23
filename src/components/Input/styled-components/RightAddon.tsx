@@ -4,16 +4,18 @@ import { View } from 'react-native';
 export default styled(
   View,
   {
-    p: '0.5rem',
+    padding: '0.5rem',
     borderLeftWidth: 0,
+    // @ts-ignore
     borderWidth: '$1',
     borderColor: '$muted.300',
+    // @ts-ignore
     borderRadius: '$sm',
     alignItems: 'center',
     justifyContent: 'center',
     _dark: {
       borderColor: '$muted.700',
-      bg: '$muted.800',
+      backgroundColor: '$muted.800',
     },
   },
   {

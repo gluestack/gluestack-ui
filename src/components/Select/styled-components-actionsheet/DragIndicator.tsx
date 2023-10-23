@@ -6,10 +6,11 @@ export default styled(
   {
     height: '$1',
     width: '$16',
-    bg: '$backgroundLight400',
+    backgroundColor: '$backgroundLight400',
+    // @ts-ignore
     rounded: '$full',
     _dark: {
-      bg: '$backgroundDark500',
+      backgroundColor: '$backgroundDark500',
     },
   },
   {}

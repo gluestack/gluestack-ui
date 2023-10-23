@@ -18,7 +18,9 @@ export const config = {
       m: 'margin',
       mx: 'marginHorizontal',
       my: 'marginVertical',
+      // @ts-ignore
       mt: 'marginTop',
+      // @ts-ignore
       mb: 'marginBottom',
       mr: 'marginRight',
       ml: 'marginLeft',

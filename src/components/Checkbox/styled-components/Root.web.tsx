@@ -21,37 +21,43 @@ export default styled(
       size: {
         lg: {
           _text: {
+            // @ts-ignore
             fontSize: '$lg',
+            // @ts-ignore
             lineHeight: '$xl',
           },
 
           _indicator: {
-            h: '$6',
-            w: '$6',
+            height: '$6',
+            width: '$6',
           },
         },
 
         md: {
           _text: {
+            // @ts-ignore
             fontSize: '$md',
+            // @ts-ignore
             lineHeight: '$md',
           },
 
           _indicator: {
-            h: '$5',
-            w: '$5',
+            height: '$5',
+            width: '$5',
           },
         },
 
         sm: {
           _text: {
+            // @ts-ignore
             fontSize: '$sm',
+            // @ts-ignore
             lineHeight: '$sm',
           },
 
           _indicator: {
-            h: '$4',
-            w: '$4',
+            height: '$4',
+            width: '$4',
           },
         },
       },
@@ -85,36 +91,40 @@ function colorSchemeResolveFn({ ...props }: any) {
       _indicator: {
         ':checked': {
           'borderColor': `$${color}.600`,
+          // @ts-ignore
           'bg': `$${color}.600`,
           ':hover': {
             'borderColor': `$${color}.700`,
+            // @ts-ignore
             'bg': `$${color}.700`,
             ':disabled': {
               borderColor: `$${color}.600`,
-              bg: `$${color}.600`,
+              backgroundColor: `$${color}.600`,
             },
           },
           ':active': {
             borderColor: `$${color}.800`,
-            bg: `$${color}.800`,
+            backgroundColor: `$${color}.800`,
           },
         },
 
         ':dark': {
           ':checked': {
             'borderColor': `$${color}.500`,
+            // @ts-ignore
             'bg': `$${color}.500`,
             ':hover': {
               'borderColor': `$${color}.400`,
+              // @ts-ignore
               'bg': `$${color}.400`,
               ':disabled': {
                 borderColor: `$${color}.500`,
-                bg: `$${color}.500`,
+                backgroundColor: `$${color}.500`,
               },
             },
             ':active': {
               borderColor: `$${color}.300`,
-              bg: `$${color}.300`,
+              backgroundColor: `$${color}.300`,
             },
           },
         },
