@@ -1,6 +1,6 @@
 ---
 title: Babel Plugins | gluestack-style
-description: All the Babel plugins gluestack-style provides for its ecosystem. It transpiles your styled function calls and resolves the component styling in build time.
+description: All the Babel plugins gluestack-style provides for its ecosystem. It transpile your styled function calls and resolves the component styling in build time.
 ---
 
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
@@ -12,7 +12,7 @@ import { Box, AppProvider } from '@gluestack/design-system';
 
 ### @gluestack-style/babel-plugin-styled-resolver
 
-@gluestack-style/babel-plugin-styled-resolver transpiles your `styled` function calls and resolves the `component styling` in build time. It also generates all the `CSS rules` and style ids based on which these CSS styles are applied on the component. Doing this saves tons of time on runtime because all your style calculation is already done and all your app has to do is to inject this style into a style tag and viola! All your styles appear instantaneously. This helps us to improve the performance of the apps 5-6 times. If you provide the `components` option then it also resolves the inline styles of the components created using `@gluestack-style/react`.
+@gluestack-style/babel-plugin-styled-resolver transpile your `styled` function calls and resolves the `component styling` in build time. It also generates all the `CSS rules` and style ids based on which these CSS styles are applied on the component. Doing this saves tons of time on runtime because all your style calculation is already done and all your app has to do is to inject this style into a style tag and viola! All your styles appear instantaneously. This helps us to improve the performance of the apps 5-6 times. If you provide the `components` option then it also resolves the inline styles of the components created using `@gluestack-style/react`.
 
 ## Installation Steps:
 
@@ -40,7 +40,7 @@ import { Box, AppProvider } from '@gluestack/design-system';
 
 3. Just make sure your `babel.config.js` and `gluestack-style.config.js/ts` are in the same directory. We suggest you keep both of them at the root of your app codebase.
 
-### **Let us see how this Babel plugin works.**
+### Let us see how this Babel plugin works.
 
 - First, it traverses your files and tries to find `styled` imported from `@gluestack-style/react`.
 - Once it finds a declaration of `styled` it then looks for its function call.
@@ -196,7 +196,7 @@ module.exports = function (api) {
 
 - `components`: The `components` option allows you to specify the library/import_path name & file path of components created using `@gluestack-style/react`. This option is useful in scenarios where you are creating a custom component with the styled function and using it with inline styles. If you want to resolve those inline styles on build time just define this option with the library name and file path of the components folder or library.
 
-> **Note**: Even using this option if you have extended your config, added aliases, tokens or propertyResolver to a StyledComponent then it will not be resolved on build time. It will be resolved on runtime.
+> Note: Even using this option if you have extended your config, added aliases, tokens or propertyResolver to a StyledComponent then it will not be resolved on build time. It will be resolved on runtime.
 
 ```js
 // babel.config.js

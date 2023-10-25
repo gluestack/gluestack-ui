@@ -1,5 +1,19 @@
 # @gluestack-style/react
 
+## 1.0.8
+
+### Patch Changes
+
+- - Fixed global style platform based resolution
+  - Fixed useToken to return default value as fallback
+  - Fixed theme passing props resolution
+
+## 1.0.7
+
+### Patch Changes
+
+- fix: component typings
+
 ## 0.2.9
 
 ### Patch Changes

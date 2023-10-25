@@ -1,9 +1,11 @@
 import { convertStyledToStyledVerbosed } from './convertSxToSxVerbosed';
 import { stableHash } from './stableHash';
+import { resolvePlatformTheme } from './styled';
 import { updateOrderUnResolvedMap } from './updateOrderUnResolvedMap';
 
-export const createGlobalStyles = (globalStyle: object) => {
+export const createGlobalStyles = (globalStyle: object, Platform: any) => {
   const versboseComponentTheme = convertStyledToStyledVerbosed(globalStyle);
+  resolvePlatformTheme(versboseComponentTheme, Platform.OS);
   const componentHash = stableHash({
     ...globalStyle,
   });

@@ -109,10 +109,15 @@ export class StyleInjector {
     return toBeInjected;
   }
 
-  inject(toBeInjected: any = {}) {
+  inject(toBeInjected: any = {}, inlineStyleMap: any) {
     Object.keys(toBeInjected).forEach((type) => {
       Object.keys(toBeInjected[type]).forEach((styleTag) => {
-        this.injectStyles(toBeInjected[type][styleTag], type, styleTag);
+        this.injectStyles(
+          toBeInjected[type][styleTag],
+          type,
+          styleTag,
+          inlineStyleMap
+        );
       });
     });
   }
@@ -162,9 +167,19 @@ export class StyleInjector {
     return this.#globalStyleMap;
   }
 
-  injectStyles(cssRuleset: any, _wrapperType: any, _styleTagId: any) {
+  injectStyles(
+    cssRuleset: any,
+    _wrapperType: any,
+    _styleTagId: any,
+    inlineStyleMap: any
+  ) {
     if (cssRuleset) {
-      inject(`@media screen {${cssRuleset}}`, _wrapperType as any, _styleTagId);
+      inject(
+        `@media screen {${cssRuleset}}`,
+        _wrapperType as any,
+        _styleTagId,
+        inlineStyleMap
+      );
     }
   }
 }

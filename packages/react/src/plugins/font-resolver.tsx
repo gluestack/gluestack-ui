@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import type { IStyled, IStyledPlugin } from '../types';
 import { useStyled } from '../StyledProvider';
 import { propertyTokenMap } from '../propertyTokenMap';
-import { deepMerge, deepMergeObjects, setObjectKeyValue } from '../utils';
+import { deepMerge, setObjectKeyValue } from '../utils';
 import { getVariantProps } from '../styled';
 
 const fontWeights: any = {
@@ -140,14 +140,19 @@ export class FontResolver implements IStyledPlugin, FontPlugin {
     this.mapFonts = mapFonts || this.mapFonts;
   }
 
-  inputMiddleWare(styledObj: any = {}, shouldUpdate: boolean = true): void {
+  inputMiddleWare(
+    styledObj: any = {},
+    shouldUpdate: boolean = true,
+    _?: boolean,
+    Component?: React.ComponentType
+  ) {
     const modifiedStyledObject = this.fontHandler(styledObj, shouldUpdate);
 
     if (shouldUpdate) {
-      return styledObj;
+      return [styledObj, shouldUpdate, _, Component];
     }
 
-    return modifiedStyledObject;
+    return [modifiedStyledObject, shouldUpdate, _, Component];
   }
 
   #fontFamily: any = {};
@@ -204,18 +209,20 @@ export class FontResolver implements IStyledPlugin, FontPlugin {
           fontWeightsTokens: this.#fontWeightsTokenConfig,
         });
 
-        if (styledObject[styledObjectKey]) this.mapFonts(styledObject);
+        if (styledObject[styledObjectKey]) {
+          this.mapFonts(styledObject);
+        }
       }
     }
 
     return styledObject;
   }
 
-  componentMiddleWare({ NewComp, extendedConfig }: any) {
+  componentMiddleWare({ Component: InputComponent, extendedConfig }: any) {
     const styledConfig = this.#fontFamily;
     this.#fontFamily = {};
 
-    const Comp = React.forwardRef((props: any, ref: any) => {
+    const OutputComponent = React.forwardRef((props: any, ref: any) => {
       const styledContext = useStyled();
       const CONFIG = useMemo(
         () => ({
@@ -242,12 +249,9 @@ export class FontResolver implements IStyledPlugin, FontPlugin {
         variantProps,
         styledConfig
       );
-      let componentStyledObject = deepMergeObjects(
-        styledConfig,
-        variantStyledObject
-      );
+      let componentStyledObject = deepMerge(styledConfig, variantStyledObject);
 
-      delete componentStyledObject.variants;
+      // delete componentStyledObject.variants;
 
       const { sx, fontWeight, fontFamily, fontStyle, ...rest } = restProps;
 
@@ -268,17 +272,35 @@ export class FontResolver implements IStyledPlugin, FontPlugin {
 
       const sxPropsWithThemeProps = deepMerge(sx, componentStyledObject);
 
-      const resolvedSxProps = this.inputMiddleWare(
+      const [resolvedSxProps, , ,] = this.inputMiddleWare(
         sxPropsWithThemeProps,
-        false
+        false,
+        false,
+        () => <></>
       );
 
-      return <NewComp sx={resolvedSxProps} {...rest} ref={ref} />;
+      return <InputComponent {...rest} sx={resolvedSxProps} ref={ref} />;
     });
 
     //@ts-ignore
-    Comp.isStyledComponent = NewComp.isStyledComponent;
+    OutputComponent.styled = {};
+    //@ts-ignore
+    OutputComponent.styled.config = {};
+    //@ts-ignore
+    OutputComponent.styled.config = {
+      ...styledConfig?.config,
+      ...InputComponent?.styled?.config,
+    };
 
-    return Comp;
+    //@ts-ignore
+    OutputComponent.isStyledComponent = InputComponent?.isStyledComponent;
+    //@ts-ignore
+    OutputComponent.isComposedComponent = InputComponent?.isComposedComponent;
+    //@ts-ignore
+    OutputComponent.isAnimatedComponent = InputComponent?.isAnimatedComponent;
+
+    OutputComponent.displayName = InputComponent?.displayName;
+
+    return OutputComponent;
   }
 }

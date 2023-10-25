@@ -659,6 +659,9 @@ export const config = createConfig({
       100: 1,
     },
   } as const,
+  globalStyle: {
+    variants: {},
+  },
   themes: {
     '2000s': {
       colors: {

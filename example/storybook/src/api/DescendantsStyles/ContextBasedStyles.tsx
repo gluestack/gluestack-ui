@@ -116,8 +116,12 @@ const Text1 = styled(
   }
 );
 
-const MyLink = styled(Link, {});
+const Box = styled(View, {
+  bg: '$blue500',
+  p: '$10',
+});
 export function ContextBasedStyles() {
+  console.log('>>>>>  component');
   return (
     <Wrapper colorMode="dark">
       {/* <StyledIcon as={CameraIcon} /> */}
@@ -129,14 +133,12 @@ export function ContextBasedStyles() {
       >
         vdkbkdfbv
       </Text1> */}
-      <MyLink
-        href={'/'}
+      <Box
+        // href={'/'}
         sx={{
-          color: '$red500',
+          bg: '$red500',
         }}
-      >
-        next link
-      </MyLink>
+      ></Box>
     </Wrapper>
   );
 }

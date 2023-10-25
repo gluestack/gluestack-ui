@@ -92,9 +92,9 @@ export { createStyle } from './createStyle';
 export { INTERNAL_updateCSSStyleInOrderedResolved } from './updateCSSStyleInOrderedResolved';
 export {
   createConfig,
-  getInstalledPlugins,
+  // getInstalledPlugins,
   createComponents,
-  getInstalledComponents,
+  // getInstalledComponents,
 } from './createConfig';
 export * from './core';
 export * from './hooks';

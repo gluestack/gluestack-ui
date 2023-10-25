@@ -117,7 +117,8 @@ const createStyle = (styleTagId: any, css: any) => {
 export const injectCss = (
   css: any,
   wrapperType: IWrapperType,
-  styleTagId: string
+  styleTagId: string,
+  inlineStyleMap?: any
 ) => {
   // let modifiedStylesheet = {} as any;
   if (!toBeFlushedStyles[wrapperType]) {
@@ -138,8 +139,23 @@ export const injectCss = (
 
       if (!style) {
         style = createStyle(styleTagId, css);
-        // wrapperElement.insertBefore(style, wrapperElement.firstChild);
-        wrapperElement.appendChild(style);
+        // console.log(inlineStyleMap, 'append child here >>>>>');
+        if (inlineStyleMap) {
+          if (!inlineStyleMap?.initialStyleInjected) {
+            const styleMapId = `${WRAPPER_BLOCK_PREFIX}-${wrapperType}`;
+            const inlineMapStyles = inlineStyleMap[styleMapId];
+
+            if (inlineMapStyles) {
+              inlineMapStyles.push(style);
+            } else {
+              inlineStyleMap[styleMapId] = [style];
+            }
+            // console.log('hello here >>>> there');
+          } else {
+            // console.log('hello here >>>>');
+            wrapperElement.appendChild(style);
+          }
+        }
       }
     }
   }
