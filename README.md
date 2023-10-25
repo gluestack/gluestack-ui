@@ -13,7 +13,7 @@
 
 ## Documentation
 
-You can find detailed documentation for each component, including a list of props and examples, in https://gluestack.io/ui/docs website.
+You can find detailed documentation for each component, including a list of props and examples, in https://gluestack.io/ui/docs/getting-started/installation website.
 
 ## Features
 
@@ -73,7 +73,7 @@ function Example() {
 ```
 
 More guides on how to get started are available
-[here](https://gluestack.io/ui/docs).
+[here](https://gluestack.io/ui/docs/getting-started/installation).
 
 ## Contributing
 
