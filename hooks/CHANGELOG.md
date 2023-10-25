@@ -1,5 +1,11 @@
 # @gluestack-ui/hooks
 
+## 0.1.8
+
+### Patch Changes
+
+- updated hooks
+
 ## 0.1.4
 
 ### Patch Changes
