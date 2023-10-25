@@ -2,6 +2,7 @@
 export * from './Actionsheet';
 export * from './Alert';
 export * from './AlertDialog';
+export * from './Animation';
 export * from './AspectRatio';
 export * from './Avatar';
 export * from './Badge';
