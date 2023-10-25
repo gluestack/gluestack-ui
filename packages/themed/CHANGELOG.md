@@ -1,5 +1,12 @@
 # @gluestack-ui/themed
 
+## 1.0.7
+
+### Patch Changes
+
+- `@gluestack-style/react` version upgrade
+  - Typing issue fixes
+
 ## 1.0.6
 
 ### Patch Changes
