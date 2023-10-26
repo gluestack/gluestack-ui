@@ -12,7 +12,9 @@ const ThemeContext = React.createContext<Config>(defaultContextData);
 // Can be discussed should we provide flex 1 by default or not.
 const StyledView = styled(
   View,
-  { flex: 1 },
+  {
+    // flex: 1
+  },
   { componentName: 'GluestackThemeView' }
 );
 
