@@ -8,6 +8,7 @@ export class ColorSchemeResolver implements IStyledPlugin {
 
   // for debug purpose only
   from?: string;
+  styledComponentConfig: any;
   // no other use
 
   register() {}
@@ -22,13 +23,20 @@ export class ColorSchemeResolver implements IStyledPlugin {
     _styledObj: any = {},
     _shouldUpdate: boolean = true,
     _: boolean = false,
-    Component: any
+    Component: any,
+    ...args: any
   ) {
+    delete args?.[1]?.plugins;
+    this.styledComponentConfig = args;
     return [_styledObj, _shouldUpdate, _, Component];
   }
 
   componentMiddleWare({ Component }: any) {
-    const StyledComponent = styled(Component, {});
+    const StyledComponent = styled(
+      Component,
+      {},
+      ...this.styledComponentConfig
+    );
 
     const ColorSchemeResolvedComponent = forwardRef(
       ({ key, ...componentProps }: any, ref?: any) => {
