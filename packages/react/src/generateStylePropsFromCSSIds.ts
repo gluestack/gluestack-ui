@@ -131,7 +131,8 @@ export function generateStylePropsFromCSSIds(
   props: any,
   styleCSSIds: any,
   config: any,
-  activeTheme: any
+  activeTheme: any,
+  componentConfig: any
 ) {
   const propsStyles = Array.isArray(props?.style)
     ? props?.style
@@ -178,5 +179,15 @@ export function generateStylePropsFromCSSIds(
     // DONOT REMOVE THIS LINE, THIS IS FOR SPECIFIC COMPONENTS LIKE next/link
     'data-style': getDataStyle(props, styleCSSIdsString),
   });
+
+  if (Platform.OS === 'web') {
+    Object.assign(props, {
+      dataSet: {
+        ...props?.dataSet,
+        componentConfig: JSON.stringify(componentConfig),
+      },
+    });
+  }
+
   return props;
 }
