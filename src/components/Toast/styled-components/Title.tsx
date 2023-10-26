@@ -7,7 +7,9 @@ export default styled(
     color: '$text.50',
     fontWeight: '$bold',
     fontFamily: '$body',
+    // @ts-ignore
     fontSize: '$md',
+    // @ts-ignore
     lineHeight: '$md',
   },
   {

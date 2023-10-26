@@ -6,31 +6,32 @@ import { ColorSchemeResolver } from '../../../plugins/colorScheme/colorScheme';
 export default styled(
   View,
   {
-    bg: '$muted.200',
+    backgroundColor: '$muted.200',
     _dark: {
-      bg: '$muted.700',
+      backgroundColor: '$muted.700',
     },
+    // @ts-ignore
     borderRadius: '$full',
-    w: '100%',
+    width: '100%',
     variants: {
       size: {
         'xs': {
-          h: '$1',
+          height: '$1',
         },
         'sm': {
-          h: '$2',
+          height: '$2',
         },
         'md': {
-          h: '$3',
+          height: '$3',
         },
         'lg': {
-          h: '$4',
+          height: '$4',
         },
         'xl': {
-          h: '$5',
+          height: '$5',
         },
         '2xl': {
-          h: '$6',
+          height: '$6',
         },
       },
     },
@@ -55,11 +56,11 @@ function colorSchemeResolveFn({ ...props }: any) {
 
     const value = {
       _filledTrack: {
-        bg: `$${color}.600`,
+        backgroundColor: `$${color}.600`,
       },
       _dark: {
         _filledTrack: {
-          bg: `$${color}.400`,
+          backgroundColor: `$${color}.400`,
         },
       },
     };

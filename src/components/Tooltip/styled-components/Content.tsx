@@ -30,16 +30,19 @@ export default styled(
 
     'py': '$1',
     'px': '$2',
+    // @ts-ignore
     'borderRadius': '$sm',
 
+    // @ts-ignore
     'bg': '$muted.800',
     '_text': {
+      // @ts-ignore
       fontSize: '$sm',
       color: '$text.50',
     },
 
     '_dark': {
-      bg: '$muted.50',
+      backgroundColor: '$muted.50',
       _text: {
         color: '$text.900',
       },

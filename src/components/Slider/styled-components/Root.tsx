@@ -10,21 +10,21 @@ export default styled(
     variants: {
       orientation: {
         horizontal: {
-          w: '100%',
+          width: '100%',
           _track: {
-            w: '100%',
+            width: '100%',
           },
           _filledTrack: {
-            h: '100%',
+            height: '100%',
           },
         },
         vertical: {
-          h: '100%',
+          height: '100%',
           _track: {
-            h: '100%',
+            height: '100%',
           },
           _filledTrack: {
-            w: '100%',
+            width: '100%',
           },
         },
       },
@@ -35,20 +35,20 @@ export default styled(
       size: {
         sm: {
           _thumb: {
-            h: '$4',
-            w: '$4',
+            height: '$4',
+            width: '$4',
           },
         },
         md: {
           _thumb: {
-            h: '$5',
-            w: '$5',
+            height: '$5',
+            width: '$5',
           },
         },
         lg: {
           _thumb: {
-            h: '$6',
-            w: '$6',
+            height: '$6',
+            width: '$6',
           },
         },
       },
@@ -59,7 +59,7 @@ export default styled(
         size: 'sm',
         value: {
           _track: {
-            h: '$1',
+            height: '$1',
             flexDirection: 'row',
           },
         },
@@ -70,7 +70,7 @@ export default styled(
         isReversed: true,
         value: {
           _track: {
-            h: '$1',
+            height: '$1',
             flexDirection: 'row-reverse',
           },
         },
@@ -80,7 +80,7 @@ export default styled(
         size: 'md',
         value: {
           _track: {
-            h: 5,
+            height: 5,
             flexDirection: 'row',
           },
         },
@@ -91,7 +91,7 @@ export default styled(
         isReversed: true,
         value: {
           _track: {
-            h: 5,
+            height: 5,
             flexDirection: 'row-reverse',
           },
         },
@@ -101,7 +101,7 @@ export default styled(
         size: 'lg',
         value: {
           _track: {
-            h: '$1.5',
+            height: '$1.5',
             flexDirection: 'row',
           },
         },
@@ -112,7 +112,7 @@ export default styled(
         isReversed: true,
         value: {
           _track: {
-            h: '$1.5',
+            height: '$1.5',
             flexDirection: 'row-reverse',
           },
         },
@@ -122,7 +122,7 @@ export default styled(
         size: 'sm',
         value: {
           _track: {
-            w: '$1',
+            width: '$1',
             flexDirection: 'column-reverse',
           },
         },
@@ -133,7 +133,7 @@ export default styled(
         isReversed: true,
         value: {
           _track: {
-            w: '$1',
+            width: '$1',
             flexDirection: 'column',
           },
         },
@@ -143,7 +143,7 @@ export default styled(
         size: 'md',
         value: {
           _track: {
-            w: 5,
+            width: 5,
             flexDirection: 'column-reverse',
           },
         },
@@ -154,7 +154,7 @@ export default styled(
         isReversed: true,
         value: {
           _track: {
-            w: 5,
+            width: 5,
             flexDirection: 'column',
           },
         },
@@ -164,7 +164,7 @@ export default styled(
         size: 'lg',
         value: {
           _track: {
-            w: '$1.5',
+            width: '$1.5',
             flexDirection: 'column-reverse',
           },
         },
@@ -175,7 +175,7 @@ export default styled(
         isReversed: true,
         value: {
           _track: {
-            w: '$1.5',
+            width: '$1.5',
             flexDirection: 'column',
           },
         },
@@ -209,6 +209,7 @@ function colorSchemeResolveFn({ ...props }: any) {
     const color = props.colorScheme;
     value = {
       _thumb: {
+        // @ts-ignore
         'bg': `$${color}.600`,
         ':hover': {
           _web: {
@@ -228,6 +229,7 @@ function colorSchemeResolveFn({ ...props }: any) {
         },
 
         '_dark': {
+          // @ts-ignore
           'bg': `$${color}.500`,
           ':hover': {
             _web: {
@@ -248,9 +250,9 @@ function colorSchemeResolveFn({ ...props }: any) {
         },
       },
       _filledTrack: {
-        bg: `$${color}.600`,
+        backgroundColor: `$${color}.600`,
         _dark: {
-          bg: `$${color}.500`,
+          backgroundColor: `$${color}.500`,
         },
       },
     };

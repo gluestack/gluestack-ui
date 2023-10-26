@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "skipDefaultLibCheck": true,
     "skipLibCheck": true,
     "target": "es6",
     "lib": ["es6", "es2015", "dom"],
@@ -13,6 +14,6 @@
     "allowJs": true,
     "jsx": "react"
   },
-  "exclude": ["node_modules"],
+  "exclude": ["node_modules", "src/components"],
   "include": ["src"]
 }

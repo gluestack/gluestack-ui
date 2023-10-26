@@ -37,7 +37,7 @@ const AvatarGroupTemp = forwardRef(
   ({ children, max = -1, space, ...props }: any, ref?: any) => {
     // TODO: fix later
     // let spaceStyleObj = {};
-    // if (space) spaceStyleObj = { _avatar: { ml: 0 } };
+    // if (space) spaceStyleObj = { _avatar: { marginLeft: 0 } };
     const resolvedPropForGluestack = usePropResolution({
       ...props,
       space,

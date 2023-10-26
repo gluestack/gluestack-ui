@@ -4,6 +4,7 @@ import { Text } from 'react-native';
 export default styled(
   Text,
   {
+    // @ts-ignore
     fontSize: '$sm',
     fontWeight: '$medium',
     fontFamily: '$body',

@@ -9,6 +9,7 @@ const AccessibleSwitch = createSwitch({
 });
 
 type ISwitchProps = React.ComponentProps<typeof AccessibleSwitch>;
+// @ts-ignore
 type IColorProps = React.ComponentProps<typeof AccessibleSwitch>['bgColor'];
 
 type IExtraProps = {

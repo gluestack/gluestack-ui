@@ -8,7 +8,9 @@ export default styled(
     'position': 'absolute',
     'right': '$3',
     'top': '$3',
+    // @ts-ignore
     'p': '$2',
+    // @ts-ignore
     'rounded': '$sm',
     '_icon': {
       color: '$muted.500',
@@ -18,7 +20,7 @@ export default styled(
     },
 
     ':hover': {
-      bg: '$muted.200',
+      backgroundColor: '$muted.200',
       _icon: {
         color: '$muted.700',
       },
@@ -28,7 +30,7 @@ export default styled(
     },
 
     ':active': {
-      bg: '$muted.300',
+      backgroundColor: '$muted.300',
       _icon: {
         color: '$muted.900',
       },
@@ -45,7 +47,7 @@ export default styled(
         color: '$muted.400',
       },
       ':hover': {
-        bg: '$muted.700',
+        backgroundColor: '$muted.700',
         _icon: {
           color: '$muted.200',
         },
@@ -55,7 +57,7 @@ export default styled(
       },
 
       ':active': {
-        bg: '$muted.600',
+        backgroundColor: '$muted.600',
         _icon: {
           color: '$muted.100',
         },
@@ -65,7 +67,7 @@ export default styled(
       },
     },
     ':focusVisible': {
-      bg: '$muted.100',
+      backgroundColor: '$muted.100',
       _icon: {
         color: '$muted.900',
       },
@@ -73,7 +75,7 @@ export default styled(
         color: '$muted.900',
       },
       _dark: {
-        bg: '$muted.700',
+        backgroundColor: '$muted.700',
         _icon: {
           color: '$muted.100',
         },

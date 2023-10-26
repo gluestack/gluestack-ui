@@ -8,6 +8,7 @@ export default styled(
     fontWeight: '$normal',
     fontFamily: '$body',
     fontStyle: 'normal',
+    // @ts-ignore
     fontSize: '$sm',
   },
   {

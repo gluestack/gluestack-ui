@@ -1,5 +1,6 @@
 import React, { forwardRef } from 'react';
 import type { IStyledPlugin } from '@gluestack-style/react';
+import { styled } from '@gluestack-style/react';
 
 export class ColorSchemeResolver implements IStyledPlugin {
   name: string;
@@ -16,50 +17,64 @@ export class ColorSchemeResolver implements IStyledPlugin {
     this.callback = callback;
     this.from = from;
   }
-
-  inputMiddleWare(...args: any) {
-    return args;
+  // @ts-ignore
+  inputMiddleWare(
+    _styledObj: any = {},
+    _shouldUpdate: boolean = true,
+    _: boolean = false,
+    Component: any
+  ) {
+    return [_styledObj, _shouldUpdate, _, Component];
   }
 
   componentMiddleWare({ Component }: any) {
-    return forwardRef(({ key, ...componentProps }: any, ref?: any) => {
-      const colorSchemeSx: any = {};
-      const colorSchemePassingPropsSx: any = {};
+    const StyledComponent = styled(Component, {});
 
-      const { sx, colorScheme, ...restProps } = componentProps;
+    const ColorSchemeResolvedComponent = forwardRef(
+      ({ key, ...componentProps }: any, ref?: any) => {
+        // return <NewComp />;
 
-      if (colorScheme) {
-        const colorSchemeStyle = this.callback(componentProps);
+        const colorSchemeSx: any = {};
+        const colorSchemePassingPropsSx: any = {};
 
-        Object.keys(colorSchemeStyle).forEach((styleKey) => {
-          if (
-            styleKey.startsWith('_') ||
-            styleKey.startsWith(':') ||
-            styleKey.startsWith('@')
-          ) {
-            colorSchemeSx[styleKey] = colorSchemeStyle[styleKey];
-          } else {
-            colorSchemePassingPropsSx[styleKey] = colorSchemeStyle[styleKey];
-          }
-        });
+        const { sx, colorScheme, ...restProps } = componentProps;
+
+        if (colorScheme) {
+          const colorSchemeStyle = this.callback(componentProps);
+          Object.keys(colorSchemeStyle).forEach((styleKey) => {
+            if (
+              styleKey.startsWith('_') ||
+              styleKey.startsWith(':') ||
+              styleKey.startsWith('@')
+            ) {
+              colorSchemeSx[styleKey] = colorSchemeStyle[styleKey];
+            } else {
+              colorSchemePassingPropsSx[styleKey] = colorSchemeStyle[styleKey];
+            }
+          });
+        }
+
+        const toBeAppliedSx = {
+          ...sx,
+          ...colorSchemeSx,
+          props: {
+            sx: colorSchemePassingPropsSx,
+          },
+        };
+
+        return (
+          <StyledComponent
+            {...restProps}
+            key={key ?? key + '_' + colorScheme}
+            ref={ref}
+            sx={toBeAppliedSx}
+          />
+        );
       }
+    );
 
-      const toBeAppliedSx = {
-        ...sx,
-        ...colorSchemeSx,
-        props: {
-          sx: colorSchemePassingPropsSx,
-        },
-      };
-
-      return (
-        <Component
-          {...restProps}
-          key={key ?? key + '_' + colorScheme}
-          ref={ref}
-          sx={toBeAppliedSx}
-        />
-      );
-    });
+    //@ts-ignore
+    ColorSchemeResolvedComponent.isStyledComponent = true;
+    return ColorSchemeResolvedComponent;
   }
 }

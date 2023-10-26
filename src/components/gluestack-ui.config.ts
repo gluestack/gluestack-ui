@@ -18,7 +18,9 @@ export const config = {
       m: 'margin',
       mx: 'marginHorizontal',
       my: 'marginVertical',
+      // @ts-ignore
       mt: 'marginTop',
+      // @ts-ignore
       mb: 'marginBottom',
       mr: 'marginRight',
       ml: 'marginLeft',
@@ -1192,9 +1194,10 @@ export const config = {
       color: resolveAlphaColors,
       borderColor: resolveAlphaColors,
     },
+    components: {},
   },
 } as const;
 export type Config = typeof config.theme;
-declare module '@gluestack-style/react' {
-  interface ICustomConfig extends Config {}
-}
+// declare module '@gluestack-style/react' {
+//   interface ICustomConfig extends Config {}
+// }

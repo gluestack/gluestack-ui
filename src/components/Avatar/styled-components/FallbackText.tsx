@@ -7,6 +7,7 @@ export default styled(
     color: '$text.50',
     fontFamily: '$body',
     fontWeight: '$semibold',
+    // @ts-ignore
     fontSize: '$xl',
     overflow: 'hidden',
     textTransform: 'uppercase',

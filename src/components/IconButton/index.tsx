@@ -7,7 +7,7 @@ const IconButtonTemp = forwardRef(({ icon, ...props }: any, ref?: any) => {
 });
 
 // export const IconButton = IconButtonTemp as GenericComponentType<typeof Button>;
-
+// @ts-ignore
 export type IIconButtonComponentType<Button> = GenericComponentType<
   Button,
   { icon: any },

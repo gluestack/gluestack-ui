@@ -8,70 +8,85 @@ export default styled(
       size: {
         xs: {
           _button: {
+            // @ts-ignore
             px: '$3.5',
-            h: '$8',
+            height: '$8',
             _icon: {
-              h: '$3',
-              w: '$3',
+              height: '$3',
+              width: '$3',
             },
             _text: {
+              // @ts-ignore
               fontSize: '$xs',
+              // @ts-ignore
               lineHeight: '$sm',
             },
           },
         },
         sm: {
           _button: {
+            // @ts-ignore
             px: '$4',
-            h: '$9',
+            height: '$9',
             _icon: {
-              h: '$4',
-              w: '$4',
+              height: '$4',
+              width: '$4',
             },
             _text: {
+              // @ts-ignore
               fontSize: '$sm',
+              // @ts-ignore
               lineHeight: '$sm',
             },
           },
         },
         md: {
           _button: {
+            // @ts-ignore
             px: '$5',
-            h: '$10',
+            height: '$10',
             _icon: {
-              h: '$4.5',
-              w: '$4.5',
+              height: '$4.5',
+              width: '$4.5',
             },
             _text: {
+              // @ts-ignore
               fontSize: '$md',
+              // @ts-ignore
               lineHeight: '$md',
             },
           },
         },
         lg: {
           _button: {
+            // @ts-ignore
             px: '$6',
-            h: '$11',
+            height: '$11',
             _icon: {
-              h: '$4.5',
-              w: '$4.5',
+              height: '$4.5',
+              width: '$4.5',
             },
             _text: {
+              // @ts-ignore
               fontSize: '$lg',
+              // @ts-ignore
               lineHeight: '$xl',
             },
           },
         },
         xl: {
           _button: {
+            // @ts-ignore
             px: '$7',
-            h: '$12',
+            height: '$12',
             _icon: {
-              h: '$5',
-              w: '$5',
+              height: '$5',
+              width: '$5',
             },
             _text: {
+              // @ts-ignore
               fontSize: '$xl',
+              // @ts-ignore
               lineHeight: '$xl',
             },
           },

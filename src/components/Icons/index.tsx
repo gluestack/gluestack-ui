@@ -22,7 +22,7 @@ const IconTemp = forwardRef(
     let IconForward;
     let sizeProp = {};
     if (typeof props.size === 'number') {
-      sizeProp = { h: props.size, w: props.size };
+      sizeProp = { height: props.size, width: props.size };
     }
     if (as) {
       IconForward = as;

@@ -17,7 +17,7 @@ const SpinnerTemp = forwardRef(
     return <AccessibleSpinner size={sizeNew} {...resolvedProps} ref={ref} />;
   }
 );
-
+// @ts-ignore
 export type ISpinnerComponentType<Spinner> = GenericComponentType<
   Spinner,
   { size?: 'sm' | 'lg' | Isize },

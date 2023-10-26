@@ -4,11 +4,13 @@ import { Pressable } from 'react-native';
 export default styled(
   Pressable,
   {
+    // @ts-ignore
     'borderRadius': '$full',
     'zIndex': 999,
     'alignItems': 'center',
     'justifyContent': 'center',
     'position': 'absolute',
+    // @ts-ignore
     'bg': `$primary.600`,
     ':hover': {
       _web: {
@@ -25,9 +27,11 @@ export default styled(
       },
     },
     ':active': {
+      // @ts-ignore
       borderWidth: 8,
       borderColor: `$primary.300`,
       _web: {
+        // @ts-ignore
         borderWidth: 0,
         outlineWidth: '8px',
         outlineColor: '$primary.300',
@@ -36,6 +40,7 @@ export default styled(
     },
 
     '_dark': {
+      // @ts-ignore
       'bg': `$primary.500`,
       ':hover': {
         _web: {
@@ -52,9 +57,11 @@ export default styled(
         },
       },
       ':active': {
+        // @ts-ignore
         borderWidth: 8,
         borderColor: `$primary.800`,
         _web: {
+          // @ts-ignore
           borderWidth: 0,
           outlineWidth: '8px',
           outlineColor: '$primary.800',

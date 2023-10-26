@@ -28,7 +28,7 @@ const TooltipTemp = forwardRef(
     );
   }
 );
-
+// @ts-ignore
 export type ITooltipComponentType<Tooltip> = GenericComponentType<
   Tooltip,
   { label: string },

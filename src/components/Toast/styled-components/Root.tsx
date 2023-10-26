@@ -4,12 +4,13 @@ import { View } from 'react-native';
 export default styled(
   View,
   {
-    p: '$2',
+    padding: '$2',
+    // @ts-ignore
     rounded: '$sm',
     m: '$3',
-    bg: `$muted.700`,
+    backgroundColor: `$muted.700`,
     _dark: {
-      bg: `$muted.600`,
+      backgroundColor: `$muted.600`,
     },
 
     _web: {

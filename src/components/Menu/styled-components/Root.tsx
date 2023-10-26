@@ -27,10 +27,12 @@ export const Root = styled(
     },
     'minWidth': 200,
     'py': '$2',
+    // @ts-ignore
     'rounded': '$sm',
+    // @ts-ignore
     'bg': '$backgroundLight0',
     '_dark': {
-      bg: '$backgroundDark900',
+      backgroundColor: '$backgroundDark900',
     },
     'defaultProps': {
       softShadow: '3',

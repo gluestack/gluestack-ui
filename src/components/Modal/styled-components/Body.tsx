@@ -4,7 +4,7 @@ import { styled } from '@gluestack-style/react';
 export default styled(
   ScrollView,
   {
-    p: '$4',
+    padding: '$4',
   },
   {
     componentName: 'ModalBody',

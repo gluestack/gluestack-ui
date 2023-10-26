@@ -18,7 +18,7 @@ const createIconNB = (props: IParameterTypes) => {
     ({ size, ...propsIcon }: IProps, ref?: any) => {
       let sizeProp = {};
       const resolvedProps = usePropResolution(propsIcon);
-      if (typeof size === 'number') sizeProp = { h: size, w: size };
+      if (typeof size === 'number') sizeProp = { height: size, width: size };
       return <Icon {...sizeProp} {...resolvedProps} ref={ref} />;
     }
   );

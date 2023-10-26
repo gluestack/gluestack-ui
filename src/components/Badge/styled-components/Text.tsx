@@ -4,6 +4,7 @@ import { styled } from '@gluestack-style/react';
 export default styled(
   Text,
   {
+    // @ts-ignore
     fontSize: '$xs',
     fontWeight: '$medium',
   },

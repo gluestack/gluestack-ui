@@ -39,7 +39,6 @@ const NewButton = forwardRef(
     ref?: any
   ) => {
     const resolvedPropForGluestack = usePropResolution(props);
-    // console.log(props, resolvedPropForGluestack, "HERRREEE")
     return (
       <AccessibleButton
         colorScheme={colorScheme}
@@ -94,5 +93,5 @@ export const Button = ButtonTemp as IButtonComponentType<
   typeof AccessibleButton,
   typeof AccessibleButton.Group
 >;
-// const Box = styled(Root, { bg: "$amber.200", padding: 8 });
+// const Box = styled(Root, { backgroundColor: "$amber.200", padding: 8 });
 // export const Button = () => <Root></Root>

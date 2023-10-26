@@ -4,8 +4,9 @@ import { styled } from '@gluestack-style/react';
 export default styled(
   Image,
   {
-    w: '100%',
-    h: '100%',
+    width: '100%',
+    height: '100%',
+    // @ts-ignore
     borderRadius: '$full',
     position: 'absolute',
   },

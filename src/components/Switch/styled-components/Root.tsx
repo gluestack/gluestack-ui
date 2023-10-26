@@ -4,8 +4,10 @@ import { ColorSchemeResolver } from '../../../plugins/colorScheme/colorScheme';
 
 export default styled(
   Switch,
+  // @ts-ignore
   {
     //
+    // @ts-ignore
     'borderRadius': '$full',
     ':disabled': {
       opacity: 0.4,
@@ -16,7 +18,9 @@ export default styled(
       },
       _android: {
         borderColor: '$error.600',
+        // @ts-ignore
         borderWidth: 2,
+        // @ts-ignore
         borderRadius: 12,
       },
     },
@@ -54,13 +58,16 @@ export default styled(
         },
         _android: {
           borderColor: '$error.500',
+          // @ts-ignore
           borderWidth: 2,
+          // @ts-ignore
           borderRadius: 12,
         },
       },
     },
 
     '_web': {
+      // @ts-ignore
       'borderWidth': 0,
       'outlineWidth': 10,
       'outlineColor': '$yellow.400',

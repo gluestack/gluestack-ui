@@ -7,7 +7,7 @@ export default styled(
     alignItems: 'center',
     justifyContent: 'center',
     display: 'flex',
-    mr: 12,
+    marginRight: 12,
   },
   { ancestorStyle: ['_icon'] }
 );

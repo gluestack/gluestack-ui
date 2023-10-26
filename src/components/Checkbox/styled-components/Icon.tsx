@@ -4,6 +4,7 @@ import { StyledIcon } from '../../Icons/styled-components';
 export default styled(
   StyledIcon,
   {
+    // @ts-ignore
     'w': '100%',
     'h': '100%',
     'justifyContent': 'center',
@@ -25,24 +26,24 @@ export default styled(
     'variants': {
       size: {
         xs: {
-          h: 12,
-          w: 12,
+          height: 12,
+          width: 12,
         },
         sm: {
-          h: 16,
-          w: 16,
+          height: 16,
+          width: 16,
         },
         md: {
-          h: 18,
-          w: 18,
+          height: 18,
+          width: 18,
         },
         lg: {
-          h: 20,
-          w: 20,
+          height: 20,
+          width: 20,
         },
         xl: {
-          h: 24,
-          w: 24,
+          height: 24,
+          width: 24,
         },
       },
     },

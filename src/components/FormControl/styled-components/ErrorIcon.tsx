@@ -8,8 +8,8 @@ export default styled(
     _dark: {
       color: '$error.500',
     },
-    h: '$4',
-    w: '$4',
+    height: '$4',
+    width: '$4',
     props: {
       size: 'sm',
     },

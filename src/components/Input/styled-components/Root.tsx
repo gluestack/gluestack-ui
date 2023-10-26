@@ -6,6 +6,7 @@ export default styled(
   {
     //@ts-ignore
     'fontFamily': '$body',
+    // @ts-ignore
     'borderRadius': '$sm',
     'flexDirection': 'row',
     'alignItems': 'center',
@@ -20,6 +21,7 @@ export default styled(
     '_web': {
       outlineWidth: '$0',
       overflow: 'auto',
+      // @ts-ignore
       lineHeight: '$lg',
       outline: 'none',
       cursor: 'auto',
@@ -123,93 +125,121 @@ export default styled(
     'variants': {
       size: {
         '2xl': {
-          // h: '$12',
+          // height: '$12',
           _input: {
+            // @ts-ignore
             fontSize: '$2xl',
           },
           _icon: {
-            h: '$6',
-            w: '$6',
+            height: '$6',
+            width: '$6',
           },
         },
         'xl': {
-          // h: '$12',
+          // height: '$12',
           _input: {
+            // @ts-ignore
             fontSize: '$xl',
           },
           _icon: {
-            h: '$6',
-            w: '$6',
+            height: '$6',
+            width: '$6',
           },
         },
         'lg': {
-          // h: '$11',
+          // height: '$11',
           _input: {
+            // @ts-ignore
             fontSize: '$lg',
           },
           _icon: {
-            h: '$5',
-            w: '$5',
+            height: '$5',
+            width: '$5',
           },
         },
         'md': {
-          // h: '$10',
+          // height: '$10',
           _input: {
+            // @ts-ignore
             fontSize: '$md',
           },
           _icon: {
-            h: '$4',
-            w: '$4',
+            height: '$4',
+            width: '$4',
           },
         },
         'sm': {
-          // h: '$9',
+          // height: '$9',
           _input: {
+            // @ts-ignore
             fontSize: '$sm',
           },
           _icon: {
-            h: '$3.5',
-            w: '$3.5',
+            height: '$3.5',
+            width: '$3.5',
+          },
+        },
+        'xs': {
+          // height: '$9',
+          _input: {
+            // @ts-ignore
+            fontSize: '$xs',
+          },
+          _icon: {
+            height: '$3',
+            width: '$3',
           },
         },
       },
       variant: {
+        // @ts-ignore
         rounded: {
+          // @ts-ignore
           'borderRadius': '$full',
+          // @ts-ignore
           'borderWidth': '$1',
           ':focus': {
-            bg: '$primary.600.alpha0.1',
+            backgroundColor: '$primary.600.alpha0.1',
           },
         },
+        // @ts-ignore
         outline: {
+          // @ts-ignore
           'borderWidth': '$1',
           ':focus': {
-            bg: '$primary.600.alpha0.1',
+            backgroundColor: '$primary.600.alpha0.1',
           },
         },
         filled: {
+          // @ts-ignore
           'borderWidth': '$1',
           ':focus': {
-            bg: '$primary.600.alpha0.1',
+            backgroundColor: '$primary.600.alpha0.1',
           },
+          // @ts-ignore
           ':hover': {
+            // @ts-ignore
             borderWidth: '$1',
             _disabled: {
+              // @ts-ignore
               borderWidth: '$0',
             },
           },
+          // @ts-ignore
           'bg': '$muted.100',
           'borderColor': '$muted.100',
 
           '_dark': {
-            bg: '$muted.800',
+            backgroundColor: '$muted.800',
             borderColor: '$muted.800',
           },
         },
+        // @ts-ignore
         unstyled: {
+          // @ts-ignore
           'borderWidth': '$0',
           ':focus': {
-            bg: 'transparent',
+            backgroundColor: 'transparent',
           },
           ':invalid': {
             _web: {
@@ -223,7 +253,9 @@ export default styled(
             },
           },
         },
+        // @ts-ignore
         underlined: {
+          // @ts-ignore
           'borderWidth': '$0',
           'pl': '$0',
           'borderBottomWidth': '$1',
@@ -254,6 +286,7 @@ export default styled(
               },
             },
           },
+          // @ts-ignore
           'borderRadius': 0,
         },
       },

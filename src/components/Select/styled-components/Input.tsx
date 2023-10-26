@@ -5,10 +5,10 @@ export default styled(
   TextInput,
   {
     _web: {
-      w: '$full',
+      width: '$full',
     },
     flex: 1,
-    h: '100%',
+    height: '100%',
     color: '$textLight.900',
     props: {
       placeholderTextColor: '$textLight.500',

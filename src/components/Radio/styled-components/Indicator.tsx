@@ -7,9 +7,13 @@ export default styled(
     ':invalid': {
       borderColor: '$error.500',
     },
+    // @ts-ignore
     'borderWidth': 2,
+    // @ts-ignore
     'borderRadius': '$full',
+    // @ts-ignore
     'p': '$1',
+    // @ts-ignore
     'bg': '$muted.50',
     'borderColor': '$muted.400',
     'my': '0.25rem',

@@ -6,6 +6,7 @@ export default styled(
   {
     h: '$10',
     w: '$full',
+    overflow: 'hidden',
   },
   {
     componentName: 'Skeleton',

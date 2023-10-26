@@ -6,18 +6,20 @@ export default styled(
   Motion.View,
   {
     alignItems: 'center',
+    // @ts-ignore
     borderTopLeftRadius: '$3xl',
+    // @ts-ignore
     borderTopRightRadius: '$3xl',
     maxHeight: '70%',
-    p: '$2',
-    bg: '$backgroundLight0',
+    padding: '$2',
+    backgroundColor: '$backgroundLight0',
     _sectionHeaderBackground: {
-      bg: '$backgroundLight0',
+      backgroundColor: '$backgroundLight0',
     },
     _dark: {
-      bg: '$backgroundDark900',
+      backgroundColor: '$backgroundDark900',
       _sectionHeaderBackground: {
-        bg: '$backgroundDark900',
+        backgroundColor: '$backgroundDark900',
       },
     },
     _web: {

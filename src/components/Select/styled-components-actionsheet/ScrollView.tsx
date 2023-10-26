@@ -4,8 +4,8 @@ import { styled } from '@gluestack-style/react';
 export default styled(
   ScrollView,
   {
-    w: '$full',
-    h: 'auto',
+    width: '$full',
+    height: 'auto',
   },
   {}
 );

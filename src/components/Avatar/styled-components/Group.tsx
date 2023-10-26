@@ -7,7 +7,8 @@ export default styled(
     flexDirection: 'row-reverse',
     position: 'relative',
     _avatar: {
-      ml: -10,
+      marginLeft: -10,
+      // @ts-ignore
       borderWidth: 2,
       borderColor: 'white',
       _dark: {

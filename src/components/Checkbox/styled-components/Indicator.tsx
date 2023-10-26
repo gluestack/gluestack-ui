@@ -6,11 +6,15 @@ export default styled(
   {
     'justifyContent': 'center',
     'alignItems': 'center',
+    // @ts-ignore
     'bg': '$muted.50',
     'borderColor': '$muted.400',
+    // @ts-ignore
     'borderWidth': 2,
+    // @ts-ignore
     'borderRadius': '$sm',
     'opacity': 1,
+    // @ts-ignore
     'p': 2,
 
     '_web': {
@@ -26,18 +30,20 @@ export default styled(
 
     ':checked': {
       'borderColor': `$primary.600`,
+      // @ts-ignore
       'bg': `$primary.600`,
       ':hover': {
         'borderColor': `$primary.700`,
+        // @ts-ignore
         'bg': `$primary.700`,
         ':disabled': {
           borderColor: `$primary.600`,
-          bg: `$primary.600`,
+          backgroundColor: `$primary.600`,
         },
       },
       ':active': {
         borderColor: `$primary.800`,
-        bg: `$primary.800`,
+        backgroundColor: `$primary.800`,
       },
     },
 
@@ -55,22 +61,25 @@ export default styled(
     },
 
     '_dark': {
+      // @ts-ignore
       'bg': '$muted.900',
       'borderColor': '$muted.500',
       ':checked': {
         'borderColor': `$primary.500`,
+        // @ts-ignore
         'bg': `$primary.500`,
         ':hover': {
           'borderColor': `$primary.400`,
+          // @ts-ignore
           'bg': `$primary.400`,
           ':disabled': {
             borderColor: `$primary.500`,
-            bg: `$primary.500`,
+            backgroundColor: `$primary.500`,
           },
         },
         ':active': {
           borderColor: `$primary.300`,
-          bg: `$primary.300`,
+          backgroundColor: `$primary.300`,
         },
       },
       ':hover': {

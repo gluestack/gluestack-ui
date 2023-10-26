@@ -4,8 +4,9 @@ import { styled } from '@gluestack-style/react';
 export default styled(
   View,
   {
+    // @ts-ignore
     py: '$1',
-    w: '100%',
+    width: '100%',
     alignItems: 'center',
   },
   {}

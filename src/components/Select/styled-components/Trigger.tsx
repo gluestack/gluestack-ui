@@ -4,8 +4,10 @@ import { Pressable } from 'react-native';
 export default styled(
   Pressable,
   {
+    // @ts-ignore
     'borderWidth': 1,
     'borderColor': '$backgroundLight.300',
+    // @ts-ignore
     'borderRadius': '$sm',
     'flexDirection': 'row',
     'overflow': 'hidden',
@@ -27,7 +29,9 @@ export default styled(
     },
 
     '_input': {
+      // @ts-ignore
       py: 'auto',
+      // @ts-ignore
       px: '$3',
     },
 
@@ -56,56 +60,64 @@ export default styled(
     'variants': {
       size: {
         xl: {
-          h: '$12',
+          height: '$12',
           _input: {
+            // @ts-ignore
             fontSize: '$xl',
           },
           _icon: {
-            h: '$6',
-            w: '$6',
+            height: '$6',
+            width: '$6',
           },
         },
         lg: {
-          h: '$11',
+          height: '$11',
           _input: {
+            // @ts-ignore
             fontSize: '$lg',
           },
           _icon: {
-            h: '$5',
-            w: '$5',
+            height: '$5',
+            width: '$5',
           },
         },
         md: {
-          h: '$10',
+          height: '$10',
           _input: {
+            // @ts-ignore
             fontSize: '$md',
           },
           _icon: {
-            h: '$4',
-            w: '$4',
+            height: '$4',
+            width: '$4',
           },
         },
         sm: {
-          h: '$9',
+          height: '$9',
           _input: {
+            // @ts-ignore
             fontSize: '$sm',
           },
           _icon: {
-            h: '$3.5',
-            w: '$3.5',
+            height: '$3.5',
+            width: '$3.5',
           },
         },
       },
       variant: {
+        // @ts-ignore
         underlined: {
           '_input': {
             _web: {
               outlineWidth: 0,
               outline: 'none',
             },
+            // @ts-ignore
             px: '$0',
           },
+          // @ts-ignore
           'borderWidth': 0,
+          // @ts-ignore
           'borderRadius': 0,
           'borderBottomWidth': '$1',
           ':focus': {
@@ -263,9 +275,12 @@ export default styled(
             },
           },
         },
+        // @ts-ignore
         rounded: {
+          // @ts-ignore
           'borderRadius': 999,
           '_input': {
+            // @ts-ignore
             px: '$4',
             _web: {
               outlineWidth: 0,
