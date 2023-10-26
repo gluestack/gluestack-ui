@@ -114,6 +114,7 @@ export default styled(
     'defaultProps': {
       size: 'md',
       variant: 'solid',
+      colorScheme: "primary"
     },
   },
   {
@@ -328,6 +329,6 @@ function colorSchemeResolveFn({ ...props }: any) {
         value = {};
     }
   }
-
+  console.log(value)
   return value;
 }

@@ -179,6 +179,17 @@ export default styled(
             width: '$3.5',
           },
         },
+        'xs': {
+          // height: '$9',
+          _input: {
+            // @ts-ignore
+            fontSize: '$xs',
+          },
+          _icon: {
+            height: '$3',
+            width: '$3',
+          },
+        },
       },
       variant: {
         // @ts-ignore
