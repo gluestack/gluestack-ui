@@ -1112,7 +1112,14 @@ export function verboseStyled<P, Variants, ComCon>(
           // @ts-ignore
           [nonVerbosedTheme, , , Component] = plugins[
             pluginName
-          ]?.inputMiddleWare<P>(nonVerbosedTheme, true, true, Component);
+          ]?.inputMiddleWare<P>(
+            nonVerbosedTheme,
+            true,
+            true,
+            Component,
+            componentStyleConfig,
+            ExtendedConfig
+          );
         }
         nonVerbosedTheme = convertStyledToStyledVerbosed(nonVerbosedTheme);
       }
