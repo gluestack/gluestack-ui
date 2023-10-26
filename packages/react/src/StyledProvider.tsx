@@ -161,6 +161,7 @@ export const StyledProvider: React.FC<{
       animationDriverData,
       setAnimationDriverData,
       inlineStyleMap: inlineStyleMap.current,
+      colorMode: currentColorMode,
     };
 
     if (_experimentalNestedProvider) {

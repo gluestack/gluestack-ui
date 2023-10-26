@@ -1895,8 +1895,9 @@ export function verboseStyled<P, Variants, ComCon>(
 
     const componentConfig = {
       componentName: componentStyleConfig?.componentName,
-      colorMode: COLOR_MODE,
+      colorMode: styledContext.colorMode,
       ...variantProps,
+      states,
     };
 
     //@ts-ignore
