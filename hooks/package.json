@@ -30,12 +30,9 @@
     "tsconfig": "7",
     "typescript": "^4.9.4"
   },
-  "dependencies": {
-    "@react-native-community/clipboard": "^1.5.1"
-  },
+  "dependencies": {},
   "peerDependencies": {
     "@gluestack-style/react": ">=1.0",
-    "@react-native-community/clipboard": ">=1.5",
     "react": ">=16",
     "react-dom": ">=16"
   },
