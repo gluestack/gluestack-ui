@@ -16,9 +16,7 @@ export const ActionsheetContent = createStyle({
       bg: '$backgroundDark900',
     },
   },
-  _web: {
-    userSelect: 'none',
-  },
+  userSelect: 'none',
   defaultProps: {
     hardShadow: '5',
   },

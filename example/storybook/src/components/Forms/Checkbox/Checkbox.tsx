@@ -22,7 +22,7 @@ const CheckboxGroupBasic = ({ ...props }: any) => {
 
   return (
     <CheckboxGroup
-      accessibilityLabel="Checkbox Group"
+      aria-label="Checkbox Group"
       value={values}
       onChange={setValues}
       nativeID="checkbox-group"
@@ -34,7 +34,6 @@ const CheckboxGroupBasic = ({ ...props }: any) => {
         isIndeterminate
         value="Label 1"
         aria-label="Label 1"
-        accessibilityLabel="Checkbox"
         onChange={(isSelected: boolean) =>
           // eslint-disable-next-line no-console
           console.log(isSelected, '###')
@@ -52,7 +51,6 @@ const CheckboxGroupBasic = ({ ...props }: any) => {
         size={props.size}
         aria-label="Label 2"
         value="Label 2"
-        accessibilityLabel="Checkbox"
         onChange={(isSelected: boolean) =>
           // eslint-disable-next-line no-console
           console.log(isSelected, '###')
