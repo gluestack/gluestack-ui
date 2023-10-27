@@ -122,8 +122,8 @@ export function extendTheme<Theme>(tempTheme: Theme) {
   if (Object.keys(theme).length === 0) {
     return;
   }
-  const finalTheme: any = {};
-  const gluestackStyles: any = theme;
+  let finalTheme: any = {};
+  let gluestackStyles: any = theme;
   const clonedConfig: typeof config = JSON.parse(
     JSON.stringify(config)
   ) as typeof config;
