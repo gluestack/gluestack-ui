@@ -6,20 +6,22 @@ import { composeEventHandlers } from '@gluestack-ui/utils';
 export const AccordionTrigger = <T,>(StyledAccordionTrigger: any) =>
   forwardRef(
     ({ children, ...props }: T & IAccordionTriggerProps, ref?: any) => {
-      const { isDisabled, type, isCollapsible, setOpenItems, disabledItems } =
-        useContext(AccordionContext);
+      const {
+        isDisabledAccordion,
+        type,
+        isCollapsible,
+        setOpenItems,
+        disabledItems,
+      } = useContext(AccordionContext);
       const { value } = useContext(AccordionItemContext);
 
       const toggleItem = (itemValue: string) => {
-        if (isDisabled) return;
-
+        if (isDisabledAccordion) return;
+        if (disabledItems.includes(itemValue)) {
+          return;
+        }
         if (type === 'single') {
           if (isCollapsible) {
-            //Don't do anything if it's disabled
-            if (disabledItems.includes(itemValue)) {
-              return;
-            }
-
             setOpenItems((prevOpenItems: string[]) => {
               const isItemAlreadyOpen = prevOpenItems.includes(itemValue);
 
@@ -28,11 +30,6 @@ export const AccordionTrigger = <T,>(StyledAccordionTrigger: any) =>
                 : [itemValue];
             });
           } else {
-            // Don't do anything if it's disabled
-            if (disabledItems.includes(itemValue)) {
-              return;
-            }
-
             setOpenItems((prevOpenItems: string[]) => {
               const isItemAlreadyOpen = prevOpenItems.includes(itemValue);
 
@@ -41,9 +38,6 @@ export const AccordionTrigger = <T,>(StyledAccordionTrigger: any) =>
           }
         } else {
           if (isCollapsible) {
-            if (disabledItems.includes(itemValue)) {
-              return;
-            }
             setOpenItems((prevOpenItems: string[]) => {
               const isItemAlreadyOpen = prevOpenItems.includes(itemValue);
               return isItemAlreadyOpen
@@ -51,9 +45,6 @@ export const AccordionTrigger = <T,>(StyledAccordionTrigger: any) =>
                 : [...prevOpenItems, itemValue];
             });
           } else {
-            if (disabledItems.includes(itemValue)) {
-              return;
-            }
             setOpenItems((prevOpenItems: string[]) => {
               const isItemAlreadyOpen = prevOpenItems.includes(itemValue);
               return isItemAlreadyOpen
