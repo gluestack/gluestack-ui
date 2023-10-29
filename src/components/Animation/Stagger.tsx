@@ -1,5 +1,5 @@
 import cloneDeep from 'lodash.clonedeep';
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { PresenceTransition } from './PresenceTransition';
 import type { ISupportedTransitions, ITransitionConfig } from './types';
 
@@ -34,41 +34,45 @@ interface IStaggerProps {
 
 const defaultStaggerConfig: IStaggerConfig = { offset: 0, reverse: false };
 
-const Stagger = ({ children, ...restProps }: IStaggerProps) => {
-  return React.Children.map(children, (child, index) => {
-    const clonedAnimationConfig = cloneDeep(restProps);
-    const { animate, exit } = clonedAnimationConfig;
+export const Stagger = forwardRef(
+  ({ children, ...restProps }: IStaggerProps, ref?: any) => {
+    return React.Children.map(children, (child, index) => {
+      const clonedAnimationConfig = cloneDeep(restProps);
+      const { animate, exit } = clonedAnimationConfig;
 
-    if (animate) {
-      if (!animate.transition) {
-        animate.transition = {};
+      if (animate) {
+        if (!animate.transition) {
+          animate.transition = {};
+        }
+        animate.transition.delay = animate.transition.delay ?? 0;
+        const stagger = animate.transition.stagger ?? defaultStaggerConfig;
+        const offset = stagger.reverse
+          ? (React.Children.count(children) - 1 - index) * stagger.offset
+          : index * stagger.offset;
+        animate.transition.delay = animate.transition.delay + offset;
       }
-      animate.transition.delay = animate.transition.delay ?? 0;
-      const stagger = animate.transition.stagger ?? defaultStaggerConfig;
-      const offset = stagger.reverse
-        ? (React.Children.count(children) - 1 - index) * stagger.offset
-        : index * stagger.offset;
-      animate.transition.delay = animate.transition.delay + offset;
-    }
 
-    if (exit) {
-      if (!exit.transition) {
-        exit.transition = {};
+      if (exit) {
+        if (!exit.transition) {
+          exit.transition = {};
+        }
+        exit.transition.delay = exit.transition.delay ?? 0;
+        const stagger = exit.transition.stagger ?? defaultStaggerConfig;
+        const offset = stagger.reverse
+          ? (React.Children.count(children) - 1 - index) * stagger.offset
+          : index * stagger.offset;
+        exit.transition.delay = exit.transition.delay + offset;
       }
-      exit.transition.delay = exit.transition.delay ?? 0;
-      const stagger = exit.transition.stagger ?? defaultStaggerConfig;
-      const offset = stagger.reverse
-        ? (React.Children.count(children) - 1 - index) * stagger.offset
-        : index * stagger.offset;
-      exit.transition.delay = exit.transition.delay + offset;
-    }
 
-    return (
-      <PresenceTransition key={child.key} {...clonedAnimationConfig}>
-        {child}
-      </PresenceTransition>
-    );
-  });
-};
-
-export default Stagger;
+      return (
+        <PresenceTransition
+          key={child.key}
+          {...clonedAnimationConfig}
+          ref={ref}
+        >
+          {child}
+        </PresenceTransition>
+      );
+    });
+  }
+);

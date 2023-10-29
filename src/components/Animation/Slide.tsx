@@ -1,4 +1,4 @@
-import React, { forwardRef, memo } from 'react';
+import React, { forwardRef } from 'react';
 import { Box } from '../Box';
 import { PresenceTransition } from './PresenceTransition';
 import { Overlay } from '@gluestack-ui/overlay';
@@ -26,110 +26,108 @@ const holderStyle: any = {
   },
 };
 
-export const Slide = memo(
-  forwardRef(
-    (
-      {
-        children,
-        in: visible,
-        placement = 'top',
-        overlay = true,
-        duration,
-        _overlay = { style: { overflow: 'hidden' }, isOpen: true },
-        ...props
-      }: any,
-      ref: any
-    ) => {
-      const [containerOpacity, setContainerOpacity] = React.useState(0);
-      const [size, setSize] = React.useState(0);
-      const provideSize = (layoutSize: any) => {
-        if (placement === 'right' || placement === 'left')
-          setSize(layoutSize.width);
-        else setSize(layoutSize.height);
-        setContainerOpacity(1);
-      };
+export const Slide = forwardRef(
+  (
+    {
+      children,
+      in: visible,
+      placement = 'top',
+      overlay = true,
+      duration,
+      _overlay = { style: { overflow: 'hidden' }, isOpen: true },
+      ...props
+    }: any,
+    ref: any
+  ) => {
+    const [containerOpacity, setContainerOpacity] = React.useState(0);
+    const [size, setSize] = React.useState(0);
+    const provideSize = (layoutSize: any) => {
+      if (placement === 'right' || placement === 'left')
+        setSize(layoutSize.width);
+      else setSize(layoutSize.height);
+      setContainerOpacity(1);
+    };
 
-      const transition = { duration };
+    const transition = { duration };
 
-      const animationStyle: any = {
-        top: {
-          initial: {
-            translateY: -size,
-          },
-          animate: {
-            translateY: 0,
-            transition,
-          },
+    const animationStyle: any = {
+      top: {
+        initial: {
+          translateY: -size,
         },
-        bottom: {
-          initial: {
-            translateY: size,
-          },
-          animate: {
-            translateY: 0,
-            transition,
-          },
-          exit: {
-            translateY: size,
-            transition,
-          },
+        animate: {
+          translateY: 0,
+          transition,
         },
-        left: {
-          initial: {
-            translateX: -size,
-          },
-          animate: {
-            translateX: 0,
-            transition,
-          },
+      },
+      bottom: {
+        initial: {
+          translateY: size,
         },
-        right: {
-          initial: {
-            translateX: size,
-          },
-          animate: {
-            translateX: 0,
-            transition,
-          },
+        animate: {
+          translateY: 0,
+          transition,
         },
-      };
+        exit: {
+          translateY: size,
+          transition,
+        },
+      },
+      left: {
+        initial: {
+          translateX: -size,
+        },
+        animate: {
+          translateX: 0,
+          transition,
+        },
+      },
+      right: {
+        initial: {
+          translateX: size,
+        },
+        animate: {
+          translateX: 0,
+          transition,
+        },
+      },
+    };
 
-      const style = [
-        { position: 'absolute' },
-        holderStyle[placement],
-        { height: '100%' },
-      ];
+    const style = [
+      { position: 'absolute' },
+      holderStyle[placement],
+      { height: '100%' },
+    ];
 
-      const slideComponent = (
-        <PresenceTransition
-          visible={visible}
-          {...animationStyle[placement]}
-          style={style}
+    const slideComponent = (
+      <PresenceTransition
+        visible={visible}
+        {...animationStyle[placement]}
+        style={style}
+      >
+        <Box
+          {...props}
+          opacity={containerOpacity}
+          ref={ref}
+          onLayout={(e) => provideSize(e.nativeEvent.layout)}
         >
-          <Box
-            {...props}
-            opacity={containerOpacity}
-            ref={ref}
-            onLayout={(e) => provideSize(e.nativeEvent.layout)}
-          >
-            {children}
-          </Box>
-        </PresenceTransition>
-      );
+          {children}
+        </Box>
+      </PresenceTransition>
+    );
 
-      if (overlay) {
-        return (
-          <>
-            <Overlay isKeyboardDismissable={false} {..._overlay}>
-              {slideComponent}
-            </Overlay>
-          </>
-        );
-      } else {
-        return slideComponent;
-      }
+    if (overlay) {
+      return (
+        <>
+          <Overlay isKeyboardDismissable={false} {..._overlay}>
+            {slideComponent}
+          </Overlay>
+        </>
+      );
+    } else {
+      return slideComponent;
     }
-  )
+  }
 );
 
 export default Slide;
