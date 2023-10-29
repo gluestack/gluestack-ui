@@ -1,18 +1,20 @@
 import { Root as AccessibleSkeleton } from './styled-components';
+import { AnimatedView as AccessibleAnimatedView } from './styled-components';
 
 import { GenericComponentType } from '../../types';
 import React, { forwardRef } from 'react';
 import createSkeleton from './createSkeleton';
 import { usePropResolution } from '../../hooks/usePropResolution';
-import { useColorMode, useToken } from '../../hooks';
+import createSkeletonText from './createSkeletonText';
 
-const SkeletonTemp = createSkeleton(AccessibleSkeleton);
+const SkeletonTemp = createSkeleton(AccessibleSkeleton, AccessibleAnimatedView);
+const SkeletonTextTemp = createSkeletonText(SkeletonTemp);
 
 const SkeletonNew = forwardRef(
   (
     {
-      fadeDuration = 0.1,
-      speed = 0.1,
+      fadeDuration,
+      speed,
       startColor,
       endColor,
       isLoaded = false,
@@ -26,21 +28,13 @@ const SkeletonNew = forwardRef(
     if (size) {
       ISizeProps = { height: size, width: size };
     }
-    const resolvedProps = usePropResolution(props);
-    const { colorMode } = useColorMode();
-    let startColorToken = '';
-    if (startColor) startColorToken = startColor;
-    else {
-      startColorToken = colorMode === 'light' ? 'muted.600' : 'muted.200';
-    }
-    const startClr = useToken('colors', startColorToken);
-    const endClr = useToken('colors', endColor);
+    const resolvedProps = usePropResolution({ ...props, ...ISizeProps });
     return (
       <SkeletonTemp
         fadeDuration={fadeDuration}
         speed={speed}
-        startColor={startClr}
-        endColor={endClr ?? 'transparent'}
+        startColor={startColor}
+        endColor={endColor}
         isLoaded={isLoaded}
         children={children}
         {...ISizeProps}
@@ -51,10 +45,46 @@ const SkeletonNew = forwardRef(
   }
 ) as any;
 
+const SkeletonTextNew = forwardRef(
+  (
+    {
+      children,
+      startColor,
+      endColor,
+      lines = 3,
+      isLoaded = false,
+      size,
+      _stack,
+      ...props
+    }: any,
+    ref?: any
+  ) => {
+    let ISizeProps = {};
+    if (size) {
+      ISizeProps = { height: size, width: size };
+    }
+    const resolvedProps = usePropResolution({ ...props, ...ISizeProps });
+
+    return (
+      <SkeletonTextTemp
+        children={children}
+        startColor={startColor}
+        endColor={endColor}
+        lines={lines}
+        isLoaded={isLoaded}
+        {...resolvedProps}
+        ref={ref}
+      />
+    );
+  }
+);
+
+SkeletonNew.Text = SkeletonTextNew;
+
 type IColorToken = React.ComponentProps<typeof AccessibleSkeleton>['bg'];
 type ISizeToken = React.ComponentProps<typeof AccessibleSkeleton>['h'];
 
-//TODO: remove this when fixed from GenericComponentType
+// TODO: remove this when fixed from GenericComponentType
 type ReplaceDollar<T> = T extends `$${infer N}` ? N : never;
 type IColor = ReplaceDollar<IColorToken>;
 type ISize = ReplaceDollar<ISizeToken> | number;
@@ -67,11 +97,23 @@ type ISkeletonComponentProps = {
   isLoaded?: false;
   size?: ISize;
 };
+type ISkeletonTextComponentProps = {
+  fadeDuration?: number;
+  speed?: number;
+  startColor?: IColor;
+  endColor?: IColor;
+  isLoaded?: false;
+  size?: ISize;
+  lines?: number;
+  _line?: any;
+  _stack?: any;
+};
 export const Skeleton = SkeletonNew as ISkeletonComponentType<
+  typeof AccessibleSkeleton,
   typeof AccessibleSkeleton
 >;
 
-export type ISkeletonComponentType<Skeleton> = GenericComponentType<
-  Skeleton,
-  ISkeletonComponentProps
->;
+export type ISkeletonComponentType<Skeleton, SkeletonText> =
+  GenericComponentType<Skeleton, ISkeletonComponentProps> & {
+    Text: GenericComponentType<SkeletonText, ISkeletonTextComponentProps>;
+  };

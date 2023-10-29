@@ -77,7 +77,6 @@ const NewGroupButton = forwardRef(({ children, ...props }: any, ref?: any) => {
     </AccessibleButton.Group>
   );
 });
-// console.log(NewButton, "NEWWWW")
 
 const ButtonTemp = NewButton as any;
 ButtonTemp.Group = NewGroupButton;
@@ -93,5 +92,3 @@ export const Button = ButtonTemp as IButtonComponentType<
   typeof AccessibleButton,
   typeof AccessibleButton.Group
 >;
-// const Box = styled(Root, { backgroundColor: "$amber.200", padding: 8 });
-// export const Button = () => <Root></Root>

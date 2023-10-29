@@ -1,12 +1,12 @@
 import React, { forwardRef } from 'react';
-import { Animated } from 'react-native';
+import { Animated, Platform } from 'react-native';
 
-export default function createSkeleton(Root: any) {
+export default function createSkeleton(Root: any, AnimatedView: any) {
   return forwardRef(
     (
       {
-        fadeDuration,
-        speed,
+        fadeDuration = 0.1,
+        speed = 1,
         startColor,
         endColor,
         children,
@@ -15,50 +15,45 @@ export default function createSkeleton(Root: any) {
       }: any,
       ref?: any
     ) => {
-      const backgroundColor = new Animated.Value(0);
+      let startClr = {};
+      let endClr = {};
 
-      const animationDuration = fadeDuration * 1000 * (1 / speed); // Convert seconds to milliseconds
+      if (startColor) startClr = { bg: `$${startColor}` };
+      if (endColor) endClr = { bg: `$${endColor}` };
+      const blinkAnim = new Animated.Value(0);
 
-      const firstAnimation = Animated.timing(backgroundColor, {
-        toValue: 1,
-        duration: animationDuration, // Half of the total duration
-        useNativeDriver: false,
-      });
+      const animationDuration = (fadeDuration * 10000) / speed; // Convert seconds to milliseconds
 
-      const secondAnimation = Animated.timing(backgroundColor, {
-        toValue: 0,
-        duration: animationDuration, // Half of the total duration
-        useNativeDriver: false,
-      });
+      const blink = Animated.sequence([
+        Animated.timing(blinkAnim, {
+          toValue: 1,
+          duration: animationDuration,
+          useNativeDriver: Platform.OS !== 'web',
+        }),
+        Animated.timing(blinkAnim, {
+          toValue: 0,
+          duration: animationDuration,
+          useNativeDriver: Platform.OS !== 'web',
+        }),
+      ]);
 
       if (!isLoaded) {
-        Animated.loop(Animated.sequence([firstAnimation, secondAnimation]), {
-          iterations: -1, // Infinite loop
-        }).start();
-
-        const bgColor = backgroundColor.interpolate({
-          inputRange: [0, 1],
-          outputRange: [startColor, endColor],
-        });
-
         const style = {
-          backgroundColor: bgColor,
-          height: '100%',
-          width: '100%',
+          opacity: blinkAnim, // Bind opacity to animated value
         };
 
+        Animated.loop(blink).start();
+
         return (
-          <Root {...props} ref={ref}>
-            <Animated.View style={style} />
+          <Root {...endClr} {...props} ref={ref}>
+            <AnimatedView style={style} {...startClr} />
           </Root>
         );
+      } else {
+        Animated.loop(blink).stop();
+
+        return children;
       }
-
-      Animated.loop(Animated.sequence([firstAnimation, secondAnimation]), {
-        iterations: -1, // Infinite loop
-      }).stop();
-
-      return children;
     }
   );
 }

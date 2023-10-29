@@ -4,12 +4,13 @@ import { styled } from '@gluestack-style/react';
 export default styled(
   View,
   {
-    h: '$10',
-    w: '$full',
+    height: '$10',
+    width: '$full',
     overflow: 'hidden',
+    bg: 'transparent',
   },
   {
-    componentName: 'Skeleton',
+    componentName: 'SkeletonWrapper',
     descendantStyle: ['_text'],
   } as const
 );

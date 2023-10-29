@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { forwardRef } from 'react';
 import { Animated } from 'react-native';
 import type {
@@ -128,6 +127,7 @@ export const Transition = forwardRef(
       } else if (animationState === 'entered') {
         onTransitionComplete && onTransitionComplete('entered');
       }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [animationState, onTransitionComplete]);
 
     React.useEffect(() => {
@@ -159,6 +159,7 @@ export const Transition = forwardRef(
         ),
         style,
       ];
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [animateValue, initial, animate, style]);
 
     return (
