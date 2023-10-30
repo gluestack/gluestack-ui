@@ -1,5 +1,11 @@
 # @gluestack-style/react
 
+## 1.0.10
+
+### Patch Changes
+
+- Fixed theme and styled circular dependency
+
 ## 1.0.9
 
 ### Patch Changes
