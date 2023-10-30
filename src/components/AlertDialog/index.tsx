@@ -13,6 +13,7 @@ import { Heading } from '../Heading';
 import { Text } from '../Text';
 import { CloseIcon } from '../Icons';
 import { GenericComponentType } from '../../types';
+import { AnimatePresence } from '@gluestack-style/animation-resolver';
 
 const AccessibleAlertDialog = createAlertDialog({
   Root,
@@ -23,7 +24,7 @@ const AccessibleAlertDialog = createAlertDialog({
   Body,
   Backdrop,
   //@ts-ignore
-  AnimatePresence: Content.AnimatePresence,
+  AnimatePresence: AnimatePresence,
 });
 
 const AlertDialogTemp = forwardRef(({ children, ...props }: any, ref?: any) => {

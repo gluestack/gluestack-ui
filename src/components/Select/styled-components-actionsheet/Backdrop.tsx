@@ -1,13 +1,12 @@
-import { createMotionAnimatedComponent } from '@legendapp/motion';
-import { Pressable } from 'react-native';
 import { styled } from '@gluestack-style/react';
-import { AnimationResolver } from '@gluestack-style/animation-plugin';
-
-//@ts-ignore
-const MotionPressable = createMotionAnimatedComponent(Pressable);
+import {
+  AnimationResolver,
+  AnimatedPressable,
+} from '@gluestack-style/animation-resolver';
+import { MotionAnimationDriver } from '@gluestack-style/legend-motion-animation-driver';
 
 export default styled(
-  MotionPressable,
+  AnimatedPressable,
   {
     //@ts-ignore
     ':initial': {
@@ -37,6 +36,6 @@ export default styled(
     componentName: 'SelectBackdrop',
   } as const,
   {
-    plugins: [new AnimationResolver({})],
+    plugins: [new AnimationResolver(MotionAnimationDriver)],
   }
 );

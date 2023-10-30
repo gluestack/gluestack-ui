@@ -2,13 +2,13 @@ import React, { cloneElement, forwardRef } from 'react';
 import { Root, Content, Text } from './styled-components';
 import { createTooltip } from '@gluestack-ui/tooltip';
 import { GenericComponentType } from '../../types';
+import { AnimatePresence } from '@gluestack-style/animation-resolver';
 
 const AccessibleTooltip = createTooltip({
   Root,
   Content,
   Text,
-  //@ts-ignore
-  AnimatePresence: Content.AnimatePresence,
+  AnimatePresence: AnimatePresence,
 });
 
 const TooltipTemp = forwardRef(

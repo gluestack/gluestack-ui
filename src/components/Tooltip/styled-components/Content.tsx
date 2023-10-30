@@ -1,9 +1,12 @@
-import { AnimationResolver } from '@gluestack-style/animation-plugin';
 import { styled } from '@gluestack-style/react';
-import { Motion } from '@legendapp/motion';
+import {
+  AnimationResolver,
+  AnimatedView,
+} from '@gluestack-style/animation-resolver';
+import { MotionAnimationDriver } from '@gluestack-style/legend-motion-animation-driver';
 
 export default styled(
-  Motion.View,
+  AnimatedView,
   {
     //@ts-ignore
     ':initial': {
@@ -56,6 +59,6 @@ export default styled(
     descendantStyle: ['_text'],
   } as const,
   {
-    plugins: [new AnimationResolver({})],
+    plugins: [new AnimationResolver(MotionAnimationDriver)],
   }
 );

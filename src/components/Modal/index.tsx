@@ -13,6 +13,7 @@ import { Heading } from '../Heading';
 import { Text } from '../Text';
 import { CloseIcon } from '../Icons';
 import { GenericComponentType } from '../../types';
+import { AnimatePresence } from '@gluestack-style/animation-resolver';
 
 const AccessibleModal = createModal({
   Root,
@@ -23,7 +24,7 @@ const AccessibleModal = createModal({
   Body,
   Backdrop,
   //@ts-ignore
-  AnimatePresence: Content.AnimatePresence,
+  AnimatePresence: AnimatePresence,
 });
 
 const ModalNew = forwardRef(

@@ -14,6 +14,7 @@ import { Text } from '../Text';
 import { CloseIcon } from '../Icons';
 import React, { forwardRef } from 'react';
 import { GenericComponentType } from '../../types';
+import { AnimatePresence } from '@gluestack-style/animation-resolver';
 
 const AccessiblePopover = createPopover({
   Root,
@@ -25,7 +26,7 @@ const AccessiblePopover = createPopover({
   Backdrop,
   CloseButton,
   //@ts-ignore
-  AnimatePresence: Content.AnimatePresence,
+  AnimatePresence: AnimatePresence,
 });
 
 const PopoverNew = forwardRef(

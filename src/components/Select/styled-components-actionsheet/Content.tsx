@@ -1,9 +1,12 @@
-import { Motion } from '@legendapp/motion';
 import { styled } from '@gluestack-style/react';
-import { AnimationResolver } from '@gluestack-style/animation-plugin';
+import {
+  AnimationResolver,
+  AnimatedView,
+} from '@gluestack-style/animation-resolver';
+import { MotionAnimationDriver } from '@gluestack-style/legend-motion-animation-driver';
 
 export default styled(
-  Motion.View,
+  AnimatedView,
   {
     alignItems: 'center',
     // @ts-ignore
@@ -34,6 +37,6 @@ export default styled(
     descendantStyle: ['_sectionHeaderBackground'],
   } as const,
   {
-    plugins: [new AnimationResolver({})],
+    plugins: [new AnimationResolver(MotionAnimationDriver)],
   }
 );
