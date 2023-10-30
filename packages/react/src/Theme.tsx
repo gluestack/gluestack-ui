@@ -1,5 +1,6 @@
 import { View } from 'react-native';
 import * as React from 'react';
+import { styled } from './styled';
 type Config = any;
 
 export const defaultConfig: { theme?: string } = {
@@ -8,11 +9,17 @@ export const defaultConfig: { theme?: string } = {
 
 const defaultContextData: Config = defaultConfig;
 const ThemeContext = React.createContext<Config>(defaultContextData);
+// Can be discussed should we provide flex 1 by default or not.
+const StyledView = styled(
+  View,
+  {
+    // flex: 1
+  },
+  { componentName: 'GluestackThemeView' }
+);
 
-export const Theme: React.FC<{
-  children?: React.ReactNode;
-  name?: any;
-}> = ({ name, children }) => {
+// @ts-ignore
+export const Theme: typeof StyledView = ({ children, name, ...props }) => {
   const contextValue = React.useMemo(() => {
     return {
       theme: name,
@@ -22,7 +29,9 @@ export const Theme: React.FC<{
   return (
     <ThemeContext.Provider value={contextValue}>
       {/* @ts-ignore */}
-      <View dataSet={{ 'theme-id': name }}>{children}</View>
+      <StyledView dataSet={{ 'theme-id': name }} {...props}>
+        {children}
+      </StyledView>
     </ThemeContext.Provider>
   );
 };
