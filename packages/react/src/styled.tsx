@@ -1902,6 +1902,10 @@ export function verboseStyled<P, Variants, ComCon>(
 
     //@ts-ignore
     if (applyComponentInlineProps?.as || passingProps?.as?.displayName) {
+      componentConfig.componentName =
+        //@ts-ignore
+        applyComponentInlineProps?.as?.displayName ??
+        passingProps?.as?.displayName;
       componentConfig.as =
         //@ts-ignore
         applyComponentInlineProps?.as?.displayName ??
