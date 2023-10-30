@@ -4,7 +4,7 @@ import { View } from 'react-native';
 export default styled(
   View,
   {
-    padding: '0.5rem',
+    padding: '$2',
     borderRightWidth: 0,
     // @ts-ignore
     borderWidth: '$1',

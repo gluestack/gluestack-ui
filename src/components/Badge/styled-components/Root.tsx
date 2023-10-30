@@ -15,11 +15,7 @@ export default styled(
     'px': '$2',
     'py': '$0.5',
     //@ts-ignore
-    'gap': 4,
-    '_web': {
-      //@ts-ignore
-      gap: '0.25rem',
-    },
+    'gap': '$1',
 
     ':disabled': {
       opacity: 0.5,

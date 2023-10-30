@@ -8,9 +8,8 @@ export default styled(
     'flexDirection': 'row',
     'justifyContent': 'flex-start',
     'alignItems': 'center',
-    //TODO: fix gap typing
-    //@ts-ignore
-    'gap': '0.5rem',
+    // @ts-ignore
+    'gap': '$2',
 
     // '_indicator': {
     //   backgroundColor: '$muted.50',

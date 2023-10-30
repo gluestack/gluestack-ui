@@ -7,11 +7,8 @@ export default styled(
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'center',
-    // @ts-ignore
     mt: '$1',
-    //TODO : remove this ts ignore
-    //@ts-ignore
-    gap: '0.25rem',
+    gap: '$1',
   },
   {
     componentName: 'FormControlError',

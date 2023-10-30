@@ -9,7 +9,7 @@ export default styled(
     'justifyContent': 'flex-start',
     'alignItems': 'center',
     //@ts-ignore
-    'gap': '1rem',
+    'gap': '$4',
 
     ':disabled': {
       _web: {
