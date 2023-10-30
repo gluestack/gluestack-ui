@@ -12,6 +12,8 @@ export const Input = (StyledInput: any) =>
         type = 'text',
         'aria-label': ariaLabel = 'Input Field',
         secureTextEntry,
+        editable,
+        disabled,
         ...props
       }: any,
       ref?: any
@@ -29,7 +31,7 @@ export const Input = (StyledInput: any) =>
       } = useInput('InputContext');
 
       const inputProps = useFormControl({
-        isDisabled: props.isDisabled,
+        isDisabled: props.isDisabled || disabled,
         isInvalid: props.isInvalid,
         isReadOnly: props.isReadOnly,
         isRequired: props.isRequired,
@@ -41,7 +43,7 @@ export const Input = (StyledInput: any) =>
         callback();
       };
 
-      const mergedref = mergeRefs([ref, inputFieldRef]);
+      const mergedRef = mergeRefs([ref, inputFieldRef]);
 
       return (
         <StyledInput
@@ -65,8 +67,8 @@ export const Input = (StyledInput: any) =>
           aria-disabled={isDisabled || inputProps.isDisabled}
           aria-selected={isFocused}
           // ios accessibility
-          accessibilityElementsHidden={isDisabled}
-          editable={isDisabled || isReadOnly ? false : true}
+          accessibilityElementsHidden={isDisabled || inputProps.isDisabled}
+          editable={(isDisabled || isReadOnly ? false : true) || editable}
           onKeyPress={(e: any) => {
             e.persist();
             onKeyPress && onKeyPress(e);
@@ -83,7 +85,7 @@ export const Input = (StyledInput: any) =>
               props?.onBlur ? () => props?.onBlur(e) : () => {}
             );
           }}
-          ref={mergedref}
+          ref={mergedRef}
         >
           {children}
         </StyledInput>
