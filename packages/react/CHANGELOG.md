@@ -1,5 +1,13 @@
 # @gluestack-style/react
 
+## 1.0.9
+
+### Patch Changes
+
+- - Fixed composed components props forwarding [PR](https://github.com/gluestack/gluestack-style/pull/498)
+  - Layouting issue with theme component and provide styling capability [PR](https://github.com/gluestack/gluestack-style/pull/500)
+  - Add component config prop as data prop on web [PR](https://github.com/gluestack/gluestack-style/pull/499)
+
 ## 1.0.8
 
 ### Patch Changes
