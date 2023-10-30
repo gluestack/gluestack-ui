@@ -26,6 +26,15 @@ const NativeBaseProvider = ({ children, _enableRem = true, ...props }: any) => {
   const [colorMode, setColorMode] = useState(useColorMode());
   const theme = props.config;
 
+  // console.log(theme, 'hello here');
+
+  // const newTheme = React.useMemo(() => {
+  //   if (config.enableRem) {
+  //     return platformSpecificSpaceUnits(theme);
+  //   }
+  //   return theme;
+  // }, [config.enableRem, theme]);
+
   const gluestackCompatibleTheme = convertTheme(theme);
   const mergedTheme = deepMerge(config.theme, gluestackCompatibleTheme);
   // const newtheme = enableRem
