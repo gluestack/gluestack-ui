@@ -1,5 +1,11 @@
 # @gluestack-ui/themed
 
+## 1.0.9
+
+### Patch Changes
+
+- Removed creator functions for hstack and vestack and upgraded input version
+
 ## 1.0.8
 
 ### Patch Changes
