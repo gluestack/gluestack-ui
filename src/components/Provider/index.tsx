@@ -3,10 +3,10 @@ import { createProvider } from '@gluestack-ui/provider';
 import { StyledProvider, useColorMode } from '@gluestack-style/react';
 import { OverlayProvider } from '@gluestack-ui/overlay';
 import { ToastProvider } from '@gluestack-ui/toast';
-import { config } from '../gluestack-ui.config';
+import { config as defaultConfig } from '../gluestack-ui.config';
 import { convertTheme } from '../../utils/extendTheme';
 
-import { deepMerge } from '../../utils';
+import { deepMerge, platformSpecificSpaceUnits } from '../../utils';
 
 const GluestackUIStyledProvider = createProvider({ StyledProvider });
 
@@ -22,32 +22,23 @@ const GluestackUIProvider = ({ children, ...props }: any) => {
   );
 };
 
-const NativeBaseProvider = ({ children, _enableRem = true, ...props }: any) => {
+const NativeBaseProvider = ({ children, config, theme, ...props }: any) => {
+  const _enableRem = config.enableRem ?? true;
   const [colorMode, setColorMode] = useState(useColorMode());
-  const theme = props.config;
-
-  // console.log(theme, 'hello here');
-
-  // const newTheme = React.useMemo(() => {
-  //   if (config.enableRem) {
-  //     return platformSpecificSpaceUnits(theme);
-  //   }
-  //   return theme;
-  // }, [config.enableRem, theme]);
 
   const gluestackCompatibleTheme = convertTheme(theme);
-  const mergedTheme = deepMerge(config.theme, gluestackCompatibleTheme);
-  // const newtheme = enableRem
-  //   ? platformSpecificSpaceUnits(mergedTheme)
-  //   : mergedTheme;
-  // console.log(props, "PROPS", mergedTheme);
+  const mergedTheme = deepMerge(defaultConfig.theme, gluestackCompatibleTheme);
+
+  const newTheme = React.useMemo(() => {
+    if (_enableRem) {
+      return platformSpecificSpaceUnits(mergedTheme);
+    }
+    return mergedTheme;
+  }, [_enableRem, mergedTheme]);
+
   return (
     <HooksContext.Provider value={{ colorMode, setColorMode }}>
-      <GluestackUIProvider
-        colorMode={colorMode}
-        config={mergedTheme}
-        {...props}
-      >
+      <GluestackUIProvider colorMode={colorMode} config={newTheme} {...props}>
         {children}
       </GluestackUIProvider>
     </HooksContext.Provider>

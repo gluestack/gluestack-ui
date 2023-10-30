@@ -1,3 +1,7 @@
+import { Platform } from 'react-native';
+import get from 'lodash.get';
+import cloneDeep from 'lodash.clonedeep';
+
 export const CSSPropertiesMap = {
   alignContent: 'stretch',
   alignItems: 'stretch',
@@ -322,7 +326,7 @@ export const convertRemToAbsolute = (rem: number) => {
   return rem * BASE_FONT_SIZE;
 };
 
-export const platformSpecificSpaceUnits = (theme: any, platform: string) => {
+export const platformSpecificSpaceUnits = (theme: any) => {
   const scales = [
     'space',
     'sizes',
@@ -333,15 +337,10 @@ export const platformSpecificSpaceUnits = (theme: any, platform: string) => {
     'letterSpacings',
   ];
 
-  const newTheme = { ...theme };
-
-  const isWeb = platform === 'web';
+  const newTheme = cloneDeep(theme);
+  const isWeb = Platform.OS === 'web';
   scales.forEach((key) => {
-    // const scale = get(theme, key, {});
-    //TODO: fix this ts-ignore
-    //@ts-ignore
-    const scale = theme?.tokens?.[key] ?? {};
-
+    const scale = get(theme.tokens, key, {});
     const newScale = { ...scale };
     for (const scaleKey in scale) {
       const val = scale[scaleKey];
@@ -349,17 +348,11 @@ export const platformSpecificSpaceUnits = (theme: any, platform: string) => {
         const isAbsolute = typeof val === 'number';
         const isPx = !isAbsolute && val.endsWith('px');
         const isRem = !isAbsolute && val.endsWith('rem');
-        // const isEm = !isAbsolute && !isRem && val.endsWith('em');
-
-        // console.log(isRem, key, val, isAbsolute, 'scale here');
 
         // If platform is web, we need to convert absolute unit to rem. e.g. 16 to 1rem
         if (isWeb) {
-          // if (isAbsolute) {
-          //   newScale[scaleKey] = convertAbsoluteToRem(val);
-          // }
           if (isAbsolute) {
-            newScale[scaleKey] = convertAbsoluteToPx(val);
+            newScale[scaleKey] = convertAbsoluteToRem(val);
           }
         }
         // If platform is not web, we need to convert px unit to absolute and rem unit to absolute. e.g. 16px to 16. 1rem to 16.
@@ -372,16 +365,10 @@ export const platformSpecificSpaceUnits = (theme: any, platform: string) => {
         }
       }
     }
-    if (newTheme.tokens) {
-      //TODO: fix this ts-ignore
-      //@ts-ignore
-      newTheme.tokens[key] = newScale;
-    } else {
-      console.warn(
-        'No tokens found in config! Please pass config in Provider to resolve styles!'
-      );
-    }
+    //@ts-ignore
+    newTheme.tokens[key] = newScale;
   });
+
   return newTheme;
 };
 
@@ -581,7 +568,7 @@ export const transformTheme = (componentTheme: any, config: any) => {
   const { baseStyle, variants, sizes, defaultProps, ...rest } = componentTheme;
   let sxProps = addDollarSignsToProps(rest, config.theme);
 
-  let transformedTheme: any = {
+  const transformedTheme: any = {
     variants: {
       variant: {},
       size: {},

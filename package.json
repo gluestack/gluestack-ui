@@ -74,6 +74,7 @@
     "file-loader": "^6.2.0",
     "lodash.clonedeep": "^4.5.0",
     "lodash.get": "^4.4.2",
+    "@types/lodash.get": "^4.4.8",
     "react-native-svg": "13.4.0",
     "tinycolor2": "^1.6.0",
     "ts-loader": "^9.4.4",
