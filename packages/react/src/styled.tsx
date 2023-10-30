@@ -1905,11 +1905,31 @@ export function verboseStyled<P, Variants, ComCon>(
 
     // Object.assign(resolvedInlineProps, applyComponentInlineProps);
 
+    const componentConfig = {
+      componentName: componentStyleConfig?.componentName,
+      colorMode: styledContext.colorMode,
+      ...variantProps,
+      states,
+    };
+
+    //@ts-ignore
+    if (applyComponentInlineProps?.as || passingProps?.as?.displayName) {
+      componentConfig.componentName =
+        //@ts-ignore
+        applyComponentInlineProps?.as?.displayName ??
+        passingProps?.as?.displayName;
+      componentConfig.as =
+        //@ts-ignore
+        applyComponentInlineProps?.as?.displayName ??
+        passingProps?.as?.displayName;
+    }
+
     const resolvedStyleProps = generateStylePropsFromCSSIds(
       applyComponentInlineProps,
       styleCSSIds,
       CONFIG,
-      activeTheme
+      activeTheme,
+      componentConfig
     );
 
     const AsComp: any =
