@@ -785,10 +785,13 @@ const getStyleIdsFromMap = (
   styleIds: any
 ) => {
   let componentExtendedConfig = CONFIG;
+
   if (ExtendedConfig) {
-    componentExtendedConfig = deepMerge(CONFIG, ExtendedConfig);
+    componentExtendedConfig = deepMergeObjects(CONFIG, ExtendedConfig);
   }
+
   Object.assign(styledSystemProps, componentExtendedConfig?.aliases);
+
   const componentStyleIds = styleIds.component;
   const componentDescendantStyleIds = styleIds.descendant;
 
@@ -1022,6 +1025,7 @@ export function verboseStyled<P, Variants, ComCon>(
     const applySxDescendantStyleCSSIdsAndPropsWithKey = useRef({});
 
     const styledContext = useStyled();
+
     const { theme: activeTheme } = useTheme();
 
     const ancestorStyleContext = useContext(AncestorStyleContext);
@@ -1041,6 +1045,7 @@ export function verboseStyled<P, Variants, ComCon>(
         ...styledContext.config,
         propertyTokenMap,
       };
+
       // for extended components
 
       const EXTENDED_THEME =
@@ -1107,7 +1112,14 @@ export function verboseStyled<P, Variants, ComCon>(
           // @ts-ignore
           [nonVerbosedTheme, , , Component] = plugins[
             pluginName
-          ]?.inputMiddleWare<P>(nonVerbosedTheme, true, true, Component);
+          ]?.inputMiddleWare<P>(
+            nonVerbosedTheme,
+            true,
+            true,
+            Component,
+            componentStyleConfig,
+            ExtendedConfig
+          );
         }
         nonVerbosedTheme = convertStyledToStyledVerbosed(nonVerbosedTheme);
       }
@@ -1959,6 +1971,7 @@ export function verboseStyled<P, Variants, ComCon>(
       plugins?.length > 0
         ? {
             ...variantProps,
+            states: states,
             sx: componentProps.sx,
           }
         : {};
@@ -1969,7 +1982,9 @@ export function verboseStyled<P, Variants, ComCon>(
         component = (
           <ComponentWithPlugin
             {...resolvedStyleProps}
+            {...variantProps}
             {...propsToBePassedInToPlugin}
+            states={states}
             style={resolvedStyleMemo}
             as={AsComp}
             ref={ref}
@@ -1985,7 +2000,19 @@ export function verboseStyled<P, Variants, ComCon>(
         );
       }
     } else {
-      component = (
+      //@ts-ignores
+      component = Component.isStyledComponent ? (
+        <ComponentWithPlugin
+          {...resolvedStyleProps}
+          {...propsToBePassedInToPlugin}
+          {...variantProps}
+          states={states}
+          style={resolvedStyleMemo}
+          ref={ref}
+        >
+          {children}
+        </ComponentWithPlugin>
+      ) : (
         <ComponentWithPlugin
           {...resolvedStyleProps}
           {...propsToBePassedInToPlugin}
