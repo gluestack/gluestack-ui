@@ -11,7 +11,7 @@ export class ColorSchemeResolver implements IStyledPlugin {
   styledComponentConfig: any;
   // no other use
 
-  register() {}
+  register() { }
 
   constructor(callback: any, from?: any) {
     this.name = 'ColorSchemeResolver';

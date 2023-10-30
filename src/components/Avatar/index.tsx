@@ -56,10 +56,10 @@ const AvatarGroupTemp = forwardRef(
       <AccessibleAvatar.Group {...resolvedPropForGluestack} ref={ref}>
         {max && max < children.length && max > 0
           ? [...children.slice(0, max), remainingAvatar()].map(
-              (child: any, index: any) => {
-                return cloneElement(child, { key: index });
-              }
-            )
+            (child: any, index: any) => {
+              return cloneElement(child, { key: index });
+            }
+          )
           : children}
       </AccessibleAvatar.Group>
     );
