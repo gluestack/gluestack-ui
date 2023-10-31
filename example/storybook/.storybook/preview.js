@@ -48,7 +48,7 @@ export const parameters = {
           'CSS Variables Plugin',
         ],
         'hooks',
-        ['useBreakPointValue', 'useColorMode', 'useToken'],
+        ['useBreakPointValue', 'useMedia', 'useColorMode', 'useToken'],
         'configuration',
         [
           'Theme Tokens',
