@@ -113,19 +113,24 @@ export const CSSPropertiesMap = {
 };
 
 export const reservedKeys = {
-  state: {
-    hover: true,
-    active: true,
-    focus: true,
-    focusVisible: true,
-  },
-  colorMode: {
-    light: true,
-    dark: true,
-  },
-  platform: {
-    web: true,
-    ios: true,
-    android: true,
-  },
+  _indeterminate: ':indeterminate',
+  _checked: ':checked',
+  _readOnly: ':readOnly',
+
+  _required: ':required',
+  _invalid: ':invalid',
+
+  _focus: ':focus',
+  _focusVisible: ':focusVisible',
+  _hover: ':hover',
+  _pressed: ':pressed',
+  _active: ':active',
+  _loading: ':loading',
+
+  _disabled: ':disabled',
+  _light: '_light',
+  _dark: '_dark',
+  _web: '_web',
+  _ios: '_ios',
+  _android: '_android',
 };

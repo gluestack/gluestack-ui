@@ -11,6 +11,7 @@ import type {
   IComponentStyleConfig,
   StyledConfig,
   UtilityProps,
+  VerbosedUtilityProps,
 } from './types';
 import {
   deepMerge,
@@ -42,7 +43,10 @@ import {
 } from './convertSxToSxVerbosed';
 import { stableHash } from './stableHash';
 import { DeclarationType, GluestackStyleSheet } from './style-sheet';
-import { CSSPropertiesMap } from './core/styled-system';
+import {
+  CSSPropertiesMap,
+  reservedKeys as _reservedKeys,
+} from './core/styled-system';
 import { updateOrderUnResolvedMap } from './updateOrderUnResolvedMap';
 import { resolveComponentTheme } from './createConfig';
 
@@ -84,7 +88,8 @@ function flattenObject(obj: any = {}) {
 function convertUtiltiyToSXFromProps(
   componentProps: any,
   styledSystemProps: any,
-  componentStyleConfig: any
+  componentStyleConfig: any,
+  reservedKeys: any = _reservedKeys
 ) {
   // if (componentProps.debug === 'BOX_TEST') {
   //   return {
@@ -100,7 +105,8 @@ function convertUtiltiyToSXFromProps(
     convertUtilityPropsToSX(
       styledSystemProps,
       componentStyleConfig?.descendantStyle,
-      componentRestProps
+      componentRestProps,
+      reservedKeys
     );
 
   const resolvedSxVerbose = deepMerge(utilityResolvedSX, resolvedSXVerbosed);
@@ -981,6 +987,7 @@ export function verboseStyled<P, Variants, ComCon>(
   let CONFIG: any = {};
   let isInjected = false;
   let plugins: any = [];
+  let reservedKeys = { ..._reservedKeys };
 
   const containsDescendant =
     componentStyleConfig?.descendantStyle &&
@@ -1006,7 +1013,8 @@ export function verboseStyled<P, Variants, ComCon>(
           children?: any;
         },
       'animationComponentGluestack'
-    >,
+    > &
+      Partial<VerbosedUtilityProps<ITypeReactNativeStyles, Variants, P>>,
     ref: React.ForwardedRef<P>
   ) => {
     const isClient = React.useRef(false);
@@ -1045,6 +1053,14 @@ export function verboseStyled<P, Variants, ComCon>(
         ...styledContext.config,
         propertyTokenMap,
       };
+
+      const prefixedMediaQueries: any = {};
+
+      Object.keys(CONFIG?.tokens?.mediaQueries).forEach((key: any) => {
+        prefixedMediaQueries[`_${key}`] = `@${key}`;
+      });
+
+      Object.assign(reservedKeys, { ...prefixedMediaQueries });
 
       // for extended components
 
@@ -1420,7 +1436,8 @@ export function verboseStyled<P, Variants, ComCon>(
         //   defaultThemePropsWithoutVariants,
         inlineComponentPropsWithoutVariants,
         styledSystemProps,
-        componentStyleConfig
+        componentStyleConfig,
+        reservedKeys
       );
 
     let { sx: filteredPassingSx, rest: filteredPassingRemainingProps } =
@@ -1430,7 +1447,8 @@ export function verboseStyled<P, Variants, ComCon>(
           applyAncestorPassingProps
         ),
         styledSystemProps,
-        componentStyleConfig
+        componentStyleConfig,
+        reservedKeys
       );
 
     let containsSX = false;

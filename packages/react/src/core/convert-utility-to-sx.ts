@@ -1,4 +1,6 @@
-import { deepMerge } from './utils';
+import { convertSxToSxVerbosed } from '../convertSxToSxVerbosed';
+import { reservedKeys as _reservedKeys } from './styled-system';
+import { deepMerge, getObjectParentProperty } from './utils';
 import { setObjectKeyValue } from './utils';
 
 // const resolveResponsiveProps = (
@@ -102,11 +104,10 @@ import { setObjectKeyValue } from './utils';
 export const convertUtilityPropsToSX = (
   styledSystemProps: any,
   _descendants: any,
-  propsWithUtility: any
+  propsWithUtility: any,
+  reservedKeys: any = _reservedKeys
 ) => {
-  // console.setStartTimeStamp('convertUtilityPropsToSX');
-
-  const sxPropsConvertedObj: any = {};
+  const sxPropsConvertedUtilityProps: any = {};
   const ignoredProps: any = {};
 
   if (Object.keys(propsWithUtility).length === 0)
@@ -115,21 +116,23 @@ export const convertUtilityPropsToSX = (
 
   Object.keys(componentProps).forEach((prop) => {
     if (styledSystemProps[prop]) {
-      setObjectKeyValue(
-        sxPropsConvertedObj,
-        ['style', prop],
-        componentProps[prop]
-      );
+      sxPropsConvertedUtilityProps[prop] = componentProps[prop];
     } else {
-      // if (prop !== 'dataSet') {
-      ignoredProps[prop] = componentProps[prop];
-      // }
+      if (reservedKeys[prop]) {
+        sxPropsConvertedUtilityProps[reservedKeys[prop]] = componentProps[prop];
+      } else {
+        ignoredProps[prop] = componentProps[prop];
+      }
     }
   });
 
+  const sxPropsConvertedUtilityPropsToVerboseSx = convertSxToSxVerbosed(
+    sxPropsConvertedUtilityProps
+  );
+
   // console.setEndTimeStamp('convertUtilityPropsToSX');
   return {
-    sxProps: deepMerge(sxPropsConvertedObj, sx),
+    sxProps: deepMerge(sxPropsConvertedUtilityPropsToVerboseSx, sx),
     mergedProps: ignoredProps,
   };
 };

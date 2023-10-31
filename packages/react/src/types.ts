@@ -794,6 +794,43 @@ export type UtilityProps<GenericComponentStyles, GenericComponentProps> = Omit<
     AliasesProps<GetRNStyles<GenericComponentStyles>>,
     keyof GenericComponentProps
   >;
+//  &
+// VerbosedUtilityProps<
+//   GenericComponentStyles,
+//   VariantProps,
+//   GenericComponentProps
+// >;
+
+export type VerbosedUtilityProps<
+  GenericComponentStyles,
+  VariantProps,
+  GenericComponentProps
+> = {
+  [key in `_${IState}`]: SxProps<
+    GenericComponentStyles,
+    VariantProps,
+    GenericComponentProps
+  >;
+} & {
+  [key in `_${PLATFORMS}`]?: SxProps<
+    GenericComponentStyles,
+    VariantProps,
+    GenericComponentProps
+  >;
+} & {
+  [key in `_${IMediaQueries}`]?: SxProps<
+    GenericComponentStyles,
+    VariantProps,
+    GenericComponentProps
+  >;
+};
+// & {
+//   [key in `_${string}`]?: SxProps<
+//     GenericComponentStyles,
+//     VariantProps,
+//     GenericComponentProps
+//   >;
+// };
 
 /********************* UTILITY TYPE *****************************************/
 
