@@ -1,9 +1,11 @@
+// import { AnimationResolver } from '@gluestack-style/animation-plugin';
+import { styled } from '@gluestack-style/react';
+import { Motion } from '@legendapp/motion';
 import {
   AnimationResolver,
   AnimatedView,
 } from '@gluestack-style/animation-resolver';
 import { MotionAnimationDriver } from '@gluestack-style/legend-motion-animation-driver';
-import { styled } from '@gluestack-style/react';
 
 export default styled(
   AnimatedView,

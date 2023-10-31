@@ -1,7 +1,8 @@
-import cloneDeep from 'lodash.clonedeep';
+// import cloneDeep from 'lodash.clonedeep';
 import React, { forwardRef } from 'react';
 import { PresenceTransition } from './PresenceTransition';
 import type { ISupportedTransitions, ITransitionConfig } from './types';
+import cloneDeep from 'lodash.clonedeep';
 
 interface IStaggerConfig {
   offset: number;
