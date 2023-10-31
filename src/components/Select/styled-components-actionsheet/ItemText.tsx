@@ -11,9 +11,9 @@ export default styled(
     fontWeight: '$normal',
     // @ts-ignore
     lineHeight: '$md',
-    color: '$textLight700',
+    color: '$textLight.700',
     _dark: {
-      color: '$textDark200',
+      color: '$textDark.200',
     },
   },
   { ancestorStyle: ['_text'] }

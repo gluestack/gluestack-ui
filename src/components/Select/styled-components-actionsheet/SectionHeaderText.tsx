@@ -4,7 +4,7 @@ import { styled } from '@gluestack-style/react';
 export default styled(
   Text,
   {
-    color: '$textLight500',
+    color: '$textLight.500',
     // @ts-ignore
     fontSize: '$sm',
     fontFamily: '$body',
