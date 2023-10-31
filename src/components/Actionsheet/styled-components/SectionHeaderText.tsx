@@ -14,7 +14,7 @@ export default styled(
     textTransform: 'uppercase',
     padding: '$3',
     _dark: {
-      color: '$textDark400',
+      color: '$textDark.400',
     },
   },
   {

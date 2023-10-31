@@ -15,14 +15,14 @@ export default styled(
     borderTopRightRadius: '$3xl',
     height: '100%',
     padding: '$2',
-    backgroundColor: '$backgroundLight0',
+    backgroundColor: '$backgroundLight.0',
     _sectionHeaderBackground: {
-      backgroundColor: '$backgroundLight0',
+      backgroundColor: '$backgroundLight.0',
     },
     _dark: {
-      backgroundColor: '$backgroundDark900',
+      backgroundColor: '$backgroundDark.900',
       _sectionHeaderBackground: {
-        backgroundColor: '$backgroundDark900',
+        backgroundColor: '$backgroundDark.900',
       },
     },
     _web: {

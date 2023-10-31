@@ -24,9 +24,9 @@ export default styled(
     'right': 0,
     'bottom': 0,
     // @ts-ignore
-    'bg': '$backgroundLight950',
+    'bg': '$backgroundLight.950',
     '_dark': {
-      backgroundColor: '$backgroundDark950',
+      backgroundColor: '$backgroundDark.950',
     },
     '_web': {
       cursor: 'default',

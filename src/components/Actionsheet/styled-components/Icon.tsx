@@ -8,9 +8,9 @@ export default styled(
     height: '$4',
     marginRight: '$2',
     _icon: {
-      color: '$backgroundLight500',
+      color: '$backgroundLight.500',
       _dark: {
-        color: '$backgroundDark400',
+        color: '$backgroundDark.400',
       },
     },
   },

@@ -24,36 +24,36 @@ export default styled(
     },
 
     ':hover': {
-      backgroundColor: '$backgroundLight50',
+      backgroundColor: '$backgroundLight.50',
     },
 
     ':active': {
-      backgroundColor: '$backgroundLight100',
+      backgroundColor: '$backgroundLight.100',
     },
 
     ':focus': {
-      backgroundColor: '$backgroundLight100',
+      backgroundColor: '$backgroundLight.100',
     },
 
     '_dark': {
       ':hover': {
-        backgroundColor: '$backgroundDark800',
+        backgroundColor: '$backgroundDark.800',
       },
 
       ':active': {
-        backgroundColor: '$backgroundDark700',
+        backgroundColor: '$backgroundDark.700',
       },
 
       ':focus': {
-        backgroundColor: '$backgroundDark700',
+        backgroundColor: '$backgroundDark.700',
       },
     },
 
     '_web': {
       ':focusVisible': {
-        backgroundColor: '$backgroundLight100',
+        backgroundColor: '$backgroundLight.100',
         _dark: {
-          backgroundColor: '$backgroundDark700',
+          backgroundColor: '$backgroundDark.700',
         },
       },
     },
