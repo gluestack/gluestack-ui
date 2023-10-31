@@ -2486,6 +2486,14 @@
     inline-style-prefixer "^6.0.1"
     normalize-css-color "^1.0.2"
 
+"@gluestack-style/react@^1.0.11":
+  version "1.0.11"
+  resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-1.0.11.tgz#9cc8ce9956bad1cfdabbb37626e36c916f260f26"
+  integrity sha512-EP/pciHm9IaYzXYQVkcwAE4PDuXXvivvk4Lfjsr/ox0QGPtxc+MTBXJlhJoUf+hvosTBv42ElzD+wzW9G2DD0g==
+  dependencies:
+    inline-style-prefixer "^6.0.1"
+    normalize-css-color "^1.0.2"
+
 "@gluestack-style/react@^1.0.7":
   version "1.0.7"
   resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-1.0.7.tgz#583fec8b1d15dba3882dccdc0f691de725e47ab7"
@@ -2658,13 +2666,6 @@
   resolved "https://registry.yarnpkg.com/@gluestack-ui/hooks/-/hooks-0.1.7.tgz#c00b954d77ef14dd6b3d020301f1666389261d28"
   integrity sha512-kFsN7qgBliCqQ+EYrj4PGDH+NNY5q1sHSbyveosqSPh2KRlJsItNil1hJpUAsfV+IZqJEugV0DwzIe30JDNqyA==
 
-"@gluestack-ui/hstack@^0.1.15":
-  version "0.1.15"
-  resolved "https://registry.yarnpkg.com/@gluestack-ui/hstack/-/hstack-0.1.15.tgz#9243b0231e96eb79666ae4395ecd08849c2398c0"
-  integrity sha512-HK7DUAKqMtBhtUdnurwd4U7dSnC2b/gLgc7erPYt8pZNqfv4fB18Dtqn6Ay96J5nTh/72ND9KqKH5DnCctpYTQ==
-  dependencies:
-    "@gluestack-ui/utils" "^0.1.12"
-
 "@gluestack-ui/hstack@^0.1.6":
   version "0.1.14"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/hstack/-/hstack-0.1.14.tgz#75e2b3ecdbe770d89f588444774ea8373766b051"
@@ -2699,10 +2700,10 @@
     "@react-native-aria/focus" "^0.2.9"
     "@react-native-aria/interactions" "^0.2.11"
 
-"@gluestack-ui/input@^0.1.21":
-  version "0.1.21"
-  resolved "https://registry.yarnpkg.com/@gluestack-ui/input/-/input-0.1.21.tgz#e9cafe04a913158d172bbad0d2330946a47991d6"
-  integrity sha512-uqNozj5L8Op5j5ja4HncWL0VGomcMoldpXRpLTuO/BsQjwa9A8RehV84no/tEUA4BsP4y+mFmgLm8s6ZD7Vkzg==
+"@gluestack-ui/input@^0.1.22":
+  version "0.1.22"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/input/-/input-0.1.22.tgz#df2c042fb6f478deed3533b9b213a094589398f3"
+  integrity sha512-9lz8l0glWNXqldp/9+ScyS8bbV0z1s32IltthbmdZfeuv1daHZvzJmaRJrvuQsMVGsu/d8oLwEg6tBlcWo5SCg==
   dependencies:
     "@gluestack-ui/form-control" "^0.1.14"
     "@gluestack-ui/utils" "^0.1.12"
@@ -3101,13 +3102,6 @@
   integrity sha512-VG0ai84YHuWpePDoa+UrgJTFERJBXbM3rGPRCtHIMjvGMWviyzQXSVU7k5iu5YUgaLhADSK+c/pww9bK9MZzgw==
   dependencies:
     "@react-native-aria/focus" "^0.2.7"
-
-"@gluestack-ui/vstack@^0.1.15":
-  version "0.1.15"
-  resolved "https://registry.yarnpkg.com/@gluestack-ui/vstack/-/vstack-0.1.15.tgz#cf674341e76b5504c82342070c8ad37e3445e584"
-  integrity sha512-8wXSn+ijwbPU+3bZFhJbwsewzEinDeRtdghCGSxq+Qvvc1shJtn4BOPUQnISGg/dnz1PXHoKFDlJUW3wEpLbTg==
-  dependencies:
-    "@gluestack-ui/utils" "^0.1.12"
 
 "@gluestack-ui/vstack@^0.1.6":
   version "0.1.14"
