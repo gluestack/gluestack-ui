@@ -8,28 +8,28 @@ export const Item = styled(
     'flexDirection': 'row',
     'alignItems': 'center',
     ':hover': {
-      backgroundColor: '$backgroundLight100',
+      backgroundColor: '$backgroundLight.100',
     },
 
     ':active': {
-      backgroundColor: '$backgroundLight200',
+      backgroundColor: '$backgroundLight.200',
     },
 
     ':focus': {
-      backgroundColor: '$backgroundLight100',
+      backgroundColor: '$backgroundLight.100',
     },
 
     '_dark': {
       ':hover': {
-        backgroundColor: '$backgroundDark800',
+        backgroundColor: '$backgroundDark.800',
       },
 
       ':active': {
-        backgroundColor: '$backgroundDark700',
+        backgroundColor: '$backgroundDark.700',
       },
 
       ':focus': {
-        backgroundColor: '$backgroundDark800',
+        backgroundColor: '$backgroundDark.800',
       },
     },
 

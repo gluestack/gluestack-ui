@@ -4,7 +4,7 @@ import { styled } from '@gluestack-style/react';
 export const Label = styled(
   Text,
   {
-    color: '$textLight700',
+    color: '$textLight.700',
     fontWeight: '$normal',
     fontFamily: '$body',
     fontStyle: 'normal',
@@ -90,7 +90,7 @@ export const Label = styled(
     },
 
     _dark: {
-      color: '$textDark200',
+      color: '$textDark.200',
     },
   },
   {

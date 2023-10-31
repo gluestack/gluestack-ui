@@ -510,17 +510,18 @@ export function addDollarSignsToProps(obj: any, config: any) {
       newObj[key] = addDollarSignsToProps(obj[key], config);
     } else if (typeof propValue === 'object') {
       const newPropValue = {};
-
-      Object.keys(propValue).forEach((keyProp) => {
-        //TODO: fix this ts-ignore
-        //@ts-ignore
-        newPropValue[keyProp] = addDollarSign(
-          propertyName,
-          propValue[keyProp],
-          config
-        );
-      });
-      newObj[key] = newPropValue;
+      if (propValue) {
+        Object.keys(propValue).forEach((keyProp) => {
+          //TODO: fix this ts-ignore
+          //@ts-ignore
+          newPropValue[keyProp] = addDollarSign(
+            propertyName,
+            propValue[keyProp],
+            config
+          );
+        });
+        newObj[key] = newPropValue;
+      }
     } else {
       newObj[key] = addDollarSign(propertyName, propValue, config);
     }

@@ -8,7 +8,7 @@ export const Item = styled(
     'flexDirection': 'row',
     'alignItems': 'center',
     ':hover': {
-      backgroundColor: '$backgroundLight100',
+      backgroundColor: '$backgroundLight.100',
     },
 
     ':disabled': {
@@ -26,11 +26,11 @@ export const Item = styled(
     },
 
     ':active': {
-      backgroundColor: '$backgroundLight200',
+      backgroundColor: '$backgroundLight.200',
     },
 
     ':focus': {
-      backgroundColor: '$backgroundLight100',
+      backgroundColor: '$backgroundLight.100',
       // @ts-ignore
       outlineWidth: '$0',
       outlineStyle: 'none',
@@ -38,24 +38,24 @@ export const Item = styled(
 
     '_dark': {
       ':hover': {
-        backgroundColor: '$backgroundDark800',
+        backgroundColor: '$backgroundDark.800',
       },
 
       ':active': {
-        backgroundColor: '$backgroundDark700',
+        backgroundColor: '$backgroundDark.700',
       },
 
       ':focus': {
-        backgroundColor: '$backgroundDark800',
+        backgroundColor: '$backgroundDark.800',
       },
     },
     ':focusVisible': {
       // @ts-ignore
       outlineWidth: '$0.5',
-      outlineColor: '$primary700',
+      outlineColor: '$primary.700',
       outlineStyle: 'solid',
       _dark: {
-        outlineColor: '$primary300',
+        outlineColor: '$primary.300',
       },
     },
     'cursor': 'pointer',
