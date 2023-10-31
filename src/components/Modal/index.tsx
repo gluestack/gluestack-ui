@@ -14,6 +14,7 @@ import { Text } from '../Text';
 import { CloseIcon } from '../Icons';
 import { GenericComponentType } from '../../types';
 import { AnimatePresence } from '@gluestack-style/animation-resolver';
+import { Button } from '../Button';
 
 const AccessibleModal = createModal({
   Root,
@@ -40,16 +41,6 @@ const ModalNew = forwardRef(
     );
   }
 ) as any;
-
-const AccessibleModalContent = forwardRef(
-  ({ children, ...props }: any, ref?: any) => {
-    return (
-      <AccessibleModal.Content {...props} ref={ref}>
-        {children}
-      </AccessibleModal.Content>
-    );
-  }
-);
 
 const AccessibleModalCloseButton = forwardRef(
   ({ ...props }: any, ref?: any) => {
@@ -95,7 +86,7 @@ const AccessibleModalBody = forwardRef(
   }
 );
 
-ModalNew.Content = AccessibleModalContent as any;
+ModalNew.Content = AccessibleModal.Content as any;
 ModalNew.CloseButton = AccessibleModalCloseButton as any;
 ModalNew.Header = AccessibleModalHeader as any;
 ModalNew.Footer = AccessibleModalFooter as any;

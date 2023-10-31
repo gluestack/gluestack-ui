@@ -33,7 +33,7 @@ export default styled(
     'right': 0,
     'bottom': 0,
     // @ts-ignore
-    'bg': '$light.900',
+    'bg': '$light.100',
     '_dark': {
       backgroundColor: '$light.900',
     },
