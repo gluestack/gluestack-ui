@@ -1,4 +1,4 @@
-import cloneDeep from 'lodash.clonedeep';
+// import cloneDeep from 'lodash.clonedeep';
 import React from 'react';
 import { PresenceTransition } from './PresenceTransition';
 import type { ISupportedTransitions, ITransitionConfig } from './types';
@@ -36,7 +36,9 @@ const defaultStaggerConfig: IStaggerConfig = { offset: 0, reverse: false };
 
 const Stagger = ({ children, ...restProps }: IStaggerProps) => {
   return React.Children.map(children, (child, index) => {
-    const clonedAnimationConfig = cloneDeep(restProps);
+    // const clonedAnimationConfig = cloneDeep(restProps);
+    const clonedAnimationConfig = restProps;
+
     const { animate, exit } = clonedAnimationConfig;
 
     if (animate) {
