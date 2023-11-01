@@ -13,7 +13,7 @@ import { Heading } from '../Heading';
 import { Text } from '../Text';
 import { CloseIcon } from '../Icons';
 import { GenericComponentType } from '../../types';
-import { Button } from '../Button';
+import { AnimatePresence } from '@gluestack-style/animation-resolver';
 
 const AccessibleModal = createModal({
   Root,
