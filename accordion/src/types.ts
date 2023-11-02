@@ -49,22 +49,15 @@ export interface IAccordionItemProps {
    *   When true, prevents the user from interacting with the accordion and all its items.
    */
 
-  index?: number;
   isDisabled?: boolean;
   value: string;
   children: JSX.Element | Array<JSX.Element>;
-  itemId?: string;
   isOpen?: boolean;
-}
-
-export interface IAccordionContentProps extends ViewProps {
-  itemId?: string;
 }
 
 export interface IAccordionTriggerProps extends PressableProps {
   isDisabled?: boolean;
   toggleContent?: () => void;
-  itemId?: string;
 }
 
 export type IAccordionComponentType<
@@ -82,9 +75,7 @@ export type IAccordionComponentType<
   Trigger: React.MemoExoticComponent<
     (props: TriggerProps & IAccordionTriggerProps) => JSX.Element
   >;
-  Content: React.MemoExoticComponent<
-    (props: ContentProps & IAccordionContentProps) => JSX.Element
-  >;
+  Content: React.MemoExoticComponent<(props: ContentProps) => JSX.Element>;
 
   Icon: React.MemoExoticComponent<(props: IconProps) => JSX.Element>;
 };
