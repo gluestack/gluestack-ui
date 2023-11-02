@@ -1,6 +1,7 @@
 import { Platform } from 'react-native';
 import get from 'lodash.get';
 import cloneDeep from 'lodash.clonedeep';
+import Color from 'tinycolor2';
 
 export const CSSPropertiesMap = {
   alignContent: 'stretch',
@@ -482,6 +483,41 @@ function addDollarSign(propertyName: any, propValue: any, config: any) {
     return propValue;
   }
 }
+
+export type Dict = Record<string, any>;
+
+export const transparentize =
+  (color: string, opacity: number) => (theme: Dict) => {
+    const raw = getTransparentColor(theme, color);
+    return Color(raw).setAlpha(opacity).toRgbString();
+  };
+
+export const getTransparentColor = (
+  theme: Dict,
+  color: string,
+  fallback?: string
+) => {
+  const hex = get(theme, `colors.${color}`, color);
+  const isValid = Color(hex).isValid();
+  return isValid ? hex : fallback;
+};
+
+export const getColor = (rawValue: any, scale: any, theme: any) => {
+  const alphaMatched =
+    typeof rawValue === 'string' ? rawValue?.match(/:alpha\.\d\d?\d?/) : false;
+
+  if (alphaMatched) {
+    const colorMatched = rawValue?.match(/^.*?(?=:alpha)/);
+    const color = colorMatched ? colorMatched[0] : colorMatched;
+    const alphaValue = alphaMatched[0].split('.')[1];
+    const alphaFromToken = get(theme.opacity, alphaValue, alphaValue);
+    const alpha = alphaFromToken ? parseFloat(alphaFromToken) : 1;
+    const newColor = transparentize(color, alpha)(theme);
+    return newColor;
+  } else {
+    return get(scale, rawValue, rawValue);
+  }
+};
 
 export function addDollarSignsToProps(obj: any, config: any) {
   const newObj: any = {};

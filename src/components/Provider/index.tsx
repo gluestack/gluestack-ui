@@ -37,7 +37,14 @@ const NativeBaseProvider = ({ children, config, theme, ...props }: any) => {
   }, [_enableRem, mergedTheme]);
 
   return (
-    <HooksContext.Provider value={{ colorMode, setColorMode }}>
+    <HooksContext.Provider
+      value={{
+        colorMode,
+        setColorMode,
+        config: config.dependencies ? config.dependencies : {},
+        newTheme,
+      }}
+    >
       <GluestackUIProvider colorMode={colorMode} config={newTheme} {...props}>
         {children}
       </GluestackUIProvider>
