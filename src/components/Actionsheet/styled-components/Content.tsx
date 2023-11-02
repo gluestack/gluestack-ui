@@ -8,6 +8,7 @@ import { MotionAnimationDriver } from '@gluestack-style/legend-motion-animation-
 export default styled(
   AnimatedView,
   {
+    overflow: 'hidden',
     alignItems: 'center',
     // @ts-ignore
     borderTopLeftRadius: '$3xl',

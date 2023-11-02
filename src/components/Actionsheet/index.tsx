@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createContext, useContext } from 'react';
 import { createActionsheet } from '@gluestack-ui/actionsheet';
 import { AnimatePresence } from '@gluestack-style/animation-resolver';
 import {
@@ -19,6 +19,8 @@ import {
 import { forwardRef } from 'react';
 import { usePropResolution } from '../../hooks/usePropResolution';
 import { GenericComponentType } from '../../types';
+import { Box } from '../Box';
+import { Button } from '../Button';
 
 export const AccessibleActionsheet = createActionsheet({
   Root,
@@ -38,16 +40,18 @@ export const AccessibleActionsheet = createActionsheet({
   AnimatePresence: AnimatePresence,
 });
 
+const ActionSheetContext = createContext<any>({});
+
 const NewActionsheet = forwardRef(
   (
     {
-      children,
-      isLoading,
-      isDisabled,
-      // isLoadingText,
-      colorScheme = 'primary',
-      variant = 'solid',
+      isOpen,
       onClose,
+      disableOverlay = false,
+      hideDragIndicator = false, // use context
+      _backdrop,
+      useRNModal,
+      children,
       ...props
     }: any,
     ref?: any
@@ -55,33 +59,57 @@ const NewActionsheet = forwardRef(
     const resolvedPropForGluestack = usePropResolution(props);
     return (
       <AccessibleActionsheet
-        colorScheme={colorScheme}
-        variant={variant}
+        useRNModal={useRNModal}
+        isOpen={isOpen}
+        onClose={onClose}
         {...resolvedPropForGluestack}
         ref={ref}
-        isDisabled={isLoading || isDisabled}
       >
-        <AccessibleActionsheet.Backdrop onPress={onClose} />
-
-        {children}
+        {!disableOverlay && <AccessibleActionsheet.Backdrop {..._backdrop} />}
+        <ActionSheetContext.Provider value={{ hideDragIndicator }}>
+          {children}
+        </ActionSheetContext.Provider>
       </AccessibleActionsheet>
     );
   }
 );
 
 const AccessibleActionsheetContent = forwardRef(
-  ({ children, ...props }: any, ref?: any) => {
+  (
+    {
+      children,
+      // space above DragIndicatorWrapper
+      _dragIndicatorWrapperOffSet = null,
+      // DragIndicatorWrapper
+      _dragIndicatorWrapper = null,
+      // DragIndicator
+      _dragIndicator = null,
+      ...props
+    }: any,
+    ref?: any
+  ) => {
+    const { hideDragIndicator } = useContext(ActionSheetContext);
+    const resolvedProps = usePropResolution(props);
+    const resolvedPropsForDragIndicator = usePropResolution(_dragIndicator);
+    const resolvedPropsForDragIndicatorWrapper = usePropResolution(
+      _dragIndicatorWrapper
+    );
     return (
-      <AccessibleActionsheet.Content {...props} ref={ref}>
-        {/* {!hideDragIndicator ? (
-          <AccessibleActionsheet.DragIndicatorWrapper>
-            <AccessibleActionsheet.DragIndicator />
-          </AccessibleActionsheet.DragIndicatorWrapper>
-        ) : null} */}
-        <AccessibleActionsheet.DragIndicatorWrapper>
-          <AccessibleActionsheet.DragIndicator />
-        </AccessibleActionsheet.DragIndicatorWrapper>
-
+      <AccessibleActionsheet.Content {...resolvedProps} ref={ref}>
+        {!hideDragIndicator && (
+          <>
+            {_dragIndicatorWrapperOffSet && (
+              <Box py="2" {..._dragIndicatorWrapperOffSet} />
+            )}
+            <AccessibleActionsheet.DragIndicatorWrapper
+              {...resolvedPropsForDragIndicatorWrapper}
+            >
+              <AccessibleActionsheet.DragIndicator
+                {...resolvedPropsForDragIndicator}
+              />
+            </AccessibleActionsheet.DragIndicatorWrapper>
+          </>
+        )}
         {children}
       </AccessibleActionsheet.Content>
     );
@@ -91,28 +119,25 @@ const AccessibleActionsheetContent = forwardRef(
 const AccessibleActionsheetItem = forwardRef(
   ({ children, ...props }: any, ref?: any) => {
     return (
-      <AccessibleActionsheet.Item {...props} ref={ref}>
-        <AccessibleActionsheet.ItemText>
-          {children}
-        </AccessibleActionsheet.ItemText>
-      </AccessibleActionsheet.Item>
+      <Button variant="actionsheetStyle" {...props} ref={ref}>
+        {children}
+      </Button>
     );
   }
 );
 
 const ActionsheetNew = NewActionsheet as any;
 ActionsheetNew.Content = AccessibleActionsheetContent;
-// ActionsheetNew.Body = AccessibleActionsheetBody;
 ActionsheetNew.Item = AccessibleActionsheetItem;
 
 export type IActionsheetComponentType<Actionsheet, Content, Item> =
   GenericComponentType<Actionsheet> & {
     Content: GenericComponentType<Content>;
-    Item: GenericComponentType<Item>;
+    Item: Item;
   };
 
 export const Actionsheet = ActionsheetNew as IActionsheetComponentType<
   typeof AccessibleActionsheet,
   typeof AccessibleActionsheet.Content,
-  typeof AccessibleActionsheet.Item
+  typeof Button
 >;
