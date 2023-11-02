@@ -41,6 +41,8 @@ export default styled(
         solid: {},
         subtle: {},
         link: {},
+        actionsheetStyle: {},
+        unstyled: {},
       },
 
       size: {
@@ -132,6 +134,7 @@ function colorSchemeResolveFn({ ...props }: any) {
   if (props.colorScheme) {
     const color = props.colorScheme;
     const variant = props.variant;
+
     switch (variant) {
       case 'ghost':
         value = {
@@ -322,6 +325,39 @@ function colorSchemeResolveFn({ ...props }: any) {
                 color: `$${color}.300`,
               },
             },
+          },
+        };
+        break;
+      case 'actionsheetStyle':
+        let spinnerStyle = {};
+        if (props && props.sx && props.sx._text) {
+          spinnerStyle = props.sx._text;
+        }
+        value = {
+          'width': '100%',
+          'borderRadius': '0',
+          'gap': 0,
+          'justifyContent': 'flex-start',
+          'p': '$4',
+          '_text': {
+            fontSize: '$md',
+            fontWeight: 'normal',
+            color: '$coolGray.800',
+            _dark: { color: '$warmGray.50' },
+          },
+          '_spinner': {
+            props: {
+              color: '$coolGray.800',
+              ...spinnerStyle,
+            },
+          },
+          ':active': {
+            bg: '$coolGray.300',
+            _dark: { bg: '$gray.600' },
+          },
+          ':hover': {
+            bg: '$coolGray.200',
+            _dark: { bg: '$gray.500' },
           },
         };
         break;
