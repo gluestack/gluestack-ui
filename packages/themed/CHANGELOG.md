@@ -1,5 +1,11 @@
 # @gluestack-ui/themed
 
+## 1.0.10
+
+### Patch Changes
+
+- - Added `useMedia` hook [PR](https://github.com/gluestack/gluestack-ui/pull/1349)
+
 ## 1.0.9
 
 ### Patch Changes
