@@ -146,16 +146,23 @@ export function extendTheme<Theme>(tempTheme: Theme) {
     delete gluestackStyles.config;
   }
 
+  let updatedColor = {};
   if (gluestackStyles.colors) {
     Object.keys(gluestackStyles.colors).map((color: Object | string) => {
-      if (typeof color === 'object') {
-        gluestackStyles.colors = convertNBColorsToGluestackColors(
-          gluestackStyles.colors
-        );
+      if (typeof gluestackStyles.colors[color] === 'object') {
+        updatedColor = {
+          ...updatedColor,
+          ...convertNBColorsToGluestackColors(gluestackStyles.colors),
+        };
+      } else {
+        updatedColor = {
+          ...updatedColor,
+          [color]: gluestackStyles.colors[color],
+        };
       }
     });
   }
-
+  gluestackStyles.colors = updatedColor;
   const mergedTheme = deepMerge(
     deepMerge(clonedConfig.theme, convertTheme(finalTheme)),
     { tokens: gluestackStyles }
