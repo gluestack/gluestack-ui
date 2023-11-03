@@ -9,20 +9,25 @@ const AccessibleVStack = createVStack({
   Root,
 });
 
-const VStackTemp = forwardRef(({ children, ...props }: any, ref?: any) => {
-  const GUIChildren = Children.map(children, (child) => {
-    if (typeof child === 'string') return <Text>{child}</Text>;
-    return child;
-  });
-  const resolvedPropForGluestack = usePropResolution(props);
-  return (
-    <AccessibleVStack
-      {...resolvedPropForGluestack}
-      children={GUIChildren}
-      ref={ref}
-    />
-  );
-});
+const VStackTemp = forwardRef(
+  ({ children, divider, ...props }: any, ref?: any) => {
+    const resolvedPropForGluestack = usePropResolution(props);
+    return (
+      <AccessibleVStack {...resolvedPropForGluestack} ref={ref}>
+        {Children.map(children, (child, index) => {
+          if (index !== 0)
+            return (
+              <>
+                {divider && divider}
+                {typeof child === 'string' ? <Text>{child}</Text> : child}
+              </>
+            );
+          return <>{child}</>;
+        })}
+      </AccessibleVStack>
+    );
+  }
+);
 
 export type IVStackComponentType<VStack> = GenericComponentType<VStack>;
 
