@@ -8,6 +8,11 @@ import {
 export function usePropResolution(props: any) {
   const styledContext = useStyled();
   if (props) {
+    let sizeProp = {};
+    if (props.size) {
+      sizeProp = { height: props.size, width: props.size };
+    }
+    props = { ...props, ...sizeProp };
     const propsWithDollarSigns = addDollarSignsToProps(
       props,
       styledContext.config

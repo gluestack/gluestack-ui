@@ -20,10 +20,6 @@ const IconTemp = forwardRef(
   ) => {
     const resolvedProps = usePropResolution(props);
     let IconForward;
-    let sizeProp = {};
-    if (typeof props.size === 'number') {
-      sizeProp = { height: props.size, width: props.size };
-    }
     if (as) {
       IconForward = as;
     } else if (typeof viewBox === 'string') {
@@ -35,14 +31,7 @@ const IconTemp = forwardRef(
     } else if (children) {
       IconForward = children;
     }
-    return (
-      <AccessibleIcon
-        as={IconForward}
-        {...resolvedProps}
-        {...sizeProp}
-        ref={ref}
-      />
-    );
+    return <AccessibleIcon as={IconForward} {...resolvedProps} ref={ref} />;
   }
 );
 
