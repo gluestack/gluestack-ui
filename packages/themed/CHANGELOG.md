@@ -1,5 +1,11 @@
 # @gluestack-ui/themed
 
+## 1.0.11
+
+### Patch Changes
+
+- fix input disabled and editable.
+
 ## 1.0.10
 
 ### Patch Changes
