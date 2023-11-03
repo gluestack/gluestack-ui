@@ -1,5 +1,11 @@
 # @gluestack-style/react
 
+## 1.0.11
+
+### Patch Changes
+
+- - added `useMedia` hook [PR](https://github.com/gluestack/gluestack-style/pull/509)
+
 ## 1.0.10
 
 ### Patch Changes
