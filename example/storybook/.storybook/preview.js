@@ -115,9 +115,9 @@ export const parameters = {
         'Advanced',
         ['Fonts', 'Animations'],
         'Recipes',
-        ['Card', 'LinearGradient'],
+        ['Card', 'LinearGradient', 'More'],
         'Resources',
-        ['Todo-List', 'Dashboard App', 'More Recipes'],
+        ['Todo-List', 'Dashboard App'],
         'Migration',
         ['NativeBase to gluestack-ui'],
         'More',
@@ -151,8 +151,8 @@ export const decorators = [
     return (
       <GluestackUIProvider
         config={config}
-        // colorMode={getColorMode()}
-        // components={components}
+      // colorMode={getColorMode()}
+      // components={components}
       >
         <Center>
           <Story />
