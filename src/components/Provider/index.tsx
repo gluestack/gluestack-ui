@@ -23,7 +23,7 @@ const GluestackUIProvider = ({ children, ...props }: any) => {
 };
 
 const NativeBaseProvider = ({ children, config, theme, ...props }: any) => {
-  const _enableRem = config.enableRem ?? true;
+  const _enableRem = (config && config.enableRem) ?? true;
   const [colorMode, setColorMode] = useState(useColorMode());
 
   const gluestackCompatibleTheme = convertTheme(theme);
