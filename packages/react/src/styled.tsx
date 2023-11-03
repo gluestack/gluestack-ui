@@ -1376,10 +1376,13 @@ export function verboseStyled<P, Variants, ComCon>(
     //   useState(mergedSXVariantStyleCSSIds);
     const applySxStateVariantStyleCSSIds = useRef(mergedSXVariantStyleCSSIds);
 
-    const [
-      applyDescendantStateStyleCSSIdsAndPropsWithKey,
-      setApplyDescendantStateStyleCSSIdsAndPropsWithKey,
-    ] = useState(mergedDescendantsStyle);
+    // const [
+    //   applyDescendantStateStyleCSSIdsAndPropsWithKey,
+    //   setApplyDescendantStateStyleCSSIdsAndPropsWithKey,
+    // ] = useState(mergedDescendantsStyle);
+    const applyDescendantStateStyleCSSIdsAndPropsWithKey = useRef(
+      mergedDescendantsStyle
+    );
     // const [
     //   applySxDescendantStateStyleCSSIdsAndPropsWithKey,
     //   setApplySxDescendantStateStyleCSSIdsAndPropsWithKey,
@@ -1747,9 +1750,8 @@ export function verboseStyled<P, Variants, ComCon>(
         // setApplyStateSxVariantStyleCSSIds(mergedSXVariantStyleCSSIds);
         // setSxStatePassingProps(mergedSxStateProps);
         // setComponentStatePassingProps(stateProps);
-        setApplyDescendantStateStyleCSSIdsAndPropsWithKey(
-          mergedDescendantsStyle
-        );
+        applyDescendantStateStyleCSSIdsAndPropsWithKey.current =
+          mergedDescendantsStyle;
         applySxDescendantStateStyleCSSIdsAndPropsWithKey.current =
           mergedSxDescendantsStyle;
         // setApplySxDescendantStateStyleCSSIdsAndPropsWithKey(
@@ -1820,9 +1822,11 @@ export function verboseStyled<P, Variants, ComCon>(
         applySxStatePassingProps.current = mergedSxStateProps;
 
         // setSxStatePassingProps(mergedSxStateProps);
-        setApplyDescendantStateStyleCSSIdsAndPropsWithKey(
-          mergedDescendantsStyle
-        );
+        // setApplyDescendantStateStyleCSSIdsAndPropsWithKey(
+        //   mergedDescendantsStyle
+        // );
+        applyDescendantStateStyleCSSIdsAndPropsWithKey.current =
+          mergedDescendantsStyle;
         applySxDescendantStateStyleCSSIdsAndPropsWithKey.current =
           mergedSxDescendantsStyle;
         // setApplySxDescendantStateStyleCSSIdsAndPropsWithKey(
@@ -1832,6 +1836,7 @@ export function verboseStyled<P, Variants, ComCon>(
       if (!isClient.current) {
         isClient.current = true;
       }
+
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [states]);
 
@@ -1846,9 +1851,9 @@ export function verboseStyled<P, Variants, ComCon>(
       const ids = (() => {
         if (
           applyDescendantsStyleCSSIdsAndPropsWithKey ||
-          applyDescendantStateStyleCSSIdsAndPropsWithKey ||
+          applyDescendantStateStyleCSSIdsAndPropsWithKey.current ||
           applySxDescendantStateStyleCSSIdsAndPropsWithKey.current ||
-          applySxDescendantStyleCSSIdsAndPropsWithKey ||
+          applySxDescendantStyleCSSIdsAndPropsWithKey.current ||
           ancestorStyleContext
         ) {
           const sxDescendantCSSIds = mergeArraysInObjects(
@@ -1859,7 +1864,7 @@ export function verboseStyled<P, Variants, ComCon>(
           const componentDescendantCSSIds = mergeArraysInObjects(
             ancestorStyleContext.component,
             applyDescendantsStyleCSSIdsAndPropsWithKey,
-            applyDescendantStateStyleCSSIdsAndPropsWithKey
+            applyDescendantStateStyleCSSIdsAndPropsWithKey.current
           );
 
           return {
@@ -1876,7 +1881,7 @@ export function verboseStyled<P, Variants, ComCon>(
       return ids;
     }, [
       stableHash(applyDescendantsStyleCSSIdsAndPropsWithKey),
-      stableHash(applyDescendantStateStyleCSSIdsAndPropsWithKey),
+      stableHash(applyDescendantStateStyleCSSIdsAndPropsWithKey.current),
       stableHash(applySxDescendantStateStyleCSSIdsAndPropsWithKey.current),
       ancestorStyleContext,
     ]);
@@ -1932,8 +1937,9 @@ export function verboseStyled<P, Variants, ComCon>(
       componentConfig
     );
 
-    const AsComp: any =
-      resolvedStyleProps.as || (passingProps.as as any) || undefined;
+    const AsComp: any = React.useRef(
+      resolvedStyleProps.as || (passingProps.as as any) || undefined
+    ).current;
 
     let resolvedStyleMemo = [passingProps?.style, ...resolvedStyleProps?.style];
     if (Platform.OS === 'web') {
@@ -2023,7 +2029,6 @@ export function verboseStyled<P, Variants, ComCon>(
         </ComponentWithPlugin>
       );
     }
-
     if (containsDescendant) {
       return (
         <AncestorStyleContext.Provider value={descendantCSSIds}>
