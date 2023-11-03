@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import React, { forwardRef, useMemo } from 'react';
 import { useFormControl } from '@gluestack-ui/form-control';
 import { useInput } from './InputContext';
 import { mergeRefs } from '@gluestack-ui/utils';
@@ -45,6 +45,15 @@ export const Input = (StyledInput: any) =>
 
       const mergedRef = mergeRefs([ref, inputFieldRef]);
 
+      const editableProp = useMemo(() => {
+        if (editable !== undefined) {
+          return editable;
+        } else {
+          return isDisabled || inputProps.isDisabled || isReadOnly
+            ? false
+            : true;
+        }
+      }, [isDisabled, inputProps.isDisabled, isReadOnly, editable]);
       return (
         <StyledInput
           {...props}
@@ -68,7 +77,7 @@ export const Input = (StyledInput: any) =>
           aria-selected={isFocused}
           // ios accessibility
           accessibilityElementsHidden={isDisabled || inputProps.isDisabled}
-          editable={(isDisabled || isReadOnly ? false : true) || editable}
+          editable={editableProp}
           onKeyPress={(e: any) => {
             e.persist();
             onKeyPress && onKeyPress(e);
