@@ -1,5 +1,11 @@
 # @gluestack-ui/input
 
+## 0.1.23
+
+### Patch Changes
+
+- editable and disabled for native `Input`.
+
 ## 0.1.22
 
 ### Patch Changes
