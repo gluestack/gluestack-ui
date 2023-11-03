@@ -25,6 +25,6 @@ export type ITextareaComponentType<Textarea> = GenericComponentType<
   }
 >;
 
-export const Textarea = TextareaTemp as ITextareaComponentType<
+export const TextArea = TextareaTemp as ITextareaComponentType<
   typeof AccessibleTextarea
 >;
