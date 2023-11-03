@@ -1,6 +1,6 @@
 import { createMenu } from '@gluestack-ui/menu';
 import { Root, Item, Label, Backdrop } from './styled-components';
-import React, { forwardRef } from 'react';
+import React, { Children, forwardRef } from 'react';
 import { usePropResolution } from '../../hooks/usePropResolution';
 import { AnimatePresence } from '@gluestack-style/animation-resolver';
 import { GenericComponentType } from '../../types';
@@ -31,6 +31,9 @@ const NewMenu = forwardRef(
     ref?: any
   ) => {
     const resolvedPropForGluestack = usePropResolution(props);
+    const MenuItemChildren = Children.map(children, (child, index) => {
+      return <AccessibleMenu.Item key={index}>{child}</AccessibleMenu.Item>;
+    });
 
     return (
       <AccessibleMenu
@@ -40,7 +43,7 @@ const NewMenu = forwardRef(
         {...resolvedPropForGluestack}
         ref={ref}
       >
-        {children}
+        {MenuItemChildren}
       </AccessibleMenu>
     );
   }
@@ -57,20 +60,15 @@ const AccessibleMenuItemLabel = forwardRef(
 );
 
 const MenuNew = NewMenu as any;
-// MenuNew.Body = AccessibleMenuBody;
-MenuNew.Item = AccessibleMenu.Item;
-MenuNew.ItemLabel = AccessibleMenuItemLabel;
+MenuNew.Item = AccessibleMenuItemLabel;
 
-export type IMenuComponentType<Menu, Item, ItemLabel> =
-  GenericComponentType<Menu> & {
-    Item: GenericComponentType<Item>;
-    ItemLabel: GenericComponentType<ItemLabel>;
-  };
+export type IMenuComponentType<Menu, Item> = GenericComponentType<Menu> & {
+  Item: GenericComponentType<Item>;
+};
 
 export const Menu = MenuNew as IMenuComponentType<
   typeof AccessibleMenu,
-  typeof AccessibleMenu.Item,
-  typeof AccessibleMenu.ItemLabel
+  typeof AccessibleMenu.Item
 >;
 
 // export const MenuItem = Menu.Item;
