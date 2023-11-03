@@ -1,5 +1,11 @@
 # @gluestack-ui/input
 
+## 0.1.22
+
+### Patch Changes
+
+- editable and disabled incoming prop
+
 ## 0.1.12
 
 ### Patch Changes
