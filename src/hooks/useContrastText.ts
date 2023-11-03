@@ -1,3 +1,4 @@
+// @ts-ignore
 import Color from 'tinycolor2';
 import { useToken } from './useToken';
 import { useAccessibleColors } from './useAccessibleColor';

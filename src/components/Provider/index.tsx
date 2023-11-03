@@ -5,7 +5,6 @@ import { OverlayProvider } from '@gluestack-ui/overlay';
 import { ToastProvider } from '@gluestack-ui/toast';
 import { config as defaultConfig } from '../gluestack-ui.config';
 import { convertTheme } from '../../utils/extendTheme';
-
 import { deepMerge, platformSpecificSpaceUnits } from '../../utils';
 
 const GluestackUIStyledProvider = createProvider({ StyledProvider });
@@ -28,7 +27,7 @@ const NativeBaseProvider = ({
   theme = {},
   ...props
 }: any) => {
-  const _enableRem = (config && config.enableRem) ?? true;
+  const _enableRem = config?.enableRem ?? true;
   const [colorMode, setColorMode] = useState(useColorMode());
 
   const gluestackCompatibleTheme = convertTheme(theme);
@@ -40,17 +39,22 @@ const NativeBaseProvider = ({
     }
     return mergedTheme;
   }, [_enableRem, mergedTheme]);
-
   return (
     <HooksContext.Provider
       value={{
         colorMode,
         setColorMode,
-        config: config.dependencies ? config.dependencies : {},
-        newTheme,
+        config: config?.dependencies ? config.dependencies : {},
+        // newTheme,
       }}
     >
-      <GluestackUIProvider colorMode={colorMode} config={newTheme} {...props}>
+      <GluestackUIProvider
+        colorMode={colorMode}
+        config={
+          theme ? deepMerge(newTheme, theme) : deepMerge(newTheme, mergedTheme)
+        }
+        {...props}
+      >
         {children}
       </GluestackUIProvider>
     </HooksContext.Provider>
