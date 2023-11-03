@@ -1,9 +1,9 @@
+import { styled } from '@gluestack-style/react';
 import {
   AnimationResolver,
   AnimatedPressable,
 } from '@gluestack-style/animation-resolver';
 import { MotionAnimationDriver } from '@gluestack-style/legend-motion-animation-driver';
-import { styled } from '@gluestack-style/react';
 
 export default styled(
   AnimatedPressable,
