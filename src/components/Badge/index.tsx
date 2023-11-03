@@ -1,6 +1,5 @@
 import {
   Root as AccessibleBadge,
-  Icon as AccessibleBadgeIcon,
   Text as AccessibleBadgeText,
 } from './styled-components';
 import { usePropResolution } from '../../hooks/usePropResolution';
@@ -37,19 +36,11 @@ const BadgeTemp = forwardRef(
         {...resolvedPropForGluestack}
         ref={ref}
       >
-        {leftIcon ? (
-          <AccessibleBadgeIcon as={leftIcon} />
-        ) : (
-          startIcon && <AccessibleBadgeIcon as={startIcon} />
-        )}
+        {leftIcon ? leftIcon : startIcon && startIcon}
         {typeof children === 'string' && (
           <AccessibleBadgeText>{children}</AccessibleBadgeText>
         )}
-        {rightIcon ? (
-          <AccessibleBadgeIcon as={rightIcon} />
-        ) : (
-          endIcon && <AccessibleBadgeIcon as={endIcon} />
-        )}
+        {rightIcon ? rightIcon : endIcon && endIcon}
       </AccessibleBadge>
     );
   }

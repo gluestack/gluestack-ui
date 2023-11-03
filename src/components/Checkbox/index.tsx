@@ -23,11 +23,7 @@ const CheckboxTemp = forwardRef(
         ref={ref}
       >
         <AccessibleCheckbox.Indicator>
-          {icon ? (
-            <AccessibleCheckbox.Icon as={icon} />
-          ) : (
-            <AccessibleCheckbox.Icon as={CheckIcon} />
-          )}
+          {icon ? icon : <AccessibleCheckbox.Icon as={CheckIcon} />}
         </AccessibleCheckbox.Indicator>
         {children ? (
           <AccessibleCheckbox.Label>{children}</AccessibleCheckbox.Label>

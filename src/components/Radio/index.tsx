@@ -22,7 +22,7 @@ const AccessibleRadioGroup = forwardRef(
 ) as any;
 
 const RadioTemp = forwardRef(
-  ({ colorScheme = 'primary', children, ...props }: any, ref?: any) => {
+  ({ colorScheme = 'primary', icon, children, ...props }: any, ref?: any) => {
     const resolvedProps = usePropResolution(props);
 
     return (
@@ -30,7 +30,7 @@ const RadioTemp = forwardRef(
         {typeof children === 'string' && (
           <>
             <AccessibleRadio.Indicator>
-              <AccessibleRadio.Icon as={CircleIcon} />
+              {icon ? icon : <AccessibleRadio.Icon as={CircleIcon} />}
             </AccessibleRadio.Indicator>
             <AccessibleRadio.Label>Label 1</AccessibleRadio.Label>
           </>
