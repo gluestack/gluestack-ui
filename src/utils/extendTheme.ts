@@ -122,8 +122,8 @@ export function extendTheme<Theme>(tempTheme: Theme) {
   if (Object.keys(theme).length === 0) {
     return;
   }
-  let finalTheme: any = {};
-  let gluestackStyles: any = theme;
+  const finalTheme: any = {};
+  const gluestackStyles: any = theme;
   const clonedConfig: typeof config = JSON.parse(
     JSON.stringify(config)
   ) as typeof config;
@@ -149,6 +149,7 @@ export function extendTheme<Theme>(tempTheme: Theme) {
   let updatedColor = {};
   if (gluestackStyles.colors) {
     Object.keys(gluestackStyles.colors).map((color: Object | string) => {
+      // @ts-ignore
       if (typeof gluestackStyles.colors[color] === 'object') {
         updatedColor = {
           ...updatedColor,
@@ -157,6 +158,7 @@ export function extendTheme<Theme>(tempTheme: Theme) {
       } else {
         updatedColor = {
           ...updatedColor,
+          // @ts-ignore
           [color]: gluestackStyles.colors[color],
         };
       }
