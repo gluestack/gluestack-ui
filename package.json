@@ -71,7 +71,6 @@
     "@types/lodash.get": "^4.4.8",
     "@types/tinycolor2": "^1.4.5",
     "expo-clipboard": "^4.5.0",
-    "expo-linear-gradient": "latest",
     "file-loader": "^6.2.0",
     "lodash.clonedeep": "^4.5.0",
     "lodash.get": "^4.4.2",
