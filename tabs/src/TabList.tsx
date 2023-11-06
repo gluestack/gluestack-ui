@@ -7,7 +7,14 @@ export const TabList = <StyledTabList,>(
   memo(
     forwardRef(
       (
-        { children, ...props }: StyledTabList & { children?: any },
+        {
+          children,
+          orientation = 'horizontal',
+          ...props
+        }: StyledTabList & {
+          children?: any;
+          orientation: 'horizontal' | 'vertical';
+        },
         ref?: any
       ) => {
         let tabIndex = 0;
@@ -25,7 +32,12 @@ export const TabList = <StyledTabList,>(
         );
 
         return (
-          <StyledTabList role="tablist" {...(props as StyledTabList)} ref={ref}>
+          <StyledTabList
+            role="tablist"
+            flexDirection={orientation === 'vertical' ? 'column' : 'row'}
+            {...(props as StyledTabList)}
+            ref={ref}
+          >
             {modifiedTabList}
           </StyledTabList>
         );

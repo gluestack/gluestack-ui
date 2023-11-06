@@ -1,6 +1,9 @@
 export interface ITabProps {
   value?: string;
 }
+export interface ITabListProps {
+  orientation?: 'vertical' | 'horizontal';
+}
 export interface ITabsProps {
   value?: string;
 }
@@ -18,7 +21,7 @@ export type ITabsComponentType<
 > = React.ForwardRefExoticComponent<TabsProps & ITabsProps> & {
   Tab: React.ForwardRefExoticComponent<TabProps & ITabProps>;
   TabPanels: React.ForwardRefExoticComponent<TabPanelsProps>;
-  TabList: React.ForwardRefExoticComponent<TabListProps>;
+  TabList: React.ForwardRefExoticComponent<TabListProps & ITabListProps>;
   TabPanel: React.ForwardRefExoticComponent<TabPanelProps & ITabPanelProps>;
   TabTitle: React.ForwardRefExoticComponent<TabTitleProps>;
   TabIcon: React.ForwardRefExoticComponent<TabIconProps>;
