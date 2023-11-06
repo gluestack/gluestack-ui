@@ -110,6 +110,16 @@ export default styled(
             width: '$3',
           },
         },
+        xl: {
+          px: '$4',
+          py: '$4',
+          _text: {
+            fontSize: '$lg',
+          },
+          _icon: {
+            size: '$md',
+          },
+        },
       },
     },
 
