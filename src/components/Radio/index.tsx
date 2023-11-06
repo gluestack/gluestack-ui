@@ -29,8 +29,15 @@ const RadioTemp = forwardRef(
       <AccessibleRadio colorScheme={colorScheme} {...resolvedProps} ref={ref}>
         {typeof children === 'string' && (
           <>
-            <AccessibleRadio.Indicator>
-              {icon ? icon : <AccessibleRadio.Icon as={CircleIcon} />}
+            <AccessibleRadio.Indicator
+              alignItems="center"
+              justifyContent="center"
+            >
+              {icon ? (
+                <AccessibleRadio.Icon as={icon} />
+              ) : (
+                <AccessibleRadio.Icon as={CircleIcon} />
+              )}
             </AccessibleRadio.Indicator>
             <AccessibleRadio.Label>Label 1</AccessibleRadio.Label>
           </>
