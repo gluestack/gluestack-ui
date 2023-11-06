@@ -112,25 +112,37 @@ export const CSSPropertiesMap = {
   userSelect: 'auto',
 };
 
-export const reservedKeys = {
-  _indeterminate: ':indeterminate',
-  _checked: ':checked',
-  _readOnly: ':readOnly',
+type reservedKeyTypes =
+  | 'isState'
+  | 'isColorMode'
+  | 'isPlatform'
+  | 'isMediaQuery';
 
-  _required: ':required',
-  _invalid: ':invalid',
+export type reservedKeyType = {
+  key: string;
+} & {
+  [key in reservedKeyTypes]?: boolean;
+};
 
-  _focus: ':focus',
-  _focusVisible: ':focusVisible',
-  _hover: ':hover',
-  _pressed: ':pressed',
-  _active: ':active',
-  _loading: ':loading',
+export const reservedKeys: Record<string, reservedKeyType> = {
+  indeterminate: { key: ':indeterminate', isState: true },
+  checked: { key: ':checked', isState: true },
+  readOnly: { key: ':readOnly', isState: true },
 
-  _disabled: ':disabled',
-  _light: '_light',
-  _dark: '_dark',
-  _web: '_web',
-  _ios: '_ios',
-  _android: '_android',
+  required: { key: ':required', isState: true },
+  invalid: { key: ':invalid', isState: true },
+
+  focus: { key: ':focus', isState: true },
+  focusVisible: { key: ':focusVisible', isState: true },
+  hover: { key: ':hover', isState: true },
+  pressed: { key: ':pressed', isState: true },
+  active: { key: ':active', isState: true },
+  loading: { key: ':loading', isState: true },
+
+  disabled: { key: ':disabled', isState: true },
+  light: { key: '_light', isColorMode: true },
+  dark: { key: '_dark', isColorMode: true },
+  web: { key: '_web', isPlatform: true },
+  ios: { key: '_ios', isPlatform: true },
+  android: { key: '_android', isPlatform: true },
 };

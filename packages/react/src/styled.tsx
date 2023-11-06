@@ -88,7 +88,7 @@ function flattenObject(obj: any = {}) {
 function convertUtiltiyToSXFromProps(
   componentProps: any,
   styledSystemProps: any,
-  componentStyleConfig: any,
+  componentStyleConfig: IComponentStyleConfig,
   reservedKeys: any = _reservedKeys
 ) {
   // if (componentProps.debug === 'BOX_TEST') {
@@ -106,7 +106,8 @@ function convertUtiltiyToSXFromProps(
       styledSystemProps,
       componentStyleConfig?.descendantStyle,
       componentRestProps,
-      reservedKeys
+      reservedKeys,
+      componentStyleConfig.descendantStyle
     );
 
   const resolvedSxVerbose = deepMerge(utilityResolvedSX, resolvedSXVerbosed);
@@ -1057,7 +1058,10 @@ export function verboseStyled<P, Variants, ComCon>(
       const prefixedMediaQueries: any = {};
 
       Object.keys(CONFIG?.tokens?.mediaQueries).forEach((key: any) => {
-        prefixedMediaQueries[`_${key}`] = `@${key}`;
+        prefixedMediaQueries[key] = {
+          key: `@${key}`,
+          isMediaQuery: true,
+        };
       });
 
       Object.assign(reservedKeys, { ...prefixedMediaQueries });
@@ -1662,7 +1666,8 @@ export function verboseStyled<P, Variants, ComCon>(
         } = convertUtiltiyToSXFromProps(
           passingPropsUpdated,
           styledSystemProps,
-          componentStyleConfig
+          componentStyleConfig,
+          reservedKeys
         );
 
         filteredPassingSx = filteredPassingSxUpdated;

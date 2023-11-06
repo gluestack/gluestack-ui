@@ -786,51 +786,108 @@ export type ComponentProps<GenericComponentStyles, Variants, P, ComCon> =
               >[Key];
         });
 
-export type UtilityProps<GenericComponentStyles, GenericComponentProps> = Omit<
+export type VerbosedUtilityProps<
+  GenericComponentStyles,
+  VariantProps,
+  GenericComponentProps
+> = {
+  [key in `$${IState}`]: SxProps<
+    GenericComponentStyles,
+    VariantProps,
+    GenericComponentProps
+  >;
+} & {
+  [key in `$${PLATFORMS}`]?: SxProps<
+    GenericComponentStyles,
+    VariantProps,
+    GenericComponentProps
+  >;
+} & {
+  [key in `$${IMediaQueries}`]?: SxProps<
+    GenericComponentStyles,
+    VariantProps,
+    GenericComponentProps
+  >;
+} & {
+  [key in `$_${string}`]?: SxProps<
+    RNStyledProps,
+    VariantProps,
+    GenericComponentProps
+  >;
+};
+
+type Permutations<T extends string, U extends string | ''> = T extends any
+  ? U extends ''
+    ? T
+    : `$${T}-${Permutations<Exclude<U, T>, ''>}`
+  : never;
+
+type StatePropsCombination = Permutations<IState, keyof Aliases>;
+type PlatformPropsCombination = Permutations<PLATFORMS, keyof Aliases>;
+type MediaQueryCombination = Permutations<IMediaQueries, keyof Aliases>;
+type ColorModeCombination = Permutations<COLORMODES, keyof Aliases>;
+
+type LastPart<T extends string> = T extends `${string}-${infer Rest}`
+  ? LastPart<Rest>
+  : T;
+
+export type PropsCombinations =
+  | StatePropsCombination
+  | PlatformPropsCombination
+  | MediaQueryCombination
+  | ColorModeCombination;
+
+export type UtilityProps<
+  GenericComponentStyles,
+  GenericComponentProps,
+  Tokens = GSConfig['tokens']
+> = Omit<
   TokenizedRNStyleProps<GetRNStyles<GenericComponentStyles>>,
   keyof GenericComponentProps
 > &
   Omit<
     AliasesProps<GetRNStyles<GenericComponentStyles>>,
     keyof GenericComponentProps
-  >;
-//  &
-// VerbosedUtilityProps<
-//   GenericComponentStyles,
-//   VariantProps,
-//   GenericComponentProps
-// >;
-
-export type VerbosedUtilityProps<
-  GenericComponentStyles,
-  VariantProps,
-  GenericComponentProps
-> = {
-  [key in `_${IState}`]: SxProps<
-    GenericComponentStyles,
-    VariantProps,
-    GenericComponentProps
-  >;
-} & {
-  [key in `_${PLATFORMS}`]?: SxProps<
-    GenericComponentStyles,
-    VariantProps,
-    GenericComponentProps
-  >;
-} & {
-  [key in `_${IMediaQueries}`]?: SxProps<
-    GenericComponentStyles,
-    VariantProps,
-    GenericComponentProps
-  >;
-};
-// & {
-//   [key in `_${string}`]?: SxProps<
-//     GenericComponentStyles,
-//     VariantProps,
-//     GenericComponentProps
-//   >;
-// };
+  > &
+  Partial<{
+    //@ts-ignore
+    [key in PropsCombinations]?: Aliases[LastPart<key>] extends keyof GetRNStyles<GenericComponentStyles>
+      ? //@ts-ignore
+        PropertyTokenType[Aliases[LastPart<key>]] extends 'sizes'
+        ?
+            | WithSizeNegativeValue<Tokens>
+            //@ts-ignore
+            | ExtendRNStyle<GenericComponentStyles, Aliases[LastPart<key>]>
+        : //@ts-ignore
+        PropertyTokenType[Aliases[LastPart<key>]] extends 'space'
+        ?
+            | WithNegativeValue<
+                StringifyToken<
+                  //@ts-expect-error
+                  keyof Tokens[PropertyTokenType[Aliases[LastPart<key>]]]
+                >
+              >
+            | ExtendRNStyle<
+                GetRNStyles<GenericComponentStyles>,
+                //@ts-ignore
+                Aliases[LastPart<key>]
+              >
+        :
+            | StringifyToken<
+                //@ts-ignore
+                keyof Tokens[PropertyTokenType[Aliases[LastPart<key>]]]
+              >
+            | ExtendRNStyle<
+                GetRNStyles<GenericComponentStyles>,
+                //@ts-ignore
+                Aliases[LastPart<key>]
+              >
+      : never;
+  }>;
+// &
+// Partial<{
+//   [key in `$${IState | PLATFORMS | IMediaQueries}-${string}`]?: any;
+// }>;
 
 /********************* UTILITY TYPE *****************************************/
 

@@ -1,127 +1,102 @@
+import { setObjectKeyValue } from './../core/utils';
 import { convertSxToSxVerbosed } from '../convertSxToSxVerbosed';
 import { reservedKeys as _reservedKeys } from './styled-system';
-import { deepMerge, getObjectParentProperty } from './utils';
-import { setObjectKeyValue } from './utils';
+import type { reservedKeyType } from './styled-system';
 
-// const resolveResponsiveProps = (
-//   sxPropsConvertedObj: any,
-//   responsiveProp: any,
-//   path: any,
-//   prop: any,
-//   componentProps: any
-// ) => {
-//   const sxResolvedResponsiveProp = setObjectKeyValue(
-//     {},
-//     path,
-//     componentProps[prop]
-//   );
+const getSxPropsPathFromProp = (
+  propString: string,
+  reservedKeys: Record<string, reservedKeyType>,
+  descendants: any = []
+) => {
+  const propsPath = propString.split('-');
+  let responsiveProp = '';
+  let isInvalidPropString = false;
 
-//   if (sxPropsConvertedObj.queries) {
-//     const existingBeakpointIndex = sxPropsConvertedObj?.queries?.findIndex(
-//       (data: any) => data.condition === `$${responsiveProp}`
-//     );
+  const propToBeApplied = propsPath.pop();
 
-//     if (existingBeakpointIndex !== -1) {
-//       setObjectKeyValue(
-//         sxPropsConvertedObj.queries[existingBeakpointIndex].value,
-//         path,
-//         componentProps[prop]
-//       );
-//     } else {
-//       sxPropsConvertedObj?.queries?.push({
-//         condition: `$${responsiveProp}`,
-//         value: sxResolvedResponsiveProp,
-//       });
-//     }
-//   } else {
-//     sxPropsConvertedObj.queries = [];
-//     sxPropsConvertedObj?.queries?.push({
-//       condition: `$${responsiveProp}`,
-//       value: sxResolvedResponsiveProp,
-//     });
-//   }
-// };
+  const gsConvertedPropsPath: Array<any> = [];
 
-// const createSxPropertyPath = (
-//   styledSystemProps: any,
-//   propsString: any,
-//   mediaQueries: any,
-//   descendants: any
-// ) => {
-//   let responsiveProp = '';
-//   const sxPropPath = propsString.split('-');
-//   const genratedPath: any = [];
-//   let isInvalidProperty = false;
-//   const sxProperties: any = {};
+  propsPath.forEach((prop: string) => {
+    if (reservedKeys[prop]) {
+      const isMediaQuery = reservedKeys[prop]?.isMediaQuery;
+      if (isMediaQuery) {
+        if (!responsiveProp) {
+          responsiveProp = reservedKeys[prop].key;
+        } else {
+          isInvalidPropString = true;
+          console.warn(`${propString} is invalid property.`);
+          return;
+        }
+      } else {
+        gsConvertedPropsPath.push(reservedKeys[prop].key);
+      }
+    } else if (descendants.includes(prop)) {
+      gsConvertedPropsPath.push(prop);
+    } else {
+      console.warn(`${propString} is invalid property.`);
+      isInvalidPropString = true;
+    }
+  });
 
-//   if (sxPropPath) {
-//     sxPropPath.forEach((prop: any) => {
-//       if (isInvalidProperty) return;
+  if (!isInvalidPropString) {
+    if (responsiveProp) {
+      gsConvertedPropsPath.unshift(responsiveProp);
+    }
+    gsConvertedPropsPath.push(propToBeApplied);
+  }
 
-//       if (prop.startsWith('_') && descendants?.includes(prop)) {
-//         genratedPath.push('descendants', prop);
-//       } else if (styledSystemProps[prop]) {
-//         genratedPath.push('style', prop);
-//       } else {
-//         if (mediaQueries[prop]) {
-//           if (!responsiveProp) {
-//             responsiveProp = prop;
-//           } else {
-//             isInvalidProperty = true;
-//             return;
-//           }
-//         } else {
-//           const parentProperty = getObjectParentProperty(reservedKeys, prop);
+  return { propsPath: gsConvertedPropsPath, isInvalidPropString };
+};
 
-//           if (parentProperty && sxProperties[parentProperty]) {
-//             isInvalidProperty = true;
-//             return;
-//           }
-
-//           sxProperties[parentProperty] = true;
-//           // Check if the property is a valid styled system prop
-//           if (!parentProperty) {
-//             if (styledSystemProps[prop]) {
-//               genratedPath.push('style', prop);
-//             } else {
-//               isInvalidProperty = true;
-//               return;
-//             }
-//           } else {
-//             genratedPath.push(parentProperty, prop);
-//           }
-//         }
-//       }
-//     });
-
-//     // if (isInvalidProperty) return propsString;
-//   }
-//   return {
-//     path: isInvalidProperty ? propsString : genratedPath,
-//     responsiveProp,
-//   };
-// };
 export const convertUtilityPropsToSX = (
   styledSystemProps: any,
   _descendants: any,
-  propsWithUtility: any,
-  reservedKeys: any = _reservedKeys
+  componentProps: any,
+  reservedKeys: Record<string, reservedKeyType> = _reservedKeys,
+  descendants: any = []
 ) => {
   const sxPropsConvertedUtilityProps: any = {};
   const ignoredProps: any = {};
 
-  if (Object.keys(propsWithUtility).length === 0)
+  if (Object.keys(componentProps).length === 0)
     return { sxProps: {}, mergedProps: {} };
-  const { sx, ...componentProps } = propsWithUtility;
 
   Object.keys(componentProps).forEach((prop) => {
     if (styledSystemProps[prop]) {
       sxPropsConvertedUtilityProps[prop] = componentProps[prop];
     } else {
-      if (reservedKeys[prop]) {
-        sxPropsConvertedUtilityProps[reservedKeys[prop]] = componentProps[prop];
+      const componentPropValue = componentProps[prop];
+      if (prop.startsWith('$')) {
+        const reservedKey = prop.slice(1);
+        if (reservedKeys[reservedKey]) {
+          setObjectKeyValue(
+            sxPropsConvertedUtilityProps,
+            [reservedKeys[reservedKey].key],
+            componentPropValue
+          );
+        } else if (descendants.includes(reservedKey)) {
+          setObjectKeyValue(
+            sxPropsConvertedUtilityProps,
+            [reservedKey],
+            componentPropValue
+          );
+        } else {
+          // resolve ${{states/colormode/media}}-***
+          const { propsPath: sxPropPath, isInvalidPropString } =
+            getSxPropsPathFromProp(reservedKey, reservedKeys, descendants);
+
+          if (!isInvalidPropString) {
+            setObjectKeyValue(
+              sxPropsConvertedUtilityProps,
+              sxPropPath,
+              componentPropValue
+            );
+          } else {
+            ignoredProps[prop] = componentPropValue;
+          }
+        }
       } else {
-        ignoredProps[prop] = componentProps[prop];
+        ignoredProps[prop] = componentPropValue;
       }
     }
   });
@@ -130,9 +105,8 @@ export const convertUtilityPropsToSX = (
     sxPropsConvertedUtilityProps
   );
 
-  // console.setEndTimeStamp('convertUtilityPropsToSX');
   return {
-    sxProps: deepMerge(sxPropsConvertedUtilityPropsToVerboseSx, sx),
+    sxProps: sxPropsConvertedUtilityPropsToVerboseSx,
     mergedProps: ignoredProps,
   };
 };
