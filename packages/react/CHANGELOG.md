@@ -1,5 +1,11 @@
 # @gluestack-style/react
 
+## 1.0.13
+
+### Patch Changes
+
+- Added Utility props support [PR](https://github.com/gluestack/gluestack-style/pull/519)
+
 ## 1.0.12
 
 ### Patch Changes
