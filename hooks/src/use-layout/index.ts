@@ -1,8 +1,8 @@
-import React from 'react';
+import { useState } from 'react';
 import type { LayoutChangeEvent } from 'react-native';
 
 export const useLayout = () => {
-  const [layout, setLayout] = React.useState({
+  const [layout, setLayout] = useState({
     width: 0,
     height: 0,
   });

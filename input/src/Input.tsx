@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import React, { forwardRef, useMemo } from 'react';
 import { useFormControl } from '@gluestack-ui/form-control';
 import { useInput } from './InputContext';
 import { mergeRefs } from '@gluestack-ui/utils';
@@ -12,6 +12,8 @@ export const Input = (StyledInput: any) =>
         type = 'text',
         'aria-label': ariaLabel = 'Input Field',
         secureTextEntry,
+        editable,
+        disabled,
         ...props
       }: any,
       ref?: any
@@ -29,7 +31,7 @@ export const Input = (StyledInput: any) =>
       } = useInput('InputContext');
 
       const inputProps = useFormControl({
-        isDisabled: props.isDisabled,
+        isDisabled: props.isDisabled || disabled,
         isInvalid: props.isInvalid,
         isReadOnly: props.isReadOnly,
         isRequired: props.isRequired,
@@ -41,8 +43,17 @@ export const Input = (StyledInput: any) =>
         callback();
       };
 
-      const mergedref = mergeRefs([ref, inputFieldRef]);
+      const mergedRef = mergeRefs([ref, inputFieldRef]);
 
+      const editableProp = useMemo(() => {
+        if (editable !== undefined) {
+          return editable;
+        } else {
+          return isDisabled || inputProps.isDisabled || isReadOnly
+            ? false
+            : true;
+        }
+      }, [isDisabled, inputProps.isDisabled, isReadOnly, editable]);
       return (
         <StyledInput
           {...props}
@@ -65,8 +76,8 @@ export const Input = (StyledInput: any) =>
           aria-disabled={isDisabled || inputProps.isDisabled}
           aria-selected={isFocused}
           // ios accessibility
-          accessibilityElementsHidden={isDisabled}
-          editable={isDisabled || isReadOnly ? false : true}
+          accessibilityElementsHidden={isDisabled || inputProps.isDisabled}
+          editable={editableProp}
           onKeyPress={(e: any) => {
             e.persist();
             onKeyPress && onKeyPress(e);
@@ -83,7 +94,7 @@ export const Input = (StyledInput: any) =>
               props?.onBlur ? () => props?.onBlur(e) : () => {}
             );
           }}
-          ref={mergedref}
+          ref={mergedRef}
         >
           {children}
         </StyledInput>
