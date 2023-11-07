@@ -1,5 +1,11 @@
 # @gluestack-style/babel-plugin-styled-resolver
 
+## 1.0.1
+
+### Features
+
+- Added utility props resolution [PR](https://github.com/gluestack/gluestack-style/pull/519)
+
 ## 0.1.14
 
 ### Patch Changes
