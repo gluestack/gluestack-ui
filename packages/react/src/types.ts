@@ -840,8 +840,7 @@ export type PropsCombinations =
 export type UtilityProps<
   GenericComponentStyles,
   Variants,
-  GenericComponentProps,
-  Tokens = GSConfig['tokens']
+  GenericComponentProps
 > = Omit<
   TokenizedRNStyleProps<GetRNStyles<GenericComponentStyles>>,
   keyof GenericComponentProps
@@ -851,41 +850,41 @@ export type UtilityProps<
     keyof GenericComponentProps
   > &
   Partial<{
-    //@ts-ignore
-    [key in PropsCombinations]?: Aliases[LastPart<key>] extends keyof GetRNStyles<GenericComponentStyles>
-      ? //@ts-ignore
-        PropertyTokenType[Aliases[LastPart<key>]] extends 'sizes'
-        ?
-            | WithSizeNegativeValue<Tokens>
-            //@ts-ignore
-            | ExtendRNStyle<GenericComponentStyles, Aliases[LastPart<key>]>
-        : //@ts-ignore
-        PropertyTokenType[Aliases[LastPart<key>]] extends 'space'
-        ?
-            | WithNegativeValue<
-                StringifyToken<
-                  //@ts-expect-error
-                  keyof Tokens[PropertyTokenType[Aliases[LastPart<key>]]]
+    [key in PropsCombinations]?: LastPart<key> extends keyof Aliases
+      ? Aliases[LastPart<key>] extends keyof GetRNStyles<GenericComponentStyles>
+        ? PropertyTokenType[Aliases[LastPart<key>]] extends 'sizes'
+          ?
+              | WithSizeNegativeValue<GSConfig['tokens']>
+              | ExtendRNStyle<GenericComponentStyles, Aliases[LastPart<key>]>
+          : PropertyTokenType[Aliases[LastPart<key>]] extends 'space'
+          ?
+              | WithNegativeValue<
+                  StringifyToken<
+                    keyof GSConfig['tokens'][PropertyTokenType[Aliases[LastPart<key>]]]
+                  >
                 >
-              >
-            | ExtendRNStyle<
-                GetRNStyles<GenericComponentStyles>,
-                //@ts-ignore
-                Aliases[LastPart<key>]
-              >
-        :
-            | StringifyToken<
-                //@ts-ignore
-                keyof Tokens[PropertyTokenType[Aliases[LastPart<key>]]]
-              >
-            | ExtendRNStyle<
-                GetRNStyles<GenericComponentStyles>,
-                //@ts-ignore
-                Aliases[LastPart<key>]
-              >
-      : never;
+              | ExtendRNStyle<
+                  GetRNStyles<GenericComponentStyles>,
+                  Aliases[LastPart<key>]
+                >
+          :
+              | StringifyToken<
+                  keyof GSConfig['tokens'][PropertyTokenType[Aliases[LastPart<key>]]]
+                >
+              | ExtendRNStyle<
+                  GetRNStyles<GenericComponentStyles>,
+                  Aliases[LastPart<key>]
+                >
+        : never
+      : any;
   }> &
-  VerbosedUtilityProps<GenericComponentStyles, Variants, GenericComponentProps>;
+  Partial<
+    VerbosedUtilityProps<
+      GenericComponentStyles,
+      Variants,
+      GenericComponentProps
+    >
+  >;
 // &
 // Partial<{
 //   [key in `$${IState | PLATFORMS | IMediaQueries}-${string}`]?: any;
