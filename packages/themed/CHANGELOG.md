@@ -1,5 +1,11 @@
 # @gluestack-ui/themed
 
+## 1.0.12
+
+### Patch Changes
+
+- Added utility props support [PR](https://github.com/gluestack/gluestack-ui/pull/1364)
+
 ## 1.0.11
 
 ### Patch Changes
