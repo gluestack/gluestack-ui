@@ -15,7 +15,6 @@ export const Accordion = <T,>(StyledAccordion: any) =>
       ref?: any
     ) => {
       const { onValueChange } = props;
-      const [disabledItems, setDisabledItems] = React.useState<string[]>([]);
       const [openItems, setOpenItems] = React.useState<string[]>([]);
 
       useEffect(() => {
@@ -58,22 +57,20 @@ export const Accordion = <T,>(StyledAccordion: any) =>
           isCollapsible: isCollapsible,
           openItems,
           setOpenItems,
-          disabledItems,
-          setDisabledItems,
+
           isDisabledAccordion: isDisabled,
         };
-      }, [
-        type,
-        isCollapsible,
-        openItems,
-        setOpenItems,
-        disabledItems,
-        setDisabledItems,
-        isDisabled,
-      ]);
+      }, [type, isCollapsible, openItems, setOpenItems, isDisabled]);
+
       return (
         <AccordionContext.Provider value={contextValue}>
-          <StyledAccordion ref={ref} {...props}>
+          <StyledAccordion
+            ref={ref}
+            {...props}
+            states={{
+              disabled: isDisabled,
+            }}
+          >
             {children}
           </StyledAccordion>
         </AccordionContext.Provider>

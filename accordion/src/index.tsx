@@ -1,5 +1,7 @@
 import type React from 'react';
 import { Accordion as AccordionMain } from './Accordion';
+import { AccordionTitleText } from './AccordionTitleText';
+import { AccordionContentText } from './AccordionContentText';
 import { AccordionItem } from './AccordionItem';
 import { AccordionTrigger } from './AccordionTrigger';
 import { AccordionContent } from './AccordionContent';
@@ -13,7 +15,9 @@ export function createAccordion<
   HeaderProps,
   TriggerProps,
   ContentProps,
-  IconProps
+  IconProps,
+  TitleTextProps,
+  ContentTextProps
 >({
   Root,
   Item,
@@ -21,6 +25,8 @@ export function createAccordion<
   Trigger,
   Content,
   Icon,
+  TitleText,
+  ContentText,
 }: {
   Root: React.ComponentType<AccordionProps>;
   Item: React.ComponentType<ItemProps>;
@@ -28,6 +34,8 @@ export function createAccordion<
   Trigger: React.ComponentType<TriggerProps>;
   Content: React.ComponentType<ContentProps>;
   Icon: React.ComponentType<IconProps>;
+  TitleText: React.ComponentType<TitleTextProps>;
+  ContentText: React.ComponentType<ContentTextProps>;
 }) {
   const Accordion = AccordionMain(Root) as any;
   Accordion.Item = AccordionItem(Item);
@@ -35,6 +43,8 @@ export function createAccordion<
   Accordion.Trigger = AccordionTrigger(Trigger);
   Accordion.Content = AccordionContent(Content);
   Accordion.Icon = AccordionIcon(Icon);
+  Accordion.TitleText = AccordionTitleText(TitleText);
+  Accordion.ContentText = AccordionContentText(ContentText);
 
   Accordion.displayName = 'Accordion';
   Accordion.Item.displayName = 'Accordion.Item';
@@ -42,6 +52,7 @@ export function createAccordion<
   Accordion.Trigger.displayName = 'Accordion.Trigger';
   Accordion.Content.displayName = 'Accordion.Content';
   Accordion.Icon.displayName = 'Accordion.Icon';
+  Accordion.TitleText.displayName = 'Accordion.TtitleText';
 
   return Accordion as IAccordionComponentType<
     AccordionProps,
@@ -49,6 +60,8 @@ export function createAccordion<
     HeaderProps,
     TriggerProps,
     ContentProps,
-    IconProps
+    IconProps,
+    TitleTextProps,
+    ContentTextProps
   >;
 }

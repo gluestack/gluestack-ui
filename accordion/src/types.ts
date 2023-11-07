@@ -36,28 +36,49 @@ export interface IAccordionProps extends ViewProps {
    */
 
   isDisabled?: boolean;
-
-  /**
-   *The orientation of the accordion.
-   */
-
-  orientation?: 'horizontal' | 'vertical';
 }
 
 export interface IAccordionItemProps {
   /**
    *   When true, prevents the user from interacting with the accordion and all its items.
    */
-
   isDisabled?: boolean;
   value: string;
   children: JSX.Element | Array<JSX.Element>;
-  isOpen?: boolean;
 }
 
 export interface IAccordionTriggerProps extends PressableProps {
+  /**
+   * If true, the button will be in pressed state.
+   */
+  isPressed?: boolean;
+
+  /**
+   * If true, the button will be in disabled state.
+   */
   isDisabled?: boolean;
-  toggleContent?: () => void;
+
+  /**
+   * If true, the button will be in hovered state.
+   */
+  isHovered?: boolean;
+
+  /**
+   * If true, the button will be focused.
+   */
+  isFocused?: boolean;
+
+  /**
+   * If true, the button focus ring will be visible.
+   */
+  isFocusVisible?: boolean;
+  isExpanded?: boolean;
+  children: JSX.Element | Array<JSX.Element> | ((props: any) => JSX.Element);
+
+  /**
+   * Event handler called when the trigger is pressed.
+   */
+  toggleItem?: () => void;
 }
 
 export type IAccordionComponentType<
@@ -66,16 +87,17 @@ export type IAccordionComponentType<
   HeaderProps,
   TriggerProps,
   ContentProps,
-  IconProps
-> = ((props: AccordionProps & IAccordionProps) => JSX.Element) & {
-  Item: React.MemoExoticComponent<
-    (props: ItemProps & IAccordionItemProps) => JSX.Element
+  IconProps,
+  TitleTextProps,
+  ContentTextProps
+> = React.ForwardRefExoticComponent<AccordionProps & IAccordionProps> & {
+  Item: React.ForwardRefExoticComponent<ItemProps & IAccordionItemProps>;
+  Header: React.ForwardRefExoticComponent<HeaderProps>;
+  Trigger: React.ForwardRefExoticComponent<
+    TriggerProps & IAccordionTriggerProps
   >;
-  Header: React.MemoExoticComponent<(props: HeaderProps) => JSX.Element>;
-  Trigger: React.MemoExoticComponent<
-    (props: TriggerProps & IAccordionTriggerProps) => JSX.Element
-  >;
-  Content: React.MemoExoticComponent<(props: ContentProps) => JSX.Element>;
-
-  Icon: React.MemoExoticComponent<(props: IconProps) => JSX.Element>;
+  Content: React.ForwardRefExoticComponent<ContentProps>;
+  TitleText: React.ForwardRefExoticComponent<TitleTextProps>;
+  ContentText: React.ForwardRefExoticComponent<ContentTextProps>;
+  Icon: React.ForwardRefExoticComponent<IconProps>;
 };

@@ -12,7 +12,7 @@ export const AccordionContent = (StyledAccordionContent: any) =>
     }, [openItems, value, setExpanded]);
 
     return expanded ? (
-      <StyledAccordionContent ref={ref} {...props}>
+      <StyledAccordionContent ref={ref} {...props} role="region">
         {children}
       </StyledAccordionContent>
     ) : null;

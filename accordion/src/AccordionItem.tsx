@@ -1,23 +1,18 @@
-import React, { forwardRef, useEffect, useContext } from 'react';
+import React, { forwardRef, useContext, useMemo } from 'react';
 import { AccordionContext, AccordionItemContext } from './Context';
 import { IAccordionItemProps } from './types';
 
 export const AccordionItem = <T,>(StyledAccordionItem: any) =>
   forwardRef(({ children, ...props }: T & IAccordionItemProps, ref?: any) => {
-    const { setDisabledItems } = useContext(AccordionContext);
+    const { isDisabledAccordion } = useContext(AccordionContext);
+    const { isDisabled, value } = props;
 
-    useEffect(() => {
-      setDisabledItems(
-        props.isDisabled
-          ? (prevDisabledItems: string[]) => [...prevDisabledItems, props.value]
-          : (prevDisabledItems: string[]) =>
-              prevDisabledItems.filter((i) => i !== props.value)
-      );
-    }, [props.isDisabled, props.value, setDisabledItems]);
-
-    const context = {
-      value: props.value,
-    };
+    const context = useMemo(() => {
+      return {
+        value: value,
+        isDisabled: isDisabled !== undefined ? isDisabled : isDisabledAccordion,
+      };
+    }, [value, isDisabled, isDisabledAccordion]);
 
     return (
       <AccordionItemContext.Provider value={context}>
