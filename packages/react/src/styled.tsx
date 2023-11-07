@@ -11,7 +11,6 @@ import type {
   IComponentStyleConfig,
   StyledConfig,
   UtilityProps,
-  VerbosedUtilityProps,
 } from './types';
 import {
   deepMerge,
@@ -1008,13 +1007,12 @@ export function verboseStyled<P, Variants, ComCon>(
     }: Omit<
       Omit<P, keyof Variants> &
         Partial<ComponentProps<ITypeReactNativeStyles, Variants, P, ComCon>> &
-        Partial<UtilityProps<ITypeReactNativeStyles, P>> & {
+        Partial<UtilityProps<ITypeReactNativeStyles, Variants, P>> & {
           as?: any;
           children?: any;
         },
       'animationComponentGluestack'
-    > &
-      Partial<VerbosedUtilityProps<ITypeReactNativeStyles, Variants, P>>,
+    >,
     ref: React.ForwardedRef<P>
   ) => {
     const isClient = React.useRef(false);

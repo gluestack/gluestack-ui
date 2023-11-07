@@ -839,6 +839,7 @@ export type PropsCombinations =
 
 export type UtilityProps<
   GenericComponentStyles,
+  Variants,
   GenericComponentProps,
   Tokens = GSConfig['tokens']
 > = Omit<
@@ -883,7 +884,8 @@ export type UtilityProps<
                 Aliases[LastPart<key>]
               >
       : never;
-  }>;
+  }> &
+  VerbosedUtilityProps<GenericComponentStyles, Variants, GenericComponentProps>;
 // &
 // Partial<{
 //   [key in `$${IState | PLATFORMS | IMediaQueries}-${string}`]?: any;
