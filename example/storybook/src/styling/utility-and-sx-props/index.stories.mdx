@@ -138,6 +138,10 @@ Let's try to build the same card using **`@gluestack-ui/themed`**. Since it is u
 
 Once this is set up, you can easily apply styles to the layout using shorthands when working with **`@gluestack-ui/themed`** components.
 
+### Basic styling
+
+You can apply aliases and styling props directly to the component.
+
 <AppProvider>
   <CodePreview
     showComponentRenderer={true}
@@ -218,6 +222,87 @@ Once this is set up, you can easily apply styles to the layout using shorthands 
 
 The above example demonstrates the usage of utility props along with VStack, HStack components. This approach allows us to style components without using StyleSheet API.
 
+### Complex styling
+
+You can also handle more intricate styling, such as styles for different states, colormode, media queries, and descendants.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+      <Button
+        size="lg"
+        mb='$4'
+        bg='$green500'
+        $hover-bg='$green600'
+        $active-bg='$green700'
+        $_text-hover-color='$white'
+      >
+        <ButtonText>Button</ButtonText>
+      </Button>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Button,
+        ButtonText,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+- To achieve this, you can use the `$` prefix and specify the entire property path, like `$hover-bg` followed by its corresponding value.
+- We provide comprehensive TypeScript support for single-level utility props, including aliases and styles in the format `${states/media/colormode/platform/descendants}-{aliases / style}`.
+- For something like `$hover-sm-bg`, TypeScript suggestions are not available, but you can write props prefixed with `${states/media/colormode/platform/descendants}-*`.
+
+### More utility props
+
+If your component's props become cluttered when using the above utility props, we offer support for an object-based approach to improve code maintainability.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+      <Button
+        size="lg"
+        mb='$4'
+        bg='$green500'
+        $hover={{
+          "bg": '$green600',
+          _text:{
+            color:"$white"
+          }
+        }}
+        $active={{
+          bg: '$green700'
+        }}
+      >
+        <ButtonText>Button</ButtonText>
+      </Button>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Button,
+        ButtonText,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+- In this case, you can specify states, colormode, media queries, and descendants in object form, prefixed with `$`. These objects take sx properties as values.
+- We have provided complete TypeScript support for this approach as well.
+
 # SX Prop
 
 gluestack-ui supports the `sx` prop for overriding styles. The `sx` prop enables passing an object supporting tokens, media queries, nesting, and token-aware values to the component.
@@ -240,6 +325,9 @@ sx accepts the same style object as the base style.
                   color:"$white"
                 }
             },
+            ":active": {
+              bg: '$green700'
+            }
         }}
       >
         <ButtonText>Button</ButtonText>
