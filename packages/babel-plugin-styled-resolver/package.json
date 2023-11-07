@@ -20,7 +20,7 @@
     "dev:web": "cd example/native && yarn web --clear"
   },
   "peerDependencies": {
-    "@gluestack-style/react": ">=0.1"
+    "@gluestack-style/react": ">=1.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.19.3",
