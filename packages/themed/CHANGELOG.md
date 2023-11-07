@@ -1,5 +1,11 @@
 # @gluestack-ui/themed
 
+## 1.0.13
+
+### Patch Changes
+
+- Fixed utility props typings [PR](https://github.com/gluestack/gluestack-style/pull/524)
+
 ## 1.0.12
 
 ### Patch Changes
