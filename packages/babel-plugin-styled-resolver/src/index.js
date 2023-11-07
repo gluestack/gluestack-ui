@@ -18,6 +18,7 @@ const {
 } = require('@gluestack-style/react/lib/commonjs/stableHash');
 const {
   CSSPropertiesMap,
+  reservedKeys,
 } = require('@gluestack-style/react/lib/commonjs/core/styled-system');
 const {
   StyleInjector,
@@ -25,9 +26,13 @@ const {
 const {
   updateOrderUnResolvedMap,
 } = require('@gluestack-style/react/lib/commonjs/updateOrderUnResolvedMap');
+const { deepMerge } = require('@gluestack-style/react/lib/commonjs/utils');
 const {
   setObjectKeyValue,
-} = require('@gluestack-style/react/lib/commonjs/utils');
+} = require('@gluestack-style/react/lib/commonjs/core/utils');
+const {
+  checkAndReturnUtilityProp,
+} = require('@gluestack-style/react/lib/commonjs/core/convert-utility-to-sx');
 
 const IMPORT_NAME = '@gluestack-style/react';
 let configThemePath = [];
@@ -902,7 +907,6 @@ module.exports = function (b) {
         ) {
           let propsToBePersist = [];
           let sxPropsWithIdentifier = {};
-          let utilityPropsWithIdentifier = {};
 
           let mergedPropertyConfig = {
             ...ConfigDefault?.propertyTokenMap,
@@ -913,6 +917,29 @@ module.exports = function (b) {
             ...CSSPropertiesMap,
             ...ConfigDefault?.aliases,
           };
+
+          const componentExtendedConfig = merge(
+            {},
+            {
+              ...ConfigDefault,
+              propertyTokenMap: { ...mergedPropertyConfig },
+            }
+          );
+
+          let sxPropsConvertedUtilityProps = {};
+
+          const prefixedMediaQueries = {};
+
+          Object.keys(componentExtendedConfig?.tokens?.mediaQueries).forEach(
+            (key) => {
+              prefixedMediaQueries[key] = {
+                key: `@${key}`,
+                isMediaQuery: true,
+              };
+            }
+          );
+
+          Object.assign(reservedKeys, { ...prefixedMediaQueries });
 
           const attr = jsxOpeningElementPath.node.attributes;
           attr.forEach((attribute, index) => {
@@ -926,6 +953,53 @@ module.exports = function (b) {
                   t.isConditionalExpression(propValue.expression)
                 ) {
                   propsToBePersist.push(attribute);
+                } else if (
+                  t.isObjectExpression(propValue.expression) &&
+                  propName !== 'sx'
+                ) {
+                  const utilityPropsWithIdentifier =
+                    getIdentifiersObjectFromAstNode(propValue.expression);
+
+                  const objectProperties = propValue.expression.properties;
+                  const { result: objectValue } =
+                    convertExpressionContainerToStaticObject(objectProperties);
+
+                  const {
+                    prop: propString,
+                    propPath,
+                    value: utilityPropValue,
+                  } = checkAndReturnUtilityProp(
+                    propName,
+                    objectValue,
+                    styledSystemProps,
+                    [],
+                    reservedKeys
+                  );
+
+                  if (propString) {
+                    propsToBePersist.push(attribute);
+                  } else {
+                    if (propPath && propPath.length > 0) {
+                      setObjectKeyValue(
+                        sxPropsConvertedUtilityProps,
+                        propPath,
+                        utilityPropValue
+                      );
+
+                      if (
+                        utilityPropsWithIdentifier &&
+                        utilityPropsWithIdentifier.properties &&
+                        utilityPropsWithIdentifier.properties.length > 0
+                      ) {
+                        propsToBePersist.push(
+                          t.jsxAttribute(
+                            t.jsxIdentifier(propName),
+                            t.jsxExpressionContainer(utilityPropsWithIdentifier)
+                          )
+                        );
+                      }
+                    }
+                  }
                 } else {
                   if (propName === 'sx') {
                     const objectProperties = propValue.expression.properties;
@@ -938,42 +1012,61 @@ module.exports = function (b) {
                       convertExpressionContainerToStaticObject(
                         objectProperties
                       );
-
-                    // jsxOpeningElementPath.traverse({
-                    //   JSXExpressionContainer(jsxPath) {
-                    //     jsxPath.traverse({
-                    //       ObjectExpression(path) {
-                    //         removeEmptyProperties(path.node);
-                    //       },
-                    //     });
-                    //   },
-                    // });
                     componentSXProp = sxPropsObject;
                   } else if (
                     t.isStringLiteral(propValue.expression) ||
                     t.isNumericLiteral(propValue.expression)
                   ) {
-                    if (styledSystemProps[propName]) {
-                      componentUtilityProps = Object.assign(
-                        componentUtilityProps ?? {},
-                        {
-                          [propName]: propValue.expression.value,
-                        }
-                      );
+                    const {
+                      prop: propString,
+                      propPath,
+                      value: utilityPropValue,
+                    } = checkAndReturnUtilityProp(
+                      propName,
+                      propValue.expression.value,
+                      styledSystemProps,
+                      [],
+                      reservedKeys
+                    );
+
+                    if (propString) {
+                      propsToBePersist.push(attribute);
+                    } else {
+                      if (propPath && propPath.length > 0) {
+                        setObjectKeyValue(
+                          sxPropsConvertedUtilityProps,
+                          propPath,
+                          utilityPropValue
+                        );
+                      }
                     }
                   } else {
                     propsToBePersist.push(attribute);
                   }
                 }
-              } else if (styledSystemProps[propName]) {
-                componentUtilityProps = Object.assign(
-                  componentUtilityProps ?? {},
-                  {
-                    [propName]: propValue.value,
-                  }
-                );
               } else {
-                propsToBePersist.push(attribute);
+                const {
+                  prop: propString,
+                  propPath,
+                  value: utilityPropValue,
+                } = checkAndReturnUtilityProp(
+                  propName,
+                  propValue.value,
+                  styledSystemProps,
+                  [],
+                  reservedKeys
+                );
+                if (propString) {
+                  propsToBePersist.push(attribute);
+                } else {
+                  if (propPath && propPath.length > 0) {
+                    setObjectKeyValue(
+                      sxPropsConvertedUtilityProps,
+                      propPath,
+                      utilityPropValue
+                    );
+                  }
+                }
               }
             }
           });
@@ -983,31 +1076,18 @@ module.exports = function (b) {
             jsxOpeningElementPath.node.attributes.length
           );
 
-          for (const key in utilityPropsWithIdentifier) {
-            if (componentSXProp[key]) delete utilityPropsWithIdentifier[key];
-          }
-
           jsxOpeningElementPath.node.attributes = propsToBePersist;
 
-          const sx = {
-            ...componentUtilityProps,
-            ...componentSXProp,
-          };
-
+          const sx = deepMerge(
+            { ...sxPropsConvertedUtilityProps },
+            { ...componentSXProp }
+          );
           if (Object.keys(sx).length > 0) {
             const verbosedSx = convertSxToSxVerbosed(sx);
 
             const inlineSxTheme = {
               baseStyle: verbosedSx,
             };
-
-            let componentExtendedConfig = merge(
-              {},
-              {
-                ...ConfigDefault,
-                propertyTokenMap: { ...mergedPropertyConfig },
-              }
-            );
 
             let sxHash = stableHash(sx);
 
