@@ -30,7 +30,7 @@ const getSxPropsPathFromProp = (
       } else {
         gsConvertedPropsPath.push(reservedKeys[prop].key);
       }
-    } else if (descendants.includes(prop)) {
+    } else if (prop.startsWith('_') || descendants.includes(prop)) {
       gsConvertedPropsPath.push(prop);
     } else {
       console.warn(`${propString} is invalid property.`);
@@ -48,12 +48,54 @@ const getSxPropsPathFromProp = (
   return { propsPath: gsConvertedPropsPath, isInvalidPropString };
 };
 
+export const checkAndReturnUtilityProp = (
+  prop: string,
+  propValue: any,
+  styledSystemProps: any,
+  descendants: any,
+  reservedKeys: Record<string, reservedKeyType>
+) => {
+  if (styledSystemProps[prop]) {
+    return { propPath: [prop], value: propValue };
+  } else {
+    if (prop.startsWith('$')) {
+      const reservedKey = prop.slice(1);
+      if (reservedKeys[reservedKey]) {
+        return {
+          propPath: [reservedKeys[reservedKey].key],
+          value: propValue,
+        };
+      } else if (descendants.includes(reservedKey)) {
+        return {
+          propPath: [reservedKey],
+          value: propValue,
+        };
+      } else {
+        // resolve ${{states/colormode/media}}-***
+        const { propsPath: sxPropPath, isInvalidPropString } =
+          getSxPropsPathFromProp(reservedKey, reservedKeys, descendants);
+
+        if (!isInvalidPropString) {
+          return {
+            propPath: sxPropPath,
+            value: propValue,
+          };
+        }
+      }
+    }
+  }
+
+  return {
+    prop: prop,
+    value: propValue,
+  };
+};
+
 export const convertUtilityPropsToSX = (
   styledSystemProps: any,
-  _descendants: any,
+  descendants: any,
   componentProps: any,
-  reservedKeys: Record<string, reservedKeyType> = _reservedKeys,
-  descendants: any = []
+  reservedKeys: Record<string, reservedKeyType> = _reservedKeys
 ) => {
   const sxPropsConvertedUtilityProps: any = {};
   const ignoredProps: any = {};
@@ -62,41 +104,23 @@ export const convertUtilityPropsToSX = (
     return { sxProps: {}, mergedProps: {} };
 
   Object.keys(componentProps).forEach((prop) => {
-    if (styledSystemProps[prop]) {
-      sxPropsConvertedUtilityProps[prop] = componentProps[prop];
-    } else {
-      const componentPropValue = componentProps[prop];
-      if (prop.startsWith('$')) {
-        const reservedKey = prop.slice(1);
-        if (reservedKeys[reservedKey]) {
-          setObjectKeyValue(
-            sxPropsConvertedUtilityProps,
-            [reservedKeys[reservedKey].key],
-            componentPropValue
-          );
-        } else if (descendants.includes(reservedKey)) {
-          setObjectKeyValue(
-            sxPropsConvertedUtilityProps,
-            [reservedKey],
-            componentPropValue
-          );
-        } else {
-          // resolve ${{states/colormode/media}}-***
-          const { propsPath: sxPropPath, isInvalidPropString } =
-            getSxPropsPathFromProp(reservedKey, reservedKeys, descendants);
+    const {
+      prop: propString,
+      propPath,
+      value: propValue,
+    } = checkAndReturnUtilityProp(
+      prop,
+      componentProps[prop],
+      styledSystemProps,
+      descendants,
+      reservedKeys
+    );
 
-          if (!isInvalidPropString) {
-            setObjectKeyValue(
-              sxPropsConvertedUtilityProps,
-              sxPropPath,
-              componentPropValue
-            );
-          } else {
-            ignoredProps[prop] = componentPropValue;
-          }
-        }
-      } else {
-        ignoredProps[prop] = componentPropValue;
+    if (propString) {
+      ignoredProps[prop] = propValue;
+    } else {
+      if (propPath && propPath.length > 0) {
+        setObjectKeyValue(sxPropsConvertedUtilityProps, propPath, propValue);
       }
     }
   });

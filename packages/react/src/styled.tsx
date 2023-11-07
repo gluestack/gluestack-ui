@@ -106,8 +106,7 @@ function convertUtiltiyToSXFromProps(
       styledSystemProps,
       componentStyleConfig?.descendantStyle,
       componentRestProps,
-      reservedKeys,
-      componentStyleConfig.descendantStyle
+      reservedKeys
     );
 
   const resolvedSxVerbose = deepMerge(utilityResolvedSX, resolvedSXVerbosed);
