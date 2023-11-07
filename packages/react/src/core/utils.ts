@@ -16,7 +16,20 @@ export const setObjectKeyValue = (obj: any, keys: any, value: any) => {
   let current = obj;
   keys?.forEach((key: any, index: number) => {
     if (index === keys?.length - 1) {
-      current[key] = value;
+      if (Array.isArray(current[key]) && Array.isArray(value)) {
+        // Merge the arrays
+        current[key] = [...current[key], ...value];
+      } else if (
+        current[key] &&
+        typeof current[key] === 'object' &&
+        typeof value === 'object'
+      ) {
+        // Merge objects
+        current[key] = { ...current[key], ...value };
+      } else {
+        // Simply set the value if not merging with an array or object
+        current[key] = value;
+      }
     } else {
       if (!current[key]) {
         current[key] = {};
