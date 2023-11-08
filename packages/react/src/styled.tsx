@@ -492,7 +492,7 @@ function setStateAndColorModeCssIdsAndProps(
         passingProps: mergedPassingProps,
       } = getMergedStateAndColorModeCSSIdsAndProps(
         //@ts-ignore
-        sxDescendantStyleIds.current,
+        sxDescendantStyleIds.current[key],
         sxDescendantFlattenStyleObject[key]?.[
           'componentBaseStyleFlatternStyleIdObject'
         ],
