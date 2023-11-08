@@ -2502,6 +2502,15 @@
     inline-style-prefixer "^6.0.1"
     normalize-css-color "^1.0.2"
 
+"@gluestack-ui/accordion@^0.0.2-alpha.0":
+  version "0.0.2-alpha.0"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/accordion/-/accordion-0.0.2-alpha.0.tgz#a0c21dcd7cbe0d41f54deaf5fcee92cca069bd24"
+  integrity sha512-2TNHvLDNJ388FGw9i0CJWPjE8z5yBPQMsBP2wwuB0gTp09BYZ+71+9nyeSZcwJ8rkY6RB5g5PysPVuFkUmY1gQ==
+  dependencies:
+    "@gluestack-ui/utils" "^0.1.12"
+    "@react-native-aria/focus" "^0.2.9"
+    "@react-native-aria/interactions" "^0.2.11"
+
 "@gluestack-ui/actionsheet@^0.2.30":
   version "0.2.30"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/actionsheet/-/actionsheet-0.2.30.tgz#9fa902bc5f91f81a24035d7d478bc3e0b0fa3c69"
