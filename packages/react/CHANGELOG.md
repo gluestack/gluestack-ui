@@ -1,5 +1,11 @@
 # @gluestack-style/react
 
+## 1.0.15
+
+### Patch Changes
+
+- Fixed descendants compound variant resolution [PR](https://github.com/gluestack/gluestack-style/pull/526)
+
 ## 1.0.14
 
 ### Patch Changes
