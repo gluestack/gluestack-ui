@@ -77,7 +77,7 @@ export const AccordionTrigger = <T,>(StyledAccordionTrigger: any) =>
           ref={ref}
           {...props}
           aria-expanded={openItems.includes(value)}
-          onPress={() => composeEventHandlers(props?.onPress, toggleItem)}
+          onPress={composeEventHandlers(props?.onPress, toggleItem)}
           states={{
             disabled: isDisabled,
             hover: isHoveredProp || isHovered,
