@@ -53,7 +53,7 @@ export default () => (
                   How do I place an order?
                 </AccordionTitleText>
                 {isExpanded ? (
-                  //ChevronUpIcon is imported from 'lucide-react-native'
+                  // ChevronUpIcon is imported from 'lucide-react-native'
                   <AccordionIcon as={ChevronUpIcon} />
                 ) : (
                   // ChevronDownIcon is imported from 'lucide-react-native'
