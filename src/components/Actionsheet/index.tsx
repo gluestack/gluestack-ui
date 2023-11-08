@@ -88,26 +88,28 @@ const AccessibleActionsheetContent = forwardRef(
     }: any,
     ref?: any
   ) => {
-    const { hideDragIndicator } = useContext(ActionSheetContext);
     const resolvedProps = usePropResolution(props);
     const resolvedPropsForDragIndicator = usePropResolution(_dragIndicator);
     const resolvedPropsForDragIndicatorWrapper = usePropResolution(
       _dragIndicatorWrapper
     );
+    const { hideDragIndicator } = useContext(ActionSheetContext);
+    console.log(hideDragIndicator);
     return (
       <AccessibleActionsheet.Content {...resolvedProps} ref={ref}>
         {!hideDragIndicator && (
           <>
-            {_dragIndicatorWrapperOffSet && (
+            Hello
+            {/* {_dragIndicatorWrapperOffSet && (
               <Box py="2" {..._dragIndicatorWrapperOffSet} />
-            )}
-            <AccessibleActionsheet.DragIndicatorWrapper
+            )} */}
+            {/* <AccessibleActionsheet.DragIndicatorWrapper
               {...resolvedPropsForDragIndicatorWrapper}
             >
               <AccessibleActionsheet.DragIndicator
                 {...resolvedPropsForDragIndicator}
               />
-            </AccessibleActionsheet.DragIndicatorWrapper>
+            </AccessibleActionsheet.DragIndicatorWrapper> */}
           </>
         )}
         {children}
@@ -119,9 +121,9 @@ const AccessibleActionsheetContent = forwardRef(
 const AccessibleActionsheetItem = forwardRef(
   ({ children, ...props }: any, ref?: any) => {
     return (
-      <div variant="actionsheetStyle" {...props} ref={ref}>
+      <Button variant="actionsheetStyle" {...props} ref={ref}>
         {children}
-      </div>
+      </Button>
     );
   }
 );
