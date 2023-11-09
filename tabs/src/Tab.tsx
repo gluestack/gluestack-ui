@@ -5,6 +5,7 @@ import type { PressableProps } from 'react-native';
 import { useHover, usePress } from '@react-native-aria/interactions';
 import { composeEventHandlers } from '@gluestack-ui/utils';
 import { useTab } from './TabProvider';
+import { useTabs } from './useTabs';
 
 export const Tab = <StyledTab,>(StyledTab: React.ComponentType<StyledTab>) =>
   memo(
@@ -31,6 +32,8 @@ export const Tab = <StyledTab,>(StyledTab: React.ComponentType<StyledTab>) =>
         React.useEffect(() => {
           setIsActive(value === currentActiveTab);
         }, [value, currentActiveTab]);
+
+        const tabProps = useTabs();
 
         return (
           <StyledTab
@@ -69,6 +72,7 @@ export const Tab = <StyledTab,>(StyledTab: React.ComponentType<StyledTab>) =>
               composeEventHandlers(props?.onBlur, focusProps.onBlur),
               focusRingProps.onBlur
             )}
+            {...tabProps}
           >
             {typeof children === 'function'
               ? children({

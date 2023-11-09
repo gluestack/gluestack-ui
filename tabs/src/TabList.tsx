@@ -1,3 +1,4 @@
+import { FocusScope } from '@react-native-aria/focus';
 import React, { memo, useMemo } from 'react';
 import { forwardRef } from 'react';
 
@@ -38,7 +39,7 @@ export const TabList = <StyledTabList,>(
             {...(props as StyledTabList)}
             ref={ref}
           >
-            {modifiedTabList}
+            <FocusScope>{modifiedTabList}</FocusScope>
           </StyledTabList>
         );
       }
