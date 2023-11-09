@@ -9,11 +9,6 @@ export const Tabs = <StyledTabs,>(
     forwardRef(
       ({ value, ...props }: StyledTabs & { value?: string }, ref?: any) => {
         const DEFAULT_TAB = 'tab-0';
-        // console.time('1234');
-
-        // useEffect(() => {
-        //   console.timeEnd('1234');
-        // }, []);
         const [currentActiveTab, setCurrentActiveTab] = React.useState(
           value ?? DEFAULT_TAB
         );
