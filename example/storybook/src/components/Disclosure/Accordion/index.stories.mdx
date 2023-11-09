@@ -22,8 +22,11 @@ import {
   AccordionIcon,
   AccordionContent,
   AccordionContentText,
+  Divider,
   ChevronDownIcon,
   ChevronUpIcon,
+  PlusIcon,
+  MinusIcon,
 } from './Accordion';
 import {
   AppProvider,
@@ -44,18 +47,13 @@ import Wrapper from '../../Wrapper';
 
 This is an illustration of a **Themed Accordion** component with default configuration.
 
-<AppProvider config={config}>
+<AppProvider>
   <CodePreview
     showComponentRenderer={true}
-    showArgsController={false}
-    _rendererWrapper={{
-      alignItems: 'stretch',
-    }}
+    showArgsController={true}
     metaData={{
       code: `
-function App(){
-    return (
-      <Accordion m="$5">
+  <Accordion m="$5" {...props}>
         <AccordionItem value="a">
           <AccordionHeader>
             <AccordionTrigger>
@@ -82,12 +80,36 @@ function App(){
             </AccordionContentText>
           </AccordionContent>
         </AccordionItem>
+         <AccordionItem value="b">
+          <AccordionHeader>
+            <AccordionTrigger>
+              {({ isExpanded }) => {
+                return (
+                  <>
+                    <AccordionTitleText>
+                      What payment methods do you accept?
+                    </AccordionTitleText>
+                    {isExpanded ? (
+                      <AccordionIcon as={ChevronUpIcon} ml="$3"/>
+                    ) : (
+                      <AccordionIcon as={ChevronDownIcon} ml="$3"/>
+                    )}
+                  </>
+                );
+              }}
+            </AccordionTrigger>
+          </AccordionHeader>
+          <AccordionContent>
+            <AccordionContentText>
+              We accept all major credit cards, including Visa, Mastercard, and
+              American Express. We also support payments through PayPal.
+            </AccordionContentText>
+          </AccordionContent>
+        </AccordionItem>
         </Accordion>
-  );
-}
-`,
+      `,
       transformCode: (code) => {
-        return transformedCode(code, 'function', 'App');
+        return transformedCode(code);
       },
       scope: {
         Accordion,
@@ -289,6 +311,18 @@ Props to style child components.
         <Table.TR>
           <Table.TD>
             <Table.TText>
+              <InlineCode>_item</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Prop to style the AccordionItem Component`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
               <InlineCode>_titleText</InlineCode>
             </Table.TText>
           </Table.TD>
@@ -407,7 +441,7 @@ Contains all Icon related layout style props and actions.It inherits all the pro
 We have outlined the various features that ensure the Accordion component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards.
 
 - Header is h3 tag on web.
-- aria-expanded="true" when the Accordion Content is visible, otherwise false.
+- aria-expanded is "true" when the Accordion Content is visible, otherwise false.
 - role is set to "region" for the currently expanded accordion panel.
 
 ### Keyboard Interactions
@@ -437,16 +471,23 @@ This example demonstrates how you can customize your accordion component.
 function App(){
     return (
       <Accordion
-      type={'multiple'}
-      variant={'filled'}
-      size={'md'}
+      type="multiple"
+      variant="filled"
+      size="md"
       m="$5"
+      borderWidth={1}
       shadowColor="transparent"
+      sx={{
+          _light: {
+            borderColor: '$borderLight300',
+          },
+          _dark: {
+            borderColor: '$borderDark700',
+          },
+      }}
     >
       <AccordionItem value="a" 
-         borderTopWidth={1}
-         borderLeftWidth={1}
-         borderRightWidth={1}
+         borderBottomWidth={1}
          sx={{
           _light: {
             borderColor: '$borderLight300',
@@ -484,7 +525,7 @@ function App(){
       </AccordionItem>
       <AccordionItem
         value="b"
-        borderWidth={1}
+        borderBottomWidth={1}
         sx={{
           _light: {
             borderColor: '$borderLight300',
@@ -523,17 +564,6 @@ function App(){
       </AccordionItem>
       <AccordionItem
         value="c"
-        borderBottomWidth={1}
-        borderLeftWidth={1}
-         borderRightWidth={1}
-        sx={{
-          _light: {
-            borderColor: '$borderLight300',
-          },
-          _dark: {
-            borderColor: '$borderDark700',
-          },
-        }}
       >
         <AccordionHeader>
           <AccordionTrigger>
@@ -578,6 +608,321 @@ AccordionContent,
 AccordionContentText,
 ChevronDownIcon,
 ChevronUpIcon,
+Wrapper,
+},
+}}
+/>
+
+</AppProvider>
+
+### Rounded corners
+
+<AppProvider config={config}>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    _rendererWrapper={{
+      alignItems: 'stretch',
+    }}
+    metaData={{
+      code: `
+function App(){
+    return (
+          <Accordion size="md" shadowColor="transparent" m="$5">
+      <AccordionItem value="item-1" borderRadius="$lg">
+        <AccordionHeader>
+          <AccordionTrigger>
+            {({ isExpanded }) => {
+              return (
+                <>
+                  {isExpanded ? (
+                    <AccordionIcon as={MinusIcon} mr="$3" />
+                  ) : (
+                    <AccordionIcon as={PlusIcon} mr="$3" />
+                  )}
+                  <AccordionTitleText>
+                    How do I place an order?
+                  </AccordionTitleText>
+                </>
+              );
+            }}
+          </AccordionTrigger>
+        </AccordionHeader>
+        <AccordionContent ml="$9">
+          <AccordionContentText>
+            To place an order, simply select the products you want, proceed to
+            checkout, provide shipping and payment information, and finalize
+            your purchase.
+          </AccordionContentText>
+        </AccordionContent>
+      </AccordionItem>
+      <AccordionItem value="item-2" mt="$5" borderRadius="$lg">
+        <AccordionHeader>
+          <AccordionTrigger>
+            {({ isExpanded }) => {
+              return (
+                <>
+                  {isExpanded ? (
+                    <AccordionIcon as={MinusIcon} mr="$3" />
+                  ) : (
+                    <AccordionIcon as={PlusIcon} mr="$3" />
+                  )}
+                  <AccordionTitleText>
+                    How do I place an order?
+                  </AccordionTitleText>
+                </>
+              );
+            }}
+          </AccordionTrigger>
+        </AccordionHeader>
+        <AccordionContent ml="$9">
+          <AccordionContentText>
+            To place an order, simply select the products you want, proceed to
+            checkout, provide shipping and payment information, and finalize
+            your purchase.
+          </AccordionContentText>
+        </AccordionContent>
+      </AccordionItem>
+    </Accordion>
+);
+}
+`,
+transformCode: (code) => {
+return transformedCode(code, 'function', 'App');
+},
+scope: {
+Accordion,
+AccordionItem,
+AccordionHeader,
+AccordionTrigger,
+AccordionTitleText,
+AccordionIcon,
+AccordionContent,
+AccordionContentText,
+MinusIcon,
+PlusIcon, 
+Wrapper,
+},
+}}
+/>
+
+</AppProvider>
+
+### Disabled item
+
+<AppProvider config={config}>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    _rendererWrapper={{
+      alignItems: 'stretch',
+    }}
+    metaData={{
+      code: `
+function App(){
+    return (
+          <Accordion size="md" shadowColor="transparent" m="$5" variant="unfilled">
+      <AccordionItem value="item-1" borderRadius="$lg" isDisabled={true}>
+        <AccordionHeader>
+          <AccordionTrigger px="$0">
+            {({ isExpanded }) => {
+              return (
+                <>
+                  <AccordionTitleText>
+                    How do I place an order?
+                  </AccordionTitleText>
+                  {isExpanded ? (
+                    <AccordionIcon as={MinusIcon}  />
+                  ) : (
+                    <AccordionIcon as={PlusIcon}  />
+                  )}
+                
+                </>
+              );
+            }}
+          </AccordionTrigger>
+        </AccordionHeader>
+        <AccordionContent px="$0">
+          <AccordionContentText>
+            To place an order, simply select the products you want, proceed to
+            checkout, provide shipping and payment information, and finalize
+            your purchase.
+          </AccordionContentText>
+        </AccordionContent>
+      </AccordionItem>
+      <Divider />
+      <AccordionItem value="item-2" borderRadius="$lg">
+        <AccordionHeader>
+          <AccordionTrigger px="$0">
+            {({ isExpanded }) => {
+              return (
+                <>
+                  <AccordionTitleText>
+                    How do I place an order?
+                  </AccordionTitleText>
+                  {isExpanded ? (
+                    <AccordionIcon as={MinusIcon} />
+                  ) : (
+                    <AccordionIcon as={PlusIcon} />
+                  )}
+                </>
+              );
+            }}
+          </AccordionTrigger>
+        </AccordionHeader>
+        <AccordionContent px="$0">
+          <AccordionContentText>
+            To place an order, simply select the products you want, proceed to
+            checkout, provide shipping and payment information, and finalize
+            your purchase.
+          </AccordionContentText>
+        </AccordionContent>
+      </AccordionItem>
+    </Accordion>
+);
+}
+`,
+transformCode: (code) => {
+return transformedCode(code, 'function', 'App');
+},
+scope: {
+Accordion,
+AccordionItem,
+AccordionHeader,
+AccordionTrigger,
+AccordionTitleText,
+AccordionIcon,
+AccordionContent,
+AccordionContentText,
+Divider,
+MinusIcon,
+PlusIcon, 
+Wrapper,
+},
+}}
+/>
+
+</AppProvider>
+
+### Default value
+
+Use the defaultValue prop to define the open item by default.
+
+<AppProvider config={config}>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    _rendererWrapper={{
+      alignItems: 'stretch',
+    }}
+    metaData={{
+      code: `
+function App(){
+    return (
+          <Accordion size="md" shadowColor="transparent" m="$5" variant="unfilled" type="single" defaultValue="item-3">
+      <AccordionItem value="item-1" borderRadius="$lg">
+        <AccordionHeader>
+          <AccordionTrigger px="$0">
+            {({ isExpanded }) => {
+              return (
+                <>
+                  <AccordionTitleText>
+                    How do I place an order?
+                  </AccordionTitleText>
+                  {isExpanded ? (
+                    <AccordionIcon as={MinusIcon}  />
+                  ) : (
+                    <AccordionIcon as={PlusIcon}  />
+                  )}
+                
+                </>
+              );
+            }}
+          </AccordionTrigger>
+        </AccordionHeader>
+        <AccordionContent px="$0">
+          <AccordionContentText>
+            To place an order, simply select the products you want, proceed to
+            checkout, provide shipping and payment information, and finalize
+            your purchase.
+          </AccordionContentText>
+        </AccordionContent>
+      </AccordionItem>
+      <Divider />
+      <AccordionItem value="item-2" borderRadius="$lg">
+        <AccordionHeader>
+          <AccordionTrigger px="$0">
+            {({ isExpanded }) => {
+              return (
+                <>
+                  <AccordionTitleText>
+                    How do I place an order?
+                  </AccordionTitleText>
+                  {isExpanded ? (
+                    <AccordionIcon as={MinusIcon} />
+                  ) : (
+                    <AccordionIcon as={PlusIcon} />
+                  )}
+                </>
+              );
+            }}
+          </AccordionTrigger>
+        </AccordionHeader>
+        <AccordionContent px="$0">
+          <AccordionContentText>
+            To place an order, simply select the products you want, proceed to
+            checkout, provide shipping and payment information, and finalize
+            your purchase.
+          </AccordionContentText>
+        </AccordionContent>
+      </AccordionItem>
+      <Divider />
+           <AccordionItem value="item-3" borderRadius="$lg">
+        <AccordionHeader>
+          <AccordionTrigger px="$0">
+            {({ isExpanded }) => {
+              return (
+                <>
+                  <AccordionTitleText>
+                    How do I place an order?
+                  </AccordionTitleText>
+                  {isExpanded ? (
+                    <AccordionIcon as={MinusIcon} />
+                  ) : (
+                    <AccordionIcon as={PlusIcon} />
+                  )}
+                </>
+              );
+            }}
+          </AccordionTrigger>
+        </AccordionHeader>
+        <AccordionContent px="$0">
+          <AccordionContentText>
+            To place an order, simply select the products you want, proceed to
+            checkout, provide shipping and payment information, and finalize
+            your purchase.
+          </AccordionContentText>
+        </AccordionContent>
+      </AccordionItem>
+    </Accordion>
+);
+}
+`,
+transformCode: (code) => {
+return transformedCode(code, 'function', 'App');
+},
+scope: {
+Accordion,
+AccordionItem,
+AccordionHeader,
+AccordionTrigger,
+AccordionTitleText,
+AccordionIcon,
+AccordionContent,
+AccordionContentText,
+Divider,
+MinusIcon,
+PlusIcon, 
 Wrapper,
 },
 }}

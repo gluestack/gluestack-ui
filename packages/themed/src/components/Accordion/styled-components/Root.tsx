@@ -3,5 +3,5 @@ import { View } from 'react-native';
 
 export default styled(View, {}, {
   componentName: 'Accordion',
-  descendantStyle: ['_titleText', '_contentText', '_icon'],
+  descendantStyle: ['_item', '_titleText', '_contentText', '_icon'],
 } as const);

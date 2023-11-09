@@ -11,20 +11,13 @@ import {
 import { Divider } from '@gluestack-ui/themed';
 import { ChevronDownIcon } from 'lucide-react-native';
 import { ChevronUpIcon } from 'lucide-react-native';
+import { MinusIcon, PlusIcon } from 'lucide-react-native';
 import React from 'react';
 
 const AccordionBasic = ({ ...props }: any) => {
   return (
-    <Accordion
-      alignSelf="center"
-      variant={'filled'}
-      size={'md'}
-      mt="$5"
-      defaultValue={'b'}
-      value={'d'}
-      {...props}
-    >
-      <AccordionItem value="a" isDisabled={true}>
+    <Accordion alignSelf="center" mt="$5" {...props}>
+      <AccordionItem value="a">
         <AccordionHeader>
           <AccordionTrigger>
             {(states: any) => (
@@ -159,6 +152,9 @@ export {
   AccordionIcon,
   AccordionContent,
   AccordionContentText,
+  Divider,
   ChevronDownIcon,
   ChevronUpIcon,
+  PlusIcon,
+  MinusIcon,
 };
