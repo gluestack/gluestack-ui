@@ -1,10 +1,12 @@
 import { createStyle } from '@gluestack-style/react';
 
 export const AccordionTrigger = createStyle({
+  'width': '100%',
   'py': '$5',
   'px': '$5',
   'flexDirection': 'row',
   'justifyContent': 'space-between',
+  'alignItems': 'center',
   '_web': {
     outlineWidth: 0,
   },

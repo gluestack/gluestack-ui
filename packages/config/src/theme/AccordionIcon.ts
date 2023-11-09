@@ -2,13 +2,13 @@ import { createStyle } from '@gluestack-style/react';
 
 export const AccordionIcon = createStyle({
   props: {
-    size: 'md',
-  },
-  ml: '$3',
-  _dark: {
-    color: '$backgroundDark50',
+    size: 'xl',
   },
   _light: {
     color: '$backgroundLight900',
+  },
+  _dark: {
+    //style not applying
+    color: '$backgroundDark50',
   },
 });
