@@ -27,6 +27,18 @@ const AccessibleAlertDialog = createAlertDialog({
   //@ts-ignore
   AnimatePresence: AnimatePresence,
 });
+// export default () => (
+//   <AlertDialog>
+//     <AlertDialogBackdrop />
+//     <AlertDialogContent>
+//       <AlertDialogHeader>
+//         <AlertDialogCloseButton />
+//       </AlertDialogHeader>
+//       <AlertDialogBody />
+//       <AlertDialogFooter />
+//     </AlertDialogContent>
+//   </AlertDialog>
+// )
 
 // export const AlertDialog = AccessibleAlertDialog;
 const AlertDialogTemp = memo(
