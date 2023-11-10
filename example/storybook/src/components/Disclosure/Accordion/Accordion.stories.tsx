@@ -3,6 +3,7 @@ import Accordion from './Accordion';
 import AccordionCustomisedBackground from './AccordionCustomisedBackground';
 import AccordionRoundedCorners from './AccordionRoundedCorner';
 import AccordionCustomisedComponent from './AccordionCustomisedComponent';
+import AccordionNested from './AccordionNested';
 
 const AccordionMeta: ComponentMeta<typeof Accordion> = {
   title: 'stories/DISCLOSURE/Accordion',
@@ -39,4 +40,5 @@ export {
   AccordionCustomisedBackground,
   AccordionRoundedCorners,
   AccordionCustomisedComponent,
+  AccordionNested,
 };

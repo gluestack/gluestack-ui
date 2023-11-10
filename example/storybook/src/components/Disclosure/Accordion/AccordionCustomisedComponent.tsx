@@ -12,7 +12,7 @@ import { ChevronDownIcon } from 'lucide-react-native';
 import { ChevronUpIcon } from 'lucide-react-native';
 import React from 'react';
 
-const AccordionBasic = ({ ...props }: any) => {
+const AccordionCustomisedComponent = ({ ...props }: any) => {
   return (
     <Accordion
       alignSelf="center"
@@ -133,7 +133,7 @@ const AccordionBasic = ({ ...props }: any) => {
   );
 };
 
-AccordionBasic.description =
+AccordionCustomisedComponent.description =
   'This is a basic Accordion component example. An Accordion component is a versatile and interactive user interface element, designed to efficiently organize and present content in a compact space.';
 
-export default AccordionBasic;
+export default AccordionCustomisedComponent;
