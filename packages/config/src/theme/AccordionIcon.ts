@@ -8,7 +8,6 @@ export const AccordionIcon = createStyle({
     color: '$backgroundLight900',
   },
   _dark: {
-    //style not applying
     color: '$backgroundDark50',
   },
 });
