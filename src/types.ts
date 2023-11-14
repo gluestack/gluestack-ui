@@ -79,16 +79,16 @@ export type GenericPropTypes<ComponentPropsType> = Omit<
     >;
   }>;
 
-export type GenericComponentType<PropType, Omitprops = {}> = (
+export type GenericComponentType<PropType, OmitProps = {}> = (
   //@ts-ignore
   // props: GenericPropTypes<React.ComponentProps<PropType>> &
   props: Omit<
     //@ts-ignore
     React.ComponentProps<PropType>,
-    keyof aliases | keyof propertyTokenMap | keyof Omitprops
-  >
+    keyof aliases | keyof propertyTokenMap | keyof OmitProps
+  > &
+    //@ts-ignore
+    GenericSXType<ConvertKeys<React.ComponentProps<PropType>['sx']>>
   // &
-  //   //@ts-ignore
-  //   GenericSXType<ConvertKeys<React.ComponentProps<PropType>['sx']>> &
-  //   ExtraProps
+  // ExtraProps
 ) => JSX.Element;
