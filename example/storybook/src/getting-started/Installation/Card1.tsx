@@ -17,6 +17,7 @@ import Tilde from './Tilde';
 import Copied from './Copied';
 import Copy from './Copy';
 import Figma from './Figma';
+import Solito from './Solito';
 
 function Card1() {
   const [copied, setCopied] = useState(false);
@@ -362,6 +363,14 @@ function Card1() {
                   borderRadius="$lg"
                 >
                   <Expo1 />
+                </Link>
+                <Link
+                  href="https://github.com/gluestack/solito-head-starter-kit"
+                  isExternal
+                  target="_blank"
+                  borderRadius="$lg"
+                >
+                  <Solito />
                 </Link>
               </HStack>
             </VStack>
