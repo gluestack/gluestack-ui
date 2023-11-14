@@ -235,6 +235,7 @@ function Card1() {
         sx={{
           '@lg': {
             flexDirection: 'row',
+            flexWrap: 'wrap',
           },
           'flexDirection': 'column',
         }}
@@ -246,6 +247,7 @@ function Card1() {
           sx={{
             '@lg': {
               flex: 1,
+              minWidth: '45%',
             },
             'borderColor': '$trueGray300',
             '_dark': {
@@ -287,6 +289,7 @@ function Card1() {
           sx={{
             '@lg': {
               flex: 1,
+              minWidth: '45%',
             },
             'borderColor': '$trueGray300',
             '_dark': {
@@ -327,6 +330,7 @@ function Card1() {
           sx={{
             '@lg': {
               flex: 1,
+              minWidth: '45%',
             },
             'borderColor': '$trueGray300',
             '_dark': {
