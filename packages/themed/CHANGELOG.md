@@ -1,5 +1,11 @@
 # @gluestack-ui/themed
 
+## 1.0.14
+
+### Patch Changes
+
+- fixed role for image and icon to img instead of image
+
 ## 1.0.13
 
 ### Patch Changes

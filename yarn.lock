@@ -2673,10 +2673,10 @@
   dependencies:
     "@gluestack-ui/utils" "^0.1.5"
 
-"@gluestack-ui/icon@^0.1.18":
-  version "0.1.18"
-  resolved "https://registry.yarnpkg.com/@gluestack-ui/icon/-/icon-0.1.18.tgz#db97760a8616a54f5a8924f1c189046aa02c1e98"
-  integrity sha512-X35k3U2JHilpH24dPi5rxlniQWf+xIVLqhzHy4khLP08WZpBOzkKLTdnbmP76iArev5urXJtZtzs2eOJ8/Ow3A==
+"@gluestack-ui/icon@^0.1.19":
+  version "0.1.19"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/icon/-/icon-0.1.19.tgz#3fb46dce9e47e6ee9abc338858250639e78a5cc7"
+  integrity sha512-ynpYatuxePzYZeO+UwdZubM15oKFW025ioYbaiH75CR1XMN+pxs9uGixXD3J25VcBoB8mRpruY/Ila9PRRlcCg==
   dependencies:
     "@gluestack-ui/provider" "^0.1.6"
     "@gluestack-ui/utils" "^0.1.12"
@@ -2691,10 +2691,10 @@
     "@gluestack-ui/utils" "^0.1.10"
     "@react-native-aria/focus" "^0.2.9"
 
-"@gluestack-ui/image@^0.1.6":
-  version "0.1.6"
-  resolved "https://registry.yarnpkg.com/@gluestack-ui/image/-/image-0.1.6.tgz#dfda76b984e7eeedf41f9ce8b7c84c18a565211c"
-  integrity sha512-b6WK1tCnlA1Es040H1k5WZsIlzzmoXNaapQ5j2EuX5dOrZOopBuiFLFqAEPiMdqUr8RjUC4nomBHm6taqP389A==
+"@gluestack-ui/image@^0.1.7":
+  version "0.1.7"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/image/-/image-0.1.7.tgz#0cb2be72fd16a6a5d10aa850b9506f308330a901"
+  integrity sha512-ITfDX7gyxab+w0EMmJdITgG7EB2oF/3MfYgsFBV//VmIlu3OJg2xvnwvYzq3kNdGqr5Nt/5ZEG2ime7Kx2Wmxw==
   dependencies:
     "@gluestack-ui/utils" "^0.1.12"
     "@react-native-aria/focus" "^0.2.9"
