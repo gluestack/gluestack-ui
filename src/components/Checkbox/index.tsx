@@ -53,6 +53,7 @@ CheckboxNew.Group = CheckboxGroupTemp;
 
 export type ICheckboxComponentType<Checkbox, Group> = GenericComponentType<
   Checkbox,
+  {},
   { colorScheme: IColorSchemes }
 > & {
   Group: GenericComponentType<Group>;

@@ -26,6 +26,7 @@ const ProgressTemp = forwardRef(
 
 export type IProgressComponentType<Progress> = GenericComponentType<
   Progress,
+  {},
   { colorScheme: IColorSchemes }
 >;
 

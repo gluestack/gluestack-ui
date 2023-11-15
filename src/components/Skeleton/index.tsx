@@ -114,6 +114,6 @@ export const Skeleton = SkeletonNew as ISkeletonComponentType<
 >;
 
 export type ISkeletonComponentType<Skeleton, SkeletonText> =
-  GenericComponentType<Skeleton, ISkeletonComponentProps> & {
-    Text: GenericComponentType<SkeletonText, ISkeletonTextComponentProps>;
+  GenericComponentType<Skeleton, {}, ISkeletonComponentProps> & {
+    Text: GenericComponentType<SkeletonText, {}, ISkeletonTextComponentProps>;
   };

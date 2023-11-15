@@ -89,7 +89,5 @@ export type GenericComponentType<PropType, OmitProps = {}, ExtraProps = {}> = (
   > &
     //@ts-ignore
     GenericSXType<ConvertKeys<React.ComponentProps<PropType>['sx']>> &
-    ExtraProps & {
-      colorScheme: IColorSchemes;
-    }
+    ExtraProps
 ) => JSX.Element;

@@ -31,6 +31,7 @@ const DividerTemp = forwardRef(
 
 export type IDividerComponentType<Divider> = GenericComponentType<
   Divider,
+  {},
   IDividerProps
 >;
 

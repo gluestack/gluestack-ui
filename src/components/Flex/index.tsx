@@ -30,6 +30,10 @@ const FlexTemp = forwardRef(
   }
 );
 
-export type IFlexComponentType<Flex> = GenericComponentType<Flex, IFlexProps>;
+export type IFlexComponentType<Flex> = GenericComponentType<
+  Flex,
+  {},
+  IFlexProps
+>;
 
 export const Flex = FlexTemp as IFlexComponentType<typeof AccessibleFlex>;

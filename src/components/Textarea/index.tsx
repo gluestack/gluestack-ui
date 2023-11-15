@@ -20,6 +20,7 @@ const TextareaTemp = forwardRef(({ placeholder, ...props }: any, ref?: any) => {
 
 export type ITextareaComponentType<Textarea> = GenericComponentType<
   Textarea,
+  {},
   {
     placeholder?: string;
   }

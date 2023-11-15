@@ -44,6 +44,7 @@ const InputTemp = forwardRef(
 
 export type IInputComponentType<Input> = GenericComponentType<
   Input,
+  {},
   InputProps
 >;
 

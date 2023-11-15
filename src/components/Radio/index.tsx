@@ -44,6 +44,7 @@ RadioTemp.Group = AccessibleRadioGroup;
 
 export type IRadioComponentType<Radio, Group> = GenericComponentType<
   Radio,
+  {},
   { colorScheme: IColorSchemes }
 > & {
   Group: GenericComponentType<Group>;

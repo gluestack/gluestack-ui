@@ -83,6 +83,7 @@ ButtonTemp.Group = NewGroupButton;
 
 export type IButtonComponentType<Button, Group> = GenericComponentType<
   Button,
+  {},
   IButtonProps
 > & {
   Group: GenericComponentType<Group>;

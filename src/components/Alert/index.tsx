@@ -74,6 +74,7 @@ AlertTemp.Icon = AlertNewIcon;
 
 export type IAlertComponentType<Alert, Icon> = GenericComponentType<
   Alert,
+  {},
   IAlertProps
 > & {
   Icon: GenericComponentType<Icon>;

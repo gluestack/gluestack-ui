@@ -26,6 +26,7 @@ const AspectRatioTemp = forwardRef(
 
 export type IAspectRatioComponentType<AspectRatio> = GenericComponentType<
   AspectRatio,
+  {},
   IRatio
 >;
 

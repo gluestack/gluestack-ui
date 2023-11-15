@@ -50,6 +50,7 @@ const BadgeNew = BadgeTemp as any;
 
 export type IBadgeComponentType<Badge> = GenericComponentType<
   Badge,
+  {},
   IBadgeProps
 >;
 

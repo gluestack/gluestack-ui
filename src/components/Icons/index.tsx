@@ -39,6 +39,7 @@ export * from './Icons';
 
 export type IIconComponentType<Icon> = GenericComponentType<
   Icon,
+  {},
   { viewBox?: string; as?: any }
 >;
 
