@@ -1,5 +1,12 @@
 # @gluestack-style/react
 
+## 1.0.16
+
+### Patch Changes
+
+- - Conditional as prop rerender issue fixes
+  - Provider without config issue fixes
+
 ## 1.0.15
 
 ### Patch Changes

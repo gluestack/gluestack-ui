@@ -1054,15 +1054,16 @@ export function verboseStyled<P, Variants, ComCon>(
 
       const prefixedMediaQueries: any = {};
 
-      Object.keys(CONFIG?.tokens?.mediaQueries).forEach((key: any) => {
-        prefixedMediaQueries[key] = {
-          key: `@${key}`,
-          isMediaQuery: true,
-        };
-      });
+      if (CONFIG?.tokens?.mediaQueries) {
+        Object.keys(CONFIG?.tokens?.mediaQueries).forEach((key: any) => {
+          prefixedMediaQueries[key] = {
+            key: `@${key}`,
+            isMediaQuery: true,
+          };
+        });
+      }
 
       Object.assign(reservedKeys, { ...prefixedMediaQueries });
-
       // for extended components
 
       const EXTENDED_THEME =
@@ -1957,9 +1958,13 @@ export function verboseStyled<P, Variants, ComCon>(
       componentConfig
     );
 
-    const AsComp: any = React.useRef(
-      resolvedStyleProps.as || (passingProps.as as any) || undefined
-    ).current;
+    // const AsComp: any = React.useRef(
+    //   resolvedStyleProps.as || (passingProps.as as any) || undefined
+    // ).current;
+
+    const AsComp: any = React.useMemo(() => {
+      return resolvedStyleProps.as || (passingProps.as as any) || undefined;
+    }, [resolvedStyleProps.as]);
 
     let resolvedStyleMemo = [passingProps?.style, ...resolvedStyleProps?.style];
     if (Platform.OS === 'web') {
