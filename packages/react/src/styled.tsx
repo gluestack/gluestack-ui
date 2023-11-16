@@ -1054,15 +1054,16 @@ export function verboseStyled<P, Variants, ComCon>(
 
       const prefixedMediaQueries: any = {};
 
-      Object.keys(CONFIG?.tokens?.mediaQueries).forEach((key: any) => {
-        prefixedMediaQueries[key] = {
-          key: `@${key}`,
-          isMediaQuery: true,
-        };
-      });
+      if (CONFIG?.tokens?.mediaQueries) {
+        Object.keys(CONFIG?.tokens?.mediaQueries).forEach((key: any) => {
+          prefixedMediaQueries[key] = {
+            key: `@${key}`,
+            isMediaQuery: true,
+          };
+        });
+      }
 
       Object.assign(reservedKeys, { ...prefixedMediaQueries });
-
       // for extended components
 
       const EXTENDED_THEME =
