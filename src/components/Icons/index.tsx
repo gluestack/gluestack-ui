@@ -36,16 +36,11 @@ const IconTemp = forwardRef(
     }
     const isJSX = React.isValidElement(IconForward);
     if (isJSX) {
-      const NewComp = () => {
+      IconForward = (props: any) => {
         return React.cloneElement(as, {
-          color: 'blue',
-          // ...resolvedProps,
-          // //@ts-ignore
-          // ...as.props,
+          ...props,
         });
       };
-      // return <NewComp />;
-      return <AccessibleIcon as={NewComp} color="red" ref={ref} />;
     }
     return <AccessibleIcon as={IconForward} {...resolvedProps} ref={ref} />;
   }
