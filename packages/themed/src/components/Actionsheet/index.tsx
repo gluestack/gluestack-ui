@@ -16,7 +16,7 @@ import {
   Icon,
 } from './styled-components';
 
-export const AccessibleActionsheet = createActionsheet({
+const AccessibleActionsheet = createActionsheet({
   Root,
   Content,
   Item,

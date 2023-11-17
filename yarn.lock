@@ -2617,11 +2617,6 @@
     "@react-native-aria/utils" "^0.2.10"
     "@react-stately/checkbox" "^3.4.2"
 
-"@gluestack-ui/config@1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@gluestack-ui/config/-/config-1.0.1.tgz#c748f579be6930e0cdd67e0edfac01fbe84f2b67"
-  integrity sha512-QyrxfkYn8QPiYjefjgwaMNbo8ojL7k0838F3G96DDJbWsl6RBG8PjhT6DiAmRhDe7k4zzixKKlaRHFfXHEo3FA==
-
 "@gluestack-ui/divider@^0.1.3", "@gluestack-ui/divider@^0.1.8":
   version "0.1.8"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/divider/-/divider-0.1.8.tgz#114584279aebc8bf6b718d039c521330051d8e44"
@@ -2673,10 +2668,10 @@
   dependencies:
     "@gluestack-ui/utils" "^0.1.5"
 
-"@gluestack-ui/icon@^0.1.19":
-  version "0.1.19"
-  resolved "https://registry.yarnpkg.com/@gluestack-ui/icon/-/icon-0.1.19.tgz#3fb46dce9e47e6ee9abc338858250639e78a5cc7"
-  integrity sha512-ynpYatuxePzYZeO+UwdZubM15oKFW025ioYbaiH75CR1XMN+pxs9uGixXD3J25VcBoB8mRpruY/Ila9PRRlcCg==
+"@gluestack-ui/icon@^0.1.20":
+  version "0.1.20"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/icon/-/icon-0.1.20.tgz#4140b5e94efeeb953ddc2c828800b27e103f7bfa"
+  integrity sha512-f/+DGR3139LU9NbMMvoumZWIwqy4B4e+xc02kAAubiv7p7aqGDV5KPm2JN5vVmCwiDRxX5u0F3SxodSQhEoQZA==
   dependencies:
     "@gluestack-ui/provider" "^0.1.6"
     "@gluestack-ui/utils" "^0.1.12"
