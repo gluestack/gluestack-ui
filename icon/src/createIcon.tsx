@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react';
-import { ViewProps } from 'react-native';
+import { ColorValue, ViewProps } from 'react-native';
 import { Path, G } from 'react-native-svg';
 
 interface CreateIconOptions {
@@ -31,7 +31,7 @@ interface CreateIconOptions {
 export interface IIconProps extends ViewProps {}
 
 export type IIconComponentType<IconProps> = React.ForwardRefExoticComponent<
-  IconProps & IIconProps
+  IIconProps & IconProps
 >;
 
 const ChildPath = ({ element, fill, stroke: pathStroke }: any) => {
@@ -112,6 +112,8 @@ export function createIcon<IconProps>({
     );
   });
 
-  const Icon = IconTemp as IIconComponentType<IconProps>;
+  const Icon = IconTemp as IIconComponentType<
+    IconProps | { fill?: ColorValue; stroke?: ColorValue }
+  >;
   return Icon;
 }
