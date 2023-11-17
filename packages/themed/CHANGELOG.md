@@ -1,5 +1,12 @@
 # @gluestack-ui/themed
 
+## 1.0.16
+
+### Patch Changes
+
+- removed extra exports and fixed icon fill typing
+- e3ceb642a: button spinner inherited from spinner instead of activity indicator
+
 ## 1.0.15
 
 ### Patch Changes
