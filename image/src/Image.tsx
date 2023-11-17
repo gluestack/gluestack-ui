@@ -26,7 +26,7 @@ export const Image = (StyledImage: any) =>
         {...resolvedProps}
         source={source}
         aria-label={props?.['aria-label'] || alt}
-        role={props?.role || 'image'}
+        role={props?.role || 'img'}
         alt={alt}
         ref={ref}
       />

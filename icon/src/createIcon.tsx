@@ -92,7 +92,7 @@ export function createIcon<IconProps>({
       <Root
         {...resolvedProps}
         {...colorProps}
-        role="image"
+        role="img"
         ref={ref}
         {...sizeProps}
       >
