@@ -1,5 +1,5 @@
 import { createIcon as createIconUI } from '@gluestack-ui/icon';
-import React, { forwardRef } from 'react';
+import React, { cloneElement, forwardRef, isValidElement } from 'react';
 import { createIcon, Root } from './styled-components';
 import { GenericComponentType } from '../../types';
 import { usePropResolution } from '../../hooks/usePropResolution';
@@ -19,7 +19,8 @@ const IconTemp = forwardRef(
     ref?: any
   ) => {
     const resolvedProps = usePropResolution(props);
-    let IconForward;
+    let IconForward: any;
+    let ClonedIcon: any;
     if (as) {
       IconForward = as;
     } else if (typeof viewBox === 'string') {
@@ -31,7 +32,21 @@ const IconTemp = forwardRef(
     } else if (children) {
       IconForward = children;
     }
-    return <AccessibleIcon as={IconForward} {...resolvedProps} ref={ref} />;
+    const isJSX = isValidElement(IconForward) ?? false;
+    if (isJSX) {
+      ClonedIcon = (propsResolved: any) => {
+        return cloneElement(IconForward, {
+          ...propsResolved,
+        });
+      };
+    }
+    return (
+      <AccessibleIcon
+        as={ClonedIcon ?? IconForward}
+        {...resolvedProps}
+        ref={ref}
+      />
+    );
   }
 );
 
