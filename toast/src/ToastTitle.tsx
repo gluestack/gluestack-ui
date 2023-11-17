@@ -17,9 +17,9 @@ export function ToastTitle<StyledToastTitleProps>(
         <StyledToastTitle
           {...(props as StyledToastTitleProps)}
           ref={ref}
-          accessibilityLiveRegion="assertive"
+          aria-live="assertive"
           aria-atomic="true"
-          accessibilityRole="alert"
+          role="alert"
         >
           {children}
         </StyledToastTitle>

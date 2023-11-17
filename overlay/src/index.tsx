@@ -20,7 +20,6 @@ export interface IOverlayProps {
   isKeyboardDismissable?: boolean;
   animationPreset?: 'fade' | 'slide' | 'none';
   style?: ViewStyle;
-  unmountOnExit?: boolean;
 }
 
 const Overlay = ({
@@ -33,7 +32,6 @@ const Overlay = ({
   onRequestClose,
   style,
   ref,
-  unmountOnExit,
 }: IOverlayProps & { ref?: any }) => {
   const [exited, setExited] = React.useState(!isOpen);
 
@@ -55,7 +53,7 @@ const Overlay = ({
     styleObj.display = exited && !isOpen ? 'none' : 'flex';
   }
 
-  if (unmountOnExit && !isOpen && exited) {
+  if (!isOpen && exited) {
     return null;
   }
 

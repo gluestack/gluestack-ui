@@ -31,7 +31,6 @@ export interface InterfaceActionsheetProps {
   isKeyboardDismissable?: boolean;
   children?: any;
   animationPreset?: 'fade' | 'slide' | 'none';
-  unmountOnExit?: boolean;
   snapPoints?: Array<number>;
 }
 
@@ -44,7 +43,6 @@ export interface InterfaceActionsheetItemProps extends PressableProps {
 }
 
 export interface InterfaceActionsheetContentProps {
-  focusable?: boolean;
   children?: any;
 }
 

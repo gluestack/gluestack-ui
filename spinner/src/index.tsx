@@ -6,8 +6,8 @@ export function createSpinner<SpinnerProps>({
   Root.displayName = 'Spinner';
   Root.defaultProps = {
     // @ts-ignore
-    focusable: true,
-    accessibilityLabel: 'loading',
+    'tabIndex': 0,
+    'aria-label': 'loading',
   };
   return Root;
 }

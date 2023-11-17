@@ -40,7 +40,7 @@ export function TooltipContent<StyledTooltipContentProps>(
         <StyledTooltipContent
           {...props}
           ref={mergedRef}
-          accessibilityRole={Platform.OS === 'web' ? 'tooltip' : undefined}
+          role={Platform.OS === 'web' ? 'tooltip' : undefined}
           style={{
             ...overlayProps.style,
             position: 'absolute',

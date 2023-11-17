@@ -9,9 +9,8 @@ export const Textarea = (StyledTextarea: any) =>
         children,
         multiline = true,
         onKeyPress,
-        accessibilityLabel = 'Input Field',
-        accessibilityHint,
-        accessibilityRole = 'text',
+        'aria-label': ariaLabel = 'Input Field',
+        role = 'text',
         ...props
       }: any,
       ref?: any
@@ -49,17 +48,13 @@ export const Textarea = (StyledTextarea: any) =>
             disabled: isDisabled || textareaProps.isDisabled,
           }}
           accessible
-          accessibilityLabel={accessibilityLabel}
-          accessibilityHint={accessibilityHint}
-          accessibilityRole={accessibilityRole}
-          accessibilityRequired={isRequired || textareaProps.isRequired}
-          accessibilityInvalid={isInvalid || textareaProps.isInvalid}
-          accessibilityState={{
-            invalid: isInvalid || textareaProps.isInvalid,
-            disabled: isDisabled || textareaProps.isDisabled,
-            selected: isFocused,
-          }}
-          accessibilityElementsHidden={isDisabled}
+          aria-label={ariaLabel}
+          role={role}
+          aria-required={isRequired || textareaProps.isRequired}
+          aria-invalid={isInvalid || textareaProps.isInvalid}
+          aria-disabled={isDisabled || textareaProps.isDisabled}
+          aria-selected={isFocused}
+          aria-hidden={isDisabled}
           editable={isDisabled || isReadOnly ? false : true}
           disabled={isDisabled || textareaProps.isDisabled}
           multiline={multiline}

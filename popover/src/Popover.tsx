@@ -151,7 +151,6 @@ export const Popover = (StyledPopover: any) =>
             onRequestClose={handleClose}
             isKeyboardDismissable={isKeyboardDismissable}
             useRNModal={useRNModal}
-            unmountOnExit
           >
             <PopoverProvider value={contextValue}>
               <StyledPopover ref={ref} {...props}>

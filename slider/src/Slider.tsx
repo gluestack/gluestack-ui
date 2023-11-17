@@ -14,11 +14,13 @@ function Slider<StyledSliderProps>(
       {
         orientation = 'horizontal',
         isReversed = false,
-        isHovered: isHoveredProp,
-        isDisabled: isDisabledProp,
-        isFocused: isFocusedProp,
-        isFocusVisible: isFocusVisibleProp,
-        isPressed: isPressedProp,
+        'isHovered': isHoveredProp,
+        'isDisabled': isDisabledProp,
+        'isFocused': isFocusedProp,
+        'isFocusVisible': isFocusVisibleProp,
+        'isPressed': isPressedProp,
+        // @ts-ignore
+        'aria-label': ariaLabel = 'Slider',
         children,
         ...props
       }: StyledSliderProps & ISliderProps,
@@ -32,7 +34,7 @@ function Slider<StyledSliderProps>(
       const { isDisabled, isReadOnly, ...newProps } = {
         ...formControlContext,
         ...props,
-        'aria-label': props.accessibilityLabel ?? 'Slider',
+        'aria-label': ariaLabel,
       } as any;
 
       if (typeof props.value === 'number') {

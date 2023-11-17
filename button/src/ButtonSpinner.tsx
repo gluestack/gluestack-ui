@@ -5,8 +5,8 @@ export const ButtonSpinner = (StyledButtonSpinner: any) =>
     return (
       <StyledButtonSpinner
         {...props}
-        accessible
-        accessibilityLabel="loading"
+        tabIndex={0}
+        aria-label="loading"
         ref={ref}
       />
     );

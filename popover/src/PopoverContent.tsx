@@ -76,7 +76,7 @@ const PopoverContent = (StyledPopoverContent: any, AnimatePresence?: any) =>
     const accessibilityProps =
       Platform.OS === 'web'
         ? ({
-            'accessibilityRole': 'dialog',
+            'role': 'dialog',
             'aria-labelledby': headerMounted ? headerId : undefined,
             'aria-describedby': bodyMounted ? bodyId : undefined,
           } as any)
@@ -113,7 +113,7 @@ const PopoverContent = (StyledPopoverContent: any, AnimatePresence?: any) =>
             isOpen={isOpen}
             collapsable={false}
             {...dialogProps}
-            focusable={Platform.OS === 'web' ? false : undefined}
+            tabIndex={Platform.OS === 'web' ? -1 : undefined}
             style={{
               position: 'absolute',
               ...overlayProps?.style,

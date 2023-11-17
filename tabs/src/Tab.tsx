@@ -34,7 +34,7 @@ export const Tab = <StyledTab,>(StyledTab: React.ComponentType<StyledTab>) =>
 
         return (
           <StyledTab
-            accessibilityRole="tab"
+            role="tab"
             ref={ref}
             states={{
               hover: isHovered,

@@ -106,7 +106,7 @@ export const Select = (StyledSelect: any) =>
       ]);
 
       return (
-        <StyledSelect ref={ref} focusable={false} {...props}>
+        <StyledSelect ref={ref} tabIndex={-1} {...props}>
           <SelectContext.Provider value={contextValue}>
             {children}
           </SelectContext.Provider>

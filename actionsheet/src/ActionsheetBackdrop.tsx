@@ -21,7 +21,9 @@ function ActionsheetBackdrop<T>(
             onPress={() => {
               closeOnOverlayClick && handleClose();
             }}
+            // ios
             accessibilityElementsHidden
+            // android
             importantForAccessibility="no-hide-descendants"
             aria-hidden={true}
             {...(props as T)}

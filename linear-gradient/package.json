@@ -1,6 +1,6 @@
 {
   "name": "@gluestack-ui/linear-gradient",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/index.d.ts",
@@ -32,20 +32,17 @@
   },
   "devDependencies": {
     "@types/react": "^18.0.22",
-    "@types/react-native": "^0.69.15",
+    "@types/react-native": "^0.72.3",
     "babel-plugin-transform-remove-console": "^6.9.4",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
-    "react-native": "^0.70.3",
+    "react-native": "^0.72.4",
     "react-native-builder-bob": "^0.20.1",
-    "react-native-web": "^0.18.1",
+    "react-native-web": "^0.19.9",
     "tsconfig": "7",
     "typescript": "^4.7.4"
   },
   "dependencies": {
-    "@gluestack-ui/utils": "0.1.9",
-    "@react-native-aria/focus": "^0.2.8",
-    "@react-native-aria/interactions": "^0.2.10",
     "expo-linear-gradient": "12.3.0"
   },
   "peerDependencies": {

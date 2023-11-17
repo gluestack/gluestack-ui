@@ -4,7 +4,7 @@ import { mergeRefs } from '@gluestack-ui/utils';
 import { Keyboard } from 'react-native';
 
 export const SelectTrigger = (StyledSelectTrigger: any) =>
-  forwardRef(({ children, accessibilityLabel, ...props }: any, ref?: any) => {
+  forwardRef(({ children, ...props }: any, ref?: any) => {
     const {
       isDisabled,
       hoverRef,
@@ -34,10 +34,9 @@ export const SelectTrigger = (StyledSelectTrigger: any) =>
           invalid: isInvalid,
         }}
         disabled={isDisabled}
-        accessibilityLabel={accessibilityLabel}
-        accessibilityRole="button"
+        role="button"
         ref={mergeRefs([ref, hoverRef])}
-        focusable={false}
+        tabIndex={-1}
         {...props}
       >
         {children}

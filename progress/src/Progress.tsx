@@ -20,18 +20,13 @@ const useProgress = ({
 
   return {
     'accessible': true,
-    'focusable': true,
+    'tabIndex': 1,
     'role': 'progressbar',
     'aria-valuemin': min,
     'aria-valuemax': max,
     'aria-valuenow': valueWidth,
     'aria-valuetext': `${valueWidth}%`,
     valueWidth,
-    'accessibilityRole': 'progressbar',
-    'accessibilityValueNow': valueWidth,
-    'accessibilityValueMin': min,
-    'accessibilityValueMax': max,
-    'accessibilityValueText': `${valueWidth}%`,
   };
 };
 

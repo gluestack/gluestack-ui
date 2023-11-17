@@ -21,7 +21,6 @@ const Modal = (StyledModal: any) =>
         avoidKeyboard,
         closeOnOverlayClick = true,
         isKeyboardDismissable = true,
-        unmountOnExit = true,
         _experimentalOverlay = false,
         ...props
       }: any,
@@ -90,7 +89,6 @@ const Modal = (StyledModal: any) =>
           onRequestClose={handleClose}
           isKeyboardDismissable={isKeyboardDismissable}
           useRNModal={useRNModal}
-          unmountOnExit={unmountOnExit}
         >
           <ModalContext.Provider value={contextValue}>
             <StyledModal {...remainingProps} ref={ref}>

@@ -14,9 +14,7 @@ const CheckboxGroup = (StyledCheckboxGroup: any) =>
     const { groupProps } = useCheckboxGroup(
       {
         ...props,
-        'aria-label': props['aria-label']
-          ? props['aria-label']
-          : props.accessibilityLabel,
+        'aria-label': props['aria-label'],
       },
       //@ts-ignore
       state

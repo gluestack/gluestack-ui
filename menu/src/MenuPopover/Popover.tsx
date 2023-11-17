@@ -85,7 +85,6 @@ export const Popover = ({
         onRequestClose={handleClose}
         isKeyboardDismissable
         useRNModal={useRNModal}
-        unmountOnExit
       >
         <PopoverProvider
           value={{
@@ -112,7 +111,8 @@ export const Popover = ({
         >
           <StyledBackdrop
             onPress={onClose}
-            focusable={false}
+            tabIndex={-1}
+            // for ios
             accessibilityElementsHidden
             importantForAccessibility="no-hide-descendants"
             aria-hidden={true}

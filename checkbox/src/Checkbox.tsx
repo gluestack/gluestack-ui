@@ -59,8 +59,7 @@ export const Checkbox = (StyledCheckbox: any) =>
           useCheckboxGroupItem(
             {
               ...combinedProps,
-              'aria-label':
-                combinedProps['aria-label'] ?? combinedProps.accessibilityLabel,
+              'aria-label': combinedProps['aria-label'],
               'value': combinedProps.value,
             },
             checkboxGroupContext.state,
@@ -71,8 +70,7 @@ export const Checkbox = (StyledCheckbox: any) =>
           useCheckbox(
             {
               ...combinedProps,
-              'aria-label':
-                combinedProps['aria-label'] ?? combinedProps.accessibilityLabel,
+              'aria-label': combinedProps['aria-label'],
             },
             state,
             //@ts-ignore
@@ -109,7 +107,7 @@ export const Checkbox = (StyledCheckbox: any) =>
           {...contextCombinedProps}
           {...inputProps}
           ref={mergedRef}
-          accessibilityRole="checkbox"
+          role="checkbox"
           onPressIn={composeEventHandlers(onPressIn, pressProps.onPressIn)}
           onPressOut={composeEventHandlers(onPressOut, pressProps.onPressOut)}
           // @ts-ignore - web only

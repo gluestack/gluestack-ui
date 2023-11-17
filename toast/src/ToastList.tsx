@@ -67,12 +67,12 @@ export const ToastList = () => {
           return (
             <View
               key={position}
-              pointerEvents="box-none"
               style={{
                 alignItems: 'center',
                 justifyContent: 'center',
                 margin: 'auto',
                 position: toastPositionStyle,
+                pointerEvents: 'box-none',
                 //@ts-ignore
                 ...POSITIONS[position],
               }}
@@ -93,7 +93,7 @@ export const ToastList = () => {
                     translateY: transitionConfig[position],
                   }}
                 >
-                  <SafeAreaView pointerEvents="box-none">
+                  <SafeAreaView style={{ pointerEvents: 'box-none' }}>
                     <View
                       style={{
                         bottom:

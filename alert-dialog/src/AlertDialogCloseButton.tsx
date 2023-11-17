@@ -41,7 +41,7 @@ const AlertDialogCloseButton = (StyledAlertDialogCloseButton: any) =>
 
       return (
         <StyledAlertDialogCloseButton
-          accessibilityRole="button"
+          role="button"
           ref={ref}
           onPressIn={composeEventHandlers(onPressIn, pressableProps.onPressIn)}
           onPressOut={composeEventHandlers(
