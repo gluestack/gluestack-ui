@@ -1,7 +1,7 @@
 import { createTextarea } from '@gluestack-ui/textarea';
 import { Root, Input } from './styled-components';
 
-export const AccessibleTextarea = createTextarea({
+const AccessibleTextarea = createTextarea({
   Root,
   Input,
 });
