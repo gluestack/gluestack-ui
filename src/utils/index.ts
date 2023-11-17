@@ -531,7 +531,6 @@ export function addDollarSignsToProps(obj: any, config: any) {
     if (config.aliases.hasOwnProperty(key)) {
       propertyName = config.aliases[key];
     }
-
     if (Array.isArray(propValue)) {
       //TODO: fix this ts-ignore
       //@ts-ignore
@@ -674,3 +673,22 @@ export const transformTheme = (componentTheme: any, config: any) => {
   }
   return transformedTheme;
 };
+
+// Flattens aliases that contains array of strings, like roundedTop or roundedLeft etc.
+export function getFlattendMultiAliasesProps(props: any, config: any) {
+  let flattenedProps: any = {};
+  Object.keys(props).forEach((key) => {
+    const propValue = props[key];
+    if (config?.aliases?.[key] && Array.isArray(config?.aliases?.[key])) {
+      const aliases = config.aliases[key];
+      aliases.forEach((alias: string) => {
+        flattenedProps[alias] = propValue;
+      });
+    } else if (config?.aliases?.[key]) {
+      flattenedProps[config.aliases[key]] = propValue;
+    } else {
+      flattenedProps[key] = props[key];
+    }
+  });
+  return flattenedProps;
+}

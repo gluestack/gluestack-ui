@@ -30,6 +30,26 @@ export const config = {
       maxW: 'maxWidth',
       rounded: 'borderRadius',
       space: 'gap',
+      roundedTop: ['borderTopLeftRadius', 'borderTopRightRadius'] as any,
+      roundedBottom: [
+        'borderBottomLeftRadius',
+        'borderBottomRightRadius',
+      ] as any,
+      roundedRight: ['borderTopRightRadius', 'borderBottomRightRadius'] as any,
+      roundedLeft: ['borderTopLeftRadius', 'borderBottomLeftRadius'] as any,
+      borderTopRadius: ['borderTopLeftRadius', 'borderTopRightRadius'] as any,
+      borderBottomRadius: [
+        'borderBottomLeftRadius',
+        'borderBottomRightRadius',
+      ] as any,
+      borderRightRadius: [
+        'borderTopRightRadius',
+        'borderBottomRightRadius',
+      ] as any,
+      borderLeftRadius: [
+        'borderTopLeftRadius',
+        'borderBottomLeftRadius',
+      ] as any,
     } as const,
     tokens: {
       colors: {

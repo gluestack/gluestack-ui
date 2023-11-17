@@ -3,6 +3,7 @@ import { useStyled } from '@gluestack-style/react';
 import {
   addDollarSignsToProps,
   convertToSXForStateColorModeMediaQuery,
+  getFlattendMultiAliasesProps,
 } from '../utils';
 
 export function usePropResolution(props: any) {
@@ -13,11 +14,11 @@ export function usePropResolution(props: any) {
       sizeProp = { height: props.size, width: props.size };
     }
     props = { ...props, ...sizeProp };
+    props = getFlattendMultiAliasesProps(props, styledContext.config); // Flattens aliases that contains array of strings, like roundedTop or roundedLeft etc.
     const propsWithDollarSigns = addDollarSignsToProps(
       props,
       styledContext.config
     );
-
     const sxProps = convertToSXForStateColorModeMediaQuery(
       propsWithDollarSigns,
       styledContext.config
