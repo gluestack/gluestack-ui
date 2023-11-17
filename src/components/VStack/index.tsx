@@ -10,10 +10,10 @@ const AccessibleVStack = createVStack({
 });
 
 const VStackTemp = forwardRef(
-  ({ children, divider, ...props }: any, ref?: any) => {
+  ({ children, divider, space, ...props }: any, ref?: any) => {
     const resolvedPropForGluestack = usePropResolution(props);
     return (
-      <AccessibleVStack {...resolvedPropForGluestack} ref={ref}>
+      <AccessibleVStack space={space} {...resolvedPropForGluestack} ref={ref}>
         {Children.map(children, (child, index) => {
           if (index !== 0)
             return (
