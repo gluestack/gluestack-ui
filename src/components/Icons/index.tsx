@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { createIcon as createIconUI } from '@gluestack-ui/icon';
 import React, { forwardRef } from 'react';
 import { createIcon, Root } from './styled-components';
@@ -14,12 +15,14 @@ const IconTemp = forwardRef(
       children,
       as,
       viewBox,
+      ab,
       ...props
     }: React.ComponentProps<typeof AccessibleIcon> & { viewBox?: string },
     ref?: any
   ) => {
+    console.log(ab);
     const resolvedProps = usePropResolution(props);
-    let IconForward;
+    let IconForward: any;
     if (as) {
       IconForward = as;
     } else if (typeof viewBox === 'string') {
@@ -30,6 +33,19 @@ const IconTemp = forwardRef(
       IconForward = NewIcon;
     } else if (children) {
       IconForward = children;
+    }
+    const isJSX = React.isValidElement(IconForward);
+    if (isJSX) {
+      const NewComp = () => {
+        return React.cloneElement(as, {
+          color: 'blue',
+          // ...resolvedProps,
+          // //@ts-ignore
+          // ...as.props,
+        });
+      };
+      // return <NewComp />;
+      return <AccessibleIcon as={NewComp} color="red" ref={ref} />;
     }
     return <AccessibleIcon as={IconForward} {...resolvedProps} ref={ref} />;
   }
