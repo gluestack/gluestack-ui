@@ -59,7 +59,6 @@ const NewButton = forwardRef(
     const resolvedPropForGluestack = usePropResolution(props);
     const loadingProps = getLoadingProps(resolvedPropForGluestack);
     // const activeStateProps = getActiveStateProps(resolvedPropForGluestack);
-    console.log(resolvedPropForGluestack);
     return (
       <AccessibleButton
         colorScheme={colorScheme}
