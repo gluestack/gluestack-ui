@@ -1,8 +1,9 @@
 import { useContext } from 'react';
 import { HooksContext } from '../components/Provider';
+import { useColorMode } from './useColorMode';
 
-export function useColorModeValue(props: any[]) {
-  const { colorMode } = useContext(HooksContext) as { colorMode: string };
-  if (colorMode === 'light') return props[0];
-  return props[1];
+export function useColorModeValue(prop1: any, prop2: any) {
+  const { colorMode } = useColorMode();
+  if (colorMode === 'light') return prop1;
+  return prop2;
 }

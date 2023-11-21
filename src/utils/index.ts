@@ -306,7 +306,7 @@ export const renamePseudoMap: any = {
   _focus: ':focus',
   _focusVisible: ':focusVisible',
   _hover: ':hover',
-  _pressed: ':pressed',
+  _pressed: ':active',
   _active: ':active',
   _loading: ':loading',
   _disabled: ':disabled',

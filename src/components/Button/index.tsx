@@ -20,6 +20,24 @@ type IButtonProps = {
   colorScheme?: IColorSchemes;
 };
 
+function getLoadingProps(props: any) {
+  const sxProps = props?.sx;
+  if (sxProps[':loading']) {
+    return sxProps[':loading'];
+  } else {
+    return {};
+  }
+}
+
+function getActiveStateProps(props: any) {
+  const sxProps = props?.sx;
+  if (sxProps[':pressed']) {
+    return sxProps[':pressed'];
+  } else {
+    return {};
+  }
+}
+
 const NewButton = forwardRef(
   (
     {
@@ -39,6 +57,9 @@ const NewButton = forwardRef(
     ref?: any
   ) => {
     const resolvedPropForGluestack = usePropResolution(props);
+    const loadingProps = getLoadingProps(resolvedPropForGluestack);
+    // const activeStateProps = getActiveStateProps(resolvedPropForGluestack);
+    console.log(resolvedPropForGluestack);
     return (
       <AccessibleButton
         colorScheme={colorScheme}
@@ -46,6 +67,13 @@ const NewButton = forwardRef(
         {...resolvedPropForGluestack}
         ref={ref}
         isDisabled={isLoading || isDisabled}
+        {...(isLoading && loadingProps)}
+        sx={{
+          ':active': {
+            bg: '$green.500',
+          },
+        }}
+        // {...(activeStateProps && { ':active': activeStateProps })}
       >
         {!isLoading && ((leftIcon && leftIcon) ?? (startIcon && startIcon))}
         {isLoading && spinnerPlacement === 'start' && (
@@ -53,7 +81,11 @@ const NewButton = forwardRef(
         )}
         {isLoading ? (
           isLoadingText && (
-            <AccessibleButton.Text>{isLoadingText}</AccessibleButton.Text>
+            <AccessibleButton.Text
+              {...(loadingProps['_text'] && loadingProps['_text'])}
+            >
+              {isLoadingText}
+            </AccessibleButton.Text>
           )
         ) : children && typeof children === 'string' ? (
           <AccessibleButton.Text>{children}</AccessibleButton.Text>

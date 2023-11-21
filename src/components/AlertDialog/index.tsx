@@ -14,6 +14,7 @@ import { Text } from '../Text';
 import { CloseIcon } from '../Icons';
 import { GenericComponentType } from '../../types';
 import { AnimatePresence } from '@gluestack-style/animation-resolver';
+import { memo } from 'react';
 
 const AccessibleAlertDialog = createAlertDialog({
   Root,
@@ -27,37 +28,40 @@ const AccessibleAlertDialog = createAlertDialog({
   AnimatePresence: AnimatePresence,
 });
 
-const AlertDialogTemp = forwardRef(({ children, ...props }: any, ref?: any) => {
-  return (
-    <AccessibleAlertDialog {...props} ref={ref}>
-      <AccessibleAlertDialog.Backdrop />
-      {children}
-    </AccessibleAlertDialog>
-  );
-});
+// export const AlertDialog = AccessibleAlertDialog;
+const AlertDialogTemp = memo(
+  forwardRef(({ children, ...props }: any, ref?: any) => {
+    return (
+      <AccessibleAlertDialog {...props} ref={ref}>
+        <AccessibleAlertDialog.Backdrop />
+        {children}
+      </AccessibleAlertDialog>
+    );
+  })
+);
 
-const AccessibleAlertDialogContent = forwardRef(
-  ({ children, ...props }: any, ref?: any) => {
+const AccessibleAlertDialogContent = memo(
+  forwardRef(({ children, ...props }: any, ref?: any) => {
     return (
       <AccessibleAlertDialog.Content {...props} ref={ref}>
         {children}
       </AccessibleAlertDialog.Content>
     );
-  }
+  })
 );
 
-const AccessibleAlertDialogCloseButton = forwardRef(
-  ({ ...props }: any, ref?: any) => {
+const AccessibleAlertDialogCloseButton = memo(
+  forwardRef(({ ...props }: any, ref?: any) => {
     return (
       <AccessibleAlertDialog.CloseButton {...props} ref={ref}>
         <CloseIcon />
       </AccessibleAlertDialog.CloseButton>
     );
-  }
+  })
 );
 
-const AccessibleAlertDialogHeader = forwardRef(
-  ({ children, ...props }: any, ref?: any) => {
+const AccessibleAlertDialogHeader = memo(
+  forwardRef(({ children, ...props }: any, ref?: any) => {
     return (
       <AccessibleAlertDialog.Header {...props} ref={ref}>
         {typeof children === 'string' ? (
@@ -67,27 +71,27 @@ const AccessibleAlertDialogHeader = forwardRef(
         )}
       </AccessibleAlertDialog.Header>
     );
-  }
+  })
 );
 
-const AccessibleAlertDialogFooter = forwardRef(
-  ({ children, ...props }: any, ref?: any) => {
+const AccessibleAlertDialogFooter = memo(
+  forwardRef(({ children, ...props }: any, ref?: any) => {
     return (
       <AccessibleAlertDialog.Footer {...props} ref={ref}>
         {children}
       </AccessibleAlertDialog.Footer>
     );
-  }
+  })
 );
 
-const AccessibleAlertDialogBody = forwardRef(
-  ({ children, ...props }: any, ref?: any) => {
+const AccessibleAlertDialogBody = memo(
+  forwardRef(({ children, ...props }: any, ref?: any) => {
     return (
       <AccessibleAlertDialog.Body {...props} ref={ref}>
         {typeof children === 'string' ? <Text>{children}</Text> : children}
       </AccessibleAlertDialog.Body>
     );
-  }
+  })
 );
 
 const AlertDialogNew = AlertDialogTemp as any;
