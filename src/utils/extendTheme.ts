@@ -23,7 +23,7 @@ export const convertTheme = (theme: any = {}) => {
   };
   Object.keys(theme ?? {}).forEach((key) => {
     if (key === 'components') {
-      gluestackTheme.components = { ...theme[key] };
+      gluestackTheme.components = theme[key];
     } else if (key === 'config') {
     } else {
       gluestackTheme.tokens[key] = flattenTokens(theme[key]);
@@ -118,95 +118,94 @@ type GSConvertedConfig<Theme> = {
 };
 
 export function extendTheme<Theme>(tempTheme: Theme) {
-  console.log('extending theme', tempTheme);
   const theme = tempTheme as any;
-  // if (Object.keys(theme).length === 0) {
-  //   return;
-  // }
-  // const finalTheme: any = {};
-  // const gluestackStyles: any = theme;
-  // const clonedConfig: typeof config = JSON.parse(
-  //   JSON.stringify(config)
-  // ) as typeof config;
+  if (Object.keys(theme).length === 0) {
+    return;
+  }
+  const finalTheme: any = {};
+  const gluestackStyles: any = theme;
+  const clonedConfig: typeof config = JSON.parse(
+    JSON.stringify(config)
+  ) as typeof config;
 
-  // if (theme.components) {
-  //   const componentTheme = theme.components;
-  //   delete gluestackStyles.components;
-  //   const componentsTheme: any = {};
-  //   Object.keys(componentTheme).map((component) => {
-  //     componentsTheme[component] = { theme: {} };
-  //     componentsTheme[component].theme = {
-  //       ...transformTheme(componentTheme[component], clonedConfig),
-  //     };
-  //   });
-  //   finalTheme.components = componentsTheme;
-  // }
+  if (theme.components) {
+    const componentTheme = theme.components;
+    delete gluestackStyles.components;
+    const componentsTheme: any = {};
+    Object.keys(componentTheme).map((component) => {
+      componentsTheme[component] = { theme: {} };
+      componentsTheme[component].theme = {
+        ...transformTheme(componentTheme[component], clonedConfig),
+      };
+    });
+    finalTheme.components = componentsTheme;
+  }
 
-  // if (theme.config) {
-  //   finalTheme.config = theme.config;
-  //   delete gluestackStyles.config;
-  // }
+  if (theme.config) {
+    finalTheme.config = theme.config;
+    delete gluestackStyles.config;
+  }
 
-  // let updatedColor = {};
-  // if (gluestackStyles.colors) {
-  //   Object.keys(gluestackStyles.colors).map((color: Object | string) => {
-  //     // @ts-ignore
-  //     if (typeof gluestackStyles.colors[color] === 'object') {
-  //       updatedColor = {
-  //         ...updatedColor,
-  //         ...convertNBColorsToGluestackColors(gluestackStyles.colors),
-  //       };
-  //     } else {
-  //       updatedColor = {
-  //         ...updatedColor,
-  //         // @ts-ignore
-  //         [color]: gluestackStyles.colors[color],
-  //       };
-  //     }
-  //   });
-  // }
-  // gluestackStyles.colors = updatedColor;
-  // const mergedTheme = deepMerge(
-  //   deepMerge(clonedConfig.theme, convertTheme(finalTheme)),
-  //   { tokens: gluestackStyles }
-  // );
-  return tempTheme;
-  // return mergedTheme as 'components' extends keyof Theme
-  //   ? MergeTwoObjects<typeof clonedConfig.theme, GSConvertedConfig<Theme>> & {
-  //       components: {
-  //         [Key in keyof Theme['components']]: {
-  //           theme: 'variants' extends keyof Theme['components'][Key]
-  //             ? 'sizes' extends keyof Theme['components'][Key]
-  //               ? Omit<
-  //                   Theme['components'][Key],
-  //                   | keyof Theme['components'][Key]['variants']
-  //                   | keyof Theme['components'][Key]['sizes']
-  //                 > & {
-  //                   variants: {
-  //                     variant: Theme['components'][Key]['variants'];
-  //                     size: Theme['components'][Key]['sizes'];
-  //                   };
-  //                 }
-  //               : Omit<
-  //                   Theme['components'][Key],
-  //                   keyof Theme['components'][Key]['variants']
-  //                 > & {
-  //                   variants: {
-  //                     variant: Theme['components'][Key]['variants'];
-  //                   };
-  //                 }
-  //             : 'sizes' extends keyof Theme['components'][Key]
-  //             ? Omit<
-  //                 Theme['components'][Key],
-  //                 keyof Theme['components'][Key]['sizes']
-  //               > & {
-  //                 variants: {
-  //                   sizes: Theme['components'][Key]['sizes'];
-  //                 };
-  //               }
-  //             : Theme['components'][Key];
-  //         };
-  //       };
-  //     }
-  //   : {};
+  let updatedColor = {};
+  if (gluestackStyles.colors) {
+    Object.keys(gluestackStyles.colors).map((color: Object | string) => {
+      // @ts-ignore
+      if (typeof gluestackStyles.colors[color] === 'object') {
+        updatedColor = {
+          ...updatedColor,
+          ...convertNBColorsToGluestackColors(gluestackStyles.colors),
+        };
+      } else {
+        updatedColor = {
+          ...updatedColor,
+          // @ts-ignore
+          [color]: gluestackStyles.colors[color],
+        };
+      }
+    });
+  }
+  gluestackStyles.colors = updatedColor;
+  const mergedTheme = deepMerge(
+    deepMerge(clonedConfig.theme, convertTheme(finalTheme)),
+    { tokens: gluestackStyles }
+  );
+
+  return mergedTheme as 'components' extends keyof Theme
+    ? MergeTwoObjects<typeof clonedConfig.theme, GSConvertedConfig<Theme>> & {
+        components: {
+          [Key in keyof Theme['components']]: {
+            theme: 'variants' extends keyof Theme['components'][Key]
+              ? 'sizes' extends keyof Theme['components'][Key]
+                ? Omit<
+                    Theme['components'][Key],
+                    | keyof Theme['components'][Key]['variants']
+                    | keyof Theme['components'][Key]['sizes']
+                  > & {
+                    variants: {
+                      variant: Theme['components'][Key]['variants'];
+                      size: Theme['components'][Key]['sizes'];
+                    };
+                  }
+                : Omit<
+                    Theme['components'][Key],
+                    keyof Theme['components'][Key]['variants']
+                  > & {
+                    variants: {
+                      variant: Theme['components'][Key]['variants'];
+                    };
+                  }
+              : 'sizes' extends keyof Theme['components'][Key]
+              ? Omit<
+                  Theme['components'][Key],
+                  keyof Theme['components'][Key]['sizes']
+                > & {
+                  variants: {
+                    sizes: Theme['components'][Key]['sizes'];
+                  };
+                }
+              : Theme['components'][Key];
+          };
+        };
+      }
+    : {};
 }
