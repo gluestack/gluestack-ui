@@ -119,9 +119,9 @@ const AccessibleActionsheetContent = forwardRef(
 const AccessibleActionsheetItem = forwardRef(
   ({ children, ...props }: any, ref?: any) => {
     return (
-      <Button variant="actionsheetStyle" {...props} ref={ref}>
+      <div variant="actionsheetStyle" {...props} ref={ref}>
         {children}
-      </Button>
+      </div>
     );
   }
 );
