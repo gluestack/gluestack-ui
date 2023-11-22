@@ -4,7 +4,6 @@ import { Root as AccessibleLinearGradient } from './styled-components';
 
 import { Text } from '../Text';
 
-import { usePropResolution } from '../../hooks/usePropResolution';
 import { GenericComponentType } from '../../types';
 
 const LinearGradientTemp = forwardRef(
@@ -13,9 +12,9 @@ const LinearGradientTemp = forwardRef(
       if (typeof child === 'string') return <Text>{child}</Text>;
       return child;
     });
-    const resolvedPropForGluestack = usePropResolution(props);
+
     return (
-      <AccessibleLinearGradient {...resolvedPropForGluestack} ref={ref}>
+      <AccessibleLinearGradient {...props} ref={ref}>
         {GUIChildren}
       </AccessibleLinearGradient>
     );
