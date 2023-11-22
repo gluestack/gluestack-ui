@@ -473,9 +473,9 @@ function addDollarSign(propertyName: any, propValue: any, config: any) {
       ? //@ts-ignore
         config.tokens[propertyTokenMap[propertyName]][propValue]
       : undefined;
-    // console.log(tokenAvailable, 'TOLEN AVAILABLE', propertyName);
+    // console.log(tokenAvailable, 'TOKEN AVAILABLE', propertyName);
     if (tokenAvailable === undefined) {
-      return propValue;
+      return Number(propValue);
     } else {
       return `$${propValue}`;
     }
@@ -561,7 +561,6 @@ export function addDollarSignsToProps(obj: any, config: any) {
       newObj[key] = addDollarSign(propertyName, propValue, config);
     }
   }
-
   return newObj;
 }
 

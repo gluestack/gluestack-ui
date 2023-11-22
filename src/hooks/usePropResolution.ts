@@ -15,7 +15,7 @@ export function usePropResolution(props: any) {
       ((typeof props.size === 'number' && !isNaN(props.size)) ||
         (typeof props.size === 'string' && !isNaN(Number(props.size))))
     ) {
-      sizeProp = { height: Number(props.size), width: Number(props.size) };
+      sizeProp = { height: props.size, width: props.size };
     }
     props = { ...sizeProp, ...props };
     props = getFlattendMultiAliasesProps(props, styledContext.config); // Flattens aliases that contains array of strings, like roundedTop or roundedLeft etc.
