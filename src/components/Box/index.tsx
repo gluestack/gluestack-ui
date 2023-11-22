@@ -19,7 +19,7 @@ const BoxTemp = forwardRef(({ children, ...props }: any, ref?: any) => {
   const { config: configDependencies }: any =
     React.useContext<any>(HooksContext);
 
-  let Gradient = configDependencies?.['linear-gradient'];
+  const Gradient = configDependencies?.['linear-gradient'];
   const resolvedPropForGluestack = usePropResolution(props);
   if (
     props.bg?.linearGradient ||

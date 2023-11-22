@@ -305,7 +305,7 @@ export const renamePseudoMap: any = {
   _focus: ':focus',
   _focusVisible: ':focusVisible',
   _hover: ':hover',
-  _pressed: ':pressed',
+  _pressed: ':active',
   _active: ':active',
   _loading: ':loading',
   _disabled: ':disabled',
@@ -473,9 +473,9 @@ function addDollarSign(propertyName: any, propValue: any, config: any) {
       ? //@ts-ignore
         config.tokens[propertyTokenMap[propertyName]][propValue]
       : undefined;
-    // console.log(tokenAvailable, 'TOLEN AVAILABLE', propertyName);
+    // console.log(tokenAvailable, 'TOKEN AVAILABLE', propertyName);
     if (tokenAvailable === undefined) {
-      return propValue;
+      return Number(propValue);
     } else {
       return `$${propValue}`;
     }
@@ -561,7 +561,6 @@ export function addDollarSignsToProps(obj: any, config: any) {
       newObj[key] = addDollarSign(propertyName, propValue, config);
     }
   }
-
   return newObj;
 }
 
@@ -676,7 +675,7 @@ export const transformTheme = (componentTheme: any, config: any) => {
 
 // Flattens aliases that contains array of strings, like roundedTop or roundedLeft etc.
 export function getFlattendMultiAliasesProps(props: any, config: any) {
-  let flattenedProps: any = {};
+  const flattenedProps: any = {};
   Object.keys(props).forEach((key) => {
     const propValue = props[key];
     if (config?.aliases?.[key] && Array.isArray(config?.aliases?.[key])) {
