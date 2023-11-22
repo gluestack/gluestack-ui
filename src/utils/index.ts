@@ -305,8 +305,8 @@ export const renamePseudoMap: any = {
   _focus: ':focus',
   _focusVisible: ':focusVisible',
   _hover: ':hover',
-  _pressed: ':pressed',
-  _active: ':active',
+  _pressed: ':active',
+  // _active: ':active',
   _loading: ':loading',
   _disabled: ':disabled',
   // _web: '_web',
@@ -676,7 +676,7 @@ export const transformTheme = (componentTheme: any, config: any) => {
 
 // Flattens aliases that contains array of strings, like roundedTop or roundedLeft etc.
 export function getFlattendMultiAliasesProps(props: any, config: any) {
-  let flattenedProps: any = {};
+  const flattenedProps: any = {};
   Object.keys(props).forEach((key) => {
     const propValue = props[key];
     if (config?.aliases?.[key] && Array.isArray(config?.aliases?.[key])) {
