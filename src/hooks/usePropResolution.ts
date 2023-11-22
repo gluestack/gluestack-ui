@@ -1,5 +1,5 @@
 import { useStyled } from '@gluestack-style/react';
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 
 import {
   addDollarSignsToProps,
@@ -65,7 +65,6 @@ function resolveProps(props: any) {
 
 export function usePropResolution(props: any) {
   return useMemo(() => {
-    console.log('IN use prop resolution');
     return resolveProps(props);
   }, [props]);
 }
