@@ -360,11 +360,12 @@ export const platformSpecificSpaceUnits = (theme: Config, platform: string) => {
     if (newTheme.tokens) {
       //@ts-ignore
       newTheme.tokens[key] = newScale;
-    } else {
-      console.warn(
-        'No tokens found in config! Please pass config in Provider to resolve styles!'
-      );
     }
+    // else {
+    //   console.warn(
+    //     'No tokens found in config! Please pass config in Provider to resolve styles!'
+    //   );
+    // }
   });
   return newTheme;
 };
