@@ -58,6 +58,9 @@ export type IIconComponentType<Icon> = GenericComponentType<
   { viewBox?: string; as?: any }
 >;
 
-export const Icon = IconTemp as IIconComponentType<typeof Root>;
+// export const Icon = IconTemp as IIconComponentType<typeof Root>;
+export const Icon = () => {
+  return <></>;
+};
 
 export { createIcon };

@@ -40,6 +40,59 @@ export const AccessibleActionsheet = createActionsheet({
   AnimatePresence: AnimatePresence,
 });
 
+type IAccessibleActionsheet = typeof AccessibleActionsheet;
+
+interface Actionsheet extends IAccessibleActionsheet {
+  /**
+   * @deprecated Use ActionsheetContent instead.
+   */
+  Content: IAccessibleActionsheet['Content'];
+  /**
+   * @deprecated Use ActionsheetItem instead.
+   */
+  Item: IAccessibleActionsheet['Item'];
+  /**
+   * @deprecated Use ActionsheetItemText instead.
+   */
+  ItemText: IAccessibleActionsheet['ItemText'];
+  /**
+   * @deprecated Use ActionsheetDragIndicator instead.
+   */
+  DragIndicator: IAccessibleActionsheet['DragIndicator'];
+  /**
+   * @deprecated Use ActionsheetDragIndicatorWrapper instead.
+   */
+  DragIndicatorWrapper: IAccessibleActionsheet['DragIndicatorWrapper'];
+  /**
+   * @deprecated Use ActionsheetBackdrop instead.
+   */
+  Backdrop: IAccessibleActionsheet['Backdrop'];
+  /**
+   * @deprecated Use ActionsheetScrollView instead.
+   */
+  ScrollView: IAccessibleActionsheet['ScrollView'];
+  /**
+   * @deprecated Use ActionsheetVirtualizedList instead.
+   */
+  VirtualizedList: IAccessibleActionsheet['VirtualizedList'];
+  /**
+   * @deprecated Use ActionsheetFlatList instead.
+   */
+  FlatList: IAccessibleActionsheet['FlatList'];
+  /**
+   * @deprecated Use ActionsheetSectionList instead.
+   */
+  SectionList: IAccessibleActionsheet['SectionList'];
+  /**
+   * @deprecated Use ActionsheetSectionHeaderText instead.
+   */
+  SectionHeaderText: IAccessibleActionsheet['SectionHeaderText'];
+  /**
+   * @deprecated Use ActionsheetIcon instead.
+   */
+  Icon: IAccessibleActionsheet['Icon'];
+}
+
 const ActionSheetContext = createContext<any>({});
 
 const NewActionsheet = forwardRef(
@@ -88,12 +141,13 @@ const AccessibleActionsheetContent = forwardRef(
     }: any,
     ref?: any
   ) => {
-    const { hideDragIndicator } = useContext(ActionSheetContext);
     const resolvedProps = usePropResolution(props);
     const resolvedPropsForDragIndicator = usePropResolution(_dragIndicator);
     const resolvedPropsForDragIndicatorWrapper = usePropResolution(
       _dragIndicatorWrapper
     );
+    const { hideDragIndicator } = useContext(ActionSheetContext);
+
     return (
       <AccessibleActionsheet.Content {...resolvedProps} ref={ref}>
         {!hideDragIndicator && (
@@ -117,11 +171,25 @@ const AccessibleActionsheetContent = forwardRef(
 );
 
 const AccessibleActionsheetItem = forwardRef(
-  ({ children, ...props }: any, ref?: any) => {
+  (
+    { children, leftIcon, rightIcon, startIcon, endIcon, ...props }: any,
+    ref?: any
+  ) => {
     return (
-      <Button variant="actionsheetStyle" {...props} ref={ref}>
-        {children}
-      </Button>
+      <AccessibleActionsheet.Item
+        variant="actionsheetStyle"
+        {...props}
+        ref={ref}
+      >
+        {(leftIcon && leftIcon) ?? (startIcon && startIcon)}
+        {children && typeof children === 'string' ? (
+          <AccessibleActionsheet.ItemText>
+            {children}
+          </AccessibleActionsheet.ItemText>
+        ) : (
+          children && { children }
+        )}
+      </AccessibleActionsheet.Item>
     );
   }
 );
@@ -129,6 +197,18 @@ const AccessibleActionsheetItem = forwardRef(
 const ActionsheetNew = NewActionsheet as any;
 ActionsheetNew.Content = AccessibleActionsheetContent;
 ActionsheetNew.Item = AccessibleActionsheetItem;
+ActionsheetNew.ItemText = AccessibleActionsheet.ItemText;
+ActionsheetNew.DragIndicator = AccessibleActionsheet.DragIndicator;
+ActionsheetNew.DragIndicator = AccessibleActionsheet.DragIndicator;
+ActionsheetNew.DragIndicatorWrapper =
+  AccessibleActionsheet.DragIndicatorWrapper;
+ActionsheetNew.Backdrop = AccessibleActionsheet.Backdrop;
+ActionsheetNew.ScrollView = AccessibleActionsheet.ScrollView;
+ActionsheetNew.VirtualizedList = AccessibleActionsheet.VirtualizedList;
+ActionsheetNew.FlatList = AccessibleActionsheet.FlatList;
+ActionsheetNew.SectionList = AccessibleActionsheet.SectionList;
+ActionsheetNew.SectionHeaderText = AccessibleActionsheet.SectionHeaderText;
+ActionsheetNew.Icon = AccessibleActionsheet.Icon;
 
 export type IActionsheetComponentType<Actionsheet, Content, Item> =
   GenericComponentType<Actionsheet> & {

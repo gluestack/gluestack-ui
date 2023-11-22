@@ -1,4 +1,5 @@
 import { useStyled } from '@gluestack-style/react';
+import { useMemo, useState } from 'react';
 
 import {
   addDollarSignsToProps,
@@ -6,8 +7,9 @@ import {
   getFlattendMultiAliasesProps,
 } from '../utils';
 
-export function usePropResolution(props: any) {
+function resolveProps(props: any) {
   const styledContext = useStyled();
+
   if (props) {
     let sizeProp = {};
     if (
@@ -59,5 +61,11 @@ export function usePropResolution(props: any) {
 
     return sxProps;
   }
-  return props;
+}
+
+export function usePropResolution(props: any) {
+  return useMemo(() => {
+    console.log('IN use prop resolution');
+    return resolveProps(props);
+  }, [props]);
 }
