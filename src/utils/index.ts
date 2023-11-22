@@ -123,7 +123,6 @@ const letterSpacings = 'letterSpacings';
 const lineHeights = 'lineHeights';
 const radii = 'radii';
 const shadows = 'shadows';
-const sizes = 'sizes';
 const space = 'space';
 const transitions = 'transitions';
 const zIndices = 'zIndices';
@@ -236,7 +235,7 @@ export const propertyTokenMap = {
   fill: colors,
   outline: colors,
   outlineColor: colors,
-  outlineWidth: sizes,
+  outlineWidth: space,
   stroke: colors,
   textDecorationColor: colors,
   shadowColor: colors,
@@ -261,12 +260,12 @@ export const propertyTokenMap = {
   inlineSize: space,
   minInlineSize: space,
   maxInlineSize: space,
-  width: sizes,
-  minWidth: sizes,
-  maxWidth: sizes,
-  height: sizes,
-  minHeight: sizes,
-  maxHeight: sizes,
+  width: space,
+  minWidth: space,
+  maxWidth: space,
+  height: space,
+  minHeight: space,
+  maxHeight: space,
   flexBasis: space,
   gridTemplateColumns: space,
   gridTemplateRows: space,
@@ -472,9 +471,9 @@ function addDollarSign(propertyName: any, propValue: any, config: any) {
       ? //@ts-ignore
         config.tokens[propertyTokenMap[propertyName]][propValue]
       : undefined;
-    // console.log(tokenAvailable, 'TOLEN AVAILABLE', propertyName);
+    // console.log(tokenAvailable, 'TOKEN AVAILABLE', propertyName);
     if (tokenAvailable === undefined) {
-      return propValue;
+      return Number(propValue);
     } else {
       return `$${propValue}`;
     }
@@ -530,7 +529,6 @@ export function addDollarSignsToProps(obj: any, config: any) {
     if (config.aliases.hasOwnProperty(key)) {
       propertyName = config.aliases[key];
     }
-
     if (Array.isArray(propValue)) {
       //TODO: fix this ts-ignore
       //@ts-ignore
@@ -561,7 +559,6 @@ export function addDollarSignsToProps(obj: any, config: any) {
       newObj[key] = addDollarSign(propertyName, propValue, config);
     }
   }
-
   return newObj;
 }
 
@@ -673,3 +670,22 @@ export const transformTheme = (componentTheme: any, config: any) => {
   }
   return transformedTheme;
 };
+
+// Flattens aliases that contains array of strings, like roundedTop or roundedLeft etc.
+export function getFlattendMultiAliasesProps(props: any, config: any) {
+  const flattenedProps: any = {};
+  Object.keys(props).forEach((key) => {
+    const propValue = props[key];
+    if (config?.aliases?.[key] && Array.isArray(config?.aliases?.[key])) {
+      const aliases = config.aliases[key];
+      aliases.forEach((alias: string) => {
+        flattenedProps[alias] = propValue;
+      });
+    } else if (config?.aliases?.[key]) {
+      flattenedProps[config.aliases[key]] = propValue;
+    } else {
+      flattenedProps[key] = props[key];
+    }
+  });
+  return flattenedProps;
+}

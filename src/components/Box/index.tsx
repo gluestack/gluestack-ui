@@ -7,8 +7,8 @@ import { Text } from '../Text';
 import { usePropResolution } from '../../hooks/usePropResolution';
 import { GenericComponentType } from '../../types';
 import { HooksContext } from '../Provider';
-import { getColor } from '../../utils';
-import { styled } from '@gluestack-style/react';
+// import { getColor } from '../../utils';
+// import { styled } from '@gluestack-style/react';
 import { LinearGradient } from '../LinearGradient';
 
 const BoxTemp = forwardRef(({ children, ...props }: any, ref?: any) => {
@@ -16,11 +16,11 @@ const BoxTemp = forwardRef(({ children, ...props }: any, ref?: any) => {
     if (typeof child === 'string') return <Text>{child}</Text>;
     return child;
   });
-  const { config: configDependencies, newTheme: theme }: any =
+  const { config: configDependencies }: any =
     React.useContext<any>(HooksContext);
 
-  let Gradient = configDependencies?.['linear-gradient'];
-
+  const Gradient = configDependencies?.['linear-gradient'];
+  const resolvedPropForGluestack = usePropResolution(props);
   if (
     props.bg?.linearGradient ||
     props.background?.linearGradient ||
@@ -32,8 +32,6 @@ const BoxTemp = forwardRef(({ children, ...props }: any, ref?: any) => {
       props.background?.linearGradient ||
       props.bgColor?.linearGradient ||
       props.backgroundColor?.linearGradient;
-
-    const resolvedPropForGluestack = usePropResolution(props);
 
     delete resolvedPropForGluestack['sx']['@linearGradient'];
 
@@ -59,8 +57,6 @@ const BoxTemp = forwardRef(({ children, ...props }: any, ref?: any) => {
           start={startObj}
           end={endObj}
           locations={lgrad.locations}
-          p="$16"
-          borderRadius="$md"
           {...resolvedPropForGluestack}
           ref={ref}
         >
@@ -69,7 +65,6 @@ const BoxTemp = forwardRef(({ children, ...props }: any, ref?: any) => {
       );
     }
   }
-  const resolvedPropForGluestack = usePropResolution(props);
   return (
     <AccessibleBox {...resolvedPropForGluestack} ref={ref}>
       {GUIChildren}

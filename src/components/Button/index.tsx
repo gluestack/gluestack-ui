@@ -67,11 +67,6 @@ const NewButton = forwardRef(
         ref={ref}
         isDisabled={isLoading || isDisabled}
         {...(isLoading && loadingProps)}
-        // sx={{
-        //   ':active': {
-        //     bg: '$green.500',
-        //   },
-        // }}
         // {...(activeStateProps && { ':active': activeStateProps })}
       >
         {!isLoading && ((leftIcon && leftIcon) ?? (startIcon && startIcon))}

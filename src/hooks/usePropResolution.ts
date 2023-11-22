@@ -4,6 +4,7 @@ import { useMemo, useState } from 'react';
 import {
   addDollarSignsToProps,
   convertToSXForStateColorModeMediaQuery,
+  getFlattendMultiAliasesProps,
 } from '../utils';
 
 function resolveProps(props: any) {
@@ -11,15 +12,19 @@ function resolveProps(props: any) {
 
   if (props) {
     let sizeProp = {};
-    if (props.size) {
+    if (
+      props.size &&
+      ((typeof props.size === 'number' && !isNaN(props.size)) ||
+        (typeof props.size === 'string' && !isNaN(Number(props.size))))
+    ) {
       sizeProp = { height: props.size, width: props.size };
     }
-    props = { ...props, ...sizeProp };
+    props = { ...sizeProp, ...props };
+    props = getFlattendMultiAliasesProps(props, styledContext.config); // Flattens aliases that contains array of strings, like roundedTop or roundedLeft etc.
     const propsWithDollarSigns = addDollarSignsToProps(
       props,
       styledContext.config
     );
-
     const sxProps = convertToSXForStateColorModeMediaQuery(
       propsWithDollarSigns,
       styledContext.config
