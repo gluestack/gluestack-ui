@@ -307,7 +307,6 @@ export const renamePseudoMap: any = {
   _hover: ':hover',
   _pressed: ':active',
   _active: ':active',
-  _loading: ':loading',
   _disabled: ':disabled',
   // _web: '_web',
   // _android: '_android',
@@ -441,7 +440,6 @@ export function convertToSXForStateColorModeMediaQuery(
   };
 
   const obj = convertResponsiveToPseudoClasses(inputObj, _config);
-
   const newPseudoClass = renamePseudoClasses(obj);
 
   for (const key in newPseudoClass) {

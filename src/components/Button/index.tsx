@@ -59,7 +59,6 @@ const NewButton = forwardRef(
     const resolvedPropForGluestack = usePropResolution(props);
     const loadingProps = getLoadingProps(resolvedPropForGluestack);
     // const activeStateProps = getActiveStateProps(resolvedPropForGluestack);
-    console.log(resolvedPropForGluestack);
     return (
       <AccessibleButton
         colorScheme={colorScheme}
@@ -68,11 +67,6 @@ const NewButton = forwardRef(
         ref={ref}
         isDisabled={isLoading || isDisabled}
         {...(isLoading && loadingProps)}
-        sx={{
-          ':active': {
-            bg: '$green.500',
-          },
-        }}
         // {...(activeStateProps && { ':active': activeStateProps })}
       >
         {!isLoading && ((leftIcon && leftIcon) ?? (startIcon && startIcon))}
@@ -111,6 +105,7 @@ const NewGroupButton = forwardRef(({ children, ...props }: any, ref?: any) => {
 });
 
 const ButtonTemp = NewButton as any;
+
 ButtonTemp.Group = NewGroupButton;
 
 export type IButtonComponentType<Button, Group> = GenericComponentType<

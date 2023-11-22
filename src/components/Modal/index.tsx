@@ -61,25 +61,19 @@ const AccessibleModalHeader = forwardRef(
         ) : (
           children
         )}
+        {/* {children} */}
       </AccessibleModal.Header>
     );
   }
 );
 
-const AccessibleModalFooter = forwardRef(
-  ({ children, ...props }: any, ref?: any) => {
-    return (
-      <AccessibleModal.Footer {...props} ref={ref}>
-        {children}
-      </AccessibleModal.Footer>
-    );
-  }
-);
+const AccessibleModalFooter = AccessibleModal.Footer;
 
 const AccessibleModalBody = forwardRef(
   ({ children, ...props }: any, ref?: any) => {
     return (
       <AccessibleModal.Body {...props} ref={ref}>
+        {/* {children} */}
         {typeof children === 'string' ? <Text>{children}</Text> : children}
       </AccessibleModal.Body>
     );
@@ -115,3 +109,4 @@ export const Modal = ModalNew as IModalComponentType<
   typeof AccessibleModal.Footer,
   typeof AccessibleModal.Body
 >;
+// export const Modal = AccessibleModal;
