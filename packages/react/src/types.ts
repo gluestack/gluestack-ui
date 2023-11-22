@@ -963,7 +963,10 @@ export type UnionToIntersection<U> = (
 
 export type GetRNStyles<GenericComponentStyles> = UnionToIntersection<
   Partial<
-    Exclude<GenericComponentStyles, undefined | null | false | string | number>
+    Exclude<
+      GenericComponentStyles,
+      undefined | null | false | string | number | any[]
+    >
   >
 >;
 
