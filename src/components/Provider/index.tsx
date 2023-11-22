@@ -31,7 +31,9 @@ const NativeBaseProvider = ({
   const [colorMode, setColorMode] = useState(useColorMode());
 
   const gluestackCompatibleTheme = convertTheme(theme);
-  const mergedTheme = deepMerge(defaultConfig.theme, gluestackCompatibleTheme);
+  const mergedTheme = theme
+    ? deepMerge(deepMerge(defaultConfig.theme, gluestackCompatibleTheme), theme)
+    : deepMerge(defaultConfig.theme, gluestackCompatibleTheme);
 
   const newTheme = React.useMemo(() => {
     if (_enableRem) {
@@ -48,13 +50,7 @@ const NativeBaseProvider = ({
         // newTheme,
       }}
     >
-      <GluestackUIProvider
-        colorMode={colorMode}
-        config={
-          theme ? deepMerge(newTheme, theme) : deepMerge(newTheme, mergedTheme)
-        }
-        {...props}
-      >
+      <GluestackUIProvider colorMode={colorMode} config={newTheme} {...props}>
         {children}
       </GluestackUIProvider>
     </HooksContext.Provider>
