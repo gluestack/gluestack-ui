@@ -994,7 +994,6 @@ export function verboseStyled<P, Variants, ComCon>(
 
   const StyledComponent = (
     {
-      children,
       //@ts-ignore
       orderedResolved: BUILD_TIME_ORDERED_RESOLVED = [],
       //@ts-ignore
@@ -1009,7 +1008,6 @@ export function verboseStyled<P, Variants, ComCon>(
         Partial<ComponentProps<ITypeReactNativeStyles, Variants, P, ComCon>> &
         Partial<UtilityProps<ITypeReactNativeStyles, Variants, P>> & {
           as?: any;
-          children?: any;
         },
       'animationComponentGluestack'
     >,
@@ -2019,15 +2017,11 @@ export function verboseStyled<P, Variants, ComCon>(
             style={resolvedStyleMemo}
             as={AsComp}
             ref={ref}
-          >
-            {children}
-          </ComponentWithPlugin>
+          />
         );
       } else {
         component = (
-          <AsComp {...resolvedStyleProps} style={resolvedStyleMemo} ref={ref}>
-            {children}
-          </AsComp>
+          <AsComp {...resolvedStyleProps} style={resolvedStyleMemo} ref={ref} />
         );
       }
     } else {
@@ -2040,18 +2034,14 @@ export function verboseStyled<P, Variants, ComCon>(
           states={states}
           style={resolvedStyleMemo}
           ref={ref}
-        >
-          {children}
-        </ComponentWithPlugin>
+        />
       ) : (
         <ComponentWithPlugin
           {...resolvedStyleProps}
           {...propsToBePassedInToPlugin}
           style={resolvedStyleMemo}
           ref={ref}
-        >
-          {children}
-        </ComponentWithPlugin>
+        />
       );
     }
     if (containsDescendant) {
