@@ -1,5 +1,11 @@
 # @gluestack-ui/themed
 
+## 1.0.17
+
+### Patch Changes
+
+- fix: cyclic dependency and avatar image
+
 ## 1.0.16
 
 ### Patch Changes
