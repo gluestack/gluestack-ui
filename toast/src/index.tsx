@@ -1,11 +1,11 @@
-import { useToast } from './Toast';
+import { getToastHook } from './Toast';
 import { ToastComponent } from './ToastComponent';
 import { ToastTitle } from './ToastTitle';
 import { ToastDescription } from './ToastDescription';
 import type { IToastComponentType } from './types';
 
-export const createToastHook = () => {
-  return useToast;
+export const createToastHook = (AnimationWrapper: any) => {
+  return getToastHook(AnimationWrapper);
 };
 
 export function createToast<Root, Title, Description>({

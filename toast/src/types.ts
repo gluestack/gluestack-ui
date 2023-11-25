@@ -34,6 +34,12 @@ export interface InterfaceToastProps {
    * @default false
    */
   avoidKeyboard?: boolean;
+
+  /**
+   * container Style object for the toast
+   * @default 0
+   */
+  containerStyle?: any;
 }
 
 export type IToast = {
@@ -58,6 +64,7 @@ export type IToastContext = {
   hideToast: (id: any) => void;
   avoidKeyboard?: boolean;
   bottomInset?: number;
+  AnimationWrapper?: any;
 };
 
 export type IToastComponentType<

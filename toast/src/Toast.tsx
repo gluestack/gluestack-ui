@@ -2,12 +2,14 @@ import React, { useState, useMemo } from 'react';
 import { ToastList } from './ToastList';
 import type { IToastInfo, IToast, IToastProps } from './types';
 import { ToastContext } from './ToastContext';
+import { View } from 'react-native';
 export const ToastProvider = ({ children }: { children: any }) => {
   const [toastInfo, setToastInfo] = useState<IToastInfo>({});
   const [visibleToasts, setVisibleToasts] = useState<{
     [key in string]: boolean;
   }>({});
 
+  const AnimationWrapper = React.useRef(View);
   const toastIndex = React.useRef(1);
 
   const hideAll = React.useCallback(() => {
@@ -116,6 +118,7 @@ export const ToastProvider = ({ children }: { children: any }) => {
       visibleToasts,
       setVisibleToasts,
       hideToast,
+      AnimationWrapper,
     };
   }, [
     toastInfo,
@@ -137,19 +140,22 @@ export const ToastProvider = ({ children }: { children: any }) => {
   );
 };
 
-export const useToast = () => {
-  const { setToast, hideAll, isActive, hideToast } =
-    React.useContext(ToastContext);
+export const getToastHook = (StyledAnimationWrapper: any) => {
+  const useToast = () => {
+    const { AnimationWrapper, setToast, hideAll, isActive, hideToast } =
+      React.useContext(ToastContext);
+    AnimationWrapper.current = StyledAnimationWrapper;
+    const toast = useMemo(
+      () => ({
+        show: setToast,
+        close: hideToast,
+        closeAll: hideAll,
+        isActive,
+      }),
+      [setToast, hideAll, isActive, hideToast]
+    );
 
-  const toast = useMemo(
-    () => ({
-      show: setToast,
-      close: hideToast,
-      closeAll: hideAll,
-      isActive,
-    }),
-    [setToast, hideAll, isActive, hideToast]
-  );
-
-  return toast;
+    return toast;
+  };
+  return useToast;
 };
