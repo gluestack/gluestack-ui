@@ -10,7 +10,6 @@ export const Textarea = (StyledTextarea: any) =>
         multiline = true,
         onKeyPress,
         'aria-label': ariaLabel = 'Input Field',
-        role = 'text',
         ...props
       }: any,
       ref?: any
@@ -49,7 +48,6 @@ export const Textarea = (StyledTextarea: any) =>
           }}
           accessible
           aria-label={ariaLabel}
-          role={role}
           aria-required={isRequired || textareaProps.isRequired}
           aria-invalid={isInvalid || textareaProps.isInvalid}
           aria-disabled={isDisabled || textareaProps.isDisabled}
