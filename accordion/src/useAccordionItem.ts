@@ -1,4 +1,4 @@
-import { useEffect, useId, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { State } from './hookTypes';
 
 type Props = {
@@ -7,12 +7,12 @@ type Props = {
 };
 
 export const useAccordionItem = (state: State, props: Props) => {
-  const regionId = useId();
-  const buttonId = useId();
   const { insertItem, toggleItem } = state;
   const { value, isDisabled = false } = props;
 
   const [isExpanded, setIsExpanded] = useState(false);
+  const buttonId = `accordion-button-${value}`;
+  const regionId = `accordion-region-${value}`;
 
   useEffect(() => {
     insertItem({ key: value, isExpanded, isDisabled });
@@ -38,7 +38,6 @@ export const useAccordionItem = (state: State, props: Props) => {
       'role': 'region',
     },
     buttonProps: {
-      'id': buttonId,
       'aria-controls': regionId,
       'aria-disabled': isDisabled,
       'aria-expanded': isExpanded,

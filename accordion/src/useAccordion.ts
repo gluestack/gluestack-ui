@@ -7,7 +7,7 @@ type Props = {
   isCollapsible: boolean;
   value?: string | string[];
   defaultValue?: string | string[];
-  onValueChange?: (value: Collection) => void;
+  onValueChange?: (value: any) => void;
 };
 
 export const useAccordion = (props: Props) => {
@@ -93,9 +93,21 @@ export const useAccordion = (props: Props) => {
 
   useEffect(() => {
     if (onValueChange) {
-      onValueChange(collection);
+      if (type === 'single') {
+        const item = collection.find(
+          (accordionItem) => accordionItem.isExpanded
+        );
+        if (item) {
+          onValueChange(item.key);
+        }
+      } else if (type === 'multiple') {
+        const items = collection
+          .filter((item) => item.isExpanded)
+          .map((item) => item.key);
+        onValueChange(items);
+      }
     }
-  }, [onValueChange, collection]);
+  }, [onValueChange, collection, type]);
 
   const insertItem = ({
     key,
