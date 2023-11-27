@@ -1,6 +1,16 @@
 import { useState, useEffect } from 'react';
+import { Collection } from './hookTypes';
 
-export const useAccordion = (props: any) => {
+type Props = {
+  type: 'single' | 'multiple';
+  isDisabledAccordion: boolean;
+  isCollapsible: boolean;
+  value?: string | string[];
+  defaultValue?: string | string[];
+  onValueChange?: (value: Collection) => void;
+};
+
+export const useAccordion = (props: Props) => {
   const {
     type,
     isDisabledAccordion,
@@ -10,13 +20,13 @@ export const useAccordion = (props: any) => {
     onValueChange,
   } = props;
 
-  const [collection, setCollection] = useState<any>([]);
+  const [collection, setCollection] = useState<Collection>([]);
 
   useEffect(() => {
     if (value) {
       if (type === 'single' && typeof value === 'string') {
-        setCollection((prevCollection: any) =>
-          prevCollection.map((item: any) => {
+        setCollection((prevCollection) =>
+          prevCollection.map((item) => {
             if (item.key === value) {
               item.isExpanded = true;
             } else {
@@ -26,8 +36,8 @@ export const useAccordion = (props: any) => {
           })
         );
       } else if (type === 'multiple' && Array.isArray(value)) {
-        setCollection((prevCollection: any) =>
-          prevCollection.map((item: any) => {
+        setCollection((prevCollection) =>
+          prevCollection.map((item) => {
             if ((value as string[]).includes(item.key)) {
               item.isExpanded = true;
             } else {
@@ -38,8 +48,8 @@ export const useAccordion = (props: any) => {
         );
       }
     } else {
-      setCollection((prevCollection: any) =>
-        prevCollection.map((item: any) => {
+      setCollection((prevCollection) =>
+        prevCollection.map((item) => {
           item.isExpanded = false;
           return item;
         })
@@ -48,8 +58,8 @@ export const useAccordion = (props: any) => {
     if (!value) {
       if (defaultValue) {
         if (type === 'single' && typeof defaultValue === 'string') {
-          setCollection((prevCollection: any) =>
-            prevCollection.map((item: any) => {
+          setCollection((prevCollection) =>
+            prevCollection.map((item) => {
               if (item.key === defaultValue) {
                 item.isExpanded = true;
               } else {
@@ -59,8 +69,8 @@ export const useAccordion = (props: any) => {
             })
           );
         } else if (type === 'multiple' && Array.isArray(defaultValue)) {
-          setCollection((prevCollection: any) =>
-            prevCollection.map((item: any) => {
+          setCollection((prevCollection) =>
+            prevCollection.map((item) => {
               if ((defaultValue as string[]).includes(item.key)) {
                 item.isExpanded = true;
               } else {
@@ -71,8 +81,8 @@ export const useAccordion = (props: any) => {
           );
         }
       } else {
-        setCollection((prevCollection: any) =>
-          prevCollection.map((item: any) => {
+        setCollection((prevCollection) =>
+          prevCollection.map((item) => {
             item.isExpanded = false;
             return item;
           })
@@ -97,9 +107,9 @@ export const useAccordion = (props: any) => {
     isDisabled: boolean;
   }) => {
     if (key) {
-      setCollection((prevCollection: any) => {
+      setCollection((prevCollection) => {
         const isItemAlreadyInCollection = prevCollection.some(
-          (item: any) => item.key === key
+          (item) => item.key === key
         );
 
         return isItemAlreadyInCollection
@@ -118,7 +128,7 @@ export const useAccordion = (props: any) => {
     }
     if (type === 'single') {
       if (isCollapsible) {
-        const newCollection = collection.map((item: any) => {
+        const newCollection = collection.map((item) => {
           if (item.key === itemValue) {
             item.isExpanded = !item.isExpanded;
           } else {
@@ -128,7 +138,7 @@ export const useAccordion = (props: any) => {
         });
         setCollection(newCollection);
       } else {
-        const newCollection = collection.map((item: any) => {
+        const newCollection = collection.map((item) => {
           if (item.key === itemValue && !item.isExpanded) {
             item.isExpanded = true;
           } else if (item.key !== itemValue) {
@@ -140,7 +150,7 @@ export const useAccordion = (props: any) => {
       }
     } else {
       if (isCollapsible) {
-        const newCollection = collection.map((item: any) => {
+        const newCollection = collection.map((item) => {
           if (item.key === itemValue) {
             item.isExpanded = !item.isExpanded;
           }
@@ -148,7 +158,7 @@ export const useAccordion = (props: any) => {
         });
         setCollection(newCollection);
       } else {
-        const newCollection = collection.map((item: any) => {
+        const newCollection = collection.map((item) => {
           if (item.key === itemValue && !item.isExpanded) {
             item.isExpanded = true;
           }

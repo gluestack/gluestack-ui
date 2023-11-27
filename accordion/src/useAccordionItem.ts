@@ -1,9 +1,15 @@
 import { useEffect, useId, useState } from 'react';
+import { State } from './hookTypes';
 
-export const useAccordionItem = (state: any, props: any) => {
+type Props = {
+  value: string;
+  isDisabled?: boolean;
+};
+
+export const useAccordionItem = (state: State, props: Props) => {
   const regionId = useId();
   const buttonId = useId();
-  const { insertItem, toggleItem } = state as any;
+  const { insertItem, toggleItem } = state;
   const { value, isDisabled = false } = props;
 
   const [isExpanded, setIsExpanded] = useState(false);
@@ -14,9 +20,7 @@ export const useAccordionItem = (state: any, props: any) => {
   }, []);
 
   useEffect(() => {
-    const accordionItem = state.collection.find(
-      (item: any) => item.key === value
-    );
+    const accordionItem = state.collection.find((item) => item.key === value);
 
     if (!accordionItem) return;
 
