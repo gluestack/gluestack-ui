@@ -1,5 +1,11 @@
 # @gluestack-ui/toast
 
+## 1.0.0
+
+### Major Changes
+
+- feat: animation api intergration in toast.
+
 ## 0.1.14
 
 ### Patch Changes
