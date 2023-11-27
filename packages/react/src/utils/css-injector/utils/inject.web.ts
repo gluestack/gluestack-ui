@@ -118,7 +118,8 @@ export const injectCss = (
   css: any,
   wrapperType: IWrapperType,
   styleTagId: string,
-  inlineStyleMap?: any
+  inlineStyleMap?: any,
+  dontInject: boolean = true
 ) => {
   // let modifiedStylesheet = {} as any;
   if (!toBeFlushedStyles[wrapperType]) {
@@ -130,7 +131,7 @@ export const injectCss = (
     toBeFlushedStyles[wrapperType][styleTagId] = [css];
   }
 
-  if (typeof window !== 'undefined') {
+  if (typeof window !== 'undefined' && dontInject) {
     let wrapperElement = document.querySelector(
       '#' + `${WRAPPER_BLOCK_PREFIX}-${wrapperType}`
     );

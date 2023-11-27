@@ -14,7 +14,8 @@ export const injectCss = (
   _css: any,
   _wrapperType: IWrapperType,
   _styleTagId: string,
-  _inlineStyleMap?: any
+  _inlineStyleMap?: any,
+  _dontInject?: any
 ) => {};
 export const injectGlobalCss = (
   _css: any,

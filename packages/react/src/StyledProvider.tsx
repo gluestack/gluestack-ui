@@ -6,6 +6,7 @@ import type { COLORMODES } from './types';
 import { platformSpecificSpaceUnits } from './utils';
 import { createGlobalStylesWeb } from './createGlobalStylesWeb';
 import { createGlobalStyles } from './createGlobalStyles';
+import { GluestackStyleSheet } from './style-sheet';
 
 type Config = any;
 let colorModeSet = false;
@@ -121,9 +122,12 @@ export const StyledProvider: React.FC<{
         return;
       }
 
+      GluestackStyleSheet.injectAllCss(inlineStyleMap.current);
+
       Object.keys(inlineStyleMap.current).forEach((key: any) => {
         if (key !== 'initialStyleInjected') {
           const styles = inlineStyleMap.current[key];
+
           if (!toBeInjectedStyles[key]) {
             toBeInjectedStyles[key] = document.createDocumentFragment();
           }
@@ -135,6 +139,7 @@ export const StyledProvider: React.FC<{
           });
         }
       });
+
       Object.keys(toBeInjectedStyles).forEach((key) => {
         let wrapperElement = document.querySelector('#' + key);
         if (wrapperElement) {
@@ -142,6 +147,7 @@ export const StyledProvider: React.FC<{
         }
         // delete inlineStyleMap.current[key];
       });
+
       inlineStyleMap.current.initialStyleInjected = true;
     }
   });
