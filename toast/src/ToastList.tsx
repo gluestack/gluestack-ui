@@ -7,7 +7,7 @@ import { View, Platform } from 'react-native';
 import { useKeyboardBottomInset } from '@gluestack-ui/hooks';
 import type { IToast } from './types';
 import { OverlayAnimatePresence } from './OverlayAnimatePresence';
-import { AnimatePresence } from '@gluestack-style/animation-resolver';
+
 const initialAnimationOffset = 24;
 const transitionConfig: any = {
   'bottom': initialAnimationOffset,
@@ -48,9 +48,15 @@ const POSITIONS = {
   },
 };
 export const ToastList = () => {
-  const { toastInfo, visibleToasts, removeToast, AnimationWrapper } =
-    React.useContext(ToastContext);
+  const {
+    toastInfo,
+    visibleToasts,
+    removeToast,
+    AnimationWrapper,
+    AnimatePresence: ContextAnimatePresence,
+  } = React.useContext(ToastContext);
   const AnimationView = AnimationWrapper.current;
+  const AnimatePresence = ContextAnimatePresence.current;
 
   const bottomInset = useKeyboardBottomInset() * 2;
   const getPositions = () => {
