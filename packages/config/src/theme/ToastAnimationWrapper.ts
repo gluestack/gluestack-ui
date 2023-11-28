@@ -10,7 +10,5 @@ export const ToastAnimationWrapper = createStyle({
   },
   defaultProps: {
     hardShadow: '5',
-    variant: 'solid',
-    action: 'attention',
   },
 });
