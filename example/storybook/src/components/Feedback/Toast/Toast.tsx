@@ -72,7 +72,7 @@ const ToastBasic = ({ placement = 'top', ...props }: any) => {
           render: ({ id }) => {
             return (
               <>
-                <Toast nativeID={id} {...props}>
+                <Toast nativeID={`toast-${id}`} {...props}>
                   <VStack space="xs">
                     <ToastTitle>Hello World Toast</ToastTitle>
                     <ToastDescription>
