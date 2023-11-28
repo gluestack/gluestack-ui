@@ -1,5 +1,35 @@
 # @gluestack-ui/themed
 
+## 1.0.18
+
+### Patch Changes
+
+- Fixed Textarea warning.
+- Fixed SelectInput issues on ios.
+- `Toast` Shadow issue in android.
+- `Toast` shifted to new animation API.
+- `gluestack-style` version bump:
+  - fixed warning when no config passed to GluestackUIProvider.
+- Breaking Changes (Ejected Theme).
+  - Add new `ToastAnimationWrapper.ts` file for Animation Wrapper of Toast. contain is shown below.
+  ```jsx
+  // ToastAnimationWrapper.ts
+  import { createStyle } from '@gluestack-style/react';
+  export const ToastAnimationWrapper = createStyle({
+    m: '$3',
+    backgroundColor: 'white',
+    borderRadius: '$sm',
+    flexDirection: 'row',
+    _web: {
+      pointerEvents: 'auto',
+    },
+    defaultProps: {
+      hardShadow: '5',
+    },
+  });
+  ```
+  - Remove this `m: '$3'`, `hardShadow: '5'`, `borderRadius: '$sm'` styles from `Toast.ts` file.
+
 ## 1.0.17
 
 ### Patch Changes
