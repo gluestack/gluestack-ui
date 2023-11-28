@@ -33,7 +33,6 @@ export const ToastProvider = ({ children }: { children: any }) => {
         const positionArray: Array<IToast> = toastInfo[toastPosition];
         return positionArray.findIndex((toastData) => toastData.id === id) > -1;
       }
-
       return false;
     },
     [toastInfo]
@@ -86,11 +85,8 @@ export const ToastProvider = ({ children }: { children: any }) => {
           { component, id, config: props },
         ];
 
-        setToastInfo((toastInfo: any) => {
-          return {
-            ...toastInfo,
-          };
-        });
+        setToastInfo((prev: any) => ({ ...prev }));
+
         setVisibleToasts((toasts: any) => {
           return {
             ...toasts,
