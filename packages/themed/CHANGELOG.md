@@ -5,6 +5,7 @@
 ### Patch Changes
 
 - Fixed Textarea warning.
+- Fixed SelectInput issues on ios.
 - `Toast` Shadow issue in android.
 - `Toast` shifted to new animation API.
 - `gluestack-style` version bump:
