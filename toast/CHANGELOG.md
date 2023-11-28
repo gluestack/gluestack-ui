@@ -4,7 +4,7 @@
 
 ### Major Changes
 
-- feat: animation api intergration in toast.
+- feat: animation api integration in toast.
 
 ## 0.1.14
 

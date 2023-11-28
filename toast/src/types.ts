@@ -65,6 +65,7 @@ export type IToastContext = {
   avoidKeyboard?: boolean;
   bottomInset?: number;
   AnimationWrapper?: any;
+  AnimatePresence?: any;
 };
 
 export type IToastComponentType<

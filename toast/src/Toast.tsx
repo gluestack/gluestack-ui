@@ -10,6 +10,7 @@ export const ToastProvider = ({ children }: { children: any }) => {
   }>({});
 
   const AnimationWrapper = React.useRef(View);
+  const AnimatePresence = React.useRef(View);
   const toastIndex = React.useRef(1);
 
   const hideAll = React.useCallback(() => {
@@ -32,7 +33,6 @@ export const ToastProvider = ({ children }: { children: any }) => {
         const positionArray: Array<IToast> = toastInfo[toastPosition];
         return positionArray.findIndex((toastData) => toastData.id === id) > -1;
       }
-
       return false;
     },
     [toastInfo]
@@ -85,11 +85,8 @@ export const ToastProvider = ({ children }: { children: any }) => {
           { component, id, config: props },
         ];
 
-        setToastInfo((toastInfo: any) => {
-          return {
-            ...toastInfo,
-          };
-        });
+        setToastInfo((prev: any) => ({ ...prev }));
+
         setVisibleToasts((toasts: any) => {
           return {
             ...toasts,
@@ -119,6 +116,7 @@ export const ToastProvider = ({ children }: { children: any }) => {
       setVisibleToasts,
       hideToast,
       AnimationWrapper,
+      AnimatePresence,
     };
   }, [
     toastInfo,
@@ -140,10 +138,20 @@ export const ToastProvider = ({ children }: { children: any }) => {
   );
 };
 
-export const getToastHook = (StyledAnimationWrapper: any) => {
+export const getToastHook = (
+  StyledAnimationWrapper: any,
+  StyledAnimatePresence: any
+) => {
   const useToast = () => {
-    const { AnimationWrapper, setToast, hideAll, isActive, hideToast } =
-      React.useContext(ToastContext);
+    const {
+      AnimationWrapper,
+      AnimatePresence,
+      setToast,
+      hideAll,
+      isActive,
+      hideToast,
+    } = React.useContext(ToastContext);
+    AnimatePresence.current = StyledAnimatePresence;
     AnimationWrapper.current = StyledAnimationWrapper;
     const toast = useMemo(
       () => ({
