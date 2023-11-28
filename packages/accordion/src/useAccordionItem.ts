@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import type { State } from './types';
+import { State } from './types';
 
 type Props = {
   value: string;
@@ -20,7 +20,7 @@ export const useAccordionItem = (state: State, props: Props) => {
   }, []);
 
   useEffect(() => {
-    const accordionItem = state.collection.find((item) => item.key === value);
+    const accordionItem = state.collection.get(value);
 
     if (!accordionItem) return;
 
