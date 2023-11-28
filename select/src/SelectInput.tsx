@@ -20,6 +20,7 @@ export const SelectInput = (StyledSelectInput: any) =>
         aria-hidden={true}
         editable={false}
         tabIndex={-1}
+        pointerEvents="none"
         // android
         importantForAccessibility="no"
         placeholder={placeholder}
