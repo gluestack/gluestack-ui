@@ -60,7 +60,7 @@
     "@gluestack-ui/switch": "^0.1.17",
     "@gluestack-ui/tabs": "^0.1.14",
     "@gluestack-ui/textarea": "^0.1.19",
-    "@gluestack-ui/toast": "^1.0.0",
+    "@gluestack-ui/toast": "^1.0.1",
     "@gluestack-ui/tooltip": "^0.1.24",
     "@legendapp/motion": "latest"
   },
