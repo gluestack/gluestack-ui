@@ -4,7 +4,9 @@
     "packages/themed",
     "packages/config",
     "example/storybook",
-    "example/apps/*"
+    "example/apps/*",
+    "packages/**",
+    "packages/styled/*"
   ],
   "scripts": {
     "dev": "turbo run dev",
