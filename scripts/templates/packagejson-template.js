@@ -14,7 +14,7 @@ module.exports = () => {
       "clean": "rm -rf lib"
     },
     "devDependencies": {
-      "@types/react": "^18.0.22",
+      "@types/react": "^18.0.28",
       "@types/react-native": "^0.72.3",
       "babel-plugin-transform-remove-console": "^6.9.4",
       "react": "^18.1.0",

@@ -83,7 +83,7 @@
     "@storybook/client-api": "^6.5.15",
     "@storybook/react": "^6.5.14",
     "@storybook/react-native": "6.5.0-rc.12",
-    "@types/react": "^18.0.27",
+    "@types/react": "^18.0.28",
     "@types/react-native": "~0.72.3",
     "babel-loader": "^8.2.3",
     "babel-plugin-react-docgen-typescript": "^1.5.1",
