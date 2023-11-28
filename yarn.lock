@@ -3506,10 +3506,21 @@
     "@gluestack-ui/utils" "^0.1.12"
     "@react-native-aria/focus" "^0.2.9"
 
-"@gluestack-ui/toast@^0.1.20", "@gluestack-ui/toast@^0.1.7":
+"@gluestack-ui/toast@^0.1.7":
   version "0.1.20"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/toast/-/toast-0.1.20.tgz#863453f75d2e941000204a9524161bfd2500e320"
   integrity sha512-DRgihksQmbZ1/4UbCcCX3NwWsegIvIHwSpQv7dqJcjC7F50cBwcoMKbMOSQt/g4PhtIeMjr146tQFlY3u3V41A==
+  dependencies:
+    "@gluestack-ui/hooks" "^0.1.7"
+    "@gluestack-ui/overlay" "^0.1.12"
+    "@gluestack-ui/transitions" "^0.1.10"
+    "@gluestack-ui/utils" "^0.1.12"
+    "@react-native-aria/focus" "^0.2.9"
+
+"@gluestack-ui/toast@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/toast/-/toast-1.0.0.tgz#c1453d61c47447a592c453546e878d05002d0fa7"
+  integrity sha512-6ZbXTl5smWm5zICs6J9BdDaq4SbHIL+hMrTde9yWRDqPMQBJuo/8ITKch7mEcgITEodvl/QTWNpRcsnJRmKqGA==
   dependencies:
     "@gluestack-ui/hooks" "^0.1.7"
     "@gluestack-ui/overlay" "^0.1.12"
