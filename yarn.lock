@@ -3440,7 +3440,17 @@
   dependencies:
     "@react-native-aria/focus" "^0.2.7"
 
-"@gluestack-ui/select@^0.1.19", "@gluestack-ui/select@^0.1.6":
+"@gluestack-ui/select@^0.1.20":
+  version "0.1.20"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/select/-/select-0.1.20.tgz#312a1ed4328f04b6cf8535b9ac47ed6b336b68c9"
+  integrity sha512-97YNSPt71xgAz3AAjPgp7BvCuSS5+Bhbr3UfUVFRnOtyUiExJrtu54A2wYw7wVbEaqiMi7aNv7KKqQ/n2cK7AA==
+  dependencies:
+    "@gluestack-ui/form-control" "^0.1.14"
+    "@gluestack-ui/hooks" "^0.1.7"
+    "@gluestack-ui/utils" "^0.1.12"
+    "@react-native-aria/focus" "^0.2.9"
+
+"@gluestack-ui/select@^0.1.6":
   version "0.1.19"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/select/-/select-0.1.19.tgz#9305f38739d1c8152b16667437b89168cff8aaf8"
   integrity sha512-R4HlLLlx8H/oa9kyXp/DGTFppmaBJ4NbvrnS7bHznjn3zixoE24K1DLbmmgO0KxIurSAPNk/M75nCImk7m9vPA==
@@ -3497,7 +3507,16 @@
     "@react-native-aria/focus" "^0.2.9"
     "@react-native-aria/interactions" "^0.2.11"
 
-"@gluestack-ui/textarea@^0.1.18", "@gluestack-ui/textarea@^0.1.7":
+"@gluestack-ui/textarea@^0.1.19":
+  version "0.1.19"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/textarea/-/textarea-0.1.19.tgz#71b1ecbe370a28a441206ffa3f0bfbdf8200d730"
+  integrity sha512-VYljvA5xrl856Oxbm951oDhxHYwHTjuIrk4+A+tIqRbgJodgzI1SgiU8DhgHTYAa+aYumMdyyrUPq6RL8ACIYQ==
+  dependencies:
+    "@gluestack-ui/form-control" "^0.1.14"
+    "@gluestack-ui/utils" "^0.1.12"
+    "@react-native-aria/focus" "^0.2.9"
+
+"@gluestack-ui/textarea@^0.1.7":
   version "0.1.18"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/textarea/-/textarea-0.1.18.tgz#2991c770e6311105a0287dff392b50066243fa6a"
   integrity sha512-DIDvkKGj+GgKZqugu3QttTU2bZU/XFrbcLwj9lyqYJXzG/g8UsGVnU5errVXYB1L+UgFSdxSZ8SDedknXgEFNQ==
