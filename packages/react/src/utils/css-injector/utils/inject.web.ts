@@ -118,9 +118,9 @@ export const injectCss = (
   css: any,
   wrapperType: IWrapperType,
   styleTagId: string,
-  inlineStyleMap?: any
+  inlineStyleMap?: any,
+  id?: any
 ) => {
-  // let modifiedStylesheet = {} as any;
   if (!toBeFlushedStyles[wrapperType]) {
     toBeFlushedStyles[wrapperType] = {};
   }
@@ -146,9 +146,10 @@ export const injectCss = (
             const inlineMapStyles = inlineStyleMap[styleMapId];
 
             if (inlineMapStyles) {
-              inlineMapStyles.push(style);
+              inlineMapStyles[id] = style;
             } else {
-              inlineStyleMap[styleMapId] = [style];
+              inlineStyleMap[styleMapId] = [];
+              inlineStyleMap[styleMapId][id] = style;
             }
             // console.log('hello here >>>> there');
           } else {
