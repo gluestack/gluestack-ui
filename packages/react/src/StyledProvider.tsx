@@ -88,9 +88,6 @@ export const StyledProvider: React.FC<{
       documentElement.classList.add(`gs-${currentColorMode}`);
     }
 
-    // GluestackStyleSheet.resolve({ ...config, propertyTokenMap });
-    // GluestackStyleSheet.injectInStyle();
-
     onChange((currentColor: string) => {
       // only for web
       if (Platform.OS === 'web' && !_experimentalNestedProvider) {
@@ -124,6 +121,7 @@ export const StyledProvider: React.FC<{
       Object.keys(inlineStyleMap.current).forEach((key: any) => {
         if (key !== 'initialStyleInjected') {
           const styles = inlineStyleMap.current[key];
+
           if (!toBeInjectedStyles[key]) {
             toBeInjectedStyles[key] = document.createDocumentFragment();
           }
@@ -135,6 +133,7 @@ export const StyledProvider: React.FC<{
           });
         }
       });
+
       Object.keys(toBeInjectedStyles).forEach((key) => {
         let wrapperElement = document.querySelector('#' + key);
         if (wrapperElement) {
@@ -142,6 +141,7 @@ export const StyledProvider: React.FC<{
         }
         // delete inlineStyleMap.current[key];
       });
+
       inlineStyleMap.current.initialStyleInjected = true;
     }
   });

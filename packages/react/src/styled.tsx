@@ -1070,6 +1070,8 @@ export function verboseStyled<P, Variants, ComCon>(
 
       // middleware logic
 
+      let componentExtendedTheme = {};
+
       // Injecting style
       if (EXTENDED_THEME) {
         // RUN Middlewares
@@ -1081,11 +1083,10 @@ export function verboseStyled<P, Variants, ComCon>(
           EXTENDED_THEME
         );
 
+        componentExtendedTheme = resolvedComponentExtendedTheme.theme;
+
         // const resolvedComponentExtendedTheme = EXTENDED_THEME;
 
-        theme = deepMerge(theme, resolvedComponentExtendedTheme.theme);
-        // @ts-ignore
-        Object.assign(themeDefaultProps, theme?.baseStyle?.props);
         if (Object.keys(EXTENDED_THEME?.BUILD_TIME_PARAMS ?? {}).length > 0) {
           const EXTENDED_THEME_BUILD_TIME_PARAMS =
             EXTENDED_THEME?.BUILD_TIME_PARAMS;
@@ -1180,6 +1181,10 @@ export function verboseStyled<P, Variants, ComCon>(
           );
         }
       }
+
+      theme = deepMerge(theme, componentExtendedTheme);
+      // @ts-ignore
+      Object.assign(themeDefaultProps, theme?.baseStyle?.props);
 
       Object.assign(styledSystemProps, CONFIG?.aliases);
 

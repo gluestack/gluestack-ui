@@ -10,9 +10,13 @@ import { inject } from '../utils/css-injector';
 export type DeclarationType = 'boot' | 'forwarded';
 export class StyleInjector {
   #globalStyleMap: any;
+  #toBeInjectedIdsArray: Array<string>;
+  #idCounter: number;
 
   constructor() {
     this.#globalStyleMap = new Map();
+    this.#toBeInjectedIdsArray = [];
+    this.#idCounter = 0;
   }
 
   declare(
@@ -28,8 +32,10 @@ export class StyleInjector {
           ...styledResolved,
           type: _wrapperElementId,
           componentHash: _styleTagId,
+          id: this.#idCounter,
           extendedConfig,
         });
+        this.#idCounter++;
         styleIds.push(styledResolved.meta.cssId);
       }
     });
@@ -68,18 +74,28 @@ export class StyleInjector {
           );
         }
 
-        if (!toBeInjected[styledResolved.type])
-          toBeInjected[styledResolved.type] = {};
-        if (!toBeInjected[styledResolved.type][styledResolved.componentHash])
-          toBeInjected[styledResolved.type][styledResolved.componentHash] = '';
-        toBeInjected[styledResolved.type][styledResolved.componentHash] +=
-          styledResolved.meta.cssRuleset;
+        const type = styledResolved?.type;
+        const styleTag = styledResolved?.componentHash;
+        const cssRuleset = styledResolved?.meta?.cssRuleset;
 
-        // this.injectStyles(
-        //   styledResolved.meta.cssRuleset,
-        //   styledResolved?.type,
-        //   styledResolved?.componentHash
-        // );
+        if (!toBeInjected[type]) {
+          toBeInjected[type] = new Map();
+        }
+
+        const cummialtiveCssRuleset = toBeInjected[type].get(styleTag);
+
+        if (!cummialtiveCssRuleset) {
+          toBeInjected[type].set(styleTag, {
+            id: styledResolved.id,
+            cssRuleset: cssRuleset ?? '',
+          });
+        } else {
+          toBeInjected[type].set(styleTag, {
+            id: cummialtiveCssRuleset?.id,
+            cssRuleset: cummialtiveCssRuleset?.cssRuleset + cssRuleset,
+          });
+        }
+
         if (styledResolved) {
           this.#globalStyleMap.set(styledResolved.meta.cssId, {
             ...styledResolved,
@@ -98,12 +114,29 @@ export class StyleInjector {
     orderResolvedStyleMap.forEach((styledResolved: any) => {
       this.#globalStyleMap.set(styledResolved.meta.cssId, styledResolved);
 
-      if (!toBeInjected[styledResolved.type])
-        toBeInjected[styledResolved.type] = {};
-      if (!toBeInjected[styledResolved.type][styledResolved.componentHash])
-        toBeInjected[styledResolved.type][styledResolved.componentHash] = '';
-      toBeInjected[styledResolved.type][styledResolved.componentHash] +=
-        styledResolved.meta.cssRuleset;
+      this.#toBeInjectedIdsArray.push(styledResolved.meta.cssId);
+
+      const type = styledResolved?.type;
+      const styleTag = styledResolved?.componentHash;
+      const cssRuleset = styledResolved?.meta?.cssRuleset;
+
+      if (!toBeInjected[type]) {
+        toBeInjected[type] = new Map();
+      }
+
+      const cummialtiveCssRuleset = toBeInjected[type].get(styleTag);
+
+      if (!cummialtiveCssRuleset) {
+        toBeInjected[type].set(styleTag, {
+          id: styledResolved.id,
+          cssRuleset: cssRuleset ?? '',
+        });
+      } else {
+        toBeInjected[type].set(styleTag, {
+          id: cummialtiveCssRuleset?.id,
+          cssRuleset: cummialtiveCssRuleset?.cssRuleset + cssRuleset,
+        });
+      }
     });
 
     return toBeInjected;
@@ -111,13 +144,8 @@ export class StyleInjector {
 
   inject(toBeInjected: any = {}, inlineStyleMap: any) {
     Object.keys(toBeInjected).forEach((type) => {
-      Object.keys(toBeInjected[type]).forEach((styleTag) => {
-        this.injectStyles(
-          toBeInjected[type][styleTag],
-          type,
-          styleTag,
-          inlineStyleMap
-        );
+      toBeInjected[type].forEach(({ id, cssRuleset }: any, styleTag: any) => {
+        this.injectStyles(cssRuleset, type, styleTag, inlineStyleMap, id);
       });
     });
   }
@@ -171,14 +199,16 @@ export class StyleInjector {
     cssRuleset: any,
     _wrapperType: any,
     _styleTagId: any,
-    inlineStyleMap: any
+    inlineStyleMap: any,
+    id: any
   ) {
     if (cssRuleset) {
       inject(
         `@media screen {${cssRuleset}}`,
         _wrapperType as any,
         _styleTagId,
-        inlineStyleMap
+        inlineStyleMap,
+        id
       );
     }
   }
