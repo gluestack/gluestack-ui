@@ -10,12 +10,19 @@ export const WRAPPER_BLOCK_PREFIX = 'gs-injected';
 export const hasCss = (_id: any, _text: any) => {};
 
 export const addCss = (_id: any, _text: any) => {};
+
+export const updateFlush = (
+  _css: any,
+  _wrapperType: IWrapperType,
+  _styleTagId: string
+) => {};
+
 export const injectCss = (
   _css: any,
   _wrapperType: IWrapperType,
   _styleTagId: string,
   _inlineStyleMap?: any,
-  _dontInject?: any
+  _id?: any
 ) => {};
 export const injectGlobalCss = (
   _css: any,
