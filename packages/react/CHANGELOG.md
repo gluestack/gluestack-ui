@@ -1,5 +1,11 @@
 # @gluestack-style/react
 
+## 1.0.18
+
+### Patch Changes
+
+- Fixed style injection order incase of composed styled component [PR](https://github.com/gluestack/gluestack-style/pull/544)
+
 ## 1.0.17
 
 ### Patch Changes
