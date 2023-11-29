@@ -43,6 +43,7 @@
     "@react-stately/tree": "^3.5.0",
     "expo": "^47.0.0",
     "expo-linear-gradient": "^12.3.0",
+    "expo-modules-core": "1.5.12",
     "expo-status-bar": "~1.4.2",
     "fs": "^0.0.1-security",
     "lucide-react-native": "^0.236.0",

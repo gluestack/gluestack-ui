@@ -6,8 +6,9 @@
     "example/storybook",
     "example/apps/*",
     "packages/**",
-    "packages/styled/*",
-    "packages/unstyled/*"
+    "packages/styled/**",
+    "packages/unstyled/**",
+    "packages/react-native-aria/*"
   ],
   "scripts": {
     "dev": "turbo run dev",
