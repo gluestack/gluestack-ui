@@ -11,12 +11,6 @@ export const hasCss = (_id: any, _text: any) => {};
 
 export const addCss = (_id: any, _text: any) => {};
 
-export const updateFlush = (
-  _css: any,
-  _wrapperType: IWrapperType,
-  _styleTagId: string
-) => {};
-
 export const injectCss = (
   _css: any,
   _wrapperType: IWrapperType,

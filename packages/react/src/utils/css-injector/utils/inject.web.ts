@@ -114,21 +114,6 @@ const createStyle = (styleTagId: any, css: any) => {
   return style;
 };
 
-export const updateFlush = (
-  _css: any,
-  _wrapperType: IWrapperType,
-  _styleTagId: string
-) => {
-  // if (!toBeFlushedStyles[wrapperType]) {
-  //   toBeFlushedStyles[wrapperType] = {};
-  // }
-  // if (toBeFlushedStyles[wrapperType][styleTagId]) {
-  //   toBeFlushedStyles[wrapperType][styleTagId].push(css);
-  // } else {
-  //   toBeFlushedStyles[wrapperType][styleTagId] = [css];
-  // }
-};
-
 export const injectCss = (
   css: any,
   wrapperType: IWrapperType,

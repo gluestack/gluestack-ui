@@ -6,7 +6,6 @@ import type { COLORMODES } from './types';
 import { platformSpecificSpaceUnits } from './utils';
 import { createGlobalStylesWeb } from './createGlobalStylesWeb';
 import { createGlobalStyles } from './createGlobalStyles';
-// import { GluestackStyleSheet } from './style-sheet';
 
 type Config = any;
 let colorModeSet = false;
@@ -67,10 +66,6 @@ export const StyledProvider: React.FC<{
     globalStyleInjector({ ...currentConfig, propertyTokenMap });
   }
 
-  // if (Platform.OS === 'web' && !inlineStyleMap.current.initialStyleInjected) {
-  //   GluestackStyleSheet.generateFlush();
-  // }
-
   const currentColorMode = React.useMemo(() => {
     return colorMode ?? get() ?? 'light';
   }, [colorMode]);
@@ -92,9 +87,6 @@ export const StyledProvider: React.FC<{
       documentElement.classList.add(`gs`);
       documentElement.classList.add(`gs-${currentColorMode}`);
     }
-
-    // GluestackStyleSheet.resolve({ ...config, propertyTokenMap });
-    // GluestackStyleSheet.injectInStyle();
 
     onChange((currentColor: string) => {
       // only for web
@@ -125,8 +117,6 @@ export const StyledProvider: React.FC<{
       if (inlineStyleMap.current.initialStyleInjected) {
         return;
       }
-
-      // GluestackStyleSheet.injectAllCss(inlineStyleMap.current);
 
       Object.keys(inlineStyleMap.current).forEach((key: any) => {
         if (key !== 'initialStyleInjected') {

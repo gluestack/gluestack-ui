@@ -85,7 +85,6 @@ export function injectComponentAndDescendantStyles(
   );
 
   if (platform === 'web') {
-    // GluestackStyleSheet.flushStyle(toBeInjected);
     GluestackStyleSheet.inject(toBeInjected, inlineStyleMap);
   }
 
