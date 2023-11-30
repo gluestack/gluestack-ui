@@ -10,19 +10,28 @@ export const AccordionItem = <T,>(StyledAccordionItem: any) =>
 
     const { isDisabled, value } = props;
 
-    const { regionProps, buttonProps } = useAccordionItem(state, {
+    const { regionProps, buttonProps, isExpanded } = useAccordionItem(state, {
       isExpanded: selectedValues.includes(value),
       isDisabled: isDisabled !== undefined ? isDisabled : isDisabledAccordion,
       value,
     });
+
     const context = useMemo(() => {
       return {
         isDisabled: isDisabled !== undefined ? isDisabled : isDisabledAccordion,
+        isExpanded,
         value,
         buttonProps,
         regionProps,
       };
-    }, [isDisabled, isDisabledAccordion, value, buttonProps, regionProps]);
+    }, [
+      isDisabled,
+      isDisabledAccordion,
+      value,
+      buttonProps,
+      regionProps,
+      isExpanded,
+    ]);
 
     return (
       <AccordionItemContext.Provider value={context}>

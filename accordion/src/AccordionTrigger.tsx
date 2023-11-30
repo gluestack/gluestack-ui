@@ -1,6 +1,6 @@
-import React, { forwardRef, useContext, useEffect, useState } from 'react';
+import React, { forwardRef, useContext } from 'react';
 import { IAccordionTriggerProps } from './types';
-import { AccordionContext, AccordionItemContext } from './Context';
+import { AccordionItemContext } from './Context';
 import { useHover, usePress } from '@react-native-aria/interactions';
 import { useFocusRing, useFocus } from '@react-native-aria/focus';
 import { composeEventHandlers } from '@gluestack-ui/utils';
@@ -18,9 +18,7 @@ export const AccordionTrigger = <T,>(StyledAccordionTrigger: any) =>
       }: T & IAccordionTriggerProps,
       ref?: any
     ) => {
-      const [isExpanded, setIsExpanded] = useState(false);
-      const { state } = useContext(AccordionContext);
-      const { value, isDisabled, buttonProps } =
+      const { isDisabled, buttonProps, isExpanded } =
         useContext(AccordionItemContext);
 
       const { pressProps, isPressed } = usePress({
@@ -33,12 +31,6 @@ export const AccordionTrigger = <T,>(StyledAccordionTrigger: any) =>
         useFocusRing();
 
       const { isFocused, focusProps } = useFocus();
-
-      useEffect(() => {
-        if (state.collection.has(value)) {
-          setIsExpanded(state.collection.get(value).isExpanded);
-        }
-      }, [state.collection, value, setIsExpanded]);
 
       return (
         <StyledAccordionTrigger

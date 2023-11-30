@@ -15,21 +15,13 @@ export const Accordion = <T,>(StyledAccordion: any) =>
         isCollapsible = true,
         isDisabled = false,
         value,
-        defaultValue,
+        defaultValue = [],
         onValueChange,
         children,
         ...props
       }: T & IAccordionProps,
       ref?: any
     ) => {
-      // const [selectedValues, setSelectedValues] = useControllableState({
-      //   value,
-      //   defaultValue,
-      //   onChange: (incomingValue: any) => {
-      //     onValueChange && onValueChange(incomingValue);
-      //   },
-      // });
-
       const [selectedValues, setSelectedValues] = useControlledState(
         value,
         defaultValue,
