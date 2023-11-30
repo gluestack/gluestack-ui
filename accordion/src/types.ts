@@ -14,13 +14,13 @@ export interface IAccordionProps extends ViewProps {
   isCollapsible?: boolean;
 
   /**
-   * The value of the item to expand when initially rendered when type is "multiple".
+   * The value of the item to expand when initially rendered when type is "single" or "multiple".
    */
 
   defaultValue?: string | string[];
 
   /**
-   * The controlled value of the item to expand when type is "multiple".
+   * The controlled value of the item to expand when type is "single" or "multiple".
    */
 
   value?: string | string[];

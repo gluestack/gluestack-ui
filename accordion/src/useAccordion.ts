@@ -1,114 +1,19 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Collection } from './hookTypes';
 
 type Props = {
   type: 'single' | 'multiple';
-  isDisabledAccordion: boolean;
   isCollapsible: boolean;
-  value?: string | string[];
-  defaultValue?: string | string[];
-  onValueChange?: (value: any) => void;
+  selectedValues: string[] | [];
+  setSelectedValues: (values: string[]) => void;
 };
 
 export const useAccordion = (props: Props) => {
-  const {
-    type,
-    isDisabledAccordion,
-    isCollapsible,
-    value,
-    defaultValue,
-    onValueChange,
-  } = props;
+  const { type, isCollapsible, selectedValues, setSelectedValues } = props;
 
-  const [collection, setCollection] = useState<Collection>([]);
+  const [collection, setCollection] = useState<Collection>(new Map());
 
-  useEffect(() => {
-    if (value) {
-      if (type === 'single' && typeof value === 'string') {
-        setCollection((prevCollection) =>
-          prevCollection.map((item) => {
-            if (item.key === value) {
-              item.isExpanded = true;
-            } else {
-              item.isExpanded = false;
-            }
-            return item;
-          })
-        );
-      } else if (type === 'multiple' && Array.isArray(value)) {
-        setCollection((prevCollection) =>
-          prevCollection.map((item) => {
-            if ((value as string[]).includes(item.key)) {
-              item.isExpanded = true;
-            } else {
-              item.isExpanded = false;
-            }
-            return item;
-          })
-        );
-      }
-    } else {
-      setCollection((prevCollection) =>
-        prevCollection.map((item) => {
-          item.isExpanded = false;
-          return item;
-        })
-      );
-    }
-    if (!value) {
-      if (defaultValue) {
-        if (type === 'single' && typeof defaultValue === 'string') {
-          setCollection((prevCollection) =>
-            prevCollection.map((item) => {
-              if (item.key === defaultValue) {
-                item.isExpanded = true;
-              } else {
-                item.isExpanded = false;
-              }
-              return item;
-            })
-          );
-        } else if (type === 'multiple' && Array.isArray(defaultValue)) {
-          setCollection((prevCollection) =>
-            prevCollection.map((item) => {
-              if ((defaultValue as string[]).includes(item.key)) {
-                item.isExpanded = true;
-              } else {
-                item.isExpanded = false;
-              }
-              return item;
-            })
-          );
-        }
-      } else {
-        setCollection((prevCollection) =>
-          prevCollection.map((item) => {
-            item.isExpanded = false;
-            return item;
-          })
-        );
-      }
-    }
-  }, [type, value, defaultValue, setCollection]);
-
-  useEffect(() => {
-    if (onValueChange) {
-      if (type === 'single') {
-        const item = collection.find(
-          (accordionItem) => accordionItem.isExpanded
-        );
-        if (item) {
-          onValueChange(item.key);
-        }
-      } else if (type === 'multiple') {
-        const items = collection
-          .filter((item) => item.isExpanded)
-          .map((item) => item.key);
-        onValueChange(items);
-      }
-    }
-  }, [onValueChange, collection, type]);
-
+  // Function to insert an item into the collection
   const insertItem = ({
     key,
     isExpanded,
@@ -120,63 +25,110 @@ export const useAccordion = (props: Props) => {
   }) => {
     if (key) {
       setCollection((prevCollection) => {
-        const isItemAlreadyInCollection = prevCollection.some(
-          (item) => item.key === key
+        const updatedMap = new Map(
+          prevCollection.set(key, { key, isExpanded, isDisabled })
         );
-
-        return isItemAlreadyInCollection
-          ? prevCollection
-          : [...prevCollection, { key, isExpanded, isDisabled }];
+        return updatedMap;
       });
     }
   };
 
+  // Function to toggle an item in the collection based on the type of accordion updating the selected values and the collection
   const toggleItem = (itemValue: string, isDisabled = false) => {
-    if (isDisabled || !itemValue) {
-      return;
-    }
-    if (isDisabledAccordion && isDisabled) {
-      return;
-    }
+    if (isDisabled || !itemValue) return;
+
     if (type === 'single') {
       if (isCollapsible) {
-        const newCollection = collection.map((item) => {
-          if (item.key === itemValue) {
-            item.isExpanded = !item.isExpanded;
-          } else {
-            item.isExpanded = false;
+        setCollection((prevCollection) => {
+          const updatedMap = new Map(prevCollection);
+
+          selectedValues.forEach((value) => {
+            const tempItem = prevCollection.get(value);
+
+            if (tempItem) {
+              tempItem.isExpanded = false;
+              updatedMap.set(value, tempItem);
+            }
+          });
+
+          if (!selectedValues.includes(itemValue)) {
+            if (prevCollection.has(itemValue)) {
+              const tempItem = prevCollection.get(itemValue);
+
+              if (tempItem) {
+                tempItem.isExpanded = true;
+                updatedMap.set(itemValue, tempItem);
+              }
+            }
           }
-          return item;
+
+          return updatedMap;
         });
-        setCollection(newCollection);
+
+        if (selectedValues.includes(itemValue)) {
+          setSelectedValues([]);
+        } else {
+          setSelectedValues([itemValue]);
+        }
       } else {
-        const newCollection = collection.map((item) => {
-          if (item.key === itemValue && !item.isExpanded) {
-            item.isExpanded = true;
-          } else if (item.key !== itemValue) {
-            item.isExpanded = false;
+        if (selectedValues.includes(itemValue)) return;
+
+        setCollection((prevCollection) => {
+          const updatedMap = new Map(prevCollection);
+
+          selectedValues.forEach((value) => {
+            const tempItem = prevCollection.get(value);
+            if (tempItem) {
+              tempItem.isExpanded = false;
+              updatedMap.set(value, tempItem);
+            }
+          });
+
+          if (prevCollection.has(itemValue)) {
+            const tempItem = prevCollection.get(itemValue);
+            if (tempItem) {
+              tempItem.isExpanded = true;
+              updatedMap.set(itemValue, tempItem);
+            }
           }
-          return item;
+
+          setSelectedValues([itemValue]);
+
+          return updatedMap;
         });
-        setCollection(newCollection);
       }
     } else {
       if (isCollapsible) {
-        const newCollection = collection.map((item) => {
-          if (item.key === itemValue) {
-            item.isExpanded = !item.isExpanded;
+        setCollection((prevCollection) => {
+          const updatedMap = new Map(prevCollection);
+          if (prevCollection.has(itemValue)) {
+            const tempItem = prevCollection.get(itemValue);
+            if (tempItem) {
+              tempItem.isExpanded = !tempItem.isExpanded;
+              updatedMap.set(itemValue, tempItem);
+            }
           }
-          return item;
+          return updatedMap;
         });
-        setCollection(newCollection);
+        if (selectedValues.includes(itemValue)) {
+          setSelectedValues(selectedValues.filter((v) => v !== itemValue));
+        } else {
+          setSelectedValues([...selectedValues, itemValue]);
+        }
       } else {
-        const newCollection = collection.map((item) => {
-          if (item.key === itemValue && !item.isExpanded) {
-            item.isExpanded = true;
+        if (selectedValues.includes(itemValue)) return;
+        setSelectedValues([...selectedValues, itemValue]);
+        setCollection((prevCollection) => {
+          const updatedMap = new Map(prevCollection);
+          if (prevCollection.has(itemValue)) {
+            const tempItem = prevCollection.get(itemValue);
+            if (tempItem) {
+              tempItem.isExpanded = true;
+              updatedMap.set(itemValue, tempItem);
+            }
           }
-          return item;
+          return updatedMap;
         });
-        setCollection(newCollection);
       }
     }
   };

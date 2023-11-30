@@ -1,8 +1,10 @@
-export type Collection = {
+export type CollectionItem = {
   key: string;
   isExpanded: boolean;
   isDisabled: boolean;
-}[];
+};
+
+export type Collection = Map<string, CollectionItem>;
 
 export type State = {
   collection: Collection;

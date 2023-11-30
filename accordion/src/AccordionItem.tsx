@@ -5,10 +5,16 @@ import { useAccordionItem } from './useAccordionItem';
 
 export const AccordionItem = <T,>(StyledAccordionItem: any) =>
   forwardRef(({ children, ...props }: T & IAccordionItemProps, ref?: any) => {
-    const { state, isDisabledAccordion } = useContext(AccordionContext);
+    const { state, isDisabledAccordion, selectedValues } =
+      useContext(AccordionContext);
+
     const { isDisabled, value } = props;
 
-    const { regionProps, buttonProps } = useAccordionItem(state, props);
+    const { regionProps, buttonProps } = useAccordionItem(state, {
+      isExpanded: selectedValues.includes(value),
+      isDisabled: isDisabled !== undefined ? isDisabled : isDisabledAccordion,
+      value,
+    });
     const context = useMemo(() => {
       return {
         isDisabled: isDisabled !== undefined ? isDisabled : isDisabledAccordion,
