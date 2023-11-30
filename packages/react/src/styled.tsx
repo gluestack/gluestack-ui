@@ -1979,13 +1979,14 @@ export function verboseStyled<P, Variants, ComCon>(
     // }
 
     const ComponentWithPlugin = React.useMemo(() => {
+      let MyComponent = Component;
       if (plugins) {
         for (const pluginName in plugins) {
           // @ts-ignore
           if (plugins[pluginName]?.componentMiddleWare) {
             // @ts-ignore
-            Component = plugins[pluginName]?.componentMiddleWare({
-              Component: Component,
+            MyComponent = plugins[pluginName]?.componentMiddleWare({
+              Component: MyComponent,
               theme,
               componentStyleConfig,
               ExtendedConfig,
@@ -1996,7 +1997,7 @@ export function verboseStyled<P, Variants, ComCon>(
           }
         }
       }
-      return Component;
+      return MyComponent;
     }, []);
 
     let component;
