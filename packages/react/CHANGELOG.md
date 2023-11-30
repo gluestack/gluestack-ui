@@ -1,5 +1,11 @@
 # @gluestack-style/react
 
+## 1.0.19
+
+### Patch Changes
+
+- Fixed component refrence issue for plugins [PR](https://github.com/gluestack/gluestack-style/pull/547)
+
 ## 1.0.18
 
 ### Patch Changes
