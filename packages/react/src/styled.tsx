@@ -897,7 +897,8 @@ export function verboseStyled<P, Variants, ComCon>(
     orderedResolved = BUILD_TIME_PARAMS?.orderedResolved;
     orderedCSSIds = BUILD_TIME_PARAMS?.styledIds;
 
-    GluestackStyleSheet.update(orderedResolved);
+    BUILD_TIME_PARAMS.toBeInjected =
+      GluestackStyleSheet.update(orderedResolved);
   } else {
     const { styledIds: g, verbosedStyleIds } = updateOrderUnResolvedMap(
       theme,
@@ -1166,6 +1167,7 @@ export function verboseStyled<P, Variants, ComCon>(
           CONFIG,
           componentExtendedConfig
         );
+
         if (Platform.OS === 'web') {
           GluestackStyleSheet.inject(
             toBeInjected,

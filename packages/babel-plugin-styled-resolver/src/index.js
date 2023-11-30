@@ -5,6 +5,7 @@ const generate = require('@babel/generator').default;
 const babelPresetTypeScript = require('@babel/preset-typescript');
 const traverse = require('@babel/traverse').default;
 const types = require('@babel/types');
+const { getConfig: buildAndGetConfig } = require('./buildConfig');
 
 const {
   convertStyledToStyledVerbosed,
@@ -550,9 +551,24 @@ function isImportFromAbsolutePath(
   return false;
 }
 
-const CONFIG = getExportedConfigFromFileString(getConfig());
+let CONFIG;
+const isConfigExist = fs.existsSync(
+  `${process.cwd()}/.gluestack/config-${process.ppid}.js`
+);
 
 let ConfigDefault = CONFIG;
+
+if (!isConfigExist) {
+  buildAndGetConfig()
+    .then((res) => {
+      CONFIG = res;
+      ConfigDefault = res;
+    })
+    .catch((err) => {
+      // eslint-disable-next-line no-console
+      console.log(err);
+    });
+}
 
 module.exports = function (b) {
   const { types: t } = b;
@@ -611,16 +627,24 @@ module.exports = function (b) {
           platform = 'all';
         }
 
-        if (configPath) {
-          ConfigDefault = getExportedConfigFromFileString(
-            getConfig(configPath)
-          );
-        }
+        // `${process.cwd()}/.gluestack/config-${process.ppid}.js`
 
-        configThemePath.forEach((path) => {
-          ConfigDefault = ConfigDefault?.[path];
-        });
-        configThemePath = [];
+        // if (
+        //   configPath &&
+        //   !fs.existsSync(path.join(process.cwd(), `.gluestack/config-${process.ppid}.js`))
+        // ) {
+        //   // ConfigDefault = getExportedConfigFromFileString(
+        //   //   getConfig(configPath)
+        //   // );
+        //   ConfigDefault = buildAndGetConfig(configPath);
+        // }
+
+        // configThemePath.forEach((path) => {
+        //   ConfigDefault = ConfigDefault?.[path];
+        // });
+        // configThemePath = [];
+
+        // console.log(ConfigDefault, '>>>>>>>>>>>>>>>');
 
         if (!currentFileName.includes('node_modules')) {
           if (currentFileName.includes('.web.')) {
