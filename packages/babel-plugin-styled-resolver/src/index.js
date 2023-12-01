@@ -607,7 +607,23 @@ module.exports = function (b) {
   const CREATE_COMPONENTS = 'createComponents';
 
   return {
-    name: 'ast-transform', // not required
+    name: 'gluestack-babel-styled-resolver', // not required
+    // async pre(state) {
+    //   let plugin;
+
+    //   state.opts.plugins?.forEach((currentPlugin) => {
+    //     if (currentPlugin.key === 'gluestack-babel-styled-resolver') {
+    //       plugin = currentPlugin;
+    //     }
+    //   });
+
+    //   const configPath = plugin?.options?.configPath;
+
+    //   if (!isConfigExist) {
+    //     const res = await buildAndGetConfig(configPath);
+    //     ConfigDefault = res;
+    //   }
+    // },
     visitor: {
       ImportDeclaration(importPath, state) {
         currentFileName = state.file.opts.filename;

@@ -38,7 +38,7 @@
     "typescript": "^4.7.4"
   },
   "dependencies": {
-    "@babel/core": "^7.20.5",
+    "@babel/core": "^7.23.5",
     "@babel/generator": "^7.20.5",
     "@babel/parser": "^7.20.5",
     "@babel/plugin-transform-typescript": "^7.20.2",
