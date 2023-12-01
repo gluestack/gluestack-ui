@@ -1,5 +1,11 @@
 # @gluestack-style/react
 
+## 1.0.20
+
+### Patch Changes
+
+- Fixed build time to be injected styles [PR](https://github.com/gluestack/gluestack-style/pull/550)
+
 ## 1.0.19
 
 ### Patch Changes
