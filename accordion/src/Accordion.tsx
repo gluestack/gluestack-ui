@@ -1,10 +1,7 @@
 import React, { forwardRef, useMemo } from 'react';
 import type { IAccordionProps } from './types';
 import { AccordionContext } from './Context';
-// import { useAccordion } from '@react-native-aria/accordion';
-import { useAccordion } from './useAccordion';
-
-// import { useControllableState } from '@gluestack-ui/hooks';
+import { useAccordion } from '@react-native-aria/accordion';
 import { useControlledState } from '@react-stately/utils';
 
 export const Accordion = <T,>(StyledAccordion: any) =>
@@ -35,7 +32,6 @@ export const Accordion = <T,>(StyledAccordion: any) =>
         isCollapsible,
         selectedValues,
         setSelectedValues,
-        ...props,
       });
 
       const contextValue = useMemo(() => {

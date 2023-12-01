@@ -1,7 +1,7 @@
 import React, { forwardRef, useContext, useMemo } from 'react';
 import { AccordionContext, AccordionItemContext } from './Context';
 import { IAccordionItemProps } from './types';
-import { useAccordionItem } from './useAccordionItem';
+import { useAccordionItem } from '@react-native-aria/accordion';
 
 export const AccordionItem = <T,>(StyledAccordionItem: any) =>
   forwardRef(({ children, ...props }: T & IAccordionItemProps, ref?: any) => {
@@ -11,9 +11,9 @@ export const AccordionItem = <T,>(StyledAccordionItem: any) =>
     const { isDisabled, value } = props;
 
     const { regionProps, buttonProps, isExpanded } = useAccordionItem(state, {
+      value,
       isExpanded: selectedValues.includes(value),
       isDisabled: isDisabled !== undefined ? isDisabled : isDisabledAccordion,
-      value,
     });
 
     const context = useMemo(() => {

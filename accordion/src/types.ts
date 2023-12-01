@@ -1,4 +1,4 @@
-import type { ViewProps, PressableProps } from 'react-native';
+import type { ViewProps } from 'react-native';
 
 export interface IAccordionProps extends ViewProps {
   /**
@@ -47,7 +47,7 @@ export interface IAccordionItemProps {
   children: JSX.Element | Array<JSX.Element>;
 }
 
-export interface IAccordionTriggerProps extends PressableProps {
+export interface IAccordionTriggerProps {
   /**
    * If true, the button will be in pressed state.
    */
@@ -94,7 +94,7 @@ export type IAccordionComponentType<
   Item: React.ForwardRefExoticComponent<ItemProps & IAccordionItemProps>;
   Header: React.ForwardRefExoticComponent<HeaderProps>;
   Trigger: React.ForwardRefExoticComponent<
-    TriggerProps & IAccordionTriggerProps
+    Omit<TriggerProps, 'children'> & IAccordionTriggerProps
   >;
   Content: React.ForwardRefExoticComponent<ContentProps>;
   TitleText: React.ForwardRefExoticComponent<TitleTextProps>;
