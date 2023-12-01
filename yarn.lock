@@ -3536,10 +3536,10 @@
     "@gluestack-ui/utils" "^0.1.12"
     "@react-native-aria/focus" "^0.2.9"
 
-"@gluestack-ui/toast@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@gluestack-ui/toast/-/toast-1.0.0.tgz#c1453d61c47447a592c453546e878d05002d0fa7"
-  integrity sha512-6ZbXTl5smWm5zICs6J9BdDaq4SbHIL+hMrTde9yWRDqPMQBJuo/8ITKch7mEcgITEodvl/QTWNpRcsnJRmKqGA==
+"@gluestack-ui/toast@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/toast/-/toast-1.0.2.tgz#0b9d6989794a707f239ae9da7ac8c3a730499035"
+  integrity sha512-RqlqEaoQesW5l6qZ8/hWqhidvRh5GwijsYj2j3CJy2qeFv/G5mtSliV0L4iZ6hSWQ0mW5cYxR/kCQ6EPDco/wQ==
   dependencies:
     "@gluestack-ui/hooks" "^0.1.7"
     "@gluestack-ui/overlay" "^0.1.12"
