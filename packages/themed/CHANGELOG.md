@@ -1,5 +1,11 @@
 # @gluestack-ui/themed
 
+## 1.0.19
+
+### Patch Changes
+
+- `Toast` white notch issue.
+
 ## 1.0.18
 
 ### Patch Changes
