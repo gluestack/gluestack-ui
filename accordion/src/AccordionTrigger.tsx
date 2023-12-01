@@ -1,11 +1,10 @@
 import React, { forwardRef, useContext } from 'react';
-import { IAccordionTriggerProps } from './types';
-import { AccordionContext, AccordionItemContext } from './Context';
+import { AccordionItemContext } from './Context';
 import { useHover, usePress } from '@react-native-aria/interactions';
 import { useFocusRing, useFocus } from '@react-native-aria/focus';
 import { composeEventHandlers } from '@gluestack-ui/utils';
 
-export const AccordionTrigger = <T,>(StyledAccordionTrigger: any) =>
+export const AccordionTrigger = (StyledAccordionTrigger: any) =>
   forwardRef(
     (
       {
@@ -15,69 +14,28 @@ export const AccordionTrigger = <T,>(StyledAccordionTrigger: any) =>
         isPressed: isPressedProp,
         isFocusVisible: isFocusVisibleProp,
         ...props
-      }: T & IAccordionTriggerProps,
+      }: any,
       ref?: any
     ) => {
-      const { type, isCollapsible, setOpenItems, openItems } =
-        useContext(AccordionContext);
-
-      const { value, isDisabled } = useContext(AccordionItemContext);
+      const { isDisabled, buttonProps, isExpanded } =
+        useContext(AccordionItemContext);
 
       const { pressProps, isPressed } = usePress({
         isDisabled: isDisabled,
       });
+
       const { isHovered, hoverProps }: any = useHover();
+
       const { isFocusVisible, focusProps: focusRingProps }: any =
         useFocusRing();
 
       const { isFocused, focusProps } = useFocus();
 
-      const toggleItem = () => {
-        if (isDisabled || !value) {
-          return;
-        }
-
-        if (type === 'single') {
-          if (isCollapsible) {
-            setOpenItems((prevOpenItems: string[]) => {
-              const isItemAlreadyOpen = prevOpenItems.includes(value);
-
-              return isItemAlreadyOpen
-                ? prevOpenItems.filter((index) => index !== value)
-                : [value];
-            });
-          } else {
-            setOpenItems((prevOpenItems: string[]) => {
-              const isItemAlreadyOpen = prevOpenItems.includes(value);
-
-              return isItemAlreadyOpen ? prevOpenItems : [value];
-            });
-          }
-        } else {
-          if (isCollapsible) {
-            setOpenItems((prevOpenItems: string[]) => {
-              const isItemAlreadyOpen = prevOpenItems.includes(value);
-              return isItemAlreadyOpen
-                ? prevOpenItems.filter((index) => index !== value)
-                : [...prevOpenItems, value];
-            });
-          } else {
-            setOpenItems((prevOpenItems: string[]) => {
-              const isItemAlreadyOpen = prevOpenItems.includes(value);
-              return isItemAlreadyOpen
-                ? prevOpenItems
-                : [...prevOpenItems, value];
-            });
-          }
-        }
-      };
-
       return (
         <StyledAccordionTrigger
           ref={ref}
           {...props}
-          aria-expanded={openItems.includes(value)}
-          onPress={() => composeEventHandlers(props?.onPress, toggleItem)}
+          {...buttonProps}
           states={{
             disabled: isDisabled,
             hover: isHoveredProp || isHovered,
@@ -112,11 +70,6 @@ export const AccordionTrigger = <T,>(StyledAccordionTrigger: any) =>
             composeEventHandlers(props?.onBlur, focusProps.onBlur),
             focusRingProps.onBlur
           )}
-          onKeyDown={(e: KeyboardEvent) => {
-            if (e.code === 'Space') {
-              toggleItem();
-            }
-          }}
         >
           {typeof children === 'function'
             ? children({
@@ -125,7 +78,7 @@ export const AccordionTrigger = <T,>(StyledAccordionTrigger: any) =>
                 pressed: isPressed,
                 disabled: isDisabled,
                 focusVisible: isFocusVisible,
-                isExpanded: openItems.includes(value),
+                isExpanded: isExpanded,
               })
             : children}
         </StyledAccordionTrigger>

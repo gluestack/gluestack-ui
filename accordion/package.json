@@ -15,7 +15,7 @@
     "ios",
     "nextjs"
   ],
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/index.d.ts",
@@ -43,7 +43,9 @@
     "typescript": "^4.9.4"
   },
   "dependencies": {
+    "@gluestack-style/react": "^1.0.18",
     "@gluestack-ui/utils": "^0.1.12",
+    "@react-native-aria/accordion": "^0.0.2",
     "@react-native-aria/focus": "^0.2.9",
     "@react-native-aria/interactions": "^0.2.11"
   },

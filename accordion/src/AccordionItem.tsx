@@ -1,18 +1,37 @@
 import React, { forwardRef, useContext, useMemo } from 'react';
 import { AccordionContext, AccordionItemContext } from './Context';
 import { IAccordionItemProps } from './types';
+import { useAccordionItem } from '@react-native-aria/accordion';
 
 export const AccordionItem = <T,>(StyledAccordionItem: any) =>
   forwardRef(({ children, ...props }: T & IAccordionItemProps, ref?: any) => {
-    const { isDisabledAccordion } = useContext(AccordionContext);
+    const { state, isDisabledAccordion, selectedValues } =
+      useContext(AccordionContext);
+
     const { isDisabled, value } = props;
+
+    const { regionProps, buttonProps, isExpanded } = useAccordionItem(state, {
+      value,
+      isExpanded: selectedValues.includes(value),
+      isDisabled: isDisabled !== undefined ? isDisabled : isDisabledAccordion,
+    });
 
     const context = useMemo(() => {
       return {
-        value: value,
         isDisabled: isDisabled !== undefined ? isDisabled : isDisabledAccordion,
+        isExpanded,
+        value,
+        buttonProps,
+        regionProps,
       };
-    }, [value, isDisabled, isDisabledAccordion]);
+    }, [
+      isDisabled,
+      isDisabledAccordion,
+      value,
+      buttonProps,
+      regionProps,
+      isExpanded,
+    ]);
 
     return (
       <AccordionItemContext.Provider value={context}>
