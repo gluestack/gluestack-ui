@@ -1,5 +1,11 @@
 # @gluestack-ui/toast
 
+## 1.0.2
+
+### Patch Changes
+
+- fix: notch safearea issue
+
 ## 1.0.0
 
 ### Major Changes
