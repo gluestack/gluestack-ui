@@ -4,7 +4,7 @@
 
 ### Patch Changes
 
-- fix: notch safearea issue
+- fix: notch safe-area issue
 
 ## 1.0.0
 
