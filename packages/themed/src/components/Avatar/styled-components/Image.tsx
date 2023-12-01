@@ -1,4 +1,4 @@
-import { Image } from 'react-native';
+import { Image } from '../../Image';
 import { styled } from '@gluestack-style/react';
 
 export default styled(Image, {}, {

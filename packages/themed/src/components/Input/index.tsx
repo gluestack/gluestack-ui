@@ -1,7 +1,7 @@
 import { createInput } from '@gluestack-ui/input';
 import { Root, Icon, Slot, StyledInput } from './styled-components';
 
-export const AccessibleInput = createInput({
+const AccessibleInput = createInput({
   Root,
   Icon,
   Slot,

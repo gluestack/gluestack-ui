@@ -10,7 +10,7 @@ import {
   Backdrop,
 } from './styled-components';
 
-export const AccessibleAlertDialog = createAlertDialog({
+const AccessibleAlertDialog = createAlertDialog({
   Root,
   Content,
   CloseButton,

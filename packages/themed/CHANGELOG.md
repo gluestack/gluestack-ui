@@ -1,5 +1,66 @@
 # @gluestack-ui/themed
 
+## 1.0.19
+
+### Patch Changes
+
+- `Toast` white notch issue.
+
+## 1.0.18
+
+### Patch Changes
+
+- Fixed Textarea warning.
+- Fixed SelectInput issues on ios.
+- `Toast` Shadow issue in android.
+- `Toast` shifted to new animation API.
+- `gluestack-style` version bump:
+  - fixed warning when no config passed to GluestackUIProvider.
+- Breaking Changes (Ejected Theme).
+  - Add new `ToastAnimationWrapper.ts` file for Animation Wrapper of Toast. contain is shown below.
+  ```jsx
+  // ToastAnimationWrapper.ts
+  import { createStyle } from '@gluestack-style/react';
+  export const ToastAnimationWrapper = createStyle({
+    m: '$3',
+    backgroundColor: 'white',
+    borderRadius: '$sm',
+    flexDirection: 'row',
+    _web: {
+      pointerEvents: 'auto',
+    },
+    defaultProps: {
+      hardShadow: '5',
+    },
+  });
+  ```
+  - Remove this `m: '$3'`, `hardShadow: '5'`, `borderRadius: '$sm'` styles from `Toast.ts` file.
+
+## 1.0.17
+
+### Patch Changes
+
+- fix: cyclic dependency and avatar image
+
+## 1.0.16
+
+### Patch Changes
+
+- removed extra exports and fixed icon fill typing
+- e3ceb642a: button spinner inherited from spinner instead of activity indicator
+
+## 1.0.15
+
+### Patch Changes
+
+- button spinner inherited from spinner instead of activity indicator
+
+## 1.0.14
+
+### Patch Changes
+
+- fixed role for image and icon to img instead of image
+
 ## 1.0.13
 
 ### Patch Changes
