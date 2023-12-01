@@ -17,19 +17,19 @@ export interface IAccordionProps extends ViewProps {
    * The value of the item to expand when initially rendered when type is "single" or "multiple".
    */
 
-  defaultValue?: string | string[];
+  defaultValue?: string[];
 
   /**
    * The controlled value of the item to expand when type is "single" or "multiple".
    */
 
-  value?: string | string[];
+  value?: string[];
 
   /**
    * Event handler called when the expanded state of an item changes and type is "single" or "multiple".
    */
 
-  onValueChange?: (value: string | string[]) => void;
+  onValueChange?: (value: string[]) => void;
 
   /**
    * When true, prevents the user from interacting with the accordion and all its items.
