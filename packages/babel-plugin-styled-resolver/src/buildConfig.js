@@ -138,7 +138,7 @@ const generateRollupConfig = (config = {}) => {
 };
 
 const getConfig = async (configPath) => {
-  const rollupConfig = generateRollupConfig();
+  const rollupConfig = generateRollupConfig({ input: configPath });
   try {
     await buildAndRun(rollupConfig);
     console.log('Config built successfully!');
