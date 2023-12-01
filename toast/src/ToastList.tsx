@@ -92,9 +92,11 @@ export const ToastList = () => {
             >
               {toastInfo[position].map((toast: IToast) => {
                 return (
-                  <SafeAreaView style={{ pointerEvents: 'box-none' }}>
+                  <SafeAreaView
+                    style={{ pointerEvents: 'box-none' }}
+                    key={toast.id}
+                  >
                     <OverlayAnimatePresence
-                      key={toast.id}
                       visible={visibleToasts[toast.id]}
                       AnimatePresence={AnimatePresence}
                       onExit={() => {
