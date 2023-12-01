@@ -32,7 +32,7 @@
     "@expo/html-elements": "latest",
     "@gluestack-style/animation-resolver": "^1.0.2",
     "@gluestack-style/legend-motion-animation-driver": "^1.0.2",
-    "@gluestack-ui/accordion": "^0.0.2-alpha.0",
+    "@gluestack-ui/accordion": "^0.0.2",
     "@gluestack-ui/actionsheet": "^0.2.30",
     "@gluestack-ui/alert": "^0.1.12",
     "@gluestack-ui/alert-dialog": "^0.1.23",

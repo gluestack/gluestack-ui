@@ -3,11 +3,27 @@ import { createStyle } from '@gluestack-style/react';
 export const Accordion = createStyle({
   maxWidth: 640,
   width: '80%',
-  _web: {
-    ':disabled': {
-      cursor: 'not-allowed',
+
+  _icon: {
+    color: '$textLight900',
+    _dark: {
+      color: '$textDark50',
     },
   },
+  _titleText: {
+    color: '$textLight900',
+
+    _dark: {
+      color: '$textDark50',
+    },
+  },
+  _contentText: {
+    color: '$textLight700',
+    _dark: {
+      color: '$textDark200',
+    },
+  },
+
   variants: {
     size: {
       sm: {

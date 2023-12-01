@@ -9,7 +9,7 @@ pageDescription: The Accordion component is a versatile and interactive user int
 
 showHeader: true
 
-tag: alpha
+tag: beta
 ---
 
 import { Meta } from '@storybook/addon-docs';
@@ -233,7 +233,7 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
             </Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>string[] | string</Table.TText>
+            <Table.TText>string[]</Table.TText>
           </Table.TD>
           <Table.TD>
             <Table.TText>[]</Table.TText>
@@ -249,7 +249,7 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
             </Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>string[] | string</Table.TText>
+            <Table.TText>string[]</Table.TText>
           </Table.TD>
           <Table.TD>
             <Table.TText>[]</Table.TText>
@@ -442,11 +442,15 @@ Contains all Icon related layout style props and actions.It inherits all the pro
 
 ## Accessibility
 
+Adheres to the Accordion [WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/accordion/examples/accordion/).
+
 We have outlined the various features that ensure the Accordion component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards.
 
 - Header is h3 tag on web.
 - aria-expanded is "true" when the Accordion Content is visible, otherwise false.
 - role is set to "region" for the currently expanded accordion panel.
+- aria-controls points to the id of the Accordion Content.
+- aria-labelledby references the accordion header button that expands and collapses the region.
 
 ### Keyboard Interactions
 

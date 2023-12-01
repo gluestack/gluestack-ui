@@ -44,7 +44,7 @@ const AccordionBasic = ({ ...props }: any) => {
         </AccordionContent>
       </AccordionItem>
 
-      <Divider />
+      {/* <Divider /> */}
 
       <AccordionItem value="b">
         <AccordionHeader>
@@ -75,7 +75,7 @@ const AccordionBasic = ({ ...props }: any) => {
         </AccordionContent>
       </AccordionItem>
 
-      <Divider />
+      {/* <Divider /> */}
 
       <AccordionItem value="c">
         <AccordionHeader>
@@ -104,7 +104,7 @@ const AccordionBasic = ({ ...props }: any) => {
         </AccordionContent>
       </AccordionItem>
 
-      <Divider />
+      {/* <Divider /> */}
 
       <AccordionItem value="d">
         <AccordionHeader>
