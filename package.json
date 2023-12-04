@@ -5,7 +5,8 @@
     "packages/config",
     "example/storybook",
     "example/apps/*",
-    "packages/*"
+    "packages/*",
+    "packages/styled/**"
   ],
   "scripts": {
     "test": "bash ./scripts/test.sh",
