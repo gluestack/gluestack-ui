@@ -55,5 +55,8 @@
   "files": [
     "lib/",
     "src/"
-  ]
+  ],
+  "dependencies": {
+    "moti": "^0.27.2"
+  }
 }

@@ -2,11 +2,8 @@
   "include": ["./src"],
   "exclude": ["node_modules", "example"],
   "path": {
-<<<<<<< HEAD:packages/config/tsconfig.json
-    "@gluestack-ui/themed": ["../themed/src"]
-=======
+    "@gluestack-ui/themed": ["../../themed/src"],
     "@gluestack-style/react": ["../react/src"]
->>>>>>> source-gluestack-style:packages/animation-moti-driver/tsconfig.json
   },
   "compilerOptions": {
     "noEmit": false,
@@ -14,11 +11,8 @@
     "allowUnreachableCode": false,
     "allowUnusedLabels": true,
     "esModuleInterop": true,
-<<<<<<< HEAD:packages/config/tsconfig.json
     "importsNotUsedAsValues": "error",
     "ignoreDeprecations": "5.0",
-=======
->>>>>>> source-gluestack-style:packages/animation-moti-driver/tsconfig.json
     "forceConsistentCasingInFileNames": true,
     "jsx": "react",
     "lib": ["esnext", "dom"],

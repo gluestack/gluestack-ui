@@ -503,34 +503,12 @@ export const gluestackUIConfig = createConfig({
       xl: '@media screen and (min-width: 1280px)',
     },
     letterSpacings: {
-<<<<<<<< HEAD:packages/animation-moti-driver/src/gluestack-ui.config.ts
       'xs': -0.4,
       'sm': -0.2,
       'md': 0,
       'lg': 0.2,
       'xl': 0.4,
       '2xl': 1.6,
-    },
-    lineHeights: {
-      '2xs': 16,
-      'xs': 18,
-      'sm': 20,
-      'md': 22,
-      'lg': 24,
-      'xl': 28,
-      '2xl': 32,
-      '3xl': 40,
-      '4xl': 48,
-      '5xl': 56,
-      '6xl': 72,
-      '7xl': 90,
-========
-      'xs': '-0.8px',
-      'sm': '-0.4px',
-      'md': 0,
-      'lg': '0.4px',
-      'xl': '0.8px',
-      '2xl': '1.6px',
     },
     lineHeights: {
       '2xs': '16px',
@@ -543,7 +521,6 @@ export const gluestackUIConfig = createConfig({
       '3xl': '40px',
       '4xl': '48px',
       '5xl': '64px',
->>>>>>>> source-gluestack-style:example/babel-plugin-styled-resolver-expo/gluestack-style.config.ts
     },
     fontWeights: {
       hairline: '100',
@@ -596,7 +573,6 @@ export const gluestackUIConfig = createConfig({
       100: 1,
     },
   } as const,
-<<<<<<<< HEAD:packages/animation-moti-driver/src/gluestack-ui.config.ts
   globalStyle: {
     variants: {
       hardShadow: {
@@ -724,12 +700,13 @@ type Config = typeof gluestackUIConfig; // Assuming `config` is defined elsewher
 type Components = typeof componentsConfig;
 
 export const componentsConfig = createComponents(componentsTheme);
-
+// @ts-ignore
 export type { UIConfig, UIComponents } from '@gluestack-ui/themed';
 
 export interface IConfig {}
 export interface IComponents {}
 
+// @ts-ignore
 declare module '@gluestack-ui/themed' {
   interface UIConfig extends Omit<Config, keyof IConfig>, IConfig {}
   interface UIComponents
@@ -740,6 +717,4 @@ declare module '@gluestack-ui/themed' {
 export const config = {
   ...gluestackUIConfig,
   components: componentsConfig,
-========
->>>>>>>> source-gluestack-style:example/babel-plugin-styled-resolver-expo/gluestack-style.config.ts
 };
