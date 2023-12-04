@@ -3,6 +3,7 @@ export interface ITabProps {
 }
 export interface ITabListProps {
   orientation?: 'vertical' | 'horizontal';
+  variant?: 'scrollable';
 }
 export interface ITabsProps {
   value?: string;

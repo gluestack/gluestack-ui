@@ -11,10 +11,12 @@ export const TabList = <StyledTabList,>(
         {
           children,
           orientation = 'horizontal',
+          variant,
           ...props
         }: StyledTabList & {
           children?: any;
           orientation: 'horizontal' | 'vertical';
+          variant: 'scrollable' | null;
         },
         ref?: any
       ) => {
@@ -36,6 +38,16 @@ export const TabList = <StyledTabList,>(
           <StyledTabList
             role="tablist"
             flexDirection={orientation === 'vertical' ? 'column' : 'row'}
+            overflowX={
+              orientation === 'horizontal' && variant === 'scrollable'
+                ? 'scroll'
+                : 'hidden'
+            }
+            overflowY={
+              orientation === 'vertical' && variant === 'scrollable'
+                ? 'scroll'
+                : 'hidden'
+            }
             {...(props as StyledTabList)}
             ref={ref}
           >

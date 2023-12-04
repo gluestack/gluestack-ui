@@ -1,5 +1,5 @@
 import { useFocusRing, useFocus } from '@react-native-aria/focus';
-import React, { memo } from 'react';
+import React, { memo, useEffect } from 'react';
 import { forwardRef } from 'react';
 import type { PressableProps } from 'react-native';
 import { useHover, usePress } from '@react-native-aria/interactions';
@@ -15,7 +15,12 @@ export const Tab = <StyledTab,>(StyledTab: React.ComponentType<StyledTab>) =>
           value,
           children,
           ...props
-        }: StyledTab & PressableProps & { children?: any; value?: string },
+        }: StyledTab &
+          PressableProps & {
+            children?: any;
+            value?: string;
+            onSelect: (key: string) => void;
+          },
         ref?: any
       ) => {
         const { focusProps: focusRingProps, isFocusVisible }: any =
@@ -25,15 +30,16 @@ export const Tab = <StyledTab,>(StyledTab: React.ComponentType<StyledTab>) =>
         });
         const { isFocused, focusProps } = useFocus();
         const { isHovered, hoverProps }: any = useHover();
-        const [isActive, setIsActive] = React.useState(false);
 
         const { onChange, currentActiveTab } = useTab('TabContext');
 
-        React.useEffect(() => {
-          setIsActive(value === currentActiveTab);
-        }, [value, currentActiveTab]);
+        const { tabProps } = useTabs();
 
-        const tabProps = useTabs();
+        useEffect(() => {
+          if (isFocusVisible) {
+            onChange(value);
+          }
+        }, [isFocusVisible, onChange, value]);
 
         return (
           <StyledTab
@@ -42,9 +48,10 @@ export const Tab = <StyledTab,>(StyledTab: React.ComponentType<StyledTab>) =>
             states={{
               hover: isHovered,
               focus: isFocused,
-              active: isActive,
+              active: value === currentActiveTab,
               focusVisible: isFocusVisible,
             }}
+            tabIndex={value === currentActiveTab ? 0 : -1}
             {...(props as StyledTab)}
             onPressIn={composeEventHandlers(
               props?.onPressIn,
@@ -77,7 +84,7 @@ export const Tab = <StyledTab,>(StyledTab: React.ComponentType<StyledTab>) =>
             {typeof children === 'function'
               ? children({
                   hovered: isHovered,
-                  active: isActive,
+                  active: value === currentActiveTab,
                   pressed: isPressed,
                   focused: isFocused,
                 })
