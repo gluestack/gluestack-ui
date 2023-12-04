@@ -23,6 +23,6 @@
     "strict": true,
     "target": "esnext"
   },
-  "include": ["packages"],
+  "include": ["packages", "src"],
   "exclude": ["node_modules"]
 }
