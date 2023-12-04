@@ -1,5 +1,11 @@
 # @gluestack-ui/themed
 
+## 1.0.20
+
+### Patch Changes
+
+- fix: version bump @gluestack-style/react
+
 ## 1.0.19
 
 ### Patch Changes
