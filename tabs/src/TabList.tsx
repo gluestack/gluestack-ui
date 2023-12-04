@@ -1,3 +1,4 @@
+import { FocusScope } from '@react-native-aria/focus';
 import React, { memo, useMemo } from 'react';
 import { forwardRef } from 'react';
 
@@ -7,7 +8,16 @@ export const TabList = <StyledTabList,>(
   memo(
     forwardRef(
       (
-        { children, ...props }: StyledTabList & { children?: any },
+        {
+          children,
+          orientation = 'horizontal',
+          variant,
+          ...props
+        }: StyledTabList & {
+          children?: any;
+          orientation: 'horizontal' | 'vertical';
+          variant: 'scrollable' | null;
+        },
         ref?: any
       ) => {
         let tabIndex = 0;
@@ -25,8 +35,23 @@ export const TabList = <StyledTabList,>(
         );
 
         return (
-          <StyledTabList role="tablist" {...(props as StyledTabList)} ref={ref}>
-            {modifiedTabList}
+          <StyledTabList
+            role="tablist"
+            flexDirection={orientation === 'vertical' ? 'column' : 'row'}
+            overflowX={
+              orientation === 'horizontal' && variant === 'scrollable'
+                ? 'scroll'
+                : 'hidden'
+            }
+            overflowY={
+              orientation === 'vertical' && variant === 'scrollable'
+                ? 'scroll'
+                : 'hidden'
+            }
+            {...(props as StyledTabList)}
+            ref={ref}
+          >
+            <FocusScope>{modifiedTabList}</FocusScope>
           </StyledTabList>
         );
       }
