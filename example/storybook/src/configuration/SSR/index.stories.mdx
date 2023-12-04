@@ -1,18 +1,58 @@
 ---
-title: SSR | gluestack-ui
-description: gluestack-ui components can be rendered on the server.
+title: Server-Side Rendering | gluestack-style
+description: gluestack-style provides support for server-side rendering (SSR) by exporting a flush function to flush out any styles that were generated during the SSR process.
 ---
 
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
-<Meta title="Configuration/Server-Side Rendering" />
+<Meta title="configuration/SSR" />
 
-# Server-side rendering (SSR)
+# Server-Side Rendering
 
-Server-side rendering (SSR) is a technique that enables the rendering of web pages on the server before sending them to the browser. SSR can help improve the performance of web applications by reducing the time it takes for the first page to load, enhancing SEO, and improving accessibility.
+gluestack-style facilitates server-side rendering (SSR) through the provision of a flush function. This function flushes out any styles generated during the server-side rendering process. This enables these styles to be added to the HTML document. To use the **`flush`** function, you must import and call it in the **`_document.jsx`** or **`_document.tsx`** file, which is a file specific to Next.js that can be customized to modify the document that is sent to the browser.
 
-gluestack-ui components are built on top of React Native Web and `@gluestack-style/react`, and can be rendered server-side using Next.js or any other server-side rendering framework.
+To avert flickering, you should attach the 'gs' class, which heightens the specificity of any employed inline styles.
 
-However, for more advanced server-side rendering scenarios, such as with Next.js, some configuration may be necessary. In these cases, you may need to install and configure additional packages, such as next-transpile-modules, to ensure that the gluestack-ui components are properly transpiled and available for server-side rendering.
+We also recommend attaching either the 'gs-dark' or 'gs-light' class to define the default color mode. This will ensure that the appropriate color mode is applied from the server side and prevent any visual inconsistencies during the initial page load.
 
-To use gluestack-ui components with server-side rendering, check the installation steps in nextJs installation.
+Here is an example of how you can use the **`flush`** function and attach **`gs`** & **`gs-dark`** classes in the **`_document.jsx`** or **`_document.tsx`** file:
+
+```jsx
+import { flush } from '@gluestack-style/react';
+
+class MyDocument extends Document {
+  render() {
+    return (
+      <Html className="gs gs-dark">
+        <Head></Head>
+        <body>
+          <Main />
+          <NextScript />
+        </body>
+      </Html>
+    );
+  }
+}
+
+export async function getInitialProps({ renderPage }: any) {
+  AppRegistry.registerComponent('Main', () => Main);
+  const { getStyleElement } = AppRegistry.getApplication('Main');
+  const page = await renderPage();
+  const styles = [
+    <style dangerouslySetInnerHTML={{ __html: style }} />,
+    getStyleElement(),
+    ...flush(),
+  ];
+  return { ...page, styles: React.Children.toArray(styles) };
+}
+
+Document.getInitialProps = getInitialProps;
+
+export default MyDocument;
+```
+
+In this example, we import the flush function and invoke it within the getInitialProps method. This method returns both the initial properties and the generated styles. These styles are subsequently integrated into the HTML document through the creation of multiple style tags.
+
+It's crucial to ensure that the flush function is called after the server has rendered the React tree. This ensures that the styles are correctly flushed.
+
+Utilizing the flush function guarantees that your styles are accurately rendered on the server, thereby enhancing your application's performance.

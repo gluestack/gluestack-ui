@@ -1,0 +1,53 @@
+---
+title: AsForwarder | gluestack-style
+description: gluestack-style Style exports a AsForwarder component that can be used to configure the library.
+---
+
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+
+<Meta title="api/AsForwarder" />
+
+# AsForwarder
+
+gluestack-style Style provides an 'as' prop for library configuration.
+
+The 'as' prop can be passed to any component. It takes another component as its value, which is then rendered in place of the initial component, with all the styles added to the styled component
+
+Here is an example of how you can use the 'as' prop to configure the library:
+
+```jsx
+import React from 'react';
+import { View } from 'react-native';
+import { Wrapper } from '../../components/Wrapper';
+import { Camera } from 'lucide-react-native';
+import { StyledHeading, StyledIcon } from '../../ui-components/AsForwarder';
+
+export function AsForwarderExample() {
+  const [state, setState] = React.useState(false);
+  return (
+    <Wrapper>
+      <View
+        style={{
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <StyledHeading as={H2} color="red" size="xs">
+          I am a heading
+        </StyledHeading>
+        <StyledIcon as={Camera} size="xs">
+          I am a heading
+        </StyledIcon>
+      </View>
+    </Wrapper>
+  );
+}
+
+export default AsForwarderExample;
+```
+
+In the above example, `<H2 />` is rendered in place of StyledHeading, complete with all its styles.
+
+The 'as' prop is useful in cases of icons when we want to use icons from a third-party library but want the styles to be applied from the styled function.
+
+In the example above, we're using the Camera icon from lucide-react-native, but the styles are applied from the styled function. This ensures consistent icon styles across the design system.

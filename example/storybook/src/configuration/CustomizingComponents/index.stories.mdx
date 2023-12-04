@@ -1,0 +1,52 @@
+---
+title: Customizing Components | gluestack-style
+description: How to customize theme of gluestack-style components. You can create your components config by passing it as third argument to createConfig function from `gluestack-style.config.js`.
+---
+
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+
+<Meta title="configuration/Customizing Components" />
+
+# Customize your components
+
+To customize theme of gluestack-style components in `@gluestack-style/react`, create a `gluestack-style.config.js` file if it doesn't already exist and define your components theme along with other configuration settings.
+
+```jsx
+import { createConfig } from "@gluestack-style/react"
+export const config = createConfig({
+  aliases: {},
+  tokens: {},
+   components: {
+    Button: {  // write same component name which is passed in styled
+      theme: {
+        'bg': '$primary500',
+        variants:{
+          variant:{
+            secondary:{
+              bg:'$secondary500',
+            }
+          }
+        }
+      },
+      componentConfig: {
+        descendantStyle: ['_text'],
+      },
+    },
+  },
+} as const);
+
+```
+
+> **Important:** When extending the theme of a styled component, it's essential to provide the component's name as demonstrated below. Additionally, ensure that the component's name specified in `components` in `createConfig` should perfectly match the name you pass within the `styled` function. This alignment ensures proper theme extension functionality.
+
+```jsx
+const MyButton = styled(Pressable, {
+  bg: '$red500',
+  p: '$3',
+},
+{
+  componentName:"Button" // pass same component name which is passed in config
+});
+
+const export Button = () => <MyButton  variant="secondary"/>;
+```

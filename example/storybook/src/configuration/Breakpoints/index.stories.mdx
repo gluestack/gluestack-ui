@@ -1,0 +1,47 @@
+---
+title: Breakpoints | gluestack-style
+description: How to create and use breakpoints in gluestack-style. You can define your breakpoints in `gluestack-style.config.js`. Breakpoints are defined in `mediaQueries` scale.
+---
+
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+
+<Meta title="configuration/Breakpoints" />
+
+# Configure your Breakpoints
+
+To configure breakpoints in @gluestack-style/react, create a gluestack-style.config.js file to define your breakpoints along with other configuration settings. Breakpoints are defined within the `mediaQueries` scale.
+
+```jsx
+mediaQueries: {
+  base: '@media screen and (min-width: 0)',
+  sm: '@media screen and (min-width: 480px)',
+  md: '@media screen and (min-width: 768px)',
+  lg: '@media screen and (min-width: 992px)',
+  xl: '@media screen and (min-width: 1280px)',
+},
+```
+
+### To use breakpoints
+
+```jsx
+const MyButton = styled(Pressable, {
+  'bg': '$red500',
+  'p': '$3',
+  'shadow': '$4',
+  '@md': {
+    'bg': '$blue500',
+    ':hover': {
+      'bg': '$green500',
+      ':focus': {
+        bg: 'purple',
+      },
+    },
+    '_dark': {
+      bg: '$red500',
+    },
+    '_light': {
+      bg: '$blue500',
+    },
+  },
+});
+```

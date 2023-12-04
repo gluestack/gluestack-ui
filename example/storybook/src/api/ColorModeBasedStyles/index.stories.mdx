@@ -1,0 +1,79 @@
+---
+title: ColorMode Based Styles | gluestack-style
+description: A guide for color mode dependent styles inside the component config. Inside the **`_light`** or **`_dark`** key, you can define your styling.
+---
+
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+
+<Meta title="api/ColorMode Based Styles" />
+
+import { View, Pressable, Text } from 'react-native';
+import { Button, CodeBlock, CodePreview } from '@gluestack/design-system';
+import { config } from '../../components/nb.config';
+import { styled, StyledProvider } from '@gluestack-style/react';
+
+# ColorMode Based Styles
+
+When creating a **`StyledComponent`** using **`@gluestack-style/react`** you can write color mode dependent styles inside the component config object and any `variant`. Inside the **`_light`** or **`_dark`** key, you can define your styling. Here is a small code snippet demonstrating how to define your style:
+
+```jsx
+const StyledButton = styled(Pressable, {
+  bg: '$primary600',
+  px: '$6',
+  py: '$4',
+  _dark: {
+    bg: '$info600',
+  },
+  _light: {
+    bg: '$info800',
+  },
+});
+```
+
+### How to control the ColorMode?
+
+To switch between color modes, a UI library might provide a toggle button or another mechanism to change the color mode."When the color mode is changed, the library updates the colors used throughout the interface to match the new mode.
+
+To implement this, the **`StyledProvider`** accepts a `colorMode` prop. Simply handle your colorMode and pass the current **`colorMode`** to this prop and all your components will respond to the **`colorMode`** changes.
+
+```jsx
+import React from 'react';
+import { View, Pressable, Text } from 'react-native';
+import { styled, StyledProvider } from '@gluestack-style/react';
+import { config } from './gluestack-style.config';
+const StyledButton = styled(Pressable, {
+  bg: '$primary600',
+  px: '$6',
+  py: '$4',
+  _dark: {
+    bg: '$info600',
+  },
+  _light: {
+    bg: '$info800',
+  },
+});
+
+export function ColorMode({ ...args }) {
+  const [currentColorMode, setCurrentColorMode] = React.useState('light');
+
+  return (
+    <StyledProvider config={config} colorMode={currentColorMode}>
+      <Pressable
+        style={{
+          backgroundColor: 'gray',
+          padding: 12,
+          marginBottom: 12,
+        }}
+        onPress={() => {
+          setCurrentColorMode(currentColorMode === 'dark' ? 'light' : 'dark');
+        }}
+      >
+        <Text style={{ color: 'white' }}>
+          Toggle {currentColorMode === 'dark' ? 'light' : 'dark'}
+        </Text>
+      </Pressable>
+      <StyledButton />
+    </StyledProvider>
+  );
+}
+```

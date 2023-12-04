@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "module": "CommonJS",
+    "target": "es2015",
+    "declaration": true,
+    "outDir": "./dist",
+    "skipLibCheck": true,
+    "checkJs": false
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"],
+  "extends": "expo/tsconfig.base"
+}

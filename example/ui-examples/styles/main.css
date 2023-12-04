@@ -1,0 +1,33 @@
+/* styles.css */
+
+body {
+  overflow: hidden;
+  height: 100%;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-corner,
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.gs-dark ::-webkit-scrollbar-thumb {
+  background-color: #525252;
+  border-radius: 20px;
+  border: 3px solid transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #dbdbdb;
+  border-radius: 20px;
+  border: 3px solid transparent;
+}
+
+::-webkit-scrollbar-corner,
+::-webkit-scrollbar-track {
+  background: transparent;
+}

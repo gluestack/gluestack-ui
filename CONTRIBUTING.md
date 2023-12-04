@@ -1,6 +1,6 @@
 # Contributing to `gluestack/gluestack-ui`
 
-We'd love for you to contribute to our source code and to make `gluestack/ui` even better than it is
+We'd love for you to contribute to our source code and to make `gluestack-style` even better than it is
 today! Here are some guidelines we'd like you to follow:
 
 - [Contributing to `gluestack/gluestack-ui`](#contributing-to-gluestack-ui)
@@ -26,7 +26,7 @@ If you are eager to start contributing code right away, you can go through [`glu
 There are other ways you can contribute without writing a single line of code. Here are a few things you can do to help out:
 
 1. **Replying and handling open issues.** We get a lot of issues every day, and some of them may lack necessary information. You can help out by guiding people through the process of filling out the issue template, asking for clarifying information, or pointing them to existing issues that match their description of the problem.
-2. **Reviewing pull requests for the docs.** Reviewing [documentation updates](https://github.com/gluestack/ui-docs/pulls) can be as simple as checking for spelling and grammar. If you encounter situations that can be explained better in the docs, click **Edit** at the bottom left of most docs pages to get started with your own contribution.
+2. **Reviewing pull requests for the docs.** Reviewing [documentation updates](https://github.com/gluestack/gluestack-style/pulls) can be as simple as checking for spelling and grammar. If you encounter situations that can be explained better in the docs, click **Edit** at the bottom left of most docs pages to get started with your own contribution.
 3. **Help people write test plans.** Some pull requests sent to the main repository may lack a proper test plan. These help reviewers understand how the change was tested, and can speed up the time it takes for a contribution to be accepted.
 
 Each of these tasks is highly impactful, and maintainers will greatly appreciate your help.
@@ -58,7 +58,7 @@ If you find a bug in the source code, you can help us by submitting an issue to 
 
 ### <a name="feature"></a> Missing a Feature?
 
-You can request a new feature by submitting an issue to our [GitHub Repository](https://github.com/gluestack/ui/issues).
+You can request a new feature by submitting an idea to our discussion under [Feature Request](https://github.com/gluestack/gluestack-style/discussions/new?category=feature-request) category.
 
 If you would like to implement a new feature then consider what kind of change it is:
 
@@ -82,9 +82,9 @@ with quickly:
 
 - **Issue Description** - if an error is being thrown a non-minified stack trace helps
 - **Motivation for or Use Case** - explain why this is a bug for you
-- **`gluestack/ui` Version(s)** - is it a regression?
+- **`gluestack-style` Version(s)** - is it a regression?
 - **Browsers and Operating System** - is this a problem with all browsers or only specific ones?
-- **Reproduce the Error** - provide a live example (using [expo snack](https://snack.expo.io/) or an unambiguous set of steps.
+- **Reproduce the Error** - provide a live example (using [expo snack template](https://snack.expo.dev/@gluestack/4da9b2) or an unambiguous set of steps.
 - **Related Issues** - has a similar issue been reported before?
 - **Suggest a Fix** - if you can't fix the bug yourself, perhaps you can point to what might be
   causing the problem (line of code or commit)
@@ -99,7 +99,7 @@ with quickly:
   git clone git@github.com:${YOUR_USERNAME}/gluestack/gluestack-ui.git
   ```
 
-- Navigate to ui
+- Navigate to gluestack-style
 
   ```
   cd gluestack-ui

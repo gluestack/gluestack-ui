@@ -1,4 +1,8 @@
 const path = require('path');
+<<<<<<< HEAD
+=======
+
+>>>>>>> source-gluestack-style
 // console.log(path.resolve('../../', 'node_modules/@gluestack-style/react'));
 module.exports = {
   stories: [
@@ -15,7 +19,10 @@ module.exports = {
     '@storybook/addon-essentials',
     '@storybook/addon-react-native-web',
     '@storybook/addon-docs',
+<<<<<<< HEAD
     '@geometricpanda/storybook-addon-iframe',
+=======
+>>>>>>> source-gluestack-style
   ],
   staticDirs: ['../public'],
   framework: '@storybook/react',
@@ -40,6 +47,7 @@ module.exports = {
       use: 'babel-loader',
     });
 
+<<<<<<< HEAD
     config.resolve.alias = {
       ...config.resolve.alias,
       '@gluestack-ui/themed': path.join(
@@ -59,6 +67,8 @@ module.exports = {
         '../../../packages/config/src/gluestack-ui.config'
       ),
     };
+=======
+>>>>>>> source-gluestack-style
     config.module.rules.push({
       test: /\.mjs$/,
       include: /node_modules/,

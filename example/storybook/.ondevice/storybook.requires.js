@@ -7,7 +7,12 @@ import {
   addArgsEnhancer,
   clearDecorators,
 } from '@storybook/react-native';
+<<<<<<< HEAD
 
+=======
+import { config } from '../src/components/nb.config';
+console.log(Object.keys(config));
+>>>>>>> source-gluestack-style
 global.STORIES = [
   {
     titlePrefix: '',
@@ -48,6 +53,7 @@ try {
 } catch {}
 
 const getStories = () => {
+<<<<<<< HEAD
   return [
     require('../src/components/Disclosure/Actionsheet/Actionsheet.stories.tsx'),
     // require('../src/components/Disclosure/Accordion/Acc.stories.tsx'),
@@ -94,6 +100,29 @@ const getStories = () => {
     require('../src/hooks/use-breakpoint-value/use-breakpoint-value.stories.tsx'),
     require('../src/hooks/use-color-mode/use-color-mode.stories.tsx'),
   ];
+=======
+  return {
+    // "./src/api/AsForwarder/AsForwarder.stories.tsx": require("../src/api/AsForwarder/AsForwarder.stories.tsx"),
+    // "./src/api/ColorModeBasedStyles/ColorMode.stories.tsx": require("../src/api/ColorModeBasedStyles/ColorMode.stories.tsx"),
+    // "./src/api/CompoundVariants/CompoundVarinats.stories.tsx": require("../src/api/CompoundVariants/CompoundVarinats.stories.tsx"),
+    // './src/api/createStyled/createStyled.stories.tsx': require('../src/api/createStyled/createStyled.stories.tsx'),
+    // './src/api/DescendantsStyles/ContextBasedStyles.stories.tsx': require('../src/api/DescendantsStyles/ContextBasedStyles.stories.tsx'),
+    // "./src/api/MultipleProvder/MultipleProvider.stories.tsx": require("../src/api/MultipleProvder/MultipleProvider.stories.tsx"),
+    // "./src/api/PlatformBasedStyles/PlatformBasedStyles.stories.tsx": require("../src/api/PlatformBasedStyles/PlatformBasedStyles.stories.tsx"),
+    // "./src/api/PropertyResolver/PropertyResolver.stories.tsx": require("../src/api/PropertyResolver/PropertyResolver.stories.tsx"),
+    // "./src/api/PropsPassing/PropsPassing.stories.tsx": require("../src/api/PropsPassing/PropsPassing.stories.tsx"),
+    // "./src/api/ResponsiveStyles/ResponsiveStyles.stories.tsx": require("../src/api/ResponsiveStyles/ResponsiveStyles.stories.tsx"),
+    // "./src/api/Specificity/Specificity.stories.tsx": require("../src/api/Specificity/Specificity.stories.tsx"),
+    // "./src/api/StateBasesStyles/ButtonStateProps.stories.tsx": require("../src/api/StateBasesStyles/ButtonStateProps.stories.tsx"),
+    // "./src/api/SxStyleResolution/SxStyleResolution.stories.tsx": require("../src/api/SxStyleResolution/SxStyleResolution.stories.tsx"),
+    // "./src/api/Typescript/Typescript.stories.tsx": require("../src/api/Typescript/Typescript.stories.tsx"),
+    // "./src/api/UtilityFunctions/UtilityFunctions.stories.tsx": require("../src/api/UtilityFunctions/UtilityFunctions.stories.tsx"),
+    // "./src/api/Variants/BaseStyleVariantSizes.stories.tsx": require("../src/api/Variants/BaseStyleVariantSizes.stories.tsx"),
+    './src/plugins/AnimationPlugin/Animation.stories.tsx': require('../src/plugins/AnimationPlugin/Animation.stories.tsx'),
+    // "./src/plugins/CSSVariables/CSSVariables.stories.tsx": require("../src/plugins/CSSVariables/CSSVariables.stories.tsx"),
+    // "./src/plugins/FontsPlugin/FontsPlugin.stories.tsx": require("../src/plugins/FontsPlugin/FontsPlugin.stories.tsx"),
+  };
+>>>>>>> source-gluestack-style
 };
 
 configure(getStories, module, false);
