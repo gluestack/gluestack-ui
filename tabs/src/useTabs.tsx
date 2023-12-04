@@ -4,7 +4,7 @@ import { AccessibilityRole } from 'react-native';
 export const useTabs = () => {
   const focusManager = useFocusManager();
   const onKeyDown = (e: KeyboardEvent) => {
-    switch (e.key) {
+    switch (e.code) {
       case 'ArrowRight': {
         e.preventDefault();
         //@ts-ignore
@@ -15,13 +15,12 @@ export const useTabs = () => {
         e.preventDefault();
         //@ts-ignore
         focusManager?.focusPrevious({ wrap: true });
-
         break;
       }
     }
   };
   return {
-    onKeyDown,
-    accessibilityRole: 'tab' as AccessibilityRole,
+    tabProps: { onKeyDown, accessibilityRole: 'tab' as AccessibilityRole },
+    focusManager,
   };
 };
