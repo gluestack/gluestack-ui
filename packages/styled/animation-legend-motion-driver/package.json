@@ -1,0 +1,58 @@
+{
+  "name": "@gluestack-style/legend-motion-animation-driver",
+  "version": "1.0.2",
+  "description": "A gluestack-style plugin for animation support using legendapp motion library",
+  "keywords": [
+    "react",
+    "native",
+    "react-native",
+    "animation",
+    "legendapp",
+    "motion",
+    "driver",
+    "transition"
+  ],
+  "main": "lib/commonjs/index",
+  "types": "lib/typescript/index.d.ts",
+  "module": "lib/module/index",
+  "react-native": "src/index",
+  "source": "src/index",
+  "typings": "lib/typescript/index.d.ts",
+  "scripts": {
+    "prepare": "bob build",
+    "release": "release-it",
+    "build": "bob build",
+    "clean": "rm -rf lib"
+  },
+  "peerDependencies": {
+    "@gluestack-style/react": ">=0.2",
+    "@legendapp/motion": ">=2.2"
+  },
+  "devDependencies": {
+    "@gluestack-style/react": "^1.0.1",
+    "@types/react": "^18.0.22",
+    "@types/react-native": "^0.69.15",
+    "babel-plugin-transform-remove-console": "^6.9.4",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
+    "react-native": "^0.70.3",
+    "react-native-builder-bob": "^0.20.1",
+    "tsconfig": "*",
+    "typescript": "^4.7.4"
+  },
+  "react-native-builder-bob": {
+    "source": "src",
+    "output": "lib",
+    "targets": [
+      "commonjs",
+      [
+        "module"
+      ],
+      "typescript"
+    ]
+  },
+  "files": [
+    "lib/",
+    "src/"
+  ]
+}
