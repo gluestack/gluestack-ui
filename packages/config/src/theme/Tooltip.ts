@@ -5,5 +5,6 @@ export const Tooltip = createStyle({
   height: '$full',
   _web: {
     pointerEvents: 'none',
+    h: undefined,
   },
 });
