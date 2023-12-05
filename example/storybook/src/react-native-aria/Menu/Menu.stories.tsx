@@ -1,19 +1,21 @@
-import React from "react";
-import { storiesOf } from "@storybook/react-native";
-import { MenuButton } from "./index";
-import { Item, Section } from "@react-stately/collections";
-import { View } from "react-native";
-import { Wrapper } from "../Wrapper";
+import React from 'react';
+
+import { MenuButton } from './index';
+import { Item, Section } from '@react-stately/collections';
+import { View } from 'react-native';
+import { Wrapper } from '../Wrapper';
+import type { ComponentMeta } from '@storybook/react-native';
+import DocsContainer from '@storybook/addon-docs';
 
 const MenuExample = () => {
   return (
     <View style={{ marginTop: 100 }}>
       <MenuButton
         label="Actions"
-        onAction={console.log}
+        onAction={console.error}
         selectionMode="multiple"
         closeOnSelect={false}
-        onSelectionChange={console.log}
+        onSelectionChange={console.error}
       >
         <Section title="Section 1">
           <Item key="copy">Copy</Item>
@@ -38,4 +40,15 @@ const Example = () => {
   );
 };
 
-storiesOf("Menu", module).add("Menu", Example);
+const MenuMeta: ComponentMeta<any> = {
+  title: 'react-native-aria/menu',
+  component: Example,
+  parameters: {
+    docs: {
+      container: DocsContainer,
+      page: () => <></>,
+    },
+  },
+};
+
+export default MenuMeta;

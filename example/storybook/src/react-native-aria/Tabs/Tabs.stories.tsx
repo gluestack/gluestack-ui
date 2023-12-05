@@ -1,9 +1,11 @@
-import React from "react";
-import { storiesOf } from "@storybook/react-native";
-import { Wrapper } from "../Wrapper";
-import { TabsExample } from "./index";
-import { Item } from "@react-stately/collections";
-import { Text } from "react-native";
+import React from 'react';
+
+import { Wrapper } from '../Wrapper';
+import { TabsExample } from './index';
+import { Item } from '@react-stately/collections';
+import { Text } from 'react-native';
+import type { ComponentMeta } from '@storybook/react-native';
+import DocsContainer from '@storybook/addon-docs';
 
 export const Example = () => {
   return (
@@ -23,4 +25,15 @@ export const Example = () => {
   );
 };
 
-storiesOf("Tabs", module).add("Basic", Example);
+const TabsMeta: ComponentMeta<any> = {
+  title: 'react-native-aria/tabs',
+  component: Example,
+  parameters: {
+    docs: {
+      container: DocsContainer,
+      page: () => <></>,
+    },
+  },
+};
+
+export default TabsMeta;

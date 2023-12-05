@@ -1,9 +1,11 @@
-import React from "react";
-import { storiesOf } from "@storybook/react-native";
-import { CheckboxGroup } from "./CheckboxGroup";
-import { Checkbox } from "./Checkbox";
-import { Text } from "react-native";
-import { Wrapper } from "../Wrapper";
+import React from 'react';
+
+import { CheckboxGroup } from './CheckboxGroup';
+import { Checkbox } from './Checkbox';
+import { Text } from 'react-native';
+import { Wrapper } from '../Wrapper';
+import type { ComponentMeta } from '@storybook/react-native';
+import DocsContainer from '@storybook/addon-docs';
 
 const CheckboxExample = () => {
   const [state, setCheckbox] = React.useState([]);
@@ -37,4 +39,15 @@ export const Example = () => {
   );
 };
 
-storiesOf("Checkbox", module).add("Checkbox group", Example);
+const CheckboxMeta: ComponentMeta<any> = {
+  title: 'react-native-aria/checkbox',
+  component: Example,
+  parameters: {
+    docs: {
+      container: DocsContainer,
+      page: () => <></>,
+    },
+  },
+};
+
+export default CheckboxMeta;

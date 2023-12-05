@@ -1,7 +1,9 @@
-import React from "react";
-import { storiesOf } from "@storybook/react-native";
-import { RadioGroup, Radio } from "./index";
-import { Wrapper } from "../Wrapper";
+import React from 'react';
+
+import { RadioGroup, Radio } from './index';
+import { Wrapper } from '../Wrapper';
+import type { ComponentMeta } from '@storybook/react-native';
+import DocsContainer from '@storybook/addon-docs';
 
 const RadioExample = () => {
   return (
@@ -20,4 +22,15 @@ export const Example = () => {
   );
 };
 
-storiesOf("Radio", module).add("Radio group", Example);
+const RadioMeta: ComponentMeta<any> = {
+  title: 'react-native-aria/radio',
+  component: Example,
+  parameters: {
+    docs: {
+      container: DocsContainer,
+      page: () => <></>,
+    },
+  },
+};
+
+export default RadioMeta;

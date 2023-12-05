@@ -1,9 +1,11 @@
-import React from "react";
-import { storiesOf } from "@storybook/react-native";
-import { View, Pressable } from "react-native";
-import { Wrapper } from "../Wrapper";
-import type { AriaDialogProps } from "react-aria";
-import { useDialog } from "@react-native-aria/dialog";
+import React from 'react';
+
+import { View, Pressable } from 'react-native';
+import { Wrapper } from '../Wrapper';
+import type { AriaDialogProps } from 'react-aria';
+import { useDialog } from '@react-native-aria/dialog';
+import type { ComponentMeta } from '@storybook/react-native';
+import DocsContainer from '@storybook/addon-docs';
 
 interface DialogProps extends AriaDialogProps {
   title?: React.ReactNode;
@@ -33,7 +35,7 @@ const ModalExample = () => {
       <Pressable onPress={() => setIsOpen(true)}>Open</Pressable>
       {isOpen && (
         <Dialog title="Enter your name">
-          <form style={{ display: "flex", flexDirection: "column" }}>
+          <form style={{ display: 'flex', flexDirection: 'column' }}>
             <label htmlFor="first-name">First Name:</label>
             <input id="first-name" />
             <label htmlFor="last-name">Last Name:</label>
@@ -59,4 +61,15 @@ const Example = () => {
   );
 };
 
-storiesOf("Modal", module).add("Modal", Example);
+const ModalMeta: ComponentMeta<any> = {
+  title: 'react-native-aria/modal',
+  component: Example,
+  parameters: {
+    docs: {
+      container: DocsContainer,
+      page: () => <></>,
+    },
+  },
+};
+
+export default ModalMeta;
