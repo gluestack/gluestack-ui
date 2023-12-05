@@ -17,14 +17,12 @@ import {
 
 const AlertDialogDemo = () => {
   const [showAlertDialog, setShowAlertDialog] = React.useState(true);
-  const [showButton, setShowButton] = React.useState(false);
   return (
     <>
       <Button
-        display={showButton ? 'flex' : 'none'}
+        display={!showAlertDialog ? 'flex' : 'none'}
         onPress={() => {
           setShowAlertDialog(true);
-          setShowButton(false);
         }}
       >
         <ButtonText>Click me</ButtonText>
@@ -44,8 +42,8 @@ const AlertDialogDemo = () => {
             <HStack space="sm" alignItems="center">
               <Icon
                 as={CheckCircleIcon}
-                w={18}
-                h={18}
+                width={18}
+                height={18}
                 color="$success700"
                 sx={{
                   _dark: {
@@ -66,7 +64,6 @@ const AlertDialogDemo = () => {
               action="secondary"
               onPress={() => {
                 setShowAlertDialog(false);
-                setShowButton(true);
               }}
             >
               <ButtonText>Okay</ButtonText>
