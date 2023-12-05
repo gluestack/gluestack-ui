@@ -52,11 +52,12 @@ This is an illustration of a **Themed Accordion** component with default configu
     showComponentRenderer={true}
     showArgsController={false}
     _rendererWrapper={{
-      alignItems: 'stretch',
+      display: 'grid',
+      justifyContent: 'stretch',
     }}
     metaData={{
       code: `
-      <Accordion m="$5">
+      <Accordion m="$5" width="80%" maxWidth={640}>
         <AccordionItem value="a">
           <AccordionHeader>
             <AccordionTrigger>
@@ -472,23 +473,23 @@ The following example demonstrates how easily you can customize the Accordion co
     showComponentRenderer={true}
     showArgsController={false}
     _rendererWrapper={{
-      alignItems: 'stretch',
+      display: 'grid',
+      justifyContent: 'stretch',
     }}
     metaData={{
       code: `
 function App(){
     return (
       <Accordion
+      width="80%"
+      maxWidth={640}
       type="multiple"
-      variant="filled"
       size="md"
       m="$5"
       borderWidth={1}
       shadowColor="transparent"
       sx={{
-          _light: {
             borderColor: '$borderLight300',
-          },
           _dark: {
             borderColor: '$borderDark700',
           },
@@ -497,18 +498,14 @@ function App(){
       <AccordionItem value="a" 
          borderBottomWidth={1}
          sx={{
-          _light: {
             borderBottomColor: '$borderLight300',
-          },
           _dark: {
             borderBottomColor: '$borderDark700',
           },
         }}>
         <AccordionHeader 
         sx={{
-          _light: {
-            backgroundColor: "$backgroundLight50"
-          },
+            backgroundColor: "$backgroundLight50",
           _dark: {
             backgroundColor: "$backgroundDark700"
           }
@@ -543,9 +540,7 @@ function App(){
         value="b"
         borderBottomWidth={1}
         sx={{
-          _light: {
             borderBottomColor: '$borderLight300',
-          },
           _dark: {
             borderBottomColor: '$borderDark700',
           },
@@ -553,9 +548,7 @@ function App(){
       >
         <AccordionHeader     
         sx={{
-          _light: {
-            backgroundColor: "$backgroundLight50"
-          },
+            backgroundColor: "$backgroundLight50",
           _dark: {
             backgroundColor: "$backgroundDark700"
           }
@@ -590,9 +583,7 @@ function App(){
       >
         <AccordionHeader
         sx={{
-          _light: {
-            backgroundColor: "$backgroundLight50"
-          },
+            backgroundColor: "$backgroundLight50",
           _dark: {
             backgroundColor: "$backgroundDark700"
           }
@@ -656,13 +647,14 @@ The borderRadius prop can be used to create rounded corners for both the Accordi
     showComponentRenderer={true}
     showArgsController={false}
     _rendererWrapper={{
-      alignItems: 'stretch',
+      display: 'grid',
+      justifyContent: 'stretch',
     }}
     metaData={{
       code: `
 function App(){
     return (
-          <Accordion size="md" shadowColor="transparent" m="$5">
+          <Accordion size="md" shadowColor="transparent" m="$5" width="80%" maxWidth={640}>
       <AccordionItem value="item-1" borderRadius="$lg">
         <AccordionHeader>
           <AccordionTrigger>
@@ -750,17 +742,17 @@ You can disable an item by setting the isDisabled prop to true. This will preven
     showComponentRenderer={true}
     showArgsController={false}
     _rendererWrapper={{
-      alignItems: 'stretch',
+      display: 'grid',
+      justifyContent: 'stretch',
     }}
     metaData={{
       code: `
 function App(){
     return (
-          <Accordion size="md" shadowColor="transparent" m="$5" variant="unfilled">
-      <AccordionItem value="item-1" isDisabled={true} borderBottomWidth={1} sx={{
-          _light: {
+          <Accordion size="md" shadowColor="transparent" m="$5" variant="unfilled" width="80%" maxWidth={640}>
+      <AccordionItem value="item-1" isDisabled={true} borderBottomWidth={1} 
+      sx={{
             borderColor: '$borderLight300',
-          },
           _dark: {
             borderColor: '$borderDark700',
           },
@@ -854,13 +846,14 @@ Use the defaultValue prop to define the open item by default.
     showComponentRenderer={true}
     showArgsController={false}
     _rendererWrapper={{
-      alignItems: 'stretch',
+      display: 'grid',
+      justifyContent: 'stretch',
     }}
     metaData={{
       code: `
 function App(){
     return (
-          <Accordion size="md" shadowColor="transparent" m="$5" variant="unfilled" type="single" defaultValue="item-3">
+          <Accordion size="md" shadowColor="transparent" m="$5" variant="unfilled" type="single" defaultValue="item-3" width="80%" maxWidth={640}>
       <AccordionItem value="item-1" borderRadius="$lg">
         <AccordionHeader>
           <AccordionTrigger px="$0">
@@ -978,7 +971,8 @@ You can nest Accordion components to create a nested accordion. This is useful w
     showComponentRenderer={true}
     showArgsController={false}
     _rendererWrapper={{
-      alignItems: 'stretch',
+      display: 'grid',
+      justifyContent: 'stretch',
     }}
     metaData={{
       code: `
@@ -990,28 +984,26 @@ function App(){
       shadowColor="transparent"
       borderWidth={1}
       sx={{
-        _light: {
           borderColor: '$borderLight300',
-        },
         _dark: {
           borderColor: '$borderDark700',
         },
       }}
+      width="80%"
+      maxWidth={640}
     >
       <AccordionItem value="a">
         <AccordionHeader     
          sx={{
-          _light: {
-            backgroundColor: "$backgroundLight50"
-          },
+            backgroundColor: "$backgroundLight50",
           _dark: {
-            backgroundColor: "$backgroundDark700"
+            backgroundColor: "$backgroundDark700",
           }
         }}>
           <AccordionTrigger>
-            {(states) => (
+            {({isExpanded}) => (
               <>
-                {states.isExpanded ? (
+                {isExpanded ? (
                   <AccordionIcon as={MinusIcon} />
                 ) : (
                   <AccordionIcon as={PlusIcon} />
@@ -1027,10 +1019,8 @@ function App(){
             shadowColor="transparent"
             borderWidth={1}
             sx={{
-              _light: {
                 borderColor: '$borderLight300',
-                backgroundColor: "$backgroundLight50"
-              },
+                backgroundColor: "$backgroundLight50",
               _dark: {
                 borderColor: '$borderDark700',
                 backgroundColor: "$backgroundDark700"
@@ -1040,9 +1030,9 @@ function App(){
             <AccordionItem value="b">
               <AccordionHeader>
                 <AccordionTrigger>
-                  {(states) => (
+                  {({isExpanded}) => (
                     <>
-                      {states.isExpanded ? (
+                      {isExpanded ? (
                         <AccordionIcon as={MinusIcon} />
                       ) : (
                         <AccordionIcon as={PlusIcon} />
@@ -1066,19 +1056,17 @@ function App(){
           <Accordion width="100%" shadowColor="transparent" 
           mt="$5"   
            sx={{
-          _light: {
-            backgroundColor: "$backgroundLight50"
-          },
+            backgroundColor: "$backgroundLight50",
           _dark: {
             backgroundColor: "$backgroundDark700"
           }
         }}>
-            <AccordionItem value="b">
+            <AccordionItem value="c">
               <AccordionHeader>
                 <AccordionTrigger>
-                  {(states) => (
+                  {({isExpanded}) => (
                     <>
-                      {states.isExpanded ? (
+                      {isExpanded ? (
                         <AccordionIcon as={MinusIcon} />
                       ) : (
                         <AccordionIcon as={PlusIcon} />
