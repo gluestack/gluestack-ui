@@ -1,7 +1,7 @@
 import { createIcon } from '@gluestack-ui/icon';
 import React from 'react';
 import { Path } from 'react-native-svg';
-import { Root } from '../styled-components';
+import { BaseIcon as Root } from '../styled-components';
 
 const StarIcon = createIcon({
   Root,

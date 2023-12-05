@@ -2,6 +2,8 @@ import { createStyle } from '@gluestack-style/react';
 
 export const RadioIcon = createStyle({
   'borderRadius': '$full',
+  'w': '$full',
+  'h': '$full',
   ':checked': {
     'color': '$primary600',
     ':hover': {

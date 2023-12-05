@@ -68,22 +68,20 @@ const FigmaFabStory = ({
   ...props
 }: any) => {
   return (
-    <Box sx={{ _web: { w: 250, h: 80 } }}>
-      <Fab placement={placement} {...props} gap="$1">
-        <FabIcon
-          as={MenuIcon}
-          dataSet={{
-            'component-props': JSON.stringify({
-              'instance': true,
-              'instance-name': 'Icon',
-              'name': 'MenuIcon',
-              'size': 'md',
-            }),
-          }}
-        />
-        {showLabel && <Fab.Label>Menu</Fab.Label>}
-      </Fab>
-    </Box>
+    <Fab position="relative" placement={placement} {...props} gap="$1">
+      <FabIcon
+        as={MenuIcon}
+        dataSet={{
+          'component-props': JSON.stringify({
+            'instance': true,
+            'instance-name': 'Icon',
+            'name': 'MenuIcon',
+            'size': 'md',
+          }),
+        }}
+      />
+      {showLabel && <Fab.Label>Menu</Fab.Label>}
+    </Fab>
   );
 };
 

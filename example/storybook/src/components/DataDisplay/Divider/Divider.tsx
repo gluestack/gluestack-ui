@@ -29,6 +29,7 @@ const DividerBasic = ({ ...props }) => {
             'size': 'sm',
           }),
         }}
+        p="$3"
       >
         Firefox
       </Heading>
@@ -43,6 +44,7 @@ const DividerBasic = ({ ...props }) => {
             'size': 'sm',
           }),
         }}
+        p="$3"
       >
         Chrome
       </Heading>

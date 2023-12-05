@@ -65,7 +65,7 @@ import {
 import { ChromeIcon, InstagramIcon, FacebookIcon } from 'lucide-react-native';
 import { Path, Rect, Defs, Stop, LinearGradient } from 'react-native-svg';
 
-const AdIcon = createIcon({
+const GluestackUIIcon = createIcon({
   viewBox: '0 0 32 32',
   path: (
     <>
@@ -132,7 +132,7 @@ const AllIcons = ({
 }: any) => {
   return (
     <HStack flexWrap="wrap">
-      <Icon as={AdIcon} m="$2" size={size} color="pink" />
+      <Icon as={GluestackUIIcon} m="$2" size={size} color="$white" />
       <Icon as={AddIcon} m="$2" size={size} />
       <Icon as={ArrowLeftIcon} m="$2" size={size} />
       <Icon as={ArrowRightIcon} m="$2" size={size} />

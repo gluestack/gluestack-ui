@@ -1,7 +1,6 @@
 import React from 'react';
 import { createIcon } from '@gluestack-ui/icon';
-import { Root } from '../styled-components';
-
+import { BaseIcon as Root } from '../styled-components';
 import { Path } from 'react-native-svg';
 
 export const AlertCircleIcon = createIcon({

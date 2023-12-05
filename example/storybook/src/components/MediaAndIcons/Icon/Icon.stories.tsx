@@ -57,6 +57,7 @@ import {
   TrashIcon,
   UnlockIcon,
 } from './Icon';
+import AllIcons from './AllIcons';
 
 const IconMeta: ComponentMeta<typeof Icon> = {
   title: 'stories/MEDIA AND ICONS/Icons',
@@ -141,4 +142,4 @@ const IconMeta: ComponentMeta<typeof Icon> = {
 };
 
 export default IconMeta;
-export { Icon };
+export { AllIcons };
