@@ -20,4 +20,7 @@ export const ActionsheetContent = createStyle({
   defaultProps: {
     hardShadow: '5',
   },
+  _web: {
+    pointerEvents: 'auto',
+  },
 });

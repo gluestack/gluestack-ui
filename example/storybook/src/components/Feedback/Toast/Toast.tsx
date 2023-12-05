@@ -62,7 +62,6 @@ const ToastFigmaStory = ({ _placement = 'top', colorMode, ...props }: any) => {
 
 const ToastBasic = ({ placement = 'top', ...props }: any) => {
   const toast = useToast();
-
   return (
     <Button
       onPress={() => {
@@ -70,9 +69,10 @@ const ToastBasic = ({ placement = 'top', ...props }: any) => {
           placement: placement,
           duration: null,
           render: ({ id }) => {
+            const toastId = `toast-${id}`;
             return (
               <>
-                <Toast nativeID={`toast-${id}`} {...props}>
+                <Toast nativeID={toastId} {...props}>
                   <VStack space="xs">
                     <ToastTitle>Hello World Toast</ToastTitle>
                     <ToastDescription>

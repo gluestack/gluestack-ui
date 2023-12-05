@@ -1,5 +1,23 @@
 # @gluestack-ui/themed
 
+## 1.0.22
+
+### Patch Changes
+
+- Fixed SliderThumb movement on adding steps greater than 1
+
+## 1.0.21
+
+### Patch Changes
+
+- fix: popover animation issue
+
+## 1.0.20
+
+### Patch Changes
+
+- fix: version bump @gluestack-style/react
+
 ## 1.0.19
 
 ### Patch Changes
