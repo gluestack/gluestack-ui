@@ -1,9 +1,7 @@
 import { createStyle } from '@gluestack-style/react';
 
 export const Accordion = createStyle({
-  maxWidth: 640,
-  width: '80%',
-
+  width: '100%',
   _icon: {
     color: '$textLight900',
     _dark: {

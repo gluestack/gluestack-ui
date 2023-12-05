@@ -1,5 +1,6 @@
 import { createStyle } from '@gluestack-style/react';
 
 export const AccordionHeader = createStyle({
-  margin: '$0',
+  mx: '$0',
+  my: '$0',
 });

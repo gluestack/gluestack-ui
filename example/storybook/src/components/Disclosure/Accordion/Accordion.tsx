@@ -16,7 +16,7 @@ import React from 'react';
 
 const AccordionBasic = ({ ...props }: any) => {
   return (
-    <Accordion alignSelf="center" mt="$5" {...props}>
+    <Accordion mt="$5" {...props}>
       <AccordionItem value="a">
         <AccordionHeader>
           <AccordionTrigger>
