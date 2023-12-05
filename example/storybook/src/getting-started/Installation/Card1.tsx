@@ -17,6 +17,7 @@ import Tilde from './Tilde';
 import Copied from './Copied';
 import Copy from './Copy';
 import Figma from './Figma';
+import Solito from './Solito';
 
 function Card1() {
   const [copied, setCopied] = useState(false);
@@ -234,6 +235,7 @@ function Card1() {
         sx={{
           '@lg': {
             flexDirection: 'row',
+            flexWrap: 'wrap',
           },
           'flexDirection': 'column',
         }}
@@ -243,14 +245,11 @@ function Card1() {
           borderRadius="$xl"
           borderWidth="$1"
           sx={{
-            '@lg': {
-              flex: 1,
-            },
-            'borderColor': '$trueGray300',
-            '_dark': {
+            borderColor: '$trueGray300',
+            _dark: {
               borderColor: '$trueGray800',
             },
-            '_web': {
+            _web: {
               background:
                 'linear-gradient(99deg, rgba(248, 207, 106, 0.20) 5.76%, rgba(80, 228, 255, 0.20) 87.08%)',
             },
@@ -284,14 +283,11 @@ function Card1() {
           borderRadius="$xl"
           borderWidth="$1"
           sx={{
-            '@lg': {
-              flex: 1,
-            },
-            'borderColor': '$trueGray300',
-            '_dark': {
+            borderColor: '$trueGray300',
+            _dark: {
               borderColor: '$trueGray800',
             },
-            '_web': {
+            _web: {
               background:
                 'linear-gradient(99deg, rgba(20, 82, 119, 0.20) 5.76%, rgba(197, 58, 148, 0.20) 87.08%)',
             },
@@ -362,6 +358,14 @@ function Card1() {
                   borderRadius="$lg"
                 >
                   <Expo1 />
+                </Link>
+                <Link
+                  href="https://github.com/gluestack/solito-head-starter-kit"
+                  isExternal
+                  target="_blank"
+                  borderRadius="$lg"
+                >
+                  <Solito />
                 </Link>
               </HStack>
             </VStack>

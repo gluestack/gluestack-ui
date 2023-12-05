@@ -346,7 +346,7 @@ sx accepts the same style object as the base style.
   />
 </AppProvider>
 
-In this example, the button has a pink background instead of the default primary color, as the backgroundColor style is overridden using the `sx` prop.
+In this example, the button has a green background instead of the default primary color, as the backgroundColor style is overridden using the `sx` prop.
 The `sx` prop is particularly useful for theming and responsive styles, as it enables easy style changes for a component based on the theme or viewport size.
 It is important to note that you should generally avoid using the `sx` prop, as it adds complexity to style calculations and may decrease performance.
 
@@ -720,17 +720,17 @@ The following table shows a list of every style prop and the properties within e
     metaData={{
       code: `
      <>
-         <Text m="$2" fontSize="md">
-        Sample Text{' '}
+      <Text m="$2" fontSize="md">
+        Sample Text
       </Text>
       <Text m="$2" fontSize={32} textDecoration="underline">
-        Sample Text{' '}
+        Sample Text
       </Text>
       <Text m="$2" fontSize="2em" fontWeight="bold">
-        Sample Text{' '}
+        Sample Text
       </Text>
-      <Text m="$2" textAlign={['left', 'center']}>
-        Sample Text{' '}
+      <Text m="$2" textAlign='center'>
+        Sample Text
       </Text>
      </>
       `,
@@ -1590,11 +1590,11 @@ The following table shows a list of every style prop and the properties within e
     metaData={{
       code: `
      <>
-      <Box p="$5" m="$2" borderRadius="$md" bg="$primary200" softShadow="$1" />
-      <Box p="$5" m="$2" borderRadius="$md" bg="$primary200" softShadow="$3" />
-      <Box p="$5" m="$2" borderRadius="$md" bg="$primary200" hardShadow="$5" />
-      <Box p="$5" m="$2" borderRadius="$md" bg="$primary200" hardShadow="$7" />
-      <Box p="$5" m="$2" borderRadius="$md" bg="$primary200" hardShadow="$9" />
+      <Box p="$5" m="$2" borderRadius="$md" bg="$primary200" softShadow="1" />
+      <Box p="$5" m="$2" borderRadius="$md" bg="$primary200" softShadow="3" />
+      <Box p="$5" m="$2" borderRadius="$md" bg="$primary200" hardShadow="5" />
+      <Box p="$5" m="$2" borderRadius="$md" bg="$primary200" hardShadow="7" />
+      <Box p="$5" m="$2" borderRadius="$md" bg="$primary200" hardShadow="9" />
      </>
       `,
       transformCode: (code) => {

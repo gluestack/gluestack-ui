@@ -115,7 +115,7 @@ export const parameters = {
         'Advanced',
         ['Fonts', 'Animations'],
         'Recipes',
-        ['Card', 'LinearGradient'],
+        ['Card', 'LinearGradient', 'More Recipes'],
         'Resources',
         ['Todo-List', 'Dashboard App'],
         'Migration',

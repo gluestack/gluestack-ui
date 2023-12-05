@@ -21,11 +21,11 @@ When you want to use a specific font in your application, you have to follow two
 
 ## Loading fonts
 
-`expo-font` allows loading fonts from the web and using them in React Native components.
+For this section, we will focus on loading fonts from [Google](https://fonts.google.com/)
 
-### **For Expo projects**
+### For Expo projects
 
-To load **expo-google-fonts** in Expo, we have to follow following steps:
+To load **Google fonts** in Expo, we have to install `expo-font` & follow following steps:
 
 1. Install `expo-font` package.
 
@@ -55,8 +55,7 @@ import {
   Inter_500Medium,
   Inter_600SemiBold,
   Inter_700Bold,
-  Inter_900Black,
-} from "@expo-google-fonts/inter";
+  Inter_900Black, } from "@expo-google-fonts/inter";
 ```
 
 5. Load the font in your application.
@@ -73,7 +72,7 @@ const [fontsLoaded] = useFonts({
 
 To load **local-fonts** in Expo application, we have to follow following steps:
 
-1. Download the font files in the `assets` folder.
+1. Download the font files and add them to the `assets` folder.
 2. Install `expo-font` package.
 
 ```bash
@@ -94,7 +93,7 @@ import { useFonts } from 'expo-font';
   });
 ```
 
-### **For Next.js projects**
+### For Next.js projects
 
 To load **google-fonts** in Next.js application, we have to follow following steps:
 
@@ -109,19 +108,19 @@ To load **google-fonts** in Next.js application, we have to follow following ste
 
 To load **local-fonts** in Next.js application, we have to follow following steps:
 
-1. Download the font files in the `assets` folder.
+1. Download the font files and add them to the `public/assets` folder.
 2. Add the css to attach font files to the font family in the `global.css` file in the `styles` folder.
 
-```bash
+```css
 @font-face {
-  font-family: "Rubik";
-  src: url('../assets/rubik/Rubik-Regular.ttf');
+  font-family: 'inter';
+  src: url('/assets/inter/Inter-Regular.ttf');
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
-  font-family: "Rubik";
-  src: url('../asset/rubik/Rubik-Bold.ttf');
+  font-family: 'inter';
+  src: url('/asset/inter/Inter-Bold.ttf');
   font-weight: bold;
   font-style: normal;
 }
@@ -130,12 +129,12 @@ To load **local-fonts** in Next.js application, we have to follow following step
 ## Applying fonts in your application
 
 You already have the font loaded in your application, now you can apply the font in your application.
-Add the font name in the `gluestack.config.js` file in the `fonts` object.
+Add the font name in the `gluestack.config.js` file in the `fonts` object. If you are confused where to find the fonts config object? Please go through [this](https://gluestack.io/ui/docs/theme-configuration/theme/default-tokens) documentation (specifically the typography section).
 
-```bash
- fonts: {
-  heading: "inter",
-  body: "inter",
+```js
+fonts: {
+  heading: "inter", // Heading component uses this by default
+  body: "inter", // Text component uses this by default
   mono: "monospace",
 },
 ```
@@ -143,28 +142,32 @@ Add the font name in the `gluestack.config.js` file in the `fonts` object.
 ## Advanced concepts for fonts in gluestack-ui
 
 In gluestack-ui, components are styled using `styled` provided by `@gluestack-style/react` package, [check here](/style)
-This package provides a way to add plugins using `createStyled` function.
+This package provides a simple way to use fonts using the FontResolver plugin.
 
-```bash
-import { createStyled, FontResolver } from '@gluestack-style/react';
+```js
+import { FontResolver } from '@gluestack-style/react';
 
 // const fontMapper = (style: any) => {
 // };
 
-const styled: any = createStyled([
-  new FontResolver({
-    // mapFonts: fontMapper,
-  }),
-]);
+export const config = {
+  aliases: {},
+  tokens: {},
+  plugins: [
+    new FontResolver({
+      // mapFonts: fontMapper,
+    }),
+  ],
+};
 
 const StyledText = styled(Text, {
-  fontFamily: 'Smokum',
+  fontFamily: 'Inter',
   fontWeight: 400,
   fontStyle: 'regular',
   fontSize: '$xl',
 });
 ```
 
-You can use this `styled` function which has the [font plugin](/style/docs/plugins/fonts-plugin) added to it to style your components. For gluestack-ui components, we have used this styled function to style the components.
+You can use the `styled` function to style your components. For gluestack-ui components, we have used this styled function to style the components.
 
 Similarly, we can pass font styles to any component and then use the returned component (with font styles added).
