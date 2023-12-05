@@ -137,7 +137,7 @@ const MenuComponent = forwardRef(
     }: any,
     ref?: any
   ) => {
-    const state = useTreeState(props);
+    const state: any = useTreeState(props);
     const menuRef = useRef(null);
     const mergeRef = mergeRefs([menuRef, ref]);
     const { menuProps } = useMenu(props, state, menuRef);

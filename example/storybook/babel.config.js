@@ -1,24 +1,15 @@
 const path = require('path');
-<<<<<<< HEAD
 console.log('herher');
-=======
-
->>>>>>> source-gluestack-style
 module.exports = function (api) {
   api.cache(true);
   return {
     presets: ['babel-preset-expo'],
     plugins: [
-<<<<<<< HEAD
-=======
-      'react-native-reanimated/plugin',
->>>>>>> source-gluestack-style
       process.env.NODE_ENV !== 'production'
         ? [
             'module-resolver',
             {
               alias: {
-<<<<<<< HEAD
                 '@gluestack-ui/themed': path.join(
                   __dirname,
                   '../../packages/themed/src'
@@ -27,61 +18,103 @@ module.exports = function (api) {
                   __dirname,
                   '../../packages/config/src/gluestack-ui.config'
                 ),
-                // '@gluestack-style/react': path.join(
-                //   __dirname,
-                //   '../../../dank-style/packages/react/src'
-                // ),
-                // '@gluestack-style/animation-resolver': path.join(
-                //   __dirname,
-                //   '../../../dank-style/packages/animation-resolver/src'
-                // ),
-                // '@gluestack-style/legend-motion-animation-driver': path.join(
-                //   __dirname,
-                //   '../../../dank-style/packages/animation-legend-motion-driver/src'
-=======
-                // For development, we want to alias the library to the source
-                ['@gluestack-style/react']: path.join(
+                '@gluestack-style/react': path.join(
                   __dirname,
-                  '../../packages/react/src'
+                  '../../packages/styled/react/src'
                 ),
-                ['@gluestack-style/legend-motion-animation-driver']: path.join(
+                '@gluestack-style/animation-resolver': path.join(
                   __dirname,
-                  '../../packages/animation-legend-motion-driver/src'
+                  '../../packages/styled/animation-resolver/src'
                 ),
-                ['@gluestack-style/moti-driver']: path.join(
+                '@gluestack-style/legend-motion-animation-driver': path.join(
                   __dirname,
-                  '../../packages/animation-moti-animation-driver/src'
+                  '../../packages/styled/animation-legend-motion-driver/src'
                 ),
-                ['@gluestack-style/animation-resolver']: path.join(
+                '@gluestack-style/babel-plugin-styled-resolver': path.join(
                   __dirname,
-                  '../../packages/animation-resolver/src'
+                  '../../packages/styled/babel-plugin-styled-resolver/src'
                 ),
-                // ['@dank-style/react']: path.join(
-                //   __dirname,
-                //   '../../packages/react/src'
-                // ),
-                // ['@gluestack-style/animation-plugin']: path.join(
-                //   __dirname,
-                //   '../../packages/animation-plugin/src'
-                // ),
-                // ['@dank-style/animation-plugin']: path.join(
-                //   __dirname,
-                //   '../../packages/animation-plugin/src'
->>>>>>> source-gluestack-style
-                // ),
+                '@react-native-aria/interactions': path.join(
+                  __dirname,
+                  '../../packages/react-native-aria/interactions/src'
+                ),
+                '@react-native-aria/button': path.join(
+                  __dirname,
+                  '../../packages/react-native-aria/button/src'
+                ),
+                '@react-native-aria/checkbox': path.join(
+                  __dirname,
+                  '../../packages/react-native-aria/checkbox/src'
+                ),
+                '@react-native-aria/combobox': path.join(
+                  __dirname,
+                  '../../packages/react-native-aria/combobox/src'
+                ),
+                '@react-native-aria/dialog': path.join(
+                  __dirname,
+                  '../../packages/react-native-aria/dialog/src'
+                ),
+                '@react-native-aria/disclosure': path.join(
+                  __dirname,
+                  '../../packages/react-native-aria/disclosure/src'
+                ),
+                '@react-native-aria/focus': path.join(
+                  __dirname,
+                  '../../packages/react-native-aria/focus/src'
+                ),
+                '@react-native-aria/listbox': path.join(
+                  __dirname,
+                  '../../packages/react-native-aria/listbox/src'
+                ),
+                '@react-native-aria/menu': path.join(
+                  __dirname,
+                  '../../packages/react-native-aria/menu/src'
+                ),
+                '@react-native-aria/overlays': path.join(
+                  __dirname,
+                  '../../packages/react-native-aria/overlays/src'
+                ),
+                '@react-native-aria/radio': path.join(
+                  __dirname,
+                  '../../packages/react-native-aria/radio/src'
+                ),
+                '@react-native-aria/separator': path.join(
+                  __dirname,
+                  '../../packages/react-native-aria/separator/src'
+                ),
+                '@react-native-aria/slider': path.join(
+                  __dirname,
+                  '../../packages/react-native-aria/slider/src'
+                ),
+                '@react-native-aria/switch': path.join(
+                  __dirname,
+                  '../../packages/react-native-aria/switch/src'
+                ),
+                '@react-native-aria/tabs': path.join(
+                  __dirname,
+                  '../../packages/react-native-aria/tabs/src'
+                ),
+                '@react-native-aria/toggle': path.join(
+                  __dirname,
+                  '../../packages/react-native-aria/toggle/src'
+                ),
+                '@react-native-aria/tooltip': path.join(
+                  __dirname,
+                  '../../packages/react-native-aria/tooltip/src'
+                ),
+                '@react-native-aria/utils': path.join(
+                  __dirname,
+                  '../../packages/react-native-aria/utils/src'
+                ),
               },
             },
           ]
-<<<<<<< HEAD
         : [
             'babel-plugin-react-docgen-typescript',
             {
               exclude: 'node_modules',
             },
           ],
-=======
-        : ['babel-plugin-react-docgen-typescript', { exclude: 'node_modules' }],
->>>>>>> source-gluestack-style
       '@babel/plugin-transform-modules-commonjs',
     ],
   };

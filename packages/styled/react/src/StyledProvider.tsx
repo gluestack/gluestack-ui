@@ -181,6 +181,7 @@ export const StyledProvider: React.FC<{
 
   if (_experimentalNestedProvider) {
     return (
+      // @ts-ignore
       <View ref={_experimentalNestedProviderRef}>{providerComponent}</View>
     );
   } else {

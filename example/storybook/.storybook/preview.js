@@ -127,7 +127,7 @@ export const parameters = {
   },
 };
 
-import { useDarkMode } from '../src/hooks/useDarkMode';
+import { useDarkMode } from '../src/ui/hooks/useDarkMode';
 import { Platform } from 'react-native';
 
 export const decorators = [

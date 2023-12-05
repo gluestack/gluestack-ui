@@ -13,7 +13,9 @@ export function useDebouncedState<T = any>(
   options = { leading: false }
 ) {
   const [value, setValue] = useState(defaultValue);
-  const timeoutRef = useRef<number | undefined | NodeJS.Timeout>(undefined);
+  const timeoutRef: any = useRef<number | undefined | NodeJS.Timeout>(
+    undefined
+  );
   const leadingRef = useRef(true);
 
   const clearTimeoutRef = () => clearTimeout(timeoutRef.current);

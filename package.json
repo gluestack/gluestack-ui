@@ -3,16 +3,17 @@
   "workspaces": [
     "packages/themed",
     "packages/config",
-    "example/storybook",
-    "example/apps/*",
     "packages/*",
     "packages/styled/**",
-    "packages/**"
+    "packages/unstyled/**",
+    "packages/react-native-aria/**",
+    "packages/**",
+    "example/storybook"
   ],
   "scripts": {
     "test": "bash ./scripts/test.sh",
     "dev": "turbo run dev",
-    "build": "turbo run build --filter=@gluestack-* --no-cache && yarn build:rest",
+    "build": "turbo run build --filter=[@gluestack-*,@react-native-aria*] --no-cache && yarn build:rest",
     "build:rest": "turbo run build --filter=@gluestack-* --no-cache --ignore=@gluestack-style/react",
     "clean": "turbo run clean && rm -rf node_modules",
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\" --ignore-path .gitignore",
