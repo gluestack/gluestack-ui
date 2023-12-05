@@ -1,5 +1,104 @@
 # @gluestack-ui/themed
 
+## 1.0.23
+
+### Patch Changes
+
+- fix: Actionsheet create tree walk.
+- fix: slider step issue on native.
+- feat: New Component release Accordion(beta).
+
+## 1.0.22
+
+### Patch Changes
+
+- Fixed SliderThumb movement on adding steps greater than 1
+
+## 1.0.21
+
+### Patch Changes
+
+- fix: popover animation issue
+
+## 1.0.20
+
+### Patch Changes
+
+- fix: version bump @gluestack-style/react
+
+## 1.0.19
+
+### Patch Changes
+
+- `Toast` white notch issue.
+
+## 1.0.18
+
+### Patch Changes
+
+- Fixed Textarea warning.
+- Fixed SelectInput issues on ios.
+- `Toast` Shadow issue in android.
+- `Toast` shifted to new animation API.
+- `gluestack-style` version bump:
+  - fixed warning when no config passed to GluestackUIProvider.
+- Breaking Changes (Ejected Theme).
+  - Add new `ToastAnimationWrapper.ts` file for Animation Wrapper of Toast. contain is shown below.
+  ```jsx
+  // ToastAnimationWrapper.ts
+  import { createStyle } from '@gluestack-style/react';
+  export const ToastAnimationWrapper = createStyle({
+    m: '$3',
+    backgroundColor: 'white',
+    borderRadius: '$sm',
+    flexDirection: 'row',
+    _web: {
+      pointerEvents: 'auto',
+    },
+    defaultProps: {
+      hardShadow: '5',
+    },
+  });
+  ```
+  - Remove this `m: '$3'`, `hardShadow: '5'`, `borderRadius: '$sm'` styles from `Toast.ts` file.
+
+## 1.0.17
+
+### Patch Changes
+
+- fix: cyclic dependency and avatar image
+
+## 1.0.16
+
+### Patch Changes
+
+- removed extra exports and fixed icon fill typing
+- e3ceb642a: button spinner inherited from spinner instead of activity indicator
+
+## 1.0.15
+
+### Patch Changes
+
+- button spinner inherited from spinner instead of activity indicator
+
+## 1.0.14
+
+### Patch Changes
+
+- fixed role for image and icon to img instead of image
+
+## 1.0.13
+
+### Patch Changes
+
+- Fixed utility props typings [PR](https://github.com/gluestack/gluestack-style/pull/524)
+
+## 1.0.12
+
+### Patch Changes
+
+- Added utility props support [PR](https://github.com/gluestack/gluestack-ui/pull/1364)
+
 ## 1.0.11
 
 ### Patch Changes

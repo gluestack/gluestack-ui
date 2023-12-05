@@ -62,8 +62,9 @@ This is an illustration of a **Themed Toast** component with default configurati
                 toast.show({
                   placement:"top",
                   render: ({ id }) => {
+                    const toastId = "toast-" + id;
                     return (
-                       <Toast nativeID={"toast-" +id} {...props}>
+                       <Toast nativeID={toastId} {...props}>
                        <VStack space="xs">
                         <ToastTitle>New Message</ToastTitle>
                         <ToastDescription >
@@ -246,6 +247,22 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
           </Table.TD>
           <Table.TD>
             <Table.TText>{`If true and the keyboard is opened, the Toast will move up equivalent to the keyboard height.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>containerStyle</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>ViewStyle</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>Container style object for the toast.</Table.TText>
           </Table.TD>
         </Table.TR>
       </Table.TBody>
@@ -445,8 +462,9 @@ A versatile Toast component with customizable actions, enabling users to take va
                           toast.show({
                             placement:"top",
                             render: ({ id }) => {
+                              const toastId = "toast-" + id;
                               return (
-                                <Toast nativeID={"toast-" + id} action={action.actionType}>
+                                <Toast nativeID={toastId} action={action.actionType}>
                                   <VStack space="xs">
                                     <ToastTitle>{action.title}</ToastTitle>
                                     <ToastDescription >
@@ -509,8 +527,9 @@ A versatile Toast component with multiple variants, offering different styles an
                 toast.show({
                   placement:"top",
                   render: ({ id }) => {
-                    return (
-                      <Toast nativeID={"toast-" + id} {...props} action='success'>
+                       const toastId = "toast-" + id;
+                        return (
+                        <Toast nativeID={toastId} {...props} action='success'>
                        <VStack space="xs">
                         <ToastTitle>Attention!</ToastTitle>
                         <ToastDescription >
@@ -579,8 +598,9 @@ A Toast component with different placement options allows for the flexible posit
                 toast.show({
                   placement: placement,
                   render: ({ id }) => {
-                    return (
-                      <Toast nativeID={"toast-" +id}>
+                      const toastId = "toast-" + id;
+                      return (
+                        <Toast nativeID={toastId}>
                         <ToastDescription>{placements[placement]}</ToastDescription>
                       </Toast>
                     );
@@ -642,8 +662,9 @@ A dismissable Toast component offers users the ability to dismiss or close the t
                 toast.show({
                   placement: 'top',
                   render: ({ id }) => {
+                    const toastId = "toast-" + id;
                     return (
-                      <Toast bg='$success700' nativeID={id}>
+                      <Toast bg='$success700' nativeID={toastId}>
                         <Icon as={CheckIcon} color='$white' mt='$1' mr='$3' />
                         <VStack space='xs'>
                         <ToastTitle color='$textLight50' >Download Complete</ToastTitle>
@@ -705,8 +726,9 @@ A Toast component with custom duration allows for specifying the length of time 
                   placement: 'top',
                   duration: duration,
                   render: ({ id }) => {
+                    const toastId = "toast-" + id;
                     return (
-                      <Toast bg='$secondary700' nativeID={"toast-" +id} p='$3'>
+                      <Toast bg='$secondary700' nativeID={toastId} p='$3'>
                         <Icon as={MessageCircle}  color='$white' mt='$1' mr='$3' />
                         <VStack space='xs'>
                         <ToastTitle color='$textLight50'>New Message</ToastTitle>
@@ -773,9 +795,9 @@ A Toast component with preserve toast functionality retains the notification on 
                   placement: 'top',
                   duration: null,
                   render: ({ id }) => {
-                    let tid = "toast-" + id;
+                    const toastId = "toast-" + id;
                     return (
-                      <Toast bg='$error700' nativeID={tid} p='$3'>
+                      <Toast bg='$error700' nativeID={toastId} p='$3'>
                         <Icon as={AlertTriangleIcon} color='$white' mt='$1' mr='$3' />
                         <VStack space='xs'>
                         <ToastTitle color='$textLight50' >Account Security Alert</ToastTitle>
@@ -883,8 +905,9 @@ export default () => {
         toast.show({
           placement: placement,
           render: ({ id }) => {
-            return (
-              <Toast nativeID={"toast-" +id}>
+              const toastId = "toast-" + id;
+              return (
+                <Toast nativeID={toastId}>
                 <ToastTitle>Hello World Toast {id}</ToastTitle>
               </Toast>
             );
