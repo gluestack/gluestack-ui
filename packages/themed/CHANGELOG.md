@@ -1,5 +1,13 @@
 # @gluestack-ui/themed
 
+## 1.0.23
+
+### Patch Changes
+
+- fix: Actionsheet create tree walk.
+- fix: slider step issue on native.
+- feat: New Component release Accordion(beta).
+
 ## 1.0.22
 
 ### Patch Changes
