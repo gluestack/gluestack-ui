@@ -1,5 +1,11 @@
 # @gluestack-ui/themed
 
+## 1.0.21
+
+### Patch Changes
+
+- fix: popover animation issue
+
 ## 1.0.20
 
 ### Patch Changes
