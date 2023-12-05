@@ -1,5 +1,11 @@
 # @gluestack-ui/themed
 
+## 1.0.24
+
+### Patch Changes
+
+- Fixed Avatar size styling
+
 ## 1.0.23
 
 ### Patch Changes
