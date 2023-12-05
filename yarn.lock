@@ -3309,7 +3309,7 @@
     inline-style-prefixer "^6.0.1"
     normalize-css-color "^1.0.2"
 
-"@gluestack-style/react@^1.0.22":
+"@gluestack-style/react@^1.0.18", "@gluestack-style/react@^1.0.22":
   version "1.0.22"
   resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-1.0.22.tgz#466cabaac6ee0d37de476cf4be0e05c33a73eb2b"
   integrity sha512-TfLXpkZ997zyQKTFwD7HEUhazn7slaD+X4IBbXJBrxGoYuYDAi/rXXmTrLeaVIKR7hCndSOfgAYyqbR7SR88+g==
@@ -3317,7 +3317,31 @@
     inline-style-prefixer "^6.0.1"
     normalize-css-color "^1.0.2"
 
-"@gluestack-ui/actionsheet@^0.2.30", "@gluestack-ui/actionsheet@^0.2.7":
+"@gluestack-ui/accordion@^0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/accordion/-/accordion-0.0.2.tgz#fb6ea69133169262c327c67f5bd2c0d3b6396a86"
+  integrity sha512-t9aTPgGPHVkfvIBpDm3NALfMNZKrkirG+R2ARHClyeAr+Ok8XslcAqup+g1apZUxJPhXCuEn2FCjVFW+1ROxzw==
+  dependencies:
+    "@gluestack-style/react" "^1.0.18"
+    "@gluestack-ui/utils" "^0.1.12"
+    "@react-native-aria/accordion" "^0.0.2"
+    "@react-native-aria/focus" "^0.2.9"
+    "@react-native-aria/interactions" "^0.2.11"
+
+"@gluestack-ui/actionsheet@^0.2.31":
+  version "0.2.31"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/actionsheet/-/actionsheet-0.2.31.tgz#029dcf90263f70c5c76dadfcee19600214ca935e"
+  integrity sha512-C25H/gJK0IJUaOHro0OuLfzTcWP4PfOyfpXD4k3TCZn4i5MD/yOStHv8Ocxx/pmpmr9k5jrzKcsSa8ZyAnV9Tw==
+  dependencies:
+    "@gluestack-ui/hooks" "^0.1.7"
+    "@gluestack-ui/overlay" "^0.1.12"
+    "@gluestack-ui/transitions" "^0.1.10"
+    "@gluestack-ui/utils" "^0.1.12"
+    "@react-native-aria/dialog" "^0.0.3"
+    "@react-native-aria/focus" "^0.2.9"
+    "@react-native-aria/interactions" "^0.2.11"
+
+"@gluestack-ui/actionsheet@^0.2.7":
   version "0.2.30"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/actionsheet/-/actionsheet-0.2.30.tgz#9fa902bc5f91f81a24035d7d478bc3e0b0fa3c69"
   integrity sha512-+Bw8j+O3FOekdME53kWSaxuX8kssfQJjrWSr+v/OJGOYDGzZzEOZvZHwV1FO0HBFmR/rdcedzPdV9gQ38bh9Mg==
@@ -3583,7 +3607,20 @@
     "@gluestack-ui/utils" "^0.1.12"
     "@react-native-aria/focus" "^0.2.9"
 
-"@gluestack-ui/slider@^0.1.17", "@gluestack-ui/slider@^0.1.3":
+"@gluestack-ui/slider@^0.1.18":
+  version "0.1.18"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/slider/-/slider-0.1.18.tgz#7bf3b869cc6009f5a96e9b90eaccf01e0af3c043"
+  integrity sha512-Q9brkJnH9hlUeVrXowcsPRuclpczemxgXa0gSqR14DpLeinOqJgRCobg3uFiWjXqOOTHGC2oNik68tI4itehAQ==
+  dependencies:
+    "@gluestack-ui/form-control" "^0.1.14"
+    "@gluestack-ui/hooks" "^0.1.7"
+    "@gluestack-ui/utils" "^0.1.12"
+    "@react-aria/visually-hidden" "^3.8.1"
+    "@react-native-aria/interactions" "^0.2.11"
+    "@react-native-aria/slider" "^0.2.10"
+    "@react-stately/slider" "^3.2.4"
+
+"@gluestack-ui/slider@^0.1.3":
   version "0.1.17"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/slider/-/slider-0.1.17.tgz#b6c004ff5cc3ed2d818363bdf64d25531fd97c61"
   integrity sha512-7BiUcNmdErOG3NODbegEyYGpX3trvJ3FfUnwpWNeB/K8E3hZbEcXGNlrhEOBDmBhDuL9JXKgbb78WNTdBzDVcA==
@@ -4794,6 +4831,11 @@
     "@react-types/shared" "^3.22.0"
     "@swc/helpers" "^0.5.0"
 
+"@react-native-aria/accordion@^0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@react-native-aria/accordion/-/accordion-0.0.2.tgz#28e57f5c3690b2b33f36acd6aff7d91a75fbf384"
+  integrity sha512-2Wa/YDBc2aCunTLpqwxTfCwn1t63KSAIoXd0hqrUGJJF+N2bEs2Hqs9ZgyKJ/hzFxCknVPMqo0fEVE1H23Z5+g==
+
 "@react-native-aria/button@^0.2.5":
   version "0.2.5"
   resolved "https://registry.yarnpkg.com/@react-native-aria/button/-/button-0.2.5.tgz#e0221a963cb851259f4590c834f2382562cf4d0e"
@@ -4886,6 +4928,19 @@
   version "0.2.6"
   resolved "https://registry.yarnpkg.com/@react-native-aria/separator/-/separator-0.2.6.tgz#48505da3aeeb49baa2a31b2cf3c4c57323f6155f"
   integrity sha512-Sn+AfkiK3jpGD1vYzZs5ff8TJrtLJ3bPRm57FfuYTGccH+AawmmpfOH0NKTaQOWZiFFITk0GV2gs7GR8GG7baQ==
+
+"@react-native-aria/slider@^0.2.10":
+  version "0.2.10"
+  resolved "https://registry.yarnpkg.com/@react-native-aria/slider/-/slider-0.2.10.tgz#19cd79ac4481f41a744b4be5a179f9940e61670e"
+  integrity sha512-flwv/kKHrYmUqgMRO81VsZUccs9tf6dd9Z8SAerkVVj8BrJfVQ/Tb9cABaNsWHxIMUgtfKn0cMQYxLeySjjisw==
+  dependencies:
+    "@react-aria/focus" "^3.2.3"
+    "@react-aria/interactions" "^3.3.2"
+    "@react-aria/label" "^3.1.1"
+    "@react-aria/slider" "^3.0.1"
+    "@react-aria/utils" "^3.6.0"
+    "@react-native-aria/utils" "^0.2.10"
+    "@react-stately/slider" "^3.0.1"
 
 "@react-native-aria/slider@^0.2.9":
   version "0.2.9"
@@ -18838,7 +18893,7 @@ react-native-vector-icons@^10.0.0:
     prop-types "^15.7.2"
     yargs "^16.1.1"
 
-react-native-web@0.19.9, react-native-web@^0.19.9:
+react-native-web@^0.19.9:
   version "0.19.9"
   resolved "https://registry.yarnpkg.com/react-native-web/-/react-native-web-0.19.9.tgz#6ee43e6c64d886b1d739f100fed07927541ee003"
   integrity sha512-m69arZbS6FV+BNSKE6R/NQwUX+CzxCkYM7AJlSLlS8dz3BDzlaxG8Bzqtzv/r3r1YFowhnZLBXVKIwovKDw49g==
