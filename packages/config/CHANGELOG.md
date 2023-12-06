@@ -1,5 +1,11 @@
 # @gluestack-ui/config
 
+## 1.0.8
+
+### Patch Changes
+
+- feat: accordion theme release
+
 ## 1.0.6
 
 ### Patch Changes
