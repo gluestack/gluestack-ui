@@ -985,7 +985,6 @@ export function verboseStyled<P, Variants, ComCon>(
   // END BASE COLOR MODE RESOLUTION
 
   let CONFIG: any = {};
-  let isInjected = false;
   let plugins: any = [];
   let reservedKeys = { ..._reservedKeys };
 
@@ -1269,18 +1268,12 @@ export function verboseStyled<P, Variants, ComCon>(
     const sxStyleIds: any = React.useRef(BUILD_TIME_VERBOSED_STYLE_IDS);
 
     if (BUILD_TIME_ORDERED_RESOLVED.length > 0 && !isClient.current) {
-      if (!isInjected) {
-        const toBeInjected = GluestackStyleSheet.update(
-          BUILD_TIME_ORDERED_RESOLVED
-        );
+      const toBeInjected = GluestackStyleSheet.update(
+        BUILD_TIME_ORDERED_RESOLVED
+      );
 
-        if (Platform.OS === 'web') {
-          GluestackStyleSheet.inject(
-            toBeInjected,
-            styledContext.inlineStyleMap
-          );
-        }
-        isInjected = true;
+      if (Platform.OS === 'web') {
+        GluestackStyleSheet.inject(toBeInjected, styledContext.inlineStyleMap);
       }
       sxStyleIds.current = BUILD_TIME_VERBOSED_STYLE_IDS;
 
@@ -1981,14 +1974,13 @@ export function verboseStyled<P, Variants, ComCon>(
     // }
 
     const ComponentWithPlugin = React.useMemo(() => {
-      let MyComponent = Component;
       if (plugins) {
         for (const pluginName in plugins) {
           // @ts-ignore
           if (plugins[pluginName]?.componentMiddleWare) {
             // @ts-ignore
-            MyComponent = plugins[pluginName]?.componentMiddleWare({
-              Component: MyComponent,
+            Component = plugins[pluginName]?.componentMiddleWare({
+              Component: Component,
               theme,
               componentStyleConfig,
               ExtendedConfig,
@@ -1999,7 +1991,7 @@ export function verboseStyled<P, Variants, ComCon>(
           }
         }
       }
-      return MyComponent;
+      return Component;
     }, []);
 
     let component;

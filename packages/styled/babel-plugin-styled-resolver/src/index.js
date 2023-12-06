@@ -7,6 +7,26 @@ const traverse = require('@babel/traverse').default;
 const types = require('@babel/types');
 const { getConfig: buildAndGetConfig } = require('./buildConfig');
 
+let ConfigDefault = {};
+
+let configFile;
+const isConfigExist = fs.existsSync(
+  `${process.cwd()}/.gluestack/config-${process.ppid}.js`
+);
+
+if (!isConfigExist) {
+  const outputDir = `.gluestack/config-${process.ppid}.js`;
+  const inputDir = getConfigPath();
+
+  if (inputDir) {
+    configFile = buildAndGetConfig(inputDir, outputDir);
+    ConfigDefault = configFile?.config;
+  }
+} else {
+  configFile = require(`${process.cwd()}/.gluestack/config-${process.ppid}.js`);
+  ConfigDefault = configFile?.config;
+}
+
 const {
   convertStyledToStyledVerbosed,
   convertSxToSxVerbosed,
@@ -35,9 +55,28 @@ const {
   checkAndReturnUtilityProp,
 } = require('@gluestack-style/react/lib/commonjs/core/convert-utility-to-sx');
 
-const IMPORT_NAME = '@gluestack-style/react';
 let configThemePath = [];
 const BUILD_TIME_GLUESTACK_STYLESHEET = new StyleInjector();
+
+function getConfigPath() {
+  const isConfigJSExist = fs.existsSync(
+    path.join(process.cwd(), './gluestack-style.config.js')
+  );
+  const isGlueStackUIConfigJSExist = fs.existsSync(
+    path.join(process.cwd(), './gluestack-ui.config.js')
+  );
+  const isConfigTSExist = fs.existsSync(
+    path.join(process.cwd(), './gluestack-style.config.ts')
+  );
+  const isGlueStackUIConfigTSExist = fs.existsSync(
+    path.join(process.cwd(), './gluestack-ui.config.ts')
+  );
+
+  if (isConfigJSExist) return './gluestack-style.config.js';
+  if (isConfigTSExist) return './gluestack-style.config.ts';
+  if (isGlueStackUIConfigJSExist) return './gluestack-ui.config.js';
+  if (isGlueStackUIConfigTSExist) return './gluestack-ui.config.ts';
+}
 
 const convertExpressionContainerToStaticObject = (
   properties,
@@ -232,14 +271,12 @@ function getConfig(configPath) {
     );
   }
   if (isGlueStackUIConfigJSExist) {
-    configThemePath = ['theme'];
     return fs.readFileSync(
       path.join(process.cwd(), './gluestack-ui.config.js'),
       'utf8'
     );
   }
   if (isGlueStackUIConfigTSExist) {
-    configThemePath = ['theme'];
     return fs.readFileSync(
       path.join(process.cwd(), './gluestack-ui.config.ts'),
       'utf8'
@@ -337,58 +374,6 @@ function getBuildTimeParams(
   return null;
 }
 
-function getExportedConfigFromFileString(fileData) {
-  if (!fileData) {
-    return {};
-  }
-
-  fileData = fileData?.replace(/as const/g, '');
-
-  const ast = babel.parse(fileData, {
-    presets: [babelPresetTypeScript],
-    plugins: ['typescript'],
-    sourceType: 'module',
-    comments: false,
-  });
-
-  let config = {};
-
-  traverse(ast, {
-    CallExpression: (path) => {
-      const { callee, arguments: args } = path.node;
-      if (
-        types.isIdentifier(callee, { name: 'createConfig' }) &&
-        args.length === 1 &&
-        types.isObjectExpression(args[0])
-      ) {
-        path.replaceWith(args[0]);
-      }
-    },
-  });
-
-  traverse(ast, {
-    ExportNamedDeclaration: (path) => {
-      path.traverse({
-        VariableDeclarator: (variableDeclaratorPath) => {
-          config = variableDeclaratorPath.node.init;
-        },
-      });
-    },
-
-    Identifier: (path) => {
-      if (path.node.name === 'undefined') {
-        //path.remove();
-        path.node.name = 'null';
-      }
-    },
-  });
-
-  let objectCode = generate(config).code;
-  objectCode = objectCode?.replace(/\/\/.*|\/\*[\s\S]*?\*\//g, '');
-  objectCode = addQuotesToObjectKeys(objectCode)?.replace(/'/g, '"');
-
-  return JSON.parse(objectCode);
-}
 function replaceSingleQuotes(str) {
   let inDoubleQuotes = false;
   let newStr = '';
@@ -551,25 +536,6 @@ function isImportFromAbsolutePath(
   return false;
 }
 
-let CONFIG;
-const isConfigExist = fs.existsSync(
-  `${process.cwd()}/.gluestack/config-${process.ppid}.js`
-);
-
-let ConfigDefault = CONFIG;
-
-if (!isConfigExist) {
-  buildAndGetConfig()
-    .then((res) => {
-      CONFIG = res;
-      ConfigDefault = res;
-    })
-    .catch((err) => {
-      // eslint-disable-next-line no-console
-      console.log(err);
-    });
-}
-
 module.exports = function (b) {
   const { types: t } = b;
 
@@ -588,13 +554,11 @@ module.exports = function (b) {
   let styledAlias = '';
   let styledAliasImportedName = '';
   let tempPropertyResolverNode;
-  let isValidConfig = true;
   let platform = 'all';
   let currentFileName = 'file not found!';
   let configPath;
   let outputLibrary;
   let componentSXProp;
-  let componentUtilityProps;
   const guessingStyledComponents = [];
   const styled = ['@gluestack-style/react', '@gluestack-ui/themed'];
   const components = ['@gluestack-ui/themed'];
@@ -608,59 +572,68 @@ module.exports = function (b) {
 
   return {
     name: 'gluestack-babel-styled-resolver', // not required
-    // async pre(state) {
-    //   let plugin;
+    pre(state) {
+      let plugin;
 
-    //   state.opts.plugins?.forEach((currentPlugin) => {
-    //     if (currentPlugin.key === 'gluestack-babel-styled-resolver') {
-    //       plugin = currentPlugin;
-    //     }
-    //   });
+      state?.opts?.plugins?.forEach((currentPlugin) => {
+        if (currentPlugin.key === 'gluestack-babel-styled-resolver') {
+          plugin = currentPlugin;
+        }
+      });
 
-    //   const configPath = plugin?.options?.configPath;
+      if (plugin?.options?.configPath) {
+        configPath = plugin?.options?.configPath;
+      }
 
-    //   if (!isConfigExist) {
-    //     const res = await buildAndGetConfig(configPath);
-    //     ConfigDefault = res;
-    //   }
-    // },
+      if (plugin?.options?.configThemePath) {
+        configThemePath = plugin?.options?.configThemePath;
+      }
+
+      const outputDir = `.gluestack/config-${process.ppid + 1}.js`;
+      const mockLibraryPath = `./mock-${process.ppid + 1}.js`;
+
+      if (configPath) {
+        if (!fs.existsSync(path.join(process.cwd(), outputDir))) {
+          configFile = buildAndGetConfig(
+            configPath,
+            outputDir,
+            mockLibraryPath
+          );
+
+          if (configThemePath.length > 0) {
+            configThemePath.forEach((path) => {
+              configFile = configFile?.[path];
+            });
+            configThemePath = [];
+            ConfigDefault = configFile;
+          } else {
+            ConfigDefault = configFile?.config;
+          }
+        } else {
+          configFile = require(path.join(process.cwd(), outputDir));
+          if (configThemePath.length > 0) {
+            configThemePath.forEach((path) => {
+              configFile = configFile?.[path];
+            });
+            configThemePath = [];
+            ConfigDefault = configFile;
+          } else {
+            ConfigDefault = configFile?.config;
+          }
+        }
+      }
+    },
     visitor: {
       ImportDeclaration(importPath, state) {
         currentFileName = state.file.opts.filename;
         styledAlias = state?.opts?.styledAlias;
         outputLibrary = state?.opts?.outputLibrary || outputLibrary;
 
-        if (state?.opts?.configPath) {
-          configPath = state?.opts?.configPath;
-        }
-
-        if (state?.opts?.configThemePath) {
-          configThemePath = state?.opts?.configThemePath;
-        }
         if (state?.opts?.platform) {
           platform = state?.opts?.platform;
         } else {
           platform = 'all';
         }
-
-        // `${process.cwd()}/.gluestack/config-${process.ppid}.js`
-
-        // if (
-        //   configPath &&
-        //   !fs.existsSync(path.join(process.cwd(), `.gluestack/config-${process.ppid}.js`))
-        // ) {
-        //   // ConfigDefault = getExportedConfigFromFileString(
-        //   //   getConfig(configPath)
-        //   // );
-        //   ConfigDefault = buildAndGetConfig(configPath);
-        // }
-
-        // configThemePath.forEach((path) => {
-        //   ConfigDefault = ConfigDefault?.[path];
-        // });
-        // configThemePath = [];
-
-        // console.log(ConfigDefault, '>>>>>>>>>>>>>>>');
 
         if (!currentFileName.includes('node_modules')) {
           if (currentFileName.includes('.web.')) {
@@ -736,7 +709,6 @@ module.exports = function (b) {
             styledAliasImportedName ||
           expressionPath?.node?.right?.callee?.name === styledImportName
         ) {
-          // console.log(expressionPath.node, '>>>>>');
           let componentName = expressionPath?.parent?.id?.name;
 
           if (componentName) {
@@ -744,8 +716,8 @@ module.exports = function (b) {
           }
         }
       },
-      CallExpression(callExpressionPath) {
-        if (isValidConfig) {
+      CallExpression(callExpressionPath, state) {
+        if (!state.file.opts.filename?.includes('node_modules')) {
           const calleeName = callExpressionPath.node.callee.name;
           if (
             calleeName === styledAliasImportedName ||
@@ -899,41 +871,44 @@ module.exports = function (b) {
           */
             const extendedThemeComponents =
               callExpressionPath.node.arguments[0].properties;
-            extendedThemeComponents.forEach((property) => {
-              if (
-                !t.isIdentifier(property.value) &&
-                !t.isTemplateLiteral(property.value) &&
-                !t.isConditionalExpression(property.value)
-              ) {
-                const { themeNode, componentConfigNode } =
-                  findThemeAndComponentConfig(property.value.properties);
 
-                let theme = themeNode
-                  ? getObjectFromAstNode(themeNode?.value)
-                  : {};
-                let componentConfig = componentConfigNode
-                  ? getObjectFromAstNode(componentConfigNode?.value)
-                  : {};
+            if (Array.isArray(extendedThemeComponents)) {
+              extendedThemeComponents.forEach((property) => {
+                if (
+                  !t.isIdentifier(property.value) &&
+                  !t.isTemplateLiteral(property.value) &&
+                  !t.isConditionalExpression(property.value)
+                ) {
+                  const { themeNode, componentConfigNode } =
+                    findThemeAndComponentConfig(property.value.properties);
 
-                const resultParamsNode = getBuildTimeParams(
-                  theme,
-                  componentConfig,
-                  {},
-                  outputLibrary,
-                  platform,
-                  'extended'
-                );
+                  let theme = themeNode
+                    ? getObjectFromAstNode(themeNode?.value)
+                    : {};
+                  let componentConfig = componentConfigNode
+                    ? getObjectFromAstNode(componentConfigNode?.value)
+                    : {};
 
-                if (resultParamsNode) {
-                  property.value.properties.push(
-                    t.objectProperty(
-                      t.stringLiteral('BUILD_TIME_PARAMS'),
-                      resultParamsNode
-                    )
+                  const resultParamsNode = getBuildTimeParams(
+                    theme,
+                    componentConfig,
+                    {},
+                    outputLibrary,
+                    platform,
+                    'extended'
                   );
+
+                  if (resultParamsNode) {
+                    property.value.properties.push(
+                      t.objectProperty(
+                        t.stringLiteral('BUILD_TIME_PARAMS'),
+                        resultParamsNode
+                      )
+                    );
+                  }
                 }
-              }
-            });
+              });
+            }
           }
         }
       },
@@ -945,10 +920,10 @@ module.exports = function (b) {
             jsxOpeningElementPath.node.name.name
           )
         ) {
-          let propsToBePersist = [];
+          const propsToBePersist = [];
           let sxPropsWithIdentifier = {};
 
-          let mergedPropertyConfig = {
+          const mergedPropertyConfig = {
             ...ConfigDefault?.propertyTokenMap,
             ...propertyTokenMap,
           };
@@ -970,16 +945,18 @@ module.exports = function (b) {
 
           const prefixedMediaQueries = {};
 
-          Object.keys(componentExtendedConfig?.tokens?.mediaQueries).forEach(
-            (key) => {
-              prefixedMediaQueries[key] = {
-                key: `@${key}`,
-                isMediaQuery: true,
-              };
-            }
-          );
+          if (componentExtendedConfig?.tokens?.mediaQueries) {
+            Object.keys(componentExtendedConfig?.tokens?.mediaQueries).forEach(
+              (key) => {
+                prefixedMediaQueries[key] = {
+                  key: `@${key}`,
+                  isMediaQuery: true,
+                };
+              }
+            );
 
-          Object.assign(reservedKeys, { ...prefixedMediaQueries });
+            Object.assign(reservedKeys, { ...prefixedMediaQueries });
+          }
 
           const attr = jsxOpeningElementPath.node.attributes;
           attr.forEach((attribute, index) => {
@@ -1144,7 +1121,7 @@ module.exports = function (b) {
               platform
             );
 
-            const toBeInjected = BUILD_TIME_GLUESTACK_STYLESHEET.resolve(
+            BUILD_TIME_GLUESTACK_STYLESHEET.resolve(
               styledIds,
               componentExtendedConfig,
               {},
@@ -1163,13 +1140,12 @@ module.exports = function (b) {
               }
             });
 
-            let styleIdsAst = generateObjectAst(verbosedStyleIds);
+            const styleIdsAst = generateObjectAst(verbosedStyleIds);
 
-            let toBeInjectedAst = generateObjectAst(toBeInjected);
-
-            let orderResolvedArrayExpression = [];
+            const orderResolvedArrayExpression = [];
 
             orderedResolvedTheme.forEach((styledResolved) => {
+              delete styledResolved.toBeInjected;
               if (targetPlatform === 'native') {
                 delete styledResolved.original;
                 delete styledResolved.value;
@@ -1181,13 +1157,9 @@ module.exports = function (b) {
                 delete styledResolved.extendedConfig;
                 delete styledResolved.value;
               }
-              let orderedResolvedAst = generateObjectAst(styledResolved);
+              const orderedResolvedAst = generateObjectAst(styledResolved);
               orderResolvedArrayExpression.push(orderedResolvedAst);
             });
-
-            let orderedStyleIdsArrayAst = t.arrayExpression(
-              styledIds?.map((cssId) => t.stringLiteral(cssId))
-            );
 
             jsxOpeningElementPath.node.attributes.push(
               t.jsxAttribute(
@@ -1219,7 +1191,6 @@ module.exports = function (b) {
           }
 
           componentSXProp = undefined;
-          componentUtilityProps = undefined;
         }
       },
     },
