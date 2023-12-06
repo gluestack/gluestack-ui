@@ -16,7 +16,6 @@
     "storybook-watcher": "sb-rn-watcher --config-path .ondevice",
     "storybook": "NODE_OPTIONS=--openssl-legacy-provider start-storybook -p 6007",
     "build-storybook": "build-storybook",
-    "build": "bob build",
     "release": "release-it",
     "test": "jest",
     "update-snapshot": "jest -u"

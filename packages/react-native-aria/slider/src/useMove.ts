@@ -10,7 +10,7 @@
  * governing permissions and limitations under the License.
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 import { PanResponder } from 'react-native';
 
 interface MoveResult {
@@ -26,29 +26,37 @@ interface MoveResult {
 export function useMove(props: any): MoveResult {
   let { onMoveStart, onMove, onMoveEnd } = props;
 
-  const panResponter = React.useMemo(
+  const [initialMoveX, setInitialMoveX] = useState(0);
+  const [initialMoveY, setInitialMoveY] = useState(0);
+  const panResponder = React.useMemo(
     () =>
       PanResponder.create({
         onMoveShouldSetPanResponderCapture: (_event) => {
           return true;
         },
-        onPanResponderGrant: (_evt) => {
+        onPanResponderGrant: (_evt, gestureState) => {
           onMoveStart?.({
             type: 'movestart',
             pointerType: 'touch',
           });
+          setInitialMoveX(gestureState.moveX);
+          setInitialMoveY(gestureState.moveY);
         },
         onPanResponderMove: (_event, gestureState) => {
-          if (gestureState.dx === 0 && gestureState.dy === 0) {
+          const deltaX = gestureState.moveX - initialMoveX;
+          const deltaY = gestureState.moveY - initialMoveY;
+          if (deltaX === 0 && deltaY === 0) {
             return;
           }
 
-          onMove({
-            type: 'move',
-            pointerType: 'touch',
-            deltaX: gestureState.dx,
-            deltaY: gestureState.dy,
-          });
+          if (deltaX) {
+            onMove({
+              type: 'move',
+              pointerType: 'touch',
+              deltaX: deltaX,
+              deltaY: deltaY,
+            });
+          }
         },
         onPanResponderRelease: () => {
           onMoveEnd?.({
@@ -57,8 +65,8 @@ export function useMove(props: any): MoveResult {
           });
         },
       }),
-    [onMove, onMoveEnd, onMoveStart]
+    [onMove, onMoveEnd, onMoveStart, initialMoveX, initialMoveY]
   );
 
-  return { moveProps: panResponter.panHandlers };
+  return { moveProps: panResponder.panHandlers };
 }

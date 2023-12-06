@@ -1,10 +1,11 @@
 import type { RefObject } from 'react';
 import type { ToggleState } from '@react-stately/toggle';
 import { mergeProps } from '@react-aria/utils';
+import type { AccessibilityProps } from 'react-native';
 import { useToggle } from '@react-native-aria/toggle';
 import { AriaCheckboxProps } from '@react-types/checkbox';
 
-export interface CheckboxAria {
+export interface CheckboxAria extends AccessibilityProps {
   /** Props for the input or Pressable/Touchable element. */
   inputProps: any;
 }
