@@ -49,7 +49,8 @@
     "typescript": "5.1.6"
   },
   "resolutions": {
-    "react-native": "0.72.4"
+    "react-native": "0.72.4",
+    "react-native-web": "0.19.9"
   },
   "packageManager": "yarn@1.22.17",
   "version": "0.2.46"

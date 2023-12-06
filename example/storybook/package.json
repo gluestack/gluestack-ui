@@ -22,6 +22,7 @@
   },
   "dependencies": {
     "@expo/html-elements": "^0.4.2",
+    "@expo/webpack-config": "^0.17.2",
     "@geometricpanda/storybook-addon-iframe": "^0.2.2",
     "@gluestack/design-system": "^0.4.70",
     "@legendapp/motion": "^2.2.0",

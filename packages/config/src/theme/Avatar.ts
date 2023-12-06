@@ -16,6 +16,10 @@ export const Avatar = createStyle({
           w: '$2',
           h: '$2',
         },
+        _image: {
+          w: '$full',
+          h: '$full',
+        },
 
         _text: {
           props: { size: '2xs' },
@@ -29,6 +33,10 @@ export const Avatar = createStyle({
         _badge: {
           w: '$2',
           h: '$2',
+        },
+        _image: {
+          w: '$full',
+          h: '$full',
         },
 
         _text: {
@@ -44,6 +52,10 @@ export const Avatar = createStyle({
           w: '$3',
           h: '$3',
         },
+        _image: {
+          w: '$full',
+          h: '$full',
+        },
 
         _text: {
           props: { size: 'md' },
@@ -57,6 +69,10 @@ export const Avatar = createStyle({
         _badge: {
           w: '$4',
           h: '$4',
+        },
+        _image: {
+          w: '$full',
+          h: '$full',
         },
 
         _text: {
@@ -72,6 +88,10 @@ export const Avatar = createStyle({
           w: '$6',
           h: '$6',
         },
+        _image: {
+          w: '$full',
+          h: '$full',
+        },
 
         _text: {
           props: { size: '3xl' },
@@ -85,6 +105,10 @@ export const Avatar = createStyle({
         _badge: {
           w: '$8',
           h: '$8',
+        },
+        _image: {
+          w: '$full',
+          h: '$full',
         },
 
         _text: {

@@ -133,58 +133,57 @@ function ActionsheetContent<T>(
             transform: [{ translateY: pan.y }],
             width: '100%',
             height: '100%',
-            pointerEvents: 'box-none',
           }}
           onLayout={(event) => {
             const { height } = event.nativeEvent.layout;
             setAnimatedViewSheetHeight(height);
           }}
         >
-          <FocusScope
-            contain={trapFocus}
-            autoFocus={visible && !initialFocusRef}
-            restoreFocus={visible && !finalFocusRef}
+          <OverlayAnimatePresence
+            visible={visible}
+            AnimatePresence={AnimatePresence}
           >
-            <OverlayAnimatePresence
-              visible={visible}
-              AnimatePresence={AnimatePresence}
+            <StyledActionsheetContent
+              initial={{
+                y: windowHeight,
+              }}
+              animate={{
+                y: contentSheetAnimatePosition,
+              }}
+              exit={{
+                y: windowHeight,
+              }}
+              height={
+                snapPoints ? snapPoints[0] * windowHeight * 0.01 : undefined
+              }
+              transition={animationDefaultConfig}
+              {...(props as T)}
+              ref={mergedRef}
+              tabIndex={Platform.OS === 'web' ? 0 : undefined}
+              {...dialogProps}
+              onLayout={(event: any) => {
+                const { height } = event.nativeEvent.layout;
+                contentSheetHeight.current = height;
+                setContentSheetHeightState(height);
+              }}
             >
-              <StyledActionsheetContent
-                initial={{
-                  y: windowHeight,
-                }}
-                animate={{
-                  y: contentSheetAnimatePosition,
-                }}
-                exit={{
-                  y: windowHeight,
-                }}
-                height={
-                  snapPoints ? snapPoints[0] * windowHeight * 0.01 : undefined
-                }
-                transition={animationDefaultConfig}
-                {...(props as T)}
-                ref={mergedRef}
-                tabIndex={Platform.OS === 'web' ? 0 : undefined}
-                {...dialogProps}
-                onLayout={(event: any) => {
-                  const { height } = event.nativeEvent.layout;
-                  contentSheetHeight.current = height;
-                  setContentSheetHeightState(height);
-                }}
+              <ActionsheetContentProvider
+                contentSheetHeight={contentSheetHeight}
+                pan={pan}
+                handleClose={handleCloseCallback}
+                handleCloseBackdrop={handleCloseBackdrop}
+                snapPoints={snapPoints}
               >
-                <ActionsheetContentProvider
-                  contentSheetHeight={contentSheetHeight}
-                  pan={pan}
-                  handleClose={handleCloseCallback}
-                  handleCloseBackdrop={handleCloseBackdrop}
-                  snapPoints={snapPoints}
+                <FocusScope
+                  contain={trapFocus}
+                  autoFocus={visible && !initialFocusRef}
+                  restoreFocus={visible && !finalFocusRef}
                 >
                   {children}
-                </ActionsheetContentProvider>
-              </StyledActionsheetContent>
-            </OverlayAnimatePresence>
-          </FocusScope>
+                </FocusScope>
+              </ActionsheetContentProvider>
+            </StyledActionsheetContent>
+          </OverlayAnimatePresence>
         </Animated.View>
       );
     }
