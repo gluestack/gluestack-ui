@@ -10,7 +10,7 @@ import {
   createMotionAnimatedComponent,
 } from '@legendapp/motion';
 import { MotionSvg } from '@legendapp/motion/svg';
-import { propertyTokenMap } from './propertyTokenMap';
+// import { propertyTokenMap } from './propertyTokenMap';
 import { Pressable } from 'react-native';
 
 function getVariantProps(props: any, theme: any) {
@@ -93,6 +93,7 @@ const AnimatePresence = React.forwardRef(
 );
 
 const AnimatedPressable = createMotionAnimatedComponent(
+  // @ts-ignore
   Pressable
 ) as React.ComponentType<typeof Pressable>;
 
@@ -101,7 +102,7 @@ const MotionComponents = {
   ...MotionSvg,
   Pressable: AnimatedPressable,
   AnimatePresence,
-};
+} as any;
 
 export class MotionAnimationDriver implements IAnimationDriverPlugin {
   name: 'MotionAnimationDriver';

@@ -27,11 +27,14 @@ export function useToggleButton(
 ): any {
   /* eslint-enable no-redeclare */
   const { isSelected } = state;
-  const { isPressed, buttonProps } = useButton({
-    ...props,
+  const { isPressed, buttonProps } = useButton(
     // @ts-ignore
-    onPress: chain(state.toggle, props.onPress),
-  });
+    {
+      ...props,
+      // @ts-ignore
+      onPress: chain(state.toggle, props.onPress),
+    }
+  );
 
   return {
     isPressed,

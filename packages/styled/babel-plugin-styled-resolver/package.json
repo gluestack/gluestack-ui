@@ -46,6 +46,7 @@
     "@babel/traverse": "^7.20.5",
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-typescript": "^11.1.5",
+    "babel-preset-expo": "^9.5.2",
     "lodash.merge": "^4.6.2",
     "rollup": "^4.6.0"
   },

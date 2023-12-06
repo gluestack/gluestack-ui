@@ -46,6 +46,7 @@
     "@gluestack-ui/hooks": "^0.1.7",
     "@gluestack-ui/overlay": "^0.1.12",
     "@gluestack-ui/utils": "^0.1.12",
+    "@react-aria/overlays": "^3.19.0",
     "@react-native-aria/focus": "^0.2.9",
     "@react-native-aria/interactions": "^0.2.11",
     "@react-native-aria/menu": "^0.2.9",

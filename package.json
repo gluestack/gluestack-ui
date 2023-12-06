@@ -4,11 +4,9 @@
     "packages/themed",
     "packages/config",
     "packages/*",
-    "packages/styled/**",
     "packages/unstyled/**",
     "packages/react-native-aria/**",
-    "packages/**",
-    "example/storybook"
+    "packages/**"
   ],
   "scripts": {
     "test": "bash ./scripts/test.sh",
@@ -22,7 +20,7 @@
     "lint": "eslint packages/**/**/src --ext .ts,.tsx --config .eslintrc",
     "eject:gluestack-style": "git clone -b development git@github.com:gluestack/gluestack-style.git gluestack-style && echo Now update babel.config.js",
     "create-new-package": "node ./scripts/create-new-package.js",
-    "storybook": "cd example/storybook && yarn storybook",
+    "storybook": "cd example/storybook && yarn && yarn storybook",
     "kitchensink:web": "cd example/ui-examples && yarn web"
   },
   "devDependencies": {

@@ -1,12 +1,14 @@
 {
   "include": ["./src"],
   "exclude": ["node_modules", "example"],
-  "path": {
-    "@gluestack-ui/themed": ["../../themed/src"],
-    "@gluestack-style/react": ["../react/src"]
-  },
   "compilerOptions": {
     "noEmit": false,
+    "paths": {
+      "@gluestack-style/animation-resolver": ["../animation-resolver/src"],
+      "@gluestack-style/legend-motion-animation-driver": [
+        "../animation-legend-motion-driver/src"
+      ]
+    },
     "declaration": true,
     "allowUnreachableCode": false,
     "allowUnusedLabels": true,

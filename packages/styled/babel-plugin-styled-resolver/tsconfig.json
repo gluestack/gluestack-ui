@@ -2,9 +2,6 @@
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
     "baseUrl": ".",
-    "paths": {
-      "@gluestack-style/react": ["../react/src/index"]
-    },
     "emitDeclarationOnly": true,
     "noEmit": false,
     "declaration": true,

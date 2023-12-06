@@ -29,7 +29,7 @@
     "@legendapp/motion": ">=2.2"
   },
   "devDependencies": {
-    "@gluestack-style/react": "^1.0.1",
+    "@gluestack-style/react": "*",
     "@types/react": "^18.0.22",
     "@types/react-native": "^0.69.15",
     "babel-plugin-transform-remove-console": "^6.9.4",

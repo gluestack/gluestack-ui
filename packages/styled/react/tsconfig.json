@@ -1,9 +1,6 @@
 {
   "include": ["./src"],
   "exclude": ["node_modules", "example"],
-  "path": {
-    "@gluestack-style/react": ["./src"]
-  },
   "compilerOptions": {
     "ignoreDeprecations": "5.0",
     "emitDeclarationOnly": true,
