@@ -1,7 +1,7 @@
 import { AriaSliderThumbProps } from '@react-types/slider';
 import { clamp } from '@react-aria/utils';
 import { getSliderThumbId, sliderIds } from './utils';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { SliderState } from '@react-stately/slider';
 import { useLabel } from '@react-aria/label';
 import { useMove } from './useMove';
@@ -52,10 +52,14 @@ export function useSliderThumb(
   stateRef.current = state;
   let reverseX = isReversed || direction === 'rtl';
   let currentPosition = useRef<number>(null);
+
+  const [startPosition, setStartPosition] = useState(0);
+
   let { moveProps } = useMove({
     onMoveStart() {
-      currentPosition.current = null;
       state.setThumbDragging(index, true);
+      let size = isVertical ? trackLayout.height : trackLayout.width;
+      setStartPosition(stateRef.current.getThumbPercent(index) * size);
     },
     onMove({ deltaX, deltaY }) {
       let size = isVertical ? trackLayout.height : trackLayout.width;
@@ -75,11 +79,10 @@ export function useSliderThumb(
           delta = -delta;
         }
       }
-      currentPosition.current += delta;
-      stateRef.current.setThumbPercent(
-        index,
-        clamp(currentPosition.current / size, 0, 1)
-      );
+
+      const position = startPosition + delta;
+
+      stateRef.current.setThumbPercent(index, clamp(position / size, 0, 1));
     },
     onMoveEnd() {
       state.setThumbDragging(index, false);

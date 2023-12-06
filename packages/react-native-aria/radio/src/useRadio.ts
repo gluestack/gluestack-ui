@@ -1,6 +1,6 @@
 import type { AriaRadioProps } from '@react-types/radio';
 import { mergeProps } from '@react-aria/utils';
-import type { InputHTMLAttributes, RefObject } from 'react';
+import type { RefObject } from 'react';
 import type { RadioGroupState } from '@react-stately/radio';
 import { usePress } from '@react-native-aria/interactions';
 import type { AccessibilityProps } from 'react-native';
@@ -18,8 +18,8 @@ export interface RadioAriaProps extends AriaRadioProps, AccessibilityProps {
 }
 
 export interface RadioAria extends AccessibilityProps {
-  /** Props for the input element. */
-  inputProps: InputHTMLAttributes<HTMLElement>;
+  /** Props for the input or Pressable/Touchable element. */
+  inputProps: any;
 }
 
 /**
