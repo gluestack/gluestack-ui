@@ -2,7 +2,7 @@ import type { ComponentMeta } from '@storybook/react-native';
 import StatusBar from './StatusBar';
 
 const StatusBarMeta: ComponentMeta<typeof StatusBar> = {
-  title: 'ui/stories/React Native Components/StatusBar',
+  title: 'stories/React Native Components/StatusBar',
   component: StatusBar,
 };
 

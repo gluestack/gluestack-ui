@@ -3,7 +3,7 @@ import VStack from './VStack';
 import VStackReversedExample from './VStackReversed';
 
 const VStackMeta: ComponentMeta<typeof VStack> = {
-  title: 'ui/stories/LAYOUT/VStack',
+  title: 'stories/LAYOUT/VStack',
   component: VStack,
   argTypes: {
     space: {

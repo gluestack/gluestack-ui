@@ -5,7 +5,7 @@ export const Provider = () => {
   return <ProviderStory />;
 };
 const ProviderMeta: ComponentMeta<typeof Provider> = {
-  title: 'ui/components/stories/Provider',
+  title: 'components/stories/Provider',
   component: Provider,
 };
 

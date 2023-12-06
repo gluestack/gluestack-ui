@@ -4,7 +4,7 @@ description: Provides a view that moves out of the way of virtual keyboard autom
 ---
 
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
-import { transformedCode } from '../../../utils';
+import { transformedCode } from '../../utils';
 import {
   AppProvider,
   CodePreview,
@@ -15,7 +15,6 @@ import {
 import { Platform } from 'react-native';
 import {
   KeyboardAvoidingView,
-  Wrapper,
   GluestackUIProvider,
   Button,
   Center,
@@ -41,6 +40,7 @@ import {
   Icon,
   ButtonText,
 } from '@gluestack-ui/themed';
+import { Wrapper } from '../../components/Wrapper';
 
 import { config } from '@gluestack-ui/config';
 

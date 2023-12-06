@@ -2,7 +2,7 @@ import type { ComponentMeta } from '@storybook/react-native';
 import FormControl from './FormControl';
 
 const FormControlMeta: ComponentMeta<typeof FormControl> = {
-  title: 'ui/stories/FORMS/FormControl',
+  title: 'stories/FORMS/FormControl',
   component: FormControl,
   // metaInfo is required for figma generation
   // @ts-ignore

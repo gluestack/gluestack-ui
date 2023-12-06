@@ -8,7 +8,7 @@ import SelectFormControl from './SelectFormControl';
 import type { ComponentMeta } from '@storybook/react-native';
 
 const SelectMeta: ComponentMeta<typeof Select> = {
-  title: 'ui/stories/FORMS/Select',
+  title: 'stories/FORMS/Select',
   component: Select,
   // metaInfo is required for figma generation
   // @ts-ignore

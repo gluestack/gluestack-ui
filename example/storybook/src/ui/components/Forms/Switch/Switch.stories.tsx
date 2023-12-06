@@ -2,7 +2,7 @@ import type { ComponentMeta } from '@storybook/react-native';
 import Switch from './Switch';
 
 const SwitchMeta: ComponentMeta<typeof Switch> = {
-  title: 'ui/stories/FORMS/Switch',
+  title: 'stories/FORMS/Switch',
   component: Switch,
   // metaInfo is required for figma generation
   // @ts-ignore

@@ -2,7 +2,7 @@ import type { ComponentMeta } from '@storybook/react-native';
 import Menu from './Menu';
 
 const MenuMeta: ComponentMeta<typeof Menu> = {
-  title: 'ui/stories/OVERLAY/Menu',
+  title: 'stories/OVERLAY/Menu',
   component: Menu,
   // metaInfo is required for figma generation
   // @ts-ignore

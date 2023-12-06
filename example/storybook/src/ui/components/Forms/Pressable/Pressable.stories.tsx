@@ -2,7 +2,7 @@ import type { ComponentMeta } from '@storybook/react-native';
 import Pressable from './Pressable';
 
 const PressableMeta: ComponentMeta<typeof Pressable> = {
-  title: 'ui/stories/FORMS/Pressable',
+  title: 'stories/FORMS/Pressable',
   component: Pressable,
   // metaInfo is required for figma generation
   // @ts-ignore

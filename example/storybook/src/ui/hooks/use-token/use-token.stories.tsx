@@ -2,7 +2,7 @@ import type { ComponentMeta } from '@storybook/react-native';
 import { config } from '@gluestack-ui/config';
 import useToken from './useToken';
 const UseTokenMeta: ComponentMeta<typeof useToken> = {
-  title: 'ui/stories/hooks/useToken',
+  title: 'stories/hooks/useToken',
   component: useToken,
   args: {
     scale: 'colors',

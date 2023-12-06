@@ -3,7 +3,7 @@ import Image from './Image';
 import ImageSizesStory from './ImageSizes';
 
 const ImageMeta: ComponentMeta<typeof Image> = {
-  title: 'ui/stories/MEDIA AND ICONS/Image',
+  title: 'stories/MEDIA AND ICONS/Image',
   component: Image,
   // metaInfo is required for figma generation
   // @ts-ignore

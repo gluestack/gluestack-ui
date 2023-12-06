@@ -3,7 +3,7 @@ import Modal from './Modal';
 import MultipleModal from './MultipleModal';
 
 const ModalMeta: ComponentMeta<typeof Modal> = {
-  title: 'ui/stories/OVERLAY/Modal',
+  title: 'stories/OVERLAY/Modal',
   component: Modal,
   // metaInfo is required for figma generation
   // @ts-ignore

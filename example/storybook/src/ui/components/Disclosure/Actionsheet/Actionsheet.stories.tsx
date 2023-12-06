@@ -9,7 +9,7 @@ import ActionsheetAvoidKeyboard from './ActionsheetAvoidKeyboard';
 import ActionsheetWithKeyboardAvoidingViewWithSnapPoints from './ActionsheetAvoidKeyboardWithSnapPoints';
 
 const ActionsheetMeta: ComponentMeta<typeof Actionsheet> = {
-  title: 'ui/stories/DISCLOSURE/Actionsheet',
+  title: 'stories/DISCLOSURE/Actionsheet',
   component: Actionsheet,
   // metaInfo is required for figma generation
   // @ts-ignore

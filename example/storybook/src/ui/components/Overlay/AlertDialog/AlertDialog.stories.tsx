@@ -2,7 +2,7 @@ import type { ComponentMeta } from '@storybook/react-native';
 import AlertDialog from './AlertDialog';
 
 const AlertDialogMeta: ComponentMeta<typeof AlertDialog> = {
-  title: 'ui/stories/OVERLAY/AlertDialog',
+  title: 'stories/OVERLAY/AlertDialog',
   component: AlertDialog,
   // metaInfo is required for figma generation
   // @ts-ignore

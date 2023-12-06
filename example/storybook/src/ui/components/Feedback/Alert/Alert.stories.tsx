@@ -3,7 +3,7 @@ import Alert from './Alert';
 import AlertVariants from './Variants';
 
 const AlertMeta: ComponentMeta<typeof Alert> = {
-  title: 'ui/stories/FEEDBACK/Alert',
+  title: 'stories/FEEDBACK/Alert',
   component: Alert,
   // metaInfo is required for figma generation
   // @ts-ignore

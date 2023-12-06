@@ -2,7 +2,7 @@ import type { ComponentMeta } from '@storybook/react-native';
 import Textarea from './Textarea';
 
 const TextareaMeta: ComponentMeta<typeof Textarea> = {
-  title: 'ui/stories/FORMS/Textarea',
+  title: 'stories/FORMS/Textarea',
   component: Textarea,
   // metaInfo is required for figma generation
   // @ts-ignore

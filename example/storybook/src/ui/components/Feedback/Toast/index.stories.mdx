@@ -31,7 +31,7 @@ import {
   Pressable,
   Center,
 } from './Toast';
-import { transformedCode } from '../../../../utils';
+import { transformedCode } from '../../../utils';
 import {
   AppProvider,
   CodePreview,
@@ -247,6 +247,22 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
           </Table.TD>
           <Table.TD>
             <Table.TText>{`If true and the keyboard is opened, the Toast will move up equivalent to the keyboard height.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>containerStyle</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>ViewStyle</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>Container style object for the toast.</Table.TText>
           </Table.TD>
         </Table.TR>
       </Table.TBody>
@@ -889,7 +905,6 @@ export default () => {
         toast.show({
           placement: placement,
           render: ({ id }) => {
-
               const toastId = "toast-" + id;
               return (
                 <Toast nativeID={toastId}>

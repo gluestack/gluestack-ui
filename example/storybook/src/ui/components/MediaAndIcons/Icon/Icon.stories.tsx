@@ -59,7 +59,7 @@ import {
 } from './Icon';
 
 const IconMeta: ComponentMeta<typeof Icon> = {
-  title: 'ui/stories/MEDIA AND ICONS/Icons',
+  title: 'stories/MEDIA AND ICONS/Icons',
   component: Icon,
   // metaInfo is required for figma generation
   // @ts-ignore
