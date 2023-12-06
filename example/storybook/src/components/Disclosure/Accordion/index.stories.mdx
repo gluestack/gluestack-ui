@@ -57,7 +57,7 @@ This is an illustration of a **Themed Accordion** component with default configu
     }}
     metaData={{
       code: `
-      <Accordion m="$5" width="80%" maxWidth={640}>
+      <Accordion m="$5" width="90%">
         <AccordionItem value="a">
           <AccordionHeader>
             <AccordionTrigger>
@@ -425,21 +425,29 @@ Contains all the parts of a collapsible section.
   </TableContainer>
 </AppProvider>
 
-#### Accordion.Header
+#### AccordionHeader
 
 Wraps an `Accordion.Trigger`. Use the asChild prop to update it to the appropriate heading level for your page.
 
-#### Accordion.Trigger
+#### AccordionTrigger
 
 Toggles the collapsed state of its associated item. It inherits all the properties of react native's [Pressable](https://reactnative.dev/docs/pressable). It should be nested inside of an `Accordion.Header`.
 
-#### Accordion.Content
+#### AccordionTitleText
 
-Contains all the collapsible content for an item. It inherits all the properties of React Native [View](https://reactnative.dev/docs/view) component.
+It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text) component.
 
 #### AccordionIcon
 
 Contains all Icon related layout style props and actions.It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+#### AccordionContent
+
+Contains all the collapsible content for an item. It inherits all the properties of React Native [View](https://reactnative.dev/docs/view) component.
+
+#### AccordionContentText
+
+It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text) component.
 
 ## Accessibility
 
@@ -481,8 +489,7 @@ The following example demonstrates how easily you can customize the Accordion co
 function App(){
     return (
       <Accordion
-      width="80%"
-      maxWidth={640}
+      width="90%"
       type="multiple"
       size="md"
       m="$5"
@@ -505,9 +512,9 @@ function App(){
         }}>
         <AccordionHeader 
         sx={{
-            backgroundColor: "$backgroundLight50",
+            backgroundColor: "$backgroundLight0",
           _dark: {
-            backgroundColor: "$backgroundDark700"
+            backgroundColor: "$backgroundDark950"
           }
         }}
         >
@@ -516,7 +523,7 @@ function App(){
               return (
                 <>
                   <AccordionTitleText>
-                  Accordion Item 1
+           What does the "type" prop of the Accordion component do?
                   </AccordionTitleText>
                   {isExpanded ? (
                     <AccordionIcon as={ChevronUpIcon} />
@@ -528,11 +535,13 @@ function App(){
             }}
           </AccordionTrigger>
         </AccordionHeader>
-        <AccordionContent>
+        <AccordionContent mt="$0" pt="$2" sx={{
+          backgroundColor: "$backgroundLight50",
+        }}>
           <AccordionContentText>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Id, sed
-            laudantium eligendi maxime rerum, saepe vitae unde voluptas
-            incidunt.
+            The type prop determines whether one or multiple items can be
+            opened at the same time. The default value is "single" which means
+            only one item can be opened at a time. 
           </AccordionContentText>
         </AccordionContent>
       </AccordionItem>
@@ -548,9 +557,9 @@ function App(){
       >
         <AccordionHeader     
         sx={{
-            backgroundColor: "$backgroundLight50",
+            backgroundColor: "$backgroundLight0",
           _dark: {
-            backgroundColor: "$backgroundDark700"
+            backgroundColor: "$backgroundDark950"
           }
         }}>
           <AccordionTrigger>
@@ -558,7 +567,7 @@ function App(){
               return (
                 <>
                   <AccordionTitleText>
-                  Accordion Item 2
+                 Can I disable the whole accordion?
                   </AccordionTitleText>
                   {isExpanded ? (
                     <AccordionIcon as={ChevronUpIcon} />
@@ -570,10 +579,12 @@ function App(){
             }}
           </AccordionTrigger>
         </AccordionHeader>
-        <AccordionContent>
+        <AccordionContent mt="$0" pt="$2" sx={{
+          backgroundColor: "$backgroundLight50",
+        }}>
           <AccordionContentText>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis
-            maxime modi quaerat temporibus quos, omnis.
+            Yes, you can disable the whole accordion by setting the isDisabled
+            prop to true on the Accordion component.
           </AccordionContentText>
         </AccordionContent>
       </AccordionItem>
@@ -583,9 +594,9 @@ function App(){
       >
         <AccordionHeader
         sx={{
-            backgroundColor: "$backgroundLight50",
+            backgroundColor: "$backgroundLight0",
           _dark: {
-            backgroundColor: "$backgroundDark700"
+            backgroundColor: "$backgroundDark950"
           }
         }}
         >
@@ -594,7 +605,7 @@ function App(){
               return (
                 <>
                   <AccordionTitleText>
-                  Accordion Item 3
+                 What is a controlled accordion? How can I make it controlled?
                   </AccordionTitleText>
                   {isExpanded ? (
                     <AccordionIcon as={ChevronUpIcon} />
@@ -606,10 +617,14 @@ function App(){
             }}
           </AccordionTrigger>
         </AccordionHeader>
-        <AccordionContent>
+        <AccordionContent mt="$0" pt="$2" sx={{
+          backgroundColor: "$backgroundLight50",
+        }}>
           <AccordionContentText>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis
-            maxime modi quaerat temporibus quos.
+            A controlled accordion is one where the expanded state of the
+            accordion is controlled by the value prop. You can make it
+            controlled by passing the value prop to the Accordion component and
+            setting the onValueChange prop to update the value prop.
           </AccordionContentText>
         </AccordionContent>
       </AccordionItem>
@@ -763,7 +778,7 @@ function App(){
               return (
                 <>
                   <AccordionTitleText>
-                    Accordion Item 1
+                   Disabled Item
                   </AccordionTitleText>
                   {isExpanded ? (
                     <AccordionIcon as={MinusIcon}  />
@@ -792,7 +807,7 @@ function App(){
               return (
                 <>
                   <AccordionTitleText>
-                  Accordion Item 2
+                   Is this accordion accessible?
                   </AccordionTitleText>
                   {isExpanded ? (
                     <AccordionIcon as={MinusIcon} />
@@ -806,8 +821,9 @@ function App(){
         </AccordionHeader>
         <AccordionContent px="$0">
           <AccordionContentText>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis
-            maxime modi quaerat temporibus quos, omnis.
+            Yes, the accordion is accessible. It adheres to the WAI-ARIA design
+            pattern. You can read more about it in the accessibility section of
+            the docs.
           </AccordionContentText>
         </AccordionContent>
       </AccordionItem>
@@ -861,7 +877,7 @@ function App(){
               return (
                 <>
                   <AccordionTitleText>
-                    Collapsible Group Item #1
+                  What is the defaultValue prop of the Accordion component?
                   </AccordionTitleText>
                   {isExpanded ? (
                     <AccordionIcon as={MinusIcon}  />
@@ -876,9 +892,9 @@ function App(){
         </AccordionHeader>
         <AccordionContent px="$0">
           <AccordionContentText>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Id, sed
-            laudantium eligendi maxime rerum, saepe vitae unde voluptas
-            incidunt.
+            The defaultValue prop of the Accordion component is used to define
+            the open item by default. It is used when the Accordion component is
+            uncontrolled.
           </AccordionContentText>
         </AccordionContent>
       </AccordionItem>
@@ -890,7 +906,7 @@ function App(){
               return (
                 <>
                   <AccordionTitleText>
-                    Collapsible Group Item #2
+                   How many size variants does the Accordion component have?
                   </AccordionTitleText>
                   {isExpanded ? (
                     <AccordionIcon as={MinusIcon} />
@@ -904,8 +920,7 @@ function App(){
         </AccordionHeader>
         <AccordionContent px="$0">
           <AccordionContentText>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis
-            maxime modi quaerat temporibus quos, omnis.
+            The Accordion component has three size variants - sm, md and lg.
           </AccordionContentText>
         </AccordionContent>
       </AccordionItem>
@@ -917,7 +932,7 @@ function App(){
               return (
                 <>
                   <AccordionTitleText>
-                    Collapsible Group Item #3
+                  Can I nest my accordions?
                   </AccordionTitleText>
                   {isExpanded ? (
                     <AccordionIcon as={MinusIcon} />
@@ -931,8 +946,7 @@ function App(){
         </AccordionHeader>
         <AccordionContent px="$0">
           <AccordionContentText>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis
-            maxime modi quaerat temporibus quos, omnis.
+            Yes, you can nest your accordions. Refer to the nested accordion example in the docs.
           </AccordionContentText>
         </AccordionContent>
       </AccordionItem>
@@ -995,9 +1009,9 @@ function App(){
       <AccordionItem value="a">
         <AccordionHeader     
          sx={{
-            backgroundColor: "$backgroundLight50",
+            backgroundColor: "$backgroundLight0",
           _dark: {
-            backgroundColor: "$backgroundDark700",
+            backgroundColor: "$backgroundDark950",
           }
         }}>
           <AccordionTrigger>
@@ -1020,10 +1034,10 @@ function App(){
             borderWidth={1}
             sx={{
                 borderColor: '$borderLight300',
-                backgroundColor: "$backgroundLight50",
+                backgroundColor: "$backgroundLight0",
               _dark: {
                 borderColor: '$borderDark700',
-                backgroundColor: "$backgroundDark700"
+                backgroundColor: "$backgroundDark950"
               },
             }}
           >
@@ -1056,9 +1070,9 @@ function App(){
           <Accordion width="100%" shadowColor="transparent" 
           mt="$5"   
            sx={{
-            backgroundColor: "$backgroundLight50",
+            backgroundColor: "$backgroundLight0",
           _dark: {
-            backgroundColor: "$backgroundDark700"
+            backgroundColor: "$backgroundDark950"
           }
         }}>
             <AccordionItem value="c">
