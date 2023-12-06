@@ -105,7 +105,7 @@ export const Accordion = createStyle({
   },
   defaultProps: {
     theme: 'light',
-    size: 'sm',
+    size: 'md',
     variant: 'filled',
   },
 });
