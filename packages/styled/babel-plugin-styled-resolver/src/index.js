@@ -958,11 +958,11 @@ module.exports = function (b) {
             Object.assign(reservedKeys, { ...prefixedMediaQueries });
           }
 
-          const attr = jsxOpeningElementPath.node.attributes;
+          const attr = jsxOpeningElementPath?.node?.attributes;
           attr.forEach((attribute, index) => {
             if (t.isJSXAttribute(attribute)) {
-              const propName = attribute.name.name;
-              const propValue = attribute.value;
+              const propName = attribute?.name?.name;
+              const propValue = attribute?.value;
 
               if (t.isJSXExpressionContainer(propValue)) {
                 if (
@@ -1068,7 +1068,7 @@ module.exports = function (b) {
                   value: utilityPropValue,
                 } = checkAndReturnUtilityProp(
                   propName,
-                  propValue.value,
+                  propValue?.value,
                   styledSystemProps,
                   [],
                   reservedKeys
