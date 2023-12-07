@@ -90,15 +90,7 @@ function convertUtiltiyToSXFromProps(
   componentStyleConfig: IComponentStyleConfig,
   reservedKeys: any = _reservedKeys
 ) {
-  // if (componentProps.debug === 'BOX_TEST') {
-  //   return {
-  //     sx: {},
-  //     rest: {},
-  //   };
-  // }
   const { sx: userSX, ...componentRestProps }: any = componentProps;
-
-  const resolvedSXVerbosed = convertSxToSxVerbosed(userSX);
 
   const { sxProps: utilityResolvedSX, mergedProps: restProps } =
     convertUtilityPropsToSX(
@@ -108,9 +100,11 @@ function convertUtiltiyToSXFromProps(
       reservedKeys
     );
 
-  const resolvedSxVerbose = deepMerge(utilityResolvedSX, resolvedSXVerbosed);
+  const resolvedSxVerbose = deepMergeObjects(utilityResolvedSX, userSX);
 
-  return { sx: resolvedSxVerbose, rest: restProps };
+  const resolvedSXVerbosed = convertSxToSxVerbosed(resolvedSxVerbose);
+
+  return { sx: resolvedSXVerbosed, rest: restProps };
 }
 
 function getStateStyleCSSFromStyleIdsAndProps(
