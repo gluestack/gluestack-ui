@@ -10,7 +10,6 @@ export const Accordion = createStyle({
   },
   _titleText: {
     color: '$textLight900',
-
     _dark: {
       color: '$textDark50',
     },
@@ -105,7 +104,7 @@ export const Accordion = createStyle({
   },
   defaultProps: {
     theme: 'light',
-    size: 'sm',
+    size: 'md',
     variant: 'filled',
   },
 });
