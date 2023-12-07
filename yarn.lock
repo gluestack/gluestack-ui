@@ -3299,10 +3299,10 @@
     "@gluestack-ui/utils" "^0.1.12"
     "@react-native-aria/focus" "^0.2.9"
 
-"@gluestack/design-system@^0.3.88":
-  version "0.3.88"
-  resolved "https://registry.yarnpkg.com/@gluestack/design-system/-/design-system-0.3.88.tgz#e012da12b8a008c61b268e0bd244fcf84997030b"
-  integrity sha512-lkn3w45+xQBjuBdLfdxUxMrPEoLLE+AX2tG36R5IxT8dHenO/O4NyC7olcN0424GCD6FdVcWTv1VJQh0I38/PQ==
+"@gluestack/design-system@^0.4.76":
+  version "0.4.76"
+  resolved "https://registry.yarnpkg.com/@gluestack/design-system/-/design-system-0.4.76.tgz#89df359c2ed5fb556b788d22d37f52981b3c88b9"
+  integrity sha512-hLab7edMNR2GzbJJEUz0khnz3n0v6MJo1i2HK//qmivfva0QVTGki7/8ZUi0jhllimVljt20FaO8n8tIpeRnVQ==
   dependencies:
     "@docsearch/css" "3"
     "@docsearch/react" "3"
