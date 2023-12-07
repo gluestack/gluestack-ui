@@ -7,6 +7,8 @@ export interface ITabListProps {
 }
 export interface ITabsProps {
   value?: string;
+  defaultValue: string;
+  onChange?: (value: string) => void;
 }
 export interface ITabPanelProps {
   value?: string;

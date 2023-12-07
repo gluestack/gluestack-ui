@@ -5,7 +5,79 @@ export const TabsTab = createStyle({
   '_web': {
     outlineWidth: 0,
   },
+  'borderBottomWidth': 1,
+  'borderBottomColor': '$borderLight300',
+  '_title': {
+    color: '$textLight900',
+  },
+  '_icon': {
+    color: '$backgroundLight900',
+  },
+  ':hover': {
+    borderBottomColor: '$primary600',
+    _title: {
+      color: '$primary600',
+    },
+    _icon: {
+      color: '$primary600',
+    },
+  },
+  ':active': {
+    borderBottomColor: '$primary500',
+    _title: {
+      color: '$primary500',
+    },
+    _icon: {
+      color: '$primary500',
+    },
+  },
+  ':focus': {
+    borderBottomColor: '$primary500',
+    _title: {
+      color: '$primary500',
+    },
+    _icon: {
+      color: '$primary500',
+    },
+  },
+  ':focusVisible': {
+    borderBottomColor: '$primary500',
+    _title: {
+      color: '$primary500',
+    },
+    _icon: {
+      color: '$primary500',
+    },
+  },
 
+  '_dark': {
+    'borderBottomColor': '$borderDark600',
+
+    ':hover': {
+      borderBottomColor: '$primary300',
+      _icon: {
+        color: '$primary300',
+      },
+    },
+    ':active': {
+      borderBottomColor: '$primary400',
+      _icon: {
+        color: '$primary400',
+      },
+    },
+    ':focus': {
+      borderBottomColor: '$primary400',
+      _icon: {
+        color: '$primary400',
+      },
+    },
+    ':focusVisible': {
+      borderBottomColor: '$primary400',
+      _icon: {
+        color: '$primary400',
+      },
+    },
+  },
   'variants': {
     size: {
       md: {
@@ -23,37 +95,8 @@ export const TabsTab = createStyle({
   'defaultProps': {
     size: 'md',
   },
-  ':hover': {
-    // bg: '$secondary50_alpha_20',
-    borderRadius: '$full',
-  },
-  ':active': {
-    // bg: '$secondary50_alpha_10',
-    borderRadius: '$full',
-  },
-  ':focus': {
-    // bg: '$secondary50_alpha_20',
-    borderRadius: '$full',
-  },
+
   ':disabled': {
     opacity: 0.5,
-  },
-
-  '_dark': {
-    ':hover': {
-      bg: '$backgroundLight500',
-      borderRadius: '$full',
-    },
-    ':active': {
-      bg: '$backgroundLight400',
-      borderRadius: '$full',
-    },
-    ':focus': {
-      bg: '$backgroundLight400',
-      borderRadius: '$full',
-    },
-    ':disabled': {
-      opacity: 0.5,
-    },
   },
 });
