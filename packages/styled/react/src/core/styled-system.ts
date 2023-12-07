@@ -17,8 +17,6 @@ export const CSSPropertiesMap = {
   bottom: 'auto',
   direction: 'ltr',
   display: 'flex',
-  end: 'auto',
-  start: 'auto',
   flex: 'none',
   flexDirection: 'column',
   flexBasis: 'auto',

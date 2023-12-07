@@ -1,7 +1,7 @@
 {
   "name": "@gluestack-style/react",
   "description": "A universal & performant styling library for React Native, Next.js & React",
-  "version": "1.0.22",
+  "version": "1.0.26",
   "keywords": [
     "React Native",
     "Next.js",
@@ -48,8 +48,7 @@
   },
   "dependencies": {
     "inline-style-prefixer": "^6.0.1",
-    "normalize-css-color": "^1.0.2",
-    "react-native-svg": "^14.1.0"
+    "normalize-css-color": "^1.0.2"
   },
   "react-native-builder-bob": {
     "source": "src",
