@@ -58,7 +58,7 @@
     "@gluestack-ui/slider": "^0.1.17",
     "@gluestack-ui/spinner": "^0.1.14",
     "@gluestack-ui/switch": "^0.1.17",
-    "@gluestack-ui/tabs": "^0.1.14",
+    "@gluestack-ui/tabs": "0.1.15-alpha.1",
     "@gluestack-ui/textarea": "^0.1.19",
     "@gluestack-ui/toast": "^1.0.0",
     "@gluestack-ui/tooltip": "^0.1.24",
