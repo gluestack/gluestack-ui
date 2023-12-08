@@ -524,6 +524,7 @@ function App(){
       type="multiple"
       m="$5"
       borderWidth={1}
+      shadowColor="transparent"
       sx={{
             borderColor: '$borderLight300',
           _dark: {
@@ -704,7 +705,7 @@ The borderRadius prop can be used to create rounded corners for both the Accordi
       code: `
 function App(){
     return (
-          <Accordion m="$5" width="80%" maxWidth={640}>
+          <Accordion m="$5" width="80%" maxWidth={640} shadowColor="transparent">
       <AccordionItem value="item-1" borderRadius="$lg">
         <AccordionHeader>
           <AccordionTrigger>
@@ -1180,8 +1181,8 @@ You can make the Accordion component controlled by passing the value prop to the
 function App(){
     const [selectedValues, setSelecedValues] = React.useState(['item-1', 'item-2']);
     return (
-    <Accordion m="$5" variant="unfilled" width="90%" type="multiple" value={selectedValues} onValueChange={(item) => setSelecedValues(item)}>
-      <AccordionItem value="item-1" borderBottomWidth={1} 
+    <Accordion m="$5" variant="unfilled" width="95%" type="multiple" value={selectedValues} onValueChange={(item) => setSelecedValues(item)}>
+      <AccordionItem value="item-1" borderTopWidth={1} borderBottomWidth={1} 
       sx={{
             borderColor: '$borderLight300',
           _dark: {
@@ -1214,13 +1215,7 @@ function App(){
         </AccordionContent>
       </AccordionItem>
    
-      <AccordionItem value="item-2" borderBottomWidth={1}
-          sx={{
-            borderColor: '$borderLight300',
-          _dark: {
-            borderColor: '$borderDark700',
-          },
-      }}
+      <AccordionItem value="item-2"
       >
         <AccordionHeader>
           <AccordionTrigger>
@@ -1246,7 +1241,13 @@ function App(){
           </AccordionContentText>
         </AccordionContent>
       </AccordionItem>
-      <AccordionItem value="item-3">
+      <AccordionItem value="item-3"  borderTopWidth={1}  borderBottomWidth={1}
+          sx={{
+            borderColor: '$borderLight300',
+          _dark: {
+            borderColor: '$borderDark700',
+          },
+      }}>
         <AccordionHeader>
           <AccordionTrigger>
             {({ isExpanded }) => {
