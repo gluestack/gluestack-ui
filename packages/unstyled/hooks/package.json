@@ -1,0 +1,101 @@
+{
+  "name": "@gluestack-ui/hooks",
+  "description": "Provides hooks used in gluestack-ui",
+  "version": "0.1.10",
+  "main": "lib/commonjs/index",
+  "module": "lib/module/index",
+  "types": "lib/typescript/index.d.ts",
+  "react-native": "src/index",
+  "source": "src/index",
+  "typings": "lib/typescript/index.d.ts",
+  "scripts": {
+    "prepare": "bob build",
+    "release": "release-it",
+    "build": "bob build",
+    "clean": "rm -rf lib",
+    "dev:web": "cd example/native && yarn web --clear",
+    "storybook": "cd example/native/storybook && yarn web"
+  },
+  "devDependencies": {
+    "@gluestack-style/react": "^1.0.8",
+    "@react-native-community/clipboard": "^1.5.1",
+    "@types/react": "^18.0.22",
+    "@types/react-native": "^0.72.3",
+    "babel-plugin-transform-remove-console": "^6.9.4",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
+    "react-native": "^0.72.4",
+    "react-native-builder-bob": "^0.20.1",
+    "react-native-web": "^0.19.9",
+    "tsconfig": "7",
+    "typescript": "^4.9.4"
+  },
+  "dependencies": {},
+  "peerDependencies": {
+    "@gluestack-style/react": ">=1.0",
+    "react": ">=16",
+    "react-dom": ">=16"
+  },
+  "react-native-builder-bob": {
+    "source": "src",
+    "output": "lib",
+    "targets": [
+      "commonjs",
+      [
+        "module"
+      ],
+      "typescript"
+    ]
+  },
+  "files": [
+    "lib/",
+    "src/"
+  ],
+  "jest": {
+    "preset": "jest-expo",
+    "transform": {
+      "^.+\\.js$": "<rootDir>/node_modules/react-native/jest/preprocessor.js"
+    },
+    "modulePathIgnorePatterns": [
+      "<rootDir>/example/*",
+      "<rootDir>/lib/"
+    ],
+    "transformIgnorePatterns": [
+      "node_modules/(?!(@react-native|react-native|expo-asset|expo-constants|@unimodules|react-native-unimodules|expo-font|react-native-svg|@expo/vector-icons|react-native-vector-icons|@react-native-aria/checkbox|@react-native-aria/interactions|@react-native-aria/button|@react-native-aria/switch|@react-native-aria/toggle|@react-native-aria/utils|@react-native-aria/*))"
+    ],
+    "setupFiles": [
+      "<rootDir>/src/jest/mock.ts"
+    ]
+  },
+  "release-it": {
+    "git": {
+      "commitMessage": "chore: release ${version}",
+      "tagName": "v${version}"
+    },
+    "npm": {
+      "publish": true
+    },
+    "github": {
+      "release": true
+    },
+    "plugins": {
+      "@release-it/conventional-changelog": {
+        "preset": "angular"
+      }
+    }
+  },
+  "keywords": [
+    "react",
+    "native",
+    "react-native",
+    "hooks",
+    "gluestack-ui",
+    "universal",
+    "headless",
+    "typescript",
+    "component",
+    "android",
+    "ios",
+    "nextjs"
+  ]
+}

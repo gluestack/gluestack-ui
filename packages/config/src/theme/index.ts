@@ -139,7 +139,6 @@ export * from './TabsTabTitle';
 export * from './Text';
 export * from './Textarea';
 export * from './TextareaInput';
-export * from './ToastAnimationWrapper';
 export * from './Toast';
 export * from './ToastDescription';
 export * from './ToastTitle';

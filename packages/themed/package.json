@@ -1,6 +1,6 @@
 {
   "name": "@gluestack-ui/themed",
-  "version": "1.0.24",
+  "version": "1.0.25",
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "module": "build/index",
@@ -46,7 +46,7 @@
     "@gluestack-ui/image": "^0.1.7",
     "@gluestack-ui/input": "^0.1.23",
     "@gluestack-ui/linear-gradient": "^0.1.2",
-    "@gluestack-ui/link": "^0.1.15",
+    "@gluestack-ui/link": "^0.1.16",
     "@gluestack-ui/menu": "^0.2.25",
     "@gluestack-ui/modal": "^0.1.27",
     "@gluestack-ui/overlay": "^0.1.12",

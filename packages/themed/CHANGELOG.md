@@ -1,5 +1,11 @@
 # @gluestack-ui/themed
 
+## 1.0.25
+
+### Patch Changes
+
+- fix: link href issue
+
 ## 1.0.24
 
 ### Patch Changes

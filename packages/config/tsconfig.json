@@ -1,9 +1,6 @@
 {
   "include": ["./src"],
   "exclude": ["node_modules", "example"],
-  "path": {
-    "@gluestack-ui/themed": ["../themed/src"]
-  },
   "compilerOptions": {
     "noEmit": false,
     "declaration": true,

@@ -1,0 +1,17 @@
+name: Issue assignment
+
+on:
+  issues:
+    types: [opened, edited, labeled]
+
+jobs:
+  auto-assign:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Auto-assign issue'
+        uses: pozil/auto-assign-issue@v1
+        with:
+          repo-token: ${{ secrets.MY_GITHUB_TOKEN }}
+          teams: dank-style-support
+          numOfAssignee: 1
+          allowSelfAssign: false

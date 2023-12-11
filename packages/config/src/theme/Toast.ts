@@ -93,10 +93,13 @@ export const Toast = createStyle({
       },
     },
   },
+  m: '$3',
+
   _web: {
     pointerEvents: 'auto',
   },
   defaultProps: {
+    hardShadow: '5',
     variant: 'solid',
     action: 'attention',
   },

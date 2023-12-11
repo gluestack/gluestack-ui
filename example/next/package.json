@@ -1,0 +1,52 @@
+{
+  "name": "next-example-styled",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "export": "next export"
+  },
+  "dependencies": {
+    "@expo/html-elements": "^0.2.2",
+    "@expo/next-adapter": "4.0.13",
+    "@expo/vector-icons": "^13.0.0",
+    "expo-asset": "^8.6.2",
+    "expo-font": "^10.0.3",
+    "next": "^12.3.4",
+    "react-native-keyboard-aware-scroll-view": "^0.9.5",
+    "react-native-safe-area-context": "^4.1.2",
+    "react-native-svg": "^13.6.0",
+    "react-native-tab-view": "^3.1.1",
+    "react-native-vector-icons": "^9.1.0",
+    "react-native-vector-icons-for-web": "^0.1.7",
+    "react-native-web-linear-gradient": "^1.1.2",
+    "@gluestack-style/react": "^0.1.33",
+    "@gluestack-style/babel-plugin-styled-resolver": "^0.1.6"
+  },
+  "devDependencies": {
+    "@babel/core": "7",
+    "@babel/plugin-transform-runtime": "^7.19.6",
+    "@expo/config": "^7.0.3",
+    "@types/node": "16.11.11",
+    "@types/react": "17.0.1",
+    "@types/react-native": "0.68.2",
+    "babel-preset-expo": "8",
+    "eslint": "7",
+    "eslint-config-next": "12.0.4",
+    "expo-modules-core": "^1.0.3",
+    "next-compose-plugins": "^2.2.1",
+    "next-fonts": "^1.5.1",
+    "next-transpile-modules": "^10.0.0",
+    "typescript": "4.5.2",
+    "webpack": "4"
+  },
+  "peerDependencies": {
+    "react": "*",
+    "react-dom": "*",
+    "react-native": "*",
+    "react-native-web": "*"
+  }
+}

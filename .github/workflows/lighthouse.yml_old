@@ -2,7 +2,7 @@ name: Vercel Preview URL Lighthouse Audit
 
 on:
   pull_request:
-    branches: ["master"]
+    branches: ['master']
 
 jobs:
   generate_lighthouse_audit:
