@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "@gluestack-ui/tooltip": "latest",
+    "@legendapp/motion": "latest"
+  },
+  "keywords": ["components", "core"]
+}

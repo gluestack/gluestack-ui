@@ -5,6 +5,7 @@
     <img src="https://raw.githubusercontent.com/gluestack/gluestack-ui/main/img/gluestack-ui-banner.svg" alt="gluestack-ui logo" >
   </a>
   <br>
+  <br>
 </h3>
 
 ## Introduction
@@ -17,13 +18,13 @@ You can find detailed documentation for each component, including a list of prop
 
 ## Features
 
-- **Customizable components:** Each component in the library comes with a set of customizable props that allow you to tailor its appearance and behavior to your specific needs.
+- **Dynamic styles:** Using JavaScript expressions, you can create dynamic styles that change based on the state of your components.
 
-- **Responsive design:** The components are built using modern web design principles and are fully responsive, so they work seamlessly across a wide range of devices and screen sizes.
+- **Server-side rendering (SSR) support:** This allows you to use the same styles on the server and the client, making it easy to implement SSR for your React applications..
 
-- **Well-documented:** The comes with comprehensive documentation for each component, including a list of props and examples, to help you get up and running quickly.
+- **Responsive styling::** This allows you to easily create responsive styles that adapt to different screen sizes and resolutions.
 
-- **Easy to use:** The components are designed to be easy to use and integrate into your existing React applications. Simply install the library and import the components you need.
+- **Theme support:** You can easily define and switch between different themes for your application, allowing for a consistent design across all pages.
 
 - **Frequent updates:** We are constantly working on improving the library and adding new components. Follow us on GitHub to stay up-to-date on the latest releases and features.
 
@@ -58,18 +59,29 @@ function App({ children }) {
 }
 ```
 
-2. Now you can start using components!:
+2. Now you can use `@gluestack-style/react` to style your components by using the `styled` function provided by the library. For example:
 
 ```jsx
 import { Button, ButtonText } from '@gluestack-ui/themed';
 
-function Example() {
+const StyledButton = styled(
+  Pressable,
+  {
+    bg: '$red500',
+    p: '$3',
+  },
+  {}
+);
+
+const StyledButtonText = styled(Text, {}, {});
+
+export const App = () => {
   return (
     <Button>
       <ButtonText>Awesome Button!</ButtonText>
     </Button>
   );
-}
+};
 ```
 
 More guides on how to get started are available

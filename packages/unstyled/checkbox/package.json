@@ -1,0 +1,107 @@
+{
+  "name": "@gluestack-ui/checkbox",
+  "version": "0.1.22",
+  "main": "lib/commonjs/index",
+  "module": "lib/module/index",
+  "types": "lib/typescript/index.d.ts",
+  "react-native": "src/index",
+  "source": "src/index",
+  "typings": "lib/typescript/index.d.ts",
+  "description": "A universal headless Checkbox component for React Native, Next.js & React",
+  "keywords": [
+    "react",
+    "native",
+    "react-native",
+    "checkbox",
+    "gluestack-ui",
+    "universal",
+    "headless",
+    "typescript",
+    "component",
+    "android",
+    "ios",
+    "nextjs"
+  ],
+  "scripts": {
+    "prepare": "bob build",
+    "release": "release-it",
+    "build": "bob build",
+    "clean": "rm -rf lib",
+    "dev:web": "cd example/native && yarn web --clear",
+    "storybook": "cd example/native/storybook && yarn web"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.22",
+    "@types/react-native": "^0.72.3",
+    "babel-plugin-transform-remove-console": "^6.9.4",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
+    "react-native": "^0.72.4",
+    "react-native-builder-bob": "^0.20.1",
+    "react-native-web": "^0.19.9",
+    "tsconfig": "7",
+    "typescript": "^4.7.4"
+  },
+  "dependencies": {
+    "@gluestack-ui/form-control": "^0.1.14",
+    "@gluestack-ui/utils": "^0.1.12",
+    "@react-aria/visually-hidden": "^3.8.6",
+    "@react-native-aria/checkbox": "^0.2.6",
+    "@react-native-aria/focus": "^0.2.9",
+    "@react-native-aria/interactions": "^0.2.11",
+    "@react-native-aria/utils": "^0.2.10",
+    "@react-stately/checkbox": "^3.4.2"
+  },
+  "peerDependencies": {
+    "react": ">=16",
+    "react-dom": ">=16"
+  },
+  "react-native-builder-bob": {
+    "source": "src",
+    "output": "lib",
+    "targets": [
+      "commonjs",
+      [
+        "module"
+      ],
+      "typescript"
+    ]
+  },
+  "files": [
+    "lib/",
+    "src/"
+  ],
+  "jest": {
+    "preset": "jest-expo",
+    "transform": {
+      "^.+\\.js$": "<rootDir>/node_modules/react-native/jest/preprocessor.js"
+    },
+    "modulePathIgnorePatterns": [
+      "<rootDir>/example/*",
+      "<rootDir>/lib/"
+    ],
+    "transformIgnorePatterns": [
+      "node_modules/(?!(@react-native|react-native|expo-asset|expo-constants|@unimodules|react-native-unimodules|expo-font|react-native-svg|@expo/vector-icons|react-native-vector-icons|@react-native-aria/checkbox|@react-native-aria/interactions|@react-native-aria/button|@react-native-aria/switch|@react-native-aria/toggle|@react-native-aria/utils|@react-native-aria/*))"
+    ],
+    "setupFiles": [
+      "<rootDir>/src/jest/mock.ts"
+    ]
+  },
+  "release-it": {
+    "git": {
+      "commitMessage": "chore: release ${version}",
+      "tagName": "v${version}"
+    },
+    "npm": {
+      "publish": true
+    },
+    "github": {
+      "release": true
+    },
+    "plugins": {
+      "@release-it/conventional-changelog": {
+        "preset": "angular"
+      }
+    }
+  }
+}

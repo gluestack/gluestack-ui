@@ -1,0 +1,22 @@
+# name: 'Unit test'
+# run-name: 'Unit Test'
+# on: [pull_request]
+# jobs:
+#   test:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout repository
+#         uses: actions/checkout@v2
+
+#       - uses: actions/setup-node@v3
+#         with:
+#           node-version: 16.x
+
+#       - name: Print Repo Name
+#         run: echo ${{ github.event.client_payload.message.repo }}
+
+#       - name: Install Dependencies
+#         run: yarn
+
+#       - name: Run Tests
+#         run: yarn test

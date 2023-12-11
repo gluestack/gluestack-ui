@@ -3,13 +3,17 @@
   "workspaces": [
     "packages/themed",
     "packages/config",
-    "example/storybook",
-    "example/apps/*"
+    "packages/*",
+    "packages/unstyled/**",
+    "packages/react-native-aria/**",
+    "packages/**",
+    "example/storybook"
   ],
   "scripts": {
+    "test": "bash ./scripts/test.sh",
     "dev": "turbo run dev",
-    "build": "turbo run build --filter=@gluestack-ui* --no-cache",
-    "test": "jest",
+    "build": "turbo run build --filter=[@gluestack-*,@react-native-aria*] --no-cache && yarn build:rest",
+    "build:rest": "turbo run build --filter=@gluestack-* --no-cache --ignore=@gluestack-style/react",
     "clean": "turbo run clean && rm -rf node_modules",
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\" --ignore-path .gitignore",
     "release": "changeset publish",
@@ -17,11 +21,13 @@
     "lint": "eslint packages/**/**/src --ext .ts,.tsx --config .eslintrc",
     "eject:gluestack-style": "git clone -b development git@github.com:gluestack/gluestack-style.git gluestack-style && echo Now update babel.config.js",
     "create-new-package": "node ./scripts/create-new-package.js",
-    "storybook": "cd example/storybook && yarn storybook"
+    "storybook": "cd example/storybook && yarn storybook",
+    "kitchensink:web": "cd example/ui-examples && yarn web"
   },
   "devDependencies": {
     "@changesets/cli": "^2.25.2",
     "@commitlint/config-conventional": "^17.3.0",
+    "@jest/create-cache-key-function": "^29.6.3",
     "@react-native-community/eslint-config": "^3.2.0",
     "@testing-library/react-native": "^12.0.1",
     "@types/react": "^18.0.28",
@@ -46,5 +52,6 @@
     "react-native": "0.72.4",
     "react-native-web": "0.19.9"
   },
-  "packageManager": "yarn@1.22.17"
+  "packageManager": "yarn@1.22.17",
+  "version": "0.2.46"
 }
