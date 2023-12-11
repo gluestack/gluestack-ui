@@ -3021,19 +3021,6 @@
     inline-style-prefixer "^6.0.1"
     normalize-css-color "^1.0.2"
 
-"@gluestack-ui/slider@^0.1.18":
-  version "0.1.18"
-  resolved "https://registry.yarnpkg.com/@gluestack-ui/slider/-/slider-0.1.18.tgz#7bf3b869cc6009f5a96e9b90eaccf01e0af3c043"
-  integrity sha512-Q9brkJnH9hlUeVrXowcsPRuclpczemxgXa0gSqR14DpLeinOqJgRCobg3uFiWjXqOOTHGC2oNik68tI4itehAQ==
-  dependencies:
-    "@gluestack-ui/form-control" "^0.1.14"
-    "@gluestack-ui/hooks" "^0.1.7"
-    "@gluestack-ui/utils" "^0.1.12"
-    "@react-aria/visually-hidden" "^3.8.1"
-    "@react-native-aria/interactions" "^0.2.11"
-    "@react-native-aria/slider" "^0.2.10"
-    "@react-stately/slider" "^3.2.4"
-
 "@gluestack-ui/stack@0.1.1":
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/stack/-/stack-0.1.1.tgz#9abded87a19847ce4ec901094384825fb0b4de09"
@@ -3042,15 +3029,6 @@
     "@gluestack-ui/utils" latest
     "@react-native-aria/focus" "^0.2.7"
     react-native-svg "13.4.0"
-
-"@gluestack-ui/tabs@^0.1.14", "@gluestack-ui/tabs@^0.1.6":
-  version "0.1.14"
-  resolved "https://registry.yarnpkg.com/@gluestack-ui/tabs/-/tabs-0.1.14.tgz#5bcb5cc659927cde08f8e32497830257ed5cba4f"
-  integrity sha512-QIAf+ACVFIBm5khxMPNwo4hGtr+uOdc18ygeyHmCOQaCBAhQN9zyscDg5PjBDNasHk7I9WJf5sVr2A4ZzRXybg==
-  dependencies:
-    "@gluestack-ui/utils" "^0.1.12"
-    "@react-native-aria/focus" "^0.2.9"
-    "@react-native-aria/interactions" "^0.2.11"
 
 "@gluestack-ui/toast@^0.1.7":
   version "0.1.20"
