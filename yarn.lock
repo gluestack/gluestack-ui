@@ -3021,15 +3021,6 @@
     inline-style-prefixer "^6.0.1"
     normalize-css-color "^1.0.2"
 
-"@gluestack-ui/link@^0.1.15", "@gluestack-ui/link@^0.1.6":
-  version "0.1.15"
-  resolved "https://registry.yarnpkg.com/@gluestack-ui/link/-/link-0.1.15.tgz#c4db78400f6963ffea3622f9f735183b9c9d84f7"
-  integrity sha512-Kz5ZZRrjIy7Zo3CvW4Be734NQAPgkTCJwig/lxG1J/0JWe3wcbEwOI6kCiZScA1LQt40WIsHbO0XrZSYihcQTg==
-  dependencies:
-    "@gluestack-ui/utils" "^0.1.12"
-    "@react-native-aria/focus" "^0.2.9"
-    "@react-native-aria/interactions" "^0.2.11"
-
 "@gluestack-ui/slider@^0.1.18":
   version "0.1.18"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/slider/-/slider-0.1.18.tgz#7bf3b869cc6009f5a96e9b90eaccf01e0af3c043"
