@@ -9,16 +9,16 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 # Building Design Systems
 
-Empower your development by creating a personalized design system with `gluestack-ui`.
-This enables you to build your own collection of components that match your vision.
+Use `gluestack-ui` to build your own collection of components that match your vision, and deploy across projects.
 
 ## Step 1: Create Your Own Package
 
-If you are planning to build your own design system, you can directly **fork** [`gluestack-ui`](https://github.com/gluestack/gluestack-ui) – a meticulously organized monorepo and begin shaping your design system upon this solid foundation.
+To build your own design system, you can directly **fork** [`gluestack-ui`](https://github.com/gluestack/gluestack-ui) and begin shaping your design system upon this foundation.
 
-- This includes a component library package `@gluestack-ui/themed` in `packages/themed` directory.
-- This includes a theme package `@gluestack-ui/config` in `packages/config` directory.
-- This includes a storybook for both React and React Native in `example/storybook` directory.
+This includes :
+- A component library package `@gluestack-ui/themed` in `packages/themed` directory.
+- A theme package `@gluestack-ui/config` in `packages/config` directory.
+- A storybook for both React and React Native in `example/storybook` directory.
 
 Follow these steps after **forking** this repository:
 
@@ -100,14 +100,14 @@ Check [this](/ui/docs/theme-configuration/customizing-theme) for more details.
 
 ### Components
 
-You can customize the styling of all primitive components. You can modify styling in `packages/config/src/theme/<ComponentName>.ts/` for a particular component. You can add and modify property value and variants based on your need.
+You can customize the styling of all primitive components by modifying styling in `packages/config/src/theme/<ComponentName>.ts/` for a particular component. You may add and modify property value and variants based on your need.
 
 **Create a custom component**
 To create your own custom component. You need to follow these steps:
 
 1. Create a folder inside `packages/themed/src/components/Circle`
 2. Create a folder `styled-components/` inside `packages/themed/src/components/Circle` to keep components.
-3. Create a styled component using `@gluestack-style/react` in `Root.tsx`, this will be an unstyled component initially with just component name.
+3. Create a styled component using `@gluestack-style/react` in `Root.tsx`. This will be an unstyled component initially with just component name.
 
 ```jsx
 export const Root = styled(View, {}, { componentName: 'Circle' });
@@ -123,7 +123,7 @@ const Circle = (props) => {
 };
 ```
 
-6. And then export from `packages/themed/src/components/index.tsx`
+6. Export from `packages/themed/src/components/index.tsx`
 
 ```jsx
 // other components
@@ -151,7 +151,7 @@ export const Circle = createStyle({
 });
 ```
 
-8. And then export from `packages/config/src/index.ts`
+8. Export from `packages/config/src/index.ts`
 
 ```jsx
 // other components
@@ -169,7 +169,7 @@ export default () => <Circle size="large" />;
 
 ## Step 4: Publish Your Package
 
-Now you can publish your design system as a package from `packages/themed` and theme package from `packages/config`.
+Publish your design system as a package from `packages/themed` and theme package from `packages/config`.
 
 ## Step 5: Integrate it in Your App
 
