@@ -6,7 +6,7 @@ import type { COLORMODES } from './types';
 import { platformSpecificSpaceUnits } from './utils';
 import { createGlobalStylesWeb } from './createGlobalStylesWeb';
 import { createGlobalStyles } from './createGlobalStyles';
-
+import { useSafeLayoutEffect } from './hooks/useSafeLayoutEffect';
 type Config = any;
 let colorModeSet = false;
 
@@ -110,7 +110,7 @@ export const StyledProvider: React.FC<{
     setCurrentColorMode(currentColorMode);
   }, [currentColorMode]);
 
-  React.useLayoutEffect(() => {
+  useSafeLayoutEffect(() => {
     if (Platform.OS === 'web') {
       const toBeInjectedStyles: any = {};
 
