@@ -1,5 +1,11 @@
 # @gluestack-style/react
 
+## 1.0.28
+
+### Patch Changes
+
+- Exposed `GluestackStyleSheet` and `styleCSSIds` to plugins
+
 ## 1.0.27
 
 ### Patch Changes
