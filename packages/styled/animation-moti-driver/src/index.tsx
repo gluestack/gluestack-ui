@@ -13,6 +13,7 @@ import {
   MotiProgressBar,
   AnimatePresence,
 } from 'moti';
+import { MotiPressable } from 'moti/interactions';
 import {
   Svg as RNSvg,
   Rect as RNRect,
@@ -47,6 +48,7 @@ let Moti = {
   ScrollView: MotiScrollView,
   SafeAreaView: MotiSafeAreaView,
   ProgressBar: MotiProgressBar,
+  Pressable: MotiPressable,
   Svg,
   Rect,
   Circle,
