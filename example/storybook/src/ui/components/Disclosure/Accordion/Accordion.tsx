@@ -15,6 +15,7 @@ import { MinusIcon, PlusIcon } from 'lucide-react-native';
 import React from 'react';
 
 const AccordionBasic = ({ ...props }: any) => {
+  const accRef = React.useRef(null);
   return (
     <Accordion mt="$5" {...props}>
       <AccordionItem value="a">
@@ -34,7 +35,7 @@ const AccordionBasic = ({ ...props }: any) => {
             )}
           </AccordionTrigger>
         </AccordionHeader>
-        <AccordionContent>
+        <AccordionContent ref={accRef}>
           <AccordionContentText>
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Id, sed
             laudantium eligendi maxime rerum, saepe vitae unde voluptas hic,
