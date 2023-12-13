@@ -13,7 +13,8 @@ export function injectComponentAndDescendantStyles(
   type: 'boot' | 'inline' = 'boot',
   _GluestackStyleSheet: StyleInjector = GluestackStyleSheet,
   platform: string = '',
-  inlineStyleMap?: any
+  inlineStyleMap?: any,
+  ignoreKeys: Set<any> = new Set()
 ) {
   const [
     componentOrderResolvedBaseStyle,
@@ -81,7 +82,9 @@ export function injectComponentAndDescendantStyles(
     styleCSSIdsArr,
     {},
     {},
-    false
+    false,
+    type,
+    ignoreKeys
   );
 
   if (platform === 'web') {

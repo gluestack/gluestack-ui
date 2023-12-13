@@ -73,12 +73,15 @@ const AnimatePresence = React.forwardRef(
           ...restProps?.exit,
         };
 
-        const clonedChild = React.cloneElement(child, {
-          exit,
-          ...restProps,
-        });
-
-        clonedChildren.push(clonedChild);
+        if (Object.keys(exit ?? {}).length > 0) {
+          const clonedChild = React.cloneElement(child, {
+            exit,
+            ...restProps,
+          });
+          clonedChildren.push(clonedChild);
+        } else {
+          clonedChildren.push(child);
+        }
       } else {
         clonedChildren.push(child);
       }
