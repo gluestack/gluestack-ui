@@ -135,12 +135,14 @@ export class AnimationResolver implements IStyledPlugin {
     if (componentDriver.engine.AnimatePresence) {
       this.AnimatePresenceComp = componentDriver.engine.AnimatePresence;
     }
+    this.#childrenExitPropsMap = {};
+    this.#extendedConfig = {};
     this.register(componentDriver.config);
   }
 
-  #childrenExitPropsMap: any = {};
+  #childrenExitPropsMap: any;
 
-  #extendedConfig: any = {};
+  #extendedConfig: any;
 
   inputMiddleWare<P>(
     styledObj = {},
@@ -151,6 +153,8 @@ export class AnimationResolver implements IStyledPlugin {
     // @ts-ignore
     [key in keyof typeof this.config.aliases]: P[(typeof this.config.aliases)[key]];
   } {
+    const ignoreKeys = new Set();
+
     if (
       Component &&
       (Component.displayName?.startsWith(
@@ -159,10 +163,11 @@ export class AnimationResolver implements IStyledPlugin {
         // @ts-ignore
         Component.isAnimatedComponent)
     ) {
-      let AnimatedComponent =
-        this.componentDriver.engine[
+      const componentDisplayName = Component.displayName;
+      const AnimatedComponent =
+        this?.componentDriver?.engine[
           // @ts-ignore
-          Component.displayName?.replace(
+          componentDisplayName?.replace(
             'Gluestack-AnimatedResolver-Animated',
             ''
           )
@@ -171,14 +176,13 @@ export class AnimationResolver implements IStyledPlugin {
       if (AnimatedComponent) {
         AnimatedComponent.isAnimatedComponent = true;
       }
-      if (!AnimatedComponent) {
-        AnimatedComponent = Component;
-      }
-
-      // this.#childrenExitPropsMap = deepClone(styledObj);
+      // if (!AnimatedComponent) {
+      //   AnimatedComponent = Component;
+      // }
       const resolvedAnimatedProps = this.updateStyledObject(
         styledObj,
-        shouldUpdateConfig
+        shouldUpdateConfig,
+        ignoreKeys
       );
 
       const resolvedStyledObjectWithAnimatedProps = deepMerge(
@@ -197,16 +201,18 @@ export class AnimationResolver implements IStyledPlugin {
         resolvedStyledObjectWithAnimatedProps,
         shouldUpdateConfig,
         _,
-        AnimatedComponent,
+        Component,
+        ignoreKeys,
       ];
     }
     // @ts-ignore
-    return [styledObj, shouldUpdateConfig, _, Component];
+    return [styledObj, shouldUpdateConfig, _, Component, ignoreKeys];
   }
 
   updateStyledObject(
     styledObject: any = {},
     shouldUpdateConfig: boolean,
+    ignoreKeys: Set<any>,
     resolvedStyledObject: any = {},
     keyPath: string[] = []
   ) {
@@ -215,29 +221,26 @@ export class AnimationResolver implements IStyledPlugin {
 
     for (const prop in styledObject) {
       if (aliases && aliases?.[prop]) {
-        let isStyleKey = false;
+        ignoreKeys.add(prop);
         if (shouldUpdateConfig) {
           // this.#childrenExitPropsMap[prop] = styledObject[prop];
-          if (keyPath[keyPath.length - 1] === 'style') {
-            isStyleKey = true;
-            keyPath.pop();
-          }
-          setObjectKeyValue(
+
+          this.#childrenExitPropsMap = setObjectKeyValue(
             this.#childrenExitPropsMap,
             [...keyPath, prop],
             styledObject[prop]
           );
+        } else {
+          const value = styledObject[prop];
+
+          // @ts-ignore
+          keyPath.push('props', aliases[prop]);
+          // setObjectKeyValue(resolvedStyledObject, keyPath, value);
+
+          setObjectKeyValue(resolvedStyledObject, keyPath, value);
+          keyPath.pop();
+          keyPath.pop();
         }
-        const value = styledObject[prop];
-
-        // @ts-ignore
-        keyPath.push('props', aliases[prop]);
-        // setObjectKeyValue(resolvedStyledObject, keyPath, value);
-
-        setObjectKeyValue(resolvedStyledObject, keyPath, value);
-        keyPath.pop();
-        keyPath.pop();
-        if (isStyleKey) keyPath.push('style');
 
         delete styledObject[prop];
       } else if (typeof styledObject[prop] === 'object') {
@@ -267,10 +270,24 @@ export class AnimationResolver implements IStyledPlugin {
   }
 
   componentMiddleWare({ Component, ExtendedConfig }: any) {
-    if (Component && Component?.isAnimatedComponent) {
-      const styledConfig = this.#childrenExitPropsMap;
+    const styledConfig = this.#childrenExitPropsMap;
+    this.#childrenExitPropsMap = {};
 
-      this.#childrenExitPropsMap = {};
+    if (
+      Component &&
+      (Component.displayName?.startsWith(
+        'Gluestack-AnimatedResolver-Animated'
+      ) ||
+        // @ts-ignore
+        Component.isAnimatedComponent)
+    ) {
+      Component =
+        this?.componentDriver.engine[
+          Component.displayName?.replace(
+            'Gluestack-AnimatedResolver-Animated',
+            ''
+          )
+        ];
 
       const NewComponent = React.forwardRef((props: any, ref?: any) => {
         const { sx, ...rest } = props;
@@ -289,12 +306,14 @@ export class AnimationResolver implements IStyledPlugin {
           [styledContext.config]
         );
         this.#extendedConfig = CONFIG;
+
         if (ExtendedConfig) {
           this.#extendedConfig = deepMerge(CONFIG, ExtendedConfig);
         }
 
         let tokenizedAnimatedProps: any = {};
         const { variantProps, restProps } = getVariantProps(rest, styledConfig);
+
         const variantStyledObject = resolveVariantAnimationProps(
           variantProps,
           styledConfig
@@ -338,7 +357,9 @@ export class AnimationResolver implements IStyledPlugin {
             resolvedAnimatedStyledWithStyledObject?.props
           : {};
 
-        return <Component {...animatedProps} {...restProps} ref={ref} />;
+        const propsTobeApplied = deepMerge(animatedProps, rest);
+
+        return <Component {...propsTobeApplied} ref={ref} />;
       });
 
       if (NewComponent) {
@@ -359,11 +380,12 @@ export class AnimationResolver implements IStyledPlugin {
 
         NewComponent.displayName = Component?.displayName;
 
+        // this.#childrenExitPropsMap = {};
+
         return NewComponent;
       }
-    } else {
-      return Component;
     }
+    return Component;
   }
 }
 

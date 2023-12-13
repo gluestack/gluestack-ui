@@ -4,6 +4,7 @@ import { useStyled } from '../StyledProvider';
 import { propertyTokenMap } from '../propertyTokenMap';
 import { deepMerge, setObjectKeyValue } from '../utils';
 import { getVariantProps } from '../styled';
+import { StyleSheet } from 'react-native';
 
 const fontWeights: any = {
   '100': 'Thin',
@@ -146,13 +147,18 @@ export class FontResolver implements IStyledPlugin, FontPlugin {
     _?: boolean,
     Component?: React.ComponentType
   ) {
-    const modifiedStyledObject = this.fontHandler(styledObj, shouldUpdate);
+    const ignoreKeys = new Set();
+    const modifiedStyledObject = this.fontHandler(
+      styledObj,
+      ignoreKeys,
+      shouldUpdate
+    );
 
     if (shouldUpdate) {
-      return [styledObj, shouldUpdate, _, Component];
+      return [styledObj, shouldUpdate, _, Component, ignoreKeys];
     }
 
-    return [modifiedStyledObject, shouldUpdate, _, Component];
+    return [modifiedStyledObject, shouldUpdate, _, Component, ignoreKeys];
   }
 
   #fontFamily: any = {};
@@ -163,6 +169,7 @@ export class FontResolver implements IStyledPlugin, FontPlugin {
 
   fontHandler(
     styledObject: any = {},
+    ignoreKeys: Set<any>,
     shouldUpdate: boolean,
     fontStyleObject: any = {},
     keyPath: string[] = []
@@ -173,6 +180,7 @@ export class FontResolver implements IStyledPlugin, FontPlugin {
 
         this.fontHandler(
           styledObject[styledObjectKey],
+          ignoreKeys,
           shouldUpdate,
           fontStyleObject,
           keyPath
@@ -180,30 +188,35 @@ export class FontResolver implements IStyledPlugin, FontPlugin {
         keyPath.pop();
       } else if (shouldUpdate) {
         if (styledObjectKey === 'fontFamily') {
-          setObjectKeyValue(
-            this.#fontFamily,
+          ignoreKeys.add(styledObjectKey);
+
+          this.#fontFamily = setObjectKeyValue(
+            { ...this.#fontFamily },
             [...keyPath, styledObjectKey],
             styledObject[styledObjectKey]
           );
           delete styledObject[styledObjectKey];
         }
         if (styledObjectKey === 'fontWeight') {
-          setObjectKeyValue(
-            this.#fontFamily,
+          ignoreKeys.add(styledObjectKey);
+          this.#fontFamily = setObjectKeyValue(
+            { ...this.#fontFamily },
             [...keyPath, styledObjectKey],
             styledObject[styledObjectKey]
           );
           delete styledObject[styledObjectKey];
         }
         if (styledObjectKey === 'fontStyle') {
-          setObjectKeyValue(
-            this.#fontFamily,
+          ignoreKeys.add(styledObjectKey);
+          this.#fontFamily = setObjectKeyValue(
+            { ...this.#fontFamily },
             [...keyPath, styledObjectKey],
             styledObject[styledObjectKey]
           );
           delete styledObject[styledObjectKey];
         }
       } else if (styledObjectKey === 'fontFamily') {
+        ignoreKeys.add(styledObjectKey);
         tokenizeFontsConfig(styledObject, {
           fontsTokens: this.#fontFamilyTokenConfig,
           fontWeightsTokens: this.#fontWeightsTokenConfig,
@@ -239,11 +252,7 @@ export class FontResolver implements IStyledPlugin, FontPlugin {
       this.#fontWeightsTokenConfig =
         componentExtendedConfig?.tokens?.fontWeights;
 
-      const { variantProps, restProps } = getVariantProps(
-        props,
-        styledConfig,
-        false
-      );
+      const { variantProps, restProps } = getVariantProps(props, styledConfig);
 
       const variantStyledObject = resolveVariantFontsConfig(
         variantProps,
@@ -279,7 +288,27 @@ export class FontResolver implements IStyledPlugin, FontPlugin {
         () => <></>
       );
 
-      return <InputComponent {...rest} sx={resolvedSxProps} ref={ref} />;
+      let style = rest?.style;
+
+      if (Object.keys(resolvedSxProps).length > 0) {
+        if (Array.isArray(style)) {
+          style = StyleSheet.flatten(style);
+
+          Object.keys(resolvedSxProps).forEach((ele) => {
+            if (!style[ele]) {
+              style[ele] = resolvedSxProps[ele];
+            }
+          });
+        } else {
+          Object.keys(resolvedSxProps).forEach((ele) => {
+            if (!style[ele]) {
+              style[ele] = resolvedSxProps[ele];
+            }
+          });
+        }
+      }
+
+      return <InputComponent {...rest} style={style} ref={ref} />;
     });
 
     //@ts-ignore
