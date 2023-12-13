@@ -1,5 +1,5 @@
 import React from 'react';
-import Fold2 from './index1';
+import Fold2 from './Fold2';
 import { Box, VStack, Text } from '@gluestack/design-system';
 import Talk from './Talk';
 import Socail from './Socail';
