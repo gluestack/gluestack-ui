@@ -90,15 +90,7 @@ function convertUtiltiyToSXFromProps(
   componentStyleConfig: IComponentStyleConfig,
   reservedKeys: any = _reservedKeys
 ) {
-  // if (componentProps.debug === 'BOX_TEST') {
-  //   return {
-  //     sx: {},
-  //     rest: {},
-  //   };
-  // }
   const { sx: userSX, ...componentRestProps }: any = componentProps;
-
-  const resolvedSXVerbosed = convertSxToSxVerbosed(userSX);
 
   const { sxProps: utilityResolvedSX, mergedProps: restProps } =
     convertUtilityPropsToSX(
@@ -108,9 +100,11 @@ function convertUtiltiyToSXFromProps(
       reservedKeys
     );
 
-  const resolvedSxVerbose = deepMerge(utilityResolvedSX, resolvedSXVerbosed);
+  const resolvedSxVerbose = deepMergeObjects(utilityResolvedSX, userSX);
 
-  return { sx: resolvedSxVerbose, rest: restProps };
+  const resolvedSXVerbosed = convertSxToSxVerbosed(resolvedSxVerbose);
+
+  return { sx: resolvedSXVerbosed, rest: restProps };
 }
 
 function getStateStyleCSSFromStyleIdsAndProps(
@@ -985,7 +979,6 @@ export function verboseStyled<P, Variants, ComCon>(
   // END BASE COLOR MODE RESOLUTION
 
   let CONFIG: any = {};
-  let isInjected = false;
   let plugins: any = [];
   let reservedKeys = { ..._reservedKeys };
 
@@ -1269,18 +1262,12 @@ export function verboseStyled<P, Variants, ComCon>(
     const sxStyleIds: any = React.useRef(BUILD_TIME_VERBOSED_STYLE_IDS);
 
     if (BUILD_TIME_ORDERED_RESOLVED.length > 0 && !isClient.current) {
-      if (!isInjected) {
-        const toBeInjected = GluestackStyleSheet.update(
-          BUILD_TIME_ORDERED_RESOLVED
-        );
+      const toBeInjected = GluestackStyleSheet.update(
+        BUILD_TIME_ORDERED_RESOLVED
+      );
 
-        if (Platform.OS === 'web') {
-          GluestackStyleSheet.inject(
-            toBeInjected,
-            styledContext.inlineStyleMap
-          );
-        }
-        isInjected = true;
+      if (Platform.OS === 'web') {
+        GluestackStyleSheet.inject(toBeInjected, styledContext.inlineStyleMap);
       }
       sxStyleIds.current = BUILD_TIME_VERBOSED_STYLE_IDS;
 
@@ -1988,7 +1975,6 @@ export function verboseStyled<P, Variants, ComCon>(
             // @ts-ignore
             Component = plugins[pluginName]?.componentMiddleWare({
               Component: Component,
-
               theme,
               componentStyleConfig,
               ExtendedConfig,
