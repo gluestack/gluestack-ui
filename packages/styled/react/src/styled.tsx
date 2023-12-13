@@ -2036,6 +2036,8 @@ export function verboseStyled<P, Variants, ComCon>(
                 theme,
                 componentStyleConfig,
                 ExtendedConfig,
+                styleCSSIds,
+                GluestackStyleSheet,
               });
               //@ts-ignore
               pluginData = { ...pluginData, ...AsComp?.styled };
