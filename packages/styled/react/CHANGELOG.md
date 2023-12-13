@@ -1,5 +1,11 @@
 # @gluestack-style/react
 
+## 1.0.27
+
+### Patch Changes
+
+- Fixed plugin architecture (PR)[https://github.com/gluestack/gluestack-ui/pull/1490]
+
 ## 1.0.22
 
 ### Patch Changes

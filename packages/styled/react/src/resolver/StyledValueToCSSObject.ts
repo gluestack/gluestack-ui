@@ -3,10 +3,11 @@ import { resolvedTokenization } from '../utils';
 
 export function StyledValueToCSSObject(
   input: StyledValue | undefined,
-  CONFIG: any
+  CONFIG: any,
+  ignoreKeys: Set<any> = new Set()
 ): CSSObject {
   if (!input) {
     return {};
   }
-  return resolvedTokenization(input, CONFIG);
+  return resolvedTokenization(input, CONFIG, ignoreKeys);
 }

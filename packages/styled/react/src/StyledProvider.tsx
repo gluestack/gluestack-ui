@@ -6,6 +6,7 @@ import type { COLORMODES } from './types';
 import { platformSpecificSpaceUnits } from './utils';
 import { createGlobalStylesWeb } from './createGlobalStylesWeb';
 import { createGlobalStyles } from './createGlobalStyles';
+import { deepClone } from './utils/cssify/utils/common';
 
 type Config = any;
 let colorModeSet = false;
@@ -57,8 +58,21 @@ export const StyledProvider: React.FC<{
   inlineStyleMap.current.initialStyleInjected = false;
 
   const currentConfig: any = React.useMemo(() => {
-    //TODO: Add this later
-    return platformSpecificSpaceUnits(config, Platform.OS);
+    // Removing plugins since its array and deepClone is not working
+    const plugins = config?.plugins;
+    delete config?.plugins;
+
+    const clonedConfig = deepClone(config);
+    const configWithPlatformSpecificUnits: any = platformSpecificSpaceUnits(
+      clonedConfig,
+      Platform.OS
+    );
+
+    // Re-assign plugins to both the configs
+    configWithPlatformSpecificUnits.plugins = plugins;
+    config.plugins = plugins;
+
+    return configWithPlatformSpecificUnits;
   }, [config]);
 
   if (Platform.OS === 'web' && globalStyles) {

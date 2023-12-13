@@ -132,7 +132,10 @@ export const resolveComponentTheme = (config: any, componentTheme: any) => {
       component?.componentConfig
     );
   } else {
-    GluestackStyleSheet.update(component.BUILD_TIME_PARAMS?.orderedResolved);
+    const toBeInjected = GluestackStyleSheet.update(
+      component.BUILD_TIME_PARAMS?.orderedResolved
+    );
+    component.BUILD_TIME_PARAMS.toBeInjected = toBeInjected;
     resolvedTheme = component;
   }
 
