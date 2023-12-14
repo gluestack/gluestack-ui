@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   Accordion,
   AccordionItem,
@@ -12,10 +13,10 @@ import { Divider } from '@gluestack-ui/themed';
 import { ChevronDownIcon } from 'lucide-react-native';
 import { ChevronUpIcon } from 'lucide-react-native';
 import { MinusIcon, PlusIcon } from 'lucide-react-native';
-import React from 'react';
 
 const AccordionBasic = ({ ...props }: any) => {
   const accRef = React.useRef(null);
+
   return (
     <Accordion mt="$5" {...props}>
       <AccordionItem value="a">
@@ -44,8 +45,6 @@ const AccordionBasic = ({ ...props }: any) => {
           </AccordionContentText>
         </AccordionContent>
       </AccordionItem>
-
-      {/* <Divider /> */}
 
       <AccordionItem value="b">
         <AccordionHeader>
@@ -76,8 +75,6 @@ const AccordionBasic = ({ ...props }: any) => {
         </AccordionContent>
       </AccordionItem>
 
-      {/* <Divider /> */}
-
       <AccordionItem value="c">
         <AccordionHeader>
           <AccordionTrigger>
@@ -104,8 +101,6 @@ const AccordionBasic = ({ ...props }: any) => {
           </AccordionContentText>
         </AccordionContent>
       </AccordionItem>
-
-      {/* <Divider /> */}
 
       <AccordionItem value="d">
         <AccordionHeader>
