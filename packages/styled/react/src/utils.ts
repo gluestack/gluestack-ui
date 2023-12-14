@@ -333,7 +333,7 @@ export const platformSpecificSpaceUnits = (theme: Config, platform: string) => {
     'letterSpacings',
   ];
 
-  const newTheme = { ...theme };
+  let newTheme = { ...theme };
 
   const isWeb = platform === 'web';
   scales.forEach((key) => {
@@ -372,6 +372,12 @@ export const platformSpecificSpaceUnits = (theme: Config, platform: string) => {
       }
     }
     if (newTheme.tokens) {
+      newTheme = {
+        ...newTheme,
+        tokens: {
+          ...newTheme?.tokens,
+        },
+      };
       //@ts-ignore
       newTheme.tokens[key] = newScale;
     }

@@ -991,7 +991,7 @@ export function verboseStyled<P, Variants, ComCon>(
     INTERNAL_updateCSSStyleInOrderedResolved(
       orderedSXResolved,
       sxHash,
-      false,
+      true,
       'gs'
     );
 
