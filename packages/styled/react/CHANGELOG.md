@@ -1,5 +1,12 @@
 # @gluestack-style/react
 
+## 1.0.29
+
+### Patch Changes
+
+- Fixed config reference issue
+- Fixed inline resolved stylesheet value
+
 ## 1.0.28
 
 ### Patch Changes

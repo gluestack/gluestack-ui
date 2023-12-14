@@ -991,7 +991,7 @@ export function verboseStyled<P, Variants, ComCon>(
     INTERNAL_updateCSSStyleInOrderedResolved(
       orderedSXResolved,
       sxHash,
-      false,
+      true,
       'gs'
     );
 
@@ -2055,6 +2055,8 @@ export function verboseStyled<P, Variants, ComCon>(
                 theme,
                 componentStyleConfig,
                 ExtendedConfig,
+                styleCSSIds,
+                GluestackStyleSheet,
               });
 
               //@ts-ignore
