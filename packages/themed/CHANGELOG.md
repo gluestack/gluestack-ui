@@ -1,5 +1,11 @@
 # @gluestack-ui/themed
 
+## 1.0.29
+
+### Patch Changes
+
+- fix: actionsheet backdrop click issue native
+
 ## 1.0.28
 
 ### Patch Changes
