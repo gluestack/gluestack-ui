@@ -1,5 +1,11 @@
 # @gluestack-ui/config
 
+## 1.0.9
+
+### Patch Changes
+
+- fix userselect, select config
+
 ## 1.0.8
 
 ### Patch Changes
