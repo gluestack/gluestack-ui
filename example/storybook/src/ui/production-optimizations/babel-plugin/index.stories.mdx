@@ -66,11 +66,7 @@ Here’s a small diagram explaining how the flow works:
 
 <AppProvider>
   <Box
-    sx={{
-      _dark: {
-        display: 'none',
-      },
-    }}
+  $dark-display="none"
   >
     <img
       src="/images/LightModeBabel.png"
@@ -79,11 +75,7 @@ Here’s a small diagram explaining how the flow works:
     />
   </Box>
   <Box
-    sx={{
-      _light: {
-        display: 'none',
-      },
-    }}
+  $light-display="none"
   >
     <img
       src="/images/DarkModeBabel.png"

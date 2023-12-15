@@ -110,7 +110,11 @@ A Box component with a ref property enables the direct reference and manipulatio
             }
           }, [myRef]);
         return (
-          <Box sx={{ h: 100, w: 100, bg: '$primary100'}} ref={myRef} />
+          <Box 
+          h={100}
+          w={100}
+          bg="$primary100"
+          ref={myRef} />
         );
       }
       `,
