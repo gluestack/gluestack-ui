@@ -491,11 +491,7 @@ The Input component integrates with an icon and a button, providing users with a
               borderWidth='$1'
               borderRadius='$lg'
               borderColor='$borderLight300'
-              sx={{
-                _dark:{
-                  borderWidth:'$1', borderRadius:'$lg', borderColor:'$borderDark800'
-                }
-              }}
+              $dark-borderWidth='$1' $dark-borderRadius='$lg' $dark-borderColor='$borderDark800'
             >
               <VStack space='xl'>
                 <Heading color='$text900' lineHeight='$md'>
