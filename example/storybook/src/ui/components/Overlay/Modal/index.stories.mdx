@@ -661,13 +661,10 @@ A user interface featuring multiple modal components that allow for layered inte
                       <ButtonText>Continue</ButtonText>
                     </Button>
                     <Text size='sm'>Didn’t receive the email?
-                      <Link ml='$1'><Link.Text size='sm' sx={{
-                        _dark: {
-                            color: '$textDark200',
-                          },
-                          color: '$textLight700',
-                          fontWeight: '$semibold'
-                      }}>Click to resend</Link.Text></Link>
+                      <Link ml='$1'><Link.Text size='sm' 
+                      $dark-color='$textDark200'
+                      color='$textLight700'
+                      fontWeight='$semibold'>Click to resend</Link.Text></Link>
                     </Text>
                     <HStack space='xs' alignItems='center'>
                       <Button
@@ -840,15 +837,9 @@ A versatile modal component offering different sizes to accommodate various cont
                         onPress={() => {
                           setShowModal(false);
                         }}
-                        sx={{
-                          'bg': '$error700',
-                          ':hover': {
-                            bg: '$error800',
-                          },
-                          ':active': {
-                            bg: '$error900',
-                          },
-                        }}
+                        bg="$error700"
+                        $hover-bg="$error800"
+                        $active-bg="$error900"
                       >
                         <ButtonText>Explore</ButtonText>
                       </Button>
