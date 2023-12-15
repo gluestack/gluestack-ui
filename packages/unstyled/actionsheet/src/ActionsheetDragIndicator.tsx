@@ -6,7 +6,11 @@ function ActionsheetDragIndicator<T>(
   return forwardRef(
     ({ children, ...props }: T & { children?: any }, ref?: any) => {
       return (
-        <StyledActionsheetDragIndicator ref={ref} {...(props as T)}>
+        <StyledActionsheetDragIndicator
+          ref={ref}
+          {...(props as T)}
+          focusable={false}
+        >
           {children}
         </StyledActionsheetDragIndicator>
       );

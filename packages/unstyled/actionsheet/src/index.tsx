@@ -5,7 +5,7 @@ import ActionsheetBackdrop from './ActionsheetBackdrop';
 import { ActionsheetDragIndicatorWrapper } from './ActionsheetDragIndicatorWrapper';
 import type { IActionsheetComponentType } from './types';
 // import { ActionsheetItemText } from './ActionsheetItemText';
-// import ActionsheetDragIndicator from './ActionsheetDragIndicator';
+import ActionsheetDragIndicator from './ActionsheetDragIndicator';
 // import { ActionsheetScrollView } from './ActionsheetScrollView';
 // import { ActionsheetVirtualizedList } from './ActionsheetVirtualizedList';
 
@@ -63,7 +63,7 @@ export function createActionsheet<
   const Actionsheet = ActionsheetMain(Root) as any;
   Actionsheet.Backdrop = ActionsheetBackdrop(Backdrop, AnimatePresence);
   Actionsheet.Content = ActionsheetContent(Content, AnimatePresence);
-  Actionsheet.DragIndicator = DragIndicator;
+  Actionsheet.DragIndicator = ActionsheetDragIndicator(DragIndicator);
   Actionsheet.DragIndicatorWrapper =
     ActionsheetDragIndicatorWrapper(IndicatorWrapper);
   Actionsheet.Item = ActionsheetItem(Item);
