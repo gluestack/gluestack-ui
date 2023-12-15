@@ -1,5 +1,11 @@
 # @gluestack-ui/actionsheet
 
+## 0.2.33
+
+### Patch Changes
+
+- fix: dragindicator on web
+
 ## 0.2.32
 
 ### Patch Changes
