@@ -165,6 +165,7 @@ export const StyledProvider: React.FC<{
       animationDriverData,
       setAnimationDriverData,
       inlineStyleMap: inlineStyleMap.current,
+      _experimentalNestedProvider,
     };
 
     if (_experimentalNestedProvider) {
