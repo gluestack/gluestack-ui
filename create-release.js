@@ -48,6 +48,7 @@ const packageNames = [
   'stack',
   'transitions',
   'react-native-aria',
+  'themed',
 ];
 let response;
 let releaseBranchName;
