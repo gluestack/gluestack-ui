@@ -1,5 +1,11 @@
 # @gluestack-ui/config
 
+## 1.0.10
+
+### Patch Changes
+
+- fix select pointer events
+
 ## 1.0.9
 
 ### Patch Changes
