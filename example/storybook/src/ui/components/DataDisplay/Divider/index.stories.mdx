@@ -164,11 +164,7 @@ A Divider component with different layouts offers versatile options for visually
               mx='$2.5'
               bg='$emerald500'
               h={15}
-              sx={{
-                _dark: {
-                  bg: '$emerald400',
-                },
-              }}
+              $dark-bg="$emerald400"
             />
             <Text>Easy</Text>
             <Divider
@@ -176,11 +172,7 @@ A Divider component with different layouts offers versatile options for visually
               mx='$2.5'
               bg='$indigo500'
               h={15}
-              sx={{
-                _dark: {
-                  bg: '$indigo400',
-                },
-              }}
+              $dark-bg="$indigo400"
             />
             <Text>Beautiful</Text>
           </HStack>
@@ -193,12 +185,8 @@ A Divider component with different layouts offers versatile options for visually
             <Divider
               w={55}
               variant="horizontal"
-              sx={{
-                bg: '$red500',
-                _dark: {
-                  bg: '$red400',
-                },
-              }}
+              bg="$red500"
+              $dark-bg="$red400"
             />
             <Text>Chrome</Text>
           </VStack>
@@ -237,11 +225,8 @@ A Divider component with a specified divider orientation allows for clear visual
           borderWidth='$1'
           rounded='$lg'
           mx='$5'
-        sx={{
-            _dark:{
-              borderColor: "$backgroundDark700",
-            }
-          }}>
+          $dark-borderColor="$backgroundDark700"
+          >
           <Box>
             <Text size='xs' color='$darkBlue600' fontWeight='$bold'>
               HEALTH
@@ -267,12 +252,9 @@ A Divider component with a specified divider orientation allows for clear visual
             </HStack>
           </Box>
           <Divider
-            sx={{
-              bg:"$trueGray300",
-              _dark: {
-                bg: "$backgroundDark700",
-              }
-            }}/>
+            bg="$trueGray300"
+            $dark-bg="$backgroundDark700"
+            />
           <Box>
             <Text size='xs' color='$darkBlue600' fontWeight='$bold'>
               TECHNOLOGY
@@ -328,11 +310,8 @@ A Divider component used with or without inset adds visual hierarchy and distinc
     metaData={{
       code: `
         <VStack space='2xl'>
-          <HStack px='$3' h='$8' rounded='$sm' borderWidth='$1' borderColor='$backgroundLight300' sx={{
-            _dark:{
-              borderColor: "$backgroundDark700",
-            }
-          }}>
+          <HStack px='$3' h='$8' rounded='$sm' borderWidth='$1' borderColor='$backgroundLight300' $dark-borderColor="$backgroundDark700"
+          >
             <Button variant='link' size='xs'>
               <ButtonText >
                 Github
@@ -351,11 +330,8 @@ A Divider component used with or without inset adds visual hierarchy and distinc
               </ButtonText>
             </Button>
           </HStack>
-          <HStack px='$3' h='$8' rounded='$sm' borderWidth='$1' borderColor='$backgroundLight300' alignItems='center' sx={{
-            _dark:{
-              borderColor: "$backgroundDark700",
-            }
-          }}>
+          <HStack px='$3' h='$8' rounded='$sm' borderWidth='$1' borderColor='$backgroundLight300' alignItems='center' $dark-borderColor="$backgroundDark700"
+          >
             <Button variant='link' size='xs'>
               <ButtonText >
                 Github
@@ -403,11 +379,7 @@ A Divider component with added content allows for the inclusion of additional te
     showArgsController={false}
     metaData={{
       code: `
-        <Box py='$9' px='$20' m='$5' rounded='$lg' borderColor='$backgroundLight300' borderWidth='$1' sx={{
-            _dark:{
-              borderColor: "$backgroundDark700",
-            }
-          }}>
+        <Box py='$9' px='$20' m='$5' rounded='$lg' borderColor='$backgroundLight300' borderWidth='$1' $dark-borderColor="$backgroundDark700">
           <Heading size='3xl' >
             Search Results
           </Heading>

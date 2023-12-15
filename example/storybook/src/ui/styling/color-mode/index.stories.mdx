@@ -39,14 +39,8 @@ In the below example we are defining styles to be applied in dark mode in `_dark
       code: `
      <>
  <Button
-          sx={{
-            _dark: {
-              bg: "$blue600",
-            },
-            _light: {
-              bg: "$red600",
-            },
-          }}
+ $dark-bg="$blue600"
+  $light-bg="$red600"
         >
           <ButtonText>Hello world</ButtonText>
         </Button>
