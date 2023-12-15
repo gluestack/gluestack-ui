@@ -1,6 +1,6 @@
 {
   "name": "@gluestack-ui/themed",
-  "version": "1.0.27",
+  "version": "1.0.28",
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "module": "build/index",
@@ -33,7 +33,7 @@
     "@gluestack-style/animation-resolver": "^1.0.2",
     "@gluestack-style/legend-motion-animation-driver": "^1.0.2",
     "@gluestack-ui/accordion": "^0.0.2",
-    "@gluestack-ui/actionsheet": "0.2.33",
+    "@gluestack-ui/actionsheet": "0.2.34",
     "@gluestack-ui/alert": "^0.1.12",
     "@gluestack-ui/alert-dialog": "^0.1.23",
     "@gluestack-ui/avatar": "^0.1.15",
