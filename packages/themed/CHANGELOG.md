@@ -1,5 +1,11 @@
 # @gluestack-ui/themed
 
+## 1.0.28
+
+### Patch Changes
+
+- bump animation resolver version
+
 ## 1.0.27
 
 ### Patch Changes
