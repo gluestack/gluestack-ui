@@ -4,8 +4,7 @@
 
 ### Patch Changes
 
-- Updated dependencies
-  - @gluestack-ui/actionsheet@0.2.34
+- bump animation resolver version
 
 ## 1.0.27
 

@@ -30,8 +30,8 @@
   "license": "ISC",
   "dependencies": {
     "@expo/html-elements": "latest",
-    "@gluestack-style/animation-resolver": "^1.0.2",
-    "@gluestack-style/legend-motion-animation-driver": "^1.0.2",
+    "@gluestack-style/animation-resolver": "1.0.3",
+    "@gluestack-style/legend-motion-animation-driver": "1.0.3",
     "@gluestack-ui/accordion": "^0.0.2",
     "@gluestack-ui/actionsheet": "0.2.34",
     "@gluestack-ui/alert": "^0.1.12",
