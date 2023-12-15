@@ -138,6 +138,7 @@ function ActionsheetContent<T>(
             const { height } = event.nativeEvent.layout;
             setAnimatedViewSheetHeight(height);
           }}
+          pointerEvents="none"
         >
           <OverlayAnimatePresence
             visible={visible}
