@@ -1,5 +1,24 @@
 # @gluestack-ui/themed
 
+## 1.0.30
+
+### Patch Changes
+
+- Updated dependencies
+  - @gluestack-ui/actionsheet@0.2.35
+
+## 1.0.29
+
+### Patch Changes
+
+- fix: actionsheet backdrop click issue native
+
+## 1.0.28
+
+### Patch Changes
+
+- bump animation resolver version
+
 ## 1.0.27
 
 ### Patch Changes

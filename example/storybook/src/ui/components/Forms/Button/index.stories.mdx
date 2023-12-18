@@ -578,19 +578,10 @@ A button with a link combines the interactive behavior of a button component wit
     metaData={{
       code: `
         <Button variant='link'>
-          <ButtonText fontWeight='$medium' fontSize='$sm' color='$textLight900' sx={{
-              _dark: {
-                color:"$textDark300",
-              },
-            }}>
+          <ButtonText fontWeight='$medium' fontSize='$sm' color='$textLight900' $dark-color="$textDark300">
             Back to top
           </ButtonText>
-          <ButtonIcon as={ArrowUpIcon} h='$3' w='$3' color='$backgroundLight900' ml='$1'
-           sx={{
-              _dark: {
-                color:"$backgroundDark300",
-                },
-              }}/>
+          <ButtonIcon as={ArrowUpIcon} h='$3' w='$3' color='$backgroundLight900' ml='$1' $dark-color="$backgroundDark300"/>
         </Button>
       `,
       transformCode: (code) => {
@@ -614,11 +605,7 @@ A button group within a card component incorporates multiple button components, 
     metaData={{
       code: `
         <HStack  p='$12'  alignItems='center'  borderColor='$backgroundLight300'
-          borderWidth={1} borderRadius="$lg" sx={{
-            _dark:{
-              borderColor: "$backgroundDark700",
-            }
-          }}>
+          borderWidth={1} borderRadius="$lg" $dark-borderColor="$backgroundDark700">
           <Box maxWidth='$64' mr='$9'>
             <Heading mb='$1.5' >
               Was this page helpful?
@@ -638,14 +625,8 @@ A button group within a card component incorporates multiple button components, 
               variant='solid'
               bg='$success700'
               borderColor='$success700'
-              sx={{
-                ':hover': {
-                  bg: '$success800',
-                },
-                ':active': {
-                  bg: '$success700',
-                },
-              }}
+              $hover-bg='$success800'
+              $active-bg='$success700'
             >
               <ButtonText  fontSize='$sm' fontWeight='$medium'>
                 Yes
@@ -725,11 +706,7 @@ The button with full width component utilizes a button component, expanding its 
     metaData={{
       code: `
         <Center>
-          <Box p='$5' maxWidth='$96' borderWidth='$1' borderColor='$backgroundLight300' borderRadius='$lg' sx={{
-             _dark:{
-            borderColor:'$backgroundDark700'
-            }
-          }}>
+          <Box p='$5' maxWidth='$96' borderWidth='$1' borderColor='$backgroundLight300' borderRadius='$lg' $dark-borderColor="$backgroundDark700">
             <VStack space='xs' pb='$4'>
               <Heading lineHeight={30}>
                 Set new password
@@ -812,29 +789,13 @@ The custom button component leverages the functionality of a button component wh
     metaData={{
       code: `
         <ButtonGroup isAttached>
-          <Button variant="outline" size='xs' borderColor='$backgroundLight300' borderRightWidth='$0' sx={{
-             _dark:{
-            borderColor:'$backgroundDark700'
-            }
-          }}>
-            <ButtonText color='$textLight900' sx={{
-              _dark:{
-                color:'$textDark300',
-              },
-            }}>
+          <Button variant="outline" size='xs' borderColor='$backgroundLight300' borderRightWidth='$0' $dark-borderColor="$backgroundDark700">
+            <ButtonText color='$textLight900' $dark-color="$textDark300">
               Export
             </ButtonText>
           </Button>
-          <Button variant="outline" size='xs' borderColor='$backgroundLight300' sx={{
-             _dark:{
-            borderColor:'$backgroundDark700'
-            }
-          }}>
-            <ButtonIcon as={ThreeDotsIcon} color="$textLight900" sx={{
-              _dark:{
-                color:'$textDark300'
-                }
-              }}/>
+          <Button variant="outline" size='xs' borderColor='$backgroundLight300' $dark-borderColor="$backgroundDark70">
+            <ButtonIcon as={ThreeDotsIcon} color="$textLight900" $dark-color="$textDark300"/>
           </Button>
         </ButtonGroup>
       `,

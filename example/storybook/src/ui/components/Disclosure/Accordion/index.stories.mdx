@@ -488,28 +488,17 @@ function App(){
       m="$5"
       borderWidth={1}
       shadowColor="transparent"
-      sx={{
-            borderColor: '$borderLight300',
-          _dark: {
-            borderColor: '$borderDark700',
-          },
-      }}
+      borderColor="$borderLight300"
+      $dark-borderColor="$borderDark700"
     >
-      <AccordionItem value="a" 
+      <AccordionItem value="a"
          borderBottomWidth={1}
-         sx={{
-            borderBottomColor: '$borderLight300',
-          _dark: {
-            borderBottomColor: '$borderDark700',
-          },
-        }}>
-        <AccordionHeader 
-        sx={{
-            backgroundColor: "$backgroundLight50",
-          _dark: {
-            backgroundColor: "$backgroundDark700"
-          }
-        }}
+         borderBottomColor="$borderLight300"
+         $dark-borderBottomColor="$borderDark700"
+        >
+        <AccordionHeader
+        backgroundColor="$backgroundLight50"
+         $dark-backgroundColor="$backgroundDark700"
         >
           <AccordionTrigger>
             {({ isExpanded }) => {
@@ -539,20 +528,12 @@ function App(){
       <AccordionItem
         value="b"
         borderBottomWidth={1}
-        sx={{
-            borderBottomColor: '$borderLight300',
-          _dark: {
-            borderBottomColor: '$borderDark700',
-          },
-        }}
+        borderBottomColor="$borderLight300"
+        $dark-borderBottomColor="$borderDark700"
       >
-        <AccordionHeader     
-        sx={{
-            backgroundColor: "$backgroundLight50",
-          _dark: {
-            backgroundColor: "$backgroundDark700"
-          }
-        }}>
+        <AccordionHeader
+        backgroundColor="$backgroundLight50"
+        $dark-backgroundColor="$backgroundDark700">
           <AccordionTrigger>
             {({ isExpanded }) => {
               return (
@@ -579,15 +560,10 @@ function App(){
       </AccordionItem>
       <AccordionItem
         value="c"
-    
       >
         <AccordionHeader
-        sx={{
-            backgroundColor: "$backgroundLight50",
-          _dark: {
-            backgroundColor: "$backgroundDark700"
-          }
-        }}
+        backgroundColor="$backgroundLight50"
+        $dark-backgroundColor="$backgroundDark700"
         >
           <AccordionTrigger>
             {({ isExpanded }) => {
@@ -751,12 +727,8 @@ function App(){
     return (
           <Accordion size="md" shadowColor="transparent" m="$5" variant="unfilled" width="80%" maxWidth={640}>
       <AccordionItem value="item-1" isDisabled={true} borderBottomWidth={1} 
-      sx={{
-            borderColor: '$borderLight300',
-          _dark: {
-            borderColor: '$borderDark700',
-          },
-      }}>
+      borderColor="$borderLight300"
+      $dark-borderColor="$borderDark700">
         <AccordionHeader>
           <AccordionTrigger px="$0">
             {({ isExpanded }) => {
@@ -983,23 +955,16 @@ function App(){
       m="$5"
       shadowColor="transparent"
       borderWidth={1}
-      sx={{
-          borderColor: '$borderLight300',
-        _dark: {
-          borderColor: '$borderDark700',
-        },
-      }}
+      borderColor="$borderLight300"
+      $dark-borderColor="$borderDark700"
       width="80%"
       maxWidth={640}
     >
       <AccordionItem value="a">
-        <AccordionHeader     
-         sx={{
-            backgroundColor: "$backgroundLight50",
-          _dark: {
-            backgroundColor: "$backgroundDark700",
-          }
-        }}>
+        <AccordionHeader
+          backgroundColor="$backgroundLight50"
+          $dark-backgroundColor="$backgroundDark700"
+          >
           <AccordionTrigger>
             {({isExpanded}) => (
               <>
@@ -1018,14 +983,10 @@ function App(){
             width="100%"
             shadowColor="transparent"
             borderWidth={1}
-            sx={{
-                borderColor: '$borderLight300',
-                backgroundColor: "$backgroundLight50",
-              _dark: {
-                borderColor: '$borderDark700',
-                backgroundColor: "$backgroundDark700"
-              },
-            }}
+            borderColor="$borderLight300"
+            backgroundColor="$backgroundLight50"
+            $dark-borderColor="$borderDark700"
+            $dark-backgroundColor="$backgroundDark70"
           >
             <AccordionItem value="b">
               <AccordionHeader>
@@ -1053,14 +1014,11 @@ function App(){
               </AccordionContent>
             </AccordionItem>
           </Accordion>
-          <Accordion width="100%" shadowColor="transparent" 
-          mt="$5"   
-           sx={{
-            backgroundColor: "$backgroundLight50",
-          _dark: {
-            backgroundColor: "$backgroundDark700"
-          }
-        }}>
+          <Accordion width="100%" shadowColor="transparent"
+          mt="$5"
+          backgroundColor="$backgroundLight50"
+          backgroundColor="$backgroundDark700"
+          >
             <AccordionItem value="c">
               <AccordionHeader>
                 <AccordionTrigger>
@@ -1105,7 +1063,7 @@ AccordionContent,
 AccordionContentText,
 Divider,
 MinusIcon,
-PlusIcon, 
+PlusIcon,
 Wrapper,
 },
 }}

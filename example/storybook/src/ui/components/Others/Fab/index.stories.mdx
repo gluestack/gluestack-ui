@@ -51,11 +51,7 @@ This is an illustration of a **Themed Fab** component with default configuration
           h={360}
           w={320}
           bg="$backgroundLight50"
-          sx={{
-            "_dark": {
-              bg: "$backgroundDark900"
-            }
-          }}
+          $dark-bg="$backgroundDark900"
           borderRadius="$md"
         >
           <Fab {...props}>
@@ -385,21 +381,11 @@ A Fab component with an icon adds a visually striking and easily recognizable bu
               borderRadius='$lg'
               borderWidth='$1'
               p='$6'
-              sx={{
-                "_dark": {
-                  bg: "$backgroundDark900",
-                  borderColor: '$borderDark800'
-                },
-                "@base": {
-                  minWidth: 240,
-                },
-                "@sm": {
-                  minWidth: 360
-                },
-                "@md": {
-                  minWidth: 476
-                }
-              }}
+              $dark-bg='$backgroundDark900'
+              $dark-borderColor='$borderDark800'
+              $base-minWidth={240}
+              $sm-minWidth={360}
+              $md-minWidth={476}
             >
               <VStack space='md'>
                 {data.map((chatData)=>{
@@ -471,15 +457,9 @@ A Fab component with an icon and text combines a visual icon with accompanying t
           borderWidth='$1'
           py={56}
           px='$6'
-          sx={{
-            "@base": {
-              mx: '$5',
-            },
-            "_dark": {
-              bg: "$backgroundDark900",
-              borderColor: '$borderDark800'
-            },
-          }}
+          $base-mx='$5'
+          $dark-bg='$backgroundDark900'
+          $dark-borderColor='$borderDark800'
         >
           <Fab bg="$indigo600" height="$9" top='$4'>
             <FabIcon as={SearchIcon}  mr="$1.5"/>
@@ -487,7 +467,8 @@ A Fab component with an icon and text combines a visual icon with accompanying t
           </Fab>
           <VStack space='lg'>
             <Box>
-              <Text fontSize='$xs' color='$darkBlue600' fontWeight='$bold'  sx={{ '_dark' : { color:'$darkBlue400'} }} >
+              <Text fontSize='$xs' color='$darkBlue600' fontWeight='$bold'  
+              $dark-color='$darkBlue400'>
                 HEALTH
               </Text>
               <Heading size='sm'>
@@ -502,24 +483,16 @@ A Fab component with an icon and text combines a visual icon with accompanying t
                 </Text>
                 <Divider
                   orientation='vertical'
-                  sx={{
-                    bg: '$backgroundLight300',
-                    _dark: {
-                      bg: '$backgroundLight700',
-                    },
-                  }}
+                  bg="$backgroundLight300"
+                  $dark-bg="$backgroundLight700"
                 />
                 <Text size='xs'>
                   6th Oct, 2019
                 </Text>
                 <Divider
                   orientation='vertical'
-                  sx={{
-                    bg: '$backgroundLight300',
-                    _dark: {
-                      bg: '$backgroundLight700',
-                    },
-                  }}
+                  bg="$backgroundLight300"
+                  $dark-bg="$backgroundLight700"
                 />
                 <Text size='xs'>
                   5 mins read
@@ -528,7 +501,7 @@ A Fab component with an icon and text combines a visual icon with accompanying t
             </Box>
             <Divider />
             <Box>
-              <Text fontSize='$xs' color='$darkBlue600' fontWeight='$bold' sx={{ '_dark' : { color:'$darkBlue400'} }} >
+              <Text fontSize='$xs' color='$darkBlue600' fontWeight='$bold' $dark-color='$darkBlue400'>
                 TECHNOLOGY
               </Text>
               <Heading size='sm' >
@@ -543,24 +516,16 @@ A Fab component with an icon and text combines a visual icon with accompanying t
                 </Text>
                 <Divider
                   orientation='vertical'
-                  sx={{
-                    bg: '$backgroundLight300',
-                    _dark: {
-                      bg: '$backgroundLight700',
-                    },
-                  }}
+                  bg="$backgroundLight300"
+                  $dark-bg="$backgroundLight700"
                 />
                 <Text size='xs'>
                   6th Oct, 2019
                 </Text>
                 <Divider
                   orientation='vertical'
-                  sx={{
-                    bg: '$backgroundLight300',
-                    _dark: {
-                      bg: '$backgroundLight700',
-                    },
-                  }}
+                  bg="$backgroundLight300"
+                  $dark-bg="$backgroundLight700"
                 />
                 <Text size='xs'>
                   5 mins read
@@ -603,20 +568,14 @@ A Fab component with placement options allows for flexible positioning of the bu
     metaData={{
       code: `
         <Box
-          borderColor='$borderLight300'
-          rounded='$lg'
-          borderWidth='$1'
-          py='$4'
-          bg='$white'
-          sx={{
-            "@base": {
-              mx: '$5',
-            },
-            "_dark": {
-              bg: "$backgroundDark900",
-              borderColor: '$borderDark800'
-            },
-          }}
+          borderColor="$borderLight300"
+          rounded="$lg"
+          borderWidth="$1"
+          py="$4"
+          bg="$white"
+          $base-mx="$5"
+          $dark-bg="$backgroundDark900"
+          $dark-borderColor="$borderDark800"
         >
           <VStack mb='$2' px='$6' py ='$2' space='lg'>
             <Checkbox size="sm" >
@@ -695,15 +654,9 @@ A Fab component with custom placement allows for flexible positioning of the but
           borderRadius='$lg'
           borderWidth='$1'
           overflow='hidden'
-          sx={{
-            "@base": {
-              mx: '$5',
-            },
-            "_dark": {
-              bg: "$backgroundDark900",
-              borderColor: '$borderDark800'
-            },
-          }}
+          $base-mx='$5'
+          $dark-bg='$backgroundDark900'
+          $dark-borderColor='$borderDark800'
         >
           <Box>
             <Image

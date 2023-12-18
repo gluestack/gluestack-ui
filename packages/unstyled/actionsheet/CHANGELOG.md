@@ -1,5 +1,17 @@
 # @gluestack-ui/actionsheet
 
+## 0.2.35
+
+### Patch Changes
+
+- actionsheet pointer events
+
+## 0.2.34
+
+### Patch Changes
+
+- pointer events none on animated view
+
 ## 0.2.33
 
 ### Patch Changes
