@@ -39,7 +39,7 @@ export function resolveAliasesFromConfig(
   const aliasResolvedProps: any = {};
 
   Object.keys(props).map((key) => {
-    if (!ignoreKeys.has(key)) {
+    if (!ignoreKeys?.has?.(key)) {
       if (config?.aliases?.[key]) {
         aliasResolvedProps[config.aliases?.[key]] = props[key];
       } else {
