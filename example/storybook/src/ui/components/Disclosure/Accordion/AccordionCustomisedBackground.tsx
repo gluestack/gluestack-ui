@@ -13,10 +13,21 @@ import React from 'react';
 
 const AccordionCustomisedBackground = ({ ...props }: any) => {
   return (
-    <Accordion {...props} size={'md'} shadowColor="transparent">
+    <Accordion
+      {...props}
+      size={'md'}
+      shadowColor="transparent"
+      bg="transparent"
+    >
       <AccordionItem value="item-1" borderRadius="$lg">
         <AccordionHeader>
-          <AccordionTrigger>
+          <AccordionTrigger
+            sx={{
+              ':focusVisible': {
+                borderRadius: '$lg',
+              },
+            }}
+          >
             {({ isExpanded }: { isExpanded: boolean }) => {
               return (
                 <>
@@ -43,7 +54,13 @@ const AccordionCustomisedBackground = ({ ...props }: any) => {
       </AccordionItem>
       <AccordionItem value="item-2" mt="$5" borderRadius="$lg">
         <AccordionHeader>
-          <AccordionTrigger>
+          <AccordionTrigger
+            sx={{
+              ':focusVisible': {
+                borderRadius: '$lg',
+              },
+            }}
+          >
             {({ isExpanded }: { isExpanded: boolean }) => {
               return (
                 <>

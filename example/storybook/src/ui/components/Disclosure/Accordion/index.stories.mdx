@@ -703,10 +703,14 @@ The borderRadius prop can be used to create rounded corners for both the Accordi
       code: `
 function App(){
     return (
-          <Accordion m="$5" width="80%" maxWidth={640} shadowColor="transparent">
+          <Accordion m="$5" width="80%" maxWidth={640} shadowColor="transparent" bg="transparent">
       <AccordionItem value="item-1" borderRadius="$lg">
         <AccordionHeader>
-          <AccordionTrigger>
+          <AccordionTrigger sx={{
+              ':focusVisible': {
+                borderRadius: '$lg',
+              },
+            }}>
             {({ isExpanded }) => {
               return (
                 <>
@@ -733,7 +737,11 @@ function App(){
       </AccordionItem>
       <AccordionItem value="item-2" mt="$5" borderRadius="$lg">
         <AccordionHeader>
-          <AccordionTrigger>
+          <AccordionTrigger sx={{
+              ':focusVisible': {
+                borderRadius: '$lg',
+              },
+            }}>
             {({ isExpanded }) => {
               return (
                 <>
