@@ -2,7 +2,7 @@ import type { ComponentMeta } from '@storybook/react-native';
 import Divider from './Divider';
 
 const DividerMeta: ComponentMeta<typeof Divider> = {
-  title: 'ui/stories/DATA DISPLAY/Divider',
+  title: 'stories/DATA DISPLAY/Divider',
   component: Divider,
   // metaInfo is required for figma generation
   // @ts-ignore

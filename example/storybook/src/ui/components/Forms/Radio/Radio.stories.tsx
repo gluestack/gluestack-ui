@@ -2,7 +2,7 @@ import type { ComponentMeta } from '@storybook/react-native';
 import Radio from './Radio';
 
 const RadioMeta: ComponentMeta<typeof Radio> = {
-  title: 'ui/stories/FORMS/Radio',
+  title: 'stories/FORMS/Radio',
   component: Radio,
   // metaInfo is required for figma generation
   // @ts-ignore

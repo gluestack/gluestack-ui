@@ -1,5 +1,81 @@
 # @gluestack-ui/themed
 
+## 1.0.30
+
+### Patch Changes
+
+- Updated dependencies
+  - @gluestack-ui/actionsheet@0.2.35
+
+## 1.0.29
+
+### Patch Changes
+
+- fix: actionsheet backdrop click issue native
+
+## 1.0.28
+
+### Patch Changes
+
+- bump animation resolver version
+
+## 1.0.27
+
+### Patch Changes
+
+- Updated dependencies
+  - @gluestack-ui/actionsheet@0.2.33
+
+## 1.0.26
+
+### Patch Changes
+
+- actionsheet version bump
+
+## 1.0.25
+
+### Patch Changes
+
+- fix: link href issue
+
+## 1.0.24
+
+### Patch Changes
+
+- Fixed Avatar size styling
+
+## 1.0.23
+
+### Patch Changes
+
+- fix: Actionsheet create tree walk.
+- fix: slider step issue on native.
+- feat: New Component release Accordion(beta).
+
+## 1.0.22
+
+### Patch Changes
+
+- Fixed SliderThumb movement on adding steps greater than 1
+
+## 1.0.21
+
+### Patch Changes
+
+- fix: popover animation issue
+
+## 1.0.20
+
+### Patch Changes
+
+- fix: version bump @gluestack-style/react
+
+## 1.0.19
+
+### Patch Changes
+
+- `Toast` white notch issue.
+
 ## 1.0.18
 
 ### Patch Changes

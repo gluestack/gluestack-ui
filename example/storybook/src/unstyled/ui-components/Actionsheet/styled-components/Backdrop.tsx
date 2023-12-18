@@ -1,12 +1,8 @@
-import { createMotionAnimatedComponent } from '@legendapp/motion';
-import { Pressable } from 'react-native';
+import { AnimatedPressable } from '@gluestack-style/animation-resolver';
 import { styled } from '../../styled';
 
-//@ts-ignore
-const MotionPressable = createMotionAnimatedComponent(Pressable);
-
 export default styled(
-  MotionPressable,
+  AnimatedPressable,
   {
     //@ts-ignore
     ':initial': {

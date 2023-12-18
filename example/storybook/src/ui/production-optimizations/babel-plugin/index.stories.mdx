@@ -39,7 +39,7 @@ import { AppProvider, Box } from '@gluestack/design-system';
 
    Below is an example of how you can add this in your `expo app`, you can change it depending on the project,
 
-   ```
+   ```jsx
      "scripts": {
        "start": "GLUESTACK_STYLE_TARGET=native expo start -c",
        "web": "GLUESTACK_STYLE_TARGET=web expo start --web -c",
@@ -52,9 +52,9 @@ import { AppProvider, Box } from '@gluestack/design-system';
 
 4. Just make sure your `babel.config.js` and `gluestack-ui.config.js/ts` are in the same directory. We suggest you keep both of them at the root of your app codebase. If you can't, then use the `configPath` option to specify the path of the `gluestack-ui.config.js/ts` file.
 
-> **Note:** We already provide you with the plugin config for `@gluestack-ui/themed`. So you have to do minimal configuration to get it working.
+> Note: We already provide you with the plugin config for `@gluestack-ui/themed`. So you have to do minimal configuration to get it working.
 
-### **Let us see how this Babel plugin works.**
+### Let us see how this Babel plugin works.
 
 - First, it traverses your files and tries to find your `component` imported from `@gluestack-ui/themed`.
 - Once it finds the component, it fetches the component props.
@@ -66,11 +66,7 @@ Here’s a small diagram explaining how the flow works:
 
 <AppProvider>
   <Box
-    sx={{
-      _dark: {
-        display: 'none',
-      },
-    }}
+  $dark-display="none"
   >
     <img
       src="/images/LightModeBabel.png"
@@ -79,11 +75,7 @@ Here’s a small diagram explaining how the flow works:
     />
   </Box>
   <Box
-    sx={{
-      _light: {
-        display: 'none',
-      },
-    }}
+  $light-display="none"
   >
     <img
       src="/images/DarkModeBabel.png"
@@ -212,7 +204,7 @@ module.exports = function (api) {
 
 - `components`: The `components` option allows you to specify the library/import_path name & file path of components created using `@gluestack-style/react`. This option is useful in scenarios where you are creating a custom component with the styled function and using it with inline styles. If you want to resolve those inline styles on build time just define this option with the library name and file path of the components folder or library.
 
-> **Note**: Even using this option if you have extended your config, added aliases, tokens or propertyResolver to a StyledComponent then it will not be resolved on build time. It will be resolved on runtime.
+> Note: Even using this option if you have extended your config, added aliases, tokens or propertyResolver to a StyledComponent then it will not be resolved on build time. It will be resolved on runtime.
 
 ```js
 // babel.config.js

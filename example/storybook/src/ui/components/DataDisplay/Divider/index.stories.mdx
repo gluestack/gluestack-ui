@@ -17,7 +17,7 @@ import { Meta } from '@storybook/addon-docs';
 import { Divider, VStack, HStack } from './Divider';
 import { Center, Text, Button, ButtonText } from './Divider';
 import { Box, Heading } from './Divider';
-import { transformedCode } from '../../../../utils';
+import { transformedCode } from '../../../utils';
 import {
   AppProvider,
   CodePreview,
@@ -164,11 +164,7 @@ A Divider component with different layouts offers versatile options for visually
               mx='$2.5'
               bg='$emerald500'
               h={15}
-              sx={{
-                _dark: {
-                  bg: '$emerald400',
-                },
-              }}
+              $dark-bg="$emerald400"
             />
             <Text>Easy</Text>
             <Divider
@@ -176,11 +172,7 @@ A Divider component with different layouts offers versatile options for visually
               mx='$2.5'
               bg='$indigo500'
               h={15}
-              sx={{
-                _dark: {
-                  bg: '$indigo400',
-                },
-              }}
+              $dark-bg="$indigo400"
             />
             <Text>Beautiful</Text>
           </HStack>
@@ -193,12 +185,8 @@ A Divider component with different layouts offers versatile options for visually
             <Divider
               w={55}
               variant="horizontal"
-              sx={{
-                bg: '$red500',
-                _dark: {
-                  bg: '$red400',
-                },
-              }}
+              bg="$red500"
+              $dark-bg="$red400"
             />
             <Text>Chrome</Text>
           </VStack>
@@ -237,11 +225,8 @@ A Divider component with a specified divider orientation allows for clear visual
           borderWidth='$1'
           rounded='$lg'
           mx='$5'
-        sx={{
-            _dark:{
-              borderColor: "$backgroundDark700",
-            }
-          }}>
+          $dark-borderColor="$backgroundDark700"
+          >
           <Box>
             <Text size='xs' color='$darkBlue600' fontWeight='$bold'>
               HEALTH
@@ -267,12 +252,9 @@ A Divider component with a specified divider orientation allows for clear visual
             </HStack>
           </Box>
           <Divider
-            sx={{
-              bg:"$trueGray300",
-              _dark: {
-                bg: "$backgroundDark700",
-              }
-            }}/>
+            bg="$trueGray300"
+            $dark-bg="$backgroundDark700"
+            />
           <Box>
             <Text size='xs' color='$darkBlue600' fontWeight='$bold'>
               TECHNOLOGY
@@ -328,11 +310,8 @@ A Divider component used with or without inset adds visual hierarchy and distinc
     metaData={{
       code: `
         <VStack space='2xl'>
-          <HStack px='$3' h='$8' rounded='$sm' borderWidth='$1' borderColor='$backgroundLight300' sx={{
-            _dark:{
-              borderColor: "$backgroundDark700",
-            }
-          }}>
+          <HStack px='$3' h='$8' rounded='$sm' borderWidth='$1' borderColor='$backgroundLight300' $dark-borderColor="$backgroundDark700"
+          >
             <Button variant='link' size='xs'>
               <ButtonText >
                 Github
@@ -351,11 +330,8 @@ A Divider component used with or without inset adds visual hierarchy and distinc
               </ButtonText>
             </Button>
           </HStack>
-          <HStack px='$3' h='$8' rounded='$sm' borderWidth='$1' borderColor='$backgroundLight300' alignItems='center' sx={{
-            _dark:{
-              borderColor: "$backgroundDark700",
-            }
-          }}>
+          <HStack px='$3' h='$8' rounded='$sm' borderWidth='$1' borderColor='$backgroundLight300' alignItems='center' $dark-borderColor="$backgroundDark700"
+          >
             <Button variant='link' size='xs'>
               <ButtonText >
                 Github
@@ -403,11 +379,7 @@ A Divider component with added content allows for the inclusion of additional te
     showArgsController={false}
     metaData={{
       code: `
-        <Box py='$9' px='$20' m='$5' rounded='$lg' borderColor='$backgroundLight300' borderWidth='$1' sx={{
-            _dark:{
-              borderColor: "$backgroundDark700",
-            }
-          }}>
+        <Box py='$9' px='$20' m='$5' rounded='$lg' borderColor='$backgroundLight300' borderWidth='$1' $dark-borderColor="$backgroundDark700">
           <Heading size='3xl' >
             Search Results
           </Heading>
@@ -461,7 +433,7 @@ Explore the comprehensive details of the Divider in this document, including its
     border: ' 1px solid rgba(0, 0, 0, 0.1)',
     aspectRatio: 736 / 585,
   }}
-  src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FNcXOxqKbdnGsLQNex3H76u%2F%25C2%25A0%25F0%259F%2593%259Agluestack-UI-handbook%3Fpage-id%3D6235%253A32067%26type%3Ddesign%26node-id%3D6235-34014%26viewport%3D6045%252C-542%252C0.35%26t%3Dhh3QHU5yvqwUf2Hk-1%26scaling%3Dcontain%26starting-point-node-id%3D36691%253A1565%26mode%3Ddesign"
+  src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FNcXOxqKbdnGsLQNex3H76u%2F%25C2%25A0%25F0%259F%2593%259Agluestack-UI-handbook%3Fpage-id%3D6235%253A32067%26type%3Ddesign%26node-id%3D36691-1565%26viewport%3D920%252C274%252C0.04%26t%3DjMRBBCPwEPDbQwqL-1%26scaling%3Dscale-down%26starting-point-node-id%3D36691%253A1565%26mode%3Ddesign"
   allowFullScreen
 />
 

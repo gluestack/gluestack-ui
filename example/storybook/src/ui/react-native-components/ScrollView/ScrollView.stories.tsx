@@ -2,7 +2,7 @@ import type { ComponentMeta } from '@storybook/react-native';
 import ScrollView from './ScrollView';
 
 const ScrollViewMeta: ComponentMeta<typeof ScrollView> = {
-  title: 'ui/stories/React Native Components/ScrollView',
+  title: 'stories/React Native Components/ScrollView',
   component: ScrollView,
 };
 

@@ -19,7 +19,7 @@ import {
   ButtonGroup,
   ButtonText,
 } from './UnstyledComponents';
-import { transformedCode, transformedThemedCode } from '../../../utils';
+import { transformedCode, transformedThemedCode } from '../../utils';
 import Wrapper from '../../components/Wrapper';
 import { styled } from '@gluestack-style/react';
 import {
@@ -30,20 +30,12 @@ import {
 } from 'react-native';
 // import the createButton function
 import { createButton } from '@gluestack-ui/button';
-// import {
-//   AppProvider,
-//   Box,
-//   HStack,
-//   Text,
-//   Hoverable,
-//   CodePreview,
-// } from '@gluestack/design-system';
 
 <Meta title="ui/Core Concepts/Unstyled Library" />
 
 ## Introduction
 
-`@gluestack-ui/themed` is intentionally designed as an unstyled library, providing you with the flexibility to style your components as you prefer.
+`gluestack-ui` is intentionally designed as an unstyled library, providing you with the flexibility to style your components as you prefer.
 
 gluestack-ui provides a collection of unstyled components that can be styled according to a specific theme or design language. These components are reusable, consistent, interactive, and are accessible on the web, iOS, and Android.
 
@@ -91,7 +83,7 @@ However, you can make these components look the way you want by adding your own 
 
 Let's try creating an unstyled Button component
 
-We utilize a function named `createButton` for the creation of a customized button component. This function accepts a configuration object that contains the styled components you wish to apply to the button. For guidance on the usage of styled components, you can refer [gluestack.io/style](/style) function expects an object containing the styled components that can be tailored to meet your specifications. These styled components can be generated using the `styled` function, which is exported by `@gluestack-style/react`. Here is a basic example provided below.
+We utilize a function named `createButton` for the creation of a customized button component. This function accepts a configuration object that contains the styled components you wish to apply to the button. For guidance on the usage of styled components, you can refer [gluestack.io/style](/style). These styled components can be generated using the `styled` function, which is exported by `@gluestack-style/react`. Here is a basic example provided below.
 
 <AppProvider>
   <CodePreview
@@ -99,28 +91,26 @@ We utilize a function named `createButton` for the creation of a customized butt
     showArgsController={false}
     metaData={{
       code: `
+    // import {styled} from '@gluestack-style/react';
+    // import {View, Pressable, Text as RNText, ActivityIndicator} from 'react-native';
     function App() {
       const Root = styled(Pressable, {});
       const Text = styled(RNText, {});
       const Group = styled(View, {});
-      const GroupHSpacer = styled(View, {});
-      const GroupVSpacer = styled(View, {});
       const Spinner = styled(ActivityIndicator, {});
+      const Icon = styled(View, {});
       // Understanding the API
       const Button = createButton({
         Root,
         Text,
         Group,
-        GroupHSpacer,
-        GroupVSpacer,
         Spinner,
+        Icon
       });
       return (
         <Button.Group>
           <Button>
-            <Button.Text sx={{_dark:{
-              color:"white"
-            }}}>Hello world</Button.Text>
+            <Button.Text $dark-color="white">Hello world</Button.Text>
           </Button>
         </Button.Group>
       );
@@ -146,3 +136,23 @@ We utilize a function named `createButton` for the creation of a customized butt
 In the above example, we are creating an accessible, universal `Button` component by using `createButton` function exported by `@gluestack-ui/button` package. We create various unstyled library using the API employed by `styled` function. These components are then passed as arguments to `createButton` function. Likewise, for each component, there exists a distinct package and API, specified in the documentation of the respective components.
 
 Styling these components is achieved with the aid of the `@gluestack-style/react` library. We generate styled components and encapsulate them within an object, which is then provided as input to the function.
+
+### Usecase for unstyled components without any config
+
+Let's say you want to use the `Button` component from `@gluestack-ui/button` package, but you don't want to use any of the pre-defined styles. In this case, you can use the `createButton` function without any configuration object. And you can pass inline styles without tokenization to style them.
+
+```jsx
+// import {GluestackUIProvider, ButtonGroup, Button, ButtonText } from '@gluestack-style/react';
+// import {View, Pressable, Text as RNText, ActivityIndicator} from 'react-native';
+function App() {
+  return (
+    <GluestackUIProvider>
+      <ButtonGroup>
+        <Button backgroundColor="blue">
+          <ButtonText color="white">Hello world</ButtonText>
+        </Button>
+      </ButtonGroup>
+    </GluestackUIProvider>
+  );
+}
+```

@@ -19,14 +19,12 @@ You can also use `gluestack-ui` to create styles specific to a particular platfo
 import { Button, ButtonText} from 'gluestack-ui/themed';
 
 function App {
-
   return (
     <Button
-        sx={{
-          _web: { backgroundColor: 'red' },
-          _ios: { backgroundColor: 'blue' },
-          _android: { backgroundColor: 'green' }
-        }}>
+    $web-backgroundColor="red"
+    $ios-backgroundColor="blue"
+    $android-backgroundColor="green"
+        >
      <ButtonText>Hello World</ButtonText>
     </Button>
   )

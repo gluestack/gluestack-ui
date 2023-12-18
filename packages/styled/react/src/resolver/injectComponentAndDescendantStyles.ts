@@ -14,6 +14,7 @@ export function injectComponentAndDescendantStyles(
   _GluestackStyleSheet: StyleInjector = GluestackStyleSheet,
   platform: string = '',
   inlineStyleMap?: any,
+  ignoreKeys: Set<any> = new Set(),
   themeData?: any
 ) {
   const [
@@ -82,7 +83,8 @@ export function injectComponentAndDescendantStyles(
     {},
     {},
     false,
-    'inline',
+    type,
+    ignoreKeys,
     themeData
   );
 

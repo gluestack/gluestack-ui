@@ -88,17 +88,13 @@ function convertUtiltiyToSXFromProps(
   componentProps: any,
   styledSystemProps: any,
   componentStyleConfig: IComponentStyleConfig,
-  reservedKeys: any = _reservedKeys
+  reservedKeys: any = _reservedKeys,
+  plugins: any[] = [],
+  ignoreKeys: Set<any> = new Set(),
+  Component: any = null,
+  ExtendedConfig: any = {}
 ) {
-  // if (componentProps.debug === 'BOX_TEST') {
-  //   return {
-  //     sx: {},
-  //     rest: {},
-  //   };
-  // }
   const { sx: userSX, ...componentRestProps }: any = componentProps;
-
-  const resolvedSXVerbosed = convertSxToSxVerbosed(userSX);
 
   const { sxProps: utilityResolvedSX, mergedProps: restProps } =
     convertUtilityPropsToSX(
@@ -108,9 +104,33 @@ function convertUtiltiyToSXFromProps(
       reservedKeys
     );
 
-  const resolvedSxVerbose = deepMerge(utilityResolvedSX, resolvedSXVerbosed);
+  let resolvedSxVerbose = deepMergeObjects(utilityResolvedSX, userSX);
 
-  return { sx: resolvedSxVerbose, rest: restProps };
+  let sxIgnoreKeys = new Set();
+
+  if (plugins) {
+    for (const pluginName in plugins) {
+      // @ts-ignore
+      [resolvedSxVerbose, , , , sxIgnoreKeys] = plugins[
+        pluginName
+      ]?.inputMiddleWare(
+        resolvedSxVerbose,
+        true,
+        false,
+        Component,
+        componentStyleConfig,
+        ExtendedConfig
+      );
+    }
+
+    sxIgnoreKeys?.forEach((element) => {
+      ignoreKeys.add(element);
+    });
+  }
+
+  const resolvedSXVerbosed = convertSxToSxVerbosed(resolvedSxVerbose);
+
+  return { sx: resolvedSXVerbosed, rest: restProps };
 }
 
 function getStateStyleCSSFromStyleIdsAndProps(
@@ -920,6 +940,7 @@ export function verboseStyled<P, Variants, ComCon>(
     sx: any,
     type: any = 'inline',
     inlineStyleMap?: any,
+    ignoreKeys: Set<any> = new Set(),
     themeData?: any
   ) {
     const inlineSxTheme = {
@@ -973,6 +994,7 @@ export function verboseStyled<P, Variants, ComCon>(
       sxHash,
       false,
       'gs',
+      true,
       themeData
     );
 
@@ -983,6 +1005,7 @@ export function verboseStyled<P, Variants, ComCon>(
       GluestackStyleSheet,
       Platform.OS,
       inlineStyleMap,
+      ignoreKeys,
       themeData
     );
 
@@ -992,7 +1015,6 @@ export function verboseStyled<P, Variants, ComCon>(
   // END BASE COLOR MODE RESOLUTION
 
   let CONFIG: any = {};
-  let isInjected = false;
   let plugins: any = [];
   let reservedKeys = { ..._reservedKeys };
 
@@ -1022,6 +1044,8 @@ export function verboseStyled<P, Variants, ComCon>(
     ref: React.ForwardedRef<P>
   ) => {
     const isClient = React.useRef(false);
+
+    let ignoreKeys: Set<any> = new Set();
 
     //@ts-ignore
     let themeDefaultProps = { ...theme.baseStyle?.props };
@@ -1137,19 +1161,22 @@ export function verboseStyled<P, Variants, ComCon>(
 
       if (plugins) {
         for (const pluginName in plugins) {
+          let themeIgnoreKeys = new Set();
           // @ts-ignore
-          [nonVerbosedTheme, , , Component] = plugins[
+          [nonVerbosedTheme, , , , themeIgnoreKeys] = plugins[
             pluginName
           ]?.inputMiddleWare<P>(
             nonVerbosedTheme,
             true,
             true,
-            Component,
+            componentProps?.as ?? Component,
             componentStyleConfig,
             ExtendedConfig
           );
+          themeIgnoreKeys?.forEach((ele) => {
+            ignoreKeys.add(ele);
+          });
         }
-        nonVerbosedTheme = convertStyledToStyledVerbosed(nonVerbosedTheme);
       }
 
       // for extended components end
@@ -1178,6 +1205,7 @@ export function verboseStyled<P, Variants, ComCon>(
           componentExtendedConfig,
           true,
           'boot',
+          ignoreKeys,
           themeData
         );
 
@@ -1282,18 +1310,12 @@ export function verboseStyled<P, Variants, ComCon>(
     const sxStyleIds: any = React.useRef(BUILD_TIME_VERBOSED_STYLE_IDS);
 
     if (BUILD_TIME_ORDERED_RESOLVED.length > 0 && !isClient.current) {
-      if (!isInjected) {
-        const toBeInjected = GluestackStyleSheet.update(
-          BUILD_TIME_ORDERED_RESOLVED
-        );
+      const toBeInjected = GluestackStyleSheet.update(
+        BUILD_TIME_ORDERED_RESOLVED
+      );
 
-        if (Platform.OS === 'web') {
-          GluestackStyleSheet.inject(
-            toBeInjected,
-            styledContext.inlineStyleMap
-          );
-        }
-        isInjected = true;
+      if (Platform.OS === 'web') {
+        GluestackStyleSheet.inject(toBeInjected, styledContext.inlineStyleMap);
       }
       sxStyleIds.current = BUILD_TIME_VERBOSED_STYLE_IDS;
 
@@ -1453,25 +1475,35 @@ export function verboseStyled<P, Variants, ComCon>(
       applySxStatePassingProps.current
     );
 
-    const { sx: filteredComponentSx, rest: filteredComponentRemainingProps } =
+    let { sx: filteredComponentSx, rest: filteredComponentRemainingProps } =
       convertUtiltiyToSXFromProps(
         // Object.assign(
         //   defaultThemePropsWithoutVariants,
         inlineComponentPropsWithoutVariants,
         styledSystemProps,
         componentStyleConfig,
-        reservedKeys
+        reservedKeys,
+        plugins,
+        ignoreKeys,
+        inlineComponentPropsWithoutVariants?.as ?? Component,
+        ExtendedConfig
       );
+
+    const mergedPassingProps = shallowMerge(
+      { ...defaultThemePropsWithoutVariants, ...passingProps },
+      applyAncestorPassingProps
+    );
 
     let { sx: filteredPassingSx, rest: filteredPassingRemainingProps } =
       convertUtiltiyToSXFromProps(
-        shallowMerge(
-          { ...defaultThemePropsWithoutVariants, ...passingProps },
-          applyAncestorPassingProps
-        ),
+        mergedPassingProps,
         styledSystemProps,
         componentStyleConfig,
-        reservedKeys
+        reservedKeys,
+        plugins,
+        ignoreKeys,
+        mergedPassingProps?.as ?? Component,
+        ExtendedConfig
       );
 
     let containsSX = false;
@@ -1505,6 +1537,7 @@ export function verboseStyled<P, Variants, ComCon>(
           filteredComponentSx,
           'inline',
           styledContext.inlineStyleMap,
+          ignoreKeys,
           themeData
         );
       }
@@ -1514,6 +1547,7 @@ export function verboseStyled<P, Variants, ComCon>(
           filteredPassingSx,
           'passing',
           styledContext.inlineStyleMap,
+          ignoreKeys,
           themeData
         );
       }
@@ -1688,7 +1722,11 @@ export function verboseStyled<P, Variants, ComCon>(
           passingPropsUpdated,
           styledSystemProps,
           componentStyleConfig,
-          reservedKeys
+          reservedKeys,
+          plugins,
+          ignoreKeys,
+          passingPropsUpdated?.as ?? Component,
+          ExtendedConfig
         );
 
         filteredPassingSx = filteredPassingSxUpdated;
@@ -1982,13 +2020,13 @@ export function verboseStyled<P, Variants, ComCon>(
       componentConfig
     );
 
-    // const AsComp: any = React.useRef(
-    //   resolvedStyleProps.as || (passingProps.as as any) || undefined
-    // ).current;
+    let AsComp: any = React.useRef(
+      resolvedStyleProps.as || (passingProps.as as any) || undefined
+    ).current;
 
-    const AsComp: any = React.useMemo(() => {
-      return resolvedStyleProps.as || (passingProps.as as any) || undefined;
-    }, [resolvedStyleProps.as]);
+    // const AsComp: any = React.useMemo(() => {
+    //   return resolvedStyleProps.as || (passingProps.as as any) || undefined;
+    // }, [resolvedStyleProps.as]);
 
     let resolvedStyleMemo = [passingProps?.style, ...resolvedStyleProps?.style];
     if (Platform.OS === 'web') {
@@ -1999,28 +2037,52 @@ export function verboseStyled<P, Variants, ComCon>(
 
     // }
 
-    const ComponentWithPlugin = React.useMemo(() => {
-      let MyComponent = Component;
-      if (plugins) {
-        for (const pluginName in plugins) {
-          // @ts-ignore
-          if (plugins[pluginName]?.componentMiddleWare) {
+    const ComponentWithPlugin: any = React.useMemo(() => {
+      if (plugins.length > 0) {
+        //@ts-ignore
+        if (AsComp && !Component?.isStyledComponent) {
+          for (const pluginName in plugins) {
             // @ts-ignore
-            MyComponent = plugins[pluginName]?.componentMiddleWare({
-              Component: MyComponent,
-              theme,
-              componentStyleConfig,
-              ExtendedConfig,
-            });
-
-            //@ts-ignore
-            pluginData = { ...pluginData, ...Component?.styled };
+            if (plugins[pluginName]?.componentMiddleWare) {
+              // @ts-ignore
+              AsComp = plugins[pluginName]?.componentMiddleWare({
+                Component: AsComp,
+                theme,
+                componentStyleConfig,
+                ExtendedConfig,
+                styleCSSIds,
+                GluestackStyleSheet,
+              });
+              //@ts-ignore
+              pluginData = { ...pluginData, ...AsComp?.styled };
+            }
           }
-        }
-      }
-      return MyComponent;
-    }, []);
 
+          return AsComp;
+        } else {
+          for (const pluginName in plugins) {
+            // @ts-ignore
+            if (plugins[pluginName]?.componentMiddleWare) {
+              // @ts-ignore
+              Component = plugins[pluginName]?.componentMiddleWare({
+                Component: Component,
+                theme,
+                componentStyleConfig,
+                ExtendedConfig,
+                styleCSSIds,
+                GluestackStyleSheet,
+              });
+
+              //@ts-ignore
+              pluginData = { ...pluginData, ...Component?.styled };
+            }
+          }
+          return Component;
+        }
+      } else {
+        return AsComp ?? Component;
+      }
+    }, []);
     let component;
 
     const propsToBePassedInToPlugin =
@@ -2028,13 +2090,13 @@ export function verboseStyled<P, Variants, ComCon>(
         ? {
             ...variantProps,
             states: states,
-            sx: componentProps.sx,
+            // sx: componentProps.sx,
           }
         : {};
 
     if (AsComp) {
       //@ts-ignore
-      if (Component.isStyledComponent) {
+      if (ComponentWithPlugin?.isStyledComponent) {
         component = (
           <ComponentWithPlugin
             {...resolvedStyleProps}
@@ -2048,12 +2110,17 @@ export function verboseStyled<P, Variants, ComCon>(
         );
       } else {
         component = (
-          <AsComp {...resolvedStyleProps} style={resolvedStyleMemo} ref={ref} />
+          <ComponentWithPlugin
+            {...resolvedStyleProps}
+            {...propsToBePassedInToPlugin}
+            style={resolvedStyleMemo}
+            ref={ref}
+          />
         );
       }
     } else {
       //@ts-ignores
-      component = Component.isStyledComponent ? (
+      component = ComponentWithPlugin?.isStyledComponent ? (
         <ComponentWithPlugin
           {...resolvedStyleProps}
           {...propsToBePassedInToPlugin}
@@ -2128,7 +2195,7 @@ export function styled<P, Variants, ComCon>(
   // let mergedBuildTimeParams: any;
 
   if (BUILD_TIME_PARAMS) {
-    // mergedBuildTimeParams = deepMergeArray(
+    // mergedBuildTimeParams = Array(
     //   { ...BUILD_TIME_PARAMS },
     //   { ...componentExtended_build_time_params }
     // );

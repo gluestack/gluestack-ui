@@ -1,6 +1,6 @@
 {
   "name": "@gluestack-ui/link",
-  "version": "0.1.16-alpha.0",
+  "version": "0.1.16",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/index.d.ts",

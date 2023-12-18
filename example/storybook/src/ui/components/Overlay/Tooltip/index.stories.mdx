@@ -25,7 +25,7 @@ import {
 import { Box, Heading, Edit } from './Tooltip';
 import { VStack, Command, Icon } from './Tooltip';
 import { Avatar, AvatarGroup, AvatarFallbackText, HStack } from './Tooltip';
-import { transformedCode } from '../../../../utils';
+import { transformedCode } from '../../../utils';
 import {
   AppProvider,
   CodePreview,
@@ -502,7 +502,7 @@ A tooltip component with an avatar is a user interface element that displays a s
                         color="$white"
                         borderColor="$white"
                         borderWidth="$2"
-                        sx={{'_dark' : {borderColor: '$black'}}}
+                        $dark-borderColor="$black"
                         {...triggerProps}
                       >
                         <AvatarFallbackText>+ 3</AvatarFallbackText>
@@ -513,12 +513,8 @@ A tooltip component with an avatar is a user interface element that displays a s
                   <TooltipContent
                     p="$5"
                     maxWidth='$72'
-                    sx={{
-                      bg:'$white',
-                      '_dark': {
-                        bg:'$backgroundDark900'
-                      },
-                    }}
+                    bg="white"
+                    $dark-bg="$backgroundDark900"
                   >
                     <VStack boderRadius="$2" space='md'>
                       <Heading size="sm" lineHeight='$md'>View all members of this channel</Heading>
@@ -531,7 +527,7 @@ A tooltip component with an avatar is a user interface element that displays a s
                 </Tooltip>
                 {avatars.map((avatar, index) => {
                   return (
-                    <Avatar key={index} size="lg" borderColor="$white" borderWidth="$2" bgColor={avatar.color} sx={{'_dark' : {borderColor: '$black'}}} >
+                    <Avatar key={index} size="lg" borderColor="$white" borderWidth="$2" bgColor={avatar.color} $dark-bordeColor="$black">
                       <AvatarFallbackText>{avatar.alt}</AvatarFallbackText>
                     </Avatar>
                   );
@@ -588,12 +584,8 @@ A tooltip component with an icon is a user interface element that provides conte
                   }}
               >
                 <TooltipContent
-                  sx={{
-                    bg:'$white',
-                    '_dark': {
-                      bg:'$backgroundDark900'
-                    },
-                  }}
+                bg="$white"
+                $dark-bg="$backgroundDark900"
                 >
                   <Box  p="$2.5" boderRadius="$2">
                     <Text size="sm">New message</Text>
@@ -679,3 +671,17 @@ export default () => (
 );
 ```
 -->
+
+## Spec Doc
+
+Explore the comprehensive details of the Tooltip in this document, including its implementation details, checklist, and potential future additions. Dive into the thought process behind the component and gain insights into its development journey.
+
+<iframe
+  style={{
+    borderRadius: '8px',
+    border: ' 1px solid rgba(0, 0, 0, 0.1)',
+    aspectRatio: 736 / 585,
+  }}
+  src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FNcXOxqKbdnGsLQNex3H76u%2F%25C2%25A0%25F0%259F%2593%259Agluestack-UI-handbook%3Ftype%3Ddesign%26node-id%3D6003-30473%26t%3D94Rlaz8y4WQXlTT6-1%26scaling%3Dscale-down%26page-id%3D6003%253A28666%26starting-point-node-id%3D6003%253A30473%26mode%3Ddesign"
+  allowFullScreen
+/>

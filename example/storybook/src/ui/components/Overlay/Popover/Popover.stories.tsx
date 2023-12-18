@@ -2,7 +2,7 @@ import type { ComponentMeta } from '@storybook/react-native';
 import Popover from './Popover';
 
 const PopoverMeta: ComponentMeta<typeof Popover> = {
-  title: 'ui/stories/OVERLAY/Popover',
+  title: 'stories/OVERLAY/Popover',
   component: Popover,
   // metaInfo is required for figma generation
   // @ts-ignore

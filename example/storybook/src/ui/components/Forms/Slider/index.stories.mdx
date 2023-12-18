@@ -33,7 +33,7 @@ import {
   TooltipContent,
   Button,
 } from './Slider';
-import { transformedCode } from '../../../../utils';
+import { transformedCode } from '../../../utils';
 import {
   AppProvider,
   CodePreview,
@@ -349,10 +349,8 @@ Props to style child components.
             <Table.TText>{`Prop to style SliderFilledTrack Component`}</Table.TText>
           </Table.TD>
         </Table.TR>
-
       </Table.TBody>
     </Table>
-
   </TableContainer>
 </AppProvider>
 
@@ -535,11 +533,7 @@ function App(){
           <SliderTrack>
             <SliderFilledTrack bg="$emerald600"/>
           </SliderTrack >
-          <SliderThumb bg="$emerald600" sx={{
-              ':active': {
-                outlineColor: '$emerald500',
-              },
-            }}/>
+          <SliderThumb bg="$emerald600" $active-outlineColor="$emerald500" />
         </Slider>
     </Center>
      <Center w="$80">
@@ -547,11 +541,7 @@ function App(){
           <SliderTrack>
             <SliderFilledTrack bg="$amber600"/>
           </SliderTrack >
-          <SliderThumb bg="$amber600" sx={{
-              ':active': {
-                outlineColor: '$amber500',
-              },
-            }}/>
+          <SliderThumb bg="$amber600" $active-outlineColor="$amber500" />
         </Slider>
     </Center>
      <Center w="$80">
@@ -559,11 +549,7 @@ function App(){
           <SliderTrack>
             <SliderFilledTrack bg="$fuchsia600"/>
           </SliderTrack >
-          <SliderThumb bg="$fuchsia600" sx={{
-              ':active': {
-                outlineColor: '$fuchsia500'
-              },
-            }}/>
+          <SliderThumb bg="$fuchsia600" $active-outlineColor="$fuchsia500"/>
         </Slider>
     </Center>
      <Center w="$80">
@@ -571,11 +557,7 @@ function App(){
           <SliderTrack>
             <SliderFilledTrack bg="$cyan600"/>
           </SliderTrack >
-          <SliderThumb bg="$cyan600" sx={{
-              ':active': {
-                outlineColor: '$cyan500',
-              },
-            }}/>
+          <SliderThumb bg="$cyan600" $active-outlineColor="$cyan500" />
         </Slider>
     </Center>
     </VStack>
@@ -762,11 +744,7 @@ function App(){
           <SliderTrack>
             <SliderFilledTrack bg="$amber600"/>
           </SliderTrack>
-           <SliderThumb    bg="$amber600" p='$1' sx={{
-              ':active': {
-                outlineColor: '$amber500',
-              },
-            }}>
+           <SliderThumb bg="$amber600" p='$1' $active-outlineColor="$amber500">
             <Icon as={LightbulbIcon} color="white" size="sm"/>
           </SliderThumb>
         </Slider>
@@ -911,3 +889,17 @@ export default () => (
 ```
 
 -->
+
+## Spec Doc
+
+Explore the comprehensive details of the Slider in this document, including its implementation details, checklist, and potential future additions. Dive into the thought process behind the component and gain insights into its development journey.
+
+<iframe
+  style={{
+    borderRadius: '8px',
+    border: ' 1px solid rgba(0, 0, 0, 0.1)',
+    aspectRatio: 736 / 585,
+  }}
+  src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FNcXOxqKbdnGsLQNex3H76u%2F%25C2%25A0%25F0%259F%2593%259Agluestack-UI-handbook%3Ftype%3Ddesign%26node-id%3D6449-50331%26t%3DyCpyOJadMBgzgdP2-1%26scaling%3Dscale-down%26page-id%3D6429%253A48430%26starting-point-node-id%3D6449%253A50331%26mode%3Ddesign"
+  allowFullScreen
+/>

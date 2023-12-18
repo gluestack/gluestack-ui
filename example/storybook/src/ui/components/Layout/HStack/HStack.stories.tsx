@@ -3,7 +3,7 @@ import HStack from './HStack';
 import HStackReversed from './HStackReversed';
 
 const HStackMeta: ComponentMeta<typeof HStack> = {
-  title: 'ui/stories/LAYOUT/HStack',
+  title: 'stories/LAYOUT/HStack',
   component: HStack,
   argTypes: {
     space: {

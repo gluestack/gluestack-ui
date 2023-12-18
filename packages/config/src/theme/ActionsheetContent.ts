@@ -16,8 +16,11 @@ export const ActionsheetContent = createStyle({
       bg: '$backgroundDark900',
     },
   },
-  userSelect: 'none',
   defaultProps: {
     hardShadow: '5',
+  },
+  _web: {
+    userSelect: 'none',
+    pointerEvents: 'auto',
   },
 });

@@ -2,7 +2,7 @@ import type { ComponentMeta } from '@storybook/react-native';
 import Progress from './Progress';
 
 const ProgressMeta: ComponentMeta<typeof Progress> = {
-  title: 'ui/stories/FEEDBACK/Progress',
+  title: 'stories/FEEDBACK/Progress',
   component: Progress,
   // metaInfo is required for figma generation
   // @ts-ignore

@@ -15,7 +15,7 @@ import { Meta } from '@storybook/addon-docs';
 <Meta title="ui/components/Forms/Link" />
 
 import { Link, LinkText, ArrowUpRightIcon, Icon, HStack, Text } from './Link';
-import { transformedCode } from '../../../../utils';
+import { transformedCode } from '../../../utils';
 import {
   AppProvider,
   CodePreview,
@@ -333,11 +333,7 @@ The Examples section provides visual representations of the different variants o
               <Link href="https://gluestack.io/" isExternal>
                 <HStack alignItems="center">
                 <LinkText size="lg">Pinterest</LinkText>
-                <Icon as={ArrowUpRightIcon} size="lg" color="$info600" mt="$0.5" sx={{
-                  _dark:{
-                    color:"$info300"
-                  }
-                }}/>
+                <Icon as={ArrowUpRightIcon} size="lg" color="$info600" mt="$0.5" $dark-color="$info300"/>
                 </HStack>
               </Link>
          </HStack>

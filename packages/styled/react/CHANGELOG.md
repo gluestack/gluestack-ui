@@ -1,5 +1,36 @@
 # @gluestack-style/react
 
+## 1.0.29
+
+### Patch Changes
+
+- Fixed config reference issue
+- Fixed inline resolved stylesheet value
+
+## 1.0.28
+
+### Patch Changes
+
+- Exposed `GluestackStyleSheet` and `styleCSSIds` to plugins
+
+## 1.0.27
+
+### Patch Changes
+
+- Fixed plugin architecture (PR)[https://github.com/gluestack/gluestack-ui/pull/1490]
+
+## 1.0.22
+
+### Patch Changes
+
+- Hotfix: rolled back to non changing reference of styled component in component middleware.
+
+## 1.0.21
+
+### Patch Changes
+
+- fix: utility props
+
 ## 1.0.20
 
 ### Patch Changes

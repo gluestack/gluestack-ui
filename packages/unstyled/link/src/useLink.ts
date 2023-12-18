@@ -31,6 +31,7 @@ export function useLink(props: IUseLinkProp) {
       onPress: () => {
         addOnPressFunctionality(href, onPress);
       },
+      href,
     };
   }
 

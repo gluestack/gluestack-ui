@@ -49,6 +49,7 @@ export class StyleInjector {
     ExtendedConfig: any,
     resolve: any = true,
     declarationType: string = 'boot',
+    ignoreKeys: Set<any> = new Set(),
     activeThemeData: any = undefined
   ) {
     let componentExtendedConfig = CONFIG;
@@ -72,6 +73,7 @@ export class StyleInjector {
             styledResolved.componentHash,
             CONFIG,
             declarationType,
+            ignoreKeys,
             activeThemeData
           );
         }
@@ -159,13 +161,15 @@ export class StyleInjector {
     componentHashKey: any,
     CONFIG: any,
     declarationType: string = 'boot',
+    ignoreKeys: Set<any> = new Set(),
     activeThemeData: any = undefined
   ) {
     const prefixClassName = declarationType === 'inline' ? 'gs' : '';
 
     componentTheme.resolved = StyledValueToCSSObject(
       theme,
-      componentExtendedConfig
+      componentExtendedConfig,
+      ignoreKeys
     );
     addThemeConditionInMeta(componentTheme, CONFIG);
 

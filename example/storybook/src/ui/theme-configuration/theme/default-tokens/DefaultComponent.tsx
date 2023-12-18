@@ -7,6 +7,10 @@ import {
   GluestackUIProvider,
   Heading,
   Divider,
+  Tooltip,
+  TooltipContent,
+  TooltipText,
+  Pressable,
 } from '@gluestack-ui/themed';
 import { config } from '@gluestack-ui/config';
 
@@ -221,23 +225,35 @@ const OpacityComponent = () => {
                 justifyContent="center"
                 alignItems="center"
               />
-              <Text
-                opacity={1}
-                color="$textDark800"
+              <VStack
+                w="100%"
+                h="100%"
+                alignItems="center"
+                justifyContent="center"
                 position="absolute"
-                sx={{
-                  _web: {
-                    top: '50%',
-                    left: '50%',
-                    transform: 'translate(-50%, -50%)',
-                  },
-                  _dark: {
-                    color: 'white',
-                  },
-                }}
               >
-                {op}
-              </Text>
+                <Text
+                  opacity={1}
+                  color="$textDark800"
+                  sx={{
+                    _dark: {
+                      color: 'white',
+                    },
+                  }}
+                >
+                  {op}
+                </Text>
+                <Text
+                  size="2xs"
+                  sx={{
+                    _dark: {
+                      color: 'white',
+                    },
+                  }}
+                >
+                  ({opacity[op]})
+                </Text>
+              </VStack>
             </Box>
           );
         })}
@@ -247,6 +263,9 @@ const OpacityComponent = () => {
 };
 
 const ShadowsComponent = () => {
+  const hardShadows: any = config.globalStyle.variants.hardShadow;
+  const softShadows: any = config.globalStyle.variants.softShadow;
+
   return (
     <GluestackUIProvider config={config}>
       <VStack>
@@ -260,22 +279,37 @@ const ShadowsComponent = () => {
             },
           }}
         >
-          {['1', '2', '3', '4', '5'].map((shadow: string) => {
+          {Object.keys(hardShadows).map((shadow: string) => {
             return (
-              <Box
-                key={shadow}
-                h="$20"
-                w="$20"
-                rounded="$lg"
-                mb="$4"
-                bg="$primary500"
-                // @ts-ignore
-                hardShadow={shadow}
-                alignItems="center"
-                justifyContent="center"
+              <Tooltip
+                // eslint-disable-next-line react/no-unstable-nested-components
+                trigger={(triggerProps) => {
+                  return (
+                    <Pressable {...triggerProps}>
+                      <Box
+                        key={shadow}
+                        h="$20"
+                        w="$20"
+                        rounded="$lg"
+                        mb="$4"
+                        bg="$primary500"
+                        // @ts-ignore
+                        hardShadow={shadow}
+                        alignItems="center"
+                        justifyContent="center"
+                      >
+                        <Text color="$white">{shadow}</Text>
+                      </Box>
+                    </Pressable>
+                  );
+                }}
               >
-                <Text color="$white">{shadow}</Text>
-              </Box>
+                <TooltipContent flexDirection="column" maxWidth="$48">
+                  <TooltipText size="xs">
+                    {JSON.stringify(hardShadows[shadow], null, 2)}
+                  </TooltipText>
+                </TooltipContent>
+              </Tooltip>
             );
           })}
         </HStack>
@@ -289,22 +323,37 @@ const ShadowsComponent = () => {
             },
           }}
         >
-          {['1', '2', '3', '4', '5'].map((shadow: string) => {
+          {Object.keys(softShadows).map((shadow: string) => {
             return (
-              <Box
-                key={shadow}
-                h="$20"
-                w="$20"
-                rounded="$lg"
-                mb="$4"
-                bg="$primary500"
-                // @ts-ignore
-                softShadow={shadow}
-                alignItems="center"
-                justifyContent="center"
+              <Tooltip
+                // eslint-disable-next-line react/no-unstable-nested-components
+                trigger={(triggerProps) => {
+                  return (
+                    <Pressable {...triggerProps}>
+                      <Box
+                        key={shadow}
+                        h="$20"
+                        w="$20"
+                        rounded="$lg"
+                        mb="$4"
+                        bg="$primary500"
+                        // @ts-ignore
+                        hardShadow={shadow}
+                        alignItems="center"
+                        justifyContent="center"
+                      >
+                        <Text color="$white">{shadow}</Text>
+                      </Box>
+                    </Pressable>
+                  );
+                }}
               >
-                <Text color="$white">{shadow}</Text>
-              </Box>
+                <TooltipContent flexDirection="column" maxWidth="$48">
+                  <TooltipText size="xs">
+                    {JSON.stringify(softShadows[shadow], null, 2)}
+                  </TooltipText>
+                </TooltipContent>
+              </Tooltip>
             );
           })}
         </HStack>
@@ -340,6 +389,9 @@ const BorderWidthComponent = () => {
               alignItems="center"
             >
               <Text color="$white">{borderWidth}</Text>
+              <Text size="2xs" color="$white">
+                ({borderWidths[borderWidth]})
+              </Text>
             </Box>
           );
         })}
@@ -358,6 +410,7 @@ const RadiiComponent = () => {
             gap: 16,
           },
         }}
+        flexWrap="wrap"
       >
         {Object.keys(radii).map((borderRadiusValue: any) => {
           return (
@@ -373,6 +426,9 @@ const RadiiComponent = () => {
               alignItems="center"
             >
               <Text color="$white">{borderRadiusValue}</Text>
+              <Text size="2xs" color="$white">
+                ({radii[borderRadiusValue]})
+              </Text>
             </Box>
           );
         })}

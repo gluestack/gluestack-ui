@@ -3,7 +3,7 @@ import Toast from './Toast';
 import DuplicateToastPrevent from './DuplicateToastPrevent';
 
 const ToastMeta: ComponentMeta<typeof Toast> = {
-  title: 'ui/stories/FEEDBACK/Toast',
+  title: 'stories/FEEDBACK/Toast',
   component: Toast,
   // metaInfo is required for figma generation
   // @ts-ignore
