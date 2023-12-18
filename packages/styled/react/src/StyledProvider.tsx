@@ -85,6 +85,7 @@ export const StyledProvider: React.FC<{
     // Add gs class name
     if (Platform.OS === 'web') {
       documentElement.classList.add(`gs`);
+      documentElement.dataset.themeId = currentColorMode;
       documentElement.classList.add(`gs-${currentColorMode}`);
     }
 
@@ -92,14 +93,15 @@ export const StyledProvider: React.FC<{
       // only for web
       if (Platform.OS === 'web' && !_experimentalNestedProvider) {
         const documentElement = document.documentElement;
-
         if (Platform.OS === 'web') {
           if (currentColor === 'dark') {
             documentElement.classList.remove(`gs-light`);
           } else {
             documentElement.classList.remove(`gs-dark`);
           }
+          delete documentElement.dataset.themeId;
           documentElement.classList.add(`gs-${currentColor}`);
+          documentElement.dataset.themeId = currentColor;
         }
       }
     });

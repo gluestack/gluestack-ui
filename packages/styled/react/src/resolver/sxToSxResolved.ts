@@ -86,19 +86,21 @@ export function sxToSXResolved(
           {}
         )
       : undefined,
-    colorMode: sx?.colorMode
-      ? Object.keys(sx.colorMode).reduce((acc, key) => {
+    theme: sx?.theme
+      ? Object.keys(sx.theme).reduce((acc, key) => {
           const sxResolved = sxToSXResolved(
             //@ts-ignore
-            sx.colorMode[key],
-            [...path, 'colorMode', key],
-            { colorMode: key, ...meta },
+            sx.theme[key],
+            [...path, 'theme', key],
+            { ...meta, theme: meta.theme ? `${meta.theme}.${key}` : key },
             CONFIG,
             shouldResolve
           );
 
           if (sxResolved?.styledValueResolvedWithMeta) {
-            sxResolved.styledValueResolvedWithMeta.meta.colorMode = key;
+            sxResolved.styledValueResolvedWithMeta.meta.theme = meta.theme
+              ? `${meta.theme}.${key}`
+              : key;
           }
           return {
             ...acc,

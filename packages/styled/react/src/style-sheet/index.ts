@@ -48,7 +48,8 @@ export class StyleInjector {
     CONFIG: any,
     ExtendedConfig: any,
     resolve: any = true,
-    declarationType: string = 'boot'
+    declarationType: string = 'boot',
+    activeThemeData: any = undefined
   ) {
     let componentExtendedConfig = CONFIG;
 
@@ -70,13 +71,14 @@ export class StyleInjector {
             componentExtendedConfig,
             styledResolved.componentHash,
             CONFIG,
-            declarationType
+            declarationType,
+            activeThemeData
           );
         }
 
         const type = styledResolved?.type;
         const styleTag = styledResolved?.componentHash;
-        const cssRuleset = styledResolved?.meta?.cssRuleset;
+        const cssRuleset = styledResolved?.meta?.cssRuleset ?? '';
 
         if (!toBeInjected[type]) {
           toBeInjected[type] = new Map();
@@ -156,9 +158,11 @@ export class StyleInjector {
     componentExtendedConfig: any,
     componentHashKey: any,
     CONFIG: any,
-    declarationType: string = 'boot'
+    declarationType: string = 'boot',
+    activeThemeData: any = undefined
   ) {
     const prefixClassName = declarationType === 'inline' ? 'gs' : '';
+
     componentTheme.resolved = StyledValueToCSSObject(
       theme,
       componentExtendedConfig
@@ -185,7 +189,8 @@ export class StyleInjector {
     const cssData: any = getCSSIdAndRuleset(
       componentTheme,
       componentHashKey,
-      prefixClassName
+      prefixClassName,
+      activeThemeData
     );
 
     componentTheme.meta.cssRuleset = cssData.rules.style;

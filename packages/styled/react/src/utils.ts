@@ -389,30 +389,80 @@ export function extractWidthValues(condition: string) {
 export function addThemeConditionInMeta(originalThemeObject: any, CONFIG: any) {
   let themeObject = originalThemeObject;
   themeObject.meta.themeCondition = {};
-  // Creating theme conditions for theme
-  Object.keys(themeObject.original).forEach((resolvedToken: any) => {
-    Object.keys(CONFIG.themes ?? {}).forEach((themeName: any) => {
-      let theme = CONFIG.themes[themeName];
-      Object.keys(theme).forEach((tokenScale: any) => {
-        const tokenScaleValue = theme[tokenScale];
-        Object.keys(tokenScaleValue).forEach((token: any) => {
-          if (!themeObject.meta.themeCondition[themeName]) {
-            themeObject.meta.themeCondition[themeName] = {};
-          }
-          if (themeObject.original[resolvedToken] === token) {
-            themeObject.meta.themeCondition[themeName] = {
-              ...themeObject.meta.themeCondition[themeName],
-              ...resolvedTokenization(
-                {
-                  [resolvedToken]: tokenScaleValue[token],
-                },
-                CONFIG
-              ),
-            };
-          }
+  // // Creating theme conditions for theme
+  Object.keys(themeObject.original ?? {}).forEach((resolvedToken: any) => {
+    if (themeObject.meta.theme) {
+      let themeName = themeObject.meta.theme;
+      if (!themeName.includes('.')) {
+        let theme = CONFIG.themes[themeName];
+        Object.keys(theme ?? {}).forEach((tokenScale: any) => {
+          const tokenScaleValue = theme[tokenScale];
+          Object.keys(tokenScaleValue ?? {}).forEach((token: any) => {
+            if (!themeObject.meta.themeCondition[themeName]) {
+              themeObject.meta.themeCondition[themeName] = {};
+            }
+            if (themeObject.original[resolvedToken] === token) {
+              themeObject.meta.themeCondition[themeName] = {
+                ...themeObject.meta.themeCondition[themeName],
+                ...resolvedTokenization(
+                  {
+                    [resolvedToken]: tokenScaleValue[token],
+                  },
+                  CONFIG
+                ),
+              };
+            }
+          });
+        });
+      } else {
+        // console.log('themeName', themeName);
+        let validTheme = themeName.split('.').pop();
+        let theme = CONFIG.themes[validTheme];
+        Object.keys(theme ?? {}).forEach((tokenScale: any) => {
+          const tokenScaleValue = theme[tokenScale];
+          Object.keys(tokenScaleValue ?? {}).forEach((token: any) => {
+            if (!themeObject.meta.themeCondition[validTheme]) {
+              themeObject.meta.themeCondition[validTheme] = {};
+            }
+            if (themeObject.original[resolvedToken] === token) {
+              themeObject.meta.themeCondition[validTheme] = {
+                ...themeObject.meta.themeCondition[validTheme],
+                ...resolvedTokenization(
+                  {
+                    [resolvedToken]: tokenScaleValue[token],
+                  },
+                  CONFIG
+                ),
+              };
+            }
+          });
+        });
+      }
+    } else {
+      Object.keys(CONFIG.themes ?? {}).forEach((themeName: any) => {
+        let theme = CONFIG.themes[themeName];
+        Object.keys(theme ?? {}).forEach((tokenScale: any) => {
+          const tokenScaleValue = theme[tokenScale];
+          Object.keys(tokenScaleValue ?? {}).forEach((token: any) => {
+            if (!themeObject.meta.themeCondition[themeName]) {
+              themeObject.meta.themeCondition[themeName] = {};
+            }
+            if (themeObject.original[resolvedToken] === token) {
+              themeObject.meta.themeCondition[themeName] = {
+                ...themeObject.meta.themeCondition[themeName],
+                ...resolvedTokenization(
+                  {
+                    [resolvedToken]: tokenScaleValue[token],
+                  },
+                  CONFIG
+                ),
+              };
+            }
+          });
         });
       });
-    });
+    }
+    // console.log('@@@', themeObject);
   });
   return themeObject;
 }

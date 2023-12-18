@@ -7,12 +7,6 @@ import {
   addArgsEnhancer,
   clearDecorators,
 } from '@storybook/react-native';
-<<<<<<< HEAD
-
-=======
-import { config } from '../src/components/nb.config';
-console.log(Object.keys(config));
->>>>>>> source-gluestack-style
 global.STORIES = [
   {
     titlePrefix: '',
@@ -53,55 +47,52 @@ try {
 } catch {}
 
 const getStories = () => {
-<<<<<<< HEAD
   return [
-    require('../src/components/Disclosure/Actionsheet/Actionsheet.stories.tsx'),
-    // require('../src/components/Disclosure/Accordion/Acc.stories.tsx'),
-    require('../src/components/Typography/Text/Text.stories.tsx'),
-    require('../src/components/Overlay/AlertDialog/AlertDialog.stories.tsx'),
-    require('../src/components/MediaAndIcons/Avatar/Avatar.stories.tsx'),
-    require('../src/components/Feedback/Alert/Alert.stories.tsx'),
-    require('../src/components/Forms/Button/Button.stories.tsx'),
-    require('../src/components/DataDisplay/Badge/Badge.stories.tsx'),
-    require('../src/components/Forms/Button/ButtonGroup.stories.tsx'),
-    require('../src/components/Forms/Checkbox/Checkbox.stories.tsx'),
-    require('../src/components/DataDisplay/Divider/Divider.stories.tsx'),
-    require('../src/components/Others/Fab/Fab.stories.tsx'),
-    require('../src/components/Forms/FormControl/FormControl.stories.tsx'),
-    require('../src/components/Typography/Heading/Heading.stories.tsx'),
-    require('../src/components/Layout/HStack/HStack.stories.tsx'),
-    require('../src/components/MediaAndIcons/Icon/Icon.stories.tsx'),
-    require('../src/components/Forms/Input/Input.stories.tsx'),
-    require('../src/components/Forms/Link/Link.stories.tsx'),
-    require('../src/components/Overlay/Menu/Menu.stories.tsx'),
-    require('../src/components/Overlay/Modal/Modal.stories.tsx'),
-    require('../src/components/Overlay/Popover/Popover.stories.tsx'),
-    require('../src/components/Forms/Pressable/Pressable.stories.tsx'),
-    require('../src/components/Feedback/Progress/Progress.stories.tsx'),
-    require('../src/components/Forms/Radio/Radio.stories.tsx'),
-    require('../src/components/Forms/Select/Select.stories.tsx'),
-    require('../src/components/Forms/Slider/Slider.stories.tsx'),
-    require('../src/components/Feedback/Spinner/Spinner.stories.tsx'),
-    require('../src/components/Forms/Switch/Switch.stories.tsx'),
-    require('../src/components/Forms/Textarea/Textarea.stories.tsx'),
-    require('../src/components/Feedback/Toast/Toast.stories.tsx'),
-    require('../src/components/Overlay/Tooltip/Tooltip.stories.tsx'),
-    require('../src/components/Layout/VStack/VStack.stories.tsx'),
-    require('../src/components/Layout/LinearGradient/LinearGradient.stories.tsx'),
-    require('../src/components/Forms/Tabs/Tabs.stories.tsx'),
-    require('../src/components/MediaAndIcons/Image/Image.stories.tsx'),
-    require('../src/react-native-components/FlatList/FlatList.stories.tsx'),
-    require('../src/react-native-components/SectionList/SectionList.stories.tsx'),
-    require('../src/react-native-components/ScrollView/ScrollView.stories.tsx'),
-    require('../src/react-native-components/View/View.stories.tsx'),
-    require('../src/react-native-components/KeyboardAvoidingView/KeyboardAvoidingView.stories.tsx'),
-    require('../src/react-native-components/StatusBar/StatusBar.stories.tsx'),
-    require('../src/hooks/use-token/use-token.stories.tsx'),
-    require('../src/hooks/use-breakpoint-value/use-breakpoint-value.stories.tsx'),
-    require('../src/hooks/use-color-mode/use-color-mode.stories.tsx'),
-  ];
-=======
-  return {
+    // require('../src/ui/components/Disclosure/Actionsheet/Actionsheet.stories.tsx'),
+    // require('../src/ui/components/Disclosure/Accordion/Acc.stories.tsx'),
+    // require('../src/ui/components/Typography/Text/Text.stories.tsx'),
+    // require('../src/ui/components/Overlay/AlertDialog/AlertDialog.stories.tsx'),
+    // require('../src/ui/components/MediaAndIcons/Avatar/Avatar.stories.tsx'),
+    // require('../src/ui/components/Feedback/Alert/Alert.stories.tsx'),
+    // require('../src/ui/components/Forms/Button/Button.stories.tsx'),
+    // require('../src/ui/components/DataDisplay/Badge/Badge.stories.tsx'),
+    // require('../src/ui/components/Forms/Button/ButtonGroup.stories.tsx'),
+    // require('../src/ui/components/Forms/Checkbox/Checkbox.stories.tsx'),
+    // require('../src/ui/components/DataDisplay/Divider/Divider.stories.tsx'),
+    // require('../src/ui/components/Others/Fab/Fab.stories.tsx'),
+    // require('../src/ui/components/Forms/FormControl/FormControl.stories.tsx'),
+    // require('../src/ui/components/Typography/Heading/Heading.stories.tsx'),
+    // require('../src/ui/components/Layout/HStack/HStack.stories.tsx'),
+    // require('../src/ui/components/MediaAndIcons/Icon/Icon.stories.tsx'),
+    // require('../src/ui/components/Forms/Input/Input.stories.tsx'),
+    // require('../src/ui/components/Forms/Link/Link.stories.tsx'),
+    // require('../src/ui/components/Overlay/Menu/Menu.stories.tsx'),
+    // require('../src/ui/components/Overlay/Modal/Modal.stories.tsx'),
+    // require('../src/ui/components/Overlay/Popover/Popover.stories.tsx'),
+    // require('../src/ui/components/Forms/Pressable/Pressable.stories.tsx'),
+    // require('../src/ui/components/Feedback/Progress/Progress.stories.tsx'),
+    // require('../src/ui/components/Forms/Radio/Radio.stories.tsx'),
+    // require('../src/ui/components/Forms/Select/Select.stories.tsx'),
+    // require('../src/ui/components/Forms/Slider/Slider.stories.tsx'),
+    // require('../src/ui/components/Feedback/Spinner/Spinner.stories.tsx'),
+    // require('../src/ui/components/Forms/Switch/Switch.stories.tsx'),
+    // require('../src/ui/components/Forms/Textarea/Textarea.stories.tsx'),
+    // require('../src/ui/components/Feedback/Toast/Toast.stories.tsx'),
+    // require('../src/ui/components/Overlay/Tooltip/Tooltip.stories.tsx'),
+    // require('../src/ui/components/Layout/VStack/VStack.stories.tsx'),
+    // require('../src/ui/components/Layout/LinearGradient/LinearGradient.stories.tsx'),
+    // require('../src/ui/components/Forms/Tabs/Tabs.stories.tsx'),
+    // require('../src/ui/components/MediaAndIcons/Image/Image.stories.tsx'),
+    // require('../src/ui/react-native-components/FlatList/FlatList.stories.tsx'),
+    // require('../src/ui/react-native-components/SectionList/SectionList.stories.tsx'),
+    // require('../src/ui/react-native-components/ScrollView/ScrollView.stories.tsx'),
+    // require('../src/ui/react-native-components/View/View.stories.tsx'),
+    // require('../src/ui/react-native-components/KeyboardAvoidingView/KeyboardAvoidingView.stories.tsx'),
+    // require('../src/ui/react-native-components/StatusBar/StatusBar.stories.tsx'),
+    // require('../src/hooks/ui/use-token/use-token.stories.tsx'),
+    // require('../src/hooks/ui/use-breakpoint-value/use-breakpoint-value.stories.tsx'),
+    // require('../src/hooks/ui/use-color-mode/use-color-mode.stories.tsx'),
+    require('../src/styled/api/ColorModeBasedStyles/ColorMode.stories.tsx'),
     // "./src/api/AsForwarder/AsForwarder.stories.tsx": require("../src/api/AsForwarder/AsForwarder.stories.tsx"),
     // "./src/api/ColorModeBasedStyles/ColorMode.stories.tsx": require("../src/api/ColorModeBasedStyles/ColorMode.stories.tsx"),
     // "./src/api/CompoundVariants/CompoundVarinats.stories.tsx": require("../src/api/CompoundVariants/CompoundVarinats.stories.tsx"),
@@ -118,11 +109,10 @@ const getStories = () => {
     // "./src/api/Typescript/Typescript.stories.tsx": require("../src/api/Typescript/Typescript.stories.tsx"),
     // "./src/api/UtilityFunctions/UtilityFunctions.stories.tsx": require("../src/api/UtilityFunctions/UtilityFunctions.stories.tsx"),
     // "./src/api/Variants/BaseStyleVariantSizes.stories.tsx": require("../src/api/Variants/BaseStyleVariantSizes.stories.tsx"),
-    './src/plugins/AnimationPlugin/Animation.stories.tsx': require('../src/plugins/AnimationPlugin/Animation.stories.tsx'),
+    // './src/plugins/AnimationPlugin/Animation.stories.tsx': require('../src/plugins/AnimationPlugin/Animation.stories.tsx'),
     // "./src/plugins/CSSVariables/CSSVariables.stories.tsx": require("../src/plugins/CSSVariables/CSSVariables.stories.tsx"),
     // "./src/plugins/FontsPlugin/FontsPlugin.stories.tsx": require("../src/plugins/FontsPlugin/FontsPlugin.stories.tsx"),
-  };
->>>>>>> source-gluestack-style
+  ];
 };
 
 configure(getStories, module, false);

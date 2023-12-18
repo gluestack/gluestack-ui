@@ -6,7 +6,8 @@ export function INTERNAL_updateCSSStyleInOrderedResolved(
   objectHash: string,
   _keepOriginal: boolean = false,
   _prefixClassName = '',
-  _shouldResolve = true
+  _shouldResolve = true,
+  _themeData?: any
 ) {
   orderedSXResolved.forEach((styleResolved: StyledValueResolvedWithMeta) => {
     styleResolved.meta.cssId =

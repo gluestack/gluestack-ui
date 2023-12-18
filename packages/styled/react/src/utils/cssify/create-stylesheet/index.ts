@@ -6,7 +6,7 @@ const createStyleSheet = (
   dataHash: string = 'media',
   prefixClassName: string = '',
   hasState: boolean = false,
-  prefixColorMode: string = 'gs-'
+  prefixTheme: string = 'gs-'
 ) => {
   if (!stylesObject) return { ids: {}, styles: {}, fullStyles: {} };
 
@@ -17,13 +17,12 @@ const createStyleSheet = (
   Object.keys(stylesObject).map((key) => {
     if (!stylesObject?.[key]) return;
 
-    let { condition, colorMode, style, themeCondition } = stylesObject[key];
+    let { condition, theme, style, themeCondition, activeThemeData } =
+      stylesObject[key];
 
     const mediaQuery = createQuery(condition);
-
-    let finalColorMode =
-      typeof colorMode === 'string' ? colorMode : condition?.colorMode;
-    const colorSchemeQuery = createQuery(finalColorMode);
+    let finalTheme = typeof theme === 'string' ? theme : condition?.theme;
+    const colorSchemeQuery = createQuery(finalTheme);
 
     const css = createDeclarationBlock(style);
 
@@ -37,19 +36,19 @@ const createStyleSheet = (
     // console.log(css, style, 'css', mediaQuery, 'mediaQuery', colorSchemeQuery);
 
     // const stringHash = `cssinjected-${hash(`${key}${css}`)}`;
-
     const rule = createCssRule(
       mediaQuery,
       colorSchemeQuery,
-      finalColorMode,
+      finalTheme,
       dataHash,
       css,
       'style',
       prefixClassName,
-      prefixColorMode,
+      prefixTheme,
       hasState,
       themeCondition,
-      themeCssObj
+      themeCssObj,
+      activeThemeData
     );
 
     delete cleanStyles[key];
@@ -58,10 +57,12 @@ const createStyleSheet = (
       ...ids,
       [key]: `${ids?.[key] ? ids[key] + ' ' : ''}${dataHash}`,
     };
-    rules = {
-      ...rules,
-      [key]: rule,
-    };
+    if (rule !== '') {
+      rules = {
+        ...rules,
+        [key]: rule,
+      };
+    }
   });
   // console.log(rules, 'ids here');
 

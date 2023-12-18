@@ -1,14 +1,9 @@
 import { withBackgrounds } from '@storybook/addon-ondevice-backgrounds';
-<<<<<<< HEAD
 import { addParameters } from '@storybook/client-api';
 import { GluestackUIProvider, Box, VStack } from '@gluestack-ui/themed';
 import { config } from '@gluestack-ui/config';
 
 import { useState } from 'react';
-=======
-
-export const decorators = [withBackgrounds];
->>>>>>> source-gluestack-style
 
 export const parameters = {
   backgrounds: {
@@ -26,9 +21,6 @@ export const parameters = {
     },
   },
 };
-<<<<<<< HEAD
-
-import { useDarkMode } from '../src/hooks/useDarkMode';
 import { Platform } from 'react-native';
 
 export const decorators = [
@@ -36,10 +28,6 @@ export const decorators = [
   (Story) => {
     let value = false;
 
-    if (Platform.OS === 'web') {
-      // eslint-disable-next-line react-hooks/rules-of-hooks
-      value = useDarkMode();
-    }
     const [isDark] = useState(false);
 
     function getColorMode() {
@@ -64,11 +52,6 @@ addParameters({
   docs: {
     container: ({ children, context }) => {
       let value = false;
-
-      if (Platform.OS === 'web') {
-        // eslint-disable-next-line react-hooks/rules-of-hooks
-        value = useDarkMode();
-      }
       const [isDark] = useState(false);
 
       function getColorMode() {
@@ -89,5 +72,3 @@ addParameters({
     },
   },
 });
-=======
->>>>>>> source-gluestack-style

@@ -18,15 +18,7 @@ export function SXResolvedToOrderedSXResolved(
       );
     });
   }
-  if (sxResolved?.colorMode) {
-    Object.keys(sxResolved.colorMode).forEach((key) => {
-      //@ts-ignore
-      const colorModeSXResolved = sxResolved.colorMode[key];
-      orderedSXResolved.push(
-        ...SXResolvedToOrderedSXResolved(colorModeSXResolved)
-      );
-    });
-  }
+
   if (sxResolved?.queriesResolved) {
     const queriesResolved: any = {};
     const breakpoints: any = [];
@@ -73,6 +65,13 @@ export function SXResolvedToOrderedSXResolved(
       //   SX_STYLE_PRECEDENCE.state + (STATE_PRECENDENCE[key] || 0) / 100;
       orderedSXResolved.push(...SXResolvedToOrderedSXResolved(stateSXResolved));
       // orderedSXResolved.push(stateSXResolved.styledValueResolvedWithMeta);
+    });
+  }
+  if (sxResolved?.theme) {
+    Object.keys(sxResolved.theme).forEach((key) => {
+      //@ts-ignore
+      const themeSXResolved = sxResolved.theme[key];
+      orderedSXResolved.push(...SXResolvedToOrderedSXResolved(themeSXResolved));
     });
   }
   if (sxResolved?.descendants) {
