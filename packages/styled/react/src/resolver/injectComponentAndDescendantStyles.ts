@@ -14,7 +14,8 @@ export function injectComponentAndDescendantStyles(
   _GluestackStyleSheet: StyleInjector = GluestackStyleSheet,
   platform: string = '',
   inlineStyleMap?: any,
-  ignoreKeys: Set<any> = new Set()
+  ignoreKeys: Set<any> = new Set(),
+  themeData?: any
 ) {
   const [
     componentOrderResolvedBaseStyle,
@@ -33,7 +34,6 @@ export function injectComponentAndDescendantStyles(
     descendantOrderResolvedVariantStyle,
     descendantOrderResolvedVariantStateStyle,
   ] = getDescendantResolvedVariantStyle(orderedResolved);
-
   const componentOrderResolvedBaseStyleIds = GluestackStyleSheet.declare(
     [
       ...componentOrderResolvedBaseStyle,
@@ -84,7 +84,8 @@ export function injectComponentAndDescendantStyles(
     {},
     false,
     type,
-    ignoreKeys
+    ignoreKeys,
+    themeData
   );
 
   if (platform === 'web') {

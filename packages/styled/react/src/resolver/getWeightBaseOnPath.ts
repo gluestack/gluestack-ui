@@ -19,7 +19,7 @@ export function getWeightBaseOnPath(path: Path) {
   const SX_PRECEDENCE: any = {
     style: 1,
     platform: 2,
-    colorMode: 3,
+    theme: 3,
     queries: 4,
     state: 5,
     descendants: 6,

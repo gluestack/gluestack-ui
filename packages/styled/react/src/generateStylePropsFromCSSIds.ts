@@ -127,11 +127,56 @@ function getDataStyle(props: any, styleCSSIdsString: string) {
     return '';
   }
 }
+// function checkOrder(str1: string, str2: string): boolean {
+//   if (!str1 || !str2) {
+//     return false;
+//   }
+//   // Split the strings into arrays of words
+//   const words1: string[] = str1.split('.');
+//   const words2: string[] = str2.split('.');
+
+//   // Remove words from words1 that are not in words2
+//   const words1Filtered: string[] = words1.filter((word) =>
+//     words2.includes(word)
+//   );
+
+//   // Check if the words in words2 appear in the same order as words1
+//   return words1Filtered.join('.') === words2.join('.');
+// }
+
+// function isThemeActiveCondition(
+//   activeTheme: string | string[],
+//   themeCondition: any
+// ) {
+//   let output = false;
+//   Object.keys(themeCondition ?? {}).forEach((theme) => {
+//     if (activeTheme.includes(theme)) {
+//       output = true;
+//     }
+//   });
+//   // console.log('output =====>>>>>> ', output);
+//   return output;
+// }
+
+// function getThemeConditionActiveTheme(
+//   activeTheme: string | string[],
+//   themeCondition: any
+// ) {
+//   let output = activeTheme;
+//   Object.keys(themeCondition ?? {}).forEach((theme) => {
+//     if (activeTheme.includes(theme)) {
+//       output = theme;
+//     }
+//   });
+//   // console.log('output =====>>>>>> ', output);
+//   return output;
+// }
+
 export function generateStylePropsFromCSSIds(
   props: any,
   styleCSSIds: any,
   config: any,
-  activeTheme: any,
+  themeData: any,
   componentConfig: any
 ) {
   const propsStyles = Array.isArray(props?.style)
@@ -153,14 +198,50 @@ export function generateStylePropsFromCSSIds(
           const styleSheet = nativeStyle?.resolved;
           if (queryCondition) {
             if (isValidBreakpoint(config, queryCondition)) {
-              styleObj.push(styleSheet);
+              if (nativeStyle.meta.theme) {
+                if (themeData?.activeTheme) {
+                  let lastThemeInThemePath = nativeStyle.meta.theme
+                    .split('.')
+                    .pop();
+                  if (
+                    themeData.activeTheme
+                      .split('.')
+                      .includes(lastThemeInThemePath)
+                  ) {
+                    styleObj.push(styleSheet);
+                  }
+                }
+              } else {
+                styleObj.push(styleSheet);
+              }
             }
           } else {
-            styleObj.push(styleSheet);
+            if (nativeStyle.meta.theme) {
+              if (themeData?.activeTheme) {
+                let lastThemeInThemePath = nativeStyle.meta.theme
+                  .split('.')
+                  .pop();
+                if (
+                  themeData.activeTheme
+                    .split('.')
+                    .includes(lastThemeInThemePath)
+                ) {
+                  styleObj.push(styleSheet);
+                }
+              }
+            } else {
+              styleObj.push(styleSheet);
+            }
           }
-          if (nativeStyle.meta.themeCondition && activeTheme) {
-            styleObj.push({
-              ...nativeStyle.meta.themeCondition[activeTheme],
+
+          if (nativeStyle.meta.themeCondition && themeData.activeTheme) {
+            let ThemePath = themeData.activeTheme?.split('.');
+            ThemePath.forEach((theme) => {
+              if (nativeStyle.meta.themeCondition[theme]) {
+                styleObj.push({
+                  ...nativeStyle.meta.themeCondition[theme],
+                });
+              }
             });
           }
         }

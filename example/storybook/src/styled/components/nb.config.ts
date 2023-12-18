@@ -1,7 +1,7 @@
 import { AnimationResolver } from '@gluestack-style/animation-resolver';
 import { MotionAnimationDriver } from '@gluestack-style/legend-motion-animation-driver';
 // import { MotiAnimationDriver } from '@gluestack-style/moti-animation-driver';
-import { createComponents, createConfig } from '@gluestack-style/react';
+import { createConfig } from '@gluestack-style/react';
 
 export const config = createConfig({
   aliases: {
@@ -663,6 +663,36 @@ export const config = createConfig({
     variants: {},
   },
   themes: {
+    'dark': {
+      colors: {
+        $bgcolorlight: '#fff3af',
+        $bgcolordark: '#111111',
+      },
+    },
+    'light': {
+      colors: {
+        $bgcolorlight: '#1fffaf',
+        $bgcolordark: '#991111',
+      },
+    },
+    'abc': {
+      colors: {
+        $bgcolorlight: '#fff3af',
+        $bgcolordark: '#f11111',
+      },
+    },
+    'xyz': {
+      colors: {
+        $bgcolorlight: '#ffBfff',
+        $bgcolordark: '#111111',
+      },
+    },
+    'lmn': {
+      colors: {
+        $bgcolorlight: '#1234bb',
+        $bgcolordark: '#111111',
+      },
+    },
     '2000s': {
       colors: {
         $backgroundColor: '#ffffff',
@@ -707,7 +737,7 @@ export const config = createConfig({
     },
     'modern': {
       colors: {
-        $red500: 'green',
+        // $red500: 'green',
         // $headerColor: '$colors$blue600',
         // $textColor: '#ffffff',
         // $borderColor: '$colors$gray400',

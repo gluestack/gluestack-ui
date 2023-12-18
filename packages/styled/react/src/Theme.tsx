@@ -10,6 +10,7 @@ export const defaultConfig: { theme?: string } = {
 const defaultContextData: Config = defaultConfig;
 const ThemeContext = React.createContext<Config>(defaultContextData);
 // Can be discussed should we provide flex 1 by default or not.
+export const useTheme = () => React.useContext(ThemeContext);
 
 export const Theme = ({
   children,
@@ -18,11 +19,15 @@ export const Theme = ({
 }: ViewProps & {
   name: string;
 }) => {
+  const parentTheme = useTheme();
   const contextValue = React.useMemo(() => {
     return {
+      activeTheme: parentTheme.activeTheme
+        ? parentTheme.activeTheme + '.' + name
+        : name,
       theme: name,
     };
-  }, [name]);
+  }, [name, parentTheme.activeTheme]);
 
   return (
     <ThemeContext.Provider value={contextValue}>
@@ -34,5 +39,3 @@ export const Theme = ({
   );
 };
 // Theme.displayName = 'Theme';
-
-export const useTheme = () => React.useContext(ThemeContext);

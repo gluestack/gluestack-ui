@@ -940,7 +940,8 @@ export function verboseStyled<P, Variants, ComCon>(
     sx: any,
     type: any = 'inline',
     inlineStyleMap?: any,
-    ignoreKeys: Set<any> = new Set()
+    ignoreKeys: Set<any> = new Set(),
+    themeData?: any
   ) {
     const inlineSxTheme = {
       baseStyle: sx,
@@ -991,8 +992,10 @@ export function verboseStyled<P, Variants, ComCon>(
     INTERNAL_updateCSSStyleInOrderedResolved(
       orderedSXResolved,
       sxHash,
+      false,
+      'gs',
       true,
-      'gs'
+      themeData
     );
 
     injectComponentAndDescendantStyles(
@@ -1002,7 +1005,8 @@ export function verboseStyled<P, Variants, ComCon>(
       GluestackStyleSheet,
       Platform.OS,
       inlineStyleMap,
-      ignoreKeys
+      ignoreKeys,
+      themeData
     );
 
     return orderedSXResolved;
@@ -1058,7 +1062,7 @@ export function verboseStyled<P, Variants, ComCon>(
 
     const styledContext = useStyled();
 
-    const { theme: activeTheme } = useTheme();
+    const themeData = useTheme();
 
     const ancestorStyleContext = useContext(AncestorStyleContext);
     let incomingComponentProps = {};
@@ -1136,7 +1140,10 @@ export function verboseStyled<P, Variants, ComCon>(
           const extendedStylesToBeInjected = GluestackStyleSheet.resolve(
             resolvedComponentExtendedTheme?.styledIds,
             CONFIG,
-            componentExtendedConfig
+            componentExtendedConfig,
+            true,
+            'boot',
+            themeData
           );
           GluestackStyleSheet.inject(
             extendedStylesToBeInjected,
@@ -1198,7 +1205,8 @@ export function verboseStyled<P, Variants, ComCon>(
           componentExtendedConfig,
           true,
           'boot',
-          ignoreKeys
+          ignoreKeys,
+          themeData
         );
 
         if (Platform.OS === 'web') {
@@ -1529,7 +1537,8 @@ export function verboseStyled<P, Variants, ComCon>(
           filteredComponentSx,
           'inline',
           styledContext.inlineStyleMap,
-          ignoreKeys
+          ignoreKeys,
+          themeData
         );
       }
 
@@ -1538,7 +1547,8 @@ export function verboseStyled<P, Variants, ComCon>(
           filteredPassingSx,
           'passing',
           styledContext.inlineStyleMap,
-          ignoreKeys
+          ignoreKeys,
+          themeData
         );
       }
 
@@ -1997,12 +2007,16 @@ export function verboseStyled<P, Variants, ComCon>(
         applyComponentInlineProps?.as?.displayName ??
         passingProps?.as?.displayName;
     }
-
+    // Adding theme for color-mode in mobile
+    if (!themeData?.activeTheme) {
+      themeData.activeTheme = COLOR_MODE;
+      themeData.theme = COLOR_MODE;
+    }
     const resolvedStyleProps = generateStylePropsFromCSSIds(
       applyComponentInlineProps,
       styleCSSIds,
       CONFIG,
-      activeTheme,
+      themeData,
       componentConfig
     );
 
@@ -2215,7 +2229,9 @@ export function styled<P, Variants, ComCon>(
   // move inside stylehash created
 
   const sxConvertedObject = convertStyledToStyledVerbosed(theme);
-
+  // if (componentStyleConfig?.DEBUG === 'ColorMode') {
+  //   console.log('sxConvertedObject', sxConvertedObject);
+  // }
   let StyledComponent = verboseStyled<P, Variants, ComCon>(
     Component,
     sxConvertedObject,

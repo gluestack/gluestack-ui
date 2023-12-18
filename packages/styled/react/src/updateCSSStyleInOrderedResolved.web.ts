@@ -5,34 +5,39 @@ import { stableHash } from './stableHash';
 export function getCSSIdAndRuleset(
   styleValueResolvedWithMeta: StyledValueResolvedWithMeta,
   objectHash: string,
-  prefixClassName: string = ''
+  prefixClassName: string = '',
+  activeThemeData?: any
   // path: Path
 ) {
   const hasState = styleValueResolvedWithMeta.meta.path?.includes('state');
   const toBeInjectedStyle: {
     style: any;
     condition?: any;
-    colorMode?: any;
+    theme?: any;
   } = { style: styleValueResolvedWithMeta.resolved };
   if (
     styleValueResolvedWithMeta.meta.queryCondition &&
-    styleValueResolvedWithMeta.meta.colorMode
+    styleValueResolvedWithMeta.meta.theme
   ) {
     toBeInjectedStyle.condition =
       styleValueResolvedWithMeta.meta.queryCondition;
-    toBeInjectedStyle.colorMode = styleValueResolvedWithMeta.meta.colorMode;
+    toBeInjectedStyle.theme = styleValueResolvedWithMeta.meta.theme;
   } else if (styleValueResolvedWithMeta.meta.queryCondition) {
     toBeInjectedStyle.condition =
       styleValueResolvedWithMeta.meta.queryCondition;
-  } else if (styleValueResolvedWithMeta.meta.colorMode) {
-    toBeInjectedStyle.colorMode = styleValueResolvedWithMeta.meta.colorMode;
+  } else if (styleValueResolvedWithMeta.meta.theme) {
+    toBeInjectedStyle.theme = styleValueResolvedWithMeta.meta.theme;
   }
-  // @ts-ignore
+  // // @ts-ignore
   if (styleValueResolvedWithMeta.meta.themeCondition) {
     // @ts-ignore
     toBeInjectedStyle.themeCondition =
       // @ts-ignore
       styleValueResolvedWithMeta.meta.themeCondition;
+  }
+  if (activeThemeData) {
+    // @ts-ignore
+    toBeInjectedStyle.activeThemeData = activeThemeData;
   }
 
   //@ts-ignore
@@ -64,14 +69,16 @@ export function INTERNAL_updateCSSStyleInOrderedResolved(
   objectHash: string,
   keepOriginal: boolean = false,
   prefixClassName = '',
-  shouldResolve = true
+  shouldResolve = true,
+  themeData?: any
 ) {
   orderedSXResolved.forEach((styleResolved: StyledValueResolvedWithMeta) => {
     if (shouldResolve) {
       const cssData: any = getCSSIdAndRuleset(
         styleResolved,
         objectHash,
-        prefixClassName
+        prefixClassName,
+        themeData
       );
 
       if (!keepOriginal) {
