@@ -17,6 +17,7 @@ export const AccordionTrigger = (StyledAccordionTrigger: any) =>
       }: any,
       ref?: any
     ) => {
+      const { titleText } = useContext(AccordionItemContext);
       const { isDisabled, buttonProps, isExpanded } =
         useContext(AccordionItemContext);
 
@@ -33,6 +34,8 @@ export const AccordionTrigger = (StyledAccordionTrigger: any) =>
 
       return (
         <StyledAccordionTrigger
+          accessible={true}
+          accessibilityLabel={titleText}
           ref={ref}
           {...props}
           {...buttonProps}
