@@ -1,6 +1,6 @@
 {
-  "name": "@gluestack/storybook-preset",
-  "version": "0.1.4",
+  "name": "@gluestack/storybook-addon",
+  "version": "0.1.1",
   "description": "Add gluestack ui configuration for Storybook",
   "license": "MIT",
   "main": "dist",
