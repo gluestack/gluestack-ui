@@ -13,12 +13,7 @@ import React from 'react';
 
 const AccordionRoundedCorners = ({ ...props }: any) => {
   return (
-    <Accordion
-      {...props}
-      size={'md'}
-      shadowColor="transparent"
-      bg="transparent"
-    >
+    <Accordion {...props} size={'md'} shadowColor="transparent">
       <AccordionItem value="item-1" borderRadius="$lg">
         <AccordionHeader>
           <AccordionTrigger

@@ -81,13 +81,13 @@ export const Accordion = createStyle({
         shadowOpacity: 0.2,
         elevation: 10,
         _dark: {
+          backgroundColor: 'transparent',
           _item: {
             backgroundColor: '$backgroundDark950',
           },
         },
       },
       unfilled: {
-        backgroundColor: 'transparent',
         shadowColor: 'transparent',
         shadowOffset: {
           width: 0,
