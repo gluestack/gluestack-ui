@@ -26,7 +26,7 @@ const ActionsheetDemo = () => {
       >
         <ActionsheetBackdrop />
         <ActionsheetContent>
-          <ActionsheetDragIndicatorWrapper>
+          <ActionsheetDragIndicatorWrapper focusable={false}>
             <ActionsheetDragIndicator />
           </ActionsheetDragIndicatorWrapper>
           <ActionsheetItem onPress={handleClose}>
