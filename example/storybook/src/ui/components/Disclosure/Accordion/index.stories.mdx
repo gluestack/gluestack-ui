@@ -523,14 +523,10 @@ function App(){
       m="$5"
       borderWidth={1}
       shadowColor="transparent"
-      sx={{
-            borderColor: '$borderLight300',
-          _dark: {
-            borderColor: '$borderDark700',
-          },
-      }}
+      borderColor="$borderLight300"
+      $dark-borderColor="$borderDark700"
     >
-      <AccordionItem value="a" 
+      <AccordionItem value="a"
          borderBottomWidth={1}
          sx={{
             borderBottomColor: '$borderLight300',
@@ -579,12 +575,8 @@ function App(){
       <AccordionItem
         value="b"
         borderBottomWidth={1}
-        sx={{
-            borderBottomColor: '$borderLight300',
-          _dark: {
-            borderBottomColor: '$borderDark700',
-          },
-        }}
+        borderBottomColor="$borderLight300"
+        $dark-borderBottomColor="$borderDark700"
       >
         <AccordionHeader     
         sx={{
@@ -624,7 +616,6 @@ function App(){
       </AccordionItem>
       <AccordionItem
         value="c"
-    
       >
         <AccordionHeader
         sx={{
@@ -808,12 +799,8 @@ function App(){
     return (
           <Accordion m="$5" variant="unfilled" width="90%">
       <AccordionItem value="item-1" isDisabled={true} borderBottomWidth={1} 
-      sx={{
-            borderColor: '$borderLight300',
-          _dark: {
-            borderColor: '$borderDark700',
-          },
-      }}>
+      borderColor="$borderLight300"
+      $dark-borderColor="$borderDark700">
         <AccordionHeader>
           <AccordionTrigger>
             {({ isExpanded }) => {
@@ -1039,12 +1026,8 @@ function App(){
            size="sm"
       m="$5"
       borderWidth={1}
-      sx={{
-          borderColor: '$borderLight300',
-        _dark: {
-          borderColor: '$borderDark700',
-        },
-      }}
+      borderColor="$borderLight300"
+      $dark-borderColor="$borderDark700"
       width="80%"
       maxWidth={640}
     >
@@ -1296,6 +1279,7 @@ AccordionContent,
 AccordionContentText,
 Divider,
 MinusIcon,
+PlusIcon,
 PlusIcon,
 Wrapper,
 },

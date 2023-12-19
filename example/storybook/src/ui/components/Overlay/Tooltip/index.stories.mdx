@@ -502,7 +502,7 @@ A tooltip component with an avatar is a user interface element that displays a s
                         color="$white"
                         borderColor="$white"
                         borderWidth="$2"
-                        sx={{'_dark' : {borderColor: '$black'}}}
+                        $dark-borderColor="$black"
                         {...triggerProps}
                       >
                         <AvatarFallbackText>+ 3</AvatarFallbackText>
@@ -513,12 +513,8 @@ A tooltip component with an avatar is a user interface element that displays a s
                   <TooltipContent
                     p="$5"
                     maxWidth='$72'
-                    sx={{
-                      bg:'$white',
-                      '_dark': {
-                        bg:'$backgroundDark900'
-                      },
-                    }}
+                    bg="white"
+                    $dark-bg="$backgroundDark900"
                   >
                     <VStack boderRadius="$2" space='md'>
                       <Heading size="sm" lineHeight='$md'>View all members of this channel</Heading>
@@ -531,7 +527,7 @@ A tooltip component with an avatar is a user interface element that displays a s
                 </Tooltip>
                 {avatars.map((avatar, index) => {
                   return (
-                    <Avatar key={index} size="lg" borderColor="$white" borderWidth="$2" bgColor={avatar.color} sx={{'_dark' : {borderColor: '$black'}}} >
+                    <Avatar key={index} size="lg" borderColor="$white" borderWidth="$2" bgColor={avatar.color} $dark-bordeColor="$black">
                       <AvatarFallbackText>{avatar.alt}</AvatarFallbackText>
                     </Avatar>
                   );
@@ -588,12 +584,8 @@ A tooltip component with an icon is a user interface element that provides conte
                   }}
               >
                 <TooltipContent
-                  sx={{
-                    bg:'$white',
-                    '_dark': {
-                      bg:'$backgroundDark900'
-                    },
-                  }}
+                bg="$white"
+                $dark-bg="$backgroundDark900"
                 >
                   <Box  p="$2.5" boderRadius="$2">
                     <Text size="sm">New message</Text>

@@ -282,11 +282,7 @@ An Avatar component with text displays a stylized representation of a user or en
         <HStack space="md">
             <Avatar  bgColor="$indigo600"  >
               <AvatarFallbackText>Ronald Richards</AvatarFallbackText>
-              <AvatarBadge sx={{
-                _dark:{
-                  borderColor: '$black',
-                }
-              }}/>
+              <AvatarBadge $dark-borderColor="$black"/>
             </Avatar>
           <VStack>
              <Heading size="sm" >Ronald Richards</Heading>
@@ -463,20 +459,13 @@ The avatar group allows users to group avatars and display them in a horizontal 
             <AvatarGroup>
               {avatars.slice(0, 3).map((avatar, index) => {
                 return (
-                  <Avatar key={index} size="lg" borderColor="$white" borderWidth="$2" bg={avatar.color} sx={{
-                    _dark:{
-                      borderColor:"$black"
-                    }
-                  }}>
+                  <Avatar key={index} size="lg" borderColor="$white" borderWidth="$2" bg={avatar.color} $dark-borderColor="$black">
                     <AvatarFallbackText>{avatar.alt}</AvatarFallbackText>
                   </Avatar>
                 );
               })}
-              <Avatar size="lg" borderColor="$white" borderWidth="$2" bg="$gray600" sx={{
-                    _dark:{
-                      borderColor:"$black"
-                    }
-                  }}>
+              <Avatar size="lg" borderColor="$white" borderWidth="$2" bg="$gray600" 
+              $dark-borderColor="$black">
                   <AvatarFallbackText >{"+ " + remainingCount + ""}</AvatarFallbackText>
               </Avatar>
             </AvatarGroup>
@@ -580,11 +569,8 @@ An Avatar Group component with badges presents a collection of avatars with acco
                 uri: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
               }}
             />
-            <AvatarBadge sx={{
-                _dark:{
-                  borderColor: '$black',
-                }
-              }} />
+            <AvatarBadge 
+            $dark-borderColor="$black"/>
           </Avatar>
           <Avatar size="md">
             <AvatarFallbackText>John Doe</AvatarFallbackText>
@@ -593,11 +579,7 @@ An Avatar Group component with badges presents a collection of avatars with acco
                 uri: 'https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
               }}
             />
-            <AvatarBadge  sx={{
-                _dark:{
-                  borderColor: '$black',
-                }
-              }}/>
+            <AvatarBadge $dark-borderColor="$black"/>
           </Avatar>
           <Avatar size="md">
             <AvatarFallbackText>John Doe</AvatarFallbackText>
@@ -606,11 +588,7 @@ An Avatar Group component with badges presents a collection of avatars with acco
                 uri: 'https://images.unsplash.com/photo-1614289371518-722f2615943d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
               }}
             />
-            <AvatarBadge  sx={{
-                _dark:{
-                  borderColor: '$black',
-                }
-              }}/>
+            <AvatarBadge $dark-borderColor="$black"/>
           </Avatar>
           <Avatar size="md">
             <AvatarFallbackText>John Doe</AvatarFallbackText>
@@ -619,11 +597,8 @@ An Avatar Group component with badges presents a collection of avatars with acco
                 uri: 'https://images.unsplash.com/photo-1607746882042-944635dfe10e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
               }}
             />
-            <AvatarBadge  sx={{
-                _dark:{
-                  borderColor: '$black',
-                }
-              }}/>
+            <AvatarBadge 
+            $dark-borderColor="$black"/>
           </Avatar>
         </AvatarGroup>
 `,

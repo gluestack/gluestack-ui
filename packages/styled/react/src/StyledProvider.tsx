@@ -57,8 +57,12 @@ export const StyledProvider: React.FC<{
   inlineStyleMap.current.initialStyleInjected = false;
 
   const currentConfig: any = React.useMemo(() => {
-    //TODO: Add this later
-    return platformSpecificSpaceUnits(config, Platform.OS);
+    const configWithPlatformSpecificUnits: any = platformSpecificSpaceUnits(
+      config,
+      Platform.OS
+    );
+
+    return configWithPlatformSpecificUnits;
   }, [config]);
 
   if (Platform.OS === 'web' && globalStyles) {

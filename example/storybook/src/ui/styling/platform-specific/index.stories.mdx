@@ -39,11 +39,10 @@ We can provide platform specific styles in the `sx` prop of the component. The `
       <Box justifyContent="center" alignItems="center" h="100%">
         <Box alignItems="center">
           <Button
-            sx={{
-              _ios: { bg: '$red500' },
-              _web: { bg: '$green500' },
-              _android: { bg: '$yellow500' },
-            }}>
+            $ios-bg="$red500"
+            $web-bg="$green500"
+            $android="$yellow500"
+            >
             <ButtonText>Button</ButtonText>
           </Button>
         </Box>

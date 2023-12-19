@@ -9,190 +9,57 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 # Building Design Systems
 
-Empower your development by creating a personalized design system with `gluestack-ui`.
-This enables you to build your own collection of components that match your vision.
+## Introduction
 
-## Step 1: Create Your Own Package
+**gluestack-ui-design-system** is a comprehensive design system built on top of the universal `gluestack-ui` library. It provides a collection of UI components , a Storybook for interactive development and testing, and a flexible configuration setup for seamless customization. It is a starter kit template to create your own Design System.
 
-If you are planning to build your own design system, you can directly **fork** [`gluestack-ui`](https://github.com/gluestack/gluestack-ui) – a meticulously organized monorepo and begin shaping your design system upon this solid foundation.
+## Getting Started
 
-- This includes a component library package `@gluestack-ui/themed` in `packages/themed` directory.
-- This includes a theme package `@gluestack-ui/config` in `packages/config` directory.
-- This includes a storybook for both React and React Native in `example/storybook` directory.
-
-Follow these steps after **forking** this repository:
-
-### Change library name
-
-- Navigate to the `packages/themed` and open `package.json`. (You can rename the folder if you need).
-- Locate the `name` field in the `package.json` file and update it to `@myapp/components`.
-
-  ```json
-  //package.json
-  {
-    "name": "@myapp/components"
-    // ...
-  }
+- Go to the template [repository](https://github.com/gluestack/gluestack-ui-design-system) for `gluestack-ui-design-system`.
+- Click on `Use this template` button on the top-right corner.
+- Clicking on `Create a new repository` will create a new repository with this template on your desired organization.
+- Clone that repository from your codebase.
+- Navigate to project directory
+  ```bash
+  cd gluestack-ui-design-system
+  ```
+- Install dependencies
+  ```bash
+    yarn
   ```
 
-  Now your library `@myapp/components` has all primitive components from `@gluestack-ui/themed` by default.
+## Running Storybook
 
-- Similarly, Navigate to the `packages/config` and open `package.json`. (You can rename the folder if you need).
-- Locate the `name` field in `package.json` file and update it to `@myapp/config`.
+To interactively develop and test UI components, you can use Storybook. Follow these steps to run Storybook locally:
 
-  ```json
-  //package.json
-  {
-    "name": "@myapp/config"
-    // ...
-  }
+- Navigate to storybook directory
+
+  ```bash
+  cd example/storybook
   ```
 
-  Now your library `@myapp/config` has all primitive components from `@gluestack-ui/config` by default.
-
-### Update storybook configuration
-
-Navigate to the `example/storybook` and make updates to the specified files below.
-
-- **_tsconfig.json_**:
-
-  You'll need to update `paths` in `tsconfig.json` for TypeScript import resolution.
-
-  ```jsx
-  // ... other configuration
-  "compilerOptions": {
-    // ...
-      "paths": {
-        "@myapp/components": ["../../packages/themed/src"],
-        "@myapp/config": ["../../packages/config/src/gluestack-ui.config"],
-      },
-      // ...
-  }
+- Run to storybook on the web
+  ```bash
+  yarn storybook
+  ```
+- Run to storybook on mobile
+  ```bash
+  yarn ios
   ```
 
-- **_babel.config.js_**:
-  You'll need to update `alias` in `babel.config.ts` file incase you've renamed the folder `packages/themed` or `packages/config`.
-  ```jsx
-  // ... other configuration
-    plugins: [
-         [
-            'module-resolver',
-            {
-              alias: {
-                '@gluestack-ui/themed': path.join(
-                __dirname,
-                '../../packages/<component-folder-name>/src'
-              ),
-              }
-            },
-          ]
-    ],
-  // ... other configuration
-  ```
+## Customization
 
-## Step 2: Customize Tokens and Components
+The gluestack-ui-design-system allows for easy customization to align with your project's requirements. To customize the design system, follow these steps:
 
-### Theme Tokens
+- Customize design tokens (colors, sizes, media queries) and component themes in `packages/config` by adding, removing, or modifying entries.
+- Adjust component functionality by adding, removing, or modifying features in `packages/themed`.
 
-Theme tokens and other configuration is present in `packages/config/src`. You have the flexibility to modify these tokens as per your requirements.
+- To customize the branding with your own design system, navigate to the preview.js file within the .storybook folder and modify the relevant fields according to your branding preferences.
 
-Check [this](/ui/docs/theme-configuration/customizing-theme) for more details.
+## Documentation
 
-### Components
+You can find detailed documentation of `gluestack-ui` for each component, including a list of props, examples, and customization at https://gluestack.io/ui/docs website.
 
-You can customize the styling of all primitive components. You can modify styling in `packages/config/src/theme/<ComponentName>.ts/` for a particular component. You can add and modify property value and variants based on your need.
+## Tech Stack
 
-**Create a custom component**
-To create your own custom component. You need to follow these steps:
-
-1. Create a folder inside `packages/themed/src/components/Circle`
-2. Create a folder `styled-components/` inside `packages/themed/src/components/Circle` to keep components.
-3. Create a styled component using `@gluestack-style/react` in `Root.tsx`, this will be an unstyled component initially with just component name.
-
-```jsx
-export const Root = styled(View, {}, { componentName: 'Circle' });
-```
-
-5. For other functionalities like accessibility and events, create an `index.tsx` file `packages/themed/src/components/Circle/index.tsx` and export it.
-
-```jsx
-import { Root } from './styled-components';
-
-const Circle = (props) => {
-  return <Root {...props}>{props.children}</Root>;
-};
-```
-
-6. And then export from `packages/themed/src/components/index.tsx`
-
-```jsx
-// other components
-export * from './Circle';
-```
-
-7. Now we will define theme for `Circle` inside `packages/config/src/theme/Circle.ts`.
-
-```jsx
-import { createStyle } from '@gluestack-style/react';
-
-export const Circle = createStyle({
-  alignItems: 'center',
-  justifyContent: 'center',
-  borderRadius: '$full',
-  overflow: 'hidden',
-  variants: {
-    size: {
-      large: {
-        width: 100,
-        height: 100,
-      },
-    },
-  },
-});
-```
-
-8. And then export from `packages/config/src/index.ts`
-
-```jsx
-// other components
-export * from './Circle';
-```
-
-## Step 3: Test Your Package
-
-Now you can import and test your component.
-
-```jsx
-import { Circle } from '@myapp/components';
-export default () => <Circle size="large" />;
-```
-
-## Step 4: Publish Your Package
-
-Now you can publish your design system as a package from `packages/themed` and theme package from `packages/config`.
-
-## Step 5: Integrate it in Your App
-
-Once published, you can use `@myapp/components` in your app you need add it to your `package.json` and update your configuration.
-
-#### Next.js
-
-Update **_next.config.js_**:
-
-```jsx
-/** @type {import('next').NextConfig} */
-const { withGluestackUI } = require('@gluestack/ui-next-adapter');
-
-const nextConfig = {
-  reactStrictMode: true,
-  transpilePackages: ['@myapp/components', '@myapp/config'],
-};
-
-module.exports = withGluestackUI(nextConfig);
-```
-
-#### Expo
-
-No need to update any config for Expo.
-
-> Note: For production optimization you can have a look [here](/docs/production-optimizations/babel-plugin)
+JavaScript, React, React Native, Styled System

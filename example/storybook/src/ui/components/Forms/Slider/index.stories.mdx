@@ -533,11 +533,7 @@ function App(){
           <SliderTrack>
             <SliderFilledTrack bg="$emerald600"/>
           </SliderTrack >
-          <SliderThumb bg="$emerald600" sx={{
-              ':active': {
-                outlineColor: '$emerald500',
-              },
-            }}/>
+          <SliderThumb bg="$emerald600" $active-outlineColor="$emerald500" />
         </Slider>
     </Center>
      <Center w="$80">
@@ -545,11 +541,7 @@ function App(){
           <SliderTrack>
             <SliderFilledTrack bg="$amber600"/>
           </SliderTrack >
-          <SliderThumb bg="$amber600" sx={{
-              ':active': {
-                outlineColor: '$amber500',
-              },
-            }}/>
+          <SliderThumb bg="$amber600" $active-outlineColor="$amber500" />
         </Slider>
     </Center>
      <Center w="$80">
@@ -557,11 +549,7 @@ function App(){
           <SliderTrack>
             <SliderFilledTrack bg="$fuchsia600"/>
           </SliderTrack >
-          <SliderThumb bg="$fuchsia600" sx={{
-              ':active': {
-                outlineColor: '$fuchsia500'
-              },
-            }}/>
+          <SliderThumb bg="$fuchsia600" $active-outlineColor="$fuchsia500"/>
         </Slider>
     </Center>
      <Center w="$80">
@@ -569,11 +557,7 @@ function App(){
           <SliderTrack>
             <SliderFilledTrack bg="$cyan600"/>
           </SliderTrack >
-          <SliderThumb bg="$cyan600" sx={{
-              ':active': {
-                outlineColor: '$cyan500',
-              },
-            }}/>
+          <SliderThumb bg="$cyan600" $active-outlineColor="$cyan500" />
         </Slider>
     </Center>
     </VStack>
@@ -760,11 +744,7 @@ function App(){
           <SliderTrack>
             <SliderFilledTrack bg="$amber600"/>
           </SliderTrack>
-           <SliderThumb    bg="$amber600" p='$1' sx={{
-              ':active': {
-                outlineColor: '$amber500',
-              },
-            }}>
+           <SliderThumb bg="$amber600" p='$1' $active-outlineColor="$amber500">
             <Icon as={LightbulbIcon} color="white" size="sm"/>
           </SliderThumb>
         </Slider>

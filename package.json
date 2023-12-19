@@ -1,11 +1,6 @@
 {
   "private": true,
   "workspaces": [
-    "packages/themed",
-    "packages/config",
-    "packages/*",
-    "packages/unstyled/**",
-    "packages/react-native-aria/**",
     "packages/**",
     "example/storybook"
   ],
