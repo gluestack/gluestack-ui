@@ -54,6 +54,7 @@ export const StyledProvider: React.FC<{
 }) => {
   const inlineStyleMap: any = React.useRef({
     initialStyleInjected: false,
+    injectedCss: '',
   });
   inlineStyleMap.current.initialStyleInjected = false;
 
@@ -119,17 +120,30 @@ export const StyledProvider: React.FC<{
     if (Platform.OS === 'web') {
       // const toBeInjectedStyles: any = {};
 
-      // if (inlineStyleMap.current.initialStyleInjected) {
-      //   return;
-      // }
-
-      if (typeof window !== 'undefined') {
-        const documentElement = document.documentElement;
-        order.map((currentOrder) => {
-          documentElement.classList.add(currentOrder);
-        });
-        // documentElement.classList.add(`gs-state`);
+      if (inlineStyleMap.current.initialStyleInjected) {
+        return;
       }
+
+      // console.log(inlineStyleMap.current, 'inlineStyleMap.current>>>>>>>');
+
+      // if (typeof window !== 'undefined') {
+      // const documentElement = document.documentElement;
+      // order.map((currentOrder) => {
+      //   documentElement.classList.add(currentOrder);
+      // });
+      // documentElement.classList.add(`gs-state`);
+
+      if (inlineStyleMap.current.injectedCss) {
+        let styleTag = document.querySelector('#gs-injected');
+
+        if (!styleTag) {
+          styleTag = document.createElement('style');
+          styleTag.id = 'gs-injected';
+          document.head.appendChild(styleTag);
+        }
+        styleTag.innerHTML += inlineStyleMap.current.injectedCss;
+      }
+      // }
 
       // Object.keys(inlineStyleMap.current).forEach((key: any) => {
       //   if (key !== 'initialStyleInjected') {

@@ -127,7 +127,7 @@ export const injectCss = (
   css: any,
   _wrapperType: IWrapperType,
   _styleTagId: string,
-  _inlineStyleMap?: any
+  inlineStyleMap?: any
   // id?: any
 ) => {
   // if (!toBeFlushedStyles[wrapperType]) {
@@ -142,9 +142,10 @@ export const injectCss = (
   toBeFlushedStylesGlobal += css;
 
   if (typeof window !== 'undefined') {
-    const styleTag: any = document.querySelector('#gs-injected');
+    // const styleTag: any = document.querySelector('#gs-injected');
 
-    styleTag.innerHTML += css;
+    inlineStyleMap['injectedCss'] += css;
+    // styleTag.innerHTML += css;
   }
   // if (typeof window !== 'undefined') {
   //   let wrapperElement = document.querySelector(
