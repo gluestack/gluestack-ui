@@ -6,6 +6,7 @@ import type { COLORMODES } from './types';
 import { platformSpecificSpaceUnits } from './utils';
 import { createGlobalStylesWeb } from './createGlobalStylesWeb';
 import { createGlobalStyles } from './createGlobalStyles';
+import { order } from './utils/css-injector/utils/inject';
 
 type Config = any;
 let colorModeSet = false;
@@ -116,35 +117,43 @@ export const StyledProvider: React.FC<{
 
   React.useLayoutEffect(() => {
     if (Platform.OS === 'web') {
-      const toBeInjectedStyles: any = {};
+      // const toBeInjectedStyles: any = {};
 
-      if (inlineStyleMap.current.initialStyleInjected) {
-        return;
+      // if (inlineStyleMap.current.initialStyleInjected) {
+      //   return;
+      // }
+
+      if (typeof window !== 'undefined') {
+        const documentElement = document.documentElement;
+        order.map((currentOrder) => {
+          documentElement.classList.add(currentOrder);
+        });
+        // documentElement.classList.add(`gs-state`);
       }
 
-      Object.keys(inlineStyleMap.current).forEach((key: any) => {
-        if (key !== 'initialStyleInjected') {
-          const styles = inlineStyleMap.current[key];
+      // Object.keys(inlineStyleMap.current).forEach((key: any) => {
+      //   if (key !== 'initialStyleInjected') {
+      //     const styles = inlineStyleMap.current[key];
 
-          if (!toBeInjectedStyles[key]) {
-            toBeInjectedStyles[key] = document.createDocumentFragment();
-          }
+      //     if (!toBeInjectedStyles[key]) {
+      //       toBeInjectedStyles[key] = document.createDocumentFragment();
+      //     }
 
-          styles.forEach((style: any) => {
-            if (!document.getElementById(style.id)) {
-              toBeInjectedStyles[key].appendChild(style);
-            }
-          });
-        }
-      });
+      //     styles.forEach((style: any) => {
+      //       if (!document.getElementById(style.id)) {
+      //         toBeInjectedStyles[key].appendChild(style);
+      //       }
+      //     });
+      //   }
+      // });
 
-      Object.keys(toBeInjectedStyles).forEach((key) => {
-        let wrapperElement = document.querySelector('#' + key);
-        if (wrapperElement) {
-          wrapperElement.appendChild(toBeInjectedStyles[key]);
-        }
-        // delete inlineStyleMap.current[key];
-      });
+      // Object.keys(toBeInjectedStyles).forEach((key) => {
+      //   let wrapperElement = document.querySelector('#' + key);
+      //   if (wrapperElement) {
+      //     wrapperElement.appendChild(toBeInjectedStyles[key]);
+      //   }
+      //   // delete inlineStyleMap.current[key];
+      // });
 
       inlineStyleMap.current.initialStyleInjected = true;
     }

@@ -678,6 +678,7 @@ export type StyledValueResolvedWithMeta = {
     colorMode?: string;
     queryCondition?: string;
     condition?: any;
+    statePrefix?: string;
   };
 };
 

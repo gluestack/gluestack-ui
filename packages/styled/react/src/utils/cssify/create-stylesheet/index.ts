@@ -5,7 +5,7 @@ const createStyleSheet = (
   stylesObject: any,
   dataHash: string = 'media',
   prefixClassName: string = '',
-  hasState: boolean = false,
+  statePrefix: string = '',
   prefixColorMode: string = 'gs-'
 ) => {
   if (!stylesObject) return { ids: {}, styles: {}, fullStyles: {} };
@@ -47,7 +47,7 @@ const createStyleSheet = (
       'style',
       prefixClassName,
       prefixColorMode,
-      hasState,
+      statePrefix,
       themeCondition,
       themeCssObj
     );

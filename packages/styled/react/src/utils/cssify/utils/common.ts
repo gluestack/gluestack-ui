@@ -103,18 +103,18 @@ const createCssRule = (
   dataType: string,
   prefixClassName: string,
   prefixColorMode: string,
-  hasState: boolean,
+  _statePrefix: string,
   themeCondition: any,
   themeCssObj: any
 ) => {
   const dataMediaSelector = `[data-${dataType}~="${stringHash}"]`;
-  const stateRulePrefix = hasState ? '.gs' : '';
-  const inlineRulePrefix = prefixClassName ? `.${prefixClassName}` : '';
+
+  const inlineRulePrefix = prefixClassName ? `${prefixClassName}` : '';
   const colorModeRulePrefix =
     prefixColorMode && colorMode ? `.${prefixColorMode}${colorMode}` : '';
-  const mediaQueryPrefix = `.gs`;
+  const mediaQueryPrefix = ''; // `.gs`;
 
-  const inlineAndStatePrefix = `${inlineRulePrefix}${stateRulePrefix}`;
+  const inlineAndStatePrefix = `${inlineRulePrefix}`;
   let rule = ``;
   if (isMedia(mediaQuery) && isColorScheme(colorSchemeQuery)) {
     rule = `${mediaQuery} {${mediaQueryPrefix}${inlineAndStatePrefix}${colorModeRulePrefix} ${dataMediaSelector} ${css}}`;
@@ -137,7 +137,7 @@ const createCssRule = (
       })
       .join('\n');
     // themeCondition is of higher specificity than the rest of the rules
-    rule = ` \n${themeConditionString}\n ${rule} `;
+    rule = `\n${themeConditionString} ${rule}`;
   }
   return rule;
 };

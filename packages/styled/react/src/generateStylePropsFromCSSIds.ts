@@ -174,10 +174,10 @@ export function generateStylePropsFromCSSIds(
     'style': propsStyles ? [...styleObj, ...propsStyles] : styleObj,
     'dataSet': {
       ...props?.dataSet,
-      style: getDataStyle(props, styleCSSIdsString),
+      style: getDataStyle(props, styleCSSIdsString) + ' gs-state',
     },
     // DONOT REMOVE THIS LINE, THIS IS FOR SPECIFIC COMPONENTS LIKE next/link
-    'data-style': getDataStyle(props, styleCSSIdsString),
+    'data-style': getDataStyle(props, styleCSSIdsString) + ' gs-state',
   });
 
   if (Platform.OS === 'web') {

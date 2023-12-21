@@ -7,6 +7,7 @@ import {
   addThemeConditionInMeta,
 } from '../utils';
 import { inject } from '../utils/css-injector';
+import { orderWithCssSelectors } from '../utils/css-injector/utils/inject';
 export type DeclarationType = 'boot' | 'forwarded';
 export class StyleInjector {
   #globalStyleMap: any;
@@ -78,7 +79,7 @@ export class StyleInjector {
 
         const type = styledResolved?.type;
         const styleTag = styledResolved?.componentHash;
-        const cssRuleset = styledResolved?.meta?.cssRuleset;
+        const cssRuleset = `${styledResolved?.meta?.cssRuleset}`;
 
         if (!toBeInjected[type]) {
           toBeInjected[type] = new Map();
@@ -158,15 +159,15 @@ export class StyleInjector {
     componentExtendedConfig: any,
     componentHashKey: any,
     CONFIG: any,
-    declarationType: string = 'boot',
+    _declarationType: string = 'boot',
     ignoreKeys: Set<any> = new Set()
   ) {
-    const prefixClassName = declarationType === 'inline' ? 'gs' : '';
     componentTheme.resolved = StyledValueToCSSObject(
       theme,
       componentExtendedConfig,
       ignoreKeys
     );
+
     addThemeConditionInMeta(componentTheme, CONFIG);
 
     // delete componentTheme.meta.cssRuleset;
@@ -189,7 +190,7 @@ export class StyleInjector {
     const cssData: any = getCSSIdAndRuleset(
       componentTheme,
       componentHashKey,
-      prefixClassName
+      orderWithCssSelectors[componentTheme?.type] ?? ''
     );
 
     componentTheme.meta.cssRuleset = cssData.rules.style;
