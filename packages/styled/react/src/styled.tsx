@@ -2043,8 +2043,6 @@ export function verboseStyled<P, Variants, ComCon>(
               pluginData = { ...pluginData, ...AsComp?.styled };
             }
           }
-
-          return AsComp;
         } else {
           for (const pluginName in plugins) {
             // @ts-ignore
@@ -2063,11 +2061,12 @@ export function verboseStyled<P, Variants, ComCon>(
               pluginData = { ...pluginData, ...Component?.styled };
             }
           }
-          return Component;
         }
-      } else {
-        return AsComp ?? Component;
       }
+      return {
+        Component: Component,
+        AsComp: AsComp,
+      };
     }, []);
     let component;
 
@@ -2082,9 +2081,9 @@ export function verboseStyled<P, Variants, ComCon>(
 
     if (AsComp) {
       //@ts-ignore
-      if (ComponentWithPlugin?.isStyledComponent) {
+      if (ComponentWithPlugin?.Component?.isStyledComponent) {
         component = (
-          <ComponentWithPlugin
+          <ComponentWithPlugin.Component
             {...resolvedStyleProps}
             {...variantProps}
             {...propsToBePassedInToPlugin}
@@ -2096,9 +2095,8 @@ export function verboseStyled<P, Variants, ComCon>(
         );
       } else {
         component = (
-          <ComponentWithPlugin
+          <ComponentWithPlugin.AsComp
             {...resolvedStyleProps}
-            {...propsToBePassedInToPlugin}
             style={resolvedStyleMemo}
             ref={ref}
           />
@@ -2106,8 +2104,8 @@ export function verboseStyled<P, Variants, ComCon>(
       }
     } else {
       //@ts-ignores
-      component = ComponentWithPlugin?.isStyledComponent ? (
-        <ComponentWithPlugin
+      component = ComponentWithPlugin?.Component?.isStyledComponent ? (
+        <ComponentWithPlugin.Component
           {...resolvedStyleProps}
           {...propsToBePassedInToPlugin}
           {...variantProps}
@@ -2116,7 +2114,7 @@ export function verboseStyled<P, Variants, ComCon>(
           ref={ref}
         />
       ) : (
-        <ComponentWithPlugin
+        <ComponentWithPlugin.Component
           {...resolvedStyleProps}
           {...propsToBePassedInToPlugin}
           style={resolvedStyleMemo}
