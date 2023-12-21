@@ -1,0 +1,40 @@
+{
+  "name": "storybook-nextjs",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
+  },
+  "dependencies": {
+    "@gluestack-style/react": "^1.0.29",
+    "@gluestack-ui/config": "^1.0.10",
+    "@gluestack-ui/themed": "^1.0.30",
+    "@gluestack/storybook-addon": "^0.1.0",
+    "@gluestack/ui-next-adapter": "^2.1.10",
+    "next": "14.0.4",
+    "react": "^18",
+    "react-dom": "^18",
+    "react-native-svg": "^13.4.0",
+    "react-native-web": "^0.19.9"
+  },
+  "devDependencies": {
+    "@storybook/addon-essentials": "^7.6.5",
+    "@storybook/addon-interactions": "^7.6.5",
+    "@storybook/addon-links": "^7.6.5",
+    "@storybook/addon-onboarding": "^1.0.10",
+    "@storybook/blocks": "^7.6.5",
+    "@storybook/nextjs": "^7.6.5",
+    "@storybook/react": "^7.6.5",
+    "@storybook/test": "^7.6.5",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "storybook": "^7.6.5",
+    "typescript": "^5"
+  }
+}

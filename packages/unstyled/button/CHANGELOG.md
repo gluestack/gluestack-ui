@@ -1,5 +1,11 @@
 # @gluestack-ui/button
 
+## 0.1.34
+
+### Patch Changes
+
+- Added support of functional children with hover, active state
+
 ## 0.1.25
 
 ### Patch Changes
