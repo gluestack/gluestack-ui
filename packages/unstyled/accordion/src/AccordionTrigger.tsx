@@ -3,6 +3,7 @@ import { AccordionItemContext } from './Context';
 import { useHover, usePress } from '@react-native-aria/interactions';
 import { useFocusRing, useFocus } from '@react-native-aria/focus';
 import { composeEventHandlers } from '@gluestack-ui/utils';
+import { Platform } from 'react-native';
 
 export const AccordionTrigger = (StyledAccordionTrigger: any) =>
   forwardRef(
@@ -35,7 +36,7 @@ export const AccordionTrigger = (StyledAccordionTrigger: any) =>
       return (
         <StyledAccordionTrigger
           accessible={true}
-          accessibilityLabel={titleText}
+          aria-label={Platform.OS === 'android' ? titleText : undefined}
           ref={ref}
           {...props}
           {...buttonProps}

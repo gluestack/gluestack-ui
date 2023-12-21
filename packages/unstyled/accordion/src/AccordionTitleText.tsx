@@ -16,7 +16,9 @@ export const AccordionTitleText = (StyledAccordionTitleText: any) =>
       const { setTitleText } = useContext(AccordionItemContext);
 
       useEffect(() => {
-        setTitleText(children);
+        if (typeof children === 'string') {
+          setTitleText(children);
+        }
       }, [children, setTitleText]);
 
       return (
