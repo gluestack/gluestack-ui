@@ -1,6 +1,6 @@
 {
   "name": "@gluestack-ui/nativewind",
-  "version": "0.0.1-alpha.0",
+  "version": "0.0.1-alpha.1",
   "main": "lib/commonjs/index.js",
   "types": "lib/typescript/index.d.ts",
   "module": "lib/module/index",
@@ -21,7 +21,7 @@
     "nativewind"
   ],
   "scripts": {
-    "prepare": "node scripts/lib/.js",
+    "prepare": "node scripts/build.js",
     "build": "node scripts/build.js",
     "watch": "tsc --watch",
     "test": "echo \"Error: no test specified\" && exit 1",
