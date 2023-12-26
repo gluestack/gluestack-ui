@@ -78,7 +78,7 @@ export class StyleInjector {
         }
 
         const type = styledResolved?.type;
-        const styleTag = styledResolved?.componentHash;
+        const styleTag = styledResolved?.meta?.cssId;
         const cssRuleset = `${styledResolved?.meta?.cssRuleset}`;
 
         if (!toBeInjected[type]) {
@@ -120,7 +120,7 @@ export class StyleInjector {
       this.#toBeInjectedIdsArray.push(styledResolved.meta.cssId);
 
       const type = styledResolved?.type;
-      const styleTag = styledResolved?.componentHash;
+      const styleTag = styledResolved?.meta?.cssId;
       const cssRuleset = styledResolved?.meta?.cssRuleset;
 
       if (!toBeInjected[type]) {
