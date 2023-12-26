@@ -1,6 +1,4 @@
 import { SectionList } from '../../SectionList';
-import { styled } from '@gluestack-style/react';
+import { styled } from 'nativewind';
 
-export default styled(SectionList, {}, {
-  componentName: 'ActionsheetSectionList',
-} as const);
+export default styled(SectionList);

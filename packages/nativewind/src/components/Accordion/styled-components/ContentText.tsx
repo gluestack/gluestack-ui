@@ -1,7 +1,4 @@
-import { styled } from '@gluestack-style/react';
+import { styled } from 'nativewind';
 import { Text } from 'react-native';
 
-export default styled(Text, {}, {
-  componentName: 'AccordionContentText',
-  ancestorStyle: ['_contentText'],
-} as const);
+export default styled(Text);

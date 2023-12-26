@@ -1,7 +1,4 @@
-import { styled } from '@gluestack-style/react';
+import { styled } from 'nativewind';
 import { View } from 'react-native';
 
-export default styled(View, {}, {
-  componentName: 'Toast',
-  descendantStyle: ['_icon', '_title', '_description'],
-} as const);
+export default styled(View);

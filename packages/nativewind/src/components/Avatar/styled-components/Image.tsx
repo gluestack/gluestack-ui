@@ -1,7 +1,4 @@
 import { Image } from '../../Image';
-import { styled } from '@gluestack-style/react';
+import { styled } from 'nativewind';
 
-export default styled(Image, {}, {
-  componentName: 'AvatarImage',
-  ancestorStyle: ['_image'],
-} as const);
+export default styled(Image);

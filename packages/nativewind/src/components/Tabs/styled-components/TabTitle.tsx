@@ -1,7 +1,4 @@
-import { styled } from '@gluestack-style/react';
+import { styled } from 'nativewind';
 import { Text } from 'react-native';
 
-export default styled(Text, {}, {
-  componentName: 'TabsTabTitle',
-  ancestorStyle: ['_title'],
-} as const);
+export default styled(Text);

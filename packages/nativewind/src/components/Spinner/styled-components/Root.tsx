@@ -1,17 +1,4 @@
-// @ts-nocheck
-import { styled } from '@gluestack-style/react';
+import { styled } from 'nativewind';
 import { ActivityIndicator } from 'react-native';
 
-export default styled(
-  ActivityIndicator,
-  {},
-  {
-    componentName: 'Spinner',
-    resolveProps: ['color'],
-  } as const,
-  {
-    propertyTokenMap: {
-      size: 'size',
-    },
-  }
-);
+export default styled(ActivityIndicator);

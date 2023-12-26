@@ -1,7 +1,4 @@
 import { Text } from '../../Text';
-import { styled } from '@gluestack-style/react';
+import { styled } from 'nativewind';
 
-export const Label = styled(Text, {}, {
-  componentName: 'MenuLabel',
-  ancestorStyle: ['_text'],
-} as const);
+export const Label = styled(Text);

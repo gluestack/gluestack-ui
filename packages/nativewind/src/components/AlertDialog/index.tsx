@@ -1,4 +1,3 @@
-import { AnimatePresence } from '@gluestack-style/animation-resolver';
 import { createAlertDialog } from '@gluestack-ui/alert-dialog';
 import {
   Root,
@@ -19,7 +18,7 @@ const AccessibleAlertDialog = createAlertDialog({
   Body,
   Backdrop,
   //@ts-ignore
-  AnimatePresence: AnimatePresence,
+  AnimatePresence: null,
 });
 
 type IAlertDialog = typeof AccessibleAlertDialog;

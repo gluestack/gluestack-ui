@@ -1,6 +1,3 @@
-import { styled } from '@gluestack-style/react';
+import { styled } from 'nativewind';
 import { Pressable } from 'react-native';
-export const Item = styled(Pressable, {}, {
-  componentName: 'MenuItem',
-  descendantStyle: ['_text'],
-} as const);
+export const Item = styled(Pressable);

@@ -1,7 +1,4 @@
-import { styled } from '@gluestack-style/react';
+import { styled } from 'nativewind';
 import { Pressable } from 'react-native';
 
-export default styled(Pressable, {}, {
-  componentName: 'InputSlot',
-  descendantStyle: ['_icon'],
-} as const);
+export default styled(Pressable);

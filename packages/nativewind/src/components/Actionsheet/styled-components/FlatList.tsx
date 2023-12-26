@@ -1,6 +1,4 @@
 import { FlatList } from '../../FlatList';
-import { styled } from '@gluestack-style/react';
+import { styled } from 'nativewind';
 
-export default styled(FlatList, {}, {
-  componentName: 'ActionsheetFlatList',
-} as const);
+export default styled(FlatList);

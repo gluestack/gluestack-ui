@@ -1,7 +1,4 @@
-import { styled } from '@gluestack-style/react';
+import { styled } from 'nativewind';
 import { Pressable } from 'react-native';
 
-export default styled(Pressable, {}, {
-  descendantStyle: ['_text', '_icon'],
-  componentName: 'ActionsheetItem',
-} as const);
+export default styled(Pressable);

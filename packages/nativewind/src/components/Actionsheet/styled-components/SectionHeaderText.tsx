@@ -1,7 +1,4 @@
 import { Heading } from '../../Heading';
-import { styled } from '@gluestack-style/react';
+import { styled } from 'nativewind';
 
-export default styled(Heading, {}, {
-  componentName: 'ActionsheetSectionHeaderText',
-  ancestorStyle: ['_sectionHeaderText'],
-} as const);
+export default styled(Heading);

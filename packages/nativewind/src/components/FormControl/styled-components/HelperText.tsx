@@ -1,7 +1,4 @@
-import { styled } from '@gluestack-style/react';
+import { styled } from 'nativewind';
 import { Text } from '../../Text';
 
-export default styled(Text, {}, {
-  componentName: 'FormControlHelperText',
-  ancestorStyle: ['_helperText'],
-} as const);
+export default styled(Text);

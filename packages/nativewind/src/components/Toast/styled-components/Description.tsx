@@ -1,7 +1,4 @@
 import { Text } from '../../Text';
-import { styled } from '@gluestack-style/react';
+import { styled } from 'nativewind';
 
-export default styled(Text, {}, {
-  componentName: 'ToastDescription',
-  ancestorStyle: ['_description'],
-} as const);
+export default styled(Text);

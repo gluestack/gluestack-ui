@@ -5,7 +5,6 @@ import {
   AnimationWrapper,
 } from './styled-components';
 import { createToast, createToastHook } from '@gluestack-ui/toast';
-import { AnimatePresence } from '@gluestack-style/animation-resolver';
 export const useToast = createToastHook(AnimationWrapper, AnimatePresence);
 
 export const Toast = createToast({

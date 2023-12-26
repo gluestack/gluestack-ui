@@ -1,6 +1,4 @@
 import { ScrollView } from 'react-native';
-import { styled } from '@gluestack-style/react';
+import { styled } from 'nativewind';
 
-export default styled(ScrollView, {}, {
-  componentName: 'AlertDialogBody',
-} as const);
+export default styled(ScrollView);

@@ -1,6 +1,4 @@
 import { ScrollView } from '../../ScrollView';
-import { styled } from '@gluestack-style/react';
+import { styled } from 'nativewind';
 
-export default styled(ScrollView, {}, {
-  componentName: 'ActionsheetScrollView',
-} as const);
+export default styled(ScrollView);

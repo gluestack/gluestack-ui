@@ -1,7 +1,3 @@
-// import { Text } from '@gluestack-ui/ui';
-import { styled } from '@gluestack-style/react';
+import { styled } from 'nativewind';
 import { Text } from '../../Text';
-export default styled(Text, {}, {
-  componentName: 'FormControlErrorText',
-  ancestorStyle: ['_labelAstrick'],
-} as const);
+export default styled(Text);

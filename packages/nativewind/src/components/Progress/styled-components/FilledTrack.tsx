@@ -1,7 +1,4 @@
-import { styled } from '@gluestack-style/react';
+import { styled } from 'nativewind';
 import { View } from 'react-native';
 
-export default styled(View, {}, {
-  componentName: 'ProgressFilledTrack',
-  ancestorStyle: ['_filledTrack'],
-} as const);
+export default styled(View);

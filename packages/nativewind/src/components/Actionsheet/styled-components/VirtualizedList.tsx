@@ -1,6 +1,4 @@
 import { VirtualizedList } from 'react-native';
-import { styled } from '@gluestack-style/react';
+import { styled } from 'nativewind';
 
-export default styled(VirtualizedList, {}, {
-  componentName: 'ActionsheetVirtualizedList',
-} as const);
+export default styled(VirtualizedList);

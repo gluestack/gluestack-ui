@@ -1,6 +1,4 @@
-import { AnimatedPressable } from '@gluestack-style/animation-resolver';
-import { styled } from '@gluestack-style/react';
+import { Pressable } from 'react-native';
+import { styled } from 'nativewind';
 
-export default styled(AnimatedPressable, {}, {
-  componentName: 'SelectActionsheetBackdrop',
-} as const);
+export default styled(Pressable);

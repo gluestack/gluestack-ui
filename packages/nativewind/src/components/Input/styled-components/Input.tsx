@@ -1,17 +1,4 @@
-import { styled } from '@gluestack-style/react';
+import { styled } from 'nativewind';
 import { TextInput } from 'react-native';
 
-export default styled(
-  TextInput,
-  {},
-  {
-    componentName: 'InputField',
-    ancestorStyle: ['_input'],
-    resolveProps: ['placeholderTextColor'],
-  } as const,
-  {
-    propertyTokenMap: {
-      placeholderTextColor: 'colors',
-    },
-  }
-);
+export default styled(TextInput);

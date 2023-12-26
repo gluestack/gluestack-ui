@@ -1,8 +1,4 @@
-import { styled } from '@gluestack-style/react';
+import { styled } from 'nativewind';
 import { Pressable } from 'react-native';
 
-export default styled(Pressable, {}, {
-  componentName: 'AccordionTrigger',
-  descendantStyle: ['_icon', '_titleText', '_contentText'],
-  ancestorStyle: ['_button'],
-} as const);
+export default styled(Pressable);
