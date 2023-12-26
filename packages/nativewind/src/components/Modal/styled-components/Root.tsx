@@ -1,5 +1,8 @@
 //@ts-nocheck
 import { View } from 'react-native';
-import { styled } from 'nativewind';
+import { styled } from '@gluestack-style/react';
 
-export default styled(View);
+export default styled(View, {}, {
+  componentName: 'Modal',
+  descendantStyle: ['_content'],
+} as const);

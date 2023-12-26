@@ -1,5 +1,5 @@
 import { styled } from '@gluestack-style/react';
-import { StyledIcon } from '../../Icons/styled-components';
+import { View as StyledIcon } from 'react-native';
 
 export default styled(
   StyledIcon,

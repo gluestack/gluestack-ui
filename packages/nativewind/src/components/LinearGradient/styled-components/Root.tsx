@@ -1,4 +1,24 @@
-import { styled } from 'nativewind';
+import { styled } from '@gluestack-style/react';
 import { View } from 'react-native';
 
-export default styled(View);
+export default styled(
+  View,
+  {},
+  {
+    componentName: 'LinearGradient',
+    resolveProps: ['colors'],
+  } as const,
+  {
+    propertyTokenMap: {
+      colors: 'colors',
+    },
+    propertyResolver: {
+      colors: (rawValue: any, resolver: any) => {
+        rawValue.forEach((color: any, index: number) => {
+          rawValue[index] = resolver(color);
+        });
+        return rawValue;
+      },
+    },
+  }
+);

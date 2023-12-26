@@ -1,4 +1,7 @@
-import { styled } from 'nativewind';
-import { View } from 'react-native';
+import { styled } from '@gluestack-style/react';
+import { AnimatedView } from '@gluestack-style/animation-resolver';
 
-export default styled(View);
+export default styled(AnimatedView, {}, {
+  componentName: 'ActionsheetContent',
+  descendantStyle: ['_sectionHeaderBackground'],
+} as const);

@@ -1,4 +1,6 @@
 import { Text } from 'react-native';
-import { styled } from 'nativewind';
+import { styled } from '@gluestack-style/react';
 
-export default styled(Text);
+export default styled(Text, {}, {
+  componentName: 'Text',
+} as const);

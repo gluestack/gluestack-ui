@@ -1,4 +1,6 @@
-import { styled } from 'nativewind';
-import { Pressable } from 'react-native';
+import { styled } from '@gluestack-style/react';
+import { AnimatedPressable } from '@gluestack-style/animation-resolver';
 
-export default styled(Pressable);
+export default styled(AnimatedPressable, {}, {
+  componentName: 'PopoverBackdrop',
+} as const);

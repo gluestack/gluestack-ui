@@ -1,4 +1,12 @@
-import { styled } from 'nativewind';
-import { StyledIcon } from '../../Icons/styled-components';
+import { styled } from '@gluestack-style/react';
+import { View as StyledIcon } from 'react-native';
 
-export default styled(StyledIcon);
+export default styled(
+  StyledIcon,
+  {},
+  {
+    componentName: 'SelectIcon',
+    ancestorStyle: ['_icon'],
+  } as const,
+  {}
+);

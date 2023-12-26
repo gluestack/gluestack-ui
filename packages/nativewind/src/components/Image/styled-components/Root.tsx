@@ -1,4 +1,6 @@
 import { Image } from 'react-native';
-import { styled } from 'nativewind';
+import { styled } from '@gluestack-style/react';
 
-export default styled(Image);
+export default styled(Image, {}, {
+  componentName: 'Image',
+} as const);

@@ -1,3 +1,4 @@
+import { AnimatePresence } from '@gluestack-style/animation-resolver';
 import { createActionsheet } from '@gluestack-ui/actionsheet';
 import {
   Root,
@@ -30,7 +31,7 @@ const AccessibleActionsheet = createActionsheet({
   SectionHeaderText,
   Icon,
   //@ts-ignore
-  AnimatePresence: null,
+  AnimatePresence: AnimatePresence,
 });
 
 type IAccessibleActionsheet = typeof AccessibleActionsheet;
