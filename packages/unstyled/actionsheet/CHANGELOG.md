@@ -1,5 +1,12 @@
 # @gluestack-ui/actionsheet
 
+## 0.2.36
+
+### Patch Changes
+
+- Updated dependencies
+  - @gluestack-ui/hooks@0.1.11
+
 ## 0.2.35
 
 ### Patch Changes

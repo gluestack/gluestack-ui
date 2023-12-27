@@ -1,5 +1,11 @@
 # @gluestack-ui/hooks
 
+## 0.1.11
+
+### Patch Changes
+
+- fix: removed @gluestack-style/react dependency
+
 ## 0.1.8
 
 ### Patch Changes

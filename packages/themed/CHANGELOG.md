@@ -1,5 +1,19 @@
 # @gluestack-ui/themed
 
+## 1.0.33
+
+### Patch Changes
+
+- @gluestack-ui/actionsheet@0.2.36
+- @gluestack-ui/alert-dialog@0.1.24
+- @gluestack-ui/menu@0.2.26
+- @gluestack-ui/modal@0.1.28
+- @gluestack-ui/popover@0.1.28
+- @gluestack-ui/select@0.1.21
+- @gluestack-ui/slider@0.1.19
+- @gluestack-ui/toast@1.0.3
+- @gluestack-ui/tooltip@0.1.25
+
 ## 1.0.32
 
 ### Patch Changes
