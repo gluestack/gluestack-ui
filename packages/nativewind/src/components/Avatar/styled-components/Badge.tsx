@@ -1,7 +1,4 @@
 import { View } from 'react-native';
-import { styled } from '@gluestack-style/react';
+import { styled } from 'nativewind';
 
-export default styled(View, {}, {
-  componentName: 'AvatarBadge',
-  ancestorStyle: ['_badge'],
-} as const);
+export default styled(View);

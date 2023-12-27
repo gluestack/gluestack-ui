@@ -26,6 +26,6 @@
     "skipLibCheck": true,
     "strict": true,
     "target": "esnext",
-    "outDir": "./lib"
+    "outDir": "./build"
   }
 }

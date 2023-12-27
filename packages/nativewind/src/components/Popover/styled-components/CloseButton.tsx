@@ -1,7 +1,4 @@
 import { Pressable } from 'react-native';
-import { styled } from '@gluestack-style/react';
+import { styled } from 'nativewind';
 
-export default styled(Pressable, {}, {
-  componentName: 'PopoverCloseButton',
-  descendantStyle: ['_icon', '_text'],
-} as const);
+export default styled(Pressable);

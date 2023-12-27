@@ -1,33 +1,4 @@
-import { styled } from '@gluestack-style/react';
+import { styled } from 'nativewind';
 import { Switch } from 'react-native';
 
-export default styled(
-  Switch,
-  {},
-  {
-    componentName: 'Switch',
-    resolveProps: [
-      'thumbColor',
-      'trackColor',
-      'activeThumbColor',
-      'ios_backgroundColor',
-    ],
-  } as const,
-  {
-    propertyTokenMap: {
-      trackColor: 'colors',
-      thumbColor: 'colors',
-      activeThumbColor: 'colors',
-      ios_backgroundColor: 'colors',
-    },
-    propertyResolver: {
-      trackColor: (rawValue: any, resolver: any) => {
-        const resolveColor = {
-          true: resolver(rawValue.true),
-          false: resolver(rawValue.false),
-        };
-        return resolveColor;
-      },
-    },
-  }
-);
+export default styled(Switch);

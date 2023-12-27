@@ -1,8 +1,4 @@
-import { styled } from '@gluestack-style/react';
+import { styled } from 'nativewind';
 import { View as StyledIcon } from 'react-native';
 
-export default styled(StyledIcon, {}, {
-  componentName: 'RadioIcon',
-  ancestorStyle: ['_icon'],
-  resolveProps: ['color'],
-} as const);
+export default styled(StyledIcon);

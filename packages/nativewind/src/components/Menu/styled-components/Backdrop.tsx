@@ -1,6 +1,4 @@
 import { Pressable } from 'react-native';
-import { styled } from '@gluestack-style/react';
+import { styled } from 'nativewind';
 
-export const Backdrop = styled(Pressable, {}, {
-  componentName: 'MenuBackdrop',
-} as const);
+export const Backdrop = styled(Pressable);

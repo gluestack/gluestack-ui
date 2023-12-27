@@ -1,7 +1,4 @@
-import { styled } from '@gluestack-style/react';
+import { styled } from 'nativewind';
 import { View as StyledIcon } from 'react-native';
 
-export default styled(StyledIcon, {}, {
-  componentName: 'FormControlErrorIcon',
-  ancestorStyle: ['_icon'],
-} as const);
+export default styled(StyledIcon);

@@ -1,6 +1,4 @@
 import { StatusBar } from 'react-native';
-import { styled } from '@gluestack-style/react';
+import { styled } from 'nativewind';
 
-export default styled(StatusBar, {}, {
-  componentName: 'StatusBar',
-} as const);
+export default styled(StatusBar);

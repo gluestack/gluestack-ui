@@ -1,7 +1,4 @@
-import { AnimatedView } from '@gluestack-style/animation-resolver';
-import { styled } from '@gluestack-style/react';
+import { View } from 'react-native';
+import { styled } from 'nativewind';
 
-export default styled(AnimatedView, {}, {
-  componentName: 'AlertDialogContent',
-  ancestorStyle: ['_content'],
-} as const);
+export default styled(View);

@@ -1,6 +1,4 @@
-import { styled } from '@gluestack-style/react';
-import { AnimatedPressable } from '@gluestack-style/animation-resolver';
+import { styled } from 'nativewind';
+import { Pressable } from 'react-native';
 
-export default styled(AnimatedPressable, {}, {
-  componentName: 'AlertDialogBackdrop',
-} as const);
+export default styled(Pressable);

@@ -1,10 +1,11 @@
 import React from 'react';
 import { createProvider } from '@gluestack-ui/provider';
-import { StyledProvider } from '@gluestack-style/react';
 import { OverlayProvider } from '@gluestack-ui/overlay';
 import { ToastProvider } from '@gluestack-ui/toast';
 
-const GluestackUIStyledProvider = createProvider({ StyledProvider });
+const GluestackUIStyledProvider = createProvider({
+  StyledProvider: React.Fragment,
+});
 
 type GluestackUIProviderProps = Partial<
   React.ComponentProps<typeof GluestackUIStyledProvider>

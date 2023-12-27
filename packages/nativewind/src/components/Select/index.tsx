@@ -23,7 +23,6 @@ import {
   Input as StyledSelectInput,
   Icon as StyledSelectIcon,
 } from './styled-components';
-import { AnimatePresence } from '@gluestack-style/animation-resolver';
 
 const Actionsheet = createActionsheet({
   Root,
@@ -40,7 +39,7 @@ const Actionsheet = createActionsheet({
   SectionList,
   SectionHeaderText,
   // @ts-ignore
-  AnimatePresence: AnimatePresence,
+  AnimatePresence: null,
 });
 
 export const Select = createSelect(
