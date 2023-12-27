@@ -1,5 +1,11 @@
 # @gluestack-ui/accordion
 
+## 0.0.3
+
+### Patch Changes
+
+- removed gluestack-style dependancy
+
 ## 0.0.2
 
 ### Patch Changes
