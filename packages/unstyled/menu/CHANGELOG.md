@@ -1,5 +1,12 @@
 # @gluestack-ui/menu
 
+## 0.2.26
+
+### Patch Changes
+
+- Updated dependencies
+  - @gluestack-ui/hooks@0.1.11
+
 ## 0.2.19
 
 ### Patch Changes
