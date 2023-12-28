@@ -4096,6 +4096,19 @@
     "@react-types/shared" "^3.22.0"
     "@swc/helpers" "^0.5.0"
 
+"@react-aria/checkbox@3.2.1":
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/@react-aria/checkbox/-/checkbox-3.2.1.tgz#493d9d584b4db474645a4565c4f899ee3a579f07"
+  integrity sha512-XnypnlVIfhB3CD7eSjSds8hNkzHgnhu0t48I1D0jYdL1O6tQC4UytPdIqlemRYBVHDloZkWerbjenpHnxhv8iA==
+  dependencies:
+    "@babel/runtime" "^7.6.2"
+    "@react-aria/label" "^3.1.1"
+    "@react-aria/toggle" "^3.1.1"
+    "@react-aria/utils" "^3.3.0"
+    "@react-stately/checkbox" "^3.0.1"
+    "@react-stately/toggle" "^3.2.1"
+    "@react-types/checkbox" "^3.2.1"
+
 "@react-aria/checkbox@^3.12.0":
   version "3.12.0"
   resolved "https://registry.npmjs.org/@react-aria/checkbox/-/checkbox-3.12.0.tgz"
@@ -4111,19 +4124,6 @@
     "@react-types/checkbox" "^3.6.0"
     "@react-types/shared" "^3.22.0"
     "@swc/helpers" "^0.5.0"
-
-"@react-aria/checkbox@^3.2.1":
-  version "3.2.1"
-  resolved "https://registry.npmjs.org/@react-aria/checkbox/-/checkbox-3.2.1.tgz"
-  integrity sha512-XnypnlVIfhB3CD7eSjSds8hNkzHgnhu0t48I1D0jYdL1O6tQC4UytPdIqlemRYBVHDloZkWerbjenpHnxhv8iA==
-  dependencies:
-    "@babel/runtime" "^7.6.2"
-    "@react-aria/label" "^3.1.1"
-    "@react-aria/toggle" "^3.1.1"
-    "@react-aria/utils" "^3.3.0"
-    "@react-stately/checkbox" "^3.0.1"
-    "@react-stately/toggle" "^3.2.1"
-    "@react-types/checkbox" "^3.2.1"
 
 "@react-aria/combobox@^3.0.0-alpha.1":
   version "3.0.0-alpha.1"

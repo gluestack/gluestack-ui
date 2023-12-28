@@ -1,27 +1,9 @@
-import React from 'react';
-
-import { OverlayContainerExample } from './index';
-import { Wrapper } from '../Wrapper';
 import type { ComponentMeta } from '@storybook/react-native';
-import DocsContainer from '@storybook/addon-docs';
+import { MenuExample } from './index';
 
-const MenuExample = () => {
-  return (
-    <Wrapper>
-      <OverlayContainerExample />
-    </Wrapper>
-  );
-};
-
-const OverlaysMeta: ComponentMeta<any> = {
-  title: 'react-native-aria/overlays',
+const OverlayMeta: ComponentMeta<typeof MenuExample> = {
+  title: 'stories/react-native-aria/Overlays',
   component: MenuExample,
-  parameters: {
-    docs: {
-      container: DocsContainer,
-      page: () => <></>,
-    },
-  },
 };
 
-export default OverlaysMeta;
+export default OverlayMeta;

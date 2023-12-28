@@ -1,33 +1,33 @@
-import React from "react";
+/* eslint-disable react-native/no-inline-styles */
+import React from 'react';
 import {
   Pressable,
   View,
   Text,
   StyleSheet,
   TouchableWithoutFeedback,
-  Button,
-} from "react-native";
+} from 'react-native';
 import {
   OverlayContainer,
   useOverlayPosition,
-} from "@react-native-aria/overlays";
-
+} from '@react-native-aria/overlays';
+import { Wrapper } from '../Wrapper';
 function CloseButton(props: any) {
   return (
     <TouchableWithoutFeedback
       onPress={props.onClose}
       accessible={false}
-      importantForAccessibility={"no-hide-descendants"}
+      importantForAccessibility={'no-hide-descendants'}
     >
-      <View style={StyleSheet.absoluteFill}></View>
+      <View style={StyleSheet.absoluteFill} />
     </TouchableWithoutFeedback>
   );
 }
 
-const OverlayContent = ({ targetRef }) => {
-  let overlayRef = React.useRef(null);
+const OverlayContent = ({ targetRef }: any) => {
+  const overlayRef = React.useRef(null);
   const { overlayProps } = useOverlayPosition({
-    placement: "bottom",
+    placement: 'bottom',
     targetRef,
     overlayRef,
   });
@@ -36,7 +36,7 @@ const OverlayContent = ({ targetRef }) => {
     <View
       ref={overlayRef}
       style={{
-        position: "absolute",
+        position: 'absolute',
         ...overlayProps.style,
       }}
     >
@@ -45,29 +45,36 @@ const OverlayContent = ({ targetRef }) => {
   );
 };
 
+export const MenuExample = () => {
+  return (
+    <Wrapper>
+      <OverlayContainerExample />
+    </Wrapper>
+  );
+};
 export function OverlayContainerExample(props: any) {
   const [visible, setVisible] = React.useState(false);
 
-  let ref = React.useRef(null);
+  const ref = React.useRef(null);
 
   return (
-    <View style={{ marginLeft: "auto", marginRight: "auto" }}>
+    <View style={{ marginLeft: 'auto', marginRight: 'auto' }}>
       <Pressable
         ref={ref}
         role="button"
         onPress={() => setVisible(!visible)}
         style={{
-          backgroundColor: "#F3F4F6",
+          backgroundColor: '#F3F4F6',
           maxWidth: 100,
           padding: 10,
-          justifyContent: "center",
-          alignItems: "center",
+          justifyContent: 'center',
+          alignItems: 'center',
         }}
       >
         <Text>Press me</Text>
       </Pressable>
       {visible && (
-        <OverlayContainer>
+        <OverlayContainer {...props}>
           <CloseButton onClose={() => setVisible(!visible)} />
           <OverlayContent targetRef={ref} />
         </OverlayContainer>
