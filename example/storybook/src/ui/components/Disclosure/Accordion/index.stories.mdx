@@ -68,9 +68,9 @@ This is an illustration of a **Themed Accordion** component with default configu
                       How do I place an order?
                     </AccordionTitleText>
                     {isExpanded ? (
-                      <AccordionIcon as={ChevronUpIcon} ml="$3"/>
+                      <AccordionIcon key="chevron-up-icon" as={ChevronUpIcon} ml="$3"/>
                     ) : (
-                      <AccordionIcon as={ChevronDownIcon} ml="$3"/>
+                      <AccordionIcon key="chevron-down-icon" as={ChevronDownIcon} ml="$3"/>
                     )}
                   </>
                 );
@@ -95,9 +95,9 @@ This is an illustration of a **Themed Accordion** component with default configu
                       What payment methods do you accept?
                     </AccordionTitleText>
                     {isExpanded ? (
-                      <AccordionIcon as={ChevronUpIcon} ml="$3"/>
+                      <AccordionIcon key="chevron-up-icon" as={ChevronUpIcon} ml="$3"/>
                     ) : (
-                      <AccordionIcon as={ChevronDownIcon} ml="$3"/>
+                      <AccordionIcon key="chevron-down-icon" as={ChevronDownIcon} ml="$3"/>
                     )}
                   </>
                 );
@@ -508,9 +508,9 @@ function App(){
                   Accordion Item 1
                   </AccordionTitleText>
                   {isExpanded ? (
-                    <AccordionIcon as={ChevronUpIcon} />
+                    <AccordionIcon key="chevron-up-icon" as={ChevronUpIcon} />
                   ) : (
-                    <AccordionIcon as={ChevronDownIcon} />
+                    <AccordionIcon key="chevron-down-icon" as={ChevronDownIcon} />
                   )}
                 </>
               );
@@ -542,9 +542,9 @@ function App(){
                   Accordion Item 2
                   </AccordionTitleText>
                   {isExpanded ? (
-                    <AccordionIcon as={ChevronUpIcon} />
+                    <AccordionIcon key="chevron-up-icon" as={ChevronUpIcon} />
                   ) : (
-                    <AccordionIcon as={ChevronDownIcon} />
+                    <AccordionIcon key="chevron-down-icon" as={ChevronDownIcon} />
                   )}
                 </>
               );
@@ -573,9 +573,9 @@ function App(){
                   Accordion Item 3
                   </AccordionTitleText>
                   {isExpanded ? (
-                    <AccordionIcon as={ChevronUpIcon} />
+                    <AccordionIcon key="chevron-up-icon" as={ChevronUpIcon} />
                   ) : (
-                    <AccordionIcon as={ChevronDownIcon} />
+                    <AccordionIcon key="chevron-down-icon" as={ChevronDownIcon} />
                   )}
                 </>
               );
