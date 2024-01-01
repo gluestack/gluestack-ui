@@ -56,6 +56,7 @@
     "@gluestack-ui/provider": "0.1.10",
     "@gluestack-ui/radio": "0.1.23",
     "@gluestack-ui/select": "0.1.21",
+    "@gluestack-ui/skeleton": "0.1.0",
     "@gluestack-ui/slider": "0.1.19",
     "@gluestack-ui/spinner": "0.1.14",
     "@gluestack-ui/switch": "0.1.17",
