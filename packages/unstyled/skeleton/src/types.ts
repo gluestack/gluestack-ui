@@ -13,10 +13,6 @@ export interface ISkeletonProps extends ViewProps {
    * The animation speed in seconds
    */
   speed?: number;
-  /**
-   * Sizes for Skeleton
-   */
-  size?: string;
 }
 
 export interface ISkeletonTextProps extends ViewProps {

@@ -12,7 +12,7 @@ npx install @gluestack-ui/skeleton
 
 ## Usage
 
-Default styling of all these components can be found in the components/skeleton file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/main/example/storybook/src/ui-components/Skeleton/styled-components/index.tsx) of the styled Select components.
+Default styling of all these components can be found in the components/skeleton file.
 
 ```jsx
 // import the styles
