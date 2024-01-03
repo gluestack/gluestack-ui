@@ -122,6 +122,7 @@ export function sxToSXResolved(
     theme: sx?.theme
       ? Object.keys(sx.theme).reduce((acc, key) => {
           const sxResolved = sxToSXResolved(
+            //@ts-ignore
             sx.theme[key],
             [...path, 'theme', key],
             { ...meta, theme: meta.theme ? `${meta.theme}.${key}` : key },
@@ -129,6 +130,7 @@ export function sxToSXResolved(
             shouldResolve
           );
           if (sxResolved?.styledValueResolvedWithMeta) {
+            //@ts-ignore
             sxResolved.styledValueResolvedWithMeta.meta.theme = meta.theme
               ? `${meta.theme}.${key}`
               : key;

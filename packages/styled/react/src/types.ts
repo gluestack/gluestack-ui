@@ -641,6 +641,7 @@ export type VerbosedSX = {
   queries?: Array<QueryType>;
   platform?: { [K in PLATFORMS]?: VerbosedSX };
   colorMode?: { [K in COLORMODES]?: VerbosedSX };
+  theme?: { [key: string]: VerbosedSX };
   state?: { [K in IState]?: VerbosedSX };
   descendants?: { [key: string]: VerbosedSX };
 };
@@ -650,6 +651,7 @@ export type VerbosedSxResolved = {
   queriesResolved: Array<QueryTypeResolved>;
   platform?: { [K in PLATFORMS]?: VerbosedSX };
   colorMode?: { [key: string]: VerbosedSxResolved };
+  theme?: { [key: string]: VerbosedSxResolved };
   state?: { [key: string]: VerbosedSxResolved };
   descendants?: { [key: string]: VerbosedSxResolved };
 };
