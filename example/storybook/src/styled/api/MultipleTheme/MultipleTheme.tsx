@@ -7,18 +7,29 @@ import { Wrapper } from '../../components/Wrapper';
 const Box = styled(
   View,
   {
-    bg: '$blue500',
-    // 'bg': '$bgcolorlight',
-    p: '$10',
-    // ':hover': {
-    //   'bg': '$blue400',
-    //   '.dark': {
-    //     'bg': '$red500',
-    //     '.notmodern': {
-    //       bg: '$purple400',
-    //     },
-    //   },
+    // 'bg': '$pink500',
+    'bg': '$pink900',
+
+    // '.modern': {
+    //   bg: '$blue200',
+    //   p: 200,
     // },
+    // '.dark': {
+    //   bg: '$pink900',
+    //   // p: 200,
+    // },
+    // 'bg': '$bgcolorlight',
+    'p': '$10',
+    ':hover': {
+      bg: '$blue200',
+      // '.dark': {
+      //   bg: '$pink500',
+      //   p: '$20',
+      //   //   '.notmodern': {r
+      //   //     bg: '$purple400',
+      //   //   },
+      // },
+    },
     // '@base': {
     //   // '_light': {
     //   '.dark': {
@@ -28,10 +39,10 @@ const Box = styled(
     // },
     // '@sm': {
     //   // '_light': {
-    //   '.dark': {
-    //     bg: '$pink500',
-    //     p: '$20',
-    //   },
+    // '.dark': {
+    //   bg: 'red',
+    //   p: '$20',
+    // },
     // },
     // },
     // },
@@ -49,22 +60,20 @@ export function MultipleTheme() {
   return (
     <Wrapper>
       <Theme name="dark">
-        <Theme name="notmodern1">
+        <Theme name="modern">
           {/* <Theme name="notmodern">
         <Theme name="modern"> */}
           <Box
             states={{ hover: true }}
-            sx={
-              {
-                // '.dark': {
-                //   bg: '$green500',
-                //   // '.notmodern': {
-                //   //   bg: '$yellow400',
-                //   // },
-                // },
-                // bg: '$bgcolorlight',
-              }
-            }
+            // sx={{
+            //   '.dark': {
+            //     'bg': '$green500',
+            //     '.modern': {
+            //       bg: '$yellow400',
+            //     },
+            //   },
+            //   // bg: '$bgcolorlight',
+            // }}
           ></Box>
         </Theme>
       </Theme>

@@ -1,4 +1,7 @@
-import { StyledValueToCSSObject } from '../resolver';
+import {
+  StyledValueToCSSObject,
+  themeStyledValueToCSSObject,
+} from '../resolver';
 import type { OrderedSXResolved } from '../types';
 import { getCSSIdAndRuleset } from '../updateCSSStyleInOrderedResolved.web';
 import {
@@ -7,7 +10,7 @@ import {
   // addThemeConditionInMeta,
 } from '../utils';
 import { inject } from '../utils/css-injector';
-import { deepClone } from '../utils/cssify/utils/common';
+// import { deepClone } from '../utils/cssify/utils/common';
 export type DeclarationType = 'boot' | 'forwarded';
 export class StyleInjector {
   #globalStyleMap: any;
@@ -168,23 +171,11 @@ export class StyleInjector {
       componentExtendedConfig,
       ignoreKeys
     );
-    componentTheme.themeResolved = {};
-
-    if (componentExtendedConfig?.themes) {
-      Object.keys(componentExtendedConfig?.themes).forEach((key: any) => {
-        const tokens = deepClone(componentExtendedConfig.tokens);
-        componentTheme.themeResolved[key] = StyledValueToCSSObject(
-          theme,
-          {
-            ...componentExtendedConfig,
-            tokens: deepMerge(tokens, componentExtendedConfig.themes[key]),
-          },
-          ignoreKeys
-        );
-      });
-    }
-
-    // console.log(componentTheme, 'Config here');
+    componentTheme.themeResolved = themeStyledValueToCSSObject(
+      theme,
+      componentExtendedConfig,
+      ignoreKeys
+    );
 
     // addThemeConditionInMeta(componentTheme, CONFIG);
     // delete componentTheme.meta.cssRuleset;

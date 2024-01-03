@@ -51,6 +51,7 @@ function convertTokensToCssVariables(currentConfig: any) {
 
       if (typeof variableValue === 'object') {
         // Recursively process nested objects
+
         acc += objectToCssVariables(variableValue, `${prefix}${key}-`);
       } else {
         acc += `${convertToUnicodeString(variableName)}: ${variableValue};\n`;
@@ -64,11 +65,13 @@ function convertTokensToCssVariables(currentConfig: any) {
   const cssVariables = objectToCssVariables(tokens);
   let content = `:root {\n${cssVariables}}`;
 
-  Object.keys(currentConfig.themes).forEach((key) => {
-    const theme = currentConfig.themes[key];
-    const cssVariables = objectToCssVariables(theme);
-    content += `\n\n[data-theme-id=${key}] {\n${cssVariables}}`;
-  });
+  if (currentConfig.themes) {
+    Object.keys(currentConfig.themes).forEach((key) => {
+      const theme = currentConfig.themes[key];
+      const cssVariables = objectToCssVariables(theme);
+      content += `\n\n[data-theme-id=${key}] {\n${cssVariables}}`;
+    });
+  }
 
   return content;
 
@@ -119,6 +122,17 @@ export const StyledProvider: React.FC<{
       config,
       Platform.OS
     );
+
+    if (config?.themes) {
+      Object.keys(config.themes).forEach((key) => {
+        configWithPlatformSpecificUnits.themes[key] =
+          platformSpecificSpaceUnits(
+            //@ts-ignore
+            { tokens: config.themes[key] },
+            Platform.OS
+          ).tokens;
+      });
+    }
 
     return configWithPlatformSpecificUnits;
   }, [config]);
@@ -182,7 +196,7 @@ export const StyledProvider: React.FC<{
 
       // inject css variables
       const cssVariablesDom = document.getElementById('cssVariables');
-      if (!cssVariablesDom) {
+      if (!cssVariablesDom && currentConfig.tokens) {
         const styleElement = document.createElement('style');
         const cssVariables = convertTokensToCssVariables(currentConfig);
         styleElement.innerHTML = cssVariables;

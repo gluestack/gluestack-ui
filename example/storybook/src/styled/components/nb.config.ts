@@ -707,32 +707,30 @@ export const config = createConfig({
     // },
     dark: {
       colors: {
-        blue500: '$colors$green500',
+        blue500: 'red',
+        // pink500: 'green'
+        // pink600: 'yellow',
+        green500: 'purple',
       },
-    },
-    notmodern: {
-      colors: {
-        blue500: 'yellow',
-        purple400: 'green',
-        // mycolor: 'green',
-        // $headerColor: '$colors$blue600',
-        // $textColor: '#ffffff',
-        // $borderColor: '$colors$gray400',
+      space: {
+        '10': 10,
       },
-      // borderWidths: {
-      //   $borderWidth: '$space$0.5',
-      // },
-      // radii: {
-      //   $borderRadius: '$radii$sm',
-      // },
     },
     modern: {
       colors: {
-        // blue500: 'green',
+        // blue500: 'yellow',
+        pink500: 'blue',
+        pink600: 'yellow',
+        pink900: 'yellow',
+        // blue200: 'purple',
+        // purple400: 'green',
         // mycolor: 'green',
         // $headerColor: '$colors$blue600',
         // $textColor: '#ffffff',
         // $borderColor: '$colors$gray400',
+      },
+      space: {
+        '10': 100,
       },
       // borderWidths: {
       //   $borderWidth: '$space$0.5',
@@ -741,6 +739,21 @@ export const config = createConfig({
       //   $borderRadius: '$radii$sm',
       // },
     },
+    // modern: {
+    //   colors: {
+    //     // blue500: 'green',
+    //     // mycolor: 'green',
+    //     // $headerColor: '$colors$blue600',
+    //     // $textColor: '#ffffff',
+    //     // $borderColor: '$colors$gray400',
+    //   },
+    //   // borderWidths: {
+    //   //   $borderWidth: '$space$0.5',
+    //   // },
+    //   // radii: {
+    //   //   $borderRadius: '$radii$sm',
+    //   // },
+    // },
   },
   plugins: [new AnimationResolver(MotionAnimationDriver)],
   components: {

@@ -64,18 +64,19 @@ function isNumeric(str: string) {
   // return /^[-+]?[0-9]*\.?[0-9]+$/.test(str);
 }
 export function resolveStringToken(
-  string: string,
+  stringValue: string,
   config: any,
   tokenScaleMap: any,
   propName: any,
   scale?: any,
-  useResolvedValue = false
+  useResolvedValue = false,
+  deleteIfTokenNotExist: boolean = false
 ) {
   // console.setStartTimeStamp('resolveStringToken');
   let typeofResult = 'string';
   const token_scale = scale ?? tokenScaleMap[propName];
 
-  const splitTokenBySpace = string.split(' ');
+  const splitTokenBySpace = stringValue.split(' ');
 
   const result: any = splitTokenBySpace.map((currentToken) => {
     let splitCurrentToken = currentToken.split('$');
@@ -86,6 +87,7 @@ export function resolveStringToken(
 
     if (splitCurrentToken.length > 1) {
       //
+
       // console.log('>>>>> 22');
       const tokenValue = getObjectProperty(config.tokens, splitCurrentToken);
 
@@ -107,6 +109,12 @@ export function resolveStringToken(
           throw new Error(
             'You cannot use tokens without wrapping the component with StyledProvider. Please wrap the component with a StyledProvider and pass theme config.'
           );
+        }
+
+        if (deleteIfTokenNotExist) {
+          if (!config?.tokens[modifiedTokenScale]) {
+            return '';
+          }
         }
 
         if (
@@ -133,6 +141,10 @@ export function resolveStringToken(
           }
         }
       }
+      if (deleteIfTokenNotExist) {
+        return '';
+      }
+
       return splitCurrentToken[splitCurrentToken.length - 1];
     }
   });
@@ -157,7 +169,8 @@ export const getTokenFromConfig = (
   config: any,
   prop: any,
   value: any,
-  useResolvedValue = false
+  useResolvedValue = false,
+  deleteIfTokenNotExist: boolean = false
 ) => {
   // console.setStartTimeStamp('getTokenFromConfig');
 
@@ -182,7 +195,8 @@ export const getTokenFromConfig = (
           config.propertyTokenMap,
           prop,
           scale,
-          useResolvedValue
+          useResolvedValue,
+          deleteIfTokenNotExist
         )
       );
     } else {
@@ -192,7 +206,8 @@ export const getTokenFromConfig = (
         config.propertyTokenMap,
         prop,
         undefined,
-        useResolvedValue
+        useResolvedValue,
+        deleteIfTokenNotExist
       );
     }
   } else {
@@ -206,7 +221,8 @@ export const getTokenFromConfig = (
             config.propertyTokenMap,
             prop,
             scale,
-            useResolvedValue
+            useResolvedValue,
+            deleteIfTokenNotExist
           );
         } else {
           return value;
@@ -235,13 +251,15 @@ export function getResolvedTokenValueFromConfig(
   _props: any,
   prop: any,
   value: any,
-  useResolvedValue = false
+  useResolvedValue = false,
+  deleteIfTokenNotExist: boolean = false
 ) {
   let resolvedTokenValue = getTokenFromConfig(
     config,
     prop,
     value,
-    useResolvedValue
+    useResolvedValue,
+    deleteIfTokenNotExist
   );
 
   // Special case for token ends with em on mobile
@@ -263,10 +281,10 @@ export function getResolvedTokenValueFromConfig(
 export function resolveTokensFromConfig(
   config: any,
   props: any,
-  useResolvedValue = false
+  useResolvedValue = false,
+  deleteIfTokenNotExist: boolean = false
 ) {
   let newProps: any = {};
-  // console.log('hello here<>>>', useResolvedValue);
 
   Object.keys(props).map((prop: any) => {
     const value = props[prop];
@@ -275,7 +293,8 @@ export function resolveTokensFromConfig(
       props,
       prop,
       value,
-      useResolvedValue
+      useResolvedValue,
+      deleteIfTokenNotExist
     );
   });
 
@@ -285,7 +304,8 @@ export function resolveTokensFromConfig(
 export function resolvedTokenization(
   props: any,
   config: any,
-  ignoreKeys: Set<any> = new Set()
+  ignoreKeys: Set<any> = new Set(),
+  deleteIfTokenNotExist: boolean = false
 ) {
   // console.setStartTimeStamp('resolvedTokenization');
   const aliasedResolvedProps = resolveAliasesFromConfig(
@@ -293,7 +313,13 @@ export function resolvedTokenization(
     props,
     ignoreKeys
   );
-  const newProps = resolveTokensFromConfig(config, aliasedResolvedProps);
+
+  const newProps = resolveTokensFromConfig(
+    config,
+    aliasedResolvedProps,
+    false,
+    deleteIfTokenNotExist
+  );
   // console.setEndTimeStamp('resolvedTokenization');
   return newProps;
 }

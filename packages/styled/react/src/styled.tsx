@@ -987,7 +987,6 @@ export function verboseStyled<P, Variants, ComCon>(
 
     const orderedSXResolved =
       styledResolvedToOrderedSXResolved(sxStyledResolved);
-
     INTERNAL_updateCSSStyleInOrderedResolved(
       orderedSXResolved,
       sxHash,

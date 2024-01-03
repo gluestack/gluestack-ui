@@ -99,13 +99,17 @@ const resolveThemes = (config: any) => {
     Object.keys(theme).forEach((tokenScale: any) => {
       const tokenScaleValue = theme[tokenScale];
       Object.keys(tokenScaleValue).forEach((token: any) => {
-        const tokenValue = resolveStringToken(
-          tokenScaleValue[token],
-          newConfig,
-          tokenScale,
-          ''
-        );
-        tokenScaleValue[token] = tokenValue;
+        if (typeof tokenScaleValue[token] === 'string') {
+          const tokenValue = resolveStringToken(
+            tokenScaleValue[token],
+            newConfig,
+            tokenScale,
+            '',
+            undefined,
+            true
+          );
+          tokenScaleValue[token] = tokenValue;
+        }
       });
     });
     // const tempCONFIG = JSON.parse(JSON.stringify(newConfig));

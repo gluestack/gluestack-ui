@@ -1,7 +1,10 @@
 import type { Path, VerbosedSX, VerbosedSxResolved } from '../types';
 import { resolveTokensFromConfig } from '../utils';
 import { getWeightBaseOnPath } from './getWeightBaseOnPath';
-import { StyledValueToCSSObject } from './StyledValueToCSSObject';
+import {
+  StyledValueToCSSObject,
+  themeStyledValueToCSSObject,
+} from './StyledValueToCSSObject';
 
 export function sxToSXResolved(
   sx: VerbosedSX,
@@ -13,11 +16,17 @@ export function sxToSXResolved(
   const resolvedCSSStyle = shouldResolve
     ? StyledValueToCSSObject(sx?.style, CONFIG)
     : sx?.style;
+  const resolvedThemeCSSStyle = shouldResolve
+    ? themeStyledValueToCSSObject(sx?.style, CONFIG)
+    : sx?.style;
+
+  // console.log(resolvedThemeCSSStyle, '>>>>>@@@@');
 
   // console.log('hello here ***', sx?.style, resolvedCSSStyle);
   const styledValueResolvedWithMeta = {
     original: sx?.style ?? {},
     resolved: resolvedCSSStyle,
+    themeResolved: resolvedThemeCSSStyle,
     meta: {
       ...meta,
       path,

@@ -153,6 +153,7 @@ export function generateStylePropsFromCSSIds(
 
       styleCSSIds.forEach((cssId: any) => {
         const nativeStyle = nativeStyleMap.get(cssId);
+        // console.log(nativeStyle, 'style map here 111');
 
         if (nativeStyle) {
           const queryCondition = nativeStyle?.meta?.queryCondition;
