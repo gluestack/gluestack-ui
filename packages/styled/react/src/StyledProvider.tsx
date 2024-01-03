@@ -22,6 +22,64 @@ export const defaultConfig: {
 
 const defaultContextData: Config = defaultConfig;
 const StyledContext = React.createContext<Config>(defaultContextData);
+export function convertToUnicodeString(inputString: any) {
+  let result = '';
+  if (!inputString) {
+    return result;
+  }
+  for (let i = 0; i < inputString.length; i++) {
+    let currentChar = inputString.charAt(i);
+
+    // Check if the character is a special character (excluding "-" and "_")
+    if (/[^a-zA-Z0-9\-_]/.test(currentChar)) {
+      // Convert the special character to its Unicode representation
+      let unicodeValue = currentChar.charCodeAt(0).toString(16);
+      result += `\\u${'0000'.slice(unicodeValue.length)}${unicodeValue}`;
+    } else {
+      // Keep non-special characters, "-", and "_" as they are
+      result += currentChar;
+    }
+  }
+
+  return result;
+}
+function convertTokensToCssVariables(currentConfig: any) {
+  function objectToCssVariables(obj: any, prefix = '') {
+    return Object.keys(obj).reduce((acc, key) => {
+      const variableName = `--${prefix}${key}`;
+      const variableValue = obj[key];
+
+      if (typeof variableValue === 'object') {
+        // Recursively process nested objects
+        acc += objectToCssVariables(variableValue, `${prefix}${key}-`);
+      } else {
+        acc += `${convertToUnicodeString(variableName)}: ${variableValue};\n`;
+      }
+
+      return acc;
+    }, '');
+  }
+
+  const tokens = currentConfig.tokens;
+  const cssVariables = objectToCssVariables(tokens);
+  let content = `:root {\n${cssVariables}}`;
+
+  Object.keys(currentConfig.themes).forEach((key) => {
+    const theme = currentConfig.themes[key];
+    const cssVariables = objectToCssVariables(theme);
+    content += `\n\n[data-theme-id=${key}] {\n${cssVariables}}`;
+  });
+
+  return content;
+
+  // const cssVariablesBlock = `
+  // :root {
+  //   --colors-red500: blue;
+  // }
+  //   `;
+
+  // return cssVariablesBlock;
+}
 
 const setCurrentColorMode = (inputColorMode: string) => {
   if (inputColorMode) {
@@ -121,6 +179,18 @@ export const StyledProvider: React.FC<{
       if (inlineStyleMap.current.initialStyleInjected) {
         return;
       }
+
+      // inject css variables
+      const cssVariablesDom = document.getElementById('cssVariables');
+      if (!cssVariablesDom) {
+        const styleElement = document.createElement('style');
+        const cssVariables = convertTokensToCssVariables(currentConfig);
+        styleElement.innerHTML = cssVariables;
+        styleElement.id = 'cssVariables';
+
+        document.head.appendChild(styleElement);
+      }
+      // inject css variables end
 
       Object.keys(inlineStyleMap.current).forEach((key: any) => {
         if (key !== 'initialStyleInjected') {

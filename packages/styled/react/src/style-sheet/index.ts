@@ -4,9 +4,10 @@ import { getCSSIdAndRuleset } from '../updateCSSStyleInOrderedResolved.web';
 import {
   deepMerge,
   resolveTokensFromConfig,
-  addThemeConditionInMeta,
+  // addThemeConditionInMeta,
 } from '../utils';
 import { inject } from '../utils/css-injector';
+import { deepClone } from '../utils/cssify/utils/common';
 export type DeclarationType = 'boot' | 'forwarded';
 export class StyleInjector {
   #globalStyleMap: any;
@@ -167,22 +168,35 @@ export class StyleInjector {
       componentExtendedConfig,
       ignoreKeys
     );
-    addThemeConditionInMeta(componentTheme, CONFIG);
+    componentTheme.themeResolved = {};
 
+    if (componentExtendedConfig?.themes) {
+      Object.keys(componentExtendedConfig?.themes).forEach((key: any) => {
+        const tokens = deepClone(componentExtendedConfig.tokens);
+        componentTheme.themeResolved[key] = StyledValueToCSSObject(
+          theme,
+          {
+            ...componentExtendedConfig,
+            tokens: deepMerge(tokens, componentExtendedConfig.themes[key]),
+          },
+          ignoreKeys
+        );
+      });
+    }
+
+    // console.log(componentTheme, 'Config here');
+
+    // addThemeConditionInMeta(componentTheme, CONFIG);
     // delete componentTheme.meta.cssRuleset;
 
     if (componentTheme.meta && componentTheme.meta.queryCondition) {
-      // console.log(
-      //   JSON.parse(JSON.stringify(CONFIG)),
-      //   componentTheme.meta,
-      //   componentTheme.meta.queryCondition
-      // );
-
-      const queryCondition = resolveTokensFromConfig(CONFIG, {
-        condition: componentTheme.meta.queryCondition,
-      })?.condition;
-      // console.log(JSON.parse(JSON.stringify(CONFIG)), queryCondition);
-
+      const queryCondition = resolveTokensFromConfig(
+        CONFIG,
+        {
+          condition: componentTheme.meta.queryCondition,
+        },
+        true
+      )?.condition;
       componentTheme.meta.queryCondition = queryCondition;
     }
 

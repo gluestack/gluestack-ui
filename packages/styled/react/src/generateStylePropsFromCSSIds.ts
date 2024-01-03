@@ -131,9 +131,14 @@ export function generateStylePropsFromCSSIds(
   props: any,
   styleCSSIds: any,
   config: any,
-  activeTheme: any,
+  activeThemes: any,
   componentConfig: any
 ) {
+  function containsAllItems(arr1: any, arr2: any) {
+    // Check if every item in arr2 is included in arr1
+    return arr2.every((item: any) => arr1.includes(item));
+  }
+
   const propsStyles = Array.isArray(props?.style)
     ? props?.style
     : [props?.style];
@@ -145,22 +150,39 @@ export function generateStylePropsFromCSSIds(
   if (styleCSSIds.length > 0) {
     if (Platform.OS !== 'web') {
       const nativeStyleMap = GluestackStyleSheet.getStyleMap();
+
       styleCSSIds.forEach((cssId: any) => {
         const nativeStyle = nativeStyleMap.get(cssId);
 
         if (nativeStyle) {
           const queryCondition = nativeStyle?.meta?.queryCondition;
+          const themeCondition = nativeStyle?.meta?.theme?.split('.') ?? [];
+
           const styleSheet = nativeStyle?.resolved;
-          if (queryCondition) {
+
+          if (queryCondition && themeCondition) {
             if (isValidBreakpoint(config, queryCondition)) {
+              if (containsAllItems(activeThemes, themeCondition)) {
+                styleObj.push(styleSheet);
+              }
+            }
+          } else if (queryCondition) {
+            if (isValidBreakpoint(config, queryCondition)) {
+              styleObj.push(styleSheet);
+            }
+          } else if (themeCondition && activeThemes) {
+            if (containsAllItems(activeThemes, themeCondition)) {
               styleObj.push(styleSheet);
             }
           } else {
             styleObj.push(styleSheet);
           }
-          if (nativeStyle.meta.themeCondition && activeTheme) {
-            styleObj.push({
-              ...nativeStyle.meta.themeCondition[activeTheme],
+
+          if (activeThemes) {
+            activeThemes.forEach((activeTheme: any) => {
+              if (containsAllItems(activeThemes, themeCondition)) {
+                styleObj.push(nativeStyle?.themeResolved?.[activeTheme]);
+              }
             });
           }
         }

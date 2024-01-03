@@ -1058,7 +1058,7 @@ export function verboseStyled<P, Variants, ComCon>(
 
     const styledContext = useStyled();
 
-    const { theme: activeTheme } = useTheme();
+    const { themes: activeThemes } = useTheme();
 
     const ancestorStyleContext = useContext(AncestorStyleContext);
     let incomingComponentProps = {};
@@ -2002,7 +2002,7 @@ export function verboseStyled<P, Variants, ComCon>(
       applyComponentInlineProps,
       styleCSSIds,
       CONFIG,
-      activeTheme,
+      activeThemes,
       componentConfig
     );
 

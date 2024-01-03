@@ -1,4 +1,6 @@
 // import { stableHash } from './stableHash';
+import { Platform } from 'react-native';
+import { convertToUnicodeString } from './StyledProvider';
 import type { Config } from './types';
 
 // --------------------------------- 3. Preparing style map for Css Injection based on precedence --------------------------------------
@@ -29,6 +31,10 @@ export const getObjectProperty = (object: any, keyPath: any) => {
     (baseObj: any, key: any) => baseObj && baseObj[key],
     object
   );
+};
+
+export const getCssVariableValue = (_object: any, _keyPath: any) => {
+  // console.log(keyPath, 'key path here');
 };
 
 export function resolveAliasesFromConfig(
@@ -62,7 +68,8 @@ export function resolveStringToken(
   config: any,
   tokenScaleMap: any,
   propName: any,
-  scale?: any
+  scale?: any,
+  useResolvedValue = false
 ) {
   // console.setStartTimeStamp('resolveStringToken');
   let typeofResult = 'string';
@@ -78,7 +85,12 @@ export function resolveStringToken(
     }
 
     if (splitCurrentToken.length > 1) {
+      //
+      // console.log('>>>>> 22');
       const tokenValue = getObjectProperty(config.tokens, splitCurrentToken);
+
+      // console.log(tokenValue, '.>>>>', currentToken);
+      // const tokenValue = getCssVariableValue(config.tokens, splitCurrentToken);
       typeofResult = typeof tokenValue;
       return tokenValue;
     } else {
@@ -96,14 +108,22 @@ export function resolveStringToken(
             'You cannot use tokens without wrapping the component with StyledProvider. Please wrap the component with a StyledProvider and pass theme config.'
           );
         }
+
         if (
           config?.tokens[modifiedTokenScale] &&
           config?.tokens[modifiedTokenScale].hasOwnProperty(
             splitCurrentToken[0]
           )
         ) {
-          const tokenValue =
+          let tokenValue =
             config?.tokens?.[modifiedTokenScale]?.[splitCurrentToken[0]];
+
+          if (Platform.OS === 'web' && !useResolvedValue) {
+            tokenValue = `var(--${modifiedTokenScale}-${convertToUnicodeString(
+              splitCurrentToken[0]
+            )})`;
+          }
+
           typeofResult = typeof tokenValue;
 
           if (typeof tokenValue !== 'undefined' && tokenValue !== null) {
@@ -133,8 +153,14 @@ export function resolveStringToken(
   }
 }
 
-export const getTokenFromConfig = (config: any, prop: any, value: any) => {
+export const getTokenFromConfig = (
+  config: any,
+  prop: any,
+  value: any,
+  useResolvedValue = false
+) => {
   // console.setStartTimeStamp('getTokenFromConfig');
+
   const aliasTokenType = config.propertyTokenMap[prop];
 
   let IsNegativeToken = false;
@@ -150,10 +176,24 @@ export const getTokenFromConfig = (config: any, prop: any, value: any) => {
     if (config.propertyResolver?.[prop]) {
       let transformer = config.propertyResolver?.[prop];
       token = transformer(value, (value1: any, scale = aliasTokenType) =>
-        resolveStringToken(value1, config, config.propertyTokenMap, prop, scale)
+        resolveStringToken(
+          value1,
+          config,
+          config.propertyTokenMap,
+          prop,
+          scale,
+          useResolvedValue
+        )
       );
     } else {
-      token = resolveStringToken(value, config, config.propertyTokenMap, prop);
+      token = resolveStringToken(
+        value,
+        config,
+        config.propertyTokenMap,
+        prop,
+        undefined,
+        useResolvedValue
+      );
     }
   } else {
     if (config.propertyResolver?.[prop]) {
@@ -165,7 +205,8 @@ export const getTokenFromConfig = (config: any, prop: any, value: any) => {
             config,
             config.propertyTokenMap,
             prop,
-            scale
+            scale,
+            useResolvedValue
           );
         } else {
           return value;
@@ -193,9 +234,15 @@ export function getResolvedTokenValueFromConfig(
   config: any,
   _props: any,
   prop: any,
-  value: any
+  value: any,
+  useResolvedValue = false
 ) {
-  let resolvedTokenValue = getTokenFromConfig(config, prop, value);
+  let resolvedTokenValue = getTokenFromConfig(
+    config,
+    prop,
+    value,
+    useResolvedValue
+  );
 
   // Special case for token ends with em on mobile
   // This will work for lineHeight and letterSpacing
@@ -213,8 +260,13 @@ export function getResolvedTokenValueFromConfig(
   return resolvedTokenValue;
 }
 
-export function resolveTokensFromConfig(config: any, props: any) {
+export function resolveTokensFromConfig(
+  config: any,
+  props: any,
+  useResolvedValue = false
+) {
   let newProps: any = {};
+  // console.log('hello here<>>>', useResolvedValue);
 
   Object.keys(props).map((prop: any) => {
     const value = props[prop];
@@ -222,7 +274,8 @@ export function resolveTokensFromConfig(config: any, props: any) {
       config,
       props,
       prop,
-      value
+      value,
+      useResolvedValue
     );
   });
 

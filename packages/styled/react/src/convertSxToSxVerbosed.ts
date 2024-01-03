@@ -120,8 +120,25 @@ export function resolveStyledPropsRecursively(
   const themeKeys = Object.keys(theme);
 
   themeKeys?.forEach((prop) => {
+    // if (prop === '_dark') {
+    //   prop = '.dark';
+    //   theme[prop] = deepMerge(theme[prop] ?? {}, theme['_dark']);
+    // }
+    // if (prop === '_light') {
+    //   prop = '.light';
+    //   theme[prop] = deepMerge(theme[prop] ?? {}, theme['_light']);
+    // }
+
     if (reservedKeys.state[prop]) {
       path.push(STATE, prop.slice(1));
+      resolveStyledPropsRecursively(theme[prop], path, sxVerbosed, breakpoint);
+      path.pop();
+      path.pop();
+    } else if (prop?.startsWith('.')) {
+      const parentProperty = 'theme';
+      if (parentProperty) {
+        path.push(parentProperty, prop.slice(1));
+      }
       resolveStyledPropsRecursively(theme[prop], path, sxVerbosed, breakpoint);
       path.pop();
       path.pop();

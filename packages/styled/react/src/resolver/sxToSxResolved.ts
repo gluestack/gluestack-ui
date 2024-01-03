@@ -38,9 +38,13 @@ export function sxToSXResolved(
     queriesResolved: sx?.queries
       ? sx.queries.map((query: any, index: any) => {
           const resolvedCondition = shouldResolve
-            ? resolveTokensFromConfig(CONFIG, {
-                condition: query.condition,
-              }).condition
+            ? resolveTokensFromConfig(
+                CONFIG,
+                {
+                  condition: query.condition,
+                },
+                true
+              ).condition
             : query.condition;
 
           const sxResolvedValue = sxToSXResolved(
@@ -99,6 +103,26 @@ export function sxToSXResolved(
 
           if (sxResolved?.styledValueResolvedWithMeta) {
             sxResolved.styledValueResolvedWithMeta.meta.colorMode = key;
+          }
+          return {
+            ...acc,
+            [key]: sxResolved,
+          };
+        }, {})
+      : undefined,
+    theme: sx?.theme
+      ? Object.keys(sx.theme).reduce((acc, key) => {
+          const sxResolved = sxToSXResolved(
+            sx.theme[key],
+            [...path, 'theme', key],
+            { ...meta, theme: meta.theme ? `${meta.theme}.${key}` : key },
+            CONFIG,
+            shouldResolve
+          );
+          if (sxResolved?.styledValueResolvedWithMeta) {
+            sxResolved.styledValueResolvedWithMeta.meta.theme = meta.theme
+              ? `${meta.theme}.${key}`
+              : key;
           }
           return {
             ...acc,
