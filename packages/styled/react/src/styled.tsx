@@ -2006,13 +2006,13 @@ export function verboseStyled<P, Variants, ComCon>(
       componentConfig
     );
 
-    let AsComp: any = React.useRef(
-      resolvedStyleProps.as || (passingProps.as as any) || undefined
-    ).current;
+    // let AsComp: any = React.useRef(
+    //   resolvedStyleProps.as || (passingProps.as as any) || undefined
+    // ).current;
 
-    // const AsComp: any = React.useMemo(() => {
-    //   return resolvedStyleProps.as || (passingProps.as as any) || undefined;
-    // }, [resolvedStyleProps.as]);
+    let AsComp: any = React.useMemo(() => {
+      return resolvedStyleProps.as || (passingProps.as as any) || undefined;
+    }, [resolvedStyleProps.as]);
 
     let resolvedStyleMemo = [passingProps?.style, ...resolvedStyleProps?.style];
     if (Platform.OS === 'web') {
@@ -2067,7 +2067,7 @@ export function verboseStyled<P, Variants, ComCon>(
         Component: Component,
         AsComp: AsComp,
       };
-    }, []);
+    }, [AsComp]);
     let component;
 
     const propsToBePassedInToPlugin =
