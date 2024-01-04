@@ -1,5 +1,12 @@
 # @gluestack-ui/select
 
+## 0.1.21
+
+### Patch Changes
+
+- Updated dependencies
+  - @gluestack-ui/hooks@0.1.11
+
 ## 0.1.14
 
 ### Patch Changes

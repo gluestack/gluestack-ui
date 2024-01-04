@@ -1,5 +1,12 @@
 # @gluestack-ui/tooltip
 
+## 0.1.25
+
+### Patch Changes
+
+- Updated dependencies
+  - @gluestack-ui/hooks@0.1.11
+
 ## 0.1.17
 
 ### Patch Changes
