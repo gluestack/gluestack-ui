@@ -6,6 +6,7 @@ import type { COLORMODES } from './types';
 import { platformSpecificSpaceUnits } from './utils';
 import { createGlobalStylesWeb } from './createGlobalStylesWeb';
 import { createGlobalStyles } from './createGlobalStyles';
+import { injectGlobalCssStyle } from './injectInStyle';
 
 type Config = any;
 let colorModeSet = false;
@@ -51,7 +52,6 @@ function convertTokensToCssVariables(currentConfig: any) {
 
       if (typeof variableValue === 'object') {
         // Recursively process nested objects
-
         acc += objectToCssVariables(variableValue, `${prefix}${key}-`);
       } else {
         acc += `${convertToUnicodeString(variableName)}: ${variableValue};\n`;
@@ -116,7 +116,7 @@ export const StyledProvider: React.FC<{
     initialStyleInjected: false,
   });
   inlineStyleMap.current.initialStyleInjected = false;
-
+  const id = React.useId();
   const currentConfig: any = React.useMemo(() => {
     const configWithPlatformSpecificUnits: any = platformSpecificSpaceUnits(
       config,
@@ -140,6 +140,11 @@ export const StyledProvider: React.FC<{
   if (Platform.OS === 'web' && globalStyles) {
     const globalStyleInjector = createGlobalStylesWeb(globalStyles);
     globalStyleInjector({ ...currentConfig, propertyTokenMap });
+  }
+
+  if (Platform.OS === 'web') {
+    const cssVariables = convertTokensToCssVariables(currentConfig);
+    injectGlobalCssStyle(cssVariables, id);
   }
 
   const currentColorMode = React.useMemo(() => {
@@ -193,18 +198,6 @@ export const StyledProvider: React.FC<{
       if (inlineStyleMap.current.initialStyleInjected) {
         return;
       }
-
-      // inject css variables
-      const cssVariablesDom = document.getElementById('cssVariables');
-      if (!cssVariablesDom && currentConfig.tokens) {
-        const styleElement = document.createElement('style');
-        const cssVariables = convertTokensToCssVariables(currentConfig);
-        styleElement.innerHTML = cssVariables;
-        styleElement.id = 'cssVariables';
-
-        document.head.appendChild(styleElement);
-      }
-      // inject css variables end
 
       Object.keys(inlineStyleMap.current).forEach((key: any) => {
         if (key !== 'initialStyleInjected') {

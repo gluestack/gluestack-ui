@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 import { Theme, styled } from '@gluestack-style/react';
 import { Wrapper } from '../../components/Wrapper';
 
@@ -8,7 +8,7 @@ const Box = styled(
   View,
   {
     // 'bg': '$pink500',
-    'bg': '$pink900',
+    'bg': '$blue500',
 
     // '.modern': {
     //   bg: '$blue200',
@@ -20,16 +20,18 @@ const Box = styled(
     // },
     // 'bg': '$bgcolorlight',
     'p': '$10',
-    ':hover': {
-      bg: '$blue200',
-      // '.dark': {
-      //   bg: '$pink500',
-      //   p: '$20',
-      //   //   '.notmodern': {r
-      //   //     bg: '$purple400',
-      //   //   },
-      // },
-    },
+    '.modern': {},
+
+    // ':hover': {
+    //   bg: '$blue200',
+    //   // '.dark': {
+    //   //   bg: '$pink500',
+    //   //   p: '$20',
+    //   //   //   '.notmodern': {r
+    //   //   //     bg: '$purple400',
+    //   //   //   },
+    //   // },
+    // },
     // '@base': {
     //   // '_light': {
     //   '.dark': {
@@ -55,12 +57,14 @@ const Box = styled(
     componentName: 'MyBox',
   }
 );
+
+const MyText = styled(Text, {});
 export function MultipleTheme() {
   // console.log('>>>>>  component');
   return (
     <Wrapper>
       <Theme name="dark">
-        <Theme name="modern">
+        <Theme name="modern1">
           {/* <Theme name="notmodern">
         <Theme name="modern"> */}
           <Box
@@ -75,6 +79,7 @@ export function MultipleTheme() {
             //   // bg: '$bgcolorlight',
             // }}
           ></Box>
+          <MyText fontFamily="$body">hello</MyText>
         </Theme>
       </Theme>
       {/* <Box

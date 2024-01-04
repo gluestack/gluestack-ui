@@ -90,14 +90,28 @@ export type CreateConfig = {
 
 export type ThemeStyles<IToken> = Partial<{
   [key: string]: {
-    [key in keyof IToken]?: {
-      // @ts-ignore
-      [k in `$${keyof IToken[key]}`]?:  // @ts-ignore
-        | `$${key}$${keyof IToken[key]}`
-        | (String & {});
-    };
+    [key in keyof IToken]?:
+      | {
+          // @ts-ignore
+          [k in `${keyof IToken[key]}`]?:  // @ts-ignore
+            | `$${key}$${keyof IToken[key]}`
+            | (String & {})
+            | number;
+        }
+      | {
+          // @ts-ignore
+          [k in `$${keyof IToken[key]}`]?:  // @ts-ignore
+            | `$${key}$${keyof IToken[key]}`
+            | (String & {})
+            | number;
+        };
+    //& Partial<{ [Key: string]: any }>;
   };
 }>;
+
+// export type ThemeStyles<IToken> = Partial<{
+//   [key: string]: Tokens;
+// }>;
 
 // Generic Creator
 export type GlueStackConfig<

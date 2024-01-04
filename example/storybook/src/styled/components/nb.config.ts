@@ -707,21 +707,22 @@ export const config = createConfig({
     // },
     dark: {
       colors: {
-        blue500: 'red',
+        $blue500: 'red',
+
         // pink500: 'green'
         // pink600: 'yellow',
-        green500: 'purple',
+        // green500: 'purple',
       },
       space: {
-        '10': 10,
+        10: 100,
       },
     },
     modern: {
       colors: {
-        // blue500: 'yellow',
-        pink500: 'blue',
-        pink600: 'yellow',
-        pink900: 'yellow',
+        blue500: 'yellow',
+        // pink500: 'blue',
+        // pink600: 'yellow',
+        // pink900: 'yellow',
         // blue200: 'purple',
         // purple400: 'green',
         // mycolor: 'green',
