@@ -7,27 +7,32 @@ import { Wrapper } from '../../components/Wrapper';
 const Box = styled(
   View,
   {
+    _light: {
+      bg: '$amber500',
+    },
     // 'bg': '$pink500',
-    'bg': '$blue500',
+    bg: '$red500',
 
     // '.modern': {
     //   bg: '$blue200',
     //   p: 200,
     // },
-    '.dark': {
-      'bg': '$pink900',
-      '.modern': {
-        bg: '$green900',
-        // p: 200,
-      },
-      // p: 200,
-    },
-    '.modern': {
-      bg: '$green500',
-      // p: 200,
-    },
+
+    // '.dark': {
+    //   'bg': '$pink900',
+    //   '.modern': {
+    //     bg: '$green900',
+    //     // p: 200,
+    //   },
+    //   // p: 200,
+    // },
+    // '.modern': {
+    //   bg: '$green500',
+    //   // p: 200,
+    // },
+
     // 'bg': '$bgcolorlight',
-    'p': '$10',
+    p: '$10',
     // '@base': {
     //   _light: {
     //     'bg': '$green500',

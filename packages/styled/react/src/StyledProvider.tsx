@@ -1,6 +1,6 @@
 import { get, onChange, set } from './core/colorMode';
 import * as React from 'react';
-import { Platform, View } from 'react-native';
+import { Platform, View, useColorScheme } from 'react-native';
 import { propertyTokenMap } from './propertyTokenMap';
 import type { COLORMODES } from './types';
 import { platformSpecificSpaceUnits } from './utils';
@@ -101,13 +101,13 @@ const setCurrentColorMode = (inputColorMode: string) => {
 };
 export const StyledProvider: React.FC<{
   config: Config;
-  colorMode?: COLORMODES;
+  _colorMode?: COLORMODES;
   children?: React.ReactNode;
   globalStyles?: any;
   _experimentalNestedProvider?: boolean;
 }> = ({
   config,
-  colorMode,
+  _colorMode,
   children,
   globalStyles,
   _experimentalNestedProvider,
@@ -137,6 +137,14 @@ export const StyledProvider: React.FC<{
     return configWithPlatformSpecificUnits;
   }, [config]);
 
+  const colorScheme = useColorScheme();
+
+  React.useEffect(() => {
+    if (colorScheme) {
+      setCurrentColorMode(colorScheme);
+    }
+  }, [colorScheme]);
+
   if (Platform.OS === 'web' && globalStyles) {
     const globalStyleInjector = createGlobalStylesWeb(globalStyles);
     globalStyleInjector({ ...currentConfig, propertyTokenMap });
@@ -147,9 +155,9 @@ export const StyledProvider: React.FC<{
     injectGlobalCssStyle(cssVariables, 'variables');
   }
 
-  const currentColorMode = React.useMemo(() => {
-    return colorMode ?? get() ?? 'light';
-  }, [colorMode]);
+  // const currentColorMode = React.useMemo(() => {
+  //   return colorMode ?? get() ?? 'light';
+  // }, [colorMode]);
 
   const _experimentalNestedProviderRef = React.useRef(null);
   React.useEffect(() => {
@@ -166,7 +174,7 @@ export const StyledProvider: React.FC<{
     // Add gs class name
     if (Platform.OS === 'web') {
       documentElement.classList.add(`gs`);
-      documentElement.classList.add(`gs-${currentColorMode}`);
+      // documentElement.classList.add(`gs-${currentColorMode}`);
     }
 
     onChange((currentColor: string) => {
@@ -175,21 +183,21 @@ export const StyledProvider: React.FC<{
         const documentElement = document.documentElement;
 
         if (Platform.OS === 'web') {
-          if (currentColor === 'dark') {
-            documentElement.classList.remove(`gs-light`);
-          } else {
-            documentElement.classList.remove(`gs-dark`);
-          }
-          documentElement.classList.add(`gs-${currentColor}`);
+          // if (currentColor === 'dark') {
+          //   documentElement.classList.remove(`gs-light`);
+          // } else {
+          //   documentElement.classList.remove(`gs-dark`);
+          // }
+          // documentElement.classList.add(`gs-${currentColor}`);
         }
       }
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  React.useEffect(() => {
-    setCurrentColorMode(currentColorMode);
-  }, [currentColorMode]);
+  // React.useEffect(() => {
+  //   setCurrentColorMode(currentColorMode);
+  // }, [currentColorMode]);
 
   React.useLayoutEffect(() => {
     if (Platform.OS === 'web') {
@@ -227,9 +235,9 @@ export const StyledProvider: React.FC<{
     }
   });
   // // Set colormode for the first time
-  if (!colorModeSet) {
-    setCurrentColorMode(currentColorMode);
-  }
+  // if (!colorModeSet) {
+  //   setCurrentColorMode(currentColorMode);
+  // }
 
   const [animationDriverData, setAnimationDriverData] = React.useState();
   const globalStyleMap =

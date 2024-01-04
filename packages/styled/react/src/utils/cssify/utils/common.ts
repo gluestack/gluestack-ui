@@ -139,7 +139,8 @@ const createCssRule = (
   } else if (isColorScheme(colorSchemeQuery) && themeCondition) {
     rule = `${inlineAndStatePrefix}${colorModeRulePrefix} ${themeDataIds} ${dataMediaSelector} ${css}`;
   } else if (isColorScheme(colorSchemeQuery)) {
-    rule = `${inlineAndStatePrefix}${colorModeRulePrefix} ${dataMediaSelector} ${css}`;
+    rule = `${inlineAndStatePrefix}${colorSchemeQuery} {${dataMediaSelector} ${css}}`;
+    // console.log(rule, 'colorModeRulePrefix');
   } else if (themeCondition) {
     rule = `${inlineAndStatePrefix} ${themeDataIds} ${dataMediaSelector} ${css}`;
     // rule = ` \n${themeConditionString}\n ${rule} `;
