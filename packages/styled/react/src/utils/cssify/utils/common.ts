@@ -137,7 +137,7 @@ const createCssRule = (
   } else if (isMedia(mediaQuery)) {
     rule = `${mediaQuery} {${mediaQueryPrefix}${inlineAndStatePrefix} ${dataMediaSelector} ${css}}`;
   } else if (isColorScheme(colorSchemeQuery) && themeCondition) {
-    rule = `${mediaQuery} {${mediaQueryPrefix}${inlineAndStatePrefix}${colorModeRulePrefix} ${themeDataIds} ${dataMediaSelector} ${css}}`;
+    rule = `${inlineAndStatePrefix}${colorModeRulePrefix} ${themeDataIds} ${dataMediaSelector} ${css}`;
   } else if (isColorScheme(colorSchemeQuery)) {
     rule = `${inlineAndStatePrefix}${colorModeRulePrefix} ${dataMediaSelector} ${css}`;
   } else if (themeCondition) {

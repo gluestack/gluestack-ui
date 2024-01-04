@@ -20,7 +20,14 @@ const Box = styled(
     // },
     // 'bg': '$bgcolorlight',
     'p': '$10',
-    '.modern': {},
+    '@base': {
+      _light: {
+        'bg': '$green500',
+        '.dark': {
+          bg: '$yellow900',
+        },
+      },
+    },
 
     // ':hover': {
     //   bg: '$blue200',
