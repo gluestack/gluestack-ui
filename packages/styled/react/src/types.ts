@@ -90,21 +90,13 @@ export type CreateConfig = {
 
 export type ThemeStyles<IToken> = Partial<{
   [key: string]: {
-    [key in keyof IToken]?:
-      | {
-          // @ts-ignore
-          [k in `${keyof IToken[key]}`]?:  // @ts-ignore
-            | `$${key}$${keyof IToken[key]}`
-            | (String & {})
-            | number;
-        }
-      | {
-          // @ts-ignore
-          [k in `$${keyof IToken[key]}`]?:  // @ts-ignore
-            | `$${key}$${keyof IToken[key]}`
-            | (String & {})
-            | number;
-        };
+    [key in keyof IToken]?: {
+      //@ts-ignore
+      [k in `${keyof IToken[key]}`]?:  // @ts-ignore
+        | `$${key}$${keyof IToken[key]}`
+        | (String & {})
+        | number;
+    };
     //& Partial<{ [Key: string]: any }>;
   };
 }>;

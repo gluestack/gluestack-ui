@@ -707,7 +707,7 @@ export const config = createConfig({
     // },
     dark: {
       colors: {
-        $blue500: 'red',
+        blue500: 'red',
 
         // pink500: 'green'
         // pink600: 'yellow',

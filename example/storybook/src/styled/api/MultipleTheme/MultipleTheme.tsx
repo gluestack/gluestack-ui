@@ -14,20 +14,28 @@ const Box = styled(
     //   bg: '$blue200',
     //   p: 200,
     // },
-    // '.dark': {
-    //   bg: '$pink900',
-    //   // p: 200,
-    // },
+    '.dark': {
+      'bg': '$pink900',
+      '.modern': {
+        bg: '$green900',
+        // p: 200,
+      },
+      // p: 200,
+    },
+    '.modern': {
+      bg: '$green500',
+      // p: 200,
+    },
     // 'bg': '$bgcolorlight',
     'p': '$10',
-    '@base': {
-      _light: {
-        'bg': '$green500',
-        '.dark': {
-          bg: '$yellow900',
-        },
-      },
-    },
+    // '@base': {
+    //   _light: {
+    //     'bg': '$green500',
+    //     '.dark': {
+    //       bg: '$yellow900',
+    //     },
+    //   },
+    // },
 
     // ':hover': {
     //   bg: '$blue200',
@@ -71,7 +79,7 @@ export function MultipleTheme() {
   return (
     <Wrapper>
       <Theme name="dark">
-        <Theme name="modern1">
+        <Theme name="modern">
           {/* <Theme name="notmodern">
         <Theme name="modern"> */}
           <Box
