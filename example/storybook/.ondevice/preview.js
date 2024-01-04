@@ -1,14 +1,9 @@
 import { withBackgrounds } from '@storybook/addon-ondevice-backgrounds';
-<<<<<<< HEAD
 import { addParameters } from '@storybook/client-api';
 import { GluestackUIProvider, Box, VStack } from '@gluestack-ui/themed';
 import { config } from '@gluestack-ui/config';
 
 import { useState } from 'react';
-=======
-
-export const decorators = [withBackgrounds];
->>>>>>> source-gluestack-style
 
 export const parameters = {
   backgrounds: {
@@ -26,9 +21,8 @@ export const parameters = {
     },
   },
 };
-<<<<<<< HEAD
 
-import { useDarkMode } from '../src/hooks/useDarkMode';
+import { useDarkMode } from '../src/ui/hooks/useDarkMode';
 import { Platform } from 'react-native';
 
 export const decorators = [
@@ -89,5 +83,3 @@ addParameters({
     },
   },
 });
-=======
->>>>>>> source-gluestack-style
