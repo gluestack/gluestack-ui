@@ -1,5 +1,17 @@
 # @gluestack-style/react
 
+## 1.0.31
+
+### Patch Changes
+
+- fix: as forwarder conditional rendering
+
+## 1.0.30
+
+### Patch Changes
+
+- fix: ascomp issue
+
 ## 1.0.29
 
 ### Patch Changes

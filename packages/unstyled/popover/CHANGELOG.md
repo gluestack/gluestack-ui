@@ -1,5 +1,12 @@
 # @gluestack-ui/popover
 
+## 0.1.28
+
+### Patch Changes
+
+- Updated dependencies
+  - @gluestack-ui/hooks@0.1.11
+
 ## 0.1.21
 
 ### Patch Changes

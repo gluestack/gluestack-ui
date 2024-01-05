@@ -1,5 +1,4 @@
 const path = require('path');
-console.log('herher');
 module.exports = function (api) {
   api.cache(true);
   return {
