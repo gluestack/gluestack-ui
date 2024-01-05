@@ -10,7 +10,6 @@ export const Accordion = createStyle({
   },
   _titleText: {
     color: '$textLight900',
-
     _dark: {
       color: '$textDark50',
     },
@@ -69,6 +68,7 @@ export const Accordion = createStyle({
     },
     variant: {
       filled: {
+        backgroundColor: '$white',
         _item: {
           backgroundColor: '$backgroundLight0',
         },
@@ -81,6 +81,7 @@ export const Accordion = createStyle({
         shadowOpacity: 0.2,
         elevation: 10,
         _dark: {
+          backgroundColor: 'transparent',
           _item: {
             backgroundColor: '$backgroundDark950',
           },
@@ -105,7 +106,7 @@ export const Accordion = createStyle({
   },
   defaultProps: {
     theme: 'light',
-    size: 'sm',
+    size: 'md',
     variant: 'filled',
   },
 });
