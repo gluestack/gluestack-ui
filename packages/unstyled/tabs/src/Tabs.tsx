@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { memo, useState } from 'react';
 import { forwardRef } from 'react';
 import { TabProvider } from './TabProvider';
 import { useControllableState } from '@gluestack-ui/hooks';
@@ -29,10 +29,13 @@ export const Tabs = <StyledTabs,>(
           },
         });
 
+        const [wrapList, setWrapList] = useState(true);
         return (
           <TabProvider
             currentActiveTab={currentActiveTab}
             onChange={setCurrentActiveTab}
+            onLoopChange={setWrapList}
+            loop={wrapList}
           >
             <StyledTabs {...(props as StyledTabs)} ref={ref} />
           </TabProvider>

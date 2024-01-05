@@ -1,53 +1,48 @@
 import React from 'react';
 import {
   Tabs,
-  TabsTabList,
-  TabsTab,
-  TabsTabTitle,
-  TabsTabPanels,
-  TabsTabPanel,
+  TabList,
+  Tab,
+  TabTitle,
+  TabPanels,
+  TabPanel,
   Text,
-  Center,
 } from '@gluestack-ui/themed';
 
 const TabsBasic = () => {
+  const [value, setValue] = React.useState('tab2');
+  const handleChange = (newValue) => {
+    setValue(newValue);
+  };
+
   return (
-    <Tabs w="$full" value="tab1">
-      <TabsTabList>
-        <TabsTab value="tab1">
-          <TabsTabTitle>Tab 1</TabsTabTitle>
-        </TabsTab>
-        <TabsTab value="tab2">
-          <TabsTabTitle>Tab 2</TabsTabTitle>
-        </TabsTab>
-        <TabsTab value="tab3">
-          <TabsTabTitle>Tab 3</TabsTabTitle>
-        </TabsTab>
-      </TabsTabList>
-      <TabsTabPanels mt="$4">
-        <TabsTabPanel value="tab1">
-          <Text>Hello world 1</Text>
-        </TabsTabPanel>
-        <TabsTabPanel value="tab2">
+    <Tabs w="$full" onChange={handleChange} value={value}>
+      <TabList loop={false}>
+        <Tab value="tab1">
+          <TabTitle>Tab 1</TabTitle>
+        </Tab>
+        <Tab value="tab2">
+          <TabTitle>Tab 2</TabTitle>
+        </Tab>
+        <Tab value="tab3">
+          <TabTitle>Tab 3</TabTitle>
+        </Tab>
+      </TabList>
+      <TabPanels mt="$4">
+        <TabPanel value="tab1">
+          <Text>Hello world 1 Hello world 1</Text>
+        </TabPanel>
+        <TabPanel value="tab2">
           <Text>Hello world 2</Text>
-        </TabsTabPanel>
-        <TabsTabPanel value="tab3">
+        </TabPanel>
+        <TabPanel value="tab3">
           <Text>Hello world 3</Text>
-        </TabsTabPanel>
-      </TabsTabPanels>
+        </TabPanel>
+      </TabPanels>
     </Tabs>
   );
 };
 
 export default TabsBasic;
 
-export {
-  Tabs,
-  TabsTabList,
-  TabsTab,
-  TabsTabTitle,
-  TabsTabPanels,
-  TabsTabPanel,
-  Text,
-  Center,
-};
+export { Tabs, TabList, Tab, TabTitle, TabPanels, TabPanel, Text };

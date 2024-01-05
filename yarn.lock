@@ -2965,10 +2965,10 @@
     "@react-native-aria/focus" "^0.2.7"
     react-native-svg "13.4.0"
 
-"@gluestack-ui/tabs@0.1.15-alpha.1":
-  version "0.1.15-alpha.1"
-  resolved "https://registry.yarnpkg.com/@gluestack-ui/tabs/-/tabs-0.1.15-alpha.1.tgz#908ae6b63dc7329cca3f09ecf3891b52346858c9"
-  integrity sha512-HBkxUII0k6U3DSNGOZJ5QJyC75oVBoeuee/65GUtIY7EG9fvFFzSrUC7bLUUzjDx+0UPDyFF/hVOCFOGMFBS4g==
+"@gluestack-ui/tabs@0.1.16-alpha.0":
+  version "0.1.16-alpha.0"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/tabs/-/tabs-0.1.16-alpha.0.tgz#7ef817061bd02bb7e70ad768c888ac0f504fda57"
+  integrity sha512-+qQbIhHqxpGUNlt0UU/X9MA8RbTNZDQ/qqwWHqvDx96TnIk/nlu547ykS/0tfyZf4MZzyqzg6m7si3vzdb1pGQ==
   dependencies:
     "@gluestack-ui/utils" "^0.1.12"
     "@react-native-aria/focus" "^0.2.9"
