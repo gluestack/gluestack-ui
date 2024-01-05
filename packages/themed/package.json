@@ -1,6 +1,6 @@
 {
   "name": "@gluestack-ui/themed",
-  "version": "1.0.33",
+  "version": "1.0.34",
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "module": "build/index",
@@ -32,7 +32,7 @@
     "@expo/html-elements": "latest",
     "@gluestack-style/animation-resolver": "1.0.3",
     "@gluestack-style/legend-motion-animation-driver": "1.0.3",
-    "@gluestack-ui/accordion": "0.0.3",
+    "@gluestack-ui/accordion": "1.0.0",
     "@gluestack-ui/actionsheet": "0.2.36",
     "@gluestack-ui/alert": "0.1.12",
     "@gluestack-ui/alert-dialog": "0.1.24",
