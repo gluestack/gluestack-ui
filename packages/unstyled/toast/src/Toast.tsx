@@ -81,7 +81,6 @@ export const ToastProvider = ({ children }: { children: any }) => {
             ...prev,
             [placement]: [
               ...(prev[placement] ? prev[placement] : []),
-              //@ts-ignore
               { component, id, config: props },
             ],
           };
