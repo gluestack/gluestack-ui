@@ -7,7 +7,7 @@ import { convertToUnicodeString, platformSpecificSpaceUnits } from './utils';
 import { createGlobalStylesWeb } from './createGlobalStylesWeb';
 import { createGlobalStyles } from './createGlobalStyles';
 import { injectGlobalCssStyle } from './injectInStyle';
-import { ThemeContext } from './Theme';
+import { ThemeContext, useTheme } from './Theme';
 
 type Config = any;
 let colorModeSet = false;
@@ -96,6 +96,15 @@ export const StyledProvider: React.FC<{
   const inlineStyleMap: any = React.useRef({
     initialStyleInjected: false,
   });
+
+  const { themes } = useTheme();
+
+  const themeContextValue = React.useMemo(() => {
+    return {
+      themes: [...themes, colorMode],
+    };
+  }, [colorMode, themes]);
+
   inlineStyleMap.current.initialStyleInjected = false;
   // const id = React.useId();
   const currentConfig: any = React.useMemo(() => {
@@ -148,8 +157,11 @@ export const StyledProvider: React.FC<{
     if (Platform.OS === 'web') {
       documentElement.classList.add(`gs`);
 
-      if (colorMode) {
-        documentElement.setAttribute('data-theme-id', currentColorMode);
+      if (currentColorMode) {
+        document.body.setAttribute('data-theme-id', currentColorMode);
+        documentElement.classList.add(`gs-${currentColorMode}`);
+      } else {
+        documentElement.classList.add(`gs-light`);
       }
     }
 
@@ -159,14 +171,15 @@ export const StyledProvider: React.FC<{
         const documentElement = document.documentElement;
 
         if (Platform.OS === 'web') {
-          if (currentColor === 'dark') {
-            if (colorMode) {
-              documentElement.setAttribute('data-theme-id', 'dark');
+          if (currentColor) {
+            if (currentColor === 'dark') {
+              document.body.setAttribute('data-theme-id', 'dark');
+              documentElement.classList.remove(`gs-light`);
+            } else {
+              document.body.setAttribute('data-theme-id', 'light');
+              documentElement.classList.remove(`gs-dark`);
             }
-          } else {
-            if (colorMode) {
-              documentElement.setAttribute('data-theme-id', 'light');
-            }
+            documentElement.classList.add(`gs-${currentColor}`);
           }
         }
       }
@@ -241,18 +254,8 @@ export const StyledProvider: React.FC<{
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentConfig, globalStyleMap, animationDriverData]);
 
-  const ThemeContextValue = React.useMemo(() => {
-    if (colorMode) {
-      return {
-        themes: [colorMode],
-      };
-    } else {
-      return {};
-    }
-  }, [colorMode]);
-
   const providerComponent = (
-    <ThemeContext.Provider value={ThemeContextValue}>
+    <ThemeContext.Provider value={themeContextValue}>
       <StyledContext.Provider value={contextValue}>
         {children}
       </StyledContext.Provider>
