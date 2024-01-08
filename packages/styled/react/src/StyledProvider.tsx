@@ -7,6 +7,7 @@ import { convertToUnicodeString, platformSpecificSpaceUnits } from './utils';
 import { createGlobalStylesWeb } from './createGlobalStylesWeb';
 import { createGlobalStyles } from './createGlobalStyles';
 import { injectGlobalCssStyle } from './injectInStyle';
+import { ThemeContext } from './Theme';
 
 type Config = any;
 let colorModeSet = false;
@@ -64,7 +65,7 @@ function convertTokensToCssVariables(currentConfig: any) {
   // return cssVariablesBlock;
 }
 
-const setCurrentColorMode = (inputColorMode: string) => {
+const setCurrentColorMode = (inputColorMode: string | undefined) => {
   if (inputColorMode) {
     // console.log(get(), '>>>>>>');
     const currentColorMode = get();
@@ -128,7 +129,7 @@ export const StyledProvider: React.FC<{
   }
 
   const currentColorMode = React.useMemo(() => {
-    return colorMode ?? get() ?? 'light';
+    return colorMode;
   }, [colorMode]);
 
   const _experimentalNestedProviderRef = React.useRef(null);
@@ -146,7 +147,10 @@ export const StyledProvider: React.FC<{
     // Add gs class name
     if (Platform.OS === 'web') {
       documentElement.classList.add(`gs`);
-      documentElement.setAttribute('data-theme-id', currentColorMode);
+
+      if (colorMode) {
+        documentElement.setAttribute('data-theme-id', currentColorMode);
+      }
     }
 
     onChange((currentColor: string) => {
@@ -156,9 +160,13 @@ export const StyledProvider: React.FC<{
 
         if (Platform.OS === 'web') {
           if (currentColor === 'dark') {
-            documentElement.setAttribute('data-theme-id', 'dark');
+            if (colorMode) {
+              documentElement.setAttribute('data-theme-id', 'dark');
+            }
           } else {
-            documentElement.setAttribute('data-theme-id', 'light');
+            if (colorMode) {
+              documentElement.setAttribute('data-theme-id', 'light');
+            }
           }
         }
       }
@@ -233,10 +241,22 @@ export const StyledProvider: React.FC<{
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentConfig, globalStyleMap, animationDriverData]);
 
+  const ThemeContextValue = React.useMemo(() => {
+    if (colorMode) {
+      return {
+        themes: [colorMode],
+      };
+    } else {
+      return {};
+    }
+  }, [colorMode]);
+
   const providerComponent = (
-    <StyledContext.Provider value={contextValue}>
-      {children}
-    </StyledContext.Provider>
+    <ThemeContext.Provider value={ThemeContextValue}>
+      <StyledContext.Provider value={contextValue}>
+        {children}
+      </StyledContext.Provider>
+    </ThemeContext.Provider>
   );
 
   if (_experimentalNestedProvider) {

@@ -8,7 +8,7 @@ export const defaultConfig: { themes: Array<string> } = {
 };
 
 const defaultContextData: Config = defaultConfig;
-const ThemeContext = React.createContext<Config>(defaultContextData);
+export const ThemeContext = React.createContext<Config>(defaultContextData);
 // Can be discussed should we provide flex 1 by default or not.
 
 export const Theme = ({
