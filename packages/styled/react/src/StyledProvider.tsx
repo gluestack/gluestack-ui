@@ -115,7 +115,7 @@ export const StyledProvider: React.FC<{
   }, [currentColorMode]);
 
   useSafeLayoutEffect(() => {
-    if (Platform.OS === 'web') {
+    if (Platform.OS === 'web' && typeof window !== 'undefined') {
       const toBeInjectedStyles: any = {};
 
       if (inlineStyleMap.current.initialStyleInjected) {
