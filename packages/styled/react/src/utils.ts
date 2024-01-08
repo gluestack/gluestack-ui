@@ -150,6 +150,7 @@ export function resolveStringToken(
           typeofResult = typeof tokenValue;
 
           if (!useResolvedValue && typeofResult !== 'undefined') {
+            typeofResult = 'string';
             tokenValue = `var(--${modifiedTokenScale}-${convertToUnicodeString(
               splitCurrentToken[0]
             )})`;
@@ -171,7 +172,6 @@ export function resolveStringToken(
   });
 
   let finalResult = result;
-
   // console.setEndTimeStamp('resolveStringToken');
   if (finalResult.length !== 0 && finalResult[0] === '') {
     return undefined;
