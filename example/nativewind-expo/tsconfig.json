@@ -1,0 +1,9 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": true,
+    "paths": {
+      "@gluestack-style/nativewind": ["../../packages/styled/nativewind/src/"]
+    }
+  }
+}
