@@ -90,7 +90,7 @@ export function resolveStringToken(
   tokenScaleMap: any,
   propName: any,
   scale?: any,
-  _useResolvedValue = false,
+  useResolvedValue = false,
   deleteIfTokenNotExist: boolean = false
 ) {
   // console.setStartTimeStamp('resolveStringToken');
@@ -147,9 +147,11 @@ export function resolveStringToken(
           let tokenValue =
             config?.tokens?.[modifiedTokenScale]?.[splitCurrentToken[0]];
 
-          tokenValue = `var(--${modifiedTokenScale}-${convertToUnicodeString(
-            splitCurrentToken[0]
-          )})`;
+          if (!useResolvedValue) {
+            tokenValue = `var(--${modifiedTokenScale}-${convertToUnicodeString(
+              splitCurrentToken[0]
+            )})`;
+          }
 
           typeofResult = typeof tokenValue;
 
