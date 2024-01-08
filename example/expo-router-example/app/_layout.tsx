@@ -52,7 +52,7 @@ function RootLayoutNav() {
   const colorScheme = useColorScheme();
 
   return (
-    <StyledProvider config={config.theme}>
+    <StyledProvider config={config} colorMode="light">
       <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
         <Stack>
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
