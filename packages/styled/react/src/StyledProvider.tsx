@@ -146,7 +146,7 @@ export const StyledProvider: React.FC<{
     // Add gs class name
     if (Platform.OS === 'web') {
       documentElement.classList.add(`gs`);
-      documentElement.classList.add(`gs-${currentColorMode}`);
+      documentElement.setAttribute('data-theme-id', currentColorMode);
     }
 
     onChange((currentColor: string) => {
@@ -156,11 +156,10 @@ export const StyledProvider: React.FC<{
 
         if (Platform.OS === 'web') {
           if (currentColor === 'dark') {
-            documentElement.classList.remove(`gs-light`);
+            documentElement.setAttribute('data-theme-id', 'dark');
           } else {
-            documentElement.classList.remove(`gs-dark`);
+            documentElement.setAttribute('data-theme-id', 'light');
           }
-          documentElement.classList.add(`gs-${currentColor}`);
         }
       }
     });
