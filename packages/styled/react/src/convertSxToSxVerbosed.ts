@@ -129,7 +129,13 @@ export function resolveStyledPropsRecursively(
     //   theme[prop] = deepMerge(theme[prop] ?? {}, theme['_light']);
     // }
 
-    if (reservedKeys.state[prop]) {
+    if (prop === '_dark' || prop === '_light') {
+      // Replace underscore with dot, we'll consider this as a theme
+      path.push('theme', prop.slice(1));
+      resolveStyledPropsRecursively(theme[prop], path, sxVerbosed, breakpoint);
+      path.pop();
+      path.pop();
+    } else if (reservedKeys.state[prop]) {
       path.push(STATE, prop.slice(1));
       resolveStyledPropsRecursively(theme[prop], path, sxVerbosed, breakpoint);
       path.pop();
@@ -283,5 +289,6 @@ export function convertStyledToStyledVerbosed(theme: any) {
 export function convertSxToSxVerbosed(sx: any) {
   if (!sx) return {};
   const sxVerboseTheme = resolveStyledPropsRecursively(sx);
+
   return sxVerboseTheme;
 }
