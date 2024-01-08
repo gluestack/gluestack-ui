@@ -1,5 +1,5 @@
+import { H3 } from '@expo/html-elements';
 import { styled } from '@gluestack-style/react';
-import { View } from 'react-native';
-export default styled(View, {}, {
+export default styled(H3, {}, {
   componentName: 'AccordionHeader',
 } as const);

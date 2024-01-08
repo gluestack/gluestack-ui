@@ -16,7 +16,13 @@ const AccordionRoundedCorners = ({ ...props }: any) => {
     <Accordion {...props} size={'md'} shadowColor="transparent">
       <AccordionItem value="item-1" borderRadius="$lg">
         <AccordionHeader>
-          <AccordionTrigger>
+          <AccordionTrigger
+            sx={{
+              ':focusVisible': {
+                borderRadius: '$lg',
+              },
+            }}
+          >
             {({ isExpanded }: { isExpanded: boolean }) => {
               return (
                 <>
@@ -43,7 +49,13 @@ const AccordionRoundedCorners = ({ ...props }: any) => {
       </AccordionItem>
       <AccordionItem value="item-2" mt="$5" borderRadius="$lg">
         <AccordionHeader>
-          <AccordionTrigger>
+          <AccordionTrigger
+            sx={{
+              ':focusVisible': {
+                borderRadius: '$lg',
+              },
+            }}
+          >
             {({ isExpanded }: { isExpanded: boolean }) => {
               return (
                 <>

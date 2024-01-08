@@ -1,10 +1,11 @@
-import React, { forwardRef, useContext, useMemo } from 'react';
+import React, { forwardRef, useContext, useMemo, useState } from 'react';
 import { AccordionContext, AccordionItemContext } from './Context';
 import { IAccordionItemProps } from './types';
 import { useAccordionItem } from '@react-native-aria/accordion';
 
 export const AccordionItem = <T,>(StyledAccordionItem: any) =>
   forwardRef(({ children, ...props }: T & IAccordionItemProps, ref?: any) => {
+    const [titleText, setTitleText] = useState('');
     const { state, isDisabledAccordion, selectedValues } =
       useContext(AccordionContext);
 
@@ -23,14 +24,17 @@ export const AccordionItem = <T,>(StyledAccordionItem: any) =>
         value,
         buttonProps,
         regionProps,
+        titleText,
+        setTitleText,
       };
     }, [
       isDisabled,
       isDisabledAccordion,
+      isExpanded,
       value,
       buttonProps,
       regionProps,
-      isExpanded,
+      titleText,
     ]);
 
     return (

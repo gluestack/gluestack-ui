@@ -17,6 +17,10 @@ module.exports = function (api) {
                   __dirname,
                   '../../packages/config/src/gluestack-ui.config'
                 ),
+                '@gluestack-ui/accordion': path.join(
+                  __dirname,
+                  '../../packages/unstyled/accordion/src'
+                ),
                 '@gluestack-style/react': path.join(
                   __dirname,
                   '../../packages/styled/react/src'
@@ -36,6 +40,10 @@ module.exports = function (api) {
                 '@react-native-aria/interactions': path.join(
                   __dirname,
                   '../../packages/react-native-aria/interactions/src'
+                ),
+                '@react-native-aria/accordion': path.join(
+                  __dirname,
+                  '../../packages/react-native-aria/accordion/src'
                 ),
                 '@react-native-aria/button': path.join(
                   __dirname,
