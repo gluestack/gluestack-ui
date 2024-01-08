@@ -1072,7 +1072,7 @@ export function verboseStyled<P, Variants, ComCon>(
       ? styledContext.colorMode
       : get();
 
-    if (!styleHashCreated) {
+    if (!styleHashCreated || styledContext._experimentalNestedProvider) {
       CONFIG = {
         ...styledContext.config,
         propertyTokenMap,
