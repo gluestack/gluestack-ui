@@ -24,4 +24,5 @@ export const SelectActionsheetBackdrop = createStyle({
   '_web': {
     cursor: 'default',
   },
+  'pointerEvents': 'auto',
 });

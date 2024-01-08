@@ -27,7 +27,7 @@ import {
 
 # Responsive
 
-**`@gluestack-ui/themed`** components are responsive, once we pass the default [`config`](https://github.com/gluestack/gluestack-ui/blob/main/packages/config/src/gluestack-ui.config.ts) file imported from [**`@gluestack-ui/config`**](https://github.com/gluestack/gluestack-ui/blob/main/packages/config) to `GluetackUIProvider`, were we have defined different **breakpoints** according to which styles can be applied.
+**`@gluestack-ui/themed`** components are responsive, once we pass the default [`config`](https://github.com/gluestack/gluestack-ui/blob/main/packages/config/src/gluestack-ui.config.ts) file imported from [**`@gluestack-ui/config`**](https://github.com/gluestack/gluestack-ui/blob/main/packages/config) to `GluestackUIProvider`, where we have defined different **breakpoints** according to which styles can be applied.
 
 Basic breakpoints defined in `config` imported from **`@gluestack-ui/config`**.
 
@@ -51,18 +51,10 @@ We can apply different styling based on different breakpoints like done in below
       code: `
       <Box justifyContent="center" alignItems="center" h="100%">
         <Box
-          sx={{
-            '@base': {
-              bg: '$red500',
-            },
-            '@md': {
-              bg: '$green500',
-            },
-            '@lg': {
-              bg: '$blue500',
-            },
-          }}
-          alignItems="center"
+        $base-bg="$red500"
+        $md-bg="$green500"
+        $lg-bg="$blue500"
+        alignItems="center"
         >
           <Text>This is a box</Text>
         </Box>

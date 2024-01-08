@@ -1,5 +1,13 @@
 # @gluestack-style/animation-plugin
 
+## 1.0.3
+
+### Patch Changes
+
+- Fixed plugin architecture (PR)[https://github.com/gluestack/gluestack-ui/pull/1490]
+- Updated dependencies
+  - @gluestack-style/react@1.0.27
+
 ## 0.1.7
 
 ### Patch Changes

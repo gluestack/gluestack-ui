@@ -1,5 +1,23 @@
 # @gluestack-ui/config
 
+## 1.0.11
+
+### Patch Changes
+
+- feat: added accrodion component.
+
+## 1.0.10
+
+### Patch Changes
+
+- fix select pointer events
+
+## 1.0.9
+
+### Patch Changes
+
+- fix userselect, select config
+
 ## 1.0.8
 
 ### Patch Changes

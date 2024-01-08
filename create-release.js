@@ -13,6 +13,7 @@ const rl = readline.createInterface({
 });
 const packageNames = [
   'actionsheet',
+  'accordion',
   'alert',
   'alert-dialog',
   'avatar',
@@ -48,6 +49,8 @@ const packageNames = [
   'stack',
   'transitions',
   'react-native-aria',
+  'themed',
+  'config',
 ];
 let response;
 let releaseBranchName;

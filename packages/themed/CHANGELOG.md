@@ -1,5 +1,72 @@
 # @gluestack-ui/themed
 
+## 1.0.34
+
+### Patch Changes
+
+- Updated dependencies
+  - @gluestack-ui/accordion@1.0.0
+
+## 1.0.33
+
+### Patch Changes
+
+- @gluestack-ui/actionsheet@0.2.36
+- @gluestack-ui/alert-dialog@0.1.24
+- @gluestack-ui/menu@0.2.26
+- @gluestack-ui/modal@0.1.28
+- @gluestack-ui/popover@0.1.28
+- @gluestack-ui/select@0.1.21
+- @gluestack-ui/slider@0.1.19
+- @gluestack-ui/toast@1.0.3
+- @gluestack-ui/tooltip@0.1.25
+
+## 1.0.32
+
+### Patch Changes
+
+- Updated dependencies
+  - @gluestack-ui/accordion@0.0.3
+
+## 1.0.31
+
+### Patch Changes
+
+- Updated dependencies
+  - @gluestack-ui/button@0.1.34
+
+## 1.0.30
+
+### Patch Changes
+
+- Updated dependencies
+  - @gluestack-ui/actionsheet@0.2.35
+
+## 1.0.29
+
+### Patch Changes
+
+- fix: actionsheet backdrop click issue native
+
+## 1.0.28
+
+### Patch Changes
+
+- bump animation resolver version
+
+## 1.0.27
+
+### Patch Changes
+
+- Updated dependencies
+  - @gluestack-ui/actionsheet@0.2.33
+
+## 1.0.26
+
+### Patch Changes
+
+- actionsheet version bump
+
 ## 1.0.25
 
 ### Patch Changes

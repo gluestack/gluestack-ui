@@ -1,5 +1,4 @@
 import { setObjectKeyValue } from './../core/utils';
-import { convertSxToSxVerbosed } from '../convertSxToSxVerbosed';
 import { reservedKeys as _reservedKeys } from './styled-system';
 import type { reservedKeyType } from './styled-system';
 
@@ -65,7 +64,10 @@ export const checkAndReturnUtilityProp = (
           propPath: [reservedKeys[reservedKey].key],
           value: propValue,
         };
-      } else if (descendants.includes(reservedKey)) {
+      } else if (
+        Array.isArray(descendants) &&
+        descendants.includes(reservedKey)
+      ) {
         return {
           propPath: [reservedKey],
           value: propValue,
@@ -125,12 +127,8 @@ export const convertUtilityPropsToSX = (
     }
   });
 
-  const sxPropsConvertedUtilityPropsToVerboseSx = convertSxToSxVerbosed(
-    sxPropsConvertedUtilityProps
-  );
-
   return {
-    sxProps: sxPropsConvertedUtilityPropsToVerboseSx,
+    sxProps: sxPropsConvertedUtilityProps,
     mergedProps: ignoredProps,
   };
 };

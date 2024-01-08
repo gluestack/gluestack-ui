@@ -31,14 +31,20 @@ export const getObjectProperty = (object: any, keyPath: any) => {
   );
 };
 
-export function resolveAliasesFromConfig(config: any, props: any) {
+export function resolveAliasesFromConfig(
+  config: any,
+  props: any,
+  ignoreKeys: Set<any> = new Set()
+) {
   const aliasResolvedProps: any = {};
 
   Object.keys(props).map((key) => {
-    if (config?.aliases?.[key]) {
-      aliasResolvedProps[config.aliases?.[key]] = props[key];
-    } else {
-      aliasResolvedProps[key] = props[key];
+    if (!ignoreKeys.has(key)) {
+      if (config?.aliases?.[key]) {
+        aliasResolvedProps[config.aliases?.[key]] = props[key];
+      } else {
+        aliasResolvedProps[key] = props[key];
+      }
     }
   });
   return aliasResolvedProps;
@@ -223,9 +229,17 @@ export function resolveTokensFromConfig(config: any, props: any) {
   return newProps;
 }
 
-export function resolvedTokenization(props: any, config: any) {
+export function resolvedTokenization(
+  props: any,
+  config: any,
+  ignoreKeys: Set<any> = new Set()
+) {
   // console.setStartTimeStamp('resolvedTokenization');
-  const aliasedResolvedProps = resolveAliasesFromConfig(config, props);
+  const aliasedResolvedProps = resolveAliasesFromConfig(
+    config,
+    props,
+    ignoreKeys
+  );
   const newProps = resolveTokensFromConfig(config, aliasedResolvedProps);
   // console.setEndTimeStamp('resolvedTokenization');
   return newProps;
@@ -319,7 +333,7 @@ export const platformSpecificSpaceUnits = (theme: Config, platform: string) => {
     'letterSpacings',
   ];
 
-  const newTheme = { ...theme };
+  let newTheme = { ...theme };
 
   const isWeb = platform === 'web';
   scales.forEach((key) => {
@@ -358,6 +372,12 @@ export const platformSpecificSpaceUnits = (theme: Config, platform: string) => {
       }
     }
     if (newTheme.tokens) {
+      newTheme = {
+        ...newTheme,
+        tokens: {
+          ...newTheme?.tokens,
+        },
+      };
       //@ts-ignore
       newTheme.tokens[key] = newScale;
     }

@@ -1,5 +1,12 @@
 # @gluestack-ui/alert-dialog
 
+## 0.1.24
+
+### Patch Changes
+
+- Updated dependencies
+  - @gluestack-ui/hooks@0.1.11
+
 ## 0.1.16
 
 ### Patch Changes

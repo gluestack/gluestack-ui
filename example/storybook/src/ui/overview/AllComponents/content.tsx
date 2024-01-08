@@ -29,6 +29,7 @@ import FabDemo from './Demos/FabDemo';
 import CenterDemo from './Demos/CenterDemo';
 import AlertDialogDemo from './Demos/AlertDialogDemo';
 import ModalDemo from './Demos/ModalDemo';
+import AccordionDemo from './Demos/AccordionDemo';
 // import MenuDemo from './Demos/MenuDemo';
 // import PopoverDemo from './Demos/PopoverDemo';
 import ActionsheetDemo from './Demos/ActionsheetDemo';
@@ -55,6 +56,11 @@ export const content = [
     title: 'Avatar',
     child: <AvatarDemo />,
     href: '/ui/docs/components/media-and-icons/avatar',
+  },
+  {
+    title: 'Accordion',
+    child: <AccordionDemo />,
+    href: '/ui/docs/components/disclosure/accordion',
   },
 
   {

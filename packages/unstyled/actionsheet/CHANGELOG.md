@@ -1,5 +1,36 @@
 # @gluestack-ui/actionsheet
 
+## 0.2.36
+
+### Patch Changes
+
+- Updated dependencies
+  - @gluestack-ui/hooks@0.1.11
+
+## 0.2.35
+
+### Patch Changes
+
+- actionsheet pointer events
+
+## 0.2.34
+
+### Patch Changes
+
+- pointer events none on animated view
+
+## 0.2.33
+
+### Patch Changes
+
+- fix: dragindicator on web
+
+## 0.2.32
+
+### Patch Changes
+
+- fix: drag indiactor issue on web
+
 ## 0.2.19
 
 ### Patch Changes

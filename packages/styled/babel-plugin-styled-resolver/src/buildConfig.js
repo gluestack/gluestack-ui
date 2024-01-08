@@ -1,40 +1,9 @@
-/* eslint-disable no-console */
-const rollupTypescriptPlugin = require('@rollup/plugin-typescript');
-const rollup = require('rollup');
-const resolve = require('@rollup/plugin-node-resolve');
 const fs = require('fs');
 const path = require('path');
+const esbuild = require('esbuild');
 
-async function buildAndRun(rollupConfig) {
-  try {
-    await cleanup();
-    const bundle = await rollup.rollup(rollupConfig);
-
-    await bundle.write(rollupConfig.output);
-  } catch (err) {
-    console.log(err);
-  }
-}
-
-function cleanup() {
-  return new Promise((resolve, reject) => {
-    if (fs.existsSync(`${process.cwd()}/.gluestack`)) {
-      fs.rm(
-        `${process.cwd()}/.gluestack`,
-        { recursive: true, force: true },
-        (err) => {
-          if (err) {
-            reject(err);
-          } else {
-            resolve(`Removed ${process.cwd()}/.gluestack`);
-          }
-        }
-      );
-    } else {
-      resolve('Preparing for build...');
-    }
-  });
-}
+const OUTPUT_FILE = `./.gluestack/config-${process.ppid}.js`;
+const MOCK_LIBRARY = `./mock-${process.ppid}.js`;
 
 function getConfigPath() {
   const isConfigJSExist = fs.existsSync(
@@ -56,7 +25,7 @@ function getConfigPath() {
   if (isGlueStackUIConfigTSExist) return './gluestack-ui.config.ts';
 }
 
-const globals = `const react = {
+const mockLibrary = `const react = {
   forwardRef: () => {},
   createElement: () => {},
 };
@@ -91,39 +60,46 @@ const gluestackStyleLegendMotionAnimationDriver = {
 };
 const gluestackStyleMotiAnimationDriver = {
 };
+
+module.exports = {
+  ...react,
+  ...reactNative,
+  ...gluestackStyleReact,
+  ...gluestackStyleAnimationResolver,
+  ...gluestackStyleLegendMotionAnimationDriver,
+  ...gluestackStyleMotiAnimationDriver,
+}
 `;
 
-const generateRollupConfig = (config = {}) => {
-  const rollupConfig = {
-    input: getConfigPath(),
-    output: {
-      file: `./.gluestack/config-${process.ppid}.js`, // The bundled JavaScript file
-      format: 'iife', // iife format for Node.js
-      globals: {
-        'react': 'react',
-        'react-native': 'reactNative',
-        '@gluestack-style/react': 'gluestackStyleReact',
-        '@gluestack-style/animation-resolver':
-          'gluestackStyleAnimationResolver',
-        '@gluestack-style/legend-motion-animation-driver':
-          'gluestackStyleLegendMotionAnimationDriver',
-        '@gluestack-style/moti-animation-driver':
-          'gluestackStyleMotiAnimationDriver',
-      },
-      name: 'config',
-      banner: globals,
-      footer: 'module.exports = config;',
+const getEsBuildConfigOptions = (
+  inputDir,
+  outputDir = OUTPUT_FILE,
+  mockedLibraryPath = MOCK_LIBRARY
+) => {
+  const entryPoint = inputDir ?? getConfigPath();
+
+  const esbuildConfigOptions = {
+    entryPoints: [entryPoint],
+    bundle: true,
+    outfile: outputDir,
+    format: 'iife',
+    globalName: 'config',
+    // banner: {
+    //   js: globals,
+    // },
+    alias: {
+      'react-native': mockedLibraryPath,
+      '@gluestack-style/react': mockedLibraryPath,
+      '@gluestack-style/animation-resolver': mockedLibraryPath,
+      '@gluestack-style/legend-motion-animation-driver': mockedLibraryPath,
+      '@gluestack-style/moti-animation-driver': mockedLibraryPath,
     },
-    plugins: [
-      resolve({
-        extensions: ['.js', '.ts', '.tsx', '.jsx', '.json'], // Add your custom file extensions here
-      }),
-      rollupTypescriptPlugin({
-        compilerOptions: { lib: ['es5', 'es6', 'dom'], target: 'es5' },
-        tsconfig: false,
-        // typescript: require('some-fork-of-typescript'),
-      }),
-    ],
+    target: 'node18',
+    footer: {
+      js: 'module.exports = config;',
+    },
+    resolveExtensions: ['.js', '.ts', '.tsx', '.jsx', '.json'],
+    platform: 'node',
     external: [
       'react',
       'react-native',
@@ -131,23 +107,82 @@ const generateRollupConfig = (config = {}) => {
       '@gluestack-style/animation-resolver',
       '@gluestack-style/legend-motion-animation-driver',
       '@gluestack-style/moti-animation-driver',
+      mockedLibraryPath,
     ],
-    ...config,
   };
-  return rollupConfig;
+  return esbuildConfigOptions;
 };
 
-const getConfig = async (configPath) => {
-  const rollupConfig = generateRollupConfig();
+function cleanup() {
+  if (fs.existsSync(`${process.cwd()}/.gluestack`)) {
+    fs.rmSync(
+      `${process.cwd()}/.gluestack`,
+      { recursive: true, force: true },
+      (err) => {
+        if (err) {
+          console.error(err);
+        } else {
+          // eslint-disable-next-line no-console
+          console.log(`Removed ${process.cwd()}/.gluestack`);
+          // eslint-disable-next-line no-console
+          console.log('Preparing for build...');
+        }
+      }
+    );
+  }
+}
+
+function buildConfig(inputDir, outputDir, mockLibraryPath) {
   try {
-    await buildAndRun(rollupConfig);
-    console.log('Config built successfully!');
-    const { config } = require(`${process.cwd()}/.gluestack/config-${
-      process.ppid
-    }.js`);
-    return config;
+    const esbuildConfigOptions = getEsBuildConfigOptions(
+      inputDir,
+      outputDir,
+      mockLibraryPath
+    );
+    esbuild.buildSync(esbuildConfigOptions);
   } catch (err) {
-    console.log('Error: ', rollupConfig, err);
+    console.error(err);
+  }
+}
+
+function buildMockLibrary(mockedLibraryPath) {
+  const gluestackFolderPath = path.join(process.cwd(), './.gluestack');
+  const mockLibraryFullPath = path.resolve(
+    gluestackFolderPath,
+    mockedLibraryPath
+  );
+  if (!fs.existsSync(gluestackFolderPath)) {
+    fs.mkdirSync(gluestackFolderPath);
+  }
+
+  fs.writeFileSync(mockLibraryFullPath, mockLibrary);
+}
+
+function cleanupAndBuildConfig(inputDir, outputDir, mockedLibraryPath) {
+  try {
+    cleanup();
+    buildMockLibrary(mockedLibraryPath);
+    buildConfig(inputDir, outputDir, mockedLibraryPath);
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+const getConfig = (
+  inputDir,
+  outputDir = OUTPUT_FILE,
+  mockLibraryPath = MOCK_LIBRARY
+) => {
+  try {
+    if (inputDir) {
+      cleanupAndBuildConfig(inputDir, outputDir, mockLibraryPath);
+      const configFile = require(`${process.cwd()}/${outputDir}`);
+      return configFile;
+    } else {
+      return {};
+    }
+  } catch (err) {
+    console.error(err);
   }
 };
 

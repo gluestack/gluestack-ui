@@ -1,0 +1,44 @@
+{
+  "name": "@gluestack/storybook-addon",
+  "version": "0.1.2",
+  "description": "Add gluestack ui configuration for Storybook",
+  "license": "MIT",
+  "main": "dist",
+  "types": "dist",
+  "bugs": {
+    "url": "https://github.com/storybookjs/presets/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/storybookjs/presets.git",
+    "directory": "packages/preset-create-react-app"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "rm -rf dist && tsc",
+    "build-watch": "yarn build -w",
+    "build-storybook": "exit 0;",
+    "prepublishOnly": "yarn build"
+  },
+  "dependencies": {
+    "@babel/plugin-transform-classes": "^7.12.1",
+    "@babel/preset-env": "^7.12.7",
+    "@storybook/node-logger": "*",
+    "@types/babel__core": "^7.1.6",
+    "babel-loader": "^8.1.0"
+  },
+  "devDependencies": {
+    "typescript": "^4.1.3"
+  },
+  "peerDependencies": {
+    "@babel/core": "*",
+    "@storybook/node-logger": "*",
+    "@storybook/react": "*",
+    "react-scripts": ">=5.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
