@@ -96,7 +96,7 @@ export const StyledProvider: React.FC<{
     initialStyleInjected: false,
   });
   inlineStyleMap.current.initialStyleInjected = false;
-  const id = React.useId();
+  // const id = React.useId();
   const currentConfig: any = React.useMemo(() => {
     const configWithPlatformSpecificUnits: any = platformSpecificSpaceUnits(
       config,
@@ -124,7 +124,7 @@ export const StyledProvider: React.FC<{
 
   if (Platform.OS === 'web') {
     const cssVariables = convertTokensToCssVariables(currentConfig);
-    injectGlobalCssStyle(cssVariables, id);
+    injectGlobalCssStyle(cssVariables, 'variables');
   }
 
   const currentColorMode = React.useMemo(() => {
