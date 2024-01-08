@@ -9,6 +9,7 @@ export interface ISelectProps {
   selectedValue?: string;
   selectedLabel?: string;
   defaultValue?: string;
+  defaultLabel?: string;
   onValueChange?: (arg: string) => void;
   onClose?: () => void;
   onOpen?: () => void;
