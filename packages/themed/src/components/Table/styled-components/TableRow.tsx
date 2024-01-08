@@ -6,8 +6,8 @@ export default styled(
   {},
   {
     componentName: 'TableRow',
-    descendantStyle: ['_dataText'],
     ancestorStyle: ['_row'],
+    descendantStyle: ['_dataText', '_headerText'],
   } as const,
   {}
 );

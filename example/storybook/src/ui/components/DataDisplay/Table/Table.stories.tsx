@@ -1,5 +1,9 @@
 import type { ComponentMeta } from '@storybook/react-native';
 import Table from './Table';
+import TableSideHeader from './TableSideHeader';
+import TableWithComponents from './TableWithComponents';
+import TableStripped from './TableStripped';
+import TableWithCaption from './TableWithCaption';
 
 const TableMeta: ComponentMeta<typeof Table> = {
   title: 'stories/DATA DISPLAY/Table',
@@ -14,4 +18,10 @@ const TableMeta: ComponentMeta<typeof Table> = {
 
 export default TableMeta;
 
-export { Table };
+export {
+  Table,
+  TableSideHeader,
+  TableWithComponents,
+  TableStripped,
+  TableWithCaption,
+};

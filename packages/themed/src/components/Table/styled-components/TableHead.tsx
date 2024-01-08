@@ -6,8 +6,8 @@ export default styled(
   {},
   {
     componentName: 'TableHead',
-    descendantStyle: ['_headerText'],
     ancestorStyle: ['_head'],
+    descendantStyle: ['_headerText', '_row'],
   } as const,
   {}
 );

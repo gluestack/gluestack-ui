@@ -7,6 +7,7 @@ export default styled(
   {
     componentName: 'TableBody',
     ancestorStyle: ['_body'],
+    descendantStyle: ['_row', '_data'],
   } as const,
   {}
 );

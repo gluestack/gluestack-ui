@@ -8,11 +8,11 @@ import {
   TableData,
   TableHead,
   Box,
-  TableFooter,
   ScrollView,
+  TableCaption,
 } from '@gluestack-ui/themed';
 
-const DividerBasic = ({ ...props }) => {
+const TableWithCaption = ({ ...props }) => {
   return (
     <Box
       bg="#EFEFEF"
@@ -71,13 +71,7 @@ const DividerBasic = ({ ...props }) => {
                 <TableData>+91 43210 98765</TableData>
               </TableRow>
             </TableBody>
-            <TableFooter>
-              <TableRow>
-                <TableHeader>Table Footer</TableHeader>
-                <TableHeader>Table Footer</TableHeader>
-                <TableHeader>Table Footer</TableHeader>
-              </TableRow>
-            </TableFooter>
+            <TableCaption>Showing recent membership details</TableCaption>
           </Table>
         </ScrollView>
       </TableContainer>
@@ -85,9 +79,9 @@ const DividerBasic = ({ ...props }) => {
   );
 };
 
-DividerBasic.description =
+TableWithCaption.description =
   'This is a basic Divider component example.  A divider is a thin line that groups content in lists and layouts.';
 
-export default DividerBasic;
+export default TableWithCaption;
 
 export {};
