@@ -147,13 +147,13 @@ export function resolveStringToken(
           let tokenValue =
             config?.tokens?.[modifiedTokenScale]?.[splitCurrentToken[0]];
 
-          if (!useResolvedValue) {
+          typeofResult = typeof tokenValue;
+
+          if (!useResolvedValue && typeofResult !== 'undefined') {
             tokenValue = `var(--${modifiedTokenScale}-${convertToUnicodeString(
               splitCurrentToken[0]
             )})`;
           }
-
-          typeofResult = typeof tokenValue;
 
           if (typeof tokenValue !== 'undefined' && tokenValue !== null) {
             return tokenValue;
