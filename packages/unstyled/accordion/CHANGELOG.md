@@ -1,5 +1,11 @@
 # @gluestack-ui/accordion
 
+## 1.0.0
+
+### Major Changes
+
+- feat: stable release of accrodion component.
+
 ## 0.0.3
 
 ### Patch Changes
