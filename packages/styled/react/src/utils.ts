@@ -1,7 +1,28 @@
 // import { stableHash } from './stableHash';
-import { Platform } from 'react-native';
-import { convertToUnicodeString } from './StyledProvider';
+// import { Platform } from 'react-native';
 import type { Config } from './types';
+
+export function convertToUnicodeString(inputString: any) {
+  let result = '';
+  if (!inputString) {
+    return result;
+  }
+  for (let i = 0; i < inputString.length; i++) {
+    let currentChar = inputString.charAt(i);
+
+    // Check if the character is a special character (excluding "-" and "_")
+    if (/[^a-zA-Z0-9\-_]/.test(currentChar)) {
+      // Convert the special character to its Unicode representation
+      let unicodeValue = currentChar.charCodeAt(0).toString(16);
+      result += `\\u${'0000'.slice(unicodeValue.length)}${unicodeValue}`;
+    } else {
+      // Keep non-special characters, "-", and "_" as they are
+      result += currentChar;
+    }
+  }
+
+  return result;
+}
 
 // --------------------------------- 3. Preparing style map for Css Injection based on precedence --------------------------------------
 
@@ -69,7 +90,7 @@ export function resolveStringToken(
   tokenScaleMap: any,
   propName: any,
   scale?: any,
-  useResolvedValue = false,
+  _useResolvedValue = false,
   deleteIfTokenNotExist: boolean = false
 ) {
   // console.setStartTimeStamp('resolveStringToken');
@@ -126,11 +147,9 @@ export function resolveStringToken(
           let tokenValue =
             config?.tokens?.[modifiedTokenScale]?.[splitCurrentToken[0]];
 
-          if (Platform.OS === 'web' && !useResolvedValue) {
-            tokenValue = `var(--${modifiedTokenScale}-${convertToUnicodeString(
-              splitCurrentToken[0]
-            )})`;
-          }
+          tokenValue = `var(--${modifiedTokenScale}-${convertToUnicodeString(
+            splitCurrentToken[0]
+          )})`;
 
           typeofResult = typeof tokenValue;
 

@@ -4,14 +4,45 @@ import {
 } from '../resolver';
 import type { OrderedSXResolved } from '../types';
 import { getCSSIdAndRuleset } from '../updateCSSStyleInOrderedResolved.web';
-import {
-  deepMerge,
-  resolveTokensFromConfig,
-  // addThemeConditionInMeta,
-} from '../utils';
+import { deepMerge, resolveTokensFromConfig } from '../utils';
 import { inject } from '../utils/css-injector';
-// import { deepClone } from '../utils/cssify/utils/common';
 export type DeclarationType = 'boot' | 'forwarded';
+
+const cssVariableRegex = /var\(--([^)]+)\)/;
+
+function getTokenValueFromTokenPath(tokenPath: string, tokens: any) {
+  const tokenPathArray = tokenPath.split('-');
+  let tokenValue = tokens;
+  tokenPathArray.forEach((tokenPathKey: string) => {
+    tokenValue = tokenValue?.[tokenPathKey];
+  });
+  return tokenValue;
+}
+
+function extractVariable(input: string) {
+  if (typeof input !== 'string') return null;
+  const match = input.match(cssVariableRegex);
+  return match ? match[1] : null;
+}
+
+function getNativeValuesFromCSSVariables(styleObject: any, CONFIG: any) {
+  const resolvedNativeValues: any = {};
+
+  Object.keys(styleObject).forEach((key) => {
+    const hyphenatedTokenPath = extractVariable(styleObject[key]);
+
+    if (!hyphenatedTokenPath) {
+      resolvedNativeValues[key] = styleObject[key];
+    } else {
+      resolvedNativeValues[key] = getTokenValueFromTokenPath(
+        hyphenatedTokenPath,
+        CONFIG
+      );
+    }
+  });
+  return resolvedNativeValues;
+}
+
 export class StyleInjector {
   #globalStyleMap: any;
   #toBeInjectedIdsArray: Array<string>;
@@ -102,10 +133,28 @@ export class StyleInjector {
           });
         }
 
+        const resolvedNativeValue = getNativeValuesFromCSSVariables(
+          styledResolved?.resolved,
+          CONFIG?.tokens
+        );
+
+        const resolvedThemeNativeValue: any = {};
+
+        Object.keys(styledResolved?.themeResolved).forEach((key) => {
+          const currentThemeStyleObj = styledResolved?.themeResolved[key];
+          const resolvedCurrentThemeNativeValue =
+            getNativeValuesFromCSSVariables(
+              currentThemeStyleObj,
+              CONFIG?.themes?.[key]
+            );
+          resolvedThemeNativeValue[key] = resolvedCurrentThemeNativeValue;
+        });
+
         if (styledResolved) {
           this.#globalStyleMap.set(styledResolved.meta.cssId, {
             ...styledResolved,
-            value: styledResolved?.resolved,
+            resolved: resolvedNativeValue,
+            themeResolved: resolvedThemeNativeValue,
           });
         }
       }
@@ -119,6 +168,8 @@ export class StyleInjector {
 
     orderResolvedStyleMap.forEach((styledResolved: any) => {
       this.#globalStyleMap.set(styledResolved.meta.cssId, styledResolved);
+
+      this.#idCounter++;
 
       this.#toBeInjectedIdsArray.push(styledResolved.meta.cssId);
 

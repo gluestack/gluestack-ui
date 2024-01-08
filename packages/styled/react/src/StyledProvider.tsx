@@ -3,7 +3,7 @@ import * as React from 'react';
 import { Platform, View } from 'react-native';
 import { propertyTokenMap } from './propertyTokenMap';
 import type { COLORMODES } from './types';
-import { platformSpecificSpaceUnits } from './utils';
+import { convertToUnicodeString, platformSpecificSpaceUnits } from './utils';
 import { createGlobalStylesWeb } from './createGlobalStylesWeb';
 import { createGlobalStyles } from './createGlobalStyles';
 import { injectGlobalCssStyle } from './injectInStyle';
@@ -23,27 +23,7 @@ export const defaultConfig: {
 
 const defaultContextData: Config = defaultConfig;
 const StyledContext = React.createContext<Config>(defaultContextData);
-export function convertToUnicodeString(inputString: any) {
-  let result = '';
-  if (!inputString) {
-    return result;
-  }
-  for (let i = 0; i < inputString.length; i++) {
-    let currentChar = inputString.charAt(i);
 
-    // Check if the character is a special character (excluding "-" and "_")
-    if (/[^a-zA-Z0-9\-_]/.test(currentChar)) {
-      // Convert the special character to its Unicode representation
-      let unicodeValue = currentChar.charCodeAt(0).toString(16);
-      result += `\\u${'0000'.slice(unicodeValue.length)}${unicodeValue}`;
-    } else {
-      // Keep non-special characters, "-", and "_" as they are
-      result += currentChar;
-    }
-  }
-
-  return result;
-}
 function convertTokensToCssVariables(currentConfig: any) {
   function objectToCssVariables(obj: any, prefix = '') {
     return Object.keys(obj).reduce((acc, key) => {
