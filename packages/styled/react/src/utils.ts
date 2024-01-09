@@ -1,5 +1,3 @@
-// import { stableHash } from './stableHash';
-// import { Platform } from 'react-native';
 import type { Config } from './types';
 
 export function convertToUnicodeString(inputString: any) {
@@ -8,12 +6,12 @@ export function convertToUnicodeString(inputString: any) {
     return result;
   }
   for (let i = 0; i < inputString.length; i++) {
-    let currentChar = inputString.charAt(i);
+    const currentChar = inputString.charAt(i);
 
     // Check if the character is a special character (excluding "-" and "_")
     if (/[^a-zA-Z0-9\-_]/.test(currentChar)) {
       // Convert the special character to its Unicode representation
-      let unicodeValue = currentChar.charCodeAt(0).toString(16);
+      const unicodeValue = currentChar.charCodeAt(0).toString(16);
       result += `\\u${'0000'.slice(unicodeValue.length)}${unicodeValue}`;
     } else {
       // Keep non-special characters, "-", and "_" as they are
@@ -22,6 +20,66 @@ export function convertToUnicodeString(inputString: any) {
   }
 
   return result;
+}
+
+export function convertFromUnicodeString(inputString: any) {
+  let result = '';
+  if (!inputString) {
+    return result;
+  }
+
+  // Use a regular expression to match Unicode sequences (e.g., \uXXXX)
+  const unicodeRegex = /\\u[0-9a-fA-F]{4}/g;
+
+  // Replace each Unicode sequence with its corresponding character
+  result = inputString.replace(unicodeRegex, (match: any) => {
+    // Extract the Unicode value from the matched sequence
+    const unicodeValue = parseInt(match.substring(2), 16);
+    // Convert the Unicode value to the corresponding character
+    return String.fromCharCode(unicodeValue);
+  });
+
+  return result;
+}
+
+export function convertTokensToCssVariables(currentConfig: any) {
+  function objectToCssVariables(obj: any, prefix = '') {
+    return Object.keys(obj).reduce((acc, key) => {
+      const variableName = `--${prefix}${key}`;
+      const variableValue = obj[key];
+
+      if (typeof variableValue === 'object') {
+        // Recursively process nested objects
+        acc += objectToCssVariables(variableValue, `${prefix}${key}-`);
+      } else {
+        acc += `${convertToUnicodeString(variableName)}: ${variableValue};\n`;
+      }
+
+      return acc;
+    }, '');
+  }
+
+  const tokens = currentConfig.tokens;
+  const cssVariables = objectToCssVariables(tokens);
+  let content = `:root {\n${cssVariables}}`;
+
+  if (currentConfig.themes) {
+    Object.keys(currentConfig.themes).forEach((key) => {
+      const theme = currentConfig.themes[key];
+      const cssVariables = objectToCssVariables(theme);
+      content += `\n\n[data-theme-id=${key}] {\n${cssVariables}}`;
+    });
+  }
+
+  return content;
+
+  // const cssVariablesBlock = `
+  // :root {
+  //   --colors-red500: blue;
+  // }
+  //   `;
+
+  // return cssVariablesBlock;
 }
 
 // --------------------------------- 3. Preparing style map for Css Injection based on precedence --------------------------------------

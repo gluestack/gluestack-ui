@@ -4,7 +4,11 @@ import {
 } from '../resolver';
 import type { OrderedSXResolved } from '../types';
 import { getCSSIdAndRuleset } from '../updateCSSStyleInOrderedResolved.web';
-import { deepMerge, resolveTokensFromConfig } from '../utils';
+import {
+  convertFromUnicodeString,
+  deepMerge,
+  resolveTokensFromConfig,
+} from '../utils';
 import { inject } from '../utils/css-injector';
 export type DeclarationType = 'boot' | 'forwarded';
 
@@ -29,15 +33,15 @@ function getNativeValuesFromCSSVariables(styleObject: any, CONFIG: any) {
   const resolvedNativeValues: any = {};
 
   Object.keys(styleObject).forEach((key) => {
-    const hyphenatedTokenPath = extractVariable(styleObject[key]);
+    const hyphenatedTokenPath = convertFromUnicodeString(
+      extractVariable(styleObject[key])
+    );
 
     if (!hyphenatedTokenPath) {
       resolvedNativeValues[key] = styleObject[key];
     } else {
-      resolvedNativeValues[key] = getTokenValueFromTokenPath(
-        hyphenatedTokenPath,
-        CONFIG
-      );
+      const val = getTokenValueFromTokenPath(hyphenatedTokenPath, CONFIG);
+      resolvedNativeValues[key] = val;
     }
   });
   return resolvedNativeValues;
