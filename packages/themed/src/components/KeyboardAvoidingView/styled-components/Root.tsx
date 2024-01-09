@@ -16,7 +16,7 @@ export default styled(
         const aliases = useStyled()?.config?.aliases;
         const newValue = {} as Record<any, string>;
         Object.entries(rawValue).forEach(([key, value]) => {
-          if (Object.hasOwn(aliases, key)) {
+          if (aliases?.hasOwnProperty(key)) {
             newValue[`${aliases[key]}`] = resolver(
               value,
               //@ts-ignore
