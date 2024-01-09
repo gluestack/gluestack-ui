@@ -25,7 +25,7 @@ export const TableContainer = createStyle({
     lineHeight: '$lg',
     fontStyle: 'normal',
     px: '$6',
-    h: '$16',
+    py: '$5',
     color: '$textLight900',
     _dark: {
       color: '$textDark50',
@@ -34,14 +34,11 @@ export const TableContainer = createStyle({
     _android: {
       textAlignVertical: 'center',
     },
-    _ios: {
-      lineHeight: '60%',
-    },
   },
   _data: {
     width: 219,
     px: '$6',
-    h: '$16',
+    py: '$5',
     fontFamily: '$body',
     fontStyle: 'normal',
     fontSize: '$md',
@@ -53,9 +50,6 @@ export const TableContainer = createStyle({
     },
     _android: {
       textAlignVertical: 'center',
-    },
-    _ios: {
-      lineHeight: '60%',
     },
   },
   _footer: {
