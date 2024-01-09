@@ -9,18 +9,39 @@ export function styled<P>(Component: React.ComponentType<P>, theme: any) {
 
     const { variantProps, restProps } = getVariantProps(props, theme);
 
-    console.log(variantProps, 'variantProps');
-    debugger;
+    if (theme?.baseStyle) {
+      currentClassName.push(theme.baseStyle);
+    }
+
     if (variantProps) {
       Object.keys(variantProps).forEach((variant) => {
         const variantName = variantProps[variant];
+        if (theme?.variants[variant]?.[variantName]) {
+          currentClassName.push(theme.variants[variant][variantName]);
+          delete restProps[variant];
+        }
+      });
+
+      // Check for compound variants
+      theme?.compoundVariants?.forEach((compoundVariant: any) => {
+        if (isValidVariantCondition(compoundVariant.condition, variantProps)) {
+          if (compoundVariant) {
+            currentClassName.push(compoundVariant.value);
+          }
+        }
       });
     }
 
+    // console.log(
+    //   currentClassName,
+    //   twMerge(clsx(...currentClassName)),
+    //   'twMerge(clsx(...currentClassName))'
+    // );
+
     return (
       <Component
-        className={twMerge(clsx(...currentClassName))}
         {...restProps}
+        className={twMerge(clsx(...currentClassName, restProps.className))}
       />
     );
   };
@@ -59,4 +80,13 @@ export function getVariantProps(
     variantProps,
     restProps,
   };
+}
+
+function isValidVariantCondition(condition: any, variants: any) {
+  for (const key in condition) {
+    if (!variants.hasOwnProperty(key) || variants[key] !== condition[key]) {
+      return false;
+    }
+  }
+  return true;
 }
