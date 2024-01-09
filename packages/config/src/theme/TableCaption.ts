@@ -12,16 +12,11 @@ export const TableCaption = createStyle({
   lineHeight: '$md',
   _dark: {
     color: '$textDark50',
-    //added
     bg: '$backgroundDark950',
   },
-  // _android: {
-  //   textAlignVertical: 'center',
-  // },
-  // _ios: {
-  //   lineHeight: '60%',
-  // },
-  //added
+  _android: {
+    textAlignVertical: 'center',
+  },
   _web: {
     captionSide: 'bottom',
   },

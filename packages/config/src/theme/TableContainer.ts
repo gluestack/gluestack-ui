@@ -58,7 +58,6 @@ export const TableContainer = createStyle({
       lineHeight: '60%',
     },
   },
-  _dataText: {},
   _footer: {
     bg: '$backgroundLight50',
     _dark: {

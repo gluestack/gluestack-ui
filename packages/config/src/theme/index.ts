@@ -156,4 +156,3 @@ export * from './TableRow';
 export * from './TableHeader';
 export * from './TableData';
 export * from './TableCaption';
-export * from './TableDataText';

@@ -7,7 +7,6 @@ export default styled(
   {
     componentName: 'TableContainer',
     descendantStyle: [
-      '_dataText',
       '_data',
       '_headerText',
       '_head',

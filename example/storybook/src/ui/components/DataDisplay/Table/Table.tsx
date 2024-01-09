@@ -12,7 +12,7 @@ import {
   ScrollView,
 } from '@gluestack-ui/themed';
 
-const DividerBasic = ({ ...props }) => {
+const TableBasic = ({ ...props }) => {
   return (
     <Box
       bg="#EFEFEF"
@@ -34,48 +34,43 @@ const DividerBasic = ({ ...props }) => {
           <Table>
             <TableHead>
               <TableRow>
-                <TableHeader>Name</TableHeader>
-                <TableHeader>Email Address</TableHeader>
-                <TableHeader>Phone Number</TableHeader>
+                <TableHeader>Customer Name</TableHeader>
+                <TableHeader>Units</TableHeader>
+                <TableHeader>Cost</TableHeader>
               </TableRow>
             </TableHead>
             <TableBody>
               <TableRow>
                 <TableData>Rajesh Kumar</TableData>
-                <TableData>rajesh@example.com</TableData>
-                <TableData>+91 98765 43210</TableData>
+                <TableData>10</TableData>
+                <TableData>$130</TableData>
               </TableRow>
               <TableRow>
                 <TableData>Priya Sharma</TableData>
-                <TableData>priya@example.com</TableData>
-                <TableData>+91 87654 32109</TableData>
+                <TableData>12</TableData>
+                <TableData>$220</TableData>
               </TableRow>
               <TableRow>
                 <TableData>Ravi Patel</TableData>
-                <TableData>ravi@example.com</TableData>
-                <TableData>+91 76543 21098</TableData>
+                <TableData>6</TableData>
+                <TableData>$55</TableData>
               </TableRow>
               <TableRow>
                 <TableData>Ananya Gupta</TableData>
-                <TableData>ananya@example.com</TableData>
-                <TableData>+91 65432 10987</TableData>
+                <TableData>18</TableData>
+                <TableData>$340</TableData>
               </TableRow>
               <TableRow>
                 <TableData>Arjun Singh</TableData>
-                <TableData>arjun@example.com</TableData>
-                <TableData>+91 54321 09876</TableData>
-              </TableRow>
-              <TableRow>
-                <TableData>Nisha Verma</TableData>
-                <TableData>nisha@example.com</TableData>
-                <TableData>+91 43210 98765</TableData>
+                <TableData>2</TableData>
+                <TableData>$35</TableData>
               </TableRow>
             </TableBody>
             <TableFooter>
               <TableRow>
-                <TableHeader>Table Footer</TableHeader>
-                <TableHeader>Table Footer</TableHeader>
-                <TableHeader>Table Footer</TableHeader>
+                <TableHeader>Total</TableHeader>
+                <TableHeader>48</TableHeader>
+                <TableHeader>$770</TableHeader>
               </TableRow>
             </TableFooter>
           </Table>
@@ -85,9 +80,8 @@ const DividerBasic = ({ ...props }) => {
   );
 };
 
-DividerBasic.description =
-  'This is a basic Divider component example.  A divider is a thin line that groups content in lists and layouts.';
+TableBasic.description = 'This is a basic Table component example.';
 
-export default DividerBasic;
+export default TableBasic;
 
 export {};

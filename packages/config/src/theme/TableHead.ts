@@ -8,7 +8,6 @@ export const TableHead = createStyle({
     borderBottomColor: '$borderLight300',
     _dark: {
       borderBottomColor: '$borderDark700',
-      // color: '$textDark50',
     },
   },
 });

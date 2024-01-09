@@ -8,5 +8,4 @@ export {
   TableHeader,
   TableRow,
   TableCaption,
-  TableDataText,
 } from './styled-components';
