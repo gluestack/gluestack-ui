@@ -14,11 +14,13 @@ export const Tab = <StyledTab,>(StyledTab: React.ComponentType<StyledTab>) =>
         {
           value,
           children,
+          isDisabled,
           ...props
         }: StyledTab &
           PressableProps & {
             children?: any;
             value?: string;
+            isDisabled: boolean;
             onSelect: (key: string) => void;
           },
         ref?: any
@@ -26,14 +28,12 @@ export const Tab = <StyledTab,>(StyledTab: React.ComponentType<StyledTab>) =>
         const { focusProps: focusRingProps, isFocusVisible }: any =
           useFocusRing();
         const { pressProps, isPressed } = usePress({
-          isDisabled: props.disabled ?? undefined,
+          isDisabled,
         });
         const { isFocused, focusProps } = useFocus();
         const { isHovered, hoverProps }: any = useHover();
-
-        const { onChange, currentActiveTab } = useTab('TabContext');
-
-        const { tabProps } = useTabs();
+        const { onChange, currentActiveTab, loop } = useTab('TabContext');
+        const { tabProps } = useTabs(loop);
 
         useEffect(() => {
           if (isFocusVisible) {
@@ -50,7 +50,14 @@ export const Tab = <StyledTab,>(StyledTab: React.ComponentType<StyledTab>) =>
               focus: isFocused,
               active: value === currentActiveTab,
               focusVisible: isFocusVisible,
+              disabled: isDisabled,
             }}
+            disabled={isDisabled}
+            opacity={isDisabled ? 0.5 : 1}
+            // importantForAccessibility={
+            //   isDisabled ? 'no-hide-descendants' : 'auto'
+            // }
+            // accessibilityState={{ disabled: isDisabled }}
             tabIndex={value === currentActiveTab ? 0 : -1}
             {...(props as StyledTab)}
             onPressIn={composeEventHandlers(

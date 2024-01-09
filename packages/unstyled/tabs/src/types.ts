@@ -4,9 +4,12 @@ export interface ITabProps {
 export interface ITabListProps {
   orientation?: 'vertical' | 'horizontal';
   variant?: 'scrollable';
+  loop?: boolean;
 }
 export interface ITabsProps {
   value?: string;
+  defaultValue: string;
+  onChange?: (value: string) => void;
 }
 export interface ITabPanelProps {
   value?: string;

@@ -1,6 +1,7 @@
 import { FocusScope } from '@react-native-aria/focus';
-import React, { memo, useMemo } from 'react';
+import React, { memo, useEffect, useMemo } from 'react';
 import { forwardRef } from 'react';
+import { useTab } from './TabProvider';
 
 export const TabList = <StyledTabList,>(
   StyledTabList: React.ComponentType<StyledTabList>
@@ -12,11 +13,13 @@ export const TabList = <StyledTabList,>(
           children,
           orientation = 'horizontal',
           variant,
+          loop = true,
           ...props
         }: StyledTabList & {
           children?: any;
           orientation: 'horizontal' | 'vertical';
           variant: 'scrollable' | null;
+          loop: boolean;
         },
         ref?: any
       ) => {
@@ -33,6 +36,12 @@ export const TabList = <StyledTabList,>(
           // eslint-disable-next-line react-hooks/exhaustive-deps
           [children]
         );
+
+        const { onLoopChange } = useTab('TabContext');
+
+        useEffect(() => {
+          onLoopChange(loop);
+        }, [loop, onLoopChange]);
 
         return (
           <StyledTabList
