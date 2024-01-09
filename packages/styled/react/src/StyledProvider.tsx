@@ -3,7 +3,10 @@ import * as React from 'react';
 import { Platform, View } from 'react-native';
 import { propertyTokenMap } from './propertyTokenMap';
 import type { COLORMODES } from './types';
-import { convertToUnicodeString, platformSpecificSpaceUnits } from './utils';
+import {
+  convertTokensToCssVariables,
+  platformSpecificSpaceUnits,
+} from './utils';
 import { createGlobalStylesWeb } from './createGlobalStylesWeb';
 import { createGlobalStyles } from './createGlobalStyles';
 import { injectGlobalCssStyle } from './injectInStyle';
@@ -24,46 +27,6 @@ export const defaultConfig: {
 
 const defaultContextData: Config = defaultConfig;
 const StyledContext = React.createContext<Config>(defaultContextData);
-
-function convertTokensToCssVariables(currentConfig: any) {
-  function objectToCssVariables(obj: any, prefix = '') {
-    return Object.keys(obj).reduce((acc, key) => {
-      const variableName = `--${prefix}${key}`;
-      const variableValue = obj[key];
-
-      if (typeof variableValue === 'object') {
-        // Recursively process nested objects
-        acc += objectToCssVariables(variableValue, `${prefix}${key}-`);
-      } else {
-        acc += `${convertToUnicodeString(variableName)}: ${variableValue};\n`;
-      }
-
-      return acc;
-    }, '');
-  }
-
-  const tokens = currentConfig.tokens;
-  const cssVariables = objectToCssVariables(tokens);
-  let content = `:root {\n${cssVariables}}`;
-
-  if (currentConfig.themes) {
-    Object.keys(currentConfig.themes).forEach((key) => {
-      const theme = currentConfig.themes[key];
-      const cssVariables = objectToCssVariables(theme);
-      content += `\n\n[data-theme-id=${key}] {\n${cssVariables}}`;
-    });
-  }
-
-  return content;
-
-  // const cssVariablesBlock = `
-  // :root {
-  //   --colors-red500: blue;
-  // }
-  //   `;
-
-  // return cssVariablesBlock;
-}
 
 const setCurrentColorMode = (inputColorMode: string | undefined) => {
   if (inputColorMode) {
