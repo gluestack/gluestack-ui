@@ -33,7 +33,7 @@ export const Tab = <StyledTab,>(StyledTab: React.ComponentType<StyledTab>) =>
         const { isFocused, focusProps } = useFocus();
         const { isHovered, hoverProps }: any = useHover();
         const { onChange, currentActiveTab, loop } = useTab('TabContext');
-        const { tabProps } = useTabs(loop);
+        const { tabProps } = useTabs(loop, isDisabled);
 
         useEffect(() => {
           if (isFocusVisible) {
