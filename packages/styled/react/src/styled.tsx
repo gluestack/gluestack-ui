@@ -1001,7 +1001,8 @@ export function verboseStyled<P, Variants, ComCon>(
       GluestackStyleSheet,
       Platform.OS,
       inlineStyleMap,
-      ignoreKeys
+      ignoreKeys,
+      CONFIG
     );
 
     return orderedSXResolved;
