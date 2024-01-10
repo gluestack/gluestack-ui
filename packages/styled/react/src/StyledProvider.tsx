@@ -63,9 +63,12 @@ export const StyledProvider: React.FC<{
   const { themes } = useTheme();
 
   const themeContextValue = React.useMemo(() => {
-    return {
-      themes: [...themes, colorMode],
-    };
+    if (colorMode) {
+      return {
+        themes: [...themes, colorMode],
+      };
+    }
+    return { themes };
   }, [colorMode, themes]);
 
   inlineStyleMap.current.initialStyleInjected = false;
