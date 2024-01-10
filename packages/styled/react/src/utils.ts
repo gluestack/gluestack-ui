@@ -1,5 +1,7 @@
 import type { Config } from './types';
 
+const propsNotToConvertToCSSVariables = ['shadowColor', 'textShadowColor'];
+
 export function convertToUnicodeString(inputString: any) {
   let result = '';
   if (!inputString) {
@@ -207,7 +209,11 @@ export function resolveStringToken(
 
           typeofResult = typeof tokenValue;
 
-          if (!useResolvedValue && typeofResult !== 'undefined') {
+          if (
+            propsNotToConvertToCSSVariables.indexOf(propName) === -1 &&
+            !useResolvedValue &&
+            typeofResult !== 'undefined'
+          ) {
             typeofResult = 'string';
             tokenValue = `var(--${modifiedTokenScale}-${convertToUnicodeString(
               splitCurrentToken[0]
