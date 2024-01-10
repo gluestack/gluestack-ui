@@ -17,7 +17,7 @@ const GluestackUIProvider = ({
   return (
     <>
       {/** @ts-ignore */}
-      <GluestackUIStyledProvider {...props}>
+      <GluestackUIStyledProvider colorMode="light" {...props}>
         <OverlayProvider>
           <ToastProvider>{children}</ToastProvider>
         </OverlayProvider>
