@@ -1,16 +1,23 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useContext, useEffect, useMemo, useRef, useState } from 'react';
+import React, {
+  ForwardRefExoticComponent,
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 
 import type {
   OrderedSXResolved,
   StyleIds,
-  ComponentProps,
   IVerbosedTheme,
   ITheme,
   ExtendedConfigType,
   IComponentStyleConfig,
   StyledConfig,
-  UtilityProps,
+  GluestackComponent,
 } from './types';
 import {
   deepMerge,
@@ -1029,14 +1036,7 @@ export function verboseStyled<P, Variants, ComCon>(
       // styledIds: BUILD_TIME_STYLE_IDS = [],
       // sxHash: BUILD_TIME_sxHash = '',
       ...componentProps
-    }: Omit<
-      Omit<P, keyof Variants> &
-        Partial<ComponentProps<ITypeReactNativeStyles, Variants, P, ComCon>> &
-        Partial<UtilityProps<ITypeReactNativeStyles, Variants, P>> & {
-          as?: any;
-        },
-      'animationComponentGluestack'
-    >,
+    }: any,
     ref: React.ForwardedRef<P>
   ) => {
     const isClient = React.useRef(false);
@@ -2149,7 +2149,12 @@ export function verboseStyled<P, Variants, ComCon>(
   //@ts-ignore
   StyledComp.isStyledComponent = true;
 
-  return StyledComp as typeof StyledComp & { styledConfig?: StyledConfig };
+  return StyledComp as GluestackComponent<
+    ITypeReactNativeStyles,
+    Variants,
+    P,
+    ComCon
+  > & { styledConfig?: StyledConfig };
 }
 
 export function styled<P, Variants, ComCon>(
