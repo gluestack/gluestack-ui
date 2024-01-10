@@ -41,7 +41,7 @@ export const InputField = createStyle({
 
       'lg': {
         fontSize: '$lg',
-        lineHeight: '$lg',
+        lineHeight: '$md',
       },
 
       'xl': {
