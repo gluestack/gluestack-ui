@@ -211,4 +211,41 @@ export const App = () => {
 };
 ```
 
+### Theme specific style
+
+You can apply theme-specific styling by using the . prefix with the theme name. This API is supported in both `styled()` and the `sx` prop.
+
+```tsx
+import { styled, StyledProvider, Theme } from '@gluestack-style/react';
+import { Pressable } from 'react-native';
+import { config } from './config';
+
+const Button = styled(Pressable, {
+  backgroundColor: '$primary',
+  padding: '$3',
+  '.classic': {
+    backgroundColor: '$secondary'
+  }
+});
+
+const ButtonText = styled(Pressable, {
+  color: '$secondary',
+  '.classic': {
+    color: '$primary'
+  }
+});
+
+export const App = () => {
+  return (
+    <StyledProvider config={config}>
+      <Theme theme="classic">
+        <Button>
+          <ButtonText>Classic Button</ButtonText>
+        </Button>
+      </Theme>
+    </StyledProvider>
+  );
+};
+```
+
 > **Note**: Components must be wrapped inside the `Theme` component to use the theme. Else default tokens from config will be used.
