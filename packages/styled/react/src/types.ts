@@ -488,6 +488,25 @@ export type SxProps<
           [key: string]: any;
         }>;
     } & {
+      [Key in `.${string}`]?: SxProps<
+        GenericComponentStyles,
+        Variants,
+        GenericComponentProps,
+        PLATFORM,
+        MediaQuery,
+        PluginType
+      > &
+        PassingPropsType<
+          GenericComponentStyles,
+          Variants,
+          GenericComponentProps,
+          MediaQuery,
+          PluginType
+        > &
+        Partial<{
+          [key: string]: any;
+        }>;
+    } & {
       [Key in `:${IState}`]?: SxProps<
         GenericComponentStyles,
         Variants,
