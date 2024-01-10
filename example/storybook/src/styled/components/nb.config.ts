@@ -1,7 +1,7 @@
 import { AnimationResolver } from '@gluestack-style/animation-resolver';
 import { MotionAnimationDriver } from '@gluestack-style/legend-motion-animation-driver';
 // import { MotiAnimationDriver } from '@gluestack-style/moti-animation-driver';
-import { createComponents, createConfig } from '@gluestack-style/react';
+import { createConfig } from '@gluestack-style/react';
 
 export const config = createConfig({
   aliases: {
@@ -663,54 +663,75 @@ export const config = createConfig({
     variants: {},
   },
   themes: {
-    '2000s': {
+    // '2000s': {
+    //   colors: {
+    //     $backgroundColor: '#ffffff',
+    //     $headerColor: '$colors$blue600',
+    //     $textColor: '#ffffff',
+    //     $borderColor: '$colors$gray400',
+    //   },
+    //   borderWidths: {
+    //     $borderWidth: '$space$0.5',
+    //   },
+    //   radii: {
+    //     $borderRadius: '$radii$sm',
+    //   },
+    // },
+    // '2010s': {
+    //   colors: {
+    //     $backgroundColor: '#ffffff',
+    //     $headerColor: '$colors$blue700',
+    //     $textColor: '$colors$white',
+    //     $borderColor: '#000000',
+    //   },
+    //   borderWidths: {
+    //     $borderWidth: '$space$0.5',
+    //   },
+    //   radii: {
+    //     $borderRadius: '$radii$lg',
+    //   },
+    // },
+    // '2020s': {
+    //   colors: {
+    //     $backgroundColor: '#ffffff7a',
+    //     $headerColor: '$colors$blue400',
+    //     $textColor: '$colors$blue900',
+    //     $borderColor: '$colors$gray300',
+    //   },
+    //   borderWidths: {
+    //     $borderWidth: '$space$px',
+    //   },
+    //   radii: {
+    //     $borderRadius: '$radii$xl',
+    //   },
+    // },
+    dark: {
       colors: {
-        $backgroundColor: '#ffffff',
-        $headerColor: '$colors$blue600',
-        $textColor: '#ffffff',
-        $borderColor: '$colors$gray400',
+        blue500: 'red',
+
+        // pink500: 'green'
+        // pink600: 'yellow',
+        // green500: 'purple',
       },
-      borderWidths: {
-        $borderWidth: '$space$0.5',
-      },
-      radii: {
-        $borderRadius: '$radii$sm',
+      space: {
+        10: 100,
       },
     },
-    '2010s': {
+    modern: {
       colors: {
-        $backgroundColor: '#ffffff',
-        $headerColor: '$colors$blue700',
-        $textColor: '$colors$white',
-        $borderColor: '#000000',
-      },
-      borderWidths: {
-        $borderWidth: '$space$0.5',
-      },
-      radii: {
-        $borderRadius: '$radii$lg',
-      },
-    },
-    '2020s': {
-      colors: {
-        $backgroundColor: '#ffffff7a',
-        $headerColor: '$colors$blue400',
-        $textColor: '$colors$blue900',
-        $borderColor: '$colors$gray300',
-      },
-      borderWidths: {
-        $borderWidth: '$space$px',
-      },
-      radii: {
-        $borderRadius: '$radii$xl',
-      },
-    },
-    'modern': {
-      colors: {
-        $red500: 'green',
+        blue500: 'yellow',
+        // pink500: 'blue',
+        // pink600: 'yellow',
+        // pink900: 'yellow',
+        // blue200: 'purple',
+        // purple400: 'green',
+        // mycolor: 'green',
         // $headerColor: '$colors$blue600',
         // $textColor: '#ffffff',
         // $borderColor: '$colors$gray400',
+      },
+      space: {
+        '10': 100,
       },
       // borderWidths: {
       //   $borderWidth: '$space$0.5',
@@ -719,6 +740,21 @@ export const config = createConfig({
       //   $borderRadius: '$radii$sm',
       // },
     },
+    // modern: {
+    //   colors: {
+    //     // blue500: 'green',
+    //     // mycolor: 'green',
+    //     // $headerColor: '$colors$blue600',
+    //     // $textColor: '#ffffff',
+    //     // $borderColor: '$colors$gray400',
+    //   },
+    //   // borderWidths: {
+    //   //   $borderWidth: '$space$0.5',
+    //   // },
+    //   // radii: {
+    //   //   $borderRadius: '$radii$sm',
+    //   // },
+    // },
   },
   plugins: [new AnimationResolver(MotionAnimationDriver)],
   components: {

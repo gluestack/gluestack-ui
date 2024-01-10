@@ -28,11 +28,11 @@ export function getCSSIdAndRuleset(
     toBeInjectedStyle.colorMode = styleValueResolvedWithMeta.meta.colorMode;
   }
   // @ts-ignore
-  if (styleValueResolvedWithMeta.meta.themeCondition) {
+  if (styleValueResolvedWithMeta.meta.theme) {
     // @ts-ignore
-    toBeInjectedStyle.themeCondition =
+    toBeInjectedStyle.theme =
       // @ts-ignore
-      styleValueResolvedWithMeta.meta.themeCondition;
+      styleValueResolvedWithMeta.meta.theme;
   }
 
   //@ts-ignore
@@ -49,13 +49,6 @@ export function getCSSIdAndRuleset(
     hasState
   );
 
-  // var hr = stableHash({ hello: 'helloworld' });
-
-  // console.log(
-  //   toBeInjectedStyle,
-  //   stableHash(toBeInjectedStyle),
-  //   'consistant hash @@@@'
-  // );
   return cssObject;
 }
 

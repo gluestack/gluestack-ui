@@ -93,19 +93,38 @@ export const createConfig = <
 };
 
 const resolveThemes = (config: any) => {
+  function removeDollarSign(obj: any) {
+    const newObj: any = {};
+    for (const key in obj) {
+      if (obj.hasOwnProperty(key)) {
+        const newKey = key.replace(/^\$/, ''); // Removes the '$' from the beginning of the key
+        newObj[newKey] = obj[key];
+      }
+    }
+    return newObj;
+  }
+
   const newConfig = { ...config };
   Object.keys(newConfig?.themes ?? {}).forEach((themeName: any) => {
     let theme = newConfig.themes[themeName];
     Object.keys(theme).forEach((tokenScale: any) => {
       const tokenScaleValue = theme[tokenScale];
-      Object.keys(tokenScaleValue).forEach((token: any) => {
-        const tokenValue = resolveStringToken(
-          tokenScaleValue[token],
-          newConfig,
-          tokenScale,
-          ''
-        );
-        tokenScaleValue[token] = tokenValue;
+      // remove `$` for backward comapatibility
+      const dollarRemovedTokenScaleValue = removeDollarSign(tokenScaleValue);
+      theme[tokenScale] = dollarRemovedTokenScaleValue;
+
+      Object.keys(theme[tokenScale]).forEach((token: any) => {
+        if (typeof theme[tokenScale][token] === 'string') {
+          const tokenValue = resolveStringToken(
+            theme[tokenScale][token],
+            newConfig,
+            tokenScale,
+            '',
+            undefined,
+            true
+          );
+          theme[tokenScale][token] = tokenValue;
+        }
       });
     });
     // const tempCONFIG = JSON.parse(JSON.stringify(newConfig));

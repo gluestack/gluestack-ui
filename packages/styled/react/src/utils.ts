@@ -1,5 +1,88 @@
-// import { stableHash } from './stableHash';
 import type { Config } from './types';
+
+const propsNotToConvertToCSSVariables = ['shadowColor', 'textShadowColor'];
+
+export function convertToUnicodeString(inputString: any) {
+  let result = '';
+  if (!inputString) {
+    return result;
+  }
+  for (let i = 0; i < inputString.length; i++) {
+    const currentChar = inputString.charAt(i);
+
+    // Check if the character is a special character (excluding "-" and "_")
+    if (/[^a-zA-Z0-9\-_]/.test(currentChar)) {
+      // Convert the special character to its Unicode representation
+      const unicodeValue = currentChar.charCodeAt(0).toString(16);
+      result += `\\u${'0000'.slice(unicodeValue.length)}${unicodeValue}`;
+    } else {
+      // Keep non-special characters, "-", and "_" as they are
+      result += currentChar;
+    }
+  }
+
+  return result;
+}
+
+export function convertFromUnicodeString(inputString: any) {
+  let result = '';
+  if (!inputString) {
+    return result;
+  }
+
+  // Use a regular expression to match Unicode sequences (e.g., \uXXXX)
+  const unicodeRegex = /\\u[0-9a-fA-F]{4}/g;
+
+  // Replace each Unicode sequence with its corresponding character
+  result = inputString.replace(unicodeRegex, (match: any) => {
+    // Extract the Unicode value from the matched sequence
+    const unicodeValue = parseInt(match.substring(2), 16);
+    // Convert the Unicode value to the corresponding character
+    return String.fromCharCode(unicodeValue);
+  });
+
+  return result;
+}
+
+export function convertTokensToCssVariables(currentConfig: any) {
+  function objectToCssVariables(obj: any, prefix = '') {
+    return Object.keys(obj).reduce((acc, key) => {
+      const variableName = `--${prefix}${key}`;
+      const variableValue = obj[key];
+
+      if (typeof variableValue === 'object') {
+        // Recursively process nested objects
+        acc += objectToCssVariables(variableValue, `${prefix}${key}-`);
+      } else {
+        acc += `${convertToUnicodeString(variableName)}: ${variableValue};\n`;
+      }
+
+      return acc;
+    }, '');
+  }
+
+  const tokens = currentConfig.tokens;
+  const cssVariables = objectToCssVariables(tokens);
+  let content = `:root {\n${cssVariables}}`;
+
+  if (currentConfig.themes) {
+    Object.keys(currentConfig.themes).forEach((key) => {
+      const theme = currentConfig.themes[key];
+      const cssVariables = objectToCssVariables(theme);
+      content += `\n\n[data-theme-id=${key}] {\n${cssVariables}}`;
+    });
+  }
+
+  return content;
+
+  // const cssVariablesBlock = `
+  // :root {
+  //   --colors-red500: blue;
+  // }
+  //   `;
+
+  // return cssVariablesBlock;
+}
 
 // --------------------------------- 3. Preparing style map for Css Injection based on precedence --------------------------------------
 
@@ -31,6 +114,10 @@ export const getObjectProperty = (object: any, keyPath: any) => {
   );
 };
 
+export const getCssVariableValue = (_object: any, _keyPath: any) => {
+  // console.log(keyPath, 'key path here');
+};
+
 export function resolveAliasesFromConfig(
   config: any,
   props: any,
@@ -58,17 +145,19 @@ function isNumeric(str: string) {
   // return /^[-+]?[0-9]*\.?[0-9]+$/.test(str);
 }
 export function resolveStringToken(
-  string: string,
+  stringValue: string,
   config: any,
   tokenScaleMap: any,
   propName: any,
-  scale?: any
+  scale?: any,
+  useResolvedValue = false,
+  deleteIfTokenNotExist: boolean = false
 ) {
   // console.setStartTimeStamp('resolveStringToken');
   let typeofResult = 'string';
   const token_scale = scale ?? tokenScaleMap[propName];
 
-  const splitTokenBySpace = string.split(' ');
+  const splitTokenBySpace = stringValue.split(' ');
 
   const result: any = splitTokenBySpace.map((currentToken) => {
     let splitCurrentToken = currentToken.split('$');
@@ -78,7 +167,13 @@ export function resolveStringToken(
     }
 
     if (splitCurrentToken.length > 1) {
+      //
+
+      // console.log('>>>>> 22');
       const tokenValue = getObjectProperty(config.tokens, splitCurrentToken);
+
+      // console.log(tokenValue, '.>>>>', currentToken);
+      // const tokenValue = getCssVariableValue(config.tokens, splitCurrentToken);
       typeofResult = typeof tokenValue;
       return tokenValue;
     } else {
@@ -96,15 +191,34 @@ export function resolveStringToken(
             'You cannot use tokens without wrapping the component with StyledProvider. Please wrap the component with a StyledProvider and pass theme config.'
           );
         }
+
+        if (deleteIfTokenNotExist) {
+          if (!config?.tokens[modifiedTokenScale]) {
+            return '';
+          }
+        }
+
         if (
           config?.tokens[modifiedTokenScale] &&
           config?.tokens[modifiedTokenScale].hasOwnProperty(
             splitCurrentToken[0]
           )
         ) {
-          const tokenValue =
+          let tokenValue =
             config?.tokens?.[modifiedTokenScale]?.[splitCurrentToken[0]];
+
           typeofResult = typeof tokenValue;
+
+          if (
+            propsNotToConvertToCSSVariables.indexOf(propName) === -1 &&
+            !useResolvedValue &&
+            typeofResult !== 'undefined'
+          ) {
+            typeofResult = 'string';
+            tokenValue = `var(--${modifiedTokenScale}-${convertToUnicodeString(
+              splitCurrentToken[0]
+            )})`;
+          }
 
           if (typeof tokenValue !== 'undefined' && tokenValue !== null) {
             return tokenValue;
@@ -113,12 +227,15 @@ export function resolveStringToken(
           }
         }
       }
+      if (deleteIfTokenNotExist) {
+        return '';
+      }
+
       return splitCurrentToken[splitCurrentToken.length - 1];
     }
   });
 
   let finalResult = result;
-
   // console.setEndTimeStamp('resolveStringToken');
   if (finalResult.length !== 0 && finalResult[0] === '') {
     return undefined;
@@ -133,8 +250,15 @@ export function resolveStringToken(
   }
 }
 
-export const getTokenFromConfig = (config: any, prop: any, value: any) => {
+export const getTokenFromConfig = (
+  config: any,
+  prop: any,
+  value: any,
+  useResolvedValue = false,
+  deleteIfTokenNotExist: boolean = false
+) => {
   // console.setStartTimeStamp('getTokenFromConfig');
+
   const aliasTokenType = config.propertyTokenMap[prop];
 
   let IsNegativeToken = false;
@@ -150,10 +274,26 @@ export const getTokenFromConfig = (config: any, prop: any, value: any) => {
     if (config.propertyResolver?.[prop]) {
       let transformer = config.propertyResolver?.[prop];
       token = transformer(value, (value1: any, scale = aliasTokenType) =>
-        resolveStringToken(value1, config, config.propertyTokenMap, prop, scale)
+        resolveStringToken(
+          value1,
+          config,
+          config.propertyTokenMap,
+          prop,
+          scale,
+          useResolvedValue,
+          deleteIfTokenNotExist
+        )
       );
     } else {
-      token = resolveStringToken(value, config, config.propertyTokenMap, prop);
+      token = resolveStringToken(
+        value,
+        config,
+        config.propertyTokenMap,
+        prop,
+        undefined,
+        useResolvedValue,
+        deleteIfTokenNotExist
+      );
     }
   } else {
     if (config.propertyResolver?.[prop]) {
@@ -165,7 +305,9 @@ export const getTokenFromConfig = (config: any, prop: any, value: any) => {
             config,
             config.propertyTokenMap,
             prop,
-            scale
+            scale,
+            useResolvedValue,
+            deleteIfTokenNotExist
           );
         } else {
           return value;
@@ -193,9 +335,17 @@ export function getResolvedTokenValueFromConfig(
   config: any,
   _props: any,
   prop: any,
-  value: any
+  value: any,
+  useResolvedValue = false,
+  deleteIfTokenNotExist: boolean = false
 ) {
-  let resolvedTokenValue = getTokenFromConfig(config, prop, value);
+  let resolvedTokenValue = getTokenFromConfig(
+    config,
+    prop,
+    value,
+    useResolvedValue,
+    deleteIfTokenNotExist
+  );
 
   // Special case for token ends with em on mobile
   // This will work for lineHeight and letterSpacing
@@ -213,7 +363,12 @@ export function getResolvedTokenValueFromConfig(
   return resolvedTokenValue;
 }
 
-export function resolveTokensFromConfig(config: any, props: any) {
+export function resolveTokensFromConfig(
+  config: any,
+  props: any,
+  useResolvedValue = false,
+  deleteIfTokenNotExist: boolean = false
+) {
   let newProps: any = {};
 
   Object.keys(props).map((prop: any) => {
@@ -222,7 +377,9 @@ export function resolveTokensFromConfig(config: any, props: any) {
       config,
       props,
       prop,
-      value
+      value,
+      useResolvedValue,
+      deleteIfTokenNotExist
     );
   });
 
@@ -232,7 +389,8 @@ export function resolveTokensFromConfig(config: any, props: any) {
 export function resolvedTokenization(
   props: any,
   config: any,
-  ignoreKeys: Set<any> = new Set()
+  ignoreKeys: Set<any> = new Set(),
+  deleteIfTokenNotExist: boolean = false
 ) {
   // console.setStartTimeStamp('resolvedTokenization');
   const aliasedResolvedProps = resolveAliasesFromConfig(
@@ -240,7 +398,13 @@ export function resolvedTokenization(
     props,
     ignoreKeys
   );
-  const newProps = resolveTokensFromConfig(config, aliasedResolvedProps);
+
+  const newProps = resolveTokensFromConfig(
+    config,
+    aliasedResolvedProps,
+    false,
+    deleteIfTokenNotExist
+  );
   // console.setEndTimeStamp('resolvedTokenization');
   return newProps;
 }
