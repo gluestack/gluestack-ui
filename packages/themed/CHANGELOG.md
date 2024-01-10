@@ -1,5 +1,13 @@
 # @gluestack-ui/themed
 
+## 1.0.35
+
+### Patch Changes
+
+- Fix
+- Updated dependencies
+  - @gluestack-style/react@1.0.32
+
 ## 1.0.34
 
 ### Patch Changes

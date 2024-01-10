@@ -1,5 +1,65 @@
 # @gluestack-style/react
 
+## 1.0.32
+
+### Features
+
+- Tokens are now injected as CSS variables on web.
+- Multiple Theme support.
+
+```jsx
+import { styled, StyledProvider } from '@gluestack-style/react';
+
+const config = {
+  aliases: {},
+  tokens: {
+    colors: {
+      primary: 'green',
+    },
+  },
+  themes: {
+    dark: {
+      colors: {
+        primary: 'black',
+      },
+    },
+    modern: {
+      colors: {
+        primary: 'red',
+      },
+    },
+  },
+};
+
+const App = () => {
+  const Box = styled(View, {
+    bg: '$primary',
+    p: '$10',
+  });
+
+  return (
+    <StyledProvider config={config}>
+      <Theme name="dark">
+        <Theme name="modern">
+          <Box />
+        </Theme>
+      </Theme>
+    </StyledProvider>
+  );
+};
+```
+
+- We have removed the default colorMode from the `StyledProvider`, you can now use the Theme component to change the theme. or you can pass `colorMode` prop inside `StyledProvider` for `colorMode`.
+- Added utility prop support for themes, you can prefix theme name with `$t_${{theme_name}}-${{style_property}}` to define style for theme.
+
+```jsx
+<Box $t_dark-bg="$primary" />
+```
+
+- `useToken` hook now supports theme tokens, it will return the current theme token value if there exist any.
+- Typescript improvements for `useToken` hook
+- Babel plugin support for the themes
+
 ## 1.0.31
 
 ### Patch Changes
