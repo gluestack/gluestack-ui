@@ -124,8 +124,8 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
       argsType: {
         name: {
           control: 'select',
-          options: ['2000s', '2010s', '2020s'],
-          default: '2000s',
+          options: ['classic', 'modern', 'latest'],
+          default: 'classic',
         },
       },
     }}
@@ -210,6 +210,8 @@ export const App = () => {
   );
 };
 ```
+
+> Note: Theme name should always be a string. 
 
 ### Theme specific style
 
