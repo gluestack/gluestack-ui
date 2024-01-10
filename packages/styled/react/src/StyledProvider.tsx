@@ -11,6 +11,7 @@ import { createGlobalStylesWeb } from './createGlobalStylesWeb';
 import { createGlobalStyles } from './createGlobalStyles';
 import { injectGlobalCssStyle } from './injectInStyle';
 import { ThemeContext, useTheme } from './Theme';
+import { useSafeLayoutEffect } from './hooks/useSafeLayoutEffect';
 
 type Config = any;
 let colorModeSet = false;
@@ -157,8 +158,8 @@ export const StyledProvider: React.FC<{
     setCurrentColorMode(currentColorMode);
   }, [currentColorMode]);
 
-  React.useLayoutEffect(() => {
-    if (Platform.OS === 'web') {
+  useSafeLayoutEffect(() => {
+    if (Platform.OS === 'web' && typeof window !== 'undefined') {
       const toBeInjectedStyles: any = {};
 
       if (inlineStyleMap.current.initialStyleInjected) {
