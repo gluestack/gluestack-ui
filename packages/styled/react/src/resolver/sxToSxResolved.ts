@@ -1,7 +1,10 @@
 import type { Path, VerbosedSX, VerbosedSxResolved } from '../types';
 import { resolveTokensFromConfig } from '../utils';
 import { getWeightBaseOnPath } from './getWeightBaseOnPath';
-import { StyledValueToCSSObject } from './StyledValueToCSSObject';
+import {
+  StyledValueToCSSObject,
+  themeStyledValueToCSSObject,
+} from './StyledValueToCSSObject';
 
 export function sxToSXResolved(
   sx: VerbosedSX,
@@ -13,11 +16,17 @@ export function sxToSXResolved(
   const resolvedCSSStyle = shouldResolve
     ? StyledValueToCSSObject(sx?.style, CONFIG)
     : sx?.style;
+  const resolvedThemeCSSStyle = shouldResolve
+    ? themeStyledValueToCSSObject(sx?.style, CONFIG)
+    : sx?.style;
+
+  // console.log(resolvedThemeCSSStyle, '>>>>>@@@@');
 
   // console.log('hello here ***', sx?.style, resolvedCSSStyle);
   const styledValueResolvedWithMeta = {
     original: sx?.style ?? {},
     resolved: resolvedCSSStyle,
+    themeResolved: resolvedThemeCSSStyle,
     meta: {
       ...meta,
       path,
@@ -38,9 +47,13 @@ export function sxToSXResolved(
     queriesResolved: sx?.queries
       ? sx.queries.map((query: any, index: any) => {
           const resolvedCondition = shouldResolve
-            ? resolveTokensFromConfig(CONFIG, {
-                condition: query.condition,
-              }).condition
+            ? resolveTokensFromConfig(
+                CONFIG,
+                {
+                  condition: query.condition,
+                },
+                true
+              ).condition
             : query.condition;
 
           const sxResolvedValue = sxToSXResolved(
@@ -99,6 +112,28 @@ export function sxToSXResolved(
 
           if (sxResolved?.styledValueResolvedWithMeta) {
             sxResolved.styledValueResolvedWithMeta.meta.colorMode = key;
+          }
+          return {
+            ...acc,
+            [key]: sxResolved,
+          };
+        }, {})
+      : undefined,
+    theme: sx?.theme
+      ? Object.keys(sx.theme).reduce((acc, key) => {
+          const sxResolved = sxToSXResolved(
+            //@ts-ignore
+            sx.theme[key],
+            [...path, 'theme', key],
+            { ...meta, theme: meta.theme ? `${meta.theme}.${key}` : key },
+            CONFIG,
+            shouldResolve
+          );
+          if (sxResolved?.styledValueResolvedWithMeta) {
+            //@ts-ignore
+            sxResolved.styledValueResolvedWithMeta.meta.theme = meta.theme
+              ? `${meta.theme}.${key}`
+              : key;
           }
           return {
             ...acc,

@@ -3,12 +3,12 @@ import type { ViewProps } from 'react-native';
 import * as React from 'react';
 type Config = any;
 
-export const defaultConfig: { theme?: string } = {
-  theme: undefined,
+export const defaultConfig: { themes: Array<string> } = {
+  themes: [],
 };
 
 const defaultContextData: Config = defaultConfig;
-const ThemeContext = React.createContext<Config>(defaultContextData);
+export const ThemeContext = React.createContext<Config>(defaultContextData);
 // Can be discussed should we provide flex 1 by default or not.
 
 export const Theme = ({
@@ -18,11 +18,13 @@ export const Theme = ({
 }: ViewProps & {
   name: string;
 }) => {
+  const { themes } = useTheme();
+
   const contextValue = React.useMemo(() => {
     return {
-      theme: name,
+      themes: [...themes, name],
     };
-  }, [name]);
+  }, [name, themes]);
 
   return (
     <ThemeContext.Provider value={contextValue}>
@@ -35,4 +37,4 @@ export const Theme = ({
 };
 // Theme.displayName = 'Theme';
 
-export const useTheme = () => React.useContext(ThemeContext);
+export const useTheme = () => React.useContext(ThemeContext) ?? { themes: [] };

@@ -14,7 +14,8 @@ export function injectComponentAndDescendantStyles(
   _GluestackStyleSheet: StyleInjector = GluestackStyleSheet,
   platform: string = '',
   inlineStyleMap?: any,
-  ignoreKeys: Set<any> = new Set()
+  ignoreKeys: Set<any> = new Set(),
+  CONFIG: any = {}
 ) {
   const [
     componentOrderResolvedBaseStyle,
@@ -80,7 +81,7 @@ export function injectComponentAndDescendantStyles(
 
   const toBeInjected = GluestackStyleSheet.resolve(
     styleCSSIdsArr,
-    {},
+    CONFIG,
     {},
     false,
     type,
