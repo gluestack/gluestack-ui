@@ -1,5 +1,11 @@
 # @gluestack-style/react
 
+## 1.0.33
+
+### Patch Changes
+
+- - Theme token resolution inside StyledProvider
+
 ## 1.0.32
 
 ### Features

@@ -12,6 +12,7 @@ import { createGlobalStyles } from './createGlobalStyles';
 import { injectGlobalCssStyle } from './injectInStyle';
 import { ThemeContext, useTheme } from './Theme';
 import { useSafeLayoutEffect } from './hooks/useSafeLayoutEffect';
+import { resolveThemes } from './createConfig';
 
 type Config = any;
 let colorModeSet = false;
@@ -75,7 +76,7 @@ export const StyledProvider: React.FC<{
   inlineStyleMap.current.initialStyleInjected = false;
   // const id = React.useId();
   const currentConfig: any = React.useMemo(() => {
-    const configWithPlatformSpecificUnits: any = platformSpecificSpaceUnits(
+    let configWithPlatformSpecificUnits: any = platformSpecificSpaceUnits(
       config,
       Platform.OS
     );
@@ -89,6 +90,10 @@ export const StyledProvider: React.FC<{
             Platform.OS
           ).tokens;
       });
+
+      configWithPlatformSpecificUnits = resolveThemes(
+        configWithPlatformSpecificUnits
+      );
     }
 
     return configWithPlatformSpecificUnits;
