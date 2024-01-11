@@ -111,19 +111,22 @@ function convertUtiltiyToSXFromProps(
 
   if (plugins) {
     for (const pluginName in plugins) {
-      // @ts-ignore
-      [resolvedSxVerbose, , , , sxIgnoreKeys] = plugins[
+      if (plugins[
         pluginName
-      ]?.inputMiddleWare(
-        resolvedSxVerbose,
-        true,
-        false,
-        Component,
-        componentStyleConfig,
-        ExtendedConfig
-      );
+      ]?.inputMiddleWare) {
+        // @ts-ignore
+        [resolvedSxVerbose, , , , sxIgnoreKeys] = plugins[
+          pluginName
+        ]?.inputMiddleWare(
+          resolvedSxVerbose,
+          true,
+          false,
+          Component,
+          componentStyleConfig,
+          ExtendedConfig
+        );
+      }
     }
-
     sxIgnoreKeys?.forEach((element) => {
       ignoreKeys.add(element);
     });
@@ -478,17 +481,17 @@ function setStateAndColorModeCssIdsAndProps(
         //@ts-ignore
         componentDescendantStyleIds[key],
         componentDescendantFlattenStyleObject[key]?.[
-          'componentBaseStyleFlatternStyleIdObject'
+        'componentBaseStyleFlatternStyleIdObject'
         ],
         states,
         variantProps,
         colorMode,
         theme,
         componentDescendantFlattenStyleObject[key]?.[
-          'componentVariantFlatternStyleIdObject'
+        'componentVariantFlatternStyleIdObject'
         ],
         componentDescendantFlattenStyleObject[key]?.[
-          'componentCompoundVariantFlatternStyleIdObject'
+        'componentCompoundVariantFlatternStyleIdObject'
         ],
         currentStateArray
       );
@@ -515,17 +518,17 @@ function setStateAndColorModeCssIdsAndProps(
         //@ts-ignore
         sxDescendantStyleIds.current[key],
         sxDescendantFlattenStyleObject[key]?.[
-          'componentBaseStyleFlatternStyleIdObject'
+        'componentBaseStyleFlatternStyleIdObject'
         ],
         states,
         variantProps,
         colorMode,
         theme,
         sxDescendantFlattenStyleObject[key]?.[
-          'componentVariantFlatternStyleIdObject'
+        'componentVariantFlatternStyleIdObject'
         ],
         sxDescendantFlattenStyleObject[key]?.[
-          'componentCompoundVariantFlatternStyleIdObject'
+        'componentCompoundVariantFlatternStyleIdObject'
         ],
         currentStateArray
       );
@@ -1006,10 +1009,10 @@ export function verboseStyled<P, Variants, ComCon>(
       ...componentProps
     }: Omit<
       Omit<P, keyof Variants> &
-        Partial<ComponentProps<ITypeReactNativeStyles, Variants, P, ComCon>> &
-        Partial<UtilityProps<ITypeReactNativeStyles, Variants, P>> & {
-          as?: any;
-        },
+      Partial<ComponentProps<ITypeReactNativeStyles, Variants, P, ComCon>> &
+      Partial<UtilityProps<ITypeReactNativeStyles, Variants, P>> & {
+        as?: any;
+      },
       'animationComponentGluestack'
     >,
     ref: React.ForwardedRef<P>
@@ -1130,17 +1133,21 @@ export function verboseStyled<P, Variants, ComCon>(
       if (plugins) {
         for (const pluginName in plugins) {
           let themeIgnoreKeys = new Set();
-          // @ts-ignore
-          [nonVerbosedTheme, , , , themeIgnoreKeys] = plugins[
+          if (plugins[
             pluginName
-          ]?.inputMiddleWare<P>(
-            nonVerbosedTheme,
-            true,
-            true,
-            componentProps?.as ?? Component,
-            componentStyleConfig,
-            ExtendedConfig
-          );
+          ]?.inputMiddleWare) {
+            // @ts-ignore
+            [nonVerbosedTheme, , , , themeIgnoreKeys] = plugins[
+              pluginName
+            ]?.inputMiddleWare<P>(
+              nonVerbosedTheme,
+              true,
+              true,
+              componentProps?.as ?? Component,
+              componentStyleConfig,
+              ExtendedConfig
+            );
+          }
           themeIgnoreKeys?.forEach((ele) => {
             ignoreKeys.add(ele);
           });
@@ -1634,17 +1641,17 @@ export function verboseStyled<P, Variants, ComCon>(
             //@ts-ignore
             sxDescendantStyleIds.current,
             sxDescendantFlattenStyles.current[key]?.[
-              'componentBaseStyleFlatternStyleIdObject'
+            'componentBaseStyleFlatternStyleIdObject'
             ],
             states,
             variantProps,
             COLOR_MODE,
             theme,
             sxDescendantFlattenStyles.current[key]?.[
-              'componentVariantFlatternStyleIdObject'
+            'componentVariantFlatternStyleIdObject'
             ],
             sxDescendantFlattenStyles.current[key]?.[
-              'componentCompoundVariantFlatternStyleIdObject'
+            'componentCompoundVariantFlatternStyleIdObject'
             ],
             currentStateArray
           );
@@ -2048,10 +2055,10 @@ export function verboseStyled<P, Variants, ComCon>(
     const propsToBePassedInToPlugin =
       plugins?.length > 0
         ? {
-            ...variantProps,
-            states: states,
-            // sx: componentProps.sx,
-          }
+          ...variantProps,
+          states: states,
+          // sx: componentProps.sx,
+        }
         : {};
 
     if (AsComp) {
