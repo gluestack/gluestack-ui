@@ -5,7 +5,7 @@ import { propertyTokenMap } from './propertyTokenMap';
 import type { COLORMODES } from './types';
 import {
   convertTokensToCssVariables,
-  deepMerge,
+  generateMergedThemeTokens,
   platformSpecificSpaceUnits,
 } from './utils';
 import { createGlobalStylesWeb } from './createGlobalStylesWeb';
@@ -14,7 +14,6 @@ import { injectGlobalCssStyle } from './injectInStyle';
 import { ThemeContext, useTheme } from './Theme';
 import { useSafeLayoutEffect } from './hooks/useSafeLayoutEffect';
 import { resolveThemes } from './createConfig';
-import { deepClone } from './utils/cssify/utils/common';
 
 type Config = any;
 let colorModeSet = false;
@@ -47,28 +46,6 @@ const setCurrentColorMode = (inputColorMode: string | undefined) => {
   //   colorModeSet = true;
   // }
 };
-
-function generateMergedThemeTokens(CONFIG: any) {
-  const mergedTokens: any = CONFIG;
-  const tokens = deepClone(CONFIG.tokens);
-  const themeTokens: any = {};
-
-  if (CONFIG?.themes) {
-    Object.keys(CONFIG.themes).forEach((key) => {
-      // tokens is a reserved key to merge theme tokens
-      if (key !== 'tokens') {
-        themeTokens[key] = deepMerge(tokens, CONFIG.themes[key]);
-      }
-    });
-
-    if (themeTokens) {
-      mergedTokens.themes.tokens = {};
-      Object.assign(mergedTokens.themes.tokens, themeTokens);
-    }
-  }
-
-  return mergedTokens;
-}
 
 export const StyledProvider: React.FC<{
   config: Config;

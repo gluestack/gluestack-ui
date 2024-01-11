@@ -1,6 +1,29 @@
 import type { Config } from './types';
+import { deepClone } from './utils/cssify/utils/common';
 
 const propsNotToConvertToCSSVariables = ['shadowColor', 'textShadowColor'];
+
+export function generateMergedThemeTokens(CONFIG: any) {
+  const mergedTokens: any = CONFIG;
+  const tokens = deepClone(CONFIG.tokens);
+  const themeTokens: any = {};
+
+  if (CONFIG?.themes) {
+    Object.keys(CONFIG.themes).forEach((key) => {
+      // tokens is a reserved key to merge theme tokens
+      if (key !== 'tokens') {
+        themeTokens[key] = deepMerge(tokens, CONFIG.themes[key]);
+      }
+    });
+
+    if (themeTokens) {
+      mergedTokens.themes.tokens = {};
+      Object.assign(mergedTokens.themes.tokens, themeTokens);
+    }
+  }
+
+  return mergedTokens;
+}
 
 export function convertToUnicodeString(inputString: any) {
   let result = '';
