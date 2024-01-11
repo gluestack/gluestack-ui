@@ -1,5 +1,11 @@
 # @gluestack-style/react
 
+## 1.0.37
+
+### Patch Changes
+
+- Color mode switch issue fixes
+
 ## 1.0.35
 
 ### Patch Changes
