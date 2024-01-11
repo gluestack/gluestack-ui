@@ -140,10 +140,12 @@ export const StyledProvider: React.FC<{
       if (currentColorMode) {
         if (!isParentProviderExist) {
           document.body.setAttribute('data-theme-id', currentColorMode);
+          documentElement.classList.add(`gs-${currentColorMode}`);
         }
-        documentElement.classList.add(`gs-${currentColorMode}`);
       } else {
-        documentElement.classList.add(`gs-light`);
+        if (!isParentProviderExist) {
+          documentElement.classList.add(`gs-light`);
+        }
       }
     }
 
@@ -165,7 +167,9 @@ export const StyledProvider: React.FC<{
               }
               documentElement.classList.remove(`gs-dark`);
             }
-            documentElement.classList.add(`gs-${currentColor}`);
+            if (!isParentProviderExist) {
+              documentElement.classList.add(`gs-${currentColor}`);
+            }
           }
         }
       }
