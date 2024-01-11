@@ -1,10 +1,19 @@
 # @gluestack-style/react
 
+<<<<<<< HEAD
+
 ## 1.0.37
 
 ### Patch Changes
 
-- Color mode switch issue fixes
+- # Color mode switch issue fixes
+
+## 1.0.36
+
+### Patch Changes
+
+- - Fixed data theme id attribute
+    > > > > > > > 2a5d53586a16cd5db916bb95a3ecba1730d131e2
 
 ## 1.0.35
 
