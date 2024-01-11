@@ -6,7 +6,7 @@ import { stableHash } from './stableHash';
 import { propertyTokenMap } from './propertyTokenMap';
 import { updateOrderUnResolvedMap } from './updateOrderUnResolvedMap';
 import { GluestackStyleSheet } from './style-sheet';
-import { resolvePlatformTheme } from './styled';
+import { resolvePlatformTheme } from './utils';
 import { Platform } from 'react-native';
 
 /********************* PLUGINS *****************************/

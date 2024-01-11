@@ -1,6 +1,6 @@
 import { convertStyledToStyledVerbosed } from './convertSxToSxVerbosed';
 import { stableHash } from './stableHash';
-import { resolvePlatformTheme } from './styled';
+import { resolvePlatformTheme } from './utils';
 import { updateOrderUnResolvedMap } from './updateOrderUnResolvedMap';
 
 export const createGlobalStyles = (globalStyle: object, Platform: any) => {
