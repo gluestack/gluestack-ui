@@ -1,7 +1,5 @@
 # @gluestack-style/react
 
-<<<<<<< HEAD
-
 ## 1.0.37
 
 ### Patch Changes
@@ -12,8 +10,7 @@
 
 ### Patch Changes
 
-- - Fixed data theme id attribute
-    > > > > > > > 2a5d53586a16cd5db916bb95a3ecba1730d131e2
+- Fixed data theme id attribute
 
 ## 1.0.35
 
