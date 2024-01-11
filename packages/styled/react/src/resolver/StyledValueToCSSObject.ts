@@ -32,23 +32,23 @@ export function themeStyledValueToCSSObject(
 
     // debugger;
 
-    Object.keys(CONFIG?.themes).forEach((key: any) => {
-      if (key !== 'tokens') {
+    Object.keys(CONFIG?.themes).forEach((themeName: any) => {
+      if (themeName !== 'tokens') {
         const themeResolved = StyledValueToCSSObject(
           input,
           {
             ...CONFIG,
-            tokens: CONFIG?.themes?.tokens[key],
+            tokens: CONFIG?.themes?.tokens[themeName],
           },
           ignoreKeys,
           true
         );
 
-        Object.keys(themeResolved).forEach((key) =>
+        Object.keys(themeResolved).forEach((key: any) =>
           themeResolved[key] === undefined ? delete themeResolved[key] : {}
         );
 
-        themeResolved1[key] = themeResolved;
+        themeResolved1[themeName] = themeResolved;
       }
     });
   }
