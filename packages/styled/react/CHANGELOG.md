@@ -1,5 +1,12 @@
 # @gluestack-style/react
 
+## 1.0.34
+
+### Patch Changes
+
+- Fixed inline theme performance [PR](https://github.com/gluestack/gluestack-ui/pull/1606)
+- Fixed multiple provider color mode issue [PR](https://github.com/gluestack/gluestack-ui/pull/1602)
+
 ## 1.0.33
 
 ### Patch Changes

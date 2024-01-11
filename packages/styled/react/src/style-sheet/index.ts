@@ -1,7 +1,7 @@
 import {
   StyledValueToCSSObject,
   themeStyledValueToCSSObject,
-} from '../resolver';
+} from '../resolver/StyledValueToCSSObject';
 import type { OrderedSXResolved } from '../types';
 import { getCSSIdAndRuleset } from '../updateCSSStyleInOrderedResolved.web';
 import {
