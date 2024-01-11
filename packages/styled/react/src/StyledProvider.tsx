@@ -5,6 +5,7 @@ import { propertyTokenMap } from './propertyTokenMap';
 import type { COLORMODES } from './types';
 import {
   convertTokensToCssVariables,
+  generateMergedThemeTokens,
   platformSpecificSpaceUnits,
 } from './utils';
 import { createGlobalStylesWeb } from './createGlobalStylesWeb';
@@ -45,6 +46,7 @@ const setCurrentColorMode = (inputColorMode: string | undefined) => {
   //   colorModeSet = true;
   // }
 };
+
 export const StyledProvider: React.FC<{
   config: Config;
   colorMode?: COLORMODES;
@@ -97,6 +99,10 @@ export const StyledProvider: React.FC<{
         configWithPlatformSpecificUnits
       );
     }
+
+    configWithPlatformSpecificUnits = generateMergedThemeTokens(
+      configWithPlatformSpecificUnits
+    );
 
     return configWithPlatformSpecificUnits;
   }, [config]);
