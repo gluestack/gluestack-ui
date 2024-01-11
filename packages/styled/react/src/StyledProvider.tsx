@@ -17,6 +17,7 @@ import { resolveThemes } from './createConfig';
 
 type Config = any;
 let colorModeSet = false;
+let rootId = '';
 
 export const defaultConfig: {
   config: Config;
@@ -26,6 +27,7 @@ export const defaultConfig: {
   config: {},
   colorMode: 'light',
   components: {},
+  isConfigSet: false,
 };
 
 const defaultContextData: Config = defaultConfig;
@@ -66,8 +68,13 @@ export const StyledProvider: React.FC<{
 
   const { themes } = useTheme();
   const styledContext = useStyled();
-  const isParentProviderExist =
-    Object.keys(styledContext?.config).length > 0 ? true : false;
+  const id = React.useId();
+
+  if (rootId === '') {
+    rootId = id;
+  }
+
+  const isParentProviderExist = rootId !== id;
 
   const themeContextValue = React.useMemo(() => {
     if (colorMode) {
@@ -138,43 +145,39 @@ export const StyledProvider: React.FC<{
     if (Platform.OS === 'web') {
       documentElement.classList.add(`gs`);
 
-      if (currentColorMode) {
-        if (!isParentProviderExist) {
+      if (!isParentProviderExist) {
+        if (currentColorMode) {
           documentElement
             .querySelector('body')
             ?.setAttribute('data-theme-id', currentColorMode);
           documentElement.classList.add(`gs-${currentColorMode}`);
-        }
-      } else {
-        if (!isParentProviderExist) {
+        } else {
           documentElement.classList.add(`gs-light`);
         }
       }
     }
 
     onChange((currentColor: string) => {
+      console.log('heeeeeee');
       // only for web
       if (Platform.OS === 'web' && !_experimentalNestedProvider) {
         const documentElement = document.documentElement;
 
         if (Platform.OS === 'web') {
-          if (currentColor) {
-            if (currentColor === 'dark') {
-              if (!isParentProviderExist) {
+          if (isParentProviderExist) {
+            if (currentColor) {
+              console.log('>>>>>', currentColor);
+              if (currentColor === 'dark') {
                 documentElement
                   .querySelector('body')
                   ?.setAttribute('data-theme-id', 'dark');
                 documentElement.classList.remove(`gs-light`);
-              }
-            } else {
-              if (!isParentProviderExist) {
+              } else {
                 documentElement
                   .querySelector('body')
                   ?.setAttribute('data-theme-id', 'light');
                 documentElement.classList.remove(`gs-dark`);
               }
-            }
-            if (!isParentProviderExist) {
               documentElement.classList.add(`gs-${currentColor}`);
             }
           }
@@ -239,6 +242,7 @@ export const StyledProvider: React.FC<{
       animationDriverData,
       setAnimationDriverData,
       inlineStyleMap: inlineStyleMap.current,
+      isConfigSet: true,
     };
 
     if (_experimentalNestedProvider) {
