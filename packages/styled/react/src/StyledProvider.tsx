@@ -27,7 +27,6 @@ export const defaultConfig: {
   config: {},
   colorMode: 'light',
   components: {},
-  isConfigSet: false,
 };
 
 const defaultContextData: Config = defaultConfig;
@@ -35,7 +34,6 @@ const StyledContext = React.createContext<Config>(defaultContextData);
 
 const setCurrentColorMode = (inputColorMode: string | undefined) => {
   if (inputColorMode) {
-    // console.log(get(), '>>>>>>');
     const currentColorMode = get();
     if (currentColorMode !== inputColorMode) {
       set(inputColorMode);
@@ -74,7 +72,7 @@ export const StyledProvider: React.FC<{
     rootId = id;
   }
 
-  const isParentProviderExist = rootId !== id;
+  const isRootProvider = rootId === id;
 
   const themeContextValue = React.useMemo(() => {
     if (colorMode) {
@@ -144,8 +142,7 @@ export const StyledProvider: React.FC<{
     // Add gs class name
     if (Platform.OS === 'web') {
       documentElement.classList.add(`gs`);
-
-      if (!isParentProviderExist) {
+      if (isRootProvider) {
         if (currentColorMode) {
           documentElement
             .querySelector('body')
@@ -156,39 +153,36 @@ export const StyledProvider: React.FC<{
         }
       }
     }
-
     onChange((currentColor: string) => {
-      console.log('heeeeeee');
       // only for web
       if (Platform.OS === 'web' && !_experimentalNestedProvider) {
         const documentElement = document.documentElement;
-
-        if (Platform.OS === 'web') {
-          if (isParentProviderExist) {
-            if (currentColor) {
-              console.log('>>>>>', currentColor);
-              if (currentColor === 'dark') {
-                documentElement
-                  .querySelector('body')
-                  ?.setAttribute('data-theme-id', 'dark');
-                documentElement.classList.remove(`gs-light`);
-              } else {
-                documentElement
-                  .querySelector('body')
-                  ?.setAttribute('data-theme-id', 'light');
-                documentElement.classList.remove(`gs-dark`);
-              }
-              documentElement.classList.add(`gs-${currentColor}`);
+        if (isRootProvider) {
+          if (currentColor) {
+            if (currentColor === 'dark') {
+              documentElement
+                .querySelector('body')
+                ?.setAttribute('data-theme-id', 'dark');
+              documentElement.classList.remove(`gs-light`);
+            } else {
+              documentElement
+                .querySelector('body')
+                ?.setAttribute('data-theme-id', 'light');
+              documentElement.classList.remove(`gs-dark`);
             }
+            documentElement.classList.add(`gs-${currentColor}`);
           }
         }
       }
     });
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   React.useEffect(() => {
-    setCurrentColorMode(currentColorMode);
+    if (isRootProvider) {
+      setCurrentColorMode(currentColorMode);
+    }
   }, [currentColorMode]);
 
   useSafeLayoutEffect(() => {
@@ -227,7 +221,7 @@ export const StyledProvider: React.FC<{
     }
   });
   // // Set colormode for the first time
-  if (!colorModeSet) {
+  if (!colorModeSet && isRootProvider) {
     setCurrentColorMode(currentColorMode);
   }
 
