@@ -600,3 +600,29 @@ export function addThemeConditionInMeta(originalThemeObject: any, CONFIG: any) {
   });
   return themeObject;
 }
+
+export function resolvePlatformTheme(theme: any, platform: any) {
+  if (typeof theme === 'object') {
+    Object.keys(theme).forEach((themeKey) => {
+      if (themeKey !== 'style' && themeKey !== 'defaultProps') {
+        if (theme[themeKey].platform) {
+          let temp = { ...theme[themeKey] };
+          theme[themeKey] = deepMerge(temp, theme[themeKey].platform[platform]);
+          delete theme[themeKey].platform;
+          resolvePlatformTheme(theme[themeKey], platform);
+        } else if (themeKey === 'queries') {
+          theme[themeKey].forEach((query: any) => {
+            if (query.value.platform) {
+              let temp = { ...query.value };
+              query.value = deepMerge(temp, query.value.platform[platform]);
+              delete query.value.platform;
+            }
+            resolvePlatformTheme(query.value, platform);
+          });
+        } else {
+          resolvePlatformTheme(theme[themeKey], platform);
+        }
+      }
+    });
+  }
+}
