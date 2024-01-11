@@ -66,7 +66,8 @@ export const StyledProvider: React.FC<{
 
   const { themes } = useTheme();
   const styledContext = useStyled();
-  const isParentProviderExist = styledContext?.config ? true : false;
+  const isParentProviderExist =
+    Object.keys(styledContext?.config).length > 0 ? true : false;
 
   const themeContextValue = React.useMemo(() => {
     if (colorMode) {
@@ -139,7 +140,9 @@ export const StyledProvider: React.FC<{
 
       if (currentColorMode) {
         if (!isParentProviderExist) {
-          document.body.setAttribute('data-theme-id', currentColorMode);
+          documentElement
+            .querySelector('body')
+            ?.setAttribute('data-theme-id', currentColorMode);
           documentElement.classList.add(`gs-${currentColorMode}`);
         }
       } else {
@@ -158,14 +161,18 @@ export const StyledProvider: React.FC<{
           if (currentColor) {
             if (currentColor === 'dark') {
               if (!isParentProviderExist) {
-                document.body.setAttribute('data-theme-id', 'dark');
+                documentElement
+                  .querySelector('body')
+                  ?.setAttribute('data-theme-id', 'dark');
+                documentElement.classList.remove(`gs-light`);
               }
-              documentElement.classList.remove(`gs-light`);
             } else {
               if (!isParentProviderExist) {
-                document.body.setAttribute('data-theme-id', 'light');
+                documentElement
+                  .querySelector('body')
+                  ?.setAttribute('data-theme-id', 'light');
+                documentElement.classList.remove(`gs-dark`);
               }
-              documentElement.classList.remove(`gs-dark`);
             }
             if (!isParentProviderExist) {
               documentElement.classList.add(`gs-${currentColor}`);
