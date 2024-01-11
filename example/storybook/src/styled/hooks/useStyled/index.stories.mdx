@@ -1,0 +1,41 @@
+---
+title: useStyled | gluestack-ui
+description: useStyled is a custom hook that returns a configuration object encompassing aliases, components, global styles, plugins, and tokens. This configuration facilitates easy access to essential styling elements and global functionalities for components
+showHeader: false
+---
+
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+
+<Meta title="styled/Hooks/useStyled" />
+
+# useStyled
+
+**useStyled** is a custom hook that returns a configuration object encompassing aliases, components, global styles, plugins, and tokens. This configuration facilitates easy access to essential styling elements and global functionalities for components.
+
+### Import
+
+To use the `useStyled` in your project, import `useStyled` from `@gluestack-style/react`. as Demonstrated below.
+
+```jsx
+import { useStyled } from '@gluestack-style/react';
+```
+
+Let's use our `useStyled` value to give background color to `View` from `react-native`.
+
+```jsx
+import { View } from 'react-native';
+import { useStyled } from '@gluestack-style/react';
+
+const Example = () => {
+  const styled = useStyled();
+  return (
+    <View
+      style={{
+        width: 100,
+        height: 100,
+        backgroundColor: styled.config.tokens.colors.primary500,
+      }}
+    />
+  );
+};
+```
