@@ -50,6 +50,9 @@ import {
 import { updateOrderUnResolvedMap } from './updateOrderUnResolvedMap';
 import { resolveComponentTheme } from './createConfig';
 
+// Create a caching object
+let sxMemoizationCache: any = {};
+
 const styledSystemProps = { ...CSSPropertiesMap };
 
 function isSubset(subset: any, set: any) {
@@ -917,9 +920,20 @@ export function verboseStyled<P, Variants, ComCon>(
     inlineStyleMap?: any,
     ignoreKeys: Set<any> = new Set()
   ) {
+    const sxHash = stableHash(sx);
+
+    const memoizationKey = sxHash + type;
+    // Check if the result is already in the cache
+    if (sxMemoizationCache[memoizationKey]) {
+      return sxMemoizationCache[memoizationKey];
+    }
+
     const inlineSxTheme = {
       baseStyle: sx,
     };
+
+    // if (Platform.OS === '')
+    // console.log(sxHash, GluestackStyleSheet.getStyleMap(), 'hash here');
 
     resolvePlatformTheme(inlineSxTheme, Platform.OS);
     const sxStyledResolved = styledToStyledResolved(
@@ -958,7 +972,7 @@ export function verboseStyled<P, Variants, ComCon>(
       );
     }
 
-    const sxHash = stableHash(sx);
+    // const sxHash = stableHash(sx);
 
     const orderedSXResolved =
       styledResolvedToOrderedSXResolved(sxStyledResolved);
@@ -979,6 +993,8 @@ export function verboseStyled<P, Variants, ComCon>(
       ignoreKeys,
       CONFIG
     );
+
+    sxMemoizationCache[memoizationKey] = orderedSXResolved;
 
     return orderedSXResolved;
   }
