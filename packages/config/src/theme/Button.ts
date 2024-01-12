@@ -8,12 +8,12 @@ export const Button = createStyle({
   'alignItems': 'center',
 
   '_text': {
-    color: '$textLight0',
+    color: '$text0',
     fontWeight: '$semibold',
   },
 
   '_icon': {
-    color: '$textLight0',
+    color: '$text0',
   },
 
   '_spinner': {
@@ -254,32 +254,32 @@ export const Button = createStyle({
       },
       solid: {
         _text: {
-          'color': '$textLight0',
+          'color': '$text0',
           ':hover': {
-            color: '$textLight0',
+            color: '$text0',
           },
           ':active': {
-            color: '$textLight0',
+            color: '$text0',
           },
         },
 
         _spinner: {
-          'props': { color: '$textLight0' },
+          'props': { color: '$text0' },
           ':hover': {
-            props: { color: '$textLight0' },
+            props: { color: '$text0' },
           },
           ':active': {
-            props: { color: '$textLight0' },
+            props: { color: '$text0' },
           },
         },
 
         _icon: {
-          'props': { color: '$textLight0' },
+          'props': { color: '$text0' },
           ':hover': {
-            props: { color: '$textLight0' },
+            props: { color: '$text0' },
           },
           ':active': {
-            props: { color: '$textLight0' },
+            props: { color: '$text0' },
           },
         },
       },
@@ -488,32 +488,32 @@ export const Button = createStyle({
       variant: 'solid',
       value: {
         _text: {
-          'color': '$textLight0',
+          'color': '$text0',
           ':hover': {
-            color: '$textLight0',
+            color: '$text0',
           },
           ':active': {
-            color: '$textLight0',
+            color: '$text0',
           },
         },
 
         _icon: {
-          'color': '$textLight0',
+          'color': '$text0',
           ':hover': {
-            color: '$textLight0',
+            color: '$text0',
           },
           ':active': {
-            color: '$textLight0',
+            color: '$text0',
           },
         },
 
         _spinner: {
-          'props': { color: '$textLight0' },
+          'props': { color: '$text0' },
           ':hover': {
-            props: { color: '$textLight0' },
+            props: { color: '$text0' },
           },
           ':active': {
-            props: { color: '$textLight0' },
+            props: { color: '$text0' },
           },
         },
       },
@@ -523,32 +523,32 @@ export const Button = createStyle({
       variant: 'solid',
       value: {
         _text: {
-          'color': '$textLight0',
+          'color': '$text0',
           ':hover': {
-            color: '$textLight0',
+            color: '$text0',
           },
           ':active': {
-            color: '$textLight0',
+            color: '$text0',
           },
         },
 
         _icon: {
-          'color': '$textLight0',
+          'color': '$text0',
           ':hover': {
-            color: '$textLight0',
+            color: '$text0',
           },
           ':active': {
-            color: '$textLight0',
+            color: '$text0',
           },
         },
 
         _spinner: {
-          'props': { color: '$textLight0' },
+          'props': { color: '$text0' },
           ':hover': {
-            props: { color: '$textLight0' },
+            props: { color: '$text0' },
           },
           ':active': {
-            props: { color: '$textLight0' },
+            props: { color: '$text0' },
           },
         },
       },
@@ -558,33 +558,33 @@ export const Button = createStyle({
       variant: 'solid',
       value: {
         _text: {
-          'color': '$textLight0',
+          'color': '$text0',
           ':hover': {
-            color: '$textLight0',
+            color: '$text0',
           },
           ':active': {
-            color: '$textLight0',
+            color: '$text0',
           },
         },
 
         _icon: {
-          'color': '$textLight0',
+          'color': '$text0',
           ':hover': {
-            color: '$textLight0',
+            color: '$text0',
           },
           ':active': {
-            color: '$textLight0',
+            color: '$text0',
           },
-          'props': { color: '$textLight0' },
+          'props': { color: '$text0' },
         },
 
         _spinner: {
-          'props': { color: '$textLight0' },
+          'props': { color: '$text0' },
           ':hover': {
-            props: { color: '$textLight0' },
+            props: { color: '$text0' },
           },
           ':active': {
-            props: { color: '$textLight0' },
+            props: { color: '$text0' },
           },
         },
       },
@@ -594,32 +594,32 @@ export const Button = createStyle({
       variant: 'solid',
       value: {
         _text: {
-          'color': '$textLight0',
+          'color': '$text0',
           ':hover': {
-            color: '$textLight0',
+            color: '$text0',
           },
           ':active': {
-            color: '$textLight0',
+            color: '$text0',
           },
         },
 
         _icon: {
-          'color': '$textLight0',
+          'color': '$text0',
           ':hover': {
-            color: '$textLight0',
+            color: '$text0',
           },
           ':active': {
-            color: '$textLight0',
+            color: '$text0',
           },
         },
 
         _spinner: {
-          'props': { color: '$textLight0' },
+          'props': { color: '$text0' },
           ':hover': {
-            props: { color: '$textLight0' },
+            props: { color: '$text0' },
           },
           ':active': {
-            props: { color: '$textLight0' },
+            props: { color: '$text0' },
           },
         },
       },

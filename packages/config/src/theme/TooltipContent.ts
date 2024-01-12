@@ -33,7 +33,7 @@ export const TooltipContent = createStyle({
 
   '_text': {
     fontSize: '$xs',
-    color: '$textLight50',
+    color: '$text50',
   },
 
   '_web': {

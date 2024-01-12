@@ -6,5 +6,5 @@ export const SelectActionsheetItemText = createStyle({
   fontFamily: '$body',
   fontWeight: '$normal',
   lineHeight: '$md',
-  color: '$textLight700',
+  color: '$text700',
 });

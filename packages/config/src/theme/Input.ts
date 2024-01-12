@@ -32,7 +32,7 @@ export const Input = createStyle({
   },
 
   '_icon': {
-    color: '$textLight400',
+    color: '$text400',
   },
 
   'variants': {

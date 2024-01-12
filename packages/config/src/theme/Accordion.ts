@@ -3,13 +3,13 @@ import { createStyle } from '@gluestack-style/react';
 export const Accordion = createStyle({
   width: '$full',
   _icon: {
-    color: '$textLight900',
+    color: '$text900',
   },
   _titleText: {
-    color: '$textLight900',
+    color: '$text900',
   },
   _contentText: {
-    color: '$textLight700',
+    color: '$text700',
   },
 
   variants: {

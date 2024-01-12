@@ -1,29 +1,29 @@
 import { createStyle } from '@gluestack-style/react';
 
 export const RadioLabel = createStyle({
-  'color': '$textLight600',
+  'color': '$text600',
 
   ':checked': {
-    color: '$textLight900',
+    color: '$text900',
   },
 
   ':hover': {
-    'color': '$textLight900',
+    'color': '$text900',
     ':checked': {
-      color: '$textLight900',
+      color: '$text900',
     },
     ':disabled': {
-      'color': '$textLight600',
+      'color': '$text600',
       ':checked': {
-        color: '$textLight900',
+        color: '$text900',
       },
     },
   },
 
   ':active': {
-    'color': '$textLight900',
+    'color': '$text900',
     ':checked': {
-      color: '$textLight900',
+      color: '$text900',
     },
   },
 

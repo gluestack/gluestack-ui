@@ -28,19 +28,19 @@ export const Fab = createStyle({
   },
 
   '_text': {
-    color: '$textLight50',
+    color: '$text50',
     fontWeight: '$normal',
   },
 
   '_icon': {
-    'color': '$textLight50',
+    'color': '$text50',
 
     ':hover': {
-      color: '$textLight0',
+      color: '$text0',
     },
 
     ':active': {
-      color: '$textLight0',
+      color: '$text0',
     },
   },
 

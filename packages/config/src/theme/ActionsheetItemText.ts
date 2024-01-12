@@ -7,5 +7,5 @@ export const ActionsheetItemText = createStyle({
     size: 'md',
   },
 
-  color: '$textLight800',
+  color: '$text800',
 });

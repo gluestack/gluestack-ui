@@ -2,14 +2,14 @@ import { createStyle } from '@gluestack-style/react';
 
 export const TextareaInput = createStyle({
   p: '$2',
-  color: '$textLight900',
+  color: '$text900',
   textAlignVertical: 'top',
   flex: 1,
 
   props: {
     // @ts-ignore
     multiline: true,
-    placeholderTextColor: '$textLight500',
+    placeholderTextColor: '$text500',
   },
 
   _web: {

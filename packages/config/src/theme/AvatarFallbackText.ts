@@ -1,7 +1,7 @@
 import { createStyle } from '@gluestack-style/react';
 
 export const AvatarFallbackText = createStyle({
-  color: '$textLight0',
+  color: '$text0',
   fontWeight: '$semibold',
   props: {
     size: 'xl',
