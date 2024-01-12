@@ -1,5 +1,11 @@
 # @gluestack-style/react
 
+## 1.0.38
+
+### Patch Changes
+
+- Performance improvement - memoized injectSx function
+
 ## 1.0.37
 
 ### Patch Changes
