@@ -1,6 +1,5 @@
 import { DiscordIcon, GitHubIcon, TwitterIcon } from '@gluestack/design-system';
 import React from 'react';
-import Reddit from './Reddit';
 import Stackoverflow from './Stackoverflow';
 
 export const communities = [
@@ -24,12 +23,12 @@ export const communities = [
     description:
       'To get involved in the community, ask questions, and share tips.',
   },
-  {
-    name: 'Reddit',
-    icon: <Reddit />,
-    link: 'https://www.reddit.com/r/gluestack/',
-    description: 'Join the conversation on our Reddit forum.',
-  },
+  // {
+  //   name: 'Reddit',
+  //   icon: <Reddit />,
+  //   link: 'https://www.reddit.com/r/gluestack/',
+  //   description: 'Join the conversation on our Reddit forum.',
+  // },
   {
     name: 'Stackoverflow',
     icon: <Stackoverflow />,
