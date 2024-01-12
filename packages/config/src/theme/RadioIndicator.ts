@@ -4,7 +4,7 @@ export const RadioIndicator = createStyle({
   'justifyContent': 'center',
   'alignItems': 'center',
   'bg': 'transparent',
-  'borderColor': '$borderLight400',
+  'borderColor': '$border400',
   'borderWidth': 2,
   'borderRadius': 999,
 
@@ -22,7 +22,7 @@ export const RadioIndicator = createStyle({
   },
 
   ':hover': {
-    'borderColor': '$borderLight500',
+    'borderColor': '$border500',
     'bg': 'transparent',
 
     ':checked': {
@@ -37,7 +37,7 @@ export const RadioIndicator = createStyle({
         borderColor: '$error400',
         opacity: 0.4,
       },
-      'borderColor': '$borderLight400',
+      'borderColor': '$border400',
       'opacity': 0.4,
     },
   },
@@ -54,7 +54,7 @@ export const RadioIndicator = createStyle({
   ':disabled': {
     'opacity': 0.4,
     ':checked': {
-      borderColor: '$borderLight400',
+      borderColor: '$border400',
       bg: 'transparent',
     },
     ':invalid': {

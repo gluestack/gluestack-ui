@@ -3,7 +3,7 @@ import { createStyle } from '@gluestack-style/react';
 export const SliderTrack = createStyle({
   // h: '100%',
   // w: '100%',
-  bg: '$backgroundLight300',
+  bg: '$background300',
 
   borderRadius: '$lg',
   overflow: 'hidden',

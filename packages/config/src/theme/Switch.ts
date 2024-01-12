@@ -3,17 +3,17 @@ import { createStyle } from '@gluestack-style/react';
 export const Switch = createStyle({
   'props': {
     // todo: add support for this in style.gluestack.io
-    // trackColor: { false: '$backgroundLight300', true: '$primary600' },
+    // trackColor: { false: '$background300', true: '$primary600' },
 
     // hacky fix for the above
     //@ts-ignore
-    trackColor: { false: '$backgroundLight300', true: '$primary600' },
-    thumbColor: '$backgroundLight0',
+    trackColor: { false: '$background300', true: '$primary600' },
+    thumbColor: '$background0',
     //@ts-ignore
-    activeThumbColor: '$backgroundLight0',
+    activeThumbColor: '$background0',
 
     // for ios specifically in unchecked state
-    ios_backgroundColor: '$backgroundLight300',
+    ios_backgroundColor: '$background300',
   },
 
   'borderRadius': '$full',
@@ -61,13 +61,13 @@ export const Switch = createStyle({
     },
     'opacity': 0.4,
     //@ts-ignore
-    'trackColor': { false: '$backgroundLight300', true: '$primary600' },
+    'trackColor': { false: '$background300', true: '$primary600' },
     // for ios specifically in unchecked state
-    'ios_backgroundColor': '$backgroundLight300',
+    'ios_backgroundColor': '$background300',
     ':hover': {
       props: {
         //@ts-ignore
-        trackColor: { false: '$backgroundLight300', true: '$primary600' },
+        trackColor: { false: '$background300', true: '$primary600' },
       },
     },
   },
@@ -81,23 +81,23 @@ export const Switch = createStyle({
   ':hover': {
     'props': {
       // todo: add support for this in style.gluestack.io
-      // trackColor: { false: '$backgroundLight400', true: '$primary700' },
+      // trackColor: { false: '$background400', true: '$primary700' },
 
       // hacky fix for the above
       //@ts-ignore
 
-      trackColor: { false: '$backgroundLight400', true: '$primary700' },
-      ios_backgroundColor: '$backgroundLight400',
+      trackColor: { false: '$background400', true: '$primary700' },
+      ios_backgroundColor: '$background400',
     },
     ':invalid': {
       props: {
         // todo: add support for this in style.gluestack.io
-        // trackColor: { false: '$backgroundLight400', true: '$primary700' },
+        // trackColor: { false: '$background400', true: '$primary700' },
 
         // hacky fix for the above
         //@ts-ignore
 
-        trackColor: { false: '$backgroundLight300', true: '$primary700' },
+        trackColor: { false: '$background300', true: '$primary700' },
       },
     },
   },
@@ -105,7 +105,7 @@ export const Switch = createStyle({
   ':checked': {
     props: {
       //@ts-ignore
-      thumbColor: '$backgroundLight0',
+      thumbColor: '$background0',
     },
   },
 });

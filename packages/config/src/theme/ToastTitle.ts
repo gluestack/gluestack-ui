@@ -7,5 +7,5 @@ export const ToastTitle = createStyle({
     size: 'md',
   },
 
-  color: '$textLight900',
+  color: '$text900',
 });

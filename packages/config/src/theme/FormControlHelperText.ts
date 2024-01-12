@@ -5,5 +5,5 @@ export const FormControlHelperText = createStyle({
     size: 'xs',
   },
 
-  color: '$textLight500',
+  color: '$text500',
 });

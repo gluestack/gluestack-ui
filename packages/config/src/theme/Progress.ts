@@ -1,7 +1,7 @@
 import { createStyle } from '@gluestack-style/react';
 
 export const Progress = createStyle({
-  bg: '$backgroundLight300',
+  bg: '$background300',
   borderRadius: '$full',
   w: '100%',
 

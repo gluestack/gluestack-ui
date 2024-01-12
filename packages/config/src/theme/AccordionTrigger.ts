@@ -17,8 +17,6 @@ export const AccordionTrigger = createStyle({
     },
   },
   ':focusVisible': {
-    _light: {
-      bg: '$backgroundLight50',
-    },
+    bg: '$background50',
   },
 });

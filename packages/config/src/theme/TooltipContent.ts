@@ -29,11 +29,11 @@ export const TooltipContent = createStyle({
   'py': '$1',
   'px': '$3',
   'borderRadius': '$sm',
-  'bg': '$backgroundLight900',
+  'bg': '$background900',
 
   '_text': {
     fontSize: '$xs',
-    color: '$textLight50',
+    color: '$text50',
   },
 
   '_web': {

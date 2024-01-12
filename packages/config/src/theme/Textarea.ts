@@ -3,7 +3,7 @@ import { createStyle } from '@gluestack-style/react';
 export const Textarea = createStyle({
   'w': '100%',
   'borderWidth': 1,
-  'borderColor': '$backgroundLight300',
+  'borderColor': '$background300',
   'borderRadius': '$sm',
   'h': 100,
 
@@ -16,7 +16,7 @@ export const Textarea = createStyle({
   },
 
   ':hover': {
-    borderColor: '$borderLight400',
+    borderColor: '$border400',
   },
 
   ':focus': {
@@ -29,7 +29,7 @@ export const Textarea = createStyle({
   ':disabled': {
     'opacity': 0.4,
     ':hover': {
-      borderColor: '$backgroundLight300',
+      borderColor: '$background300',
     },
   },
 

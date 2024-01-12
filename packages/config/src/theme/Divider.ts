@@ -1,7 +1,7 @@
 import { createStyle } from '@gluestack-style/react';
 
 export const Divider = createStyle({
-  bg: '$backgroundLight200',
+  bg: '$background200',
 
   variants: {
     orientation: {

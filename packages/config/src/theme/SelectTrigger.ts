@@ -2,14 +2,14 @@ import { createStyle } from '@gluestack-style/react';
 
 export const SelectTrigger = createStyle({
   'borderWidth': 1,
-  'borderColor': '$backgroundLight300',
+  'borderColor': '$background300',
   'borderRadius': '$sm',
   'flexDirection': 'row',
   'overflow': 'hidden',
   'alignItems': 'center',
 
   ':hover': {
-    borderColor: '$borderLight400',
+    borderColor: '$border400',
   },
 
   ':focus': {
@@ -19,7 +19,7 @@ export const SelectTrigger = createStyle({
   ':disabled': {
     'opacity': 0.4,
     ':hover': {
-      borderColor: '$backgroundLight300',
+      borderColor: '$background300',
     },
   },
 
@@ -29,7 +29,7 @@ export const SelectTrigger = createStyle({
   },
 
   '_icon': {
-    color: '$backgroundLight500',
+    color: '$background500',
   },
 
   'variants': {

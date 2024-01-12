@@ -7,5 +7,5 @@ export const PopoverFooter = createStyle({
   alignItems: 'center',
   flexWrap: 'wrap',
   borderTopWidth: 1,
-  borderColor: '$borderLight300',
+  borderColor: '$border300',
 });

@@ -28,7 +28,7 @@ export const PopoverBackdrop = createStyle({
   'top': 0,
   'right': 0,
   'bottom': 0,
-  'bg': '$backgroundLight950',
+  'bg': '$background950',
 
   // @ts-ignore
   '_web': {

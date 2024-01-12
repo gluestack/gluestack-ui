@@ -1,7 +1,7 @@
 import { createStyle } from '@gluestack-style/react';
 
 export const AlertDialogContent = createStyle({
-  'bg': '$backgroundLight50',
+  'bg': '$background50',
   'rounded': '$lg',
   'overflow': 'hidden',
 

@@ -5,5 +5,5 @@ export const ActionsheetIcon = createStyle({
     size: 'sm',
   },
 
-  color: '$backgroundLight500',
+  color: '$background500',
 });

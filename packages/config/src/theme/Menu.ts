@@ -26,7 +26,7 @@ export const Menu = createStyle({
   'minWidth': 200,
   'py': '$2',
   'rounded': '$sm',
-  'bg': '$backgroundLight0',
+  'bg': '$background0',
 
   'defaultProps': {
     softShadow: '3',

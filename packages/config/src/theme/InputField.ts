@@ -2,10 +2,10 @@ import { createStyle } from '@gluestack-style/react';
 
 export const InputField = createStyle({
   flex: 1,
-  color: '$textLight900',
+  color: '$text900',
 
   props: {
-    placeholderTextColor: '$textLight500',
+    placeholderTextColor: '$text500',
   },
 
   _web: {

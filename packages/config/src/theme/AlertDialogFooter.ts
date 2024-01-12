@@ -6,5 +6,5 @@ export const AlertDialogFooter = createStyle({
   justifyContent: 'flex-end',
   alignItems: 'center',
   flexWrap: 'wrap',
-  borderColor: '$borderLight300',
+  borderColor: '$border300',
 });
