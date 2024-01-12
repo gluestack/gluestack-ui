@@ -7,7 +7,7 @@ export const Badge = createStyle({
   'variants': {
     action: {
       error: {
-        bg: '$backgroundLightError',
+        bg: '$backgroundError',
         borderColor: '$error300',
 
         _icon: {
@@ -19,7 +19,7 @@ export const Badge = createStyle({
         },
       },
       warning: {
-        bg: '$backgroundLightWarning',
+        bg: '$backgroundWarning',
         borderColor: '$warning300',
 
         _icon: {
@@ -31,7 +31,7 @@ export const Badge = createStyle({
         },
       },
       success: {
-        bg: '$backgroundLightSuccess',
+        bg: '$backgroundSuccess',
         borderColor: '$success300',
 
         _icon: {
@@ -43,7 +43,7 @@ export const Badge = createStyle({
         },
       },
       info: {
-        bg: '$backgroundLightInfo',
+        bg: '$backgroundInfo',
         borderColor: '$info300',
 
         _icon: {
@@ -55,7 +55,7 @@ export const Badge = createStyle({
         },
       },
       muted: {
-        bg: '$backgroundLightMuted',
+        bg: '$backgroundMuted',
         borderColor: '$secondary300',
 
         _icon: {

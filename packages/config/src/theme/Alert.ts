@@ -8,7 +8,7 @@ export const Alert = createStyle({
   variants: {
     action: {
       error: {
-        bg: '$backgroundLightError',
+        bg: '$backgroundError',
         borderColor: '$error300',
 
         _icon: {
@@ -16,7 +16,7 @@ export const Alert = createStyle({
         },
       },
       warning: {
-        bg: '$backgroundLightWarning',
+        bg: '$backgroundWarning',
         borderColor: '$warning300',
 
         _icon: {
@@ -24,7 +24,7 @@ export const Alert = createStyle({
         },
       },
       success: {
-        bg: '$backgroundLightSuccess',
+        bg: '$backgroundSuccess',
         borderColor: '$success300',
 
         _icon: {
@@ -32,7 +32,7 @@ export const Alert = createStyle({
         },
       },
       info: {
-        bg: '$backgroundLightInfo',
+        bg: '$backgroundInfo',
         borderColor: '$info300',
 
         _icon: {
@@ -40,7 +40,7 @@ export const Alert = createStyle({
         },
       },
       muted: {
-        bg: '$backgroundLightMuted',
+        bg: '$backgroundMuted',
         borderColor: '$secondary300',
 
         _icon: {
