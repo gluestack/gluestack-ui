@@ -91,13 +91,19 @@ export type CreateConfig = {
 export type ThemeStyles<IToken> = Partial<{
   [key: string]: {
     [key in keyof IToken]?: {
-      // @ts-ignore
-      [k in `$${keyof IToken[key]}`]?:  // @ts-ignore
+      //@ts-ignore
+      [k in `${keyof IToken[key]}`]?:  // @ts-ignore
         | `$${key}$${keyof IToken[key]}`
-        | (String & {});
+        | (String & {})
+        | number;
     };
+    //& Partial<{ [Key: string]: any }>;
   };
 }>;
+
+// export type ThemeStyles<IToken> = Partial<{
+//   [key: string]: Tokens;
+// }>;
 
 // Generic Creator
 export type GlueStackConfig<
@@ -176,6 +182,7 @@ export type SxStyleProps<
 
 //@ts-ignore
 type GlobalVariants = GSConfig['globalStyle']['variants'];
+type GlobalThemes = keyof GSConfig['themes'];
 
 export type IComponentStyleConfig<ComCon = any> = Partial<{
   descendantStyle: any;
@@ -462,6 +469,44 @@ export type SxProps<
         PluginType
       >;
     } & {
+      [Key in `.${GlobalThemes}`]?: SxProps<
+        GenericComponentStyles,
+        Variants,
+        GenericComponentProps,
+        PLATFORM,
+        MediaQuery,
+        PluginType
+      > &
+        PassingPropsType<
+          GenericComponentStyles,
+          Variants,
+          GenericComponentProps,
+          MediaQuery,
+          PluginType
+        > &
+        Partial<{
+          [key: string]: any;
+        }>;
+    } & {
+      [Key in `.${string}`]?: SxProps<
+        GenericComponentStyles,
+        Variants,
+        GenericComponentProps,
+        PLATFORM,
+        MediaQuery,
+        PluginType
+      > &
+        PassingPropsType<
+          GenericComponentStyles,
+          Variants,
+          GenericComponentProps,
+          MediaQuery,
+          PluginType
+        > &
+        Partial<{
+          [key: string]: any;
+        }>;
+    } & {
       [Key in `:${IState}`]?: SxProps<
         GenericComponentStyles,
         Variants,
@@ -641,6 +686,7 @@ export type VerbosedSX = {
   queries?: Array<QueryType>;
   platform?: { [K in PLATFORMS]?: VerbosedSX };
   colorMode?: { [K in COLORMODES]?: VerbosedSX };
+  theme?: { [key: string]: VerbosedSX };
   state?: { [K in IState]?: VerbosedSX };
   descendants?: { [key: string]: VerbosedSX };
 };
@@ -650,6 +696,7 @@ export type VerbosedSxResolved = {
   queriesResolved: Array<QueryTypeResolved>;
   platform?: { [K in PLATFORMS]?: VerbosedSX };
   colorMode?: { [key: string]: VerbosedSxResolved };
+  theme?: { [key: string]: VerbosedSxResolved };
   state?: { [key: string]: VerbosedSxResolved };
   descendants?: { [key: string]: VerbosedSxResolved };
 };
@@ -826,6 +873,7 @@ type StatePropsCombination = Permutations<IState, keyof Aliases>;
 type PlatformPropsCombination = Permutations<PLATFORMS, keyof Aliases>;
 type MediaQueryCombination = Permutations<IMediaQueries, keyof Aliases>;
 type ColorModeCombination = Permutations<COLORMODES, keyof Aliases>;
+type ThemeCombination = Permutations<`t_${GlobalThemes}`, keyof Aliases>;
 
 type LastPart<T extends string> = T extends `${string}-${infer Rest}`
   ? LastPart<Rest>
@@ -835,7 +883,8 @@ export type PropsCombinations =
   | StatePropsCombination
   | PlatformPropsCombination
   | MediaQueryCombination
-  | ColorModeCombination;
+  | ColorModeCombination
+  | ThemeCombination;
 
 export type UtilityProps<
   GenericComponentStyles,

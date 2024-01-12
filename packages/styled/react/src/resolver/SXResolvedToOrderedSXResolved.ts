@@ -75,6 +75,14 @@ export function SXResolvedToOrderedSXResolved(
       // orderedSXResolved.push(stateSXResolved.styledValueResolvedWithMeta);
     });
   }
+  if (sxResolved?.theme) {
+    Object.keys(sxResolved.theme).forEach((key) => {
+      //@ts-ignore
+      const themeSXResolved = sxResolved.theme[key];
+      orderedSXResolved.push(...SXResolvedToOrderedSXResolved(themeSXResolved));
+    });
+  }
+
   if (sxResolved?.descendants) {
     Object.keys(sxResolved.descendants).forEach((key) => {
       //@ts-ignore
