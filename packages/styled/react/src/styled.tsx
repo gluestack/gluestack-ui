@@ -53,9 +53,6 @@ import { resolveComponentTheme } from './createConfig';
 // Create a caching object
 let sxMemoizationCache: any = {};
 
-// Define a function to generate a unique key for the function arguments
-const generateCacheKey = (args: any) => stableHash(args);
-
 const styledSystemProps = { ...CSSPropertiesMap };
 
 function isSubset(subset: any, set: any) {
