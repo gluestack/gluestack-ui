@@ -6,7 +6,4 @@ export const AlertDialogHeader = createStyle({
   justifyContent: 'space-between',
   alignItems: 'center',
   flexDirection: 'row',
-  _dark: {
-    borderColor: '$borderDark700',
-  },
 });

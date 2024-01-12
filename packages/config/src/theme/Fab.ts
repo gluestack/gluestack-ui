@@ -6,10 +6,10 @@ export const Fab = createStyle({
   'zIndex': 20,
   'p': 16,
   'flexDirection': 'row',
-
   'alignItems': 'center',
   'justifyContent': 'center',
   'position': 'absolute',
+
   ':hover': {
     bg: '$primary600',
   },
@@ -30,47 +30,17 @@ export const Fab = createStyle({
   '_text': {
     color: '$textLight50',
     fontWeight: '$normal',
-    _dark: {
-      _text: {
-        color: '$textDark50',
-      },
-    },
   },
 
   '_icon': {
     'color': '$textLight50',
-    ':hover': {
-      color: '$textLight0',
-    },
-    ':active': {
-      color: '$textLight0',
-    },
-    '_dark': {
-      _icon: {
-        'color': '$textDark0',
-        ':hover': {
-          color: '$textDark0',
-        },
-        ':active': {
-          color: '$textDark0',
-        },
-      },
-    },
-  },
 
-  '_dark': {
-    'bg': '$primary400',
     ':hover': {
-      bg: '$primary500',
+      color: '$textLight0',
     },
+
     ':active': {
-      bg: '$primary600',
-    },
-    ':disabled': {
-      opacity: 0.4,
-      _web: {
-        cursor: 'not-allowed',
-      },
+      color: '$textLight0',
     },
   },
 
@@ -79,9 +49,6 @@ export const Fab = createStyle({
       outlineWidth: 2,
       outlineColor: '$primary700',
       outlineStyle: 'solid',
-      _dark: {
-        outlineColor: '$primary300',
-      },
     },
   },
 
@@ -173,6 +140,7 @@ export const Fab = createStyle({
       },
     },
   },
+
   'defaultProps': {
     placement: 'bottom right',
     size: 'md',

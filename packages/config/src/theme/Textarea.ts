@@ -6,6 +6,7 @@ export const Textarea = createStyle({
   'borderColor': '$backgroundLight300',
   'borderRadius': '$sm',
   'h': 100,
+
   '_input': {
     p: '$3',
     _web: {
@@ -13,6 +14,7 @@ export const Textarea = createStyle({
       outline: 'none',
     },
   },
+
   ':hover': {
     borderColor: '$borderLight400',
   },
@@ -28,23 +30,6 @@ export const Textarea = createStyle({
     'opacity': 0.4,
     ':hover': {
       borderColor: '$backgroundLight300',
-    },
-  },
-  '_dark': {
-    'borderColor': '$borderDark700',
-    ':hover': {
-      borderColor: '$borderDark600',
-    },
-    ':focus': {
-      'borderColor': '$primary400',
-      ':hover': {
-        borderColor: '$primary400',
-      },
-    },
-    ':disabled': {
-      ':hover': {
-        borderColor: '$borderDark700',
-      },
     },
   },
 
@@ -80,12 +65,14 @@ export const Textarea = createStyle({
             outline: 'none',
           },
         },
+
         ':focus': {
           borderColor: '$primary700',
           _web: {
             boxShadow: 'inset 0 0 0 1px $primary700',
           },
         },
+
         ':invalid': {
           'borderColor': '$error700',
           '_web': {
@@ -107,39 +94,6 @@ export const Textarea = createStyle({
               borderColor: '$error700',
               _web: {
                 boxShadow: 'inset 0 0 0 1px $error700',
-              },
-            },
-          },
-        },
-        '_dark': {
-          ':focus': {
-            borderColor: '$primary400',
-            _web: {
-              boxShadow: 'inset 0 0 0 1px $primary400',
-            },
-          },
-          ':invalid': {
-            'borderColor': '$error400',
-            '_web': {
-              boxShadow: 'inset 0 0 0 1px $error400',
-            },
-            ':hover': {
-              borderColor: '$error400',
-            },
-            ':focus': {
-              ':hover': {
-                borderColor: '$primary400',
-                _web: {
-                  boxShadow: 'inset 0 0 0 1px $primary400',
-                },
-              },
-            },
-            ':disabled': {
-              ':hover': {
-                borderColor: '$error400',
-                _web: {
-                  boxShadow: 'inset 0 0 0 1px $error400',
-                },
               },
             },
           },

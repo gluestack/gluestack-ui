@@ -3,21 +3,18 @@ import { createStyle } from '@gluestack-style/react';
 export const InputField = createStyle({
   flex: 1,
   color: '$textLight900',
+
   props: {
     placeholderTextColor: '$textLight500',
   },
-  _dark: {
-    color: '$textDark50',
-    props: {
-      placeholderTextColor: '$textDark400',
-    },
-  },
+
   _web: {
     'cursor': 'text',
     ':disabled': {
       cursor: 'not-allowed',
     },
   },
+
   variants: {
     size: {
       '2xs': {

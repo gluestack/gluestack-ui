@@ -5,7 +5,4 @@ export const ActionsheetSectionHeaderText = createStyle({
   props: { size: 'xs' },
   textTransform: 'uppercase',
   p: '$3',
-  _dark: {
-    color: '$textDark400',
-  },
 });

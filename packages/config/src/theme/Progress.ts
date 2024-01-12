@@ -4,6 +4,7 @@ export const Progress = createStyle({
   bg: '$backgroundLight300',
   borderRadius: '$full',
   w: '100%',
+
   variants: {
     size: {
       'xs': {
@@ -44,9 +45,7 @@ export const Progress = createStyle({
       },
     },
   },
-  _dark: {
-    bg: '$backgroundDark700',
-  },
+
   defaultProps: {
     size: 'md',
   },

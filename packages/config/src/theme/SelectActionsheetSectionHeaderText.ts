@@ -8,7 +8,4 @@ export const SelectActionsheetSectionHeaderText = createStyle({
   lineHeight: '$xs',
   textTransform: 'uppercase',
   p: '$3',
-  _dark: {
-    color: '$textDark400',
-  },
 });

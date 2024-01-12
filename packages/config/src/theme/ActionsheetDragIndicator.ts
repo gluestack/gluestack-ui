@@ -5,7 +5,4 @@ export const ActionsheetDragIndicator = createStyle({
   width: '$16',
   bg: '$backgroundLight400',
   rounded: '$full',
-  _dark: {
-    bg: '$backgroundDark500',
-  },
 });

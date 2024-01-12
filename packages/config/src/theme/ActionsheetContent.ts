@@ -7,18 +7,15 @@ export const ActionsheetContent = createStyle({
   h: '$full',
   p: '$2',
   bg: '$backgroundLight0',
+
   _sectionHeaderBackground: {
     bg: '$backgroundLight0',
   },
-  _dark: {
-    bg: '$backgroundDark900',
-    _sectionHeaderBackground: {
-      bg: '$backgroundDark900',
-    },
-  },
+
   defaultProps: {
     hardShadow: '5',
   },
+
   _web: {
     userSelect: 'none',
     pointerEvents: 'auto',

@@ -4,21 +4,12 @@ export const Accordion = createStyle({
   width: '$full',
   _icon: {
     color: '$textLight900',
-    _dark: {
-      color: '$textDark50',
-    },
   },
   _titleText: {
     color: '$textLight900',
-    _dark: {
-      color: '$textDark50',
-    },
   },
   _contentText: {
     color: '$textLight700',
-    _dark: {
-      color: '$textDark200',
-    },
   },
 
   variants: {
@@ -69,37 +60,32 @@ export const Accordion = createStyle({
     variant: {
       filled: {
         backgroundColor: '$white',
+
         _item: {
           backgroundColor: '$backgroundLight0',
         },
+
         shadowColor: '$backgroundLight900',
+
         shadowOffset: {
           width: 0,
           height: 3,
         },
+
         shadowRadius: 8,
         shadowOpacity: 0.2,
         elevation: 10,
-        _dark: {
-          backgroundColor: 'transparent',
-          _item: {
-            backgroundColor: '$backgroundDark950',
-          },
-        },
       },
       unfilled: {
         shadowColor: 'transparent',
+
         shadowOffset: {
           width: 0,
           height: 0,
         },
+
         _item: {
           backgroundColor: 'transparent',
-        },
-        _dark: {
-          _item: {
-            backgroundColor: 'transparent',
-          },
         },
       },
     },

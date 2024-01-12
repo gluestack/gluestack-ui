@@ -20,8 +20,5 @@ export const AccordionTrigger = createStyle({
     _light: {
       bg: '$backgroundLight50',
     },
-    _dark: {
-      bg: '$backgroundDark900',
-    },
   },
 });

@@ -9,9 +9,7 @@ export const Heading = createStyle({
 
   // Overrides expo-html default styling
   marginVertical: 0,
-  _dark: {
-    color: '$textDark50',
-  },
+
   variants: {
     isTruncated: {
       true: {
