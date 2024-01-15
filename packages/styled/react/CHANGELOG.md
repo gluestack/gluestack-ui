@@ -1,5 +1,12 @@
 # @gluestack-style/react
 
+## 1.0.39
+
+### Patch Changes
+
+- - Fixed useToken hook with theme support [PR](https://github.com/gluestack/gluestack-ui/pull/1634)
+  - Fixed resolved props tokenization for mobile [PR](https://github.com/gluestack/gluestack-ui/pull/1632)
+
 ## 1.0.38
 
 ### Patch Changes
