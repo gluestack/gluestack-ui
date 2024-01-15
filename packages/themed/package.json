@@ -1,6 +1,6 @@
 {
   "name": "@gluestack-ui/themed",
-  "version": "1.0.40-alpha.1",
+  "version": "1.0.40-alpha.2",
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "module": "build/index",
@@ -69,7 +69,7 @@
     "@babel/preset-env": "^7.22.9",
     "@babel/preset-react": "^7.22.5",
     "@babel/preset-typescript": "^7.22.5",
-    "@gluestack-style/react": "1.0.40-alpha.1",
+    "@gluestack-style/react": "1.0.40-alpha.6",
     "@types/react-native": "^0.72.3",
     "file-loader": "^6.2.0",
     "react": "^18.2.0",
