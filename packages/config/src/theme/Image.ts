@@ -2,6 +2,15 @@ import { createStyle } from '@gluestack-style/react';
 
 export const Image = createStyle({
   maxWidth: '$full',
+  _web: {
+    props: {
+      // set property to revert-layer as RNW always set image height width inline
+      style: {
+        height: 'revert-layer',
+        width: 'revert-layer',
+      },
+    },
+  },
   variants: {
     size: {
       '2xs': {
@@ -44,6 +53,7 @@ export const Image = createStyle({
       },
     },
   },
+
   defaultProps: {
     size: 'md',
   },
