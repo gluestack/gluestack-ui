@@ -738,6 +738,7 @@ function resolveInlineProps(
   CONFIG: any
 ) {
   let resolvedInlineProps = {};
+
   if (
     componentStyleConfig.resolveProps &&
     Object.keys(componentExtendedConfig).length > 0
@@ -760,9 +761,11 @@ function resolveInlineProps(
                 CONFIG,
                 CONFIG.propertyTokenMap,
                 toBeResovledProp,
-                scale
+                scale,
+                Platform.OS !== 'web'
               )
           );
+
           //@ts-ignore
           resolvedInlineProps[toBeResovledProp] = token;
         } else {
@@ -772,7 +775,8 @@ function resolveInlineProps(
               componentExtendedConfig,
               props,
               toBeResovledProp,
-              props[toBeResovledProp]
+              props[toBeResovledProp],
+              Platform.OS !== 'web'
             );
         }
         delete props[toBeResovledProp];
