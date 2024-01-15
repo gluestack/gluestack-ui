@@ -34,8 +34,9 @@ npx gluestack-ui-scripts eject-theme
 // gluestack-ui.config.ts
 
 export const config = createConfig({
-  // ...Theme config
+  ...Theme config
   tokens: {
+      ...Theme config.tokens,
     colors: {
       ...Theme config.tokens.colors,
       // replacing primary color
