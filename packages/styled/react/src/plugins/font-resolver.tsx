@@ -5,6 +5,7 @@ import { propertyTokenMap } from '../propertyTokenMap';
 import { deepMerge, setObjectKeyValue } from '../utils';
 import { getVariantProps } from '../styled';
 import { StyleSheet } from 'react-native';
+import { deepClone } from '../utils/cssify/utils/common';
 
 const fontWeights: any = {
   '100': 'Thin',
@@ -109,6 +110,7 @@ export class FontResolver implements IStyledPlugin, FontPlugin {
       }
 
       style.fontFamily = fontFamilyValue;
+
       delete style.fontWeight;
       delete style.fontStyle;
     }
@@ -262,9 +264,13 @@ export class FontResolver implements IStyledPlugin, FontPlugin {
         variantProps,
         styledConfig
       );
-      let componentStyledObject = deepMerge(styledConfig, variantStyledObject);
+      const styledConfigWithoutVariant = deepClone(styledConfig);
+      delete styledConfigWithoutVariant.variants;
 
-      // delete componentStyledObject.variants;
+      let componentStyledObject = deepMerge(
+        styledConfigWithoutVariant,
+        variantStyledObject
+      );
 
       const { sx, fontWeight, fontFamily, fontStyle, ...rest } = restProps;
 
@@ -299,15 +305,11 @@ export class FontResolver implements IStyledPlugin, FontPlugin {
           style = StyleSheet.flatten(style);
 
           Object.keys(resolvedSxProps).forEach((ele) => {
-            if (!style[ele]) {
-              style[ele] = resolvedSxProps[ele];
-            }
+            style[ele] = resolvedSxProps[ele];
           });
         } else {
           Object.keys(resolvedSxProps).forEach((ele) => {
-            if (!style[ele]) {
-              style[ele] = resolvedSxProps[ele];
-            }
+            style[ele] = resolvedSxProps[ele];
           });
         }
       }
