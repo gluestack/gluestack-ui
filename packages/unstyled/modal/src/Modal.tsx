@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, { forwardRef } from 'react';
-import { View } from 'react-native';
+import { Platform, View } from 'react-native';
 import {
   useControllableState,
   useKeyboardBottomInset,
@@ -41,6 +41,7 @@ const Modal = (StyledModal: any) =>
         setVisible(false);
       }, [setVisible]);
 
+      const pointerEvents = Platform.OS === 'web' ? 'box-none' : undefined;
       const avoidKeyboardSpacer = (
         <View
           style={{
@@ -75,7 +76,11 @@ const Modal = (StyledModal: any) =>
       if (_experimentalOverlay) {
         return (
           <ModalContext.Provider value={contextValue}>
-            <StyledModal {...remainingProps} ref={ref}>
+            <StyledModal
+              {...remainingProps}
+              ref={ref}
+              style={[{ pointerEvents }, { ...props.style }]}
+            >
               {children}
               {avoidKeyboard ? avoidKeyboardSpacer : null}
             </StyledModal>
@@ -91,7 +96,11 @@ const Modal = (StyledModal: any) =>
           useRNModal={useRNModal}
         >
           <ModalContext.Provider value={contextValue}>
-            <StyledModal {...remainingProps} ref={ref}>
+            <StyledModal
+              {...remainingProps}
+              ref={ref}
+              style={[{ pointerEvents }, { ...props.style }]}
+            >
               {children}
               {avoidKeyboard ? avoidKeyboardSpacer : null}
             </StyledModal>
