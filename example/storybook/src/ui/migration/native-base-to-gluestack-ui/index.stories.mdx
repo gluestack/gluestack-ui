@@ -28,11 +28,11 @@ _Migration guide provided is a living document._
 To use `native-base` components with `gluestack-ui`, all you need to do is install the `@gluestack-ui/themed-native-base` package:
 
 ```sh
-$ yarn add @gluestack-ui/themed-native-base
+$ yarn add @gluestack-ui/themed-native-base react-native-svg@13.4.0
 
 # or
 
-$ npm i @gluestack-ui/themed-native-base
+$ npm i @gluestack-ui/themed-native-base react-native-svg@13.4.0
 ```
 
 ### Usage
@@ -87,3 +87,8 @@ Document.getInitialProps = async ({ renderPage }: any) => {
 
 export default Document;
 ```
+
+### Limitations
+
+- Functional variants are not supported yet in extendTheme function
+- Menu component might not working as expected in some instances
