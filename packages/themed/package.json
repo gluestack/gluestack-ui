@@ -1,6 +1,6 @@
 {
   "name": "@gluestack-ui/themed",
-  "version": "1.0.40-alpha.6",
+  "version": "1.0.40-alpha.7",
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "module": "build/index",
