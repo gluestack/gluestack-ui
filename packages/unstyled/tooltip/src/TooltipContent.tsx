@@ -31,6 +31,7 @@ export function TooltipContent<StyledTooltipContentProps>(
       shouldFlip,
     });
     const mergedRef = mergeRefs([ref, overlayRef]);
+    const pointerEvents = Platform.OS === 'web' ? 'auto' : undefined;
 
     return (
       <OverlayAnimatePresence
@@ -44,6 +45,7 @@ export function TooltipContent<StyledTooltipContentProps>(
           style={{
             ...overlayProps.style,
             position: 'absolute',
+            pointerEvents,
             ...style,
           }}
         >
