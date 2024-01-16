@@ -100,7 +100,6 @@ export const Menu = ({
             placement={placement}
             triggerRef={triggerRef}
             state={state}
-            AnimatePresence={AnimatePresence}
             shouldOverlapWithTrigger={shouldOverlapWithTrigger}
             crossOffset={crossOffset}
             offset={offset}
