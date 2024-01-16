@@ -1,5 +1,11 @@
 # @gluestack-style/react
 
+## 1.0.41
+
+### Patch Changes
+
+- Fixed extended theme ignoreKeys for plugin
+
 ## 1.0.40
 
 ### Patch Changes
