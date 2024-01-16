@@ -23,6 +23,5 @@ export const ActionsheetBackdrop = createStyle({
   // @ts-ignore
   '_web': {
     cursor: 'default',
-    pointerEvents: 'auto',
   },
 });

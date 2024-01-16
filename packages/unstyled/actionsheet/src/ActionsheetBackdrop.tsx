@@ -1,16 +1,18 @@
 import React, { forwardRef } from 'react';
 import { ActionsheetContext } from './context';
 import { OverlayAnimatePresence } from './OverlayAnimatePresence';
+import { Platform } from 'react-native';
 
-function ActionsheetBackdrop<T>(
-  StyledActionsheetBackdrop: React.ComponentType<T>,
+function ActionsheetBackdrop(
+  StyledActionsheetBackdrop: any,
   AnimatePresence?: React.ComponentType<any>
 ) {
   return forwardRef(
-    ({ children, ...props }: T & { children?: any }, ref?: any) => {
+    ({ children, ...props }: any & { children?: any }, ref?: any) => {
       const { closeOnOverlayClick, handleClose, backdropVisible } =
         React.useContext(ActionsheetContext);
 
+      const pointerEvents = Platform.OS === 'web' ? 'auto' : undefined;
       return (
         <OverlayAnimatePresence
           visible={backdropVisible}
@@ -26,7 +28,8 @@ function ActionsheetBackdrop<T>(
             // android
             importantForAccessibility="no-hide-descendants"
             aria-hidden={true}
-            {...(props as T)}
+            style={[{ pointerEvents }, { ...props.style }]}
+            {...props}
           >
             {children}
           </StyledActionsheetBackdrop>
