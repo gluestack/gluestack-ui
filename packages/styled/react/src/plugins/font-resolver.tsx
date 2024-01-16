@@ -97,7 +97,11 @@ export class FontResolver implements IStyledPlugin, FontPlugin {
       } else {
         fontFamilyValue = `${fontFamilyValue}_400Regular`;
       }
-      if (style.fontStyle && typeof style.fontStyle === 'string') {
+      if (
+        style.fontStyle &&
+        style.fontStyle !== 'normal' &&
+        typeof style.fontStyle === 'string'
+      ) {
         const fontStyle = style.fontStyle.replace(/^\w/, (c: any) =>
           c.toUpperCase()
         );
@@ -105,9 +109,6 @@ export class FontResolver implements IStyledPlugin, FontPlugin {
       }
 
       style.fontFamily = fontFamilyValue;
-
-      this.#fontFamily = fontFamilyValue;
-
       delete style.fontWeight;
       delete style.fontStyle;
     }
@@ -139,6 +140,9 @@ export class FontResolver implements IStyledPlugin, FontPlugin {
     this.register(styledUtils);
     this.name = 'FontHandler';
     this.mapFonts = mapFonts || this.mapFonts;
+    this.#fontFamily = {};
+    this.#fontFamilyTokenConfig = {};
+    this.#fontWeightsTokenConfig = {};
   }
 
   inputMiddleWare(
@@ -161,7 +165,7 @@ export class FontResolver implements IStyledPlugin, FontPlugin {
     return [modifiedStyledObject, shouldUpdate, _, Component, ignoreKeys];
   }
 
-  #fontFamily: any = {};
+  #fontFamily: any;
 
   #fontFamilyTokenConfig: any = {};
 
@@ -191,7 +195,7 @@ export class FontResolver implements IStyledPlugin, FontPlugin {
           ignoreKeys.add(styledObjectKey);
 
           this.#fontFamily = setObjectKeyValue(
-            { ...this.#fontFamily },
+            this.#fontFamily,
             [...keyPath, styledObjectKey],
             styledObject[styledObjectKey]
           );
@@ -200,7 +204,7 @@ export class FontResolver implements IStyledPlugin, FontPlugin {
         if (styledObjectKey === 'fontWeight') {
           ignoreKeys.add(styledObjectKey);
           this.#fontFamily = setObjectKeyValue(
-            { ...this.#fontFamily },
+            this.#fontFamily,
             [...keyPath, styledObjectKey],
             styledObject[styledObjectKey]
           );
@@ -209,7 +213,7 @@ export class FontResolver implements IStyledPlugin, FontPlugin {
         if (styledObjectKey === 'fontStyle') {
           ignoreKeys.add(styledObjectKey);
           this.#fontFamily = setObjectKeyValue(
-            { ...this.#fontFamily },
+            this.#fontFamily,
             [...keyPath, styledObjectKey],
             styledObject[styledObjectKey]
           );
