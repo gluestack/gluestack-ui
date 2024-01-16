@@ -1,0 +1,19 @@
+node_modules/
+.env
+.expo/
+dist/
+npm-debug.*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+web-build/
+lib
+
+# macOS
+.DS_Store
+
+#build
+storybook-static/
