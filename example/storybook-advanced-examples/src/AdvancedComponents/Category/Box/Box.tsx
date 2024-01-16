@@ -27,7 +27,7 @@ const BoxBasic: any = ({
           }),
         }}
       >
-        BOX
+        Category
       </Text>
     </Box>
   );

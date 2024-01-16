@@ -27,7 +27,7 @@ const BoxBasic: any = ({
           }),
         }}
       >
-        BOX
+        Mail
       </Text>
     </Box>
   );
