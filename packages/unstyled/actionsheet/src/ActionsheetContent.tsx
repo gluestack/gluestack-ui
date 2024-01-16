@@ -14,11 +14,11 @@ import { OverlayAnimatePresence } from './OverlayAnimatePresence';
 import { FocusScope } from '@react-native-aria/focus';
 import { mergeRefs } from '@gluestack-ui/utils';
 import { useDialog } from '@react-native-aria/dialog';
-import type { IActionsheetContentProps } from './types';
 import { usePreventScroll } from '@react-native-aria/overlays';
+
 const windowHeight = Dimensions.get('window').height;
-function ActionsheetContent<T>(
-  StyledActionsheetContent: React.ComponentType<T>,
+function ActionsheetContent(
+  StyledActionsheetContent: any,
   AnimatePresence?: any
 ) {
   return forwardRef(
@@ -28,7 +28,7 @@ function ActionsheetContent<T>(
         // @ts-ignore
         _experimentalContent = false,
         ...props
-      }: T & IActionsheetContentProps,
+      }: any,
       ref?: any
     ) => {
       const {
@@ -43,6 +43,7 @@ function ActionsheetContent<T>(
 
       usePreventScroll();
 
+      const pointerEvents = Platform.OS === 'web' ? 'auto' : undefined;
       const pan = React.useRef(new Animated.ValueXY()).current;
       const contentSheetHeight = React.useRef(0);
 
@@ -107,13 +108,14 @@ function ActionsheetContent<T>(
         return (
           <StyledActionsheetContent
             transition={animationDefaultConfig}
-            {...(props as T)}
+            {...props}
             ref={mergedRef}
             {...dialogProps}
             onLayout={(event: any) => {
               const { height } = event.nativeEvent.layout;
               contentSheetHeight.current = height;
             }}
+            style={[{ pointerEvents }, { ...props.style }]}
           >
             <ActionsheetContentProvider
               contentSheetHeight={contentSheetHeight}
@@ -158,7 +160,7 @@ function ActionsheetContent<T>(
                 snapPoints ? snapPoints[0] * windowHeight * 0.01 : undefined
               }
               transition={animationDefaultConfig}
-              {...(props as T)}
+              {...props}
               ref={mergedRef}
               tabIndex={Platform.OS === 'web' ? 0 : undefined}
               {...dialogProps}
@@ -167,6 +169,7 @@ function ActionsheetContent<T>(
                 contentSheetHeight.current = height;
                 setContentSheetHeightState(height);
               }}
+              style={[{ pointerEvents }, { ...props.style }]}
             >
               <ActionsheetContentProvider
                 contentSheetHeight={contentSheetHeight}
