@@ -4,6 +4,7 @@ import { Overlay } from '@gluestack-ui/overlay';
 
 // import { useOverlayPosition } from '@react-native-aria/overlays';
 import { PopoverProvider } from './PopoverContext';
+import { Platform } from 'react-native';
 
 export const Popover = (StyledPopover: any) =>
   forwardRef(
@@ -85,6 +86,8 @@ export const Popover = (StyledPopover: any) =>
 
       const targetRef = React.useRef(null);
 
+      const pointerEvents = Platform.OS === 'web' ? 'box-none' : undefined;
+
       const contextValue: any = React.useMemo(() => {
         return {
           targetRef,
@@ -135,7 +138,11 @@ export const Popover = (StyledPopover: any) =>
           <>
             {updatedTrigger(targetRef)}
             <PopoverProvider value={contextValue}>
-              <StyledPopover ref={ref} {...props}>
+              <StyledPopover
+                ref={ref}
+                style={[{ pointerEvents }, { ...props.style }]}
+                {...props}
+              >
                 {children}
               </StyledPopover>
             </PopoverProvider>
@@ -153,7 +160,11 @@ export const Popover = (StyledPopover: any) =>
             useRNModal={useRNModal}
           >
             <PopoverProvider value={contextValue}>
-              <StyledPopover ref={ref} {...props}>
+              <StyledPopover
+                ref={ref}
+                style={[{ pointerEvents }, { ...props.style }]}
+                {...props}
+              >
                 {children}
               </StyledPopover>
             </PopoverProvider>
