@@ -17,7 +17,6 @@ export const SelectActionsheetContent = createStyle({
       bg: '$backgroundDark900',
     },
   },
-  pointerEvents: 'auto',
   _web: {
     userSelect: 'none',
   },
