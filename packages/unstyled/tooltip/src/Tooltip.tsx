@@ -2,15 +2,12 @@ import React, { forwardRef } from 'react';
 import { useControllableState } from '@gluestack-ui/hooks';
 import { useKeyboardDismissable } from '@react-native-aria/interactions';
 import { TooltipProvider } from './context';
-import type { ITooltipProps } from './types';
 import { useId } from '@react-native-aria/utils';
 import { Platform } from 'react-native';
 import { Overlay } from '@gluestack-ui/overlay';
 import { composeEventHandlers } from '@gluestack-ui/utils';
 
-function Tooltip<StyledTooltipProp>(
-  StyledTooltip: React.ComponentType<StyledTooltipProp>
-) {
+function Tooltip(StyledTooltip: any) {
   return forwardRef(
     (
       {
@@ -32,7 +29,7 @@ function Tooltip<StyledTooltipProp>(
         // @ts-ignore
         _experimentalOverlay = false,
         ...props
-      }: ITooltipProps,
+      }: any,
       ref?: any
     ) => {
       const [isOpen, setIsOpen] = useControllableState({
@@ -53,6 +50,7 @@ function Tooltip<StyledTooltipProp>(
 
       const enterTimeout = React.useRef<any>();
       const exitTimeout = React.useRef<any>();
+      const pointerEvents = Platform.OS === 'web' ? 'none' : undefined;
 
       const openWithDelay = React.useCallback(() => {
         if (!isDisabled) {
@@ -137,11 +135,12 @@ function Tooltip<StyledTooltipProp>(
               }}
             >
               <StyledTooltip
-                {...(props as StyledTooltipProp)}
+                {...props}
                 ref={ref}
                 role={Platform.OS === 'web' ? 'tooltip' : undefined}
                 tabIndex={-1}
                 nativeID={tooltipID}
+                style={[{ pointerEvents }, { ...props.style }]}
               >
                 {children}
               </StyledTooltip>
@@ -167,11 +166,12 @@ function Tooltip<StyledTooltipProp>(
               }}
             >
               <StyledTooltip
-                {...(props as StyledTooltipProp)}
+                {...props}
                 ref={ref}
                 role={Platform.OS === 'web' ? 'tooltip' : undefined}
                 focussable={false}
                 nativeID={tooltipID}
+                style={[{ pointerEvents }, { ...props.style }]}
               >
                 {children}
               </StyledTooltip>
