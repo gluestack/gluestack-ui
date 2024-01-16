@@ -7,7 +7,7 @@ import type {
   ViewStyle,
 } from 'react-native';
 import type { propertyTokenMap } from './propertyTokenMap';
-import type { CSSProperties } from 'react';
+import type { CSSProperties, ForwardRefExoticComponent } from 'react';
 
 export type RNStyledProps = ViewStyle | ImageStyle | TextStyle;
 export type RNProps = ViewProps | TextProps | ImageProps;
@@ -781,57 +781,81 @@ interface GenericComponents {
 
 /********************* COMPONENT PROPS TYPE *****************************************/
 
-export type ComponentProps<GenericComponentStyles, Variants, P, ComCon> =
-  SxStyleProps<
-    GenericComponentStyles,
-    Variants,
-    P,
-    'animationComponentGluestack' extends keyof P
-      ? P['animationComponentGluestack'] extends true
-        ? Plugins
-        : []
+export type StyledComponentProps<GenericComponentStyles, Variants, P, ComCon> =
+  Omit<
+    'sx' extends keyof P
+      ? P & VariantProps<Variants, ComCon>
+      : Partial<
+          Omit<
+            P &
+              ComponentProps<GenericComponentStyles, Variants, P> &
+              VariantProps<Variants, ComCon> &
+              UtilityProps<GenericComponentStyles, Variants, P>,
+            'animationComponentGluestack'
+          >
+        >,
+    'animationComponentGluestack'
+  >;
+
+export type GluestackComponent<GenericComponentStyles, Variants, P, ComCon> =
+  ForwardRefExoticComponent<
+    StyledComponentProps<GenericComponentStyles, Variants, P, ComCon>
+  >;
+
+export type VariantProps<Variants, ComCon> =
+  GSConfig['globalStyle'] extends object
+    ? {
+        [Key in keyof MergeNestedThree<
+          GlobalVariants,
+          Variants,
+          // @ts-ignore
+          Components[`${ComCon}`]['theme']['variants']
+        >]?: keyof MergeNestedThree<
+          GlobalVariants,
+          Variants,
+          // @ts-ignore
+          Components[`${ComCon}`]['theme']['variants']
+        >[Key] extends 'true' | 'false'
+          ? boolean
+          : keyof MergeNestedThree<
+              GlobalVariants,
+              Variants,
+              // @ts-ignore
+              Components[`${ComCon}`]['theme']['variants']
+            >[Key];
+      }
+    : {
+        [Key in keyof MergeNested<
+          Variants,
+          // @ts-ignore
+          Components[`${ComCon}`]['theme']['variants']
+        >]?: keyof MergeNested<
+          Variants, // @ts-ignore
+          Components[`${ComCon}`]['theme']['variants']
+        >[Key] extends 'true' | 'false'
+          ? boolean
+          : keyof MergeNested<
+              Variants,
+              // @ts-ignore
+              Components[`${ComCon}`]['theme']['variants']
+            >[Key];
+      };
+
+export type ComponentProps<GenericComponentStyles, Variants, P> = SxStyleProps<
+  GenericComponentStyles,
+  Variants,
+  P,
+  'animationComponentGluestack' extends keyof P
+    ? P['animationComponentGluestack'] extends true
+      ? Plugins
       : []
-  > & {
-    states?: {
-      [K in IState]?: boolean;
-    };
-  } & (GSConfig['globalStyle'] extends object
-      ? {
-          [Key in keyof MergeNestedThree<
-            GlobalVariants,
-            Variants,
-            // @ts-ignore
-            Components[`${ComCon}`]['theme']['variants']
-          >]?: keyof MergeNestedThree<
-            GlobalVariants,
-            Variants,
-            // @ts-ignore
-            Components[`${ComCon}`]['theme']['variants']
-          >[Key] extends 'true' | 'false'
-            ? boolean
-            : keyof MergeNestedThree<
-                GlobalVariants,
-                Variants,
-                // @ts-ignore
-                Components[`${ComCon}`]['theme']['variants']
-              >[Key];
-        } & Omit<P, keyof Variants>
-      : {
-          [Key in keyof MergeNested<
-            Variants,
-            // @ts-ignore
-            Components[`${ComCon}`]['theme']['variants']
-          >]?: keyof MergeNested<
-            Variants, // @ts-ignore
-            Components[`${ComCon}`]['theme']['variants']
-          >[Key] extends 'true' | 'false'
-            ? boolean
-            : keyof MergeNested<
-                Variants,
-                // @ts-ignore
-                Components[`${ComCon}`]['theme']['variants']
-              >[Key];
-        });
+    : []
+> & {
+  states?: {
+    [K in IState]?: boolean;
+  };
+  as?: any;
+};
 
 export type VerbosedUtilityProps<
   GenericComponentStyles,
