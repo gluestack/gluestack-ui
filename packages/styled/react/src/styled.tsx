@@ -1094,11 +1094,38 @@ export function verboseStyled<P, Variants, ComCon>(
 
       let componentExtendedTheme = {};
 
+      nonVerbosedTheme = deepMerge(nonVerbosedTheme, EXTENDED_THEME?.theme);
+
+      if (CONFIG.plugins) {
+        plugins.push(...CONFIG.plugins);
+      }
+      if (ExtendedConfig?.plugins) {
+        plugins.push(...ExtendedConfig?.plugins);
+      }
+
+      if (plugins) {
+        for (const pluginName in plugins) {
+          let themeIgnoreKeys = new Set();
+          // @ts-ignore
+          [nonVerbosedTheme, , , , themeIgnoreKeys] = plugins[
+            pluginName
+          ]?.inputMiddleWare<P>(
+            nonVerbosedTheme,
+            true,
+            true,
+            componentProps?.as ?? Component,
+            componentStyleConfig,
+            ExtendedConfig
+          );
+          themeIgnoreKeys?.forEach((ele) => {
+            ignoreKeys.add(ele);
+          });
+        }
+      }
+
       // Injecting style
       if (EXTENDED_THEME) {
         // RUN Middlewares
-
-        nonVerbosedTheme = deepMerge(nonVerbosedTheme, EXTENDED_THEME.theme);
 
         const resolvedComponentExtendedTheme = resolveComponentTheme(
           CONFIG,
@@ -1130,39 +1157,15 @@ export function verboseStyled<P, Variants, ComCon>(
           const extendedStylesToBeInjected = GluestackStyleSheet.resolve(
             resolvedComponentExtendedTheme?.styledIds,
             CONFIG,
-            componentExtendedConfig
+            componentExtendedConfig,
+            true,
+            'extended',
+            ignoreKeys
           );
           GluestackStyleSheet.inject(
             extendedStylesToBeInjected,
             styledContext.inlineStyleMap
           );
-        }
-      }
-
-      if (CONFIG.plugins) {
-        plugins.push(...CONFIG.plugins);
-      }
-      if (ExtendedConfig?.plugins) {
-        plugins.push(...ExtendedConfig?.plugins);
-      }
-
-      if (plugins) {
-        for (const pluginName in plugins) {
-          let themeIgnoreKeys = new Set();
-          // @ts-ignore
-          [nonVerbosedTheme, , , , themeIgnoreKeys] = plugins[
-            pluginName
-          ]?.inputMiddleWare<P>(
-            nonVerbosedTheme,
-            true,
-            true,
-            componentProps?.as ?? Component,
-            componentStyleConfig,
-            ExtendedConfig
-          );
-          themeIgnoreKeys?.forEach((ele) => {
-            ignoreKeys.add(ele);
-          });
         }
       }
 
