@@ -781,8 +781,8 @@ interface GenericComponents {
 
 /********************* COMPONENT PROPS TYPE *****************************************/
 
-export type GluestackComponent<GenericComponentStyles, Variants, P, ComCon> =
-  ForwardRefExoticComponent<
+export type StyledComponentProps<GenericComponentStyles, Variants, P, ComCon> =
+  Omit<
     'sx' extends keyof P
       ? P & VariantProps<Variants, ComCon>
       : Partial<
@@ -793,7 +793,13 @@ export type GluestackComponent<GenericComponentStyles, Variants, P, ComCon> =
               UtilityProps<GenericComponentStyles, Variants, P>,
             'animationComponentGluestack'
           >
-        >
+        >,
+    'animationComponentGluestack'
+  >;
+
+export type GluestackComponent<GenericComponentStyles, Variants, P, ComCon> =
+  ForwardRefExoticComponent<
+    StyledComponentProps<GenericComponentStyles, Variants, P, ComCon>
   >;
 
 export type VariantProps<Variants, ComCon> =

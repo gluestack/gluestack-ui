@@ -16,8 +16,7 @@ import type {
   ITheme,
   ExtendedConfigType,
   IComponentStyleConfig,
-  StyledConfig,
-  GluestackComponent,
+  StyledComponentProps,
 } from './types';
 import {
   deepMerge,
@@ -2149,17 +2148,14 @@ export function verboseStyled<P, Variants, ComCon>(
   //@ts-ignore
   StyledComp.isStyledComponent = true;
 
-  return StyledComp as GluestackComponent<
-    ITypeReactNativeStyles,
-    Variants,
-    P,
-    ComCon
-  > & { styledConfig?: StyledConfig };
+  return StyledComp as ForwardRefExoticComponent<
+    StyledComponentProps<ITypeReactNativeStyles, Variants, P, ComCon>
+  >;
 }
 
 export function styled<P, Variants, ComCon>(
   Component: React.ComponentType<P>,
-  theme: ITheme<Variants, P>,
+  theme: ITheme<Variants, P> = {},
   componentStyleConfig?: IComponentStyleConfig<ComCon>,
   ExtendedConfig?: ExtendedConfigType,
   BUILD_TIME_PARAMS?: {
