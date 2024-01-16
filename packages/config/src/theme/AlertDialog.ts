@@ -16,8 +16,4 @@ export const AlertDialog = createStyle({
     },
   },
   defaultProps: { size: 'md' },
-
-  _web: {
-    pointerEvents: 'box-none',
-  },
 });

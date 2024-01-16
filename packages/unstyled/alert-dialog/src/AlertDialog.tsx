@@ -1,15 +1,14 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, { forwardRef } from 'react';
-import { View } from 'react-native';
+import { Platform, View } from 'react-native';
 import { AlertDialogContext } from './Context';
 import { Overlay } from '@gluestack-ui/overlay';
-import type { IAlertDialogProps } from './types';
 import {
   useControllableState,
   useKeyboardBottomInset,
 } from '@gluestack-ui/hooks';
 
-export const AlertDialog = <T,>(StyledAlertDialog: React.ComponentType<T>) =>
+export const AlertDialog = (StyledAlertDialog: any) =>
   forwardRef(
     (
       {
@@ -26,9 +25,10 @@ export const AlertDialog = <T,>(StyledAlertDialog: React.ComponentType<T>) =>
         // @ts-ignore
         _experimentalOverlay = false,
         ...props
-      }: T & IAlertDialogProps,
+      }: any,
       ref?: any
     ) => {
+      const pointerEvents = Platform.OS === 'web' ? 'box-none' : undefined;
       const bottomInset = useKeyboardBottomInset();
 
       const [visible, setVisible] = useControllableState({
@@ -77,7 +77,11 @@ export const AlertDialog = <T,>(StyledAlertDialog: React.ComponentType<T>) =>
       if (_experimentalOverlay) {
         return (
           <AlertDialogContext.Provider value={contextValue}>
-            <StyledAlertDialog {...(props as T)} ref={ref}>
+            <StyledAlertDialog
+              ref={ref}
+              style={[{ pointerEvents }, { ...props.style }]}
+              {...props}
+            >
               {children}
               {avoidKeyboard ? avoidKeyboardSpacer : null}
             </StyledAlertDialog>
@@ -93,7 +97,11 @@ export const AlertDialog = <T,>(StyledAlertDialog: React.ComponentType<T>) =>
           animationPreset={animationPreset}
         >
           <AlertDialogContext.Provider value={contextValue}>
-            <StyledAlertDialog {...(props as T)} ref={ref}>
+            <StyledAlertDialog
+              {...props}
+              ref={ref}
+              style={[{ pointerEvents }, { ...props.style }]}
+            >
               {children}
               {avoidKeyboard ? avoidKeyboardSpacer : null}
             </StyledAlertDialog>
