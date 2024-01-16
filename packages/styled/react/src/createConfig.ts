@@ -6,7 +6,7 @@ import { stableHash } from './stableHash';
 import { propertyTokenMap } from './propertyTokenMap';
 import { updateOrderUnResolvedMap } from './updateOrderUnResolvedMap';
 import { GluestackStyleSheet } from './style-sheet';
-import { resolvePlatformTheme } from './styled';
+import { resolvePlatformTheme } from './utils';
 import { Platform } from 'react-native';
 
 /********************* PLUGINS *****************************/
@@ -85,14 +85,14 @@ export const createConfig = <
   //   newConfig = resolveComponentThemes(config);
   // }
 
-  if (config.themes) {
-    const newConfigWithThemesResolved = resolveThemes(config);
-    return newConfigWithThemesResolved as any;
-  }
+  // if (config.themes) {
+  //   const newConfigWithThemesResolved = resolveThemes(config);
+  //   return newConfigWithThemesResolved as any;
+  // }
   return config as any;
 };
 
-const resolveThemes = (config: any) => {
+export const resolveThemes = (config: any) => {
   function removeDollarSign(obj: any) {
     const newObj: any = {};
     for (const key in obj) {

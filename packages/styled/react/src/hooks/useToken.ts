@@ -21,7 +21,7 @@ export const useToken = <T extends keyof Tokens>(
 
   for (const key in activeThemes?.reverse()) {
     const currentTheme = activeThemes[key];
-    if (theme.config.themes.hasOwnProperty(currentTheme)) {
+    if (theme?.config?.themes?.hasOwnProperty(currentTheme)) {
       const currentThemeTokens = theme?.config?.themes[currentTheme];
 
       if (currentThemeTokens?.[tokenScale]?.[token]) {

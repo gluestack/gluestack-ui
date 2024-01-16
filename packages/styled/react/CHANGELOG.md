@@ -1,5 +1,49 @@
 # @gluestack-style/react
 
+## 1.0.39
+
+### Patch Changes
+
+- - Fixed useToken hook with theme support [PR](https://github.com/gluestack/gluestack-ui/pull/1634)
+  - Fixed resolved props tokenization for mobile [PR](https://github.com/gluestack/gluestack-ui/pull/1632)
+
+## 1.0.38
+
+### Patch Changes
+
+- Performance improvement - memoized injectSx function
+
+## 1.0.37
+
+### Patch Changes
+
+- # Color mode switch issue fixes
+
+## 1.0.36
+
+### Patch Changes
+
+- Fixed data theme id attribute
+
+## 1.0.35
+
+### Patch Changes
+
+- - Fixed nested provider color mode class
+
+## 1.0.34
+
+### Patch Changes
+
+- Fixed inline theme performance [PR](https://github.com/gluestack/gluestack-ui/pull/1606)
+- Fixed multiple provider color mode issue [PR](https://github.com/gluestack/gluestack-ui/pull/1602)
+
+## 1.0.33
+
+### Patch Changes
+
+- - Theme token resolution inside StyledProvider
+
 ## 1.0.32
 
 ### Features

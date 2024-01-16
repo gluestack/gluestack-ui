@@ -1,6 +1,29 @@
 import type { Config } from './types';
+import { deepClone } from './utils/cssify/utils/common';
 
 const propsNotToConvertToCSSVariables = ['shadowColor', 'textShadowColor'];
+
+export function generateMergedThemeTokens(CONFIG: any) {
+  const mergedTokens: any = CONFIG;
+  const tokens = deepClone(CONFIG.tokens);
+  const themeTokens: any = {};
+
+  if (CONFIG?.themes) {
+    Object.keys(CONFIG.themes).forEach((key) => {
+      // tokens is a reserved key to merge theme tokens
+      if (key !== 'tokens') {
+        themeTokens[key] = deepMerge(tokens, CONFIG.themes[key]);
+      }
+    });
+
+    if (themeTokens) {
+      mergedTokens.themes.tokens = {};
+      Object.assign(mergedTokens.themes.tokens, themeTokens);
+    }
+  }
+
+  return mergedTokens;
+}
 
 export function convertToUnicodeString(inputString: any) {
   let result = '';
@@ -599,4 +622,30 @@ export function addThemeConditionInMeta(originalThemeObject: any, CONFIG: any) {
     });
   });
   return themeObject;
+}
+
+export function resolvePlatformTheme(theme: any, platform: any) {
+  if (typeof theme === 'object') {
+    Object.keys(theme).forEach((themeKey) => {
+      if (themeKey !== 'style' && themeKey !== 'defaultProps') {
+        if (theme[themeKey].platform) {
+          let temp = { ...theme[themeKey] };
+          theme[themeKey] = deepMerge(temp, theme[themeKey].platform[platform]);
+          delete theme[themeKey].platform;
+          resolvePlatformTheme(theme[themeKey], platform);
+        } else if (themeKey === 'queries') {
+          theme[themeKey].forEach((query: any) => {
+            if (query.value.platform) {
+              let temp = { ...query.value };
+              query.value = deepMerge(temp, query.value.platform[platform]);
+              delete query.value.platform;
+            }
+            resolvePlatformTheme(query.value, platform);
+          });
+        } else {
+          resolvePlatformTheme(theme[themeKey], platform);
+        }
+      }
+    });
+  }
 }

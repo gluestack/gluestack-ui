@@ -5,6 +5,7 @@ import { propertyTokenMap } from './propertyTokenMap';
 import type { COLORMODES } from './types';
 import {
   convertTokensToCssVariables,
+  generateMergedThemeTokens,
   platformSpecificSpaceUnits,
 } from './utils';
 import { createGlobalStylesWeb } from './createGlobalStylesWeb';
@@ -12,9 +13,11 @@ import { createGlobalStyles } from './createGlobalStyles';
 import { injectGlobalCssStyle } from './injectInStyle';
 import { ThemeContext, useTheme } from './Theme';
 import { useSafeLayoutEffect } from './hooks/useSafeLayoutEffect';
+import { resolveThemes } from './createConfig';
 
 type Config = any;
 let colorModeSet = false;
+let rootId = '';
 
 export const defaultConfig: {
   config: Config;
@@ -31,7 +34,6 @@ const StyledContext = React.createContext<Config>(defaultContextData);
 
 const setCurrentColorMode = (inputColorMode: string | undefined) => {
   if (inputColorMode) {
-    // console.log(get(), '>>>>>>');
     const currentColorMode = get();
     if (currentColorMode !== inputColorMode) {
       set(inputColorMode);
@@ -44,6 +46,7 @@ const setCurrentColorMode = (inputColorMode: string | undefined) => {
   //   colorModeSet = true;
   // }
 };
+
 export const StyledProvider: React.FC<{
   config: Config;
   colorMode?: COLORMODES;
@@ -62,6 +65,14 @@ export const StyledProvider: React.FC<{
   });
 
   const { themes } = useTheme();
+  const styledContext = useStyled();
+  const id = React.useId();
+
+  if (rootId === '') {
+    rootId = id;
+  }
+
+  const isRootProvider = rootId === id;
 
   const themeContextValue = React.useMemo(() => {
     if (colorMode) {
@@ -75,7 +86,7 @@ export const StyledProvider: React.FC<{
   inlineStyleMap.current.initialStyleInjected = false;
   // const id = React.useId();
   const currentConfig: any = React.useMemo(() => {
-    const configWithPlatformSpecificUnits: any = platformSpecificSpaceUnits(
+    let configWithPlatformSpecificUnits: any = platformSpecificSpaceUnits(
       config,
       Platform.OS
     );
@@ -89,7 +100,15 @@ export const StyledProvider: React.FC<{
             Platform.OS
           ).tokens;
       });
+
+      configWithPlatformSpecificUnits = resolveThemes(
+        configWithPlatformSpecificUnits
+      );
     }
+
+    configWithPlatformSpecificUnits = generateMergedThemeTokens(
+      configWithPlatformSpecificUnits
+    );
 
     return configWithPlatformSpecificUnits;
   }, [config]);
@@ -123,27 +142,32 @@ export const StyledProvider: React.FC<{
     // Add gs class name
     if (Platform.OS === 'web') {
       documentElement.classList.add(`gs`);
-
-      if (currentColorMode) {
-        document.body.setAttribute('data-theme-id', currentColorMode);
-        documentElement.classList.add(`gs-${currentColorMode}`);
-      } else {
-        documentElement.classList.add(`gs-light`);
+      if (isRootProvider) {
+        if (currentColorMode) {
+          documentElement
+            .querySelector('body')
+            ?.setAttribute('data-theme-id', currentColorMode);
+          documentElement.classList.add(`gs-${currentColorMode}`);
+        } else {
+          documentElement.classList.add(`gs-light`);
+        }
       }
     }
-
     onChange((currentColor: string) => {
       // only for web
       if (Platform.OS === 'web' && !_experimentalNestedProvider) {
         const documentElement = document.documentElement;
-
-        if (Platform.OS === 'web') {
+        if (isRootProvider) {
           if (currentColor) {
             if (currentColor === 'dark') {
-              document.body.setAttribute('data-theme-id', 'dark');
+              documentElement
+                .querySelector('body')
+                ?.setAttribute('data-theme-id', 'dark');
               documentElement.classList.remove(`gs-light`);
             } else {
-              document.body.setAttribute('data-theme-id', 'light');
+              documentElement
+                .querySelector('body')
+                ?.setAttribute('data-theme-id', 'light');
               documentElement.classList.remove(`gs-dark`);
             }
             documentElement.classList.add(`gs-${currentColor}`);
@@ -151,11 +175,14 @@ export const StyledProvider: React.FC<{
         }
       }
     });
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   React.useEffect(() => {
-    setCurrentColorMode(currentColorMode);
+    if (isRootProvider) {
+      setCurrentColorMode(currentColorMode);
+    }
   }, [currentColorMode]);
 
   useSafeLayoutEffect(() => {
@@ -194,7 +221,7 @@ export const StyledProvider: React.FC<{
     }
   });
   // // Set colormode for the first time
-  if (!colorModeSet) {
+  if (!colorModeSet && isRootProvider) {
     setCurrentColorMode(currentColorMode);
   }
 
@@ -209,6 +236,7 @@ export const StyledProvider: React.FC<{
       animationDriverData,
       setAnimationDriverData,
       inlineStyleMap: inlineStyleMap.current,
+      isConfigSet: true,
     };
 
     if (_experimentalNestedProvider) {

@@ -41,6 +41,7 @@ import { styledResolvedToOrderedSXResolved } from './resolver/orderedResolved';
 import { styledToStyledResolved } from './resolver/styledResolved';
 import { getStyleIds } from './resolver/getStyleIds';
 import { injectComponentAndDescendantStyles } from './resolver/injectComponentAndDescendantStyles';
+import { resolvePlatformTheme } from './utils';
 
 import {
   convertStyledToStyledVerbosed,
@@ -54,6 +55,9 @@ import {
 } from './core/styled-system';
 import { updateOrderUnResolvedMap } from './updateOrderUnResolvedMap';
 import { resolveComponentTheme } from './createConfig';
+
+// Create a caching object
+let sxMemoizationCache: any = {};
 
 const styledSystemProps = { ...CSSPropertiesMap };
 
@@ -698,32 +702,6 @@ function mergeArraysInObjects(...objects: any) {
   return merged;
 }
 
-export function resolvePlatformTheme(theme: any, platform: any) {
-  if (typeof theme === 'object') {
-    Object.keys(theme).forEach((themeKey) => {
-      if (themeKey !== 'style' && themeKey !== 'defaultProps') {
-        if (theme[themeKey].platform) {
-          let temp = { ...theme[themeKey] };
-          theme[themeKey] = deepMerge(temp, theme[themeKey].platform[platform]);
-          delete theme[themeKey].platform;
-          resolvePlatformTheme(theme[themeKey], platform);
-        } else if (themeKey === 'queries') {
-          theme[themeKey].forEach((query: any) => {
-            if (query.value.platform) {
-              let temp = { ...query.value };
-              query.value = deepMerge(temp, query.value.platform[platform]);
-              delete query.value.platform;
-            }
-            resolvePlatformTheme(query.value, platform);
-          });
-        } else {
-          resolvePlatformTheme(theme[themeKey], platform);
-        }
-      }
-    });
-  }
-}
-
 export function getVariantProps(
   props: any,
   theme: any,
@@ -766,6 +744,7 @@ function resolveInlineProps(
   CONFIG: any
 ) {
   let resolvedInlineProps = {};
+
   if (
     componentStyleConfig.resolveProps &&
     Object.keys(componentExtendedConfig).length > 0
@@ -788,9 +767,11 @@ function resolveInlineProps(
                 CONFIG,
                 CONFIG.propertyTokenMap,
                 toBeResovledProp,
-                scale
+                scale,
+                Platform.OS !== 'web'
               )
           );
+
           //@ts-ignore
           resolvedInlineProps[toBeResovledProp] = token;
         } else {
@@ -800,7 +781,8 @@ function resolveInlineProps(
               componentExtendedConfig,
               props,
               toBeResovledProp,
-              props[toBeResovledProp]
+              props[toBeResovledProp],
+              Platform.OS !== 'web'
             );
         }
         delete props[toBeResovledProp];
@@ -948,9 +930,20 @@ export function verboseStyled<P, Variants, ComCon>(
     inlineStyleMap?: any,
     ignoreKeys: Set<any> = new Set()
   ) {
+    const sxHash = stableHash(sx);
+
+    const memoizationKey = sxHash + type;
+    // Check if the result is already in the cache
+    if (sxMemoizationCache[memoizationKey]) {
+      return sxMemoizationCache[memoizationKey];
+    }
+
     const inlineSxTheme = {
       baseStyle: sx,
     };
+
+    // if (Platform.OS === '')
+    // console.log(sxHash, GluestackStyleSheet.getStyleMap(), 'hash here');
 
     resolvePlatformTheme(inlineSxTheme, Platform.OS);
     const sxStyledResolved = styledToStyledResolved(
@@ -989,7 +982,7 @@ export function verboseStyled<P, Variants, ComCon>(
       );
     }
 
-    const sxHash = stableHash(sx);
+    // const sxHash = stableHash(sx);
 
     const orderedSXResolved =
       styledResolvedToOrderedSXResolved(sxStyledResolved);
@@ -1010,6 +1003,8 @@ export function verboseStyled<P, Variants, ComCon>(
       ignoreKeys,
       CONFIG
     );
+
+    sxMemoizationCache[memoizationKey] = orderedSXResolved;
 
     return orderedSXResolved;
   }
