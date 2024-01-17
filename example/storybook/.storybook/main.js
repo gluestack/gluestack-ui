@@ -32,7 +32,7 @@ module.exports = {
     //   use: ['style-loader', 'css-loader', 'sass-loader'],
     //   include: path.resolve(__dirname, '../'),
     // });
-
+    config.resolve.extensions.push('.mjs');
     config.module.rules.push({
       test: /\.(js|ts|tsx)$/,
       // include: [path.resolve('../../', 'node_modules/@gluestack-style/react')],
@@ -62,6 +62,10 @@ module.exports = {
       test: /\.mjs$/,
       include: /node_modules/,
       type: 'javascript/auto',
+      loader: 'babel-loader',
+      options: {
+        presets: ['@babel/preset-env'],
+      },
     });
 
     // Return the altered config

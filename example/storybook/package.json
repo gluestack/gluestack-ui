@@ -42,6 +42,7 @@
     "@react-native-community/slider": "4.2.4",
     "@react-stately/collections": "^3.6.0",
     "@react-stately/tree": "^3.5.0",
+    "@storybook/preview-api": "^7.6.8",
     "@typescript-eslint/parser": "^6.13.2",
     "expo": "^47.0.0",
     "expo-linear-gradient": "^12.3.0",
