@@ -42,7 +42,5 @@ export function transformedCodeWithoutWrapper(
     return <${componentName} />;
   };`;
   }
-  return `function App() {
-    return ${code};
-  };`;
+  return `${code}`;
 }
