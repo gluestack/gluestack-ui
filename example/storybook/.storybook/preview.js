@@ -89,10 +89,13 @@ export const parameters = {
         [
           'FlatList',
           'ScrollView',
+          'VirtualizedList',
           'View',
           'KeyboardAvoidingView',
           'SectionList',
           'StatusBar',
+          'Refresh Control',
+          'ImageBackground',
         ],
         'Hooks',
         [
