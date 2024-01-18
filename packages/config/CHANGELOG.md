@@ -1,5 +1,11 @@
 # @gluestack-ui/config
 
+## 1.0.13
+
+### Patch Changes
+
+- Config added for ImageBackground, RefreshControl and VirtualizedList
+
 ## 1.0.12
 
 ### Patch Changes
