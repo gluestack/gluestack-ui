@@ -2,7 +2,8 @@
   "private": true,
   "workspaces": [
     "packages/**",
-    "example/storybook"
+    "example/storybook",
+    "example/storybook-nativewind"
   ],
   "scripts": {
     "test": "bash ./scripts/test.sh",

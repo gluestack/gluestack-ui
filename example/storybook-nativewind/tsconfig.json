@@ -1,0 +1,34 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@custom-ui/themed": ["../../packages/themed/src"],
+      "@custom-ui/config": ["../../packages/config/src/gluestack-ui.config"],
+      "react-native": ["./node_modules/react-native-web"]
+    },
+    "emitDeclarationOnly": true,
+    "noEmit": false,
+    "declaration": true,
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "jsx": "react",
+    "lib": ["esnext", "dom"],
+    "module": "esnext",
+    "moduleResolution": "node",
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "noImplicitUseStrict": false,
+    "noStrictGenericChecks": false,
+    "noUnusedLocals": false,
+    "noUnusedParameters": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "target": "esnext"
+  },
+  "exclude": ["lib", "node_modules", "storybookDocsComponents", "__tests__"],
+  "include": ["src"]
+}
