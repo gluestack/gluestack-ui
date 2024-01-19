@@ -17,7 +17,6 @@ const GluestackUIProvider = ({
 }: GluestackUIProviderProps) => {
   return (
     <>
-      {/** @ts-ignore */}
       <GluestackUIStyledProvider colorMode="light" config={config} {...props}>
         <OverlayProvider>
           <ToastProvider>{children}</ToastProvider>
