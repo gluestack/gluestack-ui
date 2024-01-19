@@ -4,17 +4,15 @@ export const RadioIndicator = createStyle({
   'justifyContent': 'center',
   'alignItems': 'center',
   'bg': 'transparent',
-  'borderColor': '$borderLight400',
+  'borderColor': '$border400',
   'borderWidth': 2,
   'borderRadius': 999,
+
   '_web': {
     ':focusVisible': {
       outlineWidth: 2,
       outlineColor: '$primary700',
       outlineStyle: 'solid',
-      _dark: {
-        outlineColor: '$primary400',
-      },
     },
   },
 
@@ -24,7 +22,7 @@ export const RadioIndicator = createStyle({
   },
 
   ':hover': {
-    'borderColor': '$borderLight500',
+    'borderColor': '$border500',
     'bg': 'transparent',
 
     ':checked': {
@@ -39,7 +37,7 @@ export const RadioIndicator = createStyle({
         borderColor: '$error400',
         opacity: 0.4,
       },
-      'borderColor': '$borderLight400',
+      'borderColor': '$border400',
       'opacity': 0.4,
     },
   },
@@ -49,47 +47,6 @@ export const RadioIndicator = createStyle({
     borderColor: '$primary800',
   },
 
-  '_dark': {
-    'borderColor': '$borderDark500',
-    'bg': '$transparent',
-
-    ':hover': {
-      'borderColor': '$borderDark400',
-      'bg': 'transparent',
-
-      ':checked': {
-        bg: 'transparent',
-        borderColor: '$primary400',
-      },
-      ':invalid': {
-        borderColor: '$error400',
-      },
-      ':disabled': {
-        'borderColor': '$borderDark500',
-        'opacity': 0.4,
-        ':checked': {
-          bg: 'transparent',
-          borderColor: '$primary500',
-        },
-        ':invalid': {
-          borderColor: '$error400',
-        },
-      },
-    },
-
-    ':checked': {
-      borderColor: '$primary500',
-    },
-
-    ':active': {
-      bg: 'transparent',
-      borderColor: '$primary300',
-    },
-    ':invalid': {
-      borderColor: '$error400',
-    },
-  },
-
   ':invalid': {
     borderColor: '$error700',
   },
@@ -97,7 +54,7 @@ export const RadioIndicator = createStyle({
   ':disabled': {
     'opacity': 0.4,
     ':checked': {
-      borderColor: '$borderLight400',
+      borderColor: '$border400',
       bg: 'transparent',
     },
     ':invalid': {

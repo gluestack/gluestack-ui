@@ -8,73 +8,43 @@ export const Alert = createStyle({
   variants: {
     action: {
       error: {
-        bg: '$backgroundLightError',
+        bg: '$backgroundError',
         borderColor: '$error300',
+
         _icon: {
           color: '$error500',
         },
-        _dark: {
-          bg: '$backgroundDarkError',
-          borderColor: '$error700',
-          _icon: {
-            color: '$error500',
-          },
-        },
       },
       warning: {
-        bg: '$backgroundLightWarning',
+        bg: '$backgroundWarning',
         borderColor: '$warning300',
+
         _icon: {
           color: '$warning500',
         },
-        _dark: {
-          bg: '$backgroundDarkWarning',
-          borderColor: '$warning700',
-          _icon: {
-            color: '$warning500',
-          },
-        },
       },
       success: {
-        bg: '$backgroundLightSuccess',
+        bg: '$backgroundSuccess',
         borderColor: '$success300',
+
         _icon: {
           color: '$success500',
         },
-        _dark: {
-          bg: '$backgroundDarkSuccess',
-          borderColor: '$success700',
-          _icon: {
-            color: '$success500',
-          },
-        },
       },
       info: {
-        bg: '$backgroundLightInfo',
+        bg: '$backgroundInfo',
         borderColor: '$info300',
+
         _icon: {
           color: '$info500',
         },
-        _dark: {
-          bg: '$backgroundDarkInfo',
-          borderColor: '$info700',
-          _icon: {
-            color: '$info500',
-          },
-        },
       },
       muted: {
-        bg: '$backgroundLightMuted',
+        bg: '$backgroundMuted',
         borderColor: '$secondary300',
+
         _icon: {
           color: '$secondary500',
-        },
-        _dark: {
-          bg: '$backgroundDarkMuted',
-          borderColor: '$secondary700',
-          _icon: {
-            color: '$secondary500',
-          },
         },
       },
     },
@@ -84,9 +54,6 @@ export const Alert = createStyle({
       outline: {
         borderWidth: '$1',
         bg: '$white',
-        _dark: {
-          bg: '$black',
-        },
       },
       accent: {
         borderLeftWidth: '$4',

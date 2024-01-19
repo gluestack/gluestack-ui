@@ -1,10 +1,11 @@
 import { createStyle } from '@gluestack-style/react';
 
 export const BaseIcon = createStyle({
-  color: '$backgroundLight800',
-  _dark: {
-    color: '$backgroundDark400',
-  },
+  color: '$background800',
+
+  // defaultProps: {
+  //   size: 'md',
+  // },
   variants: {
     size: {
       '2xs': {
@@ -57,9 +58,6 @@ export const BaseIcon = createStyle({
       },
     },
   },
-  // defaultProps: {
-  //   size: 'md',
-  // },
 });
 
 export const Icon = createStyle({
@@ -68,9 +66,6 @@ export const Icon = createStyle({
     //@ts-ignore
     fill: 'none',
   },
-  color: '$backgroundLight800',
-  _dark: {
-    //@ts-ignore
-    color: '$backgroundDark400',
-  },
+
+  color: '$background800',
 });

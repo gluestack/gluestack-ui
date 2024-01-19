@@ -4,8 +4,6 @@ export const FormControlHelperText = createStyle({
   props: {
     size: 'xs',
   },
-  color: '$textLight500',
-  _dark: {
-    color: '$textDark400',
-  },
+
+  color: '$text500',
 });

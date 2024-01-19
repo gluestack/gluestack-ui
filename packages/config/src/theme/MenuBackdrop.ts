@@ -8,7 +8,7 @@ export const MenuBackdrop = createStyle({
   right: 0,
   // use this for when you want to give background colour to backdrop
   // opacity: 0.5,
-  // bg: '$backgroundLight500',
+  // bg: '$background500',
   _web: {
     cursor: 'default',
   },

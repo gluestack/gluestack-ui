@@ -1,27 +1,30 @@
 import { createStyle } from '@gluestack-style/react';
 
 export const CheckboxLabel = createStyle({
-  'color': '$textLight600',
+  'color': '$text600',
+
   ':checked': {
-    color: '$textLight900',
+    color: '$text900',
   },
+
   ':hover': {
-    'color': '$textLight900',
+    'color': '$text900',
     ':checked': {
-      'color': '$textLight900',
+      'color': '$text900',
       ':disabled': {
-        color: '$textLight900',
+        color: '$text900',
       },
     },
     ':disabled': {
-      color: '$textLight600',
+      color: '$text600',
     },
   },
+
   ':active': {
-    'color': '$textLight900',
+    'color': '$text900',
 
     ':checked': {
-      color: '$textLight900',
+      color: '$text900',
     },
   },
 
@@ -34,31 +37,5 @@ export const CheckboxLabel = createStyle({
     WebkitUserSelect: 'none',
     msUserSelect: 'none',
     userSelect: 'none',
-  },
-  '_dark': {
-    'color': '$textDark400',
-    ':checked': {
-      color: '$textDark100',
-    },
-    ':hover': {
-      'color': '$textDark100',
-      ':checked': {
-        'color': '$textDark100',
-        ':disabled': {
-          color: '$textDark100',
-        },
-      },
-    },
-    ':disabled': {
-      color: '$textDark100',
-    },
-
-    ':active': {
-      'color': '$textDark100',
-
-      ':checked': {
-        color: '$textDark100',
-      },
-    },
   },
 });

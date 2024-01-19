@@ -10,9 +10,6 @@ export const Link = createStyle({
       outlineWidth: 2,
       outlineColor: '$primary700',
       outlineStyle: 'solid',
-      _dark: {
-        outlineColor: '$primary400',
-      },
     },
   },
   _text: {
@@ -20,19 +17,13 @@ export const Link = createStyle({
       color: '$info600',
       textDecorationLine: 'none',
     },
+
     ':active': {
       color: '$info700',
     },
+
     ':disabled': {
       opacity: 0.4,
-    },
-    '_dark': {
-      ':hover': {
-        color: '$info400',
-      },
-      ':active': {
-        color: '$info300',
-      },
     },
   },
 });

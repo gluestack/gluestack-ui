@@ -5,14 +5,17 @@ export const TooltipContent = createStyle({
     opacity: 0,
     scale: 0.5,
   },
+
   ':animate': {
     opacity: 1,
     scale: 1,
   },
+
   ':exit': {
     opacity: 0,
     scale: 0.5,
   },
+
   ':transition': {
     type: 'spring',
     damping: 18,
@@ -26,22 +29,17 @@ export const TooltipContent = createStyle({
   'py': '$1',
   'px': '$3',
   'borderRadius': '$sm',
-  'bg': '$backgroundLight900',
+  'bg': '$background900',
 
   '_text': {
     fontSize: '$xs',
-    color: '$textLight50',
+    color: '$text50',
   },
+
   '_web': {
     pointerEvents: 'auto',
   },
-  // @ts-ignore
-  '_dark': {
-    bg: '$backgroundDark800',
-    _text: {
-      color: '$textDark50',
-    },
-  },
+
   'defaultProps': {
     hardShadow: '2',
   },

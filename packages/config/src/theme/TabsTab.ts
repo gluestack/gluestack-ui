@@ -2,6 +2,7 @@ import { createStyle } from '@gluestack-style/react';
 
 export const TabsTab = createStyle({
   'bg': 'transparent',
+
   '_web': {
     outlineWidth: 0,
   },
@@ -23,37 +24,23 @@ export const TabsTab = createStyle({
   'defaultProps': {
     size: 'md',
   },
+
   ':hover': {
     // bg: '$secondary50_alpha_20',
     borderRadius: '$full',
   },
+
   ':active': {
     // bg: '$secondary50_alpha_10',
     borderRadius: '$full',
   },
+
   ':focus': {
     // bg: '$secondary50_alpha_20',
     borderRadius: '$full',
   },
+
   ':disabled': {
     opacity: 0.5,
-  },
-
-  '_dark': {
-    ':hover': {
-      bg: '$backgroundLight500',
-      borderRadius: '$full',
-    },
-    ':active': {
-      bg: '$backgroundLight400',
-      borderRadius: '$full',
-    },
-    ':focus': {
-      bg: '$backgroundLight400',
-      borderRadius: '$full',
-    },
-    ':disabled': {
-      opacity: 0.5,
-    },
   },
 });

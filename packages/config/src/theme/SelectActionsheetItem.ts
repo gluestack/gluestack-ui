@@ -17,37 +17,20 @@ export const SelectActionsheetItem = createStyle({
   },
 
   ':hover': {
-    bg: '$backgroundLight100',
+    bg: '$background100',
   },
 
   ':active': {
-    bg: '$backgroundLight200',
+    bg: '$background200',
   },
 
   ':focus': {
-    bg: '$backgroundLight100',
-  },
-
-  '_dark': {
-    ':hover': {
-      bg: '$backgroundDark800',
-    },
-
-    ':active': {
-      bg: '$backgroundDark700',
-    },
-
-    ':focus': {
-      bg: '$backgroundDark800',
-    },
+    bg: '$background100',
   },
 
   '_web': {
     ':focusVisible': {
-      bg: '$backgroundLight100',
-      _dark: {
-        bg: '$backgroundDark700',
-      },
+      bg: '$background100',
     },
   },
 });

@@ -1,10 +1,7 @@
 import { createStyle } from '@gluestack-style/react';
 
 export const Text = createStyle({
-  color: '$textLight700',
-  _dark: {
-    color: '$textDark200',
-  },
+  color: '$text700',
   fontWeight: '$normal',
   fontFamily: '$body',
   fontStyle: 'normal',
@@ -35,10 +32,53 @@ export const Text = createStyle({
         textDecorationLine: 'line-through',
       },
     },
+    size: {
+      '2xs': {
+        fontSize: '$2xs',
+      },
+      'xs': {
+        fontSize: '$xs',
+      },
+
+      'sm': {
+        fontSize: '$sm',
+      },
+
+      'md': {
+        fontSize: '$md',
+      },
+
+      'lg': {
+        fontSize: '$lg',
+      },
+
+      'xl': {
+        fontSize: '$xl',
+      },
+
+      '2xl': {
+        fontSize: '$2xl',
+      },
+
+      '3xl': {
+        fontSize: '$3xl',
+      },
+
+      '4xl': {
+        fontSize: '$4xl',
+      },
+
+      '5xl': {
+        fontSize: '$5xl',
+      },
+
+      '6xl': {
+        fontSize: '$6xl',
+      },
+    },
     sub: {
       true: {
         fontSize: '$xs',
-        lineHeight: '$xs',
       },
     },
     italic: {
@@ -49,61 +89,6 @@ export const Text = createStyle({
     highlight: {
       true: {
         bg: '$yellow500',
-      },
-    },
-    size: {
-      '2xs': {
-        fontSize: '$2xs',
-        lineHeight: '$2xs',
-      },
-      'xs': {
-        fontSize: '$xs',
-        lineHeight: '$sm',
-      },
-
-      'sm': {
-        fontSize: '$sm',
-        lineHeight: '$sm',
-      },
-
-      'md': {
-        fontSize: '$md',
-        lineHeight: '$md',
-      },
-
-      'lg': {
-        fontSize: '$lg',
-        lineHeight: '$xl',
-      },
-
-      'xl': {
-        fontSize: '$xl',
-        lineHeight: '$xl',
-      },
-
-      '2xl': {
-        fontSize: '$2xl',
-        lineHeight: '$2xl',
-      },
-
-      '3xl': {
-        fontSize: '$3xl',
-        lineHeight: '$3xl',
-      },
-
-      '4xl': {
-        fontSize: '$4xl',
-        lineHeight: '$4xl',
-      },
-
-      '5xl': {
-        fontSize: '$5xl',
-        lineHeight: '$6xl',
-      },
-
-      '6xl': {
-        fontSize: '$6xl',
-        lineHeight: '$7xl',
       },
     },
   },
