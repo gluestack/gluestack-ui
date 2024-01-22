@@ -89,10 +89,13 @@ export const parameters = {
         [
           'FlatList',
           'ScrollView',
+          'VirtualizedList',
           'View',
           'KeyboardAvoidingView',
           'SectionList',
           'StatusBar',
+          'Refresh Control',
+          'ImageBackground',
         ],
         'Hooks',
         [
@@ -101,6 +104,8 @@ export const parameters = {
           'useBreakpointValue',
           'useMedia',
           'useColorMode',
+          'useStyled',
+          'useTheme',
         ],
         'Production Optimizations',
         ['With a Babel Plugin'],
