@@ -1,5 +1,17 @@
 # @gluestack-ui/themed
 
+## 1.0.38
+
+### Patch Changes
+
+- - Popover arrow support [PR](https://github.com/gluestack/gluestack-ui/pull/1677)
+  - Popover animation improvements
+
+  - Popover top placement position for mobile
+
+- Updated dependencies
+  - @gluestack-ui/popover@0.1.29
+
 ## 1.0.37
 
 ### Patch Changes

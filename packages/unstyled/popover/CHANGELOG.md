@@ -1,5 +1,17 @@
 # @gluestack-ui/popover
 
+## 0.1.29
+
+### Patch Changes
+
+- - Popover arrow support [PR](https://github.com/gluestack/gluestack-ui/pull/1677)
+  - Popover animation improvements
+
+  - Popover top placement position for mobile
+
+- Updated dependencies
+  - @react-native-aria/overlays@0.3.11
+
 ## 0.1.28
 
 ### Patch Changes
