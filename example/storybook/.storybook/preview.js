@@ -89,6 +89,7 @@ export const parameters = {
         [
           'FlatList',
           'ScrollView',
+          'SafeAreaView',
           'VirtualizedList',
           'View',
           'KeyboardAvoidingView',
@@ -96,6 +97,7 @@ export const parameters = {
           'StatusBar',
           'Refresh Control',
           'ImageBackground',
+          'InputAccessoryView',
         ],
         'Hooks',
         [
