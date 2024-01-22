@@ -1,0 +1,8 @@
+{
+  "name": "Checkbox",
+  "dependencies": { "@gluestack-ui/checkbox": "latest" },
+  "keywords": ["components", "core"],
+  "type": "ui",
+  "description": "Checkbox component",
+  "support": "universal"
+}

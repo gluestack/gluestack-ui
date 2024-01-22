@@ -1,9 +1,9 @@
 import type { ComponentMeta } from '@storybook/react-native';
 import Button from './Button';
-import ButtonIsLoadingExample from './ButtonLoading';
-import ButtonSizesExample from './ButtonSizes';
-import ButtonStylesExample from './ButtonStyles';
-import ButtonWithIconsTemp from './ButtonWithIcon';
+// import ButtonIsLoadingExample from './ButtonLoading';
+// import ButtonSizesExample from './ButtonSizes';
+// import ButtonStylesExample from './ButtonStyles';
+// import ButtonWithIconsTemp from './ButtonWithIcon';
 
 const ButtonMeta: ComponentMeta<typeof Button> = {
   title: 'components/PRIMITIVES/Button',
@@ -58,8 +58,8 @@ export default ButtonMeta;
 
 export {
   Button,
-  ButtonIsLoadingExample,
-  ButtonSizesExample,
-  ButtonStylesExample,
-  ButtonWithIconsTemp,
+  // ButtonIsLoadingExample,
+  // ButtonSizesExample,
+  // ButtonStylesExample,
+  // ButtonWithIconsTemp,
 };

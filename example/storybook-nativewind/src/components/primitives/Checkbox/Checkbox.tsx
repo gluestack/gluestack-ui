@@ -1,21 +1,11 @@
 import React from 'react';
 import {
-  Center,
-  Text,
-  CheckIcon,
-  Icon,
-  HStack,
   Checkbox,
-  CheckboxGroup,
-  CheckboxIndicator,
   CheckboxIcon,
+  CheckboxIndicator,
   CheckboxLabel,
-  Heading,
-  VStack,
-  RemoveIcon,
-  Box,
-  FormControl,
-} from '@custom-ui/themed';
+  CheckboxGroup,
+} from '@components/Checkbox';
 
 const CheckboxGroupBasic = ({ ...props }: any) => {
   const [values, setValues] = React.useState(['Label 1']);
@@ -26,7 +16,7 @@ const CheckboxGroupBasic = ({ ...props }: any) => {
       value={values}
       onChange={setValues}
       nativeID="checkbox-group"
-      gap="$2"
+      className="gap-2"
     >
       <Checkbox
         size={props.size}
@@ -42,7 +32,7 @@ const CheckboxGroupBasic = ({ ...props }: any) => {
         gap="$2"
       >
         <CheckboxIndicator>
-          <CheckboxIcon as={CheckIcon} />
+          <CheckboxIcon />
         </CheckboxIndicator>
         <CheckboxLabel>Label 1</CheckboxLabel>
       </Checkbox>
@@ -59,22 +49,11 @@ const CheckboxGroupBasic = ({ ...props }: any) => {
         gap="$2"
       >
         <CheckboxIndicator>
-          <CheckboxIcon as={CheckIcon} />
+          <CheckboxIcon />
         </CheckboxIndicator>
         <CheckboxLabel>Label 2</CheckboxLabel>
       </Checkbox>
     </CheckboxGroup>
-  );
-};
-
-const FigmaCheckboxStory = ({ ...props }: any) => {
-  return (
-    <Checkbox {...props} nativeID="checkbox-1" gap="$2">
-      <CheckboxIndicator>
-        <CheckboxIcon as={CheckIcon} />
-      </CheckboxIndicator>
-      <CheckboxLabel>Label</CheckboxLabel>
-    </Checkbox>
   );
 };
 
@@ -83,20 +62,9 @@ CheckboxGroupBasic.description = 'This is a basic Checkbox component example';
 export default CheckboxGroupBasic;
 
 export {
-  FigmaCheckboxStory,
-  Center,
-  Text,
-  CheckIcon,
   Checkbox,
   CheckboxGroup,
   CheckboxIndicator,
   CheckboxIcon,
   CheckboxLabel,
-  VStack,
-  Icon,
-  HStack,
-  RemoveIcon,
-  Heading,
-  Box,
-  FormControl,
 };

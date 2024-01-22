@@ -1,18 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 const ParentContext = React.createContext({});
 
-export const withContext = <T,>(Component: React.ComponentType<T>) => {
-  return {
-    Component: ({ context, ...props }: any) => {
-      return (
-        <ParentContext.Provider value={context}>
-          <Component {...props} />
-        </ParentContext.Provider>
-      );
-    },
-    Context: ParentContext,
-  } as {
-    Component: React.FC<{ context: any } & T>;
-    Context: React.Context<any>;
+export const useStyleContext = () => {
+  return useContext(ParentContext) as any;
+};
+
+export const withStyleContext = <T,>(Component: React.ComponentType<T>) => {
+  return ({ context, ...props }: any): any => {
+    return (
+      <ParentContext.Provider value={context}>
+        <Component {...props} />
+      </ParentContext.Provider>
+    );
   };
 };

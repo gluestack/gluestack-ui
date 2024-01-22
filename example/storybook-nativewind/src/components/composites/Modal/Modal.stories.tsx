@@ -1,6 +1,5 @@
 import type { ComponentMeta } from '@storybook/react-native';
 import Modal from './Modal';
-import MultipleModal from './MultipleModal';
 
 const ModalMeta: ComponentMeta<typeof Modal> = {
   title: 'components/COMPOSITES/Modal',
@@ -28,5 +27,5 @@ const ModalMeta: ComponentMeta<typeof Modal> = {
 };
 
 export default ModalMeta;
-export { MultipleModal };
+
 export { Modal };

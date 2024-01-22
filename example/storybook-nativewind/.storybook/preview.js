@@ -4,14 +4,13 @@ import { OverlayProvider } from '@gluestack-ui/overlay';
 import { ToastProvider } from '@gluestack-ui/toast';
 import gstheme from './gstheme';
 import { themes } from '@storybook/theming';
-import { useColorScheme } from 'nativewind';
-import { Platform } from 'react-native';
-import { useState } from 'react';
-import { withThemeByClassName } from '@storybook/addon-themes';
-
-// Use imperatively
 import '../global.css';
-import { useDarkMode } from './use-dark-mode';
+import { View } from 'react-native';
+import { useColorScheme } from 'nativewind';
+import { useDarkMode } from '../src/hooks/useDarkMode';
+import { Platform } from 'react-native';
+import { useEffect, useState } from 'react';
+
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
   controls: {
@@ -45,29 +44,45 @@ export const parameters = {
 };
 
 export const decorators = [
-  withThemeByClassName({
-    themes: {
-      light: 'light',
-      dark: 'dark',
-    },
-    defaultTheme: 'light',
-    attributeName: 'data-mode',
-  }),
   (Story) => {
     let value = false;
 
     if (Platform.OS === 'web') {
       // eslint-disable-next-line react-hooks/rules-of-hooks
-      const value = useDarkMode();
-      const { setColorScheme } = useColorScheme();
-      setColorScheme(value);
+      value = useDarkMode();
     }
     const [isDark] = useState(false);
 
+    function getColorMode() {
+      //@ts-ignore
+      if (Platform.OS === 'web') {
+        return value ? 'dark' : 'light';
+      } else {
+        return isDark ? 'dark' : 'light';
+      }
+    }
+    const { setColorScheme } = useColorScheme();
+    useEffect(() => {
+      setColorScheme(getColorMode());
+      if (Platform.OS === 'web') {
+        const rootBodyDom = document.documentElement.querySelector('body');
+        if (rootBodyDom) {
+          const oldClass = rootBodyDom
+            .getAttribute('class')
+            .replace('dark', '')
+            .replace('light', '');
+          rootBodyDom.setAttribute('class', `${getColorMode()} ${oldClass}`);
+        }
+      }
+    }, [getColorMode()]);
     return (
       <OverlayProvider>
         <ToastProvider>
-          <Story />
+          <View
+            style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
+          >
+            <Story />
+          </View>
         </ToastProvider>
       </OverlayProvider>
     );

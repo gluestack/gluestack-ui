@@ -3,7 +3,7 @@ import { createModal } from '@gluestack-ui/modal';
 import { Pressable, View } from 'react-native';
 import { cn } from '@components/utils';
 
-const GlueStackModal = createModal({
+const UIModal = createModal({
   Root: View,
   Backdrop: Pressable,
   Content: View,
@@ -15,7 +15,7 @@ const GlueStackModal = createModal({
 });
 
 const Modal = React.forwardRef(({ className, ...props }: any, ref) => (
-  <GlueStackModal
+  <UIModal
     className={cn('w-full h-full justify-center items-center', className)}
     {...props}
     ref={ref}
@@ -23,7 +23,7 @@ const Modal = React.forwardRef(({ className, ...props }: any, ref) => (
 ));
 
 const ModalBackdrop = React.forwardRef(({ className, ...props }: any, ref) => (
-  <GlueStackModal.Backdrop
+  <UIModal.Backdrop
     className={cn('fixed inset-0 z-50 bg-black opacity-50', className)}
     {...props}
     ref={ref}
@@ -31,7 +31,7 @@ const ModalBackdrop = React.forwardRef(({ className, ...props }: any, ref) => (
 ));
 
 const ModalContent = React.forwardRef(({ className, ...props }: any, ref) => (
-  <GlueStackModal.Content
+  <UIModal.Content
     className={cn(
       'gap-4 border border-gray-600/50 bg-black/10 p-6 shadow-lg sm:rounded-lg',
       className
@@ -42,17 +42,17 @@ const ModalContent = React.forwardRef(({ className, ...props }: any, ref) => (
 ));
 
 const ModalHeader = React.forwardRef(({ className, ...props }: any, ref) => (
-  <GlueStackModal.Header
+  <UIModal.Header
     className={cn('flex-row justify-between items-center', className)}
     {...props}
     ref={ref}
   />
 ));
 
-const ModalBody = GlueStackModal.Body;
+const ModalBody = UIModal.Body;
 
 const ModalFooter = React.forwardRef(({ className, ...props }: any, ref) => (
-  <GlueStackModal.Footer
+  <UIModal.Footer
     className={cn(
       'flex-row w-full px-4 py-2 justify-end items-center',
       className
@@ -64,7 +64,7 @@ const ModalFooter = React.forwardRef(({ className, ...props }: any, ref) => (
 
 const ModalCloseButton = React.forwardRef(
   ({ className, ...props }: any, ref) => (
-    <GlueStackModal.CloseButton
+    <UIModal.CloseButton
       className={cn(
         'p-2 rounded-lg hover:bg-gray-500/40 active:bg-slate-400/50 focus-visible:bg-transparent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none',
         className

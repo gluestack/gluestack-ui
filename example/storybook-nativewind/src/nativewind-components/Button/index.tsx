@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { createButton } from '@gluestack-ui/button';
-import { tva, withContext } from '@components/utils';
+import { tva, withStyleContext } from '@components/utils';
 import { ActivityIndicator, Pressable, Text, View } from 'react-native';
+import { useStyleContext } from '@components/utils/withContext';
 
-const GlueStackButton = createButton({
+const UIButton = createButton({
   Root: Pressable,
   Text,
   Group: View,
@@ -11,7 +12,7 @@ const GlueStackButton = createButton({
   Icon: View,
 });
 
-const button = tva({
+const buttonStyle = tva({
   base: 'group/button items-center justify-center rounded-md web:focus-visible:outline-none web:focus-visible:ring-1 web:focus-visible:ring-slate-950 web:disabled:pointer-events-none web:disabled:opacity-50 web:dark:focus-visible:ring-slate-300',
   variants: {
     variant: {
@@ -33,11 +34,11 @@ const button = tva({
   },
 });
 
-const buttonText = tva({
+const buttonTextStyle = tva({
   base: 'text-sm font-medium web:transition-colors',
   parentVariants: {
     variant: {
-      default: 'text-red-500 dark:text-slate-900',
+      default: 'text-white dark:text-slate-900',
       destructive: 'text-slate-50 dark:text-slate-50',
       outline: 'text-slate-900 dark:text-white',
     },
@@ -48,8 +49,7 @@ const buttonText = tva({
   },
 });
 
-const { Component: GlueStackButtonComponent, Context: GlueStackButtonContext } =
-  withContext(GlueStackButton);
+const UIButtonHOC = withStyleContext(UIButton);
 
 const Button = React.forwardRef(
   (
@@ -57,10 +57,10 @@ const Button = React.forwardRef(
     ref
   ) => {
     return (
-      <GlueStackButtonComponent
+      <UIButtonHOC
         ref={ref}
         {...props}
-        className={button({ variant, size, class: className })}
+        className={buttonStyle({ variant, size, class: className })}
         context={{ variant, size }}
       />
     );
@@ -69,14 +69,13 @@ const Button = React.forwardRef(
 
 const ButtonText = React.forwardRef(
   ({ className, variant, size, ...props }: any, ref) => {
-    const { variant: parentVariant, size: parentSize } = React.useContext(
-      GlueStackButtonContext
-    );
+    const { variant: parentVariant, size: parentSize } = useStyleContext();
+
     return (
-      <GlueStackButton.Text
+      <UIButton.Text
         ref={ref}
         {...props}
-        className={buttonText({
+        className={buttonTextStyle({
           parentVariants: { variant: parentVariant, size: parentSize },
           variant,
           size,
@@ -87,8 +86,8 @@ const ButtonText = React.forwardRef(
   }
 );
 
-const ButtonSpinner = GlueStackButton.Spinner;
-const ButtonIcon = GlueStackButton.Icon;
+const ButtonSpinner = UIButton.Spinner;
+const ButtonIcon = UIButton.Icon;
 
 Button.displayName = 'Button';
 ButtonText.displayName = 'ButtonText';
