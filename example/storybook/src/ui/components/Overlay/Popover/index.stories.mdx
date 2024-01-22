@@ -22,6 +22,7 @@ import {
   PopoverBody,
   PopoverFooter,
   PopoverCloseButton,
+  PopoverArrow,
   Pressable,
   Text as PopoverText,
 } from './Popover';
@@ -171,6 +172,122 @@ This is an illustration of a **Themed Popover** component with default configura
   />
 </AppProvider>
 
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={true}
+    metaData={{
+      code: `
+      function App() {
+        const [isOpen, setIsOpen] = useState(false);
+        const handleOpen = () => {
+          setIsOpen(true);
+        };
+        const handleClose = () => {
+          setIsOpen(false);
+        };
+        return (
+          <Popover
+            isOpen={isOpen}
+            onClose={handleClose}
+            onOpen={handleOpen}
+            {...props}
+            trigger={(triggerProps) => {
+              return (
+                <Button
+                  {...triggerProps}
+                >
+                  <ButtonText>
+                    Popover
+                  </ButtonText>
+                </Button>
+              );
+            }}
+          >
+            <PopoverBackdrop/>
+            <PopoverContent>
+            <PopoverArrow />
+              <PopoverHeader>
+                <Heading size='lg'>Welcome!</Heading>
+                <PopoverCloseButton>
+                  <Icon as={CloseIcon}/>
+                </PopoverCloseButton>
+              </PopoverHeader>
+              <PopoverBody>
+                <Text size='sm'>
+                  Join the product tour and start creating your own checklist. Are you ready to jump in?
+                </Text>
+              </PopoverBody>
+              <PopoverFooter>
+                <Text size='xs' flex={1}>
+                  Step 2 of 3
+                </Text>
+                <ButtonGroup space='md'>
+                  <Button variant="outline" action='secondary' onPress={handleClose}>
+                    <ButtonText>Back</ButtonText>
+                  </Button>
+                  <Button onPress={handleClose}>
+                    <ButtonText>Next</ButtonText>
+                  </Button>
+                </ButtonGroup>
+              </PopoverFooter>
+            </PopoverContent>
+          </Popover>
+        )
+      }
+      `,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'App');
+      },
+      scope: {
+        Wrapper,
+        Center,
+        Text: PopoverText,
+        Heading,
+        Popover,
+        PopoverBackdrop,
+        PopoverContent,
+        PopoverHeader,
+        PopoverBody,
+        PopoverFooter,
+        PopoverCloseButton,
+        Button,
+        ButtonGroup,
+        ButtonText,
+        CloseIcon,
+        Icon,
+        useState,
+        PopoverArrow
+      },
+      argsType: {
+        placement: {
+          control: 'select',
+          options: [
+            'bottom',
+            'bottom left',
+            'bottom right',
+            'top',
+            'top left',
+            'top right',
+            'left',
+            'left bottom',
+            'left right',
+            'right',
+            'right bottom',
+            'right top',
+          ],
+          default: 'bottom',
+        },
+        size: {
+          control: 'select',
+          options: ['xs', 'sm', 'md', 'lg', 'full'],
+          default: 'md',
+        },
+      },
+    }}
+  />
+</AppProvider>
+
 <br />
 
 ## API Reference
@@ -180,7 +297,16 @@ This is an illustration of a **Themed Popover** component with default configura
 To use this component in your project, include the following import statement in your file.
 
 ```jsx
-import { Popover } from '@gluestack-ui/themed';
+import { 
+  Popover,
+  PopoverBackdrop,
+  PopoverContent,
+  PopoverArrow,
+  PopoverHeader,
+  PopoverCloseButton,
+  PopoverBody,
+  PopoverFooter,
+} from '@gluestack-ui/themed';
 ```
 
 ### Anatomy
@@ -192,6 +318,7 @@ export default () => (
   <Popover>
     <PopoverBackdrop />
     <PopoverContent>
+      <PopoverArrow />
       <PopoverHeader>
         <PopoverCloseButton />
       </PopoverHeader>
