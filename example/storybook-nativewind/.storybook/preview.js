@@ -1,10 +1,17 @@
 import { addParameters } from '@storybook/client-api';
 import { DocsContainer } from '@storybook/addon-docs/blocks';
-import { config } from '@custom-ui/config';
-import { Center, GluestackUIProvider } from '@custom-ui/themed';
+import { OverlayProvider } from '@gluestack-ui/overlay';
+import { ToastProvider } from '@gluestack-ui/toast';
 import gstheme from './gstheme';
 import { themes } from '@storybook/theming';
+import { useColorScheme } from 'nativewind';
+import { Platform } from 'react-native';
+import { useState } from 'react';
+import { withThemeByClassName } from '@storybook/addon-themes';
+
+// Use imperatively
 import '../global.css';
+import { useDarkMode } from './use-dark-mode';
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
   controls: {
@@ -38,13 +45,31 @@ export const parameters = {
 };
 
 export const decorators = [
+  withThemeByClassName({
+    themes: {
+      light: 'light',
+      dark: 'dark',
+    },
+    defaultTheme: 'light',
+    attributeName: 'data-mode',
+  }),
   (Story) => {
+    let value = false;
+
+    if (Platform.OS === 'web') {
+      // eslint-disable-next-line react-hooks/rules-of-hooks
+      const value = useDarkMode();
+      const { setColorScheme } = useColorScheme();
+      setColorScheme(value);
+    }
+    const [isDark] = useState(false);
+
     return (
-      <GluestackUIProvider config={config}>
-        <Center>
+      <OverlayProvider>
+        <ToastProvider>
           <Story />
-        </Center>
-      </GluestackUIProvider>
+        </ToastProvider>
+      </OverlayProvider>
     );
   },
 ];

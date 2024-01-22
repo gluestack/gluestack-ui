@@ -46,6 +46,7 @@
     "@react-native-community/slider": "4.2.4",
     "@react-stately/collections": "^3.6.0",
     "@react-stately/tree": "^3.5.0",
+    "@storybook/addon-themes": "^7.6.10",
     "expo": "^47.0.0",
     "expo-linear-gradient": "^12.3.0",
     "expo-status-bar": "~1.4.2",
@@ -66,6 +67,7 @@
     "react-native-web": "^0.19.9",
     "react-stately": "^3.21.0",
     "shortid": "^2.2.16",
+    "tailwind-variants": "^0.1.20",
     "tailwindcss": "^3.4.1",
     "ts-jest": "^29.1.0",
     "uuidv4": "^6.2.13"

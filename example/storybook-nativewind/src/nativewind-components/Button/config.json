@@ -1,0 +1,8 @@
+{
+  "name": "Button",
+  "dependencies": { "@gluestack-ui/button": "latest" },
+  "keywords": ["components", "core"],
+  "type": "ui",
+  "description": "Button component",
+  "support": "universal"
+}

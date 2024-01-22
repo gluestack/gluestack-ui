@@ -1,0 +1,8 @@
+{
+  "name": "Modal",
+  "dependencies": { "@gluestack-ui/modal": "latest" },
+  "keywords": ["components", "core"],
+  "type": "ui",
+  "description": "Modal component",
+  "support": "universal"
+}
