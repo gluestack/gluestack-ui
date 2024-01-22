@@ -1,4 +1,6 @@
-import React, { forwardRef } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable react-native/no-inline-styles */
+import React, { forwardRef, useState } from 'react';
 import { useKeyboardDismissable } from '@gluestack-ui/hooks';
 import { usePopover } from './PopoverContext';
 import {
@@ -6,6 +8,7 @@ import {
   findNodeHandle,
   AccessibilityInfo,
   Keyboard,
+  View,
 } from 'react-native';
 import { mergeRefs } from '@gluestack-ui/utils';
 import { useOverlayPosition } from '@react-native-aria/overlays';
@@ -13,10 +16,20 @@ import { OverlayAnimatePresence } from './OverlayAnimatePresence';
 import { FocusScope as FocusScopeAria } from '@react-native-aria/focus';
 import { useDialog } from '@react-native-aria/dialog';
 import { PopoverContentProvider } from './PopoverContext';
+import { getContainerStyle } from './utils';
+
+const DEFAULT_ARROW_HEIGHT = 14,
+  DEFAULT_ARROW_WIDTH = 14;
 
 const PopoverContent = (StyledPopoverContent: any, AnimatePresence?: any) =>
   forwardRef(({ children, style, ...props }: any, ref?: any) => {
     const { value } = usePopover('PopoverContext');
+
+    const [arrowHeight, setArrowHeight] = useState(DEFAULT_ARROW_HEIGHT);
+    const [arrowWidth, setArrowWidth] = useState(DEFAULT_ARROW_WIDTH);
+    const [arrowElement, setArrowElement] = useState<React.ReactElement | null>(
+      null
+    );
 
     const {
       targetRef,
@@ -82,12 +95,12 @@ const PopoverContent = (StyledPopoverContent: any, AnimatePresence?: any) =>
           } as any)
         : {};
     const overlayRef = React.useRef(null);
-    // const { x, y, reference, floating, strategy } = useFloating({
-    //   placement: placement,
-    //   middleware: [offset(10), flip(), shift()],
-    //   ...floatingParams,
-    // });
-    const { overlayProps } = useOverlayPosition({
+
+    const {
+      overlayProps,
+      arrowProps,
+      placement: calculatedPlacement,
+    } = useOverlayPosition({
       placement: placement,
       targetRef,
       overlayRef,
@@ -97,33 +110,113 @@ const PopoverContent = (StyledPopoverContent: any, AnimatePresence?: any) =>
       shouldFlip,
     });
 
-    const mergedRef = mergeRefs([ref, overlayRef, contentRef]);
+    const mergedRef = mergeRefs([ref, contentRef]);
+
+    const updateArrowSize = ({
+      height,
+      width,
+    }: {
+      height: number;
+      width: number;
+    }) => {
+      setArrowHeight(height);
+      setArrowWidth(width);
+    };
+
+    const updateArrowElement = (element: React.ReactElement | null) => {
+      setArrowElement(element);
+    };
+
+    const providerValues = React.useMemo(() => {
+      return {
+        arrowProps: arrowProps,
+        arrowHeight,
+        arrowWidth,
+        updateArrowSize,
+        updateArrowElement,
+        actualPlacement: calculatedPlacement,
+      };
+    }, [calculatedPlacement, arrowProps, arrowHeight, arrowWidth]);
+
+    const popoverContentStyle = React.useMemo(() => {
+      const arrayConvertedStyles = Array.isArray(style) ? style : [style];
+      const containerStyle = arrowElement
+        ? getContainerStyle({
+            placement: calculatedPlacement,
+            arrowHeight: arrowHeight,
+          })
+        : {};
+
+      return [containerStyle, arrayConvertedStyles];
+    }, [calculatedPlacement, arrowHeight, style, arrowElement]);
+
+    const initialAnimatedStyles = {
+      opacity: 0,
+      y:
+        calculatedPlacement === 'top'
+          ? 6
+          : calculatedPlacement === 'bottom'
+          ? -6
+          : 0,
+      x:
+        calculatedPlacement === 'right'
+          ? -6
+          : calculatedPlacement === 'left'
+          ? 6
+          : 0,
+    };
+
+    const animatedStyles = {
+      opacity: 1,
+      y: 0,
+      x: 0,
+    };
+
+    const exitAnimatedStyles = {
+      opacity: 0,
+    };
 
     return (
-      <PopoverContentProvider value={value}>
+      <PopoverContentProvider value={{ ...value, ...providerValues }}>
         <OverlayAnimatePresence
           visible={isOpen}
           AnimatePresence={AnimatePresence}
         >
-          <StyledPopoverContent
-            nativeID={popoverContentId}
-            {...accessibilityProps}
-            {...props}
-            ref={mergedRef}
-            isOpen={isOpen}
-            collapsable={false}
-            {...dialogProps}
-            tabIndex={Platform.OS === 'web' ? -1 : undefined}
+          <View
             style={{
               position: 'absolute',
+              // To align items inside wrapper View
+              alignItems:
+                calculatedPlacement === 'right'
+                  ? 'flex-start'
+                  : calculatedPlacement === 'left'
+                  ? 'flex-end'
+                  : 'center',
               ...overlayProps?.style,
-              ...style,
             }}
+            ref={overlayRef}
           >
+            {arrowElement}
             <FocusScopeComponent contain={trapFocus} restoreFocus autoFocus>
-              {children}
+              <StyledPopoverContent
+                nativeID={popoverContentId}
+                {...accessibilityProps}
+                {...props}
+                isOpen={isOpen}
+                collapsable={false}
+                {...dialogProps}
+                tabIndex={Platform.OS === 'web' ? -1 : undefined}
+                key={placement + calculatedPlacement}
+                initial={initialAnimatedStyles}
+                animate={animatedStyles}
+                exit={exitAnimatedStyles}
+                style={popoverContentStyle}
+                ref={mergedRef}
+              >
+                {children}
+              </StyledPopoverContent>
             </FocusScopeComponent>
-          </StyledPopoverContent>
+          </View>
         </OverlayAnimatePresence>
       </PopoverContentProvider>
     );
