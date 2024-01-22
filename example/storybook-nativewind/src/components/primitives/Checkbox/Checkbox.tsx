@@ -16,12 +16,10 @@ const CheckboxGroupBasic = ({ ...props }: any) => {
       value={values}
       onChange={setValues}
       nativeID="checkbox-group"
-      className="gap-2"
+      className="gap-4"
     >
       <Checkbox
         size={props.size}
-        isInvalid={props.isInvalid}
-        isIndeterminate
         value="Label 1"
         aria-label="Label 1"
         onChange={(isSelected: boolean) =>
@@ -29,7 +27,6 @@ const CheckboxGroupBasic = ({ ...props }: any) => {
           console.log(isSelected, '###')
         }
         nativeID="checkbox-1"
-        gap="$2"
       >
         <CheckboxIndicator>
           <CheckboxIcon />
@@ -37,16 +34,14 @@ const CheckboxGroupBasic = ({ ...props }: any) => {
         <CheckboxLabel>Label 1</CheckboxLabel>
       </Checkbox>
       <Checkbox
-        isInvalid={props.isInvalid}
         size={props.size}
-        aria-label="Label 2"
         value="Label 2"
+        aria-label="Label 2"
         onChange={(isSelected: boolean) =>
           // eslint-disable-next-line no-console
           console.log(isSelected, '###')
         }
         nativeID="checkbox-2"
-        gap="$2"
       >
         <CheckboxIndicator>
           <CheckboxIcon />
