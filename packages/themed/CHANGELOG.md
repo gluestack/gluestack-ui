@@ -1,5 +1,12 @@
 # @gluestack-ui/themed
 
+## 1.0.39
+
+### Patch Changes
+
+- - SaferAreaView
+  - InputAccessoryView
+
 ## 1.0.38
 
 ### Patch Changes
