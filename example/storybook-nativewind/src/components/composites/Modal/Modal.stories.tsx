@@ -2,7 +2,7 @@ import type { ComponentMeta } from '@storybook/react-native';
 import Modal from './Modal';
 
 const ModalMeta: ComponentMeta<typeof Modal> = {
-  title: 'components/COMPOSITES/Modal',
+  title: 'stories/Modal',
   component: Modal,
   // metaInfo is required for figma generation
   // @ts-ignore

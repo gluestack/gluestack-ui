@@ -6,7 +6,7 @@ import Button from './Button';
 // import ButtonWithIconsTemp from './ButtonWithIcon';
 
 const ButtonMeta: ComponentMeta<typeof Button> = {
-  title: 'components/PRIMITIVES/Button',
+  title: 'stories/Button',
   component: Button,
   // metaInfo is required for figma generation
   // @ts-ignore
