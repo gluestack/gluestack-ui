@@ -21,6 +21,7 @@ const UICheckboxHOC = withStyleContext(UICheckbox);
 const CheckboxGroup = UICheckbox.Group;
 
 const checkboxIndicator = tva({
+  base: 'shrink-0 items-center justify-center rounded-sm border border-primary dark:border-white focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 ',
   parentVariants: {
     size: {
       lg: 'w-6 h-6',
@@ -31,6 +32,7 @@ const checkboxIndicator = tva({
 });
 
 const checkboxLabel = tva({
+  base: 'dark:text-white',
   parentVariants: {
     size: {
       lg: 'text-lg',
@@ -41,13 +43,10 @@ const checkboxLabel = tva({
 });
 
 const Checkbox = React.forwardRef(
-  ({ className, size = 'md', ...props }: any, ref) => {
+  ({ className, size = 'sm', ...props }: any, ref) => {
     return (
       <UICheckboxHOC
-        className={cn(
-          'peer h-4 w-4 shrink-0 rounded-sm border border-primary shadow focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground',
-          className
-        )}
+        className={cn('flex-row items-center justify-start gap-2', className)}
         {...props}
         context={{
           size,
@@ -93,15 +92,12 @@ const CheckboxLabel = React.forwardRef(({ className, ...props }: any, ref) => {
 });
 
 const CheckboxIcon = React.forwardRef(({ className, ...props }: any, ref) => {
-  const { size: parentSize } = useStyleContext();
   return (
     <UICheckbox.Icon
-      className={checkboxIndicator({
-        parentVariants: {
-          size: parentSize,
-        },
-        class: className,
-      })}
+      className={cn(
+        ' w-full h-full overflow-hidden bg-primary dark:bg-white stroke-white dark:stroke-primary p-[2px] ',
+        className
+      )}
       {...props}
       ref={ref}
     />
