@@ -63,18 +63,16 @@ const PopoverArrow = (StyledPopoverArrow: any) =>
             rotate: '45deg',
           }}
           style={[
-            {
-              zIndex: 1,
-              position: 'absolute',
-              overflow: 'hidden',
-            },
             props?.style,
+            arrowProps?.style,
             {
-              ...arrowProps?.style,
-              // top:
-              //   placement === 'right bottom' || placement === 'left bottom'
-              //     ? arrowProps?.style?.top - 4
-              //     : arrowProps?.style?.top,
+              // To avoid border radius case
+              top:
+                placement === 'right bottom' || placement === 'left bottom'
+                  ? arrowProps?.style?.top > 4
+                    ? arrowProps?.style?.top - 4
+                    : arrowProps?.style?.top
+                  : arrowProps?.style?.top,
             },
             additionalStyles,
           ]}

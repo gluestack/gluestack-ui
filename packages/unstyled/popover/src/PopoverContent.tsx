@@ -110,7 +110,7 @@ const PopoverContent = (StyledPopoverContent: any, AnimatePresence?: any) =>
       shouldFlip,
     });
 
-    const mergedRef = mergeRefs([ref, overlayRef, contentRef]);
+    const mergedRef = mergeRefs([ref, contentRef]);
 
     const updateArrowSize = ({
       height,
@@ -147,13 +147,7 @@ const PopoverContent = (StyledPopoverContent: any, AnimatePresence?: any) =>
           })
         : {};
 
-      return [
-        {
-          width: '100%',
-        },
-        arrayConvertedStyles,
-        containerStyle,
-      ];
+      return [containerStyle, arrayConvertedStyles];
     }, [calculatedPlacement, arrowHeight, style, arrowElement]);
 
     const initialAnimatedStyles = {
@@ -191,9 +185,16 @@ const PopoverContent = (StyledPopoverContent: any, AnimatePresence?: any) =>
           <View
             style={{
               position: 'absolute',
+              // To align items inside wrapper View
+              alignItems:
+                calculatedPlacement === 'right'
+                  ? 'flex-start'
+                  : calculatedPlacement === 'left'
+                  ? 'flex-end'
+                  : 'center',
               ...overlayProps?.style,
             }}
-            ref={mergedRef}
+            ref={overlayRef}
           >
             {arrowElement}
             <FocusScopeComponent contain={trapFocus} restoreFocus autoFocus>
@@ -210,6 +211,7 @@ const PopoverContent = (StyledPopoverContent: any, AnimatePresence?: any) =>
                 animate={animatedStyles}
                 exit={exitAnimatedStyles}
                 style={popoverContentStyle}
+                ref={mergedRef}
               >
                 {children}
               </StyledPopoverContent>
