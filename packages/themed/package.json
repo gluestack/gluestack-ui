@@ -50,7 +50,7 @@
     "@gluestack-ui/menu": "0.2.26",
     "@gluestack-ui/modal": "0.1.28",
     "@gluestack-ui/overlay": "0.1.12",
-    "@gluestack-ui/popover": "0.1.29-alpha.1",
+    "@gluestack-ui/popover": "0.1.28",
     "@gluestack-ui/pressable": "0.1.13",
     "@gluestack-ui/progress": "0.1.12",
     "@gluestack-ui/provider": "0.1.10",
