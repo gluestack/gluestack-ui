@@ -29,6 +29,7 @@ export * from './Progress';
 export * from './Text';
 export * from './Radio';
 export * from './ScrollView';
+export * from './SafeAreaView';
 export * from './Select';
 export * from './Slider';
 export * from './Spinner';
