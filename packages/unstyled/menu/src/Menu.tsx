@@ -165,6 +165,7 @@ const MenuComponent = forwardRef(
           {...menuProps}
           {...typeSelectProps}
           ref={mergeRef}
+          role="list"
           {...restProps}
         >
           {[...state.collection].map((item) => (
