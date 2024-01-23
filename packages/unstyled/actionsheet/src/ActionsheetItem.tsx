@@ -68,6 +68,18 @@ export function ActionsheetItem<T>(
             disabled: isDisabled,
             focusVisible: isFocusVisibleProp || isFocusVisible,
           }}
+          dataSet={{
+            hover: isHoveredProp || isHovered ? 'true' : 'false',
+            focus: isFocusedProp || isFocused ? 'true' : 'false',
+            // @ts-ignore
+            active:
+              isPressedProp || isPressed || props?.states?.active
+                ? 'true'
+                : 'false',
+            disabled: isDisabled ? 'true' : 'false',
+            focusVisible:
+              isFocusVisibleProp || isFocusVisible ? 'true' : 'false',
+          }}
         >
           {children}
         </StyledActionsheetItem>

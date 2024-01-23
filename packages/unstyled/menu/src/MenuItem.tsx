@@ -93,6 +93,18 @@ export function MenuItem({
         selected: state.selectionManager.isSelected(item.key),
         disabled: state.selectionManager.isDisabled(item.key),
       }}
+      dataSet={{
+        hover: isHovered ? 'true' : 'false',
+        focus: isFocused ? 'true' : 'false',
+        active: isPressed ? 'true' : 'false',
+        focusVisible: isFocusVisible ? 'true' : 'false',
+        selected: state.selectionManager.isSelected(item.key)
+          ? 'true'
+          : 'false',
+        disabled: state.selectionManager.isDisabled(item.key)
+          ? 'true'
+          : 'false',
+      }}
       {...rest}
       {...pressEvents1}
       // @ts-ignore - web only
