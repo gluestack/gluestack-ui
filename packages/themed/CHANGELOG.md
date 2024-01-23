@@ -1,5 +1,37 @@
 # @gluestack-ui/themed
 
+## 1.0.39
+
+### Patch Changes
+
+- - SaferAreaView
+  - InputAccessoryView
+
+## 1.0.38
+
+### Patch Changes
+
+- - Popover arrow support [PR](https://github.com/gluestack/gluestack-ui/pull/1677)
+  - Popover animation improvements
+
+  - Popover top placement position for mobile
+
+- Updated dependencies
+  - @gluestack-ui/popover@0.1.29
+
+## 1.0.37
+
+### Patch Changes
+
+- Exported ImageBackground, RefreshControl and VirtualizedList
+
+## 1.0.36
+
+### Patch Changes
+
+- Updated dependencies
+  - `@gluestack-style/react@1.0.40`
+
 ## 1.0.35
 
 ### Patch Changes

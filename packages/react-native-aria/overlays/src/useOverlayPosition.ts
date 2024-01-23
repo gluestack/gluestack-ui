@@ -66,6 +66,32 @@ type IMeasureResult = {
   width: number;
 };
 
+const getArrowPropsWithStatusBarHeight = ({
+  top,
+  left,
+}: {
+  top: number;
+  left: number;
+}) => {
+  let topWithStatusBarHeight = top;
+
+  if (
+    typeof top !== 'undefined' &&
+    typeof APPROX_STATUSBAR_HEIGHT !== 'undefined'
+  ) {
+    topWithStatusBarHeight = top + APPROX_STATUSBAR_HEIGHT;
+  } else {
+    topWithStatusBarHeight = undefined;
+  }
+
+  return {
+    style: {
+      left: left,
+      top: topWithStatusBarHeight,
+    },
+  };
+};
+
 export function useOverlayPosition(props: AriaPositionProps) {
   let {
     targetRef,
@@ -106,9 +132,8 @@ export function useOverlayPosition(props: AriaPositionProps) {
       return;
     }
 
-    const { height: windowHeight, width: windowWidth } = Dimensions.get(
-      'window'
-    );
+    const { height: windowHeight, width: windowWidth } =
+      Dimensions.get('window');
 
     const positions = calculatePosition({
       placement: translateRTL(placement),
@@ -138,6 +163,7 @@ export function useOverlayPosition(props: AriaPositionProps) {
 
   React.useLayoutEffect(() => {
     updatePosition();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     placement,
     isOpen,
@@ -155,18 +181,18 @@ export function useOverlayPosition(props: AriaPositionProps) {
     style.top = (position?.position?.top || 0) + (APPROX_STATUSBAR_HEIGHT || 0);
   }
 
+  const arrowPropsWithStatusBarHeight = getArrowPropsWithStatusBarHeight({
+    left: position?.arrowOffsetLeft,
+    top: position?.arrowOffsetTop,
+  });
+
   const returnProps = {
     rendered,
     overlayProps: {
       style,
     },
     placement: position.placement,
-    arrowProps: {
-      style: {
-        left: position.arrowOffsetLeft,
-        top: (position?.arrowOffsetTop || 0) + (APPROX_STATUSBAR_HEIGHT || 0),
-      },
-    },
+    arrowProps: arrowPropsWithStatusBarHeight,
     updatePosition,
   };
 
@@ -438,14 +464,8 @@ function computePosition(
   _containerOffsetWithBoundary: Offset,
   _isContainerPositioned: boolean
 ) {
-  let {
-    placement,
-    crossPlacement,
-    axis,
-    crossAxis,
-    size,
-    crossSize,
-  } = placementInfo;
+  let { placement, crossPlacement, axis, crossAxis, size, crossSize } =
+    placementInfo;
   let position: any = {};
   //@ts-ignore
   position[crossAxis] = childOffset[crossAxis];

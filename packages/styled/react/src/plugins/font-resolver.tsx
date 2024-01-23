@@ -5,6 +5,7 @@ import { propertyTokenMap } from '../propertyTokenMap';
 import { deepMerge, setObjectKeyValue } from '../utils';
 import { getVariantProps } from '../styled';
 import { StyleSheet } from 'react-native';
+import { deepClone } from '../utils/cssify/utils/common';
 
 const fontWeights: any = {
   '100': 'Thin',
@@ -97,7 +98,11 @@ export class FontResolver implements IStyledPlugin, FontPlugin {
       } else {
         fontFamilyValue = `${fontFamilyValue}_400Regular`;
       }
-      if (style.fontStyle && typeof style.fontStyle === 'string') {
+      if (
+        style.fontStyle &&
+        style.fontStyle !== 'normal' &&
+        typeof style.fontStyle === 'string'
+      ) {
         const fontStyle = style.fontStyle.replace(/^\w/, (c: any) =>
           c.toUpperCase()
         );
@@ -105,8 +110,6 @@ export class FontResolver implements IStyledPlugin, FontPlugin {
       }
 
       style.fontFamily = fontFamilyValue;
-
-      this.#fontFamily = fontFamilyValue;
 
       delete style.fontWeight;
       delete style.fontStyle;
@@ -139,6 +142,9 @@ export class FontResolver implements IStyledPlugin, FontPlugin {
     this.register(styledUtils);
     this.name = 'FontHandler';
     this.mapFonts = mapFonts || this.mapFonts;
+    this.#fontFamily = {};
+    this.#fontFamilyTokenConfig = {};
+    this.#fontWeightsTokenConfig = {};
   }
 
   inputMiddleWare(
@@ -161,7 +167,7 @@ export class FontResolver implements IStyledPlugin, FontPlugin {
     return [modifiedStyledObject, shouldUpdate, _, Component, ignoreKeys];
   }
 
-  #fontFamily: any = {};
+  #fontFamily: any;
 
   #fontFamilyTokenConfig: any = {};
 
@@ -191,7 +197,7 @@ export class FontResolver implements IStyledPlugin, FontPlugin {
           ignoreKeys.add(styledObjectKey);
 
           this.#fontFamily = setObjectKeyValue(
-            { ...this.#fontFamily },
+            this.#fontFamily,
             [...keyPath, styledObjectKey],
             styledObject[styledObjectKey]
           );
@@ -200,7 +206,7 @@ export class FontResolver implements IStyledPlugin, FontPlugin {
         if (styledObjectKey === 'fontWeight') {
           ignoreKeys.add(styledObjectKey);
           this.#fontFamily = setObjectKeyValue(
-            { ...this.#fontFamily },
+            this.#fontFamily,
             [...keyPath, styledObjectKey],
             styledObject[styledObjectKey]
           );
@@ -209,7 +215,7 @@ export class FontResolver implements IStyledPlugin, FontPlugin {
         if (styledObjectKey === 'fontStyle') {
           ignoreKeys.add(styledObjectKey);
           this.#fontFamily = setObjectKeyValue(
-            { ...this.#fontFamily },
+            this.#fontFamily,
             [...keyPath, styledObjectKey],
             styledObject[styledObjectKey]
           );
@@ -258,9 +264,13 @@ export class FontResolver implements IStyledPlugin, FontPlugin {
         variantProps,
         styledConfig
       );
-      let componentStyledObject = deepMerge(styledConfig, variantStyledObject);
+      const styledConfigWithoutVariant = deepClone(styledConfig);
+      delete styledConfigWithoutVariant.variants;
 
-      // delete componentStyledObject.variants;
+      let componentStyledObject = deepMerge(
+        styledConfigWithoutVariant,
+        variantStyledObject
+      );
 
       const { sx, fontWeight, fontFamily, fontStyle, ...rest } = restProps;
 
@@ -295,15 +305,11 @@ export class FontResolver implements IStyledPlugin, FontPlugin {
           style = StyleSheet.flatten(style);
 
           Object.keys(resolvedSxProps).forEach((ele) => {
-            if (!style[ele]) {
-              style[ele] = resolvedSxProps[ele];
-            }
+            style[ele] = resolvedSxProps[ele];
           });
         } else {
           Object.keys(resolvedSxProps).forEach((ele) => {
-            if (!style[ele]) {
-              style[ele] = resolvedSxProps[ele];
-            }
+            style[ele] = resolvedSxProps[ele];
           });
         }
       }

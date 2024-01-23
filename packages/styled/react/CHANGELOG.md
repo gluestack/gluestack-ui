@@ -1,11 +1,24 @@
 # @gluestack-style/react
 
+## 1.0.41
+
+### Patch Changes
+
+- Fixed extended theme ignoreKeys for plugin
+
+## 1.0.40
+
+### Patch Changes
+
+- Fixed typescript performance for composed components [PR](https://github.com/gluestack/gluestack-ui/pull/1603)
+- Fixed font resolver style declaration [PR](https://github.com/gluestack/gluestack-ui/pull/1643)
+
 ## 1.0.39
 
 ### Patch Changes
 
-- - Fixed useToken hook with theme support [PR](https://github.com/gluestack/gluestack-ui/pull/1634)
-  - Fixed resolved props tokenization for mobile [PR](https://github.com/gluestack/gluestack-ui/pull/1632)
+- Fixed useToken hook with theme support [PR](https://github.com/gluestack/gluestack-ui/pull/1634)
+- Fixed resolved props tokenization for mobile [PR](https://github.com/gluestack/gluestack-ui/pull/1632)
 
 ## 1.0.38
 

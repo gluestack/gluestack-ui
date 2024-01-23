@@ -1,16 +1,22 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useContext, useEffect, useMemo, useRef, useState } from 'react';
+import React, {
+  ForwardRefExoticComponent,
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 
 import type {
   OrderedSXResolved,
   StyleIds,
-  ComponentProps,
   IVerbosedTheme,
   ITheme,
   ExtendedConfigType,
   IComponentStyleConfig,
-  StyledConfig,
-  UtilityProps,
+  StyledComponentProps,
 } from './types';
 import {
   deepMerge,
@@ -1024,14 +1030,7 @@ export function verboseStyled<P, Variants, ComCon>(
       // styledIds: BUILD_TIME_STYLE_IDS = [],
       // sxHash: BUILD_TIME_sxHash = '',
       ...componentProps
-    }: Omit<
-      Omit<P, keyof Variants> &
-        Partial<ComponentProps<ITypeReactNativeStyles, Variants, P, ComCon>> &
-        Partial<UtilityProps<ITypeReactNativeStyles, Variants, P>> & {
-          as?: any;
-        },
-      'animationComponentGluestack'
-    >,
+    }: any,
     ref: React.ForwardedRef<P>
   ) => {
     const isClient = React.useRef(false);
@@ -1095,11 +1094,38 @@ export function verboseStyled<P, Variants, ComCon>(
 
       let componentExtendedTheme = {};
 
+      nonVerbosedTheme = deepMerge(nonVerbosedTheme, EXTENDED_THEME?.theme);
+
+      if (CONFIG.plugins) {
+        plugins.push(...CONFIG.plugins);
+      }
+      if (ExtendedConfig?.plugins) {
+        plugins.push(...ExtendedConfig?.plugins);
+      }
+
+      if (plugins) {
+        for (const pluginName in plugins) {
+          let themeIgnoreKeys = new Set();
+          // @ts-ignore
+          [nonVerbosedTheme, , , , themeIgnoreKeys] = plugins[
+            pluginName
+          ]?.inputMiddleWare<P>(
+            nonVerbosedTheme,
+            true,
+            true,
+            componentProps?.as ?? Component,
+            componentStyleConfig,
+            ExtendedConfig
+          );
+          themeIgnoreKeys?.forEach((ele) => {
+            ignoreKeys.add(ele);
+          });
+        }
+      }
+
       // Injecting style
       if (EXTENDED_THEME) {
         // RUN Middlewares
-
-        nonVerbosedTheme = deepMerge(nonVerbosedTheme, EXTENDED_THEME.theme);
 
         const resolvedComponentExtendedTheme = resolveComponentTheme(
           CONFIG,
@@ -1131,39 +1157,15 @@ export function verboseStyled<P, Variants, ComCon>(
           const extendedStylesToBeInjected = GluestackStyleSheet.resolve(
             resolvedComponentExtendedTheme?.styledIds,
             CONFIG,
-            componentExtendedConfig
+            componentExtendedConfig,
+            true,
+            'extended',
+            ignoreKeys
           );
           GluestackStyleSheet.inject(
             extendedStylesToBeInjected,
             styledContext.inlineStyleMap
           );
-        }
-      }
-
-      if (CONFIG.plugins) {
-        plugins.push(...CONFIG.plugins);
-      }
-      if (ExtendedConfig?.plugins) {
-        plugins.push(...ExtendedConfig?.plugins);
-      }
-
-      if (plugins) {
-        for (const pluginName in plugins) {
-          let themeIgnoreKeys = new Set();
-          // @ts-ignore
-          [nonVerbosedTheme, , , , themeIgnoreKeys] = plugins[
-            pluginName
-          ]?.inputMiddleWare<P>(
-            nonVerbosedTheme,
-            true,
-            true,
-            componentProps?.as ?? Component,
-            componentStyleConfig,
-            ExtendedConfig
-          );
-          themeIgnoreKeys?.forEach((ele) => {
-            ignoreKeys.add(ele);
-          });
         }
       }
 
@@ -2144,12 +2146,14 @@ export function verboseStyled<P, Variants, ComCon>(
   //@ts-ignore
   StyledComp.isStyledComponent = true;
 
-  return StyledComp as typeof StyledComp & { styledConfig?: StyledConfig };
+  return StyledComp as ForwardRefExoticComponent<
+    StyledComponentProps<ITypeReactNativeStyles, Variants, P, ComCon>
+  >;
 }
 
 export function styled<P, Variants, ComCon>(
   Component: React.ComponentType<P>,
-  theme: ITheme<Variants, P>,
+  theme: ITheme<Variants, P> = {},
   componentStyleConfig?: IComponentStyleConfig<ComCon>,
   ExtendedConfig?: ExtendedConfigType,
   BUILD_TIME_PARAMS?: {

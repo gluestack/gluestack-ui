@@ -1,6 +1,6 @@
 {
   "name": "@gluestack-ui/themed",
-  "version": "1.0.41-alpha.3",
+  "version": "1.0.39",
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "module": "build/index",
@@ -50,7 +50,7 @@
     "@gluestack-ui/menu": "0.2.26",
     "@gluestack-ui/modal": "0.1.28",
     "@gluestack-ui/overlay": "0.1.12",
-    "@gluestack-ui/popover": "0.1.28",
+    "@gluestack-ui/popover": "0.1.29",
     "@gluestack-ui/pressable": "0.1.13",
     "@gluestack-ui/progress": "0.1.12",
     "@gluestack-ui/provider": "0.1.10",
@@ -69,7 +69,7 @@
     "@babel/preset-env": "^7.22.9",
     "@babel/preset-react": "^7.22.5",
     "@babel/preset-typescript": "^7.22.5",
-    "@gluestack-style/react": "^1.0.32",
+    "@gluestack-style/react": "^1.0.40",
     "@types/react-native": "^0.72.3",
     "file-loader": "^6.2.0",
     "react": "^18.2.0",
@@ -82,7 +82,7 @@
     "webpack-cli": "^5.1.4"
   },
   "peerDependencies": {
-    "@gluestack-style/react": ">=1.0",
+    "@gluestack-style/react": ">=1.0.40",
     "@types/react-native": ">=0.72",
     "react": ">=16",
     "react-dom": ">=16",
