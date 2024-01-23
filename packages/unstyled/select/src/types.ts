@@ -1,3 +1,4 @@
+// @deprecated
 export interface ISelectProps {
   isDisabled?: boolean;
   isInvalid?: boolean;
@@ -7,8 +8,9 @@ export interface ISelectProps {
   isFocusVisible?: boolean;
   closeOnOverlayClick?: boolean;
   selectedValue?: string;
-  selectedLabel?: string;
+  // selectedLabel?: string;
   defaultValue?: string;
+  initialLabel?: string;
   onValueChange?: (arg: string) => void;
   onClose?: () => void;
   onOpen?: () => void;
