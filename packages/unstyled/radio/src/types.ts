@@ -6,6 +6,8 @@ interface InterfaceRadio extends ViewProps {
   isDisabled?: boolean;
   isInvalid?: boolean;
   isHovered?: boolean;
+  isFocusVisible?: boolean;
+  isIndeterminate?: boolean;
 }
 
 export interface IRadioGroupProps {

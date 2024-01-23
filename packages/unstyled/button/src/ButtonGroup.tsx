@@ -5,7 +5,7 @@ export const ButtonGroup = (StyledButtonGroup: any) =>
   forwardRef(
     (
       {
-        direction = 'row',
+        flexDirection = 'row',
         isAttached,
         isDisabled,
         children,
@@ -15,6 +15,11 @@ export const ButtonGroup = (StyledButtonGroup: any) =>
       }: any,
       ref?: any
     ) => {
+      const direction = flexDirection.includes('reverse')
+        ? flexDirection === 'column-reverse'
+          ? 'column'
+          : 'row'
+        : flexDirection;
       let computedChildren;
       let childrenArray = React.Children.toArray(flattenChildren(children));
       childrenArray =
@@ -78,7 +83,7 @@ export const ButtonGroup = (StyledButtonGroup: any) =>
       if (computedChildren)
         return (
           <StyledButtonGroup
-            flexDirection={direction}
+            flexDirection={flexDirection}
             {...props}
             ref={ref}
             {...gapProp}
