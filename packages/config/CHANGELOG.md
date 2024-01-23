@@ -1,5 +1,22 @@
 # @gluestack-ui/config
 
+## 2.0.0
+
+### Patch Changes
+
+- `InputField.ts` removed `lineHeight` from all the `size`.
+- `Item.web.ts` removed file.
+- `Root.tsx` migrated to new animation resolver.
+  `jsx
+import { styled } from '@gluestack-style/react';
+import { AnimatedView } from '@gluestack-style/animation-resolver';
+export const Root = styled(AnimatedView, {}, {
+  componentName: 'Menu',
+    } as const);
+`
+- Updated dependencies
+  - @gluestack-ui/themed@1.1.0
+
 ## 1.0.14
 
 ### Patch Changes
