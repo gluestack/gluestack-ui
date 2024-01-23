@@ -16,6 +16,7 @@ export interface IInterfaceSwitchProps {
    * If true, set the switch to the invalid state.
    */
   isInvalid?: boolean;
+  isHovered?: boolean;
 }
 
 export type ISwitchComponentType<SwitchProps> = React.ForwardRefExoticComponent<
