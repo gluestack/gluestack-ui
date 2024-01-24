@@ -327,7 +327,7 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
         <Table.TR>
           <Table.TD>
             <Table.TText>
-              <InlineCode>selectedLabel</InlineCode>
+              <InlineCode>initialLabel</InlineCode>
             </Table.TText>
           </Table.TD>
           <Table.TD>
@@ -408,6 +408,8 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
     </Table>
   </TableContainer>
 </AppProvider>
+
+> Note: Please note that if you want to use `initialLabel` prop, then you also need to pass `defaultValue` or `selectedValue` prop, to select the option value for a select component.
 
 #### SelectTrigger
 

@@ -1,5 +1,11 @@
 # @gluestack-style/react
 
+## 1.0.42
+
+### Patch Changes
+
+- fix: TypeErrors in plugins
+
 ## 1.0.41
 
 ### Patch Changes

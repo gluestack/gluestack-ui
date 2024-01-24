@@ -1,5 +1,11 @@
 # @gluestack-ui/switch
 
+## 0.1.18
+
+### Patch Changes
+
+- `Switch` added typing of `isFocusVisible` and `isIndeterminate`.
+
 ## 0.1.12
 
 ### Patch Changes

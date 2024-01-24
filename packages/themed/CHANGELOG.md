@@ -1,5 +1,33 @@
 # @gluestack-ui/themed
 
+## 1.1.0
+
+### Minor Changes
+
+- `Select` deprecated `selectedLabel`. use `initialLabel` instead.
+- `Checkbox` added typing of `isFocusVisible`.
+- `Radio` added typing of `isIndeterminate`.
+- `Switch` added typing of `isFocusVisible` and `isIndeterminate`.
+- `Toast` issue [#1543](https://github.com/gluestack/gluestack-ui/issues/1543).
+- removed `direction` prop from `ButtonGroup` use `flexDirection` instead.
+- `Menu` fixed `closeOnSelect` onPress issue.
+
+- Updated dependencies
+  - @gluestack-ui/button@1.0.0
+  - @gluestack-ui/checkbox@0.1.23
+  - @gluestack-ui/select@0.1.22
+  - @gluestack-ui/switch@0.1.18
+  - @gluestack-ui/radio@0.1.24
+  - @gluestack-ui/toast@1.0.4
+  - @gluestack-ui/menu@0.2.27
+
+## 1.0.40
+
+### Patch Changes
+
+- - SafeAreaView
+  - InputAccessoryView
+
 ## 1.0.39
 
 ### Patch Changes
