@@ -65,7 +65,6 @@ export const StyledProvider: React.FC<{
   });
 
   const { themes } = useTheme();
-  const styledContext = useStyled();
   const id = React.useId();
 
   if (rootId === '') {
@@ -183,6 +182,7 @@ export const StyledProvider: React.FC<{
     if (isRootProvider) {
       setCurrentColorMode(currentColorMode);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentColorMode]);
 
   useSafeLayoutEffect(() => {
