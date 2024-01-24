@@ -5,7 +5,7 @@ import { ActivityIndicator, Pressable, Text, View } from 'react-native';
 import { useStyleContext } from '@components/utils/withContext';
 
 const UIButton = createButton({
-  Root: Pressable,
+  Root: withStyleContext(Pressable),
   Text,
   Group: View,
   Spinner: ActivityIndicator,
@@ -13,54 +13,144 @@ const UIButton = createButton({
 });
 
 const buttonStyle = tva({
-  base: 'group/button items-center justify-center rounded-md web:focus-visible:outline-none web:focus-visible:ring-1 web:focus-visible:ring-slate-950 web:disabled:pointer-events-none web:disabled:opacity-50 web:dark:focus-visible:ring-slate-300',
+  base: 'group/button rounded-lg bg-primary-500 flex-row items-center justify-center ',
   variants: {
-    variant: {
-      default:
-        'bg-slate-900 web:shadow hover:bg-slate-900/90 dark:bg-slate-50 dark:hover:bg-slate-50/90',
-      destructive:
-        'group/destructive bg-red-500 web:shadow-sm hover:bg-red-500/90 dark:bg-red-900  dark:hover:bg-red-900/90',
-      outline:
-        'border-2 border-slate-500 bg-transparent dark:bg-transparent web:shadow-sm       hover:bg-slate-100 dark:border-slate-500 dark:hover:bg-transparent dark:hover:border-slate-600 dark:active:border-slate-700',
+    action: {
+      primary:
+        'bg-primary-500 hover:bg-primary-600 active:bg-primary-700  border-primary-300 hover:border-primary-400 active:border-primary-500',
       secondary:
-        'bg-slate-100 web:shadow-sm hover:bg-slate-100/80 dark:bg-slate-800 dark:text-slate-50 dark:hover:bg-slate-800/80',
+        'bg-secondary-500 border-secondary-300 hover:bg-secondary-600 hover:border-secondary-400 active:bg-secondary-700 active:border-secondary-500',
+      positive:
+        'bg-success-500 border-success-300 hover:bg-success-600 hover:border-success-400 active:bg-success-700 active:border-success-500',
+      negative:
+        'bg-error-500 border-error-300 hover:bg-error-600 hover:border-error-400 active:bg-error-700 active:border-error-500',
+      default: 'bg-transparent hover:bg-background-50 active:bg-transparent',
     },
+    variant: {
+      link: 'px-0',
+      outline:
+        'bg-transparent border-1 hover:bg-background-50 active:bg-transparent',
+    },
+
     size: {
-      default: 'h-9 px-4 py-2',
-      sm: 'h-8 rounded-md px-3 text-xs',
-      lg: 'h-10 rounded-md px-8',
-      icon: 'h-9 w-9',
+      sm: 'px-4 h-9',
+      md: 'px-5 h-10',
+      lg: 'px-6 h-11',
     },
+    compoundVariants: [
+      {
+        action: 'primary',
+        variant: 'link',
+        class: 'px-0 bg-transparent hover:bg-transparent active:bg-transparent',
+      },
+      {
+        action: 'secondary',
+        variant: 'link',
+        class: 'px-0 bg-transparent hover:bg-transparent active:bg-transparent',
+      },
+      {
+        action: 'positive',
+        variant: 'link',
+        class: 'px-0 bg-transparent hover:bg-transparent active:bg-transparent',
+      },
+      {
+        action: 'negative',
+        variant: 'link',
+        class: 'px-0 bg-transparent hover:bg-transparent active:bg-transparent',
+      },
+      {
+        action: 'primary',
+        variant: 'outline',
+        class: 'bg-transparent hover:bg-background-50 active:bg-transparent',
+      },
+      {
+        action: 'secondary',
+        variant: 'outline',
+        class: 'bg-transparent hover:bg-background-50 active:bg-transparent',
+      },
+      {
+        action: 'positive',
+        variant: 'outline',
+        class: 'bg-transparent hover:bg-background-50 active:bg-transparent',
+      },
+      {
+        action: 'negative',
+        variant: 'outline',
+        class: 'bg-transparent hover:bg-background-50 active:bg-transparent',
+      },
+    ],
   },
 });
 
 const buttonTextStyle = tva({
-  base: 'text-sm font-medium web:transition-colors',
+  base: 'text-typography-0 font-semibold dark:text-typography-0 web:select-none',
   parentVariants: {
+    action: {
+      primary:
+        'text-primary-600 group-hover/button:text-primary-600 group-active/button:text-primary-700 ',
+      secondary:
+        'text-secondary-600 group-hover/button:text-secondary-600 group-active/button:text-secondary-700',
+      positive:
+        'text-success-600 group-hover/button:text-success-600 group-active/button:text-success-700',
+      negative:
+        'text-error-600 group-hover/button:text-error-600 group-active/button:text-error-700',
+    },
     variant: {
-      default: 'text-white dark:text-slate-900',
-      destructive: 'text-slate-50 dark:text-slate-50',
-      outline: 'text-slate-900 dark:text-white',
+      link: 'group-hover/button:underline group-active/button:underline',
+      outline: '',
+      solid:
+        'text-typography-0 group-hover/button:text-typography-0 group-active/button:text-typography-0',
     },
     size: {
-      default: '',
-      sm: 'text-xs',
+      sm: 'text-sm',
+      md: 'text-base',
+      lg: 'text-lg',
     },
   },
+  parentCompoundVariants: [
+    {
+      variant: 'solid',
+      action: 'primary',
+      class:
+        'text-typography-0 group-hover/button:text-typography-0 group-active/button:text-typography-0',
+    },
+    {
+      variant: 'solid',
+      action: 'secondary',
+      class:
+        'text-typography-0 group-hover/button:text-typography-0 group-active/button:text-typography-0',
+    },
+    {
+      variant: 'solid',
+      action: 'positive',
+      class:
+        'text-typography-0 group-hover/button:text-typography-0 group-active/button:text-typography-0',
+    },
+    {
+      variant: 'solid',
+      action: 'negative',
+      class:
+        'text-typography-0 group-hover/button:text-typography-0 group-active/button:text-typography-0',
+    },
+  ],
 });
-
-const UIButtonHOC = withStyleContext(UIButton);
 
 const Button = React.forwardRef(
   (
-    { className, variant = 'default', size = 'default', ...props }: any,
+    {
+      className,
+      variant = 'solid',
+      size = 'md',
+      action = 'primary',
+      ...props
+    }: any,
     ref
   ) => {
     return (
-      <UIButtonHOC
+      <UIButton
         ref={ref}
         {...props}
-        className={buttonStyle({ variant, size, class: className })}
+        className={buttonStyle({ variant, size, action, class: className })}
         context={{ variant, size }}
       />
     );
@@ -68,17 +158,26 @@ const Button = React.forwardRef(
 );
 
 const ButtonText = React.forwardRef(
-  ({ className, variant, size, ...props }: any, ref) => {
-    const { variant: parentVariant, size: parentSize } = useStyleContext();
+  ({ className, variant, size, action, ...props }: any, ref) => {
+    const {
+      variant: parentVariant,
+      size: parentSize,
+      action: parentAction,
+    } = useStyleContext();
 
     return (
       <UIButton.Text
         ref={ref}
         {...props}
         className={buttonTextStyle({
-          parentVariants: { variant: parentVariant, size: parentSize },
+          parentVariants: {
+            variant: parentVariant,
+            size: parentSize,
+            action: parentAction,
+          },
           variant,
           size,
+          action,
           class: className,
         })}
       />

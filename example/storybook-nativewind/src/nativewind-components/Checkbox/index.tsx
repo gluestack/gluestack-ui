@@ -1,27 +1,25 @@
 import React from 'react';
 import { createCheckbox } from '@gluestack-ui/checkbox';
-import { View, Pressable } from 'react-native';
+import { View, Pressable, Text } from 'react-native';
 import { cn, withStyleContext } from '@components/utils';
 import { Platform } from 'react-native';
 import { tva } from '@components/utils';
 import { Check } from 'lucide-react-native';
 import { useStyleContext } from '@components/utils/withContext';
-const Root = Platform.OS === 'web' ? View : Pressable;
+import { withStates } from '@components/utils/withStates';
 
 const UICheckbox = createCheckbox({
-  // @ts-ignore
-  Root,
-  Group: View,
-  Icon: Check,
-  Label: View,
-  Indicator: View,
+  Root: Platform.OS !== 'web' ? View : withStyleContext(withStates(Pressable)),
+  Group: Platform.OS !== 'web' ? View : withStates(View),
+  Icon: Platform.OS !== 'web' ? Check : withStates(Check),
+  Label: Platform.OS !== 'web' ? Text : withStates(Text),
+  Indicator: Platform.OS !== 'web' ? View : withStates(View),
 });
 
-const UICheckboxHOC = withStyleContext(UICheckbox);
 const CheckboxGroup = UICheckbox.Group;
 
 const checkboxIndicator = tva({
-  base: 'shrink-0 items-center justify-center rounded-sm border border-primary dark:border-white focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 ',
+  base: 'shrink-0 items-center justify-center rounded-sm border border-primary dark:border-white data-[focus-visible=true]:outline-none data-[focus-visible=true]:ring-1 data-[focus-visible=true]:ring-ring data-[focus-visible=true]:ring-white  disabled:cursor-not-allowed disabled:opacity-50 overflow-hidden',
   parentVariants: {
     size: {
       lg: 'w-6 h-6',
@@ -45,8 +43,11 @@ const checkboxLabel = tva({
 const Checkbox = React.forwardRef(
   ({ className, size = 'sm', ...props }: any, ref) => {
     return (
-      <UICheckboxHOC
-        className={cn('flex-row items-center justify-start gap-2', className)}
+      <UICheckbox
+        className={cn(
+          'flex-row items-center justify-start gap-2 data-[checked=true]:bg-red-500 ',
+          className
+        )}
         {...props}
         context={{
           size,
@@ -95,7 +96,7 @@ const CheckboxIcon = React.forwardRef(({ className, ...props }: any, ref) => {
   return (
     <UICheckbox.Icon
       className={cn(
-        ' w-full h-full overflow-hidden bg-primary dark:bg-white stroke-white dark:stroke-primary p-[2px] ',
+        'w-full h-full bg-primary dark:bg-white stroke-white dark:stroke-primary p-0.5 ',
         className
       )}
       {...props}

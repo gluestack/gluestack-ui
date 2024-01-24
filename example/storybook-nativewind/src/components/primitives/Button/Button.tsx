@@ -5,7 +5,7 @@ export const ButtonBasic = () => {
   return (
     <>
       <Button variant="outline">
-        <ButtonText>Hello world</ButtonText>
+        <ButtonText>Hello World</ButtonText>
       </Button>
     </>
   );

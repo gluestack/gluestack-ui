@@ -15,6 +15,10 @@ module.exports = function (api) {
               __dirname,
               './src/nativewind-components'
             ),
+            '@gluestack-ui/checkbox': path.resolve(
+              __dirname,
+              '../../packages/unstyled/checkbox/src'
+            ),
           },
         },
       ],
