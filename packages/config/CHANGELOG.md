@@ -8,9 +8,9 @@
 - Updated dependencies
   - @gluestack-style/react@1.0.43
 
-## 2.0.0
+## 1.1.0
 
-### Patch Changes
+### Minor Changes
 
 - `InputField.ts` removed `lineHeight` from all the `size`.
 - `Item.web.ts` removed file.
