@@ -1,7 +1,7 @@
 import React from 'react';
 import { createModal } from '@gluestack-ui/modal';
 import { Pressable, View } from 'react-native';
-import { cn } from '@components/utils';
+import { cn } from '@gluestack-ui/nativewind-utils';
 
 const UIModal = createModal({
   Root: View,
@@ -11,7 +11,7 @@ const UIModal = createModal({
   CloseButton: Pressable,
   Footer: View,
   Header: View,
-  AnimatePresence: View,
+  AnimatePresence: View, // TODO: Add support for this
 });
 
 const Modal = React.forwardRef(({ className, ...props }: any, ref) => (
@@ -74,6 +74,7 @@ const ModalCloseButton = React.forwardRef(
     />
   )
 );
+
 // Assign display names
 Modal.displayName = 'Modal';
 ModalBackdrop.displayName = 'ModalBackdrop';

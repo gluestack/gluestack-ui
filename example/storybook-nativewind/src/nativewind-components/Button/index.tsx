@@ -1,6 +1,10 @@
 import * as React from 'react';
 import { createButton } from '@gluestack-ui/button';
-import { tva, withStyleContext, useStyleContext } from '@components/utils';
+import {
+  tva,
+  withStyleContext,
+  useStyleContext,
+} from '@gluestack-ui/nativewind-utils';
 import { ActivityIndicator, Pressable, Text, View } from 'react-native';
 
 const UIButton = createButton({

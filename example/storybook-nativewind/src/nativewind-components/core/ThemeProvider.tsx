@@ -27,5 +27,6 @@ export function ThemeProvider({
   mode: 'light' | 'dark';
   children: any;
 }) {
+  // @ts-ignore
   return <View style={[themes[mode], providerStyle]}>{props.children}</View>;
 }

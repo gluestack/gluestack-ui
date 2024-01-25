@@ -6,17 +6,19 @@ import {
   withStates,
   withStyleContextAndStates,
   useStyleContext,
-} from '@components/utils';
+  tva,
+} from '@gluestack-ui/nativewind-utils';
 import { Platform } from 'react-native';
-import { tva } from '@components/utils';
+
 import { Check } from 'lucide-react-native';
 
 const UICheckbox = createCheckbox({
-  Root: Platform.OS !== 'web' ? View : withStyleContextAndStates(Pressable),
-  Group: Platform.OS !== 'web' ? View : withStates(View),
-  Icon: Platform.OS !== 'web' ? Check : withStates(Check),
-  Label: Platform.OS !== 'web' ? Text : withStates(Text),
-  Indicator: Platform.OS !== 'web' ? View : withStates(View),
+  // @ts-ignore
+  Root: Platform.OS === 'web' ? View : withStyleContextAndStates(Pressable),
+  Group: Platform.OS === 'web' ? View : withStates(View),
+  Icon: Platform.OS === 'web' ? Check : withStates(Check),
+  Label: Platform.OS === 'web' ? Text : withStates(Text),
+  Indicator: Platform.OS === 'web' ? View : withStates(View),
 });
 
 const checkboxIndicator = tva({
