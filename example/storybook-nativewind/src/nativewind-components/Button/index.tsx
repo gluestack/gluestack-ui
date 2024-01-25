@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { createButton } from '@gluestack-ui/button';
 import {
   tva,
@@ -32,7 +32,7 @@ const buttonStyle = tva({
     variant: {
       link: 'px-0',
       outline:
-        'bg-transparent border-1 hover:bg-background-50 active:bg-transparent',
+        'bg-transparent border hover:bg-background-50 active:bg-transparent',
     },
 
     size: {
@@ -40,49 +40,49 @@ const buttonStyle = tva({
       md: 'px-5 h-10',
       lg: 'px-6 h-11',
     },
-    compoundVariants: [
-      {
-        action: 'primary',
-        variant: 'link',
-        class: 'px-0 bg-transparent hover:bg-transparent active:bg-transparent',
-      },
-      {
-        action: 'secondary',
-        variant: 'link',
-        class: 'px-0 bg-transparent hover:bg-transparent active:bg-transparent',
-      },
-      {
-        action: 'positive',
-        variant: 'link',
-        class: 'px-0 bg-transparent hover:bg-transparent active:bg-transparent',
-      },
-      {
-        action: 'negative',
-        variant: 'link',
-        class: 'px-0 bg-transparent hover:bg-transparent active:bg-transparent',
-      },
-      {
-        action: 'primary',
-        variant: 'outline',
-        class: 'bg-transparent hover:bg-background-50 active:bg-transparent',
-      },
-      {
-        action: 'secondary',
-        variant: 'outline',
-        class: 'bg-transparent hover:bg-background-50 active:bg-transparent',
-      },
-      {
-        action: 'positive',
-        variant: 'outline',
-        class: 'bg-transparent hover:bg-background-50 active:bg-transparent',
-      },
-      {
-        action: 'negative',
-        variant: 'outline',
-        class: 'bg-transparent hover:bg-background-50 active:bg-transparent',
-      },
-    ],
   },
+  compoundVariants: [
+    {
+      action: 'primary',
+      variant: 'link',
+      class: 'px-0 bg-transparent hover:bg-transparent active:bg-transparent',
+    },
+    {
+      action: 'secondary',
+      variant: 'link',
+      class: 'px-0 bg-transparent hover:bg-transparent active:bg-transparent',
+    },
+    {
+      action: 'positive',
+      variant: 'link',
+      class: 'px-0 bg-transparent hover:bg-transparent active:bg-transparent',
+    },
+    {
+      action: 'negative',
+      variant: 'link',
+      class: 'px-0 bg-transparent hover:bg-transparent active:bg-transparent',
+    },
+    {
+      action: 'primary',
+      variant: 'outline',
+      class: 'bg-transparent hover:bg-background-50 active:bg-transparent',
+    },
+    {
+      action: 'secondary',
+      variant: 'outline',
+      class: 'bg-transparent hover:bg-background-50 active:bg-transparent',
+    },
+    {
+      action: 'positive',
+      variant: 'outline',
+      class: 'bg-transparent hover:bg-background-50 active:bg-transparent',
+    },
+    {
+      action: 'negative',
+      variant: 'outline',
+      class: 'bg-transparent hover:bg-background-50 active:bg-transparent',
+    },
+  ],
 });
 
 const buttonTextStyle = tva({
@@ -154,7 +154,7 @@ const Button = React.forwardRef(
         ref={ref}
         {...props}
         className={buttonStyle({ variant, size, action, class: className })}
-        context={{ variant, size }}
+        context={{ variant, size, action }}
       />
     );
   }

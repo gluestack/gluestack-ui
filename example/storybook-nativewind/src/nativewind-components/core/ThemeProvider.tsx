@@ -28,5 +28,9 @@ export function ThemeProvider({
   children: any;
 }) {
   // @ts-ignore
-  return <View style={[themes[mode], providerStyle]}>{props.children}</View>;
+  return (
+    <View style={[themes[mode], providerStyle, props.style]}>
+      {props.children}
+    </View>
+  );
 }
