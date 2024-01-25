@@ -1,5 +1,5 @@
 import { tv } from 'tailwind-variants';
-import { deepMergeObjects } from '../deepMerge';
+import { deepMergeObjects } from './deepMerge';
 
 export function tva(options: any) {
   const parentVariants = options?.parentVariants;

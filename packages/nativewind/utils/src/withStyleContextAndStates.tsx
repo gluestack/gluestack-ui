@@ -1,9 +1,6 @@
-import React, { useContext } from 'react';
-const ParentContext = React.createContext({});
-import { extractDataClassName } from '../utils';
-export const useStyleContext = () => {
-  return useContext(ParentContext) as any;
-};
+import React from 'react';
+import { extractDataClassName } from './utils';
+import { ParentContext } from './context';
 
 export const withStyleContextAndStates = <T,>(
   Component: React.ComponentType<T>

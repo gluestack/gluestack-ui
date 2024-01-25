@@ -1,5 +1,5 @@
 import React from 'react';
-import { extractDataClassName } from '../utils';
+import { extractDataClassName } from './utils';
 
 export const withStates =
   <T,>(Component: T): T =>

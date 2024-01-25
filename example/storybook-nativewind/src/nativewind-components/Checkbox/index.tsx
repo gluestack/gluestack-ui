@@ -1,22 +1,23 @@
 import React from 'react';
 import { createCheckbox } from '@gluestack-ui/checkbox';
 import { View, Pressable, Text } from 'react-native';
-import { cn, withStyleContext } from '@components/utils';
+import {
+  cn,
+  withStates,
+  withStyleContextAndStates,
+  useStyleContext,
+} from '@components/utils';
 import { Platform } from 'react-native';
 import { tva } from '@components/utils';
 import { Check } from 'lucide-react-native';
-import { useStyleContext } from '@components/utils/withContext';
-import { withStates } from '@components/utils/withStates';
 
 const UICheckbox = createCheckbox({
-  Root: Platform.OS !== 'web' ? View : withStyleContext(withStates(Pressable)),
+  Root: Platform.OS !== 'web' ? View : withStyleContextAndStates(Pressable),
   Group: Platform.OS !== 'web' ? View : withStates(View),
   Icon: Platform.OS !== 'web' ? Check : withStates(Check),
   Label: Platform.OS !== 'web' ? Text : withStates(Text),
   Indicator: Platform.OS !== 'web' ? View : withStates(View),
 });
-
-const CheckboxGroup = UICheckbox.Group;
 
 const checkboxIndicator = tva({
   base: 'shrink-0 items-center justify-center rounded-sm border border-primary dark:border-white data-[focus-visible=true]:outline-none data-[focus-visible=true]:ring-1 data-[focus-visible=true]:ring-ring data-[focus-visible=true]:ring-white  disabled:cursor-not-allowed disabled:opacity-50 overflow-hidden',
@@ -39,6 +40,8 @@ const checkboxLabel = tva({
     },
   },
 });
+
+const CheckboxGroup = UICheckbox.Group;
 
 const Checkbox = React.forwardRef(
   ({ className, size = 'sm', ...props }: any, ref) => {
@@ -76,6 +79,7 @@ const CheckboxIndicator = React.forwardRef(
     );
   }
 );
+
 const CheckboxLabel = React.forwardRef(({ className, ...props }: any, ref) => {
   const { size: parentSize } = useStyleContext();
   return (

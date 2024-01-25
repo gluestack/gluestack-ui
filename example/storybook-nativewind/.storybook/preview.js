@@ -67,9 +67,10 @@ export const decorators = [
       setColorScheme(getColorMode());
       setColorMode(getColorMode());
     }, [getColorMode()]);
+
     return (
       <ThemeProvider mode={colorMode}>
-        <OverlayProvider>
+        <OverlayProvider style={{ flex: 1 }}>
           <ToastProvider>
             <View
               style={{

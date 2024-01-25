@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { createButton } from '@gluestack-ui/button';
-import { tva, withStyleContext } from '@components/utils';
+import { tva, withStyleContext, useStyleContext } from '@components/utils';
 import { ActivityIndicator, Pressable, Text, View } from 'react-native';
-import { useStyleContext } from '@components/utils/withContext';
 
 const UIButton = createButton({
   Root: withStyleContext(Pressable),
