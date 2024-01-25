@@ -489,17 +489,17 @@ function setStateAndColorModeCssIdsAndProps(
         //@ts-ignore
         componentDescendantStyleIds[key],
         componentDescendantFlattenStyleObject[key]?.[
-        'componentBaseStyleFlatternStyleIdObject'
+          'componentBaseStyleFlatternStyleIdObject'
         ],
         states,
         variantProps,
         colorMode,
         theme,
         componentDescendantFlattenStyleObject[key]?.[
-        'componentVariantFlatternStyleIdObject'
+          'componentVariantFlatternStyleIdObject'
         ],
         componentDescendantFlattenStyleObject[key]?.[
-        'componentCompoundVariantFlatternStyleIdObject'
+          'componentCompoundVariantFlatternStyleIdObject'
         ],
         currentStateArray
       );
@@ -526,17 +526,17 @@ function setStateAndColorModeCssIdsAndProps(
         //@ts-ignore
         sxDescendantStyleIds.current[key],
         sxDescendantFlattenStyleObject[key]?.[
-        'componentBaseStyleFlatternStyleIdObject'
+          'componentBaseStyleFlatternStyleIdObject'
         ],
         states,
         variantProps,
         colorMode,
         theme,
         sxDescendantFlattenStyleObject[key]?.[
-        'componentVariantFlatternStyleIdObject'
+          'componentVariantFlatternStyleIdObject'
         ],
         sxDescendantFlattenStyleObject[key]?.[
-        'componentCompoundVariantFlatternStyleIdObject'
+          'componentCompoundVariantFlatternStyleIdObject'
         ],
         currentStateArray
       );
@@ -1660,17 +1660,17 @@ export function verboseStyled<P, Variants, ComCon>(
             //@ts-ignore
             sxDescendantStyleIds.current,
             sxDescendantFlattenStyles.current[key]?.[
-            'componentBaseStyleFlatternStyleIdObject'
+              'componentBaseStyleFlatternStyleIdObject'
             ],
             states,
             variantProps,
             COLOR_MODE,
             theme,
             sxDescendantFlattenStyles.current[key]?.[
-            'componentVariantFlatternStyleIdObject'
+              'componentVariantFlatternStyleIdObject'
             ],
             sxDescendantFlattenStyles.current[key]?.[
-            'componentCompoundVariantFlatternStyleIdObject'
+              'componentCompoundVariantFlatternStyleIdObject'
             ],
             currentStateArray
           );
@@ -2074,10 +2074,10 @@ export function verboseStyled<P, Variants, ComCon>(
     const propsToBePassedInToPlugin =
       plugins?.length > 0
         ? {
-          ...variantProps,
-          states: states,
-          // sx: componentProps.sx,
-        }
+            ...variantProps,
+            states: states,
+            // sx: componentProps.sx,
+          }
         : {};
 
     if (AsComp) {
