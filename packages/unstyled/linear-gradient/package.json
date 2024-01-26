@@ -43,7 +43,7 @@
     "typescript": "^4.7.4"
   },
   "dependencies": {
-    "expo-linear-gradient": "12.3.0"
+    "expo-linear-gradient": "12.7.0"
   },
   "peerDependencies": {
     "react": ">=16",
