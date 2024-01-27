@@ -12,7 +12,7 @@ export const withStyleContextAndStates = <T,>(
       [className, states]
     );
     return (
-      <ParentContext.Provider value={context}>
+      <ParentContext.Provider value={{ context }}>
         <Component className={classNamesFinal} {...props} />
       </ParentContext.Provider>
     );
