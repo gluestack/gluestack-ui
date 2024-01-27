@@ -2,13 +2,13 @@ import React from 'react';
 import { createButton } from '@gluestack-ui/button';
 import {
   tva,
-  withStyleContext,
+  withStyleContextAndStates,
   useStyleContext,
 } from '@gluestack-ui/nativewind-utils';
 import { ActivityIndicator, Pressable, Text, View } from 'react-native';
 
 const UIButton = createButton({
-  Root: withStyleContext(Pressable),
+  Root: withStyleContextAndStates(Pressable),
   Text,
   Group: View,
   Spinner: ActivityIndicator,
@@ -16,17 +16,17 @@ const UIButton = createButton({
 });
 
 const buttonStyle = tva({
-  base: 'group/button rounded-lg bg-primary-500 flex-row items-center justify-center data-[focus-visible=true]:outline-none ',
+  base: 'group/button rounded-lg bg-primary-500 flex-row items-center justify-center data-[focus=true]:outline-none data-[focus-visible=true]:ring-2 data-[focus-visible=true]:ring-offset-2',
   variants: {
     action: {
       primary:
-        'bg-primary-500 hover:bg-primary-600 active:bg-primary-700  border-primary-300 hover:border-primary-400 active:border-primary-500',
+        'bg-primary-500 hover:bg-primary-600 active:bg-primary-700  border-primary-300 hover:border-primary-400 active:border-primary-500 data-[focus-visible=true]:ring-primary-500',
       secondary:
-        'bg-secondary-500 border-secondary-300 hover:bg-secondary-600 hover:border-secondary-400 active:bg-secondary-700 active:border-secondary-500',
+        'bg-secondary-500 border-secondary-300 hover:bg-secondary-600 hover:border-secondary-400 active:bg-secondary-700 active:border-secondary-500 data-[focus-visible=true]:ring-secondary-500',
       positive:
-        'bg-success-500 border-success-300 hover:bg-success-600 hover:border-success-400 active:bg-success-700 active:border-success-500',
+        'bg-success-500 border-success-300 hover:bg-success-600 hover:border-success-400 active:bg-success-700 active:border-success-500 data-[focus-visible=true]:ring-success-500',
       negative:
-        'bg-error-500 border-error-300 hover:bg-error-600 hover:border-error-400 active:bg-error-700 active:border-error-500',
+        'bg-error-500 border-error-300 hover:bg-error-600 hover:border-error-400 active:bg-error-700 active:border-error-500 data-[focus-visible=true]:ring-error-500',
       default: 'bg-transparent hover:bg-background-50 active:bg-transparent',
     },
     variant: {

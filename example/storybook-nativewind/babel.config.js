@@ -23,6 +23,10 @@ module.exports = function (api) {
               __dirname,
               '../../packages/unstyled/button/src'
             ),
+            '@gluestack-ui/nativewind-utils': path.resolve(
+              __dirname,
+              '../../packages/nativewind/utils/src'
+            ),
           },
         },
       ],
