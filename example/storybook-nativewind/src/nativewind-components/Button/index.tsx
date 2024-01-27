@@ -16,7 +16,7 @@ const UIButton = createButton({
 });
 
 const buttonStyle = tva({
-  base: 'group/button rounded-lg bg-primary-500 flex-row items-center justify-center ',
+  base: 'group/button rounded-lg bg-primary-500 flex-row items-center justify-center data-[focus-visible=true]:outline-none ',
   variants: {
     action: {
       primary:
