@@ -4,11 +4,21 @@ import {
   tva,
   withStyleContextAndStates,
   useStyleContext,
+  withStyleContext,
 } from '@gluestack-ui/nativewind-utils';
-import { ActivityIndicator, Pressable, Text, View } from 'react-native';
+import {
+  ActivityIndicator,
+  Pressable,
+  Text,
+  View,
+  Platform,
+} from 'react-native';
 
 const UIButton = createButton({
-  Root: withStyleContextAndStates(Pressable),
+  Root:
+    Platform.OS === 'web'
+      ? withStyleContext(Pressable)
+      : withStyleContextAndStates(Pressable),
   Text,
   Group: View,
   Spinner: ActivityIndicator,
@@ -86,11 +96,11 @@ const buttonStyle = tva({
 });
 
 const buttonTextStyle = tva({
-  base: 'text-typography-0 font-semibold dark:text-typography-0 web:select-none',
+  base: 'text-typography-0 font-semibold web:select-none',
   parentVariants: {
     action: {
       primary:
-        'text-primary-600 group-hover/button:text-primary-600 group-active/button:text-primary-700 ',
+        'text-primary-600 group-hover/button:text-primary-600 group-active/button:text-primary-700',
       secondary:
         'text-secondary-600 group-hover/button:text-secondary-600 group-active/button:text-secondary-700',
       positive:

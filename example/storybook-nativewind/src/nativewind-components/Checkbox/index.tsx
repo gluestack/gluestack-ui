@@ -37,7 +37,7 @@ const checkboxIndicator = tva({
 });
 
 const checkboxLabel = tva({
-  base: 'dark:text-white',
+  base: 'text-typography-600',
   parentVariants: {
     size: {
       lg: 'text-lg',
