@@ -1,6 +1,6 @@
 {
   "name": "@gluestack-ui/themed",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "module": "build/index",
@@ -30,7 +30,7 @@
   "license": "ISC",
   "dependencies": {
     "@expo/html-elements": "latest",
-    "@gluestack-style/animation-resolver": "1.0.3",
+    "@gluestack-style/animation-resolver": "1.0.4",
     "@gluestack-style/legend-motion-animation-driver": "1.0.3",
     "@gluestack-ui/accordion": "1.0.0",
     "@gluestack-ui/actionsheet": "0.2.36",
@@ -68,7 +68,7 @@
     "@babel/preset-env": "^7.22.9",
     "@babel/preset-react": "^7.22.5",
     "@babel/preset-typescript": "^7.22.5",
-    "@gluestack-style/react": "^1.0.40",
+    "@gluestack-style/react": "^1.0.44",
     "@types/react-native": "^0.72.3",
     "file-loader": "^6.2.0",
     "react": "^18.2.0",
@@ -81,7 +81,7 @@
     "webpack-cli": "^5.1.4"
   },
   "peerDependencies": {
-    "@gluestack-style/react": ">=1.0.40",
+    "@gluestack-style/react": ">=1.0",
     "@types/react-native": ">=0.72",
     "react": ">=16",
     "react-dom": ">=16",
