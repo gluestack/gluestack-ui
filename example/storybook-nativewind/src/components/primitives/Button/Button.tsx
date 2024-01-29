@@ -4,8 +4,8 @@ import { Button, ButtonText } from '@components/Button';
 export const ButtonBasic = () => {
   return (
     <>
-      <Button variant="outline">
-        <ButtonText>Hello world</ButtonText>
+      <Button>
+        <ButtonText>Hello World</ButtonText>
       </Button>
     </>
   );

@@ -33,17 +33,15 @@ const ModalBasic = () => {
         finalFocusRef={ref}
       >
         <ModalBackdrop />
-        <ModalContent className="max-w-[512px]">
+        <ModalContent>
           <ModalHeader>
-            <Text className="max-w-[80%] text-white font-semibold text-lg">
-              Are you absolutely sure?
-            </Text>
+            <Text>Are you absolutely sure?</Text>
             <ModalCloseButton>
-              <X size={20} color="white" />
+              <X size={20} />
             </ModalCloseButton>
           </ModalHeader>
           <ModalBody>
-            <Text className="text-sm text-white">
+            <Text>
               This action cannot be undone. This will permanently delete your
               account and remove your data from our servers.
             </Text>

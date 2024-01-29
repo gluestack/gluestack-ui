@@ -15,6 +15,18 @@ module.exports = function (api) {
               __dirname,
               './src/nativewind-components'
             ),
+            '@gluestack-ui/checkbox': path.resolve(
+              __dirname,
+              '../../packages/unstyled/checkbox/src'
+            ),
+            '@gluestack-ui/button': path.resolve(
+              __dirname,
+              '../../packages/unstyled/button/src'
+            ),
+            '@gluestack-ui/nativewind-utils': path.resolve(
+              __dirname,
+              '../../packages/nativewind/utils/src'
+            ),
           },
         },
       ],

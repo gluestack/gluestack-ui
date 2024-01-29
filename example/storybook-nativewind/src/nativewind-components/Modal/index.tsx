@@ -1,7 +1,7 @@
 import React from 'react';
 import { createModal } from '@gluestack-ui/modal';
 import { Pressable, View } from 'react-native';
-import { cn } from '@components/utils';
+import { cn } from '@gluestack-ui/nativewind-utils';
 
 const UIModal = createModal({
   Root: View,
@@ -11,7 +11,7 @@ const UIModal = createModal({
   CloseButton: Pressable,
   Footer: View,
   Header: View,
-  AnimatePresence: View,
+  AnimatePresence: View, // TODO: Add support for this
 });
 
 const Modal = React.forwardRef(({ className, ...props }: any, ref) => (
@@ -19,12 +19,16 @@ const Modal = React.forwardRef(({ className, ...props }: any, ref) => (
     className={cn('w-full h-full justify-center items-center', className)}
     {...props}
     ref={ref}
+    pointerEvents="box-none"
   />
 ));
 
 const ModalBackdrop = React.forwardRef(({ className, ...props }: any, ref) => (
   <UIModal.Backdrop
-    className={cn('fixed inset-0 z-50 bg-black opacity-50', className)}
+    className={cn(
+      'absolute left-0 right-0 bottom-0 top-0 bg-background-950 cursor-default opacity-50',
+      className
+    )}
     {...props}
     ref={ref}
   />
@@ -32,10 +36,7 @@ const ModalBackdrop = React.forwardRef(({ className, ...props }: any, ref) => (
 
 const ModalContent = React.forwardRef(({ className, ...props }: any, ref) => (
   <UIModal.Content
-    className={cn(
-      'gap-4 border border-gray-600/50 bg-black/10 p-6 shadow-lg sm:rounded-lg',
-      className
-    )}
+    className={cn('w-70% max-w-[420px]', className)}
     {...props}
     ref={ref}
   />
@@ -43,20 +44,22 @@ const ModalContent = React.forwardRef(({ className, ...props }: any, ref) => (
 
 const ModalHeader = React.forwardRef(({ className, ...props }: any, ref) => (
   <UIModal.Header
-    className={cn('flex-row justify-between items-center', className)}
+    className={cn(
+      'px-4 pt-4 pb-2 justify-between item-center flex-row',
+      className
+    )}
     {...props}
     ref={ref}
   />
 ));
 
-const ModalBody = UIModal.Body;
+const ModalBody = React.forwardRef(({ className, ...props }: any, ref) => (
+  <UIModal.Body className={cn('px-4 pb-2', className)} {...props} ref={ref} />
+));
 
 const ModalFooter = React.forwardRef(({ className, ...props }: any, ref) => (
   <UIModal.Footer
-    className={cn(
-      'flex-row w-full px-4 py-2 justify-end items-center',
-      className
-    )}
+    className={cn('p-4 flex-row flex-wrap justify-end items-center', className)}
     {...props}
     ref={ref}
   />
@@ -66,7 +69,7 @@ const ModalCloseButton = React.forwardRef(
   ({ className, ...props }: any, ref) => (
     <UIModal.CloseButton
       className={cn(
-        'p-2 rounded-lg hover:bg-gray-500/40 active:bg-slate-400/50 focus-visible:bg-transparent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none',
+        'p-2 rounded-lg hover:bg-background-700 active:bg-background-900 focus-visible:bg-background-700 ',
         className
       )}
       {...props}
@@ -74,6 +77,7 @@ const ModalCloseButton = React.forwardRef(
     />
   )
 );
+
 // Assign display names
 Modal.displayName = 'Modal';
 ModalBackdrop.displayName = 'ModalBackdrop';

@@ -2,6 +2,7 @@ import { addParameters } from '@storybook/client-api';
 import { DocsContainer } from '@storybook/addon-docs/blocks';
 import { OverlayProvider } from '@gluestack-ui/overlay';
 import { ToastProvider } from '@gluestack-ui/toast';
+import { ThemeProvider } from '../src/nativewind-components/core/ThemeProvider';
 import gstheme from './gstheme';
 import { themes } from '@storybook/theming';
 import '../global.css';
@@ -51,7 +52,7 @@ export const decorators = [
       // eslint-disable-next-line react-hooks/rules-of-hooks
       value = useDarkMode();
     }
-    const [isDark] = useState(false);
+    const [colorMode, setColorMode] = useState(false);
 
     function getColorMode() {
       //@ts-ignore
@@ -64,27 +65,25 @@ export const decorators = [
     const { setColorScheme } = useColorScheme();
     useEffect(() => {
       setColorScheme(getColorMode());
-      if (Platform.OS === 'web') {
-        const rootBodyDom = document.documentElement.querySelector('body');
-        if (rootBodyDom) {
-          const oldClass = rootBodyDom
-            .getAttribute('class')
-            .replace('dark', '')
-            .replace('light', '');
-          rootBodyDom.setAttribute('class', `${getColorMode()} ${oldClass}`);
-        }
-      }
+      setColorMode(getColorMode());
     }, [getColorMode()]);
+
     return (
-      <OverlayProvider>
-        <ToastProvider>
-          <View
-            style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
-          >
-            <Story />
-          </View>
-        </ToastProvider>
-      </OverlayProvider>
+      <ThemeProvider mode={colorMode}>
+        <OverlayProvider style={{ flex: 1 }}>
+          <ToastProvider>
+            <View
+              style={{
+                flex: 1,
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              <Story />
+            </View>
+          </ToastProvider>
+        </OverlayProvider>
+      </ThemeProvider>
     );
   },
 ];
