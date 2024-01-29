@@ -3,7 +3,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@components/*": ["./src/nativewind-components/*"]
+      "@components/*": ["./src/themed-components/*"]
     },
     "emitDeclarationOnly": true,
     "noEmit": false,

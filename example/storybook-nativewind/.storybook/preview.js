@@ -2,10 +2,16 @@ import { addParameters } from '@storybook/client-api';
 import { DocsContainer } from '@storybook/addon-docs/blocks';
 import { OverlayProvider } from '@gluestack-ui/overlay';
 import { ToastProvider } from '@gluestack-ui/toast';
-import { ThemeProvider } from '../src/nativewind-components/core/ThemeProvider';
+
+import { Provider } from '../src/components/nativewind/core/Provider';
+// import global.css for nativewind components
+// import '../global.css';
+
+import { Provider as GluestackUIProvider } from '../src/components/themed/core/Provider';
+import { config } from '../src/components/themed/core/config';
+
 import gstheme from './gstheme';
 import { themes } from '@storybook/theming';
-import '../global.css';
 import { View } from 'react-native';
 import { useColorScheme } from 'nativewind';
 import { useDarkMode } from '../src/hooks/useDarkMode';
@@ -68,22 +74,26 @@ export const decorators = [
       setColorMode(getColorMode());
     }, [getColorMode()]);
 
+    console.log('config', config);
+
     return (
-      <ThemeProvider mode={colorMode}>
-        <OverlayProvider style={{ flex: 1 }}>
-          <ToastProvider>
-            <View
-              style={{
-                flex: 1,
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}
-            >
-              <Story />
-            </View>
-          </ToastProvider>
-        </OverlayProvider>
-      </ThemeProvider>
+      <GluestackUIProvider config={config} colorMode={colorMode}>
+        <Provider mode={colorMode}>
+          <OverlayProvider style={{ flex: 1 }}>
+            <ToastProvider>
+              <View
+                style={{
+                  flex: 1,
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}
+              >
+                <Story />
+              </View>
+            </ToastProvider>
+          </OverlayProvider>
+        </Provider>
+      </GluestackUIProvider>
     );
   },
 ];

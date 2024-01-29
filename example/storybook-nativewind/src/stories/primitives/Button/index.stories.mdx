@@ -60,7 +60,7 @@ This is an illustration of a **Themed Button** component with default configurat
 
 <br />
 
-### Installation
+### Installation for nativewind
 
 Step 1: Install the following dependencies:
 
@@ -73,6 +73,8 @@ npm install @gluestack-ui/button
 Step 2: Copy and paste the following code into your project.
 
 ```jsx
+// get content from ./nativewind/components/Button/index.ts
+
 import React from 'react';
 import { createButton } from '@gluestack-ui/button';
 import {
@@ -271,6 +273,25 @@ Button.displayName = 'Button';
 ButtonText.displayName = 'ButtonText';
 
 export { Button, ButtonText, ButtonSpinner, ButtonIcon };
+```
+
+Step 3: Update the import paths to match your project setup.
+
+### Installation for gluestack-ui
+
+Step 1: Install the following dependencies:
+
+```bash
+
+npm install @gluestack-ui/button
+npm install @gluestack-style/react
+
+```
+
+Step 2: Copy and paste the following code into your project.
+
+```jsx
+// get content from ./themed/components/Button/index.ts
 ```
 
 Step 3: Update the import paths to match your project setup.

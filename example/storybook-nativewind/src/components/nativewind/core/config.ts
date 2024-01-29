@@ -1,6 +1,6 @@
 import { vars } from 'nativewind';
 
-export const themes = {
+export const config = {
   light: vars({
     '--color-primary-0': '#B3B3B3',
     '--color-primary-50': '#999999',

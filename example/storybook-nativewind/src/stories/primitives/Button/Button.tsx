@@ -1,11 +1,11 @@
 import React from 'react';
 import { Button, ButtonText } from '@components/Button';
 
-export const ButtonBasic = () => {
+export const ButtonBasic = (props: any) => {
   return (
     <>
-      <Button>
-        <ButtonText>Hello World</ButtonText>
+      <Button {...props}>
+        <ButtonText>Hello World 22</ButtonText>
       </Button>
     </>
   );

@@ -1,4 +1,4 @@
-import { themes } from '@components/core/theme';
+import { config } from '@components/core/config';
 import React from 'react';
 import { Platform, View } from 'react-native';
 
@@ -29,7 +29,7 @@ export function ThemeProvider({
 }) {
   // @ts-ignore
   return (
-    <View style={[themes[mode], providerStyle, props.style]}>
+    <View style={[config[mode], providerStyle, props.style]}>
       {props.children}
     </View>
   );

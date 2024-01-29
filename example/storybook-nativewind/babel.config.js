@@ -11,10 +11,11 @@ module.exports = function (api) {
         'module-resolver',
         {
           alias: {
-            '@components': path.resolve(
-              __dirname,
-              './src/nativewind-components'
-            ),
+            // '@components': path.resolve(
+            //   __dirname,
+            //   './src/nativewind-components'
+            // ),
+            '@components': path.resolve(__dirname, './src/components/themed'),
             '@gluestack-ui/checkbox': path.resolve(
               __dirname,
               '../../packages/unstyled/checkbox/src'

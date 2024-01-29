@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyledProvider, Box, Center } from '@gluestack-ui/themed';
 import { createProvider } from '@gluestack-ui/provider';
-import { ThemeProvider } from '../nativewind-components/core/ThemeProvider';
+import { Provider as ThemeProvider } from '../components/nativewind/core/Provider';
 const Provider = createProvider({ StyledProvider }) as any;
 Provider.displayName = 'Provider';
 
