@@ -19815,9 +19815,9 @@ react-native-web@0.19.9, react-native-web@^0.18.1, react-native-web@^0.19.9:
     postcss-value-parser "^4.2.0"
     styleq "^0.1.3"
 
-react-native@0.72.4, react-native@^0.70.3, react-native@^0.72.4, react-native@^0.72.5:
+react-native@0.72.4, react-native@^0.70.3, react-native@^0.72.4, react-native@^0.72.5, react-native@^0.73.2:
   version "0.72.4"
-  resolved "https://registry.npmjs.org/react-native/-/react-native-0.72.4.tgz"
+  resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.72.4.tgz#97b57e22e4d7657eaf4d1f62a678511fcf9bdda7"
   integrity sha512-+vrObi0wZR+NeqL09KihAAdVlQ9IdplwznJWtYrjnQ4UbCW6rkzZJebRsugwUneSOKNFaHFEo1uKU89HsgtYBg==
   dependencies:
     "@jest/create-cache-key-function" "^29.2.1"

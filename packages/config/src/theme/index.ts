@@ -147,3 +147,5 @@ export * from './TooltipContent';
 export * from './TooltipText';
 export * from './VStack';
 export * from './View';
+export * from './RangeSliderLeftThumb';
+export * from './RangeSliderRightThumb';

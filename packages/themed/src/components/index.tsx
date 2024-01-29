@@ -46,3 +46,4 @@ export * from './Icons/Icons';
 export * from './VirtualizedList';
 export * from './RefreshControl';
 export * from './ImageBackground';
+export * from './RangeSlider';

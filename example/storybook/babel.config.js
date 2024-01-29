@@ -45,6 +45,10 @@ module.exports = function (api) {
                   __dirname,
                   '../../packages/unstyled/avatar/src'
                 ),
+                '@gluestack-ui/range-slider': path.join(
+                  __dirname,
+                  '../../packages/unstyled/range-slider/src'
+                ),
                 '@gluestack-ui/button': path.join(
                   __dirname,
                   '../../packages/unstyled/button/src'

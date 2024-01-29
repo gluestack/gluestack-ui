@@ -84,6 +84,8 @@ const getStories = () => {
     // require('../src/components/Layout/VStack/VStack.stories.tsx'),
     // require('../src/components/Layout/LinearGradient/LinearGradient.stories.tsx'),
     // require('../src/components/Forms/Tabs/Tabs.stories.tsx'),
+    require('../src/ui/components/Forms/RangeSlider/RangeSlider.stories.tsx'),
+    require('../src/ui/components/Forms/Slider/Slider.stories.tsx'),
     // require('../src/components/MediaAndIcons/Image/Image.stories.tsx'),
     // require('../src/react-native-components/FlatList/FlatList.stories.tsx'),
     // require('../src/react-native-components/SectionList/SectionList.stories.tsx'),
