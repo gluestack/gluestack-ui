@@ -3288,6 +3288,15 @@
   dependencies:
     "@legendapp/motion" "^2.2.0"
 
+"@gluestack-ui/button@^0.1.15":
+  version "0.1.34"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/button/-/button-0.1.34.tgz#f635aba6a9023d153f5dd82cd96a3785b6244951"
+  integrity sha512-xuU1yxZqBFpNo0G8lENaNH2Rrbw/cxDflfJ8kStXkRW9vF6OIYLmytGqlybjp5WEBOtgJnvJiJV4cdGS+tYDxQ==
+  dependencies:
+    "@gluestack-ui/utils" "0.1.12"
+    "@react-native-aria/focus" "^0.2.9"
+    "@react-native-aria/interactions" "^0.2.11"
+
 "@gluestack-ui/toast@^0.1.7":
   version "0.1.20"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/toast/-/toast-0.1.20.tgz#863453f75d2e941000204a9524161bfd2500e320"

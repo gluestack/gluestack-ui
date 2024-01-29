@@ -672,6 +672,98 @@ Our Menu component supports dynamic disabling of menu items, enabling you to con
   />
 </AppProvider>
 
+#### Selection
+
+Our menu component supports selection mode, logging the selected menu item key to the console when a selection change occurs. Based on the selected key, it prints a corresponding message, indicating a route push for the menu items in the example given below.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+      function Example () {
+        const [selected, setSelected] = React.useState(new Set([]));
+      return (
+        <Menu
+        placement="bottom left"
+        selectionMode="single"
+        selectedKeys={selected}
+        onSelectionChange={(keys) => {
+          console.log('onSelectionChange', keys);
+          setSelected(keys);
+          if (keys.currentKey === 'Community') {
+            console.log('Push to', keys.currentKey, 'route');
+          }
+          else if (keys.currentKey === 'Plugins') {
+            console.log('Push to', keys.currentKey, 'route');
+          }
+          else if (keys.currentKey === 'Theme') {
+            console.log('Push to', keys.currentKey, 'route');
+          }
+          else if (keys.currentKey === 'Settings') {
+            console.log('Push to', keys.currentKey, 'route');
+          }
+        }}
+        closeOnSelect={true}
+        trigger={({ ...triggerProps }) => {
+          return (
+            <Button {...triggerProps}>
+              <ButtonText>Menu</ButtonText>
+            </Button>
+          );
+        }}
+        >
+          <MenuItem key="Community" textValue="Community">
+            <Icon as={GlobeIcon} size="sm" mr='$2'/>
+            <MenuItemLabel size='sm'>
+              Community
+            </MenuItemLabel>
+          </MenuItem>
+          <MenuItem key="Plugins" textValue="Plugins">
+            {\/* PuzzleIcon is imported from 'lucide-react-native' *\/}
+            <Icon as={PuzzleIcon} size="sm" mr='$2'/>
+            <MenuItemLabel size='sm'>
+              Plugins
+            </MenuItemLabel>
+          </MenuItem>
+          <MenuItem key="Theme" textValue="Theme">
+            {\/* PaintBucket is imported from 'lucide-react-native' *\/}
+            <Icon as={PaintBucket} size="sm" mr='$2'/>
+            <MenuItemLabel size='sm'>Theme</MenuItemLabel>
+          </MenuItem>
+          <MenuItem key="Settings" textValue="Settings">
+            <Icon as={SettingsIcon} size="sm" mr='$2'/>
+            <MenuItemLabel size='sm'>
+              Settings
+            </MenuItemLabel>
+          </MenuItem>
+        </Menu>
+        )
+      }
+`,
+      scope: {
+        Wrapper,
+        Button,
+        ButtonText,
+        Menu,
+        MenuIcon,
+        MenuItem,
+        MenuItemLabel,
+        Text: MenuText,
+        Box,
+        Icon,
+        GlobeIcon,
+        PuzzleIcon,
+        PaintBucket,
+        SettingsIcon,
+        AddIcon,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
 ## Unstyled
 
 All the components in `gluestack-ui` are unstyled by default. To customize your UI using the extendedTheme, please refer to this [link](https://gluestack.io/ui/docs/theme-configuration/customizing-theme). The import names of components serve as keys to customize each component.

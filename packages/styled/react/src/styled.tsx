@@ -120,17 +120,19 @@ function convertUtiltiyToSXFromProps(
 
   if (plugins) {
     for (const pluginName in plugins) {
-      // @ts-ignore
-      [resolvedSxVerbose, , , , sxIgnoreKeys] = plugins[
-        pluginName
-      ]?.inputMiddleWare(
-        resolvedSxVerbose,
-        true,
-        false,
-        Component,
-        componentStyleConfig,
-        ExtendedConfig
-      );
+      if (plugins[pluginName]?.inputMiddleWare) {
+        // @ts-ignore
+        [resolvedSxVerbose, , , , sxIgnoreKeys] = plugins[
+          pluginName
+        ]?.inputMiddleWare(
+          resolvedSxVerbose,
+          true,
+          false,
+          Component,
+          componentStyleConfig,
+          ExtendedConfig
+        );
+      }
     }
 
     sxIgnoreKeys?.forEach((element) => {
@@ -1106,17 +1108,19 @@ export function verboseStyled<P, Variants, ComCon>(
       if (plugins) {
         for (const pluginName in plugins) {
           let themeIgnoreKeys = new Set();
-          // @ts-ignore
-          [nonVerbosedTheme, , , , themeIgnoreKeys] = plugins[
-            pluginName
-          ]?.inputMiddleWare<P>(
-            nonVerbosedTheme,
-            true,
-            true,
-            componentProps?.as ?? Component,
-            componentStyleConfig,
-            ExtendedConfig
-          );
+          if (plugins[pluginName]?.inputMiddleWare) {
+            // @ts-ignore
+            [nonVerbosedTheme, , , , themeIgnoreKeys] = plugins[
+              pluginName
+            ]?.inputMiddleWare<P>(
+              nonVerbosedTheme,
+              true,
+              true,
+              componentProps?.as ?? Component,
+              componentStyleConfig,
+              ExtendedConfig
+            );
+          }
           themeIgnoreKeys?.forEach((ele) => {
             ignoreKeys.add(ele);
           });

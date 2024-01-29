@@ -10,7 +10,85 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 # NativeBase to gluestack-ui
 
+## Manual Migration
+
 `gluestack-ui` comes with major changes in philosophy as well as the API. With gluestack, we have re-imagined how we should code for React Native and the web. Therefore, you might encounter a few changes while migrating from NativeBase to gluestack-ui. Even though it might seem a bit of tedious work, we promise it will be worth it!
 Please refer to [this](https://geekyants.notion.site/NativeBase-to-gluestack-ui-Migration-Plan-WIP-6409006d9ecc4fb2a559cca6117a3e7c) guide while migrating from NativeBase to gluestack-ui.
 
 _Migration guide provided is a living document._
+
+## Using the migration library
+
+### Introduction
+
+**@gluestack-ui/themed-native-base** is a drop-in replacement for `native-base`.
+
+### Installation
+
+To use `native-base` components with `gluestack-ui`, all you need to do is install the `@gluestack-ui/themed-native-base` package:
+
+```sh
+$ yarn add @gluestack-ui/themed-native-base react-native-svg@13.4.0
+
+# or
+
+$ npm i @gluestack-ui/themed-native-base react-native-svg@13.4.0
+```
+
+### Usage
+
+Just change your import from `native-base` to `Gluestack-ui/themed-native-base`, and all the components along with provider will work as is.
+
+If you want it to work with nextJS you will need to use the `withGluestackUI` adapter in NextJS.
+
+- install the `@gluestack/ui-next-adapter` package.
+- update the `next.config.js` file like this.
+
+```
+/** @type {import('next').NextConfig} */
+
+const { withGluestackUI } = require("@gluestack/ui-next-adapter")
+
+const nextConfig = {
+  reactStrictMode: true,
+  transpilePackages: ["@gluestack-ui/themed-native-base"],
+}
+
+module.exports = withGluestackUI(nextConfig)
+```
+
+- add `gs` className to Html tag and add flush function from `@gluestack-style/react` in your `_document` file like this
+
+```
+import * as React from 'react';
+import { Html, Head, Main, NextScript } from 'next/document';
+import { AppRegistry } from 'react-native-web';
+import { flush } from '@gluestack-style/react';
+
+function Document() {
+  return (
+    <Html className="gs" lang="en">
+      <Head />
+      <body>
+        <Main />
+        <NextScript />
+      </body>
+    </Html>
+  );
+}
+
+Document.getInitialProps = async ({ renderPage }: any) => {
+  AppRegistry.registerComponent('Main', () => Main);
+  const { getStyleElement } = AppRegistry.getApplication('Main');
+  const page = await renderPage();
+  const styles = [getStyleElement(), ...flush()];
+  return { ...page, styles: React.Children.toArray(styles) };
+};
+
+export default Document;
+```
+
+### Limitations
+
+- Functional variants are not supported yet in extendTheme function
+- Menu component might not working as expected in some instances

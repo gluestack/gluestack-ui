@@ -28,7 +28,7 @@ export interface IButtonGroupProps {
    * The direction of the Stack Items.
    * @default row
    */
-  direction?: 'column' | 'row';
+  flexDirection?: 'row' | 'column' | 'row-reverse' | 'column-reverse';
   /**
    *
    */

@@ -1,5 +1,17 @@
 # @gluestack-style/react
 
+## 1.0.43
+
+### Patch Changes
+
+- - Fixed typescript memory overflow issue [PR](https://github.com/gluestack/gluestack-ui/pull/1693)
+
+## 1.0.42
+
+### Patch Changes
+
+- fix: TypeErrors in plugins
+
 ## 1.0.41
 
 ### Patch Changes
