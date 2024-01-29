@@ -1,5 +1,11 @@
 # @gluestack-ui/themed
 
+## 1.1.2
+
+### Patch Changes
+
+- - Fixed InputAccessoryView for web
+
 ## 1.1.1
 
 ### Patch Changes
