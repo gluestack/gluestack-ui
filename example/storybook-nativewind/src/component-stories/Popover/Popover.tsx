@@ -4,13 +4,6 @@ import {
   Button,
   ButtonText,
   ButtonGroup,
-  Popover,
-  PopoverBackdrop,
-  PopoverContent,
-  PopoverHeader,
-  PopoverBody,
-  PopoverFooter,
-  PopoverCloseButton,
   CloseIcon,
   Icon,
   Box,
@@ -25,6 +18,15 @@ import {
   AddIcon,
   PopoverArrow,
 } from '@gluestack-ui/themed';
+import {
+  Popover,
+  PopoverBackdrop,
+  PopoverContent,
+  PopoverHeader,
+  PopoverBody,
+  PopoverFooter,
+  PopoverCloseButton,
+} from '@/components/Popover';
 
 import { PhoneIcon, Clock3Icon, MailIcon } from 'lucide-react-native';
 
