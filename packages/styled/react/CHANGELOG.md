@@ -1,5 +1,11 @@
 # @gluestack-style/react
 
+## 1.0.45
+
+### Patch Changes
+
+- Fixed inline style injection
+
 ## 1.0.44
 
 ### Patch Changes
