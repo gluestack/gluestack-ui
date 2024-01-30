@@ -215,7 +215,16 @@ const StyledIcon = styled(
       size: 'md',
     },
   },
-  { ancestorStyle: ['_icon'] }
+  {
+    resolveProps: ['stroke', 'fill'],
+    ancestorStyle: ['_icon'],
+  },
+  {
+    propertyTokenMap: {
+      stroke: 'colors',
+      fill: 'colors',
+    },
+  }
 );
 const StyledContent = styled(View, { px: '$5', mt: '$2', pb: '$5' });
 

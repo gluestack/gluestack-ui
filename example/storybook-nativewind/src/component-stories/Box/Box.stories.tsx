@@ -6,7 +6,7 @@ const BoxMeta: ComponentMeta<typeof Box> = {
   title: 'stories/Box',
   component: Box,
 
-  args: { bg: 'red500', w: 100, h: 100 },
+  args: { bg: 'primary500', w: 100, h: 100 },
 };
 
 export default BoxMeta;
