@@ -1,19 +1,11 @@
 import { createImage } from '@gluestack-ui/image';
-import { Image } from 'react-native';
+import { Image as RNImage } from 'react-native';
+import { styled } from '@gluestack-style/react';
 
 const StyledRoot = styled(
-  Image,
+  RNImage,
   {
     maxWidth: '$full',
-    _web: {
-      props: {
-        // set property to revert-layer as RNW always set image height width inline
-        style: {
-          height: 'revert-layer',
-          width: 'revert-layer',
-        },
-      },
-    },
     variants: {
       size: {
         '2xs': {
@@ -56,7 +48,6 @@ const StyledRoot = styled(
         },
       },
     },
-
     defaultProps: {
       size: 'md',
     },
