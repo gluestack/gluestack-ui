@@ -3,7 +3,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@components/*": ["./src/themed-components/*"]
+      "@components/*": ["./src/components/themed/*"]
     },
     "emitDeclarationOnly": true,
     "noEmit": false,

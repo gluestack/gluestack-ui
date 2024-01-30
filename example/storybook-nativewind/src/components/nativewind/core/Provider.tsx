@@ -20,7 +20,7 @@ const providerStyle = Platform.select({
   },
 });
 
-export function ThemeProvider({
+export function Provider({
   mode,
   ...props
 }: {
