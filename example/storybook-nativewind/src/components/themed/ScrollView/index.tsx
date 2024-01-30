@@ -33,4 +33,4 @@ const StyledRoot = styled(
   }
 );
 
-export const Box = StyledRoot;
+export const StyledRoot = StyledRoot;

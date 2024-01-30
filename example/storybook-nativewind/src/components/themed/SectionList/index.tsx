@@ -32,4 +32,4 @@ const StyledRoot = styled(
   }
 );
 
-export const Box = StyledRoot;
+export const SectionList = StyledRoot;
