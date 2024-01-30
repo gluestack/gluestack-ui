@@ -27,7 +27,11 @@ const TableStripped = ({ ...props }) => {
       }}
     >
       <ScrollView horizontal>
-        <Table>
+        <Table
+          sx={{
+            width: 900,
+          }}
+        >
           <TableHead
             bg="$backgroundLight0"
             sx={{

@@ -19,7 +19,8 @@ export const TableContainer = createStyle({
     },
   },
   _headerText: {
-    width: 219,
+    // width: 219,
+    flex: 1,
     fontSize: '$md',
     fontFamily: '$heading',
     lineHeight: '$lg',
@@ -36,7 +37,8 @@ export const TableContainer = createStyle({
     },
   },
   _data: {
-    width: 219,
+    flex: 1,
+    // width: 219,
     px: '$6',
     py: '$5',
     fontFamily: '$body',

@@ -4,6 +4,7 @@ import TableSideHeader from './TableSideHeader';
 import TableWithComponents from './TableWithComponents';
 import TableStripped from './TableStripped';
 import TableWithCaption from './TableWithCaption';
+import TableFlatlist from './TableFlatlist';
 
 const TableMeta: ComponentMeta<typeof Table> = {
   title: 'stories/DATA DISPLAY/Table',
@@ -24,4 +25,5 @@ export {
   TableWithComponents,
   TableStripped,
   TableWithCaption,
+  TableFlatlist,
 };

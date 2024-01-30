@@ -25,7 +25,11 @@ const TableSideHeader = ({ ...props }) => {
       }}
     >
       <ScrollView horizontal>
-        <Table>
+        <Table
+          sx={{
+            width: 1100,
+          }}
+        >
           <TableHead>
             <TableRow
               sx={{
@@ -38,6 +42,8 @@ const TableSideHeader = ({ ...props }) => {
               {/* borders on only one side are not natively supported by iOS, so wrapping with a view (hack for now)*/}
               <View
                 sx={{
+                  // flex: 1,
+                  flexGrow: 1,
                   borderWidth: 0,
                   borderRightWidth: 1,
                   borderStyle: 'solid',
@@ -119,6 +125,8 @@ const TableSideHeader = ({ ...props }) => {
             >
               <View
                 sx={{
+                  // flex: 1,
+                  flexGrow: 1,
                   borderWidth: 0,
                   borderRightWidth: 1,
                   borderStyle: 'solid',
@@ -204,6 +212,8 @@ const TableSideHeader = ({ ...props }) => {
             >
               <View
                 sx={{
+                  // flex: 1,
+                  flexGrow: 1,
                   borderWidth: 0,
                   borderRightWidth: 1,
                   borderStyle: 'solid',
@@ -289,6 +299,8 @@ const TableSideHeader = ({ ...props }) => {
             >
               <View
                 sx={{
+                  // flex: 1,
+                  flexGrow: 1,
                   borderWidth: 0,
                   borderRightWidth: 1,
                   borderStyle: 'solid',
@@ -366,6 +378,7 @@ const TableSideHeader = ({ ...props }) => {
             </TableRow>
             <TableRow
               sx={{
+                // bg: 'pink',
                 borderBottomColor: '$borderLight300',
                 _dark: {
                   borderBottomColor: '$borderDark800',
@@ -375,6 +388,10 @@ const TableSideHeader = ({ ...props }) => {
             >
               <View
                 sx={{
+                  // width: 200,
+                  // flex: 1,
+                  flexGrow: 1,
+                  // bg: '$red',
                   borderWidth: 0,
                   borderRightWidth: 1,
                   borderStyle: 'solid',
@@ -388,6 +405,7 @@ const TableSideHeader = ({ ...props }) => {
                 }}
               >
                 <TableHeader
+                  // width={200}
                   display="flex"
                   alignItems="center"
                   fontWeight="$medium"

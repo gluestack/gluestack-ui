@@ -31,7 +31,11 @@ const TableBasic = ({ ...props }) => {
     >
       <TableContainer {...props}>
         <ScrollView horizontal>
-          <Table>
+          <Table
+            sx={{
+              width: 600,
+            }}
+          >
             <TableHead>
               <TableRow>
                 <TableHeader>Customer Name</TableHeader>
@@ -39,12 +43,14 @@ const TableBasic = ({ ...props }) => {
                 <TableHeader>Cost</TableHeader>
               </TableRow>
             </TableHead>
+            {/* <ScrollView> */}
             <TableBody>
               <TableRow>
                 <TableData>Rajesh Kumar</TableData>
                 <TableData>10</TableData>
                 <TableData>$130</TableData>
               </TableRow>
+
               <TableRow>
                 <TableData>Priya Sharma</TableData>
                 <TableData>12</TableData>
@@ -66,6 +72,7 @@ const TableBasic = ({ ...props }) => {
                 <TableData>$35</TableData>
               </TableRow>
             </TableBody>
+            {/* </ScrollView> */}
             <TableFooter>
               <TableRow>
                 <TableHeader>Total</TableHeader>

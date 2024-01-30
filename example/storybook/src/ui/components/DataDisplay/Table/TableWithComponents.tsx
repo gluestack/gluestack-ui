@@ -18,7 +18,11 @@ const TableWithComponents = ({ ...props }) => {
   return (
     <TableContainer {...props} borderRadius="$none">
       <ScrollView horizontal>
-        <Table>
+        <Table
+          sx={{
+            width: 900,
+          }}
+        >
           <TableHead>
             <TableRow>
               <TableHeader>Order id</TableHeader>
