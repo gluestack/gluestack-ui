@@ -1,6 +1,6 @@
 import type { ComponentMeta } from '@storybook/react-native';
 import Text from './Text';
-import TextSizes from './TextSizes';
+// import TextSizes from './TextSizes';
 
 const TextMeta: ComponentMeta<typeof Text> = {
   title: 'stories/Text',
@@ -52,4 +52,4 @@ const TextMeta: ComponentMeta<typeof Text> = {
 export default TextMeta;
 
 export { Text };
-export { TextSizes };
+// export { TextSizes };
