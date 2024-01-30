@@ -936,6 +936,17 @@ export function verboseStyled<P, Variants, ComCon>(
     const memoizationKey = sxHash + type;
     // Check if the result is already in the cache
     if (sxMemoizationCache[memoizationKey]) {
+      injectComponentAndDescendantStyles(
+        sxMemoizationCache[memoizationKey],
+        sxHash,
+        type,
+        GluestackStyleSheet,
+        Platform.OS,
+        inlineStyleMap,
+        ignoreKeys,
+        CONFIG
+      );
+
       return sxMemoizationCache[memoizationKey];
     }
 
