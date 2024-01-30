@@ -24,8 +24,8 @@ export const parameters = {
     storySort: {
       method: '',
       order: [
-        'Overview',
-        ['Introduction'],
+        'Core Concepts',
+        ['Accessibility', 'Universal'],
         'Design Tokens',
         [
           'Colors',
