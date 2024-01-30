@@ -1,9 +1,8 @@
-import { ScrollView } from 'react-native';
-
+import { SectionList } from 'react-native';
 import { styled, useStyled, propertyTokenMap } from '@gluestack-style/react';
 
 const StyledRoot = styled(
-  ScrollView,
+  SectionList,
   {},
   {
     resolveProps: ['contentContainerStyle'],
@@ -33,4 +32,4 @@ const StyledRoot = styled(
   }
 );
 
-export const StyledRoot = StyledRoot;
+export const SectionList = StyledRoot;
