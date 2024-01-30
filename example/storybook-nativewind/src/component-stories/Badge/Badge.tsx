@@ -1,9 +1,6 @@
 import React from 'react';
 import {
   Center,
-  Badge,
-  BadgeText,
-  BadgeIcon,
   Icon,
   Box,
   Text,
@@ -32,6 +29,7 @@ import {
   BadgeCheckIcon,
   BadgePlusIcon,
 } from 'lucide-react-native';
+import { Badge, BadgeText, BadgeIcon } from '@/components/Badge';
 
 const BadgeBasic = ({ text = 'NEW FEATURE', colorMode, ...props }: any) => {
   let badgeIconAndTextSize = '';
