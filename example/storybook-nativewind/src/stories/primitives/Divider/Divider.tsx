@@ -1,7 +1,6 @@
 import React from 'react';
 import {
   Text,
-  Divider,
   VStack,
   HStack,
   Box,
@@ -10,6 +9,7 @@ import {
   Button,
   ButtonText,
 } from '@gluestack-ui/themed';
+import { Divider } from '@/components/Divider';
 
 const DividerBasic = ({ ...props }) => {
   return (
