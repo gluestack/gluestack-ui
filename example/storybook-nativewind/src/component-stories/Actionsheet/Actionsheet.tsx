@@ -1,18 +1,5 @@
 import React, { useState } from 'react';
 import {
-  Actionsheet,
-  ActionsheetIcon,
-  ActionsheetBackdrop,
-  ActionsheetContent,
-  ActionsheetDragIndicator,
-  ActionsheetDragIndicatorWrapper,
-  ActionsheetItem,
-  ActionsheetItemText,
-  ActionsheetFlatList,
-  ActionsheetScrollView,
-  ActionsheetSectionList,
-  ActionsheetSectionHeaderText,
-  ActionsheetVirtualizedList,
   Button,
   ButtonText,
   VStack,
@@ -33,6 +20,22 @@ import {
 } from '@gluestack-ui/themed';
 import { config } from '@gluestack-ui/config';
 
+import {
+  Actionsheet,
+  ActionsheetIcon,
+  ActionsheetBackdrop,
+  ActionsheetContent,
+  ActionsheetDragIndicator,
+  ActionsheetDragIndicatorWrapper,
+  ActionsheetItem,
+  ActionsheetItemText,
+  ActionsheetFlatList,
+  ActionsheetScrollView,
+  ActionsheetSectionList,
+  ActionsheetSectionHeaderText,
+  ActionsheetVirtualizedList,
+} from '@/components/Actionsheet';
+
 const ActionsheetBasic = ({ showActionsheetProp, ...props }: any) => {
   const [showActionsheet, setShowActionsheet] = React.useState(false);
 
@@ -40,7 +43,7 @@ const ActionsheetBasic = ({ showActionsheetProp, ...props }: any) => {
 
   return (
     <Center>
-      <Button>
+      <Button onPress={() => setShowActionsheet(true)}>
         <ButtonText>Open</ButtonText>
       </Button>
       <Actionsheet
