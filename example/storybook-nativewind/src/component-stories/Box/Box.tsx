@@ -17,17 +17,7 @@ const BoxBasic: any = ({
       justifyContent="center"
       alignItems="center"
     >
-      <Text
-        color="white"
-        fontWeight="$bold"
-        dataSet={{
-          'component-props': JSON.stringify({
-            'is-text-style': true,
-            'component-name': 'Text',
-            'size': 'md',
-          }),
-        }}
-      >
+      <Text color="white" fontWeight="$bold">
         BOX
       </Text>
     </Box>
