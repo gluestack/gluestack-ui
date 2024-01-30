@@ -4,7 +4,6 @@ import {
   ButtonText,
   Center,
   Input,
-  // InputAccessoryView,
 } from '@gluestack-ui/themed';
 import { InputAccessoryView } from '@/components/InputAccessoryView';
 import { config } from '@gluestack-ui/config';
