@@ -1,124 +1,289 @@
-import React from 'react';
 import { createCheckbox } from '@gluestack-ui/checkbox';
 import { View, Pressable, Text } from 'react-native';
-import {
-  cn,
-  withStates,
-  withStyleContextAndStates,
-  useStyleContext,
-  tva,
-  withStyleContext,
-} from '@gluestack-ui/nativewind-utils';
+
 import { Platform } from 'react-native';
 
 import { Check } from 'lucide-react-native';
+import { styled } from '@gluestack-style/react';
+
+const StyledRoot = styled(
+  Platform.OS === 'web' ? View : Pressable,
+  {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+
+    variants: {
+      size: {
+        lg: {
+          _text: {
+            props: {
+              size: 'lg',
+            },
+          },
+
+          _icon: {
+            props: {
+              size: 'md',
+            },
+          },
+          _indicator: {
+            borderWidth: 3,
+            h: '$6',
+            w: '$6',
+          },
+        },
+
+        md: {
+          _text: {
+            props: {
+              size: 'md',
+            },
+          },
+
+          _icon: {
+            props: {
+              size: 'sm',
+            },
+          },
+          _indicator: {
+            borderWidth: 2,
+            h: '$5',
+            w: '$5',
+          },
+        },
+
+        sm: {
+          _text: {
+            props: {
+              size: 'sm',
+            },
+          },
+
+          _icon: {
+            props: {
+              size: '2xs',
+            },
+          },
+          _indicator: {
+            borderWidth: 2,
+            h: '$4',
+            w: '$4',
+          },
+        },
+      },
+    },
+
+    defaultProps: {
+      size: 'md',
+    },
+
+    _web: {
+      'cursor': 'pointer',
+      ':disabled': {
+        cursor: 'not-allowed',
+      },
+    },
+  },
+  { descendantStyle: ['_icon', '_text', '_indicator'] }
+);
+
+const StyledIndicator = styled(
+  View,
+  {
+    'justifyContent': 'center',
+    'alignItems': 'center',
+    'borderColor': '$border400',
+    'bg': '$transparent',
+    'borderRadius': 4,
+
+    '_web': {
+      ':focusVisible': {
+        outlineWidth: '2px',
+        outlineColor: '$primary700',
+        outlineStyle: 'solid',
+      },
+    },
+
+    ':checked': {
+      borderColor: '$primary600',
+      bg: '$primary600',
+    },
+
+    ':hover': {
+      'borderColor': '$border500',
+      'bg': 'transparent',
+      ':invalid': {
+        borderColor: '$error700',
+      },
+      ':checked': {
+        'bg': '$primary700',
+        'borderColor': '$primary700',
+        ':disabled': {
+          'borderColor': '$primary600',
+          'bg': '$primary600',
+          'opacity': 0.4,
+          ':invalid': {
+            borderColor: '$error700',
+          },
+        },
+      },
+      ':disabled': {
+        'borderColor': '$border400',
+        ':invalid': {
+          borderColor: '$error700',
+        },
+      },
+    },
+
+    ':active': {
+      ':checked': {
+        bg: '$primary800',
+        borderColor: '$primary800',
+      },
+    },
+
+    ':invalid': {
+      borderColor: '$error700',
+    },
+
+    ':disabled': {
+      opacity: 0.4,
+    },
+  },
+  { ancestorStyle: ['_indicator'] }
+);
+const StyledIcon = styled(
+  Check,
+  {
+    'color': '$background800',
+
+    // defaultProps: {
+    //   size: 'md',
+    // },
+    'variants': {
+      size: {
+        '2xs': {
+          h: '$3',
+          w: '$3',
+          props: {
+            // @ts-ignore
+            size: 12,
+          },
+        },
+        'xs': {
+          h: '$3.5',
+          w: '$3.5',
+          props: {
+            //@ts-ignore
+            size: 14,
+          },
+        },
+        'sm': {
+          h: '$4',
+          w: '$4',
+          props: {
+            //@ts-ignore
+            size: 16,
+          },
+        },
+        'md': {
+          h: '$4.5',
+          w: '$4.5',
+          props: {
+            //@ts-ignore
+            size: 18,
+          },
+        },
+        'lg': {
+          h: '$5',
+          w: '$5',
+          props: {
+            //@ts-ignore
+            size: 20,
+          },
+        },
+        'xl': {
+          h: '$6',
+          w: '$6',
+          props: {
+            //@ts-ignore
+            size: 24,
+          },
+        },
+      },
+    },
+
+    ':checked': {
+      color: '$background0',
+    },
+
+    ':disabled': {
+      opacity: 0.4,
+    },
+  },
+  { ancestorStyle: ['_icon'] },
+  {
+    propertyTokenMap: {
+      stroke: 'colors',
+    },
+  }
+);
+const StyledLabel = styled(
+  Text,
+  {
+    'color': '$text600',
+
+    ':checked': {
+      color: '$text900',
+    },
+
+    ':hover': {
+      'color': '$text900',
+      ':checked': {
+        'color': '$text900',
+        ':disabled': {
+          color: '$text900',
+        },
+      },
+      ':disabled': {
+        color: '$text600',
+      },
+    },
+
+    ':active': {
+      'color': '$text900',
+
+      ':checked': {
+        color: '$text900',
+      },
+    },
+
+    ':disabled': {
+      opacity: 0.4,
+    },
+
+    '_web': {
+      MozUserSelect: 'none',
+      WebkitUserSelect: 'none',
+      msUserSelect: 'none',
+      userSelect: 'none',
+    },
+  },
+  { ancestorStyle: ['_text'] }
+);
+const StyledGroup = styled(View, {});
 
 const UICheckbox = createCheckbox({
-  // @ts-ignore
-  Root:
-    Platform.OS === 'web'
-      ? withStyleContext(View)
-      : withStyleContextAndStates(Pressable),
-  Group: Platform.OS === 'web' ? View : withStates(View),
-  Icon: Platform.OS === 'web' ? Check : withStates(Check),
-  Label: Platform.OS === 'web' ? Text : withStates(Text),
-  Indicator: Platform.OS === 'web' ? View : withStates(View),
+  Root: StyledRoot,
+  Indicator: StyledIndicator,
+  Icon: StyledIcon,
+  Label: StyledLabel,
+  Group: StyledGroup,
 });
 
-const checkboxIndicator = tva({
-  base: 'justify-center items-center border-outline-400 rounded-sm data-[focus=true]:outline-none data-[focus-visible=true]:ring-2 data-[focus-visible=true]:ring-primary-700 data-[focus-visible=true]:ring-offset-1 overflow-hidden data-[checked=true]:border-primary-600',
-  parentVariants: {
-    size: {
-      lg: 'w-6 h-6 border-4',
-      md: 'w-5 h-5 border-2',
-      sm: 'w-4 h-4 border-2',
-    },
-  },
-});
-
-const checkboxLabel = tva({
-  base: 'text-typography-600',
-  parentVariants: {
-    size: {
-      lg: 'text-lg',
-      md: 'text-md',
-      sm: 'text-sm',
-    },
-  },
-});
-
-const CheckboxGroup = UICheckbox.Group;
-
-const Checkbox = React.forwardRef(
-  ({ className, size = 'sm', ...props }: any, ref) => {
-    return (
-      <UICheckbox
-        className={cn('flex-row items-center justify-start gap-2', className)}
-        {...props}
-        context={{
-          size,
-        }}
-        ref={ref}
-      />
-    );
-  }
-);
-
-const CheckboxIndicator = React.forwardRef(
-  ({ className, ...props }: any, ref) => {
-    const { size: parentSize } = useStyleContext();
-
-    return (
-      <UICheckbox.Indicator
-        className={checkboxIndicator({
-          parentVariants: {
-            size: parentSize,
-          },
-          class: className,
-        })}
-        {...props}
-        ref={ref}
-      />
-    );
-  }
-);
-
-const CheckboxLabel = React.forwardRef(({ className, ...props }: any, ref) => {
-  const { size: parentSize } = useStyleContext();
-  return (
-    <UICheckbox.Label
-      className={checkboxLabel({
-        parentVariants: {
-          size: parentSize,
-        },
-        class: className,
-      })}
-      {...props}
-      ref={ref}
-    />
-  );
-});
-
-const CheckboxIcon = React.forwardRef(({ className, ...props }: any, ref) => {
-  return (
-    <UICheckbox.Icon
-      className={cn('w-full h-full bg-primary-600 stroke-white', className)}
-      {...props}
-      ref={ref}
-    />
-  );
-});
-
-// Assign display names
-Checkbox.displayName = 'Checkbox';
-CheckboxIndicator.displayName = 'CheckboxIndicator';
-CheckboxLabel.displayName = 'CheckboxLabel';
-CheckboxIcon.displayName = 'CheckboxIcon';
-
-export {
-  Checkbox,
-  CheckboxIndicator,
-  CheckboxLabel,
-  CheckboxIcon,
-  CheckboxGroup,
-};
+export const Checkbox = UICheckbox;
+export const CheckboxIndicator = UICheckbox.Indicator;
+export const CheckboxLabel = UICheckbox.Label;
+export const CheckboxIcon = UICheckbox.Icon;
+export const CheckboxGroup = UICheckbox.Group;
