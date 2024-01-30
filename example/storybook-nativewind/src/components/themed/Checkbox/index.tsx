@@ -12,7 +12,7 @@ const StyledRoot = styled(
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'center',
-
+    gap: '$2',
     variants: {
       size: {
         lg: {

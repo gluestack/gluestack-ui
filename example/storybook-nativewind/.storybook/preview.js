@@ -4,10 +4,9 @@ import { OverlayProvider } from '@gluestack-ui/overlay';
 import { ToastProvider } from '@gluestack-ui/toast';
 
 import { Provider } from '../src/components/nativewind/core/Provider';
-// import global.css for nativewind components
-// import '../global.css';
 
-console.log(Provider, 'provider here');
+// global css getting resolved from babel.config.js
+import 'global.css';
 
 import { Provider as GluestackUIProvider } from '../src/components/themed/core/Provider';
 import { config } from '../src/components/themed/core/config';
@@ -76,7 +75,6 @@ export const decorators = [
       setColorMode(getColorMode());
     }, [getColorMode()]);
 
-    console.log('config', config);
     return (
       <GluestackUIProvider config={config} colorMode={colorMode}>
         <Provider mode={colorMode}>

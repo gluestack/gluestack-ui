@@ -1,4 +1,5 @@
 const path = require('path');
+
 module.exports = function (api) {
   api.cache(true);
   return {
@@ -11,11 +12,16 @@ module.exports = function (api) {
         'module-resolver',
         {
           alias: {
-            // '@components': path.resolve(
-            //   __dirname,
-            //   './src/nativewind-components'
-            // ),
-            '@components': path.resolve(__dirname, './src/components/themed'),
+            '@/components':
+              process.env.STYLE_ENGINE === 'nativewind'
+                ? path.resolve(__dirname, './src/components/nativewind')
+                : path.resolve(__dirname, './src/components/themed'),
+
+            'global.css':
+              process.env.STYLE_ENGINE === 'nativewind'
+                ? path.resolve(__dirname, './global.css')
+                : path.resolve(__dirname, './global-gluestack.css'),
+
             '@gluestack-ui/checkbox': path.resolve(
               __dirname,
               '../../packages/unstyled/checkbox/src'

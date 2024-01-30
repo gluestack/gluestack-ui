@@ -5,7 +5,7 @@ import {
   CheckboxIndicator,
   CheckboxLabel,
   CheckboxGroup,
-} from '@components/Checkbox';
+} from '@/components/Checkbox';
 
 const CheckboxGroupBasic = ({ ...props }: any) => {
   const [values, setValues] = React.useState(['Label 1']);
@@ -16,7 +16,6 @@ const CheckboxGroupBasic = ({ ...props }: any) => {
       value={values}
       onChange={setValues}
       nativeID="checkbox-group"
-      className="gap-4"
     >
       <Checkbox
         size={props.size}
