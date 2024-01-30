@@ -224,9 +224,9 @@ export const Accordion = createAccordion({
   Item: StyledItem,
   Header: StyledHeader,
   Trigger: StyledTrigger,
-  Icon: StyledTitleText,
-  TitleText: StyledContentText,
-  ContentText: StyledIcon,
+  Icon: StyledIcon,
+  TitleText: StyledTitleText,
+  ContentText: StyledContentText,
   Content: StyledContent,
 });
 
