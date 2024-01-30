@@ -2,13 +2,6 @@ import React, { useState } from 'react';
 
 import {
   CloseIcon,
-  AlertDialog,
-  AlertDialogBackdrop,
-  AlertDialogContent,
-  AlertDialogHeader,
-  AlertDialogCloseButton,
-  AlertDialogFooter,
-  AlertDialogBody,
   Button,
   ButtonText,
   ButtonGroup,
@@ -21,6 +14,15 @@ import {
   HStack,
 } from '@gluestack-ui/themed';
 
+import {
+  AlertDialog,
+  AlertDialogBackdrop,
+  AlertDialogContent,
+  AlertDialogHeader,
+  AlertDialogCloseButton,
+  AlertDialogFooter,
+  AlertDialogBody,
+} from '@/components/AlertDialog';
 import { AlertTriangleIcon } from 'lucide-react-native';
 
 const AlertDialogBasic = ({
@@ -38,41 +40,13 @@ const AlertDialogBasic = ({
       <AlertDialogBackdrop />
       <AlertDialogContent>
         <AlertDialogHeader>
-          <Heading
-            dataSet={{
-              'component-props': JSON.stringify({
-                'is-text-style': true,
-                'component-name': 'Heading',
-                'size': 'lg',
-              }),
-            }}
-          >
-            Return Policy
-          </Heading>
+          <Heading>Return Policy</Heading>
           <AlertDialogCloseButton>
-            <Icon
-              as={CloseIcon}
-              dataSet={{
-                'component-props': JSON.stringify({
-                  'instance': true,
-                  'instance-name': 'Icon',
-                  'name': 'CloseIcon',
-                  'size': 'md',
-                }),
-              }}
-            />
+            <Icon as={CloseIcon} />
           </AlertDialogCloseButton>
         </AlertDialogHeader>
         <AlertDialogBody>
-          <Text
-            dataSet={{
-              'component-props': JSON.stringify({
-                'is-text-style': true,
-                'component-name': 'Text',
-                'size': 'md',
-              }),
-            }}
-          >
+          <Text>
             Whoa, slow down there! This modal is like a red light at an
             intersection, reminding you to stop and think before you proceed. Is
             deleting this folder the right choice?
@@ -80,30 +54,10 @@ const AlertDialogBasic = ({
         </AlertDialogBody>
         <AlertDialogFooter gap="$3">
           <Button variant="outline" action="secondary" onPress={handleClose}>
-            <ButtonText
-              dataSet={{
-                'component-props': JSON.stringify({
-                  'is-text-style': true,
-                  'component-name': 'Text',
-                  'size': 'md',
-                }),
-              }}
-            >
-              Cancel
-            </ButtonText>
+            <ButtonText>Cancel</ButtonText>
           </Button>
           <Button action="negative" onPress={handleClose}>
-            <ButtonText
-              dataSet={{
-                'component-props': JSON.stringify({
-                  'is-text-style': true,
-                  'component-name': 'Text',
-                  'size': 'md',
-                }),
-              }}
-            >
-              Delete
-            </ButtonText>
+            <ButtonText>Delete</ButtonText>
           </Button>
         </AlertDialogFooter>
       </AlertDialogContent>
@@ -113,7 +67,7 @@ const AlertDialogBasic = ({
 
 const FigmaAlertDialogStory = ({
   showAlertDialog: _showAlertDialogProp = true,
-  colorMode,
+  _colorMode,
   ...props
 }) => {
   return (
@@ -132,98 +86,24 @@ const FigmaAlertDialogStory = ({
     >
       <AlertDialogContent>
         <AlertDialogHeader>
-          <Heading
-            dataSet={{
-              'component-props': JSON.stringify({
-                'is-text-style': true,
-                'component-name': 'Heading',
-                'size': 'lg',
-              }),
-            }}
-          >
-            Return Policy
-          </Heading>
+          <Heading>Return Policy</Heading>
           <AlertDialogCloseButton>
-            <Icon
-              as={CloseIcon}
-              dataSet={{
-                'component-props': JSON.stringify({
-                  'instance': true,
-                  'instance-name': 'Icon',
-                  'as': 'CloseIcon',
-                  'size': 'md',
-                  'colorMode': colorMode,
-                }),
-              }}
-            />
+            <Icon as={CloseIcon} />
           </AlertDialogCloseButton>
         </AlertDialogHeader>
         <AlertDialogBody>
-          <Text
-            dataSet={{
-              'component-props': JSON.stringify({
-                'is-text-style': true,
-                'component-name': 'Text',
-                'size': 'md',
-              }),
-            }}
-          >
+          <Text>
             Whoa, slow down there! This modal is like a red light at an
             intersection, reminding you to stop and think before you proceed. Is
             deleting this folder the right choice?
           </Text>
         </AlertDialogBody>
         <AlertDialogFooter gap="$3">
-          <Button
-            variant="outline"
-            action="secondary"
-            dataSet={{
-              'component-props': JSON.stringify({
-                'instance': true,
-                'instance-name': 'Button-outline',
-                'size': 'md',
-                'action': 'secondary',
-                'state': 'default',
-                'colorMode': colorMode,
-              }),
-            }}
-          >
-            <ButtonText
-              dataSet={{
-                'component-props': JSON.stringify({
-                  'is-text-style': true,
-                  'component-name': 'Text',
-                  'size': 'md',
-                }),
-              }}
-            >
-              Cancel
-            </ButtonText>
+          <Button variant="outline" action="secondary">
+            <ButtonText>Cancel</ButtonText>
           </Button>
-          <Button
-            action="negative"
-            dataSet={{
-              'component-props': JSON.stringify({
-                'instance': true,
-                'instance-name': 'Button-solid',
-                'size': 'md',
-                'action': 'negative',
-                'state': 'default',
-                'colorMode': colorMode,
-              }),
-            }}
-          >
-            <ButtonText
-              dataSet={{
-                'component-props': JSON.stringify({
-                  'is-text-style': true,
-                  'component-name': 'Text',
-                  'size': 'md',
-                }),
-              }}
-            >
-              Delete
-            </ButtonText>
+          <Button action="negative">
+            <ButtonText>Delete</ButtonText>
           </Button>
         </AlertDialogFooter>
       </AlertDialogContent>
