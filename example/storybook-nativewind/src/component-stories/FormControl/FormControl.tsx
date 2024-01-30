@@ -1,13 +1,5 @@
 import React from 'react';
 import {
-  FormControl,
-  FormControlLabel,
-  FormControlLabelText,
-  FormControlHelper,
-  FormControlHelperText,
-  FormControlError,
-  FormControlErrorIcon,
-  FormControlErrorText,
   Input,
   InputField,
   Radio,
@@ -58,8 +50,18 @@ import {
   AlertCircleIcon,
   ChevronDownIcon,
 } from '@gluestack-ui/themed';
+import {
+  FormControl,
+  FormControlLabel,
+  FormControlLabelText,
+  FormControlHelper,
+  FormControlHelperText,
+  FormControlError,
+  FormControlErrorIcon,
+  FormControlErrorText,
+} from '@/components/FormControl';
 
-const FormControlBasic = ({ colorMode, ...props }) => {
+const FormControlBasic = ({ colorMode, ...props }: any) => {
   let inputState = 'default';
   if (props.isInvalid) {
     inputState = 'isInvalid';
