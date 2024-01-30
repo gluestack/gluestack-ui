@@ -1,10 +1,6 @@
 import React from 'react';
 import {
   Text,
-  Slider,
-  SliderTrack,
-  SliderFilledTrack,
-  SliderThumb,
   VStack,
   HStack,
   Box,
@@ -15,6 +11,13 @@ import {
   Button,
   Center,
 } from '@gluestack-ui/themed';
+
+import {
+  Slider,
+  SliderTrack,
+  SliderFilledTrack,
+  SliderThumb,
+} from '@/components/Slider';
 
 import { Volume, Volume2Icon, LightbulbIcon } from 'lucide-react-native';
 
