@@ -1,8 +1,5 @@
 import React from 'react';
 import {
-  Alert,
-  AlertIcon,
-  AlertText,
   InfoIcon,
   CheckCircleIcon,
   CloseCircleIcon,
@@ -11,6 +8,8 @@ import {
   VStack,
   Icon,
 } from '@gluestack-ui/themed';
+
+import { Alert, AlertIcon, AlertText } from '@/components/Alert';
 
 const AlertBasic = ({ colorMode, ...props }: any) => {
   return (
