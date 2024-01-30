@@ -1,13 +1,13 @@
 import React from 'react';
 /* eslint-disable no-console */
+import { CircleIcon } from '@gluestack-ui/themed';
 import {
-  CircleIcon,
   Radio,
   RadioGroup,
   RadioIcon,
   RadioIndicator,
   RadioLabel,
-} from '@gluestack-ui/themed';
+} from '@/components/Radio';
 
 const RadioGroupBasic = ({
   size,

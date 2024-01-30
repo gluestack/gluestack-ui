@@ -1,6 +1,6 @@
 import type { ComponentMeta } from '@storybook/react-native';
 import Image from './Image';
-import ImageSizesStory from './ImageSizes';
+// import ImageSizesStory from './ImageSizes';
 
 const ImageMeta: ComponentMeta<typeof Image> = {
   title: 'stories/Image',
@@ -20,4 +20,4 @@ export default ImageMeta;
 
 export { Image };
 
-export { ImageSizesStory };
+// export { ImageSizesStory };

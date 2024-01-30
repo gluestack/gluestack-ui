@@ -2,11 +2,6 @@
 import React from 'react';
 import {
   Center,
-  Radio,
-  RadioGroup,
-  RadioIcon,
-  RadioIndicator,
-  RadioLabel,
   VStack,
   HStack,
   Box,
@@ -15,6 +10,13 @@ import {
   FormControl,
   CircleIcon,
 } from '@gluestack-ui/themed';
+import {
+  Radio,
+  RadioGroup,
+  RadioIcon,
+  RadioIndicator,
+  RadioLabel,
+} from '@/components/Radio';
 
 const RadioBasic = ({ ...props }: any) => {
   const [values, setValues] = React.useState('Label 1');

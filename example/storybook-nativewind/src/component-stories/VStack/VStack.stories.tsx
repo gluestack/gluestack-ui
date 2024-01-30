@@ -1,6 +1,6 @@
 import type { ComponentMeta } from '@storybook/react-native';
 import VStack from './VStack';
-import VStackReversedExample from './VStackReversed';
+// import VStackReversedExample from './VStackReversed';
 
 const VStackMeta: ComponentMeta<typeof VStack> = {
   title: 'stories/VStack',
@@ -23,4 +23,4 @@ const VStackMeta: ComponentMeta<typeof VStack> = {
 export default VStackMeta;
 
 export { VStack };
-export { VStackReversedExample };
+// export { VStackReversedExample };
