@@ -1,8 +1,8 @@
 import { styled } from '@gluestack-style/react';
-import { View } from 'react-native';
+import { TD } from '@expo/html-elements';
 
 export default styled(
-  View,
+  TD,
   {},
   {
     componentName: 'TableData',

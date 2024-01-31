@@ -43,7 +43,6 @@ const TableBasic = ({ ...props }) => {
                 <TableHeader>Cost</TableHeader>
               </TableRow>
             </TableHead>
-            {/* <ScrollView> */}
             <TableBody>
               <TableRow>
                 <TableData>Rajesh Kumar</TableData>
@@ -72,7 +71,6 @@ const TableBasic = ({ ...props }) => {
                 <TableData>$35</TableData>
               </TableRow>
             </TableBody>
-            {/* </ScrollView> */}
             <TableFooter>
               <TableRow>
                 <TableHeader>Total</TableHeader>

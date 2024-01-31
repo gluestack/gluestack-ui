@@ -10,7 +10,6 @@ import {
   ScrollView,
   Badge,
   BadgeText,
-  View,
 } from '@gluestack-ui/themed';
 import { Platform } from 'react-native';
 
@@ -29,7 +28,7 @@ const TableStripped = ({ ...props }) => {
       <ScrollView horizontal>
         <Table
           sx={{
-            width: 900,
+            width: 1000,
           }}
         >
           <TableHead
@@ -65,23 +64,15 @@ const TableStripped = ({ ...props }) => {
               <TableData>New Jersey</TableData>
               <TableData>$ 200</TableData>
               <TableData>
-                <View
-                  justifyContent="center"
-                  flex={1}
-                  width="100%"
-                  pl={Platform.OS === 'ios' ? 24 : 0}
+                <Badge
+                  size="lg"
+                  variant="solid"
+                  rborderRadius="$none"
+                  action="success"
+                  width={Platform.OS === 'web' ? 'fit-content' : '100%'}
                 >
-                  <Badge
-                    mt={Platform.OS === 'web' ? 0 : 8}
-                    size="lg"
-                    variant="solid"
-                    rborderRadius="$none"
-                    action="success"
-                    width={Platform.OS === 'web' ? 'fit-content' : '100%'}
-                  >
-                    <BadgeText>Completed</BadgeText>
-                  </Badge>
-                </View>
+                  <BadgeText>Completed</BadgeText>
+                </Badge>
               </TableData>
             </TableRow>
             <TableRow borderBottomWidth="$0">
@@ -91,23 +82,15 @@ const TableStripped = ({ ...props }) => {
               <TableData>Austin</TableData>
               <TableData>$ 150</TableData>
               <TableData>
-                <View
-                  justifyContent="center"
-                  flex={1}
-                  width="100%"
-                  pl={Platform.OS === 'ios' ? 24 : 0}
+                <Badge
+                  size="lg"
+                  variant="solid"
+                  rborderRadius="$none"
+                  action="info"
+                  width={Platform.OS === 'web' ? 'fit-content' : '100%'}
                 >
-                  <Badge
-                    mt={Platform.OS === 'web' ? 0 : 8}
-                    size="lg"
-                    variant="solid"
-                    rborderRadius="$none"
-                    action="info"
-                    width={Platform.OS === 'web' ? 'fit-content' : '100%'}
-                  >
-                    <BadgeText>Processing</BadgeText>
-                  </Badge>
-                </View>
+                  <BadgeText>Processing</BadgeText>
+                </Badge>
               </TableData>
             </TableRow>
             <TableRow
@@ -125,23 +108,15 @@ const TableStripped = ({ ...props }) => {
               <TableData>Seattle</TableData>
               <TableData>$ 215</TableData>
               <TableData>
-                <View
-                  justifyContent="center"
-                  flex={1}
-                  width="100%"
-                  pl={Platform.OS === 'ios' ? 24 : 0}
+                <Badge
+                  size="lg"
+                  variant="solid"
+                  rborderRadius="$none"
+                  action="warning"
+                  width={Platform.OS === 'web' ? 'fit-content' : '100%'}
                 >
-                  <Badge
-                    mt={Platform.OS === 'web' ? 0 : 8}
-                    size="lg"
-                    variant="solid"
-                    rborderRadius="$none"
-                    action="warning"
-                    width={Platform.OS === 'web' ? 'fit-content' : '100%'}
-                  >
-                    <BadgeText>Shipped</BadgeText>
-                  </Badge>
-                </View>
+                  <BadgeText>Shipped</BadgeText>
+                </Badge>
               </TableData>
             </TableRow>
             <TableRow borderBottomWidth="$0">
@@ -152,23 +127,15 @@ const TableStripped = ({ ...props }) => {
               <TableData>$ 88</TableData>
 
               <TableData>
-                <View
-                  justifyContent="center"
-                  flex={1}
-                  width="100%"
-                  pl={Platform.OS === 'ios' ? 24 : 0}
+                <Badge
+                  size="lg"
+                  variant="solid"
+                  rborderRadius="$none"
+                  action="info"
+                  width={Platform.OS === 'web' ? 'fit-content' : '100%'}
                 >
-                  <Badge
-                    mt={Platform.OS === 'web' ? 0 : 8}
-                    size="lg"
-                    variant="solid"
-                    rborderRadius="$none"
-                    action="info"
-                    width={Platform.OS === 'web' ? 'fit-content' : '100%'}
-                  >
-                    <BadgeText>Processing</BadgeText>
-                  </Badge>
-                </View>
+                  <BadgeText>Processing</BadgeText>
+                </Badge>
               </TableData>
             </TableRow>
             <TableRow
@@ -186,23 +153,15 @@ const TableStripped = ({ ...props }) => {
               <TableData>Seattle</TableData>
               <TableData>$ 115</TableData>
               <TableData>
-                <View
-                  justifyContent="center"
-                  flex={1}
-                  width="100%"
-                  pl={Platform.OS === 'ios' ? 24 : 0}
+                <Badge
+                  size="lg"
+                  variant="solid"
+                  rborderRadius="$none"
+                  action="success"
+                  width={Platform.OS === 'web' ? 'fit-content' : '100%'}
                 >
-                  <Badge
-                    mt={Platform.OS === 'web' ? 0 : 8}
-                    size="lg"
-                    variant="solid"
-                    rborderRadius="$none"
-                    action="success"
-                    width={Platform.OS === 'web' ? 'fit-content' : '100%'}
-                  >
-                    <BadgeText>Completed</BadgeText>
-                  </Badge>
-                </View>
+                  <BadgeText>Completed</BadgeText>
+                </Badge>
               </TableData>
             </TableRow>
             <TableRow borderBottomWidth="$0">
@@ -212,23 +171,15 @@ const TableStripped = ({ ...props }) => {
               <TableData>Seattle</TableData>
               <TableData>$ 115</TableData>
               <TableData>
-                <View
-                  justifyContent="center"
-                  flex={1}
-                  width="100%"
-                  pl={Platform.OS === 'ios' ? 24 : 0}
+                <Badge
+                  size="lg"
+                  variant="solid"
+                  rborderRadius="$none"
+                  action="success"
+                  width={Platform.OS === 'web' ? 'fit-content' : '100%'}
                 >
-                  <Badge
-                    mt={Platform.OS === 'web' ? 0 : 8}
-                    size="lg"
-                    variant="solid"
-                    rborderRadius="$none"
-                    action="success"
-                    width={Platform.OS === 'web' ? 'fit-content' : '100%'}
-                  >
-                    <BadgeText>Completed</BadgeText>
-                  </Badge>
-                </View>
+                  <BadgeText>Completed</BadgeText>
+                </Badge>
               </TableData>
             </TableRow>
           </TableBody>
