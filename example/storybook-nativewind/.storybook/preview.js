@@ -36,7 +36,7 @@ export const parameters = {
         'Core Concepts',
         ['Accessibility', 'Universal'],
         'Components',
-        ['Button', 'Box'],
+        ['Button', 'Box', 'Avatar'],
       ],
     },
   },
