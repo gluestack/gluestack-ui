@@ -158,6 +158,12 @@ const StyledIcon = styled(
   {
     ancestorStyle: ['_icon'],
     resolveProps: ['color'],
+  },
+  {
+    propertyTokenMap: {
+      stroke: 'colors',
+      fill: 'colors',
+    },
   }
 );
 

@@ -8,4 +8,4 @@ const InputAccessoryViewMeta: ComponentMeta<typeof ScrollView> = {
 
 export default InputAccessoryViewMeta;
 
-export { InputAccessoryView };
+// export { InputAccessoryView };

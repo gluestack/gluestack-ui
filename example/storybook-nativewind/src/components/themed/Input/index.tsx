@@ -308,7 +308,16 @@ const StyledIcon = styled(
       size: 'md',
     },
   },
-  { ancestorStyle: ['_icon'] }
+  {
+    resolveProps: ['stroke', 'fill'],
+    ancestorStyle: ['_icon'],
+  },
+  {
+    propertyTokenMap: {
+      stroke: 'colors',
+      fill: 'colors',
+    },
+  }
 );
 
 const StyledSlot = styled(

@@ -1,5 +1,5 @@
 import { styled } from '@gluestack-style/react';
-import { H4 } from '@expo/html-elements';
+import { H1, H2, H3, H4, H5, H6 } from '@expo/html-elements';
 
 const StyledRoot = styled(H4, {
   color: '$text900',
