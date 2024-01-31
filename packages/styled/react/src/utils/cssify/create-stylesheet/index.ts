@@ -17,7 +17,7 @@ const createStyleSheet = (
   Object.keys(stylesObject).map((key) => {
     if (!stylesObject?.[key]) return;
 
-    let { condition, colorMode, style, themeCondition } = stylesObject[key];
+    let { condition, colorMode, style, theme } = stylesObject[key];
 
     const mediaQuery = createQuery(condition);
 
@@ -28,12 +28,12 @@ const createStyleSheet = (
     const css = createDeclarationBlock(style);
 
     const themeCssObj = {} as any;
-    if (themeCondition) {
-      Object.keys(themeCondition).forEach((themeName) => {
-        const themeConditionValue = themeCondition[themeName];
-        themeCssObj[themeName] = createDeclarationBlock(themeConditionValue);
-      });
-    }
+    // if (themeCondition) {
+    //   Object.keys(themeCondition).forEach((themeName) => {
+    //     const themeConditionValue = themeCondition[themeName];
+    //     themeCssObj[themeName] = createDeclarationBlock(themeConditionValue);
+    //   });
+    // }
     // console.log(css, style, 'css', mediaQuery, 'mediaQuery', colorSchemeQuery);
 
     // const stringHash = `cssinjected-${hash(`${key}${css}`)}`;
@@ -48,7 +48,7 @@ const createStyleSheet = (
       prefixClassName,
       prefixColorMode,
       hasState,
-      themeCondition,
+      theme,
       themeCssObj
     );
 

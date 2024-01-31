@@ -8,6 +8,8 @@ node_modules
 # testing
 coverage
 
+logs/
+
 # next.js
 .next/
 .swc/

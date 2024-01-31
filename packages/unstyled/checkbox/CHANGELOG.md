@@ -1,5 +1,11 @@
 # @gluestack-ui/checkbox
 
+## 0.1.23
+
+### Patch Changes
+
+- `Checkbox` added typing of `isFocusVisible`.
+
 ## 0.1.17
 
 ### Patch Changes

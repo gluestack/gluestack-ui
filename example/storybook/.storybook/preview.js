@@ -1,5 +1,6 @@
 import { addParameters } from '@storybook/client-api';
 import { DocsContainer } from '@storybook/addon-docs/blocks';
+// import { config } from '../src/styled/components/nb.config';
 import { config } from '@gluestack-ui/config';
 import { Center, GluestackUIProvider } from '@gluestack-ui/themed';
 import { useState } from 'react';
@@ -88,10 +89,15 @@ export const parameters = {
         [
           'FlatList',
           'ScrollView',
+          'SafeAreaView',
+          'VirtualizedList',
           'View',
           'KeyboardAvoidingView',
           'SectionList',
           'StatusBar',
+          'Refresh Control',
+          'ImageBackground',
+          'InputAccessoryView',
         ],
         'Hooks',
         [
@@ -100,6 +106,8 @@ export const parameters = {
           'useBreakpointValue',
           'useMedia',
           'useColorMode',
+          'useStyled',
+          'useTheme',
         ],
         'Production Optimizations',
         ['With a Babel Plugin'],
@@ -115,7 +123,7 @@ export const parameters = {
         'Advanced',
         ['Fonts', 'Animations'],
         'Recipes',
-        ['Card', 'LinearGradient'],
+        ['Card', 'LinearGradient', 'More Recipes'],
         'Resources',
         ['Todo-List', 'Dashboard App', 'Third Party Library Integrations'],
         'Migration',
@@ -149,11 +157,7 @@ export const decorators = [
       }
     }
     return (
-      <GluestackUIProvider
-        config={config}
-        // colorMode={getColorMode()}
-        // components={components}
-      >
+      <GluestackUIProvider config={config} colorMode={getColorMode()}>
         <Center>
           <Story />
         </Center>

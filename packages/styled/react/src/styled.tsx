@@ -1,16 +1,21 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useContext, useEffect, useMemo, useRef, useState } from 'react';
+import React, {
+  ForwardRefExoticComponent,
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 
 import type {
   OrderedSXResolved,
   StyleIds,
-  ComponentProps,
   IVerbosedTheme,
   ITheme,
   ExtendedConfigType,
   IComponentStyleConfig,
-  StyledConfig,
-  UtilityProps,
+  StyledComponentProps,
 } from './types';
 import {
   deepMerge,
@@ -35,6 +40,7 @@ import { styledResolvedToOrderedSXResolved } from './resolver/orderedResolved';
 import { styledToStyledResolved } from './resolver/styledResolved';
 import { getStyleIds } from './resolver/getStyleIds';
 import { injectComponentAndDescendantStyles } from './resolver/injectComponentAndDescendantStyles';
+import { resolvePlatformTheme } from './utils';
 
 import {
   convertStyledToStyledVerbosed,
@@ -48,6 +54,9 @@ import {
 } from './core/styled-system';
 import { updateOrderUnResolvedMap } from './updateOrderUnResolvedMap';
 import { resolveComponentTheme } from './createConfig';
+
+// Create a caching object
+let sxMemoizationCache: any = {};
 
 const styledSystemProps = { ...CSSPropertiesMap };
 
@@ -87,7 +96,7 @@ function flattenObject(obj: any = {}) {
 function convertUtiltiyToSXFromProps(
   componentProps: any,
   styledSystemProps: any,
-  componentStyleConfig: IComponentStyleConfig,
+  componentStyleConfig: IComponentStyleConfig & { uniqueComponentId: string },
   reservedKeys: any = _reservedKeys,
   plugins: any[] = [],
   ignoreKeys: Set<any> = new Set(),
@@ -110,17 +119,19 @@ function convertUtiltiyToSXFromProps(
 
   if (plugins) {
     for (const pluginName in plugins) {
-      // @ts-ignore
-      [resolvedSxVerbose, , , , sxIgnoreKeys] = plugins[
-        pluginName
-      ]?.inputMiddleWare(
-        resolvedSxVerbose,
-        true,
-        false,
-        Component,
-        componentStyleConfig,
-        ExtendedConfig
-      );
+      if (plugins[pluginName]?.inputMiddleWare) {
+        // @ts-ignore
+        [resolvedSxVerbose, , , , sxIgnoreKeys] = plugins[
+          pluginName
+        ]?.inputMiddleWare(
+          resolvedSxVerbose,
+          true,
+          false,
+          Component,
+          componentStyleConfig,
+          ExtendedConfig
+        );
+      }
     }
 
     sxIgnoreKeys?.forEach((element) => {
@@ -692,32 +703,6 @@ function mergeArraysInObjects(...objects: any) {
   return merged;
 }
 
-export function resolvePlatformTheme(theme: any, platform: any) {
-  if (typeof theme === 'object') {
-    Object.keys(theme).forEach((themeKey) => {
-      if (themeKey !== 'style' && themeKey !== 'defaultProps') {
-        if (theme[themeKey].platform) {
-          let temp = { ...theme[themeKey] };
-          theme[themeKey] = deepMerge(temp, theme[themeKey].platform[platform]);
-          delete theme[themeKey].platform;
-          resolvePlatformTheme(theme[themeKey], platform);
-        } else if (themeKey === 'queries') {
-          theme[themeKey].forEach((query: any) => {
-            if (query.value.platform) {
-              let temp = { ...query.value };
-              query.value = deepMerge(temp, query.value.platform[platform]);
-              delete query.value.platform;
-            }
-            resolvePlatformTheme(query.value, platform);
-          });
-        } else {
-          resolvePlatformTheme(theme[themeKey], platform);
-        }
-      }
-    });
-  }
-}
-
 export function getVariantProps(
   props: any,
   theme: any,
@@ -760,6 +745,7 @@ function resolveInlineProps(
   CONFIG: any
 ) {
   let resolvedInlineProps = {};
+
   if (
     componentStyleConfig.resolveProps &&
     Object.keys(componentExtendedConfig).length > 0
@@ -782,9 +768,11 @@ function resolveInlineProps(
                 CONFIG,
                 CONFIG.propertyTokenMap,
                 toBeResovledProp,
-                scale
+                scale,
+                Platform.OS !== 'web'
               )
           );
+
           //@ts-ignore
           resolvedInlineProps[toBeResovledProp] = token;
         } else {
@@ -794,7 +782,8 @@ function resolveInlineProps(
               componentExtendedConfig,
               props,
               toBeResovledProp,
-              props[toBeResovledProp]
+              props[toBeResovledProp],
+              Platform.OS !== 'web'
             );
         }
         delete props[toBeResovledProp];
@@ -942,9 +931,31 @@ export function verboseStyled<P, Variants, ComCon>(
     inlineStyleMap?: any,
     ignoreKeys: Set<any> = new Set()
   ) {
+    const sxHash = stableHash(sx);
+
+    const memoizationKey = sxHash + type;
+    // Check if the result is already in the cache
+    if (sxMemoizationCache[memoizationKey]) {
+      injectComponentAndDescendantStyles(
+        sxMemoizationCache[memoizationKey],
+        sxHash,
+        type,
+        GluestackStyleSheet,
+        Platform.OS,
+        inlineStyleMap,
+        ignoreKeys,
+        CONFIG
+      );
+
+      return sxMemoizationCache[memoizationKey];
+    }
+
     const inlineSxTheme = {
       baseStyle: sx,
     };
+
+    // if (Platform.OS === '')
+    // console.log(sxHash, GluestackStyleSheet.getStyleMap(), 'hash here');
 
     resolvePlatformTheme(inlineSxTheme, Platform.OS);
     const sxStyledResolved = styledToStyledResolved(
@@ -983,11 +994,10 @@ export function verboseStyled<P, Variants, ComCon>(
       );
     }
 
-    const sxHash = stableHash(sx);
+    // const sxHash = stableHash(sx);
 
     const orderedSXResolved =
       styledResolvedToOrderedSXResolved(sxStyledResolved);
-
     INTERNAL_updateCSSStyleInOrderedResolved(
       orderedSXResolved,
       sxHash,
@@ -1002,8 +1012,11 @@ export function verboseStyled<P, Variants, ComCon>(
       GluestackStyleSheet,
       Platform.OS,
       inlineStyleMap,
-      ignoreKeys
+      ignoreKeys,
+      CONFIG
     );
+
+    sxMemoizationCache[memoizationKey] = orderedSXResolved;
 
     return orderedSXResolved;
   }
@@ -1018,6 +1031,8 @@ export function verboseStyled<P, Variants, ComCon>(
     componentStyleConfig?.descendantStyle &&
     componentStyleConfig?.descendantStyle?.length > 0;
 
+  let uniqueComponentId = '';
+
   const StyledComponent = (
     {
       //@ts-ignore
@@ -1029,17 +1044,15 @@ export function verboseStyled<P, Variants, ComCon>(
       // styledIds: BUILD_TIME_STYLE_IDS = [],
       // sxHash: BUILD_TIME_sxHash = '',
       ...componentProps
-    }: Omit<
-      Omit<P, keyof Variants> &
-        Partial<ComponentProps<ITypeReactNativeStyles, Variants, P, ComCon>> &
-        Partial<UtilityProps<ITypeReactNativeStyles, Variants, P>> & {
-          as?: any;
-        },
-      'animationComponentGluestack'
-    >,
+    }: any,
     ref: React.ForwardedRef<P>
   ) => {
     const isClient = React.useRef(false);
+    const GluestackComponent = useRef(Component);
+
+    if (uniqueComponentId === '') {
+      uniqueComponentId = componentHash;
+    }
 
     let ignoreKeys: Set<any> = new Set();
 
@@ -1058,7 +1071,7 @@ export function verboseStyled<P, Variants, ComCon>(
 
     const styledContext = useStyled();
 
-    const { theme: activeTheme } = useTheme();
+    const { themes: activeThemes } = useTheme();
 
     const ancestorStyleContext = useContext(AncestorStyleContext);
     let incomingComponentProps = {};
@@ -1073,6 +1086,8 @@ export function verboseStyled<P, Variants, ComCon>(
       : get();
 
     if (!styleHashCreated) {
+      // eslint-disable-next-line react-hooks/rules-of-hooks
+
       CONFIG = {
         ...styledContext.config,
         propertyTokenMap,
@@ -1100,11 +1115,40 @@ export function verboseStyled<P, Variants, ComCon>(
 
       let componentExtendedTheme = {};
 
+      nonVerbosedTheme = deepMerge(nonVerbosedTheme, EXTENDED_THEME?.theme);
+
+      if (CONFIG.plugins) {
+        plugins.push(...CONFIG.plugins);
+      }
+      if (ExtendedConfig?.plugins) {
+        plugins.push(...ExtendedConfig?.plugins);
+      }
+
+      if (plugins) {
+        for (const pluginName in plugins) {
+          let themeIgnoreKeys = new Set();
+          if (plugins[pluginName]?.inputMiddleWare) {
+            // @ts-ignore
+            [nonVerbosedTheme, , , , themeIgnoreKeys] = plugins[
+              pluginName
+            ]?.inputMiddleWare<P>(
+              nonVerbosedTheme,
+              true,
+              true,
+              componentProps?.as ?? Component,
+              { ...componentStyleConfig, uniqueComponentId },
+              ExtendedConfig
+            );
+          }
+          themeIgnoreKeys?.forEach((ele) => {
+            ignoreKeys.add(ele);
+          });
+        }
+      }
+
       // Injecting style
       if (EXTENDED_THEME) {
         // RUN Middlewares
-
-        nonVerbosedTheme = deepMerge(nonVerbosedTheme, EXTENDED_THEME.theme);
 
         const resolvedComponentExtendedTheme = resolveComponentTheme(
           CONFIG,
@@ -1136,39 +1180,15 @@ export function verboseStyled<P, Variants, ComCon>(
           const extendedStylesToBeInjected = GluestackStyleSheet.resolve(
             resolvedComponentExtendedTheme?.styledIds,
             CONFIG,
-            componentExtendedConfig
+            componentExtendedConfig,
+            true,
+            'extended',
+            ignoreKeys
           );
           GluestackStyleSheet.inject(
             extendedStylesToBeInjected,
             styledContext.inlineStyleMap
           );
-        }
-      }
-
-      if (CONFIG.plugins) {
-        plugins.push(...CONFIG.plugins);
-      }
-      if (ExtendedConfig?.plugins) {
-        plugins.push(...ExtendedConfig?.plugins);
-      }
-
-      if (plugins) {
-        for (const pluginName in plugins) {
-          let themeIgnoreKeys = new Set();
-          // @ts-ignore
-          [nonVerbosedTheme, , , , themeIgnoreKeys] = plugins[
-            pluginName
-          ]?.inputMiddleWare<P>(
-            nonVerbosedTheme,
-            true,
-            true,
-            componentProps?.as ?? Component,
-            componentStyleConfig,
-            ExtendedConfig
-          );
-          themeIgnoreKeys?.forEach((ele) => {
-            ignoreKeys.add(ele);
-          });
         }
       }
 
@@ -1473,7 +1493,7 @@ export function verboseStyled<P, Variants, ComCon>(
         //   defaultThemePropsWithoutVariants,
         inlineComponentPropsWithoutVariants,
         styledSystemProps,
-        componentStyleConfig,
+        { ...componentStyleConfig, uniqueComponentId },
         reservedKeys,
         plugins,
         ignoreKeys,
@@ -1490,7 +1510,7 @@ export function verboseStyled<P, Variants, ComCon>(
       convertUtiltiyToSXFromProps(
         mergedPassingProps,
         styledSystemProps,
-        componentStyleConfig,
+        { ...componentStyleConfig, uniqueComponentId },
         reservedKeys,
         plugins,
         ignoreKeys,
@@ -1711,7 +1731,7 @@ export function verboseStyled<P, Variants, ComCon>(
         } = convertUtiltiyToSXFromProps(
           passingPropsUpdated,
           styledSystemProps,
-          componentStyleConfig,
+          { ...componentStyleConfig, uniqueComponentId },
           reservedKeys,
           plugins,
           ignoreKeys,
@@ -2002,7 +2022,7 @@ export function verboseStyled<P, Variants, ComCon>(
       applyComponentInlineProps,
       styleCSSIds,
       CONFIG,
-      activeTheme,
+      activeThemes,
       componentConfig
     );
 
@@ -2034,7 +2054,10 @@ export function verboseStyled<P, Variants, ComCon>(
               AsComp = plugins[pluginName]?.componentMiddleWare({
                 Component: AsComp,
                 theme,
-                componentStyleConfig,
+                componentStyleConfig: {
+                  ...componentStyleConfig,
+                  uniqueComponentId,
+                },
                 ExtendedConfig,
                 styleCSSIds,
                 GluestackStyleSheet,
@@ -2048,23 +2071,31 @@ export function verboseStyled<P, Variants, ComCon>(
             // @ts-ignore
             if (plugins[pluginName]?.componentMiddleWare) {
               // @ts-ignore
-              Component = plugins[pluginName]?.componentMiddleWare({
-                Component: Component,
+              GluestackComponent.current = plugins[
+                pluginName
+              ]?.componentMiddleWare({
+                Component: GluestackComponent.current,
                 theme,
-                componentStyleConfig,
+                componentStyleConfig: {
+                  ...componentStyleConfig,
+                  uniqueComponentId,
+                },
                 ExtendedConfig,
                 styleCSSIds,
                 GluestackStyleSheet,
               });
 
-              //@ts-ignore
-              pluginData = { ...pluginData, ...Component?.styled };
+              pluginData = {
+                ...pluginData,
+                //@ts-ignore
+                ...GluestackComponent?.current?.styled,
+              };
             }
           }
         }
       }
       return {
-        Component: Component,
+        Component: GluestackComponent.current,
         AsComp: AsComp,
       };
     }, [AsComp]);
@@ -2149,12 +2180,14 @@ export function verboseStyled<P, Variants, ComCon>(
   //@ts-ignore
   StyledComp.isStyledComponent = true;
 
-  return StyledComp as typeof StyledComp & { styledConfig?: StyledConfig };
+  return StyledComp as ForwardRefExoticComponent<
+    StyledComponentProps<ITypeReactNativeStyles, Variants, P, ComCon>
+  >;
 }
 
 export function styled<P, Variants, ComCon>(
   Component: React.ComponentType<P>,
-  theme: ITheme<Variants, P>,
+  theme: ITheme<Variants, P> = {},
   componentStyleConfig?: IComponentStyleConfig<ComCon>,
   ExtendedConfig?: ExtendedConfigType,
   BUILD_TIME_PARAMS?: {

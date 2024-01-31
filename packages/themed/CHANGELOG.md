@@ -1,5 +1,89 @@
 # @gluestack-ui/themed
 
+## 1.1.2
+
+### Patch Changes
+
+- - Fixed InputAccessoryView for web
+
+## 1.1.1
+
+### Patch Changes
+
+- Fixed InputAccessoryView `backgroundColor` tokenization.
+- Remove creator for `LinearGradient`
+- Updated dependencies
+  - @gluestack-style/animation-resolver@1.0.4
+  - @gluestack-style/react@1.0.44
+
+## 1.1.0
+
+### Minor Changes
+
+- `Select` deprecated `selectedLabel`. use `initialLabel` instead.
+- `Checkbox` added typing of `isFocusVisible`.
+- `Radio` added typing of `isIndeterminate`.
+- `Switch` added typing of `isFocusVisible` and `isIndeterminate`.
+- `Toast` issue [#1543](https://github.com/gluestack/gluestack-ui/issues/1543).
+- removed `direction` prop from `ButtonGroup` use `flexDirection` instead.
+- `Menu` fixed `closeOnSelect` onPress issue.
+
+- Updated dependencies
+  - @gluestack-ui/button@1.0.0
+  - @gluestack-ui/checkbox@0.1.23
+  - @gluestack-ui/select@0.1.22
+  - @gluestack-ui/switch@0.1.18
+  - @gluestack-ui/radio@0.1.24
+  - @gluestack-ui/toast@1.0.4
+  - @gluestack-ui/menu@0.2.27
+
+## 1.0.40
+
+### Patch Changes
+
+- - SafeAreaView
+  - InputAccessoryView
+
+## 1.0.39
+
+### Patch Changes
+
+- - SaferAreaView
+  - InputAccessoryView
+
+## 1.0.38
+
+### Patch Changes
+
+- - Popover arrow support [PR](https://github.com/gluestack/gluestack-ui/pull/1677)
+  - Popover animation improvements
+
+  - Popover top placement position for mobile
+
+- Updated dependencies
+  - @gluestack-ui/popover@0.1.29
+
+## 1.0.37
+
+### Patch Changes
+
+- Exported ImageBackground, RefreshControl and VirtualizedList
+
+## 1.0.36
+
+### Patch Changes
+
+- Updated dependencies
+  - `@gluestack-style/react@1.0.40`
+
+## 1.0.35
+
+### Patch Changes
+
+- Fix
+- Updated dependencies
+  - @gluestack-style/react@1.0.32
+
 ## 1.0.34
 
 ### Patch Changes

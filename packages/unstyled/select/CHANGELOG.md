@@ -1,5 +1,11 @@
 # @gluestack-ui/select
 
+## 0.1.22
+
+### Patch Changes
+
+- `Select` deprecated `selectedLabel`. use `initialLabel` instead.
+
 ## 0.1.21
 
 ### Patch Changes

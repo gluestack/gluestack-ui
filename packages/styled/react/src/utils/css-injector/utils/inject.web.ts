@@ -139,23 +139,20 @@ export const injectCss = (
 
       if (!style) {
         style = createStyle(styleTagId, css);
-        // console.log(inlineStyleMap, 'append child here >>>>>');
-        if (inlineStyleMap) {
-          if (!inlineStyleMap?.initialStyleInjected) {
-            const styleMapId = `${WRAPPER_BLOCK_PREFIX}-${wrapperType}`;
-            const inlineMapStyles = inlineStyleMap[styleMapId];
+        if (inlineStyleMap && !inlineStyleMap?.initialStyleInjected) {
+          const styleMapId = `${WRAPPER_BLOCK_PREFIX}-${wrapperType}`;
+          const inlineMapStyles = inlineStyleMap[styleMapId];
 
-            if (inlineMapStyles) {
-              inlineMapStyles[id] = style;
-            } else {
-              inlineStyleMap[styleMapId] = [];
-              inlineStyleMap[styleMapId][id] = style;
-            }
-            // console.log('hello here >>>> there');
+          if (inlineMapStyles) {
+            inlineMapStyles[id] = style;
           } else {
-            // console.log('hello here >>>>');
-            wrapperElement.appendChild(style);
+            inlineStyleMap[styleMapId] = [];
+            inlineStyleMap[styleMapId][id] = style;
           }
+          // console.log('hello here >>>> there');
+        } else {
+          // console.log('hello here >>>>');
+          wrapperElement.appendChild(style);
         }
       }
     }

@@ -124,8 +124,8 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
       argsType: {
         name: {
           control: 'select',
-          options: ['2000s', '2010s', '2020s'],
-          default: '2000s',
+          options: ['classic', 'modern', 'latest'],
+          default: 'classic',
         },
       },
     }}
@@ -162,14 +162,14 @@ export const config = createConfig({
   themes: {
     classic: {
       colors: {
-        $primary: '$colors.$brown400',
-        $secondary: '$colors.$brown100',
+        primary: '$colors$brown400',
+        secondary: '$colors$brown100',
       },
     },
     modern: {
       colors: {
-        $primary: '$colors.$red400',
-        $secondary: '$colors.$red100',
+        primary: '$colors$red400',
+        secondary: '$colors$red100',
       },
     },
   },
@@ -196,6 +196,45 @@ const Button = styled(Pressable, {
 
 const ButtonText = styled(Pressable, {
   color: '$secondary',
+});
+
+export const App = () => {
+  return (
+    <StyledProvider config={config}>
+      <Theme theme="classic">
+        <Button>
+          <ButtonText>Classic Button</ButtonText>
+        </Button>
+      </Theme>
+    </StyledProvider>
+  );
+};
+```
+
+> Note: Theme name should always be a string. 
+
+### Theme specific style
+
+You can apply theme-specific styling by using the . prefix with the theme name. This API is supported in both `styled()` and the `sx` prop.
+
+```tsx
+import { styled, StyledProvider, Theme } from '@gluestack-style/react';
+import { Pressable } from 'react-native';
+import { config } from './config';
+
+const Button = styled(Pressable, {
+  backgroundColor: '$primary',
+  padding: '$3',
+  '.classic': {
+    backgroundColor: '$secondary'
+  }
+});
+
+const ButtonText = styled(Pressable, {
+  color: '$secondary',
+  '.classic': {
+    color: '$primary'
+  }
 });
 
 export const App = () => {

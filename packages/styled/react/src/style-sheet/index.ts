@@ -1,13 +1,52 @@
-import { StyledValueToCSSObject } from '../resolver';
+import {
+  StyledValueToCSSObject,
+  themeStyledValueToCSSObject,
+} from '../resolver/StyledValueToCSSObject';
 import type { OrderedSXResolved } from '../types';
 import { getCSSIdAndRuleset } from '../updateCSSStyleInOrderedResolved.web';
 import {
+  convertFromUnicodeString,
   deepMerge,
   resolveTokensFromConfig,
-  addThemeConditionInMeta,
 } from '../utils';
 import { inject } from '../utils/css-injector';
 export type DeclarationType = 'boot' | 'forwarded';
+
+const cssVariableRegex = /var\(--([^)]+)\)/;
+
+function getTokenValueFromTokenPath(tokenPath: string, tokens: any) {
+  const tokenPathArray = tokenPath.split('-');
+  let tokenValue = tokens;
+  tokenPathArray.forEach((tokenPathKey: string) => {
+    tokenValue = tokenValue?.[tokenPathKey];
+  });
+  return tokenValue;
+}
+
+function extractVariable(input: string) {
+  if (typeof input !== 'string') return null;
+  const match = input.match(cssVariableRegex);
+  return match ? match[1] : null;
+}
+
+function getNativeValuesFromCSSVariables(styleObject: any, CONFIG: any) {
+  const resolvedNativeValues: any = {};
+
+  Object.keys(styleObject).forEach((key) => {
+    const hyphenatedTokenPath = convertFromUnicodeString(
+      extractVariable(styleObject[key])
+    );
+
+    if (!hyphenatedTokenPath) {
+      resolvedNativeValues[key] = styleObject[key];
+    } else {
+      const val = getTokenValueFromTokenPath(hyphenatedTokenPath, CONFIG);
+      resolvedNativeValues[key] = val;
+    }
+  });
+  return resolvedNativeValues;
+}
+
 export class StyleInjector {
   #globalStyleMap: any;
   #toBeInjectedIdsArray: Array<string>;
@@ -98,10 +137,28 @@ export class StyleInjector {
           });
         }
 
+        const resolvedNativeValue = getNativeValuesFromCSSVariables(
+          styledResolved?.resolved,
+          CONFIG?.tokens
+        );
+
+        const resolvedThemeNativeValue: any = {};
+
+        Object.keys(styledResolved?.themeResolved).forEach((key) => {
+          const currentThemeStyleObj = styledResolved?.themeResolved[key];
+          const resolvedCurrentThemeNativeValue =
+            getNativeValuesFromCSSVariables(
+              currentThemeStyleObj,
+              CONFIG?.themes?.[key]
+            );
+          resolvedThemeNativeValue[key] = resolvedCurrentThemeNativeValue;
+        });
+
         if (styledResolved) {
           this.#globalStyleMap.set(styledResolved.meta.cssId, {
             ...styledResolved,
-            value: styledResolved?.resolved,
+            resolved: resolvedNativeValue,
+            themeResolved: resolvedThemeNativeValue,
           });
         }
       }
@@ -115,6 +172,8 @@ export class StyleInjector {
 
     orderResolvedStyleMap.forEach((styledResolved: any) => {
       this.#globalStyleMap.set(styledResolved.meta.cssId, styledResolved);
+
+      this.#idCounter++;
 
       this.#toBeInjectedIdsArray.push(styledResolved.meta.cssId);
 
@@ -167,22 +226,23 @@ export class StyleInjector {
       componentExtendedConfig,
       ignoreKeys
     );
-    addThemeConditionInMeta(componentTheme, CONFIG);
+    componentTheme.themeResolved = themeStyledValueToCSSObject(
+      theme,
+      componentExtendedConfig,
+      ignoreKeys
+    );
 
+    // addThemeConditionInMeta(componentTheme, CONFIG);
     // delete componentTheme.meta.cssRuleset;
 
     if (componentTheme.meta && componentTheme.meta.queryCondition) {
-      // console.log(
-      //   JSON.parse(JSON.stringify(CONFIG)),
-      //   componentTheme.meta,
-      //   componentTheme.meta.queryCondition
-      // );
-
-      const queryCondition = resolveTokensFromConfig(CONFIG, {
-        condition: componentTheme.meta.queryCondition,
-      })?.condition;
-      // console.log(JSON.parse(JSON.stringify(CONFIG)), queryCondition);
-
+      const queryCondition = resolveTokensFromConfig(
+        CONFIG,
+        {
+          condition: componentTheme.meta.queryCondition,
+        },
+        true
+      )?.condition;
       componentTheme.meta.queryCondition = queryCondition;
     }
 

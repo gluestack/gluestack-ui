@@ -12,28 +12,47 @@ const getSxPropsPathFromProp = (
   let isInvalidPropString = false;
 
   const propToBeApplied = propsPath.pop();
+  // let themeName: any = '';
 
   const gsConvertedPropsPath: Array<any> = [];
 
+  // if (propsPath[0] === 'theme') {
+  //   propsPath.shift();
+  //   themeName = propsPath.shift();
+  // }
+
   propsPath.forEach((prop: string) => {
-    if (reservedKeys[prop]) {
-      const isMediaQuery = reservedKeys[prop]?.isMediaQuery;
-      if (isMediaQuery) {
-        if (!responsiveProp) {
-          responsiveProp = reservedKeys[prop].key;
-        } else {
-          isInvalidPropString = true;
-          console.warn(`${propString} is invalid property.`);
-          return;
-        }
+    if (prop.startsWith('t_')) {
+      const match = prop.match(/_(.+)/);
+
+      const result = match ? match[1] : null;
+      if (result) {
+        gsConvertedPropsPath.push(`.${result}`);
       } else {
-        gsConvertedPropsPath.push(reservedKeys[prop].key);
+        isInvalidPropString = true;
+        console.warn(`${propString} is invalid property.`);
+        return;
       }
-    } else if (prop.startsWith('_') || descendants.includes(prop)) {
-      gsConvertedPropsPath.push(prop);
     } else {
-      console.warn(`${propString} is invalid property.`);
-      isInvalidPropString = true;
+      if (reservedKeys[prop]) {
+        const isMediaQuery = reservedKeys[prop]?.isMediaQuery;
+        if (isMediaQuery) {
+          if (!responsiveProp) {
+            responsiveProp = reservedKeys[prop].key;
+          } else {
+            isInvalidPropString = true;
+            console.warn(`${propString} is invalid property.`);
+            return;
+          }
+        } else {
+          gsConvertedPropsPath.push(reservedKeys[prop].key);
+        }
+      } else if (prop.startsWith('_') || descendants.includes(prop)) {
+        gsConvertedPropsPath.push(prop);
+      } else {
+        console.warn(`${propString} is invalid property.`);
+        isInvalidPropString = true;
+      }
     }
   });
 
@@ -41,6 +60,9 @@ const getSxPropsPathFromProp = (
     if (responsiveProp) {
       gsConvertedPropsPath.unshift(responsiveProp);
     }
+    // else if (themeName) {
+    //   gsConvertedPropsPath.unshift(`.${themeName}`);
+    // }
     gsConvertedPropsPath.push(propToBeApplied);
   }
 

@@ -1,5 +1,11 @@
 # @gluestack-ui/radio
 
+## 0.1.24
+
+### Patch Changes
+
+- `Radio` added typing of `isIndeterminate`.
+
 ## 0.1.18
 
 ### Patch Changes

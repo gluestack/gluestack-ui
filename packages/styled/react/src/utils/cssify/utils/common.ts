@@ -105,7 +105,7 @@ const createCssRule = (
   prefixColorMode: string,
   hasState: boolean,
   themeCondition: any,
-  themeCssObj: any
+  _themeCssObj?: any
 ) => {
   const dataMediaSelector = `[data-${dataType}~="${stringHash}"]`;
   const stateRulePrefix = hasState ? '.gs' : '';
@@ -116,29 +116,53 @@ const createCssRule = (
 
   const inlineAndStatePrefix = `${inlineRulePrefix}${stateRulePrefix}`;
   let rule = ``;
-  if (isMedia(mediaQuery) && isColorScheme(colorSchemeQuery)) {
+
+  const themeConditionArray = themeCondition ? themeCondition.split('.') : [];
+  let themeDataIds = ' ';
+  themeConditionArray.forEach((themeName: any) => {
+    themeDataIds += `:where([data-theme-id~="${themeName}"]) `;
+  });
+
+  if (
+    isMedia(mediaQuery) &&
+    isColorScheme(colorSchemeQuery) &&
+    themeCondition
+  ) {
+    rule = `${mediaQuery} {${mediaQueryPrefix}${inlineAndStatePrefix}${colorModeRulePrefix} ${themeDataIds} ${dataMediaSelector} ${css}}`;
+  }
+  if (isMedia(mediaQuery) && themeCondition) {
+    rule = `${mediaQuery} {${mediaQueryPrefix}${inlineAndStatePrefix}${colorModeRulePrefix} ${themeDataIds} ${dataMediaSelector} ${css}}`;
+  } else if (isMedia(mediaQuery) && isColorScheme(colorSchemeQuery)) {
     rule = `${mediaQuery} {${mediaQueryPrefix}${inlineAndStatePrefix}${colorModeRulePrefix} ${dataMediaSelector} ${css}}`;
   } else if (isMedia(mediaQuery)) {
     rule = `${mediaQuery} {${mediaQueryPrefix}${inlineAndStatePrefix} ${dataMediaSelector} ${css}}`;
+  } else if (isColorScheme(colorSchemeQuery) && themeCondition) {
+    rule = `${inlineAndStatePrefix}${colorModeRulePrefix} ${themeDataIds} ${dataMediaSelector} ${css}`;
   } else if (isColorScheme(colorSchemeQuery)) {
     rule = `${inlineAndStatePrefix}${colorModeRulePrefix} ${dataMediaSelector} ${css}`;
+  } else if (themeCondition) {
+    rule = `${inlineAndStatePrefix} ${themeDataIds} ${dataMediaSelector} ${css}`;
+    // rule = ` \n${themeConditionString}\n ${rule} `;
   } else {
     rule = `${inlineAndStatePrefix} ${dataMediaSelector}${mediaQuery} ${css}`;
   }
 
-  if (themeCondition) {
-    const themeConditionString = Object.keys(themeCondition)
-      .map((themeName) => {
-        return `
-        [data-theme-id~="${themeName}"] ${dataMediaSelector} ${themeCssObj[themeName]}
-        ${inlineAndStatePrefix} [data-theme-id~="${themeName}"] ${dataMediaSelector} ${themeCssObj[themeName]}
-        ${colorModeRulePrefix}${inlineAndStatePrefix} [data-theme-id~="${themeName}"] ${dataMediaSelector} ${themeCssObj[themeName]}
-        `;
-      })
-      .join('\n');
-    // themeCondition is of higher specificity than the rest of the rules
-    rule = ` \n${themeConditionString}\n ${rule} `;
-  }
+  // if (themeCondition) {
+  //   // const themeConditionString = Object.keys(themeCondition)
+  //   //   .map((themeName) => {
+  //   //     return `
+  //   //     [data-theme-id~="${themeName}"] ${dataMediaSelector} ${themeCssObj[themeName]}
+  //   //     ${inlineAndStatePrefix} [data-theme-id~="${themeName}"] ${dataMediaSelector} ${themeCssObj[themeName]}
+  //   //     ${colorModeRulePrefix}${inlineAndStatePrefix} [data-theme-id~="${themeName}"] ${dataMediaSelector} ${themeCssObj[themeName]}
+  //   //     `;
+  //   //   })
+  //   //   .join('\n');
+  //   // themeCondition is of higher specificity than the rest of the rules
+  //   const themeConditionString = `[data-theme-id~="${themeCondition}"]  ${dataMediaSelector} ${css}`;
+
+  //   console.log(themeConditionString, '>>>>');
+  //   // rule = ` \n${themeConditionString}\n ${rule} `;
+  // }
   return rule;
 };
 
