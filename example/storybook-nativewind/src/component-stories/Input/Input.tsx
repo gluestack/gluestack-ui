@@ -1,20 +1,17 @@
 import React from 'react';
 import {
-  Input,
-  InputField,
-  InputIcon,
-  InputSlot,
-  Center,
   Button,
   ButtonText,
   Box,
-  VStack,
-  Text,
   Heading,
   Icon,
   SearchIcon,
   FormControl,
 } from '@gluestack-ui/themed';
+import { Input, InputField, InputIcon, InputSlot } from '@/components/Input';
+import { Center } from '@/components/Center';
+import { VStack } from '@/components/VStack';
+import { Text } from '@/components/Text';
 import { EyeIcon, EyeOffIcon } from 'lucide-react-native';
 import { useState } from 'react';
 

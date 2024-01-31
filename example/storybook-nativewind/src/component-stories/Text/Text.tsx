@@ -1,5 +1,6 @@
 import React from 'react';
-import { Text, Center } from '@gluestack-ui/themed';
+import { Center } from '@gluestack-ui/themed';
+import { Text } from '@/components/Text';
 
 const TextBasic = ({
   size = 'md',

@@ -23,6 +23,7 @@ import {
   MenuItemLabel,
   GlobeIcon,
 } from '@gluestack-ui/themed';
+import { Badge, BadgeText, BadgeIcon } from '@/components/Badge';
 import {
   PaintBucket,
   PuzzleIcon,

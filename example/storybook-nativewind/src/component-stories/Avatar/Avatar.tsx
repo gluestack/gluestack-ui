@@ -1,17 +1,13 @@
 import React from 'react';
 
+import { VStack, HStack, Icon, Heading, Text } from '@gluestack-ui/themed';
 import {
-  VStack,
   Avatar,
   AvatarGroup,
   AvatarBadge,
   AvatarFallbackText,
   AvatarImage,
-  HStack,
-  Icon,
-  Heading,
-  Text,
-} from '@gluestack-ui/themed';
+} from '@/components/Avatar';
 import { User } from 'lucide-react-native';
 
 const TextSizeMap: any = {

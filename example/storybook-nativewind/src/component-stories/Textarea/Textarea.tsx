@@ -1,7 +1,5 @@
 import React from 'react';
 import {
-  Textarea,
-  TextareaInput,
   FormControl,
   FormControlHelper,
   FormControlHelperText,
@@ -9,6 +7,8 @@ import {
   FormControlLabel,
   FormControlLabelText,
 } from '@gluestack-ui/themed';
+
+import { Textarea, TextareaInput } from '@/components/Textarea';
 
 const TextareaBasic = ({ ...props }: any) => {
   return (

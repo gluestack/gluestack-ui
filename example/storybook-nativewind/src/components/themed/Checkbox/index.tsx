@@ -222,10 +222,14 @@ const StyledIcon = styled(
       opacity: 0.4,
     },
   },
-  { ancestorStyle: ['_icon'] },
+  {
+    resolveProps: ['stroke', 'fill'],
+    ancestorStyle: ['_icon'],
+  },
   {
     propertyTokenMap: {
       stroke: 'colors',
+      fill: 'colors',
     },
   }
 );
