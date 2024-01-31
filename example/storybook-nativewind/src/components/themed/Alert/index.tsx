@@ -1,24 +1,22 @@
 import { AsForwarder, styled } from '@gluestack-style/react';
-import { Text, View } from 'react-native';
+import { createAlert } from '@gluestack-ui/alert';
+import { View, Text } from 'react-native';
 
 const StyledRoot = styled(
   View,
   {
-    'flexDirection': 'row',
-    'alignItems': 'center',
-    'borderRadius': '$xs',
-    'variants': {
+    alignItems: 'center',
+    p: '$3',
+    flexDirection: 'row',
+    borderRadius: '$sm',
+    variants: {
       action: {
         error: {
           bg: '$backgroundError',
           borderColor: '$error300',
 
           _icon: {
-            color: '$error600',
-          },
-
-          _text: {
-            color: '$error600',
+            color: '$error500',
           },
         },
         warning: {
@@ -26,11 +24,7 @@ const StyledRoot = styled(
           borderColor: '$warning300',
 
           _icon: {
-            color: '$warning600',
-          },
-
-          _text: {
-            color: '$warning600',
+            color: '$warning500',
           },
         },
         success: {
@@ -38,11 +32,7 @@ const StyledRoot = styled(
           borderColor: '$success300',
 
           _icon: {
-            color: '$success600',
-          },
-
-          _text: {
-            color: '$success600',
+            color: '$success500',
           },
         },
         info: {
@@ -50,11 +40,7 @@ const StyledRoot = styled(
           borderColor: '$info300',
 
           _icon: {
-            color: '$info600',
-          },
-
-          _text: {
-            color: '$info600',
+            color: '$info500',
           },
         },
         muted: {
@@ -62,11 +48,7 @@ const StyledRoot = styled(
           borderColor: '$secondary300',
 
           _icon: {
-            color: '$secondary600',
-          },
-
-          _text: {
-            color: '$secondary600',
+            color: '$secondary500',
           },
         },
       },
@@ -75,67 +57,29 @@ const StyledRoot = styled(
         solid: {},
         outline: {
           borderWidth: '$1',
+          bg: '$white',
         },
-      },
-
-      size: {
-        sm: {
-          px: '$2',
-          _icon: {
-            props: {
-              size: '2xs',
-            },
-          },
-          _text: {
-            props: {
-              size: '2xs',
-            },
-          },
-        },
-        md: {
-          px: '$2',
-          _icon: {
-            props: {
-              size: 'xs',
-            },
-          },
-          _text: {
-            props: {
-              size: 'xs',
-            },
-          },
-        },
-        lg: {
-          px: '$2',
-          _icon: {
-            props: { size: 'sm' },
-          },
-          _text: {
-            props: { size: 'sm' },
-          },
+        accent: {
+          borderLeftWidth: '$4',
         },
       },
     },
 
-    ':disabled': {
-      opacity: 0.5,
-    },
-    'defaultProps': {
-      action: 'info',
+    defaultProps: {
       variant: 'solid',
-      size: 'md',
+      action: 'info',
     },
   },
   {
-    componentName: 'Badge',
-    descendantStyle: ['_text', '_icon'],
-  } as const
+    descendantStyle: ['_icon', '_text'],
+  }
 );
 
 const StyledText = styled(
   Text,
   {
     color: '$text700',
+    flex: 1,
     fontWeight: '$normal',
     fontFamily: '$body',
     fontStyle: 'normal',
@@ -230,12 +174,10 @@ const StyledText = styled(
     defaultProps: {
       size: 'md',
     },
-    textTransform: 'uppercase',
   },
   {
-    componentName: 'BadgeText',
     ancestorStyle: ['_text'],
-  } as const
+  }
 );
 
 const StyledIcon = styled(
@@ -298,21 +240,17 @@ const StyledIcon = styled(
       //@ts-ignore
       fill: 'none',
     },
-
-    color: '$background500',
   },
   {
-    componentName: 'BaseIcon',
-    resolveProps: ['stroke', 'fill'],
-  } as const,
-  {
-    propertyTokenMap: {
-      stroke: 'colors',
-      fill: 'colors',
-    },
+    ancestorStyle: ['_icon'],
   }
 );
 
-const Badge = StyledRoot;
+export const Alert = createAlert({
+  Root: StyledRoot,
+  Text: StyledText,
+  Icon: StyledIcon,
+});
 
-export { Badge, StyledIcon as BadgeIcon, StyledText as BadgeText };
+export const AlertText = Alert.Text;
+export const AlertIcon = Alert.Icon;

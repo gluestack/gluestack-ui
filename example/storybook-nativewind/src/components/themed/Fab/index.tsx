@@ -1,141 +1,165 @@
 import { AsForwarder, styled } from '@gluestack-style/react';
-import { Text, View } from 'react-native';
+import { createFab } from '@gluestack-ui/fab';
+import { Text } from 'react-native';
+import { Pressable } from 'react-native';
 
 const StyledRoot = styled(
-  View,
+  Pressable,
   {
+    'bg': '$primary500',
+    'rounded': '$full',
+    'zIndex': 20,
+    'p': 16,
     'flexDirection': 'row',
     'alignItems': 'center',
-    'borderRadius': '$xs',
+    'justifyContent': 'center',
+    'position': 'absolute',
+
+    ':hover': {
+      bg: '$primary600',
+    },
+
+    ':active': {
+      bg: '$primary700',
+    },
+
+    ':disabled': {
+      opacity: 0.4,
+      _web: {
+        // @ts-ignore
+        pointerEvents: 'all !important',
+        cursor: 'not-allowed',
+      },
+    },
+
+    '_text': {
+      color: '$text50',
+      fontWeight: '$normal',
+    },
+
+    '_icon': {
+      'color': '$text50',
+
+      ':hover': {
+        color: '$text0',
+      },
+
+      ':active': {
+        color: '$text0',
+      },
+    },
+
+    '_web': {
+      ':focusVisible': {
+        outlineWidth: 2,
+        outlineColor: '$primary700',
+        outlineStyle: 'solid',
+      },
+    },
+
     'variants': {
-      action: {
-        error: {
-          bg: '$backgroundError',
-          borderColor: '$error300',
-
-          _icon: {
-            color: '$error600',
-          },
-
-          _text: {
-            color: '$error600',
-          },
-        },
-        warning: {
-          bg: '$backgroundWarning',
-          borderColor: '$warning300',
-
-          _icon: {
-            color: '$warning600',
-          },
-
-          _text: {
-            color: '$warning600',
-          },
-        },
-        success: {
-          bg: '$backgroundSuccess',
-          borderColor: '$success300',
-
-          _icon: {
-            color: '$success600',
-          },
-
-          _text: {
-            color: '$success600',
-          },
-        },
-        info: {
-          bg: '$backgroundInfo',
-          borderColor: '$info300',
-
-          _icon: {
-            color: '$info600',
-          },
-
-          _text: {
-            color: '$info600',
-          },
-        },
-        muted: {
-          bg: '$backgroundMuted',
-          borderColor: '$secondary300',
-
-          _icon: {
-            color: '$secondary600',
-          },
-
-          _text: {
-            color: '$secondary600',
-          },
-        },
-      },
-
-      variant: {
-        solid: {},
-        outline: {
-          borderWidth: '$1',
-        },
-      },
-
       size: {
         sm: {
-          px: '$2',
+          px: '$2.5',
+          py: '$2.5',
+          _text: {
+            fontSize: '$sm',
+          },
           _icon: {
             props: {
-              size: '2xs',
-            },
-          },
-          _text: {
-            props: {
-              size: '2xs',
+              size: 'sm',
             },
           },
         },
         md: {
-          px: '$2',
+          px: '$3',
+          py: '$3',
+          _text: {
+            fontSize: '$md',
+          },
           _icon: {
             props: {
-              size: 'xs',
-            },
-          },
-          _text: {
-            props: {
-              size: 'xs',
+              size: 'md',
             },
           },
         },
         lg: {
-          px: '$2',
-          _icon: {
-            props: { size: 'sm' },
-          },
+          px: '$4',
+          py: '$4',
           _text: {
-            props: { size: 'sm' },
+            fontSize: '$lg',
           },
+          _icon: {
+            props: {
+              size: 'md',
+            },
+          },
+        },
+      },
+
+      placement: {
+        'top right': {
+          top: '$4',
+          right: '$4',
+        },
+
+        'top left': {
+          top: '$4',
+          left: '$4',
+        },
+
+        'bottom right': {
+          bottom: '$4',
+          right: '$4',
+        },
+
+        'bottom left': {
+          bottom: '$4',
+          left: '$4',
+        },
+
+        'top center': {
+          top: '$4',
+          alignSelf: 'center',
+          // TODO: fix this, this is correct way, but React Native doesn't support this on Native
+          // left: '50%',
+          // transform: [
+          //   {
+          //     // @ts-ignore
+          //     translateX: '-50%',
+          //   },
+          // ],
+        },
+
+        'bottom center': {
+          bottom: '$4',
+          alignSelf: 'center',
+          // TODO: fix this, this is correct way, but React Native doesn't support this on Native
+          // left: '50%',
+          // transform: [
+          //   {
+          //     // @ts-ignore
+          //     translateX: '-50%',
+          //   },
+          // ],
         },
       },
     },
 
-    ':disabled': {
-      opacity: 0.5,
-    },
     'defaultProps': {
-      action: 'info',
-      variant: 'solid',
+      placement: 'bottom right',
       size: 'md',
+      hardShadow: '2',
     },
   },
   {
-    componentName: 'Badge',
     descendantStyle: ['_text', '_icon'],
-  } as const
+  }
 );
 
-const StyledText = styled(
+const StyledLabel = styled(
   Text,
   {
-    color: '$text700',
     fontWeight: '$normal',
     fontFamily: '$body',
     fontStyle: 'normal',
@@ -230,12 +254,11 @@ const StyledText = styled(
     defaultProps: {
       size: 'md',
     },
-    textTransform: 'uppercase',
+    color: '$text50',
   },
   {
-    componentName: 'BadgeText',
     ancestorStyle: ['_text'],
-  } as const
+  }
 );
 
 const StyledIcon = styled(
@@ -298,21 +321,16 @@ const StyledIcon = styled(
       //@ts-ignore
       fill: 'none',
     },
-
-    color: '$background500',
   },
   {
-    componentName: 'BaseIcon',
-    resolveProps: ['stroke', 'fill'],
-  } as const,
-  {
-    propertyTokenMap: {
-      stroke: 'colors',
-      fill: 'colors',
-    },
+    ancestorStyle: ['_icon'],
   }
 );
 
-const Badge = StyledRoot;
-
-export { Badge, StyledIcon as BadgeIcon, StyledText as BadgeText };
+export const Fab = createFab({
+  Root: StyledRoot,
+  Label: StyledLabel,
+  Icon: StyledIcon,
+});
+export const FabLabel = Fab.Label;
+export const FabIcon = Fab.Icon;

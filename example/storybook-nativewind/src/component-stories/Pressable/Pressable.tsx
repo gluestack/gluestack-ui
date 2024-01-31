@@ -1,5 +1,6 @@
 import React from 'react';
-import { Center, Pressable, Text } from '@gluestack-ui/themed';
+import { Center, Text } from '@gluestack-ui/themed';
+import { Pressable } from '@/components/Pressable';
 
 const PressableBasic = ({ ...props }: any) => {
   return (

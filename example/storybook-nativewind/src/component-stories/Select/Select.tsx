@@ -1,8 +1,8 @@
 import React from 'react';
 
+import { Center, ChevronDownIcon, Icon } from '@gluestack-ui/themed';
+
 import {
-  Center,
-  ChevronDownIcon,
   Select,
   SelectIcon,
   SelectTrigger,
@@ -13,8 +13,7 @@ import {
   SelectDragIndicatorWrapper,
   SelectDragIndicator,
   SelectItem,
-  Icon,
-} from '@gluestack-ui/themed';
+} from '@/components/Select';
 
 const SelectBasic = ({
   size = 'md',

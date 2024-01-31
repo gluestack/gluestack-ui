@@ -2,9 +2,6 @@ import React from 'react';
 
 import {
   AddIcon,
-  Fab,
-  FabIcon,
-  FabLabel,
   Box,
   MenuIcon,
   Checkbox,
@@ -22,6 +19,8 @@ import {
   Image,
   CheckboxIcon,
 } from '@gluestack-ui/themed';
+
+import { Fab, FabIcon, FabLabel } from '@/components/Fab';
 
 import { CheckIcon, EditIcon, ShoppingCartIcon } from 'lucide-react-native';
 
