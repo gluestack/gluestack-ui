@@ -42,6 +42,10 @@ module.exports = function (api) {
               __dirname,
               '../../packages/nativewind/utils/src'
             ),
+            '@gluestack-ui/config': path.resolve(
+              __dirname,
+              '../../packages/config/src/gluestack-ui.config.ts'
+            ),
           },
         },
       ],
