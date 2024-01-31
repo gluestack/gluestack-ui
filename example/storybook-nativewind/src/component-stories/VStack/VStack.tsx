@@ -12,10 +12,10 @@ const VStackBasic = ({ space, reversed, ...props }: any) => {
       reversed={reversed}
       {...props}
     >
-      <Box sx={{ w: 100, h: 100, rounded: '$sm', bg: '$blue300' }} />
-      <Box sx={{ w: 100, h: 100, rounded: '$sm', bg: '$blue400' }} />
-      <Box sx={{ w: 100, h: 100, rounded: '$sm', bg: '$blue500' }} />
-      <Box sx={{ w: 100, h: 100, rounded: '$sm', bg: '$blue600' }} />
+      <Box sx={{ w: 100, h: 100, rounded: '$sm', bg: '$primary300' }} />
+      <Box sx={{ w: 100, h: 100, rounded: '$sm', bg: '$primary400' }} />
+      <Box sx={{ w: 100, h: 100, rounded: '$sm', bg: '$primary500' }} />
+      <Box sx={{ w: 100, h: 100, rounded: '$sm', bg: '$primary600' }} />
     </VStack>
   );
 };
