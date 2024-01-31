@@ -35,7 +35,7 @@ export const parameters = {
         ['Introduction'],
         'Core Concepts',
         ['Accessibility', 'Universal'],
-        'Component Stories',
+        'Components',
         ['Button', 'Box'],
       ],
     },
