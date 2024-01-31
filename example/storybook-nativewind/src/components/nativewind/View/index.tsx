@@ -1,6 +1,6 @@
 import { styled } from '@gluestack-style/react';
-import { View } from 'react-native';
+import { View as RNView } from 'react-native';
 
-const StyledRoot = styled(View, {}, {});
+const StyledRoot = styled(RNView, {}, {});
 
 export const View = StyledRoot;
