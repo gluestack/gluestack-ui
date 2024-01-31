@@ -6,6 +6,7 @@ const BoxBasic: any = ({
   bg = 'blue500',
   w = '100',
   h = '100',
+  className = '',
   ...props
 }: any) => {
   return (
@@ -16,6 +17,7 @@ const BoxBasic: any = ({
       w={w}
       justifyContent="center"
       alignItems="center"
+      className={className}
     >
       <Text color="white" fontWeight="$bold">
         BOX
