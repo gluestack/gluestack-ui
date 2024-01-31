@@ -44,7 +44,7 @@ This is an illustration of a **Themed Avatar** component with default configurat
     showArgsController={true}
     metaData={{
       code: `
-        <Avatar bgColor='$amber600' {...props}>
+        <Avatar {...props}>
           <AvatarFallbackText>Sandeep Srivastava</AvatarFallbackText>
         </Avatar>
       `,
@@ -64,21 +64,6 @@ This is an illustration of a **Themed Avatar** component with default configurat
           options: ['xs', 'sm', 'md', 'lg', 'xl', '2xl'],
           default: 'md',
         },
-        borderRadius: {
-          control: 'select',
-          options: [
-            '$none',
-            '$xs',
-            '$sm',
-            '$md',
-            '$lg',
-            '$xl',
-            '$2xl',
-            '$3xl',
-            '$full',
-          ],
-          default: '$full',
-        },
       },
     }}
   />
@@ -87,6 +72,8 @@ This is an illustration of a **Themed Avatar** component with default configurat
 <br />
 
 ## API Reference
+
+
 
 ### Import
 
@@ -118,6 +105,49 @@ export default () => (
   </AvatarGroup>
 );
 ```
+
+
+## nativewind
+
+Step 1: Install the following dependencies:
+
+```bash
+
+npm install @gluestack-ui/avatar
+npm install @gluestack-ui/nativewind-utils
+
+```
+
+Step 2: Copy and paste the following code into your project.
+
+```jsx
+%%-- File: components/nativewind/Avatar/index.tsx --%%
+```
+
+Step 3: Update the import paths to match your project setup.
+
+
+
+## gluestack-style
+
+
+Step 1: Install the following dependencies:
+
+```bash
+
+npm install @gluestack-ui/avatar
+npm install @gluestack-style/react
+
+```
+
+Step 2: Copy and paste the following code into your project.
+
+```jsx
+%%-- File: components/themed/Avatar/index.tsx --%%
+```
+
+Step 3: Update the import paths to match your project setup.
+
 
 ### Component Props
 
@@ -221,7 +251,7 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
 
 - Returns a fallback to FallbackText if given an invalid image source.
 
-## Themed
+### Themed
 
 The themed version of the component is a pre-styled version of the component, which allows you to quickly integrate the component into your project. The component's design and functionality are fully defined, allowing you to focus on the more important aspects of your project. To know more about Themed Library please visit this [link](https://gluestack.io/ui/docs/core-concepts/themed-library).
 
@@ -268,7 +298,7 @@ Avatar component is created using View component from react-native. It extends a
 
 > Note: These props are exclusively applicable when utilizing the default configuration of gluestack-ui/config. If you are using a custom theme, these props may not be available.
 
-### Examples
+## Examples
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
@@ -284,7 +314,7 @@ An Avatar component with text displays a stylized representation of a user or en
       code: `
     <VStack space="2xl">
         <HStack space="md">
-            <Avatar  bgColor="$indigo600"  >
+            <Avatar>
               <AvatarFallbackText>Ronald Richards</AvatarFallbackText>
               <AvatarBadge $dark-borderColor="$black"/>
             </Avatar>
@@ -294,7 +324,7 @@ An Avatar component with text displays a stylized representation of a user or en
           </VStack>
       </HStack>
       <HStack space="md">
-        <Avatar  bgColor="$orange600" >
+        <Avatar>
             <AvatarFallbackText>Arlene McCoy</AvatarFallbackText>
         </Avatar>
         <VStack>
@@ -335,7 +365,7 @@ An Avatar component with an icon combines a graphical symbol or icon with a user
       code: `
         <VStack space="2xl">
             <HStack space="md">
-              <Avatar  bgColor="$indigo600" >
+              <Avatar >
                 {/* User is imported from 'lucide-react-native' */}
                 <Icon as={User} color="white" size="lg"/>
               </Avatar>
@@ -345,9 +375,9 @@ An Avatar component with an icon combines a graphical symbol or icon with a user
               </VStack>
             </HStack>
             <HStack space="md">
-                <Avatar  bgColor="$pink600" >
+                <Avatar>
                  {/* User is imported from 'lucide-react-native' */}
-                <Icon as={User} color="white" size="lg"/>
+                <Icon as={User} size="lg"/>
                 </Avatar>
                 <VStack >
                   <Heading size="sm" >Kevin James</Heading>
@@ -463,13 +493,12 @@ The avatar group allows users to group avatars and display them in a horizontal 
             <AvatarGroup>
               {avatars.slice(0, 3).map((avatar, index) => {
                 return (
-                  <Avatar key={index} size="lg" borderColor="$white" borderWidth="$2" bg={avatar.color} $dark-borderColor="$black">
+                  <Avatar key={index} size="lg">
                     <AvatarFallbackText>{avatar.alt}</AvatarFallbackText>
                   </Avatar>
                 );
               })}
-              <Avatar size="lg" borderColor="$white" borderWidth="$2" bg="$gray600" 
-              $dark-borderColor="$black">
+              <Avatar size="lg">
                   <AvatarFallbackText >{"+ " + remainingCount + ""}</AvatarFallbackText>
               </Avatar>
             </AvatarGroup>
@@ -574,7 +603,7 @@ An Avatar Group component with badges presents a collection of avatars with acco
               }}
             />
             <AvatarBadge 
-            $dark-borderColor="$black"/>
+          />
           </Avatar>
           <Avatar size="md">
             <AvatarFallbackText>John Doe</AvatarFallbackText>
@@ -583,7 +612,7 @@ An Avatar Group component with badges presents a collection of avatars with acco
                 uri: 'https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
               }}
             />
-            <AvatarBadge $dark-borderColor="$black"/>
+            <AvatarBadge/>
           </Avatar>
           <Avatar size="md">
             <AvatarFallbackText>John Doe</AvatarFallbackText>
@@ -592,7 +621,7 @@ An Avatar Group component with badges presents a collection of avatars with acco
                 uri: 'https://images.unsplash.com/photo-1614289371518-722f2615943d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
               }}
             />
-            <AvatarBadge $dark-borderColor="$black"/>
+            <AvatarBadge/>
           </Avatar>
           <Avatar size="md">
             <AvatarFallbackText>John Doe</AvatarFallbackText>
@@ -601,8 +630,7 @@ An Avatar Group component with badges presents a collection of avatars with acco
                 uri: 'https://images.unsplash.com/photo-1607746882042-944635dfe10e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
               }}
             />
-            <AvatarBadge 
-            $dark-borderColor="$black"/>
+            <AvatarBadge />
           </Avatar>
         </AvatarGroup>
 `,
@@ -635,9 +663,9 @@ A custom Avatar component with text allows for personalized user or entity repre
       code: `
         <VStack space="2xl">
           <HStack space="md">
-            <Avatar size="md" bgColor="$indigo300" borderColor="$indigo600" borderWidth={2}>
+            <Avatar size="md">
               {/* User is imported from 'lucide-react-native' */}
-              <Icon as={User} color="$indigo600" size="xl"/>
+              <Icon as={User} size="xl"/>
             </Avatar>
             <VStack  >
               <Heading size="sm" >Ronald Richards</Heading>
@@ -645,9 +673,9 @@ A custom Avatar component with text allows for personalized user or entity repre
             </VStack>
           </HStack>
           <HStack space="md">
-            <Avatar size="md"  bgColor="$pink300" borderColor="$pink600" borderWidth={2}>
+            <Avatar size="md">
             {/* User is imported from 'lucide-react-native' */}
-              <Icon as={User} color="$pink600" size="xl"/>
+              <Icon as={User} size="xl"/>
             </Avatar>
             <VStack >
               <Heading size="sm" >Kevin James</Heading>
@@ -713,69 +741,3 @@ Fallback text is shown when the image fails to load, the image is not available 
     }}
   />
 </Wrapper>
-
-## Unstyled
-
-All the components in `gluestack-ui` are unstyled by default. To customize your UI using the extendedTheme, please refer to this [link](https://gluestack.io/ui/docs/theme-configuration/customizing-theme). The import names of components serve as keys to customize each component.
-
-## Spec Doc
-
-Explore the comprehensive details of the Avatar in this document, including its implementation details, checklist, and potential future additions. Dive into the thought process behind the component and gain insights into its development journey.
-
-<iframe
-  style={{
-    borderRadius: '8px',
-    border: ' 1px solid rgba(0, 0, 0, 0.1)',
-    aspectRatio: 736 / 585,
-  }}
-  src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FNcXOxqKbdnGsLQNex3H76u%2F%25C2%25A0%25F0%259F%2593%259Agluestack-UI-handbook%3Fpage-id%3D5480%253A25167%26type%3Ddesign%26node-id%3D5611-29324%26viewport%3D963%252C-269%252C0.04%26t%3D4gbJyMR74igENSSh-1%26scaling%3Dcontain%26starting-point-node-id%3D5480%253A27948%26mode%3Ddesign"
-  allowFullScreen
-/>
-
-<!--
-
-### Advanced
-
-We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
-
-### Customizing the Avatar
-
-We have a function called `createAvatar` which can be used to create a custom avatar component. This function takes in a configuration object which contains the styled components that you want to use for the Avatar You can refer [gluestack.io/style](/style/docs/getting-started/styled) on how to use styled components.
-
-#### Usage
-
-Default styling of all these components can be found in the `components/core/avatar` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/main/packages/themed/src/components/Avatar) of the styled `Avatar` components.
-
-```jsx
-// import the styles
-import {
-  Root,
-  Badge,
-  Group,
-  Image,
-  FallbackText,
-} from 'components/core/avatar/styled-components';
-
-// import the createAvatar function
-import { createAvatar } from '@gluestack-ui/avatar';
-
-// Understanding the API
-const Avatar = createAvatar({
-  Root,
-  Badge,
-  Group,
-  Image,
-  FallbackText,
-});
-
-// Using the avatar component
-export default () => (
-  <AvatarGroup>
-    <Avatar>
-      <AvatarFallbackText />
-      <AvatarBadge />
-    </Avatar>
-  </AvatarGroup>
-);
-```
--->
