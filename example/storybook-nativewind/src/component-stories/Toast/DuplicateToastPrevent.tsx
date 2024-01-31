@@ -21,17 +21,7 @@ const ToastDuplicatePrevent = ({ placement = 'top', ...props }: any) => {
             render: ({ id }) => {
               return (
                 <Toast>
-                  <ToastTitle
-                    dataSet={{
-                      'component-props': JSON.stringify({
-                        'is-text-style': true,
-                        'component-name': 'Text',
-                        'size': 'md',
-                      }),
-                    }}
-                  >
-                    Hello World Toast {id}
-                  </ToastTitle>
+                  <ToastTitle>Hello World Toast {id}</ToastTitle>
                 </Toast>
               );
             },
@@ -39,17 +29,7 @@ const ToastDuplicatePrevent = ({ placement = 'top', ...props }: any) => {
         }
       }}
     >
-      <ButtonText
-        dataSet={{
-          'component-props': JSON.stringify({
-            'is-text-style': true,
-            'component-name': 'Text',
-            'size': 'md',
-          }),
-        }}
-      >
-        Press Me
-      </ButtonText>
+      <ButtonText>Press Me</ButtonText>
     </Button>
   );
 };

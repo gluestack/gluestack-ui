@@ -88,7 +88,6 @@ const PopoverBasic = ({
 const FigmaPopoverStory = ({
   showPopover: _showPopoverProp = true,
   _placement = 'bottom',
-  colorMode,
   ...props
 }: any) => {
   return (
@@ -114,18 +113,7 @@ const FigmaPopoverStory = ({
           <PopoverHeader>
             <Heading>Welcome!</Heading>
             <PopoverCloseButton>
-              <Icon
-                as={CloseIcon}
-                dataSet={{
-                  'component-props': JSON.stringify({
-                    'instance': true,
-                    'instance-name': 'Icon',
-                    'as': 'CloseIcon',
-                    'size': 'md',
-                    'colorMode': colorMode,
-                  }),
-                }}
-              />
+              <Icon as={CloseIcon} />
             </PopoverCloseButton>
           </PopoverHeader>
           <PopoverBody>
@@ -140,34 +128,10 @@ const FigmaPopoverStory = ({
             </Text>
             {/* @ts-ignore */}
             <ButtonGroup space="md">
-              <Button
-                variant="outline"
-                action="secondary"
-                dataSet={{
-                  'component-props': JSON.stringify({
-                    'instance': true,
-                    'instance-name': 'Button-outline',
-                    'size': 'md',
-                    'action': 'secondary',
-                    'state': 'default',
-                    'colorMode': colorMode,
-                  }),
-                }}
-              >
+              <Button variant="outline" action="secondary">
                 <ButtonText>Back</ButtonText>
               </Button>
-              <Button
-                dataSet={{
-                  'component-props': JSON.stringify({
-                    'instance': true,
-                    'instance-name': 'Button-solid',
-                    'size': 'sm',
-                    'action': 'primary',
-                    'state': 'default',
-                    'colorMode': colorMode,
-                  }),
-                }}
-              >
+              <Button>
                 <ButtonText>Next</ButtonText>
               </Button>
             </ButtonGroup>

@@ -110,42 +110,13 @@ const ActionsheetWithKeyboardAvoidingView = ({
                 />
               </Box>
               <VStack flex={1}>
-                <Text
-                  fontWeight="$bold"
-                  dataSet={{
-                    'component-props': JSON.stringify({
-                      'is-text-style': true,
-                      'component-name': 'Text',
-                      'size': 'md',
-                    }),
-                  }}
-                >
-                  Mastercard
-                </Text>
-                <Text
-                  dataSet={{
-                    'component-props': JSON.stringify({
-                      'is-text-style': true,
-                      'component-name': 'Text',
-                      'size': 'md',
-                    }),
-                  }}
-                >
-                  Card ending in 2345
-                </Text>
+                <Text fontWeight="$bold">Mastercard</Text>
+                <Text>Card ending in 2345</Text>
               </VStack>
             </HStack>
             <FormControl mt={36}>
               <FormControlLabel>
-                <FormControlLabelText
-                  dataSet={{
-                    'component-props': JSON.stringify({
-                      'is-text-style': true,
-                      'component-name': 'Text',
-                      'size': 'md',
-                    }),
-                  }}
-                >
+                <FormControlLabelText>
                   Confirm security code
                 </FormControlLabelText>
               </FormControlLabel>
@@ -156,17 +127,7 @@ const ActionsheetWithKeyboardAvoidingView = ({
                 <InputField placeholder="CVC/CVV" />
               </Input>
               <Button onPress={handleClose} mt={20}>
-                <ButtonText
-                  dataSet={{
-                    'component-props': JSON.stringify({
-                      'is-text-style': true,
-                      'component-name': 'Text',
-                      'size': 'md',
-                    }),
-                  }}
-                >
-                  Pay $1000
-                </ButtonText>
+                <ButtonText>Pay $1000</ButtonText>
               </Button>
             </FormControl>
           </VStack>

@@ -28,7 +28,6 @@ const FabBasic = ({
   placement = 'bottom right',
   showLabel = true,
   showIcon = true,
-  colorMode,
   ...props
 }: any) => {
   return (
@@ -40,20 +39,7 @@ const FabBasic = ({
       sx={{ _web: { w: 300, h: 300 } }}
     >
       <Fab placement={placement} gap="$1" {...props}>
-        {showIcon && (
-          <FabIcon
-            as={MenuIcon}
-            dataSet={{
-              'component-props': JSON.stringify({
-                'instance': true,
-                'instance-name': 'Icon',
-                'as': 'CloseIcon',
-                'size': 'md',
-                'colorMode': colorMode,
-              }),
-            }}
-          />
-        )}
+        {showIcon && <FabIcon as={MenuIcon} />}
         {showLabel && <FabLabel>Menu</FabLabel>}
       </Fab>
     </Box>
@@ -69,17 +55,7 @@ const FigmaFabStory = ({
   return (
     <Box sx={{ _web: { w: 250, h: 80 } }}>
       <Fab placement={placement} {...props} gap="$1">
-        <FabIcon
-          as={MenuIcon}
-          dataSet={{
-            'component-props': JSON.stringify({
-              'instance': true,
-              'instance-name': 'Icon',
-              'name': 'MenuIcon',
-              'size': 'md',
-            }),
-          }}
-        />
+        <FabIcon as={MenuIcon} />
         {showLabel && <Fab.Label>Menu</Fab.Label>}
       </Fab>
     </Box>

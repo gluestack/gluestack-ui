@@ -15,24 +15,8 @@ import { Text } from '@/components/Text';
 import { EyeIcon, EyeOffIcon } from 'lucide-react-native';
 import { useState } from 'react';
 
-const InputBasic = ({ colorMode, ...props }: any) => {
+const InputBasic = ({ ...props }: any) => {
   const [value, setValue] = React.useState('');
-
-  let inputIconSize = '';
-  switch (props.size) {
-    case 'sm':
-      inputIconSize = 'xs';
-      break;
-    case 'md':
-      inputIconSize = 'sm';
-      break;
-    case 'lg':
-      inputIconSize = 'lg';
-      break;
-    case 'xl':
-      inputIconSize = 'xl';
-      break;
-  }
 
   return (
     <Input {...props}>
@@ -42,27 +26,9 @@ const InputBasic = ({ colorMode, ...props }: any) => {
         }}
         value={value}
         placeholder="Enter Text here"
-        dataSet={{
-          'component-props': JSON.stringify({
-            'is-text-style': true,
-            'component-name': 'Text',
-            'size': props.size,
-          }),
-        }}
       />
       <InputSlot pr={props.variant === 'underlined' ? '$0' : '$4'}>
-        <InputIcon
-          as={SearchIcon}
-          dataSet={{
-            'component-props': JSON.stringify({
-              'instance': true,
-              'instance-name': 'Icon',
-              'as': 'SearchIcon',
-              'size': inputIconSize,
-              'colorMode': colorMode,
-            }),
-          }}
-        />
+        <InputIcon as={SearchIcon} />
       </InputSlot>
     </Input>
   );

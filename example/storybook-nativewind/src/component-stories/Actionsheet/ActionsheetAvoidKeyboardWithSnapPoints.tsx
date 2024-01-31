@@ -119,25 +119,11 @@ const ActionsheetWithKeyboardAvoidingViewWithSnapPoints = ({
                 <Text
                   fontWeight="$bold"
                   // @ts-ignore
-                  dataSet={{
-                    'component-props': JSON.stringify({
-                      'is-text-style': true,
-                      'component-name': 'Text',
-                      'size': 'md',
-                    }),
-                  }}
                 >
                   Mastercard
                 </Text>
                 <Text
-                  // @ts-ignore
-                  dataSet={{
-                    'component-props': JSON.stringify({
-                      'is-text-style': true,
-                      'component-name': 'Text',
-                      'size': 'md',
-                    }),
-                  }}
+                // @ts-ignore
                 >
                   Card ending in 2345
                 </Text>
@@ -146,14 +132,7 @@ const ActionsheetWithKeyboardAvoidingViewWithSnapPoints = ({
             <FormControl mt={36}>
               <FormControlLabel>
                 <FormControlLabelText
-                  // @ts-ignore
-                  dataSet={{
-                    'component-props': JSON.stringify({
-                      'is-text-style': true,
-                      'component-name': 'Text',
-                      'size': 'md',
-                    }),
-                  }}
+                // @ts-ignore
                 >
                   Confirm security code
                 </FormControlLabelText>
@@ -166,14 +145,7 @@ const ActionsheetWithKeyboardAvoidingViewWithSnapPoints = ({
               </Input>
               <Button onPress={handleClose} mt={20}>
                 <ButtonText
-                  // @ts-ignore
-                  dataSet={{
-                    'component-props': JSON.stringify({
-                      'is-text-style': true,
-                      'component-name': 'Text',
-                      'size': 'md',
-                    }),
-                  }}
+                // @ts-ignore
                 >
                   Pay $1000
                 </ButtonText>

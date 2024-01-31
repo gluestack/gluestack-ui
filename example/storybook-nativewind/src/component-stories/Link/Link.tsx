@@ -8,14 +8,7 @@ const LinkBasic = ({ ...props }: any) => {
   return (
     <Link href="https://google.com" isExternal {...props}>
       <LinkText
-        // @ts-ignore
-        dataSet={{
-          'component-props': JSON.stringify({
-            'is-text-style': true,
-            'component-name': 'Text',
-            'size': 'md',
-          }),
-        }}
+      // @ts-ignore
       >
         GLUESTACK
       </LinkText>

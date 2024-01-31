@@ -33,17 +33,7 @@ const RadioBasic = ({ ...props }: any) => {
         <RadioIndicator>
           <RadioIcon as={CircleIcon} />
         </RadioIndicator>
-        <RadioLabel
-          dataSet={{
-            'component-props': JSON.stringify({
-              'is-text-style': true,
-              'component-name': 'Text',
-              'size': props.size,
-            }),
-          }}
-        >
-          Label 1
-        </RadioLabel>
+        <RadioLabel>Label 1</RadioLabel>
       </Radio>
       <Radio
         {...props}
@@ -55,17 +45,7 @@ const RadioBasic = ({ ...props }: any) => {
         <RadioIndicator>
           <RadioIcon as={CircleIcon} />
         </RadioIndicator>
-        <RadioLabel
-          dataSet={{
-            'component-props': JSON.stringify({
-              'is-text-style': true,
-              'component-name': 'Text',
-              'size': props.size,
-            }),
-          }}
-        >
-          Label 2
-        </RadioLabel>
+        <RadioLabel>Label 2</RadioLabel>
       </Radio>
     </RadioGroup>
   );

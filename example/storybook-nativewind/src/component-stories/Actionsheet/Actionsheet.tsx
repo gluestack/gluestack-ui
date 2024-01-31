@@ -85,69 +85,19 @@ function FigmaActionsheetStory({ ...props }: any) {
           <ActionsheetDragIndicator />
         </ActionsheetDragIndicatorWrapper>
         <ActionsheetItem>
-          <ActionsheetItemText
-            dataSet={{
-              'component-props': JSON.stringify({
-                'is-text-style': true,
-                'component-name': 'Text',
-                'size': 'md',
-              }),
-            }}
-          >
-            Delete
-          </ActionsheetItemText>
+          <ActionsheetItemText>Delete</ActionsheetItemText>
         </ActionsheetItem>
         <ActionsheetItem>
-          <ActionsheetItemText
-            dataSet={{
-              'component-props': JSON.stringify({
-                'is-text-style': true,
-                'component-name': 'Text',
-                'size': 'md',
-              }),
-            }}
-          >
-            Share
-          </ActionsheetItemText>
+          <ActionsheetItemText>Share</ActionsheetItemText>
         </ActionsheetItem>
         <ActionsheetItem>
-          <ActionsheetItemText
-            dataSet={{
-              'component-props': JSON.stringify({
-                'is-text-style': true,
-                'component-name': 'Text',
-                'size': 'md',
-              }),
-            }}
-          >
-            Play
-          </ActionsheetItemText>
+          <ActionsheetItemText>Play</ActionsheetItemText>
         </ActionsheetItem>
         <ActionsheetItem>
-          <ActionsheetItemText
-            dataSet={{
-              'component-props': JSON.stringify({
-                'is-text-style': true,
-                'component-name': 'Text',
-                'size': 'md',
-              }),
-            }}
-          >
-            Favourite
-          </ActionsheetItemText>
+          <ActionsheetItemText>Favourite</ActionsheetItemText>
         </ActionsheetItem>
         <ActionsheetItem>
-          <ActionsheetItemText
-            dataSet={{
-              'component-props': JSON.stringify({
-                'is-text-style': true,
-                'component-name': 'Text',
-                'size': 'md',
-              }),
-            }}
-          >
-            Cancel
-          </ActionsheetItemText>
+          <ActionsheetItemText>Cancel</ActionsheetItemText>
         </ActionsheetItem>
       </ActionsheetContent>
     </Box>
