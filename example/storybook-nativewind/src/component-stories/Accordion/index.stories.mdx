@@ -40,11 +40,11 @@ import { transformedCode } from '../../utils';
 
 <Meta title="ui/components/Accordion" />
 
-import Wrapper from '../Wrapper';
+import Wrapper from '../../components/Wrapper';
 
 This is an illustration of a **Themed Accordion** component with default configuration.
 
-<AppProvider config={{}}>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={true}
@@ -152,7 +152,7 @@ This is an illustration of a **Themed Accordion** component with default configu
       },
     }}
   />
-</AppProvider>
+</Wrapper>
 
 <br />
 
@@ -196,7 +196,7 @@ This section provides a comprehensive reference list for the component props, de
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
-<AppProvider config={{}}>
+<Wrapper>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -315,12 +315,12 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
       </Table.TBody>
     </Table>
   </TableContainer>
-</AppProvider>
+</Wrapper>
 
 **Descendants Styling Props**
 Props to style child components.
 
-<AppProvider config={{}}>
+<Wrapper>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -383,13 +383,13 @@ Props to style child components.
       </Table.TBody>
     </Table>
   </TableContainer>
-</AppProvider>
+</Wrapper>
 
 #### AccordionItem
 
 Contains all the parts of a collapsible section.
 
-<AppProvider config={{}}>
+<Wrapper>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -444,7 +444,7 @@ Contains all the parts of a collapsible section.
       </Table.TBody>
     </Table>
   </TableContainer>
-</AppProvider>
+</Wrapper>
 
 #### AccordionHeader
 
@@ -505,7 +505,7 @@ The Examples section provides visual representations of the different variants o
 
 The following example demonstrates how easily you can customize the Accordion component to suit your needs.
 
-<AppProvider config={{}}>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -676,13 +676,13 @@ Wrapper,
 }}
 />
 
-</AppProvider>
+</Wrapper>
 
 ### Rounded corners
 
 The borderRadius prop can be used to create rounded corners for both the Accordion and AccordionItem components.
 
-<AppProvider config={{}}>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -779,13 +779,13 @@ Wrapper,
 }}
 />
 
-</AppProvider>
+</Wrapper>
 
 ### Disabled item
 
 You can disable an item by setting the isDisabled prop to true. This will prevent the user from interacting with the item and its content. You can also disable the whole accordion by setting the isDisabled prop to true on the Accordion component.
 
-<AppProvider config={{}}>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -878,13 +878,13 @@ Wrapper,
 }}
 />
 
-</AppProvider>
+</Wrapper>
 
 ### Default value
 
 Use the defaultValue prop to define the open item by default.
 
-<AppProvider config={{}}>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -1001,13 +1001,13 @@ Wrapper,
 }}
 />
 
-</AppProvider>
+</Wrapper>
 
 ### Nested Components
 
 You can nest Accordion components to create a nested accordion. This is useful when you want to group related content together. In the following example, we have created a nested accordion to group the states of USA by region.
 
-<AppProvider config={{}}>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -1148,14 +1148,14 @@ Wrapper,
 }}
 />
 
-</AppProvider>
+</Wrapper>
 
 ### Controlled Accordion
 
 A component is controlled when it's managed by its parent using props.
 You can make the Accordion component controlled by passing the value prop to the Accordion and setting the onValueChange to update the value prop. In the following example, we have created a controlled accordion to display the expanded state of the accordion.
 
-<AppProvider config={{}}>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -1284,7 +1284,7 @@ Wrapper,
 }}
 />
 
-</AppProvider>
+</Wrapper>
 
 ## Unstyled
 

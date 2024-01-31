@@ -35,11 +35,11 @@ import {
   InlineCode,
 } from '@gluestack/design-system';
 
-import Wrapper from '../Wrapper';
+import Wrapper from '../../components/Wrapper';
 
 This is an illustration of a **Themed Radio** component with default configuration.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={true}
@@ -81,7 +81,7 @@ This is an illustration of a **Themed Radio** component with default configurati
       },
     }}
   />
-</AppProvider>
+</Wrapper>
 
 <br />
 
@@ -121,7 +121,7 @@ This section provides a comprehensive reference list for the component props, de
 Contains all Radio related layout style props and actions.
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
-<AppProvider>
+<Wrapper>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -256,12 +256,12 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
       </Table.TBody>
     </Table>
   </TableContainer>
-</AppProvider>
+</Wrapper>
 
 **Descendants Styling Props**
 Props to style child components.
 
-<AppProvider>
+<Wrapper>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -308,7 +308,7 @@ Props to style child components.
       </Table.TBody>
     </Table>
   </TableContainer>
-</AppProvider>
+</Wrapper>
 
 #### RadioIndicator
 
@@ -326,7 +326,7 @@ Contains all Label related layout style props and actions. It inherits all the p
 
 Contains all Group related layout style props and actions. It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
-<AppProvider>
+<Wrapper>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -400,12 +400,12 @@ Contains all Group related layout style props and actions. It inherits all the p
       </Table.TBody>
     </Table>
   </TableContainer>
-</AppProvider>
+</Wrapper>
 
 **Descendants Styling Props**
 Props to style child components.
 
-<AppProvider>
+<Wrapper>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -432,7 +432,7 @@ Props to style child components.
       </Table.TBody>
     </Table>
   </TableContainer>
-</AppProvider>
+</Wrapper>
 
 ### Features
 
@@ -473,7 +473,7 @@ Radio component is created using Pressable component from react-native. It exten
 
 #### Radio
 
-<AppProvider>
+<Wrapper>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -506,7 +506,7 @@ Radio component is created using Pressable component from react-native. It exten
       </Table.TBody>
     </Table>
   </TableContainer>
-</AppProvider>
+</Wrapper>
 
 > Note: These props are exclusively applicable when utilizing the default configuration of gluestack-ui/config. If you are using a custom theme, these props may not be available.
 
@@ -518,7 +518,7 @@ The Examples section provides visual representations of the different variants o
 
 Radio buttons provide a mutually exclusive selection mechanism, allowing users to choose a single option from a set of related choices.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -569,13 +569,13 @@ Radio buttons provide a mutually exclusive selection mechanism, allowing users t
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>
 
 #### Horizontal
 
 Radio buttons can be used horizontally.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -620,13 +620,13 @@ Radio buttons can be used horizontally.
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>
 
 #### With help text
 
 Radio buttons can be used with helper text.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -679,13 +679,13 @@ Radio buttons can be used with helper text.
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>
 
 #### Form Control
 
 Radio buttons can be used inside FormControl for better control of states and functionality.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -744,13 +744,13 @@ Radio buttons can be used inside FormControl for better control of states and fu
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>
 
 #### Label left
 
 Radio buttons can be used horizontally
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -796,13 +796,13 @@ Radio buttons can be used horizontally
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>
 
 #### Controlled
 
 The Radio components can be used with a controlled state, enabling precise management of the selected option through external state management.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -848,13 +848,13 @@ The Radio components can be used with a controlled state, enabling precise manag
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>
 
 #### Uncontrolled
 
 The Radio components can be used with either a ref or no state, providing an uncontrolled state where the selected option is managed internally.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -904,13 +904,13 @@ The Radio components can be used with either a ref or no state, providing an unc
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>
 
 #### Radio group
 
 The Radio group component allows users to group radio and display them in a horizontal or vertical row for better visual representation and functionality.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -962,7 +962,7 @@ The Radio group component allows users to group radio and display them in a hori
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>
 
 ## Unstyled
 

@@ -31,11 +31,11 @@ import {
   InlineCode,
 } from '@gluestack/design-system';
 
-import Wrapper from '../Wrapper';
+import Wrapper from '../../components/Wrapper';
 
 This is an illustration of a **Themed Progress** component with default configuration.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={true}
@@ -58,7 +58,7 @@ This is an illustration of a **Themed Progress** component with default configur
       },
     }}
   />
-</AppProvider>
+</Wrapper>
 
 <br />
 
@@ -92,7 +92,7 @@ This section provides a comprehensive reference list for the component props, de
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
-<AppProvider>
+<Wrapper>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -131,12 +131,12 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
       </Table.TBody>
     </Table>
   </TableContainer>
-</AppProvider>
+</Wrapper>
 
 **Descendants Styling Props**
 Props to style child components.
 
-<AppProvider>
+<Wrapper>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -163,7 +163,7 @@ Props to style child components.
       </Table.TBody>
     </Table>
   </TableContainer>
-</AppProvider>
+</Wrapper>
 
 #### ProgressFilledTrack
 
@@ -191,7 +191,7 @@ Progress component is created using View component from react-native. It extends
 
 #### Progress
 
-<AppProvider>
+<Wrapper>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -224,7 +224,7 @@ Progress component is created using View component from react-native. It extends
       </Table.TBody>
     </Table>
   </TableContainer>
-</AppProvider>
+</Wrapper>
 
 > Note: These props are exclusively applicable when utilizing the default configuration of gluestack-ui/config. If you are using a custom theme, these props may not be available.
 
@@ -236,7 +236,7 @@ The Examples section provides visual representations of the different variants o
 
 Progress component with value
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -263,13 +263,13 @@ Progress component with value
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>
 
 #### Color
 
 You can add track color to progress bar as per our needs.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -302,13 +302,13 @@ You can add track color to progress bar as per our needs.
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>
 
 #### Custom
 
 You can customize the progress bar. Below is the example where we have change the theme of progress bar.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -336,7 +336,7 @@ You can customize the progress bar. Below is the example where we have change th
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>
 
 ## Unstyled
 

@@ -18,11 +18,11 @@ import { Center, Text } from './Center';
 import { transformedCode } from '../../utils';
 import { AppProvider, CodePreview, Table } from '@gluestack/design-system';
 
-import Wrapper from '../Wrapper';
+import Wrapper from '../../components/Wrapper';
 
 This is an illustration of a **Themed Center** component with default configuration.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     _rendererWrapper={{ py: '$6' }}
     showComponentRenderer={true}
@@ -46,7 +46,7 @@ This is an illustration of a **Themed Center** component with default configurat
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>
 
 <br />
 

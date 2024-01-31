@@ -24,11 +24,11 @@ import {
   InlineCode,
 } from '@gluestack/design-system';
 
-import Wrapper from '../Wrapper';
+import Wrapper from '../../components/Wrapper';
 
 This is an illustration of a **Themed Link** component with default configuration.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -49,7 +49,7 @@ This is an illustration of a **Themed Link** component with default configuratio
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>
 
 <br />
 
@@ -84,7 +84,7 @@ This section provides a comprehensive reference list for the component props, de
 Contains all link related layout style props and actions.
 It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable) component.
 
-<AppProvider>
+<Wrapper>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -189,12 +189,12 @@ It inherits all the properties of React Native's [Pressable](https://reactnative
       </Table.TBody>
     </Table>
   </TableContainer>
-</AppProvider>
+</Wrapper>
 
 **Descendants Styling Props**
 Props to style child components.
 
-<AppProvider>
+<Wrapper>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -221,7 +221,7 @@ Props to style child components.
       </Table.TBody>
     </Table>
   </TableContainer>
-</AppProvider>
+</Wrapper>
 
 #### LinkText
 
@@ -250,7 +250,7 @@ Link component is created using Pressable component from react-native. It extend
 
 #### Link
 
-<AppProvider>
+<Wrapper>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -285,7 +285,7 @@ Link component is created using Pressable component from react-native. It extend
       </Table.TBody>
     </Table>
   </TableContainer>
-</AppProvider>
+</Wrapper>
 
 > Note: These props are exclusively applicable when utilizing the default configuration of gluestack-ui/config. If you are using a custom theme, these props may not be available.
 
@@ -295,7 +295,7 @@ The Examples section provides visual representations of the different variants o
 
 #### Default
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -317,11 +317,11 @@ The Examples section provides visual representations of the different variants o
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>
 
 #### Link with icon
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -345,7 +345,7 @@ The Examples section provides visual representations of the different variants o
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>
 
 ## Unstyled
 

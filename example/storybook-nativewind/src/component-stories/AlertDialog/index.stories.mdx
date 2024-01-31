@@ -40,11 +40,11 @@ import {
   InlineCode,
 } from '@gluestack/design-system';
 
-import Wrapper from '../Wrapper';
+import Wrapper from '../../components/Wrapper';
 
 This is an illustration of a **Themed AlertDialog** component with default configuration.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -129,7 +129,7 @@ This is an illustration of a **Themed AlertDialog** component with default confi
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>
 
 <br />
 
@@ -179,7 +179,7 @@ This section provides a comprehensive reference list for the component props, de
 Contains all View related layout style props and actions.
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
-<AppProvider>
+<Wrapper>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -362,12 +362,12 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
       </Table.TBody>
     </Table>
   </TableContainer>
-</AppProvider>
+</Wrapper>
 
 **Descendants Styling Props**
 Props to style child components.
 
-<AppProvider>
+<Wrapper>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -395,7 +395,7 @@ Props to style child components.
     </Table>
 
   </TableContainer>
-</AppProvider>
+</Wrapper>
 
 #### AlertDialogBackdrop
 
@@ -412,7 +412,7 @@ It inherits all the properties of React Native's [Pressable](https://reactnative
 **Descendants Styling Props**
 Props to style child components.
 
-<AppProvider>
+<Wrapper>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -449,7 +449,7 @@ Props to style child components.
       </Table.TBody>
     </Table>
   </TableContainer>
-</AppProvider>
+</Wrapper>
 
 #### AlertDialogHeader
 
@@ -477,7 +477,7 @@ AlertDialog component is created using View component from react-native. It exte
 
 #### AlertDialog
 
-<AppProvider>
+<Wrapper>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -510,7 +510,7 @@ AlertDialog component is created using View component from react-native. It exte
       </Table.TBody>
     </Table>
   </TableContainer>
-</AppProvider>
+</Wrapper>
 
 > Note: These props are exclusively applicable when utilizing the default configuration of gluestack-ui/config. If you are using a custom theme, these props may not be available.
 
@@ -522,7 +522,7 @@ The Examples section provides visual representations of the different variants o
 
 An example of an AlertDialog component incorporating an icon component for visually representing important information or actions.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -601,13 +601,13 @@ An example of an AlertDialog component incorporating an icon component for visua
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>
 
 #### AlertDialog Sizes
 
 An AlertDialog component with adjustable sizes, providing flexible and visually appealing pop-up notifications and interactive prompts to users.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={true}
@@ -702,7 +702,7 @@ An AlertDialog component with adjustable sizes, providing flexible and visually 
       },
     }}
   />
-</AppProvider>
+</Wrapper>
 
 ## Unstyled
 

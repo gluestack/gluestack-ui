@@ -33,11 +33,11 @@ import {
   TableContainer,
 } from '@gluestack/design-system';
 
-import Wrapper from '../Wrapper';
+import Wrapper from '../../components/Wrapper';
 
 This is an illustration of a **Themed Alert** component with default configuration.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     _rendererWrapper={{ px: '$2.5' }}
     showComponentRenderer={true}
@@ -75,7 +75,7 @@ This is an illustration of a **Themed Alert** component with default configurati
       },
     }}
   />
-</AppProvider>
+</Wrapper>
 
 <br />
 
@@ -113,7 +113,7 @@ Contains all alert related layout style props and actions. It inherits all the p
 **Descendants Styling Props**
 Props to style child components.
 
-<AppProvider>
+<Wrapper>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -150,7 +150,7 @@ Props to style child components.
       </Table.TBody>
     </Table>
   </TableContainer>
-</AppProvider>
+</Wrapper>
 
 #### AlertIcon
 
@@ -170,7 +170,7 @@ Alert component is created using View component from react-native. It extends al
 
 #### Alert
 
-<AppProvider>
+<Wrapper>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -216,7 +216,7 @@ Alert component is created using View component from react-native. It extends al
       </Table.TBody>
     </Table>
   </TableContainer>
-</AppProvider>
+</Wrapper>
 
 ### Examples
 
@@ -226,7 +226,7 @@ The Examples section provides visual representations of the different variants o
 
 An example of an alert component with a heading, which further contains another alert component for displaying supplementary information.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -260,7 +260,7 @@ An example of an alert component with a heading, which further contains another 
     }}
 />
 
-</AppProvider>
+</Wrapper>
 
 ## Unstyled
 

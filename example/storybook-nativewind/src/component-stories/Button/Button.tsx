@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, ButtonText } from '@/components/Button';
+import { Provider } from '@/components/core/Provider';
 
 export const ButtonBasic = (props: any) => {
   return (
@@ -16,4 +17,4 @@ ButtonBasic.description =
 
 export default ButtonBasic;
 
-export { Button, ButtonText };
+export { Button, ButtonText, Provider };

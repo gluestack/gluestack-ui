@@ -25,11 +25,11 @@ import {
   InlineCode,
 } from '@gluestack/design-system';
 
-import Wrapper from '../Wrapper';
+import Wrapper from '../../components/Wrapper';
 
 This is an illustration of a **Themed Heading** component with default configuration.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -47,7 +47,7 @@ This is an illustration of a **Themed Heading** component with default configura
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>
 
 <br />
 
@@ -87,7 +87,7 @@ Heading component is created using H1 component from @expo/html-elements. It ext
 
 #### Button
 
-<AppProvider>
+<Wrapper>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -213,7 +213,7 @@ Heading component is created using H1 component from @expo/html-elements. It ext
       </Table.TBody>
     </Table>
   </TableContainer>
-</AppProvider>
+</Wrapper>
 
 > Note: These props are exclusively applicable when utilizing the default configuration of gluestack-ui/config. If you are using a custom theme, these props may not be available.
 
@@ -232,7 +232,7 @@ Heading component offers a range of sizes, including `xs`, `sm`, `md`, `lg`, `xl
 - For `md`, it renders `h5`.
 - Finally, for `sm` and `xs`, it renders `h6`.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     _rendererWrapper={{ py: '$2.5' }}
     showComponentRenderer={true}
@@ -267,11 +267,11 @@ Heading component offers a range of sizes, including `xs`, `sm`, `md`, `lg`, `xl
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>
 
 The Heading component also accepts some shorthands for basic quick styling.
 
-<AppProvider>
+<Wrapper>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -390,7 +390,7 @@ The Heading component also accepts some shorthands for basic quick styling.
       </Table.TBody>
     </Table>
   </TableContainer>
-</AppProvider>
+</Wrapper>
 
 ## Unstyled
 
