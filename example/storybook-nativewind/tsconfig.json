@@ -3,7 +3,9 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/components/*": ["./src/components/themed/*"]
+      "@/components/*": ["./src/components/themed/*"],
+      "@gluestack-style/react": ["../../packages/styled/react/src"],
+      "@gluestack-ui/provider": ["../../packages/unstyled/provider/src"]
     },
     "emitDeclarationOnly": true,
     "noEmit": false,
