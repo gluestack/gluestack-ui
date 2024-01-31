@@ -1,8 +1,16 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import { Pressable, Text, View } from '@gluestack-ui/themed';
 import { useToggleState } from 'react-stately';
 import { createContext } from 'react';
+import { styled } from '@gluestack-style/react';
+const StyledView = styled(
+  View,
+  {},
+  {
+    componentName: 'StyledView',
+  }
+);
 const CollapsibleContext = createContext<any>({
   isExpanded: false,
   setIsExpanded: () => {},
@@ -16,9 +24,15 @@ const Root = (props: any) => {
       setIsExpanded,
     };
   }, [isExpanded, setIsExpanded]);
+
   return (
     <CollapsibleContext.Provider value={contextValue}>
-      <View {...props} />
+      <StyledView
+        states={{
+          checked: isExpanded,
+        }}
+        {...props}
+      />
     </CollapsibleContext.Provider>
   );
 };
@@ -39,12 +53,17 @@ const Trigger = ({ children, defaultValue, value, ...props }: any) => {
         // @ts-ignore
         expanded: isExpanded,
       }}
+      {...props}
       onPress={() => {
         setIsExpanded(!isExpanded);
         state.toggle();
       }}
     >
-      {children}
+      {typeof children === 'function'
+        ? children({
+            expanded: isExpanded,
+          })
+        : children}
     </Pressable>
   );
 };
@@ -52,23 +71,85 @@ const TriggerText = (props: any) => {
   return <Text {...props} />;
 };
 
-const Content = (props: any) => {
+const Content = ({ forceMount = false, ...props }: any) => {
   const { isExpanded } = React.useContext(CollapsibleContext);
 
-  return <>{isExpanded || (props.forceMount && <View {...props} />)}</>;
+  if (!forceMount && isExpanded) {
+    return null;
+  }
+
+  return <View {...props} />;
 };
+
 const ContentText = (props: any) => {
   return <Text {...props} />;
 };
 const CollapsibleBasic = ({}: any) => {
   return (
-    <Root>
-      <Trigger>
-        <TriggerText>Collapsible</TriggerText>
-      </Trigger>
-      <Content>
-        <ContentText>Content</ContentText>
+    <Root
+      sx={{
+        'maxHeight': '20vh',
+        ':checked': {
+          maxHeight: '80vh',
+        },
+        'overflow': 'scroll',
+        'width': 350,
+        'bg': '$backgroundDark900',
+        'position': 'relative',
+      }}
+    >
+      <Content
+        forceMount
+        sx={{
+          height: '100vh',
+        }}
+      >
+        <ContentText sx={{ color: '$white' }}>
+          {`
+          <TempProvider config={config}>
+            <Box
+              sx={{
+                _dark: {
+                  bg: '$backgroundDark950',
+                },
+              }}
+            >
+              <Center>{children}</Center>
+            </Box>
+          </TempProvider>
+          `}
+        </ContentText>
       </Content>
+      <Trigger
+        sx={{
+          position: 'sticky',
+          bottom: 0,
+          width: '100%',
+          justifyContent: 'center',
+          alignItems: 'center',
+          backgroundColor: '$backgroundDark900',
+          opacity: 0.7,
+        }}
+      >
+        {
+          // @ts-ignore
+          ({ expanded }) => {
+            return (
+              <TriggerText
+                sx={{
+                  color: '$textLight100',
+                  fontSize: 20,
+                  fontWeight: 'bold',
+                  py: '$2',
+                  px: '$3',
+                }}
+              >
+                {expanded ? 'Expand' : 'Collapse'}
+              </TriggerText>
+            );
+          }
+        }
+      </Trigger>
     </Root>
   );
 };
