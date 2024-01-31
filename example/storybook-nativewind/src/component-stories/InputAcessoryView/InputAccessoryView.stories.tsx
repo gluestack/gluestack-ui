@@ -2,7 +2,7 @@ import type { ComponentMeta } from '@storybook/react-native';
 import InputAccessoryViewStory from './InputAccessoryView';
 
 const InputAccessoryViewMeta: ComponentMeta<typeof ScrollView> = {
-  title: 'stories/React Native Components/InputAccessoryView',
+  title: 'stories/InputAccessoryView',
   component: InputAccessoryViewStory,
 };
 
