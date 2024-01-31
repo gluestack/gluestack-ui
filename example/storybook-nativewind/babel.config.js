@@ -30,6 +30,14 @@ module.exports = function (api) {
               __dirname,
               '../../packages/unstyled/button/src'
             ),
+            '@gluestack-ui/provider': path.resolve(
+              __dirname,
+              '../../packages/unstyled/provider/src'
+            ),
+            '@gluestack-style/react': path.resolve(
+              __dirname,
+              '../../packages/styled/react/src'
+            ),
             '@gluestack-ui/nativewind-utils': path.resolve(
               __dirname,
               '../../packages/nativewind/utils/src'
