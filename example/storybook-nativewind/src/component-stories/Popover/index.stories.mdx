@@ -23,17 +23,17 @@ import {
   PopoverFooter,
   PopoverCloseButton,
   PopoverArrow,
-  Pressable,
-  Text as PopoverText,
 } from './Popover';
 import {
+  Pressable,
+  Text as PopoverText,
   Heading,
   Icon,
   HStack,
   VStack,
   Avatar,
   AvatarFallbackText,
-} from './Popover';
+} from '@gluestack-ui/themed';
 import {
   Button,
   ButtonGroup,
@@ -41,9 +41,9 @@ import {
   Box,
   CloseIcon,
   CircleIcon,
-} from './Popover';
-import { PhoneIcon, Clock3Icon, MailIcon } from './Popover';
-import { useState, Center } from './Popover';
+} from '@gluestack-ui/themed';
+import { PhoneIcon, Clock3Icon, MailIcon } from '@gluestack-ui/themed';
+import { Center } from '@gluestack-ui/themed';
 import { transformedCode } from '../../utils';
 import {
   AppProvider,
@@ -65,7 +65,7 @@ This is an illustration of a **Themed Popover** component with default configura
     metaData={{
       code: `
       function App() {
-        const [isOpen, setIsOpen] = useState(false);
+        const [isOpen, setIsOpen] = React.useState(false);
         const handleOpen = () => {
           setIsOpen(true);
         };
@@ -141,7 +141,6 @@ This is an illustration of a **Themed Popover** component with default configura
         ButtonText,
         CloseIcon,
         Icon,
-        useState,
       },
       argsType: {
         placement: {
@@ -183,7 +182,7 @@ We have exported `PopoverArrow` component which can be used to render an arrow f
     metaData={{
       code: `
       function App() {
-        const [isOpen, setIsOpen] = useState(false);
+        const [isOpen, setIsOpen] = React.useState(false);
         const handleOpen = () => {
           setIsOpen(true);
         };
@@ -260,7 +259,6 @@ We have exported `PopoverArrow` component which can be used to render an arrow f
         ButtonText,
         CloseIcon,
         Icon,
-        useState,
         PopoverArrow,
       },
       argsType: {

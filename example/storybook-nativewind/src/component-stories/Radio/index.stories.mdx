@@ -20,11 +20,9 @@ import {
   RadioIcon,
   RadioIndicator,
   RadioLabel,
-  CircleIcon,
-  Center,
 } from './Radio';
-import { HStack, Box, Heading } from './Radio';
-import { VStack, Text, FormControl } from './Radio';
+import { HStack, Box, Heading, CircleIcon, Center } from '@gluestack-ui/themed';
+import { VStack, Text, FormControl } from '@gluestack-ui/themed';
 import { useState, useRef } from 'react';
 import { transformedCode } from '../../utils';
 import {
@@ -757,7 +755,7 @@ Radio buttons can be used horizontally
     metaData={{
       code: `
       function App() {
-        const [values, setValues] = useState("Monday");
+        const [values, setValues] = React.useState("Monday");
         return (
           <RadioGroup value={values} onChange={setValues} >
             <VStack space="lg" w='$40'>
@@ -791,7 +789,6 @@ Radio buttons can be used horizontally
         RadioIndicator,
         RadioLabel,
         CircleIcon,
-        useState,
       },
       argsType: {},
     }}
@@ -843,7 +840,6 @@ The Radio components can be used with a controlled state, enabling precise manag
         RadioIndicator,
         RadioLabel,
         CircleIcon,
-        useState,
       },
       argsType: {},
     }}
@@ -917,7 +913,7 @@ The Radio group component allows users to group radio and display them in a hori
     metaData={{
       code: `
         function RadioGroupExample() {
-          const [values, setValues] = useState("1st");
+          const [values, setValues] = React.useState("1st");
           return (
             <RadioGroup value={values} onChange={setValues}>
               <VStack space="sm">
@@ -957,7 +953,6 @@ The Radio group component allows users to group radio and display them in a hori
         Wrapper,
         Center,
         CircleIcon,
-        useState,
       },
       argsType: {},
     }}
