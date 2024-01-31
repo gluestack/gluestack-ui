@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Center } from '@gluestack-ui/themed';
 import { StyledProvider } from '@gluestack-style/react';
 import { createProvider } from '@gluestack-ui/provider';
-import { config } from './themed/core/config';
+import { config } from './themed/Provider/config';
 
 const Provider = createProvider({ StyledProvider }) as any;
 Provider.displayName = 'Provider';
