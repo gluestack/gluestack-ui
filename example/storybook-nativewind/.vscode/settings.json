@@ -1,3 +1,6 @@
 {
-  "cSpell.words": ["gluestack"]
+  "cSpell.words": ["gluestack"],
+  "tailwindCSS.experimental.classRegex": [
+    ["tva\\((([^()]*|\\([^()]*\\))*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]
+  ]
 }
