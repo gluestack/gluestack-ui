@@ -61,6 +61,7 @@ const StyledRoot = styled(
     },
     props: {
       size: 'md',
+      fill: 'none',
     },
   },
   {

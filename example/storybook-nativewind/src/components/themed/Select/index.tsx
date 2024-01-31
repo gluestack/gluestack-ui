@@ -334,6 +334,7 @@ const StyledIcon = styled(
     },
     props: {
       size: 'sm',
+      fill: 'none',
     },
 
     color: '$background500',

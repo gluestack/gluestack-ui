@@ -6,20 +6,21 @@ import {
   ButtonText,
   GlobeIcon,
   HStack,
-  Icon,
+  // Icon,
   SettingsIcon,
   AddIcon,
   Text,
   Center,
 } from '@gluestack-ui/themed';
 import { Menu, MenuIcon, MenuItem, MenuItemLabel } from '@/components/Menu';
+import { Icon } from '@/components/Icons';
 import { PaintBucket, PuzzleIcon } from 'lucide-react-native';
 
 const MenuBasic = ({ placement = 'bottom' }: any) => {
   return (
     <Center>
       <Menu
-        isOpen={true}
+        // isOpen={true}
         placement={placement}
         disabledKeys={['Settings']}
         // eslint-disable-next-line react/no-unstable-nested-components
@@ -36,11 +37,11 @@ const MenuBasic = ({ placement = 'bottom' }: any) => {
           <MenuItemLabel size="sm">Community</MenuItemLabel>
         </MenuItem>
         <MenuItem key="Plugins" textValue="Plugins" gap="$2">
-          <Icon as={PuzzleIcon} size={16} />
+          <Icon as={PuzzleIcon} size="sm" />
           <MenuItemLabel size="sm">Plugins</MenuItemLabel>
         </MenuItem>
         <MenuItem key="Theme" textValue="Theme" gap="$2">
-          <Icon as={PaintBucket} size={16} />
+          <Icon as={PaintBucket} size="sm" />
           <MenuItemLabel size="sm">Theme</MenuItemLabel>
         </MenuItem>
         <MenuItem key="Settings" textValue="Settings" gap="$2">
@@ -56,7 +57,7 @@ const MenuBasic = ({ placement = 'bottom' }: any) => {
   );
 };
 
-const FigmaMenuStory = ({ colorMode, ...props }) => {
+const FigmaMenuStory = ({ _colorMode, ...props }) => {
   return (
     <Menu
       {...props}
@@ -75,139 +76,24 @@ const FigmaMenuStory = ({ colorMode, ...props }) => {
       }}
     >
       <Menu.Item key="Community" textValue="Community" gap="$2">
-        <Icon
-          as={GlobeIcon}
-          dataSet={{
-            'component-props': JSON.stringify({
-              'instance': true,
-              'instance-name': 'Icon',
-              'as': 'GlobeIcon',
-              'size': 'sm',
-              'colorMode': colorMode,
-            }),
-          }}
-          size="sm"
-        />
-        <Menu.ItemLabel
-          size="sm"
-          dataSet={{
-            'component-props': JSON.stringify({
-              'is-text-style': true,
-              'component-name': 'Text',
-              'size': 'sm',
-            }),
-          }}
-        >
-          Community
-        </Menu.ItemLabel>
+        <Icon as={GlobeIcon} size="sm" />
+        <Menu.ItemLabel size="sm">Community</Menu.ItemLabel>
       </Menu.Item>
       <Menu.Item key="Plugins" textValue="Plugins" gap="$2">
-        <Icon
-          as={PuzzleIcon}
-          dataSet={{
-            'component-props': JSON.stringify({
-              'instance': true,
-              'instance-name': 'Icon',
-              'as': 'PuzzleIcon',
-              'size': 'sm',
-              'colorMode': colorMode,
-            }),
-          }}
-          size="sm"
-        />
-        <Menu.ItemLabel
-          size="sm"
-          dataSet={{
-            'component-props': JSON.stringify({
-              'is-text-style': true,
-              'component-name': 'Text',
-              'size': 'sm',
-            }),
-          }}
-        >
-          Plugins
-        </Menu.ItemLabel>
+        <Icon as={PuzzleIcon} size="sm" />
+        <Menu.ItemLabel size="sm">Plugins</Menu.ItemLabel>
       </Menu.Item>
       <Menu.Item key="Theme" textValue="Theme" gap="$2">
-        <Icon
-          as={PaintBucket}
-          dataSet={{
-            'component-props': JSON.stringify({
-              'instance': true,
-              'instance-name': 'Icon',
-              'as': 'PaintBucket',
-              'size': 'sm',
-              'colorMode': colorMode,
-            }),
-          }}
-          size="sm"
-        />
-        <Menu.ItemLabel
-          size="sm"
-          dataSet={{
-            'component-props': JSON.stringify({
-              'is-text-style': true,
-              'component-name': 'Text',
-              'size': 'sm',
-            }),
-          }}
-        >
-          Theme
-        </Menu.ItemLabel>
+        <Icon as={PaintBucket} size="sm" />
+        <Menu.ItemLabel size="sm">Theme</Menu.ItemLabel>
       </Menu.Item>
       <Menu.Item key="Settings" textValue="Settings" gap="$2">
-        <Icon
-          as={SettingsIcon}
-          dataSet={{
-            'component-props': JSON.stringify({
-              'instance': true,
-              'instance-name': 'Icon',
-              'as': 'SettingsIcon',
-              'size': 'sm',
-              'colorMode': colorMode,
-            }),
-          }}
-          size="sm"
-        />
-        <Menu.ItemLabel
-          size="sm"
-          dataSet={{
-            'component-props': JSON.stringify({
-              'is-text-style': true,
-              'component-name': 'Text',
-              'size': 'sm',
-            }),
-          }}
-        >
-          Settings
-        </Menu.ItemLabel>
+        <Icon as={SettingsIcon} size="sm" />
+        <Menu.ItemLabel size="sm">Settings</Menu.ItemLabel>
       </Menu.Item>
       <Menu.Item key="Add account" textValue="Add account" gap="$2">
-        <Icon
-          as={AddIcon}
-          dataSet={{
-            'component-props': JSON.stringify({
-              'instance': true,
-              'instance-name': 'Icon',
-              'as': 'AddIcon',
-              'size': 'sm',
-              'colorMode': colorMode,
-            }),
-          }}
-          size="sm"
-        />
-        <Menu.ItemLabel
-          size="sm"
-          dataSet={{
-            'component-props': JSON.stringify({
-              'is-text-style': true,
-              'component-name': 'Text',
-              'size': 'sm',
-            }),
-          }}
-        >
-          Add account
-        </Menu.ItemLabel>
+        <Icon as={AddIcon} size="sm" />
+        <Menu.ItemLabel size="sm">Add account</Menu.ItemLabel>
       </Menu.Item>
     </Menu>
   );
