@@ -2,6 +2,7 @@ import type { ComponentMeta } from '@storybook/react-native';
 import Card from './Card';
 import BlogCard from './BlogCard';
 import ProductCard from './ProductCard';
+import ImageCard from './ImageCard';
 
 const CardMeta: ComponentMeta<typeof Card> = {
   title: 'stories/DATA DISPLAY/Card',
@@ -33,4 +34,4 @@ const CardMeta: ComponentMeta<typeof Card> = {
 
 export default CardMeta;
 
-export { Card, BlogCard, ProductCard };
+export { Card, BlogCard, ProductCard, ImageCard };
