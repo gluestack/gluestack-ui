@@ -75,10 +75,6 @@ const StyledErrorIcon = styled(
   {
     color: '$error700',
     fill: 'none',
-    // color: '$backgroundLight800',
-    _dark: {
-      color: '$backgroundDark400',
-    },
     variants: {
       size: {
         '2xs': {

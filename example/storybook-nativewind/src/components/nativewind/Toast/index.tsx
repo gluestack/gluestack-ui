@@ -1,3 +1,4 @@
+import React from 'react';
 import { createToast, createToastHook } from '@gluestack-ui/toast';
 import {
   AnimatePresence,
@@ -5,112 +6,211 @@ import {
 } from '@gluestack-style/animation-resolver';
 import { styled } from '@gluestack-style/react';
 import { Text, View } from 'react-native';
+import {
+  tva,
+  useStyleContext,
+  withStyleContext,
+} from '@gluestack-ui/nativewind-utils';
 
-const StyledRoot = styled(
-  View,
+const AnimationWrapper = styled(AnimatedView, {});
+export const useToast = createToastHook(AnimationWrapper, AnimatePresence);
+
+export const UIToast = createToast({
+  Root: withStyleContext(View),
+  Title: Text,
+  Description: Text,
+});
+
+const toastStyle = tva(
   {
-    px: '$4',
-    py: '$3',
-    borderRadius: '$sm',
-    flexDirection: 'row',
+    base: 'px-4 py-3 m-3 rounded-sm flex-row web:pointer-events-auto shadow-lg',
     variants: {
       action: {
-        error: {
-          bg: '$backgroundError',
-          borderColor: '$error300',
+        error: 'bg-background-error border-error-300',
 
-          _icon: {
-            color: '$error500',
-          },
-        },
-        warning: {
-          bg: '$backgroundWarning',
-          borderColor: '$warning300',
+        // _icon: {
+        //   color: '$error500',
+        // },
 
-          _icon: {
-            color: '$warning500',
-          },
-        },
-        success: {
-          bg: '$backgroundSuccess',
-          borderColor: '$success300',
+        warning: 'bg-background-warning border-warning-300',
 
-          _icon: {
-            color: '$success500',
-          },
-        },
-        info: {
-          bg: '$backgroundInfo',
-          borderColor: '$info300',
+        //   _icon: {
+        //     color: '$warning500',
+        //   },
+        // },
+        success: 'bg-background-success border-success-300',
 
-          _icon: {
-            color: '$info500',
-          },
-        },
-        attention: {
-          bg: '$backgroundMuted',
-          borderColor: '$secondary300',
+        // _icon: {
+        //   color: '$success500',
+        // },
+        // },
+        info: 'bg-background-info border-info-300',
 
-          _icon: {
-            color: '$secondary600',
-          },
-        },
+        // _icon: {
+        //   color: '$info500',
+        // },
+        // },
+        attention: 'bg-background-muted border-secondary-30',
+        // bg: '$backgroundMuted',
+        // borderColor: '$secondary300',
+
+        // _icon: {
+        //   color: '$secondary600',
+        // },
+        // },
       },
 
       variant: {
-        solid: {},
-        outline: {
-          borderWidth: '$1',
-          bg: '$white',
-        },
-        accent: {
-          borderLeftWidth: '$4',
-        },
+        solid: '',
+        outline: 'border-1 bg-white',
+        accent: 'border-l-4',
       },
     },
-    m: '$3',
 
-    _web: {
-      pointerEvents: 'auto',
-    },
-    defaultProps: {
-      hardShadow: '5',
+    defaultVariants: {
+      // hardShadow: '5',
       variant: 'solid',
       action: 'attention',
     },
-  },
-  { descendantStyle: ['_icon', '_title', '_description'] }
+  }
+  // { descendantStyle: ['_icon', '_title', '_description'] }
 );
-const StyledTitle = styled(
-  Text,
-  {
-    fontWeight: '$medium',
-
-    props: {
-      size: 'md',
+const toastTitleStyle = tva({
+  base: 'text-typography-700 font-medium font-body tracking-md text-left',
+  variants: {
+    isTruncated: {
+      true: '',
+    },
+    bold: {
+      true: 'font-bold',
+    },
+    underline: {
+      true: 'underline',
+    },
+    strikeThrough: {
+      true: 'line-through',
+    },
+    size: {
+      '2xs': 'text-2xs',
+      'xs': 'text-xs',
+      'sm': 'text-sm',
+      'md': 'text-md',
+      'lg': 'text-lg',
+      'xl': 'text-xl',
+      '2xl': 'text-2xl',
+      '3xl': 'text-3xl',
+      '4xl': 'text-4xl',
+      '5xl': 'text-5xl',
+      '6xl': 'text-6xl',
     },
   },
-  { ancestorStyle: ['_title'] }
-);
-const StyledDescription = styled(
-  Text,
-  {
-    color: '$text700',
+  defaultVariants: {
+    size: 'md',
+  },
+  // { ancestorStyle: ['_title'] }
+});
 
-    props: {
+const toastDescriptionStyle = tva(
+  {
+    base: 'text-typography-700 font-normal font-body tracking-md text-left',
+    variants: {
+      isTruncated: {
+        true: '',
+      },
+      bold: {
+        true: 'font-bold',
+      },
+      underline: {
+        true: 'underline',
+      },
+      strikeThrough: {
+        true: 'line-through',
+      },
+      size: {
+        '2xs': 'text-2xs',
+        'xs': 'text-xs',
+        'sm': 'text-sm',
+        'md': 'text-md',
+        'lg': 'text-lg',
+        'xl': 'text-xl',
+        '2xl': 'text-2xl',
+        '3xl': 'text-3xl',
+        '4xl': 'text-4xl',
+        '5xl': 'text-5xl',
+        '6xl': 'text-6xl',
+      },
+    },
+    defaultVariants: {
       size: 'sm',
     },
-  },
-  { ancestorStyle: ['_description'] }
+  }
+  // { ancestorStyle: ['_description'] }
 );
-const AnimationWrapper = styled(AnimatedView, {});
 
-export const useToast = createToastHook(AnimationWrapper, AnimatePresence);
+export const Toast = React.forwardRef(
+  ({ className, variant, size, action, ...props }: any, ref) => {
+    return (
+      <UIToast
+        ref={ref}
+        {...props}
+        className={toastStyle({ variant, size, action, class: className })}
+        context={{ variant, size, action }}
+      />
+    );
+  }
+);
 
-export const Toast = createToast({
-  Root: StyledRoot,
-  Title: StyledTitle,
-  Description: StyledDescription,
-});
-export const ToastTitle = Toast.Title;
-export const ToastDescription = Toast.Description;
+export const ToastTitle = React.forwardRef(
+  ({ className, variant, size, action, ...props }: any, ref) => {
+    const {
+      variant: parentVariant,
+      size: parentSize,
+      action: parentAction,
+    } = useStyleContext();
+
+    return (
+      <UIToast.Title
+        ref={ref}
+        {...props}
+        className={toastTitleStyle({
+          parentVariants: {
+            variant: parentVariant,
+            size: parentSize,
+            action: parentAction,
+          },
+          variant,
+          size,
+          action,
+          class: className,
+        })}
+      />
+    );
+  }
+);
+export const ToastDescription = React.forwardRef(
+  ({ className, variant, size, action, ...props }: any, ref) => {
+    const {
+      variant: parentVariant,
+      size: parentSize,
+      action: parentAction,
+    } = useStyleContext();
+
+    return (
+      <UIToast.Description
+        ref={ref}
+        {...props}
+        className={toastDescriptionStyle({
+          parentVariants: {
+            variant: parentVariant,
+            size: parentSize,
+            action: parentAction,
+          },
+          variant,
+          size,
+          action,
+          class: className,
+        })}
+      />
+    );
+  }
+);
