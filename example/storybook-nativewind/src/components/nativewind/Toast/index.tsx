@@ -76,7 +76,7 @@ const toastStyle = tva(
   // { descendantStyle: ['_icon', '_title', '_description'] }
 );
 const toastTitleStyle = tva({
-  base: 'text-typography-700 font-normal font-body tracking-md text-left',
+  base: 'text-typography-700 font-medium font-body tracking-md text-left',
   variants: {
     isTruncated: {
       true: '',
