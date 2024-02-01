@@ -1,0 +1,4 @@
+{
+  "dependencies": { "@gluestack-ui/collapsible": "latest" },
+  "keywords": ["components", "core"]
+}

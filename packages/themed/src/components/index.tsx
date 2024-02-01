@@ -10,6 +10,7 @@ export * from './Box';
 export * from './FlatList';
 export * from './Center';
 export * from './Checkbox';
+export * from './Collapsible';
 export * from './HStack';
 export * from './Pressable';
 export * from './Icons';
