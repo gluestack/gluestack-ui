@@ -10,6 +10,6 @@ const CardBasic = ({ ...props }: any) => {
 };
 
 CardBasic.description =
-  'This is a basic Accordion component example. An Accordion component is a versatile and interactive user interface element, designed to efficiently organize and present content in a compact space.';
+  'This is a basic Card component example. A Card component is a container that groups related content and actions.';
 
 export default CardBasic;

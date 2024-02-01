@@ -1,5 +1,6 @@
 import type { ComponentMeta } from '@storybook/react-native';
 import Card from './Card';
+import BlogCard from './BlogCard';
 
 const CardMeta: ComponentMeta<typeof Card> = {
   title: 'stories/DATA DISPLAY/Card',
@@ -7,7 +8,7 @@ const CardMeta: ComponentMeta<typeof Card> = {
   // metaInfo is required for figma generation
   // @ts-ignore
   metaInfo: {
-    componentDescription: `The Actionsheet component presents a set of options to the user, overlaid on top of the app's content, allowing them to take quick actions without leaving the current page or view.`,
+    componentDescription: `A Card component is a container that groups related content and actions.`,
   },
   argTypes: {
     // size: {
@@ -31,4 +32,4 @@ const CardMeta: ComponentMeta<typeof Card> = {
 
 export default CardMeta;
 
-export { Card };
+export { Card, BlogCard };
