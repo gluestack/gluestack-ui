@@ -147,6 +147,8 @@ module.exports = {
           800: 'var(--color-background-800)',
           900: 'var(--color-background-900)',
           950: 'var(--color-background-950)',
+          error: 'var(--color-background-error)',
+          muted: 'var(--color-background-muted)',
         },
         backgroundError: 'var(--color-background-error)',
         backgroundWarning: 'var(--color-background-warning)',
