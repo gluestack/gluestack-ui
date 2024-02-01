@@ -8,25 +8,25 @@ export const useTabs = (wrap: boolean) => {
       case 'ArrowRight': {
         e.preventDefault();
         //@ts-ignore
-        focusManager?.focusNext({ wrap });
+        focusManager?.focusNext({ wrap, disabled: false });
         break;
       }
       case 'ArrowLeft': {
         e.preventDefault();
         //@ts-ignore
-        focusManager?.focusPrevious({ wrap });
+        focusManager?.focusPrevious({ wrap, disabled: false });
         break;
       }
       case 'ArrowUp': {
         e.preventDefault();
         //@ts-ignore
-        focusManager?.focusPrevious({ wrap });
+        focusManager?.focusPrevious({ wrap, disabled: false });
         break;
       }
       case 'ArrowDown': {
         e.preventDefault();
         //@ts-ignore
-        focusManager?.focusNext({ wrap });
+        focusManager?.focusNext({ wrap, disabled: false });
         break;
       }
     }

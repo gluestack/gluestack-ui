@@ -1,7 +1,9 @@
 export { default as Root } from './Root';
-export { default as StyledTab } from './Tab';
-export { default as StyledTabList } from './TabList';
-export { default as StyledTabPanel } from './TabPanel';
-export { default as StyledTabPanels } from './TabPanels';
-export { default as StyledTabTitle } from './TabTitle';
-export { default as StyledTabIcon } from './TabIcon';
+export { default as List } from './List';
+
+export { default as Trigger } from './Trigger';
+export { default as TitleText } from './TitleText';
+export { default as Contents } from './Contents';
+export { default as Content } from './Content';
+export { default as ContentText } from './ContentText';
+export { default as Icon } from './Icon';

@@ -1,32 +1,37 @@
-export interface ITabProps {
+export interface ITabsTriggerProps {
   value?: string;
+  isDisabled?: boolean;
 }
-export interface ITabListProps {
-  orientation?: 'vertical' | 'horizontal';
-  variant?: 'scrollable';
+export interface ITabsListProps {
   loop?: boolean;
 }
 export interface ITabsProps {
   value?: string;
-  defaultValue: string;
-  onChange?: (value: string) => void;
+  defaultValue?: string;
+  onValueChange?: (value: string) => void;
+  orientation?: 'vertical' | 'horizontal';
+  children?: React.ReactNode;
+  variant?: 'pilled' | 'underlined';
 }
-export interface ITabPanelProps {
+
+export interface ITabsContentProps {
   value?: string;
 }
 export type ITabsComponentType<
   TabsProps,
-  TabProps,
-  TabPanelsProps,
-  TabListProps,
-  TabPanelProps,
-  TabTitleProps,
-  TabIconProps
+  ListProps,
+  TriggerProps,
+  TitleTextProps,
+  ContentsProps,
+  ContentProps,
+  ContentTextProps,
+  IconProps
 > = React.ForwardRefExoticComponent<TabsProps & ITabsProps> & {
-  Tab: React.ForwardRefExoticComponent<TabProps & ITabProps>;
-  TabPanels: React.ForwardRefExoticComponent<TabPanelsProps>;
-  TabList: React.ForwardRefExoticComponent<TabListProps & ITabListProps>;
-  TabPanel: React.ForwardRefExoticComponent<TabPanelProps & ITabPanelProps>;
-  TabTitle: React.ForwardRefExoticComponent<TabTitleProps>;
-  TabIcon: React.ForwardRefExoticComponent<TabIconProps>;
+  Trigger: React.ForwardRefExoticComponent<TriggerProps & ITabsTriggerProps>;
+  Contents: React.ForwardRefExoticComponent<ContentsProps>;
+  List: React.ForwardRefExoticComponent<ListProps & ITabsListProps>;
+  Content: React.ForwardRefExoticComponent<ContentProps & ITabsContentProps>;
+  TitleText: React.ForwardRefExoticComponent<TitleTextProps>;
+  ContentText: React.ForwardRefExoticComponent<ContentTextProps>;
+  Icon: React.ForwardRefExoticComponent<IconProps>;
 };

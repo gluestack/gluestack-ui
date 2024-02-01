@@ -1,61 +1,69 @@
 import type React from 'react';
-import { Tab as TabHOC } from './Tab';
-import { TabList as TabListMain } from './TabList';
-import { TabPanel as TabPanelMain } from './TabPanel';
-import { TabPanels as TabPanelsMain } from './TabPanels';
-import { Tabs } from './Tabs';
-import { TabTitle as TabTitleMain } from './TabTitle';
-import { TabIcon as TabIconMain } from './TabIcon';
+import { Tabs as TabsMain } from './Tabs';
+import { TabsList } from './TabsList';
+import { TabsTrigger } from './TabsTrigger';
+import { TabsTitleText } from './TabsTitleText';
+import { TabsContents } from './TabsContents';
+import { TabsContent } from './TabsContent';
+import { TabsContentText } from './TabsContentText';
+import { TabsIcon } from './TabsIcon';
+
 import type { ITabsComponentType } from './types';
 
 export const createTabs = <
   TabsProps,
-  TabProps,
-  TabPanelsProps,
-  TabListProps,
-  TabPanelProps,
-  TabTitleProps,
-  TabIconProps
+  ListProps,
+  TriggerProps,
+  TitleTextProps,
+  ContentsProps,
+  ContentProps,
+  ContentTextProps,
+  IconProps
 >({
   Root,
-  Tab,
-  TabPanels,
-  TabList,
-  TabPanel,
-  TabTitle,
-  TabIcon,
+  List,
+  Trigger,
+  TitleText,
+  Contents,
+  Content,
+  ContentText,
+  Icon,
 }: {
   Root: React.ComponentType<TabsProps>;
-  Tab: React.ComponentType<TabProps>;
-  TabPanels: React.ComponentType<TabPanelsProps>;
-  TabList: React.ComponentType<TabListProps>;
-  TabPanel: React.ComponentType<TabPanelProps>;
-  TabTitle: React.ComponentType<TabTitleProps>;
-  TabIcon: React.ComponentType<TabIconProps>;
+  List: React.ComponentType<ListProps>;
+  Trigger: React.ComponentType<TriggerProps>;
+  TitleText: React.ComponentType<TitleTextProps>;
+  Contents: React.ComponentType<ContentsProps>;
+  Content: React.ComponentType<ContentProps>;
+  ContentText: React.ComponentType<ContentTextProps>;
+  Icon: React.ComponentType<IconProps>;
 }) => {
-  const TabsMain = Tabs(Root) as any;
-  TabsMain.Tab = TabHOC(Tab);
-  TabsMain.TabPanels = TabPanelsMain(TabPanels);
-  TabsMain.TabList = TabListMain(TabList);
-  TabsMain.TabPanel = TabPanelMain(TabPanel);
-  TabsMain.TabTitle = TabTitleMain(TabTitle);
-  TabsMain.TabIcon = TabIconMain(TabIcon);
+  const Tabs = TabsMain(Root) as any;
+  Tabs.List = TabsList(List);
+  Tabs.Trigger = TabsTrigger(Trigger);
+  Tabs.TitleText = TabsTitleText(TitleText);
+  Tabs.Contents = TabsContents(Contents);
+  Tabs.Content = TabsContent(Content);
+  Tabs.ContentText = TabsContentText(ContentText);
+  Tabs.Icon = TabsIcon(Icon);
 
-  TabsMain.displayName = 'Tabs';
-  TabsMain.Tab.displayName = 'Tab';
-  TabsMain.TabPanels.displayName = 'Panels';
-  TabsMain.TabList.displayName = 'List';
-  TabsMain.TabPanel.displayName = 'Panel';
-  TabsMain.TabTitle.displayName = 'Title';
-  TabsMain.TabIcon.displayName = 'Icon';
+  Tabs.displayName = 'Tabs';
+  Tabs.List.displayName = 'Tabs.List';
+  Tabs.Trigger.displayName = 'Tabs.Trigger';
+  Tabs.TitleText.displayName = 'Tabs.TitleText';
+  Tabs.Contents.displayName = 'Tabs.Contents';
+  Tabs.Content.displayName = 'Tabs.Content';
+  Tabs.ContentText.displayName = 'Tabs.ContentText';
+  Tabs.Icon.displayName = 'Tabs.Icon';
 
-  return TabsMain as ITabsComponentType<
+  return Tabs as ITabsComponentType<
     TabsProps,
-    TabProps,
-    TabPanelsProps,
-    TabListProps,
-    TabPanelProps,
-    TabTitleProps,
-    TabIconProps
+    ListProps,
+    TriggerProps,
+    TitleTextProps,
+    ContentsProps,
+    ContentProps,
+    ContentTextProps,
+    IconProps
   >;
 };

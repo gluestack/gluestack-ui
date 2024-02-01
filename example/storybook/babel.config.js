@@ -21,6 +21,10 @@ module.exports = function (api) {
                   __dirname,
                   '../../packages/unstyled/accordion/src'
                 ),
+                '@gluestack-ui/tabs': path.join(
+                  __dirname,
+                  '../../packages/unstyled/tabs/src'
+                ),
                 '@gluestack-style/react': path.join(
                   __dirname,
                   '../../packages/styled/react/src'

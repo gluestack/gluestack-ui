@@ -2,6 +2,7 @@ import React, { memo, useState } from 'react';
 import { forwardRef } from 'react';
 import { TabProvider } from './TabProvider';
 import { useControllableState } from '@gluestack-ui/hooks';
+import { ITabsProps } from './types';
 
 export const Tabs = <StyledTabs,>(
   StyledTabs: React.ComponentType<StyledTabs>
@@ -11,21 +12,17 @@ export const Tabs = <StyledTabs,>(
       (
         {
           value,
-          onChange,
+          onValueChange,
           defaultValue,
           ...props
-        }: StyledTabs & {
-          value?: string;
-          defaultValue: string;
-          onChange: (value: string) => void;
-        },
+        }: StyledTabs & ITabsProps,
         ref?: any
       ) => {
         const [currentActiveTab, setCurrentActiveTab] = useControllableState({
           value,
           defaultValue,
-          onChange: (val) => {
-            onChange && onChange(val);
+          onChange: (val: any) => {
+            onValueChange && onValueChange(val);
           },
         });
 
@@ -33,7 +30,7 @@ export const Tabs = <StyledTabs,>(
         return (
           <TabProvider
             currentActiveTab={currentActiveTab}
-            onChange={setCurrentActiveTab}
+            onValueChange={setCurrentActiveTab}
             onLoopChange={setWrapList}
             loop={wrapList}
           >

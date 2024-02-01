@@ -11,7 +11,7 @@ import {
   Text,
 } from '@gluestack-ui/themed';
 
-const TabsBasic = () => {
+const TabsWithIcons = () => {
   const [value, setValue] = React.useState('tab1');
   const handleChange = (newValue: React.SetStateAction<string>) => {
     setValue(newValue);
@@ -64,7 +64,7 @@ const TabsBasic = () => {
   );
 };
 
-export default TabsBasic;
+export default TabsWithIcons;
 
 export {
   Tabs,

@@ -1,17 +1,17 @@
 import React, { memo, useMemo } from 'react';
 import { forwardRef } from 'react';
 
-export const TabPanels = <StyledTabPanelsProps,>(
-  StyledTabPanels: React.ComponentType<StyledTabPanelsProps>
+export const TabsContents = <StyledTabsContentsProps,>(
+  StyledTabsContents: React.ComponentType<StyledTabsContentsProps>
 ) =>
   memo(
     forwardRef(
       (
-        { children, ...props }: StyledTabPanelsProps & { children?: any },
+        { children, ...props }: StyledTabsContentsProps & { children?: any },
         ref?: any
       ) => {
         let tabIndex = 0;
-        const modiefiedTabPanels = useMemo(
+        const modiefiedTabsContents = useMemo(
           () =>
             React.Children.toArray(children).map((child: any) => {
               return React.cloneElement(child, {
@@ -25,9 +25,9 @@ export const TabPanels = <StyledTabPanelsProps,>(
         );
 
         return (
-          <StyledTabPanels {...(props as StyledTabPanelsProps)} ref={ref}>
-            {modiefiedTabPanels}
-          </StyledTabPanels>
+          <StyledTabsContents {...(props as StyledTabsContentsProps)} ref={ref}>
+            {modiefiedTabsContents}
+          </StyledTabsContents>
         );
       }
     )

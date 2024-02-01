@@ -3,22 +3,18 @@ import React, { memo, useEffect, useMemo } from 'react';
 import { forwardRef } from 'react';
 import { useTab } from './TabProvider';
 
-export const TabList = <StyledTabList,>(
-  StyledTabList: React.ComponentType<StyledTabList>
+export const TabsList = <StyledTabsList,>(
+  StyledTabsList: React.ComponentType<StyledTabsList>
 ) =>
   memo(
     forwardRef(
       (
         {
           children,
-          orientation = 'horizontal',
-          variant,
           loop = true,
           ...props
-        }: StyledTabList & {
+        }: StyledTabsList & {
           children?: any;
-          orientation: 'horizontal' | 'vertical';
-          variant: 'scrollable' | null;
           loop: boolean;
         },
         ref?: any
@@ -37,31 +33,21 @@ export const TabList = <StyledTabList,>(
           [children]
         );
 
-        const { onLoopChange } = useTab('TabContext');
+        const { onLoopChange, orientation } = useTab('TabContext');
 
         useEffect(() => {
           onLoopChange(loop);
         }, [loop, onLoopChange]);
 
         return (
-          <StyledTabList
+          <StyledTabsList
             role="tablist"
-            flexDirection={orientation === 'vertical' ? 'column' : 'row'}
-            overflowX={
-              orientation === 'horizontal' && variant === 'scrollable'
-                ? 'scroll'
-                : 'hidden'
-            }
-            overflowY={
-              orientation === 'vertical' && variant === 'scrollable'
-                ? 'scroll'
-                : 'hidden'
-            }
-            {...(props as StyledTabList)}
+            {...(props as StyledTabsList)}
             ref={ref}
+            aria-orientation={orientation}
           >
             <FocusScope>{modifiedTabList}</FocusScope>
-          </StyledTabList>
+          </StyledTabsList>
         );
       }
     )
