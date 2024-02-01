@@ -3,6 +3,7 @@ import Card from './Card';
 import BlogCard from './BlogCard';
 import ProductCard from './ProductCard';
 import ImageCard from './ImageCard';
+import ProfileCard from './ProfileCard';
 
 const CardMeta: ComponentMeta<typeof Card> = {
   title: 'stories/DATA DISPLAY/Card',
@@ -34,4 +35,4 @@ const CardMeta: ComponentMeta<typeof Card> = {
 
 export default CardMeta;
 
-export { Card, BlogCard, ProductCard, ImageCard };
+export { Card, BlogCard, ProductCard, ImageCard, ProfileCard };
