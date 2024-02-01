@@ -248,10 +248,7 @@ const StyledRoot = styled(
 const StyledIcon = styled(
   AsForwarder,
   {
-    color: '$backgroundLight800',
-    _dark: {
-      color: '$backgroundDark400',
-    },
+    color: '$background800',
     variants: {
       size: {
         '2xs': {
