@@ -83,7 +83,7 @@ const actionsheetItemTextStyle = tva({
 });
 
 const actionsheetDragIndicatorStyle = tva({
-  base: 'w-16 h-1 bg-background400 rounded-full',
+  base: 'w-16 h-1 bg-background-400 rounded-full',
 });
 
 const actionsheetDragIndicatorWrapperStyle = tva({
@@ -212,11 +212,27 @@ const ActionsheetItem = React.forwardRef(
 );
 
 const ActionsheetItemText = React.forwardRef(
-  ({ className, ...props }: any, ref: any) => {
+  (
+    {
+      isTruncated,
+      bold,
+      underline,
+      strikeThrough,
+      size,
+      className,
+      ...props
+    }: any,
+    ref: any
+  ) => {
     return (
       <AccessibleActionsheet.ItemText
         className={actionsheetItemTextStyle({
           class: className,
+          isTruncated,
+          bold,
+          underline,
+          strikeThrough,
+          size,
         })}
         ref={ref}
         {...props}
@@ -324,11 +340,33 @@ const ActionsheetSectionList = React.forwardRef(
 );
 
 const ActionsheetSectionHeaderText = React.forwardRef(
-  ({ className, ...props }: any, ref: any) => {
+  (
+    {
+      className,
+      isTruncated,
+      bold,
+      underline,
+      strikeThrough,
+      size,
+      sub,
+      italic,
+      highlight,
+      ...props
+    }: any,
+    ref: any
+  ) => {
     return (
       <AccessibleActionsheet.SectionHeaderText
         className={actionsheetSectionHeaderTextStyle({
           class: className,
+          isTruncated,
+          bold,
+          underline,
+          strikeThrough,
+          size,
+          sub,
+          italic,
+          highlight,
         })}
         ref={ref}
         {...props}
@@ -338,11 +376,12 @@ const ActionsheetSectionHeaderText = React.forwardRef(
 );
 
 const ActionsheetIcon = React.forwardRef(
-  ({ className, ...props }: any, ref: any) => {
+  ({ className, size, ...props }: any, ref: any) => {
     return (
       <AccessibleActionsheet.Icon
         className={actionsheetIconStyle({
           class: className,
+          size,
         })}
         ref={ref}
         {...props}
