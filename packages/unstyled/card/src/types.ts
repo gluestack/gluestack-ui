@@ -2,7 +2,7 @@ import type { ViewProps } from 'react-native';
 
 export interface ICardProps extends ViewProps {
   children?: any;
-  variant?: 'classic' | 'outline' | 'ghost';
+  variant?: 'elevated' | 'outline' | 'ghost' | 'filled';
   size?: 'sm' | 'md' | 'lg';
 }
 

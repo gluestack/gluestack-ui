@@ -4,8 +4,10 @@ import { Card, Heading, Text } from '@gluestack-ui/themed';
 const CardBasic = ({ ...props }: any) => {
   return (
     <Card {...props}>
-      <Heading mb="$2">Quick Start</Heading>
-      <Text>Start building your next project in minutes</Text>
+      <Heading mb="$1" size="md">
+        Quick Start
+      </Heading>
+      <Text size="sm">Start building your next project in minutes</Text>
     </Card>
   );
 };

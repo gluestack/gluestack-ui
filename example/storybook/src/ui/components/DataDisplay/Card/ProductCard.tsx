@@ -12,17 +12,7 @@ import {
 
 const ProductCard = () => {
   return (
-    <Card
-      hardShadow={2}
-      p="$5"
-      borderRadius="$lg"
-      maxWidth={360}
-      sx={{
-        _dark: {
-          bg: '$backgroundDark950',
-        },
-      }}
-    >
+    <Card p="$5" borderRadius="$lg" maxWidth={360}>
       <Image
         mb="$6"
         h={240}
@@ -47,7 +37,7 @@ const ProductCard = () => {
           },
         }}
       >
-        Nayaka
+        Fashion Clothing
       </Text>
       <VStack mb="$6">
         <Heading size="md" fontFamily="$heading" mb="$4">

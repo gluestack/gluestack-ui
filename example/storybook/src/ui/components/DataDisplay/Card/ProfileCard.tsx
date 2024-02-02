@@ -16,17 +16,7 @@ import {
 
 const ProfileCard = () => {
   return (
-    <Card
-      hardShadow={2}
-      p="$6"
-      borderRadius="$lg"
-      maxWidth={360}
-      sx={{
-        _dark: {
-          bg: '$backgroundDark950',
-        },
-      }}
-    >
+    <Card p="$6" borderRadius="$lg" maxWidth={360}>
       <Box flexDirection="row">
         <Avatar mr="$4">
           <AvatarFallbackText fontFamily="$heading">JD</AvatarFallbackText>
@@ -184,7 +174,7 @@ const ProfileCard = () => {
         />
       </Box>
       <Button py="$2" px="$4">
-        <ButtonText>Follow</ButtonText>
+        <ButtonText size="sm">Follow</ButtonText>
       </Button>
     </Card>
   );

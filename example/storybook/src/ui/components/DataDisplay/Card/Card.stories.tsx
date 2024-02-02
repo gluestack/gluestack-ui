@@ -20,7 +20,7 @@ const CardMeta: ComponentMeta<typeof Card> = {
     },
     variant: {
       control: 'select',
-      options: ['classic', 'outline', 'ghost'],
+      options: ['elevated', 'outline', 'ghost', 'filled'],
     },
   },
 };

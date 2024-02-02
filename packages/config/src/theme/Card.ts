@@ -17,8 +17,8 @@ export const Card = createStyle({
       },
     },
     variant: {
-      classic: {
-        bg: '$white',
+      elevated: {
+        bg: '$backgroundLight0',
         shadowColor: '$backgroundLight800',
         shadowOffset: {
           width: 0,
@@ -28,7 +28,7 @@ export const Card = createStyle({
         shadowRadius: 2.22,
         elevation: 3,
         _dark: {
-          bg: '$backgroundDark950',
+          bg: '$backgroundDark900',
         },
       },
       outline: {
@@ -41,12 +41,17 @@ export const Card = createStyle({
       ghost: {
         borderRadius: 'none',
       },
-      // We can add a filled variant
+      filled: {
+        bg: '$backgroundLight50',
+        _dark: {
+          bg: '$backgroundDark900',
+        },
+      },
     },
   },
   defaultProps: {
     theme: 'light',
     size: 'md',
-    variant: 'classic',
+    variant: 'elevated',
   },
 });

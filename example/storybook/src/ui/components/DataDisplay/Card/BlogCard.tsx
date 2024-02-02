@@ -12,17 +12,7 @@ import {
 
 const BlogCard = () => {
   return (
-    <Card
-      hardShadow={2}
-      p="$5"
-      borderRadius="$lg"
-      maxWidth={360}
-      sx={{
-        _dark: {
-          bg: '$backgroundDark950',
-        },
-      }}
-    >
+    <Card p="$5" borderRadius="$lg" maxWidth={360}>
       <Text
         fontSize="$sm"
         fontStyle="normal"
