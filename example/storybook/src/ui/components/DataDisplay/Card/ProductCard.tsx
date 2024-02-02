@@ -6,7 +6,7 @@ import {
   Heading,
   Button,
   ButtonText,
-  ButtonGroup,
+  Box,
   Image,
 } from '@gluestack-ui/themed';
 
@@ -49,8 +49,8 @@ const ProductCard = () => {
       >
         Nayaka
       </Text>
-      <VStack gap="$4" mb="$6">
-        <Heading size="md" fontFamily="$heading">
+      <VStack mb="$6">
+        <Heading size="md" fontFamily="$heading" mb="$4">
           Cotton Kurta
         </Heading>
         <Text size="sm" fontFamily="$heading">
@@ -58,26 +58,43 @@ const ProductCard = () => {
           black.
         </Text>
       </VStack>
-      <ButtonGroup
-        space="md"
+      <Box
+        // space="md"
         flexDirection="column"
         sx={{
-          '@xs': {
+          '@sm': {
             flexDirection: 'row',
           },
         }}
       >
-        <Button px="$4" py="$2" flex={1} fontFamily="$heading">
+        <Button
+          px="$4"
+          py="$2"
+          fontFamily="$heading"
+          mr="$0"
+          mb="$3"
+          sx={{
+            '@sm': {
+              mr: '$3',
+              mb: '$0',
+              flex: 1,
+            },
+          }}
+        >
           <ButtonText size="sm">Add to cart</ButtonText>
         </Button>
         <Button
           px="$4"
           py="$2"
           variant="outline"
-          flex={1}
           fontFamily="$heading"
           borderColor="$borderLight300"
           $dark-borderColor="$backgroundDark600"
+          sx={{
+            '@sm': {
+              flex: 1,
+            },
+          }}
         >
           <ButtonText
             size="sm"
@@ -87,7 +104,7 @@ const ProductCard = () => {
             Wishlist
           </ButtonText>
         </Button>
-      </ButtonGroup>
+      </Box>
     </Card>
   );
 };

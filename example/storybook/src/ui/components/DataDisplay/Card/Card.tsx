@@ -1,10 +1,11 @@
 import React from 'react';
-import { Card, Text } from '@gluestack-ui/themed';
+import { Card, Heading, Text } from '@gluestack-ui/themed';
 
 const CardBasic = ({ ...props }: any) => {
   return (
     <Card {...props}>
-      <Text>Card</Text>
+      <Heading mb="$2">Quick Start</Heading>
+      <Text>Start building your next project in minutes</Text>
     </Card>
   );
 };

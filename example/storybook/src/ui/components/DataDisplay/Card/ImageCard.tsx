@@ -2,7 +2,6 @@ import React from 'react';
 import {
   Card,
   Text,
-  VStack,
   Heading,
   Image,
   Link,
@@ -51,33 +50,31 @@ const ImageCard = () => {
       >
         May 15, 2023
       </Text>
-      <VStack gap="$4">
-        <Heading size="md" fontFamily="$heading">
-          The Power of Positive Thinking
-        </Heading>
-        <Link href="https://gluestack.io/" isExternal>
-          <HStack alignItems="center">
-            <LinkText
-              size="sm"
-              fontFamily="$heading"
-              fontWeight="$semibold"
-              color="$primary600"
-              $dark-color="$primary300"
-              textDecorationLine="none"
-            >
-              Read Blog
-            </LinkText>
-            <Icon
-              as={ArrowRightIcon}
-              size="sm"
-              color="$primary600"
-              mt="$0.5"
-              ml="$0.5"
-              $dark-color="$primary300"
-            />
-          </HStack>
-        </Link>
-      </VStack>
+      <Heading size="md" fontFamily="$heading" mb="$4">
+        The Power of Positive Thinking
+      </Heading>
+      <Link href="https://gluestack.io/" isExternal>
+        <HStack alignItems="center">
+          <LinkText
+            size="sm"
+            fontFamily="$heading"
+            fontWeight="$semibold"
+            color="$primary600"
+            $dark-color="$primary300"
+            textDecorationLine="none"
+          >
+            Read Blog
+          </LinkText>
+          <Icon
+            as={ArrowRightIcon}
+            size="sm"
+            color="$primary600"
+            mt="$0.5"
+            ml="$0.5"
+            $dark-color="$primary300"
+          />
+        </HStack>
+      </Link>
     </Card>
   );
 };

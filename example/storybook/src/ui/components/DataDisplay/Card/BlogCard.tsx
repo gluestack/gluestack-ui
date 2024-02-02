@@ -39,8 +39,8 @@ const BlogCard = () => {
       >
         May 15, 2023
       </Text>
-      <VStack gap="$4" mb="$6">
-        <Heading size="md" fontFamily="$heading">
+      <VStack mb="$6">
+        <Heading size="md" fontFamily="$heading" mb="$4">
           The Power of Positive Thinking
         </Heading>
         <Text size="sm" fontFamily="$heading">
@@ -50,16 +50,8 @@ const BlogCard = () => {
           greater happiness and success.
         </Text>
       </VStack>
-      <Box
-        gap="$3"
-        flexDirection="column"
-        sx={{
-          '@xs': {
-            flexDirection: 'row',
-          },
-        }}
-      >
-        <Avatar>
+      <Box flexDirection="row">
+        <Avatar mr="$3">
           <AvatarFallbackText fontFamily="$heading">RR</AvatarFallbackText>
           <AvatarImage
             source={{
@@ -67,8 +59,8 @@ const BlogCard = () => {
             }}
           />
         </Avatar>
-        <VStack gap="$1">
-          <Heading size="sm" fontFamily="$heading">
+        <VStack>
+          <Heading size="sm" fontFamily="$heading" mb="$1">
             John Smith
           </Heading>
           <Text size="sm" fontFamily="$heading">

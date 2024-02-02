@@ -11,6 +11,7 @@ import {
   Image,
   Button,
   ButtonText,
+  Divider,
 } from '@gluestack-ui/themed';
 
 const ProfileCard = () => {
@@ -26,16 +27,8 @@ const ProfileCard = () => {
         },
       }}
     >
-      <Box
-        gap="$4"
-        flexDirection="column"
-        sx={{
-          '@xs': {
-            flexDirection: 'row',
-          },
-        }}
-      >
-        <Avatar>
+      <Box flexDirection="row">
+        <Avatar mr="$4">
           <AvatarFallbackText fontFamily="$heading">JD</AvatarFallbackText>
           <AvatarImage
             source={{
@@ -43,8 +36,8 @@ const ProfileCard = () => {
             }}
           />
         </Avatar>
-        <VStack gap="$1">
-          <Heading size="md" fontFamily="$heading">
+        <VStack>
+          <Heading size="md" fontFamily="$heading" mb="$1">
             Jane Doe
           </Heading>
           <Text size="sm" fontFamily="$heading">
@@ -53,29 +46,22 @@ const ProfileCard = () => {
         </VStack>
       </Box>
       <Box
-        my="$4"
+        my="$5"
         sx={{
           'flexDirection': 'column',
-          '@xs': {
+          '@sm': {
             my: '$6',
             flexDirection: 'row',
           },
         }}
       >
         <VStack
-          gap="$1"
-          flex={1}
           alignItems="center"
           sx={{
-            'borderBottomWidth': 1,
-            'borderBottomColor': '$backgroundLight300',
-            '_dark': {
-              borderBottomColor: '$backgroundDark800',
-            },
             'pb': '$2',
-            '@xs': {
+            '@sm': {
+              flex: 1,
               pb: '$0',
-              borderBottomWidth: 0,
               borderRightWidth: 1,
               borderColor: '$backgroundLight300',
               _dark: {
@@ -89,21 +75,28 @@ const ProfileCard = () => {
           </Heading>
           <Text size="xs">posts</Text>
         </VStack>
-
+        <Divider
+          orientation="horizontal"
+          width="40%"
+          alignSelf="center"
+          sx={{
+            'bg': '$backgroundLight300',
+            'display': 'flex',
+            '_dark': {
+              bg: '$backgroundDark800',
+            },
+            '@sm': {
+              display: 'none',
+            },
+          }}
+        />
         <VStack
-          gap="$1"
-          flex={1}
           alignItems="center"
           sx={{
-            'borderBottomWidth': 1,
-            'borderBottomColor': '$backgroundLight300',
-            '_dark': {
-              borderBottomColor: '$backgroundDark800',
-            },
             'py': '$2',
-            '@xs': {
+            '@sm': {
+              flex: 1,
               py: '$0',
-              borderBottomWidth: 0,
               borderRightWidth: 1,
               borderColor: '$backgroundLight300',
               _dark: {
@@ -117,14 +110,27 @@ const ProfileCard = () => {
           </Heading>
           <Text size="xs">followers</Text>
         </VStack>
-
+        <Divider
+          orientation="horizontal"
+          width="40%"
+          alignSelf="center"
+          sx={{
+            'bg': '$backgroundLight300',
+            'display': 'flex',
+            '_dark': {
+              bg: '$backgroundDark800',
+            },
+            '@sm': {
+              display: 'none',
+            },
+          }}
+        />
         <VStack
-          gap="$1"
-          flex={1}
           alignItems="center"
           sx={{
             'pt': '$2',
-            '@xs': {
+            '@sm': {
+              flex: 1,
               pt: '$0',
             },
           }}
@@ -136,37 +142,38 @@ const ProfileCard = () => {
         </VStack>
       </Box>
       <Box
-        gap="$2"
-        mb="$4"
+        mb="$5"
         sx={{
           'flexDirection': 'column',
-          '@xs': {
+          '@sm': {
             mb: '$6',
-            gap: '$3',
             flexDirection: 'row',
           },
         }}
       >
         <Image
+          mb="$3"
           borderRadius="$md"
           sx={{
             'width': '$full',
-            'height': 130,
-            '@xs': {
+            'height': 140,
+            '@sm': {
+              mb: '$0',
+              mr: '$3',
               width: 150,
               height: 154,
             },
           }}
           source={{
-            uri: 'https://images.unsplash.com/photo-1555169062-013468b47731?q=80&w=2712&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+            uri: 'https://images.unsplash.com/photo-1592089416462-2b0cb7da8379?q=80&w=2865&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
           }}
         />
         <Image
           borderRadius="$md"
           sx={{
             'width': '$full',
-            'height': 130,
-            '@xs': {
+            'height': 140,
+            '@sm': {
               width: 150,
               height: 154,
             },

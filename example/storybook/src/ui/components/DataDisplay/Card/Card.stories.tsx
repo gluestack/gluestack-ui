@@ -14,22 +14,14 @@ const CardMeta: ComponentMeta<typeof Card> = {
     componentDescription: `A Card component is a container that groups related content and actions.`,
   },
   argTypes: {
-    // size: {
-    //   control: 'select',
-    //   options: ['sm', 'md', 'lg'],
-    // },
-    // variant: {
-    //   control: 'select',
-    //   options: ['filled', 'unfilled'],
-    // },
-    // type: {
-    //   control: 'select',
-    //   options: ['single', 'multiple'],
-    // },
-    // isDisabled: {
-    //   control: 'boolean',
-    //   options: [true, false],
-    // },
+    size: {
+      control: 'select',
+      options: ['sm', 'md', 'lg'],
+    },
+    variant: {
+      control: 'select',
+      options: ['classic', 'outline', 'ghost'],
+    },
   },
 };
 
