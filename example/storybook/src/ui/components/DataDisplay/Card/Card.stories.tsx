@@ -11,7 +11,7 @@ const CardMeta: ComponentMeta<typeof Card> = {
   // metaInfo is required for figma generation
   // @ts-ignore
   metaInfo: {
-    componentDescription: `A Card component is a container that groups related content and actions.`,
+    componentDescription: `A Card component serves as a visual container that groups related content and actions.`,
   },
   argTypes: {
     size: {

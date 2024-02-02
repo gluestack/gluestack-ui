@@ -49,7 +49,6 @@ const ProductCard = () => {
         </Text>
       </VStack>
       <Box
-        // space="md"
         flexDirection="column"
         sx={{
           '@sm': {

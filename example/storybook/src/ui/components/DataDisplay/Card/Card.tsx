@@ -1,5 +1,23 @@
 import React from 'react';
-import { Card, Heading, Text } from '@gluestack-ui/themed';
+import {
+  Card,
+  Heading,
+  Text,
+  Image,
+  Link,
+  LinkText,
+  HStack,
+  Icon,
+  ArrowRightIcon,
+  Avatar,
+  Box,
+  VStack,
+  AvatarFallbackText,
+  AvatarImage,
+  Button,
+  ButtonText,
+  Divider,
+} from '@gluestack-ui/themed';
 
 const CardBasic = ({ ...props }: any) => {
   return (
@@ -13,6 +31,25 @@ const CardBasic = ({ ...props }: any) => {
 };
 
 CardBasic.description =
-  'This is a basic Card component example. A Card component is a container that groups related content and actions.';
+  'This is a basic Card component example. A Card component serves as a visual container that groups related content and actions.';
 
 export default CardBasic;
+export {
+  Card,
+  Heading,
+  Text,
+  Image,
+  Link,
+  LinkText,
+  HStack,
+  Icon,
+  ArrowRightIcon,
+  Avatar,
+  Box,
+  VStack,
+  AvatarFallbackText,
+  AvatarImage,
+  Button,
+  ButtonText,
+  Divider,
+};

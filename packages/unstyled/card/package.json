@@ -7,7 +7,7 @@
   "react-native": "src/index",
   "source": "src/index",
   "typings": "lib/typescript/index.d.ts",
-  "description": "A universal headless Button component for React Native, Next.js & React",
+  "description": "A universal headless Card component for React Native, Next.js & React",
   "keywords": [
     "react",
     "native",
@@ -42,11 +42,7 @@
     "tsconfig": "7",
     "typescript": "^4.7.4"
   },
-  "dependencies": {
-    "@gluestack-ui/utils": "0.1.12",
-    "@react-native-aria/focus": "^0.2.9",
-    "@react-native-aria/interactions": "^0.2.11"
-  },
+  "dependencies": {},
   "peerDependencies": {
     "react": ">=16",
     "react-dom": ">=16"

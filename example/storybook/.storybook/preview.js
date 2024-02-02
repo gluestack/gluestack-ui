@@ -60,7 +60,7 @@ export const parameters = {
           'Feedback',
           ['Alert', 'Progress', 'Spinner', 'Toast'],
           'Data Display',
-          ['Badge', 'Table'],
+          ['Badge', 'Table', 'Card'],
           'Forms',
           [
             'Button',
