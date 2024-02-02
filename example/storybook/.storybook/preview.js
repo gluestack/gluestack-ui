@@ -123,7 +123,7 @@ export const parameters = {
         'Advanced',
         ['Fonts', 'Animations'],
         'Recipes',
-        ['Card', 'LinearGradient', 'More Recipes'],
+        ['LinearGradient', 'More Recipes'],
         'Resources',
         ['Todo-List', 'Dashboard App', 'Third Party Library Integrations'],
         'Migration',

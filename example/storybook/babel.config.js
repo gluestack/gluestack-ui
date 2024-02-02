@@ -20,10 +20,6 @@ module.exports = function (api) {
               __dirname,
               '../../packages/unstyled/accordion/src'
             ),
-            '@gluestack-ui/card': path.join(
-              __dirname,
-              '../../packages/unstyled/card/src'
-            ),
             '@gluestack-ui/popover': path.join(
               __dirname,
               '../../packages/unstyled/popover/src'
