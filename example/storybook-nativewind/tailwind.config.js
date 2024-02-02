@@ -152,6 +152,12 @@ module.exports = {
         backgroundWarning: 'var(--color-background-warning)',
         backgroundSuccess: 'var(--color-background-success)',
         backgroundMuted: 'var(--color-background-muted)',
+        backgroundInfo: 'var(--color-background-info)',
+      },
+      fontFamily: {
+        heading: undefined,
+        body: undefined,
+        mono: undefined,
       },
     },
     plugins: [],
