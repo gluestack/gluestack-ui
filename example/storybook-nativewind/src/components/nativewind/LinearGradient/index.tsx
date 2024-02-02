@@ -1,24 +1,11 @@
-import { styled } from '@gluestack-style/react';
 import { View } from 'react-native';
+import React from 'react';
+import { tva } from '@gluestack-ui/nativewind-utils';
 
-export const LinearGradient = styled(
-  View,
-  {},
-  {
-    componentName: 'LinearGradient',
-    resolveProps: ['colors'],
-  } as const,
-  {
-    propertyTokenMap: {
-      colors: 'colors',
-    },
-    propertyResolver: {
-      colors: (rawValue: any, resolver: any) => {
-        rawValue.forEach((color: any, index: number) => {
-          rawValue[index] = resolver(color);
-        });
-        return rawValue;
-      },
-    },
+// TODO: Implement LinearGradient
+export const LinearGradient = React.forwardRef(
+  ({ className, ...props }: any, ref?: any) => {
+    // @ts-ignore
+    return <View {...props} className={tva({ base: className })} ref={ref} />;
   }
 );
