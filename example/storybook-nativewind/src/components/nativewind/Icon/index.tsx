@@ -1,166 +1,205 @@
 import React from 'react';
 import { createIcon } from '@gluestack-ui/icon';
-import { styled, AsForwarder } from '@gluestack-style/react';
-import { Path } from 'react-native-svg';
+import { Path, Svg } from 'react-native-svg';
+import { tva } from '@gluestack-ui/nativewind-utils';
 
-const StyledRoot = styled(
-  AsForwarder,
-  {
-    color: '$background800',
-    variants: {
-      size: {
-        '2xs': {
-          h: '$3',
-          w: '$3',
-          props: {
-            // @ts-ignore
-            size: 12,
-          },
-        },
-        'xs': {
-          h: '$3.5',
-          w: '$3.5',
-          props: {
-            //@ts-ignore
-            size: 14,
-          },
-        },
-        'sm': {
-          h: '$4',
-          w: '$4',
-          props: {
-            //@ts-ignore
-            size: 16,
-          },
-        },
-        'md': {
-          h: '$4.5',
-          w: '$4.5',
-          props: {
-            //@ts-ignore
-            size: 18,
-          },
-        },
-        'lg': {
-          h: '$5',
-          w: '$5',
-          props: {
-            //@ts-ignore
-            size: 20,
-          },
-        },
-        'xl': {
-          h: '$6',
-          w: '$6',
-          props: {
-            //@ts-ignore
-            size: 24,
-          },
-        },
-      },
-    },
-    props: {
-      size: 'md',
-      fill: 'none',
-    },
-  },
-  {
-    componentName: 'BaseIcon',
-    resolveProps: ['stroke', 'fill'],
-  } as const,
-  {
-    propertyTokenMap: {
-      stroke: 'colors',
-      fill: 'colors',
-    },
-  }
-);
-const IconRoot = styled(
-  AsForwarder,
-  {
-    color: '$background800',
-    variants: {
-      size: {
-        '2xs': {
-          h: '$3',
-          w: '$3',
-          props: {
-            // @ts-ignore
-            size: 12,
-          },
-        },
-        'xs': {
-          h: '$3.5',
-          w: '$3.5',
-          props: {
-            //@ts-ignore
-            size: 14,
-          },
-        },
-        'sm': {
-          h: '$4',
-          w: '$4',
-          props: {
-            //@ts-ignore
-            size: 16,
-          },
-        },
-        'md': {
-          h: '$4.5',
-          w: '$4.5',
-          props: {
-            //@ts-ignore
-            size: 18,
-          },
-        },
-        'lg': {
-          h: '$5',
-          w: '$5',
-          props: {
-            //@ts-ignore
-            size: 20,
-          },
-        },
-        'xl': {
-          h: '$6',
-          w: '$6',
-          props: {
-            //@ts-ignore
-            size: 24,
-          },
-        },
-      },
-    },
 
-    props: {
-      size: 'md',
-      //@ts-ignore
-      fill: 'none',
-    },
-  },
-  {
-    resolveProps: ['stroke', 'fill'],
-  } as const,
-  {
-    propertyTokenMap: {
-      stroke: 'colors',
-      fill: 'colors',
-    },
-  }
-);
-export const Icon = createIcon({
-  Root: StyledRoot,
+export const UIIcon = createIcon({
+  Root: Svg,
 });
 
-type ParameterTypes = Omit<Parameters<typeof createIcon>[0], 'Root'>;
-const createIconUI = ({ ...props }: ParameterTypes) =>
-  createIcon({ Root: IconRoot, ...props });
 
+const iconStyle = tva({
+  base: 'color-background-800',
+  variants: {
+    size: {
+      '2xs':'h-3 w-3',
+      'xs':'h-4 w-4',
+      'sm':'h-4 w-4',
+      'md':'h-5 w-5',
+      'lg':'h-5 w-5',
+      'xl':'h-6 w-6',
+    }
+  },
+  defaultVariants: {
+    size: 'md'
+  }
+});
+
+
+
+export const Icon = React.forwardRef(({fill='none', size, className, ...props }: any, ref) => {
+  return (
+    <UIIcon ref={ref} {...props} fill={fill} className={iconStyle({ size, class: className })} />
+  );
+});
+
+// const StyledRoot = styled(
+//   AsForwarder,
+//   {
+//     color: '$background800',
+//     variants: {
+//       size: {
+//         '2xs': {
+//           h: '$3',
+//           w: '$3',
+//           props: {
+//             // @ts-ignore
+//             size: 12,
+//           },
+//         },
+//         'xs': {
+//           h: '$3.5',
+//           w: '$3.5',
+//           props: {
+//             //@ts-ignore
+//             size: 14,
+//           },
+//         },
+//         'sm': {
+//           h: '$4',
+//           w: '$4',
+//           props: {
+//             //@ts-ignore
+//             size: 16,
+//           },
+//         },
+//         'md': {
+//           h: '$4.5',
+//           w: '$4.5',
+//           props: {
+//             //@ts-ignore
+//             size: 18,
+//           },
+//         },
+//         'lg': {
+//           h: '$5',
+//           w: '$5',
+//           props: {
+//             //@ts-ignore
+//             size: 20,
+//           },
+//         },
+//         'xl': {
+//           h: '$6',
+//           w: '$6',
+//           props: {
+//             //@ts-ignore
+//             size: 24,
+//           },
+//         },
+//       },
+//     },
+//     props: {
+//       size: 'md',
+//       fill: 'none',
+//     },
+//   },
+//   {
+//     resolveProps: ['stroke', 'fill'],
+//   } as const,
+//   {
+//     propertyTokenMap: {
+//       stroke: 'colors',
+//       fill: 'colors',
+//     },
+//   }
+// );
+// const IconRoot = styled(
+//   AsForwarder,
+//   {
+//     color: '$background800',
+//     variants: {
+//       size: {
+//         '2xs': {
+//           h: '$3',
+//           w: '$3',
+//           props: {
+//             // @ts-ignore
+//             size: 12,
+//           },
+//         },
+//         'xs': {
+//           h: '$3.5',
+//           w: '$3.5',
+//           props: {
+//             //@ts-ignore
+//             size: 14,
+//           },
+//         },
+//         'sm': {
+//           h: '$4',
+//           w: '$4',
+//           props: {
+//             //@ts-ignore
+//             size: 16,
+//           },
+//         },
+//         'md': {
+//           h: '$4.5',
+//           w: '$4.5',
+//           props: {
+//             //@ts-ignore
+//             size: 18,
+//           },
+//         },
+//         'lg': {
+//           h: '$5',
+//           w: '$5',
+//           props: {
+//             //@ts-ignore
+//             size: 20,
+//           },
+//         },
+//         'xl': {
+//           h: '$6',
+//           w: '$6',
+//           props: {
+//             //@ts-ignore
+//             size: 24,
+//           },
+//         },
+//       },
+//     },
+
+//     props: {
+//       size: 'md',
+//       //@ts-ignore
+//       fill: 'none',
+//     },
+//   },
+//   {
+//     resolveProps: ['stroke', 'fill'],
+//   } as const,
+//   {
+//     propertyTokenMap: {
+//       stroke: 'colors',
+//       fill: 'colors',
+//     },
+//   }
+// );
+// export const on = createIcon({
+//   Root: Svg,
+// });
+
+type ParameterTypes = Omit<Parameters<typeof createIcon>[0], 'Root'>;
+const createIconUI = ({ ...props }: ParameterTypes) =>{
+  const UIIcon = createIcon({ Root: Svg, ...props });
+
+  return React.forwardRef(({ className, size, ...props }: any, ref) => {
+    return (
+      <UIIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
+    );
+  });
+  
+}
 export { createIconUI as createIcon };
 
+
+
 // All Icons
-const AddIcon = createIcon({
-  Root: StyledRoot,
+const UIAddIcon = createIcon({
+  Root: Svg,
   viewBox: '0 0 24 24',
   path: (
     <>
@@ -182,11 +221,17 @@ const AddIcon = createIcon({
   ),
 });
 
+const AddIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
+  return (
+    <UIAddIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
+  );
+});
+
 AddIcon.displayName = 'AddIcon';
 export { AddIcon };
 
-export const AlertCircleIcon = createIcon({
-  Root: StyledRoot,
+export const UIAlertCircleIcon = createIcon({
+  Root: Svg,
   viewBox: '0 0 24 24',
   path: (
     <>
@@ -215,10 +260,19 @@ export const AlertCircleIcon = createIcon({
   ),
 });
 
+
+
+const AlertCircleIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
+  return (
+    <UIAlertCircleIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
+  );
+});
+
+
 AlertCircleIcon.displayName = 'AlertCircleIcon';
 
-const ArrowUpIcon = createIcon({
-  Root: StyledRoot,
+const UIArrowUpIcon = createIcon({
+  Root: Svg,
   viewBox: '0 0 24 24',
   path: (
     <>
@@ -240,8 +294,16 @@ const ArrowUpIcon = createIcon({
   ),
 });
 
-const ArrowDownIcon = createIcon({
-  Root: StyledRoot,
+
+
+const ArrowUpIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
+  return (
+    <UIArrowUpIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
+  );
+});
+
+const UIArrowDownIcon = createIcon({
+  Root: Svg,
 
   viewBox: '0 0 24 24',
   path: (
@@ -264,8 +326,14 @@ const ArrowDownIcon = createIcon({
   ),
 });
 
-const ArrowRightIcon = createIcon({
-  Root: StyledRoot,
+const ArrowDownIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
+  return (
+    <UIArrowDownIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
+  );
+});
+
+const UIArrowRightIcon = createIcon({
+  Root: Svg,
 
   viewBox: '0 0 24 24',
   path: (
@@ -288,8 +356,16 @@ const ArrowRightIcon = createIcon({
   ),
 });
 
-const ArrowLeftIcon = createIcon({
-  Root: StyledRoot,
+
+const ArrowRightIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
+  return (
+    <UIArrowRightIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
+  );
+});
+
+
+const UIArrowLeftIcon = createIcon({
+  Root: Svg,
   viewBox: '0 0 24 24',
   path: (
     <>
@@ -311,8 +387,16 @@ const ArrowLeftIcon = createIcon({
   ),
 });
 
-// const ArrowTopRightIcon = createIcon({
-//   Root: StyledRoot,
+
+const ArrowLeftIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
+  return (
+    <UIArrowLeftIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
+  );
+});
+
+
+// const UIArrowTopRightIcon = createIcon({
+//   Root: Svg,
 //   viewBox: '0 0 24 24',
 //   path: (
 //     <Path
@@ -337,8 +421,8 @@ export {
   // ArrowTopRightIcon,
 };
 
-const AtSignIcon = createIcon({
-  Root: StyledRoot,
+const UIAtSignIcon = createIcon({
+  Root: Svg,
   viewBox: '0 0 24 24',
   path: (
     <>
@@ -362,12 +446,21 @@ const AtSignIcon = createIcon({
   ),
 });
 
+
+const AtSignIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
+  return (
+    <UIAtSignIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
+  );
+});
+
+
+
 AtSignIcon.displayName = 'AtSignIcon';
 
 export { AtSignIcon };
 
-const BellIcon = createIcon({
-  Root: StyledRoot,
+const UIBellIcon = createIcon({
+  Root: Svg,
   viewBox: '0 0 24 24',
   path: (
     <>
@@ -389,12 +482,20 @@ const BellIcon = createIcon({
   ),
 });
 
+
+const BellIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
+  return (
+    <UIBellIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
+  );
+});
+
+
 BellIcon.displayName = 'BellIcon';
 
 export { BellIcon };
 
-const CalendarDaysIcon = createIcon({
-  Root: StyledRoot,
+const UICalendarDaysIcon = createIcon({
+  Root: Svg,
   viewBox: '0 0 24 24',
   path: (
     <>
@@ -472,12 +573,20 @@ const CalendarDaysIcon = createIcon({
   ),
 });
 
+
+const CalendarDaysIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
+  return (
+    <UICalendarDaysIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
+  );
+});
+
+
 CalendarDaysIcon.displayName = 'CalendarDaysIcon';
 
 export { CalendarDaysIcon };
 
-const CheckIcon = createIcon({
-  Root: StyledRoot,
+const UICheckIcon = createIcon({
+  Root: Svg,
   viewBox: '0 0 24 24',
   path: (
     <>
@@ -492,8 +601,16 @@ const CheckIcon = createIcon({
   ),
 });
 
-const CheckCircleIcon = createIcon({
-  Root: StyledRoot,
+
+const CheckIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
+  return (
+    <UICheckIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
+  );
+});
+
+
+const UICheckCircleIcon = createIcon({
+  Root: Svg,
   viewBox: '0 0 24 24',
   path: (
     <>
@@ -515,13 +632,21 @@ const CheckCircleIcon = createIcon({
   ),
 });
 
+
+const CheckCircleIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
+  return (
+    <UICheckCircleIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
+  );
+});
+
+
 CheckIcon.displayName = 'CheckIcon';
 CheckCircleIcon.displayName = 'CheckCircleIcon';
 
 export { CheckIcon, CheckCircleIcon };
 
-const ChevronUpIcon = createIcon({
-  Root: StyledRoot,
+const UIChevronUpIcon = createIcon({
+  Root: Svg,
   viewBox: '0 0 24 24',
   d: 'M12 10L8 6L4 10',
   path: (
@@ -537,8 +662,16 @@ const ChevronUpIcon = createIcon({
   ),
 });
 
-const ChevronDownIcon = createIcon({
-  Root: StyledRoot,
+
+const ChevronUpIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
+  return (
+    <UIChevronUpIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
+  );
+});
+
+
+const UIChevronDownIcon = createIcon({
+  Root: Svg,
   viewBox: '0 0 24 24',
   path: (
     <>
@@ -553,8 +686,16 @@ const ChevronDownIcon = createIcon({
   ),
 });
 
-const ChevronLeftIcon = createIcon({
-  Root: StyledRoot,
+
+const ChevronDownIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
+  return (
+    <UIChevronDownIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
+  );
+});
+
+
+const UIChevronLeftIcon = createIcon({
+  Root: Svg,
   viewBox: '0 0 24 24',
   path: (
     <>
@@ -569,8 +710,16 @@ const ChevronLeftIcon = createIcon({
   ),
 });
 
-const ChevronRightIcon = createIcon({
-  Root: StyledRoot,
+
+const ChevronLeftIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
+  return (
+    <UIChevronLeftIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
+  );
+});
+
+
+const UIChevronRightIcon = createIcon({
+  Root: Svg,
 
   viewBox: '0 0 24 24',
   path: (
@@ -586,8 +735,16 @@ const ChevronRightIcon = createIcon({
   ),
 });
 
-const ChevronsLeftIcon = createIcon({
-  Root: StyledRoot,
+
+const ChevronRightIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
+  return (
+    <UIChevronRightIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
+  );
+});
+
+
+const UIChevronsLeftIcon = createIcon({
+  Root: Svg,
 
   viewBox: '0 0 24 24',
   path: (
@@ -610,8 +767,16 @@ const ChevronsLeftIcon = createIcon({
   ),
 });
 
-const ChevronsRightIcon = createIcon({
-  Root: StyledRoot,
+
+const ChevronsLeftIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
+  return (
+    <UIChevronsLeftIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
+  );
+});
+
+
+const UIChevronsRightIcon = createIcon({
+  Root: Svg,
 
   viewBox: '0 0 24 24',
   path: (
@@ -634,8 +799,16 @@ const ChevronsRightIcon = createIcon({
   ),
 });
 
-const ChevronsUpDownIcon = createIcon({
-  Root: StyledRoot,
+
+const ChevronsRightIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
+  return (
+    <UIChevronsRightIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
+  );
+});
+
+
+const UIChevronsUpDownIcon = createIcon({
+  Root: Svg,
 
   viewBox: '0 0 24 24',
   path: (
@@ -658,6 +831,14 @@ const ChevronsUpDownIcon = createIcon({
   ),
 });
 
+
+const ChevronsUpDownIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
+  return (
+    <UIChevronsUpDownIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
+  );
+});
+
+
 ChevronUpIcon.displayName = 'ChevronUpIcon';
 ChevronDownIcon.displayName = 'ChevronDownIcon';
 ChevronLeftIcon.displayName = 'ChevronLeftIcon';
@@ -676,8 +857,8 @@ export {
   ChevronsUpDownIcon,
 };
 
-const CircleIcon = createIcon({
-  Root: StyledRoot,
+const UICircleIcon = createIcon({
+  Root: Svg,
   viewBox: '0 0 24 24',
   path: (
     <>
@@ -693,12 +874,20 @@ const CircleIcon = createIcon({
   ),
 });
 
+
+const CircleIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
+  return (
+    <UICircleIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
+  );
+});
+
+
 CircleIcon.displayName = 'CircleIcon';
 
 export { CircleIcon };
 
-const ClockIcon = createIcon({
-  Root: StyledRoot,
+const UIClockIcon = createIcon({
+  Root: Svg,
   viewBox: '0 0 24 24',
   path: (
     <>
@@ -720,12 +909,20 @@ const ClockIcon = createIcon({
   ),
 });
 
+
+const ClockIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
+  return (
+    <UIClockIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
+  );
+});
+
+
 ClockIcon.displayName = 'ClockIcon';
 
 export { ClockIcon };
 
-const CloseIcon = createIcon({
-  Root: StyledRoot,
+const UICloseIcon = createIcon({
+  Root: Svg,
   viewBox: '0 0 24 24',
   path: (
     <>
@@ -747,8 +944,16 @@ const CloseIcon = createIcon({
   ),
 });
 
-const CloseCircleIcon = createIcon({
-  Root: StyledRoot,
+
+const CloseIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
+  return (
+    <UICloseIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
+  );
+});
+
+
+const UICloseCircleIcon = createIcon({
+  Root: Svg,
   viewBox: '0 0 24 24',
   path: (
     <>
@@ -777,13 +982,21 @@ const CloseCircleIcon = createIcon({
   ),
 });
 
+
+const CloseCircleIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
+  return (
+    <UICloseCircleIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
+  );
+});
+
+
 CloseIcon.displayName = 'CloseIcon';
 CloseCircleIcon.displayName = 'CloseCircleIcon';
 
 export { CloseIcon, CloseCircleIcon };
 
-const CopyIcon = createIcon({
-  Root: StyledRoot,
+const UICopyIcon = createIcon({
+  Root: Svg,
   viewBox: '0 0 24 24',
   path: (
     <>
@@ -805,12 +1018,20 @@ const CopyIcon = createIcon({
   ),
 });
 
+
+const CopyIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
+  return (
+    <UICopyIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
+  );
+});
+
+
 CopyIcon.displayName = 'CopyIcon';
 
 export { CopyIcon };
 
-const DownloadIcon = createIcon({
-  Root: StyledRoot,
+const UIDownloadIcon = createIcon({
+  Root: Svg,
   viewBox: '0 0 24 24',
   path: (
     <>
@@ -839,12 +1060,20 @@ const DownloadIcon = createIcon({
   ),
 });
 
+
+const DownloadIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
+  return (
+    <UIDownloadIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
+  );
+});
+
+
 DownloadIcon.displayName = 'DownloadIcon';
 
 export { DownloadIcon };
 
-const EditIcon = createIcon({
-  Root: StyledRoot,
+const UIEditIcon = createIcon({
+  Root: Svg,
   viewBox: '0 0 24 24',
   path: (
     <>
@@ -866,12 +1095,20 @@ const EditIcon = createIcon({
   ),
 });
 
+
+const EditIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
+  return (
+    <UIEditIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
+  );
+});
+
+
 EditIcon.displayName = 'EditIcon';
 
 export { EditIcon };
 
-const EyeIcon = createIcon({
-  Root: StyledRoot,
+const UIEyeIcon = createIcon({
+  Root: Svg,
   viewBox: '0 0 24 24',
   path: (
     <>
@@ -893,10 +1130,18 @@ const EyeIcon = createIcon({
   ),
 });
 
+
+const EyeIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
+  return (
+    <UIEyeIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
+  );
+});
+
+
 EyeIcon.displayName = 'EyeIcon';
 
-const EyeOffIcon = createIcon({
-  Root: StyledRoot,
+const UIEyeOffIcon = createIcon({
+  Root: Svg,
   viewBox: '0 0 24 24',
   path: (
     <>
@@ -932,12 +1177,20 @@ const EyeOffIcon = createIcon({
   ),
 });
 
+
+const EyeOffIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
+  return (
+    <UIEyeOffIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
+  );
+});
+
+
 EyeOffIcon.displayName = 'EyeOffIcon';
 
 export { EyeIcon, EyeOffIcon };
 
-const FavouriteIcon = createIcon({
-  Root: StyledRoot,
+const UIFavouriteIcon = createIcon({
+  Root: Svg,
   viewBox: '0 0 24 24',
   path: (
     <>
@@ -952,12 +1205,20 @@ const FavouriteIcon = createIcon({
   ),
 });
 
+
+const FavouriteIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
+  return (
+    <UIFavouriteIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
+  );
+});
+
+
 FavouriteIcon.displayName = 'FavouriteIcon';
 
 export { FavouriteIcon };
 
-const GlobeIcon = createIcon({
-  Root: StyledRoot,
+const UIGlobeIcon = createIcon({
+  Root: Svg,
   viewBox: '0 0 24 24',
   path: (
     <>
@@ -986,12 +1247,20 @@ const GlobeIcon = createIcon({
   ),
 });
 
+
+const GlobeIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
+  return (
+    <UIGlobeIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
+  );
+});
+
+
 GlobeIcon.displayName = 'GlobeIcon';
 
 export { GlobeIcon };
 
-const GripVerticalIcon = createIcon({
-  Root: StyledRoot,
+const UIGripVerticalIcon = createIcon({
+  Root: Svg,
   viewBox: '0 0 24 24',
   path: (
     <>
@@ -1041,12 +1310,20 @@ const GripVerticalIcon = createIcon({
   ),
 });
 
+
+const GripVerticalIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
+  return (
+    <UIGripVerticalIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
+  );
+});
+
+
 GripVerticalIcon.displayName = 'GripVerticalIcon';
 
 export { GripVerticalIcon };
 
-export const HelpCircleIcon = createIcon({
-  Root: StyledRoot,
+export const UIHelpCircleIcon = createIcon({
+  Root: Svg,
   viewBox: '0 0 24 24',
   path: (
     <>
@@ -1075,10 +1352,18 @@ export const HelpCircleIcon = createIcon({
   ),
 });
 
+
+const HelpCircleIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
+  return (
+    <UIHelpCircleIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
+  );
+});
+
+
 HelpCircleIcon.displayName = 'HelpCircleIcon';
 
-export const InfoIcon = createIcon({
-  Root: StyledRoot,
+export const UIInfoIcon = createIcon({
+  Root: Svg,
   viewBox: '0 0 24 24',
   path: (
     <>
@@ -1107,10 +1392,18 @@ export const InfoIcon = createIcon({
   ),
 });
 
+
+const InfoIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
+  return (
+    <UIInfoIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
+  );
+});
+
+
 InfoIcon.displayName = 'InfoIcon';
 
-const LinkIcon = createIcon({
-  Root: StyledRoot,
+const UILinkIcon = createIcon({
+  Root: Svg,
   viewBox: '0 0 24 24',
   path: (
     <>
@@ -1131,10 +1424,18 @@ const LinkIcon = createIcon({
     </>
   ),
 });
+
+
+const LinkIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
+  return (
+    <UILinkIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
+  );
+});
+
 LinkIcon.displayName = 'LinkIcon';
 
-const ExternalLinkIcon = createIcon({
-  Root: StyledRoot,
+const UIExternalLinkIcon = createIcon({
+  Root: Svg,
   viewBox: '0 0 24 24',
   path: (
     <>
@@ -1163,12 +1464,20 @@ const ExternalLinkIcon = createIcon({
   ),
 });
 
+
+const ExternalLinkIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
+  return (
+    <UIExternalLinkIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
+  );
+});
+
+
 ExternalLinkIcon.displayName = 'ExternalLinkIcon';
 
 export { LinkIcon, ExternalLinkIcon };
 
-const LoaderIcon = createIcon({
-  Root: StyledRoot,
+const UILoaderIcon = createIcon({
+  Root: Svg,
   viewBox: '0 0 24 24',
   path: (
     <>
@@ -1183,12 +1492,20 @@ const LoaderIcon = createIcon({
   ),
 });
 
+
+const LoaderIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
+  return (
+    <UILoaderIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
+  );
+});
+
+
 LoaderIcon.displayName = 'LoaderIcon';
 
 export { LoaderIcon };
 
-const LockIcon = createIcon({
-  Root: StyledRoot,
+const UILockIcon = createIcon({
+  Root: Svg,
   viewBox: '0 0 24 24',
   path: (
     <>
@@ -1210,12 +1527,20 @@ const LockIcon = createIcon({
   ),
 });
 
+
+const LockIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
+  return (
+    <UILockIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
+  );
+});
+
+
 LockIcon.displayName = 'LockIcon';
 
 export { LockIcon };
 
-const MailIcon = createIcon({
-  Root: StyledRoot,
+const UIMailIcon = createIcon({
+  Root: Svg,
   viewBox: '0 0 24 24',
   path: (
     <>
@@ -1237,12 +1562,20 @@ const MailIcon = createIcon({
   ),
 });
 
+
+const MailIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
+  return (
+    <UIMailIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
+  );
+});
+
+
 MailIcon.displayName = 'MailIcon';
 
 export { MailIcon };
 
-export const MenuIcon = createIcon({
-  Root: StyledRoot,
+export const UIMenuIcon = createIcon({
+  Root: Svg,
   viewBox: '0 0 24 24',
   path: (
     <>
@@ -1271,10 +1604,18 @@ export const MenuIcon = createIcon({
   ),
 });
 
+
+const MenuIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
+  return (
+    <UIMenuIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
+  );
+});
+
+
 MenuIcon.displayName = 'MenuIcon';
 
-const MessageCircleIcon = createIcon({
-  Root: StyledRoot,
+const UIMessageCircleIcon = createIcon({
+  Root: Svg,
   viewBox: '0 0 24 24',
   path: (
     <>
@@ -1289,12 +1630,20 @@ const MessageCircleIcon = createIcon({
   ),
 });
 
+
+const MessageCircleIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
+  return (
+    <UIMessageCircleIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
+  );
+});
+
+
 MessageCircleIcon.displayName = 'MessageCircleIcon';
 
 export { MessageCircleIcon };
 
-export const MoonIcon = createIcon({
-  Root: StyledRoot,
+export const UIMoonIcon = createIcon({
+  Root: Svg,
   viewBox: '0 0 24 24',
   path: (
     <>
@@ -1309,10 +1658,18 @@ export const MoonIcon = createIcon({
   ),
 });
 
+
+const MoonIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
+  return (
+    <UIMoonIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
+  );
+});
+
+
 MoonIcon.displayName = 'MoonIcon';
 
-const PaperclipIcon = createIcon({
-  Root: StyledRoot,
+const UIPaperclipIcon = createIcon({
+  Root: Svg,
   viewBox: '0 0 24 24',
   path: (
     <>
@@ -1327,12 +1684,20 @@ const PaperclipIcon = createIcon({
   ),
 });
 
+
+const PaperclipIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
+  return (
+    <UIPaperclipIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
+  );
+});
+
+
 PaperclipIcon.displayName = 'PaperclipIcon';
 
 export { PaperclipIcon };
 
-const PhoneIcon = createIcon({
-  Root: StyledRoot,
+const UIPhoneIcon = createIcon({
+  Root: Svg,
   viewBox: '0 0 24 24',
   path: (
     <>
@@ -1347,12 +1712,20 @@ const PhoneIcon = createIcon({
   ),
 });
 
+
+const PhoneIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
+  return (
+    <UIPhoneIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
+  );
+});
+
+
 PhoneIcon.displayName = 'PhoneIcon';
 
 export { PhoneIcon };
 
-const PlayIcon = createIcon({
-  Root: StyledRoot,
+const UIPlayIcon = createIcon({
+  Root: Svg,
   viewBox: '0 0 24 24',
   path: (
     <>
@@ -1374,12 +1747,20 @@ const PlayIcon = createIcon({
   ),
 });
 
+
+const PlayIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
+  return (
+    <UIPlayIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
+  );
+});
+
+
 PlayIcon.displayName = 'PlayIcon';
 
 export { PlayIcon };
 
-export const RemoveIcon = createIcon({
-  Root: StyledRoot,
+export const UIRemoveIcon = createIcon({
+  Root: Svg,
   viewBox: '0 0 24 24',
   path: (
     <>
@@ -1394,10 +1775,18 @@ export const RemoveIcon = createIcon({
   ),
 });
 
+
+const RemoveIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
+  return (
+    <UIRemoveIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
+  );
+});
+
+
 RemoveIcon.displayName = 'RemoveIcon';
 
-const RepeatIcon = createIcon({
-  Root: StyledRoot,
+const UIRepeatIcon = createIcon({
+  Root: Svg,
   viewBox: '0 0 24 24',
   path: (
     <>
@@ -1433,10 +1822,18 @@ const RepeatIcon = createIcon({
   ),
 });
 
+
+const RepeatIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
+  return (
+    <UIRepeatIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
+  );
+});
+
+
 RepeatIcon.displayName = 'RepeatIcon';
 
-const Repeat1Icon = createIcon({
-  Root: StyledRoot,
+const UIRepeat1Icon = createIcon({
+  Root: Svg,
   viewBox: '0 0 24 24',
   path: (
     <>
@@ -1479,12 +1876,20 @@ const Repeat1Icon = createIcon({
   ),
 });
 
+
+const Repeat1Icon = React.forwardRef(({ className, size, ...props }: any, ref) => {
+  return (
+    <UIRepeat1Icon ref={ref} {...props} className={iconStyle({ size, class: className })} />
+  );
+});
+
+
 Repeat1Icon.displayName = 'Repeat1Icon';
 
 export { RepeatIcon, Repeat1Icon };
 
-export const SearchIcon = createIcon({
-  Root: StyledRoot,
+export const UISearchIcon = createIcon({
+  Root: Svg,
   viewBox: '0 0 24 24',
   path: (
     <>
@@ -1506,10 +1911,18 @@ export const SearchIcon = createIcon({
   ),
 });
 
+
+const SearchIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
+  return (
+    <UISearchIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
+  );
+});
+
+
 SearchIcon.displayName = 'SearchIcon';
 
-const SettingsIcon = createIcon({
-  Root: StyledRoot,
+const UISettingsIcon = createIcon({
+  Root: Svg,
   viewBox: '0 0 24 24',
   path: (
     <>
@@ -1531,12 +1944,20 @@ const SettingsIcon = createIcon({
   ),
 });
 
+
+const SettingsIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
+  return (
+    <UISettingsIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
+  );
+});
+
+
 SettingsIcon.displayName = 'SettingsIcon';
 
 export { SettingsIcon };
 
-const ShareIcon = createIcon({
-  Root: StyledRoot,
+const UIShareIcon = createIcon({
+  Root: Svg,
   viewBox: '0 0 24 24',
   path: (
     <>
@@ -1579,12 +2000,20 @@ const ShareIcon = createIcon({
   ),
 });
 
+
+const ShareIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
+  return (
+    <UIShareIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
+  );
+});
+
+
 ShareIcon.displayName = 'ShareIcon';
 
 export { ShareIcon };
 
-const SlashIcon = createIcon({
-  Root: StyledRoot,
+const UISlashIcon = createIcon({
+  Root: Svg,
   viewBox: '0 0 24 24',
   path: (
     <>
@@ -1606,12 +2035,20 @@ const SlashIcon = createIcon({
   ),
 });
 
+
+const SlashIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
+  return (
+    <UISlashIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
+  );
+});
+
+
 SlashIcon.displayName = 'SlashIcon';
 
 export { SlashIcon };
 
-const StarIcon = createIcon({
-  Root: StyledRoot,
+const UIStarIcon = createIcon({
+  Root: Svg,
   viewBox: '0 0 24 24',
   path: (
     <>
@@ -1626,12 +2063,20 @@ const StarIcon = createIcon({
   ),
 });
 
+
+const StarIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
+  return (
+    <UIStarIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
+  );
+});
+
+
 StarIcon.displayName = 'StarIcon';
 
 export { StarIcon };
 
-export const SunIcon = createIcon({
-  Root: StyledRoot,
+export const UISunIcon = createIcon({
+  Root: Svg,
   viewBox: '0 0 24 24',
   path: (
     <>
@@ -1702,10 +2147,18 @@ export const SunIcon = createIcon({
   ),
 });
 
+
+const SunIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
+  return (
+    <UISunIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
+  );
+});
+
+
 SunIcon.displayName = 'SunIcon';
 
-const ThreeDotsIcon = createIcon({
-  Root: StyledRoot,
+const UIThreeDotsIcon = createIcon({
+  Root: Svg,
   viewBox: '0 0 24 24',
   path: (
     <>
@@ -1734,12 +2187,20 @@ const ThreeDotsIcon = createIcon({
   ),
 });
 
+
+const ThreeDotsIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
+  return (
+    <UIThreeDotsIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
+  );
+});
+
+
 ThreeDotsIcon.displayName = 'ThreeDotsIcon';
 
 export { ThreeDotsIcon };
 
-const TrashIcon = createIcon({
-  Root: StyledRoot,
+const UITrashIcon = createIcon({
+  Root: Svg,
   viewBox: '0 0 24 24',
   path: (
     <>
@@ -1768,12 +2229,20 @@ const TrashIcon = createIcon({
   ),
 });
 
+
+const TrashIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
+  return (
+    <UITrashIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
+  );
+});
+
+
 TrashIcon.displayName = 'TrashIcon';
 
 export { TrashIcon };
 
-const UnlockIcon = createIcon({
-  Root: StyledRoot,
+const UIUnlockIcon = createIcon({
+  Root: Svg,
   viewBox: '0 0 24 24',
   path: (
     <>
@@ -1794,6 +2263,14 @@ const UnlockIcon = createIcon({
     </>
   ),
 });
+
+
+const UnlockIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
+  return (
+    <UIUnlockIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
+  );
+});
+
 
 UnlockIcon.displayName = 'UnlockIcon';
 
