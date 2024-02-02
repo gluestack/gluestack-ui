@@ -1,5 +1,11 @@
 # @gluestack-ui/themed
 
+## 1.1.3
+
+### Patch Changes
+
+- Card: New Component Release
+
 ## 1.1.2
 
 ### Patch Changes
