@@ -2,12 +2,10 @@ import { useFocusRing, useFocus } from '@react-native-aria/focus';
 import React, { forwardRef, createContext } from 'react';
 import { composeEventHandlers } from '@gluestack-ui/utils';
 import { usePress, useHover } from '@react-native-aria/interactions';
-import type { InterfaceActionsheetItemProps } from './types';
+import { Platform } from 'react-native';
 export const ActionsheetContext = createContext<any>({});
 
-export function ActionsheetItem<T>(
-  StyledActionsheetItem: React.ComponentType<T>
-) {
+export function ActionsheetItem(StyledActionsheetItem: any) {
   return forwardRef(
     (
       {
@@ -18,7 +16,7 @@ export function ActionsheetItem<T>(
         isFocused: isFocusedProp,
         isFocusVisible: isFocusVisibleProp,
         ...props
-      }: T & InterfaceActionsheetItemProps,
+      }: any,
       ref?: any
     ) => {
       const { isFocusVisible, focusProps: focusRingProps }: any =
@@ -26,6 +24,8 @@ export function ActionsheetItem<T>(
       const { pressProps, isPressed } = usePress({ isDisabled });
       const { isFocused, focusProps } = useFocus();
       const { isHovered, hoverProps }: any = useHover();
+      const pointerEvents =
+        Platform.OS === 'web' ? 'all !important' : undefined;
 
       return (
         <StyledActionsheetItem
@@ -59,7 +59,7 @@ export function ActionsheetItem<T>(
             composeEventHandlers(props?.onBlur, focusProps.onBlur),
             focusRingProps.onBlur
           )}
-          {...(props as T)}
+          {...props}
           states={{
             hover: isHoveredProp || isHovered,
             focus: isFocusedProp || isFocused,
@@ -68,6 +68,7 @@ export function ActionsheetItem<T>(
             disabled: isDisabled,
             focusVisible: isFocusVisibleProp || isFocusVisible,
           }}
+          style={[{ pointerEvents }, { ...props.style }]}
         >
           {children}
         </StyledActionsheetItem>

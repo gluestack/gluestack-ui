@@ -180,7 +180,6 @@ export const Slider = createStyle({
   _web: {
     ':disabled': {
       // @ts-ignore
-      pointerEvents: 'all !important',
       cursor: 'not-allowed',
       opacity: 0.4,
     },

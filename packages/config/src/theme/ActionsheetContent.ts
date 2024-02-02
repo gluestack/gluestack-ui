@@ -21,6 +21,5 @@ export const ActionsheetContent = createStyle({
   },
   _web: {
     userSelect: 'none',
-    pointerEvents: 'auto',
   },
 });

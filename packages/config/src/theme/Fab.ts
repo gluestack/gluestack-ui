@@ -22,7 +22,6 @@ export const Fab = createStyle({
     opacity: 0.4,
     _web: {
       // @ts-ignore
-      pointerEvents: 'all !important',
       cursor: 'not-allowed',
     },
   },

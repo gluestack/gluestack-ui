@@ -4,7 +4,6 @@ export const SelectInput = createStyle({
   _web: {
     w: '$full',
   },
-  pointerEvents: 'none',
   flex: 1,
   h: '$full',
   color: '$textLight900',

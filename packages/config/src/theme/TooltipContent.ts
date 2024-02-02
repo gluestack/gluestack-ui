@@ -32,9 +32,7 @@ export const TooltipContent = createStyle({
     fontSize: '$xs',
     color: '$textLight50',
   },
-  '_web': {
-    pointerEvents: 'auto',
-  },
+
   // @ts-ignore
   '_dark': {
     bg: '$backgroundDark800',

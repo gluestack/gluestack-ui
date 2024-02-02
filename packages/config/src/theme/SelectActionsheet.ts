@@ -5,7 +5,4 @@ export const SelectActionsheet = createStyle({
   height: '$full',
   justifyContent: 'flex-end',
   alignItems: 'center',
-  _web: {
-    pointerEvents: 'none',
-  },
 });

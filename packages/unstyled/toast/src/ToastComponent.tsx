@@ -1,15 +1,16 @@
 import React, { forwardRef } from 'react';
+import { Platform } from 'react-native';
 
-export function ToastComponent<StyledToastProps>(
-  StyledToast: React.ComponentType<StyledToastProps>
-) {
+export function ToastComponent(StyledToast: any) {
   return forwardRef(
-    (
-      { children, ...props }: StyledToastProps & { children?: any },
-      ref?: any
-    ) => {
+    ({ children, ...props }: any & { children?: any }, ref?: any) => {
+      const pointerEvents = Platform.OS === 'web' ? 'auto' : undefined;
       return (
-        <StyledToast {...(props as StyledToastProps)} ref={ref}>
+        <StyledToast
+          ref={ref}
+          style={[{ pointerEvents }, { ...props.style }]}
+          {...props}
+        >
           {children}
         </StyledToast>
       );

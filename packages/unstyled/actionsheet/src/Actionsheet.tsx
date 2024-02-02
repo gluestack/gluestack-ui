@@ -4,9 +4,8 @@ import { useControllableState } from '@gluestack-ui/hooks';
 import { Overlay } from '@gluestack-ui/overlay';
 import { ActionsheetContext } from './context';
 import { StyleSheet } from 'react-native';
-import type { IActionsheetProps } from './types';
 
-export function Actionsheet<T>(StyledActionsheet: React.ComponentType<T>) {
+export function Actionsheet(StyledActionsheet: any) {
   return forwardRef(
     (
       {
@@ -25,7 +24,7 @@ export function Actionsheet<T>(StyledActionsheet: React.ComponentType<T>) {
         // @ts-ignore
         _experimentalOverlay = false,
         ...props
-      }: T & IActionsheetProps,
+      }: any,
       ref?: any
     ) => {
       const overlayStyle = Platform.OS === 'web' ? { position: 'fixed' } : {};
@@ -77,6 +76,7 @@ export function Actionsheet<T>(StyledActionsheet: React.ComponentType<T>) {
         snapPoints,
       ]);
 
+      const pointerEvents = Platform.OS === 'web' ? 'none' : undefined;
       return (
         <Overlay
           isOpen={visible}
@@ -89,8 +89,12 @@ export function Actionsheet<T>(StyledActionsheet: React.ComponentType<T>) {
           <ActionsheetContext.Provider value={contextValue}>
             <StyledActionsheet
               ref={ref}
-              style={[StyleSheet.absoluteFill]}
-              {...(props as T)}
+              style={[
+                StyleSheet.absoluteFill,
+                { pointerEvents },
+                { ...props.style },
+              ]}
+              {...props}
             >
               {children}
             </StyledActionsheet>

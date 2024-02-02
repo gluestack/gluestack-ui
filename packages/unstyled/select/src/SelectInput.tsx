@@ -26,6 +26,7 @@ export const SelectInput = (StyledSelectInput: any) =>
         placeholder={placeholder}
         value={label ? label : value ? value : ''}
         onChangeText={(text: string) => setValue(text)}
+        style={{ pointerEvents: 'none', ...props.style }}
         {...props}
       />
     );
