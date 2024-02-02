@@ -18,11 +18,14 @@ const DividerBasic = ({ ...props }) => {
       h={props.orientation === 'vertical' ? 30 : 'auto'}
       alignItems="center"
       justifyContent="center"
+      style={{
+        gap: 10,
+      }}
     >
       <Heading size="sm" fontWeight="$semibold">
         Firefox
       </Heading>
-      <Divider {...props} m="$3" />
+      <Divider {...props} />
       <Heading size="sm" fontWeight="$semibold">
         Chrome
       </Heading>
