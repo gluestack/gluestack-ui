@@ -1,7 +1,6 @@
 import React from 'react';
-import { Text as RNText } from 'react-native';
-
 import { tva } from '@gluestack-ui/nativewind-utils';
+import { Text as RNText } from 'react-native';
 
 const textStyle = tva({
   base: 'text-typography-700 flex-1 font-normal font-body',
