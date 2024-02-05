@@ -1,4 +1,10 @@
-import { styled } from '@gluestack-style/react';
 import { RefreshControl as RNRefreshControl } from 'react-native';
+import React from 'react';
 
-export const RefreshControl = styled(RNRefreshControl, {});
+const RefreshControl = React.forwardRef((props?: any, ref?: any) => {
+  return <RNRefreshControl ref={ref} {...props} />;
+});
+
+RefreshControl.displayName = 'RefreshControl';
+
+export { RefreshControl };
