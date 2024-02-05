@@ -16,7 +16,7 @@ const hstackStyle = tva({
       '4xl': 'gap-8',
     },
     reversed: {
-      true: 'reverse',
+      true: 'flex-row-reverse',
     },
   },
 });
