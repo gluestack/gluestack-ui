@@ -15,6 +15,7 @@ import {
 } from 'react-native';
 
 const UIButton = createButton({
+  // @ts-ignore
   Root:
     Platform.OS === 'web'
       ? withStyleContext(Pressable)
