@@ -13,7 +13,7 @@ import {
   Center,
 } from '@gluestack-ui/themed';
 import { Menu, MenuIcon, MenuItem, MenuItemLabel } from '@/components/Menu';
-import { Icon } from '@/components/Icons';
+import { Icon } from '@/components/Icon';
 import { PaintBucket, PuzzleIcon } from 'lucide-react-native';
 
 const MenuBasic = ({ placement = 'bottom' }: any) => {

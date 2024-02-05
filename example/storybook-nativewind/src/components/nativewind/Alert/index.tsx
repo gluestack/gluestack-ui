@@ -105,6 +105,7 @@ const Alert = ({
   return (
     <UIAlert
       className={alertStyle({ action, variant, class: className })}
+      context={{ variant, action }}
       {...props}
     />
   );
@@ -115,20 +116,15 @@ const AlertText = ({
   bold,
   underline,
   strikeThrough,
-  size,
+  size = 'md',
   sub,
   italic,
   highlight,
   ...props
 }: any) => {
-  const { variant: parentVariant, size: parentSize } = useStyleContext();
   return (
     <UIAlert.Text
       className={alertTextStyle({
-        parentVariants: {
-          variant: parentVariant,
-          size: parentSize,
-        },
         isTruncated,
         bold,
         underline,

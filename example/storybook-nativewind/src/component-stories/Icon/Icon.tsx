@@ -1,5 +1,4 @@
 import React from 'react';
-
 // import {
 //   Icon,
 //   AddIcon,
@@ -58,13 +57,13 @@ import React from 'react';
 //   TrashIcon,
 //   UnlockIcon,
 //   createIcon,
-// } from '@/components/Icons';
+// } from '@/components/Icon';
 
-import { ChromeIcon, InstagramIcon, FacebookIcon } from 'lucide-react-native';
-
+// import { ChromeIcon, InstagramIcon, FacebookIcon } from 'lucide-react-native';
+import { AddIcon } from '@/components/Icon';
 const IconBasic = ({ size, ...props }: any) => {
-  // return <Icon size={size} {...props} />;
-  return <>Hello</>;
+  return <AddIcon size={size} {...props} />;
+  // return <AddIcon/>;
 };
 
 IconBasic.description =

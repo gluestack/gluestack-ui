@@ -153,6 +153,11 @@ module.exports = {
           success: 'var(--color-background-success)',
         },
       },
+      fontFamily: {
+        heading: undefined,
+        body: undefined,
+        mono: undefined,
+      },
     },
     plugins: [],
   },

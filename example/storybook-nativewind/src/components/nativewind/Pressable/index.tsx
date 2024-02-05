@@ -1,12 +1,21 @@
-import { styled } from '@gluestack-style/react';
 import { Pressable as RNPressable } from 'react-native';
+import { tva } from '@gluestack-ui/nativewind-utils';
+import React from 'react';
 
-export const Pressable = styled(RNPressable, {
-  _web: {
-    ':focusVisible': {
-      outlineWidth: '2px',
-      outlineColor: '$primary700',
-      outlineStyle: 'solid',
-    },
-  },
+const pressableStyle = tva({
+  base: 'data-[focus-visible=true]:outline-2 outline-primary-700 outline-solid',
 });
+
+export const Pressable = React.forwardRef(
+  ({ className, ...props }: any, ref?: any) => {
+    return (
+      <RNPressable
+        {...props}
+        ref={ref}
+        className={pressableStyle({
+          class: className,
+        })}
+      />
+    );
+  }
+);
