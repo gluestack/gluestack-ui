@@ -1,7 +1,16 @@
+import React from 'react';
 import { SafeAreaView as RNSafeAreaView } from 'react-native';
+import { tva } from '@gluestack-ui/nativewind-utils';
 
-import { styled } from '@gluestack-style/react';
-
-const StyledRoot = styled(RNSafeAreaView);
-
-export const SafeAreaView = StyledRoot;
+const safeAreaViewStyle = tva({});
+export const SafeAreaView = React.forwardRef(
+  ({ className, ...props }: any, ref) => {
+    return (
+      <RNSafeAreaView
+        ref={ref}
+        {...props}
+        className={safeAreaViewStyle({ class: className })}
+      />
+    );
+  }
+);

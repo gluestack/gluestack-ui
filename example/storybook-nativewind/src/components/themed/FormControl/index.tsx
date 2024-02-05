@@ -75,10 +75,6 @@ const StyledErrorIcon = styled(
   {
     color: '$error700',
     fill: 'none',
-    // color: '$backgroundLight800',
-    _dark: {
-      color: '$backgroundDark400',
-    },
     variants: {
       size: {
         '2xs': {
@@ -132,7 +128,7 @@ const StyledErrorIcon = styled(
       },
     },
     props: {
-      size: 'sm',
+      size: 'md',
     },
   },
   {
@@ -151,7 +147,6 @@ const StyledFormControlError = styled(View, {
   justifyContent: 'flex-start',
   alignItems: 'center',
   mt: '$1',
-  // @ts-ignore
   gap: '$1',
 });
 
@@ -210,7 +205,7 @@ const StyledLabelAstrick = styled(Text, {}, {
   ancestorStyle: ['_labelAstrick'],
 } as const);
 
-export const FormControl = createFormControl({
+const FormControl = createFormControl({
   Root: StyledRoot,
   Error: StyledFormControlError,
   ErrorText: StyledFormControlErrorText,

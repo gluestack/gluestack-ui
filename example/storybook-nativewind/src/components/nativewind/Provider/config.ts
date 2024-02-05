@@ -145,6 +145,7 @@ export const config = {
     '--color-background-warning': '#FFF4EB',
     '--color-background-success': '#EDFCF2',
     '--color-background-muted': '#F6F6F7',
+    // '--color-background-muted': 'red',
     '--color-background-info': '#EBF8FE',
   }),
   dark: vars({

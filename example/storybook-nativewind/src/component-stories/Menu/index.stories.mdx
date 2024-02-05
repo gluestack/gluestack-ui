@@ -37,11 +37,11 @@ import {
   InlineCode,
 } from '@gluestack/design-system';
 
-import Wrapper from '../Wrapper';
+import Wrapper from '../../components/Wrapper';
 
 This is an illustration of a **Themed Menu** component with default configuration.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -114,7 +114,7 @@ This is an illustration of a **Themed Menu** component with default configuratio
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>
 
 <br />
 
@@ -151,7 +151,7 @@ This section provides a comprehensive reference list for the component props, de
 Contains all menu related layout style props and actions.
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
-<AppProvider>
+<Wrapper>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -396,13 +396,13 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
       </Table.TBody>
     </Table>
   </TableContainer>
-</AppProvider>
+</Wrapper>
 
 #### MenuItem
 
 Contains all button related layout style props and actions. It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable) component.
 
-<AppProvider>
+<Wrapper>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -441,12 +441,12 @@ Contains all button related layout style props and actions. It inherits all the 
       </Table.TBody>
     </Table>
   </TableContainer>
-</AppProvider>
+</Wrapper>
 
 **Descendants Styling Props**
 Props to style child components.
 
-<AppProvider>
+<Wrapper>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -473,7 +473,7 @@ Props to style child components.
       </Table.TBody>
     </Table>
   </TableContainer>
-</AppProvider>
+</Wrapper>
 
 #### MenuItemLabel
 
@@ -498,7 +498,7 @@ The Examples section provides visual representations of the different variants o
 
 Menu Component provides different placement options, allowing you to position it dynamically based on user interaction or layout requirements.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={true}
@@ -590,13 +590,13 @@ Menu Component provides different placement options, allowing you to position it
       },
     }}
   />
-</AppProvider>
+</Wrapper>
 
 #### Disabled MenuItem
 
 Our Menu component supports dynamic disabling of menu items, enabling you to control the availability and interaction of specific menu options based on conditions or user permissions.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -668,13 +668,13 @@ Our Menu component supports dynamic disabling of menu items, enabling you to con
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>
 
 #### Selection
 
 Our menu component supports selection mode, logging the selected menu item key to the console when a selection change occurs. Based on the selected key, it prints a corresponding message, indicating a route push for the menu items in the example given below.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -760,7 +760,7 @@ Our menu component supports selection mode, logging the selected menu item key t
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>
 
 ## Unstyled
 

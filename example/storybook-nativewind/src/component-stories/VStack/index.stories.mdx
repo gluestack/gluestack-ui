@@ -26,11 +26,11 @@ import {
   InlineCode,
 } from '@gluestack/design-system';
 
-import Wrapper from '../Wrapper';
+import Wrapper from '../../components/Wrapper';
 
 This is an illustration of a **Themed VStack** component with default configuration.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={true}
@@ -66,7 +66,7 @@ This is an illustration of a **Themed VStack** component with default configurat
       },
     }}
   />
-</AppProvider>
+</Wrapper>
 
 <br />
 
@@ -112,7 +112,7 @@ VStack component is created using View component from react-native. It extends a
 
 #### VStack
 
-<AppProvider>
+<Wrapper>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -167,7 +167,7 @@ VStack component is created using View component from react-native. It extends a
       </Table.TBody>
     </Table>
   </TableContainer>
-</AppProvider>
+</Wrapper>
 
 > Note: These props are exclusively applicable when utilizing the default configuration of gluestack-ui/config. If you are using a custom theme, these props may not be available.
 
@@ -179,7 +179,7 @@ The Examples section provides visual representations of the different variants o
 
 A VStack component with the reversed prop reverses the order of vertically stacked elements, enabling customized vertical layouts and visual arrangements of content within a user interface.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     _rendererWrapper={{ py: '$2.5' }}
     showComponentRenderer={true}
@@ -199,7 +199,7 @@ A VStack component with the reversed prop reverses the order of vertically stack
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>
 
 ## Unstyled
 

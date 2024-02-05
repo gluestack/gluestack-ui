@@ -1,6 +1,16 @@
-import { styled } from '@gluestack-style/react';
-import { StatusBar } from 'react-native';
+import React from 'react';
+import { StatusBar as RNStatusBar } from 'react-native';
+import { tva } from '@gluestack-ui/nativewind-utils';
 
-const StyledRoot = styled(StatusBar, {});
-
-export const StatusBar = StyledRoot;
+const statusBarStyle = tva({});
+export const StatusBar = React.forwardRef(
+  ({ className, ...props }: any, ref) => {
+    return (
+      <RNStatusBar
+        ref={ref}
+        {...props}
+        className={statusBarStyle({ class: className })}
+      />
+    );
+  }
+);

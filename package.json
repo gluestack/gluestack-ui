@@ -18,6 +18,7 @@
     "eject:gluestack-style": "git clone -b development git@github.com:gluestack/gluestack-style.git gluestack-style && echo Now update babel.config.js",
     "create-new-package": "node ./scripts/create-new-package.js",
     "storybook": "cd example/storybook && yarn storybook",
+    "storybook:nativewind": "cd example/storybook-nativewind && yarn storybook:nativewind",
     "kitchensink:web": "cd example/ui-examples && yarn web"
   },
   "devDependencies": {

@@ -86,11 +86,11 @@ import {
 
 import { useState } from 'react';
 
-import Wrapper from '../Wrapper';
+import Wrapper from '../../components/Wrapper';
 
 This is an illustration of a **Themed FormControl** component with default configuration.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={true}
@@ -168,7 +168,7 @@ This is an illustration of a **Themed FormControl** component with default confi
       },
     }}
   />
-</AppProvider>
+</Wrapper>
 
 <br />
 
@@ -211,7 +211,7 @@ This section provides a comprehensive reference list for the component props, de
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
-<AppProvider>
+<Wrapper>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -330,12 +330,12 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
       </Table.TBody>
     </Table>
   </TableContainer>
-</AppProvider>
+</Wrapper>
 
 **Descendants Styling Props**
 Props to style child components.
 
-<AppProvider>
+<Wrapper>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -392,7 +392,7 @@ Props to style child components.
       </Table.TBody>
     </Table>
   </TableContainer>
-</AppProvider>
+</Wrapper>
 
 #### FormControlLabel
 
@@ -401,7 +401,7 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
 **Descendants Styling Props**
 Props to style child components.
 
-<AppProvider>
+<Wrapper>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -428,7 +428,7 @@ Props to style child components.
       </Table.TBody>
     </Table>
   </TableContainer>
-</AppProvider>
+</Wrapper>
 
 #### FormControlLabelText
 
@@ -470,7 +470,7 @@ FormControl component is created using View component from react-native. It exte
 
 #### FormControl
 
-<AppProvider>
+<Wrapper>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -503,7 +503,7 @@ FormControl component is created using View component from react-native. It exte
       </Table.TBody>
     </Table>
   </TableContainer>
-</AppProvider>
+</Wrapper>
 
 > Note: These props are exclusively applicable when utilizing the default configuration of gluestack-ui/config. If you are using a custom theme, these props may not be available.
 
@@ -515,7 +515,7 @@ The Examples section provides visual representations of the different variants o
 
 The Input Component can be incorporated within the FormControl.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -558,13 +558,13 @@ The Input Component can be incorporated within the FormControl.
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>
 
 #### Form Control with Radio
 
 The Radio Component can be incorporated within the FormControl.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -644,13 +644,13 @@ The Radio Component can be incorporated within the FormControl.
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>
 
 #### Form Control with Checkbox
 
 The Checkbox Component can be incorporated within the FormControl.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -730,13 +730,13 @@ The Checkbox Component can be incorporated within the FormControl.
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>
 
 #### Form Control with Textarea
 
 The Textarea Component can be incorporated within the FormControl.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -779,13 +779,13 @@ The Textarea Component can be incorporated within the FormControl.
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>
 
 #### Form Control with Inline Form
 
 Inline forms can utilize FormControl for seamless integration and enhanced functionality.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -864,13 +864,13 @@ Inline forms can utilize FormControl for seamless integration and enhanced funct
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>
 
 #### Form Control with Form in Modal
 
 Modal or other Overlay components can utilize FormControl for state management and error control.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -1014,13 +1014,13 @@ Modal or other Overlay components can utilize FormControl for state management a
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>
 
 #### Form Control with Error
 
 Error messages can be displayed using FormControl.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -1101,13 +1101,13 @@ Error messages can be displayed using FormControl.
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>
 
 #### Form Control with Form Actions
 
 Form Action Buttons can also be utilized in conjunction with FormControl.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -1150,7 +1150,7 @@ Form Action Buttons can also be utilized in conjunction with FormControl.
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>
 
 ## Unstyled
 

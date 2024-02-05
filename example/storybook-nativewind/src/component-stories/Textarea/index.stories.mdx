@@ -35,11 +35,11 @@ import {
   InlineCode,
 } from '@gluestack/design-system';
 
-import Wrapper from '../Wrapper';
+import Wrapper from '../../components/Wrapper';
 
 This is an illustration of a **Themed Textarea** component with default configuration.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={true}
@@ -83,7 +83,7 @@ This is an illustration of a **Themed Textarea** component with default configur
       },
     }}
   />
-</AppProvider>
+</Wrapper>
 
 <br />
 
@@ -117,7 +117,7 @@ This section provides a comprehensive reference list for the component props, de
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
-<AppProvider>
+<Wrapper>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -252,12 +252,12 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
       </Table.TBody>
     </Table>
   </TableContainer>
-</AppProvider>
+</Wrapper>
 
 **Descendants Styling Props**
 Props to style child components.
 
-<AppProvider>
+<Wrapper>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -284,7 +284,7 @@ Props to style child components.
       </Table.TBody>
     </Table>
   </TableContainer>
-</AppProvider>
+</Wrapper>
 
 #### TextareaInput
 
@@ -314,7 +314,7 @@ Textarea component is created using TextInput component from react-native. It ex
 
 #### Textarea
 
-<AppProvider>
+<Wrapper>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -347,7 +347,7 @@ Textarea component is created using TextInput component from react-native. It ex
       </Table.TBody>
     </Table>
   </TableContainer>
-</AppProvider>
+</Wrapper>
 
 > Note: These props are exclusively applicable when utilizing the default configuration of gluestack-ui/config. If you are using a custom theme, these props may not be available.
 
@@ -359,7 +359,7 @@ The Examples section provides visual representations of the different variants o
 
 The Textarea Component can be incorporated within the FormControl.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -398,7 +398,7 @@ The Textarea Component can be incorporated within the FormControl.
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>
 
 ## Unstyled
 

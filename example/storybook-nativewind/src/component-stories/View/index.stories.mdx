@@ -14,7 +14,7 @@ import {
 } from '@gluestack/design-system';
 import { View } from './View';
 import { Text, Heading } from '@gluestack-ui/themed';
-import Wrapper from '../Wrapper';
+import Wrapper from '../../components/Wrapper';
 
 <Meta title="ui/components/View" />
 
@@ -22,7 +22,7 @@ import Wrapper from '../Wrapper';
 
 The most fundamental component for building a UI.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -50,7 +50,7 @@ The most fundamental component for building a UI.
       },
     }}
   />
-</AppProvider>
+</Wrapper>
 
 <br />
 
@@ -78,7 +78,7 @@ gluestack-ui View component is created using View component from react-native. I
 
 #### View
 
-<AppProvider>
+<Wrapper>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -111,4 +111,4 @@ gluestack-ui View component is created using View component from react-native. I
       </Table.TBody>
     </Table>
   </TableContainer>
-</AppProvider>
+</Wrapper>

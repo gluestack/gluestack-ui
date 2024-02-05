@@ -33,11 +33,11 @@ import {
   InlineCode,
 } from '@gluestack/design-system';
 
-import Wrapper from '../Wrapper';
+import Wrapper from '../../components/Wrapper';
 
 This is an illustration of a **Themed Input** component with default configuration.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={true}
@@ -84,7 +84,7 @@ This is an illustration of a **Themed Input** component with default configurati
       },
     }}
   />
-</AppProvider>
+</Wrapper>
 
 <br />
 
@@ -121,7 +121,7 @@ This section provides a comprehensive reference list for the component props, de
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
-<AppProvider>
+<Wrapper>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -240,12 +240,12 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
       </Table.TBody>
     </Table>
   </TableContainer>
-</AppProvider>
+</Wrapper>
 
 **Descendants Styling Props**
 Props to style child components.
 
-<AppProvider>
+<Wrapper>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -282,14 +282,14 @@ Props to style child components.
       </Table.TBody>
     </Table>
   </TableContainer>
-</AppProvider>
+</Wrapper>
 
 #### InputField
 
 Contains all TextInput related layout style props and actions.
 It inherits all the properties of React Native's [TextInput](https://reactnative.dev/docs/textInput#props) component.
 
-<AppProvider>
+<Wrapper>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -328,7 +328,7 @@ It inherits all the properties of React Native's [TextInput](https://reactnative
       </Table.TBody>
     </Table>
   </TableContainer>
-</AppProvider>
+</Wrapper>
 
 #### InputSlot
 
@@ -337,7 +337,7 @@ It inherits all the properties of React Native's [Pressable](https://reactnative
 **Descendants Styling Props**
 Props to style child components.
 
-<AppProvider>
+<Wrapper>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -364,7 +364,7 @@ Props to style child components.
       </Table.TBody>
     </Table>
   </TableContainer>
-</AppProvider>
+</Wrapper>
 
 #### InputIcon
 
@@ -410,7 +410,7 @@ Input component is created using TextInput component from react-native. It exten
 
 #### Input
 
-<AppProvider>
+<Wrapper>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -456,7 +456,7 @@ Input component is created using TextInput component from react-native. It exten
       </Table.TBody>
     </Table>
   </TableContainer>
-</AppProvider>
+</Wrapper>
 
 > Note: These props are exclusively applicable when utilizing the default configuration of gluestack-ui/config. If you are using a custom theme, these props may not be available.
 
@@ -468,7 +468,7 @@ The Examples section provides visual representations of the different variants o
 
 The Input component integrates with an icon and a button, providing users with a comprehensive login window inside a FormControl component.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     _rendererWrapper={{ py: '$8' }}
     showComponentRenderer={true}
@@ -556,13 +556,13 @@ The Input component integrates with an icon and a button, providing users with a
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>
 
 ### Input with Icons
 
 The Input with Icons is a variation of the Input component that displays icons next to input field. It's commonly used in apps for a more visual representation of options and easier navigation.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -593,7 +593,7 @@ The Input with Icons is a variation of the Input component that displays icons n
     }}
 />
 
-</AppProvider>
+</Wrapper>
 
 ## Unstyled
 

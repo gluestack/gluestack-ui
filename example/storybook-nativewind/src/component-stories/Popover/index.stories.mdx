@@ -54,11 +54,11 @@ import {
   InlineCode,
 } from '@gluestack/design-system';
 
-import Wrapper from '../Wrapper';
+import Wrapper from '../../components/Wrapper';
 
 This is an illustration of a **Themed Popover** component with default configuration.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={true}
@@ -169,13 +169,13 @@ This is an illustration of a **Themed Popover** component with default configura
       },
     }}
   />
-</AppProvider>
+</Wrapper>
 
 ### Popover with arrow
 
 We have exported `PopoverArrow` component which can be used to render an arrow for the popover.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={true}
@@ -288,7 +288,7 @@ We have exported `PopoverArrow` component which can be used to render an arrow f
       },
     }}
   />
-</AppProvider>
+</Wrapper>
 
 <br />
 
@@ -339,7 +339,7 @@ This section provides a comprehensive reference list for the component props, de
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
-<AppProvider>
+<Wrapper>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -695,12 +695,12 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
       </Table.TBody>
     </Table>
   </TableContainer>
-</AppProvider>
+</Wrapper>
 
 **Descendants Styling Props**
 Props to style child components.
 
-<AppProvider>
+<Wrapper>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -728,7 +728,7 @@ Props to style child components.
     </Table>
 
   </TableContainer>
-</AppProvider>
+</Wrapper>
 
 #### PopoverBackdrop
 
@@ -758,7 +758,7 @@ It inherits all the properties of React Native's [Pressable](https://reactnative
 **Descendants Styling Props**
 Props to style child components.
 
-<AppProvider>
+<Wrapper>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -796,7 +796,7 @@ Props to style child components.
     </Table>
 
   </TableContainer>
-</AppProvider>
+</Wrapper>
 
 ### Accessibility
 
@@ -820,7 +820,7 @@ Popover component is created using ScrollView component from react-native. It ex
 
 #### Popover
 
-<AppProvider>
+<Wrapper>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -853,7 +853,7 @@ Popover component is created using ScrollView component from react-native. It ex
       </Table.TBody>
     </Table>
   </TableContainer>
-</AppProvider>
+</Wrapper>
 
 > Note: These props are exclusively applicable when utilizing the default configuration of gluestack-ui/config. If you are using a custom theme, these props may not be available.
 
@@ -865,7 +865,7 @@ The Examples section provides visual representations of the different variants o
 
 A popover component can enhance the avatar by providing additional information and context in a concise and visually appealing manner.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     _rendererWrapper={{ py: '$6' }}
     showComponentRenderer={true}
@@ -985,7 +985,7 @@ A popover component can enhance the avatar by providing additional information a
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>
 
 ## Unstyled
 

@@ -1,22 +1,38 @@
 import { ActivityIndicator } from 'react-native';
-import { styled } from '@gluestack-style/react';
 import { createSpinner } from '@gluestack-ui/spinner';
 
-const StyledRoot = styled(
-  ActivityIndicator,
-  {
-    props: {
-      color: '$primary500',
-    },
-  },
-  {
-    resolveProps: ['color'],
-  },
-  {
-    propertyTokenMap: {
-      size: 'size',
-    },
+import React from 'react';
+import { tva } from '@gluestack-ui/nativewind-utils';
+
+export const UISpinner = createSpinner({ Root: ActivityIndicator });
+
+const spinnerStyle = tva({});
+export const Spinner = React.forwardRef(
+  ({ className, color = 'red', ...props }: any, ref) => {
+    return (
+      <UISpinner
+        ref={ref}
+        {...props}
+        color={color}
+        className={spinnerStyle({ class: className })}
+      />
+    );
   }
 );
 
-export const Spinner = createSpinner({ Root: StyledRoot });
+// const StyledRoot = styled(
+//   ActivityIndicator,
+//   {
+//     props: {
+//       color: '$primary500',
+//     },
+//   },
+//   {
+//     resolveProps: ['color'],
+//   },
+//   {
+//     propertyTokenMap: {
+//       size: 'size',
+//     },
+//   }
+// );

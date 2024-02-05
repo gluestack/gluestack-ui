@@ -1,4 +1,4 @@
-import { config } from '@/components/core/config';
+import { config } from '@/components/Provider/config';
 import React from 'react';
 import { Platform, View } from 'react-native';
 

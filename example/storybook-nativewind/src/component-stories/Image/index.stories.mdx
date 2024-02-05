@@ -17,7 +17,7 @@ import { Meta } from '@storybook/addon-docs';
 import { Image } from './Image';
 import { VStack } from '@gluestack-ui/themed';
 import { transformedCode } from '../../utils';
-import Wrapper from '../Wrapper';
+import Wrapper from '../../components/Wrapper';
 
 import {
   AppProvider,
@@ -30,7 +30,7 @@ import {
 
 This is an illustration of a **Themed Image** component with default configuration.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     _rendererWrapper={{
       py: '$8',
@@ -78,7 +78,7 @@ This is an illustration of a **Themed Image** component with default configurati
       },
     }}
   />
-</AppProvider>
+</Wrapper>
 
 <br />
 
@@ -118,7 +118,7 @@ Image component is created using Image component from react-native. It extends a
 
 #### Image
 
-<AppProvider>
+<Wrapper>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -153,7 +153,7 @@ Image component is created using Image component from react-native. It extends a
       </Table.TBody>
     </Table>
   </TableContainer>
-</AppProvider>
+</Wrapper>
 
 > Note: These props are exclusively applicable when utilizing the default configuration of gluestack-ui/config. If you are using a custom theme, these props may not be available.
 

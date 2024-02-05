@@ -26,11 +26,11 @@ import {
   InlineCode,
 } from '@gluestack/design-system';
 
-import Wrapper from '../Wrapper';
+import Wrapper from '../../components/Wrapper';
 
 This is an illustration of a **Themed HStack** component with default configuration.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={true}
@@ -60,7 +60,7 @@ This is an illustration of a **Themed HStack** component with default configurat
       },
     }}
   />
-</AppProvider>
+</Wrapper>
 
 <br />
 
@@ -102,7 +102,7 @@ The themed version of the component is a pre-styled version of the component, wh
 
 HStack component is created using View component from react-native. It extends all the props supported by [React Native View](https://reactnative.dev/docs/view#props), [utility props](https://ui.gluestack.io/docs/styling/utility-and-sx-props) and the props mentioned below.
 
-<AppProvider>
+<Wrapper>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -157,7 +157,7 @@ HStack component is created using View component from react-native. It extends a
       </Table.TBody>
     </Table>
   </TableContainer>
-</AppProvider>
+</Wrapper>
 
 > Note: These props are exclusively applicable when utilizing the default configuration of gluestack-ui/config. If you are using a custom theme, these props may not be available.
 
@@ -169,7 +169,7 @@ The Examples section provides visual representations of the different variants o
 
 An HStack component with the reversed prop reverses the order of horizontally stacked elements, allowing for customized layouts and visual arrangements of content within a user interface.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -188,7 +188,7 @@ An HStack component with the reversed prop reverses the order of horizontally st
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>
 
 ## Unstyled
 

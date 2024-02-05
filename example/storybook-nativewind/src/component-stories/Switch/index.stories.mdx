@@ -28,11 +28,11 @@ import {
   InlineCode,
 } from '@gluestack/design-system';
 
-import Wrapper from '../Wrapper';
+import Wrapper from '../../components/Wrapper';
 
 This is an illustration of a **Themed Switch** component with default configuration.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={true}
@@ -56,7 +56,7 @@ This is an illustration of a **Themed Switch** component with default configurat
       },
     }}
   />
-</AppProvider>
+</Wrapper>
 
 <br />
 
@@ -87,7 +87,7 @@ This section provides a comprehensive reference list for the component props, de
 Contains all switch related layout style props and actions.
 It inherits all the properties of React Native's [Switch](https://reactnative.dev/docs/switch) component.
 
-<AppProvider>
+<Wrapper>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -222,7 +222,7 @@ It inherits all the properties of React Native's [Switch](https://reactnative.de
       </Table.TBody>
     </Table>
   </TableContainer>
-</AppProvider>
+</Wrapper>
 
 ### Accessibility
 
@@ -247,7 +247,7 @@ Switch component is created using Switch component from react-native. It extends
 
 #### Switch
 
-<AppProvider>
+<Wrapper>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -280,7 +280,7 @@ Switch component is created using Switch component from react-native. It extends
       </Table.TBody>
     </Table>
   </TableContainer>
-</AppProvider>
+</Wrapper>
 
 > Note: These props are exclusively applicable when utilizing the default configuration of gluestack-ui/config. If you are using a custom theme, these props may not be available.
 
@@ -292,7 +292,7 @@ The Examples section provides visual representations of the different variants o
 
 An example of a switch component with a label, which includes another switch component for toggling additional options.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -315,13 +315,13 @@ An example of a switch component with a label, which includes another switch com
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>
 
 #### Checked State
 
 An example of a switch component used within a checked state component to represent a pre-selected or activated option.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -344,13 +344,13 @@ An example of a switch component used within a checked state component to repres
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>
 
 #### Color scheme
 
 An example of a switch component being used with a different color scheme.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -408,7 +408,7 @@ An example of a switch component being used with a different color scheme.
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>
 
 ## Unstyled
 

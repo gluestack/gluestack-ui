@@ -48,11 +48,11 @@ import {
   InlineCode,
 } from '@gluestack/design-system';
 
-import Wrapper from '../Wrapper';
+import Wrapper from '../../components/Wrapper';
 
 This is an illustration of a **Themed Icon** component with default configuration.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={true}
@@ -77,7 +77,7 @@ This is an illustration of a **Themed Icon** component with default configuratio
       },
     }}
   />
-</AppProvider>
+</Wrapper>
 
 <br />
 
@@ -129,7 +129,7 @@ Icon component is created using AsForwarder component from @gluestack-style/reac
 
 #### Image
 
-<AppProvider>
+<Wrapper>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -162,7 +162,7 @@ Icon component is created using AsForwarder component from @gluestack-style/reac
       </Table.TBody>
     </Table>
   </TableContainer>
-</AppProvider>
+</Wrapper>
 
 > Note: These props are exclusively applicable when utilizing the default configuration of gluestack-ui/config. If you are using a custom theme, these props may not be available.
 
@@ -174,7 +174,7 @@ The Examples section provides visual representations of the different variants o
 
 Below is a list of all of the icons in the library.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -305,13 +305,13 @@ Below is a list of all of the icons in the library.
     }}
 />
 
-</AppProvider>
+</Wrapper>
 
 #### Lucide Icons (Recommended)
 
 [Lucide](https://lucide.dev/docs/lucide-react-native) is an open source icon library for displaying icons for react-native. `gluestack-ui` provides an easy integration with lucide icons.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -339,7 +339,7 @@ Below is a list of all of the icons in the library.
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>
 
 #### SVG & Custom Icons
 
@@ -359,7 +359,7 @@ Before :
 After :
 `<Path fill="currentColor" d="M10 10L20 20" /> `
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -396,7 +396,7 @@ After :
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>
 
 > gluestack-ui provides a set of pre created icons that can be used directly in our app and can also integrate third party icons using [AsForwarder](/style/docs/api/as-forwarder) from [gluestack-style](/style)
 
