@@ -67,33 +67,42 @@ export const decorators = [
     }, [getColorMode()]);
 
     return (
-      <GluestackUIProvider config={config} colorMode={colorMode}>
-        <Provider mode={colorMode}>
-          <OverlayProvider style={{ flex: 1 }}>
-            <ToastProvider>
-              <View
-                style={{
-                  flex: 1,
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                }}
-              >
-                <Story />
-              </View>
-            </ToastProvider>
-          </OverlayProvider>
-        </Provider>
-      </GluestackUIProvider>
+      // <GluestackUIProvider config={config} colorMode={colorMode}>
+      <Provider mode={colorMode}>
+        <OverlayProvider style={{ flex: 1 }}>
+          <ToastProvider>
+            <View
+              style={{
+                flex: 1,
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              <Story />
+            </View>
+          </ToastProvider>
+        </OverlayProvider>
+      </Provider>
     );
   },
 ];
 
 addParameters({
   docs: {
-    theme: gstheme,
+    // theme: gstheme,
     inlineStories: false,
     container: ({ children, context }) => {
-      return <DocsContainer context={context}>{children}</DocsContainer>;
+      return (
+        <GluestackUIProvider config={config}>
+          <Provider>
+            <DocsContainer context={context}>
+              <OverlayProvider style={{ flex: 1 }}>
+                <ToastProvider>{children}</ToastProvider>
+              </OverlayProvider>
+            </DocsContainer>
+          </Provider>
+        </GluestackUIProvider>
+      );
     },
   },
   darkMode: {

@@ -71,8 +71,8 @@ export function ActionsheetItem<T>(
           dataSet={{
             hover: isHoveredProp || isHovered ? 'true' : 'false',
             focus: isFocusedProp || isFocused ? 'true' : 'false',
-            // @ts-ignore
             active:
+              // @ts-ignore
               isPressedProp || isPressed || props?.states?.active
                 ? 'true'
                 : 'false',

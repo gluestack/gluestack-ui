@@ -29,7 +29,13 @@ export function Provider({
 }) {
   // @ts-ignore
   return (
-    <View style={[config[mode], providerStyle, props.style]}>
+    <View
+      style={[
+        mode ? config[mode] : config['light'],
+        providerStyle,
+        props.style,
+      ]}
+    >
       {props.children}
     </View>
   );
