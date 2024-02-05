@@ -1,0 +1,1478 @@
+{
+  "accordion": {
+    "overlay": false,
+    "storyParent": "disclosure",
+    "storyAddress": "accordion",
+    "storyName": "accordion",
+    "arguments": {
+      "state": {
+        "control": "select",
+        "options": [
+          "enabled",
+          "disabled",
+          "",
+          "visible",
+          "not visible",
+          "working",
+          "not working",
+          "only web"
+        ]
+      },
+      "size": {
+        "control": "select",
+        "options": ["sm", "md", "lg", "xl", ""]
+      },
+      "type": {
+        "control": "select",
+        "options": ["single", "multiple", ""]
+      },
+      "variant": {
+        "control": "select",
+        "options": ["rounded", "outline", "underline", ""]
+      },
+      "": {
+        "control": "select",
+        "options": ["visible", ""]
+      },
+      "iscollapsible": {
+        "control": "select",
+        "options": ["working", ""]
+      },
+      "defaultvalue": {
+        "control": "select",
+        "options": ["working", ""]
+      },
+      "value": {
+        "control": "select",
+        "options": ["working", ""]
+      },
+      "onvaluechange": {
+        "control": "select",
+        "options": ["working", ""]
+      }
+    }
+  },
+  "box": {
+    "overlay": false,
+    "storyParent": "layout",
+    "storyAddress": "box",
+    "storyName": "box",
+    "arguments": {
+      "height": {
+        "control": "select",
+        "options": ["working", ""]
+      },
+      "width": {
+        "control": "select",
+        "options": ["working", ""]
+      },
+      "background color": {
+        "control": "select",
+        "options": ["working", ""]
+      },
+      "borderwidth": {
+        "control": "select",
+        "options": ["working", ""]
+      },
+      "bordercolor": {
+        "control": "select",
+        "options": ["working", ""]
+      },
+      "margin": {
+        "control": "select",
+        "options": ["working", ""]
+      },
+      "padding": {
+        "control": "select",
+        "options": ["working", ""]
+      },
+      "flex": {
+        "control": "select",
+        "options": ["working", ""]
+      },
+      "child component": {
+        "control": "select",
+        "options": ["working", ""]
+      },
+      "child components": {
+        "control": "select",
+        "options": ["working", ""]
+      }
+    }
+  },
+  "alert": {
+    "overlay": false,
+    "storyParent": "feedback",
+    "storyAddress": "alert",
+    "storyName": "alert",
+    "arguments": {
+      "success": {
+        "control": "select",
+        "options": [
+          "success",
+          "info",
+          "error",
+          "warning",
+          "muted",
+          "",
+          "working",
+          "not working",
+          "alert text not visible",
+          "visible",
+          "not visible"
+        ]
+      },
+      "accent": {
+        "control": "select",
+        "options": ["solid", "outline", "accent", ""]
+      },
+      "visible": {
+        "control": "select",
+        "options": ["visible", ""]
+      },
+      "working": {
+        "control": "select",
+        "options": ["working", ""]
+      }
+    }
+  },
+  "alertdialog": {
+    "overlay": true,
+    "storyParent": "overlay",
+    "storyAddress": "alertdialog",
+    "storyName": "alert-dialog",
+    "arguments": {
+      "size": {
+        "control": "select",
+        "options": [
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "full",
+          "",
+          "visible",
+          "not visible",
+          "working",
+          "not working",
+          "only web"
+        ]
+      },
+      "": {
+        "control": "select",
+        "options": ["visible", ""]
+      },
+      "isopen": {
+        "control": "select",
+        "options": ["working", ""]
+      },
+      "onclose": {
+        "control": "select",
+        "options": ["working", ""]
+      },
+      "defaultisopen": {
+        "control": "select",
+        "options": ["working", ""]
+      },
+      "animationpreset": {
+        "control": "select",
+        "options": ["working", ""]
+      },
+      "iskeyboarddismissable": {
+        "control": "select",
+        "options": ["working", ""]
+      },
+      "closeonoverlayclick": {
+        "control": "select",
+        "options": ["working", ""]
+      }
+    }
+  },
+  "avatar": {
+    "overlay": false,
+    "storyParent": "media-and-icons",
+    "storyAddress": "avatar",
+    "storyName": "avatar",
+    "arguments": {
+      "size": {
+        "control": "select",
+        "options": [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "2xl",
+          "",
+          "working",
+          "not working",
+          "visible",
+          "not visible"
+        ]
+      },
+      "border radius": {
+        "control": "select",
+        "options": [
+          "$xs",
+          "$sm",
+          "$md",
+          "$lg",
+          "$xl",
+          "$2xl",
+          "$3xl",
+          "$full",
+          "$none",
+          ""
+        ]
+      },
+      "gluestack docs": {
+        "control": "select",
+        "options": ["visible", ""]
+      },
+      "ios": {
+        "control": "select",
+        "options": ["working", ""]
+      },
+      "web": {
+        "control": "select",
+        "options": ["working", ""]
+      },
+      "andriod": {
+        "control": "select",
+        "options": ["working", ""]
+      }
+    }
+  },
+
+  "badge": {
+    "overlay": false,
+    "storyParent": "media-and-icons",
+    "storyAddress": "badge",
+    "storyName": "badge",
+    "arguments": {
+      "size": {
+        "control": "select",
+        "options": [
+          "sm",
+          "md",
+          "lg",
+          "",
+          "visible",
+          "not visible",
+          "working",
+          "not working",
+          "only web"
+        ]
+      },
+      "variant": {
+        "control": "select",
+        "options": ["solid", "outline", ""]
+      },
+      "borderradius": {
+        "control": "select",
+        "options": [
+          "$none",
+          "$xs",
+          "$sm",
+          "$md",
+          "$lg",
+          "$xl",
+          "$2xl",
+          "$3xl",
+          "$full",
+          ""
+        ]
+      },
+      "action": {
+        "control": "select",
+        "options": ["error", "warning", "success", "info", "muted", ""]
+      },
+      "": {
+        "control": "select",
+        "options": ["visible", "working", ""]
+      }
+    }
+  },
+  "button": {
+    "overlay": false,
+    "storyParent": "forms",
+    "storyAddress": "button",
+    "storyName": "button",
+    "arguments": {
+      "state ": {
+        "control": "select",
+        "options": ["state ", "enabled", "disabled", ""]
+      },
+      "size": {
+        "control": "select",
+        "options": ["size", "xs", "sm", "md", "lg", ""]
+      },
+      "variant": {
+        "control": "select",
+        "options": ["variant", "solid", "outline", "link", ""]
+      },
+      "action": {
+        "control": "select",
+        "options": [
+          "action",
+          "primary",
+          "secondary",
+          "positive",
+          "negative",
+          ""
+        ]
+      },
+      "gluestack docs": {
+        "control": "select",
+        "options": ["_focusvisible", "visible", ""]
+      },
+      "": {
+        "control": "select",
+        "options": [
+          "_howervisible",
+          "_pressedvisible",
+          "inline styling",
+          "",
+          "visible",
+          "working",
+          "na"
+        ]
+      },
+      "ios": {
+        "control": "select",
+        "options": ["_focusvisible", "only web", ""]
+      },
+      "web": {
+        "control": "select",
+        "options": ["_focusvisible", "working", ""]
+      },
+      "android ": {
+        "control": "select",
+        "options": ["_focusvisible", "only web", ""]
+      }
+    }
+  },
+  "checkbox": {
+    "overlay": false,
+    "storyParent": "forms",
+    "storyAddress": "checkbox",
+    "storyName": "checkbox",
+    "arguments": {
+      "state": {
+        "control": "select",
+        "options": [
+          "enabled",
+          "disabled",
+          "",
+          "visible",
+          "not visible",
+          "working",
+          "not working",
+          "only web"
+        ]
+      },
+      "size": {
+        "control": "select",
+        "options": ["sm", "md", "lg", ""]
+      },
+      "": {
+        "control": "select",
+        "options": ["visible", ""]
+      },
+      "onchange": {
+        "control": "select",
+        "options": ["working", ""]
+      },
+      "defaultischecked": {
+        "control": "select",
+        "options": ["working", ""]
+      },
+      "ischecked": {
+        "control": "select",
+        "options": ["working", ""]
+      },
+      "isinvalid": {
+        "control": "select",
+        "options": ["working", ""]
+      },
+      "isreadonly": {
+        "control": "select",
+        "options": ["working", ""]
+      },
+      "ishovered": {
+        "control": "select",
+        "options": ["working", ""]
+      },
+      "isfocusvisible": {
+        "control": "select",
+        "options": ["only web", "working", ""]
+      }
+    }
+  },
+  "divider": {
+    "overlay": false,
+    "storyParent": "data-display",
+    "storyAddress": "divider",
+    "storyName": "divider",
+    "arguments": {
+      "orientation": {
+        "control": "select",
+        "options": [
+          "horizontal",
+          "vertical",
+          "",
+          "working",
+          "not working",
+          "visible",
+          "not visible"
+        ]
+      },
+      "": {
+        "control": "select",
+        "options": ["visible", ""]
+      },
+      "background": {
+        "control": "select",
+        "options": ["working", ""]
+      },
+      "margin": {
+        "control": "select",
+        "options": ["working", ""]
+      }
+    }
+  },
+  "fab": {
+    "overlay": false,
+    "storyParent": "others",
+    "storyAddress": "fab",
+    "storyName": "fab",
+    "arguments": {
+      "state": {
+        "control": "select",
+        "options": [
+          "enabled",
+          "disabled",
+          "",
+          "visible",
+          "not visible",
+          "working",
+          "not working",
+          "na",
+          "only web"
+        ]
+      },
+      "placement": {
+        "control": "select",
+        "options": [
+          "top left",
+          "top center",
+          "top right",
+          "bottom left",
+          "bottom center",
+          "bottom right",
+          ""
+        ]
+      },
+      "size": {
+        "control": "select",
+        "options": ["sm", "md", "lg", ""]
+      },
+      "": {
+        "control": "select",
+        "options": ["visible", ""]
+      },
+      "ishovered": {
+        "control": "select",
+        "options": ["only web", "working", ""]
+      },
+      "ispressed": {
+        "control": "select",
+        "options": ["working", ""]
+      },
+      "isfocused": {
+        "control": "select",
+        "options": ["working", ""]
+      }
+    }
+  },
+  "formcontrol": {
+    "overlay": false,
+    "storyParent": "forms",
+    "storyAddress": "formcontrol",
+    "storyName": "form-control",
+    "arguments": {
+      "state": {
+        "control": "select",
+        "options": [
+          "enabled",
+          "disabled",
+          "",
+          "visible",
+          "not visible",
+          "working",
+          "not working",
+          "only web"
+        ]
+      },
+      "size": {
+        "control": "select",
+        "options": ["sm", "md", "lg", ""]
+      },
+      "": {
+        "control": "select",
+        "options": ["visible", ""]
+      },
+      "isinvalid": {
+        "control": "select",
+        "options": ["working", ""]
+      },
+      "isrequired": {
+        "control": "select",
+        "options": ["working", ""]
+      },
+      "isreadonly": {
+        "control": "select",
+        "options": ["working", ""]
+      }
+    }
+  },
+
+  "heading": {
+    "overlay": false,
+    "storyParent": "typography",
+    "storyAddress": "heading",
+    "storyName": "heading",
+    "arguments": {
+      "size": {
+        "control": "select",
+        "options": [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "2xl",
+          "3xl",
+          "4xl",
+          "5xl",
+          "",
+          "working",
+          "not working",
+          "no difference ",
+          "visible",
+          "not visible"
+        ]
+      },
+      "": {
+        "control": "select",
+        "options": ["visible", ""]
+      },
+      "istruncated": {
+        "control": "select",
+        "options": ["working", ""]
+      },
+      "bold": {
+        "control": "select",
+        "options": ["no difference ", ""]
+      },
+      "underline": {
+        "control": "select",
+        "options": ["working", ""]
+      },
+      "italic": {
+        "control": "select",
+        "options": ["working", ""]
+      },
+      "highlight": {
+        "control": "select",
+        "options": ["working", ""]
+      },
+      "strikethrough": {
+        "control": "select",
+        "options": ["working", ""]
+      },
+      "sub": {
+        "control": "select",
+        "options": ["working", "no difference ", ""]
+      }
+    }
+  },
+
+  "hstack": {
+    "overlay": false,
+    "storyParent": "layout",
+    "storyAddress": "hstack",
+    "storyName": "h-stack",
+    "arguments": {
+      "space": {
+        "control": "select",
+        "options": [
+          "$none",
+          "$xs",
+          "$sm",
+          "$md",
+          "$lg",
+          "$xl",
+          "$2xl",
+          "$3xl",
+          "$4xl",
+          "",
+          "visible",
+          "not visible",
+          "working",
+          "not working"
+        ]
+      },
+      "": {
+        "control": "select",
+        "options": ["visible", ""]
+      },
+      "default": {
+        "control": "select",
+        "options": ["working", ""]
+      },
+      "reversed": {
+        "control": "select",
+        "options": ["working", ""]
+      }
+    }
+  },
+
+  "icon": {
+    "overlay": false,
+    "storyParent": "media-and-icons",
+    "storyAddress": "icons",
+    "storyName": "icon",
+    "arguments": {
+      "size": {
+        "control": "select",
+        "options": [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "",
+          "visible",
+          "not visible",
+          "working",
+          "not working"
+        ]
+      },
+      "": {
+        "control": "select",
+        "options": ["visible", ""]
+      },
+      "inline styling": {
+        "control": "select",
+        "options": ["working", ""]
+      }
+    }
+  },
+  "image": {
+    "overlay": false,
+    "storyParent": "media-and-icons",
+    "storyAddress": "image",
+    "storyName": "image",
+    "arguments": {
+      "size": {
+        "control": "select",
+        "options": [
+          "2xs",
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "2xl",
+          "",
+          "working",
+          "not working",
+          "visible",
+          "not visible"
+        ]
+      },
+      "borderradius": {
+        "control": "select",
+        "options": [
+          "$none",
+          "$xs",
+          "$sm",
+          "$md",
+          "$lg",
+          "$xl",
+          "$2xl",
+          "$3xl",
+          "$full",
+          ""
+        ]
+      },
+      "": {
+        "control": "select",
+        "options": ["visible", ""]
+      },
+      "height": {
+        "control": "select",
+        "options": ["working", ""]
+      },
+      "width": {
+        "control": "select",
+        "options": ["working", ""]
+      }
+    }
+  },
+  "input": {
+    "overlay": false,
+    "storyParent": "forms",
+    "storyAddress": "input",
+    "storyName": "input",
+    "arguments": {
+      "state": {
+        "control": "select",
+        "options": [
+          "enabled",
+          "disabled",
+          "",
+          "working",
+          "not working",
+          "na",
+          "only web",
+          "visible",
+          "not visible"
+        ]
+      },
+      "sizes": {
+        "control": "select",
+        "options": ["sm", "md", "lg", "xl", ""]
+      },
+      "variant": {
+        "control": "select",
+        "options": ["rounded", "outline", "underline", ""]
+      },
+      "input type": {
+        "control": "select",
+        "options": ["text", "password", ""]
+      },
+      "": {
+        "control": "select",
+        "options": ["visible", ""]
+      },
+      "isinvalid": {
+        "control": "select",
+        "options": ["working", ""]
+      },
+      "ishovered": {
+        "control": "select",
+        "options": ["only web", "working", ""]
+      },
+      "isfocused": {
+        "control": "select",
+        "options": ["working", ""]
+      },
+      "isreadonly": {
+        "control": "select",
+        "options": ["working", ""]
+      }
+    }
+  },
+
+  "link": {
+    "overlay": false,
+    "storyParent": "forms",
+    "storyAddress": "link",
+    "storyName": "link",
+    "arguments": {
+      "size": {
+        "control": "select",
+        "options": [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "2xl",
+          "3xl",
+          "4xl",
+          "5xl",
+          "6xl",
+          "",
+          "working",
+          "not working",
+          "na",
+          "only web",
+          "visible",
+          "not visible"
+        ]
+      },
+      "": {
+        "control": "select",
+        "options": ["visible", ""]
+      },
+      "isexternal": {
+        "control": "select",
+        "options": ["working", ""]
+      },
+      "ishovered": {
+        "control": "select",
+        "options": ["only web", "working", ""]
+      },
+      "isfocusvisible": {
+        "control": "select",
+        "options": ["not working", "working", ""]
+      }
+    }
+  },
+
+  "modal": {
+    "overlay": true,
+    "storyParent": "overlay",
+    "storyAddress": "modal",
+    "storyName": "modal",
+    "arguments": {
+      "size": {
+        "control": "select",
+        "options": [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "full",
+          "",
+          "visible",
+          "not visible",
+          "working",
+          "not working",
+          "only web"
+        ]
+      },
+      "": {
+        "control": "select",
+        "options": ["visible", ""]
+      },
+      "isopen": {
+        "control": "select",
+        "options": ["working", ""]
+      },
+      "onclose": {
+        "control": "select",
+        "options": ["working", ""]
+      },
+      "defaultisopen\t": {
+        "control": "select",
+        "options": ["working", ""]
+      },
+      "closeonoverlayclick": {
+        "control": "select",
+        "options": ["working", ""]
+      },
+      "children\t": {
+        "control": "select",
+        "options": ["working", ""]
+      },
+      "iskeyboarddismissable": {
+        "control": "select",
+        "options": ["only web", "working", ""]
+      }
+    }
+  },
+
+  "pressable": {
+    "overlay": false,
+    "storyParent": "forms",
+    "storyAddress": "pressable",
+    "storyName": "pressable",
+    "arguments": {
+      "state": {
+        "control": "select",
+        "options": [
+          "enabled",
+          "disabled",
+          "",
+          "visible",
+          "not visible",
+          "working",
+          "not working",
+          "only web"
+        ]
+      },
+      "": {
+        "control": "select",
+        "options": ["visible", ""]
+      },
+      "hover": {
+        "control": "select",
+        "options": ["only web", "working", ""]
+      },
+      "pressed": {
+        "control": "select",
+        "options": ["working", ""]
+      },
+      "child component": {
+        "control": "select",
+        "options": ["working", ""]
+      },
+      "styling": {
+        "control": "select",
+        "options": ["working", ""]
+      }
+    }
+  },
+
+  "progress": {
+    "overlay": false,
+    "storyParent": "feedback",
+    "storyAddress": "progress",
+    "storyName": "progress",
+    "arguments": {
+      "size": {
+        "control": "select",
+        "options": ["xs", "sm", "md", "lg", "xl", "2xl", ""]
+      },
+      "": {
+        "control": "select",
+        "options": ["visible", "", "working", "not working", "not visible"]
+      },
+      "height": {
+        "control": "select",
+        "options": ["working", ""]
+      },
+      "width": {
+        "control": "select",
+        "options": ["working", ""]
+      },
+      "value": {
+        "control": "select",
+        "options": ["working", ""]
+      },
+      "background": {
+        "control": "select",
+        "options": ["working", ""]
+      },
+      "filled track": {
+        "control": "select",
+        "options": ["working", ""]
+      }
+    }
+  },
+
+  "radio": {
+    "overlay": false,
+    "storyParent": "forms",
+    "storyAddress": "radio",
+    "storyName": "radio",
+    "arguments": {
+      "state": {
+        "control": "select",
+        "options": [
+          "enabled",
+          "disabled",
+          "",
+          "visible",
+          "not visible",
+          "working",
+          "not working",
+          "only web"
+        ]
+      },
+      "size": {
+        "control": "select",
+        "options": ["sm", "md", "lg", ""]
+      },
+      "": {
+        "control": "select",
+        "options": ["visible", ""]
+      },
+      "onchange": {
+        "control": "select",
+        "options": ["working", ""]
+      },
+      "isinvalid": {
+        "control": "select",
+        "options": ["working", ""]
+      },
+      "isfocusvisible": {
+        "control": "select",
+        "options": ["only web", "working", ""]
+      }
+    }
+  },
+
+  "select": {
+    "overlay": false,
+    "storyParent": "forms",
+    "storyAddress": "select",
+    "storyName": "select",
+    "arguments": {
+      "state": {
+        "control": "select",
+        "options": [
+          "enabled",
+          "disabled",
+          "",
+          "visible",
+          "not visible",
+          "working",
+          "not working",
+          "only web"
+        ]
+      },
+      "size": {
+        "control": "select",
+        "options": ["sm", "md", "lg", "xl", "", "web"]
+      },
+      "variant": {
+        "control": "select",
+        "options": ["rounded", "outline", "underline", ""]
+      },
+      "": {
+        "control": "select",
+        "options": ["visible", ""]
+      },
+      "ishovered": {
+        "control": "select",
+        "options": ["working", ""]
+      },
+      "isinvalid": {
+        "control": "select",
+        "options": ["working", ""]
+      },
+      "isfocusvisible": {
+        "control": "select",
+        "options": ["only web", ""]
+      },
+      "isfocused": {
+        "control": "select",
+        "options": ["working", "", "ios same in android."]
+      },
+      "selectedvalue": {
+        "control": "select",
+        "options": ["working", ""]
+      },
+      "selectedlabel": {
+        "control": "select",
+        "options": ["working", ""]
+      },
+      "defaultvalue": {
+        "control": "select",
+        "options": ["working", ""]
+      },
+      "onopen": {
+        "control": "select",
+        "options": ["working", ""]
+      },
+      "onvaluechange": {
+        "control": "select",
+        "options": ["working", ""]
+      },
+      "onclose": {
+        "control": "select",
+        "options": ["working", ""]
+      }
+    }
+  },
+
+  "slider": {
+    "overlay": false,
+    "storyParent": "forms",
+    "storyAddress": "slider",
+    "storyName": "slider",
+    "arguments": {
+      "state": {
+        "control": "select",
+        "options": [
+          "enabled",
+          "disabled",
+          "",
+          "visible",
+          "not visible",
+          "working",
+          "not working",
+          "only web"
+        ]
+      },
+      "size": {
+        "control": "select",
+        "options": ["sm", "md", "lg", ""]
+      },
+      "orientation": {
+        "control": "select",
+        "options": ["horizontal", "vertical", ""]
+      },
+      "": {
+        "control": "select",
+        "options": ["visible", ""]
+      },
+      "onchange": {
+        "control": "select",
+        "options": ["working", ""]
+      },
+      "isreadonly": {
+        "control": "select",
+        "options": ["working", ""]
+      },
+      "defaultvalue": {
+        "control": "select",
+        "options": ["working", ""]
+      },
+      "minvalue": {
+        "control": "select",
+        "options": ["working", ""]
+      },
+      "maxvalue": {
+        "control": "select",
+        "options": ["working", ""]
+      },
+      "step": {
+        "control": "select",
+        "options": ["working", ""]
+      },
+      "val": {
+        "control": "select",
+        "options": ["working", ""]
+      }
+    }
+  },
+
+  "spinner": {
+    "overlay": false,
+    "storyParent": "feedback",
+    "storyAddress": "spinner",
+    "storyName": "spinner",
+    "arguments": {
+      "size": {
+        "control": "select",
+        "options": [
+          "small",
+          "large",
+          "",
+          "working",
+          "not working",
+          "visible",
+          "not visible"
+        ]
+      },
+      "": {
+        "control": "select",
+        "options": ["visible", "working", ""]
+      }
+    }
+  },
+
+  "switch": {
+    "overlay": false,
+    "storyParent": "forms",
+    "storyAddress": "switch",
+    "storyName": "switch",
+    "arguments": {
+      "state ": {
+        "control": "select",
+        "options": ["enabled", "disabled", ""]
+      },
+      "size": {
+        "control": "select",
+        "options": ["sm", "md", "lg", ""]
+      },
+      "": {
+        "control": "select",
+        "options": ["visible", ""]
+      },
+      "isinvalid": {
+        "control": "select",
+        "options": ["working", "not working", ""]
+      },
+      "isrequired": {
+        "control": "select",
+        "options": ["prop not visible in vs code", "working", ""]
+      },
+      "ontoggle": {
+        "control": "select",
+        "options": ["working", ""]
+      },
+      "ishovered": {
+        "control": "select",
+        "options": ["only in web", ""]
+      }
+    }
+  },
+
+  "text": {
+    "overlay": false,
+    "storyParent": "typography",
+    "storyAddress": "text",
+    "storyName": "text",
+    "arguments": {
+      "size": {
+        "control": "select",
+        "options": [
+          "2xs",
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "2xl",
+          "3xl",
+          "4xl",
+          "5xl",
+          "6xl",
+          "",
+          "working",
+          "not working",
+          "visible",
+          "not visible"
+        ]
+      },
+      "": {
+        "control": "select",
+        "options": ["visible", ""]
+      },
+      "istruncated": {
+        "control": "select",
+        "options": ["working", ""]
+      },
+      "bold": {
+        "control": "select",
+        "options": ["working", ""]
+      },
+      "underline": {
+        "control": "select",
+        "options": ["working", ""]
+      },
+      "highlight": {
+        "control": "select",
+        "options": ["working", ""]
+      },
+      "italic": {
+        "control": "select",
+        "options": ["working", ""]
+      },
+      "sub": {
+        "control": "select",
+        "options": ["working", ""]
+      },
+      "strikethrough": {
+        "control": "select",
+        "options": ["working", ""]
+      }
+    }
+  },
+
+  "textarea": {
+    "overlay": false,
+    "storyParent": "forms",
+    "storyAddress": "textarea",
+    "storyName": "textarea",
+    "arguments": {
+      "state": {
+        "control": "select",
+        "options": [
+          "enabled",
+          "disabled",
+          "",
+          "visible",
+          "not visible",
+          "working",
+          "not working",
+          "only web"
+        ]
+      },
+      "size": {
+        "control": "select",
+        "options": ["sm", "md", "lg", "xl", ""]
+      },
+      "": {
+        "control": "select",
+        "options": ["visible", ""]
+      },
+      "isinvalid": {
+        "control": "select",
+        "options": ["working", ""]
+      },
+      "ishovered": {
+        "control": "select",
+        "options": ["only web", "working", ""]
+      },
+      "isfocused": {
+        "control": "select",
+        "options": ["working", ""]
+      },
+      "isreadonly": {
+        "control": "select",
+        "options": ["working", ""]
+      }
+    }
+  },
+
+  "toast": {
+    "overlay": false,
+    "storyParent": "feedback",
+    "storyAddress": "toast",
+    "storyName": "toast",
+    "arguments": {
+      "placement": {
+        "control": "select",
+        "options": [
+          "top",
+          "top right",
+          "top left",
+          "bottom ",
+          "bottom left ",
+          "bottm right",
+          "",
+          "visible",
+          "not visible",
+          "working",
+          "not working",
+          "only web"
+        ]
+      },
+      "action": {
+        "control": "select",
+        "options": ["success", "info", "warning", "error", "attention", ""]
+      },
+      "variant": {
+        "control": "select",
+        "options": ["accent", "solid ", "outline", ""]
+      },
+      "": {
+        "control": "select",
+        "options": ["visible", ""]
+      },
+      "duration": {
+        "control": "select",
+        "options": ["not working", ""]
+      },
+      "avoidkeyboard": {
+        "control": "select",
+        "options": ["not working", ""]
+      },
+      "onclosecomplete": {
+        "control": "select",
+        "options": ["not working", ""]
+      }
+    }
+  },
+  "tooltip": {
+    "overlay": true,
+    "storyParent": "overlay",
+    "storyAddress": "tooltip",
+    "storyName": "tooltip",
+    "arguments": {
+      "state": {
+        "control": "select",
+        "options": [
+          "enabled",
+          "disabled",
+          "",
+          "visible",
+          "not visible",
+          "working",
+          "not working",
+          "only web"
+        ]
+      },
+      "placement": {
+        "control": "select",
+        "options": [
+          "top left",
+          "top",
+          "top right",
+          "left top",
+          "left",
+          "left bottom",
+          "bottom left",
+          "bottom",
+          "bottom right",
+          "right top ",
+          "right",
+          "right bottom",
+          ""
+        ]
+      },
+      "": {
+        "control": "select",
+        "options": ["visible", "only web", ""]
+      },
+      "defaultisopen": {
+        "control": "select",
+        "options": ["working", ""]
+      },
+      "onopen": {
+        "control": "select",
+        "options": ["working", ""]
+      },
+      "onclose": {
+        "control": "select",
+        "options": ["working", ""]
+      },
+      "opendelay": {
+        "control": "select",
+        "options": ["working", ""]
+      },
+      "closedelay": {
+        "control": "select",
+        "options": ["working", ""]
+      },
+      "children": {
+        "control": "select",
+        "options": ["working", ""]
+      },
+      "closeonclick": {
+        "control": "select",
+        "options": ["working", ""]
+      },
+      "closeonoverlayclick": {
+        "control": "select",
+        "options": ["working", ""]
+      },
+      "offset": {
+        "control": "select",
+        "options": ["working", ""]
+      },
+      "shouldflip": {
+        "control": "select",
+        "options": ["working", ""]
+      }
+    }
+  },
+
+  "vstack": {
+    "overlay": false,
+    "storyParent": "layout",
+    "storyAddress": "vstack",
+    "storyName": "v-stack",
+    "arguments": {
+      "space": {
+        "control": "select",
+        "options": [
+          "$none",
+          "$xs",
+          "$sm",
+          "$md",
+          "$lg",
+          "$xl",
+          "$2xl",
+          "$3xl",
+          "$4xl",
+          "",
+          "visible",
+          "not visible",
+          "working",
+          "not working"
+        ]
+      },
+      "": {
+        "control": "select",
+        "options": ["visible", ""]
+      },
+      "default": {
+        "control": "select",
+        "options": ["working", ""]
+      },
+      "reversed": {
+        "control": "select",
+        "options": ["working", ""]
+      }
+    }
+  }
+}

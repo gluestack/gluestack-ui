@@ -18,7 +18,10 @@
     "build-storybook": "build-storybook",
     "release": "release-it",
     "test": "jest",
-    "update-snapshot": "jest -u"
+    "update-snapshot": "jest -u",
+    "test:screenshot": "yarn playwright test",
+    "update:screenshot": "npx playwright test --update-snapshots",
+    "test:show-report": "yarn playwright show-report"
   },
   "dependencies": {
     "@expo/html-elements": "^0.4.2",
