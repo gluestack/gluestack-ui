@@ -24,7 +24,7 @@ export function Provider({
   mode,
   ...props
 }: {
-  mode: 'light' | 'dark';
+  mode?: 'light' | 'dark';
   children: any;
 }) {
   // @ts-ignore
