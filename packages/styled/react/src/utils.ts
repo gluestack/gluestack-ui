@@ -5,7 +5,7 @@ const propsNotToConvertToCSSVariables = ['shadowColor', 'textShadowColor'];
 
 export function generateMergedThemeTokens(CONFIG: any) {
   const mergedTokens: any = CONFIG;
-  const tokens = deepClone(CONFIG.tokens);
+  const tokens = deepClone(CONFIG?.tokens ?? {});
   const themeTokens: any = {};
 
   if (CONFIG?.themes) {
@@ -68,7 +68,7 @@ export function convertFromUnicodeString(inputString: any) {
 }
 
 export function convertTokensToCssVariables(currentConfig: any) {
-  function objectToCssVariables(obj: any, prefix = '') {
+  function objectToCssVariables(obj: any = {}, prefix = '') {
     return Object.keys(obj).reduce((acc, key) => {
       const variableName = `--${prefix}${key}`;
       const variableValue = obj[key];
@@ -84,7 +84,7 @@ export function convertTokensToCssVariables(currentConfig: any) {
     }, '');
   }
 
-  const tokens = currentConfig.tokens;
+  const tokens = currentConfig?.tokens;
   const cssVariables = objectToCssVariables(tokens);
   let content = `:root {\n${cssVariables}}`;
 

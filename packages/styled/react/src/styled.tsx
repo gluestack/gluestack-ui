@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, {
   ForwardRefExoticComponent,
@@ -97,7 +96,7 @@ function flattenObject(obj: any = {}) {
 function convertUtiltiyToSXFromProps(
   componentProps: any,
   styledSystemProps: any,
-  componentStyleConfig: IComponentStyleConfig,
+  componentStyleConfig: IComponentStyleConfig & { uniqueComponentId: string },
   reservedKeys: any = _reservedKeys,
   plugins: any[] = [],
   ignoreKeys: Set<any> = new Set(),
@@ -937,6 +936,17 @@ export function verboseStyled<P, Variants, ComCon>(
     const memoizationKey = sxHash + type;
     // Check if the result is already in the cache
     if (sxMemoizationCache[memoizationKey]) {
+      injectComponentAndDescendantStyles(
+        sxMemoizationCache[memoizationKey],
+        sxHash,
+        type,
+        GluestackStyleSheet,
+        Platform.OS,
+        inlineStyleMap,
+        ignoreKeys,
+        CONFIG
+      );
+
       return sxMemoizationCache[memoizationKey];
     }
 
@@ -1021,6 +1031,8 @@ export function verboseStyled<P, Variants, ComCon>(
     componentStyleConfig?.descendantStyle &&
     componentStyleConfig?.descendantStyle?.length > 0;
 
+  let uniqueComponentId = '';
+
   const StyledComponent = (
     {
       //@ts-ignore
@@ -1036,6 +1048,11 @@ export function verboseStyled<P, Variants, ComCon>(
     ref: React.ForwardedRef<P>
   ) => {
     const isClient = React.useRef(false);
+    const GluestackComponent = useRef(Component);
+
+    if (uniqueComponentId === '') {
+      uniqueComponentId = componentHash;
+    }
 
     let ignoreKeys: Set<any> = new Set();
 
@@ -1069,6 +1086,8 @@ export function verboseStyled<P, Variants, ComCon>(
       : get();
 
     if (!styleHashCreated) {
+      // eslint-disable-next-line react-hooks/rules-of-hooks
+
       CONFIG = {
         ...styledContext.config,
         propertyTokenMap,
@@ -1117,7 +1136,7 @@ export function verboseStyled<P, Variants, ComCon>(
               true,
               true,
               componentProps?.as ?? Component,
-              componentStyleConfig,
+              { ...componentStyleConfig, uniqueComponentId },
               ExtendedConfig
             );
           }
@@ -1474,7 +1493,7 @@ export function verboseStyled<P, Variants, ComCon>(
         //   defaultThemePropsWithoutVariants,
         inlineComponentPropsWithoutVariants,
         styledSystemProps,
-        componentStyleConfig,
+        { ...componentStyleConfig, uniqueComponentId },
         reservedKeys,
         plugins,
         ignoreKeys,
@@ -1491,7 +1510,7 @@ export function verboseStyled<P, Variants, ComCon>(
       convertUtiltiyToSXFromProps(
         mergedPassingProps,
         styledSystemProps,
-        componentStyleConfig,
+        { ...componentStyleConfig, uniqueComponentId },
         reservedKeys,
         plugins,
         ignoreKeys,
@@ -1712,7 +1731,7 @@ export function verboseStyled<P, Variants, ComCon>(
         } = convertUtiltiyToSXFromProps(
           passingPropsUpdated,
           styledSystemProps,
-          componentStyleConfig,
+          { ...componentStyleConfig, uniqueComponentId },
           reservedKeys,
           plugins,
           ignoreKeys,
@@ -2035,7 +2054,10 @@ export function verboseStyled<P, Variants, ComCon>(
               AsComp = plugins[pluginName]?.componentMiddleWare({
                 Component: AsComp,
                 theme,
-                componentStyleConfig,
+                componentStyleConfig: {
+                  ...componentStyleConfig,
+                  uniqueComponentId,
+                },
                 ExtendedConfig,
                 styleCSSIds,
                 GluestackStyleSheet,
@@ -2049,23 +2071,31 @@ export function verboseStyled<P, Variants, ComCon>(
             // @ts-ignore
             if (plugins[pluginName]?.componentMiddleWare) {
               // @ts-ignore
-              Component = plugins[pluginName]?.componentMiddleWare({
-                Component: Component,
+              GluestackComponent.current = plugins[
+                pluginName
+              ]?.componentMiddleWare({
+                Component: GluestackComponent.current,
                 theme,
-                componentStyleConfig,
+                componentStyleConfig: {
+                  ...componentStyleConfig,
+                  uniqueComponentId,
+                },
                 ExtendedConfig,
                 styleCSSIds,
                 GluestackStyleSheet,
               });
 
-              //@ts-ignore
-              pluginData = { ...pluginData, ...Component?.styled };
+              pluginData = {
+                ...pluginData,
+                //@ts-ignore
+                ...GluestackComponent?.current?.styled,
+              };
             }
           }
         }
       }
       return {
-        Component: Component,
+        Component: GluestackComponent.current,
         AsComp: AsComp,
       };
     }, [AsComp]);
