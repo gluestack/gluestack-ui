@@ -9,22 +9,24 @@ Provider.displayName = 'Provider';
 
 const Wrapper = ({ children, ...props }: any) => {
   return (
-    <Provider
-      colorMode="light"
-      config={config}
-      style={{ flex: 1, height: '100%' }}
-    >
-      <Box
-        sx={{
-          _ios: {
-            h: '100%',
-          },
-        }}
-        {...props}
+    <div data-theme-id="withGluestackStyle">
+      <Provider
+        colorMode="light"
+        config={config}
+        style={{ flex: 1, height: '100%' }}
       >
-        <Center height="100%">{children}</Center>
-      </Box>
-    </Provider>
+        <Box
+          sx={{
+            _ios: {
+              h: '100%',
+            },
+          }}
+          {...props}
+        >
+          <Center height="100%">{children}</Center>
+        </Box>
+      </Provider>
+    </div>
   );
 };
 
