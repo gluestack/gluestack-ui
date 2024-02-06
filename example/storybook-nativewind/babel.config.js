@@ -26,6 +26,14 @@ module.exports = function (api) {
               __dirname,
               '../../packages/unstyled/checkbox/src'
             ),
+            '@gluestack-ui/tooltip': path.resolve(
+              __dirname,
+              '../../packages/unstyled/tooltip/src'
+            ),
+            '@gluestack-ui/alert-dialog': path.resolve(
+              __dirname,
+              '../../packages/unstyled/alert-dialog/src'
+            ),
             '@gluestack-ui/button': path.resolve(
               __dirname,
               '../../packages/unstyled/button/src'
