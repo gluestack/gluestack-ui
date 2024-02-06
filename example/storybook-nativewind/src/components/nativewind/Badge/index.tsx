@@ -5,6 +5,7 @@ import {
   withStyleContext,
   useStyleContext,
 } from '@gluestack-ui/nativewind-utils';
+import { cssInterop } from 'nativewind';
 
 const badgeStyle = tva({
   base: 'flex-row items-center rounded-xs data-[disabled=true]:opacity-50 px-2',
@@ -98,6 +99,8 @@ const badgeIconStyle = tva({
 });
 
 const ContextView = withStyleContext(View);
+
+cssInterop(ContextView, { className: 'style' });
 
 const Badge = ({
   children,
