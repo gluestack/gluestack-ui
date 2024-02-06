@@ -9,6 +9,7 @@ import {
 } from '@gluestack-ui/nativewind-utils';
 
 import { H3 } from '@expo/html-elements';
+import { cssInterop } from 'nativewind';
 
 /** Styles */
 
@@ -78,6 +79,15 @@ const UIAccordion = createAccordion({
   ContentText: Text,
   Content: View,
 });
+
+cssInterop(UIAccordion, { className: 'style' });
+cssInterop(UIAccordion.Item, { className: 'style' });
+cssInterop(UIAccordion.Header, { className: 'style' });
+cssInterop(UIAccordion.Trigger, { className: 'style' });
+cssInterop(UIAccordion.Icon, { className: 'style' });
+cssInterop(UIAccordion.TitleText, { className: 'style' });
+cssInterop(UIAccordion.Content, { className: 'style' });
+cssInterop(UIAccordion.ContentText, { className: 'style' });
 
 /** Components */
 

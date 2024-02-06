@@ -11,6 +11,7 @@ import {
   useStyleContext,
   withStyleContext,
 } from '@gluestack-ui/nativewind-utils';
+import { cssInterop } from 'nativewind';
 
 const AnimationWrapper = styled(AnimatedView, {});
 export const useToast = createToastHook(AnimationWrapper, AnimatePresence);
@@ -20,6 +21,10 @@ export const UIToast = createToast({
   Title: Text,
   Description: Text,
 });
+
+cssInterop(UIToast, { className: 'style' });
+cssInterop(UIToast.Title, { className: 'style' });
+cssInterop(UIToast.Description, { className: 'style' });
 
 const toastStyle = tva(
   {

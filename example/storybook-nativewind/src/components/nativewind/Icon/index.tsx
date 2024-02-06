@@ -2,6 +2,7 @@ import React from 'react';
 import { createIcon } from '@gluestack-ui/icon';
 import { Path, Svg } from 'react-native-svg';
 import { tva } from '@gluestack-ui/nativewind-utils';
+import { cssInterop } from 'nativewind';
 
 export const UIIcon = createIcon({
   Root: Svg,
@@ -37,6 +38,7 @@ export const Icon = React.forwardRef(
   }
 );
 
+cssInterop(UIIcon, { className: 'style' });
 // const StyledRoot = styled(
 //   AsForwarder,
 //   {

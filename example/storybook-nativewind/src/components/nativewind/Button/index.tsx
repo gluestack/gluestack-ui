@@ -13,6 +13,7 @@ import {
   View,
   Platform,
 } from 'react-native';
+import { cssInterop } from 'nativewind';
 
 const UIButton = createButton({
   // @ts-ignore
@@ -25,6 +26,12 @@ const UIButton = createButton({
   Spinner: ActivityIndicator,
   Icon: View,
 });
+
+cssInterop(UIButton, { className: 'style' });
+cssInterop(UIButton.Text, { className: 'style' });
+cssInterop(UIButton.Group, { className: 'style' });
+cssInterop(UIButton.Spinner, { className: 'style' });
+cssInterop(UIButton.Icon, { className: 'style' });
 
 const buttonStyle = tva({
   base: 'group/button rounded-lg bg-primary-500 flex-row items-center justify-center data-[focus=true]:outline-none data-[focus-visible=true]:ring-2 data-[focus-visible=true]:ring-offset-2',

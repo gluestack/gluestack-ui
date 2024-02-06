@@ -6,6 +6,7 @@ import {
   withStyleContext,
 } from '@gluestack-ui/nativewind-utils';
 import React from 'react';
+import { cssInterop } from 'nativewind';
 
 const alertStyle = tva({
   base: 'items-center p-3 rounded-sm flex-row',
@@ -95,6 +96,10 @@ export const UIAlert = createAlert({
   Text: Text,
   Icon: View,
 });
+
+cssInterop(UIAlert, { className: 'style' });
+cssInterop(UIAlert.Text, { className: 'style' });
+cssInterop(UIAlert.Icon, { className: 'style' });
 
 const Alert = ({
   className,

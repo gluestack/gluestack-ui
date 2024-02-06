@@ -12,6 +12,7 @@ import {
 import { Platform } from 'react-native';
 
 import { Check } from 'lucide-react-native';
+import { cssInterop } from 'nativewind';
 
 const UICheckbox = createCheckbox({
   // @ts-ignore
@@ -24,6 +25,12 @@ const UICheckbox = createCheckbox({
   Label: Platform.OS === 'web' ? Text : withStates(Text),
   Indicator: Platform.OS === 'web' ? View : withStates(View),
 });
+
+cssInterop(UICheckbox, { className: 'style' });
+cssInterop(UICheckbox.Group, { className: 'style' });
+cssInterop(UICheckbox.Icon, { className: 'style' });
+cssInterop(UICheckbox.Label, { className: 'style' });
+cssInterop(UICheckbox.Indicator, { className: 'style' });
 
 const checkboxIndicator = tva({
   base: 'justify-center items-center border-outline-400 rounded-sm data-[focus=true]:outline-none data-[focus-visible=true]:ring-2 data-[focus-visible=true]:ring-primary-700 data-[focus-visible=true]:ring-offset-1 overflow-hidden data-[checked=true]:border-primary-600',

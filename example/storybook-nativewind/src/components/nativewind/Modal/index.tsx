@@ -2,6 +2,7 @@ import React from 'react';
 import { createModal } from '@gluestack-ui/modal';
 import { Pressable, View } from 'react-native';
 import { cn } from '@gluestack-ui/nativewind-utils';
+import { cssInterop } from 'nativewind';
 
 const UIModal = createModal({
   Root: View,
@@ -13,6 +14,13 @@ const UIModal = createModal({
   Header: View,
   AnimatePresence: View, // TODO: Add support for this
 });
+cssInterop(UIModal, { className: 'style' });
+cssInterop(UIModal.Backdrop, { className: 'style' });
+cssInterop(UIModal.Content, { className: 'style' });
+cssInterop(UIModal.Body, { className: 'style' });
+cssInterop(UIModal.CloseButton, { className: 'style' });
+cssInterop(UIModal.Footer, { className: 'style' });
+cssInterop(UIModal.Header, { className: 'style' });
 
 const Modal = React.forwardRef(({ className, ...props }: any, ref) => (
   <UIModal

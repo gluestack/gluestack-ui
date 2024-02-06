@@ -7,11 +7,15 @@ import {
   useStyleContext,
   withStyleContext,
 } from '@gluestack-ui/nativewind-utils';
+import { cssInterop } from 'nativewind';
 
 export const UIProgress = createProgress({
   Root: withStyleContext(View),
   FilledTrack: View,
 });
+
+cssInterop(UIProgress, { className: 'style' });
+cssInterop(UIProgress.FilledTrack, { className: 'style' });
 
 const progressStyle = tva({
   base: 'bg-background-300 rounded-full w-full',

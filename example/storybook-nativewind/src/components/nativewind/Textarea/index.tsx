@@ -1,18 +1,22 @@
 import React from 'react';
 import { createTextarea } from '@gluestack-ui/textarea';
-
 import { View, TextInput } from 'react-native';
-
 import {
   tva,
   withStyleContextAndStates,
   useStyleContext,
 } from '@gluestack-ui/nativewind-utils';
+import { cssInterop } from 'nativewind';
 
 const UITextarea = createTextarea({
+  // @ts-ignore
   Root: withStyleContextAndStates(View),
   Input: TextInput,
 });
+
+// @ts-ignore
+cssInterop(UITextarea, { className: 'style' });
+cssInterop(UITextarea.Input, { className: 'style' });
 
 const textareaStyle = tva({
   base: 'w-full h-[100px] border border-background-300 rounded-sm hover:border-outline-400 hover:border-primary-700 focus:border-primary-700 disabled:opacity-40 disable:border-background-300',

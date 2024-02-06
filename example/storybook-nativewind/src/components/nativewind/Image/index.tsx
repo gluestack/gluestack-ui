@@ -2,6 +2,7 @@ import React from 'react';
 import { createImage } from '@gluestack-ui/image';
 import { Image as RNImage } from 'react-native';
 import { tva } from '@gluestack-ui/nativewind-utils';
+import { cssInterop } from 'nativewind';
 
 const imageStyle = tva({
   base: 'max-w-full',
@@ -18,6 +19,7 @@ const imageStyle = tva({
     },
   },
 });
+
 export const UIImage = createImage({ Root: RNImage });
 
 const Image = ({ size = 'md', className, ...props }: any) => {
@@ -26,6 +28,7 @@ const Image = ({ size = 'md', className, ...props }: any) => {
   );
 };
 
+cssInterop(UIImage, { className: 'style' });
 Image.displayName = 'Image';
 
 export { Image };
