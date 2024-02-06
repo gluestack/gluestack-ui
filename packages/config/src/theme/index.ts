@@ -65,6 +65,7 @@ export * from './FormControlHelper';
 export * from './FormControlHelperText';
 export * from './FormControlLabel';
 export * from './FormControlLabelText';
+export * from './Grid';
 export * from './HStack';
 export * from './Heading';
 export * from './Icon';

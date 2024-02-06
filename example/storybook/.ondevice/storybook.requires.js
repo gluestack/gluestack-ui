@@ -59,6 +59,7 @@ const getStories = () => {
     require('../src/styled/api/MultipleTheme/MultipleTheme.stories.tsx'),
     // require('../src/components/DataDisplay/Badge/Badge.stories.tsx'),
     require('../src/ui/components/DataDisplay/Card/Card.stories.tsx'),
+    require('../src/ui/components/Layout/Grid/Grid.stories.tsx'),
     // require('../src/components/Forms/Button/ButtonGroup.stories.tsx'),
     // require('../src/components/Forms/Checkbox/Checkbox.stories.tsx'),
     // require('../src/components/DataDisplay/Divider/Divider.stories.tsx'),

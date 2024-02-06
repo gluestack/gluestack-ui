@@ -56,7 +56,7 @@ export const parameters = {
           'Typography',
           ['Heading', 'Text'],
           'Layout',
-          ['Box', 'Center', 'Divider', 'Stack', 'HStack', 'VStack'],
+          ['Box', 'Center', 'Divider', 'Stack', 'HStack', 'VStack', 'Grid'],
           'Feedback',
           ['Alert', 'Progress', 'Spinner', 'Toast'],
           'Data Display',
