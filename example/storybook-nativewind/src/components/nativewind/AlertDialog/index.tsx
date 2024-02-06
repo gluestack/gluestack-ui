@@ -114,7 +114,7 @@ const alertDialogContentStyle = tva({
 // );
 
 const alertDialogCloseButtonStyle = tva({
-  base: 'z-10 rounded p-2 focus-visible:bg-background-100 web:cursor-pointer outline-0',
+  base: 'z-10 rounded p-2 data-[focus-visible=true]:bg-background-100 web:cursor-pointer outline-0',
 
   //   '_icon': {
   //     color: '$background400',

@@ -34,6 +34,10 @@ module.exports = function (api) {
               __dirname,
               '../../packages/unstyled/alert-dialog/src'
             ),
+            '@gluestack-ui/slider': path.resolve(
+              __dirname,
+              '../../packages/unstyled/slider/src'
+            ),
             '@gluestack-ui/button': path.resolve(
               __dirname,
               '../../packages/unstyled/button/src'
