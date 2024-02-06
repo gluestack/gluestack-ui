@@ -39,6 +39,7 @@
     "@gluestack-ui/avatar": "0.1.15",
     "@gluestack-ui/button": "1.0.0",
     "@gluestack-ui/checkbox": "0.1.23",
+    "@gluestack-ui/collapsible": "0.0.1",
     "@gluestack-ui/divider": "0.1.8",
     "@gluestack-ui/fab": "0.1.17",
     "@gluestack-ui/form-control": "0.1.15",
