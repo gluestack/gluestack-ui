@@ -220,7 +220,7 @@ cssInterop(UIFormControl.Label.Astrick, { className: 'style' });
 cssInterop(UIFormControl.Helper, { className: 'style' });
 cssInterop(UIFormControl.Helper.Text, { className: 'style' });
 
-const FormControl = ({ className, size, ...props }: any) => {
+const FormControl = ({ className, size = 'md', ...props }: any) => {
   return (
     <UIFormControl
       className={formControlStyle({ class: className })}
