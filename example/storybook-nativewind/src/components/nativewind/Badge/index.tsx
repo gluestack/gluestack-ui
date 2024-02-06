@@ -1,318 +1,165 @@
-import { AsForwarder, styled } from '@gluestack-style/react';
+import React from 'react';
 import { Text, View } from 'react-native';
+import {
+  tva,
+  withStyleContext,
+  useStyleContext,
+} from '@gluestack-ui/nativewind-utils';
 
-const StyledRoot = styled(
-  View,
-  {
-    'flexDirection': 'row',
-    'alignItems': 'center',
-    'borderRadius': '$xs',
-    'variants': {
-      action: {
-        error: {
-          bg: '$backgroundError',
-          borderColor: '$error300',
+const badgeStyle = tva({
+  base: 'flex-row items-center rounded-xs data-[disabled=true]:opacity-50 px-2',
 
-          _icon: {
-            color: '$error600',
-          },
-
-          _text: {
-            color: '$error600',
-          },
-        },
-        warning: {
-          bg: '$backgroundWarning',
-          borderColor: '$warning300',
-
-          _icon: {
-            color: '$warning600',
-          },
-
-          _text: {
-            color: '$warning600',
-          },
-        },
-        success: {
-          bg: '$backgroundSuccess',
-          borderColor: '$success300',
-
-          _icon: {
-            color: '$success600',
-          },
-
-          _text: {
-            color: '$success600',
-          },
-        },
-        info: {
-          bg: '$backgroundInfo',
-          borderColor: '$info300',
-
-          _icon: {
-            color: '$info600',
-          },
-
-          _text: {
-            color: '$info600',
-          },
-        },
-        muted: {
-          bg: '$backgroundMuted',
-          borderColor: '$secondary300',
-
-          _icon: {
-            color: '$secondary600',
-          },
-
-          _text: {
-            color: '$secondary600',
-          },
-        },
-      },
-
-      variant: {
-        solid: {},
-        outline: {
-          borderWidth: '$1',
-        },
-      },
-
-      size: {
-        sm: {
-          px: '$2',
-          _icon: {
-            props: {
-              size: '2xs',
-            },
-          },
-          _text: {
-            props: {
-              size: '2xs',
-            },
-          },
-        },
-        md: {
-          px: '$2',
-          _icon: {
-            props: {
-              size: 'xs',
-            },
-          },
-          _text: {
-            props: {
-              size: 'xs',
-            },
-          },
-        },
-        lg: {
-          px: '$2',
-          _icon: {
-            props: { size: 'sm' },
-          },
-          _text: {
-            props: { size: 'sm' },
-          },
-        },
-      },
+  variants: {
+    action: {
+      error: 'bg-background-error border-error-300',
+      warning: 'bg-background-warning border-warning-300',
+      success: 'bg-background-success border-success-300',
+      info: 'bg-background-info border-info-300',
+      muted: 'bg-background-muted border-secondary-300',
     },
-
-    ':disabled': {
-      opacity: 0.5,
-    },
-    'defaultProps': {
-      action: 'info',
-      variant: 'solid',
-      size: 'md',
+    variant: {
+      solid: '',
+      outline: 'border',
     },
   },
-  {
-    componentName: 'Badge',
-    descendantStyle: ['_text', '_icon'],
-  } as const
-);
+});
 
-const StyledText = styled(
-  Text,
-  {
-    color: '$text700',
-    fontWeight: '$normal',
-    fontFamily: '$body',
-    fontStyle: 'normal',
-    letterSpacing: '$md',
+const badgeTextStyle = tva({
+  base: 'text-typography-700 font-body font-normal tracking-normal uppercase',
 
-    variants: {
-      isTruncated: {
-        true: {
-          props: {
-            // @ts-ignore
-            numberOfLines: 1,
-            ellipsizeMode: 'tail',
-          },
-        },
-      },
-      bold: {
-        true: {
-          fontWeight: '$bold',
-        },
-      },
-      underline: {
-        true: {
-          textDecorationLine: 'underline',
-        },
-      },
-      strikeThrough: {
-        true: {
-          textDecorationLine: 'line-through',
-        },
-      },
-      size: {
-        '2xs': {
-          fontSize: '$2xs',
-        },
-        'xs': {
-          fontSize: '$xs',
-        },
-
-        'sm': {
-          fontSize: '$sm',
-        },
-
-        'md': {
-          fontSize: '$md',
-        },
-
-        'lg': {
-          fontSize: '$lg',
-        },
-
-        'xl': {
-          fontSize: '$xl',
-        },
-
-        '2xl': {
-          fontSize: '$2xl',
-        },
-
-        '3xl': {
-          fontSize: '$3xl',
-        },
-
-        '4xl': {
-          fontSize: '$4xl',
-        },
-
-        '5xl': {
-          fontSize: '$5xl',
-        },
-
-        '6xl': {
-          fontSize: '$6xl',
-        },
-      },
-      sub: {
-        true: {
-          fontSize: '$xs',
-        },
-      },
-      italic: {
-        true: {
-          fontStyle: 'italic',
-        },
-      },
-      highlight: {
-        true: {
-          bg: '$yellow500',
-        },
-      },
+  parentVariants: {
+    action: {
+      error: 'text-error-600',
+      warning: 'text-warning-600',
+      success: 'text-success-600',
+      info: 'text-info-600',
+      muted: 'text-muted-600',
     },
-
-    defaultProps: {
-      size: 'md',
-    },
-    textTransform: 'uppercase',
   },
-  {
-    componentName: 'BadgeText',
-    ancestorStyle: ['_text'],
-  } as const
-);
-
-const StyledIcon = styled(
-  AsForwarder,
-  {
-    variants: {
-      size: {
-        '2xs': {
-          h: '$3',
-          w: '$3',
-          props: {
-            // @ts-ignore
-            size: 12,
-          },
-        },
-        'xs': {
-          h: '$3.5',
-          w: '$3.5',
-          props: {
-            //@ts-ignore
-            size: 14,
-          },
-        },
-        'sm': {
-          h: '$4',
-          w: '$4',
-          props: {
-            //@ts-ignore
-            size: 16,
-          },
-        },
-        'md': {
-          h: '$4.5',
-          w: '$4.5',
-          props: {
-            //@ts-ignore
-            size: 18,
-          },
-        },
-        'lg': {
-          h: '$5',
-          w: '$5',
-          props: {
-            //@ts-ignore
-            size: 20,
-          },
-        },
-        'xl': {
-          h: '$6',
-          w: '$6',
-          props: {
-            //@ts-ignore
-            size: 24,
-          },
-        },
-      },
+  variants: {
+    isTruncated: {
+      true: 'web:truncate',
     },
-    props: {
-      size: 'md',
-      //@ts-ignore
-      fill: 'none',
+    bold: {
+      true: 'font-bold',
     },
-
-    color: '$background500',
+    underline: {
+      true: 'underline',
+    },
+    strikeThrough: {
+      true: 'line-through',
+    },
+    size: {
+      '2xs': 'text-2xs',
+      'xs': 'text-xs',
+      'sm': 'text-sm',
+      'md': 'text-md',
+      'lg': 'text-lg',
+      'xl': 'text-xl',
+      '2xl': 'text-2xl',
+      '3xl': 'text-3xl',
+      '4xl': 'text-4xl',
+      '5xl': 'text-5xl',
+      '6xl': 'text-6xl',
+    },
+    sub: {
+      true: 'text-xs',
+    },
+    italic: {
+      true: 'italic',
+    },
+    highlight: {
+      true: 'bg-yellow-500',
+    },
   },
-  {
-    componentName: 'BaseIcon',
-    resolveProps: ['stroke', 'fill'],
-  } as const,
-  {
-    propertyTokenMap: {
-      stroke: 'colors',
-      fill: 'colors',
+});
+
+const badgeIconStyle = tva({
+  base: 'text-background-500',
+  parentVariants: {
+    action: {
+      error: 'text-error-600',
+      warning: 'text-warning-600',
+      success: 'text-success-600',
+      info: 'text-info-600',
+      muted: 'text-muted-600',
     },
-  }
-);
+  },
+  variants: {
+    size: {
+      '2xs': 'h-3 w-3',
+      'xs': 'h-3.5 w-3.5',
+      'sm': 'h-4 w-4',
+      'md': 'h-4.5 w-4.5',
+      'lg': 'h-5 w-5',
+      'xl': 'h-6 w-6',
+    },
+  },
+});
 
-const Badge = StyledRoot;
+const ContextView = withStyleContext(View);
 
-export { Badge, StyledIcon as BadgeIcon, StyledText as BadgeText };
+const Badge = ({
+  children,
+  action = 'info',
+  variant = 'solid',
+  size = 'md',
+  className,
+  ...props
+}: any) => {
+  return (
+    <ContextView
+      className={badgeStyle({ action, variant, class: className })}
+      {...props}
+      context={{
+        action,
+        variant,
+        size,
+      }}
+    >
+      {children}
+    </ContextView>
+  );
+};
+
+const BadgeText = ({ children, className, size, ...props }: any) => {
+  const { size: parentSize, action } = useStyleContext();
+  return (
+    <Text
+      className={badgeTextStyle({
+        parentVariants: {
+          size: parentSize,
+          action,
+        },
+        size,
+        class: className,
+      })}
+      {...props}
+    >
+      {children}
+    </Text>
+  );
+};
+
+const BadgeIcon = ({ className, size, ...props }: any) => {
+  const { size: parentSize, action } = useStyleContext();
+  return (
+    <View
+      className={badgeIconStyle({
+        parentVariants: {
+          size: parentSize,
+          action,
+        },
+        size,
+        class: className,
+      })}
+      {...props}
+    />
+  );
+};
+
+Badge.displayName = 'Badge';
+BadgeText.displayName = 'BadgeText';
+BadgeIcon.displayName = 'BadgeIcon';
+
+export { Badge, BadgeIcon, BadgeText };
