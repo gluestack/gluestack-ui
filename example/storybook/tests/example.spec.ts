@@ -132,7 +132,7 @@ const pathNew = [
   ),
   path.join(
     __dirname,
-    '../storybook-static/iframe.html?args=&id= stories-typography-text--text'
+    '../storybook-static/iframe.html?args=&id=stories-typography-text--text'
   ),
 ];
 
