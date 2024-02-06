@@ -68,7 +68,7 @@ const IconMeta: ComponentMeta<typeof Icon> = {
   args: {
     size: 'md',
     // as: 'AddIcon',
-     // as: {
+    // as: {
     //   control: 'select',
     //   options: [
     //     // AddIcon,

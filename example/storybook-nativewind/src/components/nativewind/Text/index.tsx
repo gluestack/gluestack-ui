@@ -1,106 +1,78 @@
+import React from 'react';
+import { tva } from '@gluestack-ui/nativewind-utils';
 import { Text as RNText } from 'react-native';
-import { styled } from '@gluestack-style/react';
 
-const StyledText = styled(
-  RNText,
-  {
-    color: '$text700',
-    fontWeight: '$normal',
-    fontFamily: '$body',
-    fontStyle: 'normal',
-    letterSpacing: '$md',
+const textStyle = tva({
+  base: 'text-typography-700 flex-1 font-normal font-body',
 
-    variants: {
-      isTruncated: {
-        true: {
-          props: {
-            // @ts-ignore
-            numberOfLines: 1,
-            ellipsizeMode: 'tail',
-          },
-        },
-      },
-      bold: {
-        true: {
-          fontWeight: '$bold',
-        },
-      },
-      underline: {
-        true: {
-          textDecorationLine: 'underline',
-        },
-      },
-      strikeThrough: {
-        true: {
-          textDecorationLine: 'line-through',
-        },
-      },
-      size: {
-        '2xs': {
-          fontSize: '$2xs',
-        },
-        'xs': {
-          fontSize: '$xs',
-        },
-
-        'sm': {
-          fontSize: '$sm',
-        },
-
-        'md': {
-          fontSize: '$md',
-        },
-
-        'lg': {
-          fontSize: '$lg',
-        },
-
-        'xl': {
-          fontSize: '$xl',
-        },
-
-        '2xl': {
-          fontSize: '$2xl',
-        },
-
-        '3xl': {
-          fontSize: '$3xl',
-        },
-
-        '4xl': {
-          fontSize: '$4xl',
-        },
-
-        '5xl': {
-          fontSize: '$5xl',
-        },
-
-        '6xl': {
-          fontSize: '$6xl',
-        },
-      },
-      sub: {
-        true: {
-          fontSize: '$xs',
-        },
-      },
-      italic: {
-        true: {
-          fontStyle: 'italic',
-        },
-      },
-      highlight: {
-        true: {
-          bg: '$yellow500',
-        },
-      },
+  variants: {
+    isTruncated: {
+      true: 'web:truncate',
     },
-
-    defaultProps: {
-      size: 'md',
+    bold: {
+      true: 'font-bold',
+    },
+    underline: {
+      true: 'underline',
+    },
+    strikeThrough: {
+      true: 'line-through',
+    },
+    size: {
+      '2xs': 'text-2xs',
+      'xs': 'text-xs',
+      'sm': 'text-sm',
+      'md': 'text-md',
+      'lg': 'text-lg',
+      'xl': 'text-xl',
+      '2xl': 'text-2xl',
+      '3xl': 'text-3xl',
+      '4xl': 'text-4xl',
+      '5xl': 'text-5xl',
+      '6xl': 'text-6xl',
+    },
+    sub: {
+      true: 'text-xs',
+    },
+    italic: {
+      true: 'italic',
+    },
+    highlight: {
+      true: 'bg-yellow-500',
     },
   },
-  {}
-);
+});
 
-export const Text = StyledText;
+const Text = ({
+  className,
+  isTruncated,
+  bold,
+  underline,
+  strikeThrough,
+  size = 'md',
+  sub,
+  italic,
+  highlight,
+  ...props
+}: any) => {
+  return (
+    <RNText
+      className={textStyle({
+        isTruncated,
+        bold,
+        underline,
+        strikeThrough,
+        size,
+        sub,
+        italic,
+        highlight,
+        class: className,
+      })}
+      {...props}
+    />
+  );
+};
+
+Text.displayName = 'Text';
+
+export { Text };

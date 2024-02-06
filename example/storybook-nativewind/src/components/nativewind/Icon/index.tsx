@@ -3,36 +3,39 @@ import { createIcon } from '@gluestack-ui/icon';
 import { Path, Svg } from 'react-native-svg';
 import { tva } from '@gluestack-ui/nativewind-utils';
 
-
 export const UIIcon = createIcon({
   Root: Svg,
 });
-
 
 const iconStyle = tva({
   base: 'color-background-800',
   variants: {
     size: {
-      '2xs':'h-3 w-3',
-      'xs':'h-4 w-4',
-      'sm':'h-4 w-4',
-      'md':'h-5 w-5',
-      'lg':'h-5 w-5',
-      'xl':'h-6 w-6',
-    }
+      '2xs': 'h-3 w-3',
+      'xs': 'h-4 w-4',
+      'sm': 'h-4 w-4',
+      'md': 'h-5 w-5',
+      'lg': 'h-5 w-5',
+      'xl': 'h-6 w-6',
+    },
   },
   defaultVariants: {
-    size: 'md'
+    size: 'md',
+  },
+});
+
+export const Icon = React.forwardRef(
+  ({ fill = 'none', size, className, ...props }: any, ref) => {
+    return (
+      <UIIcon
+        ref={ref}
+        {...props}
+        fill={fill}
+        className={iconStyle({ size, class: className })}
+      />
+    );
   }
-});
-
-
-
-export const Icon = React.forwardRef(({fill='none', size, className, ...props }: any, ref) => {
-  return (
-    <UIIcon ref={ref} {...props} fill={fill} className={iconStyle({ size, class: className })} />
-  );
-});
+);
 
 // const StyledRoot = styled(
 //   AsForwarder,
@@ -183,19 +186,20 @@ export const Icon = React.forwardRef(({fill='none', size, className, ...props }:
 // });
 
 type ParameterTypes = Omit<Parameters<typeof createIcon>[0], 'Root'>;
-const createIconUI = ({ ...props }: ParameterTypes) =>{
+const createIconUI = ({ ...props }: ParameterTypes) => {
   const UIIcon = createIcon({ Root: Svg, ...props });
 
   return React.forwardRef(({ className, size, ...props }: any, ref) => {
     return (
-      <UIIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
+      <UIIcon
+        ref={ref}
+        {...props}
+        className={iconStyle({ size, class: className })}
+      />
     );
   });
-  
-}
+};
 export { createIconUI as createIcon };
-
-
 
 // All Icons
 const UIAddIcon = createIcon({
@@ -223,7 +227,11 @@ const UIAddIcon = createIcon({
 
 const AddIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
   return (
-    <UIAddIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
+    <UIAddIcon
+      ref={ref}
+      {...props}
+      className={iconStyle({ size, class: className })}
+    />
   );
 });
 
@@ -260,14 +268,17 @@ export const UIAlertCircleIcon = createIcon({
   ),
 });
 
-
-
-const AlertCircleIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
-  return (
-    <UIAlertCircleIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
-  );
-});
-
+const AlertCircleIcon = React.forwardRef(
+  ({ className, size, ...props }: any, ref) => {
+    return (
+      <UIAlertCircleIcon
+        ref={ref}
+        {...props}
+        className={iconStyle({ size, class: className })}
+      />
+    );
+  }
+);
 
 AlertCircleIcon.displayName = 'AlertCircleIcon';
 
@@ -294,13 +305,17 @@ const UIArrowUpIcon = createIcon({
   ),
 });
 
-
-
-const ArrowUpIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
-  return (
-    <UIArrowUpIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
-  );
-});
+const ArrowUpIcon = React.forwardRef(
+  ({ className, size, ...props }: any, ref) => {
+    return (
+      <UIArrowUpIcon
+        ref={ref}
+        {...props}
+        className={iconStyle({ size, class: className })}
+      />
+    );
+  }
+);
 
 const UIArrowDownIcon = createIcon({
   Root: Svg,
@@ -326,11 +341,17 @@ const UIArrowDownIcon = createIcon({
   ),
 });
 
-const ArrowDownIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
-  return (
-    <UIArrowDownIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
-  );
-});
+const ArrowDownIcon = React.forwardRef(
+  ({ className, size, ...props }: any, ref) => {
+    return (
+      <UIArrowDownIcon
+        ref={ref}
+        {...props}
+        className={iconStyle({ size, class: className })}
+      />
+    );
+  }
+);
 
 const UIArrowRightIcon = createIcon({
   Root: Svg,
@@ -356,13 +377,17 @@ const UIArrowRightIcon = createIcon({
   ),
 });
 
-
-const ArrowRightIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
-  return (
-    <UIArrowRightIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
-  );
-});
-
+const ArrowRightIcon = React.forwardRef(
+  ({ className, size, ...props }: any, ref) => {
+    return (
+      <UIArrowRightIcon
+        ref={ref}
+        {...props}
+        className={iconStyle({ size, class: className })}
+      />
+    );
+  }
+);
 
 const UIArrowLeftIcon = createIcon({
   Root: Svg,
@@ -387,13 +412,17 @@ const UIArrowLeftIcon = createIcon({
   ),
 });
 
-
-const ArrowLeftIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
-  return (
-    <UIArrowLeftIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
-  );
-});
-
+const ArrowLeftIcon = React.forwardRef(
+  ({ className, size, ...props }: any, ref) => {
+    return (
+      <UIArrowLeftIcon
+        ref={ref}
+        {...props}
+        className={iconStyle({ size, class: className })}
+      />
+    );
+  }
+);
 
 // const UIArrowTopRightIcon = createIcon({
 //   Root: Svg,
@@ -446,14 +475,17 @@ const UIAtSignIcon = createIcon({
   ),
 });
 
-
-const AtSignIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
-  return (
-    <UIAtSignIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
-  );
-});
-
-
+const AtSignIcon = React.forwardRef(
+  ({ className, size, ...props }: any, ref) => {
+    return (
+      <UIAtSignIcon
+        ref={ref}
+        {...props}
+        className={iconStyle({ size, class: className })}
+      />
+    );
+  }
+);
 
 AtSignIcon.displayName = 'AtSignIcon';
 
@@ -482,13 +514,15 @@ const UIBellIcon = createIcon({
   ),
 });
 
-
 const BellIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
   return (
-    <UIBellIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
+    <UIBellIcon
+      ref={ref}
+      {...props}
+      className={iconStyle({ size, class: className })}
+    />
   );
 });
-
 
 BellIcon.displayName = 'BellIcon';
 
@@ -573,13 +607,17 @@ const UICalendarDaysIcon = createIcon({
   ),
 });
 
-
-const CalendarDaysIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
-  return (
-    <UICalendarDaysIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
-  );
-});
-
+const CalendarDaysIcon = React.forwardRef(
+  ({ className, size, ...props }: any, ref) => {
+    return (
+      <UICalendarDaysIcon
+        ref={ref}
+        {...props}
+        className={iconStyle({ size, class: className })}
+      />
+    );
+  }
+);
 
 CalendarDaysIcon.displayName = 'CalendarDaysIcon';
 
@@ -601,13 +639,17 @@ const UICheckIcon = createIcon({
   ),
 });
 
-
-const CheckIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
-  return (
-    <UICheckIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
-  );
-});
-
+const CheckIcon = React.forwardRef(
+  ({ className, size, ...props }: any, ref) => {
+    return (
+      <UICheckIcon
+        ref={ref}
+        {...props}
+        className={iconStyle({ size, class: className })}
+      />
+    );
+  }
+);
 
 const UICheckCircleIcon = createIcon({
   Root: Svg,
@@ -632,13 +674,17 @@ const UICheckCircleIcon = createIcon({
   ),
 });
 
-
-const CheckCircleIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
-  return (
-    <UICheckCircleIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
-  );
-});
-
+const CheckCircleIcon = React.forwardRef(
+  ({ className, size, ...props }: any, ref) => {
+    return (
+      <UICheckCircleIcon
+        ref={ref}
+        {...props}
+        className={iconStyle({ size, class: className })}
+      />
+    );
+  }
+);
 
 CheckIcon.displayName = 'CheckIcon';
 CheckCircleIcon.displayName = 'CheckCircleIcon';
@@ -662,13 +708,17 @@ const UIChevronUpIcon = createIcon({
   ),
 });
 
-
-const ChevronUpIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
-  return (
-    <UIChevronUpIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
-  );
-});
-
+const ChevronUpIcon = React.forwardRef(
+  ({ className, size, ...props }: any, ref) => {
+    return (
+      <UIChevronUpIcon
+        ref={ref}
+        {...props}
+        className={iconStyle({ size, class: className })}
+      />
+    );
+  }
+);
 
 const UIChevronDownIcon = createIcon({
   Root: Svg,
@@ -686,13 +736,17 @@ const UIChevronDownIcon = createIcon({
   ),
 });
 
-
-const ChevronDownIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
-  return (
-    <UIChevronDownIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
-  );
-});
-
+const ChevronDownIcon = React.forwardRef(
+  ({ className, size, ...props }: any, ref) => {
+    return (
+      <UIChevronDownIcon
+        ref={ref}
+        {...props}
+        className={iconStyle({ size, class: className })}
+      />
+    );
+  }
+);
 
 const UIChevronLeftIcon = createIcon({
   Root: Svg,
@@ -710,13 +764,17 @@ const UIChevronLeftIcon = createIcon({
   ),
 });
 
-
-const ChevronLeftIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
-  return (
-    <UIChevronLeftIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
-  );
-});
-
+const ChevronLeftIcon = React.forwardRef(
+  ({ className, size, ...props }: any, ref) => {
+    return (
+      <UIChevronLeftIcon
+        ref={ref}
+        {...props}
+        className={iconStyle({ size, class: className })}
+      />
+    );
+  }
+);
 
 const UIChevronRightIcon = createIcon({
   Root: Svg,
@@ -735,13 +793,17 @@ const UIChevronRightIcon = createIcon({
   ),
 });
 
-
-const ChevronRightIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
-  return (
-    <UIChevronRightIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
-  );
-});
-
+const ChevronRightIcon = React.forwardRef(
+  ({ className, size, ...props }: any, ref) => {
+    return (
+      <UIChevronRightIcon
+        ref={ref}
+        {...props}
+        className={iconStyle({ size, class: className })}
+      />
+    );
+  }
+);
 
 const UIChevronsLeftIcon = createIcon({
   Root: Svg,
@@ -767,13 +829,17 @@ const UIChevronsLeftIcon = createIcon({
   ),
 });
 
-
-const ChevronsLeftIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
-  return (
-    <UIChevronsLeftIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
-  );
-});
-
+const ChevronsLeftIcon = React.forwardRef(
+  ({ className, size, ...props }: any, ref) => {
+    return (
+      <UIChevronsLeftIcon
+        ref={ref}
+        {...props}
+        className={iconStyle({ size, class: className })}
+      />
+    );
+  }
+);
 
 const UIChevronsRightIcon = createIcon({
   Root: Svg,
@@ -799,13 +865,17 @@ const UIChevronsRightIcon = createIcon({
   ),
 });
 
-
-const ChevronsRightIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
-  return (
-    <UIChevronsRightIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
-  );
-});
-
+const ChevronsRightIcon = React.forwardRef(
+  ({ className, size, ...props }: any, ref) => {
+    return (
+      <UIChevronsRightIcon
+        ref={ref}
+        {...props}
+        className={iconStyle({ size, class: className })}
+      />
+    );
+  }
+);
 
 const UIChevronsUpDownIcon = createIcon({
   Root: Svg,
@@ -831,13 +901,17 @@ const UIChevronsUpDownIcon = createIcon({
   ),
 });
 
-
-const ChevronsUpDownIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
-  return (
-    <UIChevronsUpDownIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
-  );
-});
-
+const ChevronsUpDownIcon = React.forwardRef(
+  ({ className, size, ...props }: any, ref) => {
+    return (
+      <UIChevronsUpDownIcon
+        ref={ref}
+        {...props}
+        className={iconStyle({ size, class: className })}
+      />
+    );
+  }
+);
 
 ChevronUpIcon.displayName = 'ChevronUpIcon';
 ChevronDownIcon.displayName = 'ChevronDownIcon';
@@ -874,13 +948,17 @@ const UICircleIcon = createIcon({
   ),
 });
 
-
-const CircleIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
-  return (
-    <UICircleIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
-  );
-});
-
+const CircleIcon = React.forwardRef(
+  ({ className, size, ...props }: any, ref) => {
+    return (
+      <UICircleIcon
+        ref={ref}
+        {...props}
+        className={iconStyle({ size, class: className })}
+      />
+    );
+  }
+);
 
 CircleIcon.displayName = 'CircleIcon';
 
@@ -909,13 +987,17 @@ const UIClockIcon = createIcon({
   ),
 });
 
-
-const ClockIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
-  return (
-    <UIClockIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
-  );
-});
-
+const ClockIcon = React.forwardRef(
+  ({ className, size, ...props }: any, ref) => {
+    return (
+      <UIClockIcon
+        ref={ref}
+        {...props}
+        className={iconStyle({ size, class: className })}
+      />
+    );
+  }
+);
 
 ClockIcon.displayName = 'ClockIcon';
 
@@ -944,13 +1026,17 @@ const UICloseIcon = createIcon({
   ),
 });
 
-
-const CloseIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
-  return (
-    <UICloseIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
-  );
-});
-
+const CloseIcon = React.forwardRef(
+  ({ className, size, ...props }: any, ref) => {
+    return (
+      <UICloseIcon
+        ref={ref}
+        {...props}
+        className={iconStyle({ size, class: className })}
+      />
+    );
+  }
+);
 
 const UICloseCircleIcon = createIcon({
   Root: Svg,
@@ -982,13 +1068,17 @@ const UICloseCircleIcon = createIcon({
   ),
 });
 
-
-const CloseCircleIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
-  return (
-    <UICloseCircleIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
-  );
-});
-
+const CloseCircleIcon = React.forwardRef(
+  ({ className, size, ...props }: any, ref) => {
+    return (
+      <UICloseCircleIcon
+        ref={ref}
+        {...props}
+        className={iconStyle({ size, class: className })}
+      />
+    );
+  }
+);
 
 CloseIcon.displayName = 'CloseIcon';
 CloseCircleIcon.displayName = 'CloseCircleIcon';
@@ -1018,13 +1108,15 @@ const UICopyIcon = createIcon({
   ),
 });
 
-
 const CopyIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
   return (
-    <UICopyIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
+    <UICopyIcon
+      ref={ref}
+      {...props}
+      className={iconStyle({ size, class: className })}
+    />
   );
 });
-
 
 CopyIcon.displayName = 'CopyIcon';
 
@@ -1060,13 +1152,17 @@ const UIDownloadIcon = createIcon({
   ),
 });
 
-
-const DownloadIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
-  return (
-    <UIDownloadIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
-  );
-});
-
+const DownloadIcon = React.forwardRef(
+  ({ className, size, ...props }: any, ref) => {
+    return (
+      <UIDownloadIcon
+        ref={ref}
+        {...props}
+        className={iconStyle({ size, class: className })}
+      />
+    );
+  }
+);
 
 DownloadIcon.displayName = 'DownloadIcon';
 
@@ -1095,13 +1191,15 @@ const UIEditIcon = createIcon({
   ),
 });
 
-
 const EditIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
   return (
-    <UIEditIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
+    <UIEditIcon
+      ref={ref}
+      {...props}
+      className={iconStyle({ size, class: className })}
+    />
   );
 });
-
 
 EditIcon.displayName = 'EditIcon';
 
@@ -1130,13 +1228,15 @@ const UIEyeIcon = createIcon({
   ),
 });
 
-
 const EyeIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
   return (
-    <UIEyeIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
+    <UIEyeIcon
+      ref={ref}
+      {...props}
+      className={iconStyle({ size, class: className })}
+    />
   );
 });
-
 
 EyeIcon.displayName = 'EyeIcon';
 
@@ -1177,13 +1277,17 @@ const UIEyeOffIcon = createIcon({
   ),
 });
 
-
-const EyeOffIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
-  return (
-    <UIEyeOffIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
-  );
-});
-
+const EyeOffIcon = React.forwardRef(
+  ({ className, size, ...props }: any, ref) => {
+    return (
+      <UIEyeOffIcon
+        ref={ref}
+        {...props}
+        className={iconStyle({ size, class: className })}
+      />
+    );
+  }
+);
 
 EyeOffIcon.displayName = 'EyeOffIcon';
 
@@ -1205,13 +1309,17 @@ const UIFavouriteIcon = createIcon({
   ),
 });
 
-
-const FavouriteIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
-  return (
-    <UIFavouriteIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
-  );
-});
-
+const FavouriteIcon = React.forwardRef(
+  ({ className, size, ...props }: any, ref) => {
+    return (
+      <UIFavouriteIcon
+        ref={ref}
+        {...props}
+        className={iconStyle({ size, class: className })}
+      />
+    );
+  }
+);
 
 FavouriteIcon.displayName = 'FavouriteIcon';
 
@@ -1247,13 +1355,17 @@ const UIGlobeIcon = createIcon({
   ),
 });
 
-
-const GlobeIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
-  return (
-    <UIGlobeIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
-  );
-});
-
+const GlobeIcon = React.forwardRef(
+  ({ className, size, ...props }: any, ref) => {
+    return (
+      <UIGlobeIcon
+        ref={ref}
+        {...props}
+        className={iconStyle({ size, class: className })}
+      />
+    );
+  }
+);
 
 GlobeIcon.displayName = 'GlobeIcon';
 
@@ -1310,13 +1422,17 @@ const UIGripVerticalIcon = createIcon({
   ),
 });
 
-
-const GripVerticalIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
-  return (
-    <UIGripVerticalIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
-  );
-});
-
+const GripVerticalIcon = React.forwardRef(
+  ({ className, size, ...props }: any, ref) => {
+    return (
+      <UIGripVerticalIcon
+        ref={ref}
+        {...props}
+        className={iconStyle({ size, class: className })}
+      />
+    );
+  }
+);
 
 GripVerticalIcon.displayName = 'GripVerticalIcon';
 
@@ -1352,13 +1468,17 @@ export const UIHelpCircleIcon = createIcon({
   ),
 });
 
-
-const HelpCircleIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
-  return (
-    <UIHelpCircleIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
-  );
-});
-
+const HelpCircleIcon = React.forwardRef(
+  ({ className, size, ...props }: any, ref) => {
+    return (
+      <UIHelpCircleIcon
+        ref={ref}
+        {...props}
+        className={iconStyle({ size, class: className })}
+      />
+    );
+  }
+);
 
 HelpCircleIcon.displayName = 'HelpCircleIcon';
 
@@ -1392,13 +1512,15 @@ export const UIInfoIcon = createIcon({
   ),
 });
 
-
 const InfoIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
   return (
-    <UIInfoIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
+    <UIInfoIcon
+      ref={ref}
+      {...props}
+      className={iconStyle({ size, class: className })}
+    />
   );
 });
-
 
 InfoIcon.displayName = 'InfoIcon';
 
@@ -1425,10 +1547,13 @@ const UILinkIcon = createIcon({
   ),
 });
 
-
 const LinkIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
   return (
-    <UILinkIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
+    <UILinkIcon
+      ref={ref}
+      {...props}
+      className={iconStyle({ size, class: className })}
+    />
   );
 });
 
@@ -1464,13 +1589,17 @@ const UIExternalLinkIcon = createIcon({
   ),
 });
 
-
-const ExternalLinkIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
-  return (
-    <UIExternalLinkIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
-  );
-});
-
+const ExternalLinkIcon = React.forwardRef(
+  ({ className, size, ...props }: any, ref) => {
+    return (
+      <UIExternalLinkIcon
+        ref={ref}
+        {...props}
+        className={iconStyle({ size, class: className })}
+      />
+    );
+  }
+);
 
 ExternalLinkIcon.displayName = 'ExternalLinkIcon';
 
@@ -1492,13 +1621,17 @@ const UILoaderIcon = createIcon({
   ),
 });
 
-
-const LoaderIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
-  return (
-    <UILoaderIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
-  );
-});
-
+const LoaderIcon = React.forwardRef(
+  ({ className, size, ...props }: any, ref) => {
+    return (
+      <UILoaderIcon
+        ref={ref}
+        {...props}
+        className={iconStyle({ size, class: className })}
+      />
+    );
+  }
+);
 
 LoaderIcon.displayName = 'LoaderIcon';
 
@@ -1527,13 +1660,15 @@ const UILockIcon = createIcon({
   ),
 });
 
-
 const LockIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
   return (
-    <UILockIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
+    <UILockIcon
+      ref={ref}
+      {...props}
+      className={iconStyle({ size, class: className })}
+    />
   );
 });
-
 
 LockIcon.displayName = 'LockIcon';
 
@@ -1562,13 +1697,15 @@ const UIMailIcon = createIcon({
   ),
 });
 
-
 const MailIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
   return (
-    <UIMailIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
+    <UIMailIcon
+      ref={ref}
+      {...props}
+      className={iconStyle({ size, class: className })}
+    />
   );
 });
-
 
 MailIcon.displayName = 'MailIcon';
 
@@ -1604,13 +1741,15 @@ export const UIMenuIcon = createIcon({
   ),
 });
 
-
 const MenuIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
   return (
-    <UIMenuIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
+    <UIMenuIcon
+      ref={ref}
+      {...props}
+      className={iconStyle({ size, class: className })}
+    />
   );
 });
-
 
 MenuIcon.displayName = 'MenuIcon';
 
@@ -1630,13 +1769,17 @@ const UIMessageCircleIcon = createIcon({
   ),
 });
 
-
-const MessageCircleIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
-  return (
-    <UIMessageCircleIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
-  );
-});
-
+const MessageCircleIcon = React.forwardRef(
+  ({ className, size, ...props }: any, ref) => {
+    return (
+      <UIMessageCircleIcon
+        ref={ref}
+        {...props}
+        className={iconStyle({ size, class: className })}
+      />
+    );
+  }
+);
 
 MessageCircleIcon.displayName = 'MessageCircleIcon';
 
@@ -1658,13 +1801,15 @@ export const UIMoonIcon = createIcon({
   ),
 });
 
-
 const MoonIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
   return (
-    <UIMoonIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
+    <UIMoonIcon
+      ref={ref}
+      {...props}
+      className={iconStyle({ size, class: className })}
+    />
   );
 });
-
 
 MoonIcon.displayName = 'MoonIcon';
 
@@ -1684,13 +1829,17 @@ const UIPaperclipIcon = createIcon({
   ),
 });
 
-
-const PaperclipIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
-  return (
-    <UIPaperclipIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
-  );
-});
-
+const PaperclipIcon = React.forwardRef(
+  ({ className, size, ...props }: any, ref) => {
+    return (
+      <UIPaperclipIcon
+        ref={ref}
+        {...props}
+        className={iconStyle({ size, class: className })}
+      />
+    );
+  }
+);
 
 PaperclipIcon.displayName = 'PaperclipIcon';
 
@@ -1712,13 +1861,17 @@ const UIPhoneIcon = createIcon({
   ),
 });
 
-
-const PhoneIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
-  return (
-    <UIPhoneIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
-  );
-});
-
+const PhoneIcon = React.forwardRef(
+  ({ className, size, ...props }: any, ref) => {
+    return (
+      <UIPhoneIcon
+        ref={ref}
+        {...props}
+        className={iconStyle({ size, class: className })}
+      />
+    );
+  }
+);
 
 PhoneIcon.displayName = 'PhoneIcon';
 
@@ -1747,13 +1900,15 @@ const UIPlayIcon = createIcon({
   ),
 });
 
-
 const PlayIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
   return (
-    <UIPlayIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
+    <UIPlayIcon
+      ref={ref}
+      {...props}
+      className={iconStyle({ size, class: className })}
+    />
   );
 });
-
 
 PlayIcon.displayName = 'PlayIcon';
 
@@ -1775,13 +1930,17 @@ export const UIRemoveIcon = createIcon({
   ),
 });
 
-
-const RemoveIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
-  return (
-    <UIRemoveIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
-  );
-});
-
+const RemoveIcon = React.forwardRef(
+  ({ className, size, ...props }: any, ref) => {
+    return (
+      <UIRemoveIcon
+        ref={ref}
+        {...props}
+        className={iconStyle({ size, class: className })}
+      />
+    );
+  }
+);
 
 RemoveIcon.displayName = 'RemoveIcon';
 
@@ -1822,13 +1981,17 @@ const UIRepeatIcon = createIcon({
   ),
 });
 
-
-const RepeatIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
-  return (
-    <UIRepeatIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
-  );
-});
-
+const RepeatIcon = React.forwardRef(
+  ({ className, size, ...props }: any, ref) => {
+    return (
+      <UIRepeatIcon
+        ref={ref}
+        {...props}
+        className={iconStyle({ size, class: className })}
+      />
+    );
+  }
+);
 
 RepeatIcon.displayName = 'RepeatIcon';
 
@@ -1876,13 +2039,17 @@ const UIRepeat1Icon = createIcon({
   ),
 });
 
-
-const Repeat1Icon = React.forwardRef(({ className, size, ...props }: any, ref) => {
-  return (
-    <UIRepeat1Icon ref={ref} {...props} className={iconStyle({ size, class: className })} />
-  );
-});
-
+const Repeat1Icon = React.forwardRef(
+  ({ className, size, ...props }: any, ref) => {
+    return (
+      <UIRepeat1Icon
+        ref={ref}
+        {...props}
+        className={iconStyle({ size, class: className })}
+      />
+    );
+  }
+);
 
 Repeat1Icon.displayName = 'Repeat1Icon';
 
@@ -1911,13 +2078,17 @@ export const UISearchIcon = createIcon({
   ),
 });
 
-
-const SearchIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
-  return (
-    <UISearchIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
-  );
-});
-
+const SearchIcon = React.forwardRef(
+  ({ className, size, ...props }: any, ref) => {
+    return (
+      <UISearchIcon
+        ref={ref}
+        {...props}
+        className={iconStyle({ size, class: className })}
+      />
+    );
+  }
+);
 
 SearchIcon.displayName = 'SearchIcon';
 
@@ -1944,13 +2115,17 @@ const UISettingsIcon = createIcon({
   ),
 });
 
-
-const SettingsIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
-  return (
-    <UISettingsIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
-  );
-});
-
+const SettingsIcon = React.forwardRef(
+  ({ className, size, ...props }: any, ref) => {
+    return (
+      <UISettingsIcon
+        ref={ref}
+        {...props}
+        className={iconStyle({ size, class: className })}
+      />
+    );
+  }
+);
 
 SettingsIcon.displayName = 'SettingsIcon';
 
@@ -2000,13 +2175,17 @@ const UIShareIcon = createIcon({
   ),
 });
 
-
-const ShareIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
-  return (
-    <UIShareIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
-  );
-});
-
+const ShareIcon = React.forwardRef(
+  ({ className, size, ...props }: any, ref) => {
+    return (
+      <UIShareIcon
+        ref={ref}
+        {...props}
+        className={iconStyle({ size, class: className })}
+      />
+    );
+  }
+);
 
 ShareIcon.displayName = 'ShareIcon';
 
@@ -2035,13 +2214,17 @@ const UISlashIcon = createIcon({
   ),
 });
 
-
-const SlashIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
-  return (
-    <UISlashIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
-  );
-});
-
+const SlashIcon = React.forwardRef(
+  ({ className, size, ...props }: any, ref) => {
+    return (
+      <UISlashIcon
+        ref={ref}
+        {...props}
+        className={iconStyle({ size, class: className })}
+      />
+    );
+  }
+);
 
 SlashIcon.displayName = 'SlashIcon';
 
@@ -2063,13 +2246,15 @@ const UIStarIcon = createIcon({
   ),
 });
 
-
 const StarIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
   return (
-    <UIStarIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
+    <UIStarIcon
+      ref={ref}
+      {...props}
+      className={iconStyle({ size, class: className })}
+    />
   );
 });
-
 
 StarIcon.displayName = 'StarIcon';
 
@@ -2147,13 +2332,15 @@ export const UISunIcon = createIcon({
   ),
 });
 
-
 const SunIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
   return (
-    <UISunIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
+    <UISunIcon
+      ref={ref}
+      {...props}
+      className={iconStyle({ size, class: className })}
+    />
   );
 });
-
 
 SunIcon.displayName = 'SunIcon';
 
@@ -2187,13 +2374,17 @@ const UIThreeDotsIcon = createIcon({
   ),
 });
 
-
-const ThreeDotsIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
-  return (
-    <UIThreeDotsIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
-  );
-});
-
+const ThreeDotsIcon = React.forwardRef(
+  ({ className, size, ...props }: any, ref) => {
+    return (
+      <UIThreeDotsIcon
+        ref={ref}
+        {...props}
+        className={iconStyle({ size, class: className })}
+      />
+    );
+  }
+);
 
 ThreeDotsIcon.displayName = 'ThreeDotsIcon';
 
@@ -2229,13 +2420,17 @@ const UITrashIcon = createIcon({
   ),
 });
 
-
-const TrashIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
-  return (
-    <UITrashIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
-  );
-});
-
+const TrashIcon = React.forwardRef(
+  ({ className, size, ...props }: any, ref) => {
+    return (
+      <UITrashIcon
+        ref={ref}
+        {...props}
+        className={iconStyle({ size, class: className })}
+      />
+    );
+  }
+);
 
 TrashIcon.displayName = 'TrashIcon';
 
@@ -2264,13 +2459,17 @@ const UIUnlockIcon = createIcon({
   ),
 });
 
-
-const UnlockIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
-  return (
-    <UIUnlockIcon ref={ref} {...props} className={iconStyle({ size, class: className })} />
-  );
-});
-
+const UnlockIcon = React.forwardRef(
+  ({ className, size, ...props }: any, ref) => {
+    return (
+      <UIUnlockIcon
+        ref={ref}
+        {...props}
+        className={iconStyle({ size, class: className })}
+      />
+    );
+  }
+);
 
 UnlockIcon.displayName = 'UnlockIcon';
 
