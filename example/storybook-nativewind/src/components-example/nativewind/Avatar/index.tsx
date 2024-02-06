@@ -7,14 +7,21 @@ import {
   useStyleContext,
   withStyleContext,
 } from '@gluestack-ui/nativewind-utils';
+import { cssInterop } from 'nativewind';
 
-const AccessbileAvatar = createAvatar({
+const UIAvatar = createAvatar({
   Root: withStyleContext(View),
   Badge: View,
   Group: View,
   Image: Image,
   FallbackText: Text,
 });
+
+cssInterop(UIAvatar, { className: 'style' });
+cssInterop(UIAvatar.Badge, { className: 'style' });
+cssInterop(UIAvatar.Group, { className: 'style' });
+cssInterop(UIAvatar.Image, { className: 'style' });
+cssInterop(UIAvatar.FallbackText, { className: 'style' });
 
 const avatarStyle = tva({
   base: 'rounded-full justify-center items-center relative bg-primary-600',
@@ -78,7 +85,7 @@ export const Avatar = React.forwardRef(
     ref
   ) => {
     return (
-      <AccessbileAvatar
+      <UIAvatar
         ref={ref}
         {...props}
         className={avatarStyle({ variant, size, action, class: className })}
@@ -97,7 +104,7 @@ export const AvatarBadge = React.forwardRef(
     } = useStyleContext();
 
     return (
-      <AccessbileAvatar.Badge
+      <UIAvatar.Badge
         ref={ref}
         {...props}
         className={avatarBadgeStyle({
@@ -124,7 +131,7 @@ export const AvatarFallbackText = React.forwardRef(
     } = useStyleContext();
 
     return (
-      <AccessbileAvatar.FallbackText
+      <UIAvatar.FallbackText
         ref={ref}
         {...props}
         className={avatarFallbackTextStyle({
@@ -146,7 +153,7 @@ export const AvatarFallbackText = React.forwardRef(
 export const AvatarImage = React.forwardRef(
   ({ className, ...props }: any, ref) => {
     return (
-      <AccessbileAvatar.Image
+      <UIAvatar.Image
         ref={ref}
         {...props}
         className={avatarImageStyle({
@@ -160,7 +167,7 @@ export const AvatarImage = React.forwardRef(
 export const AvatarGroup = React.forwardRef(
   ({ className, ...props }: any, ref) => {
     return (
-      <AccessbileAvatar.Group
+      <UIAvatar.Group
         ref={ref}
         {...props}
         className={avatarGroupStyle({

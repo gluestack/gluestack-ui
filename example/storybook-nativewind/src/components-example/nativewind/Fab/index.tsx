@@ -8,8 +8,10 @@ import {
   useStyleContext,
 } from '@gluestack-ui/nativewind-utils';
 import React from 'react';
+import { cssInterop } from 'nativewind';
 
-export const AccessibleFab = createFab({
+export const UIFab = createFab({
+  // @ts-ignore
   Root:
     Platform.OS === 'web'
       ? withStyleContext(Pressable)
@@ -17,6 +19,11 @@ export const AccessibleFab = createFab({
   Label: Text,
   Icon: View,
 });
+
+// @ts-ignore
+cssInterop(UIFab, { className: 'style' });
+cssInterop(UIFab.Label, { className: 'style' });
+cssInterop(UIFab.Icon, { className: 'style' });
 
 const fabStyle = tva({
   base: 'group/fab bg-primary-500 rounded-full z-20 p-4 flex-row items-center justify-center absolute hover:bg-primary-600 active:bg-primary-700 disabled:opacity-40 disabled:pointer-events-all disabled:cursor-not-allowed data-[focus=true]:outline-2 data-[focus=true]:outline-primary-700 data-[focus=true]:outline-solid',
@@ -110,7 +117,7 @@ const Fab = React.forwardRef(
     ref: any
   ) => {
     return (
-      <AccessibleFab
+      <UIFab
         ref={ref}
         {...props}
         className={fabStyle({ size, placement, class: className })}
@@ -135,7 +142,7 @@ const FabLabel = React.forwardRef(
   ) => {
     const { size: parentSize } = useStyleContext();
     return (
-      <AccessibleFab.Label
+      <UIFab.Label
         ref={ref}
         {...props}
         className={fabLabelStyle({
@@ -158,7 +165,7 @@ const FabIcon = React.forwardRef(
   ({ size = 'md', className, ...props }: any, ref: any) => {
     const { size: parentSize } = useStyleContext();
     return (
-      <AccessibleFab.Icon
+      <UIFab.Icon
         ref={ref}
         {...props}
         className={fabIconStyle({

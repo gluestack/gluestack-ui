@@ -9,6 +9,8 @@ import {
   useStyleContext,
   withStates,
 } from '@gluestack-ui/nativewind-utils';
+import { cssInterop } from 'nativewind';
+
 const radioStyle = tva({
   base: 'flex-row justify-start items-center web:cursor-pointer data-[disabled=true]:web:cursor-not-allowed gap-2',
 });
@@ -56,6 +58,12 @@ const UIRadio = createRadio({
   Indicator: Platform.OS === 'web' ? View : withStates(View),
   Label: Platform.OS === 'web' ? Text : withStates(Text),
 });
+
+cssInterop(UIRadio, { className: 'style' });
+cssInterop(UIRadio.Group, { className: 'style' });
+cssInterop(UIRadio.Icon, { className: 'style' });
+cssInterop(UIRadio.Indicator, { className: 'style' });
+cssInterop(UIRadio.Label, { className: 'style' });
 
 const Radio = ({ className, size = 'md', ...props }: any) => {
   return (

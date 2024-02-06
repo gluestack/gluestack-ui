@@ -16,10 +16,12 @@ import {
   withStyleContextAndStates,
 } from '@gluestack-ui/nativewind-utils';
 import React from 'react';
+import { cssInterop } from 'nativewind';
 
-export const AccessibleActionsheet = createActionsheet({
+export const UIActionsheet = createActionsheet({
   Root: View,
   Content: withStyleContext(View),
+  // @ts-ignore
   Item:
     Platform.OS === 'web'
       ? withStyleContext(Pressable)
@@ -37,6 +39,21 @@ export const AccessibleActionsheet = createActionsheet({
   //@ts-ignore
   AnimatePresence: null,
 });
+
+cssInterop(UIActionsheet, { className: 'style' });
+// @ts-ignore
+cssInterop(UIActionsheet.Content, { className: 'style' });
+cssInterop(UIActionsheet.Item, { className: 'style' });
+cssInterop(UIActionsheet.ItemText, { className: 'style' });
+cssInterop(UIActionsheet.DragIndicator, { className: 'style' });
+cssInterop(UIActionsheet.DragIndicatorWrapper, { className: 'style' });
+cssInterop(UIActionsheet.Backdrop, { className: 'style' });
+cssInterop(UIActionsheet.ScrollView, { className: 'style' });
+cssInterop(UIActionsheet.VirtualizedList, { className: 'style' });
+cssInterop(UIActionsheet.FlatList, { className: 'style' });
+cssInterop(UIActionsheet.SectionList, { className: 'style' });
+cssInterop(UIActionsheet.SectionHeaderText, { className: 'style' });
+cssInterop(UIActionsheet.Icon, { className: 'style' });
 
 const actionsheetStyle = tva({ base: 'w-full h-full web:pointer-events-none' });
 
@@ -172,7 +189,7 @@ const actionsheetIconStyle = tva({
 const Actionsheet = React.forwardRef(
   ({ className, ...props }: any, ref: any) => {
     return (
-      <AccessibleActionsheet
+      <UIActionsheet
         className={actionsheetStyle({
           class: className,
         })}
@@ -186,7 +203,7 @@ const Actionsheet = React.forwardRef(
 const ActionsheetContent = React.forwardRef(
   ({ className, ...props }: any, ref: any) => {
     return (
-      <AccessibleActionsheet.Content
+      <UIActionsheet.Content
         className={actionsheetContentStyle({
           class: className,
         })}
@@ -200,7 +217,7 @@ const ActionsheetContent = React.forwardRef(
 const ActionsheetItem = React.forwardRef(
   ({ className, ...props }: any, ref: any) => {
     return (
-      <AccessibleActionsheet.Item
+      <UIActionsheet.Item
         className={actionsheetItemStyle({
           class: className,
         })}
@@ -225,7 +242,7 @@ const ActionsheetItemText = React.forwardRef(
     ref: any
   ) => {
     return (
-      <AccessibleActionsheet.ItemText
+      <UIActionsheet.ItemText
         className={actionsheetItemTextStyle({
           class: className,
           isTruncated,
@@ -244,7 +261,7 @@ const ActionsheetItemText = React.forwardRef(
 const ActionsheetDragIndicator = React.forwardRef(
   ({ className, ...props }: any, ref: any) => {
     return (
-      <AccessibleActionsheet.DragIndicator
+      <UIActionsheet.DragIndicator
         className={actionsheetDragIndicatorStyle({
           class: className,
         })}
@@ -258,7 +275,7 @@ const ActionsheetDragIndicator = React.forwardRef(
 const ActionsheetDragIndicatorWrapper = React.forwardRef(
   ({ className, ...props }: any, ref: any) => {
     return (
-      <AccessibleActionsheet.DragIndicatorWrapper
+      <UIActionsheet.DragIndicatorWrapper
         className={actionsheetDragIndicatorWrapperStyle({
           class: className,
         })}
@@ -272,7 +289,7 @@ const ActionsheetDragIndicatorWrapper = React.forwardRef(
 const ActionsheetBackdrop = React.forwardRef(
   ({ className, ...props }: any, ref) => {
     return (
-      <AccessibleActionsheet.Backdrop
+      <UIActionsheet.Backdrop
         {...props}
         className={actionsheetBackdropStyle({
           class: className,
@@ -286,7 +303,7 @@ const ActionsheetBackdrop = React.forwardRef(
 const ActionsheetScrollView = React.forwardRef(
   ({ className, ...props }: any, ref: any) => {
     return (
-      <AccessibleActionsheet.ScrollView
+      <UIActionsheet.ScrollView
         className={actionsheetScrollViewStyle({
           class: className,
         })}
@@ -300,7 +317,7 @@ const ActionsheetScrollView = React.forwardRef(
 const ActionsheetVirtualizedList = React.forwardRef(
   ({ className, ...props }: any, ref: any) => {
     return (
-      <AccessibleActionsheet.VirtualizedList
+      <UIActionsheet.VirtualizedList
         className={actionsheetVirtualizedListStyle({
           class: className,
         })}
@@ -314,7 +331,7 @@ const ActionsheetVirtualizedList = React.forwardRef(
 const ActionsheetFlatList = React.forwardRef(
   ({ className, ...props }: any, ref: any) => {
     return (
-      <AccessibleActionsheet.FlatList
+      <UIActionsheet.FlatList
         className={actionsheetFlatListStyle({
           class: className,
         })}
@@ -328,7 +345,7 @@ const ActionsheetFlatList = React.forwardRef(
 const ActionsheetSectionList = React.forwardRef(
   ({ className, ...props }: any, ref: any) => {
     return (
-      <AccessibleActionsheet.SectionList
+      <UIActionsheet.SectionList
         className={actionsheetSectionListStyle({
           class: className,
         })}
@@ -356,7 +373,7 @@ const ActionsheetSectionHeaderText = React.forwardRef(
     ref: any
   ) => {
     return (
-      <AccessibleActionsheet.SectionHeaderText
+      <UIActionsheet.SectionHeaderText
         className={actionsheetSectionHeaderTextStyle({
           class: className,
           isTruncated,
@@ -378,7 +395,7 @@ const ActionsheetSectionHeaderText = React.forwardRef(
 const ActionsheetIcon = React.forwardRef(
   ({ className, size, ...props }: any, ref: any) => {
     return (
-      <AccessibleActionsheet.Icon
+      <UIActionsheet.Icon
         className={actionsheetIconStyle({
           class: className,
           size,
