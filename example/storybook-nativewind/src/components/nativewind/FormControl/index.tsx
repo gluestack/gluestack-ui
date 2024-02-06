@@ -1,227 +1,347 @@
 import { Text, View } from 'react-native';
-
-import { styled } from '@gluestack-style/react';
-
+import React from 'react';
 import { createFormControl } from '@gluestack-ui/form-control';
-import { AsForwarder } from '@gluestack-style/react';
+import { cssInterop } from 'nativewind';
+import {
+  tva,
+  withStyleContext,
+  useStyleContext,
+} from '@gluestack-ui/nativewind-utils';
 
-const StyledRoot = styled(
-  View,
-  {
-    flexDirection: 'column',
-    variants: {
-      size: {
-        sm: {
-          _labelText: {
-            props: { size: 'sm' },
-          },
-          _labelAstrick: {
-            props: { size: 'sm' },
-          },
-          _helperText: {
-            props: { size: 'xs' },
-          },
-          _errorText: {
-            props: { size: 'xs' },
-          },
-        },
-        md: {
-          _labelText: {
-            props: { size: 'md' },
-          },
-          _labelAstrick: {
-            props: { size: 'md' },
-          },
-          _helperText: {
-            props: { size: 'sm' },
-          },
-          _errorText: {
-            props: { size: 'sm' },
-          },
-        },
-        lg: {
-          _labelText: {
-            props: { size: 'lg' },
-          },
-          _labelAstrick: {
-            props: { size: 'lg' },
-          },
-          _helperText: {
-            props: { size: 'md' },
-          },
-          _errorText: {
-            props: { size: 'md' },
-          },
-        },
-      },
-    },
-
-    defaultProps: {
-      size: 'md',
-    },
-  },
-  {
-    descendantStyle: [
-      '_labelText',
-      '_helperText',
-      '_errorText',
-      '_labelAstrick',
-    ],
-  }
-);
-
-const StyledErrorIcon = styled(
-  AsForwarder,
-  {
-    color: '$error700',
-    fill: 'none',
-    variants: {
-      size: {
-        '2xs': {
-          h: '$3',
-          w: '$3',
-          props: {
-            // @ts-ignore
-            size: 12,
-          },
-        },
-        'xs': {
-          h: '$3.5',
-          w: '$3.5',
-          props: {
-            //@ts-ignore
-            size: 14,
-          },
-        },
-        'sm': {
-          h: '$4',
-          w: '$4',
-          props: {
-            //@ts-ignore
-            size: 16,
-          },
-        },
-        'md': {
-          h: '$4.5',
-          w: '$4.5',
-          props: {
-            //@ts-ignore
-            size: 18,
-          },
-        },
-        'lg': {
-          h: '$5',
-          w: '$5',
-          props: {
-            //@ts-ignore
-            size: 20,
-          },
-        },
-        'xl': {
-          h: '$6',
-          w: '$6',
-          props: {
-            //@ts-ignore
-            size: 24,
-          },
-        },
-      },
-    },
-    props: {
-      size: 'sm',
-    },
-  },
-  {
-    resolveProps: ['stroke', 'fill'],
-  },
-  {
-    propertyTokenMap: {
-      stroke: 'colors',
-      fill: 'colors',
-    },
-  }
-);
-
-const StyledFormControlError = styled(View, {
-  flexDirection: 'row',
-  justifyContent: 'flex-start',
-  alignItems: 'center',
-  mt: '$1',
-  // @ts-ignore
-  gap: '$1',
+const formControlStyle = tva({
+  base: 'flex flex-col',
 });
 
-// const StyeldFormControlErrorIcon = styled(StyledIcon, {
-//   color: '$error700',
-//   props: {
-//     size: 'sm',
-//   },
-// });
+const formControlErrorIconStyle = tva({
+  base: 'fill-none text-error-700',
 
-const StyledFormControlErrorText = styled(
-  Text,
-  {
-    color: '$error700',
-  },
-  { ancestorStyle: ['_errorText'] }
-);
-
-const StyledFormControlHelper = styled(View, {
-  flexDirection: 'row',
-  justifyContent: 'flex-start',
-  alignItems: 'center',
-  mt: '$1',
-});
-
-const StyledFormControlHelperText = styled(
-  Text,
-  {
-    props: {
-      size: 'xs',
+  variants: {
+    size: {
+      '2xs': 'h-3 w-3',
+      'xs': 'h-3.5 w-3.5',
+      'sm': 'h-4 w-4',
+      'md': 'h-4.5 w-4.5',
+      'lg': 'h-5 w-5',
+      'xl': 'h-6 w-6',
     },
-
-    color: '$text500',
   },
-  { ancestorStyle: ['_helperText'] }
-);
-
-const StyledFormControlLabel = styled(
-  View,
-  {
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    mb: '$1',
-  },
-  { descendantStyle: ['_labelText'] }
-);
-
-const StyledFormControlLabelText = styled(Text, {
-  fontWeight: '$medium',
-  color: '$text900',
 });
 
-const StyledLabelAstrick = styled(Text, {}, {
-  componentName: 'FormControlErrorText',
-  ancestorStyle: ['_labelAstrick'],
-} as const);
-
-export const FormControl = createFormControl({
-  Root: StyledRoot,
-  Error: StyledFormControlError,
-  ErrorText: StyledFormControlErrorText,
-  ErrorIcon: StyledErrorIcon,
-  Label: StyledFormControlLabel,
-  LabelText: StyledFormControlLabelText,
-  LabelAstrick: StyledLabelAstrick,
-  Helper: StyledFormControlHelper,
-  HelperText: StyledFormControlHelperText,
+const formControlErrorStyle = tva({
+  base: 'flex flex-row justify-start items-center mt-1 gap-1',
 });
-export const FormControlError = FormControl.Error;
-export const FormControlErrorText = FormControl.Error.Text;
-export const FormControlErrorIcon = FormControl.Error.Icon;
-export const FormControlLabel = FormControl.Label;
-export const FormControlLabelText = FormControl.Label.Text;
-export const FormControlLabelAstrick = FormControl.Label.Astrick;
-export const FormControlHelper = FormControl.Helper;
-export const FormControlHelperText = FormControl.Helper.Text;
+
+const formControlErrorTextStyle = tva({
+  base: 'text-error-700',
+  variants: {
+    isTruncated: {
+      true: 'web:truncate',
+    },
+    bold: {
+      true: 'font-bold',
+    },
+    underline: {
+      true: 'underline',
+    },
+    strikeThrough: {
+      true: 'line-through',
+    },
+    size: {
+      '2xs': 'text-2xs',
+      'xs': 'text-xs',
+      'sm': 'text-sm',
+      'md': 'text-md',
+      'lg': 'text-lg',
+      'xl': 'text-xl',
+      '2xl': 'text-2xl',
+      '3xl': 'text-3xl',
+      '4xl': 'text-4xl',
+      '5xl': 'text-5xl',
+      '6xl': 'text-6xl',
+    },
+    sub: {
+      true: 'text-xs',
+    },
+    italic: {
+      true: 'italic',
+    },
+    highlight: {
+      true: 'bg-yellow-500',
+    },
+  },
+});
+
+const formControlHelperStyle = tva({
+  base: 'flex flex-row justify-start items-center mt-1',
+});
+
+const formControlHelperTextStyle = tva({
+  base: 'text-typography-500',
+  variants: {
+    isTruncated: {
+      true: 'web:truncate',
+    },
+    bold: {
+      true: 'font-bold',
+    },
+    underline: {
+      true: 'underline',
+    },
+    strikeThrough: {
+      true: 'line-through',
+    },
+    size: {
+      '2xs': 'text-2xs',
+      'xs': 'text-xs',
+      'sm': 'text-sm',
+      'md': 'text-md',
+      'lg': 'text-lg',
+      'xl': 'text-xl',
+      '2xl': 'text-2xl',
+      '3xl': 'text-3xl',
+      '4xl': 'text-4xl',
+      '5xl': 'text-5xl',
+      '6xl': 'text-6xl',
+    },
+    sub: {
+      true: 'text-xs',
+    },
+    italic: {
+      true: 'italic',
+    },
+    highlight: {
+      true: 'bg-yellow-500',
+    },
+  },
+});
+
+const formControlLabelStyle = tva({
+  base: 'flex flex-row justify-start items-center mb-1',
+});
+
+const formControlLabelTextStyle = tva({
+  base: 'font-medium text-typography-900',
+  variants: {
+    isTruncated: {
+      true: 'web:truncate',
+    },
+    bold: {
+      true: 'font-bold',
+    },
+    underline: {
+      true: 'underline',
+    },
+    strikeThrough: {
+      true: 'line-through',
+    },
+    size: {
+      '2xs': 'text-2xs',
+      'xs': 'text-xs',
+      'sm': 'text-sm',
+      'md': 'text-md',
+      'lg': 'text-lg',
+      'xl': 'text-xl',
+      '2xl': 'text-2xl',
+      '3xl': 'text-3xl',
+      '4xl': 'text-4xl',
+      '5xl': 'text-5xl',
+      '6xl': 'text-6xl',
+    },
+    sub: {
+      true: 'text-xs',
+    },
+    italic: {
+      true: 'italic',
+    },
+    highlight: {
+      true: 'bg-yellow-500',
+    },
+  },
+});
+
+const formControlLabelAstrickStyle = tva({
+  variants: {
+    isTruncated: {
+      true: 'web:truncate',
+    },
+    bold: {
+      true: 'font-bold',
+    },
+    underline: {
+      true: 'underline',
+    },
+    strikeThrough: {
+      true: 'line-through',
+    },
+    size: {
+      '2xs': 'text-2xs',
+      'xs': 'text-xs',
+      'sm': 'text-sm',
+      'md': 'text-md',
+      'lg': 'text-lg',
+      'xl': 'text-xl',
+      '2xl': 'text-2xl',
+      '3xl': 'text-3xl',
+      '4xl': 'text-4xl',
+      '5xl': 'text-5xl',
+      '6xl': 'text-6xl',
+    },
+    sub: {
+      true: 'text-xs',
+    },
+    italic: {
+      true: 'italic',
+    },
+    highlight: {
+      true: 'bg-yellow-500',
+    },
+  },
+});
+
+export const UIFormControl = createFormControl({
+  Root: withStyleContext(View),
+  Error: View,
+  ErrorText: Text,
+  ErrorIcon: View,
+  Label: View,
+  LabelText: Text,
+  LabelAstrick: Text,
+  Helper: View,
+  HelperText: Text,
+});
+
+cssInterop(UIFormControl, { className: 'style' });
+cssInterop(UIFormControl.Error, { className: 'style' });
+cssInterop(UIFormControl.Error.Text, { className: 'style' });
+cssInterop(UIFormControl.Error.Icon, { className: 'style' });
+cssInterop(UIFormControl.Label, { className: 'style' });
+cssInterop(UIFormControl.Label.Text, { className: 'style' });
+cssInterop(UIFormControl.Label.Astrick, { className: 'style' });
+cssInterop(UIFormControl.Helper, { className: 'style' });
+cssInterop(UIFormControl.Helper.Text, { className: 'style' });
+
+const FormControl = ({ className, size, ...props }: any) => {
+  return (
+    <UIFormControl
+      className={formControlStyle({ class: className })}
+      {...props}
+      context={{ size }}
+    />
+  );
+};
+const FormControlError = ({ className, ...props }: any) => {
+  return (
+    <UIFormControl.Error
+      className={formControlErrorStyle({ class: className })}
+      {...props}
+    />
+  );
+};
+const FormControlErrorText = ({ className, size, ...props }: any) => {
+  const { size: parentSize } = useStyleContext();
+  return (
+    <UIFormControl.Error.Text
+      className={formControlErrorTextStyle({
+        parentVariants: { size: parentSize },
+        size,
+        class: className,
+      })}
+      {...props}
+    />
+  );
+};
+const FormControlErrorIcon = ({ className, size, ...props }: any) => {
+  const { size: parentSize } = useStyleContext();
+
+  return (
+    <UIFormControl.Error.Icon
+      className={formControlErrorIconStyle({
+        parentVariants: { size: parentSize },
+        size,
+        class: className,
+      })}
+      {...props}
+    />
+  );
+};
+const FormControlLabel = ({ className, ...props }: any) => {
+  return (
+    <UIFormControl.Label
+      className={formControlLabelStyle({ class: className })}
+      {...props}
+    />
+  );
+};
+const FormControlLabelText = ({ className, size, ...props }: any) => {
+  const { size: parentSize } = useStyleContext();
+
+  return (
+    <UIFormControl.Label.Text
+      className={formControlLabelTextStyle({
+        parentVariants: { size: parentSize },
+        size,
+        class: className,
+      })}
+      {...props}
+    />
+  );
+};
+const FormControlLabelAstrick = ({ className, size, ...props }: any) => {
+  const { size: parentSize } = useStyleContext();
+
+  return (
+    <UIFormControl.Label.Astrick
+      className={formControlLabelAstrickStyle({
+        parentVariants: { size: parentSize },
+        size,
+        class: className,
+      })}
+      {...props}
+    />
+  );
+};
+const FormControlHelper = ({ className, ...props }: any) => {
+  return (
+    <UIFormControl.Helper
+      className={formControlHelperStyle({
+        class: className,
+      })}
+      {...props}
+    />
+  );
+};
+const FormControlHelperText = ({ className, size, ...props }: any) => {
+  const { size: parentSize } = useStyleContext();
+
+  return (
+    <UIFormControl.Helper.Text
+      className={formControlHelperTextStyle({
+        parentVariants: { size: parentSize },
+        size,
+        class: className,
+      })}
+      {...props}
+    />
+  );
+};
+FormControl.displayName = 'FormControl';
+FormControlError.displayName = 'FormControlError';
+FormControlErrorText.displayName = 'FormControlErrorText';
+FormControlErrorIcon.displayName = 'FormControlErrorIcon';
+FormControlLabel.displayName = 'FormControlLabel';
+FormControlLabelText.displayName = 'FormControlLabelText';
+FormControlLabelAstrick.displayName = 'FormControlLabelAstrick';
+FormControlHelper.displayName = 'FormControlHelper';
+FormControlHelperText.displayName = 'FormControlHelperText';
+
+export {
+  FormControl,
+  FormControlError,
+  FormControlErrorText,
+  FormControlErrorIcon,
+  FormControlLabel,
+  FormControlLabelText,
+  FormControlLabelAstrick,
+  FormControlHelper,
+  FormControlHelperText,
+};
