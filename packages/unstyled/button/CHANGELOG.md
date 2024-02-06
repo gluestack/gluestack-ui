@@ -1,5 +1,11 @@
 # @gluestack-ui/button
 
+## 1.0.1
+
+### Patch Changes
+
+- feat: added dataSets to component
+
 ## 1.0.0
 
 ### Major Changes

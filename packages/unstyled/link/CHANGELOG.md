@@ -1,5 +1,11 @@
 # @gluestack-ui/link
 
+## 0.1.17
+
+### Patch Changes
+
+- feat: added dataSets to component
+
 ## 0.1.10
 
 ### Patch Changes

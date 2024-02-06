@@ -1,5 +1,13 @@
 # @gluestack-ui/radio
 
+## 0.1.25
+
+### Patch Changes
+
+- feat: added dataSets to component
+- Updated dependencies
+  - @gluestack-ui/form-control@0.1.16
+
 ## 0.1.24
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @gluestack-ui/popover
 
+## 0.1.30
+
+### Patch Changes
+
+- feat: added dataSets to component
+
 ## 0.1.29
 
 ### Patch Changes

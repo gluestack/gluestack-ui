@@ -1,5 +1,11 @@
 # @gluestack-ui/pressable
 
+## 0.1.14
+
+### Patch Changes
+
+- feat: added dataSets to component
+
 ## 0.1.9
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @gluestack-ui/actionsheet
 
+## 0.2.37
+
+### Patch Changes
+
+- feat: added dataSets to component
+
 ## 0.2.36
 
 ### Patch Changes

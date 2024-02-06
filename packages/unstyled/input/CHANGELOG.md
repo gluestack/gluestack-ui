@@ -1,5 +1,13 @@
 # @gluestack-ui/input
 
+## 0.1.24
+
+### Patch Changes
+
+- feat: added dataSets to component
+- Updated dependencies
+  - @gluestack-ui/form-control@0.1.16
+
 ## 0.1.23
 
 ### Patch Changes

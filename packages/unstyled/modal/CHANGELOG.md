@@ -1,5 +1,11 @@
 # @gluestack-ui/modal
 
+## 0.1.29
+
+### Patch Changes
+
+- feat: added dataSets to component
+
 ## 0.1.28
 
 ### Patch Changes
