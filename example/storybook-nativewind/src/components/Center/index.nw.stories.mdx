@@ -12,16 +12,16 @@ showHeader: true
 
 import { Meta } from '@storybook/addon-docs';
 
-<Meta title="common/components/Center" />
+<Meta title="with-nativewind/components/Layout/Center" />
 
 import { Center } from './Center';
 import { Text } from '@gluestack-ui/themed';
 import { transformedCode } from '../../utils';
 import { AppProvider, CodePreview, Table } from '@gluestack/design-system';
 
-import Wrapper from '../../components-example/themed/Wrapper';
+import Wrapper from '../../components-example/nativewind/Wrapper';
 
-This is an illustration of a **Themed Center** component with default configuration.
+This is an illustration of a **Center** component with default configuration.
 
 <Wrapper>
   <CodePreview
@@ -30,8 +30,8 @@ This is an illustration of a **Themed Center** component with default configurat
     showArgsController={false}
     metaData={{
       code: `
-<Center bg="$primary500" h={200} w={300}>
-  <Text color="white" fontWeight="$bold">
+<Center className="bg-primary-500 h-[200px] w-[300px]">
+  <Text className="text-white font-bold">
     This is the center.
   </Text>
 </Center>
@@ -51,19 +51,31 @@ This is an illustration of a **Themed Center** component with default configurat
 
 <br />
 
-## API Reference
+## Installation
 
-### Import
+### Step 1: Install the following dependencies:
+
+```bash
+
+npm i @gluestack-ui/center
+
+```
+
+### Step 2: Copy and paste the following code into your project.
+
+```jsx
+%%-- File: components-example/nativewind/Center/index.tsx --%%
+```
+
+### Step 3: Update the import paths to match your project setup.
+
+## API Reference
 
 To use this component in your project, include the following import statement in your file.
 
-```bash
-import { Center } from '@gluestack-ui/themed';
+```jsx
+import { Center } from '@/components/Center';
 ```
-
-### Anatomy
-
-The structure provided below can help you identify and understand a Center component's various parts.
 
 ```jsx
 export default () => <Center />;
@@ -76,31 +88,6 @@ This section provides a comprehensive reference list for the component props, de
 #### Center
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
-
-## Unstyled
-
-All the components in `gluestack-ui` are unstyled by default. To customize your UI using the extendedTheme, please refer to this [link](https://gluestack.io/ui/docs/theme-configuration/customizing-theme). The import names of components serve as keys to customize each component.
-
-<!--
-### Customizing the Center
-
-For customizing the Center, you have to map styled view to Center. You can refer [gluestack.io/style](/style/docs/getting-started/styled) on how to use styled components.
-
-#### Usage
-
-Default styling of the component can be found in the `components/center` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/main/packages/themed/src/components/Center) of the styled `Center` component.
-
-```jsx
-// import the styles
-import { Root } from 'components/core/center/styled-components';
-
-// mapping the Center to root component
-const Center = Root;
-
-// using the Center component
-export default () => <Center />;
-```
--->
 
 ## Spec Doc
 
