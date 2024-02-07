@@ -20,7 +20,7 @@ import {
   CheckboxIcon,
 } from '@gluestack-ui/themed';
 
-import { Fab, FabIcon, FabLabel } from '../../components-example/themed/Fab';
+import { Fab, FabIcon, FabLabel } from '@/components/Fab';
 
 import { CheckIcon, EditIcon, ShoppingCartIcon } from 'lucide-react-native';
 

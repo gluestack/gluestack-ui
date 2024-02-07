@@ -5,7 +5,7 @@ import {
   CheckboxIndicator,
   CheckboxLabel,
   CheckboxGroup,
-} from '../../components-example/themed/Checkbox';
+} from '@/components/Checkbox';
 
 const CheckboxGroupBasic = ({ ...props }: any) => {
   const [values, setValues] = React.useState(['Label 1']);

@@ -60,7 +60,7 @@ import React from 'react';
 // } from '@/components/Icon';
 
 // import { ChromeIcon, InstagramIcon, FacebookIcon } from 'lucide-react-native';
-import { AddIcon } from '../../components-example/themed/Icon';
+import { AddIcon } from '@/components/Icon';
 const IconBasic = ({ size, ...props }: any) => {
   return <AddIcon size={size} {...props} />;
   // return <AddIcon/>;

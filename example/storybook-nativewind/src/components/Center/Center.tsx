@@ -1,5 +1,5 @@
-import { Text } from '../../components-example/themed/Text';
-import { Center } from '../../components-example/themed/Center';
+import { Text } from '@/components/Text';
+import { Center } from '@/components/Center';
 import React from 'react';
 
 const CenterBasic = () => {

@@ -13,11 +13,7 @@ import {
   HStack,
   Icon,
 } from '@gluestack-ui/themed';
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipText,
-} from '../../components-example/themed/Tooltip';
+import { Tooltip, TooltipContent, TooltipText } from '@/components/Tooltip';
 import { Edit, Command } from 'lucide-react-native';
 
 const TooltipBasic = ({
