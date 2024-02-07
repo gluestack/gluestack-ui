@@ -1,8 +1,8 @@
-import { InputAccessoryView } from 'react-native';
+import { View } from 'react-native';
 import { styled } from '@gluestack-style/react';
 
 export default styled(
-  InputAccessoryView,
+  View,
   {},
   {
     componentName: 'InputAccessoryView',

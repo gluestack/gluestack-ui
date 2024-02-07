@@ -1,114 +1,56 @@
-import { styled } from '@gluestack-style/react';
-import { H1, H2, H3, H4, H5, H6 } from '@expo/html-elements';
+import React from 'react';
+import { H4 } from '@expo/html-elements';
+import { tva } from '@gluestack-ui/nativewind-utils';
+import { cssInterop } from 'nativewind';
 
-const StyledRoot = styled(H4, {
-  color: '$text900',
-  letterSpacing: '$sm',
-  fontWeight: '$bold',
-  fontFamily: '$heading',
-
-  // Overrides expo-html default styling
-  marginVertical: 0,
-
+const headingStyle = tva({
+  base: 'text-typography-900 font-bold font-heading tracking-sm my-0',
   variants: {
     isTruncated: {
-      true: {
-        props: {
-          // @ts-ignore
-          numberOfLines: 1,
-          ellipsizeMode: 'tail',
-        },
-      },
+      true: 'web:truncate',
     },
     bold: {
-      true: {
-        fontWeight: '$bold',
-      },
+      true: 'font-bold',
     },
     underline: {
-      true: {
-        textDecorationLine: 'underline',
-      },
+      true: 'underline',
     },
     strikeThrough: {
-      true: {
-        textDecorationLine: 'line-through',
-      },
-    },
-    size: {
-      '5xl': {
-        //@ts-ignore
-        props: { as: H1 },
-        fontSize: '$6xl',
-      },
-      '4xl': {
-        //@ts-ignore
-        props: { as: H1 },
-        fontSize: '$5xl',
-      },
-
-      '3xl': {
-        //@ts-ignore
-        props: { as: H1 },
-        fontSize: '$4xl',
-      },
-
-      '2xl': {
-        //@ts-ignore
-        props: { as: H2 },
-        fontSize: '$3xl',
-      },
-
-      'xl': {
-        //@ts-ignore
-        props: { as: H3 },
-        fontSize: '$2xl',
-      },
-
-      'lg': {
-        //@ts-ignore
-        props: { as: H4 },
-        fontSize: '$xl',
-      },
-
-      'md': {
-        //@ts-ignore
-        props: { as: H5 },
-        fontSize: '$lg',
-      },
-
-      'sm': {
-        //@ts-ignore
-        props: { as: H6 },
-        fontSize: '$md',
-      },
-
-      'xs': {
-        //@ts-ignore
-        props: { as: H6 },
-        fontSize: '$sm',
-      },
+      true: 'line-through',
     },
     sub: {
-      true: {
-        fontSize: '$xs',
-      },
+      true: 'text-xs',
     },
     italic: {
-      true: {
-        fontStyle: 'italic',
-      },
+      true: 'italic',
     },
     highlight: {
-      true: {
-        bg: '$yellow500',
-      },
+      true: 'bg-yellow-500',
+    },
+    size: {
+      '5xl': 'text-6xl',
+      '4xl': 'text-5xl',
+      '3xl': 'text-4xl',
+      '2xl': 'text-3xl',
+      'xl': 'text-2xl',
+      'lg': 'text-xl',
+      'md': 'text-lg',
+      'sm': 'text-md',
+      'xs': 'text-sm',
     },
   },
 
-  defaultProps: {
-    size: 'lg',
-  },
+  // defaultProps: {
+  //   size: 'lg',
+  // },
 });
 
-export const Heading = StyledRoot;
+cssInterop(H4, { className: 'style' });
+
+const Heading = ({ className, size = 'lg', ...props }: any) => {
+  return <H4 className={headingStyle({ size, class: className })} {...props} />;
+};
+
+Heading.displayName = 'Heading';
+
+export { Heading };

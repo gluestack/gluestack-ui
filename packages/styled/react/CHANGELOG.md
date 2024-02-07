@@ -1,5 +1,18 @@
 # @gluestack-style/react
 
+## 1.0.45
+
+### Patch Changes
+
+- Fixed inline style injection
+
+## 1.0.44
+
+### Patch Changes
+
+- Fixed plugin component reference
+- Added unique component id to plugin for different styles
+
 ## 1.0.43
 
 ### Patch Changes
