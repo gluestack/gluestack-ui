@@ -4,17 +4,23 @@ import { StyledProvider } from '@gluestack-style/react';
 import { OverlayProvider } from '@gluestack-ui/overlay';
 import { ToastProvider } from '@gluestack-ui/toast';
 
+// Change the config file path
+import { config } from './config';
+
 const GluestackUIStyledProvider = createProvider({ StyledProvider });
 
 type GluestackUIProviderProps = Partial<
   React.ComponentProps<typeof GluestackUIStyledProvider>
 >;
 
-const Provider = ({ children, ...props }: GluestackUIProviderProps) => {
+export const GluestackUIProvider = ({
+  children,
+  ...props
+}: GluestackUIProviderProps) => {
   return (
     <>
       {/** @ts-ignore */}
-      <GluestackUIStyledProvider colorMode="light" {...props}>
+      <GluestackUIStyledProvider colorMode="light" config={config} {...props}>
         <OverlayProvider>
           <ToastProvider>{children}</ToastProvider>
         </OverlayProvider>
@@ -22,5 +28,3 @@ const Provider = ({ children, ...props }: GluestackUIProviderProps) => {
     </>
   );
 };
-
-export { Provider };

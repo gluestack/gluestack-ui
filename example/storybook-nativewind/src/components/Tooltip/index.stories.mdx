@@ -12,16 +12,24 @@ showHeader: true
 
 import { Meta } from '@storybook/addon-docs';
 
-<Meta title="ui/components/Tooltip" />
+<Meta title="common/components/Tooltip" />
 
+import { Tooltip, TooltipContent, TooltipText } from './Tooltip';
 import {
-  Tooltip,
-  TooltipContent,
-  TooltipText,
-} from './Tooltip';
-import { Box, Heading, Edit, Center, Button, ButtonText } from '@gluestack-ui/themed';
+  Box,
+  Heading,
+  Edit,
+  Center,
+  Button,
+  ButtonText,
+} from '@gluestack-ui/themed';
 import { VStack, Command, Icon } from '@gluestack-ui/themed';
-import { Avatar, AvatarGroup, AvatarFallbackText, HStack } from '@gluestack-ui/themed';
+import {
+  Avatar,
+  AvatarGroup,
+  AvatarFallbackText,
+  HStack,
+} from '@gluestack-ui/themed';
 import { transformedCode } from '../../utils';
 import {
   AppProvider,

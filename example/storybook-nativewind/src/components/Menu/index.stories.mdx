@@ -14,17 +14,24 @@ tag: beta
 
 import { Meta } from '@storybook/addon-docs';
 
-<Meta title="ui/components/Menu" />
+<Meta title="common/components/Menu" />
 
+import { Menu, MenuIcon, MenuItem, MenuItemLabel } from './Menu';
 import {
-  Menu,
-  MenuIcon,
-  MenuItem,
-  MenuItemLabel,
-} from './Menu';
-import { ThemeIcon, SettingsIcon, PlusIcon, Box, Button, ButtonText } from '@gluestack-ui/themed';
+  ThemeIcon,
+  SettingsIcon,
+  PlusIcon,
+  Box,
+  Button,
+  ButtonText,
+} from '@gluestack-ui/themed';
 import { Badge, Pressable, Avatar, Divider } from '@gluestack-ui/themed';
-import { Text as MenuText, Center, GlobeIcon, PuzzleIcon } from '@gluestack-ui/themed';
+import {
+  Text as MenuText,
+  Center,
+  GlobeIcon,
+  PuzzleIcon,
+} from '@gluestack-ui/themed';
 import { Icon, PaintBucket, AddIcon } from '@gluestack-ui/themed';
 import { transformedCode } from '../../utils';
 import {

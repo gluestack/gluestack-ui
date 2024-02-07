@@ -12,14 +12,9 @@ showHeader: true
 
 import { Meta } from '@storybook/addon-docs';
 
-<Meta title="ui/components/Badge" />
+<Meta title="common/components/Badge" />
 
-import {
-  Badge,
-  BadgeText,
-  BadgeIcon,
-  GlobeIcon,
-} from './Badge';
+import { Badge, BadgeText, BadgeIcon, GlobeIcon } from './Badge';
 import {
   Icon,
   Box,
@@ -33,13 +28,14 @@ import {
   AvatarFallbackText,
 } from '@gluestack-ui/themed';
 import { Divider, Image, CheckIcon, Heading } from '@gluestack-ui/themed';
-import { VStack, HStack, Button, ButtonText, BadgeCheckIcon } from '@gluestack-ui/themed';
 import {
-  Menu,
-  MenuIcon,
-  MenuItem,
-  MenuItemLabel,
+  VStack,
+  HStack,
+  Button,
+  ButtonText,
+  BadgeCheckIcon,
 } from '@gluestack-ui/themed';
+import { Menu, MenuIcon, MenuItem, MenuItemLabel } from '@gluestack-ui/themed';
 import { transformedCode } from '../../utils';
 import {
   AppProvider,

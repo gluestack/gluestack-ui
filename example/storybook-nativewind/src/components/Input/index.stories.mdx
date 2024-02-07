@@ -12,15 +12,18 @@ showHeader: true
 
 import { Meta } from '@storybook/addon-docs';
 
-<Meta title="ui/components/Input" />
+<Meta title="common/components/Input" />
 
+import { Input, InputField, InputIcon, InputSlot } from './Input';
 import {
-  Input,
-  InputField,
-  InputIcon,
-  InputSlot,
-} from './Input';
-import { Button, ButtonText, VStack, Text as GSText, Center, Box, FormControl } from '@gluestack-ui/themed';
+  Button,
+  ButtonText,
+  VStack,
+  Text as GSText,
+  Center,
+  Box,
+  FormControl,
+} from '@gluestack-ui/themed';
 import { Heading, useState } from '@gluestack-ui/themed';
 import { Icon, SearchIcon, EyeIcon, EyeOffIcon } from '@gluestack-ui/themed';
 import { transformedCode } from '../../utils';

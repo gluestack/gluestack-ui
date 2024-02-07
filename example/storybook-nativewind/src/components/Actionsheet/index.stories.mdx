@@ -14,7 +14,7 @@ tag: beta
 
 import { Meta } from '@storybook/addon-docs';
 
-<Meta title="ui/components/Actionsheet" />
+<Meta title="common/components/Actionsheet" />
 
 import {
   Actionsheet,
@@ -1105,7 +1105,6 @@ Default styling of the component can be found in the `components/actionsheet` fi
 
 All the components in `gluestack-ui` are unstyled by default. To customize your UI using the extendedTheme, please refer to this [link](https://gluestack.io/ui/docs/theme-configuration/customizing-theme). The import names of components serve as keys to customize each component.
 
-
 ### Examples
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
@@ -1113,11 +1112,11 @@ The Examples section provides visual representations of the different variants o
 #### Themed
 
 <Wrapper>
-<CodePreview
-  showComponentRenderer={true}
-  showArgsController={false}
-  metaData={{
-    code: `
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
       function App(){
         const [showActionsheet, setShowActionsheet] = React.useState(false);
         const handleClose = () => setShowActionsheet(!showActionsheet);
@@ -1159,32 +1158,32 @@ The Examples section provides visual representations of the different variants o
       transformCode: (code) => {
         return transformedCode(code, 'function', 'App');
       },
-    scope: {
-      Button, ButtonText,
-      Box,
-      Actionsheet,
-      ActionsheetBackdrop,
-      ActionsheetContent,
-      ActionsheetDragIndicator,
-      ActionsheetDragIndicatorWrapper,
-      ActionsheetItem,
-      ActionsheetItemText,
-      Wrapper
-    },
-    argsType: {},
-  }}
-/>
+      scope: {
+        Button,
+        ButtonText,
+        Box,
+        Actionsheet,
+        ActionsheetBackdrop,
+        ActionsheetContent,
+        ActionsheetDragIndicator,
+        ActionsheetDragIndicatorWrapper,
+        ActionsheetItem,
+        ActionsheetItemText,
+        Wrapper,
+      },
+      argsType: {},
+    }}
+  />
 </Wrapper>
-
 
 #### VirtualizedList
 
 <Wrapper>
-<CodePreview
-  showComponentRenderer={true}
-  showArgsController={false}
-  metaData={{
-    code: `
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
 function App(){
     const [showActionsheet, setShowActionsheet] = React.useState(false);
     const handleClose = () => setShowActionsheet(!showActionsheet);
@@ -1229,30 +1228,30 @@ function App(){
       transformCode: (code) => {
         return transformedCode(code, 'function', 'App');
       },
-    scope: {
-      Button, ButtonText,
-      Actionsheet,
+      scope: {
+        Button,
+        ButtonText,
+        Actionsheet,
         ActionsheetBackdrop,
-  ActionsheetContent,
-  ActionsheetDragIndicator,
-  ActionsheetDragIndicatorWrapper,
-  ActionsheetItem,
-  ActionsheetItemText
-    },
-    argsType: {},
-  }}
-/>
+        ActionsheetContent,
+        ActionsheetDragIndicator,
+        ActionsheetDragIndicatorWrapper,
+        ActionsheetItem,
+        ActionsheetItemText,
+      },
+      argsType: {},
+    }}
+  />
 </Wrapper>
-
 
 #### Keyboard handling
 
 <Wrapper>
-<CodePreview
-  showComponentRenderer={true}
-  showArgsController={false}
-  metaData={{
-    code: `
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
         function App(){
           const [showActionsheet, setShowActionsheet] = React.useState(false);
           const handleClose = () => setShowActionsheet(!showActionsheet);
@@ -1314,36 +1313,37 @@ function App(){
       transformCode: (code) => {
         return transformedCode(code, 'function', 'App');
       },
-    scope: {
-      Button, ButtonText,
-      Actionsheet,
+      scope: {
+        Button,
+        ButtonText,
+        Actionsheet,
         ActionsheetBackdrop,
-  ActionsheetContent,
-  ActionsheetDragIndicator,
-  ActionsheetDragIndicatorWrapper,
-  ActionsheetItem,
-  ActionsheetItemText,
-      VStack,
-      HStack,
-      Icon,
-      Box,
-      FormControl,
-      Input,
-      AddIcon,
-      Image,
-      Text,
-    },
-    argsType: {},
-  }}
-/>
+        ActionsheetContent,
+        ActionsheetDragIndicator,
+        ActionsheetDragIndicatorWrapper,
+        ActionsheetItem,
+        ActionsheetItemText,
+        VStack,
+        HStack,
+        Icon,
+        Box,
+        FormControl,
+        Input,
+        AddIcon,
+        Image,
+        Text,
+      },
+      argsType: {},
+    }}
+  />
 </Wrapper>
 
 <Wrapper>
-<CodePreview
-  showComponentRenderer={true}
-  showArgsController={false}
-  metaData={{
-    code: `
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
         function App(){
           const [showActionsheet, setShowActionsheet] = React.useState(false);
           const handleClose = () => setShowActionsheet(!showActionsheet);
@@ -1406,32 +1406,33 @@ function App(){
       transformCode: (code) => {
         return transformedCode(code, 'function', 'App');
       },
-    scope: {
-      Button, ButtonText,
-      Actionsheet,
-      VStack,
-      HStack,
-      Icon,
-      Box,
-      FormControl,
-      Input,
-      AddIcon,
-      Image,
-      Text,
-    },
-    argsType: {},
-  }}
-/>
+      scope: {
+        Button,
+        ButtonText,
+        Actionsheet,
+        VStack,
+        HStack,
+        Icon,
+        Box,
+        FormControl,
+        Input,
+        AddIcon,
+        Image,
+        Text,
+      },
+      argsType: {},
+    }}
+  />
 </Wrapper>
 
 #### FlatList
 
 <Wrapper>
-<CodePreview
-  showComponentRenderer={true}
-  showArgsController={false}
-  metaData={{
-    code: `
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
        function App(){
     const [showActionsheet, setShowActionsheet] = React.useState(false);
     const handleClose = () => setShowActionsheet(!showActionsheet);
@@ -1494,36 +1495,37 @@ function App(){
       transformCode: (code) => {
         return transformedCode(code, 'function', 'App');
       },
-    scope: {
-      Button, ButtonText,
-      Actionsheet,
+      scope: {
+        Button,
+        ButtonText,
+        Actionsheet,
         ActionsheetBackdrop,
-  ActionsheetContent,
-  ActionsheetDragIndicator,
-  ActionsheetDragIndicatorWrapper,
-  ActionsheetItem,
-  ActionsheetItemText,
-      VStack,
-      HStack,
-      Icon,
-      Box,
-      FormControl,
-      Input,
-      AddIcon,
-      Image,
-      Text,
-    },
-    argsType: {},
-  }}
-/>
+        ActionsheetContent,
+        ActionsheetDragIndicator,
+        ActionsheetDragIndicatorWrapper,
+        ActionsheetItem,
+        ActionsheetItemText,
+        VStack,
+        HStack,
+        Icon,
+        Box,
+        FormControl,
+        Input,
+        AddIcon,
+        Image,
+        Text,
+      },
+      argsType: {},
+    }}
+  />
 </Wrapper>
 
 <Wrapper>
-<CodePreview
-  showComponentRenderer={true}
-  showArgsController={false}
-  metaData={{
-    code: `
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
        function App(){
     const [showActionsheet, setShowActionsheet] = React.useState(false);
     const handleClose = () => setShowActionsheet(!showActionsheet);
@@ -1586,37 +1588,39 @@ function App(){
       transformCode: (code) => {
         return transformedCode(code, 'function', 'App');
       },
-    scope: {
-      Button, ButtonText,
-      Actionsheet,
+      scope: {
+        Button,
+        ButtonText,
+        Actionsheet,
         ActionsheetBackdrop,
-  ActionsheetContent,
-  ActionsheetDragIndicator,
-  ActionsheetDragIndicatorWrapper,
-  ActionsheetItem,
-  ActionsheetItemText,
-      VStack,
-      HStack,
-      Icon,
-      Box,
-      FormControl,
-      Input,
-      AddIcon,
-      Image,
-      Text,
-    },
-    argsType: {},
-  }}
-/>
+        ActionsheetContent,
+        ActionsheetDragIndicator,
+        ActionsheetDragIndicatorWrapper,
+        ActionsheetItem,
+        ActionsheetItemText,
+        VStack,
+        HStack,
+        Icon,
+        Box,
+        FormControl,
+        Input,
+        AddIcon,
+        Image,
+        Text,
+      },
+      argsType: {},
+    }}
+  />
 </Wrapper>
 
 #### SectionList
+
 <Wrapper>
-<CodePreview
-  showComponentRenderer={true}
-  showArgsController={false}
-  metaData={{
-    code: `
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
     function App(){
     const [showActionsheet, setShowActionsheet] = React.useState(false);
     const handleClose = () => setShowActionsheet(!showActionsheet);
@@ -1664,36 +1668,37 @@ function App(){
       transformCode: (code) => {
         return transformedCode(code, 'function', 'App');
       },
-    scope: {
-      Button, ButtonText,
-      Actionsheet,
+      scope: {
+        Button,
+        ButtonText,
+        Actionsheet,
         ActionsheetBackdrop,
-  ActionsheetContent,
-  ActionsheetDragIndicator,
-  ActionsheetDragIndicatorWrapper,
-  ActionsheetItem,
-  ActionsheetItemText,
-      VStack,
-      HStack,
-      Icon,
-      Box,
-      FormControl,
-      Input,
-      AddIcon,
-      Image,
-      Text,
-    },
-    argsType: {},
-  }}
-/>
+        ActionsheetContent,
+        ActionsheetDragIndicator,
+        ActionsheetDragIndicatorWrapper,
+        ActionsheetItem,
+        ActionsheetItemText,
+        VStack,
+        HStack,
+        Icon,
+        Box,
+        FormControl,
+        Input,
+        AddIcon,
+        Image,
+        Text,
+      },
+      argsType: {},
+    }}
+  />
 </Wrapper>
 
 <Wrapper>
-<CodePreview
-  showComponentRenderer={true}
-  showArgsController={false}
-  metaData={{
-    code: `
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
     function App(){
     const [showActionsheet, setShowActionsheet] = React.useState(false);
     const handleClose = () => setShowActionsheet(!showActionsheet);
@@ -1741,30 +1746,30 @@ function App(){
       transformCode: (code) => {
         return transformedCode(code, 'function', 'App');
       },
-    scope: {
-      Button, ButtonText,
-      Actionsheet,
+      scope: {
+        Button,
+        ButtonText,
+        Actionsheet,
         ActionsheetBackdrop,
-  ActionsheetContent,
-  ActionsheetDragIndicator,
-  ActionsheetDragIndicatorWrapper,
-  ActionsheetItem,
-  ActionsheetItemText,
-      VStack,
-      HStack,
-      Icon,
-      Box,
-      FormControl,
-      Input,
-      AddIcon,
-      Image,
-      Text,
-    },
-    argsType: {},
-  }}
-/>
+        ActionsheetContent,
+        ActionsheetDragIndicator,
+        ActionsheetDragIndicatorWrapper,
+        ActionsheetItem,
+        ActionsheetItemText,
+        VStack,
+        HStack,
+        Icon,
+        Box,
+        FormControl,
+        Input,
+        AddIcon,
+        Image,
+        Text,
+      },
+      argsType: {},
+    }}
+  />
 </Wrapper>
-
 
 ### Customizing the Actionsheet
 

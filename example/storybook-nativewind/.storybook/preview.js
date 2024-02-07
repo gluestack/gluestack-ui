@@ -3,13 +3,12 @@ import { DocsContainer } from '@storybook/addon-docs/blocks';
 import { OverlayProvider } from '@gluestack-ui/overlay';
 import { ToastProvider } from '@gluestack-ui/toast';
 
-import { Provider } from '../src/components-example/nativewind/Provider';
+import { GluestackUIProvider as GluestackUIWithNativewindProvider } from '../src/components-example/nativewind/GluestackUIProvider';
 
 // global css getting resolved from babel.config.js
 import 'global.css';
 
-import { Provider as GluestackUIProvider } from '../src/components-example/themed/Provider';
-import { config } from '../src/components-example/themed/Provider/config';
+import { GluestackUIProvider as GluestackUIWithGluestackStyleProvider } from '../src/components-example/themed/GluestackUIProvider';
 
 import gstheme from './gstheme';
 import { themes } from '@storybook/theming';
@@ -67,8 +66,8 @@ export const decorators = [
     }, [getColorMode()]);
 
     return (
-      <GluestackUIProvider config={config} colorMode={colorMode}>
-        <Provider mode={colorMode}>
+      <GluestackUIWithGluestackStyleProvider colorMode={colorMode}>
+        <GluestackUIWithNativewindProvider mode={colorMode}>
           <OverlayProvider style={{ flex: 1 }}>
             <ToastProvider>
               <View
@@ -82,8 +81,8 @@ export const decorators = [
               </View>
             </ToastProvider>
           </OverlayProvider>
-        </Provider>
-      </GluestackUIProvider>
+        </GluestackUIWithNativewindProvider>
+      </GluestackUIWithGluestackStyleProvider>
     );
   },
 ];
@@ -94,15 +93,15 @@ addParameters({
     inlineStories: false,
     container: ({ children, context }) => {
       return (
-        <GluestackUIProvider config={config}>
-          <Provider>
+        <GluestackUIWithGluestackStyleProvider>
+          <GluestackUIWithNativewindProvider>
             <DocsContainer context={context}>
               <OverlayProvider style={{ flex: 1 }}>
                 <ToastProvider>{children}</ToastProvider>
               </OverlayProvider>
             </DocsContainer>
-          </Provider>
-        </GluestackUIProvider>
+          </GluestackUIWithNativewindProvider>
+        </GluestackUIWithGluestackStyleProvider>
       );
     },
   },

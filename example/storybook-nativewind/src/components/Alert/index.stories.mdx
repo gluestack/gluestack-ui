@@ -12,22 +12,18 @@ showHeader: true
 
 import { Meta } from '@storybook/addon-docs';
 
-<Meta title="ui/components/Alert" />
+<Meta title="common/components/Alert" />
 
+import { Alert, AlertIcon, AlertText } from './Alert';
 import {
-  Alert,
-  AlertIcon,
-  AlertText,
-} from './Alert';
-import {  
   CheckCircleIcon,
   CloseCircleIcon,
-  Icon, 
-  BellIcon, 
-  AlertCircleIcon, 
-  Center, 
-  VStack, 
-  InfoIcon 
+  Icon,
+  BellIcon,
+  AlertCircleIcon,
+  Center,
+  VStack,
+  InfoIcon,
 } from '@gluestack-ui/themed';
 
 import { HStack } from '@gluestack-ui/themed';
@@ -273,7 +269,6 @@ An example of an alert component with a heading, which further contains another 
 
 All the components in `gluestack-ui` are unstyled by default. To customize your UI using the extendedTheme, please refer to this [link](https://gluestack.io/ui/docs/theme-configuration/customizing-theme). The import names of components serve as keys to customize each component.
 
-
 ### Advanced
 
 We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
@@ -303,7 +298,6 @@ export default () => (
   </Alert>
 );
 ```
-
 
 ## Spec Doc
 

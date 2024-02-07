@@ -1,10 +1,10 @@
 import React from 'react';
 import { Box, Center } from '@gluestack-ui/themed';
-import { Provider } from './Provider';
+import { GluestackUIProvider } from './GluestackUIProvider';
 
 const Wrapper = ({ children, ...props }: any) => {
   return (
-    <Provider>
+    <GluestackUIProvider>
       <Box
         sx={{
           _ios: {
@@ -15,7 +15,7 @@ const Wrapper = ({ children, ...props }: any) => {
       >
         <Center height="100%">{children}</Center>
       </Box>
-    </Provider>
+    </GluestackUIProvider>
   );
 };
 
