@@ -12,7 +12,7 @@ showHeader: true
 
 import { Meta } from '@storybook/addon-docs';
 
-<Meta title="common/components/Modal" />
+<Meta title="with-gluestack-style/components/Overlay/Modal" />
 
 import {
   CloseIcon,
@@ -56,7 +56,7 @@ import {
 
 import Wrapper from '../../components-example/themed/Wrapper';
 
-This is an illustration of a **Themed Modal** component with default configuration.
+This is an illustration of a **Modal** component with default configuration.
 
 <AppProvider>
   <CodePreview
@@ -150,19 +150,31 @@ This is an illustration of a **Themed Modal** component with default configurati
 
 <br />
 
-## API Reference
+## Installation
 
-### Import
+### Step 1: Install the following dependencies:
+
+```bash
+
+npm i @gluestack-ui/modal
+
+```
+
+### Step 2: Copy and paste the following code into your project.
+
+```jsx
+%%-- File: components-example/themed/Modal/index.tsx --%%
+```
+
+### Step 3: Update the import paths to match your project setup.
+
+## API Reference
 
 To use this component in your project, include the following import statement in your file.
 
 ```jsx
-import { Modal } from '@gluestack-ui/themed';
+import { Modal } from '@/components/Modal';
 ```
-
-### Anatomy
-
-The structure provided below can help you identify and understand a Modal component's various parts.
 
 ```jsx
 export default () => (
@@ -516,10 +528,6 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
 
 We have outlined the various features that ensure the Modal component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards. It uses React Native ARIA [@react-native-aria/focus](https://react-native-aria.geekyants.com/docs/) which follows the [Dialog Modal WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/).
 
-## Themed
-
-The themed version of the component is a pre-styled version of the component, which allows you to quickly integrate the component into your project. The component's design and functionality are fully defined, allowing you to focus on the more important aspects of your project. To know more about Themed Library please visit this [link](https://gluestack.io/ui/docs/core-concepts/themed-library).
-
 ### Props
 
 Modal component is created using View component from react-native. It extends all the props supported by [React Native View](https://reactnative.dev/docs/view#props), [utility props](/ui/docs/styling/utility-and-sx-props) and the props mentioned below.
@@ -562,331 +570,6 @@ Modal component is created using View component from react-native. It extends al
 </AppProvider>
 
 > Note: These props are exclusively applicable when utilizing the default configuration of gluestack-ui/config. If you are using a custom theme, these props may not be available.
-
-### Examples
-
-The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
-
-#### Multiple Modals
-
-A user interface featuring multiple modal components that allow for layered interaction and context-specific information display.
-
-<AppProvider>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
-        function App() {
-          const [showModal, setShowModal] = useState(false);
-          const [showModal2, setShowModal2] = useState(false);
-          const [showModal3, setShowModal3] = useState(false);
-          return (
-            <Center>
-              <Center h={400}>
-                <Button onPress={() => setShowModal(true)}>
-                  <ButtonText>Forgot password?</ButtonText>
-                </Button>
-              </Center>
-              <Modal
-                isOpen={showModal}
-                onClose={() => {
-                  setShowModal(false);
-                }}
-              >
-                <ModalBackdrop />
-                <ModalContent>
-                  <ModalHeader borderBottomWidth='$0'>
-                  <VStack space='sm'>
-                    <Heading size='lg'>Forgot password?</Heading>
-                    <Text size='sm'>No worries, we’ll send you reset instructions</Text>
-                    </VStack>
-                  </ModalHeader>
-                  <ModalBody>
-                    <Input>
-                      <InputField placeholder="Enter your email" />
-                    </Input>
-                  </ModalBody>
-                  <ModalFooter borderTopWidth='$0'>
-                    <VStack space='lg' w='$full'>
-                      <Button
-                        onPress={() => {
-                          setShowModal2(true);
-                        }}
-                      >
-                        <ButtonText>Submit</ButtonText>
-                      </Button>
-                      <HStack>
-                        <Button
-                          variant='link'
-                          size='sm'
-                          onPress={() => {
-                            setShowModal(false);
-                          }}
-                        >
-                          <ButtonIcon as={ArrowLeftIcon}/>
-                          <ButtonText >Back to login</ButtonText>
-                        </Button>
-                      </HStack>
-                    </VStack>
-                  </ModalFooter>
-                </ModalContent>
-              </Modal>
-              <Modal
-                isOpen={showModal2}
-                onClose={() => {
-                  setShowModal2(false);
-                }}
-              >
-                <ModalBackdrop />
-                <ModalContent>
-                  <ModalHeader borderBottomWidth='$0'>
-                  <VStack space='sm'>
-                    <Heading size='lg'>Reset password</Heading>
-                    <Text size='sm'>A verification code has been sent to you. Enter code below.</Text>
-                    </VStack>
-                  </ModalHeader>
-                  <ModalBody>
-                    <Input>
-                      <InputField placeholder="Enter verification code" />
-                    </Input>
-                  </ModalBody>
-                  <ModalFooter borderTopWidth='$0'>
-                  <VStack space='lg' w='$full'>
-                    <Button
-                      onPress={() => {
-                        setShowModal3(true);
-                      }}
-                    >
-                      <ButtonText>Continue</ButtonText>
-                    </Button>
-                    <Text size='sm'>Didn’t receive the email?
-                      <Link ml='$1'><Link.Text size='sm' 
-                      $dark-color='$textDark200'
-                      color='$textLight700'
-                      fontWeight='$semibold'>Click to resend</Link.Text></Link>
-                    </Text>
-                    <HStack space='xs' alignItems='center'>
-                      <Button
-                        variant='link'
-                        size='sm'
-                        onPress={() => {
-                          setShowModal2(false);
-                        }}
-                      >
-                        <ButtonIcon as={ArrowLeftIcon}/>
-                        <ButtonText >Back to login</ButtonText>
-                      </Button>
-                    </HStack>
-                    </VStack>
-                  </ModalFooter>
-                </ModalContent>
-              </Modal>
-              <Modal
-                isOpen={showModal3}
-                onClose={() => {
-                  setShowModal3(false);
-                }}
-              >
-                <ModalBackdrop />
-                <ModalContent>
-                  <ModalHeader borderBottomWidth='$0'>
-                  <VStack space='sm'>
-                    <Heading size='lg'>Set new password</Heading>
-                    <Text size='sm'>Almost done. Enter your new password and you are all set.</Text>
-                    </VStack>
-                  </ModalHeader>
-                  <ModalBody>
-                  <VStack space='xl'>
-                    <Input>
-                      <InputField placeholder="New password" />
-                    </Input>
-                    <Input>
-                      <InputField placeholder="Confirm new password" />
-                    </Input>
-                    </VStack>
-                  </ModalBody>
-                  <ModalFooter borderTopWidth='$0'>
-                  <VStack space='lg' w='$full'>
-                    <Button
-                      onPress={() => {
-                        setShowModal(false);
-                        setShowModal2(false);
-                        setShowModal3(false);
-                      }}
-                    >
-                      <ButtonText>Submit</ButtonText>
-                    </Button>
-                    <HStack space='xs' alignItems='center'>
-                      <Button
-                        variant='link'
-                        size='sm'
-                        onPress={() => {
-                          setShowModal3(false);
-                        }}
-                      >
-                        <ButtonIcon as={ArrowLeftIcon}/>
-                        <ButtonText >Back to login</ButtonText>
-                      </Button>
-                    </HStack>
-                    </VStack>
-                  </ModalFooter>
-                </ModalContent>
-              </Modal>
-            </Center>
-          );
-        }
-      `,
-      transformCode: (code) => {
-        return transformedCode(code, 'function', 'App');
-      },
-      scope: {
-        Modal,
-        ModalBackdrop,
-        ModalContent,
-        ModalHeader,
-        ModalCloseButton,
-        ModalBody,
-        ModalFooter,
-        Wrapper,
-        useState,
-        Button,
-        ButtonText,
-        ButtonIcon,
-        Text: ModalText,
-        Center,
-        CloseIcon,
-        VStack,
-        HStack,
-        Heading,
-        Icon,
-        Input,
-        InputField,
-        Link,
-        ArrowLeftIcon,
-      },
-      argsType: {},
-    }}
-  />
-</AppProvider>
-
-### Modal sizes
-
-A versatile modal component offering different sizes to accommodate various content types and optimize user experience.
-
-<AppProvider>
-  <CodePreview
-    showArgsController={false}
-    metaData={{
-      code: `
-      function App(){
-        const [showModal, setShowModal] = React.useState(false);
-        const [size, setSize] = React.useState(undefined);
-        const sizes = ['xs', 'sm', 'md', 'lg', 'full']
-        const ref = React.useRef(null);
-        const handleClick = (currentSize) => {
-          setShowModal(true)
-          setSize(currentSize)
-        }
-        return (
-            <Center h={400}>
-            <VStack space='md'>
-            {sizes.map((currentSize) => {
-                return <Button key={currentSize} onPress={() => handleClick(currentSize)}>
-                  <ButtonText>{currentSize}</ButtonText>
-                </Button>
-            })}
-                </VStack>
-                <Modal
-                  isOpen={showModal}
-                  onClose={() => {
-                    setShowModal(false);
-                  }}
-                size={size}
-                  finalFocusRef={ref}
-                >
-                  <ModalBackdrop />
-                  <ModalContent>
-                    <ModalHeader>
-                      <Heading size='lg'>Delete Folder</Heading>
-                      <ModalCloseButton>
-                        <Icon as={CloseIcon} />
-                      </ModalCloseButton>
-                    </ModalHeader>
-                    <ModalBody>
-                      <Text size="sm">
-                      Whoa, slow down there! This modal is like a red light at an intersection, reminding you to stop and think before you proceed. Is deleting this folder the right choice?
-                      </Text>
-                    </ModalBody>
-                    <ModalFooter>
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        action="secondary"
-                        mr="$3"
-                        onPress={() => {
-                          setShowModal(false);
-                        }}
-                      >
-                        <ButtonText>Cancel</ButtonText>
-                      </Button>
-                      <Button
-                        size="sm"
-                        action="primary"
-                        borderWidth='$0'
-                        onPress={() => {
-                          setShowModal(false);
-                        }}
-                        bg="$error700"
-                        $hover-bg="$error800"
-                        $active-bg="$error900"
-                      >
-                        <ButtonText>Explore</ButtonText>
-                      </Button>
-                    </ModalFooter>
-                  </ModalContent>
-                </Modal>
-              </Center>
-          );
-        }
-      `,
-      transformCode: (code) => {
-        return transformedCode(code, 'function', 'App');
-      },
-      scope: {
-        Wrapper,
-        Modal,
-        ModalBackdrop,
-        ModalContent,
-        ModalHeader,
-        ModalCloseButton,
-        ModalBody,
-        ModalFooter,
-        useState,
-        CloseIcon,
-        Button,
-        ButtonText,
-        Heading,
-        Center,
-        Text: ModalText,
-        Icon,
-        VStack,
-        HStack,
-      },
-      argsType: {
-        size: {
-          control: 'select',
-          options: ['xs', 'sm', 'md', 'lg', 'full'],
-          default: 'md',
-        },
-      },
-    }}
-  />
-</AppProvider>
-
-## Unstyled
-
-All the components in `gluestack-ui` are unstyled by default. To customize your UI using the extendedTheme, please refer to this [link](https://gluestack.io/ui/docs/theme-configuration/customizing-theme). The import names of components serve as keys to customize each component.
 
 ## Spec Doc
 
