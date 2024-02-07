@@ -32,7 +32,23 @@ If you wish to install `gluestack-ui` into your existing project, you can procee
 
 To setup Expo project using `NativeWind` follow [NativeWind documentation](https://www.nativewind.dev/v4/getting-started/react-native).
 
-### Step 2: Update Tailwind configuration
+### Step 2: Install Dependencies
+
+Install the dependencies of gluestack-ui in your project. This can be done using the following command:
+
+```bash
+yarn add @gluestack-ui/nativewind-utils
+
+```
+
+OR
+
+```bash
+npm i @gluestack-ui/nativewind-utils
+
+```
+
+### Step 3: Update Tailwind configuration
 
 Update `tailwind.config.js` file with the following code
 
@@ -203,7 +219,7 @@ module.exports = {
 };
 ```
 
-### Step 3: Configure components path
+### Step 4: Configure components path
 
 Create a `components/` folder inside `src` folder and add path in `tsconfig.json`
 
@@ -215,7 +231,7 @@ Create a `components/` folder inside `src` folder and add path in `tsconfig.json
 
 ```
 
-### Step 4: Configure GluestackUIProvider
+### Step 5: Configure GluestackUIProvider
 
 To add config, create a `GluestackUIProvider/config.ts` file in your `components/` folder and paste the following code.
 
@@ -229,7 +245,7 @@ To add `GluestackUIProvider`, create a `GluestackUIProvider/index.tsx` file insi
 %%-- File: components-example/nativewind/GluestackUIProvider/index.tsx --%%
 ```
 
-### Step 5: Usage
+### Step 6: Usage
 
 Wrap your app with `GluestackUIProvider` in `App.tsx`.
 
