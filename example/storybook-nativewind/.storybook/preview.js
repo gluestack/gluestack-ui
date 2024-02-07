@@ -3,13 +3,13 @@ import { DocsContainer } from '@storybook/addon-docs/blocks';
 import { OverlayProvider } from '@gluestack-ui/overlay';
 import { ToastProvider } from '@gluestack-ui/toast';
 
-import { Provider } from '../src/components/nativewind/Provider';
+import { Provider } from '../src/components-example/nativewind/Provider';
 
 // global css getting resolved from babel.config.js
 import 'global.css';
 
-import { Provider as GluestackUIProvider } from '../src/components/themed/Provider';
-import { config } from '../src/components/themed/Provider/config';
+import { Provider as GluestackUIProvider } from '../src/components-example/themed/Provider';
+import { config } from '../src/components-example/themed/Provider/config';
 
 import gstheme from './gstheme';
 import { themes } from '@storybook/theming';
@@ -67,22 +67,23 @@ export const decorators = [
     }, [getColorMode()]);
 
     return (
-      // <GluestackUIProvider config={config} colorMode={colorMode}>
-      <Provider mode={colorMode}>
-        <OverlayProvider style={{ flex: 1 }}>
-          <ToastProvider>
-            <View
-              style={{
-                flex: 1,
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}
-            >
-              <Story />
-            </View>
-          </ToastProvider>
-        </OverlayProvider>
-      </Provider>
+      <GluestackUIProvider config={config} colorMode={colorMode}>
+        <Provider mode={colorMode}>
+          <OverlayProvider style={{ flex: 1 }}>
+            <ToastProvider>
+              <View
+                style={{
+                  flex: 1,
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}
+              >
+                <Story />
+              </View>
+            </ToastProvider>
+          </OverlayProvider>
+        </Provider>
+      </GluestackUIProvider>
     );
   },
 ];
