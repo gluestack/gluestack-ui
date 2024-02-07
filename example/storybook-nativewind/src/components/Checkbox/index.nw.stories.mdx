@@ -12,7 +12,7 @@ showHeader: true
 
 import { Meta } from '@storybook/addon-docs';
 
-<Meta title="common/components/Checkbox" />
+<Meta title="with-nativewind/components/Forms/Checkbox" />
 
 import {
   Checkbox,
@@ -40,9 +40,9 @@ import {
   InlineCode,
 } from '@gluestack/design-system';
 
-import Wrapper from '../../components-example/themed/Wrapper';
+import Wrapper from '../../components-example/nativewind/Wrapper';
 
-This is an illustration of a **Themed Checkbox** component with default configuration.
+This is an illustration of a **Checkbox** component with default configuration.
 
 <AppProvider>
   <CodePreview
@@ -90,19 +90,31 @@ This is an illustration of a **Themed Checkbox** component with default configur
 
 <br />
 
-## API Reference
+## Installation
 
-### Import
+### Step 1: Install the following dependencies:
+
+```bash
+
+npm i @gluestack-ui/checkbox
+
+```
+
+### Step 2: Copy and paste the following code into your project.
+
+```jsx
+%%-- File: components-example/nativewind/Checkbox/index.tsx --%%
+```
+
+### Step 3: Update the import paths to match your project setup.
+
+## API Reference
 
 To use this component in your project, include the following import statement in your file.
 
-```bash
-import { Checkbox } from '@gluestack-ui/themed';
+```jsx
+import { Checkbox } from '@/components/Checkbox';
 ```
-
-### Anatomy
-
-The structure provided below can help you identify and understand a Checkbox component's various parts.
 
 ```jsx
 export default () => (
@@ -516,10 +528,6 @@ We have outlined the various features that ensure the Checkbox component is acce
 - In disabled state, `aria-hidden` will be passed to make radio input not focusable.
 - In required state, `aria-required` will be passed to indicate that the radio input is required.
 
-## Themed
-
-The themed version of the component is a pre-styled version of the component, which allows you to quickly integrate the component into your project. The component's design and functionality are fully defined, allowing you to focus on the more important aspects of your project. To know more about Themed Library please visit this [link](https://gluestack.io/ui/docs/core-concepts/themed-library).
-
 ### Props
 
 Checkbox component is created using Pressable component from react-native. It extends all the props supported by [React Native Pressable](https://reactnative.dev/docs/pressable#props), [utility props](/ui/docs/styling/utility-and-sx-props) and the props mentioned below.
@@ -562,536 +570,6 @@ Checkbox component is created using Pressable component from react-native. It ex
 </AppProvider>
 
 > Note: These props are exclusively applicable when utilizing the default configuration of gluestack-ui/config. If you are using a custom theme, these props may not be available.
-
-### Examples
-
-The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
-
-#### Multiple Checkbox
-
-Checkbox provide a mutually exclusive selection mechanism, allowing users to choose a multiple option from a set of related choices.
-
-<AppProvider>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
-        function App(){
-            const [values, setValues] = useState(["Eng"]);
-           return (
-            <CheckboxGroup value={values}  onChange={(keys) => {
-        setValues(keys)
-      }}>
-                <VStack space="3xl">
-                  <Checkbox   value="Eng">
-                        <CheckboxIndicator mr="$2">
-                          <CheckboxIcon as={CheckIcon}/>
-                        </CheckboxIndicator>
-                        <CheckboxLabel>Framer</CheckboxLabel>
-                  </Checkbox>
-                  <Checkbox value="invison">
-                      <CheckboxIndicator mr="$2">
-                        <CheckboxIcon as={CheckIcon}/>
-                      </CheckboxIndicator>
-                      <CheckboxLabel>Invision Studio</CheckboxLabel>
-                  </Checkbox>
-                  <Checkbox  value="adobe">
-                    <CheckboxIndicator mr="$2">
-                      <CheckboxIcon as={CheckIcon}/>
-                    </CheckboxIndicator>
-                    <CheckboxLabel>Adobe XD</CheckboxLabel>
-                  </Checkbox>
-              </VStack>
-              </CheckboxGroup>
-           )
-        }
-      `,
-      transformCode: (code) => {
-        return transformedCode(code, 'function', 'App');
-      },
-      scope: {
-        Checkbox,
-        CheckboxGroup,
-        CheckboxIndicator,
-        CheckboxIcon,
-        CheckboxLabel,
-        Wrapper,
-        Center,
-        CheckIcon,
-        Icon,
-        VStack,
-        useState,
-      },
-      argsType: {},
-    }}
-  />
-</AppProvider>
-
-#### Horizontal
-
-A horizontal component incorporating a checkbox allows for intuitive and space-efficient selection of multiple options within a linear layout.
-
-<AppProvider>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
-          function App(){
-             const [values, setValues] = useState(["Illustration"]);
-           return (
-             <CheckboxGroup value={values}  onChange={(keys) => {
-        setValues(keys)
-      }}>
-                <HStack space="2xl">
-                  <Checkbox value="Illustration">
-                    <CheckboxIndicator mr="$2">
-                      <CheckboxIcon as={CheckIcon}/>
-                    </CheckboxIndicator>
-                    <CheckboxLabel>Illustration</CheckboxLabel>
-                  </Checkbox>
-                  <Checkbox value="Animation">
-                    <CheckboxIndicator  mr="$2">
-                      <CheckboxIcon as={CheckIcon}/>
-                    </CheckboxIndicator>
-                    <CheckboxLabel>Animation</CheckboxLabel>
-                  </Checkbox>
-                  <Checkbox value="Typography">
-                    <CheckboxIndicator mr="$2">
-                      <CheckboxIcon as={CheckIcon}/>
-                    </CheckboxIndicator>
-                    <CheckboxLabel>Typography</CheckboxLabel>
-                  </Checkbox>
-               </HStack>
-                 </CheckboxGroup>
-           )
-        }
-`,
-      transformCode: (code) => {
-        return transformedCode(code, 'function', 'App');
-      },
-      scope: {
-        Wrapper,
-        CheckIcon,
-        Icon,
-        Checkbox,
-        CheckboxGroup,
-        CheckboxIndicator,
-        CheckboxIcon,
-        CheckboxLabel,
-        HStack,
-        useState,
-      },
-      argsType: {},
-    }}
-  />
-</AppProvider>
-
-#### With help text
-
-A checkbox component with help text provides informative guidance alongside selectable options, ensuring clarity and ease of use.
-
-<AppProvider>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
-        function App(){
-             const [values, setValues] = useState(["Design"]);
-           return (
-             <CheckboxGroup value={values}  onChange={(keys) => {
-        setValues(keys)
-      }}>
-               <VStack space="2xl">
-            <Box>
-              <Checkbox value="Design">
-                <CheckboxIndicator mr="$2">
-                   <CheckboxIcon as={CheckIcon}/>
-                </CheckboxIndicator>
-                <CheckboxLabel >Design</CheckboxLabel>
-              </Checkbox>
-              <Text size="sm" ml="$7" >Subscribe to updates from the Design Feed</Text>
-            </Box>
-            <Box>
-              <Checkbox value="Marketing">
-                <CheckboxIndicator mr="$2">
-                  <CheckboxIcon as={CheckIcon}/>
-                </CheckboxIndicator>
-                <CheckboxLabel>Marketing</CheckboxLabel>
-              </Checkbox>
-              <Text size="sm" ml="$7" >Subscribe to updates from the Marketing Feed</Text>
-             </Box>
-        </VStack>
-                 </CheckboxGroup>
-           )
-        }
-`,
-      transformCode: (code) => {
-        return transformedCode(code, 'function', 'App');
-      },
-      scope: {
-        Wrapper,
-        CheckIcon,
-        Icon,
-        Checkbox,
-        CheckboxGroup,
-        CheckboxIndicator,
-        CheckboxIcon,
-        CheckboxLabel,
-        HStack,
-        VStack,
-        Text,
-        Box,
-        useState,
-      },
-      argsType: {},
-    }}
-  />
-</AppProvider>
-
-#### Form Control
-
-A checkbox component integrated with form control enhances the user experience by enabling easy selection and submission of options within a structured input context.
-
-<AppProvider>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
-       <FormControl>
-           <VStack space="sm">
-              <Heading size="sm" >Sign up for newsletters</Heading>
-              <Checkbox >
-                  <CheckboxIndicator mr="$2">
-                     <CheckboxIcon as={CheckIcon}/>
-                  </CheckboxIndicator>
-                <CheckboxLabel>Daily Bits</CheckboxLabel>
-              </Checkbox>
-              <Checkbox >
-                <CheckboxIndicator mr="$2">
-                  <CheckboxIcon as={CheckIcon}/>
-               </CheckboxIndicator>
-                 <CheckboxLabel>Event Updates</CheckboxLabel>
-              </Checkbox>
-              <Checkbox >
-                <CheckboxIndicator mr="$2">
-                  <CheckboxIcon as={CheckIcon}/>
-                </CheckboxIndicator>
-                 <CheckboxLabel>Sponsorship</CheckboxLabel>
-              </Checkbox>
-              <Text size="sm">Subscribe to newsletters for updates</Text>
-           </VStack>
-            </FormControl>
-        `,
-      transformCode: (code) => {
-        return transformedCode(code);
-      },
-      scope: {
-        Checkbox,
-        CheckboxGroup,
-        CheckboxIndicator,
-        CheckboxIcon,
-        CheckboxLabel,
-        Wrapper,
-        Center,
-        CheckIcon,
-        Icon,
-        Text,
-        VStack,
-        Heading,
-        FormControl,
-      },
-      argsType: {},
-    }}
-  />
-</AppProvider>
-
-#### Label left
-
-A checkbox component with Label left configuration aligns the label to the left, facilitating clear association between the option and its corresponding checkbox.
-
-<AppProvider>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
-       function App(){
-             const [values, setValues] = useState(["Jane"]);
-           return (
-             <CheckboxGroup value={values}  onChange={(keys) => {
-        setValues(keys)
-      }}>
-     <VStack space="lg" w='$40'>
-            <Checkbox justifyContent="space-between" value="Jane">
-              <CheckboxLabel >Jane Cooper</CheckboxLabel>
-                <CheckboxIndicator>
-                   <CheckboxIcon as={CheckIcon}/>
-                </CheckboxIndicator>
-            </Checkbox>
-            <Checkbox value="Wade" justifyContent="space-between">
-                <CheckboxLabel >Wade Warren</CheckboxLabel>
-                  <CheckboxIndicator>
-                      <CheckboxIcon as={CheckIcon} />
-                  </CheckboxIndicator>
-            </Checkbox>
-            <Checkbox justifyContent="space-between" value="Robert">
-              <CheckboxLabel >Robert Fox</CheckboxLabel>
-                <CheckboxIndicator>
-                  <CheckboxIcon as={CheckIcon}/>
-                </CheckboxIndicator>
-            </Checkbox>
-          </VStack>
-                 </CheckboxGroup>
-           )
-        }`,
-      transformCode: (code) => {
-        return transformedCode(code, 'function', 'App');
-      },
-      scope: {
-        Checkbox,
-        CheckboxGroup,
-        CheckboxIndicator,
-        CheckboxIcon,
-        CheckboxLabel,
-        Wrapper,
-        Center,
-        CheckIcon,
-        Icon,
-        VStack,
-        HStack,
-        useState,
-      },
-      argsType: {},
-    }}
-  />
-</AppProvider>
-
-#### Controlled
-
-A controlled component architecture incorporates a checkbox component, allowing for precise management of its state and behavior through explicit control mechanisms.
-
-<AppProvider>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
-      function App() {
-         const [values, setValues] = React.useState(['UX Research']);
-        return (
-          <CheckboxGroup value={values}  onChange={(keys)=>{
-            setValues(keys);
-          }}>
-           <VStack space="md">
-                  <Checkbox  value="UX Research">
-                    <CheckboxIndicator mr="$2">
-                      <CheckboxIcon as={CheckIcon}/>
-                    </CheckboxIndicator>
-                  <CheckboxLabel>UX Research</CheckboxLabel>
-                </Checkbox>
-                 <Checkbox  value="Software">
-                    <CheckboxIndicator mr="$2">
-                      <CheckboxIcon as={CheckIcon}/>
-                    </CheckboxIndicator>
-                  <CheckboxLabel>Software Development</CheckboxLabel>
-                </Checkbox>
-            </VStack>
-          </CheckboxGroup>
-        )
-      }
-      `,
-      transformCode: (code) => {
-        return transformedCode(code, 'function', 'App');
-      },
-      scope: {
-        Wrapper,
-        CheckIcon,
-        Icon,
-        Checkbox,
-        CheckboxGroup,
-        CheckboxIndicator,
-        CheckboxIcon,
-        CheckboxLabel,
-        useState,
-        Center,
-        VStack,
-      },
-      argsType: {},
-    }}
-  />
-</AppProvider>
-
-#### Uncontrolled
-
-An uncontrolled component utilizes a checkbox component, providing a simpler implementation where the checkbox state is managed internally, without explicit control from external sources.
-
-<AppProvider>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
-function App() {
-       const radioRef = useRef(null);
-        const handleCheckboxChange = (e) => {
-            e.preventDefault();
-            const checkboxValue = radioRef.current.checked;
-          };
-        return (
-          <CheckboxGroup  ref={radioRef} >
-          <VStack space="md">
-                  <Checkbox   onChange={handleCheckboxChange}  value="Apartments">
-                    <CheckboxIndicator   mr="$2">
-                        <CheckboxIcon as={CheckIcon}/>
-                    </CheckboxIndicator>
-                     <CheckboxLabel>Apartments</CheckboxLabel>
-                  </Checkbox>
-                   <Checkbox   onChange={handleCheckboxChange}  value="Residents">
-                    <CheckboxIndicator  mr="$2">
-                        <CheckboxIcon as={CheckIcon}/>
-                    </CheckboxIndicator>
-                     <CheckboxLabel>Residents</CheckboxLabel>
-                  </Checkbox>
-            </VStack>
-          </CheckboxGroup>
-               )
-        }
-        `,
-      transformCode: (code) => {
-        return transformedCode(code, 'function', 'App');
-      },
-      scope: {
-        Wrapper,
-        CheckIcon,
-        Icon,
-        Checkbox,
-        CheckboxGroup,
-        CheckboxIndicator,
-        CheckboxIcon,
-        CheckboxLabel,
-        useRef,
-        Center,
-        VStack,
-      },
-      argsType: {},
-    }}
-  />
-</AppProvider>
-
-#### Checkbox group
-
-The checkbox group component allows users to group checkbox and display them in a horizontal or vertical row for better visual representation and functionality.
-
-<AppProvider>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
-function CheckboxExample(){
-  const [values, setValues] = React.useState([]);
-  return (
-      <Center>
-        <CheckboxGroup
-          value={values}
-          onChange={setValues}
-        >
-          <VStack space="sm">
-            <Checkbox
-            isDisabled={true}
-              value="Label 1"
-            >
-              <CheckboxIndicator mr="$2">
-                <CheckboxIcon as={CheckIcon}/>
-              </CheckboxIndicator>
-              <CheckboxLabel>Label 1</CheckboxLabel>
-            </Checkbox>
-            <Checkbox
-              value="Label 2"
-            >
-              <CheckboxIndicator mr="$2">
-                <CheckboxIcon as={CheckIcon}/>
-              </CheckboxIndicator>
-              <CheckboxLabel>Label 2</CheckboxLabel>
-            </Checkbox>
-          </VStack>
-        </CheckboxGroup>
-      </Center>
-  );
-};
-`,
-      transformCode: (code) => {
-        return transformedCode(code, 'function', 'CheckboxExample');
-      },
-      scope: {
-        Checkbox,
-        CheckboxGroup,
-        CheckboxIndicator,
-        CheckboxIcon,
-        CheckboxLabel,
-        Wrapper,
-        Center,
-        CheckIcon,
-        VStack,
-      },
-      argsType: {},
-    }}
-  />
-</AppProvider>
-
-## Unstyled
-
-All the components in `gluestack-ui` are unstyled by default. To customize your UI using the extendedTheme, please refer to this [link](https://gluestack.io/ui/docs/theme-configuration/customizing-theme). The import names of components serve as keys to customize each component.
-
-<!--
-### Customizing the Checkbox
-
-We have a function called `createCheckbox` which can be used to create a custom checkbox component. This function takes in a configuration object which contains the styled components that you want to use for the checkbox. You can refer [gluestack.io/style](/style/docs/getting-started/styled) on how to use styled components.
-
-#### Usage
-
-Default styling of all these components can be found in the `components/core/checkbox` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/main/packages/themed/src/components/Checkbox) of the styled `Checkbox` components.
-
-```jsx
-// import the styles
-import {
-  Root,
-  Indicator,
-  Icon,
-  Label,
-  Group,
-} from '../components/core/checkbox/styled-components';
-
-// import the createCheckbox function
-import { createCheckbox } from '@gluestack-ui/checkbox';
-
-// Understanding the API
-const Checkbox = createCheckbox({
-  Root,
-  Indicator,
-  Icon,
-  Label,
-  Group,
-});
-
-// Using the checkbox component
-export default () => (
-  <CheckboxGroup>
-    <Checkbox>
-      <CheckboxIndicator>
-        <CheckboxIcon />
-      </CheckboxIndicator>
-      <CheckboxLabel />
-    </Checkbox>
-  </CheckboxGroup>
-);
-```
-
--->
 
 ## Spec Doc
 
