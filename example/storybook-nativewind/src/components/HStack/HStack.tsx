@@ -1,5 +1,5 @@
 import React from 'react';
-import { HStack } from '../../components-example/themed/HStack';
+import { HStack } from '@/components/HStack';
 import { Box } from '@gluestack-ui/themed';
 
 const HStackBasic = ({ space, reversed, ...props }: any) => {

@@ -1,34 +1,33 @@
 ---
-title: Heading | gluestack-ui | Installation, Usage, and API
+title: Text | gluestack-ui | Installation, Usage, and API
 
-description: Heading component gives you the ability to create headings for your page with different sizes and semantics from h1 to h6.
+description: Looking to add text to your gluestack-ui project? Check out our text component, which supports paragraphs and other formatting options.
 
-pageTitle: Heading
+pageTitle: Text
 
-pageDescription: Heading component gives you the ability to create headings for your page with different sizes and semantics from h1 to h6.
+pageDescription: Looking to add text to your gluestack-ui project? Check out our text component, which supports paragraphs and other formatting options.
 
 showHeader: true
 ---
 
 import { Meta } from '@storybook/addon-docs';
 
-<Meta title="common/components/Heading" />
+<Meta title="common/components/Text" />
 
-import { Heading } from './Heading';
+import { Text } from './Text';
 import { Center } from '@gluestack-ui/themed';
 import { transformedCode } from '../../utils';
+import Wrapper from '@/components/Wrapper';
+
 import {
   AppProvider,
   CodePreview,
   Table,
   TableContainer,
-  Text,
   InlineCode,
 } from '@gluestack/design-system';
 
-import Wrapper from '@/components/Wrapper';
-
-This is an illustration of a **Themed Heading** component with default configuration.
+This is an illustration of a **Themed Text** component with default configuration.
 
 <Wrapper>
   <CodePreview
@@ -36,14 +35,16 @@ This is an illustration of a **Themed Heading** component with default configura
     showArgsController={false}
     metaData={{
       code: `
-        <Heading>I am a Heading</Heading>
+        <Text>
+          Hello World!
+        </Text>
       `,
       transformCode: (code) => {
         return transformedCode(code);
       },
       scope: {
         Wrapper,
-        Heading,
+        Text,
       },
       argsType: {},
     }}
@@ -59,24 +60,24 @@ This is an illustration of a **Themed Heading** component with default configura
 To use this component in your project, include the following import statement in your file.
 
 ```jsx
-import { Heading } from '@gluestack-ui/themed';
+import { Text } from '@gluestack-ui/themed';
 ```
 
 ### Anatomy
 
-The structure provided below can help you identify and understand a Heading component's various parts.
+The structure provided below can help you identify and understand a Text component's various parts.
 
 ```jsx
-export default () => <Heading />;
+export default () => <Text />;
 ```
 
 ### Component Props
 
 This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
 
-#### Heading
+#### Text
 
-It inherits all the properties of @expo/html-elements's [H1](https://github.com/expo/expo/tree/main/packages/html-elements) component.
+It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text) component.
 
 ## Themed
 
@@ -84,9 +85,9 @@ The themed version of the component is a pre-styled version of the component, wh
 
 ### Props
 
-Heading component is created using H1 component from @expo/html-elements. It extends all the props supported by [Expo HTML Heading Elements](https://www.npmjs.com/package/@expo/html-elements/v/0.0.5), [utility props](/ui/docs/styling/utility-and-sx-props) and the props mentioned below.
+Text component is created using Text component from react-native. It extends all the props supported by [React Native Text](https://reactnative.dev/docs/text#props), [utility props](/ui/docs/styling/utility-and-sx-props) and the props mentioned below.
 
-#### Button
+#### Text
 
 <Wrapper>
   <TableContainer>
@@ -112,7 +113,7 @@ Heading component is created using H1 component from @expo/html-elements. It ext
             </Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>true | false</Table.TText>
+            <Table.TText>true</Table.TText>
           </Table.TD>
           <Table.TD>
             <Table.TText>false</Table.TText>
@@ -125,7 +126,7 @@ Heading component is created using H1 component from @expo/html-elements. It ext
             </Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>true | false</Table.TText>
+            <Table.TText>true</Table.TText>
           </Table.TD>
           <Table.TD>
             <Table.TText>false</Table.TText>
@@ -138,7 +139,7 @@ Heading component is created using H1 component from @expo/html-elements. It ext
             </Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>true | false</Table.TText>
+            <Table.TText>true</Table.TText>
           </Table.TD>
           <Table.TD>
             <Table.TText>false</Table.TText>
@@ -151,7 +152,7 @@ Heading component is created using H1 component from @expo/html-elements. It ext
             </Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>true | false</Table.TText>
+            <Table.TText>true</Table.TText>
           </Table.TD>
           <Table.TD>
             <Table.TText>false</Table.TText>
@@ -164,7 +165,7 @@ Heading component is created using H1 component from @expo/html-elements. It ext
             </Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>true | false</Table.TText>
+            <Table.TText>true</Table.TText>
           </Table.TD>
           <Table.TD>
             <Table.TText>false</Table.TText>
@@ -177,7 +178,7 @@ Heading component is created using H1 component from @expo/html-elements. It ext
             </Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>true | false</Table.TText>
+            <Table.TText>true</Table.TText>
           </Table.TD>
           <Table.TD>
             <Table.TText>false</Table.TText>
@@ -190,7 +191,7 @@ Heading component is created using H1 component from @expo/html-elements. It ext
             </Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>true | false</Table.TText>
+            <Table.TText>true</Table.TText>
           </Table.TD>
           <Table.TD>
             <Table.TText>false</Table.TText>
@@ -204,7 +205,7 @@ Heading component is created using H1 component from @expo/html-elements. It ext
           </Table.TD>
           <Table.TD>
             <Table.TText>
-              5xl | 4xl | 3xl | 2xl | xl | lg | md | sm | xs
+              2xs | xs | sm | md | lg | xl | 2xl | 3xl | 4xl | 5xl | 6xl
             </Table.TText>
           </Table.TD>
           <Table.TD>
@@ -222,16 +223,9 @@ Heading component is created using H1 component from @expo/html-elements. It ext
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
-#### Heading Sizes
+#### Text Sizes
 
-Heading component offers a range of sizes, including `xs`, `sm`, `md`, `lg`, `xl`, `2xl`, `3xl`, `4xl`, and `5xl`, allowing users to customize the size of the heading according to their design requirements. The size attribute determines which HTML tag (`h1` to `h6`) will be rendered.
-
-- For `5xl`, `4xl`, and `3xl`, it renders `h1`.
-- For `2xl`, it renders `h2`.
-- For `xl`, it renders `h3`.
-- For `lg`, it renders `h4`.
-- For `md`, it renders `h5`.
-- Finally, for `sm` and `xs`, it renders `h6`.
+Text component comes in different sizes, such as `xs`, `sm`, `md`, `lg`, `xl`, `2xl`, `3xl`, `4xl`, `5xl`, and `6xl` allowing users to adjust the button size based on their design needs.
 
 <Wrapper>
   <CodePreview
@@ -251,26 +245,27 @@ Heading component offers a range of sizes, including `xs`, `sm`, `md`, `lg`, `xl
             '3xl',
             '4xl',
             '5xl',
+            '6xl',
           ];
           return (
-              <Center>
-                {sizes.map((size) => (
-                  <Heading size={size}>{size}</Heading>
-                ))}
-              </Center>
+            <Center>
+              {sizes.map((size) => (
+                <Text size={size}>{size}</Text>
+              ))}
+            </Center>
           );
         };
       `,
       transformCode: (code) => {
         return transformedCode(code, 'function', 'App');
       },
-      scope: { Wrapper, Center, Heading },
+      scope: { Wrapper, Center, Text },
       argsType: {},
     }}
   />
 </Wrapper>
 
-The Heading component also accepts some shorthands for basic quick styling.
+Text component also accepts some shorthands for basic quick styling.
 
 <Wrapper>
   <TableContainer>
@@ -403,22 +398,22 @@ All the components in `gluestack-ui` are unstyled by default. To customize your 
 
 We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
 
-### Customizing the Heading
+### Customizing the Text
 
-For customizing the Heading, you have to map styled view to Heading. You can refer [gluestack.io/style](/style) for more information on how to use styled components.
+For customizing the Text, you have to map styled view to Text. You can refer [gluestack.io/style](/style/docs/getting-started/styled) on how to use styled components.
 
 #### Usage
 
-Default styling of the component can be found in the `components/core/heading` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/main/packages/themed/src/components/Heading) of the styled `Heading` component.
+Default styling of the component can be found in the `components/core/text` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/main/packages/themed/src/components/Text) of the styled `Text` component.
 
 ```jsx
 // import the styles
-import { Root } from 'components/core/heading/styled-components';
+import { Root } from 'components/core/text/styled-components';
 
-// mapping the Heading to root component
-const Heading = Root;
+// mapping the Text to root component
+const Text = Root;
 
-// Using the heading component
-export default () => <Heading />;
+// Using the text component
+export default () => <Text />;
 ```
 -->

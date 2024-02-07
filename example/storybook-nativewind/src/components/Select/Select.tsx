@@ -13,7 +13,7 @@ import {
   SelectDragIndicatorWrapper,
   SelectDragIndicator,
   SelectItem,
-} from '../../components-example/themed/Select';
+} from '@/components/Select';
 
 const SelectBasic = ({ size = 'md', variant = 'outline', ...props }: any) => {
   return (

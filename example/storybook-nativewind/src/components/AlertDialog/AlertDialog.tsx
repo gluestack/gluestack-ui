@@ -22,7 +22,7 @@ import {
   AlertDialogCloseButton,
   AlertDialogFooter,
   AlertDialogBody,
-} from '../../components-example/themed/AlertDialog';
+} from '@/components/AlertDialog';
 import { AlertTriangleIcon } from 'lucide-react-native';
 
 const AlertDialogBasic = ({

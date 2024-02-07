@@ -17,7 +17,7 @@ import {
   SliderTrack,
   SliderFilledTrack,
   SliderThumb,
-} from '../../components-example/themed/Slider';
+} from '@/components/Slider';
 
 import { Volume, Volume2Icon, LightbulbIcon } from 'lucide-react-native';
 

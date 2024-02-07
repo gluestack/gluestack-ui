@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Icon, HStack, Text } from '@gluestack-ui/themed';
-import { Link, LinkText } from '../../components-example/themed/Link';
+import { Link, LinkText } from '@/components/Link';
 import { ArrowUpRightIcon } from 'lucide-react-native';
 
 const LinkBasic = ({ ...props }: any) => {

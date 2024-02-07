@@ -1,6 +1,6 @@
 import React from 'react';
-import { Button, ButtonText } from '../../components-example/themed/Button';
-import Wrapper from '../../components-example/themed/Wrapper';
+import { Button, ButtonText } from '@/components/Button';
+import Wrapper from '@/components/Wrapper';
 
 export const ButtonBasic = (props: any) => {
   return (

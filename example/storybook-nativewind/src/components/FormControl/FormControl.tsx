@@ -59,7 +59,7 @@ import {
   FormControlError,
   FormControlErrorIcon,
   FormControlErrorText,
-} from '../../components-example/themed/FormControl';
+} from '@/components/FormControl';
 
 const FormControlBasic = ({ ...props }: any) => {
   return (

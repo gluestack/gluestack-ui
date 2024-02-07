@@ -1,5 +1,5 @@
 import { Text } from '@gluestack-ui/themed';
-import { Box } from '../../components-example/themed/Box';
+import { Box } from '@/components/Box';
 import React from 'react';
 
 const BoxBasic: any = ({

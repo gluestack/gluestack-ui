@@ -5,7 +5,7 @@ import {
   Center,
   Input,
 } from '@gluestack-ui/themed';
-import { InputAccessoryView } from '../../components-example/themed/InputAccessoryView';
+import { InputAccessoryView } from '@/components/InputAccessoryView';
 import { config } from '@gluestack-ui/config';
 import React from 'react';
 
