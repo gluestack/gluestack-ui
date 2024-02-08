@@ -12,7 +12,7 @@ showHeader: true
 
 import { Meta } from '@storybook/addon-docs';
 
-<Meta title="common/components/Progress" />
+<Meta title="with-nativewind/components/Feedback/Progress" />
 
 import { Progress, ProgressFilledTrack } from './Progress';
 import { VStack, Box, Heading } from '@gluestack-ui/themed';
@@ -26,11 +26,11 @@ import {
   InlineCode,
 } from '@gluestack/design-system';
 
-import Wrapper from '../../components-example/themed/Wrapper';
+import Wrapper from '../../components-example/nativewind/Wrapper';
 
 This is an illustration of **Progress** component.
 
-<>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={true}
@@ -53,23 +53,35 @@ This is an illustration of **Progress** component.
       },
     }}
   />
-</>
+</Wrapper>
 
 <br />
 
-## API Reference
+## Installation
 
-### Import
+### Step 1: Install the following dependencies:
+
+```bash
+
+npm i @gluestack-ui/progress
+
+```
+
+### Step 2: Copy and paste the following code into your project.
+
+```jsx
+%%-- File: components-example/nativewind/Progress/index.tsx --%%
+```
+
+### Step 3: Update the import paths to match your project setup.
+
+## API Reference
 
 To use this component in your project, include the following import statement in your file.
 
 ```jsx
-import { Progress, ProgressFilledTrack } from '@gluestack-ui/themed';
+import { Progress, ProgressFilledTrack } from '@/components/Progress';
 ```
-
-### Anatomy
-
-The structure provided below can help you identify and understand a Progress component's various parts.
 
 ```jsx
 export default () => (
@@ -87,7 +99,7 @@ This section provides a comprehensive reference list for the component props, de
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
-<>
+<Wrapper>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -126,12 +138,12 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
       </Table.TBody>
     </Table>
   </TableContainer>
-</>
+</Wrapper>
 
 **Descendants Styling Props**
 Props to style child components.
 
-<>
+<Wrapper>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -158,7 +170,7 @@ Props to style child components.
       </Table.TBody>
     </Table>
   </TableContainer>
-</>
+</Wrapper>
 
 #### ProgressFilledTrack
 
@@ -176,17 +188,13 @@ We have outlined the various features that ensure the Fab component is accessibl
 
 - VoiceOver: When the Progress is focused, the screen reader will announce it's a progress and it's current progress indicator.
 
-## Themed
-
-The themed version of the component is a pre-styled version of the component, which allows you to quickly integrate the component into your project. The component's design and functionality are fully defined, allowing you to focus on the more important aspects of your project. To know more about Themed Library please visit this [link](https://gluestack.io/ui/docs/core-concepts/themed-library).
-
 ### Props
 
 Progress component is created using View component from react-native. It extends all the props supported by [React Native View](https://reactnative.dev/docs/view#props), [utility props](/ui/docs/styling/utility-and-sx-props) and the props mentioned below.
 
 #### Progress
 
-<>
+<Wrapper>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -219,162 +227,9 @@ Progress component is created using View component from react-native. It extends
       </Table.TBody>
     </Table>
   </TableContainer>
-</>
+</Wrapper>
 
 > Note: These props are exclusively applicable when utilizing the default configuration of gluestack-ui/config. If you are using a custom theme, these props may not be available.
-
-### Examples
-
-The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
-
-#### Value
-
-Progress component with value
-
-<>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
-      <VStack space="lg">
-        <Text size="lg">Downloading 55%</Text>
-        <Progress value={55} w='$80' h='$1'>
-          <ProgressFilledTrack h='$1' />
-        </Progress>
-      </VStack>
-    `,
-      transformCode: (code) => {
-        return transformedCode(code);
-      },
-      scope: {
-        Wrapper,
-        Progress,
-        ProgressFilledTrack,
-        VStack,
-        Text,
-        Box,
-      },
-      argsType: {},
-    }}
-  />
-</>
-
-#### Color
-
-You can add track color to progress bar as per our needs.
-
-<>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
-        <VStack space="3xl">
-          <Progress value={46} w='$96' h='$2' size="sm">
-            <ProgressFilledTrack bg="$emerald600"/>
-          </Progress>
-          <Progress value={46} w='$96' h='$2' size="sm">
-            <ProgressFilledTrack bg="$amber600"/>
-          </Progress>
-          <Progress value={46} w='$96' h='$2' size="sm">
-            <ProgressFilledTrack bg="$fuchsia600"/>
-          </Progress>
-          <Progress value={46} w='$96' h='$2' size="sm">
-            <ProgressFilledTrack bg="$cyan600"/>
-          </Progress>
-        </VStack>
-      `,
-      transformCode: (code) => {
-        return transformedCode(code);
-      },
-      scope: {
-        Wrapper,
-        Progress,
-        ProgressFilledTrack,
-        VStack,
-      },
-      argsType: {},
-    }}
-  />
-</>
-
-#### Custom
-
-You can customize the progress bar. Below is the example where we have change the theme of progress bar.
-
-<>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
-        <VStack space="lg">
-        <Heading>Internal Storage</Heading>
-        <Progress value={46} w={410} h={8} bg="$lime100">
-          <ProgressFilledTrack h={8} bg="$lime500" />
-        </Progress>
-        <Text size="md">14GB</Text>
-        </VStack>
-      `,
-      transformCode: (code) => {
-        return transformedCode(code);
-      },
-      scope: {
-        Wrapper,
-        Progress,
-        ProgressFilledTrack,
-        VStack,
-        Heading,
-        Text,
-      },
-      argsType: {},
-    }}
-  />
-</>
-
-## Unstyled
-
-All the components in `gluestack-ui` are unstyled by default. To customize your UI using the extendedTheme, please refer to this [link](https://gluestack.io/ui/docs/theme-configuration/customizing-theme). The import names of components serve as keys to customize each component.
-
-<!--
-
-### Advanced
-
-We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
-
-### Customizing the Progress
-
-For customizing the Progress, you have to map styled view to Progress You can refer [gluestack.io/style](/style/docs/getting-started/styled) on how to use styled components.
-
-#### Usage
-
-Default styling of the component can be found in the `components/core/progress` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/main/packages/themed/src/components/Progress) of the styled `Progress` component.
-
-```jsx
-// import the styles
-import {
-  Root,
-  FilledTrack,
-} from 'components/core/progress/styled-components';
-
-// import the createProgress function
-import { createProgress } from '@gluestack-ui/progress';
-
-// Understanding the API
-const Progress = createProgress({
-  Root,
-  FilledTrack,
-});
-
-// Using the Progress component
-export default () => (
-  <Progress>
-    <ProgressFilledTrack />
-  </Progress>
-);
-```
--->
 
 ## Spec Doc
 
