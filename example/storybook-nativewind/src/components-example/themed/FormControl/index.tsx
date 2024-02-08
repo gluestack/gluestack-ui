@@ -205,7 +205,7 @@ const StyledLabelAstrick = styled(Text, {}, {
   ancestorStyle: ['_labelAstrick'],
 } as const);
 
-const FormControl = createFormControl({
+export const FormControl = createFormControl({
   Root: StyledRoot,
   Error: StyledFormControlError,
   ErrorText: StyledFormControlErrorText,

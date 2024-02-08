@@ -1,7 +1,5 @@
 import React from 'react';
 import {
-  Input,
-  InputField,
   Radio,
   RadioGroup,
   RadioIcon,
@@ -61,6 +59,7 @@ import {
   FormControlErrorText,
 } from '@/components/FormControl';
 
+import { Input, InputField } from '@/components/Input';
 const FormControlBasic = ({ ...props }: any) => {
   return (
     <FormControl {...props}>
