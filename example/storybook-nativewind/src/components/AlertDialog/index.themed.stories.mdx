@@ -12,7 +12,7 @@ showHeader: true
 
 import { Meta } from '@storybook/addon-docs';
 
-<Meta title="common/components/AlertDialog" />
+<Meta title="with-gluestack-style/components/Overlay/AlertDialog" />
 
 import {
   AlertDialog,
@@ -136,9 +136,25 @@ This is an illustration of **AlertDialog** component.
 
 <br />
 
-## API Reference
+## Installation
 
-### Import
+### Step 1: Install the following dependencies:
+
+```bash
+
+npm i @gluestack-ui/alert-dialog
+
+```
+
+### Step 2: Copy and paste the following code into your project.
+
+```jsx
+%%-- File: components-example/themed/AlertDialog/index.tsx --%%
+```
+
+### Step 3: Update the import paths to match your project setup.
+
+## API Reference
 
 To use this component in your project, include the following import statement in your file.
 
@@ -153,10 +169,6 @@ import {
   AlertDialogBody,
 } from '@gluestack-ui/themed';
 ```
-
-### Anatomy
-
-The structure provided below can help you identify and understand a AlertDialog component's various parts.
 
 ```jsx
 export default () => (
@@ -470,10 +482,6 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
 
 We have outlined the various features that ensure the AlertDialog component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards.It uses React Native ARIA [@react-native-aria/focus](https://react-native-aria.geekyants.com/) which follows the [WAI-ARIA Alert and Message Dialogs Pattern](https://www.w3.org/WAI/ARIA/apg/patterns/alertdialog/).
 
-## Themed
-
-The themed version of the component is a pre-styled version of the component, which allows you to quickly integrate the component into your project. The component's design and functionality are fully defined, allowing you to focus on the more important aspects of your project. To know more about Themed Library please visit this [link](https://gluestack.io/ui/docs/core-concepts/themed-library).
-
 ### Props
 
 AlertDialog component is created using View component from react-native. It extends all the props supported by [React Native View](https://reactnative.dev/docs/view#props), [utility props](/ui/docs/styling/utility-and-sx-props) and the props mentioned below.
@@ -516,269 +524,6 @@ AlertDialog component is created using View component from react-native. It exte
 </Wrapper>
 
 > Note: These props are exclusively applicable when utilizing the default configuration of gluestack-ui/config. If you are using a custom theme, these props may not be available.
-
-### Examples
-
-The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
-
-#### AlertDialog with semantic icon
-
-An example of an AlertDialog component incorporating an icon component for visually representing important information or actions.
-
-<Wrapper>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
-      function App(){
-        const [showAlertDialog, setShowAlertDialog] = React.useState(false);
-        return (
-          <>
-            <Center h={300} >
-                <Button onPress={() => setShowAlertDialog(true)}>
-                    <ButtonText>Click me</ButtonText>
-                </Button>
-            </Center>
-            <AlertDialog
-              isOpen={showAlertDialog}
-              onClose={() => {
-                  setShowAlertDialog(false);
-              }}
-            >
-                  <AlertDialogBackdrop/>
-              <AlertDialogContent>
-              <AlertDialogHeader borderBottomWidth='$0'>
-                 <HStack space='sm' alignItems='center'>
-                  <Icon as={CheckCircleIcon} color='$success700' 
-                  $dark-color='$success300' />
-                    <Heading size='lg'>Order placed</Heading>
-                  </HStack>
-                </AlertDialogHeader>
-                <AlertDialogBody>
-                    <Text size="sm">
-                    Congratulations, your order has been placed! You will receive a confirmation email shortly. Thank you for shopping with us.
-                    </Text>
-                </AlertDialogBody>
-                 <AlertDialogFooter  borderTopWidth='$0'>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    action="secondary"
-                    mr="$3"
-                    onPress={() => {
-                      setShowAlertDialog(false);
-                    }}
-                  >
-                    <ButtonText>Okay</ButtonText>
-                  </Button>
-                </AlertDialogFooter>
-              </AlertDialogContent>
-            </AlertDialog>
-          </>
-        );
-      }
-    `,
-      transformCode: (code) => {
-        return transformedCode(code, 'function', 'App');
-      },
-      scope: {
-        Button,
-        ButtonText,
-        Center,
-        Wrapper,
-        AlertDialog,
-        AlertDialogBackdrop,
-        AlertDialogContent,
-        AlertDialogHeader,
-        AlertDialogCloseButton,
-        AlertDialogFooter,
-        AlertDialogBody,
-        Icon,
-        Text,
-        HStack,
-        AlertTriangleIcon,
-        CheckCircleIcon,
-        Heading,
-      },
-      argsType: {},
-    }}
-  />
-</Wrapper>
-
-#### AlertDialog Sizes
-
-An AlertDialog component with adjustable sizes, providing flexible and visually appealing pop-up notifications and interactive prompts to users.
-
-<Wrapper>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={true}
-    metaData={{
-      code: `
-      function App(){
-        const [showAlertDialog, setShowAlertDialog] = React.useState(false);
-        return (
-          <>
-       <Center h={300} >
-                <Button onPress={() => setShowAlertDialog(true)}>
-                    <ButtonText>Click me</ButtonText>
-                </Button>
-            </Center>
-            <AlertDialog
-              isOpen={showAlertDialog}
-              onClose={() => {
-                  setShowAlertDialog(false);
-              }}
-              {...props}
-            >
-                  <AlertDialogBackdrop/>
-              <AlertDialogContent>
-              <AlertDialogHeader borderBottomWidth='$0'>
-                 <HStack space='sm' alignItems='center'>
-                  <Icon as={AlertTriangleIcon} color='$error700'  />
-                    <Heading size='lg'>Order placed</Heading>
-                  </HStack>
-                </AlertDialogHeader>
-                <AlertDialogBody>
-                    <Text>
-                     You have exceeded your monthly upload limit. Please upgrade to a premium account to continue uploading.
-                  </Text>
-                </AlertDialogBody>
-                 <AlertDialogFooter  borderTopWidth='$0'>
-                   <ButtonGroup space="lg">
-              <Button
-                variant="outline"
-                action="secondary"
-                onPress={() => {
-                  setShowAlertDialog(false)
-                }}
-              >
-                <ButtonText fontSizes="$md">Close</ButtonText>
-              </Button>
-                <Button
-                action="primary"
-                onPress={() => {
-                  setShowAlertDialog(false)
-                }}
-                bgColor="$darkBlue700"
-              >
-                <ButtonText>View plans</ButtonText>
-              </Button>
-                    </ButtonGroup >
-                </AlertDialogFooter>
-              </AlertDialogContent>
-            </AlertDialog>
-          </>
-        );
-      }
-    `,
-      transformCode: (code) => {
-        return transformedCode(code, 'function', 'App');
-      },
-      scope: {
-        Button,
-        ButtonText,
-        ButtonGroup,
-        Center,
-        Wrapper,
-        AlertDialog,
-        AlertDialogBackdrop,
-        AlertDialogContent,
-        AlertDialogHeader,
-        AlertDialogCloseButton,
-        AlertDialogFooter,
-        AlertDialogBody,
-        Icon,
-        Text,
-        HStack,
-        AlertTriangleIcon,
-        CheckCircleIcon,
-        Heading,
-      },
-      argsType: {
-        size: {
-          control: 'select',
-          options: ['xs', 'sm', 'md', 'lg', 'full'],
-          default: 'md',
-        },
-      },
-    }}
-  />
-</Wrapper>
-
-## Unstyled
-
-All the components in `gluestack-ui` are unstyled by default. To customize your UI using the extendedTheme, please refer to this [link](https://gluestack.io/ui/docs/theme-configuration/customizing-theme). The import names of components serve as keys to customize each component.
-
-### Advanced
-
-We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
-
-### Customizing the AlertDialog
-
-We have a function called `createAlertDialog` which can be used to create a custom alert-dialog component. This function takes in a configuration object which contains the styled components that you want to use for the alert-dialog. You can refer [gluestack.io/style](/style) for more information on how to use styled components.
-
-You can read more on how to animate components [here](/ui/docs/advanced/animations).
-
-#### Usage
-
-Default styling of all these components can be found in the `components/core/alert-dialog` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/main/packages/themed/src/components/AlertDialog) of the styled `AlertDialog` components.
-
-```jsx
-// import the styles
-import {
-  Root,
-  Content,
-  CloseButton,
-  Header,
-  Footer,
-  Body,
-  Backdrop,
-} from 'components/core/alert-dialog/styled-components';
-
-// import the createAlertDialog function
-import { createAlertDialog } from '@gluestack-ui/alert-dialog';
-
-// Understanding the API
-const AlertDialog = createAlertDialog({
-  Root,
-  Content,
-  CloseButton,
-  Header,
-  Footer,
-  Body,
-  Backdrop,
-});
-
-// Using the alert-dialog component
-export default () => (
-  <AlertDialog>
-    <AlertDialogBackdrop />
-    <AlertDialogContent>
-      <AlertDialogHeader>
-        <Heading>Confirm your request</Heading>
-        <AlertDialogCloseButton>
-          <CloseIcon />
-        </AlertDialogCloseButton>
-      </AlertDialogHeader>
-      <AlertDialogBody>
-        <Text>AlertDialog Body</Text>
-      </AlertDialogBody>
-      <AlertDialogFooter>
-        <Button>
-          <ButtonText>Okay</ButtonText>
-        </Button>
-        <Button>
-          <ButtonText>Close</ButtonText>
-        </Button>
-      </AlertDialogFooter>
-    </AlertDialogContent>
-  </AlertDialog>
-);
-```
-
--->
 
 ## Spec Doc
 
