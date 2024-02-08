@@ -4,18 +4,18 @@ import { GluestackUIProvider } from './GluestackUIProvider';
 
 const Wrapper = ({ children, ...props }: any) => {
   return (
-    <GluestackUIProvider style={{ height: '100%' }}>
-      <Box
-        sx={{
-          _ios: {
-            h: '100%',
-          },
-        }}
-        {...props}
-      >
+    <Box
+      sx={{
+        _ios: {
+          h: '100%',
+        },
+      }}
+      {...props}
+    >
+      <GluestackUIProvider>
         <Center height="100%">{children}</Center>
-      </Box>
-    </GluestackUIProvider>
+      </GluestackUIProvider>
+    </Box>
   );
 };
 
