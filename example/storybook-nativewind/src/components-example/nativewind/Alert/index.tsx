@@ -26,6 +26,10 @@ const alertStyle = tva({
       accent: 'border-l-4',
     },
   },
+  defaultVariants: {
+    variant: 'solid',
+    action: 'info',
+  },
 });
 
 const alertTextStyle = tva({

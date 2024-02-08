@@ -37,7 +37,7 @@ This is an illustration of **Progress** component.
     showArgsController={true}
     metaData={{
       code: `
-       <Progress value={40} w={300} {...props} >
+       <Progress value={40} className="w-[300px]" {...props} >
           <ProgressFilledTrack />
         </Progress>
       `,
@@ -71,7 +71,9 @@ npm i @gluestack-ui/progress
 ### Step 2: Copy and paste the following code into your project.
 
 <CollapsibleCode>
-  ```jsx %%-- File: components-example/nativewind/Progress/index.tsx --%% ```
+  ```jsx 
+%%-- File: components-example/nativewind/Progress/index.tsx --%% 
+```
 </CollapsibleCode>
 
 ### Step 3: Update the import paths to match your project setup.
@@ -141,38 +143,6 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
   </TableContainer>
 </Wrapper>
 
-**Descendants Styling Props**
-Props to style child components.
-
-<Wrapper>
-  <TableContainer>
-    <Table>
-      <Table.THead>
-        <Table.TR>
-          <Table.TH>
-            <Table.TText>Sx Prop</Table.TText>
-          </Table.TH>
-          <Table.TH>
-            <Table.TText>Description</Table.TText>
-          </Table.TH>
-        </Table.TR>
-      </Table.THead>
-      <Table.TBody>
-        <Table.TR>
-          <Table.TD>
-            <Table.TText>
-              <InlineCode>_filledTrack</InlineCode>
-            </Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>{`Prop to style ProgressFilledTrack Component`}</Table.TText>
-          </Table.TD>
-        </Table.TR>
-      </Table.TBody>
-    </Table>
-  </TableContainer>
-</Wrapper>
-
 #### ProgressFilledTrack
 
 It also inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
@@ -191,47 +161,9 @@ We have outlined the various features that ensure the Fab component is accessibl
 
 ### Props
 
-Progress component is created using View component from react-native. It extends all the props supported by [React Native View](https://reactnative.dev/docs/view#props), [utility props](/ui/docs/styling/utility-and-sx-props) and the props mentioned below.
+Progress component is created using View component from react-native. It extends all the props supported by [React Native View](https://reactnative.dev/docs/view#props).
 
-#### Progress
-
-<Wrapper>
-  <TableContainer>
-    <Table>
-      <Table.THead>
-        <Table.TR>
-          <Table.TH>
-            <Table.TText>Name</Table.TText>
-          </Table.TH>
-          <Table.TH>
-            <Table.TText>Value</Table.TText>
-          </Table.TH>
-          <Table.TH>
-            <Table.TText>Default</Table.TText>
-          </Table.TH>
-        </Table.TR>
-      </Table.THead>
-      <Table.TBody>
-        <Table.TR>
-          <Table.TD>
-            <Table.TText>
-              <InlineCode>size</InlineCode>
-            </Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>xs | sm | md | lg | xl | 2xl</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>md</Table.TText>
-          </Table.TD>
-        </Table.TR>
-      </Table.TBody>
-    </Table>
-  </TableContainer>
-</Wrapper>
-
-> Note: These props are exclusively applicable when utilizing the default configuration of gluestack-ui/config. If you are using a custom theme, these props may not be available.
-
+<!--
 ## Spec Doc
 
 Explore the comprehensive details of the Progress in this document, including its implementation details, checklist, and potential future additions. Dive into the thought process behind the component and gain insights into its development journey.
@@ -244,4 +176,4 @@ Explore the comprehensive details of the Progress in this document, including it
   }}
   src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FNcXOxqKbdnGsLQNex3H76u%2F%25C2%25A0%25F0%259F%2593%259Agluestack-UI-handbook%3Ftype%3Ddesign%26node-id%3D6282-35554%26t%3DSqzrgr3fIhnmO5iO-1%26scaling%3Dscale-down%26page-id%3D6282%253A33652%26starting-point-node-id%3D6282%253A35554%26mode%3Ddesign"
   allowFullScreen
-/>
+/> -->
