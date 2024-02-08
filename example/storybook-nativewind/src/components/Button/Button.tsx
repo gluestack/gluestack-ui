@@ -1,14 +1,13 @@
 import React from 'react';
 import { Button, ButtonText } from '@/components/Button';
-import Wrapper from '../../components-example/themed/Wrapper';
 
 export const ButtonBasic = (props: any) => {
   return (
-    <Wrapper>
+    <>
       <Button {...props}>
         <ButtonText>Hello World 22</ButtonText>
       </Button>
-    </Wrapper>
+    </>
   );
 };
 
