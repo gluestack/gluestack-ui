@@ -14,7 +14,7 @@ showHeader: true
 
 import { Meta } from '@storybook/addon-docs';
 
-<Meta title="common/components/Switch" />
+<Meta title="with-gluestack-style/components/Forms/Switch" />
 
 import { Switch } from './Switch';
 import { VStack, Text } from '@gluestack-ui/themed';
@@ -60,19 +60,31 @@ This is an illustration of **Switch** component.
 
 <br />
 
-## API Reference
+## Installation
 
-### Import
+### Step 1: Install the following dependencies:
+
+```bash
+
+npm i @gluestack-ui/switch
+
+```
+
+### Step 2: Copy and paste the following code into your project.
+
+```jsx
+%%-- File: components-example/themed/Switch/index.tsx --%%
+```
+
+### Step 3: Update the import paths to match your project setup.
+
+## API Reference
 
 To use this component in your project, include the following import statement in your file.
 
-```bash
-import { Switch } from '@gluestack-ui/themed';
+```jsx
+import { Switch } from '@/components/Switch';
 ```
-
-### Anatomy
-
-The structure provided below can help you identify and understand a Switch component's various parts.
 
 ```jsx
 export default () => <Switch />;
@@ -237,10 +249,6 @@ We have outlined the various features that ensure the Button component is access
 
 - VoiceOver: When the switch is focused, the screen reader will announce the switch's action and its current state.
 
-## Themed
-
-The themed version of the component is a pre-styled version of the component, which allows you to quickly integrate the component into your project. The component's design and functionality are fully defined, allowing you to focus on the more important aspects of your project. To know more about Themed Library please visit this [link](https://gluestack.io/ui/docs/core-concepts/themed-library).
-
 ### Props
 
 Switch component is created using Switch component from react-native. It extends all the props supported by [React Native Switch](https://reactnative.dev/docs/switch#props), [utility props](/ui/docs/styling/utility-and-sx-props) and the props mentioned below.
@@ -283,136 +291,6 @@ Switch component is created using Switch component from react-native. It extends
 </Wrapper>
 
 > Note: These props are exclusively applicable when utilizing the default configuration of gluestack-ui/config. If you are using a custom theme, these props may not be available.
-
-### Examples
-
-The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
-
-#### Switch With Label
-
-An example of a switch component with a label, which includes another switch component for toggling additional options.
-
-<Wrapper>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
-            <HStack space="md">
-              <Switch/>
-              <Text size="sm" >Allow notifications</Text>
-            </HStack>
-     `,
-      transformCode: (code) => {
-        return transformedCode(code);
-      },
-      scope: {
-        Wrapper,
-        Switch,
-        Text,
-        HStack,
-      },
-      argsType: {},
-    }}
-  />
-</Wrapper>
-
-#### Checked State
-
-An example of a switch component used within a checked state component to represent a pre-selected or activated option.
-
-<Wrapper>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
-          <HStack space="md">
-              <Switch  defaultValue={true}/>
-              <Text size="sm" >Public profile</Text>
-          </HStack>
-     `,
-      transformCode: (code) => {
-        return transformedCode(code);
-      },
-      scope: {
-        Wrapper,
-        Switch,
-        Text,
-        HStack,
-      },
-      argsType: {},
-    }}
-  />
-</Wrapper>
-
-#### Color scheme
-
-An example of a switch component being used with a different color scheme.
-
-<Wrapper>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
-          <VStack space="md">
-              <Switch sx={{
-            _light: {
-              props: {
-                trackColor: {
-                  false: '$backgroundLight300',
-                  true: '$indigo600'
-                },
-              },
-            },
-            _dark: {
-              props: {
-                trackColor: {
-                  false: '$backgroundDark700',
-                  true: '$indigo600'
-                },
-              },
-            },
-          }}/>
-              <Switch
-              sx={{
-            _light: {
-              props: {
-                trackColor: {
-                  false: '$backgroundLight300',
-                  true: '$emerald600'
-                },
-              },
-            },
-            _dark: {
-              props: {
-                trackColor: {
-                  false: '$backgroundDark700',
-                  true: '$emerald600'
-                },
-              },
-            },
-          }}/>
-          </VStack>
-     `,
-      transformCode: (code) => {
-        return transformedCode(code);
-      },
-      scope: {
-        Wrapper,
-        Switch,
-        Text,
-        VStack,
-      },
-      argsType: {},
-    }}
-  />
-</Wrapper>
-
-## Unstyled
-
-We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
 
 ## Spec Doc
 

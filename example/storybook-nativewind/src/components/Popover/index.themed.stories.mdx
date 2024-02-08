@@ -12,7 +12,7 @@ showHeader: true
 
 import { Meta } from '@storybook/addon-docs';
 
-<Meta title="common/components/Popover" />
+<Meta title="with-gluestack-style/components/Overlay/Popover" />
 
 import {
   Popover,
@@ -292,9 +292,25 @@ We have exported `PopoverArrow` component which can be used to render an arrow f
 
 <br />
 
-## API Reference
+## Installation
 
-### Import
+### Step 1: Install the following dependencies:
+
+```bash
+
+npm i @gluestack-ui/popover
+
+```
+
+### Step 2: Copy and paste the following code into your project.
+
+```jsx
+%%-- File: components-example/themed/Popover/index.tsx --%%
+```
+
+### Step 3: Update the import paths to match your project setup.
+
+## API Reference
 
 To use this component in your project, include the following import statement in your file.
 
@@ -310,10 +326,6 @@ import {
   PopoverFooter,
 } from '@gluestack-ui/themed';
 ```
-
-### Anatomy
-
-The structure provided below can help you identify and understand a Popover component's various parts.
 
 ```jsx
 export default () => (
@@ -810,10 +822,6 @@ We have outlined the various features that ensure the Popover component is acces
 - `Shift + Tab`: Moves focus to the previous focusable element.
 - `Esc`: Closes the popover and moves focus to PopoverTrigger.
 
-## Themed
-
-The themed version of the component is a pre-styled version of the component, which allows you to quickly integrate the component into your project. The component's design and functionality are fully defined, allowing you to focus on the more important aspects of your project. To know more about Themed Library please visit this [link](https://gluestack.io/ui/docs/core-concepts/themed-library).
-
 ### Props
 
 Popover component is created using ScrollView component from react-native. It extends all the props supported by [React Native ScrollView](https://reactnative.dev/docs/scrollview#props), [utility props](/ui/docs/styling/utility-and-sx-props) and the props mentioned below.
@@ -856,140 +864,6 @@ Popover component is created using ScrollView component from react-native. It ex
 </Wrapper>
 
 > Note: These props are exclusively applicable when utilizing the default configuration of gluestack-ui/config. If you are using a custom theme, these props may not be available.
-
-### Examples
-
-The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
-
-#### Popover on Avatar
-
-A popover component can enhance the avatar by providing additional information and context in a concise and visually appealing manner.
-
-<Wrapper>
-  <CodePreview
-    _rendererWrapper={{ py: '$6' }}
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
-        <Box h='$80'>
-        {\/* PhoneIcon, Clock3Icon, MailIcon are imported from 'lucide-react-native' *\/}
-          <Popover
-            trigger={(triggerProps) => {
-              return (
-                <HStack>
-                  <Pressable
-                    borderRadius='$full'
-                    {...triggerProps}
-                  >
-                    <Avatar bg='$indigo600'>
-                      <AvatarFallbackText >
-                        Kevin James
-                      </AvatarFallbackText>
-                    </Avatar>
-                  </Pressable>
-                  <VStack ml='$2.5'>
-                    <Heading fontSize='$md'>
-                      Kevin James
-                    </Heading>
-                    <Text size='sm'>
-                      Hi Rachel, What’s up?
-                    </Text>
-                  </VStack>
-                </HStack>
-              );
-            }}
-          >
-            <PopoverBackdrop/>
-            <PopoverContent w='$80'>
-              <PopoverHeader  px='$5' pt='$5'>
-                <HStack>
-                  <Avatar bg='$indigo600' >
-                    <AvatarFallbackText>
-                      Kevin James
-                    </AvatarFallbackText>
-                  </Avatar>
-                  <VStack ml='$2.5'>
-                    <Heading fontSize='$md'>
-                      Kevin James
-                    </Heading>
-                    <HStack alignItems='center'>
-                      <CircleIcon color='$green700' h='$2' w='$2'/>
-                      <Text size='sm'  pl='$1.5'>
-                        Active
-                      </Text>
-                    </HStack>
-                  </VStack>
-                </HStack>
-              </PopoverHeader>
-              <PopoverBody  px='$5' pb='$5'>
-                <VStack space='lg'>
-                  <VStack space='sm'>
-                    <HStack alignItems='center'>
-                      <Icon as={PhoneIcon} size='sm' />
-                      <Text size='sm'  ml='$1.5'>
-                        (603) 555-0123
-                      </Text>
-                    </HStack>
-                    <HStack alignItems='center'>
-                      <Icon as={Clock3Icon} size='sm'/>
-                      <Text size='sm'  ml='$1.5'>
-                        5:21 PM local time
-                      </Text>
-                    </HStack>
-                    <HStack alignItems='center'>
-                      <Icon as={MailIcon} size='sm'/>
-                      <Text size='sm'  ml='$1.5'>
-                        kevinjames@sample.com
-                      </Text>
-                    </HStack>
-                  </VStack>
-                  <Button bg='$darkBlue700' 
-                  $dark-bg='$darkBlue500'>
-                    <ButtonText>View Profile</ButtonText>
-                  </Button>
-                </VStack>
-              </PopoverBody>
-            </PopoverContent>
-          </Popover>
-        </Box>
-      `,
-      transformCode: (code) => {
-        return transformedCode(code);
-      },
-      scope: {
-        Wrapper,
-        Box,
-        Heading,
-        Text: PopoverText,
-        Popover,
-        PopoverBackdrop,
-        PopoverContent,
-        PopoverHeader,
-        PopoverBody,
-        PopoverFooter,
-        PopoverCloseButton,
-        Pressable,
-        Button,
-        ButtonText,
-        HStack,
-        VStack,
-        CircleIcon,
-        PhoneIcon,
-        Clock3Icon,
-        MailIcon,
-        Avatar,
-        AvatarFallbackText,
-        Icon,
-      },
-      argsType: {},
-    }}
-  />
-</Wrapper>
-
-## Unstyled
-
-All the components in `gluestack-ui` are unstyled by default. To customize your UI using the extendedTheme, please refer to this [link](https://gluestack.io/ui/docs/theme-configuration/customizing-theme). The import names of components serve as keys to customize each component.
 
 ## Spec Doc
 
