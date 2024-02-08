@@ -12,7 +12,7 @@ showHeader: true
 
 import { Meta } from '@storybook/addon-docs';
 
-<Meta title="common/components/Alert" />
+<Meta title="with-nativewind/components/Feedback/Alert" />
 
 import { Alert, AlertIcon, AlertText } from './Alert';
 import {
@@ -36,7 +36,7 @@ import {
   TableContainer,
 } from '@gluestack/design-system';
 
-import Wrapper from '../../components-example/themed/Wrapper';
+import Wrapper from '../../components-example/nativewind/Wrapper';
 
 This is an illustration of **Alert** component.
 
@@ -82,19 +82,31 @@ This is an illustration of **Alert** component.
 
 <br />
 
-## API Reference
+## Installation
 
-### Import
+### Step 1: Install the following dependencies:
+
+```bash
+
+npm i @gluestack-ui/alert
+
+```
+
+### Step 2: Copy and paste the following code into your project.
+
+```jsx
+%%-- File: components-example/nativewind/Alert/index.tsx --%%
+```
+
+### Step 3: Update the import paths to match your project setup.
+
+## API Reference
 
 To use this component in your project, include the following import statement in your file.
 
 ```jsx
-import { Alert, AlertIcon, AlertText } from '@gluestack-ui/themed';
+import { Alert, AlertIcon, AlertText } from '@/components/Alert';
 ```
-
-### Anatomy
-
-The structure provided below can help you identify and understand a Alert component's various parts.
 
 ```jsx
 export default () => (
@@ -163,10 +175,6 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
 
 Contains all spinner related layout style props and actions. It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text) component.
 
-## Themed
-
-The themed version of the component is a pre-styled version of the component, which allows you to quickly integrate the component into your project. The component's design and functionality are fully defined, allowing you to focus on the more important aspects of your project. To know more about Themed Library please visit this [link](https://gluestack.io/ui/docs/core-concepts/themed-library).
-
 ### Props
 
 Alert component is created using View component from react-native. It extends all the props supported by [React Native View](https://reactnative.dev/docs/view#props), [utility props](/ui/docs/styling/utility-and-sx-props) and the props mentioned below.
@@ -220,84 +228,6 @@ Alert component is created using View component from react-native. It extends al
     </Table>
   </TableContainer>
 </Wrapper>
-
-### Examples
-
-The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
-
-#### Alert with Heading
-
-An example of an alert component with a heading, which further contains another alert component for displaying supplementary information.
-
-<Wrapper>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
-        <Alert action='success'>
-          <AlertIcon as={CheckCircleIcon} size="xl"  mr="$3" />
-          <VStack space='xs'>
-            <AlertText fontWeight ='$bold'>
-              Congratulations!
-            </AlertText >
-            <AlertText >
-              Thank you for your submission. You will receive a confirmation email shortly.
-            </AlertText>
-          </VStack>
-        </Alert>
-      `,
-      transformCode: (code) => {
-        return transformedCode(code);
-      },
-      scope: {
-        Alert,
-        AlertIcon,
-        AlertText,
-        Wrapper,
-        CheckCircleIcon,
-        VStack,
-        Icon,
-      },
-      argsType: {},
-    }}
-/>
-
-</Wrapper>
-
-## Unstyled
-
-All the components in `gluestack-ui` are unstyled by default. To customize your UI using the extendedTheme, please refer to this [link](https://gluestack.io/ui/docs/theme-configuration/customizing-theme). The import names of components serve as keys to customize each component.
-
-### Advanced
-
-We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
-
-### Customizing the Alert
-
-We have a function called `createAlert` which can be used to create a custom alert component. This function takes in a configuration object which contains the styled components that you want to use for the Alert You can refer [gluestack.io/style](/style/docs/getting-started/styled) on how to use styled components.
-
-#### Usage
-
-Default styling of all these components can be found in the `components/core/alert` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/main/packages/themed/src/components/Alert) of the styled `Alert` components.
-
-```jsx
-// import the styles
-import { Root, Text, Icon } from 'components/core/alert/styled-components';
-
-// Understanding the API
-const Alert: any = Root;
-AlertIcon = Icon;
-AlertText = Text;
-
-// Using the alert component
-export default () => (
-  <Alert>
-    <AlertIcon />
-    <AlertText />
-  </Alert>
-);
-```
 
 ## Spec Doc
 
