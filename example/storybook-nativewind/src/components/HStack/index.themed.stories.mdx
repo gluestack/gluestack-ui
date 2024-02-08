@@ -12,7 +12,7 @@ showHeader: true
 
 import { Meta } from '@storybook/addon-docs';
 
-<Meta title="common/components/HStack" />
+<Meta title="with-gluestack-style/components/Layout/HStack" />
 
 import { HStack } from './HStack';
 import { Box } from '@gluestack-ui/themed';
@@ -64,19 +64,31 @@ This is an illustration of **HStack** component.
 
 <br />
 
-## API Reference
+## Installation
 
-### Import
+### Step 1: Install the following dependencies:
+
+```bash
+
+npm i @gluestack-ui/hstack
+
+```
+
+### Step 2: Copy and paste the following code into your project.
+
+```jsx
+%%-- File: components-example/themed/HStack/index.tsx --%%
+```
+
+### Step 3: Update the import paths to match your project setup.
+
+## API Reference
 
 To use this component in your project, include the following import statement in your file.
 
-```bash
-import { HStack } from '@gluestack-ui/themed';
+```jsx
+import { HStack } from '@/components/HStack';
 ```
-
-### Anatomy
-
-The structure provided below can help you identify and understand a HStack component's various parts.
 
 ```jsx
 export default () => <HStack />;
@@ -93,10 +105,6 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
 ### Accessibility
 
 The accessibility of a HStack is primarily determined by the accessibility information of the components it contains. When you pass an accessible component inside a HStack, its accessibility attributes, such as labels and hints, will be utilized by assistive technologies like screen readers.
-
-## Themed
-
-The themed version of the component is a pre-styled version of the component, which allows you to quickly integrate the component into your project. The component's design and functionality are fully defined, allowing you to focus on the more important aspects of your project. To know more about Themed Library please visit this [link](https://gluestack.io/ui/docs/core-concepts/themed-library).
 
 ### Props
 
@@ -160,66 +168,6 @@ HStack component is created using View component from react-native. It extends a
 </>
 
 > Note: These props are exclusively applicable when utilizing the default configuration of gluestack-ui/config. If you are using a custom theme, these props may not be available.
-
-### Examples
-
-The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
-
-#### HStack Reversed
-
-An HStack component with the reversed prop reverses the order of horizontally stacked elements, allowing for customized layouts and visual arrangements of content within a user interface.
-
-<>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
-        <HStack space="md" reversed>
-          <Box w='$20' h='$20' bg='$blue300' />
-          <Box w='$20' h='$20' bg='$blue400' />
-          <Box w='$20' h='$20' bg='$blue500' />
-        </HStack>
-      `,
-      transformCode: (code) => {
-        return transformedCode(code);
-      },
-      scope: { Box, Wrapper, HStack },
-      argsType: {},
-    }}
-  />
-</>
-
-## Unstyled
-
-We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
-
-<!--
-### Customizing the HStack
-
-We have a function called `createHStack` which can be used to create a custom HStack component. This function takes in a configuration object which contains the styled components that you want to use for the HStack. You can refer [gluestack.io/style](/style/docs/getting-started/styled) on how to use styled components.
-
-#### Usage
-
-Default styling of the component can be found in the `components/hstack` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/main/packages/themed/src/components/HStack) of the styled `HStack` component.
-
-```jsx
-// import the styles
-import { Root, Spacer } from 'components/core/hstack/styled-components';
-
-// import the createHStack function
-import { createHStack } from '@gluestack-ui/hstack';
-
-// Understanding the API
-const HStack = createHStack({
-  Root,
-  Spacer,
-});
-
-// Using the HStack component
-export default () => <HStack />;
-```
--->
 
 ## Spec Doc
 
