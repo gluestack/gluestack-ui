@@ -15,7 +15,6 @@ import { Meta } from '@storybook/addon-docs';
 <Meta title="with-nativewind/components/Media And Icons/Image" />
 
 import { Image } from './Image';
-import { VStack } from '@gluestack-ui/themed';
 import { transformedCode } from '../../utils';
 import Wrapper from '../../components-example/nativewind/Wrapper';
 
@@ -59,21 +58,6 @@ This is an illustration of **Image** component.
           control: 'select',
           options: ['2xs', 'xs', 'sm', 'md', 'lg', 'xl', '2xl'],
           default: 'md',
-        },
-        borderRadius: {
-          control: 'select',
-          options: [
-            '$none',
-            '$xs',
-            '$sm',
-            '$md',
-            '$lg',
-            '$xl',
-            '$2xl',
-            '$3xl',
-            '$full',
-          ],
-          default: '$none',
         },
       },
     }}
