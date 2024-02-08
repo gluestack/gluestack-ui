@@ -9,6 +9,7 @@ import {
   ModalFooter,
   ModalHeader,
 } from '@/components/Modal';
+import { Center } from '@/components/Center';
 
 import { X } from 'lucide-react-native';
 import { Text } from 'react-native';
@@ -82,4 +83,5 @@ export {
   Button,
   ButtonText,
   Text,
+  Center,
 };

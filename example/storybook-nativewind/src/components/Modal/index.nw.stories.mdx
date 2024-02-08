@@ -16,13 +16,10 @@ import { Meta } from '@storybook/addon-docs';
 
 import {
   CloseIcon,
-  Button,
-  ButtonText,
   ButtonIcon,
   Heading,
   Icon,
   Text as ModalText,
-  Center,
   CheckCircleIcon,
 } from '@gluestack-ui/themed';
 import {
@@ -33,6 +30,9 @@ import {
   ModalCloseButton,
   ModalBody,
   ModalFooter,
+  Button,
+  ButtonText,
+  Center,
 } from './Modal';
 import {
   VStack,
@@ -70,7 +70,7 @@ This is an illustration of **Modal** component.
           console.log(showModal);
           const ref = React.useRef(null);
           return (
-            <Center h={300}>
+            <Center className='h-[300px]'>
               <Button onPress={() => setShowModal(true)} ref={ref}>
                 <ButtonText>Show Modal</ButtonText>
               </Button>
@@ -99,7 +99,7 @@ This is an illustration of **Modal** component.
                       variant="outline"
                       size="sm"
                       action="secondary"
-                      mr="$3"
+                      className='mr-[3px]'
                       onPress={() => {
                         setShowModal(false);
                       }}
@@ -109,7 +109,6 @@ This is an illustration of **Modal** component.
                     <Button
                       size="sm"
                       action="positive"
-                      borderWidth='$0'
                       onPress={() => {
                         setShowModal(false);
                       }}

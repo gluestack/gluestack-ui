@@ -44,7 +44,7 @@ const ModalBackdrop = React.forwardRef(({ className, ...props }: any, ref) => (
 
 const ModalContent = React.forwardRef(({ className, ...props }: any, ref) => (
   <UIModal.Content
-    className={cn('w-70% max-w-[420px]', className)}
+    className={cn('w-70% max-w-[420px] bg-background-50 rounded-md', className)}
     {...props}
     ref={ref}
   />

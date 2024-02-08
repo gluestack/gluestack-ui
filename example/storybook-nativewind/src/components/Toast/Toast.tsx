@@ -1,7 +1,5 @@
 import React from 'react';
 import {
-  Button,
-  ButtonText,
   Icon,
   CloseIcon,
   VStack,
@@ -15,6 +13,7 @@ import {
   ToastDescription,
   useToast,
 } from '@/components/Toast';
+import { Button, ButtonText } from '@/components/Button';
 import { MessageCircle, AlertTriangleIcon } from 'lucide-react-native';
 
 const ToastFigmaStory = ({ _placement = 'top', _colorMode, ...props }: any) => {

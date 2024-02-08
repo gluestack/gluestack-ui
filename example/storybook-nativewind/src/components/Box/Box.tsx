@@ -1,4 +1,4 @@
-import { Text } from '@gluestack-ui/themed';
+import { Text } from '@/components/Text';
 import { Box } from '@/components/Box';
 import React from 'react';
 
