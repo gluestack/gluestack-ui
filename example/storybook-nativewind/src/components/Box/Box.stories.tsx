@@ -7,10 +7,8 @@ const BoxMeta: ComponentMeta<typeof Box> = {
   component: Box,
 
   args: {
-    bg: 'primary500',
     w: 100,
     h: 100,
-    className: 'bg-primary-500 w-100 h-100',
   },
 };
 
