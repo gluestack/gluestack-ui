@@ -14,14 +14,14 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="with-gluestack-style/components/Overlay/Tooltip" />
 
-import { Tooltip, TooltipContent, TooltipText } from './Tooltip';
+import { Tooltip, TooltipContent, TooltipText, Button,
+  ButtonText, } from './Tooltip';
 import {
   Box,
   Heading,
   Edit,
   Center,
-  Button,
-  ButtonText,
+ 
 } from '@gluestack-ui/themed';
 import { VStack, Command, Icon } from '@gluestack-ui/themed';
 import {
@@ -55,7 +55,7 @@ This is an illustration of **Tooltip** component.
           {...props}
           trigger={(triggerProps) => {
             return (
-              <Button h='$24' {...triggerProps}>
+              <Button className='h-24' {...triggerProps}>
                 <ButtonText>Hover on me!</ButtonText>
               </Button>
             );

@@ -1,8 +1,6 @@
 import React from 'react';
 import {
   Center,
-  Button,
-  ButtonText,
   Text,
   Avatar,
   AvatarGroup,
@@ -14,6 +12,7 @@ import {
   Icon,
 } from '@gluestack-ui/themed';
 import { Tooltip, TooltipContent, TooltipText } from '@/components/Tooltip';
+import { Button, ButtonText } from '@/components/Button';
 import { Edit, Command } from 'lucide-react-native';
 
 const TooltipBasic = ({
