@@ -43,7 +43,7 @@ export const parameters = {
           'Layout',
           ['Box', 'Center', 'Divider', 'HStack', 'VStack'],
           'Feedback',
-          ['Alert', 'Progress', 'Spinner', 'Toast'],
+          ['Alert', 'Progress', 'Spinner'],
           'Data Display',
           ['Badge'],
           'Forms',

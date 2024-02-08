@@ -48,8 +48,8 @@ This is an illustration of **Alert** component.
     showArgsController={true}
     metaData={{
       code: `
-        <Alert mx='$2.5'  {...props}>
-          <AlertIcon as={InfoIcon} mr="$3"  />
+        <Alert className="mx-2.5"  {...props}>
+          <AlertIcon as={InfoIcon} className="mr-3"  />
           <AlertText>
             We have updated our terms of service. Please review and accept to continue using our service.
           </AlertText>
@@ -126,48 +126,6 @@ This section provides a comprehensive reference list for the component props, de
 
 Contains all alert related layout style props and actions. It inherits all the properties of React Native's [View](https://reactnative.dev/docs/pressable) component.
 
-**Descendants Styling Props**
-Props to style child components.
-
-<Wrapper>
-  <TableContainer>
-    <Table>
-      <Table.THead>
-        <Table.TR>
-          <Table.TH>
-            <Table.TText>Sx Prop</Table.TText>
-          </Table.TH>
-          <Table.TH>
-            <Table.TText>Description</Table.TText>
-          </Table.TH>
-        </Table.TR>
-      </Table.THead>
-      <Table.TBody>
-        <Table.TR>
-          <Table.TD>
-            <Table.TText>
-              <InlineCode>_text</InlineCode>
-            </Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>{`Prop to style AlertText Component`}</Table.TText>
-          </Table.TD>
-        </Table.TR>
-        <Table.TR>
-          <Table.TD>
-            <Table.TText>
-              <InlineCode>_icon</InlineCode>
-            </Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>{`Prop to style AlertIcon Component`}</Table.TText>
-          </Table.TD>
-        </Table.TR>
-      </Table.TBody>
-    </Table>
-  </TableContainer>
-</Wrapper>
-
 #### AlertIcon
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
@@ -178,58 +136,9 @@ Contains all spinner related layout style props and actions. It inherits all the
 
 ### Props
 
-Alert component is created using View component from react-native. It extends all the props supported by [React Native View](https://reactnative.dev/docs/view#props), [utility props](/ui/docs/styling/utility-and-sx-props) and the props mentioned below.
+Alert component is created using View component from react-native. It extends all the props supported by [React Native View](https://reactnative.dev/docs/view#props).
 
-#### Alert
-
-<Wrapper>
-  <TableContainer>
-    <Table>
-      <Table.THead>
-        <Table.TR>
-          <Table.TH>
-            <Table.TText>Name</Table.TText>
-          </Table.TH>
-          <Table.TH>
-            <Table.TText>Value</Table.TText>
-          </Table.TH>
-          <Table.TH>
-            <Table.TText>Default</Table.TText>
-          </Table.TH>
-        </Table.TR>
-      </Table.THead>
-      <Table.TBody>
-        <Table.TR>
-          <Table.TD>
-            <Table.TText>
-              <InlineCode>action</InlineCode>
-            </Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>error | warning | success | info | muted</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>info</Table.TText>
-          </Table.TD>
-        </Table.TR>
-        <Table.TR>
-          <Table.TD>
-            <Table.TText>
-              <InlineCode>variant</InlineCode>
-            </Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>solid | outline | accent</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>solid</Table.TText>
-          </Table.TD>
-        </Table.TR>
-      </Table.TBody>
-    </Table>
-  </TableContainer>
-</Wrapper>
-
+<!--
 ## Spec Doc
 
 Explore the comprehensive details of the Alert in this document, including its implementation details, checklist, and potential future additions. Dive into the thought process behind the component and gain insights into its development journey.
@@ -242,4 +151,4 @@ Explore the comprehensive details of the Alert in this document, including its i
   }}
   src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FNcXOxqKbdnGsLQNex3H76u%2F%25C2%25A0%25F0%259F%2593%259Agluestack-UI-handbook%3Ftype%3Ddesign%26node-id%3D6300-43142%26t%3DZPsVa5mi34R2dR7W-1%26scaling%3Dscale-down%26page-id%3D6300%253A41240%26starting-point-node-id%3D6300%253A43142%26mode%3Ddesign"
   allowFullScreen
-/>
+/> -->
