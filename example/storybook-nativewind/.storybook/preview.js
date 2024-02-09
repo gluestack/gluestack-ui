@@ -3,13 +3,12 @@ import { DocsContainer } from '@storybook/addon-docs/blocks';
 import { OverlayProvider } from '@gluestack-ui/overlay';
 import { ToastProvider } from '@gluestack-ui/toast';
 
-import { Provider } from '../src/components/nativewind/Provider';
+import { GluestackUIProvider as GluestackUIWithNativewindProvider } from '../src/components-example/nativewind/GluestackUIProvider';
 
 // global css getting resolved from babel.config.js
 import 'global.css';
 
-import { Provider as GluestackUIProvider } from '../src/components/themed/Provider';
-import { config } from '../src/components/themed/Provider/config';
+import { GluestackUIProvider as GluestackUIWithGluestackStyleProvider } from '../src/components-example/themed/GluestackUIProvider';
 
 import gstheme from './gstheme';
 import { themes } from '@storybook/theming';
@@ -33,10 +32,38 @@ export const parameters = {
       order: [
         'Overview',
         ['Introduction'],
+        'Getting Started',
+        ['Installation', 'Tooling Setup'],
         'Core Concepts',
         ['Accessibility', 'Universal'],
         'Components',
-        ['Button', 'Avatar'],
+        [
+          'Typography',
+          ['Heading', 'Text'],
+          'Layout',
+          ['Box', 'Center', 'Divider', 'HStack', 'VStack'],
+          'Feedback',
+          ['Alert', 'Progress', 'Spinner'],
+          'Data Display',
+          ['Badge'],
+          'Forms',
+          [
+            'Button',
+            'Checkbox',
+            'FormControl',
+            'Link',
+            'Pressable',
+            'Radio',
+            'Slider',
+            'Switch',
+          ],
+          'Media And Icons',
+          ['Avatar', 'Image'],
+          'Others',
+          ['Fab'],
+        ],
+        'More',
+        ['Changelog'],
       ],
     },
   },
@@ -67,22 +94,23 @@ export const decorators = [
     }, [getColorMode()]);
 
     return (
-      // <GluestackUIProvider config={config} colorMode={colorMode}>
-      <Provider mode={colorMode}>
-        <OverlayProvider style={{ flex: 1 }}>
-          <ToastProvider>
-            <View
-              style={{
-                flex: 1,
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}
-            >
-              <Story />
-            </View>
-          </ToastProvider>
-        </OverlayProvider>
-      </Provider>
+      <GluestackUIWithGluestackStyleProvider colorMode={colorMode}>
+        <GluestackUIWithNativewindProvider mode={colorMode}>
+          <OverlayProvider style={{ flex: 1 }}>
+            <ToastProvider>
+              <View
+                style={{
+                  flex: 1,
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}
+              >
+                <Story />
+              </View>
+            </ToastProvider>
+          </OverlayProvider>
+        </GluestackUIWithNativewindProvider>
+      </GluestackUIWithGluestackStyleProvider>
     );
   },
 ];
@@ -93,15 +121,15 @@ addParameters({
     inlineStories: false,
     container: ({ children, context }) => {
       return (
-        <GluestackUIProvider config={config}>
-          <Provider>
+        <GluestackUIWithGluestackStyleProvider>
+          <GluestackUIWithNativewindProvider>
             <DocsContainer context={context}>
               <OverlayProvider style={{ flex: 1 }}>
                 <ToastProvider>{children}</ToastProvider>
               </OverlayProvider>
             </DocsContainer>
-          </Provider>
-        </GluestackUIProvider>
+          </GluestackUIWithNativewindProvider>
+        </GluestackUIWithGluestackStyleProvider>
       );
     },
   },

@@ -1,0 +1,90 @@
+---
+title: Pressable | gluestack-ui | Installation, Usage, and API
+
+description: By providing access to hover, pressed, and focus events, Pressable serves as a more flexible alternative to buttons at a lower level of abstraction. It is a useful primitive for advanced customization needs.
+
+pageTitle: Pressable
+
+pageDescription: By providing access to hover, pressed, and focus events, Pressable serves as a more flexible alternative to buttons at a lower level of abstraction. It is a useful primitive for advanced customization needs.
+
+showHeader: true
+---
+
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="with-gluestack-style/components/Forms/Pressable" />
+
+import { Pressable } from './Pressable';
+import { transformedCode } from '../../utils';
+import { AppProvider, CodePreview, Text } from '@gluestack/design-system';
+
+import Wrapper from '../../components-example/themed/Wrapper';
+import { CollapsibleCode } from '@gluestack/design-system';
+
+This is an illustration of **Pressable** component.
+
+<Wrapper>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+ <Pressable
+  onPress={() => console.log('Hello')} p="$5" bg="$primary500" $hover-bg="$primary400">
+  <Text color="white">Press me</Text>
+</Pressable>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Pressable,
+        Text,
+      },
+      argsType: {},
+    }}
+  />
+</Wrapper>
+
+<br />
+
+## Installation
+
+### Step 1: Install the following dependencies:
+
+```bash
+
+npm i @gluestack-ui/pressable
+
+```
+
+### Step 2: Copy and paste the following code into your project.
+
+<CollapsibleCode>
+  ```jsx 
+%%-- File: components-example/themed/Pressable/index.tsx --%% 
+```
+</CollapsibleCode>
+
+### Step 3: Update the import paths to match your project setup.
+
+## API Reference
+
+To use this component in your project, include the following import statement in your file.
+
+```jsx
+import { Pressable } from '@/components/Pressable';
+```
+
+```jsx
+export default () => <Pressable />;
+```
+
+### Component Props
+
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
+
+#### Pressable
+
+It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable) component.
