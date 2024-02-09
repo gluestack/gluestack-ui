@@ -1,5 +1,27 @@
 # @gluestack-ui/themed
 
+## 1.1.3
+
+### Patch Changes
+
+- Card: New Component Release
+
+## 1.1.2
+
+### Patch Changes
+
+- - Fixed InputAccessoryView for web
+
+## 1.1.1
+
+### Patch Changes
+
+- Fixed InputAccessoryView `backgroundColor` tokenization.
+- Remove creator for `LinearGradient`
+- Updated dependencies
+  - @gluestack-style/animation-resolver@1.0.4
+  - @gluestack-style/react@1.0.44
+
 ## 1.1.0
 
 ### Minor Changes
