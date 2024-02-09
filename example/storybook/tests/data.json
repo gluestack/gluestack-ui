@@ -27,11 +27,7 @@
     "overlay": false,
     "storyParent": "layout",
     "storyAddress": "box",
-    "storyName": "box",
-    "arguments": {
-      "height": {},
-      "width": {}
-    }
+    "storyName": "box"
   },
   "alert": {
     "overlay": false,
@@ -58,9 +54,6 @@
       "size": {
         "control": "select",
         "options": ["sm", "md", "lg", "xl", "full", ""]
-      },
-      "showAlertDialog": {
-        "control": "selelct"
       }
     }
   },
@@ -101,21 +94,23 @@
     "storyAddress": "popover",
     "storyName": "popover",
     "arguments": {
-      "control": "select",
-      "options": [
-        "bottom",
-        "bottom left",
-        "bottom right",
-        "top",
-        "top left",
-        "top right",
-        "left",
-        "left bottom",
-        "left right",
-        "right",
-        "right bottom",
-        "right top"
-      ]
+      "placement": {
+        "control": "select",
+        "options": [
+          "bottom",
+          "bottom left",
+          "bottom right",
+          "top",
+          "top left",
+          "top right",
+          "left",
+          "left bottom",
+          "left right",
+          "right",
+          "right bottom",
+          "right top"
+        ]
+      }
     },
     "showMenu": {
       "control": "select",
@@ -129,21 +124,23 @@
     "storyAddress": "menu",
     "storyName": "menu",
     "arguments": {
-      "control": "select",
-      "options": [
-        "bottom",
-        "bottom end",
-        "bottom start",
-        "top",
-        "top end",
-        "top start",
-        "left",
-        "left end",
-        "left start",
-        "right",
-        "right end",
-        "right start"
-      ]
+      "placement": {
+        "control": "select",
+        "options": [
+          "bottom",
+          "bottom left",
+          "bottom right",
+          "top",
+          "top left",
+          "top right",
+          "left",
+          "left bottom",
+          "left right",
+          "right",
+          "right bottom",
+          "right top"
+        ]
+      }
     },
     "showMenu": {
       "control": "select",
@@ -193,7 +190,7 @@
     "arguments": {
       "size": {
         "control": "select",
-        "options": ["size", "xs", "sm", "md", "lg"]
+        "options": ["xs", "sm", "md", "lg", "xl"]
       },
       "variant": {
         "control": "select",
@@ -355,7 +352,8 @@
         ]
       },
       "reversed": {
-        "control": "select"
+        "control": "select",
+        "options": [true, false]
       }
     }
   },
@@ -468,7 +466,7 @@
       },
       "showModal": {
         "control": "boolean",
-        "option": [true, false]
+        "options": [true, false]
       }
     }
   },
@@ -495,10 +493,6 @@
       "size": {
         "control": "select",
         "options": ["xs", "sm", "md", "lg", "xl", "2xl"]
-      },
-      "value": {
-        "type": "number",
-        "defaultValue": "50"
       }
     }
   },
@@ -735,7 +729,7 @@
           "top left",
           "bottom ",
           "bottom left ",
-          "bottm right"
+          "bottom right"
         ]
       },
       "action": {
@@ -803,7 +797,8 @@
         ]
       },
       "reversed": {
-        "control": "select"
+        "control": "select",
+        "options": [true, false]
       }
     }
   }
