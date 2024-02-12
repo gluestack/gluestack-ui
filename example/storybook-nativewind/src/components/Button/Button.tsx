@@ -17,3 +17,6 @@ ButtonBasic.description =
 export default ButtonBasic;
 
 export { Button, ButtonText };
+export const Test = () => {
+  return 'Hello';
+};

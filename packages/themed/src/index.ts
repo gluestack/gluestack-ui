@@ -8,5 +8,5 @@ declare module '@gluestack-style/react' {
   interface ICustomComponents extends UIComponents {}
 }
 
-export * from './components';
+export * from './components/unstyled';
 export * from '@gluestack-style/react';

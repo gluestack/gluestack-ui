@@ -1,6 +1,5 @@
 {
   "include": ["./src"],
-  "exclude": ["node_modules", "example"],
   "path": {},
   "compilerOptions": {
     "ignoreDeprecations": "5.0",
@@ -27,5 +26,6 @@
     "strict": true,
     "target": "esnext",
     "outDir": "./build"
-  }
+  },
+  "exclude": ["node_modules", "example", "build", "**/*.d.ts"]
 }
