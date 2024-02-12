@@ -19,6 +19,9 @@ export const InputSlot = (StyledInputSlot: any) =>
         states={{
           disabled: isDisabled || inputProps.isDisabled,
         }}
+        dataSet={{
+          disabled: isDisabled || inputProps.isDisabled ? 'true' : 'false',
+        }}
         onPress={() => {
           handleFocus();
           if (onPress) onPress();
