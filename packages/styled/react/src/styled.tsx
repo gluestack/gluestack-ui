@@ -893,6 +893,8 @@ export function verboseStyled<P, Variants, ComCon>(
     descendant: StyleIds;
   };
   let orderedCSSIds: any = [];
+  //@ts-ignore
+  const isStyledComponent = Component?.isStyledComponent;
   // const orderedUnResolvedTheme = updateOrderUnResolvedMap(
   //   theme,
   //   componentHash,
@@ -913,7 +915,10 @@ export function verboseStyled<P, Variants, ComCon>(
       theme,
       componentHash,
       declarationType,
-      componentStyleConfig
+      componentStyleConfig,
+      GluestackStyleSheet,
+      Platform.OS,
+      isStyledComponent
     );
 
     orderedCSSIds = g;
@@ -1049,7 +1054,6 @@ export function verboseStyled<P, Variants, ComCon>(
   ) => {
     const isClient = React.useRef(false);
     const GluestackComponent = useRef(Component);
-
     if (uniqueComponentId === '') {
       uniqueComponentId = componentHash;
     }
