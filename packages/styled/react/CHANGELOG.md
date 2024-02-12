@@ -1,5 +1,11 @@
 # @gluestack-style/react
 
+## 1.0.47
+
+### Patch Changes
+
+- - Fixed composed component style injection
+
 ## 1.0.46
 
 ### Patch Changes
