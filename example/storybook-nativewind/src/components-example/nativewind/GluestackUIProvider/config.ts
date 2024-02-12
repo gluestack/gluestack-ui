@@ -294,5 +294,6 @@ export const config = {
     '--color-background-success': '#1C2B21',
     '--color-background-muted': '#252526',
     '--color-background-info': '#1A282E',
+    
   }),
 };
