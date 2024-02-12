@@ -14,7 +14,9 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="with-nativewind/components/Layout/Center" />
 
-import { Center, Text } from './Center';
+import { Center } from './Center';
+import { Text } from '@/components/Text';
+
 import { transformedCode } from '../../utils';
 import { AppProvider, CodePreview, Table } from '@gluestack/design-system';
 
@@ -56,9 +58,7 @@ This is an illustration of **Center** component.
 ### Step 1: Copy and paste the following code into your project.
 
 <CollapsibleCode>
-  ```jsx 
-%%-- File: components-example/nativewind/Center/index.tsx --%% 
-```
+  ```jsx %%-- File: components-example/nativewind/Center/index.tsx --%% ```
 </CollapsibleCode>
 
 ### Step 2: Update the import paths to match your project setup.
