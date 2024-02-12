@@ -22,5 +22,5 @@
   "tailwindCSS.experimental.classRegex": [
     ["tva\\((([^()]*|\\([^()]*\\))*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]
   ],
-  "cmake.sourceDirectory": "/Users/vidhikataria/Documents/Projects/gluestack-ui/gluestack-ui/node_modules/@gluestack/design-system/node_modules/react-native/ReactAndroid/src/main/jni/react/fabric"
+  "cmake.sourceDirectory": "/Users/vidhikataria/Documents/Projects/gluestack-ui/gluestack-ui/node_modules/expo/node_modules/expo-modules-core/android"
 }
