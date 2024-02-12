@@ -1,5 +1,12 @@
 # @gluestack-ui/menu
 
+## 0.2.28
+
+### Patch Changes
+
+- Feature
+  Added Support of data-state-\* props
+
 ## 0.2.27
 
 ### Patch Changes
