@@ -1,5 +1,14 @@
 # @gluestack-ui/switch
 
+## 0.1.19
+
+### Patch Changes
+
+- Feature
+  Added Support of data-state-\* props
+- Updated dependencies
+  - @gluestack-ui/form-control@0.1.16
+
 ## 0.1.18
 
 ### Patch Changes
