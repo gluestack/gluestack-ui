@@ -928,7 +928,10 @@ export type UtilityProps<
         ? PropertyTokenType[Aliases[LastPart<key>]] extends 'sizes'
           ?
               | WithSizeNegativeValue<GSConfig['tokens']>
-              | ExtendRNStyle<GenericComponentStyles, Aliases[LastPart<key>]>
+              | ExtendRNStyle<
+                  GetRNStyles<GenericComponentStyles>,
+                  Aliases[LastPart<key>]
+                >
           : PropertyTokenType[Aliases[LastPart<key>]] extends 'space'
           ?
               | WithNegativeValue<
