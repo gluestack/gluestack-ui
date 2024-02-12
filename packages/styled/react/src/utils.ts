@@ -345,7 +345,12 @@ export const getTokenFromConfig = (
     if (typeof token === 'number') {
       token = -token;
     } else if (typeof token === 'string') {
-      token = `-${token}`;
+      const negativeCSSVariableRegex = /^var\(.+\)$/;
+      if (negativeCSSVariableRegex.test(token)) {
+        token = `calc(${token} * -1)`;
+      } else {
+        token = `-${token}`;
+      }
     }
   }
 
