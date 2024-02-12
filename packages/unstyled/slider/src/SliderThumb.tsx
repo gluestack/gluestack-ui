@@ -130,6 +130,14 @@ function SliderThumb<StyledSliderThumb, StyledSliderThumbInteraction>(
             focusVisible: isFocusVisible || isFocusVisibleProp,
             active: isPressed || isPressedProp,
           }}
+          dataSet={{
+            hover: isHovered || isHoveredProp ? 'true' : 'false',
+            disabled: isDisabled || isDisabledProp ? 'true' : 'false',
+            focus: isFocused || isFocusedProp ? 'true' : 'false',
+            focusVisible:
+              isFocusVisible || isFocusVisibleProp ? 'true' : 'false',
+            active: isPressed || isPressedProp ? 'true' : 'false',
+          }}
           disabled={isDisabled}
           {...thumbProps}
           style={{
@@ -157,6 +165,13 @@ function SliderThumb<StyledSliderThumb, StyledSliderThumbInteraction>(
               focusVisible: isFocusVisible,
               disabled: isDisabled,
               active: isPressed,
+            }}
+            dataSet={{
+              hover: isHovered ? 'true' : 'false',
+              focus: isFocused ? 'true' : 'false',
+              focusVisible: isFocusVisible ? 'true' : 'false',
+              disabled: isDisabled ? 'true' : 'false',
+              active: isPressed ? 'true' : 'false',
             }}
           >
             {children}
