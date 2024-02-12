@@ -38,7 +38,6 @@ module.exports = function (api) {
               __dirname,
               '../../packages/unstyled/slider/src'
             ),
-
             '@gluestack-ui/radio': path.resolve(
               __dirname,
               '../../packages/unstyled/radio/src'
