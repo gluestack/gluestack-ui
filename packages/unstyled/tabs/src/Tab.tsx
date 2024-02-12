@@ -51,12 +51,6 @@ export const Tab = <StyledTab,>(StyledTab: React.ComponentType<StyledTab>) =>
               active: value === currentActiveTab,
               focusVisible: isFocusVisible,
             }}
-            dataSet={{
-              hover: isHovered ? 'true' : 'false',
-              focus: isFocused ? 'true' : 'false',
-              active: value === currentActiveTab ? 'true' : 'false',
-              focusVisible: isFocusVisible ? 'true' : 'false',
-            }}
             tabIndex={value === currentActiveTab ? 0 : -1}
             {...(props as StyledTab)}
             onPressIn={composeEventHandlers(
