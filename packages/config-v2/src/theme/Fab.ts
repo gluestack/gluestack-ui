@@ -33,14 +33,14 @@ export const Fab = createStyle({
   },
 
   '_icon': {
-    'color': '$text50',
+    'color': '$background50',
 
     ':hover': {
-      color: '$text0',
+      color: '$background0',
     },
 
     ':active': {
-      color: '$text0',
+      color: '$background0',
     },
   },
 
