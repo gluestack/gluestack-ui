@@ -55,7 +55,7 @@ export const Badge = createStyle({
         },
       },
       muted: {
-        bg: '$backgroundMuted',
+        bg: '$background600',
         borderColor: '$secondary300',
 
         _icon: {
@@ -78,6 +78,7 @@ export const Badge = createStyle({
     size: {
       sm: {
         px: '$2',
+        py: '$1',
         _icon: {
           props: {
             size: '2xs',
@@ -91,6 +92,7 @@ export const Badge = createStyle({
       },
       md: {
         px: '$2',
+        py: '$1',
         _icon: {
           props: {
             size: 'xs',
@@ -104,6 +106,7 @@ export const Badge = createStyle({
       },
       lg: {
         px: '$2',
+        py: '$1',
         _icon: {
           props: { size: 'sm' },
         },
