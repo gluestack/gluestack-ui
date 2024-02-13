@@ -1,8 +1,7 @@
 import { createStyle } from '@gluestack-style/react';
 
-export const Grid = createStyle({
-  width: '$full',
+export const GridParent = createStyle({
   flexDirection: 'row',
+  width: '100%',
   flexWrap: 'wrap',
-  justifyContent: 'flex-start',
 });

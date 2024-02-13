@@ -1,5 +1,8 @@
 import type { ComponentMeta } from '@storybook/react-native';
 import Grid from './Grid';
+import GridFlex from './GridFlex';
+import BasicGrid from './BasicGrid';
+import GridBasic from './GridBasic';
 
 const GridMeta: ComponentMeta<typeof Grid> = {
   title: 'stories/LAYOUT/Grid',
@@ -13,4 +16,4 @@ const GridMeta: ComponentMeta<typeof Grid> = {
 };
 
 export default GridMeta;
-export { Grid };
+export { Grid, GridFlex, BasicGrid, GridBasic };

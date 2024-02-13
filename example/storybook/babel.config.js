@@ -64,6 +64,10 @@ module.exports = function (api) {
               __dirname,
               '../../packages/unstyled/form-control/src'
             ),
+            '@gluestack-ui/grid': path.join(
+              __dirname,
+              '../../packages/unstyled/grid/src'
+            ),
             '@gluestack-ui/hstack': path.join(
               __dirname,
               '../../packages/unstyled/hstack/src'

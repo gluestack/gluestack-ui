@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, Grid, View } from '@gluestack-ui/themed';
+import { Text, Grid, View, FlatList } from '@gluestack-ui/themed';
 
 const GridBasic: any = () => {
   const data = [
@@ -12,9 +12,8 @@ const GridBasic: any = () => {
     { key: 'D' },
     { key: 'E' },
     { key: 'F' },
-    { key: 'G' },
-    { key: 'H' },
   ];
+
   const renderItem = ({ item }: any) => {
     return (
       <View
@@ -30,7 +29,17 @@ const GridBasic: any = () => {
       </View>
     );
   };
-  return <Grid data={data} renderItem={renderItem} numColumns={4} />;
+
+  return (
+    <FlatList
+      data={data}
+      renderItem={renderItem}
+      numColumns={4}
+      contentContainerStyle={{ gap: 5 }} //row gap
+      columnWrapperStyle={{ gap: 5 }} //column gap
+      width="100%"
+    />
+  );
 };
 
 GridBasic.description = 'This is a basic Grid component example.';
@@ -38,3 +47,13 @@ GridBasic.description = 'This is a basic Grid component example.';
 export default GridBasic;
 
 export { Text, Grid };
+
+{
+  /* <Grid gridTemplateCols={12}>
+  {' '}
+  // value stored in context
+  <GridItem colSpan={4}></GridItem> // stored value used in this component
+  <GridItem colSpan={4}></GridItem>
+  <GridItem colSpan={4}></GridItem>
+</Grid>; */
+}

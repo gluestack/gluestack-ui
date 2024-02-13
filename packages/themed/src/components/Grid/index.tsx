@@ -1,3 +1,10 @@
-import { Root } from './styled-components';
+import { createGrid } from '@gluestack-ui/grid';
+import { Root, Item, Parent } from './styled-components';
 
-export const Grid = Root;
+export const Grid = createGrid({
+  Parent,
+  Root,
+  Item,
+});
+
+export const GridItem = Grid.Item;
