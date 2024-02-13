@@ -3,6 +3,7 @@ import Grid from './Grid';
 import GridFlex from './GridFlex';
 import BasicGrid from './BasicGrid';
 import GridBasic from './GridBasic';
+import GridLayout from './GridLayout';
 
 const GridMeta: ComponentMeta<typeof Grid> = {
   title: 'stories/LAYOUT/Grid',
@@ -16,4 +17,4 @@ const GridMeta: ComponentMeta<typeof Grid> = {
 };
 
 export default GridMeta;
-export { Grid, GridFlex, BasicGrid, GridBasic };
+export { Grid, GridFlex, BasicGrid, GridBasic, GridLayout };

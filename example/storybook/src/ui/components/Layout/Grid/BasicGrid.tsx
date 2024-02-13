@@ -1,9 +1,9 @@
 import React from 'react';
 import {
-  Grid,
-  GridItem,
+  // Grid,
+  // GridItem,
   View,
-  Text,
+  // Text,
   ScrollView,
   // Box,
   // Image,
@@ -12,13 +12,13 @@ import {
 const BasicGrid = () => {
   return (
     <ScrollView width="100%">
-      <Grid
+      {/* <Grid
         numColumns={4}
         columnSpacing={10}
         rowSpacing={10}
-        flexDirection="row-reverse"
+        flexDirection="row"
       >
-        <GridItem colSpan={2}>
+        <GridItem colSpan={4}>
           <View
             bg="$violet600"
             minHeight={100}
@@ -66,7 +66,36 @@ const BasicGrid = () => {
             <Text color="$white">4</Text>
           </View>
         </GridItem>
-      </Grid>
+      </Grid> */}
+      <View
+        style={{
+          backgroundColor: 'yellow',
+          flexDirection: 'row',
+          gap: 3,
+        }}
+      >
+        <View
+          style={{
+            backgroundColor: 'red',
+            height: 100,
+            width: 100,
+          }}
+        />
+        <View
+          style={{
+            backgroundColor: 'red',
+            height: 100,
+            width: 100,
+          }}
+        />
+        <View
+          style={{
+            backgroundColor: 'red',
+            height: 100,
+            width: 100,
+          }}
+        />
+      </View>
     </ScrollView>
   );
 };

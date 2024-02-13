@@ -1,6 +1,4 @@
-import type { ViewProps } from 'react-native';
-
-export interface IGridProps extends ViewProps {
+export interface IGridProps {
   /**
    * The number of columns in the grid.
    */
@@ -24,13 +22,18 @@ export interface IGridProps extends ViewProps {
 
 export interface IGridItemProps {
   /**
+   * The children of the grid item.
+   */
+  children: JSX.Element | Array<JSX.Element>;
+
+  /**
    * The number of columns the item should span.
    */
-  // colSpan?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
-  children: JSX.Element | Array<JSX.Element>;
+  colSpan?: number;
 }
 
-export type IGridComponentType<GridProps, ItemProps> =
-  React.ForwardRefExoticComponent<GridProps & IGridProps> & {
-    Item: React.ForwardRefExoticComponent<ItemProps & IGridItemProps>;
-  };
+export type IGridComponentType<GridProps> = React.ForwardRefExoticComponent<
+  GridProps & IGridProps
+> & {
+  Item: React.ForwardRefExoticComponent<IGridItemProps>;
+};

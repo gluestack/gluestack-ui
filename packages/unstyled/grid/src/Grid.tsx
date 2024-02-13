@@ -1,61 +1,64 @@
-import React, { forwardRef, useState, useEffect, useMemo } from 'react';
-import type { IGridProps } from './types';
+import React, { forwardRef, useState, useMemo } from 'react';
 import { GridContext } from './Context';
 
-export const Grid = <T,>(StyledParent: any, StyledGrid: any) =>
+export const Grid = (StyledParent: any, StyledGrid: any) =>
   forwardRef(
     (
       {
         children,
         numColumns = 12,
-        rowSpacing = 10,
-        columnSpacing = 10,
+        spacing = 0,
+        rowSpacing,
+        columnSpacing,
+        flexDirection = 'row',
         ...props
-      }: T & IGridProps,
+      }: any,
       ref?: any
     ) => {
-      const [containerWidth, setContainerWidth] = useState(0);
       const [calculatedWidth, setCalculatedWidth] = useState<number | null>(
         null
       );
-
-      useEffect(() => {
-        if (containerWidth && columnSpacing && columnSpacing > 0) {
-          const width = containerWidth + columnSpacing;
-          setCalculatedWidth(width);
-        }
-      }, [containerWidth, columnSpacing]);
 
       const contextValue = useMemo(() => {
         return {
           numColumns,
           calculatedWidth,
+          flexDirection,
+          columnSpacing,
+          spacing,
+          rowSpacing,
         };
-      }, [numColumns, calculatedWidth]);
+      }, [
+        numColumns,
+        calculatedWidth,
+        flexDirection,
+        columnSpacing,
+        spacing,
+        rowSpacing,
+      ]);
 
       return (
         <GridContext.Provider value={contextValue}>
           <StyledParent
             onLayout={(event: any) => {
-              const width = event.nativeEvent.layout.width;
-              setContainerWidth(width);
+              const width =
+                event.nativeEvent.layout.width +
+                (columnSpacing ?? spacing ?? 0);
+              setCalculatedWidth(width);
             }}
           >
-            <StyledGrid
-              ref={ref}
-              {...props}
-              width={calculatedWidth}
-              ml={-columnSpacing}
-              mt={-rowSpacing}
-              sx={{
-                _gridItem: {
-                  pl: columnSpacing,
-                  pt: rowSpacing,
-                },
-              }}
-            >
-              {children}
-            </StyledGrid>
+            {calculatedWidth && (
+              <StyledGrid
+                ref={ref}
+                {...props}
+                flexDirection={flexDirection}
+                width={calculatedWidth}
+                ml={(columnSpacing ?? spacing) * -1}
+                mt={(rowSpacing ?? spacing) * -1}
+              >
+                {children}
+              </StyledGrid>
+            )}
           </StyledParent>
         </GridContext.Provider>
       );

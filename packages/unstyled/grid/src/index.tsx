@@ -18,5 +18,5 @@ export function createGrid<GridProps, ItemProps>({
   Grid.displayName = 'Grid';
   Grid.Item.displayName = 'Grid.Item';
 
-  return Grid as IGridComponentType<GridProps, ItemProps>;
+  return Grid as IGridComponentType<GridProps>;
 }
