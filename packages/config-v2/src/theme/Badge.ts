@@ -55,7 +55,7 @@ export const Badge = createStyle({
         },
       },
       muted: {
-        bg: '$background600',
+        bg: '$backgroundMuted',
         borderColor: '$secondary300',
 
         _icon: {
