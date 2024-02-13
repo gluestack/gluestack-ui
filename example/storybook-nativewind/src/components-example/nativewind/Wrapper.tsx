@@ -1,8 +1,9 @@
 import React from 'react';
-import { Box, Center } from '@gluestack-ui/themed';
+import { Box, Center, useColorMode } from '@gluestack-ui/themed';
 import { GluestackUIProvider } from './GluestackUIProvider';
 
 const Wrapper = ({ children, ...props }: any) => {
+  const colorMode: any = useColorMode();
   return (
     <Box
       sx={{
@@ -12,7 +13,7 @@ const Wrapper = ({ children, ...props }: any) => {
       }}
       {...props}
     >
-      <GluestackUIProvider>
+      <GluestackUIProvider mode={colorMode}>
         <Center height="100%">{children}</Center>
       </GluestackUIProvider>
     </Box>
