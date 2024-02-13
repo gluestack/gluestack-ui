@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, ButtonText } from '@/components/Button';
+import { Button, ButtonText } from '@/components/ui/Button';
 
 export const ButtonBasic = (props: any) => {
   return (

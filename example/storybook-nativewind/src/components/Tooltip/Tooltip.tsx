@@ -11,8 +11,8 @@ import {
   HStack,
   Icon,
 } from '@gluestack-ui/themed';
-import { Tooltip, TooltipContent, TooltipText } from '@/components/Tooltip';
-import { Button, ButtonText } from '@/components/Button';
+import { Tooltip, TooltipContent, TooltipText } from '@/components/ui/Tooltip';
+import { Button, ButtonText } from '@/components/ui/Button';
 import { Edit, Command } from 'lucide-react-native';
 
 const TooltipBasic = ({

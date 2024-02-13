@@ -1,5 +1,5 @@
-import { Text } from '@/components/Text';
-import { Box } from '@/components/Box';
+import { Text } from '@/components/ui/Text';
+import { Box } from '@/components/ui/Box';
 import React from 'react';
 
 const BoxBasic: any = ({

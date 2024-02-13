@@ -9,7 +9,7 @@ import {
   Button,
   ButtonText,
 } from '@gluestack-ui/themed';
-import { Divider } from '@/components/Divider';
+import { Divider } from '@/components/ui/Divider';
 
 const DividerBasic = ({ ...props }) => {
   return (

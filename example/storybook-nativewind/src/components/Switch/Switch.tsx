@@ -1,6 +1,6 @@
 import React from 'react';
 import { VStack, Text, HStack } from '@gluestack-ui/themed';
-import { Switch } from '@/components/Switch';
+import { Switch } from '@/components/ui/Switch';
 
 const SwitchBasic = ({ ...props }: any) => {
   return <Switch defaultValue={true} value={props.isEnabled} {...props} />;

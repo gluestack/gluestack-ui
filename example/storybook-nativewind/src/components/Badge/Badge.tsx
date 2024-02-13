@@ -29,7 +29,7 @@ import {
   BadgeCheckIcon,
   BadgePlusIcon,
 } from 'lucide-react-native';
-import { Badge, BadgeText, BadgeIcon } from '@/components/Badge';
+import { Badge, BadgeText, BadgeIcon } from '@/components/ui/Badge';
 
 const BadgeBasic = ({ text = 'NEW FEATURE', _colorMode, ...props }: any) => {
   return (

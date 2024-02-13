@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, ButtonText } from '@/components/Button';
+import { Button, ButtonText } from '@/components/ui/Button';
 import {
   Modal,
   ModalBackdrop,
@@ -8,8 +8,8 @@ import {
   ModalContent,
   ModalFooter,
   ModalHeader,
-} from '@/components/Modal';
-import { Center } from '@/components/Center';
+} from '@/components/ui/Modal';
+import { Center } from '@/components/ui/Center';
 
 import { X } from 'lucide-react-native';
 import { Text } from 'react-native';

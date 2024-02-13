@@ -9,7 +9,7 @@ import {
   Icon,
 } from '@gluestack-ui/themed';
 
-import { Alert, AlertIcon, AlertText } from '@/components/Alert';
+import { Alert, AlertIcon, AlertText } from '@/components/ui/Alert';
 
 const AlertBasic = ({ ...props }: any) => {
   return (

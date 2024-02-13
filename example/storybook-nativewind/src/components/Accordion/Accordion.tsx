@@ -8,7 +8,7 @@ import {
   AccordionIcon,
   AccordionContent,
   AccordionContentText,
-} from '@/components/Accordion';
+} from '@/components/ui/Accordion';
 import { ChevronDownIcon } from 'lucide-react-native';
 import { ChevronUpIcon } from 'lucide-react-native';
 import { MinusIcon, PlusIcon } from 'lucide-react-native';

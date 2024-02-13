@@ -12,7 +12,7 @@ module.exports = function (api) {
         'module-resolver',
         {
           alias: {
-            '@/components':
+            '@/components/ui':
               process.env.STYLE_ENGINE === 'nativewind'
                 ? path.resolve(__dirname, './src/components-example/nativewind')
                 : path.resolve(__dirname, './src/components-example/themed'),

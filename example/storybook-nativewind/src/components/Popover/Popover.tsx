@@ -26,7 +26,7 @@ import {
   PopoverBody,
   PopoverFooter,
   PopoverCloseButton,
-} from '@/components/Popover';
+} from '@/components/ui/Popover';
 
 import { PhoneIcon, Clock3Icon, MailIcon } from 'lucide-react-native';
 

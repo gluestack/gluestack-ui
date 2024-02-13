@@ -57,9 +57,9 @@ import {
   FormControlError,
   FormControlErrorIcon,
   FormControlErrorText,
-} from '@/components/FormControl';
+} from '@/components/ui/FormControl';
 
-import { Input, InputField } from '@/components/Input';
+import { Input, InputField } from '@/components/ui/Input';
 const FormControlBasic = ({ ...props }: any) => {
   return (
     <FormControl {...props}>
