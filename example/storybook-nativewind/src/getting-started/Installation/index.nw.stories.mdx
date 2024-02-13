@@ -1,7 +1,7 @@
 ---
 title: Installation | gluestack-ui-with-nativewind
 
-description: To get started with gluestack-ui, check out this quick installation guide. It provides simple steps to help you install and use the library in your projects.
+description: To get started with gluestack-ui with nativewind, check out this quick installation guide. It provides simple steps to help you install and use the library in your projects.
 
 pageTitle: Installation
 
@@ -21,9 +21,15 @@ import { CollapsibleCode } from '@gluestack/design-system';
 
 you can use [gluestack-expo-nativewind-v4-template](https://github.com/gluestack/gluestack-expo-nativewind-v4-template).
 
+### Using CLI
+
+```bash
+  comming soon...
+```
+
 ## Manual
 
-If you wish to install `gluestack-ui` into your existing project, you can proceed with the following steps:
+If you wish to install `gluestack-ui` with nativewind into your existing project, you can proceed with the following steps:
 
 ### Step 1: Setup NativeWind
 
@@ -49,6 +55,7 @@ npm i @gluestack-ui/nativewind-utils
 
 Update `tailwind.config.js` file with the following code
 
+<CollapsibleCode>
 ```js
 // tailwind.config.js
 module.exports = {
@@ -244,16 +251,16 @@ module.exports = {
         '2xl': '1.6px',
       },
       fontWeight: {
-        'hairline': '100',
-        'thin': '200',
-        'light': '300',
-        'normal': '400',
-        'medium': '500',
-        'semibold': '600',
-        'bold': '700',
-        'extrabold': '800',
-        'black': '900',
-        'extraBlack': '950',
+        hairline: '100',
+        thin: '200',
+        light: '300',
+        normal: '400',
+        medium: '500',
+        semibold: '600',
+        bold: '700',
+        extrabold: '800',
+        black: '900',
+        extraBlack: '950',
       },
       fontSize: {
         '2xs': '10px',
@@ -276,15 +283,16 @@ module.exports = {
   },
 };
 ```
+</CollapsibleCode>
 
 ### Step 4: Configure components path
 
-Create a `components/` folder inside `src` folder and add path in `tsconfig.json`
+Create a `components/ui` folder inside `src` folder and add path in `tsconfig.json`
 
 ```js
 
   "paths": {
-    "@/components/*": ["./src/components/*"] // Add relative path
+    "@/*": ["./src/*"] // Add relative path
   },
 
 ```
@@ -294,17 +302,15 @@ Create a `components/` folder inside `src` folder and add path in `tsconfig.json
 To add config, create a `GluestackUIProvider/config.ts` file in your `components/` folder and paste the following code.
 
 <CollapsibleCode>
-```jsx 
-%%-- File: components-example/nativewind/GluestackUIProvider/config.ts --%% 
-```
+  ```jsx %%-- File: components-example/nativewind/GluestackUIProvider/config.ts
+  --%% ```
 </CollapsibleCode>
 
 To add `GluestackUIProvider`, create a `GluestackUIProvider/index.tsx` file inside `components/` folder and paste the following code.
 
 <CollapsibleCode>
-```jsx 
-%%-- File: components-example/nativewind/GluestackUIProvider/index.tsx --%% 
-```
+  ```jsx %%-- File: components-example/nativewind/GluestackUIProvider/index.tsx
+  --%% ```
 </CollapsibleCode>
 
 ### Step 6: Usage
