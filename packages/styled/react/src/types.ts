@@ -928,7 +928,10 @@ export type UtilityProps<
         ? PropertyTokenType[Aliases[LastPart<key>]] extends 'sizes'
           ?
               | WithSizeNegativeValue<GSConfig['tokens']>
-              | ExtendRNStyle<GenericComponentStyles, Aliases[LastPart<key>]>
+              | ExtendRNStyle<
+                  GetRNStyles<GenericComponentStyles>,
+                  Aliases[LastPart<key>]
+                >
           : PropertyTokenType[Aliases[LastPart<key>]] extends 'space'
           ?
               | WithNegativeValue<
@@ -1114,6 +1117,14 @@ export type IWrapperType =
   | 'extended-variant-state'
   | 'extended-descendant-variant'
   | 'extended-descendant-variant-state'
+  | 'composed-base'
+  | 'composed-base-state'
+  | 'composed-descendant-base'
+  | 'composed-descendant-base-state'
+  | 'composed-variant'
+  | 'composed-variant-state'
+  | 'composed-descendant-variant'
+  | 'composed-descendant-variant-state'
   | 'passing-base'
   | 'inline-base'
   | 'inline-variant'

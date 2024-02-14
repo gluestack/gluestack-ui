@@ -1,5 +1,12 @@
 # @gluestack-ui/config
 
+## 1.1.2
+
+### Patch Changes
+
+- af1b8e8: New Component Release (Card)
+- New component release (card)
+
 ## 1.1.1
 
 ### Patch Changes

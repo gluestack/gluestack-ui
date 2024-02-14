@@ -53,6 +53,12 @@ const ModalCloseButton = (StyledModalCloseButton: any) =>
           active: isPressed,
           focusVisible: isFocusVisible,
         }}
+        dataSet={{
+          hover: isHovered ? 'true' : 'false',
+          focus: isFocused ? 'true' : 'false',
+          active: isPressed ? 'true' : 'false',
+          focusVisible: isFocusVisible ? 'true' : 'false',
+        }}
         {...resolvedProps}
       >
         {children}
