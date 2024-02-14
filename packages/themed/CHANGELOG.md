@@ -1,5 +1,13 @@
 # @gluestack-ui/themed
 
+## 1.1.5
+
+### Patch Changes
+
+- Fixed React Native style props in utility props
+- Updated dependencies
+  - @gluestack-style/react@1.0.48
+
 ## 1.1.4
 
 ### Patch Changes
