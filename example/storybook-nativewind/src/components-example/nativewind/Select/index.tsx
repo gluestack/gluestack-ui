@@ -611,7 +611,7 @@ const StyledSelectInput = styled(
     color: '$text900',
 
     props: {
-      placeholderTextColor: '$text500',
+      placeholderTextColor: '$text600',
     },
   },
   {
