@@ -1,5 +1,11 @@
 # @gluestack-ui/tooltip
 
+## 0.1.26
+
+### Patch Changes
+
+- fixes
+
 ## 0.1.25
 
 ### Patch Changes

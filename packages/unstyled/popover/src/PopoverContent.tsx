@@ -110,6 +110,13 @@ const PopoverContent = (StyledPopoverContent: any, AnimatePresence?: any) =>
       shouldFlip,
     });
 
+    if (Object.keys(overlayProps.style).length === 0) {
+      overlayProps.style = {
+        top: -1000,
+        left: -1000,
+      };
+    }
+
     const mergedRef = mergeRefs([ref, contentRef]);
 
     const updateArrowSize = ({

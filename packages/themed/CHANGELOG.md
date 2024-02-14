@@ -1,5 +1,17 @@
 # @gluestack-ui/themed
 
+## 1.1.6
+
+### Patch Changes
+
+- Fix `StatusBar` backgroundColor not working.
+
+- Updated dependencies
+  - @gluestack-ui/popover@0.1.31
+  - @gluestack-ui/tooltip@0.1.26
+  - @gluestack-ui/select@0.1.24
+  - @gluestack-ui/menu@0.2.29
+
 ## 1.1.5
 
 ### Patch Changes
