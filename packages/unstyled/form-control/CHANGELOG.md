@@ -1,5 +1,12 @@
 # @gluestack-ui/form-control
 
+## 0.1.16
+
+### Patch Changes
+
+- Feature
+  Added Support of data-state-\* props
+
 ## 0.1.10
 
 ### Patch Changes

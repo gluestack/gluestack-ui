@@ -1,5 +1,18 @@
 # @gluestack-style/react
 
+## 1.0.47
+
+### Patch Changes
+
+- - Fixed composed component style injection
+
+## 1.0.46
+
+### Patch Changes
+
+- - Fixed negative tokenization [PR](https://github.com/gluestack/gluestack-ui/pull/1768)
+  - Fixed sizes token typing [PR](https://github.com/gluestack/gluestack-ui/pull/1764)
+
 ## 1.0.45
 
 ### Patch Changes

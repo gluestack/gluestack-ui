@@ -1,5 +1,12 @@
 # @gluestack-ui/pressable
 
+## 0.1.14
+
+### Patch Changes
+
+- Feature
+  Added Support of data-state-\* props
+
 ## 0.1.9
 
 ### Patch Changes
