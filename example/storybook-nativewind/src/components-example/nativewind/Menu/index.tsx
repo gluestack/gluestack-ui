@@ -49,7 +49,7 @@ const StyledItem = styled(
     'alignItems': 'center',
 
     ':hover': {
-      bg: '$background100',
+      bg: '$background50',
     },
 
     ':disabled': {
@@ -65,11 +65,11 @@ const StyledItem = styled(
     },
 
     ':active': {
-      bg: '$background200',
+      bg: '$background100',
     },
 
     ':focus': {
-      bg: '$background100',
+      bg: '$background50',
       // @ts-ignore
       outlineWidth: '$0',
       outlineStyle: 'none',
