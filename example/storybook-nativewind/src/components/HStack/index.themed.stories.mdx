@@ -38,9 +38,9 @@ This is an illustration of **HStack** component.
     metaData={{
       code: `
         <HStack {...props}>
-          <Box w='$20' h='$20' bg='$blue300' />
-          <Box w='$20' h='$20' bg='$blue400' />
-          <Box w='$20' h='$20' bg='$blue500' />
+          <Box w='$20' h='$20' bg='$primary300' />
+          <Box w='$20' h='$20' bg='$primary400' />
+          <Box w='$20' h='$20' bg='$primary500' />
         </HStack>
       `,
       transformCode: (code) => {
@@ -51,7 +51,7 @@ This is an illustration of **HStack** component.
         space: {
           control: 'select',
           options: ['none', 'xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', '4xl'],
-          default: 'none',
+          default: 'md',
         },
         reversed: {
           control: 'boolean',

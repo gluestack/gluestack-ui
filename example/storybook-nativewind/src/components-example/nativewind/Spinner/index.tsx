@@ -9,18 +9,16 @@ const UISpinner = createSpinner({ Root: ActivityIndicator });
 cssInterop(UISpinner, { className: 'style' });
 
 const spinnerStyle = tva({});
-const Spinner = React.forwardRef(
-  ({ className, color = 'red', ...props }: any, ref) => {
-    return (
-      <UISpinner
-        ref={ref}
-        {...props}
-        color={color}
-        className={spinnerStyle({ class: className })}
-      />
-    );
-  }
-);
+const Spinner = React.forwardRef(({ className, color, ...props }: any, ref) => {
+  return (
+    <UISpinner
+      ref={ref}
+      {...props}
+      color={color}
+      className={spinnerStyle({ class: className })}
+    />
+  );
+});
 
 Spinner.displayName = 'Spinner';
 
