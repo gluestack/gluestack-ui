@@ -1,5 +1,11 @@
 # @gluestack-ui/popover
 
+## 0.1.31
+
+### Patch Changes
+
+- fixes
+
 ## 0.1.30
 
 ### Patch Changes

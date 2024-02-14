@@ -1,5 +1,11 @@
 # @gluestack-ui/select
 
+## 0.1.24
+
+### Patch Changes
+
+- fixes
+
 ## 0.1.23
 
 ### Patch Changes
