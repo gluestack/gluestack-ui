@@ -34,7 +34,7 @@ cssInterop(UIButton.Spinner, { className: 'style' });
 cssInterop(UIButton.Icon, { className: 'style' });
 
 const buttonStyle = tva({
-  base: 'group/button rounded-lg bg-primary-500 flex-row items-center justify-center data-[focus=true]:outline-none data-[focus-visible=true]:ring-2 data-[focus-visible=true]:ring-offset-2',
+  base: 'group/button rounded-lg bg-primary-500 flex-row items-center justify-center data-[focus=true]:outline-none data-[focus-visible=true]:ring-2 ',
   variants: {
     action: {
       primary:
