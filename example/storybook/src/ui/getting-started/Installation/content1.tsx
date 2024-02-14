@@ -1,6 +1,6 @@
 function getTimeAgoString(pastDate: any) {
-  const currentDate: any = new Date();
-  const timeDifference = currentDate - pastDate;
+  const currentDate = new Date();
+  const timeDifference = currentDate.getTime() - pastDate.getTime();
 
   if (timeDifference < 60000) {
     return 'just now';
@@ -28,7 +28,7 @@ export const content1 = [
   {
     title: 'Building gluestack-style',
     name: 'Sanket Sahu',
-    date: getTimeAgoString('2023-07-08'),
+    date: getTimeAgoString(new Date('2023-07-08')),
     bannerImage: '/images/sanket-react-nexus.png',
     link: 'https://www.youtube.com/watch?v=EFTCeK8aXTU',
     isExternal: true,
