@@ -1,84 +1,58 @@
-# @gluestack-ui/button
+# @gluestack-ui/grid
 
 ## Installation
 
-To use `@gluestack-ui/button`, all you need to do is install the
-`@gluestack-ui/button` package:
+To use `@gluestack-ui/grid`, all you need to do is install the
+`@gluestack-ui/grid` package:
 
 ```sh
-$ yarn add @gluestack-ui/button
+$ yarn add @gluestack-ui/grid
 
 # or
 
-$ npm i @gluestack-ui/button
+$ npm i @gluestack-ui/grid
 ```
 
 ## Usage
 
-A button component is a graphical user interface element that enables users to act by clicking or tapping. It can be customized in size, shape, color, and behavior to fit the design of the application or website. Here's an example how to use this package to create one:
+When you need to Grid-align content, the Grid component comes in handy. It is a layout component that can be used with other components to create complex layouts and positioning.
 
 ```jsx
-import { createButton } from '@gluestack-ui/button';
-import {
-  Root,
-  Text,
-  Group,
-  GroupHSpacer,
-  GroupVSpacer,
-  Spinner,
-  Icon,
-} from './styled-components';
+import { createGrid } from '@gluestack-ui/grid';
+import { Parent, Root, Item } from './styled-components';
 
-export const Button = createButton({
+export const Gridn = createGrid({
+  Parent,
   Root,
-  Text,
-  Group,
-  GroupHSpacer,
-  GroupVSpacer,
-  Spinner,
-  Icon,
+  Item,
 });
 ```
 
-## Customizing the Button:
+## Customizing the Grid:
 
-Default styling of all these components can be found in the components/core/button file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/ui-components/Button/index.tsx) of the styled `Button` components.
+Default styling of all these components can be found in the components/core/grid file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/ui-components/grid/index.tsx) of the styled `grid` components.
 
 ```jsx
 // import the styles
-import {
-  Root,
-  Text,
-  Group,
-  GroupHSpacer,
-  GroupVSpacer,
-  Spinner,
-} from '../components/core/button/styled-components';
+import { Parent, Root, Item } from '../components/core/grid/styled-components';
 
-// import the createButton function
-import { createButton } from '@gluestack-ui/button';
+// import the createGrid function
+import { createGrid } from '@gluestack-ui/grid';
 
 // Understanding the API
-const Button = createButton({
+const Grid = createGrid({
+  Parent,
   Root,
-  Text,
-  Group,
-  GroupHSpacer,
-  GroupVSpacer,
-  Spinner,
+  Item,
 });
 
-// Using the button component
+// Using the GRID component
 export default () => (
-  <ButtonGroup>
-    <Button>
-      <ButtonText />
-      <ButtonSpinner />
-      <ButtonIcon />
-    </Button>
-  </ButtonGroup>
+  <Grid>
+    <GridItem></GridItem>
+  </Grid>
 );
 ```
 
 More guides on how to get started are available
-[here](https://ui.gluestack.io/docs/components/forms/button).
+[here](https://ui.gluestack.io/docs/components/layout/grid).
