@@ -52,10 +52,7 @@ const ModalContent = React.forwardRef(({ className, ...props }: any, ref) => (
 
 const ModalHeader = React.forwardRef(({ className, ...props }: any, ref) => (
   <UIModal.Header
-    className={cn(
-      'px-4 pt-4 pb-2 justify-between item-center flex-row',
-      className
-    )}
+    className={cn('px-4 pt-4 justify-between item-center flex-row', className)}
     {...props}
     ref={ref}
   />
