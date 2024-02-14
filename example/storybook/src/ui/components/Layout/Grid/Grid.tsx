@@ -6,9 +6,7 @@ const GridBasic = () => {
     <Grid>
       <GridItem colSpan={6}>
         <View bg="$pink300" p="$2" alignItems="center">
-          <Text color="$white">
-            AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-          </Text>
+          <Text color="$white">A</Text>
         </View>
       </GridItem>
       <GridItem colSpan={6}>
