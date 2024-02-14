@@ -8,6 +8,7 @@ export const GridItem = (StyledGridItem: any) =>
     const [flexBasisValue, setFlexBasisValue] = useState<
       number | string | null
     >('auto');
+
     const {
       calculatedWidth,
       numColumns,
@@ -21,13 +22,16 @@ export const GridItem = (StyledGridItem: any) =>
       if (
         !flexDirection?.includes('column') &&
         calculatedWidth &&
-        numColumns > 0
+        numColumns > 0 &&
+        colSpan > 0
       ) {
         const width = calculatedWidth / numColumns;
+
         const flexBasis =
           Platform.OS === 'web'
             ? `${Math.min(((width * colSpan) / calculatedWidth) * 100, 100)}%`
             : Math.min(width * colSpan, calculatedWidth);
+
         setFlexBasisValue(flexBasis);
       }
     }, [calculatedWidth, numColumns, colSpan, flexDirection]);
@@ -38,8 +42,8 @@ export const GridItem = (StyledGridItem: any) =>
         pl={columnSpacing ?? spacing}
         pt={rowSpacing ?? spacing}
         ref={ref}
-        {...props}
         flexBasis={flexBasisValue}
+        {...props}
       >
         {children}
       </StyledGridItem>

@@ -11,5 +11,454 @@ showHeader: true
 ---
 
 import { Meta } from '@storybook/addon-docs';
+import { Grid, GridItem, View, Text } from './Grid';
+import {
+  AppProvider,
+  CodePreview,
+  Table,
+  TableContainer,
+  InlineCode,
+  AddIcon,
+  InfoIcon,
+  Alert,
+} from '@gluestack/design-system';
+import { transformedCode } from '../../../utils';
 
 <Meta title="ui/components/Layout/Grid" />
+
+import { config } from '@gluestack-ui/config';
+import Wrapper from '../../Wrapper';
+
+This is an illustration of a **Themed Grid** component with default configuration.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+      <View w={150} $sm-w={200} $md-w={450} $lg-w={600}>
+     <Grid numColumns={6} spacing={5}>
+      <GridItem colSpan={3}>
+        <View bg="$info600" p="$2" alignItems="center">
+          <Text
+          color="$white">colSpan={3}</Text>
+        </View>
+      </GridItem>
+      <GridItem colSpan={3}>
+        <View bg="$info700" p="$2" alignItems="center">
+          <Text color="$white">colSpan={3}</Text>
+        </View>
+      </GridItem>
+      <GridItem colSpan={3}>
+        <View bg="$info800" p="$2" alignItems="center">
+          <Text color="$white">colSpan={3}</Text>
+        </View>
+      </GridItem>
+      <GridItem colSpan={3}>
+        <View bg="$info900" p="$2" alignItems="center">
+          <Text color="$white">colSpan={3}</Text>
+        </View>
+      </GridItem>
+    </Grid>
+    </View>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Grid,
+        GridItem,
+        View,
+        Text,
+        Wrapper,
+      },
+    }}
+  />
+</AppProvider>
+
+<br />
+
+## API Reference
+
+### Import
+
+To use this component in your project, include the following import statement in your file.
+
+```bash
+import { Grid, GridItem } from '@gluestack-ui/themed';
+```
+
+### Anatomy
+
+The structure provided below can help you identify and understand Grid component's various parts.
+
+```jsx
+export default () => (
+  <Grid>
+    <GridItem></GridItem>
+  </Grid>
+);
+```
+
+### Component Props
+
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
+
+#### Grid
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+<AppProvider>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Type</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Default</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Description</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>numColumns</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>number</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>12</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Determines the total number of columns in the Grid.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>spacing</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>number</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>0</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Determines the horizontal and vertical spacing between the Grid Items. spacing should be a positive integer value.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>rowSpacing</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>number</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>0</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Determines the vertical spacing betweeen the Grid Items. rowSpacing should be a positive integer value.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>colSpacing</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>number</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>0</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Determines the horizontal spacing between the Grid Items. colSpacing should be a positive integer value.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</AppProvider>
+
+#### GridItem
+
+<AppProvider>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Type</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Default</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Description</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>colSpan</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>number</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>1</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Determines the number of columns the Grid Items should span. colSpan should be a positive integer value.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</AppProvider>
+
+## Themed
+
+The themed version of the component is a pre-styled version of the component, which allows you to quickly integrate the component into your project. The component's design and functionality are fully defined, allowing you to focus on the more important aspects of your project. To know more about Themed Library please visit this [link](https://gluestack.io/ui/docs/core-concepts/themed-library).
+
+## Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+### Variable width
+
+The following example illustrates a Grid component with variable width Grid Items.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+      <View w={150} $sm-w={200} $md-w={450} $lg-w={600}>
+    <Grid rowSpacing={5} columnSpacing={5}>
+      <GridItem colSpan={6}>
+        <View bg="$teal700" p="$3" alignItems="center">
+          <Text color="$white">Item</Text>
+        </View>
+      </GridItem>
+      <GridItem colSpan={6}>
+        <View
+          bg="$teal700"
+          p="$3"
+          alignItems="center"
+          justifyContent="center"
+        >
+          <Text color="$white">Item</Text>
+        </View>
+      </GridItem>
+      <GridItem colSpan={4}>
+        <View
+          bg="$teal700"
+          p="$3"
+          alignItems="center"
+          justifyContent="center"
+        >
+          <Text color="$white">Item</Text>
+        </View>
+      </GridItem>
+      <GridItem colSpan={6}>
+        <View bg="$teal700" p="$3" alignItems="center">
+          <Text color="$white">Item</Text>
+        </View>
+      </GridItem>
+       <GridItem colSpan={12}>
+        <View bg="$teal700" p="$3" alignItems="center">
+          <Text color="$white">Item</Text>
+        </View>
+      </GridItem>
+    </Grid>
+    </View>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Grid,
+        GridItem,
+        View,
+        Text,
+        Wrapper,
+      },
+    }}
+  />
+</AppProvider>
+
+### Nested Grid
+
+The following example illustrates a Grid component with nested Grid Items.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+      <View w={150} $sm-w={200} $md-w={450} $lg-w={600}>
+    <Grid spacing={10}>
+      <GridItem colSpan={6}>
+        <View bg="$coolGray700" p="$3" alignItems="center">
+          <Text color="$white">Item</Text>
+        </View>
+      </GridItem>
+      <GridItem colSpan={6}>
+        <View
+          bg="$coolGray700"
+          p="$3"
+          alignItems="center"
+          justifyContent="center"
+        >
+          <Text color="$white">Item</Text>
+        </View>
+      </GridItem>
+      <GridItem colSpan={6}>
+        <View
+          bg="$coolGray700"
+          p="$3"
+          alignItems="center"
+          justifyContent="center"
+        >
+          <Text color="$white">Item</Text>
+        </View>
+      </GridItem>
+      <GridItem colSpan={6}>
+        <Grid spacing={2}>
+        <GridItem colSpan={6}>
+        <View alignItems="center" bg="$coolGray600"><Text color="$white">a</Text></View>
+        </GridItem>
+          <GridItem colSpan={6}>
+        <View alignItems="center" bg="$coolGray600"><Text color="$white">b</Text></View>
+        </GridItem>
+          <GridItem colSpan={6}>
+        <View alignItems="center" bg="$coolGray600"><Text color="$white">c</Text></View>
+        </GridItem>
+          <GridItem colSpan={6}>
+        <View alignItems="center" bg="$coolGray600"><Text color="$white">d</Text></View>
+        </GridItem>
+        </Grid>
+      </GridItem>
+    </Grid>
+    </View>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Grid,
+        GridItem,
+        View,
+        Text,
+        Wrapper,
+      },
+    }}
+  />
+</AppProvider>
+
+### Row & Column Spacing
+
+The rowSpacing and columnSpacing props allow for specifying the vertical and horizontal spacing independently.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+      <View w={155} $sm-w={200} $md-w={450} $lg-w={600} my="$3">
+    <Grid rowSpacing={5} columnSpacing={5} justifyContent="flex-end">
+      <GridItem colSpan={8}>
+        <View bg="$trueGray700" p="$4" alignItems="center">
+        <Text color="$white">colSpan={8}</Text>
+        </View>
+      </GridItem>
+      <GridItem colSpan={4}>
+        <View
+          bg="$trueGray700"
+          p="$4"
+          alignItems="center"
+          justifyContent="center"
+        >
+        <Text color="$white">colSpan={4}</Text>
+        </View>
+      </GridItem>
+      <GridItem colSpan={7}>
+        <View
+          bg="$trueGray700"
+          minHeight={150}
+          p="$4"
+          alignItems="center"
+          justifyContent="center"
+        >
+        <Text color="$white">colSpan={7}</Text>
+        </View>
+      </GridItem>
+       <GridItem colSpan={5}>
+        <View
+          bg="$trueGray700"
+          minHeight={150}
+          p="$4"
+          alignItems="center"
+          justifyContent="center"
+        >
+        <Text color="$white">colSpan={5}</Text>
+        </View>
+      </GridItem>
+       <GridItem colSpan={12}>
+        <View
+          bg="$trueGray700"
+          p="$4"
+          alignItems="center"
+          justifyContent="center"
+        >
+        <Text color="$white">colSpan={12}</Text>
+        </View>
+      </GridItem>
+    </Grid>
+    </View>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Grid,
+        GridItem,
+        View,
+        Text,
+        Wrapper,
+      },
+    }}
+  />
+</AppProvider>
+
+## Unstyled
+
+We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
