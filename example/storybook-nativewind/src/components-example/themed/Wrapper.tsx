@@ -10,7 +10,7 @@ Provider.displayName = 'Provider';
 const Wrapper = ({ children, ...props }: any) => {
   const colorMode = useColorMode();
   return (
-    <Box dataSet={{ 'theme-id': `withGluestackStyle_${colorMode}}` }}>
+    <Box dataSet={{ 'theme-id': `withGluestackStyle_${colorMode}` }}>
       <Provider
         colorMode="light"
         config={config}
