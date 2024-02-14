@@ -893,22 +893,22 @@ type Permutations<T extends string, U extends string | ''> = T extends any
     : `$${T}-${Permutations<Exclude<U, T>, ''>}`
   : never;
 
-type StatePropsCombination = Permutations<IState, keyof Aliases>;
-type PlatformPropsCombination = Permutations<PLATFORMS, keyof Aliases>;
-type MediaQueryCombination = Permutations<IMediaQueries, keyof Aliases>;
-type ColorModeCombination = Permutations<COLORMODES, keyof Aliases>;
-type ThemeCombination = Permutations<`t_${GlobalThemes}`, keyof Aliases>;
+type StatePropsCombination<T extends string> = Permutations<IState, T>;
+type PlatformPropsCombination<T extends string> = Permutations<PLATFORMS, T>;
+type MediaQueryCombination<T extends string> = Permutations<IMediaQueries, T>;
+type ColorModeCombination<T extends string> = Permutations<COLORMODES, T>;
+type ThemeCombination<T extends string> = Permutations<`t_${GlobalThemes}`, T>;
 
 type LastPart<T extends string> = T extends `${string}-${infer Rest}`
   ? LastPart<Rest>
   : T;
 
-export type PropsCombinations =
-  | StatePropsCombination
-  | PlatformPropsCombination
-  | MediaQueryCombination
-  | ColorModeCombination
-  | ThemeCombination;
+export type UtilityPropsCombinations<Props extends string> =
+  | StatePropsCombination<Props>
+  | PlatformPropsCombination<Props>
+  | MediaQueryCombination<Props>
+  | ColorModeCombination<Props>
+  | ThemeCombination<Props>;
 
 export type UtilityProps<
   GenericComponentStyles,
@@ -923,7 +923,38 @@ export type UtilityProps<
     keyof GenericComponentProps
   > &
   Partial<{
-    [key in PropsCombinations]?: LastPart<key> extends keyof Aliases
+    [key in UtilityPropsCombinations<
+      Extract<keyof GetRNStyles<GenericComponentStyles>, string>
+    >]?: LastPart<key> extends keyof PropertyTokenType
+      ? PropertyTokenType[LastPart<key>] extends 'sizes'
+        ?
+            | WithSizeNegativeValue<GSConfig['tokens']>
+            | ExtendRNStyle<GetRNStyles<GenericComponentStyles>, LastPart<key>>
+        : PropertyTokenType[LastPart<key>] extends 'space'
+        ?
+            | WithNegativeValue<
+                StringifyToken<
+                  keyof GSConfig['tokens'][PropertyTokenType[LastPart<key>]]
+                >
+              >
+            | ExtendRNStyle<GetRNStyles<GenericComponentStyles>, LastPart<key>>
+        : PropertyTokenType[LastPart<key>] extends keyof GSConfig['tokens']
+        ?
+            | StringifyToken<
+                keyof GSConfig['tokens'][PropertyTokenType[LastPart<key>]]
+              >
+            | ExtendRNStyle<GetRNStyles<GenericComponentStyles>, LastPart<key>>
+        : LastPart<key> extends keyof GetRNStyles<GenericComponentStyles>
+        ? GetRNStyles<GenericComponentStyles>[LastPart<key>]
+        : never
+      : LastPart<key> extends keyof GetRNStyles<GenericComponentStyles>
+      ? GetRNStyles<GenericComponentStyles>[LastPart<key>]
+      : never;
+  }> &
+  Partial<{
+    [key in UtilityPropsCombinations<
+      keyof Aliases
+    >]?: LastPart<key> extends keyof Aliases
       ? Aliases[LastPart<key>] extends keyof GetRNStyles<GenericComponentStyles>
         ? PropertyTokenType[Aliases[LastPart<key>]] extends 'sizes'
           ?
