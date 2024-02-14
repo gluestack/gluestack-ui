@@ -36,7 +36,7 @@ const StyledRoot = styled(
     },
 
     '_icon': {
-      color: '$text400',
+      color: '$background600',
     },
 
     'variants': {
