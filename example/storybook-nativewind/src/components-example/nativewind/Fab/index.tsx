@@ -95,7 +95,7 @@ const fabLabelStyle = tva({
 });
 
 const fabIconStyle = tva({
-  base: 'text-typography-50 group-hover/fab:text-typography-0 group-active/fab:text-typography-0',
+  base: 'text-background-50 group-hover/fab:text-background-0 group-active/fab:text-background-0',
   variants: {
     size: {
       '2xs': 'h-3 w-3',
