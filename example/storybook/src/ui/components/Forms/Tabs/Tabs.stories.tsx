@@ -2,6 +2,7 @@ import type { ComponentMeta } from '@storybook/react-native';
 import Tabs from './Tabs';
 import VerticalTabs from './VerticalTabs';
 import ScrollableTabs from './ScrollableTabs';
+import TabsWithIcons from './TabsWithIcons';
 
 const TabsMeta: ComponentMeta<typeof Tabs> = {
   title: 'stories/FORMS/Tabs',
@@ -39,4 +40,4 @@ const TabsMeta: ComponentMeta<typeof Tabs> = {
 
 export default TabsMeta;
 
-export { Tabs, VerticalTabs, ScrollableTabs };
+export { Tabs, VerticalTabs, ScrollableTabs, TabsWithIcons };

@@ -16,7 +16,7 @@ const VerticalTabs = () => {
   };
 
   return (
-    //@ts-ignore
+    // @ts-ignore
     <Tabs
       ml="$12"
       w="$full"
