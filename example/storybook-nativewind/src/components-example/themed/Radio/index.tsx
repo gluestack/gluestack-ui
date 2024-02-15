@@ -1,120 +1,290 @@
-import React from 'react';
 import { createRadio } from '@gluestack-ui/radio';
 import { Pressable, View, Platform, Text } from 'react-native';
-import { Circle } from 'lucide-react-native';
-import {
-  tva,
-  withStyleContextAndStates,
-  withStyleContext,
-  useStyleContext,
-  withStates,
-} from '@gluestack-ui/nativewind-utils';
-import { cssInterop } from 'nativewind';
+import { styled, AsForwarder } from '@gluestack-style/react';
 
-const radioStyle = tva({
-  base: 'flex-row justify-start items-center web:cursor-pointer data-[disabled=true]:web:cursor-not-allowed gap-2',
-});
+const StyledRoot = styled(
+  Platform.OS === 'web' ? View : Pressable,
+  {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
 
-const groupStyle = tva({ base: 'gap-2' });
+    variants: {
+      size: {
+        lg: {
+          _text: {
+            props: {
+              size: 'lg',
+            },
+          },
+          _icon: {
+            props: {
+              size: 'md',
+            },
+          },
+          _indicator: {
+            p: 2,
+            h: '$6',
+            w: '$6',
+          },
+        },
+        md: {
+          _text: {
+            props: {
+              size: 'md',
+            },
+          },
+          _icon: {
+            props: {
+              size: 'sm',
+            },
+          },
+          _indicator: {
+            p: 1.5,
+            h: '$5',
+            w: '$5',
+          },
+        },
+        sm: {
+          _text: {
+            props: {
+              size: 'sm',
+            },
+          },
+          _icon: {
+            props: {
+              size: '2xs',
+            },
+          },
+          _indicator: {
+            p: 1,
+            h: '$4',
+            w: '$4',
+          },
+        },
+      },
+    },
 
-const iconStyle = tva({
-  base: 'fill-background-800 stroke-background-800 rounded-full data-[checked=true]:text-primary-600 data-[checked=true]:data-[hover=true]:text-primary-700 data-[checked=true]:data-[hover=true]:data-[disabled=true]:text-primary-600',
-
-  variants: {
-    size: {
-      '2xs': 'h-3 w-3',
-      'xs': 'h-3.5 w-3.5',
-      'sm': 'h-4 w-4',
-      'md': 'h-4.5 w-4.5',
-      'lg': 'h-5 w-5',
-      'xl': 'h-6 w-6',
+    defaultProps: {
+      size: 'md',
+    },
+    _web: {
+      'cursor': 'pointer',
+      ':disabled': {
+        cursor: 'not-allowed',
+      },
     },
   },
-});
+  {
+    descendantStyle: ['_icon', '_text', '_indicator'],
+    ancestorStyle: ['_radio'],
+  }
+);
 
-const indicatorStyle = tva({
-  base: 'justify-center items-center bg-transparent border-outline-400 border-2 rounded-full data-[focus-visible=true]:web:outline-2 data-[focus-visible=true]:web:outline-primary-700 data-[focus-visible=true]:web:outline data-[checked=true]:border-primary-600 data-[checked=true]:bg-transparent data-[hover=true]:border-outline-500  data-[hover=true]:bg-transparent data-[hover=true]:data-[checked=true]:bg-transparent data-[hover=true]:data-[checked=true]:border-primary-700 data-[hover=true]:data-[invalid=true]:border-error-700  data-[hover=true]:data-[disabled=true]:opacity-40 data-[hover=true]:data-[disabled=true]:border-outline-400 data-[hover=true]:data-[disabled=true]:data-[invalid=true]:border-error-400 data-[active=true]:bg-transparent data-[active=true]:border-primary-800 data-[invalid=true]:border-error-700 data-[disabled=true]:opacity-40 data-[disabled=true]:data-[checked=true]:border-outline-400 data-[disabled=true]:data-[checked=true]:bg-transparent data-[disabled=true]:data-[invalid=true]:border-error-400',
-  parentVariants: {
-    size: {
-      sm: 'h-4 w-4',
-      md: 'h-5 w-5',
-      lg: 'h-6 w-6',
+const StyledGroup = styled(View, {}, { descendantStyle: ['_radio'] });
+
+const StyledIcon = styled(
+  AsForwarder,
+  {
+    'color': '$background800',
+
+    // defaultProps: {
+    //   size: 'md',
+    // },
+    'variants': {
+      size: {
+        '2xs': {
+          h: '$3',
+          w: '$3',
+          props: {
+            // @ts-ignore
+            size: 12,
+          },
+        },
+        'xs': {
+          h: '$3.5',
+          w: '$3.5',
+          props: {
+            //@ts-ignore
+            size: 14,
+          },
+        },
+        'sm': {
+          h: '$4',
+          w: '$4',
+          props: {
+            //@ts-ignore
+            size: 16,
+          },
+        },
+        'md': {
+          h: '$4.5',
+          w: '$4.5',
+          props: {
+            //@ts-ignore
+            size: 18,
+          },
+        },
+        'lg': {
+          h: '$5',
+          w: '$5',
+          props: {
+            //@ts-ignore
+            size: 20,
+          },
+        },
+        'xl': {
+          h: '$6',
+          w: '$6',
+          props: {
+            //@ts-ignore
+            size: 24,
+          },
+        },
+      },
+    },
+    'borderRadius': '$full',
+
+    ':checked': {
+      'color': '$primary600',
+      ':hover': {
+        'color': '$primary700',
+        ':disabled': {
+          color: '$primary600',
+        },
+      },
     },
   },
+  {
+    ancestorStyle: ['_icon'],
+    resolveProps: ['color'],
+  },
+  {
+    propertyTokenMap: {
+      stroke: 'colors',
+      fill: 'colors',
+    },
+  }
+);
+
+const StyledIndicator = styled(
+  View,
+  {
+    'justifyContent': 'center',
+    'alignItems': 'center',
+    'bg': 'transparent',
+    'borderColor': '$border400',
+    'borderWidth': 2,
+    'borderRadius': 999,
+
+    '_web': {
+      ':focusVisible': {
+        outlineWidth: 2,
+        outlineColor: '$primary700',
+        outlineStyle: 'solid',
+      },
+    },
+
+    ':checked': {
+      borderColor: '$primary600',
+      bg: 'transparent',
+    },
+
+    ':hover': {
+      'borderColor': '$border500',
+      'bg': 'transparent',
+
+      ':checked': {
+        bg: 'transparent',
+        borderColor: '$primary700',
+      },
+      ':invalid': {
+        borderColor: '$error700',
+      },
+      ':disabled': {
+        ':invalid': {
+          borderColor: '$error400',
+          opacity: 0.4,
+        },
+        'borderColor': '$border400',
+        'opacity': 0.4,
+      },
+    },
+
+    ':active': {
+      bg: 'transparent',
+      borderColor: '$primary800',
+    },
+
+    ':invalid': {
+      borderColor: '$error700',
+    },
+
+    ':disabled': {
+      'opacity': 0.4,
+      ':checked': {
+        borderColor: '$border400',
+        bg: 'transparent',
+      },
+      ':invalid': {
+        borderColor: '$error400',
+      },
+    },
+  },
+  { ancestorStyle: ['_indicator'] }
+);
+
+const StyledLabel = styled(
+  Text,
+  {
+    'color': '$text600',
+
+    ':checked': {
+      color: '$text900',
+    },
+
+    ':hover': {
+      'color': '$text900',
+      ':checked': {
+        color: '$text900',
+      },
+      ':disabled': {
+        'color': '$text600',
+        ':checked': {
+          color: '$text900',
+        },
+      },
+    },
+
+    ':active': {
+      'color': '$text900',
+      ':checked': {
+        color: '$text900',
+      },
+    },
+
+    ':disabled': {
+      opacity: 0.4,
+    },
+
+    '_web': {
+      MozUserSelect: 'none',
+      WebkitUserSelect: 'none',
+      msUserSelect: 'none',
+      userSelect: 'none',
+    },
+  },
+  { ancestorStyle: ['_text'] }
+);
+
+export const Radio = createRadio({
+  Root: StyledRoot,
+  Group: StyledGroup,
+  Icon: StyledIcon,
+  Indicator: StyledIndicator,
+  Label: StyledLabel,
 });
-
-const labelStyle = tva({
-  base: 'text-typography-600 data-[checked=true]:text-typography-900 data-[hover=true]:text-typography-900 data-[hover=true]:data-[disabled=true]:text-typography-600 data-[hover=true]:data-[disabled=true]:data-[checked=true]:text-typography-900 data-[active=true]:text-typography-900 data-[active=true]:data-[checked=true]:text-typography-900 data-[disabled]:opacity-40 web:select-none',
-});
-
-const UIRadio = createRadio({
-  // @ts-ignore
-  Root:
-    Platform.OS === 'web'
-      ? withStyleContext(View)
-      : withStyleContextAndStates(Pressable),
-  Group: View,
-  Icon: Platform.OS === 'web' ? Circle : withStates(Circle),
-  Indicator: Platform.OS === 'web' ? View : withStates(View),
-  Label: Platform.OS === 'web' ? Text : withStates(Text),
-});
-
-cssInterop(UIRadio, { className: 'style' });
-cssInterop(UIRadio.Group, { className: 'style' });
-cssInterop(UIRadio.Icon, { className: 'style' });
-cssInterop(UIRadio.Indicator, { className: 'style' });
-cssInterop(UIRadio.Label, { className: 'style' });
-
-const Radio = ({ className, size = 'md', ...props }: any) => {
-  return (
-    <UIRadio
-      className={radioStyle({ size, class: className })}
-      {...props}
-      context={{ size }}
-    />
-  );
-};
-
-const RadioGroup = ({ className, ...props }: any) => {
-  return (
-    <UIRadio.Group className={groupStyle({ class: className })} {...props} />
-  );
-};
-
-const RadioIndicator = ({ className, ...props }: any) => {
-  const { size } = useStyleContext();
-  return (
-    <UIRadio.Indicator
-      className={indicatorStyle({ parentVariants: { size }, class: className })}
-      {...props}
-    />
-  );
-};
-
-const RadioLabel = ({ className, ...props }: any) => {
-  const { size } = useStyleContext();
-  return (
-    <UIRadio.Label
-      className={labelStyle({ parentVariants: { size }, class: className })}
-      {...props}
-    />
-  );
-};
-
-const RadioIcon = ({ className, ...props }: any) => {
-  const { size } = useStyleContext();
-  return (
-    <UIRadio.Icon
-      className={iconStyle({ parentVariants: { size }, class: className })}
-      {...props}
-    />
-  );
-};
-
-Radio.displayName = 'Radio';
-RadioGroup.displayName = 'RadioGroup';
-RadioIndicator.displayName = 'RadioIndicator';
-RadioLabel.displayName = 'RadioLabel';
-RadioIcon.displayName = 'RadioIcon';
-
-export { Radio, RadioGroup, RadioIndicator, RadioLabel, RadioIcon };
+export const RadioGroup = Radio.Group;
+export const RadioIcon = Radio.Icon;
+export const RadioIndicator = Radio.Indicator;
+export const RadioLabel = Radio.Label;
