@@ -2,6 +2,7 @@ import React, { forwardRef } from 'react';
 import { SelectContext, SelectPortalContext } from './SelectContext';
 import { StyleSheet, Platform } from 'react-native';
 import { mergeRefs } from '@gluestack-ui/utils';
+const PLACEHOLDER_OPTION = '__GluestackPlaceholder__';
 
 export const SelectPortal = (StyledSelectPortal: any) =>
   forwardRef(({ children, ...props }: any, ref?: any) => {
@@ -24,7 +25,6 @@ export const SelectPortal = (StyledSelectPortal: any) =>
       isReadOnly,
       ...portalProps
     } = React.useContext(SelectContext);
-    const tempFix = '__GluestackPlaceholder__';
     if (Platform.OS !== 'web') {
       return (
         <StyledSelectPortal
@@ -44,7 +44,7 @@ export const SelectPortal = (StyledSelectPortal: any) =>
               hoverProps,
               focusProps,
               setValue,
-              value: value === null ? tempFix : value,
+              value: value === null ? PLACEHOLDER_OPTION : value,
               setLabel,
               label,
               isReadOnly,
@@ -77,7 +77,7 @@ export const SelectPortal = (StyledSelectPortal: any) =>
             }
           }}
           ref={mergeRefs([ref, hoverRef])}
-          value={value === undefined ? tempFix : value}
+          value={value ?? PLACEHOLDER_OPTION}
           aria-label={placeholder}
           aria-readonly={isReadOnly}
           style={StyleSheet.flatten([
@@ -101,7 +101,7 @@ export const SelectPortal = (StyledSelectPortal: any) =>
             setFocused(false);
           }}
         >
-          <option disabled value={tempFix}>
+          <option disabled value={PLACEHOLDER_OPTION}>
             {placeholder}
           </option>
           {children}
