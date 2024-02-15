@@ -304,6 +304,7 @@ const StyledIcon = styled(
   {
     componentName: 'BaseIcon',
     resolveProps: ['stroke', 'fill'],
+    ancestorStyle: ['_icon'],
   } as const,
   {
     propertyTokenMap: {
