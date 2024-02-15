@@ -110,7 +110,7 @@ const CheckboxIcon = React.forwardRef(({ className, ...props }: any, ref) => {
   return (
     <UICheckbox.Icon
       className={cn(
-        'w-full h-full bg-primary-600 stroke-white color-white',
+        'w-full h-full bg-primary-600 stroke-typography-0 color-typography-0',
         className
       )}
       {...props}
