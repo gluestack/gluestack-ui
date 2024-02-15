@@ -1,6 +1,6 @@
 {
   "name": "@gluestack-ui/themed",
-  "version": "1.1.4",
+  "version": "1.1.4-alpha.10",
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "module": "build/index",
@@ -42,6 +42,7 @@
     "@gluestack-ui/divider": "0.1.8",
     "@gluestack-ui/fab": "0.1.18",
     "@gluestack-ui/form-control": "0.1.16",
+    "@gluestack-ui/grid": "0.0.1",
     "@gluestack-ui/icon": "0.1.20",
     "@gluestack-ui/image": "0.1.7",
     "@gluestack-ui/input": "0.1.24",
