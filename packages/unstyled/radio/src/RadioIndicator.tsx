@@ -28,6 +28,17 @@ export const RadioIndicator = (StyledRadioIndicator: any) =>
           focus: isFocused,
           active: isPressed,
         }}
+        dataSet={{
+          checked: isChecked ? 'true' : 'false',
+          disabled: isDisabled ? 'true' : 'false',
+          focusVisible: isFocused || isFocusVisible ? 'true' : 'false',
+          hover: isHovered ? 'true' : 'false',
+          invalid: isInvalid ? 'true' : 'false',
+          readonly: isReadOnly ? 'true' : 'false',
+          indeterminate: isIndeterminate ? 'true' : 'false',
+          focus: isFocused ? 'true' : 'false',
+          active: isPressed ? 'true' : 'false',
+        }}
         {...props}
         ref={ref}
       >

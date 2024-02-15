@@ -1,5 +1,11 @@
 # @gluestack-ui/toast
 
+## 1.0.4
+
+### Patch Changes
+
+- `Toast` issue [#1543](https://github.com/gluestack/gluestack-ui/issues/1543).
+
 ## 1.0.3
 
 ### Patch Changes

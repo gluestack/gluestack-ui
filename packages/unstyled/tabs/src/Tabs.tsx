@@ -2,7 +2,7 @@ import React, { memo, useState } from 'react';
 import { forwardRef } from 'react';
 import { TabProvider } from './TabProvider';
 import { useControllableState } from '@gluestack-ui/hooks';
-import { ITabsProps } from './types';
+import type { ITabsProps } from './types';
 
 export const Tabs = <StyledTabs,>(
   StyledTabs: React.ComponentType<StyledTabs>

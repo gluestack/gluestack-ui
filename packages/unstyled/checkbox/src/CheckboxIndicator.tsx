@@ -28,6 +28,17 @@ const CheckboxIndicator = (StyledCheckboxIndicator: any) =>
           focused: isFocused,
           indeterminate: isIndeterminate,
         }}
+        dataSet={{
+          hover: isHovered ? 'true' : 'false',
+          checked: isChecked ? 'true' : 'false',
+          disabled: isDisabled ? 'true' : 'false',
+          focusVisible: isFocusVisible ? 'true' : 'false',
+          invalid: isInvalid ? 'true' : 'false',
+          readOnly: isReadOnly ? 'true' : 'false',
+          active: isPressed ? 'true' : 'false',
+          focused: isFocused ? 'true' : 'false',
+          indeterminate: isIndeterminate ? 'true' : 'false',
+        }}
         {...props}
         ref={ref}
       >

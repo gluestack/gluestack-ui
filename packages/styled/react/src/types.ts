@@ -7,7 +7,7 @@ import type {
   ViewStyle,
 } from 'react-native';
 import type { propertyTokenMap } from './propertyTokenMap';
-import type { CSSProperties } from 'react';
+import type { CSSProperties, ForwardRefExoticComponent } from 'react';
 
 export type RNStyledProps = ViewStyle | ImageStyle | TextStyle;
 export type RNProps = ViewProps | TextProps | ImageProps;
@@ -91,13 +91,19 @@ export type CreateConfig = {
 export type ThemeStyles<IToken> = Partial<{
   [key: string]: {
     [key in keyof IToken]?: {
-      // @ts-ignore
-      [k in `$${keyof IToken[key]}`]?:  // @ts-ignore
+      //@ts-ignore
+      [k in `${keyof IToken[key]}`]?:  // @ts-ignore
         | `$${key}$${keyof IToken[key]}`
-        | (String & {});
+        | (String & {})
+        | number;
     };
+    //& Partial<{ [Key: string]: any }>;
   };
 }>;
+
+// export type ThemeStyles<IToken> = Partial<{
+//   [key: string]: Tokens;
+// }>;
 
 // Generic Creator
 export type GlueStackConfig<
@@ -176,6 +182,7 @@ export type SxStyleProps<
 
 //@ts-ignore
 type GlobalVariants = GSConfig['globalStyle']['variants'];
+type GlobalThemes = keyof GSConfig['themes'];
 
 export type IComponentStyleConfig<ComCon = any> = Partial<{
   descendantStyle: any;
@@ -462,6 +469,44 @@ export type SxProps<
         PluginType
       >;
     } & {
+      [Key in `.${GlobalThemes}`]?: SxProps<
+        GenericComponentStyles,
+        Variants,
+        GenericComponentProps,
+        PLATFORM,
+        MediaQuery,
+        PluginType
+      > &
+        PassingPropsType<
+          GenericComponentStyles,
+          Variants,
+          GenericComponentProps,
+          MediaQuery,
+          PluginType
+        > &
+        Partial<{
+          [key: string]: any;
+        }>;
+    } & {
+      [Key in `.${string}`]?: SxProps<
+        GenericComponentStyles,
+        Variants,
+        GenericComponentProps,
+        PLATFORM,
+        MediaQuery,
+        PluginType
+      > &
+        PassingPropsType<
+          GenericComponentStyles,
+          Variants,
+          GenericComponentProps,
+          MediaQuery,
+          PluginType
+        > &
+        Partial<{
+          [key: string]: any;
+        }>;
+    } & {
       [Key in `:${IState}`]?: SxProps<
         GenericComponentStyles,
         Variants,
@@ -641,6 +686,7 @@ export type VerbosedSX = {
   queries?: Array<QueryType>;
   platform?: { [K in PLATFORMS]?: VerbosedSX };
   colorMode?: { [K in COLORMODES]?: VerbosedSX };
+  theme?: { [key: string]: VerbosedSX };
   state?: { [K in IState]?: VerbosedSX };
   descendants?: { [key: string]: VerbosedSX };
 };
@@ -650,6 +696,7 @@ export type VerbosedSxResolved = {
   queriesResolved: Array<QueryTypeResolved>;
   platform?: { [K in PLATFORMS]?: VerbosedSX };
   colorMode?: { [key: string]: VerbosedSxResolved };
+  theme?: { [key: string]: VerbosedSxResolved };
   state?: { [key: string]: VerbosedSxResolved };
   descendants?: { [key: string]: VerbosedSxResolved };
 };
@@ -734,57 +781,81 @@ interface GenericComponents {
 
 /********************* COMPONENT PROPS TYPE *****************************************/
 
-export type ComponentProps<GenericComponentStyles, Variants, P, ComCon> =
-  SxStyleProps<
-    GenericComponentStyles,
-    Variants,
-    P,
-    'animationComponentGluestack' extends keyof P
-      ? P['animationComponentGluestack'] extends true
-        ? Plugins
-        : []
+export type StyledComponentProps<GenericComponentStyles, Variants, P, ComCon> =
+  Omit<
+    'sx' extends keyof P
+      ? P & VariantProps<Variants, ComCon>
+      : Partial<
+          Omit<
+            P &
+              ComponentProps<GenericComponentStyles, Variants, P> &
+              VariantProps<Variants, ComCon> &
+              UtilityProps<GenericComponentStyles, Variants, P>,
+            'animationComponentGluestack'
+          >
+        >,
+    'animationComponentGluestack'
+  >;
+
+export type GluestackComponent<GenericComponentStyles, Variants, P, ComCon> =
+  ForwardRefExoticComponent<
+    StyledComponentProps<GenericComponentStyles, Variants, P, ComCon>
+  >;
+
+export type VariantProps<Variants, ComCon> =
+  GSConfig['globalStyle'] extends object
+    ? {
+        [Key in keyof MergeNestedThree<
+          GlobalVariants,
+          Variants,
+          // @ts-ignore
+          Components[`${ComCon}`]['theme']['variants']
+        >]?: keyof MergeNestedThree<
+          GlobalVariants,
+          Variants,
+          // @ts-ignore
+          Components[`${ComCon}`]['theme']['variants']
+        >[Key] extends 'true' | 'false'
+          ? boolean
+          : keyof MergeNestedThree<
+              GlobalVariants,
+              Variants,
+              // @ts-ignore
+              Components[`${ComCon}`]['theme']['variants']
+            >[Key];
+      }
+    : {
+        [Key in keyof MergeNested<
+          Variants,
+          // @ts-ignore
+          Components[`${ComCon}`]['theme']['variants']
+        >]?: keyof MergeNested<
+          Variants, // @ts-ignore
+          Components[`${ComCon}`]['theme']['variants']
+        >[Key] extends 'true' | 'false'
+          ? boolean
+          : keyof MergeNested<
+              Variants,
+              // @ts-ignore
+              Components[`${ComCon}`]['theme']['variants']
+            >[Key];
+      };
+
+export type ComponentProps<GenericComponentStyles, Variants, P> = SxStyleProps<
+  GenericComponentStyles,
+  Variants,
+  P,
+  'animationComponentGluestack' extends keyof P
+    ? P['animationComponentGluestack'] extends true
+      ? Plugins
       : []
-  > & {
-    states?: {
-      [K in IState]?: boolean;
-    };
-  } & (GSConfig['globalStyle'] extends object
-      ? {
-          [Key in keyof MergeNestedThree<
-            GlobalVariants,
-            Variants,
-            // @ts-ignore
-            Components[`${ComCon}`]['theme']['variants']
-          >]?: keyof MergeNestedThree<
-            GlobalVariants,
-            Variants,
-            // @ts-ignore
-            Components[`${ComCon}`]['theme']['variants']
-          >[Key] extends 'true' | 'false'
-            ? boolean
-            : keyof MergeNestedThree<
-                GlobalVariants,
-                Variants,
-                // @ts-ignore
-                Components[`${ComCon}`]['theme']['variants']
-              >[Key];
-        } & Omit<P, keyof Variants>
-      : {
-          [Key in keyof MergeNested<
-            Variants,
-            // @ts-ignore
-            Components[`${ComCon}`]['theme']['variants']
-          >]?: keyof MergeNested<
-            Variants, // @ts-ignore
-            Components[`${ComCon}`]['theme']['variants']
-          >[Key] extends 'true' | 'false'
-            ? boolean
-            : keyof MergeNested<
-                Variants,
-                // @ts-ignore
-                Components[`${ComCon}`]['theme']['variants']
-              >[Key];
-        });
+    : []
+> & {
+  states?: {
+    [K in IState]?: boolean;
+  };
+  as?: any;
+};
 
 export type VerbosedUtilityProps<
   GenericComponentStyles,
@@ -822,20 +893,22 @@ type Permutations<T extends string, U extends string | ''> = T extends any
     : `$${T}-${Permutations<Exclude<U, T>, ''>}`
   : never;
 
-type StatePropsCombination = Permutations<IState, keyof Aliases>;
-type PlatformPropsCombination = Permutations<PLATFORMS, keyof Aliases>;
-type MediaQueryCombination = Permutations<IMediaQueries, keyof Aliases>;
-type ColorModeCombination = Permutations<COLORMODES, keyof Aliases>;
+type StatePropsCombination<T extends string> = Permutations<IState, T>;
+type PlatformPropsCombination<T extends string> = Permutations<PLATFORMS, T>;
+type MediaQueryCombination<T extends string> = Permutations<IMediaQueries, T>;
+type ColorModeCombination<T extends string> = Permutations<COLORMODES, T>;
+type ThemeCombination<T extends string> = Permutations<`t_${GlobalThemes}`, T>;
 
 type LastPart<T extends string> = T extends `${string}-${infer Rest}`
   ? LastPart<Rest>
   : T;
 
-export type PropsCombinations =
-  | StatePropsCombination
-  | PlatformPropsCombination
-  | MediaQueryCombination
-  | ColorModeCombination;
+export type UtilityPropsCombinations<Props extends string> =
+  | StatePropsCombination<Props>
+  | PlatformPropsCombination<Props>
+  | MediaQueryCombination<Props>
+  | ColorModeCombination<Props>
+  | ThemeCombination<Props>;
 
 export type UtilityProps<
   GenericComponentStyles,
@@ -850,12 +923,46 @@ export type UtilityProps<
     keyof GenericComponentProps
   > &
   Partial<{
-    [key in PropsCombinations]?: LastPart<key> extends keyof Aliases
+    [key in UtilityPropsCombinations<
+      Extract<keyof GetRNStyles<GenericComponentStyles>, string>
+    >]?: LastPart<key> extends keyof PropertyTokenType
+      ? PropertyTokenType[LastPart<key>] extends 'sizes'
+        ?
+            | WithSizeNegativeValue<GSConfig['tokens']>
+            | ExtendRNStyle<GetRNStyles<GenericComponentStyles>, LastPart<key>>
+        : PropertyTokenType[LastPart<key>] extends 'space'
+        ?
+            | WithNegativeValue<
+                StringifyToken<
+                  keyof GSConfig['tokens'][PropertyTokenType[LastPart<key>]]
+                >
+              >
+            | ExtendRNStyle<GetRNStyles<GenericComponentStyles>, LastPart<key>>
+        : PropertyTokenType[LastPart<key>] extends keyof GSConfig['tokens']
+        ?
+            | StringifyToken<
+                keyof GSConfig['tokens'][PropertyTokenType[LastPart<key>]]
+              >
+            | ExtendRNStyle<GetRNStyles<GenericComponentStyles>, LastPart<key>>
+        : LastPart<key> extends keyof GetRNStyles<GenericComponentStyles>
+        ? GetRNStyles<GenericComponentStyles>[LastPart<key>]
+        : never
+      : LastPart<key> extends keyof GetRNStyles<GenericComponentStyles>
+      ? GetRNStyles<GenericComponentStyles>[LastPart<key>]
+      : never;
+  }> &
+  Partial<{
+    [key in UtilityPropsCombinations<
+      keyof Aliases
+    >]?: LastPart<key> extends keyof Aliases
       ? Aliases[LastPart<key>] extends keyof GetRNStyles<GenericComponentStyles>
         ? PropertyTokenType[Aliases[LastPart<key>]] extends 'sizes'
           ?
               | WithSizeNegativeValue<GSConfig['tokens']>
-              | ExtendRNStyle<GenericComponentStyles, Aliases[LastPart<key>]>
+              | ExtendRNStyle<
+                  GetRNStyles<GenericComponentStyles>,
+                  Aliases[LastPart<key>]
+                >
           : PropertyTokenType[Aliases[LastPart<key>]] extends 'space'
           ?
               | WithNegativeValue<
@@ -1041,6 +1148,14 @@ export type IWrapperType =
   | 'extended-variant-state'
   | 'extended-descendant-variant'
   | 'extended-descendant-variant-state'
+  | 'composed-base'
+  | 'composed-base-state'
+  | 'composed-descendant-base'
+  | 'composed-descendant-base-state'
+  | 'composed-variant'
+  | 'composed-variant-state'
+  | 'composed-descendant-variant'
+  | 'composed-descendant-variant-state'
   | 'passing-base'
   | 'inline-base'
   | 'inline-variant'

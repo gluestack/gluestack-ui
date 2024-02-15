@@ -3,12 +3,21 @@ import * as React from 'react';
 import { Platform, View } from 'react-native';
 import { propertyTokenMap } from './propertyTokenMap';
 import type { COLORMODES } from './types';
-import { platformSpecificSpaceUnits } from './utils';
+import {
+  convertTokensToCssVariables,
+  generateMergedThemeTokens,
+  platformSpecificSpaceUnits,
+} from './utils';
 import { createGlobalStylesWeb } from './createGlobalStylesWeb';
 import { createGlobalStyles } from './createGlobalStyles';
+import { injectGlobalCssStyle } from './injectInStyle';
+import { ThemeContext, useTheme } from './Theme';
 import { useSafeLayoutEffect } from './hooks/useSafeLayoutEffect';
+import { resolveThemes } from './createConfig';
+
 type Config = any;
 let colorModeSet = false;
+let rootId = '';
 
 export const defaultConfig: {
   config: Config;
@@ -23,9 +32,8 @@ export const defaultConfig: {
 const defaultContextData: Config = defaultConfig;
 const StyledContext = React.createContext<Config>(defaultContextData);
 
-const setCurrentColorMode = (inputColorMode: string) => {
+const setCurrentColorMode = (inputColorMode: string | undefined) => {
   if (inputColorMode) {
-    // console.log(get(), '>>>>>>');
     const currentColorMode = get();
     if (currentColorMode !== inputColorMode) {
       set(inputColorMode);
@@ -38,6 +46,7 @@ const setCurrentColorMode = (inputColorMode: string) => {
   //   colorModeSet = true;
   // }
 };
+
 export const StyledProvider: React.FC<{
   config: Config;
   colorMode?: COLORMODES;
@@ -54,12 +63,50 @@ export const StyledProvider: React.FC<{
   const inlineStyleMap: any = React.useRef({
     initialStyleInjected: false,
   });
-  inlineStyleMap.current.initialStyleInjected = false;
 
+  const { themes } = useTheme();
+  const id = React.useId();
+
+  if (rootId === '') {
+    rootId = id;
+  }
+
+  const isRootProvider = rootId === id;
+
+  const themeContextValue = React.useMemo(() => {
+    if (colorMode) {
+      return {
+        themes: [...themes, colorMode],
+      };
+    }
+    return { themes };
+  }, [colorMode, themes]);
+
+  inlineStyleMap.current.initialStyleInjected = false;
+  // const id = React.useId();
   const currentConfig: any = React.useMemo(() => {
-    const configWithPlatformSpecificUnits: any = platformSpecificSpaceUnits(
+    let configWithPlatformSpecificUnits: any = platformSpecificSpaceUnits(
       config,
       Platform.OS
+    );
+
+    if (config?.themes) {
+      Object.keys(config.themes).forEach((key) => {
+        configWithPlatformSpecificUnits.themes[key] =
+          platformSpecificSpaceUnits(
+            //@ts-ignore
+            { tokens: config.themes[key] },
+            Platform.OS
+          ).tokens;
+      });
+
+      configWithPlatformSpecificUnits = resolveThemes(
+        configWithPlatformSpecificUnits
+      );
+    }
+
+    configWithPlatformSpecificUnits = generateMergedThemeTokens(
+      configWithPlatformSpecificUnits
     );
 
     return configWithPlatformSpecificUnits;
@@ -70,8 +117,13 @@ export const StyledProvider: React.FC<{
     globalStyleInjector({ ...currentConfig, propertyTokenMap });
   }
 
+  if (Platform.OS === 'web') {
+    const cssVariables = convertTokensToCssVariables(currentConfig);
+    injectGlobalCssStyle(cssVariables, 'variables');
+  }
+
   const currentColorMode = React.useMemo(() => {
-    return colorMode ?? get() ?? 'light';
+    return colorMode;
   }, [colorMode]);
 
   const _experimentalNestedProviderRef = React.useRef(null);
@@ -89,29 +141,48 @@ export const StyledProvider: React.FC<{
     // Add gs class name
     if (Platform.OS === 'web') {
       documentElement.classList.add(`gs`);
-      documentElement.classList.add(`gs-${currentColorMode}`);
+      if (isRootProvider) {
+        if (currentColorMode) {
+          documentElement
+            .querySelector('body')
+            ?.setAttribute('data-theme-id', currentColorMode);
+          documentElement.classList.add(`gs-${currentColorMode}`);
+        } else {
+          documentElement.classList.add(`gs-light`);
+        }
+      }
     }
-
     onChange((currentColor: string) => {
       // only for web
       if (Platform.OS === 'web' && !_experimentalNestedProvider) {
         const documentElement = document.documentElement;
-
-        if (Platform.OS === 'web') {
-          if (currentColor === 'dark') {
-            documentElement.classList.remove(`gs-light`);
-          } else {
-            documentElement.classList.remove(`gs-dark`);
+        if (isRootProvider) {
+          if (currentColor) {
+            if (currentColor === 'dark') {
+              documentElement
+                .querySelector('body')
+                ?.setAttribute('data-theme-id', 'dark');
+              documentElement.classList.remove(`gs-light`);
+            } else {
+              documentElement
+                .querySelector('body')
+                ?.setAttribute('data-theme-id', 'light');
+              documentElement.classList.remove(`gs-dark`);
+            }
+            documentElement.classList.add(`gs-${currentColor}`);
           }
-          documentElement.classList.add(`gs-${currentColor}`);
         }
       }
     });
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   React.useEffect(() => {
-    setCurrentColorMode(currentColorMode);
+    if (isRootProvider) {
+      setCurrentColorMode(currentColorMode);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentColorMode]);
 
   useSafeLayoutEffect(() => {
@@ -150,7 +221,7 @@ export const StyledProvider: React.FC<{
     }
   });
   // // Set colormode for the first time
-  if (!colorModeSet) {
+  if (!colorModeSet && isRootProvider) {
     setCurrentColorMode(currentColorMode);
   }
 
@@ -165,6 +236,7 @@ export const StyledProvider: React.FC<{
       animationDriverData,
       setAnimationDriverData,
       inlineStyleMap: inlineStyleMap.current,
+      isConfigSet: true,
     };
 
     if (_experimentalNestedProvider) {
@@ -178,9 +250,11 @@ export const StyledProvider: React.FC<{
   }, [currentConfig, globalStyleMap, animationDriverData]);
 
   const providerComponent = (
-    <StyledContext.Provider value={contextValue}>
-      {children}
-    </StyledContext.Provider>
+    <ThemeContext.Provider value={themeContextValue}>
+      <StyledContext.Provider value={contextValue}>
+        {children}
+      </StyledContext.Provider>
+    </ThemeContext.Provider>
   );
 
   if (_experimentalNestedProvider) {

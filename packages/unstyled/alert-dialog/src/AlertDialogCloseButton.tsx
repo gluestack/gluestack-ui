@@ -70,6 +70,14 @@ const AlertDialogCloseButton = (StyledAlertDialogCloseButton: any) =>
             disabled: isDisabled,
             focusVisible: isFocusVisibleProp || isFocusVisible,
           }}
+          dataSet={{
+            hover: isHoveredProp || isHovered ? 'true' : 'false',
+            focus: isFocusedProp || isFocused ? 'true' : 'false',
+            active: isPressedProp || isPressed ? 'true' : 'false',
+            disabled: isDisabled ? 'true' : 'false',
+            focusVisible:
+              isFocusVisibleProp || isFocusVisible ? 'true' : 'false',
+          }}
           disabled={isDisabled}
           {...resolvedProps}
         >

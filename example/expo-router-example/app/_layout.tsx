@@ -9,7 +9,7 @@ import { SplashScreen, Stack } from 'expo-router';
 import React, { useEffect } from 'react';
 import { useColorScheme } from 'react-native';
 import { StyledProvider } from '@gluestack-style/react';
-import { config } from '../gluestack-ui.config';
+import { config } from '@gluestack-ui/config';
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -52,7 +52,7 @@ function RootLayoutNav() {
   const colorScheme = useColorScheme();
 
   return (
-    <StyledProvider config={config.theme}>
+    <StyledProvider config={config} colorMode="light">
       <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
         <Stack>
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />

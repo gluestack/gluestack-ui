@@ -1,5 +1,5 @@
 import { useFocusManager } from '@react-native-aria/focus';
-import { AccessibilityRole } from 'react-native';
+import type { AccessibilityRole } from 'react-native';
 
 export const useTabs = (wrap: boolean) => {
   const focusManager = useFocusManager();
