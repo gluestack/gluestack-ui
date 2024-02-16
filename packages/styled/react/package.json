@@ -21,6 +21,11 @@
     "design-system",
     "universal"
   ],
+  "homepage": "https://github.com/gluestack/gluestack-ui/tree/main/packages/styled/react#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gluestack/gluestack-ui.git"
+  },
   "main": "lib/commonjs/index",
   "types": "lib/typescript/index.d.ts",
   "module": "lib/module/index",

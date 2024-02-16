@@ -12,6 +12,11 @@
     "driver",
     "transition"
   ],
+  "homepage": "https://github.com/gluestack/gluestack-ui/tree/main/packages/styled/animation-legend-motion-driver#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gluestack/gluestack-ui.git"
+  },
   "main": "lib/commonjs/index",
   "types": "lib/typescript/index.d.ts",
   "module": "lib/module/index",
