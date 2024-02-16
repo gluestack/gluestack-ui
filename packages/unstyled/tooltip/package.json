@@ -40,6 +40,11 @@
     "react": ">=16",
     "react-dom": ">=16"
   },
+  "homepage": "https://github.com/gluestack/gluestack-ui/tree/main/packages/unstyled/tooltip#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gluestack/gluestack-ui.git"
+  },
   "react-native-builder-bob": {
     "source": "src",
     "output": "lib",
