@@ -136,7 +136,7 @@ export * from './TabsIcon';
 export * from './TabsList';
 export * from './TabsContent';
 export * from './TabsContents';
-export * from './TabTitleText';
+export * from './TabsTitleText';
 export * from './Text';
 export * from './Textarea';
 export * from './TextareaInput';

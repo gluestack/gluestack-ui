@@ -1,6 +1,7 @@
 import { createStyle } from '@gluestack-style/react';
 
 export const TabsTrigger = createStyle({
+  flexDirection: 'row',
   justifyContent: 'center',
   alignItems: 'center',
   py: '$3',

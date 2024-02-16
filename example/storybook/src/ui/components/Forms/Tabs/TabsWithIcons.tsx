@@ -7,6 +7,9 @@ import {
   TabsContents,
   TabsContent,
   TabsContentText,
+  TabsIcon,
+  EditIcon,
+  SettingsIcon,
 } from '@gluestack-ui/themed';
 
 const TabsWithIcons = () => {
@@ -28,10 +31,12 @@ const TabsWithIcons = () => {
     >
       <TabsList>
         <TabsTrigger value="tab1">
-          <TabsTitleText>Teams</TabsTitleText>
+          <TabsIcon as={EditIcon} />
+          <TabsTitleText>Tab 1</TabsTitleText>
         </TabsTrigger>
         <TabsTrigger value="tab2">
-          <TabsTitleText>Settings</TabsTitleText>
+          <TabsIcon as={SettingsIcon} />
+          <TabsTitleText>Tab 2</TabsTitleText>
         </TabsTrigger>
       </TabsList>
       <TabsContents mt="$4">
