@@ -1,14 +1,10 @@
 import { createLink } from '@gluestack-ui/link';
 import { Pressable, Text } from 'react-native';
-import {
-  tva,
-  withStyleContextAndStates,
-  useStyleContext,
-  // withStyleContext,
-} from '@gluestack-ui/nativewind-utils';
+import { tva, withStyleContextAndStates } from '@gluestack-ui/nativewind-utils';
 import React from 'react';
 
 export const UILink = createLink({
+  // @ts-ignore
   Root: withStyleContextAndStates(Pressable),
   Text: Text,
 });
@@ -34,8 +30,6 @@ export const Link = React.forwardRef(({ className, ...props }: any, ref) => {
 
 export const LinkText = React.forwardRef(
   ({ className, ...props }: any, ref) => {
-    const {} = useStyleContext();
-
     return (
       <UILink.Text
         ref={ref}

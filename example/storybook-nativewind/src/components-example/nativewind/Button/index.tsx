@@ -207,8 +207,13 @@ const ButtonText = React.forwardRef(
 );
 
 const ButtonSpinner = UIButton.Spinner;
-const ButtonIcon = UIButton.Icon;
 
+const ButtonIcon = ({ className, as: AsComp, ...props }: any) => {
+  if (AsComp) {
+    return <AsComp className={className} {...props} />;
+  }
+  return <UIButton.Icon className={className} {...props} />;
+};
 Button.displayName = 'Button';
 ButtonText.displayName = 'ButtonText';
 

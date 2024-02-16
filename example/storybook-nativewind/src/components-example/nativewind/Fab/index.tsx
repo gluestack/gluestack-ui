@@ -162,8 +162,23 @@ const FabLabel = React.forwardRef(
 );
 
 const FabIcon = React.forwardRef(
-  ({ size = 'md', className, ...props }: any, ref: any) => {
+  ({ size = 'md', className, as: AsComp, ...props }: any, ref: any) => {
     const { size: parentSize } = useStyleContext();
+    if (AsComp) {
+      return (
+        <AsComp
+          ref={ref}
+          {...props}
+          className={fabIconStyle({
+            parentVariants: {
+              size: parentSize,
+            },
+            size,
+            class: className,
+          })}
+        />
+      );
+    }
     return (
       <UIFab.Icon
         ref={ref}

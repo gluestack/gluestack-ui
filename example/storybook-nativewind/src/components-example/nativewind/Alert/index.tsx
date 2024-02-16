@@ -152,9 +152,23 @@ const AlertIcon = ({
   className,
   size = 'md',
   fill = 'none',
+  as: AsComp,
   ...props
 }: any) => {
   const { action } = useStyleContext();
+  if (AsComp) {
+    return (
+      <AsComp
+        className={alertIconStyle({
+          parentVariants: { action },
+          size,
+          fill,
+          class: className,
+        })}
+        {...props}
+      />
+    );
+  }
   return (
     <UIAlert.Icon
       className={alertIconStyle({
