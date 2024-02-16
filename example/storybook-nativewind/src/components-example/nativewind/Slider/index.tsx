@@ -4,13 +4,18 @@ import { View, Platform } from 'react-native';
 import React from 'react';
 import {
   tva,
+  withStyleContext,
   withStyleContextAndStates,
   useStyleContext,
   withStates,
 } from '@gluestack-ui/nativewind-utils';
 
 export const UISlider = createSlider({
-  Root: withStyleContextAndStates(View),
+  // @ts-ignore
+  Root:
+    Platform.OS === 'web'
+      ? withStyleContext(View)
+      : withStyleContextAndStates(View),
   Thumb: Platform.OS === 'web' ? View : withStates(View),
   Track: Pressable,
   FilledTrack: Platform.OS === 'web' ? View : withStates(View),
@@ -21,336 +26,16 @@ const sliderStyle = tva({
   base: 'justify-center items-center data-[disabled=true]:web:cursor-not-allowed data-[disabled=true]:web:opacity-40 data-[disabled=true]:web:pointer-events-auto',
 
   variants: {
+    orientation: {
+      horizontal: 'w-full',
+      vertical: 'h-full',
+    },
     isReversed: {
-      true: {},
-      false: {},
+      true: '',
+      false: '',
     },
   },
-  compoundVariants: [
-    {
-      orientation: 'horizontal',
-      size: 'sm',
-      value: {
-        _track: {
-          height: '$1',
-          flexDirection: 'row',
-        },
-      },
-    },
-    {
-      orientation: 'horizontal',
-      size: 'sm',
-      isReversed: true,
-      value: {
-        _track: {
-          height: '$1',
-          flexDirection: 'row-reverse',
-        },
-      },
-    },
-    {
-      orientation: 'horizontal',
-      size: 'md',
-      value: {
-        _track: {
-          height: 5,
-          flexDirection: 'row',
-        },
-      },
-    },
-    {
-      orientation: 'horizontal',
-      size: 'md',
-      isReversed: true,
-      value: {
-        _track: {
-          height: 5,
-          flexDirection: 'row-reverse',
-        },
-      },
-    },
-    {
-      orientation: 'horizontal',
-      size: 'lg',
-      value: {
-        _track: {
-          height: '$1.5',
-          flexDirection: 'row',
-        },
-      },
-    },
-    {
-      orientation: 'horizontal',
-      size: 'lg',
-      isReversed: true,
-      value: {
-        _track: {
-          height: '$1.5',
-          flexDirection: 'row-reverse',
-        },
-      },
-    },
-    {
-      orientation: 'vertical',
-      size: 'sm',
-      value: {
-        _track: {
-          w: '$1',
-          flexDirection: 'column-reverse',
-        },
-      },
-    },
-    {
-      orientation: 'vertical',
-      size: 'sm',
-      isReversed: true,
-      value: {
-        _track: {
-          width: '$1',
-          flexDirection: 'column',
-        },
-      },
-    },
-    {
-      orientation: 'vertical',
-      size: 'md',
-      value: {
-        _track: {
-          width: 5,
-          flexDirection: 'column-reverse',
-        },
-      },
-    },
-    {
-      orientation: 'vertical',
-      size: 'md',
-      isReversed: true,
-      value: {
-        _track: {
-          width: 5,
-          flexDirection: 'column',
-        },
-      },
-    },
-    {
-      orientation: 'vertical',
-      size: 'lg',
-      value: {
-        _track: {
-          width: '$1.5',
-          flexDirection: 'column-reverse',
-        },
-      },
-    },
-    {
-      orientation: 'vertical',
-      size: 'lg',
-      isReversed: true,
-      value: {
-        _track: {
-          width: '$1.5',
-          flexDirection: 'column',
-        },
-      },
-    },
-  ],
 });
-// const StyledRoot = styled(
-//   View,
-//   {
-//     justifyContent: 'center',
-//     alignItems: 'center',
-//     variants: {
-//       orientation: {
-//         horizontal: {
-//           w: '$full',
-//           _track: {
-//             width: '$full',
-//           },
-//           _filledTrack: {
-//             height: '$full',
-//           },
-//         },
-//         vertical: {
-//           h: '$full',
-//           _track: {
-//             height: '$full',
-//           },
-//           _filledTrack: {
-//             width: '$full',
-//           },
-//         },
-//       },
-//       isReversed: {
-//         true: {},
-//         false: {},
-//       },
-//       size: {
-//         sm: {
-//           _thumb: {
-//             h: '$4',
-//             w: '$4',
-//           },
-//         },
-//         md: {
-//           _thumb: {
-//             h: '$5',
-//             w: '$5',
-//           },
-//         },
-//         lg: {
-//           _thumb: {
-//             h: '$6',
-//             w: '$6',
-//           },
-//         },
-//       },
-//     },
-//     compoundVariants: [
-//       {
-//         orientation: 'horizontal',
-//         size: 'sm',
-//         value: {
-//           _track: {
-//             height: '$1',
-//             flexDirection: 'row',
-//           },
-//         },
-//       },
-//       {
-//         orientation: 'horizontal',
-//         size: 'sm',
-//         isReversed: true,
-//         value: {
-//           _track: {
-//             height: '$1',
-//             flexDirection: 'row-reverse',
-//           },
-//         },
-//       },
-//       {
-//         orientation: 'horizontal',
-//         size: 'md',
-//         value: {
-//           _track: {
-//             height: 5,
-//             flexDirection: 'row',
-//           },
-//         },
-//       },
-//       {
-//         orientation: 'horizontal',
-//         size: 'md',
-//         isReversed: true,
-//         value: {
-//           _track: {
-//             height: 5,
-//             flexDirection: 'row-reverse',
-//           },
-//         },
-//       },
-//       {
-//         orientation: 'horizontal',
-//         size: 'lg',
-//         value: {
-//           _track: {
-//             height: '$1.5',
-//             flexDirection: 'row',
-//           },
-//         },
-//       },
-//       {
-//         orientation: 'horizontal',
-//         size: 'lg',
-//         isReversed: true,
-//         value: {
-//           _track: {
-//             height: '$1.5',
-//             flexDirection: 'row-reverse',
-//           },
-//         },
-//       },
-//       {
-//         orientation: 'vertical',
-//         size: 'sm',
-//         value: {
-//           _track: {
-//             w: '$1',
-//             flexDirection: 'column-reverse',
-//           },
-//         },
-//       },
-//       {
-//         orientation: 'vertical',
-//         size: 'sm',
-//         isReversed: true,
-//         value: {
-//           _track: {
-//             width: '$1',
-//             flexDirection: 'column',
-//           },
-//         },
-//       },
-//       {
-//         orientation: 'vertical',
-//         size: 'md',
-//         value: {
-//           _track: {
-//             width: 5,
-//             flexDirection: 'column-reverse',
-//           },
-//         },
-//       },
-//       {
-//         orientation: 'vertical',
-//         size: 'md',
-//         isReversed: true,
-//         value: {
-//           _track: {
-//             width: 5,
-//             flexDirection: 'column',
-//           },
-//         },
-//       },
-//       {
-//         orientation: 'vertical',
-//         size: 'lg',
-//         value: {
-//           _track: {
-//             width: '$1.5',
-//             flexDirection: 'column-reverse',
-//           },
-//         },
-//       },
-//       {
-//         orientation: 'vertical',
-//         size: 'lg',
-//         isReversed: true,
-//         value: {
-//           _track: {
-//             width: '$1.5',
-//             flexDirection: 'column',
-//           },
-//         },
-//       },
-//     ],
-//     _web: {
-//       ':disabled': {
-//         // @ts-ignore
-//         pointerEvents: 'all !important',
-//         cursor: 'not-allowed',
-//         opacity: 0.4,
-//       },
-//     },
-//     defaultProps: {
-//       size: 'md',
-//       orientation: 'horizontal',
-//     },
-//   },
-//   {
-//     descendantStyle: ['_thumb', '_track', '_filledTrack'],
-//   }
-// );
 
 const sliderThumbStyle = tva({
   base: 'bg-primary-500 absolute rounded-full focus:bg-primary-600 active:bg-primary-600 hover:bg-primary-600 data-[disabled=true]:bg-primary-500 web:cursor-pointer web:active:outline-4 web:active:outline web:active:outline-primary-400 web:focus:outline-4 web:focus:outline web:focus:outline-primary-400 shadow',
@@ -363,53 +48,6 @@ const sliderThumbStyle = tva({
     },
   },
 });
-
-// const StyledThumb = styled(
-//   View,
-//   {
-//     'bg': '$primary500',
-//     'position': 'absolute',
-//     'borderRadius': '$full',
-
-//     ':focus': {
-//       bg: '$primary600',
-//     },
-
-//     ':active': {
-//       bg: '$primary600',
-//     },
-
-//     ':hover': {
-//       bg: '$primary600',
-//     },
-
-//     ':disabled': {
-//       bg: '$primary500',
-//     },
-
-//     '_web': {
-//       //@ts-ignore
-//       'cursor': 'pointer',
-//       ':active': {
-//         outlineWidth: 4,
-//         outlineStyle: 'solid',
-//         outlineColor: '$primary400',
-//       },
-//       ':focus': {
-//         outlineWidth: 4,
-//         outlineStyle: 'solid',
-//         outlineColor: '$primary400',
-//       },
-//     },
-
-//     'defaultProps': {
-//       hardShadow: '1',
-//     },
-//   },
-//   {
-//     ancestorStyle: ['_thumb'],
-//   }
-// );
 
 const sliderTrackStyle = tva({
   base: 'bg-background-300 rounded-lg overflow-hidden',
@@ -427,64 +65,70 @@ const sliderTrackStyle = tva({
   },
   parentCompoundVariants: [
     {
-      value: {
-        class: 'h-1 flex-row',
-      },
+      orientation: 'horizontal',
+      size: 'sm',
+      class: 'h-1 flex-row',
     },
     {
-      value: {
-        class: 'h-1 flex-row-reverse',
-      },
+      orientation: 'horizontal',
+      size: 'sm',
+      isReversed: true,
+      class: 'h-1 flex-row-reverse',
     },
     {
-      value: {
-        class: 'h-[5px] flex-row',
-      },
+      orientation: 'horizontal',
+      size: 'md',
+      class: 'h-[5px] flex-row',
     },
     {
-      value: {
-        class: 'h-[5px] flex-row-reverse',
-      },
+      orientation: 'horizontal',
+      size: 'md',
+      isReversed: true,
+      class: 'h-[5px] flex-row-reverse',
     },
     {
-      value: {
-        class: 'h-1.5 flex-row',
-      },
+      orientation: 'horizontal',
+      size: 'lg',
+      class: 'h-1.5 flex-row',
     },
     {
-      value: {
-        class: 'h-1.5 flex-row-reverse',
-      },
+      orientation: 'horizontal',
+      size: 'lg',
+      isReversed: true,
+      class: 'h-1.5 flex-row-reverse',
     },
     {
-      value: {
-        class: 'w-1 flex-col-reverse',
-      },
+      orientation: 'vertical',
+      size: 'sm',
+      class: 'w-1 flex-col-reverse',
     },
     {
-      value: {
-        class: 'w-1 flex-col',
-      },
+      orientation: 'vertical',
+      size: 'sm',
+      isReversed: true,
+      class: 'w-1 flex-col',
     },
     {
-      value: {
-        class: 'w-[5px] flex-col-reverse',
-      },
+      orientation: 'vertical',
+      size: 'md',
+      class: 'w-[5px] flex-col-reverse',
     },
     {
-      value: {
-        class: 'w-[5px] flex-col',
-      },
+      orientation: 'vertical',
+      size: 'md',
+      isReversed: true,
+      class: 'w-[5px] flex-col',
     },
     {
-      value: {
-        class: 'w-1.5 flex-col-reverse',
-      },
+      orientation: 'vertical',
+      size: 'lg',
+      class: 'w-1.5 flex-col-reverse',
     },
     {
-      value: {
-        class: 'w-1.5 flex-col',
-      },
+      orientation: 'vertical',
+      size: 'lg',
+      isReversed: true,
+      class: 'w-1.5 flex-col',
     },
   ],
 });
@@ -505,23 +149,38 @@ const sliderFilledTrackStyle = tva({
 
 export const Slider = React.forwardRef(
   (
-    { className, size = 'md', orientation = 'horizontal', ...props }: any,
+    {
+      className,
+      size = 'md',
+      orientation = 'horizontal',
+      isReversed = false,
+      ...props
+    }: any,
     ref
   ) => {
     return (
       <UISlider
         ref={ref}
         {...props}
-        className={sliderStyle({ size, orientation, class: className })}
-        context={{ size, orientation }}
+        className={sliderStyle({
+          size,
+          orientation,
+          isReversed,
+          class: className,
+        })}
+        context={{ size, orientation, isReversed }}
       />
     );
   }
 );
 
 export const SliderThumb = React.forwardRef(
-  ({ className, variant, size, ...props }: any, ref) => {
-    const { variant: parentVariant, size: parentSize } = useStyleContext();
+  ({ className, size, ...props }: any, ref) => {
+    const {
+      orientation: parentOrientation,
+      size: parentSize,
+      isReversed,
+    } = useStyleContext();
 
     return (
       <UISlider.Thumb
@@ -529,10 +188,10 @@ export const SliderThumb = React.forwardRef(
         {...props}
         className={sliderThumbStyle({
           parentVariants: {
-            variant: parentVariant,
+            orientation: parentOrientation,
             size: parentSize,
+            isReversed,
           },
-          variant,
           size,
           class: className,
         })}
@@ -542,8 +201,12 @@ export const SliderThumb = React.forwardRef(
 );
 
 export const SliderTrack = React.forwardRef(
-  ({ className, variant, ...props }: any, ref) => {
-    const { variant: parentVariant } = useStyleContext();
+  ({ className, ...props }: any, ref) => {
+    const {
+      orientation: parentOrientation,
+      size: parentSize,
+      isReversed,
+    } = useStyleContext();
 
     return (
       <UISlider.Track
@@ -551,9 +214,10 @@ export const SliderTrack = React.forwardRef(
         {...props}
         className={sliderTrackStyle({
           parentVariants: {
-            variant: parentVariant,
+            orientation: parentOrientation,
+            size: parentSize,
+            isReversed,
           },
-          variant,
           class: className,
         })}
       />
@@ -562,8 +226,12 @@ export const SliderTrack = React.forwardRef(
 );
 
 export const SliderFilledTrack = React.forwardRef(
-  ({ className, variant, size, action, ...props }: any, ref) => {
-    const { variant: parentVariant } = useStyleContext();
+  ({ className, ...props }: any, ref) => {
+    const {
+      orientation: parentOrientation,
+      size: parentSize,
+      isReversed,
+    } = useStyleContext();
 
     return (
       <UISlider.FilledTrack
@@ -571,11 +239,10 @@ export const SliderFilledTrack = React.forwardRef(
         {...props}
         className={sliderFilledTrackStyle({
           parentVariants: {
-            variant: parentVariant,
+            orientation: parentOrientation,
+            size: parentSize,
+            isReversed,
           },
-          variant,
-          size,
-          action,
           class: className,
         })}
       />

@@ -30,10 +30,12 @@ const SliderBasic = ({ value: valueProp = 60, ...props }: any) => {
   return (
     <Slider
       {...props}
-      w={300}
-      h={300}
-      mt="$4"
       value={sliderValue}
+      style={{
+        width: 300,
+        height: 300,
+        marginTop: 16,
+      }}
       onChange={(value: any) => {
         handleChange(value);
       }}
