@@ -22,7 +22,7 @@ const alertStyle = tva({
 
     variant: {
       solid: '',
-      outline: 'border bg-white',
+      outline: 'border bg-transparent',
       accent: 'border-l-4',
     },
   },
