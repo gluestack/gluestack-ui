@@ -1,6 +1,6 @@
 {
   "name": "@gluestack-ui/themed",
-  "version": "1.1.7",
+  "version": "1.1.8",
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "module": "build/index",
@@ -60,7 +60,7 @@
     "@gluestack-ui/provider": "0.1.10",
     "@gluestack-ui/radio": "0.1.25",
     "@gluestack-ui/select": "0.1.24",
-    "@gluestack-ui/slider": "0.1.20",
+    "@gluestack-ui/slider": "0.1.21",
     "@gluestack-ui/spinner": "0.1.14",
     "@gluestack-ui/switch": "0.1.19",
     "@gluestack-ui/tabs": "0.1.14",
