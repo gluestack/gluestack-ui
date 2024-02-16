@@ -1,13 +1,23 @@
 import { createLink } from '@gluestack-ui/link';
-import { Pressable, Text } from 'react-native';
-import { tva, withStyleContextAndStates } from '@gluestack-ui/nativewind-utils';
+import { Pressable, Text, Platform } from 'react-native';
+import {
+  tva,
+  withStyleContextAndStates,
+  withStyleContext,
+} from '@gluestack-ui/nativewind-utils';
 import React from 'react';
-
+import { cssInterop } from 'nativewind';
 export const UILink = createLink({
   // @ts-ignore
-  Root: withStyleContextAndStates(Pressable),
+  Root:
+    Platform.OS === 'web'
+      ? withStyleContext(Pressable)
+      : withStyleContextAndStates(Pressable),
   Text: Text,
 });
+
+cssInterop(UILink, { className: 'style' });
+cssInterop(UILink.Text, { className: 'style' });
 
 const linkStyle = tva({
   base: 'web:outline-0 web:disabled:cursor-not-allowed web:focus-visible:outline-2 web:focus-visible:outline-primary-700 web:focus-visible:outline',

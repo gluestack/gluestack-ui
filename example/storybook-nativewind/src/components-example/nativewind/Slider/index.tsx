@@ -9,6 +9,7 @@ import {
   useStyleContext,
   withStates,
 } from '@gluestack-ui/nativewind-utils';
+import { cssInterop } from 'nativewind';
 
 export const UISlider = createSlider({
   // @ts-ignore
@@ -21,6 +22,12 @@ export const UISlider = createSlider({
   FilledTrack: Platform.OS === 'web' ? View : withStates(View),
   ThumbInteraction: View,
 });
+
+//@ts-ignore
+cssInterop(UISlider, { className: 'style' });
+cssInterop(UISlider.Thumb, { className: 'style' });
+cssInterop(UISlider.Track, { className: 'style' });
+cssInterop(UISlider.FilledTrack, { className: 'style' });
 
 const sliderStyle = tva({
   base: 'justify-center items-center data-[disabled=true]:web:cursor-not-allowed data-[disabled=true]:web:opacity-40 data-[disabled=true]:web:pointer-events-auto',
