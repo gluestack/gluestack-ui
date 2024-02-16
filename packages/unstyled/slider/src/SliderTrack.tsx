@@ -28,7 +28,7 @@ function SliderTrack<StyledSliderTrackProps>(
         onLayout={onTrackLayout}
         ref={mergeRefs([_ref, ref])}
         {...trackProps}
-        style={{ ...style }}
+        style={style}
         {...props}
         isDisabled={isDisabled}
         tabIndex={-1}
