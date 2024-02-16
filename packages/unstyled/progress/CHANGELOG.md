@@ -4,7 +4,7 @@
 
 ### Patch Changes
 
--
+- Remove sx dependancy in `ProgressFilledTrack`.
 
 ## 0.1.7
 
