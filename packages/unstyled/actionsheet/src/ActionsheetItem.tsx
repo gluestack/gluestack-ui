@@ -63,10 +63,11 @@ export function ActionsheetItem<T>(
           states={{
             hover: isHoveredProp || isHovered,
             focus: isFocusedProp || isFocused,
-            // @ts-ignore
             active: isPressedProp || isPressed,
             disabled: isDisabled,
             focusVisible: isFocusVisibleProp || isFocusVisible,
+            // @ts-ignore
+            ...props.states,
           }}
           dataSet={{
             hover: isHoveredProp || isHovered ? 'true' : 'false',
@@ -76,6 +77,8 @@ export function ActionsheetItem<T>(
             disabled: isDisabled ? 'true' : 'false',
             focusVisible:
               isFocusVisibleProp || isFocusVisible ? 'true' : 'false',
+            // @ts-ignore
+            ...props.dataSet,
           }}
         >
           {children}
