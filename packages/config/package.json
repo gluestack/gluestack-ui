@@ -6,6 +6,11 @@
   "module": "build/gluestack-ui.config",
   "sideEffects": false,
   "description": "Themed configuration for gluestack-ui components",
+  "homepage": "https://github.com/gluestack/gluestack-ui/tree/main/packages/config",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gluestack/gluestack-ui.git"
+  },
   "keywords": [
     "react",
     "native",
