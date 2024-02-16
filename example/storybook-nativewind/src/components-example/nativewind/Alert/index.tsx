@@ -17,7 +17,7 @@ const alertStyle = tva({
       warning: 'bg-background-warning border-warning-300',
       success: 'bg-background-success border-success-300',
       info: 'bg-background-info border-info-300',
-      muted: 'bg-backgrouond-muted border-muted-300',
+      muted: 'bg-background-muted border-muted-300',
     },
 
     variant: {
