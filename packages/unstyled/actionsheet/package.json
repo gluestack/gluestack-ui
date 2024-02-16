@@ -51,6 +51,11 @@
     "@react-native-aria/focus": "^0.2.9",
     "@react-native-aria/interactions": "^0.2.11"
   },
+  "homepage": "https://github.com/gluestack/gluestack-ui/tree/main/packages/unstyled/actionsheet#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gluestack/gluestack-ui.git"
+  },
   "peerDependencies": {
     "react": ">=16",
     "react-dom": ">=16"
