@@ -32,18 +32,21 @@
     "pods": "cd example && pod-install --quiet",
     "bootstrap": "yarn example && yarn && yarn pods"
   },
+  "homepage": "https://github.com/gluestack/gluestack-ui#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gluestack/gluestack-ui.git"
+  },
   "keywords": [
     "react-native",
     "ios",
     "android"
   ],
-  "repository": "https://github.com/intergalacticspacehighway/react-native-bob-mono",
   "author": "nishan <nishanbende@gmail.com> (https://github.com/intergalacticspacehighway)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/intergalacticspacehighway/react-native-bob-mono/issues"
   },
-  "homepage": "https://github.com/intergalacticspacehighway/react-native-bob-mono#readme",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
