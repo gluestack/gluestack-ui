@@ -8,6 +8,11 @@
     "server-side rendering",
     "ssr"
   ],
+  "homepage": "https://github.com/gluestack/gluestack-ui/tree/main/packages/styled/babel-plugin-styled-resolver#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gluestack/gluestack-ui.git"
+  },
   "main": "lib/index",
   "module": "lib/index",
   "react-native": "src/index",

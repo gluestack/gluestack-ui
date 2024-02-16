@@ -19,6 +19,11 @@
     "ios",
     "nextjs"
   ],
+  "homepage": "https://github.com/gluestack/gluestack-ui/tree/main/packages/themed/#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gluestack/gluestack-ui.git"
+  },
   "scripts": {
     "build": "tsc",
     "prepare": "tsc",

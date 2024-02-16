@@ -32,7 +32,7 @@
     "pods": "cd example && pod-install --quiet",
     "bootstrap": "yarn example && yarn && yarn pods"
   },
-  "homepage": "https://github.com/gluestack/gluestack-ui#readme",
+  "homepage": "https://github.com/gluestack/gluestack-ui/tree/main/packages/react-native-aria/accordion#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/gluestack/gluestack-ui.git"
