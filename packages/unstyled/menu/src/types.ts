@@ -44,12 +44,20 @@ export interface InterfaceMenuProps {
     | 'right'
     | 'top left'
     | 'top right'
+    | 'top start'
+    | 'top end'
     | 'bottom left'
     | 'bottom right'
+    | 'bottom start'
+    | 'bottom end'
     | 'right top'
     | 'right bottom'
+    | 'right start'
+    | 'right end'
     | 'left top'
-    | 'left bottom';
+    | 'left bottom'
+    | 'left start'
+    | 'left end';
 
   children?: any;
   /** Determines whether menu should flip or not
