@@ -1,5 +1,11 @@
 # @gluestack-ui/slider
 
+## 0.1.21
+
+### Patch Changes
+
+- fix: style array issue
+
 ## 0.1.20
 
 ### Patch Changes
