@@ -93,7 +93,7 @@ export const ToastList = () => {
               {toastInfo[position].map((toast: IToast) => {
                 return (
                   <SafeAreaView
-                    style={{ pointerEvents: 'box-none' }}
+                    style={{ pointerEvents: 'box-none', maxWidth: '100%' }}
                     key={toast.id}
                   >
                     <OverlayAnimatePresence
