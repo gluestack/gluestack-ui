@@ -47,6 +47,8 @@ export function extractDataClassName(className: string, states: any) {
   const classNamesArray =
     typeof className === 'string' ? className.split(' ') : className;
 
+  if (classNamesArray === undefined) return;
+
   let classNamesFinal = '';
   classNamesArray.forEach((classNameItem: string) => {
     // check for data- attribute
