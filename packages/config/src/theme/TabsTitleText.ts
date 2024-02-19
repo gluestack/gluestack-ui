@@ -6,4 +6,8 @@ export const TabsTitleText = createStyle({
   fontStyle: 'normal',
   fontWeight: '$normal',
   lineHeight: '$md',
+  // color: '$textLight900',
+  // _dark: {
+  //   color: '$textDark50',
+  // },
 });

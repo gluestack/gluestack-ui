@@ -20,10 +20,13 @@ export const TabsContent = <StyledTabsContent,>(
           return (
             <StyledTabsContent
               // tabIndex={value === currentActiveTab ? 0 : -1}
-              role={Platform.OS === 'web' ? 'tabPanel' : undefined}
+              role={Platform.OS === 'web' ? 'tabpanel' : undefined}
+              id={`panel-${value}`}
+              aria-labelledby={`tab-${value}`}
               {...(props as StyledTabsContent)}
               // style={{ display: isActive ? 'flex' : 'none' }}
               ref={ref}
+              aria-selected={isActive}
             />
           );
         return <></>;

@@ -42,6 +42,7 @@ export const TabsList = <StyledTabsList,>(
         return (
           <StyledTabsList
             role="tablist"
+            //give aria-label
             {...(props as StyledTabsList)}
             ref={ref}
             aria-orientation={orientation}

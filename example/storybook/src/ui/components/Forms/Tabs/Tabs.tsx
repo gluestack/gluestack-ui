@@ -30,7 +30,7 @@ const TabsBasic = () => {
         <TabsTrigger value="tab1">
           <TabsTitleText>Teams</TabsTitleText>
         </TabsTrigger>
-        <TabsTrigger value="tab2">
+        <TabsTrigger value="tab2" isDisabled="true">
           <TabsTitleText>Settings</TabsTitleText>
         </TabsTrigger>
         <TabsTrigger value="tab3">

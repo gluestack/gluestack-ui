@@ -1,35 +1,41 @@
 import { createStyle } from '@gluestack-style/react';
 
 export const TabsTrigger = createStyle({
-  flexDirection: 'row',
-  justifyContent: 'center',
-  alignItems: 'center',
-  py: '$3',
-  px: '$4',
-  _titleText: {
-    'color': '$textLight900',
-    ':hover': {
-      color: '$primary600',
+  'flexDirection': 'row',
+  'justifyContent': 'center',
+  'alignItems': 'center',
+  'py': '$3',
+  'px': '$4',
+
+  ':hover': {
+    _titleText: {
+      color: 'red',
     },
-    ':active': {
+  },
+  ':active': {
+    _titleText: {
       color: '$primary500',
     },
-    '_dark': {
-      'color': '$textDark50',
-      ':hover': {
+  },
+
+  '_dark': {
+    ':hover': {
+      _titleText: {
         color: '$primary300',
       },
-      ':active': {
+    },
+    ':active': {
+      _titleText: {
         color: '$primary400',
       },
     },
   },
 
-  _web: {
+  '_web': {
     outlineWidth: 0,
   },
 
-  variants: {
+  'variants': {
     variant: {
       pilled: {
         'borderWidth': 0,
@@ -146,7 +152,7 @@ export const TabsTrigger = createStyle({
   //   },
   // },
 
-  // ':disabled': {
-  //   opacity: 0.5,
-  // },
+  ':disabled': {
+    opacity: 0.5,
+  },
 });

@@ -34,8 +34,9 @@ export const TabsTrigger = <StyledTabsTrigger,>(
         });
         const { isFocused, focusProps } = useFocus();
         const { isHovered, hoverProps }: any = useHover();
-        const { onValueChange, currentActiveTab, loop } = useTab('TabContext');
-        const { tabProps } = useTabs(loop);
+        const { onValueChange, currentActiveTab, loop, orientation } =
+          useTab('TabContext');
+        const { tabProps } = useTabs(loop, orientation);
 
         useEffect(() => {
           if (isFocusVisible) {
@@ -46,6 +47,8 @@ export const TabsTrigger = <StyledTabsTrigger,>(
         return (
           <StyledTabsTrigger
             role="tab"
+            id={`tab-${value}`}
+            aria-controls={`panel-${value}`}
             ref={ref}
             states={{
               hover: isHovered,

@@ -33,6 +33,7 @@ export const Tabs = <StyledTabs,>(
             onValueChange={setCurrentActiveTab}
             onLoopChange={setWrapList}
             loop={wrapList}
+            orientation={props?.orientation ?? 'horizontal'}
           >
             <StyledTabs {...(props as StyledTabs)} ref={ref} />
           </TabProvider>
