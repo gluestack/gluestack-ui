@@ -14,7 +14,8 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="with-gluestack-style/components/Forms/Link" />
 
-import { Link, LinkText } from './Link';
+import { Link } from './Link';
+import { LinkText } from '../../components-example/themed/Link';
 import { ArrowUpRightIcon, Icon, HStack, Text } from '@gluestack-ui/themed';
 import { transformedCode } from '../../utils';
 import {
@@ -37,7 +38,7 @@ This is an illustration of **Link** component.
     metaData={{
       code: `
       <Link href="https://gluestack.io/">
-        <LinkText>gluestack</LinkText>
+        <LinkText color="$text950">gluestack</LinkText>
       </Link>
       `,
       transformCode: (code) => {
@@ -68,9 +69,7 @@ npm i @gluestack-ui/link
 ### Step 2: Copy and paste the following code into your project.
 
 <CollapsibleCode>
-  ```jsx 
-%%-- File: components-example/themed/Link/index.tsx --%% 
-```
+  ```jsx %%-- File: components-example/themed/Link/index.tsx --%% ```
 </CollapsibleCode>
 
 ### Step 3: Update the import paths to match your project setup.
@@ -80,7 +79,7 @@ npm i @gluestack-ui/link
 To use this component in your project, include the following import statement in your file.
 
 ```jsx
-import { Link } from '@/components/Link';
+import { Link } from '@/components/ui/Link';
 ```
 
 ```jsx

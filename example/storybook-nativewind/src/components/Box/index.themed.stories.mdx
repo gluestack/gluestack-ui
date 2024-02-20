@@ -15,7 +15,9 @@ import { useRef, useEffect, useState } from 'react';
 
 <Meta title="with-gluestack-style/components/Layout/Box" />
 
-import { Box, Text } from './Box';
+import { Box } from './Box';
+import { Text } from '../../components-example/themed/Text';
+
 import { transformedCode } from '../../utils';
 import { AppProvider, CodePreview } from '@gluestack/design-system';
 
@@ -34,7 +36,7 @@ This is an illustration of **Box** component.
   bg="$primary500"
   p="$5"
 >
-  <Text className='text-white'>
+  <Text color='$text0' >
     This is the Box
   </Text>
 </Box>
@@ -59,9 +61,11 @@ This is an illustration of **Box** component.
 ### Step 1: Copy and paste the following code into your project.
 
 <CollapsibleCode>
-  ```jsx 
-%%-- File: components-example/themed/Box/index.tsx --%% 
+
+```jsx
+%%-- File: components-example/themed/Box/index.tsx --%%
 ```
+
 </CollapsibleCode>
 
 ### Step 2: Update the import paths to match your project setup.
@@ -69,7 +73,7 @@ This is an illustration of **Box** component.
 To use this component in your project, include the following import statement in your file.
 
 ```jsx
-import { Box } from '@/components/Box';
+import { Box } from '@/components/ui/Box';
 ```
 
 ```jsx

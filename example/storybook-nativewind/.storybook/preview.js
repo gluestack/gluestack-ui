@@ -50,7 +50,6 @@ export const parameters = {
           [
             'Button',
             'Checkbox',
-            'FormControl',
             'Link',
             'Pressable',
             'Radio',

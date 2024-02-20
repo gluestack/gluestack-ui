@@ -15,7 +15,12 @@ import { useRef, useEffect, useState } from 'react';
 
 <Meta title="with-gluestack-style/components/Forms/Slider" />
 
-import { Slider, SliderTrack, SliderFilledTrack, SliderThumb } from './Slider';
+import { Slider } from './Slider';
+import {
+  SliderTrack,
+  SliderFilledTrack,
+  SliderThumb,
+} from '../../components-example/themed/Slider';
 import { HStack, Volume2Icon, Box, Center } from '@gluestack-ui/themed';
 import {
   VStack,
@@ -105,9 +110,7 @@ npm i @gluestack-ui/slider
 ### Step 2: Copy and paste the following code into your project.
 
 <CollapsibleCode>
-  ```jsx 
-%%-- File: components-example/themed/Slider/index.tsx --%% 
-```
+  ```jsx %%-- File: components-example/themed/Slider/index.tsx --%% ```
 </CollapsibleCode>
 
 ### Step 3: Update the import paths to match your project setup.
@@ -117,7 +120,7 @@ npm i @gluestack-ui/slider
 To use this component in your project, include the following import statement in your file.
 
 ```jsx
-import { Slider } from '@/components/Slider';
+import { Slider } from '@/components/ui/Slider';
 ```
 
 ```jsx

@@ -12,9 +12,9 @@ const StyledRoot = styled(
       // hacky fix for the above
       //@ts-ignore
       trackColor: { false: '$background300', true: '$primary600' },
-      thumbColor: '$background0',
+      thumbColor: '$background600',
       //@ts-ignore
-      activeThumbColor: '$background0',
+      activeThumbColor: '$background200',
 
       // for ios specifically in unchecked state
       ios_backgroundColor: '$background300',

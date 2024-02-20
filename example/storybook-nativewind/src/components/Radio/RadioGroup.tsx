@@ -7,7 +7,7 @@ import {
   RadioIcon,
   RadioIndicator,
   RadioLabel,
-} from '@/components/Radio';
+} from '@/components/ui/Radio';
 
 const RadioGroupBasic = ({
   size,

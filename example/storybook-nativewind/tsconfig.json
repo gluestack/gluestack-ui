@@ -3,7 +3,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/components/*": ["src/components-example/themed/*"],
+      "@/components/ui/*": ["src/components-example/nativewind/*"],
       "@gluestack-style/react": ["../../packages/styled/react/src"],
       "@gluestack-ui/nativewind-utils": ["../../packages/nativewind/utils/src"],
       "@gluestack-ui/provider": ["../../packages/unstyled/provider/src"]

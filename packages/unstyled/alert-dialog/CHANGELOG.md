@@ -1,5 +1,12 @@
 # @gluestack-ui/alert-dialog
 
+## 0.1.25
+
+### Patch Changes
+
+- Feature
+  Added Support of data-state-\* props
+
 ## 0.1.24
 
 ### Patch Changes

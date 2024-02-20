@@ -14,7 +14,9 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="with-gluestack-style/components/Layout/Center" />
 
-import { Center, Text } from './Center';
+import { Center } from './Center';
+import { Text } from '../../components-example/themed/Text';
+
 import { transformedCode } from '../../utils';
 import { AppProvider, CodePreview, Table } from '@gluestack/design-system';
 
@@ -31,7 +33,7 @@ This is an illustration of **Center** component.
     metaData={{
       code: `
 <Center bg="$primary500" h={200} w={300}>
-  <Text color="white" fontWeight="$bold">
+  <Text color="$text0" fontWeight="$bold">
     This is the center.
   </Text>
 </Center>
@@ -56,9 +58,11 @@ This is an illustration of **Center** component.
 ### Step 1: Copy and paste the following code into your project.
 
 <CollapsibleCode>
-  ```jsx 
-%%-- File: components-example/themed/Center/index.tsx --%% 
+
+```jsx
+ %%-- File: components-example/themed/Center/index.tsx --%%
 ```
+
 </CollapsibleCode>
 
 ### Step 2: Update the import paths to match your project setup.
@@ -68,7 +72,7 @@ This is an illustration of **Center** component.
 To use this component in your project, include the following import statement in your file.
 
 ```jsx
-import { Center } from '@/components/Center';
+import { Center } from '@/components/ui/Center';
 ```
 
 ```jsx

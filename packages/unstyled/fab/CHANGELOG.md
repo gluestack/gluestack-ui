@@ -1,5 +1,12 @@
 # @gluestack-ui/fab
 
+## 0.1.18
+
+### Patch Changes
+
+- Feature
+  Added Support of data-state-\* props
+
 ## 0.1.12
 
 ### Patch Changes

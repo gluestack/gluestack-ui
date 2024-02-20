@@ -17,7 +17,7 @@ import {
   // MenuIcon,
   MenuItem,
   MenuItemLabel,
-} from '@/components/Menu';
+} from '@/components/ui/Menu';
 import { Icon } from '@gluestack-ui/themed';
 import { PaintBucket, PuzzleIcon } from 'lucide-react-native';
 

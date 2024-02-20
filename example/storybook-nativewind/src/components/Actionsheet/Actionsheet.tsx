@@ -34,7 +34,7 @@ import {
   ActionsheetSectionList,
   ActionsheetSectionHeaderText,
   ActionsheetVirtualizedList,
-} from '@/components/Actionsheet';
+} from '@/components/ui/Actionsheet';
 
 const ActionsheetBasic = ({ showActionsheetProp, ...props }: any) => {
   const [showActionsheet, setShowActionsheet] = React.useState(false);

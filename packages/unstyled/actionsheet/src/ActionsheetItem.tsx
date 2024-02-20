@@ -64,7 +64,7 @@ export function ActionsheetItem<T>(
             hover: isHoveredProp || isHovered,
             focus: isFocusedProp || isFocused,
             // @ts-ignore
-            active: isPressedProp || isPressed || props?.states?.active,
+            active: isPressedProp || isPressed,
             disabled: isDisabled,
             focusVisible: isFocusVisibleProp || isFocusVisible,
           }}

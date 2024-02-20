@@ -12,7 +12,7 @@ module.exports = function (api) {
         'module-resolver',
         {
           alias: {
-            '@/components':
+            '@/components/ui':
               process.env.STYLE_ENGINE === 'nativewind'
                 ? path.resolve(__dirname, './src/components-example/nativewind')
                 : path.resolve(__dirname, './src/components-example/themed'),
@@ -25,6 +25,18 @@ module.exports = function (api) {
             '@gluestack-ui/checkbox': path.resolve(
               __dirname,
               '../../packages/unstyled/checkbox/src'
+            ),
+            '@gluestack-ui/tooltip': path.resolve(
+              __dirname,
+              '../../packages/unstyled/tooltip/src'
+            ),
+            '@gluestack-ui/alert-dialog': path.resolve(
+              __dirname,
+              '../../packages/unstyled/alert-dialog/src'
+            ),
+            '@gluestack-ui/slider': path.resolve(
+              __dirname,
+              '../../packages/unstyled/slider/src'
             ),
             '@gluestack-ui/radio': path.resolve(
               __dirname,

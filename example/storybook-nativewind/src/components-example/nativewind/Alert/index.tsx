@@ -17,12 +17,12 @@ const alertStyle = tva({
       warning: 'bg-background-warning border-warning-300',
       success: 'bg-background-success border-success-300',
       info: 'bg-background-info border-info-300',
-      muted: 'bg-backgrouond-muted border-muted-300',
+      muted: 'bg-background-muted border-muted-300',
     },
 
     variant: {
       solid: '',
-      outline: 'border bg-white',
+      outline: 'border bg-transparent',
       accent: 'border-l-4',
     },
   },
@@ -152,9 +152,23 @@ const AlertIcon = ({
   className,
   size = 'md',
   fill = 'none',
+  as: AsComp,
   ...props
 }: any) => {
   const { action } = useStyleContext();
+  if (AsComp) {
+    return (
+      <AsComp
+        className={alertIconStyle({
+          parentVariants: { action },
+          size,
+          fill,
+          class: className,
+        })}
+        {...props}
+      />
+    );
+  }
   return (
     <UIAlert.Icon
       className={alertIconStyle({

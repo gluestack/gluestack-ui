@@ -7,7 +7,7 @@ import {
   AvatarBadge,
   AvatarFallbackText,
   AvatarImage,
-} from '@/components/Avatar';
+} from '@/components/ui/Avatar';
 import { User } from 'lucide-react-native';
 
 const AvatarBasic = ({

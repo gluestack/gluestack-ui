@@ -15,8 +15,10 @@ import { Meta } from '@storybook/addon-docs';
 <Meta title="with-gluestack-style/components/Forms/Pressable" />
 
 import { Pressable } from './Pressable';
+import { Text } from '../../components-example/themed/Text';
+
 import { transformedCode } from '../../utils';
-import { AppProvider, CodePreview, Text } from '@gluestack/design-system';
+import { AppProvider, CodePreview } from '@gluestack/design-system';
 
 import Wrapper from '../../components-example/themed/Wrapper';
 import { CollapsibleCode } from '@gluestack/design-system';
@@ -31,7 +33,7 @@ This is an illustration of **Pressable** component.
       code: `
  <Pressable
   onPress={() => console.log('Hello')} p="$5" bg="$primary500" $hover-bg="$primary400">
-  <Text color="white">Press me</Text>
+  <Text color="$text0">Press me</Text>
 </Pressable>
 `,
       transformCode: (code) => {
@@ -62,9 +64,7 @@ npm i @gluestack-ui/pressable
 ### Step 2: Copy and paste the following code into your project.
 
 <CollapsibleCode>
-  ```jsx 
-%%-- File: components-example/themed/Pressable/index.tsx --%% 
-```
+  ```jsx %%-- File: components-example/themed/Pressable/index.tsx --%% ```
 </CollapsibleCode>
 
 ### Step 3: Update the import paths to match your project setup.
@@ -74,7 +74,7 @@ npm i @gluestack-ui/pressable
 To use this component in your project, include the following import statement in your file.
 
 ```jsx
-import { Pressable } from '@/components/Pressable';
+import { Pressable } from '@/components/ui/Pressable';
 ```
 
 ```jsx

@@ -144,8 +144,23 @@ const BadgeText = ({ children, className, size, ...props }: any) => {
   );
 };
 
-const BadgeIcon = ({ className, size, ...props }: any) => {
+const BadgeIcon = ({ className, size, as: AsComp, ...props }: any) => {
   const { size: parentSize, action } = useStyleContext();
+  if (AsComp) {
+    return (
+      <AsComp
+        className={badgeIconStyle({
+          parentVariants: {
+            size: parentSize,
+            action,
+          },
+          size,
+          class: className,
+        })}
+        {...props}
+      />
+    );
+  }
   return (
     <View
       className={badgeIconStyle({

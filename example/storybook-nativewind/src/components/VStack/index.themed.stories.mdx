@@ -39,9 +39,9 @@ This is an illustration of **VStack** component.
       code: `
         <Box h='$80' justifyContent='center'>
           <VStack {...props}>
-            <Box w='$20' h='$20' bg='$blue300' />
-            <Box w='$20' h='$20' bg='$blue400' />
-            <Box w='$20' h='$20' bg='$blue500' />
+            <Box w='$20' h='$20' bg='$primary300' />
+            <Box w='$20' h='$20' bg='$primary400' />
+            <Box w='$20' h='$20' bg='$primary500' />
           </VStack>
         </Box>
       `,
@@ -76,9 +76,7 @@ This is an illustration of **VStack** component.
 ### Step 1: Copy and paste the following code into your project.
 
 <CollapsibleCode>
-  ```jsx 
-  %%-- File: components-example/themed/VStack/index.tsx --%% 
-  ```
+  ```jsx %%-- File: components-example/themed/VStack/index.tsx --%% ```
 </CollapsibleCode>
 
 ### Step 2: Update the import paths to match your project setup.
@@ -88,7 +86,7 @@ This is an illustration of **VStack** component.
 To use this component in your project, include the following import statement in your file.
 
 ```jsx
-import { VStack } from '@/components/VStack';
+import { VStack } from '@/components/ui/VStack';
 ```
 
 ```jsx
@@ -171,5 +169,3 @@ VStack component is created using View component from react-native. It extends a
     </Table>
   </TableContainer>
 </>
-
-

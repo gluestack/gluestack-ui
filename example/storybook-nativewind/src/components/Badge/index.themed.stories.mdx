@@ -14,7 +14,12 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="with-gluestack-style/components/Data Display/Badge" />
 
-import { Badge, BadgeText, BadgeIcon, GlobeIcon } from './Badge';
+import {
+  Badge,
+  BadgeText,
+  BadgeIcon,
+} from '../../components-example/nativewind/Badge';
+
 import {
   Icon,
   Box,
@@ -26,6 +31,7 @@ import {
   Avatar,
   AvatarImage,
   AvatarFallbackText,
+  GlobeIcon,
 } from '@gluestack-ui/themed';
 import { Divider, Image, CheckIcon, Heading } from '@gluestack-ui/themed';
 import {
@@ -105,9 +111,7 @@ npm i @gluestack-ui/badge
 ### Step 2: Copy and paste the following code into your project.
 
 <CollapsibleCode>
-  ```jsx 
-%%-- File: components-example/themed/Badge/index.tsx --%% 
-```
+  ```jsx %%-- File: components-example/themed/Badge/index.tsx --%% ```
 </CollapsibleCode>
 
 ### Step 3: Update the import paths to match your project setup.
@@ -117,7 +121,7 @@ npm i @gluestack-ui/badge
 To use this component in your project, include the following import statement in your file.
 
 ```jsx
-import { Badge } from '@/components/Badge';
+import { Badge } from '@/components/ui/Badge';
 ```
 
 ```jsx

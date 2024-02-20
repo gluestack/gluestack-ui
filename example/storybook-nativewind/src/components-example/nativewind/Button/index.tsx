@@ -34,7 +34,7 @@ cssInterop(UIButton.Spinner, { className: 'style' });
 cssInterop(UIButton.Icon, { className: 'style' });
 
 const buttonStyle = tva({
-  base: 'group/button rounded-lg bg-primary-500 flex-row items-center justify-center data-[focus=true]:outline-none data-[focus-visible=true]:ring-2 data-[focus-visible=true]:ring-offset-2',
+  base: 'group/button rounded-lg bg-primary-500 flex-row items-center justify-center data-[focus=true]:outline-none data-[focus-visible=true]:ring-2 ',
   variants: {
     action: {
       primary:
@@ -207,8 +207,13 @@ const ButtonText = React.forwardRef(
 );
 
 const ButtonSpinner = UIButton.Spinner;
-const ButtonIcon = UIButton.Icon;
 
+const ButtonIcon = ({ className, as: AsComp, ...props }: any) => {
+  if (AsComp) {
+    return <AsComp className={className} {...props} />;
+  }
+  return <UIButton.Icon className={className} {...props} />;
+};
 Button.displayName = 'Button';
 ButtonText.displayName = 'ButtonText';
 

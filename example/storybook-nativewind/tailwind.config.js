@@ -3,7 +3,8 @@ module.exports = {
   darkMode: 'class',
   content: [
     './src/**/*.{html,js,jsx,ts,tsx}',
-    './src/components/**/**/*.{html,js,jsx,ts,tsx}',
+    './src/components-example/**/**/*.{html,js,jsx,ts,tsx}',
+    './src/components/**/*.{html,js,jsx,ts,tsx,mdx}',
   ],
   presets: [require('nativewind/preset')],
   theme: {
@@ -151,12 +152,20 @@ module.exports = {
           warning: 'var(--color-background-warning)',
           muted: 'var(--color-background-muted)',
           success: 'var(--color-background-success)',
+          info: 'var(--color-background-info)',
         },
       },
       fontFamily: {
         heading: undefined,
         body: undefined,
         mono: undefined,
+      },
+      fontWeight: {
+        hairline: '100',
+        extraBlack: '950',
+      },
+      fontSize: {
+        '2xs': '10px',
       },
     },
     plugins: [],
