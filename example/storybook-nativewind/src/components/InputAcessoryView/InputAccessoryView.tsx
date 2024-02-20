@@ -7,9 +7,12 @@ import {
 } from '@gluestack-ui/themed';
 import { InputAccessoryView } from '@/components/ui/InputAccessoryView';
 import { config } from '@gluestack-ui/config';
-import React from 'react';
+import React, { useState } from 'react';
 
 export default function SafeAreaViewStory() {
+  const inputAccessoryViewID = 'uniqueID';
+  const initialText = '';
+  const [text, setText] = useState(initialText);
   return (
     <Center>
       <ScrollView keyboardDismissMode="interactive">
