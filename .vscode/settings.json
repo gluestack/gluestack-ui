@@ -21,5 +21,6 @@
   "cSpell.enableFiletypes": ["mdx"],
   "tailwindCSS.experimental.classRegex": [
     ["tva\\((([^()]*|\\([^()]*\\))*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]
-  ]
+  ],
+  "cmake.sourceDirectory": "/Users/vidhikataria/Documents/Projects/gluestack-ui/gluestack-ui/node_modules/expo/node_modules/expo-modules-core/android"
 }
