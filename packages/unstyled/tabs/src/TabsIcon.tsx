@@ -1,5 +1,4 @@
-import React, { memo } from 'react';
-import { forwardRef } from 'react';
+import React, { memo, forwardRef } from 'react';
 
 export const TabsIcon = <StyledTabsIcon,>(
   StyledTabsIcon: React.ComponentType<StyledTabsIcon>

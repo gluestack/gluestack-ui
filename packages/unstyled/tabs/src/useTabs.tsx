@@ -7,45 +7,18 @@ export const useTabs = (
 ) => {
   const focusManager = useFocusManager();
   const onKeyDown = (e: KeyboardEvent) => {
-    // switch (e.code) {
-    //   case 'ArrowRight': {
-    //     e.preventDefault();
-    //     //@ts-ignore
-    //     focusManager?.focusNext({ wrap, disabled: false });
-    //     break;
-    //   }
-    //   case 'ArrowLeft': {
-    //     e.preventDefault();
-    //     //@ts-ignore
-    //     focusManager?.focusPrevious({ wrap, disabled: false });
-    //     break;
-    //   }
-    //   case 'ArrowUp': {
-    //     e.preventDefault();
-    //     //@ts-ignore
-    //     focusManager?.focusPrevious({ wrap, disabled: false });
-    //     break;
-    //   }
-    //   case 'ArrowDown': {
-    //     e.preventDefault();
-    //     //@ts-ignore
-    //     focusManager?.focusNext({ wrap, disabled: false });
-    //     break;
-    //   }
-    // }
-
     if (orientation === 'horizontal') {
       switch (e.code) {
         case 'ArrowRight': {
           e.preventDefault();
           //@ts-ignore
-          focusManager?.focusNext({ wrap, disabled: false });
+          focusManager?.focusNext({ wrap, tabbable: true });
           break;
         }
         case 'ArrowLeft': {
           e.preventDefault();
           //@ts-ignore
-          focusManager?.focusPrevious({ wrap, disabled: false });
+          focusManager?.focusPrevious({ wrap, tabbable: true });
           break;
         }
       }
@@ -54,13 +27,13 @@ export const useTabs = (
         case 'ArrowUp': {
           e.preventDefault();
           //@ts-ignore
-          focusManager?.focusPrevious({ wrap, disabled: false });
+          focusManager?.focusPrevious({ wrap, tabbable: true });
           break;
         }
         case 'ArrowDown': {
           e.preventDefault();
           //@ts-ignore
-          focusManager?.focusNext({ wrap, disabled: false });
+          focusManager?.focusNext({ wrap, tabbable: true });
           break;
         }
       }

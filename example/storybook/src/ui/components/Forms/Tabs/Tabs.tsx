@@ -6,7 +6,7 @@ import {
   TabsTitleText,
   TabsContents,
   TabsContent,
-  TabsContentText,
+  Text,
 } from '@gluestack-ui/themed';
 
 const TabsBasic = () => {
@@ -23,29 +23,28 @@ const TabsBasic = () => {
       onValueChange={handleChange}
       value={value}
       defaultValue="tab2"
-      orientation="horizontal"
       variant="underlined"
     >
       <TabsList>
         <TabsTrigger value="tab1">
-          <TabsTitleText>Teams</TabsTitleText>
+          <Text>Teams</Text>
         </TabsTrigger>
-        <TabsTrigger value="tab2" isDisabled="true">
-          <TabsTitleText>Settings</TabsTitleText>
+        <TabsTrigger value="tab2" isDisabled={true}>
+          <Text>Settings</Text>
         </TabsTrigger>
         <TabsTrigger value="tab3">
-          <TabsTitleText>Theme</TabsTitleText>
+          <Text>Theme</Text>
         </TabsTrigger>
       </TabsList>
       <TabsContents mt="$4">
         <TabsContent value="tab1">
-          <TabsContentText>Content 1</TabsContentText>
+          <Text>Content 1</Text>
         </TabsContent>
         <TabsContent value="tab2">
-          <TabsContentText>Content 2</TabsContentText>
+          <Text>Content 2</Text>
         </TabsContent>
         <TabsContent value="tab3">
-          <TabsContentText>Content 3</TabsContentText>
+          <Text>Content 3</Text>
         </TabsContent>
       </TabsContents>
     </Tabs>
@@ -61,5 +60,4 @@ export {
   TabsTitleText,
   TabsContents,
   TabsContent,
-  TabsContentText,
 };

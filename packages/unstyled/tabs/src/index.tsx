@@ -5,7 +5,6 @@ import { TabsTrigger } from './TabsTrigger';
 import { TabsTitleText } from './TabsTitleText';
 import { TabsContents } from './TabsContents';
 import { TabsContent } from './TabsContent';
-import { TabsContentText } from './TabsContentText';
 import { TabsIcon } from './TabsIcon';
 
 import type { ITabsComponentType } from './types';
@@ -17,7 +16,6 @@ export const createTabs = <
   TitleTextProps,
   ContentsProps,
   ContentProps,
-  ContentTextProps,
   IconProps
 >({
   Root,
@@ -26,7 +24,6 @@ export const createTabs = <
   TitleText,
   Contents,
   Content,
-  ContentText,
   Icon,
 }: {
   Root: React.ComponentType<TabsProps>;
@@ -35,7 +32,6 @@ export const createTabs = <
   TitleText: React.ComponentType<TitleTextProps>;
   Contents: React.ComponentType<ContentsProps>;
   Content: React.ComponentType<ContentProps>;
-  ContentText: React.ComponentType<ContentTextProps>;
   Icon: React.ComponentType<IconProps>;
 }) => {
   const Tabs = TabsMain(Root) as any;
@@ -44,7 +40,6 @@ export const createTabs = <
   Tabs.TitleText = TabsTitleText(TitleText);
   Tabs.Contents = TabsContents(Contents);
   Tabs.Content = TabsContent(Content);
-  Tabs.ContentText = TabsContentText(ContentText);
   Tabs.Icon = TabsIcon(Icon);
 
   Tabs.displayName = 'Tabs';
@@ -53,7 +48,6 @@ export const createTabs = <
   Tabs.TitleText.displayName = 'Tabs.TitleText';
   Tabs.Contents.displayName = 'Tabs.Contents';
   Tabs.Content.displayName = 'Tabs.Content';
-  Tabs.ContentText.displayName = 'Tabs.ContentText';
   Tabs.Icon.displayName = 'Tabs.Icon';
 
   return Tabs as ITabsComponentType<
@@ -63,7 +57,6 @@ export const createTabs = <
     TitleTextProps,
     ContentsProps,
     ContentProps,
-    ContentTextProps,
     IconProps
   >;
 };

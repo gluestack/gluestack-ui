@@ -2,32 +2,28 @@ import React, { memo } from 'react';
 import { forwardRef } from 'react';
 import { Platform } from 'react-native';
 import { useTab } from './TabProvider';
+import { ITabsContentProps } from './types';
 
-export const TabsContent = <StyledTabsContent,>(
-  StyledTabsContent: React.ComponentType<StyledTabsContent>
-) =>
+export const TabsContent = <T,>(StyledTabsContent: any) =>
   memo(
     forwardRef(
-      (
-        { value, ...props }: StyledTabsContent & { value?: string },
-        ref?: any
-      ) => {
+      ({ children, value, ...props }: T & ITabsContentProps, ref?: any) => {
         const { currentActiveTab } = useTab('TabContext');
 
-        const isActive = value === currentActiveTab;
+        const isActive = currentActiveTab === value;
 
         if (isActive)
           return (
             <StyledTabsContent
-              // tabIndex={value === currentActiveTab ? 0 : -1}
               role={Platform.OS === 'web' ? 'tabpanel' : undefined}
               id={`panel-${value}`}
               aria-labelledby={`tab-${value}`}
-              {...(props as StyledTabsContent)}
-              // style={{ display: isActive ? 'flex' : 'none' }}
+              {...props}
               ref={ref}
-              aria-selected={isActive}
-            />
+              aria-selected={true}
+            >
+              {children}
+            </StyledTabsContent>
           );
         return <></>;
       }

@@ -5,4 +5,7 @@ export const TabsIcon = createStyle({
   justifyContent: 'center',
   display: 'flex',
   mr: 12,
+  props: {
+    size: 'md',
+  },
 });

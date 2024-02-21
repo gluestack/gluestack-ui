@@ -3,13 +3,13 @@ import {
   Tabs,
   TabsList,
   TabsTrigger,
-  TabsTitleText,
   TabsContents,
   TabsContent,
-  TabsContentText,
+  TabsTitleText,
   Button,
   View,
   ButtonIcon,
+  Text,
 } from '@gluestack-ui/themed';
 import { ChevronLeft, ChevronRight } from 'lucide-react-native';
 
@@ -42,20 +42,8 @@ const ScrollableTabs = () => {
     }
   };
 
-  // const handleKeyDown = (e: React.KeyboardEvent, i: number) => {
-  //   if (e.key === 'ArrowLeft' && i === currentSubest[0]) {
-  //     handlePrevClick();
-  //   } else if (
-  //     e.key === 'ArrowRight' &&
-  //     i === currentSubest[currentSubest.length - 1]
-  //   ) {
-  //     handleNextClick();
-  //   }
-  // };
-
   return (
     //@ts-ignore
-
     <Tabs
       ml="$12"
       w="$full"
@@ -101,11 +89,9 @@ const ScrollableTabs = () => {
                 'bg': '$backgroundLight0',
                 ':active': {
                   bg: '$backgroundLight50',
-                  // borderBottomWidth: 1,
                   borderBottomColor: '$borderPrimary500',
                 },
                 ':hover': {
-                  // borderBottomWidth: 1,
                   borderBottomColor: '$borderPrimary600',
                 },
                 '_dark': {
@@ -154,25 +140,25 @@ const ScrollableTabs = () => {
 
       <TabsContents mt="$4">
         <TabsContent value="tab1">
-          <TabsContentText>Content 1</TabsContentText>
+          <Text>Content 1</Text>
         </TabsContent>
         <TabsContent value="tab2">
-          <TabsContentText>Content 2</TabsContentText>
+          <Text>Content 2</Text>
         </TabsContent>
         <TabsContent value="tab3">
-          <TabsContentText>Content 3</TabsContentText>
+          <Text>Content 3</Text>
         </TabsContent>
         <TabsContent value="tab4">
-          <TabsContentText>Content 4</TabsContentText>
+          <Text>Content 4</Text>
         </TabsContent>
         <TabsContent value="tab5">
-          <TabsContentText>Content 5</TabsContentText>
+          <Text>Content 5</Text>
         </TabsContent>
         <TabsContent value="tab6">
-          <TabsContentText>Content 6</TabsContentText>
+          <Text>Content 6</Text>
         </TabsContent>
         <TabsContent value="tab7">
-          <TabsContentText>Content 7</TabsContentText>
+          <Text>Content 7</Text>
         </TabsContent>
       </TabsContents>
     </Tabs>
@@ -185,8 +171,7 @@ export {
   Tabs,
   TabsList,
   TabsTrigger,
-  TabsTitleText,
   TabsContents,
   TabsContent,
-  TabsContentText,
+  TabsTitleText,
 };

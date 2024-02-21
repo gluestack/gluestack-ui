@@ -1,21 +1,27 @@
-export interface ITabsTriggerProps {
-  value?: string;
-  isDisabled?: boolean;
-}
-export interface ITabsListProps {
-  loop?: boolean;
-}
-export interface ITabsProps {
+import type { ViewProps } from 'react-native';
+
+export interface ITabsProps extends ViewProps {
   value?: string;
   defaultValue?: string;
   onValueChange?: (value: string) => void;
   orientation?: 'vertical' | 'horizontal';
-  children?: React.ReactNode;
+  children?: any;
   variant?: 'pilled' | 'underlined';
+}
+
+export interface ITabsListProps {
+  loop?: boolean;
+  children?: any;
+}
+
+export interface ITabsTriggerProps {
+  value?: string;
+  isDisabled?: boolean;
 }
 
 export interface ITabsContentProps {
   value?: string;
+  children?: any;
 }
 export type ITabsComponentType<
   TabsProps,
@@ -24,7 +30,6 @@ export type ITabsComponentType<
   TitleTextProps,
   ContentsProps,
   ContentProps,
-  ContentTextProps,
   IconProps
 > = React.ForwardRefExoticComponent<TabsProps & ITabsProps> & {
   Trigger: React.ForwardRefExoticComponent<TriggerProps & ITabsTriggerProps>;
@@ -32,6 +37,5 @@ export type ITabsComponentType<
   List: React.ForwardRefExoticComponent<ListProps & ITabsListProps>;
   Content: React.ForwardRefExoticComponent<ContentProps & ITabsContentProps>;
   TitleText: React.ForwardRefExoticComponent<TitleTextProps>;
-  ContentText: React.ForwardRefExoticComponent<ContentTextProps>;
   Icon: React.ForwardRefExoticComponent<IconProps>;
 };

@@ -6,10 +6,10 @@ import {
   TabsTitleText,
   TabsContents,
   TabsContent,
-  TabsContentText,
   TabsIcon,
   EditIcon,
   SettingsIcon,
+  Text,
 } from '@gluestack-ui/themed';
 
 const TabsWithIcons = () => {
@@ -41,10 +41,10 @@ const TabsWithIcons = () => {
       </TabsList>
       <TabsContents mt="$4">
         <TabsContent value="tab1">
-          <TabsContentText>Content 1</TabsContentText>
+          <Text>Content 1</Text>
         </TabsContent>
         <TabsContent value="tab2">
-          <TabsContentText>Content 2</TabsContentText>
+          <Text>Content 2</Text>
         </TabsContent>
       </TabsContents>
     </Tabs>
@@ -60,5 +60,4 @@ export {
   TabsTitleText,
   TabsContents,
   TabsContent,
-  TabsContentText,
 };

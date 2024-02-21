@@ -35,22 +35,22 @@ export const Tabs = createStyle({
     },
   },
   compoundVariants: [
-    // { variant: 'pilled', orientation: 'vertical', value: {} },
     {
       variant: 'underlined',
       orientation: 'vertical',
       value: {
         _tabsTrigger: {
+          borderLeftStyle: 'solid',
           borderLeftWidth: 1,
         },
       },
     },
-    // { variant: 'pilled', orientation: 'horizontal', value: {} },
     {
       variant: 'underlined',
       orientation: 'horizontal',
       value: {
         _tabsTrigger: {
+          borderBottomStyle: 'solid',
           borderBottomWidth: 1,
         },
       },

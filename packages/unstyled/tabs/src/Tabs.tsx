@@ -4,9 +4,7 @@ import { TabProvider } from './TabProvider';
 import { useControllableState } from '@gluestack-ui/hooks';
 import type { ITabsProps } from './types';
 
-export const Tabs = <StyledTabs,>(
-  StyledTabs: React.ComponentType<StyledTabs>
-) =>
+export const Tabs = <T,>(StyledTabs: any) =>
   memo(
     forwardRef(
       (
@@ -14,8 +12,9 @@ export const Tabs = <StyledTabs,>(
           value,
           onValueChange,
           defaultValue,
+          children,
           ...props
-        }: StyledTabs & ITabsProps,
+        }: T & ITabsProps,
         ref?: any
       ) => {
         const [currentActiveTab, setCurrentActiveTab] = useControllableState({
@@ -35,7 +34,9 @@ export const Tabs = <StyledTabs,>(
             loop={wrapList}
             orientation={props?.orientation ?? 'horizontal'}
           >
-            <StyledTabs {...(props as StyledTabs)} ref={ref} />
+            <StyledTabs ref={ref} {...props}>
+              {children}
+            </StyledTabs>
           </TabProvider>
         );
       }

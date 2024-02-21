@@ -6,7 +6,7 @@ import {
   TabsTitleText,
   TabsContents,
   TabsContent,
-  TabsContentText,
+  Text,
 } from '@gluestack-ui/themed';
 
 const VerticalTabs = () => {
@@ -142,16 +142,16 @@ const VerticalTabs = () => {
       </TabsList>
       <TabsContents mt="$4">
         <TabsContent value="tab1">
-          <TabsContentText>Content 1</TabsContentText>
+          <Text>Content 1</Text>
         </TabsContent>
         <TabsContent value="tab2">
-          <TabsContentText>Content 2</TabsContentText>
+          <Text>Content 2</Text>
         </TabsContent>
         <TabsContent value="tab3">
-          <TabsContentText>Content 3</TabsContentText>
+          <Text>Content 3</Text>
         </TabsContent>
         <TabsContent value="tab4">
-          <TabsContentText>Content 4</TabsContentText>
+          <Text>Content 4</Text>
         </TabsContent>
       </TabsContents>
     </Tabs>
@@ -167,5 +167,4 @@ export {
   TabsTitleText,
   TabsContents,
   TabsContent,
-  TabsContentText,
 };

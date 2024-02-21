@@ -1,40 +1,54 @@
 import { createStyle } from '@gluestack-style/react';
 
 export const TabsTrigger = createStyle({
+  'display': 'flex',
   'flexDirection': 'row',
   'justifyContent': 'center',
   'alignItems': 'center',
   'py': '$3',
   'px': '$4',
-
-  ':hover': {
-    _titleText: {
-      color: 'red',
-    },
+  ':disabled': {
+    opacity: 0.4,
   },
-  ':active': {
-    _titleText: {
-      color: '$primary500',
-    },
-  },
-
-  '_dark': {
+  '_titleText': {
+    'color': '$textLight900',
     ':hover': {
-      _titleText: {
-        color: '$primary300',
-      },
+      color: '$primary600',
     },
     ':active': {
-      _titleText: {
+      color: '$primary500',
+    },
+    '_dark': {
+      'color': '$textDark50',
+      ':hover': {
+        color: '$primary300',
+      },
+      ':active': {
         color: '$primary400',
       },
     },
   },
-
+  '_icon': {
+    'color': '$textLight900',
+    ':hover': {
+      color: '$primary600',
+    },
+    ':active': {
+      color: '$primary500',
+    },
+    '_dark': {
+      'color': '$textDark50',
+      ':hover': {
+        color: '$primary300',
+      },
+      ':active': {
+        color: '$primary400',
+      },
+    },
+  },
   '_web': {
     outlineWidth: 0,
   },
-
   'variants': {
     variant: {
       pilled: {
@@ -151,8 +165,4 @@ export const TabsTrigger = createStyle({
   //     },
   //   },
   // },
-
-  ':disabled': {
-    opacity: 0.5,
-  },
 });

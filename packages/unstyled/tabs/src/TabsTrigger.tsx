@@ -1,30 +1,24 @@
+import React, { memo, useEffect, forwardRef } from 'react';
 import { useFocusRing, useFocus } from '@react-native-aria/focus';
-import React, { memo, useEffect } from 'react';
-import { forwardRef } from 'react';
-import type { PressableProps } from 'react-native';
 import { useHover, usePress } from '@react-native-aria/interactions';
 import { composeEventHandlers } from '@gluestack-ui/utils';
 import { useTab } from './TabProvider';
 import { useTabs } from './useTabs';
 
-export const TabsTrigger = <StyledTabsTrigger,>(
-  StyledTabsTrigger: React.ComponentType<StyledTabsTrigger>
-) =>
+export const TabsTrigger = (StyledTabsTrigger: any) =>
   memo(
     forwardRef(
       (
         {
           value,
           children,
-          isDisabled,
+          isDisabled = false,
+          isHovered: isHoveredProp,
+          isFocused: isFocusedProp,
+          isPressed: isPressedProp,
+          isFocusVisible: isFocusVisibleProp,
           ...props
-        }: StyledTabsTrigger &
-          PressableProps & {
-            children?: any;
-            value?: string;
-            isDisabled?: boolean;
-            onSelect: (key: string) => void;
-          },
+        }: any,
         ref?: any
       ) => {
         const { focusProps: focusRingProps, isFocusVisible }: any =
@@ -39,10 +33,10 @@ export const TabsTrigger = <StyledTabsTrigger,>(
         const { tabProps } = useTabs(loop, orientation);
 
         useEffect(() => {
-          if (isFocusVisible) {
+          if (isFocusVisible && !isDisabled) {
             onValueChange(value);
           }
-        }, [isFocusVisible, onValueChange, value]);
+        }, [isFocusVisible, onValueChange, value, isDisabled]);
 
         return (
           <StyledTabsTrigger
@@ -50,22 +44,26 @@ export const TabsTrigger = <StyledTabsTrigger,>(
             id={`tab-${value}`}
             aria-controls={`panel-${value}`}
             ref={ref}
+            {...props}
             states={{
-              hover: isHovered,
-              focus: isFocused && !isDisabled,
-              active: value === currentActiveTab,
-              focusVisible: isFocusVisible && !isDisabled,
+              hover: isHovered || isHoveredProp,
+              focus: (isFocused && !isDisabled) || isFocusedProp,
+              active:
+                (value === currentActiveTab && !isDisabled) || isPressedProp,
+              focusVisible:
+                (isFocusVisible && !isDisabled) || isFocusVisibleProp,
               disabled: isDisabled,
             }}
-            disabled={isDisabled ? true : false}
-            focusable={!isDisabled}
-            // opacity={isDisabled ? 0.5 : 1}
-            // importantForAccessibility={
-            //   isDisabled ? 'no-hide-descendants' : 'auto'
-            // }
-            // accessibilityState={{ disabled: isDisabled }}
-            tabIndex={value === currentActiveTab ? 0 : -1}
-            {...(props as StyledTabsTrigger)}
+            dataSet={{
+              hover: isHovered ? 'true' : 'false',
+              focus: isFocused && !isDisabled ? 'true' : 'false',
+              active:
+                value === currentActiveTab && !isDisabled ? 'true' : 'false',
+              focusVisible: isFocusVisible && !isDisabled ? 'true' : 'false',
+              disabled: isDisabled ? 'true' : 'false',
+            }}
+            disabled={isDisabled}
+            tabIndex={!isDisabled ? 0 : -1}
             onPressIn={composeEventHandlers(
               props?.onPressIn,
               pressProps.onPressIn
@@ -97,9 +95,11 @@ export const TabsTrigger = <StyledTabsTrigger,>(
             {typeof children === 'function'
               ? children({
                   hovered: isHovered,
-                  active: value === currentActiveTab,
+                  active: value === currentActiveTab && !isDisabled,
                   pressed: isPressed,
                   focused: isFocused && !isDisabled,
+                  disabled: isDisabled,
+                  focusVisible: isFocusVisible && !isDisabled,
                 })
               : children}
           </StyledTabsTrigger>
