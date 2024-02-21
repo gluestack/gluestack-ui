@@ -1,0 +1,194 @@
+---
+title: Divider | gluestack-ui | Installation, Usage, and API
+
+description: Revamp your content organization with the Divider component! Use it to visually separate different sections of a list or group for a more structured and easy-to-read interface.
+
+pageTitle: Divider
+
+pageDescription: Revamp your content organization with the Divider component! Use it to visually separate different sections of a list or group for a more structured and easy-to-read interface.
+
+showHeader: true
+---
+
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="with-gluestack-style/components/Layout/Divider" />
+
+import { Divider } from './Divider';
+import {
+  Center,
+  Text,
+  Button,
+  ButtonText,
+  VStack,
+  HStack,
+} from '@gluestack-ui/themed';
+import { Box, Heading } from '@gluestack-ui/themed';
+import { transformedCode } from '../../utils';
+import {
+  AppProvider,
+  CodePreview,
+  Table,
+  TableContainer,
+  InlineCode,
+} from '@gluestack/design-system';
+import Wrapper from '../../components-example/nativewind/Wrapper';
+import { CollapsibleCode } from '@gluestack/design-system';
+
+This is an illustration of **Divider** component.
+
+<>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+        <Center>
+          <Text color="$text950">
+            Easy
+          </Text>
+          <Divider  my="$0.5" color="$text950"/>
+          <Text color="$text950">
+            Difficult
+          </Text>
+        </Center>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Divider,
+        Text,
+        Center,
+      },
+      argsType: {},
+    }}
+  />
+</>
+
+<br />
+
+## Installation
+
+### Step 1: Install the following dependencies:
+
+```bash
+
+npm i @gluestack-ui/divider
+
+```
+
+### Step 2: Copy and paste the following code into your project.
+
+<CollapsibleCode>
+  ```jsx %%-- File: components-example/themed/Divider/index.tsx --%% ```
+</CollapsibleCode>
+
+### Step 3: Update the import paths to match your project setup.
+
+## API Reference
+
+To use this component in your project, include the following import statement in your file.
+
+```jsx
+import { Divider } from '@/components/ui/Divider';
+```
+
+```jsx
+export default () => <Divider />;
+```
+
+### Component Props
+
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
+
+#### Divider
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+### Props
+
+Divider component is created using View component from react-native. It extends all the props supported by [React Native View](https://reactnative.dev/docs/view#props), [utility props](/ui/docs/styling/utility-and-sx-props) and the props mentioned below.
+
+#### Divider
+
+<>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Name</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Value</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Default</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>orientation</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>vertical | horizontal</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>horizontal</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</>
+
+<!-- ## Spec Doc
+
+Explore the comprehensive details of the Divider in this document, including its implementation details, checklist, and potential future additions. Dive into the thought process behind the component and gain insights into its development journey.
+
+<iframe
+  style={{
+    borderRadius: '8px',
+    border: ' 1px solid rgba(0, 0, 0, 0.1)',
+    aspectRatio: 736 / 585,
+  }}
+  src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FNcXOxqKbdnGsLQNex3H76u%2F%25C2%25A0%25F0%259F%2593%259Agluestack-UI-handbook%3Fpage-id%3D6235%253A32067%26type%3Ddesign%26node-id%3D36691-1565%26viewport%3D920%252C274%252C0.04%26t%3DjMRBBCPwEPDbQwqL-1%26scaling%3Dscale-down%26starting-point-node-id%3D36691%253A1565%26mode%3Ddesign"
+  allowFullScreen
+/> -->
+
+<!--
+
+### Advanced
+
+We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
+
+### Customizing the Divider
+
+For customizing the Divider, you have to map styled view to Divider. You can refer [gluestack.io/style](/style/docs/getting-started/styled) on how to use styled components.
+
+#### Usage
+
+Default styling of the component can be found in the `components/divider` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/main/packages/themed/src/components/Divider) of the styled `Divider` component.
+
+```jsx
+// import the styles
+import { Root } from 'components/core/divider/styled-components';
+
+// import the createDivider function
+import { createDivider } from '@gluestack-ui/divider';
+
+// Understanding the API
+const Divider = createDivider({
+  Root,
+});
+
+// Using the Divider component
+export default () => <Divider />;
+```
+-->

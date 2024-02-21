@@ -24,6 +24,8 @@ const order: IWrapperType[] = [
   'extended-descendant-base',
   'composed-descendant-base',
   'boot-descendant-base-state',
+  'extended-descendant-base-state',
+  'composed-descendant-base-state',
   // variant
   'boot-variant',
   'extended-variant',
