@@ -55,11 +55,17 @@ export const TabsTrigger = (StyledTabsTrigger: any) =>
               disabled: isDisabled,
             }}
             dataSet={{
-              hover: isHovered ? 'true' : 'false',
-              focus: isFocused && !isDisabled ? 'true' : 'false',
+              hover: isHoveredProp || isHovered ? 'true' : 'false',
+              focus:
+                isFocusedProp || (isFocused && !isDisabled) ? 'true' : 'false',
               active:
-                value === currentActiveTab && !isDisabled ? 'true' : 'false',
-              focusVisible: isFocusVisible && !isDisabled ? 'true' : 'false',
+                isPressedProp || (value === currentActiveTab && !isDisabled)
+                  ? 'true'
+                  : 'false',
+              focusVisible:
+                isFocusVisibleProp || (isFocusVisible && !isDisabled)
+                  ? 'true'
+                  : 'false',
               disabled: isDisabled ? 'true' : 'false',
             }}
             disabled={isDisabled}

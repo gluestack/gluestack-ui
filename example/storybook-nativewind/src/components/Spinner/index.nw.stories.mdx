@@ -1,0 +1,117 @@
+---
+title: Spinner | gluestack-ui | Installation, Usage, and API
+
+description: Spinners are designed to give visual cues to users that an action is being processed or that a change or result is expected. They are useful for improving the user experience by reducing frustration and uncertainty.
+
+pageTitle: Spinner
+
+pageDescription: Spinners are designed to give visual cues to users that an action is being processed or that a change or result is expected. They are useful for improving the user experience by reducing frustration and uncertainty.
+
+showHeader: true
+---
+
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="with-nativewind/components/Feedback/Spinner" />
+
+import { Spinner } from './Spinner';
+import { HStack, VStack, Text } from '@gluestack-ui/themed';
+import { transformedCode } from '../../utils';
+import { AppProvider, CodePreview } from '@gluestack/design-system';
+
+import Wrapper from '../../components-example/nativewind/Wrapper';
+import { CollapsibleCode } from '@gluestack/design-system';
+
+This is an illustration of **Spinner** component.
+
+<Wrapper>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={true}
+    metaData={{
+      code: `
+          <Spinner {...props}/>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: { Wrapper, Spinner },
+      argsType: {
+        size: {
+          control: 'select',
+          options: ['small', 'large'],
+          default: 'small',
+        },
+      },
+    }}
+  />
+</Wrapper>
+
+<br />
+
+## Installation
+
+### Step 1: Install the following dependencies:
+
+```bash
+
+npm i @gluestack-ui/spinner
+
+```
+
+### Step 2: Copy and paste the following code into your project.
+
+<CollapsibleCode>
+  ```jsx 
+  %%-- File: components-example/nativewind/Spinner/index.tsx --%% 
+  ```
+</CollapsibleCode>
+
+### Step 3: Update the import paths to match your project setup.
+
+## API Reference
+
+To use this component in your project, include the following import statement in your file.
+
+```jsx
+import { Spinner } from '@/components/ui/Spinner';
+```
+
+```jsx
+export default () => <Spinner />;
+```
+
+### Component Props
+
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
+
+#### Spinner
+
+Contains all Spinner related layout style props and actions.
+It inherits all the properties of React Native's [ActivityIndicator](https://reactnative.dev/docs/activityindicator) component.
+
+### Accessibility
+
+We have outlined the various features that ensure the Fab component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards.
+
+#### Keyboard
+
+- Tab: Moves focus to the next focusable element.
+
+#### Screen Reader
+
+- VoiceOver: When the Spinner is focused, the screen reader will announce the loading indicator.
+
+<!-- ## Spec Doc
+
+Explore the comprehensive details of the Spinner in this document, including its implementation details, checklist, and potential future additions. Dive into the thought process behind the component and gain insights into its development journey.
+
+<iframe
+  style={{
+    borderRadius: '8px',
+    border: ' 1px solid rgba(0, 0, 0, 0.1)',
+    aspectRatio: 736 / 585,
+  }}
+  src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FNcXOxqKbdnGsLQNex3H76u%2F%25C2%25A0%25F0%259F%2593%259Agluestack-UI-handbook%3Ftype%3Ddesign%26node-id%3D6300-39672%26t%3DS9Au6CP5yb4upkgu-1%26scaling%3Dscale-down%26page-id%3D6300%253A37770%26starting-point-node-id%3D6300%253A39672%26mode%3Ddesign"
+  allowFullScreen
+/> -->
