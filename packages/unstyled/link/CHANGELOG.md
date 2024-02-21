@@ -1,5 +1,12 @@
 # @gluestack-ui/link
 
+## 0.1.17
+
+### Patch Changes
+
+- Feature
+  Added Support of data-state-\* props
+
 ## 0.1.10
 
 ### Patch Changes

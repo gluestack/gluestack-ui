@@ -48,6 +48,16 @@ export const InputGroup = (StyledInputRoot: any) =>
             required: isRequired || inputProps.isRequired,
             focusVisible: isFocusVisibleProp || isFocusVisible,
           }}
+          dataSet={{
+            hover: isHovered ? isHovered : isHoveredProp ? 'true' : 'false',
+            focus: isFocusedProp ? isFocusedProp : isFocused ? 'true' : 'false',
+            disabled: isDisabled || inputProps.isDisabled ? 'true' : 'false',
+            invalid: isInvalid || inputProps.isInvalid ? 'true' : 'false',
+            readonly: isReadOnly || inputProps.isReadOnly ? 'true' : 'false',
+            required: isRequired || inputProps.isRequired ? 'true' : 'false',
+            focusVisible:
+              isFocusVisibleProp || isFocusVisible ? 'true' : 'false',
+          }}
           {...props}
           {...style}
           ref={mergeRefs([inputRef, ref])}

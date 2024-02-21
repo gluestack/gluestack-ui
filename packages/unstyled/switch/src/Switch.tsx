@@ -45,6 +45,15 @@ export function Switch(StyledSwitch: any) {
             invalid: isInvalid || combinedProps.isInvalid,
             checked: value || checked,
           }}
+          dataSet={{
+            hover: isHovered ? 'true' : 'false',
+            disabled:
+              disabled || isDisabled || combinedProps.isDisabled
+                ? 'true'
+                : 'false',
+            invalid: isInvalid || combinedProps.isInvalid ? 'true' : 'false',
+            checked: value || checked ? 'true' : 'false',
+          }}
           disabled={disabled || isDisabled || combinedProps.isDisabled}
           onValueChange={(val: boolean) => {
             onValueChange && onValueChange(val);

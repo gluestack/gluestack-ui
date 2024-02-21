@@ -100,7 +100,6 @@ export const Menu = ({
             placement={placement}
             triggerRef={triggerRef}
             state={state}
-            AnimatePresence={AnimatePresence}
             shouldOverlapWithTrigger={shouldOverlapWithTrigger}
             crossOffset={crossOffset}
             offset={offset}
@@ -166,6 +165,7 @@ const MenuComponent = forwardRef(
           {...menuProps}
           {...typeSelectProps}
           ref={mergeRef}
+          role="list"
           {...restProps}
         >
           {[...state.collection].map((item) => (

@@ -1,6 +1,6 @@
 {
   "name": "@gluestack-style/animation-resolver",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A gluestack-style plugin for resolving animation properties, utilizing animation libraries.",
   "keywords": [
     "react",
@@ -22,10 +22,10 @@
     "clean": "rm -rf lib"
   },
   "peerDependencies": {
-    "@gluestack-style/react": ">=1.0.27"
+    "@gluestack-style/react": ">=1.0"
   },
   "devDependencies": {
-    "@gluestack-style/react": "^1.0.27",
+    "@gluestack-style/react": "^1.0.44",
     "@types/react": "^18.0.22",
     "@types/react-native": "^0.69.15",
     "babel-plugin-transform-remove-console": "^6.9.4",

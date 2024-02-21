@@ -46,6 +46,15 @@ export const Textarea = (StyledTextarea: any) =>
             focusVisible: isFocusVisible,
             disabled: isDisabled || textareaProps.isDisabled,
           }}
+          dataSet={{
+            focus: isFocused ? 'true' : 'false',
+            invalid: isInvalid ? 'true' : 'false',
+            readonly: isReadOnly ? 'true' : 'false',
+            required: isRequired ? 'true' : 'false',
+            hover: isHovered ? 'true' : 'false',
+            focusVisible: isFocusVisible ? 'true' : 'false',
+            disabled: isDisabled || textareaProps.isDisabled ? 'true' : 'false',
+          }}
           accessible
           aria-label={ariaLabel}
           aria-required={isRequired || textareaProps.isRequired}

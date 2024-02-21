@@ -18,6 +18,10 @@ const FormControl = <T,>(StyledFormControlBox: React.ComponentType<T>) =>
             disabled: isDisabled,
             invalid: isInvalid,
           }}
+          dataSet={{
+            disabled: isDisabled ? 'true' : 'false',
+            invalid: isInvalid ? 'true' : 'false',
+          }}
         />
       </FormControlContext.Provider>
     );

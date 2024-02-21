@@ -73,19 +73,18 @@ export const ToastProvider = ({ children }: { children: any }) => {
         duration = 5000,
       } = props;
 
-      let positionToastArray = toastInfo[placement];
-      if (!positionToastArray) positionToastArray = [];
-
-      let component = null;
-
       if (render) {
-        component = render({ id });
-        toastInfo[placement] = [
-          ...positionToastArray,
-          { component, id, config: props },
-        ];
+        const component = render({ id });
 
-        setToastInfo((prev: any) => ({ ...prev }));
+        setToastInfo((prev: any) => {
+          return {
+            ...prev,
+            [placement]: [
+              ...(prev[placement] ? prev[placement] : []),
+              { component, id, config: props },
+            ],
+          };
+        });
 
         setVisibleToasts((toasts: any) => {
           return {
@@ -93,6 +92,7 @@ export const ToastProvider = ({ children }: { children: any }) => {
             [id]: true,
           };
         });
+
         if (duration !== null) {
           setTimeout(function () {
             hideToast(id);
@@ -101,7 +101,7 @@ export const ToastProvider = ({ children }: { children: any }) => {
       }
       return id;
     },
-    [toastInfo, hideToast]
+    [hideToast]
   );
 
   const contextValue = React.useMemo(() => {

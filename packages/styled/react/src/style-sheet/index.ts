@@ -13,6 +13,7 @@ import { inject } from '../utils/css-injector';
 export type DeclarationType = 'boot' | 'forwarded';
 
 const cssVariableRegex = /var\(--([^)]+)\)/;
+const negativeCSSVariableRegex = /^calc\(var\(.+\) \* -1\)$/;
 
 function getTokenValueFromTokenPath(tokenPath: string, tokens: any) {
   const tokenPathArray = tokenPath.split('-');
@@ -37,10 +38,20 @@ function getNativeValuesFromCSSVariables(styleObject: any, CONFIG: any) {
       extractVariable(styleObject[key])
     );
 
+    const isNegativeToken = negativeCSSVariableRegex.test(styleObject[key]);
+
     if (!hyphenatedTokenPath) {
       resolvedNativeValues[key] = styleObject[key];
     } else {
-      const val = getTokenValueFromTokenPath(hyphenatedTokenPath, CONFIG);
+      let val = getTokenValueFromTokenPath(hyphenatedTokenPath, CONFIG);
+
+      if (isNegativeToken) {
+        if (typeof val === 'number') {
+          val = -val;
+        } else if (typeof val === 'string') {
+          val = `-${val}`;
+        }
+      }
       resolvedNativeValues[key] = val;
     }
   });

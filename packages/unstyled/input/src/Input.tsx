@@ -67,6 +67,15 @@ export const Input = (StyledInput: any) =>
             focusVisible: isFocusVisible,
             disabled: isDisabled || inputProps.isDisabled,
           }}
+          dataSet={{
+            focus: isFocused ? 'true' : 'false',
+            invalid: isInvalid ? 'true' : 'false',
+            readonly: isReadOnly ? 'true' : 'false',
+            required: isRequired ? 'true' : 'false',
+            hover: isHovered ? 'true' : 'false',
+            focusVisible: isFocusVisible ? 'true' : 'false',
+            disabled: isDisabled || inputProps.isDisabled ? 'true' : 'false',
+          }}
           disabled={isDisabled || inputProps.isDisabled}
           secureTextEntry={secureTextEntry || type === 'password'}
           accessible

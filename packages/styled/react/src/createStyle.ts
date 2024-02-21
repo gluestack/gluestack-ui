@@ -1,9 +1,5 @@
 import type { ViewProps, ImageProps, TextProps } from 'react-native';
-import type {
-  IComponentStyleConfig,
-  ITheme,
-  UnionToIntersection,
-} from './types';
+import type { IComponentStyleConfig, ITheme } from './types';
 
 export const createStyle = <T, Variants>(
   theme: T | ITheme<Variants, ViewProps | ImageProps | TextProps>,
@@ -17,9 +13,15 @@ export const createStyle = <T, Variants>(
   };
 
   return createdStyles as {
-    theme: UnionToIntersection<
-      T | ITheme<Variants, ViewProps | ImageProps | TextProps>
-    >;
+    theme: {
+      variants: keyof Variants extends never
+        ? {}
+        : {
+            [key in keyof Variants]: {
+              [k in keyof Variants[key]]: any;
+            };
+          };
+    };
     componentConfig?: Omit<IComponentStyleConfig, 'componentName'>;
   };
 };

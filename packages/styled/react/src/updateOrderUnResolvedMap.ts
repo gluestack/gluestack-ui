@@ -18,13 +18,16 @@ export function updateOrderUnResolvedMap(
   declarationType: string,
   ExtendedConfig: any,
   _GluestackStyleSheet: StyleInjector = GluestackStyleSheet,
-  platform: string = ''
+  platform: string = '',
+  isStyledComponent: boolean = false
 ) {
   const prefixClassName = declarationType === 'inline' ? 'gs' : '';
   const shouldGuessDescendants =
     declarationType === 'inline' || declarationType === 'extended'
       ? true
       : false;
+
+  const declarationBlock = isStyledComponent ? 'composed' : declarationType;
   const unresolvedTheme = styledToStyledResolved(theme, [], {}, false);
   const orderedUnResolvedTheme =
     styledResolvedToOrderedSXResolved(unresolvedTheme);
@@ -64,7 +67,7 @@ export function updateOrderUnResolvedMap(
 
   const componentBaseStyleIds = _GluestackStyleSheet.declare(
     componentOrderResolvedBaseStyle,
-    declarationType === 'global' ? declarationType : declarationType + '-base',
+    declarationType === 'global' ? declarationType : declarationBlock + '-base',
     componentHash ? componentHash : 'css-injected-boot-time',
     ExtendedConfig
   );
@@ -73,7 +76,7 @@ export function updateOrderUnResolvedMap(
     componentOrderResolvedBaseStateStyle,
     declarationType === 'global'
       ? declarationType
-      : declarationType + '-base-state',
+      : declarationBlock + '-base-state',
     componentHash ? componentHash : 'css-injected-boot-time',
     ExtendedConfig
   );
@@ -88,7 +91,7 @@ export function updateOrderUnResolvedMap(
     descendantOrderResolvedBaseStyle,
     declarationType === 'global'
       ? declarationType
-      : declarationType + '-descendant-base',
+      : declarationBlock + '-descendant-base',
     componentHash ? componentHash : 'css-injected-boot-time-descendant',
     ExtendedConfig
   );
@@ -96,7 +99,7 @@ export function updateOrderUnResolvedMap(
     descendantOrderResolvedBaseStateStyle,
     declarationType === 'global'
       ? declarationType
-      : declarationType + '-descendant-base-state',
+      : declarationBlock + '-descendant-base-state',
     componentHash ? componentHash : 'css-injected-boot-time-descendant',
     ExtendedConfig
   );
@@ -111,7 +114,7 @@ export function updateOrderUnResolvedMap(
     componentOrderResolvedVariantStyle,
     declarationType === 'global'
       ? declarationType
-      : declarationType + '-variant',
+      : declarationBlock + '-variant',
     componentHash ? componentHash : 'css-injected-boot-time',
     ExtendedConfig
   );
@@ -119,7 +122,7 @@ export function updateOrderUnResolvedMap(
     componentOrderResolvedVariantStateStyle,
     declarationType === 'global'
       ? declarationType
-      : declarationType + '-variant-state',
+      : declarationBlock + '-variant-state',
     componentHash ? componentHash : 'css-injected-boot-time',
     ExtendedConfig
   );
@@ -134,7 +137,7 @@ export function updateOrderUnResolvedMap(
     descendantOrderResolvedVariantStyle,
     declarationType === 'global'
       ? declarationType
-      : declarationType + '-descendant-variant',
+      : declarationBlock + '-descendant-variant',
     componentHash ? componentHash : 'css-injected-boot-time-descendant',
     ExtendedConfig
   );
@@ -142,7 +145,7 @@ export function updateOrderUnResolvedMap(
     descendantOrderResolvedVariantStateStyle,
     declarationType === 'global'
       ? declarationType
-      : declarationType + '-descendant-variant-state',
+      : declarationBlock + '-descendant-variant-state',
     componentHash ? componentHash : 'css-injected-boot-time-descendant',
     ExtendedConfig
   );

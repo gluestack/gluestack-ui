@@ -19,9 +19,9 @@ const ButtonGroupMeta: ComponentMeta<any> = {
       control: 'select',
       options: ['xs', 'sm', 'md', 'lg', 'xl'],
     },
-    direction: {
+    flexDirection: {
       control: 'select',
-      options: ['row', 'column'],
+      options: ['row', 'column', 'row-reverse', 'column-reverse'],
     },
     isAttached: {
       control: 'boolean',

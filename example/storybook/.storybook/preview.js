@@ -60,7 +60,7 @@ export const parameters = {
           'Feedback',
           ['Alert', 'Progress', 'Spinner', 'Toast'],
           'Data Display',
-          ['Badge', 'Table'],
+          ['Badge', 'Table', 'Card'],
           'Forms',
           [
             'Button',
@@ -89,6 +89,7 @@ export const parameters = {
         [
           'FlatList',
           'ScrollView',
+          'SafeAreaView',
           'VirtualizedList',
           'View',
           'KeyboardAvoidingView',
@@ -96,6 +97,7 @@ export const parameters = {
           'StatusBar',
           'Refresh Control',
           'ImageBackground',
+          'InputAccessoryView',
         ],
         'Hooks',
         [
@@ -121,7 +123,7 @@ export const parameters = {
         'Advanced',
         ['Fonts', 'Animations'],
         'Recipes',
-        ['Card', 'LinearGradient'],
+        ['LinearGradient', 'More Recipes'],
         'Resources',
         ['Todo-List', 'Dashboard App', 'Third Party Library Integrations'],
         'Migration',

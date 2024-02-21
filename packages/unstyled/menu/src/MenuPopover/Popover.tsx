@@ -20,7 +20,6 @@ export const Popover = ({
   crossOffset,
   offset,
   triggerRef,
-  AnimatePresence,
   shouldFlip,
   focusScope = true,
   StyledBackdrop,
@@ -118,9 +117,7 @@ export const Popover = ({
             aria-hidden={true}
           />
           <FocusScopeComponent trapFocus={trapFocus} focusScope={focusScope}>
-            <PopoverContent AnimatePresence={AnimatePresence}>
-              {children}
-            </PopoverContent>
+            <PopoverContent>{children}</PopoverContent>
           </FocusScopeComponent>
         </PopoverProvider>
       </Overlay>

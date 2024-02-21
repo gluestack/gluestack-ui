@@ -3,9 +3,10 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@custom-ui/themed": ["../../packages/themed/src"],
-      "@custom-ui/config": ["../../packages/config/src/gluestack-ui.config"],
-      "react-native": ["./node_modules/react-native-web"]
+      "@/components/ui/*": ["src/components-example/nativewind/*"],
+      "@gluestack-style/react": ["../../packages/styled/react/src"],
+      "@gluestack-ui/nativewind-utils": ["../../packages/nativewind/utils/src"],
+      "@gluestack-ui/provider": ["../../packages/unstyled/provider/src"]
     },
     "emitDeclarationOnly": true,
     "noEmit": false,

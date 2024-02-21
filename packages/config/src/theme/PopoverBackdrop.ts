@@ -5,7 +5,7 @@ export const PopoverBackdrop = createStyle({
     opacity: 0,
   },
   ':animate': {
-    opacity: 0.5,
+    opacity: 0.1,
   },
   ':exit': {
     opacity: 0,
@@ -13,10 +13,12 @@ export const PopoverBackdrop = createStyle({
   ':transition': {
     type: 'spring',
     damping: 18,
-    stiffness: 250,
+    stiffness: 450,
+    mass: 0.9,
     opacity: {
       type: 'timing',
-      duration: 250,
+      duration: 50,
+      delay: 50,
     },
   },
   'position': 'absolute',
@@ -25,11 +27,9 @@ export const PopoverBackdrop = createStyle({
   'right': 0,
   'bottom': 0,
   'bg': '$backgroundLight950',
-  // @ts-ignore
   '_dark': {
     bg: '$backgroundDark950',
   },
-  // @ts-ignore
   '_web': {
     cursor: 'default',
   },

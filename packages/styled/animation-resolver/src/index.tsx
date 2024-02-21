@@ -148,12 +148,14 @@ export class AnimationResolver implements IStyledPlugin {
     styledObj = {},
     shouldUpdateConfig: any = true,
     _?: boolean,
-    Component?: React.ComponentType
+    Component?: React.ComponentType,
+    componentStyleConfig?: any
   ): {
     // @ts-ignore
     [key in keyof typeof this.config.aliases]: P[(typeof this.config.aliases)[key]];
   } {
     const ignoreKeys = new Set();
+    const uniqueComponentId = componentStyleConfig?.uniqueComponentId;
 
     if (
       Component &&
@@ -182,7 +184,9 @@ export class AnimationResolver implements IStyledPlugin {
       const resolvedAnimatedProps = this.updateStyledObject(
         styledObj,
         shouldUpdateConfig,
-        ignoreKeys
+        ignoreKeys,
+        {},
+        uniqueComponentId ? [uniqueComponentId] : []
       );
 
       const resolvedStyledObjectWithAnimatedProps = deepMerge(
@@ -269,9 +273,13 @@ export class AnimationResolver implements IStyledPlugin {
     return obj;
   }
 
-  componentMiddleWare({ Component, ExtendedConfig }: any) {
-    const styledConfig = this.#childrenExitPropsMap;
-    this.#childrenExitPropsMap = {};
+  componentMiddleWare({
+    Component,
+    ExtendedConfig,
+    componentStyleConfig,
+  }: any) {
+    const styledConfig =
+      this.#childrenExitPropsMap?.[componentStyleConfig?.uniqueComponentId];
 
     if (
       Component &&

@@ -47,6 +47,14 @@ export const AccordionTrigger = (StyledAccordionTrigger: any) =>
             focusVisible: isFocusVisibleProp || isFocusVisible,
             active: isPressedProp || isPressed,
           }}
+          dataSet={{
+            disabled: isDisabled ? 'true' : 'false',
+            hover: isHoveredProp || isHovered ? 'true' : 'false',
+            focus: isFocusedProp || isFocused ? 'true' : 'false',
+            focusVisible:
+              isFocusVisibleProp || isFocusVisible ? 'true' : 'false',
+            active: isPressedProp || isPressed ? 'true' : 'false',
+          }}
           disabled={isDisabled}
           onPressIn={composeEventHandlers(
             props?.onPressIn,

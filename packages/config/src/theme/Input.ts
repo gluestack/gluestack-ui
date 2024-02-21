@@ -29,6 +29,7 @@ export const Input = createStyle({
   '_input': {
     py: 'auto',
     px: '$3',
+    overflow: 'hidden',
   },
 
   '_icon': {

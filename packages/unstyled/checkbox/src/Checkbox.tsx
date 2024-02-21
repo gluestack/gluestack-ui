@@ -135,6 +135,18 @@ export const Checkbox = (StyledCheckbox: any) =>
             indeterminate: isIndeterminate || isIndeterminateProp,
             focusVisible: isFocusVisible,
           }}
+          dataSet={{
+            checked: isChecked || isCheckedProp ? 'true' : 'false',
+            disabled: isDisabled || isDisabledProp ? 'true' : 'false',
+            hover: isHovered || isHoveredProp ? 'true' : 'false',
+            invalid: isInvalid || isInvalidProp ? 'true' : 'false',
+            readonly: isReadOnly || isReadOnlyProp ? 'true' : 'false',
+            active: isPressed ? 'true' : 'false',
+            focus: isFocused ? 'true' : 'false',
+            indeterminate:
+              isIndeterminate || isIndeterminateProp ? 'true' : 'false',
+            focusVisible: isFocusVisible ? 'true' : 'false',
+          }}
         >
           <CheckboxProvider
             isChecked={isChecked || isCheckedProp}

@@ -1,5 +1,98 @@
 # @gluestack-ui/themed
 
+## 1.1.4
+
+### Patch Changes
+
+- Updated dependencies
+  - @gluestack-ui/alert-dialog@0.1.25
+  - @gluestack-ui/form-control@0.1.16
+  - @gluestack-ui/actionsheet@0.2.37
+  - @gluestack-ui/accordion@1.0.1
+  - @gluestack-ui/pressable@0.1.14
+  - @gluestack-ui/checkbox@0.1.24
+  - @gluestack-ui/textarea@0.1.20
+  - @gluestack-ui/popover@0.1.30
+  - @gluestack-ui/button@1.0.1
+  - @gluestack-ui/select@0.1.23
+  - @gluestack-ui/slider@0.1.20
+  - @gluestack-ui/switch@0.1.19
+  - @gluestack-ui/input@0.1.24
+  - @gluestack-ui/modal@0.1.29
+  - @gluestack-ui/radio@0.1.25
+  - @gluestack-ui/link@0.1.17
+  - @gluestack-ui/menu@0.2.28
+  - @gluestack-ui/fab@0.1.18
+
+## 1.1.3
+
+### Patch Changes
+
+- Card: New Component Release
+
+## 1.1.2
+
+### Patch Changes
+
+- - Fixed InputAccessoryView for web
+
+## 1.1.1
+
+### Patch Changes
+
+- Fixed InputAccessoryView `backgroundColor` tokenization.
+- Remove creator for `LinearGradient`
+- Updated dependencies
+  - @gluestack-style/animation-resolver@1.0.4
+  - @gluestack-style/react@1.0.44
+
+## 1.1.0
+
+### Minor Changes
+
+- `Select` deprecated `selectedLabel`. use `initialLabel` instead.
+- `Checkbox` added typing of `isFocusVisible`.
+- `Radio` added typing of `isIndeterminate`.
+- `Switch` added typing of `isFocusVisible` and `isIndeterminate`.
+- `Toast` issue [#1543](https://github.com/gluestack/gluestack-ui/issues/1543).
+- removed `direction` prop from `ButtonGroup` use `flexDirection` instead.
+- `Menu` fixed `closeOnSelect` onPress issue.
+
+- Updated dependencies
+  - @gluestack-ui/button@1.0.0
+  - @gluestack-ui/checkbox@0.1.23
+  - @gluestack-ui/select@0.1.22
+  - @gluestack-ui/switch@0.1.18
+  - @gluestack-ui/radio@0.1.24
+  - @gluestack-ui/toast@1.0.4
+  - @gluestack-ui/menu@0.2.27
+
+## 1.0.40
+
+### Patch Changes
+
+- - SafeAreaView
+  - InputAccessoryView
+
+## 1.0.39
+
+### Patch Changes
+
+- - SaferAreaView
+  - InputAccessoryView
+
+## 1.0.38
+
+### Patch Changes
+
+- - Popover arrow support [PR](https://github.com/gluestack/gluestack-ui/pull/1677)
+  - Popover animation improvements
+
+  - Popover top placement position for mobile
+
+- Updated dependencies
+  - @gluestack-ui/popover@0.1.29
+
 ## 1.0.37
 
 ### Patch Changes

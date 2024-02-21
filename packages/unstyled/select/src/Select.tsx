@@ -21,6 +21,7 @@ export const Select = (StyledSelect: any) =>
         selectedLabel: selectedLabel,
         onValueChange,
         defaultValue,
+        initialLabel,
         onClose,
         onOpen,
         closeOnOverlayClick,
@@ -43,7 +44,7 @@ export const Select = (StyledSelect: any) =>
         },
       });
 
-      const [label, setLabel] = React.useState(selectedLabel);
+      const [label, setLabel] = React.useState(initialLabel ?? selectedLabel);
       const [isOpen, setIsOpen] = React.useState<boolean>(false);
 
       const handleClose = React.useCallback(() => {

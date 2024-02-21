@@ -1,10 +1,23 @@
 import { addParameters } from '@storybook/client-api';
 import { DocsContainer } from '@storybook/addon-docs/blocks';
-import { config } from '@custom-ui/config';
-import { Center, GluestackUIProvider } from '@custom-ui/themed';
+import { OverlayProvider } from '@gluestack-ui/overlay';
+import { ToastProvider } from '@gluestack-ui/toast';
+
+import { GluestackUIProvider as GluestackUIWithNativewindProvider } from '../src/components-example/nativewind/GluestackUIProvider';
+
+// global css getting resolved from babel.config.js
+import 'global.css';
+
+import { GluestackUIProvider as GluestackUIWithGluestackStyleProvider } from '../src/components-example/themed/GluestackUIProvider';
+
 import gstheme from './gstheme';
 import { themes } from '@storybook/theming';
-import '../global.css';
+import { View } from 'react-native';
+import { useColorScheme } from 'nativewind';
+import { useDarkMode } from '../src/hooks/useDarkMode';
+import { Platform } from 'react-native';
+import { useEffect, useState } from 'react';
+
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
   controls: {
@@ -19,19 +32,42 @@ export const parameters = {
       order: [
         'Overview',
         ['Introduction'],
-        'Design Tokens',
+        'Getting Started',
+        ['Installation', 'Tooling Setup'],
+        'Core Concepts',
+        ['Accessibility', 'Universal'],
+        'Components',
         [
-          'Colors',
           'Typography',
-          'Space',
-          'Opacity',
-          'Breakpoints',
-          'Borders',
-          'Radii',
-          'Shadows',
+          ['Heading', 'Text'],
+          'Layout',
+          ['Box', 'Center', 'Divider', 'HStack', 'VStack'],
+          'Feedback',
+          ['Alert', 'Progress', 'Spinner', 'Toast'],
+          'Data Display',
+          ['Badge'],
+          'Forms',
+          [
+            'Button',
+            'Checkbox',
+            'FormControl',
+            'Link',
+            'Pressable',
+            'Radio',
+            'Slider',
+            'Switch',
+          ],
+          'Overlay',
+          ['AlertDialog', 'Modal', 'Popover', 'Tooltip'],
+          'Disclosure',
+          ['Actionsheet', 'Accordion'],
+          'Media And Icons',
+          ['Avatar', 'Image'],
+          'Others',
+          ['Fab'],
         ],
-        'components',
-        ['PRIMITIVES', 'COMPOSITES', 'CUSTOM'],
+        'More',
+        ['Changelog'],
       ],
     },
   },
@@ -39,22 +75,66 @@ export const parameters = {
 
 export const decorators = [
   (Story) => {
+    let value = false;
+
+    if (Platform.OS === 'web') {
+      // eslint-disable-next-line react-hooks/rules-of-hooks
+      value = useDarkMode();
+    }
+    const [colorMode, setColorMode] = useState(false);
+
+    function getColorMode() {
+      //@ts-ignore
+      if (Platform.OS === 'web') {
+        return value ? 'dark' : 'light';
+      } else {
+        return isDark ? 'dark' : 'light';
+      }
+    }
+    const { setColorScheme } = useColorScheme();
+    useEffect(() => {
+      setColorScheme(getColorMode());
+      setColorMode(getColorMode());
+    }, [getColorMode()]);
+
     return (
-      <GluestackUIProvider config={config}>
-        <Center>
-          <Story />
-        </Center>
-      </GluestackUIProvider>
+      <GluestackUIWithGluestackStyleProvider colorMode={colorMode}>
+        <GluestackUIWithNativewindProvider mode={colorMode}>
+          <OverlayProvider style={{ flex: 1 }}>
+            <ToastProvider>
+              <View
+                style={{
+                  flex: 1,
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}
+              >
+                <Story />
+              </View>
+            </ToastProvider>
+          </OverlayProvider>
+        </GluestackUIWithNativewindProvider>
+      </GluestackUIWithGluestackStyleProvider>
     );
   },
 ];
 
 addParameters({
   docs: {
-    theme: gstheme,
+    // theme: gstheme,
     inlineStories: false,
     container: ({ children, context }) => {
-      return <DocsContainer context={context}>{children}</DocsContainer>;
+      return (
+        <GluestackUIWithGluestackStyleProvider>
+          <GluestackUIWithNativewindProvider>
+            <DocsContainer context={context}>
+              <OverlayProvider style={{ flex: 1 }}>
+                <ToastProvider>{children}</ToastProvider>
+              </OverlayProvider>
+            </DocsContainer>
+          </GluestackUIWithNativewindProvider>
+        </GluestackUIWithGluestackStyleProvider>
+      );
     },
   },
   darkMode: {

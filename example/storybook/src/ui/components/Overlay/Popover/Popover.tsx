@@ -23,6 +23,7 @@ import {
   AvatarFallbackText,
   CircleIcon,
   AddIcon,
+  PopoverArrow,
 } from '@gluestack-ui/themed';
 
 import { PhoneIcon, Clock3Icon, MailIcon } from 'lucide-react-native';
@@ -209,4 +210,5 @@ export {
   Clock3Icon,
   MailIcon,
   useState,
+  PopoverArrow,
 };

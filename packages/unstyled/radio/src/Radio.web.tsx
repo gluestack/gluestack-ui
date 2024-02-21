@@ -73,6 +73,15 @@ const RadioComponent = memo(
             invalid: isInvalid,
             hover: isHovered,
           }}
+          dataSet={{
+            readonly: isReadOnly ? 'true' : 'false',
+            intermediate: isIndeterminate ? 'true' : 'false',
+            checked: isChecked ? 'true' : 'false',
+            focusVisible: isFocusVisible ? 'true' : 'false',
+            disabled: isDisabled ? 'true' : 'false',
+            invalid: isInvalid ? 'true' : 'false',
+            hover: isHovered ? 'true' : 'false',
+          }}
         >
           <RadioProvider
             isChecked={isChecked || isCheckedProp}

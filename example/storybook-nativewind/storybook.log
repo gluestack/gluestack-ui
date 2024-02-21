@@ -1,0 +1,5 @@
+yarn add v1.22.19
+[1/4] Resolving packages...
+warning Resolution field "react-native-reanimated@3.0.2" is incompatible with requested version "react-native-reanimated@~3.3.0"
+error Couldn't find any versions for "@storybook/addon-themes" that matches "^6.5.16"
+info Visit https://yarnpkg.com/en/docs/cli/add for documentation about this command.

@@ -16,6 +16,9 @@ export const SelectInput = (StyledSelectInput: any) =>
         states={{
           disabled: isDisabled,
         }}
+        daaSet={{
+          disabled: isDisabled ? 'true' : 'false',
+        }}
         disabled={isDisabled}
         aria-hidden={true}
         editable={false}

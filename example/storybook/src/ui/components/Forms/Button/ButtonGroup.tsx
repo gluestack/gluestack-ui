@@ -3,7 +3,6 @@ import React from 'react';
 
 const ButtonGroupBasic = ({ ...props }) => {
   return (
-    // @ts-ignore
     <ButtonGroup {...props}>
       <Button>
         <ButtonText>Button 1</ButtonText>

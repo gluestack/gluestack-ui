@@ -1,5 +1,14 @@
 # @gluestack-ui/textarea
 
+## 0.1.20
+
+### Patch Changes
+
+- Feature
+  Added Support of data-state-\* props
+- Updated dependencies
+  - @gluestack-ui/form-control@0.1.16
+
 ## 0.1.13
 
 ### Patch Changes

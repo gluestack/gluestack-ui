@@ -11,6 +11,7 @@ interface InterfaceCheckbox extends ViewProps {
   isHovered?: boolean;
   isRequired?: boolean;
   isIndeterminate?: boolean;
+  isFocusVisible?: boolean;
 }
 
 export interface ICheckboxGroup {

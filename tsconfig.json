@@ -24,5 +24,16 @@
     "target": "esnext"
   },
   "include": ["packages"],
-  "exclude": ["node_modules", "example"]
+  "exclude": [
+    "node_modules",
+    "example/apps",
+    "example/babel-plugin-styled-resolver-expo",
+    "example/expo-app",
+    "example/expo-project",
+    "example/expo-router-example",
+    "example/next",
+    "example/next-project",
+    "example/storybook",
+    "example/storybook-templates"
+  ]
 }

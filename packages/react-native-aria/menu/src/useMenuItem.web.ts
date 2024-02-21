@@ -118,14 +118,15 @@ export function useMenuItem<T>(
     }
   };
 
+  let onPress = () => {
+    if (closeOnSelect && onClose) {
+      onClose();
+    }
+  };
   let onPressUp = (e: PressEvent) => {
     if (e.pointerType !== 'keyboard') {
       if (onAction) {
         onAction(key);
-      }
-
-      if (closeOnSelect && onClose) {
-        onClose();
       }
     }
   };
@@ -139,7 +140,7 @@ export function useMenuItem<T>(
 
   let { pressProps } = usePress(
     mergeProps(
-      { onPressStart, onPressUp, isDisabled },
+      { onPressStart, onPressUp, onPress, isDisabled },
       mapDomPropsToRN(itemProps)
     )
   );
@@ -167,18 +168,13 @@ export function useMenuItem<T>(
       }
       switch (e.key) {
         case ' ':
-          if (
-            !isDisabled &&
-            state.selectionManager.selectionMode === 'none' &&
-            closeOnSelect !== false &&
-            onClose
-          ) {
+          if (!isDisabled && closeOnSelect && onClose) {
             onClose();
           }
           break;
         case 'Enter':
           // The Enter key should always close on select, except if overridden.
-          if (!isDisabled && closeOnSelect !== false && onClose) {
+          if (!isDisabled && closeOnSelect && onClose) {
             onClose();
           }
           break;
@@ -193,7 +189,6 @@ export function useMenuItem<T>(
     menuItemProps: {
       ...mapDomPropsToRN(ariaProps),
       ...mergeProps(pressProps, hoverProps, keyboardProps),
-      role: 'button',
     },
     labelProps: {
       nativeID: labelId,

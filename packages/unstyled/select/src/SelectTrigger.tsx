@@ -33,6 +33,13 @@ export const SelectTrigger = (StyledSelectTrigger: any) =>
           disabled: isDisabled,
           invalid: isInvalid,
         }}
+        dataSet={{
+          focus: isFocused ? 'true' : 'false',
+          focusVisible: isFocusVisible ? 'true' : 'false',
+          hover: isHovered ? 'true' : 'false',
+          disabled: isDisabled ? 'true' : 'false',
+          invalid: isInvalid ? 'true' : 'false',
+        }}
         disabled={isDisabled}
         role="button"
         ref={mergeRefs([ref, hoverRef])}

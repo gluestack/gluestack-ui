@@ -7,8 +7,12 @@ export interface ISelectProps {
   isFocusVisible?: boolean;
   closeOnOverlayClick?: boolean;
   selectedValue?: string;
+  /**
+   * @deprecated Use `initialLabel` instead.
+   */
   selectedLabel?: string;
   defaultValue?: string;
+  initialLabel?: string;
   onValueChange?: (arg: string) => void;
   onClose?: () => void;
   onOpen?: () => void;
