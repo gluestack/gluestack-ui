@@ -14,13 +14,11 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="with-gluestack-style/components/Feedback/Spinner" />
 
-import { Spinner } from './Spinner';
-import { HStack, VStack, Text } from '@gluestack-ui/themed';
 import { transformedCode } from '../../utils';
-import { AppProvider, CodePreview } from '@gluestack/design-system';
-
+import { AppProvider, CodePreview ,CollapsibleCode} from '@gluestack/design-system';
+import { Spinner, HStack, VStack, Text } from '../../components-example/themed';
 import Wrapper from '../../components-example/themed/Wrapper';
-import { CollapsibleCode } from '@gluestack/design-system';
+
 
 This is an illustration of **Spinner** component.
 
@@ -113,3 +111,68 @@ Explore the comprehensive details of the Spinner in this document, including its
   src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FNcXOxqKbdnGsLQNex3H76u%2F%25C2%25A0%25F0%259F%2593%259Agluestack-UI-handbook%3Ftype%3Ddesign%26node-id%3D6300-39672%26t%3DS9Au6CP5yb4upkgu-1%26scaling%3Dscale-down%26page-id%3D6300%253A37770%26starting-point-node-id%3D6300%253A39672%26mode%3Ddesign"
   allowFullScreen
 /> -->
+
+
+
+### Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+#### Spinner with Label
+
+A Spinner component with a label provides informative text or a label alongside the spinner, offering descriptive context and improving user understanding and interaction with the spinner element within a user interface.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+        <HStack space="sm" >
+          <Spinner/>
+          <Text size="md">Please Wait</Text>
+        </HStack>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Spinner,
+        HStack,
+        Text,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### Color Scheme
+
+A Spinner component with a color scheme enhances visual appeal by incorporating distinct colors, adding a touch of customization and style to the spinner element within a user interface.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+      <VStack space="md" >
+        <Spinner color="$indigo600" />
+        <Spinner color="$emerald600" />
+        <Spinner color="$amber600" />
+        <Spinner color="$fuchsia600" />
+      </VStack>
+    `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Spinner,
+        VStack,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>

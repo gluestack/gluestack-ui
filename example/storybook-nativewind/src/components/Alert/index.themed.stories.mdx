@@ -14,19 +14,20 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="with-gluestack-style/components/Feedback/Alert" />
 
-import { Alert, AlertIcon, AlertText } from './Alert';
 import {
-  CheckCircleIcon,
-  CloseCircleIcon,
-  Icon,
   BellIcon,
   AlertCircleIcon,
   Center,
   VStack,
   InfoIcon,
-} from '@gluestack-ui/themed';
-
-import { HStack } from '@gluestack-ui/themed';
+  HStack,
+  Alert,
+  AlertIcon,
+  AlertText,
+  CheckCircleIcon,
+  CloseCircleIcon,
+  Icon,
+} from '../../components-example/themed';
 import { transformedCode } from '../../utils';
 import {
   AppProvider,
@@ -34,9 +35,8 @@ import {
   Table,
   InlineCode,
   TableContainer,
+  CollapsibleCode,
 } from '@gluestack/design-system';
-import { CollapsibleCode } from '@gluestack/design-system';
-
 import Wrapper from '../../components-example/themed/Wrapper';
 
 This is an illustration of **Alert** component.
@@ -243,3 +243,47 @@ Explore the comprehensive details of the Alert in this document, including its i
   src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FNcXOxqKbdnGsLQNex3H76u%2F%25C2%25A0%25F0%259F%2593%259Agluestack-UI-handbook%3Ftype%3Ddesign%26node-id%3D6300-43142%26t%3DZPsVa5mi34R2dR7W-1%26scaling%3Dscale-down%26page-id%3D6300%253A41240%26starting-point-node-id%3D6300%253A43142%26mode%3Ddesign"
   allowFullScreen
 />
+
+### Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+#### Alert with Heading
+
+An example of an alert component with a heading, which further contains another alert component for displaying supplementary information.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+        <Alert action='success'>
+          <AlertIcon as={CheckCircleIcon} size="xl"  mr="$3" />
+          <VStack space='xs'>
+            <AlertText fontWeight ='$bold'>
+              Congratulations!
+            </AlertText >
+            <AlertText >
+              Thank you for your submission. You will receive a confirmation email shortly.
+            </AlertText>
+          </VStack>
+        </Alert>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Alert,
+        AlertIcon,
+        AlertText,
+        Wrapper,
+        CheckCircleIcon,
+        VStack,
+        Icon,
+      },
+      argsType: {},
+    }}
+/>
+
+</AppProvider>
