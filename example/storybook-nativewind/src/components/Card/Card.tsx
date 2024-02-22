@@ -6,7 +6,7 @@ import { Heading } from '@/components/ui/Heading';
 const CardBasic = ({ ...props }: any) => {
   return (
     <Card {...props}>
-      <Heading mb="$1" size="md">
+      <Heading size="md" className={'mb-1'}>
         Quick Start
       </Heading>
       <Text size="sm">Start building your next project in minutes</Text>
