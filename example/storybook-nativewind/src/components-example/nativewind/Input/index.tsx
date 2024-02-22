@@ -1,426 +1,214 @@
+import React from 'react';
 import { createInput } from '@gluestack-ui/input';
-import { styled, AsForwarder } from '@gluestack-style/react';
-import { View, Pressable, TextInput } from 'react-native';
+import { AsForwarder } from '@gluestack-style/react';
+import { View, Pressable, TextInput, Platform } from 'react-native';
+import {
+  tva,
+  withStyleContextAndStates,
+  useStyleContext,
+  withStyleContext,
+  withStates,
+  VariantProps,
+  cssInterop,
+} from '@gluestack-ui/nativewind-utils';
 
-const StyledRoot = styled(
-  View,
-  {
-    'borderWidth': 1,
-    'borderColor': '$background300',
-    'borderRadius': '$sm',
-    'flexDirection': 'row',
-    'overflow': 'hidden',
-    'alignContent': 'center',
-
-    ':hover': {
-      borderColor: '$border400',
-    },
-
-    ':focus': {
-      'borderColor': '$primary700',
-      ':hover': {
-        borderColor: '$primary700',
-      },
-    },
-
-    ':disabled': {
-      'opacity': 0.4,
-      ':hover': {
-        borderColor: '$background300',
-      },
-    },
-
-    '_input': {
-      py: 'auto',
-      px: '$3',
-    },
-
-    '_icon': {
-      color: '$text400',
-    },
-
-    'variants': {
-      size: {
-        xl: {
-          h: '$12',
-          _input: {
-            props: {
-              size: 'xl',
-            },
-          },
-          _icon: {
-            props: {
-              size: 'xl',
-            },
-          },
-        },
-        lg: {
-          h: '$11',
-          _input: {
-            props: {
-              size: 'lg',
-            },
-          },
-          _icon: {
-            props: {
-              size: 'lg',
-            },
-          },
-        },
-        md: {
-          h: '$10',
-          _input: {
-            props: {
-              size: 'md',
-            },
-          },
-          _icon: {
-            props: {
-              size: 'sm',
-            },
-          },
-        },
-        sm: {
-          h: '$9',
-          _input: {
-            props: {
-              size: 'sm',
-            },
-          },
-          _icon: {
-            props: {
-              size: 'xs',
-            },
-          },
-        },
-      },
-      variant: {
-        underlined: {
-          '_input': {
-            _web: {
-              outlineWidth: 0,
-              outline: 'none',
-            },
-            px: '$0',
-          },
-
-          'borderWidth': 0,
-          'borderRadius': 0,
-          'borderBottomWidth': '$1',
-
-          ':focus': {
-            borderColor: '$primary700',
-            _web: {
-              boxShadow: 'inset 0 -1px 0 0 $primary700',
-            },
-          },
-
-          ':invalid': {
-            'borderBottomWidth': 2,
-            'borderBottomColor': '$error700',
-            '_web': {
-              boxShadow: 'inset 0 -1px 0 0 $error700',
-            },
-            ':hover': {
-              borderBottomColor: '$error700',
-            },
-            ':focus': {
-              'borderBottomColor': '$error700',
-              ':hover': {
-                borderBottomColor: '$error700',
-                _web: {
-                  boxShadow: 'inset 0 -1px 0 0 $error700',
-                },
-              },
-            },
-            ':disabled': {
-              ':hover': {
-                borderBottomColor: '$error700',
-                _web: {
-                  boxShadow: 'inset 0 -1px 0 0 $error700',
-                },
-              },
-            },
-          },
-        },
-
-        outline: {
-          '_input': {
-            _web: {
-              outlineWidth: 0,
-              outline: 'none',
-            },
-          },
-
-          ':focus': {
-            borderColor: '$primary700',
-            _web: {
-              boxShadow: 'inset 0 0 0 1px $primary700',
-            },
-          },
-
-          ':invalid': {
-            'borderColor': '$error700',
-            '_web': {
-              boxShadow: 'inset 0 0 0 1px $error700',
-            },
-            ':hover': {
-              borderColor: '$error700',
-            },
-            ':focus': {
-              'borderColor': '$error700',
-              ':hover': {
-                borderColor: '$error700',
-                _web: {
-                  boxShadow: 'inset 0 0 0 1px $error700',
-                },
-              },
-            },
-            ':disabled': {
-              ':hover': {
-                borderColor: '$error700',
-                _web: {
-                  boxShadow: 'inset 0 0 0 1px $error700',
-                },
-              },
-            },
-          },
-        },
-
-        rounded: {
-          'borderRadius': 999,
-
-          '_input': {
-            px: '$4',
-            _web: {
-              outlineWidth: 0,
-              outline: 'none',
-            },
-          },
-
-          ':focus': {
-            borderColor: '$primary700',
-            _web: {
-              boxShadow: 'inset 0 0 0 1px $primary700',
-            },
-          },
-
-          ':invalid': {
-            'borderColor': '$error700',
-            '_web': {
-              boxShadow: 'inset 0 0 0 1px $error700',
-            },
-            ':hover': {
-              borderColor: '$error700',
-            },
-            ':focus': {
-              'borderColor': '$error700',
-              ':hover': {
-                borderColor: '$error700',
-                _web: {
-                  boxShadow: 'inset 0 0 0 1px $error700',
-                },
-              },
-            },
-            ':disabled': {
-              ':hover': {
-                borderColor: '$error700',
-                _web: {
-                  boxShadow: 'inset 0 0 0 1px $error700',
-                },
-              },
-            },
-          },
-        },
-      },
-    },
-
-    'defaultProps': {
-      size: 'md',
-      variant: 'outline',
-    },
-  },
-  {
-    descendantStyle: ['_input', '_icon'],
-  }
-);
-
-const StyledIcon = styled(
-  AsForwarder,
-  {
-    color: '$background800',
-    variants: {
-      size: {
-        '2xs': {
-          h: '$3',
-          w: '$3',
-          props: {
-            // @ts-ignore
-            size: 12,
-          },
-        },
-        'xs': {
-          h: '$3.5',
-          w: '$3.5',
-          props: {
-            //@ts-ignore
-            size: 14,
-          },
-        },
-        'sm': {
-          h: '$4',
-          w: '$4',
-          props: {
-            //@ts-ignore
-            size: 16,
-          },
-        },
-        'md': {
-          h: '$4.5',
-          w: '$4.5',
-          props: {
-            //@ts-ignore
-            size: 18,
-          },
-        },
-        'lg': {
-          h: '$5',
-          w: '$5',
-          props: {
-            //@ts-ignore
-            size: 20,
-          },
-        },
-        'xl': {
-          h: '$6',
-          w: '$6',
-          props: {
-            //@ts-ignore
-            size: 24,
-          },
-        },
-      },
-    },
-    props: {
-      size: 'md',
-      fill: 'none',
-    },
-  },
-  {
-    resolveProps: ['stroke', 'fill'],
-    ancestorStyle: ['_icon'],
-  },
-  {
-    propertyTokenMap: {
-      stroke: 'colors',
-      fill: 'colors',
-    },
-  }
-);
-
-const StyledSlot = styled(
-  Pressable,
-  {
-    justifyContent: 'center',
-    alignItems: 'center',
-    _web: {
-      ':disabled': {
-        cursor: 'not-allowed',
-      },
-    },
-  },
-  {
-    descendantStyle: ['_icon'],
-  }
-);
-
-const StyledInputField = styled(
-  TextInput,
-  {
-    flex: 1,
-    color: '$text900',
-
-    props: {
-      placeholderTextColor: '$text500',
-    },
-
-    _web: {
-      'cursor': 'text',
-      ':disabled': {
-        cursor: 'not-allowed',
-      },
-    },
-
-    variants: {
-      size: {
-        '2xs': {
-          fontSize: '$2xs',
-        },
-        'xs': {
-          fontSize: '$xs',
-        },
-
-        'sm': {
-          fontSize: '$sm',
-        },
-
-        'md': {
-          fontSize: '$md',
-        },
-
-        'lg': {
-          fontSize: '$lg',
-        },
-
-        'xl': {
-          fontSize: '$xl',
-        },
-
-        '2xl': {
-          fontSize: '$2xl',
-        },
-
-        '3xl': {
-          fontSize: '$3xl',
-        },
-
-        '4xl': {
-          fontSize: '$4xl',
-        },
-
-        '5xl': {
-          fontSize: '$5xl',
-        },
-
-        '6xl': {
-          fontSize: '$6xl',
-        },
-      },
-    },
-  },
-  {
-    ancestorStyle: ['_input'],
-    resolveProps: ['placeholderTextColor'],
-  },
-  {
-    propertyTokenMap: {
-      placeholderTextColor: 'colors',
-    },
-  }
-);
 const UIInput = createInput({
-  Root: StyledRoot,
-  Icon: StyledIcon,
-  Slot: StyledSlot,
-  Input: StyledInputField,
+  // @ts-ignore
+  Root:
+    Platform.OS === 'web'
+      ? withStyleContext(View)
+      : withStyleContextAndStates(View),
+  Icon: AsForwarder,
+  Slot: Pressable,
+  Input: Platform.OS === 'web' ? TextInput : withStates(TextInput),
 });
 
-export const Input = UIInput;
-export const InputIcon = UIInput.Icon;
-export const InputSlot = UIInput.Slot;
-export const InputField = UIInput.Input;
+const inputStyle = tva({
+  base: 'border-background-300 flex-row overflow-hidden content-center data-[hover=true]:border-border-400 data-[focus=true]:border-primary-700 focus:hover:border-primary-700 data-[disabled=true]:opacity-40 data-[disabled=true]:hover:border-background-300',
 
-/**
- * @deprecated Use InputField instead.
- */
-export const InputInput = UIInput.Input;
+  variants: {
+    size: {
+      xl: 'h-12',
+      lg: 'h-11',
+      md: 'h-10',
+      sm: 'h-9',
+    },
+
+    variant: {
+      underlined:
+        'rounded-none border-b data-[invalid=true]:border-b-2 data-[invalid=true]:border-error-700 data-[invalid=true]:hover:border-error-700 data-[invalid=true]:focus:border-error-700 data-[invalid=true]:focus:hover:border-error-700 data-[invalid=true]:data-[disabled=true]:hover:border-error-700 focus:web:ring-1 focus:web:ring-inset focus:web:ring-primary-700 data-[invalid=true]:web:ring-1 data-[invalid=true]:web:ring-inset data-[invalid=true]:web:ring-error-700 data-[invalid=true]:focus:hover:web:ring-1 data-[invalid=true]:focus:hover:web:ring-inset data-[invalid=true]:focus:hover:web:ring-error-700 data-[invalid=true]:data-[disabled=true]:hover:web:ring-1 data-[invalid=true]:data-[disabled=true]:hover:web:ring-inset data-[invalid=true]:data-[disabled=true]:hover:web:ring-error-700',
+
+      outline:
+        'rounded border data-[invalid=true]:border-error-700 data-[invalid=true]:hover:border-error-700 data-[invalid=true]:focus:border-error-700 data-[invalid=true]:focus:hover:border-error-700 data-[invalid=true]:data-[disabled=true]:hover:border-error-700 focus:web:ring-1 focus:web:ring-inset focus:web:ring-primary-700 data-[invalid=true]:web:ring-1 data-[invalid=true]:web:ring-inset data-[invalid=true]:web:ring-error-700 data-[invalid=true]:focus:hover:web:ring-1 data-[invalid=true]:focus:hover:web:ring-inset data-[invalid=true]:focus:hover:web:ring-error-700 data-[invalid=true]:data-[disabled=true]:hover:web:ring-1 data-[invalid=true]:data-[disabled=true]:hover:web:ring-inset data-[invalid=true]:data-[disabled=true]:hover:web:ring-error-700',
+
+      rounded:
+        'rounded-full border data-[invalid=true]:border-error-700 data-[invalid=true]:hover:border-error-700 data-[invalid=true]:focus:border-error-700 data-[invalid=true]:focus:hover:border-error-700 data-[invalid=true]:data-[disabled=true]:hover:border-error-700 focus:web:ring-1 focus:web:ring-inset focus:web:ring-primary-700 data-[invalid=true]:web:ring-1 data-[invalid=true]:web:ring-inset data-[invalid=true]:web:ring-error-700 data-[invalid=true]:focus:hover:web:ring-1 data-[invalid=true]:focus:hover:web:ring-inset data-[invalid=true]:focus:hover:web:ring-error-700 data-[invalid=true]:data-[disabled=true]:hover:web:ring-1 data-[invalid=true]:data-[disabled=true]:hover:web:ring-inset data-[invalid=true]:data-[disabled=true]:hover:web:ring-error-700',
+    },
+  },
+});
+
+const inputIconStyle = tva({
+  base: 'stroke-2 stroke-typography-400',
+  parentVariants: {
+    size: {
+      '2xs': 'h-3 w-3',
+      'xs': 'h-3.5 w-3.5',
+      'sm': 'h-4 w-4',
+      'md': 'h-4.5 w-4.5',
+      'lg': 'h-5 w-5',
+      'xl': 'h-6 w-6',
+    },
+  },
+});
+
+const inputSlotStyle = tva({
+  base: 'justify-center items-center web:disabled:cursor-not-allowed',
+});
+
+const inputFieldStyle = tva({
+  base: 'flex-1 text-text-900 web:cursor-text web:data-[disabled=true]:cursor-not-allowed py-auto px-3 placeholder:text-typography-500',
+
+  parentVariants: {
+    variant: {
+      underlined: 'web:outline-0 web:outline-none px-0',
+      outline: 'web:outline-0 web:outline-none',
+      rounded: 'web:outline-0 web:outline-none px-4',
+    },
+
+    size: {
+      '2xs': 'text-2xs',
+      'xs': 'text-xs',
+      'sm': 'text-sm',
+      'md': 'text-base',
+      'lg': 'text-lg',
+      'xl': 'text-xl',
+      '2xl': 'text-2xl',
+      '3xl': 'text-3xl',
+      '4xl': 'text-4xl',
+      '5xl': 'text-5xl',
+      '6xl': 'text-6xl',
+    },
+  },
+});
+
+cssInterop(UIInput, { className: 'style' });
+cssInterop(UIInput.Icon, { className: 'style' });
+cssInterop(UIInput.Slot, { className: 'style' });
+cssInterop(UIInput.Input, { className: 'style' });
+
+type IInputProps = React.ComponentProps<typeof UIInput> &
+  VariantProps<typeof inputStyle>;
+
+const Input = React.forwardRef(
+  (
+    {
+      className,
+      variant = 'outline',
+      size = 'md',
+      ...props
+    }: { className?: string } & IInputProps,
+    ref
+  ) => {
+    return (
+      <UIInput
+        ref={ref}
+        {...props}
+        className={inputStyle({ variant, size, class: className })}
+        context={{ variant, size }}
+      />
+    );
+  }
+);
+
+type IInputIconProps = React.ComponentProps<typeof UIInput.Icon> &
+  VariantProps<typeof inputIconStyle>;
+
+const InputIcon = React.forwardRef(
+  (
+    {
+      className,
+      as: AsComp,
+      fill = 'none',
+      ...props
+    }: { className?: any } & IInputIconProps,
+    ref
+  ) => {
+    const { size: parentSize } = useStyleContext();
+
+    if (AsComp) {
+      return (
+        <AsComp
+          ref={ref}
+          {...props}
+          fill={fill}
+          className={inputIconStyle({
+            parentVariants: {
+              size: parentSize,
+            },
+            class: className,
+          })}
+        />
+      );
+    }
+    return (
+      <UIInput.Icon
+        ref={ref}
+        {...props}
+        fill={fill}
+        className={inputIconStyle({
+          parentVariants: {
+            size: parentSize,
+          },
+          class: className,
+        })}
+      />
+    );
+  }
+);
+
+type IInputSlotProps = React.ComponentProps<typeof UIInput.Slot> &
+  VariantProps<typeof inputSlotStyle>;
+
+const InputSlot = React.forwardRef(
+  ({ className, ...props }: { className?: string } & IInputSlotProps, ref) => {
+    return (
+      <UIInput.Slot
+        ref={ref}
+        {...props}
+        className={inputSlotStyle({
+          class: className,
+        })}
+      />
+    );
+  }
+);
+
+type IInputFieldProps = React.ComponentProps<typeof UIInput.Input> &
+  VariantProps<typeof inputFieldStyle>;
+
+const InputField = React.forwardRef(
+  ({ className, ...props }: { className?: string } & IInputFieldProps, ref) => {
+    const { variant: parentVariant, size: parentSize } = useStyleContext();
+
+    return (
+      <UIInput.Input
+        ref={ref}
+        {...props}
+        className={inputFieldStyle({
+          parentVariants: {
+            variant: parentVariant,
+            size: parentSize,
+          },
+          class: className,
+        })}
+      />
+    );
+  }
+);
+
+Input.displayName = 'Input';
+InputIcon.displayName = 'InputIcon';
+InputSlot.displayName = 'InputSlot';
+InputField.displayName = 'InputField';
+
+export { Input, InputField, InputIcon, InputSlot };
