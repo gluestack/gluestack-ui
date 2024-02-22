@@ -9,6 +9,10 @@ const ModalMeta: ComponentMeta<typeof Modal> = {
   metaInfo: {
     componentDescription: `A Modal is a window on top of the primary content to draw the user's attention to important information or actions. It provides a focused and interruptive way to interact with the application.`,
   },
+  args: {
+    size: 'md',
+    showModal: false,
+  },
   argTypes: {
     size: {
       control: 'select',
@@ -20,10 +24,9 @@ const ModalMeta: ComponentMeta<typeof Modal> = {
     },
     showModal: {
       control: 'boolean',
-      option: [true, false],
+      options: [true, false],
     },
   },
-  args: { size: 'md' },
 };
 
 export default ModalMeta;
