@@ -23,8 +23,6 @@ import {
   PopoverFooter,
   PopoverCloseButton,
   PopoverArrow,
-} from './Popover';
-import {
   Pressable,
   Text as PopoverText,
   Heading,
@@ -33,18 +31,17 @@ import {
   VStack,
   Avatar,
   AvatarFallbackText,
-} from '@gluestack-ui/themed';
-import {
   Button,
   ButtonGroup,
   ButtonText,
   Box,
   CloseIcon,
   CircleIcon,
-} from '@gluestack-ui/themed';
-import { PhoneIcon, Clock3Icon, MailIcon } from '@gluestack-ui/themed';
-import { Center } from '@gluestack-ui/themed';
-import { transformedCode } from '../../utils';
+  PhoneIcon,
+  Clock3Icon,
+  MailIcon,
+  Center,
+} from '../../components-example/themed';
 import {
   AppProvider,
   CodePreview,
@@ -52,10 +49,10 @@ import {
   TableContainer,
   Text,
   InlineCode,
+  CollapsibleCode,
 } from '@gluestack/design-system';
-
+import { transformedCode } from '../../utils';
 import Wrapper from '../../components-example/themed/Wrapper';
-import { CollapsibleCode } from '@gluestack/design-system';
 
 This is an illustration of **Popover** component.
 
@@ -306,9 +303,7 @@ npm i @gluestack-ui/popover
 ### Step 2: Copy and paste the following code into your project.
 
 <CollapsibleCode>
-  ```jsx 
-%%-- File: components-example/themed/Popover/index.tsx --%% 
-```
+  ```jsx %%-- File: components-example/themed/Popover/index.tsx --%% ```
 </CollapsibleCode>
 
 ### Step 3: Update the import paths to match your project setup.
@@ -940,3 +935,133 @@ export default () => (
 );
 ```
 -->
+
+### Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+#### Popover on Avatar
+
+A popover component can enhance the avatar by providing additional information and context in a concise and visually appealing manner.
+
+<AppProvider>
+  <CodePreview
+    _rendererWrapper={{ py: '$6' }}
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+        <Box h='$80'>
+        {\/* PhoneIcon, Clock3Icon, MailIcon are imported from 'lucide-react-native' *\/}
+          <Popover
+            trigger={(triggerProps) => {
+              return (
+                <HStack alignItems='center'>
+                  <Pressable
+                    borderRadius='$full'
+                    {...triggerProps}
+                  >
+                    <Avatar bg='$indigo600'>
+                      <AvatarFallbackText >
+                        Kevin James
+                      </AvatarFallbackText>
+                    </Avatar>
+                  </Pressable>
+                  <VStack ml='$2.5' space='xs'>
+                    <Heading fontSize='$md'>
+                      Kevin James
+                    </Heading>
+                    <Text size='sm'>
+                      Hi Rachel, What’s up?
+                    </Text>
+                  </VStack>
+                </HStack>
+              );
+            }}
+          >
+            <PopoverBackdrop/>
+            <PopoverContent w='$80'>
+              <PopoverHeader  px='$5' pt='$5'>
+                <HStack>
+                  <Avatar bg='$indigo600' >
+                    <AvatarFallbackText>
+                      Kevin James
+                    </AvatarFallbackText>
+                  </Avatar>
+                  <VStack ml='$2.5'>
+                    <Heading fontSize='$md'>
+                      Kevin James
+                    </Heading>
+                    <HStack alignItems='center'>
+                      <CircleIcon color='$green700' h='$2' w='$2'/>
+                      <Text size='sm'  pl='$1.5'>
+                        Active
+                      </Text>
+                    </HStack>
+                  </VStack>
+                </HStack>
+              </PopoverHeader>
+              <PopoverBody  px='$5' pb='$5'>
+                <VStack space='lg'>
+                  <VStack space='sm'>
+                    <HStack alignItems='center'>
+                      <Icon as={PhoneIcon} size='sm' />
+                      <Text size='sm'  ml='$1.5'>
+                        (603) 555-0123
+                      </Text>
+                    </HStack>
+                    <HStack alignItems='center'>
+                      <Icon as={Clock3Icon} size='sm'/>
+                      <Text size='sm'  ml='$1.5'>
+                        5:21 PM local time
+                      </Text>
+                    </HStack>
+                    <HStack alignItems='center'>
+                      <Icon as={MailIcon} size='sm'/>
+                      <Text size='sm'  ml='$1.5'>
+                        kevinjames@sample.com
+                      </Text>
+                    </HStack>
+                  </VStack>
+                  <Button bg='$darkBlue700' 
+                  $dark-bg='$darkBlue500'>
+                    <ButtonText>View Profile</ButtonText>
+                  </Button>
+                </VStack>
+              </PopoverBody>
+            </PopoverContent>
+          </Popover>
+        </Box>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Box,
+        Heading,
+        Text: PopoverText,
+        Popover,
+        PopoverBackdrop,
+        PopoverContent,
+        PopoverHeader,
+        PopoverBody,
+        PopoverFooter,
+        PopoverCloseButton,
+        Pressable,
+        Button,
+        ButtonText,
+        HStack,
+        VStack,
+        CircleIcon,
+        PhoneIcon,
+        Clock3Icon,
+        MailIcon,
+        Avatar,
+        AvatarFallbackText,
+        Icon,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
