@@ -1,292 +1,84 @@
 import React from 'react';
 import { createTextarea } from '@gluestack-ui/textarea';
-import { View, TextInput } from 'react-native';
+import { View, TextInput, Platform } from 'react-native';
 import {
   tva,
   withStyleContextAndStates,
   useStyleContext,
+  withStyleContext,
+  withStates,
+  cssInterop,
+  VariantProps,
 } from '@gluestack-ui/nativewind-utils';
-import { cssInterop } from 'nativewind';
 
 const UITextarea = createTextarea({
   // @ts-ignore
-  Root: withStyleContextAndStates(View),
-  Input: TextInput,
+  Root:
+    Platform.OS === 'web'
+      ? withStyleContext(View)
+      : withStyleContextAndStates(View),
+  Input: Platform.OS === 'web' ? TextInput : withStates(TextInput),
 });
 
-// @ts-ignore
 cssInterop(UITextarea, { className: 'style' });
 cssInterop(UITextarea.Input, { className: 'style' });
 
 const textareaStyle = tva({
-  base: 'w-full h-[100px] border border-background-300 rounded-sm hover:border-outline-400 hover:border-primary-700 focus:border-primary-700 disabled:opacity-40 disable:border-background-300',
+  base: 'w-full h-[100px] border border-background-300 rounded hover:border-outline-400 data-[focus=true]:border-primary-700 data-[focus=true]:hover:border-primary-700 data-[disabled=true]:opacity-40 data-[disabled=true]:hover:border-background-300',
 
   variants: {
-    size: {
-      sm: '',
-      md: '',
-      lg: '',
-      // _input: {
-      //   fontSize: '$lg',
-      // },
-      //  {
-      //   _input: {
-      //     fontSize: '$md',
-      //   },
-      // },
-      // {
-      //   _input: {
-      //     fontSize: '$sm',
-      //   },
-      // },
-      xl: '',
-      // {
-      //   _input: {
-      //     fontSize: '$xl',
-      //   },
-      // },
-    },
     variant: {
       default:
-        'focus:border-primary-700 focus:border-primary-700 focus:web:shadows-sm invalid:border-error-700 invalid:web:shadows-sm',
-      //  {
-      // '_input': {
-      //   _web: {
-      //     outlineWidth: '0',
-      //     outline: 'none',
-      //   },
-      // },
-
-      // ':focus': {
-      //   borderColor: '$primary700',
-      //   _web: {
-      //     boxShadow: 'inset 0 0 0 1px $primary700',
-      //   },
-      // },
-
-      // ':invalid': {
-      //   'borderColor': '$error700',
-      //   '_web': {
-      //     boxShadow: 'inset 0 0 0 1px $error700',
-      //   },
-      //   ':hover': {
-      //     borderColor: '$error700',
-      //   },
-      //   ':focus': {
-      //     ':hover': {
-      //       borderColor: '$primary700',
-      //       _web: {
-      //         boxShadow: 'inset 0 0 0 1px $primary700',
-      //       },
-      //     },
-      //   },
-      //   ':disabled': {
-      //     ':hover': {
-      //       borderColor: '$error700',
-      //       _web: {
-      //         boxShadow: 'inset 0 0 0 1px $error700',
-      //       },
-      //     },
-      //   },
-      // },
-      // },
-    },
-
-    defaultVariants: {
-      variant: 'default',
-      size: 'md',
+        'data-[focus=true]:border-primary-700 data-[focus=true]:web:ring-1 data-[focus=true]:web:ring-inset data-[focus=true]:web:ring-primary-700 data-[invalid=true]:border-error-700 data-[invalid=true]:web:ring-1 data-[invalid=true]:web:ring-inset data-[invalid=true]:web:ring-error-700 data-[invalid=true]:hover:border-error-700 data-[invalid=true]:data-[focus=true]:hover:border-primary-700 data-[invalid=true]:data-[focus=true]:hover:web:ring-1 data-[invalid=true]:data-[focus=true]:hover:web:ring-inset data-[invalid=true]:data-[focus=true]:hover:web:ring-primary-700 data-[invalid=true]:data-[disabled=true]:hover:border-error-700 data-[invalid=true]:data-[disabled=true]:hover:web:ring-1 data-[invalid=true]:data-[disabled=true]:hover:web:ring-inset data-[invalid=true]:data-[disabled=true]:hover:web:ring-error-700 ',
     },
   },
 });
 
 const textareaInputStyle = tva({
-  base: 'p-2 flex-1 color-typography-900 align-text-top',
-
-  // /     p: '$2',
-  //     color: '$text900',
-  //     textAlignVertical: 'top',
-  //     flex: 1,
-
-  //     props: {
-  //       // @ts-ignore
-  //       multiline: true,
-  //       placeholderTextColor: '$text500',
-  //     },
-
-  //     _web: {
-  //       'cursor': 'text',
-  //       ':disabled': {
-  //         cursor: 'not-allowed',
-  //       },
-  //     },
-  //   },
-  //   {
-  //     ancestorStyle: ['_input'],
-  //     resolveProps: ['placeholderTextColor'],
-  //   },
-  //   {
-  //     propertyTokenMap: {
-  //       placeholderTextColor: 'colors',
-  //     },
-  //   }
+  base: 'p-3 web:outline-0 web:outline-none flex-1 color-typography-900 align-text-top placeholder:text-typography-500 web:cursor-text web:data-[disabled=true]:cursor-not-allowed',
+  parentVariants: {
+    size: {
+      sm: 'text-sm',
+      md: 'text-base',
+      lg: 'text-lg',
+      xl: 'text-xl',
+    },
+  },
 });
 
-// const StyledRoot =
-//   {
+type ITextareaProps = React.ComponentProps<typeof UITextarea> &
+  VariantProps<typeof textareaStyle>;
 
-//     '_input': {
-//       p: '$3',
-//       _web: {
-//         outlineWidth: 0,
-//         outline: 'none',
-//       },
-//     },
-
-//     ':hover': {
-//       borderColor: '$border400',
-//     },
-
-//     ':focus': {
-//       'borderColor': '$primary700',
-//       ':hover': {
-//         borderColor: '$primary700',
-//       },
-//     },
-
-//     ':disabled': {
-//       'opacity': 0.4,
-//       ':hover': {
-//         borderColor: '$background300',
-//       },
-//     },
-
-//     'variants': {
-//       size: {
-//         xl: {
-//           _input: {
-//             fontSize: '$xl',
-//           },
-//         },
-
-//         lg: {
-//           _input: {
-//             fontSize: '$lg',
-//           },
-//         },
-//         md: {
-//           _input: {
-//             fontSize: '$md',
-//           },
-//         },
-//         sm: {
-//           _input: {
-//             fontSize: '$sm',
-//           },
-//         },
-//       },
-//       variant: {
-//         default: {
-//           '_input': {
-//             _web: {
-//               outlineWidth: '0',
-//               outline: 'none',
-//             },
-//           },
-
-//           ':focus': {
-//             borderColor: '$primary700',
-//             _web: {
-//               boxShadow: 'inset 0 0 0 1px $primary700',
-//             },
-//           },
-
-//           ':invalid': {
-//             'borderColor': '$error700',
-//             '_web': {
-//               boxShadow: 'inset 0 0 0 1px $error700',
-//             },
-//             ':hover': {
-//               borderColor: '$error700',
-//             },
-//             ':focus': {
-//               ':hover': {
-//                 borderColor: '$primary700',
-//                 _web: {
-//                   boxShadow: 'inset 0 0 0 1px $primary700',
-//                 },
-//               },
-//             },
-//             ':disabled': {
-//               ':hover': {
-//                 borderColor: '$error700',
-//                 _web: {
-//                   boxShadow: 'inset 0 0 0 1px $error700',
-//                 },
-//               },
-//             },
-//           },
-//         },
-//       },
-//     },
-
-//     'defaultProps': {
-//       variant: 'default',
-//       size: 'md',
-//     },
-//   },
-
-// const StyledInput = styled(
-//   TextInput,
-//   {
-//     p: '$2',
-//     color: '$text900',
-//     textAlignVertical: 'top',
-//     flex: 1,
-
-//     props: {
-//       // @ts-ignore
-//       multiline: true,
-//       placeholderTextColor: '$text500',
-//     },
-
-//     _web: {
-//       'cursor': 'text',
-//       ':disabled': {
-//         cursor: 'not-allowed',
-//       },
-//     },
-//   },
-//   {
-//     ancestorStyle: ['_input'],
-//     resolveProps: ['placeholderTextColor'],
-//   },
-//   {
-//     propertyTokenMap: {
-//       placeholderTextColor: 'colors',
-//     },
-//   }
-// );
-
-export const Textarea = React.forwardRef(
-  ({ className, variant = 'solid', size = 'md', ...props }: any, ref) => {
+const Textarea = React.forwardRef(
+  (
+    {
+      className,
+      variant = 'default',
+      size = 'md',
+      ...props
+    }: { className?: string } & ITextareaProps,
+    ref
+  ) => {
     return (
       <UITextarea
         ref={ref}
         {...props}
-        className={textareaStyle({ variant, size, class: className })}
-        context={{ variant, size }}
+        className={textareaStyle({ variant, class: className })}
+        context={{ size }}
       />
     );
   }
 );
 
-export const TextareaInput = React.forwardRef(
-  ({ className, variant, size, action, ...props }: any, ref) => {
-    const {
-      variant: parentVariant,
-      size: parentSize,
-      action: parentAction,
-    } = useStyleContext();
+type ITextareaInputProps = React.ComponentProps<typeof UITextarea.Input> &
+  VariantProps<typeof textareaInputStyle>;
+
+const TextareaInput = React.forwardRef(
+  (
+    { className, ...props }: { className?: string } & ITextareaInputProps,
+    ref
+  ) => {
+    const { size: parentSize } = useStyleContext();
 
     return (
       <UITextarea.Input
@@ -294,16 +86,16 @@ export const TextareaInput = React.forwardRef(
         {...props}
         className={textareaInputStyle({
           parentVariants: {
-            variant: parentVariant,
             size: parentSize,
-            action: parentAction,
           },
-          variant,
-          size,
-          action,
           class: className,
         })}
       />
     );
   }
 );
+
+Textarea.displayName = 'Textarea';
+TextareaInput.displayName = 'TextareaInput';
+
+export { Textarea, TextareaInput };
