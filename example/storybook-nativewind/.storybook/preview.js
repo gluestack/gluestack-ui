@@ -62,7 +62,7 @@ export const parameters = {
           'Disclosure',
           ['Actionsheet', 'Accordion'],
           'Media And Icons',
-          ['Avatar', 'Image'],
+          ['Avatar', 'Image', 'Icon'],
           'Others',
           ['Fab'],
         ],
