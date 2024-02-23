@@ -47,9 +47,6 @@ cssInterop(UIModal.Footer, { className: 'style' });
 
 const modalStyle = tva({
   base: 'group/modal w-full h-full justify-center items-center web:pointer-events-none',
-  variants: {
-    size: {},
-  },
 });
 
 const modalBackdropStyle = tva({
