@@ -1,85 +1,24 @@
 ---
-title: Customizing Theme
+title: Eject Theme
 description: Customizing the theme in gluestack-ui involves defining a theme configuration and applying it using GluestackUIProvider, enabling you to style your application's visual elements according to your design preferences.
 showHeader: true
 ---
 
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
-import { Box, Wrapper as CustomThemeWrapper } from './CustomTheme';
+import { Box, Wrapper as CustomThemeWrapper } from '../../CustomTheme';
 import {
   Button,
   ButtonText,
   Wrapper as CustomComponentTheme,
-} from './CustomComponent';
-import { transformedCode } from '../../utils';
+} from '../../CustomComponent';
+import { transformedCode } from '../../../../utils';
 import { AppProvider, CodePreview, Text } from '@gluestack/design-system';
 
-<Meta title="ui/Theme Configuration/Customizing Theme" />
+<Meta title="ui/Theme Configuration/Customizing Theme/Eject Theme" />
 
 `gluestack-ui` is intentionally designed as an unstyled library, providing you with the flexibility to style your components as you prefer. For users looking for a seamless integration experience, we offer the `@gluestack-ui/config` package, which comes with pre-configured theme that can easily be integrated with `@gluestack-ui/themed` for a convenient styling solution.
 
-## Customizing Components
-
-Customizing components allows you to tailor the components according to you design system or guidelines to match your project's unique visual identity. To customize tokens, follow these steps:
-
-> Note: Commit you changes before ejecting, this command with update the imports!!
-
-1. **Eject**: Run following command to eject the theme. This will create a **components** folder in your project root directory and copy all the styled components.
-
-```bash
-npx gluestack-ui-scripts eject
-```
-
-> Note: If you have already ejected the theme or components,
-This will overwrite the existing styles with default one. (It is NOT RECOMMENDED to eject again)
-If you need to eject the components, then save the changes and copy/paste them manually.
-
-2. If you are already using `@gluestack-ui/themed` inside your project, running this command will automatically change the imports from `@gluestack-ui/themed` to the components folder path.
-
-3. Remove the config file passed inside provides at the root of the project. Wrap the root of the project with `GluestackUIProvider` only.
-
-```jsx
-<GluestackUIProvider>{children}</GluestackUIProvider>
-```
-
-4. **Update Tokens**: go to `components/gluestack-ui.config.ts` file. Update the tokens as per your requirements.
-
-```jsx
-// gluestack-ui.config.ts
-
-export const config = createConfig({
-  // ...Theme config
-  tokens: {
-    colors: {
-      ...Theme config.tokens.colors,
-      // replacing primary color
-      primary0: '#ffffff',
-      primary50: '#a3fff4',
-      primary100: '#82fff0',
-      primary200: '#61ffed',
-      primary300: '#45fae5',
-      primary400: '#24f9e1',
-      primary500: '#17f3d9',
-      primary600: '#12e4cb',
-      primary700: '#17ccb7',
-      primary800: '#1ab5a3',
-      primary900: '#1c9f90',
-      primary950: '#000000',
-    },
-  },
-});
-
-type Config = typeof config;
-type Components = typeof components;
-
-declare module '@gluestack-ui/themed' {
-  interface UIConfig extends Config {}
-  interface UIComponents extends Components {}
-}
-
-```
-
-You can customize all the tokens of the theme in `config`. For a complete list of tokens and default values, please check [default Tokens](https://gluestack.io/ui/docs/theme-configuration/theme/default-tokens).
+> Note: It is NOT RECOMMENDED to both eject theme & library in one project. It is RECOMMENDED to [eject library](/ui/docs/theme-configuration/customizing-theme/eject-library) as it provides maximum customization(theme & components), but if you want to customize only the theme, refer the documentation below. 
 
 ## Customizing Tokens
 
