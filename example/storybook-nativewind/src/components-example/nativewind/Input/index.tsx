@@ -1,6 +1,5 @@
 import React from 'react';
 import { createInput } from '@gluestack-ui/input';
-import { AsForwarder } from '@gluestack-style/react';
 import { View, Pressable, TextInput, Platform } from 'react-native';
 import {
   tva,
@@ -18,7 +17,7 @@ const UIInput = createInput({
     Platform.OS === 'web'
       ? withStyleContext(View)
       : withStyleContextAndStates(View),
-  Icon: AsForwarder,
+  Icon: View,
   Slot: Pressable,
   Input: Platform.OS === 'web' ? TextInput : withStates(TextInput),
 });
@@ -48,7 +47,7 @@ const inputStyle = tva({
 });
 
 const inputIconStyle = tva({
-  base: 'stroke-2 stroke-typography-400',
+  base: 'text-typography-400 fill-none',
   parentVariants: {
     size: {
       '2xs': 'h-3 w-3',
@@ -98,7 +97,7 @@ cssInterop(UIInput.Input, { className: 'style' });
 
 type IInputProps = React.ComponentProps<typeof UIInput> &
   VariantProps<typeof inputStyle>;
-
+//@ts-ignore
 const Input = React.forwardRef(
   (
     {
@@ -120,17 +119,11 @@ const Input = React.forwardRef(
   }
 );
 
-type IInputIconProps = React.ComponentProps<typeof UIInput.Icon> &
-  VariantProps<typeof inputIconStyle>;
+type IInputIconProps = React.ComponentProps<typeof UIInput.Icon> & { as: any };
 
 const InputIcon = React.forwardRef(
   (
-    {
-      className,
-      as: AsComp,
-      fill = 'none',
-      ...props
-    }: { className?: any } & IInputIconProps,
+    { className, as: AsComp, ...props }: { className?: any } & IInputIconProps,
     ref
   ) => {
     const { size: parentSize } = useStyleContext();
@@ -140,7 +133,6 @@ const InputIcon = React.forwardRef(
         <AsComp
           ref={ref}
           {...props}
-          fill={fill}
           className={inputIconStyle({
             parentVariants: {
               size: parentSize,
@@ -154,7 +146,6 @@ const InputIcon = React.forwardRef(
       <UIInput.Icon
         ref={ref}
         {...props}
-        fill={fill}
         className={inputIconStyle({
           parentVariants: {
             size: parentSize,
