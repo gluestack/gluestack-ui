@@ -48,9 +48,6 @@ cssInterop(UIAccessibleAlertDialog.Backdrop, { className: 'style' });
 
 const alertDialogStyle = tva({
   base: 'group/modal w-full h-full justify-center items-center web:pointer-events-none',
-  variants: {
-    size: {},
-  },
 });
 
 const alertDialogContentStyle = tva({
