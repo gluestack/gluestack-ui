@@ -1,20 +1,17 @@
+// @ts-nocheck
 import { test, expect } from '@playwright/test';
 const path = require('path');
 
 const testData = require('./data.json');
 
 for (const [key, value] of Object.entries(testData)) {
-  // @ts-ignore
   const args = value.arguments;
-  // @ts-ignore
   const overlay = value.overlay;
   if (!args || Object.keys(args).length === 0) {
     test(`${key} is displayed`, async ({ page }) => {
-      // @ts-ignore
       const storybookUrl = path.join(
         'file://',
         __dirname,
-        // @ts-ignore
         `../storybook-static/iframe.html?args=&id=stories-${value.storyParent}-${value.storyAddress}--${value.storyName}&viewMode=story`
       );
       await page.goto(storybookUrl);
@@ -24,8 +21,8 @@ for (const [key, value] of Object.entries(testData)) {
   } else {
     const keys = Object.keys(args);
     const combination = {};
-    keys.forEach((key) => {
-      combination[key] = args[key].options[0];
+    keys.forEach((variant) => {
+      combination[variant] = args[variant].options[0];
     });
     let done = false;
     while (!done) {
@@ -34,7 +31,6 @@ for (const [key, value] of Object.entries(testData)) {
         __dirname,
         `../storybook-static/iframe.html?args=${JSON.stringify(combination)
           .replace(/[{}"]/g, '')
-          // @ts-ignore
           .replace(/[,]/g, ';')}&id=stories-${value.storyParent}-${
           value.storyAddress
         }--${value.storyName}`
@@ -43,7 +39,6 @@ for (const [key, value] of Object.entries(testData)) {
       test(`${key} is displayed with arguments ${JSON.stringify(
         combination
       )}`, async ({ page }) => {
-        // @ts-ignore
         await page.goto(storybookUrl);
         if (overlay) await page.waitForTimeout(300);
         expect(await page.screenshot()).toMatchSnapshot();
