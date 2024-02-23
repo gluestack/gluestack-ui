@@ -10,8 +10,8 @@ import {
   Button,
   ButtonText,
   Wrapper as CustomComponentTheme,
-} from '../../CustomComponent';
-import { transformedCode } from '../../../../utils';
+} from '../CustomComponent';
+import { transformedCode } from '../../../utils';
 import { AppProvider, CodePreview, Text } from '@gluestack/design-system';
 
 <Meta title="ui/Theme Configuration/Customizing Theme/Eject Theme" />
@@ -87,12 +87,12 @@ You can customize all the tokens of the theme in `config`. For a complete list o
 
 By utilizing this approach, you can seamlessly modify the primary color tokens of the theme while maintaining the overall theme configuration intact.
 
-<AppProvider>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
+< AppProvider >
+  < CodePreview
+  showComponentRenderer = { true }
+  showArgsController = { false}
+  metaData = {{
+    code: `
 <Box
   bg="$primary500"
   p="$5"
@@ -106,15 +106,16 @@ By utilizing this approach, you can seamlessly modify the primary color tokens o
       transformCode: (code) => {
         return transformedCode(code);
       },
-      scope: {
-        Wrapper: CustomThemeWrapper,
+        scope: {
+      Wrapper: CustomThemeWrapper,
         Box,
         Text,
-      },
-      argsType: {},
-    }}
-  />
-</AppProvider>
+        },
+    argsType: { },
+  }
+}
+/>
+< /AppProvider>
 
 ## Customizing Components
 
