@@ -5,7 +5,7 @@ import { View } from 'react-native';
 const cardStyle = tva({
   variants: {
     size: {
-      sm: 'p-3 rounded',
+      sm: 'p-3 rounded-sm',
       md: 'p-4 rounded-md',
       lg: 'p-6 rounded-xl',
     },
