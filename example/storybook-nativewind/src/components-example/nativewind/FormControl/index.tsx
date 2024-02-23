@@ -285,7 +285,16 @@ const FormControlErrorIcon = ({
 }: { className?: string } & IFormControlErrorIconProps) => {
   const { size: parentSize } = useStyleContext();
   if (AsComp) {
-    return <AsComp className={className} {...props} />;
+    return (
+      <AsComp
+        className={formControlErrorIconStyle({
+          parentVariants: { size: parentSize },
+          size,
+          class: className,
+        })}
+        {...props}
+      />
+    );
   }
   return (
     <UIFormControl.Error.Icon
