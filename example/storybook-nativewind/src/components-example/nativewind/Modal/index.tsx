@@ -53,11 +53,11 @@ const modalStyle = tva({
 });
 
 const modalBackdropStyle = tva({
-  base: 'h-full w-full bg-background-950 cursor-default opacity-50 web:pointer-events-auto',
+  base: 'absolute left-0 top-0 right-0 bottom-0 bg-background-950 web:cursor-default',
 });
 
 const modalContentStyle = tva({
-  base: 'bg-background-50 rounded-lg overflow-hidden web:pointer-events-auto',
+  base: 'bg-background-50 rounded-lg overflow-hidden',
   parentVariants: {
     size: {
       xs: 'w-[60%] max-w-[360px]',
@@ -74,7 +74,7 @@ const modalBodyStyle = tva({
 });
 
 const modalCloseButtonStyle = tva({
-  base: 'group/modal-close-button z-1 p-2 rounded-sm data-[focus-visible=true]:web:bg-background-100 web:outline-0 cursor-pointer',
+  base: 'group/modal-close-button z-10 p-2 rounded-sm data-[focus-visible=true]:web:bg-background-100 web:outline-0 cursor-pointer',
 });
 
 const modalHeaderStyle = tva({
@@ -115,6 +115,7 @@ const Modal = React.forwardRef(
     <UIModal
       ref={ref}
       {...props}
+      pointerEvents="box-none"
       className={modalStyle({ size, class: className })}
       context={{ size }}
     />
@@ -178,7 +179,6 @@ const ModalContent = React.forwardRef(
       <UIModal.Content
         ref={ref}
         {...props}
-        // pointerEvents="auto"
         className={modalContentStyle({
           parentVariants: {
             size: parentSize,
@@ -190,6 +190,7 @@ const ModalContent = React.forwardRef(
           opacity: opacity,
           transform: [{ scale: scale }],
         }}
+        pointerEvents="auto"
       />
     );
   }
