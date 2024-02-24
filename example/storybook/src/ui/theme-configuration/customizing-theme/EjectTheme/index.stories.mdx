@@ -18,7 +18,7 @@ import { AppProvider, CodePreview, Text } from '@gluestack/design-system';
 
 `gluestack-ui` is intentionally designed as an unstyled library, providing you with the flexibility to style your components as you prefer. For users looking for a seamless integration experience, we offer the `@gluestack-ui/config` package, which comes with pre-configured theme that can easily be integrated with `@gluestack-ui/themed` for a convenient styling solution.
 
-> Note: It is NOT RECOMMENDED to both eject theme & library in one project. It is RECOMMENDED to [eject library](/ui/docs/theme-configuration/customizing-theme/eject-library) as it provides maximum customization(theme & components), but if you want to customize only the theme, refer the documentation below. 
+> Note: It is NOT RECOMMENDED to both eject theme & library in one project. It is RECOMMENDED to [eject library](/ui/docs/theme-configuration/customizing-theme/eject-library) as it provides maximum customization(theme & components), but if you want to customize only the theme, refer the documentation below.
 
 ## Customizing Tokens
 
@@ -87,12 +87,12 @@ You can customize all the tokens of the theme in `config`. For a complete list o
 
 By utilizing this approach, you can seamlessly modify the primary color tokens of the theme while maintaining the overall theme configuration intact.
 
-< AppProvider >
-  < CodePreview
-  showComponentRenderer = { true }
-  showArgsController = { false}
-  metaData = {{
-    code: `
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
 <Box
   bg="$primary500"
   p="$5"
@@ -106,16 +106,15 @@ By utilizing this approach, you can seamlessly modify the primary color tokens o
       transformCode: (code) => {
         return transformedCode(code);
       },
-        scope: {
-      Wrapper: CustomThemeWrapper,
+      scope: {
+        Wrapper: CustomThemeWrapper,
         Box,
         Text,
-        },
-    argsType: { },
-  }
-}
-/>
-< /AppProvider>
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
 
 ## Customizing Components
 
