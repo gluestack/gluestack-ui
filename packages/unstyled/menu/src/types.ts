@@ -77,6 +77,11 @@ export interface InterfaceMenuProps {
    * The currently disabled keys in the collection.
    */
   disabledKeys?: string[];
+  /**
+   * If true, renders react-native native modal
+   * @default false
+   */
+  useRNModal?: boolean;
 }
 
 export interface IItemProp {

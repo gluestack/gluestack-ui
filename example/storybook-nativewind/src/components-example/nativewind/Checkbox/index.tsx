@@ -8,11 +8,11 @@ import {
   useStyleContext,
   tva,
   withStyleContext,
+  cssInterop,
 } from '@gluestack-ui/nativewind-utils';
 import { Platform } from 'react-native';
 
 import { Check } from 'lucide-react-native';
-import { cssInterop } from 'nativewind';
 
 const UICheckbox = createCheckbox({
   // @ts-ignore
