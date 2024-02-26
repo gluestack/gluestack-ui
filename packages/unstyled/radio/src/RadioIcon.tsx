@@ -15,38 +15,38 @@ export const RadioIcon = (StyledRadioIcon: any) =>
       isPressed,
     } = useRadio('RadioContext');
 
+    if (!(isChecked || isIndeterminate)) {
+      return null;
+    }
+
     return (
-      <>
-        {isChecked && (
-          <StyledRadioIcon
-            states={{
-              checked: isChecked,
-              disabled: isDisabled,
-              focusVisible: isFocused || isFocusVisible,
-              hover: isHovered,
-              invalid: isInvalid,
-              readonly: isReadOnly,
-              indeterminate: isIndeterminate,
-              focus: isFocused,
-              active: isPressed,
-            }}
-            dataSet={{
-              checked: isChecked ? 'true' : 'false',
-              disabled: isDisabled ? 'true' : 'false',
-              focusVisible: isFocused || isFocusVisible ? 'true' : 'false',
-              hover: isHovered ? 'true' : 'false',
-              invalid: isInvalid ? 'true' : 'false',
-              readonly: isReadOnly ? 'true' : 'false',
-              indeterminate: isIndeterminate ? 'true' : 'false',
-              focus: isFocused ? 'true' : 'false',
-              active: isPressed ? 'true' : 'false',
-            }}
-            {...props}
-            ref={ref}
-          >
-            {children}
-          </StyledRadioIcon>
-        )}
-      </>
+      <StyledRadioIcon
+        states={{
+          checked: isChecked,
+          disabled: isDisabled,
+          focusVisible: isFocused || isFocusVisible,
+          hover: isHovered,
+          invalid: isInvalid,
+          readonly: isReadOnly,
+          indeterminate: isIndeterminate,
+          focus: isFocused,
+          active: isPressed,
+        }}
+        dataSet={{
+          checked: isChecked ? 'true' : 'false',
+          disabled: isDisabled ? 'true' : 'false',
+          focusVisible: isFocused || isFocusVisible ? 'true' : 'false',
+          hover: isHovered ? 'true' : 'false',
+          invalid: isInvalid ? 'true' : 'false',
+          readonly: isReadOnly ? 'true' : 'false',
+          indeterminate: isIndeterminate ? 'true' : 'false',
+          focus: isFocused ? 'true' : 'false',
+          active: isPressed ? 'true' : 'false',
+        }}
+        {...props}
+        ref={ref}
+      >
+        {children}
+      </StyledRadioIcon>
     );
   });
