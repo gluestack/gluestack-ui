@@ -1,19 +1,18 @@
 import React from 'react';
 import { extractDataClassName } from './utils';
 
-export const withStates =
-  <T,>(Component: T): T =>
-  // @ts-ignore
-  ({
-    states,
-    className,
-    ...props
-  }: React.Component<T> & { className: string; states: any }): any => {
-    const classNamesFinal = React.useMemo(
-      () => extractDataClassName(className, states),
-      [className, states]
-    );
+type WithStatesProps = {
+  className?: string;
+  states?: any;
+};
 
-    // @ts-ignore
-    return <Component className={classNamesFinal} {...props} />;
+export const withStates =
+  <T,>(Component: React.ComponentType<T> & WithStatesProps) =>
+  ({ states, className, ...props }: React.Component<T> & WithStatesProps) => {
+    const classNamesFinal = React.useMemo(() => {
+      if (!className) return;
+      extractDataClassName(className, states);
+    }, [className, states]);
+
+    return <Component className={classNamesFinal} {...(props as any)} />;
   };
