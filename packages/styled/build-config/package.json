@@ -1,0 +1,58 @@
+{
+  "name": "@gluestack-style/build-config",
+  "version": "0.0.1",
+  "description": "A gluestack-style babel plugin that transpiles your styled function calls and resolves the component styling in build time.",
+  "keywords": [
+    "css-in-js",
+    "babel-plugin",
+    "server-side rendering",
+    "ssr"
+  ],
+  "homepage": "https://github.com/gluestack/gluestack-ui/tree/main/packages/styled/babel-plugin-styled-resolver#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gluestack/gluestack-ui.git"
+  },
+  "main": "lib/commonjs/index",
+  "types": "lib/typescript/index.d.ts",
+  "module": "lib/module/index",
+  "react-native": "src/index",
+  "source": "src/index",
+  "typings": "lib/typescript/index.d.ts",
+  "scripts": {
+    "prepare": "bob build",
+    "release": "release-it",
+    "build": "bob build",
+    "clean": "rm -rf lib",
+    "watch": "npx nodemon --watch src/index.ts --watch src/transform.ts --exec 'yarn build'"
+  },
+  "peerDependencies": {
+    "@gluestack-style/react": ">=1.0"
+  },
+  "devDependencies": {
+    "babel-plugin-transform-remove-console": "^6.9.4",
+    "tsconfig": "*",
+    "typescript": "^4.7.4"
+  },
+  "dependencies": {
+    "esbuild": "^0.19.8"
+  },
+  "react-native-builder-bob": {
+    "source": "src",
+    "output": "lib",
+    "targets": [
+      "commonjs",
+      "typescript",
+      [
+        "module",
+        {
+          "babelrc": true
+        }
+      ]
+    ]
+  },
+  "files": [
+    "lib/",
+    "src/"
+  ]
+}
