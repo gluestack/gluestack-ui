@@ -1156,7 +1156,8 @@ export function verboseStyled<P, Variants, ComCon>(
 
         const resolvedComponentExtendedTheme = resolveComponentTheme(
           CONFIG,
-          EXTENDED_THEME
+          EXTENDED_THEME,
+          Platform.OS
         );
 
         componentExtendedTheme = resolvedComponentExtendedTheme.theme;

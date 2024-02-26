@@ -156,7 +156,7 @@ export class StyleInjector {
         const resolvedThemeNativeValue: any = {};
 
         Object.keys(styledResolved?.themeResolved).forEach((key) => {
-          const currentThemeStyleObj = styledResolved?.themeResolved[key];
+          const currentThemeStyleObj = styledResolved?.themeResolved?.[key];
           const resolvedCurrentThemeNativeValue =
             getNativeValuesFromCSSVariables(
               currentThemeStyleObj,
@@ -227,7 +227,7 @@ export class StyleInjector {
     theme: any,
     componentExtendedConfig: any,
     componentHashKey: any,
-    CONFIG: any,
+    _CONFIG: any,
     declarationType: string = 'boot',
     ignoreKeys: Set<any> = new Set()
   ) {
@@ -248,7 +248,7 @@ export class StyleInjector {
 
     if (componentTheme.meta && componentTheme.meta.queryCondition) {
       const queryCondition = resolveTokensFromConfig(
-        CONFIG,
+        componentExtendedConfig,
         {
           condition: componentTheme.meta.queryCondition,
         },

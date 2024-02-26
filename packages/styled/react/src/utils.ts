@@ -77,7 +77,7 @@ export function convertTokensToCssVariables(currentConfig: any) {
         // Recursively process nested objects
         acc += objectToCssVariables(variableValue, `${prefix}${key}-`);
       } else {
-        acc += `${convertToUnicodeString(variableName)}: ${variableValue};\n`;
+        acc += `${convertToUnicodeString(variableName)}: ${variableValue}; `;
       }
 
       return acc;
@@ -86,13 +86,13 @@ export function convertTokensToCssVariables(currentConfig: any) {
 
   const tokens = currentConfig?.tokens;
   const cssVariables = objectToCssVariables(tokens);
-  let content = `:root {\n${cssVariables}}`;
+  let content = `:root {${cssVariables}}`;
 
   if (currentConfig.themes) {
     Object.keys(currentConfig.themes).forEach((key) => {
       const theme = currentConfig.themes[key];
       const cssVariables = objectToCssVariables(theme);
-      content += `\n\n[data-theme-id=${key}] {\n${cssVariables}}`;
+      content += `[data-theme-id=${key}] {${cssVariables}}`;
     });
   }
 

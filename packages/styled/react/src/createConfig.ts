@@ -7,7 +7,6 @@ import { propertyTokenMap } from './propertyTokenMap';
 import { updateOrderUnResolvedMap } from './updateOrderUnResolvedMap';
 import { GluestackStyleSheet } from './style-sheet';
 import { resolvePlatformTheme } from './utils';
-import { Platform } from 'react-native';
 
 /********************* PLUGINS *****************************/
 
@@ -135,7 +134,11 @@ export const resolveThemes = (config: any) => {
   return newConfig;
 };
 
-export const resolveComponentTheme = (config: any, componentTheme: any) => {
+export const resolveComponentTheme = (
+  config: any,
+  componentTheme: any,
+  platform: any
+) => {
   const configWithPropertyTokenMap = config;
 
   let resolvedTheme = componentTheme;
@@ -148,7 +151,8 @@ export const resolveComponentTheme = (config: any, componentTheme: any) => {
     resolvedTheme = resolveTheme(
       component.theme,
       configWithPropertyTokenMap,
-      component?.componentConfig
+      component?.componentConfig,
+      platform
     );
   } else {
     const toBeInjected = GluestackStyleSheet.update(
@@ -161,7 +165,11 @@ export const resolveComponentTheme = (config: any, componentTheme: any) => {
   return resolvedTheme;
 };
 
-export const resolveComponentThemes = (config: any, components: any) => {
+export const resolveComponentThemes = (
+  config: any,
+  components: any,
+  platform: any
+) => {
   let newComponents: any = {};
   const configWithPropertyTokenMap = {
     ...config,
@@ -178,7 +186,8 @@ export const resolveComponentThemes = (config: any, components: any) => {
       newComponents[componentName] = resolveTheme(
         component.theme,
         configWithPropertyTokenMap,
-        component?.componentConfig
+        component?.componentConfig,
+        platform
       );
     } else {
       GluestackStyleSheet.update(component.BUILD_TIME_PARAMS?.orderedResolved);
@@ -192,11 +201,12 @@ export const resolveComponentThemes = (config: any, components: any) => {
 export const resolveTheme = (
   componentTheme: {},
   _config: any,
-  extendedConfig?: any
+  extendedConfig?: any,
+  platform?: any
 ) => {
   const versboseComponentTheme = convertStyledToStyledVerbosed(componentTheme);
 
-  resolvePlatformTheme(versboseComponentTheme, Platform.OS);
+  resolvePlatformTheme(versboseComponentTheme, platform);
 
   const componentHash = stableHash({
     ...versboseComponentTheme,
