@@ -1,5 +1,37 @@
 # @gluestack-style/react
 
+## 1.0.48
+
+### Patch Changes
+
+- Fixed React Native style props in utility props
+
+## 1.0.47
+
+### Patch Changes
+
+- - Fixed composed component style injection
+
+## 1.0.46
+
+### Patch Changes
+
+- - Fixed negative tokenization [PR](https://github.com/gluestack/gluestack-ui/pull/1768)
+  - Fixed sizes token typing [PR](https://github.com/gluestack/gluestack-ui/pull/1764)
+
+## 1.0.45
+
+### Patch Changes
+
+- Fixed inline style injection
+
+## 1.0.44
+
+### Patch Changes
+
+- Fixed plugin component reference
+- Added unique component id to plugin for different styles
+
 ## 1.0.43
 
 ### Patch Changes

@@ -1,5 +1,14 @@
 # @gluestack-style/animation-plugin
 
+## 1.0.4
+
+### Patch Changes
+
+- Fixed plugin component reference
+- Added unique component id to plugin for different styles
+- Updated dependencies
+  - @gluestack-style/react@1.0.44
+
 ## 1.0.3
 
 ### Patch Changes

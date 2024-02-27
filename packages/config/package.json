@@ -1,11 +1,16 @@
 {
   "name": "@gluestack-ui/config",
-  "version": "1.1.1",
+  "version": "1.1.9",
   "main": "build/gluestack-ui.config.js",
   "types": "build/gluestack-ui.config.d.ts",
   "module": "build/gluestack-ui.config",
   "sideEffects": false,
   "description": "Themed configuration for gluestack-ui components",
+  "homepage": "https://github.com/gluestack/gluestack-ui/tree/main/packages/config",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gluestack/gluestack-ui.git"
+  },
   "keywords": [
     "react",
     "native",
@@ -30,11 +35,11 @@
   "license": "ISC",
   "devDependencies": {
     "@gluestack-style/react": "^1.0.43",
-    "@gluestack-ui/themed": "^1.1.0"
+    "@gluestack-ui/themed": "^1.1.9"
   },
   "peerDependencies": {
     "@gluestack-style/react": ">=1.0",
-    "@gluestack-ui/themed": ">=1.1.0"
+    "@gluestack-ui/themed": ">=1.1.9"
   },
   "release-it": {
     "git": {

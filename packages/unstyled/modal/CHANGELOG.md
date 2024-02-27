@@ -1,5 +1,12 @@
 # @gluestack-ui/modal
 
+## 0.1.29
+
+### Patch Changes
+
+- Feature
+  Added Support of data-state-\* props
+
 ## 0.1.28
 
 ### Patch Changes

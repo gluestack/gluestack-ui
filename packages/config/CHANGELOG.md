@@ -1,5 +1,19 @@
 # @gluestack-ui/config
 
+## 1.1.9
+
+### Patch Changes
+
+- fix: `lineHeight` issue with `Text`.
+  - @gluestack-ui/themed@1.1.9
+
+## 1.1.2
+
+### Patch Changes
+
+- af1b8e8: New Component Release (Card)
+- New component release (card)
+
 ## 1.1.1
 
 ### Patch Changes

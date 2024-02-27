@@ -17,6 +17,11 @@
   "react-native": "src/index",
   "source": "src/index",
   "typings": "lib/typescript/index.d.ts",
+  "homepage": "https://github.com/gluestack/gluestack-ui/tree/main/packages/styled/animation-moti-driver#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gluestack/gluestack-ui.git"
+  },
   "scripts": {
     "prepare": "bob build",
     "release": "release-it",

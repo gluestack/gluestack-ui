@@ -45,6 +45,7 @@ export * from './ButtonGroupVSpacer';
 export * from './ButtonIcon';
 export * from './ButtonSpinner';
 export * from './ButtonText';
+export * from './Card';
 export * from './Center';
 export * from './Checkbox';
 export * from './CheckboxGroup';

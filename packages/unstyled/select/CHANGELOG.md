@@ -1,5 +1,20 @@
 # @gluestack-ui/select
 
+## 0.1.24
+
+### Patch Changes
+
+- fixes
+
+## 0.1.23
+
+### Patch Changes
+
+- Feature
+  Added Support of data-state-\* props
+- Updated dependencies
+  - @gluestack-ui/form-control@0.1.16
+
 ## 0.1.22
 
 ### Patch Changes

@@ -13,7 +13,7 @@ All `@gluestack-ui/themed` components are universal out of the box, eliminating 
 
 With `gluestack-ui`, developers can now craft beautiful interfaces with a single set of code that seamlessly operates across all devices, removing the need for the tedious and time-consuming process of crafting and maintaining two separate codebase for distinct platforms.
 
-You can also use `gluestack-ui` to create styles specific to a particular platform such as Web, iOS or Android. using `_web`, `_ios` and `_android` respectively.
+You can also use `gluestack-ui` to create styles specific to a particular platform such as Web, iOS or Android. using `$web`, `$ios` and `$android` respectively.
 
 ```jsx
 import { Button, ButtonText} from '@gluestack-ui/themed';
@@ -23,8 +23,7 @@ function App {
     <Button
     $web-backgroundColor="red"
     $ios-backgroundColor="blue"
-    $android-backgroundColor="green"
-        >
+    $android-backgroundColor="green">
      <ButtonText>Hello World</ButtonText>
     </Button>
   )

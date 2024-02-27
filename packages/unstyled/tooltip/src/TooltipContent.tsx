@@ -30,6 +30,13 @@ export function TooltipContent<StyledTooltipContentProps>(
       shouldOverlapWithTrigger,
       shouldFlip,
     });
+
+    if (Object.keys(overlayProps.style).length === 0) {
+      overlayProps.style = {
+        top: -1000,
+        left: -1000,
+      };
+    }
     const mergedRef = mergeRefs([ref, overlayRef]);
 
     return (

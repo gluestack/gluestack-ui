@@ -37,6 +37,7 @@ export const parameters = {
           'Theme',
           ['Default Tokens', 'Default Components'],
           'Customizing Theme',
+          ['Eject Library', 'Eject Theme'],
         ],
         'Styling',
         [
@@ -60,7 +61,7 @@ export const parameters = {
           'Feedback',
           ['Alert', 'Progress', 'Spinner', 'Toast'],
           'Data Display',
-          ['Badge', 'Table'],
+          ['Badge', 'Table', 'Card'],
           'Forms',
           [
             'Button',
@@ -123,7 +124,7 @@ export const parameters = {
         'Advanced',
         ['Fonts', 'Animations'],
         'Recipes',
-        ['Card', 'LinearGradient', 'More Recipes'],
+        ['LinearGradient', 'More Recipes'],
         'Resources',
         ['Todo-List', 'Dashboard App', 'Third Party Library Integrations'],
         'Migration',

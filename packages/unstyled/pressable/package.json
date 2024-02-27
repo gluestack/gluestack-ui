@@ -1,6 +1,6 @@
 {
   "name": "@gluestack-ui/pressable",
-  "version": "0.1.13",
+  "version": "0.1.14",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/index.d.ts",
@@ -50,6 +50,11 @@
   "peerDependencies": {
     "react": ">=16",
     "react-dom": ">=16"
+  },
+  "homepage": "https://github.com/gluestack/gluestack-ui/tree/main/packages/unstyled/pressable#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gluestack/gluestack-ui.git"
   },
   "react-native-builder-bob": {
     "source": "src",
