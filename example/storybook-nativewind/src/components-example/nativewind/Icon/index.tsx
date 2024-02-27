@@ -1,15 +1,14 @@
 import React from 'react';
 import { createIcon } from '@gluestack-ui/icon';
 import { Path, Svg } from 'react-native-svg';
-import { tva } from '@gluestack-ui/nativewind-utils';
-import { cssInterop } from 'nativewind';
+import { tva, cssInterop } from '@gluestack-ui/nativewind-utils';
 
 export const UIIcon = createIcon({
   Root: Svg,
 });
 
 const iconStyle = tva({
-  base: 'color-background-800',
+  base: 'color-background-800 fill-none',
   variants: {
     size: {
       '2xs': 'h-3 w-3',
@@ -26,7 +25,17 @@ const iconStyle = tva({
 });
 
 export const Icon = React.forwardRef(
-  ({ fill = 'none', size, className, ...props }: any, ref) => {
+  ({ fill = 'none', size, className, as: AsComp, ...props }: any, ref) => {
+    if (AsComp) {
+      return (
+        <AsComp
+          ref={ref}
+          {...props}
+          fill={fill}
+          className={iconStyle({ size, class: className })}
+        />
+      );
+    }
     return (
       <UIIcon
         ref={ref}
@@ -188,6 +197,7 @@ cssInterop(UIIcon, { className: 'style' });
 // });
 
 type ParameterTypes = Omit<Parameters<typeof createIcon>[0], 'Root'>;
+
 const createIconUI = ({ ...props }: ParameterTypes) => {
   const UIIcon = createIcon({ Root: Svg, ...props });
 
@@ -240,7 +250,7 @@ const AddIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
 AddIcon.displayName = 'AddIcon';
 export { AddIcon };
 
-export const UIAlertCircleIcon = createIcon({
+const UIAlertCircleIcon = createIcon({
   Root: Svg,
   viewBox: '0 0 24 24',
   path: (
@@ -283,6 +293,7 @@ const AlertCircleIcon = React.forwardRef(
 );
 
 AlertCircleIcon.displayName = 'AlertCircleIcon';
+export { AlertCircleIcon };
 
 const UIArrowUpIcon = createIcon({
   Root: Svg,
@@ -1440,7 +1451,7 @@ GripVerticalIcon.displayName = 'GripVerticalIcon';
 
 export { GripVerticalIcon };
 
-export const UIHelpCircleIcon = createIcon({
+const UIHelpCircleIcon = createIcon({
   Root: Svg,
   viewBox: '0 0 24 24',
   path: (
@@ -1483,8 +1494,9 @@ const HelpCircleIcon = React.forwardRef(
 );
 
 HelpCircleIcon.displayName = 'HelpCircleIcon';
+export { HelpCircleIcon };
 
-export const UIInfoIcon = createIcon({
+const UIInfoIcon = createIcon({
   Root: Svg,
   viewBox: '0 0 24 24',
   path: (
@@ -1525,6 +1537,7 @@ const InfoIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
 });
 
 InfoIcon.displayName = 'InfoIcon';
+export { InfoIcon };
 
 const UILinkIcon = createIcon({
   Root: Svg,
@@ -1713,7 +1726,7 @@ MailIcon.displayName = 'MailIcon';
 
 export { MailIcon };
 
-export const UIMenuIcon = createIcon({
+const UIMenuIcon = createIcon({
   Root: Svg,
   viewBox: '0 0 24 24',
   path: (
@@ -1754,6 +1767,7 @@ const MenuIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
 });
 
 MenuIcon.displayName = 'MenuIcon';
+export { MenuIcon };
 
 const UIMessageCircleIcon = createIcon({
   Root: Svg,
@@ -1787,7 +1801,7 @@ MessageCircleIcon.displayName = 'MessageCircleIcon';
 
 export { MessageCircleIcon };
 
-export const UIMoonIcon = createIcon({
+const UIMoonIcon = createIcon({
   Root: Svg,
   viewBox: '0 0 24 24',
   path: (
@@ -1814,6 +1828,7 @@ const MoonIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
 });
 
 MoonIcon.displayName = 'MoonIcon';
+export { MoonIcon };
 
 const UIPaperclipIcon = createIcon({
   Root: Svg,
@@ -1916,7 +1931,7 @@ PlayIcon.displayName = 'PlayIcon';
 
 export { PlayIcon };
 
-export const UIRemoveIcon = createIcon({
+const UIRemoveIcon = createIcon({
   Root: Svg,
   viewBox: '0 0 24 24',
   path: (
@@ -1945,6 +1960,7 @@ const RemoveIcon = React.forwardRef(
 );
 
 RemoveIcon.displayName = 'RemoveIcon';
+export { RemoveIcon };
 
 const UIRepeatIcon = createIcon({
   Root: Svg,
@@ -2057,7 +2073,7 @@ Repeat1Icon.displayName = 'Repeat1Icon';
 
 export { RepeatIcon, Repeat1Icon };
 
-export const UISearchIcon = createIcon({
+const UISearchIcon = createIcon({
   Root: Svg,
   viewBox: '0 0 24 24',
   path: (
@@ -2093,6 +2109,7 @@ const SearchIcon = React.forwardRef(
 );
 
 SearchIcon.displayName = 'SearchIcon';
+export { SearchIcon };
 
 const UISettingsIcon = createIcon({
   Root: Svg,
@@ -2262,7 +2279,7 @@ StarIcon.displayName = 'StarIcon';
 
 export { StarIcon };
 
-export const UISunIcon = createIcon({
+const UISunIcon = createIcon({
   Root: Svg,
   viewBox: '0 0 24 24',
   path: (
@@ -2345,6 +2362,7 @@ const SunIcon = React.forwardRef(({ className, size, ...props }: any, ref) => {
 });
 
 SunIcon.displayName = 'SunIcon';
+export { SunIcon };
 
 const UIThreeDotsIcon = createIcon({
   Root: Svg,
