@@ -37,7 +37,7 @@ cssInterop(UIButton.Spinner, { className: 'style' });
 cssInterop(UIButton.Icon, { className: 'style' });
 
 const buttonStyle = tva({
-  base: 'group/button rounded-lg bg-primary-500 flex-row items-center justify-center data-[focus=true]:web:outline-none data-[focus-visible=true]:web:ring-2 ',
+  base: 'group/button rounded-lg bg-primary-500 flex-row items-center justify-center data-[focus=true]:web:outline-none data-[focus-visible=true]:web:ring-2 data-[disabled=true]:opacity-40',
   variants: {
     action: {
       primary:
@@ -160,6 +160,62 @@ const buttonTextStyle = tva({
   ],
 });
 
+const buttonIconStyle = tva({
+  base: 'color-typography-0',
+  parentVariants: {
+    action: {
+      primary:
+        'color-primary-600 group-hover/button:color-primary-600 group-active/button:color-primary-700',
+      secondary:
+        'color-secondary-600 group-hover/button:color-secondary-600 group-active/button:color-secondary-700',
+      positive:
+        'color-success-600 group-hover/button:color-success-600 group-active/button:color-success-700',
+      negative:
+        'color-error-600 group-hover/button:color-error-600 group-active/button:color-error-700',
+    },
+    variant: {
+      link: 'group-hover/button:underline group-active/button:underline',
+      outline: '',
+      solid:
+        'color-typography-0 group-hover/button:color-typography-0 group-active/button:color-typography-0',
+    },
+    size: {
+      '2xs': 'h-3 w-3',
+      'xs': 'h-3.5 w-3.5',
+      'sm': 'h-4 w-4',
+      'md': 'h-[18px] w-[18px]',
+      'lg': 'h-5 w-5',
+      'xl': 'h-6 w-6',
+    },
+  },
+  parentCompoundVariants: [
+    {
+      variant: 'solid',
+      action: 'primary',
+      class:
+        '!color-typography-0 group-hover/button:color-typography-0 group-active/button:color-typography-0',
+    },
+    {
+      variant: 'solid',
+      action: 'secondary',
+      class:
+        '!color-typography-0 group-hover/button:color-typography-0 group-active/button:color-typography-0',
+    },
+    {
+      variant: 'solid',
+      action: 'positive',
+      class:
+        '!color-typography-0 group-hover/button:color-typography-0 group-active/button:color-typography-0',
+    },
+    {
+      variant: 'solid',
+      action: 'negative',
+      class:
+        '!color-typography-0 group-hover/button:color-typography-0 group-active/button:color-typography-0',
+    },
+  ],
+});
+
 type IButtonProps = React.ComponentProps<typeof UIButton> &
   VariantProps<typeof buttonStyle>;
 
@@ -232,12 +288,43 @@ const ButtonSpinner = UIButton.Spinner;
 const ButtonIcon = ({
   className,
   as: AsComp,
+  size,
   ...props
 }: IButtonIcon & { className?: any }) => {
+  const {
+    variant: parentVariant,
+    size: parentSize,
+    action: parentAction,
+  } = useStyleContext();
+
   if (AsComp) {
-    return <AsComp className={className} {...props} />;
+    return (
+      <AsComp
+        {...props}
+        className={buttonIconStyle({
+          parentVariants: {
+            variant: parentVariant,
+            size: parentSize,
+            action: parentAction,
+          },
+          size,
+          class: className,
+        })}
+      />
+    );
   }
-  return <UIButton.Icon className={className} {...props} />;
+  return (
+    <UIButton.Icon
+      {...props}
+      className={buttonIconStyle({
+        parentVariants: {
+          size: parentSize,
+        },
+        size,
+        class: className,
+      })}
+    />
+  );
 };
 Button.displayName = 'Button';
 ButtonText.displayName = 'ButtonText';
