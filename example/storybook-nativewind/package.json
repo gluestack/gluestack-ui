@@ -1,5 +1,5 @@
 {
-  "name": "@gluestack/storybook-nativewind",
+  "name": "@nativewind-gluestack/storybook-nativewind",
   "private": true,
   "version": "0.1.0",
   "main": "index.js",
@@ -28,8 +28,8 @@
     "@expo/webpack-config": "^0.17.2",
     "@geometricpanda/storybook-addon-iframe": "^0.2.2",
     "@gluestack-style/react": "^1.0.26",
-    "@gluestack-ui/config": "^1.0.8",
-    "@gluestack-ui/themed": "^1.1.2",
+    "@gluestack-ui/config": "^1.1.10",
+    "@gluestack-ui/themed": "^1.1.8",
     "@gluestack/design-system": "^0.5.27",
     "@legendapp/motion": "^2.2.0",
     "@react-aria/button": "^3.7.0",
