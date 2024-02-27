@@ -14,8 +14,7 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="with-gluestack-style/components/Layout/VStack" />
 
-import { VStack } from './VStack';
-import { Box } from '@gluestack-ui/themed';
+import { Box, VStack } from '../../components-example/themed';
 import { transformedCode } from '../../utils';
 import {
   AppProvider,
@@ -24,10 +23,9 @@ import {
   TableContainer,
   Text,
   InlineCode,
+  CollapsibleCode,
 } from '@gluestack/design-system';
-
 import Wrapper from '../../components-example/themed/Wrapper';
-import { CollapsibleCode } from '@gluestack/design-system';
 
 This is an illustration of **VStack** component.
 
@@ -169,3 +167,33 @@ VStack component is created using View component from react-native. It extends a
     </Table>
   </TableContainer>
 </>
+
+### Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+#### VStack Reversed
+
+A VStack component with the reversed prop reverses the order of vertically stacked elements, enabling customized vertical layouts and visual arrangements of content within a user interface.
+
+<AppProvider>
+  <CodePreview
+    _rendererWrapper={{ py: '$2.5' }}
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+        <VStack space="md">
+          <Box w='$20' h='$20' bg='$blue300' />
+          <Box w='$20' h='$20' bg='$blue400' />
+          <Box w='$20' h='$20' bg='$blue500' />
+        </VStack>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: { Box, Wrapper, VStack },
+      argsType: {},
+    }}
+  />
+</AppProvider>

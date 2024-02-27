@@ -15,34 +15,34 @@ import { Meta } from '@storybook/addon-docs';
 <Meta title="with-gluestack-style/components/Data Display/Badge" />
 
 import {
-  Badge,
+  Divider,
+  Image,
+  CheckIcon,
+  Heading,
   BadgeText,
   BadgeIcon,
-} from '../../components-example/nativewind/Badge';
-
-import {
+  GlobeIcon,
   Icon,
   Box,
-  BadgePlusIcon,
   PuzzleIcon,
+  Menu,
+  MenuIcon,
+  MenuItem,
+  MenuItemLabel,
+  BadgePlusIcon,
   SettingsIcon,
   AddIcon,
   PaintBucket,
   Avatar,
   AvatarImage,
   AvatarFallbackText,
-  GlobeIcon,
-} from '@gluestack-ui/themed';
-import { Divider, Image, CheckIcon, Heading } from '@gluestack-ui/themed';
-import {
   VStack,
   HStack,
   Button,
   ButtonText,
   BadgeCheckIcon,
-} from '@gluestack-ui/themed';
-import { Menu, MenuIcon, MenuItem, MenuItemLabel } from '@gluestack-ui/themed';
-import { transformedCode } from '../../utils';
+  Badge,
+} from '../../components-example/themed';
 import {
   AppProvider,
   CodePreview,
@@ -50,9 +50,10 @@ import {
   Table,
   TableContainer,
   InlineCode,
+  CollapsibleCode,
 } from '@gluestack/design-system';
+import { transformedCode } from '../../utils';
 import Wrapper from '../../components-example/themed/Wrapper';
-import { CollapsibleCode } from '@gluestack/design-system';
 
 This is an illustration of **Badge** component.
 
@@ -305,3 +306,203 @@ export default () => (
 );
 ```
 -->
+
+### Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+#### Badge with Avatar
+
+An example of the Badge component being used with the Avatar component to display badges alongside user avatars for enhanced visual representation or identification.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+        <VStack space="2xl">
+          <HStack space="md">
+            <Avatar>
+              <AvatarFallbackText>SS</AvatarFallbackText>
+              <AvatarImage
+                source={{
+                  uri: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60',
+                }}
+              />
+            </Avatar>
+            <VStack>
+            <HStack>
+              <Heading size="sm" >Ronald Richards</Heading>
+              <Badge  size="sm" variant="solid"  action="success" ml="$1">
+                  <BadgeText>Verified</BadgeText>
+                  <BadgeIcon as={BadgeCheckIcon} ml="$1"/>
+              </Badge>
+            </HStack>
+            <Text size="sm" >Nursing Assistant</Text>
+            </VStack>
+          </HStack>
+        </VStack>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Avatar,
+        AvatarFallbackText,
+        AvatarImage,
+        Heading,
+        Text,
+        HStack,
+        VStack,
+        Badge,
+        BadgeText,
+        BadgeIcon,
+        GlobeIcon,
+        BadgeCheckIcon,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### Badge in Menu
+
+A Badge component used with a menu adds a visual indicator, such as a badge, to highlight specific items or provide additional information within the menu, enhancing user interaction and improving the visibility of important elements.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+      <Menu
+        placement={"top"}
+          trigger={({ ...triggerProps }) => {
+            return (
+              <Button {...triggerProps}>
+                <ButtonText>Menu</ButtonText>
+              </Button>
+            );
+          }}
+          bg='$white'
+        >
+          <MenuItem key="Community" textValue="Community">
+            <HStack space="sm" alignItems="center">
+              <Icon as={GlobeIcon} size="sm" />
+              <Text fontSize="$sm" lineHeight="$md">
+                Community
+              </Text>
+            </HStack>
+          </MenuItem>
+          <MenuItem key="Plugins" textValue="Plugins">
+            <HStack space="sm" alignItems="center">
+              <Icon as={PuzzleIcon} size="sm" />
+              <Text fontSize="$sm" lineHeight="$md">
+                Plugins
+              </Text>
+            </HStack>
+          </MenuItem>
+          <MenuItem key="Theme" textValue="Theme">
+            <HStack space="sm" alignItems="center">
+              <Icon as={PaintBucket} size="sm" />
+              <Text fontSize="$sm" lineHeight="$md">
+                Theme
+              </Text>
+               <Badge bg="$backgroundLight600">
+                 <BadgeText color="$textLight50">New</BadgeText>
+                               </Badge>
+            </HStack>
+          </MenuItem>
+          <MenuItem key="Settings" textValue="Settings">
+            <HStack space="sm" alignItems="center">
+              <Icon as={SettingsIcon} size="sm" />
+              <Text fontSize="$sm" lineHeight="$md">
+                Settings
+              </Text>
+            </HStack>
+          </MenuItem>
+          <MenuItem key="Add account" textValue="Add account">
+            <HStack space="sm" alignItems="center">
+              <Icon as={AddIcon} size="sm" />
+              <Text fontSize="$sm" lineHeight="$md">
+                Add account
+              </Text>
+            </HStack>
+          </MenuItem>
+        </Menu>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Button,
+        ButtonText,
+        Menu,
+        MenuIcon,
+        MenuItem,
+        MenuItemLabel,
+        Text,
+        Box,
+        HStack,
+        Icon,
+        GlobeIcon,
+        PuzzleIcon,
+        PaintBucket,
+        SettingsIcon,
+        AddIcon,
+        Badge,
+        BadgeText,
+        BadgeIcon,
+        BadgePlusIcon,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+### Badge Composition
+
+An example of the Badge component being used with the Composition component, allowing for the display of badges within a composition of other UI elements.
+
+<AppProvider>
+  <CodePreview
+    showArgsController={false}
+    metaData={{
+      code: `
+       <Box alignItems="center">
+      <VStack>
+        <Badge  h={22} w={22} bg="$red600" borderRadius="$full"  mb={-14} mr={-14} zIndex={1} variant="solid" alignSelf="flex-end"  >
+         <BadgeText color="$white">2</BadgeText>
+        </Badge>
+        <Button>
+         <ButtonText>
+          Notifications
+        </ButtonText>
+        </Button>
+      </VStack>
+    </Box>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Badge,
+        BadgeText,
+        BadgeIcon,
+        GlobeIcon,
+        Box,
+        Text,
+        HStack,
+        VStack,
+        Heading,
+        Button,
+        ButtonText,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>

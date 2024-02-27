@@ -1,7 +1,5 @@
 # @gluestack-ui/config
 
-# <<<<<<< Updated upstream
-
 ## 1.1.10
 
 ### Patch Changes
@@ -14,8 +12,6 @@
 
 - fix: `lineHeight` issue with `Text`.
   - @gluestack-ui/themed@1.1.9
-
-> > > > > > > Stashed changes
 
 ## 1.1.2
 

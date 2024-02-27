@@ -1,7 +1,9 @@
 import { tv } from 'tailwind-variants';
+import type { TVA } from './types';
+
 import { deepMergeObjects } from './deepMerge';
 
-export function tva(options: {
+function tva(options: {
   /**
    * Extend allows for easy composition of components.
    * @see https://www.tailwind-variants.org/docs/composing-components
@@ -69,3 +71,4 @@ export function tva(options: {
     return callback({ ...mergedVariants });
   };
 }
+export default tva as TVA;

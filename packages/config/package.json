@@ -73,7 +73,7 @@
   },
   "peerDependencies": {
     "@gluestack-style/react": ">=1.0",
-    "@gluestack-ui/themed": ">=1.1.0"
+    "@gluestack-ui/themed": ">=1.1.9"
   },
   "release-it": {
     "git": {
