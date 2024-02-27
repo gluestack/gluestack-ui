@@ -9,7 +9,7 @@ export const TextareaInput = createStyle({
   props: {
     // @ts-ignore
     multiline: true,
-    placeholderTextColor: '$text500',
+    placeholderTextColor: '$text600',
   },
 
   _web: {

@@ -66,7 +66,7 @@ export const Toast = createStyle({
     pointerEvents: 'auto',
   },
   defaultProps: {
-    hardShadow: '5',
+    hardShadow: '2',
     variant: 'solid',
     action: 'attention',
   },
