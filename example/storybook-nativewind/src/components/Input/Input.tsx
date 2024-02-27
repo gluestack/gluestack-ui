@@ -5,14 +5,13 @@ import {
   Box,
   Heading,
   Icon,
-  SearchIcon,
   FormControl,
 } from '@gluestack-ui/themed';
 import { Input, InputField, InputIcon, InputSlot } from '@/components/ui/Input';
 import { Center } from '@/components/ui/Center';
 import { VStack } from '@/components/ui/VStack';
 import { Text } from '@/components/ui/Text';
-import { EyeIcon, EyeOffIcon } from 'lucide-react-native';
+import { EyeIcon, EyeOffIcon, SearchIcon } from 'lucide-react-native';
 import { useState } from 'react';
 
 const InputBasic = ({ ...props }: any) => {
@@ -27,7 +26,7 @@ const InputBasic = ({ ...props }: any) => {
         value={value}
         placeholder="Enter Text here"
       />
-      <InputSlot pr={props.variant === 'underlined' ? '$0' : '$4'}>
+      <InputSlot className={props.variant === 'underlined' ? `pr-0` : `pr-4`}>
         <InputIcon as={SearchIcon} />
       </InputSlot>
     </Input>
