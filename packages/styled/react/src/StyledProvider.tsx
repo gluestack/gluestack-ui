@@ -62,6 +62,7 @@ export const StyledProvider: React.FC<{
 }) => {
   const inlineStyleMap: any = React.useRef({
     initialStyleInjected: false,
+    injectedCssTags: [],
   });
 
   const { themes } = useTheme();
@@ -187,35 +188,16 @@ export const StyledProvider: React.FC<{
 
   useSafeLayoutEffect(() => {
     if (Platform.OS === 'web' && typeof window !== 'undefined') {
-      const toBeInjectedStyles: any = {};
-
       if (inlineStyleMap.current.initialStyleInjected) {
         return;
       }
 
-      Object.keys(inlineStyleMap.current).forEach((key: any) => {
-        if (key !== 'initialStyleInjected') {
-          const styles = inlineStyleMap.current[key];
-
-          if (!toBeInjectedStyles[key]) {
-            toBeInjectedStyles[key] = document.createDocumentFragment();
-          }
-
-          styles.forEach((style: any) => {
-            if (!document.getElementById(style.id)) {
-              toBeInjectedStyles[key].appendChild(style);
-            }
-          });
-        }
-      });
-
-      Object.keys(toBeInjectedStyles).forEach((key) => {
-        let wrapperElement = document.querySelector('#' + key);
-        if (wrapperElement) {
-          wrapperElement.appendChild(toBeInjectedStyles[key]);
-        }
-        // delete inlineStyleMap.current[key];
-      });
+      if (typeof window !== 'undefined') {
+        //@ts-ignore
+        document
+          .querySelector('#gs-injected')
+          .append(...inlineStyleMap?.current?.injectedCssTags);
+      }
 
       inlineStyleMap.current.initialStyleInjected = true;
     }

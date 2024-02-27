@@ -10,6 +10,7 @@ import {
   resolveTokensFromConfig,
 } from '../utils';
 import { inject } from '../utils/css-injector';
+import { orderWithCssSelectors } from '../utils/css-injector/utils/inject';
 export type DeclarationType = 'boot' | 'forwarded';
 
 const cssVariableRegex = /var\(--([^)]+)\)/;
@@ -61,12 +62,10 @@ function getNativeValuesFromCSSVariables(styleObject: any, CONFIG: any) {
 export class StyleInjector {
   #globalStyleMap: any;
   #toBeInjectedIdsArray: Array<string>;
-  #idCounter: number;
 
   constructor() {
     this.#globalStyleMap = new Map();
     this.#toBeInjectedIdsArray = [];
-    this.#idCounter = 0;
   }
 
   declare(
@@ -82,10 +81,10 @@ export class StyleInjector {
           ...styledResolved,
           type: _wrapperElementId,
           componentHash: _styleTagId,
-          id: this.#idCounter,
+          // id: this.#idCounter,
           extendedConfig,
         });
-        this.#idCounter++;
+        // this.#idCounter++;
         styleIds.push(styledResolved.meta.cssId);
       }
     });
@@ -98,7 +97,7 @@ export class StyleInjector {
     CONFIG: any,
     ExtendedConfig: any,
     resolve: any = true,
-    declarationType: string = 'boot',
+    _declarationType: string = 'boot',
     ignoreKeys: Set<any> = new Set()
   ) {
     let componentExtendedConfig = CONFIG;
@@ -120,14 +119,12 @@ export class StyleInjector {
             theme,
             componentExtendedConfig,
             styledResolved.componentHash,
-            CONFIG,
-            declarationType,
             ignoreKeys
           );
         }
 
         const type = styledResolved?.type;
-        const styleTag = styledResolved?.componentHash;
+        const styleTag = styledResolved?.meta?.cssId;
         const cssRuleset = styledResolved?.meta?.cssRuleset;
 
         if (!toBeInjected[type]) {
@@ -138,12 +135,12 @@ export class StyleInjector {
 
         if (!cummialtiveCssRuleset) {
           toBeInjected[type].set(styleTag, {
-            id: styledResolved.id,
+            // id: styledResolved.id,
             cssRuleset: cssRuleset ?? '',
           });
         } else {
           toBeInjected[type].set(styleTag, {
-            id: cummialtiveCssRuleset?.id,
+            // id: cummialtiveCssRuleset?.id,
             cssRuleset: cummialtiveCssRuleset?.cssRuleset + cssRuleset,
           });
         }
@@ -184,12 +181,12 @@ export class StyleInjector {
     orderResolvedStyleMap.forEach((styledResolved: any) => {
       this.#globalStyleMap.set(styledResolved.meta.cssId, styledResolved);
 
-      this.#idCounter++;
+      // this.#idCounter++;
 
       this.#toBeInjectedIdsArray.push(styledResolved.meta.cssId);
 
       const type = styledResolved?.type;
-      const styleTag = styledResolved?.componentHash;
+      const styleTag = styledResolved?.meta?.cssId;
       const cssRuleset = styledResolved?.meta?.cssRuleset;
 
       if (!toBeInjected[type]) {
@@ -200,12 +197,12 @@ export class StyleInjector {
 
       if (!cummialtiveCssRuleset) {
         toBeInjected[type].set(styleTag, {
-          id: styledResolved.id,
+          // id: styledResolved.id,
           cssRuleset: cssRuleset ?? '',
         });
       } else {
         toBeInjected[type].set(styleTag, {
-          id: cummialtiveCssRuleset?.id,
+          // id: cummialtiveCssRuleset?.id,
           cssRuleset: cummialtiveCssRuleset?.cssRuleset + cssRuleset,
         });
       }
@@ -216,8 +213,8 @@ export class StyleInjector {
 
   inject(toBeInjected: any = {}, inlineStyleMap: any) {
     Object.keys(toBeInjected).forEach((type) => {
-      toBeInjected[type].forEach(({ id, cssRuleset }: any, styleTag: any) => {
-        this.injectStyles(cssRuleset, type, styleTag, inlineStyleMap, id);
+      toBeInjected[type].forEach(({ cssRuleset }: any, styleTag: any) => {
+        this.injectStyles(cssRuleset, type, styleTag, inlineStyleMap);
       });
     });
   }
@@ -227,11 +224,8 @@ export class StyleInjector {
     theme: any,
     componentExtendedConfig: any,
     componentHashKey: any,
-    _CONFIG: any,
-    declarationType: string = 'boot',
     ignoreKeys: Set<any> = new Set()
   ) {
-    const prefixClassName = declarationType === 'inline' ? 'gs' : '';
     componentTheme.resolved = StyledValueToCSSObject(
       theme,
       componentExtendedConfig,
@@ -260,7 +254,7 @@ export class StyleInjector {
     const cssData: any = getCSSIdAndRuleset(
       componentTheme,
       componentHashKey,
-      prefixClassName
+      orderWithCssSelectors[componentTheme?.type] ?? ''
     );
 
     componentTheme.meta.cssRuleset = cssData.rules.style;
@@ -274,16 +268,14 @@ export class StyleInjector {
     cssRuleset: any,
     _wrapperType: any,
     _styleTagId: any,
-    inlineStyleMap: any,
-    id: any
+    inlineStyleMap: any
   ) {
     if (cssRuleset) {
       inject(
         `@media screen {${cssRuleset}}`,
         _wrapperType as any,
         _styleTagId,
-        inlineStyleMap,
-        id
+        inlineStyleMap
       );
     }
   }

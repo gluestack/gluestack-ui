@@ -31,7 +31,6 @@ import { useStyled } from './StyledProvider';
 import { useTheme } from './Theme';
 import { propertyTokenMap } from './propertyTokenMap';
 import { Platform, StyleSheet } from 'react-native';
-import { INTERNAL_updateCSSStyleInOrderedResolved } from './updateCSSStyleInOrderedResolved';
 import { generateStylePropsFromCSSIds } from './generateStylePropsFromCSSIds';
 
 import { get, onChange } from './core/colorMode';
@@ -1003,12 +1002,6 @@ export function verboseStyled<P, Variants, ComCon>(
 
     const orderedSXResolved =
       styledResolvedToOrderedSXResolved(sxStyledResolved);
-    INTERNAL_updateCSSStyleInOrderedResolved(
-      orderedSXResolved,
-      sxHash,
-      true,
-      'gs'
-    );
 
     injectComponentAndDescendantStyles(
       orderedSXResolved,

@@ -2,9 +2,9 @@ import React from 'react';
 import { Platform } from 'react-native';
 import type { IWrapperType } from '../../../types';
 
-type IToBeFlushedStyles = { [key in IWrapperType]?: any };
+// type IToBeFlushedStyles = { [key in IWrapperType]?: any };
 
-const toBeFlushedStyles: IToBeFlushedStyles = {};
+const toBeFlushedStyles: any = {};
 
 const order: IWrapperType[] = [
   'global',
@@ -16,18 +16,17 @@ const order: IWrapperType[] = [
   'boot-base',
   'extended-base',
   'composed-base',
-  'boot-base-state',
-  'extended-base-state',
-  'composed-base-state',
   // descendant-base
   'boot-descendant-base',
   'extended-descendant-base',
   'composed-descendant-base',
-  'boot-descendant-base-state',
   // variant
   'boot-variant',
   'extended-variant',
   'composed-variant',
+  'boot-base-state',
+  'extended-base-state',
+  'composed-base-state',
   'boot-variant-state',
   'extended-variant-state',
   'composed-variant-state',
@@ -35,8 +34,10 @@ const order: IWrapperType[] = [
   'boot-descendant-variant',
   'extended-descendant-variant',
   'composed-descendant-variant',
+  'boot-descendant-base-state',
   'boot-descendant-variant-state',
   'extended-descendant-variant-state',
+  'composed-descendant-base-state',
   'composed-descendant-variant-state',
   // inline
   'inline-descendant-base',
@@ -45,6 +46,14 @@ const order: IWrapperType[] = [
   'inline-base',
   'inline-base-state',
 ];
+
+export const orderWithCssSelectors: any = {};
+
+order.reduce((prev: any, ele: any) => {
+  const cssSelector = prev + `.gs`;
+  Object.assign(orderWithCssSelectors, { [ele]: cssSelector });
+  return cssSelector;
+}, '');
 
 const WRAPPER_BLOCK_PREFIX = 'gs-injected';
 
@@ -62,20 +71,6 @@ if (typeof window !== 'undefined') {
       createdWrapperBlockDiv.id = WRAPPER_BLOCK_PREFIX;
       wrapperBlockDiv = document.head.appendChild(createdWrapperBlockDiv);
     }
-
-    // document.head
-
-    order.forEach((orderKey) => {
-      let wrapperElement = document.getElementById(
-        `${WRAPPER_BLOCK_PREFIX}-${orderKey}`
-      );
-      if (!wrapperElement) {
-        wrapperElement = document.createElement('div');
-        wrapperElement.id = `${WRAPPER_BLOCK_PREFIX}-${orderKey}`;
-
-        wrapperBlockDiv?.appendChild(wrapperElement);
-      }
-    });
   }
 }
 
@@ -90,23 +85,17 @@ const createStyle = (styleTagId: any, css: any) => {
 
 export const injectCss = (
   css: any,
-  wrapperType: IWrapperType,
+  _wrapperType: IWrapperType,
   styleTagId: string,
-  inlineStyleMap?: any,
-  id?: any
+  inlineStyleMap?: any
 ) => {
-  if (!toBeFlushedStyles[wrapperType]) {
-    toBeFlushedStyles[wrapperType] = {};
-  }
-  if (toBeFlushedStyles[wrapperType][styleTagId]) {
-    // toBeFlushedStyles[wrapperType][styleTagId].push(css);
-  } else {
-    toBeFlushedStyles[wrapperType][styleTagId] = [css];
+  if (!toBeFlushedStyles[styleTagId]) {
+    toBeFlushedStyles[styleTagId] = css;
   }
 
   if (typeof window !== 'undefined') {
-    let wrapperElement = document.querySelector(
-      '#' + `${WRAPPER_BLOCK_PREFIX}-${wrapperType}`
+    const wrapperElement = document.querySelector(
+      '#' + `${WRAPPER_BLOCK_PREFIX}`
     );
     if (wrapperElement) {
       let style = wrapperElement.querySelector(`[id='${styleTagId}']`);
@@ -114,16 +103,7 @@ export const injectCss = (
       if (!style) {
         style = createStyle(styleTagId, css);
         if (inlineStyleMap && !inlineStyleMap?.initialStyleInjected) {
-          const styleMapId = `${WRAPPER_BLOCK_PREFIX}-${wrapperType}`;
-          const inlineMapStyles = inlineStyleMap[styleMapId];
-
-          if (inlineMapStyles) {
-            inlineMapStyles[id] = style;
-          } else {
-            inlineStyleMap[styleMapId] = [];
-            inlineStyleMap[styleMapId][id] = style;
-          }
-          // console.log('hello here >>>> there');
+          inlineStyleMap.injectedCssTags.push(style);
         } else {
           // console.log('hello here >>>>');
           wrapperElement.appendChild(style);
@@ -144,35 +124,20 @@ export const injectGlobalCss = (
 };
 
 export const flush = (): Array<any> => {
-  let toBeFlushedStylesGlobal = [] as any;
+  const toBeFlushedStylesGlobal: any = [];
 
-  order.forEach((orderKey) => {
-    const styleChildren: any = [];
-    if (toBeFlushedStyles[orderKey]) {
-      Object.keys(toBeFlushedStyles[orderKey]).forEach((styleTagId) => {
-        let rules = toBeFlushedStyles[orderKey][styleTagId];
-
-        styleChildren.push(
-          React.createElement('style', {
-            id: styleTagId,
-            key: styleTagId,
-            dangerouslySetInnerHTML: {
-              __html: rules.join('\n'),
-            },
-          })
-        );
-      });
-    }
+  Object.keys(toBeFlushedStyles).forEach((styleTagId: any) => {
+    //@ts-ignore
+    const css = toBeFlushedStyles[styleTagId];
 
     toBeFlushedStylesGlobal.push(
-      React.createElement(
-        'div',
-        {
-          id: `${WRAPPER_BLOCK_PREFIX}-${orderKey}`,
-          key: `${WRAPPER_BLOCK_PREFIX}-${orderKey}`,
+      React.createElement('style', {
+        id: styleTagId,
+        key: styleTagId,
+        dangerouslySetInnerHTML: {
+          __html: css,
         },
-        styleChildren
-      )
+      })
     );
   });
 

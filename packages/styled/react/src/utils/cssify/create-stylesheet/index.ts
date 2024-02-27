@@ -5,7 +5,6 @@ const createStyleSheet = (
   stylesObject: any,
   dataHash: string = 'media',
   prefixClassName: string = '',
-  hasState: boolean = false,
   prefixColorMode: string = 'gs-'
 ) => {
   if (!stylesObject) return { ids: {}, styles: {}, fullStyles: {} };
@@ -25,43 +24,44 @@ const createStyleSheet = (
       typeof colorMode === 'string' ? colorMode : condition?.colorMode;
     const colorSchemeQuery = createQuery(finalColorMode);
 
-    const css = createDeclarationBlock(style);
+    if (Object.keys(style).length > 0) {
+      const css = createDeclarationBlock(style);
 
-    const themeCssObj = {} as any;
-    // if (themeCondition) {
-    //   Object.keys(themeCondition).forEach((themeName) => {
-    //     const themeConditionValue = themeCondition[themeName];
-    //     themeCssObj[themeName] = createDeclarationBlock(themeConditionValue);
-    //   });
-    // }
-    // console.log(css, style, 'css', mediaQuery, 'mediaQuery', colorSchemeQuery);
+      const themeCssObj = {} as any;
+      // if (themeCondition) {
+      //   Object.keys(themeCondition).forEach((themeName) => {
+      //     const themeConditionValue = themeCondition[themeName];
+      //     themeCssObj[themeName] = createDeclarationBlock(themeConditionValue);
+      //   });
+      // }
+      // console.log(css, style, 'css', mediaQuery, 'mediaQuery', colorSchemeQuery);
 
-    // const stringHash = `cssinjected-${hash(`${key}${css}`)}`;
+      // const stringHash = `cssinjected-${hash(`${key}${css}`)}`;
 
-    const rule = createCssRule(
-      mediaQuery,
-      colorSchemeQuery,
-      finalColorMode,
-      dataHash,
-      css,
-      'style',
-      prefixClassName,
-      prefixColorMode,
-      hasState,
-      theme,
-      themeCssObj
-    );
+      const rule = createCssRule(
+        mediaQuery,
+        colorSchemeQuery,
+        finalColorMode,
+        dataHash,
+        css,
+        'style',
+        prefixClassName,
+        prefixColorMode,
+        theme,
+        themeCssObj
+      );
 
-    delete cleanStyles[key];
+      delete cleanStyles[key];
 
-    ids = {
-      ...ids,
-      [key]: `${ids?.[key] ? ids[key] + ' ' : ''}${dataHash}`,
-    };
-    rules = {
-      ...rules,
-      [key]: rule,
-    };
+      ids = {
+        ...ids,
+        [key]: `${ids?.[key] ? ids[key] + ' ' : ''}${dataHash}`,
+      };
+      rules = {
+        ...rules,
+        [key]: rule,
+      };
+    }
   });
   // console.log(rules, 'ids here');
 
