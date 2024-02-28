@@ -30,6 +30,7 @@ export const Menu = ({
         trigger,
         shouldOverlapWithTrigger,
         _experimentalOverlay = false,
+        useRNModal = false,
         ...props
       }: any,
       ref?: any
@@ -105,6 +106,7 @@ export const Menu = ({
             offset={offset}
             shouldFlip={shouldFlip}
             StyledBackdrop={StyledBackdrop}
+            useRNModal={useRNModal}
           >
             <MenuComponent
               {...menuProps}
