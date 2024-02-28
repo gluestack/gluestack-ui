@@ -14,7 +14,7 @@ import { Center } from '@/components/ui/Center';
 import { X } from 'lucide-react-native';
 import { Text } from '@/components/ui/Text';
 
-const ModalBasic = () => {
+const ModalBasic = (props: any) => {
   const [showModal, setShowModal] = React.useState(false);
   const ref = React.useRef(null);
   return (
@@ -27,6 +27,7 @@ const ModalBasic = () => {
         <ButtonText>Open Modal</ButtonText>
       </Button>
       <Modal
+        {...props}
         isOpen={showModal}
         onClose={() => {
           setShowModal(false);
