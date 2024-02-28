@@ -1,6 +1,6 @@
 {
   "include": ["./src"],
-  "exclude": ["node_modules", "example"],
+  "exclude": ["node_modules", "example", "./src/components"],
   "compilerOptions": {
     "noEmit": false,
     "declaration": true,

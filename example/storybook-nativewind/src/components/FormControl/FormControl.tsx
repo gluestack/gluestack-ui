@@ -45,7 +45,6 @@ import {
   Icon,
   CircleIcon,
   CheckIcon,
-  AlertCircleIcon,
   ChevronDownIcon,
 } from '@gluestack-ui/themed';
 import {
@@ -58,6 +57,7 @@ import {
   FormControlErrorIcon,
   FormControlErrorText,
 } from '@/components/ui/FormControl';
+import { AlertCircleIcon } from 'lucide-react-native';
 
 import { Input, InputField } from '@/components/ui/Input';
 const FormControlBasic = ({ ...props }: any) => {

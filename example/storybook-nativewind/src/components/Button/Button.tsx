@@ -1,6 +1,11 @@
 import React from 'react';
 
-import { Button, ButtonText } from '@/components/ui/Button';
+import {
+  Button,
+  ButtonText,
+  ButtonSpinner,
+  ButtonIcon,
+} from '@/components/ui/Button';
 
 export const ButtonBasic = (props: any) => {
   return (
@@ -17,4 +22,4 @@ ButtonBasic.description =
 
 export default ButtonBasic;
 
-export { Button, ButtonText };
+export { Button, ButtonText, ButtonSpinner, ButtonIcon };
