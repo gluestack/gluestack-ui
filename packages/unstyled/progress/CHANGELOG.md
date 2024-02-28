@@ -1,5 +1,11 @@
 # @gluestack-ui/progress
 
+## 0.1.13
+
+### Patch Changes
+
+- Remove sx dependancy in `ProgressFilledTrack`.
+
 ## 0.1.7
 
 ### Patch Changes

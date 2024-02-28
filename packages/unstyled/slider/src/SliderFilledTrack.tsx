@@ -60,13 +60,21 @@ function SliderFilledTrack<StyledSliderFilledTrack>(
         <StyledSliderFilledTrack
           {...props}
           ref={mergeRefs([_ref, ref])}
-          style={{ ...style, ...positionProps }}
+          style={[style, positionProps]}
           states={{
             hover: isHovered || isHoveredProp,
             disabled: isDisabled || isDisabledProp,
             focus: isFocused || isFocusedProp,
             focusVisible: isFocusVisible || isFocusVisibleProp,
             active: isPressed || isPressedProp,
+          }}
+          dataSet={{
+            hover: isHovered || isHoveredProp ? 'true' : 'false',
+            disabled: isDisabled || isDisabledProp ? 'true' : 'false',
+            focus: isFocused || isFocusedProp ? 'true' : 'false',
+            focusVisible:
+              isFocusVisible || isFocusVisibleProp ? 'true' : 'false',
+            active: isPressed || isPressedProp ? 'true' : 'false',
           }}
           disabled={isDisabled}
           tabIndex={Platform.OS === 'web' ? -1 : undefined}

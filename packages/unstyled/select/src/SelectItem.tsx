@@ -39,6 +39,9 @@ export const SelectItem = (StyledSelectItem: any, StyledSelectItemText: any) =>
             states={{
               active: activeValue === value,
             }}
+            dataSet={{
+              active: activeValue === value ? 'true' : 'false',
+            }}
             {...props}
           >
             <StyledSelectItemText>{label}</StyledSelectItemText>

@@ -1,5 +1,20 @@
 # @gluestack-ui/checkbox
 
+## 0.1.24
+
+### Patch Changes
+
+- Feature
+  Added Support of data-state-\* props
+- Updated dependencies
+  - @gluestack-ui/form-control@0.1.16
+
+## 0.1.23
+
+### Patch Changes
+
+- `Checkbox` added typing of `isFocusVisible`.
+
 ## 0.1.17
 
 ### Patch Changes

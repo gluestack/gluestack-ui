@@ -4,27 +4,15 @@ import { useProgress } from './ProgressContext';
 export function ProgressFilledTrack<StyledProgressFilledTrack>(
   StyledProgressFilledTrack: React.ComponentType<StyledProgressFilledTrack>
 ) {
-  return forwardRef(
-    //@ts-ignore
-    ({ sx, ...props }: StyledProgressFilledTrack, ref?: any) => {
-      const { valueWidth } = useProgress('ProgressContext');
+  return forwardRef(({ style = {}, ...props }: any, ref?: any) => {
+    const { valueWidth } = useProgress('ProgressContext');
 
-      let mysx = {};
-      if (sx) {
-        sx['w'] = `${valueWidth}%`;
-        mysx = sx;
-      } else {
-        // @ts-ignore
-        mysx['w'] = `${valueWidth}%`;
-      }
-
-      return (
-        <StyledProgressFilledTrack
-          {...(props as StyledProgressFilledTrack)}
-          sx={mysx}
-          ref={ref}
-        />
-      );
-    }
-  );
+    return (
+      <StyledProgressFilledTrack
+        {...(props as StyledProgressFilledTrack)}
+        style={[style, { width: `${valueWidth}%`, height: '100%' }]}
+        ref={ref}
+      />
+    );
+  });
 }

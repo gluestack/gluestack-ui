@@ -90,7 +90,7 @@ This is an illustration of a **Themed Button** component with default configurat
 To use this component in your project, include the following import statement in your file.
 
 ```jsx
-import { Button } from '@gluestack-ui/themed';
+import { Button, ButtonText, ButtonIcon, ButtonSpinner, ButtonGroup } from '@gluestack-ui/themed';
 ```
 
 ### Anatomy
@@ -289,11 +289,13 @@ Contains all group related layout style props and actions. It inherits all the p
         <Table.TR>
           <Table.TD>
             <Table.TText>
-              <InlineCode>direction</InlineCode>
+              <InlineCode>flexDirection</InlineCode>
             </Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>'column' | 'row'</Table.TText>
+            <Table.TText>
+              'row' | 'column' | 'row-reverse' | 'column-reverse'
+            </Table.TText>
           </Table.TD>
           <Table.TD>
             <Table.TText>'row'</Table.TText>

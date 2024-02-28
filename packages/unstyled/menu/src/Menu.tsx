@@ -30,6 +30,7 @@ export const Menu = ({
         trigger,
         shouldOverlapWithTrigger,
         _experimentalOverlay = false,
+        useRNModal = false,
         ...props
       }: any,
       ref?: any
@@ -100,12 +101,12 @@ export const Menu = ({
             placement={placement}
             triggerRef={triggerRef}
             state={state}
-            AnimatePresence={AnimatePresence}
             shouldOverlapWithTrigger={shouldOverlapWithTrigger}
             crossOffset={crossOffset}
             offset={offset}
             shouldFlip={shouldFlip}
             StyledBackdrop={StyledBackdrop}
+            useRNModal={useRNModal}
           >
             <MenuComponent
               {...menuProps}
@@ -166,6 +167,7 @@ const MenuComponent = forwardRef(
           {...menuProps}
           {...typeSelectProps}
           ref={mergeRef}
+          role="list"
           {...restProps}
         >
           {[...state.collection].map((item) => (

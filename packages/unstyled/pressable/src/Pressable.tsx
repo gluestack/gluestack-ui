@@ -47,6 +47,13 @@ function Pressable<T>(StyledPressable: React.ComponentType<T>) {
             disabled: props.disabled,
             focusVisible: isFocusVisible,
           }}
+          dataSet={{
+            hover: isHovered ? 'true' : 'false',
+            focus: isFocused ? 'true' : 'false',
+            active: isPressed ? 'true' : 'false',
+            disabled: props.disabled ? 'true' : 'false',
+            focusVisible: isFocusVisible ? 'true' : 'false',
+          }}
           {...(props as T)}
           onPressIn={composeEventHandlers(
             props?.onPressIn,

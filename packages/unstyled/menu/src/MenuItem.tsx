@@ -1,25 +1,23 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback } from 'react';
 import { composeEventHandlers } from '@gluestack-ui/utils';
 import { useHover, usePress } from '@react-native-aria/interactions';
 import { useFocusRing } from '@react-native-aria/focus';
 import { useMenuItem } from '@react-native-aria/menu';
 import { Platform } from 'react-native';
 
-const usePressed = (onPressIn: () => any, onPressOut: () => any) => {
-  if (Platform.OS === 'web') {
-    return {
-      pressEvents: {
-        onMouseDown: onPressIn,
-        onMouseUp: onPressOut,
-        onTouchStart: onPressIn,
-        onTouchEnd: onPressOut,
-      },
-    };
-  }
+const usePressed = (
+  onPressIn: () => any,
+  onPressOut: () => any,
+  onPress: () => any,
+  isDisabled: boolean
+) => {
+  if (isDisabled) return {};
+
   return {
     pressEvents: {
       onPressIn,
       onPressOut,
+      onPress,
     },
   };
 };
@@ -66,18 +64,12 @@ export function MenuItem({
   const { pressEvents } = usePressed(
     // @ts-ignore
     composeEventHandlers(
-      composeEventHandlers(rest?.onPressIn, pressProps.onPressIn),
+      rest?.onPressIn,
       composeEventHandlers(restMenuProps.onPressIn, toggleSelection)
     ),
-    composeEventHandlers(
-      composeEventHandlers(rest?.onPressOut, pressProps.onPressOut),
-      restMenuProps.onPressOut
-    )
-  );
-
-  const pressEvents1 = useMemo(
-    () => (!state.selectionManager.isDisabled(item.key) ? pressEvents : {}),
-    [item.key, pressEvents, state.selectionManager]
+    composeEventHandlers(rest?.onPressOut, restMenuProps.onPressOut),
+    composeEventHandlers(rest?.onPress, restMenuProps.onPress),
+    state.selectionManager.isDisabled(item.key)
   );
 
   return (
@@ -93,8 +85,19 @@ export function MenuItem({
         selected: state.selectionManager.isSelected(item.key),
         disabled: state.selectionManager.isDisabled(item.key),
       }}
+      dataSet={{
+        hover: isHovered ? 'true' : 'false',
+        focus: isFocused ? 'true' : 'false',
+        active: isPressed ? 'true' : 'false',
+        focusVisible: isFocusVisible ? 'true' : 'false',
+        selected: state.selectionManager.isSelected(item.key)
+          ? 'true'
+          : 'false',
+        disabled: state.selectionManager.isDisabled(item.key)
+          ? 'true'
+          : 'false',
+      }}
       {...rest}
-      {...pressEvents1}
       // @ts-ignore - web only
       onHoverIn={composeEventHandlers(rest?.onHoverIn, hoverProps.onHoverIn)}
       // @ts-ignore - web only
@@ -108,6 +111,15 @@ export function MenuItem({
       onBlur={composeEventHandlers(
         composeEventHandlers(rest?.onBlur, focusRingProps.onBlur),
         restMenuProps?.onBlur
+      )}
+      onPressIn={composeEventHandlers(
+        pressProps.onPressIn,
+        pressEvents?.onPressIn
+      )}
+      onPress={composeEventHandlers(pressProps.onPress, pressEvents?.onPress)}
+      onPressOut={composeEventHandlers(
+        pressProps.onPressOut,
+        pressEvents?.onPressOut
       )}
     >
       {children}

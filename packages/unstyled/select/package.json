@@ -15,7 +15,7 @@
     "ios",
     "nextjs"
   ],
-  "version": "0.1.21",
+  "version": "0.1.24",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/index.d.ts",
@@ -43,7 +43,7 @@
     "typescript": "^4.9.4"
   },
   "dependencies": {
-    "@gluestack-ui/form-control": "^0.1.14",
+    "@gluestack-ui/form-control": "^0.1.16",
     "@gluestack-ui/hooks": "0.1.11",
     "@gluestack-ui/utils": "^0.1.12",
     "@react-native-aria/focus": "^0.2.9"
@@ -51,6 +51,11 @@
   "peerDependencies": {
     "react": ">=16",
     "react-dom": ">=16"
+  },
+  "homepage": "https://github.com/gluestack/gluestack-ui/tree/main/packages/unstyled/select#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gluestack/gluestack-ui.git"
   },
   "react-native-builder-bob": {
     "source": "src",
