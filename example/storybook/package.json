@@ -19,8 +19,8 @@
     "release": "release-it",
     "test": "jest",
     "update-snapshot": "jest -u",
-    "test:screenshot": "yarn playwright test",
-    "update:screenshot": "npx playwright test --update-snapshots",
+    "test:screenshot": "./test-script/playwright-test.sh",
+    "update:screenshot": "yarn playwright test --update-snapshots",
     "test:show-report": "yarn playwright show-report"
   },
   "dependencies": {
