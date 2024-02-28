@@ -44,3 +44,5 @@ export function createButton<
     IconProps
   >;
 }
+
+export { useButton } from './useButton';

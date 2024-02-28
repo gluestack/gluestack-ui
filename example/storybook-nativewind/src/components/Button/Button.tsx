@@ -1,12 +1,34 @@
 import React from 'react';
-import { Button, ButtonText } from '@/components/ui/Button';
+// import {
+//   Button,
+//   ButtonText,
+//   ButtonSpinner,
+// } from '../../components-example/nativewind/Button/ButtonHook';
+import {
+  Button,
+  ButtonText,
+  ButtonSpinner,
+} from '../../components-example/nativewind/Button';
+
+import TimedRender from '../../TimeRenderer.js';
+import { HStack } from '@gluestack-ui/themed';
 
 export const ButtonBasic = (props: any) => {
+  const [count, setCount] = React.useState(0);
+
   return (
     <>
-      <Button {...props}>
-        <ButtonText>Hello World 22</ButtonText>
-      </Button>
+      <div style={{ overflow: 'scroll' }}>
+        <TimedRender setCount={setCount} count={count}>
+          <HStack>
+            {[...Array(1000)].map((e, i) => (
+              <Button key={i + count} {...props}>
+                <ButtonText>Hello World{count}</ButtonText>
+              </Button>
+            ))}
+          </HStack>
+        </TimedRender>
+      </div>
     </>
   );
 };
