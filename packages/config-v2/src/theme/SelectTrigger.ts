@@ -29,7 +29,7 @@ export const SelectTrigger = createStyle({
   },
 
   '_icon': {
-    color: '$background500',
+    color: '$background600',
   },
 
   'variants': {

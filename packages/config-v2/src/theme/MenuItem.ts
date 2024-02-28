@@ -6,7 +6,7 @@ export const MenuItem = createStyle({
   'alignItems': 'center',
 
   ':hover': {
-    bg: '$background100',
+    bg: '$background50',
   },
 
   ':disabled': {
@@ -22,11 +22,11 @@ export const MenuItem = createStyle({
   },
 
   ':active': {
-    bg: '$background200',
+    bg: '$background100',
   },
 
   ':focus': {
-    bg: '$background100',
+    bg: '$background50',
     // @ts-ignore
     outlineWidth: '$0',
     outlineStyle: 'none',
