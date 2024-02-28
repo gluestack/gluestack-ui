@@ -1,4 +1,4 @@
-name: Release
+name: Visual Regression Tests
 
 on:
   pull_request:
