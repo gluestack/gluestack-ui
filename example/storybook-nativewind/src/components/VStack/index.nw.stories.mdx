@@ -31,12 +31,12 @@ import { CollapsibleCode } from '@gluestack/design-system';
 
 This is an illustration of **VStack** component.
 
-<Wrapper>
+< Wrapper >
   <CodePreview
-    showComponentRenderer={true}
-    showArgsController={true}
-    metaData={{
-      code: `
+    showComponentRenderer={ true }
+  showArgsController = { true}
+  metaData = {{
+    code: `
         <Box className='justify-center h-80'>
           <VStack {...props}>
             <Box  className="h-20 w-20 bg-primary-300" />
@@ -48,38 +48,37 @@ This is an illustration of **VStack** component.
       transformCode: (code) => {
         return transformedCode(code);
       },
-      scope: {
-        Wrapper,
+        scope: {
+      Wrapper,
         VStack,
         Box,
       },
-      argsType: {
-        space: {
-          control: 'select',
+    argsType: {
+      space: {
+        control: 'select',
           options: ['none', 'xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', '4xl'],
           default: 'md',
         },
-        reversed: {
-          control: 'boolean',
+      reversed: {
+        control: 'boolean',
           options: [true, false],
           default: false,
         },
-      },
-    }}
-  />
-</Wrapper>
+    },
+  }
+}
+/>
+< /Wrapper>
 
-<br />
+< br />
 
 ## Installation
 
 ### Step 1: Copy and paste the following code into your project.
 
-<CollapsibleCode>
-  ```jsx 
-  %%-- File: components-example/nativewind/VStack/index.tsx --%% 
-  ```
-</CollapsibleCode>
+< CollapsibleCode >
+  ```jsx %%-- File: components-example/nativewind/VStack/index.tsx --%% ```
+< /CollapsibleCode>
 
 ### Step 2: Update the import paths to match your project setup.
 
@@ -115,59 +114,59 @@ VStack component is created using View component from react-native. It extends a
 
 #### VStack
 
-<Wrapper>
+< Wrapper >
   <TableContainer>
     <Table>
       <Table.THead>
         <Table.TR>
           <Table.TH>
-            <Table.TText>Prop</Table.TText>
-          </Table.TH>
-          <Table.TH>
-            <Table.TText>Type</Table.TText>
-          </Table.TH>
-          <Table.TH>
-            <Table.TText>Default</Table.TText>
-          </Table.TH>
-          <Table.TH>
-            <Table.TText>Description</Table.TText>
-          </Table.TH>
-        </Table.TR>
-      </Table.THead>
-      <Table.TBody>
+            <Table.TText>Prop< /Table.TText>
+          < /Table.TH>
+          < Table.TH >
+            <Table.TText>Type< /Table.TText>
+          < /Table.TH>
+          < Table.TH >
+            <Table.TText>Default< /Table.TText>
+          < /Table.TH>
+          < Table.TH >
+            <Table.TText>Description< /Table.TText>
+          < /Table.TH>
+        < /Table.TR>
+      < /Table.THead>
+      < Table.TBody >
         <Table.TR>
           <Table.TD>
             <Table.TText>
-              <InlineCode>space</InlineCode>
-            </Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>string</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>-</Table.TText>
-          </Table.TD>
-          <Table.TD>
+              <InlineCode>space< /InlineCode>
+            < /Table.TText>
+          < /Table.TD>
+          < Table.TD >
+            <Table.TText>string< /Table.TText>
+          < /Table.TD>
+          < Table.TD >
+            <Table.TText>-< /Table.TText>
+          < /Table.TD>
+          < Table.TD >
             <Table.TText>{`It sets the space between children.`}</Table.TText>
-          </Table.TD>
-        </Table.TR>
-        <Table.TR>
+          < /Table.TD>
+        < /Table.TR>
+        < Table.TR >
           <Table.TD>
             <Table.TText>
-              <InlineCode>reversed</InlineCode>
-            </Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>boolean</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>-</Table.TText>
-          </Table.TD>
-          <Table.TD>
+              <InlineCode>reversed< /InlineCode>
+            < /Table.TText>
+          < /Table.TD>
+          < Table.TD >
+            <Table.TText>boolean< /Table.TText>
+          < /Table.TD>
+          < Table.TD >
+            <Table.TText>-< /Table.TText>
+          < /Table.TD>
+          < Table.TD >
             <Table.TText>{`When true, it places the VStack items in reverse direction.`}</Table.TText>
-          </Table.TD>
-        </Table.TR>
-      </Table.TBody>
-    </Table>
-  </TableContainer>
-</Wrapper>
+          < /Table.TD>
+        < /Table.TR>
+      < /Table.TBody>
+    < /Table>
+  < /TableContainer>
+< /Wrapper>

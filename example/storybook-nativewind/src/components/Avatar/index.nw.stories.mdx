@@ -39,38 +39,39 @@ import Wrapper from '../../components-example/nativewind/Wrapper';
 
 This is an illustration of **Avatar** component.
 
-<Wrapper>
+< Wrapper >
   <CodePreview
-    showComponentRenderer={true}
-    showArgsController={true}
-    metaData={{
+      showComponentRenderer={ true }
+    showArgsController = { true}
+    metaData = {{
       code: `
         <Avatar {...props}>
           <AvatarFallbackText>Sandeep Srivastava</AvatarFallbackText>
         </Avatar>
       `,
-      transformCode: (code) => {
-        return transformedCode(code);
-      },
-      scope: {
+        transformCode: (code) => {
+          return transformedCode(code);
+        },
+          scope: {
         Wrapper,
-        Avatar,
-        AvatarBadge,
-        AvatarFallbackText,
-        AvatarImage,
-      },
+          Avatar,
+          AvatarBadge,
+          AvatarFallbackText,
+          AvatarImage,
+        },
       argsType: {
         size: {
           control: 'select',
-          options: ['xs', 'sm', 'md', 'lg', 'xl', '2xl'],
-          default: 'md',
-        },
+            options: ['xs', 'sm', 'md', 'lg', 'xl', '2xl'],
+            default: 'md',
+          },
       },
-    }}
+    }
+  }
   />
-</Wrapper>
+< /Wrapper>
 
-<br />
+< br />
 
 ## Installation
 
@@ -84,11 +85,9 @@ npm i @gluestack-ui/avatar
 
 ### Step 2: Copy and paste the following code into your project.
 
-<CollapsibleCode>
-  ```jsx 
-  %%-- File: components-example/nativewind/Avatar/index.tsx --%% 
-  ```
-</CollapsibleCode>
+< CollapsibleCode >
+  ```jsx %%-- File: components-example/nativewind/Avatar/index.tsx --%% ```
+< /CollapsibleCode>
 
 ### Step 3: Update the import paths to match your project setup.
 

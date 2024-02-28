@@ -26,11 +26,11 @@ import { CollapsibleCode } from '@gluestack/design-system';
 
 This is an illustration of **Box** component.
 
-<Wrapper>
+< Wrapper >
   <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
+      showComponentRenderer={ true }
+    showArgsController = { false}
+    metaData = {{
       code: `
 <Box
   className="bg-primary-500 p-5"
@@ -40,32 +40,31 @@ This is an illustration of **Box** component.
   </Text>
 </Box>
 `,
-      transformCode: (code) => {
-        return transformedCode(code);
-      },
-      scope: {
+        transformCode: (code) => {
+          return transformedCode(code);
+        },
+          scope: {
         Wrapper,
-        Box,
-        Text,
-      },
-      argsType: {},
-    }}
+          Box,
+          Text,
+        },
+      argsType: { },
+    }
+  }
   />
-</Wrapper>
+< /Wrapper>
 
-<br />
+< br />
 
 ## Installation
 
 ### Step 1: Copy and paste the following code into your project.
 
-<CollapsibleCode>
+< CollapsibleCode >
 
-```jsx
-%%-- File: components-example/nativewind/Box/index.tsx --%%
-```
+```jsx %%-- File: components-example/nativewind/Box/index.tsx --%% ```
 
-</CollapsibleCode>
+< /CollapsibleCode>
 
 ### Step 2: Update the import paths to match your project setup.
 

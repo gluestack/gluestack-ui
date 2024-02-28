@@ -41,10 +41,10 @@ This is an illustration of **Avatar** component.
 
 <>
   <CodePreview
-    showComponentRenderer={true}
-    showArgsController={true}
-    metaData={{
-      code: `
+    showComponentRenderer={ true }
+  showArgsController = { true}
+  metaData = {{
+    code: `
         <Avatar {...props}>
           <AvatarFallbackText>Sandeep Srivastava</AvatarFallbackText>
         </Avatar>
@@ -52,25 +52,26 @@ This is an illustration of **Avatar** component.
       transformCode: (code) => {
         return transformedCode(code);
       },
-      scope: {
-        Wrapper,
+        scope: {
+      Wrapper,
         Avatar,
         AvatarBadge,
         AvatarFallbackText,
         AvatarImage,
       },
-      argsType: {
-        size: {
-          control: 'select',
+    argsType: {
+      size: {
+        control: 'select',
           options: ['xs', 'sm', 'md', 'lg', 'xl', '2xl'],
           default: 'md',
         },
-      },
-    }}
-  />
-</>
+    },
+  }
+}
+/>
+< />
 
-<br />
+< br />
 
 ## API Reference
 
@@ -118,11 +119,9 @@ npm install @gluestack-ui/nativewind-utils
 
 Step 2: Copy and paste the following code into your project.
 
-<CollapsibleCode>
-  ```jsx 
-%%-- File: components-example/nativewind/Avatar/index.tsx --%% 
-```
-</CollapsibleCode>
+< CollapsibleCode >
+  ```jsx %%-- File: components-example/nativewind/Avatar/index.tsx --%% ```
+< /CollapsibleCode>
 
 Step 3: Update the import paths to match your project setup.
 
@@ -139,11 +138,9 @@ npm install @gluestack-style/react
 
 Step 2: Copy and paste the following code into your project.
 
-<CollapsibleCode>
-  ```jsx 
-%%-- File: components-example/themed/Avatar/index.tsx --%% 
-```
-</CollapsibleCode>
+< CollapsibleCode >
+  ```jsx %%-- File: components-example/themed/Avatar/index.tsx --%% ```
+< /CollapsibleCode>
 
 Step 3: Update the import paths to match your project setup.
 
@@ -164,38 +161,38 @@ Props to style child components.
       <Table.THead>
         <Table.TR>
           <Table.TH>
-            <Table.TText>Sx Prop</Table.TText>
-          </Table.TH>
-          <Table.TH>
-            <Table.TText>Description</Table.TText>
-          </Table.TH>
-        </Table.TR>
-      </Table.THead>
-      <Table.TBody>
+            <Table.TText>Sx Prop< /Table.TText>
+          < /Table.TH>
+          < Table.TH >
+            <Table.TText>Description< /Table.TText>
+          < /Table.TH>
+        < /Table.TR>
+      < /Table.THead>
+      < Table.TBody >
         <Table.TR>
           <Table.TD>
             <Table.TText>
-              <InlineCode>_badge</InlineCode>
-            </Table.TText>
-          </Table.TD>
-          <Table.TD>
+              <InlineCode>_badge< /InlineCode>
+            < /Table.TText>
+          < /Table.TD>
+          < Table.TD >
             <Table.TText>{`Prop to style AvatarBadge Component`}</Table.TText>
-          </Table.TD>
-        </Table.TR>
-        <Table.TR>
+          < /Table.TD>
+        < /Table.TR>
+        < Table.TR >
           <Table.TD>
             <Table.TText>
-              <InlineCode>_text</InlineCode>
-            </Table.TText>
-          </Table.TD>
-          <Table.TD>
+              <InlineCode>_text< /InlineCode>
+            < /Table.TText>
+          < /Table.TD>
+          < Table.TD >
             <Table.TText>{`Prop to style AvatarFallbackText Component`}</Table.TText>
-          </Table.TD>
-        </Table.TR>
-      </Table.TBody>
-    </Table>
-  </TableContainer>
-</>
+          < /Table.TD>
+        < /Table.TR>
+      < /Table.TBody>
+    < /Table>
+  < /TableContainer>
+< />
 
 #### AvatarGroup
 
@@ -210,28 +207,28 @@ Props to style child components.
       <Table.THead>
         <Table.TR>
           <Table.TH>
-            <Table.TText>Sx Prop</Table.TText>
-          </Table.TH>
-          <Table.TH>
-            <Table.TText>Description</Table.TText>
-          </Table.TH>
-        </Table.TR>
-      </Table.THead>
-      <Table.TBody>
+            <Table.TText>Sx Prop< /Table.TText>
+          < /Table.TH>
+          < Table.TH >
+            <Table.TText>Description< /Table.TText>
+          < /Table.TH>
+        < /Table.TR>
+      < /Table.THead>
+      < Table.TBody >
         <Table.TR>
           <Table.TD>
             <Table.TText>
-              <InlineCode>_avatar</InlineCode>
-            </Table.TText>
-          </Table.TD>
-          <Table.TD>
+              <InlineCode>_avatar< /InlineCode>
+            < /Table.TText>
+          < /Table.TD>
+          < Table.TD >
             <Table.TText>{`Prop to style Avatar Component`}</Table.TText>
-          </Table.TD>
-        </Table.TR>
-      </Table.TBody>
-    </Table>
-  </TableContainer>
-</>
+          < /Table.TD>
+        < /Table.TR>
+      < /Table.TBody>
+    < /Table>
+  < /TableContainer>
+< />
 
 #### AvatarImage
 
@@ -265,34 +262,34 @@ Avatar component is created using View component from react-native. It extends a
       <Table.THead>
         <Table.TR>
           <Table.TH>
-            <Table.TText>Name</Table.TText>
-          </Table.TH>
-          <Table.TH>
-            <Table.TText>Value</Table.TText>
-          </Table.TH>
-          <Table.TH>
-            <Table.TText>Default</Table.TText>
-          </Table.TH>
-        </Table.TR>
-      </Table.THead>
-      <Table.TBody>
+            <Table.TText>Name< /Table.TText>
+          < /Table.TH>
+          < Table.TH >
+            <Table.TText>Value< /Table.TText>
+          < /Table.TH>
+          < Table.TH >
+            <Table.TText>Default< /Table.TText>
+          < /Table.TH>
+        < /Table.TR>
+      < /Table.THead>
+      < Table.TBody >
         <Table.TR>
           <Table.TD>
             <Table.TText>
-              <InlineCode>size</InlineCode>
-            </Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>xs | sm | md | lg | xl | 2xl</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>md</Table.TText>
-          </Table.TD>
-        </Table.TR>
-      </Table.TBody>
-    </Table>
-  </TableContainer>
-</>
+              <InlineCode>size< /InlineCode>
+            < /Table.TText>
+          < /Table.TD>
+          < Table.TD >
+            <Table.TText>xs | sm | md | lg | xl | 2xl< /Table.TText>
+          < /Table.TD>
+          < Table.TD >
+            <Table.TText>md< /Table.TText>
+          < /Table.TD>
+        < /Table.TR>
+      < /Table.TBody>
+    < /Table>
+  < /TableContainer>
+< />
 
 ## Examples
 
@@ -304,10 +301,10 @@ An Avatar component with text displays a stylized representation of a user or en
 
 <>
   <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
+    showComponentRenderer={ true }
+showArgsController = { false}
+metaData = {{
+  code: `
     <VStack space="2xl">
         <HStack space="md">
             <Avatar>
@@ -330,24 +327,24 @@ An Avatar component with text displays a stylized representation of a user or en
      </HStack>
     </VStack>
 `,
-      transformCode: (code) => {
-        return transformedCode(code);
-      },
+    transformCode: (code) => {
+      return transformedCode(code);
+    },
       scope: {
-        Wrapper,
-        Avatar,
-        AvatarBadge,
-        AvatarFallbackText,
-        AvatarImage,
-        Text,
-        HStack,
-        VStack,
-        Heading,
+    Wrapper,
+      Avatar,
+      AvatarBadge,
+      AvatarFallbackText,
+      AvatarImage,
+      Text,
+      HStack,
+      VStack,
+      Heading,
       },
-      argsType: {},
-    }}
-  />
-</>
+  argsType: { },
+}}
+/>
+< />
 
 #### Avatar with Icon
 
@@ -355,10 +352,10 @@ An Avatar component with an icon combines a graphical symbol or icon with a user
 
 <>
   <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
+    showComponentRenderer={ true }
+showArgsController = { false}
+metaData = {{
+  code: `
         <VStack space="2xl">
             <HStack space="md">
               <Avatar >
@@ -382,26 +379,26 @@ An Avatar component with an icon combines a graphical symbol or icon with a user
           </HStack>
         </VStack>
       `,
-      transformCode: (code) => {
-        return transformedCode(code);
-      },
+    transformCode: (code) => {
+      return transformedCode(code);
+    },
       scope: {
-        Wrapper,
-        Avatar,
-        AvatarBadge,
-        AvatarFallbackText,
-        AvatarImage,
-        Text,
-        HStack,
-        VStack,
-        Icon,
-        Heading,
-        User,
+    Wrapper,
+      Avatar,
+      AvatarBadge,
+      AvatarFallbackText,
+      AvatarImage,
+      Text,
+      HStack,
+      VStack,
+      Icon,
+      Heading,
+      User,
       },
-      argsType: {},
-    }}
-  />
-</>
+  argsType: { },
+}}
+/>
+< />
 
 #### Avatar with Image
 
@@ -409,10 +406,10 @@ An Avatar component with an image incorporates a user or entity representation u
 
 <>
   <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
+    showComponentRenderer={ true }
+showArgsController = { false}
+metaData = {{
+  code: `
         <VStack space="2xl">
           <HStack space="md">
             <Avatar >
@@ -444,24 +441,24 @@ An Avatar component with an image incorporates a user or entity representation u
           </HStack>
         </VStack>
       `,
-      transformCode: (code) => {
-        return transformedCode(code);
-      },
+    transformCode: (code) => {
+      return transformedCode(code);
+    },
       scope: {
-        Wrapper,
-        Avatar,
-        AvatarBadge,
-        AvatarFallbackText,
-        AvatarImage,
-        Heading,
-        Text,
-        HStack,
-        VStack,
+    Wrapper,
+      Avatar,
+      AvatarBadge,
+      AvatarFallbackText,
+      AvatarImage,
+      Heading,
+      Text,
+      HStack,
+      VStack,
       },
-      argsType: {},
-    }}
-  />
-</>
+  argsType: { },
+}}
+/>
+< />
 
 #### Avatar Group
 
@@ -471,10 +468,10 @@ The avatar group allows users to group avatars and display them in a horizontal 
 
 <>
   <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
+    showComponentRenderer={ true }
+showArgsController = { false}
+metaData = {{
+  code: `
         function App(){
           const avatars = [
               { src: 'https://example.com.jpg', alt: 'Sandeep Srivastva' , color:'$emerald600' },
@@ -501,22 +498,22 @@ The avatar group allows users to group avatars and display them in a horizontal 
           );
         }
       `,
-      transformCode: (code) => {
-        return transformedCode(code, 'function', 'App');
-      },
+    transformCode: (code) => {
+      return transformedCode(code, 'function', 'App');
+    },
       scope: {
-        Avatar,
-        AvatarGroup,
-        AvatarBadge,
-        AvatarFallbackText,
-        AvatarImage,
-        Wrapper,
-        HStack,
+    Avatar,
+      AvatarGroup,
+      AvatarBadge,
+      AvatarFallbackText,
+      AvatarImage,
+      Wrapper,
+      HStack,
       },
-      argsType: {},
-    }}
-  />
-</>
+  argsType: { },
+}}
+/>
+< />
 
 #### Avatar Group (Without Badge)
 
@@ -524,10 +521,10 @@ An Avatar Group component without badges organizes multiple avatars in a visuall
 
 <>
   <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
+    showComponentRenderer={ true }
+showArgsController = { false}
+metaData = {{
+  code: `
         <AvatarGroup>
           <Avatar size="md">
             <AvatarFallbackText>John Doe</AvatarFallbackText>
@@ -563,22 +560,22 @@ An Avatar Group component without badges organizes multiple avatars in a visuall
           </Avatar>
         </AvatarGroup>
 `,
-      transformCode: (code) => {
-        return transformedCode(code);
-      },
+    transformCode: (code) => {
+      return transformedCode(code);
+    },
       scope: {
-        Avatar,
-        AvatarGroup,
-        AvatarBadge,
-        AvatarFallbackText,
-        AvatarImage,
-        Wrapper,
-        HStack,
+    Avatar,
+      AvatarGroup,
+      AvatarBadge,
+      AvatarFallbackText,
+      AvatarImage,
+      Wrapper,
+      HStack,
       },
-      argsType: {},
-    }}
-  />
-</>
+  argsType: { },
+}}
+/>
+< />
 
 #### Avatar Group (with Badge)
 
@@ -586,10 +583,10 @@ An Avatar Group component with badges presents a collection of avatars with acco
 
 <>
   <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
+    showComponentRenderer={ true }
+showArgsController = { false}
+metaData = {{
+  code: `
         <AvatarGroup>
           <Avatar size="md">
             <AvatarFallbackText>John Doe</AvatarFallbackText>
@@ -630,22 +627,22 @@ An Avatar Group component with badges presents a collection of avatars with acco
           </Avatar>
         </AvatarGroup>
 `,
-      transformCode: (code) => {
-        return transformedCode(code);
-      },
+    transformCode: (code) => {
+      return transformedCode(code);
+    },
       scope: {
-        Avatar,
-        AvatarGroup,
-        AvatarBadge,
-        AvatarFallbackText,
-        AvatarImage,
-        Wrapper,
-        HStack,
+    Avatar,
+      AvatarGroup,
+      AvatarBadge,
+      AvatarFallbackText,
+      AvatarImage,
+      Wrapper,
+      HStack,
       },
-      argsType: {},
-    }}
-  />
-</>
+  argsType: { },
+}}
+/>
+< />
 
 #### Custom
 
@@ -653,10 +650,10 @@ A custom Avatar component with text allows for personalized user or entity repre
 
 <>
   <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
+    showComponentRenderer={ true }
+showArgsController = { false}
+metaData = {{
+  code: `
         <VStack space="2xl">
           <HStack space="md">
             <Avatar size="md">
@@ -680,26 +677,26 @@ A custom Avatar component with text allows for personalized user or entity repre
           </HStack>
         </VStack>
       `,
-      transformCode: (code) => {
-        return transformedCode(code);
-      },
+    transformCode: (code) => {
+      return transformedCode(code);
+    },
       scope: {
-        Wrapper,
-        Avatar,
-        AvatarBadge,
-        AvatarFallbackText,
-        AvatarImage,
-        Text,
-        HStack,
-        VStack,
-        Heading,
-        Icon,
-        User,
+    Wrapper,
+      Avatar,
+      AvatarBadge,
+      AvatarFallbackText,
+      AvatarImage,
+      Text,
+      HStack,
+      VStack,
+      Heading,
+      Icon,
+      User,
       },
-      argsType: {},
-    }}
-  />
-</>
+  argsType: { },
+}}
+/>
+< />
 
 #### Fallback
 
@@ -707,10 +704,10 @@ Fallback text is shown when the image fails to load, the image is not available 
 
 <>
   <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
+    showComponentRenderer={ true }
+showArgsController = { false}
+metaData = {{
+  code: `
      <HStack space="md" h="100%" justifyContent="center" alignItems="center">
           <Avatar size="md">
             <AvatarFallbackText>John Doe</AvatarFallbackText>
@@ -722,18 +719,18 @@ Fallback text is shown when the image fails to load, the image is not available 
           </Avatar>
       </HStack>
     `,
-      transformCode: (code) => {
-        return transformedCode(code);
-      },
+    transformCode: (code) => {
+      return transformedCode(code);
+    },
       scope: {
-        Avatar,
-        AvatarBadge,
-        AvatarFallbackText,
-        AvatarImage,
-        Wrapper,
-        HStack,
+    Avatar,
+      AvatarBadge,
+      AvatarFallbackText,
+      AvatarImage,
+      Wrapper,
+      HStack,
       },
-      argsType: {},
-    }}
-  />
-</>
+  argsType: { },
+}}
+/>
+< />

@@ -29,12 +29,12 @@ import {
 
 This is an illustration of **Text** component.
 
-<Wrapper>
+< Wrapper >
   <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
+    showComponentRenderer={ true }
+  showArgsController = { false}
+  metaData = {{
+    code: `
         <Text>
           Hello World!
         </Text>
@@ -42,26 +42,25 @@ This is an illustration of **Text** component.
       transformCode: (code) => {
         return transformedCode(code);
       },
-      scope: {
-        Wrapper,
+        scope: {
+      Wrapper,
         Text,
       },
-      argsType: {},
-    }}
-  />
-</Wrapper>
+    argsType: { },
+  }
+}
+/>
+< /Wrapper>
 
-<br />
+< br />
 
 ## Installation
 
 ### Step 1: Copy and paste the following code into your project.
 
-<CollapsibleCode>
-  ```jsx 
-  %%-- File: components-example/nativewind/Text/index.tsx --%% 
-  ```
-</CollapsibleCode>
+< CollapsibleCode >
+  ```jsx %%-- File: components-example/nativewind/Text/index.tsx --%% ```
+< /CollapsibleCode>
 
 ### Step 2: Update the import paths to match your project setup.
 
@@ -91,130 +90,130 @@ Text component is created using Text component from react-native. It extends all
 
 #### Text
 
-<Wrapper>
+< Wrapper >
   <TableContainer>
     <Table>
       <Table.THead>
         <Table.TR>
           <Table.TH>
-            <Table.TText>Name</Table.TText>
-          </Table.TH>
-          <Table.TH>
-            <Table.TText>Value</Table.TText>
-          </Table.TH>
-          <Table.TH>
-            <Table.TText>Default</Table.TText>
-          </Table.TH>
-        </Table.TR>
-      </Table.THead>
-      <Table.TBody>
+            <Table.TText>Name< /Table.TText>
+          < /Table.TH>
+          < Table.TH >
+            <Table.TText>Value< /Table.TText>
+          < /Table.TH>
+          < Table.TH >
+            <Table.TText>Default< /Table.TText>
+          < /Table.TH>
+        < /Table.TR>
+      < /Table.THead>
+      < Table.TBody >
         <Table.TR>
           <Table.TD>
             <Table.TText>
-              <InlineCode>isTruncated</InlineCode>
-            </Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>true</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>false</Table.TText>
-          </Table.TD>
-        </Table.TR>
-        <Table.TR>
-          <Table.TD>
-            <Table.TText>
-              <InlineCode>bold</InlineCode>
-            </Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>true</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>false</Table.TText>
-          </Table.TD>
-        </Table.TR>
-        <Table.TR>
+              <InlineCode>isTruncated< /InlineCode>
+            < /Table.TText>
+          < /Table.TD>
+          < Table.TD >
+            <Table.TText>true< /Table.TText>
+          < /Table.TD>
+          < Table.TD >
+            <Table.TText>false< /Table.TText>
+          < /Table.TD>
+        < /Table.TR>
+        < Table.TR >
           <Table.TD>
             <Table.TText>
-              <InlineCode>underline</InlineCode>
-            </Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>true</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>false</Table.TText>
-          </Table.TD>
-        </Table.TR>
-        <Table.TR>
-          <Table.TD>
-            <Table.TText>
-              <InlineCode>strikeThrough</InlineCode>
-            </Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>true</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>false</Table.TText>
-          </Table.TD>
-        </Table.TR>
-        <Table.TR>
+              <InlineCode>bold< /InlineCode>
+            < /Table.TText>
+          < /Table.TD>
+          < Table.TD >
+            <Table.TText>true< /Table.TText>
+          < /Table.TD>
+          < Table.TD >
+            <Table.TText>false< /Table.TText>
+          < /Table.TD>
+        < /Table.TR>
+        < Table.TR >
           <Table.TD>
             <Table.TText>
-              <InlineCode>sub</InlineCode>
-            </Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>true</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>false</Table.TText>
-          </Table.TD>
-        </Table.TR>
-        <Table.TR>
-          <Table.TD>
-            <Table.TText>
-              <InlineCode>italic</InlineCode>
-            </Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>true</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>false</Table.TText>
-          </Table.TD>
-        </Table.TR>
-        <Table.TR>
+              <InlineCode>underline< /InlineCode>
+            < /Table.TText>
+          < /Table.TD>
+          < Table.TD >
+            <Table.TText>true< /Table.TText>
+          < /Table.TD>
+          < Table.TD >
+            <Table.TText>false< /Table.TText>
+          < /Table.TD>
+        < /Table.TR>
+        < Table.TR >
           <Table.TD>
             <Table.TText>
-              <InlineCode>highlight</InlineCode>
-            </Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>true</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>false</Table.TText>
-          </Table.TD>
-        </Table.TR>
-        <Table.TR>
+              <InlineCode>strikeThrough< /InlineCode>
+            < /Table.TText>
+          < /Table.TD>
+          < Table.TD >
+            <Table.TText>true< /Table.TText>
+          < /Table.TD>
+          < Table.TD >
+            <Table.TText>false< /Table.TText>
+          < /Table.TD>
+        < /Table.TR>
+        < Table.TR >
           <Table.TD>
             <Table.TText>
-              <InlineCode>size</InlineCode>
-            </Table.TText>
-          </Table.TD>
+              <InlineCode>sub< /InlineCode>
+            < /Table.TText>
+          < /Table.TD>
+          < Table.TD >
+            <Table.TText>true< /Table.TText>
+          < /Table.TD>
+          < Table.TD >
+            <Table.TText>false< /Table.TText>
+          < /Table.TD>
+        < /Table.TR>
+        < Table.TR >
           <Table.TD>
+            <Table.TText>
+              <InlineCode>italic< /InlineCode>
+            < /Table.TText>
+          < /Table.TD>
+          < Table.TD >
+            <Table.TText>true< /Table.TText>
+          < /Table.TD>
+          < Table.TD >
+            <Table.TText>false< /Table.TText>
+          < /Table.TD>
+        < /Table.TR>
+        < Table.TR >
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>highlight< /InlineCode>
+            < /Table.TText>
+          < /Table.TD>
+          < Table.TD >
+            <Table.TText>true< /Table.TText>
+          < /Table.TD>
+          < Table.TD >
+            <Table.TText>false< /Table.TText>
+          < /Table.TD>
+        < /Table.TR>
+        < Table.TR >
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>size< /InlineCode>
+            < /Table.TText>
+          < /Table.TD>
+          < Table.TD >
             <Table.TText>
               2xs | xs | sm | md | lg | xl | 2xl | 3xl | 4xl | 5xl | 6xl
-            </Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>md</Table.TText>
-          </Table.TD>
-        </Table.TR>
-      </Table.TBody>
-    </Table>
-  </TableContainer>
-</Wrapper>
+            < /Table.TText>
+          < /Table.TD>
+          < Table.TD >
+            <Table.TText>md< /Table.TText>
+          < /Table.TD>
+        < /Table.TR>
+      < /Table.TBody>
+    < /Table>
+  < /TableContainer>
+< /Wrapper>
