@@ -1,5 +1,5 @@
 ---
-title: Input | gluestack-ui | Installation, Usage, and API
+title: gluestack-ui Input Component | Installation, Usage, and API
 
 description: The Input component is your go-to tool for gathering user input in a sleek and user-friendly text field. Whether you're designing a simple login form or a complex search feature, this component has got you covered.
 
@@ -12,7 +12,7 @@ showHeader: true
 
 import { Meta } from '@storybook/addon-docs';
 
-<Meta title="common/components/Input" />
+<Meta title="with-nativewind/components/Forms/Input" />
 
 import { Input, InputField, InputIcon, InputSlot } from './Input';
 import {
@@ -36,7 +36,7 @@ import {
   InlineCode,
 } from '@gluestack/design-system';
 
-import Wrapper from '../../components-example/themed/Wrapper';
+import Wrapper from '../../components-example/nativewind/Wrapper';
 
 This is an illustration of **Input** component.
 
@@ -91,19 +91,33 @@ This is an illustration of **Input** component.
 
 <br />
 
-## API Reference
+## Installation
 
-### Import
+### Step 1: Install the following dependencies:
+
+```bash
+
+npm i @gluestack-ui/input
+
+```
+
+### Step 2: Copy and paste the following code into your project.
+
+<CollapsibleCode>
+  ```jsx 
+  %%-- File: components-example/nativewind/Input/index.tsx --%% 
+  ```
+</CollapsibleCode>
+
+### Step 3: Update the import paths to match your project setup.
+
+## API Reference
 
 To use this component in your project, include the following import statement in your file.
 
-```bash
-import { Input } from '@gluestack-ui/themed';
+```jsx
+import { Input } from '@/components/ui/Input';
 ```
-
-### Anatomy
-
-The structure provided below can help you identify and understand a Input component's various parts.
 
 ```jsx
 export default () => (
@@ -403,10 +417,6 @@ We have outlined the various features that ensure the Input component is accessi
 - In disabled state, `aria-hidden` will be passed to make input not focusable.
 - In required state, `aria-required` will be passed to indicate that the Input is required.
 
-## Themed
-
-The themed version of the component is a pre-styled version of the component, which allows you to quickly integrate the component into your project. The component's design and functionality are fully defined, allowing you to focus on the more important aspects of your project. To know more about Themed Library please visit this [link](https://gluestack.io/ui/docs/core-concepts/themed-library).
-
 ### Props
 
 Input component is created using TextInput component from react-native. It extends all the props supported by [React Native Text Input](https://reactnative.dev/docs/textinput#props), [utility props](/ui/docs/styling/utility-and-sx-props) and the props mentioned below.
@@ -460,183 +470,6 @@ Input component is created using TextInput component from react-native. It exten
     </Table>
   </TableContainer>
 </>
-
-### Examples
-
-The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
-
-#### Input type password with FormControl
-
-The Input component integrates with an icon and a button, providing users with a comprehensive login window inside a FormControl component.
-
-<>
-  <CodePreview
-    _rendererWrapper={{ py: '$8' }}
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
-        function App() {
-          const [showPassword, setShowPassword] = useState(false);
-          const handleState = () => {
-            setShowPassword((showState) => {
-              return !showState;
-            });
-          };
-          return (
-            <FormControl
-              p='$4'
-              borderWidth='$1'
-              borderRadius='$lg'
-              borderColor='$borderLight300'
-              $dark-borderWidth='$1' $dark-borderRadius='$lg' $dark-borderColor='$borderDark800'
-            >
-              <VStack space='xl'>
-                <Heading color='$text900' lineHeight='$md'>
-                  Login
-                </Heading>
-                <VStack space='xs'>
-                  <Text color='$text500' lineHeight='$xs'>
-                    Email
-                  </Text>
-                  <Input>
-                    <InputField
-                      type="text"
-                    />
-                  </Input>
-                </VStack>
-                <VStack space='xs'>
-                  <Text color='$text500' lineHeight='$xs'>
-                    Password
-                  </Text>
-                  <Input textAlign='center'>
-                    <InputField
-                      type={showPassword ? 'text' : 'password'}
-                    />
-                    <InputSlot pr='$3' onPress={handleState}>
-                      {/* EyeIcon, EyeOffIcon are both imported from 'lucide-react-native' */}
-                      <InputIcon as={showPassword ? EyeIcon : EyeOffIcon}  color='$darkBlue500'/>
-                    </InputSlot>
-                  </Input>
-                </VStack>
-                <Button
-                  ml='auto'
-                  onPress={()=>{
-                    setShowModal(false);
-                  }}
-                >
-                  <ButtonText color='$white'>
-                    Save
-                  </ButtonText>
-                </Button>
-              </VStack>
-            </FormControl>
-          );
-        }
-      `,
-      transformCode: (code) => {
-        return transformedCode(code, 'function', 'App');
-      },
-      scope: {
-        Wrapper,
-        Input,
-        InputField,
-        InputIcon,
-        Button,
-        ButtonText,
-        VStack,
-        Text: GSText,
-        Heading,
-        useState,
-        Icon,
-        EyeIcon,
-        EyeOffIcon,
-        FormControl,
-        InputSlot,
-      },
-      argsType: {},
-    }}
-  />
-</>
-
-### Input with Icons
-
-The Input with Icons is a variation of the Input component that displays icons next to input field. It's commonly used in apps for a more visual representation of options and easier navigation.
-
-<>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
-        <Input>
-          <InputSlot pl='$3'>
-            <InputIcon as={SearchIcon}/>
-          </InputSlot>
-          <InputField
-            placeholder="Search..."
-          />
-        </Input>
-      `,
-      transformCode: (code) => {
-        return transformedCode(code);
-      },
-      scope: {
-        Wrapper,
-        Input,
-        InputField,
-        InputIcon,
-        SearchIcon,
-        Icon,
-        InputSlot,
-      },
-      argsType: {},
-    }}
-/>
-
-</>
-
-## Unstyled
-
-All the components in `gluestack-ui` are unstyled by default. To customize your UI using the extendedTheme, please refer to this [link](https://gluestack.io/ui/docs/theme-configuration/customizing-theme). The import names of components serve as keys to customize each component.
-
-<!--
-
-### Customizing the Input
-
-We have a function called `createInput` which can be used to create a custom Input component. This function takes in a configuration object which contains the styled components that you want to use for the Input You can refer [gluestack.io/style](/style/docs/getting-started/styled) on how to use styled components.
-
-#### Usage
-
-Default styling of all these components can be found in the `components/core/input` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/main/packages/themed/src/components/Input) of the styled `Input` components.
-
-```jsx
-// import the styles
-import { Root, Input } from 'components/core/input/styled-components';
-
-// import the createInput function
-import { createInput } from '@gluestack-ui/input';
-
-//import any icon
-import { searchIcon } from '@gluestack/icons';
-
-// Understanding the API
-const InputField = createInput({
-  Root,
-  Input,
-});
-
-// Using the input component
-export default () => (
-  <Input>
-    <InputSlot pl="$3">
-      <InputIcon as={SearchIcon} />
-    </InputSlot>
-    <InputField placeholder="your text goes here..." />
-  </Input>
-);
-```
--->
 
 ## Spec Doc
 

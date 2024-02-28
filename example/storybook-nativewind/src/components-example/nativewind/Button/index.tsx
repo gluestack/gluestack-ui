@@ -234,6 +234,7 @@ const Button = React.forwardRef(
   ) => {
     return (
       <UIButton
+        // @ts-ignore
         ref={ref}
         {...props}
         className={buttonStyle({ variant, size, action, class: className })}
@@ -255,7 +256,7 @@ const ButtonText = React.forwardRef(
       action,
       ...props
     }: { className?: string } & IButtonTextProps,
-    ref
+    ref?: any
   ) => {
     const {
       variant: parentVariant,
@@ -265,6 +266,7 @@ const ButtonText = React.forwardRef(
 
     return (
       <UIButton.Text
+        // @ts-ignore
         ref={ref}
         {...props}
         className={buttonTextStyle({
