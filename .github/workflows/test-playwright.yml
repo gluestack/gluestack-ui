@@ -10,7 +10,7 @@ concurrency: ${{ github.workflow }}-${{ github.ref || github.run_id }}
 jobs:
   visual-tests:
     name: Test for accordion --single
-    runs-on: ubuntu-latest
+    runs-on: darwin-latest
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v3
