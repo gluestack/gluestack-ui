@@ -161,23 +161,23 @@ const buttonTextStyle = tva({
 });
 
 const buttonIconStyle = tva({
-  base: 'color-typography-0',
+  base: 'text-typography-0',
   parentVariants: {
     action: {
       primary:
-        'color-primary-600 group-hover/button:color-primary-600 group-active/button:color-primary-700',
+        'text-primary-600 group-hover/button:text-primary-600 group-active/button:text-primary-700',
       secondary:
-        'color-secondary-600 group-hover/button:color-secondary-600 group-active/button:color-secondary-700',
+        'text-secondary-600 group-hover/button:text-secondary-600 group-active/button:text-secondary-700',
       positive:
-        'color-success-600 group-hover/button:color-success-600 group-active/button:color-success-700',
+        'text-success-600 group-hover/button:text-success-600 group-active/button:text-success-700',
       negative:
-        'color-error-600 group-hover/button:color-error-600 group-active/button:color-error-700',
+        'text-error-600 group-hover/button:text-error-600 group-active/button:text-error-700',
     },
     variant: {
       link: 'group-hover/button:underline group-active/button:underline',
       outline: '',
       solid:
-        'color-typography-0 group-hover/button:color-typography-0 group-active/button:color-typography-0',
+        'text-typography-0 group-hover/button:text-typography-0 group-active/button:text-typography-0',
     },
     size: {
       '2xs': 'h-3 w-3',
@@ -193,25 +193,25 @@ const buttonIconStyle = tva({
       variant: 'solid',
       action: 'primary',
       class:
-        '!color-typography-0 group-hover/button:color-typography-0 group-active/button:color-typography-0',
+        'text-typography-0 group-hover/button:text-typography-0 group-active/button:text-typography-0',
     },
     {
       variant: 'solid',
       action: 'secondary',
       class:
-        '!color-typography-0 group-hover/button:color-typography-0 group-active/button:color-typography-0',
+        'text-typography-0 group-hover/button:text-typography-0 group-active/button:text-typography-0',
     },
     {
       variant: 'solid',
       action: 'positive',
       class:
-        '!color-typography-0 group-hover/button:color-typography-0 group-active/button:color-typography-0',
+        'text-typography-0 group-hover/button:text-typography-0 group-active/button:text-typography-0',
     },
     {
       variant: 'solid',
       action: 'negative',
       class:
-        '!color-typography-0 group-hover/button:color-typography-0 group-active/button:color-typography-0',
+        'text-typography-0 group-hover/button:text-typography-0 group-active/button:text-typography-0',
     },
   ],
 });
@@ -303,8 +303,8 @@ const ButtonIcon = ({
         {...props}
         className={buttonIconStyle({
           parentVariants: {
-            variant: parentVariant,
             size: parentSize,
+            variant: parentVariant,
             action: parentAction,
           },
           size,
