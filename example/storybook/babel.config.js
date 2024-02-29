@@ -20,6 +20,10 @@ module.exports = function (api) {
               __dirname,
               '../../packages/unstyled/accordion/src'
             ),
+            '@gluestack-ui/checkbox': path.join(
+              __dirname,
+              '../../packages/unstyled/checkbox/src'
+            ),
             '@gluestack-ui/popover': path.join(
               __dirname,
               '../../packages/unstyled/popover/src'
