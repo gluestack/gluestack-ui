@@ -5,7 +5,7 @@ export const InputField = createStyle({
   color: '$text900',
 
   props: {
-    placeholderTextColor: '$text500',
+    placeholderTextColor: '$text600',
   },
 
   _web: {
