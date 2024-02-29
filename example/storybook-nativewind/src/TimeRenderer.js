@@ -5,26 +5,26 @@
 import React, { useLayoutEffect, useState, useEffect } from 'react';
 import { StyleSheet, Text } from 'react-native';
 function TimedRender(props) {
-  const start = Date.now();
-  const [oldStart, setOldstart] = useState(Date.now());
+  const [start] = useState(Date.now());
+  // const [oldStart, setOldstart] = useState(Date.now());
   const [end, setEnd] = useState(0);
 
   useEffect(() => {
     setEnd(Date.now());
-    console.log(Date.now() - start, '>>>>>>');
+    // console.log(Date.now() - start, '>>>>>>');
     // setStart(Date.now());
-  }, [props.count]);
+  }, []);
 
   return (
     <div style={{ marginTop: 90 }}>
-      <button
+      {/* <button
         onClick={() => {
           props.setCount(props.count + 1);
         }}
       >
         Press Me
-      </button>
-      {/* {!!end && <Text style={styles.text}>Took {end - start}ms</Text>} */}
+      </button> */}
+      {!!end && <Text style={styles.text}>Took {end - start}ms</Text>}
       {props.children}
     </div>
   );

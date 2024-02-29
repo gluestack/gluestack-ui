@@ -1,14 +1,17 @@
 import React from 'react';
-// import {
-//   Button,
-//   ButtonText,
-//   ButtonSpinner,
-// } from '../../components-example/nativewind/Button/ButtonHook';
 import {
   Button,
   ButtonText,
   ButtonSpinner,
-} from '../../components-example/nativewind/Button';
+} from '../../components-example/nativewind/Button/ButtonHook';
+// 232.4
+
+// import {
+//   Button,
+//   ButtonText,
+//   ButtonSpinner,
+// } from '../../components-example/nativewind/Button';
+// 222.6
 
 import TimedRender from '../../TimeRenderer.js';
 import { HStack } from '@gluestack-ui/themed';
@@ -22,7 +25,7 @@ export const ButtonBasic = (props: any) => {
         <TimedRender setCount={setCount} count={count}>
           <HStack>
             {[...Array(1000)].map((e, i) => (
-              <Button key={i + count} {...props}>
+              <Button key={i} {...props}>
                 <ButtonText>Hello World{count}</ButtonText>
               </Button>
             ))}

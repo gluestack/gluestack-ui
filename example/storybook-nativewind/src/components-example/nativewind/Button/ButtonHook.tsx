@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import React, { forwardRef, useRef } from 'react';
 import { useButton } from '@gluestack-ui/button';
 
 import {
@@ -23,12 +23,11 @@ const ButtonComp: any =
     ? withStyleContext(Pressable)
     : withStyleContextAndStates(Pressable);
 
-const TestUIButton = forwardRef((props: any) => {
-  const { buttonProps, ...ariaProps } = useButton(props);
-  return <ButtonComp {...buttonProps} {...ariaProps} />;
-});
+// const TestUIButton = forwardRef((props: any, ref: any) => {
+//   return <ButtonComp  ref={ref} />;
+// });
 
-cssInterop(TestUIButton, { className: 'style' });
+cssInterop(ButtonComp, { className: 'style' });
 
 const buttonStyle = tva({
   base: 'group/button rounded-lg bg-primary-500 flex-row items-center justify-center data-[focus=true]:web:outline-none data-[focus-visible=true]:web:ring-2 ',
@@ -154,77 +153,80 @@ const buttonTextStyle = tva({
   ],
 });
 
-type IButtonProps = React.ComponentProps<typeof TestUIButton> &
+type IButtonProps = React.ComponentProps<typeof ButtonComp> &
   VariantProps<typeof buttonStyle>;
 
 type IButtonTextProps = React.ComponentProps<typeof Text> &
   VariantProps<typeof buttonTextStyle>;
-const Button = React.memo(
-  React.forwardRef(
-    (
-      {
-        className,
-        variant = 'solid',
-        size = 'md',
-        action = 'primary',
-        ...props
-      }: { className?: string } & IButtonProps,
-      ref
-    ) => {
-      return (
-        <TestUIButton
-          // @ts-ignore
-          ref={ref}
-          {...props}
-          className={buttonStyle({ variant, size, action, class: className })}
-          context={{ variant, size, action }}
-        />
-      );
-    }
-  )
+const Button = React.forwardRef(
+  (
+    {
+      className,
+      variant = 'solid',
+      size = 'md',
+      action = 'primary',
+      ...props
+    }: { className?: string } & IButtonProps,
+    ref
+  ) => {
+    let _ref: any = useRef();
+    const { buttonProps, ...ariaProps } = useButton(props, _ref);
+    // React.useEffect(() => {
+    //   console.log('Button@', _ref.current);
+    // }, [_ref.current]);
+    return (
+      <ButtonComp
+        // @ts-ignore
+        {...buttonProps}
+        {...ariaProps}
+        {...props}
+        // ref={_ref}
+        className={buttonStyle({ variant, size, action, class: className })}
+        context={{ variant, size, action }}
+      />
+    );
+  }
 );
 
 type IButtonIcon = React.ComponentProps<typeof View> & {
   as?: any;
 };
-const ButtonText = React.memo(
-  React.forwardRef(
-    (
-      {
-        className,
-        variant,
-        size,
-        action,
-        ...props
-      }: { className?: string } & IButtonTextProps,
-      ref?: any
-    ) => {
-      const {
-        variant: parentVariant,
-        size: parentSize,
-        action: parentAction,
-      } = useStyleContext();
+const ButtonText = React.forwardRef(
+  (
+    {
+      className,
+      variant,
+      size,
+      action,
+      ...props
+    }: { className?: string } & IButtonTextProps,
+    ref?: any
+  ) => {
+    const {
+      variant: parentVariant,
+      size: parentSize,
+      action: parentAction,
+    } = useStyleContext();
 
-      return (
-        <Text
-          // @ts-ignore
-          ref={ref}
-          {...props}
-          className={buttonTextStyle({
-            parentVariants: {
-              variant: parentVariant,
-              size: parentSize,
-              action: parentAction,
-            },
-            variant,
-            size,
-            action,
-            class: className,
-          })}
-        />
-      );
-    }
-  )
+    return (
+      <Text
+        // @ts-ignore
+        ref={ref}
+        {...props}
+        className={buttonTextStyle({
+          parentVariants: {
+            variant: parentVariant,
+            size: parentSize,
+            action: parentAction,
+          },
+          variant,
+          size,
+          action,
+          class: className,
+        })}
+      />
+    );
+  }
 );
 
 const ButtonSpinner = React.memo(() => {
