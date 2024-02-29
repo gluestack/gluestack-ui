@@ -18,6 +18,8 @@ lib
 #build
 storybook-static/
 /test-results/
-/playwright-report/
 /blob-report/
+
+#test-playwright
+/playwright-report/index.html
 /playwright/.cache/
