@@ -20,7 +20,7 @@ jobs:
         with:
           node-version: 18.x
 
-      - name: Install Dependencies
+      - name: Install Dependencies and build the project
         run: |
           yarn
           npx playwright install --with-deps
