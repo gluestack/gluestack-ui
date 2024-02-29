@@ -1,65 +1,57 @@
-import {
-  AnimatePresence,
-  AnimatedView,
-  AnimatedPressable,
-} from '@gluestack-style/animation-resolver';
+import React, { useEffect } from 'react';
 import { createAlertDialog } from '@gluestack-ui/alert-dialog';
-import { View, Pressable, ScrollView } from 'react-native';
 import {
+  cssInterop,
   tva,
+  VariantProps,
+  withStyleContext,
   withStyleContextAndStates,
   useStyleContext,
-  withStates,
 } from '@gluestack-ui/nativewind-utils';
-import React from 'react';
-import { Platform } from 'react-native';
+import Animated, {
+  Easing,
+  useSharedValue,
+  withSpring,
+  withTiming,
+} from 'react-native-reanimated';
+import {
+  View,
+  StyleSheet,
+  Pressable,
+  ScrollView,
+  Platform,
+} from 'react-native';
 
+const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 const UIAccessibleAlertDialog = createAlertDialog({
-  Root: withStyleContextAndStates(View),
-  Content: AnimatedView,
-  CloseButton: Platform.OS === 'web' ? Pressable : withStates(Pressable),
+  // @ts-ignore
+  Root:
+    Platform.OS === 'web'
+      ? withStyleContext(View)
+      : withStyleContextAndStates(View),
+  Body: ScrollView,
+  Content: Animated.View,
+  CloseButton: Pressable,
   Header: View,
   Footer: View,
-  Body: ScrollView,
   Backdrop: AnimatedPressable,
-  //@ts-ignore
-  AnimatePresence: AnimatePresence,
+  AnimatePresence: React.Fragment, //TODO: Add support for this
 });
+
+cssInterop(UIAccessibleAlertDialog, { className: 'style' });
+cssInterop(UIAccessibleAlertDialog.Content, { className: 'style' });
+cssInterop(UIAccessibleAlertDialog.CloseButton, { className: 'style' });
+cssInterop(UIAccessibleAlertDialog.Header, { className: 'style' });
+cssInterop(UIAccessibleAlertDialog.Footer, { className: 'style' });
+cssInterop(UIAccessibleAlertDialog.Body, { className: 'style' });
+cssInterop(UIAccessibleAlertDialog.Backdrop, { className: 'style' });
 
 const alertDialogStyle = tva({
-  base: 'w-full h-full justify-center items-center web:pointer-events-none',
+  base: 'group/modal w-full h-full justify-center items-center web:pointer-events-none',
 });
 
-// const StyledRoot = styled(
-//   View,
-//   {
-//     w: '$full',
-//     h: '$full',
-//     justifyContent: 'center',
-//     alignItems: 'center',
-
-//     variants: {
-//       size: {
-//         xs: { _content: { w: '60%', maxWidth: 360 } },
-//         sm: { _content: { w: '70%', maxWidth: 420 } },
-//         md: { _content: { w: '80%', maxWidth: 510 } },
-//         lg: { _content: { w: '90%', maxWidth: 640 } },
-//         full: { _content: { w: '$full' } },
-//       },
-//     },
-//     defaultProps: { size: 'md' },
-
-//     _web: {
-//       pointerEvents: 'box-none',
-//     },
-//   },
-//   {
-//     descendantStyle: ['_content'],
-//   }
-// );
-
 const alertDialogContentStyle = tva({
-  base: 'bg-background-50 rounded-lg overflow-hidden shadow',
+  base: 'bg-background-50 rounded-lg overflow-hidden ',
   parentVariants: {
     size: {
       xs: 'w-[60%] max-w-[360px]',
@@ -71,247 +63,108 @@ const alertDialogContentStyle = tva({
   },
 });
 
-// const StyledContent = styled(
-//   AnimatedView,
-//   {
-//     'bg': '$background50',
-//     'rounded': '$lg',
-//     'overflow': 'hidden',
-
-//     //@ts-ignore
-//     ':initial': {
-//       scale: 0.9,
-//       opacity: 0,
-//     },
-
-//     ':animate': {
-//       scale: 1,
-//       opacity: 1,
-//     },
-
-//     ':exit': {
-//       scale: 0.9,
-//       opacity: 0,
-//     },
-
-//     ':transition': {
-//       type: 'spring',
-//       damping: 18,
-//       stiffness: 250,
-//       opacity: {
-//         type: 'timing',
-//         duration: 250,
-//       },
-//     },
-
-//     'defaultProps': {
-//       softShadow: '3',
-//     },
-//   },
-//   {
-//     ancestorStyle: ['_content'],
-//   }
-// );
-
 const alertDialogCloseButtonStyle = tva({
-  base: 'z-10 rounded p-2 data-[focus-visible=true]:bg-background-100 web:cursor-pointer outline-0',
-
-  //   '_icon': {
-  //     color: '$background400',
-  //   },
-
-  //   '_text': {
-  //     color: '$background400',
-  //   },
-
-  //   ':hover': {
-  //     _icon: {
-  //       color: '$background700',
-  //     },
-  //     _text: {
-  //       color: '$background700',
-  //     },
-  //   },
-
-  //   ':active': {
-  //     _icon: {
-  //       color: '$background900',
-  //     },
-  //     _text: {
-  //       color: '$background900',
-  //     },
-  //   },
-
-  //   ':focusVisible': {
-
-  //     _icon: {
-  //       color: '$background900',
-  //     },
-
-  //     _text: {
-  //       color: '$background900',
-  //     },
-  //   },
-  // },
-  // {
-  //   descendantStyle: ['_icon', '_text'],
+  base: 'group/alert-dialog-close-button z-10 rounded-sm p-2 data-[focus-visible=true]:bg-background-100 web:cursor-pointer outline-0',
 });
-
-// const StyledCloseButton = styled(
-//   Pressable,
-//   {
-//     'zIndex': 1,
-//     'rounded': '$sm',
-//     'p': '$2',
-
-//     '_icon': {
-//       color: '$background400',
-//     },
-
-//     '_text': {
-//       color: '$background400',
-//     },
-
-//     ':hover': {
-//       _icon: {
-//         color: '$background700',
-//       },
-//       _text: {
-//         color: '$background700',
-//       },
-//     },
-
-//     ':active': {
-//       _icon: {
-//         color: '$background900',
-//       },
-//       _text: {
-//         color: '$background900',
-//       },
-//     },
-
-//     ':focusVisible': {
-//       bg: '$background100',
-
-//       _icon: {
-//         color: '$background900',
-//       },
-
-//       _text: {
-//         color: '$background900',
-//       },
-//     },
-
-//     '_web': {
-//       outlineWidth: 0,
-//       cursor: 'pointer',
-//     },
-//   },
-//   {
-//     descendantStyle: ['_icon', '_text'],
-//   }
-// );
 
 const alertDialogHeaderStyle = tva({
-  base: 'p-4 border-border-300 justify-between items-center flex-row',
+  base: 'p-4 border border-outline-300 justify-between items-center flex-row',
 });
-
-// const StyledHeader = styled(
-//   View,
-//   {
-//     p: '$4',
-//     borderColor: '$border300',
-//     justifyContent: 'space-between',
-//     alignItems: 'center',
-//     flexDirection: 'row',
-//   },
-//   {}
-// );
 
 const alertDialogFooterStyle = tva({
-  base: 'p-4 flex-row justify-end items-center flex-wrap border-border-300',
+  base: 'p-4 flex-row justify-end items-center flex-wrap border-outline-300',
 });
 
-// const StyledFooter = styled(
-//   View,
-//   {
-//     p: '$4',
-//     flexDirection: 'row',
-//     justifyContent: 'flex-end',
-//     alignItems: 'center',
-//     flexWrap: 'wrap',
-//     borderColor: '$border300',
-//   },
-//   {}
-// );
-
 const alertDialogBodyStyle = tva({ base: 'px-4 py-2' });
-
-// const StyledBody = styled(ScrollView, { px: '$4', py: '$2' }, {});
 
 const alertDialogBackdropStyle = tva({
   base: 'absolute left-0 top-0 right-0 bottom-0 bg-background-950 web:cursor-default',
 });
 
-// const StyledBackdrop = styled(
-//   AnimatedPressable,
-//   {
-//     ':initial': {
-//       opacity: 0,
-//     },
+type IAlertDialogProps = React.ComponentProps<typeof UIAccessibleAlertDialog> &
+  VariantProps<typeof alertDialogStyle>;
 
-//     ':animate': {
-//       opacity: 0.5,
-//     },
+type IAlertDialogContentProps = React.ComponentProps<
+  typeof UIAccessibleAlertDialog.Content
+> &
+  VariantProps<typeof alertDialogContentStyle>;
 
-//     ':exit': {
-//       opacity: 0,
-//     },
+type IAlertDialogCloseButtonProps = React.ComponentProps<
+  typeof UIAccessibleAlertDialog.CloseButton
+> &
+  VariantProps<typeof alertDialogCloseButtonStyle>;
 
-//     ':transition': {
-//       type: 'spring',
-//       damping: 18,
-//       stiffness: 250,
-//       opacity: {
-//         type: 'timing',
-//         duration: 250,
-//       },
-//     },
+type IAlertDialogHeaderProps = React.ComponentProps<
+  typeof UIAccessibleAlertDialog.Header
+> &
+  VariantProps<typeof alertDialogHeaderStyle>;
 
-//     'position': 'absolute',
-//     'left': 0,
-//     'top': 0,
-//     'right': 0,
-//     'bottom': 0,
-//     'bg': '$background950',
+type IAlertDialogFooterProps = React.ComponentProps<
+  typeof UIAccessibleAlertDialog.Footer
+> &
+  VariantProps<typeof alertDialogFooterStyle>;
 
-//     // @ts-ignore
-//     '_web': {
-//       cursor: 'default',
-//     },
-//   },
-//   {}
-// );
+type IAlertDialogBodyProps = React.ComponentProps<
+  typeof UIAccessibleAlertDialog.Body
+> &
+  VariantProps<typeof alertDialogBodyStyle>;
 
-export const AlertDialog = React.forwardRef(
-  ({ className, size = 'md', ...props }: any, ref) => {
+type IAlertDialogBackdropProps = React.ComponentProps<
+  typeof UIAccessibleAlertDialog.Backdrop
+> &
+  VariantProps<typeof alertDialogBackdropStyle>;
+
+const AlertDialog = React.forwardRef(
+  (
+    {
+      className,
+      //@ts-ignore
+      size = 'md',
+      ...props
+    }: { className?: string } & IAlertDialogProps,
+    ref
+  ) => {
     return (
       <UIAccessibleAlertDialog
         ref={ref}
         {...props}
         className={alertDialogStyle({ class: className })}
         context={{ size }}
+        pointerEvents="box-none"
       />
     );
   }
 );
 
-export const AlertDialogContent = React.forwardRef(
-  ({ className, size, ...props }: any, ref) => {
+const AlertDialogContent = React.forwardRef(
+  (
+    {
+      className,
+      size,
+      ...props
+    }: { className?: string } & IAlertDialogContentProps,
+    ref
+  ) => {
     const { size: parentSize } = useStyleContext();
 
+    const opacity = useSharedValue(0);
+    const scale = useSharedValue(0.9);
+    useEffect(() => {
+      opacity.value = withTiming(1, {
+        easing: Easing.linear,
+      });
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+    useEffect(() => {
+      scale.value = withSpring(1, {
+        damping: 18,
+        stiffness: 250,
+      });
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
     return (
       <UIAccessibleAlertDialog.Content
+        pointerEvents="auto"
         ref={ref}
         {...props}
         className={alertDialogContentStyle({
@@ -321,13 +174,23 @@ export const AlertDialogContent = React.forwardRef(
           size,
           class: className,
         })}
+        style={{
+          opacity: opacity,
+          transform: [{ scale: scale }],
+        }}
       />
     );
   }
 );
 
-export const AlertDialogCloseButton = React.forwardRef(
-  ({ className, ...props }: any, ref) => {
+const AlertDialogCloseButton = React.forwardRef(
+  (
+    {
+      className,
+      ...props
+    }: { className?: string } & IAlertDialogCloseButtonProps,
+    ref
+  ) => {
     return (
       <UIAccessibleAlertDialog.CloseButton
         ref={ref}
@@ -340,8 +203,11 @@ export const AlertDialogCloseButton = React.forwardRef(
   }
 );
 
-export const AlertDialogHeader = React.forwardRef(
-  ({ className, ...props }: any, ref) => {
+const AlertDialogHeader = React.forwardRef(
+  (
+    { className, ...props }: { className?: string } & IAlertDialogHeaderProps,
+    ref
+  ) => {
     return (
       <UIAccessibleAlertDialog.Header
         ref={ref}
@@ -354,8 +220,11 @@ export const AlertDialogHeader = React.forwardRef(
   }
 );
 
-export const AlertDialogFooter = React.forwardRef(
-  ({ className, ...props }: any, ref) => {
+const AlertDialogFooter = React.forwardRef(
+  (
+    { className, ...props }: { className?: string } & IAlertDialogFooterProps,
+    ref
+  ) => {
     return (
       <UIAccessibleAlertDialog.Footer
         ref={ref}
@@ -368,8 +237,11 @@ export const AlertDialogFooter = React.forwardRef(
   }
 );
 
-export const AlertDialogBody = React.forwardRef(
-  ({ className, ...props }: any, ref) => {
+const AlertDialogBody = React.forwardRef(
+  (
+    { className, ...props }: { className?: string } & IAlertDialogBodyProps,
+    ref
+  ) => {
     return (
       <UIAccessibleAlertDialog.Body
         ref={ref}
@@ -382,8 +254,19 @@ export const AlertDialogBody = React.forwardRef(
   }
 );
 
-export const AlertDialogBackdrop = React.forwardRef(
-  ({ className, ...props }: any, ref) => {
+const AlertDialogBackdrop = React.forwardRef(
+  (
+    { className, ...props }: { className?: string } & IAlertDialogBackdropProps,
+    ref
+  ) => {
+    const opacity = useSharedValue(0);
+
+    useEffect(() => {
+      opacity.value = withTiming(0.5, {
+        easing: Easing.linear,
+      });
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
     return (
       <UIAccessibleAlertDialog.Backdrop
         ref={ref}
@@ -391,25 +274,31 @@ export const AlertDialogBackdrop = React.forwardRef(
         className={alertDialogBackdropStyle({
           class: className,
         })}
+        style={[
+          StyleSheet.absoluteFill,
+          {
+            opacity: opacity,
+          },
+        ]}
       />
     );
   }
 );
 
-// AlertDialog.displayName = 'AlertDialog';
-// AlertDialogContent.displayName = 'AlertDialogContent';
-// AlertDialogCloseButton.displayName = 'AlertDialogCloseButton';
-// AlertDialogHeader.displayName = 'AlertDialogHeader';
-// AlertDialogFooter.displayName = 'AlertDialogFooter';
-// AlertDialogBody.displayName = 'AlertDialogBody';
-// AlertDialogBackdrop.displayName = 'AlertDialogBackdrop';
+AlertDialog.displayName = 'AlertDialog';
+AlertDialogContent.displayName = 'AlertDialogContent';
+AlertDialogCloseButton.displayName = 'AlertDialogCloseButton';
+AlertDialogHeader.displayName = 'AlertDialogHeader';
+AlertDialogFooter.displayName = 'AlertDialogFooter';
+AlertDialogBody.displayName = 'AlertDialogBody';
+AlertDialogBackdrop.displayName = 'AlertDialogBackdrop';
 
-// export {
-//   AlertDialog,
-//   AlertDialogContent,
-//   AlertDialogCloseButton,
-//   AlertDialogHeader,
-//   AlertDialogFooter,
-//   AlertDialogBody,
-//   AlertDialogBackdrop,
-// };
+export {
+  AlertDialog,
+  AlertDialogContent,
+  AlertDialogCloseButton,
+  AlertDialogHeader,
+  AlertDialogFooter,
+  AlertDialogBody,
+  AlertDialogBackdrop,
+};

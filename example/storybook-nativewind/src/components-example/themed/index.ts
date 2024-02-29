@@ -6,6 +6,7 @@ export * from './AlertDialog';
 export * from './Avatar';
 export * from './Badge';
 export * from './Box';
+export * from './Card';
 export * from './FlatList';
 export * from './Center';
 export * from './Checkbox';

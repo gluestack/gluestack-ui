@@ -6,48 +6,23 @@ import {
   CheckboxLabel,
   CheckboxGroup,
 } from '@/components/ui/Checkbox';
+import { Text } from '@/components/ui/Text';
+import { RemoveIcon, Icon, CheckIcon } from '@/components/ui/Icon';
+import { FormControl } from '@/components/ui/FormControl';
+import { Center } from '@/components/ui/Center';
+import { VStack } from '@/components/ui/VStack';
+import { HStack } from '@/components/ui/HStack';
+import { Heading } from '@/components/ui/Heading';
+import { Box } from '@/components/ui/Box';
 
 const CheckboxGroupBasic = ({ ...props }: any) => {
-  const [values, setValues] = React.useState(['Label 1']);
-
   return (
-    <CheckboxGroup
-      aria-label="Checkbox Group"
-      value={values}
-      onChange={setValues}
-      nativeID="checkbox-group"
-    >
-      <Checkbox
-        size={props.size}
-        value="Label 1"
-        aria-label="Label 1"
-        onChange={(isSelected: boolean) =>
-          // eslint-disable-next-line no-console
-          console.log(isSelected, '###')
-        }
-        nativeID="checkbox-1"
-      >
-        <CheckboxIndicator>
-          <CheckboxIcon />
-        </CheckboxIndicator>
-        <CheckboxLabel>Label 1</CheckboxLabel>
-      </Checkbox>
-      <Checkbox
-        size={props.size}
-        value="Label 2"
-        aria-label="Label 2"
-        onChange={(isSelected: boolean) =>
-          // eslint-disable-next-line no-console
-          console.log(isSelected, '###')
-        }
-        nativeID="checkbox-2"
-      >
-        <CheckboxIndicator>
-          <CheckboxIcon />
-        </CheckboxIndicator>
-        <CheckboxLabel>Label 2</CheckboxLabel>
-      </Checkbox>
-    </CheckboxGroup>
+    <Checkbox {...props}>
+      <CheckboxIndicator>
+        <CheckboxIcon as={CheckIcon} />
+      </CheckboxIndicator>
+      <CheckboxLabel>Label</CheckboxLabel>
+    </Checkbox>
   );
 };
 
@@ -61,4 +36,14 @@ export {
   CheckboxIndicator,
   CheckboxIcon,
   CheckboxLabel,
+  Text,
+  RemoveIcon,
+  Icon,
+  CheckIcon,
+  FormControl,
+  Center,
+  VStack,
+  HStack,
+  Heading,
+  Box,
 };

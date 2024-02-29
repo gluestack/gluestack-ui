@@ -1,5 +1,11 @@
 # @gluestack-ui/menu
 
+## 0.2.30
+
+### Patch Changes
+
+- feat: added `useRNModal` support in `Menu`.
+
 ## 0.2.29
 
 ### Patch Changes

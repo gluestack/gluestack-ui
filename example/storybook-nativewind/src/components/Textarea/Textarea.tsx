@@ -12,7 +12,7 @@ import { Textarea, TextareaInput } from '@/components/ui/Textarea';
 
 const TextareaBasic = ({ ...props }: any) => {
   return (
-    <Textarea {...props} mx="$2">
+    <Textarea {...props} className="w-64">
       <TextareaInput placeholder="Your text goes here..." />
     </Textarea>
   );
