@@ -23,7 +23,7 @@ jobs:
       - name: Install Dependencies and build the project
         run: |
           yarn
-          npx playwright install --with-deps
+          yarn playwright install --with-deps
           yarn build
 
       - name: Create storybook build
