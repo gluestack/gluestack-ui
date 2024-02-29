@@ -24,11 +24,11 @@ export const Menu = createStyle({
   },
 
   'minWidth': 200,
-  'py': '$2',
+  'p': '$1',
   'rounded': '$sm',
   'bg': '$background0',
-
+  'borderColor': '$border200',
   'defaultProps': {
-    softShadow: '3',
+    hardshadow: '5',
   },
 });
