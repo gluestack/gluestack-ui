@@ -2,17 +2,16 @@ import React from 'react';
 import { createCheckbox } from '@gluestack-ui/checkbox';
 import { View, Pressable, Text } from 'react-native';
 import {
-  cn,
   withStates,
   withStyleContextAndStates,
   useStyleContext,
   tva,
   withStyleContext,
+  cssInterop,
+  VariantProps,
 } from '@gluestack-ui/nativewind-utils';
 import { Platform } from 'react-native';
-
 import { Check } from 'lucide-react-native';
-import { cssInterop } from 'nativewind';
 
 const UICheckbox = createCheckbox({
   // @ts-ignore
@@ -20,10 +19,10 @@ const UICheckbox = createCheckbox({
     Platform.OS === 'web'
       ? withStyleContext(View)
       : withStyleContextAndStates(Pressable),
-  Group: Platform.OS === 'web' ? View : withStates(View),
-  Icon: Platform.OS === 'web' ? Check : withStates(Check),
-  Label: Platform.OS === 'web' ? Text : withStates(Text),
-  Indicator: Platform.OS === 'web' ? View : withStates(View),
+  Group: withStates(View),
+  Icon: withStates(Check),
+  Label: withStates(Text),
+  Indicator: withStates(View),
 });
 
 cssInterop(UICheckbox, { className: 'style' });
@@ -32,35 +31,62 @@ cssInterop(UICheckbox.Icon, { className: 'style' });
 cssInterop(UICheckbox.Label, { className: 'style' });
 cssInterop(UICheckbox.Indicator, { className: 'style' });
 
-const checkboxIndicator = tva({
-  base: 'justify-center items-center border-outline-400 rounded-sm data-[focus=true]:outline-none data-[focus-visible=true]:ring-2 data-[focus-visible=true]:ring-primary-700 data-[focus-visible=true]:ring-offset-1 overflow-hidden data-[checked=true]:border-primary-600',
+const checkboxStyle = tva({
+  base: 'group/checkbox flex-row items-center justify-start gap-2 web:cursor-pointer data-[disabled=true]:cursor-not-allowed',
+});
+
+const checkboxIndicatorStyle = tva({
+  base: 'group/checkboxInd justify-center items-center border-outline-400 bg-transparent rounded web:data-[focus-visible=true]:outline-none web:data-[focus-visible=true]:ring-2 web:data-[focus-visible=true]:ring-primary-700 data-[checked=true]:bg-primary-600 group-hover/checkbox:border-outline-500 group-hover/checkbox:bg-transparent group-hover/checkbox:data-[invalid=true]:border-error-700 group-hover/checkbox:data-[checked=true]:bg-primary-700 group-hover/checkbox:data-[checked=true]:data-[disabled=true]:border-primary-600 group-hover/checkbox:data-[checked=true]:data-[disabled=true]:bg-primary-600 group-hover/checkbox:data-[checked=true]:data-[disabled=true]:opacity-40 group-hover/checkbox:data-[checked=true]:data-[disabled=true]:data-[invalid=true]:border-error-700 group-hover/checkbox:data-[disabled=true]:border-outline-400 group-hover/checkbox:data-[disabled=true]:data-[invalid=true]:border-error-700 active:data-[checked=true]:bg-primary-800 active:data-[checked=true]:border-primary-800 data-[invalid=true]:border-error-700 data-[disabled=true]:opacity-40',
   parentVariants: {
     size: {
-      lg: 'w-6 h-6 border-4',
+      lg: 'w-6 h-6 border-[3px]',
       md: 'w-5 h-5 border-2',
       sm: 'w-4 h-4 border-2',
     },
   },
 });
 
-const checkboxLabel = tva({
-  base: 'text-typography-600',
+const checkboxLabelStyle = tva({
+  base: 'text-typography-600 data-[checked=true]:text-typography-900 group-hover/checkbox:text-typography-900 group-hover/checkbox:data-[checked=true]:text-typography-900 group-hover/checkbox:data-[checked=true]:data-[disabled=true]:text-typography-900 group-hover/checkbox:data-[disabled=true]:text-typography-600 active:text-typography-900 active:data-[checked=true]:text-typography-900 data-[disabled=true]:opacity-40 web:select-none',
   parentVariants: {
     size: {
       lg: 'text-lg',
-      md: 'text-md',
+      md: 'text-base',
       sm: 'text-sm',
+    },
+  },
+});
+
+const checkboxIconStyle = tva({
+  base: 'group-data-[checked=true]/checkboxInd:text-typography-0 data-[disabled=true]:opacity-40',
+
+  parentVariants: {
+    size: {
+      sm: 'h-3 w-3',
+      md: 'h-4 w-4',
+      lg: 'h-5 w-5',
     },
   },
 });
 
 const CheckboxGroup = UICheckbox.Group;
 
+type ICheckboxProps = React.ComponentProps<typeof UICheckbox> &
+  VariantProps<typeof checkboxStyle>;
 const Checkbox = React.forwardRef(
-  ({ className, size = 'sm', ...props }: any, ref) => {
+  (
+    {
+      className,
+      size = 'md',
+      ...props
+    }: { className?: string } & ICheckboxProps,
+    ref
+  ) => {
     return (
       <UICheckbox
-        className={cn('flex-row items-center justify-start gap-2', className)}
+        className={checkboxStyle({
+          class: className,
+        })}
         {...props}
         context={{
           size,
@@ -71,13 +97,20 @@ const Checkbox = React.forwardRef(
   }
 );
 
+type ICheckboxIndicatorProps = React.ComponentProps<
+  typeof UICheckbox.Indicator
+> &
+  VariantProps<typeof checkboxIndicatorStyle>;
 const CheckboxIndicator = React.forwardRef(
-  ({ className, ...props }: any, ref) => {
+  (
+    { className, ...props }: { className?: string } & ICheckboxIndicatorProps,
+    ref
+  ) => {
     const { size: parentSize } = useStyleContext();
 
     return (
       <UICheckbox.Indicator
-        className={checkboxIndicator({
+        className={checkboxIndicatorStyle({
           parentVariants: {
             size: parentSize,
           },
@@ -90,34 +123,72 @@ const CheckboxIndicator = React.forwardRef(
   }
 );
 
-const CheckboxLabel = React.forwardRef(({ className, ...props }: any, ref) => {
-  const { size: parentSize } = useStyleContext();
-  return (
-    <UICheckbox.Label
-      className={checkboxLabel({
-        parentVariants: {
-          size: parentSize,
-        },
-        class: className,
-      })}
-      {...props}
-      ref={ref}
-    />
-  );
-});
+type ICheckboxLabelProps = React.ComponentProps<typeof UICheckbox.Label> &
+  VariantProps<typeof checkboxLabelStyle>;
+const CheckboxLabel = React.forwardRef(
+  (
+    { className, ...props }: { className?: string } & ICheckboxLabelProps,
+    ref
+  ) => {
+    const { size: parentSize } = useStyleContext();
+    return (
+      <UICheckbox.Label
+        className={checkboxLabelStyle({
+          parentVariants: {
+            size: parentSize,
+          },
+          class: className,
+        })}
+        {...props}
+        ref={ref}
+      />
+    );
+  }
+);
 
-const CheckboxIcon = React.forwardRef(({ className, ...props }: any, ref) => {
-  return (
-    <UICheckbox.Icon
-      className={cn(
-        'w-full h-full bg-primary-600 stroke-typography-0 color-typography-0',
-        className
-      )}
-      {...props}
-      ref={ref}
-    />
-  );
-});
+type ICheckboxIconProps = React.ComponentProps<typeof UICheckbox.Icon> & {
+  as?: any;
+};
+const CheckboxIcon = React.forwardRef(
+  (
+    {
+      className,
+      as: AsComp,
+      ...props
+    }: ICheckboxIconProps & { className?: any },
+    ref
+  ) => {
+    const { size: parentSize } = useStyleContext();
+    if (AsComp) {
+      return (
+        <UICheckbox.Icon>
+          <AsComp
+            {...props}
+            className={checkboxIconStyle({
+              parentVariants: {
+                size: parentSize,
+              },
+              class: className,
+            })}
+          />
+        </UICheckbox.Icon>
+      );
+    }
+
+    return (
+      <UICheckbox.Icon
+        className={checkboxIconStyle({
+          parentVariants: {
+            size: parentSize,
+          },
+          class: className,
+        })}
+        {...props}
+        ref={ref}
+      />
+    );
+  }
+);
 
 // Assign display names
 Checkbox.displayName = 'Checkbox';

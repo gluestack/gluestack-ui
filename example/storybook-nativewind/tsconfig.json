@@ -31,5 +31,5 @@
     "target": "esnext"
   },
   "exclude": ["lib", "node_modules", "storybookDocsComponents", "__tests__"],
-  "include": ["src"]
+  "include": ["src", "nativewind-env.d.ts"]
 }

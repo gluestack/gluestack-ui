@@ -5,7 +5,7 @@ import { OverlayProvider } from '@gluestack-ui/overlay';
 import { ToastProvider } from '@gluestack-ui/toast';
 
 // Change the config file path
-import { config } from './config';
+import { config } from '../gluestack-ui.config';
 
 const GluestackUIStyledProvider = createProvider({ StyledProvider });
 
