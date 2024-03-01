@@ -17,7 +17,13 @@
   "prettier.ignorePath": ".prettierignore",
   // If true, puts the `>` of a multi-line jsx element at the end of the last line instead of being alone on the next line
   "editor.wordWrap": "on",
-  "cSpell.words": ["Actionsheet", "gluestack", "nativewind", "themeable"],
+  "cSpell.words": [
+    "Actionsheet",
+    "gluestack",
+    "nativewind",
+    "tailwindcss",
+    "themeable"
+  ],
   "cSpell.enableFiletypes": ["mdx"],
   "tailwindCSS.experimental.classRegex": [
     ["tva\\((([^()]*|\\([^()]*\\))*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]

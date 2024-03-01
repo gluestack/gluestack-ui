@@ -14,7 +14,6 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="with-nativewind/components/Forms/Textarea" />
 
-import { Textarea, TextareaInput } from './Textarea';
 import {
   FormControl,
   FormControlError,
@@ -22,7 +21,9 @@ import {
   FormControlLabelText,
   FormControlHelper,
   FormControlHelperText,
-} from '@gluestack-ui/themed';
+  Textarea,
+  TextareaInput,
+} from '../../components-example/nativewind';
 import { transformedCode } from '../../utils';
 import {
   AppProvider,
@@ -31,7 +32,6 @@ import {
   TableContainer,
   InlineCode,
 } from '@gluestack/design-system';
-
 import Wrapper from '../../components-example/nativewind/Wrapper';
 
 This is an illustration of **Textarea** component.
@@ -367,3 +367,52 @@ Explore the comprehensive details of the Input in this document, including its i
   src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FNcXOxqKbdnGsLQNex3H76u%2F%25C2%25A0%25F0%259F%2593%259Agluestack-UI-handbook%3Fpage-id%3D5262%253A23948%26type%3Ddesign%26node-id%3D5262-25827%26viewport%3D713%252C121%252C0.03%26t%3DKYZLJTBIKhIjLoLC-1%26scaling%3Dscale-down%26starting-point-node-id%3D5262%253A25827%26mode%3Ddesign"
   allowfullscreen
 ></iframe>
+
+### Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+#### FormControl
+
+The Textarea Component can be incorporated within the FormControl.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+        <FormControl>
+          <FormControlLabel>
+            <FormControlLabelText>
+              Write with me
+            </FormControlLabelText>
+          </FormControlLabel>
+          <Textarea>
+            <TextareaInput placeholder='Once upon a time...'/>
+          </Textarea>
+          <FormControlHelper>
+            <FormControlHelperText>
+              Start your story
+            </FormControlHelperText>
+          </FormControlHelper>
+        </FormControl>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Textarea,
+        TextareaInput,
+        FormControl,
+        FormControlError,
+        FormControlLabel,
+        FormControlLabelText,
+        FormControlHelper,
+        FormControlHelperText,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
