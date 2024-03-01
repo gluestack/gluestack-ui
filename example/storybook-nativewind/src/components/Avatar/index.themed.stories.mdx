@@ -45,10 +45,10 @@ This is an illustration of **Avatar** component.
 
 <>
   <CodePreview
-    showComponentRenderer={true}
-    showArgsController={true}
-    metaData={{
-      code: `
+    showComponentRenderer={ true }
+  showArgsController = { true}
+  metaData = {{
+    code: `
         <Avatar {...props}>
           <AvatarFallbackText>Sandeep Srivastava</AvatarFallbackText>
         </Avatar>
@@ -56,25 +56,26 @@ This is an illustration of **Avatar** component.
       transformCode: (code) => {
         return transformedCode(code);
       },
-      scope: {
-        Wrapper,
+        scope: {
+      Wrapper,
         Avatar,
         AvatarBadge,
         AvatarFallbackText,
         AvatarImage,
       },
-      argsType: {
-        size: {
-          control: 'select',
+    argsType: {
+      size: {
+        control: 'select',
           options: ['xs', 'sm', 'md', 'lg', 'xl', '2xl'],
           default: 'md',
         },
-      },
-    }}
-  />
+    },
+  }
+}
+/>
 </>
 
-<br />
+<br/>
 
 ## Installation
 
@@ -89,9 +90,7 @@ npm i @gluestack-ui/avatar
 ### Step 2: Copy and paste the following code into your project.
 
 <CollapsibleCode>
-  ```jsx 
-%%-- File: components-example/themed/Avatar/index.tsx --%% 
-```
+  ```jsx %%-- File: components-example/themed/Avatar/index.tsx --%% ```
 </CollapsibleCode>
 
 ### Step 3: Update the import paths to match your project setup.

@@ -31,10 +31,10 @@ This is an illustration of **VStack** component.
 
 <Wrapper>
   <CodePreview
-    showComponentRenderer={true}
-    showArgsController={true}
-    metaData={{
-      code: `
+    showComponentRenderer={ true }
+  showArgsController = { true}
+  metaData = {{
+    code: `
         <Box className='justify-center h-80'>
           <VStack {...props}>
             <Box  className="h-20 w-20 bg-primary-300" />
@@ -46,28 +46,29 @@ This is an illustration of **VStack** component.
       transformCode: (code) => {
         return transformedCode(code);
       },
-      scope: {
-        Wrapper,
+        scope: {
+      Wrapper,
         VStack,
         Box,
       },
-      argsType: {
-        space: {
-          control: 'select',
+    argsType: {
+      space: {
+        control: 'select',
           options: ['none', 'xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', '4xl'],
           default: 'md',
         },
-        reversed: {
-          control: 'boolean',
+      reversed: {
+        control: 'boolean',
           options: [true, false],
           default: false,
         },
-      },
-    }}
-  />
+    },
+  }
+}
+/>
 </Wrapper>
 
-<br />
+<br/>
 
 ## Installation
 
