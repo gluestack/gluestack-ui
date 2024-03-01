@@ -18,7 +18,7 @@ export * from './Divider';
 export * from './Fab';
 export * from './FormControl';
 export * from './Input';
-export * from './InputAccessoryView';
+// export * from './InputAccessoryView';
 export * from './Image';
 export * from './KeyboardAvoidingView';
 export * from './LinearGradient';
