@@ -14,8 +14,8 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="with-gluestack-style/components/Layout/Center" />
 
-import { Center } from './Center';
-import { Text } from '../../components-example/themed/Text';
+import { Center } from '../../components-example/themed';
+import { Text } from '../../components-example/themed';
 
 import { transformedCode } from '../../utils';
 import { AppProvider, CodePreview, Table } from '@gluestack/design-system';
@@ -27,11 +27,11 @@ This is an illustration of **Center** component.
 
 <>
   <CodePreview
-    _rendererWrapper={{ py: '$6' }}
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
+    _rendererWrapper={ { py: '$6' } }
+  showComponentRenderer = { true}
+  showArgsController = { false}
+  metaData = {{
+    code: `
 <Center bg="$primary500" h={200} w={300}>
   <Text color="$text0" fontWeight="$bold">
     This is the center.
@@ -41,17 +41,18 @@ This is an illustration of **Center** component.
       transformCode: (code) => {
         return transformedCode(code);
       },
-      scope: {
-        Wrapper,
+        scope: {
+      Wrapper,
         Center,
         Text,
       },
-      argsType: {},
-    }}
-  />
+    argsType: { },
+  }
+}
+/>
 </>
 
-<br />
+<br/>
 
 ## Installation
 
@@ -59,9 +60,7 @@ This is an illustration of **Center** component.
 
 <CollapsibleCode>
 
-```jsx
- %%-- File: components-example/themed/Center/index.tsx --%%
-```
+```jsx %%-- File: components-example/themed/Center/index.tsx --%% ```
 
 </CollapsibleCode>
 
@@ -92,11 +91,11 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
 Explore the comprehensive details of the Center in this document, including its implementation details, checklist, and potential future additions. Dive into the thought process behind the component and gain insights into its development journey.
 
 <iframe
-  style={{
-    borderRadius: '8px',
+style = {{
+  borderRadius: '8px',
     border: ' 1px solid rgba(0, 0, 0, 0.1)',
-    aspectRatio: 736 / 585,
+      aspectRatio: 736 / 585,
   }}
-  src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FNcXOxqKbdnGsLQNex3H76u%2Fgluestack-UI-handbook%3Fpage-id%3D222%253A12635%26type%3Ddesign%26node-id%3D225-14926%26viewport%3D-207%252C386%252C0.13%26scaling%3Dcontain%26starting-point-node-id%3D225%253A14926"
-  allowFullScreen
-></iframe>
+src = "https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FNcXOxqKbdnGsLQNex3H76u%2Fgluestack-UI-handbook%3Fpage-id%3D222%253A12635%26type%3Ddesign%26node-id%3D225-14926%26viewport%3D-207%252C386%252C0.13%26scaling%3Dcontain%26starting-point-node-id%3D225%253A14926"
+allowFullScreen
+  > </iframe>

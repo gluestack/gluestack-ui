@@ -14,8 +14,6 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="with-nativewind/components/Layout/VStack" />
 
-import { VStack } from './VStack';
-import { transformedCode } from '../../utils';
 import {
   AppProvider,
   CodePreview,
@@ -24,19 +22,19 @@ import {
   Text,
   InlineCode,
 } from '@gluestack/design-system';
-
+import { Box, VStack } from '../../components-example/nativewind';
+import { transformedCode } from '../../utils';
 import Wrapper from '../../components-example/nativewind/Wrapper';
-import { Box } from '../../components-example/nativewind/Box';
 import { CollapsibleCode } from '@gluestack/design-system';
 
 This is an illustration of **VStack** component.
 
 <Wrapper>
   <CodePreview
-    showComponentRenderer={true}
-    showArgsController={true}
-    metaData={{
-      code: `
+    showComponentRenderer={ true }
+  showArgsController = { true}
+  metaData = {{
+    code: `
         <Box className='justify-center h-80'>
           <VStack {...props}>
             <Box  className="h-20 w-20 bg-primary-300" />
@@ -48,37 +46,36 @@ This is an illustration of **VStack** component.
       transformCode: (code) => {
         return transformedCode(code);
       },
-      scope: {
-        Wrapper,
+        scope: {
+      Wrapper,
         VStack,
         Box,
       },
-      argsType: {
-        space: {
-          control: 'select',
+    argsType: {
+      space: {
+        control: 'select',
           options: ['none', 'xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', '4xl'],
           default: 'md',
         },
-        reversed: {
-          control: 'boolean',
+      reversed: {
+        control: 'boolean',
           options: [true, false],
           default: false,
         },
-      },
-    }}
-  />
+    },
+  }
+}
+/>
 </Wrapper>
 
-<br />
+<br/>
 
 ## Installation
 
 ### Step 1: Copy and paste the following code into your project.
 
 <CollapsibleCode>
-  ```jsx 
-  %%-- File: components-example/nativewind/VStack/index.tsx --%% 
-  ```
+  ```jsx %%-- File: components-example/nativewind/VStack/index.tsx --%% ```
 </CollapsibleCode>
 
 ### Step 2: Update the import paths to match your project setup.
@@ -171,3 +168,33 @@ VStack component is created using View component from react-native. It extends a
     </Table>
   </TableContainer>
 </Wrapper>
+
+### Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+#### VStack Reversed
+
+A VStack component with the reversed prop reverses the order of vertically stacked elements, enabling customized vertical layouts and visual arrangements of content within a user interface.
+
+<AppProvider>
+  <CodePreview
+    _rendererWrapper={{ py: '$2.5' }}
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+        <VStack space='md'>
+          <Box className='w-20 h-20 bg-blue-300' />
+          <Box className='w-20 h-20 bg-blue-400' />
+          <Box className='w-20 h-20 bg-blue-500' />
+        </VStack>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: { Box, Wrapper, VStack },
+      argsType: {},
+    }}
+  />
+</AppProvider>

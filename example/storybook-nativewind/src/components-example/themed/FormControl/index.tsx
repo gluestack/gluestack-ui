@@ -151,15 +151,113 @@ const StyledFormControlError = styled(View, {
   gap: '$1',
 });
 
-// const StyeldFormControlErrorIcon = styled(StyledIcon, {
-//   color: '$error700',
-//   props: {
-//     size: 'sm',
-//   },
-// });
+const StyledText = styled(
+  Text,
+  {
+    color: '$text700',
+    flex: 1,
+    fontWeight: '$normal',
+    fontFamily: '$body',
+    fontStyle: 'normal',
+    letterSpacing: '$md',
+
+    variants: {
+      isTruncated: {
+        true: {
+          props: {
+            // @ts-ignore
+            numberOfLines: 1,
+            ellipsizeMode: 'tail',
+          },
+        },
+      },
+      bold: {
+        true: {
+          fontWeight: '$bold',
+        },
+      },
+      underline: {
+        true: {
+          textDecorationLine: 'underline',
+        },
+      },
+      strikeThrough: {
+        true: {
+          textDecorationLine: 'line-through',
+        },
+      },
+      size: {
+        '2xs': {
+          fontSize: '$2xs',
+        },
+        'xs': {
+          fontSize: '$xs',
+        },
+
+        'sm': {
+          fontSize: '$sm',
+        },
+
+        'md': {
+          fontSize: '$md',
+        },
+
+        'lg': {
+          fontSize: '$lg',
+        },
+
+        'xl': {
+          fontSize: '$xl',
+        },
+
+        '2xl': {
+          fontSize: '$2xl',
+        },
+
+        '3xl': {
+          fontSize: '$3xl',
+        },
+
+        '4xl': {
+          fontSize: '$4xl',
+        },
+
+        '5xl': {
+          fontSize: '$5xl',
+        },
+
+        '6xl': {
+          fontSize: '$6xl',
+        },
+      },
+      sub: {
+        true: {
+          fontSize: '$xs',
+        },
+      },
+      italic: {
+        true: {
+          fontStyle: 'italic',
+        },
+      },
+      highlight: {
+        true: {
+          bg: '$yellow500',
+        },
+      },
+    },
+
+    defaultProps: {
+      size: 'md',
+    },
+  },
+  {
+    ancestorStyle: ['_text'],
+  }
+);
 
 const StyledFormControlErrorText = styled(
-  Text,
+  StyledText,
   {
     color: '$error700',
   },
@@ -174,7 +272,7 @@ const StyledFormControlHelper = styled(View, {
 });
 
 const StyledFormControlHelperText = styled(
-  Text,
+  StyledText,
   {
     props: {
       size: 'xs',
@@ -196,12 +294,12 @@ const StyledFormControlLabel = styled(
   { descendantStyle: ['_labelText'] }
 );
 
-const StyledFormControlLabelText = styled(Text, {
+const StyledFormControlLabelText = styled(StyledText, {
   fontWeight: '$medium',
   color: '$text900',
 });
 
-const StyledLabelAstrick = styled(Text, {}, {
+const StyledLabelAstrick = styled(StyledText, {}, {
   componentName: 'FormControlErrorText',
   ancestorStyle: ['_labelAstrick'],
 } as const);

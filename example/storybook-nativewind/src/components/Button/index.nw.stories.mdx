@@ -17,24 +17,22 @@ import { Meta } from '@storybook/addon-docs';
 import {
   Button,
   ButtonText,
+  ButtonSpinner, 
   ButtonIcon,
-  ButtonSpinner,
-  EditIcon,
-  ArrowLeftIcon,
   Icon,
   ArrowUpIcon,
-  AddIcon,
   InfoIcon,
-  ThreeDotsIcon,
+  AddIcon,
+  Box,
+  VStack,
+  Heading,
+  Text,
   Input,
   InputField,
-  HStack,
-  VStack,
-  Text,
-  Heading,
-  Box,
   Center,
-} from './Button';
+  ArrowLeftIcon,
+  EditIcon
+} from '../../components-example/nativewind';
 import { transformedCode } from '../../utils';
 import {
   AppProvider,
@@ -43,7 +41,6 @@ import {
   TableContainer,
   InlineCode,
 } from '@gluestack/design-system';
-
 import Wrapper from '../../components-example/nativewind/Wrapper';
 import { CollapsibleCode } from '@gluestack/design-system';
 
@@ -472,7 +469,7 @@ A loading button is a type of button component that provides visual feedback to 
       transformCode: (code) => {
         return transformedCode(code);
       },
-      scope: { Button, ButtonText, ButtonIcon, Wrapper, ButtonSpinner },
+      scope: { Button, ButtonText, Wrapper, ButtonSpinner },
       argsType: {},
     }}
   />
@@ -519,17 +516,31 @@ A button with a link combines the interactive behavior of a button component wit
           <ButtonText className='font-medium text-sm text-typography-900' >
             Back to top
           </ButtonText>
-          <ButtonIcon as={ArrowUpIcon} className='h-3 w-3 color-background-900 ml-1' />
+          <ButtonIcon as={ArrowUpIcon}
+           className=
+           'h-
+           3 
+           w-
+           3 
+           color-
+           background-900 ml-1' />
         </Button>
       `,
       transformCode: (code) => {
         return transformedCode(code);
       },
-      scope: { Button, ButtonText, ButtonIcon, Wrapper, Icon, ArrowUpIcon },
-      argsType: {},
+      scope: { Button, ButtonText, ButtonIcon, Wrapper, Icon, ArrowUpIcon 
+      },
+
+      argsType:
+       {},
+
     }}
+
   />
-</AppProvider>
+
+</A
+ppProvider>
 
 #### Button With Icon
 
