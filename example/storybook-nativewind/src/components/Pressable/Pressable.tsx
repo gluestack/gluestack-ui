@@ -28,4 +28,4 @@ PressableBasic.description =
 
 export default PressableBasic;
 
-export { Pressable, Center };
+export { Pressable, Center, Text };
