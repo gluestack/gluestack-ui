@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, ButtonText } from '@/components/ui/Button';
+import { Button, ButtonText, ButtonIcon } from '@/components/ui/Button';
 import {
   Modal,
   ModalBackdrop,
@@ -10,9 +10,14 @@ import {
   ModalHeader,
 } from '@/components/ui/Modal';
 import { Center } from '@/components/ui/Center';
-
+import { CloseIcon, Icon, ArrowLeftIcon } from '@/components/ui/Icon';
+import { VStack } from '@/components/ui/VStack';
+import { HStack } from '@/components/ui/HStack';
 import { X } from 'lucide-react-native';
 import { Text } from '@/components/ui/Text';
+import { Heading } from '@/components/ui/Heading';
+import { Input, InputField } from '@/components/ui/Input';
+import { Link } from '@/components/ui/Link';
 
 const ModalBasic = (props: any) => {
   const [showModal, setShowModal] = React.useState(false);
@@ -86,6 +91,16 @@ export {
   ModalFooter,
   Button,
   ButtonText,
+  ButtonIcon,
   Text,
   Center,
+  CloseIcon,
+  VStack,
+  HStack,
+  Heading,
+  Icon,
+  Input,
+  InputField,
+  Link,
+  ArrowLeftIcon,
 };
