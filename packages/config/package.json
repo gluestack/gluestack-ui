@@ -1,6 +1,6 @@
 {
   "name": "@gluestack-ui/config",
-  "version": "1.1.10",
+  "version": "1.1.11",
   "main": "build/gluestack-ui.config.js",
   "types": "build/gluestack-ui.config.d.ts",
   "module": "build/gluestack-ui.config",
@@ -37,6 +37,7 @@
     "@expo/html-elements": "latest",
     "@gluestack-style/animation-resolver": "1.0.4",
     "@gluestack-style/legend-motion-animation-driver": "1.0.3",
+    "@gluestack-style/react": "1.0.48",
     "@gluestack-ui/accordion": "1.0.1",
     "@gluestack-ui/actionsheet": "0.2.37",
     "@gluestack-ui/alert": "0.1.12",
@@ -65,11 +66,10 @@
     "@gluestack-ui/switch": "0.1.19",
     "@gluestack-ui/tabs": "0.1.14",
     "@gluestack-ui/textarea": "0.1.20",
+    "@gluestack-ui/themed": "1.1.9",
     "@gluestack-ui/toast": "1.0.4",
     "@gluestack-ui/tooltip": "0.1.26",
-    "@legendapp/motion": "latest",
-    "@gluestack-style/react": "1.0.48",
-    "@gluestack-ui/themed": "1.1.9"
+    "@legendapp/motion": "latest"
   },
   "peerDependencies": {
     "@gluestack-style/react": ">=1.0",
