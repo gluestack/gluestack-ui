@@ -1,8 +1,9 @@
 import React from 'react';
-
-import { VStack, Text, Box, Heading, Center } from '@gluestack-ui/themed';
-
 import { Progress, ProgressFilledTrack } from '@/components/ui/Progress';
+import { VStack } from '@/components/ui/VStack';
+import { Box } from '@/components/ui/Box';
+import { Heading } from '@/components/ui/Heading';
+import { Center } from '@/components/ui/Center';
 
 const ProgressBasic = ({ value = 50, ...props }: any) => {
   return (
@@ -31,4 +32,4 @@ ProgressBasic.description =
 
 export default ProgressBasic;
 
-export { Progress, ProgressFilledTrack, VStack, Text, Box, Heading };
+export { Progress, ProgressFilledTrack, VStack, Box, Heading };
