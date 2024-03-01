@@ -4,16 +4,17 @@ import { Icon } from '@/components/ui/Icon';
 import { HStack } from '@/components/ui/HStack';
 import { Text } from '@/components/ui/Text';
 import { ArrowUpRightIcon } from 'lucide-react-native';
-
 const LinkBasic = ({ ...props }: any) => {
   return (
-    <Link href="https://google.com" isExternal {...props}>
-      <LinkText
-      // @ts-ignore
-      >
-        GLUESTACK
-      </LinkText>
-    </Link>
+    <>
+      <Link href="https://google.com" {...props} isExternal>
+        <LinkText
+        // @ts-ignore
+        >
+          GLUESTACK
+        </LinkText>
+      </Link>
+    </>
   );
 };
 

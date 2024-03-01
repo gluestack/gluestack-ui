@@ -46,6 +46,10 @@ module.exports = function (api) {
               __dirname,
               '../../packages/unstyled/button/src'
             ),
+            '@gluestack-ui/link': path.resolve(
+              __dirname,
+              '../../packages/unstyled/link/src'
+            ),
             '@gluestack-ui/accordion': path.resolve(
               __dirname,
               '../../packages/unstyled/accordion/src'
