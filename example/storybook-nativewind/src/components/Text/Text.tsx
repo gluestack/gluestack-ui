@@ -1,6 +1,5 @@
 import React from 'react';
 import { Text } from '@/components/ui/Text';
-import { Center } from '@/components/ui/Center';
 
 const TextBasic = ({
   size = 'md',
@@ -36,4 +35,4 @@ TextBasic.description =
 
 export default TextBasic;
 
-export { Text, Center };
+export { Text };
