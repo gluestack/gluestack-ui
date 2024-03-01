@@ -24,7 +24,7 @@ cssInterop(UIAvatar.Image, { className: 'style' });
 cssInterop(UIAvatar.FallbackText, { className: 'style' });
 
 const avatarStyle = tva({
-  base: 'rounded-full justify-center items-center relative bg-primary-600',
+  base: 'rounded-full justify-center items-center relative bg-primary-600 group-[.avatar-group]/avatar-group:-ml-2.5',
   variants: {
     size: {
       'xs': 'w-6 h-6',
@@ -53,7 +53,7 @@ const avatarFallbackTextStyle = tva({
 });
 
 const avatarGroupStyle = tva({
-  base: 'flex-row-reverse relative',
+  base: 'group/avatar-group flex-row-reverse relative avatar-group',
 });
 
 const avatarBadgeStyle = tva({
