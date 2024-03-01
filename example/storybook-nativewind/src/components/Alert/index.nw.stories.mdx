@@ -1,5 +1,5 @@
 ---
-title: gluestack-ui Slider Alert | Installation, Usage, and API
+title: gluestack-ui Alert Component | Installation, Usage, and API
 
 description: Alerts are used to communicate the status of a system, feature, or page. They indicate a specific state that may require attention from the user.
 
@@ -14,19 +14,20 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="with-nativewind/components/Feedback/Alert" />
 
-import { Alert, AlertIcon, AlertText } from './Alert';
 import {
+  Alert,
+  AlertIcon,
+  AlertText,
+  InfoIcon,
   CheckCircleIcon,
   CloseCircleIcon,
-  Icon,
   BellIcon,
   AlertCircleIcon,
-  Center,
+  Icon,
   VStack,
-  InfoIcon,
-} from '@gluestack-ui/themed';
-
-import { HStack } from '@gluestack-ui/themed';
+  Center,
+  HStack,
+} from './Alert';
 import { transformedCode } from '../../utils';
 import {
   AppProvider,
@@ -36,7 +37,6 @@ import {
   TableContainer,
 } from '@gluestack/design-system';
 import { CollapsibleCode } from '@gluestack/design-system';
-
 import Wrapper from '../../components-example/nativewind/Wrapper';
 
 This is an illustration of **Alert** component.
@@ -48,7 +48,7 @@ This is an illustration of **Alert** component.
     showArgsController={true}
     metaData={{
       code: `
-        <Alert className="mx-2.5"  {...props}>
+        <Alert className="mx-2.5" {...props}>
           <AlertIcon as={InfoIcon} className="mr-3"  />
           <AlertText>
             We have updated our terms of service. Please review and accept to continue using our service.
@@ -96,9 +96,7 @@ npm i @gluestack-ui/alert
 ### Step 2: Copy and paste the following code into your project.
 
 <CollapsibleCode>
-  ```jsx 
-  %%-- File: components-example/nativewind/Alert/index.tsx --%% 
-  ```
+  ```jsx %%-- File: components-example/nativewind/Alert/index.tsx --%% ```
 </CollapsibleCode>
 
 ### Step 3: Update the import paths to match your project setup.
@@ -140,17 +138,96 @@ Contains all spinner related layout style props and actions. It inherits all the
 
 Alert component is created using View component from react-native. It extends all the props supported by [React Native View](https://reactnative.dev/docs/view#props).
 
-<!--
-## Spec Doc
+#### Alert
 
-Explore the comprehensive details of the Alert in this document, including its implementation details, checklist, and potential future additions. Dive into the thought process behind the component and gain insights into its development journey.
+<AppProvider>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Name</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Value</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Default</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>action</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>error | warning | success | info | muted</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>info</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>variant</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>solid | outline | accent</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>solid</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</AppProvider>
 
-<iframe
-  style={{
-    borderRadius: '8px',
-    border: ' 1px solid rgba(0, 0, 0, 0.1)',
-    aspectRatio: 736 / 585,
-  }}
-  src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FNcXOxqKbdnGsLQNex3H76u%2F%25C2%25A0%25F0%259F%2593%259Agluestack-UI-handbook%3Ftype%3Ddesign%26node-id%3D6300-43142%26t%3DZPsVa5mi34R2dR7W-1%26scaling%3Dscale-down%26page-id%3D6300%253A41240%26starting-point-node-id%3D6300%253A43142%26mode%3Ddesign"
-  allowFullScreen
-/> -->
+### Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+#### Alert with Heading
+
+An example of an alert component with a heading, which further contains another alert component for displaying supplementary information.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+        <Alert action='success'>
+          <AlertIcon as={CheckCircleIcon} size="xl" className='mr-3' />
+          <VStack space='xs'>
+            <AlertText className='font-bold' >
+              Congratulations!
+            </AlertText >
+            <AlertText >
+              Thank you for your submission. You will receive a confirmation email shortly.
+            </AlertText>
+          </VStack>
+        </Alert>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Alert,
+        AlertIcon,
+        AlertText,
+        Wrapper,
+        CheckCircleIcon,
+        VStack,
+        Icon,
+      },
+      argsType: {},
+    }}
+/>
+
+</AppProvider>
