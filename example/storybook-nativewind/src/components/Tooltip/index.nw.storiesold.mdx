@@ -46,10 +46,10 @@ This is an illustration of **Tooltip** component.
 
 <Wrapper>
   <CodePreview
-    showComponentRenderer={true}
-    showArgsController={true}
-    metaData={{
-      code: `
+    showComponentRenderer={ true }
+  showArgsController = { true}
+  metaData = {{
+    code: `
         <Tooltip
           {...props}
           trigger={(triggerProps) => {
@@ -68,8 +68,8 @@ This is an illustration of **Tooltip** component.
       transformCode: (code) => {
         return transformedCode(code);
       },
-      scope: {
-        Wrapper,
+        scope: {
+      Wrapper,
         Tooltip,
         TooltipContent,
         TooltipText,
@@ -77,9 +77,9 @@ This is an illustration of **Tooltip** component.
         Button,
         ButtonText,
       },
-      argsType: {
-        placement: {
-          control: 'select',
+    argsType: {
+      placement: {
+        control: 'select',
           options: [
             'top left',
             'top',
@@ -96,12 +96,13 @@ This is an illustration of **Tooltip** component.
           ],
           default: 'top',
         },
-      },
-    }}
-  />
+    },
+  }
+}
+/>
 </Wrapper>
 
-<br />
+<br/>
 
 ## Installation
 
@@ -116,9 +117,7 @@ npm i @gluestack-ui/tooltip
 ### Step 2: Copy and paste the following code into your project.
 
 <CollapsibleCode>
-  ```jsx 
-  %%-- File: components-example/nativewind/Tooltip/index.tsx --%% 
-  ```
+  ```jsx %%-- File: components-example/nativewind/Tooltip/index.tsx --%% ```
 </CollapsibleCode>
 
 ### Step 3: Update the import paths to match your project setup.
@@ -224,7 +223,7 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
             </Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>{'() => void'}</Table.TText>
+            <Table.TText>{ '() => void'}</Table.TText>
           </Table.TD>
           <Table.TD>
             <Table.TText>true</Table.TText>
@@ -240,7 +239,7 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
             </Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>{'() => void'}</Table.TText>
+            <Table.TText>{ '() => void'}</Table.TText>
           </Table.TD>
           <Table.TD>
             <Table.TText>-</Table.TText>
@@ -256,7 +255,7 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
             </Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>{'number'}</Table.TText>
+            <Table.TText>{ 'number'}</Table.TText>
           </Table.TD>
           <Table.TD>
             <Table.TText>0</Table.TText>
@@ -272,7 +271,7 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
             </Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>{'number'}</Table.TText>
+            <Table.TText>{ 'number'}</Table.TText>
           </Table.TD>
           <Table.TD>
             <Table.TText>0</Table.TText>
@@ -496,11 +495,11 @@ We have outlined the various features that ensure the Tooltip component is acces
 Explore the comprehensive details of the Tooltip in this document, including its implementation details, checklist, and potential future additions. Dive into the thought process behind the component and gain insights into its development journey.
 
 <iframe
-  style={{
-    borderRadius: '8px',
+style = {{
+  borderRadius: '8px',
     border: ' 1px solid rgba(0, 0, 0, 0.1)',
-    aspectRatio: 736 / 585,
+      aspectRatio: 736 / 585,
   }}
-  src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FNcXOxqKbdnGsLQNex3H76u%2F%25C2%25A0%25F0%259F%2593%259Agluestack-UI-handbook%3Ftype%3Ddesign%26node-id%3D6003-30473%26t%3D94Rlaz8y4WQXlTT6-1%26scaling%3Dscale-down%26page-id%3D6003%253A28666%26starting-point-node-id%3D6003%253A30473%26mode%3Ddesign"
-  allowFullScreen
-/>
+src = "https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FNcXOxqKbdnGsLQNex3H76u%2F%25C2%25A0%25F0%259F%2593%259Agluestack-UI-handbook%3Ftype%3Ddesign%26node-id%3D6003-30473%26t%3D94Rlaz8y4WQXlTT6-1%26scaling%3Dscale-down%26page-id%3D6003%253A28666%26starting-point-node-id%3D6003%253A30473%26mode%3Ddesign"
+allowFullScreen
+  />
