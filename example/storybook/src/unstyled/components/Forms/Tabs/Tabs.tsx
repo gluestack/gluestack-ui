@@ -12,7 +12,7 @@ import {
 
 const TabsStory = () => {
   return (
-    <Tabs w="$full" value="tab1">
+    <Tabs w="$full" defaultValue="tab1">
       <TabsTabList>
         <TabsTab value="tab1">
           <TabsTabTitle>Tab 1</TabsTabTitle>

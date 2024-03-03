@@ -1,69 +1,80 @@
+import React, { memo, useEffect, forwardRef } from 'react';
 import { useFocusRing, useFocus } from '@react-native-aria/focus';
-import React, { memo, useEffect } from 'react';
-import { forwardRef } from 'react';
-import type { PressableProps } from 'react-native';
 import { useHover, usePress } from '@react-native-aria/interactions';
 import { composeEventHandlers } from '@gluestack-ui/utils';
 import { useTab } from './TabProvider';
 import { useTabs } from './useTabs';
 
-export const Tab = <StyledTab,>(StyledTab: React.ComponentType<StyledTab>) =>
+export const TabsTrigger = (StyledTabsTrigger: any) =>
   memo(
     forwardRef(
       (
         {
           value,
           children,
+          isDisabled = false,
+          isHovered: isHoveredProp,
+          isFocused: isFocusedProp,
+          isPressed: isPressedProp,
+          isFocusVisible: isFocusVisibleProp,
           ...props
-        }: StyledTab &
-          PressableProps & {
-            children?: any;
-            value?: string;
-            onSelect: (key: string) => void;
-          },
+        }: any,
         ref?: any
       ) => {
         const { focusProps: focusRingProps, isFocusVisible }: any =
           useFocusRing();
         const { pressProps, isPressed } = usePress({
-          isDisabled: props.disabled ?? undefined,
+          isDisabled,
         });
         const { isFocused, focusProps } = useFocus();
         const { isHovered, hoverProps }: any = useHover();
-
-        const { onChange, currentActiveTab } = useTab('TabContext');
-
-        const { tabProps } = useTabs();
+        const { onValueChange, currentActiveTab, loop, orientation } =
+          useTab('TabContext');
+        const { tabProps } = useTabs(loop, orientation);
 
         useEffect(() => {
-          if (isFocusVisible) {
-            onChange(value);
+          if (isFocusVisible && !isDisabled) {
+            onValueChange(value);
           }
-        }, [isFocusVisible, onChange, value]);
+        }, [isFocusVisible, onValueChange, value, isDisabled]);
 
         return (
-          <StyledTab
+          <StyledTabsTrigger
             role="tab"
+            id={`tab-${value}`}
+            aria-controls={`panel-${value}`}
             ref={ref}
+            {...props}
             states={{
-              hover: isHovered,
-              focus: isFocused,
-              active: value === currentActiveTab,
-              focusVisible: isFocusVisible,
+              hover: isHovered || isHoveredProp,
+              focus: (isFocused && !isDisabled) || isFocusedProp,
+              active:
+                (value === currentActiveTab && !isDisabled) || isPressedProp,
+              focusVisible:
+                (isFocusVisible && !isDisabled) || isFocusVisibleProp,
+              disabled: isDisabled,
             }}
             dataSet={{
-              hover: isHovered ? 'true' : 'false',
-              focus: isFocused ? 'true' : 'false',
-              active: value === currentActiveTab ? 'true' : 'false',
-              focusVisible: isFocusVisible ? 'true' : 'false',
+              hover: isHoveredProp || isHovered ? 'true' : 'false',
+              focus:
+                isFocusedProp || (isFocused && !isDisabled) ? 'true' : 'false',
+              active:
+                isPressedProp || (value === currentActiveTab && !isDisabled)
+                  ? 'true'
+                  : 'false',
+              focusVisible:
+                isFocusVisibleProp || (isFocusVisible && !isDisabled)
+                  ? 'true'
+                  : 'false',
+              disabled: isDisabled ? 'true' : 'false',
             }}
-            tabIndex={value === currentActiveTab ? 0 : -1}
-            {...(props as StyledTab)}
+            disabled={isDisabled}
+            tabIndex={!isDisabled ? 0 : -1}
             onPressIn={composeEventHandlers(
               props?.onPressIn,
               pressProps.onPressIn
             )}
-            onPressOut={() => onChange(value)}
+            onPressOut={() => onValueChange(value)}
             onPress={composeEventHandlers(props?.onPress, pressProps.onPress)}
             // @ts-ignore - web only
             onHoverIn={composeEventHandlers(
@@ -90,12 +101,14 @@ export const Tab = <StyledTab,>(StyledTab: React.ComponentType<StyledTab>) =>
             {typeof children === 'function'
               ? children({
                   hovered: isHovered,
-                  active: value === currentActiveTab,
+                  active: value === currentActiveTab && !isDisabled,
                   pressed: isPressed,
-                  focused: isFocused,
+                  focused: isFocused && !isDisabled,
+                  disabled: isDisabled,
+                  focusVisible: isFocusVisible && !isDisabled,
                 })
               : children}
-          </StyledTab>
+          </StyledTabsTrigger>
         );
       }
     )

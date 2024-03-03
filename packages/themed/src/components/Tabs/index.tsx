@@ -1,26 +1,27 @@
 import { createTabs } from '@gluestack-ui/tabs';
 import {
   Root,
-  Tab,
-  TabPanels,
-  TabPanel,
-  TabList,
-  TabTitle,
-  TabIcon,
+  List,
+  Trigger,
+  TitleText,
+  Contents,
+  Content,
+  Icon,
 } from './styled-components';
 
 export const Tabs = createTabs({
   Root,
-  Tab,
-  TabPanels,
-  TabPanel,
-  TabList,
-  TabTitle,
-  TabIcon,
+  List,
+  Trigger,
+  Icon,
+  TitleText,
+  Contents,
+  Content,
 });
-export const TabsTab = Tabs.Tab;
-export const TabsTabPanels = Tabs.TabPanels;
-export const TabsTabPanel = Tabs.TabPanel;
-export const TabsTabList = Tabs.TabList;
-export const TabsTabTitle = Tabs.TabTitle;
-export const TabsTabIcon = Tabs.TabIcon;
+
+export const TabsList = Tabs.List;
+export const TabsTrigger = Tabs.Trigger;
+export const TabsTitleText = Tabs.TitleText;
+export const TabsContents = Tabs.Contents;
+export const TabsContent = Tabs.Content;
+export const TabsIcon = Tabs.Icon;

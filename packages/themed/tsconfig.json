@@ -1,8 +1,10 @@
 {
   "include": ["./src"],
   "exclude": ["node_modules", "example"],
-  "path": {},
   "compilerOptions": {
+    "paths": {
+      "@gluestack-ui/tabs": ["../unstyled/tabs/src"]
+    },
     "ignoreDeprecations": "5.0",
     "noEmit": false,
     "declaration": true,

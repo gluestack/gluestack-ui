@@ -1,21 +1,41 @@
 import { useFocusManager } from '@react-native-aria/focus';
-import { AccessibilityRole } from 'react-native';
+import type { AccessibilityRole } from 'react-native';
 
-export const useTabs = () => {
+export const useTabs = (
+  wrap: boolean,
+  orientation: 'vertical' | 'horizontal'
+) => {
   const focusManager = useFocusManager();
   const onKeyDown = (e: KeyboardEvent) => {
-    switch (e.code) {
-      case 'ArrowRight': {
-        e.preventDefault();
-        //@ts-ignore
-        focusManager?.focusNext({ wrap: true });
-        break;
+    if (orientation === 'horizontal') {
+      switch (e.code) {
+        case 'ArrowRight': {
+          e.preventDefault();
+          //@ts-ignore
+          focusManager?.focusNext({ wrap, tabbable: true });
+          break;
+        }
+        case 'ArrowLeft': {
+          e.preventDefault();
+          //@ts-ignore
+          focusManager?.focusPrevious({ wrap, tabbable: true });
+          break;
+        }
       }
-      case 'ArrowLeft': {
-        e.preventDefault();
-        //@ts-ignore
-        focusManager?.focusPrevious({ wrap: true });
-        break;
+    } else if (orientation === 'vertical') {
+      switch (e.code) {
+        case 'ArrowUp': {
+          e.preventDefault();
+          //@ts-ignore
+          focusManager?.focusPrevious({ wrap, tabbable: true });
+          break;
+        }
+        case 'ArrowDown': {
+          e.preventDefault();
+          //@ts-ignore
+          focusManager?.focusNext({ wrap, tabbable: true });
+          break;
+        }
       }
     }
   };

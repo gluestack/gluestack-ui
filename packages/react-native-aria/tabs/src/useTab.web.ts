@@ -2,11 +2,8 @@ import { AriaTabProps } from '@react-types/tabs';
 import { HTMLAttributes, Key, RefObject } from 'react';
 import { SingleSelectListState } from '@react-stately/list';
 import { usePress } from '@react-native-aria/interactions';
-import {
-  useSelectableItem,
-} from '@react-aria/selection';
+import { useSelectableItem } from '@react-aria/selection';
 import { useMapDomPropsToRN } from '@react-native-aria/utils';
-
 
 const tabsIds = new WeakMap<SingleSelectListState<unknown>, string>();
 
@@ -43,15 +40,14 @@ export function useTab<T>(
     tabIndex = 0;
   }
 
-  
   // Putting this as a last resort, after several hours of debugging.
   // Why?
   // tabListProps adds onMouseDown with preventDefault in useSelectableCollection.ts (React Aria) and react-native-web uses onClick for onPress.
   // This results in tab button not getting focused when clicked
   // See this example - https://codesandbox.io/s/issue-i-know-but-dont-know-why-1-ydyw5?file=/src/App.js
-  const onMouseDown  =  (e:any) => e.stopPropagation();
+  const onMouseDown = (e: any) => e.stopPropagation();
 
-  const tabPropsTemp  = {
+  const tabPropsTemp = {
     ...pressProps,
     onMouseDown,
     'id': tabId,
@@ -60,12 +56,12 @@ export function useTab<T>(
     'aria-controls': isSelected ? tabPanelId : undefined,
     'tabIndex': isDisabled ? undefined : tabIndex,
     'role': 'tab',
-  }
-  
-  const tabProps = useMapDomPropsToRN(tabPropsTemp, ref)
+  };
+
+  const tabProps = useMapDomPropsToRN(tabPropsTemp, ref);
 
   return {
-    tabProps
+    tabProps,
   };
 }
 

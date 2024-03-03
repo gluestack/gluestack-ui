@@ -1,24 +1,42 @@
-import React, { memo } from 'react';
+import React, { memo, useState } from 'react';
 import { forwardRef } from 'react';
 import { TabProvider } from './TabProvider';
+import { useControllableState } from '@gluestack-ui/hooks';
+import type { ITabsProps } from './types';
 
-export const Tabs = <StyledTabs,>(
-  StyledTabs: React.ComponentType<StyledTabs>
-) =>
+export const Tabs = <T,>(StyledTabs: any) =>
   memo(
     forwardRef(
-      ({ value, ...props }: StyledTabs & { value?: string }, ref?: any) => {
-        const DEFAULT_TAB = 'tab-0';
-        const [currentActiveTab, setCurrentActiveTab] = React.useState(
-          value ?? DEFAULT_TAB
-        );
+      (
+        {
+          value,
+          onValueChange,
+          defaultValue,
+          children,
+          ...props
+        }: T & ITabsProps,
+        ref?: any
+      ) => {
+        const [currentActiveTab, setCurrentActiveTab] = useControllableState({
+          value,
+          defaultValue,
+          onChange: (val: any) => {
+            onValueChange && onValueChange(val);
+          },
+        });
 
-        const onChange = (currentValue: string) =>
-          setCurrentActiveTab(currentValue);
-
+        const [wrapList, setWrapList] = useState(true);
         return (
-          <TabProvider currentActiveTab={currentActiveTab} onChange={onChange}>
-            <StyledTabs {...(props as StyledTabs)} ref={ref} />
+          <TabProvider
+            currentActiveTab={currentActiveTab}
+            onValueChange={setCurrentActiveTab}
+            onLoopChange={setWrapList}
+            loop={wrapList}
+            orientation={props?.orientation ?? 'horizontal'}
+          >
+            <StyledTabs ref={ref} {...props}>
+              {children}
+            </StyledTabs>
           </TabProvider>
         );
       }
