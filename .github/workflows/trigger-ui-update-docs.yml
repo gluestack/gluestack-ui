@@ -4,6 +4,10 @@ on:
   push:
     branches:
       - test-git-action
+  pull_request:
+    types: [opened, reopened],
+    branches:
+      - patch
 
 jobs:
   build:
@@ -20,5 +24,6 @@ jobs:
           event_type: build_ui_docs
           message: |
             {
-              "repo": "ui"
+              "repo": "ui",
+              "branch": "${{ github.head_ref }}"
             }
