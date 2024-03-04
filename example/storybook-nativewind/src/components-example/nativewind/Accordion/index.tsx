@@ -35,7 +35,7 @@ const accordionTitleTextStyle = tva({
   parentVariants: {
     size: {
       sm: 'text-sm',
-      md: 'text-md',
+      md: 'text-base',
       lg: 'text-lg',
     },
   },
@@ -48,7 +48,7 @@ const accordionContentTextStyle = tva({
   parentVariants: {
     size: {
       sm: 'text-sm ',
-      md: 'text-md',
+      md: 'text-base',
       lg: 'text-lg',
     },
   },
