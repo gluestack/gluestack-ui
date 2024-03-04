@@ -32,25 +32,26 @@ This is an illustration of **Heading** component.
 
 <Wrapper>
   <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
+    showComponentRenderer={ true }
+  showArgsController = { false}
+  metaData = {{
+    code: `
         <Heading>I am a Heading</Heading>
       `,
       transformCode: (code) => {
         return transformedCode(code);
       },
-      scope: {
-        Wrapper,
+        scope: {
+      Wrapper,
         Heading,
       },
-      argsType: {},
-    }}
-  />
+    argsType: { },
+  }
+}
+/>
 </Wrapper>
 
-<br />
+<br/>
 
 ## Installation
 

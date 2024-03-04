@@ -14,7 +14,7 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="with-nativewind/components/Typography/Text" />
 
-import { Text, Center } from './Text';
+import { Text, Center } from '../../components-example/nativewind';
 import { transformedCode } from '../../utils';
 import Wrapper from '../../components-example/nativewind/Wrapper';
 import { CollapsibleCode } from '@gluestack/design-system';
@@ -31,10 +31,10 @@ This is an illustration of **Text** component.
 
 <Wrapper>
   <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
+    showComponentRenderer={ true }
+  showArgsController = { false}
+  metaData = {{
+    code: `
         <Text>
           Hello World!
         </Text>
@@ -42,16 +42,17 @@ This is an illustration of **Text** component.
       transformCode: (code) => {
         return transformedCode(code);
       },
-      scope: {
-        Wrapper,
+        scope: {
+      Wrapper,
         Text,
       },
-      argsType: {},
-    }}
-  />
+    argsType: { },
+  }
+}
+/>
 </Wrapper>
 
-<br />
+<br/>
 
 ## Installation
 

@@ -25,6 +25,7 @@
   "scripts": {
     "prepare": "bob build",
     "release": "release-it",
+    "watch": "bob watch",
     "build": "bob build",
     "clean": "rm -rf lib",
     "dev:web": "cd example/native && yarn web --clear",

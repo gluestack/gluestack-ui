@@ -42,8 +42,8 @@ import {
   AddIcon,
   BadgeIcon,
   CheckIcon,
-  GlobeIcon,
   MenuIcon,
+  Globe,
 } from 'lucide-react-native';
 import {
   AppProvider,
@@ -65,7 +65,7 @@ This is an illustration of **Badge** component.
       code: `
 <Badge {...props}>
   <BadgeText>New feature</BadgeText>
-  <BadgeIcon as={GlobeIcon} className="ml-2" />
+  <BadgeIcon as={Globe} className="ml-2" />
 </Badge>
 `,
       transformCode: (code) => {
@@ -76,7 +76,7 @@ This is an illustration of **Badge** component.
         Badge,
         BadgeText,
         BadgeIcon,
-        GlobeIcon,
+        Globe,
       },
       argsType: {
         size: {
@@ -256,7 +256,7 @@ An example of the Badge component being used with the Avatar component to displa
         Badge,
         BadgeText,
         BadgeIcon,
-        GlobeIcon,
+        Globe,
         BadgeCheckIcon,
       },
       argsType: {},
@@ -288,7 +288,7 @@ A Badge component used with a menu adds a visual indicator, such as a badge, to 
            className='bg-white'
           >
             <HStack space="sm" className='items-center'>
-              <Icon as={GlobeIcon} size="sm" />
+              <Icon as={Globe} size="sm" />
               <Text className='text-sm leading-5'>
                 Community
               </Text>
@@ -346,7 +346,7 @@ A Badge component used with a menu adds a visual indicator, such as a badge, to 
         Box,
         HStack,
         Icon,
-        GlobeIcon,
+        Globe,
         PuzzleIcon,
         PaintBucket,
         SettingsIcon,
@@ -394,7 +394,7 @@ An example of the Badge component being used with the Composition component, all
         Badge,
         BadgeText,
         BadgeIcon,
-        GlobeIcon,
+        Globe,
         Box,
         Text,
         HStack,
