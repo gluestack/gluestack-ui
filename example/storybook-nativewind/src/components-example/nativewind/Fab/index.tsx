@@ -26,7 +26,7 @@ cssInterop(UIFab.Label, { className: 'style' });
 cssInterop(UIFab.Icon, { className: 'style' });
 
 const fabStyle = tva({
-  base: 'group/fab bg-primary-500 rounded-full z-20 p-4 flex-row items-center justify-center absolute hover:bg-red-600 active:bg-primary-700 disabled:opacity-40 disabled:pointer-events-all disabled:cursor-not-allowed data-[focus=true]:outline-2 data-[focus=true]:outline-primary-700 data-[focus=true]:outline-solid',
+  base: 'group/fab bg-primary-500 rounded-full z-20 p-4 flex-row items-center justify-center absolute hover:bg-primary-600 active:bg-primary-700 disabled:opacity-40 disabled:pointer-events-all disabled:cursor-not-allowed data-[focus=true]:outline-2 data-[focus=true]:outline-primary-700 data-[focus=true]:outline-solid',
   variants: {
     size: {
       sm: 'px-2.5 py-2.5 text-sm',
