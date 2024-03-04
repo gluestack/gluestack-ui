@@ -7,6 +7,7 @@ export * from './Avatar';
 export * from './Badge';
 export * from './Box';
 export * from './FlatList';
+export * from './Card';
 export * from './Center';
 export * from './Checkbox';
 export * from './HStack';
