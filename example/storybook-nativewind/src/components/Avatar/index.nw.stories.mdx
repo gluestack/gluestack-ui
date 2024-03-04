@@ -25,8 +25,8 @@ import {
   Text,
   Icon,
   Heading,
-  User,
-} from './Avatar';
+} from '../../components-example/nativewind';
+import { User } from "lucide-react-native";
 import colors from 'tailwindcss/colors';
 import { transformedCode } from '../../utils';
 import {
@@ -44,36 +44,37 @@ This is an illustration of **Avatar** component.
 
 <Wrapper>
   <CodePreview
-    showComponentRenderer={true}
-    showArgsController={true}
-    metaData={{
+      showComponentRenderer={ true }
+    showArgsController = { true}
+    metaData = {{
       code: `
         <Avatar {...props} className='bg-amber-600'>
           <AvatarFallbackText>Sandeep Srivastava</AvatarFallbackText>
         </Avatar>
       `,
-      transformCode: (code) => {
-        return transformedCode(code);
-      },
-      scope: {
+        transformCode: (code) => {
+          return transformedCode(code);
+        },
+          scope: {
         Wrapper,
-        Avatar,
-        AvatarBadge,
-        AvatarFallbackText,
-        AvatarImage,
-      },
+          Avatar,
+          AvatarBadge,
+          AvatarFallbackText,
+          AvatarImage,
+        },
       argsType: {
         size: {
           control: 'select',
-          options: ['xs', 'sm', 'md', 'lg', 'xl', '2xl'],
-          default: 'md',
-        },
+            options: ['xs', 'sm', 'md', 'lg', 'xl', '2xl'],
+            default: 'md',
+          },
       },
-    }}
+    }
+  }
   />
 </Wrapper>
 
-<br />
+<br/>
 
 ## Installation
 
