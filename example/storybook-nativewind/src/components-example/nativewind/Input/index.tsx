@@ -47,13 +47,13 @@ const inputStyle = tva({
 });
 
 const inputIconStyle = tva({
-  base: 'text-typography-400 fill-none',
+  base: 'text-typography-400',
   parentVariants: {
     size: {
       '2xs': 'h-3 w-3',
       'xs': 'h-3.5 w-3.5',
       'sm': 'h-4 w-4',
-      'md': 'h-4.5 w-4.5',
+      'md': 'h-[18px] w-[18px]',
       'lg': 'h-5 w-5',
       'xl': 'h-6 w-6',
     },
@@ -65,7 +65,7 @@ const inputSlotStyle = tva({
 });
 
 const inputFieldStyle = tva({
-  base: 'flex-1 text-text-900 web:cursor-text web:data-[disabled=true]:cursor-not-allowed py-auto px-3 placeholder:text-typography-500',
+  base: 'flex-1 text-typography-900 web:cursor-text web:data-[disabled=true]:cursor-not-allowed py-auto px-3 placeholder:text-typography-500',
 
   parentVariants: {
     variant: {

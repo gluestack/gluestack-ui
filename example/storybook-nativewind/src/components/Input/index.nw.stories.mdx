@@ -28,8 +28,9 @@ import {
   FormControl,
   Heading,
   Icon,
+  SearchIcon,
 } from '../../components-example/nativewind';
-import { SearchIcon, EyeIcon, EyeOffIcon } from '../../components-example/nativewind';
+import { EyeIcon, EyeOffIcon } from 'lucide-react-native';
 import { transformedCode } from '../../utils';
 import {
   AppProvider,
@@ -512,14 +513,14 @@ The Input component integrates with an icon and a button, providing users with a
           };
           return (
             <FormControl
-              className='p-4 border-1 rounded-lg ring-borderLight300 dark:border-1 dark:rounded-lg dark:ring-borderDark800'
+              className='p-4 border rounded-lg border-outline-300'
             >
               <VStack space='xl'>
-                <Heading className='color-text-900 leading-3'>
+                <Heading className='text-typography-900 leading-3'>
                   Login
                 </Heading>
                 <VStack space='xs'>
-                  <Text className='color-text-500 leading-1'>
+                  <Text className='text-typography-500 leading-1'>
                     Email
                   </Text>
                   <Input>
@@ -529,7 +530,7 @@ The Input component integrates with an icon and a button, providing users with a
                   </Input>
                 </VStack>
                 <VStack space='xs'>
-                  <Text className='color-text-500 leading-1'>
+                  <Text className='text-typography-500 leading-1'>
                     Password
                   </Text>
                   <Input className='text-center'>
@@ -538,7 +539,7 @@ The Input component integrates with an icon and a button, providing users with a
                     />
                     <InputSlot className='pr-3' onPress={handleState}>
                       {/* EyeIcon, EyeOffIcon are both imported from 'lucide-react-native' */}
-                      <InputIcon as={showPassword ? EyeIcon : EyeOffIcon} className='color-darkBlue-500' />
+                      <InputIcon as={showPassword ? EyeIcon : EyeOffIcon} className='text-darkBlue-500' />
                     </InputSlot>
                   </Input>
                 </VStack>
@@ -548,7 +549,7 @@ The Input component integrates with an icon and a button, providing users with a
                     setShowModal(false);
                   }}
                 >
-                  <ButtonText className='color-white'>
+                  <ButtonText className='text-typography-0'>
                     Save
                   </ButtonText>
                 </Button>

@@ -1,17 +1,14 @@
 import React from 'react';
-import {
-  Button,
-  ButtonText,
-  Box,
-  Heading,
-  Icon,
-  FormControl,
-} from '@gluestack-ui/themed';
 import { Input, InputField, InputIcon, InputSlot } from '@/components/ui/Input';
+import { Button, ButtonText } from '@/components/ui/Button';
 import { Center } from '@/components/ui/Center';
 import { VStack } from '@/components/ui/VStack';
 import { Text } from '@/components/ui/Text';
-import { EyeIcon, EyeOffIcon, SearchIcon } from 'lucide-react-native';
+import { Icon, SearchIcon } from '@/components/ui/Icon';
+import { Box } from '@/components/ui/Box';
+import { Heading } from '@/components/ui/Heading';
+import { FormControl } from '@/components/ui/FormControl';
+import { EyeIcon, EyeOffIcon } from 'lucide-react-native';
 import { useState } from 'react';
 
 const InputBasic = ({ ...props }: any) => {
