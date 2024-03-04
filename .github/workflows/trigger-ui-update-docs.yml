@@ -1,13 +1,13 @@
 name: Trigger gluestack-style-website | Create PR when pushed to master
 
 on:
-  push:
+  # push:
+  #   branches:
+  #     - test-git-action
+  pull_request:
+    types: [opened, reopened],
     branches:
       - test-git-action
-  # pull_request:
-  #   types: [opened, reopened],
-  #   branches:
-  #     - patch
 
 jobs:
   build:
