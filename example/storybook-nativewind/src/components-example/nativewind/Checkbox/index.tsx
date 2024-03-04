@@ -47,7 +47,7 @@ const checkboxIndicatorStyle = tva({
 });
 
 const checkboxLabelStyle = tva({
-  base: 'text-typography-600 data-[checked=true]:text-typography-900 group-hover/checkbox:text-typography-900 group-hover/checkbox:data-[checked=true]:text-typography-900 group-hover/checkbox:data-[checked=true]:data-[disabled=true]:text-typography-900 group-hover/checkbox:data-[disabled=true]:text-typography-600 active:text-typography-900 active:data-[checked=true]:text-typography-900 data-[disabled=true]:opacity-40 web:select-none',
+  base: 'text-typography-600 data-[checked=true]:text-typography-900 group-hover/checkbox:text-typography-900 group-hover/checkbox:data-[checked=true]:text-typography-900 group-hover/checkbox:data-[checked=true]:data-[disabled=true]:text-typography-900 group-hover/checkbox:data-[disabled=true]:text-typography-400 active:text-typography-900 active:data-[checked=true]:text-typography-900 data-[disabled=true]:opacity-40 web:select-none',
   parentVariants: {
     size: {
       lg: 'text-lg',
