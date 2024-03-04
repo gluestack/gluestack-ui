@@ -481,19 +481,19 @@ Radio buttons provide a mutually exclusive selection mechanism, allowing users t
           <RadioGroup value={values} onChange={setValues}>
             <VStack space="sm">
               <Radio value="Eng" >
-                <RadioIndicator className="mr-2">
+                <RadioIndicator>
                   <RadioIcon as={CircleIcon} />
                 </RadioIndicator>
                 <RadioLabel>English</RadioLabel>
               </Radio>
               <Radio value="Fre" >
-                <RadioIndicator className="mr-2">
+                <RadioIndicator>
                   <RadioIcon as={CircleIcon} />
                 </RadioIndicator>
                 <RadioLabel>French</RadioLabel>
               </Radio>
               <Radio value="Ger" >
-                <RadioIndicator className="mr-2">
+                <RadioIndicator>
                   <RadioIcon as={CircleIcon} />
                 </RadioIndicator>
                 <RadioLabel>German</RadioLabel>
@@ -538,13 +538,13 @@ Radio buttons can be used horizontally.
             <RadioGroup value={values} onChange={setValues} >
               <HStack space="2xl">
                 <Radio value="Credit Card">
-                  <RadioIndicator className="mr-2">
+                  <RadioIndicator>
                     <RadioIcon as={CircleIcon} />
                   </RadioIndicator>
                   <RadioLabel>Credit Card</RadioLabel>
                 </Radio>
                 <Radio value="Cash On Delivery">
-                  <RadioIndicator className="mr-2">
+                  <RadioIndicator>
                     <RadioIcon as={CircleIcon} />
                   </RadioIndicator>
                   <RadioLabel>Cash On Delivery</RadioLabel>
@@ -589,8 +589,8 @@ Radio buttons can be used with helper text.
             <RadioGroup value={values} onChange={setValues}>
               <VStack space="2xl">
                 <Box>
-                  <Radio value="Read-only" size="md" className="gap-0">
-                    <RadioIndicator className="mr-2">
+                  <Radio value="Read-only" size="md">
+                    <RadioIndicator>
                       <RadioIcon as={CircleIcon}/>
                     </RadioIndicator>
                     <RadioLabel>Extended coverage</RadioLabel>
@@ -598,8 +598,8 @@ Radio buttons can be used with helper text.
                   <Text size="$sm" className="ml-7 text-typography-500">Extra services included</Text>
                 </Box>
                 <Box>
-                  <Radio value="Write" size="md" className="gap-0">
-                    <RadioIndicator className="mr-2">
+                  <Radio value="Write" size="md">
+                    <RadioIndicator>
                       <RadioIcon as={CircleIcon} />
                     </RadioIndicator>
                     <RadioLabel>Basic coverage</RadioLabel>
@@ -626,6 +626,289 @@ Radio buttons can be used with helper text.
         CircleIcon,
         Box,
         Text,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### Form Control
+
+Radio buttons can be used inside FormControl for better control of states and functionality.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+        <FormControl>
+          <VStack space="md">
+            <Heading size="sm">
+              Which time slot works best for you?
+            </Heading>
+            <RadioGroup>
+              <VStack space="sm">
+                <Radio value="Monday" size="md" >
+                  <RadioIndicator>
+                    <RadioIcon as={CircleIcon} />
+                  </RadioIndicator>
+                  <RadioLabel>Monday</RadioLabel>
+                </Radio>
+                <Radio value="Tuesday" size="md">
+                  <RadioIndicator>
+                    <RadioIcon as={CircleIcon} />
+                  </RadioIndicator>
+                  <RadioLabel>Tuesday</RadioLabel>
+                </Radio>
+                <Radio value="Wednesday" size="md">
+                  <RadioIndicator>
+                    <RadioIcon as={CircleIcon} />
+                  </RadioIndicator>
+                  <RadioLabel>Wednesday</RadioLabel>
+                </Radio>
+              </VStack>
+            </RadioGroup>
+            <Text className="text-sm text-light-500">
+              Choose a time slot for the meeting
+            </Text>
+          </VStack>
+        </FormControl>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Center,
+        Text,
+        CircleIcon,
+        VStack,
+        Heading,
+        Radio,
+        RadioGroup,
+        RadioIcon,
+        RadioIndicator,
+        RadioLabel,
+        FormControl,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### Label left
+
+Radio buttons can be used horizontally
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+      function App() {
+        const [values, setValues] = useState("Monday");
+        return (
+          <RadioGroup value={values} onChange={setValues} >
+            <VStack space="lg" className="w-40">
+              <Radio value="Monday" className="justify-between">
+                <RadioLabel>Jane Cooper</RadioLabel>
+                <RadioIndicator>
+                  <RadioIcon as={CircleIcon} />
+                </RadioIndicator>
+              </Radio>
+              <Radio value="Tuesday" className="justify-between">
+                <RadioLabel>Wade Warren</RadioLabel>
+                <RadioIndicator>
+                    <RadioIcon as={CircleIcon} />
+                </RadioIndicator>
+              </Radio>
+            </VStack>
+          </RadioGroup >
+        )
+      }
+      `,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'App');
+      },
+      scope: {
+        Wrapper,
+        Center,
+        VStack,
+        Radio,
+        RadioGroup,
+        RadioIcon,
+        RadioIndicator,
+        RadioLabel,
+        CircleIcon,
+        useState,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### Controlled
+
+The Radio components can be used with a controlled state, enabling precise management of the selected option through external state management.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+      function App () {
+        const [values, setValues] = useState('Apartments');
+        return (
+          <RadioGroup value={values} onChange={setValues}>
+            <VStack space='md'>
+              <Radio value="Apartments">
+                <RadioIndicator>
+                  <RadioIcon as={CircleIcon} />
+                </RadioIndicator>
+                <RadioLabel>Apartments</RadioLabel>
+              </Radio>
+              <Radio value="Houses">
+                <RadioIndicator>
+                  <RadioIcon as={CircleIcon} />
+                </RadioIndicator>
+                <RadioLabel>Houses</RadioLabel>
+              </Radio>
+            </VStack>
+          </RadioGroup>
+          )
+        }
+      `,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'App');
+      },
+      scope: {
+        Wrapper,
+        Center,
+        VStack,
+        Radio,
+        RadioGroup,
+        RadioIcon,
+        RadioIndicator,
+        RadioLabel,
+        CircleIcon,
+        useState,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### Uncontrolled
+
+The Radio components can be used with either a ref or no state, providing an uncontrolled state where the selected option is managed internally.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+      function App () {
+        const radioRef = useRef(null);
+        const handleRadioChange = (e) => {
+          e.preventDefault();
+          const checkboxValue = radioRef.current.checked;
+        };
+        return (
+          <RadioGroup>
+            <VStack space='md'>
+              <Radio value="Hotels" ref={radioRef} onChange={handleRadioChange} >
+                <RadioIndicator>
+                  <RadioIcon as={CircleIcon} />
+                </RadioIndicator>
+                <RadioLabel>Hotels</RadioLabel>
+              </Radio>
+              <Radio value="Living quarters" ref={radioRef} onChange={handleRadioChange} >
+                <RadioIndicator>
+                  <RadioIcon as={CircleIcon} />
+                </RadioIndicator>
+                <RadioLabel>Living quarters</RadioLabel>
+              </Radio>
+            </VStack>
+          </RadioGroup>
+        );
+      }
+      `,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'App');
+      },
+      scope: {
+        Wrapper,
+        Center,
+        VStack,
+        Radio,
+        RadioGroup,
+        RadioIcon,
+        RadioIndicator,
+        RadioLabel,
+        CircleIcon,
+        useRef,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### Radio group
+
+The Radio group component allows users to group radio and display them in a horizontal or vertical row for better visual representation and functionality.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+        function RadioGroupExample() {
+          const [values, setValues] = useState("1st");
+          return (
+            <RadioGroup value={values} onChange={setValues}>
+              <VStack space="sm">
+                <Radio value="1st">
+                  <RadioIndicator>
+                    <RadioIcon as={CircleIcon} />
+                  </RadioIndicator>
+                  <RadioLabel>Label 1</RadioLabel>
+                </Radio>
+                <Radio value="2nd">
+                  <RadioIndicator>
+                    <RadioIcon as={CircleIcon} />
+                  </RadioIndicator>
+                  <RadioLabel>Label 2</RadioLabel>
+                </Radio>
+                <Radio value="3rd">
+                  <RadioIndicator>
+                    <RadioIcon as={CircleIcon} />
+                  </RadioIndicator>
+                  <RadioLabel>Label 3</RadioLabel>
+                </Radio>
+              </VStack>
+            </RadioGroup>
+          );
+        };
+      `,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'RadioGroupExample');
+      },
+      scope: {
+        Radio,
+        RadioGroup,
+        RadioIcon,
+        RadioIndicator,
+        RadioLabel,
+        VStack,
+        Wrapper,
+        Center,
+        CircleIcon,
+        useState,
       },
       argsType: {},
     }}
