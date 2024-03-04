@@ -6,13 +6,16 @@ type WithStatesProps = {
   states?: any;
 };
 
-export const withStates =
-  <T,>(Component: React.ComponentType<T> & WithStatesProps) =>
-  ({ states, className, ...props }: React.Component<T> & WithStatesProps) => {
-    const classNamesFinal = React.useMemo(() => {
-      if (!className) return;
-      extractDataClassName(className, states);
-    }, [className, states]);
+export const withStates = <T,>(Component: React.ComponentType<T>) =>
+  React.forwardRef(
+    ({ states, className, ...props }: T & WithStatesProps, ref?: any) => {
+      const classNamesFinal = React.useMemo(() => {
+        if (!className) return;
+        extractDataClassName(className, states);
+      }, [className, states]);
 
-    return <Component className={classNamesFinal} {...(props as any)} />;
-  };
+      return (
+        <Component className={classNamesFinal} {...(props as any)} ref={ref} />
+      );
+    }
+  );

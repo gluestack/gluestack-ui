@@ -7,11 +7,13 @@ type WithStyleContextProps = {
 export const withStyleContext = <T,>(
   Component: React.ComponentType<T & WithStyleContextProps>
 ) => {
-  return ({ context, ...props }: T & WithStyleContextProps) => {
-    return (
-      <ParentContext.Provider value={context}>
-        <Component {...(props as any)} />
-      </ParentContext.Provider>
-    );
-  };
+  return React.forwardRef(
+    ({ context, ...props }: T & WithStyleContextProps, ref?: any) => {
+      return (
+        <ParentContext.Provider value={context}>
+          <Component {...(props as any)} ref={ref} />
+        </ParentContext.Provider>
+      );
+    }
+  );
 };
