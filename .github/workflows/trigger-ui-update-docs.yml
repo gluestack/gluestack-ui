@@ -4,10 +4,10 @@ on:
   push:
     branches:
       - test-git-action
-  pull_request:
-    types: [opened, reopened],
-    branches:
-      - patch
+  # pull_request:
+  #   types: [opened, reopened],
+  #   branches:
+  #     - patch
 
 jobs:
   build:
