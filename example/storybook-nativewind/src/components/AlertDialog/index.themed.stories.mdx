@@ -22,6 +22,8 @@ import {
   AlertDialogCloseButton,
   AlertDialogFooter,
   AlertDialogBody,
+} from '../../components-example/themed';
+import {
   CloseIcon,
   Button,
   ButtonText,
@@ -50,10 +52,10 @@ This is an illustration of **AlertDialog** component.
 
 <>
   <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
+    showComponentRenderer={ true }
+  showArgsController = { false}
+  metaData = {{
+    code: `
         function Example(){
           const [showAlertDialog, setShowAlertDialog] = React.useState(false);
           return (
@@ -111,8 +113,8 @@ This is an illustration of **AlertDialog** component.
       transformCode: (code) => {
         return transformedCode(code, 'function', 'Example');
       },
-      scope: {
-        Wrapper,
+        scope: {
+      Wrapper,
         AlertDialog,
         AlertDialogBackdrop,
         AlertDialogContent,
@@ -130,12 +132,13 @@ This is an illustration of **AlertDialog** component.
         Icon,
         AlertCircleIcon,
       },
-      argsType: {},
-    }}
-  />
+    argsType: { },
+  }
+}
+/>
 </>
 
-<br />
+<br/>
 
 ## Installation
 
@@ -151,9 +154,7 @@ npm i @gluestack-ui/alert-dialog
 
 <CollapsibleCode>
 
-```jsx
-%%-- File: components-example/themed/AlertDialog/index.tsx --%%
-```
+```jsx %%-- File: components-example/themed/AlertDialog/index.tsx --%% ```
 
 </CollapsibleCode>
 
@@ -209,7 +210,7 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
           </Table.TH>
           <Table.TH>
             <Table.TText>Type</Table.TText>
-          </Table.TH>
+         </Table.TH>
           <Table.TH>
             <Table.TText>Default</Table.TText>
           </Table.TH>
@@ -353,7 +354,7 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
               <InlineCode>isKeyboardDismissable</InlineCode>
             </Table.TText>
           </Table.TD>
-          <Table.TD>
+          <Table.TD >
             <Table.TText>boolean</Table.TText>
           </Table.TD>
           <Table.TD>
@@ -413,7 +414,6 @@ Props to style child components.
         </Table.TR>
       </Table.TBody>
     </Table>
-
   </TableContainer>
 </>
 
@@ -440,7 +440,7 @@ Props to style child components.
           <Table.TH>
             <Table.TText>Sx Prop</Table.TText>
           </Table.TH>
-          <Table.TH>
+          <Table.TH >
             <Table.TText>Description</Table.TText>
           </Table.TH>
         </Table.TR>
@@ -501,7 +501,7 @@ AlertDialog component is created using View component from react-native. It exte
           <Table.TH>
             <Table.TText>Name</Table.TText>
           </Table.TH>
-          <Table.TH>
+          <Table.TH >
             <Table.TText>Value</Table.TText>
           </Table.TH>
           <Table.TH>
@@ -533,10 +533,10 @@ AlertDialog component is created using View component from react-native. It exte
 Explore the comprehensive details of the AlertDialog in this document, including its implementation details, checklist, and potential future additions. Dive into the thought process behind the component and gain insights into its development journey.
 
 <iframe
-  style={{
-    borderRadius: '8px',
+style = {{
+  borderRadius: '8px',
     border: ' 1px solid rgba(0, 0, 0, 0.1)',
-    aspectRatio: 736 / 585,
+      aspectRatio: 736 / 585,
   }}
   src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FNcXOxqKbdnGsLQNex3H76u%2F%25C2%25A0%25F0%259F%2593%259Agluestack-UI-handbook%3Fpage-id%3D5653%253A34732%26type%3Ddesign%26node-id%3D5658-36648%26viewport%3D1433%252C11%252C0.08%26t%3DWy4Bx2pKvlcvatlJ-1%26scaling%3Dcontain%26starting-point-node-id%3D5658%253A36648%26mode%3Ddesign"
   allowFullScreen

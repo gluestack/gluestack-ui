@@ -35,12 +35,18 @@ const FabMeta: ComponentMeta<typeof Fab> = {
       figmaIgnore: true,
       options: [true, false],
     },
+    isHovered: {
+      control: 'boolean',
+      figmaIgnore: true,
+      options: [true, false],
+    },
   },
   args: {
     placement: 'bottom right',
     showLabel: true,
     showIcon: true,
     size: 'md',
+    isHovered: false,
   },
 };
 

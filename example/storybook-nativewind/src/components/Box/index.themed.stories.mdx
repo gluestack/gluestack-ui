@@ -24,10 +24,10 @@ This is an illustration of **Box** component.
 
 <>
   <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
+    showComponentRenderer={ true }
+  showArgsController = { false}
+  metaData = {{
+    code: `
 <Box
   bg="$primary500"
   p="$5"
@@ -40,17 +40,18 @@ This is an illustration of **Box** component.
       transformCode: (code) => {
         return transformedCode(code);
       },
-      scope: {
-        Wrapper,
+        scope: {
+      Wrapper,
         Box,
         Text,
       },
-      argsType: {},
-    }}
-  />
+    argsType: { },
+  }
+}
+/>
 </>
 
-<br />
+<br/>
 
 ## Installation
 
@@ -58,9 +59,7 @@ This is an illustration of **Box** component.
 
 <CollapsibleCode>
 
-```jsx
-%%-- File: components-example/themed/Box/index.tsx --%%
-```
+```jsx %%-- File: components-example/themed/Box/index.tsx --%% ```
 
 </CollapsibleCode>
 
