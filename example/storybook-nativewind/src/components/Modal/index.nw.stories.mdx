@@ -36,7 +36,7 @@ import {
   InputField,
   Link,
   ArrowLeftIcon,
-} from './Modal';
+} from '../../components-example/nativewind';
 
 import { transformedCode } from '../../utils';
 import { useState } from 'react';
@@ -81,8 +81,9 @@ This is an illustration of **Modal** component.
                 <ModalContent>
                   <ModalHeader>
                     <Heading size='lg'>Engage with Modals</Heading>
-                    <ModalCloseButton>
-                      <Icon as={CloseIcon} />
+                    <ModalCloseButton >
+                      <Icon as={CloseIcon} size={20}
+                className="stroke-background-400 group-[:hover]/modal-close-button:stroke-background-700 group-[:active]/modal-close-button:stroke-background-900 group-[:focus-visible]/modal-close-button:stroke-background-900"/>
                     </ModalCloseButton>
                   </ModalHeader>
                   <ModalBody>
@@ -735,7 +736,8 @@ A versatile modal component offering different sizes to accommodate various cont
                     <ModalHeader>
                       <Heading size='lg'>Delete Folder</Heading>
                       <ModalCloseButton>
-                        <Icon as={CloseIcon} />
+                        <Icon as={CloseIcon} size={20}
+                className="stroke-background-400 group-[:hover]/modal-close-button:stroke-background-700 group-[:active]/modal-close-button:stroke-background-900 group-[:focus-visible]/modal-close-button:stroke-background-900"/>
                       </ModalCloseButton>
                     </ModalHeader>
                     <ModalBody>
