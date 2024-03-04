@@ -43,6 +43,7 @@ import {
 } from '@gluestack/design-system';
 import Wrapper from '../../components-example/nativewind/Wrapper';
 import { CollapsibleCode } from '@gluestack/design-system';
+import colors from 'tailwindcss/colors';
 
 This is an illustration of **Button** component.
 
@@ -462,14 +463,15 @@ A loading button is a type of button component that provides visual feedback to 
     metaData={{
       code: `
         <Button className='p-3'>
-          <ButtonSpinner color="white" className='mr-1'/>
+        {/* colors is imported from tailwindcss/colors */}
+          <ButtonSpinner color={colors.gray[400]} className='mr-1'/>
           <ButtonText className='font-medium text-sm'>Please wait...</ButtonText>
         </Button>
       `,
       transformCode: (code) => {
         return transformedCode(code);
       },
-      scope: { Button, ButtonText, Wrapper, ButtonSpinner },
+      scope: { Button, ButtonText, Wrapper, ButtonSpinner, colors },
       argsType: {},
     }}
   />
@@ -523,16 +525,10 @@ A button with a link combines the interactive behavior of a button component wit
       transformCode: (code) => {
         return transformedCode(code);
       },
-      scope: { Button, ButtonText, ButtonIcon, Wrapper, Icon, ArrowUpIcon 
-      },
-
-      argsType:
-       {},
-
+      scope: { Button, ButtonText, ButtonIcon, Wrapper, ArrowUpIcon },
+      argsType: {},
     }}
-
   />
-
 </AppProvider>
 
 #### Button With Icon
