@@ -18,6 +18,7 @@ export * from './divider';
 export * from './fab';
 export * from './form-control';
 export * from './input';
+// export * from './input-accessory-view';
 export * from './image';
 export * from './keyboard-avoiding-view';
 export * from './linear-gradient';
