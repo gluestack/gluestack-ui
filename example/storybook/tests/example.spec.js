@@ -95,7 +95,7 @@ for (const [key, value] of Object.entries(testData)) {
             )}`, async ({ page }) => {
               await page.goto(storybookUrl);
               if (overlay) await page.waitForTimeout(300);
-              expect(await page.screenshot()).toMatchSnapshot({
+              expect(await page.screenshot()).toHaveScreenshot({
                 maxDiffPixels: 100,
               });
             });
@@ -115,7 +115,9 @@ for (const [key, value] of Object.entries(testData)) {
         );
         await page.goto(storybookUrl);
         if (overlay) await page.waitForTimeout(300);
-        expect(await page.screenshot()).toMatchSnapshot({ maxDiffPixels: 100 });
+        expect(await page.screenshot()).toHaveScreenshot({
+          maxDiffPixels: 100,
+        });
       });
     }
 
