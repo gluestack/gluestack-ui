@@ -155,10 +155,12 @@ export const resolveComponentTheme = (
       platform
     );
   } else {
-    const toBeInjected = GluestackStyleSheet.update(
-      component.BUILD_TIME_PARAMS?.orderedResolved
-    );
-    component.BUILD_TIME_PARAMS.toBeInjected = toBeInjected;
+    if (component.BUILD_TIME_PARAMS?.disableExtraction) {
+      const toBeInjected = GluestackStyleSheet.update(
+        component.BUILD_TIME_PARAMS?.orderedResolved
+      );
+      component.BUILD_TIME_PARAMS.toBeInjected = toBeInjected;
+    }
     resolvedTheme = component;
   }
 

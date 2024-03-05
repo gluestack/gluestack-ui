@@ -53,12 +53,14 @@ export const StyledProvider: React.FC<{
   children?: React.ReactNode;
   globalStyles?: any;
   _experimentalNestedProvider?: boolean;
+  disableInjection?: boolean;
 }> = ({
   config,
   colorMode,
   children,
   globalStyles,
   _experimentalNestedProvider,
+  disableInjection = false,
 }) => {
   const inlineStyleMap: any = React.useRef({
     initialStyleInjected: false,
@@ -113,12 +115,12 @@ export const StyledProvider: React.FC<{
     return configWithPlatformSpecificUnits;
   }, [config]);
 
-  if (Platform.OS === 'web' && globalStyles) {
+  if (Platform.OS === 'web' && globalStyles && !disableInjection) {
     const globalStyleInjector = createGlobalStylesWeb(globalStyles);
     globalStyleInjector({ ...currentConfig, propertyTokenMap });
   }
 
-  if (Platform.OS === 'web') {
+  if (Platform.OS === 'web' && !disableInjection) {
     const cssVariables = convertTokensToCssVariables(currentConfig);
     injectGlobalCssStyle(cssVariables, 'variables');
   }
@@ -193,10 +195,12 @@ export const StyledProvider: React.FC<{
       }
 
       if (typeof window !== 'undefined') {
-        //@ts-ignore
-        document
-          .querySelector('#gs-injected')
-          .append(...inlineStyleMap?.current?.injectedCssTags);
+        if (inlineStyleMap?.current?.injectedCssTags?.length > 0) {
+          const wrapperBlock = document.querySelector('#gs-injected');
+          if (wrapperBlock) {
+            wrapperBlock.append(...inlineStyleMap?.current?.injectedCssTags);
+          }
+        }
       }
 
       inlineStyleMap.current.initialStyleInjected = true;
@@ -219,6 +223,7 @@ export const StyledProvider: React.FC<{
       setAnimationDriverData,
       inlineStyleMap: inlineStyleMap.current,
       isConfigSet: true,
+      disableInjection,
     };
 
     if (_experimentalNestedProvider) {

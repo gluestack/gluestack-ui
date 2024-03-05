@@ -847,6 +847,7 @@ export function verboseStyled<P, Variants, ComCon>(
   ExtendedConfig?: any,
   BUILD_TIME_PARAMS?: {
     orderedResolved: OrderedSXResolved;
+    disableExtraction?: boolean;
     verbosedStyleIds: {
       component: StyleIds;
       descendant: StyleIds;
@@ -856,7 +857,6 @@ export function verboseStyled<P, Variants, ComCon>(
   },
   nonVerbosedTheme?: any
 ) {
-  // const componentName = componentStyleConfig?.componentName;
   const componentHash = stableHash({
     ...theme,
     ...componentStyleConfig,
@@ -892,41 +892,36 @@ export function verboseStyled<P, Variants, ComCon>(
     descendant: StyleIds;
   };
   let orderedCSSIds: any = [];
+
   //@ts-ignore
   const isStyledComponent = Component?.isStyledComponent;
-  // const orderedUnResolvedTheme = updateOrderUnResolvedMap(
-  //   theme,
-  //   componentHash,
-  //   declarationType,
-  //   ExtendedConfig
-  // );
-
-  // styleIds = getStyleIds(orderedUnResolvedTheme, componentStyleConfig);
 
   if (BUILD_TIME_PARAMS?.orderedResolved) {
-    orderedResolved = BUILD_TIME_PARAMS?.orderedResolved;
-    orderedCSSIds = BUILD_TIME_PARAMS?.styledIds;
+    if (BUILD_TIME_PARAMS?.disableExtraction) {
+      orderedResolved = BUILD_TIME_PARAMS?.orderedResolved;
+      orderedCSSIds = BUILD_TIME_PARAMS?.styledIds;
 
-    BUILD_TIME_PARAMS.toBeInjected =
-      GluestackStyleSheet.update(orderedResolved);
-  } else {
-    const { styledIds: g, verbosedStyleIds } = updateOrderUnResolvedMap(
-      theme,
-      componentHash,
-      declarationType,
-      componentStyleConfig,
-      GluestackStyleSheet,
-      Platform.OS,
-      isStyledComponent
-    );
-
-    orderedCSSIds = g;
-
-    styleIds = verbosedStyleIds;
+      BUILD_TIME_PARAMS.toBeInjected =
+        GluestackStyleSheet.update(orderedResolved);
+    }
   }
 
+  const { styledIds: g, verbosedStyleIds } = updateOrderUnResolvedMap(
+    theme,
+    componentHash,
+    declarationType,
+    componentStyleConfig,
+    GluestackStyleSheet,
+    Platform.OS,
+    isStyledComponent
+  );
+
+  orderedCSSIds = g;
+
+  styleIds = verbosedStyleIds;
+
   if (BUILD_TIME_PARAMS?.verbosedStyleIds) {
-    styleIds = BUILD_TIME_PARAMS?.verbosedStyleIds;
+    styleIds = deepMergeArray(styleIds, BUILD_TIME_PARAMS?.verbosedStyleIds);
   }
 
   function injectSx(
@@ -958,9 +953,6 @@ export function verboseStyled<P, Variants, ComCon>(
       baseStyle: sx,
     };
 
-    // if (Platform.OS === '')
-    // console.log(sxHash, GluestackStyleSheet.getStyleMap(), 'hash here');
-
     resolvePlatformTheme(inlineSxTheme, Platform.OS);
     const sxStyledResolved = styledToStyledResolved(
       // @ts-ignore
@@ -973,7 +965,6 @@ export function verboseStyled<P, Variants, ComCon>(
       // @ts-ignore
       sxStyledResolved.baseStyle.styledValueResolvedWithMeta;
 
-    // sxStyledResolved.baseStyle.styledValueResolvedWithMeta =
     addThemeConditionInMeta(componentTheme, CONFIG);
 
     const colorModeComponentThemes: any = sxStyledResolved.baseStyle?.colorMode;
@@ -1034,13 +1025,12 @@ export function verboseStyled<P, Variants, ComCon>(
   const StyledComponent = (
     {
       //@ts-ignore
+      disableExtraction: BUILD_TIME_DISABLE_EXTRACTION,
       orderedResolved: BUILD_TIME_ORDERED_RESOLVED = [],
       //@ts-ignore
       verbosedStyleIds: BUILD_TIME_VERBOSED_STYLE_IDS = {},
       //@ts-ignore
       states,
-      // styledIds: BUILD_TIME_STYLE_IDS = [],
-      // sxHash: BUILD_TIME_sxHash = '',
       ...componentProps
     }: any,
     ref: React.ForwardedRef<P>
@@ -1055,6 +1045,9 @@ export function verboseStyled<P, Variants, ComCon>(
 
     //@ts-ignore
     let themeDefaultProps = { ...theme.baseStyle?.props };
+    const themeWithVariants = {
+      variants: styleIds?.component?.variants,
+    };
 
     const sxComponentStyleIds = useRef({});
     const sxDescendantStyleIds: any = useRef({});
@@ -1083,8 +1076,6 @@ export function verboseStyled<P, Variants, ComCon>(
       : get();
 
     if (!styleHashCreated) {
-      // eslint-disable-next-line react-hooks/rules-of-hooks
-
       CONFIG = {
         ...styledContext.config,
         propertyTokenMap,
@@ -1146,17 +1137,12 @@ export function verboseStyled<P, Variants, ComCon>(
       // Injecting style
       if (EXTENDED_THEME) {
         // RUN Middlewares
-
         const resolvedComponentExtendedTheme = resolveComponentTheme(
           CONFIG,
           EXTENDED_THEME,
           Platform.OS
         );
-
         componentExtendedTheme = resolvedComponentExtendedTheme.theme;
-
-        // const resolvedComponentExtendedTheme = EXTENDED_THEME;
-
         if (Object.keys(EXTENDED_THEME?.BUILD_TIME_PARAMS ?? {}).length > 0) {
           const EXTENDED_THEME_BUILD_TIME_PARAMS =
             EXTENDED_THEME?.BUILD_TIME_PARAMS;
@@ -1164,25 +1150,30 @@ export function verboseStyled<P, Variants, ComCon>(
             styleIds,
             EXTENDED_THEME_BUILD_TIME_PARAMS?.verbosedStyleIds
           );
-          GluestackStyleSheet.inject(
-            EXTENDED_THEME_BUILD_TIME_PARAMS?.toBeInjected,
-            styledContext.inlineStyleMap
-          );
-        } else {
-          // Merge of Extended Config Style ID's with Component Style ID's
-          deepMergeArray(
-            styleIds,
-            resolvedComponentExtendedTheme?.verbosedStyleIds
-          );
-
-          const extendedStylesToBeInjected = GluestackStyleSheet.resolve(
-            resolvedComponentExtendedTheme?.styledIds,
-            CONFIG,
-            componentExtendedConfig,
-            true,
-            'extended',
-            ignoreKeys
-          );
+          if (
+            EXTENDED_THEME?.BUILD_TIME_PARAMS?.disableExtraction ||
+            !styledContext?.disableInjection
+          ) {
+            GluestackStyleSheet.inject(
+              EXTENDED_THEME_BUILD_TIME_PARAMS?.toBeInjected,
+              styledContext.inlineStyleMap
+            );
+          }
+        }
+        // Merge of Extended Config Style ID's with Component Style ID's
+        deepMergeArray(
+          styleIds,
+          resolvedComponentExtendedTheme?.verbosedStyleIds
+        );
+        const extendedStylesToBeInjected = GluestackStyleSheet.resolve(
+          resolvedComponentExtendedTheme?.styledIds,
+          CONFIG,
+          componentExtendedConfig,
+          true,
+          'extended',
+          ignoreKeys
+        );
+        if (Platform.OS === 'web') {
           GluestackStyleSheet.inject(
             extendedStylesToBeInjected,
             styledContext.inlineStyleMap
@@ -1205,39 +1196,33 @@ export function verboseStyled<P, Variants, ComCon>(
         orderedCSSIds = [...orderedCSSIds, ...globalStyleIds];
       }
 
-      if (
-        !BUILD_TIME_PARAMS ||
-        !BUILD_TIME_PARAMS?.orderedResolved ||
-        BUILD_TIME_PARAMS?.orderedResolved.length === 0
-      ) {
-        const toBeInjected = GluestackStyleSheet.resolve(
-          orderedCSSIds,
-          CONFIG,
-          componentExtendedConfig,
-          true,
-          'boot',
-          ignoreKeys
-        );
+      const toBeInjected = GluestackStyleSheet.resolve(
+        orderedCSSIds,
+        CONFIG,
+        componentExtendedConfig,
+        true,
+        'boot',
+        ignoreKeys
+      );
 
-        if (Platform.OS === 'web') {
-          GluestackStyleSheet.inject(
-            toBeInjected,
-            styledContext.inlineStyleMap
-          );
-        }
-      } else {
-        if (Platform.OS === 'web') {
-          //@ts-ignore
-          GluestackStyleSheet.inject(
-            BUILD_TIME_PARAMS.toBeInjected,
-            styledContext.inlineStyleMap
-          );
-        }
+      if (Platform.OS === 'web') {
+        GluestackStyleSheet.inject(toBeInjected, styledContext.inlineStyleMap);
+      }
+
+      if (
+        Platform.OS === 'web' &&
+        (BUILD_TIME_PARAMS?.disableExtraction ||
+          !styledContext?.disableInjection)
+      ) {
+        GluestackStyleSheet.inject(
+          BUILD_TIME_PARAMS?.toBeInjected,
+          styledContext.inlineStyleMap
+        );
       }
 
       theme = deepMerge(theme, componentExtendedTheme);
-      // @ts-ignore
-      Object.assign(themeDefaultProps, theme?.baseStyle?.props);
+
+      Object.assign(themeDefaultProps, styleIds?.component?.baseStyle?.props);
 
       Object.assign(styledSystemProps, CONFIG?.aliases);
 
@@ -1285,12 +1270,12 @@ export function verboseStyled<P, Variants, ComCon>(
     const {
       variantProps: defaultVariantProps,
       restProps: defaultThemePropsWithoutVariants,
-    } = getVariantProps(themeDefaultProps, theme);
+    } = getVariantProps(themeDefaultProps, themeWithVariants);
 
     const {
       variantProps: inlineVariantProps,
       restProps: inlineComponentPropsWithoutVariants,
-    } = getVariantProps(incomingComponentProps, theme);
+    } = getVariantProps(incomingComponentProps, themeWithVariants);
 
     const variantProps = Object.assign(defaultVariantProps, inlineVariantProps);
 
@@ -1320,12 +1305,17 @@ export function verboseStyled<P, Variants, ComCon>(
     const sxStyleIds: any = React.useRef(BUILD_TIME_VERBOSED_STYLE_IDS);
 
     if (BUILD_TIME_ORDERED_RESOLVED.length > 0 && !isClient.current) {
-      const toBeInjected = GluestackStyleSheet.update(
-        BUILD_TIME_ORDERED_RESOLVED
-      );
+      if (BUILD_TIME_DISABLE_EXTRACTION || !styledContext?.disableInjection) {
+        const toBeInjected = GluestackStyleSheet.update(
+          BUILD_TIME_ORDERED_RESOLVED
+        );
 
-      if (Platform.OS === 'web') {
-        GluestackStyleSheet.inject(toBeInjected, styledContext.inlineStyleMap);
+        if (Platform.OS === 'web') {
+          GluestackStyleSheet.inject(
+            toBeInjected,
+            styledContext.inlineStyleMap
+          );
+        }
       }
       sxStyleIds.current = BUILD_TIME_VERBOSED_STYLE_IDS;
 
@@ -1563,10 +1553,19 @@ export function verboseStyled<P, Variants, ComCon>(
       const orderedSXResolved = [
         ...orderedPassingSXResolved,
         ...orderedComponentSXResolved,
-        ...BUILD_TIME_ORDERED_RESOLVED,
+        ...(BUILD_TIME_DISABLE_EXTRACTION || !styledContext?.disableInjection
+          ? BUILD_TIME_ORDERED_RESOLVED
+          : []),
       ];
       // console.setStartTimeStamp('getStyleIds');
       sxStyleIds.current = getStyleIds(orderedSXResolved, componentStyleConfig);
+
+      if (BUILD_TIME_DISABLE_EXTRACTION || !styledContext?.disableInjection) {
+        sxStyleIds.current = deepMergeArray(
+          sxStyleIds.current,
+          BUILD_TIME_VERBOSED_STYLE_IDS
+        );
+      }
 
       ///
       // Setting variants to sx property for inline variant resolution
@@ -2199,53 +2198,10 @@ export function styled<P, Variants, ComCon>(
   }
 ) {
   const nonVerbosedTheme = theme;
-  // const DEBUG_TAG = componentStyleConfig?.DEBUG;
-  // const DEBUG =
-  //   process.env.NODE_ENV === 'development' && DEBUG_TAG ? false : false;
-
-  // const componentName = componentStyleConfig?.componentName;
-  // const componentExtendedTheme = extendedThemeConfig?.theme;
-  // const componentExtended_build_time_params =
-  //   extendedThemeConfig?.BUILD_TIME_PARAMS;
-  // let mergedBuildTimeParams: any;
-
-  if (BUILD_TIME_PARAMS) {
-    // mergedBuildTimeParams = Array(
-    //   { ...BUILD_TIME_PARAMS },
-    //   { ...componentExtended_build_time_params }
-    // );
-  }
-
-  // let styledObj = { ...theme };
-  // if (componentExtendedTheme) {
-  //   styledObj = deepMerge({ ...theme }, { ...componentExtendedTheme });
-  // }
-
-  // // move inside stylehash created
-  // let plugins = [...getInstalledPlugins()];
-
-  // if (ExtendedConfig?.plugins) {
-  //   // @ts-ignore
-  //   plugins = [...plugins, ...ExtendedConfig?.plugins];
-  // }
-
-  // for (const pluginName in plugins) {
-  //   // @ts-ignore
-  //   [styledObj, , , Component] = plugins[pluginName]?.inputMiddleWare<P>(
-  //     styledObj,
-  //     true,
-  //     true,
-  //     Component
-  //   );
-  // }
-
-  // theme = styledObj;
-
-  // move inside stylehash created
 
   const sxConvertedObject = convertStyledToStyledVerbosed(theme);
 
-  let StyledComponent = verboseStyled<P, Variants, ComCon>(
+  const StyledComponent = verboseStyled<P, Variants, ComCon>(
     Component,
     sxConvertedObject,
     componentStyleConfig,
@@ -2256,40 +2212,6 @@ export function styled<P, Variants, ComCon>(
 
   // @ts-ignore
   StyledComponent.isAnimatedComponent = Component.isAnimatedComponent;
-
-  // move before returning component from verboseStyled
-
-  // @ts-ignore
-  // plugins?.reverse();
-  // for (const pluginName in plugins) {
-  //   // @ts-ignore
-  //   if (plugins[pluginName]?.componentMiddleWare) {
-  //     // @ts-ignore
-  //     StyledComponent = plugins[pluginName]?.componentMiddleWare({
-  //       Component: StyledComponent,
-  //       theme,
-  //       componentStyleConfig,
-  //       ExtendedConfig,
-  //     });
-  //   }
-  // }
-  // move before returning component from verboseStyled
-
-  // for (const pluginName in plugins) {
-  //   const compWrapper =
-  //     // @ts-ignore
-  //     typeof plugins[pluginName].wrapperComponentMiddleWare === 'function'
-  //       ? // @ts-ignore
-  //         plugins[pluginName].wrapperComponentMiddleWare()
-  //       : null;
-
-  //   if (compWrapper) {
-  //     for (const key of Object.keys(compWrapper)) {
-  //       // @ts-ignore
-  //       StyledComponent[key] = compWrapper[key];
-  //     }
-  //   }
-  // }
 
   return StyledComponent;
 }
