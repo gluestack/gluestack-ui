@@ -37,9 +37,10 @@ for (const [key, value] of Object.entries(testData)) {
 
         test(`${key} is displayed with arguments ${JSON.stringify(
           combination
-        )}`, async ({ page }) => {
+        )}`, async ({ page }, testinfo) => {
           await page.goto(storybookUrl);
           if (overlay) await page.waitForTimeout(300);
+          testinfo.snapshotSuffix = '';
           expect(await page.screenshot()).toMatchSnapshot();
         });
 
@@ -92,9 +93,10 @@ for (const [key, value] of Object.entries(testData)) {
 
             test(`${key} is displayed with arguments ${JSON.stringify(
               combination
-            )}`, async ({ page }) => {
+            )}`, async ({ page }, testinfo) => {
               await page.goto(storybookUrl);
               if (overlay) await page.waitForTimeout(300);
+              testinfo.snapshotSuffix = '';
               expect(await page.screenshot()).toMatchSnapshot({
                 maxDiffPixels: 10000,
               });
