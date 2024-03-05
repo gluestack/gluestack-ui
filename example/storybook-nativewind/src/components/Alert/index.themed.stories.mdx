@@ -14,7 +14,7 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="with-gluestack-style/components/Feedback/Alert" />
 
-import { Alert, AlertIcon, AlertText } from '../../components-example/themed';
+import { Alert, AlertIcon, AlertText } from '../../core-components/themed';
 import {
   CheckCircleIcon,
   CloseCircleIcon,
@@ -24,9 +24,9 @@ import {
   Center,
   VStack,
   InfoIcon,
-} from '../../components-example/themed';
+} from '../../core-components/themed';
 
-import { HStack } from '../../components-example/themed';
+import { HStack } from '../../core-components/themed';
 import { transformedCode } from '../../utils';
 import {
   AppProvider,
@@ -37,7 +37,7 @@ import {
 } from '@gluestack/design-system';
 import { CollapsibleCode } from '@gluestack/design-system';
 
-import Wrapper from '../../components-example/themed/Wrapper';
+import Wrapper from '../../core-components/themed/Wrapper';
 
 This is an illustration of **Alert** component.
 
@@ -96,7 +96,7 @@ npm i @gluestack-ui/alert
 ### Step 2: Copy and paste the following code into your project.
 
 <CollapsibleCode>
-  ```jsx %%-- File: components-example/themed/Alert/index.tsx --%% ```
+  ```jsx %%-- File: core-components/themed/alert/index.tsx --%% ```
 </CollapsibleCode>
 
 ### Step 3: Update the import paths to match your project setup.
@@ -106,7 +106,7 @@ npm i @gluestack-ui/alert
 To use this component in your project, include the following import statement in your file.
 
 ```jsx
-import { Alert, AlertIcon, AlertText } from '@/components/ui/Alert';
+import { Alert, AlertIcon, AlertText } from '@/components/ui/alert';
 ```
 
 ```jsx
