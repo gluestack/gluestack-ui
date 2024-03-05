@@ -35,6 +35,7 @@ const {
 } = require('@gluestack-style/react/lib/commonjs/core/convert-utility-to-sx');
 const {
   generateMergedThemeTokens,
+  resolvePlatformTheme,
 } = require('@gluestack-style/react/lib/commonjs/utils');
 
 const BUILD_TIME_GLUESTACK_STYLESHEET = new StyleInjector();
@@ -98,7 +99,7 @@ const convertExpressionContainerToStaticObject = (
     };
   } catch (err) {
     throw new Error(
-      `Error while converting expression container to static object. Error: ${err.message} Stack: ${err.stack}`
+      `Error while converting expression container to static object. Error: ${err.message} Stack: ${err.stack}.`
     );
   }
 };
@@ -200,14 +201,175 @@ function addQuotesToObjectKeys(code) {
 }
 const merge = require('lodash.merge');
 
+function isReservedKey(key, variantProps = []) {
+  return (
+    Object.values(reservedKeys).some((obj) => obj.key === key) ||
+    key === 'variants' ||
+    key === 'compoundVariants' ||
+    key === 'props' ||
+    key === 'defaultProps' ||
+    key.startsWith('_') ||
+    variantProps.includes(key)
+  );
+}
+
+function getSkippedPluginProps(
+  theme,
+  variantProps = [],
+  keyPath = [],
+  skippedProps = {},
+  themeProps = {}
+) {
+  Object.keys(theme).forEach((themeKey) => {
+    if (typeof theme[themeKey] === 'object') {
+      if (isReservedKey(themeKey, variantProps)) {
+        keyPath.push(themeKey);
+        getSkippedPluginProps(
+          theme[themeKey],
+          variantProps,
+          keyPath,
+          skippedProps,
+          themeProps
+        );
+        keyPath.pop();
+      } else {
+        keyPath.push(themeKey);
+        setObjectKeyValue(skippedProps, keyPath, theme[themeKey]);
+        keyPath.pop();
+      }
+    } else {
+      keyPath.push(themeKey);
+      setObjectKeyValue(themeProps, keyPath, theme[themeKey]);
+      keyPath.pop();
+    }
+  });
+
+  return { themeProps, skippedProps };
+}
+
+// Function to find a property by key path
+function findProperty(obj, keyPath) {
+  if (keyPath.length === 0) return obj;
+
+  let key = keyPath[0];
+  let prop = obj.properties.find((prop) => prop.key.value === key);
+
+  if (prop && keyPath.length > 1) {
+    return findProperty(prop.value, keyPath.slice(1));
+  } else {
+    return prop;
+  }
+}
+
+// Function to merge properties of two objects
+function mergeProperties(obj1, obj2, keyPath = []) {
+  obj2.properties.forEach((prop2) => {
+    let newKeyPath = [...keyPath, prop2.key.value];
+    let prop1 = findProperty(obj1, newKeyPath);
+
+    if (prop1) {
+      if (
+        types.isObjectExpression(prop1.value) &&
+        types.isObjectExpression(prop2.value)
+      ) {
+        // If both properties are objects, merge them recursively
+        mergeProperties(prop1.value, prop2.value, newKeyPath);
+      } else {
+        // If the properties are not objects, replace the property in obj1 with the property from obj2
+        prop1.value = prop2.value;
+      }
+    } else {
+      // If the property does not exist in obj1, add it
+      let parentObj = findProperty(obj1, keyPath);
+      if (parentObj && parentObj.type === 'ObjectExpression') {
+        parentObj.properties.push(
+          types.objectProperty(
+            types.stringLiteral(prop2.key.value),
+            prop2.value
+          )
+        );
+      } else {
+        // Handle the case where the parent object doesn't exist
+        console.error(
+          `Parent object not found for key path: ${keyPath.join('.')}`
+        );
+      }
+    }
+  });
+}
+
+// // Function to merge properties of two objects
+// function mergeProperties(obj1, obj2) {
+//   obj2.properties.forEach((prop2) => {
+//     let prop1 = obj1.properties.find(
+//       (prop1) => prop1.key.value === prop2.key.value
+//     );
+
+//     if (prop1) {
+//       if (
+//         types.isObjectExpression(prop1.value) &&
+//         types.isObjectExpression(prop2.value)
+//       ) {
+//         // If both properties are objects, merge them recursively
+//         mergeProperties(prop1.value, prop2.value);
+//       } else {
+//         // If the properties are not objects, replace the property in obj1 with the property from obj2
+//         prop1.value = prop2.value;
+//       }
+//     } else {
+//       // If the property does not exist in obj1, add it
+//       obj1.properties.push(prop2);
+//     }
+//   });
+// }
+
+function mergeASTs(ast1, obj) {
+  if (Object.keys(obj).length === 0) return ast1;
+
+  let mergedAST = null;
+
+  const ast2 = babel.parse(`var a = ${JSON.stringify(obj)}`, {
+    presets: [babelPresetTypeScript],
+    plugins: ['typescript'],
+    sourceType: 'module',
+  });
+
+  traverse(ast2, {
+    // For each ObjectExpression in the second AST
+    ObjectExpression(objectExpressionPath) {
+      // Merge the properties of the objects
+      mergeProperties(ast1, objectExpressionPath.node);
+      objectExpressionPath.stop();
+    },
+  });
+
+  const { code: output } = generate(ast1);
+
+  const outputAST = babel.parse(`var a = ${output}`, {
+    presets: [babelPresetTypeScript],
+    plugins: ['typescript'],
+    sourceType: 'module',
+  });
+
+  traverse(outputAST, {
+    VariableDeclarator(variableDeclaratorPath) {
+      mergedAST = variableDeclaratorPath.node.init;
+    },
+  });
+
+  return mergedAST;
+}
+
 function getBuildTimeParams(
   theme,
   componentConfig,
   extendedConfig,
   outputLibrary,
   platform,
-  type
+  type,
+  disableExtraction
 ) {
+  resolvePlatformTheme(theme, process.env.GLUESTACK_STYLE_TARGET);
   const mergedPropertyConfig = {
     ...ConfigDefault?.propertyTokenMap,
     ...propertyTokenMap,
@@ -221,11 +383,28 @@ function getBuildTimeParams(
   );
 
   if (theme && Object.keys(theme).length > 0) {
-    const verbosedTheme = convertStyledToStyledVerbosed(theme);
+    let verbosedTheme = {};
+
+    const variantProps = [];
+
+    Object.keys(theme?.variants ?? {}).forEach((key) => {
+      variantProps.push(key);
+      Object.keys(theme?.variants?.[key]).forEach((prop) => {
+        variantProps.push(prop);
+      });
+    });
+
+    const { skippedProps, themeProps } = getSkippedPluginProps(
+      theme,
+      variantProps
+    );
+
+    verbosedTheme = convertStyledToStyledVerbosed(themeProps);
 
     let componentHash = stableHash({
-      ...theme,
+      ...verbosedTheme,
       ...componentConfig,
+      ...extendedConfig,
     });
 
     if (outputLibrary) {
@@ -273,6 +452,10 @@ function getBuildTimeParams(
         orderedResolvedAst
       ),
       types.objectProperty(
+        types.stringLiteral('disableExtraction'),
+        types.booleanLiteral(disableExtraction)
+      ),
+      types.objectProperty(
         types.stringLiteral('toBeInjected'),
         toBeInjectedAst
       ),
@@ -285,9 +468,14 @@ function getBuildTimeParams(
         styleIdsAst
       ),
     ]);
-    return { node: resultParamsNode, styles: toBeInjected };
+
+    return {
+      node: resultParamsNode,
+      styles: toBeInjected,
+      skippedThemeProps: skippedProps,
+    };
   }
-  return { node: null, styles: {} };
+  return { node: null, styles: {}, skippedThemeProps: {} };
 }
 
 function replaceSingleQuotes(str) {
@@ -324,6 +512,24 @@ function getObjectFromAstNode(node) {
   return JSON.parse(objectCode);
 }
 
+function isEmptyObjectExpression(node) {
+  if (types.isObjectExpression(node)) {
+    const properties = node.properties;
+    if (properties.length === 0) {
+      return true;
+    } else {
+      // Recursively check the properties of the object
+      for (const prop of properties) {
+        if (!isEmptyObjectExpression(prop.value)) {
+          return false;
+        }
+      }
+      return true;
+    }
+  }
+  return false;
+}
+
 function removeLiteralPropertiesFromObjectProperties(code) {
   const ast = babel.parse(`var a = ${code}`, {
     presets: [babelPresetTypeScript],
@@ -348,6 +554,33 @@ function removeLiteralPropertiesFromObjectProperties(code) {
             value.type === 'NumericLiteral'
           ) {
             objectPropertyPath.remove();
+          }
+        },
+      });
+    },
+  });
+
+  traverse(ast, {
+    ObjectExpression: (objectExpressionPath) => {
+      const properties = objectExpressionPath.node.properties;
+      const nonEmptyProperties = properties.filter(
+        (prop) => !isEmptyObjectExpression(prop.value)
+      );
+
+      if (nonEmptyProperties.length !== properties.length) {
+        objectExpressionPath.node.properties = nonEmptyProperties;
+      }
+
+      // Recursively traverse nested object expressions
+      objectExpressionPath.traverse({
+        ObjectExpression(innerPath) {
+          const innerProperties = innerPath.node.properties;
+          const nonEmptyInnerProperties = innerProperties.filter(
+            (prop) => !isEmptyObjectExpression(prop.value)
+          );
+
+          if (nonEmptyInnerProperties.length !== innerProperties.length) {
+            innerPath.node.properties = nonEmptyInnerProperties;
           }
         },
       });
@@ -447,13 +680,13 @@ export function parseAndExtractConfig(code, opts) {
     const ast = parseAst(code);
 
     return extractStyles(ast, opts);
-    return {
-      code,
-      styles: {},
-    };
+    // return {
+    //   code,
+    //   styles: {},
+    // };
   } catch (err) {
     throw new Error(
-      `Error while parsing and extracting styles. Error: ${err.message} Stack: ${err.stack}`
+      `Error while parsing and extracting styles. Error: ${err.message} Stack: ${err.stack}.\n*************${opts?.filename}*************\n${code}`
     );
   }
 }
@@ -464,11 +697,11 @@ function parseAst(code) {
     if (typeof code === 'string') {
       ast = babel.parse(code, {
         sourceType: 'module',
-
+        presets: [babelPresetTypeScript],
         plugins: [
           // enable jsx and flow syntax
+          'typescript',
           'jsx',
-          'flow',
         ],
       });
     }
@@ -514,54 +747,12 @@ function extractStyles(ast, opts) {
 
   let cssStyles = {};
 
-  ConfigDefault = generateMergedThemeTokens(opts?.config);
+  ConfigDefault = opts?.config;
+  configThemePath = opts?.configThemePath;
+
+  ConfigDefault = generateMergedThemeTokens(ConfigDefault);
 
   traverse(ast, {
-    // pre: (state) => {
-    //   let plugin;
-
-    //   state?.opts?.plugins?.forEach((currentPlugin) => {
-    //     if (currentPlugin.key === 'gluestack-babel-styled-resolver') {
-    //       plugin = currentPlugin;
-    //     }
-    //   });
-
-    //   if (plugin?.options?.configPath) {
-    //     configPath = plugin?.options?.configPath;
-    //   }
-
-    //   if (plugin?.options?.configThemePath) {
-    //     configThemePath = plugin?.options?.configThemePath;
-    //   }
-
-    //   const outputDir = `.gluestack/config-${process.ppid + 1}.js`;
-    //   const mockLibraryPath = `./mock-${process.ppid + 1}.js`;
-
-    //   if (configPath) {
-    //     configFile = opts?.config;
-
-    //     if (configThemePath.length > 0) {
-    //       configThemePath.forEach((path) => {
-    //         configFile = configFile?.[path];
-    //       });
-    //       configThemePath = [];
-    //       ConfigDefault = configFile;
-    //     } else {
-    //       ConfigDefault = configFile?.config;
-    //     }
-    //   } else {
-    //     configFile = opts?.config;
-    //     if (configThemePath.length > 0) {
-    //       configThemePath.forEach((path) => {
-    //         configFile = configFile?.[path];
-    //       });
-    //       configThemePath = [];
-    //       ConfigDefault = configFile;
-    //     } else {
-    //       ConfigDefault = configFile?.config;
-    //     }
-    //   }
-    // },
     ImportDeclaration: (importPath) => {
       currentFileName = opts?.filename;
       styledAlias = opts?.styledAlias;
@@ -714,21 +905,30 @@ function extractStyles(ast, opts) {
               extendedThemeNode.properties.push(tempPropertyResolverNode);
             }
 
-            const { node, styles } = getBuildTimeParams(
+            const { node, styles, skippedThemeProps } = getBuildTimeParams(
               theme,
               componentConfig,
               ExtendedConfig,
               outputLibrary,
               platform,
-              'boot'
+              'boot',
+              opts?.disableExtraction
             );
 
             cssStyles = { ...cssStyles, ...styles };
+
+            const themeWithIdentifier =
+              getIdentifiersObjectFromAstNode(componentThemeNode);
+
+            const mergedAST = mergeASTs(themeWithIdentifier, skippedThemeProps);
+
+            args[1] = mergedAST;
 
             if (node) {
               while (args.length < 4) {
                 args.push(types.objectExpression([]));
               }
+
               if (!args[4]) {
                 args.push(node);
               } else {
@@ -771,16 +971,24 @@ function extractStyles(ast, opts) {
             const theme = getObjectFromAstNode(componentThemeNode);
             const componentConfig = getObjectFromAstNode(componentConfigNode);
 
-            const { node, styles } = getBuildTimeParams(
+            const { node, styles, skippedThemeProps } = getBuildTimeParams(
               theme,
               componentConfig,
               {},
               outputLibrary,
               platform,
-              'extended'
+              'extended',
+              opts?.disableExtraction
             );
 
             cssStyles = { ...cssStyles, ...styles };
+
+            const themeWithIdentifier =
+              getIdentifiersObjectFromAstNode(componentThemeNode);
+
+            const mergedAST = mergeASTs(themeWithIdentifier, skippedThemeProps);
+
+            args[1] = mergedAST;
 
             if (node) {
               while (args.length < 3) {
@@ -832,7 +1040,8 @@ function extractStyles(ast, opts) {
                   {},
                   outputLibrary,
                   platform,
-                  'extended'
+                  'extended',
+                  opts?.disableExtraction
                 );
 
                 cssStyles = { ...cssStyles, ...styles };
@@ -1088,11 +1297,9 @@ function extractStyles(ast, opts) {
 
           orderedResolvedTheme.forEach((styledResolved) => {
             delete styledResolved.toBeInjected;
-            if (targetPlatform === 'native') {
+            if (targetPlatform !== 'web') {
               delete styledResolved.original;
-              delete styledResolved.value;
               delete styledResolved.meta.cssRulesSet;
-              delete styledResolved.meta.weight;
               delete styledResolved.meta.weight;
               delete styledResolved.type;
               delete styledResolved.componentHash;
@@ -1109,6 +1316,7 @@ function extractStyles(ast, opts) {
               types.jsxExpressionContainer(styleIdsAst)
             )
           );
+
           jsxOpeningElementPath.node.attributes.push(
             types.jsxAttribute(
               types.jsxIdentifier('orderedResolved'),
@@ -1117,6 +1325,15 @@ function extractStyles(ast, opts) {
               )
             )
           );
+
+          if (opts?.disableExtraction) {
+            jsxOpeningElementPath.node.attributes.push(
+              types.jsxAttribute(
+                types.jsxIdentifier('disableExtraction'),
+                types.jsxExpressionContainer(types.booleanLiteral(true))
+              )
+            );
+          }
         }
 
         if (

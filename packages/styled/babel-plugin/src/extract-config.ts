@@ -1,7 +1,6 @@
 import {
   convertTokensToCssVariables,
   platformSpecificSpaceUnits,
-  generateMergedThemeTokens,
   //@ts-ignore
 } from '@gluestack-style/react/lib/commonjs/utils';
 //@ts-ignore
@@ -71,10 +70,6 @@ export function extractGluestackConfig(gluestackConfig: any) {
   }
 
   configWithPlatformSpecificUnits = resolveThemes(
-    configWithPlatformSpecificUnits
-  );
-
-  configWithPlatformSpecificUnits = generateMergedThemeTokens(
     configWithPlatformSpecificUnits
   );
 
