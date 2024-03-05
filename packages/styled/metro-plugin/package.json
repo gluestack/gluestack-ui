@@ -30,8 +30,8 @@
     "@gluestack-style/react": ">=1.0"
   },
   "dependencies": {
-    "@gluestack-style/build-config": "latest",
-    "@gluestack-style/extract-styles": "latest"
+    "@gluestack-style/build-config": "*",
+    "@gluestack-style/extract-styles": "*"
   },
   "devDependencies": {
     "@types/fs-extra": "^11.0.4",
