@@ -1,0 +1,130 @@
+---
+title: gluestack-ui Avatar Component | Installation, Usage, and API
+
+description: The Avatar component is a versatile UI element representing a user with profile pictures, initials, or a fallback icon. It adds a personal touch to the user interface, making it more engaging.
+
+pageTitle: Avatar
+
+pageDescription: The Avatar component is a versatile UI element representing a user with profile pictures, initials, or a fallback icon. It adds a personal touch to the user interface, making it more engaging.
+
+showHeader: true
+---
+
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="with-gluestack-style/components/Media And Icons/Avatar" />
+
+import {
+  Avatar,
+  AvatarGroup,
+  AvatarBadge,
+  AvatarFallbackText,
+  AvatarImage,
+} from '../../core-components/themed';
+import {
+  HStack,
+  VStack,
+  Text,
+  Icon,
+  Heading,
+  User,
+} from '../../core-components/themed';
+import { transformedCode } from '../../utils';
+import {
+  AppProvider,
+  CodePreview,
+  Table,
+  TableContainer,
+  InlineCode,
+} from '@gluestack/design-system';
+import { CollapsibleCode } from '@gluestack/design-system';
+
+import Wrapper from '../../core-components/themed/Wrapper';
+
+This is an illustration of **Avatar** component.
+
+<>
+  <CodePreview
+    showComponentRenderer={ true }
+  showArgsController = { true}
+  metaData = {{
+    code: `
+        <Avatar {...props}>
+          <AvatarFallbackText>Sandeep Srivastava</AvatarFallbackText>
+        </Avatar>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+        scope: {
+      Wrapper,
+        Avatar,
+        AvatarBadge,
+        AvatarFallbackText,
+        AvatarImage,
+      },
+    argsType: {
+      size: {
+        control: 'select',
+          options: ['xs', 'sm', 'md', 'lg', 'xl', '2xl'],
+          default: 'md',
+        },
+    },
+  }
+}
+/>
+</>
+
+<br/>
+
+## Installation
+
+### Step 1: Install the following dependencies:
+
+```bash
+
+npm i @gluestack-ui/avatar
+
+```
+
+### Step 2: Copy and paste the following code into your project.
+
+<CollapsibleCode>
+
+```jsx 
+%%-- File: core-components/themed/avatar/index.tsx --%% 
+```
+
+</CollapsibleCode>
+
+### Step 3: Update the import paths to match your project setup.
+
+## API Reference
+
+### Component Props
+
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
+
+#### Avatar
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+#### AvatarGroup
+
+It also inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+#### AvatarImage
+
+It inherits all the properties of React Native's [Image](https://reactnative.dev/docs/image) component.
+
+#### AvatarFallbackText
+
+It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text) component.
+
+#### AvatarBadge
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+### Features
+
+- Returns a fallback to FallbackText if given an invalid image source.

@@ -1,0 +1,90 @@
+---
+title: Box | gluestack-ui | Installation, Usage, and API
+
+description: If you're looking for a flexible component to help with low-level layout needs, the Box component might be just what you need. With its customizable styles and props, it can be used to create a wide range of UI elements, from simple containers to complex layout structures.
+
+pageTitle: Box
+
+pageDescription: If you're looking for a flexible component to help with low-level layout needs, the Box component might be just what you need. With its customizable styles and props, it can be used to create a wide range of UI elements, from simple containers to complex layout structures.
+
+showHeader: true
+---
+
+import { Meta } from '@storybook/addon-docs';
+import { useRef, useEffect, useState } from 'react';
+
+<Meta title="with-gluestack-style/components/Layout/Box" />
+
+import { Box } from '../../core-components/themed';
+import { Text } from '../../core-components/themed';
+
+import { transformedCode } from '../../utils';
+import { AppProvider, CodePreview } from '@gluestack/design-system';
+
+import Wrapper from '../../core-components/themed/Wrapper';
+import { CollapsibleCode } from '@gluestack/design-system';
+
+This is an illustration of **Box** component.
+
+<>
+  <CodePreview
+    showComponentRenderer={ true }
+  showArgsController = { false}
+  metaData = {{
+    code: `
+<Box
+  bg="$primary500"
+  p="$5"
+>
+  <Text color='$text0' >
+    This is the Box
+  </Text>
+</Box>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+        scope: {
+      Wrapper,
+        Box,
+        Text,
+      },
+    argsType: { },
+  }
+}
+/>
+</>
+
+<br/>
+
+## Installation
+
+### Step 1: Copy and paste the following code into your project.
+
+<CollapsibleCode>
+
+```jsx 
+%%-- File: core-components/themed/box/index.tsx --%% 
+```
+
+</CollapsibleCode>
+
+### Step 2: Update the import paths to match your project setup.
+
+To use this component in your project, include the following import statement in your file.
+
+```jsx
+import { Box } from '@/components/ui/box';
+```
+
+```jsx
+export default () => <Box />;
+```
+
+### Component Props
+
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
+
+#### Box
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
