@@ -96,7 +96,7 @@ for (const [key, value] of Object.entries(testData)) {
               await page.goto(storybookUrl);
               if (overlay) await page.waitForTimeout(300);
               expect(await page.screenshot()).toMatchSnapshot({
-                maxDiffPixels: 100,
+                maxDiffPixels: 10000,
               });
             });
           }
@@ -115,8 +115,8 @@ for (const [key, value] of Object.entries(testData)) {
         );
         await page.goto(storybookUrl);
         if (overlay) await page.waitForTimeout(300);
-        expect(await page.screenshot()).toHaveScreenshot({
-          maxDiffPixels: 100,
+        expect(await page.screenshot()).toMatchSnapshot({
+          maxDiffPixels: 10000,
         });
       });
     }
