@@ -1,4 +1,4 @@
-import { Image } from '@/components/ui/Image';
+import { Image } from '@/components/ui/image';
 import { VStack } from '@gluestack-ui/themed';
 import React from 'react';
 

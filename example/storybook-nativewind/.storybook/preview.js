@@ -3,12 +3,12 @@ import { DocsContainer } from '@storybook/addon-docs/blocks';
 import { OverlayProvider } from '@gluestack-ui/overlay';
 import { ToastProvider } from '@gluestack-ui/toast';
 
-import { GluestackUIProvider as GluestackUIWithNativewindProvider } from '../src/core-components/nativewind/GluestackUIProvider';
+import { GluestackUIProvider as GluestackUIWithNativewindProvider } from '../src/core-components/nativewind/gluestack-ui-provider';
 
 // global css getting resolved from babel.config.js
 import 'global.css';
 
-import { GluestackUIProvider as GluestackUIWithGluestackStyleProvider } from '../src/core-components/themed/GluestackUIProvider';
+import { GluestackUIProvider as GluestackUIWithGluestackStyleProvider } from '../src/core-components/themed/gluestack-ui-provider';
 
 import gstheme from './gstheme';
 import { themes } from '@storybook/theming';

@@ -5,13 +5,13 @@ import {
   AvatarBadge,
   AvatarFallbackText,
   AvatarImage,
-} from '@/components/ui/Avatar';
+} from '@/components/ui/avatar';
 import { User } from 'lucide-react-native';
-import { HStack } from '@/components/ui/HStack';
-import { VStack } from '@/components/ui/VStack';
-import { Icon } from '@/components/ui/Icon';
-import { Heading } from '@/components/ui/Heading';
-import { Text } from '@/components/ui/Text';
+import { HStack } from '@/components/ui/hstack';
+import { VStack } from '@/components/ui/vstack';
+import { Icon } from '@/components/ui/icon';
+import { Heading } from '@/components/ui/heading';
+import { Text } from '@/components/ui/text';
 
 const AvatarBasic = (props: any) => {
   return (
