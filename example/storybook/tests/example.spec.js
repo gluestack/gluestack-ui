@@ -98,7 +98,7 @@ for (const [key, value] of Object.entries(testData)) {
               if (overlay) await page.waitForTimeout(300);
               testinfo.snapshotSuffix = '';
               expect(await page.screenshot()).toMatchSnapshot({
-                maxDiffPixels: 10000,
+                maxDiffPixels: 100,
               });
             });
           }
@@ -118,7 +118,7 @@ for (const [key, value] of Object.entries(testData)) {
         await page.goto(storybookUrl);
         if (overlay) await page.waitForTimeout(300);
         expect(await page.screenshot()).toMatchSnapshot({
-          maxDiffPixels: 10000,
+          maxDiffPixels: 100,
         });
       });
     }
