@@ -74,9 +74,9 @@ export const config = createConfig({
 type Config = typeof config;
 type Components = typeof components;
 
-declare module '@gluestack-ui/themed' {
-  interface UIConfig extends Config {}
-  interface UIComponents extends Components {}
+declare module '@gluestack-style/react' {
+  interface ICustomConfig extends Config {}
+  interface ICustomComponents extends Components {}
 }
 
 ```
@@ -118,8 +118,8 @@ type Config = typeof config;
 type Components = typeof components;
 
 declare module '@gluestack-style/react' {
-  interface UIConfig extends Config {}
-  interface UIComponents extends Components {}
+  interface ICustomConfig extends Config {}
+  interface ICustomComponents extends Components {}
 }
 
 ```
