@@ -298,3 +298,130 @@ const Switch = createSwitch({
 export default () => <Switch />;
 ```
 -->
+
+
+### Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+#### Switch With Label
+
+An example of a switch component with a label, which includes another switch component for toggling additional options.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+            <HStack space="md">
+              <Switch/>
+              <Text size="sm" >Allow notifications</Text>
+            </HStack>
+     `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Switch,
+        Text,
+        HStack,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### Checked State
+
+An example of a switch component used within a checked state component to represent a pre-selected or activated option.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+          <HStack space="md">
+              <Switch  defaultValue={true}/>
+              <Text size="sm" >Public profile</Text>
+          </HStack>
+     `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Switch,
+        Text,
+        HStack,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### Color scheme
+
+An example of a switch component being used with a different color scheme.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+          <VStack space="md">
+              <Switch sx={{
+            _light: {
+              props: {
+                trackColor: {
+                  false: '$backgroundLight300',
+                  true: '$indigo600'
+                },
+              },
+            },
+            _dark: {
+              props: {
+                trackColor: {
+                  false: '$backgroundDark700',
+                  true: '$indigo600'
+                },
+              },
+            },
+          }}/>
+              <Switch
+              sx={{
+            _light: {
+              props: {
+                trackColor: {
+                  false: '$backgroundLight300',
+                  true: '$emerald600'
+                },
+              },
+            },
+            _dark: {
+              props: {
+                trackColor: {
+                  false: '$backgroundDark700',
+                  true: '$emerald600'
+                },
+              },
+            },
+          }}/>
+          </VStack>
+     `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Switch,
+        Text,
+        VStack,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
