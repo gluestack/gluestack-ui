@@ -68,8 +68,8 @@ const UIAccordion = createAccordion({
   //@ts-ignore
   Root:
     Platform.OS === 'web'
-      ? withStyleContext(Pressable)
-      : withStyleContextAndStates(Pressable),
+      ? withStyleContext(View)
+      : withStyleContextAndStates(View),
   Item: View,
   // @ts-ignore
   Header: Platform.OS === 'web' ? H3 : View,
