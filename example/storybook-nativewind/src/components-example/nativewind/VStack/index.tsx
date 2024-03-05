@@ -1,5 +1,5 @@
 import React from 'react';
-import { tva } from '@gluestack-ui/nativewind-utils';
+import { tva, VariantProps } from '@gluestack-ui/nativewind-utils';
 import { View } from 'react-native';
 
 const vstackStyle = tva({
@@ -21,14 +21,20 @@ const vstackStyle = tva({
   },
 });
 
-const VStack = ({ className, space, reversed, ...props }: any) => {
-  return (
-    <View
-      className={vstackStyle({ space, reversed, class: className })}
-      {...props}
-    />
-  );
-};
+type IVStackProps = React.ComponentProps<typeof View> &
+  VariantProps<typeof vstackStyle>;
+
+const VStack = React.forwardRef(
+  ({ className, space, reversed, ...props }: IVStackProps, ref?: any) => {
+    return (
+      <View
+        className={vstackStyle({ space, reversed, class: className })}
+        {...props}
+        ref={ref}
+      />
+    );
+  }
+);
 
 VStack.displayName = 'VStack';
 
