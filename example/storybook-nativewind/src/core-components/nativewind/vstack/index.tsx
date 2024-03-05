@@ -3,7 +3,7 @@ import { tva, VariantProps } from '@gluestack-ui/nativewind-utils';
 import { View } from 'react-native';
 
 const vstackStyle = tva({
-  base: 'flex-column',
+  base: 'flex-col',
   variants: {
     space: {
       'xs': 'gap-1',
