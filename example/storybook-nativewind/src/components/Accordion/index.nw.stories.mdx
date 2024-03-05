@@ -471,19 +471,12 @@ function App(){
       <Accordion
       className="w-[90%] m-5 border border-outline-300"
       type="multiple"
-      m="$5"
     >
       <AccordionItem value="a"
          className="border-b border-outline-300"
         >
         <AccordionHeader 
-        className="bg-light-0"
-        sx={{
-            backgroundColor: "$backgroundLight0",
-          _dark: {
-            backgroundColor: "$backgroundDark950"
-          }
-        }}
+        className="bg-background-0"
         >
           <AccordionTrigger>
             {({ isExpanded }) => {
@@ -502,12 +495,8 @@ function App(){
             }}
           </AccordionTrigger>
         </AccordionHeader>
-        <AccordionContent mt="$0" pt="$2" sx={{
-          backgroundColor: "$backgroundLight50",
-          _dark: {
-            backgroundColor: "$backgroundDark900"
-          },
-        }}>
+        <AccordionContent className="mt-0 pt-2 bg-background-50"
+        >
           <AccordionContentText>
             The type prop determines whether one or multiple items can be
             opened at the same time. The default value is "single" which means
@@ -517,9 +506,7 @@ function App(){
       </AccordionItem>
       <AccordionItem
         value="b"
-        borderBottomWidth={1}
-        borderBottomColor="$borderLight300"
-        $dark-borderBottomColor="$borderDark700"
+        className="border-b border-outline-300"
       >
         <AccordionHeader     
         sx={{
@@ -545,12 +532,8 @@ function App(){
             }}
           </AccordionTrigger>
         </AccordionHeader>
-        <AccordionContent mt="$0" pt="$2" sx={{
-          backgroundColor: "$backgroundLight50",
-          _dark: {
-          backgroundColor: "$backgroundDark900"
-          },
-        }}>
+        <AccordionContent className="mt-0 pt-2 bg-background-50"
+        >
           <AccordionContentText>
             Yes, you can disable the whole accordion by setting the isDisabled
             prop to true on the Accordion component.
@@ -561,12 +544,7 @@ function App(){
         value="c"
       >
         <AccordionHeader
-        sx={{
-            backgroundColor: "$backgroundLight0",
-          _dark: {
-            backgroundColor: "$backgroundDark950"
-          }
-        }}
+        className="bg-background-0"
         >
           <AccordionTrigger>
             {({ isExpanded }) => {
@@ -585,12 +563,8 @@ function App(){
             }}
           </AccordionTrigger>
         </AccordionHeader>
-        <AccordionContent mt="$0" pt="$2" sx={{
-          backgroundColor: "$backgroundLight50",
-          _dark: {
-          backgroundColor: "$backgroundDark900"
-          },
-        }}>
+        <AccordionContent className="mt-0 pt-2 bg-background-50"
+        >
           <AccordionContentText>
       Controlled components refer to the components where the state and behaviors are controlled by the Parent component. You can make the accordion a controlled component by passing the value prop to the Accordion component and setting the onValueChange prop to update the value prop. Refer to the controlled accordion example in the docs.
           </AccordionContentText>
@@ -619,6 +593,108 @@ Wrapper,
 }}
 />
 
+</>
+
+### Rounded corners
+
+The borderRadius prop can be used to create rounded corners for both the Accordion and AccordionItem components.
+
+<>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    _rendererWrapper={{
+      display: 'grid',
+      justifyContent: 'stretch',
+    }}
+    metaData={{
+      code: `
+function App(){
+    return (
+          <Accordion className="m-5 w-[80%] max-w-[640px]">
+      <AccordionItem value="item-1" className="rounded-lg">
+        <AccordionHeader>
+          <AccordionTrigger sx={{
+              ':focusVisible': {
+                borderRadius: '$lg',
+              },
+            }}>
+            {({ isExpanded }) => {
+              return (
+                <>
+                  {isExpanded ? (
+                    <AccordionIcon as={MinusIcon} mr="$3" />
+                  ) : (
+                    <AccordionIcon as={PlusIcon} mr="$3" />
+                  )}
+                  <AccordionTitleText>
+                    How do I place an order?
+                  </AccordionTitleText>
+                </>
+              );
+            }}
+          </AccordionTrigger>
+        </AccordionHeader>
+        <AccordionContent ml="$9">
+          <AccordionContentText>
+            To place an order, simply select the products you want, proceed to
+            checkout, provide shipping and payment information, and finalize
+            your purchase.
+          </AccordionContentText>
+        </AccordionContent>
+      </AccordionItem>
+      <AccordionItem value="item-2" mt="$5" borderRadius="$lg">
+        <AccordionHeader>
+          <AccordionTrigger sx={{
+              ':focusVisible': {
+                borderRadius: '$lg',
+              },
+            }}>
+            {({ isExpanded }) => {
+              return (
+                <>
+                  {isExpanded ? (
+                    <AccordionIcon as={MinusIcon} mr="$3" />
+                  ) : (
+                    <AccordionIcon as={PlusIcon} mr="$3" />
+                  )}
+                  <AccordionTitleText>
+                   What payment methods do you accept?
+                  </AccordionTitleText>
+                </>
+              );
+            }}
+          </AccordionTrigger>
+        </AccordionHeader>
+        <AccordionContent ml="$9">
+          <AccordionContentText>
+            We accept all major credit cards, including Visa, Mastercard, and
+            American Express. We also support payments through PayPal.
+          </AccordionContentText>
+        </AccordionContent>
+      </AccordionItem>
+    </Accordion>
+);
+}
+`,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'App');
+      },
+      scope: {
+        Accordion,
+        AccordionItem,
+        AccordionHeader,
+        AccordionTrigger,
+        AccordionTitleText,
+        AccordionIcon,
+        AccordionContent,
+        AccordionContentText,
+        MinusIcon,
+        PlusIcon,
+        Wrapper,
+      },
+    }}
+  />
 </>
 
 
