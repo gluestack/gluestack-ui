@@ -835,11 +835,8 @@ export const gluestackUIConfig = createConfig({
 
 type Config = typeof gluestackUIConfig; // Assuming `config` is defined elsewhere
 
-export interface IConfig {}
-export interface IComponents {}
-
 declare module '@gluestack-style/react' {
-  interface UIConfig extends Omit<Config, keyof IConfig>, IConfig {}
+  interface ICustomConfig extends Config {}
 }
 
 export const config = {
