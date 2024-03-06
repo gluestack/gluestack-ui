@@ -8,7 +8,7 @@ import {
   AccordionIcon,
   AccordionContent,
   AccordionContentText,
-} from '@/components/ui/Accordion';
+} from '@/components/ui/accordion';
 import {
   ChevronDownIcon,
   ChevronUpIcon,
