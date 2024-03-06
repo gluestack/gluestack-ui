@@ -2,7 +2,7 @@ import React from 'react';
 
 import { VStack, Text, Box, Heading, Center } from '@gluestack-ui/themed';
 
-import { Progress, ProgressFilledTrack } from '@/components/ui/Progress';
+import { Progress, ProgressFilledTrack } from '@/components/ui/progress';
 
 const ProgressBasic = ({ value = 50, ...props }: any) => {
   return (

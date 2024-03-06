@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, ButtonText } from '@/components/ui/Button';
+import { Button, ButtonText } from '@/components/ui/button';
 import {
   Modal,
   ModalBackdrop,
@@ -8,11 +8,11 @@ import {
   ModalContent,
   ModalFooter,
   ModalHeader,
-} from '@/components/ui/Modal';
-import { Center } from '@/components/ui/Center';
+} from '@/components/ui/modal';
+import { Center } from '@/components/ui/center';
 
 import { X } from 'lucide-react-native';
-import { Text } from '@/components/ui/Text';
+import { Text } from '@/components/ui/text';
 
 const ModalBasic = (props: any) => {
   const [showModal, setShowModal] = React.useState(false);
