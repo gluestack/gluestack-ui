@@ -1,5 +1,5 @@
 ---
-title: Heading | gluestack-ui | Installation, Usage, and API
+title: gluestack-ui Heading Component | Installation, Usage, and API
 
 description: Heading component gives you the ability to create headings for your page with different sizes and semantics from h1 to h6.
 
@@ -14,7 +14,7 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="with-nativewind/components/Typography/Heading" />
 
-import { Heading, Center } from '../../components-example/nativewind';
+import { Heading, Center } from '../../core-components/nativewind';
 import { transformedCode } from '../../utils';
 import {
   AppProvider,
@@ -25,7 +25,7 @@ import {
   InlineCode,
 } from '@gluestack/design-system';
 
-import Wrapper from '../../components-example/nativewind/Wrapper';
+import Wrapper from '../../core-components/nativewind/Wrapper';
 import { CollapsibleCode } from '@gluestack/design-system';
 
 This is an illustration of **Heading** component.
@@ -66,7 +66,11 @@ npm i @expo/html-elements
 ### Step 2: Copy and paste the following code into your project.
 
 <CollapsibleCode>
-  ```jsx %%-- File: components-example/nativewind/Heading/index.tsx --%% ```
+
+```jsx 
+%%-- File: core-components/nativewind/heading/index.tsx --%% 
+```
+
 </CollapsibleCode>
 
 ### Step 3: Update the import paths to match your project setup.
@@ -76,7 +80,7 @@ npm i @expo/html-elements
 To use this component in your project, include the following import statement in your file.
 
 ```jsx
-import { Heading } from '@/components/ui/Heading';
+import { Heading } from '@/components/ui/heading';
 ```
 
 ```jsx
@@ -231,14 +235,7 @@ The Examples section provides visual representations of the different variants o
 
 #### Heading Sizes
 
-Heading component offers a range of sizes, including `xs`, `sm`, `md`, `lg`, `xl`, `2xl`, `3xl`, `4xl`, and `5xl`, allowing users to customize the size of the heading according to their design requirements. The size attribute determines which HTML tag (`h1` to `h6`) will be rendered.
-
-- For `5xl`, `4xl`, and `3xl`, it renders `h1`.
-- For `2xl`, it renders `h2`.
-- For `xl`, it renders `h3`.
-- For `lg`, it renders `h4`.
-- For `md`, it renders `h5`.
-- Finally, for `sm` and `xs`, it renders `h6`.
+Heading component offers a range of sizes, including `xs`, `sm`, `md`, `lg`, `xl`, `2xl`, `3xl`, `4xl`, and `5xl`, allowing users to customize the size of the heading according to their design requirements.
 
 <AppProvider>
   <CodePreview
@@ -275,127 +272,4 @@ Heading component offers a range of sizes, including `xs`, `sm`, `md`, `lg`, `xl
       argsType: {},
     }}
   />
-</AppProvider>
-
-The Heading component also accepts some shorthands for basic quick styling.
-
-<AppProvider>
-  <TableContainer>
-    <Table>
-      <Table.THead>
-        <Table.TR>
-          <Table.TH>
-            <Table.TText>Prop</Table.TText>
-          </Table.TH>
-          <Table.TH>
-            <Table.TText>Type</Table.TText>
-          </Table.TH>
-          <Table.TH>
-            <Table.TText>Default</Table.TText>
-          </Table.TH>
-          <Table.TH>
-            <Table.TText>Description</Table.TText>
-          </Table.TH>
-        </Table.TR>
-      </Table.THead>
-      <Table.TBody>
-        <Table.TR>
-          <Table.TD>
-            <Table.TText>
-              <InlineCode>bold</InlineCode>
-            </Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>boolean</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>false</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>{`Used to make the text bold.`}</Table.TText>
-          </Table.TD>
-        </Table.TR>
-        <Table.TR>
-          <Table.TD>
-            <Table.TText>
-              <InlineCode>isTruncated</InlineCode>
-            </Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>boolean</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>false</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>{`If true, it will render an ellipsis when the text exceeds the width of the viewport or maxWidth set.`}</Table.TText>
-          </Table.TD>
-        </Table.TR>
-        <Table.TR>
-          <Table.TD>
-            <Table.TText>
-              <InlineCode>italic</InlineCode>
-            </Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>boolean</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>false</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>{`Used to make the text italic.`}</Table.TText>
-          </Table.TD>
-        </Table.TR>
-        <Table.TR>
-          <Table.TD>
-            <Table.TText>
-              <InlineCode>underline</InlineCode>
-            </Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>boolean</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>false</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>{`Used underline the text.`}</Table.TText>
-          </Table.TD>
-        </Table.TR>
-        <Table.TR>
-          <Table.TD>
-            <Table.TText>
-              <InlineCode>strikeThrough</InlineCode>
-            </Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>boolean</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>false</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>{`A horizontal line through the center of the text.`}</Table.TText>
-          </Table.TD>
-        </Table.TR>
-        <Table.TR>
-          <Table.TD>
-            <Table.TText>
-              <InlineCode>highlight</InlineCode>
-            </Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>boolean</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>false</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>{`Used to highlight the text with a yellow background.`}</Table.TText>
-          </Table.TD>
-        </Table.TR>
-      </Table.TBody>
-    </Table>
-  </TableContainer>
 </AppProvider>

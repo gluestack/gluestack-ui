@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Button, ButtonText } from '@/components/ui/Button';
-import { Text } from '@/components/ui/Text';
-import { Heading } from '@/components/ui/Heading';
+import { Button, ButtonText } from '@/components/ui/button';
+import { Text } from '@/components/ui/text';
+import { Heading } from '@/components/ui/heading';
 import { X } from 'lucide-react-native';
 
 import {
@@ -12,7 +12,7 @@ import {
   AlertDialogCloseButton,
   AlertDialogFooter,
   AlertDialogBody,
-} from '@/components/ui/AlertDialog';
+} from '@/components/ui/alert-dialog';
 
 const AlertDialogBasic = ({ ...props }) => {
   const [showAlertDialog, setShowAlertDialog] = useState(false);

@@ -14,8 +14,8 @@ module.exports = function (api) {
           alias: {
             '@/components/ui':
               process.env.STYLE_ENGINE === 'nativewind'
-                ? path.resolve(__dirname, './src/components-example/nativewind')
-                : path.resolve(__dirname, './src/components-example/themed'),
+                ? path.resolve(__dirname, './src/core-components/nativewind')
+                : path.resolve(__dirname, './src/core-components/themed'),
 
             'global.css':
               process.env.STYLE_ENGINE === 'nativewind'
@@ -45,6 +45,10 @@ module.exports = function (api) {
             '@gluestack-ui/button': path.resolve(
               __dirname,
               '../../packages/unstyled/button/src'
+            ),
+            '@gluestack-ui/link': path.resolve(
+              __dirname,
+              '../../packages/unstyled/link/src'
             ),
             '@gluestack-ui/accordion': path.resolve(
               __dirname,
