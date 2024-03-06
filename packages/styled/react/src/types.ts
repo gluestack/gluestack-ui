@@ -927,23 +927,51 @@ export type UtilityProps<
       Extract<keyof GetRNStyles<GenericComponentStyles>, string>
     >]?: LastPart<key> extends keyof PropertyTokenType
       ? PropertyTokenType[LastPart<key>] extends 'sizes'
-        ?
-            | WithSizeNegativeValue<GSConfig['tokens']>
-            | ExtendRNStyle<GetRNStyles<GenericComponentStyles>, LastPart<key>>
+        ? key extends `$web-${string}`
+          ? WithSizeNegativeValue<GSConfig['tokens']> | (string & {})
+          :
+              | WithSizeNegativeValue<GSConfig['tokens']>
+              | ExtendRNStyle<GenericComponentStyles, LastPart<key>>
         : PropertyTokenType[LastPart<key>] extends 'space'
-        ?
-            | WithNegativeValue<
-                StringifyToken<
+        ? key extends `$web-${string}`
+          ?
+              | WithNegativeValue<
+                  StringifyToken<
+                    //@ts-ignore
+                    keyof GSConfig['tokens'][PropertyTokenType[LastPart<key>]]
+                  >
+                >
+              | (string & {})
+          :
+              | WithNegativeValue<
+                  StringifyToken<
+                    keyof GSConfig['tokens'][PropertyTokenType[LastPart<key>]]
+                  >
+                >
+              | ExtendRNStyle<
+                  GetRNStyles<GenericComponentStyles>,
+                  LastPart<key>
+                >
+        : PropertyTokenType[LastPart<key>] extends keyof GSConfig['tokens']
+        ? key extends `$web-${string}`
+          ?
+              | (string & {})
+              | StringifyToken<
+                  //@ts-ignore
                   keyof GSConfig['tokens'][PropertyTokenType[LastPart<key>]]
                 >
-              >
-            | ExtendRNStyle<GetRNStyles<GenericComponentStyles>, LastPart<key>>
-        : PropertyTokenType[LastPart<key>] extends keyof GSConfig['tokens']
-        ?
-            | StringifyToken<
-                keyof GSConfig['tokens'][PropertyTokenType[LastPart<key>]]
-              >
-            | ExtendRNStyle<GetRNStyles<GenericComponentStyles>, LastPart<key>>
+              | ExtendRNStyle<
+                  GetRNStyles<GenericComponentStyles>,
+                  LastPart<key>
+                >
+          :
+              | StringifyToken<
+                  keyof GSConfig['tokens'][PropertyTokenType[LastPart<key>]]
+                >
+              | ExtendRNStyle<
+                  GetRNStyles<GenericComponentStyles>,
+                  LastPart<key>
+                >
         : LastPart<key> extends keyof GetRNStyles<GenericComponentStyles>
         ? GetRNStyles<GenericComponentStyles>[LastPart<key>]
         : never
@@ -957,21 +985,56 @@ export type UtilityProps<
     >]?: LastPart<key> extends keyof Aliases
       ? Aliases[LastPart<key>] extends keyof GetRNStyles<GenericComponentStyles>
         ? PropertyTokenType[Aliases[LastPart<key>]] extends 'sizes'
-          ?
-              | WithSizeNegativeValue<GSConfig['tokens']>
-              | ExtendRNStyle<
-                  GetRNStyles<GenericComponentStyles>,
-                  Aliases[LastPart<key>]
-                >
-          : PropertyTokenType[Aliases[LastPart<key>]] extends 'space'
-          ?
-              | WithNegativeValue<
-                  StringifyToken<
-                    keyof GSConfig['tokens'][PropertyTokenType[Aliases[LastPart<key>]]]
+          ? key extends `$web-${string}`
+            ?
+                | (string & {})
+                | WithSizeNegativeValue<GSConfig['tokens']>
+                | ExtendRNStyle<
+                    GetRNStyles<GenericComponentStyles>,
+                    //@ts-ignore
+                    Aliases[LastPart<key>]
                   >
+            :
+                | WithSizeNegativeValue<GSConfig['tokens']>
+                | ExtendRNStyle<
+                    GetRNStyles<GenericComponentStyles>,
+                    Aliases[LastPart<key>]
+                  >
+          : PropertyTokenType[Aliases[LastPart<key>]] extends 'space'
+          ? key extends `$web-${string}`
+            ?
+                | (string & {})
+                | WithNegativeValue<
+                    StringifyToken<
+                      //@ts-ignore
+                      keyof GSConfig['tokens'][PropertyTokenType[Aliases[LastPart<key>]]]
+                    >
+                  >
+                | ExtendRNStyle<
+                    GetRNStyles<GenericComponentStyles>,
+                    //@ts-ignore
+                    Aliases[LastPart<key>]
+                  >
+            :
+                | WithNegativeValue<
+                    StringifyToken<
+                      keyof GSConfig['tokens'][PropertyTokenType[Aliases[LastPart<key>]]]
+                    >
+                  >
+                | ExtendRNStyle<
+                    GetRNStyles<GenericComponentStyles>,
+                    Aliases[LastPart<key>]
+                  >
+          : key extends `$web-${string}`
+          ?
+              | (string & {})
+              | StringifyToken<
+                  //@ts-ignore
+                  keyof GSConfig['tokens'][PropertyTokenType[Aliases[LastPart<key>]]]
                 >
               | ExtendRNStyle<
                   GetRNStyles<GenericComponentStyles>,
+                  //@ts-ignore
                   Aliases[LastPart<key>]
                 >
           :
