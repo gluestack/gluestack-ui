@@ -14,7 +14,7 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="with-nativewind/components/Layout/HStack" />
 
-import { HStack } from './HStack';
+import { HStack } from '../../core-components/nativewind';
 import { transformedCode } from '../../utils';
 import {
   AppProvider,
@@ -25,9 +25,9 @@ import {
   InlineCode,
 } from '@gluestack/design-system';
 
-import Wrapper from '../../components-example/nativewind/Wrapper';
+import Wrapper from '../../core-components/nativewind/Wrapper';
 import { CollapsibleCode } from '@gluestack/design-system';
-import { Box } from '../../components-example/nativewind/Box';
+import { Box } from '../../core-components/nativewind/box';
 
 This is an illustration of **HStack** component.
 
@@ -70,7 +70,11 @@ This is an illustration of **HStack** component.
 ### Step 1: Copy and paste the following code into your project.
 
 <CollapsibleCode>
-  ```jsx %%-- File: components-example/nativewind/HStack/index.tsx --%% ```
+
+```jsx 
+%%-- File: core-components/nativewind/hstack/index.tsx --%% 
+```
+
 </CollapsibleCode>
 
 ### Step 2: Update the import paths to match your project setup.
@@ -80,7 +84,7 @@ This is an illustration of **HStack** component.
 To use this component in your project, include the following import statement in your file.
 
 ```jsx
-import { HStack } from '@/components/ui/HStack';
+import { HStack } from '@/components/ui/hstack';
 ```
 
 ```jsx

@@ -1,9 +1,9 @@
 import React from 'react';
-import { Progress, ProgressFilledTrack } from '@/components/ui/Progress';
-import { VStack } from '@/components/ui/VStack';
-import { Box } from '@/components/ui/Box';
-import { Heading } from '@/components/ui/Heading';
-import { Center } from '@/components/ui/Center';
+import { Progress, ProgressFilledTrack } from '@/components/ui/progress';
+import { VStack } from '@/components/ui/vstack';
+import { Box } from '@/components/ui/box';
+import { Heading } from '@/components/ui/heading';
+import { Center } from '@/components/ui/center';
 
 const ProgressBasic = ({ value = 50, ...props }: any) => {
   return (

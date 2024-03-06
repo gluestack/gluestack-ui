@@ -14,13 +14,8 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="with-nativewind/components/Feedback/Progress" />
 
-import {
-  Progress,
-  ProgressFilledTrack,
-  VStack,
-  Box,
-  Heading,
-} from './Progress';
+
+import { Progress, ProgressFilledTrack, VStack, Box, Heading } from '../../core-components/nativewind';
 import { transformedCode } from '../../utils';
 import {
   AppProvider,
@@ -31,7 +26,7 @@ import {
   InlineCode,
 } from '@gluestack/design-system';
 
-import Wrapper from '../../components-example/nativewind/Wrapper';
+import Wrapper from '../../core-components/nativewind/Wrapper';
 import { CollapsibleCode } from '@gluestack/design-system';
 
 This is an illustration of **Progress** component.
@@ -76,7 +71,11 @@ npm i @gluestack-ui/progress
 ### Step 2: Copy and paste the following code into your project.
 
 <CollapsibleCode>
-  ```jsx %%-- File: components-example/nativewind/Progress/index.tsx --%% ```
+
+```jsx 
+%%-- File: core-components/nativewind/progress/index.tsx --%% 
+```
+
 </CollapsibleCode>
 
 ### Step 3: Update the import paths to match your project setup.
@@ -86,7 +85,7 @@ npm i @gluestack-ui/progress
 To use this component in your project, include the following import statement in your file.
 
 ```jsx
-import { Progress, ProgressFilledTrack } from '@/components/ui/Progress';
+import { Progress, ProgressFilledTrack } from '@/components/ui/progress';
 ```
 
 ```jsx

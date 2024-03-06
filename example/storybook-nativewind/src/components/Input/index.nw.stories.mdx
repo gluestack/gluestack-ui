@@ -14,8 +14,11 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="with-nativewind/components/Forms/Input" />
 
-import { Input, InputField, InputIcon, InputSlot } from './Input';
 import {
+  Input,
+  InputField,
+  InputIcon,
+  InputSlot,
   Button,
   ButtonText,
   VStack,
@@ -23,9 +26,10 @@ import {
   Center,
   Box,
   FormControl,
-} from '@gluestack-ui/themed';
-import { Heading, useState } from '@gluestack-ui/themed';
-import { Icon, SearchIcon, EyeIcon, EyeOffIcon } from '@gluestack-ui/themed';
+  Heading,
+  Icon,
+} from '../../core-components/nativewind';
+import { SearchIcon, EyeIcon, EyeOffIcon } from '../../core-components/nativewind';
 import { transformedCode } from '../../utils';
 import {
   AppProvider,
@@ -34,9 +38,10 @@ import {
   TableContainer,
   Text,
   InlineCode,
+  CollapsibleCode
 } from '@gluestack/design-system';
 
-import Wrapper from '../../components-example/nativewind/Wrapper';
+import Wrapper from '../../core-components/nativewind/Wrapper';
 
 This is an illustration of **Input** component.
 
@@ -104,9 +109,11 @@ npm i @gluestack-ui/input
 ### Step 2: Copy and paste the following code into your project.
 
 <CollapsibleCode>
-  ```jsx 
-  %%-- File: components-example/nativewind/Input/index.tsx --%% 
-  ```
+
+```jsx 
+%%-- File: core-components/nativewind/input/index.tsx --%% 
+```
+
 </CollapsibleCode>
 
 ### Step 3: Update the import paths to match your project setup.
@@ -116,7 +123,7 @@ npm i @gluestack-ui/input
 To use this component in your project, include the following import statement in your file.
 
 ```jsx
-import { Input } from '@/components/ui/Input';
+import { Input } from '@/components/ui/input';
 ```
 
 ```jsx
@@ -484,3 +491,133 @@ Explore the comprehensive details of the Input in this document, including its i
   src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FNcXOxqKbdnGsLQNex3H76u%2F%25C2%25A0%25F0%259F%2593%259Agluestack-UI-handbook%3Fpage-id%3D213%253A12091%26type%3Ddesign%26node-id%3D213-12092%26viewport%3D256%252C289%252C0.03%26t%3DYlY4Jjtl91JuXCZS-1%26scaling%3Dscale-down%26starting-point-node-id%3D213%253A12092%26mode%3Ddesign"
   allowFullScreen
 ></iframe>
+
+### Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+#### Input type password with FormControl
+
+The Input component integrates with an icon and a button, providing users with a comprehensive login window inside a FormControl component.
+
+<AppProvider>
+  <CodePreview
+    _rendererWrapper={{ py: '$8' }}
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+        function App() {
+          const [showPassword, setShowPassword] = React.useState(false);
+          const handleState = () => {
+            setShowPassword((showState) => {
+              return !showState;
+            });
+          };
+          return (
+            <FormControl
+              className='p-4 border-1 rounded-lg ring-borderLight300 dark:border-1 dark:rounded-lg dark:ring-borderDark800'
+            >
+              <VStack space='xl'>
+                <Heading className='color-text-900 leading-3'>
+                  Login
+                </Heading>
+                <VStack space='xs'>
+                  <Text className='color-text-500 leading-1'>
+                    Email
+                  </Text>
+                  <Input>
+                    <InputField
+                      type="text"
+                    />
+                  </Input>
+                </VStack>
+                <VStack space='xs'>
+                  <Text className='color-text-500 leading-1'>
+                    Password
+                  </Text>
+                  <Input className='text-center'>
+                    <InputField
+                      type={showPassword ? 'text' : 'password'}
+                    />
+                    <InputSlot className='pr-3' onPress={handleState}>
+                      {/* EyeIcon, EyeOffIcon are both imported from 'lucide-react-native' */}
+                      <InputIcon as={showPassword ? EyeIcon : EyeOffIcon} className='color-darkBlue-500' />
+                    </InputSlot>
+                  </Input>
+                </VStack>
+                <Button
+                  className='ml-auto'
+                  onPress={()=>{
+                    setShowModal(false);
+                  }}
+                >
+                  <ButtonText className='color-white'>
+                    Save
+                  </ButtonText>
+                </Button>
+              </VStack>
+            </FormControl>
+          );
+        }
+      `,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'App');
+      },
+      scope: {
+        Wrapper,
+        Input,
+        InputField,
+        InputIcon,
+        Button,
+        ButtonText,
+        VStack,
+        Text: GSText,
+        Heading,
+        Icon,
+        EyeIcon,
+        EyeOffIcon,
+        FormControl,
+        InputSlot,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+### Input with Icons
+
+The Input with Icons is a variation of the Input component that displays icons next to input field. It's commonly used in apps for a more visual representation of options and easier navigation.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+        <Input>
+          <InputSlot className='pl-3'>
+            <InputIcon as={SearchIcon}/>
+          </InputSlot>
+          <InputField
+            placeholder="Search..."
+          />
+        </Input>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Input,
+        InputField,
+        InputIcon,
+        SearchIcon,
+        Icon,
+        InputSlot,
+      },
+      argsType: {},
+    }}
+/>
+
+</AppProvider>

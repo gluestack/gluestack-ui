@@ -1,31 +1,28 @@
 import React from 'react';
-
-import { VStack, HStack, Icon, Heading, Text } from '@gluestack-ui/themed';
 import {
   Avatar,
   AvatarGroup,
   AvatarBadge,
   AvatarFallbackText,
   AvatarImage,
-} from '@/components/ui/Avatar';
+} from '@/components/ui/avatar';
 import { User } from 'lucide-react-native';
+import { HStack } from '@/components/ui/hstack';
+import { VStack } from '@/components/ui/vstack';
+import { Icon } from '@/components/ui/icon';
+import { Heading } from '@/components/ui/heading';
+import { Text } from '@/components/ui/text';
 
-const AvatarBasic = ({
-  size = 'md',
-  uri = 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
-  badge = true,
-  fallbackText = 'John Doe',
-  ...props
-}: any) => {
+const AvatarBasic = (props: any) => {
   return (
-    <Avatar size={size} {...props} bg="$red400">
-      <AvatarFallbackText>{fallbackText}</AvatarFallbackText>
+    <Avatar {...props}>
+      <AvatarFallbackText>{props.fallbackText}</AvatarFallbackText>
       <AvatarImage
         source={{
-          uri: uri,
+          uri: props.uri,
         }}
       />
-      {badge && <AvatarBadge />}
+      {props.badge && <AvatarBadge />}
     </Avatar>
   );
 };

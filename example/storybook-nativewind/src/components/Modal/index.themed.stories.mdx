@@ -24,7 +24,7 @@ import {
   Text as ModalText,
   Center,
   CheckCircleIcon,
-} from '@gluestack-ui/themed';
+} from '../../core-components/themed';
 import {
   Modal,
   ModalBackdrop,
@@ -33,7 +33,7 @@ import {
   ModalCloseButton,
   ModalBody,
   ModalFooter,
-} from './Modal';
+} from '../../core-components/themed';
 import {
   VStack,
   HStack,
@@ -54,7 +54,7 @@ import {
   InlineCode,
 } from '@gluestack/design-system';
 
-import Wrapper from '../../components-example/themed/Wrapper';
+import Wrapper from '../../core-components/themed/Wrapper';
 import { CollapsibleCode } from '@gluestack/design-system';
 
 This is an illustration of **Modal** component.
@@ -164,7 +164,11 @@ npm i @gluestack-ui/modal
 ### Step 2: Copy and paste the following code into your project.
 
 <CollapsibleCode>
-  ```jsx %%-- File: components-example/themed/Modal/index.tsx --%% ```
+
+```jsx 
+%%-- File: core-components/themed/modal/index.tsx --%% 
+```
+
 </CollapsibleCode>
 
 ### Step 3: Update the import paths to match your project setup.
@@ -174,7 +178,7 @@ npm i @gluestack-ui/modal
 To use this component in your project, include the following import statement in your file.
 
 ```jsx
-import { Modal } from '@/components/ui/Modal';
+import { Modal } from '@/components/ui/modal';
 ```
 
 ```jsx
