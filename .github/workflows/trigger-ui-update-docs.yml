@@ -1,0 +1,25 @@
+name: Trigger gluestack-style-website | Create PR when pushed to master
+
+on:
+  pull_request:
+    branches:
+      - patch
+
+jobs:
+  build:
+    name: Dispatch to 'gluestack-style-website'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Emit repository_dispatch
+        uses: mvasigh/dispatch-action@main
+        with:
+          # You should create a personal access token and store it in your repository
+          token: ${{ secrets.MY_GITHUB_TOKEN }}
+          repo: ui-website
+          owner: gluestack
+          event_type: build_ui_docs
+          message: |
+            {
+              "repo": "ui",
+              "branch": "${{ github.head_ref }}"
+            }

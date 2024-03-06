@@ -8,10 +8,13 @@ import {
   AccordionIcon,
   AccordionContent,
   AccordionContentText,
-} from '@/components/ui/Accordion';
-import { ChevronDownIcon } from 'lucide-react-native';
-import { ChevronUpIcon } from 'lucide-react-native';
-import { MinusIcon, PlusIcon } from 'lucide-react-native';
+} from '@/components/ui/accordion';
+import {
+  ChevronDownIcon,
+  ChevronUpIcon,
+  MinusIcon,
+  PlusIcon,
+} from 'lucide-react-native';
 
 const AccordionBasic = ({ ...props }: any) => {
   const accRef = React.useRef(null);

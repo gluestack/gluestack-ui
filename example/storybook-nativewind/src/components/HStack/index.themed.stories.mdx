@@ -14,7 +14,7 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="with-gluestack-style/components/Layout/HStack" />
 
-import { HStack } from './HStack';
+import { HStack } from '../../core-components/themed';
 import { Box } from '@gluestack-ui/themed';
 import { transformedCode } from '../../utils';
 import {
@@ -26,7 +26,7 @@ import {
   InlineCode,
 } from '@gluestack/design-system';
 
-import Wrapper from '../../components-example/themed/Wrapper';
+import Wrapper from '../../core-components/themed/Wrapper';
 import { CollapsibleCode } from '@gluestack/design-system';
 
 This is an illustration of **HStack** component.
@@ -70,7 +70,11 @@ This is an illustration of **HStack** component.
 ### Step 1: Copy and paste the following code into your project.
 
 <CollapsibleCode>
-  ```jsx %%-- File: components-example/themed/HStack/index.tsx --%% ```
+
+```jsx 
+%%-- File: core-components/themed/hstack/index.tsx --%% 
+```
+
 </CollapsibleCode>
 
 ### Step 2: Update the import paths to match your project setup.
@@ -80,7 +84,7 @@ This is an illustration of **HStack** component.
 To use this component in your project, include the following import statement in your file.
 
 ```jsx
-import { HStack } from '@/components/ui/HStack';
+import { HStack } from '@/components/ui/hstack';
 ```
 
 ```jsx

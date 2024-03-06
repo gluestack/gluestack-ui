@@ -14,7 +14,25 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="with-nativewind/components/Forms/Button" />
 
-import { Button, ButtonText, ButtonIcon } from './Button';
+import {
+  Button,
+  ButtonText,
+  ButtonSpinner,
+  ButtonIcon,
+  Icon,
+  ArrowUpIcon,
+  InfoIcon,
+  AddIcon,
+  Box,
+  VStack,
+  Heading,
+  Text,
+  Input,
+  InputField,
+  Center,
+  ArrowLeftIcon,
+  EditIcon
+} from '../../core-components/nativewind';
 import { transformedCode } from '../../utils';
 import {
   AppProvider,
@@ -23,8 +41,7 @@ import {
   TableContainer,
   InlineCode,
 } from '@gluestack/design-system';
-
-import Wrapper from '../../components-example/nativewind/Wrapper';
+import Wrapper from '../../core-components/nativewind/Wrapper';
 import { CollapsibleCode } from '@gluestack/design-system';
 
 This is an illustration of **Button** component.
@@ -79,9 +96,11 @@ npm i @gluestack-ui/button
 ### Step 2: Copy and paste the following code into your project.
 
 <CollapsibleCode>
-  ```jsx 
-  %%-- File: components-example/nativewind/Button/index.tsx --%% 
-  ```
+
+```jsx 
+%%-- File: core-components/nativewind/button/index.tsx --%% 
+```
+
 </CollapsibleCode>
 
 ### Step 3: Update the import paths to match your project setup.
@@ -97,7 +116,7 @@ import {
   ButtonSpinner,
   ButtonIcon,
   ButtonGroup,
-} from '@/components/ui/Button';
+} from '@/components/ui/button';
 ```
 
 ```jsx
@@ -361,7 +380,78 @@ We have outlined the various features that ensure the Button component is access
 
 - The `onFocus` and `onBlur` props to manage focus states and provide visual cues to users. This is especially important for users who rely on keyboard navigation.
 
-<!-- ## Examples
+### Props
+
+Button component is created using Pressable component from react-native. It extends all the props supported by [React Native Pressable](https://reactnative.dev/docs/pressable#props), [utility props](/ui/docs/styling/utility-and-sx-props) and the props mentioned below.
+
+#### Button
+
+<AppProvider>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Name</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Value</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Default</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>action</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>
+              {'primary | secondary | positive | negative | default'}
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>primary</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>variant</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>link | outline | solid</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>solid</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>size</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>xs | sm | md | lg | xl</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>md</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</AppProvider>
+
+> Note: These props are exclusively applicable when utilizing the default configuration of gluestack-ui/config. If you are using a custom theme, these props may not be available.
+
+### Examples
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
@@ -369,142 +459,91 @@ The Examples section provides visual representations of the different variants o
 
 A loading button is a type of button component that provides visual feedback to the user during an action that takes some time to complete. It typically displays an animated loading icon or spinner indicating the action is in progress.
 
-<Wrapper>
+<AppProvider>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
       code: `
-        <Button isDisabled={true} bg='$darkBlue600' p='$3'>
-          <ButtonSpinner mr='$1'/>
-          <ButtonText fontWeight='$medium' fontSize='$sm'>Please wait...</ButtonText>
+        <Button className='p-3'>
+          <ButtonSpinner color="white" className='mr-1'/>
+          <ButtonText className='font-medium text-sm'>Please wait...</ButtonText>
         </Button>
       `,
       transformCode: (code) => {
         return transformedCode(code);
       },
-      scope: { Button, ButtonText, ButtonIcon, Wrapper, ButtonSpinner },
+      scope: { Button, ButtonText, Wrapper, ButtonSpinner },
       argsType: {},
     }}
   />
-</Wrapper>
+</AppProvider>
 
 #### Icon Button
 
 A button with an icon integrates a visual symbol within the button component, enhancing its appearance and providing a recognizable and intuitive representation of its associated action or functionality.
 
-<Wrapper>
+<AppProvider>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
       code: `
-        <Button borderRadius='$full' size='lg' p='$3.5' bg='$indigo600' borderColor='$indigo600' >
-          {\/* EditIcon is imported from 'lucide-react-native' *\/}
-          <ButtonIcon as={EditIcon}/>
-        </Button>
+        <Button
+      size="lg"
+      className="rounded-full p-3.5"
+    >
+    {\/* EditIcon is imported from 'lucide-react-native' *\/}
+      <ButtonIcon as={EditIcon} />
+    </Button>
       `,
       transformCode: (code) => {
         return transformedCode(code);
       },
-      scope: { Button, ButtonText, ButtonIcon, Wrapper, Icon, EditIcon },
+      scope: { Button, ButtonIcon, Wrapper, EditIcon },
       argsType: {},
     }}
   />
-</Wrapper>
+</AppProvider>
 
 #### Link Button
 
 A button with a link combines the interactive behavior of a button component with the ability to navigate to a specified URL, providing a clickable element for users to access external resources or internal pages.
 
-<Wrapper>
+<AppProvider>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
       code: `
         <Button variant='link'>
-          <ButtonText fontWeight='$medium' fontSize='$sm' color='$textLight900' $dark-color="$textDark300">
+          <ButtonText className='font-medium text-sm text-typography-900' >
             Back to top
           </ButtonText>
-          <ButtonIcon as={ArrowUpIcon} h='$3' w='$3' color='$backgroundLight900' ml='$1' $dark-color="$backgroundDark300"/>
+          <ButtonIcon as={ArrowUpIcon}
+           className='h-3 w-3 text-background-900 ml-1' />
         </Button>
       `,
       transformCode: (code) => {
         return transformedCode(code);
       },
-      scope: { Button, ButtonText, ButtonIcon, Wrapper, Icon, ArrowUpIcon },
-      argsType: {},
-    }}
-  />
-</Wrapper>
-
-#### Button Group in a Card
-
-A button group within a card component incorporates multiple button components, providing a cohesive and organized interface for selecting various actions or options within the context of the card.
-
-<Wrapper>
-  <CodePreview
-    _rendererWrapper={{ py: '$8' }}
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
-        <HStack  p='$12'  alignItems='center'  borderColor='$backgroundLight300'
-          borderWidth={1} borderRadius="$lg" $dark-borderColor="$backgroundDark700">
-          <Box maxWidth='$64' mr='$9'>
-            <Heading mb='$1.5' >
-              Was this page helpful?
-            </Heading>
-            <Text fontSize='$sm' >
-              We use this feedback to improve the quality of our documentation.
-            </Text>
-          </Box>
-          <ButtonGroup space='md'>
-            <Button variant='outline' py='$2.5' action="secondary">
-              <ButtonText  fontSize='$sm' fontWeight='$medium'
-              >
-                No
-              </ButtonText>
-            </Button>
-            <Button
-              variant='solid'
-              bg='$success700'
-              borderColor='$success700'
-              $hover-bg='$success800'
-              $active-bg='$success700'
-            >
-              <ButtonText  fontSize='$sm' fontWeight='$medium'>
-                Yes
-              </ButtonText>
-            </Button>
-          </ButtonGroup>
-        </HStack>
-      `,
-      transformCode: (code) => {
-        return transformedCode(code);
+      scope: { Button, ButtonText, ButtonIcon, Wrapper, Icon, ArrowUpIcon 
       },
-      scope: {
-        Button,
-        ButtonText,
-        ButtonIcon,
-        ButtonGroup,
-        Wrapper,
-        Box,
-        Heading,
-        Text,
-        HStack,
-      },
-      argsType: {},
+
+      argsType:
+       {},
+
     }}
+
   />
-</Wrapper>
+
+</AppProvider>
 
 #### Button With Icon
 
 The icon component incorporates a button component, combining visual representation with interactive functionality for seamless user interaction.
 
-<Wrapper>
+<AppProvider>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -512,39 +551,29 @@ The icon component incorporates a button component, combining visual representat
       code: `
         <Box>
           <Button>
-          <ButtonIcon as={InfoIcon} mr="$2"/>
+          <ButtonIcon as={InfoIcon} className='mr-2'/>
             <ButtonText>Left Icon</ButtonText>
           </Button>
-          <Button variant="solid" mt="$2">
+          <Button variant="solid" className='mt-2'>
           <ButtonText>Right Icon</ButtonText>
-              <ButtonIcon as={AddIcon} ml="$2"/>
+            <ButtonIcon as={AddIcon} className='ml-2'/>
           </Button>
         </Box>
       `,
       transformCode: (code) => {
         return transformedCode(code);
       },
-      scope: {
-        Button,
-        ButtonText,
-        ButtonIcon,
-        Wrapper,
-        Icon,
-        InfoIcon,
-        AddIcon,
-        Box,
-      },
+      scope: { Button, ButtonText, ButtonIcon, Wrapper, Icon, InfoIcon, AddIcon, Box },
       argsType: {},
     }}
-/>
-
-</Wrapper>
+  />
+</AppProvider>
 
 #### Button with Full Width
 
 The button with full width component utilizes a button component, expanding its width to occupy the entire available space, creating a visually prominent and easily accessible interface element.
 
-<Wrapper>
+<AppProvider>
   <CodePreview
     _rendererWrapper={{ py: '$8' }}
     showComponentRenderer={true}
@@ -552,30 +581,30 @@ The button with full width component utilizes a button component, expanding its 
     metaData={{
       code: `
         <Center>
-          <Box p='$5' maxWidth='$96' borderWidth='$1' borderColor='$backgroundLight300' borderRadius='$lg' $dark-borderColor="$backgroundDark700">
-            <VStack space='xs' pb='$4'>
-              <Heading lineHeight={30}>
+          <Box className='p-5 max-w-96 border border-background-300 rounded-lg'>
+            <VStack className='pb-4' space='xs'>
+              <Heading className='leading-[30px]'>
                 Set new password
               </Heading>
-              <Text fontSize='$sm'>
+              <Text className='text-sm'>
                 Almost done. Enter your new password and you are all set.
               </Text>
             </VStack>
-            <VStack space='xl' py='$2'>
+            <VStack space='xl' className='py-2'>
               <Input>
                 <InputField
-                  py='$2'
+                  className='py-2'
                   placeholder="New password"
                 />
               </Input>
               <Input>
                 <InputField
-                  py='$2'
+                  className='py-2'
                   placeholder="Confirm new password"
                 />
               </Input>
             </VStack>
-            <VStack space='lg' pt='$4'>
+            <VStack space='lg' className='pt-4'>
               <Button
                 size='sm'
               >
@@ -583,12 +612,12 @@ The button with full width component utilizes a button component, expanding its 
                   Submit
                 </ButtonText>
               </Button>
-              <Box flexDirection='row'>
-                <Button variant='link' p='$0' size='sm'>
+              <Box className='flex flex-row'>
+                <Button variant='link' size='sm' className='p-0'>
                   {\/* ArrowLeftIcon is imported from 'lucide-react-native' *\/}
-                  <Icon
+                  <ButtonIcon
+                    className='mr-1'
                     size='md'
-                    mr='$1'
                     as={ArrowLeftIcon}
                   />
                   <ButtonText
@@ -622,55 +651,4 @@ The button with full width component utilizes a button component, expanding its 
       argsType: {},
     }}
   />
-</Wrapper>
-
-#### Custom Button
-
-The custom button component leverages the functionality of a button component while offering additional customization options to tailor its appearance and behavior according to specific design requirements.
-
-<Wrapper>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
-        <ButtonGroup isAttached>
-          <Button variant="outline" size='xs' borderColor='$backgroundLight300' borderRightWidth='$0' $dark-borderColor="$backgroundDark700">
-            <ButtonText color='$textLight900' $dark-color="$textDark300">
-              Export
-            </ButtonText>
-          </Button>
-          <Button variant="outline" size='xs' borderColor='$backgroundLight300' $dark-borderColor="$backgroundDark70">
-            <ButtonIcon as={ThreeDotsIcon} color="$textLight900" $dark-color="$textDark300"/>
-          </Button>
-        </ButtonGroup>
-      `,
-      transformCode: (code) => {
-        return transformedCode(code);
-      },
-      scope: {
-        Button,
-        ButtonText,
-        ButtonIcon,
-        ButtonGroup,
-        Wrapper,
-        ThreeDotsIcon,
-      },
-      argsType: {},
-    }}
-  />
-</Wrapper> -->
-<!--
-## Spec Doc
-
-Explore the comprehensive details of the Button in this document, including its implementation details, checklist, and potential future additions. Dive into the thought process behind the component and gain insights into its development journey.
-
-<iframe
-  style={{
-    borderRadius: '8px',
-    border: ' 1px solid rgba(0, 0, 0, 0.1)',
-    aspectRatio: 736 / 585,
-  }}
-  src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FNcXOxqKbdnGsLQNex3H76u%2F%25C2%25A0%25F0%259F%2593%259Agluestack-UI-handbook%3Fpage-id%3D6248%253A27466%26type%3Ddesign%26node-id%3D6248-29746%26viewport%3D1013%252C181%252C0.06%26t%3Dl4eX0kWZTIN7qURx-1%26scaling%3Dcontain%26starting-point-node-id%3D6248%253A29746%26mode%3Ddesign"
-  allowFullScreen
-/> -->
+</AppProvider>

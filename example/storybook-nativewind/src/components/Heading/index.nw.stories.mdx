@@ -1,5 +1,5 @@
 ---
-title: Heading | gluestack-ui | Installation, Usage, and API
+title: gluestack-ui Heading Component | Installation, Usage, and API
 
 description: Heading component gives you the ability to create headings for your page with different sizes and semantics from h1 to h6.
 
@@ -14,8 +14,7 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="with-nativewind/components/Typography/Heading" />
 
-import { Heading } from './Heading';
-import { Center } from '@gluestack-ui/themed';
+import { Heading, Center } from '../../core-components/nativewind';
 import { transformedCode } from '../../utils';
 import {
   AppProvider,
@@ -26,32 +25,33 @@ import {
   InlineCode,
 } from '@gluestack/design-system';
 
-import Wrapper from '../../components-example/nativewind/Wrapper';
+import Wrapper from '../../core-components/nativewind/Wrapper';
 import { CollapsibleCode } from '@gluestack/design-system';
 
 This is an illustration of **Heading** component.
 
 <Wrapper>
   <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
+    showComponentRenderer={ true }
+  showArgsController = { false}
+  metaData = {{
+    code: `
         <Heading>I am a Heading</Heading>
       `,
       transformCode: (code) => {
         return transformedCode(code);
       },
-      scope: {
-        Wrapper,
+        scope: {
+      Wrapper,
         Heading,
       },
-      argsType: {},
-    }}
-  />
+    argsType: { },
+  }
+}
+/>
 </Wrapper>
 
-<br />
+<br/>
 
 ## Installation
 
@@ -66,9 +66,11 @@ npm i @expo/html-elements
 ### Step 2: Copy and paste the following code into your project.
 
 <CollapsibleCode>
-  ```jsx 
-  %%-- File: components-example/nativewind/Heading/index.tsx --%% 
-  ```
+
+```jsx 
+%%-- File: core-components/nativewind/heading/index.tsx --%% 
+```
+
 </CollapsibleCode>
 
 ### Step 3: Update the import paths to match your project setup.
@@ -78,7 +80,7 @@ npm i @expo/html-elements
 To use this component in your project, include the following import statement in your file.
 
 ```jsx
-import { Heading } from '@/components/ui/Heading';
+import { Heading } from '@/components/ui/heading';
 ```
 
 ```jsx
@@ -226,3 +228,48 @@ Heading component is created using H1 component from @expo/html-elements. It ext
     </Table>
   </TableContainer>
 </Wrapper>
+
+### Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+#### Heading Sizes
+
+Heading component offers a range of sizes, including `xs`, `sm`, `md`, `lg`, `xl`, `2xl`, `3xl`, `4xl`, and `5xl`, allowing users to customize the size of the heading according to their design requirements.
+
+<AppProvider>
+  <CodePreview
+    _rendererWrapper={{ py: '$2.5' }}
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+        function App() {
+          const sizes = [
+            'xs',
+            'sm',
+            'md',
+            'lg',
+            'xl',
+            '2xl',
+            '3xl',
+            '4xl',
+            '5xl',
+          ];
+          return (
+              <Center>
+                {sizes.map((size) => (
+                  <Heading size={size}>{size}</Heading>
+                ))}
+              </Center>
+          );
+        };
+      `,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'App');
+      },
+      scope: { Wrapper, Center, Heading },
+      argsType: {},
+    }}
+  />
+</AppProvider>

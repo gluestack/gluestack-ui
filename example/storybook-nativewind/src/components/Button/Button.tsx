@@ -1,11 +1,17 @@
 import React from 'react';
-import { Button, ButtonText } from '@/components/ui/Button';
+
+import {
+  Button,
+  ButtonText,
+  ButtonSpinner,
+  ButtonIcon,
+} from '@/components/ui/button';
 
 export const ButtonBasic = (props: any) => {
   return (
     <>
       <Button {...props}>
-        <ButtonText>Hello World 22</ButtonText>
+        <ButtonText>Hello World</ButtonText>
       </Button>
     </>
   );
@@ -16,4 +22,4 @@ ButtonBasic.description =
 
 export default ButtonBasic;
 
-export { Button, ButtonText };
+export { Button, ButtonText, ButtonSpinner, ButtonIcon };

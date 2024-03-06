@@ -24,7 +24,7 @@ import {
   Text,
   Button,
   ButtonText,
-} from '../../components-example/themed';
+} from '../../core-components/themed';
 import {
   AppProvider,
   CodePreview,
@@ -34,7 +34,7 @@ import {
   CollapsibleCode,
 } from '@gluestack/design-system';
 import { transformedCode } from '../../utils';
-import Wrapper from '../../components-example/themed/Wrapper';
+import Wrapper from '../../core-components/themed/Wrapper';
 
 This is an illustration of **Divider** component.
 
@@ -83,7 +83,11 @@ npm i @gluestack-ui/divider
 ### Step 2: Copy and paste the following code into your project.
 
 <CollapsibleCode>
-  ```jsx %%-- File: ../../components-example/themed/Divider/index.tsx --%% ````
+
+```jsx 
+%%-- File: core-components/themed/divider/index.tsx --%% 
+````
+
 </CollapsibleCode>
 
 ### Step 3: Update the import paths to match your project setup.
@@ -93,7 +97,7 @@ npm i @gluestack-ui/divider
 To use this component in your project, include the following import statement in your file.
 
 ```jsx
-import { Divider } from '@/components/ui/Divider';
+import { Divider } from '@/components/ui/divider';
 ```
 
 ```jsx

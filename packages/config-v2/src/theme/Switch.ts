@@ -8,9 +8,9 @@ export const Switch = createStyle({
     // hacky fix for the above
     //@ts-ignore
     trackColor: { false: '$background300', true: '$primary600' },
-    thumbColor: '$background0',
+    thumbColor: '$background',
     //@ts-ignore
-    activeThumbColor: '$background0',
+    activeThumbColor: '$background',
 
     // for ios specifically in unchecked state
     ios_backgroundColor: '$background300',
@@ -105,7 +105,7 @@ export const Switch = createStyle({
   ':checked': {
     props: {
       //@ts-ignore
-      thumbColor: '$background0',
+      thumbColor: '$background',
     },
   },
 });

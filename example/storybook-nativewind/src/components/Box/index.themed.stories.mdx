@@ -15,23 +15,23 @@ import { useRef, useEffect, useState } from 'react';
 
 <Meta title="with-gluestack-style/components/Layout/Box" />
 
-import { Box } from './Box';
-import { Text } from '../../components-example/themed/Text';
+import { Box } from '../../core-components/themed';
+import { Text } from '../../core-components/themed';
 
 import { transformedCode } from '../../utils';
 import { AppProvider, CodePreview } from '@gluestack/design-system';
 
-import Wrapper from '../../components-example/themed/Wrapper';
+import Wrapper from '../../core-components/themed/Wrapper';
 import { CollapsibleCode } from '@gluestack/design-system';
 
 This is an illustration of **Box** component.
 
 <>
   <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
+    showComponentRenderer={ true }
+  showArgsController = { false}
+  metaData = {{
+    code: `
 <Box
   bg="$primary500"
   p="$5"
@@ -44,17 +44,18 @@ This is an illustration of **Box** component.
       transformCode: (code) => {
         return transformedCode(code);
       },
-      scope: {
-        Wrapper,
+        scope: {
+      Wrapper,
         Box,
         Text,
       },
-      argsType: {},
-    }}
-  />
+    argsType: { },
+  }
+}
+/>
 </>
 
-<br />
+<br/>
 
 ## Installation
 
@@ -62,8 +63,8 @@ This is an illustration of **Box** component.
 
 <CollapsibleCode>
 
-```jsx
-%%-- File: components-example/themed/Box/index.tsx --%%
+```jsx 
+%%-- File: core-components/themed/box/index.tsx --%% 
 ```
 
 </CollapsibleCode>
@@ -73,7 +74,7 @@ This is an illustration of **Box** component.
 To use this component in your project, include the following import statement in your file.
 
 ```jsx
-import { Box } from '@/components/ui/Box';
+import { Box } from '@/components/ui/box';
 ```
 
 ```jsx

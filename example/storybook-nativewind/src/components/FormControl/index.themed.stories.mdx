@@ -1,5 +1,5 @@
 ---
-title: FormControl | gluestack-ui | Installation, Usage, and API
+title: gluestack-ui FormControl Component | Installation, Usage, and API
 
 description: By using FormControl, developers can provide important context to form elements. This context can include whether the element is invalid, disabled, or required.
 
@@ -72,7 +72,7 @@ import {
   Icon,
   Button,
   ButtonText,
-} from '../../components-example/themed';
+} from '../../core-components/themed';
 import {
   AppProvider,
   CodePreview,
@@ -84,7 +84,7 @@ import {
 } from '@gluestack/design-system';
 import { transformedCode } from '../../utils';
 import { useState } from 'react';
-import Wrapper from '../../components-example/themed/Wrapper';
+import Wrapper from '../../core-components/themed/Wrapper';
 
 This is an illustration of **FormControl** component.
 
@@ -183,7 +183,11 @@ npm i @gluestack-ui/form-control
 ### Step 2: Copy and paste the following code into your project.
 
 <CollapsibleCode>
-  ```jsx %%-- File: components-example/themed/FormControl/index.tsx --%% ```
+
+```jsx 
+%%-- File: core-components/themed/form-control/index.tsx --%% 
+```
+
 </CollapsibleCode>
 
 ### Step 3: Update the import paths to match your project setup.
@@ -192,8 +196,8 @@ npm i @gluestack-ui/form-control
 
 To use this component in your project, include the following import statement in your file.
 
-```bash
-import { FormControl } from '@/components/ui/FormControl';
+```jsx
+import { FormControl } from '@/components/ui/form-control';
 ```
 
 ```jsx
