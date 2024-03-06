@@ -7,10 +7,10 @@ import {
   Icon,
   FormControl,
 } from '@gluestack-ui/themed';
-import { Input, InputField, InputIcon, InputSlot } from '@/components/ui/Input';
-import { Center } from '@/components/ui/Center';
-import { VStack } from '@/components/ui/VStack';
-import { Text } from '@/components/ui/Text';
+import { Input, InputField, InputIcon, InputSlot } from '@/components/ui/input';
+import { Center } from '@/components/ui/center';
+import { VStack } from '@/components/ui/vstack';
+import { Text } from '@/components/ui/text';
 import { EyeIcon, EyeOffIcon, SearchIcon } from 'lucide-react-native';
 import { useState } from 'react';
 
