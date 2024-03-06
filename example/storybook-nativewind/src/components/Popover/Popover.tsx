@@ -7,11 +7,11 @@ import {
   PopoverBody,
   PopoverFooter,
   PopoverCloseButton,
-} from '@/components/ui/Popover';
-import { Button, ButtonText } from '@/components/ui/Button';
-import { Text } from '@/components/ui/Text';
-import { Heading } from '@/components/ui/Heading';
-import { Box } from '@/components/ui/Box';
+} from '@/components/ui/popover';
+import { Button, ButtonText } from '@/components/ui/button';
+import { Text } from '@/components/ui/text';
+import { Heading } from '@/components/ui/heading';
+import { Box } from '@/components/ui/box';
 import { X } from 'lucide-react-native';
 
 const PopoverBasic = (props: any) => {
