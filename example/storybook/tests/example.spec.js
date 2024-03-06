@@ -96,7 +96,7 @@ for (const [key, value] of Object.entries(testData)) {
             )}`, async ({ page }, testinfo) => {
               await page.goto(storybookUrl);
               if (overlay) await page.waitForTimeout(300);
-              testinfo.snapshotSuffix = '';
+              testinfo.snapshotSuffix = '-darwin';
               expect(await page.screenshot()).toMatchSnapshot({
                 maxDiffPixels: 100,
               });
@@ -109,7 +109,7 @@ for (const [key, value] of Object.entries(testData)) {
       // case: typeOfTest === 'default'
       // no args are passed, basic story will run
 
-      test(`${key} is displayed`, async ({ page }) => {
+      test(`${key} is displayed`, async ({ page }, testinfo) => {
         const storybookUrl = path.join(
           'file://',
           __dirname,
@@ -117,6 +117,7 @@ for (const [key, value] of Object.entries(testData)) {
         );
         await page.goto(storybookUrl);
         if (overlay) await page.waitForTimeout(300);
+        testinfo.snapshotSuffix = '-darwin';
         expect(await page.screenshot()).toMatchSnapshot({
           maxDiffPixels: 100,
         });
