@@ -1,3 +1,4 @@
+import { CSSPropertiesMap } from './core/styled-system';
 import { propertyTokenMap } from './propertyTokenMap';
 import type { Config } from './types';
 import { deepClone } from './utils/cssify/utils/common';
@@ -153,7 +154,7 @@ export function resolveAliasesFromConfig(
     if (
       !ignoreKeys.has(key) &&
       //@ts-ignore
-      (config?.aliases?.[key] || propertyTokenMap[key])
+      (config?.aliases?.[key] || propertyTokenMap[key] || CSSPropertiesMap[key])
     ) {
       if (config?.aliases?.[key]) {
         aliasResolvedProps[config.aliases?.[key]] = props[key];
