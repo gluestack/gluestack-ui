@@ -1,8 +1,8 @@
 import React from 'react';
-import { Link, LinkText } from '@/components/ui/Link';
-import { Icon } from '@/components/ui/Icon';
-import { HStack } from '@/components/ui/HStack';
-import { Text } from '@/components/ui/Text';
+import { Link, LinkText } from '@/components/ui/link';
+import { Icon } from '@/components/ui/icon';
+import { HStack } from '@/components/ui/hstack';
+import { Text } from '@/components/ui/text';
 import { ArrowUpRightIcon } from 'lucide-react-native';
 const LinkBasic = ({ ...props }: any) => {
   return (

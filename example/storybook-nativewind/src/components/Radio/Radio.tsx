@@ -16,7 +16,7 @@ import {
   RadioIcon,
   RadioIndicator,
   RadioLabel,
-} from '@/components/ui/Radio';
+} from '@/components/ui/radio';
 
 const RadioBasic = ({ ...props }: any) => {
   const [values, setValues] = React.useState('Label 1');

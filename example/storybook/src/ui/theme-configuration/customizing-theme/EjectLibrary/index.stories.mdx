@@ -74,17 +74,17 @@ export const config = createConfig({
 type Config = typeof config;
 type Components = typeof components;
 
-declare module '@gluestack-ui/themed' {
-  interface UIConfig extends Config {}
-  interface UIComponents extends Components {}
+declare module '@gluestack-style/react' {
+  interface ICustomConfig extends Config {}
+  interface ICustomComponents extends Components {}
 }
 
 ```
-> Note: The updated config will be applied automatically, as it is passed inside `GluestackUIProvider` component located at "./components/GluestackUIProvider/index.tsx"
+> Note: The updated config will be applied automatically, as it is passed inside `GluestackUIProvider` component located at "./components/gluestack-ui-provider/index.tsx"
 
 You can customize all the tokens of the theme in `config`. For a complete list of tokens and default values, please check [default Tokens](https://gluestack.io/ui/docs/theme-configuration/theme/default-tokens).
 
-5. **Update Components**: you can find all of your components theme inside `./components` folder. For example, if you want to customize `Button` component, you can find its theme file at `./components/Button/index.tsx`. Update component's style as per your requirements.
+5. **Update Components**: you can find all of your components theme inside `./components` folder. For example, if you want to customize `Button` component, you can find its theme file at `./components/button/index.tsx`. Update component's style as per your requirements.
 
 ## Customizing Animations
 
@@ -117,9 +117,9 @@ export const config = createConfig({
 type Config = typeof config;
 type Components = typeof components;
 
-declare module '@gluestack-ui/themed' {
-  interface UIConfig extends Config {}
-  interface UIComponents extends Components {}
+declare module '@gluestack-style/react' {
+  interface ICustomConfig extends Config {}
+  interface ICustomComponents extends Components {}
 }
 
 ```

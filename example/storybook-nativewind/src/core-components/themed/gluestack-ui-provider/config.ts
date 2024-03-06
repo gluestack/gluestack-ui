@@ -2,7 +2,7 @@ import { AnimationResolver } from '@gluestack-style/animation-resolver';
 import { MotionAnimationDriver } from '@gluestack-style/legend-motion-animation-driver';
 import { createConfig } from '@gluestack-style/react';
 
-export const gluestackUIConfig = createConfig({
+export const config = createConfig({
   aliases: {
     bg: 'backgroundColor',
     bgColor: 'backgroundColor',
@@ -833,15 +833,8 @@ export const gluestackUIConfig = createConfig({
   plugins: [new AnimationResolver(MotionAnimationDriver)],
 });
 
-type Config = typeof gluestackUIConfig; // Assuming `config` is defined elsewhere
-
-export interface IConfig {}
-export interface IComponents {}
+type Config = typeof config;
 
 declare module '@gluestack-style/react' {
-  interface UIConfig extends Omit<Config, keyof IConfig>, IConfig {}
+  interface ICustomConfig extends Config {}
 }
-
-export const config = {
-  ...gluestackUIConfig,
-};
