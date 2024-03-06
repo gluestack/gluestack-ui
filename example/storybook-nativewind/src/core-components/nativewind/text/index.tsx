@@ -1,5 +1,5 @@
 import React from 'react';
-import { tva } from '@gluestack-ui/nativewind-utils';
+import { tva, VariantProps } from '@gluestack-ui/nativewind-utils';
 import { Text as RNText } from 'react-native';
 
 const textStyle = tva({
@@ -43,35 +43,44 @@ const textStyle = tva({
   },
 });
 
-const Text = ({
-  className,
-  isTruncated,
-  bold,
-  underline,
-  strikeThrough,
-  size = 'md',
-  sub,
-  italic,
-  highlight,
-  ...props
-}: any) => {
-  return (
-    <RNText
-      className={textStyle({
-        isTruncated,
-        bold,
-        underline,
-        strikeThrough,
-        size,
-        sub,
-        italic,
-        highlight,
-        class: className,
-      })}
-      {...props}
-    />
-  );
-};
+type ITextProps = React.ComponentProps<typeof RNText> &
+  VariantProps<typeof textStyle>;
+
+const Text = React.forwardRef(
+  (
+    {
+      className,
+      isTruncated,
+      bold,
+      underline,
+      strikeThrough,
+      size = 'md',
+      sub,
+      italic,
+      highlight,
+      ...props
+    }: ITextProps,
+    ref?: any
+  ) => {
+    return (
+      <RNText
+        className={textStyle({
+          isTruncated,
+          bold,
+          underline,
+          strikeThrough,
+          size,
+          sub,
+          italic,
+          highlight,
+          class: className,
+        })}
+        {...props}
+        ref={ref}
+      />
+    );
+  }
+);
 
 Text.displayName = 'Text';
 

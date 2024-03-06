@@ -1,6 +1,6 @@
 import { createLink } from '@gluestack-ui/link';
-import { Pressable, Platform } from 'react-native';
-import { Text } from '@/components/ui/Text';
+import { Pressable, Platform, Text } from 'react-native';
+
 import {
   tva,
   withStyleContextAndStates,

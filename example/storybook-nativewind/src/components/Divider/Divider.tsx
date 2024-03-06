@@ -1,7 +1,7 @@
 import React from 'react';
-import { Divider } from '@/components/ui/Divider';
-import { HStack } from '@/components/ui/HStack';
-import { Heading } from '@/components/ui/Heading';
+import { Divider } from '@/components/ui/divider';
+import { HStack } from '@/components/ui/hstack';
+import { Heading } from '@/components/ui/heading';
 
 const DividerBasic = ({ ...props }) => {
   return (

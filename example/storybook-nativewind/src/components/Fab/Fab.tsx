@@ -1,7 +1,7 @@
 import React from 'react';
-import { Fab, FabIcon, FabLabel } from '@/components/ui/Fab';
-import { MenuIcon } from '@/components/ui/Icon';
-import { Box } from '@/components/ui/Box';
+import { Fab, FabIcon, FabLabel } from '@/components/ui/fab';
+import { MenuIcon } from '@/components/ui/icon';
+import { Box } from '@/components/ui/box';
 
 const FabBasic = (props: any) => {
   return (

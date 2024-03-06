@@ -1,6 +1,6 @@
 import React from 'react';
-import { Alert, AlertIcon, AlertText } from '@/components/ui/Alert';
-import { InfoIcon } from '@/components/ui/Icon';
+import { Alert, AlertIcon, AlertText } from '@/components/ui/alert';
+import { InfoIcon } from '@/components/ui/icon';
 
 const AlertBasic = ({ ...props }: any) => {
   return (
