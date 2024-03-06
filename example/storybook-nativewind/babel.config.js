@@ -14,8 +14,8 @@ module.exports = function (api) {
           alias: {
             '@/components/ui':
               process.env.STYLE_ENGINE === 'nativewind'
-                ? path.resolve(__dirname, './src/components-example/nativewind')
-                : path.resolve(__dirname, './src/components-example/themed'),
+                ? path.resolve(__dirname, './src/core-components/nativewind')
+                : path.resolve(__dirname, './src/core-components/themed'),
 
             'global.css':
               process.env.STYLE_ENGINE === 'nativewind'
