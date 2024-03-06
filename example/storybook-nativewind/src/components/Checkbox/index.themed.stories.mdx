@@ -31,7 +31,7 @@ import {
   HStack, 
   Heading, 
   Box
-} from '../../components-example/themed';
+} from '../../core-components/themed';
 import { useState, useRef } from 'react';
 import { transformedCode } from '../../utils';
 
@@ -43,7 +43,7 @@ import {
   InlineCode,
   CollapsibleCode
 } from '@gluestack/design-system';
-import Wrapper from '../../components-example/themed/Wrapper';
+import Wrapper from '../../core-components/themed/Wrapper';
 
 This is an illustration of **Checkbox** component.
 
@@ -106,7 +106,11 @@ npm i @gluestack-ui/checkbox
 ### Step 2: Copy and paste the following code into your project.
 
 <CollapsibleCode>
-  ```jsx %%-- File: components-example/themed/Checkbox/index.tsx --%% ```
+
+```jsx 
+%%-- File: core-components/themed/checkbox/index.tsx --%% 
+```
+
 </CollapsibleCode>
 
 ### Step 3: Update the import paths to match your project setup.
@@ -116,7 +120,7 @@ npm i @gluestack-ui/checkbox
 To use this component in your project, include the following import statement in your file.
 
 ```jsx
-import { Checkbox } from '@/components/ui/Checkbox';
+import { Checkbox } from '@/components/ui/checkbox';
 ```
 
 ```jsx

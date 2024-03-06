@@ -1,8 +1,8 @@
 import React from 'react';
-import { Spinner } from '@/components/ui/Spinner';
-import { HStack } from '@/components/ui/HStack';
-import { Text } from '@/components/ui/Text';
-import { VStack } from '@/components/ui/VStack';
+import { Spinner } from '@/components/ui/spinner';
+import { HStack } from '@/components/ui/hstack';
+import { Text } from '@/components/ui/text';
+import { VStack } from '@/components/ui/vstack';
 import colors from 'tailwindcss/colors';
 
 const SpinnerBasic = ({ ...props }) => (

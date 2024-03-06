@@ -4,7 +4,7 @@ import {
   AvatarBadge,
   AvatarFallbackText,
   AvatarImage,
-} from '@/components/ui/Avatar';
+} from '@/components/ui/avatar';
 import { VStack } from '@gluestack-ui/themed';
 import React from 'react';
 

@@ -16,8 +16,8 @@ import { Meta } from '@storybook/addon-docs';
 
 import { transformedCode } from '../../utils';
 import { AppProvider, CodePreview ,CollapsibleCode} from '@gluestack/design-system';
-import { Spinner, HStack, VStack, Text } from '../../components-example/themed';
-import Wrapper from '../../components-example/themed/Wrapper';
+import { Spinner, HStack, VStack, Text } from '../../core-components/themed';
+import Wrapper from '../../core-components/themed/Wrapper';
 
 
 This is an illustration of **Spinner** component.
@@ -60,7 +60,11 @@ npm i @gluestack-ui/spinner
 ### Step 2: Copy and paste the following code into your project.
 
 <CollapsibleCode>
-  ```jsx %%-- File: components-example/themed/Spinner/index.tsx --%% ```
+
+```jsx 
+%%-- File: core-components/themed/spinner/index.tsx --%% 
+```
+
 </CollapsibleCode>
 
 ### Step 3: Update the import paths to match your project setup.
@@ -70,7 +74,7 @@ npm i @gluestack-ui/spinner
 To use this component in your project, include the following import statement in your file.
 
 ```jsx
-import { Spinner } from '@/components/ui/Spinner';
+import { Spinner } from '@/components/ui/spinner';
 ```
 
 ```jsx

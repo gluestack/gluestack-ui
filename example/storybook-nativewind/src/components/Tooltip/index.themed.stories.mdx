@@ -31,7 +31,7 @@ import {
   VStack,
   Command, 
   Icon 
-} from '../../components-example/themed';
+} from '../../core-components/themed';
 import { transformedCode } from '../../utils';
 import {
   AppProvider,
@@ -42,7 +42,7 @@ import {
   InlineCode,
   CollapsibleCode
 } from '@gluestack/design-system';
-import Wrapper from '../../components-example/themed/Wrapper';
+import Wrapper from '../../core-components/themed/Wrapper';
 
 This is an illustration of **Tooltip** component.
 
@@ -118,7 +118,11 @@ npm i @gluestack-ui/tooltip
 ### Step 2: Copy and paste the following code into your project.
 
 <CollapsibleCode>
-  ```jsx %%-- File: components-example/themed/Tooltip/index.tsx --%% ```
+
+```jsx 
+%%-- File: core-components/themed/tooltip/index.tsx --%% 
+```
+
 </CollapsibleCode>
 
 ### Step 3: Update the import paths to match your project setup.
@@ -128,7 +132,7 @@ npm i @gluestack-ui/tooltip
 To use this component in your project, include the following import statement in your file.
 
 ```jsx
-import { Tooltip } from '@/components/ui/Tooltip';
+import { Tooltip } from '@/components/ui/tooltip';
 ```
 
 ```jsx
