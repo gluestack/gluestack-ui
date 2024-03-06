@@ -14,9 +14,19 @@ const CheckboxMeta: ComponentMeta<typeof Checkbox> = {
       control: 'select',
       options: ['sm', 'md', 'lg'],
     },
+    isDisabled: {
+      control: 'boolean',
+      options: [true, false],
+    },
+    isInvalid: {
+      control: 'boolean',
+      options: [true, false],
+    },
   },
   args: {
     size: 'md',
+    isDisabled: false,
+    isInvalid: false,
   },
 };
 

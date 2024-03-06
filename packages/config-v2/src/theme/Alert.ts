@@ -53,7 +53,7 @@ export const Alert = createStyle({
       solid: {},
       outline: {
         borderWidth: '$1',
-        bg: '$white',
+        bg: 'transparent',
       },
       accent: {
         borderLeftWidth: '$4',
