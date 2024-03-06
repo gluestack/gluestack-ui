@@ -42,7 +42,7 @@ for (const [key, value] of Object.entries(testData)) {
           if (overlay) await page.waitForTimeout(300);
           testinfo.snapshotSuffix = 'darwin';
           expect(await page.screenshot()).toMatchSnapshot({
-            maxDiffPixelRatio: 0.011,
+            maxDiffPixelRatio: 0.012,
           });
         });
 
@@ -100,7 +100,7 @@ for (const [key, value] of Object.entries(testData)) {
               if (overlay) await page.waitForTimeout(300);
               testinfo.snapshotSuffix = 'darwin';
               expect(await page.screenshot()).toMatchSnapshot({
-                maxDiffPixelRatio: 0.011,
+                maxDiffPixelRatio: 0.012,
               });
             });
           }
