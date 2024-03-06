@@ -27,9 +27,8 @@ import {
   Box,
   FormControl,
   Heading,
-  Icon,
-  SearchIcon,
-} from '../../components-example/nativewind';
+  Icon, SearchIcon
+} from '../../core-components/nativewind';
 import { EyeIcon, EyeOffIcon } from 'lucide-react-native';
 import { transformedCode } from '../../utils';
 import {
@@ -42,7 +41,7 @@ import {
   CollapsibleCode
 } from '@gluestack/design-system';
 
-import Wrapper from '../../components-example/nativewind/Wrapper';
+import Wrapper from '../../core-components/nativewind/Wrapper';
 
 This is an illustration of **Input** component.
 
@@ -110,7 +109,11 @@ npm i @gluestack-ui/input
 ### Step 2: Copy and paste the following code into your project.
 
 <CollapsibleCode>
-  ```jsx %%-- File: components-example/nativewind/Input/index.tsx --%% ```
+
+```jsx 
+%%-- File: core-components/nativewind/input/index.tsx --%% 
+```
+
 </CollapsibleCode>
 
 ### Step 3: Update the import paths to match your project setup.
@@ -120,7 +123,7 @@ npm i @gluestack-ui/input
 To use this component in your project, include the following import statement in your file.
 
 ```jsx
-import { Input } from '@/components/ui/Input';
+import { Input } from '@/components/ui/input';
 ```
 
 ```jsx
@@ -423,7 +426,7 @@ We have outlined the various features that ensure the Input component is accessi
 
 ### Props
 
-Input component is created using TextInput component from react-native. It extends all the props supported by [React Native Text Input](https://reactnative.dev/docs/textinput#props), [utility props](/ui/docs/styling/utility-and-sx-props) and the props mentioned below.
+Input component is created using TextInput component from react-native. It extends all the props supported by [React Native Text Input](https://reactnative.dev/docs/textinput#props) and the props mentioned below.
 
 #### Input
 

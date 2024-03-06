@@ -15,13 +15,13 @@ import { useRef, useEffect, useState } from 'react';
 
 <Meta title="with-gluestack-style/components/Forms/Slider" />
 
-import { Slider } from '../../components-example/themed';
+import { Slider } from '../../core-components/themed';
 import {
   SliderTrack,
   SliderFilledTrack,
   SliderThumb,
-} from '../../components-example/themed';
-import { HStack, Volume2Icon, Box, Center } from '../../components-example/themed';
+} from '../../core-components/themed';
+import { HStack, Volume2Icon, Box, Center } from '../../core-components/themed';
 import {
   VStack,
   Volume,
@@ -32,7 +32,7 @@ import {
   Tooltip,
   TooltipContent,
   Button,
-} from '../../components-example/themed';
+} from '../../core-components/themed';
 import { transformedCode } from '../../utils';
 import {
   AppProvider,
@@ -42,7 +42,7 @@ import {
   TableContainer,
 } from '@gluestack/design-system';
 
-import Wrapper from '../../components-example/themed/Wrapper';
+import Wrapper from '../../core-components/themed/Wrapper';
 import { CollapsibleCode } from '@gluestack/design-system';
 
 This is an illustration of **Slider** component.
@@ -110,7 +110,11 @@ npm i @gluestack-ui/slider
 ### Step 2: Copy and paste the following code into your project.
 
 <CollapsibleCode>
-  ```jsx %%-- File: components-example/themed/Slider/index.tsx --%% ```
+
+```jsx 
+%%-- File: core-components/themed/slider/index.tsx --%% 
+```
+
 </CollapsibleCode>
 
 ### Step 3: Update the import paths to match your project setup.
@@ -120,7 +124,7 @@ npm i @gluestack-ui/slider
 To use this component in your project, include the following import statement in your file.
 
 ```jsx
-import { Slider } from '@/components/ui/Slider';
+import { Slider } from '@/components/ui/slider';
 ```
 
 ```jsx

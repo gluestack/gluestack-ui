@@ -39,10 +39,6 @@ const headingStyle = tva({
       'xs': 'text-sm',
     },
   },
-
-  // defaultProps: {
-  //   size: 'lg',
-  // },
 });
 
 cssInterop(H4, { className: 'style' });
