@@ -13,7 +13,7 @@ import {
   SelectDragIndicatorWrapper,
   SelectDragIndicator,
   SelectItem,
-} from '@/components/ui/Select';
+} from '@/components/ui/select';
 
 const SelectBasic = ({ size = 'md', variant = 'outline', ...props }: any) => {
   return (

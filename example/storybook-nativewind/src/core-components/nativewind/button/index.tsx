@@ -216,11 +216,12 @@ const buttonIconStyle = tva({
   ],
 });
 
-type IButtonProps = React.ComponentProps<typeof UIButton> &
+type IButtonProps = Omit<React.ComponentProps<typeof UIButton>, 'context'> &
   VariantProps<typeof buttonStyle>;
 
 type IButtonTextProps = React.ComponentProps<typeof UIButton.Text> &
   VariantProps<typeof buttonTextStyle>;
+
 const Button = React.forwardRef(
   (
     {
@@ -243,6 +244,8 @@ const Button = React.forwardRef(
     );
   }
 );
+
+<Button></Button>;
 
 type IButtonIcon = React.ComponentProps<typeof UIButton.Icon> & {
   as?: any;
