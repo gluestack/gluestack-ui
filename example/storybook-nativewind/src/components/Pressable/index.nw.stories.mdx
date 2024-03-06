@@ -14,11 +14,12 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="with-nativewind/components/Forms/Pressable" />
 
-import { Pressable, Text } from './Pressable';
+import { Pressable, Text } from '../../core-components/nativewind';
+
 import { transformedCode } from '../../utils';
 import { AppProvider, CodePreview } from '@gluestack/design-system';
 
-import Wrapper from '../../components-example/nativewind/Wrapper';
+import Wrapper from '../../core-components/nativewind/Wrapper';
 import { CollapsibleCode } from '@gluestack/design-system';
 
 This is an illustration of **Pressable** component.
@@ -30,7 +31,7 @@ This is an illustration of **Pressable** component.
     metaData={{
       code: `
  <Pressable
-  onPress={() => console.log('Hello')} className="p-5 bg-primary-500 hover:bg-primary-400">
+  onPress={() => console.log('Hello')} className="p-5 bg-primary-500">
   <Text className="text-typography-0">Press me</Text>
 </Pressable>
 `,
@@ -62,7 +63,11 @@ npm i @gluestack-ui/pressable
 ### Step 2: Copy and paste the following code into your project.
 
 <CollapsibleCode>
-  ```jsx %%-- File: components-example/nativewind/Pressable/index.tsx --%% ```
+
+```jsx 
+%%-- File: core-components/nativewind/pressable/index.tsx --%% 
+```
+
 </CollapsibleCode>
 
 ### Step 3: Update the import paths to match your project setup.
@@ -72,7 +77,7 @@ npm i @gluestack-ui/pressable
 To use this component in your project, include the following import statement in your file.
 
 ```jsx
-import { Pressable } from '@/components/ui/Pressable';
+import { Pressable } from '@/components/ui/pressable';
 ```
 
 ```jsx
@@ -101,12 +106,14 @@ You can change the child elements according to the states of Pressable component
     showArgsController={false}
     metaData={{
       code: `
- <Pressable className='p-16 bg-primary-500 hover:bg-primary-400'>
-   {({ pressed }) => (
-        <Text color={pressed ? 'pink' : 'yellow'}>PRESSABLE</Text>
+    <Pressable className="p-16 bg-primary-500">
+      {({ pressed }) => (
+        <Text className={pressed ? 'text-pink-400' : 'text-yellow-400'}>
+          PRESSABLE
+        </Text>
       )}
-</Pressable>
-`,
+    </Pressable>
+    `,
       transformCode: (code) => {
         return transformedCode(code);
       },
