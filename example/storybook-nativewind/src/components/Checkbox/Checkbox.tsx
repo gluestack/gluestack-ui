@@ -5,15 +5,15 @@ import {
   CheckboxIndicator,
   CheckboxLabel,
   CheckboxGroup,
-} from '@/components/ui/Checkbox';
-import { Text } from '@/components/ui/Text';
-import { RemoveIcon, Icon, CheckIcon } from '@/components/ui/Icon';
-import { FormControl } from '@/components/ui/FormControl';
-import { Center } from '@/components/ui/Center';
-import { VStack } from '@/components/ui/VStack';
-import { HStack } from '@/components/ui/HStack';
-import { Heading } from '@/components/ui/Heading';
-import { Box } from '@/components/ui/Box';
+} from '@/components/ui/checkbox';
+import { Text } from '@/components/ui/text';
+import { RemoveIcon, Icon, CheckIcon } from '@/components/ui/icon';
+import { FormControl } from '@/components/ui/form-control';
+import { Center } from '@/components/ui/center';
+import { VStack } from '@/components/ui/vstack';
+import { HStack } from '@/components/ui/hstack';
+import { Heading } from '@/components/ui/heading';
+import { Box } from '@/components/ui/box';
 
 const CheckboxGroupBasic = ({ ...props }: any) => {
   return (

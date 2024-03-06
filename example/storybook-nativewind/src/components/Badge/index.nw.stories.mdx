@@ -32,7 +32,7 @@ import {
   Menu,
   MenuItem,
   MenuItemLabel,
-} from '../../components-example/nativewind';
+} from '../../core-components/nativewind';
 import {
   PaintBucket,
   PuzzleIcon,
@@ -42,8 +42,8 @@ import {
   AddIcon,
   BadgeIcon,
   CheckIcon,
-  GlobeIcon,
   MenuIcon,
+  Globe,
 } from 'lucide-react-native';
 import {
   AppProvider,
@@ -54,7 +54,7 @@ import {
   InlineCode,
 } from '@gluestack/design-system';
 import { transformedCode } from '../../utils';
-import Wrapper from '../../components-example/nativewind/Wrapper';
+import Wrapper from '../../core-components/nativewind/Wrapper';
 import { CollapsibleCode } from '@gluestack/design-system';
 
 This is an illustration of **Badge** component.
@@ -65,7 +65,7 @@ This is an illustration of **Badge** component.
       code: `
 <Badge {...props}>
   <BadgeText>New feature</BadgeText>
-  <BadgeIcon as={GlobeIcon} className="ml-2" />
+  <BadgeIcon as={Globe} className="ml-2" />
 </Badge>
 `,
       transformCode: (code) => {
@@ -76,7 +76,7 @@ This is an illustration of **Badge** component.
         Badge,
         BadgeText,
         BadgeIcon,
-        GlobeIcon,
+        Globe,
       },
       argsType: {
         size: {
@@ -114,7 +114,11 @@ npm i @gluestack-ui/badge
 ### Step 2: Copy and paste the following code into your project.
 
 <CollapsibleCode>
-  ```jsx %%-- File: components-example/nativewind/Badge/index.tsx --%% ```
+
+```jsx 
+%%-- File: core-components/nativewind/badge/index.tsx --%% 
+```
+
 </CollapsibleCode>
 
 ### Step 3: Update the import paths to match your project setup.
@@ -124,7 +128,7 @@ npm i @gluestack-ui/badge
 To use this component in your project, include the following import statement in your file.
 
 ```jsx
-import { Badge } from '@/components/ui/Badge';
+import { Badge } from '@/components/ui/badge';
 ```
 
 ```jsx
@@ -256,7 +260,7 @@ An example of the Badge component being used with the Avatar component to displa
         Badge,
         BadgeText,
         BadgeIcon,
-        GlobeIcon,
+        Globe,
         BadgeCheckIcon,
       },
       argsType: {},
@@ -288,7 +292,7 @@ A Badge component used with a menu adds a visual indicator, such as a badge, to 
            className='bg-white'
           >
             <HStack space="sm" className='items-center'>
-              <Icon as={GlobeIcon} size="sm" />
+              <Icon as={Globe} size="sm" />
               <Text className='text-sm leading-5'>
                 Community
               </Text>
@@ -346,7 +350,7 @@ A Badge component used with a menu adds a visual indicator, such as a badge, to 
         Box,
         HStack,
         Icon,
-        GlobeIcon,
+        Globe,
         PuzzleIcon,
         PaintBucket,
         SettingsIcon,
@@ -394,7 +398,7 @@ An example of the Badge component being used with the Composition component, all
         Badge,
         BadgeText,
         BadgeIcon,
-        GlobeIcon,
+        Globe,
         Box,
         Text,
         HStack,

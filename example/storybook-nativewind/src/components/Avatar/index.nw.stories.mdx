@@ -25,8 +25,8 @@ import {
   Text,
   Icon,
   Heading,
-  User,
-} from './Avatar';
+} from '../../core-components/nativewind';
+import { User } from "lucide-react-native";
 import colors from 'tailwindcss/colors';
 import { transformedCode } from '../../utils';
 import {
@@ -38,42 +38,43 @@ import {
 } from '@gluestack/design-system';
 import { CollapsibleCode } from '@gluestack/design-system';
 
-import Wrapper from '../../components-example/nativewind/Wrapper';
+import Wrapper from '../../core-components/nativewind/Wrapper';
 
 This is an illustration of **Avatar** component.
 
 <Wrapper>
   <CodePreview
-    showComponentRenderer={true}
-    showArgsController={true}
-    metaData={{
+      showComponentRenderer={ true }
+    showArgsController = { true}
+    metaData = {{
       code: `
         <Avatar {...props} className='bg-amber-600'>
           <AvatarFallbackText>Sandeep Srivastava</AvatarFallbackText>
         </Avatar>
       `,
-      transformCode: (code) => {
-        return transformedCode(code);
-      },
-      scope: {
+        transformCode: (code) => {
+          return transformedCode(code);
+        },
+          scope: {
         Wrapper,
-        Avatar,
-        AvatarBadge,
-        AvatarFallbackText,
-        AvatarImage,
-      },
+          Avatar,
+          AvatarBadge,
+          AvatarFallbackText,
+          AvatarImage,
+        },
       argsType: {
         size: {
           control: 'select',
-          options: ['xs', 'sm', 'md', 'lg', 'xl', '2xl'],
-          default: 'md',
-        },
+            options: ['xs', 'sm', 'md', 'lg', 'xl', '2xl'],
+            default: 'md',
+          },
       },
-    }}
+    }
+  }
   />
 </Wrapper>
 
-<br />
+<br/>
 
 ## Installation
 
@@ -88,7 +89,11 @@ npm i @gluestack-ui/avatar
 ### Step 2: Copy and paste the following code into your project.
 
 <CollapsibleCode>
-  ```jsx %%-- File: components-example/nativewind/Avatar/index.tsx --%% ```
+
+```jsx 
+%%-- File: core-components/nativewind/avatar/index.tsx --%% 
+```
+
 </CollapsibleCode>
 
 ### Step 3: Update the import paths to match your project setup.
@@ -103,7 +108,7 @@ import {
   AvatarBadge,
   AvatarFallbackText,
   AvatarImage,
-} from '@/components/ui/Avatar';
+} from '@/components/ui/avatar';
 ```
 
 > IOS: It is highly recommended to use `<AvatarFallbackText />` before `<AvatarImage />` to avoid indexing issues in IOS.

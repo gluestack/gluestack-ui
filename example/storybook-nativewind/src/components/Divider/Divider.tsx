@@ -1,12 +1,12 @@
 import React from 'react';
-import { Divider } from '@/components/ui/Divider';
-import { HStack } from '@/components/ui/HStack';
-import { Heading } from '@/components/ui/Heading';
-import { Center } from '@/components/ui/Center';
-import { Text } from '@/components/ui/Text';
-import { VStack } from '@/components/ui/VStack';
-import { Box } from '@/components/ui/Box';
-import { Button, ButtonText } from '@/components/ui/Button';
+import { Divider } from '@/components/ui/divider';
+import { HStack } from '@/components/ui/hstack';
+import { Heading } from '@/components/ui/heading';
+import { Center } from '@/components/ui/center';
+import { Text } from '@/components/ui/text';
+import { VStack } from '@/components/ui/vstack';
+import { Box } from '@/components/ui/box';
+import { Button, ButtonText } from '@/components/ui/button';
 
 const DividerBasic = ({ ...props }) => {
   return (
