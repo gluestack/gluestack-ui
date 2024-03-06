@@ -17,9 +17,9 @@ import { Meta } from '@storybook/addon-docs';
 import {
   Progress,
   ProgressFilledTrack,
-} from '../../components-example/themed';
+} from '../../core-components/themed';
 
-import { VStack, Box, Heading } from '../../components-example/themed';
+import { VStack, Box, Heading } from '../../core-components/themed';
 import { transformedCode } from '../../utils';
 import {
   AppProvider,
@@ -30,7 +30,7 @@ import {
   InlineCode,
 } from '@gluestack/design-system';
 
-import Wrapper from '../../components-example/themed/Wrapper';
+import Wrapper from '../../core-components/themed/Wrapper';
 import { CollapsibleCode } from '@gluestack/design-system';
 
 This is an illustration of **Progress** component.
@@ -75,7 +75,11 @@ npm i @gluestack-ui/progress
 ### Step 2: Copy and paste the following code into your project.
 
 <CollapsibleCode>
-  ```jsx %%-- File: components-example/themed/Progress/index.tsx --%% ```
+
+```jsx 
+%%-- File: core-components/themed/progress/index.tsx --%% 
+```
+
 </CollapsibleCode>
 
 ### Step 3: Update the import paths to match your project setup.
@@ -85,7 +89,7 @@ npm i @gluestack-ui/progress
 To use this component in your project, include the following import statement in your file.
 
 ```jsx
-import { Progress, ProgressFilledTrack } from '@/components/ui/Progress';
+import { Progress, ProgressFilledTrack } from '@/components/ui/progress';
 ```
 
 ```jsx
