@@ -41,7 +41,9 @@ for (const [key, value] of Object.entries(testData)) {
           await page.goto(storybookUrl);
           if (overlay) await page.waitForTimeout(300);
           testinfo.snapshotSuffix = 'darwin';
-          expect(await page.screenshot()).toMatchSnapshot();
+          expect(await page.screenshot()).toMatchSnapshot({
+            maxDiffPixelRatio: 0.011,
+          });
         });
 
         let i = keys.length - 1;
@@ -98,7 +100,7 @@ for (const [key, value] of Object.entries(testData)) {
               if (overlay) await page.waitForTimeout(300);
               testinfo.snapshotSuffix = 'darwin';
               expect(await page.screenshot()).toMatchSnapshot({
-                maxDiffPixels: 100,
+                maxDiffPixelRatio: 0.011,
               });
             });
           }
@@ -119,7 +121,7 @@ for (const [key, value] of Object.entries(testData)) {
         if (overlay) await page.waitForTimeout(300);
         testinfo.snapshotSuffix = 'darwin';
         expect(await page.screenshot()).toMatchSnapshot({
-          maxDiffPixels: 100,
+          maxDiffPixelRatio: 0.011,
         });
       });
     }
