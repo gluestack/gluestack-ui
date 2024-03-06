@@ -32,7 +32,7 @@ import {
   Button,
   ButtonText,
   Divider,
-} from './Card';
+} from '../../core-components/themed';
 import {
   AppProvider,
   CodePreview,
@@ -40,10 +40,10 @@ import {
   TableContainer,
   InlineCode,
 } from '@gluestack/design-system';
-import { transformedCode } from '../../../utils';
+import { transformedCode } from '../../utils';
 
 import { config } from '@gluestack-ui/config';
-import Wrapper from '../../components-example/themed/Wrapper';
+import Wrapper from '../../core-components/themed/Wrapper';
 import { CollapsibleCode } from '@gluestack/design-system';
 
 This is an illustration of a **Card** component.
@@ -101,7 +101,11 @@ npm i @gluestack-ui/card
 ### Step 2: Copy and paste the following code into your project.
 
 <CollapsibleCode>
-  ```jsx %%-- File: components-example/themed/Card/index.tsx --%% ```
+
+```jsx 
+%%-- File: core-components/themed/card/index.tsx --%% 
+```
+
 </CollapsibleCode>
 
 ### Step 3: Update the import paths to match your project setup.
@@ -111,7 +115,7 @@ npm i @gluestack-ui/card
 To use this component in your project, include the following import statement in your file.
 
 ```jsx
-import { Card } from '@/components/ui/Card';
+import { Card } from '@/components/ui/card';
 ```
 
 ```jsx

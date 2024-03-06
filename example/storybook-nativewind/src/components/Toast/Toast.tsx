@@ -12,8 +12,8 @@ import {
   ToastTitle,
   ToastDescription,
   useToast,
-} from '@/components/ui/Toast';
-import { Button, ButtonText } from '@/components/ui/Button';
+} from '@/components/ui/toast';
+import { Button, ButtonText } from '@/components/ui/button';
 import { MessageCircle, AlertTriangleIcon } from 'lucide-react-native';
 
 const ToastFigmaStory = ({ _placement = 'top', _colorMode, ...props }: any) => {

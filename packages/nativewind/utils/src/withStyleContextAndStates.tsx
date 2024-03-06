@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { extractDataClassName } from './utils';
 import { ParentContext } from './context';
@@ -11,20 +13,24 @@ type WithStyleContextProps = {
 export const withStyleContextAndStates = <T,>(
   Component: React.ComponentType<T & WithStyleContextProps>
 ) => {
-  return ({
-    context,
-    className,
-    states,
-    ...props
-  }: T & WithStyleContextProps) => {
-    const classNamesFinal = React.useMemo(() => {
-      if (!className) return;
-      return extractDataClassName(className, states);
-    }, [className, states]);
-    return (
-      <ParentContext.Provider value={context}>
-        <Component className={classNamesFinal} {...(props as any)} />
-      </ParentContext.Provider>
-    );
-  };
+  return React.forwardRef(
+    (
+      { context, className, states, ...props }: T & WithStyleContextProps,
+      ref?: any
+    ) => {
+      const classNamesFinal = React.useMemo(() => {
+        if (!className) return;
+        return extractDataClassName(className, states);
+      }, [className, states]);
+      return (
+        <ParentContext.Provider value={context}>
+          <Component
+            className={classNamesFinal}
+            {...(props as any)}
+            ref={ref}
+          />
+        </ParentContext.Provider>
+      );
+    }
+  );
 };

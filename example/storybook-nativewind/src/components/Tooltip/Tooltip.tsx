@@ -1,6 +1,6 @@
 import React from 'react';
-import { Tooltip, TooltipContent, TooltipText } from '@/components/ui/Tooltip';
-import { Button, ButtonText } from '@/components/ui/Button';
+import { Tooltip, TooltipContent, TooltipText } from '@/components/ui/tooltip';
+import { Button, ButtonText } from '@/components/ui/button';
 import { Edit, Command } from 'lucide-react-native';
 
 const TooltipBasic = ({
