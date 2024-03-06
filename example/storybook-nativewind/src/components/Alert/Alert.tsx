@@ -1,5 +1,5 @@
 import React from 'react';
-import { Alert, AlertIcon, AlertText } from '@/components/ui/Alert';
+import { Alert, AlertIcon, AlertText } from '@/components/ui/alert';
 import {
   InfoIcon,
   CheckCircleIcon,
@@ -7,10 +7,10 @@ import {
   BellIcon,
   AlertCircleIcon,
   Icon,
-} from '@/components/ui/Icon';
-import { VStack } from '@/components/ui/VStack';
-import { Center } from '@/components/ui/Center';
-import { HStack } from '@/components/ui/HStack';
+} from '@/components/ui/icon';
+import { VStack } from '@/components/ui/vstack';
+import { Center } from '@/components/ui/center';
+import { HStack } from '@/components/ui/hstack';
 
 const AlertBasic = ({ ...props }: any) => {
   return (

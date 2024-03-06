@@ -1,7 +1,7 @@
 import React from 'react';
-import { Card } from '@/components/ui/Card';
-import { Text } from '@/components/ui/Text';
-import { Heading } from '@/components/ui/Heading';
+import { Card } from '@/components/ui/card';
+import { Text } from '@/components/ui/text';
+import { Heading } from '@/components/ui/heading';
 
 const CardBasic = ({ ...props }: any) => {
   return (

@@ -57,10 +57,9 @@ import {
   TrashIcon,
   UnlockIcon,
   createIcon,
-} from '@/components/ui/Icon';
-import { HStack } from '@/components/ui/HStack';
-import { VStack } from '@/components/ui/VStack';
-import { Center } from '@/components/ui/Center';
+} from '@/components/ui/icon';
+import { HStack } from '@/components/ui/hstack';
+import { VStack } from '@/components/ui/vstack';
 
 import {
   ChromeIcon,
@@ -141,5 +140,4 @@ export {
   FacebookIcon,
   createIcon,
   Camera,
-  Center,
 };

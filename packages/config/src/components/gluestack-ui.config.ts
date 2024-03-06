@@ -709,11 +709,14 @@ export const gluestackUIConfig = createConfig({
   plugins: [new AnimationResolver(MotionAnimationDriver)],
 });
 
-export type { UIConfig, UIComponents } from '@gluestack-ui/themed';
-
-export interface IConfig {}
-export interface IComponents {}
-
 export const config = {
   ...gluestackUIConfig,
 };
+
+type Config = typeof gluestackUIConfig; // Assuming `config` is defined elsewhere
+// type Components = typeof gluestackUIConfig.components; // Assuming `config` is defined elsewhere
+
+declare module '@gluestack-style/react' {
+  interface ICustomConfig extends Config {}
+  // interface ICustomComponents extends Components {}
+}

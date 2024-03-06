@@ -5,7 +5,7 @@ import {
   ButtonText,
   ButtonSpinner,
   ButtonIcon,
-} from '@/components/ui/Button';
+} from '@/components/ui/button';
 
 export const ButtonBasic = (props: any) => {
   return (
