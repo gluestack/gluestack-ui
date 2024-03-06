@@ -8,7 +8,7 @@ import {
   FormControlLabelText,
 } from '@gluestack-ui/themed';
 
-import { Textarea, TextareaInput } from '@/components/ui/Textarea';
+import { Textarea, TextareaInput } from '@/components/ui/textarea';
 
 const TextareaBasic = ({ ...props }: any) => {
   return (

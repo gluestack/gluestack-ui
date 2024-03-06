@@ -56,10 +56,10 @@ import {
   FormControlError,
   FormControlErrorIcon,
   FormControlErrorText,
-} from '@/components/ui/FormControl';
+} from '@/components/ui/form-control';
 import { AlertCircleIcon } from 'lucide-react-native';
 
-import { Input, InputField } from '@/components/ui/Input';
+import { Input, InputField } from '@/components/ui/input';
 const FormControlBasic = ({ ...props }: any) => {
   return (
     <FormControl {...props}>

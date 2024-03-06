@@ -1,5 +1,5 @@
-import { Text } from '@/components/ui/Text';
-import { Center } from '@/components/ui/Center';
+import { Text } from '@/components/ui/text';
+import { Center } from '@/components/ui/center';
 import React from 'react';
 
 const CenterBasic = () => {
