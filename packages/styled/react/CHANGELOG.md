@@ -1,5 +1,11 @@
 # @gluestack-style/react
 
+## 1.0.49
+
+### Patch Changes
+
+- Fixed utility props typings
+
 ## 1.0.48
 
 ### Patch Changes
