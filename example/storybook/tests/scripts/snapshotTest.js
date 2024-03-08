@@ -16,5 +16,8 @@ args.forEach((arg) => {
   process.env[key] = value;
 });
 
+if (args.length === 0) {
+  process.env.emptyArgs = true;
+}
 // Run playwright test
 execSync('yarn playwright test', { stdio: 'inherit' });
