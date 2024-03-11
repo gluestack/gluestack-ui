@@ -42,20 +42,19 @@ import {
 } from '@gluestack/design-system';
 import { transformedCode } from '../../utils';
 
-import { config } from '@gluestack-ui/config';
 import Wrapper from '../../core-components/nativewind/Wrapper';
 import { CollapsibleCode } from '@gluestack/design-system';
 
 This is an illustration of a **Card** component.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={true}
     metaData={{
       code: `
-    <Card {...props} m="$3">
-      <Heading mb="$1" size="md">
+    <Card {...props} className="m-3">
+      <Heading size="md" className="mb-1">
         Quick Start
       </Heading>
       <Text size="sm">Start building your next project in minutes</Text>
@@ -84,7 +83,7 @@ This is an illustration of a **Card** component.
       },
     }}
   />
-</AppProvider>
+</Wrapper>
 
 <br />
 
@@ -178,7 +177,6 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
   </TableContainer>
 </AppProvider>
 
-<!--
 ## Examples
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
@@ -187,7 +185,7 @@ The Examples section provides visual representations of the different variants o
 
 This is an example of a Card component with an image.
 
-<AppProvider config={config}>
+<AppProvider>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -195,54 +193,33 @@ This is an example of a Card component with an image.
       code: `
 function App(){
     return (
-      <Card p="$5" borderRadius="$lg" maxWidth={360} m="$3">
-          <Image
-        mb="$6"
-        h={240}
-        width="$full"
-        borderRadius="$md"
+      <Card className="p-5 rounded-lg max-w-[360px] m-3">
+        <Image
         source={{
           uri: 'https://images.unsplash.com/photo-1529693662653-9d480530a697?q=80&w=2831&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         }}
+        className="mb-6 h-[240px] w-full rounded-md"
       />
       <Text
-        fontSize="$sm"
-        fontStyle="normal"
-        fontFamily="$heading"
-        fontWeight="$normal"
-        lineHeight="$sm"
-        mb="$2"
-        sx={{
-          color: '$textLight700',
-          _dark: {
-            color: '$textDark200',
-          },
-        }}
+        className="text-sm font-normal mb-2 text-typography-700"
       >
         May 15, 2023
       </Text>
-      <Heading size="md" fontFamily="$heading" mb="$4">
+      <Heading size="md" className="mb-4">
         The Power of Positive Thinking
       </Heading>
       <Link href="https://gluestack.io/" isExternal>
-        <HStack alignItems="center">
+        <HStack className="items-center">
           <LinkText
             size="sm"
-            fontFamily="$heading"
-            fontWeight="$semibold"
-            color="$primary600"
-            $dark-color="$primary300"
-            textDecorationLine="none"
+            className="font-semibold text-info-600 no-underline"
           >
             Read Blog
           </LinkText>
           <Icon
             as={ArrowRightIcon}
             size="sm"
-            color="$primary600"
-            mt="$0.5"
-            ml="$0.5"
-            $dark-color="$primary300"
+            className="text-info-600 mt-0.5 ml-0.5"
           />
         </HStack>
       </Link>
@@ -274,7 +251,7 @@ Wrapper,
 
 This is an example of a Card component with other components like Avatar, Image and Button.
 
-<AppProvider config={config}>
+<AppProvider>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -282,10 +259,10 @@ This is an example of a Card component with other components like Avatar, Image 
       code: `
 function App(){
     return (
-    <Card p="$6" borderRadius="$lg" maxWidth={360} m="$3">
-      <Box flexDirection="row">
-        <Avatar mr="$4">
-          <AvatarFallbackText fontFamily="$heading">JD</AvatarFallbackText>
+    <Card className="p-6 rounded-lg max-w-[360px] m-3">
+      <Box className="flex-row">
+        <Avatar className="mr-4">
+          <AvatarFallbackText>JD</AvatarFallbackText>
           <AvatarImage
             source={{
               uri: 'https://images.unsplash.com/photo-1620403724159-40363e84a155?q=80&w=2646&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
@@ -293,153 +270,67 @@ function App(){
           />
         </Avatar>
         <VStack>
-          <Heading size="md" fontFamily="$heading" mb="$1">
+          <Heading size="md" className="mb-1">
             Jane Doe
           </Heading>
-          <Text size="sm" fontFamily="$heading">
+          <Text size="sm">
             janedoe@sample.com
           </Text>
         </VStack>
       </Box>
       <Box
-        my="$5"
-        sx={{
-          'flexDirection': 'column',
-          '@sm': {
-            my: '$6',
-            flexDirection: 'row',
-          },
-        }}
+        className="my-5 flex-col sm:flex-row"
       >
         <VStack
-          alignItems="center"
-          sx={{
-            'pb': '$2',
-            '@sm': {
-              flex: 1,
-              pb: '$0',
-              borderRightWidth: 1,
-              borderColor: '$backgroundLight300',
-              _dark: {
-                borderRightColor: '$backgroundDark800',
-              },
-            },
-          }}
+          className="items-center pb-2 sm:flex-1 sm:pb-0 sm:border-r sm:border-outline-300"
         >
-          <Heading size="xs" fontFamily="$heading">
+          <Heading size="xs">
             81
           </Heading>
           <Text size="xs">posts</Text>
         </VStack>
         <Divider
           orientation="horizontal"
-          width="40%"
-          alignSelf="center"
-          sx={{
-            'bg': '$backgroundLight300',
-            'display': 'flex',
-            '_dark': {
-              bg: '$backgroundDark800',
-            },
-            '@sm': {
-              display: 'none',
-            },
-          }}
+          className="w-[40%] self-center bg-background-300 flex sm:hidden"
         />
         <VStack
-          alignItems="center"
-          sx={{
-            'py': '$2',
-            '@sm': {
-              flex: 1,
-              py: '$0',
-              borderRightWidth: 1,
-              borderColor: '$backgroundLight300',
-              _dark: {
-                borderRightColor: '$backgroundDark800',
-              },
-            },
-          }}
+          className="items-center py-2 sm:flex-1 sm:py-0 sm:border-r sm:border-outline-300"
         >
-          <Heading size="xs" fontFamily="$heading">
+          <Heading size="xs">
             5,281
           </Heading>
           <Text size="xs">followers</Text>
         </VStack>
         <Divider
           orientation="horizontal"
-          width="40%"
-          alignSelf="center"
-          sx={{
-            'bg': '$backgroundLight300',
-            'display': 'flex',
-            '_dark': {
-              bg: '$backgroundDark800',
-            },
-            '@sm': {
-              display: 'none',
-            },
-          }}
+          className="w-[40%] self-center bg-background-300 flex sm:hidden"
         />
         <VStack
-          alignItems="center"
-          sx={{
-            'pt': '$2',
-            '@sm': {
-              flex: 1,
-              pt: '$0',
-            },
-          }}
+          className="items-center pt-2 sm:flex-1 sm:pt-0"
         >
-          <Heading size="xs" fontFamily="$heading">
+          <Heading size="xs">
             281
           </Heading>
           <Text size="xs">following</Text>
         </VStack>
       </Box>
       <Box
-        mb="$5"
-        sx={{
-          'flexDirection': 'column',
-          '@sm': {
-            mb: '$6',
-            flexDirection: 'row',
-          },
-        }}
+        className="mb-5 flex-col sm:mb-6 sm:flex-row"
       >
         <Image
-          mb="$3"
-          borderRadius="$md"
-          sx={{
-            'width': '$full',
-            'height': 140,
-            '@sm': {
-              mb: '$0',
-              mr: '$3',
-              width: 150,
-              height: 154,
-            },
-          }}
           source={{
             uri: 'https://images.unsplash.com/photo-1592089416462-2b0cb7da8379?q=80&w=2865&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
           }}
+          className="mb-3 rounded-md w-full h-[140px] sm:mb-0 sm:mr-3 sm:w-[150px] sm:h-[154px]"
         />
         <Image
-          borderRadius="$md"
-          sx={{
-            'width': '$full',
-            'height': 140,
-            '@sm': {
-              width: 150,
-              height: 154,
-            },
-          }}
           source={{
             uri: 'https://images.unsplash.com/photo-1484406566174-9da000fda645?q=80&w=2425&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
           }}
+          className="rounded-md w-full h-[140px] sm:w-[150px] sm:h-[154px]"
         />
       </Box>
-      <Button py="$2" px="$4">
+      <Button className="py-2 px-4">
         <ButtonText size="sm">Follow</ButtonText>
       </Button>
     </Card>
@@ -473,7 +364,7 @@ Wrapper,
 
 This example illustrates a card showcasing a product.
 
-<AppProvider config={config}>
+<AppProvider>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -481,82 +372,42 @@ This example illustrates a card showcasing a product.
       code: `
 function App(){
     return (
-    <Card p="$5" borderRadius="$lg" maxWidth={360} m="$3">
+    <Card className="p-5 rounded-lg max-w-[360px] m-3">
       <Image
-        mb="$6"
-        h={240}
-        width="$full"
-        borderRadius="$md"
         source={{
           uri: 'https://images.unsplash.com/photo-1595231712325-9fedecef7575?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDJ8fHxlbnwwfHx8fHw%3D',
         }}
+        className="mb-6 h-[240px] w-full rounded-md"
       />
       <Text
-        fontSize="$sm"
-        fontStyle="normal"
-        fontFamily="$heading"
-        fontWeight="$normal"
-        lineHeight="$sm"
-        mb="$2"
-        sx={{
-          color: '$textLight700',
-          _dark: {
-            color: '$textDark200',
-          },
-        }}
+        className="text-sm font-normal mb-2 text-typography-700"
       >
         Fashion Clothing
       </Text>
-      <VStack mb="$6">
-        <Heading size="md" fontFamily="$heading" mb="$4">
+      <VStack className="mb-6">
+        <Heading size="md" className="mb-4">
           Cotton Kurta
         </Heading>
-        <Text size="sm" fontFamily="$heading">
+        <Text size="sm">
           Floral embroidered notch neck thread work cotton kurta in white and
           black.
         </Text>
       </VStack>
       <Box
-        flexDirection="column"
-        sx={{
-          '@sm': {
-            flexDirection: 'row',
-          },
-        }}
+        className="flex-col sm:flex-row"
       >
         <Button
-          px="$4"
-          py="$2"
-          fontFamily="$heading"
-          mr="$0"
-          mb="$3"
-          sx={{
-            '@sm': {
-              mr: '$3',
-              mb: '$0',
-              flex: 1,
-            },
-          }}
+          className="px-4 py-2 mr-0 mb-3 sm:mr-3 sm:mb-0 sm:flex-1"
         >
           <ButtonText size="sm">Add to cart</ButtonText>
         </Button>
         <Button
-          px="$4"
-          py="$2"
           variant="outline"
-          fontFamily="$heading"
-          borderColor="$borderLight300"
-          $dark-borderColor="$backgroundDark600"
-          sx={{
-            '@sm': {
-              flex: 1,
-            },
-          }}
+          className="px-4 py-2 border-outline-300 sm:flex-1"
         >
           <ButtonText
             size="sm"
-            color="$textLight600"
-            $dark-color="$textDark400"
+            className="text-typography-600"
           >
             Wishlist
           </ButtonText>
@@ -589,7 +440,7 @@ Wrapper,
 
 This is an example of a Card component with a blog post.
 
-<AppProvider config={config}>
+<AppProvider>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -597,37 +448,26 @@ This is an example of a Card component with a blog post.
       code: `
 function App(){
     return (
-    <Card p="$5" borderRadius="$lg" maxWidth={360} m="$3">
-      <Text
-        fontSize="$sm"
-        fontStyle="normal"
-        fontFamily="$heading"
-        fontWeight="$normal"
-        lineHeight="$sm"
-        mb="$2"
-        sx={{
-          color: '$textLight700',
-          _dark: {
-            color: '$textDark200',
-          },
-        }}
+    <Card className="p-5 rounded-lg max-w-[360px] m-3"
+    >
+      <Text className="text-sm font-normal mb-2 text-typography-700"
       >
         May 15, 2023
       </Text>
-      <VStack mb="$6">
-        <Heading size="md" fontFamily="$heading" mb="$4">
+      <VStack className="mb-6">
+        <Heading size="md" className="mb-4">
           The Power of Positive Thinking
         </Heading>
-        <Text size="sm" fontFamily="$heading">
+        <Text size="sm">
           Discover how the power of positive thinking can transform your life,
           boost your confidence, and help you overcome challenges. Explore
           practical tips and techniques to cultivate a positive mindset for
           greater happiness and success.
         </Text>
       </VStack>
-      <Box flexDirection="row">
-        <Avatar mr="$3">
-          <AvatarFallbackText fontFamily="$heading">RR</AvatarFallbackText>
+      <Box className="flex-row">
+        <Avatar className="mr-3">
+          <AvatarFallbackText>RR</AvatarFallbackText>
           <AvatarImage
             source={{
               uri: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60',
@@ -635,10 +475,10 @@ function App(){
           />
         </Avatar>
         <VStack>
-          <Heading size="sm" fontFamily="$heading" mb="$1">
+          <Heading size="sm" className="mb-1">
             John Smith
           </Heading>
-          <Text size="sm" fontFamily="$heading">
+          <Text size="sm">
             Motivational Speaker
           </Text>
         </VStack>
@@ -668,4 +508,3 @@ Wrapper,
 />
 
 </AppProvider>
--->
