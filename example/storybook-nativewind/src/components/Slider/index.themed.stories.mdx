@@ -11,28 +11,27 @@ showHeader: true
 ---
 
 import { Meta } from '@storybook/addon-docs';
-import { useRef, useEffect, useState } from 'react';
 
 <Meta title="with-gluestack-style/components/Forms/Slider" />
 
-import { Slider } from '../../components-example/themed';
+import { useRef, useEffect, useState } from 'react';
 import {
   SliderTrack,
   SliderFilledTrack,
   SliderThumb,
-} from '../../components-example/themed';
-import { HStack, Volume2Icon, Box, Center } from '../../components-example/themed';
-import {
+  HStack,
+  Box, 
+  Center,
   VStack,
-  Volume,
   Text,
-  LightbulbIcon,
   Icon,
   Heading,
   Tooltip,
   TooltipContent,
   Button,
-} from '../../components-example/themed';
+  Slider
+} from '../../core-components/themed';
+import { Volume, Volume2Icon,LightbulbIcon } from 'lucide-react-native';
 import { transformedCode } from '../../utils';
 import {
   AppProvider,
@@ -40,10 +39,9 @@ import {
   InlineCode,
   Table,
   TableContainer,
+  CollapsibleCode
 } from '@gluestack/design-system';
-
-import Wrapper from '../../components-example/themed/Wrapper';
-import { CollapsibleCode } from '@gluestack/design-system';
+import Wrapper from '../../core-components/themed/Wrapper';
 
 This is an illustration of **Slider** component.
 
@@ -110,7 +108,11 @@ npm i @gluestack-ui/slider
 ### Step 2: Copy and paste the following code into your project.
 
 <CollapsibleCode>
-  ```jsx %%-- File: components-example/themed/Slider/index.tsx --%% ```
+
+```jsx 
+%%-- File: core-components/themed/slider/index.tsx --%% 
+```
+
 </CollapsibleCode>
 
 ### Step 3: Update the import paths to match your project setup.
@@ -120,7 +122,7 @@ npm i @gluestack-ui/slider
 To use this component in your project, include the following import statement in your file.
 
 ```jsx
-import { Slider } from '@/components/ui/Slider';
+import { Slider } from '@/components/ui/slider';
 ```
 
 ```jsx
@@ -481,3 +483,386 @@ Explore the comprehensive details of the Slider in this document, including its 
   src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FNcXOxqKbdnGsLQNex3H76u%2F%25C2%25A0%25F0%259F%2593%259Agluestack-UI-handbook%3Ftype%3Ddesign%26node-id%3D6449-50331%26t%3DyCpyOJadMBgzgdP2-1%26scaling%3Dscale-down%26page-id%3D6429%253A48430%26starting-point-node-id%3D6449%253A50331%26mode%3Ddesign"
   allowFullScreen
 /> -->
+
+### Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+#### Slider with Orientation
+
+An example of the Slider component being used with the Slider with Orientation feature to customize the orientation of the slider, providing flexibility in the direction of sliding and input for numerical or adjustable values within a user interface.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+function App(){
+  const [sliderValue, setSliderValue] = React.useState(45);
+  const handleChange = (value) => {
+    setSliderValue(value);
+  };
+  return (
+    <Center w="$80">
+      <Slider
+        sliderTrackHeight={4}
+        value={sliderValue}
+        orientation="vertical"
+        h={120}
+        onChange={(value) => {
+        handleChange(value);
+        }}>
+        <SliderTrack>
+          <SliderFilledTrack />
+        </SliderTrack>
+        <SliderThumb />
+      </Slider>
+    </Center>
+  );
+}
+`,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'App');
+      },
+      scope: {
+        Box,
+        Slider,
+        SliderTrack,
+        SliderFilledTrack,
+        SliderThumb,
+        Center,
+        Wrapper,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### Color scheme
+
+A Slider component with a color scheme adds visual styling and customization options, allowing the slider track and handle to be displayed in different colors, enhancing the aesthetic appeal and visual coherence of the slider within a user interface.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+function App(){
+  return (
+    <VStack space="4xl">
+    <Center w="$80">
+        <Slider   defaultValue={45} sliderTrackHeight={4}>
+          <SliderTrack>
+            <SliderFilledTrack bg="$emerald600"/>
+          </SliderTrack >
+          <SliderThumb bg="$emerald600" $active-outlineColor="$emerald500" />
+        </Slider>
+    </Center>
+     <Center w="$80">
+        <Slider   defaultValue={45} sliderTrackHeight={4}>
+          <SliderTrack>
+            <SliderFilledTrack bg="$amber600"/>
+          </SliderTrack >
+          <SliderThumb bg="$amber600" $active-outlineColor="$amber500" />
+        </Slider>
+    </Center>
+     <Center w="$80">
+        <Slider  defaultValue={45} sliderTrackHeight={4}>
+          <SliderTrack>
+            <SliderFilledTrack bg="$fuchsia600"/>
+          </SliderTrack >
+          <SliderThumb bg="$fuchsia600" $active-outlineColor="$fuchsia500"/>
+        </Slider>
+    </Center>
+     <Center w="$80">
+        <Slider   defaultValue={45} sliderTrackHeight={4}>
+          <SliderTrack>
+            <SliderFilledTrack bg="$cyan600"/>
+          </SliderTrack >
+          <SliderThumb bg="$cyan600" $active-outlineColor="$cyan500" />
+        </Slider>
+    </Center>
+    </VStack>
+  );
+}
+`,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'App');
+      },
+      scope: {
+        Center,
+        Slider,
+        SliderTrack,
+        SliderFilledTrack,
+        SliderThumb,
+        VStack,
+        Wrapper,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### With tooltip
+
+A Slider component with a tooltip displays a visual indicator or text overlay that provides real-time feedback on the selected value as users interact with the slider, improving usability and precision in inputting or adjusting numeric or continuous data within a user interface.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+function App(){
+  const [sliderValue, setSliderValue] = React.useState(40);
+  const handleChange = (value) => {
+    setSliderValue(value);
+  };
+  return (
+     <HStack space="lg">
+     <Text size="md">$0</Text>
+        <Tooltip
+              placement={"top"}
+              trigger={(triggerProps) => {
+                return (
+                      <Center w="$80">
+                          <Slider
+                           step={5}
+                            sliderTrackHeight={4}
+                            value={sliderValue}
+                            maxValue={60}
+                            minValue={0}
+                            onChange={v => {
+                              handleChange(Math.floor(v));
+                            }}>
+                            <SliderTrack>
+                              <SliderFilledTrack />
+                            </SliderTrack>
+                            <SliderThumb {...triggerProps}/>
+                          </Slider>
+                      </Center>
+                )
+              }}
+            >
+            <TooltipContent>
+              <Text color="white">{"$" + sliderValue}</Text>
+            </TooltipContent>
+          </Tooltip>
+    <Text size="md">$60</Text>
+    </HStack>
+);
+}
+`,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'App');
+      },
+      scope: {
+        Wrapper,
+        Slider,
+        SliderTrack,
+        SliderFilledTrack,
+        SliderThumb,
+        Center,
+        Volume,
+        VStack,
+        HStack,
+        Volume2Icon,
+        Text,
+        Box,
+        Tooltip,
+        TooltipContent,
+        Button,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### Form Controlled
+
+A Slider component with form-controlled behavior allows for seamless integration with a form's state management, enabling the slider value to be controlled and updated through a parent component's form state, providing a consistent and synchronized user experience for capturing and manipulating numeric or continuous data within a form.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+function App(){
+  const [sliderValue, setSliderValue] = React.useState(50);
+  const handleChange = (value) => {
+    setSliderValue(value);
+  };
+  return (
+    <VStack space="lg">
+    <Heading size="sm">Select the quantity</Heading>
+    <Center w="$72">
+        <Slider
+          sliderTrackHeight={5}
+          size='md'
+          value={sliderValue}
+          onChange={(value) => {
+          handleChange(value);
+          }}>
+          <SliderTrack>
+            <SliderFilledTrack/>
+          </SliderTrack>
+           <SliderThumb/>
+        </Slider>
+    </Center>
+    <Text size="sm">Slide the knob to select the number of products</Text>
+    </VStack>
+  );
+}
+`,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'App');
+      },
+      scope: {
+        Wrapper,
+        Center,
+        Slider,
+        SliderTrack,
+        SliderFilledTrack,
+        SliderThumb,
+        Center,
+        LightbulbIcon,
+        Icon,
+        Text,
+        VStack,
+        Heading,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### Custom
+
+A custom Slider component with an icon incorporates a personalized design by combining a graphical symbol or icon with the slider interface, adding a unique visual element and enhancing the user experience when interacting with numeric or continuous data input in a user interface.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+function App(){
+  const [sliderValue, setSliderValue] = React.useState(55);
+  const handleChange = (value) => {
+    setSliderValue(value);
+  };
+  return (
+    <VStack space="lg">
+    <Text size="lg">Brightness</Text>
+    <Center w="$72">
+        <Slider
+          sliderTrackHeight={6}
+          size='lg'
+          value={sliderValue}
+          onChange={(value) => {
+          handleChange(value);
+          }}>
+          <SliderTrack>
+            <SliderFilledTrack bg="$amber600"/>
+          </SliderTrack>
+           <SliderThumb bg="$amber600" p='$1' $active-outlineColor="$amber500">
+            <Icon as={LightbulbIcon} color="white" size="sm"/>
+          </SliderThumb>
+        </Slider>
+    </Center>
+    </VStack>
+  );
+}
+`,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'App');
+      },
+      scope: {
+        Wrapper,
+        Center,
+        Slider,
+        SliderTrack,
+        SliderFilledTrack,
+        SliderThumb,
+        LightbulbIcon,
+        Icon,
+        Text,
+        VStack,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### Volume
+
+A Slider component used as a volume control allows users to adjust the audio volume by sliding the handle along the track, providing an intuitive and interactive way to control the sound output within a user interface.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+function App(){
+  const [sliderValue, setSliderValue] = React.useState(40);
+  const [onChangeEndValue, setOnChangeEndValue] = React.useState(40);
+  const handleChange = (value) => {
+    setSliderValue(value);
+  };
+  return (
+    <VStack space="2xl">
+      <Box>
+        <Text textAlign="center">current sliderValue - {sliderValue}</Text>
+        <Text textAlign="center">onChangeEndValue - {onChangeEndValue}</Text>
+      </Box>
+      <HStack space="lg">
+        <Volume />
+        <Center w="$80">
+          <Slider
+            sliderTrackHeight={4}
+            value={sliderValue}
+            onChange={v => {
+              handleChange(Math.floor(v));
+            }} 
+            onChangeEnd={v => {
+              v && setOnChangeEndValue(Math.floor(v));
+            }}
+            >
+            <SliderTrack>
+              <SliderFilledTrack />
+            </SliderTrack>
+            <SliderThumb />
+          </Slider>
+        </Center>
+        <Volume2Icon/>
+      </HStack>
+    </VStack>
+  );
+}
+`,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'App');
+      },
+      scope: {
+        Wrapper,
+        Center,
+        Slider,
+        SliderTrack,
+        SliderFilledTrack,
+        SliderThumb,
+        Center,
+        Volume,
+        VStack,
+        HStack,
+        Volume2Icon,
+        Text,
+        Box,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>

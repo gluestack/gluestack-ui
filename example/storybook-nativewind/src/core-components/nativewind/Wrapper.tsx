@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Center, useColorMode } from '@gluestack-ui/themed';
-import { GluestackUIProvider } from './GluestackUIProvider';
+import { GluestackUIProvider } from './gluestack-ui-provider';
 
 const Wrapper = ({ children, ...props }: any) => {
   const colorMode: any = useColorMode();

@@ -1,21 +1,21 @@
 import React from 'react';
-import { Fab, FabIcon, FabLabel } from '@/components/ui/Fab';
-import { Avatar, AvatarImage } from '@/components/ui/Avatar';
-import { AddIcon, MenuIcon, SearchIcon, CheckIcon } from '@/components/ui/Icon';
-import { Box } from '@/components/ui/Box';
+import { Fab, FabIcon, FabLabel } from '@/components/ui/fab';
+import { Avatar, AvatarImage } from '@/components/ui/avatar';
+import { AddIcon, MenuIcon, SearchIcon, CheckIcon } from '@/components/ui/icon';
+import { Box } from '@/components/ui/box';
 import {
   Checkbox,
   CheckboxIndicator,
   CheckboxLabel,
   CheckboxIcon,
-} from '@/components/ui/Checkbox';
-import { Link } from '@/components/ui/Link';
-import { VStack } from '@/components/ui/VStack';
-import { HStack } from '@/components/ui/HStack';
-import { Heading } from '@/components/ui/Heading';
-import { Text } from '@/components/ui/Text';
-import { Divider } from '@/components/ui/Divider';
-import { Image } from '@/components/ui/Image';
+} from '@/components/ui/checkbox';
+import { Link } from '@/components/ui/link';
+import { VStack } from '@/components/ui/vstack';
+import { HStack } from '@/components/ui/hstack';
+import { Heading } from '@/components/ui/heading';
+import { Text } from '@/components/ui/text';
+import { Divider } from '@/components/ui/divider';
+import { Image } from '@/components/ui/image';
 import { EditIcon, ShoppingCartIcon } from 'lucide-react-native';
 
 const FabBasic = (props: any) => {
