@@ -3,7 +3,7 @@ import { tva } from '@gluestack-ui/nativewind-utils';
 import React from 'react';
 
 const pressableStyle = tva({
-  base: 'data-[focus-visible=true]:outline-2 outline-primary-700 outline-solid',
+  base: 'data-[focus-visible=true]:outline-none data-[focus-visible=true]:ring-primary-700 data-[focus-visible=true]:ring-2',
 });
 
 export const Pressable = React.forwardRef(
