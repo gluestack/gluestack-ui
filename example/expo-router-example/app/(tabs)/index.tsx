@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, View } from 'react-native';
-import { Theme, styled } from '@gluestack-style/react';
+import { styled } from '@gluestack-style/react';
 
 const Box = styled(
   View,
