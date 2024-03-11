@@ -37,7 +37,6 @@ import {
   Divider,
   Image,
   EditIcon,
-  ShoppingCartIcon,
 } from '../../core-components/nativewind';
 import { transformedCode } from '../../utils';
 import {
@@ -47,6 +46,7 @@ import {
   TableContainer,
   InlineCode,
 } from '@gluestack/design-system';
+import {ShoppingCartIcon} from 'lucide-react-native'
 
 import Wrapper from '../../core-components/nativewind/Wrapper';
 import { CollapsibleCode } from '@gluestack/design-system';
@@ -424,7 +424,7 @@ A Fab component with an icon adds a visually striking and easily recognizable bu
                   );
                 })}
               </VStack>
-              <Fab size='lg' className='bg-emerald-600' >
+              <Fab size='lg' className='bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800' >
                 {/* EditIcon is imported from 'lucide-react-native' */}
                 <FabIcon as={EditIcon}/>
               </Fab>
@@ -467,7 +467,7 @@ A Fab component with an icon and text combines a visual icon with accompanying t
         <Box
           className='max-w-96 border rounded-lg border-outline-200 py-[56px] px-6 mx-5 bg-background-100'
         >
-          <Fab className='top-4 h-9 bg-indigo-600'>
+          <Fab className='top-4 h-9 bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-900'>
             <FabIcon as={SearchIcon} className='mr-1.5' />
             <FabLabel >Search</FabLabel>
           </Fab>
@@ -673,7 +673,7 @@ A Fab component with custom placement allows for flexible positioning of the but
               </Text>
             </Link>
           </VStack>
-          <Fab size='lg' className='bg-pink-600 right-4 bottom-16'>
+          <Fab size='lg' className='bg-pink-600 right-4 bottom-16 hover:bg-pink-700 active:bg-pink-800'>
             {/* ShoppingCartIcon is imported from 'lucide-react-native' */}
             <FabIcon as={ShoppingCartIcon} className='h-4 w-4'/>
           </Fab>
