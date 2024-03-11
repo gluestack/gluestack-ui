@@ -1,3 +1,4 @@
+'use client';
 import { createSlider } from '@gluestack-ui/slider';
 
 import {

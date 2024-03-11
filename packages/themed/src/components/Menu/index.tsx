@@ -1,3 +1,4 @@
+'use client';
 import { AnimatePresence } from '@gluestack-style/animation-resolver';
 import { createMenu } from '@gluestack-ui/menu';
 import { Root, Item, Label, Backdrop } from './styled-components';

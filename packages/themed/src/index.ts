@@ -1,5 +1,3 @@
-'use client';
-
 export interface UIConfig {}
 export interface UIComponents {}
 

@@ -1,3 +1,4 @@
+'use client';
 import { createImage } from '@gluestack-ui/image';
 import { Root } from './styled-components';
 

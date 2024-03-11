@@ -1,3 +1,4 @@
+'use client';
 import { createButton } from '@gluestack-ui/button';
 import { Root, Text, Group, Spinner, Icon } from './styled-components';
 

@@ -1,3 +1,4 @@
+'use client';
 import { AnimatePresence } from '@gluestack-style/animation-resolver';
 import { createActionsheet } from '@gluestack-ui/actionsheet';
 import {

@@ -1,3 +1,4 @@
+'use client';
 import { createSwitch } from '@gluestack-ui/switch';
 import { Root } from './styled-components';
 

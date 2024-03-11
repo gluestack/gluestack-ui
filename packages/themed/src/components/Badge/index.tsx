@@ -1,3 +1,4 @@
+'use client';
 import { Root, Icon, Text } from './styled-components';
 
 const Badge: any = Root;

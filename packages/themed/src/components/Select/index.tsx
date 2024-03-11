@@ -1,3 +1,4 @@
+'use client';
 import { createSelect } from '@gluestack-ui/select';
 import { createActionsheet } from '@gluestack-ui/actionsheet';
 

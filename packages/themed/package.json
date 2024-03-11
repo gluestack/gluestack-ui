@@ -4,6 +4,13 @@
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "module": "build/index",
+  "exports": {
+    "./box": "./build/components/Box",
+    "./button": "./build/components/Button",
+    "./card": "./build/components/Card",
+    "./checkbox": "./build/components/Checkbox",
+    "./divider": "./build/components/Divider"
+  },
   "sideEffects": false,
   "description": "A universal themed components for React Native, Next.js & React",
   "keywords": [

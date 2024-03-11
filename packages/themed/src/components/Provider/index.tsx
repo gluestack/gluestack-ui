@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import { createProvider } from '@gluestack-ui/provider';
 import { StyledProvider } from '@gluestack-style/react';

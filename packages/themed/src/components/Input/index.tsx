@@ -1,3 +1,4 @@
+'use client';
 import { createInput } from '@gluestack-ui/input';
 import { Root, Icon, Slot, StyledInput } from './styled-components';
 

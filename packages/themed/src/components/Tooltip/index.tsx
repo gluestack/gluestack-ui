@@ -1,3 +1,4 @@
+'use client';
 import { Root, Content, Text } from './styled-components';
 import { createTooltip } from '@gluestack-ui/tooltip';
 import { AnimatePresence } from '@gluestack-style/animation-resolver';

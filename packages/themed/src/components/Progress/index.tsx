@@ -1,3 +1,4 @@
+'use client';
 import { createProgress } from '@gluestack-ui/progress';
 import { Root, FilledTrack } from './styled-components';
 

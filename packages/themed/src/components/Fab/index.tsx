@@ -1,3 +1,4 @@
+'use client';
 import { createFab } from '@gluestack-ui/fab';
 import { Root, Label, Icon } from './styled-components';
 

@@ -1,3 +1,4 @@
+'use client';
 import { createAccordion } from '@gluestack-ui/accordion';
 import {
   Root,

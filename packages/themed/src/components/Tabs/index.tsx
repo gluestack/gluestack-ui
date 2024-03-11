@@ -1,3 +1,4 @@
+'use client';
 import { createTabs } from '@gluestack-ui/tabs';
 import {
   Root,

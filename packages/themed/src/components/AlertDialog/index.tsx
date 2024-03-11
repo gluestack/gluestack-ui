@@ -1,3 +1,4 @@
+'use client';
 import { AnimatePresence } from '@gluestack-style/animation-resolver';
 import { createAlertDialog } from '@gluestack-ui/alert-dialog';
 import {

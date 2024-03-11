@@ -1,3 +1,4 @@
+'use client';
 import { Root, Group, Icon, Indicator, Label } from './styled-components';
 import { createRadio } from '@gluestack-ui/radio';
 
