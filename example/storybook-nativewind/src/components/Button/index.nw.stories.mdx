@@ -387,7 +387,7 @@ Button component is created using Pressable component from react-native. It exte
 
 #### Button
 
-<AppProvider>
+<Wrapper>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -448,7 +448,7 @@ Button component is created using Pressable component from react-native. It exte
       </Table.TBody>
     </Table>
   </TableContainer>
-</AppProvider>
+</Wrapper>
 
 > Note: These props are exclusively applicable when utilizing the default configuration of gluestack-ui/config. If you are using a custom theme, these props may not be available.
 
@@ -460,7 +460,7 @@ The Examples section provides visual representations of the different variants o
 
 A loading button is a type of button component that provides visual feedback to the user during an action that takes some time to complete. It typically displays an animated loading icon or spinner indicating the action is in progress.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -479,13 +479,13 @@ A loading button is a type of button component that provides visual feedback to 
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>
 
 #### Icon Button
 
 A button with an icon integrates a visual symbol within the button component, enhancing its appearance and providing a recognizable and intuitive representation of its associated action or functionality.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -506,13 +506,13 @@ A button with an icon integrates a visual symbol within the button component, en
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>
 
 #### Link Button
 
 A button with a link combines the interactive behavior of a button component with the ability to navigate to a specified URL, providing a clickable element for users to access external resources or internal pages.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -533,13 +533,13 @@ A button with a link combines the interactive behavior of a button component wit
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>
 
 #### Button With Icon
 
 The icon component incorporates a button component, combining visual representation with interactive functionality for seamless user interaction.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -563,13 +563,13 @@ The icon component incorporates a button component, combining visual representat
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>
 
 #### Button with Full Width
 
 The button with full width component utilizes a button component, expanding its width to occupy the entire available space, creating a visually prominent and easily accessible interface element.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     _rendererWrapper={{ py: '$8' }}
     showComponentRenderer={true}
@@ -647,4 +647,4 @@ The button with full width component utilizes a button component, expanding its 
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>
