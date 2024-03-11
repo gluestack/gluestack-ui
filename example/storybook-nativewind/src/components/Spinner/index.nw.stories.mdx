@@ -30,12 +30,12 @@ This is an illustration of **Spinner** component.
     showArgsController={true}
     metaData={{
       code: `
-          <Spinner {...props}/>
+        <Spinner {...props} color={colors.gray[500]} />
       `,
       transformCode: (code) => {
         return transformedCode(code);
       },
-      scope: { Wrapper, Spinner },
+      scope: { Wrapper, Spinner, colors },
       argsType: {
         size: {
           control: 'select',
