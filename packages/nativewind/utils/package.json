@@ -25,9 +25,9 @@
       "types": "./lib/typescript/tva.d.ts"
     },
     "./cssInterop": {
-      "require": "./lib/commonjs/cssInterop.js",
-      "import": "./lib/module/cssInterop.js",
-      "types": "./lib/typescript/cssInterop.d.ts"
+      "require": "./lib/commonjs/cssInterop",
+      "import": "./lib/module/cssInterop",
+      "types": "./lib/typescript/cssInterop/index.d.ts"
     },
     "./cn": {
       "require": "./lib/commonjs/cn.js",
