@@ -1,15 +1,15 @@
 import React from 'react';
 import { createCheckbox } from '@gluestack-ui/checkbox';
 import { View, Pressable, Text } from 'react-native';
+import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import {
-  withStates,
-  withStyleContextAndStates,
-  useStyleContext,
-  tva,
   withStyleContext,
-  cssInterop,
-  VariantProps,
-} from '@gluestack-ui/nativewind-utils';
+  useStyleContext,
+} from '@gluestack-ui/nativewind-utils/withStyleContext';
+import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withStyleContextAndStates';
+import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
+import type { VariantProps } from '@gluestack-ui/nativewind-utils';
+
 import { Platform } from 'react-native';
 import { Check } from 'lucide-react-native';
 

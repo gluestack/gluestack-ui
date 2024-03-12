@@ -1,13 +1,15 @@
 import React, { useEffect } from 'react';
 import { createAlertDialog } from '@gluestack-ui/alert-dialog';
+
+import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import {
-  cssInterop,
-  tva,
-  VariantProps,
   withStyleContext,
-  withStyleContextAndStates,
   useStyleContext,
-} from '@gluestack-ui/nativewind-utils';
+} from '@gluestack-ui/nativewind-utils/withStyleContext';
+import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withStyleContextAndStates';
+import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
+import type { VariantProps } from '@gluestack-ui/nativewind-utils';
+
 import Animated, {
   Easing,
   useSharedValue,

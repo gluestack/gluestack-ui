@@ -1,13 +1,14 @@
 import React from 'react';
 import { Text, View, Platform } from 'react-native';
+
+import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import {
-  tva,
   withStyleContext,
-  withStyleContextAndStates,
   useStyleContext,
-  cssInterop,
-  VariantProps,
-} from '@gluestack-ui/nativewind-utils';
+} from '@gluestack-ui/nativewind-utils/withStyleContext';
+import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withStyleContextAndStates';
+import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
+import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 
 const badgeStyle = tva({
   base: 'flex-row items-center rounded-sm data-[disabled=true]:opacity-50 px-2',

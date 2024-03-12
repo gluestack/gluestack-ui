@@ -17,7 +17,7 @@
   "version": "0.0.11-alpha.2",
   "react-native": "src/index",
   "source": "src/index",
-  "typings": "lib/typescript/index.d.ts",
+  "typings": "lib/typescript/types.d.ts",
   "exports": {
     "./tva": {
       "require": "./lib/commonjs/tva.js",

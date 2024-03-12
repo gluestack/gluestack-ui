@@ -1,6 +1,6 @@
 import { View } from 'react-native';
 import React from 'react';
-import { tva } from '@gluestack-ui/nativewind-utils';
+import { tva } from '@gluestack-ui/nativewind-utils/tva';
 
 // TODO: Implement LinearGradient
 export const LinearGradient = React.forwardRef(
