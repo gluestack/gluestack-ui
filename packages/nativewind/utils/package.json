@@ -14,19 +14,11 @@
     "ios",
     "nextjs"
   ],
-  "main": "lib/commonjs/index",
-  "module": "lib/module/index",
-  "types": "lib/typescript/index.d.ts",
-  "version": "0.0.11-alpha.1",
+  "version": "0.0.11-alpha.2",
   "react-native": "src/index",
   "source": "src/index",
   "typings": "lib/typescript/index.d.ts",
   "exports": {
-    ".": {
-      "require": "./lib/commonjs/index.js",
-      "import": "./lib/module/index.js",
-      "types": "./lib/typescript/index.d.ts"
-    },
     "./tva": {
       "require": "./lib/commonjs/tva.js",
       "import": "./lib/module/tva.js",
@@ -41,16 +33,6 @@
       "require": "./lib/commonjs/cn.js",
       "import": "./lib/module/cn.js",
       "types": "./lib/typescript/cn.d.ts"
-    },
-    "./context": {
-      "require": "./lib/commonjs/context.js",
-      "import": "./lib/module/context.js",
-      "types": "./lib/typescript/context.d.ts"
-    },
-    "./utils": {
-      "require": "./lib/commonjs/utils.js",
-      "import": "./lib/module/utils.js",
-      "types": "./lib/typescript/utils.d.ts"
     },
     "./withStates": {
       "require": "./lib/commonjs/withStates.js",
