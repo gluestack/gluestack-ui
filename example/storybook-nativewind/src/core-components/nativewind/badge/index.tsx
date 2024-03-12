@@ -1,14 +1,16 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, Platform } from 'react-native';
 import {
   tva,
   withStyleContext,
+  withStyleContextAndStates,
   useStyleContext,
+  cssInterop,
+  VariantProps,
 } from '@gluestack-ui/nativewind-utils';
-import { cssInterop } from 'nativewind';
 
 const badgeStyle = tva({
-  base: 'flex-row items-center rounded-xs data-[disabled=true]:opacity-50 px-2',
+  base: 'flex-row items-center rounded-sm data-[disabled=true]:opacity-50 px-2',
 
   variants: {
     action: {
@@ -36,6 +38,11 @@ const badgeTextStyle = tva({
       info: 'text-info-600',
       muted: 'text-muted-600',
     },
+    size: {
+      sm: 'text-2xs',
+      md: 'text-xs',
+      lg: 'text-sm',
+    },
   },
   variants: {
     isTruncated: {
@@ -49,19 +56,6 @@ const badgeTextStyle = tva({
     },
     strikeThrough: {
       true: 'line-through',
-    },
-    size: {
-      '2xs': 'text-2xs',
-      'xs': 'text-xs',
-      'sm': 'text-sm',
-      'md': 'text-md',
-      'lg': 'text-lg',
-      'xl': 'text-xl',
-      '2xl': 'text-2xl',
-      '3xl': 'text-3xl',
-      '4xl': 'text-4xl',
-      '5xl': 'text-5xl',
-      '6xl': 'text-6xl',
     },
     sub: {
       true: 'text-xs',
@@ -85,23 +79,23 @@ const badgeIconStyle = tva({
       info: 'text-info-600',
       muted: 'text-muted-600',
     },
-  },
-  variants: {
     size: {
-      '2xs': 'h-3 w-3',
-      'xs': 'h-3.5 w-3.5',
-      'sm': 'h-4 w-4',
-      'md': 'h-4.5 w-4.5',
-      'lg': 'h-5 w-5',
-      'xl': 'h-6 w-6',
+      sm: 'h-3 w-3',
+      md: 'h-3.5 w-3.5',
+      lg: 'h-4 w-4',
     },
   },
 });
 
-const ContextView = withStyleContext(View);
+const ContextView =
+  Platform.OS === 'web'
+    ? withStyleContext(View)
+    : withStyleContextAndStates(View);
 
 cssInterop(ContextView, { className: 'style' });
 
+type IBadgeProps = React.ComponentProps<typeof ContextView> &
+  VariantProps<typeof badgeStyle>;
 const Badge = ({
   children,
   action = 'info',
@@ -109,7 +103,7 @@ const Badge = ({
   size = 'md',
   className,
   ...props
-}: any) => {
+}: { className?: string } & IBadgeProps) => {
   return (
     <ContextView
       className={badgeStyle({ action, variant, class: className })}
@@ -125,14 +119,21 @@ const Badge = ({
   );
 };
 
-const BadgeText = ({ children, className, size, ...props }: any) => {
-  const { size: parentSize, action } = useStyleContext();
+type IBadgeTextProps = React.ComponentProps<typeof Text> &
+  VariantProps<typeof badgeTextStyle>;
+const BadgeText = ({
+  children,
+  className,
+  size,
+  ...props
+}: { className?: string } & IBadgeTextProps) => {
+  const { size: parentSize, action: parentAction } = useStyleContext();
   return (
     <Text
       className={badgeTextStyle({
         parentVariants: {
           size: parentSize,
-          action,
+          action: parentAction,
         },
         size,
         class: className,
@@ -144,15 +145,23 @@ const BadgeText = ({ children, className, size, ...props }: any) => {
   );
 };
 
-const BadgeIcon = ({ className, size, as: AsComp, ...props }: any) => {
-  const { size: parentSize, action } = useStyleContext();
+type IBadgeIconProps = React.ComponentProps<typeof View> & {
+  as?: any;
+};
+const BadgeIcon = ({
+  className,
+  size,
+  as: AsComp,
+  ...props
+}: IBadgeIconProps & { className?: any }) => {
+  const { size: parentSize, action: parentAction } = useStyleContext();
   if (AsComp) {
     return (
       <AsComp
         className={badgeIconStyle({
           parentVariants: {
             size: parentSize,
-            action,
+            action: parentAction,
           },
           size,
           class: className,
@@ -166,7 +175,7 @@ const BadgeIcon = ({ className, size, as: AsComp, ...props }: any) => {
       className={badgeIconStyle({
         parentVariants: {
           size: parentSize,
-          action,
+          action: parentAction,
         },
         size,
         class: className,

@@ -24,15 +24,11 @@ import {
   GlobeIcon,
   Icon,
   Box,
-  PuzzleIcon,
   Menu,
   MenuIcon,
   MenuItem,
   MenuItemLabel,
-  BadgePlusIcon,
-  SettingsIcon,
   AddIcon,
-  PaintBucket,
   Avatar,
   AvatarImage,
   AvatarFallbackText,
@@ -40,9 +36,15 @@ import {
   HStack,
   Button,
   ButtonText,
-  BadgeCheckIcon,
   Badge,
 } from '../../core-components/themed';
+import {
+  PaintBucket,
+  PuzzleIcon,
+  BadgeCheckIcon,
+  BadgePlusIcon,
+  SettingsIcon,
+} from 'lucide-react-native';
 import {
   AppProvider,
   CodePreview,
@@ -263,7 +265,7 @@ Badge component is created using View component from react-native. It extends al
   </TableContainer>
 </>
 
-<!--
+
 ## Spec Doc
 
 Explore the comprehensive details of the Badge in this document, including its implementation details, checklist, and potential future additions. Dive into the thought process behind the component and gain insights into its development journey.
@@ -276,7 +278,7 @@ Explore the comprehensive details of the Badge in this document, including its i
   }}
   src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FNcXOxqKbdnGsLQNex3H76u%2F%25C2%25A0%25F0%259F%2593%259Agluestack-UI-handbook%3Ftype%3Ddesign%26node-id%3D6030-27780%26t%3DdmNaOHvCSb4QGYGL-1%26scaling%3Dscale-down%26page-id%3D6030%253A25864%26starting-point-node-id%3D6030%253A27780%26mode%3Ddesign"
   allowFullScreen
-/> -->
+/> 
 
 <!--
 
@@ -319,7 +321,7 @@ The Examples section provides visual representations of the different variants o
 
 An example of the Badge component being used with the Avatar component to display badges alongside user avatars for enhanced visual representation or identification.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -369,13 +371,13 @@ An example of the Badge component being used with the Avatar component to displa
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>
 
 #### Badge in Menu
 
 A Badge component used with a menu adds a visual indicator, such as a badge, to highlight specific items or provide additional information within the menu, enhancing user interaction and improving the visibility of important elements.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -465,13 +467,13 @@ A Badge component used with a menu adds a visual indicator, such as a badge, to 
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>
 
 ### Badge Composition
 
 An example of the Badge component being used with the Composition component, allowing for the display of badges within a composition of other UI elements.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showArgsController={false}
     metaData={{
@@ -509,4 +511,4 @@ An example of the Badge component being used with the Composition component, all
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>

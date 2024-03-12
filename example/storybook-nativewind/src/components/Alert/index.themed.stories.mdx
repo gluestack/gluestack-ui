@@ -14,19 +14,20 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="with-gluestack-style/components/Feedback/Alert" />
 
-import { Alert, AlertIcon, AlertText } from '../../core-components/themed';
 import {
-  CheckCircleIcon,
-  CloseCircleIcon,
-  Icon,
   BellIcon,
   AlertCircleIcon,
   Center,
   VStack,
   InfoIcon,
+  HStack,
+  Alert,
+  AlertIcon,
+  AlertText,
+  CheckCircleIcon,
+  CloseCircleIcon,
+  Icon,
 } from '../../core-components/themed';
-
-import { HStack } from '../../core-components/themed';
 import { transformedCode } from '../../utils';
 import {
   AppProvider,
@@ -34,8 +35,8 @@ import {
   Table,
   InlineCode,
   TableContainer,
+  CollapsibleCode,
 } from '@gluestack/design-system';
-import { CollapsibleCode } from '@gluestack/design-system';
 
 import Wrapper from '../../core-components/themed/Wrapper';
 
@@ -234,16 +235,46 @@ Alert component is created using View component from react-native. It extends al
   </TableContainer>
 </>
 
-## Spec Doc
+### Examples
 
-Explore the comprehensive details of the Alert in this document, including its implementation details, checklist, and potential future additions. Dive into the thought process behind the component and gain insights into its development journey.
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
-<iframe
-  style={{
-    borderRadius: '8px',
-    border: ' 1px solid rgba(0, 0, 0, 0.1)',
-    aspectRatio: 736 / 585,
-  }}
-  src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FNcXOxqKbdnGsLQNex3H76u%2F%25C2%25A0%25F0%259F%2593%259Agluestack-UI-handbook%3Ftype%3Ddesign%26node-id%3D6300-43142%26t%3DZPsVa5mi34R2dR7W-1%26scaling%3Dscale-down%26page-id%3D6300%253A41240%26starting-point-node-id%3D6300%253A43142%26mode%3Ddesign"
-  allowFullScreen
+#### Alert with Heading
+
+An example of an alert component with a heading, which further contains another alert component for displaying supplementary information.
+
+<Wrapper>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+        <Alert action='success'>
+          <AlertIcon as={CheckCircleIcon} size="xl"  mr="$3" />
+          <VStack space='xs'>
+            <AlertText fontWeight ='$bold'>
+              Congratulations!
+            </AlertText >
+            <AlertText >
+              Thank you for your submission. You will receive a confirmation email shortly.
+            </AlertText>
+          </VStack>
+        </Alert>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Alert,
+        AlertIcon,
+        AlertText,
+        Wrapper,
+        CheckCircleIcon,
+        VStack,
+        Icon,
+      },
+      argsType: {},
+    }}
 />
+
+</Wrapper>

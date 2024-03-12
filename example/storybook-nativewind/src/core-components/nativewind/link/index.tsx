@@ -1,5 +1,6 @@
 import { createLink } from '@gluestack-ui/link';
-import { Pressable, Platform, Text } from 'react-native';
+import { Pressable, Platform } from 'react-native';
+import { Text } from 'react-native';
 
 import {
   tva,

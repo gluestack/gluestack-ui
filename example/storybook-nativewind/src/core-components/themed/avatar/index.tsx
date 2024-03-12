@@ -174,7 +174,7 @@ const StyledText = styled(
   Text,
   {
     color: '$text700',
-    flex: 1,
+    // flex: 1,
     fontWeight: '$normal',
     fontFamily: '$body',
     fontStyle: 'normal',

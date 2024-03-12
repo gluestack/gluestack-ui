@@ -68,7 +68,6 @@ import {
   Camera,
 } from 'lucide-react-native';
 const IconBasic = ({ size, ...props }: any) => {
-  // return <Icon as={CalendarDaysIcon} size="md" />;
   return <CalendarDaysIcon size={size} {...props} />;
 };
 

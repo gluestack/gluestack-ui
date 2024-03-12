@@ -29,9 +29,6 @@ const progressStyle = tva({
       '2xl': 'h-6',
     },
   },
-  defaultVariants: {
-    size: 'md',
-  },
 });
 const progressFilledTrackStyle = tva({
   base: 'bg-primary-500 rounded-full',
