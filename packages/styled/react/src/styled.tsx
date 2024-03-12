@@ -2185,7 +2185,8 @@ export function verboseStyled<P, Variants, ComCon>(
   StyledComp.isStyledComponent = true;
 
   return StyledComp as ForwardRefExoticComponent<
-    StyledComponentProps<ITypeReactNativeStyles, Variants, P, ComCon>
+    StyledComponentProps<ITypeReactNativeStyles, Variants, P, ComCon> &
+      React.RefAttributes<P>
   >;
 }
 
