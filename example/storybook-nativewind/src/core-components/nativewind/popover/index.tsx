@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { createPopover } from '@gluestack-ui/popover';
 import {
   tva,
@@ -8,21 +8,16 @@ import {
   withStyleContext,
   withStyleContextAndStates,
 } from '@gluestack-ui/nativewind-utils';
-import Animated, {
-  Easing,
-  useSharedValue,
-  withSpring,
-  withTiming,
-} from 'react-native-reanimated';
-import {
-  View,
-  Pressable,
-  Platform,
-  ScrollView,
-  StyleSheet,
-} from 'react-native';
 
-const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
+import { View, Pressable, Platform, ScrollView } from 'react-native';
+
+import {
+  Motion,
+  createMotionAnimatedComponent,
+  AnimatePresence,
+} from '@legendapp/motion';
+
+const AnimatedPressable = createMotionAnimatedComponent(Pressable);
 
 const UIPopover = createPopover({
   // @ts-ignore
@@ -30,15 +25,16 @@ const UIPopover = createPopover({
     Platform.OS === 'web'
       ? withStyleContext(View)
       : withStyleContextAndStates(View),
-  Arrow: Animated.View,
+  Arrow: Motion.View,
   Backdrop: AnimatedPressable,
   Body: ScrollView,
   CloseButton: Pressable,
-  Content: Animated.View,
+  Content: Motion.View,
   Footer: View,
   Header: View,
-  AnimatedPresence: React.Fragment, // TODO: Add support for this
+  AnimatedPresence: AnimatePresence,
 });
+
 cssInterop(UIPopover, { className: 'style' });
 cssInterop(UIPopover.Arrow, { className: 'style' });
 cssInterop(UIPopover.Content, { className: 'style' });
@@ -50,9 +46,18 @@ cssInterop(UIPopover.CloseButton, { className: 'style' });
 
 const popoverStyle = tva({
   base: 'group/popover w-full h-full justify-center items-center web:pointer-events-none',
+  variants: {
+    size: {
+      xs: '',
+      sm: '',
+      md: '',
+      lg: '',
+      full: '',
+    },
+  },
 });
 const popoverArrowStyle = tva({
-  base: '',
+  base: 'bg-background-50 z-1 absolute overflow-hidden h-3.5 w-3.5',
 });
 
 const popoverBackdropStyle = tva({
@@ -94,13 +99,13 @@ type IPopoverProps = React.ComponentProps<typeof UIPopover> &
 type IPopoverArrowProps = React.ComponentProps<typeof UIPopover.Arrow> &
   VariantProps<typeof popoverArrowStyle>;
 
-type IPopoverContentProps = React.ComponentProps<typeof popoverContentStyle> &
+type IPopoverContentProps = React.ComponentProps<typeof UIPopover.Content> &
   VariantProps<typeof popoverContentStyle>;
 
-type IPopoverHeaderProps = React.ComponentProps<typeof popoverHeaderStyle> &
+type IPopoverHeaderProps = React.ComponentProps<typeof UIPopover.Header> &
   VariantProps<typeof popoverHeaderStyle>;
 
-type IPopoverFooterProps = React.ComponentProps<typeof popoverFooterStyle> &
+type IPopoverFooterProps = React.ComponentProps<typeof UIPopover.Footer> &
   VariantProps<typeof popoverFooterStyle>;
 
 type IPopoverBodyProps = React.ComponentProps<typeof UIPopover.Body> &
@@ -116,17 +121,17 @@ type IPopoverCloseButtonProps = React.ComponentProps<
 
 const Popover = React.forwardRef(
   (
-    //@ts-ignore
     {
       className,
       size = 'md',
       ...props
     }: { className?: string } & IPopoverProps,
-    ref
+    ref?: any
   ) => (
     <UIPopover
       ref={ref}
       {...props}
+      // @ts-ignore
       className={popoverStyle({ size, class: className })}
       context={{ size }}
       pointerEvents="box-none"
@@ -136,12 +141,22 @@ const Popover = React.forwardRef(
 
 const PopoverArrow = React.forwardRef(
   (
-    //@ts-ignore
     { className, ...props }: { className?: string } & IPopoverArrowProps,
-    ref
+    ref?: any
   ) => (
     <UIPopover.Arrow
       ref={ref}
+      transition={{
+        type: 'spring',
+        damping: 18,
+        stiffness: 250,
+        mass: 0.9,
+        opacity: {
+          type: 'timing',
+          duration: 50,
+          delay: 50,
+        },
+      }}
       {...props}
       className={popoverArrowStyle({ class: className })}
     />
@@ -151,29 +166,35 @@ const PopoverArrow = React.forwardRef(
 const PopoverBackdrop = React.forwardRef(
   (
     { className, ...props }: { className?: string } & IPopoverBackdropProps,
-    ref
+    ref?: any
   ) => {
-    const opacity = useSharedValue(0);
-
-    useEffect(() => {
-      opacity.value = withTiming(0.5, {
-        easing: Easing.linear,
-      });
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
     return (
       <UIPopover.Backdrop
         ref={ref}
         {...props}
+        initial={{
+          opacity: 0,
+        }}
+        animate={{
+          opacity: 0.1,
+        }}
+        exit={{
+          opacity: 0,
+        }}
+        transition={{
+          type: 'spring',
+          damping: 18,
+          stiffness: 450,
+          mass: 0.9,
+          opacity: {
+            type: 'timing',
+            duration: 50,
+            delay: 50,
+          },
+        }}
         className={popoverBackdropStyle({
           class: className,
         })}
-        style={[
-          StyleSheet.absoluteFill,
-          {
-            opacity: opacity,
-          },
-        ]}
       />
     );
   }
@@ -182,7 +203,7 @@ const PopoverBackdrop = React.forwardRef(
 const PopoverBody = React.forwardRef(
   (
     { className, ...props }: { className?: string } & IPopoverBodyProps,
-    ref
+    ref?: any
   ) => (
     <UIPopover.Body
       ref={ref}
@@ -197,7 +218,7 @@ const PopoverBody = React.forwardRef(
 const PopoverCloseButton = React.forwardRef(
   (
     { className, ...props }: { className?: string } & IPopoverCloseButtonProps,
-    ref
+    ref?: any
   ) => (
     <UIPopover.CloseButton
       ref={ref}
@@ -216,28 +237,24 @@ const PopoverContent = React.forwardRef(
       size,
       ...props
     }: { className?: string } & IPopoverContentProps,
-    ref
+    ref?: any
   ) => {
     const { size: parentSize } = useStyleContext();
 
-    const opacity = useSharedValue(0);
-    const scale = useSharedValue(0.9);
-    useEffect(() => {
-      opacity.value = withTiming(1, {
-        easing: Easing.linear,
-      });
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-    useEffect(() => {
-      scale.value = withSpring(1, {
-        damping: 18,
-        stiffness: 250,
-      });
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
     return (
       <UIPopover.Content
         ref={ref}
+        transition={{
+          type: 'spring',
+          damping: 18,
+          stiffness: 250,
+          mass: 0.9,
+          opacity: {
+            type: 'timing',
+            duration: 50,
+            delay: 50,
+          },
+        }}
         {...props}
         className={popoverContentStyle({
           parentVariants: {
@@ -246,10 +263,6 @@ const PopoverContent = React.forwardRef(
           size,
           class: className,
         })}
-        style={{
-          opacity: opacity,
-          transform: [{ scale: scale }],
-        }}
         pointerEvents="auto"
       />
     );
@@ -259,7 +272,7 @@ const PopoverContent = React.forwardRef(
 const PopoverFooter = React.forwardRef(
   (
     { className, ...props }: { className?: string } & IPopoverFooterProps,
-    ref
+    ref?: any
   ) => (
     <UIPopover.Footer
       ref={ref}
@@ -274,7 +287,7 @@ const PopoverFooter = React.forwardRef(
 const PopoverHeader = React.forwardRef(
   (
     { className, ...props }: { className?: string } & IPopoverHeaderProps,
-    ref
+    ref?: any
   ) => (
     <UIPopover.Header
       ref={ref}

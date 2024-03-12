@@ -7,6 +7,7 @@ import {
   PopoverBody,
   PopoverFooter,
   PopoverCloseButton,
+  PopoverArrow,
 } from '@/components/ui/popover';
 import { Button, ButtonText } from '@/components/ui/button';
 import { Text } from '@/components/ui/text';
@@ -19,6 +20,8 @@ const PopoverBasic = (props: any) => {
   return (
     <Popover
       {...props}
+      placement="right"
+      shouldFlip
       isOpen={showPopover}
       onOpen={() => {
         setShowPopover(true);
@@ -37,6 +40,7 @@ const PopoverBasic = (props: any) => {
     >
       <PopoverBackdrop />
       <PopoverContent>
+        <PopoverArrow />
         <PopoverHeader>
           <Heading>Welcome!</Heading>
           <PopoverCloseButton>
