@@ -3,7 +3,7 @@ import React from 'react';
 import { ParentContext } from './context';
 
 type WithStyleContextProps = {
-  context: any;
+  context?: any;
 };
 export const withStyleContext = <T,>(
   Component: React.ComponentType<T & WithStyleContextProps>
