@@ -20,7 +20,11 @@ export const GluestackUIProvider = ({
   return (
     <>
       {/** @ts-ignore */}
-      <GluestackUIStyledProvider colorMode="light" config={config} {...props}>
+      <GluestackUIStyledProvider
+        colorMode={props.colorMode ? props.colorMode : 'light'}
+        config={config}
+        {...props}
+      >
         <OverlayProvider>
           <ToastProvider>{children}</ToastProvider>
         </OverlayProvider>
