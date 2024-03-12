@@ -58,17 +58,34 @@ module.exports = function (api) {
               __dirname,
               '../../packages/unstyled/provider/src'
             ),
+            '@gluestack-ui/popover': path.resolve(
+              __dirname,
+              '../../packages/unstyled/popover/src'
+            ),
             '@gluestack-style/react': path.resolve(
               __dirname,
               '../../packages/styled/react/src'
             ),
+            '@gluestack-ui/nativewind-utils/withStyleContext': path.resolve(
+              __dirname,
+              '../../packages/nativewind/utils/src/withStyleContext'
+            ),
+            '@gluestack-ui/nativewind-utils/withStyleContextAndStates':
+              path.resolve(
+                __dirname,
+                '../../packages/nativewind/utils/src/withStyleContextAndStates'
+              ),
+            '@gluestack-ui/nativewind-utils/cssInterop': path.resolve(
+              __dirname,
+              '../../packages/nativewind/utils/src/cssInterop'
+            ),
+            '@gluestack-ui/nativewind-utils/tva': path.resolve(
+              __dirname,
+              '../../packages/nativewind/utils/src/tva'
+            ),
             '@gluestack-ui/nativewind-utils': path.resolve(
               __dirname,
               '../../packages/nativewind/utils/src'
-            ),
-            '@gluestack-ui/config': path.resolve(
-              __dirname,
-              '../../packages/config/src/gluestack-ui.config.ts'
             ),
           },
         },

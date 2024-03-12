@@ -1,13 +1,13 @@
 import { Text, View } from 'react-native';
 import React from 'react';
 import { createFormControl } from '@gluestack-ui/form-control';
+import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import {
-  tva,
   withStyleContext,
   useStyleContext,
-  cssInterop,
-  VariantProps,
-} from '@gluestack-ui/nativewind-utils';
+} from '@gluestack-ui/nativewind-utils/withStyleContext';
+import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
+import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 
 const formControlStyle = tva({
   base: 'flex flex-col',

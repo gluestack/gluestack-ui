@@ -4,7 +4,8 @@ import {
   AnimatedView,
 } from '@gluestack-style/animation-resolver';
 import { View, Text } from 'react-native';
-import { tva, withStyleContext } from '@gluestack-ui/nativewind-utils';
+import { tva } from '@gluestack-ui/nativewind-utils/tva';
+import { withStyleContext } from '@gluestack-ui/nativewind-utils/withStyleContext';
 import React from 'react';
 
 export const UITooltip = createTooltip({

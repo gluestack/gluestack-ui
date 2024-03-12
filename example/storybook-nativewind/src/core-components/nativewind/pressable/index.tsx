@@ -1,5 +1,5 @@
 import { Pressable as RNPressable } from 'react-native';
-import { tva } from '@gluestack-ui/nativewind-utils';
+import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import React from 'react';
 
 const pressableStyle = tva({

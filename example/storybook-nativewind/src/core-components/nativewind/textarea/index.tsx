@@ -1,15 +1,14 @@
 import React from 'react';
 import { createTextarea } from '@gluestack-ui/textarea';
 import { View, TextInput, Platform } from 'react-native';
+import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import {
-  tva,
-  withStyleContextAndStates,
-  useStyleContext,
   withStyleContext,
-  withStates,
-  cssInterop,
-  VariantProps,
-} from '@gluestack-ui/nativewind-utils';
+  useStyleContext,
+} from '@gluestack-ui/nativewind-utils/withStyleContext';
+import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withStyleContextAndStates';
+import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
+import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 
 const UITextarea = createTextarea({
   // @ts-ignore

@@ -1,13 +1,13 @@
 import React from 'react';
 import { createPopover } from '@gluestack-ui/popover';
+import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import {
-  tva,
-  cssInterop,
-  VariantProps,
-  useStyleContext,
   withStyleContext,
-  withStyleContextAndStates,
-} from '@gluestack-ui/nativewind-utils';
+  useStyleContext,
+} from '@gluestack-ui/nativewind-utils/withStyleContext';
+import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withStyleContextAndStates';
+import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
+import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 
 import { View, Pressable, Platform, ScrollView } from 'react-native';
 

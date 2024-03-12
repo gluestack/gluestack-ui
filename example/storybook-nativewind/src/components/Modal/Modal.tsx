@@ -86,5 +86,4 @@ export {
   Button,
   ButtonText,
   Text,
-  Center,
 };
