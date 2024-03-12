@@ -1,13 +1,14 @@
 import { createFab } from '@gluestack-ui/fab';
 import { Platform, Text, View } from 'react-native';
 import { Pressable } from 'react-native';
+import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import {
-  tva,
   withStyleContext,
-  withStyleContextAndStates,
   useStyleContext,
-  cssInterop,
-} from '@gluestack-ui/nativewind-utils';
+} from '@gluestack-ui/nativewind-utils/withStyleContext';
+import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withStyleContextAndStates';
+import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
+
 import React from 'react';
 
 export const UIFab = createFab({

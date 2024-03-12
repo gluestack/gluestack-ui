@@ -1,5 +1,5 @@
 ---
-title: Popover | gluestack-ui | Installation, Usage, and API
+title: gluestack-ui Popover Component | Installation, Usage, and API
 
 description: Popovers often provide contextual information or quick access to related actions without requiring the user to navigate to a different page or view.
 
@@ -7,16 +7,51 @@ pageTitle: Popover
 
 pageDescription: Popovers often provide contextual information or quick access to related actions without requiring the user to navigate to a different page or view.
 
-showHeader: false
-
-tag: coming soon
+showHeader: true
 ---
 
 import { Meta } from '@storybook/addon-docs';
 
 <Meta title="with-nativewind/components/Overlay/Popover" />
 
-# Popover
+import {
+  Popover,
+  PopoverBackdrop,
+  PopoverContent,
+  PopoverHeader,
+  PopoverBody,
+  PopoverFooter,
+  PopoverCloseButton,
+  PopoverArrow,
+  Pressable,
+  Text as PopoverText,
+  Heading,
+  Icon,
+  HStack,
+  VStack,
+  Avatar,
+  AvatarFallbackText,
+  Button,
+  ButtonText,
+  Box,
+  CloseIcon,
+  CircleIcon,
+  PhoneIcon,
+  ClockIcon,
+  MailIcon,
+  Center,
+} from '../../core-components/nativewind';
+import {
+  AppProvider,
+  CodePreview,
+  Table,
+  TableContainer,
+  Text,
+  InlineCode,
+  CollapsibleCode,
+} from '@gluestack/design-system';
+import { transformedCode } from '../../utils';
+import Wrapper from '../../core-components/nativewind/Wrapper';
 
 This is an illustration of **Popover** component.
 
