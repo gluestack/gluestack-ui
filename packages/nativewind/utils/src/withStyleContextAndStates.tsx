@@ -4,7 +4,7 @@ import { extractDataClassName } from './utils';
 import { ParentContext } from './context';
 
 type WithStyleContextProps = {
-  context: any;
+  context?: any;
   className?: string;
   states?: any;
 };

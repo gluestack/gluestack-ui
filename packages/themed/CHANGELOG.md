@@ -1,5 +1,21 @@
 # @gluestack-ui/themed
 
+## 1.1.11
+
+### Patch Changes
+
+- Updated dependencies
+  - @gluestack-ui/popover@0.1.32
+
+## 1.1.10
+
+### Patch Changes
+
+- - Fixed ref typings
+  - Fixed plugin sx prop issue
+- Updated dependencies
+  - @gluestack-style/react@1.0.50
+
 ## 1.1.9
 
 ### Patch Changes

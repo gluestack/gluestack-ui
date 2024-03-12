@@ -23,8 +23,6 @@ import {
   PopoverFooter,
   PopoverCloseButton,
   PopoverArrow,
-} from './Popover';
-import {
   Pressable,
   Text as PopoverText,
   Heading,
@@ -33,17 +31,18 @@ import {
   VStack,
   Avatar,
   AvatarFallbackText,
-} from '@gluestack-ui/themed';
-import {
   Button,
   ButtonGroup,
   ButtonText,
   Box,
   CloseIcon,
   CircleIcon,
-} from '@gluestack-ui/themed';
-import { PhoneIcon, Clock3Icon, MailIcon } from '@gluestack-ui/themed';
-import { Center } from '@gluestack-ui/themed';
+  PhoneIcon, 
+  Clock3Icon, 
+  MailIcon,
+  Center
+} from '../../core-components/nativewind';
+
 import { transformedCode } from '../../utils';
 import {
   AppProvider,
@@ -299,9 +298,11 @@ We have exported `PopoverArrow` component which can be used to render an arrow f
 
 ```bash
 
-npm i @gluestack-ui/popover
+npm i @gluestack-ui/popover @legendapp/motion
 
 ```
+> Note: At present, we have integrated the `@legendapp/motion` for animation. You have the option to remove this and implement your own custom animation wrapper.
+
 
 ### Step 2: Copy and paste the following code into your project.
 
