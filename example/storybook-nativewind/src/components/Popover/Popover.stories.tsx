@@ -32,16 +32,10 @@ const PopoverMeta: ComponentMeta<typeof Popover> = {
         'right top',
       ],
     },
-    showPopover: {
-      control: 'boolean',
-      figmaIgnore: true,
-      options: [true, false],
-    },
   },
   args: {
     size: 'md',
     placement: 'bottom',
-    showPopover: true,
   },
 };
 

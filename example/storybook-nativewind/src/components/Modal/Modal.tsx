@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, ButtonText } from '@/components/ui/button';
 import {
   Modal,
@@ -10,24 +10,19 @@ import {
   ModalHeader,
 } from '@/components/ui/modal';
 import { Center } from '@/components/ui/center';
-
-import { X } from 'lucide-react-native';
+import { Heading } from '@/components/ui/heading';
+import { Icon, CloseIcon } from '@/components/ui/icon';
 import { Text } from '@/components/ui/text';
 
-const ModalBasic = (props: any) => {
-  const [showModal, setShowModal] = React.useState(false);
+const ModalBasic = () => {
+  const [showModal, setShowModal] = useState(false);
   const ref = React.useRef(null);
   return (
-    <>
-      <Button
-        onPress={() => {
-          setShowModal(!showModal);
-        }}
-      >
-        <ButtonText>Open Modal</ButtonText>
+    <Center h={300}>
+      <Button onPress={() => setShowModal(true)} ref={ref}>
+        <ButtonText>Show Modal</ButtonText>
       </Button>
       <Modal
-        {...props}
         isOpen={showModal}
         onClose={() => {
           setShowModal(false);
@@ -37,23 +32,24 @@ const ModalBasic = (props: any) => {
         <ModalBackdrop />
         <ModalContent>
           <ModalHeader>
-            <Text>Are you absolutely sure?</Text>
+            <Heading size="lg">Engage with Modals</Heading>
             <ModalCloseButton>
-              <X
-                size={20}
-                className="stroke-background-400 group-[:hover]/modal-close-button:stroke-background-700 group-[:active]/modal-close-button:stroke-background-900 group-[:focus-visible]/modal-close-button:stroke-background-900"
-              />
+              <Icon as={CloseIcon} />
             </ModalCloseButton>
           </ModalHeader>
           <ModalBody>
             <Text>
-              This action cannot be undone. This will permanently delete your
-              account and remove your data from our servers.
+              Elevate user interactions with our versatile modals. Seamlessly
+              integrate notifications, forms, and media displays. Make an impact
+              effortlessly.
             </Text>
           </ModalBody>
-          <ModalFooter className="gap-3">
+          <ModalFooter>
             <Button
               variant="outline"
+              size="sm"
+              action="secondary"
+              mr="$3"
               onPress={() => {
                 setShowModal(false);
               }}
@@ -61,16 +57,19 @@ const ModalBasic = (props: any) => {
               <ButtonText>Cancel</ButtonText>
             </Button>
             <Button
+              size="sm"
+              action="positive"
+              borderWidth="$0"
               onPress={() => {
                 setShowModal(false);
               }}
             >
-              <ButtonText>Continue</ButtonText>
+              <ButtonText>Explore</ButtonText>
             </Button>
           </ModalFooter>
         </ModalContent>
       </Modal>
-    </>
+    </Center>
   );
 };
 

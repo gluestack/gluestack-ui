@@ -1,3 +1,5 @@
+import React from 'react';
+
 export interface InterfacePopoverProps {
   /**
    * If true, the popover will be opened by default.
@@ -97,14 +99,30 @@ export type IPopoverComponentType<
   BodyProps,
   BackdropProps,
   CloseButtonProps
-> = React.ForwardRefExoticComponent<IPopoverProps & PopoverProps> & {
-  Body: React.ForwardRefExoticComponent<BodyProps>;
-  CloseButton: React.ForwardRefExoticComponent<CloseButtonProps>;
-  Content: React.ForwardRefExoticComponent<ContentProps>;
-  Footer: React.ForwardRefExoticComponent<FooterProps>;
-  Header: React.ForwardRefExoticComponent<HeaderProps>;
-  Arrow: React.ForwardRefExoticComponent<ArrowProps>;
-  Backdrop: React.ForwardRefExoticComponent<BackdropProps>;
+> = React.ForwardRefExoticComponent<
+  IPopoverProps & PopoverProps & React.RefAttributes<PopoverProps>
+> & {
+  Body: React.ForwardRefExoticComponent<
+    BodyProps & React.RefAttributes<BodyProps>
+  >;
+  CloseButton: React.ForwardRefExoticComponent<
+    CloseButtonProps & React.RefAttributes<CloseButtonProps>
+  >;
+  Content: React.ForwardRefExoticComponent<
+    ContentProps & React.RefAttributes<ContentProps>
+  >;
+  Footer: React.ForwardRefExoticComponent<
+    FooterProps & React.RefAttributes<FooterProps>
+  >;
+  Header: React.ForwardRefExoticComponent<
+    HeaderProps & React.RefAttributes<HeaderProps>
+  >;
+  Arrow: React.ForwardRefExoticComponent<
+    ArrowProps & React.RefAttributes<ArrowProps>
+  >;
+  Backdrop: React.ForwardRefExoticComponent<
+    BackdropProps & React.RefAttributes<BackdropProps>
+  >;
 };
 
 export type IPopoverProps = InterfacePopoverProps;

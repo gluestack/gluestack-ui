@@ -5,6 +5,7 @@
     "paths": {
       "@/components/ui/*": ["src/core-components/nativewind/*"],
       "@gluestack-style/react": ["../../packages/styled/react/src"],
+      "@gluestack-ui/popover": ["../../packages/unstyled/popover/src"],
       "@gluestack-ui/nativewind-utils": ["../../packages/nativewind/utils/src"],
       "@gluestack-ui/provider": ["../../packages/unstyled/provider/src"]
     },
