@@ -14,11 +14,16 @@
     "ios",
     "nextjs"
   ],
-  "version": "1.0.0",
+  "version": "1.0.1",
   "react-native": "src/index",
   "source": "src/index",
   "typings": "lib/typescript/types.d.ts",
   "exports": {
+    ".": {
+      "require": "./lib/commonjs/index.js",
+      "import": "./lib/module/index.js",
+      "types": "./lib/typescript/types.d.ts"
+    },
     "./tva": {
       "require": "./lib/commonjs/tva.js",
       "import": "./lib/module/tva.js",
