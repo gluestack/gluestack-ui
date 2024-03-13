@@ -1,12 +1,14 @@
 import { createAlert } from '@gluestack-ui/alert';
 import { View, Text } from 'react-native';
+
+import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import {
-  tva,
-  useStyleContext,
   withStyleContext,
-} from '@gluestack-ui/nativewind-utils';
+  useStyleContext,
+} from '@gluestack-ui/nativewind-utils/withStyleContext';
+
 import React from 'react';
-import { cssInterop } from 'nativewind';
+import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
 
 const alertStyle = tva({
   base: 'items-center p-3 rounded-sm flex-row',

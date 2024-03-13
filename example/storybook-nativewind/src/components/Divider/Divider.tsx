@@ -2,11 +2,6 @@ import React from 'react';
 import { Divider } from '@/components/ui/divider';
 import { HStack } from '@/components/ui/hstack';
 import { Heading } from '@/components/ui/heading';
-import { Center } from '@/components/ui/center';
-import { Text } from '@/components/ui/text';
-import { VStack } from '@/components/ui/vstack';
-import { Box } from '@/components/ui/box';
-import { Button, ButtonText } from '@/components/ui/button';
 
 const DividerBasic = ({ ...props }) => {
   return (
@@ -33,14 +28,4 @@ DividerBasic.description =
 
 export default DividerBasic;
 
-export {
-  Text,
-  VStack,
-  HStack,
-  Divider,
-  Box,
-  Heading,
-  Button,
-  ButtonText,
-  Center,
-};
+export { HStack, Divider, Heading };

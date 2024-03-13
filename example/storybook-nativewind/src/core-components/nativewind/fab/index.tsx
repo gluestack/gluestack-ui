@@ -1,13 +1,14 @@
 import { createFab } from '@gluestack-ui/fab';
 import { Platform, Text, View } from 'react-native';
 import { Pressable } from 'react-native';
+import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import {
-  tva,
   withStyleContext,
-  withStyleContextAndStates,
   useStyleContext,
-  cssInterop,
-} from '@gluestack-ui/nativewind-utils';
+} from '@gluestack-ui/nativewind-utils/withStyleContext';
+import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withStyleContextAndStates';
+import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
+
 import React from 'react';
 
 export const UIFab = createFab({
@@ -26,7 +27,7 @@ cssInterop(UIFab.Label, { className: 'style' });
 cssInterop(UIFab.Icon, { className: 'style' });
 
 const fabStyle = tva({
-  base: 'group/fab bg-primary-500 rounded-full z-20 p-4 flex-row items-center justify-center absolute hover:bg-red-600 active:bg-primary-700 disabled:opacity-40 disabled:pointer-events-all disabled:cursor-not-allowed data-[focus=true]:outline-2 data-[focus=true]:outline-primary-700 data-[focus=true]:outline-solid',
+  base: 'group/fab bg-primary-500 rounded-full z-20 p-4 flex-row items-center justify-center absolute hover:bg-primary-600 active:bg-primary-700 disabled:opacity-40 disabled:pointer-events-all disabled:cursor-not-allowed data-[focus=true]:web:outline-none data-[focus-visible=true]:web:ring-2 data-[focus-visible=true]:web:ring-primary-700',
   variants: {
     size: {
       sm: 'px-2.5 py-2.5 text-sm',

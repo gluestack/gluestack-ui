@@ -1,15 +1,15 @@
 import React from 'react';
 import { createCheckbox } from '@gluestack-ui/checkbox';
 import { View, Pressable, Text } from 'react-native';
+import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import {
-  withStates,
-  withStyleContextAndStates,
-  useStyleContext,
-  tva,
   withStyleContext,
-  cssInterop,
-  VariantProps,
-} from '@gluestack-ui/nativewind-utils';
+  useStyleContext,
+} from '@gluestack-ui/nativewind-utils/withStyleContext';
+import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withStyleContextAndStates';
+import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
+import type { VariantProps } from '@gluestack-ui/nativewind-utils';
+
 import { Platform } from 'react-native';
 import { Check } from 'lucide-react-native';
 
@@ -47,7 +47,7 @@ const checkboxIndicatorStyle = tva({
 });
 
 const checkboxLabelStyle = tva({
-  base: 'text-typography-600 data-[checked=true]:text-typography-900 group-hover/checkbox:text-typography-900 group-hover/checkbox:data-[checked=true]:text-typography-900 group-hover/checkbox:data-[checked=true]:data-[disabled=true]:text-typography-900 group-hover/checkbox:data-[disabled=true]:text-typography-600 active:text-typography-900 active:data-[checked=true]:text-typography-900 data-[disabled=true]:opacity-40 web:select-none',
+  base: 'text-typography-600 data-[checked=true]:text-typography-900 group-hover/checkbox:text-typography-900 group-hover/checkbox:data-[checked=true]:text-typography-900 group-hover/checkbox:data-[checked=true]:data-[disabled=true]:text-typography-900 group-hover/checkbox:data-[disabled=true]:text-typography-400 active:text-typography-900 active:data-[checked=true]:text-typography-900 data-[disabled=true]:opacity-40 web:select-none',
   parentVariants: {
     size: {
       lg: 'text-lg',

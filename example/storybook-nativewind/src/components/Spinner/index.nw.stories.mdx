@@ -1,5 +1,5 @@
 ---
-title: Spinner | gluestack-ui | Installation, Usage, and API
+title: gluestack-ui Spinner Component | Installation, Usage, and API
 
 description: Spinners are designed to give visual cues to users that an action is being processed or that a change or result is expected. They are useful for improving the user experience by reducing frustration and uncertainty.
 
@@ -30,12 +30,12 @@ This is an illustration of **Spinner** component.
     showArgsController={true}
     metaData={{
       code: `
-          <Spinner {...props}/>
+        <Spinner {...props} color={colors.gray[500]} />
       `,
       transformCode: (code) => {
         return transformedCode(code);
       },
-      scope: { Wrapper, Spinner },
+      scope: { Wrapper, Spinner, colors },
       argsType: {
         size: {
           control: 'select',
@@ -112,7 +112,7 @@ The Examples section provides visual representations of the different variants o
 
 A Spinner component with a label provides informative text or a label alongside the spinner, offering descriptive context and improving user understanding and interaction with the spinner element within a user interface.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -135,13 +135,13 @@ A Spinner component with a label provides informative text or a label alongside 
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>
 
 #### Color Scheme
 
 A Spinner component with a color scheme enhances visual appeal by incorporating distinct colors, adding a touch of customization and style to the spinner element within a user interface.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -167,4 +167,4 @@ A Spinner component with a color scheme enhances visual appeal by incorporating 
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>

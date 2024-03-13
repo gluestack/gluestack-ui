@@ -13,6 +13,10 @@ import Animated, {
   withSpring,
   withTiming,
 } from 'react-native-reanimated';
+import { View, Text } from 'react-native';
+import { tva } from '@gluestack-ui/nativewind-utils/tva';
+import { withStyleContext } from '@gluestack-ui/nativewind-utils/withStyleContext';
+import React from 'react';
 
 export const UITooltip = createTooltip({
   Root:

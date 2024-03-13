@@ -1,5 +1,5 @@
 ---
-title: Modal | gluestack-ui | Installation, Usage, and API
+title: gluestack-ui Modal Component | Installation, Usage, and API
 
 description: A Modal is a window on top of the primary content to draw the user's attention to important information or actions. It provides a focused and interruptive way to interact with the application.
 
@@ -52,10 +52,9 @@ import {
 } from '@gluestack/design-system';
 import Wrapper from '../../core-components/themed/Wrapper';
 
-
 This is an illustration of **Modal** component.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -66,7 +65,7 @@ This is an illustration of **Modal** component.
           console.log(showModal);
           const ref = React.useRef(null);
           return (
-            <Center className='h-[300px]'>
+            <Center h={300}>
               <Button onPress={() => setShowModal(true)} ref={ref}>
                 <ButtonText>Show Modal</ButtonText>
               </Button>
@@ -95,7 +94,7 @@ This is an illustration of **Modal** component.
                       variant="outline"
                       size="sm"
                       action="secondary"
-                      className='mr-[3px]'
+                      mr="$3"
                       onPress={() => {
                         setShowModal(false);
                       }}
@@ -143,7 +142,7 @@ This is an illustration of **Modal** component.
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>
 
 <br />
 
@@ -200,7 +199,7 @@ This section provides a comprehensive reference list for the component props, de
 
 Contains all View related layout style props and actions. It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
 
-<AppProvider>
+<Wrapper>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -383,12 +382,12 @@ Contains all View related layout style props and actions. It inherits all the pr
       </Table.TBody>
     </Table>
   </TableContainer>
-</AppProvider>
+</Wrapper>
 
 **Descendants Styling Props**
 Props to style child components.
 
-<AppProvider>
+<Wrapper>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -415,7 +414,7 @@ Props to style child components.
       </Table.TBody>
     </Table>
   </TableContainer>
-</AppProvider>
+</Wrapper>
 
 #### ModalBackdrop
 
@@ -425,7 +424,7 @@ It is React Native's [Pressable](https://reactnative.dev/docs/pressable#props) c
 
 It is [@legendapp/motion's](https://legendapp.com/open-source/motion/) [Motion.View](https://legendapp.com/open-source/motion/overview/) component. You can use any declarative animation library you prefer.
 
-<AppProvider>
+<Wrapper>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -464,7 +463,7 @@ It is [@legendapp/motion's](https://legendapp.com/open-source/motion/) [Motion.V
       </Table.TBody>
     </Table>
   </TableContainer>
-</AppProvider>
+</Wrapper>
 
 #### ModalHeader
 
@@ -477,7 +476,7 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
 **Descendants Styling Props**
 Props to style child components.
 
-<AppProvider>
+<Wrapper>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -515,7 +514,7 @@ Props to style child components.
     </Table>
 
   </TableContainer>
-</AppProvider>
+</Wrapper>
 
 #### ModalBody
 
@@ -535,7 +534,7 @@ Modal component is created using View component from react-native. It extends al
 
 #### Modal
 
-<AppProvider>
+<Wrapper>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -568,92 +567,7 @@ Modal component is created using View component from react-native. It extends al
       </Table.TBody>
     </Table>
   </TableContainer>
-</AppProvider>
-
-## Spec Doc
-
-Explore the comprehensive details of the Modal in this document, including its implementation details, checklist, and potential future additions. Dive into the thought process behind the component and gain insights into its development journey.
-
-<iframe
-  style={{
-    borderRadius: '8px',
-    border: ' 1px solid rgba(0, 0, 0, 0.1)',
-    aspectRatio: 736 / 585,
-  }}
-  src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FNcXOxqKbdnGsLQNex3H76u%2F%25C2%25A0%25F0%259F%2593%259Agluestack-UI-handbook%3Fpage-id%3D5231%253A20810%26type%3Ddesign%26node-id%3D5235-29102%26viewport%3D490%252C241%252C0.02%26t%3DFWIfjvKo1mfJez7E-1%26scaling%3Dcontain%26starting-point-node-id%3D5235%253A29102%26mode%3Ddesign"
-  allowFullScreen
-/>
-
-<!--
-
-### Advanced
-
-We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
-
-### Customizing the Modal
-
-We have a function called `createModal` which can be used to create a custom Modal component. This function takes in a configuration object which contains the styled components that you want to use for the modal. You can refer [gluestack.io/style](/style) for more information on how to use styled components.
-
-You can read more on how to animate components [here](/ui/docs/advanced/animations).
-
-#### Usage
-
-Default styling of all these components can be found in the `components/core/modal` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/main/packages/themed/src/components/Modal) of the styled `Modal` components.
-
-```jsx
-// import the styles
-import {
-  Root,
-  Content,
-  CloseButton,
-  Header,
-  Footer,
-  Body,
-  Backdrop,
-} from '../components/core/modal/styled-components';
-
-// import the createModal function
-import { createModal } from '@gluestack-ui/modal';
-
-// Understanding the API
-const Modal = createModal({
-  Root,
-  Content,
-  CloseButton,
-  Header,
-  Footer,
-  Body,
-  Backdrop,
-  AnimatePresence: Content.AnimatePresence, // Can be AnimatePresence from the library you are using
-});
-
-// Using the modal component
-export default () => (
-  <Modal>
-    <ModalBackdrop />
-    <ModalContent>
-      <ModalHeader>
-        <Heading size="lg">Confirm your request</Heading>
-        <ModalCloseButton>
-          <CloseIcon />
-        </ModalCloseButton>
-      </ModalHeader>
-      <ModalBody>
-        <Text size="sm">Modal Body</Text>
-      </ModalBody>
-      <ModalFooter>
-        <Button>
-          <ButtonText></ButtonText>
-        </Button>
-        <Button>
-          <ButtonText></ButtonText>
-        </Button>
-      </ModalFooter>
-    </ModalContent>
-  </Modal>
-);
-```
--->
+</Wrapper>
 
 ### Examples
 
@@ -663,7 +577,7 @@ The Examples section provides visual representations of the different variants o
 
 A user interface featuring multiple modal components that allow for layered interaction and context-specific information display.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -860,13 +774,13 @@ A user interface featuring multiple modal components that allow for layered inte
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>
 
 ### Modal sizes
 
 A versatile modal component offering different sizes to accommodate various content types and optimize user experience.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showArgsController={false}
     metaData={{
@@ -974,5 +888,5 @@ A versatile modal component offering different sizes to accommodate various cont
       },
     }}
   />
-</AppProvider>
+</Wrapper>
 

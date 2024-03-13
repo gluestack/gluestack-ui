@@ -1,5 +1,5 @@
 ---
-title: Badge | gluestack-ui | Installation, Usage, and API
+title: gluestack-ui Badge Component | Installation, Usage, and API
 
 description: The badge component lets you quickly and easily add status indicators to your interface for improved usability. They are designed to be attention-grabbing and quickly convey important information.
 
@@ -15,21 +15,29 @@ import { Meta } from '@storybook/addon-docs';
 <Meta title="with-nativewind/components/Data Display/Badge" />
 
 import {
+  Center,
   Badge,
   BadgeText,
+  BadgeIcon,
   Icon,
   Box,
-  Avatar,
-  AvatarImage,
-  AvatarFallbackText,
-  Divider,
-  Image,
-  Heading,
+  Text,
   VStack,
   HStack,
+  SettingsIcon,
+  AddIcon,
+  Divider,
+  Image,
+  CheckIcon,
+  Heading,
+  Avatar,
+  AvatarFallbackText,
+  AvatarImage,
   Button,
   ButtonText,
+  GlobeIcon,
   Menu,
+  MenuIcon,
   MenuItem,
   MenuItemLabel,
 } from '../../core-components/nativewind';
@@ -38,17 +46,10 @@ import {
   PuzzleIcon,
   BadgeCheckIcon,
   BadgePlusIcon,
-  SettingsIcon,
-  AddIcon,
-  BadgeIcon,
-  CheckIcon,
-  MenuIcon,
-  Globe,
 } from 'lucide-react-native';
 import {
   AppProvider,
   CodePreview,
-  Text,
   Table,
   TableContainer,
   InlineCode,
@@ -63,11 +64,11 @@ This is an illustration of **Badge** component.
   <CodePreview
     metaData={{
       code: `
-<Badge {...props}>
-  <BadgeText>New feature</BadgeText>
-  <BadgeIcon as={Globe} className="ml-2" />
-</Badge>
-`,
+        <Badge {...props}>
+          <BadgeText>New feature</BadgeText>
+          <BadgeIcon as={GlobeIcon} className="ml-2" />
+        </Badge>
+      `,
       transformCode: (code) => {
         return transformedCode(code);
       },
@@ -76,7 +77,7 @@ This is an illustration of **Badge** component.
         Badge,
         BadgeText,
         BadgeIcon,
-        Globe,
+        GlobeIcon
       },
       argsType: {
         size: {
@@ -103,15 +104,8 @@ This is an illustration of **Badge** component.
 
 ## Installation
 
-### Step 1: Install the following dependencies:
 
-```bash
-
-npm i @gluestack-ui/badge
-
-```
-
-### Step 2: Copy and paste the following code into your project.
+### Step 1: Copy and paste the following code into your project.
 
 <CollapsibleCode>
 
@@ -121,7 +115,7 @@ npm i @gluestack-ui/badge
 
 </CollapsibleCode>
 
-### Step 3: Update the import paths to match your project setup.
+### Step 2: Update the import paths to match your project setup.
 
 ## API Reference
 
@@ -160,53 +154,70 @@ Contains all Icon related layout style props and actions. It inherits all the pr
 
 Badge component is created using View component from react-native. It extends all the props supported by [React Native View](https://reactnative.dev/docs/view#props).
 
-<!--
-## Spec Doc
+#### Badge
 
-Explore the comprehensive details of the Badge in this document, including its implementation details, checklist, and potential future additions. Dive into the thought process behind the component and gain insights into its development journey.
+<Wrapper>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Name</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Value</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Default</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>action</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>error | warning | success | info | muted</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>success</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>variant</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>solid | outline</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>solid</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>size</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>sm | md | lg</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>md</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</Wrapper>
 
-<iframe
-  style={{
-    borderRadius: '8px',
-    border: ' 1px solid rgba(0, 0, 0, 0.1)',
-    aspectRatio: 736 / 585,
-  }}
-  src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FNcXOxqKbdnGsLQNex3H76u%2F%25C2%25A0%25F0%259F%2593%259Agluestack-UI-handbook%3Ftype%3Ddesign%26node-id%3D6030-27780%26t%3DdmNaOHvCSb4QGYGL-1%26scaling%3Dscale-down%26page-id%3D6030%253A25864%26starting-point-node-id%3D6030%253A27780%26mode%3Ddesign"
-  allowFullScreen
-/> -->
-
-<!--
-
-### Advanced
-
-We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
-
-### Customizing the Badge
-
-For customizing the Badge, you have to map styled view to Badge You can refer [gluestack.io/style](/style) on how to use styled components.
-
-#### Usage
-
-Default styling of the component can be found in the `components/badge` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/main/packages/themed/src/components/Badge) of the styled `Badge` component.
-
-```jsx
-// import the styles
-import { Root, Text, Icon } from 'components/core/badge/styled-components';
-
-// mapping the Badge to root component and compounding the Text and Icon components
-const Badge = Root;
-BadgeText = Text;
-BadgeIcon = Icon;
-
-// Using the badge component
-export default () => (
-  <Badge>
-    <BadgeText></BadgeText>
-    <BadgeIcon></BadgeIcon>
-  </Badge>
-);
-```
--->
+> Note: These props are exclusively applicable when utilizing the default configuration of gluestack-ui/config. If you are using a custom theme, these props may not be available.
 
 ### Examples
 
@@ -216,7 +227,7 @@ The Examples section provides visual representations of the different variants o
 
 An example of the Badge component being used with the Avatar component to display badges alongside user avatars for enhanced visual representation or identification.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -240,7 +251,7 @@ An example of the Badge component being used with the Avatar component to displa
                   <BadgeIcon as={BadgeCheckIcon} className='ml-1'/>
               </Badge>
             </HStack>
-            <Text className='text-sm' >Nursing Assistant</Text>
+            <Text size='sm' >Nursing Assistant</Text>
             </VStack>
           </HStack>
         </VStack>
@@ -260,116 +271,19 @@ An example of the Badge component being used with the Avatar component to displa
         Badge,
         BadgeText,
         BadgeIcon,
-        Globe,
+        GlobeIcon,
         BadgeCheckIcon,
       },
       argsType: {},
     }}
   />
-</AppProvider>
-
-#### Badge in Menu
-
-A Badge component used with a menu adds a visual indicator, such as a badge, to highlight specific items or provide additional information within the menu, enhancing user interaction and improving the visibility of important elements.
-
-<AppProvider>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
-      <Menu
-        placement={"top"}
-          trigger={({ ...triggerProps }) => {
-            return (
-              <Button {...triggerProps}>
-                <ButtonText>Menu</ButtonText>
-              </Button>
-            );
-          }}
-        >
-          <MenuItem key="Community" textValue="Community" 
-           className='bg-white'
-          >
-            <HStack space="sm" className='items-center'>
-              <Icon as={Globe} size="sm" />
-              <Text className='text-sm leading-5'>
-                Community
-              </Text>
-            </HStack>
-          </MenuItem>
-          <MenuItem key="Plugins" textValue="Plugins" className='bg-white'>
-            <HStack space="sm" className='items-center'>
-              <Icon as={PuzzleIcon} size="sm" />
-              <Text className='text-sm leading-5'>
-                Plugins
-              </Text>
-            </HStack>
-          </MenuItem>
-          <MenuItem key="Theme" textValue="Theme" className='bg-white'>
-            <HStack space="sm" className='items-center'>
-              <Icon as={PaintBucket} size="sm" />
-              <Text className='text-sm leading-5'>
-                Theme
-              </Text>
-               <Badge className='bg-slate-600'>
-                 <BadgeText className='color-slate-50'>New</BadgeText>
-               </Badge>
-            </HStack>
-          </MenuItem>
-          <MenuItem key="Settings" textValue="Settings" className='bg-white'>
-            <HStack space="sm" className='items-center'>
-              <Icon as={SettingsIcon} size="sm" />
-              <Text className='text-sm leading-5'>
-                Settings
-              </Text>
-            </HStack>
-          </MenuItem>
-          <MenuItem key="Add account" textValue="Add account" className='bg-white'>
-            <HStack space="sm" className='items-center'>
-              <Icon as={AddIcon} size="sm" />
-              <Text className='text-sm leading-5'>
-                Add account
-              </Text>
-            </HStack>
-          </MenuItem>
-        </Menu>
-`,
-      transformCode: (code) => {
-        return transformedCode(code);
-      },
-      scope: {
-        Wrapper,
-        Button,
-        ButtonText,
-        Menu,
-        MenuIcon,
-        MenuItem,
-        MenuItemLabel,
-        Text,
-        Box,
-        HStack,
-        Icon,
-        Globe,
-        PuzzleIcon,
-        PaintBucket,
-        SettingsIcon,
-        AddIcon,
-        Badge,
-        BadgeText,
-        BadgeIcon,
-        BadgePlusIcon,
-      },
-      argsType: {},
-    }}
-  />
-</AppProvider>
+</Wrapper>
 
 ### Badge Composition
 
 An example of the Badge component being used with the Composition component, allowing for the display of badges within a composition of other UI elements.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showArgsController={false}
     metaData={{
@@ -377,10 +291,10 @@ An example of the Badge component being used with the Composition component, all
        <Box className='items-center'>
         <VStack>
           <Badge  
-            className='z-10 self-end h-6 w-6 bg-red-600 rounded-full -mb-3.5 -mr-3.5'
+            className='z-10 self-end h-[22px] w-[22px] bg-red-600 rounded-full -mb-3.5 -mr-3.5'
             variant="solid"
           >
-            <BadgeText className='color-white'>2</BadgeText>
+            <BadgeText className='text-white'>2</BadgeText>
           </Badge>
           <Button>
             <ButtonText>
@@ -398,7 +312,7 @@ An example of the Badge component being used with the Composition component, all
         Badge,
         BadgeText,
         BadgeIcon,
-        Globe,
+        GlobeIcon,
         Box,
         Text,
         HStack,
@@ -410,4 +324,4 @@ An example of the Badge component being used with the Composition component, all
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>

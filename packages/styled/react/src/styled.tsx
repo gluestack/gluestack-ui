@@ -125,7 +125,7 @@ function convertUtiltiyToSXFromProps(
           pluginName
         ]?.inputMiddleWare(
           resolvedSxVerbose,
-          true,
+          false,
           false,
           Component,
           componentStyleConfig,
@@ -2110,7 +2110,7 @@ export function verboseStyled<P, Variants, ComCon>(
         ? {
             ...variantProps,
             states: states,
-            // sx: componentProps.sx,
+            sx: componentProps.sx,
           }
         : {};
 
@@ -2185,7 +2185,8 @@ export function verboseStyled<P, Variants, ComCon>(
   StyledComp.isStyledComponent = true;
 
   return StyledComp as ForwardRefExoticComponent<
-    StyledComponentProps<ITypeReactNativeStyles, Variants, P, ComCon>
+    StyledComponentProps<ITypeReactNativeStyles, Variants, P, ComCon> &
+      React.RefAttributes<P>
   >;
 }
 

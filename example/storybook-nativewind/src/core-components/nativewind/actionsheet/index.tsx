@@ -10,13 +10,12 @@ import {
   SectionList,
   Platform,
 } from 'react-native';
-import {
-  tva,
-  withStyleContext,
-  withStyleContextAndStates,
-} from '@gluestack-ui/nativewind-utils';
+import { tva } from '@gluestack-ui/nativewind-utils/tva';
+import { withStyleContext } from '@gluestack-ui/nativewind-utils/withStyleContext';
+import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withStyleContextAndStates';
+import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
+
 import React from 'react';
-import { cssInterop } from 'nativewind';
 
 export const UIActionsheet = createActionsheet({
   Root: View,

@@ -1,146 +1,49 @@
-import { styled } from '@gluestack-style/react';
-import { Switch as RNSwitch } from 'react-native';
+import React from 'react';
+import { Switch as RNSwitch, Platform } from 'react-native';
 import { createSwitch } from '@gluestack-ui/switch';
+import { tva } from '@gluestack-ui/nativewind-utils/tva';
+import { withStyleContext } from '@gluestack-ui/nativewind-utils/withStyleContext';
+import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withStyleContextAndStates';
+import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
+import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 
-const StyledRoot = styled(
-  RNSwitch,
-  {
-    'props': {
-      // todo: add support for this in style.gluestack.io
-      // trackColor: { false: '$background300', true: '$primary600' },
+const UISwitch = createSwitch({
+  Root:
+    Platform.OS === 'web'
+      ? withStyleContext(RNSwitch)
+      : withStyleContextAndStates(RNSwitch),
+});
 
-      // hacky fix for the above
-      //@ts-ignore
-      trackColor: { false: '$background300', true: '$primary600' },
-      thumbColor: '$background0',
-      //@ts-ignore
-      activeThumbColor: '$background0',
+cssInterop(UISwitch, { className: 'style' });
 
-      // for ios specifically in unchecked state
-      ios_backgroundColor: '$background300',
-    },
+const switchStyle = tva({
+  base: 'data-[focus=true]:outline-0 data-[focus=true]:ring-2 data-[focus=true]:ring-primary-700 web:cursor-pointer disabled:cursor-not-allowed data-[disabled=true]:opacity-40 data-[invalid=true]:border-error-700 data-[invalid=true]:rounded-xl data-[invalid=true]:border-2',
 
-    'borderRadius': '$full',
-
-    'variants': {
-      //@ts-ignore
-
-      size: {
-        sm: {
-          transform: [
-            {
-              scale: 0.75,
-            },
-          ],
-        },
-        md: {},
-        lg: {
-          transform: [
-            {
-              scale: 1.25,
-            },
-          ],
-        },
-      },
-    },
-
-    '_web': {
-      ':focus': {
-        outlineWidth: 0,
-        outlineColor: '$primary700',
-        outlineStyle: 'solid',
-      },
-    },
-
-    'defaultProps': {
-      size: 'md',
-    },
-
-    ':disabled': {
-      '_web': {
-        'cursor': 'pointer',
-        ':disabled': {
-          cursor: 'not-allowed',
-        },
-      },
-      'opacity': 0.4,
-      //@ts-ignore
-      'trackColor': { false: '$background300', true: '$primary600' },
-      // for ios specifically in unchecked state
-      'ios_backgroundColor': '$background300',
-      ':hover': {
-        props: {
-          //@ts-ignore
-          trackColor: { false: '$background300', true: '$primary600' },
-        },
-      },
-    },
-
-    ':invalid': {
-      borderColor: '$error700',
-      borderRadius: 12,
-      borderWidth: 2,
-    },
-
-    ':hover': {
-      'props': {
-        // todo: add support for this in style.gluestack.io
-        // trackColor: { false: '$background400', true: '$primary700' },
-
-        // hacky fix for the above
-        //@ts-ignore
-
-        trackColor: { false: '$background400', true: '$primary700' },
-        ios_backgroundColor: '$background400',
-      },
-      ':invalid': {
-        props: {
-          // todo: add support for this in style.gluestack.io
-          // trackColor: { false: '$background400', true: '$primary700' },
-
-          // hacky fix for the above
-          //@ts-ignore
-
-          trackColor: { false: '$background300', true: '$primary700' },
-        },
-      },
-    },
-
-    ':checked': {
-      props: {
-        //@ts-ignore
-        thumbColor: '$background0',
-      },
+  variants: {
+    size: {
+      sm: 'scale-75',
+      md: '',
+      lg: 'scale-125',
     },
   },
-  {
-    componentName: 'Switch',
-    resolveProps: [
-      'thumbColor',
-      'trackColor',
-      'activeThumbColor',
-      'ios_backgroundColor',
-    ],
-  } as const,
-  {
-    propertyTokenMap: {
-      trackColor: 'colors',
-      thumbColor: 'colors',
-      activeThumbColor: 'colors',
-      ios_backgroundColor: 'colors',
-    },
-    propertyResolver: {
-      trackColor: (rawValue: any, resolver: any) => {
-        const resolveColor = {
-          true: resolver(rawValue.true),
-          false: resolver(rawValue.false),
-        };
-        return resolveColor;
-      },
-    },
+});
+
+type ISwitchProps = React.ComponentProps<typeof UISwitch> &
+  VariantProps<typeof switchStyle>;
+const Switch = React.forwardRef(
+  (
+    { className, size = 'md', ...props }: { className?: string } & ISwitchProps,
+    ref
+  ) => {
+    return (
+      <UISwitch
+        ref={ref}
+        {...props}
+        className={switchStyle({ size, class: className })}
+      />
+    );
   }
 );
 
-export const Switch = createSwitch({
-  Root: StyledRoot,
-});
+Switch.displayName = 'Switch';
+export { Switch };

@@ -1,28 +1,24 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { createAlertDialog } from '@gluestack-ui/alert-dialog';
-import {
-  cssInterop,
-  tva,
-  VariantProps,
-  withStyleContext,
-  withStyleContextAndStates,
-  useStyleContext,
-} from '@gluestack-ui/nativewind-utils';
-import Animated, {
-  Easing,
-  useSharedValue,
-  withSpring,
-  withTiming,
-} from 'react-native-reanimated';
-import {
-  View,
-  StyleSheet,
-  Pressable,
-  ScrollView,
-  Platform,
-} from 'react-native';
 
-const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
+import { tva } from '@gluestack-ui/nativewind-utils/tva';
+import {
+  withStyleContext,
+  useStyleContext,
+} from '@gluestack-ui/nativewind-utils/withStyleContext';
+import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withStyleContextAndStates';
+import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
+import type { VariantProps } from '@gluestack-ui/nativewind-utils';
+
+import {
+  Motion,
+  AnimatePresence,
+  createMotionAnimatedComponent,
+} from '@legendapp/motion';
+
+import { View, Pressable, ScrollView, Platform } from 'react-native';
+
+const AnimatedPressable = createMotionAnimatedComponent(Pressable);
 const UIAccessibleAlertDialog = createAlertDialog({
   // @ts-ignore
   Root:
@@ -30,12 +26,12 @@ const UIAccessibleAlertDialog = createAlertDialog({
       ? withStyleContext(View)
       : withStyleContextAndStates(View),
   Body: ScrollView,
-  Content: Animated.View,
+  Content: Motion.View,
   CloseButton: Pressable,
   Header: View,
   Footer: View,
   Backdrop: AnimatedPressable,
-  AnimatePresence: React.Fragment, //TODO: Add support for this
+  AnimatePresence: AnimatePresence, //TODO: Add support for this
 });
 
 cssInterop(UIAccessibleAlertDialog, { className: 'style' });
@@ -48,6 +44,15 @@ cssInterop(UIAccessibleAlertDialog.Backdrop, { className: 'style' });
 
 const alertDialogStyle = tva({
   base: 'group/modal w-full h-full justify-center items-center web:pointer-events-none',
+  parentVariants: {
+    size: {
+      xs: '',
+      sm: '',
+      md: '',
+      lg: '',
+      full: '',
+    },
+  },
 });
 
 const alertDialogContentStyle = tva({
@@ -118,11 +123,10 @@ const AlertDialog = React.forwardRef(
   (
     {
       className,
-      //@ts-ignore
       size = 'md',
       ...props
     }: { className?: string } & IAlertDialogProps,
-    ref
+    ref?: any
   ) => {
     return (
       <UIAccessibleAlertDialog
@@ -143,29 +147,35 @@ const AlertDialogContent = React.forwardRef(
       size,
       ...props
     }: { className?: string } & IAlertDialogContentProps,
-    ref
+    ref?: any
   ) => {
     const { size: parentSize } = useStyleContext();
 
-    const opacity = useSharedValue(0);
-    const scale = useSharedValue(0.9);
-    useEffect(() => {
-      opacity.value = withTiming(1, {
-        easing: Easing.linear,
-      });
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-    useEffect(() => {
-      scale.value = withSpring(1, {
-        damping: 18,
-        stiffness: 250,
-      });
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
     return (
       <UIAccessibleAlertDialog.Content
         pointerEvents="auto"
         ref={ref}
+        initial={{
+          scale: 0.9,
+          opacity: 0,
+        }}
+        animate={{
+          scale: 1,
+          opacity: 1,
+        }}
+        exit={{
+          scale: 0.9,
+          opacity: 0,
+        }}
+        transition={{
+          type: 'spring',
+          damping: 18,
+          stiffness: 250,
+          opacity: {
+            type: 'timing',
+            duration: 250,
+          },
+        }}
         {...props}
         className={alertDialogContentStyle({
           parentVariants: {
@@ -174,10 +184,6 @@ const AlertDialogContent = React.forwardRef(
           size,
           class: className,
         })}
-        style={{
-          opacity: opacity,
-          transform: [{ scale: scale }],
-        }}
       />
     );
   }
@@ -189,7 +195,7 @@ const AlertDialogCloseButton = React.forwardRef(
       className,
       ...props
     }: { className?: string } & IAlertDialogCloseButtonProps,
-    ref
+    ref?: any
   ) => {
     return (
       <UIAccessibleAlertDialog.CloseButton
@@ -206,7 +212,7 @@ const AlertDialogCloseButton = React.forwardRef(
 const AlertDialogHeader = React.forwardRef(
   (
     { className, ...props }: { className?: string } & IAlertDialogHeaderProps,
-    ref
+    ref?: any
   ) => {
     return (
       <UIAccessibleAlertDialog.Header
@@ -223,7 +229,7 @@ const AlertDialogHeader = React.forwardRef(
 const AlertDialogFooter = React.forwardRef(
   (
     { className, ...props }: { className?: string } & IAlertDialogFooterProps,
-    ref
+    ref?: any
   ) => {
     return (
       <UIAccessibleAlertDialog.Footer
@@ -240,7 +246,7 @@ const AlertDialogFooter = React.forwardRef(
 const AlertDialogBody = React.forwardRef(
   (
     { className, ...props }: { className?: string } & IAlertDialogBodyProps,
-    ref
+    ref?: any
   ) => {
     return (
       <UIAccessibleAlertDialog.Body
@@ -257,29 +263,33 @@ const AlertDialogBody = React.forwardRef(
 const AlertDialogBackdrop = React.forwardRef(
   (
     { className, ...props }: { className?: string } & IAlertDialogBackdropProps,
-    ref
+    ref?: any
   ) => {
-    const opacity = useSharedValue(0);
-
-    useEffect(() => {
-      opacity.value = withTiming(0.5, {
-        easing: Easing.linear,
-      });
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
     return (
       <UIAccessibleAlertDialog.Backdrop
         ref={ref}
+        initial={{
+          opacity: 0,
+        }}
+        animate={{
+          opacity: 0.5,
+        }}
+        exit={{
+          opacity: 0,
+        }}
+        transition={{
+          type: 'spring',
+          damping: 18,
+          stiffness: 250,
+          opacity: {
+            type: 'timing',
+            duration: 250,
+          },
+        }}
         {...props}
         className={alertDialogBackdropStyle({
           class: className,
         })}
-        style={[
-          StyleSheet.absoluteFill,
-          {
-            opacity: opacity,
-          },
-        ]}
       />
     );
   }

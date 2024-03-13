@@ -1,5 +1,5 @@
 ---
-title: Pressable | gluestack-ui | Installation, Usage, and API
+title: gluestack-ui Pressable Component | Installation, Usage, and API
 
 description: By providing access to hover, pressed, and focus events, Pressable serves as a more flexible alternative to buttons at a lower level of abstraction. It is a useful primitive for advanced customization needs.
 
@@ -31,7 +31,7 @@ This is an illustration of **Pressable** component.
     metaData={{
       code: `
  <Pressable
-  onPress={() => console.log('Hello')} className="p-5 bg-primary-500 hover:bg-primary-400">
+  onPress={() => console.log('Hello')} className="p-5 bg-primary-500">
   <Text className="text-typography-0">Press me</Text>
 </Pressable>
 `,
@@ -52,15 +52,8 @@ This is an illustration of **Pressable** component.
 
 ## Installation
 
-### Step 1: Install the following dependencies:
 
-```bash
-
-npm i @gluestack-ui/pressable
-
-```
-
-### Step 2: Copy and paste the following code into your project.
+### Step 1: Copy and paste the following code into your project.
 
 <CollapsibleCode>
 
@@ -70,7 +63,7 @@ npm i @gluestack-ui/pressable
 
 </CollapsibleCode>
 
-### Step 3: Update the import paths to match your project setup.
+### Step 2: Update the import paths to match your project setup.
 
 ## API Reference
 
@@ -91,3 +84,41 @@ This section provides a comprehensive reference list for the component props, de
 #### Pressable
 
 It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable) component.
+
+### Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+#### Pressable child elements according to its states
+
+You can change the child elements according to the states of Pressable component.
+
+<Wrapper>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+    <Pressable className="p-16 bg-primary-500">
+      {({ pressed }) => (
+        <Text className={pressed ? 'text-pink-400' : 'text-yellow-400'}>
+          PRESSABLE
+        </Text>
+      )}
+    </Pressable>
+    `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Pressable,
+        Text,
+      },
+      argsType: {},
+    }}
+  />
+</Wrapper>
+
+Similarly, you can change the child elements according to other states of Pressable
+component and i.e. `focus` , `hover` , `pressed` , `disabled` and `focusVisible`.

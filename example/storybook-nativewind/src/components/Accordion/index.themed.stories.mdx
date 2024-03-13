@@ -1,5 +1,5 @@
 ---
-title: Accordion | gluestack-ui | Installation, Usage, and API
+title: gluestack-ui Accordion Component | Installation, Usage, and API
 
 description: The Accordion component is a versatile and interactive user interface element, designed to efficiently organize and present content in a compact space.
 
@@ -52,7 +52,7 @@ The Examples section provides visual representations of the different variants o
 
 The following example demonstrates how easily you can customize the Accordion component to suit your needs.
 
-<AppProvider config={config}>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -222,13 +222,13 @@ function App(){
       },
     }}
   />
-</AppProvider>
+</Wrapper>
 
 ### Rounded corners
 
 The borderRadius prop can be used to create rounded corners for both the Accordion and AccordionItem components.
 
-<AppProvider config={config}>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -324,13 +324,13 @@ function App(){
       },
     }}
   />
-</AppProvider>
+</Wrapper>
 
 ### Disabled item
 
 You can disable an item by setting the isDisabled prop to true. This will prevent the user from interacting with the item and its content. You can also disable the whole accordion by setting the isDisabled prop to true on the Accordion component.
 
-<AppProvider config={config}>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -422,13 +422,13 @@ function App(){
       },
     }}
   />
-</AppProvider>
+</Wrapper>
 
 ### Default value
 
 Use the defaultValue prop to define the open item by default.
 
-<AppProvider config={config}>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -544,13 +544,13 @@ function App(){
       },
     }}
   />
-</AppProvider>
+</Wrapper>
 
 ### Nested Components
 
 You can nest Accordion components to create a nested accordion. This is useful when you want to group related content together. In the following example, we have created a nested accordion to group the states of USA by region.
 
-<AppProvider config={config}>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -690,14 +690,14 @@ function App(){
       },
     }}
   />
-</AppProvider>
+</Wrapper>
 
 ### Controlled Accordion
 
 A component is controlled when it's managed by its parent using props.
 You can make the Accordion component controlled by passing the value prop to the Accordion and setting the onValueChange to update the value prop. In the following example, we have created a controlled accordion to display the expanded state of the accordion.
 
-<AppProvider config={config}>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -825,4 +825,4 @@ function App(){
       },
     }}
   />
-</AppProvider>
+</Wrapper>

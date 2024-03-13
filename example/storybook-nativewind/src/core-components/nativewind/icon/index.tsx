@@ -1,7 +1,8 @@
 import React from 'react';
 import { createIcon } from '@gluestack-ui/icon';
 import { Path, Svg } from 'react-native-svg';
-import { tva, cssInterop } from '@gluestack-ui/nativewind-utils';
+import { tva } from '@gluestack-ui/nativewind-utils/tva';
+import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
 
 export const UIIcon = createIcon({
   Root: Svg,

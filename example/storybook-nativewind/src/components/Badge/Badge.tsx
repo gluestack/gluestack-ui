@@ -1,41 +1,18 @@
 import React from 'react';
 import {
-  Center,
-  Icon,
-  Box,
-  Text,
-  VStack,
-  HStack,
-  SettingsIcon,
-  Divider,
-  AddIcon,
-  Image,
-  CheckIcon,
-  Heading,
-  Avatar,
-  AvatarFallbackText,
-  AvatarImage,
-  Button,
-  ButtonText,
-  Menu,
-  MenuIcon,
-  MenuItem,
-  MenuItemLabel,
-  GlobeIcon,
-} from '@gluestack-ui/themed';
-import {
   PaintBucket,
   PuzzleIcon,
   BadgeCheckIcon,
   BadgePlusIcon,
 } from 'lucide-react-native';
 import { Badge, BadgeText, BadgeIcon } from '@/components/ui/badge';
+import { GlobeIcon } from '@/components/ui/icon';
 
 const BadgeBasic = ({ text = 'NEW FEATURE', _colorMode, ...props }: any) => {
   return (
-    <Badge {...props} gap="$1">
+    <Badge {...props}>
       <BadgeText>{text}</BadgeText>
-      <BadgeIcon as={GlobeIcon} />
+      <BadgeIcon as={GlobeIcon} className="ml-2" />
     </Badge>
   );
 };
@@ -46,33 +23,12 @@ BadgeBasic.description =
 export default BadgeBasic;
 
 export {
-  Center,
   Badge,
   BadgeText,
   BadgeIcon,
-  Icon,
-  Box,
-  Text,
-  VStack,
-  HStack,
   PuzzleIcon,
-  SettingsIcon,
-  AddIcon,
   PaintBucket,
-  Divider,
-  Image,
-  CheckIcon,
-  Heading,
-  Avatar,
-  AvatarFallbackText,
-  AvatarImage,
-  Button,
-  ButtonText,
   GlobeIcon,
   BadgeCheckIcon,
-  Menu,
-  MenuIcon,
-  MenuItem,
-  MenuItemLabel,
   BadgePlusIcon,
 };

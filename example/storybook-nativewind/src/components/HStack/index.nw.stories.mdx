@@ -1,5 +1,5 @@
 ---
-title: HStack | gluestack-ui | Installation, Usage, and API
+title: gluestack-ui HStack Component | Installation, Usage, and API
 
 description: HStack arranges its child elements horizontally, making it a suitable layout component for creating a row of items. It is worth noting that Row is just an alternative name for HStack.
 
@@ -105,7 +105,7 @@ The accessibility of a HStack is primarily determined by the accessibility infor
 
 ### Props
 
-HStack component is created using View component from react-native. It extends all the props supported by [React Native View](https://reactnative.dev/docs/view#props), [utility props](https://ui.gluestack.io/docs/styling/utility-and-sx-props) and the props mentioned below.
+HStack component is created using View component from react-native. It extends all the props supported by [React Native View](https://reactnative.dev/docs/view#props) and the props mentioned below.
 
 <Wrapper>
   <TableContainer>
@@ -164,16 +164,31 @@ HStack component is created using View component from react-native. It extends a
   </TableContainer>
 </Wrapper>
 
-<!-- ## Spec Doc
+### Examples
 
-Explore the comprehensive details of the HStack in this document, including its implementation details, checklist, and potential future additions. Dive into the thought process behind the component and gain insights into its development journey.
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
-<iframe
-  style={{
-    borderRadius: '8px',
-    border: ' 1px solid rgba(0, 0, 0, 0.1)',
-    aspectRatio: 736 / 585,
-  }}
-  src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FNcXOxqKbdnGsLQNex3H76u%2F%25C2%25A0%25F0%259F%2593%259Agluestack-UI-handbook%3Fpage-id%3D281%253A13034%26type%3Ddesign%26node-id%3D281-13035%26viewport%3D530%252C248%252C0.07%26scaling%3Dscale-down%26starting-point-node-id%3D281%253A13035"
-  allowFullScreen
-/> -->
+#### HStack Reversed
+
+An HStack component with the reversed prop reverses the order of horizontally stacked elements, allowing for customized layouts and visual arrangements of content within a user interface.
+
+<Wrapper>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+        <HStack space="md" reversed>
+          <Box className="w-20 h-20 bg-blue-300"/>
+          <Box className="w-20 h-20 bg-blue-400"/>
+          <Box className="w-20 h-20 bg-blue-500"/>
+        </HStack>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: { Box, Wrapper, HStack },
+      argsType: {},
+    }}
+  />
+</Wrapper>

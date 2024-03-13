@@ -26,12 +26,17 @@ const SwitchMeta: ComponentMeta<typeof Switch> = {
       control: 'boolean',
       options: [true, false],
     },
+    defaultValue: {
+      control: 'boolean',
+      options: [true, false],
+    },
   },
   args: {
     size: 'md',
     isDisabled: false,
     isEnabled: false,
     isInvalid: false,
+    defaultValue: false,
   },
 };
 

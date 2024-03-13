@@ -14,13 +14,42 @@
     "ios",
     "nextjs"
   ],
-  "version": "0.0.8",
-  "main": "lib/commonjs/index",
-  "module": "lib/module/index",
-  "types": "lib/typescript/index.d.ts",
+  "version": "1.0.0",
   "react-native": "src/index",
   "source": "src/index",
-  "typings": "lib/typescript/index.d.ts",
+  "typings": "lib/typescript/types.d.ts",
+  "exports": {
+    "./tva": {
+      "require": "./lib/commonjs/tva.js",
+      "import": "./lib/module/tva.js",
+      "types": "./lib/typescript/tva.d.ts"
+    },
+    "./cssInterop": {
+      "require": "./lib/commonjs/cssInterop",
+      "import": "./lib/module/cssInterop",
+      "types": "./lib/typescript/cssInterop/index.d.ts"
+    },
+    "./cn": {
+      "require": "./lib/commonjs/cn.js",
+      "import": "./lib/module/cn.js",
+      "types": "./lib/typescript/cn.d.ts"
+    },
+    "./withStates": {
+      "require": "./lib/commonjs/withStates.js",
+      "import": "./lib/module/withStates.js",
+      "types": "./lib/typescript/withStates.d.ts"
+    },
+    "./withStyleContext": {
+      "require": "./lib/commonjs/withStyleContext.js",
+      "import": "./lib/module/withStyleContext.js",
+      "types": "./lib/typescript/withStyleContext.d.ts"
+    },
+    "./withStyleContextAndStates": {
+      "require": "./lib/commonjs/withStyleContextAndStates.js",
+      "import": "./lib/module/withStyleContextAndStates.js",
+      "types": "./lib/typescript/withStyleContextAndStates.d.ts"
+    }
+  },
   "scripts": {
     "prepare": "bob build",
     "build": "bob build",

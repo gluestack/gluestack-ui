@@ -1,7 +1,7 @@
 import React from 'react';
 import { H4 } from '@expo/html-elements';
-import { tva } from '@gluestack-ui/nativewind-utils';
-import { cssInterop } from 'nativewind';
+import { tva } from '@gluestack-ui/nativewind-utils/tva';
+import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
 
 const headingStyle = tva({
   base: 'text-typography-900 font-bold font-heading tracking-sm my-0',

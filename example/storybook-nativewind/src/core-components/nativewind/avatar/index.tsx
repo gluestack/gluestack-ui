@@ -2,12 +2,13 @@ import React from 'react';
 import { createAvatar } from '@gluestack-ui/avatar';
 
 import { View, Text, Image } from 'react-native';
+
+import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import {
-  tva,
-  useStyleContext,
   withStyleContext,
-} from '@gluestack-ui/nativewind-utils';
-import { cssInterop } from 'nativewind';
+  useStyleContext,
+} from '@gluestack-ui/nativewind-utils/withStyleContext';
+import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
 
 const UIAvatar = createAvatar({
   Root: withStyleContext(View),

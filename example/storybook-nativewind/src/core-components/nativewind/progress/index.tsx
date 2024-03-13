@@ -1,13 +1,13 @@
 import React from 'react';
 import { createProgress } from '@gluestack-ui/progress';
 import { View } from 'react-native';
+import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import {
-  tva,
-  // withStyleContextAndStates,
-  useStyleContext,
   withStyleContext,
-} from '@gluestack-ui/nativewind-utils';
-import { cssInterop } from 'nativewind';
+  useStyleContext,
+} from '@gluestack-ui/nativewind-utils/withStyleContext';
+
+import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
 
 export const UIProgress = createProgress({
   Root: withStyleContext(View),
@@ -28,9 +28,6 @@ const progressStyle = tva({
       'xl': 'h-5',
       '2xl': 'h-6',
     },
-  },
-  defaultVariants: {
-    size: 'md',
   },
 });
 const progressFilledTrackStyle = tva({

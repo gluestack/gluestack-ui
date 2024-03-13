@@ -221,20 +221,6 @@ Icon component is created using AsForwarder component from @gluestack-style/reac
   </TableContainer>
 </>
 
-## Spec Doc
-
-Explore the comprehensive details of the Icon in this document, including its implementation details, checklist, and potential future additions. Dive into the thought process behind the component and gain insights into its development journey.
-
-<iframe
-  style={{
-    borderRadius: '8px',
-    border: ' 1px solid rgba(0, 0, 0, 0.1)',
-    aspectRatio: 736 / 585,
-  }}
-  src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FNcXOxqKbdnGsLQNex3H76u%2F%25C2%25A0%25F0%259F%2593%259Agluestack-UI-handbook%3Fpage-id%3D6412%253A31332%26type%3Ddesign%26node-id%3D6412-33234%26viewport%3D723%252C127%252C0.03%26t%3DxNCgdoHjEw3Tlb72-1%26scaling%3Dscale-down%26starting-point-node-id%3D6412%253A33234%26mode%3Ddesign"
-  allowFullScreen
-/>
-
 ### Examples
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
@@ -243,69 +229,69 @@ The Examples section provides visual representations of the different variants o
 
 Below is a list of all of the icons in the library.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
       code: `
-  <HStack w="70%" flexWrap= 'wrap'>
-        <Icon as={AddIcon} m="$2" w="$4" h="$4" />
-        <Icon as={ArrowLeftIcon} m="$2" w="$4" h="$4" />
-        <Icon as={ArrowRightIcon} m="$2" w="$4" h="$4" />
-        <Icon as={ArrowUpIcon} m="$2" w="$4" h="$4" />
-        <Icon as={ArrowDownIcon} m="$2" w="$4" h="$4" />
-        <Icon as={ChevronsLeftIcon} m="$2" w="$4" h="$4" />
-        <Icon as={ChevronsRightIcon} m="$2" w="$4" h="$4" />
-        <Icon as={ChevronsUpDownIcon} m="$2" w="$4" h="$4" />
-        <Icon as={AtSignIcon} m="$2" w="$4" h="$4" />
-        <Icon as={PaperclipIcon} m="$2" w="$4" h="$4" />
-        <Icon as={BellIcon} m="$2" w="$4" h="$4" />
-        <Icon as={CalendarDaysIcon} m="$2" w="$4" h="$4" />
-        <Icon as={MessageCircleIcon} m="$2" w="$4" h="$4" />
-        <Icon as={CheckIcon} m="$2" w="$4" h="$4" />
-        <Icon as={ChevronDownIcon} m="$2" w="$4" h="$4" />
-        <Icon as={ChevronUpIcon} m="$2" w="$4" h="$4" />
-        <Icon as={ChevronLeftIcon} m="$2" w="$4" h="$4" />
-        <Icon as={ChevronRightIcon} m="$2" w="$4" h="$4" />
-        <Icon as={CloseIcon} m="$2" w="$4" h="$4" />
-        <Icon as={CopyIcon} m="$2" w="$4" h="$4" />
-        <Icon as={TrashIcon} m="$2" w="$4" h="$4" />
-        <Icon as={DownloadIcon} m="$2" w="$4" h="$4" />
-        <Icon as={GripVerticalIcon} m="$2" w="$4" h="$4" />
-        <Icon as={EditIcon} m="$2" w="$4" h="$4" />
-        <Icon as={MailIcon} m="$2" w="$4" h="$4" />
-        <Icon as={ExternalLinkIcon} m="$2" w="$4" h="$4" />
-        <Icon as={MenuIcon} m="$2" w="$4" h="$4" />
-        <Icon as={InfoIcon} m="$2" w="$4" h="$4" />
-        <Icon as={LinkIcon} m="$2" w="$4" h="$4" />
-        <Icon as={LockIcon} m="$2" w="$4" h="$4" />
-        <Icon as={RemoveIcon} m="$2" w="$4" h="$4" />
-        <Icon as={MoonIcon} m="$2" w="$4" h="$4" />
-        <Icon as={SlashIcon} m="$2" w="$4" h="$4" />
-        <Icon as={CheckCircleIcon} m="$2" w="$4" h="$4" />
-        <Icon as={PhoneIcon} m="$2" w="$4" h="$4" />
-        <Icon as={HelpCircleIcon} m="$2" w="$4" h="$4" />
-        <Icon as={RepeatIcon} m="$2" w="$4" h="$4" />
-        <Icon as={Repeat1Icon} m="$2" w="$4" h="$4" />
-        <Icon as={SearchIcon} m="$2" w="$4" h="$4" />
-        <Icon as={SettingsIcon} m="$2" w="$4" h="$4" />
-        <Icon as={LoaderIcon} m="$2" w="$4" h="$4" />
-        <Icon as={StarIcon} m="$2" w="$4" h="$4" />
-        <Icon as={SunIcon} m="$2" w="$4" h="$4" />
-        <Icon as={ClockIcon} m="$2" w="$4" h="$4" />
-        <Icon as={UnlockIcon} m="$2" w="$4" h="$4" />
-        <Icon as={EyeIcon} m="$2" w="$4" h="$4" />
-        <Icon as={EyeOffIcon} m="$2" w="$4" h="$4" />
-        <Icon as={AlertCircleIcon} m="$2" w="$4" h="$4" />
-        <Icon as={CloseCircleIcon} m="$2" w="$4" h="$4" />
-        <Icon as={ShareIcon} m="$2" w="$4" h="$4" />
-        <Icon as={CircleIcon} m="$2" w="$4" h="$4" />
-        <Icon as={FavouriteIcon} m="$2" w="$4" h="$4" />
-        <Icon as={GlobeIcon} m="$2" w="$4" h="$4" />
-        <Icon as={ThreeDotsIcon} m="$2" w="$4" h="$4" />
-        <Icon as={PlayIcon} m="$2" w="$4" h="$4" />
-  </HStack>
+        <HStack w="70%" flexWrap= 'wrap' mx='auto'>
+              <Icon as={AddIcon} m="$2" w="$4" h="$4" />
+              <Icon as={ArrowLeftIcon} m="$2" w="$4" h="$4" />
+              <Icon as={ArrowRightIcon} m="$2" w="$4" h="$4" />
+              <Icon as={ArrowUpIcon} m="$2" w="$4" h="$4" />
+              <Icon as={ArrowDownIcon} m="$2" w="$4" h="$4" />
+              <Icon as={ChevronsLeftIcon} m="$2" w="$4" h="$4" />
+              <Icon as={ChevronsRightIcon} m="$2" w="$4" h="$4" />
+              <Icon as={ChevronsUpDownIcon} m="$2" w="$4" h="$4" />
+              <Icon as={AtSignIcon} m="$2" w="$4" h="$4" />
+              <Icon as={PaperclipIcon} m="$2" w="$4" h="$4" />
+              <Icon as={BellIcon} m="$2" w="$4" h="$4" />
+              <Icon as={CalendarDaysIcon} m="$2" w="$4" h="$4" />
+              <Icon as={MessageCircleIcon} m="$2" w="$4" h="$4" />
+              <Icon as={CheckIcon} m="$2" w="$4" h="$4" />
+              <Icon as={ChevronDownIcon} m="$2" w="$4" h="$4" />
+              <Icon as={ChevronUpIcon} m="$2" w="$4" h="$4" />
+              <Icon as={ChevronLeftIcon} m="$2" w="$4" h="$4" />
+              <Icon as={ChevronRightIcon} m="$2" w="$4" h="$4" />
+              <Icon as={CloseIcon} m="$2" w="$4" h="$4" />
+              <Icon as={CopyIcon} m="$2" w="$4" h="$4" />
+              <Icon as={TrashIcon} m="$2" w="$4" h="$4" />
+              <Icon as={DownloadIcon} m="$2" w="$4" h="$4" />
+              <Icon as={GripVerticalIcon} m="$2" w="$4" h="$4" />
+              <Icon as={EditIcon} m="$2" w="$4" h="$4" />
+              <Icon as={MailIcon} m="$2" w="$4" h="$4" />
+              <Icon as={ExternalLinkIcon} m="$2" w="$4" h="$4" />
+              <Icon as={MenuIcon} m="$2" w="$4" h="$4" />
+              <Icon as={InfoIcon} m="$2" w="$4" h="$4" />
+              <Icon as={LinkIcon} m="$2" w="$4" h="$4" />
+              <Icon as={LockIcon} m="$2" w="$4" h="$4" />
+              <Icon as={RemoveIcon} m="$2" w="$4" h="$4" />
+              <Icon as={MoonIcon} m="$2" w="$4" h="$4" />
+              <Icon as={SlashIcon} m="$2" w="$4" h="$4" />
+              <Icon as={CheckCircleIcon} m="$2" w="$4" h="$4" />
+              <Icon as={PhoneIcon} m="$2" w="$4" h="$4" />
+              <Icon as={HelpCircleIcon} m="$2" w="$4" h="$4" />
+              <Icon as={RepeatIcon} m="$2" w="$4" h="$4" />
+              <Icon as={Repeat1Icon} m="$2" w="$4" h="$4" />
+              <Icon as={SearchIcon} m="$2" w="$4" h="$4" />
+              <Icon as={SettingsIcon} m="$2" w="$4" h="$4" />
+              <Icon as={LoaderIcon} m="$2" w="$4" h="$4" />
+              <Icon as={StarIcon} m="$2" w="$4" h="$4" />
+              <Icon as={SunIcon} m="$2" w="$4" h="$4" />
+              <Icon as={ClockIcon} m="$2" w="$4" h="$4" />
+              <Icon as={UnlockIcon} m="$2" w="$4" h="$4" />
+              <Icon as={EyeIcon} m="$2" w="$4" h="$4" />
+              <Icon as={EyeOffIcon} m="$2" w="$4" h="$4" />
+              <Icon as={AlertCircleIcon} m="$2" w="$4" h="$4" />
+              <Icon as={CloseCircleIcon} m="$2" w="$4" h="$4" />
+              <Icon as={ShareIcon} m="$2" w="$4" h="$4" />
+              <Icon as={CircleIcon} m="$2" w="$4" h="$4" />
+              <Icon as={FavouriteIcon} m="$2" w="$4" h="$4" />
+              <Icon as={GlobeIcon} m="$2" w="$4" h="$4" />
+              <Icon as={ThreeDotsIcon} m="$2" w="$4" h="$4" />
+              <Icon as={PlayIcon} m="$2" w="$4" h="$4" />
+        </HStack>
 `,
       transformCode: (code) => {
         return transformedCode(code);
@@ -374,13 +360,13 @@ Below is a list of all of the icons in the library.
     }}
 />
 
-</AppProvider>
+</Wrapper>
 
 #### Lucide Icons (Recommended)
 
 [Lucide](https://lucide.dev/docs/lucide-react-native) is an open source icon library for displaying icons for react-native. `gluestack-ui` provides an easy integration with lucide icons.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -408,7 +394,7 @@ Below is a list of all of the icons in the library.
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>
 
 #### SVG & Custom Icons
 
@@ -428,7 +414,7 @@ Before :
 After :
 `<Path fill="currentColor" d="M10 10L20 20" /> `
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -465,6 +451,6 @@ After :
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>
 
 > gluestack-ui provides a set of pre created icons that can be used directly in our app and can also integrate third party icons using [AsForwarder](/style/docs/api/as-forwarder) from [gluestack-style](/style)

@@ -88,7 +88,7 @@ import Wrapper from '../../core-components/nativewind/Wrapper';
 
 This is an illustration of **FormControl** component.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -145,13 +145,13 @@ This is an illustration of **FormControl** component.
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>
 
 #### Form Control with Radio
 
 The Radio Component can be incorporated within the FormControl.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -166,7 +166,7 @@ The Radio Component can be incorporated within the FormControl.
           <RadioGroup className='my-2'>
             <VStack space="sm">
               <Radio size="sm" value="Mango">
-                <RadioIndicator className='mr-2'>
+                <RadioIndicator>
                   <RadioIcon>
                     <CircleIcon/>
                   </RadioIcon>
@@ -176,7 +176,7 @@ The Radio Component can be incorporated within the FormControl.
                 </RadioLabel>
               </Radio>
               <Radio size="sm" value="Apple">
-                <RadioIndicator className='mr-2'>
+                <RadioIndicator>
                   <RadioIcon>
                     <CircleIcon/>
                   </RadioIcon>
@@ -186,7 +186,7 @@ The Radio Component can be incorporated within the FormControl.
                 </RadioLabel>
               </Radio>
               <Radio size="sm" value="Orange">
-                <RadioIndicator className='mr-2'>
+                <RadioIndicator>
                   <RadioIcon>
                     <CircleIcon/>
                   </RadioIcon>
@@ -231,7 +231,7 @@ The Radio Component can be incorporated within the FormControl.
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>
 
 <br />
 
@@ -433,21 +433,6 @@ It inherits all the properties of React Native's [Text](https://reactnative.dev/
 
 FormControl component is created using View component from react-native. It extends all the props supported by [React Native View](https://reactnative.dev/docs/view#props).
 
-<!--
-## Spec Doc
-
-Explore the comprehensive details of the Input in this document, including its implementation details, checklist, and potential future additions. Dive into the thought process behind the component and gain insights into its development journey.
-
-<iframe
-  style={{
-    borderRadius: '8px',
-    border: ' 1px solid rgba(0, 0, 0, 0.1)',
-    aspectRatio: 736 / 585,
-  }}
-  src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FNcXOxqKbdnGsLQNex3H76u%2F%25C2%25A0%25F0%259F%2593%259Agluestack-UI-handbook%3Ftype%3Ddesign%26node-id%3D5030-22048%26t%3DIS25mxEIlIP9OacJ-1%26scaling%3Dscale-down%26page-id%3D5030%253A19919%26starting-point-node-id%3D5030%253A22048%26mode%3Ddesign"
-  allowfullscreen
-></iframe> -->
-
 ### Examples
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
@@ -541,7 +526,7 @@ The Input Component can be incorporated within the FormControl.
 
 The Checkbox Component can be incorporated within the FormControl.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -621,13 +606,13 @@ The Checkbox Component can be incorporated within the FormControl.
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>
 
 #### Form Control with Textarea
 
 The Textarea Component can be incorporated within the FormControl.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -670,247 +655,13 @@ The Textarea Component can be incorporated within the FormControl.
       argsType: {},
     }}
   />
-</AppProvider>
-
-#### Form Control with Inline Form
-
-Inline forms can utilize FormControl for seamless integration and enhanced functionality.
-
-<AppProvider>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
-        <HStack space='md'>
-          <FormControl>
-            <Input>
-              <InputField
-                placeholder="Username"
-              />
-            </Input>
-          </FormControl>
-          <FormControl>
-            <Select>
-              <SelectTrigger>
-                <SelectInput placeholder="Country"/>
-                <SelectIcon className='mr-3'>
-                  <Icon as={ChevronDownIcon} />
-                </SelectIcon>
-              </SelectTrigger>
-              <SelectPortal>
-                <SelectBackdrop />
-                <SelectContent>
-                  <SelectDragIndicatorWrapper>
-                    <SelectDragIndicator />
-                  </SelectDragIndicatorWrapper>
-                  <SelectItem label="India" value="India" />
-                  <SelectItem label="Sri Lanka" value="Sri Lanka" />
-                  <SelectItem label="Uganda" value="Uganda" />
-                  <SelectItem label="Japan" value="Japan" />
-                </SelectContent>
-              </SelectPortal>
-            </Select>
-          </FormControl>
-          <FormControl>
-            <Button className='bg-blue-600'>
-              <ButtonText className='font-medium text-sm' >
-                Next
-              </ButtonText>
-            </Button>
-          </FormControl>
-        </HStack>
-      `,
-      transformCode: (code) => {
-        return transformedCode(code);
-      },
-      scope: {
-        Wrapper,
-        FormControl,
-        FormControlLabel,
-        FormControlLabelText,
-        FormControlHelper,
-        FormControlHelperText,
-        FormControlError,
-        FormControlErrorIcon,
-        FormControlErrorText,
-        Icon,
-        HStack,
-        ChevronDownIcon,
-        Input,
-        InputField,
-        Select,
-        SelectTrigger,
-        SelectInput,
-        SelectIcon,
-        SelectPortal,
-        SelectBackdrop,
-        SelectContent,
-        SelectDragIndicatorWrapper,
-        SelectDragIndicator,
-        SelectItem,
-        Button,
-        ButtonText,
-      },
-      argsType: {},
-    }}
-  />
-</AppProvider>
-
-#### Form Control with Form in Modal
-
-Modal or other Overlay components can utilize FormControl for state management and error control.
-
-<AppProvider>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
-      function App() {
-        const [showModal, setShowModal] = useState(false);
-        return(
-          <Center className='h-[500px]'>
-            <Button
-              className='bg-blue-600 py-2.5 px-3'
-              onPress={()=>{
-                setShowModal(true);
-              }}
-            >
-              <ButtonText>
-                Change Settings
-              </ButtonText>
-            </Button>
-            <Modal
-              isOpen={showModal}
-              onClose={() => {
-                setShowModal(false)
-              }}
-              className='bg-white'
-            >
-              <ModalBackdrop/>
-              <ModalContent className='max-w-96'>
-                <ModalBody className='p-5'>
-                  <VStack space='xs' className='mb-4'>
-                    <Heading>
-                      Change Settings
-                    </Heading>
-                    <Text size='sm'>
-                      Make modifications to the settings with ease.
-                    </Text>
-                  </VStack>
-                  <VStack className='py-2' space='xl'>
-                    <FormControl>
-                      <FormControlLabel>
-                        <FormControlLabelText>
-                          Name
-                        </FormControlLabelText>
-                      </FormControlLabel>
-                      <Input>
-                        <InputField
-                          value='Wade Warren'
-                        />
-                      </Input>
-                    </FormControl>
-                    <FormControl>
-                      <FormControlLabel>
-                        <FormControlLabelText>
-                          Email
-                        </FormControlLabelText>
-                      </FormControlLabel>
-                      <Input>
-                        <InputField
-                          value='wadewarren@sample.com'
-                        />
-                      </Input>
-                    </FormControl>
-                    <FormControl>
-                      <FormControlLabel>
-                        <FormControlLabelText>
-                          Volume
-                        </FormControlLabelText>
-                      </FormControlLabel>
-                      <Slider defaultValue={60} sliderTrackHeight={4}>
-                        <SliderTrack>
-                          <SliderFilledTrack/>
-                        </SliderTrack>
-                        <SliderThumb
-                        />
-                    </Slider>
-                    </FormControl>
-                    <FormControl>
-                      <HStack space='sm'>
-                        <Switch size='sm'/>
-                        <FormControlLabelText>
-                          Dark Mode
-                        </FormControlLabelText>
-                      </HStack>
-                    </FormControl>
-                  </VStack>
-                  <Button
-                    className='mt-4'
-                    onPress={()=>{
-                      setShowModal(false);
-                    }}
-                  >
-                    <ButtonText>
-                      Save Changes
-                    </ButtonText>
-                  </Button>
-                </ModalBody>
-              </ModalContent>
-            </Modal>
-          </Center>
-        );
-      }
-      `,
-      transformCode: (code) => {
-        return transformedCode(code, 'function', 'App');
-      },
-      scope: {
-        Wrapper,
-        useState,
-        Box,
-        Center,
-        FormControl,
-        FormControlLabel,
-        FormControlLabelText,
-        FormControlHelper,
-        FormControlHelperText,
-        FormControlError,
-        FormControlErrorIcon,
-        FormControlErrorText,
-        Input,
-        InputField,
-        Button,
-        ButtonText,
-        Slider,
-        SliderTrack,
-        SliderFilledTrack,
-        SliderThumb,
-        Switch,
-        Modal,
-        ModalBackdrop,
-        ModalContent,
-        ModalHeader,
-        ModalCloseButton,
-        ModalBody,
-        ModalFooter,
-        Text: FormControlText,
-        Heading,
-        VStack,
-        HStack,
-      },
-      argsType: {},
-    }}
-  />
-</AppProvider>
+</Wrapper>
 
 #### Form Control with Error
 
 Error messages can be displayed using FormControl.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -925,7 +676,7 @@ Error messages can be displayed using FormControl.
           <RadioGroup className='my-2'>
             <VStack space="sm">
               <Radio size="sm" value="Mango">
-                <RadioIndicator className='mr-2'>
+                <RadioIndicator>
                   <RadioIcon>
                     <CircleIcon/>
                   </RadioIcon>
@@ -935,7 +686,7 @@ Error messages can be displayed using FormControl.
                 </RadioLabel>
               </Radio>
               <Radio size="sm" value="Apple">
-                <RadioIndicator className='mr-2'>
+                <RadioIndicator>
                   <RadioIcon>
                     <CircleIcon/>
                   </RadioIcon>
@@ -945,7 +696,7 @@ Error messages can be displayed using FormControl.
                 </RadioLabel>
               </Radio>
               <Radio size="sm" value="Orange">
-                <RadioIndicator className='mr-2'>
+                <RadioIndicator>
                   <RadioIcon>
                     <CircleIcon/>
                   </RadioIcon>
@@ -991,13 +742,13 @@ Error messages can be displayed using FormControl.
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>
 
 #### Form Control with Form Actions
 
 Form Action Buttons can also be utilized in conjunction with FormControl.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -1040,4 +791,4 @@ Form Action Buttons can also be utilized in conjunction with FormControl.
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>
