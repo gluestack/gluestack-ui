@@ -58,6 +58,10 @@ module.exports = function (api) {
               __dirname,
               '../../packages/unstyled/provider/src'
             ),
+            '@gluestack-ui/popover': path.resolve(
+              __dirname,
+              '../../packages/unstyled/popover/src'
+            ),
             '@gluestack-style/react': path.resolve(
               __dirname,
               '../../packages/styled/react/src'
