@@ -55,7 +55,7 @@ const toastStyle = tva(
         //   color: '$info500',
         // },
         // },
-        attention: 'bg-background-muted border-secondary-300',
+        attention: 'bg-background-muted border-secondary-30',
         // bg: '$backgroundMuted',
         // borderColor: '$secondary300',
 
@@ -67,7 +67,7 @@ const toastStyle = tva(
 
       variant: {
         solid: '',
-        outline: 'border bg-white',
+        outline: 'border-1 bg-white border-red-400',
         accent: 'border-l-4',
       },
     },
