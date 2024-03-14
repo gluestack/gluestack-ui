@@ -1,7 +1,8 @@
+// @ts-ignore
 import { tv } from 'tailwind-variants';
-import type { TVA } from './types';
+import type { TVA } from '../types';
 
-import { deepMergeObjects } from './deepMerge';
+import { deepMergeObjects } from '../utils/deepMerge';
 
 const tvatemp = (options: {
   /**

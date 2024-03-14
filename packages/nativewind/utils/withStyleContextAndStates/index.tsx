@@ -1,8 +1,8 @@
 'use client';
 import React from 'react';
-import { extractDataClassName } from './utils';
-import { ParentContext } from './context';
-export { useStyleContext } from './context';
+import { extractDataClassName } from '../utils';
+import { ParentContext } from '../context';
+export { useStyleContext } from '../context';
 
 type WithStyleContextProps = {
   context?: any;
