@@ -7,4 +7,5 @@ export const Grid = createGrid({
   Item,
 });
 
+export const GridContainer = Grid.Container;
 export const GridItem = Grid.Item;

@@ -1,6 +1,6 @@
 import React, { forwardRef, useEffect, useState } from 'react';
 import { useContext } from 'react';
-import { GridContext } from './Context';
+import { GridContainerContext } from './Context';
 import { Platform } from 'react-native';
 
 export const GridItem = (StyledGridItem: any) =>
@@ -16,7 +16,7 @@ export const GridItem = (StyledGridItem: any) =>
       columnSpacing,
       spacing,
       rowSpacing,
-    } = useContext(GridContext);
+    } = useContext(GridContainerContext);
 
     useEffect(() => {
       if (

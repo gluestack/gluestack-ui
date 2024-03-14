@@ -67,7 +67,7 @@ export * from './FormControlLabel';
 export * from './FormControlLabelText';
 export * from './Grid';
 export * from './GridItem';
-export * from './GridParent';
+export * from './GridContainer';
 export * from './HStack';
 export * from './Heading';
 export * from './Icon';

@@ -1,4 +1,9 @@
-export interface IGridProps {
+export interface IGridContainerProps {
+  /**
+   * The children of the grid item.
+   */
+  children: JSX.Element | Array<JSX.Element>;
+
   /**
    * The number of columns in the grid.
    */
@@ -32,8 +37,8 @@ export interface IGridItemProps {
   colSpan?: number;
 }
 
-export type IGridComponentType<GridProps> = React.ForwardRefExoticComponent<
-  GridProps & IGridProps
-> & {
-  Item: React.ForwardRefExoticComponent<IGridItemProps>;
-};
+export type IGridComponentType<GridProps> =
+  React.ForwardRefExoticComponent<GridProps> & {
+    Container: React.ForwardRefExoticComponent<IGridContainerProps>;
+    Item: React.ForwardRefExoticComponent<IGridItemProps>;
+  };
