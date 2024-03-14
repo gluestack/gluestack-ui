@@ -17,7 +17,7 @@
   "main": "index.js",
   "module": "index.js",
   "types": "index.d.ts",
-  "version": "1.0.2-alpha.5",
+  "version": "1.0.2-alpha.6",
   "react-native": "src/index",
   "source": "src/index",
   "scripts": {
@@ -54,8 +54,19 @@
     ]
   },
   "files": [
-    "lib/",
-    "src/"
+    "cn",
+    "context",
+    "utils",
+    "index.js",
+    "index.d.ts",
+    "tva",
+    "types.js",
+    "types.d.ts",
+    "utils",
+    "withStates",
+    "withStyleContext",
+    "withStyleContextAndStates",
+    "cssInterop"
   ],
   "jest": {
     "preset": "jest-expo",
