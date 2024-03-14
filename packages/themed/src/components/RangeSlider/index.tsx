@@ -11,11 +11,11 @@ import {
 
 export const RangeSlider = createRangeSlider({
   Root,
+  ThumbInteraction,
   LeftThumb,
   RightThumb,
   Track,
   FilledTrack,
-  ThumbInteraction,
 });
 
 export const RangeSliderLeftThumb = RangeSlider.LeftThumb;

@@ -12,13 +12,13 @@ function RangeSlider<StyledSliderProps>(
   return forwardRef(
     (
       {
-        orientation = 'horizontal',
+        // isDisabled = false,
         isReversed = false,
-        'isHovered': isHoveredProp,
-        'isDisabled': isDisabledProp,
-        'isFocused': isFocusedProp,
-        'isFocusVisible': isFocusVisibleProp,
-        'isPressed': isPressedProp,
+        // 'isHovered',
+        // 'isDisabled',
+        // 'isFocused',
+        // 'isFocusVisible',
+        // 'isPressed',
         // @ts-ignore
         'aria-label': ariaLabel = 'Slider',
         children,
@@ -27,7 +27,6 @@ function RangeSlider<StyledSliderProps>(
       ref?: any
     ) => {
       const formControlContext = useFormControlContext();
-
       const { isDisabled, isReadOnly, ...newProps } = {
         ...formControlContext,
         ...props,
@@ -51,6 +50,7 @@ function RangeSlider<StyledSliderProps>(
       props = newProps;
 
       const { onLayout, layout: trackLayout } = useLayout();
+
       const updatedProps: IRangeSliderProps = Object.assign({}, props);
 
       if (isReadOnly || isDisabled) {
@@ -63,8 +63,8 @@ function RangeSlider<StyledSliderProps>(
         numberFormatter: { format: (e) => e },
         minValue: props.minValue,
         maxValue: props.maxValue,
-        orientation: orientation ?? 'horizontal',
-        // orientation: 'vertical',
+        orientation: props.orientation ?? 'horizontal',
+
         onChange: (val: any) => {
           props.onChange && props.onChange(val);
         },
@@ -73,28 +73,30 @@ function RangeSlider<StyledSliderProps>(
         },
       });
 
-      const { groupProps, trackProps, outputProps } = useSlider(
-        props as unknown as any,
+      let { groupProps, trackProps, outputProps } = useSlider(
+        props as any,
         state,
-        trackRef
+        trackLayout
+        // trackRef
       );
+
       const [isFocused, setIsFocused] = React.useState(false);
       const [isFocusVisible, setIsFocusVisible] = React.useState(false);
       const [isHovered, setIsHovered] = React.useState(false);
-      // const [isPressed, setIsPressed] = React.useState(false);
+      const [isPressed, setIsPressed] = React.useState(false);
       const contextValue = React.useMemo(() => {
         return {
           trackLayout,
           state,
-          orientation: orientation,
+          orientation: props.orientation ? props.orientation : 'horizontal',
           isDisabled: isDisabled,
           isFocused: isFocused,
           setIsFocused: setIsFocused,
           isFocusVisible: isFocusVisible,
           setIsFocusVisible: setIsFocusVisible,
           outputProps,
-          // isPressed: isPressed,
-          // setIsPressed: setIsPressed,
+          isPressed: isPressed,
+          setIsPressed: setIsPressed,
           isHovered: isHovered,
           setIsHovered: setIsHovered,
           isReversed: isReversed,
@@ -102,11 +104,11 @@ function RangeSlider<StyledSliderProps>(
           trackRef,
           isReadOnly: isReadOnly,
           onTrackLayout: onLayout,
-          isHoveredProp,
-          isDisabledProp,
-          isFocusedProp,
-          isFocusVisibleProp,
-          isPressedProp,
+          // isHoveredProp,
+          // isDisabledProp,
+          // isFocusedProp,
+          // isFocusVisibleProp,
+          // isPressedProp,
         };
         // eslint-disable-next-line react-hooks/exhaustive-deps
       }, [
@@ -114,7 +116,7 @@ function RangeSlider<StyledSliderProps>(
         trackRef,
         trackLayout,
         state,
-        orientation,
+        // orientation,
         isDisabled,
         isReversed,
         isReadOnly,
@@ -123,13 +125,13 @@ function RangeSlider<StyledSliderProps>(
         setIsFocused,
         isFocusVisible,
         setIsFocusVisible,
-        // isPressed,
-        // setIsPressed,
-        isHoveredProp,
-        isDisabledProp,
-        isFocusedProp,
-        isFocusVisibleProp,
-        isPressedProp,
+        isPressed,
+        setIsPressed,
+        // isHoveredProp,
+        // isDisabledProp,
+        // isFocusedProp,
+        // isFocusVisibleProp,
+        // isPressedProp,
       ]);
 
       return (
@@ -138,13 +140,13 @@ function RangeSlider<StyledSliderProps>(
             {...(props as StyledSliderProps)}
             ref={ref}
             states={{
-              hover: isHovered || isHoveredProp,
-              disabled: isDisabled || isDisabledProp,
-              focus: isFocused || isFocusedProp,
-              focusVisible: isFocusVisible || isFocusVisibleProp,
-              // active: isPressed || isPressedProp,
+              hover: isHovered,
+              disabled: isDisabled,
+              focus: isFocused,
+              focusVisible: isFocusVisible,
+              active: isPressed,
             }}
-            orientation={orientation ?? 'horizontal'}
+            orientation={props.orientation ?? 'horizontal'}
             isReversed={isReversed ?? false}
             {...groupProps}
           >

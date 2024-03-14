@@ -22,7 +22,6 @@ function SliderTrack<StyledSliderTrackProps>(
       isFocusVisibleProp,
       isPressedProp,
     } = React.useContext(SliderContext);
-
     return (
       <StyledSliderTrack
         onLayout={onTrackLayout}

@@ -1,7 +1,7 @@
-import RangeSliderMain from './RangeSlider-aria';
+import RangeSliderMain from './RangeSlider';
 import RangeSliderLeftThumb from './RangeSliderLeftThumb';
 import RangeSliderRightThumb from './RangeSliderRightThumb';
-import RangeSliderTrack from './RangeSliderTrack-aria';
+import RangeSliderTrack from './RangeSliderTrack';
 import RangeSliderFilledTrack from './RangeSliderFilledTrack';
 import type { IRangeSliderComponentType } from './types';
 

@@ -21,36 +21,33 @@ function RangeSliderTrack<StyledRangeSliderTrackProps>(
       isFocusedProp,
       isFocusVisibleProp,
       isPressedProp,
+      // state,
     } = React.useContext(RangeSliderContext);
     // const [isPressed, setIsPressed] = React.useState(false);
-    console.log(trackProps, 'TTTTTTTT');
-    // const { onMouseDown, onPointerDown, onTouchStart, onKeyDown } = trackProps;
-    return <div>hello</div>;
-    // return (
-    //   <StyledRangeSliderTrack
-    //     onLayout={onTrackLayout}
-    //     ref={mergeRefs([_ref, ref])}
-    //     // {...trackProps}
-    //     onMouseDown={(e) => {
-    //       console.log(e, '<<<<<');
-    //       onPointerDown(e);
-    //     }}
-    //     style={{ ...style }}
-    //     {...props}
-    //     isDisabled={isDisabled}
-    //     tabIndex={-1}
-    //     states={{
-    //       hover: isHovered || isHoveredProp,
-    //       disabled: isDisabled || isDisabledProp,
-    //       focus: isFocused || isFocusedProp,
-    //       focusVisible: isFocusVisible || isFocusVisibleProp,
-    //       active: isPressed || isPressedProp,
-    //     }}
-    //     disabled={isDisabled}
-    //   >
-    //     {children}
-    //   </StyledRangeSliderTrack>
-    // );
+
+    // const { onPointerDown } = trackProps;
+
+    return (
+      <StyledRangeSliderTrack
+        onLayout={onTrackLayout}
+        ref={mergeRefs([_ref, ref])}
+        {...trackProps}
+        style={{ ...style }}
+        {...props}
+        isDisabled={isDisabled}
+        tabIndex={-1}
+        states={{
+          hover: isHovered || isHoveredProp,
+          disabled: isDisabled || isDisabledProp,
+          focus: isFocused || isFocusedProp,
+          focusVisible: isFocusVisible || isFocusVisibleProp,
+          active: isPressed || isPressedProp,
+        }}
+        // disabled={isDisabled}
+      >
+        {children}
+      </StyledRangeSliderTrack>
+    );
   });
 }
 export default RangeSliderTrack;

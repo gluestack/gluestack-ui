@@ -35,7 +35,7 @@ function RangeSliderThumb<
         IRangeSliderThumbProps & { children?: any; style?: any },
       ref?: any
     ) => {
-      const [thumbSize, setThumbSize] = React.useState({
+      const [setThumbSize] = React.useState({
         height: 0,
         width: 0,
       });
@@ -46,39 +46,49 @@ function RangeSliderThumb<
 
       // const [isFocusVisible, setIsFocusVisible] = React.useState(false);
       // const [isHovered, setIsHovered] = React.useState(false);
-      const [isPressed, setIsPressed] = React.useState(false);
+      // const [isPressed, setIsPressed] = React.useState(false);
       const {
         state,
         trackLayout,
         orientation,
         isDisabled,
         isReversed,
-        // isPressed,
+        isPressed,
         setIsHovered,
-        // setIsPressed,
+        setIsPressed,
         setIsFocused,
         setIsFocusVisible,
-        isHoveredProp,
-        isDisabledProp,
-        isFocusedProp,
-        isFocusVisibleProp,
-        isPressedProp,
+        // isHoveredProp,
+        // isDisabledProp,
+        // isFocusedProp,
+        // isFocusVisibleProp,
+        // isPressedProp,
         trackRef,
       } = React.useContext(RangeSliderContext);
-      const handleFocus = (focusState: boolean, callback: any) => {
-        setIsFocused(focusState);
-        callback();
-      };
+      // const handleFocus = (focusState: boolean, callback: any) => {
+      //   setIsFocused(focusState);
+      //   callback();
+      // };
       const inputRef = React.useRef(null);
-      const { thumbProps, inputProps } = useSliderThumb(
+      // const { thumbProps, inputProps } = useSliderThumb(
+      //   {
+      //     index: LeftThumbIndex,
+      //     trackLayout,
+      //     inputRef,
+      //     orientation: orientation,
+      //   },
+      //   state,
+      //   isReversed
+      // );
+
+      let { thumbProps, inputProps } = useSliderThumb(
         {
           index: LeftThumbIndex,
           trackLayout,
+          orientation,
           inputRef,
-          orientation: orientation,
         },
-        state,
-        isReversed
+        state
       );
       const { isFocusVisible, focusProps: focusRingProps }: any =
         useFocusRing();
@@ -106,7 +116,6 @@ function RangeSliderThumb<
       thumbStyles[`${positionMap.get(`${orientation} ${isReversed}`)}`] = `${
         state.getThumbPercent(LeftThumbIndex) * 100
       }%`;
-      console.log(state, '<<<khbiuhbi');
       thumbStyles?.transform?.push({
         scale: state.isThumbDragging(LeftThumbIndex) ? scaleOnPressed : 1,
       });
@@ -116,9 +125,10 @@ function RangeSliderThumb<
       // transform: [{ translateX: layout.width ? -layout.width / 2 : 0 }],
       // left: `${state.getThumbPercent(LeftThumbIndex) * 100}%`,
 
-      // useEffect(() => {
-      //   setIsPressed(state.isThumbDragging(LeftThumbIndex));
-      // }, [state, setIsPressed, isPressed]);
+      useEffect(() => {
+        setIsPressed(state.isThumbDragging(LeftThumbIndex));
+      }, [state, setIsPressed, isPressed]);
+
       React.useEffect(() => {
         setIsPressed(state.isThumbDragging(LeftThumbIndex));
       }, [state, setIsPressed, isPressed]);
@@ -144,11 +154,11 @@ function RangeSliderThumb<
             });
           }}
           states={{
-            hover: isHovered || isHoveredProp,
-            disabled: isDisabled || isDisabledProp,
-            focus: isFocused || isFocusedProp,
-            focusVisible: isFocusVisible || isFocusVisibleProp,
-            active: isPressed || isPressedProp,
+            hover: isHovered,
+            disabled: isDisabled,
+            focus: isFocused,
+            focusVisible: isFocusVisible,
+            active: isPressed,
           }}
           disabled={isDisabled}
           {...thumbProps}
@@ -181,11 +191,12 @@ function RangeSliderThumb<
               disabled: isDisabled,
               active: isPressed,
             }}
+            className={`thumb ${isFocusVisible ? 'focus' : ''} `}
           >
             {children}
             {Platform.OS === 'web' && (
               <VisuallyHidden>
-                <input ref={inputRef} {...inputProps} />
+                <input ref={inputRef} {...inputProps} {...focusProps} />
               </VisuallyHidden>
             )}
           </StyledRangeSliderThumbInteraction>

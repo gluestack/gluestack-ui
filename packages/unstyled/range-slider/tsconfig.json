@@ -3,7 +3,8 @@
   "exclude": ["node_modules", "example"],
   "paths": {
     "@gluestack-ui/utils": ["../utils/src"],
-    "@gluestack-ui/form-control": ["../form-control/src"]
+    "@gluestack-ui/form-control": ["../form-control/src"],
+    "'@react-native-aria/slider'": ["../../react-native-aria/slider/src"]
   },
   "compilerOptions": {
     "emitDeclarationOnly": true,

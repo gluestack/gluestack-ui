@@ -28,7 +28,8 @@ function RangeSliderThumb<
     (
       {
         children,
-        scaleOnPressed = 1,
+        // FIX: Commenting to fix linting error
+        // scaleOnPressed = 1,
         style,
         ...props
       }: StyledRangeSliderThumbInteraction &
@@ -36,14 +37,13 @@ function RangeSliderThumb<
         IRangeSliderThumbProps & { children?: any; style?: any },
       ref?: any
     ) => {
-      const [thumbSize, setThumbSize] = React.useState({
+      const [setThumbSize] = React.useState({
         height: 0,
         width: 0,
       });
 
       const _ref = React.useRef(null);
       const { isHovered } = useHover({}, _ref);
-      const [isPressed, setIsPressed] = React.useState(false);
 
       const {
         state,
@@ -51,9 +51,9 @@ function RangeSliderThumb<
         orientation,
         isDisabled,
         isReversed,
-        // isPressed,
+        isPressed,
         setIsHovered,
-        // setIsPressed,
+        setIsPressed,
         setIsFocused,
         setIsFocusVisible,
         isHoveredProp,
@@ -96,7 +96,6 @@ function RangeSliderThumb<
         //         },
         //       ],
       };
-
       thumbStyles[`${positionMap.get(`${orientation} ${isReversed}`)}`] = `${
         state.getThumbPercent(RightThumbIndex) * 100
       }%`;
@@ -109,7 +108,7 @@ function RangeSliderThumb<
 
       useEffect(() => {
         setIsPressed(state.isThumbDragging(RightThumbIndex));
-      }, [state]);
+      }, [state, setIsPressed]);
 
       useEffect(() => {
         setIsFocused(isFocused);

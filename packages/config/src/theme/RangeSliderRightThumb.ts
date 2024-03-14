@@ -1,7 +1,7 @@
 import { createStyle } from '@gluestack-style/react';
 
 export const RangeSliderRightThumb = createStyle({
-  'bg': '$red500',
+  'bg': '$primary500',
   '_dark': {
     bg: '$primary400',
   },
