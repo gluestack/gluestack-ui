@@ -1,31 +1,20 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { createTooltip } from '@gluestack-ui/tooltip';
 import { View, Text, Platform } from 'react-native';
-import {
-  tva,
-  withStyleContext,
-  withStyleContextAndStates,
-  VariantProps,
-} from '@gluestack-ui/nativewind-utils';
-import Animated, {
-  Easing,
-  useSharedValue,
-  withSpring,
-  withTiming,
-} from 'react-native-reanimated';
-import { View, Text } from 'react-native';
+import { VariantProps } from '@gluestack-ui/nativewind-utils';
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import { withStyleContext } from '@gluestack-ui/nativewind-utils/withStyleContext';
-import React from 'react';
+import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withStyleContextAndStates';
 
+import { Motion, AnimatePresence } from '@legendapp/motion';
 export const UITooltip = createTooltip({
   Root:
     Platform.OS === 'web'
       ? withStyleContext(View)
       : withStyleContextAndStates(View),
-  Content: Animated.View,
+  Content: Motion.View,
   Text: Text,
-  AnimatePresence: React.Fragment, // TODO: Add support for this
+  AnimatePresence: AnimatePresence, // TODO: Add support for this
 });
 
 const tooltipStyle = tva({
@@ -87,12 +76,15 @@ type ITooltipTextProps = React.ComponentProps<typeof UITooltip.Text> &
   VariantProps<typeof tooltipTextStyle>;
 
 export const Tooltip = React.forwardRef(
-  ({ className, ...props }: { className?: string } & ITooltipProps, ref) => {
+  (
+    { className, ...props }: { className?: string } & ITooltipProps,
+    ref?: any
+  ) => {
     return (
       <UITooltip
         ref={ref}
-        {...props}
         className={tooltipStyle({ class: className })}
+        {...props}
       />
     );
   }
@@ -103,32 +95,34 @@ export const TooltipContent = React.forwardRef(
     { className, ...props }: { className?: string } & ITooltipContentProps,
     ref
   ) => {
-    const opacity = useSharedValue(0);
-    const scale = useSharedValue(0.5);
-    useEffect(() => {
-      opacity.value = withTiming(1, {
-        easing: Easing.linear,
-      });
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-    useEffect(() => {
-      scale.value = withSpring(1, {
-        damping: 18,
-        stiffness: 250,
-      });
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
     return (
       <UITooltip.Content
         ref={ref}
+        initial={{
+          opacity: 0,
+          scale: 0.5,
+        }}
+        animate={{
+          opacity: 1,
+          scale: 1,
+        }}
+        exit={{
+          opacity: 0,
+          scale: 0.5,
+        }}
+        transition={{
+          type: 'spring',
+          damping: 18,
+          stiffness: 50,
+          opacity: {
+            type: 'timing',
+            duration: 250,
+          },
+        }}
         {...props}
         className={tooltipContentStyle({
           class: className,
         })}
-        style={{
-          opacity: opacity,
-          transform: [{ scale: scale }],
-        }}
         pointerEvents="auto"
       />
     );
@@ -142,13 +136,13 @@ export const TooltipText = React.forwardRef(
       size = 'md',
       ...props
     }: { className?: string } & ITooltipTextProps,
-    ref
+    ref?: any
   ) => {
     return (
       <UITooltip.Text
         ref={ref}
-        {...props}
         className={tooltipTextStyle({ size, class: className })}
+        {...props}
       />
     );
   }
