@@ -52,8 +52,8 @@ export const Grid = (StyledParent: any, StyledGrid: any) =>
                 ref={ref}
                 flexDirection={flexDirection}
                 width={calculatedWidth}
-                ml={(columnSpacing ?? spacing) * -1}
-                mt={(rowSpacing ?? spacing) * -1}
+                mx={(columnSpacing ?? spacing) / -2}
+                my={(rowSpacing ?? spacing) / -2}
                 {...props}
               >
                 {children}

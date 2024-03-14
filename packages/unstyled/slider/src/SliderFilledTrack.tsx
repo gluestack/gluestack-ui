@@ -60,7 +60,7 @@ function SliderFilledTrack<StyledSliderFilledTrack>(
         <StyledSliderFilledTrack
           {...props}
           ref={mergeRefs([_ref, ref])}
-          style={{ ...style, ...positionProps }}
+          style={[style, positionProps]}
           states={{
             hover: isHovered || isHoveredProp,
             disabled: isDisabled || isDisabledProp,

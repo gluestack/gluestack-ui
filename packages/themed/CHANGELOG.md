@@ -1,5 +1,63 @@
 # @gluestack-ui/themed
 
+## 1.1.11
+
+### Patch Changes
+
+- Updated dependencies
+  - @gluestack-ui/popover@0.1.32
+
+## 1.1.10
+
+### Patch Changes
+
+- - Fixed ref typings
+  - Fixed plugin sx prop issue
+- Updated dependencies
+  - @gluestack-style/react@1.0.50
+
+## 1.1.9
+
+### Patch Changes
+
+- feat: added `useRNModal` support in `Menu`.
+- Updated dependencies
+  - @gluestack-ui/menu@0.2.30
+
+## 1.1.8
+
+### Patch Changes
+
+- Updated dependencies
+  - @gluestack-ui/slider@0.1.21
+
+## 1.1.7
+
+### Patch Changes
+
+- Updated dependencies
+  - @gluestack-ui/progress@0.1.13
+
+## 1.1.6
+
+### Patch Changes
+
+- Fix `StatusBar` backgroundColor not working.
+
+- Updated dependencies
+  - @gluestack-ui/popover@0.1.31
+  - @gluestack-ui/tooltip@0.1.26
+  - @gluestack-ui/select@0.1.24
+  - @gluestack-ui/menu@0.2.29
+
+## 1.1.5
+
+### Patch Changes
+
+- Fixed React Native style props in utility props
+- Updated dependencies
+  - @gluestack-style/react@1.0.48
+
 ## 1.1.4
 
 ### Patch Changes

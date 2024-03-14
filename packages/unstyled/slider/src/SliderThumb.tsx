@@ -140,10 +140,7 @@ function SliderThumb<StyledSliderThumb, StyledSliderThumbInteraction>(
           }}
           disabled={isDisabled}
           {...thumbProps}
-          style={{
-            ...style,
-            ...thumbStyles,
-          }}
+          style={[style, thumbStyles]}
           // @ts-ignore - web only
           onFocus={composeEventHandlers(
             composeEventHandlers(props?.onFocus, focusProps.onFocus),

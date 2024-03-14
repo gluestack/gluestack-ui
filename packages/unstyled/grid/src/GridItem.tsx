@@ -39,8 +39,8 @@ export const GridItem = (StyledGridItem: any) =>
     return (
       <StyledGridItem
         width={Platform.OS === 'web' ? 'auto' : '100%'}
-        pl={columnSpacing ?? spacing}
-        pt={rowSpacing ?? spacing}
+        px={(columnSpacing ?? spacing) / 2}
+        py={(rowSpacing ?? spacing) / 2}
         ref={ref}
         flexBasis={flexBasisValue}
         {...props}

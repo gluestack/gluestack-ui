@@ -65,7 +65,8 @@ export const SelectPortal = (StyledSelectPortal: any) =>
         <select
           disabled={isDisabled || isReadOnly}
           {...focusProps}
-          {...hoverProps}
+          onMouseEnter={hoverProps.onHoverIn}
+          onMouseLeave={hoverProps.onHoverOut}
           onChange={(e: any) => {
             onValueChange(e.target.value);
             setLabel(e.target.options[e.target.selectedIndex].text);
