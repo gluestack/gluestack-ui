@@ -1,5 +1,30 @@
 # @gluestack-ui/menu
 
+## 0.2.30
+
+### Patch Changes
+
+- feat: added `useRNModal` support in `Menu`.
+
+## 0.2.29
+
+### Patch Changes
+
+- fixes
+
+## 0.2.28
+
+### Patch Changes
+
+- Feature
+  Added Support of data-state-\* props
+
+## 0.2.27
+
+### Patch Changes
+
+- `Menu` fixed `closeOnSelect` onPress issue.
+
 ## 0.2.26
 
 ### Patch Changes

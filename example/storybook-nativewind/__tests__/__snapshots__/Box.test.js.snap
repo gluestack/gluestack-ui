@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="css-view-175oi2r"
+  data-style="1mk50wr-1q64x7k 14bja7p-1q64x7k n7aciq-1q64x7k"
+  dir={null}
+>
+  <div
+    className="css-view-175oi2r"
+    data-style="y9czwk-1hh0pc0 14bja7p-1q64x7k yljpgc-5lm9f0"
+    dir={null}
+  >
+    <div
+      className="css-view-175oi2r"
+      data-style="1mk50wr-1q64x7k 14bja7p-1q64x7k aj8jl8-2q7xs9"
+      dir={null}
+    >
+      <div
+        className="css-text-1rynq56"
+        data-style="1mo3ip0-13uhtwo 1mo3ip0-1j1xgf6 1mo3ip0-1j1xgf6 14bja7p-1q64x7k 12ukb3i-v2qyhg"
+        dir="auto"
+      >
+        BOX
+      </div>
+    </div>
+  </div>
+</div>
+`;

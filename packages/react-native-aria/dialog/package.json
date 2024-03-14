@@ -38,13 +38,16 @@
     "ios",
     "android"
   ],
-  "repository": "https://github.com/intergalacticspacehighway/react-native-bob-mono",
+  "homepage": "https://github.com/gluestack/gluestack-ui/tree/main/packages/react-native-aria/dialog#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gluestack/gluestack-ui.git"
+  },
   "author": "mayank <mayankpagar07@gmail.com> (https://github.com/mayank-96)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/intergalacticspacehighway/react-native-bob-mono/issues"
   },
-  "homepage": "https://github.com/intergalacticspacehighway/react-native-bob-mono#readme",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },

@@ -68,7 +68,12 @@ export const Text = createStyle({
 
       'md': {
         fontSize: '$md',
-        lineHeight: '$md',
+
+        /**
+         * @todo Fix the lineHeight issue
+         * https://github.com/gluestack/gluestack-ui/issues/1836
+         */
+        // lineHeight: '$md',
       },
 
       'lg': {

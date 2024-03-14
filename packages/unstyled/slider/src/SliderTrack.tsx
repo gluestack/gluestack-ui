@@ -27,7 +27,7 @@ function SliderTrack<StyledSliderTrackProps>(
         onLayout={onTrackLayout}
         ref={mergeRefs([_ref, ref])}
         {...trackProps}
-        style={{ ...style }}
+        style={style}
         {...props}
         isDisabled={isDisabled}
         tabIndex={-1}
@@ -37,6 +37,13 @@ function SliderTrack<StyledSliderTrackProps>(
           focus: isFocused || isFocusedProp,
           focusVisible: isFocusVisible || isFocusVisibleProp,
           active: isPressed || isPressedProp,
+        }}
+        dataSet={{
+          hover: isHovered || isHoveredProp ? 'true' : 'false',
+          disabled: isDisabled || isDisabledProp ? 'true' : 'false',
+          focus: isFocused || isFocusedProp ? 'true' : 'false',
+          focusVisible: isFocusVisible || isFocusVisibleProp ? 'true' : 'false',
+          active: isPressed || isPressedProp ? 'true' : 'false',
         }}
         disabled={isDisabled}
       >

@@ -1,5 +1,18 @@
 # @gluestack-ui/button
 
+## 1.0.1
+
+### Patch Changes
+
+- Feature
+  Added Support of data-state-\* props
+
+## 1.0.0
+
+### Major Changes
+
+- removed `direction` prop from `ButtonGroup` use `flexDirection` instead.
+
 ## 0.1.34
 
 ### Patch Changes

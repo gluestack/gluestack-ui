@@ -1,5 +1,20 @@
 # @gluestack-ui/slider
 
+## 0.1.21
+
+### Patch Changes
+
+- fix: style array issue
+
+## 0.1.20
+
+### Patch Changes
+
+- Feature
+  Added Support of data-state-\* props
+- Updated dependencies
+  - @gluestack-ui/form-control@0.1.16
+
 ## 0.1.19
 
 ### Patch Changes

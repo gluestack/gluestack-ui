@@ -81,6 +81,14 @@ export class FontResolver implements IStyledPlugin, FontPlugin {
 
   mapFonts(style: any) {
     if (isExpoStrategy()) {
+      const regex = /^([^_]*_){1,2}[^_]*$/;
+
+      if (style.fontFamily.match(regex)) {
+        delete style.fontWeight;
+        delete style.fontStyle;
+
+        return;
+      }
       let fontFamilyValue = style.fontFamily
         .replace(/ /g, '')
         .replace(/^\w/, (c: any) => c.toUpperCase());
@@ -151,13 +159,18 @@ export class FontResolver implements IStyledPlugin, FontPlugin {
     styledObj: any = {},
     shouldUpdate: boolean = true,
     _?: boolean,
-    Component?: React.ComponentType
+    Component?: React.ComponentType,
+    componentStyleConfig?: any
   ) {
+    const uniqueComponentId = componentStyleConfig?.uniqueComponentId;
+
     const ignoreKeys = new Set();
     const modifiedStyledObject = this.fontHandler(
       styledObj,
       ignoreKeys,
-      shouldUpdate
+      shouldUpdate,
+      {},
+      [uniqueComponentId]
     );
 
     if (shouldUpdate) {
@@ -237,9 +250,13 @@ export class FontResolver implements IStyledPlugin, FontPlugin {
     return styledObject;
   }
 
-  componentMiddleWare({ Component: InputComponent, extendedConfig }: any) {
-    const styledConfig = this.#fontFamily;
-    this.#fontFamily = {};
+  componentMiddleWare({
+    Component: InputComponent,
+    extendedConfig,
+    componentStyleConfig,
+  }: any) {
+    const styledConfig =
+      this.#fontFamily?.[componentStyleConfig?.uniqueComponentId];
 
     const OutputComponent = React.forwardRef((props: any, ref: any) => {
       const styledContext = useStyled();
@@ -264,7 +281,8 @@ export class FontResolver implements IStyledPlugin, FontPlugin {
         variantProps,
         styledConfig
       );
-      const styledConfigWithoutVariant = deepClone(styledConfig);
+      const styledConfigWithoutVariant = deepClone(styledConfig ?? {});
+
       delete styledConfigWithoutVariant.variants;
 
       let componentStyledObject = deepMerge(
@@ -289,7 +307,7 @@ export class FontResolver implements IStyledPlugin, FontPlugin {
           fontStyle ?? componentStyledObject.fontStyle;
       }
 
-      const sxPropsWithThemeProps = deepMerge(sx, componentStyledObject);
+      const sxPropsWithThemeProps = deepMerge(componentStyledObject, sx);
 
       const [resolvedSxProps, , ,] = this.inputMiddleWare(
         sxPropsWithThemeProps,
