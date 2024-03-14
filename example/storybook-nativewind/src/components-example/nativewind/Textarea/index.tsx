@@ -100,7 +100,7 @@ const textareaStyle = tva({
 });
 
 const textareaInputStyle = tva({
-  base: 'p-2 flex-1 color-typography-900 align-text-top',
+  base: 'p-2 flex-1 color-typography-900 align-text-top placeholder:text-typography-600',
 
   // /     p: '$2',
   //     color: '$text900',

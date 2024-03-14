@@ -30,12 +30,12 @@ const StyledRoot = styled(
     },
 
     'minWidth': 200,
-    'py': '$2',
+    'p': '$1',
     'rounded': '$sm',
     'bg': '$background0',
-
+    'borderColor': '$border200',
     'defaultProps': {
-      softShadow: '3',
+      hardshadow: '5',
     },
   },
   {}
@@ -49,7 +49,7 @@ const StyledItem = styled(
     'alignItems': 'center',
 
     ':hover': {
-      bg: '$background100',
+      bg: '$background50',
     },
 
     ':disabled': {
@@ -65,11 +65,11 @@ const StyledItem = styled(
     },
 
     ':active': {
-      bg: '$background200',
+      bg: '$background100',
     },
 
     ':focus': {
-      bg: '$background100',
+      bg: '$background50',
       // @ts-ignore
       outlineWidth: '$0',
       outlineStyle: 'none',

@@ -183,7 +183,7 @@ const StyledFooter = styled(View, {
 
 const StyledHeader = styled(View, {
   p: '$4',
-  pb: '$2',
+  pb: '$0',
   justifyContent: 'space-between',
   alignItems: 'center',
   flexDirection: 'row',

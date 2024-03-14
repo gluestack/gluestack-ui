@@ -36,7 +36,7 @@ const StyledRoot = styled(
     },
 
     '_icon': {
-      color: '$text400',
+      color: '$background600',
     },
 
     'variants': {
@@ -341,7 +341,7 @@ const StyledInputField = styled(
     color: '$text900',
 
     props: {
-      placeholderTextColor: '$text500',
+      placeholderTextColor: '$text600',
     },
 
     _web: {

@@ -213,7 +213,7 @@ const alertDialogCloseButtonStyle = tva({
 // );
 
 const alertDialogHeaderStyle = tva({
-  base: 'p-4 border-border-300 justify-between items-center flex-row',
+  base: 'p-4 border-border-300 justify-between items-center flex-row pb-0',
 });
 
 // const StyledHeader = styled(

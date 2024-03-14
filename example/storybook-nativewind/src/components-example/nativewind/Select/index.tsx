@@ -384,7 +384,7 @@ const StyledSelectTrigger = styled(
     },
 
     '_icon': {
-      color: '$background500',
+      color: '$background600',
     },
 
     'variants': {
@@ -611,7 +611,7 @@ const StyledSelectInput = styled(
     color: '$text900',
 
     props: {
-      placeholderTextColor: '$text500',
+      placeholderTextColor: '$text600',
     },
   },
   {
