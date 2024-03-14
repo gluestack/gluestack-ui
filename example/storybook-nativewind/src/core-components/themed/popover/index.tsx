@@ -40,9 +40,6 @@ const StyledArrow = styled(AnimatedView, {
   'zIndex': 1,
   'position': 'absolute',
   'overflow': 'hidden',
-  '_dark': {
-    bg: '$backgroundDark900',
-  },
   'h': '$3.5',
   'w': '$3.5',
   ':transition': {
