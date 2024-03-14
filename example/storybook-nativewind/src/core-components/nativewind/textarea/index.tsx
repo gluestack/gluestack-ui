@@ -9,6 +9,7 @@ import {
 import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withStyleContextAndStates';
 import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
+import { withStates } from '@gluestack-ui/nativewind-utils/withStates';
 
 const UITextarea = createTextarea({
   // @ts-ignore
