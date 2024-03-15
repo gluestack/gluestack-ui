@@ -60,7 +60,7 @@ export const parameters = {
             'Textarea',
           ],
           'Overlay',
-          ['AlertDialog', 'Modal', 'Popover', 'Tooltip'],
+          ['AlertDialog', 'Menu', 'Modal', 'Popover', 'Tooltip'],
           'Disclosure',
           ['Actionsheet', 'Accordion'],
           'Media And Icons',

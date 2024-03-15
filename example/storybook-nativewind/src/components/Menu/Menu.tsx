@@ -1,29 +1,17 @@
 import React from 'react';
-
-import {
-  Box,
-  Button,
-  ButtonText,
-  GlobeIcon,
-  HStack,
-  SettingsIcon,
-  AddIcon,
-  Text,
-  Center,
-  Menu,
-  MenuItem,
-  MenuItemLabel,
-  Icon,
-} from '@/components/ui/';
+import { Button, ButtonText } from '@/components/ui/button';
+import { Box } from '@/components/ui/box';
+import { HStack } from '@/components/ui/hstack';
+import { Text } from '@/components/ui/text';
+import { Icon, AddIcon, GlobeIcon, SettingsIcon } from '@/components/ui/icon';
+import { Center } from '@/components/ui/center';
+import { Menu, MenuItem, MenuItemLabel } from '@/components/ui/menu';
 
 import { PaintBucket, PuzzleIcon } from 'lucide-react-native';
 
 const MenuBasic = ({ placement = 'bottom' }: any) => {
   return (
     <Center>
-      <Box className="bg-background-500">
-        <Text>Hello</Text>
-      </Box>
       <Menu
         // isOpen={true}
         placement={placement}
@@ -37,70 +25,28 @@ const MenuBasic = ({ placement = 'bottom' }: any) => {
           );
         }}
       >
-        <MenuItem key="Community" textValue="Community" gap="$2">
-          <Icon as={GlobeIcon} size="sm" />
+        <MenuItem key="Community" textValue="Community">
+          <Icon as={GlobeIcon} size="sm" className="mr-2" />
           <MenuItemLabel size="sm">Community</MenuItemLabel>
         </MenuItem>
-        <MenuItem key="Plugins" textValue="Plugins" gap="$2">
-          <Icon as={PuzzleIcon} size="sm" />
+        <MenuItem key="Plugins" textValue="Plugins">
+          <Icon as={PuzzleIcon} size="sm" className="mr-2" />
           <MenuItemLabel size="sm">Plugins</MenuItemLabel>
         </MenuItem>
-        <MenuItem key="Theme" textValue="Theme" gap="$2">
-          <Icon as={PaintBucket} size="sm" />
+        <MenuItem key="Theme" textValue="Theme">
+          <Icon as={PaintBucket} size="sm" className="mr-2" />
           <MenuItemLabel size="sm">Theme</MenuItemLabel>
         </MenuItem>
-        <MenuItem key="Settings" textValue="Settings" gap="$2">
-          <Icon as={SettingsIcon} size="sm" />
+        <MenuItem key="Settings" textValue="Settings">
+          <Icon as={SettingsIcon} size="sm" className="mr-2" />
           <MenuItemLabel size="sm">Settings</MenuItemLabel>
         </MenuItem>
-        <MenuItem key="Add account" textValue="Add account" gap="$2">
-          <Icon as={AddIcon} size="sm" />
+        <MenuItem key="Add account" textValue="Add account">
+          <Icon as={AddIcon} size="sm" className="mr-2" />
           <MenuItemLabel size="sm">Add account</MenuItemLabel>
         </MenuItem>
       </Menu>
     </Center>
-  );
-};
-
-const FigmaMenuStory = ({ _colorMode, ...props }) => {
-  return (
-    <Menu
-      {...props}
-      // @ts-ignore
-      _experimentalOverlay={true}
-      isOpen={true}
-      placement="bottom"
-      offset={30}
-      // eslint-disable-next-line react/no-unstable-nested-components
-      trigger={({ ...triggerProps }) => {
-        return (
-          <Button {...triggerProps}>
-            <ButtonText>Menu</ButtonText>
-          </Button>
-        );
-      }}
-    >
-      <Menu.Item key="Community" textValue="Community" gap="$2">
-        <Icon as={GlobeIcon} size="sm" />
-        <Menu.ItemLabel size="sm">Community</Menu.ItemLabel>
-      </Menu.Item>
-      <Menu.Item key="Plugins" textValue="Plugins" gap="$2">
-        <Icon as={PuzzleIcon} size="sm" />
-        <Menu.ItemLabel size="sm">Plugins</Menu.ItemLabel>
-      </Menu.Item>
-      <Menu.Item key="Theme" textValue="Theme" gap="$2">
-        <Icon as={PaintBucket} size="sm" />
-        <Menu.ItemLabel size="sm">Theme</Menu.ItemLabel>
-      </Menu.Item>
-      <Menu.Item key="Settings" textValue="Settings" gap="$2">
-        <Icon as={SettingsIcon} size="sm" />
-        <Menu.ItemLabel size="sm">Settings</Menu.ItemLabel>
-      </Menu.Item>
-      <Menu.Item key="Add account" textValue="Add account" gap="$2">
-        <Icon as={AddIcon} size="sm" />
-        <Menu.ItemLabel size="sm">Add account</Menu.ItemLabel>
-      </Menu.Item>
-    </Menu>
   );
 };
 
@@ -110,7 +56,6 @@ MenuBasic.description =
 export default MenuBasic;
 
 export {
-  FigmaMenuStory,
   Button,
   ButtonText,
   GlobeIcon,
