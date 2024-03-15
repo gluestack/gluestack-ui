@@ -71,7 +71,7 @@ const tooltipTextStyle = tva({
 });
 
 cssInterop(UITooltip, { className: 'style' });
-cssInterop(Motion.View, { className: 'style' });
+cssInterop(UITooltip.Content, { className: 'style' });
 cssInterop(UITooltip.Text, { className: 'style' });
 
 type ITooltipProps = React.ComponentProps<typeof UITooltip> &
