@@ -73,11 +73,11 @@ const alertDialogCloseButtonStyle = tva({
 });
 
 const alertDialogHeaderStyle = tva({
-  base: 'p-4 border border-outline-300 justify-between items-center flex-row',
+  base: 'p-4 justify-between items-center flex-row',
 });
 
 const alertDialogFooterStyle = tva({
-  base: 'p-4 flex-row justify-end items-center flex-wrap border-outline-300',
+  base: 'p-4 flex-row justify-end items-center flex-wrap',
 });
 
 const alertDialogBodyStyle = tva({ base: 'px-4 py-2' });
