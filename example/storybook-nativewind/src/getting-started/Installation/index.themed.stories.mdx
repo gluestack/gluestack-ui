@@ -11,7 +11,7 @@ showHeader: true
 ---
 
 import { Meta } from '@storybook/addon-docs';
-import { CollapsibleCode } from '@gluestack/design-system';
+import { CollapsibleCode, Tabs, Box, HStack } from '@gluestack/design-system';
 
 <Meta title="with-gluestack-style/Getting Started/Installation" />
 
@@ -20,6 +20,49 @@ import { CollapsibleCode } from '@gluestack/design-system';
 ### Using Template
 
 Coming soon
+
+### Using CLI
+
+If you wish to use `gluestack-ui` in your existing project using CLI, you can proceed with the following steps:
+
+### Step 1: Install dependency
+First install `gluestack-ui` into your existing project using the following command
+
+```bash
+yarn add gluestack-ui
+```
+
+OR
+
+```bash
+npm i gluestack-ui
+```
+
+### Step 2: Initialize
+Use `init` command to add `GluestackUIProvider` and `gluestack-ui-provider/config.ts` file into your project.
+
+```bash
+npx gluestack-ui init
+```
+You will be asked to select a component style to initialize
+
+```bash
+ Which style would you like to use in your project:
+ gluestack-style // Choose a component style
+ nativewind
+ ```
+ Refer step: 4 in manual installation for usage of `GluestackUIProvider`
+
+### Step 3: Add components
+To add components you wish to use in your project, you can use `add` command as shown below.
+
+```bash
+npx gluestack-ui add button 
+```
+To add all the components, you can use
+```bash
+npx gluestack-ui add --all
+```
 
 ## Manual
 
