@@ -15,7 +15,7 @@ const menuItemStyle = tva({
 });
 
 const menuBackdropStyle = tva({
-  base: 'absolute top-0 bottom-0 left-0 right-0 bg-background-500 opacity-50 web:cursor-default',
+  base: 'absolute top-0 bottom-0 left-0 right-0 bg-background-dark opacity-50 web:cursor-default',
   // add this classnames if you want to give background colour to backdrop
   // opacity-50 bg-background-500,
 });

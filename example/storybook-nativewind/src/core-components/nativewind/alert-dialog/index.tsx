@@ -83,7 +83,7 @@ const alertDialogFooterStyle = tva({
 const alertDialogBodyStyle = tva({ base: 'px-4 py-2' });
 
 const alertDialogBackdropStyle = tva({
-  base: 'absolute left-0 top-0 right-0 bottom-0 bg-background-950 web:cursor-default',
+  base: 'absolute left-0 top-0 right-0 bottom-0 bg-background-dark web:cursor-default',
 });
 
 type IAlertDialogProps = React.ComponentProps<typeof UIAccessibleAlertDialog> &
