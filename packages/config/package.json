@@ -66,14 +66,14 @@
     "@gluestack-ui/switch": "0.1.19",
     "@gluestack-ui/tabs": "0.1.14",
     "@gluestack-ui/textarea": "0.1.20",
-    "@gluestack-ui/themed": "1.1.11",
+    "@gluestack-ui/themed": "1.1.12",
     "@gluestack-ui/toast": "1.0.4",
-    "@gluestack-ui/tooltip": "0.1.26",
+    "@gluestack-ui/tooltip": "0.1.27",
     "@legendapp/motion": "latest"
   },
   "peerDependencies": {
     "@gluestack-style/react": ">=1.0",
-    "@gluestack-ui/themed": ">=1.1"
+    "@gluestack-ui/themed": ">=1.1.12"
   },
   "release-it": {
     "git": {
