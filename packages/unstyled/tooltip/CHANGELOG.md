@@ -1,5 +1,11 @@
 # @gluestack-ui/tooltip
 
+## 0.1.27
+
+### Patch Changes
+
+- fix: tooltip content style prop
+
 ## 0.1.26
 
 ### Patch Changes
