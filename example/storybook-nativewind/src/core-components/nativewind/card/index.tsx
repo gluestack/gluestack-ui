@@ -1,5 +1,5 @@
 import React from 'react';
-import { tva } from '@gluestack-ui/nativewind-utils';
+import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import { View } from 'react-native';
 
 const cardStyle = tva({

@@ -1,15 +1,15 @@
 import React from 'react';
 import { createInput } from '@gluestack-ui/input';
 import { View, Pressable, TextInput, Platform } from 'react-native';
+import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import {
-  tva,
-  withStyleContextAndStates,
-  useStyleContext,
   withStyleContext,
-  withStates,
-  VariantProps,
-  cssInterop,
-} from '@gluestack-ui/nativewind-utils';
+  useStyleContext,
+} from '@gluestack-ui/nativewind-utils/withStyleContext';
+import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withStyleContextAndStates';
+import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
+import { withStates } from '@gluestack-ui/nativewind-utils/withStates';
+import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 
 const UIInput = createInput({
   // @ts-ignore

@@ -1,5 +1,11 @@
 # @gluestack-style/react
 
+## 1.0.52
+
+### Patch Changes
+
+- - Fixed media queries issue with theme
+
 ## 1.0.50
 
 ### Patch Changes

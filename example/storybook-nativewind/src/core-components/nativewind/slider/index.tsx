@@ -2,14 +2,14 @@ import { createSlider } from '@gluestack-ui/slider';
 import { Pressable } from 'react-native';
 import { View, Platform } from 'react-native';
 import React from 'react';
+import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import {
-  tva,
   withStyleContext,
-  withStyleContextAndStates,
   useStyleContext,
-  withStates,
-} from '@gluestack-ui/nativewind-utils';
-import { cssInterop } from 'nativewind';
+} from '@gluestack-ui/nativewind-utils/withStyleContext';
+import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withStyleContextAndStates';
+import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
+import { withStates } from '@gluestack-ui/nativewind-utils/withStates';
 
 export const UISlider = createSlider({
   // @ts-ignore

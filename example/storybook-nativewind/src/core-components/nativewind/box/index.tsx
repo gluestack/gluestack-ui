@@ -1,6 +1,8 @@
 import React from 'react';
 import { View } from 'react-native';
-import { tva, VariantProps } from '@gluestack-ui/nativewind-utils';
+
+import { tva } from '@gluestack-ui/nativewind-utils/tva';
+import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 
 const boxStyle = tva({});
 

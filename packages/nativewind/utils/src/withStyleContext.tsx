@@ -1,6 +1,7 @@
 'use client';
 import React from 'react';
 import { ParentContext } from './context';
+export { useStyleContext } from './context';
 
 type WithStyleContextProps = {
   context?: any;

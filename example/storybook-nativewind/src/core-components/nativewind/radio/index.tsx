@@ -2,14 +2,13 @@ import React from 'react';
 import { createRadio } from '@gluestack-ui/radio';
 import { Pressable, View, Platform, Text } from 'react-native';
 import { Circle } from 'lucide-react-native';
+import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import {
-  tva,
-  withStyleContextAndStates,
   withStyleContext,
   useStyleContext,
-  withStates,
-} from '@gluestack-ui/nativewind-utils';
-import { cssInterop } from 'nativewind';
+} from '@gluestack-ui/nativewind-utils/withStyleContext';
+import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
+import { withStates } from '@gluestack-ui/nativewind-utils/withStates';
 
 const radioStyle = tva({
   base: 'flex-row justify-start items-center web:cursor-pointer data-[disabled=true]:web:cursor-not-allowed gap-2',

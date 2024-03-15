@@ -6,12 +6,12 @@ import {
 } from '@gluestack-style/animation-resolver';
 import { styled } from '@gluestack-style/react';
 import { Text, View } from 'react-native';
+import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import {
-  tva,
-  useStyleContext,
   withStyleContext,
-} from '@gluestack-ui/nativewind-utils';
-import { cssInterop } from 'nativewind';
+  useStyleContext,
+} from '@gluestack-ui/nativewind-utils/withStyleContext';
+import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
 
 const AnimationWrapper = styled(AnimatedView, {});
 export const useToast = createToastHook(AnimationWrapper, AnimatePresence);

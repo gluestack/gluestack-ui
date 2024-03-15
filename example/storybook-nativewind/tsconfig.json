@@ -6,8 +6,21 @@
       "@/components/ui/*": ["src/core-components/nativewind/*"],
       "@gluestack-style/react": ["../../packages/styled/react/src"],
       "@gluestack-ui/popover": ["../../packages/unstyled/popover/src"],
-      "@gluestack-ui/nativewind-utils": ["../../packages/nativewind/utils/src"],
-      "@gluestack-ui/provider": ["../../packages/unstyled/provider/src"]
+      "@gluestack-ui/nativewind-utils": [
+        "../../packages/nativewind/utils/src/types.ts"
+      ],
+      "@gluestack-ui/nativewind-utils/tva": [
+        "../../packages/nativewind/utils/src/tva.ts"
+      ],
+      "@gluestack-ui/nativewind-utils/withStyleContext": [
+        "../../packages/nativewind/utils/src/withStyleContext.ts"
+      ],
+      "@gluestack-ui/nativewind-utils/withStyleContextAndStates": [
+        "../../packages/nativewind/utils/src/withStyleContextAndStates.ts"
+      ],
+      "@gluestack-ui/nativewind-utils/withStates": [
+        "../../packages/nativewind/utils/src/withStates.ts"
+      ]
     },
     "emitDeclarationOnly": true,
     "noEmit": false,

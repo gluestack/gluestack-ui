@@ -1,5 +1,5 @@
 ---
-title: Accordion | gluestack-ui | Installation, Usage, and API
+title: gluestack-ui Accordion Component | Installation, Usage, and API
 
 description: The Accordion component is a versatile and interactive user interface element, designed to efficiently organize and present content in a compact space.
 
@@ -25,9 +25,11 @@ import {
   AccordionContentText,
   ChevronDownIcon,
   ChevronUpIcon,
+} from '../../core-components/themed';
+import {
   PlusIcon,
   MinusIcon,
-} from '../../core-components/themed';
+} from 'lucide-react-native';
 import {
   AppProvider,
   CodePreview,
@@ -240,7 +242,7 @@ The borderRadius prop can be used to create rounded corners for both the Accordi
       code: `
 function App(){
     return (
-          <Accordion m="$5" width="80%" maxWidth={640} shadowColor="transparent">
+          <Accordion m="$5" width="80%" maxWidth={640} shadowColor="transparent" bg="$white" $dark-bg="$black" borderRadius='$lg'>
       <AccordionItem value="item-1" borderRadius="$lg">
         <AccordionHeader>
           <AccordionTrigger sx={{
