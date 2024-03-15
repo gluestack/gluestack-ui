@@ -43,7 +43,12 @@ const headingStyle = tva({
 
 cssInterop(H4, { className: 'style' });
 
-const Heading = ({ className, size = 'lg', ...props }: any) => {
+const Heading = ({ className, size = 'lg', as: AsComp, ...props }: any) => {
+  if (AsComp) {
+    return (
+      <AsComp className={headingStyle({ size, class: className })} {...props} />
+    );
+  }
   return <H4 className={headingStyle({ size, class: className })} {...props} />;
 };
 
