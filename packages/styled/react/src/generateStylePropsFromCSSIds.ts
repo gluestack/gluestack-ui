@@ -182,7 +182,13 @@ export function generateStylePropsFromCSSIds(
           if (activeThemes) {
             activeThemes.forEach((activeTheme: any) => {
               if (containsAllItems(activeThemes, themeCondition)) {
-                styleObj.push(nativeStyle?.themeResolved?.[activeTheme]);
+                if (queryCondition) {
+                  if (isValidBreakpoint(config, queryCondition)) {
+                    styleObj.push(nativeStyle?.themeResolved?.[activeTheme]);
+                  }
+                } else {
+                  styleObj.push(nativeStyle?.themeResolved?.[activeTheme]);
+                }
               }
             });
           }
