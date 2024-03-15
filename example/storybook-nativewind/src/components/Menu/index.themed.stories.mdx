@@ -12,7 +12,7 @@ showHeader: true
 
 import { Meta } from '@storybook/addon-docs';
 
-<Meta title="with-nativewind/components/Overlay/Menu" />
+<Meta title="with-gluestack-style/components/Overlay/Menu" />
 
 import {
   Button,
@@ -29,12 +29,12 @@ import {
   Pressable, 
   Avatar, 
   Divider,
-  Text, 
+  Text as MenuText, 
   Center, 
   GlobeIcon, 
   Icon, 
   AddIcon,
-} from '../../core-components/nativewind';
+} from '../../core-components/themed';
 import { PaintBucket, PuzzleIcon } from 'lucide-react-native';
 import { transformedCode } from '../../utils';
 import {
@@ -45,7 +45,7 @@ import {
   InlineCode,
 } from '@gluestack/design-system';
 
-import Wrapper from '../../core-components/nativewind/Wrapper';
+import Wrapper from '../../core-components/themed/Wrapper';
 import { CollapsibleCode } from '@gluestack/design-system';
 
 This is an illustration of a **Menu** component.
@@ -57,7 +57,6 @@ This is an illustration of a **Menu** component.
     metaData={{
       code: `
       <Menu
-       size="lg"
         placement="top"
           trigger={({ ...triggerProps }) => {
             return (
@@ -68,33 +67,33 @@ This is an illustration of a **Menu** component.
           }}
         >
           <MenuItem key="Community" textValue="Community">
-            <Icon as={GlobeIcon} size="sm" className="mr-2"/>
+            <Icon as={GlobeIcon} size="sm" mr='$2'/>
             <MenuItemLabel size='sm'>
               Community
             </MenuItemLabel>
           </MenuItem>
           <MenuItem key="Plugins" textValue="Plugins">
               {\/* PuzzleIcon is imported from 'lucide-react-native' *\/}
-              <Icon as={PuzzleIcon} size="sm" className="mr-2"/>
+              <Icon as={PuzzleIcon} size="sm" mr='$2'/>
               <MenuItemLabel size='sm'>
                 Plugins
               </MenuItemLabel>
           </MenuItem>
           <MenuItem key="Theme" textValue="Theme">
               {\/* PaintBucket is imported from 'lucide-react-native' *\/}
-              <Icon as={PaintBucket} size="sm" className="mr-2"/>
+              <Icon as={PaintBucket} size="sm" mr='$2'/>
               <MenuItemLabel size='sm'>
                 Theme
               </MenuItemLabel>
           </MenuItem>
           <MenuItem key="Settings" textValue="Settings">
-              <Icon as={SettingsIcon} size="sm" className="mr-2"/>
+              <Icon as={SettingsIcon} size="sm" mr='$2'/>
               <MenuItemLabel size='sm'>
                 Settings
               </MenuItemLabel>
           </MenuItem>
           <MenuItem key="Add account" textValue="Add account">
-              <Icon as={AddIcon} size="sm" className="mr-2"/>
+              <Icon as={AddIcon} size="sm" mr='$2'/>
               <MenuItemLabel size='sm'>
                 Add account
               </MenuItemLabel>
@@ -143,7 +142,7 @@ npm i @gluestack-ui/menu
 <CollapsibleCode>
 
 ```jsx 
-%%-- File: core-components/nativewind/menu/index.tsx --%% 
+%%-- File: core-components/themed/menu/index.tsx --%% 
 ```
 
 </CollapsibleCode>
@@ -181,7 +180,7 @@ This section provides a comprehensive reference list for the component props, de
 Contains all menu related layout style props and actions.
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
-<Wrapper>
+<AppProvider>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -426,13 +425,13 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
       </Table.TBody>
     </Table>
   </TableContainer>
-</Wrapper>
+</AppProvider>
 
 #### MenuItem
 
 Contains all button related layout style props and actions. It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable) component.
 
-<Wrapper>
+<AppProvider>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -471,7 +470,39 @@ Contains all button related layout style props and actions. It inherits all the 
       </Table.TBody>
     </Table>
   </TableContainer>
-</Wrapper>
+</AppProvider>
+
+**Descendants Styling Props**
+Props to style child components.
+
+<AppProvider>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Sx Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Description</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>_text</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Prop to style MenuItemLabel Component`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</AppProvider>
 
 #### MenuItemLabel
 
@@ -486,7 +517,6 @@ Contains all text related layout style props and actions. It inherits all the pr
 
 We have outlined the various features that ensure the Menu component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards.
 
-
 Adheres to the [MENU WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/menubar/).
 
 ### Examples
@@ -497,7 +527,7 @@ The Examples section provides visual representations of the different variants o
 
 Menu Component provides different placement options, allowing you to position it dynamically based on user interaction or layout requirements.
 
-<Wrapper>
+<AppProvider>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={true}
@@ -514,33 +544,33 @@ Menu Component provides different placement options, allowing you to position it
           }}
         >
           <MenuItem key="Community" textValue="Community">
-              <Icon as={GlobeIcon} size="sm" className="mr-2"/>
+              <Icon as={GlobeIcon} size="sm" mr='$2'/>
               <MenuItemLabel size='sm'>
                 Community
               </MenuItemLabel>
           </MenuItem>
           <MenuItem key="Plugins" textValue="Plugins">
               {\/* PuzzleIcon is imported from 'lucide-react-native' *\/}
-              <Icon as={PuzzleIcon} size="sm" className="mr-2"/>
+              <Icon as={PuzzleIcon} size="sm" mr='$2'/>
               <MenuItemLabel size='sm'>
                 Plugins
               </MenuItemLabel>
           </MenuItem>
           <MenuItem key="Theme" textValue="Theme">
               {\/* PaintBucket is imported from 'lucide-react-native' *\/}
-              <Icon as={PaintBucket} size="sm" className="mr-2"/>
+              <Icon as={PaintBucket} size="sm" mr='$2'/>
               <MenuItemLabel size='sm'>
                 Theme
               </MenuItemLabel>
           </MenuItem>
           <MenuItem key="Settings" textValue="Settings">
-              <Icon as={SettingsIcon} size="sm" className="mr-2"/>
+              <Icon as={SettingsIcon} size="sm" mr='$2'/>
               <MenuItemLabel size='sm'>
                 Settings
               </MenuItemLabel>
           </MenuItem>
           <MenuItem key="Add account" textValue="Add account">
-              <Icon as={AddIcon} size="sm" className="mr-2"/>
+              <Icon as={AddIcon} size="sm" mr='$2'/>
               <MenuItemLabel size='sm'>
                 Add account
               </MenuItemLabel>
@@ -558,7 +588,7 @@ Menu Component provides different placement options, allowing you to position it
         MenuIcon,
         MenuItem,
         MenuItemLabel,
-        Text,
+        Text: MenuText,
         Box,
         Icon,
         GlobeIcon,
@@ -589,14 +619,13 @@ Menu Component provides different placement options, allowing you to position it
       },
     }}
   />
-</Wrapper>
-
+</AppProvider>
 
 #### Disabled MenuItem
 
 Our Menu component supports dynamic disabling of menu items, enabling you to control the availability and interaction of specific menu options based on conditions or user permissions.
 
-<Wrapper>
+<AppProvider>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -614,31 +643,31 @@ Our Menu component supports dynamic disabling of menu items, enabling you to con
           }}
         >
           <MenuItem key="Community" textValue="Community">
-            <Icon as={GlobeIcon} size="sm" className="mr-2"/>
+            <Icon as={GlobeIcon} size="sm" mr='$2'/>
             <MenuItemLabel size='sm'>
               Community
             </MenuItemLabel>
           </MenuItem>
           <MenuItem key="Plugins" textValue="Plugins">
             {\/* PuzzleIcon is imported from 'lucide-react-native' *\/}
-            <Icon as={PuzzleIcon} size="sm" className="mr-2"/>
+            <Icon as={PuzzleIcon} size="sm" mr='$2'/>
             <MenuItemLabel size='sm'>
               Plugins
             </MenuItemLabel>
           </MenuItem>
           <MenuItem key="Theme" textValue="Theme">
             {\/* PaintBucket is imported from 'lucide-react-native' *\/}
-            <Icon as={PaintBucket} size="sm" className="mr-2"/>
+            <Icon as={PaintBucket} size="sm" mr='$2'/>
             <MenuItemLabel size='sm'>Theme</MenuItemLabel>
           </MenuItem>
           <MenuItem key="Settings" textValue="Settings">
-            <Icon as={SettingsIcon} size="sm" className="mr-2"/>
+            <Icon as={SettingsIcon} size="sm" mr='$2'/>
             <MenuItemLabel size='sm'>
               Settings
             </MenuItemLabel>
           </MenuItem>
           <MenuItem key="Add account" textValue="Add account">
-            <Icon as={AddIcon} size="sm" className="mr-2"/>
+            <Icon as={AddIcon} size="sm" mr='$2'/>
             <MenuItemLabel size='sm'>
               Add account
             </MenuItemLabel>
@@ -656,7 +685,7 @@ Our Menu component supports dynamic disabling of menu items, enabling you to con
         MenuIcon,
         MenuItem,
         MenuItemLabel,
-        Text,
+        Text: MenuText,
         Box,
         Icon,
         GlobeIcon,
@@ -668,13 +697,13 @@ Our Menu component supports dynamic disabling of menu items, enabling you to con
       argsType: {},
     }}
   />
-</Wrapper>
+</AppProvider>
 
 #### Selection
 
 Our menu component supports selection mode, logging the selected menu item key to the console when a selection change occurs. Based on the selected key, it prints a corresponding message, indicating a route push for the menu items in the example given below.
 
-<Wrapper>
+<AppProvider>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -713,25 +742,25 @@ Our menu component supports selection mode, logging the selected menu item key t
         }}
         >
           <MenuItem key="Community" textValue="Community">
-            <Icon as={GlobeIcon} size="sm" className="mr-2"/>
+            <Icon as={GlobeIcon} size="sm" mr='$2'/>
             <MenuItemLabel size='sm'>
               Community
             </MenuItemLabel>
           </MenuItem>
           <MenuItem key="Plugins" textValue="Plugins">
             {\/* PuzzleIcon is imported from 'lucide-react-native' *\/}
-            <Icon as={PuzzleIcon} size="sm" className="mr-2"/>
+            <Icon as={PuzzleIcon} size="sm" mr='$2'/>
             <MenuItemLabel size='sm'>
               Plugins
             </MenuItemLabel>
           </MenuItem>
           <MenuItem key="Theme" textValue="Theme">
             {\/* PaintBucket is imported from 'lucide-react-native' *\/}
-            <Icon as={PaintBucket} size="sm" className="mr-2"/>
+            <Icon as={PaintBucket} size="sm" mr='$2'/>
             <MenuItemLabel size='sm'>Theme</MenuItemLabel>
           </MenuItem>
           <MenuItem key="Settings" textValue="Settings">
-            <Icon as={SettingsIcon} size="sm" className="mr-2"/>
+            <Icon as={SettingsIcon} size="sm" mr='$2'/>
             <MenuItemLabel size='sm'>
               Settings
             </MenuItemLabel>
@@ -748,7 +777,7 @@ Our menu component supports selection mode, logging the selected menu item key t
         MenuIcon,
         MenuItem,
         MenuItemLabel,
-        Text,
+        Text: MenuText,
         Box,
         Icon,
         GlobeIcon,
@@ -760,4 +789,4 @@ Our menu component supports selection mode, logging the selected menu item key t
       argsType: {},
     }}
   />
-</Wrapper>
+</AppProvider>
