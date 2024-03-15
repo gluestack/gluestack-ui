@@ -12,8 +12,12 @@ args.forEach((arg) => {
   // Extract testing type name
   const value = arg.includes('=') ? arg.split('=')[1] : 'default';
 
-  // Set environment variables
-  process.env[key] = value;
+  if (key === 'multiple') {
+    process.env.multipleArgs = true;
+  } else {
+    // Set environment variables
+    process.env[key] = value;
+  }
 });
 
 if (args.length === 0) {
