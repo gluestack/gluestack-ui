@@ -37,7 +37,7 @@
     "@expo/html-elements": "latest",
     "@gluestack-style/animation-resolver": "1.0.4",
     "@gluestack-style/legend-motion-animation-driver": "1.0.3",
-    "@gluestack-style/react": "1.0.50",
+    "@gluestack-style/react": "1.0.51",
     "@gluestack-ui/accordion": "1.0.1",
     "@gluestack-ui/actionsheet": "0.2.37",
     "@gluestack-ui/alert": "0.1.12",
@@ -73,7 +73,7 @@
   },
   "peerDependencies": {
     "@gluestack-style/react": ">=1.0",
-    "@gluestack-ui/themed": ">=1.1.11"
+    "@gluestack-ui/themed": ">=1.1"
   },
   "release-it": {
     "git": {
