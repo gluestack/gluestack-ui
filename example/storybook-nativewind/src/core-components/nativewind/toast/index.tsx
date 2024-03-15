@@ -1,17 +1,11 @@
 import React from 'react';
 import { createToast, createToastHook } from '@gluestack-ui/toast';
-import {
-  AnimatePresence,
-  AnimatedView,
-} from '@gluestack-style/animation-resolver';
-import { styled } from '@gluestack-style/react';
 import { Text, View } from 'react-native';
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
-
 import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
+import { Motion, AnimatePresence } from '@legendapp/motion';
 
-const AnimationWrapper = styled(AnimatedView, {});
-export const useToast = createToastHook(AnimationWrapper, AnimatePresence);
+export const useToast = createToastHook(Motion.View, AnimatePresence);
 
 export const UIToast = createToast({
   Root: View,
@@ -19,6 +13,7 @@ export const UIToast = createToast({
   Description: Text,
 });
 
+cssInterop(Motion.View, { className: 'style' });
 cssInterop(UIToast, { className: 'style' });
 cssInterop(UIToast.Title, { className: 'style' });
 cssInterop(UIToast.Description, { className: 'style' });
