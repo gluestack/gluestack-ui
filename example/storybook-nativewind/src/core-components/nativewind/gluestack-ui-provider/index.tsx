@@ -23,20 +23,33 @@ const providerStyle = Platform.select({
 });
 
 export function GluestackUIProvider({
-  mode,
+  mode = 'light',
+
   ...props
 }: {
-  mode?: 'light' | 'dark';
+  mode: 'light' | 'dark';
   children: any;
 }) {
-  // @ts-ignore
-  // if (Platform.OS === 'web') {
-  //   document.body.style.setProperty(mode ? config[mode] : config['light']);
-  // }
+  if (Platform.OS === 'web' && config[mode] && document) {
+    const element = document.documentElement;
+    if (element) {
+      const head = element.querySelector('head');
+      const style = document.createElement('style');
+      const stringcssvars = Object.keys(config[mode]).reduce((acc, cur) => {
+        acc += `${cur}:${config[mode][cur]};`;
+        return acc;
+      }, '');
+      style.innerHTML = `:root {${stringcssvars}} `;
+      if (head) head.appendChild(style);
+    }
+
+    return props.children;
+  }
+
   return (
     <View
       style={[
-        mode ? config[mode] : config['light'],
+        config[mode],
         providerStyle,
         // @ts-ignore
         props.style,
