@@ -37,7 +37,7 @@ export const parameters = {
           'Theme',
           ['Default Tokens', 'Default Components'],
           'Customizing Theme',
-          ['Eject Library', 'Eject Theme'],
+          ['Eject Components', 'Eject Theme'],
         ],
         'Styling',
         [
