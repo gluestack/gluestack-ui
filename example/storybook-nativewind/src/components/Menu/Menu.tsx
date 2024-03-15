@@ -6,24 +6,24 @@ import {
   ButtonText,
   GlobeIcon,
   HStack,
-  // Icon,
   SettingsIcon,
   AddIcon,
   Text,
   Center,
-} from '@gluestack-ui/themed';
-import {
   Menu,
-  // MenuIcon,
   MenuItem,
   MenuItemLabel,
-} from '@/components/ui/menu';
-import { Icon } from '@gluestack-ui/themed';
+  Icon,
+} from '@/components/ui/';
+
 import { PaintBucket, PuzzleIcon } from 'lucide-react-native';
 
 const MenuBasic = ({ placement = 'bottom' }: any) => {
   return (
     <Center>
+      <Box className="bg-background-500">
+        <Text>Hello</Text>
+      </Box>
       <Menu
         // isOpen={true}
         placement={placement}

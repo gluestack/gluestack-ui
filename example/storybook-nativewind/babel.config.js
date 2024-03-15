@@ -46,6 +46,10 @@ module.exports = function (api) {
               __dirname,
               '../../packages/unstyled/button/src'
             ),
+            '@gluestack-ui/menu': path.resolve(
+              __dirname,
+              '../../packages/unstyled/menu/src'
+            ),
             '@gluestack-ui/link': path.resolve(
               __dirname,
               '../../packages/unstyled/link/src'
@@ -68,24 +72,24 @@ module.exports = function (api) {
             ),
             '@gluestack-ui/nativewind-utils/withStyleContext': path.resolve(
               __dirname,
-              '../../packages/nativewind/utils/src/withStyleContext'
+              '../../packages/nativewind/utils/withStyleContext'
             ),
             '@gluestack-ui/nativewind-utils/withStyleContextAndStates':
               path.resolve(
                 __dirname,
-                '../../packages/nativewind/utils/src/withStyleContextAndStates'
+                '../../packages/nativewind/utils/withStyleContextAndStates'
               ),
             '@gluestack-ui/nativewind-utils/cssInterop': path.resolve(
               __dirname,
-              '../../packages/nativewind/utils/src/cssInterop'
+              '../../packages/nativewind/utils/cssInterop'
             ),
             '@gluestack-ui/nativewind-utils/tva': path.resolve(
               __dirname,
-              '../../packages/nativewind/utils/src/tva'
+              '../../packages/nativewind/utils/tva'
             ),
             '@gluestack-ui/nativewind-utils': path.resolve(
               __dirname,
-              '../../packages/nativewind/utils/src'
+              '../../packages/nativewind/utils/'
             ),
           },
         },

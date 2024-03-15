@@ -7,17 +7,14 @@ import {
 import { styled } from '@gluestack-style/react';
 import { Text, View } from 'react-native';
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
-import {
-  withStyleContext,
-  useStyleContext,
-} from '@gluestack-ui/nativewind-utils/withStyleContext';
+
 import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
 
 const AnimationWrapper = styled(AnimatedView, {});
 export const useToast = createToastHook(AnimationWrapper, AnimatePresence);
 
 export const UIToast = createToast({
-  Root: withStyleContext(View),
+  Root: View,
   Title: Text,
   Description: Text,
 });
@@ -26,60 +23,33 @@ cssInterop(UIToast, { className: 'style' });
 cssInterop(UIToast.Title, { className: 'style' });
 cssInterop(UIToast.Description, { className: 'style' });
 
-const toastStyle = tva(
-  {
-    base: 'px-4 py-3 m-3 rounded-sm flex-row web:pointer-events-auto shadow-lg',
-    variants: {
-      action: {
-        error: 'bg-background-error border-error-300',
+const toastStyle = tva({
+  base: 'px-4 py-3 m-3 rounded-sm flex-row web:pointer-events-auto shadow-lg',
+  variants: {
+    action: {
+      error: 'bg-background-error border-error-300',
 
-        // _icon: {
-        //   color: '$error500',
-        // },
+      warning: 'bg-background-warning border-warning-300',
 
-        warning: 'bg-background-warning border-warning-300',
+      success: 'bg-background-success border-success-300',
 
-        //   _icon: {
-        //     color: '$warning500',
-        //   },
-        // },
-        success: 'bg-background-success border-success-300',
+      info: 'bg-background-info border-info-300',
 
-        // _icon: {
-        //   color: '$success500',
-        // },
-        // },
-        info: 'bg-background-info border-info-300',
-
-        // _icon: {
-        //   color: '$info500',
-        // },
-        // },
-        attention: 'bg-background-muted border-secondary-300',
-        // bg: '$backgroundMuted',
-        // borderColor: '$secondary300',
-
-        // _icon: {
-        //   color: '$secondary600',
-        // },
-        // },
-      },
-
-      variant: {
-        solid: '',
-        outline: 'border bg-white',
-        accent: 'border-l-4',
-      },
+      attention: 'bg-background-muted border-secondary-300',
     },
 
-    defaultVariants: {
-      // hardShadow: '5',
-      variant: 'solid',
-      action: 'attention',
+    variant: {
+      solid: '',
+      outline: 'border bg-white',
+      accent: 'border-l-4',
     },
-  }
-  // { descendantStyle: ['_icon', '_title', '_description'] }
-);
+  },
+
+  defaultVariants: {
+    variant: 'solid',
+    action: 'attention',
+  },
+});
 const toastTitleStyle = tva({
   base: 'text-typography-700 font-medium font-body tracking-md text-left',
   variants: {
@@ -109,83 +79,59 @@ const toastTitleStyle = tva({
       '6xl': 'text-6xl',
     },
   },
-  defaultVariants: {
-    size: 'md',
-  },
-  // { ancestorStyle: ['_title'] }
 });
 
-const toastDescriptionStyle = tva(
-  {
-    base: 'text-typography-700 font-normal font-body tracking-md text-left',
-    variants: {
-      isTruncated: {
-        true: '',
-      },
-      bold: {
-        true: 'font-bold',
-      },
-      underline: {
-        true: 'underline',
-      },
-      strikeThrough: {
-        true: 'line-through',
-      },
-      size: {
-        '2xs': 'text-2xs',
-        'xs': 'text-xs',
-        'sm': 'text-sm',
-        'md': 'text-md',
-        'lg': 'text-lg',
-        'xl': 'text-xl',
-        '2xl': 'text-2xl',
-        '3xl': 'text-3xl',
-        '4xl': 'text-4xl',
-        '5xl': 'text-5xl',
-        '6xl': 'text-6xl',
-      },
+const toastDescriptionStyle = tva({
+  base: 'text-typography-700 font-normal font-body tracking-md text-left',
+  variants: {
+    isTruncated: {
+      true: '',
     },
-    defaultVariants: {
-      size: 'sm',
+    bold: {
+      true: 'font-bold',
     },
-  }
-  // { ancestorStyle: ['_description'] }
-);
+    underline: {
+      true: 'underline',
+    },
+    strikeThrough: {
+      true: 'line-through',
+    },
+    size: {
+      '2xs': 'text-2xs',
+      'xs': 'text-xs',
+      'sm': 'text-sm',
+      'md': 'text-md',
+      'lg': 'text-lg',
+      'xl': 'text-xl',
+      '2xl': 'text-2xl',
+      '3xl': 'text-3xl',
+      '4xl': 'text-4xl',
+      '5xl': 'text-5xl',
+      '6xl': 'text-6xl',
+    },
+  },
+});
 
 export const Toast = React.forwardRef(
-  ({ className, variant, size, action, ...props }: any, ref) => {
+  ({ className, variant, action, ...props }: any, ref?: any) => {
     return (
       <UIToast
         ref={ref}
         {...props}
-        className={toastStyle({ variant, size, action, class: className })}
-        context={{ variant, size, action }}
+        className={toastStyle({ variant, action, class: className })}
       />
     );
   }
 );
 
 export const ToastTitle = React.forwardRef(
-  ({ className, variant, size, action, ...props }: any, ref) => {
-    const {
-      variant: parentVariant,
-      size: parentSize,
-      action: parentAction,
-    } = useStyleContext();
-
+  ({ className, size = 'md', ...props }: any, ref?: any) => {
     return (
       <UIToast.Title
         ref={ref}
         {...props}
         className={toastTitleStyle({
-          parentVariants: {
-            variant: parentVariant,
-            size: parentSize,
-            action: parentAction,
-          },
-          variant,
           size,
-          action,
           class: className,
         })}
       />
@@ -193,26 +139,13 @@ export const ToastTitle = React.forwardRef(
   }
 );
 export const ToastDescription = React.forwardRef(
-  ({ className, variant, size, action, ...props }: any, ref) => {
-    const {
-      variant: parentVariant,
-      size: parentSize,
-      action: parentAction,
-    } = useStyleContext();
-
+  ({ className, size, ...props }: any, ref?: any) => {
     return (
       <UIToast.Description
         ref={ref}
         {...props}
         className={toastDescriptionStyle({
-          parentVariants: {
-            variant: parentVariant,
-            size: parentSize,
-            action: parentAction,
-          },
-          variant,
           size,
-          action,
           class: className,
         })}
       />

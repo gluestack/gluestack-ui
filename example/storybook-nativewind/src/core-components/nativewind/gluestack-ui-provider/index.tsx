@@ -30,6 +30,9 @@ export function GluestackUIProvider({
   children: any;
 }) {
   // @ts-ignore
+  // if (Platform.OS === 'web') {
+  //   document.body.style.setProperty(mode ? config[mode] : config['light']);
+  // }
   return (
     <View
       style={[
