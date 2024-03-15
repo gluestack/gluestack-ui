@@ -76,8 +76,13 @@ const BackdropPressable = React.forwardRef(
   }
 );
 
+type IMenuItemProps = VariantProps<typeof menuItemStyle>;
+
 const Item = React.forwardRef(
-  ({ className, ...props }: { className?: string } & any, ref?: any) => {
+  (
+    { className, ...props }: { className?: string } & IMenuItemProps,
+    ref?: any
+  ) => {
     return (
       <Pressable
         ref={ref}
@@ -99,7 +104,6 @@ export const UIMenu = createMenu({
 
 type IMenuProps = React.ComponentProps<typeof UIMenu> &
   VariantProps<typeof menuStyle>;
-
 type IMenuItemLabelProps = React.ComponentProps<typeof UIMenu.ItemLabel> &
   VariantProps<typeof menuItemLabelStyle>;
 
