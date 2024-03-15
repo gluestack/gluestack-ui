@@ -61,7 +61,6 @@ const menuItemLabelStyle = tva({
   },
 });
 
-// BackdropPressable is hidden from the user
 const BackdropPressable = React.forwardRef(
   ({ className, ...props }: any, ref?: any) => {
     return (
