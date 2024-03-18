@@ -59,7 +59,7 @@ const checkboxLabelStyle = tva({
 });
 
 const checkboxIconStyle = tva({
-  base: 'group-data-[checked=true]/checkboxInd:text-typography-0 data-[disabled=true]:opacity-40',
+  base: 'group-data-[checked=true]/checkboxInd:text-typography-0 data-[disabled=true]:opacity-40 fill-none',
 
   parentVariants: {
     size: {
