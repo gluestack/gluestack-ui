@@ -35,7 +35,7 @@ const headingStyle = tva({
       'xl': 'text-2xl',
       'lg': 'text-xl',
       'md': 'text-lg',
-      'sm': 'text-md',
+      'sm': 'text-base',
       'xs': 'text-sm',
     },
   },
