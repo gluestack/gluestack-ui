@@ -1,5 +1,11 @@
 # @gluestack-ui/select
 
+## 0.1.25
+
+### Patch Changes
+
+- fix: reset select issue
+
 ## 0.1.24
 
 ### Patch Changes
