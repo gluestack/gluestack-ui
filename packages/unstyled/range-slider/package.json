@@ -1,6 +1,6 @@
 {
   "name": "@gluestack-ui/range-slider",
-  "description": "A universal headless slider component for React Native, Next.js & React",
+  "description": "A universal headless range slider component for React Native, Next.js & React",
   "version": "0.1.0",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",

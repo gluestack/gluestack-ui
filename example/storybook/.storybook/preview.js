@@ -73,6 +73,7 @@ export const parameters = {
             'Radio',
             'Select',
             'Slider',
+            'Range Slider',
             'Switch',
             'Tabs',
             'Textarea',
