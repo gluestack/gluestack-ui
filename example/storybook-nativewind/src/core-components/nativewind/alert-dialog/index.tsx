@@ -73,17 +73,17 @@ const alertDialogCloseButtonStyle = tva({
 });
 
 const alertDialogHeaderStyle = tva({
-  base: 'p-4 border border-outline-300 justify-between items-center flex-row',
+  base: 'p-4 justify-between items-center flex-row',
 });
 
 const alertDialogFooterStyle = tva({
-  base: 'p-4 flex-row justify-end items-center flex-wrap border-outline-300',
+  base: 'p-4 flex-row justify-end items-center flex-wrap',
 });
 
 const alertDialogBodyStyle = tva({ base: 'px-4 py-2' });
 
 const alertDialogBackdropStyle = tva({
-  base: 'absolute left-0 top-0 right-0 bottom-0 bg-background-950 web:cursor-default',
+  base: 'absolute left-0 top-0 right-0 bottom-0 bg-background-dark web:cursor-default',
 });
 
 type IAlertDialogProps = React.ComponentProps<typeof UIAccessibleAlertDialog> &
