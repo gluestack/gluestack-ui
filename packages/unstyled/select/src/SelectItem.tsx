@@ -36,13 +36,13 @@ export const SelectItem = (StyledSelectItem: any, StyledSelectItemText: any) =>
                 handleClose();
               }
             }}
+            {...props}
             states={{
-              active: activeValue === value,
+              checked: activeValue === value,
             }}
             dataSet={{
-              active: activeValue === value ? 'true' : 'false',
+              checked: activeValue == value ? 'true' : 'false',
             }}
-            {...props}
           >
             <StyledSelectItemText>{label}</StyledSelectItemText>
           </StyledSelectItem>
