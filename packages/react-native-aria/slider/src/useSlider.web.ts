@@ -118,6 +118,13 @@ function useSliderWeb(
       // Find the closest thumb
       const trackPosition = trackLayout[isVertical ? 'top' : 'left'];
       const clickPosition = isVertical ? clientY : clientX;
+      console.log(
+        trackPosition,
+        trackLayout,
+        clickPosition,
+        'trackPosition, clickPosition',
+        trackLayout
+      );
       const offset = clickPosition - trackPosition;
       let percent = offset / size;
       if (reverseX) {

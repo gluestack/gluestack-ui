@@ -12,6 +12,10 @@ module.exports = function (api) {
               __dirname,
               '../../packages/themed/src'
             ),
+            '@gluestack-ui/range-slider': path.join(
+              __dirname,
+              '../../packages/unstyled/range-slider/src'
+            ),
             '@gluestack-ui/config': path.join(
               __dirname,
               '../../packages/config/src/gluestack-ui.config'

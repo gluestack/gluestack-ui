@@ -1,30 +1,39 @@
 ---
-title: Slider | gluestack-ui | Installation, Usage, and API
+title: Range Slider | gluestack-ui | Installation, Usage, and API
 
-description: The Slider component enables an intuitive selection of values within a designated range. Users can easily adjust their selection by sliding a visual indicator along the track.
+description: The Range Slider component enables an intuitive selection of values within a designated range. Users can easily adjust their selection by sliding a visual indicator along the track.
 
-pageTitle: Slider
+pageTitle: Range Slider
 
-pageDescription: The Slider component enables an intuitive selection of values within a designated range. Users can easily adjust their selection by sliding a visual indicator along the track.
+pageDescription: The Range Slider component enables an intuitive selection of values within a designated range. Users can easily adjust their selection by sliding a visual indicator along the track.
 
 showHeader: true
+
+tag: beta
 ---
 
 import { Meta } from '@storybook/addon-docs';
 import { useRef, useEffect, useState } from 'react';
 
-<Meta title="ui/components/Forms/Slider" />
+<Meta title="ui/components/Forms/Range Slider" />
 
+import {
+  RangeSlider,
+  RangeSliderTrack,
+  RangeSliderFilledTrack,
+  RangeSliderLeftThumb,
+  RangeSliderRightThumb,
+  VStack,
+  Volume,
+  Text,
+} from './RangeSlider';
 import {
   Slider,
   SliderTrack,
   SliderFilledTrack,
   SliderThumb,
-  VStack,
-  Volume,
-  Text,
-} from './Slider';
-import { HStack, Volume2Icon, Box, Center } from './Slider';
+} from "@gluestack-ui/themed"
+import { HStack, Volume2Icon, Box, Center } from './RangeSlider';
 import {
   LightbulbIcon,
   Icon,
@@ -32,7 +41,7 @@ import {
   Tooltip,
   TooltipContent,
   Button,
-} from './Slider';
+} from './RangeSlider';
 import { transformedCode } from '../../../utils';
 import {
   AppProvider,
@@ -44,7 +53,8 @@ import {
 
 import Wrapper from '../../Wrapper';
 
-This is an illustration of a **Themed Slider** component with default configuration.
+This is an illustration of a **Themed Range Slider** component with default configuration.
+
 
 <AppProvider>
   <CodePreview
@@ -53,12 +63,16 @@ This is an illustration of a **Themed Slider** component with default configurat
     metaData={{
       code: `
       <Center w={300} h={100}>
-          <Slider  defaultValue={30} {...props}  >
-            <SliderTrack>
-              <SliderFilledTrack />
-            </SliderTrack>
-            <SliderThumb />
-          </Slider>
+         <RangeSlider
+            defaultValue={[10,20]}
+            {...props}
+          >
+        <RangeSliderTrack>
+          <RangeSliderFilledTrack />
+        </RangeSliderTrack>
+        <RangeSliderLeftThumb />
+        <RangeSliderRightThumb />
+      </RangeSlider>
       </Center>
       `,
       transformCode: (code) => {
@@ -66,10 +80,11 @@ This is an illustration of a **Themed Slider** component with default configurat
       },
       scope: {
         Wrapper,
-        Slider,
-        SliderTrack,
-        SliderFilledTrack,
-        SliderThumb,
+        RangeSlider,
+        RangeSliderTrack,
+        RangeSliderFilledTrack,
+        RangeSliderLeftThumb,
+        RangeSliderRightThumb,
         Center,
       },
       argsType: {
@@ -86,9 +101,6 @@ This is an illustration of a **Themed Slider** component with default configurat
         isDisabled: {
           control: 'boolean',
         },
-        isReversed: {
-          control: 'boolean',
-        },
       },
     }}
   />
@@ -103,21 +115,22 @@ This is an illustration of a **Themed Slider** component with default configurat
 To use this component in your project, include the following import statement in your file.
 
 ```bash
-import { Slider } from '@gluestack-ui/themed';
+import { RangeSlider } from '@gluestack-ui/themed';
 ```
 
 ### Anatomy
 
-The structure provided below can help you identify and understand a Slider component's various parts.
+The structure provided below can help you identify and understand a Range Slider component's various parts.
 
 ```jsx
 export default () => (
-  <Slider>
-    <SliderTrack>
-      <SliderFilledTrack />
-    </SliderTrack>
-    <SliderThumb />
-  </Slider>
+     <RangeSlider>
+        <RangeSliderTrack>
+          <RangeSliderFilledTrack />
+        </RangeSliderTrack>
+        <RangeSliderLeftThumb />
+        <RangeSliderRightThumb />
+      </RangeSlider>
 );
 ```
 
@@ -125,7 +138,7 @@ export default () => (
 
 This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
 
-#### Slider
+#### Range Slider
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
@@ -163,7 +176,7 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
           </Table.TD>
           <Table.TD>
             <Table.TText>
-              Function called when the state of the Slider changes.
+              Function called when the state of the Range Slider changes.
             </Table.TText>
           </Table.TD>
         </Table.TR>
@@ -180,7 +193,7 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
             <Table.TText>false</Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>When true, this will disable Slider</Table.TText>
+            <Table.TText>When true, this will disable Range Slider</Table.TText>
           </Table.TD>
         </Table.TR>
         <Table.TR>
@@ -214,7 +227,7 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
             <Table.TText>8</Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>To change the slider track height .</Table.TText>
+            <Table.TText>To change the range slider track height .</Table.TText>
           </Table.TD>
         </Table.TR>
         <Table.TR>
@@ -230,7 +243,7 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
             <Table.TText>-</Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>To change the slider value .</Table.TText>
+            <Table.TText>To change the range slider value .</Table.TText>
           </Table.TD>
         </Table.TR>
         <Table.TR>
@@ -246,7 +259,7 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
             <Table.TText>-</Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>The slider's minimum value</Table.TText>
+            <Table.TText>The range slider's minimum value</Table.TText>
           </Table.TD>
         </Table.TR>
         <Table.TR>
@@ -262,7 +275,7 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
             <Table.TText>-</Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>The slider's maximum value.</Table.TText>
+            <Table.TText>The range slider's maximum value.</Table.TText>
           </Table.TD>
         </Table.TR>
         <Table.TR>
@@ -278,7 +291,7 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
             <Table.TText>-</Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>The slider's current value.</Table.TText>
+            <Table.TText>The range slider's current value.</Table.TText>
           </Table.TD>
         </Table.TR>
         <Table.TR>
@@ -294,7 +307,7 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
             <Table.TText>-</Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText> The slider's step value.</Table.TText>
+            <Table.TText> The range slider's step value.</Table.TText>
           </Table.TD>
         </Table.TR>
       </Table.TBody>
@@ -326,7 +339,7 @@ Props to style child components.
             </Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>{`Prop to style SliderThumb Component`}</Table.TText>
+            <Table.TText>{`Prop to style RangSliderThumb Component`}</Table.TText>
           </Table.TD>
         </Table.TR>
         <Table.TR>
@@ -336,7 +349,7 @@ Props to style child components.
             </Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>{`Prop to style SliderTrack Component`}</Table.TText>
+            <Table.TText>{`Prop to style RangSliderTrack Component`}</Table.TText>
           </Table.TD>
         </Table.TR>
         <Table.TR>
@@ -346,7 +359,7 @@ Props to style child components.
             </Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>{`Prop to style SliderFilledTrack Component`}</Table.TText>
+            <Table.TText>{`Prop to style RangeSliderFilledTrack Component`}</Table.TText>
           </Table.TD>
         </Table.TR>
       </Table.TBody>
@@ -354,15 +367,19 @@ Props to style child components.
   </TableContainer>
 </AppProvider>
 
-#### SliderTrack
+#### RangeSliderTrack
 
 It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/Pressable) component.
 
-#### SliderFilledTrack
+#### RangeSliderFilledTrack
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
-#### SliderThumb
+#### RangeSliderLeftThumb
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+#### RangeSliderRightThumb
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
@@ -373,19 +390,19 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
 
 ### Accessibility
 
-We have outlined the various features that ensure the Slider component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards.Adheres to the [WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/slider/).
+We have outlined the various features that ensure the Range Slider component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards.Adheres to the [WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/slider/).
 
 #### Keyboard
 
 - `Tab`: Moves focus to the next focusable element.
-- `Right Arrow`: Increase the value of the slider by one step.
-- `Up Arrow`: Increase the value of the slider by one step.
-- `Left Arrow`: Decrease the value of the slider by one step.
-- `Down Arrow`: Decrease the value of the slider by one step.
+- `Right Arrow`: Increase the value of the range slider by one step.
+- `Up Arrow`: Increase the value of the range slider by one step.
+- `Left Arrow`: Decrease the value of the range slider by one step.
+- `Down Arrow`: Decrease the value of the range slider by one step.
 
 ### Screen Reader
 
-- VoiceOver: When the slider is focused, the screen reader will announce the slider's value.
+- VoiceOver: When the range slider is focused, the screen reader will announce the range slider's value.
 
 ## Themed
 
@@ -393,9 +410,9 @@ The themed version of the component is a pre-styled version of the component, wh
 
 ### Props
 
-Slider component is created using View component from react-native. It extends all the props supported by [React Native View](https://reactnative.dev/docs/view#props), [utility props](/ui/docs/styling/utility-and-sx-props) and the props mentioned below.
+Range Slider component is created using View component from react-native. It extends all the props supported by [React Native View](https://reactnative.dev/docs/view#props), [utility props](/ui/docs/styling/utility-and-sx-props) and the props mentioned below.
 
-#### Slider
+#### Range Slider
 
 <AppProvider>
   <TableContainer>
@@ -430,19 +447,6 @@ Slider component is created using View component from react-native. It extends a
         <Table.TR>
           <Table.TD>
             <Table.TText>
-              <InlineCode>isReversed</InlineCode>
-            </Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>true | false</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>false</Table.TText>
-          </Table.TD>
-        </Table.TR>
-        <Table.TR>
-          <Table.TD>
-            <Table.TText>
               <InlineCode>size</InlineCode>
             </Table.TText>
           </Table.TD>
@@ -464,9 +468,9 @@ Slider component is created using View component from react-native. It extends a
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
-#### Slider with Orientation
+#### Range Slider with Orientation
 
-An example of the Slider component being used with the Slider with Orientation feature to customize the orientation of the slider, providing flexibility in the direction of sliding and input for numerical or adjustable values within a user interface.
+An example of the Range Slider component being used with the Range Slider with Orientation feature to customize the orientation of the range slider, providing flexibility in the direction of sliding and input for numerical or adjustable values within a user interface.
 
 <AppProvider>
   <CodePreview
@@ -475,25 +479,25 @@ An example of the Slider component being used with the Slider with Orientation f
     metaData={{
       code: `
 function App(){
-  const [sliderValue, setSliderValue] = React.useState(45);
+  const [sliderValue, setSliderValue] = React.useState([35,60]);
   const handleChange = (value) => {
     setSliderValue(value);
   };
   return (
-    <Center w="$80">
-      <Slider
+    <Center w="$80" h={300} p="$8">
+     <RangeSlider
         sliderTrackHeight={4}
         value={sliderValue}
+        onChange={setSliderValue}
+        label="RangeSlider"
         orientation="vertical"
-        h={120}
-        onChange={(value) => {
-        handleChange(value);
-        }}>
-        <SliderTrack>
-          <SliderFilledTrack />
-        </SliderTrack>
-        <SliderThumb />
-      </Slider>
+      >
+        <RangeSliderTrack>
+          <RangeSliderFilledTrack />
+        </RangeSliderTrack>
+        <RangeSliderLeftThumb />
+        <RangeSliderRightThumb />
+      </RangeSlider>
     </Center>
   );
 }
@@ -503,10 +507,11 @@ function App(){
       },
       scope: {
         Box,
-        Slider,
-        SliderTrack,
-        SliderFilledTrack,
-        SliderThumb,
+        RangeSlider,
+        RangeSliderTrack,
+        RangeSliderFilledTrack,
+        RangeSliderLeftThumb,
+        RangeSliderRightThumb,
         Center,
         Wrapper,
       },
@@ -517,7 +522,7 @@ function App(){
 
 #### Color scheme
 
-A Slider component with a color scheme adds visual styling and customization options, allowing the slider track and handle to be displayed in different colors, enhancing the aesthetic appeal and visual coherence of the slider within a user interface.
+A Range Slider component with a color scheme adds visual styling and customization options, allowing the range slider track and handle to be displayed in different colors, enhancing the aesthetic appeal and visual coherence of the range slider within a user interface.
 
 <AppProvider>
   <CodePreview
@@ -529,36 +534,40 @@ function App(){
   return (
     <VStack space="4xl">
     <Center w="$80">
-        <Slider   defaultValue={45} sliderTrackHeight={4}>
-          <SliderTrack>
-            <SliderFilledTrack bg="$emerald600"/>
-          </SliderTrack >
-          <SliderThumb bg="$emerald600" $active-outlineColor="$emerald500" />
-        </Slider>
+        <RangeSlider defaultValue={[45,90]} sliderTrackHeight={4}>
+          <RangeSliderTrack>
+            <RangeSliderFilledTrack bg="$emerald600"/>
+          </RangeSliderTrack >
+          <RangeSliderLeftThumb bg="$emerald600" $active-outlineColor="$emerald500" />
+          <RangeSliderRightThumb bg="$emerald600" $active-outlineColor="$emerald500" />
+        </RangeSlider>
     </Center>
      <Center w="$80">
-        <Slider   defaultValue={45} sliderTrackHeight={4}>
-          <SliderTrack>
-            <SliderFilledTrack bg="$amber600"/>
-          </SliderTrack >
-          <SliderThumb bg="$amber600" $active-outlineColor="$amber500" />
-        </Slider>
+        <RangeSlider   defaultValue={[45,90]} sliderTrackHeight={4}>
+          <RangeSliderTrack>
+            <RangeSliderFilledTrack bg="$amber600"/>
+          </RangeSliderTrack >
+          <RangeSliderLeftThumb bg="$amber600" $active-outlineColor="$amber500" />
+          <RangeSliderRightThumb bg="$amber600" $active-outlineColor="$amber500" />
+        </RangeSlider>
     </Center>
      <Center w="$80">
-        <Slider  defaultValue={45} sliderTrackHeight={4}>
-          <SliderTrack>
-            <SliderFilledTrack bg="$fuchsia600"/>
-          </SliderTrack >
-          <SliderThumb bg="$fuchsia600" $active-outlineColor="$fuchsia500"/>
-        </Slider>
+        <RangeSlider  defaultValue={[45,90]} sliderTrackHeight={4}>
+          <RangeSliderTrack>
+            <RangeSliderFilledTrack bg="$fuchsia600"/>
+          </RangeSliderTrack >
+          <RangeSliderLeftThumb bg="$fuchsia600" $active-outlineColor="$fuchsia500"/>
+          <RangeSliderRightThumb bg="$fuchsia600" $active-outlineColor="$fuchsia500"/>
+        </RangeSlider>
     </Center>
      <Center w="$80">
-        <Slider   defaultValue={45} sliderTrackHeight={4}>
-          <SliderTrack>
-            <SliderFilledTrack bg="$cyan600"/>
-          </SliderTrack >
-          <SliderThumb bg="$cyan600" $active-outlineColor="$cyan500" />
-        </Slider>
+        <RangeSlider   defaultValue={[45,90]} sliderTrackHeight={4}>
+          <RangeSliderTrack>
+            <RangeSliderFilledTrack bg="$cyan600"/>
+          </RangeSliderTrack >
+          <RangeSliderLeftThumb bg="$cyan600" $active-outlineColor="$cyan500" />
+          <RangeSliderRightThumb bg="$cyan600" $active-outlineColor="$cyan500" />
+        </RangeSlider>
     </Center>
     </VStack>
   );
@@ -569,10 +578,11 @@ function App(){
       },
       scope: {
         Center,
-        Slider,
-        SliderTrack,
-        SliderFilledTrack,
-        SliderThumb,
+        RangeSlider,
+        RangeSliderTrack,
+        RangeSliderFilledTrack,
+        RangeSliderLeftThumb,
+        RangeSliderRightThumb,
         VStack,
         Wrapper,
       },
@@ -583,7 +593,7 @@ function App(){
 
 #### With tooltip
 
-A Slider component with a tooltip displays a visual indicator or text overlay that provides real-time feedback on the selected value as users interact with the slider, improving usability and precision in inputting or adjusting numeric or continuous data within a user interface.
+A Range Slider component with a tooltip displays a visual indicator or text overlay that provides real-time feedback on the selected value as users interact with the range slider, improving usability and precision in inputting or adjusting numeric or continuous data within a user interface.
 
 <AppProvider>
   <CodePreview
@@ -592,7 +602,7 @@ A Slider component with a tooltip displays a visual indicator or text overlay th
     metaData={{
       code: `
 function App(){
-  const [sliderValue, setSliderValue] = React.useState(40);
+  const [sliderValue, setSliderValue] = React.useState([10,20]);
   const handleChange = (value) => {
     setSliderValue(value);
   };
@@ -604,20 +614,18 @@ function App(){
               trigger={(triggerProps) => {
                 return (
                       <Center w="$80">
-                          <Slider
-                           step={5}
+                          <RangeSlider
                             sliderTrackHeight={4}
                             value={sliderValue}
                             maxValue={60}
                             minValue={0}
-                            onChange={v => {
-                              handleChange(Math.floor(v));
-                            }}>
-                            <SliderTrack>
-                              <SliderFilledTrack />
-                            </SliderTrack>
-                            <SliderThumb {...triggerProps}/>
-                          </Slider>
+                            onChange={handleChange}>
+                            <RangeSliderTrack>
+                              <RangeSliderFilledTrack />
+                            </RangeSliderTrack>
+                            <RangeSliderLeftThumb {...triggerProps}/>
+                            <RangeSliderRightThumb {...triggerProps}/>
+                          </RangeSlider>
                       </Center>
                 )
               }}
@@ -636,10 +644,11 @@ function App(){
       },
       scope: {
         Wrapper,
-        Slider,
-        SliderTrack,
-        SliderFilledTrack,
-        SliderThumb,
+        RangeSlider,
+        RangeSliderTrack,
+        RangeSliderFilledTrack,
+        RangeSliderLeftThumb,
+        RangeSliderRightThumb,
         Center,
         Volume,
         VStack,
@@ -658,7 +667,7 @@ function App(){
 
 #### Form Controlled
 
-A Slider component with form-controlled behavior allows for seamless integration with a form's state management, enabling the slider value to be controlled and updated through a parent component's form state, providing a consistent and synchronized user experience for capturing and manipulating numeric or continuous data within a form.
+A Range Slider component with form-controlled behavior allows for seamless integration with a form's state management, enabling the range slider value to be controlled and updated through a parent component's form state, providing a consistent and synchronized user experience for capturing and manipulating numeric or continuous data within a form.
 
 <AppProvider>
   <CodePreview
@@ -667,7 +676,7 @@ A Slider component with form-controlled behavior allows for seamless integration
     metaData={{
       code: `
 function App(){
-  const [sliderValue, setSliderValue] = React.useState(50);
+  const [sliderValue, setSliderValue] = React.useState([20,50]);
   const handleChange = (value) => {
     setSliderValue(value);
   };
@@ -675,18 +684,19 @@ function App(){
     <VStack space="lg">
     <Heading size="sm">Select the quantity</Heading>
     <Center w="$72">
-        <Slider
+        <RangeSlider
           sliderTrackHeight={5}
           size='md'
           value={sliderValue}
           onChange={(value) => {
           handleChange(value);
           }}>
-          <SliderTrack>
-            <SliderFilledTrack/>
-          </SliderTrack>
-           <SliderThumb/>
-        </Slider>
+          <RangeSliderTrack>
+            <RangeSliderFilledTrack/>
+          </RangeSliderTrack>
+           <RangeSliderLeftThumb/>
+           <RangeSliderRightThumb/>
+        </RangeSlider>
     </Center>
     <Text size="sm">Slide the knob to select the number of products</Text>
     </VStack>
@@ -699,10 +709,11 @@ function App(){
       scope: {
         Wrapper,
         Center,
-        Slider,
-        SliderTrack,
-        SliderFilledTrack,
-        SliderThumb,
+        RangeSlider,
+        RangeSliderTrack,
+        RangeSliderFilledTrack,
+        RangeSliderLeftThumb,
+        RangeSliderRightThumb,
         Center,
         LightbulbIcon,
         Icon,
@@ -717,7 +728,7 @@ function App(){
 
 #### Custom
 
-A custom Slider component with an icon incorporates a personalized design by combining a graphical symbol or icon with the slider interface, adding a unique visual element and enhancing the user experience when interacting with numeric or continuous data input in a user interface.
+A custom Range Slider component with an icon incorporates a personalized design by combining a graphical symbol or icon with the slider interface, adding a unique visual element and enhancing the user experience when interacting with numeric or continuous data input in a user interface.
 
 <AppProvider>
   <CodePreview
@@ -726,7 +737,7 @@ A custom Slider component with an icon incorporates a personalized design by com
     metaData={{
       code: `
 function App(){
-  const [sliderValue, setSliderValue] = React.useState(55);
+  const [sliderValue, setSliderValue] = React.useState([20,55]);
   const handleChange = (value) => {
     setSliderValue(value);
   };
@@ -734,20 +745,23 @@ function App(){
     <VStack space="lg">
     <Text size="lg">Brightness</Text>
     <Center w="$72">
-        <Slider
+        <RangeSlider
           sliderTrackHeight={6}
           size='lg'
           value={sliderValue}
           onChange={(value) => {
           handleChange(value);
           }}>
-          <SliderTrack>
-            <SliderFilledTrack bg="$amber600"/>
-          </SliderTrack>
-           <SliderThumb bg="$amber600" p='$1' $active-outlineColor="$amber500">
+          <RangeSliderTrack>
+            <RangeSliderFilledTrack bg="$amber600"/>
+          </RangeSliderTrack>
+           <RangeSliderLeftThumb bg="$amber600" p='$1' $active-outlineColor="$amber500">
             <Icon as={LightbulbIcon} color="white" size="sm"/>
-          </SliderThumb>
-        </Slider>
+          </RangeSliderLeftThumb>
+          <RangeSliderRightThumb bg="$amber600" p='$1' $active-outlineColor="$amber500">
+            <Icon as={LightbulbIcon} color="white" size="sm"/>
+          </RangeSliderRightThumb>
+        </RangeSlider>
     </Center>
     </VStack>
   );
@@ -759,10 +773,11 @@ function App(){
       scope: {
         Wrapper,
         Center,
-        Slider,
-        SliderTrack,
-        SliderFilledTrack,
-        SliderThumb,
+        RangeSlider,
+        RangeSliderTrack,
+        RangeSliderFilledTrack,
+        RangeSliderLeftThumb,
+        RangeSliderRightThumb,
         LightbulbIcon,
         Icon,
         Text,
@@ -775,7 +790,7 @@ function App(){
 
 #### Volume
 
-A Slider component used as a volume control allows users to adjust the audio volume by sliding the handle along the track, providing an intuitive and interactive way to control the sound output within a user interface.
+A Range Slider component used as a volume control allows users to adjust the audio volume by sliding the handle along the track, providing an intuitive and interactive way to control the sound output within a user interface.
 
 <AppProvider>
   <CodePreview
@@ -784,8 +799,8 @@ A Slider component used as a volume control allows users to adjust the audio vol
     metaData={{
       code: `
 function App(){
-  const [sliderValue, setSliderValue] = React.useState(40);
-  const [onChangeEndValue, setOnChangeEndValue] = React.useState(40);
+  const [sliderValue, setSliderValue] = React.useState([20,40]);
+  const [onChangeEndValue, setOnChangeEndValue] = React.useState([20,40]);
   const handleChange = (value) => {
     setSliderValue(value);
   };
@@ -798,19 +813,18 @@ function App(){
     <HStack space="lg">
     <Volume/>
     <Center w="$80">
-        <Slider
+        <RangeSlider
           sliderTrackHeight={4}
           value={sliderValue}
-          onChange={v => {
-         handleChange(Math.floor(v));
-         }} onChangeEnd={v => {
-        v && setOnChangeEndValue(Math.floor(v));
-         }}>
-          <SliderTrack>
-            <SliderFilledTrack />
-          </SliderTrack>
-          <SliderThumb />
-        </Slider>
+          onChange={handleChange} 
+          onChangeEnd={setOnChangeEndValue}
+        >
+          <RangeSliderTrack>
+            <RangeSliderFilledTrack />
+          </RangeSliderTrack>
+          <RangeSlider.LeftThumb />
+          <RangeSlider.RightThumb />
+        </RangeSlider>
     </Center>
     <Volume2Icon/>
     </HStack>
@@ -824,10 +838,11 @@ function App(){
       scope: {
         Wrapper,
         Center,
-        Slider,
-        SliderTrack,
-        SliderFilledTrack,
-        SliderThumb,
+        RangeSlider,
+        RangeSliderTrack,
+        RangeSliderFilledTrack,
+        RangeSliderLeftThumb,
+        RangeSliderRightThumb,
         Center,
         Volume,
         VStack,
@@ -844,61 +859,3 @@ function App(){
 ## Unstyled
 
 All the components in `gluestack-ui` are unstyled by default. To customize your UI using the extendedTheme, please refer to this [link](https://gluestack.io/ui/docs/theme-configuration/customizing-theme). The import names of components serve as keys to customize each component.
-
-<!--
-
-### Customizing the Slider
-
-For customizing the Slider, you have to map styled view to Slider You can refer [gluestack.io/style](/style/docs/getting-started/styled) on how to use styled components.
-
-#### Usage
-
-Default styling of the component can be found in the `components/slider` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/main/packages/themed/src/components/Slider) of the styled `Slider` component.
-
-```jsx
-// import the styles
-import {
-  Root,
-  Thumb,
-  Track,
-  FilledTrack,
-  ThumbInteraction,
-} from '../components/core/slider/styled-components';
-
-// import the createSlider function
-import { createSlider } from '@gluestack-ui/slider';
-
-// Understanding the API
-const Slider = createSlider({
-  Root,
-  Thumb,
-  Track,
-  FilledTrack,
-  ThumbInteraction,
-});
-
-// Using the Slider component
-export default () => (
-  <Slider>
-    <SliderTrack>
-      <SliderFilledTrack />
-    </SliderTrack>
-    <SliderThumb />
-  </Slider>
-);
-```
-
--->
-## Spec Doc
-
-Explore the comprehensive details of the Slider in this document, including its implementation details, checklist, and potential future additions. Dive into the thought process behind the component and gain insights into its development journey.
-
-<iframe
-  style={{
-    borderRadius: '8px',
-    border: ' 1px solid rgba(0, 0, 0, 0.1)',
-    aspectRatio: 736 / 585,
-  }}
-  src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FNcXOxqKbdnGsLQNex3H76u%2F%25C2%25A0%25F0%259F%2593%259Agluestack-UI-handbook%3Ftype%3Ddesign%26node-id%3D6449-50331%26t%3DyCpyOJadMBgzgdP2-1%26scaling%3Dscale-down%26page-id%3D6429%253A48430%26starting-point-node-id%3D6449%253A50331%26mode%3Ddesign"
-  allowFullScreen
-/>

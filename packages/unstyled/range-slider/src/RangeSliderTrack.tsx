@@ -1,10 +1,10 @@
 import React, { forwardRef } from 'react';
-import { SliderContext } from './Context';
+import { RangeSliderContext } from './Context';
 import { mergeRefs } from '@gluestack-ui/utils';
 import { useHover } from '@react-native-aria/interactions';
 
-function SliderTrack<StyledSliderTrackProps>(
-  StyledSliderTrack: React.ComponentType<StyledSliderTrackProps>
+function RangeSliderTrack<StyledRangeSliderTrackProps>(
+  StyledRangeSliderTrack: React.ComponentType<StyledRangeSliderTrackProps>
 ) {
   return forwardRef(({ children, style, ...props }: any, ref?: any) => {
     const _ref = React.useRef(null);
@@ -21,13 +21,18 @@ function SliderTrack<StyledSliderTrackProps>(
       isFocusedProp,
       isFocusVisibleProp,
       isPressedProp,
-    } = React.useContext(SliderContext);
+      // state,
+    } = React.useContext(RangeSliderContext);
+    // const [isPressed, setIsPressed] = React.useState(false);
+
+    // const { onPointerDown } = trackProps;
+
     return (
-      <StyledSliderTrack
+      <StyledRangeSliderTrack
         onLayout={onTrackLayout}
         ref={mergeRefs([_ref, ref])}
         {...trackProps}
-        style={style}
+        style={{ ...style }}
         {...props}
         isDisabled={isDisabled}
         tabIndex={-1}
@@ -38,18 +43,11 @@ function SliderTrack<StyledSliderTrackProps>(
           focusVisible: isFocusVisible || isFocusVisibleProp,
           active: isPressed || isPressedProp,
         }}
-        dataSet={{
-          hover: isHovered || isHoveredProp ? 'true' : 'false',
-          disabled: isDisabled || isDisabledProp ? 'true' : 'false',
-          focus: isFocused || isFocusedProp ? 'true' : 'false',
-          focusVisible: isFocusVisible || isFocusVisibleProp ? 'true' : 'false',
-          active: isPressed || isPressedProp ? 'true' : 'false',
-        }}
-        disabled={isDisabled}
+        // disabled={isDisabled}
       >
         {children}
-      </StyledSliderTrack>
+      </StyledRangeSliderTrack>
     );
   });
 }
-export default SliderTrack;
+export default RangeSliderTrack;
