@@ -44,6 +44,7 @@ function RangeSliderThumb<
 
       const _ref = React.useRef(null);
       const { isHovered } = useHover({}, _ref);
+      const [isPressed, setIsPressed] = React.useState(false);
 
       const {
         state,
@@ -51,9 +52,9 @@ function RangeSliderThumb<
         orientation,
         isDisabled,
         isReversed,
-        isPressed,
+        // isPressed,
         setIsHovered,
-        setIsPressed,
+        // setIsPressed,
         setIsFocused,
         setIsFocusVisible,
         isHoveredProp,
@@ -125,6 +126,7 @@ function RangeSliderThumb<
       return (
         <StyledRangeSliderThumb
           onLayout={(layout: any) => {
+            // @ts-ignore
             setThumbSize({
               height: layout?.nativeEvent?.layout?.height,
               width: layout?.nativeEvent?.layout?.width,
