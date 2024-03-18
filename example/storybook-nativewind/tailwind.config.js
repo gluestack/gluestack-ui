@@ -154,6 +154,9 @@ module.exports = {
           success: 'var(--color-background-success)',
           info: 'var(--color-background-info)',
         },
+        muted: {
+          600: 'var(--color-muted-600)',
+        },
       },
       fontFamily: {
         heading: undefined,

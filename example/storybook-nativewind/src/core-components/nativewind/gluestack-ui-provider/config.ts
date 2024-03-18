@@ -147,6 +147,9 @@ export const config = {
     '--color-background-muted': '#F6F6F7',
     // '--color-background-muted': 'red',
     '--color-background-info': '#EBF8FE',
+
+    /* Muted */
+    '--color-muted-600': '#525252',
   }),
   dark: vars({
     '--color-primary-0': '#828282',
@@ -294,5 +297,8 @@ export const config = {
     '--color-background-success': '#1C2B21',
     '--color-background-muted': '#252526',
     '--color-background-info': '#1A282E',
+
+    /* Muted */
+    '--color-muted-600': '#737373',
   }),
 };
