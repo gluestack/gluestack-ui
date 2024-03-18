@@ -27,13 +27,13 @@ import {
   ButtonText,
   Center,
   HStack,
-  AlertTriangleIcon,
   Text, 
   CheckCircleIcon,
   Heading, 
   Icon,
   AlertCircleIcon,
 } from '../../core-components/nativewind';
+import {AlertTriangle} from "lucide-react-native"
 import { transformedCode } from '../../utils';
 import {
   AppProvider,
@@ -44,6 +44,7 @@ import {
   CollapsibleCode
 } from '@gluestack/design-system';
 import Wrapper from '../../core-components/nativewind/Wrapper';
+
 
 This is an illustration of **AlertDialog** component.
 
@@ -527,7 +528,6 @@ An example of an AlertDialog component incorporating an icon component for visua
         Icon,
         Text,
         HStack,
-        AlertTriangleIcon,
         CheckCircleIcon,
         Heading,
       },
@@ -568,7 +568,7 @@ An AlertDialog component with adjustable sizes, providing flexible and visually 
               <AlertDialogContent>
               <AlertDialogHeader className="border-b-0">
                  <HStack space='sm' className="items-center">
-                  <Icon as={AlertTriangleIcon}   className="text-error-700"/>
+                  <Icon as={AlertTriangle}   className="text-error-700"/>
                     <Heading size='lg'>Order placed</Heading>
                   </HStack>
                 </AlertDialogHeader>
@@ -593,7 +593,7 @@ An AlertDialog component with adjustable sizes, providing flexible and visually 
                 onPress={() => {
                   setShowAlertDialog(false)
                 }}
-                className="bg-blue-700 hover:bg-blue-800 active:bg-blue-900"
+                
               >
                 <ButtonText>View plans</ButtonText>
               </Button>
@@ -622,7 +622,7 @@ An AlertDialog component with adjustable sizes, providing flexible and visually 
         Icon,
         Text,
         HStack,
-        AlertTriangleIcon,
+        AlertTriangle,
         CheckCircleIcon,
         Heading,
       },
