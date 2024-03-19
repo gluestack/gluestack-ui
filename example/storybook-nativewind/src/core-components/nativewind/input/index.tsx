@@ -123,7 +123,12 @@ type IInputIconProps = React.ComponentProps<typeof UIInput.Icon> & { as: any };
 
 const InputIcon = React.forwardRef(
   (
-    { className, as: AsComp, ...props }: { className?: any } & IInputIconProps,
+    {
+      className,
+      fill = 'none',
+      as: AsComp,
+      ...props
+    }: { className?: any } & IInputIconProps,
     ref
   ) => {
     const { size: parentSize } = useStyleContext();
@@ -133,6 +138,7 @@ const InputIcon = React.forwardRef(
         <AsComp
           ref={ref}
           {...props}
+          fill={fill}
           className={inputIconStyle({
             parentVariants: {
               size: parentSize,
@@ -146,6 +152,7 @@ const InputIcon = React.forwardRef(
       <UIInput.Icon
         ref={ref}
         {...props}
+        fill={fill}
         className={inputIconStyle({
           parentVariants: {
             size: parentSize,
