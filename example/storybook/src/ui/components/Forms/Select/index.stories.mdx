@@ -78,7 +78,7 @@ This is an illustration of a **Themed Select** component with default configurat
               <SelectItem label="Web Development" value="web" />
               <SelectItem
                 label="Cross Platform Development Process"
-                value="Cross Platform Development Process"
+                value="cross-platform"
               />
               <SelectItem
                 label="UI Designing"
@@ -311,17 +311,17 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
         <Table.TR>
           <Table.TD>
             <Table.TText>
-              <InlineCode>selectedValue</InlineCode>
+              <InlineCode>defaultValue</InlineCode>
             </Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>boolean</Table.TText>
+            <Table.TText>string</Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>false</Table.TText>
+            <Table.TText>-</Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>{`Sets the currently selected option value, allowing the component to render with the corresponding option pre-selected.`}</Table.TText>
+            <Table.TText>{`Sets the initial selected option value for a select component.`}</Table.TText>
           </Table.TD>
         </Table.TR>
         <Table.TR>
@@ -343,33 +343,17 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
         <Table.TR>
           <Table.TD>
             <Table.TText>
-              <InlineCode>defaultValue</InlineCode>
+              <InlineCode>selectedValue</InlineCode>
             </Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>boolean</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>false</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>{`Sets the initial selected option value for a select component.`}</Table.TText>
-          </Table.TD>
-        </Table.TR>
-        <Table.TR>
-          <Table.TD>
-            <Table.TText>
-              <InlineCode>onOpen</InlineCode>
-            </Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>{`() => any`}</Table.TText>
+            <Table.TText>string</Table.TText>
           </Table.TD>
           <Table.TD>
             <Table.TText>-</Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>{`Callback to be invoked when Select Dropdown or Actionsheet is opened.`}</Table.TText>
+            <Table.TText>{`Sets the currently selected option value, allowing the component to render with the corresponding option pre-selected.`}</Table.TText>
           </Table.TD>
         </Table.TR>
         <Table.TR>
@@ -386,6 +370,22 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
           </Table.TD>
           <Table.TD>
             <Table.TText>{`Callback to be invoked when Select value is changed.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>onOpen</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`() => any`}</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Callback to be invoked when Select Dropdown or Actionsheet is opened.`}</Table.TText>
           </Table.TD>
         </Table.TR>
         <Table.TR>
@@ -409,7 +409,9 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
   </TableContainer>
 </AppProvider>
 
-> Note: Please note that if you want to use `initialLabel` prop, then you also need to pass `defaultValue` or `selectedValue` prop, to select the option value for a select component.
+> Note: Please note that if you want to use the `initialLabel` prop, you also need to pass the `defaultValue` or `selectedValue` prop to select the option value for a select component. Conversely, if you are using the `defaultValue` prop, you have to utilize the `initialLabel` prop.
+<br/>
+> Note: If you want to **reset** the select component, you should pass **'null'** as the value for `selectedValue`.
 
 #### SelectTrigger
 

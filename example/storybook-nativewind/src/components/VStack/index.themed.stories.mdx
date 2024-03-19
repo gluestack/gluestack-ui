@@ -14,14 +14,13 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="with-gluestack-style/components/Layout/VStack" />
 
-import { Box, VStack } from '../../core-components/themed';
+import { Box, VStack, Text } from '../../core-components/themed';
 import { transformedCode } from '../../utils';
 import {
   AppProvider,
   CodePreview,
   Table,
   TableContainer,
-  Text,
   InlineCode,
   CollapsibleCode,
 } from '@gluestack/design-system';
@@ -188,9 +187,9 @@ A VStack component with the reversed prop reverses the order of vertically stack
     metaData={{
       code: `
         <VStack space="md">
-          <Box w='$20' h='$20' bg='$blue300' />
-          <Box w='$20' h='$20' bg='$blue400' />
-          <Box w='$20' h='$20' bg='$blue500' />
+          <Box w='$20' h='$20' bg='$primary200' />
+          <Box w='$20' h='$20' bg='$primary400' />
+          <Box w='$20' h='$20' bg='$primary600' />
         </VStack>
       `,
       transformCode: (code) => {

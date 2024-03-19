@@ -688,7 +688,7 @@ The Checkbox Component can be incorporated within the FormControl.
           <CheckboxGroup my='$2'>
             <VStack space="sm">
               <Checkbox size="sm" value="Mango">
-                <CheckboxIndicator mr="$2">
+                <CheckboxIndicator>
                   <CheckboxIcon>
                     <CheckIcon />
                   </CheckboxIcon>
@@ -698,7 +698,7 @@ The Checkbox Component can be incorporated within the FormControl.
                 </CheckboxLabel>
               </Checkbox>
               <Checkbox size="sm" value="Apple">
-                <CheckboxIndicator mr="$2">
+                <CheckboxIndicator>
                   <CheckboxIcon>
                     <CheckIcon />
                   </CheckboxIcon>
@@ -708,7 +708,7 @@ The Checkbox Component can be incorporated within the FormControl.
                 </CheckboxLabel>
               </Checkbox>
               <Checkbox size="sm" value="Orange">
-                <CheckboxIndicator mr="$2">
+                <CheckboxIndicator>
                   <CheckboxIcon>
                     <CheckIcon />
                   </CheckboxIcon>
@@ -845,7 +845,7 @@ Inline forms can utilize FormControl for seamless integration and enhanced funct
             </Select>
           </FormControl>
           <FormControl>
-            <Button bg='$darkBlue600'>
+            <Button bg='$primary600'>
               <ButtonText fontSize='$sm' fontWeight='$medium'>
                 Next
               </ButtonText>
@@ -906,7 +906,7 @@ Modal or other Overlay components can utilize FormControl for state management a
             <Button
               py='$2.5'
               px='$3'
-              bg='$darkBlue600'
+              bg='$primary600'
               onPress={()=>{
                 setShowModal(true);
               }}

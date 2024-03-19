@@ -13,9 +13,18 @@ import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withSt
 
 const radioStyle = tva({
   base: 'flex-row justify-start items-center web:cursor-pointer data-[disabled=true]:web:cursor-not-allowed gap-2',
+  variants: {
+    size: {
+      sm: '',
+      md: '',
+      lg: '',
+    },
+  },
 });
 
-const groupStyle = tva({ base: 'gap-2' });
+const groupStyle = tva({
+  base: 'gap-2',
+});
 
 const iconStyle = tva({
   base: 'fill-background-800 stroke-background-800 rounded-full data-[checked=true]:text-primary-600 data-[checked=true]:data-[hover=true]:text-primary-700 data-[checked=true]:data-[hover=true]:data-[disabled=true]:text-primary-600',
@@ -54,6 +63,7 @@ const UIRadio = createRadio({
       ? withStyleContext(View)
       : withStyleContextAndStates(Pressable),
   Group: View,
+  // @ts-ignore
   Icon: Platform.OS === 'web' ? Circle : withStates(Circle),
   Indicator: Platform.OS === 'web' ? View : withStates(View),
   Label: Platform.OS === 'web' ? Text : withStates(Text),
