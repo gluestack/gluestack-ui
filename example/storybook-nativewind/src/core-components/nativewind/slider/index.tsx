@@ -30,7 +30,7 @@ cssInterop(UISlider.Track, { className: 'style' });
 cssInterop(UISlider.FilledTrack, { className: 'style' });
 
 const sliderStyle = tva({
-  base: 'justify-center items-center data-[disabled=true]:web:cursor-not-allowed data-[disabled=true]:web:opacity-40 data-[disabled=true]:web:pointer-events-auto',
+  base: 'justify-center items-center data-[disabled=true]:web:opacity-40 data-[disabled=true]:web:pointer-events-none',
   variants: {
     orientation: {
       horizontal: 'w-full',
