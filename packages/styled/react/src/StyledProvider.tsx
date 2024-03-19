@@ -53,15 +53,18 @@ export const StyledProvider: React.FC<{
   children?: React.ReactNode;
   globalStyles?: any;
   _experimentalNestedProvider?: boolean;
+  disableInjection?: boolean;
 }> = ({
   config,
   colorMode,
   children,
   globalStyles,
   _experimentalNestedProvider,
+  disableInjection = false,
 }) => {
   const inlineStyleMap: any = React.useRef({
     initialStyleInjected: false,
+    injectedCssTags: [],
   });
 
   const { themes } = useTheme();
@@ -112,12 +115,12 @@ export const StyledProvider: React.FC<{
     return configWithPlatformSpecificUnits;
   }, [config]);
 
-  if (Platform.OS === 'web' && globalStyles) {
+  if (Platform.OS === 'web' && globalStyles && !disableInjection) {
     const globalStyleInjector = createGlobalStylesWeb(globalStyles);
     globalStyleInjector({ ...currentConfig, propertyTokenMap });
   }
 
-  if (Platform.OS === 'web') {
+  if (Platform.OS === 'web' && !disableInjection) {
     const cssVariables = convertTokensToCssVariables(currentConfig);
     injectGlobalCssStyle(cssVariables, 'variables');
   }
@@ -187,35 +190,18 @@ export const StyledProvider: React.FC<{
 
   useSafeLayoutEffect(() => {
     if (Platform.OS === 'web' && typeof window !== 'undefined') {
-      const toBeInjectedStyles: any = {};
-
       if (inlineStyleMap.current.initialStyleInjected) {
         return;
       }
 
-      Object.keys(inlineStyleMap.current).forEach((key: any) => {
-        if (key !== 'initialStyleInjected') {
-          const styles = inlineStyleMap.current[key];
-
-          if (!toBeInjectedStyles[key]) {
-            toBeInjectedStyles[key] = document.createDocumentFragment();
+      if (typeof window !== 'undefined') {
+        if (inlineStyleMap?.current?.injectedCssTags?.length > 0) {
+          const wrapperBlock = document.querySelector('#gs-injected');
+          if (wrapperBlock) {
+            wrapperBlock.append(...inlineStyleMap?.current?.injectedCssTags);
           }
-
-          styles.forEach((style: any) => {
-            if (!document.getElementById(style.id)) {
-              toBeInjectedStyles[key].appendChild(style);
-            }
-          });
         }
-      });
-
-      Object.keys(toBeInjectedStyles).forEach((key) => {
-        let wrapperElement = document.querySelector('#' + key);
-        if (wrapperElement) {
-          wrapperElement.appendChild(toBeInjectedStyles[key]);
-        }
-        // delete inlineStyleMap.current[key];
-      });
+      }
 
       inlineStyleMap.current.initialStyleInjected = true;
     }
@@ -237,6 +223,7 @@ export const StyledProvider: React.FC<{
       setAnimationDriverData,
       inlineStyleMap: inlineStyleMap.current,
       isConfigSet: true,
+      disableInjection,
     };
 
     if (_experimentalNestedProvider) {
