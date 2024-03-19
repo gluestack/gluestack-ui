@@ -8,12 +8,22 @@ import {
 } from '@gluestack-ui/nativewind-utils/withStyleContext';
 import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
 import { withStates } from '@gluestack-ui/nativewind-utils/withStates';
+import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withStyleContextAndStates';
 
 const radioStyle = tva({
   base: 'flex-row justify-start items-center web:cursor-pointer data-[disabled=true]:web:cursor-not-allowed gap-2',
+  variants: {
+    size: {
+      sm: '',
+      md: '',
+      lg: '',
+    },
+  },
 });
 
-const groupStyle = tva({ base: 'gap-2' });
+const groupStyle = tva({
+  base: 'gap-2',
+});
 
 const iconStyle = tva({
   base: 'rounded-full group-data-[checked=true]/radioInd:text-primary-600 group-data-[checked=true]/radioInd:group-data-[hover=true]/radioInd:text-primary-700 data-[checked=true]:data-[hover=true]:data-[disabled=true]:text-primary-600',

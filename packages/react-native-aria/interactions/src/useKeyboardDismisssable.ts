@@ -1,6 +1,6 @@
 import React from 'react';
 import { useEffect } from 'react';
-import { BackHandler } from 'react-native';
+import { BackHandler, Platform } from 'react-native';
 
 type IParams = {
   enabled?: boolean;
@@ -44,16 +44,29 @@ export const useKeyboardDismissable = ({ enabled, callback }: IParams) => {
 
 export function useBackHandler({ enabled, callback }: IParams) {
   useEffect(() => {
-    let backHandler = () => {
-      callback();
-      return true;
-    };
-    if (enabled) {
-      BackHandler.addEventListener('hardwareBackPress', backHandler);
+    if (Platform.OS === 'web') {
+      const handleEscape = (e: KeyboardEvent) => {
+        if (e.key === 'Escape') {
+          callback();
+        }
+      };
+
+      document?.body?.addEventListener?.('keyup', handleEscape);
+      return () => {
+        document?.body?.removeEventListener?.('keyup', handleEscape);
+      };
     } else {
-      BackHandler.removeEventListener('hardwareBackPress', backHandler);
+      let backHandler = () => {
+        callback();
+        return true;
+      };
+      if (enabled) {
+        BackHandler.addEventListener('hardwareBackPress', backHandler);
+      } else {
+        BackHandler.removeEventListener('hardwareBackPress', backHandler);
+      }
+      return () =>
+        BackHandler.removeEventListener('hardwareBackPress', backHandler);
     }
-    return () =>
-      BackHandler.removeEventListener('hardwareBackPress', backHandler);
   }, [enabled, callback]);
 }

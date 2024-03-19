@@ -8,6 +8,7 @@ import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withSt
 import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
 import { withStates } from '@gluestack-ui/nativewind-utils/withStates';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
+import { withStates } from '@gluestack-ui/nativewind-utils/withStates';
 
 import React from 'react';
 export const UILink = createLink({
@@ -33,10 +34,9 @@ const linkTextStyle = tva({
 type ILinkProps = React.ComponentProps<typeof UILink> &
   VariantProps<typeof linkStyle>;
 const Link = React.forwardRef(
-  ({ className, ...props }: { className?: string } & ILinkProps, ref) => {
+  ({ className, ...props }: { className?: string } & ILinkProps, ref?: any) => {
     return (
       <UILink
-        // @ts-ignore
         ref={ref}
         {...props}
         className={linkStyle({ class: className })}
@@ -48,10 +48,12 @@ const Link = React.forwardRef(
 type ILinkTextProps = React.ComponentProps<typeof UILink.Text> &
   VariantProps<typeof linkTextStyle>;
 const LinkText = React.forwardRef(
-  ({ className, ...props }: { className?: string } & ILinkTextProps, ref) => {
+  (
+    { className, ...props }: { className?: string } & ILinkTextProps,
+    ref?: any
+  ) => {
     return (
       <UILink.Text
-        // @ts-ignore
         ref={ref}
         {...props}
         className={linkTextStyle({

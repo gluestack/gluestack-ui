@@ -120,6 +120,9 @@ module.exports = {
           800: 'var(--color-typography-800)',
           900: 'var(--color-typography-900)',
           950: 'var(--color-typography-950)',
+          white: '#FFFFFF',
+          gray: '#D4D4D4',
+          black: '#181718',
         },
         outline: {
           0: 'var(--color-outline-0)',
@@ -153,6 +156,8 @@ module.exports = {
           muted: 'var(--color-background-muted)',
           success: 'var(--color-background-success)',
           info: 'var(--color-background-info)',
+          light: '#FBFBFB',
+          dark: '#181719',
         },
         muted: {
           600: 'var(--color-muted-600)',

@@ -21,47 +21,8 @@ import {
   Text,
   Box,
   Icon,
-} from '@gluestack-ui/themed';
+} from '@/components/ui';
 import { KeyboardAvoidingView } from 'react-native';
-import { createIcon } from '@gluestack-ui/icon';
-import { Svg, Path } from 'react-native-svg';
-import { styled, AsForwarder } from '@gluestack-ui/themed';
-
-const IconRoot: any = styled(
-  AsForwarder,
-  {},
-  {
-    ancestorStyle: ['_icon'],
-  },
-  {
-    propertyTokenMap: {
-      stroke: 'colors',
-    },
-  }
-);
-
-const LeadingIcon = createIcon({
-  Root: IconRoot,
-  viewBox: '0 0 18 18',
-  path: (
-    <Svg fill="none">
-      <Path
-        d="M15 3.75H3C2.17157 3.75 1.5 4.42157 1.5 5.25V12.75C1.5 13.5784 2.17157 14.25 3 14.25H15C15.8284 14.25 16.5 13.5784 16.5 12.75V5.25C16.5 4.42157 15.8284 3.75 15 3.75Z"
-        stroke="#A3A3A3"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <Path
-        d="M1.5 7.5H16.5"
-        stroke="#A3A3A3"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </Svg>
-  ),
-});
 
 const ActionsheetWithKeyboardAvoidingViewWithSnapPoints = ({
   showActionsheet: showActionsheetProp = true,
@@ -139,7 +100,7 @@ const ActionsheetWithKeyboardAvoidingViewWithSnapPoints = ({
               </FormControlLabel>
               <Input isFullWidth={true} {...props}>
                 <InputSlot>
-                  <InputIcon as={LeadingIcon} ml="$3" />
+                  <InputIcon ml="$3" />
                 </InputSlot>
                 <InputField placeholder="CVC/CVV" />
               </Input>
@@ -179,6 +140,4 @@ export {
   Text,
   Box,
   Icon,
-  LeadingIcon,
-  IconRoot,
 };
