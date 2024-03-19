@@ -6,20 +6,20 @@
       "@/components/ui/*": ["src/core-components/nativewind/*"],
       "@gluestack-style/react": ["../../packages/styled/react/src"],
       "@gluestack-ui/popover": ["../../packages/unstyled/popover/src"],
-      "@gluestack-ui/nativewind-utils": [
-        "../../packages/nativewind/utils/src/types.ts"
-      ],
       "@gluestack-ui/nativewind-utils/tva": [
-        "../../packages/nativewind/utils/src/tva.ts"
+        "../../packages/nativewind/utils/src/tva"
       ],
       "@gluestack-ui/nativewind-utils/withStyleContext": [
-        "../../packages/nativewind/utils/src/withStyleContext.ts"
+        "../../packages/nativewind/utils/src/withStyleContext"
       ],
       "@gluestack-ui/nativewind-utils/withStyleContextAndStates": [
-        "../../packages/nativewind/utils/src/withStyleContextAndStates.ts"
+        "../../packages/nativewind/utils/src/withStyleContextAndStates"
       ],
       "@gluestack-ui/nativewind-utils/withStates": [
-        "../../packages/nativewind/utils/src/withStates.ts"
+        "../../packages/nativewind/utils/src/withStates"
+      ],
+      "@gluestack-ui/nativewind-utils/cssInterop": [
+        "../../packages/nativewind/utils/src/cssInterop"
       ]
     },
     "emitDeclarationOnly": true,

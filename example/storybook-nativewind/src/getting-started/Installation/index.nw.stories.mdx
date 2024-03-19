@@ -178,6 +178,9 @@ module.exports = {
           800: 'var(--color-typography-800)',
           900: 'var(--color-typography-900)',
           950: 'var(--color-typography-950)',
+          white: '#FFFFFF',
+          gray: '#D4D4D4',
+          black: '#181718',
         },
         outline: {
           0: 'var(--color-outline-0)',
@@ -210,6 +213,8 @@ module.exports = {
           warning: 'var(--color-background-warning)',
           muted: 'var(--color-background-muted)',
           success: 'var(--color-background-success)',
+          light: '#FBFBFB',
+          dark: '#181719',
         },
       },
      fontFamily: {
@@ -259,12 +264,24 @@ To add config, create a `gluestack-ui-provider/config.ts` file in your `componen
 
 </CollapsibleCode>
 
-To add `GluestackUIProvider`, create a `gluestack-ui-provider/index.tsx` file inside `components/ui` folder and paste the following code.
+#### For Native
+To add `GluestackUIProvider`, create a `gluestack-ui-provider/index.tsx` file inside `components/` folder and paste the following code.
 
 <CollapsibleCode>
 
 ```jsx
 %%-- File: core-components/nativewind/gluestack-ui-provider/index.tsx --%%
+```
+
+</CollapsibleCode>
+
+#### For Web
+To add `GluestackUIProvider`, create a `gluestack-ui-provider/index.web.tsx` file inside `components/` folder and paste the following code.
+
+<CollapsibleCode>
+
+```jsx
+%%-- File: core-components/nativewind/gluestack-ui-provider/index.web.tsx --%%
 ```
 
 </CollapsibleCode>

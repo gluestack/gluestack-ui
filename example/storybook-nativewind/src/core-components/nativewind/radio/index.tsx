@@ -9,12 +9,22 @@ import {
 } from '@gluestack-ui/nativewind-utils/withStyleContext';
 import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
 import { withStates } from '@gluestack-ui/nativewind-utils/withStates';
+import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withStyleContextAndStates';
 
 const radioStyle = tva({
   base: 'flex-row justify-start items-center web:cursor-pointer data-[disabled=true]:web:cursor-not-allowed gap-2',
+  variants: {
+    size: {
+      sm: '',
+      md: '',
+      lg: '',
+    },
+  },
 });
 
-const groupStyle = tva({ base: 'gap-2' });
+const groupStyle = tva({
+  base: 'gap-2',
+});
 
 const iconStyle = tva({
   base: 'fill-background-800 stroke-background-800 rounded-full data-[checked=true]:text-primary-600 data-[checked=true]:data-[hover=true]:text-primary-700 data-[checked=true]:data-[hover=true]:data-[disabled=true]:text-primary-600',
@@ -32,7 +42,7 @@ const iconStyle = tva({
 });
 
 const indicatorStyle = tva({
-  base: 'justify-center items-center bg-transparent border-outline-400 border-2 rounded-full data-[focus-visible=true]:web:outline-2 data-[focus-visible=true]:web:outline-primary-700 data-[focus-visible=true]:web:outline data-[checked=true]:border-primary-600 data-[checked=true]:bg-transparent data-[hover=true]:border-outline-500  data-[hover=true]:bg-transparent data-[hover=true]:data-[checked=true]:bg-transparent data-[hover=true]:data-[checked=true]:border-primary-700 data-[hover=true]:data-[invalid=true]:border-error-700  data-[hover=true]:data-[disabled=true]:opacity-40 data-[hover=true]:data-[disabled=true]:border-outline-400 data-[hover=true]:data-[disabled=true]:data-[invalid=true]:border-error-400 data-[active=true]:bg-transparent data-[active=true]:border-primary-800 data-[invalid=true]:border-error-700 data-[disabled=true]:opacity-40 data-[disabled=true]:data-[checked=true]:border-outline-400 data-[disabled=true]:data-[checked=true]:bg-transparent data-[disabled=true]:data-[invalid=true]:border-error-400',
+  base: 'justify-center items-center bg-transparent border-outline-400 border-2 rounded-full data-[focus=true]:web:outline-none data-[focus-visible=true]:web:ring-2 data-[focus-visible=true]:web:ring-primary-700 data-[checked=true]:border-primary-600 data-[checked=true]:bg-transparent data-[hover=true]:border-outline-500  data-[hover=true]:bg-transparent data-[hover=true]:data-[checked=true]:bg-transparent data-[hover=true]:data-[checked=true]:border-primary-700 data-[hover=true]:data-[invalid=true]:border-error-700  data-[hover=true]:data-[disabled=true]:opacity-40 data-[hover=true]:data-[disabled=true]:border-outline-400 data-[hover=true]:data-[disabled=true]:data-[invalid=true]:border-error-400 data-[active=true]:bg-transparent data-[active=true]:border-primary-800 data-[invalid=true]:border-error-700 data-[disabled=true]:opacity-40 data-[disabled=true]:data-[checked=true]:border-outline-400 data-[disabled=true]:data-[checked=true]:bg-transparent data-[disabled=true]:data-[invalid=true]:border-error-400',
   parentVariants: {
     size: {
       sm: 'h-4 w-4',
@@ -53,6 +63,7 @@ const UIRadio = createRadio({
       ? withStyleContext(View)
       : withStyleContextAndStates(Pressable),
   Group: View,
+  // @ts-ignore
   Icon: Platform.OS === 'web' ? Circle : withStates(Circle),
   Indicator: Platform.OS === 'web' ? View : withStates(View),
   Label: Platform.OS === 'web' ? Text : withStates(Text),

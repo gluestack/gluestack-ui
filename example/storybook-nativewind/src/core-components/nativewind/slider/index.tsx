@@ -30,8 +30,7 @@ cssInterop(UISlider.Track, { className: 'style' });
 cssInterop(UISlider.FilledTrack, { className: 'style' });
 
 const sliderStyle = tva({
-  base: 'justify-center items-center data-[disabled=true]:web:cursor-not-allowed data-[disabled=true]:web:opacity-40 data-[disabled=true]:web:pointer-events-auto',
-
+  base: 'justify-center items-center data-[disabled=true]:web:opacity-40 data-[disabled=true]:web:pointer-events-none',
   variants: {
     orientation: {
       horizontal: 'w-full',
@@ -45,7 +44,7 @@ const sliderStyle = tva({
 });
 
 const sliderThumbStyle = tva({
-  base: 'bg-primary-500 absolute rounded-full focus:bg-primary-600 active:bg-primary-600 hover:bg-primary-600 data-[disabled=true]:bg-primary-500 web:cursor-pointer web:active:outline-4 web:active:outline web:active:outline-primary-400 web:focus:outline-4 web:focus:outline web:focus:outline-primary-400 shadow',
+  base: 'bg-primary-500 absolute rounded-full focus:bg-primary-600 active:bg-primary-600 hover:bg-primary-600 data-[disabled=true]:bg-primary-500 web:cursor-pointer web:active:outline-4 web:active:outline web:active:outline-primary-400 data-[focus=true]:web:outline-4 data-[focus=true]:web:outline data-[focus=true]:web:outline-primary-400 shadow',
 
   parentVariants: {
     size: {
@@ -58,16 +57,19 @@ const sliderThumbStyle = tva({
 
 const sliderTrackStyle = tva({
   base: 'bg-background-300 rounded-lg overflow-hidden',
-  variants: {
-    variant: {
-      horizontal: 'w-full',
-      vertical: 'h-full',
-    },
-  },
   parentVariants: {
     orientation: {
       horizontal: 'w-full',
       vertical: 'h-full',
+    },
+    isReversed: {
+      true: '',
+      false: '',
+    },
+    size: {
+      sm: '',
+      md: '',
+      lg: '',
     },
   },
   parentCompoundVariants: [
@@ -85,7 +87,7 @@ const sliderTrackStyle = tva({
     {
       orientation: 'horizontal',
       size: 'md',
-      class: 'h-[5px] flex-row',
+      class: 'h-1 flex-row',
     },
     {
       orientation: 'horizontal',
@@ -150,10 +152,6 @@ const sliderFilledTrackStyle = tva({
   },
 });
 
-// const sliderThumbInteractionStyle = tva({
-//   base: 'rounded-full -z-10',
-// });
-
 export const Slider = React.forwardRef(
   (
     {
@@ -168,9 +166,10 @@ export const Slider = React.forwardRef(
     return (
       <UISlider
         ref={ref}
+        isReversed={isReversed}
+        orientation={orientation}
         {...props}
         className={sliderStyle({
-          size,
           orientation,
           isReversed,
           class: className,
@@ -183,11 +182,7 @@ export const Slider = React.forwardRef(
 
 export const SliderThumb = React.forwardRef(
   ({ className, size, ...props }: any, ref) => {
-    const {
-      orientation: parentOrientation,
-      size: parentSize,
-      isReversed,
-    } = useStyleContext();
+    const { size: parentSize } = useStyleContext();
 
     return (
       <UISlider.Thumb
@@ -195,9 +190,7 @@ export const SliderThumb = React.forwardRef(
         {...props}
         className={sliderThumbStyle({
           parentVariants: {
-            orientation: parentOrientation,
             size: parentSize,
-            isReversed,
           },
           size,
           class: className,
@@ -234,11 +227,7 @@ export const SliderTrack = React.forwardRef(
 
 export const SliderFilledTrack = React.forwardRef(
   ({ className, ...props }: any, ref) => {
-    const {
-      orientation: parentOrientation,
-      size: parentSize,
-      isReversed,
-    } = useStyleContext();
+    const { orientation: parentOrientation } = useStyleContext();
 
     return (
       <UISlider.FilledTrack
@@ -247,8 +236,6 @@ export const SliderFilledTrack = React.forwardRef(
         className={sliderFilledTrackStyle({
           parentVariants: {
             orientation: parentOrientation,
-            size: parentSize,
-            isReversed,
           },
           class: className,
         })}

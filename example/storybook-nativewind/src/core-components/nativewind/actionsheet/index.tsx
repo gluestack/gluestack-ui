@@ -14,12 +14,17 @@ import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import { withStyleContext } from '@gluestack-ui/nativewind-utils/withStyleContext';
 import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withStyleContextAndStates';
 import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
-
+import {
+  Motion,
+  AnimatePresence,
+  createMotionComponent,
+} from '@legendapp/motion';
 import React from 'react';
 
+const AnimatedPressable = createMotionComponent(Pressable);
 export const UIActionsheet = createActionsheet({
   Root: View,
-  Content: withStyleContext(View),
+  Content: withStyleContext(Motion.View),
   // @ts-ignore
   Item:
     Platform.OS === 'web'
@@ -28,7 +33,7 @@ export const UIActionsheet = createActionsheet({
   ItemText: Text,
   DragIndicator: View,
   IndicatorWrapper: View,
-  Backdrop: Pressable,
+  Backdrop: AnimatedPressable,
   ScrollView: ScrollView,
   VirtualizedList: VirtualizedList,
   FlatList: FlatList,
@@ -36,7 +41,7 @@ export const UIActionsheet = createActionsheet({
   SectionHeaderText: H4,
   Icon: View,
   //@ts-ignore
-  AnimatePresence: null,
+  AnimatePresence: AnimatePresence,
 });
 
 cssInterop(UIActionsheet, { className: 'style' });
@@ -169,7 +174,7 @@ const actionsheetSectionHeaderTextStyle = tva({
 });
 
 const actionsheetIconStyle = tva({
-  base: 'bg-background-500',
+  base: 'text-typography-900',
   variants: {
     size: {
       '2xs': 'h-3 w-3',
@@ -179,9 +184,6 @@ const actionsheetIconStyle = tva({
       'lg': 'h-5 w-5',
       'xl': 'h-6 w-6',
     },
-  },
-  defaultVariants: {
-    size: 'sm',
   },
 });
 
@@ -392,7 +394,19 @@ const ActionsheetSectionHeaderText = React.forwardRef(
 );
 
 const ActionsheetIcon = React.forwardRef(
-  ({ className, size, ...props }: any, ref: any) => {
+  ({ className, as: AsComp, size = 'sm', ...props }: any, ref: any) => {
+    if (AsComp) {
+      return (
+        <AsComp
+          className={actionsheetIconStyle({
+            class: className,
+            size,
+          })}
+          ref={ref}
+          {...props}
+        />
+      );
+    }
     return (
       <UIActionsheet.Icon
         className={actionsheetIconStyle({
