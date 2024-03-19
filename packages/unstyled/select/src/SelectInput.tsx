@@ -16,7 +16,7 @@ export const SelectInput = (StyledSelectInput: any) =>
         states={{
           disabled: isDisabled,
         }}
-        daaSet={{
+        dataSet={{
           disabled: isDisabled ? 'true' : 'false',
         }}
         disabled={isDisabled}

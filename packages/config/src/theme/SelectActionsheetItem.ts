@@ -24,6 +24,10 @@ export const SelectActionsheetItem = createStyle({
     bg: '$backgroundLight200',
   },
 
+  ':checked': {
+    bg: '$backgroundLight300',
+  },
+
   ':focus': {
     bg: '$backgroundLight100',
   },

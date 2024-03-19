@@ -22,7 +22,6 @@ import {
   CheckboxIcon,
   CheckboxLabel,
   Text,
-  RemoveIcon,
   FormControl,
   Icon,
   CheckIcon,
@@ -34,7 +33,6 @@ import {
 } from '../../core-components/themed';
 import { useState, useRef } from 'react';
 import { transformedCode } from '../../utils';
-
 import {
   AppProvider,
   CodePreview,
@@ -54,7 +52,7 @@ This is an illustration of **Checkbox** component.
     metaData={{
       code: `
           <Checkbox   {...props}  >
-            <CheckboxIndicator mr="$2">
+            <CheckboxIndicator >
               <CheckboxIcon as={CheckIcon}/>
             </CheckboxIndicator>
             <CheckboxLabel>Label</CheckboxLabel>
@@ -144,7 +142,7 @@ This section provides a comprehensive reference list for the component props, de
 
 Contains all Checkbox related layout style props and actions. It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
-<Wrapper>
+<>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -331,12 +329,12 @@ Contains all Checkbox related layout style props and actions. It inherits all th
       </Table.TBody>
     </Table>
   </TableContainer>
-</Wrapper>
+</>
 
 **Descendants Styling Props**
 Props to style child components.
 
-<Wrapper>
+<>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -383,7 +381,7 @@ Props to style child components.
       </Table.TBody>
     </Table>
   </TableContainer>
-</Wrapper>
+</>
 
 #### CheckboxIndicator
 
@@ -401,7 +399,7 @@ Contains all Label related layout style props and actions. It inherits all the p
 
 Contains all Group related layout style props and actions. It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
-<Wrapper>
+<>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -504,7 +502,7 @@ Contains all Group related layout style props and actions. It inherits all the p
       </Table.TBody>
     </Table>
   </TableContainer>
-</Wrapper>
+</>
 
 ### Features
 
@@ -541,7 +539,7 @@ Checkbox component is created using Pressable component from react-native. It ex
 
 #### Checkbox
 
-<Wrapper>
+<>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -574,7 +572,7 @@ Checkbox component is created using Pressable component from react-native. It ex
       </Table.TBody>
     </Table>
   </TableContainer>
-</Wrapper>
+</>
 
 ### Examples
 
@@ -598,19 +596,19 @@ Checkbox provide a mutually exclusive selection mechanism, allowing users to cho
       }}>
                 <VStack space="3xl">
                   <Checkbox   value="Eng">
-                        <CheckboxIndicator mr="$2">
+                        <CheckboxIndicator >
                           <CheckboxIcon as={CheckIcon}/>
                         </CheckboxIndicator>
                         <CheckboxLabel>Framer</CheckboxLabel>
                   </Checkbox>
                   <Checkbox value="invison">
-                      <CheckboxIndicator mr="$2">
+                      <CheckboxIndicator >
                         <CheckboxIcon as={CheckIcon}/>
                       </CheckboxIndicator>
                       <CheckboxLabel>Invision Studio</CheckboxLabel>
                   </Checkbox>
                   <Checkbox  value="adobe">
-                    <CheckboxIndicator mr="$2">
+                    <CheckboxIndicator >
                       <CheckboxIcon as={CheckIcon}/>
                     </CheckboxIndicator>
                     <CheckboxLabel>Adobe XD</CheckboxLabel>
@@ -659,19 +657,19 @@ A horizontal component incorporating a checkbox allows for intuitive and space-e
       }}>
                 <HStack space="2xl">
                   <Checkbox value="Illustration">
-                    <CheckboxIndicator mr="$2">
+                    <CheckboxIndicator >
                       <CheckboxIcon as={CheckIcon}/>
                     </CheckboxIndicator>
                     <CheckboxLabel>Illustration</CheckboxLabel>
                   </Checkbox>
                   <Checkbox value="Animation">
-                    <CheckboxIndicator  mr="$2">
+                    <CheckboxIndicator  >
                       <CheckboxIcon as={CheckIcon}/>
                     </CheckboxIndicator>
                     <CheckboxLabel>Animation</CheckboxLabel>
                   </Checkbox>
                   <Checkbox value="Typography">
-                    <CheckboxIndicator mr="$2">
+                    <CheckboxIndicator >
                       <CheckboxIcon as={CheckIcon}/>
                     </CheckboxIndicator>
                     <CheckboxLabel>Typography</CheckboxLabel>
@@ -720,7 +718,7 @@ A checkbox component with help text provides informative guidance alongside sele
                <VStack space="2xl">
             <Box>
               <Checkbox value="Design">
-                <CheckboxIndicator mr="$2">
+                <CheckboxIndicator >
                    <CheckboxIcon as={CheckIcon}/>
                 </CheckboxIndicator>
                 <CheckboxLabel >Design</CheckboxLabel>
@@ -729,7 +727,7 @@ A checkbox component with help text provides informative guidance alongside sele
             </Box>
             <Box>
               <Checkbox value="Marketing">
-                <CheckboxIndicator mr="$2">
+                <CheckboxIndicator >
                   <CheckboxIcon as={CheckIcon}/>
                 </CheckboxIndicator>
                 <CheckboxLabel>Marketing</CheckboxLabel>
@@ -778,19 +776,19 @@ A checkbox component integrated with form control enhances the user experience b
            <VStack space="sm">
               <Heading size="sm" >Sign up for newsletters</Heading>
               <Checkbox >
-                  <CheckboxIndicator mr="$2">
+                  <CheckboxIndicator >
                      <CheckboxIcon as={CheckIcon}/>
                   </CheckboxIndicator>
                 <CheckboxLabel>Daily Bits</CheckboxLabel>
               </Checkbox>
               <Checkbox >
-                <CheckboxIndicator mr="$2">
+                <CheckboxIndicator >
                   <CheckboxIcon as={CheckIcon}/>
                </CheckboxIndicator>
                  <CheckboxLabel>Event Updates</CheckboxLabel>
               </Checkbox>
               <Checkbox >
-                <CheckboxIndicator mr="$2">
+                <CheckboxIndicator >
                   <CheckboxIcon as={CheckIcon}/>
                 </CheckboxIndicator>
                  <CheckboxLabel>Sponsorship</CheckboxLabel>
@@ -901,13 +899,13 @@ A controlled component architecture incorporates a checkbox component, allowing 
           }}>
            <VStack space="md">
                   <Checkbox  value="UX Research">
-                    <CheckboxIndicator mr="$2">
+                    <CheckboxIndicator >
                       <CheckboxIcon as={CheckIcon}/>
                     </CheckboxIndicator>
                   <CheckboxLabel>UX Research</CheckboxLabel>
                 </Checkbox>
                  <Checkbox  value="Software">
-                    <CheckboxIndicator mr="$2">
+                    <CheckboxIndicator >
                       <CheckboxIcon as={CheckIcon}/>
                     </CheckboxIndicator>
                   <CheckboxLabel>Software Development</CheckboxLabel>
@@ -958,13 +956,13 @@ function App() {
           <CheckboxGroup  ref={radioRef} >
           <VStack space="md">
                   <Checkbox   onChange={handleCheckboxChange}  value="Apartments">
-                    <CheckboxIndicator   mr="$2">
+                    <CheckboxIndicator   >
                         <CheckboxIcon as={CheckIcon}/>
                     </CheckboxIndicator>
                      <CheckboxLabel>Apartments</CheckboxLabel>
                   </Checkbox>
                    <Checkbox   onChange={handleCheckboxChange}  value="Residents">
-                    <CheckboxIndicator  mr="$2">
+                    <CheckboxIndicator  >
                         <CheckboxIcon as={CheckIcon}/>
                     </CheckboxIndicator>
                      <CheckboxLabel>Residents</CheckboxLabel>
@@ -1018,7 +1016,7 @@ function CheckboxExample(){
             isDisabled={true}
               value="Label 1"
             >
-              <CheckboxIndicator mr="$2">
+              <CheckboxIndicator >
                 <CheckboxIcon as={CheckIcon}/>
               </CheckboxIndicator>
               <CheckboxLabel>Label 1</CheckboxLabel>
@@ -1026,7 +1024,7 @@ function CheckboxExample(){
             <Checkbox
               value="Label 2"
             >
-              <CheckboxIndicator mr="$2">
+              <CheckboxIndicator >
                 <CheckboxIcon as={CheckIcon}/>
               </CheckboxIndicator>
               <CheckboxLabel>Label 2</CheckboxLabel>
