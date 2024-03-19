@@ -9,8 +9,15 @@ const PressableMeta: ComponentMeta<typeof Pressable> = {
   metaInfo: {
     componentDescription: `By providing access to hover, pressed, and focus events, Pressable serves as a more flexible alternative to buttons at a lower level of abstraction. It is a useful primitive for advanced customization needs.`,
   },
-  argTypes: {},
-  args: {},
+  argTypes: {
+    disabled: {
+      control: 'boolean',
+      options: [true, false],
+    },
+  },
+  args: {
+    disabled: false,
+  },
 };
 
 export default PressableMeta;
