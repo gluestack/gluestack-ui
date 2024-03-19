@@ -49,16 +49,21 @@ Please follow this [link](https://gluestack.io/ui/docs/guides/install-nextjs)
 Create a `components/` folder inside `src` folder and add path in `tsconfig.json`
 
 ```js
-
-  "paths": {
-    "@/components/*": ["./src/components/*"] // Add relative path
-  },
+  // ... (other configs)
+  compilerOptions: {
+    // ...
+    "paths": {
+      // ...
+      "@/*": ["./src/*"] // Add relative path
+    },
+  }
+ 
 
 ```
 
 ### Step 3: Configure GluestackUIProvider
 
-To add config, create a `gluestack-ui-provider/config.ts` file in your `components/` folder and paste the following code.
+To add config, create a `gluestack-ui-provider/config.ts` file in your `components/ui` folder and paste the following code.
 
 <CollapsibleCode>
 
@@ -68,7 +73,7 @@ To add config, create a `gluestack-ui-provider/config.ts` file in your `componen
 
 </CollapsibleCode>
 
-To add `GluestackUIProvider`, create a `gluestack-ui-provider/index.tsx` file inside `components/` folder and paste the following code.
+To add `GluestackUIProvider`, create a `gluestack-ui-provider/index.tsx` file inside `components/ui` folder and paste the following code.
 
 <CollapsibleCode>
 
