@@ -1,5 +1,5 @@
 ---
-title: Badge | gluestack-ui | Installation, Usage, and API
+title: gluestack-ui Badge Component | Installation, Usage, and API
 
 description: The badge component lets you quickly and easily add status indicators to your interface for improved usability. They are designed to be attention-grabbing and quickly convey important information.
 
@@ -24,15 +24,11 @@ import {
   GlobeIcon,
   Icon,
   Box,
-  PuzzleIcon,
   Menu,
   MenuIcon,
   MenuItem,
   MenuItemLabel,
-  BadgePlusIcon,
-  SettingsIcon,
   AddIcon,
-  PaintBucket,
   Avatar,
   AvatarImage,
   AvatarFallbackText,
@@ -40,20 +36,26 @@ import {
   HStack,
   Button,
   ButtonText,
-  BadgeCheckIcon,
   Badge,
-} from '../../components-example/themed';
+  Text,
+} from '../../core-components/themed';
+import {
+  PaintBucket,
+  PuzzleIcon,
+  BadgeCheckIcon,
+  BadgePlusIcon,
+  SettingsIcon,
+} from 'lucide-react-native';
 import {
   AppProvider,
   CodePreview,
-  Text,
   Table,
   TableContainer,
   InlineCode,
   CollapsibleCode,
 } from '@gluestack/design-system';
 import { transformedCode } from '../../utils';
-import Wrapper from '../../components-example/themed/Wrapper';
+import Wrapper from '../../core-components/themed/Wrapper';
 
 This is an illustration of **Badge** component.
 
@@ -101,28 +103,24 @@ This is an illustration of **Badge** component.
 
 ## Installation
 
-### Step 1: Install the following dependencies:
-
-```bash
-
-npm i @gluestack-ui/badge
-
-```
-
-### Step 2: Copy and paste the following code into your project.
+### Step 1: Copy and paste the following code into your project.
 
 <CollapsibleCode>
-  ```jsx %%-- File: components-example/themed/Badge/index.tsx --%% ```
+
+```jsx 
+%%-- File: core-components/themed/badge/index.tsx --%% 
+```
+
 </CollapsibleCode>
 
-### Step 3: Update the import paths to match your project setup.
+### Step 2: Update the import paths to match your project setup.
 
 ## API Reference
 
 To use this component in your project, include the following import statement in your file.
 
 ```jsx
-import { Badge } from '@/components/ui/Badge';
+import { Badge } from '@/components/ui/badge';
 ```
 
 ```jsx
@@ -259,54 +257,6 @@ Badge component is created using View component from react-native. It extends al
   </TableContainer>
 </>
 
-<!--
-## Spec Doc
-
-Explore the comprehensive details of the Badge in this document, including its implementation details, checklist, and potential future additions. Dive into the thought process behind the component and gain insights into its development journey.
-
-<iframe
-  style={{
-    borderRadius: '8px',
-    border: ' 1px solid rgba(0, 0, 0, 0.1)',
-    aspectRatio: 736 / 585,
-  }}
-  src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FNcXOxqKbdnGsLQNex3H76u%2F%25C2%25A0%25F0%259F%2593%259Agluestack-UI-handbook%3Ftype%3Ddesign%26node-id%3D6030-27780%26t%3DdmNaOHvCSb4QGYGL-1%26scaling%3Dscale-down%26page-id%3D6030%253A25864%26starting-point-node-id%3D6030%253A27780%26mode%3Ddesign"
-  allowFullScreen
-/> -->
-
-<!--
-
-### Advanced
-
-We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
-
-### Customizing the Badge
-
-For customizing the Badge, you have to map styled view to Badge You can refer [gluestack.io/style](/style) on how to use styled components.
-
-#### Usage
-
-Default styling of the component can be found in the `components/badge` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/main/packages/themed/src/components/Badge) of the styled `Badge` component.
-
-```jsx
-// import the styles
-import { Root, Text, Icon } from 'components/core/badge/styled-components';
-
-// mapping the Badge to root component and compounding the Text and Icon components
-const Badge = Root;
-BadgeText = Text;
-BadgeIcon = Icon;
-
-// Using the badge component
-export default () => (
-  <Badge>
-    <BadgeText></BadgeText>
-    <BadgeIcon></BadgeIcon>
-  </Badge>
-);
-```
--->
-
 ### Examples
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
@@ -315,7 +265,7 @@ The Examples section provides visual representations of the different variants o
 
 An example of the Badge component being used with the Avatar component to display badges alongside user avatars for enhanced visual representation or identification.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -365,13 +315,13 @@ An example of the Badge component being used with the Avatar component to displa
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>
 
 #### Badge in Menu
 
 A Badge component used with a menu adds a visual indicator, such as a badge, to highlight specific items or provide additional information within the menu, enhancing user interaction and improving the visibility of important elements.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -386,7 +336,6 @@ A Badge component used with a menu adds a visual indicator, such as a badge, to 
               </Button>
             );
           }}
-          bg='$white'
         >
           <MenuItem key="Community" textValue="Community">
             <HStack space="sm" alignItems="center">
@@ -461,13 +410,13 @@ A Badge component used with a menu adds a visual indicator, such as a badge, to 
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>
 
 ### Badge Composition
 
 An example of the Badge component being used with the Composition component, allowing for the display of badges within a composition of other UI elements.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showArgsController={false}
     metaData={{
@@ -505,4 +454,4 @@ An example of the Badge component being used with the Composition component, all
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>

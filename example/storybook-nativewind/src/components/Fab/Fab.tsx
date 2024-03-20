@@ -1,62 +1,14 @@
 import React from 'react';
+import { Fab, FabIcon, FabLabel } from '@/components/ui/fab';
+import { MenuIcon } from '@/components/ui/icon';
+import { Box } from '@/components/ui/box';
 
-import {
-  AddIcon,
-  Box,
-  MenuIcon,
-  Checkbox,
-  CheckboxIndicator,
-  CheckboxLabel,
-  SearchIcon,
-  Link,
-  VStack,
-  HStack,
-  Avatar,
-  AvatarImage,
-  Heading,
-  Text,
-  Divider,
-  Image,
-  CheckboxIcon,
-} from '@gluestack-ui/themed';
-
-import { Fab, FabIcon, FabLabel } from '@/components/ui/Fab';
-
-import { CheckIcon, EditIcon, ShoppingCartIcon } from 'lucide-react-native';
-
-const FabBasic = ({
-  placement = 'bottom right',
-  showLabel = true,
-  showIcon = true,
-  ...props
-}: any) => {
+const FabBasic = (props: any) => {
   return (
-    <Box
-      position="relative"
-      bg="$trueGray200"
-      h="$full"
-      w="$full"
-      sx={{ _web: { w: 300, h: 300 } }}
-    >
-      <Fab placement={placement} gap="$1" {...props}>
-        {showIcon && <FabIcon as={MenuIcon} />}
-        {showLabel && <FabLabel>Menu</FabLabel>}
-      </Fab>
-    </Box>
-  );
-};
-
-const FigmaFabStory = ({
-  placement = 'bottom right',
-  showLabel = true,
-  _showIcon = true,
-  ...props
-}: any) => {
-  return (
-    <Box sx={{ _web: { w: 250, h: 80 } }}>
-      <Fab placement={placement} {...props} gap="$1">
-        <FabIcon as={MenuIcon} />
-        {showLabel && <Fab.Label>Menu</Fab.Label>}
+    <Box className="h-[300px] w-[300px] bg-background-200 rounded-md ">
+      <Fab placement={props.placement} {...props}>
+        {props.showIcon && <FabIcon as={MenuIcon} />}
+        {props.showLabel && <FabLabel>Menu</FabLabel>}
       </Fab>
     </Box>
   );
@@ -67,28 +19,4 @@ FabBasic.description =
 
 export default FabBasic;
 
-export {
-  FigmaFabStory,
-  Fab,
-  FabIcon,
-  FabLabel,
-  SearchIcon,
-  EditIcon,
-  Box,
-  VStack,
-  HStack,
-  Avatar,
-  AvatarImage,
-  Heading,
-  Text,
-  Divider,
-  AddIcon,
-  Checkbox,
-  CheckboxIndicator,
-  CheckboxLabel,
-  CheckboxIcon,
-  CheckIcon,
-  Image,
-  Link,
-  ShoppingCartIcon,
-};
+export { Fab, FabIcon, FabLabel, MenuIcon, Box };

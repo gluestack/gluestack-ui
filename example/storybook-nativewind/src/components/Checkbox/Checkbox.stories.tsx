@@ -22,11 +22,16 @@ const CheckboxMeta: ComponentMeta<typeof Checkbox> = {
       control: 'boolean',
       options: [true, false],
     },
+    isFocusVisible: {
+      control: 'boolean',
+      options: [true, false],
+    },
   },
   args: {
     size: 'md',
     isDisabled: false,
     isInvalid: false,
+    isFocusVisible: false,
   },
 };
 

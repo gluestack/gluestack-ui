@@ -1,5 +1,5 @@
 ---
-title: Text | gluestack-ui | Installation, Usage, and API
+title: gluestack-ui Text Component | Installation, Usage, and API
 
 description: Looking to add text to your gluestack-ui project? Check out our text component, which supports paragraphs and other formatting options.
 
@@ -23,8 +23,8 @@ import {
   CollapsibleCode,
 } from '@gluestack/design-system';
 import { transformedCode } from '../../utils';
-import { Text, Center } from '../../components-example/themed';
-import Wrapper from '../../components-example/themed/Wrapper';
+import { Text, Center } from '../../core-components/themed';
+import Wrapper from '../../core-components/themed/Wrapper';
 
 This is an illustration of **Text** component.
 
@@ -57,7 +57,11 @@ This is an illustration of **Text** component.
 ### Step 1: Copy and paste the following code into your project.
 
 <CollapsibleCode>
-  ```jsx %%-- File: components-example/themed/Text/index.tsx --%% ```
+
+```jsx 
+%%-- File: core-components/themed/text/index.tsx --%% 
+```
+
 </CollapsibleCode>
 
 ### Step 2: Update the import paths to match your project setup.
@@ -67,7 +71,7 @@ This is an illustration of **Text** component.
 To use this component in your project, include the following import statement in your file.
 
 ```jsx
-import { Text } from '@/components/ui/Text';
+import { Text } from '@/components/ui/text';
 ```
 
 ```jsx
@@ -224,7 +228,7 @@ The Examples section provides visual representations of the different variants o
 
 Text component comes in different sizes, such as `xs`, `sm`, `md`, `lg`, `xl`, `2xl`, `3xl`, `4xl`, `5xl`, and `6xl` allowing users to adjust the button size based on their design needs.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     _rendererWrapper={{ py: '$2.5' }}
     showComponentRenderer={true}
@@ -260,11 +264,11 @@ Text component comes in different sizes, such as `xs`, `sm`, `md`, `lg`, `xl`, `
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>
 
 Text component also accepts some shorthands for basic quick styling.
 
-<AppProvider>
+<Wrapper>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -383,4 +387,4 @@ Text component also accepts some shorthands for basic quick styling.
       </Table.TBody>
     </Table>
   </TableContainer>
-</AppProvider>
+</Wrapper>

@@ -1,5 +1,5 @@
 ---
-title: Box | gluestack-ui | Installation, Usage, and API
+title: gluestack-ui Box Component | Installation, Usage, and API
 
 description: If you're looking for a flexible component to help with low-level layout needs, the Box component might be just what you need. With its customizable styles and props, it can be used to create a wide range of UI elements, from simple containers to complex layout structures.
 
@@ -15,22 +15,22 @@ import { useRef, useEffect, useState } from 'react';
 
 <Meta title="with-nativewind/components/Layout/Box" />
 
-import { Box } from './Box';
-import { Text } from '../../components-example/nativewind/Text';
+import { Box } from '../../core-components/nativewind';
+import { Text } from '../../core-components/nativewind/text';
 
 import { transformedCode } from '../../utils';
 import { AppProvider, CodePreview } from '@gluestack/design-system';
 
-import Wrapper from '../../components-example/nativewind/Wrapper';
+import Wrapper from '../../core-components/nativewind/Wrapper';
 import { CollapsibleCode } from '@gluestack/design-system';
 
 This is an illustration of **Box** component.
 
 <Wrapper>
   <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
+      showComponentRenderer={ true }
+    showArgsController = { false}
+    metaData = {{
       code: `
 <Box
   className="bg-primary-500 p-5"
@@ -40,20 +40,21 @@ This is an illustration of **Box** component.
   </Text>
 </Box>
 `,
-      transformCode: (code) => {
-        return transformedCode(code);
-      },
-      scope: {
+        transformCode: (code) => {
+          return transformedCode(code);
+        },
+          scope: {
         Wrapper,
-        Box,
-        Text,
-      },
-      argsType: {},
-    }}
+          Box,
+          Text,
+        },
+      argsType: { },
+    }
+  }
   />
 </Wrapper>
 
-<br />
+<br/>
 
 ## Installation
 
@@ -61,8 +62,8 @@ This is an illustration of **Box** component.
 
 <CollapsibleCode>
 
-```jsx
-%%-- File: components-example/nativewind/Box/index.tsx --%%
+```jsx 
+%%-- File: core-components/nativewind/box/index.tsx --%% 
 ```
 
 </CollapsibleCode>
@@ -72,7 +73,7 @@ This is an illustration of **Box** component.
 To use this component in your project, include the following import statement in your file.
 
 ```jsx
-import { Box } from '@/components/ui/Box';
+import { Box } from '@/components/ui/box';
 ```
 
 ```jsx

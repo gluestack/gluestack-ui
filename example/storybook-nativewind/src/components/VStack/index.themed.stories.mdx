@@ -1,5 +1,5 @@
 ---
-title: VStack | gluestack-ui | Installation, Usage, and API
+title: gluestack-ui VStack Component | Installation, Usage, and API
 
 description: VStack organizes items vertically in a layout. Alternatively, you can use Column as an alias for VStack to achieve the same layout.
 
@@ -14,18 +14,17 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="with-gluestack-style/components/Layout/VStack" />
 
-import { Box, VStack } from '../../components-example/themed';
+import { Box, VStack, Text } from '../../core-components/themed';
 import { transformedCode } from '../../utils';
 import {
   AppProvider,
   CodePreview,
   Table,
   TableContainer,
-  Text,
   InlineCode,
   CollapsibleCode,
 } from '@gluestack/design-system';
-import Wrapper from '../../components-example/themed/Wrapper';
+import Wrapper from '../../core-components/themed/Wrapper';
 
 This is an illustration of **VStack** component.
 
@@ -74,7 +73,11 @@ This is an illustration of **VStack** component.
 ### Step 1: Copy and paste the following code into your project.
 
 <CollapsibleCode>
-  ```jsx %%-- File: components-example/themed/VStack/index.tsx --%% ```
+
+```jsx 
+%%-- File: core-components/themed/vstack/index.tsx --%% 
+```
+
 </CollapsibleCode>
 
 ### Step 2: Update the import paths to match your project setup.
@@ -84,7 +87,7 @@ This is an illustration of **VStack** component.
 To use this component in your project, include the following import statement in your file.
 
 ```jsx
-import { VStack } from '@/components/ui/VStack';
+import { VStack } from '@/components/ui/vstack';
 ```
 
 ```jsx
@@ -176,7 +179,7 @@ The Examples section provides visual representations of the different variants o
 
 A VStack component with the reversed prop reverses the order of vertically stacked elements, enabling customized vertical layouts and visual arrangements of content within a user interface.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     _rendererWrapper={{ py: '$2.5' }}
     showComponentRenderer={true}
@@ -184,9 +187,9 @@ A VStack component with the reversed prop reverses the order of vertically stack
     metaData={{
       code: `
         <VStack space="md">
-          <Box w='$20' h='$20' bg='$blue300' />
-          <Box w='$20' h='$20' bg='$blue400' />
-          <Box w='$20' h='$20' bg='$blue500' />
+          <Box w='$20' h='$20' bg='$primary200' />
+          <Box w='$20' h='$20' bg='$primary400' />
+          <Box w='$20' h='$20' bg='$primary600' />
         </VStack>
       `,
       transformCode: (code) => {
@@ -196,4 +199,4 @@ A VStack component with the reversed prop reverses the order of vertically stack
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>

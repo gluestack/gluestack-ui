@@ -43,12 +43,12 @@ import {
 import { transformedCode } from '../../../utils';
 
 import { config } from '@gluestack-ui/config';
-import Wrapper from '../../components-example/nativewind/Wrapper';
+import Wrapper from '../../core-components/nativewind/Wrapper';
 import { CollapsibleCode } from '@gluestack/design-system';
 
 This is an illustration of a **Themed Card** component with default configuration.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={true}
@@ -84,7 +84,7 @@ This is an illustration of a **Themed Card** component with default configuratio
       },
     }}
   />
-</AppProvider>
+</Wrapper>
 
 <br />
 
@@ -101,7 +101,11 @@ npm install @gluestack-ui/card
 ### Step 2: Copy and paste the following code into your project.
 
 <CollapsibleCode>
-  ```jsx %%-- File: components-example/nativewind/Button/index.tsx --%% ```
+
+```jsx 
+%%-- File: core-components/nativewind/button/index.tsx --%% 
+```
+
 </CollapsibleCode>
 
 ### Step 3: Update the import paths to match your project setup.
@@ -113,7 +117,7 @@ npm install @gluestack-ui/card
 To use this component in your project, include the following import statement in your file.
 
 ```jsx
-import { Card } from '@/components/ui/Card';
+import { Card } from '@/components/ui/card';
 ```
 
 ```jsx
@@ -128,7 +132,7 @@ This section provides a comprehensive reference list for the component props, de
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
-<AppProvider>
+<Wrapper>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -174,7 +178,7 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
       </Table.TBody>
     </Table>
   </TableContainer>
-</AppProvider>
+</Wrapper>
 
 ## Themed
 
@@ -188,7 +192,7 @@ The Examples section provides visual representations of the different variants o
 
 This is an example of a Card component with an image.
 
-<AppProvider config={config}>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -269,13 +273,13 @@ Wrapper,
 }}
 />
 
-</AppProvider>
+</Wrapper>
 
 ### Advanced Composition
 
 This is an example of a Card component with other components like Avatar, Image and Button.
 
-<AppProvider config={config}>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -468,13 +472,13 @@ Wrapper,
 }}
 />
 
-</AppProvider>
+</Wrapper>
 
 ### Product Card
 
 This example illustrates a card showcasing a product.
 
-<AppProvider config={config}>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -584,13 +588,13 @@ Wrapper,
 }}
 />
 
-</AppProvider>
+</Wrapper>
 
 ### Blog Card
 
 This is an example of a Card component with a blog post.
 
-<AppProvider config={config}>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -668,7 +672,7 @@ Wrapper,
 }}
 />
 
-</AppProvider>
+</Wrapper>
 
 ## gluestack-style
 
@@ -684,7 +688,11 @@ npm install @gluestack-style/react
 Step 2: Copy and paste the following code into your project.
 
 <CollapsibleCode>
-  ```jsx %%-- File: components-example/themed/Card/index.tsx --%% ```
+
+```jsx 
+%%-- File: core-components/themed/card/index.tsx --%% 
+```
+
 </CollapsibleCode>
 
 Step 3: Update the import paths to match your project setup.

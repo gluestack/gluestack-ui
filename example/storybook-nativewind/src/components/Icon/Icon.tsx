@@ -57,9 +57,9 @@ import {
   TrashIcon,
   UnlockIcon,
   createIcon,
-} from '@/components/ui/Icon';
-import { HStack } from '@/components/ui/HStack';
-import { VStack } from '@/components/ui/VStack';
+} from '@/components/ui/icon';
+import { HStack } from '@/components/ui/hstack';
+import { VStack } from '@/components/ui/vstack';
 
 import {
   ChromeIcon,
@@ -68,7 +68,6 @@ import {
   Camera,
 } from 'lucide-react-native';
 const IconBasic = ({ size, ...props }: any) => {
-  // return <Icon as={CalendarDaysIcon} size="md" />;
   return <CalendarDaysIcon size={size} {...props} />;
 };
 

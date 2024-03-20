@@ -1,5 +1,5 @@
 ---
-title: Heading | gluestack-ui | Installation, Usage, and API
+title: gluestack-ui Heading Component | Installation, Usage, and API
 
 description: Heading component gives you the ability to create headings for your page with different sizes and semantics from h1 to h6.
 
@@ -14,7 +14,7 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="with-gluestack-style/components/Typography/Heading" />
 
-import { Heading, Center } from '../../components-example/themed';
+import { Heading, Center } from '../../core-components/themed';
 import { transformedCode } from '../../utils';
 import {
   AppProvider,
@@ -25,7 +25,7 @@ import {
   InlineCode,
   CollapsibleCode,
 } from '@gluestack/design-system';
-import Wrapper from '../../components-example/themed/Wrapper';
+import Wrapper from '../../core-components/themed/Wrapper';
 
 This is an illustration of **Heading** component.
 
@@ -64,7 +64,11 @@ npm i @expo/html-elements
 ### Step 2: Copy and paste the following code into your project.
 
 <CollapsibleCode>
-  ```jsx %%-- File: components-example/themed/Heading/index.tsx --%% ```
+
+```jsx 
+%%-- File: core-components/themed/heading/index.tsx --%% 
+```
+
 </CollapsibleCode>
 
 ### Step 3: Update the import paths to match your project setup.
@@ -74,7 +78,7 @@ npm i @expo/html-elements
 To use this component in your project, include the following import statement in your file.
 
 ```jsx
-import { Heading } from '@/components/ui/Heading';
+import { Heading } from '@/components/ui/heading';
 ```
 
 ```jsx
@@ -93,7 +97,7 @@ It inherits all the properties of @expo/html-elements's [H1](https://github.com/
 
 Heading component is created using H1 component from @expo/html-elements. It extends all the props supported by [Expo HTML Heading Elements](https://www.npmjs.com/package/@expo/html-elements/v/0.0.5), [utility props](/ui/docs/styling/utility-and-sx-props) and the props mentioned below.
 
-#### Button
+#### Heading
 
 <>
   <TableContainer>
@@ -238,7 +242,7 @@ Heading component offers a range of sizes, including `xs`, `sm`, `md`, `lg`, `xl
 - For `md`, it renders `h5`.
 - Finally, for `sm` and `xs`, it renders `h6`.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     _rendererWrapper={{ py: '$2.5' }}
     showComponentRenderer={true}
@@ -273,11 +277,11 @@ Heading component offers a range of sizes, including `xs`, `sm`, `md`, `lg`, `xl
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>
 
 The Heading component also accepts some shorthands for basic quick styling.
 
-<AppProvider>
+<Wrapper>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -396,4 +400,4 @@ The Heading component also accepts some shorthands for basic quick styling.
       </Table.TBody>
     </Table>
   </TableContainer>
-</AppProvider>
+</Wrapper>

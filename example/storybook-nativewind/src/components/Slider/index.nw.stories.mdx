@@ -1,5 +1,5 @@
 ---
-title: Slider | gluestack-ui | Installation, Usage, and API
+title: gluestack-ui Slider Component | Installation, Usage, and API
 
 description: The Slider component enables an intuitive selection of values within a designated range. Users can easily adjust their selection by sliding a visual indicator along the track.
 
@@ -15,14 +15,14 @@ import { useRef, useEffect, useState } from 'react';
 
 <Meta title="with-nativewind/components/Forms/Slider" />
 
-import { Slider } from './Slider';
+import { Slider } from '../../core-components/nativewind';
 import {
   SliderTrack,
   SliderFilledTrack,
   SliderThumb,
-} from '../../components-example/nativewind/Slider';
+} from '../../core-components/nativewind';
 
-import { HStack, Volume2Icon, Box } from '@gluestack-ui/themed';
+import { HStack, Volume2Icon, Box } from '../../core-components/nativewind';
 import {
   VStack,
   Volume,
@@ -30,10 +30,8 @@ import {
   LightbulbIcon,
   Icon,
   Heading,
-  Tooltip,
-  TooltipContent,
   Button,
-} from '@gluestack-ui/themed';
+} from '../../core-components/nativewind';
 import { transformedCode } from '../../utils';
 import {
   AppProvider,
@@ -43,8 +41,8 @@ import {
   TableContainer,
 } from '@gluestack/design-system';
 
-import Wrapper from '../../components-example/nativewind/Wrapper';
-import { Center } from '../../components-example/nativewind/Center';
+import Wrapper from '../../core-components/nativewind/Wrapper';
+import { Center } from '../../core-components/nativewind/center';
 import { CollapsibleCode } from '@gluestack/design-system';
 
 This is an illustration of **Slider** component.
@@ -112,7 +110,11 @@ npm i @gluestack-ui/slider
 ### Step 2: Copy and paste the following code into your project.
 
 <CollapsibleCode>
-  ```jsx %%-- File: components-example/nativewind/Slider/index.tsx --%% ```
+
+```jsx 
+%%-- File: core-components/nativewind/slider/index.tsx --%% 
+```
+
 </CollapsibleCode>
 
 ### Step 3: Update the import paths to match your project setup.
@@ -122,7 +124,7 @@ npm i @gluestack-ui/slider
 To use this component in your project, include the following import statement in your file.
 
 ```jsx
-import { Slider } from '@/components/ui/Slider';
+import { Slider } from '@/components/ui/slider';
 ```
 
 ```jsx

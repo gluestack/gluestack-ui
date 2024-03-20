@@ -1,6 +1,5 @@
 import React from 'react';
-import { Center } from '@gluestack-ui/themed';
-import { Text } from '@/components/ui/Text';
+import { Text } from '@/components/ui/text';
 
 const TextBasic = ({
   size = 'md',
@@ -8,8 +7,24 @@ const TextBasic = ({
   fontWeight = 'bold',
   ...props
 }: any) => {
+  const fontWeights = {
+    hairline: 'font-hairline',
+    thin: 'font-thin',
+    light: 'font-light',
+    normal: 'font-normal',
+    medium: 'font-medium',
+    semibold: 'font-semibold',
+    bold: 'font-bold',
+    extrabold: 'font-extrabold',
+    black: 'font-black',
+  };
+
   return (
-    <Text size={size} {...props} fontWeight={`$${fontWeight}`}>
+    <Text
+      size={size}
+      {...props}
+      className={`${fontWeights[fontWeight as keyof typeof fontWeights]}`}
+    >
       {text}
     </Text>
   );
@@ -20,4 +35,4 @@ TextBasic.description =
 
 export default TextBasic;
 
-export { Text, Center };
+export { Text };

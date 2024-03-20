@@ -1,9 +1,18 @@
 import React from 'react';
-import { VStack, Text, HStack } from '@gluestack-ui/themed';
-import { Switch } from '@/components/ui/Switch';
+import { Switch } from '@/components/ui/switch';
+import colors from 'tailwindcss/colors';
 
 const SwitchBasic = ({ ...props }: any) => {
-  return <Switch defaultValue={true} value={props.isEnabled} {...props} />;
+  return (
+    <Switch
+      // value={props.isEnabled}
+      trackColor={{ false: colors.gray[300], true: colors.gray[500] }}
+      thumbColor={colors.gray[50]}
+      activeThumbColor={colors.gray[50]}
+      ios_backgroundColor={colors.gray[300]}
+      {...props}
+    />
+  );
 };
 
 SwitchBasic.description =
@@ -11,4 +20,4 @@ SwitchBasic.description =
 
 export default SwitchBasic;
 
-export { Switch, VStack, Text, HStack };
+export { Switch };

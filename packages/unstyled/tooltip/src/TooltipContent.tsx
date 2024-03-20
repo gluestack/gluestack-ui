@@ -48,11 +48,7 @@ export function TooltipContent<StyledTooltipContentProps>(
           {...props}
           ref={mergedRef}
           role={Platform.OS === 'web' ? 'tooltip' : undefined}
-          style={{
-            ...overlayProps.style,
-            position: 'absolute',
-            ...style,
-          }}
+          style={[overlayProps.style, { position: 'absolute' }, style]}
         >
           {children}
         </StyledTooltipContent>

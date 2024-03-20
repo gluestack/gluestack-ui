@@ -17,24 +17,22 @@ import { Meta } from '@storybook/addon-docs';
 import {
   Button,
   ButtonText,
-  ButtonIcon,
   ButtonSpinner,
-  EditIcon,
-  ArrowLeftIcon,
+  ButtonIcon,
   Icon,
   ArrowUpIcon,
-  AddIcon,
   InfoIcon,
-  ThreeDotsIcon,
+  AddIcon,
+  Box,
+  VStack,
+  Heading,
+  Text,
   Input,
   InputField,
-  HStack,
-  VStack,
-  Text,
-  Heading,
-  Box,
   Center,
-} from './Button';
+  ArrowLeftIcon,
+  EditIcon
+} from '../../core-components/nativewind';
 import { transformedCode } from '../../utils';
 import {
   AppProvider,
@@ -43,9 +41,9 @@ import {
   TableContainer,
   InlineCode,
 } from '@gluestack/design-system';
-
-import Wrapper from '../../components-example/nativewind/Wrapper';
+import Wrapper from '../../core-components/nativewind/Wrapper';
 import { CollapsibleCode } from '@gluestack/design-system';
+import colors from 'tailwindcss/colors';
 
 This is an illustration of **Button** component.
 
@@ -99,7 +97,11 @@ npm i @gluestack-ui/button
 ### Step 2: Copy and paste the following code into your project.
 
 <CollapsibleCode>
-  ```jsx %%-- File: components-example/nativewind/Button/index.tsx --%% ```
+
+```jsx 
+%%-- File: core-components/nativewind/button/index.tsx --%% 
+```
+
 </CollapsibleCode>
 
 ### Step 3: Update the import paths to match your project setup.
@@ -115,7 +117,7 @@ import {
   ButtonSpinner,
   ButtonIcon,
   ButtonGroup,
-} from '@/components/ui/Button';
+} from '@/components/ui/button';
 ```
 
 ```jsx
@@ -138,7 +140,7 @@ This section provides a comprehensive reference list for the component props, de
 
 Contains all button related layout style props and actions. It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable) component.
 
-<Wrapper>
+<>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -225,7 +227,7 @@ Contains all button related layout style props and actions. It inherits all the 
       </Table.TBody>
     </Table>
   </TableContainer>
-</Wrapper>
+</>
 
 #### ButtonText
 
@@ -235,7 +237,7 @@ Contains all text related layout style props and actions. It inherits all the pr
 
 Contains all group related layout style props and actions. It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
-<Wrapper>
+<>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -344,7 +346,7 @@ Contains all group related layout style props and actions. It inherits all the p
       </Table.TBody>
     </Table>
   </TableContainer>
-</Wrapper>
+</>
 
 #### ButtonSpinner
 
@@ -385,7 +387,7 @@ Button component is created using Pressable component from react-native. It exte
 
 #### Button
 
-<AppProvider>
+<>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -446,7 +448,7 @@ Button component is created using Pressable component from react-native. It exte
       </Table.TBody>
     </Table>
   </TableContainer>
-</AppProvider>
+</>
 
 > Note: These props are exclusively applicable when utilizing the default configuration of gluestack-ui/config. If you are using a custom theme, these props may not be available.
 
@@ -458,31 +460,32 @@ The Examples section provides visual representations of the different variants o
 
 A loading button is a type of button component that provides visual feedback to the user during an action that takes some time to complete. It typically displays an animated loading icon or spinner indicating the action is in progress.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
       code: `
         <Button className='p-3'>
-          <ButtonSpinner color="white" className='mr-1'/>
+        {/* colors is imported from tailwindcss/colors */}
+          <ButtonSpinner color={colors.gray[400]} className='mr-1'/>
           <ButtonText className='font-medium text-sm'>Please wait...</ButtonText>
         </Button>
       `,
       transformCode: (code) => {
         return transformedCode(code);
       },
-      scope: { Button, ButtonText, ButtonIcon, Wrapper, ButtonSpinner },
+      scope: { Button, ButtonText, Wrapper, ButtonSpinner, colors },
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>
 
 #### Icon Button
 
 A button with an icon integrates a visual symbol within the button component, enhancing its appearance and providing a recognizable and intuitive representation of its associated action or functionality.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -503,13 +506,13 @@ A button with an icon integrates a visual symbol within the button component, en
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>
 
 #### Link Button
 
 A button with a link combines the interactive behavior of a button component with the ability to navigate to a specified URL, providing a clickable element for users to access external resources or internal pages.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -519,23 +522,24 @@ A button with a link combines the interactive behavior of a button component wit
           <ButtonText className='font-medium text-sm text-typography-900' >
             Back to top
           </ButtonText>
-          <ButtonIcon as={ArrowUpIcon} className='h-3 w-3 color-background-900 ml-1' />
+          <ButtonIcon as={ArrowUpIcon}
+           className='h-3 w-3 text-background-900 ml-1' />
         </Button>
       `,
       transformCode: (code) => {
         return transformedCode(code);
       },
-      scope: { Button, ButtonText, ButtonIcon, Wrapper, Icon, ArrowUpIcon },
+      scope: { Button, ButtonText, ButtonIcon, Wrapper, ArrowUpIcon },
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>
 
 #### Button With Icon
 
 The icon component incorporates a button component, combining visual representation with interactive functionality for seamless user interaction.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -559,13 +563,13 @@ The icon component incorporates a button component, combining visual representat
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>
 
 #### Button with Full Width
 
 The button with full width component utilizes a button component, expanding its width to occupy the entire available space, creating a visually prominent and easily accessible interface element.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     _rendererWrapper={{ py: '$8' }}
     showComponentRenderer={true}
@@ -643,4 +647,4 @@ The button with full width component utilizes a button component, expanding its 
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>

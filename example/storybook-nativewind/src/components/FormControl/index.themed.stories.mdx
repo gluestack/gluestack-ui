@@ -72,7 +72,7 @@ import {
   Icon,
   Button,
   ButtonText,
-} from './FormControl';
+} from '../../core-components/themed';
 import {
   AppProvider,
   CodePreview,
@@ -84,7 +84,7 @@ import {
 } from '@gluestack/design-system';
 import { transformedCode } from '../../utils';
 import { useState } from 'react';
-import Wrapper from '../../components-example/themed/Wrapper';
+import Wrapper from '../../core-components/themed/Wrapper';
 
 This is an illustration of **FormControl** component.
 
@@ -183,7 +183,11 @@ npm i @gluestack-ui/form-control
 ### Step 2: Copy and paste the following code into your project.
 
 <CollapsibleCode>
-  ```jsx %%-- File: components-example/themed/FormControl/index.tsx --%% ```
+
+```jsx 
+%%-- File: core-components/themed/form-control/index.tsx --%% 
+```
+
 </CollapsibleCode>
 
 ### Step 3: Update the import paths to match your project setup.
@@ -193,7 +197,7 @@ npm i @gluestack-ui/form-control
 To use this component in your project, include the following import statement in your file.
 
 ```jsx
-import { FormControl } from '@/components/ui/FormControl';
+import { FormControl } from '@/components/ui/form-control';
 ```
 
 ```jsx
@@ -534,7 +538,7 @@ The Examples section provides visual representations of the different variants o
 
 The Input Component can be incorporated within the FormControl.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -577,13 +581,13 @@ The Input Component can be incorporated within the FormControl.
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>
 
 #### Form Control with Radio
 
 The Radio Component can be incorporated within the FormControl.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -663,13 +667,13 @@ The Radio Component can be incorporated within the FormControl.
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>
 
 #### Form Control with Checkbox
 
 The Checkbox Component can be incorporated within the FormControl.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -684,7 +688,7 @@ The Checkbox Component can be incorporated within the FormControl.
           <CheckboxGroup my='$2'>
             <VStack space="sm">
               <Checkbox size="sm" value="Mango">
-                <CheckboxIndicator mr="$2">
+                <CheckboxIndicator>
                   <CheckboxIcon>
                     <CheckIcon />
                   </CheckboxIcon>
@@ -694,7 +698,7 @@ The Checkbox Component can be incorporated within the FormControl.
                 </CheckboxLabel>
               </Checkbox>
               <Checkbox size="sm" value="Apple">
-                <CheckboxIndicator mr="$2">
+                <CheckboxIndicator>
                   <CheckboxIcon>
                     <CheckIcon />
                   </CheckboxIcon>
@@ -704,7 +708,7 @@ The Checkbox Component can be incorporated within the FormControl.
                 </CheckboxLabel>
               </Checkbox>
               <Checkbox size="sm" value="Orange">
-                <CheckboxIndicator mr="$2">
+                <CheckboxIndicator>
                   <CheckboxIcon>
                     <CheckIcon />
                   </CheckboxIcon>
@@ -749,13 +753,13 @@ The Checkbox Component can be incorporated within the FormControl.
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>
 
 #### Form Control with Textarea
 
 The Textarea Component can be incorporated within the FormControl.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -798,13 +802,13 @@ The Textarea Component can be incorporated within the FormControl.
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>
 
 #### Form Control with Inline Form
 
 Inline forms can utilize FormControl for seamless integration and enhanced functionality.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -841,7 +845,7 @@ Inline forms can utilize FormControl for seamless integration and enhanced funct
             </Select>
           </FormControl>
           <FormControl>
-            <Button bg='$darkBlue600'>
+            <Button bg='$primary600'>
               <ButtonText fontSize='$sm' fontWeight='$medium'>
                 Next
               </ButtonText>
@@ -883,13 +887,13 @@ Inline forms can utilize FormControl for seamless integration and enhanced funct
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>
 
 #### Form Control with Form in Modal
 
 Modal or other Overlay components can utilize FormControl for state management and error control.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -902,7 +906,7 @@ Modal or other Overlay components can utilize FormControl for state management a
             <Button
               py='$2.5'
               px='$3'
-              bg='$darkBlue600'
+              bg='$primary600'
               onPress={()=>{
                 setShowModal(true);
               }}
@@ -1034,13 +1038,13 @@ Modal or other Overlay components can utilize FormControl for state management a
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>
 
 #### Form Control with Error
 
 Error messages can be displayed using FormControl.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -1121,13 +1125,13 @@ Error messages can be displayed using FormControl.
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>
 
 #### Form Control with Form Actions
 
 Form Action Buttons can also be utilized in conjunction with FormControl.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -1170,4 +1174,4 @@ Form Action Buttons can also be utilized in conjunction with FormControl.
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>

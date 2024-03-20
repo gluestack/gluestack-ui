@@ -1,18 +1,6 @@
 import React from 'react';
-import {
-  Button,
-  ButtonText,
-  Box,
-  Heading,
-  Icon,
-  FormControl,
-} from '@gluestack-ui/themed';
-import { Input, InputField, InputIcon, InputSlot } from '@/components/ui/Input';
-import { Center } from '@/components/ui/Center';
-import { VStack } from '@/components/ui/VStack';
-import { Text } from '@/components/ui/Text';
-import { EyeIcon, EyeOffIcon, SearchIcon } from 'lucide-react-native';
-import { useState } from 'react';
+import { Input, InputField, InputIcon, InputSlot } from '@/components/ui/input';
+import { SearchIcon } from '@/components/ui/icon';
 
 const InputBasic = ({ ...props }: any) => {
   const [value, setValue] = React.useState('');
@@ -37,22 +25,3 @@ InputBasic.description =
   'This is a basic Input component example. Inputs are used to capture data from users.';
 
 export default InputBasic;
-
-export {
-  Input,
-  InputField,
-  InputIcon,
-  Center,
-  Button,
-  ButtonText,
-  Box,
-  VStack,
-  Text,
-  Heading,
-  useState,
-  Icon,
-  EyeIcon,
-  EyeOffIcon,
-  FormControl,
-  InputSlot,
-};

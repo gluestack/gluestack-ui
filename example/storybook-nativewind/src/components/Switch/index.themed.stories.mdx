@@ -1,5 +1,5 @@
 ---
-title: Switch | gluestack-ui | Installation, Usage, and API
+title: gluestack-ui Switch Component | Installation, Usage, and API
 
 description: The Switch component offers a stylish alternative to the Checkbox, allowing users to enable or disable an option with a sleek sliding motion. This component is perfect for adding a touch of elegance and interactivity to your user interface.
 
@@ -25,8 +25,8 @@ import {
   CollapsibleCode,
 } from '@gluestack/design-system';
 import { transformedCode } from '../../utils';
-import { Switch, VStack, Text, HStack } from '../../components-example/themed';
-import Wrapper from '../../components-example/themed/Wrapper';
+import { Switch, VStack, Text, HStack } from '../../core-components/themed';
+import Wrapper from '../../core-components/themed/Wrapper';
 
 This is an illustration of **Switch** component.
 
@@ -71,7 +71,11 @@ npm i @gluestack-ui/switch
 ### Step 2: Copy and paste the following code into your project.
 
 <CollapsibleCode>
-  ```jsx %%-- File: components-example/themed/Switch/index.tsx --%% ```
+
+```jsx 
+%%-- File: core-components/themed/switch/index.tsx --%% 
+```
+
 </CollapsibleCode>
 
 ### Step 3: Update the import paths to match your project setup.
@@ -81,7 +85,7 @@ npm i @gluestack-ui/switch
 To use this component in your project, include the following import statement in your file.
 
 ```jsx
-import { Switch } from '@/components/ui/Switch';
+import { Switch } from '@/components/ui/switch';
 ```
 
 ```jsx
@@ -288,20 +292,6 @@ Switch component is created using Switch component from react-native. It extends
   </TableContainer>
 </>
 
-## Spec Doc
-
-Explore the comprehensive details of the Switch in this document, including its implementation details, checklist, and potential future additions. Dive into the thought process behind the component and gain insights into its development journey.
-
-<iframe
-  style={{
-    borderRadius: '8px',
-    border: ' 1px solid rgba(0, 0, 0, 0.1)',
-    aspectRatio: 736 / 585,
-  }}
-  src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FNcXOxqKbdnGsLQNex3H76u%2F%25C2%25A0%25F0%259F%2593%259Agluestack-UI-handbook%3Fpage-id%3D5970%253A30699%26type%3Ddesign%26node-id%3D5970-32506%26viewport%3D659%252C250%252C0.03%26t%3DYxQQpkFNh6esETpC-1%26scaling%3Dcontain%26starting-point-node-id%3D5970%253A32506%26mode%3Ddesign"
-  allowFullScreen
-/>
-
 <!--
 ### Customizing the Switch
 
@@ -336,7 +326,7 @@ The Examples section provides visual representations of the different variants o
 
 An example of a switch component with a label, which includes another switch component for toggling additional options.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -359,13 +349,13 @@ An example of a switch component with a label, which includes another switch com
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>
 
 #### Checked State
 
 An example of a switch component used within a checked state component to represent a pre-selected or activated option.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -388,13 +378,13 @@ An example of a switch component used within a checked state component to repres
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>
 
 #### Color scheme
 
 An example of a switch component being used with a different color scheme.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -452,4 +442,4 @@ An example of a switch component being used with a different color scheme.
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>

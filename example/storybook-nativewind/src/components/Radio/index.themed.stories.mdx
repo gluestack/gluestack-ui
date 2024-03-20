@@ -1,5 +1,5 @@
 ---
-title: Radio | gluestack-ui | Installation, Usage, and API
+title: gluestack-ui Radio Component | Installation, Usage, and API
 
 description: The Radio component presents users with predefined choices and enables them to select only one option. It is commonly used for providing a single-choice selection in forms or surveys.
 
@@ -24,7 +24,7 @@ import {
   InlineCode,
   CollapsibleCode,
 } from '@gluestack/design-system';
-import Wrapper from '../../components-example/themed/Wrapper';
+import Wrapper from '../../core-components/themed/Wrapper';
 import {
   Radio,
   RadioGroup,
@@ -39,7 +39,7 @@ import {
   VStack,
   Text,
   FormControl,
-} from '../../components-example/themed';
+} from '../../core-components/themed';
 
 This is an illustration of **Radio** component.
 
@@ -51,10 +51,10 @@ This is an illustration of **Radio** component.
       code: `
         <RadioGroup>
           <Radio value="change" {...props}>
-            <RadioIndicator>
+            <RadioIndicator mr='$2'>
               <RadioIcon as={CircleIcon} strokeWidth={1}/>
             </RadioIndicator>
-            <RadioLabel >Label</RadioLabel>
+            <RadioLabel>Label</RadioLabel>
           </Radio>
         </RadioGroup>
       `,
@@ -102,7 +102,11 @@ npm i @gluestack-ui/radio
 ### Step 2: Copy and paste the following code into your project.
 
 <CollapsibleCode>
-  ```jsx %%-- File: components-example/themed/Radio/index.tsx --%% ```
+
+```jsx 
+%%-- File: core-components/themed/radio/index.tsx --%% 
+```
+
 </CollapsibleCode>
 
 ### Step 3: Update the import paths to match your project setup.
@@ -520,67 +524,6 @@ Radio component is created using Pressable component from react-native. It exten
   </TableContainer>
 </>
 
-<!--
-## Spec Doc
-
-Explore the comprehensive details of the Radio in this document, including its implementation details, checklist, and potential future additions. Dive into the thought process behind the component and gain insights into its development journey.
-
-<iframe
-  style={{
-    borderRadius: '8px',
-    border: ' 1px solid rgba(0, 0, 0, 0.1)',
-    aspectRatio: 736 / 585,
-  }}
-  src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FNcXOxqKbdnGsLQNex3H76u%2F%25C2%25A0%25F0%259F%2593%259Agluestack-UI-handbook%3Fpage-id%3D5464%253A26252%26type%3Ddesign%26node-id%3D5464-27904%26viewport%3D598%252C259%252C0.03%26t%3DcgUlx0uIsFj3bgLZ-1%26scaling%3Dcontain%26starting-point-node-id%3D5464%253A27904%26mode%3Ddesign"
-  allowFullScreen
-/> -->
-
-<!--
-
-### Customizing the Radio
-
-We have a function called `createRadio` which can be used to create a custom radio component. This function takes in a configuration object which contains the styled components that you want to use for the radio. You can refer [gluestack.io/style](/style/docs/getting-started/styled) on how to use styled components.
-
-#### Usage
-
-Default styling of all these components can be found in the `components/core/radio` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/main/packages/themed/src/components/Radio) of the styled `Radio` components.
-
-```jsx
-// import the styles
-import {
-  Root,
-  Indicator,
-  Icon,
-  Label,
-  Group,
-} from 'components/core/radio/styled-components';
-
-// import the createRadio function
-import { createRadio } from '@gluestack-ui/radio';
-
-// Understanding the API
-const Radio = createRadio({
-  Root,
-  Indicator,
-  Icon,
-  Label,
-  Group,
-});
-
-// Using the radio component
-export default () => (
-  <RadioGroup>
-    <Radio>
-      <RadioIndicator>
-        <RadioIcon />
-      </RadioIndicator>
-      <RadioLabel />
-    </Radio>
-  </RadioGroup>
-);
-```
--->
-
 ### Examples
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
@@ -589,7 +532,7 @@ The Examples section provides visual representations of the different variants o
 
 Radio buttons provide a mutually exclusive selection mechanism, allowing users to choose a single option from a set of related choices.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -640,13 +583,13 @@ Radio buttons provide a mutually exclusive selection mechanism, allowing users t
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>
 
 #### Horizontal
 
 Radio buttons can be used horizontally.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -691,13 +634,13 @@ Radio buttons can be used horizontally.
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>
 
 #### With help text
 
 Radio buttons can be used with helper text.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -750,13 +693,13 @@ Radio buttons can be used with helper text.
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>
 
 #### Form Control
 
 Radio buttons can be used inside FormControl for better control of states and functionality.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -815,13 +758,13 @@ Radio buttons can be used inside FormControl for better control of states and fu
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>
 
 #### Label left
 
 Radio buttons can be used horizontally
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -867,13 +810,13 @@ Radio buttons can be used horizontally
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>
 
 #### Controlled
 
 The Radio components can be used with a controlled state, enabling precise management of the selected option through external state management.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -919,13 +862,13 @@ The Radio components can be used with a controlled state, enabling precise manag
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>
 
 #### Uncontrolled
 
 The Radio components can be used with either a ref or no state, providing an uncontrolled state where the selected option is managed internally.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -975,13 +918,13 @@ The Radio components can be used with either a ref or no state, providing an unc
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>
 
 #### Radio group
 
 The Radio group component allows users to group radio and display them in a horizontal or vertical row for better visual representation and functionality.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -1033,4 +976,4 @@ The Radio group component allows users to group radio and display them in a hori
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>

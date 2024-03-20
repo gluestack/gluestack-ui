@@ -1,5 +1,5 @@
 ---
-title: Text | gluestack-ui | Installation, Usage, and API
+title: gluestack-ui Text Component | Installation, Usage, and API
 
 description: Looking to add text to your gluestack-ui project? Check out our text component, which supports paragraphs and other formatting options.
 
@@ -14,9 +14,9 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="with-nativewind/components/Typography/Text" />
 
-import { Text } from './Text';
+import { Text, Center } from '../../core-components/nativewind';
 import { transformedCode } from '../../utils';
-import Wrapper from '../../components-example/nativewind/Wrapper';
+import Wrapper from '../../core-components/nativewind/Wrapper';
 import { CollapsibleCode } from '@gluestack/design-system';
 
 import {
@@ -31,10 +31,10 @@ This is an illustration of **Text** component.
 
 <Wrapper>
   <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
+    showComponentRenderer={ true }
+  showArgsController = { false}
+  metaData = {{
+    code: `
         <Text>
           Hello World!
         </Text>
@@ -42,25 +42,28 @@ This is an illustration of **Text** component.
       transformCode: (code) => {
         return transformedCode(code);
       },
-      scope: {
-        Wrapper,
+        scope: {
+      Wrapper,
         Text,
       },
-      argsType: {},
-    }}
-  />
+    argsType: { },
+  }
+}
+/>
 </Wrapper>
 
-<br />
+<br/>
 
 ## Installation
 
 ### Step 1: Copy and paste the following code into your project.
 
 <CollapsibleCode>
-  ```jsx 
-  %%-- File: components-example/nativewind/Text/index.tsx --%% 
-  ```
+
+```jsx 
+%%-- File: core-components/nativewind/text/index.tsx --%% 
+```
+
 </CollapsibleCode>
 
 ### Step 2: Update the import paths to match your project setup.
@@ -70,7 +73,7 @@ This is an illustration of **Text** component.
 To use this component in your project, include the following import statement in your file.
 
 ```jsx
-import { Text } from '@/components/ui/Text';
+import { Text } from '@/components/ui/text';
 ```
 
 ```jsx
@@ -91,7 +94,7 @@ Text component is created using Text component from react-native. It extends all
 
 #### Text
 
-<Wrapper>
+<>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -212,6 +215,175 @@ Text component is created using Text component from react-native. It extends all
           </Table.TD>
           <Table.TD>
             <Table.TText>md</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</>
+
+### Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+#### Text Sizes
+
+Text component comes in different sizes, such as `xs`, `sm`, `md`, `lg`, `xl`, `2xl`, `3xl`, `4xl`, `5xl`, and `6xl` allowing users to adjust the button size based on their design needs.
+
+<Wrapper>
+  <CodePreview
+    _rendererWrapper={{ py: '$2.5' }}
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+        function App() {
+          const sizes = [
+            'xs',
+            'sm',
+            'md',
+            'lg',
+            'xl',
+            '2xl',
+            '3xl',
+            '4xl',
+            '5xl',
+            '6xl',
+          ];
+          return (
+            <Center>
+              {sizes.map((size) => (
+                <Text size={size} className="text-center">{size}</Text>
+              ))}
+            </Center>
+          );
+        };
+      `,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'App');
+      },
+      scope: { Wrapper, Center, Text },
+      argsType: {},
+    }}
+  />
+</Wrapper>
+
+Text component also accepts some shorthands for basic quick styling.
+
+<Wrapper>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Type</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Default</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Description</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>bold</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Used to make the text bold.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>isTruncated</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`If true, it will render an ellipsis when the text exceeds the width of the viewport or maxWidth set.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>italic</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Used to make the text italic.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>underline</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Used underline the text.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>strikeThrough</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`A horizontal line through the center of the text.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>highlight</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Used to highlight the text with a yellow background.`}</Table.TText>
           </Table.TD>
         </Table.TR>
       </Table.TBody>

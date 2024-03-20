@@ -1,5 +1,5 @@
 ---
-title: gluestack-ui Slider Alert | Installation, Usage, and API
+title: gluestack-ui Alert Component | Installation, Usage, and API
 
 description: Alerts are used to communicate the status of a system, feature, or page. They indicate a specific state that may require attention from the user.
 
@@ -14,19 +14,20 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="with-gluestack-style/components/Feedback/Alert" />
 
-import { Alert, AlertIcon, AlertText } from './Alert';
 import {
-  CheckCircleIcon,
-  CloseCircleIcon,
-  Icon,
   BellIcon,
   AlertCircleIcon,
   Center,
   VStack,
   InfoIcon,
-} from '@gluestack-ui/themed';
-
-import { HStack } from '@gluestack-ui/themed';
+  HStack,
+  Alert,
+  AlertIcon,
+  AlertText,
+  CheckCircleIcon,
+  CloseCircleIcon,
+  Icon,
+} from '../../core-components/themed';
 import { transformedCode } from '../../utils';
 import {
   AppProvider,
@@ -34,10 +35,10 @@ import {
   Table,
   InlineCode,
   TableContainer,
+  CollapsibleCode,
 } from '@gluestack/design-system';
-import { CollapsibleCode } from '@gluestack/design-system';
 
-import Wrapper from '../../components-example/themed/Wrapper';
+import Wrapper from '../../core-components/themed/Wrapper';
 
 This is an illustration of **Alert** component.
 
@@ -96,7 +97,11 @@ npm i @gluestack-ui/alert
 ### Step 2: Copy and paste the following code into your project.
 
 <CollapsibleCode>
-  ```jsx %%-- File: components-example/themed/Alert/index.tsx --%% ```
+
+```jsx 
+%%-- File: core-components/themed/alert/index.tsx --%% 
+```
+
 </CollapsibleCode>
 
 ### Step 3: Update the import paths to match your project setup.
@@ -106,7 +111,7 @@ npm i @gluestack-ui/alert
 To use this component in your project, include the following import statement in your file.
 
 ```jsx
-import { Alert, AlertIcon, AlertText } from '@/components/ui/Alert';
+import { Alert, AlertIcon, AlertText } from '@/components/ui/alert';
 ```
 
 ```jsx
@@ -230,16 +235,46 @@ Alert component is created using View component from react-native. It extends al
   </TableContainer>
 </>
 
-## Spec Doc
+### Examples
 
-Explore the comprehensive details of the Alert in this document, including its implementation details, checklist, and potential future additions. Dive into the thought process behind the component and gain insights into its development journey.
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
-<iframe
-  style={{
-    borderRadius: '8px',
-    border: ' 1px solid rgba(0, 0, 0, 0.1)',
-    aspectRatio: 736 / 585,
-  }}
-  src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FNcXOxqKbdnGsLQNex3H76u%2F%25C2%25A0%25F0%259F%2593%259Agluestack-UI-handbook%3Ftype%3Ddesign%26node-id%3D6300-43142%26t%3DZPsVa5mi34R2dR7W-1%26scaling%3Dscale-down%26page-id%3D6300%253A41240%26starting-point-node-id%3D6300%253A43142%26mode%3Ddesign"
-  allowFullScreen
+#### Alert with Heading
+
+An example of an alert component with a heading, which further contains another alert component for displaying supplementary information.
+
+<Wrapper>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+        <Alert action='success'>
+          <AlertIcon as={CheckCircleIcon} size="xl"  mr="$3" />
+          <VStack space='xs'>
+            <AlertText fontWeight ='$bold'>
+              Congratulations!
+            </AlertText >
+            <AlertText >
+              Thank you for your submission. You will receive a confirmation email shortly.
+            </AlertText>
+          </VStack>
+        </Alert>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Alert,
+        AlertIcon,
+        AlertText,
+        Wrapper,
+        CheckCircleIcon,
+        VStack,
+        Icon,
+      },
+      argsType: {},
+    }}
 />
+
+</Wrapper>

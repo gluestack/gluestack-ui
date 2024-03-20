@@ -1,19 +1,10 @@
 import React from 'react';
-import {
-  InfoIcon,
-  CheckCircleIcon,
-  CloseCircleIcon,
-  BellIcon,
-  AlertCircleIcon,
-  VStack,
-  Icon,
-} from '@gluestack-ui/themed';
-
-import { Alert, AlertIcon, AlertText } from '@/components/ui/Alert';
+import { Alert, AlertIcon, AlertText } from '@/components/ui/alert';
+import { InfoIcon } from '@/components/ui/icon';
 
 const AlertBasic = ({ ...props }: any) => {
   return (
-    <Alert {...props} gap="$3">
+    <Alert {...props} className="gap-3">
       <AlertIcon as={InfoIcon} />
       <AlertText>Selection successfully moved!</AlertText>
     </Alert>
@@ -25,15 +16,4 @@ AlertBasic.description =
 
 export default AlertBasic;
 
-export {
-  Alert,
-  AlertIcon,
-  AlertText,
-  InfoIcon,
-  CheckCircleIcon,
-  CloseCircleIcon,
-  BellIcon,
-  AlertCircleIcon,
-  Icon,
-  VStack,
-};
+export { Alert, AlertIcon, AlertText, InfoIcon };

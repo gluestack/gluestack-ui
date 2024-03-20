@@ -17,7 +17,7 @@ import {
   SliderTrack,
   SliderFilledTrack,
   SliderThumb,
-} from '@/components/ui/Slider';
+} from '@/components/ui/slider';
 
 import { Volume, Volume2Icon, LightbulbIcon } from 'lucide-react-native';
 
@@ -36,6 +36,7 @@ const SliderBasic = ({ value: valueProp = 60, ...props }: any) => {
         height: 300,
         marginTop: 16,
       }}
+      isReversed
       onChange={(value: any) => {
         handleChange(value);
       }}
