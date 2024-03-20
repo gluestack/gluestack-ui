@@ -1,5 +1,13 @@
 # @gluestack-ui/popover
 
+## 0.1.33
+
+### Patch Changes
+
+- Updated dependencies
+  - @react-native-aria/interactions@0.2.12
+  - @gluestack-ui/overlay@0.1.13
+
 ## 0.1.32
 
 ### Patch Changes
