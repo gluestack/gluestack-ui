@@ -3297,6 +3297,15 @@
     "@react-native-aria/focus" "^0.2.9"
     "@react-native-aria/interactions" "^0.2.11"
 
+"@gluestack-ui/tabs@0.1.14":
+  version "0.1.14"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/tabs/-/tabs-0.1.14.tgz#5bcb5cc659927cde08f8e32497830257ed5cba4f"
+  integrity sha512-QIAf+ACVFIBm5khxMPNwo4hGtr+uOdc18ygeyHmCOQaCBAhQN9zyscDg5PjBDNasHk7I9WJf5sVr2A4ZzRXybg==
+  dependencies:
+    "@gluestack-ui/utils" "^0.1.12"
+    "@react-native-aria/focus" "^0.2.9"
+    "@react-native-aria/interactions" "^0.2.11"
+
 "@gluestack-ui/toast@^0.1.7":
   version "0.1.20"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/toast/-/toast-0.1.20.tgz#863453f75d2e941000204a9524161bfd2500e320"
