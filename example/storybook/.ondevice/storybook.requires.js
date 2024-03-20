@@ -78,7 +78,7 @@ const getStories = () => {
     // require('../src/ui/components/Feedback/Progress/Progress.stories.tsx'),
     // require('../src/ui/components/Forms/Radio/Radio.stories.tsx'),
     // require('../src/ui/components/Forms/Select/Select.stories.tsx'),
-    // require('../src/ui/components/Forms/Slider/Slider.stories.tsx'),
+    require('../src/ui/components/Forms/Slider/Slider.stories.tsx'),
     // require('../src/ui/components/Feedback/Spinner/Spinner.stories.tsx'),
     // require('../src/ui/components/Forms/Switch/Switch.stories.tsx'),
     // require('../src/ui/components/Forms/Textarea/Textarea.stories.tsx'),

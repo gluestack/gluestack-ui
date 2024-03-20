@@ -21,31 +21,12 @@ const RangeSliderBasic = ({ ...props }: any) => {
   const [sliderValue, setSliderValue] = React.useState([20, 49]);
 
   return (
-    <Center alignItems="center" w={400}>
+    <Center alignItems="center" w={200}>
       <RangeSlider
         sliderTrackHeight={4}
         {...props}
-        w={300}
-        h={300}
         mt="$4"
         size="lg"
-        value={sliderValue}
-        onChange={setSliderValue}
-        label="RangeSlider"
-      >
-        <RangeSliderTrack>
-          <RangeSliderFilledTrack />
-        </RangeSliderTrack>
-        <RangeSliderLeftThumb />
-        <RangeSliderRightThumb />
-      </RangeSlider>
-      <RangeSlider
-        sliderTrackHeight={4}
-        {...props}
-        w={300}
-        h={300}
-        mt="$4"
-        size="sm"
         value={sliderValue}
         onChange={setSliderValue}
         label="RangeSlider"

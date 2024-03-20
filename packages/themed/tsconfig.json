@@ -1,13 +1,11 @@
 {
   "include": ["./src"],
   "exclude": ["node_modules", "example"],
+  "path": {},
   "compilerOptions": {
-    "paths": {
-      "@gluestack-ui/range-slider": ["../unstyled/range-slider/src"]
-    },
     "ignoreDeprecations": "5.0",
     "noEmit": false,
-    "declaration": false,
+    "declaration": true,
     "allowJs": true,
     "allowUnreachableCode": false,
     "allowUnusedLabels": true,
