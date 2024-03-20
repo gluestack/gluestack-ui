@@ -8,7 +8,6 @@ import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withSt
 import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
 import { withStates } from '@gluestack-ui/nativewind-utils/withStates';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
-import { withStates } from '@gluestack-ui/nativewind-utils/withStates';
 
 import React from 'react';
 export const UILink = createLink({
