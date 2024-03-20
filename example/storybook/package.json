@@ -26,6 +26,7 @@
     "@geometricpanda/storybook-addon-iframe": "^0.2.2",
     "@gluestack-style/animation-plugin": "^0.1.12",
     "@gluestack/design-system": "0.5.27",
+    "@gorhom/bottom-sheet": "^4.6.1",
     "@legendapp/motion": "^2.2.0",
     "@react-aria/button": "^3.7.0",
     "@react-aria/focus": "^3.11.0",
