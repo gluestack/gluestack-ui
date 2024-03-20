@@ -32,7 +32,8 @@ export type IFormControlComponentType<
   ErrorIcon,
   Label,
   LabelText,
-  LabelAstrick,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  _LabelAstrick,
   Helper,
   HelperText
 > = React.ForwardRefExoticComponent<Root & InterfaceFormControlProps> & {
@@ -42,7 +43,6 @@ export type IFormControlComponentType<
   };
   Label: React.ForwardRefExoticComponent<Label> & {
     Text: React.ForwardRefExoticComponent<LabelText>;
-    Astrick: React.ForwardRefExoticComponent<LabelAstrick>;
   };
   Helper: React.ForwardRefExoticComponent<Helper> & {
     Text: React.ForwardRefExoticComponent<HelperText>;

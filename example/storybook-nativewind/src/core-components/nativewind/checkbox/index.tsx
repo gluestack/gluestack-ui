@@ -13,7 +13,6 @@ import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 
 import { Platform } from 'react-native';
 import { Check } from 'lucide-react-native';
-
 const UICheckbox = createCheckbox({
   // @ts-ignore
   Root:
@@ -102,6 +101,7 @@ type ICheckboxIndicatorProps = React.ComponentProps<
   typeof UICheckbox.Indicator
 > &
   VariantProps<typeof checkboxIndicatorStyle>;
+
 const CheckboxIndicator = React.forwardRef(
   (
     { className, ...props }: { className?: string } & ICheckboxIndicatorProps,

@@ -61,7 +61,7 @@ const Text = React.forwardRef(
       italic,
       highlight,
       ...props
-    }: ITextProps,
+    }: { className?: string } & ITextProps,
     ref?: any
   ) => {
     return (

@@ -1,8 +1,7 @@
-import { cn } from './cn';
-export function parseDataAttribute(inputString: string) {
+import { cn } from '../cn';
+export function parseDataAttribute(inputString) {
   const regex = /^data-\[(\w+)=(\w+)\]:(.+)$/;
   const match = inputString.match(regex);
-
   if (match) {
     return {
       state: match[1],
@@ -17,13 +16,11 @@ export function parseDataAttribute(inputString: string) {
     };
   }
 }
-
-export function stringToBoolean(str: string) {
+export function stringToBoolean(str) {
   if (str === 'true') return true;
   else return false;
 }
-
-const resolveDataAttribute = (className: string, states: any): any => {
+const resolveDataAttribute = (className, states) => {
   if (className.includes('data-')) {
     // parse data- attribute
     const {
@@ -31,7 +28,6 @@ const resolveDataAttribute = (className: string, states: any): any => {
       value,
       className: stateClassName,
     } = parseDataAttribute(className);
-
     // check if state is present and value is true
     if (state && value && states[state] === stringToBoolean(value)) {
       // append state class name
@@ -42,15 +38,12 @@ const resolveDataAttribute = (className: string, states: any): any => {
     }
   }
 };
-
-export function extractDataClassName(className: string, states: any) {
+export function extractDataClassName(className, states) {
   const classNamesArray =
     typeof className === 'string' ? className.split(' ') : className;
-
   if (classNamesArray === undefined) return;
-
   let classNamesFinal = '';
-  classNamesArray.forEach((classNameItem: string) => {
+  classNamesArray.forEach((classNameItem) => {
     // check for data- attribute
     if (classNameItem.includes('data-')) {
       // parse data- attribute
@@ -60,6 +53,5 @@ export function extractDataClassName(className: string, states: any) {
       classNamesFinal += ` ${classNameItem}`;
     }
   });
-
   return classNamesFinal;
 }
