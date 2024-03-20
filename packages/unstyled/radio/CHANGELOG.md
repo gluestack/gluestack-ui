@@ -1,5 +1,15 @@
 # @gluestack-ui/radio
 
+## 0.1.26
+
+### Patch Changes
+
+- Backhandler warning on web
+  radio arrow key selection
+- Updated dependencies
+  - @react-native-aria/interactions@0.2.12
+  - @react-native-aria/radio@0.2.9
+
 ## 0.1.25
 
 ### Patch Changes

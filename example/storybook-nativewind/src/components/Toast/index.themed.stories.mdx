@@ -21,15 +21,16 @@ import {
   useToast,
   Button,
   ButtonText,
+  Text
 } from '../../core-components/themed';
-import { CheckIcon, MessageCircle } from '@gluestack-ui/themed';
+import { CheckIcon } from '@gluestack-ui/themed';
+import { AlertTriangleIcon,MessageCircle } from 'lucide-react-native';
 import {
   Icon,
   CloseIcon,
   VStack,
-  AlertTriangleIcon,
   Pressable,
-  Center,
+  Center
 } from '../../core-components/themed';
 import { transformedCode } from '../../utils';
 import {
@@ -37,7 +38,6 @@ import {
   CodePreview,
   Table,
   TableContainer,
-  Text,
   InlineCode,
   CollapsibleCode,
   Tabs
@@ -890,7 +890,7 @@ A Toast component with preserve toast functionality retains the notification on 
                     const toastId = "toast-" + id;
                     return (
                       <Toast bg='$error700' nativeID={toastId} p='$3'>
-                        <Icon as={AlertTriangleIcon} color='$white' mt='$1' mr='$3' />
+                        <Icon as={AlertTriangleIcon} color='$white' mt='$1' mr='$3'/>
                         <VStack space='xs'>
                         <ToastTitle color='$textLight50' >Account Security Alert</ToastTitle>
                         <ToastDescription color='$textLight50'>Your account password was recently changed.

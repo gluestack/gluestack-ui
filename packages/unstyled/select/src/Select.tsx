@@ -17,7 +17,7 @@ export const Select = (StyledSelect: any) =>
         isHovered: isHoveredProp,
         isFocused: isFocusedProp,
         isFocusVisible: isFocusVisibleProp,
-        selectedValue: selectedOption,
+        selectedValue,
         selectedLabel: selectedLabel,
         onValueChange,
         defaultValue,
@@ -35,17 +35,22 @@ export const Select = (StyledSelect: any) =>
 
       const hoverRef = React.useRef(null);
       const { hoverProps, isHovered } = useHover({ isDisabled }, hoverRef);
+      const [label, setLabel] = React.useState(initialLabel ?? selectedLabel);
+      const [isOpen, setIsOpen] = React.useState<boolean>(false);
 
       const [value, setValue] = useControllableState({
-        value: selectedOption,
+        value: selectedValue,
         defaultValue,
         onChange: (newValue: any) => {
           onValueChange && onValueChange(newValue);
         },
       });
 
-      const [label, setLabel] = React.useState(initialLabel ?? selectedLabel);
-      const [isOpen, setIsOpen] = React.useState<boolean>(false);
+      React.useEffect(() => {
+        if (selectedValue === null) {
+          setLabel(initialLabel);
+        }
+      }, [selectedValue, initialLabel]);
 
       const handleClose = React.useCallback(() => {
         setIsOpen(false);

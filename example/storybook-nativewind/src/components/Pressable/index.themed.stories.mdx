@@ -14,8 +14,8 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="with-gluestack-style/components/Forms/Pressable" />
 
-import { Pressable } from '../../core-components/themed';
-import { AppProvider, CodePreview,CollapsibleCode ,Text, Tabs} from '@gluestack/design-system';
+import { Pressable, Text } from '../../core-components/themed';
+import { AppProvider, CodePreview,CollapsibleCode , Tabs} from '@gluestack/design-system';
 import { transformedCode } from '../../utils';
 import Wrapper from '../../core-components/themed/Wrapper';
 
@@ -123,7 +123,7 @@ You can change the child elements according to the states of Pressable component
       code: `
  <Pressable p="$16" bg="$primary500"  $hover-bg="$primary400">
    {({ pressed }) => (
-        <Text color={pressed ? 'pink' : 'yellow'}>PRESSABLE</Text>
+        <Text color={pressed ? '$primary200' : '$primary0'}>PRESSABLE</Text>
       )}
 </Pressable>
 `,

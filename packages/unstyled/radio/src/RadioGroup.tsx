@@ -28,14 +28,13 @@ export const RadioGroup = (StyledRadioGroup: any) =>
       };
     }, [formControlContext, state]);
 
-    const radioGroupProps = React.useMemo(
-      () => radioGroupState.radioGroupProps,
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-      []
-    );
     return (
       <RadioGroupProvider state={contextValue}>
-        <StyledRadioGroup {...radioGroupProps} {...props} ref={ref}>
+        <StyledRadioGroup
+          {...radioGroupState.radioGroupProps}
+          {...props}
+          ref={ref}
+        >
           {children}
         </StyledRadioGroup>
       </RadioGroupProvider>

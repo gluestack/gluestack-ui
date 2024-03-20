@@ -221,7 +221,7 @@ This section provides a comprehensive reference list for the component props, de
 
 Contains all View related layout style props and actions. It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
 
-<Wrapper>
+<>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -404,12 +404,12 @@ Contains all View related layout style props and actions. It inherits all the pr
       </Table.TBody>
     </Table>
   </TableContainer>
-</Wrapper>
+</>
 
 **Descendants Styling Props**
 Props to style child components.
 
-<Wrapper>
+<>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -436,7 +436,7 @@ Props to style child components.
       </Table.TBody>
     </Table>
   </TableContainer>
-</Wrapper>
+</>
 
 #### ModalBackdrop
 
@@ -446,7 +446,7 @@ It is React Native's [Pressable](https://reactnative.dev/docs/pressable#props) c
 
 It is [@legendapp/motion's](https://legendapp.com/open-source/motion/) [Motion.View](https://legendapp.com/open-source/motion/overview/) component. You can use any declarative animation library you prefer.
 
-<Wrapper>
+<>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -485,7 +485,7 @@ It is [@legendapp/motion's](https://legendapp.com/open-source/motion/) [Motion.V
       </Table.TBody>
     </Table>
   </TableContainer>
-</Wrapper>
+</>
 
 #### ModalHeader
 
@@ -498,7 +498,7 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
 **Descendants Styling Props**
 Props to style child components.
 
-<Wrapper>
+<>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -536,7 +536,7 @@ Props to style child components.
     </Table>
 
   </TableContainer>
-</Wrapper>
+</>
 
 #### ModalBody
 
@@ -556,7 +556,7 @@ Modal component is created using View component from react-native. It extends al
 
 #### Modal
 
-<Wrapper>
+<>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -589,7 +589,7 @@ Modal component is created using View component from react-native. It extends al
       </Table.TBody>
     </Table>
   </TableContainer>
-</Wrapper>
+</>
 
 ### Examples
 
@@ -819,11 +819,10 @@ A versatile modal component offering different sizes to accommodate various cont
         return (
             <Center h={400}>
             <VStack space='md'>
-            {sizes.map((currentSize) => {
-                return <Button key={currentSize} onPress={() => handleClick(currentSize)}>
-                  <ButtonText>{currentSize}</ButtonText>
-                </Button>
-            })}
+            {sizes.map((currentSize) =>  (<Button key={currentSize} onPress={() => handleClick(currentSize)} >
+                  <ButtonText textAlign='center'>{currentSize}</ButtonText>
+                </Button>)
+            )}
                 </VStack>
                 <Modal
                   isOpen={showModal}
