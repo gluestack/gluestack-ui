@@ -37,7 +37,7 @@ const badgeTextStyle = tva({
       warning: 'text-warning-600',
       success: 'text-success-600',
       info: 'text-info-600',
-      muted: 'text-muted-600',
+      muted: 'text-secondary-600',
     },
     size: {
       sm: 'text-2xs',
@@ -71,14 +71,14 @@ const badgeTextStyle = tva({
 });
 
 const badgeIconStyle = tva({
-  base: 'text-background-500',
+  base: 'text-background-500 fill-none',
   parentVariants: {
     action: {
       error: 'text-error-600',
       warning: 'text-warning-600',
       success: 'text-success-600',
       info: 'text-info-600',
-      muted: 'text-muted-600',
+      muted: 'text-secondary-600',
     },
     size: {
       sm: 'h-3 w-3',

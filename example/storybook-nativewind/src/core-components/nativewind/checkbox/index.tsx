@@ -13,7 +13,7 @@ import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 
 import { Platform } from 'react-native';
 import { Check } from 'lucide-react-native';
-import { withStates } from '@gluestack-ui/nativewind-utils/withStates';
+
 const UICheckbox = createCheckbox({
   // @ts-ignore
   Root:

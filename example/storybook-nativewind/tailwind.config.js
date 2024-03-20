@@ -159,9 +159,6 @@ module.exports = {
           light: '#FBFBFB',
           dark: '#181719',
         },
-        muted: {
-          600: 'var(--color-muted-600)',
-        },
       },
       fontFamily: {
         heading: undefined,
