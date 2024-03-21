@@ -3288,6 +3288,14 @@
   dependencies:
     "@legendapp/motion" "^2.2.0"
 
+"@gluestack-style/react@1.0.50":
+  version "1.0.50"
+  resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-1.0.50.tgz#5a03fce6b9447c509db85c92a0f2bd839850cee0"
+  integrity sha512-WCME8xmfGFJnK7WaARgI1y1TZwU1y1xO0z4aou4e1PSk9lLfNy696Uu00ywG6r4AWEch3ZQyZAa3QADax5RHeA==
+  dependencies:
+    inline-style-prefixer "^6.0.1"
+    normalize-css-color "^1.0.2"
+
 "@gluestack-ui/button@^0.1.15":
   version "0.1.34"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/button/-/button-0.1.34.tgz#f635aba6a9023d153f5dd82cd96a3785b6244951"
@@ -3317,10 +3325,10 @@
     "@gluestack-ui/utils" "^0.1.12"
     "@react-native-aria/focus" "^0.2.9"
 
-"@gluestack/design-system@0.5.27", "@gluestack/design-system@^0.5.27":
-  version "0.5.27"
-  resolved "https://registry.yarnpkg.com/@gluestack/design-system/-/design-system-0.5.27.tgz#50f32707de920e52d830782584b77385bba6bc87"
-  integrity sha512-+cCvT8Jm8KaiS0r4wb0iB45wqHDKSh2s9aN2l4NA8b/AkUZKZ/NNxCFKad6cgA/dA9KsJNPTtPayJJYfIfRIIg==
+"@gluestack/design-system@0.5.36", "@gluestack/design-system@^0.5.36":
+  version "0.5.36"
+  resolved "https://registry.yarnpkg.com/@gluestack/design-system/-/design-system-0.5.36.tgz#ee9c6a1dc3d0806eda5bd5781b58c3e8b3621dcf"
+  integrity sha512-d+Rp4nlK7f2Ban4j+B478ppVNvJmclH1YHXZZDSsV7yg1Fwpb1eNZlXr0E/9k+9bWiXzrqd91/1u8LjfWGAO/g==
   dependencies:
     "@docsearch/css" "3"
     "@docsearch/react" "3"

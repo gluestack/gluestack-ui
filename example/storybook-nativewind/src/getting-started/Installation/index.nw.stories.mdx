@@ -22,9 +22,35 @@ import { CollapsibleCode } from '@gluestack/design-system';
 you can use [gluestack-expo-nativewind-v4-template](https://github.com/gluestack/gluestack-expo-nativewind-v4-template).
 
 ### Using CLI
+If you wish to use `gluestack-ui` in your existing project using CLI, you can proceed with the following steps:
+
+### Step 1: Setup Nativewind
+Setup nativewind in your project following [NativeWind documentation](https://www.nativewind.dev/v4/getting-started/react-native).
+
+### Step 2: Initialize
+Use `init` command to add `GluestackUIProvider` and `gluestack-ui-provider/config.ts` file into your project.
 
 ```bash
-  comming soon...
+npx gluestack-ui init
+```
+You will be asked to select a component style to initialize
+
+```bash
+ Which style would you like to use in your project:
+ gluestack-style 
+ nativewind
+ ```
+ Refer Step: 6 in manual installation for usage of `GluestackUIProvider`
+ 
+### Step 3: Add components
+To add components you wish to use in your project, you can use `add` command as shown below.
+
+```bash
+npx gluestack-ui add button
+```
+To add all the components, you can use
+```bash
+npx gluestack-ui add --all
 ```
 
 ## Manual
@@ -55,7 +81,7 @@ npm i @gluestack-ui/nativewind-utils
 
 Update `tailwind.config.js` file with the following code
 
-<CollapsibleCode>
+
 ```js
 // tailwind.config.js
 module.exports = {
@@ -234,8 +260,6 @@ module.exports = {
   },
 };
 ```
-
-</CollapsibleCode>
 
 ### Step 4: Configure components path
 

@@ -20,7 +20,7 @@ import { transformedCode } from '../../utils';
 import { AppProvider, CodePreview } from '@gluestack/design-system';
 
 import Wrapper from '../../core-components/nativewind/Wrapper';
-import { CollapsibleCode } from '@gluestack/design-system';
+import { CollapsibleCode , Tabs} from '@gluestack/design-system';
 
 This is an illustration of **Pressable** component.
 
@@ -52,6 +52,28 @@ This is an illustration of **Pressable** component.
 
 ## Installation
 
+<Tabs value="cli" type="section">
+  <Tabs.TabList>
+      <Tabs.Tab value="cli">
+        <Tabs.TabTitle>CLI</Tabs.TabTitle>
+      </Tabs.Tab>
+     <Tabs.Tab value="manual">
+        <Tabs.TabTitle>Manual</Tabs.TabTitle>
+     </Tabs.Tab>
+  </Tabs.TabList>
+  <Tabs.TabPanels>
+    <Tabs.TabPanel value="cli">
+<>
+
+### Run the following command:
+  ```bash
+  npx gluestack-ui add pressable
+  ```
+</>
+    </Tabs.TabPanel>
+    <Tabs.TabPanel value="manual"> 
+<>
+
 ### Step 1: Install the following dependencies:
 
 ```bash
@@ -71,6 +93,10 @@ npm i @gluestack-ui/pressable
 </CollapsibleCode>
 
 ### Step 3: Update the import paths to match your project setup.
+</>
+    </Tabs.TabPanel>
+  </Tabs.TabPanels>
+</Tabs>
 
 ## API Reference
 

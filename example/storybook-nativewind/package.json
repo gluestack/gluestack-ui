@@ -30,7 +30,7 @@
     "@gluestack-style/react": "^1.0.52",
     "@gluestack-ui/config": "^1.1.17",
     "@gluestack-ui/themed": "^1.1.14",
-    "@gluestack/design-system": "^0.5.27",
+    "@gluestack/design-system": "^0.5.36",
     "@legendapp/motion": "^2.2.0",
     "@react-aria/button": "^3.7.0",
     "@react-aria/focus": "^3.11.0",
