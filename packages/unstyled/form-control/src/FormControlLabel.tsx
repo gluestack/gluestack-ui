@@ -22,17 +22,17 @@ const FormControlLabel = ({
         // RN web doesn't support htmlFor for Label element yet
         if (props.htmlFor) {
           _ref.current.htmlFor = props.htmlFor;
-        } else if (combinedProps?.nativeID) {
-          _ref.current.htmlFor = combinedProps.nativeID;
+        } else if (combinedProps?.id) {
+          _ref.current.htmlFor = combinedProps.id;
         }
       }
-    }, [combinedProps?.nativeID, props.htmlFor]);
+    }, [combinedProps?.id, props.htmlFor]);
 
     return (
       <StyledFormControlLabel
         ref={mergedRef}
         {...combinedProps}
-        nativeID={combinedProps?.labelId}
+        id={combinedProps?.labelId}
       >
         {children}
         {isRequired && (

@@ -191,13 +191,13 @@ export function useMenuItem<T>(
       ...mergeProps(pressProps, hoverProps, keyboardProps),
     },
     labelProps: {
-      nativeID: labelId,
+      id: labelId,
     },
     descriptionProps: {
-      nativeID: descriptionId,
+      id: descriptionId,
     },
     keyboardShortcutProps: {
-      nativeID: keyboardId,
+      id: keyboardId,
     },
   };
 }

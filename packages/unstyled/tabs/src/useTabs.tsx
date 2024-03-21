@@ -20,7 +20,7 @@ export const useTabs = () => {
     }
   };
   return {
-    tabProps: { onKeyDown, accessibilityRole: 'tab' as AccessibilityRole },
+    tabProps: { onKeyDown, role: 'tab' as AccessibilityRole },
     focusManager,
   };
 };

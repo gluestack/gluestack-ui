@@ -143,7 +143,7 @@ export function useTooltipTrigger(
       ...mergeProps(focusableProps, hoverProps, pressProps),
     },
     tooltipProps: {
-      nativeID: tooltipId,
+      id: tooltipId,
     },
   };
 }
