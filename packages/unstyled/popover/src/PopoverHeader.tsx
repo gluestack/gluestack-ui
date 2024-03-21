@@ -18,7 +18,7 @@ const PopoverHeader = (StyledPopoverHeader: any) =>
     }, [setHeaderMounted]);
 
     return (
-      <StyledPopoverHeader nativeID={headerId} ref={ref} {...props}>
+      <StyledPopoverHeader id={headerId} ref={ref} {...props}>
         {children}
       </StyledPopoverHeader>
     );

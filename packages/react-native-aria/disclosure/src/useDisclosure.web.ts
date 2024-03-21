@@ -8,7 +8,7 @@ export function useDisclosure(props: ViewProps, state: ToggleState) {
 
   return {
     disclosureProps: mergeProps(props, {
-      nativeID: id,
+      id,
     }),
   };
 }

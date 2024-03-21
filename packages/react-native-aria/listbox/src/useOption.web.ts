@@ -140,10 +140,10 @@ export function useOption<T>(
   return {
     optionProps,
     labelProps: {
-      nativeID: labelId,
+      id: labelId,
     },
     descriptionProps: {
-      nativeID: descriptionId,
+      id: descriptionId,
     },
   };
 }
