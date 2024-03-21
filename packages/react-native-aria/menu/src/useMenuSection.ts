@@ -38,7 +38,7 @@ export function useMenuSection(props: AriaMenuSectionProps): MenuSectionAria {
           // Techincally, menus cannot contain headings according to ARIA.
           // We hide the heading from assistive technology, and only use it
           // as a label for the nested group.
-          'nativeID': headingId,
+          'id': headingId,
           'aria-hidden': true,
         }
       : {},

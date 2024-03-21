@@ -56,9 +56,9 @@ export const mapDomPropsToRN = (props: any) => {
   //   newProps.focusable = false;
   // }
 
-  if (props.id) {
-    newProps.nativeID = props.id;
-  }
+  // if (props.id) {
+  //   newProps.id = props.id;
+  // }
 
   for (let key in props) {
     if (key.indexOf('data-') > -1) {
@@ -81,6 +81,7 @@ export const useMapDomPropsToRN = (props: any, ref: RefObject<any>) => {
     if (ref.current) {
       ref.current.tabIndex = props.tabIndex;
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.tabIndex]);
 
   return mapDomPropsToRN(props);

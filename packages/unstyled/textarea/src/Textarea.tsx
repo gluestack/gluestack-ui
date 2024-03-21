@@ -30,7 +30,7 @@ export const Textarea = (StyledTextarea: any) =>
         isInvalid: props.isInvalid,
         isReadOnly: props.isReadOnly,
         isRequired: props.isRequired,
-        nativeID: props.nativeID,
+        id: props.id,
       });
 
       return (

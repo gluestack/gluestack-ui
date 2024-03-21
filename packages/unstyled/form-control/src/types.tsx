@@ -2,7 +2,7 @@ export interface InterfaceFormControlProps {
   /**
    * If provided, this prop is passed to its children.
    */
-  nativeID?: string;
+  id?: string;
   /**
    * If true, this prop is passed to its children.
    */

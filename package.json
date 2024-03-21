@@ -9,7 +9,7 @@
     "test": "bash ./scripts/test.sh",
     "dev": "turbo run dev",
     "build": "turbo run build --filter=@gluestack-style/react --filter=@react-native-aria/* --no-cache && yarn build:rest",
-    "build:rest": "turbo run build --filter=@gluestack-ui/* --filter=@gluestack-style/*  --no-cache",
+    "build:rest": "turbo run build --filter=@gluestack-ui/* --filter=@gluestack-style/* --filter=!@gluestack-ui/nativewind-utils --no-cache",
     "clean": "turbo run clean && rm -rf node_modules",
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\" --ignore-path .gitignore",
     "release": "changeset publish",

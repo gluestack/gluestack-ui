@@ -1,5 +1,30 @@
 # @gluestack-ui/themed
 
+## 1.1.15
+
+### Patch Changes
+
+- @gluestack-ui/checkbox@0.1.26
+- @gluestack-ui/menu@0.2.32
+- @gluestack-ui/actionsheet@0.2.39
+- @gluestack-ui/alert-dialog@0.1.27
+- @gluestack-ui/modal@0.1.31
+- @gluestack-ui/popover@0.1.34
+- @gluestack-ui/accordion@1.0.3
+- @gluestack-ui/button@1.0.3
+- @gluestack-ui/fab@0.1.20
+- @gluestack-ui/image@0.1.9
+- @gluestack-ui/input@0.1.26
+- @gluestack-ui/link@0.1.19
+- @gluestack-ui/overlay@0.1.14
+- @gluestack-ui/pressable@0.1.16
+- @gluestack-ui/provider@0.1.12
+- @gluestack-ui/radio@0.1.27
+- @gluestack-ui/slider@0.1.23
+- @gluestack-ui/switch@0.1.21
+- @gluestack-ui/tabs@0.1.16
+- @gluestack-ui/tooltip@0.1.29
+
 ## 1.1.14
 
 ### Patch Changes
