@@ -7,39 +7,44 @@ pageTitle: Installation
 
 pageDescription: To get started with gluestack-ui, check out this quick installation guide. It provides simple steps to help you install and use the library in your projects.
 
-showHeader: true
+showHeader: false
 ---
 
 import { Meta } from '@storybook/addon-docs';
-import { CollapsibleCode } from '@gluestack/design-system';
+import { CollapsibleCode, Tabs } from '@gluestack/design-system';
 
 <Meta title="with-nativewind/Getting Started/Installation" />
-
-## Automatic
 
 ### Using Template
 
 you can use [gluestack-expo-nativewind-v4-template](https://github.com/gluestack/gluestack-expo-nativewind-v4-template).
 
-### Using CLI
-If you wish to use `gluestack-ui` in your existing project using CLI, you can proceed with the following steps:
-
 ### Step 1: Setup Nativewind
 Setup nativewind in your project following [NativeWind documentation](https://www.nativewind.dev/v4/getting-started/react-native).
 
 ### Step 2: Initialize
+
+<Tabs value="cli" type="section">
+<Tabs.TabList>
+      <Tabs.Tab value="cli">
+        <Tabs.TabTitle>CLI</Tabs.TabTitle>
+      </Tabs.Tab>
+     <Tabs.Tab value="manual">
+        <Tabs.TabTitle>Manual</Tabs.TabTitle>
+     </Tabs.Tab>
+  </Tabs.TabList>
+  <Tabs.TabPanels>
+    <Tabs.TabPanel value="cli">
+<>
+
+If you wish to use `gluestack-ui` in your existing project using CLI, you can proceed with the following steps:
+
 Use `init` command to add `GluestackUIProvider` and `gluestack-ui-provider/config.ts` file into your project.
 
 ```bash
 npx gluestack-ui init
 ```
-You will be asked to select a component style to initialize
 
-```bash
- Which style would you like to use in your project:
- gluestack-style 
- nativewind
- ```
  Refer Step: 6 in manual installation for usage of `GluestackUIProvider`
  
 ### Step 3: Add components
@@ -48,20 +53,21 @@ To add components you wish to use in your project, you can use `add` command as 
 ```bash
 npx gluestack-ui add button
 ```
+
 To add all the components, you can use
+
 ```bash
 npx gluestack-ui add --all
 ```
+</>
+    </Tabs.TabPanel>
+    <Tabs.TabPanel value="manual"> 
+<>
 
-## Manual
+
+
 
 If you wish to install `gluestack-ui` with nativewind into your existing project, you can proceed with the following steps:
-
-### Step 1: Setup NativeWind
-
-To setup Expo project using `NativeWind` follow [NativeWind documentation](https://www.nativewind.dev/v4/getting-started/react-native).
-
-### Step 2: Install Dependencies
 
 Install the dependencies of gluestack-ui in your project. This can be done using the following command:
 
@@ -322,3 +328,10 @@ export default function App() {
   );
 }
 ```
+
+</>
+    </Tabs.TabPanel>
+  </Tabs.TabPanels>
+</Tabs>
+
+
