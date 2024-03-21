@@ -3288,14 +3288,6 @@
   dependencies:
     "@legendapp/motion" "^2.2.0"
 
-"@gluestack-style/react@1.0.50":
-  version "1.0.50"
-  resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-1.0.50.tgz#5a03fce6b9447c509db85c92a0f2bd839850cee0"
-  integrity sha512-WCME8xmfGFJnK7WaARgI1y1TZwU1y1xO0z4aou4e1PSk9lLfNy696Uu00ywG6r4AWEch3ZQyZAa3QADax5RHeA==
-  dependencies:
-    inline-style-prefixer "^6.0.1"
-    normalize-css-color "^1.0.2"
-
 "@gluestack-ui/button@^0.1.15":
   version "0.1.34"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/button/-/button-0.1.34.tgz#f635aba6a9023d153f5dd82cd96a3785b6244951"
