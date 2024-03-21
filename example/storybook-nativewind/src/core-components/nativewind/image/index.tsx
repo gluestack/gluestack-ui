@@ -24,7 +24,15 @@ export const UIImage = createImage({ Root: RNImage });
 
 const Image = ({ size = 'md', className, ...props }: any) => {
   return (
-    <UIImage className={imageStyle({ size, class: className })} {...props} />
+    <UIImage
+      className={imageStyle({ size, class: className })}
+      {...props}
+      style={{
+        ...props.style,
+        height: 'revert-layer',
+        width: 'revert-layer',
+      }}
+    />
   );
 };
 

@@ -1,7 +1,6 @@
 import React from 'react';
 import { createRadio } from '@gluestack-ui/radio';
 import { Pressable, View, Platform, Text } from 'react-native';
-import { Circle } from 'lucide-react-native';
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import {
   withStyleContext,
@@ -27,22 +26,19 @@ const groupStyle = tva({
 });
 
 const iconStyle = tva({
-  base: 'fill-background-800 stroke-background-800 rounded-full data-[checked=true]:text-primary-600 data-[checked=true]:data-[hover=true]:text-primary-700 data-[checked=true]:data-[hover=true]:data-[disabled=true]:text-primary-600',
+  base: 'rounded-full group-data-[checked=true]/radioInd:text-primary-600 group-data-[checked=true]/radioInd:group-data-[hover=true]/radioInd:text-primary-700 data-[checked=true]:data-[hover=true]:data-[disabled=true]:text-primary-600',
 
-  variants: {
+  parentVariants: {
     size: {
-      '2xs': 'h-3 w-3',
-      'xs': 'h-3.5 w-3.5',
-      'sm': 'h-4 w-4',
-      'md': 'h-4.5 w-4.5',
-      'lg': 'h-5 w-5',
-      'xl': 'h-6 w-6',
+      sm: 'h-3 w-3',
+      md: 'h-4 w-4',
+      lg: 'h-[18px] w-[18px]',
     },
   },
 });
 
 const indicatorStyle = tva({
-  base: 'justify-center items-center bg-transparent border-outline-400 border-2 rounded-full data-[focus=true]:web:outline-none data-[focus-visible=true]:web:ring-2 data-[focus-visible=true]:web:ring-primary-700 data-[checked=true]:border-primary-600 data-[checked=true]:bg-transparent data-[hover=true]:border-outline-500  data-[hover=true]:bg-transparent data-[hover=true]:data-[checked=true]:bg-transparent data-[hover=true]:data-[checked=true]:border-primary-700 data-[hover=true]:data-[invalid=true]:border-error-700  data-[hover=true]:data-[disabled=true]:opacity-40 data-[hover=true]:data-[disabled=true]:border-outline-400 data-[hover=true]:data-[disabled=true]:data-[invalid=true]:border-error-400 data-[active=true]:bg-transparent data-[active=true]:border-primary-800 data-[invalid=true]:border-error-700 data-[disabled=true]:opacity-40 data-[disabled=true]:data-[checked=true]:border-outline-400 data-[disabled=true]:data-[checked=true]:bg-transparent data-[disabled=true]:data-[invalid=true]:border-error-400',
+  base: 'group/radioInd justify-center items-center bg-transparent border-outline-400 border-2 rounded-full data-[focus-visible=true]:web:outline-2 data-[focus-visible=true]:web:outline-primary-700 data-[focus-visible=true]:web:outline data-[checked=true]:border-primary-600 data-[checked=true]:bg-transparent data-[hover=true]:border-outline-500  data-[hover=true]:bg-transparent data-[hover=true]:data-[checked=true]:bg-transparent data-[hover=true]:data-[checked=true]:border-primary-700 data-[hover=true]:data-[invalid=true]:border-error-700 data-[hover=true]:data-[disabled=true]:opacity-40 data-[hover=true]:data-[disabled=true]:border-outline-400 data-[hover=true]:data-[disabled=true]:data-[invalid=true]:border-error-400 data-[active=true]:bg-transparent data-[active=true]:border-primary-800 data-[invalid=true]:border-error-700 data-[disabled=true]:opacity-40 data-[disabled=true]:data-[checked=true]:border-outline-400 data-[disabled=true]:data-[checked=true]:bg-transparent data-[disabled=true]:data-[invalid=true]:border-error-400',
   parentVariants: {
     size: {
       sm: 'h-4 w-4',
@@ -53,7 +49,7 @@ const indicatorStyle = tva({
 });
 
 const labelStyle = tva({
-  base: 'text-typography-600 data-[checked=true]:text-typography-900 data-[hover=true]:text-typography-900 data-[hover=true]:data-[disabled=true]:text-typography-600 data-[hover=true]:data-[disabled=true]:data-[checked=true]:text-typography-900 data-[active=true]:text-typography-900 data-[active=true]:data-[checked=true]:text-typography-900 data-[disabled]:opacity-40 web:select-none',
+  base: 'text-typography-600 data-[checked=true]:text-typography-900 data-[hover=true]:text-typography-900 data-[hover=true]:data-[disabled=true]:text-typography-600 data-[hover=true]:data-[disabled=true]:data-[checked=true]:text-typography-900 data-[active=true]:text-typography-900 data-[active=true]:data-[checked=true]:text-typography-900 data-[disabled=true]:opacity-40 web:select-none',
 });
 
 const UIRadio = createRadio({
@@ -63,8 +59,7 @@ const UIRadio = createRadio({
       ? withStyleContext(View)
       : withStyleContextAndStates(Pressable),
   Group: View,
-  // @ts-ignore
-  Icon: Platform.OS === 'web' ? Circle : withStates(Circle),
+  Icon: Platform.OS === 'web' ? View : withStates(View),
   Indicator: Platform.OS === 'web' ? View : withStates(View),
   Label: Platform.OS === 'web' ? Text : withStates(Text),
 });
@@ -111,12 +106,34 @@ const RadioLabel = ({ className, ...props }: any) => {
   );
 };
 
-const RadioIcon = ({ className, ...props }: any) => {
-  const { size } = useStyleContext();
+const RadioIcon = ({ className, as: AsComp, size, ...props }: any) => {
+  const { size: parentSize } = useStyleContext();
+  if (AsComp) {
+    return (
+      <UIRadio.Icon>
+        <AsComp
+          {...props}
+          className={iconStyle({
+            parentVariants: {
+              size: parentSize,
+            },
+            size,
+            class: className,
+          })}
+        />
+      </UIRadio.Icon>
+    );
+  }
   return (
     <UIRadio.Icon
-      className={iconStyle({ parentVariants: { size }, class: className })}
       {...props}
+      className={iconStyle({
+        parentVariants: {
+          size: parentSize,
+        },
+        size,
+        class: className,
+      })}
     />
   );
 };
