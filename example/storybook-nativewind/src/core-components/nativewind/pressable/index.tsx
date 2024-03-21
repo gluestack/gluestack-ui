@@ -1,19 +1,36 @@
-import { Pressable as RNPressable } from 'react-native';
-import { tva } from '@gluestack-ui/nativewind-utils/tva';
-import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
 import React from 'react';
 import { createPressable } from '@gluestack-ui/pressable';
+import { Pressable as RNPressable, Platform } from 'react-native';
 
-export const UIPressable = createPressable({ Root: RNPressable });
+import { tva } from '@gluestack-ui/nativewind-utils/tva';
+import { withStyleContext } from '@gluestack-ui/nativewind-utils/withStyleContext';
+import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withStyleContextAndStates';
+import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
+import type { VariantProps } from '@gluestack-ui/nativewind-utils';
+
+const UIPressable = createPressable({
+  Root:
+    Platform.OS === 'web'
+      ? withStyleContext(RNPressable)
+      : withStyleContextAndStates(RNPressable),
+});
 
 const pressableStyle = tva({
-  base: 'data-[focus-visible=true]:web:outline-none data-[focus-visible=true]:web:ring-primary-700 data-[focus-visible=true]:web:ring-2',
+  base: 'data-[focus-visible=true]:outline-none data-[focus-visible=true]:ring-primary-700 data-[focus-visible=true]:ring-2 data-[disabled=true]:opacity-40',
 });
 
 cssInterop(UIPressable, { className: 'style' });
 
-export const Pressable = React.forwardRef(
-  ({ className, ...props }: any, ref?: any) => {
+type IPressableProps = Omit<
+  React.ComponentProps<typeof UIPressable>,
+  'context'
+> &
+  VariantProps<typeof pressableStyle>;
+const Pressable = React.forwardRef(
+  (
+    { className, ...props }: { className?: string } & IPressableProps,
+    ref?: any
+  ) => {
     return (
       <UIPressable
         {...props}
@@ -25,3 +42,6 @@ export const Pressable = React.forwardRef(
     );
   }
 );
+
+Pressable.displayName = 'Pressable';
+export { Pressable };

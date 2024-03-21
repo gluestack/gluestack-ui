@@ -1,5 +1,11 @@
 # @gluestack-ui/switch
 
+## 0.1.21
+
+### Patch Changes
+
+- @react-native-aria/interactions@0.2.13
+
 ## 0.1.20
 
 ### Patch Changes

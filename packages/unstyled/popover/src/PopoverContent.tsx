@@ -206,7 +206,7 @@ const PopoverContent = (StyledPopoverContent: any, AnimatePresence?: any) =>
             {arrowElement}
             <FocusScopeComponent contain={trapFocus} restoreFocus autoFocus>
               <StyledPopoverContent
-                nativeID={popoverContentId}
+                id={popoverContentId}
                 {...accessibilityProps}
                 {...props}
                 isOpen={isOpen}
