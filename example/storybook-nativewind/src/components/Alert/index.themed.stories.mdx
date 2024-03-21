@@ -36,6 +36,7 @@ import {
   InlineCode,
   TableContainer,
   CollapsibleCode,
+  Tabs
 } from '@gluestack/design-system';
 
 import Wrapper from '../../core-components/themed/Wrapper';
@@ -86,6 +87,28 @@ This is an illustration of **Alert** component.
 
 ## Installation
 
+<Tabs value="cli" type="section">
+<Tabs.TabList>
+      <Tabs.Tab value="cli">
+        <Tabs.TabTitle>CLI</Tabs.TabTitle>
+      </Tabs.Tab>
+     <Tabs.Tab value="manual">
+        <Tabs.TabTitle>Manual</Tabs.TabTitle>
+     </Tabs.Tab>
+  </Tabs.TabList>
+  <Tabs.TabPanels>
+    <Tabs.TabPanel value="cli">
+<>
+
+### Run the following command:
+  ```bash
+  npx gluestack-ui add alert
+  ```
+</>
+    </Tabs.TabPanel>
+    <Tabs.TabPanel value="manual"> 
+<>
+
 ### Step 1: Install the following dependencies:
 
 ```bash
@@ -105,6 +128,10 @@ npm i @gluestack-ui/alert
 </CollapsibleCode>
 
 ### Step 3: Update the import paths to match your project setup.
+</>
+    </Tabs.TabPanel>
+  </Tabs.TabPanels>
+</Tabs>
 
 ## API Reference
 

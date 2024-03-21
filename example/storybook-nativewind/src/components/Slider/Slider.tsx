@@ -36,6 +36,7 @@ const SliderBasic = ({ value: valueProp = 60, ...props }: any) => {
         height: 300,
         marginTop: 16,
       }}
+      isReversed
       onChange={(value: any) => {
         handleChange(value);
       }}

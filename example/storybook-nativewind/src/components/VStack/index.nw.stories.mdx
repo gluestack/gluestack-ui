@@ -21,6 +21,7 @@ import {
   TableContainer,
   Text,
   InlineCode,
+  Tabs
 } from '@gluestack/design-system';
 import { Box, VStack } from '../../core-components/nativewind';
 import { transformedCode } from '../../utils';
@@ -72,17 +73,41 @@ This is an illustration of **VStack** component.
 
 ## Installation
 
-### Step 1: Copy and paste the following code into your project.
+<Tabs value="cli" type="section">
+  <Tabs.TabList>
+      <Tabs.Tab value="cli">
+        <Tabs.TabTitle>CLI</Tabs.TabTitle>
+      </Tabs.Tab>
+     <Tabs.Tab value="manual">
+        <Tabs.TabTitle>Manual</Tabs.TabTitle>
+     </Tabs.Tab>
+  </Tabs.TabList>
+  <Tabs.TabPanels>
+    <Tabs.TabPanel value="cli">
+<>
 
+### Run the following command:
+  ```bash
+  npx gluestack-ui add vstack
+  ```
+</>
+    </Tabs.TabPanel>
+    <Tabs.TabPanel value="manual"> 
+<>
+
+### Step 1: Copy and paste the following code into your project.
 <CollapsibleCode>
 
 ```jsx 
 %%-- File: core-components/nativewind/vstack/index.tsx --%% 
 ```
-
 </CollapsibleCode>
 
 ### Step 2: Update the import paths to match your project setup.
+</>
+    </Tabs.TabPanel>
+  </Tabs.TabPanels>
+</Tabs>
 
 ## API Reference
 
@@ -116,7 +141,7 @@ VStack component is created using View component from react-native. It extends a
 
 #### VStack
 
-<Wrapper>
+<>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -171,7 +196,7 @@ VStack component is created using View component from react-native. It extends a
       </Table.TBody>
     </Table>
   </TableContainer>
-</Wrapper>
+</>
 
 ### Examples
 
@@ -189,9 +214,9 @@ A VStack component with the reversed prop reverses the order of vertically stack
     metaData={{
       code: `
         <VStack space='md'>
-          <Box className='w-20 h-20 bg-blue-300' />
-          <Box className='w-20 h-20 bg-blue-400' />
-          <Box className='w-20 h-20 bg-blue-500' />
+          <Box className='w-20 h-20 bg-primary-300' />
+          <Box className='w-20 h-20 bg-primary-400' />
+          <Box className='w-20 h-20 bg-primary-500' />
         </VStack>
       `,
       transformCode: (code) => {

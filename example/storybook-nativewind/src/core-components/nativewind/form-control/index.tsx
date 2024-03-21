@@ -11,6 +11,13 @@ import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 
 const formControlStyle = tva({
   base: 'flex flex-col',
+  variants: {
+    size: {
+      sm: '',
+      md: '',
+      lg: '',
+    },
+  },
 });
 
 const formControlErrorIconStyle = tva({
@@ -161,6 +168,7 @@ const formControlLabelTextStyle = tva({
 });
 
 const formControlLabelAstrickStyle = tva({
+  base: 'font-medium text-typography-900',
   variants: {
     isTruncated: {
       true: 'web:truncate',
@@ -199,6 +207,20 @@ const formControlLabelAstrickStyle = tva({
   },
 });
 
+const FormControlLabelAstrick = ({ className, ...props }: any) => {
+  const { size: parentSize } = useStyleContext();
+
+  return (
+    <Text
+      className={formControlLabelAstrickStyle({
+        parentVariants: { size: parentSize },
+        class: className,
+      })}
+      {...props}
+    />
+  );
+};
+
 export const UIFormControl = createFormControl({
   Root: withStyleContext(View),
   Error: View,
@@ -206,7 +228,7 @@ export const UIFormControl = createFormControl({
   ErrorIcon: View,
   Label: View,
   LabelText: Text,
-  LabelAstrick: Text,
+  LabelAstrick: FormControlLabelAstrick,
   Helper: View,
   HelperText: Text,
 });
@@ -217,7 +239,6 @@ cssInterop(UIFormControl.Error.Text, { className: 'style' });
 cssInterop(UIFormControl.Error.Icon, { className: 'style' });
 cssInterop(UIFormControl.Label, { className: 'style' });
 cssInterop(UIFormControl.Label.Text, { className: 'style' });
-cssInterop(UIFormControl.Label.Astrick, { className: 'style' });
 cssInterop(UIFormControl.Helper, { className: 'style' });
 cssInterop(UIFormControl.Helper.Text, { className: 'style' });
 
@@ -282,7 +303,7 @@ const FormControlErrorIcon = ({
   size,
   as: AsComp,
   ...props
-}: { className?: string } & IFormControlErrorIconProps) => {
+}: { className?: string; as?: any } & IFormControlErrorIconProps) => {
   const { size: parentSize } = useStyleContext();
   if (AsComp) {
     return (
@@ -345,33 +366,11 @@ const FormControlLabelText = ({
   );
 };
 
-type IFormControlLabelAstrickProps = React.ComponentProps<
-  typeof UIFormControl.Label.Astrick
-> &
-  VariantProps<typeof formControlLabelAstrickStyle>;
-const FormControlLabelAstrick = ({
-  className,
-  size,
-  ...props
-}: { className?: string } & IFormControlLabelAstrickProps) => {
-  const { size: parentSize } = useStyleContext();
-
-  return (
-    <UIFormControl.Label.Astrick
-      className={formControlLabelAstrickStyle({
-        parentVariants: { size: parentSize },
-        size,
-        class: className,
-      })}
-      {...props}
-    />
-  );
-};
-
 type IFormControlHelperProps = React.ComponentProps<
   typeof UIFormControl.Helper
 > &
   VariantProps<typeof formControlHelperStyle>;
+
 const FormControlHelper = ({
   className,
   ...props
@@ -390,6 +389,7 @@ type IFormControlHelperTextProps = React.ComponentProps<
   typeof UIFormControl.Helper.Text
 > &
   VariantProps<typeof formControlHelperTextStyle>;
+
 const FormControlHelperText = ({
   className,
   size,

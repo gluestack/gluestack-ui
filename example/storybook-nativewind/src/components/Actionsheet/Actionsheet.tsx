@@ -17,7 +17,7 @@ import {
   Image,
   Text,
   Center,
-} from '@gluestack-ui/themed';
+} from '@/components/ui';
 import { config } from '@gluestack-ui/config';
 
 import {

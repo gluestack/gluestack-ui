@@ -35,7 +35,7 @@ const accordionTitleTextStyle = tva({
   parentVariants: {
     size: {
       sm: 'text-sm',
-      md: 'text-md',
+      md: 'text-base',
       lg: 'text-lg',
     },
   },
@@ -48,7 +48,7 @@ const accordionContentTextStyle = tva({
   parentVariants: {
     size: {
       sm: 'text-sm ',
-      md: 'text-md',
+      md: 'text-base',
       lg: 'text-lg',
     },
   },
@@ -68,8 +68,8 @@ const UIAccordion = createAccordion({
   //@ts-ignore
   Root:
     Platform.OS === 'web'
-      ? withStyleContext(Pressable)
-      : withStyleContextAndStates(Pressable),
+      ? withStyleContext(View)
+      : withStyleContextAndStates(View),
   Item: View,
   // @ts-ignore
   Header: Platform.OS === 'web' ? H3 : View,

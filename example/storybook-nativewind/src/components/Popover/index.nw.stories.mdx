@@ -49,6 +49,7 @@ import {
   Text,
   InlineCode,
   CollapsibleCode,
+  Tabs
 } from '@gluestack/design-system';
 import { transformedCode } from '../../utils';
 import Wrapper from '../../core-components/nativewind/Wrapper';
@@ -171,27 +172,47 @@ This is an illustration of **Popover** component.
 
 ## Installation
 
+<Tabs value="cli" type="section">
+  <Tabs.TabList>
+      <Tabs.Tab value="cli">
+        <Tabs.TabTitle>CLI</Tabs.TabTitle>
+      </Tabs.Tab>
+     <Tabs.Tab value="manual">
+        <Tabs.TabTitle>Manual</Tabs.TabTitle>
+     </Tabs.Tab>
+  </Tabs.TabList>
+  <Tabs.TabPanels>
+    <Tabs.TabPanel value="cli">
+<>
+
+### Run the following command:
+  ```bash
+  npx gluestack-ui add popover
+  ```
+</>
+    </Tabs.TabPanel>
+    <Tabs.TabPanel value="manual"> 
+<>
+
 ### Step 1: Install the following dependencies:
-
 ```bash
-
 npm i @gluestack-ui/popover @legendapp/motion
-
 ```
 > Note: At present, we have integrated the `@legendapp/motion` for animation. You have the option to remove this and implement your own custom animation wrapper.
 
-
 ### Step 2: Copy and paste the following code into your project.
-
 <CollapsibleCode>
 
 ```jsx 
 %%-- File: core-components/nativewind/popover/index.tsx --%% 
 ```
-
 </CollapsibleCode>
 
 ### Step 3: Update the import paths to match your project setup.
+</>
+    </Tabs.TabPanel>
+  </Tabs.TabPanels>
+</Tabs>
 
 ## API Reference
 
@@ -234,7 +255,7 @@ This section provides a comprehensive reference list for the component props, de
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
-<Wrapper>
+<>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -590,7 +611,7 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
       </Table.TBody>
     </Table>
   </TableContainer>
-</Wrapper>
+</>
 
 #### PopoverBackdrop
 
@@ -635,7 +656,7 @@ Popover component is created using ScrollView component from react-native. It ex
 
 #### Popover
 
-<Wrapper>
+<>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -668,7 +689,7 @@ Popover component is created using ScrollView component from react-native. It ex
       </Table.TBody>
     </Table>
   </TableContainer>
-</Wrapper>
+</>
 
 ### Examples
 
