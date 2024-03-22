@@ -820,7 +820,7 @@ The Actionsheet with Virtualized List includes a virtualized list for better per
         <Button onPress={handleClose}>
           <ButtonText>Open</ButtonText>
         </Button>
-        <Actionsheet isOpen={showActionsheet} onClose={handleClose}>
+        <Actionsheet isOpen={showActionsheet} onClose={handleClose}  snapPoints={[50]}>
         <ActionsheetBackdrop />
         <ActionsheetContent>
           <ActionsheetDragIndicatorWrapper>
@@ -974,7 +974,7 @@ The Actionsheet with SectionList is a variation of the Actionsheet component tha
         <Button onPress={handleClose}>
           <ButtonText>Open</ButtonText>
         </Button>
-        <Actionsheet isOpen={showActionsheet} onClose={handleClose}>
+        <Actionsheet isOpen={showActionsheet} onClose={handleClose} snapPoints={[50]}>
         <ActionsheetBackdrop />
         <ActionsheetContent>
           <ActionsheetDragIndicatorWrapper>
