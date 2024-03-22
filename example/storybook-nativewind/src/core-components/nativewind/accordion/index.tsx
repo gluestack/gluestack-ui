@@ -42,6 +42,16 @@ const accordionTitleTextStyle = tva({
 });
 const accordionIconStyle = tva({
   base: 'text-typography-900',
+  parentVariants: {
+    size: {
+      '2xs': 'h-3 w-3',
+      'xs': 'h-3.5 w-3.5',
+      'sm': 'h-4 w-4',
+      'md': 'h-[18px] w-[18px]',
+      'lg': 'h-5 w-5',
+      'xl': 'h-6 w-6',
+    },
+  },
 });
 const accordionContentTextStyle = tva({
   base: 'text-typography-700 font-normal',
@@ -104,9 +114,10 @@ type IAccordionContentTextProps = React.ComponentProps<
 > &
   VariantProps<typeof accordionContentTextStyle>;
 
-type IAccordionIconProps = React.ComponentProps<typeof UIAccordion.Icon> & {
-  as?: any;
-};
+type IAccordionIconProps = VariantProps<typeof accordionIconStyle> &
+  React.ComponentProps<typeof UIAccordion.Icon> & {
+    as?: any;
+  };
 
 type IAccordionHeaderProps = React.ComponentProps<typeof UIAccordion.Header> &
   VariantProps<typeof accordionHeaderStyle>;
@@ -201,30 +212,48 @@ const AccordionContentText = React.forwardRef(
   }
 );
 
-const AccordionIcon = ({
-  className,
-  as: AsComp,
-  ...props
-}: IAccordionIconProps & { className?: any }) => {
-  if (AsComp) {
+const AccordionIcon = React.forwardRef(
+  (
+    {
+      fill = 'none',
+      size = 'md',
+      className,
+      as: AsComp,
+      ...props
+    }: IAccordionIconProps & { className?: any; fill?: any },
+    ref?: any
+  ) => {
+    const { size: parentSize } = useStyleContext();
+
+    if (AsComp) {
+      return (
+        <AsComp
+          ref={ref}
+          fill={fill}
+          {...props}
+          className={accordionIconStyle({
+            size,
+            class: className,
+            parentVariants: { size: parentSize },
+          })}
+        />
+      );
+    }
     return (
-      <AsComp
-        className={accordionIconStyle({
-          class: className,
-        })}
+      <UIAccordion.Icon
+        ref={ref}
+        fill={fill}
         {...props}
+        className={accordionIconStyle({
+          size,
+          class: className,
+          parentVariants: { size: parentSize },
+        })}
       />
     );
   }
-  return (
-    <UIAccordion.Icon
-      className={accordionIconStyle({
-        class: className,
-      })}
-      {...props}
-    />
-  );
-};
+);
+
 const AccordionHeader = React.forwardRef(
   (
     { className, ...props }: { className?: string } & IAccordionHeaderProps,

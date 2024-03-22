@@ -14,23 +14,15 @@ import { OverlayAnimatePresence } from './OverlayAnimatePresence';
 import { FocusScope } from '@react-native-aria/focus';
 import { mergeRefs } from '@gluestack-ui/utils';
 import { useDialog } from '@react-native-aria/dialog';
-import type { IActionsheetContentProps } from './types';
+
 import { usePreventScroll } from '@react-native-aria/overlays';
 const windowHeight = Dimensions.get('window').height;
-function ActionsheetContent<T>(
-  StyledActionsheetContent: React.ComponentType<T>,
+function ActionsheetContent(
+  StyledActionsheetContent: any,
   AnimatePresence?: any
 ) {
   return forwardRef(
-    (
-      {
-        children,
-        // @ts-ignore
-        _experimentalContent = false,
-        ...props
-      }: T & IActionsheetContentProps,
-      ref?: any
-    ) => {
+    ({ children, _experimentalContent = false, ...props }: any, ref?: any) => {
       const {
         visible,
         handleClose,
@@ -107,7 +99,7 @@ function ActionsheetContent<T>(
         return (
           <StyledActionsheetContent
             transition={animationDefaultConfig}
-            {...(props as T)}
+            {...(props as any)}
             ref={mergedRef}
             {...dialogProps}
             onLayout={(event: any) => {
@@ -154,11 +146,16 @@ function ActionsheetContent<T>(
               exit={{
                 y: windowHeight,
               }}
-              height={
-                snapPoints ? snapPoints[0] * windowHeight * 0.01 : undefined
-              }
               transition={animationDefaultConfig}
-              {...(props as T)}
+              {...props}
+              style={[
+                props.style,
+                {
+                  height: snapPoints
+                    ? snapPoints[0] * windowHeight * 0.01
+                    : undefined,
+                },
+              ]}
               ref={mergedRef}
               tabIndex={Platform.OS === 'web' ? 0 : undefined}
               {...dialogProps}
