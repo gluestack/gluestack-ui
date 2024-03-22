@@ -1,5 +1,12 @@
 # @gluestack-ui/themed
 
+## 1.1.16
+
+### Patch Changes
+
+- Updated dependencies
+  - @gluestack-ui/actionsheet@0.2.40
+
 ## 1.1.15
 
 ### Patch Changes
