@@ -61,7 +61,7 @@ cssInterop(UIActionsheet.Icon, { className: 'style' });
 const actionsheetStyle = tva({ base: 'w-full h-full web:pointer-events-none' });
 
 const actionsheetContentStyle = tva({
-  base: 'items-center rounded-tl-3xl rounded-tr-3xl p-2 bg-background0 web:pointer-events-auto web:select-none shadow-lg',
+  base: 'items-center rounded-tl-3xl rounded-tr-3xl h-full p-2 bg-background-0 web:pointer-events-auto web:select-none shadow-lg',
 });
 
 const actionsheetItemStyle = tva({
