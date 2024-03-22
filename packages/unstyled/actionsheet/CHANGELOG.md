@@ -1,5 +1,11 @@
 # @gluestack-ui/actionsheet
 
+## 0.2.40
+
+### Patch Changes
+
+- fix: height with style
+
 ## 0.2.39
 
 ### Patch Changes
