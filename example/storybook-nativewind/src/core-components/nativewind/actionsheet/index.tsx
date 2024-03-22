@@ -18,11 +18,11 @@ import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
 import {
   Motion,
   AnimatePresence,
-  createMotionComponent,
+  createMotionAnimatedComponent,
 } from '@legendapp/motion';
 import React from 'react';
 
-const AnimatedPressable = createMotionComponent(Pressable);
+const AnimatedPressable = createMotionAnimatedComponent(Pressable);
 export const UIActionsheet = createActionsheet({
   Root: View,
   Content: withStyleContext(Motion.View),
@@ -111,7 +111,7 @@ const actionsheetDragIndicatorWrapperStyle = tva({
 });
 
 const actionsheetBackdropStyle = tva({
-  base: 'absolute left-0 top-0 right-0 bottom-0 bg-background950 web:cursor-default web:pointer-events-auto',
+  base: 'absolute left-0 top-0 right-0 bottom-0 bg-background-dark web:cursor-default web:pointer-events-auto',
 });
 
 const actionsheetScrollViewStyle = tva({
@@ -350,6 +350,15 @@ const ActionsheetBackdrop = React.forwardRef(
   ) => {
     return (
       <UIActionsheet.Backdrop
+        initial={{
+          opacity: 0,
+        }}
+        animate={{
+          opacity: 0.5,
+        }}
+        exit={{
+          opacity: 0,
+        }}
         {...props}
         className={actionsheetBackdropStyle({
           class: className,
