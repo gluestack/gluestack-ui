@@ -114,9 +114,10 @@ type IAccordionContentTextProps = React.ComponentProps<
 > &
   VariantProps<typeof accordionContentTextStyle>;
 
-type IAccordionIconProps = React.ComponentProps<typeof UIAccordion.Icon> & {
-  as?: any;
-};
+type IAccordionIconProps = VariantProps<typeof accordionIconStyle> &
+  React.ComponentProps<typeof UIAccordion.Icon> & {
+    as?: any;
+  };
 
 type IAccordionHeaderProps = React.ComponentProps<typeof UIAccordion.Header> &
   VariantProps<typeof accordionHeaderStyle>;
@@ -219,7 +220,7 @@ const AccordionIcon = React.forwardRef(
       className,
       as: AsComp,
       ...props
-    }: IAccordionIconProps & { className?: any },
+    }: IAccordionIconProps & { className?: any; fill?: any },
     ref?: any
   ) => {
     const { size: parentSize } = useStyleContext();
