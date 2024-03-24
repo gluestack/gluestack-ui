@@ -87,7 +87,7 @@ export const Input = (StyledInput: any) =>
           aria-selected={isFocused}
           // ios accessibility
           accessibilityElementsHidden={isDisabled || inputProps.isDisabled}
-          readOnly={editableProp}
+          readOnly={!editableProp}
           onKeyPress={(e: any) => {
             e.persist();
             onKeyPress && onKeyPress(e);
