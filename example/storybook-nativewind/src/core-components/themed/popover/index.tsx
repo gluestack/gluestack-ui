@@ -1,3 +1,4 @@
+'use client';
 import { View, ScrollView, Pressable } from 'react-native';
 import { styled } from '@gluestack-style/react';
 import {

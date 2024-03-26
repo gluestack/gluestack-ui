@@ -1,3 +1,4 @@
+'use client';
 import { createDivider } from '@gluestack-ui/divider';
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import { View } from 'react-native';

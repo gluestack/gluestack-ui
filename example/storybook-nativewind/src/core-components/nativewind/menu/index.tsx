@@ -1,10 +1,11 @@
+'use client';
 import React from 'react';
 import { createMenu } from '@gluestack-ui/menu';
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
 import { Pressable, Text } from 'react-native';
 import { Motion, AnimatePresence } from '@legendapp/motion';
-import { VariantProps } from '@gluestack-ui/nativewind-utils';
+import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 
 const menuStyle = tva({
   base: 'min-w-[200px] py-2 rounded-sm bg-background-0',
@@ -101,6 +102,9 @@ export const UIMenu = createMenu({
   AnimatePresence: AnimatePresence,
 });
 
+cssInterop(UIMenu, { className: 'style' });
+cssInterop(UIMenu.ItemLabel, { className: 'style' });
+
 type IMenuProps = React.ComponentProps<typeof UIMenu> &
   VariantProps<typeof menuStyle>;
 type IMenuItemLabelProps = React.ComponentProps<typeof UIMenu.ItemLabel> &
@@ -137,10 +141,6 @@ const Menu = React.forwardRef(
     );
   }
 );
-
-cssInterop(UIMenu, { className: 'style' });
-cssInterop(UIMenu.Item, { className: 'style' });
-cssInterop(UIMenu.ItemLabel, { className: 'style' });
 
 const MenuItem = UIMenu.Item;
 
