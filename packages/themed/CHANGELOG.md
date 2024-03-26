@@ -1,5 +1,12 @@
 # @gluestack-ui/themed
 
+## 1.1.17
+
+### Patch Changes
+
+- Updated dependencies
+  - @gluestack-ui/input@0.1.27
+
 ## 1.1.16
 
 ### Patch Changes

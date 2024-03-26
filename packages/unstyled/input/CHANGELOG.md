@@ -1,5 +1,11 @@
 # @gluestack-ui/input
 
+## 0.1.27
+
+### Patch Changes
+
+- fix: readonly prop value
+
 ## 0.1.26
 
 ### Patch Changes
