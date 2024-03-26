@@ -2,7 +2,7 @@
 import React from 'react';
 import { createTooltip } from '@gluestack-ui/tooltip';
 import { View, Text, Platform } from 'react-native';
-import { VariantProps } from '@gluestack-ui/nativewind-utils';
+import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import { withStyleContext } from '@gluestack-ui/nativewind-utils/withStyleContext';
 import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';

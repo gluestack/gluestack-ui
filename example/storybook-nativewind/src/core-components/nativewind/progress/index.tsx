@@ -7,8 +7,8 @@ import {
   withStyleContext,
   useStyleContext,
 } from '@gluestack-ui/nativewind-utils/withStyleContext';
-
 import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
+import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 
 export const UIProgress = createProgress({
   Root: withStyleContext(View),
@@ -45,8 +45,13 @@ const progressFilledTrackStyle = tva({
   },
 });
 
+type IProgressProps = VariantProps<typeof progressStyle> &
+  React.ComponentProps<typeof UIProgress>;
+type IProgressFilledTrackProps = VariantProps<typeof progressFilledTrackStyle> &
+  React.ComponentProps<typeof UIProgress.FilledTrack>;
+
 export const Progress = React.forwardRef(
-  ({ className, size = 'md', ...props }: any, ref) => {
+  ({ className, size = 'md', ...props }: IProgressProps, ref?: any) => {
     return (
       <UIProgress
         ref={ref}
@@ -59,20 +64,20 @@ export const Progress = React.forwardRef(
 );
 
 export const ProgressFilledTrack = React.forwardRef(
-  ({ className, size, ...props }: any, ref) => {
+  ({ className, ...props }: IProgressFilledTrackProps, ref?: any) => {
     const { size: parentSize } = useStyleContext();
 
     return (
       <UIProgress.FilledTrack
+        // @ts-ignore
         ref={ref}
-        {...props}
         className={progressFilledTrackStyle({
           parentVariants: {
             size: parentSize,
           },
-          size,
           class: className,
         })}
+        {...props}
       />
     );
   }
