@@ -1,5 +1,5 @@
+'use client';
 import { createAvatar } from '@gluestack-ui/avatar';
-
 import { styled } from '@gluestack-style/react';
 import { View, Text, Image } from 'react-native';
 const StyledRoot = styled(

@@ -1,3 +1,4 @@
+'use client';
 import { Text as RNText } from 'react-native';
 import { styled } from '@gluestack-style/react';
 

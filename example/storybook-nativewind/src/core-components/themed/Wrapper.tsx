@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import { Box, Center } from '@gluestack-ui/themed';
 import { StyledProvider, useColorMode } from '@gluestack-style/react';

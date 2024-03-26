@@ -1,3 +1,4 @@
+'use client';
 import { createToast, createToastHook } from '@gluestack-ui/toast';
 import {
   AnimatePresence,

@@ -1,3 +1,4 @@
+'use client';
 import { createDivider } from '@gluestack-ui/divider';
 import { styled } from '@gluestack-style/react';
 import { View } from 'react-native';
