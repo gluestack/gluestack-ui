@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import { createAlertDialog } from '@gluestack-ui/alert-dialog';
 

@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import { createAccordion } from '@gluestack-ui/accordion';
 import { View, Pressable, Text, Platform } from 'react-native';

@@ -1,3 +1,4 @@
+'use client';
 import { createFab } from '@gluestack-ui/fab';
 import { Platform, Text, View } from 'react-native';
 import { Pressable } from 'react-native';

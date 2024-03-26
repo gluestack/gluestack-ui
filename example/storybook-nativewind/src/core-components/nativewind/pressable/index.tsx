@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import { createPressable } from '@gluestack-ui/pressable';
 import { Pressable as RNPressable, Platform } from 'react-native';

@@ -1,3 +1,4 @@
+'use client';
 import { config } from './config';
 
 export function GluestackUIProvider({

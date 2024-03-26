@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import { createTooltip } from '@gluestack-ui/tooltip';
 import { View, Text, Platform } from 'react-native';

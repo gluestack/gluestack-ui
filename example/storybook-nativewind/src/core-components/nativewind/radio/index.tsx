@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import { createRadio } from '@gluestack-ui/radio';
 import { Pressable, View, Platform, Text } from 'react-native';
