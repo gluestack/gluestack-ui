@@ -33,3 +33,31 @@ Note that this is only necessary for when you add or remove a story file.
 ```
 yarn storybook
 ```
+
+# Testing
+
+You need to install the playwright browsers using this
+
+```
+yarn playwright install --with-deps
+```
+
+Then you need create the storybook build using
+
+```
+yarn build-storybook
+```
+
+Then you can run the tests like this
+
+```
+yarn test:screenshot --componentName
+```
+
+it takes 2 extra agruments like
+
+```
+--componentName=single
+and
+--componentName=multiple
+```

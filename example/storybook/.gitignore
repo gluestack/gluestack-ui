@@ -17,3 +17,9 @@ lib
 
 #build
 storybook-static/
+/test-results/
+/blob-report/
+
+#test-playwright
+/playwright-report/index.html
+/playwright/.cache/

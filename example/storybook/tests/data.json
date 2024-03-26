@@ -1,0 +1,805 @@
+{
+  "accordion": {
+    "overlay": false,
+    "storyParent": "disclosure",
+    "storyAddress": "accordion",
+    "storyName": "accordion",
+    "arguments": {
+      "size": {
+        "control": "select",
+        "options": ["sm", "md", "lg"]
+      },
+      "type": {
+        "control": "select",
+        "options": ["single", "multiple"]
+      },
+      "variant": {
+        "control": "select",
+        "options": ["filled", "unfilled"]
+      },
+      "isDisabled": {
+        "control": "select",
+        "options": [true, false]
+      }
+    }
+  },
+  "box": {
+    "overlay": false,
+    "storyParent": "layout",
+    "storyAddress": "box",
+    "storyName": "box"
+  },
+  "alert": {
+    "overlay": false,
+    "storyParent": "feedback",
+    "storyAddress": "alert",
+    "storyName": "alert",
+    "arguments": {
+      "variant": {
+        "control": "select",
+        "options": ["solid", "accent", "outline"]
+      },
+      "action": {
+        "control": "select",
+        "options": ["info", "error", "warning", "muted", "success"]
+      }
+    }
+  },
+  "alertdialog": {
+    "overlay": true,
+    "storyParent": "overlay",
+    "storyAddress": "alertdialog",
+    "storyName": "alert-dialog",
+    "arguments": {
+      "size": {
+        "control": "select",
+        "options": ["sm", "md", "lg", "xl", "full", ""]
+      }
+    }
+  },
+  "avatar": {
+    "overlay": false,
+    "storyParent": "media-and-icons",
+    "storyAddress": "avatar",
+    "storyName": "avatar",
+    "arguments": {
+      "size": {
+        "control": "select",
+        "options": ["xs", "sm", "md", "lg", "xl", "2xl"]
+      },
+      "border radius": {
+        "control": "select",
+        "options": [
+          "$xs",
+          "$sm",
+          "$md",
+          "$lg",
+          "$xl",
+          "$2xl",
+          "$3xl",
+          "$full",
+          "$none"
+        ]
+      },
+      "badge": {
+        "control": "select",
+        "options": [true, false]
+      }
+    }
+  },
+
+  "popover": {
+    "overlay": true,
+    "storyParent": "overlay",
+    "storyAddress": "popover",
+    "storyName": "popover",
+    "arguments": {
+      "placement": {
+        "control": "select",
+        "options": [
+          "bottom",
+          "bottom left",
+          "bottom right",
+          "top",
+          "top left",
+          "top right",
+          "left",
+          "left bottom",
+          "left right",
+          "right",
+          "right bottom",
+          "right top"
+        ]
+      }
+    },
+    "showMenu": {
+      "control": "select",
+      "options": [true, false]
+    }
+  },
+
+  "menu": {
+    "overlay": true,
+    "storyParent": "overlay",
+    "storyAddress": "menu",
+    "storyName": "menu",
+    "arguments": {
+      "placement": {
+        "control": "select",
+        "options": [
+          "bottom",
+          "bottom left",
+          "bottom right",
+          "top",
+          "top left",
+          "top right",
+          "left",
+          "left bottom",
+          "left right",
+          "right",
+          "right bottom",
+          "right top"
+        ]
+      }
+    },
+    "showMenu": {
+      "control": "select",
+      "options": [true, false]
+    }
+  },
+
+  "badge": {
+    "overlay": false,
+    "storyParent": "media-and-icons",
+    "storyAddress": "badge",
+    "storyName": "badge",
+    "arguments": {
+      "size": {
+        "control": "select",
+        "options": ["sm", "md", "lg"]
+      },
+      "variant": {
+        "control": "select",
+        "options": ["solid", "outline"]
+      },
+      "borderradius": {
+        "control": "select",
+        "options": [
+          "$none",
+          "$xs",
+          "$sm",
+          "$md",
+          "$lg",
+          "$xl",
+          "$2xl",
+          "$3xl",
+          "$full"
+        ]
+      },
+      "action": {
+        "control": "select",
+        "options": ["error", "warning", "success", "info", "muted"]
+      }
+    }
+  },
+  "button": {
+    "overlay": false,
+    "storyParent": "forms",
+    "storyAddress": "button",
+    "storyName": "button",
+    "arguments": {
+      "size": {
+        "control": "select",
+        "options": ["xs", "sm", "md", "lg", "xl"]
+      },
+      "variant": {
+        "control": "select",
+        "options": ["variant", "solid", "outline", "link"]
+      },
+      "action": {
+        "control": "select",
+        "options": ["action", "primary", "secondary", "positive", "negative"]
+      },
+      "isHovered": {
+        "control": "select",
+        "options": [true, false]
+      },
+      "isPressed": {
+        "control": "select",
+        "options": [true, false]
+      },
+      "isFocusVisible": {
+        "control": "select",
+        "options": [true, false]
+      },
+      "isDisabled": {
+        "control": "select",
+        "options": [true, false]
+      }
+    }
+  },
+  "checkbox": {
+    "overlay": false,
+    "storyParent": "forms",
+    "storyAddress": "checkbox",
+    "storyName": "checkbox",
+    "arguments": {
+      "size": {
+        "control": "select",
+        "options": ["sm", "md", "lg"]
+      },
+      "isChecked": {
+        "type": "select",
+        "options": [true, false]
+      },
+      "isInvalid": {
+        "type": "select",
+        "options": [true, false]
+      },
+      "isDisabled": {
+        "type": "select",
+        "options": [true, false]
+      },
+      "isReadOnly": {
+        "type": "select",
+        "options": [true, false]
+      }
+    }
+  },
+  "divider": {
+    "overlay": false,
+    "storyParent": "data-display",
+    "storyAddress": "divider",
+    "storyName": "divider",
+    "arguments": {
+      "orientation": {
+        "control": "select",
+        "options": ["horizontal", "vertical"]
+      }
+    }
+  },
+  "fab": {
+    "overlay": false,
+    "storyParent": "others",
+    "storyAddress": "fab",
+    "storyName": "fab",
+    "arguments": {
+      "state": {
+        "control": "select",
+        "options": ["enabled", "disabled"]
+      },
+      "placement": {
+        "control": "select",
+        "options": [
+          "top left",
+          "top center",
+          "top right",
+          "bottom left",
+          "bottom center",
+          "bottom right"
+        ]
+      },
+      "size": {
+        "control": "select",
+        "options": ["sm", "md", "lg", ""]
+      },
+      "showLabel": {
+        "control": "select",
+        "options": [true, false]
+      },
+      "showIcon": {
+        "control": "select",
+        "options": [true, false]
+      }
+    }
+  },
+  "formcontrol": {
+    "overlay": false,
+    "storyParent": "forms",
+    "storyAddress": "formcontrol",
+    "storyName": "form-control",
+    "arguments": {
+      "isInvalid": {
+        "control": "select",
+        "options": [true, false]
+      },
+      "size": {
+        "control": "select",
+        "options": ["sm", "md", "lg", "xl"]
+      },
+      "isDisabled": {
+        "control": "select",
+        "options": [true, false]
+      },
+      "isRequired": {
+        "control": "select",
+        "options": [true, false]
+      }
+    }
+  },
+
+  "heading": {
+    "overlay": false,
+    "storyParent": "typography",
+    "storyAddress": "heading",
+    "storyName": "heading",
+    "arguments": {
+      "size": {
+        "control": "select",
+        "options": ["xs", "sm", "md", "lg", "xl", "2xl", "3xl", "4xl", "5xl"]
+      }
+    }
+  },
+
+  "hstack": {
+    "overlay": false,
+    "storyParent": "layout",
+    "storyAddress": "hstack",
+    "storyName": "h-stack",
+    "arguments": {
+      "space": {
+        "control": "select",
+        "options": [
+          "$none",
+          "$xs",
+          "$sm",
+          "$md",
+          "$lg",
+          "$xl",
+          "$2xl",
+          "$3xl",
+          "$4xl"
+        ]
+      },
+      "reversed": {
+        "control": "select",
+        "options": [true, false]
+      }
+    }
+  },
+
+  "icon": {
+    "overlay": false,
+    "storyParent": "media-and-icons",
+    "storyAddress": "icons",
+    "storyName": "icon",
+    "arguments": {
+      "size": {
+        "control": "select",
+        "options": ["xs", "sm", "md", "lg", "xl"]
+      }
+    }
+  },
+  "image": {
+    "overlay": false,
+    "storyParent": "media-and-icons",
+    "storyAddress": "image",
+    "storyName": "image",
+    "arguments": {
+      "size": {
+        "control": "select",
+        "options": ["2xs", "xs", "sm", "md", "lg", "xl", "2xl"]
+      },
+      "borderradius": {
+        "control": "select",
+        "options": [
+          "$none",
+          "$xs",
+          "$sm",
+          "$md",
+          "$lg",
+          "$xl",
+          "$2xl",
+          "$3xl",
+          "$full"
+        ]
+      }
+    }
+  },
+  "input": {
+    "overlay": false,
+    "storyParent": "forms",
+    "storyAddress": "input",
+    "storyName": "input",
+    "arguments": {
+      "sizes": {
+        "control": "select",
+        "options": ["sm", "md", "lg", "xl"]
+      },
+      "variant": {
+        "control": "select",
+        "options": ["rounded", "outline", "underline"]
+      },
+      "isInvalid": {
+        "control": "select",
+        "options": [true, false]
+      },
+      "isHovered": {
+        "control": "select",
+        "options": [true, false]
+      },
+      "isFocused": {
+        "control": "select",
+        "options": [true, false]
+      },
+      "isDisabled": {
+        "control": "select",
+        "options": [true, false]
+      }
+    }
+  },
+
+  "link": {
+    "overlay": false,
+    "storyParent": "forms",
+    "storyAddress": "link",
+    "storyName": "link",
+    "arguments": {
+      "isHovered": {
+        "control": "select",
+        "options": [true, false]
+      },
+      "isPressed": {
+        "control": "select",
+        "options": [true, false]
+      },
+      "isFocusVisible": {
+        "control": "select",
+        "options": [true, false]
+      },
+      "isDisabled": {
+        "control": "select",
+        "options": [true, false]
+      }
+    }
+  },
+
+  "modal": {
+    "overlay": true,
+    "storyParent": "overlay",
+    "storyAddress": "modal",
+    "storyName": "modal",
+    "arguments": {
+      "size": {
+        "control": "select",
+        "options": ["xs", "sm", "md", "lg", "full"]
+      },
+      "showModal": {
+        "control": "boolean",
+        "options": [true, false]
+      }
+    }
+  },
+
+  "pressable": {
+    "overlay": false,
+    "storyParent": "forms",
+    "storyAddress": "pressable",
+    "storyName": "pressable",
+    "arguments": {
+      "state": {
+        "control": "select",
+        "options": ["enabled", "disabled"]
+      }
+    }
+  },
+
+  "progress": {
+    "overlay": false,
+    "storyParent": "feedback",
+    "storyAddress": "progress",
+    "storyName": "progress",
+    "arguments": {
+      "size": {
+        "control": "select",
+        "options": ["xs", "sm", "md", "lg", "xl", "2xl"]
+      }
+    }
+  },
+
+  "radio": {
+    "overlay": false,
+    "storyParent": "forms",
+    "storyAddress": "radio",
+    "storyName": "radio",
+    "arguments": {
+      "size": {
+        "control": "select",
+        "options": ["sm", "md", "lg"]
+      },
+      "isInvalid": {
+        "type": "select",
+        "options": [true, false]
+      },
+      "isDisabled": {
+        "type": "select",
+        "options": [true, false]
+      },
+      "isHovered": {
+        "type": "select",
+        "options": [true, false]
+      },
+      "isFocusVisible": {
+        "type": "select",
+        "options": [true, false]
+      },
+      "isReadOnly": {
+        "type": "select",
+        "figmaIgnore": true,
+        "options": [true, false]
+      }
+    }
+  },
+
+  "select": {
+    "overlay": false,
+    "storyParent": "forms",
+    "storyAddress": "select",
+    "storyName": "select",
+    "arguments": {
+      "state": {
+        "control": "select",
+        "options": ["enabled", "disabled"]
+      },
+      "size": {
+        "control": "select",
+        "options": ["sm", "md", "lg", "xl"]
+      },
+      "variant": {
+        "control": "select",
+        "options": ["rounded", "outline", "underline"]
+      },
+      "isInvalid": {
+        "control": "select",
+        "options": [true, false]
+      },
+      "isHovered": {
+        "control": "select",
+        "options": [true, false]
+      },
+      "isFocused": {
+        "control": "select",
+        "options": [true, false]
+      },
+      "isDisabled": {
+        "control": "select",
+        "options": [true, false]
+      }
+    }
+  },
+
+  "slider": {
+    "overlay": false,
+    "storyParent": "forms",
+    "storyAddress": "slider",
+    "storyName": "slider",
+    "arguments": {
+      "state": {
+        "control": "select",
+        "options": ["enabled", "disabled"]
+      },
+      "size": {
+        "control": "select",
+        "options": ["sm", "md", "lg"]
+      },
+      "orientation": {
+        "control": "select",
+        "options": ["horizontal", "vertical"]
+      },
+      "isReversed": {
+        "control": "select",
+        "options": [true, false]
+      },
+      "isDisabled": {
+        "control": "select",
+        "options": [true, false]
+      },
+      "isHovered": {
+        "control": "select",
+        "options": [true, false]
+      },
+      "isPressed": {
+        "control": "select",
+        "options": [true, false]
+      },
+      "isFocused": {
+        "control": "select",
+        "options": [true, false]
+      }
+    }
+  },
+
+  "spinner": {
+    "overlay": false,
+    "storyParent": "feedback",
+    "storyAddress": "spinner",
+    "storyName": "spinner",
+    "arguments": {
+      "size": {
+        "control": "select",
+        "options": ["small", "large"]
+      }
+    }
+  },
+
+  "switch": {
+    "overlay": false,
+    "storyParent": "forms",
+    "storyAddress": "switch",
+    "storyName": "switch",
+    "arguments": {
+      "size": {
+        "control": "select",
+        "options": ["sm", "md", "lg"]
+      },
+      "isDisabled": {
+        "control": "select",
+        "options": [true, false]
+      },
+      "isEnabled": {
+        "control": "select",
+        "options": [true, false]
+      },
+      "isInvalid": {
+        "control": "select",
+        "options": [true, false]
+      }
+    }
+  },
+
+  "text": {
+    "overlay": false,
+    "storyParent": "typography",
+    "storyAddress": "text",
+    "storyName": "text",
+    "arguments": {
+      "size": {
+        "control": "select",
+        "options": [
+          "2xs",
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "2xl",
+          "3xl",
+          "4xl",
+          "5xl",
+          "6xl"
+        ]
+      },
+      "fontWeight": {
+        "control": "select",
+        "options": [
+          "hairline",
+          "thin",
+          "light",
+          "normal",
+          "medium",
+          "semibold",
+          "bold",
+          "extrabold",
+          "black"
+        ]
+      }
+    }
+  },
+
+  "textarea": {
+    "overlay": false,
+    "storyParent": "forms",
+    "storyAddress": "textarea",
+    "storyName": "textarea",
+    "arguments": {
+      "size": {
+        "control": "select",
+        "options": ["sm", "md", "lg", "xl"]
+      },
+      "isInvalid": {
+        "control": "select",
+        "options": [true, false]
+      },
+      "isHovered": {
+        "control": "select",
+        "options": [true, false]
+      },
+      "isFocused": {
+        "control": "select",
+        "options": [true, false]
+      },
+      "isDisabled": {
+        "control": "select",
+        "options": [true, false]
+      }
+    }
+  },
+
+  "toast": {
+    "overlay": false,
+    "storyParent": "feedback",
+    "storyAddress": "toast",
+    "storyName": "toast",
+    "arguments": {
+      "placement": {
+        "control": "select",
+        "options": [
+          "top",
+          "top right",
+          "top left",
+          "bottom ",
+          "bottom left ",
+          "bottom right"
+        ]
+      },
+      "action": {
+        "control": "select",
+        "options": ["success", "info", "warning", "error", "attention"]
+      },
+      "variant": {
+        "control": "select",
+        "options": ["accent", "solid ", "outline"]
+      }
+    }
+  },
+  "tooltip": {
+    "overlay": true,
+    "storyParent": "overlay",
+    "storyAddress": "tooltip",
+    "storyName": "tooltip",
+    "arguments": {
+      "state": {
+        "control": "select",
+        "options": ["enabled", "disabled"]
+      },
+      "placement": {
+        "control": "select",
+        "options": [
+          "top left",
+          "top",
+          "top right",
+          "left top",
+          "left",
+          "left bottom",
+          "bottom left",
+          "bottom",
+          "bottom right",
+          "right top ",
+          "right",
+          "right bottom"
+        ]
+      },
+      "showTooltip": {
+        "control": "boolean",
+        "options": [true, false]
+      }
+    }
+  },
+
+  "vstack": {
+    "overlay": false,
+    "storyParent": "layout",
+    "storyAddress": "vstack",
+    "storyName": "v-stack",
+    "arguments": {
+      "space": {
+        "control": "select",
+        "options": [
+          "$none",
+          "$xs",
+          "$sm",
+          "$md",
+          "$lg",
+          "$xl",
+          "$2xl",
+          "$3xl",
+          "$4xl"
+        ]
+      },
+      "reversed": {
+        "control": "select",
+        "options": [true, false]
+      }
+    }
+  }
+}
