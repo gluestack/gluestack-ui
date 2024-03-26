@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import { createIcon } from '@gluestack-ui/icon';
 import { styled, AsForwarder } from '@gluestack-style/react';

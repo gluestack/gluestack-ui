@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { createPopover } from '@gluestack-ui/popover';
 import { tva } from '@gluestack-ui/nativewind-utils/tva';

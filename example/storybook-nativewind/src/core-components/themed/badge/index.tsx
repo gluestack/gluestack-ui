@@ -1,3 +1,4 @@
+'use client';
 import { AsForwarder, styled } from '@gluestack-style/react';
 import { Text, View } from 'react-native';
 

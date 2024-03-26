@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import { createCheckbox } from '@gluestack-ui/checkbox';
 import { View, Pressable, Text } from 'react-native';

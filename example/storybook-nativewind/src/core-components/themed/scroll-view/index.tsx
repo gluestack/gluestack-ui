@@ -1,3 +1,4 @@
+'use client';
 import { ScrollView as RNScrollView } from 'react-native';
 
 import { styled, useStyled, propertyTokenMap } from '@gluestack-style/react';

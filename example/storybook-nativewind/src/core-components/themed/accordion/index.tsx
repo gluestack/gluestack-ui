@@ -1,3 +1,4 @@
+'use client';
 import { createAccordion } from '@gluestack-ui/accordion';
 import { AsForwarder, styled } from '@gluestack-style/react';
 import { View, Pressable, Text, Platform } from 'react-native';

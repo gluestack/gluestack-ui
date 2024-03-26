@@ -1,5 +1,5 @@
+'use client';
 import { ActivityIndicator, Pressable, Text, View } from 'react-native';
-
 import { createButton } from '@gluestack-ui/button';
 import { AsForwarder, styled } from '@gluestack-style/react';
 
