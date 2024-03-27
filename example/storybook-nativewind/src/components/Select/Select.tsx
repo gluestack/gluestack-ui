@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Center, ChevronDownIcon, Icon } from '@gluestack-ui/themed';
+import { Center, Icon } from '@gluestack-ui/themed';
 
 import {
   Select,
