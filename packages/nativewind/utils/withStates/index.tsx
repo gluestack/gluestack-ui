@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import { extractDataClassName } from '../utils';
-export { useStyleContext } from '../context';
+
 type WithStatesProps = {
   className?: string;
   states?: any;
@@ -12,7 +12,7 @@ export const withStates = <T,>(Component: React.ComponentType<T>) =>
     ({ states, className, ...props }: T & WithStatesProps, ref?: any) => {
       const classNamesFinal = React.useMemo(() => {
         if (!className) return;
-        extractDataClassName(className, states);
+        return extractDataClassName(className, states);
       }, [className, states]);
 
       return (
