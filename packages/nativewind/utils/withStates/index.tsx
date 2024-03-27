@@ -12,7 +12,7 @@ export const withStates = <T,>(Component: React.ComponentType<T>) =>
     ({ states, className, ...props }: T & WithStatesProps, ref?: any) => {
       const classNamesFinal = React.useMemo(() => {
         if (!className) return;
-        extractDataClassName(className, states);
+        return extractDataClassName(className, states);
       }, [className, states]);
 
       return (
