@@ -1,10 +1,8 @@
-import React, { memo } from 'react';
-import { View, Pressable, Text, TextInput } from 'react-native';
-import { StyledProvider, styled } from '@gluestack-style/react';
+import React from 'react';
+import { Pressable, Text, TextInput } from 'react-native';
+import { styled } from '@gluestack-style/react';
 import { Wrapper } from '../../components/Wrapper';
-import { get, set } from '@gluestack-style/react';
-import { AppProvider } from '@gluestack/design-system';
-import { config } from '../../components/nb.config';
+import { AppProvider } from '@gluestack-ui/design-system';
 
 const StyleView = styled(
   Pressable,
@@ -80,8 +78,6 @@ const StyleText2 = styled(
 );
 
 export function MultipleProvider() {
-  const [currentColorMode, setCurrentColorMode] = React.useState(get());
-
   return (
     <Wrapper colorMode={'dark'}>
       <StyleView>

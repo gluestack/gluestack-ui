@@ -1,6 +1,6 @@
 //@ts-nocheck
 import React from 'react';
-import { Box, Text, VStack, Link } from '@gluestack/design-system';
+import { Box, Text, VStack, Link } from '@gluestack-ui/design-system';
 import NextImage from 'next/image';
 export const CardTalk = ({
   title,

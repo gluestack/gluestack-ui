@@ -1,6 +1,6 @@
 import React from 'react';
 import Fold2 from './Fold2';
-import { Box, VStack, Text } from '@gluestack/design-system';
+import { Box, VStack, Text } from '@gluestack-ui/design-system';
 import Talk from './Talk';
 import Socail from './Socail';
 import Card1 from './Card1';

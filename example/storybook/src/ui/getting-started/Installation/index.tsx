@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import { Box } from '@gluestack/design-system';
+import { Box } from '@gluestack-ui/design-system';
 import { CardTalk } from './CardTalk';
 import { content1 } from './content1';
 

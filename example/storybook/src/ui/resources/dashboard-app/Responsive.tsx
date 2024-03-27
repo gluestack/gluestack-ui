@@ -1,10 +1,10 @@
-import { Box, Text } from '@gluestack/design-system';
+import { Box, Text } from '@gluestack-ui/design-system';
 import React, { useRef, useState } from 'react';
 import NextImage from 'next/image';
 import { Expand } from './Expand';
 import { Resizable } from 're-resizable';
 // import { GluestackUIProvider } from "@gluestack-ui/themed"
-// import { OpenInNewIcon } from "@gluestack/design-system";
+// import { OpenInNewIcon } from "@gluestack-ui/design-system";
 
 function Responsiveness() {
   const resizableRef = useRef<any>(null);

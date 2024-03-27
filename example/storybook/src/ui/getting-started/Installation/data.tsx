@@ -1,4 +1,8 @@
-import { DiscordIcon, GitHubIcon, TwitterIcon } from '@gluestack/design-system';
+import {
+  DiscordIcon,
+  GitHubIcon,
+  TwitterIcon,
+} from '@gluestack-ui/design-system';
 import React from 'react';
 import Stackoverflow from './Stackoverflow';
 

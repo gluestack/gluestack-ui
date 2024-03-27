@@ -1,4 +1,4 @@
-import { LayoutContext } from '@gluestack/design-system';
+import { LayoutContext } from '@gluestack-ui/design-system';
 import React, { useContext } from 'react';
 
 function Reddit() {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Text, VStack } from '@gluestack/design-system';
+import { Box, Text, VStack } from '@gluestack-ui/design-system';
 import NextLink from 'next/link';
 
 export const ComponentCard = ({

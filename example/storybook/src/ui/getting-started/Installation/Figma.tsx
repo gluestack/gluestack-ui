@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { LayoutContext } from '@gluestack/design-system';
+import { LayoutContext } from '@gluestack-ui/design-system';
 
 function Figma() {
   const { colorMode } = useContext(LayoutContext);

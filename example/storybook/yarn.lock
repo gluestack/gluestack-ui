@@ -2138,9 +2138,9 @@
   dependencies:
     "@gluestack-ui/utils" "^0.1.12"
 
-"@gluestack/design-system@^0.4.70":
+"@gluestack-ui/design-system@^0.4.70":
   version "0.4.73"
-  resolved "https://registry.yarnpkg.com/@gluestack/design-system/-/design-system-0.4.73.tgz#7ebd7a43b4aef40d53a35ae2e51390dd34166a7a"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/design-system/-/design-system-0.4.73.tgz#7ebd7a43b4aef40d53a35ae2e51390dd34166a7a"
   integrity sha512-zraZIFZBGciAIOuJyqSkZqvu/HDqFRXxm2Z6lguTHC9gcJYta47Sj/Ctd420e/CnowcdKj2uJqqaoEjbvkAe+A==
   dependencies:
     "@expo/html-elements" "0.3.0"
