@@ -13,6 +13,7 @@ import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withSt
 import { H3 } from '@expo/html-elements';
 import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
 
+const SCOPE = 'ACCORDION';
 /** Styles */
 
 const accordionStyle = tva({
@@ -79,8 +80,8 @@ const UIAccordion = createAccordion({
   //@ts-ignore
   Root:
     Platform.OS === 'web'
-      ? withStyleContext(View)
-      : withStyleContextAndStates(View),
+      ? withStyleContext(View, SCOPE)
+      : withStyleContextAndStates(View, SCOPE),
   Item: View,
   // @ts-ignore
   Header: Platform.OS === 'web' ? H3 : View,
@@ -160,7 +161,7 @@ const AccordionItem = React.forwardRef(
     { className, ...props }: { className?: string } & IAccordionItemProps,
     ref?: any
   ) => {
-    const { variant } = useStyleContext();
+    const { variant } = useStyleContext(SCOPE);
     return (
       <UIAccordion.Item
         ref={ref}
@@ -199,7 +200,7 @@ const AccordionContentText = React.forwardRef(
     }: { className?: string } & IAccordionContentTextProps,
     ref?: any
   ) => {
-    const { size } = useStyleContext();
+    const { size } = useStyleContext(SCOPE);
     return (
       <UIAccordion.ContentText
         ref={ref}
@@ -224,7 +225,7 @@ const AccordionIcon = React.forwardRef(
     }: IAccordionIconProps & { className?: any; fill?: any },
     ref?: any
   ) => {
-    const { size: parentSize } = useStyleContext();
+    const { size: parentSize } = useStyleContext(SCOPE);
 
     if (AsComp) {
       return (
@@ -292,7 +293,7 @@ const AccordionTitleText = React.forwardRef(
     { className, ...props }: { className?: string } & IAccordionTitleTextProps,
     ref?: any
   ) => {
-    const { size } = useStyleContext();
+    const { size } = useStyleContext(SCOPE);
     return (
       <UIAccordion.TitleText
         ref={ref}

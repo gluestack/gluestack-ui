@@ -19,12 +19,14 @@ import {
   Platform,
 } from 'react-native';
 
+const SCOPE = 'BUTTON';
+
 const UIButton = createButton({
   // @ts-ignore
   Root:
     Platform.OS === 'web'
-      ? withStyleContext(Pressable)
-      : withStyleContextAndStates(Pressable),
+      ? withStyleContext(Pressable, SCOPE)
+      : withStyleContextAndStates(Pressable, SCOPE),
   Text,
   Group: View,
   Spinner: ActivityIndicator,
@@ -232,11 +234,10 @@ const Button = React.forwardRef(
       action = 'primary',
       ...props
     }: { className?: string } & IButtonProps,
-    ref
+    ref?: any
   ) => {
     return (
       <UIButton
-        // @ts-ignore
         ref={ref}
         {...props}
         className={buttonStyle({ variant, size, action, class: className })}
@@ -266,7 +267,7 @@ const ButtonText = React.forwardRef(
       variant: parentVariant,
       size: parentSize,
       action: parentAction,
-    } = useStyleContext();
+    } = useStyleContext(SCOPE);
 
     return (
       <UIButton.Text
@@ -301,7 +302,7 @@ const ButtonIcon = ({
     variant: parentVariant,
     size: parentSize,
     action: parentAction,
-  } = useStyleContext();
+  } = useStyleContext(SCOPE);
 
   if (AsComp) {
     return (

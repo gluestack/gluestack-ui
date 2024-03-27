@@ -10,7 +10,7 @@ import {
 
 import React from 'react';
 import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
-
+const SCOPE = 'ALERT';
 const alertStyle = tva({
   base: 'items-center p-3 rounded-sm flex-row',
 
@@ -99,7 +99,7 @@ const alertIconStyle = tva({
 });
 
 export const UIAlert = createAlert({
-  Root: withStyleContext(View),
+  Root: withStyleContext(View, SOCPE),
   Text: Text,
   Icon: View,
 });
@@ -158,7 +158,7 @@ const AlertIcon = ({
   as: AsComp,
   ...props
 }: any) => {
-  const { action } = useStyleContext();
+  const { action } = useStyleContext(SCOPE);
   if (AsComp) {
     return (
       <AsComp
