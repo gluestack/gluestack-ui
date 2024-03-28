@@ -3,7 +3,7 @@ import React from 'react';
 import { extractDataClassName } from '../utils';
 import { ParentContext } from '../context';
 import { useParentContext } from '../context';
-export const withStyleContextAndStates = (Component, scope) => {
+export const withStyleContextAndStates = (Component, scope = 'Global') => {
   return React.forwardRef(({ context, className, states, ...props }, ref) => {
     let contextValues = {};
     const parentContextValues = useParentContext();
@@ -28,7 +28,7 @@ export const withStyleContextAndStates = (Component, scope) => {
     );
   });
 };
-export const useStyleContext = (scope) => {
+export const useStyleContext = (scope = 'Global') => {
   const parentContextValues = useParentContext();
   return parentContextValues[scope];
 };

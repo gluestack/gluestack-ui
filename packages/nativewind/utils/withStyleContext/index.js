@@ -2,7 +2,7 @@
 import React from 'react';
 import { ParentContext } from '../context';
 import { useParentContext } from '../context';
-export const withStyleContext = (Component, scope) => {
+export const withStyleContext = (Component, scope = 'Global') => {
   return React.forwardRef(({ context, ...props }, ref) => {
     let contextValues = {};
     const parentContextValues = useParentContext();
@@ -19,7 +19,7 @@ export const withStyleContext = (Component, scope) => {
     );
   });
 };
-export const useStyleContext = (scope) => {
+export const useStyleContext = (scope = 'Global') => {
   const parentContextValues = useParentContext();
   return parentContextValues[scope];
 };

@@ -4,10 +4,10 @@ type WithStyleContextProps = {
 };
 export declare const withStyleContext: <T>(
   Component: React.ComponentType<T & WithStyleContextProps>,
-  scope: string
+  scope?: string
 ) => React.ForwardRefExoticComponent<
   React.PropsWithoutRef<T & WithStyleContextProps> &
     React.RefAttributes<unknown>
 >;
-export declare const useStyleContext: (scope: string) => any;
+export declare const useStyleContext: (scope?: string) => any;
 export {};

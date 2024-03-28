@@ -99,7 +99,7 @@ const alertIconStyle = tva({
 });
 
 export const UIAlert = createAlert({
-  Root: withStyleContext(View, SOCPE),
+  Root: withStyleContext(View, SCOPE),
   Text: Text,
   Icon: View,
 });
@@ -159,13 +159,14 @@ const AlertIcon = ({
   ...props
 }: any) => {
   const { action } = useStyleContext(SCOPE);
+
   if (AsComp) {
     return (
       <AsComp
+        fill={fill}
         className={alertIconStyle({
           parentVariants: { action },
           size,
-          fill,
           class: className,
         })}
         {...props}

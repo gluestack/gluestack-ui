@@ -7,7 +7,7 @@ type WithStyleContextProps = {
 };
 export const withStyleContext = <T,>(
   Component: React.ComponentType<T & WithStyleContextProps>,
-  scope: string
+  scope: string = 'Global'
 ) => {
   return React.forwardRef(
     ({ context, ...props }: T & WithStyleContextProps, ref?: any) => {
@@ -28,7 +28,7 @@ export const withStyleContext = <T,>(
   );
 };
 
-export const useStyleContext = (scope: string) => {
+export const useStyleContext = (scope: string = 'Global') => {
   const parentContextValues = useParentContext();
   return parentContextValues[scope];
 };
