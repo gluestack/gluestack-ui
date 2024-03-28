@@ -10,6 +10,7 @@ import {
   useStyleContext,
 } from '@gluestack-ui/nativewind-utils/withStyleContext';
 import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
+import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 
 const UIAvatar = createAvatar({
   Root: withStyleContext(View),
@@ -71,10 +72,13 @@ const avatarBadgeStyle = tva({
     },
   },
 });
+
 const avatarImageStyle = tva({
   base: 'h-full w-full rounded-full absolute',
 });
 
+type IAvatarProps = Omit<React.ComponentProps<typeof UIAvatar>, 'context'> &
+  VariantProps<typeof avatarStyle>;
 export const Avatar = React.forwardRef(
   (
     {
@@ -83,7 +87,7 @@ export const Avatar = React.forwardRef(
       size = 'md',
       action = 'primary',
       ...props
-    }: any,
+    }: { className?: string } & IAvatarProps,
     ref
   ) => {
     return (
@@ -97,8 +101,19 @@ export const Avatar = React.forwardRef(
   }
 );
 
+type IAvatarBadgeProps = React.ComponentProps<typeof UIAvatar.Badge> &
+  VariantProps<typeof avatarBadgeStyle>;
 export const AvatarBadge = React.forwardRef(
-  ({ className, variant, size, action, ...props }: any, ref) => {
+  (
+    {
+      className,
+      variant,
+      size,
+      action,
+      ...props
+    }: { className?: string } & IAvatarBadgeProps,
+    ref
+  ) => {
     const {
       variant: parentVariant,
       size: parentSize,
@@ -124,8 +139,22 @@ export const AvatarBadge = React.forwardRef(
     );
   }
 );
+
+type IAvatarFallbackTextProps = React.ComponentProps<
+  typeof UIAvatar.FallbackText
+> &
+  VariantProps<typeof avatarFallbackTextStyle>;
 export const AvatarFallbackText = React.forwardRef(
-  ({ className, variant, size, action, ...props }: any, ref) => {
+  (
+    {
+      className,
+      variant,
+      size,
+      action,
+      ...props
+    }: { className?: string } & IAvatarFallbackTextProps,
+    ref
+  ) => {
     const {
       variant: parentVariant,
       size: parentSize,
@@ -152,8 +181,13 @@ export const AvatarFallbackText = React.forwardRef(
   }
 );
 
+type IAvatarImageProps = React.ComponentProps<typeof UIAvatar.Image> &
+  VariantProps<typeof avatarImageStyle>;
 export const AvatarImage = React.forwardRef(
-  ({ className, ...props }: any, ref) => {
+  (
+    { className, ...props }: { className?: string } & IAvatarImageProps,
+    ref
+  ) => {
     return (
       <UIAvatar.Image
         ref={ref}
@@ -166,8 +200,13 @@ export const AvatarImage = React.forwardRef(
   }
 );
 
+type IAvatarGroupProps = React.ComponentProps<typeof UIAvatar.Group> &
+  VariantProps<typeof avatarGroupStyle>;
 export const AvatarGroup = React.forwardRef(
-  ({ className, ...props }: any, ref) => {
+  (
+    { className, ...props }: { className?: string } & IAvatarGroupProps,
+    ref
+  ) => {
     return (
       <UIAvatar.Group
         ref={ref}
