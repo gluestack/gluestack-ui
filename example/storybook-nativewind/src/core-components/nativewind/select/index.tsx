@@ -1,12 +1,14 @@
 import React from 'react';
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import { withStates } from '@gluestack-ui/nativewind-utils/withStates';
+import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withStyleContextAndStates';
 import {
   withStyleContext,
   useStyleContext,
 } from '@gluestack-ui/nativewind-utils/withStyleContext';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 import { createSelect } from '@gluestack-ui/select';
+import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
 import {
   Actionsheet,
   ActionsheetContent,
@@ -33,7 +35,7 @@ const selectIconStyle = tva({
       '2xs': 'h-3 w-3',
       'xs': 'h-3.5 w-3.5',
       'sm': 'h-4 w-4',
-      'md': 'h-4.5 w-4.5',
+      'md': 'h-[18px] w-[18px]',
       'lg': 'h-5 w-5',
       'xl': 'h-6 w-6',
     },
@@ -78,13 +80,13 @@ const selectTriggerStyle = tva({
 });
 
 const selectInputStyle = tva({
-  base: 'py-auto px-3 placeholder-text-500 flex-1 web:w-full h-full text-text-900 pointer-events-none web:outline-none',
+  base: 'py-auto px-3 placeholder:text-typography-500 flex-1 web:w-full h-full text-typography-900 pointer-events-none web:outline-none',
   parentVariants: {
     size: {
-      xl: 'text-xl',
-      lg: 'text-lg',
-      md: 'text-md',
-      sm: 'text-sm',
+      xl: 'text-xl leading-[0px]',
+      lg: 'text-lg leading-[0px]',
+      md: 'text-base leading-[0px]',
+      sm: 'text-sm leading-[0px]',
     },
     variant: {
       underlined: 'px-0',
@@ -96,7 +98,10 @@ const selectInputStyle = tva({
 
 const UISelect = createSelect(
   {
-    Root: withStyleContext(View),
+    Root:
+      Platform.OS === 'web'
+        ? withStyleContext(View)
+        : withStyleContextAndStates(View),
     // @ts-ignore
     Trigger: Platform.OS === 'web' ? Pressable : withStates(Pressable),
     Input: TextInput,
@@ -117,6 +122,11 @@ const UISelect = createSelect(
     SectionHeaderText: ActionsheetSectionHeaderText,
   }
 );
+
+cssInterop(UISelect, { className: 'style' });
+cssInterop(UISelect.Input, { className: 'style' });
+cssInterop(UISelect.Trigger, { className: 'style' });
+cssInterop(UISelect.Icon, { className: 'style' });
 
 type ISelectProps = VariantProps<typeof selectStyle> &
   React.ComponentProps<typeof UISelect>;
@@ -204,21 +214,34 @@ const SelectIcon = React.forwardRef(
     {
       className,
       as: AsComp,
-      size = 'sm',
+      size,
+      // @ts-ignore
+      fill = 'none',
       ...props
     }: ISelectIcon & { as?: any },
     ref?: any
   ) => {
+    const { size: parentSize } = useStyleContext();
     if (AsComp) {
       return (
-        <AsComp
+        <View
           className={selectIconStyle({
             class: className,
+            parentVariants: {
+              size: parentSize,
+            },
             size,
           })}
-          ref={ref}
-          {...props}
-        />
+        >
+          <AsComp
+            height={'100%'}
+            width={'100%'}
+            ref={ref}
+            fill={fill}
+            {...props}
+            //  color='red'
+          />
+        </View>
       );
     }
     return (
@@ -226,8 +249,12 @@ const SelectIcon = React.forwardRef(
         className={selectIconStyle({
           class: className,
           size,
+          parentVariants: {
+            size: parentSize,
+          },
         })}
         ref={ref}
+        fill={fill}
         {...props}
       />
     );

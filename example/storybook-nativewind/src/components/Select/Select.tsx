@@ -1,7 +1,6 @@
 import React from 'react';
-
-import { Center, Icon } from '@gluestack-ui/themed';
-
+import { Center } from '@/components/ui/center';
+import { Icon, ChevronDownIcon } from '@/components/ui/icon';
 import {
   Select,
   SelectIcon,
@@ -20,11 +19,7 @@ const SelectBasic = ({ size = 'md', variant = 'outline', ...props }: any) => {
     <Select {...props}>
       <SelectTrigger size={size} variant={variant}>
         <SelectInput placeholder="Select option" />
-        <SelectIcon
-          pr={variant === 'underlined' ? 0 : '$3'}
-          pl={variant === 'underlined' ? '$3' : 0}
-          as={ChevronDownIcon}
-        />
+        <SelectIcon className="mr-3" as={ChevronDownIcon} color="red" />
       </SelectTrigger>
       <SelectPortal>
         <SelectBackdrop />

@@ -95,6 +95,14 @@ module.exports = function (api) {
               __dirname,
               '../../packages/nativewind/utils/'
             ),
+            '@gluestack-ui/overlay': path.join(
+              __dirname,
+              '../../packages/unstyled/overlay/src'
+            ),
+            '@gluestack-ui/toast': path.join(
+              __dirname,
+              '../../packages/unstyled/toast/src'
+            ),
           },
         },
       ],

@@ -3,13 +3,14 @@ import { createIcon } from '@gluestack-ui/icon';
 import { Path, Svg } from 'react-native-svg';
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
+import { View } from 'react-native';
 
 export const UIIcon = createIcon({
   Root: Svg,
 });
 
 const iconStyle = tva({
-  base: 'text-typography-900',
+  // base: 'text-typography-900',
   variants: {
     size: {
       '2xs': 'h-3 w-3',
@@ -29,12 +30,20 @@ export const Icon = React.forwardRef(
   ) => {
     if (AsComp) {
       return (
-        <AsComp
-          ref={ref}
-          {...props}
-          fill={fill}
-          className={iconStyle({ size, class: className })}
-        />
+        <View
+          className={iconStyle({
+            class: className,
+            size,
+          })}
+        >
+          <AsComp
+            height={'100%'}
+            width={'100%'}
+            ref={ref}
+            {...props}
+            fill={fill}
+          />
+        </View>
       );
     }
     return (
