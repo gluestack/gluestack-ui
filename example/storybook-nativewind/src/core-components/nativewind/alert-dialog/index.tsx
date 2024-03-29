@@ -20,12 +20,13 @@ import {
 import { View, Pressable, ScrollView, Platform } from 'react-native';
 
 const AnimatedPressable = createMotionAnimatedComponent(Pressable);
+const SCOPE = 'ALERT_DIALOG';
 const UIAccessibleAlertDialog = createAlertDialog({
   // @ts-ignore
   Root:
     Platform.OS === 'web'
-      ? withStyleContext(View)
-      : withStyleContextAndStates(View),
+      ? withStyleContext(View, SCOPE)
+      : withStyleContextAndStates(View, SCOPE),
   Body: ScrollView,
   Content: Motion.View,
   CloseButton: Pressable,
@@ -150,7 +151,7 @@ const AlertDialogContent = React.forwardRef(
     }: { className?: string } & IAlertDialogContentProps,
     ref?: any
   ) => {
-    const { size: parentSize } = useStyleContext();
+    const { size: parentSize } = useStyleContext(SCOPE);
 
     return (
       <UIAccessibleAlertDialog.Content

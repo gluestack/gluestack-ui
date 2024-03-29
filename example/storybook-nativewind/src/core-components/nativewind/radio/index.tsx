@@ -53,12 +53,13 @@ const labelStyle = tva({
   base: 'text-typography-600 data-[checked=true]:text-typography-900 data-[hover=true]:text-typography-900 data-[hover=true]:data-[disabled=true]:text-typography-600 data-[hover=true]:data-[disabled=true]:data-[checked=true]:text-typography-900 data-[active=true]:text-typography-900 data-[active=true]:data-[checked=true]:text-typography-900 data-[disabled=true]:opacity-40 web:select-none',
 });
 
+const SCOPE = 'Radio';
 const UIRadio = createRadio({
   // @ts-ignore
   Root:
     Platform.OS === 'web'
-      ? withStyleContext(View)
-      : withStyleContextAndStates(Pressable),
+      ? withStyleContext(View, SCOPE)
+      : withStyleContextAndStates(Pressable, SCOPE),
   Group: View,
   Icon: Platform.OS === 'web' ? View : withStates(View),
   Indicator: Platform.OS === 'web' ? View : withStates(View),
@@ -88,7 +89,7 @@ const RadioGroup = ({ className, ...props }: any) => {
 };
 
 const RadioIndicator = ({ className, ...props }: any) => {
-  const { size } = useStyleContext();
+  const { size } = useStyleContext(SCOPE);
   return (
     <UIRadio.Indicator
       className={indicatorStyle({ parentVariants: { size }, class: className })}
@@ -98,7 +99,7 @@ const RadioIndicator = ({ className, ...props }: any) => {
 };
 
 const RadioLabel = ({ className, ...props }: any) => {
-  const { size } = useStyleContext();
+  const { size } = useStyleContext(SCOPE);
   return (
     <UIRadio.Label
       className={labelStyle({ parentVariants: { size }, class: className })}
@@ -108,7 +109,7 @@ const RadioLabel = ({ className, ...props }: any) => {
 };
 
 const RadioIcon = ({ className, as: AsComp, size, ...props }: any) => {
-  const { size: parentSize } = useStyleContext();
+  const { size: parentSize } = useStyleContext(SCOPE);
   if (AsComp) {
     return (
       <UIRadio.Icon>

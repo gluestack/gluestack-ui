@@ -12,12 +12,13 @@ import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withSt
 import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
 import { withStates } from '@gluestack-ui/nativewind-utils/withStates';
 
+const SCOPE = 'SLIDER';
 export const UISlider = createSlider({
   // @ts-ignore
   Root:
     Platform.OS === 'web'
-      ? withStyleContext(View)
-      : withStyleContextAndStates(View),
+      ? withStyleContext(View, SCOPE)
+      : withStyleContextAndStates(View, SCOPE),
   Thumb: Platform.OS === 'web' ? View : withStates(View),
   Track: Pressable,
   FilledTrack: Platform.OS === 'web' ? View : withStates(View),
@@ -183,7 +184,7 @@ export const Slider = React.forwardRef(
 
 export const SliderThumb = React.forwardRef(
   ({ className, size, ...props }: any, ref) => {
-    const { size: parentSize } = useStyleContext();
+    const { size: parentSize } = useStyleContext(SCOPE);
 
     return (
       <UISlider.Thumb
@@ -207,7 +208,7 @@ export const SliderTrack = React.forwardRef(
       orientation: parentOrientation,
       size: parentSize,
       isReversed,
-    } = useStyleContext();
+    } = useStyleContext(SCOPE);
 
     return (
       <UISlider.Track
@@ -228,7 +229,7 @@ export const SliderTrack = React.forwardRef(
 
 export const SliderFilledTrack = React.forwardRef(
   ({ className, ...props }: any, ref) => {
-    const { orientation: parentOrientation } = useStyleContext();
+    const { orientation: parentOrientation } = useStyleContext(SCOPE);
 
     return (
       <UISlider.FilledTrack

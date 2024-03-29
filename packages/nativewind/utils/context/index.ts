@@ -2,6 +2,6 @@
 import { createContext, useContext } from 'react';
 export const ParentContext = createContext({});
 
-export const useStyleContext = () => {
+export const useParentContext = () => {
   return useContext(ParentContext) as any;
 };

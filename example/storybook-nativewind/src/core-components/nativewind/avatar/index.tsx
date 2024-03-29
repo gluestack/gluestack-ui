@@ -10,10 +10,11 @@ import {
   useStyleContext,
 } from '@gluestack-ui/nativewind-utils/withStyleContext';
 import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
+const SCOPE = 'AVATAR';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 
 const UIAvatar = createAvatar({
-  Root: withStyleContext(View),
+  Root: withStyleContext(View, SCOPE),
   Badge: View,
   Group: View,
   Image: Image,
@@ -88,7 +89,7 @@ export const Avatar = React.forwardRef(
       action = 'primary',
       ...props
     }: { className?: string } & IAvatarProps,
-    ref
+    ref?: any
   ) => {
     return (
       <UIAvatar
@@ -118,7 +119,7 @@ export const AvatarBadge = React.forwardRef(
       variant: parentVariant,
       size: parentSize,
       action: parentAction,
-    } = useStyleContext();
+    } = useStyleContext(SCOPE);
 
     return (
       <UIAvatar.Badge
@@ -159,7 +160,7 @@ export const AvatarFallbackText = React.forwardRef(
       variant: parentVariant,
       size: parentSize,
       action: parentAction,
-    } = useStyleContext();
+    } = useStyleContext(SCOPE);
 
     return (
       <UIAvatar.FallbackText

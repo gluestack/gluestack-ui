@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import { extractDataClassName } from '../utils';
-export { useStyleContext } from '../context';
+
 type WithStatesProps = {
   className?: string;
   states?: any;

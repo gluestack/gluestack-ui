@@ -11,13 +11,13 @@ import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withSt
 import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
 import { withStates } from '@gluestack-ui/nativewind-utils/withStates';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
-
+const SCOPE = 'TEXTAREA';
 const UITextarea = createTextarea({
   // @ts-ignore
   Root:
     Platform.OS === 'web'
-      ? withStyleContext(View)
-      : withStyleContextAndStates(View),
+      ? withStyleContext(View, SCOPE)
+      : withStyleContextAndStates(View, SCOPE),
   Input: Platform.OS === 'web' ? TextInput : withStates(TextInput),
 });
 
@@ -79,7 +79,7 @@ const TextareaInput = React.forwardRef(
     { className, ...props }: { className?: string } & ITextareaInputProps,
     ref
   ) => {
-    const { size: parentSize } = useStyleContext();
+    const { size: parentSize } = useStyleContext(SCOPE);
 
     return (
       <UITextarea.Input
