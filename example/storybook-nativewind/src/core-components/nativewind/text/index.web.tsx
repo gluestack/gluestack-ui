@@ -4,7 +4,7 @@ import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 
 const textStyle = tva({
-  base: 'text-typography-700 font-normal font-body',
+  base: 'text-typography-700 font-normal font-sans bg-transparent border-0 box-border display-inline list-none margin-0 padding-0 position-relative text-start no-underline whitespace-pre-wrap word-wrap-break-word',
 
   variants: {
     isTruncated: {
