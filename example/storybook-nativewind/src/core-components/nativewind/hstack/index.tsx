@@ -1,9 +1,8 @@
-'use client';
 import React from 'react';
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import { View } from 'react-native';
 
-const hstackStyle = tva({
+export const hstackStyle = tva({
   base: 'flex-row',
   variants: {
     space: {

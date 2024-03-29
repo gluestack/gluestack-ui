@@ -1,7 +1,9 @@
 import React from 'react';
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
+import { centerStyle as centerBaseStyle } from './index';
 const centerStyle = tva({
-  base: 'flex flex-col justify-center items-center',
+  extend: centerBaseStyle,
+  base: 'flex flex-col',
 });
 
 const Center = ({ className, ...props }: any) => {

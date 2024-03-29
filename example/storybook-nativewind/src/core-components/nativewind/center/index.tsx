@@ -1,8 +1,7 @@
-'use client';
 import { View } from 'react-native';
 import React from 'react';
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
-const centerStyle = tva({
+export const centerStyle = tva({
   base: 'justify-center items-center',
 });
 

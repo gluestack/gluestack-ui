@@ -1,9 +1,8 @@
-'use client';
 import React from 'react';
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import { View } from 'react-native';
 
-const cardStyle = tva({
+export const cardStyle = tva({
   variants: {
     size: {
       sm: 'p-3 rounded',

@@ -4,7 +4,7 @@ import { H1, H2, H3, H4, H5, H6 } from '@expo/html-elements';
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
 
-const headingStyle = tva({
+export const headingStyle = tva({
   base: 'text-typography-900 font-bold font-heading tracking-sm my-0',
   variants: {
     isTruncated: {
