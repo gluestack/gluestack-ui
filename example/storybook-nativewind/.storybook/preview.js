@@ -70,6 +70,8 @@ export const parameters = {
         ],
         'More',
         ['Changelog'],
+        'Theme Configuration',
+        ['Theme', ['Default Tokens'], 'Customizing Theme', ['Eject Theme']],
       ],
     },
   },

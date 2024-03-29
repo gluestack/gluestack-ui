@@ -6,6 +6,12 @@ module.exports = {
     './src/core-components/**/**/*.{html,js,jsx,ts,tsx}',
     './src/components/**/*.{html,js,jsx,ts,tsx,mdx}',
   ],
+  safelist: [
+    {
+      pattern:
+        /bg-(primary|secondary|tertiary|error|success|warning|muted|info|typography|outline|background)-(0|50|100|200|300|400|500|600|700|800|900|950|light|dark)/,
+    },
+  ],
   presets: [require('nativewind/preset')],
   theme: {
     extend: {
