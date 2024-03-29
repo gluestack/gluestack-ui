@@ -1,14 +1,14 @@
 import React, { useContext, Fragment, useMemo } from 'react';
-import tailwindConfig from '../../../../tailwind.config';
-import { GluestackUIProvider } from '../../../core-components/nativewind/gluestack-ui-provider';
-import { config } from '../../../core-components/nativewind/gluestack-ui-provider/config';
+import tailwindConfig from '../../../tailwind.config';
+import { GluestackUIProvider } from '../../core-components/nativewind/gluestack-ui-provider';
+import { config } from '../../core-components/nativewind/gluestack-ui-provider/config';
 import {
   VStack,
   Heading,
   HStack,
   Box,
   Text,
-} from '../../../core-components/nativewind';
+} from '../../core-components/nativewind';
 import { LayoutContext } from '@gluestack/design-system';
 
 const ColorPaletteComponent = () => {
@@ -83,10 +83,7 @@ const ColorPaletteComponent = () => {
                     className={`w-12 h-12 rounded-lg mb-1 ${variant.className}`}
                   />
                   <VStack>
-                    <Text className="text-[12px]">
-                      {/* {variant.name} */}
-                      {variant.variant}
-                    </Text>
+                    <Text className="text-[12px]">{variant.variant}</Text>
                     <Text className="text-[12px]">{variant.color}</Text>
                   </VStack>
                 </VStack>

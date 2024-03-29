@@ -37,7 +37,7 @@ export const parameters = {
         'Core Concepts',
         ['Accessibility', 'Universal'],
         'Theme Configuration',
-        ['Theme', ['Default Tokens'], 'Customizing Theme', ['Eject Theme']],
+        ['Default Tokens', 'Customizing Theme'],
         'Components',
         [
           'Typography',
