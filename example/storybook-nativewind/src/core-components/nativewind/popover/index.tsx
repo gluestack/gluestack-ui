@@ -20,13 +20,13 @@ import {
 } from '@legendapp/motion';
 
 const AnimatedPressable = createMotionAnimatedComponent(Pressable);
-
+const SCOPE = 'POPOVER';
 const UIPopover = createPopover({
   // @ts-ignore
   Root:
     Platform.OS === 'web'
-      ? withStyleContext(View)
-      : withStyleContextAndStates(View),
+      ? withStyleContext(View, SCOPE)
+      : withStyleContextAndStates(View, SCOPE),
   Arrow: Motion.View,
   Backdrop: AnimatedPressable,
   Body: ScrollView,
@@ -241,7 +241,7 @@ const PopoverContent = React.forwardRef(
     }: { className?: string } & IPopoverContentProps,
     ref?: any
   ) => {
-    const { size: parentSize } = useStyleContext();
+    const { size: parentSize } = useStyleContext(SCOPE);
 
     return (
       <UIPopover.Content

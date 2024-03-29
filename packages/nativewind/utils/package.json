@@ -17,12 +17,13 @@
   "main": "index.js",
   "module": "index.js",
   "types": "index.d.ts",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "react-native": "src/index",
   "source": "src/index",
   "scripts": {
     "prepare": "tsc",
     "build": "tsc",
+    "remove": "rm -rf ../../../node_modules/react-native-css-interop",
     "clean": "rm -rf lib",
     "dev:web": "cd example/native && yarn web --clear",
     "storybook": "cd example/native/storybook && yarn web"

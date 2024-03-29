@@ -11,6 +11,7 @@ import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withSt
 import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 
+const SCOPE = 'BADGE';
 const badgeStyle = tva({
   base: 'flex-row items-center rounded-sm data-[disabled=true]:opacity-50 px-2',
 
@@ -91,8 +92,8 @@ const badgeIconStyle = tva({
 
 const ContextView =
   Platform.OS === 'web'
-    ? withStyleContext(View)
-    : withStyleContextAndStates(View);
+    ? withStyleContext(View, SCOPE)
+    : withStyleContextAndStates(View, SCOPE);
 
 cssInterop(ContextView, { className: 'style' });
 
@@ -129,7 +130,7 @@ const BadgeText = ({
   size,
   ...props
 }: { className?: string } & IBadgeTextProps) => {
-  const { size: parentSize, action: parentAction } = useStyleContext();
+  const { size: parentSize, action: parentAction } = useStyleContext(SCOPE);
   return (
     <Text
       className={badgeTextStyle({
@@ -156,7 +157,7 @@ const BadgeIcon = ({
   as: AsComp,
   ...props
 }: IBadgeIconProps & { className?: any }) => {
-  const { size: parentSize, action: parentAction } = useStyleContext();
+  const { size: parentSize, action: parentAction } = useStyleContext(SCOPE);
   if (AsComp) {
     return (
       <AsComp

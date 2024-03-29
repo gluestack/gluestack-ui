@@ -10,6 +10,7 @@ import {
 import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 
+const SCOPE = 'FORM_CONTROL';
 const formControlStyle = tva({
   base: 'flex flex-col',
   variants: {
@@ -209,7 +210,7 @@ const formControlLabelAstrickStyle = tva({
 });
 
 const FormControlLabelAstrick = ({ className, ...props }: any) => {
-  const { size: parentSize } = useStyleContext();
+  const { size: parentSize } = useStyleContext(SCOPE);
 
   return (
     <Text
@@ -223,7 +224,7 @@ const FormControlLabelAstrick = ({ className, ...props }: any) => {
 };
 
 export const UIFormControl = createFormControl({
-  Root: withStyleContext(View),
+  Root: withStyleContext(View, SCOPE),
   Error: View,
   ErrorText: Text,
   ErrorIcon: View,
@@ -282,7 +283,7 @@ const FormControlErrorText = ({
   size,
   ...props
 }: { className?: string } & IFormControlErrorTextProps) => {
-  const { size: parentSize } = useStyleContext();
+  const { size: parentSize } = useStyleContext(SCOPE);
   return (
     <UIFormControl.Error.Text
       className={formControlErrorTextStyle({
@@ -305,7 +306,7 @@ const FormControlErrorIcon = ({
   as: AsComp,
   ...props
 }: { className?: string; as?: any } & IFormControlErrorIconProps) => {
-  const { size: parentSize } = useStyleContext();
+  const { size: parentSize } = useStyleContext(SCOPE);
   if (AsComp) {
     return (
       <AsComp
@@ -353,7 +354,7 @@ const FormControlLabelText = ({
   size,
   ...props
 }: { className?: string } & IFormControlLabelTextProps) => {
-  const { size: parentSize } = useStyleContext();
+  const { size: parentSize } = useStyleContext(SCOPE);
 
   return (
     <UIFormControl.Label.Text
@@ -396,7 +397,7 @@ const FormControlHelperText = ({
   size,
   ...props
 }: { className?: string } & IFormControlHelperTextProps) => {
-  const { size: parentSize } = useStyleContext();
+  const { size: parentSize } = useStyleContext(SCOPE);
 
   return (
     <UIFormControl.Helper.Text

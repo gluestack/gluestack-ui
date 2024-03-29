@@ -18,12 +18,13 @@ import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 
 const AnimatedPressable = createMotionAnimatedComponent(Pressable);
 
+const SCOPE = 'MODAL';
 const UIModal = createModal({
   // @ts-ignore
   Root:
     Platform.OS === 'web'
-      ? withStyleContext(View)
-      : withStyleContextAndStates(View),
+      ? withStyleContext(View, SCOPE)
+      : withStyleContextAndStates(View, SCOPE),
   Backdrop: AnimatedPressable,
   Content: Motion.View,
   Body: ScrollView,
@@ -163,7 +164,7 @@ const ModalContent = React.forwardRef(
     { className, size, ...props }: { className?: string } & IModalContentProps,
     ref?: any
   ) => {
-    const { size: parentSize } = useStyleContext();
+    const { size: parentSize } = useStyleContext(SCOPE);
 
     return (
       <UIModal.Content

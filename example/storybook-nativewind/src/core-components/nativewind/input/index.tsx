@@ -11,13 +11,13 @@ import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withSt
 import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
 import { withStates } from '@gluestack-ui/nativewind-utils/withStates';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
-
+const SCOPE = 'INPUT';
 const UIInput = createInput({
   // @ts-ignore
   Root:
     Platform.OS === 'web'
-      ? withStyleContext(View)
-      : withStyleContextAndStates(View),
+      ? withStyleContext(View, SCOPE)
+      : withStyleContextAndStates(View, SCOPE),
   Icon: View,
   Slot: Pressable,
   Input: Platform.OS === 'web' ? TextInput : withStates(TextInput),
@@ -132,7 +132,7 @@ const InputIcon = React.forwardRef(
     }: { className?: any } & IInputIconProps,
     ref
   ) => {
-    const { size: parentSize } = useStyleContext();
+    const { size: parentSize } = useStyleContext(SCOPE);
 
     if (AsComp) {
       return (
@@ -187,7 +187,7 @@ type IInputFieldProps = React.ComponentProps<typeof UIInput.Input> &
 
 const InputField = React.forwardRef(
   ({ className, ...props }: { className?: string } & IInputFieldProps, ref) => {
-    const { variant: parentVariant, size: parentSize } = useStyleContext();
+    const { variant: parentVariant, size: parentSize } = useStyleContext(SCOPE);
 
     return (
       <UIInput.Input

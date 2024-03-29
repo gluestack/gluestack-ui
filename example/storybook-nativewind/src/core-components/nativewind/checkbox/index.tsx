@@ -15,12 +15,13 @@ import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 import { Platform } from 'react-native';
 import { Check } from 'lucide-react-native';
 
+const SCOPE = 'CHECKBOX';
 const UICheckbox = createCheckbox({
   // @ts-ignore
   Root:
     Platform.OS === 'web'
-      ? withStyleContext(View)
-      : withStyleContextAndStates(Pressable),
+      ? withStyleContext(View, SCOPE)
+      : withStyleContextAndStates(Pressable, SCOPE),
   Group: withStates(View),
   Icon: withStates(Check),
   Label: withStates(Text),
@@ -109,7 +110,7 @@ const CheckboxIndicator = React.forwardRef(
     { className, ...props }: { className?: string } & ICheckboxIndicatorProps,
     ref
   ) => {
-    const { size: parentSize } = useStyleContext();
+    const { size: parentSize } = useStyleContext(SCOPE);
 
     return (
       <UICheckbox.Indicator
@@ -133,7 +134,7 @@ const CheckboxLabel = React.forwardRef(
     { className, ...props }: { className?: string } & ICheckboxLabelProps,
     ref
   ) => {
-    const { size: parentSize } = useStyleContext();
+    const { size: parentSize } = useStyleContext(SCOPE);
     return (
       <UICheckbox.Label
         className={checkboxLabelStyle({
@@ -161,7 +162,7 @@ const CheckboxIcon = React.forwardRef(
     }: ICheckboxIconProps & { className?: any },
     ref
   ) => {
-    const { size: parentSize } = useStyleContext();
+    const { size: parentSize } = useStyleContext(SCOPE);
     if (AsComp) {
       return (
         <UICheckbox.Icon>
