@@ -1,12 +1,6 @@
 import React from 'react';
-import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
-import { textStyle as textBaseStyle } from './index';
-
-const textStyle = tva({
-  extend: textBaseStyle,
-  base: 'font-sans bg-transparent border-0 box-border display-inline list-none margin-0 padding-0 position-relative text-start no-underline whitespace-pre-wrap word-wrap-break-word',
-});
+import { textStyle } from './styles';
 
 type ITextProps = React.ComponentProps<'span'> & VariantProps<typeof textStyle>;
 

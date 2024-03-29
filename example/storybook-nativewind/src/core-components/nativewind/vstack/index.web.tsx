@@ -1,13 +1,7 @@
 import React from 'react';
-import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 
-import { vstackStyle as vstackBaseStyle } from './index';
-
-const vstackStyle = tva({
-  extend: vstackBaseStyle,
-  base: 'flex',
-});
+import { vstackStyle } from './styles';
 
 type IVStackProps = React.ComponentProps<'div'> &
   VariantProps<typeof vstackStyle>;

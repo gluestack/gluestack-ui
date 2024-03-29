@@ -1,10 +1,5 @@
 import React from 'react';
-import { tva } from '@gluestack-ui/nativewind-utils/tva';
-import { hstackStyle as hstackBaseStyle } from './index';
-const hstackStyle = tva({
-  extend: hstackBaseStyle,
-  base: 'flex',
-});
+import { hstackStyle } from './styles';
 
 const HStack = ({ className, space, reversed, ...props }: any) => {
   return (

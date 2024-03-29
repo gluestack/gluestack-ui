@@ -1,5 +1,5 @@
 import React from 'react';
-import { cardStyle } from './index';
+import { cardStyle } from './styles';
 
 const Card = ({
   className,
