@@ -246,8 +246,6 @@ const Button = React.forwardRef(
   }
 );
 
-<Button></Button>;
-
 type IButtonIcon = React.ComponentProps<typeof UIButton.Icon> & {
   as?: any;
 };
