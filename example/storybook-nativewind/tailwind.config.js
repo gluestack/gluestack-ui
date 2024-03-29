@@ -9,7 +9,7 @@ module.exports = {
   safelist: [
     {
       pattern:
-        /bg-(primary|secondary|tertiary|error|success|warning|muted|info|typography|outline|background)-(0|50|100|200|300|400|500|600|700|800|900|950|light|dark)/,
+        /bg-(primary|secondary|tertiary|error|success|warning|muted|info|typography|outline|background)-(0|50|100|200|300|400|500|600|700|800|900|950|light|dark|white|gray|black)/,
     },
   ],
   presets: [require('nativewind/preset')],
