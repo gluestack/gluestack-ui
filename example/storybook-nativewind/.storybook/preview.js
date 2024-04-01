@@ -36,6 +36,8 @@ export const parameters = {
         ['Installation', 'Tooling Setup'],
         'Core Concepts',
         ['Accessibility', 'Universal'],
+        'Theme Configuration',
+        ['Default Tokens', 'Customizing Theme'],
         'Components',
         [
           'Typography',

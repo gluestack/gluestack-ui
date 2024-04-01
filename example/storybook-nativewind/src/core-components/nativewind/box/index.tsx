@@ -1,11 +1,8 @@
-'use client';
 import React from 'react';
 import { View } from 'react-native';
 
-import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
-
-const boxStyle = tva({});
+import { boxStyle } from './styles';
 
 type IBoxProps = React.ComponentProps<typeof View> &
   VariantProps<typeof boxStyle>;
