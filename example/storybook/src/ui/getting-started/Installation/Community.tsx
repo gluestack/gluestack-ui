@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, HStack, VStack, Text, Link } from '@gluestack/design-system';
+import { Box, HStack, VStack, Text, Link } from '@gluestack-ui/design-system';
 
 export type CommunityItem = {
   name: string;

@@ -6,7 +6,7 @@ import {
   Text,
   Button,
   Link,
-} from '@gluestack/design-system';
+} from '@gluestack-ui/design-system';
 import Next from './Next';
 import MySvgComponent from './MySvgComponent';
 import Expo1 from './Expo1';
