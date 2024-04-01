@@ -33,7 +33,7 @@ export const parameters = {
         'Overview',
         ['Introduction'],
         'Getting Started',
-        ['Installation', 'Tooling Setup'],
+        ['Installation', 'Tooling Setup', 'Figma UI Kit'],
         'Core Concepts',
         ['Accessibility', 'Universal'],
         'Theme Configuration',
