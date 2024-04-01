@@ -103,6 +103,10 @@ module.exports = function (api) {
               __dirname,
               '../../packages/unstyled/toast/src'
             ),
+            'tailwind.config': path.join(
+              __dirname,
+              '../../example/storybook-nativewind/tailwind.config.js'
+            ),
           },
         },
       ],

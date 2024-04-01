@@ -20,7 +20,8 @@
       ],
       "@gluestack-ui/nativewind-utils/cssInterop": [
         "../../packages/nativewind/utils/src/cssInterop"
-      ]
+      ],
+      "tailwind.config": ["./tailwind.config.js"]
     },
     "emitDeclarationOnly": true,
     "noEmit": false,
