@@ -1,8 +1,8 @@
 import React, { useContext, Fragment, useMemo } from 'react';
-import tailwindConfig from '../../../../tailwind.config';
+import tailwindConfig from 'tailwind.config';
 import { GluestackUIProvider } from '../gluestack-ui-provider';
 import { config } from '../gluestack-ui-provider/config';
-import { VStack, Heading, HStack, Box, Text } from '..';
+import { VStack, HStack, Box, Text, Heading } from '..';
 import { LayoutContext } from '@gluestack/design-system';
 
 const ColorPaletteComponent = () => {
@@ -63,21 +63,21 @@ const ColorPaletteComponent = () => {
   }
 
   return (
-    <GluestackUIProvider>
+    <GluestackUIProvider mode={colorMode}>
       <VStack className="flex-1">
         {colorPalette.map(({ name }, i) => (
           <Fragment key={i}>
             <Heading className="mb-4" size="md">
               {name}
             </Heading>
-            <HStack className="w-full mb-12 flex-wrap gap-x-1 gap-y-4">
+            <HStack className="w-full mb-12 flex gap-x-2 gap-y-6 flex-wrap">
               {colorPalette[i].variants.map((variant, j) => (
                 <VStack key={j} className="basis-[10%]">
                   <Box
                     className={`w-12 h-12 rounded-lg mb-1 ${variant.className}`}
                   />
                   <VStack>
-                    <Text className="text-[12px]">{variant.variant}</Text>
+                    <Text className="text-[12px] m-2">{variant.variant}</Text>
                     <Text className="text-[12px]">{variant.color}</Text>
                   </VStack>
                 </VStack>
