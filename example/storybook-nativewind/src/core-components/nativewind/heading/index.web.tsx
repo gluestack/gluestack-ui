@@ -1,11 +1,9 @@
-'use client';
-
-import React, { useCallback } from 'react';
+import React, { memo } from 'react';
 import { headingStyle } from './styles';
 
-const Heading = ({ className, size = 'lg', as: AsComp, ...props }: any) => {
-  const MappedHeading = useCallback(
-    () => {
+const Heading = memo(
+  ({ className, size = 'lg', as: AsComp, ...props }: any) => {
+    const MappedHeading = ({ size }: any) => {
       switch (size) {
         case '5xl':
         case '4xl':
@@ -60,19 +58,20 @@ const Heading = ({ className, size = 'lg', as: AsComp, ...props }: any) => {
             />
           );
       }
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [size]
-  );
+    };
 
-  if (AsComp) {
-    return (
-      <AsComp className={headingStyle({ size, class: className })} {...props} />
-    );
+    if (AsComp) {
+      return (
+        <AsComp
+          className={headingStyle({ size, class: className })}
+          {...props}
+        />
+      );
+    }
+
+    return <MappedHeading size={size} />;
   }
-
-  return <MappedHeading />;
-};
+);
 
 Heading.displayName = 'Heading';
 
