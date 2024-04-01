@@ -10,8 +10,8 @@ import {
   Text,
   AlertDialogFooter,
   AlertDialogCloseButton,
-} from '@/components/ui';
-import { Heading } from '@/components/ui/heading';
+} from '../';
+import { Heading } from '..//heading';
 import { X } from 'lucide-react-native';
 
 const AlertDialogDemo = () => {

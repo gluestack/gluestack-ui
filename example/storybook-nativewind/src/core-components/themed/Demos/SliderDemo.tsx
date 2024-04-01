@@ -1,9 +1,4 @@
-import {
-  Slider,
-  SliderFilledTrack,
-  SliderThumb,
-  SliderTrack,
-} from '@/components/ui';
+import { Slider, SliderFilledTrack, SliderThumb, SliderTrack } from '../';
 import React from 'react';
 
 export const SliderDemo = () => {

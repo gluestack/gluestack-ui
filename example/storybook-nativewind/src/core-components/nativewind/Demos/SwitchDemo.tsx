@@ -1,5 +1,5 @@
 import React from 'react';
-import { HStack, Switch, Text } from '@/components/ui';
+import { HStack, Switch, Text } from '../';
 
 const SwitchDemo = () => {
   return (

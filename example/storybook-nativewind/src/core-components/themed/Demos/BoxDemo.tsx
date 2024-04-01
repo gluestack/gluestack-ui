@@ -1,4 +1,4 @@
-import { Box, Text } from '@/components/ui';
+import { Box, Text } from '../';
 import React from 'react';
 
 const BoxDemo = () => {

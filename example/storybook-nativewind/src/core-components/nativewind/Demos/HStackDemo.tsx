@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, HStack } from '@/components/ui';
+import { Box, HStack } from '../';
 
 const HStackDemo = () => {
   return (

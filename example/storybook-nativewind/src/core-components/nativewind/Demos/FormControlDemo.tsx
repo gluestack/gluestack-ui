@@ -11,7 +11,7 @@ import {
   FormControlErrorText,
   FormControlErrorIcon,
   InputField,
-} from '@/components/ui';
+} from '../';
 const FormControlDemo = () => {
   return (
     <FormControl>

@@ -6,7 +6,7 @@ import {
   MenuItemLabel,
   GlobeIcon,
   ButtonText,
-} from '@/components/ui';
+} from '../';
 import { PuzzleIcon, SettingsIcon } from 'lucide-react-native';
 import React from 'react';
 

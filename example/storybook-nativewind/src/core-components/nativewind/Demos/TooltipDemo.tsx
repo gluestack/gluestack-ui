@@ -1,10 +1,4 @@
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipText,
-  Button,
-  ButtonText,
-} from '@/components/ui';
+import { Tooltip, TooltipContent, TooltipText, Button, ButtonText } from '../';
 import React from 'react';
 
 const TooltipDemo = () => {

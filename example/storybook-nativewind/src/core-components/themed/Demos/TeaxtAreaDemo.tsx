@@ -1,4 +1,4 @@
-import { Textarea, TextareaInput } from '@/components/ui';
+import { Textarea, TextareaInput } from '../';
 import React from 'react';
 
 const TextAreaDemo = () => {

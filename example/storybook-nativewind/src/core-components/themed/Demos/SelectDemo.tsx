@@ -12,7 +12,7 @@ import {
   SelectDragIndicatorWrapper,
   SelectDragIndicator,
   SelectItem,
-} from '@/components/ui';
+} from '../';
 
 const SelectDemo = () => {
   return (

@@ -4,7 +4,7 @@ import {
   CheckboxIcon,
   CheckboxIndicator,
   CheckboxLabel,
-} from '@/components/ui';
+} from '../';
 import React from 'react';
 
 export const CheckboxDemo = () => {

@@ -1,4 +1,4 @@
-import { Fab, FabIcon, Box, MenuIcon, FabLabel } from '@/components/ui';
+import { Fab, FabIcon, Box, MenuIcon, FabLabel } from '../';
 import React from 'react';
 
 const FabDemo = () => {

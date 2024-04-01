@@ -3,7 +3,7 @@ import {
   AvatarBadge,
   AvatarFallbackText,
   AvatarImage,
-} from '@/components/ui/avatar';
+} from '..//avatar';
 import React from 'react';
 const Avatardemo = () => {
   return (

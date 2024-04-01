@@ -1,5 +1,5 @@
 import React from 'react';
-import { HStack, Heading, Divider } from '@/components/ui';
+import { HStack, Heading, Divider } from '../';
 
 const DividerDemo = () => {
   return (

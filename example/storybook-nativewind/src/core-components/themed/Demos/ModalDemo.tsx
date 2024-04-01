@@ -13,7 +13,7 @@ import {
   Text,
   ModalFooter,
   Center,
-} from '@/components/ui';
+} from '../';
 import React, { useState } from 'react';
 
 const ModalDemo = () => {

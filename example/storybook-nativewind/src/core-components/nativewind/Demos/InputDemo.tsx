@@ -1,10 +1,4 @@
-import {
-  Input,
-  InputField,
-  InputIcon,
-  InputSlot,
-  SearchIcon,
-} from '@/components/ui';
+import { Input, InputField, InputIcon, InputSlot, SearchIcon } from '../';
 import React from 'react';
 
 const InputDemo = () => {

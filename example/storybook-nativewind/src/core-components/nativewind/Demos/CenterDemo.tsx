@@ -1,6 +1,6 @@
 import React from 'react';
-import { Center } from '@/components/ui/center';
-import { Text } from '@/components/ui/text';
+import { Center } from '..//center';
+import { Text } from '..//text';
 
 const CenterDemo = () => {
   return (

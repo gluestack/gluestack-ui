@@ -1,6 +1,6 @@
 import React from 'react';
-import { Badge, BadgeText, BadgeIcon } from '@/components/ui/badge';
-import { GlobeIcon } from '@/components/ui/icon';
+import { Badge, BadgeText, BadgeIcon } from '..//badge';
+import { GlobeIcon } from '..//icon';
 const BadgeDemo = () => {
   return (
     <Badge>

@@ -1,6 +1,6 @@
 import React from 'react';
-import { Alert, AlertIcon, AlertText } from '@/components/ui/alert';
-import { InfoIcon } from '@/components/ui';
+import { Alert, AlertIcon, AlertText } from '..//alert';
+import { InfoIcon } from '../';
 
 const AlertDemo = () => {
   return (

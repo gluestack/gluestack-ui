@@ -7,7 +7,7 @@ import {
   RadioIndicator,
   RadioLabel,
   VStack,
-} from '@/components/ui';
+} from '../';
 
 const RadioDemo = () => {
   const [values, setValues] = useState('Monday');

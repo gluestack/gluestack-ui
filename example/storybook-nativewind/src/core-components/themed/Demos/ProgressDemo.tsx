@@ -1,5 +1,5 @@
 import React from 'react';
-import { Progress, ProgressFilledTrack } from '@/components/ui';
+import { Progress, ProgressFilledTrack } from '../';
 const ProgressDemo = () => {
   return (
     <Progress value={46} size="sm">

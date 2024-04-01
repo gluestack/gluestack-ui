@@ -1,4 +1,4 @@
-import { Toast, ToastDescription, ToastTitle, VStack } from '@/components/ui';
+import { Toast, ToastDescription, ToastTitle, VStack } from '../';
 import React from 'react';
 
 const ToastDemo = () => {

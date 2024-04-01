@@ -1,4 +1,4 @@
-import { Pressable, Text } from '@/components/ui';
+import { Pressable, Text } from '../';
 import React from 'react';
 
 const PressableDemo = () => {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, ButtonText, Center } from '@/components/ui';
+import { Button, ButtonText, Center } from '../';
 import {
   Actionsheet,
   ActionsheetBackdrop,
@@ -8,7 +8,7 @@ import {
   ActionsheetDragIndicatorWrapper,
   ActionsheetItem,
   ActionsheetItemText,
-} from '@/components/ui/actionsheet';
+} from '..//actionsheet';
 
 const ActionsheetDemo = () => {
   const [showActionsheet, setShowActionsheet] = React.useState(false);

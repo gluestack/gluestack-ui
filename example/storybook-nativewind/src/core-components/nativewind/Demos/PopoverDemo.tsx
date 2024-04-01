@@ -9,7 +9,7 @@ import {
   PopoverBody,
   HStack,
   CircleIcon,
-} from '@/components/ui';
+} from '../';
 import React from 'react';
 
 const PopoverDemo = () => {

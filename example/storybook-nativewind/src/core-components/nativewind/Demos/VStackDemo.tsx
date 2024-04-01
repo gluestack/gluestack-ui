@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, VStack } from '@/components/ui';
+import { Box, VStack } from '../';
 
 const VStackDemo = () => {
   return (

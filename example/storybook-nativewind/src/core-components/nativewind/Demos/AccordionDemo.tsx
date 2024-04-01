@@ -8,10 +8,10 @@ import {
   AccordionIcon,
   AccordionContent,
   AccordionContentText,
-} from '@/components/ui';
+} from '../';
 import { ChevronDownIcon } from 'lucide-react-native';
 import { ChevronUpIcon } from 'lucide-react-native';
-import { ScrollView } from '@/components/ui';
+import { ScrollView } from '../';
 const AccordionDemo = () => {
   const accRef = React.useRef(null);
   return (

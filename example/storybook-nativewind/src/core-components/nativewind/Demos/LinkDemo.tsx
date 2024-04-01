@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, LinkText } from '@/components/ui';
+import { Link, LinkText } from '../';
 
 const LinkDemo = () => {
   return (

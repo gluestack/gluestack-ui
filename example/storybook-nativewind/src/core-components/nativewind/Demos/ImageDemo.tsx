@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image } from '@/components/ui';
+import { Image } from '../';
 
 const ImageDemo = () => {
   return (
