@@ -53,6 +53,15 @@ const StyledRoot = styled(
       size: 'md',
     },
   },
-  {}
+  {
+    componentName: 'Image',
+    resolveProps: ['tintColor'],
+  } as const,
+  {
+    propertyTokenMap: {
+      placeholderTextColor: 'colors',
+    },
+  }
 );
+
 export const Image = createImage({ Root: StyledRoot });
