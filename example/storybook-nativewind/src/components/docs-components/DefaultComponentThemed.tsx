@@ -175,6 +175,7 @@ mapEntries.sort(([keyA, valueA]: any, [keyB, valueB]: any) => {
 // Create a new Map from the sorted map entries
 
 const SpaceComponent = () => {
+  const { colorMode } = useContext(LayoutContext);
   return (
     <GluestackUIProvider config={config} colorMode={colorMode}>
       <VStack>
@@ -213,6 +214,7 @@ const SpaceComponent = () => {
 const opacity: any = config.tokens.opacity;
 
 const OpacityComponent = () => {
+  const { colorMode } = useContext(LayoutContext);
   return (
     <GluestackUIProvider config={config} colorMode={colorMode}>
       <HStack
@@ -281,6 +283,7 @@ const OpacityComponent = () => {
 };
 
 const ShadowsComponent = () => {
+  const { colorMode } = useContext(LayoutContext);
   const hardShadows: any = config.globalStyle.variants.hardShadow;
   const softShadows: any = config.globalStyle.variants.softShadow;
 
@@ -382,6 +385,7 @@ const ShadowsComponent = () => {
 
 const borderWidths = config.tokens.borderWidths;
 const BorderWidthComponent = () => {
+  const { colorMode } = useContext(LayoutContext);
   return (
     <GluestackUIProvider config={config} colorMode={colorMode}>
       <HStack
@@ -420,6 +424,7 @@ const BorderWidthComponent = () => {
 
 const radii = config.tokens.radii;
 const RadiiComponent = () => {
+  const { colorMode } = useContext(LayoutContext);
   return (
     <GluestackUIProvider config={config} colorMode={colorMode}>
       <HStack
