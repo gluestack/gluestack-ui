@@ -1,8 +1,14 @@
 import React, { useContext, Fragment, useMemo } from 'react';
 import tailwindConfig from 'tailwind.config';
-import { GluestackUIProvider } from '../gluestack-ui-provider';
-import { config } from '../gluestack-ui-provider/config';
-import { VStack, HStack, Box, Text, Heading } from '..';
+import { GluestackUIProvider } from '../../core-components/nativewind/gluestack-ui-provider';
+import { config } from '../../core-components/nativewind/gluestack-ui-provider/config';
+import {
+  VStack,
+  HStack,
+  Box,
+  Text,
+  Heading,
+} from '../../core-components/nativewind';
 import { LayoutContext } from '@gluestack/design-system';
 
 const ColorPaletteComponent = () => {
