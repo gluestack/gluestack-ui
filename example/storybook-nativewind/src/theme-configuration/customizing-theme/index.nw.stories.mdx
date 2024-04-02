@@ -1,5 +1,5 @@
 ---
-title: Customizingt Theme 
+title: Customizing Theme 
 
 description: Customizing the theme in gluestack-ui with nativewind involves defining a theme configuration and applying it using GluestackUIProvider, enabling you to style your application's visual elements according to your design preferences.
 
@@ -28,7 +28,7 @@ To customize tokens, follow these steps:
 export const config = {
   light: vars({
 
-    ...//other tokens
+    ... // other tokens
     //updated '--color-primary-0' value
     '--color-primary-0': '#C0C0C0',
 
@@ -37,7 +37,7 @@ export const config = {
 
   }),
   dark: vars({
-     ...//other tokens
+     ... // other tokens
       /* Added a new background color for dark mode */
     '--color-background-new': '#89D6FA',
   }),
@@ -54,8 +54,7 @@ export const config = {
     extend: {
       colors: {
         background: {
-
-          ...//other color values,
+          ... // other color values,
           /* Added a new background color */
           new: 'var(--color-background-new)',
         },
