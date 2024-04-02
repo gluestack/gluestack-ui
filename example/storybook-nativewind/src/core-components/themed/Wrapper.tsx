@@ -3,6 +3,8 @@ import React from 'react';
 import { Box, Center } from '@gluestack-ui/themed';
 import { StyledProvider, useColorMode } from '@gluestack-style/react';
 import { createProvider } from '@gluestack-ui/provider';
+import { OverlayProvider } from '@gluestack-ui/overlay';
+import { ToastProvider } from '@gluestack-ui/toast';
 
 const Provider = createProvider({ StyledProvider }) as any;
 Provider.displayName = 'Provider';
@@ -20,7 +22,11 @@ const Wrapper = ({ children, ...props }: any) => {
         }}
         {...props}
       >
-        <Center height="100%">{children}</Center>
+        <Center height="100%">
+          <OverlayProvider>
+            <ToastProvider>{children}</ToastProvider>
+          </OverlayProvider>
+        </Center>
       </Box>
     </Box>
   );

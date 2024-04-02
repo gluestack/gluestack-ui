@@ -31,7 +31,7 @@ export const parameters = {
       method: '',
       order: [
         'Overview',
-        ['Introduction'],
+        ['Introduction', 'All Components'],
         'Getting Started',
         ['Installation', 'Tooling Setup', 'Figma UI Kit'],
         'Core Concepts',
