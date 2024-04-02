@@ -1,5 +1,8 @@
 'use client';
+import React from 'react';
 import { config } from './config';
+import { OverlayProvider } from '@gluestack-ui/overlay';
+import { ToastProvider } from '@gluestack-ui/toast';
 
 export function GluestackUIProvider({
   mode = 'light',
@@ -21,5 +24,9 @@ export function GluestackUIProvider({
       if (head) head.appendChild(style);
     }
   }
-  return props.children;
+  return (
+    <OverlayProvider>
+      <ToastProvider>{props.children}</ToastProvider>
+    </OverlayProvider>
+  );
 }
