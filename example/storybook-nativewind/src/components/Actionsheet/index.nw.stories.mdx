@@ -61,6 +61,7 @@ import {
   AddIcon,
   InfoIcon,
   Alert,
+  Tabs
 } from '@gluestack/design-system';
 import {Platform, KeyboardAvoidingView,} from 'react-native';
 import {CreditCardIcon} from 'lucide-react-native';
@@ -134,6 +135,28 @@ function App(){
 
 ## Installation
 
+<Tabs value="cli" type="section">
+  <Tabs.TabList>
+      <Tabs.Tab value="cli">
+        <Tabs.TabTitle>CLI</Tabs.TabTitle>
+      </Tabs.Tab>
+     <Tabs.Tab value="manual">
+        <Tabs.TabTitle>Manual</Tabs.TabTitle>
+     </Tabs.Tab>
+  </Tabs.TabList>
+  <Tabs.TabPanels>
+    <Tabs.TabPanel value="cli">
+<>
+
+### Run the following command:
+  ```bash
+  npx gluestack-ui add actionsheet
+  ```
+</>
+    </Tabs.TabPanel>
+    <Tabs.TabPanel value="manual"> 
+<>
+
 ### Step 1: Install the following dependencies:
 ```bash
 npm i @gluestack-ui/actionsheet
@@ -145,6 +168,12 @@ npm i @gluestack-ui/actionsheet
 %%-- File: core-components/nativewind/actionsheet/index.tsx --%% 
 ```
 </CollapsibleCode>
+
+### Step 3: Update the import paths to match your project setup.
+</>
+    </Tabs.TabPanel>
+  </Tabs.TabPanels>
+</Tabs>
 
 ## API Reference
 

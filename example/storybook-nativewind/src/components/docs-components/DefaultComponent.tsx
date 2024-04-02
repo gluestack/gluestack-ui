@@ -80,10 +80,10 @@ const ColorPaletteComponent = () => {
               {colorPalette[i].variants.map((variant, j) => (
                 <VStack key={j} className="basis-[10%]">
                   <Box
-                    className={`w-12 h-12 rounded-lg mb-1 ${variant.className}`}
+                    className={`w-12 h-12 rounded-lg mb-2 ${variant.className}`}
                   />
                   <VStack>
-                    <Text className="text-[12px] m-2">{variant.variant}</Text>
+                    <Text className="text-[12px]">{variant.variant}</Text>
                     <Text className="text-[12px]">{variant.color}</Text>
                   </VStack>
                 </VStack>
