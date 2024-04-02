@@ -12,15 +12,15 @@ import {
   ModalBody,
   Text,
   ModalFooter,
-  Center,
 } from '../';
 import React, { useState } from 'react';
+import { OverlayProvider } from '@gluestack-ui/overlay';
 
 const ModalDemo = () => {
   const [showModal, setShowModal] = useState(false);
   const ref = React.useRef(null);
   return (
-    <Center>
+    <OverlayProvider>
       <Button onPress={() => setShowModal(true)} ref={ref}>
         <ButtonText>Show Modal</ButtonText>
       </Button>
@@ -30,6 +30,7 @@ const ModalDemo = () => {
           setShowModal(false);
         }}
         finalFocusRef={ref}
+        size="lg"
       >
         <ModalBackdrop />
         <ModalContent>
@@ -40,16 +41,12 @@ const ModalDemo = () => {
             </ModalCloseButton>
           </ModalHeader>
           <ModalBody>
-            <Text>
-              Elevate user interactions with our versatile modals. Seamlessly
-              integrate notifications, forms, and media displays. Make an impact
-              effortlessly.
-            </Text>
+            <Text>Elevate user interactions.</Text>
           </ModalBody>
           <ModalFooter>
             <Button
               variant="outline"
-              size="sm"
+              size="xs"
               action="secondary"
               mr="$3"
               onPress={() => {
@@ -59,7 +56,7 @@ const ModalDemo = () => {
               <ButtonText>Cancel</ButtonText>
             </Button>
             <Button
-              size="sm"
+              size="xs"
               action="positive"
               borderWidth="$0"
               onPress={() => {
@@ -71,7 +68,7 @@ const ModalDemo = () => {
           </ModalFooter>
         </ModalContent>
       </Modal>
-    </Center>
+    </OverlayProvider>
   );
 };
 

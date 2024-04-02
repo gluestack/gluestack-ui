@@ -11,18 +11,19 @@ import {
   AlertDialogFooter,
   AlertDialogCloseButton,
 } from '../';
-import { Heading } from '..//heading';
+import { Heading } from '../heading';
 import { X } from 'lucide-react-native';
+import { OverlayProvider } from '@gluestack-ui/overlay';
 
 const AlertDialogDemo = () => {
   const [showAlertDialog, setShowAlertDialog] = useState(false);
   const handleClose = () => setShowAlertDialog(!showAlertDialog);
   return (
-    <>
+    <OverlayProvider>
       <Button onPress={() => setShowAlertDialog(true)}>
         <ButtonText>Click me</ButtonText>
       </Button>
-      <AlertDialog isOpen={showAlertDialog} onClose={handleClose}>
+      <AlertDialog size="full" isOpen={showAlertDialog} onClose={handleClose}>
         <AlertDialogBackdrop />
         <AlertDialogContent>
           <AlertDialogHeader>
@@ -35,23 +36,24 @@ const AlertDialogDemo = () => {
             </AlertDialogCloseButton>
           </AlertDialogHeader>
           <AlertDialogBody>
-            <Text>
-              Whoa, slow down there! This modal is like a red light at an
-              intersection, reminding you to stop and think before you proceed.
-              Is deleting this folder the right choice?
-            </Text>
+            <Text>Whoa, slow down there!</Text>
           </AlertDialogBody>
           <AlertDialogFooter className="gap-3">
-            <Button variant="outline" action="secondary" onPress={handleClose}>
+            <Button
+              size="sm"
+              variant="outline"
+              action="secondary"
+              onPress={handleClose}
+            >
               <ButtonText>Cancel</ButtonText>
             </Button>
-            <Button action="negative" onPress={handleClose}>
+            <Button size="sm" action="negative" onPress={handleClose}>
               <ButtonText>Delete</ButtonText>
             </Button>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
-    </>
+    </OverlayProvider>
   );
 };
 
