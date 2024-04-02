@@ -4,9 +4,9 @@ import { Box, HStack } from '../';
 const HStackDemo = () => {
   return (
     <HStack space="sm" reversed={false}>
-      <Box w="$9" h="$9" bg="$blue300" />
-      <Box w="$9" h="$9" bg="$blue400" />
-      <Box w="$9" h="$9" bg="$blue500" />
+      <Box w="$9" h="$9" bg="$primary300" />
+      <Box w="$9" h="$9" bg="$primary400" />
+      <Box w="$9" h="$9" bg="$primary500" />
     </HStack>
   );
 };

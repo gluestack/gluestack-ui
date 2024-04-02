@@ -61,6 +61,11 @@ export const ComponentCard = ({
             lineHeight="$xl"
             px="$6"
             py="$4"
+            sx={{
+              _dark: {
+                color: '$textLight0',
+              },
+            }}
           >
             {title}
           </Text>

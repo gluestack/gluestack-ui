@@ -13,7 +13,7 @@ const RadioDemo = () => {
   const [values, setValues] = useState('Monday');
   return (
     <RadioGroup value={values} onChange={setValues}>
-      <VStack space="md" w="$40">
+      <VStack space="md">
         <Radio value="Monday" justifyContent="space-between">
           <RadioLabel>Option A</RadioLabel>
           <RadioIndicator>

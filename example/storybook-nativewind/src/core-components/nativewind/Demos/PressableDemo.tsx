@@ -3,8 +3,11 @@ import React from 'react';
 
 const PressableDemo = () => {
   return (
-    <Pressable p="$5" bg="$primary500" sx={{ ':hover': { bg: '$primary400' } }}>
-      <Text color="white">Press me</Text>
+    <Pressable
+      onPress={() => console.log('Hello')}
+      className="p-5 bg-primary-500"
+    >
+      <Text className="text-typography-0">Press me</Text>
     </Pressable>
   );
 };

@@ -4,7 +4,16 @@ import React from 'react';
 const PressableDemo = () => {
   return (
     <Pressable p="$5" bg="$primary500" sx={{ ':hover': { bg: '$primary400' } }}>
-      <Text color="white">Press me</Text>
+      <Text
+        color="$textLight100"
+        sx={{
+          _dark: {
+            color: '$textLight800',
+          },
+        }}
+      >
+        Press me
+      </Text>
     </Pressable>
   );
 };

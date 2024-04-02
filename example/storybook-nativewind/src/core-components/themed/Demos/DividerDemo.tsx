@@ -1,12 +1,9 @@
 import React from 'react';
-import { HStack, Heading, Divider } from '../';
+import { VStack, Heading, Divider } from '../';
 
 const DividerDemo = () => {
   return (
-    <HStack
-      className={`items-center justify-center flex-col h-auto
-     gap-2.5`}
-    >
+    <VStack space="sm">
       <Heading size="sm" className="font-semibold">
         Firefox
       </Heading>
@@ -14,7 +11,7 @@ const DividerDemo = () => {
       <Heading size="sm" className="font-semibold">
         Chrome
       </Heading>
-    </HStack>
+    </VStack>
   );
 };
 

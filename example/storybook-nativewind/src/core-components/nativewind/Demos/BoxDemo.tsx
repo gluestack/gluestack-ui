@@ -3,8 +3,8 @@ import React from 'react';
 
 const BoxDemo = () => {
   return (
-    <Box bg="$primary500" p="$5">
-      <Text color="white">This is the Box</Text>
+    <Box className="bg-primary-500 p-5">
+      <Text className="text-typography-0">This is the Box</Text>
     </Box>
   );
 };

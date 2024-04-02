@@ -2,8 +2,8 @@ import React from 'react';
 import { Progress, ProgressFilledTrack } from '../';
 const ProgressDemo = () => {
   return (
-    <Progress value={46} size="sm">
-      <ProgressFilledTrack bg="$amber600" />
+    <Progress value={40} className="w-[300px]">
+      <ProgressFilledTrack />
     </Progress>
   );
 };

@@ -20,7 +20,7 @@ const ModalDemo = () => {
   const [showModal, setShowModal] = useState(false);
   const ref = React.useRef(null);
   return (
-    <Center h={300}>
+    <Center>
       <Button onPress={() => setShowModal(true)} ref={ref}>
         <ButtonText>Show Modal</ButtonText>
       </Button>
