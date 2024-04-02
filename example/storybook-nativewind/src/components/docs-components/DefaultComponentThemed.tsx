@@ -1,4 +1,10 @@
-import React, { Fragment, useContext } from 'react';
+import React, {
+  Fragment,
+  useContext,
+  useState,
+  useEffect,
+  useMemo,
+} from 'react';
 import {
   Text,
   VStack,
@@ -15,49 +21,61 @@ import {
 import { config } from '../../core-components/themed/gluestack-ui-provider/config';
 import { LayoutContext } from '@gluestack/design-system';
 
-const colors: any = config.tokens.colors;
-
-const colorPalette: any = {
-  primary: {},
-  secondary: {},
-  tertiary: {},
-  others: {},
-};
-
-for (const colorKey in colors) {
-  const category = colorKey.replace(/\d+/g, '');
-  const shade = colorKey.replace(/\D+/g, '');
-
-  if (shade === '') {
-    colorPalette.others[category] = colors[colorKey];
-    continue;
-  }
-
-  if (!colorPalette[category]) {
-    colorPalette[category] = {};
-  }
-
-  colorPalette[category][shade] = colors[colorKey];
-}
-
-const sortedColorPalette: any = {};
-
-for (const category in colorPalette) {
-  if (category !== 'others') {
-    sortedColorPalette[category] = Object.fromEntries(
-      Object.entries(colorPalette[category]).sort()
-    );
-  }
-}
-
-sortedColorPalette.others = { ...colorPalette.others };
-
 const ColorPaletteComponent = () => {
   const { colorMode } = useContext(LayoutContext);
+  const [colors, setColors] = useState([]);
+
+  useEffect(() => {
+    if (!colorMode) return;
+    if (colorMode === 'light') {
+      setColors(config.tokens.colors);
+    } else {
+      setColors(config.themes[colorMode].colors);
+    }
+  }, [colorMode]);
+
+  const sortedPalette = useMemo(() => {
+    const colorPalette: any = {
+      primary: {},
+      secondary: {},
+      tertiary: {},
+      others: {},
+    };
+
+    for (const colorKey in colors) {
+      const category = colorKey.replace(/\d+/g, '');
+      const shade = colorKey.replace(/\D+/g, '');
+
+      if (shade === '') {
+        colorPalette.others[category] = colors[colorKey];
+        continue;
+      }
+
+      if (!colorPalette[category]) {
+        colorPalette[category] = {};
+      }
+
+      colorPalette[category][shade] = colors[colorKey];
+    }
+
+    const sortedColorPalette: any = {};
+
+    for (const category in colorPalette) {
+      if (category !== 'others') {
+        sortedColorPalette[category] = Object.fromEntries(
+          Object.entries(colorPalette[category]).sort()
+        );
+      }
+    }
+
+    sortedColorPalette.others = { ...colorPalette.others };
+
+    return sortedColorPalette;
+  }, [colors]);
   return (
     <GluestackUIProvider config={config} colorMode={colorMode}>
       <VStack flex={1}>
-        {Object.keys(sortedColorPalette).map((category: string) => {
+        {Object.keys(sortedPalette).map((category: string) => {
           return (
             <Fragment key={category}>
               <Heading mb="$4" size="md">
@@ -74,30 +92,28 @@ const ColorPaletteComponent = () => {
                   },
                 }}
               >
-                {Object.keys(sortedColorPalette[category]).map(
-                  (shade: string) => {
-                    return (
-                      <HStack flexBasis="30%" key={shade}>
-                        <Box
-                          key={shade}
-                          bg={sortedColorPalette[category][shade]}
-                          w="$12"
-                          h="$12"
-                          rounded="$lg"
-                          mr="$4"
-                        />
-                        <VStack>
-                          <Text>
-                            {category === 'others'
-                              ? `${shade}`
-                              : `${category}${shade}`}
-                          </Text>
-                          <Text>{sortedColorPalette[category][shade]}</Text>
-                        </VStack>
-                      </HStack>
-                    );
-                  }
-                )}
+                {Object.keys(sortedPalette[category]).map((shade: string) => {
+                  return (
+                    <HStack flexBasis="30%" key={shade}>
+                      <Box
+                        key={shade}
+                        bg={sortedPalette[category][shade]}
+                        w="$12"
+                        h="$12"
+                        rounded="$lg"
+                        mr="$4"
+                      />
+                      <VStack>
+                        <Text>
+                          {category === 'others'
+                            ? `${shade}`
+                            : `${category}${shade}`}
+                        </Text>
+                        <Text>{sortedPalette[category][shade]}</Text>
+                      </VStack>
+                    </HStack>
+                  );
+                })}
               </HStack>
             </Fragment>
           );
@@ -160,7 +176,7 @@ mapEntries.sort(([keyA, valueA]: any, [keyB, valueB]: any) => {
 
 const SpaceComponent = () => {
   return (
-    <GluestackUIProvider config={config}>
+    <GluestackUIProvider config={config} colorMode={colorMode}>
       <VStack>
         <HStack h="$8" alignItems="center">
           <Text w={100} mr="$4">
@@ -198,7 +214,7 @@ const opacity: any = config.tokens.opacity;
 
 const OpacityComponent = () => {
   return (
-    <GluestackUIProvider config={config}>
+    <GluestackUIProvider config={config} colorMode={colorMode}>
       <HStack
         flexWrap="wrap"
         sx={{
@@ -269,7 +285,7 @@ const ShadowsComponent = () => {
   const softShadows: any = config.globalStyle.variants.softShadow;
 
   return (
-    <GluestackUIProvider config={config}>
+    <GluestackUIProvider config={config} colorMode={colorMode}>
       <VStack>
         <Heading size="sm" mb="$4">
           Hard Shadows
@@ -367,7 +383,7 @@ const ShadowsComponent = () => {
 const borderWidths = config.tokens.borderWidths;
 const BorderWidthComponent = () => {
   return (
-    <GluestackUIProvider config={config}>
+    <GluestackUIProvider config={config} colorMode={colorMode}>
       <HStack
         sx={{
           _web: {
@@ -405,7 +421,7 @@ const BorderWidthComponent = () => {
 const radii = config.tokens.radii;
 const RadiiComponent = () => {
   return (
-    <GluestackUIProvider config={config}>
+    <GluestackUIProvider config={config} colorMode={colorMode}>
       <HStack
         sx={{
           _web: {
