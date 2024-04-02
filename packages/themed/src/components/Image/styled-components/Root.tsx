@@ -10,7 +10,7 @@ export default styled(
   } as const,
   {
     propertyTokenMap: {
-      placeholderTextColor: 'colors',
+      tintColor: 'colors',
     },
   }
 );

@@ -59,7 +59,7 @@ const StyledRoot = styled(
   } as const,
   {
     propertyTokenMap: {
-      placeholderTextColor: 'colors',
+      tintColor: 'colors',
     },
   }
 );
