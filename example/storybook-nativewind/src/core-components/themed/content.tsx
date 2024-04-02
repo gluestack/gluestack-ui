@@ -39,191 +39,191 @@ export const content = [
     title: 'Actionsheet',
     child: <ActionsheetDemo />,
     padding: '$0',
-    href: '/ui/docs/components/disclosure/actionsheet',
+    href: '/ui/gluestack-style/docs/components/disclosure/actionsheet',
   },
   {
     title: 'AlertDialog',
     child: <AlertDialogDemo />,
     padding: '$0',
-    href: '/ui/docs/components/overlay/alert-dialog',
+    href: '/ui/gluestack-style/docs/components/overlay/alert-dialog',
   },
   {
     title: 'Alert',
     child: <AlertDemo />,
-    href: '/ui/docs/components/feedback/alert',
+    href: '/ui/gluestack-style/docs/components/feedback/alert',
   },
   {
     title: 'Avatar',
     child: <AvatarDemo />,
-    href: '/ui/docs/components/media-and-icons/avatar',
+    href: '/ui/gluestack-style/docs/components/media-and-icons/avatar',
   },
   {
     title: 'Accordion',
     child: <AccordionDemo />,
-    href: '/ui/docs/components/disclosure/accordion',
+    href: '/ui/gluestack-style/docs/components/disclosure/accordion',
   },
 
   {
     title: 'Badge',
     child: <BadgeDemo />,
-    href: '/ui/docs/components/data-display/badge',
+    href: '/ui/gluestack-style/docs/components/data-display/badge',
   },
   {
     title: 'Box',
     child: <BoxDemo />,
-    href: '/ui/docs/components/layout/box',
+    href: '/ui/gluestack-style/docs/components/layout/box',
   },
   {
     title: 'Button',
     child: <ButtonDemo />,
-    href: '/ui/docs/components/forms/button',
+    href: '/ui/gluestack-style/docs/components/forms/button',
   },
 
   {
     title: 'Center',
     child: <CenterDemo />,
-    href: '/ui/docs/components/layout/center',
+    href: '/ui/gluestack-style/docs/components/layout/center',
   },
   {
     title: 'Checkbox',
     child: <CheckboxDemo />,
-    href: '/ui/docs/components/forms/checkbox',
+    href: '/ui/gluestack-style/docs/components/forms/checkbox',
   },
 
   {
     title: 'Divider',
     child: <DividerDemo />,
-    href: '/ui/docs/components/data-display/divider',
+    href: '/ui/gluestack-style/docs/components/data-display/divider',
   },
 
   {
     title: 'Fab',
     child: <FabDemo />,
-    href: '/ui/docs/components/others/fab',
+    href: '/ui/gluestack-style/docs/components/others/fab',
   },
   {
     title: 'FormControl',
     child: <FormControlDemo />,
-    href: '/ui/docs/components/forms/form-control',
+    href: '/ui/gluestack-style/docs/components/forms/form-control',
   },
   {
     title: 'Heading',
     child: <HeadingDemo />,
-    href: '/ui/docs/components/typography/heading',
+    href: '/ui/gluestack-style/docs/components/typography/heading',
   },
   {
     title: 'HStack',
     child: <HStackDemo />,
-    href: '/ui/docs/components/layout/hstack',
+    href: '/ui/gluestack-style/docs/components/layout/hstack',
   },
 
   {
     title: 'Icon',
     child: <IconDemo />,
-    href: '/ui/docs/components/media-and-icons/icon',
+    href: '/ui/gluestack-style/docs/components/media-and-icons/icon',
   },
   {
     title: 'Image',
     child: <ImageDemo />,
-    href: '/ui/docs/components/media-and-icons/image',
+    href: '/ui/gluestack-style/docs/components/media-and-icons/image',
   },
   {
     title: 'Input',
     child: <InputDemo />,
-    href: '/ui/docs/components/forms/input',
+    href: '/ui/gluestack-style/docs/components/forms/input',
   },
 
   {
     title: 'Link',
     child: <LinkDemo />,
-    href: '/ui/docs/components/forms/link',
+    href: '/ui/gluestack-style/docs/components/forms/link',
   },
 
   // {
   //   title: 'Menu',
   //   child: <MenuDemo />,
   //   padding: '$0',
-  //   href: '/ui/docs/components/overlay/menu',
+  //   href: '/ui/gluestack-style/docs/components/overlay/menu',
   // },
 
   {
     title: 'Modal',
     child: <ModalDemo />,
     padding: '$0',
-    href: '/ui/docs/components/overlay/modal',
+    href: '/ui/gluestack-style/docs/components/overlay/modal',
   },
 
   // {
   //   title: 'Popover',
   //   child: <PopoverDemo />,
   //   padding: '$0',
-  //   href: '/ui/docs/components/overlay/popover',
+  //   href: '/ui/gluestack-style/docs/components/overlay/popover',
   // },
 
   {
     title: 'Pressable',
     child: <PressableDemo />,
-    href: '/ui/docs/components/forms/pressable',
+    href: '/ui/gluestack-style/docs/components/forms/pressable',
   },
   {
     title: 'Progress',
     child: <ProgressDemo />,
-    href: '/ui/docs/components/feedback/progress',
+    href: '/ui/gluestack-style/docs/components/feedback/progress',
   },
 
   {
     title: 'Radio',
     child: <RadioDemo />,
-    href: '/ui/docs/components/forms/radio',
+    href: '/ui/gluestack-style/docs/components/forms/radio',
   },
 
   {
     title: 'Select',
     child: <SelectDemo />,
-    href: '/ui/docs/components/forms/select',
+    href: '/ui/gluestack-style/docs/components/forms/select',
   },
 
   {
     title: 'Slider',
     child: <SliderDemo />,
-    href: '/ui/docs/components/forms/slider',
+    href: '/ui/gluestack-style/docs/components/forms/slider',
   },
   {
     title: 'Spinner',
     child: <SpinnerDemo />,
-    href: '/ui/docs/components/feedback/spinner',
+    href: '/ui/gluestack-style/docs/components/feedback/spinner',
   },
   {
     title: 'Switch',
     child: <SwitchDemo />,
-    href: '/ui/docs/components/forms/switch',
+    href: '/ui/gluestack-style/docs/components/forms/switch',
   },
 
   {
     title: 'Text',
     child: <TextDemo />,
-    href: '/ui/docs/components/typography/text',
+    href: '/ui/gluestack-style/docs/components/typography/text',
   },
   {
     title: 'TextArea',
     child: <TextAreaDemo />,
-    href: '/ui/docs/components/forms/textarea',
+    href: '/ui/gluestack-style/docs/components/forms/textarea',
   },
   {
     title: 'Toast',
     child: <ToastDemo />,
-    href: '/ui/docs/components/feedback/toast',
+    href: '/ui/gluestack-style/docs/components/feedback/toast',
   },
 
   {
     title: 'Tooltip',
     child: <TooltipDemo />,
-    href: '/ui/docs/components/overlay/tooltip',
+    href: '/ui/gluestack-style/docs/components/overlay/tooltip',
   },
 
   {
     title: 'VStack',
     child: <VStackDemo />,
-    href: '/ui/docs/components/layout/vstack',
+    href: '/ui/gluestack-style/docs/components/layout/vstack',
   },
 ];
