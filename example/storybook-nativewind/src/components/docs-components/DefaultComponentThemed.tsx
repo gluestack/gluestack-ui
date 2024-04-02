@@ -11,13 +11,12 @@ import {
   HStack,
   Box,
   GluestackUIProvider,
-  Heading,
   Divider,
   Tooltip,
   TooltipContent,
   TooltipText,
   Pressable,
-} from '../../core-components/themed';
+} from '@gluestack-ui/themed';
 import { config } from '../../core-components/themed/gluestack-ui-provider/config';
 import { LayoutContext } from '@gluestack/design-system';
 
@@ -78,9 +77,9 @@ const ColorPaletteComponent = () => {
         {Object.keys(sortedPalette).map((category: string) => {
           return (
             <Fragment key={category}>
-              <Heading mb="$4" size="md">
+              <Text mb="$4" size="md" bold>
                 {category}
-              </Heading>
+              </Text>
               <HStack
                 key={category}
                 w="$full"
@@ -290,9 +289,9 @@ const ShadowsComponent = () => {
   return (
     <GluestackUIProvider config={config} colorMode={colorMode}>
       <VStack>
-        <Heading size="sm" mb="$4">
+        <Text size="sm" mb="$4" bold>
           Hard Shadows
-        </Heading>
+        </Text>
         <HStack
           sx={{
             _web: {
@@ -334,9 +333,9 @@ const ShadowsComponent = () => {
             );
           })}
         </HStack>
-        <Heading size="sm" mb="$4">
+        <Text size="sm" mb="$4" bold>
           Soft Shadows
-        </Heading>
+        </Text>
         <HStack
           sx={{
             _web: {
