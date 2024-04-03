@@ -10,6 +10,7 @@
       "@gluestack-ui/progress": ["../../packages/unstyled/progress/src"],
       "@gluestack-ui/toast": ["../../packages/unstyled/toast/src"],
       "@gluestack-ui/actionsheet": ["../../packages/unstyled/actionsheet/src"],
+      "@gluestack-ui/avatar": ["../../packages/unstyled/avatar/src"],
       "@gluestack-ui/nativewind-utils/tva": [
         "../../packages/nativewind/utils/src/tva"
       ],
