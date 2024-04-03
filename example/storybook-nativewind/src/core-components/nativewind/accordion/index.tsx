@@ -22,6 +22,11 @@ const accordionStyle = tva({
     variant: {
       filled: 'bg-white',
     },
+    size: {
+      sm: '',
+      md: '',
+      lg: '',
+    },
   },
 });
 const accordionItemStyle = tva({
@@ -139,7 +144,6 @@ const Accordion = React.forwardRef(
     {
       className,
       variant = 'filled',
-      //@ts-ignore
       size = 'md',
       ...props
     }: { className?: string } & IAccordionProps,
@@ -166,6 +170,7 @@ const AccordionItem = React.forwardRef(
       <UIAccordion.Item
         ref={ref}
         {...props}
+        // @ts-ignore
         className={accordionItemStyle({
           parentVariants: { variant },
           class: className,

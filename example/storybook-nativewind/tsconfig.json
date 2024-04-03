@@ -6,6 +6,7 @@
       "@/components/ui/*": ["src/core-components/nativewind/*"],
       "@gluestack-style/react": ["../../packages/styled/react/src"],
       "@gluestack-ui/popover": ["../../packages/unstyled/popover/src"],
+      "@gluestack-ui/accordion": ["../../packages/unstyled/accordion/src"],
       "@gluestack-ui/nativewind-utils/tva": [
         "../../packages/nativewind/utils/src/tva"
       ],
