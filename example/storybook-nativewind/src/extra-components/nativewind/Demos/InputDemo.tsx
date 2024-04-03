@@ -13,7 +13,7 @@ const InputDemo = () => {
       <InputSlot className="pl-3">
         <InputIcon as={SearchIcon} />
       </InputSlot>
-      <InputField placeholder="Search../../../core-components/nativewind." />
+      <InputField placeholder="Search..." />
     </Input>
   );
 };

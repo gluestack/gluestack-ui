@@ -13,7 +13,7 @@ const InputDemo = () => {
       <InputSlot pl="$3">
         <InputIcon as={SearchIcon} />
       </InputSlot>
-      <InputField placeholder="Search../../../core-components/themed." />
+      <InputField placeholder="Search..." />
     </Input>
   );
 };
