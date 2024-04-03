@@ -180,7 +180,7 @@ type IAlertIconProps = React.ComponentProps<typeof UIAlert.Icon> &
   VariantProps<typeof alertIconStyle>;
 const AlertIcon = ({
   className,
-  size = 'md',
+  size,
   fill = 'none',
   as: AsComp,
   ...props
@@ -188,7 +188,7 @@ const AlertIcon = ({
   className?: string;
   as?: any;
   fill?: string;
-  color?: any;
+  color?: string;
 } & IAlertIconProps) => {
   const { action: parentAction } = useStyleContext(SCOPE);
   const { color = defaultColors[parentAction as keyof DefaultColors] } = props;
