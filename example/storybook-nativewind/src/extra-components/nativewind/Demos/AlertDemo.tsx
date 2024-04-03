@@ -1,5 +1,9 @@
 import React from 'react';
-import { Alert, AlertIcon, AlertText } from '@/extra-components/nativewind';
+import {
+  Alert,
+  AlertIcon,
+  AlertText,
+} from '../../../core-components/nativewind';
 import { InfoIcon } from '../../../core-components/nativewind';
 
 const AlertDemo = () => {
