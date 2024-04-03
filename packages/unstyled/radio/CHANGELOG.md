@@ -1,5 +1,13 @@
 # @gluestack-ui/radio
 
+## 0.1.28
+
+### Patch Changes
+
+- fix: ref typing issue
+- Updated dependencies
+  - @gluestack-ui/form-control@0.1.17
+
 ## 0.1.27
 
 ### Patch Changes
