@@ -13,7 +13,6 @@ import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
 import React from 'react';
 const SCOPE = 'FAB';
 export const UIFab = createFab({
-  // @ts-ignore
   Root:
     Platform.OS === 'web'
       ? withStyleContext(Pressable, SCOPE)
@@ -22,7 +21,6 @@ export const UIFab = createFab({
   Icon: View,
 });
 
-// @ts-ignore
 cssInterop(UIFab, { className: 'style' });
 cssInterop(UIFab.Label, { className: 'style' });
 cssInterop(UIFab.Icon, { className: 'style' });
