@@ -69,7 +69,6 @@ export const ProgressFilledTrack = React.forwardRef(
 
     return (
       <UIProgress.FilledTrack
-        // @ts-ignore
         ref={ref}
         className={progressFilledTrackStyle({
           parentVariants: {
