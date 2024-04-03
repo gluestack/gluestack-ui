@@ -6,6 +6,11 @@
       "@/components/ui/*": ["src/core-components/nativewind/*"],
       "@gluestack-style/react": ["../../packages/styled/react/src"],
       "@gluestack-ui/popover": ["../../packages/unstyled/popover/src"],
+      "@gluestack-ui/button": ["../../packages/unstyled/button/src"],
+      "@gluestack-ui/alert": ["../../packages/unstyled/alert/src"],
+      "@gluestack-ui/input": ["../../packages/unstyled/input/src"],
+      "@gluestack-ui/checkbox": ["../../packages/unstyled/checkbox/src"],
+      "@gluestack-ui/radio": ["../../packages/unstyled/radio/src"],
       "@gluestack-ui/nativewind-utils/tva": [
         "../../packages/nativewind/utils/src/tva"
       ],

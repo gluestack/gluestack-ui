@@ -11,9 +11,7 @@ import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withSt
 import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
 import { withStates } from '@gluestack-ui/nativewind-utils/withStates';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
-
 import { Platform } from 'react-native';
-import { Check } from 'lucide-react-native';
 
 const SCOPE = 'CHECKBOX';
 const UICheckbox = createCheckbox({
@@ -23,7 +21,7 @@ const UICheckbox = createCheckbox({
       ? withStyleContext(View, SCOPE)
       : withStyleContextAndStates(Pressable, SCOPE),
   Group: withStates(View),
-  Icon: withStates(Check),
+  Icon: withStates(View),
   Label: withStates(Text),
   Indicator: withStates(View),
 });
@@ -61,7 +59,7 @@ const checkboxLabelStyle = tva({
 });
 
 const checkboxIconStyle = tva({
-  base: 'text-typography-0 data-[disabled=true]:opacity-40 fill-none',
+  base: 'text-typography-0 data-[disabled=true]:opacity-40',
 
   parentVariants: {
     size: {
@@ -82,8 +80,8 @@ const Checkbox = React.forwardRef(
       className,
       size = 'md',
       ...props
-    }: { className?: string } & ICheckboxProps,
-    ref
+    }: { className?: string; size?: string } & ICheckboxProps,
+    ref?: any
   ) => {
     return (
       <UICheckbox
@@ -108,7 +106,7 @@ type ICheckboxIndicatorProps = React.ComponentProps<
 const CheckboxIndicator = React.forwardRef(
   (
     { className, ...props }: { className?: string } & ICheckboxIndicatorProps,
-    ref
+    ref?: any
   ) => {
     const { size: parentSize } = useStyleContext(SCOPE);
 
@@ -132,7 +130,7 @@ type ICheckboxLabelProps = React.ComponentProps<typeof UICheckbox.Label> &
 const CheckboxLabel = React.forwardRef(
   (
     { className, ...props }: { className?: string } & ICheckboxLabelProps,
-    ref
+    ref?: any
   ) => {
     const { size: parentSize } = useStyleContext(SCOPE);
     return (
@@ -150,30 +148,41 @@ const CheckboxLabel = React.forwardRef(
   }
 );
 
-type ICheckboxIconProps = React.ComponentProps<typeof UICheckbox.Icon> & {
-  as?: any;
-};
+type ICheckboxIconProps = React.ComponentProps<typeof UICheckbox.Icon> &
+  VariantProps<typeof checkboxIconStyle>;
 const CheckboxIcon = React.forwardRef(
-  (
-    {
-      className,
-      as: AsComp,
-      ...props
-    }: ICheckboxIconProps & { className?: any },
-    ref
-  ) => {
+  ({
+    className,
+    as: AsComp,
+    fill = 'none',
+    size,
+    ...props
+  }: ICheckboxIconProps & {
+    className?: any;
+    fill?: string;
+    color?: string;
+    as?: any;
+  }) => {
     const { size: parentSize } = useStyleContext(SCOPE);
+    const { color = 'gray' } = props;
+
     if (AsComp) {
       return (
-        <UICheckbox.Icon>
+        <UICheckbox.Icon
+          className={checkboxIconStyle({
+            parentVariants: {
+              size: parentSize,
+            },
+            class: className,
+            size,
+          })}
+        >
           <AsComp
+            fill={fill}
+            color={color}
             {...props}
-            className={checkboxIconStyle({
-              parentVariants: {
-                size: parentSize,
-              },
-              class: className,
-            })}
+            height={'100%'}
+            width={'100%'}
           />
         </UICheckbox.Icon>
       );
@@ -186,15 +195,17 @@ const CheckboxIcon = React.forwardRef(
             size: parentSize,
           },
           class: className,
+          size,
         })}
         {...props}
-        ref={ref}
+        //@ts-ignore
+        fill={fill}
+        color={color}
       />
     );
   }
 );
 
-// Assign display names
 Checkbox.displayName = 'Checkbox';
 CheckboxIndicator.displayName = 'CheckboxIndicator';
 CheckboxLabel.displayName = 'CheckboxLabel';
