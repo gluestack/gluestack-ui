@@ -13,6 +13,7 @@
         "../../packages/unstyled/alert-dialog/src"
       ],
       "@gluestack-ui/menu": ["../../packages/unstyled/menu/src"],
+      "@gluestack-ui/link": ["../../packages/unstyled/link/src"],
       "@gluestack-ui/nativewind-utils/tva": [
         "../../packages/nativewind/utils/src/tva"
       ],
