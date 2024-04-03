@@ -12,7 +12,6 @@ import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 
 import React from 'react';
 export const UILink = createLink({
-  // @ts-ignore
   Root:
     Platform.OS === 'web'
       ? withStyleContext(Pressable)
@@ -47,6 +46,7 @@ const Link = React.forwardRef(
 
 type ILinkTextProps = React.ComponentProps<typeof UILink.Text> &
   VariantProps<typeof linkTextStyle>;
+
 const LinkText = React.forwardRef(
   (
     { className, ...props }: { className?: string } & ILinkTextProps,
