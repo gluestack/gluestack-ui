@@ -1,5 +1,5 @@
 import type { ViewProps } from 'react-native';
-interface InterfaceRadio extends ViewProps {
+export interface InterfaceRadio extends ViewProps {
   value: string;
   onChange?: (isSelected: boolean) => void;
   children?: React.ReactNode;
