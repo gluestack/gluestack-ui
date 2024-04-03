@@ -1,5 +1,11 @@
 # @react-native-aria/radio
 
+## 0.2.11
+
+### Patch Changes
+
+- fix: typing issues
+
 ## 0.2.10
 
 ### Patch Changes

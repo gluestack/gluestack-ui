@@ -1,5 +1,11 @@
 # @react-native-aria/checkbox
 
+## 0.2.10
+
+### Patch Changes
+
+- fix: typing issues
+
 ## 0.2.9
 
 ### Patch Changes
