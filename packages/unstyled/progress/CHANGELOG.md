@@ -1,5 +1,11 @@
 # @gluestack-ui/progress
 
+## 0.1.14
+
+### Patch Changes
+
+- fix: ref typing issue
+
 ## 0.1.13
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @gluestack-ui/tooltip
 
+## 0.1.30
+
+### Patch Changes
+
+- fix: ref typing issue
+
 ## 0.1.29
 
 ### Patch Changes
