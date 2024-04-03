@@ -1,5 +1,11 @@
 # @gluestack-ui/radio
 
+## 0.1.29
+
+### Patch Changes
+
+- fix: typing issue
+
 ## 0.1.28
 
 ### Patch Changes
