@@ -1,5 +1,11 @@
 # @gluestack-ui/input
 
+## 0.1.29
+
+### Patch Changes
+
+- fix: typing issue for radio input checkbox
+
 ## 0.1.28
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @react-native-aria/radio
 
+## 0.2.11
+
+### Patch Changes
+
+- fix: typing issue for radio input checkbox
+
 ## 0.2.10
 
 ### Patch Changes
