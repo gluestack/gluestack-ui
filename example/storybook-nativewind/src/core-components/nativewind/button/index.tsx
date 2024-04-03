@@ -299,72 +299,79 @@ const defaultColors: DefaultColors = {
 };
 type IButtonIcon = React.ComponentProps<typeof UIButton.Icon> &
   VariantProps<typeof buttonIconStyle>;
-const ButtonIcon = ({
-  className,
-  as: AsComp,
-  fill = 'none',
-  size,
-  ...props
-}: IButtonIcon & {
-  className?: any;
-  fill?: string;
-  color?: string;
-  as?: any;
-}) => {
-  const {
-    variant: parentVariant,
-    size: parentSize,
-    action: parentAction,
-  } = useStyleContext(SCOPE);
+const ButtonIcon = React.forwardRef(
+  (
+    {
+      className,
+      as: AsComp,
+      fill = 'none',
+      size,
+      ...props
+    }: IButtonIcon & {
+      className?: any;
+      fill?: string;
+      color?: string;
+      as?: any;
+    },
+    ref?: any
+  ) => {
+    const {
+      variant: parentVariant,
+      size: parentSize,
+      action: parentAction,
+    } = useStyleContext(SCOPE);
 
-  let localColor;
-  if (parentVariant !== 'solid') {
-    localColor = defaultColors[parentAction as keyof DefaultColors];
-  } else {
-    localColor = '#FEFEFF';
-  }
-  const { color = localColor } = props;
+    let localColor;
+    if (parentVariant !== 'solid') {
+      localColor = defaultColors[parentAction as keyof DefaultColors];
+    } else {
+      localColor = '#FEFEFF';
+    }
+    const { color = localColor } = props;
 
-  if (AsComp) {
+    if (AsComp) {
+      return (
+        <View
+          className={buttonIconStyle({
+            parentVariants: {
+              size: parentSize,
+              variant: parentVariant,
+              action: parentAction,
+            },
+            size,
+            class: className,
+          })}
+        >
+          <AsComp
+            fill={fill}
+            color={color}
+            {...props}
+            height={'100%'}
+            width={'100%'}
+            ref={ref}
+          />
+        </View>
+      );
+    }
     return (
-      <View
+      <UIButton.Icon
+        {...props}
+        //@ts-ignore
         className={buttonIconStyle({
           parentVariants: {
             size: parentSize,
-            variant: parentVariant,
-            action: parentAction,
           },
           size,
           class: className,
         })}
-      >
-        <AsComp
-          fill={fill}
-          color={color}
-          {...props}
-          height={'100%'}
-          width={'100%'}
-        />
-      </View>
+        //@ts-ignore
+        fill={fill}
+        color={color}
+        ref={ref}
+      />
     );
   }
-  return (
-    <UIButton.Icon
-      {...props}
-      //@ts-ignore
-      className={buttonIconStyle({
-        parentVariants: {
-          size: parentSize,
-        },
-        size,
-        class: className,
-      })}
-      //@ts-ignore
-      fill={fill}
-      color={color}
-    />
-  );
-};
+);
 
 Button.displayName = 'Button';
 ButtonText.displayName = 'ButtonText';

@@ -150,6 +150,7 @@ const InputIcon = React.forwardRef(
             {...props}
             height={'100%'}
             width={'100%'}
+            ref={ref}
           />
         </View>
       );

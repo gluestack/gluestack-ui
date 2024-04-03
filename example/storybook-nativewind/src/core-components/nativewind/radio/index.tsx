@@ -167,24 +167,50 @@ const RadioLabel = React.forwardRef(
 
 type IRadioIconProps = React.ComponentProps<typeof UIRadio.Icon> &
   VariantProps<typeof radioIconStyle>;
-const RadioIcon = ({
-  className,
-  as: AsComp,
-  size,
-  fill = 'none',
-  ...props
-}: IRadioIconProps & {
-  className?: string;
-  fill?: string;
-  color?: string;
-  as?: any;
-}) => {
-  const { size: parentSize } = useStyleContext(SCOPE);
-  const { color = 'gray' } = props;
+const RadioIcon = React.forwardRef(
+  (
+    {
+      className,
+      as: AsComp,
+      size,
+      fill = 'none',
+      ...props
+    }: IRadioIconProps & {
+      className?: string;
+      fill?: string;
+      color?: string;
+      as?: any;
+    },
+    ref?: any
+  ) => {
+    const { size: parentSize } = useStyleContext(SCOPE);
+    const { color = 'gray' } = props;
 
-  if (AsComp) {
+    if (AsComp) {
+      return (
+        <UIRadio.Icon
+          className={radioIconStyle({
+            parentVariants: {
+              size: parentSize,
+            },
+            size,
+            class: className,
+          })}
+        >
+          <AsComp
+            fill={fill}
+            color={color}
+            {...props}
+            height={'100%'}
+            width={'100%'}
+            ref={ref}
+          />
+        </UIRadio.Icon>
+      );
+    }
     return (
       <UIRadio.Icon
+        {...props}
         className={radioIconStyle({
           parentVariants: {
             size: parentSize,
@@ -192,33 +218,14 @@ const RadioIcon = ({
           size,
           class: className,
         })}
-      >
-        <AsComp
-          fill={fill}
-          color={color}
-          {...props}
-          height={'100%'}
-          width={'100%'}
-        />
-      </UIRadio.Icon>
+        //@ts-ignore
+        fill={fill}
+        color={color}
+        ref={ref}
+      />
     );
   }
-  return (
-    <UIRadio.Icon
-      {...props}
-      className={radioIconStyle({
-        parentVariants: {
-          size: parentSize,
-        },
-        size,
-        class: className,
-      })}
-      //@ts-ignore
-      fill={fill}
-      color={color}
-    />
-  );
-};
+);
 
 Radio.displayName = 'Radio';
 RadioGroup.displayName = 'RadioGroup';
