@@ -29,7 +29,6 @@ const AnimatedPressable = createMotionAnimatedComponent(Pressable);
 export const UIActionsheet = createActionsheet({
   Root: View,
   Content: withStyleContext(Motion.View),
-  // @ts-ignore
   Item:
     Platform.OS === 'web'
       ? withStyleContext(Pressable)
