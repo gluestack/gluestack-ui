@@ -34,7 +34,7 @@ type ISwitchProps = React.ComponentProps<typeof UISwitch> &
 const Switch = React.forwardRef(
   (
     { className, size = 'md', ...props }: { className?: string } & ISwitchProps,
-    ref
+    ref?: any
   ) => {
     return (
       <UISwitch

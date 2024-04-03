@@ -13,7 +13,6 @@ import { withStates } from '@gluestack-ui/nativewind-utils/withStates';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 const SCOPE = 'TEXTAREA';
 const UITextarea = createTextarea({
-  // @ts-ignore
   Root:
     Platform.OS === 'web'
       ? withStyleContext(View, SCOPE)
@@ -31,6 +30,12 @@ const textareaStyle = tva({
     variant: {
       default:
         'data-[focus=true]:border-primary-700 data-[focus=true]:web:ring-1 data-[focus=true]:web:ring-inset data-[focus=true]:web:ring-primary-700 data-[invalid=true]:border-error-700 data-[invalid=true]:web:ring-1 data-[invalid=true]:web:ring-inset data-[invalid=true]:web:ring-error-700 data-[invalid=true]:hover:border-error-700 data-[invalid=true]:data-[focus=true]:hover:border-primary-700 data-[invalid=true]:data-[focus=true]:hover:web:ring-1 data-[invalid=true]:data-[focus=true]:hover:web:ring-inset data-[invalid=true]:data-[focus=true]:hover:web:ring-primary-700 data-[invalid=true]:data-[disabled=true]:hover:border-error-700 data-[invalid=true]:data-[disabled=true]:hover:web:ring-1 data-[invalid=true]:data-[disabled=true]:hover:web:ring-inset data-[invalid=true]:data-[disabled=true]:hover:web:ring-error-700 ',
+    },
+    size: {
+      sm: '',
+      md: '',
+      lg: '',
+      xl: '',
     },
   },
 });
@@ -58,7 +63,7 @@ const Textarea = React.forwardRef(
       size = 'md',
       ...props
     }: { className?: string } & ITextareaProps,
-    ref
+    ref?: any
   ) => {
     return (
       <UITextarea
@@ -77,7 +82,7 @@ type ITextareaInputProps = React.ComponentProps<typeof UITextarea.Input> &
 const TextareaInput = React.forwardRef(
   (
     { className, ...props }: { className?: string } & ITextareaInputProps,
-    ref
+    ref?: any
   ) => {
     const { size: parentSize } = useStyleContext(SCOPE);
 
