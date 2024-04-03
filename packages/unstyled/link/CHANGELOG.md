@@ -1,5 +1,11 @@
 # @gluestack-ui/link
 
+## 0.1.20
+
+### Patch Changes
+
+- fix: ref typing issue
+
 ## 0.1.19
 
 ### Patch Changes

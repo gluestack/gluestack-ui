@@ -19,12 +19,14 @@ import {
   Platform,
 } from 'react-native';
 
+const SCOPE = 'BUTTON';
+const Root =
+  Platform.OS === 'web'
+    ? withStyleContext(Pressable, SCOPE)
+    : withStyleContextAndStates(Pressable, SCOPE);
+
 const UIButton = createButton({
-  // @ts-ignore
-  Root:
-    Platform.OS === 'web'
-      ? withStyleContext(Pressable)
-      : withStyleContextAndStates(Pressable),
+  Root: Root,
   Text,
   Group: View,
   Spinner: ActivityIndicator,
@@ -219,10 +221,6 @@ const buttonIconStyle = tva({
 
 type IButtonProps = Omit<React.ComponentProps<typeof UIButton>, 'context'> &
   VariantProps<typeof buttonStyle>;
-
-type IButtonTextProps = React.ComponentProps<typeof UIButton.Text> &
-  VariantProps<typeof buttonTextStyle>;
-
 const Button = React.forwardRef(
   (
     {
@@ -232,11 +230,10 @@ const Button = React.forwardRef(
       action = 'primary',
       ...props
     }: { className?: string } & IButtonProps,
-    ref
+    ref?: any
   ) => {
     return (
       <UIButton
-        // @ts-ignore
         ref={ref}
         {...props}
         className={buttonStyle({ variant, size, action, class: className })}
@@ -246,11 +243,8 @@ const Button = React.forwardRef(
   }
 );
 
-<Button></Button>;
-
-type IButtonIcon = React.ComponentProps<typeof UIButton.Icon> & {
-  as?: any;
-};
+type IButtonTextProps = React.ComponentProps<typeof UIButton.Text> &
+  VariantProps<typeof buttonTextStyle>;
 const ButtonText = React.forwardRef(
   (
     {
@@ -266,13 +260,13 @@ const ButtonText = React.forwardRef(
       variant: parentVariant,
       size: parentSize,
       action: parentAction,
-    } = useStyleContext();
+    } = useStyleContext(SCOPE);
 
     return (
       <UIButton.Text
-        // @ts-ignore
         ref={ref}
         {...props}
+        // @ts-ignore
         className={buttonTextStyle({
           parentVariants: {
             variant: parentVariant,
@@ -291,22 +285,49 @@ const ButtonText = React.forwardRef(
 
 const ButtonSpinner = UIButton.Spinner;
 
+interface DefaultColors {
+  primary: string;
+  secondary: string;
+  positive: string;
+  negative: string;
+}
+const defaultColors: DefaultColors = {
+  primary: '#292929',
+  secondary: '#515252',
+  positive: '#2A7948',
+  negative: '#DC2626',
+};
+type IButtonIcon = React.ComponentProps<typeof UIButton.Icon> &
+  VariantProps<typeof buttonIconStyle>;
 const ButtonIcon = ({
   className,
   as: AsComp,
+  fill = 'none',
   size,
   ...props
-}: IButtonIcon & { className?: any }) => {
+}: IButtonIcon & {
+  className?: any;
+  fill?: string;
+  color?: string;
+  as?: any;
+}) => {
   const {
     variant: parentVariant,
     size: parentSize,
     action: parentAction,
-  } = useStyleContext();
+  } = useStyleContext(SCOPE);
+
+  let localColor;
+  if (parentVariant !== 'solid') {
+    localColor = defaultColors[parentAction as keyof DefaultColors];
+  } else {
+    localColor = '#FEFEFF';
+  }
+  const { color = localColor } = props;
 
   if (AsComp) {
     return (
-      <AsComp
-        {...props}
+      <View
         className={buttonIconStyle({
           parentVariants: {
             size: parentSize,
@@ -316,12 +337,21 @@ const ButtonIcon = ({
           size,
           class: className,
         })}
-      />
+      >
+        <AsComp
+          fill={fill}
+          color={color}
+          {...props}
+          height={'100%'}
+          width={'100%'}
+        />
+      </View>
     );
   }
   return (
     <UIButton.Icon
       {...props}
+      //@ts-ignore
       className={buttonIconStyle({
         parentVariants: {
           size: parentSize,
@@ -329,9 +359,13 @@ const ButtonIcon = ({
         size,
         class: className,
       })}
+      //@ts-ignore
+      fill={fill}
+      color={color}
     />
   );
 };
+
 Button.displayName = 'Button';
 ButtonText.displayName = 'ButtonText';
 ButtonSpinner.displayName = 'ButtonSpinner';

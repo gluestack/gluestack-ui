@@ -1,13 +1,15 @@
 import React from 'react';
 import { config } from './config';
 import { View } from 'react-native';
+import { OverlayProvider } from '@gluestack-ui/overlay';
+import { ToastProvider } from '@gluestack-ui/toast';
 
 export function GluestackUIProvider({
   mode = 'light',
   ...props
 }: {
-  mode: 'light' | 'dark';
-  children: any;
+  mode?: 'light' | 'dark';
+  children?: any;
 }) {
   return (
     <View
@@ -18,7 +20,9 @@ export function GluestackUIProvider({
         props.style,
       ]}
     >
-      {props.children}
+      <OverlayProvider>
+        <ToastProvider>{props.children}</ToastProvider>
+      </OverlayProvider>
     </View>
   );
 }

@@ -1,5 +1,11 @@
 # @gluestack-ui/menu
 
+## 0.2.33
+
+### Patch Changes
+
+- fix: ref typing issue
+
 ## 0.2.32
 
 ### Patch Changes

@@ -11,18 +11,16 @@ import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withSt
 import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
 
 import React from 'react';
-
+const SCOPE = 'FAB';
 export const UIFab = createFab({
-  // @ts-ignore
   Root:
     Platform.OS === 'web'
-      ? withStyleContext(Pressable)
-      : withStyleContextAndStates(Pressable),
+      ? withStyleContext(Pressable, SCOPE)
+      : withStyleContextAndStates(Pressable, SCOPE),
   Label: Text,
   Icon: View,
 });
 
-// @ts-ignore
 cssInterop(UIFab, { className: 'style' });
 cssInterop(UIFab.Label, { className: 'style' });
 cssInterop(UIFab.Icon, { className: 'style' });
@@ -142,7 +140,7 @@ const FabLabel = React.forwardRef(
     }: any,
     ref: any
   ) => {
-    const { size: parentSize } = useStyleContext();
+    const { size: parentSize } = useStyleContext(SCOPE);
     return (
       <UIFab.Label
         ref={ref}
@@ -165,7 +163,7 @@ const FabLabel = React.forwardRef(
 
 const FabIcon = React.forwardRef(
   ({ size = 'md', className, as: AsComp, ...props }: any, ref: any) => {
-    const { size: parentSize } = useStyleContext();
+    const { size: parentSize } = useStyleContext(SCOPE);
     if (AsComp) {
       return (
         <AsComp

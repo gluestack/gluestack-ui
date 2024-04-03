@@ -12,19 +12,18 @@ import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withSt
 import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
 import { withStates } from '@gluestack-ui/nativewind-utils/withStates';
 
+const SCOPE = 'SLIDER';
 export const UISlider = createSlider({
-  // @ts-ignore
   Root:
     Platform.OS === 'web'
-      ? withStyleContext(View)
-      : withStyleContextAndStates(View),
+      ? withStyleContext(View, SCOPE)
+      : withStyleContextAndStates(View, SCOPE),
   Thumb: Platform.OS === 'web' ? View : withStates(View),
   Track: Pressable,
   FilledTrack: Platform.OS === 'web' ? View : withStates(View),
   ThumbInteraction: View,
 });
 
-//@ts-ignore
 cssInterop(UISlider, { className: 'style' });
 cssInterop(UISlider.Thumb, { className: 'style' });
 cssInterop(UISlider.Track, { className: 'style' });
@@ -162,7 +161,7 @@ export const Slider = React.forwardRef(
       isReversed = false,
       ...props
     }: any,
-    ref
+    ref?: any
   ) => {
     return (
       <UISlider
@@ -182,8 +181,8 @@ export const Slider = React.forwardRef(
 );
 
 export const SliderThumb = React.forwardRef(
-  ({ className, size, ...props }: any, ref) => {
-    const { size: parentSize } = useStyleContext();
+  ({ className, size, ...props }: any, ref?: any) => {
+    const { size: parentSize } = useStyleContext(SCOPE);
 
     return (
       <UISlider.Thumb
@@ -202,12 +201,12 @@ export const SliderThumb = React.forwardRef(
 );
 
 export const SliderTrack = React.forwardRef(
-  ({ className, ...props }: any, ref) => {
+  ({ className, ...props }: any, ref?: any) => {
     const {
       orientation: parentOrientation,
       size: parentSize,
       isReversed,
-    } = useStyleContext();
+    } = useStyleContext(SCOPE);
 
     return (
       <UISlider.Track
@@ -227,8 +226,8 @@ export const SliderTrack = React.forwardRef(
 );
 
 export const SliderFilledTrack = React.forwardRef(
-  ({ className, ...props }: any, ref) => {
-    const { orientation: parentOrientation } = useStyleContext();
+  ({ className, ...props }: any, ref?: any) => {
+    const { orientation: parentOrientation } = useStyleContext(SCOPE);
 
     return (
       <UISlider.FilledTrack
