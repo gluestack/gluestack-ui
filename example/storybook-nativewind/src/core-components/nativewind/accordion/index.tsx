@@ -80,17 +80,17 @@ const accordionTriggerStyle = tva({
   base: 'w-full py-5 px-5 flex-row justify-between items-center web:outline-none focus:outline-none data-[disabled=true]:opacity-40 data-[disabled=true]:cursor-not-allowed data-[focus-visible=true]:bg-background-50',
 });
 
+const Root =
+  Platform.OS === 'web'
+    ? withStyleContext(View, SCOPE)
+    : withStyleContextAndStates(View, SCOPE);
+
 /** Creator */
 const UIAccordion = createAccordion({
-  //@ts-ignore
-  Root:
-    Platform.OS === 'web'
-      ? withStyleContext(View, SCOPE)
-      : withStyleContextAndStates(View, SCOPE),
+  Root: Root,
   Item: View,
-  // @ts-ignore
-  Header: Platform.OS === 'web' ? H3 : View,
   //@ts-ignore
+  Header: Platform.OS === 'web' ? H3 : View,
   Trigger: Pressable,
   Icon: View,
   TitleText: Text,
@@ -170,7 +170,6 @@ const AccordionItem = React.forwardRef(
       <UIAccordion.Item
         ref={ref}
         {...props}
-        // @ts-ignore
         className={accordionItemStyle({
           parentVariants: { variant },
           class: className,
@@ -249,6 +248,7 @@ const AccordionIcon = React.forwardRef(
     return (
       <UIAccordion.Icon
         ref={ref}
+        //@ts-ignore
         fill={fill}
         {...props}
         className={accordionIconStyle({
