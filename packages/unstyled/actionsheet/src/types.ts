@@ -60,23 +60,47 @@ export type IActionsheetComponentType<
   SectionListProps,
   SectionHeaderTextProps,
   IconProps
-> = React.ForwardRefExoticComponent<ActionsheetProps & IActionsheetProps> & {
+> = React.ForwardRefExoticComponent<
+  ActionsheetProps & React.RefAttributes<ActionsheetProps> & IActionsheetProps
+> & {
   Content: React.ForwardRefExoticComponent<
-    ContentProps & InterfaceActionsheetContentProps
+    ContentProps &
+      React.RefAttributes<ContentProps> &
+      InterfaceActionsheetContentProps
   >;
   Item: React.ForwardRefExoticComponent<
-    ItemProps & InterfaceActionsheetItemProps
+    ItemProps & InterfaceActionsheetItemProps & React.RefAttributes<ItemProps>
   >;
-  ItemText: React.ForwardRefExoticComponent<ItemTextProps>;
-  DragIndicator: React.ForwardRefExoticComponent<DragIndicatorProps>;
-  Backdrop: React.ForwardRefExoticComponent<BackdropProps>;
-  DragIndicatorWrapper: React.ForwardRefExoticComponent<IndicatorWrapperProps>;
-  ScrollView: React.ForwardRefExoticComponent<ScrollViewProps>;
-  VirtualizedList: React.ForwardRefExoticComponent<VirtualizedListProps>;
-  FlatList: React.ForwardRefExoticComponent<FlatListProps>;
-  SectionList: React.ForwardRefExoticComponent<SectionListProps>;
-  SectionHeaderText: React.ForwardRefExoticComponent<SectionHeaderTextProps>;
-  Icon: React.ForwardRefExoticComponent<IconProps>;
+  ItemText: React.ForwardRefExoticComponent<
+    React.RefAttributes<ItemTextProps> & ItemTextProps
+  >;
+  DragIndicator: React.ForwardRefExoticComponent<
+    React.RefAttributes<DragIndicatorProps> & DragIndicatorProps
+  >;
+  Backdrop: React.ForwardRefExoticComponent<
+    React.RefAttributes<BackdropProps> & BackdropProps
+  >;
+  DragIndicatorWrapper: React.ForwardRefExoticComponent<
+    React.RefAttributes<IndicatorWrapperProps> & IndicatorWrapperProps
+  >;
+  ScrollView: React.ForwardRefExoticComponent<
+    React.RefAttributes<ScrollViewProps> & ScrollViewProps
+  >;
+  VirtualizedList: React.ForwardRefExoticComponent<
+    React.RefAttributes<VirtualizedListProps> & VirtualizedListProps
+  >;
+  FlatList: React.ForwardRefExoticComponent<
+    React.RefAttributes<FlatListProps> & FlatListProps
+  >;
+  SectionList: React.ForwardRefExoticComponent<
+    React.RefAttributes<SectionListProps> & SectionListProps
+  >;
+  SectionHeaderText: React.ForwardRefExoticComponent<
+    React.RefAttributes<SectionHeaderTextProps> & SectionHeaderTextProps
+  >;
+  Icon: React.ForwardRefExoticComponent<
+    React.RefAttributes<IconProps> & IconProps
+  >;
 };
 
 export type IActionsheetProps = InterfaceActionsheetProps;

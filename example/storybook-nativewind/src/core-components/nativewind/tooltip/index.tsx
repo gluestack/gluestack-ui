@@ -17,7 +17,7 @@ export const UITooltip = createTooltip({
       : withStyleContextAndStates(View),
   Content: Motion.View,
   Text: Text,
-  AnimatePresence: AnimatePresence, // TODO: Add support for this
+  AnimatePresence: AnimatePresence,
 });
 
 const tooltipStyle = tva({
@@ -100,7 +100,7 @@ export const Tooltip = React.forwardRef(
 export const TooltipContent = React.forwardRef(
   (
     { className, ...props }: { className?: string } & ITooltipContentProps,
-    ref
+    ref?: any
   ) => {
     return (
       <UITooltip.Content
