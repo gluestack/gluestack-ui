@@ -11,6 +11,13 @@
       "@gluestack-ui/input": ["../../packages/unstyled/input/src"],
       "@gluestack-ui/checkbox": ["../../packages/unstyled/checkbox/src"],
       "@gluestack-ui/radio": ["../../packages/unstyled/radio/src"],
+      "@gluestack-ui/accordion": ["../../packages/unstyled/accordion/src"],
+      "@gluestack-ui/actionsheet": ["../../packages/unstyled/actionsheet/src"],
+      "@gluestack-ui/tooltip": ["../../packages/unstyled/tooltip/src"],
+      "@gluestack-ui/alert-dialog": [
+        "../../packages/unstyled/alert-dialog/src"
+      ],
+      "@gluestack-ui/menu": ["../../packages/unstyled/menu/src"],
       "@gluestack-ui/nativewind-utils/tva": [
         "../../packages/nativewind/utils/src/tva"
       ],
@@ -25,7 +32,8 @@
       ],
       "@gluestack-ui/nativewind-utils/cssInterop": [
         "../../packages/nativewind/utils/src/cssInterop"
-      ]
+      ],
+      "tailwind.config": ["./tailwind.config.js"]
     },
     "emitDeclarationOnly": true,
     "noEmit": false,

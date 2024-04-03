@@ -1,5 +1,4 @@
 import React from 'react';
-import { View } from 'react-native';
 import { cardStyle } from './styles';
 
 const Card = ({
@@ -9,7 +8,7 @@ const Card = ({
   ...props
 }: any) => {
   return (
-    <View
+    <div
       className={cardStyle({ size, variant, class: className })}
       {...props}
     />
