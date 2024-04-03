@@ -39,61 +39,61 @@ export const content = [
     title: 'Actionsheet',
     child: <ActionsheetDemo />,
     padding: '$0',
-    href: '/ui/gluestack-style/docs/components/disclosure/actionsheet',
+    href: '/ui/gluestack-style/docs/components/actionsheet',
   },
   {
     title: 'AlertDialog',
     child: <AlertDialogDemo />,
     padding: '$0',
-    href: '/ui/gluestack-style/docs/components/overlay/alert-dialog',
+    href: '/ui/gluestack-style/docs/components/alert-dialog',
   },
   {
     title: 'Alert',
     child: <AlertDemo />,
-    href: '/ui/gluestack-style/docs/components/feedback/alert',
+    href: '/ui/gluestack-style/docs/components/alert',
   },
   {
     title: 'Avatar',
     child: <AvatarDemo />,
-    href: '/ui/gluestack-style/docs/components/media-and-icons/avatar',
+    href: '/ui/gluestack-style/docs/components/avatar',
   },
   {
     title: 'Accordion',
     child: <AccordionDemo />,
-    href: '/ui/gluestack-style/docs/components/disclosure/accordion',
+    href: '/ui/gluestack-style/docs/components/accordion',
   },
 
   {
     title: 'Badge',
     child: <BadgeDemo />,
-    href: '/ui/gluestack-style/docs/components/data-display/badge',
+    href: '/ui/gluestack-style/docs/components/badge',
   },
   {
     title: 'Box',
     child: <BoxDemo />,
-    href: '/ui/gluestack-style/docs/components/layout/box',
+    href: '/ui/gluestack-style/docs/components/box',
   },
   {
     title: 'Button',
     child: <ButtonDemo />,
-    href: '/ui/gluestack-style/docs/components/forms/button',
+    href: '/ui/gluestack-style/docs/components/button',
   },
 
   {
     title: 'Center',
     child: <CenterDemo />,
-    href: '/ui/gluestack-style/docs/components/layout/center',
+    href: '/ui/gluestack-style/docs/components/center',
   },
   {
     title: 'Checkbox',
     child: <CheckboxDemo />,
-    href: '/ui/gluestack-style/docs/components/forms/checkbox',
+    href: '/ui/gluestack-style/docs/components/checkbox',
   },
 
   {
     title: 'Divider',
     child: <DividerDemo />,
-    href: '/ui/gluestack-style/docs/components/data-display/divider',
+    href: '/ui/gluestack-style/docs/components/divider',
   },
 
   {
@@ -104,126 +104,126 @@ export const content = [
   {
     title: 'FormControl',
     child: <FormControlDemo />,
-    href: '/ui/gluestack-style/docs/components/forms/form-control',
+    href: '/ui/gluestack-style/docs/components/form-control',
   },
   {
     title: 'Heading',
     child: <HeadingDemo />,
-    href: '/ui/gluestack-style/docs/components/typography/heading',
+    href: '/ui/gluestack-style/docs/components/heading',
   },
   {
     title: 'HStack',
     child: <HStackDemo />,
-    href: '/ui/gluestack-style/docs/components/layout/hstack',
+    href: '/ui/gluestack-style/docs/components/hstack',
   },
 
   {
     title: 'Icon',
     child: <IconDemo />,
-    href: '/ui/gluestack-style/docs/components/media-and-icons/icon',
+    href: '/ui/gluestack-style/docs/components/icon',
   },
   {
     title: 'Image',
     child: <ImageDemo />,
-    href: '/ui/gluestack-style/docs/components/media-and-icons/image',
+    href: '/ui/gluestack-style/docs/components/image',
   },
   {
     title: 'Input',
     child: <InputDemo />,
-    href: '/ui/gluestack-style/docs/components/forms/input',
+    href: '/ui/gluestack-style/docs/components/input',
   },
 
   {
     title: 'Link',
     child: <LinkDemo />,
-    href: '/ui/gluestack-style/docs/components/forms/link',
+    href: '/ui/gluestack-style/docs/components/link',
   },
 
   // {
   //   title: 'Menu',
   //   child: <MenuDemo />,
   //   padding: '$0',
-  //   href: '/ui/gluestack-style/docs/components/overlay/menu',
+  //   href: '/ui/gluestack-style/docs/components/menu',
   // },
 
   {
     title: 'Modal',
     child: <ModalDemo />,
     padding: '$0',
-    href: '/ui/gluestack-style/docs/components/overlay/modal',
+    href: '/ui/gluestack-style/docs/components/modal',
   },
 
   // {
   //   title: 'Popover',
   //   child: <PopoverDemo />,
   //   padding: '$0',
-  //   href: '/ui/gluestack-style/docs/components/overlay/popover',
+  //   href: '/ui/gluestack-style/docs/components/popover',
   // },
 
   {
     title: 'Pressable',
     child: <PressableDemo />,
-    href: '/ui/gluestack-style/docs/components/forms/pressable',
+    href: '/ui/gluestack-style/docs/components/pressable',
   },
   {
     title: 'Progress',
     child: <ProgressDemo />,
-    href: '/ui/gluestack-style/docs/components/feedback/progress',
+    href: '/ui/gluestack-style/docs/components/progress',
   },
 
   {
     title: 'Radio',
     child: <RadioDemo />,
-    href: '/ui/gluestack-style/docs/components/forms/radio',
+    href: '/ui/gluestack-style/docs/components/radio',
   },
 
   {
     title: 'Select',
     child: <SelectDemo />,
-    href: '/ui/gluestack-style/docs/components/forms/select',
+    href: '/ui/gluestack-style/docs/components/select',
   },
 
   {
     title: 'Slider',
     child: <SliderDemo />,
-    href: '/ui/gluestack-style/docs/components/forms/slider',
+    href: '/ui/gluestack-style/docs/components/slider',
   },
   {
     title: 'Spinner',
     child: <SpinnerDemo />,
-    href: '/ui/gluestack-style/docs/components/feedback/spinner',
+    href: '/ui/gluestack-style/docs/components/spinner',
   },
   {
     title: 'Switch',
     child: <SwitchDemo />,
-    href: '/ui/gluestack-style/docs/components/forms/switch',
+    href: '/ui/gluestack-style/docs/components/switch',
   },
 
   {
     title: 'Text',
     child: <TextDemo />,
-    href: '/ui/gluestack-style/docs/components/typography/text',
+    href: '/ui/gluestack-style/docs/components/text',
   },
   {
     title: 'TextArea',
     child: <TextAreaDemo />,
-    href: '/ui/gluestack-style/docs/components/forms/textarea',
+    href: '/ui/gluestack-style/docs/components/textarea',
   },
   {
     title: 'Toast',
     child: <ToastDemo />,
-    href: '/ui/gluestack-style/docs/components/feedback/toast',
+    href: '/ui/gluestack-style/docs/components/toast',
   },
 
   {
     title: 'Tooltip',
     child: <TooltipDemo />,
-    href: '/ui/gluestack-style/docs/components/overlay/tooltip',
+    href: '/ui/gluestack-style/docs/components/tooltip',
   },
 
   {
     title: 'VStack',
     child: <VStackDemo />,
-    href: '/ui/gluestack-style/docs/components/layout/vstack',
+    href: '/ui/gluestack-style/docs/components/vstack',
   },
 ];

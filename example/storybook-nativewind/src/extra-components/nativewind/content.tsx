@@ -39,61 +39,61 @@ export const content = [
     title: 'Actionsheet',
     child: <ActionsheetDemo />,
     padding: '$0',
-    href: '/ui/nativewind/docs/components/disclosure/actionsheet',
+    href: '/ui/nativewind/docs/components/actionsheet',
   },
   {
     title: 'AlertDialog',
     child: <AlertDialogDemo />,
     padding: '$0',
-    href: '/ui/nativewind/docs/components/overlay/alert-dialog',
+    href: '/ui/nativewind/docs/components/alert-dialog',
   },
   {
     title: 'Alert',
     child: <AlertDemo />,
-    href: '/ui/nativewind/docs/components/feedback/alert',
+    href: '/ui/nativewind/docs/components/alert',
   },
   {
     title: 'Avatar',
     child: <AvatarDemo />,
-    href: '/ui/nativewind/docs/components/media-and-icons/avatar',
+    href: '/ui/nativewind/docs/components/avatar',
   },
   {
     title: 'Accordion',
     child: <AccordionDemo />,
-    href: '/ui/nativewind/docs/components/disclosure/accordion',
+    href: '/ui/nativewind/docs/components/accordion',
   },
 
   {
     title: 'Badge',
     child: <BadgeDemo />,
-    href: '/ui/nativewind/docs/components/data-display/badge',
+    href: '/ui/nativewind/docs/components/badge',
   },
   {
     title: 'Box',
     child: <BoxDemo />,
-    href: '/ui/nativewind/docs/components/layout/box',
+    href: '/ui/nativewind/docs/components/box',
   },
   {
     title: 'Button',
     child: <ButtonDemo />,
-    href: '/ui/nativewind/docs/components/forms/button',
+    href: '/ui/nativewind/docs/components/button',
   },
 
   {
     title: 'Center',
     child: <CenterDemo />,
-    href: '/ui/nativewind/docs/components/layout/center',
+    href: '/ui/nativewind/docs/components/center',
   },
   {
     title: 'Checkbox',
     child: <CheckboxDemo />,
-    href: '/ui/nativewind/docs/components/forms/checkbox',
+    href: '/ui/nativewind/docs/components/checkbox',
   },
 
   {
     title: 'Divider',
     child: <DividerDemo />,
-    href: '/ui/nativewind/docs/components/data-display/divider',
+    href: '/ui/nativewind/docs/components/divider',
   },
 
   {
@@ -104,126 +104,126 @@ export const content = [
   {
     title: 'FormControl',
     child: <FormControlDemo />,
-    href: '/ui/nativewind/docs/components/forms/form-control',
+    href: '/ui/nativewind/docs/components/form-control',
   },
   {
     title: 'Heading',
     child: <HeadingDemo />,
-    href: '/ui/nativewind/docs/components/typography/heading',
+    href: '/ui/nativewind/docs/components/heading',
   },
   {
     title: 'HStack',
     child: <HStackDemo />,
-    href: '/ui/nativewind/docs/components/layout/hstack',
+    href: '/ui/nativewind/docs/components/hstack',
   },
 
   {
     title: 'Icon',
     child: <IconDemo />,
-    href: '/ui/nativewind/docs/components/media-and-icons/icon',
+    href: '/ui/nativewind/docs/components/icon',
   },
   {
     title: 'Image',
     child: <ImageDemo />,
-    href: '/ui/nativewind/docs/components/media-and-icons/image',
+    href: '/ui/nativewind/docs/components/image',
   },
   {
     title: 'Input',
     child: <InputDemo />,
-    href: '/ui/nativewind/docs/components/forms/input',
+    href: '/ui/nativewind/docs/components/input',
   },
 
   {
     title: 'Link',
     child: <LinkDemo />,
-    href: '/ui/nativewind/docs/components/forms/link',
+    href: '/ui/nativewind/docs/components/link',
   },
 
   // {
   //   title: 'Menu',
   //   child: <MenuDemo />,
   //   padding: '$0',
-  //   href: '/ui/nativewind/docs/components/overlay/menu',
+  //   href: '/ui/nativewind/docs/components/menu',
   // },
 
   {
     title: 'Modal',
     child: <ModalDemo />,
     padding: '$0',
-    href: '/ui/nativewind/docs/components/overlay/modal',
+    href: '/ui/nativewind/docs/components/modal',
   },
 
   // {
   //   title: 'Popover',
   //   child: <PopoverDemo />,
   //   padding: '$0',
-  //   href: '/ui/nativewind/docs/components/overlay/popover',
+  //   href: '/ui/nativewind/docs/components/popover',
   // },
 
   {
     title: 'Pressable',
     child: <PressableDemo />,
-    href: '/ui/nativewind/docs/components/forms/pressable',
+    href: '/ui/nativewind/docs/components/pressable',
   },
   {
     title: 'Progress',
     child: <ProgressDemo />,
-    href: '/ui/nativewind/docs/components/feedback/progress',
+    href: '/ui/nativewind/docs/components/progress',
   },
 
   {
     title: 'Radio',
     child: <RadioDemo />,
-    href: '/ui/nativewind/docs/components/forms/radio',
+    href: '/ui/nativewind/docs/components/radio',
   },
 
   // {
   //   title: 'Select',
   //   child: <SelectDemo />,
-  //   href: '/ui/nativewind/docs/components/forms/select',
+  //   href: '/ui/nativewind/docs/components/select',
   // },
 
   {
     title: 'Slider',
     child: <SliderDemo />,
-    href: '/ui/nativewind/docs/components/forms/slider',
+    href: '/ui/nativewind/docs/components/slider',
   },
   {
     title: 'Spinner',
     child: <SpinnerDemo />,
-    href: '/ui/nativewind/docs/components/feedback/spinner',
+    href: '/ui/nativewind/docs/components/spinner',
   },
   {
     title: 'Switch',
     child: <SwitchDemo />,
-    href: '/ui/nativewind/docs/components/forms/switch',
+    href: '/ui/nativewind/docs/components/switch',
   },
 
   {
     title: 'Text',
     child: <TextDemo />,
-    href: '/ui/nativewind/docs/components/typography/text',
+    href: '/ui/nativewind/docs/components/text',
   },
   {
     title: 'TextArea',
     child: <TextAreaDemo />,
-    href: '/ui/nativewind/docs/components/forms/textarea',
+    href: '/ui/nativewind/docs/components/textarea',
   },
   {
     title: 'Toast',
     child: <ToastDemo />,
-    href: '/ui/nativewind/docs/components/feedback/toast',
+    href: '/ui/nativewind/docs/components/toast',
   },
 
   {
     title: 'Tooltip',
     child: <TooltipDemo />,
-    href: '/ui/nativewind/docs/components/overlay/tooltip',
+    href: '/ui/nativewind/docs/components/tooltip',
   },
 
   {
     title: 'VStack',
     child: <VStackDemo />,
-    href: '/ui/nativewind/docs/components/layout/vstack',
+    href: '/ui/nativewind/docs/components/vstack',
   },
 ];
