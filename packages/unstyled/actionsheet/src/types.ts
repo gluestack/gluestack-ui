@@ -69,37 +69,37 @@ export type IActionsheetComponentType<
       InterfaceActionsheetContentProps
   >;
   Item: React.ForwardRefExoticComponent<
-    ItemProps & React.RefAttributes<ItemProps> & InterfaceActionsheetItemProps
+    ItemProps & InterfaceActionsheetItemProps & React.RefAttributes<ItemProps>
   >;
   ItemText: React.ForwardRefExoticComponent<
-    ItemTextProps & React.RefAttributes<ItemTextProps>
+    React.RefAttributes<ItemTextProps> & ItemTextProps
   >;
   DragIndicator: React.ForwardRefExoticComponent<
-    DragIndicatorProps & React.RefAttributes<DragIndicatorProps>
+    React.RefAttributes<DragIndicatorProps> & DragIndicatorProps
   >;
   Backdrop: React.ForwardRefExoticComponent<
-    BackdropProps & React.RefAttributes<BackdropProps>
+    React.RefAttributes<BackdropProps> & BackdropProps
   >;
   DragIndicatorWrapper: React.ForwardRefExoticComponent<
-    IndicatorWrapperProps & React.RefAttributes<IndicatorWrapperProps>
+    React.RefAttributes<IndicatorWrapperProps> & IndicatorWrapperProps
   >;
   ScrollView: React.ForwardRefExoticComponent<
-    ScrollViewProps & React.RefAttributes<ScrollViewProps>
+    React.RefAttributes<ScrollViewProps> & ScrollViewProps
   >;
   VirtualizedList: React.ForwardRefExoticComponent<
-    VirtualizedListProps & React.RefAttributes<VirtualizedListProps>
+    React.RefAttributes<VirtualizedListProps> & VirtualizedListProps
   >;
   FlatList: React.ForwardRefExoticComponent<
-    FlatListProps & React.RefAttributes<FlatListProps>
+    React.RefAttributes<FlatListProps> & FlatListProps
   >;
   SectionList: React.ForwardRefExoticComponent<
-    SectionListProps & React.RefAttributes<SectionListProps>
+    React.RefAttributes<SectionListProps> & SectionListProps
   >;
   SectionHeaderText: React.ForwardRefExoticComponent<
-    SectionHeaderTextProps & React.RefAttributes<SectionHeaderTextProps>
+    React.RefAttributes<SectionHeaderTextProps> & SectionHeaderTextProps
   >;
   Icon: React.ForwardRefExoticComponent<
-    IconProps & React.RefAttributes<IconProps>
+    React.RefAttributes<IconProps> & IconProps
   >;
 };
 

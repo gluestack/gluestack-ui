@@ -85,12 +85,13 @@ const Root =
     ? withStyleContext(View, SCOPE)
     : withStyleContextAndStates(View, SCOPE);
 
+const Header = Platform.OS === 'web' ? H3 : View;
 /** Creator */
 const UIAccordion = createAccordion({
   Root: Root,
   Item: View,
   //@ts-ignore
-  Header: Platform.OS === 'web' ? H3 : View,
+  Header: Header,
   Trigger: Pressable,
   Icon: View,
   TitleText: Text,
