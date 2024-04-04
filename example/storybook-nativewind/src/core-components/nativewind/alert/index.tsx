@@ -182,7 +182,7 @@ const AlertIcon = React.forwardRef(
   (
     {
       className,
-      size,
+      size = 'md',
       fill = 'none',
       as: AsComp,
       ...props
