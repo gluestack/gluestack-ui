@@ -1,6 +1,5 @@
 import React from 'react';
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
-import { withStates } from '@gluestack-ui/nativewind-utils/withStates';
 import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withStyleContextAndStates';
 import {
   withStyleContext,
@@ -44,24 +43,11 @@ const selectIconStyle = tva({
 
 const selectStyle = tva({
   base: '',
-  variants: {
-    size: {
-      xl: '',
-      lg: '',
-      md: '',
-      sm: '',
-    },
-    variant: {
-      underlined: '',
-      outline: '',
-      rounded: '',
-    },
-  },
 });
 
 const selectTriggerStyle = tva({
   base: 'border border-background-300 rounded flex-row items-center overflow-hidden data-[hover=true]:border-outline-400 data-[focus=true]:border-primary-700 data-[disabled=true]:opacity-40 data-[disabled=true]:data-[hover=true]:border-background-300',
-  parentVariants: {
+  variants: {
     size: {
       xl: 'h-12',
       lg: 'h-11',
@@ -98,12 +84,12 @@ const selectInputStyle = tva({
 
 const UISelect = createSelect(
   {
-    Root:
-      Platform.OS === 'web'
-        ? withStyleContext(View)
-        : withStyleContextAndStates(View),
+    Root: View,
     // @ts-ignore
-    Trigger: Platform.OS === 'web' ? Pressable : withStates(Pressable),
+    Trigger:
+      Platform.OS === 'web'
+        ? withStyleContext(Pressable)
+        : withStyleContextAndStates(Pressable),
     Input: TextInput,
     Icon: View,
   },
@@ -133,23 +119,15 @@ type ISelectProps = VariantProps<typeof selectStyle> &
 
 const Select = React.forwardRef(
   (
-    {
-      className,
-      size = 'md',
-      variant = 'outline',
-      ...props
-    }: ISelectProps & { className?: string },
+    { className, ...props }: ISelectProps & { className?: string },
     ref?: any
   ) => {
     return (
       <UISelect
         className={selectStyle({
           class: className,
-          size,
-          variant,
         })}
         ref={ref}
-        context={{ size, variant }}
         {...props}
       />
     );
@@ -161,20 +139,23 @@ type ISelectTriggerProps = VariantProps<typeof selectTriggerStyle> &
 
 const SelectTrigger = React.forwardRef(
   (
-    { className, ...props }: ISelectTriggerProps & { className?: string },
+    {
+      className,
+      size = 'md',
+      variant = 'outline',
+      ...props
+    }: ISelectTriggerProps & { className?: string },
     ref?: any
   ) => {
-    const { size: parentSize, variant: parentVariant } = useStyleContext();
     return (
       <UISelect.Trigger
         className={selectTriggerStyle({
           class: className,
-          parentVariants: {
-            size: parentSize,
-            variant: parentVariant,
-          },
+          size,
+          variant,
         })}
         ref={ref}
+        context={{ size, variant }}
         {...props}
       />
     );
