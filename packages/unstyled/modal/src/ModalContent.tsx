@@ -48,7 +48,7 @@ const ModalContent = (StyledModalContent: any, AnimatePresence?: any) =>
         if (
           initialFocusRef &&
           initialFocusRef?.current &&
-          initialFocusRef?.current.focus
+          initialFocusRef?.current?.focus
         ) {
           initialFocusRef?.current?.focus();
         }
@@ -56,7 +56,7 @@ const ModalContent = (StyledModalContent: any, AnimatePresence?: any) =>
         if (
           finalFocusRef &&
           finalFocusRef?.current &&
-          finalFocusRef?.current.focus
+          finalFocusRef?.current?.focus
         ) {
           finalFocusRef?.current?.focus();
         }
