@@ -18,6 +18,7 @@
         "../../packages/unstyled/alert-dialog/src"
       ],
       "@gluestack-ui/menu": ["../../packages/unstyled/menu/src"],
+      "@gluestack-ui/select": ["../../packages/unstyled/select/src"],
       "@gluestack-ui/textarea": ["../../packages/unstyled/textarea/src"],
       "@gluestack-ui/link": ["../../packages/unstyled/link/src"],
       "@gluestack-ui/nativewind-utils/tva": [

@@ -239,7 +239,6 @@ const SelectIcon = React.forwardRef(
             ref={ref}
             fill={fill}
             {...props}
-            //  color='red'
           />
         </View>
       );
@@ -254,6 +253,7 @@ const SelectIcon = React.forwardRef(
           },
         })}
         ref={ref}
+        //@ts-ignore
         fill={fill}
         {...props}
       />
