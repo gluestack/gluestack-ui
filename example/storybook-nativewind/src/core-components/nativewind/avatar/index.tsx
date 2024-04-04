@@ -46,12 +46,12 @@ const avatarFallbackTextStyle = tva({
 
   parentVariants: {
     size: {
-      'xs': 'text-xs',
-      'sm': 'text-sm',
+      'xs': 'text-2xs',
+      'sm': 'text-xs',
       'md': 'text-base',
-      'lg': 'text-lg',
-      'xl': 'text-xl',
-      '2xl': 'text-2xl',
+      'lg': 'text-xl',
+      'xl': 'text-3xl',
+      '2xl': 'text-5xl',
     },
   },
 });

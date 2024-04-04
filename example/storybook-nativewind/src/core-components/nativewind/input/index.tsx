@@ -80,7 +80,7 @@ const inputFieldStyle = tva({
       '2xs': 'text-2xs leading-[0px]',
       'xs': 'text-xs leading-[0px]',
       'sm': 'text-sm leading-[0px]',
-      'md': 'text-base leading-none',
+      'md': 'text-base leading-[0px]',
       'lg': 'text-lg leading-[0px]',
       'xl': 'text-xl leading-[0px]',
       '2xl': 'text-2xl leading-[0px]',
@@ -150,6 +150,7 @@ const InputIcon = React.forwardRef(
             {...props}
             height={'100%'}
             width={'100%'}
+            ref={ref}
           />
         </View>
       );
