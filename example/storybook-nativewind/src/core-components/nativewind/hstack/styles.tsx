@@ -1,6 +1,6 @@
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
 export const hstackStyle = tva({
-  base: 'web:flex flex-row',
+  base: 'flex-row web:flex web:relative web:z-0',
   variants: {
     space: {
       'xs': 'gap-1',
