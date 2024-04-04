@@ -1,5 +1,6 @@
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
 export const cardStyle = tva({
+  base: 'web:flex web:flex-col web:relative web:z-0',
   variants: {
     size: {
       sm: 'p-3 rounded',
