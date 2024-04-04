@@ -57,6 +57,7 @@ export const parameters = {
             'Link',
             'Pressable',
             'Radio',
+            'Select',
             'Slider',
             'Switch',
             'Textarea',
