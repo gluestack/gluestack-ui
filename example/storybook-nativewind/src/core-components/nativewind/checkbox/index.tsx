@@ -151,18 +151,21 @@ const CheckboxLabel = React.forwardRef(
 type ICheckboxIconProps = React.ComponentProps<typeof UICheckbox.Icon> &
   VariantProps<typeof checkboxIconStyle>;
 const CheckboxIcon = React.forwardRef(
-  ({
-    className,
-    as: AsComp,
-    fill = 'none',
-    size,
-    ...props
-  }: ICheckboxIconProps & {
-    className?: any;
-    fill?: string;
-    color?: string;
-    as?: any;
-  }) => {
+  (
+    {
+      className,
+      as: AsComp,
+      fill = 'none',
+      size,
+      ...props
+    }: ICheckboxIconProps & {
+      className?: any;
+      fill?: string;
+      color?: string;
+      as?: any;
+    },
+    ref?: any
+  ) => {
     const { size: parentSize } = useStyleContext(SCOPE);
     const { color = 'gray' } = props;
 
@@ -183,6 +186,7 @@ const CheckboxIcon = React.forwardRef(
             {...props}
             height={'100%'}
             width={'100%'}
+            ref={ref}
           />
         </UICheckbox.Icon>
       );
@@ -201,6 +205,7 @@ const CheckboxIcon = React.forwardRef(
         //@ts-ignore
         fill={fill}
         color={color}
+        ref={ref}
       />
     );
   }

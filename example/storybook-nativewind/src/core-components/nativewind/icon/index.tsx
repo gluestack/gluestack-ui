@@ -27,7 +27,7 @@ const iconStyle = tva({
 export const Icon = React.forwardRef(
   (
     { fill = 'none', size = 'md', className, as: AsComp, ...props }: any,
-    ref
+    ref?: any
   ) => {
     if (AsComp) {
       return (
