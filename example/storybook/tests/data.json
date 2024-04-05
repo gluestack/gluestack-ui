@@ -150,7 +150,7 @@
 
   "badge": {
     "overlay": false,
-    "storyParent": "media-and-icons",
+    "storyParent": "data-display",
     "storyAddress": "badge",
     "storyName": "badge",
     "arguments": {
