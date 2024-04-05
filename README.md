@@ -91,7 +91,7 @@ More guides on how to get started are available
 
 GeekyAnts is a team of React Native experts who love open-source and solving developer problems. We’ve been working on React Native since 2015 and have designed and built React Native apps for almost 200+ clients across the globe. Our clients include startups to big enterprises! Need help with your React Native app?
 
-[Contact Us](https://geekyants.com/?utm_source=gluestack-ui-home&utm_medium=home-page&utm_campaign=meet-the-creators)
+[Contact Us](https://geekyants.com/?utm_source=gluestack_github&utm_medium=read_me&utm_campaign=gluestack_integration)
 
 
 ## Contributing
