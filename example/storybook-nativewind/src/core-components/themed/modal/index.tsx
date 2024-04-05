@@ -1,3 +1,4 @@
+'use client';
 import { createModal } from '@gluestack-ui/modal';
 import {
   AnimatePresence,

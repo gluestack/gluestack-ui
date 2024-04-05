@@ -1,3 +1,4 @@
+'use client';
 import { AsForwarder, styled } from '@gluestack-style/react';
 import { createFab } from '@gluestack-ui/fab';
 import { Text } from 'react-native';

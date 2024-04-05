@@ -81,6 +81,14 @@ export class FontResolver implements IStyledPlugin, FontPlugin {
 
   mapFonts(style: any) {
     if (isExpoStrategy()) {
+      const regex = /^([^_]*_){1,2}[^_]*$/;
+
+      if (style.fontFamily.match(regex)) {
+        delete style.fontWeight;
+        delete style.fontStyle;
+
+        return;
+      }
       let fontFamilyValue = style.fontFamily
         .replace(/ /g, '')
         .replace(/^\w/, (c: any) => c.toUpperCase());
@@ -274,6 +282,7 @@ export class FontResolver implements IStyledPlugin, FontPlugin {
         styledConfig
       );
       const styledConfigWithoutVariant = deepClone(styledConfig ?? {});
+
       delete styledConfigWithoutVariant.variants;
 
       let componentStyledObject = deepMerge(
@@ -298,7 +307,7 @@ export class FontResolver implements IStyledPlugin, FontPlugin {
           fontStyle ?? componentStyledObject.fontStyle;
       }
 
-      const sxPropsWithThemeProps = deepMerge(sx, componentStyledObject);
+      const sxPropsWithThemeProps = deepMerge(componentStyledObject, sx);
 
       const [resolvedSxProps, , ,] = this.inputMiddleWare(
         sxPropsWithThemeProps,

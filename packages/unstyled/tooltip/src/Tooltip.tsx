@@ -141,7 +141,7 @@ function Tooltip<StyledTooltipProp>(
                 ref={ref}
                 role={Platform.OS === 'web' ? 'tooltip' : undefined}
                 tabIndex={-1}
-                nativeID={tooltipID}
+                id={tooltipID}
               >
                 {children}
               </StyledTooltip>
@@ -171,7 +171,7 @@ function Tooltip<StyledTooltipProp>(
                 ref={ref}
                 role={Platform.OS === 'web' ? 'tooltip' : undefined}
                 focussable={false}
-                nativeID={tooltipID}
+                id={tooltipID}
               >
                 {children}
               </StyledTooltip>

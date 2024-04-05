@@ -1,681 +1,281 @@
-import { H1, H2, H3, H4, H5, H6 } from '@expo/html-elements';
+import React from 'react';
+import { tva } from '@gluestack-ui/nativewind-utils/tva';
+import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withStyleContextAndStates';
 import {
-  AnimatePresence,
-  AnimatedPressable,
-  AnimatedView,
-} from '@gluestack-style/animation-resolver';
-import { styled, AsForwarder } from '@gluestack-style/react';
-import { createActionsheet } from '@gluestack-ui/actionsheet';
+  withStyleContext,
+  useStyleContext,
+} from '@gluestack-ui/nativewind-utils/withStyleContext';
+import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 import { createSelect } from '@gluestack-ui/select';
-import { TextInput } from 'react-native';
+import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
 import {
-  Pressable,
-  View,
-  Text,
-  ScrollView,
-  VirtualizedList,
-  FlatList,
-  SectionList,
-} from 'react-native';
+  Actionsheet,
+  ActionsheetContent,
+  ActionsheetItem,
+  ActionsheetItemText,
+  ActionsheetDragIndicator,
+  ActionsheetDragIndicatorWrapper,
+  ActionsheetBackdrop,
+  ActionsheetScrollView,
+  ActionsheetVirtualizedList,
+  ActionsheetFlatList,
+  ActionsheetSectionList,
+  ActionsheetSectionHeaderText,
+} from './select-actionsheet';
 
-const StyledRoot = styled(View, {
-  width: '$full',
-  height: '$full',
-  _web: {
-    pointerEvents: 'none',
-  },
-});
+import { Pressable, View, TextInput, Platform } from 'react-native';
 
-const StyledContent = styled(
-  AnimatedView,
-  {
-    alignItems: 'center',
-    borderTopLeftRadius: '$3xl',
-    borderTopRightRadius: '$3xl',
-    h: '$full',
-    p: '$2',
-    bg: '$background0',
+/** Select Components */
 
-    _sectionHeaderBackground: {
-      bg: '$background0',
-    },
-
-    defaultProps: {
-      hardShadow: '5',
-    },
-
-    _web: {
-      userSelect: 'none',
-      pointerEvents: 'auto',
-    },
-  },
-  {
-    descendantStyle: ['_sectionHeaderBackground'],
-  }
-);
-
-const StyledItem = styled(
-  Pressable,
-  {
-    'p': '$3',
-    'flexDirection': 'row',
-    'alignItems': 'center',
-    'rounded': '$sm',
-    'w': '$full',
-
-    ':disabled': {
-      opacity: 0.4,
-      _web: {
-        // @ts-ignore
-        pointerEvents: 'all !important',
-        cursor: 'not-allowed',
-      },
-    },
-
-    ':hover': {
-      bg: '$background50',
-    },
-
-    ':active': {
-      bg: '$background100',
-    },
-
-    ':focus': {
-      bg: '$background100',
-    },
-
-    '_web': {
-      ':focusVisible': {
-        bg: '$background100',
-      },
-    },
-  },
-  {
-    descendantStyle: ['_text', '_icon'],
-  }
-);
-
-const StyledItemText = styled(
-  Text,
-  {
-    mx: '$2',
-    props: {
-      size: 'md',
-    },
-    color: '$text800',
-  },
-  {
-    ancestorStyle: ['_text'],
-  }
-);
-
-const StyledDragIndicator = styled(View, {
-  w: '$16',
-  h: '$1',
-  bg: '$background400',
-  rounded: '$full',
-});
-
-const StyledDragIndicatorWrapper = styled(View, {
-  py: '$1',
-  w: '$full',
-  alignItems: 'center',
-});
-
-const StyledBackdrop = styled(AnimatedPressable, {
-  ':initial': {
-    opacity: 0,
-  },
-
-  ':animate': {
-    opacity: 0.5,
-  },
-
-  ':exit': {
-    opacity: 0,
-  },
-
-  'position': 'absolute',
-  'left': 0,
-  'top': 0,
-  'right': 0,
-  'bottom': 0,
-  'bg': '$background950',
-
-  '_web': {
-    cursor: 'default',
-    pointerEvents: 'auto',
-  },
-});
-
-const StyledScrollView = styled(ScrollView, {
-  w: '$full',
-  h: 'auto',
-});
-
-const StyledVirtualizedList = styled(VirtualizedList, {
-  w: '$full',
-  h: 'auto',
-});
-
-const StyledFlatList = styled(FlatList, {
-  w: '$full',
-  h: 'auto',
-});
-
-const StyledSectionList = styled(SectionList, {
-  w: '$full',
-  h: 'auto',
-});
-
-const StyledSectionHeaderText = styled(H4, {
-  letterSpacing: '$sm',
-  fontWeight: '$bold',
-  fontFamily: '$heading',
-
-  // Overrides expo-html default styling
-  marginVertical: 0,
-
-  variants: {
-    isTruncated: {
-      true: {
-        props: {
-          // @ts-ignore
-          numberOfLines: 1,
-          ellipsizeMode: 'tail',
-        },
-      },
-    },
-    bold: {
-      true: {
-        fontWeight: '$bold',
-      },
-    },
-    underline: {
-      true: {
-        textDecorationLine: 'underline',
-      },
-    },
-    strikeThrough: {
-      true: {
-        textDecorationLine: 'line-through',
-      },
-    },
+const selectIconStyle = tva({
+  base: 'text-background-500',
+  parentVariants: {
     size: {
-      '5xl': {
-        //@ts-ignore
-        props: { as: H1 },
-        fontSize: '$6xl',
-      },
-      '4xl': {
-        //@ts-ignore
-        props: { as: H1 },
-        fontSize: '$5xl',
-      },
-
-      '3xl': {
-        //@ts-ignore
-        props: { as: H1 },
-        fontSize: '$4xl',
-      },
-
-      '2xl': {
-        //@ts-ignore
-        props: { as: H2 },
-        fontSize: '$3xl',
-      },
-
-      'xl': {
-        //@ts-ignore
-        props: { as: H3 },
-        fontSize: '$2xl',
-      },
-
-      'lg': {
-        //@ts-ignore
-        props: { as: H4 },
-        fontSize: '$xl',
-      },
-
-      'md': {
-        //@ts-ignore
-        props: { as: H5 },
-        fontSize: '$lg',
-      },
-
-      'sm': {
-        //@ts-ignore
-        props: { as: H6 },
-        fontSize: '$md',
-      },
-
-      'xs': {
-        //@ts-ignore
-        props: { as: H6 },
-        fontSize: '$sm',
-      },
-    },
-    sub: {
-      true: {
-        fontSize: '$xs',
-      },
-    },
-    italic: {
-      true: {
-        fontStyle: 'italic',
-      },
-    },
-    highlight: {
-      true: {
-        bg: '$yellow500',
-      },
+      '2xs': 'h-3 w-3',
+      'xs': 'h-3.5 w-3.5',
+      'sm': 'h-4 w-4',
+      'md': 'h-[18px] w-[18px]',
+      'lg': 'h-5 w-5',
+      'xl': 'h-6 w-6',
     },
   },
-  color: '$text500',
-  props: { size: 'xs' },
-  textTransform: 'uppercase',
-  p: '$3',
 });
 
-const StyledIcon = styled(
-  AsForwarder,
-  {
-    variants: {
-      size: {
-        '2xs': {
-          h: '$3',
-          w: '$3',
-          props: {
-            // @ts-ignore
-            size: 12,
-          },
-        },
-        'xs': {
-          h: '$3.5',
-          w: '$3.5',
-          props: {
-            //@ts-ignore
-            size: 14,
-          },
-        },
-        'sm': {
-          h: '$4',
-          w: '$4',
-          props: {
-            //@ts-ignore
-            size: 16,
-          },
-        },
-        'md': {
-          h: '$4.5',
-          w: '$4.5',
-          props: {
-            //@ts-ignore
-            size: 18,
-          },
-        },
-        'lg': {
-          h: '$5',
-          w: '$5',
-          props: {
-            //@ts-ignore
-            size: 20,
-          },
-        },
-        'xl': {
-          h: '$6',
-          w: '$6',
-          props: {
-            //@ts-ignore
-            size: 24,
-          },
-        },
-      },
-    },
-    props: {
-      size: 'sm',
-      fill: 'none',
-    },
-
-    color: '$background500',
-  },
-  {
-    componentName: 'BaseIcon',
-    resolveProps: ['stroke', 'fill'],
-  } as const,
-  {
-    propertyTokenMap: {
-      stroke: 'colors',
-      fill: 'colors',
-    },
-  }
-);
-
-const StyledSelectRoot = styled(View, {});
-
-const StyledSelectTrigger = styled(
-  Pressable,
-  {
-    'borderWidth': 1,
-    'borderColor': '$background300',
-    'borderRadius': '$sm',
-    'flexDirection': 'row',
-    'overflow': 'hidden',
-    'alignItems': 'center',
-
-    ':hover': {
-      borderColor: '$border400',
-    },
-
-    ':focus': {
-      borderColor: '$primary700',
-    },
-
-    ':disabled': {
-      'opacity': 0.4,
-      ':hover': {
-        borderColor: '$background300',
-      },
-    },
-
-    '_input': {
-      py: 'auto',
-      px: '$3',
-    },
-
-    '_icon': {
-      color: '$background500',
-    },
-
-    'variants': {
-      size: {
-        xl: {
-          h: '$12',
-          _input: {
-            fontSize: '$xl',
-          },
-          _icon: {
-            h: '$6',
-            w: '$6',
-          },
-        },
-        lg: {
-          h: '$11',
-          _input: {
-            fontSize: '$lg',
-          },
-          _icon: {
-            h: '$5',
-            w: '$5',
-          },
-        },
-        md: {
-          h: '$10',
-          _input: {
-            fontSize: '$md',
-          },
-          _icon: {
-            h: '$4',
-            w: '$4',
-          },
-        },
-        sm: {
-          h: '$9',
-          _input: {
-            fontSize: '$sm',
-          },
-          _icon: {
-            h: '$3.5',
-            w: '$3.5',
-          },
-        },
-      },
-      variant: {
-        underlined: {
-          '_input': {
-            _web: {
-              outlineWidth: 0,
-              outline: 'none',
-            },
-            px: '$0',
-          },
-
-          'borderWidth': 0,
-          'borderRadius': 0,
-          'borderBottomWidth': '$1',
-
-          ':focus': {
-            'borderColor': '$primary700',
-            '_web': {
-              boxShadow: 'inset 0 -1px 0 0 $primary700',
-            },
-            ':hover': {
-              borderColor: '$primary700',
-              _web: {
-                boxShadow: 'inset 0 -1px 0 0 $primary600',
-              },
-            },
-          },
-
-          ':invalid': {
-            'borderBottomWidth': 2,
-            'borderBottomColor': '$error700',
-            '_web': {
-              boxShadow: 'inset 0 -1px 0 0 $error700',
-            },
-            ':hover': {
-              borderBottomColor: '$error700',
-            },
-            ':focus': {
-              'borderBottomColor': '$error700',
-              ':hover': {
-                borderBottomColor: '$error700',
-                _web: {
-                  boxShadow: 'inset 0 -1px 0 0 $error700',
-                },
-              },
-            },
-            ':disabled': {
-              ':hover': {
-                borderBottomColor: '$error700',
-                _web: {
-                  boxShadow: 'inset 0 -1px 0 0 $error700',
-                },
-              },
-            },
-          },
-        },
-        outline: {
-          '_input': {
-            _web: {
-              outlineWidth: 0,
-              outline: 'none',
-            },
-          },
-
-          ':focus': {
-            'borderColor': '$primary700',
-            '_web': {
-              boxShadow: 'inset 0 0 0 1px $primary700',
-            },
-            ':hover': {
-              borderColor: '$primary700',
-              _web: {
-                boxShadow: 'inset 0 0 0 1px $primary600',
-              },
-            },
-          },
-
-          ':invalid': {
-            'borderColor': '$error700',
-            '_web': {
-              boxShadow: 'inset 0 0 0 1px $error700',
-            },
-            ':hover': {
-              borderColor: '$error700',
-            },
-            ':focus': {
-              'borderColor': '$error700',
-              ':hover': {
-                borderColor: '$error700',
-                _web: {
-                  boxShadow: 'inset 0 0 0 1px $error700',
-                },
-              },
-            },
-            ':disabled': {
-              ':hover': {
-                borderColor: '$error700',
-                _web: {
-                  boxShadow: 'inset 0 0 0 1px $error700',
-                },
-              },
-            },
-          },
-        },
-        rounded: {
-          'borderRadius': 999,
-
-          '_input': {
-            px: '$4',
-            _web: {
-              outlineWidth: 0,
-              outline: 'none',
-            },
-          },
-
-          ':focus': {
-            'borderColor': '$primary700',
-            '_web': {
-              boxShadow: 'inset 0 0 0 1px $primary700',
-            },
-            ':hover': {
-              borderColor: '$primary700',
-              _web: {
-                boxShadow: 'inset 0 0 0 1px $primary600',
-              },
-            },
-          },
-
-          ':invalid': {
-            'borderColor': '$error700',
-            '_web': {
-              boxShadow: 'inset 0 0 0 1px $error700',
-            },
-            ':hover': {
-              borderColor: '$error700',
-            },
-            ':focus': {
-              'borderColor': '$error700',
-              ':hover': {
-                borderColor: '$error700',
-                _web: {
-                  boxShadow: 'inset 0 0 0 1px $error700',
-                },
-              },
-            },
-            ':disabled': {
-              ':hover': {
-                borderColor: '$error700',
-                _web: {
-                  boxShadow: 'inset 0 0 0 1px $error700',
-                },
-              },
-            },
-          },
-        },
-      },
-    },
-
-    'defaultProps': {
-      size: 'md',
-      variant: 'outline',
-    },
-  },
-
-  {
-    descendantStyle: ['_input', '_icon'],
-  }
-);
-
-const StyledSelectInput = styled(
-  TextInput,
-  {
-    _web: {
-      w: '$full',
-    },
-
-    pointerEvents: 'none',
-    flex: 1,
-    h: '$full',
-    color: '$text900',
-
-    props: {
-      placeholderTextColor: '$text500',
-    },
-  },
-  {
-    ancestorStyle: ['_input'],
-    resolveProps: ['placeholderTextColor'],
-  },
-  {
-    propertyTokenMap: {
-      placeholderTextColor: 'colors',
-    },
-  }
-);
-
-const Actionsheet = createActionsheet({
-  Root: StyledRoot,
-  Content: StyledContent,
-  Item: StyledItem,
-  ItemText: StyledItemText,
-  DragIndicator: StyledDragIndicator,
-  IndicatorWrapper: StyledDragIndicatorWrapper,
-  Backdrop: StyledBackdrop,
-  ScrollView: StyledScrollView,
-  VirtualizedList: StyledVirtualizedList,
-  FlatList: StyledFlatList,
-  SectionList: StyledSectionList,
-  SectionHeaderText: StyledSectionHeaderText,
-  Icon: StyledIcon,
-  AnimatePresence: AnimatePresence,
+const selectStyle = tva({
+  base: '',
 });
 
-export const Select = createSelect(
+const selectTriggerStyle = tva({
+  base: 'border border-background-300 rounded flex-row items-center overflow-hidden data-[hover=true]:border-outline-400 data-[focus=true]:border-primary-700 data-[disabled=true]:opacity-40 data-[disabled=true]:data-[hover=true]:border-background-300',
+  variants: {
+    size: {
+      xl: 'h-12',
+      lg: 'h-11',
+      md: 'h-10',
+      sm: 'h-9',
+    },
+    variant: {
+      underlined:
+        'border-0 border-b rounded-none data-[hover=true]:border-primary-700 data-[focus=true]:border-primary-700 data-[focus=true]:web:shadow-[inset_0_-1px_0_0] data-[focus=true]:web:shadow-primary-700 data-[invalid=true]:border-error-700 data-[invalid=true]:web:shadow-error-700',
+      outline:
+        'data-[focus=true]:border-primary-700 data-[focus=true]:web:shadow-[inset_0_0_0_1px] data-[focus=true]:data-[hover=true]:web:shadow-primary-600 data-[invalid=true]:web:shadow-[inset_0_0_0_1px] data-[invalid=true]:border-error-700 data-[invalid=true]:web:shadow-error-700 data-[invalid=true]:data-[hover=true]:border-error-700',
+      rounded:
+        'rounded-full data-[focus=true]:border-primary-700 data-[focus=true]:web:shadow-[inset_0_0_0_1px] data-[focus=true]:web:shadow-primary-700 data-[invalid=true]:border-error-700 data-[invalid=true]:web:shadow-error-700',
+    },
+  },
+});
+
+const selectInputStyle = tva({
+  base: 'py-auto px-3 placeholder:text-typography-500 flex-1 web:w-full h-full text-typography-900 pointer-events-none web:outline-none',
+  parentVariants: {
+    size: {
+      xl: 'text-xl leading-[0px]',
+      lg: 'text-lg leading-[0px]',
+      md: 'text-base leading-[0px]',
+      sm: 'text-sm leading-[0px]',
+    },
+    variant: {
+      underlined: 'px-0',
+      outline: '',
+      rounded: 'px-4',
+    },
+  },
+});
+
+const UISelect = createSelect(
   {
-    Root: StyledSelectRoot,
-    Trigger: StyledSelectTrigger,
-    Input: StyledSelectInput,
-    Icon: StyledIcon,
+    Root: View,
+    // @ts-ignore
+    Trigger:
+      Platform.OS === 'web'
+        ? withStyleContext(Pressable)
+        : withStyleContextAndStates(Pressable),
+    Input: TextInput,
+    Icon: View,
   },
   {
     Portal: Actionsheet,
-    Backdrop: Actionsheet.Backdrop,
-    Content: Actionsheet.Content,
-    DragIndicator: Actionsheet.DragIndicator,
-    DragIndicatorWrapper: Actionsheet.DragIndicatorWrapper,
-    Item: Actionsheet.Item,
-    ItemText: Actionsheet.ItemText,
-    ScrollView: Actionsheet.ScrollView,
-    VirtualizedList: Actionsheet.VirtualizedList,
-    FlatList: Actionsheet.FlatList,
-    SectionList: Actionsheet.SectionList,
-    SectionHeaderText: Actionsheet.SectionHeaderText,
+    Backdrop: ActionsheetBackdrop,
+    Content: ActionsheetContent,
+    DragIndicator: ActionsheetDragIndicator,
+    DragIndicatorWrapper: ActionsheetDragIndicatorWrapper,
+    Item: ActionsheetItem,
+    ItemText: ActionsheetItemText,
+    ScrollView: ActionsheetScrollView,
+    VirtualizedList: ActionsheetVirtualizedList,
+    FlatList: ActionsheetFlatList,
+    SectionList: ActionsheetSectionList,
+    SectionHeaderText: ActionsheetSectionHeaderText,
   }
 );
-export const SelectTrigger = Select.Trigger;
-export const SelectInput = Select.Input;
-export const SelectIcon = Select.Icon;
-export const SelectPortal = Select.Portal;
-export const SelectBackdrop = Select.Backdrop;
-export const SelectContent = Select.Content;
-export const SelectDragIndicator = Select.DragIndicator;
-export const SelectDragIndicatorWrapper = Select.DragIndicatorWrapper;
-export const SelectItem = Select.Item;
-export const SelectItemText = Select.ItemText;
-export const SelectScrollView = Select.ScrollView;
-export const SelectVirtualizedList = Select.VirtualizedList;
-export const SelectFlatList = Select.FlatList;
-export const SelectSectionList = Select.SectionList;
-export const SelectSectionHeaderText = Select.SectionHeaderText;
+
+cssInterop(UISelect, { className: 'style' });
+cssInterop(UISelect.Input, { className: 'style' });
+cssInterop(UISelect.Trigger, { className: 'style' });
+cssInterop(UISelect.Icon, { className: 'style' });
+
+type ISelectProps = VariantProps<typeof selectStyle> &
+  React.ComponentProps<typeof UISelect>;
+
+const Select = React.forwardRef(
+  (
+    { className, ...props }: ISelectProps & { className?: string },
+    ref?: any
+  ) => {
+    return (
+      <UISelect
+        className={selectStyle({
+          class: className,
+        })}
+        ref={ref}
+        {...props}
+      />
+    );
+  }
+);
+
+type ISelectTriggerProps = VariantProps<typeof selectTriggerStyle> &
+  React.ComponentProps<typeof UISelect.Trigger>;
+
+const SelectTrigger = React.forwardRef(
+  (
+    {
+      className,
+      size = 'md',
+      variant = 'outline',
+      ...props
+    }: ISelectTriggerProps & { className?: string },
+    ref?: any
+  ) => {
+    return (
+      <UISelect.Trigger
+        className={selectTriggerStyle({
+          class: className,
+          size,
+          variant,
+        })}
+        ref={ref}
+        context={{ size, variant }}
+        {...props}
+      />
+    );
+  }
+);
+
+type ISelectInputProps = VariantProps<typeof selectInputStyle> &
+  React.ComponentProps<typeof UISelect.Input>;
+
+const SelectInput = React.forwardRef(
+  (
+    { className, ...props }: ISelectInputProps & { className?: string },
+    ref?: any
+  ) => {
+    const { size: parentSize, variant: parentVariant } = useStyleContext();
+    return (
+      <UISelect.Input
+        className={selectInputStyle({
+          class: className,
+          parentVariants: {
+            size: parentSize,
+            variant: parentVariant,
+          },
+        })}
+        ref={ref}
+        {...props}
+      />
+    );
+  }
+);
+
+type ISelectIcon = VariantProps<typeof selectIconStyle> &
+  React.ComponentProps<typeof UISelect.Icon>;
+
+const SelectIcon = React.forwardRef(
+  (
+    {
+      className,
+      as: AsComp,
+      size,
+      // @ts-ignore
+      fill = 'none',
+      ...props
+    }: ISelectIcon & { as?: any },
+    ref?: any
+  ) => {
+    const { size: parentSize } = useStyleContext();
+    if (AsComp) {
+      return (
+        <View
+          className={selectIconStyle({
+            class: className,
+            parentVariants: {
+              size: parentSize,
+            },
+            size,
+          })}
+        >
+          <AsComp
+            height={'100%'}
+            width={'100%'}
+            ref={ref}
+            fill={fill}
+            {...props}
+          />
+        </View>
+      );
+    }
+    return (
+      <UISelect.Icon
+        className={selectIconStyle({
+          class: className,
+          size,
+          parentVariants: {
+            size: parentSize,
+          },
+        })}
+        ref={ref}
+        //@ts-ignore
+        fill={fill}
+        {...props}
+      />
+    );
+  }
+);
+
+Select.displayName = 'Select';
+SelectTrigger.displayName = 'SelectTrigger';
+SelectInput.displayName = 'SelectInput';
+SelectIcon.displayName = 'SelectIcon';
+
+// Actionsheet Components
+const SelectPortal = UISelect.Portal;
+const SelectBackdrop = UISelect.Backdrop;
+const SelectContent = UISelect.Content;
+const SelectDragIndicator = UISelect.DragIndicator;
+const SelectDragIndicatorWrapper = UISelect.DragIndicatorWrapper;
+const SelectItem = UISelect.Item;
+const SelectItemText = UISelect.ItemText;
+const SelectScrollView = UISelect.ScrollView;
+const SelectVirtualizedList = UISelect.VirtualizedList;
+const SelectFlatList = UISelect.FlatList;
+const SelectSectionList = UISelect.SectionList;
+const SelectSectionHeaderText = UISelect.SectionHeaderText;
+
+export {
+  Select,
+  SelectTrigger,
+  SelectInput,
+  SelectIcon,
+  SelectPortal,
+  SelectBackdrop,
+  SelectContent,
+  SelectDragIndicator,
+  SelectDragIndicatorWrapper,
+  SelectItem,
+  SelectItemText,
+  SelectScrollView,
+  SelectVirtualizedList,
+  SelectFlatList,
+  SelectSectionList,
+  SelectSectionHeaderText,
+};

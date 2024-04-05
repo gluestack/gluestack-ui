@@ -14,16 +14,16 @@
     "ios",
     "nextjs"
   ],
-  "version": "0.0.8",
-  "main": "lib/commonjs/index",
-  "module": "lib/module/index",
-  "types": "lib/typescript/index.d.ts",
+  "main": "index.js",
+  "module": "index.js",
+  "types": "index.d.ts",
+  "version": "1.0.4",
   "react-native": "src/index",
   "source": "src/index",
-  "typings": "lib/typescript/index.d.ts",
   "scripts": {
-    "prepare": "bob build",
-    "build": "bob build",
+    "prepare": "tsc",
+    "build": "tsc",
+    "remove": "rm -rf ../../../node_modules/react-native-css-interop",
     "clean": "rm -rf lib",
     "dev:web": "cd example/native && yarn web --clear",
     "storybook": "cd example/native/storybook && yarn web"
@@ -37,6 +37,7 @@
     "typescript": "^4.9.4"
   },
   "dependencies": {
+    "nativewind": "^4.0.1",
     "tailwind-variants": "^0.1.20"
   },
   "peerDependencies": {
@@ -54,8 +55,19 @@
     ]
   },
   "files": [
-    "lib/",
-    "src/"
+    "cn",
+    "context",
+    "utils",
+    "index.js",
+    "index.d.ts",
+    "tva",
+    "types.js",
+    "types.d.ts",
+    "utils",
+    "withStates",
+    "withStyleContext",
+    "withStyleContextAndStates",
+    "cssInterop"
   ],
   "jest": {
     "preset": "jest-expo",

@@ -6,6 +6,18 @@ module.exports = {
     './src/core-components/**/**/*.{html,js,jsx,ts,tsx}',
     './src/components/**/*.{html,js,jsx,ts,tsx,mdx}',
   ],
+  safelist: [
+    'gap-x-2',
+    'gap-y-6',
+    'pl-4',
+    'flex-wrap',
+    'mb-12',
+    'basis-[10%]',
+    {
+      pattern:
+        /bg-(primary|secondary|tertiary|error|success|warning|muted|info|typography|outline|background)-(0|50|100|200|300|400|500|600|700|800|900|950|light|dark|white|gray|black)/,
+    },
+  ],
   presets: [require('nativewind/preset')],
   theme: {
     extend: {
@@ -120,6 +132,9 @@ module.exports = {
           800: 'var(--color-typography-800)',
           900: 'var(--color-typography-900)',
           950: 'var(--color-typography-950)',
+          white: '#FFFFFF',
+          gray: '#D4D4D4',
+          black: '#181718',
         },
         outline: {
           0: 'var(--color-outline-0)',
@@ -153,6 +168,8 @@ module.exports = {
           muted: 'var(--color-background-muted)',
           success: 'var(--color-background-success)',
           info: 'var(--color-background-info)',
+          light: '#FBFBFB',
+          dark: '#181719',
         },
       },
       fontFamily: {

@@ -45,11 +45,19 @@ const ModalContent = (StyledModalContent: any, AnimatePresence?: any) =>
     React.useEffect(() => {
       if (visible) {
         Keyboard.dismiss();
-        if (initialFocusRef && initialFocusRef?.current) {
+        if (
+          initialFocusRef &&
+          initialFocusRef?.current &&
+          initialFocusRef?.current?.focus
+        ) {
           initialFocusRef?.current?.focus();
         }
       } else {
-        if (finalFocusRef && finalFocusRef?.current) {
+        if (
+          finalFocusRef &&
+          finalFocusRef?.current &&
+          finalFocusRef?.current?.focus
+        ) {
           finalFocusRef?.current?.focus();
         }
       }

@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import { createProvider } from '@gluestack-ui/provider';
 import { StyledProvider } from '@gluestack-style/react';
@@ -20,7 +21,11 @@ export const GluestackUIProvider = ({
   return (
     <>
       {/** @ts-ignore */}
-      <GluestackUIStyledProvider colorMode="light" config={config} {...props}>
+      <GluestackUIStyledProvider
+        colorMode={props.colorMode ? props.colorMode : 'light'}
+        config={config}
+        {...props}
+      >
         <OverlayProvider>
           <ToastProvider>{children}</ToastProvider>
         </OverlayProvider>

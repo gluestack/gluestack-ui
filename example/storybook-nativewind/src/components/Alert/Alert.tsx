@@ -1,16 +1,6 @@
 import React from 'react';
 import { Alert, AlertIcon, AlertText } from '@/components/ui/alert';
-import {
-  InfoIcon,
-  CheckCircleIcon,
-  CloseCircleIcon,
-  BellIcon,
-  AlertCircleIcon,
-  Icon,
-} from '@/components/ui/icon';
-import { VStack } from '@/components/ui/vstack';
-import { Center } from '@/components/ui/center';
-import { HStack } from '@/components/ui/hstack';
+import { InfoIcon } from '@/components/ui/icon';
 
 const AlertBasic = ({ ...props }: any) => {
   return (
@@ -26,17 +16,4 @@ AlertBasic.description =
 
 export default AlertBasic;
 
-export {
-  Alert,
-  AlertIcon,
-  AlertText,
-  InfoIcon,
-  CheckCircleIcon,
-  CloseCircleIcon,
-  BellIcon,
-  AlertCircleIcon,
-  Icon,
-  VStack,
-  Center,
-  HStack,
-};
+export { Alert, AlertIcon, AlertText, InfoIcon };

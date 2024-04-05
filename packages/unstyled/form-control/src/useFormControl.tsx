@@ -11,7 +11,7 @@ export const FormControlContext = React.createContext({});
 
 export function useFormControlProvider(props: any) {
   const {
-    nativeID: idProp,
+    id: idProp,
     isRequired,
     isInvalid,
     isDisabled,
@@ -25,7 +25,7 @@ export function useFormControlProvider(props: any) {
     return prefix + id;
   }
 
-  const id = uniqueId();
+  const idTemp = uniqueId();
   // const responsiveQueryContext = React.useContext(ResponsiveQueryContext);
   // const disableCSSMediaQueries = responsiveQueryContext.disableCSSMediaQueries;
 
@@ -38,11 +38,11 @@ export function useFormControlProvider(props: any) {
 
   // const id = '';
   // Generate all the required ids
-  const nativeID = idProp || `field-${id}`;
+  const id = idProp || `field-${idTemp}`;
 
-  const labelId = `${nativeID}-label`;
-  const feedbackId = `${nativeID}-feedback`;
-  const helpTextId = `${nativeID}-helptext`;
+  const labelId = `${id}-label`;
+  const feedbackId = `${id}-feedback`;
+  const helpTextId = `${id}-helptext`;
 
   /**
    * Track whether the `FormErrorMessage` has been rendered.
@@ -65,7 +65,7 @@ export function useFormControlProvider(props: any) {
     setHasFeedbackText,
     hasHelpText,
     setHasHelpText,
-    nativeID,
+    id: id,
     labelId,
     feedbackId,
     helpTextId,
@@ -93,15 +93,15 @@ export function useFormControl(props: any) {
 
   const { isInvalid, isDisabled, isReadOnly, isRequired, ...cleanProps } =
     props;
-  let nativeID = props?.nativeID;
+  let id = props?.id;
 
-  if (!nativeID && field?.nativeID) {
-    nativeID = `${field?.nativeID}-input`;
+  if (!id && field?.id) {
+    id = `${field?.id}-input`;
   }
 
   return {
     ...cleanProps,
-    'nativeID': nativeID,
+    'id': id,
     'disabled': isDisabled || field?.isDisabled,
     'readOnly': isReadOnly || field?.isReadOnly,
     'required': isRequired || field?.isRequired,

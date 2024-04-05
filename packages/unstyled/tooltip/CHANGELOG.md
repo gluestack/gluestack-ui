@@ -1,5 +1,33 @@
 # @gluestack-ui/tooltip
 
+## 0.1.30
+
+### Patch Changes
+
+- fix: ref typing issue
+
+## 0.1.29
+
+### Patch Changes
+
+- @react-native-aria/interactions@0.2.13
+- @react-native-aria/overlays@0.3.12
+- @gluestack-ui/overlay@0.1.14
+
+## 0.1.28
+
+### Patch Changes
+
+- Updated dependencies
+  - @react-native-aria/interactions@0.2.12
+  - @gluestack-ui/overlay@0.1.13
+
+## 0.1.27
+
+### Patch Changes
+
+- fix: tooltip content style prop
+
 ## 0.1.26
 
 ### Patch Changes

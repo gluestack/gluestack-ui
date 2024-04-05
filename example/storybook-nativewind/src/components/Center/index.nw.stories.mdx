@@ -1,5 +1,5 @@
 ---
-title: Center | gluestack-ui | Installation, Usage, and API
+title: gluestack-ui Center Component | Installation, Usage, and API
 
 description: When you need to center-align content, the Center component comes in handy. It is a layout component that can be used with other components to create complex layouts and positioning.
 
@@ -21,7 +21,7 @@ import { transformedCode } from '../../utils';
 import { AppProvider, CodePreview, Table } from '@gluestack/design-system';
 
 import Wrapper from '../../core-components/nativewind/Wrapper';
-import { CollapsibleCode } from '@gluestack/design-system';
+import { CollapsibleCode, Tabs } from '@gluestack/design-system';
 
 This is an illustration of **Center** component.
 
@@ -56,17 +56,59 @@ This is an illustration of **Center** component.
 
 ## Installation
 
-### Step 1: Copy and paste the following code into your project.
+<Tabs value="cli" type="section">
+  <Tabs.TabList>
+      <Tabs.Tab value="cli">
+        <Tabs.TabTitle>CLI</Tabs.TabTitle>
+      </Tabs.Tab>
+     <Tabs.Tab value="manual">
+        <Tabs.TabTitle>Manual</Tabs.TabTitle>
+     </Tabs.Tab>
+  </Tabs.TabList>
+  <Tabs.TabPanels>
+    <Tabs.TabPanel value="cli">
+<>
 
+### Run the following command:
+  ```bash
+  npx gluestack-ui add center
+  ```
+</>
+    </Tabs.TabPanel>
+    <Tabs.TabPanel value="manual"> 
+<>
+
+### Step 1: Copy and paste the following code into index.tsx in your project.
 <CollapsibleCode>
 
 ```jsx 
 %%-- File: core-components/nativewind/center/index.tsx --%% 
 ```
-
 </CollapsibleCode>
 
-### Step 2: Update the import paths to match your project setup.
+> Note: **This Step is (optional) and only required if you want to add support for [React Server Components](https://vercel.com/blog/understanding-react-server-components), You can skip this and jump to Step 3 directly if you don't have this requirement.**
+
+### Step 2: Copy and paste the following code into index.web.tsx in your project.
+<CollapsibleCode>
+
+```jsx 
+%%-- File: core-components/nativewind/center/index.web.tsx --%% 
+```
+</CollapsibleCode>
+
+### Step 3: Copy and paste the following code into styles.tsx in your project.
+<CollapsibleCode>
+
+```jsx 
+%%-- File: core-components/nativewind/center/styles.tsx --%% 
+```
+</CollapsibleCode>
+
+### Step 4: Update the import paths to match your project setup.
+</>
+    </Tabs.TabPanel>
+  </Tabs.TabPanels>
+</Tabs>
 
 ## API Reference
 
@@ -87,17 +129,3 @@ This section provides a comprehensive reference list for the component props, de
 #### Center
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
-
-## Spec Doc
-
-Explore the comprehensive details of the Center in this document, including its implementation details, checklist, and potential future additions. Dive into the thought process behind the component and gain insights into its development journey.
-
-<iframe
-style = {{
-  borderRadius: '8px',
-    border: ' 1px solid rgba(0, 0, 0, 0.1)',
-      aspectRatio: 736 / 585,
-  }}
-src = "https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FNcXOxqKbdnGsLQNex3H76u%2Fgluestack-UI-handbook%3Fpage-id%3D222%253A12635%26type%3Ddesign%26node-id%3D225-14926%26viewport%3D-207%252C386%252C0.13%26scaling%3Dcontain%26starting-point-node-id%3D225%253A14926"
-allowFullScreen
-  > </iframe>

@@ -1,5 +1,5 @@
+'use client';
 import { createAvatar } from '@gluestack-ui/avatar';
-
 import { styled } from '@gluestack-style/react';
 import { View, Text, Image } from 'react-native';
 const StyledRoot = styled(
@@ -170,12 +170,9 @@ const StyledImage = styled(
   }
 );
 
-const StyledText = styled(
+const StyledFallbackText = styled(
   Text,
   {
-    color: '$text700',
-    flex: 1,
-    fontWeight: '$normal',
     fontFamily: '$body',
     fontStyle: 'normal',
     letterSpacing: '$md',
@@ -266,17 +263,6 @@ const StyledText = styled(
       },
     },
 
-    defaultProps: {
-      size: 'md',
-    },
-  },
-  {
-    ancestorStyle: ['_text'],
-  }
-);
-const StyledFallbackText = styled(
-  StyledText,
-  {
     color: '$text0',
     fontWeight: '$semibold',
     props: {

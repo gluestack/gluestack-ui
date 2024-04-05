@@ -27,9 +27,9 @@ import {
   Box,
   FormControl,
   Heading,
-  Icon,
+  Icon, SearchIcon
 } from '../../core-components/nativewind';
-import { SearchIcon, EyeIcon, EyeOffIcon } from '../../core-components/nativewind';
+import { EyeIcon, EyeOffIcon } from 'lucide-react-native';
 import { transformedCode } from '../../utils';
 import {
   AppProvider,
@@ -38,7 +38,8 @@ import {
   TableContainer,
   Text,
   InlineCode,
-  CollapsibleCode
+  CollapsibleCode,
+  Tabs
 } from '@gluestack/design-system';
 
 import Wrapper from '../../core-components/nativewind/Wrapper';
@@ -98,25 +99,46 @@ This is an illustration of **Input** component.
 
 ## Installation
 
+<Tabs value="cli" type="section">
+  <Tabs.TabList>
+      <Tabs.Tab value="cli">
+        <Tabs.TabTitle>CLI</Tabs.TabTitle>
+      </Tabs.Tab>
+     <Tabs.Tab value="manual">
+        <Tabs.TabTitle>Manual</Tabs.TabTitle>
+     </Tabs.Tab>
+  </Tabs.TabList>
+  <Tabs.TabPanels>
+    <Tabs.TabPanel value="cli">
+<>
+
+### Run the following command:
+  ```bash
+  npx gluestack-ui add input
+  ```
+</>
+    </Tabs.TabPanel>
+    <Tabs.TabPanel value="manual"> 
+<>
+
 ### Step 1: Install the following dependencies:
-
 ```bash
-
 npm i @gluestack-ui/input
-
 ```
 
 ### Step 2: Copy and paste the following code into your project.
-
 <CollapsibleCode>
 
 ```jsx 
 %%-- File: core-components/nativewind/input/index.tsx --%% 
 ```
-
 </CollapsibleCode>
 
 ### Step 3: Update the import paths to match your project setup.
+</>
+    </Tabs.TabPanel>
+  </Tabs.TabPanels>
+</Tabs>
 
 ## API Reference
 
@@ -426,7 +448,7 @@ We have outlined the various features that ensure the Input component is accessi
 
 ### Props
 
-Input component is created using TextInput component from react-native. It extends all the props supported by [React Native Text Input](https://reactnative.dev/docs/textinput#props), [utility props](/ui/docs/styling/utility-and-sx-props) and the props mentioned below.
+Input component is created using TextInput component from react-native. It extends all the props supported by [React Native Text Input](https://reactnative.dev/docs/textinput#props) and the props mentioned below.
 
 #### Input
 
@@ -478,19 +500,6 @@ Input component is created using TextInput component from react-native. It exten
   </TableContainer>
 </>
 
-## Spec Doc
-
-Explore the comprehensive details of the Input in this document, including its implementation details, checklist, and potential future additions. Dive into the thought process behind the component and gain insights into its development journey.
-
-<iframe
-  style={{
-    borderRadius: '8px',
-    border: ' 1px solid rgba(0, 0, 0, 0.1)',
-    aspectRatio: 736 / 585,
-  }}
-  src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FNcXOxqKbdnGsLQNex3H76u%2F%25C2%25A0%25F0%259F%2593%259Agluestack-UI-handbook%3Fpage-id%3D213%253A12091%26type%3Ddesign%26node-id%3D213-12092%26viewport%3D256%252C289%252C0.03%26t%3DYlY4Jjtl91JuXCZS-1%26scaling%3Dscale-down%26starting-point-node-id%3D213%253A12092%26mode%3Ddesign"
-  allowFullScreen
-></iframe>
 
 ### Examples
 
@@ -500,7 +509,7 @@ The Examples section provides visual representations of the different variants o
 
 The Input component integrates with an icon and a button, providing users with a comprehensive login window inside a FormControl component.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     _rendererWrapper={{ py: '$8' }}
     showComponentRenderer={true}
@@ -516,14 +525,14 @@ The Input component integrates with an icon and a button, providing users with a
           };
           return (
             <FormControl
-              className='p-4 border-1 rounded-lg ring-borderLight300 dark:border-1 dark:rounded-lg dark:ring-borderDark800'
+              className='p-4 border rounded-lg border-outline-300'
             >
               <VStack space='xl'>
-                <Heading className='color-text-900 leading-3'>
+                <Heading className='text-typography-900 leading-3'>
                   Login
                 </Heading>
                 <VStack space='xs'>
-                  <Text className='color-text-500 leading-1'>
+                  <Text className='text-typography-500 leading-1'>
                     Email
                   </Text>
                   <Input>
@@ -533,7 +542,7 @@ The Input component integrates with an icon and a button, providing users with a
                   </Input>
                 </VStack>
                 <VStack space='xs'>
-                  <Text className='color-text-500 leading-1'>
+                  <Text className='text-typography-500 leading-1'>
                     Password
                   </Text>
                   <Input className='text-center'>
@@ -542,7 +551,7 @@ The Input component integrates with an icon and a button, providing users with a
                     />
                     <InputSlot className='pr-3' onPress={handleState}>
                       {/* EyeIcon, EyeOffIcon are both imported from 'lucide-react-native' */}
-                      <InputIcon as={showPassword ? EyeIcon : EyeOffIcon} className='color-darkBlue-500' />
+                      <InputIcon as={showPassword ? EyeIcon : EyeOffIcon} className='text-darkBlue-500' />
                     </InputSlot>
                   </Input>
                 </VStack>
@@ -552,7 +561,7 @@ The Input component integrates with an icon and a button, providing users with a
                     setShowModal(false);
                   }}
                 >
-                  <ButtonText className='color-white'>
+                  <ButtonText className='text-typography-0'>
                     Save
                   </ButtonText>
                 </Button>
@@ -583,13 +592,13 @@ The Input component integrates with an icon and a button, providing users with a
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>
 
 ### Input with Icons
 
 The Input with Icons is a variation of the Input component that displays icons next to input field. It's commonly used in apps for a more visual representation of options and easier navigation.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -620,4 +629,4 @@ The Input with Icons is a variation of the Input component that displays icons n
     }}
 />
 
-</AppProvider>
+</Wrapper>

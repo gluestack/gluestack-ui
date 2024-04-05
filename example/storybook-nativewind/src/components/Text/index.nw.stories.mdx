@@ -1,5 +1,5 @@
 ---
-title: Text | gluestack-ui | Installation, Usage, and API
+title: gluestack-ui Text Component | Installation, Usage, and API
 
 description: Looking to add text to your gluestack-ui project? Check out our text component, which supports paragraphs and other formatting options.
 
@@ -17,7 +17,7 @@ import { Meta } from '@storybook/addon-docs';
 import { Text, Center } from '../../core-components/nativewind';
 import { transformedCode } from '../../utils';
 import Wrapper from '../../core-components/nativewind/Wrapper';
-import { CollapsibleCode } from '@gluestack/design-system';
+import { CollapsibleCode, Tabs } from '@gluestack/design-system';
 
 import {
   AppProvider,
@@ -53,20 +53,61 @@ This is an illustration of **Text** component.
 </Wrapper>
 
 <br/>
-
 ## Installation
 
-### Step 1: Copy and paste the following code into your project.
+<Tabs value="cli" type="section">
+  <Tabs.TabList>
+      <Tabs.Tab value="cli">
+        <Tabs.TabTitle>CLI</Tabs.TabTitle>
+      </Tabs.Tab>
+     <Tabs.Tab value="manual">
+        <Tabs.TabTitle>Manual</Tabs.TabTitle>
+     </Tabs.Tab>
+  </Tabs.TabList>
+  <Tabs.TabPanels>
+    <Tabs.TabPanel value="cli">
+<>
 
+### Run the following command:
+  ```bash
+  npx gluestack-ui add text
+  ```
+</>
+    </Tabs.TabPanel>
+    <Tabs.TabPanel value="manual"> 
+<>
+
+### Step 1: Copy and paste the following code into index.tsx in your project.
 <CollapsibleCode>
 
 ```jsx 
 %%-- File: core-components/nativewind/text/index.tsx --%% 
 ```
-
 </CollapsibleCode>
 
-### Step 2: Update the import paths to match your project setup.
+> Note: **This Step is (optional) and only required if you want to add support for [React Server Components](https://vercel.com/blog/understanding-react-server-components), You can skip this and jump to Step 3 directly if you don't have this requirement.**
+
+### Step 2: Copy and paste the following code into index.web.tsx in your project.
+<CollapsibleCode>
+
+```jsx 
+%%-- File: core-components/nativewind/text/index.web.tsx --%% 
+```
+</CollapsibleCode>
+
+### Step 3: Copy and paste the following code into styles.tsx in your project.
+<CollapsibleCode>
+
+```jsx 
+%%-- File: core-components/nativewind/text/styles.tsx --%% 
+```
+</CollapsibleCode>
+
+### Step 4: Update the import paths to match your project setup.
+</>
+    </Tabs.TabPanel>
+  </Tabs.TabPanels>
+</Tabs>
 
 ## API Reference
 
@@ -94,7 +135,7 @@ Text component is created using Text component from react-native. It extends all
 
 #### Text
 
-<Wrapper>
+<>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -220,7 +261,7 @@ Text component is created using Text component from react-native. It extends all
       </Table.TBody>
     </Table>
   </TableContainer>
-</Wrapper>
+</>
 
 ### Examples
 
@@ -230,7 +271,7 @@ The Examples section provides visual representations of the different variants o
 
 Text component comes in different sizes, such as `xs`, `sm`, `md`, `lg`, `xl`, `2xl`, `3xl`, `4xl`, `5xl`, and `6xl` allowing users to adjust the button size based on their design needs.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     _rendererWrapper={{ py: '$2.5' }}
     showComponentRenderer={true}
@@ -266,11 +307,11 @@ Text component comes in different sizes, such as `xs`, `sm`, `md`, `lg`, `xl`, `
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>
 
 Text component also accepts some shorthands for basic quick styling.
 
-<AppProvider>
+<Wrapper>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -389,4 +430,4 @@ Text component also accepts some shorthands for basic quick styling.
       </Table.TBody>
     </Table>
   </TableContainer>
-</AppProvider>
+</Wrapper>

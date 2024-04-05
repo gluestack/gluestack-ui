@@ -1,4 +1,5 @@
 import type { MutableRefObject } from 'react';
+import React from 'react';
 import type { GestureResponderEvent, ViewProps } from 'react-native';
 
 export interface InterfaceLinkProps extends ViewProps {
@@ -29,5 +30,7 @@ export type IUseLinkProp = {
 
 export type ILinkComponentType<Root, TextProps> =
   React.ForwardRefExoticComponent<Root & InterfaceLinkProps> & {
-    Text: React.ForwardRefExoticComponent<TextProps>;
+    Text: React.ForwardRefExoticComponent<
+      TextProps & React.RefAttributes<TextProps>
+    >;
   };

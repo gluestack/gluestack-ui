@@ -1,39 +1,50 @@
+'use client';
 import React from 'react';
 import { createIcon } from '@gluestack-ui/icon';
 import { Path, Svg } from 'react-native-svg';
-import { tva, cssInterop } from '@gluestack-ui/nativewind-utils';
+import { tva } from '@gluestack-ui/nativewind-utils/tva';
+import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
+import { View } from 'react-native';
 
 export const UIIcon = createIcon({
   Root: Svg,
 });
 
 const iconStyle = tva({
-  base: 'text-typography-900 fill-none',
+  // base: 'text-typography-900',
   variants: {
     size: {
       '2xs': 'h-3 w-3',
-      'xs': 'h-4 w-4',
+      'xs': 'h-3.5 w-3.5',
       'sm': 'h-4 w-4',
-      'md': 'h-5 w-5',
+      'md': 'h-[18px] w-[18px]',
       'lg': 'h-5 w-5',
       'xl': 'h-6 w-6',
     },
   },
-  defaultVariants: {
-    size: 'md',
-  },
 });
 
 export const Icon = React.forwardRef(
-  ({ fill = 'none', size, className, as: AsComp, ...props }: any, ref) => {
+  (
+    { fill = 'none', size = 'md', className, as: AsComp, ...props }: any,
+    ref?: any
+  ) => {
     if (AsComp) {
       return (
-        <AsComp
-          ref={ref}
-          {...props}
-          fill={fill}
-          className={iconStyle({ size, class: className })}
-        />
+        <View
+          className={iconStyle({
+            class: className,
+            size,
+          })}
+        >
+          <AsComp
+            height={'100%'}
+            width={'100%'}
+            ref={ref}
+            {...props}
+            fill={fill}
+          />
+        </View>
       );
     }
     return (
@@ -48,153 +59,6 @@ export const Icon = React.forwardRef(
 );
 
 cssInterop(UIIcon, { className: 'style' });
-// const StyledRoot = styled(
-//   AsForwarder,
-//   {
-//     color: '$background800',
-//     variants: {
-//       size: {
-//         '2xs': {
-//           h: '$3',
-//           w: '$3',
-//           props: {
-//             // @ts-ignore
-//             size: 12,
-//           },
-//         },
-//         'xs': {
-//           h: '$3.5',
-//           w: '$3.5',
-//           props: {
-//             //@ts-ignore
-//             size: 14,
-//           },
-//         },
-//         'sm': {
-//           h: '$4',
-//           w: '$4',
-//           props: {
-//             //@ts-ignore
-//             size: 16,
-//           },
-//         },
-//         'md': {
-//           h: '$4.5',
-//           w: '$4.5',
-//           props: {
-//             //@ts-ignore
-//             size: 18,
-//           },
-//         },
-//         'lg': {
-//           h: '$5',
-//           w: '$5',
-//           props: {
-//             //@ts-ignore
-//             size: 20,
-//           },
-//         },
-//         'xl': {
-//           h: '$6',
-//           w: '$6',
-//           props: {
-//             //@ts-ignore
-//             size: 24,
-//           },
-//         },
-//       },
-//     },
-//     props: {
-//       size: 'md',
-//       fill: 'none',
-//     },
-//   },
-//   {
-//     resolveProps: ['stroke', 'fill'],
-//   } as const,
-//   {
-//     propertyTokenMap: {
-//       stroke: 'colors',
-//       fill: 'colors',
-//     },
-//   }
-// );
-// const IconRoot = styled(
-//   AsForwarder,
-//   {
-//     color: '$background800',
-//     variants: {
-//       size: {
-//         '2xs': {
-//           h: '$3',
-//           w: '$3',
-//           props: {
-//             // @ts-ignore
-//             size: 12,
-//           },
-//         },
-//         'xs': {
-//           h: '$3.5',
-//           w: '$3.5',
-//           props: {
-//             //@ts-ignore
-//             size: 14,
-//           },
-//         },
-//         'sm': {
-//           h: '$4',
-//           w: '$4',
-//           props: {
-//             //@ts-ignore
-//             size: 16,
-//           },
-//         },
-//         'md': {
-//           h: '$4.5',
-//           w: '$4.5',
-//           props: {
-//             //@ts-ignore
-//             size: 18,
-//           },
-//         },
-//         'lg': {
-//           h: '$5',
-//           w: '$5',
-//           props: {
-//             //@ts-ignore
-//             size: 20,
-//           },
-//         },
-//         'xl': {
-//           h: '$6',
-//           w: '$6',
-//           props: {
-//             //@ts-ignore
-//             size: 24,
-//           },
-//         },
-//       },
-//     },
-
-//     props: {
-//       size: 'md',
-//       //@ts-ignore
-//       fill: 'none',
-//     },
-//   },
-//   {
-//     resolveProps: ['stroke', 'fill'],
-//   } as const,
-//   {
-//     propertyTokenMap: {
-//       stroke: 'colors',
-//       fill: 'colors',
-//     },
-//   }
-// );
-// export const on = createIcon({
-//   Root: Svg,
-// });
 
 type ParameterTypes = Omit<Parameters<typeof createIcon>[0], 'Root'>;
 

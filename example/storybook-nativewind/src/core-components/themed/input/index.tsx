@@ -1,3 +1,4 @@
+'use client';
 import { createInput } from '@gluestack-ui/input';
 import { styled, AsForwarder } from '@gluestack-style/react';
 import { View, Pressable, TextInput } from 'react-native';

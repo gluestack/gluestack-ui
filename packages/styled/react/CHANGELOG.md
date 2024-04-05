@@ -1,5 +1,24 @@
 # @gluestack-style/react
 
+## 1.0.52
+
+### Patch Changes
+
+- - Fixed media queries issue with theme
+
+## 1.0.50
+
+### Patch Changes
+
+- - Fixed ref typings
+  - Fixed plugin sx prop issue
+
+## 1.0.49
+
+### Patch Changes
+
+- Fixed utility props typings
+
 ## 1.0.48
 
 ### Patch Changes

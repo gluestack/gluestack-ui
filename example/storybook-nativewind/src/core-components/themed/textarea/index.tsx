@@ -1,5 +1,5 @@
+'use client';
 import { createTextarea } from '@gluestack-ui/textarea';
-
 import { View, TextInput } from 'react-native';
 import { styled } from '@gluestack-style/react';
 const StyledRoot = styled(

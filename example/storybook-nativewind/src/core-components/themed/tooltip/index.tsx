@@ -1,3 +1,4 @@
+'use client';
 import { createTooltip } from '@gluestack-ui/tooltip';
 import {
   AnimatePresence,

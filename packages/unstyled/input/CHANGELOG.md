@@ -1,5 +1,38 @@
 # @gluestack-ui/input
 
+## 0.1.29
+
+### Patch Changes
+
+- fix: typing issue for radio input checkbox
+
+## 0.1.28
+
+### Patch Changes
+
+- fix: ref typing issue
+- Updated dependencies
+  - @gluestack-ui/form-control@0.1.17
+
+## 0.1.27
+
+### Patch Changes
+
+- fix: readonly prop value
+
+## 0.1.26
+
+### Patch Changes
+
+- @react-native-aria/interactions@0.2.13
+
+## 0.1.25
+
+### Patch Changes
+
+- Updated dependencies
+  - @react-native-aria/interactions@0.2.12
+
 ## 0.1.24
 
 ### Patch Changes

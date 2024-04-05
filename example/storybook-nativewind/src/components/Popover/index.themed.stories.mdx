@@ -1,5 +1,5 @@
 ---
-title: Popover | gluestack-ui | Installation, Usage, and API
+title: gluestack-ui Popover Component | Installation, Usage, and API
 
 description: Popovers often provide contextual information or quick access to related actions without requiring the user to navigate to a different page or view.
 
@@ -50,6 +50,7 @@ import {
   Text,
   InlineCode,
   CollapsibleCode,
+  Tabs
 } from '@gluestack/design-system';
 import { transformedCode } from '../../utils';
 import Wrapper from '../../core-components/themed/Wrapper';
@@ -292,25 +293,46 @@ We have exported `PopoverArrow` component which can be used to render an arrow f
 
 ## Installation
 
+<Tabs value="cli" type="section">
+  <Tabs.TabList>
+      <Tabs.Tab value="cli">
+        <Tabs.TabTitle>CLI</Tabs.TabTitle>
+      </Tabs.Tab>
+     <Tabs.Tab value="manual">
+        <Tabs.TabTitle>Manual</Tabs.TabTitle>
+     </Tabs.Tab>
+  </Tabs.TabList>
+  <Tabs.TabPanels>
+    <Tabs.TabPanel value="cli">
+<>
+
+### Run the following command:
+  ```bash
+  npx gluestack-ui add popover
+  ```
+</>
+    </Tabs.TabPanel>
+    <Tabs.TabPanel value="manual"> 
+<>
+
 ### Step 1: Install the following dependencies:
-
 ```bash
-
 npm i @gluestack-ui/popover
-
 ```
 
 ### Step 2: Copy and paste the following code into your project.
-
 <CollapsibleCode>
 
 ```jsx 
 %%-- File: core-components/themed/popover/index.tsx --%% 
 ```
-
 </CollapsibleCode>
 
 ### Step 3: Update the import paths to match your project setup.
+</>
+    </Tabs.TabPanel>
+  </Tabs.TabPanels>
+</Tabs>
 
 ## API Reference
 
@@ -865,81 +887,6 @@ Popover component is created using ScrollView component from react-native. It ex
   </TableContainer>
 </>
 
-## Spec Doc
-
-Explore the comprehensive details of the Popover in this document, including its implementation details, checklist, and potential future additions. Dive into the thought process behind the component and gain insights into its development journey.
-
-<iframe
-  style={{
-    borderRadius: '8px',
-    border: ' 1px solid rgba(0, 0, 0, 0.1)',
-    aspectRatio: 736 / 585,
-  }}
-  src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FNcXOxqKbdnGsLQNex3H76u%2F%25C2%25A0%25F0%259F%2593%259Agluestack-UI-handbook%3Fpage-id%3D5611%253A29696%26type%3Ddesign%26node-id%3D5611-31519%26viewport%3D2622%252C-80%252C0.18%26t%3DLQnju2Pc3821wCiS-1%26scaling%3Dcontain%26starting-point-node-id%3D5611%253A31519%26mode%3Ddesign"
-  allowFullScreen
-/>
-
-<!--
-
-### Advanced
-
-We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
-
-### Customizing the Popover
-
-We have a function called `createPopover` which can be used to create a custom popover component. This function takes in a configuration object which contains the styled components that you want to use for the Popover You can refer [gluestack.io/style](/style) for more information on how to use styled components.
-
-You can read more on how to animate components [here](/ui/docs/advanced/animations).
-
-#### Usage
-
-Default styling of all these components can be found in the `components/core/popover` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/main/packages/themed/src/components/Popover) of the styled `Popover` components.
-
-```jsx
-// import the styles
-
-import {
-  Root,
-  Arrow,
-  Content,
-  Header,
-  Footer,
-  Body,
-  Backdrop,
-  CloseButton,
-} from 'components/core/popover/styled-components';
-
-// import the createPopover function
-import { createPopover } from '@gluestack-ui/popover';
-
-// Understanding the API
-export const Popover = createPopover({
-  Root,
-  Arrow,
-  Content,
-  Header,
-  Footer,
-  Body,
-  Backdrop,
-  CloseButton,
-});
-
-// Using the popover component
-export default () => (
-  <Popover>
-    <PopoverBackdrop />
-    <PopoverContent>
-      <PopoverHeader>
-        <PopoverCloseButton />
-      </PopoverHeader>
-      <PopoverBody />
-      <PopoverFooter />
-    </PopoverContent>
-  </Popover>
-);
-```
--->
-
 ### Examples
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
@@ -948,7 +895,7 @@ The Examples section provides visual representations of the different variants o
 
 A popover component can enhance the avatar by providing additional information and context in a concise and visually appealing manner.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     _rendererWrapper={{ py: '$6' }}
     showComponentRenderer={true}
@@ -1027,8 +974,7 @@ A popover component can enhance the avatar by providing additional information a
                       </Text>
                     </HStack>
                   </VStack>
-                  <Button bg='$darkBlue700' 
-                  $dark-bg='$darkBlue500'>
+                  <Button bg='$primary700'>
                     <ButtonText>View Profile</ButtonText>
                   </Button>
                 </VStack>
@@ -1068,4 +1014,4 @@ A popover component can enhance the avatar by providing additional information a
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>

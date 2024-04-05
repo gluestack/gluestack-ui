@@ -1,17 +1,17 @@
+'use client';
 import { createLink } from '@gluestack-ui/link';
-import { Pressable, Platform, Text } from 'react-native';
+import { Pressable, Platform } from 'react-native';
+import { Text } from 'react-native';
 
-import {
-  tva,
-  withStyleContextAndStates,
-  withStates,
-  withStyleContext,
-  cssInterop,
-  VariantProps,
-} from '@gluestack-ui/nativewind-utils';
+import { tva } from '@gluestack-ui/nativewind-utils/tva';
+import { withStyleContext } from '@gluestack-ui/nativewind-utils/withStyleContext';
+import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withStyleContextAndStates';
+import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
+import { withStates } from '@gluestack-ui/nativewind-utils/withStates';
+import type { VariantProps } from '@gluestack-ui/nativewind-utils';
+
 import React from 'react';
 export const UILink = createLink({
-  // @ts-ignore
   Root:
     Platform.OS === 'web'
       ? withStyleContext(Pressable)
@@ -33,10 +33,9 @@ const linkTextStyle = tva({
 type ILinkProps = React.ComponentProps<typeof UILink> &
   VariantProps<typeof linkStyle>;
 const Link = React.forwardRef(
-  ({ className, ...props }: { className?: string } & ILinkProps, ref) => {
+  ({ className, ...props }: { className?: string } & ILinkProps, ref?: any) => {
     return (
       <UILink
-        // @ts-ignore
         ref={ref}
         {...props}
         className={linkStyle({ class: className })}
@@ -47,11 +46,14 @@ const Link = React.forwardRef(
 
 type ILinkTextProps = React.ComponentProps<typeof UILink.Text> &
   VariantProps<typeof linkTextStyle>;
+
 const LinkText = React.forwardRef(
-  ({ className, ...props }: { className?: string } & ILinkTextProps, ref) => {
+  (
+    { className, ...props }: { className?: string } & ILinkTextProps,
+    ref?: any
+  ) => {
     return (
       <UILink.Text
-        // @ts-ignore
         ref={ref}
         {...props}
         className={linkTextStyle({

@@ -43,7 +43,7 @@ export function useMenuTrigger(
   params.menuProps = mapDomPropsToRN(params.menuProps);
   params.menuTriggerProps = mapDomPropsToRN(params.menuTriggerProps);
   // @ts-ignore - Get types for Universal apps
-  params.menuTriggerProps.accessibilityRole = 'button';
+  params.menuTriggerProps.role = 'button';
 
   return params;
 }

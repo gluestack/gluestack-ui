@@ -1,16 +1,17 @@
+'use client';
 import React from 'react';
 import { createProgress } from '@gluestack-ui/progress';
 import { View } from 'react-native';
+import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import {
-  tva,
-  // withStyleContextAndStates,
-  useStyleContext,
   withStyleContext,
-} from '@gluestack-ui/nativewind-utils';
-import { cssInterop } from 'nativewind';
-
+  useStyleContext,
+} from '@gluestack-ui/nativewind-utils/withStyleContext';
+import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
+import type { VariantProps } from '@gluestack-ui/nativewind-utils';
+const SCOPE = 'PROGRESS';
 export const UIProgress = createProgress({
-  Root: withStyleContext(View),
+  Root: withStyleContext(View, SCOPE),
   FilledTrack: View,
 });
 
@@ -29,9 +30,6 @@ const progressStyle = tva({
       '2xl': 'h-6',
     },
   },
-  defaultVariants: {
-    size: 'md',
-  },
 });
 const progressFilledTrackStyle = tva({
   base: 'bg-primary-500 rounded-full',
@@ -47,8 +45,13 @@ const progressFilledTrackStyle = tva({
   },
 });
 
+type IProgressProps = VariantProps<typeof progressStyle> &
+  React.ComponentProps<typeof UIProgress>;
+type IProgressFilledTrackProps = VariantProps<typeof progressFilledTrackStyle> &
+  React.ComponentProps<typeof UIProgress.FilledTrack>;
+
 export const Progress = React.forwardRef(
-  ({ className, size = 'md', ...props }: any, ref) => {
+  ({ className, size = 'md', ...props }: IProgressProps, ref?: any) => {
     return (
       <UIProgress
         ref={ref}
@@ -61,20 +64,19 @@ export const Progress = React.forwardRef(
 );
 
 export const ProgressFilledTrack = React.forwardRef(
-  ({ className, size, ...props }: any, ref) => {
-    const { size: parentSize } = useStyleContext();
+  ({ className, ...props }: IProgressFilledTrackProps, ref?: any) => {
+    const { size: parentSize } = useStyleContext(SCOPE);
 
     return (
       <UIProgress.FilledTrack
         ref={ref}
-        {...props}
         className={progressFilledTrackStyle({
           parentVariants: {
             size: parentSize,
           },
-          size,
           class: className,
         })}
+        {...props}
       />
     );
   }

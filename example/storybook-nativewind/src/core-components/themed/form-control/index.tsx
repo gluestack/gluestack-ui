@@ -1,3 +1,4 @@
+'use client';
 import { Text, View } from 'react-native';
 
 import { styled } from '@gluestack-style/react';
@@ -155,7 +156,6 @@ const StyledText = styled(
   Text,
   {
     color: '$text700',
-    flex: 1,
     fontWeight: '$normal',
     fontFamily: '$body',
     fontStyle: 'normal',

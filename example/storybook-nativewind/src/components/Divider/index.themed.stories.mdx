@@ -1,5 +1,5 @@
 ---
-title: Divider | gluestack-ui | Installation, Usage, and API
+title: gluestack-ui Divider Component | Installation, Usage, and API
 
 description: Revamp your content organization with the Divider component! Use it to visually separate different sections of a list or group for a more structured and easy-to-read interface.
 
@@ -32,6 +32,7 @@ import {
   TableContainer,
   InlineCode,
   CollapsibleCode,
+  Tabs
 } from '@gluestack/design-system';
 import { transformedCode } from '../../utils';
 import Wrapper from '../../core-components/themed/Wrapper';
@@ -72,25 +73,46 @@ This is an illustration of **Divider** component.
 
 ## Installation
 
+<Tabs value="cli" type="section">
+  <Tabs.TabList>
+      <Tabs.Tab value="cli">
+        <Tabs.TabTitle>CLI</Tabs.TabTitle>
+      </Tabs.Tab>
+     <Tabs.Tab value="manual">
+        <Tabs.TabTitle>Manual</Tabs.TabTitle>
+     </Tabs.Tab>
+  </Tabs.TabList>
+  <Tabs.TabPanels>
+    <Tabs.TabPanel value="cli">
+<>
+
+### Run the following command:
+  ```bash
+  npx gluestack-ui add divider
+  ```
+</>
+    </Tabs.TabPanel>
+    <Tabs.TabPanel value="manual"> 
+<>
+
 ### Step 1: Install the following dependencies:
-
 ```bash
-
 npm i @gluestack-ui/divider
-
 ```
 
 ### Step 2: Copy and paste the following code into your project.
-
 <CollapsibleCode>
 
 ```jsx 
 %%-- File: core-components/themed/divider/index.tsx --%% 
-````
-
+```
 </CollapsibleCode>
 
 ### Step 3: Update the import paths to match your project setup.
+</>
+    </Tabs.TabPanel>
+  </Tabs.TabPanels>
+</Tabs>
 
 ## API Reference
 
@@ -206,7 +228,7 @@ The Examples section provides visual representations of the different variants o
 
 A Divider component with different layouts offers versatile options for visually dividing content in various arrangements, such as horizontal or vertical orientations, enabling flexible and visually appealing designs for organizing and structuring elements within a user interface.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -269,13 +291,13 @@ A Divider component with different layouts offers versatile options for visually
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>
 
 #### Orientation
 
 A Divider component with a specified divider orientation allows for clear visual separation of content, either horizontally or vertically, providing a structured and organized layout within a user interface.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     _rendererWrapper={{ py: '$8' }}
     showComponentRenderer={true}
@@ -360,13 +382,13 @@ A Divider component with a specified divider orientation allows for clear visual
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>
 
 #### With & Without Inset
 
 A Divider component used with or without inset adds visual hierarchy and distinction by creating a dividing line either with or without indentation, providing options for organizing and structuring content within a user interface.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     _rendererWrapper={{ py: '$8' }}
     showComponentRenderer={true}
@@ -430,13 +452,13 @@ A Divider component used with or without inset adds visual hierarchy and distinc
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>
 
 #### Adding content within a Divider
 
 A Divider component with added content allows for the inclusion of additional text or elements alongside the dividing line, enhancing the visual and informational aspects of the divider while providing a seamless integration of content within a user interface.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     _rendererWrapper={{ py: '$8' }}
     showComponentRenderer={true}
@@ -481,4 +503,4 @@ A Divider component with added content allows for the inclusion of additional te
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>

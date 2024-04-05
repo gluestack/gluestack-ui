@@ -35,7 +35,7 @@ export const Input = (StyledInput: any) =>
         isInvalid: props.isInvalid,
         isReadOnly: props.isReadOnly,
         isRequired: props.isRequired,
-        nativeID: props.nativeID,
+        id: props.id,
       });
 
       const handleFocus = (focusState: boolean, callback: any) => {
@@ -54,6 +54,7 @@ export const Input = (StyledInput: any) =>
             : true;
         }
       }, [isDisabled, inputProps.isDisabled, isReadOnly, editable]);
+
       return (
         <StyledInput
           {...props}
@@ -86,7 +87,7 @@ export const Input = (StyledInput: any) =>
           aria-selected={isFocused}
           // ios accessibility
           accessibilityElementsHidden={isDisabled || inputProps.isDisabled}
-          editable={editableProp}
+          readOnly={!editableProp}
           onKeyPress={(e: any) => {
             e.persist();
             onKeyPress && onKeyPress(e);

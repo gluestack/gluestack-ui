@@ -1,36 +1,25 @@
 import React from 'react';
-import { tva } from '@gluestack-ui/nativewind-utils';
+import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 import { View } from 'react-native';
+import { cardStyle } from './styles';
 
-const cardStyle = tva({
-  variants: {
-    size: {
-      sm: 'p-3 rounded-sm',
-      md: 'p-4 rounded-md',
-      lg: 'p-6 rounded-xl',
-    },
-    variant: {
-      elevated: 'bg-background-0',
-      outline: 'border border-outline-200 ',
-      ghost: 'rounded-none',
-      filled: 'bg-background-50',
-    },
-  },
-});
+type ICardProps = React.ComponentProps<typeof View> &
+  VariantProps<typeof cardStyle>;
 
-const Card = ({
-  className,
-  size = 'md',
-  variant = 'elevated',
-  ...props
-}: any) => {
-  return (
-    <View
-      className={cardStyle({ size, variant, class: className })}
-      {...props}
-    />
-  );
-};
+const Card = React.forwardRef(
+  (
+    { className, size = 'md', variant = 'elevated', ...props }: ICardProps,
+    ref?: any
+  ) => {
+    return (
+      <View
+        className={cardStyle({ size, variant, class: className })}
+        {...props}
+        ref={ref}
+      />
+    );
+  }
+);
 
 Card.displayName = 'Card';
 

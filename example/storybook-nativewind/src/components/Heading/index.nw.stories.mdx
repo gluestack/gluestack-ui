@@ -26,7 +26,7 @@ import {
 } from '@gluestack/design-system';
 
 import Wrapper from '../../core-components/nativewind/Wrapper';
-import { CollapsibleCode } from '@gluestack/design-system';
+import { CollapsibleCode, Tabs } from '@gluestack/design-system';
 
 This is an illustration of **Heading** component.
 
@@ -55,25 +55,59 @@ This is an illustration of **Heading** component.
 
 ## Installation
 
-### Step 1: Install the following dependencies:
+<Tabs value="cli" type="section">
+  <Tabs.TabList>
+      <Tabs.Tab value="cli">
+        <Tabs.TabTitle>CLI</Tabs.TabTitle>
+      </Tabs.Tab>
+     <Tabs.Tab value="manual">
+        <Tabs.TabTitle>Manual</Tabs.TabTitle>
+     </Tabs.Tab>
+  </Tabs.TabList>
+  <Tabs.TabPanels>
+    <Tabs.TabPanel value="cli">
+<>
 
-```bash
+### Run the following command:
+  ```bash
+  npx gluestack-ui add heading
+  ```
+</>
+    </Tabs.TabPanel>
+    <Tabs.TabPanel value="manual"> 
+<>
 
-npm i @expo/html-elements
-
-```
-
-### Step 2: Copy and paste the following code into your project.
-
+### Step 1: Copy and paste the following code into index.tsx in your project.
 <CollapsibleCode>
 
 ```jsx 
 %%-- File: core-components/nativewind/heading/index.tsx --%% 
 ```
-
 </CollapsibleCode>
 
-### Step 3: Update the import paths to match your project setup.
+> Note: **This Step is (optional) and only required if you want to add support for [React Server Components](https://vercel.com/blog/understanding-react-server-components), You can skip this and jump to Step 3 directly if you don't have this requirement.**
+
+### Step 2: Copy and paste the following code into index.web.tsx in your project.
+<CollapsibleCode>
+
+```jsx 
+%%-- File: core-components/nativewind/heading/index.web.tsx --%% 
+```
+</CollapsibleCode>
+
+### Step 3: Copy and paste the following code into styles.tsx in your project.
+<CollapsibleCode>
+
+```jsx 
+%%-- File: core-components/nativewind/heading/styles.tsx --%% 
+```
+</CollapsibleCode>
+
+### Step 4: Update the import paths to match your project setup.
+</>
+    </Tabs.TabPanel>
+  </Tabs.TabPanels>
+</Tabs>
 
 ## API Reference
 
@@ -97,11 +131,11 @@ It inherits all the properties of @expo/html-elements's [H1](https://github.com/
 
 ### Props
 
+#### Heading
+
 Heading component is created using H1 component from @expo/html-elements. It extends all the props supported by [Expo HTML Heading Elements](https://www.npmjs.com/package/@expo/html-elements/v/0.0.5), [utility props](/ui/docs/styling/utility-and-sx-props) and the props mentioned below.
 
-#### Button
-
-<Wrapper>
+<>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -227,7 +261,7 @@ Heading component is created using H1 component from @expo/html-elements. It ext
       </Table.TBody>
     </Table>
   </TableContainer>
-</Wrapper>
+</>
 
 ### Examples
 
@@ -237,7 +271,7 @@ The Examples section provides visual representations of the different variants o
 
 Heading component offers a range of sizes, including `xs`, `sm`, `md`, `lg`, `xl`, `2xl`, `3xl`, `4xl`, and `5xl`, allowing users to customize the size of the heading according to their design requirements.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     _rendererWrapper={{ py: '$2.5' }}
     showComponentRenderer={true}
@@ -272,4 +306,4 @@ Heading component offers a range of sizes, including `xs`, `sm`, `md`, `lg`, `xl
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>
