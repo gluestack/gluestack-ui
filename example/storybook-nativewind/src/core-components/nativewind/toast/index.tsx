@@ -36,7 +36,7 @@ const toastStyle = tva({
 
     variant: {
       solid: '',
-      outline: 'border bg-white',
+      outline: 'border',
       accent: 'border-l-4',
     },
   },

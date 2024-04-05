@@ -6,7 +6,7 @@ import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
 
 const imageStyle = tva({
-  base: 'max-w-full',
+  base: 'max-w-full lg:h-[revert-layer] lg:w-[revert-layer]',
   variants: {
     size: {
       '2xs': 'h-6 w-6',
@@ -22,22 +22,14 @@ const imageStyle = tva({
 });
 
 export const UIImage = createImage({ Root: RNImage });
+cssInterop(UIImage, { className: 'style' });
 
 const Image = ({ size = 'md', className, ...props }: any) => {
   return (
-    <UIImage
-      className={imageStyle({ size, class: className })}
-      {...props}
-      style={{
-        ...props.style,
-        height: 'revert-layer',
-        width: 'revert-layer',
-      }}
-    />
+    <UIImage className={imageStyle({ size, class: className })} {...props} />
   );
 };
 
-cssInterop(UIImage, { className: 'style' });
 Image.displayName = 'Image';
 
 export { Image };

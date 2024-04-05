@@ -11,6 +11,7 @@ import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 
 const SCOPE = 'FORM_CONTROL';
+
 const formControlStyle = tva({
   base: 'flex flex-col',
   variants: {
@@ -23,14 +24,14 @@ const formControlStyle = tva({
 });
 
 const formControlErrorIconStyle = tva({
-  base: 'fill-none text-error-700',
+  base: 'text-error-700',
 
   variants: {
     size: {
       '2xs': 'h-3 w-3',
       'xs': 'h-3.5 w-3.5',
       'sm': 'h-4 w-4',
-      'md': 'h-4.5 w-4.5',
+      'md': 'h-[18px] w-[18px]',
       'lg': 'h-5 w-5',
       'xl': 'h-6 w-6',
     },
@@ -60,7 +61,7 @@ const formControlErrorTextStyle = tva({
       '2xs': 'text-2xs',
       'xs': 'text-xs',
       'sm': 'text-sm',
-      'md': 'text-md',
+      'md': 'text-base',
       'lg': 'text-lg',
       'xl': 'text-xl',
       '2xl': 'text-2xl',
@@ -104,7 +105,7 @@ const formControlHelperTextStyle = tva({
       '2xs': 'text-2xs',
       'xs': 'text-xs',
       'sm': 'text-sm',
-      'md': 'text-md',
+      'md': 'text-base',
       'lg': 'text-lg',
       'xl': 'text-xl',
       '2xl': 'text-2xl',
@@ -148,7 +149,7 @@ const formControlLabelTextStyle = tva({
       '2xs': 'text-2xs',
       'xs': 'text-xs',
       'sm': 'text-sm',
-      'md': 'text-md',
+      'md': 'text-base',
       'lg': 'text-lg',
       'xl': 'text-xl',
       '2xl': 'text-2xl',
@@ -188,7 +189,7 @@ const formControlLabelAstrickStyle = tva({
       '2xs': 'text-2xs',
       'xs': 'text-xs',
       'sm': 'text-sm',
-      'md': 'text-md',
+      'md': 'text-base',
       'lg': 'text-lg',
       'xl': 'text-xl',
       '2xl': 'text-2xl',
@@ -303,20 +304,35 @@ type IFormControlErrorIconProps = React.ComponentProps<
 const FormControlErrorIcon = ({
   className,
   size,
+  fill = 'none',
   as: AsComp,
   ...props
-}: { className?: string; as?: any } & IFormControlErrorIconProps) => {
+}: {
+  className?: any;
+  as?: any;
+  fill?: string;
+  color?: string;
+} & IFormControlErrorIconProps) => {
   const { size: parentSize } = useStyleContext(SCOPE);
+  const { color = 'gray' } = props;
+
   if (AsComp) {
     return (
-      <AsComp
+      <View
         className={formControlErrorIconStyle({
           parentVariants: { size: parentSize },
           size,
           class: className,
         })}
-        {...props}
-      />
+      >
+        <AsComp
+          fill={fill}
+          color={color}
+          {...props}
+          height={'100%'}
+          width={'100%'}
+        />
+      </View>
     );
   }
   return (
@@ -326,6 +342,9 @@ const FormControlErrorIcon = ({
         size,
         class: className,
       })}
+      // @ts-ignore
+      fill={fill}
+      color={color}
       {...props}
     />
   );
@@ -372,7 +391,6 @@ type IFormControlHelperProps = React.ComponentProps<
   typeof UIFormControl.Helper
 > &
   VariantProps<typeof formControlHelperStyle>;
-
 const FormControlHelper = ({
   className,
   ...props
@@ -391,7 +409,6 @@ type IFormControlHelperTextProps = React.ComponentProps<
   typeof UIFormControl.Helper.Text
 > &
   VariantProps<typeof formControlHelperTextStyle>;
-
 const FormControlHelperText = ({
   className,
   size,
@@ -410,6 +427,7 @@ const FormControlHelperText = ({
     />
   );
 };
+
 FormControl.displayName = 'FormControl';
 FormControlError.displayName = 'FormControlError';
 FormControlErrorText.displayName = 'FormControlErrorText';
