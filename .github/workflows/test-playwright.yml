@@ -9,7 +9,7 @@ concurrency: ${{ github.workflow }}-${{ github.ref || github.run_id }}
 
 jobs:
   visual-tests:
-    name: Test for accordion --single
+    name: Test for all components' default story
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
