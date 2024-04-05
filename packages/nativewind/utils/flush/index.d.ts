@@ -1,5 +1,5 @@
 import React from 'react';
-export declare function getFlushStyles(): React.DetailedReactHTMLElement<
+export declare function flush(): React.DetailedReactHTMLElement<
   {
     id: string;
     key: string;

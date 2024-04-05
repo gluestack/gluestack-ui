@@ -2,7 +2,7 @@ import React from 'react';
 
 var flushStyles = '';
 
-export function getFlushStyles() {
+export function flush() {
   return React.createElement('style', {
     id: 'nativewind-style',
     key: 'nativewind-style',
