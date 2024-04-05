@@ -1,5 +1,12 @@
 # @gluestack-ui/themed
 
+## 1.1.22
+
+### Patch Changes
+
+- Updated dependencies
+  - @gluestack-ui/modal@0.1.32
+
 ## 1.1.21
 
 ### Patch Changes
