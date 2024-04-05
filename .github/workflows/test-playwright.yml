@@ -34,7 +34,7 @@ jobs:
       - name: Run test
         run: |
           cd example/storybook
-          yarn test:screenshot --accordion=single
+          yarn test:screenshot
 
       - uses: actions/upload-artifact@v4
         if: failure()
