@@ -3,14 +3,7 @@ import React from 'react';
 import { config } from './config';
 import { OverlayProvider } from '@gluestack-ui/overlay';
 import { ToastProvider } from '@gluestack-ui/toast';
-var flushStyles = '';
-
-export function getFlushStyles() {
-  return flushStyles;
-}
-export function setFlushStyles(styles: any) {
-  flushStyles = styles;
-}
+import { setFlushStyles } from '@gluestack-ui/nativewind-utils/flush';
 
 export function GluestackUIProvider({
   mode = 'light',
