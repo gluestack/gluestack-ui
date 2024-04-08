@@ -67,7 +67,8 @@
     "withStates",
     "withStyleContext",
     "withStyleContextAndStates",
-    "cssInterop"
+    "cssInterop",
+    "flush"
   ],
   "jest": {
     "preset": "jest-expo",
