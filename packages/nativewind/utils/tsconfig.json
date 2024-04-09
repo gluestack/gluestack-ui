@@ -10,7 +10,8 @@
     "withStates",
     "withStyleContext",
     "withStyleContextAndStates",
-    "cssInterop"
+    "cssInterop",
+    "flush"
   ],
   "exclude": ["node_modules", "example"],
   "path": {},

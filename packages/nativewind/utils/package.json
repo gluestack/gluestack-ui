@@ -17,7 +17,7 @@
   "main": "index.js",
   "module": "index.js",
   "types": "index.d.ts",
-  "version": "1.0.4",
+  "version": "1.0.6",
   "react-native": "src/index",
   "source": "src/index",
   "scripts": {
@@ -67,7 +67,8 @@
     "withStates",
     "withStyleContext",
     "withStyleContextAndStates",
-    "cssInterop"
+    "cssInterop",
+    "flush"
   ],
   "jest": {
     "preset": "jest-expo",
