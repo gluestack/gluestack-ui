@@ -1,12 +1,25 @@
 'use client';
-import { View } from 'react-native';
 import React from 'react';
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
+import { LinearGradient as ExpoLinearGradient } from 'expo-linear-gradient';
+import { cssInterop } from 'nativewind';
 
-// TODO: Implement LinearGradient
+cssInterop(ExpoLinearGradient, {
+  className: 'style',
+});
+
+const linearGradientStyle = tva({
+  base: '',
+});
+
 export const LinearGradient = React.forwardRef(
   ({ className, ...props }: any, ref?: any) => {
-    // @ts-ignore
-    return <View {...props} className={tva({ base: className })} ref={ref} />;
+    return (
+      <ExpoLinearGradient
+        {...props}
+        className={linearGradientStyle({ class: className })}
+        ref={ref}
+      />
+    );
   }
 );
