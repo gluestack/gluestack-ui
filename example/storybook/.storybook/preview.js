@@ -19,7 +19,24 @@ export const parameters = {
     storySort: {
       method: '',
       order: [
-        'Configuration1',
+        'Introduction',
+        [
+          'Getting Started',
+          [
+            'Installation',
+            'Incremental Adoption',
+            'VS Code Extensions',
+            'Figma UI Kit',
+          ],
+          'Overview',
+          ['Introduction', 'All Components'],
+
+          'Core Concepts',
+          ['Themed Library', 'Unstyled Library', 'Accessibility', 'Universal'],
+          'Performance',
+          ['Overview', 'Benchmarks'],
+        ],
+        'Guides',
         [
           'Configuration',
           ['Server-Side Rendering', 'React Server Components'],
