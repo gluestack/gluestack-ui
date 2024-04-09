@@ -1,5 +1,12 @@
 # @gluestack-style/babel-plugin-styled-resolver
 
+## 1.0.6
+
+### Patch Changes
+
+- Fixed dynamic config build
+- Added mock for `@expo/html-elements`
+
 ## 1.0.2
 
 ### Patch Changes
