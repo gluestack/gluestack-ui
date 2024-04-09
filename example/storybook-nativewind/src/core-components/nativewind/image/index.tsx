@@ -4,9 +4,10 @@ import { createImage } from '@gluestack-ui/image';
 import { Image as RNImage } from 'react-native';
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
+import { Platform } from 'react-native';
 
 const imageStyle = tva({
-  base: 'max-w-full lg:h-[revert-layer] lg:w-[revert-layer]',
+  base: 'max-w-full',
   variants: {
     size: {
       '2xs': 'h-6 w-6',
@@ -26,7 +27,15 @@ cssInterop(UIImage, { className: 'style' });
 
 const Image = ({ size = 'md', className, ...props }: any) => {
   return (
-    <UIImage className={imageStyle({ size, class: className })} {...props} />
+    <UIImage
+      className={imageStyle({ size, class: className })}
+      {...props}
+      style={
+        Platform.OS === 'web'
+          ? { height: 'revert-layer', width: 'revert-layer' }
+          : undefined
+      }
+    />
   );
 };
 
