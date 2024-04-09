@@ -1,6 +1,11 @@
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
+import { Platform } from 'react-native';
+const baseStyle = Platform.select({
+  web: 'flex flex-col relative z-0',
+  default: '',
+});
 export const vstackStyle = tva({
-  base: 'flex-col web:flex web:relative web:z-0',
+  base: `flex-col ${baseStyle}`,
   variants: {
     space: {
       'xs': 'gap-1',

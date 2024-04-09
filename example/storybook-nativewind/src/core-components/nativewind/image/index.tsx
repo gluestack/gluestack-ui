@@ -1,13 +1,17 @@
 'use client';
 import React from 'react';
 import { createImage } from '@gluestack-ui/image';
-import { Image as RNImage } from 'react-native';
+import { Platform, Image as RNImage } from 'react-native';
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
-import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
-import { Platform } from 'react-native';
+import type { VariantProps } from '@gluestack-ui/nativewind-utils';
+import { cssInterop } from 'nativewind';
 
+const baseStyle = Platform.select({
+  web: 'h-[revert-layer] w-[revert-layer]',
+  default: '',
+});
 const imageStyle = tva({
-  base: 'max-w-full',
+  base: `max-w-full ${baseStyle}`,
   variants: {
     size: {
       '2xs': 'h-6 w-6',
@@ -23,19 +27,23 @@ const imageStyle = tva({
 });
 
 export const UIImage = createImage({ Root: RNImage });
-cssInterop(UIImage, { className: 'style' });
 
-const Image = ({ size = 'md', className, ...props }: any) => {
+type ImageProps = VariantProps<typeof imageStyle> &
+  React.ComponentProps<typeof UIImage>;
+
+cssInterop(UIImage, {
+  className: {
+    target: 'style',
+    nativeStyleToProp: {
+      height: 'height',
+      width: 'width',
+    },
+  },
+});
+
+const Image = ({ size = 'md', className, ...props }: ImageProps) => {
   return (
-    <UIImage
-      className={imageStyle({ size, class: className })}
-      {...props}
-      style={
-        Platform.OS === 'web'
-          ? { height: 'revert-layer', width: 'revert-layer' }
-          : undefined
-      }
-    />
+    <UIImage className={imageStyle({ size, class: className })} {...props} />
   );
 };
 
