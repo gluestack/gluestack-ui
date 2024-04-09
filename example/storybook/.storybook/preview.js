@@ -19,7 +19,7 @@ export const parameters = {
     storySort: {
       method: '',
       order: [
-        'testingheading',
+        'Configuration1',
         [
           'Configuration',
           ['Server-Side Rendering', 'React Server Components'],
