@@ -61,6 +61,7 @@ const buttonStyle = tva({
     },
 
     size: {
+      xs: 'px-3.5 h-8',
       sm: 'px-4 h-9',
       md: 'px-5 h-10',
       lg: 'px-6 h-11',
@@ -130,6 +131,7 @@ const buttonTextStyle = tva({
         'text-typography-0 group-hover/button:text-typography-0 group-active/button:text-typography-0',
     },
     size: {
+      xs: 'text-xs',
       sm: 'text-sm',
       md: 'text-base',
       lg: 'text-lg',
