@@ -19,12 +19,7 @@ const SelectDemo = () => {
     <Select>
       <SelectTrigger>
         <SelectInput
-          color="$textLight100"
-          sx={{
-            _dark: {
-              color: '$textLight800',
-            },
-          }}
+          color="$textDark50"
           placeholder="Select option"
           placeholderTextColor="gray"
         />
