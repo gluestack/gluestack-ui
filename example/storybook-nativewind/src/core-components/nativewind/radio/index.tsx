@@ -28,7 +28,7 @@ const radioGroupStyle = tva({
 });
 
 const radioIconStyle = tva({
-  base: 'rounded-full group-data-[checked=true]/radio:text-primary-600 group-data-[checked=true]/radio:group-data-[hover=true]/radio:text-primary-700 data-[checked=true]:data-[hover=true]:data-[disabled=true]:text-primary-600 justify-center items-center',
+  base: 'rounded-full justify-center items-center',
 
   parentVariants: {
     size: {
@@ -174,6 +174,7 @@ const RadioIcon = React.forwardRef(
       as: AsComp,
       size,
       fill = 'none',
+      color = 'gray',
       ...props
     }: IRadioIconProps & {
       className?: string;
@@ -184,26 +185,22 @@ const RadioIcon = React.forwardRef(
     ref?: any
   ) => {
     const { size: parentSize } = useStyleContext(SCOPE);
-    const { color = 'gray' } = props;
 
     if (AsComp) {
       return (
-        <UIRadio.Icon
-          className={radioIconStyle({
-            parentVariants: {
-              size: parentSize,
-            },
-            size,
-            class: className,
-          })}
-        >
+        <UIRadio.Icon>
           <AsComp
             fill={fill}
             color={color}
             {...props}
-            height={'100%'}
-            width={'100%'}
             ref={ref}
+            className={radioIconStyle({
+              parentVariants: {
+                size: parentSize,
+              },
+              size,
+              class: className,
+            })}
           />
         </UIRadio.Icon>
       );

@@ -13,7 +13,7 @@ import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 const SCOPE = 'ALERT';
 
 const alertStyle = tva({
-  base: 'items-center p-3 rounded-sm flex-row',
+  base: 'items-center p-3 rounded flex-row',
 
   variants: {
     action: {
@@ -200,21 +200,16 @@ const AlertIcon = React.forwardRef(
 
     if (AsComp) {
       return (
-        <View
+        <AsComp
+          fill={fill}
+          color={color}
+          {...props}
+          ref={ref}
           className={alertIconStyle({
             size,
             class: className,
           })}
-        >
-          <AsComp
-            fill={fill}
-            color={color}
-            {...props}
-            height={'100%'}
-            width={'100%'}
-            ref={ref}
-          />
-        </View>
+        />
       );
     }
     return (

@@ -13,10 +13,14 @@ import {
 } from '@gluestack-ui/themed';
 const ActionsheetDemo = () => {
   const [showActionsheet, setShowActionsheet] = React.useState(false);
-  const handleClose = () => setShowActionsheet(!showActionsheet);
+  const handleClose = () => setShowActionsheet(false);
   return (
     <Box>
-      <Button onPress={handleClose}>
+      <Button
+        onPress={() => {
+          setShowActionsheet(true);
+        }}
+      >
         <ButtonText>Open</ButtonText>
       </Button>
       <Actionsheet

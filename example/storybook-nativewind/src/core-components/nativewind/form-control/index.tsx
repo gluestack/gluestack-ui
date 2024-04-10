@@ -24,8 +24,7 @@ const formControlStyle = tva({
 });
 
 const formControlErrorIconStyle = tva({
-  base: 'text-error-700',
-
+  base: '',
   variants: {
     size: {
       '2xs': 'h-3 w-3',
@@ -306,6 +305,7 @@ const FormControlErrorIcon = ({
   size,
   fill = 'none',
   as: AsComp,
+  color = 'red',
   ...props
 }: {
   className?: any;
@@ -314,25 +314,19 @@ const FormControlErrorIcon = ({
   color?: string;
 } & IFormControlErrorIconProps) => {
   const { size: parentSize } = useStyleContext(SCOPE);
-  const { color = 'gray' } = props;
 
   if (AsComp) {
     return (
-      <View
+      <AsComp
+        fill={fill}
+        color={color}
+        {...props}
         className={formControlErrorIconStyle({
           parentVariants: { size: parentSize },
           size,
           class: className,
         })}
-      >
-        <AsComp
-          fill={fill}
-          color={color}
-          {...props}
-          height={'100%'}
-          width={'100%'}
-        />
-      </View>
+      />
     );
   }
   return (
