@@ -36,10 +36,7 @@ const AccordionDemo = () => {
           </AccordionHeader>
           <AccordionContent ref={accRef}>
             <AccordionContentText>
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Id, sed
-              laudantium eligendi maxime rerum, saepe vitae unde voluptas hic,
-              culpa ex dolorem omnis incidunt quisquam? Ex fuga debitis
-              recusandae incidunt.
+              You can place your order by clicking the "Order Now" button.
             </AccordionContentText>
           </AccordionContent>
         </AccordionItem>
@@ -65,10 +62,7 @@ const AccordionDemo = () => {
           </AccordionHeader>
           <AccordionContent>
             <AccordionContentText>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Perferendis maxime modi quaerat temporibus quos, omnis, vel ullam
-              debitis labore error fugit, blanditiis dolore illum consequuntur
-              laboriosam. Voluptates est obcaecati nemo!
+              We accept Visa, Mastercard, and American Express.
             </AccordionContentText>
           </AccordionContent>
         </AccordionItem>
@@ -94,10 +88,7 @@ const AccordionDemo = () => {
           </AccordionHeader>
           <AccordionContent>
             <AccordionContentText>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Et
-              dolorem eos ex officia ratione omnis similique delectus aliquam
-              culpa. Minus quis numquam laboriosam non natus, distinctio facilis
-              aspernatur beatae earum.
+              Yes, you can cancel your subscription at any time.
             </AccordionContentText>
           </AccordionContent>
         </AccordionItem>
