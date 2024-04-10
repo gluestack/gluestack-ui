@@ -19,7 +19,7 @@ export const parameters = {
     storySort: {
       method: '',
       order: [
-        'Getting Started',
+        'Home',
         [
           'Overview',
           [
@@ -34,9 +34,6 @@ export const parameters = {
           ['Themed Library', 'Unstyled Library', 'Accessibility', 'Universal'],
           'Performance',
           ['Overview', 'Benchmarks'],
-        ],
-        'Configuration',
-        [
           'Theme Configuration',
           [
             'Theme',
