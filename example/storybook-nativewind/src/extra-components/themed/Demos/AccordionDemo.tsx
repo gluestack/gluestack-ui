@@ -80,33 +80,6 @@ const AccordionDemo = () => {
                 return (
                   <>
                     <AccordionTitleText>
-                      What payment methods do you accept?
-                    </AccordionTitleText>
-                    {isExpanded ? (
-                      <AccordionIcon as={ChevronUpIcon} />
-                    ) : (
-                      <AccordionIcon as={ChevronDownIcon} />
-                    )}
-                  </>
-                );
-              }}
-            </AccordionTrigger>
-          </AccordionHeader>
-          <AccordionContent>
-            <AccordionContentText>
-              We accept all major credit cards, including Visa, Mastercard, and
-              American Express. We also support payments through PayPal.
-            </AccordionContentText>
-          </AccordionContent>
-        </AccordionItem>
-
-        <AccordionItem value="d">
-          <AccordionHeader>
-            <AccordionTrigger>
-              {({ isExpanded }: { isExpanded: boolean }) => {
-                return (
-                  <>
-                    <AccordionTitleText>
                       Can I cancel my subscription at any time?
                     </AccordionTitleText>
                     {isExpanded ? (
