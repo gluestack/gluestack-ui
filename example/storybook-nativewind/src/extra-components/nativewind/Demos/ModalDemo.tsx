@@ -29,7 +29,7 @@ const ModalDemo = () => {
         onClose={() => {
           setShowModal(false);
         }}
-        size="full"
+        size="lg"
         finalFocusRef={ref}
       >
         <ModalBackdrop />
@@ -51,6 +51,7 @@ const ModalDemo = () => {
               onPress={() => {
                 setShowModal(false);
               }}
+              className="mr-1.5"
             >
               <ButtonText>Cancel</ButtonText>
             </Button>
