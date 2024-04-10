@@ -28,7 +28,7 @@ const radioGroupStyle = tva({
 });
 
 const radioIconStyle = tva({
-  base: 'rounded-full group-data-[checked=true]/radio:text-primary-600 group-data-[checked=true]/radio:group-data-[hover=true]/radio:text-primary-700 data-[checked=true]:data-[hover=true]:data-[disabled=true]:text-primary-600',
+  base: 'rounded-full group-data-[checked=true]/radio:text-primary-600 group-data-[checked=true]/radio:group-data-[hover=true]/radio:text-primary-700 data-[checked=true]:data-[hover=true]:data-[disabled=true]:text-primary-600 justify-center items-center',
 
   parentVariants: {
     size: {

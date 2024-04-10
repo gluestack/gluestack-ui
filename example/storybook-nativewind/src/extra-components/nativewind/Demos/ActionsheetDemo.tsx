@@ -30,7 +30,7 @@ const ActionsheetDemo = () => {
           <ActionsheetDragIndicatorWrapper>
             <ActionsheetDragIndicator />
           </ActionsheetDragIndicatorWrapper>
-          <ActionsheetItem onPress={handleClose} isDisabled>
+          <ActionsheetItem onPress={handleClose}>
             <ActionsheetItemText>Delete</ActionsheetItemText>
           </ActionsheetItem>
           <ActionsheetItem onPress={handleClose}>
