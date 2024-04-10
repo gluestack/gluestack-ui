@@ -35,12 +35,14 @@ import { config } from '@gluestack-ui/config';
 
 const ActionsheetBasic = ({ showActionsheetProp, ...props }: any) => {
   const [showActionsheet, setShowActionsheet] = React.useState(false);
-
   const handleClose = () => setShowActionsheet(false);
-
   return (
     <Center>
-      <Button>
+      <Button
+        onPress={() => {
+          setShowActionsheet(true);
+        }}
+      >
         <ButtonText>Open</ButtonText>
       </Button>
       <Actionsheet
