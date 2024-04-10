@@ -18,7 +18,7 @@ const SelectDemo = () => {
   return (
     <Select>
       <SelectTrigger>
-        <SelectInput placeholder="Select option" placeholderTextColor="gray" />
+        <SelectInput placeholder="Select option" />
         <SelectIcon mr="$3">
           <Icon as={ChevronDownIcon} />
         </SelectIcon>
