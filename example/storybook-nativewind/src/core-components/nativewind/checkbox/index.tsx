@@ -20,10 +20,10 @@ const UICheckbox = createCheckbox({
     Platform.OS === 'web'
       ? withStyleContext(View, SCOPE)
       : withStyleContextAndStates(Pressable, SCOPE),
-  Group: withStates(View),
-  Icon: withStates(View),
-  Label: withStates(Text),
-  Indicator: withStates(View),
+  Group: Platform.OS === 'web' ? View : withStates(View),
+  Icon: Platform.OS === 'web' ? View : withStates(View),
+  Label: Platform.OS === 'web' ? Text : withStates(Text),
+  Indicator: Platform.OS === 'web' ? View : withStates(View),
 });
 
 cssInterop(UICheckbox, { className: 'style' });
@@ -59,7 +59,7 @@ const checkboxLabelStyle = tva({
 });
 
 const checkboxIconStyle = tva({
-  base: 'text-typography-0 data-[disabled=true]:opacity-40',
+  base: 'data-[disabled=true]:opacity-40',
 
   parentVariants: {
     size: {
@@ -157,6 +157,7 @@ const CheckboxIcon = React.forwardRef(
       as: AsComp,
       fill = 'none',
       size,
+      color = 'gray',
       ...props
     }: ICheckboxIconProps & {
       className?: any;
@@ -167,26 +168,22 @@ const CheckboxIcon = React.forwardRef(
     ref?: any
   ) => {
     const { size: parentSize } = useStyleContext(SCOPE);
-    const { color = 'gray' } = props;
 
     if (AsComp) {
       return (
-        <UICheckbox.Icon
-          className={checkboxIconStyle({
-            parentVariants: {
-              size: parentSize,
-            },
-            class: className,
-            size,
-          })}
-        >
+        <UICheckbox.Icon>
           <AsComp
             fill={fill}
             color={color}
             {...props}
-            height={'100%'}
-            width={'100%'}
             ref={ref}
+            className={checkboxIconStyle({
+              parentVariants: {
+                size: parentSize,
+              },
+              class: className,
+              size,
+            })}
           />
         </UICheckbox.Icon>
       );

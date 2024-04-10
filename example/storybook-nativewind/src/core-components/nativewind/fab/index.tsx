@@ -93,7 +93,7 @@ const fabLabelStyle = tva({
 });
 
 const fabIconStyle = tva({
-  base: 'text-typography-50 group-hover/fab:text-typography-0 group-active/fab:text-typography-0',
+  base: '',
   variants: {
     size: {
       '2xs': 'h-3 w-3',
@@ -174,6 +174,7 @@ const FabIcon = React.forwardRef(
       className,
       as: AsComp,
       fill = 'none',
+      color = 'gray',
       ...props
     }: {
       className?: string;
@@ -184,11 +185,14 @@ const FabIcon = React.forwardRef(
     ref?: any
   ) => {
     const { size: parentSize } = useStyleContext(SCOPE);
-    const { color = 'gray' } = props;
 
     if (AsComp) {
       return (
-        <View
+        <AsComp
+          ref={ref}
+          {...props}
+          fill={fill}
+          color={color}
           className={fabIconStyle({
             parentVariants: {
               size: parentSize,
@@ -196,16 +200,7 @@ const FabIcon = React.forwardRef(
             size,
             class: className,
           })}
-        >
-          <AsComp
-            ref={ref}
-            {...props}
-            height={'100%'}
-            width={'100%'}
-            fill={fill}
-            color={color}
-          />
-        </View>
+        />
       );
     }
     return (

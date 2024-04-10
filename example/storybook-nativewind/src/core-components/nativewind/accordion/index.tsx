@@ -48,7 +48,7 @@ const accordionTitleTextStyle = tva({
   },
 });
 const accordionIconStyle = tva({
-  base: 'text-typography-900',
+  base: '',
   parentVariants: {
     size: {
       '2xs': 'h-3 w-3',
@@ -223,11 +223,17 @@ const AccordionIcon = React.forwardRef(
   (
     {
       fill = 'none',
-      size = 'md',
+      size,
       className,
       as: AsComp,
+      color = 'gray',
       ...props
-    }: IAccordionIconProps & { className?: any; fill?: any },
+    }: IAccordionIconProps & {
+      className?: any;
+      fill?: string;
+      as?: any;
+      color?: string;
+    },
     ref?: any
   ) => {
     const { size: parentSize } = useStyleContext(SCOPE);
@@ -238,6 +244,7 @@ const AccordionIcon = React.forwardRef(
           ref={ref}
           fill={fill}
           {...props}
+          color={color}
           className={accordionIconStyle({
             size,
             class: className,
@@ -251,6 +258,7 @@ const AccordionIcon = React.forwardRef(
         ref={ref}
         //@ts-ignore
         fill={fill}
+        color={color}
         {...props}
         className={accordionIconStyle({
           size,
