@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import {
   Button,
+  ButtonGroup,
   ButtonText,
   AlertDialog,
   AlertDialogBackdrop,
@@ -37,17 +38,19 @@ const AlertDialogDemo = () => {
             <Text>Whoa, slow down there!</Text>
           </AlertDialogBody>
           <AlertDialogFooter>
-            <Button
-              size="xs"
-              variant="outline"
-              action="secondary"
-              onPress={handleClose}
-            >
-              <ButtonText>Cancel</ButtonText>
-            </Button>
-            <Button size="xs" action="negative" onPress={handleClose}>
-              <ButtonText>Delete</ButtonText>
-            </Button>
+            <ButtonGroup space="sm">
+              <Button
+                size="xs"
+                variant="outline"
+                action="secondary"
+                onPress={handleClose}
+              >
+                <ButtonText>Cancel</ButtonText>
+              </Button>
+              <Button size="xs" action="negative" onPress={handleClose}>
+                <ButtonText>Delete</ButtonText>
+              </Button>
+            </ButtonGroup>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
