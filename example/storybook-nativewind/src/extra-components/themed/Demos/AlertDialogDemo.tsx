@@ -11,11 +11,11 @@ import {
   Text,
   AlertDialogFooter,
   AlertDialogCloseButton,
+  CloseIcon,
+  Icon,
 } from '../../../core-components/themed';
 import { Heading } from '../../../core-components/themed/heading';
 import { OverlayProvider } from '@gluestack-ui/overlay';
-
-import { X } from 'lucide-react-native';
 
 const AlertDialogDemo = () => {
   const [showAlertDialog, setShowAlertDialog] = useState(false);
@@ -31,7 +31,7 @@ const AlertDialogDemo = () => {
           <AlertDialogHeader>
             <Heading>Return Policy</Heading>
             <AlertDialogCloseButton>
-              <X size={20} />
+              <Icon as={CloseIcon} />
             </AlertDialogCloseButton>
           </AlertDialogHeader>
           <AlertDialogBody>
