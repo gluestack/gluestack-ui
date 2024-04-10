@@ -166,23 +166,11 @@ const buttonTextStyle = tva({
 });
 
 const buttonIconStyle = tva({
-  base: 'text-typography-0',
   parentVariants: {
-    action: {
-      primary:
-        'text-primary-600 group-hover/button:text-primary-600 group-active/button:text-primary-700',
-      secondary:
-        'text-secondary-600 group-hover/button:text-secondary-600 group-active/button:text-secondary-700',
-      positive:
-        'text-success-600 group-hover/button:text-success-600 group-active/button:text-success-700',
-      negative:
-        'text-error-600 group-hover/button:text-error-600 group-active/button:text-error-700',
-    },
     variant: {
       link: 'group-hover/button:underline group-active/button:underline',
       outline: '',
-      solid:
-        'text-typography-0 group-hover/button:text-typography-0 group-active/button:text-typography-0',
+      solid: '',
     },
     size: {
       '2xs': 'h-3 w-3',
@@ -193,32 +181,6 @@ const buttonIconStyle = tva({
       'xl': 'h-6 w-6',
     },
   },
-  parentCompoundVariants: [
-    {
-      variant: 'solid',
-      action: 'primary',
-      class:
-        'text-typography-0 group-hover/button:text-typography-0 group-active/button:text-typography-0',
-    },
-    {
-      variant: 'solid',
-      action: 'secondary',
-      class:
-        'text-typography-0 group-hover/button:text-typography-0 group-active/button:text-typography-0',
-    },
-    {
-      variant: 'solid',
-      action: 'positive',
-      class:
-        'text-typography-0 group-hover/button:text-typography-0 group-active/button:text-typography-0',
-    },
-    {
-      variant: 'solid',
-      action: 'negative',
-      class:
-        'text-typography-0 group-hover/button:text-typography-0 group-active/button:text-typography-0',
-    },
-  ],
 });
 
 type IButtonProps = Omit<React.ComponentProps<typeof UIButton>, 'context'> &
@@ -333,26 +295,20 @@ const ButtonIcon = React.forwardRef(
 
     if (AsComp) {
       return (
-        <View
+        <AsComp
+          fill={fill}
+          color={color}
+          {...props}
+          ref={ref}
           className={buttonIconStyle({
             parentVariants: {
               size: parentSize,
               variant: parentVariant,
-              action: parentAction,
             },
             size,
             class: className,
           })}
-        >
-          <AsComp
-            fill={fill}
-            color={color}
-            {...props}
-            height={'100%'}
-            width={'100%'}
-            ref={ref}
-          />
-        </View>
+        />
       );
     }
     return (
@@ -362,6 +318,7 @@ const ButtonIcon = React.forwardRef(
         className={buttonIconStyle({
           parentVariants: {
             size: parentSize,
+            variant: parentVariant,
           },
           size,
           class: className,
