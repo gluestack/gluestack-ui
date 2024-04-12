@@ -3,7 +3,7 @@ import { VStack, Heading, Divider } from '../../../core-components/themed';
 
 const DividerDemo = () => {
   return (
-    <VStack space="sm">
+    <VStack space="xs">
       <Heading size="sm" className="font-semibold">
         Firefox
       </Heading>

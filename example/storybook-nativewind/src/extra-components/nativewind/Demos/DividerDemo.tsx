@@ -5,7 +5,7 @@ const DividerDemo = () => {
   return (
     <HStack
       className={`items-center justify-center flex-col h-auto
-     gap-2.5`}
+     gap-1`}
     >
       <Heading size="sm" className="font-semibold">
         Firefox

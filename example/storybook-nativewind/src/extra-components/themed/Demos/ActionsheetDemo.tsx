@@ -20,13 +20,13 @@ const ActionsheetDemo = () => {
       <Button onPress={() => setShowActionsheet(true)}>
         <ButtonText>Open</ButtonText>
       </Button>
-      <Actionsheet isOpen={showActionsheet} onClose={handleClose}>
+      <Actionsheet isOpen={showActionsheet} onClose={handleClose} zIndex={999}>
         <ActionsheetBackdrop />
-        <ActionsheetContent>
+        <ActionsheetContent h="$72" zIndex={999}>
           <ActionsheetDragIndicatorWrapper>
             <ActionsheetDragIndicator />
           </ActionsheetDragIndicatorWrapper>
-          <ActionsheetItem onPress={handleClose} isDisabled>
+          <ActionsheetItem onPress={handleClose}>
             <ActionsheetItemText>Delete</ActionsheetItemText>
           </ActionsheetItem>
           <ActionsheetItem onPress={handleClose}>

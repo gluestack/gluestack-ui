@@ -11,7 +11,7 @@ const FabDemo = () => {
   return (
     <Box className="h-[150px] w-[200px] bg-background-200 rounded-md ">
       <Fab placement={'bottom right'}>
-        <FabIcon as={MenuIcon} />
+        <FabIcon as={MenuIcon} mr="$1" />
         <FabLabel>Menu</FabLabel>
       </Fab>
     </Box>

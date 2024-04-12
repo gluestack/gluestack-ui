@@ -18,16 +18,7 @@ const SelectDemo = () => {
   return (
     <Select>
       <SelectTrigger>
-        <SelectInput
-          color="$textLight100"
-          sx={{
-            _dark: {
-              color: '$textLight800',
-            },
-          }}
-          placeholder="Select option"
-          placeholderTextColor="gray"
-        />
+        <SelectInput placeholder="Select option" />
         <SelectIcon mr="$3">
           <Icon as={ChevronDownIcon} />
         </SelectIcon>
