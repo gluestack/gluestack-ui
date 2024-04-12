@@ -1,5 +1,11 @@
 # @gluestack-ui/alert
 
+## 0.1.13
+
+### Patch Changes
+
+- fix: ref typing issue
+
 ## 0.1.8
 
 ### Patch Changes

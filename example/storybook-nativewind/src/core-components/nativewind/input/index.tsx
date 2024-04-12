@@ -49,7 +49,7 @@ const inputStyle = tva({
 });
 
 const inputIconStyle = tva({
-  // base: 'text-typography-400',
+  base: 'justify-center items-center',
   parentVariants: {
     size: {
       '2xs': 'h-3 w-3',
@@ -80,7 +80,7 @@ const inputFieldStyle = tva({
       '2xs': 'text-2xs leading-[0px]',
       'xs': 'text-xs leading-[0px]',
       'sm': 'text-sm leading-[0px]',
-      'md': 'text-base leading-none',
+      'md': 'text-base leading-[0px]',
       'lg': 'text-lg leading-[0px]',
       'xl': 'text-xl leading-[0px]',
       '2xl': 'text-2xl leading-[0px]',
@@ -127,31 +127,27 @@ const InputIcon = React.forwardRef(
       className,
       fill = 'none',
       as: AsComp,
+      color = '#8C8C8C',
       ...props
     }: { className?: any; fill?: string; color?: string } & IInputIconProps,
     ref?: any
   ) => {
     const { size: parentSize } = useStyleContext(SCOPE);
-    const { color = '#8C8C8C' } = props;
 
     if (AsComp) {
       return (
-        <View
+        <AsComp
+          fill={fill}
+          color={color}
+          {...props}
+          ref={ref}
           className={inputIconStyle({
             parentVariants: {
               size: parentSize,
             },
             class: className,
           })}
-        >
-          <AsComp
-            fill={fill}
-            color={color}
-            {...props}
-            height={'100%'}
-            width={'100%'}
-          />
-        </View>
+        />
       );
     }
     return (

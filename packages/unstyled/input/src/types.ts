@@ -13,7 +13,7 @@ export interface InputContext {
   inputFieldRef?: any;
 }
 
-interface IInputFieldProps {
+export interface IInputFieldProps {
   /**
    * If true, the input will indicate an error.
    */

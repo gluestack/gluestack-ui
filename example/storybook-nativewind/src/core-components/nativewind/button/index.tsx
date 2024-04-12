@@ -40,7 +40,7 @@ cssInterop(UIButton.Spinner, { className: 'style' });
 cssInterop(UIButton.Icon, { className: 'style' });
 
 const buttonStyle = tva({
-  base: 'group/button rounded-lg bg-primary-500 flex-row items-center justify-center data-[focus-visible=true]:web:outline-none data-[focus-visible=true]:web:ring-2 data-[disabled=true]:opacity-40',
+  base: 'group/button rounded bg-primary-500 flex-row items-center justify-center data-[focus-visible=true]:web:outline-none data-[focus-visible=true]:web:ring-2 data-[disabled=true]:opacity-40',
   variants: {
     action: {
       primary:
@@ -61,6 +61,7 @@ const buttonStyle = tva({
     },
 
     size: {
+      xs: 'px-3.5 h-8',
       sm: 'px-4 h-9',
       md: 'px-5 h-10',
       lg: 'px-6 h-11',
@@ -130,6 +131,7 @@ const buttonTextStyle = tva({
         'text-typography-0 group-hover/button:text-typography-0 group-active/button:text-typography-0',
     },
     size: {
+      xs: 'text-xs',
       sm: 'text-sm',
       md: 'text-base',
       lg: 'text-lg',
@@ -164,23 +166,11 @@ const buttonTextStyle = tva({
 });
 
 const buttonIconStyle = tva({
-  base: 'text-typography-0',
   parentVariants: {
-    action: {
-      primary:
-        'text-primary-600 group-hover/button:text-primary-600 group-active/button:text-primary-700',
-      secondary:
-        'text-secondary-600 group-hover/button:text-secondary-600 group-active/button:text-secondary-700',
-      positive:
-        'text-success-600 group-hover/button:text-success-600 group-active/button:text-success-700',
-      negative:
-        'text-error-600 group-hover/button:text-error-600 group-active/button:text-error-700',
-    },
     variant: {
       link: 'group-hover/button:underline group-active/button:underline',
       outline: '',
-      solid:
-        'text-typography-0 group-hover/button:text-typography-0 group-active/button:text-typography-0',
+      solid: '',
     },
     size: {
       '2xs': 'h-3 w-3',
@@ -191,32 +181,6 @@ const buttonIconStyle = tva({
       'xl': 'h-6 w-6',
     },
   },
-  parentCompoundVariants: [
-    {
-      variant: 'solid',
-      action: 'primary',
-      class:
-        'text-typography-0 group-hover/button:text-typography-0 group-active/button:text-typography-0',
-    },
-    {
-      variant: 'solid',
-      action: 'secondary',
-      class:
-        'text-typography-0 group-hover/button:text-typography-0 group-active/button:text-typography-0',
-    },
-    {
-      variant: 'solid',
-      action: 'positive',
-      class:
-        'text-typography-0 group-hover/button:text-typography-0 group-active/button:text-typography-0',
-    },
-    {
-      variant: 'solid',
-      action: 'negative',
-      class:
-        'text-typography-0 group-hover/button:text-typography-0 group-active/button:text-typography-0',
-    },
-  ],
 });
 
 type IButtonProps = Omit<React.ComponentProps<typeof UIButton>, 'context'> &
@@ -299,72 +263,74 @@ const defaultColors: DefaultColors = {
 };
 type IButtonIcon = React.ComponentProps<typeof UIButton.Icon> &
   VariantProps<typeof buttonIconStyle>;
-const ButtonIcon = ({
-  className,
-  as: AsComp,
-  fill = 'none',
-  size,
-  ...props
-}: IButtonIcon & {
-  className?: any;
-  fill?: string;
-  color?: string;
-  as?: any;
-}) => {
-  const {
-    variant: parentVariant,
-    size: parentSize,
-    action: parentAction,
-  } = useStyleContext(SCOPE);
+const ButtonIcon = React.forwardRef(
+  (
+    {
+      className,
+      as: AsComp,
+      fill = 'none',
+      size,
+      ...props
+    }: IButtonIcon & {
+      className?: any;
+      fill?: string;
+      color?: string;
+      as?: any;
+    },
+    ref?: any
+  ) => {
+    const {
+      variant: parentVariant,
+      size: parentSize,
+      action: parentAction,
+    } = useStyleContext(SCOPE);
 
-  let localColor;
-  if (parentVariant !== 'solid') {
-    localColor = defaultColors[parentAction as keyof DefaultColors];
-  } else {
-    localColor = '#FEFEFF';
-  }
-  const { color = localColor } = props;
+    let localColor;
+    if (parentVariant !== 'solid') {
+      localColor = defaultColors[parentAction as keyof DefaultColors];
+    } else {
+      localColor = '#FEFEFF';
+    }
+    const { color = localColor } = props;
 
-  if (AsComp) {
-    return (
-      <View
-        className={buttonIconStyle({
-          parentVariants: {
-            size: parentSize,
-            variant: parentVariant,
-            action: parentAction,
-          },
-          size,
-          class: className,
-        })}
-      >
+    if (AsComp) {
+      return (
         <AsComp
           fill={fill}
           color={color}
           {...props}
-          height={'100%'}
-          width={'100%'}
+          ref={ref}
+          className={buttonIconStyle({
+            parentVariants: {
+              size: parentSize,
+              variant: parentVariant,
+            },
+            size,
+            class: className,
+          })}
         />
-      </View>
+      );
+    }
+    return (
+      <UIButton.Icon
+        {...props}
+        //@ts-ignore
+        className={buttonIconStyle({
+          parentVariants: {
+            size: parentSize,
+            variant: parentVariant,
+          },
+          size,
+          class: className,
+        })}
+        //@ts-ignore
+        fill={fill}
+        color={color}
+        ref={ref}
+      />
     );
   }
-  return (
-    <UIButton.Icon
-      {...props}
-      //@ts-ignore
-      className={buttonIconStyle({
-        parentVariants: {
-          size: parentSize,
-        },
-        size,
-        class: className,
-      })}
-      //@ts-ignore
-      fill={fill}
-      color={color}
-    />
-  );
-};
+);
 
 Button.displayName = 'Button';
 ButtonText.displayName = 'ButtonText';

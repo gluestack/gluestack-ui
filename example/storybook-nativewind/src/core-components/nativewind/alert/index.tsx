@@ -13,7 +13,7 @@ import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 const SCOPE = 'ALERT';
 
 const alertStyle = tva({
-  base: 'items-center p-3 rounded-sm flex-row',
+  base: 'items-center p-3 rounded flex-row',
 
   variants: {
     action: {
@@ -178,53 +178,56 @@ const defaultColors: DefaultColors = {
 };
 type IAlertIconProps = React.ComponentProps<typeof UIAlert.Icon> &
   VariantProps<typeof alertIconStyle>;
-const AlertIcon = ({
-  className,
-  size = 'md',
-  fill = 'none',
-  as: AsComp,
-  ...props
-}: {
-  className?: string;
-  as?: any;
-  fill?: string;
-  color?: any;
-} & IAlertIconProps) => {
-  const { action: parentAction } = useStyleContext(SCOPE);
-  const { color = defaultColors[parentAction as keyof DefaultColors] } = props;
+const AlertIcon = React.forwardRef(
+  (
+    {
+      className,
+      size = 'md',
+      fill = 'none',
+      as: AsComp,
+      ...props
+    }: {
+      className?: string;
+      as?: any;
+      fill?: string;
+      color?: string;
+    } & IAlertIconProps,
+    ref?: any
+  ) => {
+    const { action: parentAction } = useStyleContext(SCOPE);
+    const { color = defaultColors[parentAction as keyof DefaultColors] } =
+      props;
 
-  if (AsComp) {
-    return (
-      <View
-        className={alertIconStyle({
-          size,
-          class: className,
-        })}
-      >
+    if (AsComp) {
+      return (
         <AsComp
           fill={fill}
           color={color}
           {...props}
-          height={'100%'}
-          width={'100%'}
+          ref={ref}
+          className={alertIconStyle({
+            size,
+            class: className,
+          })}
         />
-      </View>
+      );
+    }
+    return (
+      <UIAlert.Icon
+        // @ts-ignore
+        className={alertIconStyle({
+          size,
+          class: className,
+        })}
+        // @ts-ignore
+        fill={fill}
+        color={color}
+        {...props}
+        ref={ref}
+      />
     );
   }
-  return (
-    <UIAlert.Icon
-      // @ts-ignore
-      className={alertIconStyle({
-        size,
-        class: className,
-      })}
-      // @ts-ignore
-      fill={fill}
-      color={color}
-      {...props}
-    />
-  );
-};
+);
 
 Alert.displayName = 'Alert';
 AlertText.displayName = 'AlertText';

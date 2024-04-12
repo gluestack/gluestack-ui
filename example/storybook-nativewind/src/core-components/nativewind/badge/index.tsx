@@ -157,21 +157,42 @@ const defaultColors: DefaultColors = {
 };
 type IBadgeIconProps = React.ComponentProps<typeof View> &
   VariantProps<typeof badgeIconStyle>;
-const BadgeIcon = ({
-  className,
-  size,
-  as: AsComp,
-  fill = 'none',
-  ...props
-}: IBadgeIconProps & { className?: any } & {
-  color?: any;
-  fill?: string;
-  as?: any;
-}) => {
-  const { size: parentSize, action: parentAction } = useStyleContext(SCOPE);
-  const { color = defaultColors[parentAction as keyof DefaultColors] } = props;
+const BadgeIcon = React.forwardRef(
+  (
+    {
+      className,
+      size,
+      as: AsComp,
+      fill = 'none',
+      ...props
+    }: IBadgeIconProps & { className?: any } & {
+      color?: any;
+      fill?: string;
+      as?: any;
+    },
+    ref?: any
+  ) => {
+    const { size: parentSize, action: parentAction } = useStyleContext(SCOPE);
+    const { color = defaultColors[parentAction as keyof DefaultColors] } =
+      props;
 
-  if (AsComp) {
+    if (AsComp) {
+      return (
+        <AsComp
+          {...props}
+          fill={fill}
+          color={color}
+          ref={ref}
+          className={badgeIconStyle({
+            parentVariants: {
+              size: parentSize,
+            },
+            size,
+            class: className,
+          })}
+        />
+      );
+    }
     return (
       <View
         className={badgeIconStyle({
@@ -181,33 +202,15 @@ const BadgeIcon = ({
           size,
           class: className,
         })}
-      >
-        <AsComp
-          {...props}
-          height={'100%'}
-          width={'100%'}
-          fill={fill}
-          color={color}
-        />
-      </View>
+        {...props}
+        //@ts-ignore
+        fill={fill}
+        color={color}
+        ref={ref}
+      />
     );
   }
-  return (
-    <View
-      className={badgeIconStyle({
-        parentVariants: {
-          size: parentSize,
-        },
-        size,
-        class: className,
-      })}
-      {...props}
-      //@ts-ignore
-      fill={fill}
-      color={color}
-    />
-  );
-};
+);
 
 Badge.displayName = 'Badge';
 BadgeText.displayName = 'BadgeText';

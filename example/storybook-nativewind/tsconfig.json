@@ -13,11 +13,14 @@
       "@gluestack-ui/radio": ["../../packages/unstyled/radio/src"],
       "@gluestack-ui/accordion": ["../../packages/unstyled/accordion/src"],
       "@gluestack-ui/actionsheet": ["../../packages/unstyled/actionsheet/src"],
+      "@gluestack-ui/avatar": ["../../packages/unstyled/avatar/src"],
       "@gluestack-ui/tooltip": ["../../packages/unstyled/tooltip/src"],
+      "@gluestack-ui/fab": ["../../packages/unstyled/fab/src"],
       "@gluestack-ui/alert-dialog": [
         "../../packages/unstyled/alert-dialog/src"
       ],
       "@gluestack-ui/menu": ["../../packages/unstyled/menu/src"],
+      "@gluestack-ui/select": ["../../packages/unstyled/select/src"],
       "@gluestack-ui/textarea": ["../../packages/unstyled/textarea/src"],
       "@gluestack-ui/link": ["../../packages/unstyled/link/src"],
       "@gluestack-ui/nativewind-utils/tva": [

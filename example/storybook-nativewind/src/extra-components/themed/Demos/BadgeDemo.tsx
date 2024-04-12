@@ -9,7 +9,7 @@ const BadgeDemo = () => {
   return (
     <Badge>
       <BadgeText>Verified</BadgeText>
-      <BadgeIcon as={GlobeIcon} className="ml-2" />
+      <BadgeIcon as={GlobeIcon} ml="$2" />
     </Badge>
   );
 };
