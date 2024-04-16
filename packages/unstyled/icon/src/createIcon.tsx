@@ -79,6 +79,7 @@ export function createIcon<IconProps>({
     }
 
     let sizeProps = {};
+    let sizeStyle = {};
     if (type === 'font') {
       if (resolvedProps.sx) {
         sizeProps = { ...sizeProps, fontSize: resolvedProps?.sx?.h };
@@ -86,6 +87,11 @@ export function createIcon<IconProps>({
       if (resolvedProps.size) {
         // sizeProps = { ...sizeProps, fontSize: resolvedProps?.size };
       }
+    } else if (resolvedProps.size) {
+      sizeStyle = {
+        height: resolvedProps.size,
+        width: resolvedProps.size,
+      };
     }
 
     return (
@@ -95,6 +101,7 @@ export function createIcon<IconProps>({
         role="img"
         ref={ref}
         {...sizeProps}
+        {...sizeStyle}
       >
         {React.Children.count(children) > 0 ? (
           <G>
