@@ -79,13 +79,14 @@ export const Icon = React.forwardRef(
         <UIIcon
           ref={ref}
           {...props}
-          className={iconStyle({
-            class: className,
-          })}
+          className={iconStyle({ class: className })}
           size={size}
         />
       );
-    } else if (props.height !== 'undefined' || props.width !== 'undefined') {
+    } else if (
+      (props.height !== undefined || props.width !== undefined) &&
+      size === undefined
+    ) {
       return (
         <UIIcon
           ref={ref}
