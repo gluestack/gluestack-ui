@@ -138,6 +138,20 @@ export const parameters = {
           ['Roadmap', 'Changelog', 'Contribution Guidelines', 'FAQs'],
         ],
       ],
+      icons: [
+        {
+          source: 'lucide-react-native',
+          name: 'home',
+        },
+        {
+          source: 'lucide-react-native',
+          name: 'book-open',
+        },
+        {
+          source: 'lucide-react-native',
+          name: 'book-open',
+        },
+      ],
     },
   },
 };
