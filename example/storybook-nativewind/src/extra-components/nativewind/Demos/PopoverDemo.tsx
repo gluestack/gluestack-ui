@@ -26,7 +26,7 @@ const PopoverDemo = () => {
           return (
             <Pressable
               borderRadius="$full"
-              {../../../core-components/nativewind.triggerProps}
+              {...triggerProps}
               onPress={() => {
                 setShowPopover(!showPopover);
               }}
