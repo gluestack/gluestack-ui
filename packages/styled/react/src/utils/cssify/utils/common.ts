@@ -103,18 +103,17 @@ const createCssRule = (
   dataType: string,
   prefixClassName: string,
   prefixColorMode: string,
-  hasState: boolean,
   themeCondition: any,
   _themeCssObj?: any
 ) => {
   const dataMediaSelector = `[data-${dataType}~="${stringHash}"]`;
-  const stateRulePrefix = hasState ? '.gs' : '';
-  const inlineRulePrefix = prefixClassName ? `.${prefixClassName}` : '';
+
+  const inlineRulePrefix = prefixClassName ? `${prefixClassName}` : '';
   const colorModeRulePrefix =
     prefixColorMode && colorMode ? `.${prefixColorMode}${colorMode}` : '';
-  const mediaQueryPrefix = `.gs`;
+  const mediaQueryPrefix = ''; //`.gs`;
 
-  const inlineAndStatePrefix = `${inlineRulePrefix}${stateRulePrefix}`;
+  const inlineAndStatePrefix = `${inlineRulePrefix}`;
   let rule = ``;
 
   const themeConditionArray = themeCondition ? themeCondition.split('.') : [];

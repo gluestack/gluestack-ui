@@ -1,3 +1,5 @@
+import { CSSPropertiesMap } from './core/styled-system';
+import { propertyTokenMap } from './propertyTokenMap';
 import type { Config } from './types';
 import { deepClone } from './utils/cssify/utils/common';
 
@@ -77,7 +79,7 @@ export function convertTokensToCssVariables(currentConfig: any) {
         // Recursively process nested objects
         acc += objectToCssVariables(variableValue, `${prefix}${key}-`);
       } else {
-        acc += `${convertToUnicodeString(variableName)}: ${variableValue};\n`;
+        acc += `${convertToUnicodeString(variableName)}: ${variableValue}; `;
       }
 
       return acc;
@@ -86,13 +88,13 @@ export function convertTokensToCssVariables(currentConfig: any) {
 
   const tokens = currentConfig?.tokens;
   const cssVariables = objectToCssVariables(tokens);
-  let content = `:root {\n${cssVariables}}`;
+  let content = `:root {${cssVariables}}`;
 
   if (currentConfig.themes) {
     Object.keys(currentConfig.themes).forEach((key) => {
       const theme = currentConfig.themes[key];
       const cssVariables = objectToCssVariables(theme);
-      content += `\n\n[data-theme-id=${key}] {\n${cssVariables}}`;
+      content += `[data-theme-id=${key}] {${cssVariables}}`;
     });
   }
 
@@ -149,7 +151,11 @@ export function resolveAliasesFromConfig(
   const aliasResolvedProps: any = {};
 
   Object.keys(props).map((key) => {
-    if (!ignoreKeys.has(key)) {
+    if (
+      !ignoreKeys.has(key) &&
+      //@ts-ignore
+      (config?.aliases?.[key] || propertyTokenMap[key] || CSSPropertiesMap[key])
+    ) {
       if (config?.aliases?.[key]) {
         aliasResolvedProps[config.aliases?.[key]] = props[key];
       } else {

@@ -6,10 +6,12 @@ import {
   getDescendantResolvedBaseStyle,
   getDescendantResolvedVariantStyle,
 } from './getComponentStyle';
+import { INTERNAL_updateCSSStyleInOrderedResolved } from '../updateCSSStyleInOrderedResolved';
+import { orderWithCssSelectors } from '../utils/css-injector/utils/inject';
 
 export function injectComponentAndDescendantStyles(
   orderedResolved: OrderedSXResolved,
-  styleTagId?: string,
+  styleTagId: string,
   type: 'boot' | 'inline' = 'boot',
   _GluestackStyleSheet: StyleInjector = GluestackStyleSheet,
   platform: string = '',
@@ -17,6 +19,11 @@ export function injectComponentAndDescendantStyles(
   ignoreKeys: Set<any> = new Set(),
   CONFIG: any = {}
 ) {
+  const INLINE_BASE = type + '-base';
+  const INLINE_VARIANT = type + '-variant';
+  const INLINE_DESCENDANT_BASE = type + '-descendant-base';
+  const INLINE_DESCENDANT_VARIANT = type + '-descendant-variant';
+
   const [
     componentOrderResolvedBaseStyle,
     componentOrderResolvedBaseStateStyle,
@@ -35,12 +42,49 @@ export function injectComponentAndDescendantStyles(
     descendantOrderResolvedVariantStateStyle,
   ] = getDescendantResolvedVariantStyle(orderedResolved);
 
+  INTERNAL_updateCSSStyleInOrderedResolved(
+    [
+      ...componentOrderResolvedBaseStyle,
+      ...componentOrderResolvedBaseStateStyle,
+    ],
+    styleTagId,
+    true,
+    orderWithCssSelectors[INLINE_BASE]
+  );
+  INTERNAL_updateCSSStyleInOrderedResolved(
+    [
+      ...componentOrderResolvedVariantStyle,
+      ...componentOrderResolvedVariantStateStyle,
+    ],
+    styleTagId,
+    true,
+    orderWithCssSelectors[INLINE_VARIANT]
+  );
+  INTERNAL_updateCSSStyleInOrderedResolved(
+    [
+      ...descendantOrderResolvedBaseStyle,
+      ...descendantOrderResolvedBaseStateStyle,
+    ],
+    styleTagId,
+    true,
+    orderWithCssSelectors[INLINE_DESCENDANT_BASE]
+  );
+  INTERNAL_updateCSSStyleInOrderedResolved(
+    [
+      ...descendantOrderResolvedVariantStyle,
+      ...descendantOrderResolvedVariantStateStyle,
+    ],
+    styleTagId,
+    true,
+    orderWithCssSelectors[INLINE_DESCENDANT_VARIANT]
+  );
+
   const componentOrderResolvedBaseStyleIds = GluestackStyleSheet.declare(
     [
       ...componentOrderResolvedBaseStyle,
       ...componentOrderResolvedBaseStateStyle,
     ],
-    type + '-base',
+    INLINE_BASE,
     styleTagId ? styleTagId : 'css-injected-boot-time',
     {}
   );
@@ -49,16 +93,17 @@ export function injectComponentAndDescendantStyles(
       ...descendantOrderResolvedBaseStyle,
       ...descendantOrderResolvedBaseStateStyle,
     ],
-    type + '-descendant-base',
+    INLINE_DESCENDANT_BASE,
     styleTagId ? styleTagId : 'css-injected-boot-time-descendant',
     {}
   );
+
   const componentOrderResolvedVariantStyleIds = GluestackStyleSheet.declare(
     [
       ...componentOrderResolvedVariantStyle,
       ...componentOrderResolvedVariantStateStyle,
     ],
-    type + '-variant',
+    INLINE_VARIANT,
     styleTagId ? styleTagId : 'css-injected-boot-time',
     {}
   );
@@ -67,7 +112,7 @@ export function injectComponentAndDescendantStyles(
       ...descendantOrderResolvedVariantStyle,
       ...descendantOrderResolvedVariantStateStyle,
     ],
-    type + '-descendant-variant',
+    INLINE_DESCENDANT_VARIANT,
     styleTagId ? styleTagId : 'css-injected-boot-time-descendant',
     {}
   );

@@ -20,25 +20,13 @@ export function themeStyledValueToCSSObject(
 ) {
   let themeResolved1: any = {};
   if (CONFIG?.themes) {
-    // const tokens = deepClone(CONFIG.tokens);
-    // Object.keys(CONFIG?.themes).forEach((key: any) => {
-    //   const themeTokens = CONFIG?.themes[key];
-    //   Object.keys(themeTokens).forEach((tokenKey1: any) => {
-    //     Object.keys(themeTokens[tokenKey1]).forEach((tokenKey: any) => {
-    //       delete tokens[tokenKey1][tokenKey];
-    //     });
-    //   });
-    // });
-
-    // debugger;
-
     Object.keys(CONFIG?.themes).forEach((themeName: any) => {
       if (themeName !== 'tokens') {
         const themeResolved = StyledValueToCSSObject(
           input,
           {
             ...CONFIG,
-            tokens: CONFIG?.themes?.tokens[themeName],
+            tokens: CONFIG?.themes?.tokens?.[themeName],
           },
           ignoreKeys,
           true
