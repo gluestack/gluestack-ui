@@ -1,5 +1,27 @@
 # @gluestack-ui/alert-dialog
 
+## 0.1.28
+
+### Patch Changes
+
+- fix: ref typing issue
+
+## 0.1.27
+
+### Patch Changes
+
+- @react-native-aria/dialog@0.0.4
+- @react-native-aria/interactions@0.2.13
+- @gluestack-ui/overlay@0.1.14
+
+## 0.1.26
+
+### Patch Changes
+
+- Updated dependencies
+  - @react-native-aria/interactions@0.2.12
+  - @gluestack-ui/overlay@0.1.13
+
 ## 0.1.25
 
 ### Patch Changes

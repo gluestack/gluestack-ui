@@ -1,0 +1,1 @@
+export { cssInterop } from 'nativewind';

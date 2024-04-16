@@ -1,5 +1,19 @@
 # @gluestack-ui/overlay
 
+## 0.1.14
+
+### Patch Changes
+
+- @react-native-aria/interactions@0.2.13
+- @react-native-aria/overlays@0.3.12
+
+## 0.1.13
+
+### Patch Changes
+
+- Updated dependencies
+  - @react-native-aria/interactions@0.2.12
+
 ## 0.1.8
 
 ### Patch Changes

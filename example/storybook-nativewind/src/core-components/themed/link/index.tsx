@@ -1,3 +1,4 @@
+'use client';
 import { styled } from '@gluestack-style/react';
 import { createLink } from '@gluestack-ui/link';
 import { Pressable, Text } from 'react-native';
@@ -31,9 +32,7 @@ const StyledRoot = styled(
       },
     },
   },
-  {
-    componentName: 'Link',
-  } as const
+  { descendantStyle: ['_text'] }
 );
 
 const StyledText = styled(

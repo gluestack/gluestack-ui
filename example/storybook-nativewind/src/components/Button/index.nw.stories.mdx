@@ -40,6 +40,7 @@ import {
   Table,
   TableContainer,
   InlineCode,
+  Tabs
 } from '@gluestack/design-system';
 import Wrapper from '../../core-components/nativewind/Wrapper';
 import { CollapsibleCode } from '@gluestack/design-system';
@@ -86,25 +87,46 @@ This is an illustration of **Button** component.
 
 ## Installation
 
+<Tabs value="cli" type="section">
+  <Tabs.TabList>
+      <Tabs.Tab value="cli">
+        <Tabs.TabTitle>CLI</Tabs.TabTitle>
+      </Tabs.Tab>
+     <Tabs.Tab value="manual">
+        <Tabs.TabTitle>Manual</Tabs.TabTitle>
+     </Tabs.Tab>
+  </Tabs.TabList>
+  <Tabs.TabPanels>
+    <Tabs.TabPanel value="cli">
+<>
+
+### Run the following command:
+  ```bash
+  npx gluestack-ui add button
+  ```
+</>
+    </Tabs.TabPanel>
+    <Tabs.TabPanel value="manual"> 
+<>
+
 ### Step 1: Install the following dependencies:
-
 ```bash
-
 npm i @gluestack-ui/button
-
 ```
 
 ### Step 2: Copy and paste the following code into your project.
-
 <CollapsibleCode>
 
 ```jsx 
 %%-- File: core-components/nativewind/button/index.tsx --%% 
 ```
-
 </CollapsibleCode>
 
 ### Step 3: Update the import paths to match your project setup.
+</>
+    </Tabs.TabPanel>
+  </Tabs.TabPanels>
+</Tabs>
 
 ## API Reference
 
@@ -140,7 +162,7 @@ This section provides a comprehensive reference list for the component props, de
 
 Contains all button related layout style props and actions. It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable) component.
 
-<Wrapper>
+<>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -227,7 +249,7 @@ Contains all button related layout style props and actions. It inherits all the 
       </Table.TBody>
     </Table>
   </TableContainer>
-</Wrapper>
+</>
 
 #### ButtonText
 
@@ -237,7 +259,7 @@ Contains all text related layout style props and actions. It inherits all the pr
 
 Contains all group related layout style props and actions. It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
-<Wrapper>
+<>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -346,7 +368,7 @@ Contains all group related layout style props and actions. It inherits all the p
       </Table.TBody>
     </Table>
   </TableContainer>
-</Wrapper>
+</>
 
 #### ButtonSpinner
 
@@ -387,7 +409,7 @@ Button component is created using Pressable component from react-native. It exte
 
 #### Button
 
-<Wrapper>
+<>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -448,7 +470,7 @@ Button component is created using Pressable component from react-native. It exte
       </Table.TBody>
     </Table>
   </TableContainer>
-</Wrapper>
+</>
 
 > Note: These props are exclusively applicable when utilizing the default configuration of gluestack-ui/config. If you are using a custom theme, these props may not be available.
 

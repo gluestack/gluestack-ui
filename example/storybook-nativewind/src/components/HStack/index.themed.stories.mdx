@@ -23,7 +23,8 @@ import {
   TableContainer,
   Text,
   InlineCode,
-  CollapsibleCode
+  CollapsibleCode,
+  Tabs
 } from '@gluestack/design-system';
 import Wrapper from '../../core-components/themed/Wrapper';
 
@@ -67,17 +68,41 @@ This is an illustration of **HStack** component.
 
 ## Installation
 
-### Step 1: Copy and paste the following code into your project.
+<Tabs value="cli" type="section">
+  <Tabs.TabList>
+      <Tabs.Tab value="cli">
+        <Tabs.TabTitle>CLI</Tabs.TabTitle>
+      </Tabs.Tab>
+     <Tabs.Tab value="manual">
+        <Tabs.TabTitle>Manual</Tabs.TabTitle>
+     </Tabs.Tab>
+  </Tabs.TabList>
+  <Tabs.TabPanels>
+    <Tabs.TabPanel value="cli">
+<>
 
+### Run the following command:
+  ```bash
+  npx gluestack-ui add hstack
+  ```
+</>
+    </Tabs.TabPanel>
+    <Tabs.TabPanel value="manual"> 
+<>
+
+### Step 1: Copy and paste the following code into your project.
 <CollapsibleCode>
 
 ```jsx 
 %%-- File: core-components/themed/hstack/index.tsx --%% 
 ```
-
 </CollapsibleCode>
 
 ### Step 2: Update the import paths to match your project setup.
+</>
+    </Tabs.TabPanel>
+  </Tabs.TabPanels>
+</Tabs>
 
 ## API Reference
 
@@ -197,9 +222,9 @@ An HStack component with the reversed prop reverses the order of horizontally st
     metaData={{
       code: `
         <HStack space="md" reversed>
-          <Box w='$20' h='$20' bg='$blue300' />
-          <Box w='$20' h='$20' bg='$blue400' />
-          <Box w='$20' h='$20' bg='$blue500' />
+          <Box w='$20' h='$20' bg='$primary200' />
+          <Box w='$20' h='$20' bg='$primary400' />
+          <Box w='$20' h='$20' bg='$primary600' />
         </HStack>
       `,
       transformCode: (code) => {

@@ -92,10 +92,16 @@ export interface InterfaceTooltipProps {
 export type IToolTipComponentType<
   StyledTooltip,
   StyledTooltipContent,
-  TextProps
-> = React.ForwardRefExoticComponent<StyledTooltip & ITooltipProps> & {
-  Content: React.ForwardRefExoticComponent<StyledTooltipContent>;
-  Text: React.ForwardRefExoticComponent<TextProps>;
+  StyledTooltipText
+> = React.ForwardRefExoticComponent<
+  StyledTooltip & React.RefAttributes<StyledTooltip> & ITooltipProps
+> & {
+  Content: React.ForwardRefExoticComponent<
+    StyledTooltipContent & React.RefAttributes<StyledTooltipContent>
+  >;
+  Text: React.ForwardRefExoticComponent<
+    StyledTooltipText & React.RefAttributes<StyledTooltipText>
+  >;
 };
 
 export type ITooltipProps = InterfaceTooltipProps;

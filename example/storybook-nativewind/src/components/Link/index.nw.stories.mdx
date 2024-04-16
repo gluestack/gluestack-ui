@@ -22,6 +22,7 @@ import {
   Table,
   TableContainer,
   InlineCode,
+  Tabs
 } from '@gluestack/design-system';
 
 import Wrapper from '../../core-components/nativewind/Wrapper';
@@ -56,25 +57,46 @@ This is an illustration of **Link** component.
 
 ## Installation
 
+<Tabs value="cli" type="section">
+  <Tabs.TabList>
+      <Tabs.Tab value="cli">
+        <Tabs.TabTitle>CLI</Tabs.TabTitle>
+      </Tabs.Tab>
+     <Tabs.Tab value="manual">
+        <Tabs.TabTitle>Manual</Tabs.TabTitle>
+     </Tabs.Tab>
+  </Tabs.TabList>
+  <Tabs.TabPanels>
+    <Tabs.TabPanel value="cli">
+<>
+
+### Run the following command:
+  ```bash
+  npx gluestack-ui add link
+  ```
+</>
+    </Tabs.TabPanel>
+    <Tabs.TabPanel value="manual"> 
+<>
+
 ### Step 1: Install the following dependencies:
-
 ```bash
-
 npm i @gluestack-ui/link
-
 ```
 
 ### Step 2: Copy and paste the following code into your project.
-
 <CollapsibleCode>
 
 ```jsx 
 %%-- File: core-components/nativewind/link/index.tsx --%% 
 ```
-
 </CollapsibleCode>
 
 ### Step 3: Update the import paths to match your project setup.
+</>
+    </Tabs.TabPanel>
+  </Tabs.TabPanels>
+</Tabs>
 
 ## API Reference
 
@@ -101,7 +123,7 @@ This section provides a comprehensive reference list for the component props, de
 Contains all link related layout style props and actions.
 It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable) component.
 
-<Wrapper>
+<>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -206,7 +228,7 @@ It inherits all the properties of React Native's [Pressable](https://reactnative
       </Table.TBody>
     </Table>
   </TableContainer>
-</Wrapper>
+</>
 
 #### LinkText
 
@@ -231,7 +253,7 @@ Link component is created using Pressable component from react-native. It extend
 
 #### Link
 
-<Wrapper>
+<>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -266,7 +288,7 @@ Link component is created using Pressable component from react-native. It extend
       </Table.TBody>
     </Table>
   </TableContainer>
-</Wrapper>
+</>
 
 > Note: These props are exclusively applicable when utilizing the default configuration of gluestack-ui/config. If you are using a custom theme, these props may not be available.
 

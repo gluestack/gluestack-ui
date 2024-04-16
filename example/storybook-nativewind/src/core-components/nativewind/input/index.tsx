@@ -1,29 +1,31 @@
+'use client';
 import React from 'react';
 import { createInput } from '@gluestack-ui/input';
 import { View, Pressable, TextInput, Platform } from 'react-native';
+import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import {
-  tva,
-  withStyleContextAndStates,
-  useStyleContext,
   withStyleContext,
-  withStates,
-  VariantProps,
-  cssInterop,
-} from '@gluestack-ui/nativewind-utils';
+  useStyleContext,
+} from '@gluestack-ui/nativewind-utils/withStyleContext';
+import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withStyleContextAndStates';
+import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
+import { withStates } from '@gluestack-ui/nativewind-utils/withStates';
+import type { VariantProps } from '@gluestack-ui/nativewind-utils';
+const SCOPE = 'INPUT';
 
 const UIInput = createInput({
   // @ts-ignore
   Root:
     Platform.OS === 'web'
-      ? withStyleContext(View)
-      : withStyleContextAndStates(View),
+      ? withStyleContext(View, SCOPE)
+      : withStyleContextAndStates(View, SCOPE),
   Icon: View,
   Slot: Pressable,
   Input: Platform.OS === 'web' ? TextInput : withStates(TextInput),
 });
 
 const inputStyle = tva({
-  base: 'border-background-300 flex-row overflow-hidden content-center data-[hover=true]:border-outline-400 data-[focus=true]:border-primary-700 data-[focus=true]:hover:border-primary-700 data-[disabled=true]:opacity-40 data-[disabled=true]:hover:border-background-300',
+  base: 'border-background-300 flex-row overflow-hidden content-center data-[hover=true]:border-outline-400 data-[focus=true]:border-primary-700 data-[focus=true]:hover:border-primary-700 data-[disabled=true]:opacity-40 data-[disabled=true]:hover:border-background-300 items-center',
 
   variants: {
     size: {
@@ -35,7 +37,7 @@ const inputStyle = tva({
 
     variant: {
       underlined:
-        'rounded-none border-b data-[invalid=true]:border-b-2 data-[invalid=true]:border-error-700 data-[invalid=true]:hover:border-error-700 data-[invalid=true]:data-[focus=true]:border-error-700 data-[invalid=true]:data-[focus=true]:hover:border-error-700 data-[invalid=true]:data-[disabled=true]:hover:border-error-700 data-[focus=true]:web:ring-1 data-[focus=true]:web:ring-inset data-[focus=true]:web:ring-primary-700 data-[invalid=true]:web:ring-1 data-[invalid=true]:web:ring-inset data-[invalid=true]:web:ring-error-700 data-[invalid=true]:data-[focus=true]:hover:web:ring-1 data-[invalid=true]:data-[focus=true]:hover:web:ring-inset data-[invalid=true]:data-[focus=true]:hover:web:ring-error-700 data-[invalid=true]:data-[disabled=true]:hover:web:ring-1 data-[invalid=true]:data-[disabled=true]:hover:web:ring-inset data-[invalid=true]:data-[disabled=true]:hover:web:ring-error-700',
+        'rounded-none border-b data-[invalid=true]:border-b-2 data-[invalid=true]:border-error-700 data-[invalid=true]:hover:border-error-700 data-[invalid=true]:data-[focus=true]:border-error-700 data-[invalid=true]:data-[focus=true]:hover:border-error-700 data-[invalid=true]:data-[disabled=true]:hover:border-error-700',
 
       outline:
         'rounded border data-[invalid=true]:border-error-700 data-[invalid=true]:hover:border-error-700 data-[invalid=true]:data-[focus=true]:border-error-700 data-[invalid=true]:data-[focus=true]:hover:border-error-700 data-[invalid=true]:data-[disabled=true]:hover:border-error-700 data-[focus=true]:web:ring-1 data-[focus=true]:web:ring-inset data-[focus=true]:web:ring-primary-700 data-[invalid=true]:web:ring-1 data-[invalid=true]:web:ring-inset data-[invalid=true]:web:ring-error-700 data-[invalid=true]:data-[focus=true]:hover:web:ring-1 data-[invalid=true]:data-[focus=true]:hover:web:ring-inset data-[invalid=true]:data-[focus=true]:hover:web:ring-error-700 data-[invalid=true]:data-[disabled=true]:hover:web:ring-1 data-[invalid=true]:data-[disabled=true]:hover:web:ring-inset data-[invalid=true]:data-[disabled=true]:hover:web:ring-error-700',
@@ -47,7 +49,7 @@ const inputStyle = tva({
 });
 
 const inputIconStyle = tva({
-  base: 'text-typography-400',
+  base: 'justify-center items-center',
   parentVariants: {
     size: {
       '2xs': 'h-3 w-3',
@@ -75,17 +77,17 @@ const inputFieldStyle = tva({
     },
 
     size: {
-      '2xs': 'text-2xs',
-      'xs': 'text-xs',
-      'sm': 'text-sm',
-      'md': 'text-base',
-      'lg': 'text-lg',
-      'xl': 'text-xl',
-      '2xl': 'text-2xl',
-      '3xl': 'text-3xl',
-      '4xl': 'text-4xl',
-      '5xl': 'text-5xl',
-      '6xl': 'text-6xl',
+      '2xs': 'text-2xs leading-[0px]',
+      'xs': 'text-xs leading-[0px]',
+      'sm': 'text-sm leading-[0px]',
+      'md': 'text-base leading-[0px]',
+      'lg': 'text-lg leading-[0px]',
+      'xl': 'text-xl leading-[0px]',
+      '2xl': 'text-2xl leading-[0px]',
+      '3xl': 'text-3xl leading-[0px]',
+      '4xl': 'text-4xl leading-[0px]',
+      '5xl': 'text-5xl leading-[0px]',
+      '6xl': 'text-6xl leading-[0px]',
     },
   },
 });
@@ -97,7 +99,6 @@ cssInterop(UIInput.Input, { className: 'style' });
 
 type IInputProps = React.ComponentProps<typeof UIInput> &
   VariantProps<typeof inputStyle>;
-//@ts-ignore
 const Input = React.forwardRef(
   (
     {
@@ -106,7 +107,7 @@ const Input = React.forwardRef(
       size = 'md',
       ...props
     }: { className?: string } & IInputProps,
-    ref
+    ref?: any
   ) => {
     return (
       <UIInput
@@ -120,19 +121,26 @@ const Input = React.forwardRef(
 );
 
 type IInputIconProps = React.ComponentProps<typeof UIInput.Icon> & { as: any };
-
 const InputIcon = React.forwardRef(
   (
-    { className, as: AsComp, ...props }: { className?: any } & IInputIconProps,
-    ref
+    {
+      className,
+      fill = 'none',
+      as: AsComp,
+      color = '#8C8C8C',
+      ...props
+    }: { className?: any; fill?: string; color?: string } & IInputIconProps,
+    ref?: any
   ) => {
-    const { size: parentSize } = useStyleContext();
+    const { size: parentSize } = useStyleContext(SCOPE);
 
     if (AsComp) {
       return (
         <AsComp
-          ref={ref}
+          fill={fill}
+          color={color}
           {...props}
+          ref={ref}
           className={inputIconStyle({
             parentVariants: {
               size: parentSize,
@@ -146,6 +154,8 @@ const InputIcon = React.forwardRef(
       <UIInput.Icon
         ref={ref}
         {...props}
+        // @ts-ignore
+        fill={fill}
         className={inputIconStyle({
           parentVariants: {
             size: parentSize,
@@ -159,9 +169,11 @@ const InputIcon = React.forwardRef(
 
 type IInputSlotProps = React.ComponentProps<typeof UIInput.Slot> &
   VariantProps<typeof inputSlotStyle>;
-
 const InputSlot = React.forwardRef(
-  ({ className, ...props }: { className?: string } & IInputSlotProps, ref) => {
+  (
+    { className, ...props }: { className?: string } & IInputSlotProps,
+    ref?: any
+  ) => {
     return (
       <UIInput.Slot
         ref={ref}
@@ -176,10 +188,12 @@ const InputSlot = React.forwardRef(
 
 type IInputFieldProps = React.ComponentProps<typeof UIInput.Input> &
   VariantProps<typeof inputFieldStyle>;
-
 const InputField = React.forwardRef(
-  ({ className, ...props }: { className?: string } & IInputFieldProps, ref) => {
-    const { variant: parentVariant, size: parentSize } = useStyleContext();
+  (
+    { className, ...props }: { className?: string } & IInputFieldProps,
+    ref?: any
+  ) => {
+    const { variant: parentVariant, size: parentSize } = useStyleContext(SCOPE);
 
     return (
       <UIInput.Input

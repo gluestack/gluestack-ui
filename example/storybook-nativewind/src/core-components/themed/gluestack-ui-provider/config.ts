@@ -1,3 +1,4 @@
+'use client';
 import { AnimationResolver } from '@gluestack-style/animation-resolver';
 import { MotionAnimationDriver } from '@gluestack-style/legend-motion-animation-driver';
 import { createConfig } from '@gluestack-style/react';

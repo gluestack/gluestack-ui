@@ -51,6 +51,47 @@ const gluestackStyleReact = {
     return config;
   },
 };
+const expoHtmlElements = {
+  A: () => {},
+  H1: () => {},
+  H2: () => {},
+  H3: () => {},
+  H4: () => {},
+  H5: () => {},
+  H6: () => {},
+  Div: () => {},
+  Img: () => {},
+  Footer: () => {},
+  Header: () => {},
+  Aside: () => {},
+  Main: () => {},
+  Section: () => {},
+  UL: () => {},
+  LI: () => {},
+  HR: () => {},
+  Table: () => {},
+  THead: () => {},
+  TBody: () => {},
+  TFoot: () => {},
+  TH: () => {},
+  TD: () => {},
+  Caption: () => {},
+  P: () => {},
+  B: () => {},
+  S: () => {},
+  I: () => {},
+  Q: () => {},
+  Blockquote: () => {},
+  BR: () => {},
+  Mark: () => {},
+  Code: () => {},
+  Pre: () => {},
+  Time: () => {},
+  Strong: () => {},
+  Del: () => {},
+  EM: () => {},
+  Span: () => {},
+};
 const gluestackStyleAnimationResolver = {
   AnimationResolver: class {
     constructor() {}
@@ -93,12 +134,13 @@ const getEsBuildConfigOptions = (
       '@gluestack-style/animation-resolver': mockedLibraryPath,
       '@gluestack-style/legend-motion-animation-driver': mockedLibraryPath,
       '@gluestack-style/moti-animation-driver': mockedLibraryPath,
+      '@expo/html-elements': mockedLibraryPath,
     },
     target: 'node18',
     footer: {
       js: 'module.exports = config;',
     },
-    resolveExtensions: ['.js', '.ts', '.tsx', '.jsx', '.json'],
+    resolveExtensions: ['.js', '.ts'],
     platform: 'node',
     external: [
       'react',
@@ -107,6 +149,7 @@ const getEsBuildConfigOptions = (
       '@gluestack-style/animation-resolver',
       '@gluestack-style/legend-motion-animation-driver',
       '@gluestack-style/moti-animation-driver',
+      '@expo/html-elements',
       mockedLibraryPath,
     ],
   };
@@ -114,21 +157,25 @@ const getEsBuildConfigOptions = (
 };
 
 function cleanup() {
-  if (fs.existsSync(`${process.cwd()}/.gluestack`)) {
-    fs.rmSync(
-      `${process.cwd()}/.gluestack`,
-      { recursive: true, force: true },
-      (err) => {
+  const directoryPath = path.join(process.cwd(), '.gluestack');
+
+  if (fs.existsSync(directoryPath)) {
+    const files = fs.readdirSync(directoryPath);
+
+    files.forEach((file) => {
+      const filePath = path.join(directoryPath, file);
+      fs.rmSync(filePath, { force: true }, (err) => {
         if (err) {
           console.error(err);
         } else {
           // eslint-disable-next-line no-console
-          console.log(`Removed ${process.cwd()}/.gluestack`);
-          // eslint-disable-next-line no-console
-          console.log('Preparing for build...');
+          console.log(`Removed ${filePath}`);
         }
-      }
-    );
+      });
+    });
+
+    // eslint-disable-next-line no-console
+    console.log('Preparing for build...');
   }
 }
 
@@ -146,16 +193,19 @@ function buildConfig(inputDir, outputDir, mockLibraryPath) {
 }
 
 function buildMockLibrary(mockedLibraryPath) {
-  const gluestackFolderPath = path.join(process.cwd(), './.gluestack');
+  const gluestackFolderPath = path.resolve(process.cwd(), './.gluestack');
   const mockLibraryFullPath = path.resolve(
     gluestackFolderPath,
     mockedLibraryPath
   );
-  if (!fs.existsSync(gluestackFolderPath)) {
-    fs.mkdirSync(gluestackFolderPath);
+  if (!fs.existsSync(mockLibraryFullPath)) {
+    if (!fs.existsSync(gluestackFolderPath)) {
+      fs.mkdirSync(gluestackFolderPath);
+    }
+    fs.writeFileSync(mockLibraryFullPath, mockLibrary, {
+      encoding: 'utf-8',
+    });
   }
-
-  fs.writeFileSync(mockLibraryFullPath, mockLibrary);
 }
 
 function cleanupAndBuildConfig(inputDir, outputDir, mockedLibraryPath) {
@@ -174,7 +224,7 @@ const getConfig = (
   mockLibraryPath = MOCK_LIBRARY
 ) => {
   try {
-    if (inputDir) {
+    if (inputDir && !fs.existsSync(path.join(process.cwd(), outputDir))) {
       cleanupAndBuildConfig(inputDir, outputDir, mockLibraryPath);
       const configFile = require(`${process.cwd()}/${outputDir}`);
       return configFile;
@@ -188,4 +238,6 @@ const getConfig = (
 
 module.exports = {
   getConfig,
+  buildMockLibrary,
+  cleanup,
 };

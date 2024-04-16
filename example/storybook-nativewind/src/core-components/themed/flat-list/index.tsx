@@ -1,3 +1,4 @@
+'use client';
 import { FlatList as RNFlatList } from 'react-native';
 import { styled, useStyled, propertyTokenMap } from '@gluestack-style/react';
 

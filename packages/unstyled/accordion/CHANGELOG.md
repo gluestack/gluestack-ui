@@ -1,5 +1,24 @@
 # @gluestack-ui/accordion
 
+## 1.0.4
+
+### Patch Changes
+
+- fix: ref typing issue
+
+## 1.0.3
+
+### Patch Changes
+
+- @react-native-aria/interactions@0.2.13
+
+## 1.0.2
+
+### Patch Changes
+
+- Updated dependencies
+  - @react-native-aria/interactions@0.2.12
+
 ## 1.0.1
 
 ### Patch Changes

@@ -18,7 +18,7 @@ const PopoverBody = (StyledPopoverBody: any) =>
     }, [setBodyMounted]);
 
     return (
-      <StyledPopoverBody nativeID={bodyId} ref={ref} {...props}>
+      <StyledPopoverBody id={bodyId} ref={ref} {...props}>
         {children}
       </StyledPopoverBody>
     );

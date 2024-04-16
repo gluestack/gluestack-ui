@@ -1,45 +1,28 @@
 import React from 'react';
-import { Platform, View } from 'react-native';
-
-// Change the config file path
 import { config } from './config';
-
-const providerStyle = Platform.select({
-  web: {
-    flex: 1,
-    height: '100vh',
-    width: '100%',
-  },
-  android: {
-    flex: 1,
-    height: '100%',
-    width: '100%',
-  },
-  ios: {
-    flex: 1,
-    height: '100%',
-    width: '100%',
-  },
-});
+import { View } from 'react-native';
+import { OverlayProvider } from '@gluestack-ui/overlay';
+import { ToastProvider } from '@gluestack-ui/toast';
 
 export function GluestackUIProvider({
-  mode,
+  mode = 'light',
   ...props
 }: {
   mode?: 'light' | 'dark';
-  children: any;
+  children?: any;
 }) {
-  // @ts-ignore
   return (
     <View
       style={[
-        mode ? config[mode] : config['light'],
-        providerStyle,
+        config[mode],
+        { flex: 1, height: '100%', width: '100%' },
         // @ts-ignore
         props.style,
       ]}
     >
-      {props.children}
+      <OverlayProvider>
+        <ToastProvider>{props.children}</ToastProvider>
+      </OverlayProvider>
     </View>
   );
 }

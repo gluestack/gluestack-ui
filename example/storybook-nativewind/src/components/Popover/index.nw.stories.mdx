@@ -49,13 +49,14 @@ import {
   Text,
   InlineCode,
   CollapsibleCode,
+  Tabs
 } from '@gluestack/design-system';
 import { transformedCode } from '../../utils';
 import Wrapper from '../../core-components/nativewind/Wrapper';
 
 This is an illustration of **Popover** component.
 
-<>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={true}
@@ -165,31 +166,53 @@ This is an illustration of **Popover** component.
       },
     }}
   />
-</>
+</Wrapper>
 
 <br />
 
 ## Installation
 
+<Tabs value="cli" type="section">
+  <Tabs.TabList>
+      <Tabs.Tab value="cli">
+        <Tabs.TabTitle>CLI</Tabs.TabTitle>
+      </Tabs.Tab>
+     <Tabs.Tab value="manual">
+        <Tabs.TabTitle>Manual</Tabs.TabTitle>
+     </Tabs.Tab>
+  </Tabs.TabList>
+  <Tabs.TabPanels>
+    <Tabs.TabPanel value="cli">
+<>
+
+### Run the following command:
+  ```bash
+  npx gluestack-ui add popover
+  ```
+</>
+    </Tabs.TabPanel>
+    <Tabs.TabPanel value="manual"> 
+<>
+
 ### Step 1: Install the following dependencies:
-
 ```bash
-
-npm i @gluestack-ui/popover
-
+npm i @gluestack-ui/popover @legendapp/motion
 ```
+> Note: At present, we have integrated the `@legendapp/motion` for animation. You have the option to remove this and implement your own custom animation wrapper.
 
 ### Step 2: Copy and paste the following code into your project.
-
 <CollapsibleCode>
 
 ```jsx 
-%%-- File: core-components/themed/popover/index.tsx --%% 
+%%-- File: core-components/nativewind/popover/index.tsx --%% 
 ```
-
 </CollapsibleCode>
 
 ### Step 3: Update the import paths to match your project setup.
+</>
+    </Tabs.TabPanel>
+  </Tabs.TabPanels>
+</Tabs>
 
 ## API Reference
 
@@ -676,7 +699,7 @@ The Examples section provides visual representations of the different variants o
 
 A popover component can enhance the avatar by providing additional information and context in a concise and visually appealing manner.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     _rendererWrapper={{ py: '$6' }}
     showComponentRenderer={true}
@@ -794,4 +817,4 @@ A popover component can enhance the avatar by providing additional information a
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>

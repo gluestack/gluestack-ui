@@ -1,13 +1,15 @@
+'use client';
 import React from 'react';
-import { Text, View, Platform } from 'react-native';
+import { Text, View } from 'react-native';
+
+import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import {
-  tva,
   withStyleContext,
-  withStyleContextAndStates,
   useStyleContext,
-  cssInterop,
-  VariantProps,
-} from '@gluestack-ui/nativewind-utils';
+} from '@gluestack-ui/nativewind-utils/withStyleContext';
+import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
+import type { VariantProps } from '@gluestack-ui/nativewind-utils';
+const SCOPE = 'BADGE';
 
 const badgeStyle = tva({
   base: 'flex-row items-center rounded-sm data-[disabled=true]:opacity-50 px-2',
@@ -24,6 +26,11 @@ const badgeStyle = tva({
       solid: '',
       outline: 'border',
     },
+    size: {
+      sm: '',
+      md: '',
+      lg: '',
+    },
   },
 });
 
@@ -36,7 +43,7 @@ const badgeTextStyle = tva({
       warning: 'text-warning-600',
       success: 'text-success-600',
       info: 'text-info-600',
-      muted: 'text-muted-600',
+      muted: 'text-secondary-600',
     },
     size: {
       sm: 'text-2xs',
@@ -70,15 +77,7 @@ const badgeTextStyle = tva({
 });
 
 const badgeIconStyle = tva({
-  base: 'text-background-500',
   parentVariants: {
-    action: {
-      error: 'text-error-600',
-      warning: 'text-warning-600',
-      success: 'text-success-600',
-      info: 'text-info-600',
-      muted: 'text-muted-600',
-    },
     size: {
       sm: 'h-3 w-3',
       md: 'h-3.5 w-3.5',
@@ -87,10 +86,7 @@ const badgeIconStyle = tva({
   },
 });
 
-const ContextView =
-  Platform.OS === 'web'
-    ? withStyleContext(View)
-    : withStyleContextAndStates(View);
+const ContextView = withStyleContext(View, SCOPE);
 
 cssInterop(ContextView, { className: 'style' });
 
@@ -127,7 +123,7 @@ const BadgeText = ({
   size,
   ...props
 }: { className?: string } & IBadgeTextProps) => {
-  const { size: parentSize, action: parentAction } = useStyleContext();
+  const { size: parentSize, action: parentAction } = useStyleContext(SCOPE);
   return (
     <Text
       className={badgeTextStyle({
@@ -145,45 +141,76 @@ const BadgeText = ({
   );
 };
 
-type IBadgeIconProps = React.ComponentProps<typeof View> & {
-  as?: any;
+interface DefaultColors {
+  info: string;
+  success: string;
+  error: string;
+  warning: string;
+  muted: string;
+}
+const defaultColors: DefaultColors = {
+  info: '#0B8DCD',
+  success: '#2A7948',
+  error: '#DC2626',
+  warning: '#D76C1F',
+  muted: '#515252',
 };
-const BadgeIcon = ({
-  className,
-  size,
-  as: AsComp,
-  ...props
-}: IBadgeIconProps & { className?: any }) => {
-  const { size: parentSize, action: parentAction } = useStyleContext();
-  if (AsComp) {
+type IBadgeIconProps = React.ComponentProps<typeof View> &
+  VariantProps<typeof badgeIconStyle>;
+const BadgeIcon = React.forwardRef(
+  (
+    {
+      className,
+      size,
+      as: AsComp,
+      fill = 'none',
+      ...props
+    }: IBadgeIconProps & { className?: any } & {
+      color?: any;
+      fill?: string;
+      as?: any;
+    },
+    ref?: any
+  ) => {
+    const { size: parentSize, action: parentAction } = useStyleContext(SCOPE);
+    const { color = defaultColors[parentAction as keyof DefaultColors] } =
+      props;
+
+    if (AsComp) {
+      return (
+        <AsComp
+          {...props}
+          fill={fill}
+          color={color}
+          ref={ref}
+          className={badgeIconStyle({
+            parentVariants: {
+              size: parentSize,
+            },
+            size,
+            class: className,
+          })}
+        />
+      );
+    }
     return (
-      <AsComp
+      <View
         className={badgeIconStyle({
           parentVariants: {
             size: parentSize,
-            action: parentAction,
           },
           size,
           class: className,
         })}
         {...props}
+        //@ts-ignore
+        fill={fill}
+        color={color}
+        ref={ref}
       />
     );
   }
-  return (
-    <View
-      className={badgeIconStyle({
-        parentVariants: {
-          size: parentSize,
-          action: parentAction,
-        },
-        size,
-        class: className,
-      })}
-      {...props}
-    />
-  );
-};
+);
 
 Badge.displayName = 'Badge';
 BadgeText.displayName = 'BadgeText';

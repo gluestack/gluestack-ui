@@ -1,5 +1,13 @@
 # @gluestack-ui/config
 
+## 1.1.17
+
+### Patch Changes
+
+- - Fixed media queries issue with theme
+- Updated dependencies
+  - @gluestack-style/react@1.0.52
+
 ## 1.1.10
 
 ### Patch Changes

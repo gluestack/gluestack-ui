@@ -1,27 +1,36 @@
+'use client';
 import { Text, View } from 'react-native';
 import React from 'react';
 import { createFormControl } from '@gluestack-ui/form-control';
+import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import {
-  tva,
   withStyleContext,
   useStyleContext,
-  cssInterop,
-  VariantProps,
-} from '@gluestack-ui/nativewind-utils';
+} from '@gluestack-ui/nativewind-utils/withStyleContext';
+import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
+import type { VariantProps } from '@gluestack-ui/nativewind-utils';
+
+const SCOPE = 'FORM_CONTROL';
 
 const formControlStyle = tva({
   base: 'flex flex-col',
+  variants: {
+    size: {
+      sm: '',
+      md: '',
+      lg: '',
+    },
+  },
 });
 
 const formControlErrorIconStyle = tva({
-  base: 'fill-none text-error-700',
-
+  base: '',
   variants: {
     size: {
       '2xs': 'h-3 w-3',
       'xs': 'h-3.5 w-3.5',
       'sm': 'h-4 w-4',
-      'md': 'h-4.5 w-4.5',
+      'md': 'h-[18px] w-[18px]',
       'lg': 'h-5 w-5',
       'xl': 'h-6 w-6',
     },
@@ -51,7 +60,7 @@ const formControlErrorTextStyle = tva({
       '2xs': 'text-2xs',
       'xs': 'text-xs',
       'sm': 'text-sm',
-      'md': 'text-md',
+      'md': 'text-base',
       'lg': 'text-lg',
       'xl': 'text-xl',
       '2xl': 'text-2xl',
@@ -95,7 +104,7 @@ const formControlHelperTextStyle = tva({
       '2xs': 'text-2xs',
       'xs': 'text-xs',
       'sm': 'text-sm',
-      'md': 'text-md',
+      'md': 'text-base',
       'lg': 'text-lg',
       'xl': 'text-xl',
       '2xl': 'text-2xl',
@@ -139,7 +148,7 @@ const formControlLabelTextStyle = tva({
       '2xs': 'text-2xs',
       'xs': 'text-xs',
       'sm': 'text-sm',
-      'md': 'text-md',
+      'md': 'text-base',
       'lg': 'text-lg',
       'xl': 'text-xl',
       '2xl': 'text-2xl',
@@ -161,6 +170,7 @@ const formControlLabelTextStyle = tva({
 });
 
 const formControlLabelAstrickStyle = tva({
+  base: 'font-medium text-typography-900',
   variants: {
     isTruncated: {
       true: 'web:truncate',
@@ -178,7 +188,7 @@ const formControlLabelAstrickStyle = tva({
       '2xs': 'text-2xs',
       'xs': 'text-xs',
       'sm': 'text-sm',
-      'md': 'text-md',
+      'md': 'text-base',
       'lg': 'text-lg',
       'xl': 'text-xl',
       '2xl': 'text-2xl',
@@ -199,14 +209,28 @@ const formControlLabelAstrickStyle = tva({
   },
 });
 
+const FormControlLabelAstrick = ({ className, ...props }: any) => {
+  const { size: parentSize } = useStyleContext(SCOPE);
+
+  return (
+    <Text
+      className={formControlLabelAstrickStyle({
+        parentVariants: { size: parentSize },
+        class: className,
+      })}
+      {...props}
+    />
+  );
+};
+
 export const UIFormControl = createFormControl({
-  Root: withStyleContext(View),
+  Root: withStyleContext(View, SCOPE),
   Error: View,
   ErrorText: Text,
   ErrorIcon: View,
   Label: View,
   LabelText: Text,
-  LabelAstrick: Text,
+  LabelAstrick: FormControlLabelAstrick,
   Helper: View,
   HelperText: Text,
 });
@@ -217,7 +241,6 @@ cssInterop(UIFormControl.Error.Text, { className: 'style' });
 cssInterop(UIFormControl.Error.Icon, { className: 'style' });
 cssInterop(UIFormControl.Label, { className: 'style' });
 cssInterop(UIFormControl.Label.Text, { className: 'style' });
-cssInterop(UIFormControl.Label.Astrick, { className: 'style' });
 cssInterop(UIFormControl.Helper, { className: 'style' });
 cssInterop(UIFormControl.Helper.Text, { className: 'style' });
 
@@ -260,7 +283,7 @@ const FormControlErrorText = ({
   size,
   ...props
 }: { className?: string } & IFormControlErrorTextProps) => {
-  const { size: parentSize } = useStyleContext();
+  const { size: parentSize } = useStyleContext(SCOPE);
   return (
     <UIFormControl.Error.Text
       className={formControlErrorTextStyle({
@@ -280,19 +303,29 @@ type IFormControlErrorIconProps = React.ComponentProps<
 const FormControlErrorIcon = ({
   className,
   size,
+  fill = 'none',
   as: AsComp,
+  color = 'red',
   ...props
-}: { className?: string } & IFormControlErrorIconProps) => {
-  const { size: parentSize } = useStyleContext();
+}: {
+  className?: any;
+  as?: any;
+  fill?: string;
+  color?: string;
+} & IFormControlErrorIconProps) => {
+  const { size: parentSize } = useStyleContext(SCOPE);
+
   if (AsComp) {
     return (
       <AsComp
+        fill={fill}
+        color={color}
+        {...props}
         className={formControlErrorIconStyle({
           parentVariants: { size: parentSize },
           size,
           class: className,
         })}
-        {...props}
       />
     );
   }
@@ -303,6 +336,9 @@ const FormControlErrorIcon = ({
         size,
         class: className,
       })}
+      // @ts-ignore
+      fill={fill}
+      color={color}
       {...props}
     />
   );
@@ -331,34 +367,11 @@ const FormControlLabelText = ({
   size,
   ...props
 }: { className?: string } & IFormControlLabelTextProps) => {
-  const { size: parentSize } = useStyleContext();
+  const { size: parentSize } = useStyleContext(SCOPE);
 
   return (
     <UIFormControl.Label.Text
       className={formControlLabelTextStyle({
-        parentVariants: { size: parentSize },
-        size,
-        class: className,
-      })}
-      {...props}
-    />
-  );
-};
-
-type IFormControlLabelAstrickProps = React.ComponentProps<
-  typeof UIFormControl.Label.Astrick
-> &
-  VariantProps<typeof formControlLabelAstrickStyle>;
-const FormControlLabelAstrick = ({
-  className,
-  size,
-  ...props
-}: { className?: string } & IFormControlLabelAstrickProps) => {
-  const { size: parentSize } = useStyleContext();
-
-  return (
-    <UIFormControl.Label.Astrick
-      className={formControlLabelAstrickStyle({
         parentVariants: { size: parentSize },
         size,
         class: className,
@@ -395,7 +408,7 @@ const FormControlHelperText = ({
   size,
   ...props
 }: { className?: string } & IFormControlHelperTextProps) => {
-  const { size: parentSize } = useStyleContext();
+  const { size: parentSize } = useStyleContext(SCOPE);
 
   return (
     <UIFormControl.Helper.Text
@@ -408,6 +421,7 @@ const FormControlHelperText = ({
     />
   );
 };
+
 FormControl.displayName = 'FormControl';
 FormControlError.displayName = 'FormControlError';
 FormControlErrorText.displayName = 'FormControlErrorText';

@@ -1,3 +1,4 @@
+'use client';
 import { styled } from '@gluestack-style/react';
 import { H1, H2, H3, H4, H5, H6 } from '@expo/html-elements';
 

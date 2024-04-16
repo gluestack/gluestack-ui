@@ -1,5 +1,5 @@
 import type { ViewProps } from 'react-native';
-interface InterfaceCheckbox extends ViewProps {
+export interface InterfaceCheckbox extends ViewProps {
   value: string;
   onChange?: (isSelected: boolean) => void;
   children?: React.ReactNode;
@@ -24,11 +24,17 @@ export interface ICheckboxGroup {
 }
 
 export type ICheckboxComponentType<Root, Indicator, Icon, Label, Group> =
-  React.ForwardRefExoticComponent<Root & InterfaceCheckbox> & {
-    Indicator: React.ForwardRefExoticComponent<Indicator>;
-    Icon: React.ForwardRefExoticComponent<Icon>;
-    Label: React.ForwardRefExoticComponent<Label>;
-    Group: React.ForwardRefExoticComponent<Group & ICheckboxGroup>;
+  React.ForwardRefExoticComponent<
+    React.RefAttributes<Root> & Root & InterfaceCheckbox
+  > & {
+    Indicator: React.ForwardRefExoticComponent<
+      React.RefAttributes<Indicator> & Indicator
+    >;
+    Icon: React.ForwardRefExoticComponent<React.RefAttributes<Icon> & Icon>;
+    Label: React.ForwardRefExoticComponent<React.RefAttributes<Label> & Label>;
+    Group: React.ForwardRefExoticComponent<
+      React.RefAttributes<Group> & Group & ICheckboxGroup
+    >;
   };
 
 export type ICheckboxProps = InterfaceCheckbox;
