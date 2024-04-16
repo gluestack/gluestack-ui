@@ -145,7 +145,7 @@ export const parameters = {
         },
         {
           source: 'lucide-react-native',
-          name: 'book-open',
+          name: 'component',
         },
         {
           source: 'lucide-react-native',
