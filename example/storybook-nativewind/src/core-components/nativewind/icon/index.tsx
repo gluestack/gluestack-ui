@@ -1337,7 +1337,7 @@ const UICloseIcon = createIcon({
     </>
   ),
 });
-cssInterop(UIClockIcon, { className: 'style' });
+cssInterop(UICloseIcon, { className: 'style' });
 
 const CloseIcon = React.forwardRef(
   (
