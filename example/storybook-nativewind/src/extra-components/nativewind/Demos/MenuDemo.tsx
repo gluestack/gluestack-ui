@@ -18,7 +18,7 @@ const MenuDemo = () => {
       placement="bottom"
       trigger={(triggerProps) => {
         return (
-          <Button {../../../core-components/nativewind.triggerProps} mb="$2">
+          <Button {...triggerProps} mb="$2">
             <ButtonText>Menu</ButtonText>
           </Button>
         );
