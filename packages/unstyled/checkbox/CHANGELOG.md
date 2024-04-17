@@ -1,5 +1,19 @@
 # @gluestack-ui/checkbox
 
+## 0.1.28
+
+### Patch Changes
+
+- fix: typing issue
+
+## 0.1.27
+
+### Patch Changes
+
+- fix: ref typing issue
+- Updated dependencies
+  - @gluestack-ui/form-control@0.1.17
+
 ## 0.1.26
 
 ### Patch Changes

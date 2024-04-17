@@ -99,7 +99,13 @@ export interface IItemProp {
 export type IMenuProps = InterfaceMenuProps;
 
 export type IMenuComponentType<Root, Item, Label> =
-  React.ForwardRefExoticComponent<Root & IMenuProps> & {
-    Item: React.ForwardRefExoticComponent<Item & ItemProps<Item> & IItemProp>;
-    ItemLabel: React.ForwardRefExoticComponent<Label>;
+  React.ForwardRefExoticComponent<
+    React.RefAttributes<Root> & Root & IMenuProps
+  > & {
+    Item: React.ForwardRefExoticComponent<
+      React.RefAttributes<Item> & Item & ItemProps<Item> & IItemProp
+    >;
+    ItemLabel: React.ForwardRefExoticComponent<
+      React.RefAttributes<Label> & Label
+    >;
   };

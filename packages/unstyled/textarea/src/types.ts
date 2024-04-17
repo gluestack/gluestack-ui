@@ -43,5 +43,7 @@ export interface IInputProps {
 
 export type ITextareaComponentType<Root, Input> =
   React.ForwardRefExoticComponent<Root & ITextareaProps> & {
-    Input: React.ForwardRefExoticComponent<Input & IInputProps>;
+    Input: React.ForwardRefExoticComponent<
+      Input & React.RefAttributes<Input> & IInputProps
+    >;
   };

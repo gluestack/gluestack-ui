@@ -1,8 +1,9 @@
 'use client';
 import React from 'react';
 import { createImage } from '@gluestack-ui/image';
-import { Image as RNImage } from 'react-native';
+import { Platform, Image as RNImage } from 'react-native';
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
+import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
 
 const imageStyle = tva({
@@ -21,23 +22,29 @@ const imageStyle = tva({
   },
 });
 
-export const UIImage = createImage({ Root: RNImage });
+const UIImage = createImage({ Root: RNImage });
+cssInterop(UIImage, { className: 'style' });
 
-const Image = ({ size = 'md', className, ...props }: any) => {
+type ImageProps = VariantProps<typeof imageStyle> &
+  React.ComponentProps<typeof UIImage>;
+const Image = ({
+  size = 'md',
+  className,
+  ...props
+}: { className?: any } & ImageProps) => {
   return (
     <UIImage
       className={imageStyle({ size, class: className })}
       {...props}
-      style={{
-        ...props.style,
-        height: 'revert-layer',
-        width: 'revert-layer',
-      }}
+      //@ts-ignore
+      style={
+        Platform.OS === 'web'
+          ? { height: 'revert-layer', width: 'revert-layer' }
+          : undefined
+      }
     />
   );
 };
 
-cssInterop(UIImage, { className: 'style' });
 Image.displayName = 'Image';
-
 export { Image };

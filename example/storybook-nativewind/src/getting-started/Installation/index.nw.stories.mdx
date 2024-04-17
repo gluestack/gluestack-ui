@@ -323,3 +323,134 @@ export default function App() {
   );
 }
 ```
+
+### Step 4: Server-side rendering (SSR) (NextJS Only).
+
+It's also recommended to set up your server-side rendering (SSR) correctly. To do this, you will need to use the `flush()` function exported by the `@gluestack-ui/nativewind-utils`
+
+<Tabs value="App Router" type="section">
+<Tabs.TabList>
+  <Tabs.Tab value="App Router">
+    <Tabs.TabTitle>App Router</Tabs.TabTitle>
+  </Tabs.Tab>
+  <Tabs.Tab value="Page Router">
+      <Tabs.TabTitle>Page Router</Tabs.TabTitle>
+  </Tabs.Tab>
+  </Tabs.TabList>
+  <Tabs.TabPanels>
+    <Tabs.TabPanel value="App Router">
+<>
+
+For Next.js App Routers we will create a new `registry.tsx` file in the root of your project and use the flush function from `@gluestack-ui/nativewind-utils`
+
+```jsx
+"use client";
+
+import React, { useRef, useState } from "react";
+import { useServerInsertedHTML } from "next/navigation";
+import { StyleRegistry, createStyleRegistry } from "styled-jsx";
+import { Html, Head, Main, NextScript } from "next/document";
+// @ts-ignore
+import { AppRegistry } from "react-native-web";
+import { flush } from "@gluestack-ui/nativewind-utils/flush";
+
+export default function StyledJsxRegistry({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  // Only create stylesheet once with lazy initial state
+  // x-ref: https://reactjs.org/docs/hooks-reference.html#lazy-initial-state
+  const [jsxStyleRegistry] = useState(() => createStyleRegistry());
+  const isServerInserted = useRef(false);
+
+  useServerInsertedHTML(() => {
+    AppRegistry.registerComponent("Main", () => Main);
+    const { getStyleElement } = AppRegistry.getApplication("Main");
+    console.log(getStyleElement());
+    if (!isServerInserted.current) {
+      isServerInserted.current = true;
+      const styles = [
+        getStyleElement(),
+        jsxStyleRegistry.styles(),
+        flush(),
+      ];
+      jsxStyleRegistry.flush();
+      return <>{styles}</>;
+    }
+  });
+
+  return <StyleRegistry registry={jsxStyleRegistry}>{children}</StyleRegistry>;
+}
+
+```
+
+- We also need to wrap `children` with `StyledJsxRegistry` in the `layout.tsx` file.
+
+```jsx
+"use client";
+
+import { Inter } from "next/font/google";
+import "./globals.css";
+import { GluestackUIProvider } from "@/components/ui/gluestack-ui-provider";
+const inter = Inter({ subsets: ["latin"] });
+import StyledJsxRegistry from "./registry";
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="en">
+      <body className={inter.className} style={{ display: "flex" }}>
+        <StyledJsxRegistry>
+          <GluestackUIProvider mode="light">{children}</GluestackUIProvider>
+        </StyledJsxRegistry>
+      </body>
+    </html>
+  );
+}
+
+```
+
+</>
+    </Tabs.TabPanel>
+    <Tabs.TabPanel value="Page Router">
+<>
+
+
+For Next.js we will add this code in `_document.tsx` file.
+
+```jsx
+import * as React from 'react';
+import { Html, Head, Main, NextScript } from 'next/document';
+import { AppRegistry } from 'react-native-web';
+import { flush } from '@gluestack-ui/nativewind-utils/flush';
+
+function Document() {
+  return (
+    <Html className="gs" lang="en">
+      <Head />
+      <body>
+        <Main />
+        <NextScript />
+      </body>
+    </Html>
+  );
+}
+
+Document.getInitialProps = async ({ renderPage }: any) => {
+  AppRegistry.registerComponent('Main', () => Main);
+  const { getStyleElement } = AppRegistry.getApplication('Main');
+  const page = await renderPage();
+  const styles = [getStyleElement(), flush()];
+  return { ...page, styles: React.Children.toArray(styles) };
+};
+
+export default Document;
+```
+
+</>
+    </Tabs.TabPanel>
+  </Tabs.TabPanels>
+</Tabs>

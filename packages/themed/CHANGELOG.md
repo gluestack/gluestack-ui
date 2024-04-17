@@ -1,5 +1,48 @@
 # @gluestack-ui/themed
 
+## 1.1.22
+
+### Patch Changes
+
+- Updated dependencies
+  - @gluestack-ui/modal@0.1.32
+
+## 1.1.21
+
+### Patch Changes
+
+- Updated dependencies
+  - @gluestack-ui/checkbox@0.1.28
+  - @gluestack-ui/radio@0.1.29
+
+## 1.1.20
+
+### Patch Changes
+
+- Updated dependencies
+  - @gluestack-ui/input@0.1.29
+
+## 1.1.19
+
+### Patch Changes
+
+- Updated dependencies
+  - @gluestack-ui/alert-dialog@0.1.28
+  - @gluestack-ui/form-control@0.1.17
+  - @gluestack-ui/actionsheet@0.2.41
+  - @gluestack-ui/accordion@1.0.4
+  - @gluestack-ui/checkbox@0.1.27
+  - @gluestack-ui/progress@0.1.14
+  - @gluestack-ui/textarea@0.1.21
+  - @gluestack-ui/tooltip@0.1.30
+  - @gluestack-ui/avatar@0.1.16
+  - @gluestack-ui/button@1.0.4
+  - @gluestack-ui/alert@0.1.13
+  - @gluestack-ui/input@0.1.28
+  - @gluestack-ui/radio@0.1.28
+  - @gluestack-ui/link@0.1.20
+  - @gluestack-ui/menu@0.2.33
+
 ## 1.1.17
 
 ### Patch Changes

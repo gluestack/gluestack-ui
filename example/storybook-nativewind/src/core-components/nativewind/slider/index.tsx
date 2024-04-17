@@ -14,7 +14,6 @@ import { withStates } from '@gluestack-ui/nativewind-utils/withStates';
 
 const SCOPE = 'SLIDER';
 export const UISlider = createSlider({
-  // @ts-ignore
   Root:
     Platform.OS === 'web'
       ? withStyleContext(View, SCOPE)
@@ -25,7 +24,6 @@ export const UISlider = createSlider({
   ThumbInteraction: View,
 });
 
-//@ts-ignore
 cssInterop(UISlider, { className: 'style' });
 cssInterop(UISlider.Thumb, { className: 'style' });
 cssInterop(UISlider.Track, { className: 'style' });
@@ -46,7 +44,7 @@ const sliderStyle = tva({
 });
 
 const sliderThumbStyle = tva({
-  base: 'bg-primary-500 absolute rounded-full focus:bg-primary-600 active:bg-primary-600 hover:bg-primary-600 data-[disabled=true]:bg-primary-500 web:cursor-pointer web:active:outline-4 web:active:outline web:active:outline-primary-400 data-[focus=true]:web:outline-4 data-[focus=true]:web:outline data-[focus=true]:web:outline-primary-400 shadow',
+  base: 'bg-primary-500 absolute rounded-full data-[focus=true]:bg-primary-600 data-[active=true]:bg-primary-600 data-[hover=true]:bg-primary-600 data-[disabled=true]:bg-primary-500 web:cursor-pointer web:active:outline-4 web:active:outline web:active:outline-primary-400 data-[focus=true]:web:outline-4 data-[focus=true]:web:outline data-[focus=true]:web:outline-primary-400 shadow',
 
   parentVariants: {
     size: {
@@ -163,7 +161,7 @@ export const Slider = React.forwardRef(
       isReversed = false,
       ...props
     }: any,
-    ref
+    ref?: any
   ) => {
     return (
       <UISlider
@@ -183,7 +181,7 @@ export const Slider = React.forwardRef(
 );
 
 export const SliderThumb = React.forwardRef(
-  ({ className, size, ...props }: any, ref) => {
+  ({ className, size, ...props }: any, ref?: any) => {
     const { size: parentSize } = useStyleContext(SCOPE);
 
     return (
@@ -203,7 +201,7 @@ export const SliderThumb = React.forwardRef(
 );
 
 export const SliderTrack = React.forwardRef(
-  ({ className, ...props }: any, ref) => {
+  ({ className, ...props }: any, ref?: any) => {
     const {
       orientation: parentOrientation,
       size: parentSize,
@@ -228,7 +226,7 @@ export const SliderTrack = React.forwardRef(
 );
 
 export const SliderFilledTrack = React.forwardRef(
-  ({ className, ...props }: any, ref) => {
+  ({ className, ...props }: any, ref?: any) => {
     const { orientation: parentOrientation } = useStyleContext(SCOPE);
 
     return (

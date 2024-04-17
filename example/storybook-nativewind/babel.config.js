@@ -54,6 +54,10 @@ module.exports = function (api) {
               __dirname,
               '../../packages/unstyled/menu/src'
             ),
+            '@gluestack-ui/icon': path.resolve(
+              __dirname,
+              '../../packages/unstyled/icon/src'
+            ),
             '@gluestack-ui/link': path.resolve(
               __dirname,
               '../../packages/unstyled/link/src'
@@ -102,6 +106,10 @@ module.exports = function (api) {
             '@gluestack-ui/toast': path.join(
               __dirname,
               '../../packages/unstyled/toast/src'
+            ),
+            '@/extra-components/nativewind': path.resolve(
+              __dirname,
+              './src/core-components/nativewind'
             ),
             'tailwind.config': path.join(
               __dirname,

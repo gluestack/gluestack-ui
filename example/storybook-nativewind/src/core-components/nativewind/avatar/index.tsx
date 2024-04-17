@@ -46,12 +46,12 @@ const avatarFallbackTextStyle = tva({
 
   parentVariants: {
     size: {
-      'xs': 'text-xs',
-      'sm': 'text-sm',
+      'xs': 'text-2xs',
+      'sm': 'text-xs',
       'md': 'text-base',
-      'lg': 'text-lg',
-      'xl': 'text-xl',
-      '2xl': 'text-2xl',
+      'lg': 'text-xl',
+      'xl': 'text-3xl',
+      '2xl': 'text-5xl',
     },
   },
 });
@@ -82,21 +82,15 @@ type IAvatarProps = Omit<React.ComponentProps<typeof UIAvatar>, 'context'> &
   VariantProps<typeof avatarStyle>;
 export const Avatar = React.forwardRef(
   (
-    {
-      className,
-      variant = 'solid',
-      size = 'md',
-      action = 'primary',
-      ...props
-    }: { className?: string } & IAvatarProps,
+    { className, size = 'md', ...props }: { className?: string } & IAvatarProps,
     ref?: any
   ) => {
     return (
       <UIAvatar
         ref={ref}
         {...props}
-        className={avatarStyle({ variant, size, action, class: className })}
-        context={{ variant, size, action }}
+        className={avatarStyle({ size, class: className })}
+        context={{ size }}
       />
     );
   }
@@ -106,20 +100,10 @@ type IAvatarBadgeProps = React.ComponentProps<typeof UIAvatar.Badge> &
   VariantProps<typeof avatarBadgeStyle>;
 export const AvatarBadge = React.forwardRef(
   (
-    {
-      className,
-      variant,
-      size,
-      action,
-      ...props
-    }: { className?: string } & IAvatarBadgeProps,
-    ref
+    { className, size, ...props }: { className?: string } & IAvatarBadgeProps,
+    ref?: any
   ) => {
-    const {
-      variant: parentVariant,
-      size: parentSize,
-      action: parentAction,
-    } = useStyleContext(SCOPE);
+    const { size: parentSize } = useStyleContext(SCOPE);
 
     return (
       <UIAvatar.Badge
@@ -127,13 +111,9 @@ export const AvatarBadge = React.forwardRef(
         {...props}
         className={avatarBadgeStyle({
           parentVariants: {
-            variant: parentVariant,
             size: parentSize,
-            action: parentAction,
           },
-          variant,
           size,
-          action,
           class: className,
         })}
       />
@@ -149,18 +129,12 @@ export const AvatarFallbackText = React.forwardRef(
   (
     {
       className,
-      variant,
       size,
-      action,
       ...props
     }: { className?: string } & IAvatarFallbackTextProps,
-    ref
+    ref?: any
   ) => {
-    const {
-      variant: parentVariant,
-      size: parentSize,
-      action: parentAction,
-    } = useStyleContext(SCOPE);
+    const { size: parentSize } = useStyleContext(SCOPE);
 
     return (
       <UIAvatar.FallbackText
@@ -168,13 +142,9 @@ export const AvatarFallbackText = React.forwardRef(
         {...props}
         className={avatarFallbackTextStyle({
           parentVariants: {
-            variant: parentVariant,
             size: parentSize,
-            action: parentAction,
           },
-          variant,
           size,
-          action,
           class: className,
         })}
       />
@@ -187,7 +157,7 @@ type IAvatarImageProps = React.ComponentProps<typeof UIAvatar.Image> &
 export const AvatarImage = React.forwardRef(
   (
     { className, ...props }: { className?: string } & IAvatarImageProps,
-    ref
+    ref?: any
   ) => {
     return (
       <UIAvatar.Image
@@ -206,7 +176,7 @@ type IAvatarGroupProps = React.ComponentProps<typeof UIAvatar.Group> &
 export const AvatarGroup = React.forwardRef(
   (
     { className, ...props }: { className?: string } & IAvatarGroupProps,
-    ref
+    ref?: any
   ) => {
     return (
       <UIAvatar.Group

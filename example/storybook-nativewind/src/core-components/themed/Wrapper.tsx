@@ -12,23 +12,23 @@ Provider.displayName = 'Provider';
 const Wrapper = ({ children, ...props }: any) => {
   const colorMode = useColorMode();
   return (
-    // @ts-ignore
-    <Box dataSet={{ 'theme-id': `withGluestackStyle_${colorMode}` }}>
-      <Box
-        sx={{
-          _ios: {
-            h: '100%',
-          },
-        }}
-        {...props}
-      >
-        <Center height="100%">
-          <OverlayProvider>
-            <ToastProvider>{children}</ToastProvider>
-          </OverlayProvider>
-        </Center>
-      </Box>
-    </Box>
+    <OverlayProvider>
+      <ToastProvider>
+        {/* @ts-ignore */}
+        <Box dataSet={{ 'theme-id': `withGluestackStyle_${colorMode}` }}>
+          <Box
+            sx={{
+              _ios: {
+                h: '100%',
+              },
+            }}
+            {...props}
+          >
+            <Center height="100%">{children}</Center>
+          </Box>
+        </Box>
+      </ToastProvider>
+    </OverlayProvider>
   );
 };
 

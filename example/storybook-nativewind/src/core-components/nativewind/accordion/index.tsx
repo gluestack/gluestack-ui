@@ -22,6 +22,11 @@ const accordionStyle = tva({
     variant: {
       filled: 'bg-white',
     },
+    size: {
+      sm: '',
+      md: '',
+      lg: '',
+    },
   },
 });
 const accordionItemStyle = tva({
@@ -43,7 +48,7 @@ const accordionTitleTextStyle = tva({
   },
 });
 const accordionIconStyle = tva({
-  base: 'text-typography-900',
+  base: '',
   parentVariants: {
     size: {
       '2xs': 'h-3 w-3',
@@ -75,17 +80,18 @@ const accordionTriggerStyle = tva({
   base: 'w-full py-5 px-5 flex-row justify-between items-center web:outline-none focus:outline-none data-[disabled=true]:opacity-40 data-[disabled=true]:cursor-not-allowed data-[focus-visible=true]:bg-background-50',
 });
 
+const Root =
+  Platform.OS === 'web'
+    ? withStyleContext(View, SCOPE)
+    : withStyleContextAndStates(View, SCOPE);
+
+const Header = Platform.OS === 'web' ? H3 : View;
 /** Creator */
 const UIAccordion = createAccordion({
-  //@ts-ignore
-  Root:
-    Platform.OS === 'web'
-      ? withStyleContext(View, SCOPE)
-      : withStyleContextAndStates(View, SCOPE),
+  Root: Root,
   Item: View,
-  // @ts-ignore
-  Header: Platform.OS === 'web' ? H3 : View,
   //@ts-ignore
+  Header: Header,
   Trigger: Pressable,
   Icon: View,
   TitleText: Text,
@@ -139,7 +145,6 @@ const Accordion = React.forwardRef(
     {
       className,
       variant = 'filled',
-      //@ts-ignore
       size = 'md',
       ...props
     }: { className?: string } & IAccordionProps,
@@ -218,11 +223,17 @@ const AccordionIcon = React.forwardRef(
   (
     {
       fill = 'none',
-      size = 'md',
+      size,
       className,
       as: AsComp,
+      color = 'gray',
       ...props
-    }: IAccordionIconProps & { className?: any; fill?: any },
+    }: IAccordionIconProps & {
+      className?: any;
+      fill?: string;
+      as?: any;
+      color?: string;
+    },
     ref?: any
   ) => {
     const { size: parentSize } = useStyleContext(SCOPE);
@@ -233,6 +244,7 @@ const AccordionIcon = React.forwardRef(
           ref={ref}
           fill={fill}
           {...props}
+          color={color}
           className={accordionIconStyle({
             size,
             class: className,
@@ -244,7 +256,9 @@ const AccordionIcon = React.forwardRef(
     return (
       <UIAccordion.Icon
         ref={ref}
+        //@ts-ignore
         fill={fill}
+        color={color}
         {...props}
         className={accordionIconStyle({
           size,

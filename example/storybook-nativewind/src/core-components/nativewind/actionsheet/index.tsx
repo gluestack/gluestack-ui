@@ -29,7 +29,6 @@ const AnimatedPressable = createMotionAnimatedComponent(Pressable);
 export const UIActionsheet = createActionsheet({
   Root: View,
   Content: withStyleContext(Motion.View),
-  // @ts-ignore
   Item:
     Platform.OS === 'web'
       ? withStyleContext(Pressable)
@@ -176,13 +175,13 @@ const actionsheetSectionHeaderTextStyle = tva({
 });
 
 const actionsheetIconStyle = tva({
-  base: 'text-typography-900',
+  base: '',
   variants: {
     size: {
       '2xs': 'h-3 w-3',
       'xs': 'h-3.5 w-3.5',
       'sm': 'h-4 w-4',
-      'md': 'w-4 h-4',
+      'md': 'w-[18px] h-[18px]',
       'lg': 'h-5 w-5',
       'xl': 'h-6 w-6',
     },
@@ -470,8 +469,15 @@ const ActionsheetIcon = React.forwardRef(
       className,
       as: AsComp,
       size = 'sm',
+      fill = 'none',
+      color = 'gray',
       ...props
-    }: IActionsheetIconProps & { as?: any },
+    }: IActionsheetIconProps & {
+      as?: any;
+      fill?: string;
+      color?: string;
+      className?: any;
+    },
     ref?: any
   ) => {
     if (AsComp) {
@@ -481,6 +487,8 @@ const ActionsheetIcon = React.forwardRef(
             class: className,
             size,
           })}
+          fill={fill}
+          color={color}
           ref={ref}
           {...props}
         />
@@ -492,6 +500,9 @@ const ActionsheetIcon = React.forwardRef(
           class: className,
           size,
         })}
+        // @ts-ignore
+        fill={fill}
+        color={color}
         ref={ref}
         {...props}
       />

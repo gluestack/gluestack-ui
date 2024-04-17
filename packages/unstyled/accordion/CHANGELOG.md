@@ -1,5 +1,11 @@
 # @gluestack-ui/accordion
 
+## 1.0.4
+
+### Patch Changes
+
+- fix: ref typing issue
+
 ## 1.0.3
 
 ### Patch Changes

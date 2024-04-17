@@ -1,5 +1,11 @@
 # @gluestack-ui/modal
 
+## 0.1.32
+
+### Patch Changes
+
+- fix: final focusref
+
 ## 0.1.31
 
 ### Patch Changes

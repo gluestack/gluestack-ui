@@ -32,9 +32,7 @@ const StyledRoot = styled(
       },
     },
   },
-  {
-    componentName: 'Link',
-  } as const
+  { descendantStyle: ['_text'] }
 );
 
 const StyledText = styled(

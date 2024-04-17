@@ -57,6 +57,7 @@ export const parameters = {
             'Link',
             'Pressable',
             'Radio',
+            'Select',
             'Slider',
             'Switch',
             'Textarea',
@@ -102,8 +103,8 @@ export const decorators = [
     }, [getColorMode()]);
 
     return (
-      <GluestackUIWithGluestackStyleProvider colorMode={colorMode}>
-        <GluestackUIWithNativewindProvider mode={colorMode}>
+      <GluestackUIWithGluestackStyleProvider colorMode={getColorMode()}>
+        <GluestackUIWithNativewindProvider mode={getColorMode()}>
           <OverlayProvider style={{ flex: 1 }}>
             <ToastProvider>
               <View
