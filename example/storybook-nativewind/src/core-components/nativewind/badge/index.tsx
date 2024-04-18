@@ -213,6 +213,7 @@ const BadgeIcon = React.forwardRef(
         <PrimitiveIcon
           ref={ref}
           {...props}
+          color={color}
           className={badgeIconStyle({ class: className })}
           size={size}
         />
@@ -225,6 +226,7 @@ const BadgeIcon = React.forwardRef(
         <PrimitiveIcon
           ref={ref}
           {...props}
+          color={color}
           className={badgeIconStyle({ class: className })}
         />
       );

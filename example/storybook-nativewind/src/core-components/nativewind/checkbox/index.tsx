@@ -211,6 +211,7 @@ const CheckboxIcon = React.forwardRef(
         <UICheckbox.Icon
           ref={ref}
           {...props}
+          color={color}
           className={checkboxIconStyle({ class: className })}
           size={size}
         />
@@ -223,6 +224,7 @@ const CheckboxIcon = React.forwardRef(
         <UICheckbox.Icon
           ref={ref}
           {...props}
+          color={color}
           className={checkboxIconStyle({ class: className })}
         />
       );

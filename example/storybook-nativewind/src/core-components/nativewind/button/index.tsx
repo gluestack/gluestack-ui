@@ -334,6 +334,7 @@ const ButtonIcon = React.forwardRef(
         <UIButton.Icon
           ref={ref}
           {...props}
+          color={color}
           className={buttonIconStyle({ class: className })}
           size={size}
         />
@@ -346,6 +347,7 @@ const ButtonIcon = React.forwardRef(
         <UIButton.Icon
           ref={ref}
           {...props}
+          color={color}
           className={buttonIconStyle({ class: className })}
         />
       );

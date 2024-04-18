@@ -8,7 +8,7 @@ import {
   withStyleContext,
   useStyleContext,
 } from '@gluestack-ui/nativewind-utils/withStyleContext';
-import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
+import { cssInterop } from 'nativewind';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 
 const SCOPE = 'FORM_CONTROL';
@@ -266,11 +266,22 @@ export const UIFormControl = createFormControl({
 cssInterop(UIFormControl, { className: 'style' });
 cssInterop(UIFormControl.Error, { className: 'style' });
 cssInterop(UIFormControl.Error.Text, { className: 'style' });
-cssInterop(UIFormControl.Error.Icon, { className: 'style' });
 cssInterop(UIFormControl.Label, { className: 'style' });
 cssInterop(UIFormControl.Label.Text, { className: 'style' });
 cssInterop(UIFormControl.Helper, { className: 'style' });
 cssInterop(UIFormControl.Helper.Text, { className: 'style' });
+cssInterop(UIFormControl.Error.Icon, {
+  className: {
+    target: 'style',
+    nativeStyleToProp: {
+      height: 'height',
+      width: 'width',
+      //@ts-ignore
+      fill: 'fill',
+      color: 'color',
+    },
+  },
+});
 
 type IFormControlProps = React.ComponentProps<typeof UIFormControl> &
   VariantProps<typeof formControlStyle>;
@@ -349,6 +360,7 @@ const FormControlErrorIcon = (
       <UIFormControl.Error.Icon
         ref={ref}
         {...props}
+        color={color}
         className={formControlErrorIconStyle({ class: className })}
         size={size}
       />
@@ -361,6 +373,7 @@ const FormControlErrorIcon = (
       <UIFormControl.Error.Icon
         ref={ref}
         {...props}
+        color={color}
         className={formControlErrorIconStyle({ class: className })}
       />
     );
