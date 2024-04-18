@@ -141,15 +141,15 @@ export const parameters = {
       icons: [
         {
           source: 'lucide-react-native',
-          name: 'home',
+          name: 'Home',
         },
         {
           source: 'lucide-react-native',
-          name: 'component',
+          name: 'Component',
         },
         {
           source: 'lucide-react-native',
-          name: 'book-open',
+          name: 'BookOpen',
         },
       ],
     },
