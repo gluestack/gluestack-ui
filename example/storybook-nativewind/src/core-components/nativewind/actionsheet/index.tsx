@@ -1,5 +1,7 @@
 'use client';
+import React, { useMemo } from 'react';
 import { H4 } from '@expo/html-elements';
+import { Svg } from 'react-native-svg';
 import { createActionsheet } from '@gluestack-ui/actionsheet';
 import {
   Pressable,
@@ -23,7 +25,40 @@ import {
   createMotionAnimatedComponent,
 } from '@legendapp/motion';
 
-import React from 'react';
+const PrimitiveIcon = React.forwardRef(
+  (
+    {
+      height,
+      width,
+      fill = 'none',
+      color = 'gray',
+      size,
+      as: AsComp,
+      ...props
+    }: any,
+    ref?: any
+  ) => {
+    const sizeProps = useMemo(() => {
+      return size ? { size } : { height, width };
+    }, [size, height, width]);
+
+    if (AsComp) {
+      return (
+        <AsComp ref={ref} fill={fill} color={color} {...props} {...sizeProps} />
+      );
+    }
+    return (
+      <Svg
+        ref={ref}
+        height={height}
+        width={width}
+        fill={fill}
+        color={color}
+        {...props}
+      />
+    );
+  }
+);
 
 const AnimatedPressable = createMotionAnimatedComponent(Pressable);
 export const UIActionsheet = createActionsheet({
@@ -42,7 +77,7 @@ export const UIActionsheet = createActionsheet({
   FlatList: FlatList,
   SectionList: SectionList,
   SectionHeaderText: H4,
-  Icon: View,
+  Icon: PrimitiveIcon,
   AnimatePresence: AnimatePresence,
 });
 
@@ -58,7 +93,18 @@ cssInterop(UIActionsheet.VirtualizedList, { className: 'style' });
 cssInterop(UIActionsheet.FlatList, { className: 'style' });
 cssInterop(UIActionsheet.SectionList, { className: 'style' });
 cssInterop(UIActionsheet.SectionHeaderText, { className: 'style' });
-cssInterop(UIActionsheet.Icon, { className: 'style' });
+cssInterop(UIActionsheet.Icon, {
+  className: {
+    target: 'style',
+    nativeStyleToProp: {
+      height: 'height',
+      width: 'width',
+      //@ts-ignore
+      fill: 'fill',
+      color: 'color',
+    },
+  },
+});
 
 const actionsheetStyle = tva({ base: 'w-full h-full web:pointer-events-none' });
 
@@ -467,9 +513,7 @@ const ActionsheetIcon = React.forwardRef(
   (
     {
       className,
-      as: AsComp,
       size = 'sm',
-      fill = 'none',
       color = 'gray',
       ...props
     }: IActionsheetIconProps & {
@@ -480,17 +524,24 @@ const ActionsheetIcon = React.forwardRef(
     },
     ref?: any
   ) => {
-    if (AsComp) {
+    if (typeof size === 'number') {
       return (
-        <AsComp
-          className={actionsheetIconStyle({
-            class: className,
-            size,
-          })}
-          fill={fill}
-          color={color}
+        <UIActionsheet.Icon
           ref={ref}
           {...props}
+          className={actionsheetIconStyle({ class: className })}
+          size={size}
+        />
+      );
+    } else if (
+      (props.height !== undefined || props.width !== undefined) &&
+      size === undefined
+    ) {
+      return (
+        <UIActionsheet.Icon
+          ref={ref}
+          {...props}
+          className={actionsheetIconStyle({ class: className })}
         />
       );
     }
@@ -500,8 +551,6 @@ const ActionsheetIcon = React.forwardRef(
           class: className,
           size,
         })}
-        // @ts-ignore
-        fill={fill}
         color={color}
         ref={ref}
         {...props}
