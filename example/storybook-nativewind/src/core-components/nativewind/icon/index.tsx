@@ -1833,7 +1833,7 @@ const FavouriteIcon = React.forwardRef(
 FavouriteIcon.displayName = 'FavouriteIcon';
 export { FavouriteIcon };
 
-const UIGlobeIcon = createIcon({
+const GlobeIcon = createIcon({
   Root: Svg,
   viewBox: '0 0 24 24',
   path: (
@@ -1862,39 +1862,39 @@ const UIGlobeIcon = createIcon({
     </>
   ),
 });
-cssInterop(UIGlobeIcon, { className: 'style' });
+// cssInterop(UIGlobeIcon, { className: 'style' });
 
-const GlobeIcon = React.forwardRef(
-  (
-    { className, size = 'md', fill = 'none', color = 'gray', ...props }: any,
-    ref?: any
-  ) => {
-    if (typeof size === 'number') {
-      return (
-        <UIGlobeIcon
-          ref={ref}
-          {...props}
-          fill={fill}
-          color={color}
-          className={iconStyle({ class: className })}
-          style={{
-            height: size,
-            width: size,
-          }}
-        />
-      );
-    }
-    return (
-      <UIGlobeIcon
-        ref={ref}
-        {...props}
-        fill={fill}
-        color={color}
-        className={iconStyle({ size, class: className })}
-      />
-    );
-  }
-);
+// const GlobeIcon = React.forwardRef(
+//   (
+//     { className, size = 'md', fill = 'none', color = 'gray', ...props }: any,
+//     ref?: any
+//   ) => {
+//     if (typeof size === 'number') {
+//       return (
+//         <UIGlobeIcon
+//           ref={ref}
+//           {...props}
+//           fill={fill}
+//           color={color}
+//           className={iconStyle({ class: className })}
+//           style={{
+//             height: size,
+//             width: size,
+//           }}
+//         />
+//       );
+//     }
+//     return (
+//       <UIGlobeIcon
+//         ref={ref}
+//         {...props}
+//         fill={fill}
+//         color={color}
+//         className={iconStyle({ size, class: className })}
+//       />
+//     );
+//   }
+// );
 
 GlobeIcon.displayName = 'GlobeIcon';
 export { GlobeIcon };

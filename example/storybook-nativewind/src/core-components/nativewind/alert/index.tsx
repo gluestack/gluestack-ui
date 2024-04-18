@@ -125,8 +125,8 @@ export const UIAlert = createAlert({
 });
 
 cssInterop(UIAlert, { className: 'style' });
+//@ts-ignore
 cssInterop(UIAlert.Text, { className: 'style' });
-// @ts-ignore
 cssInterop(UIAlert.Icon, {
   className: {
     target: 'style',
@@ -226,6 +226,7 @@ const AlertIcon = React.forwardRef(
       ...props
     }: {
       className?: string;
+      color?: string;
     } & IAlertIconProps,
     ref?: any
   ) => {

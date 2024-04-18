@@ -1,13 +1,13 @@
 'use client';
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Text, View } from 'react-native';
-
+import { Svg } from 'react-native-svg';
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import {
   withStyleContext,
   useStyleContext,
 } from '@gluestack-ui/nativewind-utils/withStyleContext';
-import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
+import { cssInterop } from 'nativewind';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 const SCOPE = 'BADGE';
 
@@ -86,9 +86,47 @@ const badgeIconStyle = tva({
   },
 });
 
-const ContextView = withStyleContext(View, SCOPE);
+const PrimitiveIcon = React.forwardRef(
+  (
+    { height, width, fill = 'none', color, size, as: AsComp, ...props }: any,
+    ref?: any
+  ) => {
+    const sizeProps = useMemo(() => {
+      return size ? { size } : { height, width };
+    }, [size, height, width]);
 
+    if (AsComp) {
+      return (
+        <AsComp ref={ref} fill={fill} color={color} {...props} {...sizeProps} />
+      );
+    }
+    return (
+      <Svg
+        ref={ref}
+        height={height}
+        width={width}
+        fill={fill}
+        color={color}
+        {...props}
+      />
+    );
+  }
+);
+
+const ContextView = withStyleContext(View, SCOPE);
 cssInterop(ContextView, { className: 'style' });
+cssInterop(PrimitiveIcon, {
+  className: {
+    target: 'style',
+    nativeStyleToProp: {
+      height: 'height',
+      width: 'width',
+      //@ts-ignore
+      fill: 'fill',
+      color: 'color',
+    },
+  },
+});
 
 type IBadgeProps = React.ComponentProps<typeof ContextView> &
   VariantProps<typeof badgeStyle>;
@@ -162,39 +200,37 @@ const BadgeIcon = React.forwardRef(
     {
       className,
       size,
-      as: AsComp,
-      fill = 'none',
       ...props
-    }: IBadgeIconProps & { className?: any } & {
-      color?: any;
-      fill?: string;
-      as?: any;
-    },
+    }: { className?: string; color?: string; as?: any } & IBadgeIconProps,
     ref?: any
   ) => {
     const { size: parentSize, action: parentAction } = useStyleContext(SCOPE);
     const { color = defaultColors[parentAction as keyof DefaultColors] } =
       props;
 
-    if (AsComp) {
+    if (typeof size === 'number') {
       return (
-        <AsComp
-          {...props}
-          fill={fill}
-          color={color}
+        <PrimitiveIcon
           ref={ref}
-          className={badgeIconStyle({
-            parentVariants: {
-              size: parentSize,
-            },
-            size,
-            class: className,
-          })}
+          {...props}
+          className={badgeIconStyle({ class: className })}
+          size={size}
+        />
+      );
+    } else if (
+      (props?.height !== undefined || props?.width !== undefined) &&
+      size === undefined
+    ) {
+      return (
+        <PrimitiveIcon
+          ref={ref}
+          {...props}
+          className={badgeIconStyle({ class: className })}
         />
       );
     }
     return (
-      <View
+      <PrimitiveIcon
         className={badgeIconStyle({
           parentVariants: {
             size: parentSize,
@@ -203,8 +239,6 @@ const BadgeIcon = React.forwardRef(
           class: className,
         })}
         {...props}
-        //@ts-ignore
-        fill={fill}
         color={color}
         ref={ref}
       />
