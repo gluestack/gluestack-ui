@@ -26,7 +26,7 @@ const PopoverDemo = () => {
           return (
             <Pressable
               borderRadius="$full"
-              {../../../core-components/themed.triggerProps}
+              {...triggerProps}
               onPress={() => {
                 setShowPopover(!showPopover);
               }}

@@ -14,13 +14,13 @@ const RadioDemo = () => {
   return (
     <RadioGroup value={values} onChange={setValues}>
       <VStack space="md">
-        <Radio value="Monday" justifyContent="space-between">
+        <Radio value="Monday">
           <RadioLabel>Option A</RadioLabel>
           <RadioIndicator>
             <RadioIcon as={CircleIcon} />
           </RadioIndicator>
         </Radio>
-        <Radio value="Tuesday" justifyContent="space-between">
+        <Radio value="Tuesday">
           <RadioLabel>Option B</RadioLabel>
           <RadioIndicator>
             <RadioIcon as={CircleIcon} />

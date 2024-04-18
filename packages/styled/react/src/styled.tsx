@@ -866,7 +866,7 @@ export function verboseStyled<P, Variants, ComCon>(
 
   let declarationType: DeclarationType = 'boot';
 
-  if (Component.displayName === '__AsForwarder__') {
+  if (Component?.displayName === '__AsForwarder__') {
     declarationType = 'forwarded';
   }
 
@@ -2262,7 +2262,7 @@ export function styled<P, Variants, ComCon>(
   );
 
   // @ts-ignore
-  StyledComponent.isAnimatedComponent = Component.isAnimatedComponent;
+  StyledComponent.isAnimatedComponent = Component?.isAnimatedComponent;
 
   // move before returning component from verboseStyled
 

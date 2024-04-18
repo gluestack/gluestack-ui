@@ -178,7 +178,11 @@ const BadgeIcon = React.forwardRef(
 
     if (AsComp) {
       return (
-        <View
+        <AsComp
+          {...props}
+          fill={fill}
+          color={color}
+          ref={ref}
           className={badgeIconStyle({
             parentVariants: {
               size: parentSize,
@@ -186,16 +190,7 @@ const BadgeIcon = React.forwardRef(
             size,
             class: className,
           })}
-        >
-          <AsComp
-            {...props}
-            height={'100%'}
-            width={'100%'}
-            fill={fill}
-            color={color}
-            ref={ref}
-          />
-        </View>
+        />
       );
     }
     return (

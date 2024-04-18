@@ -8,7 +8,7 @@ import { InfoIcon } from '../../../core-components/nativewind';
 
 const AlertDemo = () => {
   return (
-    <Alert className="gap-3">
+    <Alert className="gap-1">
       <AlertIcon as={InfoIcon} />
       <AlertText>Selection successfully moved!</AlertText>
     </Alert>

@@ -1,5 +1,5 @@
 import React from 'react';
-// import SelectDemo from './Demos/SelectDemo';
+import SelectDemo from './Demos/SelectDemo';
 import { CheckboxDemo } from './Demos/CheckboxDemo';
 import { SliderDemo } from './Demos/SliderDemo';
 import FormControlDemo from './Demos/FormControlDemo';
@@ -177,11 +177,11 @@ export const content = [
     href: '/ui/nativewind/docs/components/radio',
   },
 
-  // {
-  //   title: 'Select',
-  //   child: <SelectDemo />,
-  //   href: '/ui/nativewind/docs/components/select',
-  // },
+  {
+    title: 'Select',
+    child: <SelectDemo />,
+    href: '/ui/nativewind/docs/components/select',
+  },
 
   {
     title: 'Slider',
