@@ -18,7 +18,7 @@ import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 import { withStyleContext } from '@gluestack-ui/nativewind-utils/withStyleContext';
 import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withStyleContextAndStates';
-import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
+import { cssInterop } from 'nativewind';
 import {
   Motion,
   AnimatePresence,
@@ -529,6 +529,7 @@ const ActionsheetIcon = React.forwardRef(
         <UIActionsheet.Icon
           ref={ref}
           {...props}
+          color={color}
           className={actionsheetIconStyle({ class: className })}
           size={size}
         />
@@ -541,6 +542,7 @@ const ActionsheetIcon = React.forwardRef(
         <UIActionsheet.Icon
           ref={ref}
           {...props}
+          color={color}
           className={actionsheetIconStyle({ class: className })}
         />
       );
