@@ -142,14 +142,17 @@ export const parameters = {
         {
           source: 'lucide-react-native',
           name: 'Home',
+          headerTitle: 'Home',
         },
         {
           source: 'lucide-react-native',
           name: 'Component',
+          headerTitle: 'Components',
         },
         {
           source: 'lucide-react-native',
           name: 'BookOpen',
+          headerTitle: 'Guides',
         },
       ],
     },
