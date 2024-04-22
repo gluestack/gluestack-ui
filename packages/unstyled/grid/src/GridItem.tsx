@@ -1,7 +1,8 @@
 import React, { forwardRef, useEffect, useState } from 'react';
 import { useContext } from 'react';
 import { GridContainerContext } from './Context';
-import { Platform } from 'react-native';
+// import { Platform } from 'react-native';
+import { View } from '@gluestack-ui/themed';
 
 export const GridItem = (StyledGridItem: any) =>
   forwardRef(({ colSpan = 1, children, ...props }: any, ref?: any) => {
@@ -25,12 +26,21 @@ export const GridItem = (StyledGridItem: any) =>
         numColumns > 0 &&
         colSpan > 0
       ) {
-        const width = calculatedWidth / numColumns;
+        // const width = calculatedWidth / numColumns;
 
+        // let flexBasis =
+        //   Platform.OS === 'web'
+        //     ? `${Math.min(((width * colSpan) / calculatedWidth) * 100, 100)}%`
+        //     : Math.min(width * colSpan, calculatedWidth);
+
+        // const flexBasis =
+        //   ((calculatedWidth * colSpan) / numColumns / calculatedWidth) * 100 +
+        //   '%';
         const flexBasis =
-          Platform.OS === 'web'
-            ? `${Math.min(((width * colSpan) / calculatedWidth) * 100, 100)}%`
-            : Math.min(width * colSpan, calculatedWidth);
+          Math.min(
+            ((calculatedWidth * colSpan) / numColumns / calculatedWidth) * 100,
+            100
+          ) + '%';
 
         setFlexBasisValue(flexBasis);
       }
@@ -38,14 +48,50 @@ export const GridItem = (StyledGridItem: any) =>
 
     return (
       <StyledGridItem
-        width={Platform.OS === 'web' ? 'auto' : '100%'}
-        px={(columnSpacing ?? spacing) / 2}
-        py={(rowSpacing ?? spacing) / 2}
         ref={ref}
-        flexBasis={flexBasisValue}
+        style={{
+          // width: Platform.OS === 'web' ? 'auto' : '100%',
+          flexBasis: flexBasisValue,
+          flexDirection: props?.flexDirection || 'row',
+        }}
         {...props}
       >
-        {children}
+        <View
+          style={{
+            width: (columnSpacing ?? spacing) / 2,
+            flexDirection: props?.flexDirection || 'row',
+          }}
+        />
+        <View
+          style={{
+            flex: 1,
+            flexDirection: props?.flexDirection === 'column' ? 'row' : 'column',
+          }}
+        >
+          <View
+            style={{
+              height: (rowSpacing ?? spacing) / 2,
+            }}
+          />
+          <View
+            style={{
+              // flex: 1,
+              flexDirection: props?.flexDirection || 'column',
+            }}
+          >
+            {children}
+          </View>
+          <View
+            style={{
+              height: (rowSpacing ?? spacing) / 2,
+            }}
+          />
+        </View>
+        <View
+          style={{
+            width: (columnSpacing ?? spacing) / 2,
+          }}
+        />
       </StyledGridItem>
     );
   });
