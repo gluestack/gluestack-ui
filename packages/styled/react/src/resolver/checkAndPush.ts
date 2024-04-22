@@ -36,7 +36,8 @@ export function checkAndPush(item: any, ret: any, keyToCheck: any) {
     // } else
     if (
       !item.meta.path.includes('state') &&
-      !item.meta.path.includes('colorMode')
+      !item.meta.path.includes('colorMode') &&
+      !item.meta.path.includes('theme')
     ) {
       if (!ret.ids) {
         ret.ids = [];
@@ -47,10 +48,12 @@ export function checkAndPush(item: any, ret: any, keyToCheck: any) {
       // ret.default.push(item.meta.cssId);
     } else if (
       item.meta.path.includes('state') ||
-      item.meta.path.includes('colorMode')
+      item.meta.path.includes('colorMode') ||
+      item.meta.path.includes('theme')
     ) {
       const allStates = getIndexes(item.meta.path, 'state');
       const allColorModes = getIndexes(item.meta.path, 'colorMode');
+      const allThemes = getIndexes(item.meta.path, 'theme');
 
       // const allStatesAndColorMode = [...allStates, ...allColorModes];
 
@@ -66,6 +69,12 @@ export function checkAndPush(item: any, ret: any, keyToCheck: any) {
         const colorMode = item.meta.path[colorModePath + 1];
         mergeAllStateKey.push('colorMode');
         mergeAllStateKey.push(colorMode);
+      });
+
+      allThemes.forEach((themePath: any) => {
+        const theme = item.meta.path[themePath + 1];
+        mergeAllStateKey.push('theme');
+        mergeAllStateKey.push(theme);
       });
 
       const stateObject = createNestedObject(mergeAllStateKey);
