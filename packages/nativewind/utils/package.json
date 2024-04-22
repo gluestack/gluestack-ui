@@ -17,7 +17,7 @@
   "main": "index.js",
   "module": "index.js",
   "types": "index.d.ts",
-  "version": "1.0.6",
+  "version": "1.0.8-alpha.0",
   "react-native": "src/index",
   "source": "src/index",
   "scripts": {
@@ -26,11 +26,13 @@
     "remove": "rm -rf ../../../node_modules/react-native-css-interop",
     "clean": "rm -rf lib",
     "dev:web": "cd example/native && yarn web --clear",
-    "storybook": "cd example/native/storybook && yarn web"
+    "storybook": "cd example/native/storybook && yarn web",
+    "postinstall": "node scripts/post-install-script.js"
   },
   "devDependencies": {
     "@types/react": "^18.0.22",
     "babel-plugin-transform-remove-console": "^6.9.4",
+    "patch-package": "^8.0.0",
     "react": "^18.1.0",
     "react-native-builder-bob": "^0.20.1",
     "tsconfig": "7",
@@ -68,7 +70,8 @@
     "withStyleContext",
     "withStyleContextAndStates",
     "cssInterop",
-    "flush"
+    "flush",
+    "scripts"
   ],
   "jest": {
     "preset": "jest-expo",
