@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { AddIcon } from '@/components/ui/icon';
 import {
   Button,
   ButtonText,
@@ -12,6 +12,7 @@ export const ButtonBasic = (props: any) => {
     <>
       <Button {...props}>
         <ButtonText>Hello World</ButtonText>
+        <ButtonIcon as={AddIcon} />
       </Button>
     </>
   );

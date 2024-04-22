@@ -1,28 +1,29 @@
+'use client';
 import React from 'react';
 import { createCheckbox } from '@gluestack-ui/checkbox';
 import { View, Pressable, Text } from 'react-native';
+import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import {
-  withStates,
-  withStyleContextAndStates,
-  useStyleContext,
-  tva,
   withStyleContext,
-  cssInterop,
-  VariantProps,
-} from '@gluestack-ui/nativewind-utils';
+  useStyleContext,
+} from '@gluestack-ui/nativewind-utils/withStyleContext';
+import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withStyleContextAndStates';
+import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
+import { withStates } from '@gluestack-ui/nativewind-utils/withStates';
+import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 import { Platform } from 'react-native';
-import { Check } from 'lucide-react-native';
 
+const SCOPE = 'CHECKBOX';
 const UICheckbox = createCheckbox({
   // @ts-ignore
   Root:
     Platform.OS === 'web'
-      ? withStyleContext(View)
-      : withStyleContextAndStates(Pressable),
-  Group: withStates(View),
-  Icon: withStates(Check),
-  Label: withStates(Text),
-  Indicator: withStates(View),
+      ? withStyleContext(View, SCOPE)
+      : withStyleContextAndStates(Pressable, SCOPE),
+  Group: Platform.OS === 'web' ? View : withStates(View),
+  Icon: Platform.OS === 'web' ? View : withStates(View),
+  Label: Platform.OS === 'web' ? Text : withStates(Text),
+  Indicator: Platform.OS === 'web' ? View : withStates(View),
 });
 
 cssInterop(UICheckbox, { className: 'style' });
@@ -36,7 +37,7 @@ const checkboxStyle = tva({
 });
 
 const checkboxIndicatorStyle = tva({
-  base: 'group/checkboxInd justify-center items-center border-outline-400 bg-transparent rounded web:data-[focus-visible=true]:outline-none web:data-[focus-visible=true]:ring-2 web:data-[focus-visible=true]:ring-primary-700 data-[checked=true]:bg-primary-600 group-hover/checkbox:border-outline-500 group-hover/checkbox:bg-transparent group-hover/checkbox:data-[invalid=true]:border-error-700 group-hover/checkbox:data-[checked=true]:bg-primary-700 group-hover/checkbox:data-[checked=true]:data-[disabled=true]:border-primary-600 group-hover/checkbox:data-[checked=true]:data-[disabled=true]:bg-primary-600 group-hover/checkbox:data-[checked=true]:data-[disabled=true]:opacity-40 group-hover/checkbox:data-[checked=true]:data-[disabled=true]:data-[invalid=true]:border-error-700 group-hover/checkbox:data-[disabled=true]:border-outline-400 group-hover/checkbox:data-[disabled=true]:data-[invalid=true]:border-error-700 active:data-[checked=true]:bg-primary-800 active:data-[checked=true]:border-primary-800 data-[invalid=true]:border-error-700 data-[disabled=true]:opacity-40',
+  base: 'justify-center items-center border-outline-400 bg-transparent rounded web:data-[focus-visible=true]:outline-none web:data-[focus-visible=true]:ring-2 web:data-[focus-visible=true]:ring-primary-700 data-[checked=true]:bg-primary-600 data-[checked=true]:border-primary-600 group-hover/checkbox:data-[checked=false]:border-outline-500 group-hover/checkbox:bg-transparent group-hover/checkbox:data-[invalid=true]:border-error-700 group-hover/checkbox:data-[checked=true]:bg-primary-700 group-hover/checkbox:data-[checked=true]:border-primary-700 group-hover/checkbox:data-[checked=true]:data-[disabled=true]:border-primary-600 group-hover/checkbox:data-[checked=true]:data-[disabled=true]:bg-primary-600 group-hover/checkbox:data-[checked=true]:data-[disabled=true]:opacity-40 group-hover/checkbox:data-[checked=true]:data-[disabled=true]:data-[invalid=true]:border-error-700 group-hover/checkbox:data-[disabled=true]:border-outline-400 group-hover/checkbox:data-[disabled=true]:data-[invalid=true]:border-error-700 active:data-[checked=true]:bg-primary-800 active:data-[checked=true]:border-primary-800 data-[invalid=true]:border-error-700 data-[disabled=true]:opacity-40',
   parentVariants: {
     size: {
       lg: 'w-6 h-6 border-[3px]',
@@ -58,7 +59,7 @@ const checkboxLabelStyle = tva({
 });
 
 const checkboxIconStyle = tva({
-  base: 'group-data-[checked=true]/checkboxInd:text-typography-0 data-[disabled=true]:opacity-40',
+  base: 'data-[disabled=true]:opacity-40',
 
   parentVariants: {
     size: {
@@ -79,8 +80,8 @@ const Checkbox = React.forwardRef(
       className,
       size = 'md',
       ...props
-    }: { className?: string } & ICheckboxProps,
-    ref
+    }: { className?: string; size?: string } & ICheckboxProps,
+    ref?: any
   ) => {
     return (
       <UICheckbox
@@ -101,12 +102,13 @@ type ICheckboxIndicatorProps = React.ComponentProps<
   typeof UICheckbox.Indicator
 > &
   VariantProps<typeof checkboxIndicatorStyle>;
+
 const CheckboxIndicator = React.forwardRef(
   (
     { className, ...props }: { className?: string } & ICheckboxIndicatorProps,
-    ref
+    ref?: any
   ) => {
-    const { size: parentSize } = useStyleContext();
+    const { size: parentSize } = useStyleContext(SCOPE);
 
     return (
       <UICheckbox.Indicator
@@ -128,9 +130,9 @@ type ICheckboxLabelProps = React.ComponentProps<typeof UICheckbox.Label> &
 const CheckboxLabel = React.forwardRef(
   (
     { className, ...props }: { className?: string } & ICheckboxLabelProps,
-    ref
+    ref?: any
   ) => {
-    const { size: parentSize } = useStyleContext();
+    const { size: parentSize } = useStyleContext(SCOPE);
     return (
       <UICheckbox.Label
         className={checkboxLabelStyle({
@@ -146,29 +148,41 @@ const CheckboxLabel = React.forwardRef(
   }
 );
 
-type ICheckboxIconProps = React.ComponentProps<typeof UICheckbox.Icon> & {
-  as?: any;
-};
+type ICheckboxIconProps = React.ComponentProps<typeof UICheckbox.Icon> &
+  VariantProps<typeof checkboxIconStyle>;
 const CheckboxIcon = React.forwardRef(
   (
     {
       className,
       as: AsComp,
+      fill = 'none',
+      size,
+      color = 'gray',
       ...props
-    }: ICheckboxIconProps & { className?: any },
-    ref
+    }: ICheckboxIconProps & {
+      className?: any;
+      fill?: string;
+      color?: string;
+      as?: any;
+    },
+    ref?: any
   ) => {
-    const { size: parentSize } = useStyleContext();
+    const { size: parentSize } = useStyleContext(SCOPE);
+
     if (AsComp) {
       return (
         <UICheckbox.Icon>
           <AsComp
+            fill={fill}
+            color={color}
             {...props}
+            ref={ref}
             className={checkboxIconStyle({
               parentVariants: {
                 size: parentSize,
               },
               class: className,
+              size,
             })}
           />
         </UICheckbox.Icon>
@@ -182,15 +196,18 @@ const CheckboxIcon = React.forwardRef(
             size: parentSize,
           },
           class: className,
+          size,
         })}
         {...props}
+        //@ts-ignore
+        fill={fill}
+        color={color}
         ref={ref}
       />
     );
   }
 );
 
-// Assign display names
 Checkbox.displayName = 'Checkbox';
 CheckboxIndicator.displayName = 'CheckboxIndicator';
 CheckboxLabel.displayName = 'CheckboxLabel';

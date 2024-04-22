@@ -1,5 +1,36 @@
 # @gluestack-ui/radio
 
+## 0.1.29
+
+### Patch Changes
+
+- fix: typing issue
+
+## 0.1.28
+
+### Patch Changes
+
+- fix: ref typing issue
+- Updated dependencies
+  - @gluestack-ui/form-control@0.1.17
+
+## 0.1.27
+
+### Patch Changes
+
+- @react-native-aria/interactions@0.2.13
+- @react-native-aria/radio@0.2.10
+
+## 0.1.26
+
+### Patch Changes
+
+- Backhandler warning on web
+  radio arrow key selection
+- Updated dependencies
+  - @react-native-aria/interactions@0.2.12
+  - @react-native-aria/radio@0.2.9
+
 ## 0.1.25
 
 ### Patch Changes

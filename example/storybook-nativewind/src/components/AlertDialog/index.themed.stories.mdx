@@ -30,9 +30,13 @@ import {
   ButtonGroup,
   Center,
   HStack,
-  AlertTriangleIcon,
-  Text, CheckCircleIcon,Heading, Icon, AlertCircleIcon
+  Text,
+  CheckCircleIcon,
+  Heading, 
+  Icon, 
+  AlertCircleIcon
 } from '../../core-components/themed';
+import {AlertTriangleIcon} from 'lucide-react-native';
 import { transformedCode } from '../../utils';
 import {
   AppProvider,
@@ -40,13 +44,14 @@ import {
   Table,
   TableContainer,
   InlineCode,
-  CollapsibleCode
+  CollapsibleCode,
+  Tabs
 } from '@gluestack/design-system';
 import Wrapper from '../../core-components/themed/Wrapper';
 
 This is an illustration of **AlertDialog** component.
 
-<>
+<Wrapper>
   <CodePreview
     showComponentRenderer={ true }
   showArgsController = { false}
@@ -132,18 +137,38 @@ This is an illustration of **AlertDialog** component.
   }
 }
 />
-</>
+</Wrapper>
 
 <br/>
 
 ## Installation
 
+<Tabs value="cli" type="section">
+<Tabs.TabList>
+      <Tabs.Tab value="cli">
+        <Tabs.TabTitle>CLI</Tabs.TabTitle>
+      </Tabs.Tab>
+     <Tabs.Tab value="manual">
+        <Tabs.TabTitle>Manual</Tabs.TabTitle>
+     </Tabs.Tab>
+  </Tabs.TabList>
+  <Tabs.TabPanels>
+    <Tabs.TabPanel value="cli">
+<>
+
+### Run the following command:
+  ```bash
+  npx gluestack-ui add alert-dialog
+  ```
+</>
+    </Tabs.TabPanel>
+    <Tabs.TabPanel value="manual"> 
+<>
+
 ### Step 1: Install the following dependencies:
 
 ```bash
-
 npm i @gluestack-ui/alert-dialog
-
 ```
 
 ### Step 2: Copy and paste the following code into your project.
@@ -157,6 +182,10 @@ npm i @gluestack-ui/alert-dialog
 </CollapsibleCode>
 
 ### Step 3: Update the import paths to match your project setup.
+</>
+    </Tabs.TabPanel>
+  </Tabs.TabPanels>
+</Tabs>
 
 ## API Reference
 
@@ -360,22 +389,6 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
           </Table.TD>
           <Table.TD>
             <Table.TText>{`If true, the keyboard can dismiss the AlertDialog`}</Table.TText>
-          </Table.TD>
-        </Table.TR>
-        <Table.TR>
-          <Table.TD>
-            <Table.TText>
-              <InlineCode>animationPreset</InlineCode>
-            </Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>slide &#124; fade</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>slide</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>{`Specifies the animation preset for the AlertDialog`}</Table.TText>
           </Table.TD>
         </Table.TR>
       </Table.TBody>
@@ -624,6 +637,15 @@ An AlertDialog component with adjustable sizes, providing flexible and visually 
   <CodePreview
     showComponentRenderer={true}
     showArgsController={true}
+     _rendererWrapper={{
+      sx: {
+        minHeight: 300,
+        "@lg": {
+          minWidth: 450,
+          height: "100%"
+        }
+      }
+    }}
     metaData={{
       code: `
       function App(){

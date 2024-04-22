@@ -1,5 +1,11 @@
 # @gluestack-ui/avatar
 
+## 0.1.16
+
+### Patch Changes
+
+- fix: ref typing issue
+
 ## 0.1.10
 
 ### Patch Changes

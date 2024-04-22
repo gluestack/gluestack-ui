@@ -31,11 +31,13 @@ export const parameters = {
       method: '',
       order: [
         'Overview',
-        ['Introduction'],
+        ['Introduction', 'All Components'],
         'Getting Started',
-        ['Installation', 'Tooling Setup'],
+        ['Installation', 'Tooling Setup', 'Figma UI Kit'],
         'Core Concepts',
         ['Accessibility', 'Universal'],
+        'Theme Configuration',
+        ['Default Tokens', 'Customizing Theme'],
         'Components',
         [
           'Typography',
@@ -55,12 +57,13 @@ export const parameters = {
             'Link',
             'Pressable',
             'Radio',
+            'Select',
             'Slider',
             'Switch',
             'Textarea',
           ],
           'Overlay',
-          ['AlertDialog', 'Modal', 'Popover', 'Tooltip'],
+          ['AlertDialog', 'Menu', 'Modal', 'Popover', 'Tooltip'],
           'Disclosure',
           ['Actionsheet', 'Accordion'],
           'Media And Icons',
@@ -100,8 +103,8 @@ export const decorators = [
     }, [getColorMode()]);
 
     return (
-      <GluestackUIWithGluestackStyleProvider colorMode={colorMode}>
-        <GluestackUIWithNativewindProvider mode={colorMode}>
+      <GluestackUIWithGluestackStyleProvider colorMode={getColorMode()}>
+        <GluestackUIWithNativewindProvider mode={getColorMode()}>
           <OverlayProvider style={{ flex: 1 }}>
             <ToastProvider>
               <View

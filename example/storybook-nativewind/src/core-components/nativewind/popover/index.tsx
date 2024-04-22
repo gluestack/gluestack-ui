@@ -1,13 +1,15 @@
+'use client';
+
 import React from 'react';
 import { createPopover } from '@gluestack-ui/popover';
+import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import {
-  tva,
-  cssInterop,
-  VariantProps,
-  useStyleContext,
   withStyleContext,
-  withStyleContextAndStates,
-} from '@gluestack-ui/nativewind-utils';
+  useStyleContext,
+} from '@gluestack-ui/nativewind-utils/withStyleContext';
+import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withStyleContextAndStates';
+import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
+import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 
 import { View, Pressable, Platform, ScrollView } from 'react-native';
 
@@ -18,13 +20,13 @@ import {
 } from '@legendapp/motion';
 
 const AnimatedPressable = createMotionAnimatedComponent(Pressable);
-
+const SCOPE = 'POPOVER';
 const UIPopover = createPopover({
   // @ts-ignore
   Root:
     Platform.OS === 'web'
-      ? withStyleContext(View)
-      : withStyleContextAndStates(View),
+      ? withStyleContext(View, SCOPE)
+      : withStyleContextAndStates(View, SCOPE),
   Arrow: Motion.View,
   Backdrop: AnimatedPressable,
   Body: ScrollView,
@@ -61,7 +63,7 @@ const popoverArrowStyle = tva({
 });
 
 const popoverBackdropStyle = tva({
-  base: 'absolute left-0 top-0 right-0 bottom-0 bg-background-950 web:cursor-default',
+  base: 'absolute left-0 top-0 right-0 bottom-0 bg-background-dark web:cursor-default',
 });
 
 const popoverBodyStyle = tva({
@@ -239,7 +241,7 @@ const PopoverContent = React.forwardRef(
     }: { className?: string } & IPopoverContentProps,
     ref?: any
   ) => {
-    const { size: parentSize } = useStyleContext();
+    const { size: parentSize } = useStyleContext(SCOPE);
 
     return (
       <UIPopover.Content

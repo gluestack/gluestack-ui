@@ -1,5 +1,33 @@
 # @gluestack-ui/actionsheet
 
+## 0.2.41
+
+### Patch Changes
+
+- fix: ref typing issue
+
+## 0.2.40
+
+### Patch Changes
+
+- fix: height with style
+
+## 0.2.39
+
+### Patch Changes
+
+- @react-native-aria/dialog@0.0.4
+- @react-native-aria/interactions@0.2.13
+- @gluestack-ui/overlay@0.1.14
+
+## 0.2.38
+
+### Patch Changes
+
+- Updated dependencies
+  - @react-native-aria/interactions@0.2.12
+  - @gluestack-ui/overlay@0.1.13
+
 ## 0.2.37
 
 ### Patch Changes

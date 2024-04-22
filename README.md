@@ -87,6 +87,12 @@ export const App = () => {
 More guides on how to get started are available
 [here](https://gluestack.io/ui/docs).
 
+## Created By GeekyAnts
+
+GeekyAnts is a team of React Native experts who love open-source and solving developer problems. We’ve been working on React Native since 2015 and have designed and built React Native apps for almost 200+ clients across the globe. Our clients include startups to big enterprises! Need help with your React Native app?
+
+[Contact Us](https://geekyants.com/?utm_source=gluestack_github&utm_medium=read_me&utm_campaign=gluestack_integration)
+
 ## Contributing
 
 We welcome contributions to the `gluestack-ui`. If you have an idea for a new component or a bug fix, please read our [contributing guide](./CONTRIBUTING.md) instructions on how to submit a pull request.

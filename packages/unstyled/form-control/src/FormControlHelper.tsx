@@ -18,7 +18,7 @@ const FormControlHelper = (StyledFormControlHelper: any) =>
       <StyledFormControlHelper
         ref={ref}
         {...combinedProps}
-        nativeID={combinedProps?.labelId}
+        id={combinedProps?.labelId}
       >
         {children}
       </StyledFormControlHelper>

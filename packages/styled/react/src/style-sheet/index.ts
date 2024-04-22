@@ -160,7 +160,7 @@ export class StyleInjector {
           const resolvedCurrentThemeNativeValue =
             getNativeValuesFromCSSVariables(
               currentThemeStyleObj,
-              CONFIG?.themes?.[key]
+              CONFIG?.themes?.tokens?.[key]
             );
           resolvedThemeNativeValue[key] = resolvedCurrentThemeNativeValue;
         });

@@ -25,9 +25,11 @@ import {
   AccordionContentText,
   ChevronDownIcon,
   ChevronUpIcon,
+} from '../../core-components/themed';
+import {
   PlusIcon,
   MinusIcon,
-} from '../../core-components/themed';
+} from 'lucide-react-native';
 import {
   AppProvider,
   CodePreview,
@@ -37,12 +39,476 @@ import {
   AddIcon,
   InfoIcon,
   Alert,
+  CollapsibleCode,
 } from '@gluestack/design-system';
 import { transformedCode } from '../../utils';
-import { config } from '../../core-components/themed/gluestack-ui-provider/config';
 import Wrapper from '../../core-components/themed/Wrapper';
 
-# Accordion
+This is an illustration of **Accordion** component.
+
+<>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={true}
+    _rendererWrapper={{
+      display: 'grid',
+      justifyContent: 'stretch',
+    }}
+    metaData={{
+      code: `
+      <Accordion m="$5" width="90%" {...props}>
+        <AccordionItem value="a">
+          <AccordionHeader>
+            <AccordionTrigger>
+              {({ isExpanded }) => {
+                return (
+                  <>
+                    <AccordionTitleText>
+                      How do I place an order?
+                    </AccordionTitleText>
+                    {isExpanded ? (
+                      <AccordionIcon as={ChevronUpIcon} ml="$3"/>
+                    ) : (
+                      <AccordionIcon as={ChevronDownIcon} ml="$3"/>
+                    )}
+                  </>
+                );
+              }}
+            </AccordionTrigger>
+          </AccordionHeader>
+          <AccordionContent>
+            <AccordionContentText>
+              To place an order, simply select the products you want, proceed to
+              checkout, provide shipping and payment information, and finalize
+              your purchase.
+            </AccordionContentText>
+          </AccordionContent>
+        </AccordionItem>
+         <AccordionItem value="b">
+          <AccordionHeader>
+            <AccordionTrigger>
+              {({ isExpanded }) => {
+                return (
+                  <>
+                    <AccordionTitleText>
+                      What payment methods do you accept?
+                    </AccordionTitleText>
+                    {isExpanded ? (
+                      <AccordionIcon as={ChevronUpIcon} ml="$3"/>
+                    ) : (
+                      <AccordionIcon as={ChevronDownIcon} ml="$3"/>
+                    )}
+                  </>
+                );
+              }}
+            </AccordionTrigger>
+          </AccordionHeader>
+          <AccordionContent>
+            <AccordionContentText>
+              We accept all major credit cards, including Visa, Mastercard, and
+              American Express. We also support payments through PayPal.
+            </AccordionContentText>
+          </AccordionContent>
+        </AccordionItem>
+        </Accordion>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Accordion,
+        AccordionItem,
+        AccordionHeader,
+        AccordionTrigger,
+        AccordionTitleText,
+        AccordionIcon,
+        AccordionContent,
+        AccordionContentText,
+        ChevronDownIcon,
+        ChevronUpIcon,
+        Wrapper,
+      },
+      argsType: {
+        size: {
+          control: 'select',
+          options: ['sm', 'md', 'lg'],
+          default: 'md',
+        },
+        variant: {
+          control: 'select',
+          options: ['filled', 'unfilled'],
+          default: 'filled',
+        },
+        type: {
+          control: 'select',
+          options: ['single', 'multiple'],
+          default: 'single',
+        },
+        isCollapsible: {
+          control: 'boolean',
+          default: true,
+        },
+        isDisabled: {
+          control: 'boolean',
+        },
+      },
+    }}
+  />
+</>
+
+<br />
+
+## Installation
+
+### Step 1: Install the following dependencies:
+
+```bash
+
+npm i @gluestack-ui/accordion
+
+```
+
+### Step 2: Copy and paste the following code into your project.
+
+<CollapsibleCode>
+
+```jsx 
+%%-- File: core-components/themed/accordion/index.tsx --%% 
+```
+
+</CollapsibleCode>
+
+### Step 3: Update the import paths to match your project setup.
+
+## API Reference
+
+To use this component in your project, include the following import statement in your file.
+
+```jsx
+import { Accordion, AccordionItem, AccordionHeader, AccordionTrigger, AccordionTitleText, AccordionIcon, AccordionContent, AccordionContentText } from '@/components/ui/accordion';
+```
+
+```jsx
+export default () => (
+  <Accordion>
+    <AccordionItem>
+      <AccordionHeader>
+        <AccordionTrigger>
+          <AccordionTitleText />
+          <AccordionIcon />
+        </AccordionTrigger>
+      </AccordionHeader>
+      <AccordionContent>
+        <AccordionContentText />
+      </AccordionContent>
+    </AccordionItem>
+  </Accordion>
+);
+```
+### Component Props
+
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
+
+#### Accordion
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+<>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Type</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Default</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Description</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>type</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>"single" | "multiple"</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>"single"</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Determines whether one or multiple items can be opened at the same time.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>isCollapsible</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>true</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`When type is "single" or "multiple", allows closing content when clicking trigger for an open item.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>defaultValue</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>string[]</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>[]</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`The value of the item to expand when initially rendered when type is "single" or "multiple".`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>value</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>string[]</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>[]</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`The controlled value of the item to expand when type is "single" or "multiple".`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>onValueChange</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>function</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Event handler called when the expanded state of an item changes and type is "single" or "multiple".`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>isDisabled</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`When true, prevents the user from interacting with the accordion and all its items.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</>
+
+**Descendants Styling Props**
+Props to style child components.
+
+<>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Sx Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Description</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>_item</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Prop to style the AccordionItem Component`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>_titleText</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Prop to style the AccordionTitleText Component`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>_contentText</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Prop to style the AccordionContentText Component`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>_icon</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Prop to style the AccordionIcon Component`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</>
+
+#### AccordionItem
+
+Contains all the parts of a collapsible section.
+
+<>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Type</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Default</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Description</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>value</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>string</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`The controlled value of the item to expand when type is "single" or "multiple". Must be used in conjunction with onValueChange.This is a mandatory prop.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>isDisabled</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`When true, prevents the user from interacting with the accordion and all its items.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</>
+
+#### AccordionHeader
+
+Wraps an `Accordion.Trigger`. It inherits all the properties of @expo/html-elements's [H3](https://www.npmjs.com/package/@expo/html-elements#h3) on web and It inherits all the properties of react native's [View](https://reactnative.dev/docs/view) on native. Use the as prop to update it to the appropriate heading level for your page.
+
+#### AccordionTrigger
+
+Toggles the collapsed state of its associated item. It inherits all the properties of react native's [Pressable](https://reactnative.dev/docs/pressable). It should be nested inside of an `Accordion.Header`.
+
+#### AccordionTitleText
+
+It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text) component.
+
+#### AccordionIcon
+
+Contains all Icon related layout style props and actions.It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+#### AccordionContent
+
+Contains all the collapsible content for an item. It inherits all the properties of React Native [View](https://reactnative.dev/docs/view) component.
+
+#### AccordionContentText
+
+It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text) component.
+
+### Accessibility
+
+Adheres to the Accordion [WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/accordion/examples/accordion/).
+
+We have outlined the various features that ensure the Accordion component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards.
+
+- Header is h3 tag on web.
+- aria-expanded is "true" when the Accordion Content is visible, otherwise false.
+- role is set to "region" for the currently expanded accordion panel.
+- aria-controls points to the id of the Accordion Content.
+- aria-labelledby references the accordion header button that expands and collapses the region.
+
+### Keyboard Interactions
+
+- `Space` - When focus is on an Accordion.Trigger of a collapsed section, expands the section.
+- `Enter` - When focus is on an Accordion.Trigger of a collapsed section, expands the section.
+- `Tab` - Moves focus to the next focusable element.
+- `Shift + Tab` - Moves focus to the previous focusable element.
+
+### Screen Reader
+
+- VoiceOver: When the Accordion Item is focused, the screen reader will announce the Accordion's title text and the state of the Accordion trigger (expanded or collapsed).
 
 ## Examples
 
@@ -240,7 +706,7 @@ The borderRadius prop can be used to create rounded corners for both the Accordi
       code: `
 function App(){
     return (
-          <Accordion m="$5" width="80%" maxWidth={640} shadowColor="transparent">
+          <Accordion m="$5" width="80%" maxWidth={640} shadowColor="transparent" bg="$white" $dark-bg="$black" borderRadius='$lg'>
       <AccordionItem value="item-1" borderRadius="$lg">
         <AccordionHeader>
           <AccordionTrigger sx={{

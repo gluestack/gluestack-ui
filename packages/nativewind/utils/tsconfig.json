@@ -1,14 +1,29 @@
 {
-  "include": ["src"],
+  "include": [
+    "cn.ts",
+    "context",
+    "utils",
+    "index.ts",
+    "tva",
+    "types.ts",
+    "utils",
+    "withStates",
+    "withStyleContext",
+    "withStyleContextAndStates",
+    "cssInterop",
+    "flush"
+  ],
   "exclude": ["node_modules", "example"],
+  "path": {},
   "compilerOptions": {
-    "emitDeclarationOnly": true,
+    "ignoreDeprecations": "5.0",
     "noEmit": false,
-    "baseUrl": ".",
     "declaration": true,
+    "allowJs": true,
     "allowUnreachableCode": false,
     "allowUnusedLabels": true,
     "esModuleInterop": true,
+    "importsNotUsedAsValues": "error",
     "forceConsistentCasingInFileNames": true,
     "jsx": "react",
     "lib": ["esnext", "dom"],
@@ -23,6 +38,7 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "strict": true,
-    "target": "esnext"
+    "target": "esnext",
+    "outDir": "."
   }
 }

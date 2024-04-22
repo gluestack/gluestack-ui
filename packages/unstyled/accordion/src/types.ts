@@ -90,14 +90,28 @@ export type IAccordionComponentType<
   IconProps,
   TitleTextProps,
   ContentTextProps
-> = React.ForwardRefExoticComponent<AccordionProps & IAccordionProps> & {
-  Item: React.ForwardRefExoticComponent<ItemProps & IAccordionItemProps>;
-  Header: React.ForwardRefExoticComponent<HeaderProps>;
+> = React.ForwardRefExoticComponent<
+  AccordionProps & React.RefAttributes<AccordionProps> & IAccordionProps
+> & {
+  Item: React.ForwardRefExoticComponent<
+    ItemProps & React.RefAttributes<ItemProps> & IAccordionItemProps
+  >;
+  Header: React.ForwardRefExoticComponent<
+    HeaderProps & React.RefAttributes<HeaderProps>
+  >;
   Trigger: React.ForwardRefExoticComponent<
     Omit<TriggerProps, 'children'> & IAccordionTriggerProps
   >;
-  Content: React.ForwardRefExoticComponent<ContentProps>;
-  TitleText: React.ForwardRefExoticComponent<TitleTextProps>;
-  ContentText: React.ForwardRefExoticComponent<ContentTextProps>;
-  Icon: React.ForwardRefExoticComponent<IconProps>;
+  Content: React.ForwardRefExoticComponent<
+    ContentProps & React.RefAttributes<ContentProps>
+  >;
+  TitleText: React.ForwardRefExoticComponent<
+    TitleTextProps & React.RefAttributes<TitleTextProps>
+  >;
+  ContentText: React.ForwardRefExoticComponent<
+    ContentTextProps & React.RefAttributes<ContentTextProps>
+  >;
+  Icon: React.ForwardRefExoticComponent<
+    IconProps & React.RefAttributes<IconProps>
+  >;
 };

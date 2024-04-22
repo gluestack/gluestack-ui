@@ -85,7 +85,7 @@ const PopoverContent = forwardRef(
 
     return (
       <View
-        nativeID={popoverContentId}
+        id={popoverContentId}
         {...props}
         ref={mergedRef}
         collapsable={false}

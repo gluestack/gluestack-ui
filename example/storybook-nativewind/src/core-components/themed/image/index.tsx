@@ -1,3 +1,4 @@
+'use client';
 import { createImage } from '@gluestack-ui/image';
 import { Image as RNImage } from 'react-native';
 import { styled } from '@gluestack-style/react';
@@ -52,6 +53,15 @@ const StyledRoot = styled(
       size: 'md',
     },
   },
-  {}
+  {
+    componentName: 'Image',
+    resolveProps: ['tintColor'],
+  } as const,
+  {
+    propertyTokenMap: {
+      tintColor: 'colors',
+    },
+  }
 );
+
 export const Image = createImage({ Root: StyledRoot });

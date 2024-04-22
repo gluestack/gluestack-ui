@@ -1,3 +1,4 @@
+'use client';
 import { styled, useStyled } from '@gluestack-style/react';
 import { KeyboardAvoidingView as RNKeyboardAvoidingView } from 'react-native';
 

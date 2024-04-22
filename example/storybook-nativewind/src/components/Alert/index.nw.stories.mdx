@@ -37,6 +37,7 @@ import {
   Table,
   InlineCode,
   TableContainer,
+  Tabs
 } from '@gluestack/design-system';
 import { CollapsibleCode } from '@gluestack/design-system';
 import Wrapper from '../../core-components/nativewind/Wrapper';
@@ -87,6 +88,28 @@ This is an illustration of **Alert** component.
 
 ## Installation
 
+<Tabs value="cli" type="section">
+<Tabs.TabList>
+      <Tabs.Tab value="cli">
+        <Tabs.TabTitle>CLI</Tabs.TabTitle>
+      </Tabs.Tab>
+     <Tabs.Tab value="manual">
+        <Tabs.TabTitle>Manual</Tabs.TabTitle>
+     </Tabs.Tab>
+  </Tabs.TabList>
+  <Tabs.TabPanels>
+    <Tabs.TabPanel value="cli">
+<>
+
+### Run the following command:
+  ```bash
+  npx gluestack-ui add alert
+  ```
+</>
+    </Tabs.TabPanel>
+    <Tabs.TabPanel value="manual"> 
+<>
+
 ### Step 1: Install the following dependencies:
 
 ```bash
@@ -106,6 +129,10 @@ npm i @gluestack-ui/alert
 </CollapsibleCode>
 
 ### Step 3: Update the import paths to match your project setup.
+</>
+    </Tabs.TabPanel>
+  </Tabs.TabPanels>
+</Tabs>
 
 ## API Reference
 
@@ -146,7 +173,7 @@ Alert component is created using View component from react-native. It extends al
 
 #### Alert
 
-<Wrapper>
+<>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -192,7 +219,7 @@ Alert component is created using View component from react-native. It extends al
       </Table.TBody>
     </Table>
   </TableContainer>
-</Wrapper>
+</>
 
 ### Examples
 

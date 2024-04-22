@@ -48,7 +48,8 @@ import {
   AddIcon,
   InfoIcon,
   InlineCode,
-  CollapsibleCode
+  CollapsibleCode,
+  Tabs
 } from '@gluestack/design-system';
 import Wrapper from '../../core-components/themed/Wrapper';
 
@@ -148,25 +149,46 @@ This is an illustration of **Modal** component.
 
 ## Installation
 
+<Tabs value="cli" type="section">
+  <Tabs.TabList>
+      <Tabs.Tab value="cli">
+        <Tabs.TabTitle>CLI</Tabs.TabTitle>
+      </Tabs.Tab>
+     <Tabs.Tab value="manual">
+        <Tabs.TabTitle>Manual</Tabs.TabTitle>
+     </Tabs.Tab>
+  </Tabs.TabList>
+  <Tabs.TabPanels>
+    <Tabs.TabPanel value="cli">
+<>
+
+### Run the following command:
+  ```bash
+  npx gluestack-ui add modal
+  ```
+</>
+    </Tabs.TabPanel>
+    <Tabs.TabPanel value="manual"> 
+<>
+
 ### Step 1: Install the following dependencies:
-
 ```bash
-
 npm i @gluestack-ui/modal
-
 ```
 
 ### Step 2: Copy and paste the following code into your project.
-
 <CollapsibleCode>
 
 ```jsx 
 %%-- File: core-components/themed/modal/index.tsx --%% 
 ```
-
 </CollapsibleCode>
 
 ### Step 3: Update the import paths to match your project setup.
+</>
+    </Tabs.TabPanel>
+  </Tabs.TabPanels>
+</Tabs>
 
 ## API Reference
 
@@ -199,7 +221,7 @@ This section provides a comprehensive reference list for the component props, de
 
 Contains all View related layout style props and actions. It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
 
-<Wrapper>
+<>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -382,12 +404,12 @@ Contains all View related layout style props and actions. It inherits all the pr
       </Table.TBody>
     </Table>
   </TableContainer>
-</Wrapper>
+</>
 
 **Descendants Styling Props**
 Props to style child components.
 
-<Wrapper>
+<>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -414,7 +436,7 @@ Props to style child components.
       </Table.TBody>
     </Table>
   </TableContainer>
-</Wrapper>
+</>
 
 #### ModalBackdrop
 
@@ -424,7 +446,7 @@ It is React Native's [Pressable](https://reactnative.dev/docs/pressable#props) c
 
 It is [@legendapp/motion's](https://legendapp.com/open-source/motion/) [Motion.View](https://legendapp.com/open-source/motion/overview/) component. You can use any declarative animation library you prefer.
 
-<Wrapper>
+<>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -463,7 +485,7 @@ It is [@legendapp/motion's](https://legendapp.com/open-source/motion/) [Motion.V
       </Table.TBody>
     </Table>
   </TableContainer>
-</Wrapper>
+</>
 
 #### ModalHeader
 
@@ -476,7 +498,7 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
 **Descendants Styling Props**
 Props to style child components.
 
-<Wrapper>
+<>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -514,7 +536,7 @@ Props to style child components.
     </Table>
 
   </TableContainer>
-</Wrapper>
+</>
 
 #### ModalBody
 
@@ -534,7 +556,7 @@ Modal component is created using View component from react-native. It extends al
 
 #### Modal
 
-<Wrapper>
+<>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -567,7 +589,7 @@ Modal component is created using View component from react-native. It extends al
       </Table.TBody>
     </Table>
   </TableContainer>
-</Wrapper>
+</>
 
 ### Examples
 
@@ -797,11 +819,10 @@ A versatile modal component offering different sizes to accommodate various cont
         return (
             <Center h={400}>
             <VStack space='md'>
-            {sizes.map((currentSize) => {
-                return <Button key={currentSize} onPress={() => handleClick(currentSize)}>
-                  <ButtonText>{currentSize}</ButtonText>
-                </Button>
-            })}
+            {sizes.map((currentSize) =>  (<Button key={currentSize} onPress={() => handleClick(currentSize)} >
+                  <ButtonText textAlign='center'>{currentSize}</ButtonText>
+                </Button>)
+            )}
                 </VStack>
                 <Modal
                   isOpen={showModal}

@@ -1,3 +1,4 @@
+'use client';
 import { AsForwarder, styled } from '@gluestack-style/react';
 import { createAlert } from '@gluestack-ui/alert';
 import { View, Text } from 'react-native';
@@ -57,7 +58,7 @@ const StyledRoot = styled(
         solid: {},
         outline: {
           borderWidth: '$1',
-          bg: '$white',
+          bg: 'transparent',
         },
         accent: {
           borderLeftWidth: '$4',
