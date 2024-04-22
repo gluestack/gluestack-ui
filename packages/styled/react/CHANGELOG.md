@@ -1,5 +1,11 @@
 # @gluestack-style/react
 
+## 1.0.53
+
+### Patch Changes
+
+- - Fixed passing props support for theme
+
 ## 1.0.52
 
 ### Patch Changes

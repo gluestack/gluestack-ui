@@ -21,7 +21,6 @@ export * from './input';
 // export * from './input-accessory-view';
 export * from './image';
 export * from './keyboard-avoiding-view';
-export * from './linear-gradient';
 export * from './link';
 export * from './menu';
 export * from './modal';

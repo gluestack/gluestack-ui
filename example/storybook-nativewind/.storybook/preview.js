@@ -38,6 +38,8 @@ export const parameters = {
         ['Accessibility', 'Universal'],
         'Theme Configuration',
         ['Default Tokens', 'Customizing Theme'],
+        'Recipes',
+        ['Linear Gradient'],
         'Components',
         [
           'Typography',
