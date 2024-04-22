@@ -17,7 +17,7 @@
   "main": "index.js",
   "module": "index.js",
   "types": "index.d.ts",
-  "version": "1.0.9-alpha.0",
+  "version": "1.0.10",
   "react-native": "src/index",
   "source": "src/index",
   "scripts": {
@@ -43,6 +43,7 @@
     "tailwind-variants": "^0.1.20"
   },
   "peerDependencies": {
+    "patch-package": ">=8",
     "react": ">=16"
   },
   "react-native-builder-bob": {
@@ -71,7 +72,8 @@
     "withStyleContextAndStates",
     "cssInterop",
     "flush",
-    "scripts"
+    "scripts",
+    "IsWeb"
   ],
   "jest": {
     "preset": "jest-expo",
