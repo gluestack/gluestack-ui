@@ -54,6 +54,10 @@ module.exports = function (api) {
               __dirname,
               '../../packages/unstyled/menu/src'
             ),
+            '@gluestack-ui/icon': path.resolve(
+              __dirname,
+              '../../packages/unstyled/icon/src'
+            ),
             '@gluestack-ui/link': path.resolve(
               __dirname,
               '../../packages/unstyled/link/src'

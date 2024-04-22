@@ -23,7 +23,7 @@ const AlertDialogDemo = () => {
       <Button onPress={() => setShowAlertDialog(true)}>
         <ButtonText>Click me</ButtonText>
       </Button>
-      <AlertDialog size="full" isOpen={showAlertDialog} onClose={handleClose}>
+      <AlertDialog size="lg" isOpen={showAlertDialog} onClose={handleClose}>
         <AlertDialogBackdrop />
         <AlertDialogContent>
           <AlertDialogHeader>
@@ -38,7 +38,7 @@ const AlertDialogDemo = () => {
           <AlertDialogBody>
             <Text>Whoa, slow down there!</Text>
           </AlertDialogBody>
-          <AlertDialogFooter className="gap-3">
+          <AlertDialogFooter className="gap-2">
             <Button
               size="sm"
               variant="outline"

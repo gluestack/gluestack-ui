@@ -754,10 +754,20 @@ export type IdsStateColorMode = {
 };
 
 export type StyleIds = {
-  baseStyle: IdsStateColorMode;
-  variants: { [key: string]: { [key: string]: IdsStateColorMode } };
+  baseStyle: IdsStateColorMode & {
+    theme?: { [key: string]: IdsStateColorMode };
+  };
+  variants: {
+    [key: string]: {
+      [key: string]: IdsStateColorMode & {
+        theme?: { [key: string]: IdsStateColorMode };
+      };
+    };
+  };
   compoundVariants: Array<{
-    [key: string]: IdsStateColorMode;
+    [key: string]: IdsStateColorMode & {
+      theme?: { [key: string]: IdsStateColorMode };
+    };
     condition: { [key: string]: any };
   }>;
 };

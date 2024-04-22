@@ -32,7 +32,7 @@ export function sxToSXResolved(
       path,
       weight: getWeightBaseOnPath([...path, 'style']),
       // @ts-ignore
-      props: sx?.props,
+      props: { ...sx?.props },
       // cssId: ,
       // cssRuleset: ,
     },
@@ -42,7 +42,7 @@ export function sxToSXResolved(
   // console.log(sx, '********');
   const ret: VerbosedSxResolved = {
     //@ts-ignore
-    styledValueResolvedWithMeta: styledValueResolvedWithMeta,
+    styledValueResolvedWithMeta: { ...styledValueResolvedWithMeta },
     //@ts-ignore
     queriesResolved: sx?.queries
       ? sx.queries.map((query: any, index: any) => {

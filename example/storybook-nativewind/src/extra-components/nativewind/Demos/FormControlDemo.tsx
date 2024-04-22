@@ -18,7 +18,7 @@ const FormControlDemo = () => {
       <FormControlLabel>
         <FormControlLabelText>Password</FormControlLabelText>
       </FormControlLabel>
-      <Input>
+      <Input className="my-1">
         <InputField
           type="password"
           defaultValue="12345"

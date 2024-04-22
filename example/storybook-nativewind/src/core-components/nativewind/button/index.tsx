@@ -1,14 +1,14 @@
 'use client';
-import React from 'react';
+import React, { useMemo } from 'react';
 import { createButton } from '@gluestack-ui/button';
-
+import { Svg } from 'react-native-svg';
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import {
   withStyleContext,
   useStyleContext,
 } from '@gluestack-ui/nativewind-utils/withStyleContext';
 import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withStyleContextAndStates';
-import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
+import { cssInterop } from 'nativewind';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 
 import {
@@ -18,6 +18,33 @@ import {
   View,
   Platform,
 } from 'react-native';
+
+const PrimitiveIcon = React.forwardRef(
+  (
+    { height, width, fill = 'none', color, size, as: AsComp, ...props }: any,
+    ref?: any
+  ) => {
+    const sizeProps = useMemo(() => {
+      return size ? { size } : { height, width };
+    }, [size, height, width]);
+
+    if (AsComp) {
+      return (
+        <AsComp ref={ref} fill={fill} color={color} {...props} {...sizeProps} />
+      );
+    }
+    return (
+      <Svg
+        ref={ref}
+        height={height}
+        width={width}
+        fill={fill}
+        color={color}
+        {...props}
+      />
+    );
+  }
+);
 
 const SCOPE = 'BUTTON';
 const Root =
@@ -30,14 +57,25 @@ const UIButton = createButton({
   Text,
   Group: View,
   Spinner: ActivityIndicator,
-  Icon: View,
+  Icon: PrimitiveIcon,
 });
 
 cssInterop(UIButton, { className: 'style' });
 cssInterop(UIButton.Text, { className: 'style' });
 cssInterop(UIButton.Group, { className: 'style' });
 cssInterop(UIButton.Spinner, { className: 'style' });
-cssInterop(UIButton.Icon, { className: 'style' });
+cssInterop(UIButton.Icon, {
+  className: {
+    target: 'style',
+    nativeStyleToProp: {
+      height: 'height',
+      width: 'width',
+      //@ts-ignore
+      fill: 'fill',
+      color: 'color',
+    },
+  },
+});
 
 const buttonStyle = tva({
   base: 'group/button rounded bg-primary-500 flex-row items-center justify-center data-[focus-visible=true]:web:outline-none data-[focus-visible=true]:web:ring-2 data-[disabled=true]:opacity-40',
@@ -61,6 +99,7 @@ const buttonStyle = tva({
     },
 
     size: {
+      xs: 'px-3.5 h-8',
       sm: 'px-4 h-9',
       md: 'px-5 h-10',
       lg: 'px-6 h-11',
@@ -130,6 +169,7 @@ const buttonTextStyle = tva({
         'text-typography-0 group-hover/button:text-typography-0 group-active/button:text-typography-0',
     },
     size: {
+      xs: 'text-xs',
       sm: 'text-sm',
       md: 'text-base',
       lg: 'text-lg',
@@ -164,23 +204,11 @@ const buttonTextStyle = tva({
 });
 
 const buttonIconStyle = tva({
-  base: 'text-typography-0',
   parentVariants: {
-    action: {
-      primary:
-        'text-primary-600 group-hover/button:text-primary-600 group-active/button:text-primary-700',
-      secondary:
-        'text-secondary-600 group-hover/button:text-secondary-600 group-active/button:text-secondary-700',
-      positive:
-        'text-success-600 group-hover/button:text-success-600 group-active/button:text-success-700',
-      negative:
-        'text-error-600 group-hover/button:text-error-600 group-active/button:text-error-700',
-    },
     variant: {
       link: 'group-hover/button:underline group-active/button:underline',
       outline: '',
-      solid:
-        'text-typography-0 group-hover/button:text-typography-0 group-active/button:text-typography-0',
+      solid: '',
     },
     size: {
       '2xs': 'h-3 w-3',
@@ -191,32 +219,6 @@ const buttonIconStyle = tva({
       'xl': 'h-6 w-6',
     },
   },
-  parentCompoundVariants: [
-    {
-      variant: 'solid',
-      action: 'primary',
-      class:
-        'text-typography-0 group-hover/button:text-typography-0 group-active/button:text-typography-0',
-    },
-    {
-      variant: 'solid',
-      action: 'secondary',
-      class:
-        'text-typography-0 group-hover/button:text-typography-0 group-active/button:text-typography-0',
-    },
-    {
-      variant: 'solid',
-      action: 'positive',
-      class:
-        'text-typography-0 group-hover/button:text-typography-0 group-active/button:text-typography-0',
-    },
-    {
-      variant: 'solid',
-      action: 'negative',
-      class:
-        'text-typography-0 group-hover/button:text-typography-0 group-active/button:text-typography-0',
-    },
-  ],
 });
 
 type IButtonProps = Omit<React.ComponentProps<typeof UIButton>, 'context'> &
@@ -303,8 +305,6 @@ const ButtonIcon = React.forwardRef(
   (
     {
       className,
-      as: AsComp,
-      fill = 'none',
       size,
       ...props
     }: IButtonIcon & {
@@ -329,28 +329,27 @@ const ButtonIcon = React.forwardRef(
     }
     const { color = localColor } = props;
 
-    if (AsComp) {
+    if (typeof size === 'number') {
       return (
-        <View
-          className={buttonIconStyle({
-            parentVariants: {
-              size: parentSize,
-              variant: parentVariant,
-              action: parentAction,
-            },
-            size,
-            class: className,
-          })}
-        >
-          <AsComp
-            fill={fill}
-            color={color}
-            {...props}
-            height={'100%'}
-            width={'100%'}
-            ref={ref}
-          />
-        </View>
+        <UIButton.Icon
+          ref={ref}
+          {...props}
+          color={color}
+          className={buttonIconStyle({ class: className })}
+          size={size}
+        />
+      );
+    } else if (
+      (props.height !== undefined || props.width !== undefined) &&
+      size === undefined
+    ) {
+      return (
+        <UIButton.Icon
+          ref={ref}
+          {...props}
+          color={color}
+          className={buttonIconStyle({ class: className })}
+        />
       );
     }
     return (
@@ -360,12 +359,11 @@ const ButtonIcon = React.forwardRef(
         className={buttonIconStyle({
           parentVariants: {
             size: parentSize,
+            variant: parentVariant,
           },
           size,
           class: className,
         })}
-        //@ts-ignore
-        fill={fill}
         color={color}
         ref={ref}
       />
