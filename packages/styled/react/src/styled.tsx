@@ -141,7 +141,11 @@ function convertUtiltiyToSXFromProps(
 
   const resolvedSXVerbosed = convertSxToSxVerbosed(resolvedSxVerbose);
 
-  return { sx: resolvedSXVerbosed, rest: restProps };
+  return {
+    sx: resolvedSXVerbosed,
+    nonVerbosedSx: resolvedSxVerbose,
+    rest: restProps,
+  };
 }
 
 function getStateStyleCSSFromStyleIdsAndProps(
@@ -1589,36 +1593,51 @@ export function verboseStyled<P, Variants, ComCon>(
       applySxStatePassingProps.current
     );
 
-    let { sx: filteredComponentSx, rest: filteredComponentRemainingProps } =
-      convertUtiltiyToSXFromProps(
-        // Object.assign(
-        //   defaultThemePropsWithoutVariants,
-        inlineComponentPropsWithoutVariants,
-        styledSystemProps,
-        { ...componentStyleConfig, uniqueComponentId },
-        reservedKeys,
-        plugins,
-        ignoreKeys,
-        inlineComponentPropsWithoutVariants?.as ?? Component,
-        ExtendedConfig
-      );
+    let {
+      sx: filteredComponentSx,
+      nonVerbosedSx,
+      rest: filteredComponentRemainingProps,
+    } = convertUtiltiyToSXFromProps(
+      // Object.assign(
+      //   defaultThemePropsWithoutVariants,
+      inlineComponentPropsWithoutVariants,
+      styledSystemProps,
+      { ...componentStyleConfig, uniqueComponentId },
+      reservedKeys,
+      plugins,
+      ignoreKeys,
+      inlineComponentPropsWithoutVariants?.as ?? Component,
+      ExtendedConfig
+    );
+
+    let sxToBePassedIntoPlugin = {
+      ...nonVerbosedSx,
+    };
 
     const mergedPassingProps = shallowMerge(
       { ...defaultThemePropsWithoutVariants, ...passingProps },
       applyAncestorPassingProps
     );
 
-    let { sx: filteredPassingSx, rest: filteredPassingRemainingProps } =
-      convertUtiltiyToSXFromProps(
-        mergedPassingProps,
-        styledSystemProps,
-        { ...componentStyleConfig, uniqueComponentId },
-        reservedKeys,
-        plugins,
-        ignoreKeys,
-        mergedPassingProps?.as ?? Component,
-        ExtendedConfig
-      );
+    let {
+      sx: filteredPassingSx,
+      nonVerbosedSx: filteredPassingNonVerbosedSx,
+      rest: filteredPassingRemainingProps,
+    } = convertUtiltiyToSXFromProps(
+      mergedPassingProps,
+      styledSystemProps,
+      { ...componentStyleConfig, uniqueComponentId },
+      reservedKeys,
+      plugins,
+      ignoreKeys,
+      mergedPassingProps?.as ?? Component,
+      ExtendedConfig
+    );
+
+    sxToBePassedIntoPlugin = deepMergeObjects(
+      sxToBePassedIntoPlugin,
+      filteredPassingNonVerbosedSx
+    );
 
     let containsSX = false;
     Object.assign(applyComponentInlineProps, filteredPassingRemainingProps);
@@ -1831,6 +1850,7 @@ export function verboseStyled<P, Variants, ComCon>(
 
         const {
           sx: filteredPassingSxUpdated,
+          nonVerbosedSx: filteredPassingNonVerbosedSxUpdated,
           rest: filteredPassingRemainingPropsUpdated,
         } = convertUtiltiyToSXFromProps(
           passingPropsUpdated,
@@ -1841,6 +1861,11 @@ export function verboseStyled<P, Variants, ComCon>(
           ignoreKeys,
           passingPropsUpdated?.as ?? Component,
           ExtendedConfig
+        );
+
+        sxToBePassedIntoPlugin = deepMergeObjects(
+          sxToBePassedIntoPlugin,
+          filteredPassingNonVerbosedSxUpdated
         );
 
         filteredPassingSx = filteredPassingSxUpdated;
@@ -2214,7 +2239,7 @@ export function verboseStyled<P, Variants, ComCon>(
         ? {
             ...variantProps,
             states: states,
-            sx: componentProps.sx,
+            sx: sxToBePassedIntoPlugin,
           }
         : {};
 
