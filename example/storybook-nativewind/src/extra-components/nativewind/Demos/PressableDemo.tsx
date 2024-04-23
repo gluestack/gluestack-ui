@@ -3,10 +3,7 @@ import React from 'react';
 
 const PressableDemo = () => {
   return (
-    <Pressable
-      onPress={() => console.log('Hello')}
-      className="p-5 bg-primary-500"
-    >
+    <Pressable onPress={() => {}} className="p-5 bg-primary-500">
       <Text className="text-typography-0">Press me</Text>
     </Pressable>
   );

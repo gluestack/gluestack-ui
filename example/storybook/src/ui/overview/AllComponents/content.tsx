@@ -30,9 +30,11 @@ import CenterDemo from './Demos/CenterDemo';
 import AlertDialogDemo from './Demos/AlertDialogDemo';
 import ModalDemo from './Demos/ModalDemo';
 import AccordionDemo from './Demos/AccordionDemo';
+import ActionsheetDemo from './Demos/ActionsheetDemo';
+import GridDemo from './Demos/GridDemo';
+import CardDemo from './Demos/CardDemo';
 // import MenuDemo from './Demos/MenuDemo';
 // import PopoverDemo from './Demos/PopoverDemo';
-import ActionsheetDemo from './Demos/ActionsheetDemo';
 
 export const content = [
   {
@@ -78,7 +80,11 @@ export const content = [
     child: <ButtonDemo />,
     href: '/ui/docs/components/forms/button',
   },
-
+  {
+    title: 'Card',
+    child: <CardDemo />,
+    href: '/ui/docs/components/data-display/card',
+  },
   {
     title: 'Center',
     child: <CenterDemo />,
@@ -105,6 +111,11 @@ export const content = [
     title: 'FormControl',
     child: <FormControlDemo />,
     href: '/ui/docs/components/forms/form-control',
+  },
+  {
+    title: 'Grid',
+    child: <GridDemo />,
+    href: '/ui/docs/components/layout/grid',
   },
   {
     title: 'Heading',
