@@ -1,5 +1,5 @@
 module.exports = {
-  stories: ['../components/primitives/Button/*.stories.?(ts|tsx|js|jsx)'],
+  stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
   addons: [
     '@storybook/addon-ondevice-notes',
     '@storybook/addon-ondevice-controls',
