@@ -1,4 +1,5 @@
 import React, { forwardRef, useMemo } from 'react';
+import { Platform } from 'react-native';
 import { useFormControl } from '@gluestack-ui/form-control';
 import { useInput } from './InputContext';
 import { mergeRefs } from '@gluestack-ui/utils';
@@ -84,7 +85,7 @@ export const Input = (StyledInput: any) =>
           aria-required={isRequired || inputProps.isRequired}
           aria-invalid={isInvalid || inputProps.isInvalid}
           aria-disabled={isDisabled || inputProps.isDisabled}
-          aria-selected={isFocused}
+          aria-selected={Platform.OS !== 'web' ? isFocused : undefined}
           // ios accessibility
           accessibilityElementsHidden={isDisabled || inputProps.isDisabled}
           readOnly={!editableProp}
