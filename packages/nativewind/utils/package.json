@@ -17,7 +17,7 @@
   "main": "index.js",
   "module": "index.js",
   "types": "index.d.ts",
-  "version": "1.0.11-alpha.20",
+  "version": "1.0.11-alpha.21",
   "react-native": "src/index",
   "source": "src/index",
   "scripts": {
@@ -32,18 +32,17 @@
   "devDependencies": {
     "@types/react": "^18.0.22",
     "babel-plugin-transform-remove-console": "^6.9.4",
-    "patch-package": "^8.0.0",
     "react": "^18.1.0",
     "react-native-builder-bob": "^0.20.1",
     "tsconfig": "7",
     "typescript": "^4.9.4"
   },
   "dependencies": {
-    "nativewind": "^4.0.1",
-    "tailwind-variants": "^0.1.20"
+    "patch-package": "8.0.0",
+    "tailwind-variants": "0.1.20"
   },
   "peerDependencies": {
-    "patch-package": ">=8",
+    "nativewind": ">=4.0",
     "react": ">=16"
   },
   "react-native-builder-bob": {
