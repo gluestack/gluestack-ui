@@ -95,7 +95,7 @@ const inputSlotStyle = tva({
 });
 
 const inputFieldStyle = tva({
-  base: 'flex-1 text-typography-900 web:cursor-text web:data-[disabled=true]:cursor-not-allowed py-auto px-3 placeholder:text-typography-500 h-full',
+  base: 'flex-1 text-typography-900 py-auto px-3 placeholder:text-typography-500 h-full ios:leading-[0px] web:cursor-text web:data-[disabled=true]:cursor-not-allowed',
 
   parentVariants: {
     variant: {
@@ -105,17 +105,17 @@ const inputFieldStyle = tva({
     },
 
     size: {
-      '2xs': 'text-2xs leading-[0px]',
-      'xs': 'text-xs leading-[0px]',
-      'sm': 'text-sm leading-[0px]',
-      'md': 'text-base leading-[0px]',
-      'lg': 'text-lg leading-[0px]',
-      'xl': 'text-xl leading-[0px]',
-      '2xl': 'text-2xl leading-[0px]',
-      '3xl': 'text-3xl leading-[0px]',
-      '4xl': 'text-4xl leading-[0px]',
-      '5xl': 'text-5xl leading-[0px]',
-      '6xl': 'text-6xl leading-[0px]',
+      '2xs': 'text-2xs',
+      'xs': 'text-xs',
+      'sm': 'text-sm',
+      'md': 'text-base',
+      'lg': 'text-lg',
+      'xl': 'text-xl',
+      '2xl': 'text-2xl',
+      '3xl': 'text-3xl',
+      '4xl': 'text-4xl',
+      '5xl': 'text-5xl',
+      '6xl': 'text-6xl',
     },
   },
 });
