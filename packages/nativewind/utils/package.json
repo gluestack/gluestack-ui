@@ -17,7 +17,7 @@
   "main": "index.js",
   "module": "index.js",
   "types": "index.d.ts",
-  "version": "1.0.11-alpha.0",
+  "version": "1.0.11-alpha.10",
   "react-native": "src/index",
   "source": "src/index",
   "scripts": {
@@ -27,7 +27,7 @@
     "clean": "rm -rf lib",
     "dev:web": "cd example/native && yarn web --clear",
     "storybook": "cd example/native/storybook && yarn web",
-    "postinstall": "node ./scripts/test.js"
+    "postinstall": "node ./scripts/post-install-script.js"
   },
   "devDependencies": {
     "@types/react": "^18.0.22",
