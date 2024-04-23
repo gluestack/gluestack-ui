@@ -1,8 +1,10 @@
 const fs = require('fs');
 const path = require('path');
 const processPath = process.cwd();
+// eslint-disable-next-line no-console
 console.log('🚀 ~ processPath:', processPath);
 const userDirectory = path.resolve(processPath, '..', '..', '..');
+// eslint-disable-next-line no-console
 console.log('🚀 ~ userDirectory:', userDirectory);
 
 function CopyDirectory(src, dest) {
