@@ -1,5 +1,7 @@
 import type { ComponentMeta } from '@storybook/react-native';
 import Grid from './Grid';
+import GridExampleOne from './GridExampleOne';
+import GridSpacing from './GridSpacing';
 
 const GridMeta: ComponentMeta<typeof Grid> = {
   title: 'stories/Grid',
@@ -12,4 +14,4 @@ const GridMeta: ComponentMeta<typeof Grid> = {
 };
 
 export default GridMeta;
-export { Grid };
+export { Grid, GridExampleOne, GridSpacing };

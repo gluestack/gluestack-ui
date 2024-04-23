@@ -1,0 +1,323 @@
+---
+title: gluestack-ui Grid Component | Installation, Usage, and API
+
+description: 
+The Grid component is a versatile layout tool designed to facilitate the creation of grid-based layouts comprising rows and columns. It offers flexibility and robust functionality, enabling the creation of diverse UI elements, ranging from basic containers to intricate layout structures.
+
+pageTitle: Grid
+
+pageDescription: The Grid component is a versatile layout tool designed to facilitate the creation of grid-based layouts comprising rows and columns. It offers flexibility and robust functionality, enabling the creation of diverse UI elements, ranging from basic containers to intricate layout structures.
+
+showHeader: true
+---
+
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="with-nativewind/components/Layout/Grid" />
+
+import Wrapper from '../../core-components/nativewind/Wrapper';
+import { transformedCode } from '../../utils';
+import {Grid, GridItem} from '../../core-components/nativewind/grid';
+import {Text} from '../../core-components/nativewind/text';
+import {
+  AppProvider,
+  CodePreview,
+  Table,
+  TableContainer,
+  InlineCode,
+  AddIcon,
+  InfoIcon,
+  Alert,
+  Tabs,
+  CollapsibleCode
+} from '@gluestack/design-system';
+
+
+This is an illustration of **Grid** component.
+
+<Wrapper>
+  <CodePreview
+      showComponentRenderer={ true }
+    showArgsController={ false}
+    _rendererWrapper={{
+      alignItems: 'stretch',
+      padding: 20,
+    }}
+    metaData = {{
+      code: `
+<Grid numColumns={8} spacing={5} className>
+      <GridItem
+        colSpan={3}
+        className="bg-background-100 p-4 rounded-md text-center"
+      >
+        <Text>colSpan = 3</Text>
+      </GridItem>
+      <GridItem
+        colSpan={5}
+        className="bg-background-100 p-4 rounded-md text-center"
+      >
+        <Text>colSpan = 5</Text>
+      </GridItem>
+      <GridItem
+        colSpan={6}
+        className="bg-background-100 p-4 rounded-md text-center"
+      >
+        <Text>colSpan = 6</Text>
+      </GridItem>
+      <GridItem
+        colSpan={4}
+        className="bg-background-100 p-4 rounded-md text-center"
+      >
+        <Text>colSpan = 4</Text>
+      </GridItem>
+      <GridItem
+        colSpan={4}
+        className="bg-background-100 p-4 rounded-md text-center"
+      >
+        <Text>colSpan = 4</Text>
+      </GridItem>
+    </Grid>
+`,
+        transformCode: (code) => {
+          return transformedCode(code);
+        },
+          scope: {
+        Wrapper,
+        Grid,
+        GridItem,
+        Text,
+        },
+      argsType: { },
+    }
+  }
+  />
+</Wrapper>
+
+<br />
+
+## Installation
+
+<Tabs value="cli" type="section">
+<Tabs.TabList>
+      <Tabs.Tab value="cli">
+        <Tabs.TabTitle>CLI</Tabs.TabTitle>
+      </Tabs.Tab>
+     <Tabs.Tab value="manual">
+        <Tabs.TabTitle>Manual</Tabs.TabTitle>
+     </Tabs.Tab>
+  </Tabs.TabList>
+  <Tabs.TabPanels>
+    <Tabs.TabPanel value="cli">
+<>
+
+### Run the following command:
+  ```bash
+  npx gluestack-ui add grid
+  ```
+</>
+    </Tabs.TabPanel>
+    <Tabs.TabPanel value="manual"> 
+<>
+
+### Step 1: Copy and paste the following code into index.tsx in your project.
+<CollapsibleCode>
+
+```jsx 
+%%-- File: core-components/nativewind/grid/index.tsx --%% 
+```
+</CollapsibleCode>
+
+> Note: **This Step is (optional) and only required if you want to add support for [React Server Components](https://vercel.com/blog/understanding-react-server-components), You can skip this and jump to Step 3 directly if you don't have this requirement.**
+
+### Step 2: Copy and paste the following code into index.web.tsx in your project.
+<CollapsibleCode>
+
+```jsx 
+%%-- File: core-components/nativewind/grid/index.web.tsx --%% 
+```
+</CollapsibleCode>
+
+### Step 3: Copy and paste the following code into styles.tsx in your project.
+<CollapsibleCode>
+
+```jsx 
+%%-- File: core-components/nativewind/grid/styles.tsx --%% 
+```
+</CollapsibleCode>
+
+### Step 4: Update the import paths to match your project setup.
+</>
+    </Tabs.TabPanel>
+  </Tabs.TabPanels>
+</Tabs>
+
+## API Reference
+
+To use this component in your project, include the following import statement in your file.
+
+```jsx
+import { Grid, GridItem } from '@/components/ui/grid';
+```
+
+```jsx
+export default () => (
+<Grid >
+<GridItem />
+</Grid>
+);
+```
+
+### Component Props
+
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
+
+#### Grid
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+<>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Type</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Default</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Description</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>numColumns</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>number</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>8</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`This NativeWind Grid component is based on a 12-column grid layout. The value must be between 1 and 12
+            `}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>spacing</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>number</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>0</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`The horizontal and vertical spacing between items. The value must be between 0 and 12`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>rowSpacing</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>number</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>0</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`The vertical spacing between rows. The value must be between 0 and 12`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>columnSpacing</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>number</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>0</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`The horizontal spacing between columns. The value must be between 0 and 12`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</>
+
+#### GridItem
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+<>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Type</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Default</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Description</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>colSpan</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>number</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>1</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`colSpan are integer values between 1 and 12 that specify the number of columns to span.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</>
+
+## Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+### Spacing
+
+To control the space between the grid items, use the `spacing` prop.
+The `spacing` prop takes an integer value between 0 and 12. The default value is 0.
+
+
+

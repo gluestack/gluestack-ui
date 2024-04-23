@@ -28,7 +28,7 @@ const Grid = forwardRef(
     const itemsPerRow = useMemo(() => {
       // get the colSpan of each child
       const colSpanArr = React.Children.map(children, (child: any) => {
-        const colSpan = child.props.colSpan;
+        const colSpan = child.props?.colSpan ? child.props.colSpan : 1;
 
         if (colSpan > numColumns) {
           return numColumns;
@@ -163,14 +163,14 @@ const GridItem = forwardRef(
 
         setFlexBasisValue(flexBasisValue);
       }
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [calculatedWidth, colSpan, numColumns]);
+    }, [calculatedWidth, colSpan, numColumns]); // eslint-disable-line react-hooks/exhaustive-deps
 
     return (
       <View
         ref={ref}
         className={gridItemStyle({ colSpan, class: className })}
         flexBasis={flexBasisValue}
+        colSpan={colSpan}
         {...props}
       />
     );
