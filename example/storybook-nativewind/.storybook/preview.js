@@ -38,6 +38,8 @@ export const parameters = {
           ['Installation', 'Tooling Setup', 'Figma UI Kit'],
           'Core Concepts',
           ['Accessibility', 'Universal'],
+          'Theme Configuration',
+          ['Default Tokens', 'Customizing Theme'],
         ],
         'Components',
         [
@@ -73,15 +75,7 @@ export const parameters = {
           ['Fab'],
         ],
         'Guides',
-        [
-          'Theme Configuration',
-          ['Default Tokens', 'Customizing Theme'],
-
-          'More',
-          ['Changelog'],
-          'Recipes',
-          ['Linear Gradient'],
-        ],
+        ['More', ['Changelog'], 'Recipes', ['Linear Gradient']],
       ],
       icons: [
         {

@@ -22,14 +22,15 @@ export const parameters = {
         'Home',
         [
           'Overview',
+          ['Introduction', 'All Components'],
+          'Getting Started',
           [
-            'Introduction',
-            'All Components',
             'Installation',
             'Incremental Adoption',
             'VS Code Extensions',
             'Figma UI Kit',
           ],
+
           'Core Concepts',
           ['Themed Library', 'Unstyled Library', 'Accessibility', 'Universal'],
           'Performance',
