@@ -169,8 +169,9 @@ const GridItem = forwardRef(
       <View
         ref={ref}
         className={gridItemStyle({ colSpan, class: className })}
-        flexBasis={flexBasisValue}
-        colSpan={colSpan}
+        style={{
+          flexBasis: flexBasisValue,
+        }}
         {...props}
       />
     );
