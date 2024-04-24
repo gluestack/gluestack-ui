@@ -45,36 +45,36 @@ This is an illustration of **Grid** component.
     }}
     metaData = {{
       code: `
-<Grid numColumns={8} spacing={5} className>
+<Grid numColumns={8} spacing={5}>
       <GridItem
         colSpan={3}
         className="bg-background-100 p-4 rounded-md text-center"
       >
-        <Text>colSpan = 3</Text>
+        <Text className="text-sm">colSpan = 3</Text>
       </GridItem>
       <GridItem
         colSpan={5}
         className="bg-background-100 p-4 rounded-md text-center"
       >
-        <Text>colSpan = 5</Text>
+        <Text className="text-sm">colSpan = 5</Text>
       </GridItem>
       <GridItem
         colSpan={6}
         className="bg-background-100 p-4 rounded-md text-center"
       >
-        <Text>colSpan = 6</Text>
+        <Text className="text-sm">colSpan = 6</Text>
       </GridItem>
       <GridItem
         colSpan={4}
         className="bg-background-100 p-4 rounded-md text-center"
       >
-        <Text>colSpan = 4</Text>
+        <Text className="text-sm">colSpan = 4</Text>
       </GridItem>
       <GridItem
         colSpan={4}
         className="bg-background-100 p-4 rounded-md text-center"
       >
-        <Text>colSpan = 4</Text>
+        <Text className="text-sm">colSpan = 4</Text>
       </GridItem>
     </Grid>
 `,
@@ -205,7 +205,7 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
             <Table.TText>number</Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>8</Table.TText>
+            <Table.TText>12</Table.TText>
           </Table.TD>
           <Table.TD>
             <Table.TText>{`This NativeWind Grid component is based on a 12-column grid layout. The value must be between 1 and 12
@@ -225,7 +225,7 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
             <Table.TText>0</Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>{`The horizontal and vertical spacing between items. The value must be between 0 and 12`}</Table.TText>
+            <Table.TText>{`The horizontal and vertical spacing between grid items. The value must be between 0 and 12`}</Table.TText>
           </Table.TD>
         </Table.TR>
         <Table.TR>
@@ -319,5 +319,187 @@ The Examples section provides visual representations of the different variants o
 To control the space between the grid items, use the `spacing` prop.
 The `spacing` prop takes an integer value between 0 and 12. The default value is 0.
 
+<Wrapper>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={true}
+  _rendererWrapper={{
+      alignItems: 'stretch',
+      padding: 20,
+    }}
+    metaData={{
+      code: `
+    <Grid numColumns={9} {...props}>
+      <GridItem
+        colSpan={3}
+        className="bg-background-100 p-4 rounded-md text-center"
+      >
+        <Text>A</Text>
+      </GridItem>
+       <GridItem
+        colSpan={3}
+        className="bg-background-100 p-4 rounded-md text-center"
+      >
+        <Text>B</Text>
+      </GridItem>
+      <GridItem
+        colSpan={3}
+        className="bg-background-100 p-4 rounded-md text-center"
+      >
+        <Text>C</Text>
+      </GridItem>
+    </Grid>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+       Grid,
+        GridItem,
+        Text,
+        Wrapper,
+      },
+      argsType: {
+        spacing: {
+          control: 'select',
+          options: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+          default: [0],
+        },
+      },
+    }}
+  />
+</Wrapper>
 
+### Row and column spacing
 
+You can define the row gaps and column gaps independently with the `rowSpacing` and `columnSpacing` props.
+These are also integer values between 0 and 12. The default value is 0.
+
+<Wrapper>
+  <CodePreview
+      showComponentRenderer={ true }
+    showArgsController={ false}
+    _rendererWrapper={{
+      alignItems: 'stretch',
+      padding: 20,
+    }}
+    metaData = {{
+      code: `
+<Grid numColumns={6} rowSpacing={2} columnSpacing={4}>
+      <GridItem
+        colSpan={2}
+        className="bg-background-100 p-4 rounded-md text-center"
+      >
+        <Text className="text-sm">01</Text>
+      </GridItem>
+      <GridItem
+        colSpan={2}
+        className="bg-background-100 p-4 rounded-md text-center"
+      >
+        <Text className="text-sm">02</Text>
+      </GridItem>
+      <GridItem
+        colSpan={2}
+        className="bg-background-100 p-4 rounded-md text-center"
+      >
+        <Text className="text-sm">03</Text>
+      </GridItem>
+      <GridItem
+        colSpan={2}
+        className="bg-background-100 p-4 rounded-md text-center"
+      >
+        <Text className="text-sm">04</Text>
+      </GridItem>
+      <GridItem
+        colSpan={2}
+        className="bg-background-100 p-4 rounded-md text-center"
+      >
+        <Text className="text-sm">05</Text>
+      </GridItem>
+            <GridItem
+        colSpan={2}
+        className="bg-background-100 p-4 rounded-md text-center"
+      >
+        <Text className="text-sm">06</Text>
+      </GridItem>
+    </Grid>
+`,
+        transformCode: (code) => {
+          return transformedCode(code);
+        },
+          scope: {
+        Wrapper,
+        Grid,
+        GridItem,
+        Text,
+        },
+      argsType: { },
+    }
+  }
+  />
+</Wrapper>
+
+### Nested Grids
+
+The following example dipicts how easily you can nest grids to create complex layouts with multiple levels of nesting.
+
+<Wrapper>
+  <CodePreview
+      showComponentRenderer={ true }
+    showArgsController={ false}
+    _rendererWrapper={{
+      alignItems: 'stretch',
+      padding: 20,
+    }}
+    metaData = {{
+      code: `
+<Grid numColumns={8} spacing={3}>
+      <GridItem
+        colSpan={4}
+        className="bg-background-100 p-3 rounded-md text-center"
+      >
+        <Text className="text-sm">01</Text>
+      </GridItem>
+      <GridItem
+        colSpan={4}
+        className="bg-background-100 p-3 rounded-md text-center"
+      >
+        <Text className="text-sm">02</Text>
+      </GridItem>
+      <GridItem
+        colSpan={4}
+        className="bg-background-100 p-3 rounded-md text-center"
+      >
+      <Grid numColumns={4} spacing={5}>
+        <GridItem colSpan={1} className="bg-background-200 p-3 rounded-md"><Text className="text-sm">01</Text></GridItem>
+        <GridItem colSpan={3} className="bg-background-200 p-3 rounded-md"><Text className="text-sm">04</Text></GridItem>
+        <GridItem colSpan={4} className="bg-background-200 p-3 rounded-md"><Text className="text-sm">04</Text></GridItem>
+        </Grid>
+      </GridItem>
+      <GridItem
+        colSpan={4}
+        className="bg-background-100 p-3 rounded-md text-center"
+      >
+        <Grid numColumns={4} spacing={5}>
+        <GridItem colSpan={2} className="bg-background-200 p-3 rounded-md"><Text className="text-sm">01</Text></GridItem>
+        <GridItem colSpan={2} className="bg-background-200 p-3 rounded-md"><Text className="text-sm">02</Text></GridItem>
+        <GridItem colSpan={2} className="bg-background-200 p-3 rounded-md"><Text className="text-sm">03</Text></GridItem>
+        <GridItem colSpan={2} className="bg-background-200 p-3 rounded-md"><Text className="text-sm">04</Text></GridItem>
+        </Grid>
+      </GridItem>
+    </Grid>
+`,
+        transformCode: (code) => {
+          return transformedCode(code);
+        },
+          scope: {
+        Wrapper,
+        Grid,
+        GridItem,
+        Text,
+        },
+      argsType: { },
+    }
+  }
+  />
+</Wrapper>

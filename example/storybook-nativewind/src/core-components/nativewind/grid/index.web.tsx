@@ -4,9 +4,9 @@ import { gridStyle, gridItemStyle } from './styles';
 const Grid = ({
   className,
   numColumns = 12,
-  spacing = 0,
-  rowSpacing = 0,
-  columnSpacing = 0,
+  spacing,
+  rowSpacing,
+  columnSpacing,
   ...props
 }: any) => {
   return (
