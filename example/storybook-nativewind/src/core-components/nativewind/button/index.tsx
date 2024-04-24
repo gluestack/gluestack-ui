@@ -221,6 +221,25 @@ const buttonIconStyle = tva({
   },
 });
 
+const buttonGroupStyle = tva({
+  base: '',
+  variants: {
+    space: {
+      'xs': 'gap-1',
+      'sm': 'gap-2',
+      'md': 'gap-3',
+      'lg': 'gap-4',
+      'xl': 'gap-5',
+      '2xl': 'gap-6',
+      '3xl': 'gap-7',
+      '4xl': 'gap-8',
+    },
+    isAttached: {
+      true: 'gap-0',
+    },
+  },
+});
+
 type IButtonProps = Omit<React.ComponentProps<typeof UIButton>, 'context'> &
   VariantProps<typeof buttonStyle>;
 const Button = React.forwardRef(
@@ -371,9 +390,32 @@ const ButtonIcon = React.forwardRef(
   }
 );
 
+type IButtonGroupProps = React.ComponentProps<typeof UIButton.Group> &
+  VariantProps<typeof buttonGroupStyle>;
+const ButtonGroup = React.forwardRef(
+  (
+    {
+      className,
+      space = 'md',
+      isAttached = false,
+      ...props
+    }: { className?: string } & IButtonGroupProps,
+    ref?: any
+  ) => {
+    return (
+      <UIButton.Group
+        className={buttonGroupStyle({ class: className, space, isAttached })}
+        {...props}
+        ref={ref}
+      />
+    );
+  }
+);
+
 Button.displayName = 'Button';
 ButtonText.displayName = 'ButtonText';
 ButtonSpinner.displayName = 'ButtonSpinner';
 ButtonIcon.displayName = 'ButtonIcon';
+ButtonGroup.displayName = 'ButtonGroup';
 
-export { Button, ButtonText, ButtonSpinner, ButtonIcon };
+export { Button, ButtonText, ButtonSpinner, ButtonIcon, ButtonGroup };
