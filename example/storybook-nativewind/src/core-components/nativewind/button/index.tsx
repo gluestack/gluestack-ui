@@ -1,14 +1,14 @@
 'use client';
-import React from 'react';
+import React, { useMemo } from 'react';
 import { createButton } from '@gluestack-ui/button';
-
+import { Svg } from 'react-native-svg';
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import {
   withStyleContext,
   useStyleContext,
 } from '@gluestack-ui/nativewind-utils/withStyleContext';
 import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withStyleContextAndStates';
-import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
+import { cssInterop } from 'nativewind';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 
 import {
@@ -18,6 +18,33 @@ import {
   View,
   Platform,
 } from 'react-native';
+
+const PrimitiveIcon = React.forwardRef(
+  (
+    { height, width, fill = 'none', color, size, as: AsComp, ...props }: any,
+    ref?: any
+  ) => {
+    const sizeProps = useMemo(() => {
+      return size ? { size } : { height, width };
+    }, [size, height, width]);
+
+    if (AsComp) {
+      return (
+        <AsComp ref={ref} fill={fill} color={color} {...props} {...sizeProps} />
+      );
+    }
+    return (
+      <Svg
+        ref={ref}
+        height={height}
+        width={width}
+        fill={fill}
+        color={color}
+        {...props}
+      />
+    );
+  }
+);
 
 const SCOPE = 'BUTTON';
 const Root =
@@ -30,14 +57,25 @@ const UIButton = createButton({
   Text,
   Group: View,
   Spinner: ActivityIndicator,
-  Icon: View,
+  Icon: PrimitiveIcon,
 });
 
 cssInterop(UIButton, { className: 'style' });
 cssInterop(UIButton.Text, { className: 'style' });
 cssInterop(UIButton.Group, { className: 'style' });
 cssInterop(UIButton.Spinner, { className: 'style' });
-cssInterop(UIButton.Icon, { className: 'style' });
+cssInterop(UIButton.Icon, {
+  className: {
+    target: 'style',
+    nativeStyleToProp: {
+      height: 'height',
+      width: 'width',
+      //@ts-ignore
+      fill: 'fill',
+      color: 'color',
+    },
+  },
+});
 
 const buttonStyle = tva({
   base: 'group/button rounded bg-primary-500 flex-row items-center justify-center data-[focus-visible=true]:web:outline-none data-[focus-visible=true]:web:ring-2 data-[disabled=true]:opacity-40',
@@ -267,8 +305,6 @@ const ButtonIcon = React.forwardRef(
   (
     {
       className,
-      as: AsComp,
-      fill = 'none',
       size,
       ...props
     }: IButtonIcon & {
@@ -293,21 +329,26 @@ const ButtonIcon = React.forwardRef(
     }
     const { color = localColor } = props;
 
-    if (AsComp) {
+    if (typeof size === 'number') {
       return (
-        <AsComp
-          fill={fill}
-          color={color}
-          {...props}
+        <UIButton.Icon
           ref={ref}
-          className={buttonIconStyle({
-            parentVariants: {
-              size: parentSize,
-              variant: parentVariant,
-            },
-            size,
-            class: className,
-          })}
+          {...props}
+          color={color}
+          className={buttonIconStyle({ class: className })}
+          size={size}
+        />
+      );
+    } else if (
+      (props.height !== undefined || props.width !== undefined) &&
+      size === undefined
+    ) {
+      return (
+        <UIButton.Icon
+          ref={ref}
+          {...props}
+          color={color}
+          className={buttonIconStyle({ class: className })}
         />
       );
     }
@@ -323,8 +364,6 @@ const ButtonIcon = React.forwardRef(
           size,
           class: className,
         })}
-        //@ts-ignore
-        fill={fill}
         color={color}
         ref={ref}
       />

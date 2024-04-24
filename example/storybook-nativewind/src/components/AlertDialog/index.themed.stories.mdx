@@ -51,7 +51,7 @@ import Wrapper from '../../core-components/themed/Wrapper';
 
 This is an illustration of **AlertDialog** component.
 
-<>
+<Wrapper>
   <CodePreview
     showComponentRenderer={ true }
   showArgsController = { false}
@@ -137,7 +137,7 @@ This is an illustration of **AlertDialog** component.
   }
 }
 />
-</>
+</Wrapper>
 
 <br/>
 
@@ -637,6 +637,15 @@ An AlertDialog component with adjustable sizes, providing flexible and visually 
   <CodePreview
     showComponentRenderer={true}
     showArgsController={true}
+     _rendererWrapper={{
+      sx: {
+        minHeight: 300,
+        "@lg": {
+          minWidth: 450,
+          height: "100%"
+        }
+      }
+    }}
     metaData={{
       code: `
       function App(){

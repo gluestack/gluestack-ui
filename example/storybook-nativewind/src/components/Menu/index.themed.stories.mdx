@@ -552,7 +552,7 @@ The Examples section provides visual representations of the different variants o
 
 Menu Component provides different placement options, allowing you to position it dynamically based on user interaction or layout requirements.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={true}
@@ -644,13 +644,13 @@ Menu Component provides different placement options, allowing you to position it
       },
     }}
   />
-</AppProvider>
+</Wrapper>
 
 #### Disabled MenuItem
 
 Our Menu component supports dynamic disabling of menu items, enabling you to control the availability and interaction of specific menu options based on conditions or user permissions.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -722,13 +722,13 @@ Our Menu component supports dynamic disabling of menu items, enabling you to con
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>
 
 #### Selection
 
 Our menu component supports selection mode, logging the selected menu item key to the console when a selection change occurs. Based on the selected key, it prints a corresponding message, indicating a route push for the menu items in the example given below.
 
-<AppProvider>
+<Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
@@ -814,4 +814,4 @@ Our menu component supports selection mode, logging the selected menu item key t
       argsType: {},
     }}
   />
-</AppProvider>
+</Wrapper>

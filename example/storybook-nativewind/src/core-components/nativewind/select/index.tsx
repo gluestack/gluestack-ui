@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
+import { Svg } from 'react-native-svg';
 import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withStyleContextAndStates';
 import {
   withStyleContext,
@@ -7,7 +8,7 @@ import {
 } from '@gluestack-ui/nativewind-utils/withStyleContext';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 import { createSelect } from '@gluestack-ui/select';
-import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
+import { cssInterop } from 'nativewind';
 import {
   Actionsheet,
   ActionsheetContent,
@@ -22,13 +23,12 @@ import {
   ActionsheetSectionList,
   ActionsheetSectionHeaderText,
 } from './select-actionsheet';
-
 import { Pressable, View, TextInput, Platform } from 'react-native';
 
 /** Select Components */
 
 const selectIconStyle = tva({
-  base: 'text-background-500',
+  base: '',
   parentVariants: {
     size: {
       '2xs': 'h-3 w-3',
@@ -82,6 +82,33 @@ const selectInputStyle = tva({
   },
 });
 
+const PrimitiveIcon = React.forwardRef(
+  (
+    { height, width, fill = 'none', color, size, as: AsComp, ...props }: any,
+    ref?: any
+  ) => {
+    const sizeProps = useMemo(() => {
+      return size ? { size } : { height, width };
+    }, [size, height, width]);
+
+    if (AsComp) {
+      return (
+        <AsComp ref={ref} fill={fill} color={color} {...props} {...sizeProps} />
+      );
+    }
+    return (
+      <Svg
+        ref={ref}
+        height={height}
+        width={width}
+        fill={fill}
+        color={color}
+        {...props}
+      />
+    );
+  }
+);
+
 const UISelect = createSelect(
   {
     Root: View,
@@ -91,7 +118,7 @@ const UISelect = createSelect(
         ? withStyleContext(Pressable)
         : withStyleContextAndStates(Pressable),
     Input: TextInput,
-    Icon: View,
+    Icon: PrimitiveIcon,
   },
   {
     Portal: Actionsheet,
@@ -112,11 +139,22 @@ const UISelect = createSelect(
 cssInterop(UISelect, { className: 'style' });
 cssInterop(UISelect.Input, { className: 'style' });
 cssInterop(UISelect.Trigger, { className: 'style' });
-cssInterop(UISelect.Icon, { className: 'style' });
+// @ts-ignore
+cssInterop(UISelect.Icon, {
+  className: {
+    target: 'style',
+    nativeStyleToProp: {
+      height: 'height',
+      width: 'width',
+      //@ts-ignore
+      fill: 'fill',
+      color: 'color',
+    },
+  },
+});
 
 type ISelectProps = VariantProps<typeof selectStyle> &
   React.ComponentProps<typeof UISelect>;
-
 const Select = React.forwardRef(
   (
     { className, ...props }: ISelectProps & { className?: string },
@@ -136,7 +174,6 @@ const Select = React.forwardRef(
 
 type ISelectTriggerProps = VariantProps<typeof selectTriggerStyle> &
   React.ComponentProps<typeof UISelect.Trigger>;
-
 const SelectTrigger = React.forwardRef(
   (
     {
@@ -164,7 +201,6 @@ const SelectTrigger = React.forwardRef(
 
 type ISelectInputProps = VariantProps<typeof selectInputStyle> &
   React.ComponentProps<typeof UISelect.Input>;
-
 const SelectInput = React.forwardRef(
   (
     { className, ...props }: ISelectInputProps & { className?: string },
@@ -189,39 +225,43 @@ const SelectInput = React.forwardRef(
 
 type ISelectIcon = VariantProps<typeof selectIconStyle> &
   React.ComponentProps<typeof UISelect.Icon>;
-
 const SelectIcon = React.forwardRef(
   (
     {
       className,
-      as: AsComp,
       size,
-      // @ts-ignore
-      fill = 'none',
+      color = 'gray',
       ...props
-    }: ISelectIcon & { as?: any },
+    }: ISelectIcon & {
+      as?: any;
+      color?: string;
+      fill?: string;
+      className?: any;
+    },
     ref?: any
   ) => {
     const { size: parentSize } = useStyleContext();
-    if (AsComp) {
+    if (typeof size === 'number') {
       return (
-        <View
-          className={selectIconStyle({
-            class: className,
-            parentVariants: {
-              size: parentSize,
-            },
-            size,
-          })}
-        >
-          <AsComp
-            height={'100%'}
-            width={'100%'}
-            ref={ref}
-            fill={fill}
-            {...props}
-          />
-        </View>
+        <UISelect.Icon
+          ref={ref}
+          {...props}
+          color={color}
+          className={selectIconStyle({ class: className })}
+          size={size}
+        />
+      );
+    } else if (
+      (props?.height !== undefined || props?.width !== undefined) &&
+      size === undefined
+    ) {
+      return (
+        <UISelect.Icon
+          ref={ref}
+          {...props}
+          color={color}
+          className={selectIconStyle({ class: className })}
+        />
       );
     }
     return (
@@ -235,7 +275,7 @@ const SelectIcon = React.forwardRef(
         })}
         ref={ref}
         //@ts-ignore
-        fill={fill}
+        color={color}
         {...props}
       />
     );

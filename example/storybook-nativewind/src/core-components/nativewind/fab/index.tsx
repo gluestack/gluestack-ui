@@ -1,8 +1,9 @@
 'use client';
-import React from 'react';
+import React, { useMemo } from 'react';
 import { createFab } from '@gluestack-ui/fab';
-import { Platform, Text, View } from 'react-native';
+import { Platform, Text } from 'react-native';
 import { Pressable } from 'react-native';
+import { Svg } from 'react-native-svg';
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import {
   withStyleContext,
@@ -12,6 +13,41 @@ import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withSt
 import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 
+const PrimitiveIcon = React.forwardRef(
+  (
+    {
+      height,
+      width,
+      fill = 'none',
+      color = 'gray',
+      size,
+      as: AsComp,
+      ...props
+    }: any,
+    ref?: any
+  ) => {
+    const sizeProps = useMemo(() => {
+      return size ? { size } : { height, width };
+    }, [size, height, width]);
+
+    if (AsComp) {
+      return (
+        <AsComp ref={ref} fill={fill} color={color} {...props} {...sizeProps} />
+      );
+    }
+    return (
+      <Svg
+        ref={ref}
+        height={height}
+        width={width}
+        fill={fill}
+        color={color}
+        {...props}
+      />
+    );
+  }
+);
+
 const SCOPE = 'FAB';
 const UIFab = createFab({
   Root:
@@ -19,12 +55,23 @@ const UIFab = createFab({
       ? withStyleContext(Pressable, SCOPE)
       : withStyleContextAndStates(Pressable, SCOPE),
   Label: Text,
-  Icon: View,
+  Icon: PrimitiveIcon,
 });
 
 cssInterop(UIFab, { className: 'style' });
 cssInterop(UIFab.Label, { className: 'style' });
-cssInterop(UIFab.Icon, { className: 'style' });
+cssInterop(UIFab.Icon, {
+  className: {
+    target: 'style',
+    nativeStyleToProp: {
+      height: 'height',
+      width: 'width',
+      //@ts-ignore
+      fill: 'fill',
+      color: 'color',
+    },
+  },
+});
 
 const fabStyle = tva({
   base: 'group/fab bg-primary-500 rounded-full z-20 p-4 flex-row items-center justify-center absolute hover:bg-primary-600 active:bg-primary-700 disabled:opacity-40 disabled:pointer-events-all disabled:cursor-not-allowed data-[focus=true]:web:outline-none data-[focus-visible=true]:web:ring-2 data-[focus-visible=true]:web:ring-primary-700',
@@ -172,8 +219,6 @@ const FabIcon = React.forwardRef(
     {
       size,
       className,
-      as: AsComp,
-      fill = 'none',
       color = 'gray',
       ...props
     }: {
@@ -186,20 +231,26 @@ const FabIcon = React.forwardRef(
   ) => {
     const { size: parentSize } = useStyleContext(SCOPE);
 
-    if (AsComp) {
+    if (typeof size === 'number') {
       return (
-        <AsComp
+        <UIFab.Icon
           ref={ref}
           {...props}
-          fill={fill}
           color={color}
-          className={fabIconStyle({
-            parentVariants: {
-              size: parentSize,
-            },
-            size,
-            class: className,
-          })}
+          className={fabIconStyle({ class: className })}
+          size={size}
+        />
+      );
+    } else if (
+      (props.height !== undefined || props.width !== undefined) &&
+      size === undefined
+    ) {
+      return (
+        <UIFab.Icon
+          ref={ref}
+          {...props}
+          color={color}
+          className={fabIconStyle({ class: className })}
         />
       );
     }
@@ -214,8 +265,6 @@ const FabIcon = React.forwardRef(
           size,
           class: className,
         })}
-        // @ts-ignore
-        fill={fill}
         color={color}
       />
     );

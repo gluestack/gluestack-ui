@@ -20,7 +20,7 @@ cssInterop(UIToast.Title, { className: 'style' });
 cssInterop(UIToast.Description, { className: 'style' });
 
 const toastStyle = tva({
-  base: 'px-4 py-3 m-3 rounded-sm flex-row web:pointer-events-auto shadow-lg',
+  base: 'px-4 py-3 m-3 rounded flex-row web:pointer-events-auto shadow-lg',
   variants: {
     action: {
       error: 'bg-background-error border-error-300',

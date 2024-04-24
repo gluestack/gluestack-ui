@@ -19,7 +19,7 @@ const SelectBasic = ({ size = 'md', variant = 'outline', ...props }: any) => {
     <Select {...props}>
       <SelectTrigger size={size} variant={variant}>
         <SelectInput placeholder="Select option" />
-        <SelectIcon className="mr-3" as={ChevronDownIcon} color="red" />
+        <SelectIcon className="mr-3" as={ChevronDownIcon} />
       </SelectTrigger>
       <SelectPortal>
         <SelectBackdrop />

@@ -1,6 +1,7 @@
 'use client';
-import React from 'react';
+import React, { useMemo } from 'react';
 import { createInput } from '@gluestack-ui/input';
+import { Svg } from 'react-native-svg';
 import { View, Pressable, TextInput, Platform } from 'react-native';
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import {
@@ -8,10 +9,37 @@ import {
   useStyleContext,
 } from '@gluestack-ui/nativewind-utils/withStyleContext';
 import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withStyleContextAndStates';
-import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
+import { cssInterop } from 'nativewind';
 import { withStates } from '@gluestack-ui/nativewind-utils/withStates';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 const SCOPE = 'INPUT';
+
+const PrimitiveIcon = React.forwardRef(
+  (
+    { height, width, fill = 'none', color, size, as: AsComp, ...props }: any,
+    ref?: any
+  ) => {
+    const sizeProps = useMemo(() => {
+      return size ? { size } : { height, width };
+    }, [size, height, width]);
+
+    if (AsComp) {
+      return (
+        <AsComp ref={ref} fill={fill} color={color} {...props} {...sizeProps} />
+      );
+    }
+    return (
+      <Svg
+        ref={ref}
+        height={height}
+        width={width}
+        fill={fill}
+        color={color}
+        {...props}
+      />
+    );
+  }
+);
 
 const UIInput = createInput({
   // @ts-ignore
@@ -19,7 +47,7 @@ const UIInput = createInput({
     Platform.OS === 'web'
       ? withStyleContext(View, SCOPE)
       : withStyleContextAndStates(View, SCOPE),
-  Icon: View,
+  Icon: PrimitiveIcon,
   Slot: Pressable,
   Input: Platform.OS === 'web' ? TextInput : withStates(TextInput),
 });
@@ -67,7 +95,7 @@ const inputSlotStyle = tva({
 });
 
 const inputFieldStyle = tva({
-  base: 'flex-1 text-typography-900 web:cursor-text web:data-[disabled=true]:cursor-not-allowed py-auto px-3 placeholder:text-typography-500',
+  base: 'flex-1 text-typography-900 py-auto px-3 placeholder:text-typography-500 h-full ios:leading-[0px] web:cursor-text web:data-[disabled=true]:cursor-not-allowed',
 
   parentVariants: {
     variant: {
@@ -77,25 +105,37 @@ const inputFieldStyle = tva({
     },
 
     size: {
-      '2xs': 'text-2xs leading-[0px]',
-      'xs': 'text-xs leading-[0px]',
-      'sm': 'text-sm leading-[0px]',
-      'md': 'text-base leading-[0px]',
-      'lg': 'text-lg leading-[0px]',
-      'xl': 'text-xl leading-[0px]',
-      '2xl': 'text-2xl leading-[0px]',
-      '3xl': 'text-3xl leading-[0px]',
-      '4xl': 'text-4xl leading-[0px]',
-      '5xl': 'text-5xl leading-[0px]',
-      '6xl': 'text-6xl leading-[0px]',
+      '2xs': 'text-2xs',
+      'xs': 'text-xs',
+      'sm': 'text-sm',
+      'md': 'text-base',
+      'lg': 'text-lg',
+      'xl': 'text-xl',
+      '2xl': 'text-2xl',
+      '3xl': 'text-3xl',
+      '4xl': 'text-4xl',
+      '5xl': 'text-5xl',
+      '6xl': 'text-6xl',
     },
   },
 });
 
 cssInterop(UIInput, { className: 'style' });
-cssInterop(UIInput.Icon, { className: 'style' });
 cssInterop(UIInput.Slot, { className: 'style' });
 cssInterop(UIInput.Input, { className: 'style' });
+// @ts-ignore
+cssInterop(UIInput.Icon, {
+  className: {
+    target: 'style',
+    nativeStyleToProp: {
+      height: 'height',
+      width: 'width',
+      //@ts-ignore
+      fill: 'fill',
+      color: 'color',
+    },
+  },
+});
 
 type IInputProps = React.ComponentProps<typeof UIInput> &
   VariantProps<typeof inputStyle>;
@@ -125,28 +165,39 @@ const InputIcon = React.forwardRef(
   (
     {
       className,
-      fill = 'none',
-      as: AsComp,
       color = '#8C8C8C',
+      size,
       ...props
-    }: { className?: any; fill?: string; color?: string } & IInputIconProps,
+    }: {
+      className?: any;
+      fill?: string;
+      color?: string;
+      as?: any;
+    } & IInputIconProps,
     ref?: any
   ) => {
     const { size: parentSize } = useStyleContext(SCOPE);
 
-    if (AsComp) {
+    if (typeof size === 'number') {
       return (
-        <AsComp
-          fill={fill}
-          color={color}
-          {...props}
+        <UIInput.Icon
           ref={ref}
-          className={inputIconStyle({
-            parentVariants: {
-              size: parentSize,
-            },
-            class: className,
-          })}
+          {...props}
+          className={inputIconStyle({ class: className })}
+          size={size}
+          color={color}
+        />
+      );
+    } else if (
+      (props.height !== undefined || props.width !== undefined) &&
+      size === undefined
+    ) {
+      return (
+        <UIInput.Icon
+          ref={ref}
+          {...props}
+          color={color}
+          className={inputIconStyle({ class: className })}
         />
       );
     }
@@ -154,14 +205,13 @@ const InputIcon = React.forwardRef(
       <UIInput.Icon
         ref={ref}
         {...props}
-        // @ts-ignore
-        fill={fill}
         className={inputIconStyle({
           parentVariants: {
             size: parentSize,
           },
           class: className,
         })}
+        color={color}
       />
     );
   }
