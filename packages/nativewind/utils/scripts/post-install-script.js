@@ -29,18 +29,13 @@ function main() {
     path.join(processPath, 'scripts', 'patches'),
     path.join(userDirectory, 'patches')
   );
-
-  fs.writeFileSync(
-    path.join(userDirectory, 'patches', 'text.txt'),
-    'Hello World'
-  );
   // use npm if user is using npm or yarn if user is using yarn
   try {
     const packageManager = fs.existsSync(path.join(userDirectory, 'yarn.lock'))
       ? 'yarn'
       : 'npm';
 
-    const results = spawnSync(packageManager, ['patch-package'], {
+    spawnSync(packageManager, ['patch-package'], {
       cwd: userDirectory,
       stdio: 'inherit',
     });
