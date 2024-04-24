@@ -1,10 +1,9 @@
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
-import { Platform } from 'react-native';
 
-const baseStyle = Platform.select({
-  web: 'font-sans tracking-sm bg-transparent border-0 box-border display-inline list-none margin-0 padding-0 position-relative text-start no-underline whitespace-pre-wrap word-wrap-break-word',
-  default: '',
-});
+import { isWeb } from '@gluestack-ui/nativewind-utils/IsWeb';
+const baseStyle = isWeb
+  ? 'font-sans tracking-sm bg-transparent border-0 box-border display-inline list-none margin-0 padding-0 position-relative text-start no-underline whitespace-pre-wrap word-wrap-break-word'
+  : '';
 
 export const headingStyle = tva({
   base: `text-typography-900 font-bold font-heading tracking-sm my-0 ${baseStyle}`,

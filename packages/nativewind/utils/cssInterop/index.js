@@ -1,2 +1,2 @@
-const cssInterop = (_A, _B) => {};
+const cssInterop = (_A, _B) => { };
 export { cssInterop };
