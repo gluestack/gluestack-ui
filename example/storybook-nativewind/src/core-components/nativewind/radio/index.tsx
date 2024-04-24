@@ -162,7 +162,7 @@ const RadioGroup = React.forwardRef(
   }
 );
 
-type IRadioIndicatorProps = React.ComponentProps<typeof UIRadio.Group> &
+type IRadioIndicatorProps = React.ComponentProps<typeof UIRadio.Indicator> &
   VariantProps<typeof radioIndicatorStyle>;
 const RadioIndicator = React.forwardRef(
   (
@@ -183,7 +183,7 @@ const RadioIndicator = React.forwardRef(
   }
 );
 
-type IRadioLabelProps = React.ComponentProps<typeof UIRadio.Group> &
+type IRadioLabelProps = React.ComponentProps<typeof UIRadio.Label> &
   VariantProps<typeof radioIndicatorStyle>;
 const RadioLabel = React.forwardRef(
   (
