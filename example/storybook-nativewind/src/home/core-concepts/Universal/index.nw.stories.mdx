@@ -1,0 +1,33 @@
+---
+title: Universal | gluestack-ui
+description: Universal provide gluestack snippets, which are shorthand for commonly used gluestack-ui components.
+---
+
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+
+<Meta title="with-nativewind/Home/Core Concepts/Universal" />
+
+# Universal
+
+All `gluestack-ui` components are universal out of the box, eliminating the need for separate development for both web and mobile platforms, which is the traditional approach.
+
+With `gluestack-ui`, developers can now craft beautiful interfaces with a single set of code that seamlessly operates across all devices, removing the need for the tedious and time-consuming process of crafting and maintaining two separate codebase for distinct platforms.
+
+You can also use `gluestack-ui` to create styles specific to a particular platform such as Web, iOS or Android. using `web:`, `ios:` and `android:` platform modifiers respectively.
+
+```jsx
+import { Button, ButtonText} from '@/components/Button';
+
+function App {
+  return (
+    <Button
+      className="web:bg-red-500 ios:bg-blue-500 android:bg-green-500">
+     <ButtonText>Hello World</ButtonText>
+    </Button>
+  )
+}
+```
+
+## Component Showcase
+
+Discover how gluestack-ui delivers a smooth and consistent user experience across various device types. You can view live example [here](https://ui-kitchensink.gluestack.io/).

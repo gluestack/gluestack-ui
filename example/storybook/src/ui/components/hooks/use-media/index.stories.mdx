@@ -1,0 +1,46 @@
+---
+title: useMedia | gluestack-ui
+description: useMedia is a custom hook that returns the breakpoints object with boolean value if your current screen size is a particular breakpoint or not.
+showHeader: false
+---
+
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+
+<Meta title="ui/Components/Hooks/useMedia" />
+
+# useMedia
+
+**useMedia** is a custom hook that returns the breakpoints object with boolean value if your current screen size is a particular breakpoint or not. It is also responsive to window resizing and returning the appropriate value according to the new window size.
+
+### Import
+
+To use the `useMedia` in your project, import `useMedia` from `@gluestack-ui/themed`. as Demonstrated below.
+
+```jsx
+import { useMedia } from '@gluestack-ui/themed';
+```
+
+```jsx
+const MediaExample = () => {
+  const media = useMedia();
+
+  return (
+    <View
+      style={{
+        flexDirection: media.lg ? 'row' : 'column',
+        gap: 10,
+      }}
+    >
+      <StyledBox>
+        <StyledText>Universal</StyledText>
+      </StyledBox>
+      <StyledBox>
+        <StyledText>Performant</StyledText>
+      </StyledBox>
+      <StyledBox>
+        <StyledText>Accessible</StyledText>
+      </StyledBox>
+    </View>
+  );
+};
+```

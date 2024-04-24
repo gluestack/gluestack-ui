@@ -1,0 +1,21 @@
+---
+title: RSC | gluestack-ui
+description: gluestack-ui components can be rendered on the server.
+---
+
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+
+<Meta title="ui/Guides/Configuration/React Server Components" />
+
+# React Server Components (RSC)
+
+Server Component is a new concept that has been introduced in React 18, and been adopted by the Next.js 13.4 within the /app folder. Server Components allow you to render components on the server, and reduce the amount of JavaScript sent to the client. Server Components can run during the build, letting you read from the filesystem or fetch static content. They can also run on the server, letting you access your data layer without having to build an API.
+
+## RSC support in gluestack-ui
+
+**gluestack-ui components are compatible with Server Components.** You can use gluestack-ui components inside a server component.
+Since gluestack-ui components run on client side because of interactions and runtime JavaScript, we have exported all gluestack-ui components with `"use client"` narrative.
+
+You can [install](/docs/guides/install-nextjs) Next.js app router + gluestack-ui application for more details on how to use gluestack-ui components inside a server component.
+
+Note: We have added a new API for the components — you can avoid the use of "." when using a component. For example, you can now use `<ButtonText>` instead of `<Button.Text>`. This is to accommodate new changes to the RSC, which does not support "." as per [this](https://github.com/vercel/next.js/issues/51593) issue. You can still use the older format, but if you want to use RSC, we recommend skipping the "."
