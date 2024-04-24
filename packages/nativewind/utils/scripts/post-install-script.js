@@ -44,11 +44,6 @@ function main() {
       cwd: userDirectory,
       stdio: 'inherit',
     });
-
-    fs.writeFileSync(
-      path.join(userDirectory, 'patches', 'text.txt'),
-      `${results.stdout} ${results.stderr} ${results.status} ${results.signal}`
-    );
   } catch (error) {}
 }
 
