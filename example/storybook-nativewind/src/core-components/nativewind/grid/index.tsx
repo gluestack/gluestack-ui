@@ -71,7 +71,7 @@ const Grid = forwardRef(
         calculatedWidth,
         numColumns,
         itemsPerRow,
-        flexDirection: className.includes('flex-col') ? 'column' : 'row',
+        flexDirection: className?.includes('flex-col') ? 'column' : 'row',
         spacing,
         columnSpacing,
       };
