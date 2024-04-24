@@ -1,15 +1,8 @@
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
-import { Platform } from 'react-native';
+import { isWeb } from '@gluestack-ui/nativewind-utils/IsWeb';
 
-const gridBaseStyle = Platform.select({
-  web: 'grid grid-cols-12',
-  default: '',
-});
-
-const gridItemBaseStyle = Platform.select({
-  web: 'col-span-1 w-auto',
-  default: '',
-});
+const gridBaseStyle = isWeb ? 'grid grid-cols-12' : '';
+const gridItemBaseStyle = isWeb ? 'col-span-1 w-auto' : '';
 
 export const gridStyle = tva({
   base: `flex-row w-full flex-wrap justify-start box-border ${gridBaseStyle}`,
