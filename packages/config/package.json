@@ -37,7 +37,7 @@
     "@expo/html-elements": "latest",
     "@gluestack-style/animation-resolver": "1.0.4",
     "@gluestack-style/legend-motion-animation-driver": "1.0.3",
-    "@gluestack-style/react": "1.0.53",
+    "@gluestack-style/react": "1.0.54",
     "@gluestack-ui/accordion": "1.0.4",
     "@gluestack-ui/actionsheet": "0.2.41",
     "@gluestack-ui/alert": "0.1.13",
@@ -72,7 +72,7 @@
     "@legendapp/motion": "latest"
   },
   "peerDependencies": {
-    "@gluestack-style/react": ">=1.0",
+    "@gluestack-style/react": ">=1.0.54",
     "@gluestack-ui/themed": ">=1.1.22"
   },
   "release-it": {
