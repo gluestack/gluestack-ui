@@ -76,7 +76,7 @@ const modalBodyStyle = tva({
 });
 
 const modalCloseButtonStyle = tva({
-  base: 'group/modal-close-button z-10 p-2 rounded-sm data-[focus-visible=true]:web:bg-background-100 web:outline-0 cursor-pointer',
+  base: 'group/modal-close-button z-10 p-2 rounded data-[focus-visible=true]:web:bg-background-100 web:outline-0 cursor-pointer',
 });
 
 const modalHeaderStyle = tva({

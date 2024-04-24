@@ -1,0 +1,82 @@
+---
+title: LinearGradient | gluestack-ui | Installation, Usage, and API
+
+description: A LinearGradient component is a reusable graphical element that helps create linear gradients as background or styling effects within UI elements. A linear gradient is a gradual transition between two or more colors, creating a smooth progression of color changes along a straight line.
+
+pageTitle: LinearGradient
+
+pageDescription: A LinearGradient component is a reusable graphical element that helps create linear gradients as background or styling effects within UI elements. A linear gradient is a gradual transition between two or more colors, creating a smooth progression of color changes along a straight line.
+
+showHeader: true
+---
+
+<script async src="https://snack.expo.dev/embed.js"></script>
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="ui/Guides/Recipes/LinearGradient" />
+
+## Usage in Expo project
+
+This is an illustration of a **Themed LinearGradient** component with default configuration using Expo's [LinearGradient](https://docs.expo.dev/versions/latest/sdk/linear-gradient) component.
+
+<iframe
+  src="https://snack.expo.dev/embedded/@gluestack/gluestack-ui-linear-gradient?iframeId=mv6tjd6wte&preview=true&platform=web&theme=dark"
+  style={{ width: '100%', height: '60vh', border: '0px' }}
+/>
+
+<br /><br />
+
+### Import
+
+To use this component in your project, include the following import statement in your file.
+
+```jsx
+import { LinearGradient } from '@gluestack-ui/themed';
+```
+
+### Anatomy
+
+The structure provided below can help you identify and understand a LinearGradient component's various parts.
+
+```jsx
+export default () => <LinearGradient as={} />;
+```
+
+## Usage in React Native project
+
+This is an illustration of a **Themed LinearGradient** component with default configuration using React-Native's [LinearGradient](https://www.npmjs.com/package/react-native-linear-gradient) component.
+
+```jsx
+import React from "react";
+import { SafeAreaView } from "react-native";
+import {
+  GluestackUIProvider,
+  LinearGradient,
+} from "@gluestack-ui/themed";
+import { config } from "@gluestack-ui/config";
+import { LinearGradient as RNLinearGradient } from "react-native-linear-gradient";
+
+export default function App() {
+  return (
+    <GluestackUIProvider config={config}>
+      <Example />
+    </GluestackUIProvider>
+  );
+}
+
+const Example = () => {
+  return (
+    <SafeAreaView>
+      <LinearGradient
+        p="$16"
+        colors={['$purple400', '$blue400', '$pink300']}
+        borderRadius="$md"
+        start={{ x: 0, y: 0 }}
+        end={{ x: 1, y: 1 }}
+        as={RNLinearGradient}
+      >
+      </LinearGradient>
+    </SafeAreaView>
+  );
+};
+```
