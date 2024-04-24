@@ -14,7 +14,7 @@ import gstheme from './gstheme';
 import { themes } from '@storybook/theming';
 import { View } from 'react-native';
 import { useColorScheme } from 'nativewind';
-import { useDarkMode } from '../src/hooks/useDarkMode';
+import { useDarkMode } from '../src/components/hooks/useDarkMode';
 import { Platform } from 'react-native';
 import { useEffect, useState } from 'react';
 
