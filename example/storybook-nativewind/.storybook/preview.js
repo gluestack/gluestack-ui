@@ -14,7 +14,7 @@ import gstheme from './gstheme';
 import { themes } from '@storybook/theming';
 import { View } from 'react-native';
 import { useColorScheme } from 'nativewind';
-import { useDarkMode } from '../src/hooks/useDarkMode';
+import { useDarkMode } from '../src/components/hooks/useDarkMode';
 import { Platform } from 'react-native';
 import { useEffect, useState } from 'react';
 
@@ -30,16 +30,17 @@ export const parameters = {
     storySort: {
       method: '',
       order: [
-        'Overview',
-        ['Introduction', 'All Components'],
-        'Getting Started',
-        ['Installation', 'Tooling Setup', 'Figma UI Kit'],
-        'Core Concepts',
-        ['Accessibility', 'Universal'],
-        'Theme Configuration',
-        ['Default Tokens', 'Customizing Theme'],
-        'Recipes',
-        ['Linear Gradient'],
+        'Home',
+        [
+          'Overview',
+          ['Introduction', 'All Components'],
+          'Getting Started',
+          ['Installation', 'Tooling Setup', 'Figma UI Kit'],
+          'Core Concepts',
+          ['Accessibility', 'Universal'],
+          'Theme Configuration',
+          ['Default Tokens', 'Customizing Theme'],
+        ],
         'Components',
         [
           'Typography',
@@ -73,8 +74,27 @@ export const parameters = {
           'Others',
           ['Fab'],
         ],
-        'More',
-        ['Changelog'],
+        'Guides',
+        'Recipes',
+        ['Linear Gradient'],
+        ['More', ['Changelog']],
+      ],
+      icons: [
+        {
+          source: 'lucide-react-native',
+          name: 'Home',
+          headerTitle: 'Home',
+        },
+        {
+          source: 'lucide-react-native',
+          name: 'Component',
+          headerTitle: 'Components',
+        },
+        {
+          source: 'lucide-react-native',
+          name: 'BookOpen',
+          headerTitle: 'Guides',
+        },
       ],
     },
   },

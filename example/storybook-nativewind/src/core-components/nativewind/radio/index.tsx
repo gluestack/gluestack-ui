@@ -60,8 +60,8 @@ const radioIconStyle = tva({
 
   parentVariants: {
     size: {
-      sm: 'h-[10px] w-[10px]',
-      md: 'h-[14px] w-[14px]',
+      sm: 'h-3 w-3',
+      md: 'h-4 w-4',
       lg: 'h-[18px] w-[18px]',
     },
   },
@@ -71,9 +71,9 @@ const radioIndicatorStyle = tva({
   base: 'justify-center items-center bg-transparent border-outline-400 border-2 rounded-full data-[focus-visible=true]:web:outline-2 data-[focus-visible=true]:web:outline-primary-700 data-[focus-visible=true]:web:outline data-[checked=true]:border-primary-600 data-[checked=true]:bg-transparent data-[hover=true]:border-outline-500 data-[hover=true]:bg-transparent data-[hover=true]:data-[checked=true]:bg-transparent data-[hover=true]:data-[checked=true]:border-primary-700 data-[hover=true]:data-[invalid=true]:border-error-700 data-[hover=true]:data-[disabled=true]:opacity-40 data-[hover=true]:data-[disabled=true]:border-outline-400 data-[hover=true]:data-[disabled=true]:data-[invalid=true]:border-error-400 data-[active=true]:bg-transparent data-[active=true]:border-primary-800 data-[invalid=true]:border-error-700 data-[disabled=true]:opacity-40 data-[disabled=true]:data-[checked=true]:border-outline-400 data-[disabled=true]:data-[checked=true]:bg-transparent data-[disabled=true]:data-[invalid=true]:border-error-400',
   parentVariants: {
     size: {
-      sm: 'h-[16px] w-[16px]',
-      md: 'h-[20px] w-[20px]',
-      lg: 'h-[24px] w-[24px]',
+      sm: 'p-px h-4 w-4',
+      md: 'p-[1.5px] h-5 w-5',
+      lg: 'p-0.5 h-6 w-6',
     },
   },
 });
@@ -162,7 +162,7 @@ const RadioGroup = React.forwardRef(
   }
 );
 
-type IRadioIndicatorProps = React.ComponentProps<typeof UIRadio.Group> &
+type IRadioIndicatorProps = React.ComponentProps<typeof UIRadio.Indicator> &
   VariantProps<typeof radioIndicatorStyle>;
 const RadioIndicator = React.forwardRef(
   (
@@ -183,7 +183,7 @@ const RadioIndicator = React.forwardRef(
   }
 );
 
-type IRadioLabelProps = React.ComponentProps<typeof UIRadio.Group> &
+type IRadioLabelProps = React.ComponentProps<typeof UIRadio.Label> &
   VariantProps<typeof radioIndicatorStyle>;
 const RadioLabel = React.forwardRef(
   (

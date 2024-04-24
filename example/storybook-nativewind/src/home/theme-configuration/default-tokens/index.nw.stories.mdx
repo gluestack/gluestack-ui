@@ -1,0 +1,29 @@
+---
+title: Default Tokens | gluestack-ui
+
+description: gluestack-ui with nativewind ships with default tokens that provide access to theme values and lets you build and customize your own themed components. 
+
+pageTitle: Default Tokens
+
+pageDescription: gluestack-ui with nativewind ships with default tokens that provide access to theme values and lets you build and customize your own themed components. 
+
+showHeader: true
+---
+
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+import {ColorPaletteComponent} from '../../../components/docs-components/DefaultComponent.tsx';
+
+
+
+<Meta title="with-nativewind/Home/Theme Configuration/Default Tokens" />
+
+Theming in `@gluestack-ui with nativewind` is based on the [Styled System Theme Specification](https://github.com/system-ui/theme-specification).
+
+
+## Colors
+
+We recommend adding a palette that ranges from 50 to 900. Tools like [JSON Color Palette Generator](https://json-color-palette-generator.vercel.app), [Smart Swatch](https://smart-swatch.netlify.app/) or [Palx](https://palx.jxnblk.com/) are available to generate these palettes.
+
+Below are the default color palette tokens provided in the gluestack-ui default config.
+
+<ColorPaletteComponent />

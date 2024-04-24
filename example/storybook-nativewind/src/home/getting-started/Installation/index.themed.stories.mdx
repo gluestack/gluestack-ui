@@ -1,0 +1,127 @@
+---
+title: Installation | gluestack-ui-with-gluestack-style
+
+description: To get started with gluestack-ui, check out this quick installation guide. It provides simple steps to help you install and use the library in your projects.
+
+pageTitle: Installation
+
+pageDescription: To get started with gluestack-ui, check out this quick installation guide. It provides simple steps to help you install and use the library in your projects.
+
+showHeader: true
+---
+
+import { Meta } from '@storybook/addon-docs';
+import { CollapsibleCode, Tabs, Box, HStack } from '@gluestack/design-system';
+
+<Meta title="with-gluestack-style/home/Getting Started/Installation" />
+
+## Automatic
+
+### Using Template
+
+Coming soon
+
+### Using CLI
+
+If you wish to use `gluestack-ui` in your existing project using CLI, you can proceed with the following steps:
+
+### Step 1: Initialize
+Use `init` command to add `GluestackUIProvider` and `gluestack-ui-provider/config.ts` file into your project.
+
+```bash
+npx gluestack-ui init
+```
+You will be asked to select a component style to initialize
+
+```bash
+ Which style would you like to use in your project:
+ gluestack-style
+ nativewind
+ ```
+ Refer step: 4 in manual installation for usage of `GluestackUIProvider`
+
+### Step 3: Add components
+To add components you wish to use in your project, you can use `add` command as shown below.
+
+```bash
+npx gluestack-ui add button 
+```
+To add all the components, you can use
+```bash
+npx gluestack-ui add --all
+```
+
+## Manual
+
+If you wish to install `gluestack-ui` into your existing project, you can proceed with the following steps:
+
+### Step 1: Install dependencies
+
+First, install the dependencies of gluestack-ui in your project. This can be done using the following command:
+
+```bash
+yarn add @gluestack-style/react react-native-web react-native-svg@13.4.0
+```
+
+OR
+
+```bash
+npm i @gluestack-style/react react-native-web react-native-svg@13.4.0
+
+```
+
+### Step 1.5 (For Next.js):
+
+Please follow this [link](https://gluestack.io/ui/docs/guides/install-nextjs)
+
+### Step 2: Configure components path
+
+Create a `components/` folder inside `src` folder and add path in `tsconfig.json`
+
+```js
+  // ... (other configs)
+  compilerOptions: {
+    // ...
+    "paths": {
+      // ...
+      "@/*": ["./src/*"] // Add relative path
+    },
+  }
+ 
+
+```
+
+### Step 3: Configure GluestackUIProvider
+
+To add config, create a `gluestack-ui-provider/config.ts` file in your `components/ui` folder and paste the following code.
+
+<CollapsibleCode>
+
+```jsx 
+%%-- File: core-components/themed/gluestack-ui-provider/config.ts --%%
+  ```
+
+</CollapsibleCode>
+
+To add `GluestackUIProvider`, create a `gluestack-ui-provider/index.tsx` file inside `components/ui` folder and paste the following code.
+
+<CollapsibleCode>
+
+```jsx 
+  %%-- File: core-components/themed/gluestack-ui-provider/index.tsx --%%
+  ```
+
+</CollapsibleCode>
+
+### Step 4: Usage
+
+Wrap your app with `GluestackUIProvider` in `App.tsx`.
+
+```jsx
+// App.tsx
+export default function App() {
+  return (
+    <GluestackUIProvider>{/* Add your app code here */}</GluestackUIProvider>
+  );
+}
+```

@@ -1,0 +1,63 @@
+---
+title: Customizing Theme 
+
+description: Customizing the theme in gluestack-ui with gluestack-style involves defining a theme configuration and applying it using GluestackUIProvider, enabling you to style your application's visual elements according to your design preferences.
+
+showHeader: true
+---
+
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+import { CollapsibleCode } from '@gluestack/design-system';
+
+<Meta title="with-gluestack/Guides/Theme Configuration/Customizing Theme" />
+
+
+## Customizing Tokens
+
+
+gluestack-ui with gluestack style ships with a default `config` which contains a set of already defined tokens which are mapped seperately with each mode.
+Customizing these tokens allows you to tailor the core design elements of the library to match your project's unique visual identity. 
+
+To customize tokens, follow these steps:
+
+1. Go to `gluestack-ui-provider/config.ts` file. Update or add new tokens as per your requirements.
+
+<CollapsibleCode>
+
+```jsx
+
+
+export const config = createConfig({
+  // ... config
+  tokens: {
+    colors: {
+      // replacing primary color
+      primary0: '#ffffff',
+      primary50: '#a3fff4',
+      primary100: '#82fff0',
+      primary200: '#61ffed',
+      primary300: '#45fae5',
+      primary400: '#24f9e1',
+      primary500: '#17f3d9',
+      primary600: '#12e4cb',
+      primary700: '#17ccb7',
+      primary800: '#1ab5a3',
+      primary900: '#1c9f90',
+      primary950: '#000000',
+      ... // Other tokens
+    },
+  },
+});
+
+type Config = typeof config;
+
+declare module '@gluestack-style/react' {
+  interface ICustomConfig extends Config {}
+}
+
+```
+</CollapsibleCode>
+
+You can customize all the tokens in the `config`. For a complete list of tokens and default values, please check [default Tokens](https://gluestack.io/ui/gluestack-style/docs/theme-configuration/default-tokens).
+
+By utilizing this approach, you can seamlessly modify the primary color tokens of the theme while maintaining the overall theme configuration intact.

@@ -1,0 +1,149 @@
+---
+title: gluestack-ui LinearGradient | Installation, Usage, and API
+
+description: A LinearGradient component is a reusable graphical element that helps create linear gradients as background or styling effects within UI elements. A linear gradient is a gradual transition between two or more colors, creating a smooth progression of color changes along a straight line.
+
+pageTitle: LinearGradient
+
+pageDescription: A LinearGradient component is a reusable graphical element that helps create linear gradients as background or styling effects within UI elements. A linear gradient is a gradual transition between two or more colors, creating a smooth progression of color changes along a straight line.
+
+showHeader: true
+---
+
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="with-nativewind/Guides/Recipes/LinearGradient" />
+
+import { Tabs } from '@gluestack/design-system';
+import { CollapsibleCode } from '@gluestack/design-system';
+
+
+This is an illustration of **Linear Gradient** component in `App.tsx` file.
+
+```jsx
+import "./global.css";
+import React from "react";
+import { SafeAreaView } from "react-native";
+import { GluestackUIProvider } from "./components/ui/gluestack-ui-provider";
+
+import {
+  Box,
+  Heading,
+  Link,
+  LinkText,
+  Text,
+  VStack,
+  Image,
+  LinearGradient,
+} from "./components/ui";
+
+const ExpoExample = () => {
+  return (
+    <Box className="h-full justify-center px-4 bg-background-0 web:min-h-[100vh]">
+      <VStack space="lg" className="items-center">
+        <LinearGradient
+          className="p-16 rounded-md"
+          colors={["#C084FC", "#60A5FA", "#F9A8D4"]}
+          start={[0, 0]}
+          end={[0, 1]}
+        >
+          <Image
+            source={require("./assets/gluestack-ui-logo.png")}
+            alt="gluestack-logo"
+          />
+        </LinearGradient>
+        <Heading>Welcome to gluestack-ui</Heading>
+        <Text>
+          Edit{" "}
+          <Text
+            className="px-2 py-1 rounded bg-background-100"
+          >
+            App.tsx
+          </Text>{" "}
+          and save to reload.
+        </Text>
+        <Link href="https://ui.gluestack.io/docs/" isExternal>
+          <LinkText className="text-xl">Learn gluestack-ui</LinkText>
+        </Link>
+      </VStack>
+    </Box>
+  );
+};
+
+export default function App() {
+  return (
+    <SafeAreaView style={{ flex: 1 }}>
+      <GluestackUIProvider>
+        <ExpoExample />
+      </GluestackUIProvider>
+    </SafeAreaView>
+  );
+}
+```
+
+<br />
+
+## Installation
+
+<Tabs value="expo" type="section">
+  <Tabs.TabList>
+      <Tabs.Tab value="expo">
+        <Tabs.TabTitle>ExpoLinearGradient</Tabs.TabTitle>
+      </Tabs.Tab>
+     <Tabs.Tab value="rn">
+        <Tabs.TabTitle>RNLinearGradient</Tabs.TabTitle>
+     </Tabs.Tab>
+  </Tabs.TabList>
+  <Tabs.TabPanels>
+    <Tabs.TabPanel value="expo">
+<>
+
+### Step 1: Install the following dependencies:
+```bash
+npx expo install expo-linear-gradient
+```
+
+### Step 2: Copy and paste the following code into your project.
+<CollapsibleCode>
+
+```jsx 
+%%-- File: recipes/linear-gradient/expo-linear-gradient.tsx --%% 
+```
+</CollapsibleCode>
+
+### Step 3: Update the import paths to match your project setup.
+</>
+    </Tabs.TabPanel>
+    <Tabs.TabPanel value="rn"> 
+<>
+
+### Step 1: Install the following dependencies:
+```bash
+npm i react-native-linear-gradient
+```
+
+### Step 2: Copy and paste the following code into your project.
+<CollapsibleCode>
+
+```jsx 
+%%-- File: recipes/linear-gradient/rn-linear-gradient.tsx --%% 
+```
+</CollapsibleCode>
+
+### Step 3: Update the import paths to match your project setup.
+</>
+    </Tabs.TabPanel>
+  </Tabs.TabPanels>
+</Tabs>
+
+## API Reference
+
+To use this component in your project, include the following import statement in your file.
+
+```jsx
+import { LinearGradient } from '@/components/ui/linear-gradient';
+```
+
+```jsx
+export default () => <LinearGradient />;
+```

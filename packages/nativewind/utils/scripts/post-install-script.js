@@ -1,10 +1,10 @@
 const fs = require('fs');
 const path = require('path');
+var finder = require('./find-package-json');
+const { spawnSync } = require('child_process');
 const processPath = process.cwd();
-console.log('🚀 ~ processPath:', processPath);
-const userDirectory = path.resolve(processPath, '..', '..', '..');
-console.log('🚀 ~ userDirectory:', userDirectory);
-
+const f = finder(path.join(processPath, '..'));
+const userDirectory = f.next().filename.replace('package.json', '');
 function CopyDirectory(src, dest) {
   if (!fs.existsSync(dest)) {
     fs.mkdirSync(dest);
@@ -25,33 +25,21 @@ function CopyDirectory(src, dest) {
 }
 
 function main() {
-  // check if next.config.mjs or next.config.js file exists in project
-  if (
-    !fs.existsSync(path.join(userDirectory, 'next.config.mjs')) &&
-    !fs.existsSync(path.join(userDirectory, 'next.config.js'))
-  ) {
-    return;
-  }
-
   CopyDirectory(
     path.join(processPath, 'scripts', 'patches'),
     path.join(userDirectory, 'patches')
   );
-  // read package json file
-  const packageJsonPath = path.join(userDirectory, 'package.json');
-  const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
-  // add postinstall script
-  packageJson.scripts = packageJson.scripts || {};
-  if (
-    packageJson.scripts.postinstall &&
-    !packageJson.scripts.postinstall.includes('patch-package')
-  ) {
-    packageJson.scripts.postinstall = `${packageJson.scripts.postinstall} && patch-package`;
-  } else if (!packageJson.scripts.postinstall) {
-    packageJson.scripts.postinstall = 'patch-package';
-  }
-  // write package json file
-  fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2));
+  // use npm if user is using npm or yarn if user is using yarn
+  try {
+    const packageManager = fs.existsSync(path.join(userDirectory, 'yarn.lock'))
+      ? 'yarn'
+      : 'npm';
+
+    spawnSync(packageManager, ['patch-package'], {
+      cwd: userDirectory,
+      stdio: 'inherit',
+    });
+  } catch (error) {}
 }
 
 main();
