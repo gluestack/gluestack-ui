@@ -71,8 +71,6 @@ export const parameters = {
           ['Avatar', 'Image', 'Icon'],
           'Others',
           ['Fab'],
-          'Recipes',
-          ['Linear Gradient'],
         ],
         'Guides',
         [
@@ -81,6 +79,8 @@ export const parameters = {
 
           'More',
           ['Changelog'],
+          'Recipes',
+          ['Linear Gradient'],
         ],
       ],
       icons: [
