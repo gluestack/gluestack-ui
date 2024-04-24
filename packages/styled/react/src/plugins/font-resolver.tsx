@@ -318,17 +318,19 @@ export class FontResolver implements IStyledPlugin, FontPlugin {
 
       let style = rest?.style;
 
-      if (Object.keys(resolvedSxProps).length > 0) {
-        if (Array.isArray(style)) {
-          style = StyleSheet.flatten(style);
+      if (resolvedSxProps.fontFamily) {
+        if (Object.keys(resolvedSxProps).length > 0) {
+          if (Array.isArray(style)) {
+            style = StyleSheet.flatten(style);
 
-          Object.keys(resolvedSxProps).forEach((ele) => {
-            style[ele] = resolvedSxProps[ele];
-          });
-        } else {
-          Object.keys(resolvedSxProps).forEach((ele) => {
-            style[ele] = resolvedSxProps[ele];
-          });
+            Object.keys(resolvedSxProps).forEach((ele) => {
+              style[ele] = resolvedSxProps[ele];
+            });
+          } else {
+            Object.keys(resolvedSxProps).forEach((ele) => {
+              style[ele] = resolvedSxProps[ele];
+            });
+          }
         }
       }
 

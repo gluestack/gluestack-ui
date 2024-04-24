@@ -11,7 +11,8 @@
     "withStyleContext",
     "withStyleContextAndStates",
     "cssInterop",
-    "flush"
+    "flush",
+    "IsWeb"
   ],
   "exclude": ["node_modules", "example"],
   "path": {},
