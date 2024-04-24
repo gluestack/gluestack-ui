@@ -30,16 +30,15 @@ export const parameters = {
     storySort: {
       method: '',
       order: [
-        'Overview',
-        ['Introduction', 'All Components'],
-        'Getting Started',
-        ['Installation', 'Tooling Setup', 'Figma UI Kit'],
-        'Core Concepts',
-        ['Accessibility', 'Universal'],
-        'Theme Configuration',
-        ['Default Tokens', 'Customizing Theme'],
-        'Recipes',
-        ['Linear Gradient'],
+        'Home',
+        [
+          'Overview',
+          ['Introduction', 'All Components'],
+          'Getting Started',
+          ['Installation', 'Tooling Setup', 'Figma UI Kit'],
+          'Core Concepts',
+          ['Accessibility', 'Universal'],
+        ],
         'Components',
         [
           'Typography',
@@ -72,9 +71,34 @@ export const parameters = {
           ['Avatar', 'Image', 'Icon'],
           'Others',
           ['Fab'],
+          'Recipes',
+          ['Linear Gradient'],
         ],
-        'More',
-        ['Changelog'],
+        'Guides',
+        [
+          'Theme Configuration',
+          ['Default Tokens', 'Customizing Theme'],
+
+          'More',
+          ['Changelog'],
+        ],
+      ],
+      icons: [
+        {
+          source: 'lucide-react-native',
+          name: 'Home',
+          headerTitle: 'Home',
+        },
+        {
+          source: 'lucide-react-native',
+          name: 'Component',
+          headerTitle: 'Components',
+        },
+        {
+          source: 'lucide-react-native',
+          name: 'BookOpen',
+          headerTitle: 'Guides',
+        },
       ],
     },
   },
