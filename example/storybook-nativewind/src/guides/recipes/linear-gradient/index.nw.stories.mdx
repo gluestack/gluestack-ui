@@ -14,30 +14,24 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="with-nativewind/Guides/Recipes/LinearGradient" />
 
-import { Tabs } from '@gluestack/design-system';
-import { CollapsibleCode } from '@gluestack/design-system';
-
+import { Tabs, CollapsibleCode } from '@gluestack/design-system';
 
 This is an illustration of **Linear Gradient** component in `App.tsx` file.
 
 ```jsx
 import "./global.css";
 import React from "react";
-import { SafeAreaView } from "react-native";
+import { SafeAreaView } from "./components/ui/safe-area-view";
 import { GluestackUIProvider } from "./components/ui/gluestack-ui-provider";
+import { LinearGradient } from "./components/ui/linear-gradient";
+import { Box } from "./components/ui/box";
+import { Heading } from "./components/ui/heading";
+import { Link, LinkText } from "./components/ui/link";
+import { Text } from "./components/ui/text";
+import { VStack } from "./components/ui/vstack";
+import { Image } from "./components/ui/image";
 
-import {
-  Box,
-  Heading,
-  Link,
-  LinkText,
-  Text,
-  VStack,
-  Image,
-  LinearGradient,
-} from "./components/ui";
-
-const ExpoExample = () => {
+const Example = () => {
   return (
     <Box className="h-full justify-center px-4 bg-background-0 web:min-h-[100vh]">
       <VStack space="lg" className="items-center">
@@ -55,11 +49,7 @@ const ExpoExample = () => {
         <Heading>Welcome to gluestack-ui</Heading>
         <Text>
           Edit{" "}
-          <Text
-            className="px-2 py-1 rounded bg-background-100"
-          >
-            App.tsx
-          </Text>{" "}
+          <Text className="px-2 py-1 rounded bg-background-100">App.tsx</Text>{" "}
           and save to reload.
         </Text>
         <Link href="https://ui.gluestack.io/docs/" isExternal>
@@ -72,14 +62,16 @@ const ExpoExample = () => {
 
 export default function App() {
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView className="flex-1">
       <GluestackUIProvider>
-        <ExpoExample />
+        <Example />
       </GluestackUIProvider>
     </SafeAreaView>
   );
 }
 ```
+
+<img src='/assets/linear-gradient.png' alt='linear-gradient' />
 
 <br />
 
@@ -107,7 +99,7 @@ npx expo install expo-linear-gradient
 <CollapsibleCode>
 
 ```jsx 
-%%-- File: recipes/linear-gradient/expo-linear-gradient.tsx --%% 
+%%-- File: guides/recipes/linear-gradient/expo-linear-gradient.tsx --%% 
 ```
 </CollapsibleCode>
 
@@ -126,7 +118,7 @@ npm i react-native-linear-gradient
 <CollapsibleCode>
 
 ```jsx 
-%%-- File: recipes/linear-gradient/rn-linear-gradient.tsx --%% 
+%%-- File: guides/recipes/linear-gradient/rn-linear-gradient.tsx --%% 
 ```
 </CollapsibleCode>
 
