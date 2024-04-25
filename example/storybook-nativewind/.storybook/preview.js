@@ -75,9 +75,7 @@ export const parameters = {
           ['Fab'],
         ],
         'Guides',
-        'Recipes',
-        ['Linear Gradient'],
-        ['More', ['Changelog']],
+        ['Recipes', ['Linear Gradient'], 'More', ['Changelog']],
       ],
       icons: [
         {
