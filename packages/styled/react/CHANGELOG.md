@@ -1,5 +1,11 @@
 # @gluestack-style/react
 
+## 1.0.54
+
+### Patch Changes
+
+- - Fixed plugins utility props resolution
+
 ## 1.0.53
 
 ### Patch Changes
