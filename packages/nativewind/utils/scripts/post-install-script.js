@@ -2,7 +2,10 @@ const fs = require('fs');
 const path = require('path');
 var finder = require('./find-package-json');
 const { spawnSync } = require('child_process');
+const findWorkspaceRoot = require('find-yarn-workspace-root');
+
 const processPath = process.cwd();
+const workspaceRoot = findWorkspaceRoot(processPath);
 const f = finder(path.join(processPath, '..'));
 const userDirectory = f.next().filename.replace('package.json', '');
 function CopyDirectory(src, dest) {
@@ -40,6 +43,26 @@ function main() {
       stdio: 'inherit',
     });
   } catch (error) {}
+
+  if (workspaceRoot && workspaceRoot !== userDirectory) {
+    CopyDirectory(
+      path.join(processPath, 'scripts', 'patches'),
+      path.join(workspaceRoot, 'patches')
+    );
+
+    try {
+      const packageManager = fs.existsSync(
+        path.join(workspaceRoot, 'yarn.lock')
+      )
+        ? 'yarn'
+        : 'npm';
+
+      spawnSync(packageManager, ['patch-package'], {
+        cwd: workspaceRoot,
+        stdio: 'inherit',
+      });
+    } catch (error) {}
+  }
 }
 
 main();
