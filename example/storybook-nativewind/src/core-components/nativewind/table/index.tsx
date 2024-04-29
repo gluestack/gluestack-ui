@@ -1,12 +1,10 @@
-import React from 'react';
+import React, { createContext, useMemo, useContext } from 'react';
 import {
   Table as ExpoTable,
   THead as ExpoTHead,
   TBody as ExpoTBody,
   TFoot as ExpoTFoot,
-  TH as ExpoTH,
   TR as ExpoTR,
-  TD as ExpoTD,
 } from '@expo/html-elements';
 import {
   tableStyle,
@@ -17,6 +15,10 @@ import {
   tableRowStyleStyle,
   tableDataStyle,
 } from './styles';
+import { Text } from 'react-native';
+
+const TableHeaderContext = createContext<any>({});
+const TableFooterContext = createContext<any>({});
 
 const Table = React.forwardRef(({ className, ...props }: any, ref) => {
   return (
@@ -29,12 +31,19 @@ const Table = React.forwardRef(({ className, ...props }: any, ref) => {
 });
 
 const TableHeader = React.forwardRef(({ className, ...props }: any, ref) => {
+  const contextValue = useMemo(() => {
+    return {
+      isHeaderRow: true,
+    };
+  }, []);
   return (
-    <ExpoTHead
-      ref={ref}
-      className={tableHeaderStyle({ class: className })}
-      {...props}
-    />
+    <TableHeaderContext.Provider value={contextValue}>
+      <ExpoTHead
+        ref={ref}
+        className={tableHeaderStyle({ class: className })}
+        {...props}
+      />
+    </TableHeaderContext.Provider>
   );
 });
 
@@ -49,18 +58,25 @@ const TableBody = React.forwardRef(({ className, ...props }: any, ref) => {
 });
 
 const TableFooter = React.forwardRef(({ className, ...props }: any, ref) => {
+  const contextValue = useMemo(() => {
+    return {
+      isFooterRow: true,
+    };
+  }, []);
   return (
-    <ExpoTFoot
-      ref={ref}
-      className={tableFooterStyle({ class: className })}
-      {...props}
-    />
+    <TableFooterContext.Provider value={contextValue}>
+      <ExpoTFoot
+        ref={ref}
+        className={tableFooterStyle({ class: className })}
+        {...props}
+      />
+    </TableFooterContext.Provider>
   );
 });
 
 const TableHead = React.forwardRef(({ className, ...props }: any, ref) => {
   return (
-    <ExpoTH
+    <Text
       ref={ref}
       className={tableHeadStyle({ class: className })}
       {...props}
@@ -69,10 +85,17 @@ const TableHead = React.forwardRef(({ className, ...props }: any, ref) => {
 });
 
 const TableRow = React.forwardRef(({ className, ...props }: any, ref) => {
+  const { isHeaderRow } = useContext(TableHeaderContext);
+  const { isFooterRow } = useContext(TableFooterContext);
+
   return (
     <ExpoTR
       ref={ref}
-      className={tableRowStyleStyle({ class: className })}
+      className={tableRowStyleStyle({
+        isHeaderRow,
+        isFooterRow,
+        class: className,
+      })}
       {...props}
     />
   );
@@ -80,7 +103,7 @@ const TableRow = React.forwardRef(({ className, ...props }: any, ref) => {
 
 const TableData = React.forwardRef(({ className, ...props }: any, ref) => {
   return (
-    <ExpoTD
+    <Text
       ref={ref}
       className={tableDataStyle({ class: className })}
       {...props}

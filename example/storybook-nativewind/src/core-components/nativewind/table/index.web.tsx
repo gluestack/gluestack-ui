@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createContext, useMemo, useContext } from 'react';
 import {
   tableStyle,
   tableHeaderStyle,
@@ -9,6 +9,9 @@ import {
   tableDataStyle,
 } from './styles';
 
+const TableHeaderContext = createContext<any>({});
+const TableFooterContext = createContext<any>({});
+
 const Table = React.forwardRef(({ className, ...props }: any, ref) => {
   return (
     <table ref={ref} className={tableStyle({ class: className })} {...props} />
@@ -16,12 +19,19 @@ const Table = React.forwardRef(({ className, ...props }: any, ref) => {
 });
 
 const TableHeader = React.forwardRef(({ className, ...props }: any, ref) => {
+  const contextValue = useMemo(() => {
+    return {
+      isHeaderRow: true,
+    };
+  }, []);
   return (
-    <thead
-      ref={ref}
-      className={tableHeaderStyle({ class: className })}
-      {...props}
-    />
+    <TableHeaderContext.Provider value={contextValue}>
+      <thead
+        ref={ref}
+        className={tableHeaderStyle({ class: className })}
+        {...props}
+      />
+    </TableHeaderContext.Provider>
   );
 });
 
@@ -36,12 +46,19 @@ const TableBody = React.forwardRef(({ className, ...props }: any, ref) => {
 });
 
 const TableFooter = React.forwardRef(({ className, ...props }: any, ref) => {
+  const contextValue = useMemo(() => {
+    return {
+      isFooterRow: true,
+    };
+  }, []);
   return (
-    <tfoot
-      ref={ref}
-      className={tableFooterStyle({ class: className })}
-      {...props}
-    />
+    <TableFooterContext.Provider value={contextValue}>
+      <tfoot
+        ref={ref}
+        className={tableFooterStyle({ class: className })}
+        {...props}
+      />
+    </TableFooterContext.Provider>
   );
 });
 
@@ -52,10 +69,16 @@ const TableHead = React.forwardRef(({ className, ...props }: any, ref) => {
 });
 
 const TableRow = React.forwardRef(({ className, ...props }: any, ref) => {
+  const { isHeaderRow } = useContext(TableHeaderContext);
+  const { isFooterRow } = useContext(TableFooterContext);
   return (
     <tr
       ref={ref}
-      className={tableRowStyleStyle({ class: className })}
+      className={tableRowStyleStyle({
+        isHeaderRow,
+        isFooterRow,
+        class: className,
+      })}
       {...props}
     />
   );
