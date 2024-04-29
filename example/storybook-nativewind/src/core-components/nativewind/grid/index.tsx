@@ -6,25 +6,17 @@ import React, {
   useMemo,
   forwardRef,
 } from 'react';
+
 import { View } from 'react-native';
 import { gridStyle, gridItemStyle } from './styles';
+import { cssInterop } from 'nativewind';
 
 const GridContext = createContext<any>({});
 
 const Grid = forwardRef(
-  (
-    {
-      className,
-      numColumns = 12,
-      spacing,
-      rowSpacing,
-      columnSpacing,
-      children,
-      ...props
-    }: any,
-    ref
-  ) => {
+  ({ className, numColumns = 12, children, ...props }: any, ref) => {
     const [calculatedWidth, setCalculatedWidth] = useState<number | null>(null);
+
     const itemsPerRow = useMemo(() => {
       // get the colSpan of each child
       const colSpanArr = React.Children.map(children, (child: any) => {
@@ -44,6 +36,7 @@ const Grid = forwardRef(
       const rowItemsCount: {
         [key: number]: number[];
       } = {};
+
       const childrenArray = React.Children.toArray(children);
 
       for (let i = 0; i < childrenArray.length; i++) {
@@ -64,25 +57,18 @@ const Grid = forwardRef(
       }
 
       return rowItemsCount;
-    }, [children, numColumns]);
+    }, [numColumns, children]);
 
     const contextValue = useMemo(() => {
       return {
         calculatedWidth,
         numColumns,
         itemsPerRow,
-        flexDirection: className?.includes('flex-col') ? 'column' : 'row',
-        spacing,
-        columnSpacing,
+        flexDirection: props?.flexDirection || 'row',
+        gap: props?.gap || 0,
+        columnGap: props?.columnGap || 0,
       };
-    }, [
-      calculatedWidth,
-      itemsPerRow,
-      className,
-      numColumns,
-      spacing,
-      columnSpacing,
-    ]);
+    }, [calculatedWidth, itemsPerRow, numColumns, props]);
 
     const childrenWithProps = React.Children.map(children, (child, index) => {
       if (React.isValidElement(child)) {
@@ -97,17 +83,24 @@ const Grid = forwardRef(
         <View
           ref={ref}
           className={gridStyle({
-            spacing,
-            rowSpacing,
-            columnSpacing,
             numColumns,
             class: className,
           })}
-          {...props}
           onLayout={(event: any) => {
-            const width = event.nativeEvent.layout.width;
+            const paddingLeftToSubtract =
+              props?.paddingStart || props?.paddingLeft || props?.padding || 0;
+
+            const paddingRightToSubtract =
+              props?.paddingEnd || props?.paddingRight || props?.padding || 0;
+
+            const width =
+              event.nativeEvent.layout.width -
+              paddingLeftToSubtract -
+              paddingRightToSubtract;
+
             setCalculatedWidth(width);
           }}
+          {...props}
         >
           {calculatedWidth && childrenWithProps}
         </View>
@@ -115,6 +108,23 @@ const Grid = forwardRef(
     );
   }
 );
+
+cssInterop(Grid, {
+  className: {
+    target: 'style',
+    nativeStyleToProp: {
+      gap: 'gap',
+      rowGap: 'rowGap',
+      columnGap: 'columnGap',
+      flexDirection: 'flexDirection',
+      padding: 'padding',
+      paddingLeft: 'paddingLeft',
+      paddingRight: 'paddingRight',
+      paddingStart: 'paddingStart',
+      paddingEnd: 'paddingEnd',
+    },
+  },
+});
 
 const GridItem = forwardRef(
   ({ className, colSpan = 1, ...props }: any, ref) => {
@@ -127,8 +137,8 @@ const GridItem = forwardRef(
       numColumns,
       itemsPerRow,
       flexDirection,
-      spacing,
-      columnSpacing,
+      gap,
+      columnGap,
     } = useContext(GridContext);
 
     useEffect(() => {
@@ -145,11 +155,10 @@ const GridItem = forwardRef(
 
         const rowColsCount = itemsPerRow[row as string].length;
 
-        const gap = columnSpacing || spacing || 0;
+        const space = columnGap || gap || 0;
 
         const gutterOffset =
-          gap *
-          3.5 *
+          space *
           (rowColsCount === 1 && colSpan < numColumns ? 2 : rowColsCount - 1);
 
         const flexBasisValue =
@@ -163,7 +172,7 @@ const GridItem = forwardRef(
 
         setFlexBasisValue(flexBasisValue);
       }
-    }, [calculatedWidth, colSpan, numColumns]); // eslint-disable-line react-hooks/exhaustive-deps
+    }, [calculatedWidth, colSpan, numColumns, columnGap, gap, flexDirection]); // eslint-disable-line react-hooks/exhaustive-deps
 
     return (
       <View
