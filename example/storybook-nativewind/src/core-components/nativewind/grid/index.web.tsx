@@ -1,20 +1,10 @@
 import React from 'react';
 import { gridStyle, gridItemStyle } from './styles';
 
-const Grid = ({
-  className,
-  numColumns = 12,
-  spacing,
-  rowSpacing,
-  columnSpacing,
-  ...props
-}: any) => {
+const Grid = ({ className, numColumns = 12, ...props }: any) => {
   return (
     <div
       className={gridStyle({
-        spacing,
-        rowSpacing,
-        columnSpacing,
         numColumns,
         class: className,
       })}
