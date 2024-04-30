@@ -1,4 +1,4 @@
-import { Image } from '../../../core-components/nativewind';
+import { Image } from '../../core-components/nativewind';
 import React, { useContext } from 'react';
 import { LayoutContext } from '@gluestack/design-system';
 
@@ -7,9 +7,11 @@ const GradientImage = () => {
 
   return (
     <Image
-      source={colorMode === 'light' ? 'x' : '/assets/dark-lg.png'}
+      source={
+        colorMode === 'light' ? '/assets/light-lg.svg' : '/assets/dark-lg.svg'
+      }
       alt="linear-gradient"
-      // className="h-[30%] w-[50%]"
+      className="h-64 w-[400px]"
     />
   );
 };

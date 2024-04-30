@@ -15,7 +15,7 @@ import { Meta } from '@storybook/addon-docs';
 <Meta title="with-nativewind/Guides/Recipes/LinearGradient" />
 
 import { Tabs, CollapsibleCode } from '@gluestack/design-system';
-import GradientImage from './GradientImage';
+import GradientImage from '../../../extra-components/nativewind/GradientImage';
 
 This is an illustration of **Linear Gradient** component in `App.tsx` file.
 
@@ -37,8 +37,8 @@ export default function App() {
     <SafeAreaView className="flex-1 justify-center items-center">
       <GluestackUIProvider mode={colorMode}>
         <Center className="rounded-xl bg-background-0 p-8 m-6 web:max-w-[400px]">
-          <Heading size="3xl">Stay up to date</Heading>
-          <Text size="lg" className="text-center leading-[22px] my-2">
+          <Heading size="xl">Stay up to date</Heading>
+          <Text className="text-center leading-[22px] my-2">
             Subscribe to our newsletter for the latest news and product updates.
           </Text>
 
@@ -50,7 +50,7 @@ export default function App() {
             isReadOnly={false}
             className="w-full rounded-full my-3"
           >
-            <InputField placeholder="Placeholder Text" />
+            <InputField placeholder="abc@example.com" />
             <InputSlot className="pr-3">
               <InputIcon
                 as={Mail}
@@ -141,4 +141,4 @@ import { LinearGradient } from '@/components/ui/linear-gradient';
 
 ```jsx
 export default () => <LinearGradient />;
-```
+```../../../extra-components/nativewind/GradientImage
