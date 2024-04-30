@@ -53,12 +53,14 @@ export const StyledProvider: React.FC<{
   children?: React.ReactNode;
   globalStyles?: any;
   _experimentalNestedProvider?: boolean;
+  _experimentalSupportDynamicTheme?: boolean;
 }> = ({
   config,
   colorMode,
   children,
   globalStyles,
   _experimentalNestedProvider,
+  _experimentalSupportDynamicTheme,
 }) => {
   const inlineStyleMap: any = React.useRef({
     initialStyleInjected: false,
@@ -119,7 +121,11 @@ export const StyledProvider: React.FC<{
 
   if (Platform.OS === 'web') {
     const cssVariables = convertTokensToCssVariables(currentConfig);
-    injectGlobalCssStyle(cssVariables, 'variables');
+    injectGlobalCssStyle(
+      cssVariables,
+      'variables',
+      _experimentalSupportDynamicTheme
+    );
   }
 
   const currentColorMode = React.useMemo(() => {

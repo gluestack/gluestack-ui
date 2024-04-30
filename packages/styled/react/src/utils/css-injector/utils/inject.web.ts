@@ -95,7 +95,8 @@ export const injectCss = (
   wrapperType: IWrapperType,
   styleTagId: string,
   inlineStyleMap?: any,
-  id?: any
+  id?: any,
+  _experimentalSupportDynamicTheme?: boolean
 ) => {
   if (!toBeFlushedStyles[wrapperType]) {
     toBeFlushedStyles[wrapperType] = {};
@@ -112,6 +113,14 @@ export const injectCss = (
     );
     if (wrapperElement) {
       let style = wrapperElement.querySelector(`[id='${styleTagId}']`);
+      if (
+        style &&
+        styleTagId == 'variables' &&
+        _experimentalSupportDynamicTheme
+      ) {
+        style.remove();
+        style = null;
+      }
 
       if (!style) {
         style = createStyle(styleTagId, css);
@@ -140,9 +149,17 @@ export const injectCss = (
 };
 export const injectGlobalCss = (
   css: any,
-  styleTagID: string = 'css-injected-global'
+  styleTagID: string = 'css-injected-global',
+  _experimentalSupportDynamicTheme?: boolean
 ) => {
-  injectCss(css, 'global', styleTagID);
+  injectCss(
+    css,
+    'global',
+    styleTagID,
+    null,
+    null,
+    _experimentalSupportDynamicTheme
+  );
 };
 
 export const flush = (): Array<any> => {
