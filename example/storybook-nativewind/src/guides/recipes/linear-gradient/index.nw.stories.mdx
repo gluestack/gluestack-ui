@@ -15,65 +15,68 @@ import { Meta } from '@storybook/addon-docs';
 <Meta title="with-nativewind/Guides/Recipes/LinearGradient" />
 
 import { Tabs, CollapsibleCode } from '@gluestack/design-system';
+import GradientImage from './GradientImage';
 
 This is an illustration of **Linear Gradient** component in `App.tsx` file.
 
 ```jsx
 import "./global.css";
-import React from "react";
+import React, { useState } from "react";
+import { Input, InputField, InputIcon, InputSlot } from "./components/ui/input";
 import { SafeAreaView } from "./components/ui/safe-area-view";
 import { GluestackUIProvider } from "./components/ui/gluestack-ui-provider";
 import { LinearGradient } from "./components/ui/linear-gradient";
-import { Box } from "./components/ui/box";
 import { Heading } from "./components/ui/heading";
-import { Link, LinkText } from "./components/ui/link";
 import { Text } from "./components/ui/text";
-import { VStack } from "./components/ui/vstack";
-import { Image } from "./components/ui/image";
-
-const Example = () => {
-  return (
-    <Box className="h-full justify-center px-4 bg-background-0 web:min-h-[100vh]">
-      <VStack space="lg" className="items-center">
-        <LinearGradient
-          className="p-16 rounded-md"
-          colors={["#C084FC", "#60A5FA", "#F9A8D4"]}
-          start={[0, 0]}
-          end={[0, 1]}
-        >
-          <Image
-            source={require("./assets/gluestack-ui-logo.png")}
-            alt="gluestack-logo"
-          />
-        </LinearGradient>
-        <Heading>Welcome to gluestack-ui</Heading>
-        <Text>
-          Edit{" "}
-          <Text className="px-2 py-1 rounded bg-background-100">App.tsx</Text>{" "}
-          and save to reload.
-        </Text>
-        <Link href="https://ui.gluestack.io/docs/" isExternal>
-          <LinkText className="text-xl">Learn gluestack-ui</LinkText>
-        </Link>
-      </VStack>
-    </Box>
-  );
-};
+import { Center } from "./components/ui/center";
+import { Mail } from "lucide-react-native";
 
 export default function App() {
+  const [colorMode, setColorMode] = useState<"dark" | "light">("light");
   return (
-    <SafeAreaView className="flex-1">
-      <GluestackUIProvider>
-        <Example />
+    <SafeAreaView className="flex-1 justify-center items-center">
+      <GluestackUIProvider mode={colorMode}>
+        <Center className="rounded-xl bg-background-0 p-8 m-6 web:max-w-[400px]">
+          <Heading size="3xl">Stay up to date</Heading>
+          <Text size="lg" className="text-center leading-[22px] my-2">
+            Subscribe to our newsletter for the latest news and product updates.
+          </Text>
+
+          <Input
+            variant="outline"
+            size="md"
+            isDisabled={false}
+            isInvalid={false}
+            isReadOnly={false}
+            className="w-full rounded-full my-3"
+          >
+            <InputField placeholder="Placeholder Text" />
+            <InputSlot className="pr-3">
+              <InputIcon
+                as={Mail}
+                color={colorMode === "light" ? "#525252" : "#DBDBDC"}
+              />
+            </InputSlot>
+          </Input>
+
+          <LinearGradient
+            className="w-full rounded-full items-center py-2"
+            colors={["#8637CF", "#0F55A1"]}
+            start={[0, 1]}
+            end={[1, 0]}
+          >
+            <Text className="text-white font-semibold">Subscribe</Text>
+          </LinearGradient>
+        </Center>
       </GluestackUIProvider>
     </SafeAreaView>
   );
 }
 ```
 
-<img src='/assets/linear-gradient.png' alt='linear-gradient' height={'20%'} width={'50%'} />
-
 <br />
+
+<GradientImage/>
 
 ## Installation
 
