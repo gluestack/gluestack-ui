@@ -12,7 +12,7 @@ import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 const SCOPE = 'BADGE';
 
 const badgeStyle = tva({
-  base: 'flex-row items-center rounded-sm data-[disabled=true]:opacity-50 px-2',
+  base: 'flex-row items-center rounded-sm data-[disabled=true]:opacity-50 px-2 py-1',
 
   variants: {
     action: {

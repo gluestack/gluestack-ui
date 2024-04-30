@@ -66,32 +66,6 @@ const AccordionDemo = () => {
             </AccordionContentText>
           </AccordionContent>
         </AccordionItem>
-
-        <AccordionItem value="c">
-          <AccordionHeader>
-            <AccordionTrigger>
-              {({ isExpanded }: { isExpanded: boolean }) => {
-                return (
-                  <>
-                    <AccordionTitleText>
-                      Can I cancel my subscription at any time?
-                    </AccordionTitleText>
-                    {isExpanded ? (
-                      <AccordionIcon as={ChevronUpIcon} />
-                    ) : (
-                      <AccordionIcon as={ChevronDownIcon} />
-                    )}
-                  </>
-                );
-              }}
-            </AccordionTrigger>
-          </AccordionHeader>
-          <AccordionContent>
-            <AccordionContentText>
-              Yes, you can cancel your subscription at any time.
-            </AccordionContentText>
-          </AccordionContent>
-        </AccordionItem>
       </Accordion>
     </ScrollView>
   );

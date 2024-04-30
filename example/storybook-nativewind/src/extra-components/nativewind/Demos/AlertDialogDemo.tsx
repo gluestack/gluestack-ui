@@ -27,7 +27,7 @@ const AlertDialogDemo = () => {
         <AlertDialogBackdrop />
         <AlertDialogContent>
           <AlertDialogHeader>
-            <Heading>Return Policy</Heading>
+            <Heading>Deactivate Account</Heading>
             <AlertDialogCloseButton>
               <X
                 size={20}
@@ -36,7 +36,7 @@ const AlertDialogDemo = () => {
             </AlertDialogCloseButton>
           </AlertDialogHeader>
           <AlertDialogBody>
-            <Text>Whoa, slow down there!</Text>
+            <Text>Are you sure you want to deactivate your account?</Text>
           </AlertDialogBody>
           <AlertDialogFooter className="gap-2">
             <Button
@@ -48,7 +48,7 @@ const AlertDialogDemo = () => {
               <ButtonText>Cancel</ButtonText>
             </Button>
             <Button size="sm" action="negative" onPress={handleClose}>
-              <ButtonText>Delete</ButtonText>
+              <ButtonText>Deactivate</ButtonText>
             </Button>
           </AlertDialogFooter>
         </AlertDialogContent>
