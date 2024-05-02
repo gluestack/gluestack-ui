@@ -26,8 +26,8 @@ import {
   Badge,
   BadgeText,
   ScrollView,
+  Box,
 } from '../../core-components/nativewind';
-import {View} from 'react-native'
 import {
   AppProvider,
   CodePreview,
@@ -232,11 +232,11 @@ It inherits all the properties of of @expo/html-elements's [TR](https://www.npmj
 
 #### TableData
 
-It inherits all the properties of of @expo/html-elements's [TD](https://www.npmjs.com/package/@expo/html-elements#td) on native and html td tag on web.
+It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text) component on native and html td tag on web.
 
 #### TableHead 
 
-It inherits all the properties of of @expo/html-elements's [TH](https://www.npmjs.com/package/@expo/html-elements#th) on native and html th tag on web.
+It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text) component on native and html th tag on web.
 
 #### TableBody
 
@@ -271,7 +271,7 @@ This is an example of a Table component with a caption.
       code: `
 function App(){
     return (
-        <View className="rounded-lg overflow-hidden">
+        <Box className="rounded-lg overflow-hidden">
       <Table className="w-full">
         <TableHeader>
           <TableRow>
@@ -316,7 +316,7 @@ function App(){
           Showing recent membership details
         </TableCaption>
       </Table>
-    </View>
+    </Box>
 );
 }
 `,
@@ -331,7 +331,7 @@ scope: {
   TableHeader,
   TableRow,
   TableCaption,
-  View,
+  Box,
 Wrapper,
 },
 }}
@@ -356,7 +356,7 @@ This example demonstrates a table with a striped background.
       code: `
 function App(){
     return (
-         <View className="p-3 bg-background-0 rounded-lg overflow-hidden">
+         <Box className="p-3 bg-background-0 rounded-lg overflow-hidden">
       <Table className="w-full">
         <TableHeader>
           <TableRow className="border-b-0 bg-background-0 hover:bg-background-0">
@@ -455,7 +455,7 @@ function App(){
           </TableRow>
         </TableBody>
       </Table>
-    </View>
+    </Box>
 );
 }
 `,
@@ -469,7 +469,7 @@ scope: {
   TableHead,
   TableHeader,
   TableRow,
-  View,
+  Box,
 Wrapper,
 Badge,
 BadgeText,
@@ -496,7 +496,7 @@ This example illustrates a table component with a badge component.
       code: `
 function App(){
     return (
- <View className="rounded-lg overflow-hidden">
+ <Box className="rounded-lg overflow-hidden">
       <Table className="w-full">
         <TableHeader>
           <TableRow>
@@ -595,7 +595,7 @@ function App(){
           </TableRow>
         </TableBody>
       </Table>
-    </View>
+    </Box>
 );
 }
 `,
@@ -609,7 +609,7 @@ scope: {
   TableHead,
   TableHeader,
   TableRow,
-  View,
+ Box,
 Wrapper,
 Badge,
 BadgeText,
@@ -636,7 +636,7 @@ This example illustrates a table component with a top and a side header.
       code: `
 function App(){
     return (
-    <View className="border border-outline-200 rounded-lg overflow-hidden">
+    <Box className="border border-outline-200 rounded-lg overflow-hidden">
       <Table className="w-full">
         <TableHeader>
           <TableRow>
@@ -683,7 +683,7 @@ function App(){
           </TableRow>
         </TableBody>
       </Table>
-    </View>
+    </Box>
 );
 }
 `,
@@ -697,7 +697,7 @@ scope: {
   TableHead,
   TableHeader,
   TableRow,
-  View,
+  Box,
 Wrapper,
 },
 }}
