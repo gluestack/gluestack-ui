@@ -35,7 +35,7 @@ function arrangeChildrenIntoRows({
   colSpanArr,
   numColumns,
 }: {
-  childrenArray: any[];
+  childrenArray: React.ReactNode[];
   colSpanArr: number[];
   numColumns: number;
 }) {
