@@ -17,9 +17,10 @@ function createCssVariables(tokens: any, prefix = 'gluestack-') {
 
 export function injectGlobalCssStyle(
   css: any,
-  styleTagId: string = 'css-injected-global'
+  styleTagId: string = 'css-injected-global',
+  _experimentalSupportDynamicTheme?: boolean
 ) {
-  injectGlobalCss(css, styleTagId);
+  injectGlobalCss(css, styleTagId, _experimentalSupportDynamicTheme);
 }
 
 export function injectCssVariablesGlobalStyle(componentExtendedConfig: any) {
