@@ -1,4 +1,4 @@
-import { Grid, GridItem } from '@/components/ui/grid/index.web';
+import { Grid, GridItem } from '@/components/ui/grid';
 import React from 'react';
 import { Text } from 'react-native';
 

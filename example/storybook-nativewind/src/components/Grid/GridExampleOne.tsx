@@ -1,10 +1,10 @@
 import React from 'react';
-import { Grid, GridItem } from '@/components/ui/grid/index.web';
+import { Grid, GridItem } from '@/components/ui/grid';
 import { Text } from '@/components/ui/text';
 
 const GridExampleOne = () => {
   return (
-    <Grid numColumns={8} spacing={5}>
+    <Grid numColumns={8}>
       <GridItem
         colSpan={3}
         className="bg-background-100 p-4 rounded-md text-center"

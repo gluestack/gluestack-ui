@@ -6,29 +6,46 @@ import React, {
   useMemo,
   forwardRef,
 } from 'react';
-
+import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 import { View } from 'react-native';
 import { gridStyle, gridItemStyle } from './styles';
 import { cssInterop } from 'nativewind';
 
 const GridContext = createContext<any>({});
+type IGridProps = React.ComponentProps<typeof View> &
+  VariantProps<typeof gridStyle> & {
+    gap?: number;
+    rowGap?: number;
+    columnGap?: number;
+    flexDirection?: 'row' | 'column' | 'row-reverse' | 'column-reverse';
+    padding?: number;
+    paddingLeft?: number;
+    paddingRight?: number;
+    paddingStart?: number;
+    paddingEnd?: number;
+  };
+
+type IGridItemProps = React.ComponentProps<typeof View> &
+  VariantProps<typeof gridItemStyle> & {
+    index?: number;
+  };
 
 const Grid = forwardRef(
-  ({ className, numColumns = 12, children, ...props }: any, ref) => {
+  (
+    { className, numColumns = 12, children, ...props }: IGridProps,
+    ref?: any
+  ) => {
     const [calculatedWidth, setCalculatedWidth] = useState<number | null>(null);
 
-    const itemsPerRow = useMemo(() => {
-      // get the colSpan of each child
-      const colSpanArr = React.Children.map(children, (child: any) => {
-        const colSpan = child.props?.colSpan ? child.props.colSpan : 1;
-
-        if (colSpan > numColumns) {
-          return numColumns;
-        }
-
-        return colSpan;
-      });
-
+    function arrangeChildrenIntoRows({
+      childrenArray,
+      colSpanArr,
+      numColumns,
+    }: {
+      childrenArray: any[];
+      colSpanArr: number[];
+      numColumns: number;
+    }) {
       let currentRow = 1;
       let currentRowTotalColSpan = 0;
 
@@ -36,8 +53,6 @@ const Grid = forwardRef(
       const rowItemsCount: {
         [key: number]: number[];
       } = {};
-
-      const childrenArray = React.Children.toArray(children);
 
       for (let i = 0; i < childrenArray.length; i++) {
         const colSpan = colSpanArr[i];
@@ -55,6 +70,29 @@ const Grid = forwardRef(
           ? [...rowItemsCount[currentRow], i]
           : [i];
       }
+
+      return rowItemsCount;
+    }
+
+    const itemsPerRow = useMemo(() => {
+      // get the colSpan of each child
+      const colSpanArr = React.Children.map(children, (child: any) => {
+        const colSpan = child.props?.colSpan ? child.props.colSpan : 1;
+
+        if (colSpan > numColumns) {
+          return numColumns;
+        }
+
+        return colSpan;
+      });
+
+      const childrenArray = React.Children.toArray(children);
+
+      const rowItemsCount = arrangeChildrenIntoRows({
+        childrenArray,
+        colSpanArr,
+        numColumns,
+      });
 
       return rowItemsCount;
     }, [numColumns, children]);
@@ -109,6 +147,7 @@ const Grid = forwardRef(
   }
 );
 
+//@ts-ignore
 cssInterop(Grid, {
   className: {
     target: 'style',
@@ -127,7 +166,7 @@ cssInterop(Grid, {
 });
 
 const GridItem = forwardRef(
-  ({ className, colSpan = 1, ...props }: any, ref) => {
+  ({ className, colSpan = 1, ...props }: IGridItemProps, ref?: any) => {
     const [flexBasisValue, setFlexBasisValue] = useState<
       number | string | null
     >('auto');
@@ -150,7 +189,7 @@ const GridItem = forwardRef(
       ) {
         // find out in which row of itemsPerRow the current item's index is
         const row = Object.keys(itemsPerRow).find((key) => {
-          return itemsPerRow[key].includes(props.index);
+          return itemsPerRow[key].includes(props?.index);
         });
 
         const rowColsCount = itemsPerRow[row as string].length;
@@ -178,6 +217,7 @@ const GridItem = forwardRef(
       <View
         ref={ref}
         className={gridItemStyle({ colSpan, class: className })}
+        //@ts-ignore
         style={{
           flexBasis: flexBasisValue,
         }}
