@@ -1,5 +1,9 @@
 import type { ComponentMeta } from '@storybook/react-native';
 import Table from './Table';
+import TableCaption from './TableCaption';
+import TableStripped from './TableStripped';
+import TableWithComponent from './TableWithComponent';
+import TableWithSideHeader from './TableWithSideHeader';
 
 const TableMeta: ComponentMeta<typeof Table> = {
   title: 'stories/Table',
@@ -7,11 +11,16 @@ const TableMeta: ComponentMeta<typeof Table> = {
   // metaInfo is required for figma generation
   // @ts-ignore
   metaInfo: {
-    componentDescription: `A Card component serves as a visual container that groups related content and actions.`,
+    componentDescription: `The Table component provides a flexible and customizable way to display tabular data, facilitating easy organization and presentation of information in various applications.`,
   },
-  argTypes: {},
 };
 
 export default TableMeta;
 
-export { Table };
+export {
+  Table,
+  TableCaption,
+  TableStripped,
+  TableWithComponent,
+  TableWithSideHeader,
+};
