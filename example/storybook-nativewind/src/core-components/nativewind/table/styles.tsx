@@ -4,7 +4,7 @@ import { isWeb } from '@gluestack-ui/nativewind-utils/IsWeb';
 const captionTableStyle = isWeb ? 'caption-bottom' : '';
 
 export const tableStyle = tva({
-  base: `border-collapse w-[800px]`,
+  base: `table border-collapse border-collapse w-[800px]`,
 });
 
 export const tableHeaderStyle = tva({
@@ -24,7 +24,7 @@ export const tableHeadStyle = tva({
 });
 
 export const tableRowStyleStyle = tva({
-  base: 'border-b border-solid border-outline-200 bg-background-0 hover:bg-background-50',
+  base: 'border-0 border-b border-solid border-outline-200 bg-background-0 hover:bg-background-50',
   variants: {
     isHeaderRow: {
       true: 'bg-background-50',
