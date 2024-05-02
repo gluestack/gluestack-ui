@@ -1,10 +1,10 @@
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import { isWeb } from '@gluestack-ui/nativewind-utils/IsWeb';
 
-const baseTableStyle = isWeb ? 'border-collapse' : '';
+const captionTableStyle = isWeb ? 'caption-bottom' : '';
 
 export const tableStyle = tva({
-  base: `${baseTableStyle} w-[800px]`,
+  base: `border-collapse w-[800px]`,
 });
 
 export const tableHeaderStyle = tva({
@@ -24,17 +24,21 @@ export const tableHeadStyle = tva({
 });
 
 export const tableRowStyleStyle = tva({
-  base: 'border-t border-solid border-outline-300',
+  base: 'border-b border-solid border-outline-200 bg-background-0 hover:bg-background-50',
   variants: {
     isHeaderRow: {
-      true: 'border-t-0 bg-background-50',
+      true: 'bg-background-50',
     },
     isFooterRow: {
-      true: 'bg-background-50',
+      true: 'border-b-0 bg-background-50',
     },
   },
 });
 
 export const tableDataStyle = tva({
   base: 'flex-1 px-6 py-5 text-left text-[16px] font-medium leading-6 text-typography-900',
+});
+
+export const tableCaptionStyle = tva({
+  base: `${captionTableStyle} px-6 py-5 text-[16px] font-normal leading-6 text-typography-900 bg-background-50`,
 });

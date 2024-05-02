@@ -5,6 +5,7 @@ import {
   TBody as ExpoTBody,
   TFoot as ExpoTFoot,
   TR as ExpoTR,
+  Caption as ExpoTCaption,
 } from '@expo/html-elements';
 import {
   tableStyle,
@@ -14,6 +15,7 @@ import {
   tableHeadStyle,
   tableRowStyleStyle,
   tableDataStyle,
+  tableCaptionStyle,
 } from './styles';
 import { Text } from 'react-native';
 
@@ -111,6 +113,16 @@ const TableData = React.forwardRef(({ className, ...props }: any, ref) => {
   );
 });
 
+const TableCaption = React.forwardRef(({ className, ...props }: any, ref) => {
+  return (
+    <ExpoTCaption
+      ref={ref}
+      className={tableCaptionStyle({ class: className })}
+      {...props}
+    />
+  );
+});
+
 Table.displayName = 'Table';
 TableHeader.displayName = 'TableHeader';
 TableBody.displayName = 'TableBody';
@@ -118,6 +130,7 @@ TableFooter.displayName = 'TableFooter';
 TableHead.displayName = 'TableHead';
 TableRow.displayName = 'TableRow';
 TableData.displayName = 'TableData';
+TableCaption.displayName = 'TableCaption';
 
 export {
   Table,
@@ -127,4 +140,5 @@ export {
   TableHead,
   TableRow,
   TableData,
+  TableCaption,
 };
