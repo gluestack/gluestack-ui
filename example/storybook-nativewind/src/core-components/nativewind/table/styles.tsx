@@ -20,25 +20,25 @@ export const tableFooterStyle = tva({
 });
 
 export const tableHeadStyle = tva({
-  base: 'flex-1 px-6 py-5 text-left font-bold text-[16px] leading-6 text-typography-900',
+  base: 'flex-1 px-6 py-[14px] text-left font-bold text-[16px] leading-[22px] text-typography-800 font-roboto',
 });
 
 export const tableRowStyleStyle = tva({
-  base: 'border-0 border-b border-solid border-outline-200 bg-background-0 hover:bg-background-50',
+  base: 'border-0 border-b border-solid border-outline-200 bg-background-0',
   variants: {
     isHeaderRow: {
-      true: 'bg-background-50',
+      true: '',
     },
     isFooterRow: {
-      true: 'border-b-0 bg-background-50',
+      true: 'border-b-0 ',
     },
   },
 });
 
 export const tableDataStyle = tva({
-  base: 'flex-1 px-6 py-5 text-left text-[16px] font-medium leading-6 text-typography-900',
+  base: 'flex-1 px-6 py-[14px] text-left text-[16px] font-medium leading-[22px] text-typography-800 font-roboto',
 });
 
 export const tableCaptionStyle = tva({
-  base: `${captionTableStyle} px-6 py-5 text-[16px] font-normal leading-6 text-typography-900 bg-background-50`,
+  base: `${captionTableStyle} px-6 py-[14px] text-[16px] font-normal leading-[22px] text-typography-800 bg-background-50 font-roboto`,
 });
