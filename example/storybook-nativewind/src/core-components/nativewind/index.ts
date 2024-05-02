@@ -10,6 +10,7 @@ export * from './flat-list';
 export * from './card';
 export * from './center';
 export * from './checkbox';
+export * from './grid';
 export * from './hstack';
 export * from './pressable';
 export * from './icon';
