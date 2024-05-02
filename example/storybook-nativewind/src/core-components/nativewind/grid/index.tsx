@@ -30,49 +30,49 @@ type IGridItemProps = React.ComponentProps<typeof View> &
     index?: number;
   };
 
+function arrangeChildrenIntoRows({
+  childrenArray,
+  colSpanArr,
+  numColumns,
+}: {
+  childrenArray: any[];
+  colSpanArr: number[];
+  numColumns: number;
+}) {
+  let currentRow = 1;
+  let currentRowTotalColSpan = 0;
+
+  // store how many items in each row
+  const rowItemsCount: {
+    [key: number]: number[];
+  } = {};
+
+  for (let i = 0; i < childrenArray.length; i++) {
+    const colSpan = colSpanArr[i];
+
+    // if current row is full, go to next row
+    if (currentRowTotalColSpan + colSpan > numColumns) {
+      currentRow++;
+      currentRowTotalColSpan = colSpan;
+    } else {
+      // if current row is not full, add colSpan to current row
+      currentRowTotalColSpan += colSpan;
+    }
+
+    rowItemsCount[currentRow] = rowItemsCount[currentRow]
+      ? [...rowItemsCount[currentRow], i]
+      : [i];
+  }
+
+  return rowItemsCount;
+}
+
 const Grid = forwardRef(
   (
     { className, numColumns = 12, children, ...props }: IGridProps,
     ref?: any
   ) => {
     const [calculatedWidth, setCalculatedWidth] = useState<number | null>(null);
-
-    function arrangeChildrenIntoRows({
-      childrenArray,
-      colSpanArr,
-      numColumns,
-    }: {
-      childrenArray: any[];
-      colSpanArr: number[];
-      numColumns: number;
-    }) {
-      let currentRow = 1;
-      let currentRowTotalColSpan = 0;
-
-      // store how many items in each row
-      const rowItemsCount: {
-        [key: number]: number[];
-      } = {};
-
-      for (let i = 0; i < childrenArray.length; i++) {
-        const colSpan = colSpanArr[i];
-
-        // if current row is full, go to next row
-        if (currentRowTotalColSpan + colSpan > numColumns) {
-          currentRow++;
-          currentRowTotalColSpan = colSpan;
-        } else {
-          // if current row is not full, add colSpan to current row
-          currentRowTotalColSpan += colSpan;
-        }
-
-        rowItemsCount[currentRow] = rowItemsCount[currentRow]
-          ? [...rowItemsCount[currentRow], i]
-          : [i];
-      }
-
-      return rowItemsCount;
-    }
 
     const itemsPerRow = useMemo(() => {
       // get the colSpan of each child
