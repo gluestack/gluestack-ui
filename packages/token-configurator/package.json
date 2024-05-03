@@ -10,7 +10,6 @@
     "@types/culori": "^2.1.0",
     "culori": "^4.0.1",
     "immer": "^10.1.1",
-    "tailwind": "^4.0.0",
     "use-immer": "^0.9.0"
   }
 }

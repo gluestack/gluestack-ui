@@ -17,13 +17,6 @@ export default function CodeEditorComponent() {
     useContext(ThemeContext);
 
   useEffect(() => {
-    // console.log('Culori imported:', formatHex);
-    // console.log('Culori parse imported:', parse);
-    // console.log('Culori:', culori2);
-    // console.log('Culori2 fh:', culori2.formatHex);
-  }, []);
-
-  useEffect(() => {
     //update theme provider value
     if (themeValue) {
       const updatedValue = { ...themeValue };
@@ -158,12 +151,7 @@ export default function CodeEditorComponent() {
                   <span className="inline-block w-1" />
                   <input
                     type="color"
-                    value={value}
-                    // value={
-                    //   isValidHex(formatHex(value))
-                    //     ? formatHex(value)
-                    //     : '#000000'
-                    // }
+                    value={formatHex(value)}
                     // className={`h-5 w-5 p-1 cursor-pointer `} //moz
                     className="h-[1.25rem] w-[1.05rem] cursor-pointer bg-transparent disabled:opacity-50 disabled:pointer-events-none"
                     onChange={(e) => {
@@ -172,7 +160,6 @@ export default function CodeEditorComponent() {
                       });
 
                       updatePaletteFromBaseColor(key, e.target.value);
-                      // console.log("Formatted value:", formatHex(value));
                     }}
                   />
                   {/* </span> */} {key}: {'"'}
@@ -209,8 +196,7 @@ export default function CodeEditorComponent() {
                   <span className="inline-block w-1" />
                   <input
                     type="color"
-                    value={value}
-                    // value={formatHex(value)}
+                    value={formatHex(value)}
                     className="h-[1.25rem] w-[1.05rem] cursor-pointer bg-transparent disabled:opacity-50 disabled:pointer-events-none"
                     onChange={(e) => {
                       setTheme((draft: any) => {
