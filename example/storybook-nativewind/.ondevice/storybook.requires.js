@@ -49,6 +49,7 @@ try {
 
 const getStories = () => {
   return [
+    require('../src/components/Grid/Grid.stories.tsx'),
     // require('../src/components/Disclosure/Actionsheet/Actionsheet.stories.tsx'),
     // require('../src/components/Disclosure/Accordion/Accordion.stories.tsx'),
     // require('../src/components/Typography/Text/Text.stories.tsx'),
@@ -57,7 +58,7 @@ const getStories = () => {
     // require('../src/components/Feedback/Alert/Alert.stories.tsx'),
     // require('../src/components/Forms/Button/Button.stories.tsx'),
     // require('../src/components/DataDisplay/Badge/Badge.stories.tsx'),
-    require('../src/components/primitives/Button/Button.stories.tsx'),
+    // require('../src/components/primitives/Button/Button.stories.tsx'),
     // require('../src/components/Forms/Checkbox/Checkbox.stories.tsx'),
     // require('../src/components/DataDisplay/Divider/Divider.stories.tsx'),
     // require('../src/components/Others/Fab/Fab.stories.tsx'),

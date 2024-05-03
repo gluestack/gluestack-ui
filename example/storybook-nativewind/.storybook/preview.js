@@ -46,7 +46,7 @@ export const parameters = {
           'Typography',
           ['Heading', 'Text'],
           'Layout',
-          ['Box', 'Center', 'Divider', 'HStack', 'VStack'],
+          ['Box', 'Center', 'Divider', 'HStack', 'VStack', 'Grid'],
           'Feedback',
           ['Alert', 'Progress', 'Spinner', 'Toast'],
           'Data Display',
@@ -75,9 +75,7 @@ export const parameters = {
           ['Fab'],
         ],
         'Guides',
-        'Recipes',
-        ['Linear Gradient'],
-        ['More', ['Changelog']],
+        ['Recipes', ['Linear Gradient'], 'More', ['Changelog']],
       ],
       icons: [
         {

@@ -344,7 +344,7 @@ const ButtonIcon = React.forwardRef(
     if (parentVariant !== 'solid') {
       localColor = defaultColors[parentAction as keyof DefaultColors];
     } else {
-      localColor = '#FEFEFF';
+      localColor = 'gray';
     }
     const { color = localColor } = props;
 
