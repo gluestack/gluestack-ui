@@ -17,15 +17,9 @@ export default function TokenConfiguratorBaseComponent() {
 export function Layout() {
   return (
     <>
-      <div
-        className="flex w-full justify-evenly 
-
-       xl:flex-row 
-      overflow-x-auto"
-      >
-        <div className="m-8 h-12">
+      <div className="flex w-full justify-evenly flex-col sm:flex-row overflow-x-auto">
+        <div className="m-8">
           <CodeEditorComponent />
-          <h1 className="text-typography-black bg-white"> Hi Hi </h1>
         </div>
         <div className="m-8">
           <PreviewComponent />

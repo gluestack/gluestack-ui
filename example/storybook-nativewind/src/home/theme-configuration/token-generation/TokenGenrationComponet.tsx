@@ -1,5 +1,6 @@
-import React, { Fragment } from 'react';
+import React from 'react';
+import TokenConfiguratorBaseComponent from '../../../../../../../gluestack-ui/packages/token-configurator/TokenConfigComponent';
 
 export const TokenGenrationComponet = () => {
-  return <>Coming Soon</>;
+  return <TokenConfiguratorBaseComponent />;
 };

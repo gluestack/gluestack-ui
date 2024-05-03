@@ -117,7 +117,7 @@ const PreviewComponent = () => {
         <AccordionItem value="a">
           <AccordionHeader>
             <AccordionTrigger>
-              {({ isExpanded }: { isExpanded: boolean }) => {
+              {({ isExpanded }) => {
                 return (
                   <>
                     <AccordionTitleText>
@@ -144,7 +144,7 @@ const PreviewComponent = () => {
         <AccordionItem value="b">
           <AccordionHeader>
             <AccordionTrigger>
-              {({ isExpanded }: { isExpanded: boolean }) => {
+              {({ isExpanded }) => {
                 return (
                   <>
                     <AccordionTitleText>
