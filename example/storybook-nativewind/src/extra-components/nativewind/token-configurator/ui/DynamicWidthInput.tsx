@@ -30,6 +30,8 @@ export default function DynamicWidthInput({
         padding: '0px 2px',
         textAlign: 'center',
         color: 'white',
+        boxShadow: 'none',
+        outline: 'none',
       }}
       type="text"
       autoFocus
