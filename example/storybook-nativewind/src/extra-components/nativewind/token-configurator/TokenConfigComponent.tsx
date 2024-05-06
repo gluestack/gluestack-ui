@@ -19,7 +19,7 @@ export function Layout() {
   return (
     <>
       <div className="flex w-full justify-center align-middle flex-col overflow-x-auto">
-        <div className="m-8">
+        <div>
           <PreviewComponent />
         </div>
         <div className="m-8">
