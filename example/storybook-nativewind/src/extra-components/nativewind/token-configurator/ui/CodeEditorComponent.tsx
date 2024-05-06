@@ -115,23 +115,23 @@ export default function CodeEditorComponent() {
 
   return (
     <>
-      <div className="bg-gray-800 text-white rounded-lg py-8 pl-8 container relative">
+      <div className="bg-gray-800 text-white rounded-lg pt-16 pb-8 px-4 relative">
         <div className="absolute top-4 right-4">
           <button
             onClick={handleReset}
-            className="px-4 py-1 border-none rounded-full bg-gray-950 text-white font-medium cursor-pointer focus:outline-none  shadow-none outline-none"
+            className="px-4 py-1 border-none rounded-full bg-gray-950 text-white font-medium cursor-pointer focus:outline-none hover:outline-dashed"
           >
             Reset
           </button>
           <button
             onClick={handleCopy}
-            className="ml-2 px-4 py-1 border-none rounded-full bg-gray-950 text-white font-medium cursor-pointer focus:outline-none shadow-none outline-none"
+            className="ml-2 px-4 py-1 border-none rounded-full bg-gray-950 text-white font-medium cursor-pointer focus:outline-none hover:outline-dashed"
           >
             Copy
           </button>
         </div>
 
-        <div id="codeEditor">
+        <div id="codeEditor" className="flex flex-col items-center">
           <pre>
             <code className="text-neutral-400">{`export const config = createConfig({`}</code>
             <code>{`
