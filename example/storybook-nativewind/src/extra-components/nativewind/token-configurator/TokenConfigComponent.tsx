@@ -18,11 +18,11 @@ export default function TokenConfiguratorBaseComponent() {
 export function Layout() {
   return (
     <>
-      <div className="flex justify-center align-middle flex-col overflow-x-auto">
+      <div className="flex flex-col">
         <div>
           <PreviewComponent />
         </div>
-        <div className="m-8">
+        <div className="my-4">
           <CodeEditorComponent />
         </div>
       </div>

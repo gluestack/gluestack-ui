@@ -115,7 +115,7 @@ export default function CodeEditorComponent() {
 
   return (
     <>
-      <div className="bg-gray-800 text-white rounded-lg p-16 container overflow-y-auto relative">
+      <div className="bg-gray-800 text-white rounded-lg py-8 pl-8 container relative">
         <div className="absolute top-4 right-4">
           <button
             onClick={handleReset}
