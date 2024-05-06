@@ -47,10 +47,13 @@
     "@react-native-community/slider": "4.2.4",
     "@react-stately/collections": "^3.6.0",
     "@react-stately/tree": "^3.5.0",
+    "@types/culori": "^2.1.0",
+    "culori": "^4.0.1",
     "expo": "^47.0.0",
     "expo-linear-gradient": "^12.3.0",
     "expo-status-bar": "~1.4.2",
     "fs": "^0.0.1-security",
+    "immer": "^10.1.1",
     "lucide-react-native": "^0.236.0",
     "nativewind": "^4.0.1",
     "next": "^13.5.3",
@@ -70,6 +73,7 @@
     "tailwind-variants": "^0.1.20",
     "tailwindcss": "^3.4.1",
     "ts-jest": "^29.1.0",
+    "use-immer": "^0.9.0",
     "uuidv4": "^6.2.13"
   },
   "devDependencies": {
