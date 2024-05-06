@@ -65,7 +65,7 @@ const PreviewComponent = () => {
   const extraAvatars = avatars.slice(3);
   const remainingCount = extraAvatars.length;
   return (
-    <div className="rounded-lg p-6 w-full border-2">
+    <div className="bg-white rounded-lg p-6 border-2">
       <SolidButtonGrid />
       <OutlineButtonGrid />
       <LinkButtonGrid />
