@@ -119,13 +119,13 @@ export default function CodeEditorComponent() {
         <div className="absolute top-4 right-4">
           <button
             onClick={handleReset}
-            className="px-4 py-1 rounded-full bg-gray-900 text-white font-medium cursor-pointer focus:outline-none  shadow-none outline-none"
+            className="px-4 py-1 border-none rounded-full bg-gray-950 text-white font-medium cursor-pointer focus:outline-none  shadow-none outline-none"
           >
             Reset
           </button>
           <button
             onClick={handleCopy}
-            className="ml-2 px-4 py-1 rounded-full bg-gray-900 text-white font-medium cursor-pointer focus:outline-none shadow-none outline-none"
+            className="ml-2 px-4 py-1 border-none rounded-full bg-gray-950 text-white font-medium cursor-pointer focus:outline-none shadow-none outline-none"
           >
             Copy
           </button>
@@ -153,7 +153,7 @@ export default function CodeEditorComponent() {
                     type="color"
                     value={formatHex(value)}
                     // className={`h-5 w-5 p-1 cursor-pointer `} //moz
-                    className="w-[1.5rem] outline-none cursor-pointer bg-transparent disabled:opacity-50 disabled:pointer-events-none"
+                    className="h-[1.25rem] w-[1.05rem] border-none outline-none cursor-pointer bg-transparent disabled:opacity-50 disabled:pointer-events-none"
                     onChange={(e) => {
                       setThemeBase((d: any) => {
                         d[key] = e.target.value;
@@ -197,7 +197,7 @@ export default function CodeEditorComponent() {
                   <input
                     type="color"
                     value={formatHex(value)}
-                    className="w-[1.5rem] outline-none cursor-pointer bg-transparent disabled:opacity-50 disabled:pointer-events-none"
+                    className="h-[1.25rem] w-[1.05rem] border-none outline-none cursor-pointer bg-transparent disabled:opacity-50 disabled:pointer-events-none"
                     onChange={(e) => {
                       setTheme((draft: any) => {
                         draft[key] = e.target.value;

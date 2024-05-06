@@ -71,7 +71,7 @@ const PreviewComponent = () => {
       <LinkButtonGrid />
       <BadgesGrid />
       <SpinnerAndProgressGrid />
-      <div className="outer-container">
+      <div className="outer-container flex justify-between py-6">
         <SwitchesCheckboxAndRadioGrid />
         <SliderGrid />
       </div>

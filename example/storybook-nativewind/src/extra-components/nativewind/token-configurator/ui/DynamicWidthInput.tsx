@@ -23,7 +23,7 @@ export default function DynamicWidthInput({
   }, [value]);
   return (
     <input
-      className={`${className} appearance-none shadow-none box`}
+      className={`${className} w-[${width}+1 ch]`}
       value={value}
       style={{
         width: width + 1 + 'ch',
