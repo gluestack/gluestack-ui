@@ -1,8 +1,9 @@
 import React from 'react';
 import CodeEditorComponent from './ui/CodeEditorComponent';
 import PreviewComponent from './ui/PreviewComponent';
-import { GluestackUIProvider } from './../../../core-components/nativewind/gluestack-ui-provider';
+
 import ThemeProvider from './util/ThemeProvider';
+import { GluestackUIProvider } from './ui/gluestack-ui-provider/index.web';
 
 export default function TokenConfiguratorBaseComponent() {
   return (
