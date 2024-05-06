@@ -153,7 +153,7 @@ export default function CodeEditorComponent() {
                     type="color"
                     value={formatHex(value)}
                     // className={`h-5 w-5 p-1 cursor-pointer `} //moz
-                    className="h-[1.25rem] w-[1.05rem] cursor-pointer bg-transparent disabled:opacity-50 disabled:pointer-events-none"
+                    className="h-[1.25rem] w-[1.25rem] outline-none cursor-pointer bg-transparent disabled:opacity-50 disabled:pointer-events-none"
                     onChange={(e) => {
                       setThemeBase((d: any) => {
                         d[key] = e.target.value;
@@ -197,7 +197,7 @@ export default function CodeEditorComponent() {
                   <input
                     type="color"
                     value={formatHex(value)}
-                    className="h-[1.25rem] w-[1.05rem] cursor-pointer bg-transparent disabled:opacity-50 disabled:pointer-events-none"
+                    className="h-[1.25rem] w-[1.25rem] outline-none cursor-pointer bg-transparent disabled:opacity-50 disabled:pointer-events-none"
                     onChange={(e) => {
                       setTheme((draft: any) => {
                         draft[key] = e.target.value;
