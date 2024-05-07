@@ -68,7 +68,7 @@ import {
   Camera,
 } from 'lucide-react-native';
 const IconBasic = ({ size, ...props }: any) => {
-  return <Icon as={AddIcon} size={size} {...props} />;
+  return <Icon as={SearchIcon} size={size} {...props} />;
 };
 
 IconBasic.description =
