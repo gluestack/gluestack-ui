@@ -5,7 +5,7 @@ import PreviewComponent from './ui/PreviewComponent';
 import ThemeProvider from './util/ThemeProvider';
 import { GluestackUIProvider } from './ui/gluestack-ui-provider/index.web';
 
-export default function TokenConfiguratorBaseComponent() {
+export default function ThemeConfigurator() {
   return (
     <ThemeProvider>
       <GluestackUIProvider>

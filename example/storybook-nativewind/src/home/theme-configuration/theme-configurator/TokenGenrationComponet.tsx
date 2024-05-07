@@ -1,6 +1,6 @@
 import React from 'react';
-import TokenConfiguratorBaseComponent from '../../../extra-components/nativewind/token-configurator/TokenConfigComponent';
+import ThemeConfigurator from '../../../extra-components/nativewind/token-configurator/TokenConfigComponent';
 
-export const TokenGenrationComponet = () => {
-  return <TokenConfiguratorBaseComponent />;
+export const ThemeConfiguratorComponent = () => {
+  return <ThemeConfigurator />;
 };
