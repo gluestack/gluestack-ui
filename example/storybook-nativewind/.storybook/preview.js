@@ -39,7 +39,7 @@ export const parameters = {
           'Core Concepts',
           ['Accessibility', 'Universal'],
           'Theme Configuration',
-          ['Default Tokens', 'Customizing Theme', 'Token Generation'],
+          ['Default Tokens', 'Customizing Theme', 'Theme Configurator'],
         ],
         'Components',
         [
