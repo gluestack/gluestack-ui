@@ -112,10 +112,6 @@ module.exports = function (api) {
               __dirname,
               '../../packages/unstyled/radio/src'
             ),
-            '@gluestack-ui/select': path.join(
-              __dirname,
-              '../../packages/unstyled/select/src'
-            ),
             '@gluestack-ui/slider': path.join(
               __dirname,
               '../../packages/unstyled/slider/src'
@@ -248,6 +244,10 @@ module.exports = function (api) {
               __dirname,
               '../../packages/react-native-aria/utils/src'
             ),
+            'culori': [
+              path.resolve(__dirname, './node_modules/culori/src/'),
+              path.resolve(__dirname, '../../node_modules/culori/src/'),
+            ],
           },
         },
       ],
