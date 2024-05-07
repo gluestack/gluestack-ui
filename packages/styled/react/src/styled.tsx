@@ -946,7 +946,7 @@ export function verboseStyled<
   ComCon
 >(
   Component: P,
-  theme: Partial<IVerbosedTheme<Variants, P>>,
+  theme: Partial<IVerbosedTheme<Variants, React.ComponentProps<P>>>,
   componentStyleConfig: IComponentStyleConfig<ComCon> = {},
   ExtendedConfig?: any,
   BUILD_TIME_PARAMS?: {
@@ -2329,7 +2329,7 @@ export function verboseStyled<
 
 export function styled<P extends React.ComponentType<any>, Variants, ComCon>(
   Component: P,
-  theme: ITheme<Variants, P> = {},
+  theme: ITheme<Variants, React.ComponentProps<P>> = {},
   componentStyleConfig?: IComponentStyleConfig<ComCon>,
   ExtendedConfig?: ExtendedConfigType,
   BUILD_TIME_PARAMS?: {
