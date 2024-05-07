@@ -15,15 +15,7 @@ import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 
 const PrimitiveIcon = React.forwardRef(
   (
-    {
-      height,
-      width,
-      fill = 'none',
-      color = 'gray',
-      size,
-      as: AsComp,
-      ...props
-    }: any,
+    { height, width, fill = 'none', color, size, as: AsComp, ...props }: any,
     ref?: any
   ) => {
     const sizeProps = useMemo(() => {

@@ -940,8 +940,12 @@ const getStyleIdsFromMap = (
   return componentStyleObject;
 };
 
-export function verboseStyled<P, Variants, ComCon>(
-  Component: React.ComponentType<P>,
+export function verboseStyled<
+  P extends React.ComponentType<any>,
+  Variants,
+  ComCon
+>(
+  Component: P,
   theme: Partial<IVerbosedTheme<Variants, P>>,
   componentStyleConfig: IComponentStyleConfig<ComCon> = {},
   ExtendedConfig?: any,
@@ -976,7 +980,6 @@ export function verboseStyled<P, Variants, ComCon>(
   //   process.env.NODE_ENV === 'development' && DEBUG_TAG ? false : false;
 
   //@ts-ignore
-  type ITypeReactNativeStyles = P['style'];
   let styleHashCreated = false;
   let pluginData: any;
   let orderedResolved: OrderedSXResolved;
@@ -1149,7 +1152,7 @@ export function verboseStyled<P, Variants, ComCon>(
       // sxHash: BUILD_TIME_sxHash = '',
       ...componentProps
     }: any,
-    ref: React.ForwardedRef<P>
+    ref: any
   ) => {
     const isClient = React.useRef(false);
     const GluestackComponent = useRef(Component);
@@ -2314,13 +2317,18 @@ export function verboseStyled<P, Variants, ComCon>(
   StyledComp.isStyledComponent = true;
 
   return StyledComp as ForwardRefExoticComponent<
-    StyledComponentProps<ITypeReactNativeStyles, Variants, P, ComCon> &
-      React.RefAttributes<P>
+    StyledComponentProps<
+      React.ComponentProps<P>['style'],
+      Variants,
+      React.ComponentProps<P>,
+      ComCon,
+      P
+    >
   >;
 }
 
-export function styled<P, Variants, ComCon>(
-  Component: React.ComponentType<P>,
+export function styled<P extends React.ComponentType<any>, Variants, ComCon>(
+  Component: P,
   theme: ITheme<Variants, P> = {},
   componentStyleConfig?: IComponentStyleConfig<ComCon>,
   ExtendedConfig?: ExtendedConfigType,
