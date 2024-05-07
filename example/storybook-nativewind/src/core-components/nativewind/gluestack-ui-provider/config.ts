@@ -128,7 +128,7 @@ export const config = {
     '--color-outline-900': '#272624',
     '--color-outline-950': '#1A1717',
     /* Background */
-    '--color-background-0': '#FBFBFB',
+    '--color-background-0': '#FFFFFF',
     '--color-background-50': '#F6F6F6',
     '--color-background-100': '#F2F1F1',
     '--color-background-200': '#DCDBDB',
@@ -146,7 +146,6 @@ export const config = {
     '--color-background-warning': '#FFF4EB',
     '--color-background-success': '#EDFCF2',
     '--color-background-muted': '#F6F6F7',
-    // '--color-background-muted': 'red',
     '--color-background-info': '#EBF8FE',
   }),
   dark: vars({
