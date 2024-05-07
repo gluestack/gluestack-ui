@@ -81,7 +81,7 @@ export const config = {
 
   return (
     <>
-      <div className="bg-gray-800 text-white rounded-lg pt-16 pb-8 px-4 relative">
+      <div className="bg-gray-800 text-white rounded-lg pt-16 pb-8 pl-4 relative">
         <div className="absolute top-4 right-4">
           <button
             onClick={handleReset}
