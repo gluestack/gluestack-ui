@@ -50,6 +50,11 @@ const gluestackStyleReact = {
   createComponents: (config) => {
     return config;
   },
+  FontResolver: class {
+    constructor(...args) {
+      return args;
+    }
+  }
 };
 const expoHtmlElements = {
   A: () => {},

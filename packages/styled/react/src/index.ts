@@ -77,7 +77,6 @@ export type {
   GSConfig,
   IAnimationResolver,
 } from './types';
-export { createStyled } from './createStyled';
 
 export { createGlobalStylesWeb } from './createGlobalStylesWeb';
 // export { styled };

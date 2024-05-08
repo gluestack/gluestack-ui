@@ -7,7 +7,7 @@ import type {
   ViewStyle,
 } from 'react-native';
 import type { propertyTokenMap } from './propertyTokenMap';
-import type { CSSProperties, ForwardRefExoticComponent } from 'react';
+import type { CSSProperties, RefAttributes } from 'react';
 
 export type RNStyledProps = ViewStyle | ImageStyle | TextStyle;
 export type RNProps = ViewProps | TextProps | ImageProps;
@@ -790,27 +790,35 @@ interface GenericComponents {
 }
 
 /********************* COMPONENT PROPS TYPE *****************************************/
-
-export type StyledComponentProps<GenericComponentStyles, Variants, P, ComCon> =
-  Omit<
-    'sx' extends keyof P
-      ? P & VariantProps<Variants, ComCon>
-      : Partial<
-          Omit<
-            P &
-              ComponentProps<GenericComponentStyles, Variants, P> &
-              VariantProps<Variants, ComCon> &
-              UtilityProps<GenericComponentStyles, Variants, P>,
-            'animationComponentGluestack'
-          >
-        >,
-    'animationComponentGluestack'
-  >;
-
-export type GluestackComponent<GenericComponentStyles, Variants, P, ComCon> =
-  ForwardRefExoticComponent<
-    StyledComponentProps<GenericComponentStyles, Variants, P, ComCon>
-  >;
+export type StyledComponentProps<
+  GenericComponentStyles,
+  Variants,
+  GenericComponentProps,
+  ComCon,
+  P
+> = Omit<
+  'sx' extends keyof GenericComponentProps
+    ? GenericComponentProps & VariantProps<Variants, ComCon>
+    : Partial<
+        Omit<
+          GenericComponentProps &
+            ComponentProps<
+              GenericComponentStyles,
+              Variants,
+              GenericComponentProps
+            > &
+            VariantProps<Variants, ComCon> &
+            UtilityProps<
+              GenericComponentStyles,
+              Variants,
+              GenericComponentProps
+            >,
+          'animationComponentGluestack'
+        >
+      > &
+        RefAttributes<P>,
+  'animationComponentGluestack'
+>;
 
 export type VariantProps<Variants, ComCon> =
   GSConfig['globalStyle'] extends object
