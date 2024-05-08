@@ -6,7 +6,7 @@ export interface ISelectProps {
   isFocused?: boolean;
   isFocusVisible?: boolean;
   closeOnOverlayClick?: boolean;
-  selectedValue?: string;
+  selectedValue?: string | null;
   /**
    * @deprecated Use `initialLabel` instead.
    */
