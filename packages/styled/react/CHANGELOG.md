@@ -1,5 +1,17 @@
 # @gluestack-style/react
 
+## 1.0.56
+
+### Patch Changes
+
+- - Fixed theme typings
+
+## 1.0.55
+
+### Patch Changes
+
+- - Fixed ref attribute typings
+
 ## 1.0.54
 
 ### Patch Changes
