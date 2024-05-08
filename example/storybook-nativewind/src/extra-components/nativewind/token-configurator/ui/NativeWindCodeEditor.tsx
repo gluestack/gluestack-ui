@@ -106,7 +106,7 @@ export const config = {
             {Object.entries(themeBase).map(([key, value]) => (
               <div key={key} className="my-2">
                 <code>
-                  {'     '}
+                  {'    '}
                   {/* <span
                     data-tip="Pick →"
                     className="tooltip-open tooltip-accent tooltip-left align-middle bg-white"
@@ -155,7 +155,7 @@ export const config = {
             {Object.entries(theme).map(([key, value]) => (
               <div key={key} className="my-2">
                 <code>
-                  {'     '}
+                  {'    '}
                   <span className="inline-block w-1" />
                   <input
                     type="color"
