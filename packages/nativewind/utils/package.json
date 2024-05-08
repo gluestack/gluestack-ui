@@ -17,7 +17,7 @@
   "main": "index.js",
   "module": "index.js",
   "types": "index.d.ts",
-  "version": "1.0.14",
+  "version": "1.0.14-alpha.2",
   "react-native": "src/index",
   "source": "src/index",
   "scripts": {
@@ -39,6 +39,7 @@
   "dependencies": {
     "find-yarn-workspace-root": "^2.0.0",
     "patch-package": "8.0.0",
+    "react-native-css-interop": "0.0.36",
     "tailwind-variants": "0.1.20"
   },
   "peerDependencies": {
