@@ -1,5 +1,13 @@
 # @gluestack-ui/themed
 
+## 1.1.25
+
+### Patch Changes
+
+- Updated dependencies
+  - @gluestack-ui/select@0.1.26
+  - @gluestack-ui/icon@0.1.21
+
 ## 1.1.24
 
 ### Patch Changes

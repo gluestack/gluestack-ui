@@ -1,5 +1,11 @@
 # @gluestack-ui/icon
 
+## 0.1.21
+
+### Patch Changes
+
+- Fix selectValue prop typings in select component
+
 ## 0.1.8
 
 ### Patch Changes

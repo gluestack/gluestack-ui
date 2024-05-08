@@ -55,7 +55,7 @@ This is an illustration of **VStack** component.
     argsType: {
       space: {
         control: 'select',
-          options: ['none', 'xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', '4xl'],
+          options: ['xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', '4xl'],
           default: 'md',
         },
       reversed: {
@@ -192,7 +192,7 @@ VStack component is created using View component from react-native. It extends a
             <Table.TText>-</Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>{`It sets the space between children.`}</Table.TText>
+            <Table.TText>{`It sets the space between children. By default there is no space between the VStack items.`}</Table.TText>
           </Table.TD>
         </Table.TR>
         <Table.TR>
@@ -205,7 +205,7 @@ VStack component is created using View component from react-native. It extends a
             <Table.TText>boolean</Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>-</Table.TText>
+            <Table.TText>false</Table.TText>
           </Table.TD>
           <Table.TD>
             <Table.TText>{`When true, it places the VStack items in reverse direction.`}</Table.TText>
