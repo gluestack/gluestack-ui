@@ -36,7 +36,7 @@ function main() {
   try {
     const packageManager = fs.existsSync(path.join(userDirectory, 'yarn.lock'))
       ? 'yarn'
-      : 'npm';
+      : 'npm run';
 
     spawnSync(packageManager, ['patch-package'], {
       cwd: userDirectory,
@@ -55,7 +55,7 @@ function main() {
         path.join(workspaceRoot, 'yarn.lock')
       )
         ? 'yarn'
-        : 'npm';
+        : 'npm run';
 
       spawnSync(packageManager, ['patch-package'], {
         cwd: workspaceRoot,
