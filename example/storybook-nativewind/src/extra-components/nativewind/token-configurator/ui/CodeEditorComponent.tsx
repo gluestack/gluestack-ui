@@ -95,7 +95,7 @@ export default function CodeEditorComponent() {
     ...Theme config.tokens.colors,\n`;
 
     Object.entries(theme).map(([key, value]) => {
-      textarea.value = textarea.value.concat(`    ${key}: "${value}",\n`);
+      textarea.value = textarea.value.concat(`    '${key}': '${value}',\n`);
     });
 
     textarea.value = textarea.value.concat(
