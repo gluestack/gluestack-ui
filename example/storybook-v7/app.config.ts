@@ -6,5 +6,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   slug: 'app-launch-kit',
   extra: {
     ...config?.extra,
+    // Add extra config here
+    storybookEnabled: process.env.STORYBOOK_ENABLED,
   },
 });

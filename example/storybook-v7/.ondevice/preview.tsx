@@ -1,5 +1,12 @@
+import React from 'react';
 import { withBackgrounds } from '@storybook/addon-ondevice-backgrounds';
+import { addParameters } from '@storybook/client-api';
+import { GluestackUIProvider, Box, VStack } from '@custom-ui/themed';
+import { config } from '@custom-ui/config';
+import { useState } from 'react';
 import type { Preview } from '@storybook/react';
+import { useDarkMode } from '../src/hooks/useDarkMode';
+import { Platform } from 'react-native';
 
 const preview: Preview = {
   decorators: [withBackgrounds],
@@ -22,5 +29,56 @@ const preview: Preview = {
     },
   },
 };
+
+export const decorators = [
+  withBackgrounds,
+  (Story) => {
+    let value = false;
+
+    if (Platform.OS === 'web') {
+      // eslint-disable-next-line react-hooks/rules-of-hooks
+      value = useDarkMode();
+    }
+    const [isDark] = useState(false);
+
+    return (
+      <GluestackUIProvider config={config}>
+        <Box flex={1} p="$10">
+          <Story />
+        </Box>
+      </GluestackUIProvider>
+    );
+  },
+];
+
+addParameters({
+  docs: {
+    container: ({ children, context }) => {
+      let value = false;
+
+      if (Platform.OS === 'web') {
+        // eslint-disable-next-line react-hooks/rules-of-hooks
+        value = useDarkMode();
+      }
+      const [isDark] = useState(false);
+
+      function getColorMode() {
+        //@ts-ignore
+        if (Platform.OS === 'web') {
+          return value ? 'dark' : 'light';
+        } else {
+          return isDark ? 'dark' : 'light';
+        }
+      }
+      return (
+        <DocsContainer context={context}>
+          <GluestackUIProvider config={config} colorMode={getColorMode()}>
+            {children}
+          </GluestackUIProvider>
+        </DocsContainer>
+      );
+    },
+  },
+});
 
 export default preview;
