@@ -1,0 +1,544 @@
+---
+title: AlertDialog | gluestack-ui | Installation, Usage, and API
+
+description: AlertDialog effectively interrupts a user's flow and prompts them to take a specific action. It's commonly used for mandatory confirmations or call-to-actions.
+
+pageTitle: AlertDialog
+
+pageDescription: AlertDialog effectively interrupts a user's flow and prompts them to take a specific action. It's commonly used for mandatory confirmations or call-to-actions.
+
+showHeader: true
+---
+
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="with-nativewind/Components/Overlay/AlertDialog" />
+
+import {
+  AlertDialog,
+  AlertDialogBackdrop,
+  AlertDialogContent,
+  AlertDialogHeader,
+  AlertDialogCloseButton,
+  AlertDialogFooter,
+  AlertDialogBody,
+} from '../../core-components/nativewind';
+import {
+  CloseIcon,
+  Button,
+  ButtonText,
+  ButtonGroup,
+  Center,
+  HStack,
+  AlertTriangleIcon,
+} from '../../core-components/nativewind;
+import { Heading, Icon, AlertCircleIcon } from '../../core-components/nativewind';
+import { Text, CheckCircleIcon } from '../../core-components/nativewind';
+import { transformedCode } from '../../utils';
+import {
+  AppProvider,
+  CodePreview,
+  Table,
+  TableContainer,
+  InlineCode,
+} from '@gluestack/design-system';
+import { CollapsibleCode } from '@gluestack/design-system';
+
+import Wrapper from '../../core-components/nativewind/Wrapper';
+
+This is an illustration of **AlertDialog** component.
+
+<Wrapper>
+  <CodePreview
+    showComponentRenderer={ true }
+  showArgsController = { false}
+  metaData = {{
+    code: `
+        function Example(){
+          const [showAlertDialog, setShowAlertDialog] = React.useState(false);
+          return (
+            <Center h={300}>
+              <Button onPress={() => setShowAlertDialog(true)}>
+                <ButtonText>Click me</ButtonText>
+              </Button>
+              <AlertDialog
+                isOpen={showAlertDialog}
+                onClose={() => {
+                setShowAlertDialog(false);
+                }}
+              >
+                <AlertDialogBackdrop />
+                <AlertDialogContent>
+                  <AlertDialogHeader>
+                    <Heading size='lg'>Deactivate account</Heading>
+                    <AlertDialogCloseButton>
+                      <Icon as={CloseIcon} />
+                    </AlertDialogCloseButton>
+                  </AlertDialogHeader>
+                  <AlertDialogBody>
+                    <Text size='sm'>
+                      Are you sure you want to deactivate your account? Your data will be permanently removed and cannot be undone.
+                    </Text>
+                  </AlertDialogBody>
+                  <AlertDialogFooter>
+                   <ButtonGroup space="lg">
+                    <Button
+                      variant="outline"
+                      action="secondary"
+                      onPress={() => {
+                        setShowAlertDialog(false);
+                      }}
+                    >
+                      <ButtonText>Cancel</ButtonText>
+                    </Button>
+                    <Button
+                      bg='$error600'
+                      action="negative"
+                      onPress={() => {
+                        setShowAlertDialog(false);
+                      }}
+                    >
+                      <ButtonText>Deactivate</ButtonText>
+                    </Button>
+                     </ButtonGroup>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
+              </AlertDialog>
+            </Center>
+          );
+        }
+      `,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'Example');
+      },
+        scope: {
+      Wrapper,
+        AlertDialog,
+        AlertDialogBackdrop,
+        AlertDialogContent,
+        AlertDialogHeader,
+        AlertDialogCloseButton,
+        AlertDialogFooter,
+        AlertDialogBody,
+        CloseIcon,
+        Button,
+        ButtonText,
+        ButtonGroup,
+        Center,
+        Text,
+        Heading,
+        Icon,
+        AlertCircleIcon,
+      },
+    argsType: { },
+  }
+}
+/>
+</Wrapper>
+
+<br/>
+
+## Installation
+
+### Step 1: Install the following dependencies:
+
+```bash
+
+npm i @gluestack-ui/alert-dialog
+
+```
+
+### Step 2: Copy and paste the following code into your project.
+
+<CollapsibleCode>
+
+```jsx 
+%%-- File: core-components/nativewind/alert-dialog/index.tsx --%% 
+```
+
+</CollapsibleCode>
+
+### Step 3: Update the import paths to match your project setup.
+
+## API Reference
+
+To use this component in your project, include the following import statement in your file.
+
+```jsx
+import {
+  AlertDialog,
+  AlertDialogBackdrop,
+  AlertDialogContent,
+  AlertDialogHeader,
+  AlertDialogCloseButton,
+  AlertDialogFooter,
+  AlertDialogBody,
+} from '@gluestack-ui/themed';
+```
+
+```jsx
+export default () => (
+  <AlertDialog>
+    <AlertDialogBackdrop />
+    <AlertDialogContent>
+      <AlertDialogHeader>
+        <AlertDialogCloseButton />
+      </AlertDialogHeader>
+      <AlertDialogBody />
+      <AlertDialogFooter />
+    </AlertDialogContent>
+  </AlertDialog>
+);
+```
+
+### Component Props
+
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
+
+#### AlertDialog
+
+Contains all View related layout style props and actions.
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+<Wrapper>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Type</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Default</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Description</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>isOpen</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`If true, the alert-dialog will open. Useful for controllable state behavior.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>onClose</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`() => any`}</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Callback invoked when the alert-dialog is closed.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>useRNModal</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`If true, renders react-native native modal. (Only works in react-native)`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>defaultIsOpen</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Specifies the default open state of the AlertDialog`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>initialFocusRef</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`React.RefObject<any>`}</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`The ref of element to receive focus when the alert-dialog opens.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>finalFocusRef</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`React.RefObject<any>`}</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`The ref of element to receive focus when the alert-dialog closes.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>avoidKeyboard</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`If true, the AlertDialog will avoid the keyboard.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>closeOnOverlayClick</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>true</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`If true, the AlertDialog will close when the overlay is clicked.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>isKeyboardDismissable</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>true</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`If true, the keyboard can dismiss the AlertDialog`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>animationPreset</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>slide &#124; fade</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>slide</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Specifies the animation preset for the AlertDialog`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</Wrapper>
+
+**Descendants Styling Props**
+Props to style child components.
+
+<Wrapper>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Sx Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Description</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>_content</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Prop to style AlertDialogContent Component`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+
+  </TableContainer>
+</Wrapper>
+
+#### AlertDialogBackdrop
+
+It is React Native's [Pressable](https://reactnative.dev/docs/pressable#props) component, created using [@legendapp/motion's](https://legendapp.com/open-source/motion/) `createMotionAnimatedComponent` function to add animation to the component. You can use any declarative animation library you prefer.
+
+#### AlertDialogContent
+
+It is [@legendapp/motion's](https://legendapp.com/open-source/motion/) [Motion.View](https://legendapp.com/open-source/motion/overview/) component. You can use any declarative animation library you prefer.
+
+#### AlertDialogCloseButton
+
+It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable) component.
+
+**Descendants Styling Props**
+Props to style child components.
+
+<Wrapper>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Sx Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Description</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>_text</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Prop to style AlertDialogCloseButton  Text Component`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>_icon</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Prop to style AlertDialogCloseButton  Icon Component`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</Wrapper>
+
+#### AlertDialogHeader
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+#### AlertDialogBody
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+#### AlertDialogFooter
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+### Accessibility
+
+We have outlined the various features that ensure the AlertDialog component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards.It uses React Native ARIA [@react-native-aria/focus](https://react-native-aria.geekyants.com/) which follows the [WAI-ARIA Alert and Message Dialogs Pattern](https://www.w3.org/WAI/ARIA/apg/patterns/alertdialog/).
+
+### Props
+
+AlertDialog component is created using View component from react-native. It extends all the props supported by [React Native View](https://reactnative.dev/docs/view#props), [utility props](/ui/docs/styling/utility-and-sx-props) and the props mentioned below.
+
+#### AlertDialog
+
+<Wrapper>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Name</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Value</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Default</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>size</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>xs | sm | md | lg | full</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>md</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</Wrapper>
+
+## Spec Doc
+
+Explore the comprehensive details of the AlertDialog in this document, including its implementation details, checklist, and potential future additions. Dive into the thought process behind the component and gain insights into its development journey.
+
+<iframe
+style = {{
+  borderRadius: '8px',
+    border: ' 1px solid rgba(0, 0, 0, 0.1)',
+      aspectRatio: 736 / 585,
+  }}
+src = "https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FNcXOxqKbdnGsLQNex3H76u%2F%25C2%25A0%25F0%259F%2593%259Agluestack-UI-handbook%3Fpage-id%3D5653%253A34732%26type%3Ddesign%26node-id%3D5658-36648%26viewport%3D1433%252C11%252C0.08%26t%3DWy4Bx2pKvlcvatlJ-1%26scaling%3Dcontain%26starting-point-node-id%3D5658%253A36648%26mode%3Ddesign"
+allowFullScreen
+  />

@@ -1,0 +1,1027 @@
+---
+title: gluestack-ui Popover Component | Installation, Usage, and API
+
+description: Popovers often provide contextual information or quick access to related actions without requiring the user to navigate to a different page or view.
+
+pageTitle: Popover
+
+pageDescription: Popovers often provide contextual information or quick access to related actions without requiring the user to navigate to a different page or view.
+
+showHeader: true
+---
+
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="with-gluestack-style/Components/Overlay/Popover" />
+
+import {
+  Popover,
+  PopoverBackdrop,
+  PopoverContent,
+  PopoverHeader,
+  PopoverBody,
+  PopoverFooter,
+  PopoverCloseButton,
+  PopoverArrow,
+  Pressable,
+  Text as PopoverText,
+  Heading,
+  Icon,
+  HStack,
+  VStack,
+  Avatar,
+  AvatarFallbackText,
+  Button,
+  ButtonGroup,
+  ButtonText,
+  Box,
+  CloseIcon,
+  CircleIcon,
+  PhoneIcon,
+  Clock3Icon,
+  MailIcon,
+  Center,
+} from '../../core-components/themed';
+import {
+  AppProvider,
+  CodePreview,
+  Table,
+  TableContainer,
+  Text,
+  InlineCode,
+  CollapsibleCode,
+  Tabs
+} from '@gluestack/design-system';
+import { transformedCode } from '../../utils';
+import Wrapper from '../../core-components/themed/Wrapper';
+
+This is an illustration of **Popover** component.
+
+<Wrapper>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    _rendererWrapper={{
+      sx: {
+        minHeight: 450,
+      },
+    }}
+    metaData={{
+      code: `
+      function App() {
+        const [isOpen, setIsOpen] = React.useState(false);
+        const handleOpen = () => {
+          setIsOpen(true);
+        };
+        const handleClose = () => {
+          setIsOpen(false);
+        };
+        return (
+          <Popover
+            isOpen={isOpen}
+            onClose={handleClose}
+            onOpen={handleOpen}
+            {...props}
+            trigger={(triggerProps) => {
+              return (
+                <Button
+                  {...triggerProps}
+                >
+                  <ButtonText>
+                    Popover
+                  </ButtonText>
+                </Button>
+              );
+            }}
+          >
+            <PopoverBackdrop/>
+            <PopoverContent>
+              <PopoverHeader>
+                <Heading size='lg'>Welcome!</Heading>
+                <PopoverCloseButton>
+                  <Icon as={CloseIcon}/>
+                </PopoverCloseButton>
+              </PopoverHeader>
+              <PopoverBody>
+                <Text size='sm'>
+                  Join the product tour and start creating your own checklist. Are you ready to jump in?
+                </Text>
+              </PopoverBody>
+              <PopoverFooter>
+                <Text size='xs' flex={1}>
+                  Step 2 of 3
+                </Text>
+                <ButtonGroup space='md'>
+                  <Button variant="outline" action='secondary' onPress={handleClose}>
+                    <ButtonText>Back</ButtonText>
+                  </Button>
+                  <Button onPress={handleClose}>
+                    <ButtonText>Next</ButtonText>
+                  </Button>
+                </ButtonGroup>
+              </PopoverFooter>
+            </PopoverContent>
+          </Popover>
+        )
+      }
+      `,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'App');
+      },
+      scope: {
+        Wrapper,
+        Center,
+        Text: PopoverText,
+        Heading,
+        Popover,
+        PopoverBackdrop,
+        PopoverContent,
+        PopoverHeader,
+        PopoverBody,
+        PopoverFooter,
+        PopoverCloseButton,
+        Button,
+        ButtonGroup,
+        ButtonText,
+        CloseIcon,
+        Icon,
+      },
+      argsType: {
+        placement: {
+          control: 'select',
+          options: [
+            'bottom',
+            'bottom left',
+            'bottom right',
+            'top',
+            'top left',
+            'top right',
+            'left',
+            'left bottom',
+            'left right',
+            'right',
+            'right bottom',
+            'right top',
+          ],
+          default: 'bottom',
+        },
+        size: {
+          control: 'select',
+          options: ['xs', 'sm', 'md', 'lg', 'full'],
+          default: 'md',
+        },
+      },
+    }}
+  />
+</Wrapper>
+
+### Popover with arrow
+
+We have exported `PopoverArrow` component which can be used to render an arrow for the popover.
+
+<Wrapper>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+     _rendererWrapper={{
+      sx: {
+        minHeight: 450,
+      },
+    }}
+    metaData={{
+      code: `
+      function App() {
+        const [isOpen, setIsOpen] = React.useState(false);
+        const handleOpen = () => {
+          setIsOpen(true);
+        };
+        const handleClose = () => {
+          setIsOpen(false);
+        };
+        return (
+          <Popover
+            isOpen={isOpen}
+            onClose={handleClose}
+            onOpen={handleOpen}
+            {...props}
+            trigger={(triggerProps) => {
+              return (
+                <Button
+                  {...triggerProps}
+                >
+                  <ButtonText>
+                    Popover
+                  </ButtonText>
+                </Button>
+              );
+            }}
+          >
+            <PopoverBackdrop/>
+            <PopoverContent>
+            <PopoverArrow />
+              <PopoverHeader>
+                <Heading size='lg'>Welcome!</Heading>
+                <PopoverCloseButton>
+                  <Icon as={CloseIcon}/>
+                </PopoverCloseButton>
+              </PopoverHeader>
+              <PopoverBody>
+                <Text size='sm'>
+                  Join the product tour and start creating your own checklist. Are you ready to jump in?
+                </Text>
+              </PopoverBody>
+              <PopoverFooter>
+                <Text size='xs' flex={1}>
+                  Step 2 of 3
+                </Text>
+                <ButtonGroup space='md'>
+                  <Button variant="outline" action='secondary' onPress={handleClose}>
+                    <ButtonText>Back</ButtonText>
+                  </Button>
+                  <Button onPress={handleClose}>
+                    <ButtonText>Next</ButtonText>
+                  </Button>
+                </ButtonGroup>
+              </PopoverFooter>
+            </PopoverContent>
+          </Popover>
+        )
+      }
+      `,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'App');
+      },
+      scope: {
+        Wrapper,
+        Center,
+        Text: PopoverText,
+        Heading,
+        Popover,
+        PopoverBackdrop,
+        PopoverContent,
+        PopoverHeader,
+        PopoverBody,
+        PopoverFooter,
+        PopoverCloseButton,
+        Button,
+        ButtonGroup,
+        ButtonText,
+        CloseIcon,
+        Icon,
+        PopoverArrow,
+      },
+      argsType: {
+        placement: {
+          control: 'select',
+          options: [
+            'bottom',
+            'bottom left',
+            'bottom right',
+            'top',
+            'top left',
+            'top right',
+            'left',
+            'left bottom',
+            'left right',
+            'right',
+            'right bottom',
+            'right top',
+          ],
+          default: 'bottom',
+        },
+        size: {
+          control: 'select',
+          options: ['xs', 'sm', 'md', 'lg', 'full'],
+          default: 'md',
+        },
+      },
+    }}
+  />
+</Wrapper>
+
+<br />
+
+## Installation
+
+<Tabs value="cli" type="section">
+  <Tabs.TabList>
+      <Tabs.Tab value="cli">
+        <Tabs.TabTitle>CLI</Tabs.TabTitle>
+      </Tabs.Tab>
+     <Tabs.Tab value="manual">
+        <Tabs.TabTitle>Manual</Tabs.TabTitle>
+     </Tabs.Tab>
+  </Tabs.TabList>
+  <Tabs.TabPanels>
+    <Tabs.TabPanel value="cli">
+<>
+
+### Run the following command:
+  ```bash
+  npx gluestack-ui add popover
+  ```
+</>
+    </Tabs.TabPanel>
+    <Tabs.TabPanel value="manual"> 
+<>
+
+### Step 1: Install the following dependencies:
+```bash
+npm i @gluestack-ui/popover
+```
+
+### Step 2: Copy and paste the following code into your project.
+<CollapsibleCode>
+
+```jsx 
+%%-- File: core-components/themed/popover/index.tsx --%% 
+```
+</CollapsibleCode>
+
+### Step 3: Update the import paths to match your project setup.
+</>
+    </Tabs.TabPanel>
+  </Tabs.TabPanels>
+</Tabs>
+
+## API Reference
+
+To use this component in your project, include the following import statement in your file.
+
+```jsx
+import {
+  Popover,
+  PopoverBackdrop,
+  PopoverContent,
+  PopoverArrow,
+  PopoverHeader,
+  PopoverCloseButton,
+  PopoverBody,
+  PopoverFooter,
+} from '@gluestack-ui/themed';
+```
+
+```jsx
+export default () => (
+  <Popover>
+    <PopoverBackdrop />
+    <PopoverContent>
+      <PopoverArrow />
+      <PopoverHeader>
+        <PopoverCloseButton />
+      </PopoverHeader>
+      <PopoverBody />
+      <PopoverFooter />
+    </PopoverContent>
+  </Popover>
+);
+```
+
+### Component Props
+
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
+
+#### Popover
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+<>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Type</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Default</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Description</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>defaultIsOpen</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>
+              Specifies the default open state of the popover.
+            </Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>isOpen</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>
+              If true, the popover will open. Useful for controllable state
+              behavior.
+            </Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>trapFocus</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>true</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>Whether popover should trap focus.</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>focusScope</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>true</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>
+              Whether focus should be outside of popover or not
+            </Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>shouldFlip</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>true</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>
+              Whether the element should flip its orientation (e.g. top to
+              bottom or left to right) when there is insufficient room for it to
+              render completely.
+            </Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>initialFocusRef</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`React.RefObject<any>`}</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>
+              The ref of element to receive focus when the popover opens.
+            </Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>finalFocusRef</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`React.RefObject<any>`}</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>
+              The ref of element to receive focus when the popover closes
+            </Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>trigger</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`() => any`}</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>
+              Function that returns a React Element. This element will be used
+              as a Trigger for the popover.
+            </Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>crossOffset</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>number</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>
+              The additional offset applied along the cross axis between the
+              element and its trigger element.
+            </Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>offset</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>number</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>
+              The additional offset applied along the main axis between the
+              element and its trigger element.
+            </Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>shouldOverlapWithTrigger</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>
+              Determines whether popover content should overlap with the
+              trigger.
+            </Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>isKeyboardDismissable</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>
+              If true, the keyboard can dismiss the popover.
+            </Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>placement</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>
+              'top' | 'top left' | 'top right' | 'bottom' | 'bottom left' |
+              'bottom right' | 'right' | 'right top' | 'right bottom' | 'left' |
+              'left top' | 'left bottom'
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>'bottom'</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>Popover placement</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>useRNModal</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>
+              If true, renders react-native native modal.
+            </Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>avoidKeyboard</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>
+              If true, the popover will avoid the keyboard.
+            </Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>onOpen</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>() => any</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>
+              This function will be invoked when popover is opened.
+            </Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>onClose</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>() => any</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>
+              This function will be invoked when popover is closed. It'll also
+              be called when user attempts to close the popover via Escape key
+              or backdrop press.
+            </Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>children</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>any</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>
+              The content to display inside the popover.
+            </Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</>
+
+**Descendants Styling Props**
+Props to style child components.
+
+<>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Sx Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Description</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>_content</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Prop to style PopoverContent Component`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+
+  </TableContainer>
+</>
+
+#### PopoverBackdrop
+
+It is React Native's [Pressable](https://reactnative.dev/docs/pressable) component, created using [@legendapp/motion's](https://legendapp.com/open-source/motion/) `createMotionAnimatedComponent` function to add animation to the component. You can use any declarative animation library you prefer.
+
+#### PopoverContent
+
+Contains all backdrop related layout style props and actions.
+It is [@legendapp/motion's](https://legendapp.com/open-source/motion/) [Motion.View](https://legendapp.com/open-source/motion/overview/) component. You can use any declarative animation library you prefer.
+
+#### PopoverHeader
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+#### PopoverFooter
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+#### PopoverBody
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+#### PopoverCloseButton
+
+It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable) component.
+
+**Descendants Styling Props**
+Props to style child components.
+
+<>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Sx Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Description</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>_text</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Prop to style PopoverCloseButton  Text Component`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+         <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>_icon</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Prop to style PopoverCloseButton  Icon Component`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+
+  </TableContainer>
+</>
+
+### Accessibility
+
+We have outlined the various features that ensure the Popover component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards. It adheres to the [Dialog WAI-ARIA design pattern.](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/).
+
+#### Keyboard
+
+- `Space`: Opens/closes the popover.
+- `Enter`: Opens/closes the popover.
+- `Tab`: Moves focus to the next focusable element.
+- `Shift + Tab`: Moves focus to the previous focusable element.
+- `Esc`: Closes the popover and moves focus to PopoverTrigger.
+
+### Props
+
+Popover component is created using ScrollView component from react-native. It extends all the props supported by [React Native ScrollView](https://reactnative.dev/docs/scrollview#props), [utility props](/ui/docs/styling/utility-and-sx-props) and the props mentioned below.
+
+#### Popover
+
+<>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Name</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Value</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Default</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>size</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>xs | sm | md | lg | full</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>md</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</>
+
+### Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+#### Popover on Avatar
+
+A popover component can enhance the avatar by providing additional information and context in a concise and visually appealing manner.
+
+<Wrapper>
+  <CodePreview
+    _rendererWrapper={{ py: '$6' }}
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+        <Box h='$80'>
+        {\/* PhoneIcon, Clock3Icon, MailIcon are imported from 'lucide-react-native' *\/}
+          <Popover
+            trigger={(triggerProps) => {
+              return (
+                <HStack alignItems='center'>
+                  <Pressable
+                    borderRadius='$full'
+                    {...triggerProps}
+                  >
+                    <Avatar bg='$indigo600'>
+                      <AvatarFallbackText >
+                        Kevin James
+                      </AvatarFallbackText>
+                    </Avatar>
+                  </Pressable>
+                  <VStack ml='$2.5' space='xs'>
+                    <Heading fontSize='$md'>
+                      Kevin James
+                    </Heading>
+                    <Text size='sm'>
+                      Hi Rachel, What’s up?
+                    </Text>
+                  </VStack>
+                </HStack>
+              );
+            }}
+          >
+            <PopoverBackdrop/>
+            <PopoverContent w='$80'>
+              <PopoverHeader  px='$5' pt='$5'>
+                <HStack>
+                  <Avatar bg='$indigo600' >
+                    <AvatarFallbackText>
+                      Kevin James
+                    </AvatarFallbackText>
+                  </Avatar>
+                  <VStack ml='$2.5'>
+                    <Heading fontSize='$md'>
+                      Kevin James
+                    </Heading>
+                    <HStack alignItems='center'>
+                      <CircleIcon color='$green700' h='$2' w='$2'/>
+                      <Text size='sm'  pl='$1.5'>
+                        Active
+                      </Text>
+                    </HStack>
+                  </VStack>
+                </HStack>
+              </PopoverHeader>
+              <PopoverBody  px='$5' pb='$5'>
+                <VStack space='lg'>
+                  <VStack space='sm'>
+                    <HStack alignItems='center'>
+                      <Icon as={PhoneIcon} size='sm' />
+                      <Text size='sm'  ml='$1.5'>
+                        (603) 555-0123
+                      </Text>
+                    </HStack>
+                    <HStack alignItems='center'>
+                      <Icon as={Clock3Icon} size='sm'/>
+                      <Text size='sm'  ml='$1.5'>
+                        5:21 PM local time
+                      </Text>
+                    </HStack>
+                    <HStack alignItems='center'>
+                      <Icon as={MailIcon} size='sm'/>
+                      <Text size='sm'  ml='$1.5'>
+                        kevinjames@sample.com
+                      </Text>
+                    </HStack>
+                  </VStack>
+                  <Button bg='$primary700'>
+                    <ButtonText>View Profile</ButtonText>
+                  </Button>
+                </VStack>
+              </PopoverBody>
+            </PopoverContent>
+          </Popover>
+        </Box>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Box,
+        Heading,
+        Text: PopoverText,
+        Popover,
+        PopoverBackdrop,
+        PopoverContent,
+        PopoverHeader,
+        PopoverBody,
+        PopoverFooter,
+        PopoverCloseButton,
+        Pressable,
+        Button,
+        ButtonText,
+        HStack,
+        VStack,
+        CircleIcon,
+        PhoneIcon,
+        Clock3Icon,
+        MailIcon,
+        Avatar,
+        AvatarFallbackText,
+        Icon,
+      },
+      argsType: {},
+    }}
+  />
+</Wrapper>

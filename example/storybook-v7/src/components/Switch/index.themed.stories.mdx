@@ -1,0 +1,467 @@
+---
+title: gluestack-ui Switch Component | Installation, Usage, and API
+
+description: The Switch component offers a stylish alternative to the Checkbox, allowing users to enable or disable an option with a sleek sliding motion. This component is perfect for adding a touch of elegance and interactivity to your user interface.
+
+pageTitle: Switch
+
+pageDescription: The Switch component offers a stylish alternative to the Checkbox, allowing users to enable or disable an option with a sleek sliding motion. This component is perfect for adding a touch of elegance and interactivity to your user interface.
+
+showHeader: true
+---
+
+> The current component is functioning as expected, but we have decided to rebuild it entirely to align with our vision and enhance its performance. It is primarily based on React Native, and while we have made minimal modifications so far, our upcoming rebuild will involve significant changes to ensure it closely matches our desired structure and meets our objectives.
+
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="with-gluestack-style/Components/Forms/Switch" />
+
+import {
+  AppProvider,
+  CodePreview,
+  Table,
+  TableContainer,
+  InlineCode,
+  CollapsibleCode,
+  Tabs
+} from '@gluestack/design-system';
+import { transformedCode } from '../../utils';
+import { Switch, VStack, Text, HStack } from '../../core-components/themed';
+import Wrapper from '../../core-components/themed/Wrapper';
+
+This is an illustration of **Switch** component.
+
+<>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={true}
+    metaData={{
+      code: `
+          <Switch {...props} />
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: { Wrapper, Switch },
+      argsType: {
+        size: {
+          control: 'select',
+          options: ['sm', 'md', 'lg'],
+          default: 'md',
+        },
+        isDisabled: {
+          control: 'boolean',
+        },
+      },
+    }}
+  />
+</>
+
+<br />
+
+## Installation
+
+<Tabs value="cli" type="section">
+  <Tabs.TabList>
+      <Tabs.Tab value="cli">
+        <Tabs.TabTitle>CLI</Tabs.TabTitle>
+      </Tabs.Tab>
+     <Tabs.Tab value="manual">
+        <Tabs.TabTitle>Manual</Tabs.TabTitle>
+     </Tabs.Tab>
+  </Tabs.TabList>
+  <Tabs.TabPanels>
+    <Tabs.TabPanel value="cli">
+<>
+
+### Run the following command:
+```bash
+npx gluestack-ui add switch
+```
+</>
+    </Tabs.TabPanel>
+    <Tabs.TabPanel value="manual"> 
+<>
+
+### Step 1: Install the following dependencies:
+```bash
+npm i @gluestack-ui/switch
+```
+
+### Step 2: Copy and paste the following code into your project.
+<CollapsibleCode>
+
+```jsx 
+%%-- File: core-components/themed/switch/index.tsx --%% 
+```
+</CollapsibleCode>
+
+### Step 3: Update the import paths to match your project setup.
+</>
+    </Tabs.TabPanel>
+  </Tabs.TabPanels>
+</Tabs>
+
+## API Reference
+
+To use this component in your project, include the following import statement in your file.
+
+```jsx
+import { Switch } from '@/components/ui/switch';
+```
+
+```jsx
+export default () => <Switch />;
+```
+
+### Component Props
+
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
+
+#### Switch
+
+Contains all switch related layout style props and actions.
+It inherits all the properties of React Native's [Switch](https://reactnative.dev/docs/switch) component.
+
+<>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Type</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Default</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Description</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>isDisabled</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`When true, the switch is disabled and cannot be toggled`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>isInvalid</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`When true, the switch displays an error state.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>isRequired</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`When true, sets aria-required="true" on the switch.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>isHovered</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`When true, the switch displays a hover state.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>value</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`The value of the switch. If true the switch will be turned on.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>defaultValue</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`The defaultValue of the switch. If true the switch will be turned on initially.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>onToggle</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`() => any`}</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Callback to be invoked when switch value is changed.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</>
+
+### Accessibility
+
+We have outlined the various features that ensure the Button component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards.Adheres to the [WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/switch/).
+
+#### Keyboard
+
+- `Tab`: Moves focus to the next focusable element.
+- `Space`: Triggers the switch's action.
+
+### Screen Reader
+
+- VoiceOver: When the switch is focused, the screen reader will announce the switch's action and its current state.
+
+### Props
+
+Switch component is created using Switch component from react-native. It extends all the props supported by [React Native Switch](https://reactnative.dev/docs/switch#props), [utility props](/ui/docs/styling/utility-and-sx-props) and the props mentioned below.
+
+#### Switch
+
+<>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Name</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Value</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Default</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>size</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>sm | md | lg</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>md</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</>
+
+<!--
+### Customizing the Switch
+
+We have a function called `createSwitch` which can be used to create a custom switch component. This function takes in a configuration object which contains the styled components that you want to use for the switch. You can refer [gluestack.io/style](/style/docs/getting-started/styled) on how to use styled components.
+
+#### Usage
+
+Default styling of all these components can be found in the `components/core/switch` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/main/packages/themed/src/components/Switch) of the styled `Switch` components.
+
+```jsx
+// import the styles
+import { Root } from 'components/core/switch/styled-components';
+
+// import the createSwitch function
+import { createSwitch } from '@gluestack-ui/switch';
+
+// Understanding the API
+const Switch = createSwitch({
+  Root,
+});
+
+// Using the switch component
+export default () => <Switch />;
+```
+-->
+
+### Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+#### Switch With Label
+
+An example of a switch component with a label, which includes another switch component for toggling additional options.
+
+<Wrapper>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+            <HStack space="md">
+              <Switch/>
+              <Text size="sm" >Allow notifications</Text>
+            </HStack>
+     `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Switch,
+        Text,
+        HStack,
+      },
+      argsType: {},
+    }}
+  />
+</Wrapper>
+
+#### Checked State
+
+An example of a switch component used within a checked state component to represent a pre-selected or activated option.
+
+<Wrapper>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+          <HStack space="md">
+              <Switch  defaultValue={true}/>
+              <Text size="sm" >Public profile</Text>
+          </HStack>
+     `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Switch,
+        Text,
+        HStack,
+      },
+      argsType: {},
+    }}
+  />
+</Wrapper>
+
+#### Color scheme
+
+An example of a switch component being used with a different color scheme.
+
+<Wrapper>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+          <VStack space="md">
+              <Switch sx={{
+            _light: {
+              props: {
+                trackColor: {
+                  false: '$backgroundLight300',
+                  true: '$indigo600'
+                },
+              },
+            },
+            _dark: {
+              props: {
+                trackColor: {
+                  false: '$backgroundDark700',
+                  true: '$indigo600'
+                },
+              },
+            },
+          }}/>
+              <Switch
+              sx={{
+            _light: {
+              props: {
+                trackColor: {
+                  false: '$backgroundLight300',
+                  true: '$emerald600'
+                },
+              },
+            },
+            _dark: {
+              props: {
+                trackColor: {
+                  false: '$backgroundDark700',
+                  true: '$emerald600'
+                },
+              },
+            },
+          }}/>
+          </VStack>
+     `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Switch,
+        Text,
+        VStack,
+      },
+      argsType: {},
+    }}
+  />
+</Wrapper>

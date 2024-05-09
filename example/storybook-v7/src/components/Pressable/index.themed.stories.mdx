@@ -1,0 +1,154 @@
+---
+title: gluestack-ui Pressable Component | Installation, Usage, and API
+
+description: By providing access to hover, pressed, and focus events, Pressable serves as a more flexible alternative to buttons at a lower level of abstraction. It is a useful primitive for advanced customization needs.
+
+pageTitle: Pressable
+
+pageDescription: By providing access to hover, pressed, and focus events, Pressable serves as a more flexible alternative to buttons at a lower level of abstraction. It is a useful primitive for advanced customization needs.
+
+showHeader: true
+---
+
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="with-gluestack-style/Components/Forms/Pressable" />
+
+import { Pressable, Text } from '../../core-components/themed';
+import { AppProvider, CodePreview, CollapsibleCode, Tabs } from '@gluestack/design-system';
+import { transformedCode } from '../../utils';
+import Wrapper from '../../core-components/themed/Wrapper';
+
+
+
+This is an illustration of **Pressable** component.
+
+<Wrapper>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+ <Pressable
+  onPress={() => console.log('Hello')} p="$5" bg="$primary500" $hover-bg="$primary400">
+  <Text color="$text0">Press me</Text>
+</Pressable>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Pressable,
+        Text,
+      },
+      argsType: {},
+    }}
+  />
+</Wrapper>
+
+<br />
+
+## Installation
+
+<Tabs value="cli" type="section">
+  <Tabs.TabList>
+      <Tabs.Tab value="cli">
+        <Tabs.TabTitle>CLI</Tabs.TabTitle>
+      </Tabs.Tab>
+     <Tabs.Tab value="manual">
+        <Tabs.TabTitle>Manual</Tabs.TabTitle>
+     </Tabs.Tab>
+  </Tabs.TabList>
+  <Tabs.TabPanels>
+    <Tabs.TabPanel value="cli">
+<>
+
+### Run the following command:
+  ```bash
+  npx gluestack-ui add pressable
+  ```
+</>
+    </Tabs.TabPanel>
+    <Tabs.TabPanel value="manual"> 
+<>
+
+### Step 1: Install the following dependencies:
+
+```bash
+
+npm i @gluestack-ui/pressable
+
+```
+
+### Step 2: Copy and paste the following code into your project.
+
+<CollapsibleCode>
+
+```jsx 
+%%-- File: core-components/themed/pressable/index.tsx --%% 
+```
+
+</CollapsibleCode>
+
+### Step 3: Update the import paths to match your project setup.
+</>
+    </Tabs.TabPanel>
+  </Tabs.TabPanels>
+</Tabs>
+
+## API Reference
+
+To use this component in your project, include the following import statement in your file.
+
+```jsx
+import { Pressable } from '@/components/ui/pressable';
+```
+
+```jsx
+export default () => <Pressable />;
+```
+
+### Component Props
+
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
+
+#### Pressable
+
+It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable) component.
+
+### Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+#### Pressable child elements according to its states
+
+You can change the child elements according to the states of Pressable component.
+
+<Wrapper>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+ <Pressable p="$16" bg="$primary500"  $hover-bg="$primary400">
+   {({ pressed }) => (
+        <Text color={pressed ? '$primary200' : '$primary0'}>PRESSABLE</Text>
+      )}
+</Pressable>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Pressable,
+        Text,
+      },
+      argsType: {},
+    }}
+  />
+</Wrapper>
+
+Similarly, you can change the child elements according to other states of Pressable
+component and i.e. `focus` , `hover` , `pressed` , `disabled` and `focusVisible`.

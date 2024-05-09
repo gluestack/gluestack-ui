@@ -1,0 +1,795 @@
+---
+title: gluestack-ui Table Component | Installation, Usage, and API
+
+description: The Table component provides a flexible and customizable way to display tabular data, facilitating easy organization and presentation of information in various applications.
+
+pageTitle: Table
+
+pageDescription: The Table component provides a flexible and customizable way to display tabular data, facilitating easy organization and presentation of information in various applications.
+
+showHeader: true
+
+tag: alpha
+---
+
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="with-nativewind/Components/Data Display/Table" />
+
+import {
+  Table,
+  TableBody,
+  TableData,
+  TableHead,
+  TableHeader,
+  TableRow,
+  TableFooter,
+  TableCaption,
+  Badge,
+  BadgeText,
+  ScrollView,
+  Box,
+} from '../../core-components/nativewind';
+import {
+  AppProvider,
+  CodePreview,
+  Table as DSTable,
+  TableContainer,
+  InlineCode,
+  Tabs,
+  CollapsibleCode,
+} from '@gluestack/design-system';
+import { transformedCode } from '../../utils';
+import Wrapper from '../../core-components/nativewind/Wrapper';
+
+This is an illustration of a **Table** component.
+
+<Wrapper>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+        _rendererWrapper={{
+      display: 'grid',
+      justifyContent: 'stretch',
+      padding: 40,
+      overflow: 'scroll',
+    }}
+    metaData={{
+      code: `
+    <Table className="w-full">
+      <TableHeader>
+        <TableRow>
+          <TableHead>Customer Name</TableHead>
+          <TableHead>Units</TableHead>
+          <TableHead>Costs</TableHead>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        <TableRow>
+          <TableData>Rajesh Kumar</TableData>
+          <TableData>10</TableData>
+          <TableData>$130</TableData>
+        </TableRow>
+        <TableRow>
+          <TableData>Priya Sharma</TableData>
+          <TableData>12</TableData>
+          <TableData>$210</TableData>
+        </TableRow>
+        <TableRow>
+          <TableData>Ravi Patel</TableData>
+          <TableData>6</TableData>
+          <TableData>$55</TableData>
+        </TableRow>
+        <TableRow>
+          <TableData>Ananya Gupta</TableData>
+          <TableData>18</TableData>
+          <TableData>$340</TableData>
+        </TableRow>
+        <TableRow>
+          <TableData>Arjun Singh</TableData>
+          <TableData>2</TableData>
+          <TableData>$35</TableData>
+        </TableRow>
+      </TableBody>
+      <TableFooter>
+        <TableRow>
+          <TableHead>Total</TableHead>
+          <TableHead>48</TableHead>
+          <TableHead>$770</TableHead>
+        </TableRow>
+      </TableFooter>
+    </Table>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+       Table,
+       TableBody,
+       TableData,
+       TableHead,
+       TableHeader,
+       TableRow,
+        TableFooter,
+        ScrollView,
+       Wrapper,
+      },
+    }}
+  />
+</Wrapper>
+
+<br />
+
+## Installation
+
+<Tabs value="cli" type="section">
+  <Tabs.TabList>
+      <Tabs.Tab value="cli">
+        <Tabs.TabTitle>CLI</Tabs.TabTitle>
+      </Tabs.Tab>
+     <Tabs.Tab value="manual">
+        <Tabs.TabTitle>Manual</Tabs.TabTitle>
+     </Tabs.Tab>
+  </Tabs.TabList>
+  <Tabs.TabPanels>
+    <Tabs.TabPanel value="cli">
+<>
+
+### Run the following command:
+  ```bash
+  npx gluestack-ui add table
+  ```
+</>
+    </Tabs.TabPanel>
+    <Tabs.TabPanel value="manual"> 
+<>
+
+### Step 1: Install the following dependencies:
+  ```bash
+ npm i @expo/html-elements
+  ```
+
+### Step 2: Copy and paste the following code into index.tsx in your project.
+<CollapsibleCode>
+
+```jsx 
+%%-- File: core-components/nativewind/table/index.tsx --%% 
+```
+</CollapsibleCode>
+
+> Note: **Step 3 is optional and only required if you want to add support for [React Server Components](https://vercel.com/blog/understanding-react-server-components), You can skip this and jump to Step 4 directly if you don't have this requirement.**
+
+### Step 3(optional): Copy and paste the following code into index.web.tsx in your project.
+<CollapsibleCode>
+
+```jsx 
+%%-- File: core-components/nativewind/table/index.web.tsx --%% 
+```
+</CollapsibleCode>
+
+
+### Step 4: Copy and paste the following code into styles.tsx in your project.
+<CollapsibleCode>
+
+```jsx 
+%%-- File: core-components/nativewind/table/styles.tsx --%% 
+```
+</CollapsibleCode>
+
+### Step 5: Update the import paths to match your project setup.
+</>
+    </Tabs.TabPanel>
+  </Tabs.TabPanels>
+</Tabs>
+
+## API Reference
+
+To use this component in your project, include the following import statement in your file.
+
+```jsx
+import {   
+  Table,
+  TableHeader,
+  TableFooter,
+  TableBody,
+  TableHead,
+  TableData,
+  TableRow,
+  TableCaption,
+ } from '@/components/ui/table';
+```
+
+```jsx
+export default () => (
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHead />
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableData />
+      </TableRow>
+    </TableBody>
+    <TableFooter>
+      <TableRow>
+        <TableData />
+      </TableRow>
+    </TableFooter>
+    <TableCaption />
+  </Table>
+);
+```
+
+### Component Props
+
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
+
+#### Table
+
+It inherits all the properties of of @expo/html-elements's [Table](https://www.npmjs.com/package/@expo/html-elements#table) on native and html table tag on web.
+
+#### TableHeader
+
+It inherits all the properties of of @expo/html-elements's [THead](https://www.npmjs.com/package/@expo/html-elements#thead) on native and html thead tag on web.
+
+#### TableRow
+
+It inherits all the properties of of @expo/html-elements's [TR](https://www.npmjs.com/package/@expo/html-elements#tr) on native and html tr tag on web.
+
+#### TableData
+
+It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text) component on native and html td tag on web.
+
+<>
+  <TableContainer>
+    <DSTable>
+      <DSTable.THead>
+        <DSTable.TR>
+          <DSTable.TH>
+            <DSTable.TText>Prop</DSTable.TText>
+          </DSTable.TH>
+          <DSTable.TH>
+            <DSTable.TText>Type</DSTable.TText>
+          </DSTable.TH>
+          <DSTable.TH>
+            <DSTable.TText>Default</DSTable.TText>
+          </DSTable.TH>
+        </DSTable.TR>
+      </DSTable.THead>
+      <DSTable.TBody>
+        <DSTable.TR>
+          <DSTable.TD>
+            <DSTable.TText>
+              <InlineCode>useRNView</InlineCode>
+            </DSTable.TText>
+          </DSTable.TD>
+          <DSTable.TD>
+            <DSTable.TText>boolean</DSTable.TText>
+          </DSTable.TD>
+          <DSTable.TD>
+            <DSTable.TText>
+              If true renders a react-native view component instead of a text
+              component.
+            </DSTable.TText>
+          </DSTable.TD>
+        </DSTable.TR>
+      </DSTable.TBody>
+    </DSTable>
+  </TableContainer>
+</>
+
+#### TableHead 
+
+It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text) component on native and html th tag on web.
+
+<>
+  <TableContainer>
+    <DSTable>
+      <DSTable.THead>
+        <DSTable.TR>
+          <DSTable.TH>
+            <DSTable.TText>Prop</DSTable.TText>
+          </DSTable.TH>
+          <DSTable.TH>
+            <DSTable.TText>Type</DSTable.TText>
+          </DSTable.TH>
+          <DSTable.TH>
+            <DSTable.TText>Default</DSTable.TText>
+          </DSTable.TH>
+        </DSTable.TR>
+      </DSTable.THead>
+      <DSTable.TBody>
+        <DSTable.TR>
+          <DSTable.TD>
+            <DSTable.TText>
+              <InlineCode>useRNView</InlineCode>
+            </DSTable.TText>
+          </DSTable.TD>
+          <DSTable.TD>
+            <DSTable.TText>boolean</DSTable.TText>
+          </DSTable.TD>
+          <DSTable.TD>
+            <DSTable.TText>
+              If true renders a react-native view component instead of a text
+              component.
+            </DSTable.TText>
+          </DSTable.TD>
+        </DSTable.TR>
+      </DSTable.TBody>
+    </DSTable>
+  </TableContainer>
+</>
+
+
+#### TableBody
+
+It inherits all the properties of of @expo/html-elements's [TBody](https://www.npmjs.com/package/@expo/html-elements#tbody) on native and html tbody tag on web.
+
+#### TableFooter
+
+It inherits all the properties of of @expo/html-elements's [TFoot](https://www.npmjs.com/package/@expo/html-elements#tfoot) on native and html tfoot tag on web.
+
+#### TableCaption
+
+It inherits all the properties of of @expo/html-elements's [Caption](https://www.npmjs.com/package/@expo/html-elements#caption) on native and html caption tag on web.
+
+## Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+### Table with caption
+
+This is an example of a Table component with a caption.
+
+<Wrapper>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+            _rendererWrapper={{
+      display: 'grid',
+      justifyContent: 'stretch',
+      padding: 40,
+      overflow: 'scroll',
+    }}
+    metaData={{
+      code: `
+function App(){
+    return (
+        <Box className="rounded-lg overflow-hidden w-full">
+      <Table className="w-full">
+        <TableHeader>
+          <TableRow>
+            <TableHead>Name</TableHead>
+            <TableHead>Email Address</TableHead>
+            <TableHead>Phone Number</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          <TableRow>
+            <TableData>Rajesh Kumar</TableData>
+            <TableData fontWeight="$normal">rajesh@example.com</TableData>
+            <TableData fontWeight="$normal">1234567890</TableData>
+          </TableRow>
+          <TableRow>
+            <TableData>Priya Sharma</TableData>
+            <TableData fontWeight="$normal">priya@example.com</TableData>
+            <TableData fontWeight="$normal">1234567890</TableData>
+          </TableRow>
+          <TableRow>
+            <TableData>Ravi Patel</TableData>
+            <TableData fontWeight="$normal">ravi@example.com</TableData>
+            <TableData fontWeight="$normal">1234567890</TableData>
+          </TableRow>
+          <TableRow>
+            <TableData>Ananya Gupta</TableData>
+            <TableData fontWeight="$normal">ananya@example.com</TableData>
+            <TableData fontWeight="$normal">1234567890</TableData>
+          </TableRow>
+          <TableRow>
+            <TableData>Arjun Singh</TableData>
+            <TableData fontWeight="$normal">arjun@example.com</TableData>
+            <TableData fontWeight="$normal">1234567890</TableData>
+          </TableRow>
+          <TableRow>
+            <TableData>Nisha Verma</TableData>
+            <TableData fontWeight="$normal">nisha@example.com</TableData>
+            <TableData fontWeight="$normal">1234567890</TableData>
+          </TableRow>
+        </TableBody>
+        <TableCaption fontWeight="$normal">
+          Showing recent membership details
+        </TableCaption>
+      </Table>
+    </Box>
+);
+}
+`,
+transformCode: (code) => {
+return transformedCode(code, 'function', 'App');
+},
+scope: {
+  Table,
+  TableBody,
+  TableData,
+  TableHead,
+  TableHeader,
+  TableRow,
+  TableCaption,
+  Box,
+Wrapper,
+},
+}}
+/>
+
+</Wrapper>
+
+### Stripped table
+
+This example demonstrates a table with a striped background.
+
+<Wrapper>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+            _rendererWrapper={{
+      display: 'grid',
+      justifyContent: 'stretch',
+      padding: 40,
+      overflow: 'scroll',
+    }}
+    metaData={{
+      code: `
+function App(){
+    return (
+         <Box className="p-3 bg-background-0 rounded-lg overflow-hidden">
+      <Table className="w-[1000px]">
+        <TableHeader>
+          <TableRow className="border-b-0 bg-background-0 hover:bg-background-0">
+            <TableHead className="font-bold">Order id</TableHead>
+            <TableHead>Items</TableHead>
+            <TableHead>Name</TableHead>
+            <TableHead>City</TableHead>
+            <TableHead>Order price</TableHead>
+            <TableHead>Status</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          <TableRow className="border-b-0 bg-background-50">
+            <TableData>5771</TableData>
+            <TableData>3</TableData>
+            <TableData>Rajesh Kumar</TableData>
+            <TableData>New Jersey</TableData>
+            <TableData>$ 200</TableData>
+            <TableData>
+              <Badge
+                size="sm"
+                action="success"
+                className="w-fit justify-center"
+              >
+                <BadgeText>Completed</BadgeText>
+              </Badge>
+            </TableData>
+          </TableRow>
+          <TableRow className="border-b-0 hover:bg-background-0">
+            <TableData>5231</TableData>
+            <TableData>2</TableData>
+            <TableData>Priya Sharma</TableData>
+            <TableData>Austin</TableData>
+            <TableData>$ 150</TableData>
+            <TableData>
+              <Badge size="sm" action="info" className="w-fit justify-center">
+                <BadgeText>Processing</BadgeText>
+              </Badge>
+            </TableData>
+          </TableRow>
+          <TableRow className="border-b-0 bg-background-50">
+            <TableData>5771</TableData>
+            <TableData>3</TableData>
+            <TableData>Ravi Patel</TableData>
+            <TableData>Seattle</TableData>
+            <TableData>$ 215</TableData>
+            <TableData>
+              <Badge
+                size="sm"
+                action="warning"
+                className="w-fit justify-center"
+              >
+                <BadgeText>Shipped</BadgeText>
+              </Badge>
+            </TableData>
+          </TableRow>
+          <TableRow className="border-b-0 hover:bg-background-0">
+            <TableData>5231</TableData>
+            <TableData>4</TableData>
+            <TableData>Ananya Gupta</TableData>
+            <TableData>California</TableData>
+            <TableData>$ 88</TableData>
+            <TableData>
+              <Badge size="sm" action="info" className="w-fit justify-center">
+                <BadgeText>Processing</BadgeText>
+              </Badge>
+            </TableData>
+          </TableRow>
+          <TableRow className="border-b-0 bg-background-50">
+            <TableData>5771</TableData>
+            <TableData>3</TableData>
+            <TableData>Arjun Singh</TableData>
+            <TableData>Seattle</TableData>
+            <TableData>$ 115</TableData>
+            <TableData>
+              <Badge
+                size="sm"
+                action="success"
+                className="w-fit justify-center"
+              >
+                <BadgeText>Completed</BadgeText>
+              </Badge>
+            </TableData>
+          </TableRow>
+          <TableRow className="border-b-0 bg-background-0 hover:bg-background-0">
+            <TableData>5771</TableData>
+            <TableData>3</TableData>
+            <TableData>Nisha Verma</TableData>
+            <TableData>Seattle</TableData>
+            <TableData>$ 115</TableData>
+            <TableData>
+              <Badge size="sm" action="info" className="w-fit justify-center">
+                <BadgeText>Processing</BadgeText>
+              </Badge>
+            </TableData>
+          </TableRow>
+        </TableBody>
+      </Table>
+    </Box>
+);
+}
+`,
+transformCode: (code) => {
+return transformedCode(code, 'function', 'App');
+},
+scope: {
+ Table,
+  TableBody,
+  TableData,
+  TableHead,
+  TableHeader,
+  TableRow,
+  Box,
+Wrapper,
+Badge,
+BadgeText,
+},
+}}
+/>
+
+</Wrapper>
+
+### Table with other components
+
+This example illustrates a table component with a badge component.
+
+<Wrapper>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+            _rendererWrapper={{
+      display: 'grid',
+      justifyContent: 'stretch',
+      padding: 40,
+      overflow: 'scroll',
+    }}
+    metaData={{
+      code: `
+function App(){
+    return (
+ <Box className="rounded-lg overflow-hidden">
+      <Table className="w-[1000px]">
+        <TableHeader>
+          <TableRow>
+            <TableHead className="font-bold">Order id</TableHead>
+            <TableHead>Items</TableHead>
+            <TableHead>Name</TableHead>
+            <TableHead>City</TableHead>
+            <TableHead>Order price</TableHead>
+            <TableHead>Status</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          <TableRow>
+            <TableData>571</TableData>
+            <TableData>3</TableData>
+            <TableData>Rajesh Kumar</TableData>
+            <TableData>New Jersey</TableData>
+            <TableData>$ 200</TableData>
+            <TableData>
+              <Badge
+                size="sm"
+                action="success"
+                className="w-fit justify-center"
+              >
+                <BadgeText>Completed</BadgeText>
+              </Badge>
+            </TableData>
+          </TableRow>
+          <TableRow>
+            <TableData>5231</TableData>
+            <TableData>2</TableData>
+            <TableData>Priya Sharma</TableData>
+            <TableData>Austin</TableData>
+            <TableData>$ 150</TableData>
+            <TableData>
+              <Badge size="sm" action="info" className="w-fit justify-center">
+                <BadgeText>Processing</BadgeText>
+              </Badge>
+            </TableData>
+          </TableRow>
+          <TableRow>
+            <TableData>5771</TableData>
+            <TableData>3</TableData>
+            <TableData>Ravi Patel</TableData>
+            <TableData>Seattle</TableData>
+            <TableData>$ 215</TableData>
+            <TableData>
+              <Badge
+                size="sm"
+                action="warning"
+                className="w-fit justify-center"
+              >
+                <BadgeText>Shipped</BadgeText>
+              </Badge>
+            </TableData>
+          </TableRow>
+          <TableRow>
+            <TableData>5231</TableData>
+            <TableData>4</TableData>
+            <TableData>Ananya Gupta</TableData>
+            <TableData>California</TableData>
+            <TableData>$ 88</TableData>
+            <TableData>
+              <Badge size="sm" action="info" className="w-fit justify-center">
+                <BadgeText>Processing</BadgeText>
+              </Badge>
+            </TableData>
+          </TableRow>
+          <TableRow>
+            <TableData>5771</TableData>
+            <TableData>3</TableData>
+            <TableData>Arjun Singh</TableData>
+            <TableData>Seattle</TableData>
+            <TableData>$ 115</TableData>
+            <TableData>
+              <Badge size="sm" action="info" className="w-fit justify-center">
+                <BadgeText>Processing</BadgeText>
+              </Badge>
+            </TableData>
+          </TableRow>
+          <TableRow>
+            <TableData>5771</TableData>
+            <TableData>3</TableData>
+            <TableData>Nisha Verma</TableData>
+            <TableData>Austin</TableData>
+            <TableData>$ 115</TableData>
+            <TableData>
+              <Badge
+                size="sm"
+                action="success"
+                className="w-fit justify-center"
+              >
+                <BadgeText>Completed</BadgeText>
+              </Badge>
+            </TableData>
+          </TableRow>
+        </TableBody>
+      </Table>
+    </Box>
+);
+}
+`,
+transformCode: (code) => {
+return transformedCode(code, 'function', 'App');
+},
+scope: {
+ Table,
+  TableBody,
+  TableData,
+  TableHead,
+  TableHeader,
+  TableRow,
+ Box,
+Wrapper,
+Badge,
+BadgeText,
+},
+}}
+/>
+
+</Wrapper>
+
+### Table with top and side header
+
+This example illustrates a table component with a top and a side header.
+
+<Wrapper>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+            _rendererWrapper={{
+      display: 'grid',
+      justifyContent: 'stretch',
+      padding: 40,
+      overflow: 'scroll',
+    }}
+    metaData={{
+      code: `
+function App(){
+    return (
+<Box className="border border-solid border-outline-200 rounded-lg overflow-hidden w-full">
+      <Table className="w-full">
+        <TableHeader>
+          <TableRow className="bg-background-50">
+            <TableHead className="border-0 border-r border-solid border-outline-200">Player</TableHead>
+            <TableHead>Pts</TableHead>
+            <TableHead>Reb</TableHead>
+            <TableHead>Ast</TableHead>
+            <TableHead>Stl</TableHead>
+            <TableHead>Blk</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          <TableRow>
+            <TableHead className="bg-background-50 border-0 border-solid border-r border-outline-200 font-medium">LeBron James</TableHead>
+            <TableData>30</TableData>
+            <TableData>10</TableData>
+            <TableData>5</TableData>
+            <TableData>5</TableData>
+            <TableData>2</TableData>
+          </TableRow>
+          <TableRow>
+            <TableHead className="bg-background-50 border-0 border-solid border-r border-outline-200 font-medium">Anthony Davis</TableHead>
+            <TableData>21</TableData>
+            <TableData>15</TableData>
+            <TableData>10</TableData>
+            <TableData>3</TableData>
+            <TableData>6</TableData>
+          </TableRow>
+          <TableRow>
+            <TableHead className="bg-background-50 border-0 border-solid border-r border-outline-200 font-medium">Austin Reaves</TableHead>
+            <TableData>18</TableData>
+            <TableData>8</TableData>
+            <TableData>15</TableData>
+            <TableData>3</TableData>
+            <TableData>3</TableData>
+          </TableRow>
+          <TableRow className="border-b-0">
+            <TableHead className="bg-background-50 border-0 border-solid border-r border-outline-200 font-medium">Kobe Bryant</TableHead>
+            <TableData>32</TableData>
+            <TableData>12</TableData>
+            <TableData>13</TableData>
+            <TableData>4</TableData>
+            <TableData>5</TableData>
+          </TableRow>
+        </TableBody>
+      </Table>
+    </Box>
+);
+}
+`,
+transformCode: (code) => {
+return transformedCode(code, 'function', 'App');
+},
+scope: {
+  Table,
+  TableBody,
+  TableData,
+  TableHead,
+  TableHeader,
+  TableRow,
+  Box,
+Wrapper,
+},
+}}
+/>
+
+</Wrapper>

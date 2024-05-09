@@ -1,0 +1,191 @@
+---
+title: gluestack-ui Spinner Component | Installation, Usage, and API
+
+description: Spinners are designed to give visual cues to users that an action is being processed or that a change or result is expected. They are useful for improving the user experience by reducing frustration and uncertainty.
+
+pageTitle: Spinner
+
+pageDescription: Spinners are designed to give visual cues to users that an action is being processed or that a change or result is expected. They are useful for improving the user experience by reducing frustration and uncertainty.
+
+showHeader: true
+---
+
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="with-nativewind/Components/Feedback/Spinner" />
+
+import { Spinner, HStack, VStack, Text } from '../../core-components/nativewind';
+import { transformedCode } from '../../utils';
+import { AppProvider, CodePreview } from '@gluestack/design-system';
+import colors from 'tailwindcss/colors';
+
+import Wrapper from '../../core-components/nativewind/Wrapper';
+import { CollapsibleCode, Tabs } from '@gluestack/design-system';
+
+This is an illustration of **Spinner** component.
+
+<Wrapper>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={true}
+    metaData={{
+      code: `
+        <Spinner {...props} color={colors.gray[500]} />
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: { Wrapper, Spinner, colors },
+      argsType: {
+        size: {
+          control: 'select',
+          options: ['small', 'large'],
+          default: 'small',
+        },
+      },
+    }}
+  />
+</Wrapper>
+
+<br />
+
+## Installation
+
+<Tabs value="cli" type="section">
+  <Tabs.TabList>
+      <Tabs.Tab value="cli">
+        <Tabs.TabTitle>CLI</Tabs.TabTitle>
+      </Tabs.Tab>
+     <Tabs.Tab value="manual">
+        <Tabs.TabTitle>Manual</Tabs.TabTitle>
+     </Tabs.Tab>
+  </Tabs.TabList>
+  <Tabs.TabPanels>
+    <Tabs.TabPanel value="cli">
+<>
+
+### Run the following command:
+  ```bash
+  npx gluestack-ui add spinner
+  ```
+</>
+    </Tabs.TabPanel>
+    <Tabs.TabPanel value="manual"> 
+<>
+
+### Step 1: Install the following dependencies:
+```bash
+npm i @gluestack-ui/spinner
+```
+
+### Step 2: Copy and paste the following code into your project.
+<CollapsibleCode>
+
+```jsx 
+%%-- File: core-components/nativewind/spinner/index.tsx --%% 
+```
+</CollapsibleCode>
+
+### Step 3: Update the import paths to match your project setup.
+</>
+    </Tabs.TabPanel>
+  </Tabs.TabPanels>
+</Tabs>
+
+## API Reference
+
+To use this component in your project, include the following import statement in your file.
+
+```jsx
+import { Spinner } from '@/components/ui/spinner';
+```
+
+```jsx
+export default () => <Spinner />;
+```
+
+### Component Props
+
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
+
+#### Spinner
+
+Contains all Spinner related layout style props and actions.
+It inherits all the properties of React Native's [ActivityIndicator](https://reactnative.dev/docs/activityindicator) component.
+
+### Accessibility
+
+We have outlined the various features that ensure the Fab component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards.
+
+#### Keyboard
+
+- Tab: Moves focus to the next focusable element.
+
+#### Screen Reader
+
+- VoiceOver: When the Spinner is focused, the screen reader will announce the loading indicator.
+
+### Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+#### Spinner with Label
+
+A Spinner component with a label provides informative text or a label alongside the spinner, offering descriptive context and improving user understanding and interaction with the spinner element within a user interface.
+
+<Wrapper>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+        <HStack space="sm" >
+          <Spinner/>
+          <Text size="md">Please Wait</Text>
+        </HStack>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Spinner,
+        HStack,
+        Text,
+      },
+      argsType: {},
+    }}
+  />
+</Wrapper>
+
+#### Color Scheme
+
+A Spinner component with a color scheme enhances visual appeal by incorporating distinct colors, adding a touch of customization and style to the spinner element within a user interface.
+
+<Wrapper>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+      <VStack space="md" >
+      {/* colors is imported from 'tailwindcss/colors' */}
+        <Spinner color={colors.indigo[600]} />
+        <Spinner color={colors.emerald[600]} />
+        <Spinner color={colors.amber[600]} />
+        <Spinner color={colors.fuchsia[600]} />
+      </VStack>
+    `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Spinner,
+        VStack,
+        colors,
+      },
+      argsType: {},
+    }}
+  />
+</Wrapper>

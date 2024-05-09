@@ -1,0 +1,165 @@
+---
+title: gluestack-ui Box Component | Installation, Usage, and API
+
+description: If you're looking for a flexible component to help with low-level layout needs, the Box component might be just what you need. With its customizable styles and props, it can be used to create a wide range of UI elements, from simple containers to complex layout structures.
+
+pageTitle: Box
+
+pageDescription: If you're looking for a flexible component to help with low-level layout needs, the Box component might be just what you need. With its customizable styles and props, it can be used to create a wide range of UI elements, from simple containers to complex layout structures.
+
+showHeader: true
+---
+
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="with-gluestack-style/Components/Layout/Box" />
+
+import { useRef, useEffect, useState } from 'react';
+import { Box } from '../../core-components/themed';
+import { transformedCode } from '../../utils';
+import { AppProvider, CodePreview, Text, CollapsibleCode, Tabs } from '@gluestack/design-system';
+import Wrapper from '../../core-components/themed/Wrapper';
+
+This is an illustration of **Box** component.
+
+<>
+  <CodePreview
+    showComponentRenderer={ true }
+  showArgsController = { false}
+  metaData = {{
+    code: `
+<Box
+  bg="$primary500"
+  p="$5"
+>
+  <Text color='$text0' >
+    This is the Box
+  </Text>
+</Box>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+        scope: {
+      Wrapper,
+        Box,
+        Text,
+      },
+    argsType: { },
+  }
+}
+/>
+</>
+
+<br/>
+
+## Installation
+
+<Tabs value="cli" type="section">
+  <Tabs.TabList>
+      <Tabs.Tab value="cli">
+        <Tabs.TabTitle>CLI</Tabs.TabTitle>
+      </Tabs.Tab>
+     <Tabs.Tab value="manual">
+        <Tabs.TabTitle>Manual</Tabs.TabTitle>
+     </Tabs.Tab>
+  </Tabs.TabList>
+  <Tabs.TabPanels>
+    <Tabs.TabPanel value="cli">
+<>
+
+### Run the following command:
+  ```bash
+  npx gluestack-ui add box
+  ```
+</>
+    </Tabs.TabPanel>
+    <Tabs.TabPanel value="manual"> 
+<>
+
+### Step 1: Copy and paste the following code into your project.
+<CollapsibleCode>
+
+```jsx 
+%%-- File: core-components/themed/box/index.tsx --%% 
+```
+</CollapsibleCode>
+
+### Step 2: Update the import paths to match your project setup.
+</>
+    </Tabs.TabPanel>
+  </Tabs.TabPanels>
+</Tabs>
+
+## API Reference
+
+To use this component in your project, include the following import statement in your file.
+
+```jsx
+import { Box } from '@/components/ui/box';
+```
+
+```jsx
+export default () => <Box />;
+```
+
+### Component Props
+
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
+
+#### Box
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+
+
+
+
+
+
+### Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+#### Box with ref
+
+A Box component with a ref property enables the direct reference and manipulation of the underlying DOM element, offering greater control and flexibility in modifying the box's appearance and behavior within a user interface.
+
+<Wrapper>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+        function App () {
+          const myRef = useRef({});
+          useEffect(() => {
+            const styleObj = {
+              borderWidth: 2,
+              borderRadius: 4,
+              borderColor: '#1A91FF',
+            };
+          if(myRef.current && myRef.current.setNativeProps){
+             myRef.current.setNativeProps({
+              style: styleObj,
+             });
+            }
+          }, [myRef]);
+        return (
+          <Box 
+          h={100}
+          w={100}
+          bg="$primary100"
+          ref={myRef} />
+        );
+      }
+      `,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'App');
+      },
+      scope: { Box, Wrapper, useRef, useEffect },
+      argsType: {},
+    }}
+  />
+</Wrapper>
+

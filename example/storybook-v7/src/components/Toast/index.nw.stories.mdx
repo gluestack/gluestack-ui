@@ -1,0 +1,825 @@
+---
+title: gluestack-ui Toast Component | Installation, Usage, and API
+
+description: Toast is a component that can display alerts, notifications, or messages on top of an overlay layer. It is commonly used to inform users of important information or actions.
+
+pageTitle: Toast
+
+pageDescription: Toast is a component that can display alerts, notifications, or messages on top of an overlay layer. It is commonly used to inform users of important information or actions.
+
+showHeader: true
+---
+
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="with-nativewind/Components/Feedback/Toast" />
+
+import {
+  Toast,
+  ToastTitle,
+  ToastDescription,
+  useToast,
+  Button,
+  ButtonText,
+  CheckIcon,
+  MessageCircleIcon,
+  Icon,
+  CloseIcon,
+  VStack,
+  Pressable,
+  Center,
+} from '../../core-components/nativewind';
+import { transformedCode } from '../../utils';
+import {
+  AppProvider,
+  CodePreview,
+  Table,
+  TableContainer,
+  Text,
+  InlineCode,
+  CollapsibleCode,
+  Tabs,
+} from '@gluestack/design-system';
+import { View } from 'react-native';
+import Wrapper from '../../core-components/nativewind/Wrapper';
+import { AlertTriangle } from 'lucide-react-native'
+
+This is an illustration of **Toast** component.
+
+<>
+  <CodePreview
+    _rendererWrapper={{ px: '$2.5' }}
+    showComponentRenderer={true}
+    showArgsController={true}
+    metaData={{
+      code: `
+      function Example() {
+          const toast = useToast();
+          return (
+            <Button
+              onPress={() => {
+                toast.show({
+                  placement:"top",
+                  render: ({ id }) => {
+                    const toastId = "toast-" + id;
+                    return (
+                       <Toast nativeID={toastId} {...props}>
+                       <VStack space="xs">
+                        <ToastTitle>New Message</ToastTitle>
+                        <ToastDescription >
+                          Hey, just wanted to touch base and see how you're doing. Let's catch up soon!
+                        </ToastDescription>
+                         </VStack>
+                      </Toast>
+                    );
+                  },
+                });
+              }}
+            >
+              <ButtonText>Press Me</ButtonText>
+            </Button>
+          );
+        };
+      `,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'Example');
+      },
+      scope: {
+        Wrapper,
+        Toast,
+        ToastTitle,
+        ToastDescription,
+        useToast,
+        Text,
+        Button,
+        ButtonText,
+        VStack,
+      },
+      argsType: {
+        action: {
+          control: 'select',
+          options: ['success', 'info', 'error', 'warning', 'attention'],
+          default: 'attention',
+        },
+        variant: {
+          control: 'select',
+          options: ['accent', 'solid', 'outline'],
+          default: 'solid',
+        },
+      },
+    }}
+  />
+</>
+
+<br />
+
+## Installation
+
+<Tabs value="cli" type="section">
+  <Tabs.TabList>
+      <Tabs.Tab value="cli">
+        <Tabs.TabTitle>CLI</Tabs.TabTitle>
+      </Tabs.Tab>
+     <Tabs.Tab value="manual">
+        <Tabs.TabTitle>Manual</Tabs.TabTitle>
+     </Tabs.Tab>
+  </Tabs.TabList>
+  <Tabs.TabPanels>
+    <Tabs.TabPanel value="cli">
+<>
+
+### Run the following command:
+  ```bash
+  npx gluestack-ui add toast
+  ```
+</>
+    </Tabs.TabPanel>
+    <Tabs.TabPanel value="manual"> 
+<>
+
+### Step 1: Install the following dependencies:
+
+```bash
+
+npm i @gluestack-ui/toast
+
+```
+
+### Step 2: Copy and paste the following code into your project.
+
+<CollapsibleCode>
+
+```jsx 
+%%-- File: core-components/nativewind/toast/index.tsx --%% 
+```
+
+</CollapsibleCode>
+
+### Step 3: Update the import paths to match your project setup.
+</>
+    </Tabs.TabPanel>
+  </Tabs.TabPanels>
+</Tabs>
+
+## API Reference
+
+To use this component in your project, include the following import statement in your file.
+
+```jsx
+import { useToast, Toast } from '@/components/ui/toast';
+```
+
+```jsx
+export default () => (
+  <Toast>
+    <ToastTitle />
+    <ToastDescription />
+  </Toast>
+);
+```
+### Component Props
+
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
+
+#### Toast
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+<>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Type</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Default</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Description</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>duration</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>number or null</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>5000</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`The delay before the toast hides (in milliseconds). If set to null, toast will never dismiss.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>onCloseComplete</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`()=>{}`}</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Callback function to run side effects after the toast has closed.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>placement</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>
+              'top'| 'top right' | 'top left' | 'bottom' | 'bottom left' |
+              'bottom right'
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>bottom</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>Position of toast on the web page.</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>render?: (props: any)</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>ReactNode</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>Renders a toast component</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>avoidKeyboard</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>bool</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`If true and the keyboard is opened, the Toast will move up equivalent to the keyboard height.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>containerStyle</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>ViewStyle</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>Container style object for the toast.</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</>
+
+#### ToastTitle
+
+Contains all Text related layout style props and actions.
+It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text) component.
+
+#### ToastDescription
+
+Contains all Text related layout style props and actions.
+It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text) component.
+
+### Accessibility
+
+We have outlined the various features that ensure the Toast component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards.Adheres to the [WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/alert/).
+
+#### Keyboard
+
+- `Tab + Enter`: Triggers the toast's action.
+
+#### Screen Reader
+
+- VoiceOver: When the toast is focused, the screen reader will announce the toast's title.
+
+### Props
+
+Toast component is created using View component from react-native. It extends all the props supported by [React Native View](https://reactnative.dev/docs/view#props) and the props mentioned below.
+
+#### Toast
+
+<>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Name</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Value</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Default</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>action</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>
+              error | warning | success | info | attention
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>attention</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>variant</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>solid | outline | accent</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>solid</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</>
+
+### Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+#### Toast with actions
+
+A versatile Toast component with customizable actions, enabling users to take various actions directly from the notification popup for enhanced usability and convenience.
+
+<AppProvider>
+  <CodePreview
+    _rendererWrapper={{ px: '$2.5' }}
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+        function Example() {
+          const toast = useToast();
+          const toastActions = [
+            {
+              actionType: 'info',
+              title: 'Info',
+              description: 'Your order has been received and is being processed. You will receive a confirmation email shortly.',
+            },
+            {
+              actionType: 'success',
+              title: 'Success!',
+              description: 'Your changes have been saved successfully.',
+            },
+            {
+              actionType: 'warning',
+              title: 'Warning!',
+              description: 'Your account subscription will expire in 5 days. Please renew your subscription to avoid interruption of service.',
+            },
+            {
+              actionType: 'error',
+              title: 'Error!',
+              description: 'There was an error processing your request. Please try again later.',
+            },
+            {
+              actionType: 'attention',
+              title: 'Attention!',
+              description: 'Please review and accept our updated terms and conditions before continuing to use the application.',
+            },
+          ];
+          return (
+            <Center className="h-80">
+              <VStack space='md'>
+                {
+                  toastActions.map((action, index)=>{
+                    return (
+                      <Button
+                        key={index}
+                        onPress={() => {
+                          toast.show({
+                            placement:"top",
+                            render: ({ id }) => {
+                              const toastId = "toast-" + id;
+                              return (
+                                <Toast nativeID={toastId} action={action.actionType}>
+                                  <VStack space="xs">
+                                    <ToastTitle>{action.title}</ToastTitle>
+                                    <ToastDescription >
+                                    {action.description}
+                                    </ToastDescription>
+                                  </VStack>
+                                </Toast>
+                              );
+                            },
+                          });
+                        }}
+                      >
+                        <ButtonText>{action.actionType}</ButtonText>
+                      </Button>
+                    )
+                  })
+                }
+              </VStack>
+            </Center>
+          );
+        };
+      `,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'Example');
+      },
+      scope: {
+        View,
+        Wrapper,
+        Toast,
+        ToastTitle,
+        ToastDescription,
+        useToast,
+        Text,
+        Button,
+        ButtonText,
+        VStack,
+        Center,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### Toast with variants
+
+A versatile Toast component with multiple variants, offering different styles and visual cues to effectively convey various types of notifications and feedback to users.
+
+<AppProvider>
+  <CodePreview
+    _rendererWrapper={{ px: '$2.5' }}
+    showComponentRenderer={true}
+    showArgsController={true}
+    metaData={{
+      code: `
+      function Example() {
+          const toast = useToast();
+          return (
+            <Button
+              onPress={() => {
+                toast.show({
+                  placement:"top",
+                  render: ({ id }) => {
+                       const toastId = "toast-" + id;
+                        return (
+                        <Toast nativeID={toastId} {...props} action='success'>
+                       <VStack space="xs">
+                        <ToastTitle>Attention!</ToastTitle>
+                        <ToastDescription >
+                        Please review and accept our updated terms and conditions before continuing to use the application.
+                        </ToastDescription>
+                         </VStack>
+                      </Toast>
+                    );
+                  },
+                });
+              }}
+            >
+              <ButtonText>Press Me</ButtonText>
+            </Button>
+          );
+        };
+      `,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'Example');
+      },
+      scope: {
+        View,
+        Wrapper,
+        Toast,
+        ToastTitle,
+        ToastDescription,
+        useToast,
+        Text,
+        Button,
+        ButtonText,
+        VStack,
+      },
+      argsType: {
+        variant: {
+          control: 'select',
+          options: ['accent', 'solid', 'outline'],
+          default: 'solid',
+        },
+      },
+    }}
+  />
+</AppProvider>
+
+#### Toast with placement
+
+A Toast component with different placement options allows for the flexible positioning of toast notifications, enabling them to appear in various locations within a user interface, enhancing user visibility and providing a customizable approach to displaying temporary messages or alerts.
+
+<AppProvider>
+  <CodePreview
+    metaData={{
+      code: `
+        function Example() {
+          const toast = useToast();
+          const placements = {
+            'bottom': 'Looks like you found the hiding spot at the bottom of the page!',
+            'top': 'The top spot is your favorite hiding spot! Keep hunting for success.',
+            'top right': "You\'re hiding in plain sight at the top right corner! You are good at this game.",
+            'top left': "You\'re a master of disguise hiding in the top left corner! Keep up the sneakiness.",
+            'bottom left': "You\'re not the best at hiding, but we found you in the bottom left corner.",
+            'bottom right': "Found you! Don\'t worry, we wont tell anyone.",
+          }
+          const {...props}
+          return (
+            <Button
+              onPress={() => {
+                toast.show({
+                  placement: placement,
+                  render: ({ id }) => {
+                      const toastId = "toast-" + id;
+                      return (
+                        <Toast nativeID={toastId}>
+                        <ToastDescription>{placements[placement]}</ToastDescription>
+                      </Toast>
+                    );
+                  },
+                });
+              }}
+            >
+              <ButtonText>Press Me</ButtonText>
+            </Button>
+          );
+        };
+      `,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'Example');
+      },
+      scope: {
+        View,
+        Wrapper,
+        Toast,
+        ToastTitle,
+        ToastDescription,
+        useToast,
+        Text,
+        Button,
+        ButtonText,
+      },
+      argsType: {
+        placement: {
+          control: 'select',
+          options: [
+            'bottom',
+            'top',
+            'top right',
+            'top left',
+            'bottom left',
+            'bottom right',
+          ],
+          default: 'bottom',
+        },
+      },
+    }}
+  />
+</AppProvider>
+
+#### Dismissable Toast
+
+A dismissable Toast component offers users the ability to dismiss or close the toast notification, providing control and convenience in managing temporary messages or alerts within a user interface.
+
+<AppProvider>
+  <CodePreview
+    showArgsController={false}
+    metaData={{
+      code: `
+        function Example() {
+          const toast = useToast();
+          return (
+            <Button
+              onPress={() => {
+                toast.show({
+                  placement: 'top',
+                  render: ({ id }) => {
+                    const toastId = "toast-" + id;
+                    return (
+                      <Toast nativeID={toastId} className="bg-success-700">
+                        <Icon as={CheckIcon} className="text-typography-0 mt-1 mr-3"/>
+                        <VStack space='xs'>
+                        <ToastTitle className="text-typography-50">Download Complete</ToastTitle>
+                        <ToastDescription className="text-typography-50">Your file 'wadewarren.docx' has been downloaded successfully. You can find it in your Downloads folder.</ToastDescription>
+                        </VStack>
+                       <Pressable onPress={() => toast.close(id)} className="mt-1">
+                        <Icon as={CloseIcon} className="text-typography-0"/>
+                       </Pressable>
+                      </Toast>
+                    );
+                  },
+                });
+              }}
+            >
+              <ButtonText>Press Me</ButtonText>
+            </Button>
+          );
+        };
+      `,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'Example');
+      },
+      scope: {
+        View,
+        Wrapper,
+        Toast,
+        ToastTitle,
+        ToastDescription,
+        useToast,
+        Text,
+        Icon,
+        CloseIcon,
+        VStack,
+        CheckIcon,
+        Button,
+        ButtonText,
+        Pressable,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### Toast custom duration
+
+A Toast component with custom duration allows for specifying the length of time the toast notification remains visible, offering flexibility in controlling the duration of temporary messages or alerts within a user interface.
+
+<AppProvider>
+  <CodePreview
+    metaData={{
+      code: `
+        function Example() {
+          const toast = useToast();
+          const {...props}
+          return (
+            <Button
+              onPress={() => {
+                toast.show({
+                  placement: 'top',
+                  duration: duration,
+                  render: ({ id }) => {
+                    const toastId = "toast-" + id;
+                    return (
+                      <Toast nativeID={toastId} className="bg-secondary-700 p-3">
+                        <Icon as={MessageCircleIcon} className="text-typography-0 mt-1 mr-3"/>
+                        <VStack space='xs'>
+                        <ToastTitle className="text-typography-50">New Message</ToastTitle>
+                        <ToastDescription className="text-typography-50">Hey, just wanted to touch base and see how you're doing. Let's catch up soon!</ToastDescription>
+                        </VStack>
+                         <Pressable onPress={() => toast.close(id)} className="mt-1">
+                        <Icon as={CloseIcon} className="text-typography-0"/>
+                       </Pressable>
+                      </Toast>
+                    );
+                  },
+                });
+              }}
+            >
+              <ButtonText>Press Me</ButtonText>
+            </Button>
+          );
+        };
+      `,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'Example');
+      },
+      scope: {
+        View,
+        Wrapper,
+        Toast,
+        ToastTitle,
+        ToastDescription,
+        useToast,
+        Text,
+        Button,
+        ButtonText,
+        Pressable,
+        Icon,
+        CloseIcon,
+        VStack,
+       MessageCircleIcon,
+      },
+      argsType: {
+        duration: {
+          control: 'input',
+          default: 5000,
+        },
+      },
+    }}
+  />
+</AppProvider>
+
+#### Preserve Toast
+
+A Toast component with preserve toast functionality retains the notification on the screen until explicitly dismissed, ensuring important messages or alerts remain visible and accessible to the user, even during subsequent interactions within the user interface.
+
+<AppProvider>
+  <CodePreview
+    showArgsController={false}
+    metaData={{
+      code: `
+        function Example() {
+          const toast = useToast();
+          return (
+            <Button
+              onPress={() => {
+                toast.show({
+                  placement: 'top',
+                  duration: null,
+                  render: ({ id }) => {
+                    const toastId = "toast-" + id;
+                    return (
+                      <Toast nativeID={toastId} className="bg-error-700 p-3">
+                        <Icon as={AlertTriangle} className="text-typography-0 mt-1 mr-3"/>
+                        <VStack space='xs'>
+                        <ToastTitle className="text-typography-50">Account Security Alert</ToastTitle>
+                        <ToastDescription className="text-typography-50">Your account password was recently changed.
+                        If you did not authorize this change, please contact our support team immediately.
+                        </ToastDescription>
+                        </VStack>
+                           <Pressable onPress={() => toast.close(id)} className="mt-1">
+                        <Icon as={CloseIcon} className="text-typography-50"/>
+                       </Pressable>
+                      </Toast>
+                    );
+                  },
+                });
+              }}
+            >
+              <ButtonText>Press Me</ButtonText>
+            </Button>
+          );
+        };
+      `,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'Example');
+      },
+      scope: {
+        View,
+        Wrapper,
+        Toast,
+        ToastTitle,
+        ToastDescription,
+        useToast,
+        Text,
+        Icon,
+        CloseIcon,
+        Pressable,
+        VStack,
+        AlertTriangle,
+        Button,
+        ButtonText,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>

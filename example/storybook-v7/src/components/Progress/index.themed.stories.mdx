@@ -1,0 +1,348 @@
+---
+title: gluestack-ui Progress Component | Installation, Usage, and API
+
+description: The Progress component is designed to display the progress of a task that involves multiple steps and takes some time to complete. It helps users stay informed about the current status of a lengthy process.
+
+pageTitle: Progress
+
+pageDescription: The Progress component is designed to display the progress of a task that involves multiple steps and takes some time to complete. It helps users stay informed about the current status of a lengthy process.
+
+showHeader: true
+---
+
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="with-gluestack-style/Components/Feedback/Progress" />
+
+import {
+  AppProvider,
+  CodePreview,
+  Table,
+  TableContainer,
+  InlineCode,
+  CollapsibleCode,
+  Tabs
+} from '@gluestack/design-system';
+import {
+  Progress,
+  ProgressFilledTrack,
+  VStack,
+  Box,
+  Heading,
+  Text
+} from '../../core-components/themed';  
+import { transformedCode } from '../../utils';
+import Wrapper from '../../core-components/themed/Wrapper';
+
+
+
+This is an illustration of **Progress** component.
+
+<>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={true}
+    metaData={{
+      code: `
+       <Progress value={40} w={300} {...props} >
+          <ProgressFilledTrack />
+        </Progress>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: { Wrapper, Progress, ProgressFilledTrack },
+      argsType: {
+        size: {
+          control: 'select',
+          options: ['xs', 'sm', 'md', 'lg', 'xl', '2xl'],
+          default: 'md',
+        },
+      },
+    }}
+  />
+</>
+
+<br />
+
+## Installation
+
+<Tabs value="cli" type="section">
+  <Tabs.TabList>
+      <Tabs.Tab value="cli">
+        <Tabs.TabTitle>CLI</Tabs.TabTitle>
+      </Tabs.Tab>
+     <Tabs.Tab value="manual">
+        <Tabs.TabTitle>Manual</Tabs.TabTitle>
+     </Tabs.Tab>
+  </Tabs.TabList>
+  <Tabs.TabPanels>
+    <Tabs.TabPanel value="cli">
+<>
+
+### Run the following command:
+  ```bash
+  npx gluestack-ui add progress
+  ```
+</>
+    </Tabs.TabPanel>
+    <Tabs.TabPanel value="manual"> 
+<>
+
+### Step 1: Install the following dependencies:
+```bash
+npm i @gluestack-ui/progress
+```
+
+### Step 2: Copy and paste the following code into your project.
+<CollapsibleCode>
+
+```jsx 
+%%-- File: core-components/themed/progress/index.tsx --%% 
+```
+</CollapsibleCode>
+
+### Step 3: Update the import paths to match your project setup.
+</>
+    </Tabs.TabPanel>
+  </Tabs.TabPanels>
+</Tabs>
+
+## API Reference
+
+To use this component in your project, include the following import statement in your file.
+
+```jsx
+import { Progress, ProgressFilledTrack } from '@/components/ui/progress';
+```
+
+```jsx
+export default () => (
+  <Progress>
+    <ProgressFilledTrack />
+  </Progress>
+);
+```
+
+### Component Props
+
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
+
+#### Progress
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+<>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Type</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Default</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Description</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>value</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>number</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`It is used to set the progress of the progress bar`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</>
+
+**Descendants Styling Props**
+Props to style child components.
+
+<>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Sx Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Description</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>_filledTrack</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Prop to style ProgressFilledTrack Component`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</>
+
+#### ProgressFilledTrack
+
+It also inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+### Accessibility
+
+We have outlined the various features that ensure the Fab component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards. Adheres to the [WAI-ARIA design pattern](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/progressbar_role).
+
+#### Keyboard
+
+- Tab: Moves focus to the next focusable element.
+
+#### Screen Reader
+
+- VoiceOver: When the Progress is focused, the screen reader will announce it's a progress and it's current progress indicator.
+
+<!--
+## Spec Doc
+
+Explore the comprehensive details of the Progress in this document, including its implementation details, checklist, and potential future additions. Dive into the thought process behind the component and gain insights into its development journey.
+
+<iframe
+  style={{
+    borderRadius: '8px',
+    border: ' 1px solid rgba(0, 0, 0, 0.1)',
+    aspectRatio: 736 / 585,
+  }}
+  src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FNcXOxqKbdnGsLQNex3H76u%2F%25C2%25A0%25F0%259F%2593%259Agluestack-UI-handbook%3Ftype%3Ddesign%26node-id%3D6282-35554%26t%3DSqzrgr3fIhnmO5iO-1%26scaling%3Dscale-down%26page-id%3D6282%253A33652%26starting-point-node-id%3D6282%253A35554%26mode%3Ddesign"
+  allowFullScreen
+/> -->
+
+
+### Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+#### Value
+
+Progress component with value
+
+<Wrapper>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+      <VStack space="lg">
+        <Text size="lg">Downloading 55%</Text>
+        <Progress value={55} w='$80' h='$1'>
+          <ProgressFilledTrack h='$1' />
+        </Progress>
+      </VStack>
+    `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Progress,
+        ProgressFilledTrack,
+        VStack,
+        Text,
+        Box,
+      },
+      argsType: {},
+    }}
+  />
+</Wrapper>
+
+#### Color
+
+You can add track color to progress bar as per our needs.
+
+<Wrapper>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+        <VStack space="3xl">
+          <Progress value={46} w='$96' h='$2' size="sm">
+            <ProgressFilledTrack bg="$emerald600"/>
+          </Progress>
+          <Progress value={46} w='$96' h='$2' size="sm">
+            <ProgressFilledTrack bg="$amber600"/>
+          </Progress>
+          <Progress value={46} w='$96' h='$2' size="sm">
+            <ProgressFilledTrack bg="$fuchsia600"/>
+          </Progress>
+          <Progress value={46} w='$96' h='$2' size="sm">
+            <ProgressFilledTrack bg="$cyan600"/>
+          </Progress>
+        </VStack>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Progress,
+        ProgressFilledTrack,
+        VStack,
+      },
+      argsType: {},
+    }}
+  />
+</Wrapper>
+
+#### Custom
+
+You can customize the progress bar. Below is the example where we have change the theme of progress bar.
+
+<Wrapper>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+        <VStack space="lg">
+        <Heading>Internal Storage</Heading>
+        <Progress value={46} w={410} h={8} bg="$lime100">
+          <ProgressFilledTrack h={8} bg="$lime500" />
+        </Progress>
+        <Text size="md">14GB</Text>
+        </VStack>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Progress,
+        ProgressFilledTrack,
+        VStack,
+        Heading,
+        Text,
+      },
+      argsType: {},
+    }}
+  />
+</Wrapper>

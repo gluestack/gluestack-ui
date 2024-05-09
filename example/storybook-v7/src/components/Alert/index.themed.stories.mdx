@@ -1,0 +1,307 @@
+---
+title: gluestack-ui Alert Component | Installation, Usage, and API
+
+description: Alerts are used to communicate the status of a system, feature, or page. They indicate a specific state that may require attention from the user.
+
+pageTitle: Alert
+
+pageDescription: Alerts are used to communicate the status of a system, feature, or page. They indicate a specific state that may require attention from the user.
+
+showHeader: true
+---
+
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="with-gluestack-style/Components/Feedback/Alert" />
+
+import {
+  BellIcon,
+  AlertCircleIcon,
+  Center,
+  VStack,
+  InfoIcon,
+  HStack,
+  Alert,
+  AlertIcon,
+  AlertText,
+  CheckCircleIcon,
+  CloseCircleIcon,
+  Icon,
+} from '../../core-components/themed';
+import { transformedCode } from '../../utils';
+import {
+  AppProvider,
+  CodePreview,
+  Table,
+  InlineCode,
+  TableContainer,
+  CollapsibleCode,
+  Tabs
+} from '@gluestack/design-system';
+
+import Wrapper from '../../core-components/themed/Wrapper';
+
+This is an illustration of **Alert** component.
+
+<>
+  <CodePreview
+    _rendererWrapper={{ px: '$2.5' }}
+    showComponentRenderer={true}
+    showArgsController={true}
+    metaData={{
+      code: `
+        <Alert mx='$2.5'  {...props}>
+          <AlertIcon as={InfoIcon} mr="$3"  />
+          <AlertText>
+            We have updated our terms of service. Please review and accept to continue using our service.
+          </AlertText>
+        </Alert>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Alert,
+        AlertIcon,
+        AlertText,
+        Wrapper,
+        InfoIcon,
+      },
+      argsType: {
+        action: {
+          control: 'select',
+          options: ['success', 'info', 'error', 'warning', 'muted'],
+          default: 'info',
+        },
+        variant: {
+          control: 'select',
+          options: ['accent', 'solid', 'outline'],
+          default: 'solid',
+        },
+      },
+    }}
+  />
+</>
+
+<br />
+
+## Installation
+
+<Tabs value="cli" type="section">
+<Tabs.TabList>
+      <Tabs.Tab value="cli">
+        <Tabs.TabTitle>CLI</Tabs.TabTitle>
+      </Tabs.Tab>
+     <Tabs.Tab value="manual">
+        <Tabs.TabTitle>Manual</Tabs.TabTitle>
+     </Tabs.Tab>
+  </Tabs.TabList>
+  <Tabs.TabPanels>
+    <Tabs.TabPanel value="cli">
+<>
+
+### Run the following command:
+  ```bash
+  npx gluestack-ui add alert
+  ```
+</>
+    </Tabs.TabPanel>
+    <Tabs.TabPanel value="manual"> 
+<>
+
+### Step 1: Install the following dependencies:
+
+```bash
+
+npm i @gluestack-ui/alert
+
+```
+
+### Step 2: Copy and paste the following code into your project.
+
+<CollapsibleCode>
+
+```jsx 
+%%-- File: core-components/themed/alert/index.tsx --%% 
+```
+
+</CollapsibleCode>
+
+### Step 3: Update the import paths to match your project setup.
+</>
+    </Tabs.TabPanel>
+  </Tabs.TabPanels>
+</Tabs>
+
+## API Reference
+
+To use this component in your project, include the following import statement in your file.
+
+```jsx
+import { Alert, AlertIcon, AlertText } from '@/components/ui/alert';
+```
+
+```jsx
+export default () => (
+  <Alert>
+    <AlertIcon />
+    <AlertText />
+  </Alert>
+);
+```
+
+### Component Props
+
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
+
+#### Alert
+
+Contains all alert related layout style props and actions. It inherits all the properties of React Native's [View](https://reactnative.dev/docs/pressable) component.
+
+**Descendants Styling Props**
+Props to style child components.
+
+<>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Sx Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Description</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>_text</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Prop to style AlertText Component`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>_icon</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Prop to style AlertIcon Component`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</>
+
+#### AlertIcon
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+#### AlertText
+
+Contains all spinner related layout style props and actions. It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text) component.
+
+### Props
+
+Alert component is created using View component from react-native. It extends all the props supported by [React Native View](https://reactnative.dev/docs/view#props), [utility props](/ui/docs/styling/utility-and-sx-props) and the props mentioned below.
+
+#### Alert
+
+<>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Name</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Value</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Default</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>action</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>error | warning | success | info | muted</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>info</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>variant</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>solid | outline | accent</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>solid</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</>
+
+### Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+#### Alert with Heading
+
+An example of an alert component with a heading, which further contains another alert component for displaying supplementary information.
+
+<Wrapper>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+        <Alert action='success'>
+          <AlertIcon as={CheckCircleIcon} size="xl"  mr="$3" />
+          <VStack space='xs'>
+            <AlertText fontWeight ='$bold'>
+              Congratulations!
+            </AlertText >
+            <AlertText >
+              Thank you for your submission. You will receive a confirmation email shortly.
+            </AlertText>
+          </VStack>
+        </Alert>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Alert,
+        AlertIcon,
+        AlertText,
+        Wrapper,
+        CheckCircleIcon,
+        VStack,
+        Icon,
+      },
+      argsType: {},
+    }}
+/>
+
+</Wrapper>

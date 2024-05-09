@@ -1,0 +1,817 @@
+---
+title: gluestack-ui Menu Component | Installation, Usage, and API
+
+description: The Menu component creates a user-friendly dropdown interface that can be utilized to present a range of options or actions. This feature ensures accessibility and ease of use for the user.
+
+pageTitle: Menu
+
+pageDescription: The Menu component creates a user-friendly dropdown interface that can be utilized to present a range of options or actions. This feature ensures accessibility and ease of use for the user.
+
+showHeader: true
+---
+
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="with-gluestack-style/Components/Overlay/Menu" />
+
+import {
+  Button,
+  ButtonText,
+  Menu,
+  MenuIcon,
+  MenuItem,
+  MenuItemLabel,
+  ThemeIcon,
+  SettingsIcon,
+  PlusIcon,
+  Box,
+  Badge,
+  Pressable,
+  Avatar,
+  Divider,
+  Text as MenuText,
+  Center,
+  GlobeIcon,
+  Icon,
+  AddIcon,
+} from '../../core-components/themed';
+import { PaintBucket, PuzzleIcon } from 'lucide-react-native';
+import { transformedCode } from '../../utils';
+import {
+  AppProvider,
+  CodePreview,
+  Table,
+  TableContainer,
+  InfoIcon,
+  InlineCode,
+  Tabs
+} from '@gluestack/design-system';
+
+import Wrapper from '../../core-components/themed/Wrapper';
+import { CollapsibleCode } from '@gluestack/design-system';
+
+This is an illustration of a **Menu** component.
+
+<Wrapper>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+      <Menu
+        placement="top"
+          trigger={({ ...triggerProps }) => {
+            return (
+              <Button {...triggerProps}>
+                <ButtonText>Menu</ButtonText>
+              </Button>
+            );
+          }}
+        >
+          <MenuItem key="Community" textValue="Community">
+            <Icon as={GlobeIcon} size="sm" mr='$2'/>
+            <MenuItemLabel size='sm'>
+              Community
+            </MenuItemLabel>
+          </MenuItem>
+          <MenuItem key="Plugins" textValue="Plugins">
+              {\/* PuzzleIcon is imported from 'lucide-react-native' *\/}
+              <Icon as={PuzzleIcon} size="sm" mr='$2'/>
+              <MenuItemLabel size='sm'>
+                Plugins
+              </MenuItemLabel>
+          </MenuItem>
+          <MenuItem key="Theme" textValue="Theme">
+              {\/* PaintBucket is imported from 'lucide-react-native' *\/}
+              <Icon as={PaintBucket} size="sm" mr='$2'/>
+              <MenuItemLabel size='sm'>
+                Theme
+              </MenuItemLabel>
+          </MenuItem>
+          <MenuItem key="Settings" textValue="Settings">
+              <Icon as={SettingsIcon} size="sm" mr='$2'/>
+              <MenuItemLabel size='sm'>
+                Settings
+              </MenuItemLabel>
+          </MenuItem>
+          <MenuItem key="Add account" textValue="Add account">
+              <Icon as={AddIcon} size="sm" mr='$2'/>
+              <MenuItemLabel size='sm'>
+                Add account
+              </MenuItemLabel>
+          </MenuItem>
+        </Menu>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Button,
+        ButtonText,
+        Menu,
+        MenuIcon,
+        MenuItem,
+        MenuItemLabel,
+        Box,
+        Icon,
+        GlobeIcon,
+        PuzzleIcon,
+        PaintBucket,
+        SettingsIcon,
+        AddIcon,
+      },
+      argsType: {},
+    }}
+  />
+</Wrapper>
+
+<br />
+
+## Installation
+
+<Tabs value="cli" type="section">
+<Tabs.TabList>
+      <Tabs.Tab value="cli">
+        <Tabs.TabTitle>CLI</Tabs.TabTitle>
+      </Tabs.Tab>
+     <Tabs.Tab value="manual">
+        <Tabs.TabTitle>Manual</Tabs.TabTitle>
+     </Tabs.Tab>
+  </Tabs.TabList>
+  <Tabs.TabPanels>
+    <Tabs.TabPanel value="cli">
+<>
+
+### Run the following command:
+  ```bash
+  npx gluestack-ui add menu
+  ```
+</>
+    </Tabs.TabPanel>
+    <Tabs.TabPanel value="manual"> 
+<>
+
+### Step 1: Install the following dependencies:
+
+```bash
+npm i @gluestack-ui/menu 
+```
+
+### Step 2: Copy and paste the following code into your project.
+
+<CollapsibleCode>
+
+```jsx 
+%%-- File: core-components/themed/menu/index.tsx --%% 
+```
+
+</CollapsibleCode>
+
+### Step 3: Update the import paths to match your project setup.
+</>
+    </Tabs.TabPanel>
+  </Tabs.TabPanels>
+</Tabs>
+
+## API Reference
+
+To use this component in your project, include the following import statement in your file.
+
+```jsx
+import {
+  Menu,
+  MenuItem,
+  MenuItemLabel,
+} from '@/components/ui/menu';
+```
+
+```jsx
+export default () => (
+  <Menu>
+    <MenuItem>
+      <MenuItemLabel />
+    </MenuItem>
+  </Menu>
+);
+```
+
+### Component Props
+
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
+
+#### Menu
+
+Contains all menu related layout style props and actions.
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+<AppProvider>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Type</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Default</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Description</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>trigger</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>
+              {'(_props: any, state: { open: boolean; }) => Element'}
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Function that returns a React Element. This element will be used as a Trigger for the Menu`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>placement</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>
+              {
+                '"bottom" | "top" | "right" | "left" | "top left" | "top right" | "bottom left" | "bottom right" | "right top" | "right bottom" | "left top" | "left bottom"'
+              }
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>bottom left</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>menu placement</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>defaultIsOpen</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`If true, the menu will be opened by default.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>onOpen</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{'() => void'}</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>true</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`This function will be invoked when the menu is opened.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>onClose</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{' () => void'}</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`This function will be invoked when menu is closed. It will also be called when the user attempts to close the menu via Escape key or backdrop press.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>isOpen</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Whether the menu is opened. Useful for controlling the open state.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>offset</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>number</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>
+              The additional offset applied along the main axis between the
+              element and its trigger element.
+            </Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>crossOffset</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>number</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>
+              The additional offset applied along the cross axis between the
+              element and its trigger element.
+            </Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>disabledKeys</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>string []</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>
+              Item keys in this collection will be disabled.
+            </Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>closeOnSelect</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>true</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`This prop determine whether menu is closed after option is selected.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>selectedKeys</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`'all' | Iterable<Key>`}</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`The currently selected keys in the collection (controlled).`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>selectionMode</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>'none'| 'single' | 'multiple'</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`The type of selection that is allowed in the collection.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>onSelectionChange</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`(keys: 'all' | Iterable<Key>) => void`}</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Handler that is called when the selection changes.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</AppProvider>
+
+#### MenuItem
+
+Contains all button related layout style props and actions. It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable) component.
+
+<AppProvider>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Type</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Default</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Description</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>closeOnSelect</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>true</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`This prop determine whether menu is closed after option is selected.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</AppProvider>
+
+**Descendants Styling Props**
+Props to style child components.
+
+<AppProvider>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Sx Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Description</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>_text</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Prop to style MenuItemLabel Component`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</AppProvider>
+
+#### MenuItemLabel
+
+Contains all text related layout style props and actions. It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text) component.
+
+### Features
+
+- Keyboard support for actions.
+- Support for hover, focus and active states.
+
+### Accessibility
+
+We have outlined the various features that ensure the Menu component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards.
+
+Adheres to the [MENU WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/menubar/).
+
+### Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+#### Menu Placement
+
+Menu Component provides different placement options, allowing you to position it dynamically based on user interaction or layout requirements.
+
+<Wrapper>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={true}
+    metaData={{
+      code: `
+      <Menu
+        {...props}
+          trigger={({ ...triggerProps }) => {
+            return (
+              <Button {...triggerProps}>
+                <ButtonText>Menu</ButtonText>
+              </Button>
+            );
+          }}
+        >
+          <MenuItem key="Community" textValue="Community">
+              <Icon as={GlobeIcon} size="sm" mr='$2'/>
+              <MenuItemLabel size='sm'>
+                Community
+              </MenuItemLabel>
+          </MenuItem>
+          <MenuItem key="Plugins" textValue="Plugins">
+              {\/* PuzzleIcon is imported from 'lucide-react-native' *\/}
+              <Icon as={PuzzleIcon} size="sm" mr='$2'/>
+              <MenuItemLabel size='sm'>
+                Plugins
+              </MenuItemLabel>
+          </MenuItem>
+          <MenuItem key="Theme" textValue="Theme">
+              {\/* PaintBucket is imported from 'lucide-react-native' *\/}
+              <Icon as={PaintBucket} size="sm" mr='$2'/>
+              <MenuItemLabel size='sm'>
+                Theme
+              </MenuItemLabel>
+          </MenuItem>
+          <MenuItem key="Settings" textValue="Settings">
+              <Icon as={SettingsIcon} size="sm" mr='$2'/>
+              <MenuItemLabel size='sm'>
+                Settings
+              </MenuItemLabel>
+          </MenuItem>
+          <MenuItem key="Add account" textValue="Add account">
+              <Icon as={AddIcon} size="sm" mr='$2'/>
+              <MenuItemLabel size='sm'>
+                Add account
+              </MenuItemLabel>
+          </MenuItem>
+        </Menu>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Button,
+        ButtonText,
+        Menu,
+        MenuIcon,
+        MenuItem,
+        MenuItemLabel,
+        Text: MenuText,
+        Box,
+        Icon,
+        GlobeIcon,
+        PuzzleIcon,
+        PaintBucket,
+        SettingsIcon,
+        AddIcon,
+      },
+      argsType: {
+        placement: {
+          control: 'select',
+          options: [
+            'bottom',
+            'bottom end',
+            'bottom start',
+            'top',
+            'top end',
+            'top start',
+            'left',
+            'left end',
+            'left start',
+            'right',
+            'right end',
+            'right start',
+          ],
+          default: 'top',
+        },
+      },
+    }}
+  />
+</Wrapper>
+
+#### Disabled MenuItem
+
+Our Menu component supports dynamic disabling of menu items, enabling you to control the availability and interaction of specific menu options based on conditions or user permissions.
+
+<Wrapper>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+      <Menu
+        placement={"top"}
+        disabledKeys={['Theme']}
+          trigger={({ ...triggerProps }) => {
+            return (
+              <Button {...triggerProps}>
+                <ButtonText>Menu</ButtonText>
+              </Button>
+            );
+          }}
+        >
+          <MenuItem key="Community" textValue="Community">
+            <Icon as={GlobeIcon} size="sm" mr='$2'/>
+            <MenuItemLabel size='sm'>
+              Community
+            </MenuItemLabel>
+          </MenuItem>
+          <MenuItem key="Plugins" textValue="Plugins">
+            {\/* PuzzleIcon is imported from 'lucide-react-native' *\/}
+            <Icon as={PuzzleIcon} size="sm" mr='$2'/>
+            <MenuItemLabel size='sm'>
+              Plugins
+            </MenuItemLabel>
+          </MenuItem>
+          <MenuItem key="Theme" textValue="Theme">
+            {\/* PaintBucket is imported from 'lucide-react-native' *\/}
+            <Icon as={PaintBucket} size="sm" mr='$2'/>
+            <MenuItemLabel size='sm'>Theme</MenuItemLabel>
+          </MenuItem>
+          <MenuItem key="Settings" textValue="Settings">
+            <Icon as={SettingsIcon} size="sm" mr='$2'/>
+            <MenuItemLabel size='sm'>
+              Settings
+            </MenuItemLabel>
+          </MenuItem>
+          <MenuItem key="Add account" textValue="Add account">
+            <Icon as={AddIcon} size="sm" mr='$2'/>
+            <MenuItemLabel size='sm'>
+              Add account
+            </MenuItemLabel>
+          </MenuItem>
+        </Menu>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Button,
+        ButtonText,
+        Menu,
+        MenuIcon,
+        MenuItem,
+        MenuItemLabel,
+        Text: MenuText,
+        Box,
+        Icon,
+        GlobeIcon,
+        PuzzleIcon,
+        PaintBucket,
+        SettingsIcon,
+        AddIcon,
+      },
+      argsType: {},
+    }}
+  />
+</Wrapper>
+
+#### Selection
+
+Our menu component supports selection mode, logging the selected menu item key to the console when a selection change occurs. Based on the selected key, it prints a corresponding message, indicating a route push for the menu items in the example given below.
+
+<Wrapper>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+      function Example () {
+        const [selected, setSelected] = React.useState(new Set([]));
+      return (
+        <Menu
+        placement="bottom left"
+        selectionMode="single"
+        selectedKeys={selected}
+        onSelectionChange={(keys) => {
+          console.log('onSelectionChange', keys);
+          setSelected(keys);
+          if (keys.currentKey === 'Community') {
+            console.log('Push to', keys.currentKey, 'route');
+          }
+          else if (keys.currentKey === 'Plugins') {
+            console.log('Push to', keys.currentKey, 'route');
+          }
+          else if (keys.currentKey === 'Theme') {
+            console.log('Push to', keys.currentKey, 'route');
+          }
+          else if (keys.currentKey === 'Settings') {
+            console.log('Push to', keys.currentKey, 'route');
+          }
+        }}
+        closeOnSelect={true}
+        trigger={({ ...triggerProps }) => {
+          return (
+            <Button {...triggerProps}>
+              <ButtonText>Menu</ButtonText>
+            </Button>
+          );
+        }}
+        >
+          <MenuItem key="Community" textValue="Community">
+            <Icon as={GlobeIcon} size="sm" mr='$2'/>
+            <MenuItemLabel size='sm'>
+              Community
+            </MenuItemLabel>
+          </MenuItem>
+          <MenuItem key="Plugins" textValue="Plugins">
+            {\/* PuzzleIcon is imported from 'lucide-react-native' *\/}
+            <Icon as={PuzzleIcon} size="sm" mr='$2'/>
+            <MenuItemLabel size='sm'>
+              Plugins
+            </MenuItemLabel>
+          </MenuItem>
+          <MenuItem key="Theme" textValue="Theme">
+            {\/* PaintBucket is imported from 'lucide-react-native' *\/}
+            <Icon as={PaintBucket} size="sm" mr='$2'/>
+            <MenuItemLabel size='sm'>Theme</MenuItemLabel>
+          </MenuItem>
+          <MenuItem key="Settings" textValue="Settings">
+            <Icon as={SettingsIcon} size="sm" mr='$2'/>
+            <MenuItemLabel size='sm'>
+              Settings
+            </MenuItemLabel>
+          </MenuItem>
+        </Menu>
+        )
+      }
+`,
+      scope: {
+        Wrapper,
+        Button,
+        ButtonText,
+        Menu,
+        MenuIcon,
+        MenuItem,
+        MenuItemLabel,
+        Text: MenuText,
+        Box,
+        Icon,
+        GlobeIcon,
+        PuzzleIcon,
+        PaintBucket,
+        SettingsIcon,
+        AddIcon,
+      },
+      argsType: {},
+    }}
+  />
+</Wrapper>

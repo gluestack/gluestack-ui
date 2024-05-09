@@ -1,0 +1,605 @@
+---
+title: gluestack-ui Avatar Component | Installation, Usage, and API
+
+description: The Avatar component is a versatile UI element representing a user with profile pictures, initials, or a fallback icon. It adds a personal touch to the user interface, making it more engaging.
+
+pageTitle: Avatar
+
+pageDescription: The Avatar component is a versatile UI element representing a user with profile pictures, initials, or a fallback icon. It adds a personal touch to the user interface, making it more engaging.
+
+showHeader: true
+---
+
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="with-gluestack-style/Components/Media And Icons/Avatar" />
+
+import {
+  Avatar,
+  AvatarGroup,
+  AvatarBadge,
+  AvatarFallbackText,
+  AvatarImage,
+} from '../../core-components/themed';
+import {
+  HStack,
+  VStack,
+  Text,
+  Icon,
+  Heading,
+} from '../../core-components/themed';
+import { transformedCode } from '../../utils';
+import {
+  AppProvider,
+  CodePreview,
+  Table,
+  TableContainer,
+  InlineCode,
+  CollapsibleCode,
+  Tabs
+} from '@gluestack/design-system';
+import { User } from 'lucide-react-native';
+import Wrapper from '../../core-components/themed/Wrapper';
+
+This is an illustration of **Avatar** component.
+
+<>
+  <CodePreview
+    showComponentRenderer={ true }
+  showArgsController = { true}
+  metaData = {{
+    code: `
+        <Avatar {...props}>
+          <AvatarFallbackText>Sandeep Srivastava</AvatarFallbackText>
+        </Avatar>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+        scope: {
+      Wrapper,
+        Avatar,
+        AvatarBadge,
+        AvatarFallbackText,
+        AvatarImage,
+      },
+    argsType: {
+      size: {
+        control: 'select',
+          options: ['xs', 'sm', 'md', 'lg', 'xl', '2xl'],
+          default: 'md',
+        },
+    },
+  }
+}
+/>
+</>
+
+<br/>
+
+## Installation
+
+<Tabs value="cli" type="section">
+<Tabs.TabList>
+      <Tabs.Tab value="cli">
+        <Tabs.TabTitle>CLI</Tabs.TabTitle>
+      </Tabs.Tab>
+     <Tabs.Tab value="manual">
+        <Tabs.TabTitle>Manual</Tabs.TabTitle>
+     </Tabs.Tab>
+  </Tabs.TabList>
+  <Tabs.TabPanels>
+    <Tabs.TabPanel value="cli">
+<>
+
+### Run the following command:
+  ```bash
+  npx gluestack-ui add avatar
+  ```
+</>
+    </Tabs.TabPanel>
+    <Tabs.TabPanel value="manual"> 
+<>
+
+### Step 1: Install the following dependencies:
+
+```bash
+npm i @gluestack-ui/avatar
+```
+
+### Step 2: Copy and paste the following code into your project.
+
+<CollapsibleCode>
+
+```jsx 
+%%-- File: core-components/themed/avatar/index.tsx --%% 
+```
+
+</CollapsibleCode>
+
+### Step 3: Update the import paths to match your project setup.
+</>
+    </Tabs.TabPanel>
+  </Tabs.TabPanels>
+</Tabs>
+
+## API Reference
+
+### Component Props
+
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
+
+#### Avatar
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+#### AvatarGroup
+
+It also inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+#### AvatarImage
+
+It inherits all the properties of React Native's [Image](https://reactnative.dev/docs/image) component.
+
+#### AvatarFallbackText
+
+It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text) component.
+
+#### AvatarBadge
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+### Features
+
+- Returns a fallback to FallbackText if given an invalid image source.
+
+
+
+
+### Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+#### Avatar with letters
+
+An Avatar component with text displays a stylized representation of a user or entity alongside accompanying text, providing a visual and textual identification within a user interface.
+
+<Wrapper>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+    <VStack space="2xl">
+        <HStack space="md">
+            <Avatar  bgColor="$indigo600"  >
+              <AvatarFallbackText>Ronald Richards</AvatarFallbackText>
+              <AvatarBadge $dark-borderColor="$black"/>
+            </Avatar>
+          <VStack>
+             <Heading size="sm" >Ronald Richards</Heading>
+             <Text size="sm" >Nursing Assistant</Text>
+          </VStack>
+      </HStack>
+      <HStack space="md">
+        <Avatar  bgColor="$orange600" >
+            <AvatarFallbackText>Arlene McCoy</AvatarFallbackText>
+        </Avatar>
+        <VStack>
+            <Heading size="sm" >Arlene McCoy</Heading>
+            <Text size="sm" >Marketing Coordinator</Text>
+        </VStack>
+     </HStack>
+    </VStack>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Avatar,
+        AvatarBadge,
+        AvatarFallbackText,
+        AvatarImage,
+        Text,
+        HStack,
+        VStack,
+        Heading,
+      },
+      argsType: {},
+    }}
+  />
+</Wrapper>
+
+#### Avatar with Icon
+
+An Avatar component with an icon combines a graphical symbol or icon with a user or entity representation, providing a visually appealing and easily recognizable identification within a user interface.
+
+<Wrapper>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+        <VStack space="2xl">
+            <HStack space="md">
+              <Avatar  bgColor="$indigo600" >
+                {/* User is imported from 'lucide-react-native' */}
+                <Icon as={User} color="white" size="lg"/>
+              </Avatar>
+              <VStack >
+                <Heading size="sm" >Ronald Richards</Heading>
+                <Text size="sm" >Nursing Assistant</Text>
+              </VStack>
+            </HStack>
+            <HStack space="md">
+                <Avatar  bgColor="$pink600" >
+                 {/* User is imported from 'lucide-react-native' */}
+                <Icon as={User} color="white" size="lg"/>
+                </Avatar>
+                <VStack >
+                  <Heading size="sm" >Kevin James</Heading>
+                  <Text size="sm" >Web Designer</Text>
+                </VStack>
+          </HStack>
+        </VStack>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Avatar,
+        AvatarBadge,
+        AvatarFallbackText,
+        AvatarImage,
+        Text,
+        HStack,
+        VStack,
+        Icon,
+        Heading,
+        User,
+      },
+      argsType: {},
+    }}
+  />
+</Wrapper>
+
+#### Avatar with Image
+
+An Avatar component with an image incorporates a user or entity representation using a profile picture or image, adding a personalized touch and visual identification within a user interface.
+
+<Wrapper>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+        <VStack space="2xl">
+          <HStack space="md">
+            <Avatar >
+              <AvatarFallbackText>SS</AvatarFallbackText>
+              <AvatarImage
+                source={{
+                  uri: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60',
+                }}
+              />
+            </Avatar>
+            <VStack>
+                <Heading size="sm" >Ronald Richards</Heading>
+                <Text size="sm" >Nursing Assistant</Text>
+            </VStack>
+          </HStack>
+          <HStack space="md">
+            <Avatar >
+               <AvatarFallbackText>SS</AvatarFallbackText>
+               <AvatarImage
+                  source={{
+                    uri: 'https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8dXNlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60',
+                  }}
+              />
+            </Avatar>
+            <VStack>
+              <Heading size="sm" >Arlene McCoy</Heading>
+              <Text size="sm" >Marketing Coordinator</Text>
+            </VStack>
+          </HStack>
+        </VStack>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Avatar,
+        AvatarBadge,
+        AvatarFallbackText,
+        AvatarImage,
+        Heading,
+        Text,
+        HStack,
+        VStack,
+      },
+      argsType: {},
+    }}
+  />
+</Wrapper>
+
+#### Avatar Group
+
+The avatar group allows users to group avatars and display them in a horizontal or vertical row for better visual representation and functionality.
+
+> To reverse the order of avatars in case of multiple avatars use `flexDirection="row"` in `<AvatarGroup>`
+
+<Wrapper>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+        function App(){
+          const avatars = [
+              { src: 'https://example.com.jpg', alt: 'Sandeep Srivastva' , color:'$emerald600' },
+              { src: 'https://example.com.jpg', alt: 'Arjun Kapoor', color:'$cyan600' },
+              { src: 'https://example.com.jpg', alt: 'Ritik Sharma ', color:'$indigo600' },
+              { src: 'https://example.com.jpg', alt: 'Akhil Sharma', color:'$gray600' },
+              { src: 'https://example.com.jpg', alt: 'Rahul Sharma ', color:'$red400' },
+          ];
+          const extraAvatars = avatars.slice(3);
+          const remainingCount = extraAvatars.length;
+          return (
+            <AvatarGroup>
+              {avatars.slice(0, 3).map((avatar, index) => {
+                return (
+                  <Avatar key={index} size="lg" borderColor="$white" borderWidth="$2" bg={avatar.color} $dark-borderColor="$black">
+                    <AvatarFallbackText>{avatar.alt}</AvatarFallbackText>
+                  </Avatar>
+                );
+              })}
+              <Avatar size="lg" borderColor="$white" borderWidth="$2" bg="$gray600" 
+              $dark-borderColor="$black">
+                  <AvatarFallbackText >{"+ " + remainingCount + ""}</AvatarFallbackText>
+              </Avatar>
+            </AvatarGroup>
+          );
+        }
+      `,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'App');
+      },
+      scope: {
+        Avatar,
+        AvatarGroup,
+        AvatarBadge,
+        AvatarFallbackText,
+        AvatarImage,
+        Wrapper,
+        HStack,
+      },
+      argsType: {},
+    }}
+  />
+</Wrapper>
+
+#### Avatar Group (Without Badge)
+
+An Avatar Group component without badges organizes multiple avatars in a visually cohesive manner, offering a streamlined display of user or entity representations without additional visual indicators or badges within a user interface.
+
+<Wrapper>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+        <AvatarGroup>
+          <Avatar size="md">
+            <AvatarFallbackText>John Doe</AvatarFallbackText>
+            <AvatarImage
+              source={{
+                uri: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
+              }}
+            />
+          </Avatar>
+          <Avatar size="md">
+            <AvatarFallbackText>John Doe</AvatarFallbackText>
+            <AvatarImage
+              source={{
+                uri: 'https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
+              }}
+            />
+          </Avatar>
+          <Avatar size="md">
+            <AvatarFallbackText>John Doe</AvatarFallbackText>
+            <AvatarImage
+              source={{
+                uri: 'https://images.unsplash.com/photo-1614289371518-722f2615943d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
+              }}
+            />
+          </Avatar>
+          <Avatar size="md">
+            <AvatarFallbackText>John Doe</AvatarFallbackText>
+            <AvatarImage
+              source={{
+                uri: 'https://images.unsplash.com/photo-1607746882042-944635dfe10e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
+              }}
+            />
+          </Avatar>
+        </AvatarGroup>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Avatar,
+        AvatarGroup,
+        AvatarBadge,
+        AvatarFallbackText,
+        AvatarImage,
+        Wrapper,
+        HStack,
+      },
+      argsType: {},
+    }}
+  />
+</Wrapper>
+
+#### Avatar Group (with Badge)
+
+An Avatar Group component with badges presents a collection of avatars with accompanying badges, providing visual indicators or additional information associated with each user or entity representation within a user interface.
+
+<Wrapper>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+        <AvatarGroup>
+          <Avatar size="md">
+            <AvatarFallbackText>John Doe</AvatarFallbackText>
+            <AvatarImage
+              source={{
+                uri: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
+              }}
+            />
+            <AvatarBadge 
+            $dark-borderColor="$black"/>
+          </Avatar>
+          <Avatar size="md">
+            <AvatarFallbackText>John Doe</AvatarFallbackText>
+            <AvatarImage
+              source={{
+                uri: 'https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
+              }}
+            />
+            <AvatarBadge $dark-borderColor="$black"/>
+          </Avatar>
+          <Avatar size="md">
+            <AvatarFallbackText>John Doe</AvatarFallbackText>
+            <AvatarImage
+              source={{
+                uri: 'https://images.unsplash.com/photo-1614289371518-722f2615943d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
+              }}
+            />
+            <AvatarBadge $dark-borderColor="$black"/>
+          </Avatar>
+          <Avatar size="md">
+            <AvatarFallbackText>John Doe</AvatarFallbackText>
+            <AvatarImage
+              source={{
+                uri: 'https://images.unsplash.com/photo-1607746882042-944635dfe10e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
+              }}
+            />
+            <AvatarBadge 
+            $dark-borderColor="$black"/>
+          </Avatar>
+        </AvatarGroup>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Avatar,
+        AvatarGroup,
+        AvatarBadge,
+        AvatarFallbackText,
+        AvatarImage,
+        Wrapper,
+        HStack,
+      },
+      argsType: {},
+    }}
+  />
+</Wrapper>
+
+#### Custom
+
+A custom Avatar component with text allows for personalized user or entity representations by combining customized visuals, such as an image or icon, with accompanying text, providing a unique and identifiable presentation within a user interface.
+
+<Wrapper>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+        <VStack space="2xl">
+          <HStack space="md">
+            <Avatar size="md" bgColor="$indigo300" borderColor="$indigo600" borderWidth={2}>
+              {/* User is imported from 'lucide-react-native' */}
+              <Icon as={User} color="$indigo600" size="xl"/>
+            </Avatar>
+            <VStack  >
+              <Heading size="sm" >Ronald Richards</Heading>
+              <Text size="sm" >Nursing Assistant</Text>
+            </VStack>
+          </HStack>
+          <HStack space="md">
+            <Avatar size="md"  bgColor="$pink300" borderColor="$pink600" borderWidth={2}>
+            {/* User is imported from 'lucide-react-native' */}
+              <Icon as={User} color="$pink600" size="xl"/>
+            </Avatar>
+            <VStack >
+              <Heading size="sm" >Kevin James</Heading>
+              <Text size="sm" >Web Designer</Text>
+            </VStack>
+          </HStack>
+        </VStack>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Avatar,
+        AvatarBadge,
+        AvatarFallbackText,
+        AvatarImage,
+        Text,
+        HStack,
+        VStack,
+        Heading,
+        Icon,
+        User,
+      },
+      argsType: {},
+    }}
+  />
+</Wrapper>
+
+#### Fallback
+
+Fallback text is shown when the image fails to load, the image is not available or the provided image url is not correct.
+
+<Wrapper>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+     <HStack space="md" h="100%" justifyContent="center" alignItems="center">
+          <Avatar size="md">
+            <AvatarFallbackText>John Doe</AvatarFallbackText>
+            <AvatarImage
+              source={{
+                uri: 'https://wrong-url',
+              }}
+            />
+          </Avatar>
+      </HStack>
+    `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Avatar,
+        AvatarBadge,
+        AvatarFallbackText,
+        AvatarImage,
+        Wrapper,
+        HStack,
+      },
+      argsType: {},
+    }}
+  />
+</Wrapper>
+
+

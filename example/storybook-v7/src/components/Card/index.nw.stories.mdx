@@ -1,0 +1,545 @@
+---
+title: gluestack-ui Card Component | Installation, Usage, and API
+
+description: A Card component serves as a visual container that groups related content and actions.
+
+pageTitle: Card
+
+pageDescription: A Card component serves as a visual container that groups related content and actions.
+
+showHeader: true
+---
+
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="with-nativewind/Components/Data Display/Card" />
+
+import {
+  Card,
+  Heading,
+  Text,
+  Image,
+  Link,
+  LinkText,
+  HStack,
+  Icon,
+  ArrowRightIcon,
+  Avatar,
+  Box,
+  VStack,
+  AvatarFallbackText,
+  AvatarImage,
+  Button,
+  ButtonText,
+  Divider,
+} from '../../core-components/nativewind';
+import {
+  AppProvider,
+  CodePreview,
+  Table,
+  TableContainer,
+  InlineCode,
+  Tabs
+} from '@gluestack/design-system';
+import { transformedCode } from '../../utils';
+
+import Wrapper from '../../core-components/nativewind/Wrapper';
+import { CollapsibleCode } from '@gluestack/design-system';
+
+This is an illustration of a **Card** component.
+
+<Wrapper>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={true}
+    metaData={{
+      code: `
+    <Card {...props} className="m-3">
+      <Heading size="md" className="mb-1">
+        Quick Start
+      </Heading>
+      <Text size="sm">Start building your next project in minutes</Text>
+    </Card>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Card,
+        Heading,
+        Text,
+        Wrapper,
+      },
+      argsType: {
+        size: {
+          control: 'select',
+          options: ['sm', 'md', 'lg'],
+          default: 'md',
+        },
+        variant: {
+          control: 'select',
+          options: ['elevated', 'outline', 'ghost', 'filled'],
+          default: 'elevated',
+        },
+      },
+    }}
+  />
+</Wrapper>
+
+<br />
+
+## Installation
+
+<Tabs value="cli" type="section">
+  <Tabs.TabList>
+      <Tabs.Tab value="cli">
+        <Tabs.TabTitle>CLI</Tabs.TabTitle>
+      </Tabs.Tab>
+     <Tabs.Tab value="manual">
+        <Tabs.TabTitle>Manual</Tabs.TabTitle>
+     </Tabs.Tab>
+  </Tabs.TabList>
+  <Tabs.TabPanels>
+    <Tabs.TabPanel value="cli">
+<>
+
+### Run the following command:
+  ```bash
+  npx gluestack-ui add card
+  ```
+</>
+    </Tabs.TabPanel>
+    <Tabs.TabPanel value="manual"> 
+<>
+
+### Step 1: Copy and paste the following code into index.tsx in your project.
+<CollapsibleCode>
+
+```jsx 
+%%-- File: core-components/nativewind/card/index.tsx --%% 
+```
+</CollapsibleCode>
+
+> Note: **Step 2 is optional and only required if you want to add support for [React Server Components](https://vercel.com/blog/understanding-react-server-components), You can skip this and jump to Step 3 directly if you don't have this requirement.**
+
+### Step 2(optional): Copy and paste the following code into index.web.tsx in your project.
+<CollapsibleCode>
+
+```jsx 
+%%-- File: core-components/nativewind/card/index.web.tsx --%% 
+```
+</CollapsibleCode>
+
+### Step 3: Copy and paste the following code into styles.tsx in your project.
+<CollapsibleCode>
+
+```jsx 
+%%-- File: core-components/nativewind/card/styles.tsx --%% 
+```
+</CollapsibleCode>
+
+### Step 4: Update the import paths to match your project setup.
+</>
+    </Tabs.TabPanel>
+  </Tabs.TabPanels>
+</Tabs>
+
+## API Reference
+
+To use this component in your project, include the following import statement in your file.
+
+```jsx
+import { Card } from '@/components/ui/card';
+```
+
+```jsx
+export default () => <Card />;
+```
+
+### Component Props
+
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
+
+### Card
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+<>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Type</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Default</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>size</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>sm | md | lg</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>md</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>variant</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>elevated | outline | ghost | filled</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>elevated</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</>
+
+## Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+### Card with Image
+
+This is an example of a Card component with an image.
+
+<Wrapper>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+function App(){
+    return (
+      <Card className="p-5 rounded-lg max-w-[360px] m-3">
+        <Image
+        source={{
+          uri: 'https://images.unsplash.com/photo-1529693662653-9d480530a697?q=80&w=2831&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        }}
+        className="mb-6 h-[240px] w-full rounded-md"
+      />
+      <Text
+        className="text-sm font-normal mb-2 text-typography-700"
+      >
+        May 15, 2023
+      </Text>
+      <Heading size="md" className="mb-4">
+        The Power of Positive Thinking
+      </Heading>
+      <Link href="https://gluestack.io/" isExternal>
+        <HStack className="items-center">
+          <LinkText
+            size="sm"
+            className="font-semibold text-info-600 no-underline"
+          >
+            Read Blog
+          </LinkText>
+          <Icon
+            as={ArrowRightIcon}
+            size="sm"
+            className="text-info-600 mt-0.5 ml-0.5"
+          />
+        </HStack>
+      </Link>
+    </Card>
+);
+}
+`,
+transformCode: (code) => {
+return transformedCode(code, 'function', 'App');
+},
+scope: {
+Card,
+Text,
+Image,
+Heading,
+Link,
+LinkText,
+HStack,
+Icon,
+ArrowRightIcon,
+Wrapper,
+},
+}}
+/>
+
+</Wrapper>
+
+### Advanced Composition
+
+This is an example of a Card component with other components like Avatar, Image and Button.
+
+<Wrapper>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+function App(){
+    return (
+    <Card className="p-6 rounded-lg max-w-[360px] m-3">
+      <Box className="flex-row">
+        <Avatar className="mr-4">
+          <AvatarFallbackText>JD</AvatarFallbackText>
+          <AvatarImage
+            source={{
+              uri: 'https://images.unsplash.com/photo-1620403724159-40363e84a155?q=80&w=2646&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+            }}
+          />
+        </Avatar>
+        <VStack>
+          <Heading size="md" className="mb-1">
+            Jane Doe
+          </Heading>
+          <Text size="sm">
+            janedoe@sample.com
+          </Text>
+        </VStack>
+      </Box>
+      <Box
+        className="my-5 flex-col sm:flex-row"
+      >
+        <VStack
+          className="items-center pb-2 sm:flex-1 sm:pb-0 sm:border-r sm:border-outline-300"
+        >
+          <Heading size="xs">
+            81
+          </Heading>
+          <Text size="xs">posts</Text>
+        </VStack>
+        <Divider
+          orientation="horizontal"
+          className="w-[40%] self-center bg-background-300 flex sm:hidden"
+        />
+        <VStack
+          className="items-center py-2 sm:flex-1 sm:py-0 sm:border-r sm:border-outline-300"
+        >
+          <Heading size="xs">
+            5,281
+          </Heading>
+          <Text size="xs">followers</Text>
+        </VStack>
+        <Divider
+          orientation="horizontal"
+          className="w-[40%] self-center bg-background-300 flex sm:hidden"
+        />
+        <VStack
+          className="items-center pt-2 sm:flex-1 sm:pt-0"
+        >
+          <Heading size="xs">
+            281
+          </Heading>
+          <Text size="xs">following</Text>
+        </VStack>
+      </Box>
+      <Box
+        className="mb-5 flex-col sm:mb-6 sm:flex-row"
+      >
+        <Image
+          source={{
+            uri: 'https://images.unsplash.com/photo-1592089416462-2b0cb7da8379?q=80&w=2865&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+          }}
+          className="mb-3 rounded-md w-full h-[140px] sm:mb-0 sm:mr-3 sm:w-[150px] sm:h-[154px]"
+        />
+        <Image
+          source={{
+            uri: 'https://images.unsplash.com/photo-1484406566174-9da000fda645?q=80&w=2425&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+          }}
+          className="rounded-md w-full h-[140px] sm:w-[150px] sm:h-[154px]"
+        />
+      </Box>
+      <Button className="py-2 px-4">
+        <ButtonText size="sm">Follow</ButtonText>
+      </Button>
+    </Card>
+);
+}
+`,
+transformCode: (code) => {
+return transformedCode(code, 'function', 'App');
+},
+scope: {
+Card,
+Box,
+Avatar,
+AvatarFallbackText,
+AvatarImage,
+VStack,
+Divider,
+Button,
+ButtonText,
+Text,
+Image,
+Heading,
+Wrapper,
+},
+}}
+/>
+
+</Wrapper>
+
+### Product Card
+
+This example illustrates a card showcasing a product.
+
+<Wrapper>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+function App(){
+    return (
+    <Card className="p-5 rounded-lg max-w-[360px] m-3">
+      <Image
+        source={{
+          uri: 'https://images.unsplash.com/photo-1595231712325-9fedecef7575?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDJ8fHxlbnwwfHx8fHw%3D',
+        }}
+        className="mb-6 h-[240px] w-full rounded-md"
+      />
+      <Text
+        className="text-sm font-normal mb-2 text-typography-700"
+      >
+        Fashion Clothing
+      </Text>
+      <VStack className="mb-6">
+        <Heading size="md" className="mb-4">
+          Cotton Kurta
+        </Heading>
+        <Text size="sm">
+          Floral embroidered notch neck thread work cotton kurta in white and
+          black.
+        </Text>
+      </VStack>
+      <Box
+        className="flex-col sm:flex-row"
+      >
+        <Button
+          className="px-4 py-2 mr-0 mb-3 sm:mr-3 sm:mb-0 sm:flex-1"
+        >
+          <ButtonText size="sm">Add to cart</ButtonText>
+        </Button>
+        <Button
+          variant="outline"
+          className="px-4 py-2 border-outline-300 sm:flex-1"
+        >
+          <ButtonText
+            size="sm"
+            className="text-typography-600"
+          >
+            Wishlist
+          </ButtonText>
+        </Button>
+      </Box>
+    </Card>
+);
+}
+`,
+transformCode: (code) => {
+return transformedCode(code, 'function', 'App');
+},
+scope: {
+Card,
+Box,
+VStack,
+Button,
+ButtonText,
+Text,
+Image,
+Heading,
+Wrapper,
+},
+}}
+/>
+
+</Wrapper>
+
+### Blog Card
+
+This is an example of a Card component with a blog post.
+
+<Wrapper>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+function App(){
+    return (
+    <Card className="p-5 rounded-lg max-w-[360px] m-3"
+    >
+      <Text className="text-sm font-normal mb-2 text-typography-700"
+      >
+        May 15, 2023
+      </Text>
+      <VStack className="mb-6">
+        <Heading size="md" className="mb-4">
+          The Power of Positive Thinking
+        </Heading>
+        <Text size="sm">
+          Discover how the power of positive thinking can transform your life,
+          boost your confidence, and help you overcome challenges. Explore
+          practical tips and techniques to cultivate a positive mindset for
+          greater happiness and success.
+        </Text>
+      </VStack>
+      <Box className="flex-row">
+        <Avatar className="mr-3">
+          <AvatarFallbackText>RR</AvatarFallbackText>
+          <AvatarImage
+            source={{
+              uri: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60',
+            }}
+          />
+        </Avatar>
+        <VStack>
+          <Heading size="sm" className="mb-1">
+            John Smith
+          </Heading>
+          <Text size="sm">
+            Motivational Speaker
+          </Text>
+        </VStack>
+      </Box>
+    </Card>
+);
+}
+`,
+transformCode: (code) => {
+return transformedCode(code, 'function', 'App');
+},
+scope: {
+Card,
+Box,
+Avatar,
+AvatarFallbackText,
+AvatarImage,
+VStack,
+Button,
+ButtonText,
+Text,
+Image,
+Heading,
+Wrapper,
+},
+}}
+/>
+
+</Wrapper>

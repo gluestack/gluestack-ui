@@ -1,0 +1,113 @@
+---
+title: gluestack-ui Center Component | Installation, Usage, and API
+
+description: When you need to center-align content, the Center component comes in handy. It is a layout component that can be used with other components to create complex layouts and positioning.
+
+pageTitle: Center
+
+pageDescription: When you need to center-align content, the Center component comes in handy. It is a layout component that can be used with other components to create complex layouts and positioning.
+
+showHeader: true
+---
+
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="with-gluestack-style/Components/Layout/Center" />
+
+import { Center } from '../../core-components/themed';
+import { Text } from '../../core-components/themed';
+
+import { transformedCode } from '../../utils';
+import { AppProvider, CodePreview, Table } from '@gluestack/design-system';
+
+import Wrapper from '../../core-components/themed/Wrapper';
+import { CollapsibleCode, Tabs } from '@gluestack/design-system';
+
+This is an illustration of **Center** component.
+
+<>
+  <CodePreview
+    _rendererWrapper={ { py: '$6' } }
+  showComponentRenderer = { true}
+  showArgsController = { false}
+  metaData = {{
+    code: `
+<Center bg="$primary500" h={200} w={300}>
+  <Text color="$text0" fontWeight="$bold">
+    This is the center.
+  </Text>
+</Center>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+        scope: {
+      Wrapper,
+        Center,
+        Text,
+      },
+    argsType: { },
+  }
+}
+/>
+</>
+
+<br/>
+
+## Installation
+
+<Tabs value="cli" type="section">
+  <Tabs.TabList>
+      <Tabs.Tab value="cli">
+        <Tabs.TabTitle>CLI</Tabs.TabTitle>
+      </Tabs.Tab>
+     <Tabs.Tab value="manual">
+        <Tabs.TabTitle>Manual</Tabs.TabTitle>
+     </Tabs.Tab>
+  </Tabs.TabList>
+  <Tabs.TabPanels>
+    <Tabs.TabPanel value="cli">
+<>
+
+### Run the following command:
+  ```bash
+  npx gluestack-ui add center
+  ```
+</>
+    </Tabs.TabPanel>
+    <Tabs.TabPanel value="manual"> 
+<>
+
+### Step 1: Copy and paste the following code into your project.
+<CollapsibleCode>
+
+```jsx 
+%%-- File: core-components/themed/center/index.tsx --%% 
+```
+</CollapsibleCode>
+
+### Step 2: Update the import paths to match your project setup.
+</>
+    </Tabs.TabPanel>
+  </Tabs.TabPanels>
+</Tabs>
+
+## API Reference
+
+To use this component in your project, include the following import statement in your file.
+
+```jsx
+import { Center } from '@/components/ui/center';
+```
+
+```jsx
+export default () => <Center />;
+```
+
+### Component Props
+
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
+
+#### Center
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
