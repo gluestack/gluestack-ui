@@ -1,11 +1,14 @@
 import React from 'react';
 import { withBackgrounds } from '@storybook/addon-ondevice-backgrounds';
 import { addParameters } from '@storybook/client-api';
-import { GluestackUIProvider, Box, VStack } from '@custom-ui/themed';
-import { config } from '@custom-ui/config';
+import {
+  GluestackUIProvider,
+  Box,
+  VStack,
+} from '../src/core-components/nativewind';
 import { useState } from 'react';
 import type { Preview } from '@storybook/react';
-import { useDarkMode } from '../src/hooks/useDarkMode';
+import { useDarkMode } from '../src/components/hooks/useDarkMode';
 import { Platform } from 'react-native';
 
 const preview: Preview = {
@@ -42,7 +45,7 @@ export const decorators = [
     const [isDark] = useState(false);
 
     return (
-      <GluestackUIProvider config={config}>
+      <GluestackUIProvider>
         <Box flex={1} p="$10">
           <Story />
         </Box>
