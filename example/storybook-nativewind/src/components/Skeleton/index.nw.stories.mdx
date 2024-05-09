@@ -17,7 +17,7 @@ import { Meta } from '@storybook/addon-docs';
 import { Box, Skeleton, SkeletonText } from '../../core-components/nativewind';
 import { transformedCode } from '../../utils';
 import Wrapper from '../../core-components/nativewind/Wrapper';
-import {Tabs, CollapsibleCode, CodePreview, Table, InlineCode, Image, Text, HStack} from '@gluestack/design-system';
+import {Tabs, CollapsibleCode, CodePreview, Table, InlineCode, Image, Text, HStack, TableContainer} from '@gluestack/design-system';
 
 This is an illustration of **Skeleton** component.
 
@@ -33,7 +33,7 @@ This is an illustration of **Skeleton** component.
       code: `
       <Box className="w-[325px] gap-4 p-3 border border-gray-200 rounded-md">
       <Skeleton variant="sharp" className="h-[150px]" />
-      <SkeletonText _lines={4} className="h-3" />
+      <SkeletonText _lines={3} className="h-3" />
       <HStack className="gap-2 align-middle">
         <Skeleton variant="circular" className="h-[24px] w-[24px] mr-2" />
         <SkeletonText _lines={2} gap={1} className="h-2 w-2/5" />
@@ -333,7 +333,7 @@ Use the `isLoaded` prop to show the content after the skeleton content is loaded
       <Box className="w-[360px] h-[220px] p-2 border border-gray-200 rounded-md">
         <Skeleton variant="sharp" startColor="bg-slate-200" {...props}>
           <Image
-          className="w-full h-full"
+          size="full"
           source={{
             uri: 'https://images.unsplash.com/photo-1715006020121-dd50879f9821?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
           }}
