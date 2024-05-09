@@ -1,11 +1,11 @@
 ---
 title: gluestack-ui Skeleton | Installation, Usage, and API
 
-description: Skeleton 
+description: Skeleton is a component that is used to show a placeholder while the content is loading. It helps users understand that the content is being fetched and will be displayed shortly.
 
 pageTitle: Skeleton
 
-pageDescription: Skeleton
+pageDescription: Skeleton is a component that is used to show a placeholder while the content is loading. It helps users understand that the content is being fetched and will be displayed shortly.
 
 showHeader: true
 ---
@@ -17,7 +17,7 @@ import { Meta } from '@storybook/addon-docs';
 import { Box, Skeleton, SkeletonText } from '../../core-components/nativewind';
 import { transformedCode } from '../../utils';
 import Wrapper from '../../core-components/nativewind/Wrapper';
-import {Tabs, CollapsibleCode, CodePreview, Table, InlineCode} from '@gluestack/design-system';
+import {Tabs, CollapsibleCode, CodePreview, Table, InlineCode, Image, Text, HStack} from '@gluestack/design-system';
 
 This is an illustration of **Skeleton** component.
 
@@ -31,16 +31,19 @@ This is an illustration of **Skeleton** component.
     }}
     metaData={{
       code: `
-      <Box className="gap-2 w-[320px]">
-        <Skeleton variant="sharp" className="h-[150px]" />
-        <SkeletonText _lines={2} className="h-3" />
-        <SkeletonText className="h-3 w-1/3" />
+      <Box className="w-[325px] gap-4 p-3 border border-gray-200 rounded-md">
+      <Skeleton variant="sharp" className="h-[150px]" />
+      <SkeletonText _lines={4} className="h-3" />
+      <HStack className="gap-2 align-middle">
+        <Skeleton variant="circular" className="h-[24px] w-[24px] mr-2" />
+        <SkeletonText _lines={2} gap={1} className="h-2 w-2/5" />
+      </HStack>
       </Box>
       `,
       transformCode: (code) => {
         return transformedCode(code);
       },
-      scope: { Wrapper, Skeleton, SkeletonText, Box  },
+      scope: { Wrapper, Skeleton, SkeletonText, Box, HStack  },
       argsType: {},
     }}
   />
@@ -248,7 +251,107 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
             <Table.TText>Number of lines in text skeleton</Table.TText>
           </Table.TD>
         </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText><InlineCode>startColor</InlineCode></Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>string</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>bg-gray-200</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>Skeleton animation color</Table.TText>
+          </Table.TD>
+        </Table.TR> 
+        <Table.TR>
+          <Table.TD>
+            <Table.TText><InlineCode>isLoaded</InlineCode></Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>bool</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>Custom class name</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText><InlineCode>speed</InlineCode></Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>number</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>2</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>Animation speed</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText><InlineCode>gap</InlineCode></Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>number</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>Gap between text skeletons</Table.TText>
+          </Table.TD>
+        </Table.TR>
       </Table.TBody>
     </Table>
   </TableContainer>
 </>
+
+## Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+### Using isLoaded prop
+
+Use the `isLoaded` prop to show the content after the skeleton content is loaded.
+
+<Wrapper>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={true}
+    _rendererWrapper={{
+        alignItems: 'center',
+        padding: 20,
+      }}
+    metaData={{
+      code: `
+      <Box className="w-[360px] h-[220px] p-2 border border-gray-200 rounded-md">
+        <Skeleton variant="sharp" startColor="bg-slate-200" {...props}>
+          <Image
+          className="w-full h-full"
+          source={{
+            uri: 'https://images.unsplash.com/photo-1715006020121-dd50879f9821?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+          }}
+           />
+        </Skeleton>
+     </Box>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: { Wrapper, Skeleton, SkeletonText, Box, Image, Text, HStack },
+      argsType: {
+        isLoaded:{
+          control:'boolean',
+          options:[true, false],
+          default: false
+        }
+      },
+    }}
+  />
+</Wrapper>

@@ -11,8 +11,8 @@ const SkeletonThumbnails = () => {
         .map((_, index) => (
           <Box key={index} className="w-1/4 gap-2">
             <Skeleton variant="sharp" className="h-[150px]" />
-            <SkeletonText className="h-4" />
-            <SkeletonText className="h-4 w-3/5" />
+            <SkeletonText className="h-3" />
+            <SkeletonText className="h-3 w-3/5" />
           </Box>
         ))}
     </HStack>
