@@ -1,0 +1,254 @@
+---
+title: gluestack-ui Skeleton | Installation, Usage, and API
+
+description: Skeleton 
+
+pageTitle: Skeleton
+
+pageDescription: Skeleton
+
+showHeader: true
+---
+
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="with-nativewind/Components/Others/Skeleton" />
+
+import { Box, Skeleton, SkeletonText } from '../../core-components/nativewind';
+import { transformedCode } from '../../utils';
+import Wrapper from '../../core-components/nativewind/Wrapper';
+import {Tabs, CollapsibleCode, CodePreview, Table, InlineCode} from '@gluestack/design-system';
+
+This is an illustration of **Skeleton** component.
+
+<Wrapper>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+   _rendererWrapper={{
+      alignItems: 'center',
+      padding: 20,
+    }}
+    metaData={{
+      code: `
+      <Box className="gap-2 w-[320px]">
+        <Skeleton variant="sharp" className="h-[150px]" />
+        <SkeletonText _lines={2} className="h-3" />
+        <SkeletonText className="h-3 w-1/3" />
+      </Box>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: { Wrapper, Skeleton, SkeletonText, Box  },
+      argsType: {},
+    }}
+  />
+</Wrapper>
+
+<br />
+
+## Installation
+
+<Tabs value="cli" type="section">
+  <Tabs.TabList>
+      <Tabs.Tab value="cli">
+        <Tabs.TabTitle>CLI</Tabs.TabTitle>
+      </Tabs.Tab>
+     <Tabs.Tab value="manual">
+        <Tabs.TabTitle>Manual</Tabs.TabTitle>
+     </Tabs.Tab>
+  </Tabs.TabList>
+  <Tabs.TabPanels>
+    <Tabs.TabPanel value="cli">
+<>
+
+### Run the following command:
+  ```bash
+  npx gluestack-ui add skeleton
+  ```
+</>
+    </Tabs.TabPanel>
+    <Tabs.TabPanel value="manual"> 
+<>
+
+### Step 1: Copy and paste the following code into your project.
+<CollapsibleCode>
+
+```jsx 
+%%-- File: core-components/nativewind/skeleton/index.tsx --%% 
+```
+</CollapsibleCode>
+
+> Note: **Step 2 is optional and only required if you want to add support for [React Server Components](https://vercel.com/blog/understanding-react-server-components), You can skip this and jump to Step 3 directly if you don't have this requirement.**
+
+### Step 2: Copy and paste the following code into index.web.tsx in your project.
+<CollapsibleCode>
+
+```jsx 
+%%-- File: core-components/nativewind/skeleton/index.web.tsx --%% 
+```
+</CollapsibleCode>
+
+### Step 3: Copy and paste the following code into styles.tsx in your project.
+<CollapsibleCode>
+
+```jsx 
+%%-- File: core-components/nativewind/skeleton/styles.tsx --%% 
+```
+</CollapsibleCode>
+
+### Step 4: Update the import paths to match your project setup.
+</>
+    </Tabs.TabPanel>
+  </Tabs.TabPanels>
+</Tabs>
+
+## API Reference
+
+To use this component in your project, include the following import statement in your file.
+
+```jsx
+import { Skeleton, SkeletonText } from '@/components/ui/skeleton';
+```
+
+```jsx
+export default () => (
+  <Box className="gap-2">
+    <Skeleton variant="rounded" className="h-32 w-64" />
+    <SkeletonText className="h-4 w-64 " />
+  </Box>
+)
+```
+
+### Component Props
+
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
+
+### Skeleton
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+<>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Type</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Default</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Description</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText><InlineCode>variant</InlineCode></Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>rounded | sharp | circular</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>rounded</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>Shape of the skeleton</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText><InlineCode>startColor</InlineCode></Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>string</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>bg-gray-200</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>Skeleton animation color</Table.TText>
+          </Table.TD>
+        </Table.TR> 
+        <Table.TR>
+          <Table.TD>
+            <Table.TText><InlineCode>isLoaded</InlineCode></Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>bool</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>Custom class name</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText><InlineCode>speed</InlineCode></Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>number</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>2</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>Animation speed</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</>
+
+### SkeletonText
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+<>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Type</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Default</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Description</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText><InlineCode>_lines</InlineCode></Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>number</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>Number of lines in text skeleton</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</>

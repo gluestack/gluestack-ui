@@ -46,3 +46,4 @@ export { GluestackUIProvider } from './gluestack-ui-provider';
 export * from './virtualized-list';
 export * from './refresh-control';
 export * from './image-background';
+export * from './skeleton';
