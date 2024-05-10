@@ -1,8 +1,7 @@
-import path from 'path';
-
+const path = require('path');
 const fs = require('fs');
 
-export const updatePackageJson = (fileDir) => {
+const updatePackageJson = (fileDir) => {
   const filePath = path.join(fileDir, 'package.json');
   const data = require(filePath);
 
@@ -21,3 +20,5 @@ export const updatePackageJson = (fileDir) => {
     });
   }
 };
+
+module.exports = { updatePackageJson };

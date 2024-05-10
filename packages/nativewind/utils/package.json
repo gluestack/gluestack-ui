@@ -21,6 +21,7 @@
   "react-native": "src/index",
   "source": "src/index",
   "scripts": {
+    "prepare": "tsc",
     "build": "tsc",
     "remove": "rm -rf ../../../node_modules/react-native-css-interop",
     "clean": "rm -rf lib",
