@@ -17,7 +17,7 @@
   "main": "index.js",
   "module": "index.js",
   "types": "index.d.ts",
-  "version": "1.0.18-alpha.0",
+  "version": "1.0.18",
   "react-native": "src/index",
   "source": "src/index",
   "scripts": {
@@ -31,7 +31,6 @@
   "devDependencies": {
     "@types/react": "^18.0.22",
     "babel-plugin-transform-remove-console": "^6.9.4",
-    "path": "latest",
     "react": "^18.1.0",
     "react-native-builder-bob": "^0.20.1",
     "tsconfig": "7",
