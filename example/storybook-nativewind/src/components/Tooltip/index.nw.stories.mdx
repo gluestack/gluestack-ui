@@ -61,7 +61,7 @@ This is an illustration of **Tooltip** component.
           {...props}
           trigger={(triggerProps) => {
             return (
-              <Button className='h-24' {...triggerProps}>
+              <Button className='p-4' {...triggerProps}>
                 <ButtonText>Hover on me!</ButtonText>
               </Button>
             );
@@ -522,7 +522,7 @@ A tooltip component with an avatar is a user interface element that displays a s
                   }}
                 >
                   <TooltipContent
-                    className="p-5 max-w-72 bg-background-0"
+                    className="p-4 rounded-md max-w-72 bg-background-0"
                   >
                     <VStack space='md' className="rounded-lg">
                       <Heading size="sm">View all members of this channel</Heading>
@@ -591,15 +591,15 @@ A tooltip component with an icon is a user interface element that provides conte
                   trigger={(triggerProps) => {
                     return (
                     <Avatar size="md" {...triggerProps} className="bg-indigo-600">
-                      <Icon as={EditIcon} size="sm" className="text-typography-0"/>
+                      <Icon as={EditIcon} size="sm" className="text-white"/>
                     </Avatar>
                     )
                   }}
               >
                 <TooltipContent
-                className="bg-background-0"
+                className="bg-background-0 rounded-md"
                 >
-                  <Box className="rounded-lg p-2.5">
+                  <Box className="p-2.5">
                     <Text size="sm">New message</Text>
                     <HStack space="xs" className="p-1 ml-3">
                           <Avatar size="xs" className="bg-gray-500 rounded">

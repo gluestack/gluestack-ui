@@ -298,7 +298,7 @@ An Avatar component with an icon combines a graphical symbol or icon with a user
             <HStack space="md">
                 <Avatar className='bg-pink-600'>
                  {/* User is imported from 'lucide-react-native' */}
-                <Icon as={User} size="lg"/>
+                <Icon as={User} color="white" size="lg"/>
                 </Avatar>
                 <VStack >
                   <Heading size="sm" >Kevin James</Heading>
@@ -361,6 +361,7 @@ An Avatar component with an image incorporates a user or entity representation u
                     uri: 'https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8dXNlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60',
                   }}
               />
+              <AvatarBadge $dark-borderColor="$black" />
             </Avatar>
             <VStack>
               <Heading size="sm" >Arlene McCoy</Heading>
