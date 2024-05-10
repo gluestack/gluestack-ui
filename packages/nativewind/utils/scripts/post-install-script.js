@@ -3,6 +3,7 @@ const path = require('path');
 var finder = require('./find-package-json');
 const { exec } = require('child_process');
 const findWorkspaceRoot = require('find-yarn-workspace-root');
+const { updatePackageJson } = require('./modify-package-json');
 
 const processPath = process.cwd();
 const workspaceRoot = findWorkspaceRoot(processPath);
@@ -43,20 +44,16 @@ function installPatch(cwd) {
 }
 
 function main() {
+  let rootDir = userDirectory;
   if (workspaceRoot && workspaceRoot !== userDirectory) {
-    CopyDirectory(
-      path.join(processPath, 'scripts', 'patches'),
-      path.join(workspaceRoot, 'patches')
-    );
-
-    installPatch(workspaceRoot);
-  } else {
-    CopyDirectory(
-      path.join(processPath, 'scripts', 'patches'),
-      path.join(userDirectory, 'patches')
-    );
-    installPatch(userDirectory);
+    rootDir = workspaceRoot;
   }
+  CopyDirectory(
+    path.join(processPath, 'scripts', 'patches'),
+    path.join(rootDir, 'patches')
+  );
+  installPatch(rootDir);
+  updatePackageJson(rootDir);
 }
 
 main();
