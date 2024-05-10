@@ -6,7 +6,7 @@ const Skeleton = ({
   variant,
   children,
   speed,
-  startColor = 'bg-neutral-200',
+  startColor = 'bg-background-200',
   isLoaded = false,
   ...props
 }: any) => {
@@ -30,7 +30,7 @@ const SkeletonText = ({
   className,
   _lines,
   isLoaded = false,
-  startColor = 'bg-neutral-200',
+  startColor = 'bg-background-200',
   speed = 1,
   gap = 2,
   children,

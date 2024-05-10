@@ -33,7 +33,7 @@ This is an illustration of **Skeleton** component.
     }}
     metaData={{
       code: `
-      <Box className="w-[325px] gap-4 p-3 rounded-md bg-neutral-50">
+      <Box className="w-[325px] gap-4 p-3 rounded-md bg-background-100">
       <Skeleton variant="sharp" className="h-[150px]" />
       <SkeletonText _lines={3} className="h-3" />
       <HStack className="gap-2 align-middle">
@@ -176,7 +176,7 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
             <Table.TText>string</Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>bg-neutral-200</Table.TText>
+            <Table.TText>bg-background-200</Table.TText>
           </Table.TD>
           <Table.TD>
             <Table.TText>Skeleton animation color</Table.TText>
@@ -261,7 +261,7 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
             <Table.TText>string</Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>bg-neutral-200</Table.TText>
+            <Table.TText>bg-background-200</Table.TText>
           </Table.TD>
           <Table.TD>
             <Table.TText>Skeleton animation color</Table.TText>
@@ -332,7 +332,7 @@ Use the `isLoaded` prop to show the content after the skeleton content is loaded
       }}
     metaData={{
       code: `
-      <Box className="w-[300px] h-[200px] p-3 rounded-sm bg-neutral-50 ">
+      <Box className="w-[300px] h-[200px] p-3 rounded-sm bg-background-100 ">
         <Skeleton variant="rounded" {...props}>
           <Image
           size="full"
