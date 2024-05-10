@@ -128,7 +128,7 @@ export const config = {
     '--color-outline-900': '#272624',
     '--color-outline-950': '#1A1717',
     /* Background */
-    '--color-background-0': '#FBFBFB',
+    '--color-background-0': '#FFFFFF',
     '--color-background-50': '#F6F6F6',
     '--color-background-100': '#F2F1F1',
     '--color-background-200': '#DCDBDB',
@@ -145,7 +145,7 @@ export const config = {
     '--color-background-error': '#FEF1F1',
     '--color-background-warning': '#FFF4EB',
     '--color-background-success': '#EDFCF2',
-    '--color-background-muted': '#F6F6F7',
+    '--color-background-muted': '#F7F8F7',
     '--color-background-info': '#EBF8FE',
   }),
   dark: vars({
@@ -292,7 +292,7 @@ export const config = {
     '--color-background-error': '#422B2B',
     '--color-background-warning': '#412F23',
     '--color-background-success': '#1C2B21',
-    '--color-background-muted': '#252526',
+    '--color-background-muted': '#333333',
     '--color-background-info': '#1A282E',
   }),
 };

@@ -1,5 +1,34 @@
 # @gluestack-ui/themed
 
+## 1.1.26
+
+### Patch Changes
+
+- Updated dependencies
+  - @gluestack-ui/alert@0.1.14
+
+## 1.1.25
+
+### Patch Changes
+
+- Updated dependencies
+  - @gluestack-ui/select@0.1.26
+  - @gluestack-ui/icon@0.1.21
+
+## 1.1.24
+
+### Patch Changes
+
+- Version bump
+
+## 1.1.23
+
+### Patch Changes
+
+- - Fixed ref attribute typings
+- Updated dependencies
+  - @gluestack-style/react@1.0.55
+
 ## 1.1.22
 
 ### Patch Changes

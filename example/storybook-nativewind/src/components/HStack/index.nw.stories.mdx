@@ -50,7 +50,7 @@ This is an illustration of **HStack** component.
       argsType: {
         space: {
           control: 'select',
-          options: ['none', 'xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', '4xl'],
+          options: ['xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', '4xl'],
           default: 'md',
         },
         reversed: {
@@ -97,9 +97,9 @@ This is an illustration of **HStack** component.
 ```
 </CollapsibleCode>
 
-> Note: **This Step is (optional) and only required if you want to add support for [React Server Components](https://vercel.com/blog/understanding-react-server-components), You can skip this and jump to Step 3 directly if you don't have this requirement.**
+> Note: **Step 2 is optional and only required if you want to add support for [React Server Components](https://vercel.com/blog/understanding-react-server-components), You can skip this and jump to Step 3 directly if you don't have this requirement.**
 
-### Step 2: Copy and paste the following code into index.web.tsx in your project.
+### Step 2(optional): Copy and paste the following code into index.web.tsx in your project.
 <CollapsibleCode>
 
 ```jsx 
@@ -182,7 +182,7 @@ HStack component is created using View component from react-native. It extends a
             <Table.TText>-</Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>{`It sets the space between children.`}</Table.TText>
+            <Table.TText>{`It sets the space between children. By default there is no space between the HStack items.`}</Table.TText>
           </Table.TD>
         </Table.TR>
         <Table.TR>
@@ -195,7 +195,7 @@ HStack component is created using View component from react-native. It extends a
             <Table.TText>{`boolean`}</Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>-</Table.TText>
+            <Table.TText>false</Table.TText>
           </Table.TD>
           <Table.TD>
             <Table.TText>{`When true, it places the HStack items in reverse direction.`}</Table.TText>

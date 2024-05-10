@@ -1,5 +1,14 @@
 # @gluestack-ui/config
 
+## 1.1.18
+
+### Patch Changes
+
+- - Fixed ref attribute typings
+- Updated dependencies
+  - @gluestack-style/react@1.0.55
+  - @gluestack-ui/themed@1.1.23
+
 ## 1.1.17
 
 ### Patch Changes

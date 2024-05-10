@@ -243,6 +243,7 @@ module.exports = {
         heading: undefined,
         body: undefined,
         mono: undefined,
+        roboto: ['Roboto', 'sans-serif'],
       },
       fontWeight: {
         hairline: "100",
@@ -454,3 +455,8 @@ export default Document;
     </Tabs.TabPanel>
   </Tabs.TabPanels>
 </Tabs>
+
+## Common issues
+### Expo app stuck in `tailwindcss(ios) rebuilding...` while running `expo start` command
+
+In this case, you may have your app stored in a directory with a name containing spaces, such as 'Expo App', renaming it to just 'Expo-App' will resolve the issue.

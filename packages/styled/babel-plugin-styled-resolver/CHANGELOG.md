@@ -1,5 +1,11 @@
 # @gluestack-style/babel-plugin-styled-resolver
 
+## 1.0.7
+
+### Patch Changes
+
+- - Fixed FontResolver mock library
+
 ## 1.0.6
 
 ### Patch Changes

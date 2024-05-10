@@ -37,6 +37,7 @@ export * from './spinner';
 export * from './status-bar';
 export * from './section-list';
 export * from './switch';
+export * from './table';
 export * from './textarea';
 export * from './toast';
 export * from './tooltip';
