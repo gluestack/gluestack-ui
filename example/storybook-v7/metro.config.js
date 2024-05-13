@@ -48,4 +48,5 @@ defaultConfig.resolver.nodeModulesPaths = [
 
 module.exports = withNativeWind(defaultConfig, {
   input: './global.css',
+  inlineRem: 16,
 });
