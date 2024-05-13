@@ -1,11 +1,9 @@
 import React from 'react';
 import { withBackgrounds } from '@storybook/addon-ondevice-backgrounds';
-import { addParameters } from '@storybook/client-api';
-import {
-  GluestackUIProvider,
-  Box,
-  VStack,
-} from '../src/core-components/nativewind';
+// import { addParameters } from '@storybook/client-api';
+import { GluestackUIProvider } from '../src/core-components/nativewind';
+
+import { View } from 'react-native';
 import { useState } from 'react';
 import type { Preview } from '@storybook/react';
 import { useDarkMode } from '../src/components/hooks/useDarkMode';
@@ -46,42 +44,48 @@ export const decorators = [
 
     return (
       <GluestackUIProvider>
-        <Box flex={1} p="$10">
+        <View
+          style={{
+            alignItems: 'center',
+            justifyContent: 'center',
+            paddingLeft: 10,
+          }}
+        >
           <Story />
-        </Box>
+        </View>
       </GluestackUIProvider>
     );
   },
 ];
 
-addParameters({
-  docs: {
-    container: ({ children, context }) => {
-      let value = false;
+// addParameters({
+//   docs: {
+//     container: ({ children, context }) => {
+//       let value = false;
 
-      if (Platform.OS === 'web') {
-        // eslint-disable-next-line react-hooks/rules-of-hooks
-        value = useDarkMode();
-      }
-      const [isDark] = useState(false);
+//       if (Platform.OS === 'web') {
+//         // eslint-disable-next-line react-hooks/rules-of-hooks
+//         value = useDarkMode();
+//       }
+//       const [isDark] = useState(false);
 
-      function getColorMode() {
-        //@ts-ignore
-        if (Platform.OS === 'web') {
-          return value ? 'dark' : 'light';
-        } else {
-          return isDark ? 'dark' : 'light';
-        }
-      }
-      return (
-        <DocsContainer context={context}>
-          <GluestackUIProvider config={config} colorMode={getColorMode()}>
-            {children}
-          </GluestackUIProvider>
-        </DocsContainer>
-      );
-    },
-  },
-});
+//       function getColorMode() {
+//         //@ts-ignore
+//         if (Platform.OS === 'web') {
+//           return value ? 'dark' : 'light';
+//         } else {
+//           return isDark ? 'dark' : 'light';
+//         }
+//       }
+//       return (
+//         <DocsContainer context={context}>
+//           <GluestackUIProvider config={config} colorMode={getColorMode()}>
+//             {children}
+//           </GluestackUIProvider>
+//         </DocsContainer>
+//       );
+//     },
+//   },
+// });
 
 export default preview;

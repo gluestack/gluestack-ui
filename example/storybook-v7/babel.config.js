@@ -1,5 +1,4 @@
 const path = require('path');
-
 module.exports = function (api) {
   api.cache(true);
   return {
@@ -15,14 +14,14 @@ module.exports = function (api) {
         {
           alias: {
             '@/components/ui':
-              process.env.STYLE_ENGINE === 'nativewind'
-                ? path.resolve(__dirname, './src/core-components/nativewind')
-                : path.resolve(__dirname, './src/core-components/themed'),
+              process.env.STYLE_ENGINE === 'gluestack'
+                ? path.resolve(__dirname, './src/core-components/themed')
+                : path.resolve(__dirname, './src/core-components/nativewind'),
 
             'global.css':
-              process.env.STYLE_ENGINE === 'nativewind'
-                ? path.resolve(__dirname, './global.css')
-                : path.resolve(__dirname, './global-gluestack.css'),
+              process.env.STYLE_ENGINE === 'gluestack'
+                ? path.resolve(__dirname, './global-gluestack.css')
+                : path.resolve(__dirname, './global.css'),
 
             '@gluestack-ui/checkbox': path.resolve(
               __dirname,
@@ -115,13 +114,11 @@ module.exports = function (api) {
             ),
             'tailwind.config': path.join(
               __dirname,
-              '../../example/storybook-nativewind/tailwind.config.js'
+              '../../example/storybook-mix3/tailwind.config.js'
             ),
           },
         },
       ],
-      '@babel/plugin-transform-modules-commonjs',
-      'react-native-reanimated/plugin',
     ],
   };
 };

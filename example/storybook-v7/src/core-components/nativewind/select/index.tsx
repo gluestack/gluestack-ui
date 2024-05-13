@@ -66,7 +66,7 @@ const selectTriggerStyle = tva({
 });
 
 const selectInputStyle = tva({
-  base: 'py-auto px-3 placeholder:text-typography-500 flex-1 web:w-full h-full text-typography-900 pointer-events-none web:outline-none',
+  base: 'py-auto px-3 flex-1 web:w-full h-full text-typography-900 pointer-events-none web:outline-none',
   parentVariants: {
     size: {
       xl: 'text-xl leading-[0px]',

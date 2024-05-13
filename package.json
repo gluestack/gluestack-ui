@@ -3,8 +3,7 @@
   "workspaces": [
     "packages/**",
     "example/storybook",
-    "example/storybook-nativewind",
-    "example/storybook-v8"
+    "example/storybook-nativewind"
   ],
   "scripts": {
     "test": "bash ./scripts/test.sh",
