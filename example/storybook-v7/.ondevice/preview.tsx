@@ -10,7 +10,32 @@ import { useDarkMode } from '../src/components/hooks/useDarkMode';
 import { Platform } from 'react-native';
 
 const preview: Preview = {
-  decorators: [withBackgrounds],
+  decorators: [
+    withBackgrounds,
+    (Story) => {
+      let value = false;
+
+      if (Platform.OS === 'web') {
+        // eslint-disable-next-line react-hooks/rules-of-hooks
+        value = useDarkMode();
+      }
+      const [isDark] = useState(false);
+
+      return (
+        <GluestackUIProvider mode="light">
+          <View
+            style={{
+              padding: 10,
+              height: '100%',
+              width: '100%',
+            }}
+          >
+            <Story />
+          </View>
+        </GluestackUIProvider>
+      );
+    },
+  ],
 
   parameters: {
     backgrounds: {
@@ -31,32 +56,33 @@ const preview: Preview = {
   },
 };
 
-export const decorators = [
-  withBackgrounds,
-  (Story) => {
-    let value = false;
+// export const decorators = [
+//   withBackgrounds,
+//   (Story) => {
+//     let value = false;
 
-    if (Platform.OS === 'web') {
-      // eslint-disable-next-line react-hooks/rules-of-hooks
-      value = useDarkMode();
-    }
-    const [isDark] = useState(false);
+//     if (Platform.OS === 'web') {
+//       // eslint-disable-next-line react-hooks/rules-of-hooks
+//       value = useDarkMode();
+//     }
+//     const [isDark] = useState(false);
 
-    return (
-      <GluestackUIProvider>
-        <View
-          style={{
-            alignItems: 'center',
-            justifyContent: 'center',
-            paddingLeft: 10,
-          }}
-        >
-          <Story />
-        </View>
-      </GluestackUIProvider>
-    );
-  },
-];
+//     return (
+//       <GluestackUIProvider>
+//         <View
+//           style={{
+//             alignItems: 'center',
+//             justifyContent: 'center',
+//             paddingLeft: 10,
+//             backgroundColor: 'red',
+//           }}
+//         >
+//           <Story />
+//         </View>
+//       </GluestackUIProvider>
+//     );
+//   },
+// ];
 
 // addParameters({
 //   docs: {
