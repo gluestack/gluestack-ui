@@ -154,7 +154,7 @@ export const parameters = {
         },
         {
           source: 'lucide-react-native',
-          name: 'app-window',
+          name: 'AppWindow',
           headerTitle: 'Apps',
         },
         {
