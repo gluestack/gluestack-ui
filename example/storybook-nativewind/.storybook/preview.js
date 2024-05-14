@@ -92,7 +92,7 @@ export const parameters = {
         },
         {
           source: 'lucide-react-native',
-          name: 'LayoutPanelLeft',
+          name: 'LayoutGrid',
           headerTitle: 'Apps',
         },
         {
