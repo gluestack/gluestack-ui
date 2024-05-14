@@ -165,6 +165,7 @@ function Responsiveness() {
 
       <Box
         mt="-$12"
+        mb="$6"
         borderRadius="$lg"
         borderWidth={1}
         bg="$backgroundDark950"
