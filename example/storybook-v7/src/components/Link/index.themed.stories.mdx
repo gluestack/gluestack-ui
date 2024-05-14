@@ -28,7 +28,7 @@ import {
   Table,
   TableContainer,
   InlineCode,
-  Tabs
+  Tabs,
 } from '@gluestack/design-system';
 import { transformedCode } from '../../utils';
 import Wrapper from '../../core-components/themed/Wrapper';
@@ -77,28 +77,34 @@ This is an illustration of **Link** component.
 <>
 
 ### Run the following command:
-  ```bash
-  npx gluestack-ui add link
-  ```
+
+```bash
+npx gluestack-ui add link
+```
+
 </>
     </Tabs.TabPanel>
     <Tabs.TabPanel value="manual"> 
 <>
 
 ### Step 1: Install the following dependencies:
+
 ```bash
 npm i @gluestack-ui/link
 ```
 
 ### Step 2: Copy and paste the following code into your project.
+
 <CollapsibleCode>
 
-```jsx 
-%%-- File: core-components/themed/link/index.tsx --%% 
+```jsx
+%%-- File: core-components/themed/link/index.tsx --%%
 ```
+
 </CollapsibleCode>
 
 ### Step 3: Update the import paths to match your project setup.
+
 </>
     </Tabs.TabPanel>
   </Tabs.TabPanels>
@@ -327,77 +333,6 @@ Link component is created using Pressable component from react-native. It extend
     </Table>
   </TableContainer>
 </>
-
-<!--
-## Spec Doc
-
-Explore the comprehensive details of the Link in this document, including its implementation details, checklist, and potential future additions. Dive into the thought process behind the component and gain insights into its development journey.
-
-<iframe
-  style={{
-    borderRadius: '8px',
-    border: ' 1px solid rgba(0, 0, 0, 0.1)',
-    aspectRatio: 736 / 585,
-  }}
-  src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FNcXOxqKbdnGsLQNex3H76u%2F%25C2%25A0%25F0%259F%2593%259Agluestack-UI-handbook%3Fpage-id%3D5671%253A39182%26type%3Ddesign%26node-id%3D5671-40987%26viewport%3D1063%252C162%252C0.06%26t%3DMz98WWj2BmQkXQjS-1%26scaling%3Dcontain%26starting-point-node-id%3D5671%253A40987%26mode%3Ddesign"
-  allowFullScreen
-/> -->
-
-<!--
-
-### Customizing the Link
-
-We have a function called `createLink` which can be used to create a custom link component. This function takes in a configuration object which contains the styled components that you want to use for the link. You can refer [gluestack.io/style](/style/docs/getting-started/styled) on how to use styled components.
-
-#### Usage
-
-Default styling of all these components can be found in the `components/core/link` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/main/packages/themed/src/components/Link) of the styled `Link` components.
-
-```jsx
-// import the styles
-import { Root } from 'components/core/link/styled-components';
-
-// import the createLink function
-import { createLink } from '@gluestack-ui/link';
-
-// Understanding the API
-const Link = createLink({
-  Root,
-});
-
-// Using the link component
-export default () => (
-  <Link href="">
-    <LinkText />
-  </Link>
-);
-```
-
--->
-<!--
-### How to use Next.js Link
-
-By default, Link component uses an anchor tag on web and pressable on native. If you want to use Next.js Link component on web, you have to create a new styled component for link and map it to Link component. You can also change the already present styled-component for link on the path `./components/core/link/styled-components` in your project. For web specific styling, you can create a file with `.web` extension. For example, if you want to create a custom link component, you can create a file named `Link.tsx` and `Linkweb.tsx` in the same directory. The `.web` file will be used only on web and the `Link.tsx` file will be used on native.
-
-```jsx
-import Link from 'next/link';
-
-
-// Using the Next Link component
-const StyledLink = styled(Link, styling, componentConfig, extendedBaseConfig);
-
-// if some styling are direct props, you can pass them as props in the styling
-props: {
-  w: 100,
-  h: 100,
-  borderRadius: '$full',
-};
-
-// you can also /style/docs/getting-started/styled to style the component
-
-
-export default () => <StyledLink />;
-``` -->
 
 ### Examples
 

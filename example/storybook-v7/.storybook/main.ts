@@ -3,13 +3,35 @@ import { resolve } from 'path';
 /** @type{import("@storybook/react-webpack5").StorybookConfig} */
 module.exports = {
   stories: [
-    '../src/components/**/*.stories.mdx',
-    '../src/components/**/*.stories.@(js|jsx|ts|tsx)',
+    '../src/components/Accordion/*.mdx',
+    '../src/components/Accordion/*.stories.@(mdx|js|jsx|ts|tsx)',
   ],
   addons: [
     '@storybook/addon-links',
+
+    // {
+    //   name: '@storybook/addon-docs',
+    //   options: { configureJSX: true },
+    // },
     '@storybook/addon-essentials',
     '@storybook/addon-react-native-web',
+    '@geometricpanda/storybook-addon-iframe',
+    // {
+    //   name: '@storybook/addon-essentials',
+    //   options: { docs: true },
+    // },
+
+    // {
+    //   name: '@storybook/addon-postcss',
+    //   options: {
+    //     cssLoaderOptions: {
+    //       importLoaders: 1,
+    //     },
+    //     postcssLoaderOptions: {
+    //       implementation: require('postcss'),
+    //     },
+    //   },
+    // },
     {
       name: '@storybook/addon-styling-webpack',
       options: {
@@ -41,6 +63,10 @@ module.exports = {
   docs: {
     autodocs: true,
   },
+  // features: {
+  //   previewMdx2: true,
+  // },
+
   webpackFinal: async (config: any) => {
     config.module.rules.push({
       test: /\.(js|jsx|ts|tsx)$/,
@@ -54,17 +80,37 @@ module.exports = {
       ],
     });
 
+    // config.module.rules.push({
+    //   test: /\.mdx$/,
+    //   use: ['@mdx-js/loader'],
+    // });
     config.module.rules.push({
       test: /\.(js|jsx|ts|tsx)$/,
       loader: 'babel-loader',
       options: {
         presets: [
+          '@babel/preset-env',
+          '@babel/preset-react',
           ['babel-preset-expo', { jsxImportSource: 'nativewind' }],
           'nativewind/babel',
         ],
-        plugins: ['react-native-reanimated/plugin'],
+        plugins: [
+          '@babel/plugin-transform-react-jsx',
+          '@babel/plugin-transform-modules-commonjs',
+          ['@babel/plugin-proposal-class-properties', { loose: true }],
+        ],
       },
     });
+
+    // config.module.rules.push({
+    //   test: /\.mjs$/,
+    //   include: /node_modules/,
+    //   type: 'javascript/auto',
+    //   loader: 'babel-loader',
+    //   options: {
+    //     presets: ['@babel/preset-env'],
+    //   },
+    // });
 
     return config;
   },

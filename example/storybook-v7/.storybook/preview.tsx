@@ -1,13 +1,10 @@
 import React from 'react';
 import './../global.css';
 import type { Preview } from '@storybook/react';
-import { addParameters } from '@storybook/client-api';
 import { DocsContainer } from '@storybook/addon-docs/blocks';
 import { OverlayProvider } from '@gluestack-ui/overlay';
 import { ToastProvider } from '@gluestack-ui/toast';
 import { GluestackUIProvider as GluestackUIWithNativewindProvider } from '../src/core-components/nativewind/gluestack-ui-provider';
-
-import { GluestackUIProvider as GluestackUIWithGluestackStyleProvider } from '../src/core-components/themed/gluestack-ui-provider';
 
 import { themes } from '@storybook/theming';
 import { View } from 'react-native';
@@ -123,23 +120,21 @@ export const decorators = [
     }, [getColorMode()]);
 
     return (
-      <GluestackUIWithGluestackStyleProvider colorMode={getColorMode()}>
-        <GluestackUIWithNativewindProvider mode={getColorMode()}>
-          <OverlayProvider style={{ flex: 1 }}>
-            <ToastProvider>
-              <View
-                style={{
-                  flex: 1,
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                }}
-              >
-                <Story />
-              </View>
-            </ToastProvider>
-          </OverlayProvider>
-        </GluestackUIWithNativewindProvider>
-      </GluestackUIWithGluestackStyleProvider>
+      <GluestackUIWithNativewindProvider mode={getColorMode()}>
+        <OverlayProvider style={{ flex: 1 }}>
+          <ToastProvider>
+            <View
+              style={{
+                flex: 1,
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              <Story />
+            </View>
+          </ToastProvider>
+        </OverlayProvider>
+      </GluestackUIWithNativewindProvider>
     );
   },
 ];
@@ -150,15 +145,13 @@ export const parameters = {
     inlineStories: false,
     container: ({ children, context }) => {
       return (
-        <GluestackUIWithGluestackStyleProvider>
-          <GluestackUIWithNativewindProvider>
-            <DocsContainer context={context}>
-              <OverlayProvider style={{ flex: 1 }}>
-                <ToastProvider>{children}</ToastProvider>
-              </OverlayProvider>
-            </DocsContainer>
-          </GluestackUIWithNativewindProvider>
-        </GluestackUIWithGluestackStyleProvider>
+        <GluestackUIWithNativewindProvider>
+          <DocsContainer context={context}>
+            <OverlayProvider style={{ flex: 1 }}>
+              <ToastProvider>{children}</ToastProvider>
+            </OverlayProvider>
+          </DocsContainer>
+        </GluestackUIWithNativewindProvider>
       );
     },
   },

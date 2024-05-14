@@ -9,6 +9,7 @@ pageDescription: The Accordion component is a versatile and interactive user int
 
 showHeader: true
 ---
+
 import { Meta } from '@storybook/addon-docs';
 
 <Meta title="with-gluestack-style/Components/Disclosure/Accordion" />
@@ -26,10 +27,7 @@ import {
   ChevronDownIcon,
   ChevronUpIcon,
 } from '../../core-components/themed';
-import {
-  PlusIcon,
-  MinusIcon,
-} from 'lucide-react-native';
+import { PlusIcon, MinusIcon } from 'lucide-react-native';
 import {
   AppProvider,
   CodePreview,
@@ -46,7 +44,7 @@ import Wrapper from '../../core-components/themed/Wrapper';
 
 This is an illustration of **Accordion** component.
 
-<>
+<React.Fragment>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={true}
@@ -62,7 +60,7 @@ This is an illustration of **Accordion** component.
             <AccordionTrigger>
               {({ isExpanded }) => {
                 return (
-                  <>
+                  <React.Fragment>
                     <AccordionTitleText>
                       How do I place an order?
                     </AccordionTitleText>
@@ -71,7 +69,7 @@ This is an illustration of **Accordion** component.
                     ) : (
                       <AccordionIcon as={ChevronDownIcon} ml="$3"/>
                     )}
-                  </>
+                  </React.Fragment>
                 );
               }}
             </AccordionTrigger>
@@ -89,7 +87,7 @@ This is an illustration of **Accordion** component.
             <AccordionTrigger>
               {({ isExpanded }) => {
                 return (
-                  <>
+                  <React.Fragment>
                     <AccordionTitleText>
                       What payment methods do you accept?
                     </AccordionTitleText>
@@ -98,7 +96,7 @@ This is an illustration of **Accordion** component.
                     ) : (
                       <AccordionIcon as={ChevronDownIcon} ml="$3"/>
                     )}
-                  </>
+                  </React.Fragment>
                 );
               }}
             </AccordionTrigger>
@@ -154,7 +152,7 @@ This is an illustration of **Accordion** component.
       },
     }}
   />
-</>
+</React.Fragment>
 
 <br />
 
@@ -172,8 +170,8 @@ npm i @gluestack-ui/accordion
 
 <CollapsibleCode>
 
-```jsx 
-%%-- File: core-components/themed/accordion/index.tsx --%% 
+```jsx
+%%-- File: core-components/themed/accordion/index.tsx --%%
 ```
 
 </CollapsibleCode>
@@ -185,7 +183,16 @@ npm i @gluestack-ui/accordion
 To use this component in your project, include the following import statement in your file.
 
 ```jsx
-import { Accordion, AccordionItem, AccordionHeader, AccordionTrigger, AccordionTitleText, AccordionIcon, AccordionContent, AccordionContentText } from '@/components/ui/accordion';
+import {
+  Accordion,
+  AccordionItem,
+  AccordionHeader,
+  AccordionTrigger,
+  AccordionTitleText,
+  AccordionIcon,
+  AccordionContent,
+  AccordionContentText,
+} from '@/components/ui/accordion';
 ```
 
 ```jsx
@@ -205,6 +212,7 @@ export default () => (
   </Accordion>
 );
 ```
+
 ### Component Props
 
 This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
@@ -213,7 +221,7 @@ This section provides a comprehensive reference list for the component props, de
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
-<>
+<React.Fragement>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -332,12 +340,12 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
       </Table.TBody>
     </Table>
   </TableContainer>
-</>
+</React.Fragement>
 
 **Descendants Styling Props**
 Props to style child components.
 
-<>
+<React.Fragment>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -400,13 +408,13 @@ Props to style child components.
       </Table.TBody>
     </Table>
   </TableContainer>
-</>
+</React.Fragment>
 
 #### AccordionItem
 
 Contains all the parts of a collapsible section.
 
-<>
+<React.Fragment>
   <TableContainer>
     <Table>
       <Table.THead>
@@ -461,7 +469,7 @@ Contains all the parts of a collapsible section.
       </Table.TBody>
     </Table>
   </TableContainer>
-</>
+</React.Fragment>
 
 #### AccordionHeader
 
@@ -558,7 +566,7 @@ function App(){
           <AccordionTrigger>
             {({ isExpanded }) => {
               return (
-                <>
+                <React.Fragment>
                   <AccordionTitleText>
            What does the "type" prop of the Accordion component do?
                   </AccordionTitleText>
@@ -567,7 +575,7 @@ function App(){
                   ) : (
                     <AccordionIcon as={ChevronDownIcon} />
                   )}
-                </>
+                </React.Fragment>
               );
             }}
           </AccordionTrigger>
@@ -601,7 +609,7 @@ function App(){
           <AccordionTrigger>
             {({ isExpanded }) => {
               return (
-                <>
+                <React.Fragment>
                   <AccordionTitleText>
                  Can I disable the whole accordion?
                   </AccordionTitleText>
@@ -610,7 +618,7 @@ function App(){
                   ) : (
                     <AccordionIcon as={ChevronDownIcon} />
                   )}
-                </>
+                </React.Fragment>
               );
             }}
           </AccordionTrigger>
@@ -641,7 +649,7 @@ function App(){
           <AccordionTrigger>
             {({ isExpanded }) => {
               return (
-                <>
+                <React.Fragment>
                   <AccordionTitleText>
                  What is a controlled accordion? How can I make it controlled?
                   </AccordionTitleText>
@@ -650,7 +658,7 @@ function App(){
                   ) : (
                     <AccordionIcon as={ChevronDownIcon} />
                   )}
-                </>
+                </React.Fragment>
               );
             }}
           </AccordionTrigger>
@@ -716,7 +724,7 @@ function App(){
             }}>
             {({ isExpanded }) => {
               return (
-                <>
+                <React.Fragment>
                   {isExpanded ? (
                     <AccordionIcon as={MinusIcon} mr="$3" />
                   ) : (
@@ -725,7 +733,7 @@ function App(){
                   <AccordionTitleText>
                     How do I place an order?
                   </AccordionTitleText>
-                </>
+                </React.Fragment>
               );
             }}
           </AccordionTrigger>
@@ -747,7 +755,7 @@ function App(){
             }}>
             {({ isExpanded }) => {
               return (
-                <>
+                <React.Fragment>
                   {isExpanded ? (
                     <AccordionIcon as={MinusIcon} mr="$3" />
                   ) : (
@@ -756,7 +764,7 @@ function App(){
                   <AccordionTitleText>
                    What payment methods do you accept?
                   </AccordionTitleText>
-                </>
+                </React.Fragment>
               );
             }}
           </AccordionTrigger>
@@ -816,7 +824,7 @@ function App(){
           <AccordionTrigger>
             {({ isExpanded }) => {
               return (
-                <>
+                <React.Fragment>
                   <AccordionTitleText>
                    Disabled Item
                   </AccordionTitleText>
@@ -826,7 +834,7 @@ function App(){
                     <AccordionIcon as={PlusIcon}  />
                   )}
                 
-                </>
+                </React.Fragment>
               );
             }}
           </AccordionTrigger>
@@ -843,7 +851,7 @@ function App(){
           <AccordionTrigger>
             {({ isExpanded }) => {
               return (
-                <>
+                <React.Fragment>
                   <AccordionTitleText>
                    Is this accordion accessible?
                   </AccordionTitleText>
@@ -852,7 +860,7 @@ function App(){
                   ) : (
                     <AccordionIcon as={PlusIcon} />
                   )}
-                </>
+                </React.Fragment>
               );
             }}
           </AccordionTrigger>
@@ -912,7 +920,7 @@ function App(){
           <AccordionTrigger>
             {({ isExpanded }) => {
               return (
-                <>
+                <React.Fragment>
                   <AccordionTitleText>
                   What is the defaultValue prop of the Accordion component?
                   </AccordionTitleText>
@@ -922,7 +930,7 @@ function App(){
                     <AccordionIcon as={PlusIcon}  />
                   )}
                 
-                </>
+                </React.Fragment>
               );
             }}
           </AccordionTrigger>
@@ -941,7 +949,7 @@ function App(){
           <AccordionTrigger>
             {({ isExpanded }) => {
               return (
-                <>
+                <React.Fragment>
                   <AccordionTitleText>
                    How many size variants does the Accordion component have?
                   </AccordionTitleText>
@@ -950,7 +958,7 @@ function App(){
                   ) : (
                     <AccordionIcon as={PlusIcon} />
                   )}
-                </>
+                </React.Fragment>
               );
             }}
           </AccordionTrigger>
@@ -967,7 +975,7 @@ function App(){
           <AccordionTrigger>
             {({ isExpanded }) => {
               return (
-                <>
+                <React.Fragment>
                   <AccordionTitleText>
                   Can I nest my accordions?
                   </AccordionTitleText>
@@ -976,7 +984,7 @@ function App(){
                   ) : (
                     <AccordionIcon as={PlusIcon} />
                   )}
-                </>
+                </React.Fragment>
               );
             }}
           </AccordionTrigger>
@@ -1048,14 +1056,14 @@ function App(){
         }}>
           <AccordionTrigger>
             {({isExpanded}) => (
-              <>
+              <React.Fragment>
                 {isExpanded ? (
                   <AccordionIcon as={MinusIcon} />
                 ) : (
                   <AccordionIcon as={PlusIcon} />
                 )}
                 <AccordionTitleText ml="$3">USA</AccordionTitleText>
-              </>
+              </React.Fragment>
             )}
           </AccordionTrigger>
         </AccordionHeader>
@@ -1077,7 +1085,7 @@ function App(){
               <AccordionHeader>
                 <AccordionTrigger>
                   {({isExpanded}) => (
-                    <>
+                    <React.Fragment>
                       {isExpanded ? (
                         <AccordionIcon as={MinusIcon} />
                       ) : (
@@ -1086,7 +1094,7 @@ function App(){
                       <AccordionTitleText ml="$3">
                         California
                       </AccordionTitleText>
-                    </>
+                    </React.Fragment>
                   )}
                 </AccordionTrigger>
               </AccordionHeader>
@@ -1111,14 +1119,14 @@ function App(){
               <AccordionHeader>
                 <AccordionTrigger>
                   {({isExpanded}) => (
-                    <>
+                    <React.Fragment>
                       {isExpanded ? (
                         <AccordionIcon as={MinusIcon} />
                       ) : (
                         <AccordionIcon as={PlusIcon} />
                       )}
                       <AccordionTitleText ml="$3">Nevada</AccordionTitleText>
-                    </>
+                    </React.Fragment>
                   )}
                 </AccordionTrigger>
               </AccordionHeader>
@@ -1188,7 +1196,7 @@ function App(){
           <AccordionTrigger>
             {({ isExpanded }) => {
               return (
-                <>
+                <React.Fragment>
                   <AccordionTitleText>
                    Exploring Nature's Wonders
                   </AccordionTitleText>
@@ -1198,7 +1206,7 @@ function App(){
                     <AccordionIcon as={PlusIcon}  />
                   )}
                 
-                </>
+                </React.Fragment>
               );
             }}
           </AccordionTrigger>
@@ -1216,7 +1224,7 @@ function App(){
           <AccordionTrigger>
             {({ isExpanded }) => {
               return (
-                <>
+                <React.Fragment>
                   <AccordionTitleText>
                    The Art of Culinary Delights
                   </AccordionTitleText>
@@ -1225,7 +1233,7 @@ function App(){
                   ) : (
                     <AccordionIcon as={PlusIcon} />
                   )}
-                </>
+                </React.Fragment>
               );
             }}
           </AccordionTrigger>
@@ -1247,7 +1255,7 @@ function App(){
           <AccordionTrigger>
             {({ isExpanded }) => {
               return (
-                <>
+                <React.Fragment>
                   <AccordionTitleText>
                    Mastering the Creative Process
                   </AccordionTitleText>
@@ -1256,7 +1264,7 @@ function App(){
                   ) : (
                     <AccordionIcon as={PlusIcon} />
                   )}
-                </>
+                </React.Fragment>
               );
             }}
           </AccordionTrigger>

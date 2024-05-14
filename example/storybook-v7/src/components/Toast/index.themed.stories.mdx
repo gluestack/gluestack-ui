@@ -21,16 +21,16 @@ import {
   useToast,
   Button,
   ButtonText,
-  Text
+  Text,
 } from '../../core-components/themed';
 import { CheckIcon } from '@gluestack-ui/themed';
-import { AlertTriangleIcon,MessageCircle } from 'lucide-react-native';
+import { AlertTriangleIcon, MessageCircle } from 'lucide-react-native';
 import {
   Icon,
   CloseIcon,
   VStack,
   Pressable,
-  Center
+  Center,
 } from '../../core-components/themed';
 import { transformedCode } from '../../utils';
 import {
@@ -40,7 +40,7 @@ import {
   TableContainer,
   InlineCode,
   CollapsibleCode,
-  Tabs
+  Tabs,
 } from '@gluestack/design-system';
 import { View } from 'react-native';
 import Wrapper from '../../core-components/themed/Wrapper';
@@ -61,28 +61,34 @@ import Wrapper from '../../core-components/themed/Wrapper';
 <>
 
 ### Run the following command:
-  ```bash
-  npx gluestack-ui add toast
-  ```
+
+```bash
+npx gluestack-ui add toast
+```
+
 </>
     </Tabs.TabPanel>
     <Tabs.TabPanel value="manual"> 
 <>
 
 ### Step 1: Install the following dependencies:
+
 ```bash
 npm i @gluestack-ui/toast
 ```
 
 ### Step 2: Copy and paste the following code into your project.
+
 <CollapsibleCode>
 
-```jsx 
-%%-- File: core-components/themed/toast/index.tsx --%% 
+```jsx
+%%-- File: core-components/themed/toast/index.tsx --%%
 ```
+
 </CollapsibleCode>
 
 ### Step 3: Update the import paths to match your project setup.
+
 </>
     </Tabs.TabPanel>
   </Tabs.TabPanels>
@@ -366,64 +372,3 @@ Toast component is created using View component from react-native. It extends al
     </Table>
   </TableContainer>
 </>
-
-<!--
-
-### Advanced
-
-We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
-
-### Customizing the Toast
-
-We have a function called `createToast` which can be used to create a custom toast component. This function takes in a configuration object which contains the styled components that you want to use for the Input. You can refer [gluestack.io/style](/style/docs/getting-started/styled) on how to use styled components.
-
-#### Usage
-
-Default styling of all these components can be found in the `components/core/toast` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/main/packages/themed/src/components/Toast) of the styled `Toast` components.
-
-```jsx
-// import the styles
-import {
-  Root,
-  Title,
-  Description,
-} from 'components/core/toast/styled-components';
-
-// import the createToast function
-import { createToast, createToastHook } from '@gluestack-ui/toast';
-
-// Understanding the API
-const Toast = createToast({
-  Root,
-  Title,
-  Description,
-});
-
-const useToast = createToastHook(Toast);
-
-// Using the toast component
-export default () => {
-  const toast = useToast();
-  return (
-    <Button
-      {...props}
-      onPress={() => {
-        toast.show({
-          placement: placement,
-          render: ({ id }) => {
-              const toastId = "toast-" + id;
-              return (
-                <Toast nativeID={toastId}>
-                <ToastTitle>Hello World Toast {id}</ToastTitle>
-              </Toast>
-            );
-          },
-        });
-      }}
-    >
-      <ButtonText>Press Me</ButtonText>
-    </Button>
-  );
-};
-```
--->
