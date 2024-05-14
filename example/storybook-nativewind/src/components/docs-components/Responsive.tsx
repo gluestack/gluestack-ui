@@ -1,7 +1,7 @@
 import { Box, Text } from '@gluestack/design-system';
 import React, { useRef, useState } from 'react';
 import NextImage from 'next/image';
-import { Expand } from './Expand';
+import { Expand } from '../../apps/dashboard-app/Expand';
 import { Resizable } from 're-resizable';
 // import { GluestackUIProvider } from "@gluestack-ui/themed"
 // import { OpenInNewIcon } from "@gluestack/design-system";
