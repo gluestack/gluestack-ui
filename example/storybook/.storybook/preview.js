@@ -115,7 +115,7 @@ export const parameters = {
           ],
         ],
         'Apps',
-        ['Dashboard App'],
+        [['Dashboard App']],
         'Guides',
         [
           'Production Optimizations',
