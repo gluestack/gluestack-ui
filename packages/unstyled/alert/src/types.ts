@@ -9,7 +9,7 @@ export type IAlertComponentType<StyledAlert, StyledAlertText, StyledAlertIcon> =
     React.RefAttributes<StyledAlert> & StyledAlert & InterfaceAlertProps
   > & {
     Text: React.ForwardRefExoticComponent<
-      React.RefAttributes<StyledAlertText & StyledAlertText>
+      React.RefAttributes<StyledAlertText> & StyledAlertText
     >;
     Icon: React.ForwardRefExoticComponent<
       React.RefAttributes<StyledAlertIcon> & StyledAlertIcon
