@@ -1,0 +1,375 @@
+---
+title: gluestack-ui Skeleton | Installation, Usage, and API
+
+description: Skeleton is a component that is used to show a placeholder while the content is loading. It helps users understand that the content is being fetched and will be displayed shortly.
+
+pageTitle: Skeleton
+
+pageDescription: Skeleton is a component that is used to show a placeholder while the content is loading. It helps users understand that the content is being fetched and will be displayed shortly.
+
+showHeader: true
+
+tag: alpha
+---
+
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="with-nativewind/Components/Others/Skeleton" />
+
+import { Box, Skeleton, SkeletonText, Avatar, AvatarFallbackText, VStack, Image, Text, HStack, } from '../../core-components/nativewind';
+import { transformedCode } from '../../utils';
+import Wrapper from '../../core-components/nativewind/Wrapper';
+import {Tabs, CollapsibleCode, CodePreview, Table, InlineCode, TableContainer} from '@gluestack/design-system';
+
+This is an illustration of **Skeleton** component.
+
+<Wrapper>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+   _rendererWrapper={{
+      alignItems: 'center',
+      padding: 20,
+    }}
+    metaData={{
+      code: `
+      <Box className="w-[325px] gap-4 p-3 rounded-md bg-background-100">
+      <Skeleton variant="sharp" className="h-[150px]" />
+      <SkeletonText _lines={3} className="h-3" />
+      <HStack className="gap-2 align-middle">
+        <Skeleton variant="circular" className="h-[24px] w-[24px] mr-2" />
+        <SkeletonText _lines={2} gap={1} className="h-2 w-2/5" />
+      </HStack>
+      </Box>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: { Wrapper, Skeleton, SkeletonText, Box, HStack  },
+      argsType: {},
+    }}
+  />
+</Wrapper>
+
+<br />
+
+## Installation
+
+<Tabs value="cli" type="section">
+  <Tabs.TabList>
+      <Tabs.Tab value="cli">
+        <Tabs.TabTitle>CLI</Tabs.TabTitle>
+      </Tabs.Tab>
+     <Tabs.Tab value="manual">
+        <Tabs.TabTitle>Manual</Tabs.TabTitle>
+     </Tabs.Tab>
+  </Tabs.TabList>
+  <Tabs.TabPanels>
+    <Tabs.TabPanel value="cli">
+<>
+
+### Run the following command:
+  ```bash
+  npx gluestack-ui add skeleton
+  ```
+</>
+    </Tabs.TabPanel>
+    <Tabs.TabPanel value="manual"> 
+<>
+
+### Step 1: Copy and paste the following code into your project.
+<CollapsibleCode>
+
+```jsx 
+%%-- File: core-components/nativewind/skeleton/index.tsx --%% 
+```
+</CollapsibleCode>
+
+> Note: **Step 2 is optional and only required if you want to add support for [React Server Components](https://vercel.com/blog/understanding-react-server-components), You can skip this and jump to Step 3 directly if you don't have this requirement.**
+
+### Step 2: Copy and paste the following code into index.web.tsx in your project.
+<CollapsibleCode>
+
+```jsx 
+%%-- File: core-components/nativewind/skeleton/index.web.tsx --%% 
+```
+</CollapsibleCode>
+
+### Step 3: Copy and paste the following code into styles.tsx in your project.
+<CollapsibleCode>
+
+```jsx 
+%%-- File: core-components/nativewind/skeleton/styles.tsx --%% 
+```
+</CollapsibleCode>
+
+### Step 4: Update the import paths to match your project setup.
+</>
+    </Tabs.TabPanel>
+  </Tabs.TabPanels>
+</Tabs>
+
+## API Reference
+
+To use this component in your project, include the following import statement in your file.
+
+```jsx
+import { Skeleton, SkeletonText } from '@/components/ui/skeleton';
+```
+
+```jsx
+export default () => (
+  <Box className="gap-2">
+    <Skeleton variant="rounded" className="h-32 w-64" />
+    <SkeletonText className="h-4 w-64 " />
+  </Box>
+)
+```
+
+### Component Props
+
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
+
+### Skeleton
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+<>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Type</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Default</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Description</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText><InlineCode>variant</InlineCode></Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>rounded | sharp | circular</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>rounded</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>Shape of the skeleton component</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText><InlineCode>startColor</InlineCode></Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>string</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>bg-background-200</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>Sets the color of the skeleton animation</Table.TText>
+          </Table.TD>
+        </Table.TR> 
+        <Table.TR>
+          <Table.TD>
+            <Table.TText><InlineCode>isLoaded</InlineCode></Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>bool</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>When true, the skeleton content will be displayed</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText><InlineCode>speed</InlineCode></Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>number</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>2</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>Sets the animation speed of the skeleton component</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</>
+
+### SkeletonText
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+<>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Type</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Default</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Description</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText><InlineCode>_lines</InlineCode></Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>number</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>Number of lines in text skeleton</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText><InlineCode>startColor</InlineCode></Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>string</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>bg-background-200</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>Sets the color of the skeleton animation</Table.TText>
+          </Table.TD>
+        </Table.TR> 
+        <Table.TR>
+          <Table.TD>
+            <Table.TText><InlineCode>isLoaded</InlineCode></Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>bool</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>When true, the skeleton content will be displayed</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText><InlineCode>speed</InlineCode></Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>number</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>2</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>Sets the animation speed of the skeleton component</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText><InlineCode>gap</InlineCode></Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>number</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>Sets the gap between the text skeletons</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</>
+
+## Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+### Using isLoaded prop
+
+Use the `isLoaded` prop to show the content after the skeleton content is loaded.
+
+<Wrapper>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={true}
+    _rendererWrapper={{
+        alignItems: 'center',
+        padding: 20,
+      }}
+    metaData={{
+      code: `
+       <Box className="w-[290px] h-[400px] p-4 rounded-sm bg-background-100 gap-3">
+        <Skeleton variant="rounded" className="h-44 w-64 rounded-sm" {...props}>
+          <Image
+          className="h-44 w-64 rounded-sm"
+          source={{
+            uri: 'https://images.unsplash.com/photo-1715006020121-dd50879f9821?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+          }}
+           />
+        </Skeleton>
+        <VStack className="gap-2">
+          <Text className="text-primary-700 text-sm">May 15, 2023</Text>
+          <Text className="text-primary-900 font-bold">
+          The Power of Positive Thinking
+          </Text>
+          <Text className="text-primary-700 text-sm">
+          Discover how the power of positive thinking can transform your life,
+          boost your confidence, and help you overcome challenges.
+          </Text>
+        </VStack>
+        <HStack className="gap-2">
+        <Avatar size="xs">
+          <AvatarFallbackText>John Smith</AvatarFallbackText>
+        </Avatar>
+        <Text className="text-sm font-bold">John Smith</Text>
+      </HStack>
+      </Box>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: { Wrapper, Skeleton, SkeletonText, Box, Image, Text, HStack, VStack, Avatar, AvatarFallbackText },
+      argsType: {
+        isLoaded:{
+          control:'boolean',
+          options:[true, false],
+          default: false
+        }
+      },
+    }}
+  />
+</Wrapper>
