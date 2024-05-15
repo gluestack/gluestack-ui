@@ -112,10 +112,7 @@ module.exports = function (api) {
               __dirname,
               './src/core-components/nativewind'
             ),
-            'tailwind.config': path.join(
-              __dirname,
-              '../../example/storybook-mix3/tailwind.config.js'
-            ),
+            'tailwind.config': path.join(__dirname, './tailwind.config.js'),
           },
         },
       ],
