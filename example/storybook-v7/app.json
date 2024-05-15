@@ -1,35 +1,6 @@
 {
   "expo": {
-    "name": "App Launch Kit",
-    "slug": "app-launch-kit",
-    "owner": "applaunchkit-org",
-    "version": "1.0.0",
-    "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
-    "scheme": "myapp",
-    "userInterfaceStyle": "automatic",
-    "splash": {
-      "image": "./assets/images/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
-    "assetBundlePatterns": ["**/*"],
-    "ios": {
-      "bundleIdentifier": "com.gluestack.fullstackkit",
-      "supportsTablet": true
-    },
-    "android": {
-      "package": "com.gluestack.fullstack_kit",
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      }
-    },
-
-    "experiments": {
-      "tsconfigPaths": true
-    },
-
-    "runtimeVersion": "1.0.0"
+    "name": "gluestack storybook",
+    "slug": "gluestack-storybook"
   }
 }

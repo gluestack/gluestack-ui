@@ -19,7 +19,8 @@
     "create-new-package": "node ./scripts/create-new-package.js",
     "storybook": "cd example/storybook && yarn storybook",
     "storybook:nativewind": "cd example/storybook-nativewind && yarn storybook:nativewind",
-    "kitchensink:web": "cd example/ui-examples && yarn web"
+    "kitchensink:web": "cd example/ui-examples && yarn web",
+    "postinstall": "patch-package"
   },
   "devDependencies": {
     "@changesets/cli": "^2.25.2",

@@ -53,7 +53,7 @@ const SelectWithScrollView = ({ isDisabled, isInvalid, ...props }: any) => {
   );
 };
 
-SelectWithScrollView.displayName =
+SelectWithScrollView.description =
   'SelectWithScrollView is an example of how to use Select with list that uses ScrollView on native';
 
 export default SelectWithScrollView;
