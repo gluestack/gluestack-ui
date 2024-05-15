@@ -1,17 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native';
 import Constants from 'expo-constants';
-import { GluestackUIProvider } from './src/core-components/nativewind/gluestack-ui-provider';
 
 import './global.css';
 function App() {
   return (
-    <GluestackUIProvider>
-      <View style={styles.container}>
-        <View className="bg-primary-500">
-          <Text>Open up App.tsx to start working on your app! 22</Text>
-        </View>
+    <View style={styles.container}>
+      <View className="bg-primary-500">
+        <Text>Open up App.tsx to start working on your app! 22</Text>
       </View>
-    </GluestackUIProvider>
+    </View>
   );
 }
 

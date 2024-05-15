@@ -15,13 +15,25 @@ module.exports = function (api) {
           alias: {
             '@/components/ui':
               process.env.STYLE_ENGINE === 'gluestack'
-                ? path.resolve(__dirname, './src/core-components/themed')
-                : path.resolve(__dirname, './src/core-components/nativewind'),
+                ? path.resolve(
+                    __dirname,
+                    './../storybook-nativewind/src/core-components/themed'
+                  )
+                : path.resolve(
+                    __dirname,
+                    './../storybook-nativewind/src/core-components/nativewind'
+                  ),
 
             'global.css':
               process.env.STYLE_ENGINE === 'gluestack'
-                ? path.resolve(__dirname, './global-gluestack.css')
-                : path.resolve(__dirname, './global.css'),
+                ? path.resolve(
+                    __dirname,
+                    './../storybook-nativewind/global-gluestack.css'
+                  )
+                : path.resolve(
+                    __dirname,
+                    './../storybook-nativewind/global.css'
+                  ),
 
             '@gluestack-ui/checkbox': path.resolve(
               __dirname,
@@ -110,7 +122,7 @@ module.exports = function (api) {
             ),
             '@/extra-components/nativewind': path.resolve(
               __dirname,
-              './src/core-components/nativewind'
+              './../storybook-nativewind/src/core-components/nativewind'
             ),
             'tailwind.config': path.join(__dirname, './tailwind.config.js'),
           },

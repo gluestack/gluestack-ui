@@ -2,9 +2,9 @@
 module.exports = {
   darkMode: 'class',
   content: [
-    './src/**/*.{html,js,jsx,ts,tsx}',
-    './src/core-components/**/**/*.{html,js,jsx,ts,tsx}',
-    './src/components/**/*.{html,js,jsx,ts,tsx,mdx}',
+    './../storybook-nativewind/src/**/*.{html,js,jsx,ts,tsx}',
+    './../storybook-nativewind/core-components/**/**/*.{html,js,jsx,ts,tsx}',
+    './../storybook-nativewind/components/**/*.{html,js,jsx,ts,tsx,mdx}',
     './../../packages/**/*.{html,js,jsx,ts,tsx,mdx}',
   ],
   safelist: [

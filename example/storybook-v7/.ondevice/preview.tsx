@@ -1,12 +1,12 @@
 import React from 'react';
 import { withBackgrounds } from '@storybook/addon-ondevice-backgrounds';
 // import { addParameters } from '@storybook/client-api';
-import { GluestackUIProvider } from '../src/core-components/nativewind';
+import { GluestackUIProvider } from '../../storybook-nativewind/src/core-components/nativewind';
 
 import { View } from 'react-native';
 import { useState } from 'react';
 import type { Preview } from '@storybook/react';
-import { useDarkMode } from '../src/components/hooks/useDarkMode';
+import { useDarkMode } from '../../storybook-nativewind/src/components/hooks/useDarkMode';
 import { Platform } from 'react-native';
 
 const preview: Preview = {

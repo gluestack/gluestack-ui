@@ -18,6 +18,7 @@ defaultConfig.watchFolders = [
   path.join(workspaceRoot, 'packages', 'unstyled'),
   path.join(workspaceRoot, 'packages', 'nativewind'),
   path.join(workspaceRoot, 'packages', 'styled'),
+  path.join(projectRoot, '..', 'storybook-nativewind'),
 ];
 // defaultConfig.resolver.disableHierarchicalLookup = true;
 defaultConfig.resolver.nodeModulesPaths = [
@@ -25,6 +26,7 @@ defaultConfig.resolver.nodeModulesPaths = [
   // path.resolve(workspaceRoot, 'node_modules'),
 ];
 
+defaultConfig.projectRoot = path.resolve(__dirname, '../storybook-nativewind'); // path to the external module
 // defaultConfig.resolver.resolveRequest = (context, moduleName, platform) => {
 //   const defaultResolveResult = context.resolveRequest(
 //     context,
