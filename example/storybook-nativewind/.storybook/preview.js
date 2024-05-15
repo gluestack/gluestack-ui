@@ -72,7 +72,7 @@ export const parameters = {
           'Media And Icons',
           ['Avatar', 'Image', 'Icon'],
           'Others',
-          ['Fab'],
+          ['Fab', 'Skeleton'],
         ],
         'Guides',
         ['Recipes', ['Linear Gradient'], 'More', ['Changelog']],
