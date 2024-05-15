@@ -74,6 +74,8 @@ export const parameters = {
           'Others',
           ['Fab', 'Skeleton'],
         ],
+        'Apps',
+        ['Dashboard App'],
         'Guides',
         ['Recipes', ['Linear Gradient'], 'More', ['Changelog']],
       ],
@@ -87,6 +89,11 @@ export const parameters = {
           source: 'lucide-react-native',
           name: 'Component',
           headerTitle: 'Components',
+        },
+        {
+          source: 'lucide-react-native',
+          name: 'Layers',
+          headerTitle: 'Apps',
         },
         {
           source: 'lucide-react-native',
