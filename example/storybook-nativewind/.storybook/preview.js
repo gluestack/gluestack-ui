@@ -92,7 +92,7 @@ export const parameters = {
         },
         {
           source: 'lucide-react-native',
-          name: 'LayoutList',
+          name: 'Layers',
           headerTitle: 'Apps',
         },
         {
