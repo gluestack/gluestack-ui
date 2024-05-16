@@ -328,15 +328,11 @@ function Responsiveness() {
             </Text>
           </Pressable>
         </Box>
-
         <Box
+          flexDirection="row"
           justifyContent="center"
           alignItems="center"
-          flexDirection="row"
           ml="$10"
-          borderLeftWidth={1}
-          borderColor="$borderDark700"
-          my="$6"
           display="none"
           sx={{
             '@md': {
@@ -344,56 +340,12 @@ function Responsiveness() {
             },
           }}
         >
-          <Box px="$5" justifyContent="center" alignItems="center">
-            <NextImage
-              alt="ios-qr-code"
-              width={84}
-              height={84}
-              src={`https://qr.expo.dev/eas-update?updateId=${kitchensink.updateIds.ios}&appScheme=exp&host=u.expo.dev`}
-            />
-            <Box flexDirection="row" alignItems="center" mt="$2">
-              <NextImage
-                alt="ios-icon"
-                src="/icon/ios-icon.svg"
-                width={16}
-                height={16}
-              />
-              <Text
-                ml="$1"
-                color="$textLight200"
-                fontSize="$sm"
-                fontWeight="$normal"
-                lineHeight="$sm"
-              >
-                iOS
-              </Text>
-            </Box>
-          </Box>
-          <Box justifyContent="center" alignItems="center">
-            <NextImage
-              alt="android-qr-code"
-              width={84}
-              height={84}
-              src={`https://qr.expo.dev/eas-update?updateId=${kitchensink.updateIds.android}&appScheme=exp&host=u.expo.dev`}
-            />
-            <Box flexDirection="row" alignItems="center" mt="$2">
-              <NextImage
-                alt="ios-icon"
-                src="/icon/android-icon.svg"
-                width={16}
-                height={16}
-              />
-              <Text
-                ml="$1"
-                color="$textLight200"
-                fontSize="$sm"
-                fontWeight="$normal"
-                lineHeight="$sm"
-              >
-                Android
-              </Text>
-            </Box>
-          </Box>
+          <NextImage
+            alt="qr-code"
+            width={90}
+            height={90}
+            src={`https://qr.expo.dev/eas-update?slug=exp&projectId=42cce9b5-9fbe-4572-92ba-fc43b2437a85&groupId=432e8802-2a73-4498-8301-5ac41664678e`}
+          />
         </Box>
       </Box>
     </Box>
