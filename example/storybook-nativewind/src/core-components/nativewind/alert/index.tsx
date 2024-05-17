@@ -232,7 +232,6 @@ const AlertIcon = React.forwardRef(
       ...props
     }: {
       className?: string;
-      color?: string;
     } & IAlertIconProps,
     ref?: any
   ) => {

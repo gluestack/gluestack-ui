@@ -365,8 +365,6 @@ const ButtonIcon = React.forwardRef(
       ...props
     }: IButtonIcon & {
       className?: any;
-      fill?: string;
-      color?: string;
       as?: any;
     },
     ref?: any
