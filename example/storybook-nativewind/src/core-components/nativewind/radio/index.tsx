@@ -22,7 +22,7 @@ const PrimitiveIcon = React.forwardRef(
       return size ? { size } : { height, width };
     }, [size, height, width]);
 
-    let colorProps =
+    const colorProps =
       stroke === 'currentColor' && color !== undefined ? color : stroke;
 
     if (AsComp) {
@@ -223,8 +223,6 @@ const RadioIcon = React.forwardRef(
       ...props
     }: IRadioIconProps & {
       className?: string;
-      fill?: string;
-      color?: string;
       as?: any;
     },
     ref?: any
