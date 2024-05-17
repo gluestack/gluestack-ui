@@ -1,6 +1,6 @@
 'use client';
 import { createAlert } from '@gluestack-ui/alert';
-import { View, Text } from 'react-native';
+import { View, Text, Platform } from 'react-native';
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import {
   withStyleContext,
@@ -10,6 +10,7 @@ import React, { useMemo } from 'react';
 import { Svg } from 'react-native-svg';
 import { cssInterop } from 'nativewind';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
+import { withStates } from '@gluestack-ui/nativewind-utils/withStates';
 
 const SCOPE = 'ALERT';
 
@@ -79,6 +80,7 @@ const alertTextStyle = tva({
 });
 
 const alertIconStyle = tva({
+  base: 'fill-none',
   variants: {
     size: {
       '2xs': 'h-3 w-3',
@@ -89,20 +91,38 @@ const alertIconStyle = tva({
       'xl': 'h-6 w-6',
     },
   },
+  parentVariants: {
+    action: {
+      error: 'stroke-error-500',
+      warning: 'stroke-warning-500',
+      success: 'stroke-success-500',
+      info: 'stroke-info-500',
+      muted: 'stroke-secondary-500',
+    },
+  },
 });
 
 const PrimitiveIcon = React.forwardRef(
   (
-    { height, width, fill = 'none', color, size, as: AsComp, ...props }: any,
+    { height, width, fill, color, size, stroke, as: AsComp, ...props }: any,
     ref?: any
   ) => {
     const sizeProps = useMemo(() => {
       return size ? { size } : { height, width };
     }, [size, height, width]);
 
+    let colorProps =
+      stroke === 'currentColor' && color !== undefined ? color : stroke;
+
     if (AsComp) {
       return (
-        <AsComp ref={ref} fill={fill} color={color} {...props} {...sizeProps} />
+        <AsComp
+          ref={ref}
+          fill={fill}
+          {...props}
+          {...sizeProps}
+          stroke={colorProps}
+        />
       );
     }
     return (
@@ -111,7 +131,7 @@ const PrimitiveIcon = React.forwardRef(
         height={height}
         width={width}
         fill={fill}
-        color={color}
+        stroke={colorProps}
         {...props}
       />
     );
@@ -121,7 +141,7 @@ const PrimitiveIcon = React.forwardRef(
 export const UIAlert = createAlert({
   Root: withStyleContext(View, SCOPE),
   Text: Text,
-  Icon: PrimitiveIcon,
+  Icon: Platform.OS === 'web' ? PrimitiveIcon : withStates(PrimitiveIcon),
 });
 
 cssInterop(UIAlert, { className: 'style' });
@@ -202,20 +222,20 @@ const AlertText = React.forwardRef(
   }
 );
 
-interface DefaultColors {
-  info: string;
-  success: string;
-  error: string;
-  warning: string;
-  muted: string;
-}
-const defaultColors: DefaultColors = {
-  info: '#0DA6F2',
-  success: '#38A169',
-  error: '#D32F2F',
-  warning: '#FFC107',
-  muted: '#999999',
-};
+// interface DefaultColors {
+//   info: string;
+//   success: string;
+//   error: string;
+//   warning: string;
+//   muted: string;
+// }
+// const defaultColors: DefaultColors = {
+//   info: '#0DA6F2',
+//   success: '#38A169',
+//   error: '#D32F2F',
+//   warning: '#FFC107',
+//   muted: '#999999',
+// };
 type IAlertIconProps = React.ComponentProps<typeof UIAlert.Icon> &
   VariantProps<typeof alertIconStyle>;
 const AlertIcon = React.forwardRef(
@@ -231,15 +251,14 @@ const AlertIcon = React.forwardRef(
     ref?: any
   ) => {
     const { action: parentAction } = useStyleContext(SCOPE);
-    const { color = defaultColors[parentAction as keyof DefaultColors] } =
-      props;
+    // const { color = defaultColors[parentAction as keyof DefaultColors] } =
+    //   props;
 
     if (typeof size === 'number') {
       return (
         <UIAlert.Icon
           ref={ref}
           {...props}
-          color={color}
           className={alertIconStyle({ class: className })}
           size={size}
         />
@@ -252,7 +271,6 @@ const AlertIcon = React.forwardRef(
         <UIAlert.Icon
           ref={ref}
           {...props}
-          color={color}
           className={alertIconStyle({ class: className })}
         />
       );
@@ -260,10 +278,12 @@ const AlertIcon = React.forwardRef(
     return (
       <UIAlert.Icon
         className={alertIconStyle({
+          parentVariants: {
+            action: parentAction,
+          },
           size,
           class: className,
         })}
-        color={color}
         {...props}
         ref={ref}
       />
