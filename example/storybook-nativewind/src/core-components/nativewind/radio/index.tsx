@@ -15,16 +15,25 @@ import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 
 const PrimitiveIcon = React.forwardRef(
   (
-    { height, width, fill = 'none', color, size, as: AsComp, ...props }: any,
+    { height, width, fill, color, size, stroke, as: AsComp, ...props }: any,
     ref?: any
   ) => {
     const sizeProps = useMemo(() => {
       return size ? { size } : { height, width };
     }, [size, height, width]);
 
+    let colorProps =
+      stroke === 'currentColor' && color !== undefined ? color : stroke;
+
     if (AsComp) {
       return (
-        <AsComp ref={ref} fill={fill} color={color} {...props} {...sizeProps} />
+        <AsComp
+          ref={ref}
+          fill={fill}
+          {...props}
+          {...sizeProps}
+          stroke={colorProps}
+        />
       );
     }
     return (
@@ -33,7 +42,7 @@ const PrimitiveIcon = React.forwardRef(
         height={height}
         width={width}
         fill={fill}
-        color={color}
+        stroke={colorProps}
         {...props}
       />
     );
@@ -56,13 +65,13 @@ const radioGroupStyle = tva({
 });
 
 const radioIconStyle = tva({
-  base: 'rounded-full justify-center items-center',
+  base: 'rounded-full justify-center items-center stroke-background-800 fill-background-800',
 
   parentVariants: {
     size: {
-      sm: 'h-3 w-3',
-      md: 'h-4 w-4',
-      lg: 'h-[18px] w-[18px]',
+      sm: 'h-2 w-2',
+      md: 'h-3 w-3',
+      lg: 'h-4 w-4',
     },
   },
 });
@@ -71,9 +80,9 @@ const radioIndicatorStyle = tva({
   base: 'justify-center items-center bg-transparent border-outline-400 border-2 rounded-full data-[focus-visible=true]:web:outline-2 data-[focus-visible=true]:web:outline-primary-700 data-[focus-visible=true]:web:outline data-[checked=true]:border-primary-600 data-[checked=true]:bg-transparent data-[hover=true]:border-outline-500 data-[hover=true]:bg-transparent data-[hover=true]:data-[checked=true]:bg-transparent data-[hover=true]:data-[checked=true]:border-primary-700 data-[hover=true]:data-[invalid=true]:border-error-700 data-[hover=true]:data-[disabled=true]:opacity-40 data-[hover=true]:data-[disabled=true]:border-outline-400 data-[hover=true]:data-[disabled=true]:data-[invalid=true]:border-error-400 data-[active=true]:bg-transparent data-[active=true]:border-primary-800 data-[invalid=true]:border-error-700 data-[disabled=true]:opacity-40 data-[disabled=true]:data-[checked=true]:border-outline-400 data-[disabled=true]:data-[checked=true]:bg-transparent data-[disabled=true]:data-[invalid=true]:border-error-400',
   parentVariants: {
     size: {
-      sm: 'p-px h-4 w-4',
-      md: 'p-[1.5px] h-5 w-5',
-      lg: 'p-0.5 h-6 w-6',
+      sm: 'h-4 w-4',
+      md: 'h-5 w-5',
+      lg: 'h-6 w-6',
     },
   },
 });
@@ -211,7 +220,6 @@ const RadioIcon = React.forwardRef(
     {
       className,
       size,
-      color = 'gray',
       ...props
     }: IRadioIconProps & {
       className?: string;
@@ -228,7 +236,6 @@ const RadioIcon = React.forwardRef(
         <UIRadio.Icon
           ref={ref}
           {...props}
-          color={color}
           className={radioIconStyle({ class: className })}
           size={size}
         />
@@ -241,11 +248,11 @@ const RadioIcon = React.forwardRef(
         <UIRadio.Icon
           ref={ref}
           {...props}
-          color={color}
           className={radioIconStyle({ class: className })}
         />
       );
     }
+
     return (
       <UIRadio.Icon
         {...props}
@@ -256,7 +263,6 @@ const RadioIcon = React.forwardRef(
           size,
           class: className,
         })}
-        color={color}
         ref={ref}
       />
     );

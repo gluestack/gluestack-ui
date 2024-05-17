@@ -1,34 +1,24 @@
 /* eslint-disable no-console */
 import React from 'react';
 import {
-  Center,
-  VStack,
-  HStack,
-  Box,
-  Heading,
-  Text,
-  FormControl,
-  CircleIcon,
-} from '@gluestack-ui/themed';
-import {
   Radio,
   RadioGroup,
   RadioIcon,
   RadioIndicator,
   RadioLabel,
 } from '@/components/ui/radio';
+import { CircleIcon } from '@/components/ui/icon';
 
 const RadioBasic = ({ ...props }: any) => {
   const [values, setValues] = React.useState('Label 1');
 
   return (
-    <RadioGroup value={values} onChange={setValues} gap="$2">
+    <RadioGroup value={values} onChange={setValues}>
       <Radio
         {...props}
         value="Label 1"
         aria-label="Radio"
         onChange={(nextValue: boolean) => console.log(nextValue, 'nextValue')}
-        gap="$2"
       >
         <RadioIndicator>
           <RadioIcon as={CircleIcon} />
@@ -40,7 +30,6 @@ const RadioBasic = ({ ...props }: any) => {
         value="Label 2"
         aria-label="Radio"
         onChange={(nextValue: boolean) => console.log(nextValue, 'nextValue')}
-        gap="$2"
       >
         <RadioIndicator>
           <RadioIcon as={CircleIcon} />
@@ -56,18 +45,4 @@ RadioBasic.description =
 
 export default RadioBasic;
 
-export {
-  Radio,
-  RadioGroup,
-  RadioIcon,
-  RadioIndicator,
-  RadioLabel,
-  CircleIcon,
-  Center,
-  VStack,
-  HStack,
-  Box,
-  Heading,
-  Text,
-  FormControl,
-};
+export { Radio, RadioGroup, RadioIcon, RadioIndicator, RadioLabel, CircleIcon };
