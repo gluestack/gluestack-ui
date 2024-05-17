@@ -222,20 +222,6 @@ const AlertText = React.forwardRef(
   }
 );
 
-// interface DefaultColors {
-//   info: string;
-//   success: string;
-//   error: string;
-//   warning: string;
-//   muted: string;
-// }
-// const defaultColors: DefaultColors = {
-//   info: '#0DA6F2',
-//   success: '#38A169',
-//   error: '#D32F2F',
-//   warning: '#FFC107',
-//   muted: '#999999',
-// };
 type IAlertIconProps = React.ComponentProps<typeof UIAlert.Icon> &
   VariantProps<typeof alertIconStyle>;
 const AlertIcon = React.forwardRef(
@@ -251,8 +237,6 @@ const AlertIcon = React.forwardRef(
     ref?: any
   ) => {
     const { action: parentAction } = useStyleContext(SCOPE);
-    // const { color = defaultColors[parentAction as keyof DefaultColors] } =
-    //   props;
 
     if (typeof size === 'number') {
       return (
