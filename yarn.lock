@@ -16144,7 +16144,7 @@ nanomatch@^1.2.9:
     snapdragon "^0.8.1"
     to-regex "^3.0.1"
 
-nativewind@^4.0.36:
+nativewind@4.0.36, nativewind@^4.0.36:
   version "4.0.36"
   resolved "https://registry.yarnpkg.com/nativewind/-/nativewind-4.0.36.tgz#25a79d37cd89575f92d6095749a1620195459b30"
   integrity sha512-nd0Xgjzaq0ISvUAjibZXcuSvvpX1BGX2mfOGBPZpjGfHL3By6fwLGsNhrKU6mi2FF30c+kdok3e2I4k/O0UO1Q==
