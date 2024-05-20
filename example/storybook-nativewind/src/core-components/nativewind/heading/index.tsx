@@ -1,9 +1,7 @@
 import React, { useCallback } from 'react';
 import { H1, H2, H3, H4, H5, H6 } from '@expo/html-elements';
-import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
+import { cssInterop } from 'nativewind';
 import { headingStyle } from './styles';
-
-cssInterop(H4, { className: 'style' });
 
 const Heading = ({ className, size = 'lg', as: AsComp, ...props }: any) => {
   const MappedHeading = useCallback(
@@ -12,6 +10,7 @@ const Heading = ({ className, size = 'lg', as: AsComp, ...props }: any) => {
         case '5xl':
         case '4xl':
         case '3xl':
+          cssInterop(H1, { className: 'style' });
           return (
             <H1
               className={headingStyle({ size, class: className })}
@@ -19,6 +18,7 @@ const Heading = ({ className, size = 'lg', as: AsComp, ...props }: any) => {
             />
           );
         case '2xl':
+          cssInterop(H2, { className: 'style' });
           return (
             <H2
               className={headingStyle({ size, class: className })}
@@ -26,6 +26,7 @@ const Heading = ({ className, size = 'lg', as: AsComp, ...props }: any) => {
             />
           );
         case 'xl':
+          cssInterop(H3, { className: 'style' });
           return (
             <H3
               className={headingStyle({ size, class: className })}
@@ -33,6 +34,7 @@ const Heading = ({ className, size = 'lg', as: AsComp, ...props }: any) => {
             />
           );
         case 'lg':
+          cssInterop(H4, { className: 'style' });
           return (
             <H4
               className={headingStyle({ size, class: className })}
@@ -40,6 +42,7 @@ const Heading = ({ className, size = 'lg', as: AsComp, ...props }: any) => {
             />
           );
         case 'md':
+          cssInterop(H5, { className: 'style' });
           return (
             <H5
               className={headingStyle({ size, class: className })}
@@ -48,6 +51,7 @@ const Heading = ({ className, size = 'lg', as: AsComp, ...props }: any) => {
           );
         case 'sm':
         case 'xs':
+          cssInterop(H6, { className: 'style' });
           return (
             <H6
               className={headingStyle({ size, class: className })}
@@ -55,6 +59,7 @@ const Heading = ({ className, size = 'lg', as: AsComp, ...props }: any) => {
             />
           );
         default:
+          cssInterop(H4, { className: 'style' });
           return (
             <H4
               className={headingStyle({ size, class: className })}

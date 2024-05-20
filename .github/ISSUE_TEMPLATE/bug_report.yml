@@ -1,6 +1,6 @@
 name: 'Bug Report'
 description: 'File a bug report'
-labels: ['v3', 'bug', 'triage']
+labels: ['bug', 'triage']
 body:
   - type: 'markdown'
     attributes:
@@ -26,10 +26,10 @@ body:
     attributes:
       label: 'CodeSandbox/Snack link'
       description: |
-        It would be easier for us to debug if you can reproduce the error in a codesandbox link or a snack link. You can use the [codesandbox](https://codesandbox.io/)/[snack](https://snack.expo.dev/).
+        It's Mandotory to provide minimal reproduction of the bug. You can use the [snack](https://snack.expo.dev/) or provide github repo which can be cloned.
       placeholder: 'https://codesandbox.io/  or   https://snack.expo.dev/'
     validations:
-      required: false
+      required: true
   - type: 'textarea'
     id: 'steps'
     attributes:
@@ -61,7 +61,7 @@ body:
         - label: 'Web'
         - label: 'Android'
         - label: 'iOS'
-        
+
   - type: 'input'
     id: 'other-platform'
     attributes:
