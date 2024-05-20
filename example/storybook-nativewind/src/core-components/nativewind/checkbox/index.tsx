@@ -81,7 +81,14 @@ cssInterop(UICheckbox.Icon, {
 });
 
 const checkboxStyle = tva({
-  base: 'group/checkbox flex-row items-center justify-start gap-2 web:cursor-pointer data-[disabled=true]:cursor-not-allowed',
+  base: 'group/checkbox flex-row items-center justify-start web:cursor-pointer data-[disabled=true]:cursor-not-allowed',
+  variants: {
+    size: {
+      lg: 'gap-2',
+      md: 'gap-2',
+      sm: 'gap-1.5',
+    },
+  },
 });
 
 const checkboxIndicatorStyle = tva({
@@ -135,6 +142,7 @@ const Checkbox = React.forwardRef(
       <UICheckbox
         className={checkboxStyle({
           class: className,
+          size,
         })}
         {...props}
         context={{
