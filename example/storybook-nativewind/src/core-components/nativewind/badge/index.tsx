@@ -77,7 +77,15 @@ const badgeTextStyle = tva({
 });
 
 const badgeIconStyle = tva({
+  base: 'fill-none',
   parentVariants: {
+    action: {
+      error: 'stroke-error-600',
+      warning: 'stroke-warning-600',
+      success: 'stroke-success-600',
+      info: 'stroke-info-600',
+      muted: 'stroke-secondary-600',
+    },
     size: {
       sm: 'h-3 w-3',
       md: 'h-3.5 w-3.5',
@@ -88,16 +96,25 @@ const badgeIconStyle = tva({
 
 const PrimitiveIcon = React.forwardRef(
   (
-    { height, width, fill = 'none', color, size, as: AsComp, ...props }: any,
+    { height, width, fill, color, size, stroke, as: AsComp, ...props }: any,
     ref?: any
   ) => {
     const sizeProps = useMemo(() => {
       return size ? { size } : { height, width };
     }, [size, height, width]);
 
+    const colorProps =
+      stroke === 'currentColor' && color !== undefined ? color : stroke;
+
     if (AsComp) {
       return (
-        <AsComp ref={ref} fill={fill} color={color} {...props} {...sizeProps} />
+        <AsComp
+          ref={ref}
+          fill={fill}
+          {...props}
+          {...sizeProps}
+          stroke={colorProps}
+        />
       );
     }
     return (
@@ -106,7 +123,7 @@ const PrimitiveIcon = React.forwardRef(
         height={height}
         width={width}
         fill={fill}
-        color={color}
+        stroke={colorProps}
         {...props}
       />
     );
@@ -179,20 +196,6 @@ const BadgeText = ({
   );
 };
 
-interface DefaultColors {
-  info: string;
-  success: string;
-  error: string;
-  warning: string;
-  muted: string;
-}
-const defaultColors: DefaultColors = {
-  info: '#0B8DCD',
-  success: '#2A7948',
-  error: '#DC2626',
-  warning: '#D76C1F',
-  muted: '#515252',
-};
 type IBadgeIconProps = React.ComponentProps<typeof View> &
   VariantProps<typeof badgeIconStyle>;
 const BadgeIcon = React.forwardRef(
@@ -205,28 +208,24 @@ const BadgeIcon = React.forwardRef(
     ref?: any
   ) => {
     const { size: parentSize, action: parentAction } = useStyleContext(SCOPE);
-    const { color = defaultColors[parentAction as keyof DefaultColors] } =
-      props;
 
     if (typeof size === 'number') {
       return (
         <PrimitiveIcon
           ref={ref}
           {...props}
-          color={color}
           className={badgeIconStyle({ class: className })}
           size={size}
         />
       );
     } else if (
-      (props?.height !== undefined || props?.width !== undefined) &&
+      (props.height !== undefined || props.width !== undefined) &&
       size === undefined
     ) {
       return (
         <PrimitiveIcon
           ref={ref}
           {...props}
-          color={color}
           className={badgeIconStyle({ class: className })}
         />
       );
@@ -236,12 +235,12 @@ const BadgeIcon = React.forwardRef(
         className={badgeIconStyle({
           parentVariants: {
             size: parentSize,
+            action: parentAction,
           },
           size,
           class: className,
         })}
         {...props}
-        color={color}
         ref={ref}
       />
     );

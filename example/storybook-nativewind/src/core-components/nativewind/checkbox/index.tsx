@@ -9,23 +9,32 @@ import {
   useStyleContext,
 } from '@gluestack-ui/nativewind-utils/withStyleContext';
 import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withStyleContextAndStates';
-import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
+import { cssInterop } from 'nativewind';
 import { withStates } from '@gluestack-ui/nativewind-utils/withStates';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 import { Platform } from 'react-native';
 
 const PrimitiveIcon = React.forwardRef(
   (
-    { height, width, fill = 'none', color, size, as: AsComp, ...props }: any,
+    { height, width, fill, color, size, stroke, as: AsComp, ...props }: any,
     ref?: any
   ) => {
     const sizeProps = useMemo(() => {
       return size ? { size } : { height, width };
     }, [size, height, width]);
 
+    const colorProps =
+      stroke === 'currentColor' && color !== undefined ? color : stroke;
+
     if (AsComp) {
       return (
-        <AsComp ref={ref} fill={fill} color={color} {...props} {...sizeProps} />
+        <AsComp
+          ref={ref}
+          fill={fill}
+          {...props}
+          {...sizeProps}
+          stroke={colorProps}
+        />
       );
     }
     return (
@@ -34,7 +43,7 @@ const PrimitiveIcon = React.forwardRef(
         height={height}
         width={width}
         fill={fill}
-        color={color}
+        stroke={colorProps}
         {...props}
       />
     );
@@ -98,7 +107,7 @@ const checkboxLabelStyle = tva({
 });
 
 const checkboxIconStyle = tva({
-  base: 'data-[disabled=true]:opacity-40',
+  base: 'data-[disabled=true]:opacity-40 stroke-typography-50 fill-none',
 
   parentVariants: {
     size: {
@@ -194,12 +203,9 @@ const CheckboxIcon = React.forwardRef(
     {
       className,
       size,
-      color = 'gray',
       ...props
     }: ICheckboxIconProps & {
       className?: any;
-      fill?: string;
-      color?: string;
       as?: any;
     },
     ref?: any
@@ -211,7 +217,6 @@ const CheckboxIcon = React.forwardRef(
         <UICheckbox.Icon
           ref={ref}
           {...props}
-          color={color}
           className={checkboxIconStyle({ class: className })}
           size={size}
         />
@@ -224,7 +229,6 @@ const CheckboxIcon = React.forwardRef(
         <UICheckbox.Icon
           ref={ref}
           {...props}
-          color={color}
           className={checkboxIconStyle({ class: className })}
         />
       );
@@ -240,7 +244,6 @@ const CheckboxIcon = React.forwardRef(
           size,
         })}
         {...props}
-        color={color}
         ref={ref}
       />
     );
