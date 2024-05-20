@@ -1,6 +1,6 @@
 name: 'Bug Report'
 description: 'File a bug report'
-labels: ['v3', 'bug', 'triage']
+labels: ['bug', 'triage']
 body:
   - type: 'markdown'
     attributes:
