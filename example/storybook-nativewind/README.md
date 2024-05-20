@@ -12,7 +12,7 @@ expo init --template expo-template-storybook AwesomeStorybook
 yarn start
 ```
 
-If you add new stories on the native (ondevice version) you either need to have the watcher running or run the stories loader
+If you add new stories on the native (ondevice version) you either need to have the watcher running or run the stories loader.
 
 To update the stories one time
 
