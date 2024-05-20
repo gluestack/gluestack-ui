@@ -10,21 +10,30 @@ import {
   useStyleContext,
 } from '@gluestack-ui/nativewind-utils/withStyleContext';
 import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withStyleContextAndStates';
-import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
+import { cssInterop } from 'nativewind';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 
 const PrimitiveIcon = React.forwardRef(
   (
-    { height, width, fill = 'none', color, size, as: AsComp, ...props }: any,
+    { height, width, fill, color, size, stroke, as: AsComp, ...props }: any,
     ref?: any
   ) => {
     const sizeProps = useMemo(() => {
       return size ? { size } : { height, width };
     }, [size, height, width]);
 
+    const colorProps =
+      stroke === 'currentColor' && color !== undefined ? color : stroke;
+
     if (AsComp) {
       return (
-        <AsComp ref={ref} fill={fill} color={color} {...props} {...sizeProps} />
+        <AsComp
+          ref={ref}
+          fill={fill}
+          {...props}
+          {...sizeProps}
+          stroke={colorProps}
+        />
       );
     }
     return (
@@ -33,7 +42,7 @@ const PrimitiveIcon = React.forwardRef(
         height={height}
         width={width}
         fill={fill}
-        color={color}
+        stroke={colorProps}
         {...props}
       />
     );
@@ -132,7 +141,7 @@ const fabLabelStyle = tva({
 });
 
 const fabIconStyle = tva({
-  base: '',
+  base: 'stroke-typography-50 hover:stroke-typography-0 active:stroke-typography-0',
   variants: {
     size: {
       '2xs': 'h-3 w-3',
@@ -211,13 +220,10 @@ const FabIcon = React.forwardRef(
     {
       size,
       className,
-      color = 'gray',
       ...props
     }: {
       className?: string;
       as?: any;
-      fill?: string;
-      color?: string;
     } & IFabIconProps,
     ref?: any
   ) => {
@@ -228,7 +234,6 @@ const FabIcon = React.forwardRef(
         <UIFab.Icon
           ref={ref}
           {...props}
-          color={color}
           className={fabIconStyle({ class: className })}
           size={size}
         />
@@ -241,7 +246,6 @@ const FabIcon = React.forwardRef(
         <UIFab.Icon
           ref={ref}
           {...props}
-          color={color}
           className={fabIconStyle({ class: className })}
         />
       );
@@ -257,7 +261,6 @@ const FabIcon = React.forwardRef(
           size,
           class: className,
         })}
-        color={color}
       />
     );
   }

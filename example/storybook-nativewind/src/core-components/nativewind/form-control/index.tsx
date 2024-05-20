@@ -15,16 +15,25 @@ const SCOPE = 'FORM_CONTROL';
 
 const PrimitiveIcon = React.forwardRef(
   (
-    { height, width, fill = 'none', color, size, as: AsComp, ...props }: any,
+    { height, width, fill, color, size, stroke, as: AsComp, ...props }: any,
     ref?: any
   ) => {
     const sizeProps = useMemo(() => {
       return size ? { size } : { height, width };
     }, [size, height, width]);
 
+    const colorProps =
+      stroke === 'currentColor' && color !== undefined ? color : stroke;
+
     if (AsComp) {
       return (
-        <AsComp ref={ref} fill={fill} color={color} {...props} {...sizeProps} />
+        <AsComp
+          ref={ref}
+          fill={fill}
+          {...props}
+          {...sizeProps}
+          stroke={colorProps}
+        />
       );
     }
     return (
@@ -33,7 +42,7 @@ const PrimitiveIcon = React.forwardRef(
         height={height}
         width={width}
         fill={fill}
-        color={color}
+        stroke={colorProps}
         {...props}
       />
     );
@@ -52,7 +61,7 @@ const formControlStyle = tva({
 });
 
 const formControlErrorIconStyle = tva({
-  base: '',
+  base: 'stroke-error-700',
   variants: {
     size: {
       '2xs': 'h-3 w-3',
@@ -343,13 +352,10 @@ const FormControlErrorIcon = (
   {
     className,
     size,
-    color = 'red',
     ...props
   }: {
     className?: any;
     as?: any;
-    fill?: string;
-    color?: string;
   } & IFormControlErrorIconProps,
   ref?: any
 ) => {
@@ -360,7 +366,6 @@ const FormControlErrorIcon = (
       <UIFormControl.Error.Icon
         ref={ref}
         {...props}
-        color={color}
         className={formControlErrorIconStyle({ class: className })}
         size={size}
       />
@@ -373,7 +378,6 @@ const FormControlErrorIcon = (
       <UIFormControl.Error.Icon
         ref={ref}
         {...props}
-        color={color}
         className={formControlErrorIconStyle({ class: className })}
       />
     );
@@ -385,7 +389,6 @@ const FormControlErrorIcon = (
         size,
         class: className,
       })}
-      color={color}
       {...props}
     />
   );

@@ -1,0 +1,84 @@
+{
+  "name": "storybook-mix",
+  "version": "1.0.0",
+  "main": "node_modules/expo/AppEntry.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "expo start",
+    "android": "NODE_OPTIONS='--max-old-space-size=8192' expo start --android",
+    "ios": "NODE_OPTIONS='--max-old-space-size=8192' expo start --ios",
+    "web": "expo start --web",
+    "storybook:web": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "storybook-generate": "sb-rn-get-stories --config-path .ondevice",
+    "storybook": "cross-env STORYBOOK_ENABLED='true' expo start",
+    "storybook:ios": "cross-env STORYBOOK_ENABLED='true' expo start --ios",
+    "storybook:android": "cross-env STORYBOOK_ENABLED='true' expo start --android",
+    "eas:update": "NODE_OPTIONS='--max-old-space-size=8192' npx tailwindcss --input ./global.css && NODE_OPTIONS='--max-old-space-size=8192' eas update"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.24.5",
+    "@gluestack-style/legend-motion-animation-driver": "^1.0.3",
+    "@gluestack-ui/config": "^1.1.18",
+    "@gluestack-ui/themed": "^1.1.26",
+    "@legendapp/motion": "^2.3.0",
+    "@react-native-async-storage/async-storage": "1.23.1",
+    "@react-native-community/datetimepicker": "8.0.1",
+    "@react-native-community/slider": "4.5.2",
+    "autoprefixer": "^10.4.19",
+    "eas-cli": "^9.0.7",
+    "expo": "^51.0.8",
+    "expo-constants": "~16.0.1",
+    "expo-status-bar": "~1.12.1",
+    "expo-updates": "~0.25.14",
+    "lucide-react-native": "^0.378.0",
+    "nativewind": "^4.0.36",
+    "normalize-css-color": "^1.0.2",
+    "postcss-loader": "^8.1.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-native": "0.74.1",
+    "react-native-reanimated": "~3.10.1",
+    "react-native-safe-area-context": "4.10.1",
+    "react-native-svg": "15.2.0",
+    "react-native-web": "~0.19.10",
+    "tailwind-variants": "^0.2.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.19.3",
+    "@expo/metro-runtime": "~3.2.1",
+    "@storybook/addon-actions": "^8.1.0",
+    "@storybook/addon-controls": "^8.1.0",
+    "@storybook/addon-essentials": "^8.1.0",
+    "@storybook/addon-links": "^8.1.0",
+    "@storybook/addon-ondevice-actions": "^7.6.18",
+    "@storybook/addon-ondevice-backgrounds": "^7.6.18",
+    "@storybook/addon-ondevice-controls": "^7.6.18",
+    "@storybook/addon-ondevice-notes": "^7.6.18",
+    "@storybook/addon-react-native-web": "^0.0.23",
+    "@storybook/addon-styling-webpack": "^1.0.0",
+    "@storybook/react": "^8.1.0",
+    "@storybook/react-native": "^7.6.18",
+    "@storybook/react-webpack5": "^8.1.0",
+    "@types/react": "~18.2.45",
+    "babel-loader": "^8.2.3",
+    "babel-plugin-react-docgen-typescript": "^1.5.1",
+    "babel-plugin-react-native-web": "^0.19.10",
+    "cross-env": "^7.0.3",
+    "storybook": "^8.1.0",
+    "tailwindcss": "^3.4.3",
+    "typescript": "~5.3.3"
+  },
+  "resolutions": {
+    "react-docgen-typescript": "2.2.2"
+  },
+  "overrides": {
+    "react-docgen-typescript": "2.2.2"
+  },
+  "pnpm": {
+    "overrides": {
+      "react-docgen-typescript": "2.2.2"
+    }
+  },
+  "private": true
+}

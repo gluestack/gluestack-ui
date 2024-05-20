@@ -145,7 +145,7 @@ export const config = {
     '--color-background-error': '#FEF1F1',
     '--color-background-warning': '#FFF4EB',
     '--color-background-success': '#EDFCF2',
-    '--color-background-muted': '#E7E8E7',
+    '--color-background-muted': '#F7F8F7',
     '--color-background-info': '#EBF8FE',
   }),
   dark: vars({
@@ -292,7 +292,7 @@ export const config = {
     '--color-background-error': '#422B2B',
     '--color-background-warning': '#412F23',
     '--color-background-success': '#1C2B21',
-    '--color-background-muted': '#252526',
+    '--color-background-muted': '#333333',
     '--color-background-info': '#1A282E',
   }),
 };
