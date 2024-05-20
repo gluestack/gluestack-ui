@@ -65,7 +65,7 @@ This is an illustration of a **Themed Toast** component with default configurati
                     const toastId = "toast-" + id;
                     return (
                        <Toast nativeID={toastId} {...props}>
-                       <VStack space="xs">
+                       <VStack space="xs" flex={1}>
                         <ToastTitle>New Message</ToastTitle>
                         <ToastDescription >
                           Hey, just wanted to touch base and see how you're doing. Let's catch up soon!
@@ -464,7 +464,7 @@ A versatile Toast component with customizable actions, enabling users to take va
                               const toastId = "toast-" + id;
                               return (
                                 <Toast nativeID={toastId} action={action.actionType}>
-                                  <VStack space="xs">
+                                  <VStack space="xs" flex={1}>
                                     <ToastTitle>{action.title}</ToastTitle>
                                     <ToastDescription >
                                     {action.description}
@@ -529,7 +529,7 @@ A versatile Toast component with multiple variants, offering different styles an
                        const toastId = "toast-" + id;
                         return (
                         <Toast nativeID={toastId} {...props} action='success'>
-                       <VStack space="xs">
+                       <VStack space="xs" flex={1}>
                         <ToastTitle>Attention!</ToastTitle>
                         <ToastDescription >
                         Please review and accept our updated terms and conditions before continuing to use the application.
@@ -665,7 +665,7 @@ A dismissable Toast component offers users the ability to dismiss or close the t
                     return (
                       <Toast bg='$success700' nativeID={toastId}>
                         <Icon as={CheckIcon} color='$white' mt='$1' mr='$3' />
-                        <VStack space='xs'>
+                        <VStack space='xs' flex={1}>
                         <ToastTitle color='$textLight50' >Download Complete</ToastTitle>
                         <ToastDescription color='$textLight50'>Your file 'wadewarren.docx' has been downloaded successfully. You can find it in your Downloads folder.</ToastDescription>
                         </VStack>
@@ -729,7 +729,7 @@ A Toast component with custom duration allows for specifying the length of time 
                     return (
                       <Toast bg='$secondary700' nativeID={toastId} p='$3'>
                         <Icon as={MessageCircle}  color='$white' mt='$1' mr='$3' />
-                        <VStack space='xs'>
+                        <VStack space='xs' flex={1}>
                         <ToastTitle color='$textLight50'>New Message</ToastTitle>
                         <ToastDescription color='$textLight50'>Hey, just wanted to touch base and see how you're doing. Let's catch up soon!</ToastDescription>
                         </VStack>
@@ -798,7 +798,7 @@ A Toast component with preserve toast functionality retains the notification on 
                     return (
                       <Toast bg='$error700' nativeID={toastId} p='$3'>
                         <Icon as={AlertTriangleIcon} color='$white' mt='$1' mr='$3' />
-                        <VStack space='xs'>
+                        <VStack space='xs' flex={1}>
                         <ToastTitle color='$textLight50' >Account Security Alert</ToastTitle>
                         <ToastDescription color='$textLight50'>Your account password was recently changed.
                         If you did not authorize this change, please contact our support team immediately.

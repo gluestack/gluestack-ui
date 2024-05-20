@@ -73,7 +73,7 @@ const ToastBasic = ({ placement = 'top', ...props }: any) => {
             return (
               <>
                 <Toast nativeID={toastId} {...props}>
-                  <VStack space="xs">
+                  <VStack space="xs" flex={1}>
                     <ToastTitle>Hello World Toast</ToastTitle>
                     <ToastDescription>
                       Please create a support tibnnbcket from the support page
