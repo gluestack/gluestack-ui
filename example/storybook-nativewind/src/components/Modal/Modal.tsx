@@ -49,7 +49,7 @@ const ModalBasic = () => {
               variant="outline"
               size="sm"
               action="secondary"
-              mr="$3"
+              className="mr-3"
               onPress={() => {
                 setShowModal(false);
               }}
@@ -59,7 +59,7 @@ const ModalBasic = () => {
             <Button
               size="sm"
               action="positive"
-              borderWidth="$0"
+              className="border-0"
               onPress={() => {
                 setShowModal(false);
               }}
