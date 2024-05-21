@@ -1,27 +1,24 @@
 import React, { useEffect } from 'react';
-
 import {
   Actionsheet,
   ActionsheetBackdrop,
   ActionsheetContent,
   ActionsheetDragIndicator,
   ActionsheetDragIndicatorWrapper,
-  Button,
-  ButtonText,
-  VStack,
-  Input,
-  InputIcon,
-  InputSlot,
-  InputField,
+} from '@/components/ui/actionsheet';
+import { VStack } from '@/components/ui/vstack';
+import { Input, InputIcon, InputSlot, InputField } from '@/components/ui/input';
+import {
   FormControl,
   FormControlLabel,
   FormControlLabelText,
-  HStack,
-  Image,
-  Text,
-  Box,
-  Icon,
-} from '@/components/ui';
+} from '@/components/ui/form-control';
+import { HStack } from '@/components/ui/hstack';
+import { Image } from '@/components/ui/image';
+import { Text } from '@/components/ui/text';
+import { Box } from '@/components/ui/box';
+import { Icon } from '@/components/ui/icon';
+import { Button, ButtonText } from '@/components/ui/button';
 import { KeyboardAvoidingView } from 'react-native';
 
 const ActionsheetWithKeyboardAvoidingViewWithSnapPoints = ({
@@ -59,26 +56,19 @@ const ActionsheetWithKeyboardAvoidingViewWithSnapPoints = ({
           <ActionsheetDragIndicatorWrapper>
             <ActionsheetDragIndicator />
           </ActionsheetDragIndicatorWrapper>
-          <VStack w="$full" p={20}>
-            <HStack justifyContent="center" alignItems="center" space="md">
-              <Box
-                w={50}
-                h="$full"
-                px="$2"
-                borderWidth={1}
-                borderStyle="solid"
-                borderColor="$borderLight300"
-                rounded="$sm"
-              >
+          <VStack className="w-full p-5">
+            <HStack space="md" className="justify-center items-center">
+              <Box className="w-[50px] h-full px-2 border border-solid border-outline-300 rounded">
                 <Image
                   source={{ uri: 'https://i.imgur.com/UwTLr26.png' }}
-                  flex={1}
+                  alt="image"
                   resizeMode="contain"
+                  className="flex-1"
                 />
               </Box>
-              <VStack flex={1}>
+              <VStack className="flex-1">
                 <Text
-                  fontWeight="$bold"
+                  className="font-bold"
                   // @ts-ignore
                 >
                   Mastercard
@@ -90,7 +80,7 @@ const ActionsheetWithKeyboardAvoidingViewWithSnapPoints = ({
                 </Text>
               </VStack>
             </HStack>
-            <FormControl mt={36}>
+            <FormControl className="mt-9">
               <FormControlLabel>
                 <FormControlLabelText
                 // @ts-ignore
@@ -99,12 +89,12 @@ const ActionsheetWithKeyboardAvoidingViewWithSnapPoints = ({
                 </FormControlLabelText>
               </FormControlLabel>
               <Input isFullWidth={true} {...props}>
-                <InputSlot>
-                  <InputIcon ml="$3" />
-                </InputSlot>
+                {/* <InputSlot>
+                  <InputIcon className="ml-3" />
+                </InputSlot> */}
                 <InputField placeholder="CVC/CVV" />
               </Input>
-              <Button onPress={handleClose} mt={20}>
+              <Button onPress={handleClose} className="mt-5">
                 <ButtonText
                 // @ts-ignore
                 >
