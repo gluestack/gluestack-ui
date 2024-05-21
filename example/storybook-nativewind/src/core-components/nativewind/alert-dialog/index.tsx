@@ -75,7 +75,7 @@ const alertDialogCloseButtonStyle = tva({
 });
 
 const alertDialogHeaderStyle = tva({
-  base: 'p-4 justify-between items-center flex-row',
+  base: 'p-4 pb-0 justify-between items-center flex-row',
 });
 
 const alertDialogFooterStyle = tva({

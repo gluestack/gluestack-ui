@@ -69,7 +69,7 @@ const radioIconStyle = tva({
 
   parentVariants: {
     size: {
-      sm: 'h-2 w-2',
+      sm: 'h-[9px] w-[9px]',
       md: 'h-3 w-3',
       lg: 'h-4 w-4',
     },

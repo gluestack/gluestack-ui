@@ -8,11 +8,11 @@ import { Motion, AnimatePresence } from '@legendapp/motion';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 
 const menuStyle = tva({
-  base: 'min-w-[200px] py-2 rounded-sm bg-background-0',
+  base: 'rounded bg-background-0 overflow-hidden border border-outline-200 p-1',
 });
 
 const menuItemStyle = tva({
-  base: 'p-3 flex-row items-center data-[hover=true]:bg-background-100 data-[active=true]:bg-background-200 data-[focus=true]:bg-background-100 data-[focus=true]:web:outline-noe data-[focus=true]:web:outline-0 data-[disabled=true]:opacity-40 data-[disabled=true]:web:cursor-not-allowed data-[focus-visible=true]:web:outline-2 data-[focus-visible=true]:web:outline-primary-700 data-[focus-visible=true]:web:outline data-[focus-visible=true]:web:cursor-pointer  data-[disabled=true]:data-[focus=true]:bg-transparent ',
+  base: 'min-w-[200px] p-3 flex-row items-center data-[hover=true]:bg-background-50 data-[active=true]:bg-background-100 data-[focus=true]:bg-background-50 data-[focus=true]:web:outline-none data-[focus=true]:web:outline-0 data-[disabled=true]:opacity-40 data-[disabled=true]:web:cursor-not-allowed data-[focus-visible=true]:web:outline-2 data-[focus-visible=true]:web:outline-primary-700 data-[focus-visible=true]:web:outline data-[focus-visible=true]:web:cursor-pointer data-[disabled=true]:data-[focus=true]:bg-transparent rounded-sm',
 });
 
 const menuBackdropStyle = tva({
