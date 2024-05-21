@@ -1,21 +1,19 @@
 import React from 'react';
-
-import { Box } from '@gluestack-ui/themed';
+import { Box } from '@/components/ui/box';
 import { VStack } from '@/components/ui/vstack';
 
 const VStackBasic = ({ space, reversed, ...props }: any) => {
   return (
     <VStack
       space={space}
-      //@ts-ignore
-      sx={{ justifyContent: 'center', alignItems: 'center' }}
+      className="justify-center items-center"
       reversed={reversed}
       {...props}
     >
-      <Box sx={{ w: 100, h: 100, rounded: '$sm', bg: '$primary300' }} />
-      <Box sx={{ w: 100, h: 100, rounded: '$sm', bg: '$primary400' }} />
-      <Box sx={{ w: 100, h: 100, rounded: '$sm', bg: '$primary500' }} />
-      <Box sx={{ w: 100, h: 100, rounded: '$sm', bg: '$primary600' }} />
+      <Box className="w-[100px] h-[100px] bg-primary-300" />
+      <Box className="w-[100px] h-[100px] bg-primary-400" />
+      <Box className="w-[100px] h-[100px] bg-primary-500" />
+      <Box className="w-[100px] h-[100px] bg-primary-600" />
     </VStack>
   );
 };

@@ -1,12 +1,8 @@
 import React from 'react';
-import {
-  Icon,
-  CloseIcon,
-  VStack,
-  CheckIcon,
-  Pressable,
-  Center,
-} from '@gluestack-ui/themed';
+import { Icon, CloseIcon, CheckIcon } from '@/components/ui/icon';
+import { VStack } from '@/components/ui/vstack';
+import { Pressable } from '@/components/ui/pressable';
+import { Center } from '@/components/ui/center';
 import {
   Toast,
   ToastTitle,
@@ -18,8 +14,8 @@ import { MessageCircle, AlertTriangleIcon } from 'lucide-react-native';
 
 const ToastFigmaStory = ({ _placement = 'top', _colorMode, ...props }: any) => {
   return (
-    <Toast {...props} maxWidth={500}>
-      <VStack space="xs" flex={1}>
+    <Toast {...props} className="max-w-[500px]">
+      <VStack space="xs" className="flex-1">
         <ToastTitle>Hello World Toast</ToastTitle>
         <ToastDescription>
           Please create a support ticket from the support page

@@ -29,7 +29,7 @@ const SkeletonExample = () => {
           boost your confidence, and help you overcome challenges.
         </Text>
       </VStack>
-      <HStack className="gap-2">
+      <HStack className="gap-2 items-center ">
         <Avatar size="xs">
           <AvatarFallbackText>John Smith</AvatarFallbackText>
         </Avatar>

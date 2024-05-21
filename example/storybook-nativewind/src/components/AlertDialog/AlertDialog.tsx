@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Button, ButtonText } from '@/components/ui/button';
 import { Text } from '@/components/ui/text';
 import { Heading } from '@/components/ui/heading';
+import { Icon } from '@/components/ui/icon';
 import { X } from 'lucide-react-native';
 
 import {
@@ -28,10 +29,7 @@ const AlertDialogBasic = ({ ...props }) => {
           <AlertDialogHeader>
             <Heading>Return Policy</Heading>
             <AlertDialogCloseButton>
-              <X
-                size={20}
-                className="stroke-background-400 group-[:hover]/alert-dialog-close-button:stroke-background-700 group-[:active]/alert-dialog-close-button:stroke-background-900 group-[:focus-visible]/alert-dialog-close-button:stroke-background-900"
-              />
+              <Icon as={X} size="lg" />
             </AlertDialogCloseButton>
           </AlertDialogHeader>
           <AlertDialogBody>

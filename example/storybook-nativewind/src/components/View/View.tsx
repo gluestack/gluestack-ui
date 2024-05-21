@@ -1,15 +1,18 @@
-import { View, Center, Heading, Text } from '@gluestack-ui/themed';
 import React from 'react';
+import { View } from '@/components/ui/view';
+import { Center } from '@/components/ui/center';
+import { Heading } from '@/components/ui/heading';
+import { Text } from '@/components/ui/text';
 
 export default function ViewStory() {
   return (
     <Center>
-      <View p="$4">
+      <View className="p-4">
         <Heading>
           A component library for the{' '}
-          <Heading color="$emerald400">React Ecosystem</Heading>
+          <Heading className="text-emerald-400">React Ecosystem</Heading>
         </Heading>
-        <Text pt="$3">
+        <Text className="pt-3">
           gluestack-ui is a simple, modular and accessible component library
           that gives you building blocks to build you React applications.
         </Text>

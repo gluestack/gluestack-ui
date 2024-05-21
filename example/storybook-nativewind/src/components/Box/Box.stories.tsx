@@ -1,6 +1,6 @@
 import type { ComponentMeta } from '@storybook/react-native';
 import Box from './Box';
-import BoxWithRef from './BoxWithRef';
+// import BoxWithRef from './BoxWithRef';
 
 const BoxMeta: ComponentMeta<typeof Box> = {
   title: 'stories/Box',
@@ -14,4 +14,5 @@ const BoxMeta: ComponentMeta<typeof Box> = {
 
 export default BoxMeta;
 
-export { Box, BoxWithRef };
+// export { Box, BoxWithRef };
+export { Box };
