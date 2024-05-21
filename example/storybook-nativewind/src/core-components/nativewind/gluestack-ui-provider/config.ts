@@ -147,12 +147,8 @@ export const config = {
     '--color-background-success': '#EDFCF2',
     '--color-background-muted': '#F7F8F7',
     '--color-background-info': '#EBF8FE',
-
-    '--color-shadow': '0px 2px 10px 0px #2626261A',
   }),
   dark: vars({
-    '--color-shadow': 'none',
-
     '--color-primary-0': '#828282',
     '--color-primary-50': '#949494',
     '--color-primary-100': '#9E9E9E',

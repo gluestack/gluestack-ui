@@ -13,7 +13,6 @@ const InputBasic = ({ ...props }: any) => {
         }}
         value={value}
         placeholder="Enter Text here"
-        className="text-error-500 bg-secondary-300"
       />
       <InputSlot className={props.variant === 'underlined' ? `pr-0` : `pr-4`}>
         <InputIcon as={SearchIcon} />
