@@ -186,7 +186,7 @@ module.exports = {
         '2xs': '10px',
       },
       boxShadow: {
-        md: 'var(--color-shadow123)',
+        md: 'var(--color-shadow)',
       },
     },
     plugins: [],

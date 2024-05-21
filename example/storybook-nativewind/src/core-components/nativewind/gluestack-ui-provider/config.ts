@@ -148,10 +148,10 @@ export const config = {
     '--color-background-muted': '#F7F8F7',
     '--color-background-info': '#EBF8FE',
 
-    '--color-shadow123': '0 35px 60px -15px rgb(165, 42, 42)',
+    '--color-shadow': '0px 2px 10px 0px #2626261A',
   }),
   dark: vars({
-    '--color-shadow123': 'none',
+    '--color-shadow': 'none',
 
     '--color-primary-0': '#828282',
     '--color-primary-50': '#949494',
