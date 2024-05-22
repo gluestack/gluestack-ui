@@ -115,6 +115,10 @@ module.exports = function (api) {
               __dirname,
               '../../example/storybook-nativewind/tailwind.config.js'
             ),
+            'culori': [
+              path.resolve(__dirname, './node_modules/culori/src/'),
+              path.resolve(__dirname, '../../node_modules/culori/src/'),
+            ],
           },
         },
       ],

@@ -53,5 +53,6 @@
     "nativewind": "4.0.36"
   },
   "packageManager": "yarn@1.22.17",
-  "version": "0.2.46"
+  "version": "0.2.46",
+  "dependencies": {}
 }

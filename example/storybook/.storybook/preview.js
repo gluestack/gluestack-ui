@@ -38,7 +38,7 @@ export const parameters = {
           'Theme Configuration',
           [
             'Theme',
-            ['Default Tokens', 'Default Components'],
+            ['Default Tokens', 'Default Components', 'Token Generation'],
             'Customizing Theme',
             ['Eject Components', 'Eject Theme'],
           ],
