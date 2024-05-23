@@ -112,7 +112,7 @@ cssInterop(UIActionsheet.Icon, {
       // @ts-ignore
       fill: true,
       color: true,
-      stoke: true,
+      stroke: true,
     },
   },
 });
