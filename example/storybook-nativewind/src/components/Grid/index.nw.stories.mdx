@@ -46,26 +46,38 @@ This is an illustration of **Grid** component.
     }}
     metaData = {{
       code: `
-<Grid numColumns={8} className="gap-5">
+<Grid className="gap-5" _extra={{
+  className: 'grid-cols-8'
+}} >
       <GridItem
-        colSpan={3}
         className="bg-background-50 p-6 rounded-md"
+        _extra={{
+  className: 'col-span-3'
+}}
       />
       <GridItem
-        colSpan={5}
         className="bg-background-50 p-6 rounded-md"
+        _extra={{
+  className: 'col-span-5'
+}}
       />
       <GridItem
-        colSpan={6}
         className="bg-background-50 p-6 rounded-md"
+        _extra={{
+   className: 'col-span-6'
+}}
       />
       <GridItem
-        colSpan={4}
         className="bg-background-50 p-6 rounded-md"
+        _extra={{
+     className: 'col-span-4'
+}}
       />
       <GridItem
-        colSpan={4}
         className="bg-background-50 p-6 rounded-md"
+        _extra={{
+   className: 'col-span-4'
+}}
       />
     </Grid>
 `,
@@ -76,7 +88,6 @@ This is an illustration of **Grid** component.
         Wrapper,
         Grid,
         GridItem,
-        Text,
         },
       argsType: { },
     }
@@ -158,100 +169,7 @@ export default () => (
 );
 ```
 
-### Component Props
-
-This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
-
-#### Grid
-
-It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
-
-<>
-  <TableContainer>
-    <Table>
-      <Table.THead>
-        <Table.TR>
-          <Table.TH>
-            <Table.TText>Prop</Table.TText>
-          </Table.TH>
-          <Table.TH>
-            <Table.TText>Type</Table.TText>
-          </Table.TH>
-          <Table.TH>
-            <Table.TText>Default</Table.TText>
-          </Table.TH>
-          <Table.TH>
-            <Table.TText>Description</Table.TText>
-          </Table.TH>
-        </Table.TR>
-      </Table.THead>
-      <Table.TBody>
-        <Table.TR>
-          <Table.TD>
-            <Table.TText>
-              <InlineCode>numColumns</InlineCode>
-            </Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>number</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>12</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>{`This NativeWind Grid component is based on a 12-column grid layout. The value must be between 1 and 12
-            `}</Table.TText>
-          </Table.TD>
-        </Table.TR>
-      </Table.TBody>
-    </Table>
-  </TableContainer>
-</>
-
-#### GridItem
-
-It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
-
-<>
-  <TableContainer>
-    <Table>
-      <Table.THead>
-        <Table.TR>
-          <Table.TH>
-            <Table.TText>Prop</Table.TText>
-          </Table.TH>
-          <Table.TH>
-            <Table.TText>Type</Table.TText>
-          </Table.TH>
-          <Table.TH>
-            <Table.TText>Default</Table.TText>
-          </Table.TH>
-          <Table.TH>
-            <Table.TText>Description</Table.TText>
-          </Table.TH>
-        </Table.TR>
-      </Table.THead>
-      <Table.TBody>
-        <Table.TR>
-          <Table.TD>
-            <Table.TText>
-              <InlineCode>colSpan</InlineCode>
-            </Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>number</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>1</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>{`colSpan are integer values between 1 and 12 that specify the number of columns to span.`}</Table.TText>
-          </Table.TD>
-        </Table.TR>
-      </Table.TBody>
-    </Table>
-  </TableContainer>
-</>
+> Note: **Our responsive grid component is based on a 12-column grid layout. It follows the CSS grid system on the web and the flexbox layout on native devices. Since the grid layout is only supported on the web, passing the grid-cols-* and col-span-* classNames inside _extra is recommended for the grid component to work effortlessly on both web and native. Our grid component currently does not support rowSpan.**
 
 ## Examples
 
@@ -271,22 +189,30 @@ Use the gap-* utilities to change the gap between both rows and columns in grid
     }}
     metaData={{
       code: `
-    <Grid numColumns={9} className="gap-4">
+    <Grid className="gap-4" _extra={{
+      className: 'grid-cols-9',
+    }}>
       <GridItem
-        colSpan={3}
         className="bg-background-50 p-3 rounded-md text-center"
+        _extra={{
+      className: 'col-span-3',
+    }}
       >
         <Text>A</Text>
       </GridItem>
        <GridItem
-        colSpan={3}
         className="bg-background-50 p-3 rounded-md text-center"
+        _extra={{
+      className: 'col-span-3',
+    }}
       >
         <Text>B</Text>
       </GridItem>
       <GridItem
-        colSpan={3}
         className="bg-background-50 p-3 rounded-md text-center"
+        _extra={{
+      className: 'col-span-3',
+    }}
       >
         <Text>C</Text>
       </GridItem>
@@ -319,40 +245,54 @@ Use the gap-x-* and gap-y-* utilities to change the gap between columns and rows
     }}
     metaData = {{
       code: `
-<Grid numColumns={6} className="gap-y-2 gap-x-4">
+<Grid className="gap-y-2 gap-x-4" _extra={{
+  className: 'grid-cols-6',
+}}>
       <GridItem
-        colSpan={2}
         className="bg-background-50 p-4 rounded-md text-center"
+        _extra={{
+          className: 'col-span-2',
+        }}
       >
         <Text className="text-sm">01</Text>
       </GridItem>
       <GridItem
-        colSpan={2}
         className="bg-background-50 p-4 rounded-md text-center"
+         _extra={{
+          className: 'col-span-2',
+        }}
       >
         <Text className="text-sm">02</Text>
       </GridItem>
       <GridItem
-        colSpan={2}
         className="bg-background-50 p-4 rounded-md text-center"
+         _extra={{
+          className: 'col-span-2',
+        }}
       >
         <Text className="text-sm">03</Text>
       </GridItem>
       <GridItem
-        colSpan={2}
         className="bg-background-50 p-4 rounded-md text-center"
+         _extra={{
+          className: 'col-span-2',
+        }}
       >
         <Text className="text-sm">04</Text>
       </GridItem>
       <GridItem
-        colSpan={2}
         className="bg-background-50 p-4 rounded-md text-center"
+         _extra={{
+          className: 'col-span-2',
+        }}
       >
         <Text className="text-sm">05</Text>
       </GridItem>
             <GridItem
-        colSpan={2}
         className="bg-background-50 p-4 rounded-md text-center"
+         _extra={{
+          className: 'col-span-2',
+        }}
       >
         <Text className="text-sm">06</Text>
       </GridItem>
@@ -387,39 +327,146 @@ The following example depicts how easily you can nest grids to create complex la
     }}
     metaData = {{
       code: `
-<Grid numColumns={8} className="gap-3">
+<Grid className="gap-3" _extra={{
+  className: 'grid-cols-8',
+}}>
       <GridItem
-        colSpan={4}
         className="bg-background-50 p-3 rounded-md text-center"
+        _extra={{
+          className: 'col-span-4',
+        }}
       >
         <Text className="text-sm">01</Text>
       </GridItem>
       <GridItem
-        colSpan={4}
         className="bg-background-50 p-3 rounded-md text-center"
+         _extra={{
+          className: 'col-span-4',
+        }}
       >
         <Text className="text-sm">02</Text>
       </GridItem>
       <GridItem
-        colSpan={4}
         className="bg-background-50 p-3 rounded-md text-center"
+           _extra={{
+          className: 'col-span-4',
+        }}
       >
-      <Grid numColumns={4} className="gap-5">
-        <GridItem colSpan={1} className="bg-background-200 p-2 rounded-md"><Text className="text-sm">1</Text></GridItem>
-        <GridItem colSpan={3} className="bg-background-200 p-2 rounded-md"><Text className="text-sm">4</Text></GridItem>
-        <GridItem colSpan={4} className="bg-background-200 p-2 rounded-md"><Text className="text-sm">4</Text></GridItem>
+      <Grid className="gap-5" _extra={{
+        className: 'grid-cols-2',
+      }}>
+        <GridItem className="bg-background-200 p-2 rounded-md" _extra={{
+          className: 'col-span-1',
+        }}><Text className="text-sm">1</Text></GridItem>
+        <GridItem className="bg-background-200 p-2 rounded-md" _extra={{
+          className: 'col-span-1',
+        }}><Text className="text-sm" >2</Text></GridItem>
+        <GridItem className="bg-background-200 p-2 rounded-md"  _extra={{
+          className: 'col-span-1',
+        }}><Text className="text-sm">3</Text></GridItem>
+             <GridItem className="bg-background-200 p-2 rounded-md" _extra={{
+          className: 'col-span-1',
+        }}><Text className="text-sm" >4</Text></GridItem>
         </Grid>
       </GridItem>
       <GridItem
-        colSpan={4}
         className="bg-background-50 p-3 rounded-md text-center"
+        _extra={{
+          className: 'col-span-4',
+        }}
       >
-        <Grid numColumns={4} className="gap-5">
-        <GridItem colSpan={2} className="bg-background-200 p-2 rounded-md"><Text className="text-sm">1</Text></GridItem>
-        <GridItem colSpan={2} className="bg-background-200 p-2 rounded-md"><Text className="text-sm">2</Text></GridItem>
-        <GridItem colSpan={2} className="bg-background-200 p-2 rounded-md"><Text className="text-sm">3</Text></GridItem>
-        <GridItem colSpan={2} className="bg-background-200 p-2 rounded-md"><Text className="text-sm">4</Text></GridItem>
+        <Grid className="gap-5" _extra={{
+          className: 'grid-cols-4',
+        }}>
+        <GridItem className="bg-background-200 p-2 rounded-md" _extra={{
+          className: 'col-span-4',
+        }}><Text className="text-sm" >1</Text></GridItem>
+        <GridItem className="bg-background-200 p-2 rounded-md" _extra={{
+          className: 'col-span-4',
+        }}><Text className="text-sm">2</Text></GridItem>
         </Grid>
+      </GridItem>
+    </Grid>
+`,
+        transformCode: (code) => {
+          return transformedCode(code);
+        },
+          scope: {
+        Wrapper,
+        Grid,
+        GridItem,
+        Text,
+        },
+      argsType: { },
+    }
+  }
+  />
+</Wrapper>
+
+### Responsive Grids
+
+You can pass different grid-cols-* and col-span-* values at different breakpoints to create a more responsive layout.
+
+<Wrapper>
+  <CodePreview
+      showComponentRenderer={ true }
+    showArgsController={ false}
+    _rendererWrapper={{
+      alignItems: 'stretch',
+      padding: 20,
+    }}
+    metaData = {{
+      code: `
+<Grid className="gap-y-2 gap-x-4" _extra={{
+  className: 'grid-cols-6',
+}}>
+      <GridItem
+        className="bg-background-50 p-4 rounded-md text-center"
+        _extra={{
+          className: 'col-span-6 md:col-span-3 lg:col-span-2',
+        }}
+      >
+        <Text className="text-sm">01</Text>
+      </GridItem>
+      <GridItem
+        className="bg-background-50 p-4 rounded-md text-center"
+         _extra={{
+  className: 'col-span-6 md:col-span-3 lg:col-span-2',
+        }}
+      >
+        <Text className="text-sm">02</Text>
+      </GridItem>
+      <GridItem
+        className="bg-background-50 p-4 rounded-md text-center"
+         _extra={{
+    className: 'col-span-6 md:col-span-3 lg:col-span-2',
+        }}
+      >
+        <Text className="text-sm">03</Text>
+      </GridItem>
+      <GridItem
+        className="bg-background-50 p-4 rounded-md text-center"
+         _extra={{
+        className: 'col-span-6 md:col-span-3 lg:col-span-2',
+        }}
+      >
+        <Text className="text-sm">04</Text>
+      </GridItem>
+      <GridItem
+        className="bg-background-50 p-4 rounded-md text-center"
+         _extra={{
+      className: 'col-span-6 md:col-span-3 lg:col-span-2',
+        }}
+      >
+        <Text className="text-sm">05</Text>
+      </GridItem>
+            <GridItem
+        className="bg-background-50 p-4 rounded-md text-center"
+         _extra={{
+        className: 'col-span-6 md:col-span-3 lg:col-span-2',
+        }}
+      >
+        <Text className="text-sm">06</Text>
       </GridItem>
     </Grid>
 `,

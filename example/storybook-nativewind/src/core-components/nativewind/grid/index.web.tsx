@@ -1,21 +1,30 @@
 import React from 'react';
 import { gridStyle, gridItemStyle } from './styles';
 
-const Grid = ({ className, numColumns = 12, ...props }: any) => {
+const Grid = ({ className, _extra, ...props }: any) => {
+  const gridClass = _extra?.className;
+  const finalGridClass = gridClass ?? '';
   return (
     <div
       className={gridStyle({
-        numColumns,
-        class: className,
+        class: className + ' ' + finalGridClass,
       })}
       {...props}
     />
   );
 };
 
-const GridItem = ({ className, colSpan = 1, ...props }: any) => {
+const GridItem = ({ className, _extra, ...props }: any) => {
+  const gridItemClass = _extra?.className;
+
+  const finalGridItemClass = gridItemClass ?? '';
   return (
-    <div className={gridItemStyle({ colSpan, class: className })} {...props} />
+    <div
+      className={gridItemStyle({
+        class: className + ' ' + finalGridItemClass,
+      })}
+      {...props}
+    />
   );
 };
 Grid.displayName = 'Grid';
