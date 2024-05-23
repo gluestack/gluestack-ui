@@ -22,7 +22,16 @@ import {
 
 const PrimitiveIcon = React.forwardRef(
   (
-    { height, width, fill, color, size, stroke, as: AsComp, ...props }: any,
+    {
+      height,
+      width,
+      fill,
+      color,
+      size,
+      stroke = 'currentColor',
+      as: AsComp,
+      ...props
+    }: any,
     ref?: any
   ) => {
     const sizeProps = useMemo(() => {
@@ -57,6 +66,7 @@ const PrimitiveIcon = React.forwardRef(
 );
 
 const SCOPE = 'BUTTON';
+
 const Root =
   Platform.OS === 'web'
     ? withStyleContext(Pressable, SCOPE)
@@ -78,11 +88,12 @@ cssInterop(UIButton.Icon, {
   className: {
     target: 'style',
     nativeStyleToProp: {
-      height: 'height',
-      width: 'width',
-      //@ts-ignore
-      fill: 'fill',
-      color: 'color',
+      height: true,
+      width: true,
+      // @ts-ignore
+      fill: true,
+      color: true,
+      stroke: true,
     },
   },
 });
@@ -220,7 +231,7 @@ const buttonIconStyle = tva({
       link: 'group-hover/button:underline group-active/button:underline',
       outline: '',
       solid:
-        'stroke-typography-0 group-hover/button:stroke-typography-0 group-active/button:stroke-typography-0',
+        'text-typography-0 group-hover/button:text-typography-0 group-active/button:text-typography-0',
     },
     size: {
       '2xs': 'h-3 w-3',
@@ -232,14 +243,14 @@ const buttonIconStyle = tva({
     },
     action: {
       primary:
-        'stroke-primary-600 group-hover/button:stroke-primary-600 group-active/button:stroke-primary-700',
+        'text-primary-600 group-hover/button:text-primary-600 group-active/button:text-primary-700',
       secondary:
-        'stroke-secondary-600 group-hover/button:stroke-secondary-600 group-active/button:stroke-secondary-700',
+        'text-secondary-600 group-hover/button:text-secondary-600 group-active/button:text-secondary-700',
       positive:
-        'stroke-success-600 group-hover/button:stroke-success-600 group-active/button:stroke-success-700',
+        'text-success-600 group-hover/button:text-success-600 group-active/button:text-success-700',
 
       negative:
-        'stroke-error-600 group-hover/button:stroke-error-600 group-active/button:stroke-error-700',
+        'text-error-600 group-hover/button:text-error-600 group-active/button:text-error-700',
     },
   },
   parentCompoundVariants: [
@@ -247,25 +258,25 @@ const buttonIconStyle = tva({
       variant: 'solid',
       action: 'primary',
       class:
-        'stroke-typography-0 group-hover/button:stroke-typography-0 group-active/button:stroke-typography-0',
+        'text-typography-0 group-hover/button:text-typography-0 group-active/button:text-typography-0',
     },
     {
       variant: 'solid',
       action: 'secondary',
       class:
-        'stroke-typography-0 group-hover/button:stroke-typography-0 group-active/button:stroke-typography-0',
+        'text-typography-0 group-hover/button:text-typography-0 group-active/button:text-typography-0',
     },
     {
       variant: 'solid',
       action: 'positive',
       class:
-        'stroke-typography-0 group-hover/button:stroke-typography-0 group-active/button:stroke-typography-0',
+        'text-typography-0 group-hover/button:text-typography-0 group-active/button:text-typography-0',
     },
     {
       variant: 'solid',
       action: 'negative',
       class:
-        'stroke-typography-0 group-hover/button:stroke-typography-0 group-active/button:stroke-typography-0',
+        'text-typography-0 group-hover/button:text-typography-0 group-active/button:text-typography-0',
     },
   ],
 });

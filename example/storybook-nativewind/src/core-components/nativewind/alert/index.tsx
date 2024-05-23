@@ -93,11 +93,11 @@ const alertIconStyle = tva({
   },
   parentVariants: {
     action: {
-      error: 'stroke-error-500',
-      warning: 'stroke-warning-500',
-      success: 'stroke-success-500',
-      info: 'stroke-info-500',
-      muted: 'stroke-secondary-500',
+      error: 'text-error-500',
+      warning: 'text-warning-500',
+      success: 'text-success-500',
+      info: 'text-info-500',
+      muted: 'text-secondary-500',
     },
   },
 });
@@ -151,11 +151,12 @@ cssInterop(UIAlert.Icon, {
   className: {
     target: 'style',
     nativeStyleToProp: {
-      height: 'height',
-      width: 'width',
-      //@ts-ignore
-      fill: 'fill',
-      color: 'color',
+      height: true,
+      width: true,
+      // @ts-ignore
+      fill: true,
+      color: true,
+      stroke: true,
     },
   },
 });
