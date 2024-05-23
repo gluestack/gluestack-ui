@@ -13,7 +13,7 @@ import { cssInterop } from 'nativewind';
 import {
   useBreakpointValue,
   getBreakPointValue,
-} from '@gluestack-ui/nativewind-utils/useMediaQuery';
+} from '@gluestack-ui/nativewind-utils/useBreakpointValue';
 const { width } = Dimensions.get('window');
 
 const GridContext = createContext<any>({});
