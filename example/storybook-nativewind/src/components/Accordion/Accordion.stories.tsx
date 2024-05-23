@@ -18,6 +18,7 @@ const AccordionMeta: ComponentMeta<typeof Accordion> = {
       options: ['single', 'multiple'],
     },
     isDisabled: {
+      control: 'boolean',
       options: [true, false],
     },
   },
