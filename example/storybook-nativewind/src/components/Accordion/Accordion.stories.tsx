@@ -1,16 +1,9 @@
 import type { ComponentMeta } from '@storybook/react-native';
 import Accordion from './Accordion';
-// import AccordionCustomisedBackground from './AccordionCustomisedBackground';
-// import AccordionRoundedCorners from './AccordionRoundedCorner';
-// import AccordionCustomisedComponent from './AccordionCustomisedComponent';
-// import AccordionNested from './AccordionNested';
 
 const AccordionMeta: ComponentMeta<typeof Accordion> = {
   title: 'stories/Accordion',
   component: Accordion,
-  metaInfo: {
-    componentDescription: `The Actionsheet component presents a set of options to the user, overlaid on top of the app's content, allowing them to take quick actions without leaving the current page or view.`,
-  },
   argTypes: {
     size: {
       control: 'select',
@@ -33,10 +26,4 @@ const AccordionMeta: ComponentMeta<typeof Accordion> = {
 
 export default AccordionMeta;
 
-export {
-  Accordion,
-  // AccordionCustomisedBackground,
-  // AccordionRoundedCorners,
-  // AccordionCustomisedComponent,
-  // AccordionNested,
-};
+export { Accordion };
