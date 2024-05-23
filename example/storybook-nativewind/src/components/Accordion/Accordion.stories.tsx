@@ -6,7 +6,7 @@ const AccordionMeta: ComponentMeta<typeof Accordion> = {
   component: Accordion,
   metaInfo: {
     componentDescription:
-      "The Actionsheet component presents a set of options to the user, overlaid on top of the app's content, allowing them to take quick actions without leaving the current page or view.",
+      'The Actionsheet component presents a set of options to the user, overlaid on top of the apps content, allowing them to take quick actions without leaving the current page or view.',
   },
   argTypes: {
     size: {
