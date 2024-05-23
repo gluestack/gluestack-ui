@@ -12,7 +12,8 @@
     "withStyleContextAndStates",
     "cssInterop",
     "flush",
-    "IsWeb"
+    "IsWeb",
+    "useBreakpointValue"
   ],
   "exclude": ["node_modules", "example"],
   "path": {},

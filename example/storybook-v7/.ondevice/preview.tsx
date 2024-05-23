@@ -6,28 +6,27 @@ import { GluestackUIProvider } from '../../storybook-nativewind/src/core-compone
 import { View } from 'react-native';
 import { useState } from 'react';
 import type { Preview } from '@storybook/react';
-import { useDarkMode } from '../../storybook-nativewind/src/components/hooks/useDarkMode';
-import { Platform } from 'react-native';
+// import { useDarkMode } from '../../storybook-nativewind/src/components/hooks/useDarkMode';
+// import { Platform } from 'react-native';
 
 const preview: Preview = {
   decorators: [
-    withBackgrounds,
     (Story) => {
       let value = false;
 
-      if (Platform.OS === 'web') {
-        // eslint-disable-next-line react-hooks/rules-of-hooks
-        value = useDarkMode();
-      }
+      // if (Platform.OS === 'web') {
+      //   // eslint-disable-next-line react-hooks/rules-of-hooks
+      //   value = useDarkMode();
+      // }
       const [isDark] = useState(false);
 
       return (
         <GluestackUIProvider mode="light">
           <View
             style={{
-              padding: 10,
-              height: '100%',
-              width: '100%',
+              flex: 1,
+              justifyContent: 'center',
+              alignItems: 'center',
             }}
           >
             <Story />

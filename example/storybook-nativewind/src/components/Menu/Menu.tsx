@@ -6,7 +6,6 @@ import { Text } from '@/components/ui/text';
 import { Icon, AddIcon, GlobeIcon, SettingsIcon } from '@/components/ui/icon';
 import { Center } from '@/components/ui/center';
 import { Menu, MenuItem, MenuItemLabel } from '@/components/ui/menu';
-
 import { PaintBucket, PuzzleIcon } from 'lucide-react-native';
 
 const MenuBasic = ({ placement = 'bottom' }: any) => {
