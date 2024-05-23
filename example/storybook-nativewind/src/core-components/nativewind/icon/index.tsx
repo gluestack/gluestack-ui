@@ -7,7 +7,16 @@ import { cssInterop } from 'nativewind';
 
 const PrimitiveIcon = React.forwardRef(
   (
-    { height, width, fill, color, size, stroke, as: AsComp, ...props }: any,
+    {
+      height,
+      width,
+      fill,
+      color,
+      size,
+      stroke = 'currentColor',
+      as: AsComp,
+      ...props
+    }: any,
     ref?: any
   ) => {
     const sizeProps = useMemo(() => {
@@ -46,7 +55,7 @@ export const UIIcon = createIcon({
 });
 
 const iconStyle = tva({
-  base: 'stroke-typography-950 fill-none',
+  base: 'text-typography-950 fill-none',
   variants: {
     size: {
       '2xs': 'h-3 w-3',
