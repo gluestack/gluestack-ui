@@ -95,6 +95,10 @@ module.exports = function (api) {
               __dirname,
               '../../packages/nativewind/utils/tva'
             ),
+            '@gluestack-ui/nativewind-utils/useMediaQuery': path.resolve(
+              __dirname,
+              '../../packages/nativewind/utils/useMediaQuery'
+            ),
             '@gluestack-ui/nativewind-utils': path.resolve(
               __dirname,
               '../../packages/nativewind/utils/'

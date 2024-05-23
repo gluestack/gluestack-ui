@@ -222,7 +222,7 @@ const actionsheetSectionHeaderTextStyle = tva({
 });
 
 const actionsheetIconStyle = tva({
-  base: 'stroke-background-500',
+  base: 'stroke-background-500 fill-none',
   variants: {
     size: {
       '2xs': 'h-3 w-3',

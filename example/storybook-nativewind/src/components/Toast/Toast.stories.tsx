@@ -1,6 +1,6 @@
 import type { ComponentMeta } from '@storybook/react-native';
 import Toast from './Toast';
-import DuplicateToastPrevent from './DuplicateToastPrevent';
+// import DuplicateToastPrevent from './DuplicateToastPrevent';
 
 const ToastMeta: ComponentMeta<typeof Toast> = {
   title: 'stories/Toast',
@@ -41,4 +41,5 @@ const ToastMeta: ComponentMeta<typeof Toast> = {
 
 export default ToastMeta;
 
-export { Toast, DuplicateToastPrevent };
+// export { Toast, DuplicateToastPrevent };
+export { Toast };

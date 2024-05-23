@@ -11,7 +11,6 @@ import type { Preview } from '@storybook/react';
 
 const preview: Preview = {
   decorators: [
-    withBackgrounds,
     (Story) => {
       let value = false;
 
@@ -25,9 +24,9 @@ const preview: Preview = {
         <GluestackUIProvider mode="light">
           <View
             style={{
-              padding: 10,
-              height: '100%',
-              width: '100%',
+              flex: 1,
+              justifyContent: 'center',
+              alignItems: 'center',
             }}
           >
             <Story />

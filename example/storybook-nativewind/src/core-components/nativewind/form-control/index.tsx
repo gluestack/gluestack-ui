@@ -61,7 +61,7 @@ const formControlStyle = tva({
 });
 
 const formControlErrorIconStyle = tva({
-  base: 'stroke-error-700',
+  base: 'stroke-error-700 fill-none',
   variants: {
     size: {
       '2xs': 'h-3 w-3',
