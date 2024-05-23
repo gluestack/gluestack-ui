@@ -17,7 +17,7 @@
   "main": "index.js",
   "module": "index.js",
   "types": "index.d.ts",
-  "version": "1.0.19",
+  "version": "1.0.20",
   "react-native": "src/index",
   "source": "src/index",
   "scripts": {
@@ -73,7 +73,8 @@
     "cssInterop",
     "flush",
     "scripts",
-    "IsWeb"
+    "IsWeb",
+    "useBreakpointValue"
   ],
   "jest": {
     "preset": "jest-expo",
