@@ -5,8 +5,8 @@
   "license": "MIT",
   "scripts": {
     "start": "expo start",
-    "android": "NODE_OPTIONS='--max-old-space-size=20000' expo start --android",
-    "ios": "NODE_OPTIONS='--max-old-space-size=20000' expo start --ios",
+    "android": "NODE_OPTIONS='--max-old-space-size=8192' expo start --android",
+    "ios": "NODE_OPTIONS='--max-old-space-size=8192' expo start --ios",
     "web": "expo start --web",
     "storybook:web": "storybook dev -p 6006",
     "build-storybook": "storybook build",
