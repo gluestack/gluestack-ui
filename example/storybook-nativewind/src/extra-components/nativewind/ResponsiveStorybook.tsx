@@ -97,21 +97,10 @@ function Responsiveness() {
               marginLeft: 27,
             }}
           />
+
           <Box flexDirection="row">
             <Text mr="$5" fontSize="$xs" fontWeight="$normal">
-              Homestay
-            </Text>
-
-            <Text mr="$5" fontSize="$xs" fontWeight="$normal">
-              File
-            </Text>
-
-            <Text mr="$5" fontSize="$xs" fontWeight="$normal">
-              Edit
-            </Text>
-
-            <Text mr="$5" fontSize="$xs" fontWeight="$normal">
-              View
+              Storybook
             </Text>
           </Box>
         </Box>
