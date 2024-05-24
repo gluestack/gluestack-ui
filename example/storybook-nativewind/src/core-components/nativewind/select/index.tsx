@@ -28,7 +28,7 @@ import { Pressable, View, TextInput, Platform } from 'react-native';
 /** Select Components */
 
 const selectIconStyle = tva({
-  base: 'stroke-background-500 fill-none',
+  base: 'text-background-500 fill-none',
   parentVariants: {
     size: {
       '2xs': 'h-3 w-3',
@@ -66,7 +66,7 @@ const selectTriggerStyle = tva({
 });
 
 const selectInputStyle = tva({
-  base: 'py-auto px-3 placeholder:text-typography-500 flex-1 web:w-full h-full text-typography-900 pointer-events-none web:outline-none',
+  base: 'py-auto px-3 placeholder:text-typography-500 web:w-full h-full text-typography-900 pointer-events-none web:outline-none',
   parentVariants: {
     size: {
       xl: 'text-xl leading-[0px]',
@@ -84,7 +84,16 @@ const selectInputStyle = tva({
 
 const PrimitiveIcon = React.forwardRef(
   (
-    { height, width, fill, color, size, stroke, as: AsComp, ...props }: any,
+    {
+      height,
+      width,
+      fill,
+      color,
+      size,
+      stroke = 'currentColor',
+      as: AsComp,
+      ...props
+    }: any,
     ref?: any
   ) => {
     const sizeProps = useMemo(() => {
@@ -153,11 +162,12 @@ cssInterop(UISelect.Icon, {
   className: {
     target: 'style',
     nativeStyleToProp: {
-      height: 'height',
-      width: 'width',
-      //@ts-ignore
-      fill: 'fill',
-      color: 'color',
+      height: true,
+      width: true,
+      // @ts-ignore
+      fill: true,
+      color: true,
+      stroke: true,
     },
   },
 });

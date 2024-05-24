@@ -39,7 +39,7 @@ const PopoverBasic = (props: any) => {
       }}
     >
       <PopoverBackdrop />
-      <PopoverContent>
+      <PopoverContent className="max-w-[400]">
         <PopoverArrow />
         <PopoverHeader>
           <Heading>Welcome!</Heading>

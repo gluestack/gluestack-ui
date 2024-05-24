@@ -18,7 +18,16 @@ const Svg = ({ style, className, ...props }: any) => {
 
 const PrimitiveIcon = React.forwardRef(
   (
-    { height, width, fill, color, size, stroke, as: AsComp, ...props }: any,
+    {
+      height,
+      width,
+      fill,
+      color,
+      size,
+      stroke = 'currentColor',
+      as: AsComp,
+      ...props
+    }: any,
     ref?: any
   ) => {
     const sizeProps = useMemo(() => {
@@ -40,7 +49,7 @@ const PrimitiveIcon = React.forwardRef(
       );
     }
     return (
-      <svg
+      <Svg
         ref={ref}
         height={height}
         width={width}
