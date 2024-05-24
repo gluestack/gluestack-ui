@@ -3,12 +3,42 @@ import React from 'react';
 
 const GridBasic = () => {
   return (
-    <Grid numColumns={8} className="gap-5">
-      <GridItem colSpan={3} className="bg-background-200 p-6 rounded-md" />
-      <GridItem colSpan={5} className="bg-background-200 p-6 rounded-md" />
-      <GridItem colSpan={6} className="bg-background-200 p-6 rounded-md" />
-      <GridItem colSpan={4} className="bg-background-200 p-6 rounded-md" />
-      <GridItem colSpan={4} className="bg-background-200 p-6 rounded-md" />
+    <Grid
+      className="gap-5"
+      _extra={{
+        className: 'grid-cols-8',
+      }}
+    >
+      <GridItem
+        className="bg-background-200 p-6 rounded-md"
+        _extra={{
+          className: 'col-span-3',
+        }}
+      />
+      <GridItem
+        className="bg-background-200 p-6 rounded-md"
+        _extra={{
+          className: 'col-span-5',
+        }}
+      />
+      <GridItem
+        className="bg-background-200 p-6 rounded-md"
+        _extra={{
+          className: 'col-span-6',
+        }}
+      />
+      <GridItem
+        className="bg-background-200 p-6 rounded-md"
+        _extra={{
+          className: 'col-span-4',
+        }}
+      />
+      <GridItem
+        className="bg-background-200 p-6 rounded-md"
+        _extra={{
+          className: 'col-span-4',
+        }}
+      />
     </Grid>
   );
 };
