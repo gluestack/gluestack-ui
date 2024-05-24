@@ -80,11 +80,11 @@ const badgeIconStyle = tva({
   base: 'fill-none',
   parentVariants: {
     action: {
-      error: 'stroke-error-600',
-      warning: 'stroke-warning-600',
-      success: 'stroke-success-600',
-      info: 'stroke-info-600',
-      muted: 'stroke-secondary-600',
+      error: 'text-error-600',
+      warning: 'text-warning-600',
+      success: 'text-success-600',
+      info: 'text-info-600',
+      muted: 'text-secondary-600',
     },
     size: {
       sm: 'h-3 w-3',
@@ -96,7 +96,16 @@ const badgeIconStyle = tva({
 
 const PrimitiveIcon = React.forwardRef(
   (
-    { height, width, fill, color, size, stroke, as: AsComp, ...props }: any,
+    {
+      height,
+      width,
+      fill,
+      color,
+      size,
+      stroke = 'currentColor',
+      as: AsComp,
+      ...props
+    }: any,
     ref?: any
   ) => {
     const sizeProps = useMemo(() => {
@@ -136,11 +145,12 @@ cssInterop(PrimitiveIcon, {
   className: {
     target: 'style',
     nativeStyleToProp: {
-      height: 'height',
-      width: 'width',
-      //@ts-ignore
-      fill: 'fill',
-      color: 'color',
+      height: true,
+      width: true,
+      // @ts-ignore
+      fill: true,
+      color: true,
+      stroke: true,
     },
   },
 });

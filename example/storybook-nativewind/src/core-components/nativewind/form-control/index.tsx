@@ -15,7 +15,16 @@ const SCOPE = 'FORM_CONTROL';
 
 const PrimitiveIcon = React.forwardRef(
   (
-    { height, width, fill, color, size, stroke, as: AsComp, ...props }: any,
+    {
+      height,
+      width,
+      fill,
+      color,
+      size,
+      stroke = 'currentColor',
+      as: AsComp,
+      ...props
+    }: any,
     ref?: any
   ) => {
     const sizeProps = useMemo(() => {
@@ -61,7 +70,7 @@ const formControlStyle = tva({
 });
 
 const formControlErrorIconStyle = tva({
-  base: 'stroke-error-700',
+  base: 'text-error-700 fill-none',
   variants: {
     size: {
       '2xs': 'h-3 w-3',
@@ -283,11 +292,12 @@ cssInterop(UIFormControl.Error.Icon, {
   className: {
     target: 'style',
     nativeStyleToProp: {
-      height: 'height',
-      width: 'width',
-      //@ts-ignore
-      fill: 'fill',
-      color: 'color',
+      height: true,
+      width: true,
+      // @ts-ignore
+      fill: true,
+      color: true,
+      stroke: true,
     },
   },
 });

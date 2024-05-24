@@ -21,8 +21,8 @@ import {
 
 import { Volume, Volume2Icon, LightbulbIcon } from 'lucide-react-native';
 
-const SliderBasic = ({ value: valueProp = 60, ...props }: any) => {
-  const [sliderValue, setSliderValue] = React.useState(valueProp);
+const SliderBasic = ({ value, ...props }: any) => {
+  const [sliderValue, setSliderValue] = React.useState(value);
   const handleChange = (value: any) => {
     setSliderValue(value);
   };
@@ -31,12 +31,7 @@ const SliderBasic = ({ value: valueProp = 60, ...props }: any) => {
     <Slider
       {...props}
       value={sliderValue}
-      style={{
-        width: 300,
-        height: 300,
-        marginTop: 16,
-      }}
-      isReversed
+      className="w-[300px] h-[300px] mt-4"
       onChange={(value: any) => {
         handleChange(value);
       }}

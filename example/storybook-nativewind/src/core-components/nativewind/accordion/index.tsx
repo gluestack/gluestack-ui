@@ -20,7 +20,8 @@ const accordionStyle = tva({
   base: 'w-full',
   variants: {
     variant: {
-      filled: 'bg-white',
+      filled: 'bg-white shadow',
+      unfilled: '',
     },
     size: {
       sm: '',
@@ -48,7 +49,7 @@ const accordionTitleTextStyle = tva({
   },
 });
 const accordionIconStyle = tva({
-  base: 'stroke-typography-900 fill-none',
+  base: 'text-typography-900 fill-none',
   parentVariants: {
     size: {
       '2xs': 'h-3 w-3',
@@ -82,7 +83,16 @@ const accordionTriggerStyle = tva({
 
 const PrimitiveIcon = React.forwardRef(
   (
-    { height, width, fill, color, size, stroke, as: AsComp, ...props }: any,
+    {
+      height,
+      width,
+      fill,
+      color,
+      size,
+      stroke = 'currentColor',
+      as: AsComp,
+      ...props
+    }: any,
     ref?: any
   ) => {
     const sizeProps = useMemo(() => {
@@ -148,11 +158,12 @@ cssInterop(UIAccordion.Icon, {
   className: {
     target: 'style',
     nativeStyleToProp: {
-      height: 'height',
-      width: 'width',
-      //@ts-ignore
-      fill: 'fill',
-      color: 'color',
+      height: true,
+      width: true,
+      // @ts-ignore
+      fill: true,
+      color: true,
+      stroke: true,
     },
   },
 });

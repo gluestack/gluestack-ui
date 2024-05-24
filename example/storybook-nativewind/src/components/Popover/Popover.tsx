@@ -14,13 +14,13 @@ import { Text } from '@/components/ui/text';
 import { Heading } from '@/components/ui/heading';
 import { Box } from '@/components/ui/box';
 import { X } from 'lucide-react-native';
+import { Icon } from '@/components/ui/icon';
 
 const PopoverBasic = (props: any) => {
   const [showPopover, setShowPopover] = React.useState(false);
   return (
     <Popover
       {...props}
-      placement="right"
       shouldFlip
       isOpen={showPopover}
       onOpen={() => {
@@ -39,15 +39,12 @@ const PopoverBasic = (props: any) => {
       }}
     >
       <PopoverBackdrop />
-      <PopoverContent>
+      <PopoverContent className="max-w-[400]">
         <PopoverArrow />
         <PopoverHeader>
           <Heading>Welcome!</Heading>
           <PopoverCloseButton>
-            <X
-              size={20}
-              className="stroke-background-400 group-[:hover]/popover-close-button:stroke-background-700 group-[:active]/popover-close-button:stroke-background-900 group-[:focus-visible]/popover-close-button:stroke-background-900"
-            />
+            <Icon as={X} size="lg" />
           </PopoverCloseButton>
         </PopoverHeader>
         <PopoverBody>

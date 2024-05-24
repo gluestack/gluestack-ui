@@ -8,14 +8,24 @@ import {
   withStyleContext,
   useStyleContext,
 } from '@gluestack-ui/nativewind-utils/withStyleContext';
-import { cssInterop } from 'nativewind';
+// import { cssInterop } from 'nativewind';
+import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
 import { withStates } from '@gluestack-ui/nativewind-utils/withStates';
 import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withStyleContextAndStates';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 
 const PrimitiveIcon = React.forwardRef(
   (
-    { height, width, fill, color, size, stroke, as: AsComp, ...props }: any,
+    {
+      height,
+      width,
+      fill,
+      color,
+      size,
+      stroke = 'currentColor',
+      as: AsComp,
+      ...props
+    }: any,
     ref?: any
   ) => {
     const sizeProps = useMemo(() => {
@@ -65,11 +75,11 @@ const radioGroupStyle = tva({
 });
 
 const radioIconStyle = tva({
-  base: 'rounded-full justify-center items-center stroke-background-800 fill-background-800',
+  base: 'rounded-full justify-center items-center text-background-800 fill-background-800',
 
   parentVariants: {
     size: {
-      sm: 'h-2 w-2',
+      sm: 'h-[9px] w-[9px]',
       md: 'h-3 w-3',
       lg: 'h-4 w-4',
     },
@@ -127,11 +137,12 @@ cssInterop(UIRadio.Icon, {
   className: {
     target: 'style',
     nativeStyleToProp: {
-      height: 'height',
-      width: 'width',
-      //@ts-ignore
-      fill: 'fill',
-      color: 'color',
+      height: true,
+      width: true,
+      // @ts-ignore
+      fill: true,
+      color: true,
+      stroke: true,
     },
   },
 });

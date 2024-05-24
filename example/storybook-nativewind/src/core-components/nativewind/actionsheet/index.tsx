@@ -27,7 +27,16 @@ import {
 
 const PrimitiveIcon = React.forwardRef(
   (
-    { height, width, fill, color, size, stroke, as: AsComp, ...props }: any,
+    {
+      height,
+      width,
+      fill,
+      color,
+      size,
+      stroke = 'currentColor',
+      as: AsComp,
+      ...props
+    }: any,
     ref?: any
   ) => {
     const sizeProps = useMemo(() => {
@@ -98,11 +107,12 @@ cssInterop(UIActionsheet.Icon, {
   className: {
     target: 'style',
     nativeStyleToProp: {
-      height: 'height',
-      width: 'width',
-      //@ts-ignore
-      fill: 'fill',
-      color: 'color',
+      height: true,
+      width: true,
+      // @ts-ignore
+      fill: true,
+      color: true,
+      stroke: true,
     },
   },
 });
@@ -222,7 +232,7 @@ const actionsheetSectionHeaderTextStyle = tva({
 });
 
 const actionsheetIconStyle = tva({
-  base: 'stroke-background-500',
+  base: 'text-background-500 fill-none',
   variants: {
     size: {
       '2xs': 'h-3 w-3',

@@ -9,14 +9,24 @@ import {
   useStyleContext,
 } from '@gluestack-ui/nativewind-utils/withStyleContext';
 import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withStyleContextAndStates';
-import { cssInterop } from 'nativewind';
+// import { cssInterop } from 'nativewind';
+import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
 import { withStates } from '@gluestack-ui/nativewind-utils/withStates';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 import { Platform } from 'react-native';
 
 const PrimitiveIcon = React.forwardRef(
   (
-    { height, width, fill, color, size, stroke, as: AsComp, ...props }: any,
+    {
+      height,
+      width,
+      fill,
+      color,
+      size,
+      stroke = 'currentColor',
+      as: AsComp,
+      ...props
+    }: any,
     ref?: any
   ) => {
     const sizeProps = useMemo(() => {
@@ -71,17 +81,25 @@ cssInterop(UICheckbox.Icon, {
   className: {
     target: 'style',
     nativeStyleToProp: {
-      height: 'height',
-      width: 'width',
-      //@ts-ignore
-      fill: 'fill',
-      color: 'color',
+      height: true,
+      width: true,
+      // @ts-ignore
+      fill: true,
+      color: true,
+      stroke: true,
     },
   },
 });
 
 const checkboxStyle = tva({
-  base: 'group/checkbox flex-row items-center justify-start gap-2 web:cursor-pointer data-[disabled=true]:cursor-not-allowed',
+  base: 'group/checkbox flex-row items-center justify-start web:cursor-pointer data-[disabled=true]:cursor-not-allowed',
+  variants: {
+    size: {
+      lg: 'gap-2',
+      md: 'gap-2',
+      sm: 'gap-1.5',
+    },
+  },
 });
 
 const checkboxIndicatorStyle = tva({
@@ -107,7 +125,7 @@ const checkboxLabelStyle = tva({
 });
 
 const checkboxIconStyle = tva({
-  base: 'data-[disabled=true]:opacity-40 stroke-typography-50 fill-none',
+  base: 'data-[disabled=true]:opacity-40 text-typography-50 fill-none',
 
   parentVariants: {
     size: {
@@ -135,6 +153,7 @@ const Checkbox = React.forwardRef(
       <UICheckbox
         className={checkboxStyle({
           class: className,
+          size,
         })}
         {...props}
         context={{
