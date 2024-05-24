@@ -187,6 +187,6 @@ module.exports = {
         '2xs': '10px',
       },
     },
-    plugins: [],
   },
+  plugins: [],
 };
