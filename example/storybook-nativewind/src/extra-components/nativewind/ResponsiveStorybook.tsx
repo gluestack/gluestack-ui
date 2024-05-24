@@ -1,20 +1,20 @@
-import { Box, Text, Pressable, OpenInNewIcon } from '@gluestack/design-system';
+import { Box, Text } from '@gluestack/design-system';
 import React, { useRef, useState } from 'react';
 import NextImage from 'next/image';
 import { Expand } from '../../apps/dashboard-app/Expand';
 import { Resizable } from 're-resizable';
-import kitchensink from './kitchensink';
+// import kitchensink from './kitchensink';
 
 //function to detect if the user is on a web browser
-function checkPlatform() {
-  if (/android/i.test(navigator.userAgent)) {
-    window.location.href = `exp://u.expo.dev/update/${kitchensink.updateIds.android}`;
-  } else if (/iPad|iPhone|iPod/i.test(navigator.userAgent)) {
-    window.location.href = `exp://u.expo.dev/update/${kitchensink.updateIds.ios}`;
-  } else if (typeof window !== 'undefined' && typeof document !== 'undefined') {
-    window.open('https://ui-example-nativewind.vercel.app/');
-  }
-}
+// function checkPlatform() {
+//   if (/android/i.test(navigator.userAgent)) {
+//     window.location.href = `exp://u.expo.dev/update/${kitchensink.updateIds.android}`;
+//   } else if (/iPad|iPhone|iPod/i.test(navigator.userAgent)) {
+//     window.location.href = `exp://u.expo.dev/update/${kitchensink.updateIds.ios}`;
+//   } else if (typeof window !== 'undefined' && typeof document !== 'undefined') {
+//     window.open('https://ui-example-nativewind.vercel.app/');
+//   }
+// }
 
 function Responsiveness() {
   const resizableRef = useRef<any>(null);
@@ -148,7 +148,7 @@ function Responsiveness() {
 
         <Box h="100%" w="100%" overflow="hidden">
           <iframe
-            src="https://ui-example-nativewind.vercel.app/"
+            src="https://storybook-v2.gluestack.io/?path=/story/stories-accordion--accordion"
             title="NativeBase v3 Dashboard Example"
             style={{
               transformOrigin: '0px 0px',
@@ -162,7 +162,7 @@ function Responsiveness() {
           />
         </Box>
       </Resizable>
-
+      {/* 
       <Box
         mt="-$12"
         mb="$6"
@@ -347,7 +347,7 @@ function Responsiveness() {
             src={`https://qr.expo.dev/eas-update?slug=exp&projectId=42cce9b5-9fbe-4572-92ba-fc43b2437a85&groupId=432e8802-2a73-4498-8301-5ac41664678e`}
           />
         </Box>
-      </Box>
+      </Box> */}
     </Box>
   );
 }
