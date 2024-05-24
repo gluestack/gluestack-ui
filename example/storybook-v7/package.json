@@ -5,8 +5,8 @@
   "license": "MIT",
   "scripts": {
     "start": "expo start",
-    "android": "NODE_OPTIONS='--max-old-space-size=8192' expo start --android",
-    "ios": "NODE_OPTIONS='--max-old-space-size=8192' expo start --ios",
+    "android": "NODE_OPTIONS='--max-old-space-size=12288' expo start --android",
+    "ios": "NODE_OPTIONS='--max-old-space-size=12288' expo start --ios",
     "web": "expo start --web",
     "storybook:web": "storybook dev -p 6006",
     "build-storybook": "storybook build",
@@ -14,7 +14,7 @@
     "storybook": "cross-env STORYBOOK_ENABLED='true' expo start",
     "storybook:ios": "cross-env STORYBOOK_ENABLED='true' expo start --ios",
     "storybook:android": "cross-env STORYBOOK_ENABLED='true' expo start --android",
-    "eas:update": "NODE_OPTIONS='--max-old-space-size=8192' npx tailwindcss --input ./global.css && NODE_OPTIONS='--max-old-space-size=8192' eas update"
+    "eas:update": "NODE_OPTIONS='--max-old-space-size=12288' npx tailwindcss --input ./global.css && NODE_OPTIONS='--max-old-space-size=12288' eas update"
   },
   "dependencies": {
     "@babel/runtime": "^7.24.5",
@@ -26,7 +26,7 @@
     "@react-native-community/datetimepicker": "8.0.1",
     "@react-native-community/slider": "4.5.2",
     "autoprefixer": "^10.4.19",
-    "eas-cli": "^9.0.7",
+    "eas-cli": "9.1.0",
     "expo": "^51.0.8",
     "expo-constants": "~16.0.1",
     "expo-status-bar": "~1.12.1",

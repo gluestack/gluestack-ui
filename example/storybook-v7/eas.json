@@ -1,6 +1,6 @@
 {
   "cli": {
-    "version": ">= 9.0.7"
+    "version": "9.1.0"
   },
   "build": {
     "development": {
