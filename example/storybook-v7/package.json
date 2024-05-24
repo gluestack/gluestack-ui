@@ -14,7 +14,7 @@
     "storybook": "cross-env STORYBOOK_ENABLED='true' expo start",
     "storybook:ios": "cross-env STORYBOOK_ENABLED='true' expo start --ios",
     "storybook:android": "cross-env STORYBOOK_ENABLED='true' expo start --android",
-    "eas:update": "NODE_OPTIONS='--max-old-space-size=10240' npx tailwindcss --input ./global.css && NODE_OPTIONS='--max-old-space-size=10240' eas update"
+    "eas:update": "NODE_OPTIONS='--max-old-space-size=8192' npx tailwindcss --input ./global.css && NODE_OPTIONS='--max-old-space-size=8192' eas update"
   },
   "dependencies": {
     "@babel/runtime": "^7.24.5",
