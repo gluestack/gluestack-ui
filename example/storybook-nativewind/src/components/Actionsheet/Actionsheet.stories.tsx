@@ -11,6 +11,7 @@ import ActionsheetWithKeyboardAvoidingViewWithSnapPoints from './ActionsheetAvoi
 const ActionsheetMeta: ComponentMeta<typeof Actionsheet> = {
   title: 'stories/Actionsheet',
   component: Actionsheet,
+  argTypes: {},
 };
 
 export default ActionsheetMeta;
