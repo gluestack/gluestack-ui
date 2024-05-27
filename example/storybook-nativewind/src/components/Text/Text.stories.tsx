@@ -1,15 +1,9 @@
 import type { ComponentMeta } from '@storybook/react-native';
 import Text from './Text';
-// import TextSizes from './TextSizes';
 
 const TextMeta: ComponentMeta<typeof Text> = {
   title: 'stories/Text',
   component: Text,
-  // metaInfo is required for figma generation
-  // @ts-ignore
-  metaInfo: {
-    componentDescription: `Text component, which supports paragraphs and other formatting options.`,
-  },
   argTypes: {
     size: {
       control: 'select',
@@ -52,4 +46,3 @@ const TextMeta: ComponentMeta<typeof Text> = {
 export default TextMeta;
 
 export { Text };
-// export { TextSizes };

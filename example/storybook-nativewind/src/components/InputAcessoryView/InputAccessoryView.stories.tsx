@@ -7,5 +7,3 @@ const InputAccessoryViewMeta: ComponentMeta<typeof InputAccessoryViewStory> = {
 };
 
 export default InputAccessoryViewMeta;
-
-// export { InputAccessoryView };

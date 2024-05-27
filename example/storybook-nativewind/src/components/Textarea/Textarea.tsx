@@ -6,7 +6,7 @@ import {
   FormControlError,
   FormControlLabel,
   FormControlLabelText,
-} from '@gluestack-ui/themed';
+} from '@/components/ui/form-control';
 
 import { Textarea, TextareaInput } from '@/components/ui/textarea';
 

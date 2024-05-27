@@ -8,11 +8,7 @@ const LinkBasic = ({ ...props }: any) => {
   return (
     <>
       <Link href="https://google.com" {...props} isExternal>
-        <LinkText
-        // @ts-ignore
-        >
-          GLUESTACK
-        </LinkText>
+        <LinkText>GLUESTACK</LinkText>
       </Link>
     </>
   );

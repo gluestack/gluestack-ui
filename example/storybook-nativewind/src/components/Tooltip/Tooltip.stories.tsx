@@ -4,11 +4,6 @@ import Tooltip from './Tooltip';
 const TooltipMeta: ComponentMeta<typeof Tooltip> = {
   title: 'stories/Tooltip',
   component: Tooltip,
-  // metaInfo is required for figma generation
-  // @ts-ignore
-  metaInfo: {
-    componentDescription: `Whether you need to provide helpful hints to new users or display extra details for power users, the Tooltip component is a simple and effective way.`,
-  },
   argTypes: {
     placement: {
       control: 'select',

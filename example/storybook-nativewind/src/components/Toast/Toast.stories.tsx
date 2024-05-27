@@ -1,15 +1,9 @@
 import type { ComponentMeta } from '@storybook/react-native';
 import Toast from './Toast';
-// import DuplicateToastPrevent from './DuplicateToastPrevent';
 
 const ToastMeta: ComponentMeta<typeof Toast> = {
   title: 'stories/Toast',
   component: Toast,
-  // metaInfo is required for figma generation
-  // @ts-ignore
-  metaInfo: {
-    componentDescription: `Toast is a component that can display alerts, notifications, or messages on top of an overlay layer. It is commonly used to inform users of important information or actions.`,
-  },
   argTypes: {
     placement: {
       control: 'select',
@@ -41,5 +35,4 @@ const ToastMeta: ComponentMeta<typeof Toast> = {
 
 export default ToastMeta;
 
-// export { Toast, DuplicateToastPrevent };
 export { Toast };

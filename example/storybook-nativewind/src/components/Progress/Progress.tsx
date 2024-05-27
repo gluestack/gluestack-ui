@@ -9,12 +9,6 @@ const ProgressBasic = ({ value = 50, ...props }: any) => {
   return (
     <Center>
       <Progress
-        // sx={{
-        //   w: 300,
-        //   _web: {
-        //     w: 800,
-        //   },
-        // }}
         style={{
           width: 800,
         }}

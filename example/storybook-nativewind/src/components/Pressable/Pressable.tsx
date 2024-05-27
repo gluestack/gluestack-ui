@@ -4,11 +4,7 @@ import { Pressable } from '@/components/ui/pressable';
 
 const PressableBasic = ({ ...props }: any) => {
   return (
-    <Pressable
-      // onPress={() => console.log('Hello')}
-      {...props}
-      className="p-5 bg-primary-500"
-    >
+    <Pressable {...props} className="p-5 bg-primary-500">
       <Text className="text-typography-0">PRESSABLE</Text>
     </Pressable>
   );

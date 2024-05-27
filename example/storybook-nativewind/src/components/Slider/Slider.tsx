@@ -1,16 +1,13 @@
 import React from 'react';
-import {
-  Text,
-  VStack,
-  HStack,
-  Box,
-  Icon,
-  Heading,
-  Tooltip,
-  TooltipContent,
-  Button,
-  Center,
-} from '@gluestack-ui/themed';
+import { VStack } from '@/components/ui/vstack';
+import { Tooltip, TooltipContent } from '@/components/ui/tooltip';
+import { HStack } from '@/components/ui/hstack';
+import { Center } from '@/components/ui/center';
+import { Button } from '@/components/ui/button';
+import { Text } from '@/components/ui/text';
+import { Heading } from '@/components/ui/heading';
+import { Box } from '@/components/ui/box';
+import { Icon } from '@/components/ui/icon';
 
 import {
   Slider,

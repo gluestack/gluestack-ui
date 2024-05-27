@@ -4,11 +4,6 @@ import Radio from './Radio';
 const RadioMeta: ComponentMeta<typeof Radio> = {
   title: 'stories/Radio',
   component: Radio,
-  // metaInfo is required for figma generation
-  // @ts-ignore
-  metaInfo: {
-    componentDescription: `The Radio component presents users with predefined choices and enables them to select only one option. It is commonly used for providing a single-choice selection in forms or surveys.`,
-  },
   argTypes: {
     size: {
       control: 'select',

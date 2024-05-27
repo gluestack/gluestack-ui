@@ -29,7 +29,6 @@ const PopoverBasic = (props: any) => {
       onClose={() => {
         setShowPopover(false);
       }}
-      // eslint-disable-next-line react/no-unstable-nested-components
       trigger={(triggerProps) => {
         return (
           <Button {...triggerProps}>

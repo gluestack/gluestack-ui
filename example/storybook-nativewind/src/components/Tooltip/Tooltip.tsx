@@ -13,7 +13,6 @@ const TooltipBasic = ({
       offset={10}
       placement={placement}
       isOpen={showTooltipProp}
-      // eslint-disable-next-line react/no-unstable-nested-components
       trigger={(triggerProps: any) => {
         return (
           <Button {...triggerProps}>

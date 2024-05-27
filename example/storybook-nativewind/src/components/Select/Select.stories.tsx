@@ -10,11 +10,6 @@ import type { ComponentMeta } from '@storybook/react-native';
 const SelectMeta: ComponentMeta<typeof Select> = {
   title: 'stories/Select',
   component: Select,
-  // metaInfo is required for figma generation
-  // @ts-ignore
-  metaInfo: {
-    componentDescription: `Select offers a dynamic and user-friendly way to present a list of options in a closed view, with the ability to expand and select items from a dropdown list.`,
-  },
   argTypes: {
     size: {
       control: 'select',
