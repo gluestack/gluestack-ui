@@ -9,8 +9,8 @@ import {
   ActionsheetItem,
   ActionsheetItemText,
   ActionsheetScrollView,
-  Button,
-} from '@/components/ui';
+} from '@/components/ui/actionsheet';
+import { Button } from '@/components/ui/button';
 import { useEffect } from 'react';
 
 const ActionsheetWithScrollView = ({
@@ -59,7 +59,7 @@ const ActionsheetWithScrollView = ({
         <ActionsheetDragIndicatorWrapper>
           <ActionsheetDragIndicator />
         </ActionsheetDragIndicatorWrapper>
-        <ActionsheetScrollView h="$56">
+        <ActionsheetScrollView className="h-56">
           {data.map(renderItem)}
         </ActionsheetScrollView>
       </ActionsheetContent>

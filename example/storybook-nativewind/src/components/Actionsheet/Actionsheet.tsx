@@ -1,23 +1,19 @@
 import React, { useState } from 'react';
+import { Box } from '@/components/ui/box';
+import { Center } from '@/components/ui/center';
+import { VStack } from '@/components/ui/vstack';
+import { HStack } from '@/components/ui/hstack';
+import { Text } from '@/components/ui/text';
+import { Button, ButtonText } from '@/components/ui/button';
+import { Input, InputField, InputIcon, InputSlot } from '@/components/ui/input';
+import { Icon, AddIcon } from '@/components/ui/icon';
+import { Image } from '@/components/ui/image';
 import {
-  Button,
-  ButtonText,
-  VStack,
-  HStack,
-  Icon,
-  Box,
   FormControl,
   FormControlLabel,
   FormControlLabelText,
-  Input,
-  InputField,
-  InputIcon,
-  InputSlot,
-  AddIcon,
-  Image,
-  Text,
-  Center,
-} from '@/components/ui';
+} from '@/components/ui/form-control';
+
 import { config } from '@gluestack-ui/config';
 
 import {
@@ -79,8 +75,12 @@ const ActionsheetBasic = ({ showActionsheetProp, ...props }: any) => {
 
 function FigmaActionsheetStory({ ...props }: any) {
   return (
-    <Box w={900}>
-      <ActionsheetContent {...props} w="$full" _experimentalContent={true}>
+    <Box className="w-[900px]">
+      <ActionsheetContent
+        {...props}
+        className="w-full"
+        _experimentalContent={true}
+      >
         <ActionsheetDragIndicatorWrapper>
           <ActionsheetDragIndicator />
         </ActionsheetDragIndicatorWrapper>

@@ -7,11 +7,11 @@ import {
   AvatarImage,
 } from '@/components/ui/avatar';
 import React from 'react';
-import { HStack } from '@gluestack-ui/themed';
+import { HStack } from '@/components/ui/hstack';
 
 const AvatarGroupBasic = ({ size = 'md', badge }: any) => {
   return (
-    <HStack space="md" h="100%" justifyContent="center" alignItems="center">
+    <HStack space="md" className="h-full justify-center items-center">
       <AvatarGroup>
         <Avatar size={size}>
           <AvatarFallbackText>John Doe</AvatarFallbackText>

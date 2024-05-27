@@ -1,17 +1,16 @@
 import {
-  // VStack,
   Avatar,
   AvatarBadge,
   AvatarFallbackText,
   AvatarImage,
 } from '@/components/ui/avatar';
-import { VStack } from '@gluestack-ui/themed';
+import { VStack } from '@/components/ui/vstack';
 import React from 'react';
 
 const AvatarSizes = () => {
   return (
-    <VStack space="md" alignItems="center" h="100%" justifyContent="center">
-      {['xs', 'sm', 'md', 'lg', 'xl', '2xl'].map((size, index) => (
+    <VStack space="md" className="items-center h-full justify-center">
+      {['xs', 'sm', 'md', 'lg', 'xl', '2xl'].map((size: any, index) => (
         <Avatar size={size} key={index}>
           <AvatarFallbackText>John Doe</AvatarFallbackText>
           <AvatarImage

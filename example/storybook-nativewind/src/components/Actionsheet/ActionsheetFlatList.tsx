@@ -9,8 +9,8 @@ import {
   ActionsheetItem,
   ActionsheetItemText,
   ActionsheetFlatList,
-  Button,
-} from '@/components/ui';
+} from '@/components/ui/actionsheet';
+import { Button } from '@/components/ui/button';
 import { useEffect } from 'react';
 
 const ActionsheetWithFlatList = ({

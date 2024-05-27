@@ -9,8 +9,8 @@ import {
   ActionsheetItem,
   ActionsheetItemText,
   ActionsheetVirtualizedList,
-  Button,
-} from '@/components/ui';
+} from '@/components/ui/actionsheet';
+import { Button } from '@/components/ui/button';
 import { useEffect } from 'react';
 
 const ActionsheetWithVirtualizedList = ({
@@ -66,7 +66,7 @@ const ActionsheetWithVirtualizedList = ({
           <ActionsheetDragIndicator />
         </ActionsheetDragIndicatorWrapper>
         <ActionsheetVirtualizedList
-          h="$56"
+          className="h-56"
           data={data}
           initialNumToRender={5}
           renderItem={({ item }: any) => <Item title={item.title} />}

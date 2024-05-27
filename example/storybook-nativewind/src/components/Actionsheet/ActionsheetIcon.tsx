@@ -9,14 +9,16 @@ import {
   ActionsheetItem,
   ActionsheetItemText,
   ActionsheetIcon,
-  Button,
+} from '@/components/ui/actionsheet';
+import { Button } from '@/components/ui/button';
+import {
   Icon,
   TrashIcon,
   ShareIcon,
   PlayIcon,
   FavouriteIcon,
   CloseIcon,
-} from '@/components/ui';
+} from '@/components/ui/icon';
 import { useEffect } from 'react';
 
 const ActionsheetWithIcon = ({

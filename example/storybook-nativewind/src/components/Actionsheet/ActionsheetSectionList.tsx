@@ -10,9 +10,8 @@ import {
   ActionsheetItemText,
   ActionsheetSectionList,
   ActionsheetSectionHeaderText,
-  Button,
-} from '@/components/ui';
-
+} from '@/components/ui/actionsheet';
+import { Button } from '@/components/ui/button';
 const ActionsheetWithSectionlist = ({
   showActionsheet: showActionsheetProp = true,
   ...props
@@ -61,7 +60,7 @@ const ActionsheetWithSectionlist = ({
           <ActionsheetDragIndicator />
         </ActionsheetDragIndicatorWrapper>
         <ActionsheetSectionList
-          h="$56"
+          className="h-56"
           sections={DATA}
           keyExtractor={(item: any, index: any) => item + index}
           renderItem={({ item }: any) => (
