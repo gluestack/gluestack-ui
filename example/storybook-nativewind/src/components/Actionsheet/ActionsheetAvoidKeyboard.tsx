@@ -37,7 +37,6 @@ const ActionsheetWithKeyboardAvoidingView = ({
   const handleClose = () => setShowActionsheet(false);
 
   return (
-    // @ts-ignore
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : undefined}
     >
@@ -73,9 +72,6 @@ const ActionsheetWithKeyboardAvoidingView = ({
                 </FormControlLabelText>
               </FormControlLabel>
               <Input isFullWidth={true} {...props}>
-                {/* <InputSlot>
-                  <InputIcon className="ml-3" />
-                </InputSlot> */}
                 <InputField placeholder="CVC/CVV" />
               </Input>
               <Button onPress={handleClose} className="mt-5">
