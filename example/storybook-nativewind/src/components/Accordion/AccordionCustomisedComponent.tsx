@@ -7,7 +7,7 @@ import {
   AccordionContentText,
   AccordionTitleText,
   AccordionIcon,
-} from '@gluestack-ui/themed';
+} from '@/components/ui/accordion';
 import { ChevronDownIcon } from 'lucide-react-native';
 import { ChevronUpIcon } from 'lucide-react-native';
 import React from 'react';
@@ -52,18 +52,7 @@ const AccordionCustomisedComponent = ({ ...props }: any) => {
         </AccordionContent>
       </AccordionItem>
 
-      <AccordionItem
-        value="b"
-        borderWidth={1}
-        sx={{
-          _light: {
-            borderColor: '$borderLight300',
-          },
-          _dark: {
-            borderColor: '$borderDark700',
-          },
-        }}
-      >
+      <AccordionItem className="border border-outline-300" value="b">
         <AccordionHeader>
           <AccordionTrigger>
             {({ isExpanded }: { isExpanded: boolean }) => {
@@ -92,18 +81,7 @@ const AccordionCustomisedComponent = ({ ...props }: any) => {
         </AccordionContent>
       </AccordionItem>
 
-      <AccordionItem
-        value="c"
-        borderBottomWidth={1}
-        sx={{
-          _light: {
-            borderColor: '$borderLight300',
-          },
-          _dark: {
-            borderColor: '$borderDark700',
-          },
-        }}
-      >
+      <AccordionItem value="c" className="border-b border-outline-300">
         <AccordionHeader>
           <AccordionTrigger>
             {({ isExpanded }: { isExpanded: boolean }) => {
@@ -132,8 +110,5 @@ const AccordionCustomisedComponent = ({ ...props }: any) => {
     </Accordion>
   );
 };
-
-AccordionCustomisedComponent.description =
-  'This is a basic Accordion component example. An Accordion component is a versatile and interactive user interface element, designed to efficiently organize and present content in a compact space.';
 
 export default AccordionCustomisedComponent;

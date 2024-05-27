@@ -7,26 +7,13 @@ import {
   AccordionIcon,
   AccordionContent,
   AccordionContentText,
-} from '@gluestack-ui/themed';
+} from '@/components/ui/accordion';
 import { MinusIcon, PlusIcon } from 'lucide-react-native';
 import React from 'react';
 
 const AccordionNested = () => {
   return (
-    <Accordion
-      alignSelf="center"
-      mt="$5"
-      shadowColor="transparent"
-      borderWidth={1}
-      sx={{
-        _light: {
-          borderColor: '$borderLight300',
-        },
-        _dark: {
-          borderColor: '$borderDark700',
-        },
-      }}
-    >
+    <Accordion className="border border-outline-300 mt-5 self-center">
       <AccordionItem value="a">
         <AccordionHeader>
           <AccordionTrigger>
@@ -37,25 +24,13 @@ const AccordionNested = () => {
                 ) : (
                   <AccordionIcon as={PlusIcon} />
                 )}
-                <AccordionTitleText ml="$3">USA</AccordionTitleText>
+                <AccordionTitleText className="ml-3">USA</AccordionTitleText>
               </>
             )}
           </AccordionTrigger>
         </AccordionHeader>
-        <AccordionContent pb="$0">
-          <Accordion
-            width="100%"
-            shadowColor="transparent"
-            borderWidth={1}
-            sx={{
-              _light: {
-                borderColor: '$borderLight300',
-              },
-              _dark: {
-                borderColor: '$borderDark700',
-              },
-            }}
-          >
+        <AccordionContent className="pb-0">
+          <Accordion className="border border-outline-300 self-center">
             <AccordionItem value="b">
               <AccordionHeader>
                 <AccordionTrigger>
@@ -66,7 +41,7 @@ const AccordionNested = () => {
                       ) : (
                         <AccordionIcon as={PlusIcon} />
                       )}
-                      <AccordionTitleText ml="$3">
+                      <AccordionTitleText className="ml-3">
                         California
                       </AccordionTitleText>
                     </>
@@ -82,7 +57,7 @@ const AccordionNested = () => {
               </AccordionContent>
             </AccordionItem>
           </Accordion>
-          <Accordion width="100%" shadowColor="transparent">
+          <Accordion className="w-full">
             <AccordionItem value="b">
               <AccordionHeader>
                 <AccordionTrigger>
@@ -93,7 +68,9 @@ const AccordionNested = () => {
                       ) : (
                         <AccordionIcon as={PlusIcon} />
                       )}
-                      <AccordionTitleText ml="$3">Nevada</AccordionTitleText>
+                      <AccordionTitleText className="ml-3">
+                        Nevada
+                      </AccordionTitleText>
                     </>
                   )}
                 </AccordionTrigger>
@@ -112,8 +89,5 @@ const AccordionNested = () => {
     </Accordion>
   );
 };
-
-AccordionNested.description =
-  'This is a basic Accordion component example. An Accordion component is a versatile and interactive user interface element, designed to efficiently organize and present content in a compact space.';
 
 export default AccordionNested;

@@ -136,9 +136,6 @@ const AccordionBasic = ({ ...props }: any) => {
   );
 };
 
-AccordionBasic.description =
-  'This is a basic Accordion component example. An Accordion component is a versatile and interactive user interface element, designed to efficiently organize and present content in a compact space.';
-
 export default AccordionBasic;
 
 export {
@@ -150,7 +147,6 @@ export {
   AccordionIcon,
   AccordionContent,
   AccordionContentText,
-  // Divider,
   ChevronDownIcon,
   ChevronUpIcon,
   PlusIcon,

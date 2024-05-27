@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   Accordion,
   AccordionHeader,
@@ -7,29 +8,22 @@ import {
   AccordionContentText,
   AccordionTitleText,
   AccordionIcon,
-} from '@gluestack-ui/themed';
+} from '@/components/ui/accordion';
 import { MinusIcon, PlusIcon } from 'lucide-react-native';
-import React from 'react';
 
 const AccordionCustomisedBackground = ({ ...props }: any) => {
   return (
-    <Accordion {...props} size={'md'} shadowColor="transparent">
-      <AccordionItem value="item-1" borderRadius="$lg">
+    <Accordion {...props} size={'md'}>
+      <AccordionItem value="item-1" className="rounded-lg">
         <AccordionHeader>
-          <AccordionTrigger
-            sx={{
-              ':focusVisible': {
-                borderRadius: '$lg',
-              },
-            }}
-          >
+          <AccordionTrigger className="data-[focus-visible=true]:rounded-lg">
             {({ isExpanded }: { isExpanded: boolean }) => {
               return (
                 <>
                   {isExpanded ? (
-                    <AccordionIcon as={MinusIcon} mr="$3" />
+                    <AccordionIcon as={MinusIcon} className="ml-3" />
                   ) : (
-                    <AccordionIcon as={PlusIcon} mr="$3" />
+                    <AccordionIcon as={PlusIcon} className="ml-3" />
                   )}
                   <AccordionTitleText>
                     How do I place an order?
@@ -39,7 +33,7 @@ const AccordionCustomisedBackground = ({ ...props }: any) => {
             }}
           </AccordionTrigger>
         </AccordionHeader>
-        <AccordionContent ml="$9">
+        <AccordionContent className="ml-9">
           <AccordionContentText>
             To place an order, simply select the products you want, proceed to
             checkout, provide shipping and payment information, and finalize
@@ -47,22 +41,16 @@ const AccordionCustomisedBackground = ({ ...props }: any) => {
           </AccordionContentText>
         </AccordionContent>
       </AccordionItem>
-      <AccordionItem value="item-2" mt="$5" borderRadius="$lg">
+      <AccordionItem value="item-2" className="rounded-lg mt-5 ">
         <AccordionHeader>
-          <AccordionTrigger
-            sx={{
-              ':focusVisible': {
-                borderRadius: '$lg',
-              },
-            }}
-          >
+          <AccordionTrigger className="data-[focus-visible=true]:rounded-lg">
             {({ isExpanded }: { isExpanded: boolean }) => {
               return (
                 <>
                   {isExpanded ? (
-                    <AccordionIcon as={MinusIcon} mr="$3" />
+                    <AccordionIcon as={MinusIcon} className="ml-3" />
                   ) : (
-                    <AccordionIcon as={PlusIcon} mr="$3" />
+                    <AccordionIcon as={PlusIcon} className="ml-3" />
                   )}
                   <AccordionTitleText>
                     How do I place an order?
@@ -72,7 +60,7 @@ const AccordionCustomisedBackground = ({ ...props }: any) => {
             }}
           </AccordionTrigger>
         </AccordionHeader>
-        <AccordionContent ml="$9">
+        <AccordionContent className="ml-9">
           <AccordionContentText>
             To place an order, simply select the products you want, proceed to
             checkout, provide shipping and payment information, and finalize
@@ -83,8 +71,5 @@ const AccordionCustomisedBackground = ({ ...props }: any) => {
     </Accordion>
   );
 };
-
-AccordionCustomisedBackground.description =
-  'This is a basic Accordion component example. An Accordion component is a versatile and interactive user interface element, designed to efficiently organize and present content in a compact space.';
 
 export default AccordionCustomisedBackground;
