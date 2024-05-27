@@ -4,12 +4,6 @@ import Badge from './Badge';
 const BadgeMeta: ComponentMeta<typeof Badge> = {
   title: 'stories/Badge',
   component: Badge,
-  // metaInfo is required for figma generation
-  // @ts-ignore
-  metaInfo: {
-    componentDescription:
-      'The badge component lets you quickly and easily add status indicators to your interface for improved usability. They are designed to be attention-grabbing and quickly convey important information.',
-  },
   argTypes: {
     variant: {
       control: 'select',
