@@ -75,7 +75,7 @@ export const parameters = {
           ['Fab', 'Skeleton'],
         ],
         'Apps',
-        ['Dashboard App', 'Storybook App'],
+        ['Dashboard App', 'Starter Kit', 'Storybook App'],
         'Guides',
         ['Recipes', ['Linear Gradient'], 'More', ['Changelog']],
       ],
