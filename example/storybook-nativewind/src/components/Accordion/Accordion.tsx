@@ -20,7 +20,7 @@ const AccordionBasic = ({ ...props }: any) => {
   const accRef = React.useRef(null);
 
   return (
-    <Accordion mt="$5" {...props}>
+    <Accordion className="mt-5" {...props}>
       <AccordionItem value="a">
         <AccordionHeader>
           <AccordionTrigger>
