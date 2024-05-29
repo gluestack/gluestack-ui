@@ -59,12 +59,16 @@ const PrimitiveIcon = React.forwardRef(
   }
 );
 
+const InputWrapper = React.forwardRef(({ ...props }, ref) => {
+  return <View {...props} ref={ref} />;
+});
+
 const UIInput = createInput({
   // @ts-ignore
   Root:
     Platform.OS === 'web'
       ? withStyleContext(View, SCOPE)
-      : withStyleContextAndStates(View, SCOPE),
+      : withStyleContextAndStates(InputWrapper, SCOPE),
   Icon: PrimitiveIcon,
   Slot: Pressable,
   Input: Platform.OS === 'web' ? TextInput : withStates(TextInput),
@@ -138,7 +142,7 @@ const inputFieldStyle = tva({
   },
 });
 
-cssInterop(UIInput, { className: 'style' });
+cssInterop(InputWrapper, { className: 'style' });
 cssInterop(UIInput.Slot, { className: 'style' });
 cssInterop(UIInput.Input, { className: 'style' });
 // @ts-ignore
