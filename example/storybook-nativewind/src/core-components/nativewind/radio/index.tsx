@@ -8,11 +8,22 @@ import {
   withStyleContext,
   useStyleContext,
 } from '@gluestack-ui/nativewind-utils/withStyleContext';
-// import { cssInterop } from 'nativewind';
-import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
+import { cssInterop } from 'nativewind';
 import { withStates } from '@gluestack-ui/nativewind-utils/withStates';
 import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withStyleContextAndStates';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
+
+const IndicatorWrapper = React.forwardRef(({ ...props }: any, ref?: any) => {
+  return <View {...props} ref={ref} />;
+});
+
+const LabelWrapper = React.forwardRef(({ ...props }: any, ref?: any) => {
+  return <Text {...props} ref={ref} />;
+});
+
+const IconWrapper = React.forwardRef(({ ...props }: any, ref?: any) => {
+  return <PrimitiveIcon {...props} ref={ref} />;
+});
 
 const PrimitiveIcon = React.forwardRef(
   (
@@ -124,22 +135,22 @@ const UIRadio = createRadio({
       ? withStyleContext(View, SCOPE)
       : withStyleContextAndStates(Pressable, SCOPE),
   Group: View,
-  Icon: Platform.OS === 'web' ? PrimitiveIcon : withStates(PrimitiveIcon),
-  Indicator: Platform.OS === 'web' ? View : withStates(View),
-  Label: Platform.OS === 'web' ? Text : withStates(Text),
+  Icon: Platform.OS === 'web' ? PrimitiveIcon : withStates(IconWrapper),
+  Indicator: Platform.OS === 'web' ? View : withStates(IndicatorWrapper),
+  Label: Platform.OS === 'web' ? Text : withStates(LabelWrapper),
 });
 
 cssInterop(UIRadio, { className: 'style' });
 cssInterop(UIRadio.Group, { className: 'style' });
-cssInterop(UIRadio.Indicator, { className: 'style' });
-cssInterop(UIRadio.Label, { className: 'style' });
-cssInterop(UIRadio.Icon, {
+cssInterop(IndicatorWrapper, { className: 'style' });
+cssInterop(LabelWrapper, { className: 'style' });
+// @ts-ignore
+cssInterop(IconWrapper, {
   className: {
     target: 'style',
     nativeStyleToProp: {
       height: true,
       width: true,
-      // @ts-ignore
       fill: true,
       color: true,
       stroke: true,

@@ -7,6 +7,7 @@ module.exports = {
     './src/components/**/*.{html,js,jsx,ts,tsx,mdx}',
   ],
   presets: [require('nativewind/preset')],
+  safelist: ['border-error-700'],
   theme: {
     extend: {
       colors: {

@@ -9,11 +9,22 @@ import {
   useStyleContext,
 } from '@gluestack-ui/nativewind-utils/withStyleContext';
 import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withStyleContextAndStates';
-// import { cssInterop } from 'nativewind';
-import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
+import { cssInterop } from 'nativewind';
 import { withStates } from '@gluestack-ui/nativewind-utils/withStates';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 import { Platform } from 'react-native';
+
+const IndicatorWrapper = React.forwardRef(({ ...props }: any, ref?: any) => {
+  return <View {...props} ref={ref} />;
+});
+
+const LabelWrapper = React.forwardRef(({ ...props }: any, ref?: any) => {
+  return <Text {...props} ref={ref} />;
+});
+
+const IconWrapper = React.forwardRef(({ ...props }: any, ref?: any) => {
+  return <PrimitiveIcon {...props} ref={ref} />;
+});
 
 const PrimitiveIcon = React.forwardRef(
   (
@@ -68,22 +79,22 @@ const UICheckbox = createCheckbox({
       ? withStyleContext(View, SCOPE)
       : withStyleContextAndStates(Pressable, SCOPE),
   Group: Platform.OS === 'web' ? View : withStates(View),
-  Icon: Platform.OS === 'web' ? PrimitiveIcon : withStates(PrimitiveIcon),
-  Label: Platform.OS === 'web' ? Text : withStates(Text),
-  Indicator: Platform.OS === 'web' ? View : withStates(View),
+  Icon: Platform.OS === 'web' ? PrimitiveIcon : withStates(IconWrapper),
+  Label: Platform.OS === 'web' ? Text : withStates(LabelWrapper),
+  Indicator: Platform.OS === 'web' ? View : withStates(IndicatorWrapper),
 });
 
 cssInterop(UICheckbox, { className: 'style' });
 cssInterop(UICheckbox.Group, { className: 'style' });
-cssInterop(UICheckbox.Label, { className: 'style' });
-cssInterop(UICheckbox.Indicator, { className: 'style' });
-cssInterop(UICheckbox.Icon, {
+cssInterop(LabelWrapper, { className: 'style' });
+cssInterop(IndicatorWrapper, { className: 'style' });
+// @ts-ignore
+cssInterop(IconWrapper, {
   className: {
     target: 'style',
     nativeStyleToProp: {
       height: true,
       width: true,
-      // @ts-ignore
       fill: true,
       color: true,
       stroke: true,
