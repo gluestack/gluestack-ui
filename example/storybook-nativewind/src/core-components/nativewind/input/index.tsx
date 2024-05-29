@@ -59,7 +59,7 @@ const PrimitiveIcon = React.forwardRef(
   }
 );
 
-const InputWrapper = React.forwardRef(({ ...props }, ref) => {
+const InputWrapper = React.forwardRef(({ ...props }: any, ref?: any) => {
   return <View {...props} ref={ref} />;
 });
 

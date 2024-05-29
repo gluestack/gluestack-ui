@@ -14,15 +14,15 @@ import { withStates } from '@gluestack-ui/nativewind-utils/withStates';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 import { Platform } from 'react-native';
 
-const IndicatorWrapper = React.forwardRef(({ ...props }, ref) => {
+const IndicatorWrapper = React.forwardRef(({ ...props }: any, ref?: any) => {
   return <View {...props} ref={ref} />;
 });
 
-const LabelWrapper = React.forwardRef(({ ...props }, ref) => {
+const LabelWrapper = React.forwardRef(({ ...props }: any, ref?: any) => {
   return <Text {...props} ref={ref} />;
 });
 
-const IconWrapper = React.forwardRef(({ ...props }, ref) => {
+const IconWrapper = React.forwardRef(({ ...props }: any, ref?: any) => {
   return <PrimitiveIcon {...props} ref={ref} />;
 });
 
