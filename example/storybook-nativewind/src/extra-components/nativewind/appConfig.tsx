@@ -8,7 +8,7 @@ export const kitchensink = {
     'https://qr.expo.dev/eas-update?slug=exp&projectId=42cce9b5-9fbe-4572-92ba-fc43b2437a85&groupId=432e8802-2a73-4498-8301-5ac41664678e',
 };
 
-export const storybookConfig = {
+export const appStoryConfig = {
   updateIds: {
     android: '586d1726-8104-4426-bf53-3beac0a476c0',
     ios: '77374791-3bec-4258-a45b-878c1d266749',
