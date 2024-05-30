@@ -3,20 +3,38 @@ import React, { useRef, useState } from 'react';
 import NextImage from 'next/image';
 import { Expand } from '../../apps/dashboard-app/Expand';
 import { Resizable } from 're-resizable';
-import kitchensink from './kitchensink';
 
 //function to detect if the user is on a web browser
-function checkPlatform() {
+function checkPlatform({
+  android,
+  ios,
+  uri,
+}: {
+  android: string;
+  ios: string;
+  uri: string;
+}) {
   if (/android/i.test(navigator.userAgent)) {
-    window.location.href = `exp://u.expo.dev/update/${kitchensink.updateIds.android}`;
+    window.location.href = `exp://u.expo.dev/update/${android}`;
   } else if (/iPad|iPhone|iPod/i.test(navigator.userAgent)) {
-    window.location.href = `exp://u.expo.dev/update/${kitchensink.updateIds.ios}`;
+    window.location.href = `exp://u.expo.dev/update/${ios}`;
   } else if (typeof window !== 'undefined' && typeof document !== 'undefined') {
-    window.open('https://ui-example-nativewind.vercel.app/');
+    window.open(uri);
   }
 }
 
-function Responsiveness() {
+function Responsiveness({
+  iframeUri,
+  qrCodeUri,
+  updateIds,
+}: {
+  iframeUri: string;
+  qrCodeUri: string;
+  updateIds: {
+    android: string;
+    ios: string;
+  };
+}) {
   const resizableRef = useRef<any>(null);
   const [isMobile, setIsMobile] = useState(true);
   return (
@@ -148,7 +166,7 @@ function Responsiveness() {
 
         <Box h="100%" w="100%" overflow="hidden">
           <iframe
-            src="https://ui-example-nativewind.vercel.app/"
+            src={iframeUri}
             title="NativeBase v3 Dashboard Example"
             style={{
               transformOrigin: '0px 0px',
@@ -269,7 +287,13 @@ function Responsiveness() {
                 display: 'flex',
               },
             }}
-            onPress={checkPlatform}
+            onPress={() =>
+              checkPlatform({
+                android: updateIds?.android,
+                ios: updateIds?.ios,
+                uri: iframeUri,
+              })
+            }
           >
             <OpenInNewIcon />
             <Text
@@ -340,12 +364,7 @@ function Responsiveness() {
             },
           }}
         >
-          <NextImage
-            alt="qr-code"
-            width={90}
-            height={90}
-            src={`https://qr.expo.dev/eas-update?slug=exp&projectId=42cce9b5-9fbe-4572-92ba-fc43b2437a85&groupId=432e8802-2a73-4498-8301-5ac41664678e`}
-          />
+          <NextImage alt="qr-code" width={90} height={90} src={qrCodeUri} />
         </Box>
       </Box>
     </Box>

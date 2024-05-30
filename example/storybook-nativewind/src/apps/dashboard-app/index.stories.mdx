@@ -6,7 +6,7 @@ toc: false
 
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
 import Responsiveness from '../../extra-components/nativewind/Responsive';
-
+import { kitchensink } from '../../extra-components/nativewind/appConfig';
 
 <Meta title="with-nativewind/Apps/Dashboard App" />
 
@@ -14,6 +14,6 @@ import Responsiveness from '../../extra-components/nativewind/Responsive';
 
 This [Dashboard App](https://ui-example-nativewind.vercel.app/) is built using `gluestack-ui` components styled with `NativeWind`.
 
-<Responsiveness />
+<Responsiveness {...kitchensink} />
 
 GitHub link for this [Dashboard App](https://github.com/gluestack/ui-example-nativewind).

@@ -5,8 +5,8 @@ toc: false
 ---
 
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
-import Responsiveness from '../../extra-components/nativewind/ResponsiveStorybook';
-
+import Responsiveness from '../../extra-components/nativewind/Responsive';
+import { appStoryConfig } from '../../extra-components/nativewind/appConfig';
 
 <Meta title="with-nativewind/Apps/Storybook App" />
 
@@ -14,5 +14,4 @@ import Responsiveness from '../../extra-components/nativewind/ResponsiveStoryboo
 
 This is a [Storybook App](https://storybook-v2.gluestack.io/?path=/story/stories-accordion--accordion) of `gluestack-ui` components styled with `NativeWind`.
 
-<Responsiveness />
-
+<Responsiveness {...appStoryConfig} />
