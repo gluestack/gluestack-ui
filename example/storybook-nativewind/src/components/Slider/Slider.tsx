@@ -1,28 +1,13 @@
 import React from 'react';
 import {
-  Text,
-  VStack,
-  HStack,
-  Box,
-  Icon,
-  Heading,
-  Tooltip,
-  TooltipContent,
-  Button,
-  Center,
-} from '@gluestack-ui/themed';
-
-import {
   Slider,
   SliderTrack,
   SliderFilledTrack,
   SliderThumb,
 } from '@/components/ui/slider';
 
-import { Volume, Volume2Icon, LightbulbIcon } from 'lucide-react-native';
-
-const SliderBasic = ({ value, ...props }: any) => {
-  const [sliderValue, setSliderValue] = React.useState(value);
+const SliderBasic = ({ ...props }: any) => {
+  const [sliderValue, setSliderValue] = React.useState(props.value);
   const handleChange = (value: any) => {
     setSliderValue(value);
   };
@@ -49,22 +34,4 @@ SliderBasic.description =
 
 export default SliderBasic;
 
-export {
-  Slider,
-  SliderTrack,
-  SliderFilledTrack,
-  SliderThumb,
-  VStack,
-  Volume,
-  HStack,
-  Volume2Icon,
-  Text,
-  Box,
-  LightbulbIcon,
-  Icon,
-  Heading,
-  Tooltip,
-  TooltipContent,
-  Button,
-  Center,
-};
+export { Slider, SliderTrack, SliderFilledTrack, SliderThumb };

@@ -7,6 +7,7 @@ module.exports = {
     './../storybook-nativewind/components/**/*.{html,js,jsx,ts,tsx,mdx}',
     './../../packages/**/*.{html,js,jsx,ts,tsx,mdx}',
   ],
+  safelist: ['border-error-700'],
   presets: [require('nativewind/preset')],
   theme: {
     extend: {

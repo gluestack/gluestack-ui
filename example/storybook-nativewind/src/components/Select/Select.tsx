@@ -23,22 +23,18 @@ const SelectBasic = ({ size = 'md', variant = 'outline', ...props }: any) => {
       </SelectTrigger>
       <SelectPortal>
         <SelectBackdrop />
-        <SelectContent>
+        <SelectContent className="bg-red-200 web:w-[300px]">
           <SelectDragIndicatorWrapper>
             <SelectDragIndicator />
           </SelectDragIndicatorWrapper>
-          <SelectItem label="UX Research" value="UX Research" />
-          <SelectItem label="Web Development" value="Web Development" />
+          <SelectItem label="UX Research" value="ux" />
+          <SelectItem label="Web Development" value="web" />
           <SelectItem
-            label="Cross Platform Development Process"
-            value="Cross Platform Development Process"
+            label="Cross Platform Development Process Cross Platform Development Process"
+            value="cross-platform"
           />
-          <SelectItem
-            label="UI Designing"
-            value="UI Designing"
-            isDisabled={true}
-          />
-          <SelectItem label="Backend Development" value="Backend Development" />
+          <SelectItem label="UI Designing" value="ui" isDisabled={true} />
+          <SelectItem label="Backend Development" value="backend" />
         </SelectContent>
       </SelectPortal>
     </Select>

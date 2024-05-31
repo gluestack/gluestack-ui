@@ -1,25 +1,6 @@
-import React, { useState } from 'react';
-import {
-  Button,
-  ButtonText,
-  VStack,
-  HStack,
-  Icon,
-  Box,
-  FormControl,
-  FormControlLabel,
-  FormControlLabelText,
-  Input,
-  InputField,
-  InputIcon,
-  InputSlot,
-  AddIcon,
-  Image,
-  Text,
-  Center,
-} from '@/components/ui';
-import { config } from '@gluestack-ui/config';
-
+import React from 'react';
+import { Button, ButtonText } from '@/components/ui/button';
+import { Center } from '@/components/ui/center';
 import {
   Actionsheet,
   ActionsheetIcon,
@@ -56,10 +37,10 @@ const ActionsheetBasic = ({ showActionsheetProp, ...props }: any) => {
           <ActionsheetDragIndicatorWrapper>
             <ActionsheetDragIndicator />
           </ActionsheetDragIndicatorWrapper>
-          <ActionsheetItem onPress={handleClose} isDisabled>
+          <ActionsheetItem onPress={handleClose}>
             <ActionsheetItemText>Delete</ActionsheetItemText>
           </ActionsheetItem>
-          <ActionsheetItem onPress={handleClose}>
+          <ActionsheetItem isDisabled onPress={handleClose}>
             <ActionsheetItemText>Share</ActionsheetItemText>
           </ActionsheetItem>
           <ActionsheetItem onPress={handleClose}>
@@ -77,40 +58,12 @@ const ActionsheetBasic = ({ showActionsheetProp, ...props }: any) => {
   );
 };
 
-function FigmaActionsheetStory({ ...props }: any) {
-  return (
-    <Box w={900}>
-      <ActionsheetContent {...props} w="$full" _experimentalContent={true}>
-        <ActionsheetDragIndicatorWrapper>
-          <ActionsheetDragIndicator />
-        </ActionsheetDragIndicatorWrapper>
-        <ActionsheetItem>
-          <ActionsheetItemText>Delete</ActionsheetItemText>
-        </ActionsheetItem>
-        <ActionsheetItem>
-          <ActionsheetItemText>Share</ActionsheetItemText>
-        </ActionsheetItem>
-        <ActionsheetItem>
-          <ActionsheetItemText>Play</ActionsheetItemText>
-        </ActionsheetItem>
-        <ActionsheetItem>
-          <ActionsheetItemText>Favourite</ActionsheetItemText>
-        </ActionsheetItem>
-        <ActionsheetItem>
-          <ActionsheetItemText>Cancel</ActionsheetItemText>
-        </ActionsheetItem>
-      </ActionsheetContent>
-    </Box>
-  );
-}
-
 ActionsheetBasic.description =
   'This is a basic Actionsheet component example. Actionsheets are used to display a list of actions that can be performed on a page.';
 
 export default ActionsheetBasic;
 
 export {
-  FigmaActionsheetStory,
   Actionsheet,
   ActionsheetIcon,
   ActionsheetBackdrop,
@@ -124,22 +77,4 @@ export {
   ActionsheetSectionList,
   ActionsheetSectionHeaderText,
   ActionsheetVirtualizedList,
-  Button,
-  ButtonText,
-  VStack,
-  HStack,
-  Icon,
-  Box,
-  FormControl,
-  FormControlLabel,
-  FormControlLabelText,
-  Input,
-  InputField,
-  InputIcon,
-  InputSlot,
-  AddIcon,
-  Image,
-  Text,
-  useState,
-  config,
 };

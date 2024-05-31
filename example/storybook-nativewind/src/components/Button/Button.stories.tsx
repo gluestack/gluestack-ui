@@ -33,7 +33,7 @@ const ButtonMeta: ComponentMeta<typeof Button> = {
     },
     size: {
       control: 'select',
-      options: ['xs', 'sm', 'md', 'lg', 'xl'],
+      options: ['xs', 'sm', 'md', 'lg'],
     },
     isHovered: {
       control: 'boolean',
