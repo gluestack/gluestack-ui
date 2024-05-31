@@ -6,12 +6,13 @@ import { Image } from '@/components/ui/image';
 import { Text } from '@/components/ui/text';
 import { VStack } from '@/components/ui/vstack';
 import { Switch } from '@/components/ui/switch';
+import { ScrollView } from '@/components/ui/scroll-view';
 
 const SkeletonCard = () => {
   const [isLoaded, setIsLoaded] = React.useState(false);
 
   return (
-    <VStack>
+    <VStack className="w-full h-full">
       <Switch
         value={isLoaded}
         onToggle={() => {
@@ -19,13 +20,13 @@ const SkeletonCard = () => {
         }}
         className="mb-10"
       />
-      <HStack className="gap-3">
+      <ScrollView className="gap-3 w-full" horizontal={true}>
         {Array(3)
           .fill(0)
           .map((_, index) => (
             <Box
               key={index}
-              className="w-[325px] h-full gap-4 p-3 border border-gray-200 rounded-md"
+              className="w-[250px] gap-4 p-3 h-[50%] web:h-full mx-2 border border-outline-200 rounded-md"
             >
               <Skeleton
                 variant="sharp"
@@ -40,7 +41,7 @@ const SkeletonCard = () => {
                 />
               </Skeleton>
               <SkeletonText _lines={4} className="h-3" isLoaded={isLoaded}>
-                <Text className="font-medium">
+                <Text className="" size="sm">
                   Lorem ipsum dolor sit amet conseur aing ae elit. Deserunt ipsa
                   libero eius sunt quae is voluptas
                 </Text>
@@ -64,12 +65,19 @@ const SkeletonCard = () => {
                   className="h-2 w-2/5"
                   isLoaded={isLoaded}
                 >
-                  <Text className="font-medium">username</Text>
+                  <Box>
+                    <Text className="" size="xs">
+                      username
+                    </Text>
+                    <Text className="" size="xs">
+                      username
+                    </Text>
+                  </Box>
                 </SkeletonText>
               </HStack>
             </Box>
           ))}
-      </HStack>
+      </ScrollView>
     </VStack>
   );
 };

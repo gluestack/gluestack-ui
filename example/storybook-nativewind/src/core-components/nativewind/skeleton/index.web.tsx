@@ -5,7 +5,7 @@ const Skeleton = ({
   className,
   variant,
   children,
-  speed,
+  speed = 2,
   startColor = 'bg-background-200',
   isLoaded = false,
   ...props
@@ -31,7 +31,6 @@ const SkeletonText = ({
   _lines,
   isLoaded = false,
   startColor = 'bg-background-200',
-  speed = 1,
   gap = 2,
   children,
   ...props
@@ -48,7 +47,6 @@ const SkeletonText = ({
             <div
               key={index}
               className={`animate-pulse ${startColor} ${skeletonTextStyle({
-                speed,
                 class: className,
               })}`}
               {...props}
@@ -60,7 +58,6 @@ const SkeletonText = ({
       return (
         <div
           className={`animate-pulse ${startColor} ${skeletonTextStyle({
-            speed,
             class: className,
           })}`}
           {...props}
