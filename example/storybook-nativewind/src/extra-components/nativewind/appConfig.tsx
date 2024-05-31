@@ -26,7 +26,7 @@ export const starterKit = {
   },
   iframeUri: 'https://gluestack-ui-starter-kits.vercel.app/',
   qrCodeUri:
-    'https://qr.expo.dev/eas-update?slug=exp&projectId=46cc2b6b-d237-419f-b683-e7b9f451a2e6&groupId=0af31d0c-13fe-4bb9-a0c1-a39bad6a69f4',
+    'https://qr.expo.dev/eas-update?slug=exp&projectId=148098d1-7e19-4326-9814-dd661a192776&groupId=1108da79-732d-4d9f-8ee6-487a8c44151c',
 };
 
 export default kitchensink;
