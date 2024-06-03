@@ -79,22 +79,23 @@ const UICheckbox = createCheckbox({
       ? withStyleContext(View, SCOPE)
       : withStyleContextAndStates(Pressable, SCOPE),
   Group: Platform.OS === 'web' ? View : withStates(View),
-  Icon: Platform.OS === 'web' ? PrimitiveIcon : withStates(IconWrapper),
-  Label: Platform.OS === 'web' ? Text : withStates(LabelWrapper),
-  Indicator: Platform.OS === 'web' ? View : withStates(IndicatorWrapper),
+  Icon: Platform.OS === 'web' ? IconWrapper : withStates(IconWrapper),
+  Label: Platform.OS === 'web' ? LabelWrapper : withStates(LabelWrapper),
+  Indicator:
+    Platform.OS === 'web' ? IndicatorWrapper : withStates(IndicatorWrapper),
 });
 
 cssInterop(UICheckbox, { className: 'style' });
 cssInterop(UICheckbox.Group, { className: 'style' });
 cssInterop(LabelWrapper, { className: 'style' });
 cssInterop(IndicatorWrapper, { className: 'style' });
-// @ts-ignore
 cssInterop(IconWrapper, {
   className: {
     target: 'style',
     nativeStyleToProp: {
       height: true,
       width: true,
+      // @ts-ignore
       fill: true,
       color: true,
       stroke: true,
