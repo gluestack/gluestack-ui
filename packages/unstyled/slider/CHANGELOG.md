@@ -1,5 +1,11 @@
 # @gluestack-ui/slider
 
+## 0.1.24
+
+### Patch Changes
+
+- Fixed slider disabled state
+
 ## 0.1.23
 
 ### Patch Changes
