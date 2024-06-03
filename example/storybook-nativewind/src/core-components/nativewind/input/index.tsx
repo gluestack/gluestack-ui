@@ -145,10 +145,8 @@ const inputFieldStyle = tva({
   },
 });
 
-// cssInterop(InputWrapper, { className: 'style' });
 cssInterop(UIInput.Slot, { className: 'style' });
 cssInterop(UIInput.Input, { className: 'style' });
-// @ts-ignore
 cssInterop(UIInput.Icon, {
   className: {
     target: 'style',

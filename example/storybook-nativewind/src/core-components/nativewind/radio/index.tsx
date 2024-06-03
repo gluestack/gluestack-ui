@@ -135,28 +135,50 @@ const UIRadio = createRadio({
       ? withStyleContext(View, SCOPE)
       : withStyleContextAndStates(Pressable, SCOPE),
   Group: View,
-  Icon: Platform.OS === 'web' ? PrimitiveIcon : withStates(IconWrapper),
-  Indicator: Platform.OS === 'web' ? View : withStates(IndicatorWrapper),
-  Label: Platform.OS === 'web' ? Text : withStates(LabelWrapper),
+  Icon:
+    Platform.OS === 'web'
+      ? cssInterop(PrimitiveIcon, {
+          className: {
+            target: 'style',
+            nativeStyleToProp: {
+              height: true,
+              width: true,
+              // @ts-ignore
+              fill: true,
+              color: true,
+              stroke: true,
+            },
+          },
+        })
+      : withStates(
+          cssInterop(IconWrapper, {
+            className: {
+              target: 'style',
+              nativeStyleToProp: {
+                height: true,
+                width: true,
+                // @ts-ignore
+                fill: true,
+                color: true,
+                stroke: true,
+              },
+            },
+          })
+        ),
+  // @ts-ignore
+  Indicator:
+    Platform.OS === 'web'
+      ? cssInterop(View, { className: 'style' })
+      : withStates(cssInterop(IndicatorWrapper, { className: 'style' })),
+  // @ts-ignore
+  Label:
+    Platform.OS === 'web'
+      ? cssInterop(Text, { className: 'style' })
+      : withStates(cssInterop(LabelWrapper, { className: 'style' })),
 });
 
 cssInterop(UIRadio, { className: 'style' });
 cssInterop(UIRadio.Group, { className: 'style' });
-cssInterop(IndicatorWrapper, { className: 'style' });
-cssInterop(LabelWrapper, { className: 'style' });
-// @ts-ignore
-cssInterop(IconWrapper, {
-  className: {
-    target: 'style',
-    nativeStyleToProp: {
-      height: true,
-      width: true,
-      fill: true,
-      color: true,
-      stroke: true,
-    },
-  },
-});
 
 type IRadioProps = Omit<React.ComponentProps<typeof UIRadio>, 'context'> &
   VariantProps<typeof radioStyle>;

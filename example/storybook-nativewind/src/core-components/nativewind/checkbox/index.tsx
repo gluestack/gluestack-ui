@@ -79,28 +79,50 @@ const UICheckbox = createCheckbox({
       ? withStyleContext(View, SCOPE)
       : withStyleContextAndStates(Pressable, SCOPE),
   Group: Platform.OS === 'web' ? View : withStates(View),
-  Icon: Platform.OS === 'web' ? PrimitiveIcon : withStates(IconWrapper),
-  Label: Platform.OS === 'web' ? Text : withStates(LabelWrapper),
-  Indicator: Platform.OS === 'web' ? View : withStates(IndicatorWrapper),
+  Icon:
+    Platform.OS === 'web'
+      ? cssInterop(PrimitiveIcon, {
+          className: {
+            target: 'style',
+            nativeStyleToProp: {
+              height: true,
+              width: true,
+              // @ts-ignore
+              fill: true,
+              color: true,
+              stroke: true,
+            },
+          },
+        })
+      : withStates(
+          cssInterop(IconWrapper, {
+            className: {
+              target: 'style',
+              nativeStyleToProp: {
+                height: true,
+                width: true,
+                // @ts-ignore
+                fill: true,
+                color: true,
+                stroke: true,
+              },
+            },
+          })
+        ),
+  // @ts-ignore
+  Label:
+    Platform.OS === 'web'
+      ? cssInterop(Text, { className: 'style' })
+      : withStates(cssInterop(LabelWrapper, { className: 'style' })),
+  // @ts-ignore
+  Indicator:
+    Platform.OS === 'web'
+      ? cssInterop(View, { className: 'style' })
+      : withStates(cssInterop(IndicatorWrapper, { className: 'style' })),
 });
 
 cssInterop(UICheckbox, { className: 'style' });
 cssInterop(UICheckbox.Group, { className: 'style' });
-cssInterop(LabelWrapper, { className: 'style' });
-cssInterop(IndicatorWrapper, { className: 'style' });
-// @ts-ignore
-cssInterop(IconWrapper, {
-  className: {
-    target: 'style',
-    nativeStyleToProp: {
-      height: true,
-      width: true,
-      fill: true,
-      color: true,
-      stroke: true,
-    },
-  },
-});
 
 const checkboxStyle = tva({
   base: 'group/checkbox flex-row items-center justify-start web:cursor-pointer data-[disabled=true]:cursor-not-allowed',
