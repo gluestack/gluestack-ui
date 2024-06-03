@@ -16,8 +16,7 @@ import {
 
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
-import { withStyleContext } from '@gluestack-ui/nativewind-utils/withStyleContext';
-import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withStyleContextAndStates';
+import { withStates } from '@gluestack-ui/nativewind-utils/withStates';
 import { cssInterop } from 'nativewind';
 import {
   Motion,
@@ -27,7 +26,16 @@ import {
 
 const PrimitiveIcon = React.forwardRef(
   (
-    { height, width, fill, color, size, stroke, as: AsComp, ...props }: any,
+    {
+      height,
+      width,
+      fill,
+      color,
+      size,
+      stroke = 'currentColor',
+      as: AsComp,
+      ...props
+    }: any,
     ref?: any
   ) => {
     const sizeProps = useMemo(() => {
@@ -61,14 +69,15 @@ const PrimitiveIcon = React.forwardRef(
   }
 );
 
+const ItemWrapper = React.forwardRef(({ ...props }: any, ref?: any) => {
+  return <Pressable {...props} ref={ref} />;
+});
+
 const AnimatedPressable = createMotionAnimatedComponent(Pressable);
 export const UIActionsheet = createActionsheet({
   Root: View,
-  Content: withStyleContext(Motion.View),
-  Item:
-    Platform.OS === 'web'
-      ? withStyleContext(Pressable)
-      : withStyleContextAndStates(Pressable),
+  Content: Motion.View,
+  Item: Platform.OS === 'web' ? ItemWrapper : withStates(ItemWrapper),
   ItemText: Text,
   DragIndicator: View,
   IndicatorWrapper: View,
@@ -84,7 +93,7 @@ export const UIActionsheet = createActionsheet({
 
 cssInterop(UIActionsheet, { className: 'style' });
 cssInterop(UIActionsheet.Content, { className: 'style' });
-cssInterop(UIActionsheet.Item, { className: 'style' });
+cssInterop(ItemWrapper, { className: 'style' });
 cssInterop(UIActionsheet.ItemText, { className: 'style' });
 cssInterop(UIActionsheet.DragIndicator, { className: 'style' });
 cssInterop(UIActionsheet.DragIndicatorWrapper, { className: 'style' });
@@ -98,11 +107,12 @@ cssInterop(UIActionsheet.Icon, {
   className: {
     target: 'style',
     nativeStyleToProp: {
-      height: 'height',
-      width: 'width',
-      //@ts-ignore
-      fill: 'fill',
-      color: 'color',
+      height: true,
+      width: true,
+      // @ts-ignore
+      fill: true,
+      color: true,
+      stroke: true,
     },
   },
 });
@@ -114,7 +124,7 @@ const actionsheetContentStyle = tva({
 });
 
 const actionsheetItemStyle = tva({
-  base: 'w-full flex-row items-center p-3 rounded-sm disabled:opacity-40 disabled:web:pointer-events-auto disabled:web:cursor-not-allowed hover:bg-background-50 active:bg-background-100 focus:bg-background-100 web:focus-visible:bg-background-100',
+  base: 'w-full flex-row items-center p-3 rounded-sm data-[disabled=true]:opacity-40 data-[disabled=true]:web:pointer-events-auto data-[disabled=true]:web:cursor-not-allowed hover:bg-background-50 active:bg-background-100 data-[focus=true]:bg-background-100 web:data-[focus-visible=true]:bg-background-100',
 });
 
 const actionsheetItemTextStyle = tva({
@@ -222,7 +232,7 @@ const actionsheetSectionHeaderTextStyle = tva({
 });
 
 const actionsheetIconStyle = tva({
-  base: 'stroke-background-500 fill-none',
+  base: 'text-background-500 fill-none',
   variants: {
     size: {
       '2xs': 'h-3 w-3',

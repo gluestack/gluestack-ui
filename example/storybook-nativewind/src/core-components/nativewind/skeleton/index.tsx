@@ -87,7 +87,7 @@ const SkeletonText = forwardRef(
       _lines,
       isLoaded = false,
       startColor = 'bg-background-200',
-      gap,
+      gap = 2,
       children,
       ...props
     }: ISkeletonTextProps,
@@ -95,17 +95,24 @@ const SkeletonText = forwardRef(
   ) => {
     if (!isLoaded) {
       if (_lines) {
-        return Array.from({ length: _lines }).map((_, index) => (
-          <Skeleton
-            key={index}
-            className={`${startColor} ${skeletonTextStyle({
+        return (
+          <View
+            className={`${skeletonTextStyle({
               gap,
-              class: className,
             })}`}
-            {...props}
             ref={ref}
-          />
-        ));
+          >
+            {Array.from({ length: _lines }).map((_, index) => (
+              <Skeleton
+                key={index}
+                className={`${startColor} ${skeletonTextStyle({
+                  class: className,
+                })}`}
+                {...props}
+              />
+            ))}
+          </View>
+        );
       } else {
         return (
           <Skeleton

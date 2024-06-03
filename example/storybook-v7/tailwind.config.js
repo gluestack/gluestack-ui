@@ -7,18 +7,7 @@ module.exports = {
     './../storybook-nativewind/components/**/*.{html,js,jsx,ts,tsx,mdx}',
     './../../packages/**/*.{html,js,jsx,ts,tsx,mdx}',
   ],
-  safelist: [
-    'gap-x-2',
-    'gap-y-6',
-    'pl-4',
-    'flex-wrap',
-    'mb-12',
-    'basis-[10%]',
-    {
-      pattern:
-        /bg-(primary|secondary|tertiary|error|success|warning|muted|info|typography|outline|background)-(0|50|100|200|300|400|500|600|700|800|900|950|light|dark|white|gray|black)/,
-    },
-  ],
+  safelist: ['border-error-700'],
   presets: [require('nativewind/preset')],
   theme: {
     extend: {

@@ -1,0 +1,144 @@
+---
+title: Dark Mode 
+
+description: Customizing the theme in gluestack-ui with NativeWind for different color schemes and color mode support.
+
+showHeader: true
+---
+
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+
+<Meta title="with-nativewind/Home/Theme Configuration/Dark Mode" />
+
+
+## Color Scheme
+
+gluestack-ui provides two ways of switching the color scheme or color mode: using CSS variables and using the `dark:` className support with `nativewind`.
+
+### Using CSS Variables
+
+With CSS variables, you can configure multiple color schemes in the `config.ts` file. This file contains two predefined color schemes: `light` and `dark`. It utilizes the [vars](https://www.nativewind.dev/v4/api/vars) functionality from nativewind to switch token values when the color mode is changed. This approach results in less code and makes configuring tokens for different color schemes easier.
+
+### Usage
+
+Let's look at an example where we define the `primary` token and switch it.
+
+1. First, define the color token in your `tailwind.config.js` file and assign a variable value as shown below, following Tailwind's recommendation for [using CSS variables in Tailwind](https://tailwindcss.com/docs/customizing-colors#using-css-variables).
+
+```js
+// tailwind.config.js
+
+module.exports = {
+  theme: {
+    extend: {
+      colors: {
+        primary: 'rgb(var(--color-primary)/<alpha-value>)'
+      }
+    }
+  }
+}
+```
+
+2. Now, define the values of that CSS variable for the `light` and `dark` color schemes in the `config.ts` file as shown below. [Reference](https://www.nativewind.dev/v4/guides/themes).
+
+```js
+// config.ts
+
+export const config = {
+  light: vars({
+    '--color-primary': '51 51 51',
+  }),
+  dark: vars({
+    '--color-primary': '240 240 240',
+  })
+}
+```
+
+3. Pass the color mode to the `GluestackUIProvider` using the `mode` prop and use the tokens inside your code.
+
+```js
+// App.tsx
+
+import { GluestackUIProvider } from "@/components/ui/gluestack-ui-provider";
+import { Box } from "@/components/ui/box";
+import { Button, ButtonText } from "@/components/ui/Button";
+import { useState } from 'react';
+
+export default function App() {
+  const [colorMode, setColorMode] = useState<"light" | "dark">("light");
+
+  return (
+    <GluestackUIProvider mode={colorMode}>
+      <Box className="bg-primary flex-1">
+        <Button
+          onPress={() => {
+            setColorMode(colorMode === "light" ? "dark" : "light");
+          }}
+        >
+          <ButtonText>Toggle color mode</ButtonText>
+        </Button>
+      </Box>
+    </GluestackUIProvider>
+  )
+}
+```
+
+## Using Tailwind Dark Mode
+
+gluestack-ui also supports Tailwind's default `dark:` concept. Let's see how to use it with an example.
+
+```js
+// App.tsx
+
+import { GluestackUIProvider } from "@/components/ui/gluestack-ui-provider";
+import { Box } from "@/components/ui/box";
+import { Button, ButtonText } from "@/components/ui/Button";
+import { useState } from 'react';
+
+export default function App() {
+  const [colorMode, setColorMode] = useState<"light" | "dark">("light");
+
+  return (
+    <GluestackUIProvider mode={colorMode}>
+      <Box className="bg-white dark:bg-black flex-1">
+        <Button
+          onPress={() => {
+            setColorMode(colorMode === "light" ? "dark" : "light");
+          }}
+        >
+          <ButtonText>Toggle color mode</ButtonText>
+        </Button>
+      </Box>
+    </GluestackUIProvider>
+  )
+}
+```
+
+In the above example, we switch the background color of our Box component in dark mode using the `dark:` syntax. To use dark mode, we need to change the `darkMode` strategy to `"class"` for the web and `"media"` for native devices in the `tailwind.config.js` file. You can achieve this by setting the `DARK_MODE` environment variable as shown below.
+
+```js
+// tailwind.config.js
+
+module.exports = {
+  darkMode: process.env.DARK_MODE ? process.env.DARK_MODE : 'media',
+  // rest of the config
+}
+```
+
+After this, we need to update our scripts in the `package.json` file as shown below:
+
+```json
+{
+  "scripts": {
+    "android": "DARK_MODE=media expo start --android",
+    "ios": "DARK_MODE=media expo start --ios",
+    "web": "DARK_MODE=class expo start --web"
+  }
+}
+```
+
+For Next.js projects, you can directly set the `darkMode` strategy to `"class"` without needing to change the scripts.
+
+> Note: This is a temporary solution until we fix the issue with nativewind for the `darkMode:"class"` strategy.
+
+Please refer to the Tailwind CSS dark mode [documentation](https://tailwindcss.com/docs/dark-mode) for more information and core concepts of dark mode.

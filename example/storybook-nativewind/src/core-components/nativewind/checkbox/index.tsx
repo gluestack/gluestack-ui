@@ -14,9 +14,30 @@ import { withStates } from '@gluestack-ui/nativewind-utils/withStates';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 import { Platform } from 'react-native';
 
+const IndicatorWrapper = React.forwardRef(({ ...props }: any, ref?: any) => {
+  return <View {...props} ref={ref} />;
+});
+
+const LabelWrapper = React.forwardRef(({ ...props }: any, ref?: any) => {
+  return <Text {...props} ref={ref} />;
+});
+
+const IconWrapper = React.forwardRef(({ ...props }: any, ref?: any) => {
+  return <PrimitiveIcon {...props} ref={ref} />;
+});
+
 const PrimitiveIcon = React.forwardRef(
   (
-    { height, width, fill, color, size, stroke, as: AsComp, ...props }: any,
+    {
+      height,
+      width,
+      fill,
+      color,
+      size,
+      stroke = 'currentColor',
+      as: AsComp,
+      ...props
+    }: any,
     ref?: any
   ) => {
     const sizeProps = useMemo(() => {
@@ -58,24 +79,25 @@ const UICheckbox = createCheckbox({
       ? withStyleContext(View, SCOPE)
       : withStyleContextAndStates(Pressable, SCOPE),
   Group: Platform.OS === 'web' ? View : withStates(View),
-  Icon: Platform.OS === 'web' ? PrimitiveIcon : withStates(PrimitiveIcon),
-  Label: Platform.OS === 'web' ? Text : withStates(Text),
-  Indicator: Platform.OS === 'web' ? View : withStates(View),
+  Icon: Platform.OS === 'web' ? PrimitiveIcon : withStates(IconWrapper),
+  Label: Platform.OS === 'web' ? Text : withStates(LabelWrapper),
+  Indicator: Platform.OS === 'web' ? View : withStates(IndicatorWrapper),
 });
 
 cssInterop(UICheckbox, { className: 'style' });
 cssInterop(UICheckbox.Group, { className: 'style' });
-cssInterop(UICheckbox.Label, { className: 'style' });
-cssInterop(UICheckbox.Indicator, { className: 'style' });
-cssInterop(UICheckbox.Icon, {
+cssInterop(LabelWrapper, { className: 'style' });
+cssInterop(IndicatorWrapper, { className: 'style' });
+// @ts-ignore
+cssInterop(IconWrapper, {
   className: {
     target: 'style',
     nativeStyleToProp: {
-      height: 'height',
-      width: 'width',
-      //@ts-ignore
-      fill: 'fill',
-      color: 'color',
+      height: true,
+      width: true,
+      fill: true,
+      color: true,
+      stroke: true,
     },
   },
 });
@@ -114,7 +136,7 @@ const checkboxLabelStyle = tva({
 });
 
 const checkboxIconStyle = tva({
-  base: 'data-[disabled=true]:opacity-40 stroke-typography-50 fill-none',
+  base: 'data-[disabled=true]:opacity-40 text-typography-50 fill-none',
 
   parentVariants: {
     size: {

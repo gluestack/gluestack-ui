@@ -16,7 +16,16 @@ const SCOPE = 'INPUT';
 
 const PrimitiveIcon = React.forwardRef(
   (
-    { height, width, fill, color, size, stroke, as: AsComp, ...props }: any,
+    {
+      height,
+      width,
+      fill,
+      color,
+      size,
+      stroke = 'currentColor',
+      as: AsComp,
+      ...props
+    }: any,
     ref?: any
   ) => {
     const sizeProps = useMemo(() => {
@@ -50,12 +59,16 @@ const PrimitiveIcon = React.forwardRef(
   }
 );
 
+const InputWrapper = React.forwardRef(({ ...props }: any, ref?: any) => {
+  return <View {...props} ref={ref} />;
+});
+
 const UIInput = createInput({
   // @ts-ignore
   Root:
     Platform.OS === 'web'
       ? withStyleContext(View, SCOPE)
-      : withStyleContextAndStates(View, SCOPE),
+      : withStyleContextAndStates(InputWrapper, SCOPE),
   Icon: PrimitiveIcon,
   Slot: Pressable,
   Input: Platform.OS === 'web' ? TextInput : withStates(TextInput),
@@ -86,7 +99,7 @@ const inputStyle = tva({
 });
 
 const inputIconStyle = tva({
-  base: 'justify-center items-center stroke-typography-400 fill-none',
+  base: 'justify-center items-center text-typography-400 fill-none',
   parentVariants: {
     size: {
       '2xs': 'h-3 w-3',
@@ -129,7 +142,7 @@ const inputFieldStyle = tva({
   },
 });
 
-cssInterop(UIInput, { className: 'style' });
+cssInterop(InputWrapper, { className: 'style' });
 cssInterop(UIInput.Slot, { className: 'style' });
 cssInterop(UIInput.Input, { className: 'style' });
 // @ts-ignore
@@ -137,11 +150,12 @@ cssInterop(UIInput.Icon, {
   className: {
     target: 'style',
     nativeStyleToProp: {
-      height: 'height',
-      width: 'width',
-      //@ts-ignore
-      fill: 'fill',
-      color: 'color',
+      height: true,
+      width: true,
+      // @ts-ignore
+      fill: true,
+      color: true,
+      stroke: true,
     },
   },
 });

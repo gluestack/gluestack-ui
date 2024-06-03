@@ -1,6 +1,6 @@
 'use client';
 import { createAlert } from '@gluestack-ui/alert';
-import { View, Text, Platform } from 'react-native';
+import { View, Text } from 'react-native';
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import {
   withStyleContext,
@@ -10,7 +10,6 @@ import React, { useMemo } from 'react';
 import { Svg } from 'react-native-svg';
 import { cssInterop } from 'nativewind';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
-import { withStates } from '@gluestack-ui/nativewind-utils/withStates';
 
 const SCOPE = 'ALERT';
 
@@ -93,25 +92,34 @@ const alertIconStyle = tva({
   },
   parentVariants: {
     action: {
-      error: 'stroke-error-500',
-      warning: 'stroke-warning-500',
-      success: 'stroke-success-500',
-      info: 'stroke-info-500',
-      muted: 'stroke-secondary-500',
+      error: 'text-error-500',
+      warning: 'text-warning-500',
+      success: 'text-success-500',
+      info: 'text-info-500',
+      muted: 'text-secondary-500',
     },
   },
 });
 
 const PrimitiveIcon = React.forwardRef(
   (
-    { height, width, fill, color, size, stroke, as: AsComp, ...props }: any,
+    {
+      height,
+      width,
+      fill,
+      color,
+      size,
+      stroke = 'currentColor',
+      as: AsComp,
+      ...props
+    }: any,
     ref?: any
   ) => {
     const sizeProps = useMemo(() => {
       return size ? { size } : { height, width };
     }, [size, height, width]);
 
-    let colorProps =
+    const colorProps =
       stroke === 'currentColor' && color !== undefined ? color : stroke;
 
     if (AsComp) {
@@ -138,24 +146,29 @@ const PrimitiveIcon = React.forwardRef(
   }
 );
 
+const IconWrapper = React.forwardRef(({ ...props }: any, ref?: any) => {
+  return <PrimitiveIcon {...props} ref={ref} />;
+});
+
 export const UIAlert = createAlert({
   Root: withStyleContext(View, SCOPE),
   Text: Text,
-  Icon: Platform.OS === 'web' ? PrimitiveIcon : withStates(PrimitiveIcon),
+  Icon: IconWrapper,
 });
 
 cssInterop(UIAlert, { className: 'style' });
 //@ts-ignore
 cssInterop(UIAlert.Text, { className: 'style' });
-cssInterop(UIAlert.Icon, {
+cssInterop(IconWrapper, {
   className: {
     target: 'style',
     nativeStyleToProp: {
-      height: 'height',
-      width: 'width',
-      //@ts-ignore
-      fill: 'fill',
-      color: 'color',
+      height: true,
+      width: true,
+      // @ts-ignore
+      fill: true,
+      color: true,
+      stroke: true,
     },
   },
 });

@@ -51,11 +51,6 @@ function SliderThumb<StyledSliderThumb, StyledSliderThumbInteraction>(
         setIsPressed,
         setIsFocused,
         setIsFocusVisible,
-        isHoveredProp,
-        isDisabledProp,
-        isFocusedProp,
-        isFocusVisibleProp,
-        isPressedProp,
       } = React.useContext(SliderContext);
 
       const inputRef = React.useRef(null);
@@ -64,6 +59,7 @@ function SliderThumb<StyledSliderThumb, StyledSliderThumbInteraction>(
           index: 0,
           trackLayout,
           inputRef,
+          isDisabled,
           orientation: orientation,
         },
         state,
@@ -124,19 +120,18 @@ function SliderThumb<StyledSliderThumb, StyledSliderThumbInteraction>(
             });
           }}
           states={{
-            hover: isHovered || isHoveredProp,
-            disabled: isDisabled || isDisabledProp,
-            focus: isFocused || isFocusedProp,
-            focusVisible: isFocusVisible || isFocusVisibleProp,
-            active: isPressed || isPressedProp,
+            hover: isHovered,
+            disabled: isDisabled,
+            focus: isFocused,
+            focusVisible: isFocusVisible,
+            active: isPressed,
           }}
           dataSet={{
-            hover: isHovered || isHoveredProp ? 'true' : 'false',
-            disabled: isDisabled || isDisabledProp ? 'true' : 'false',
-            focus: isFocused || isFocusedProp ? 'true' : 'false',
-            focusVisible:
-              isFocusVisible || isFocusVisibleProp ? 'true' : 'false',
-            active: isPressed || isPressedProp ? 'true' : 'false',
+            hover: isHovered ? 'true' : 'false',
+            disabled: isDisabled ? 'true' : 'false',
+            focus: isFocused ? 'true' : 'false',
+            focusVisible: isFocusVisible ? 'true' : 'false',
+            active: isPressed ? 'true' : 'false',
           }}
           disabled={isDisabled}
           {...thumbProps}

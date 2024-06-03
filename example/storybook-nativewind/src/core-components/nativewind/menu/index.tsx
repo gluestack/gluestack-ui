@@ -3,9 +3,10 @@ import React from 'react';
 import { createMenu } from '@gluestack-ui/menu';
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
-import { Pressable, Text } from 'react-native';
+import { Pressable, Text, Platform } from 'react-native';
 import { Motion, AnimatePresence } from '@legendapp/motion';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
+import { withStates } from '@gluestack-ui/nativewind-utils/withStates';
 
 const menuStyle = tva({
   base: 'rounded bg-background-0 overflow-hidden border border-outline-200 p-1 shadow',
@@ -96,7 +97,7 @@ const Item = React.forwardRef(
 );
 export const UIMenu = createMenu({
   Root: Motion.View,
-  Item: Item,
+  Item: Platform.OS === 'web' ? Item : withStates(Item),
   Label: Text,
   Backdrop: BackdropPressable,
   AnimatePresence: AnimatePresence,

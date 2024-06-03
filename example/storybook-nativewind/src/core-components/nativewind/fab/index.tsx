@@ -15,7 +15,16 @@ import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 
 const PrimitiveIcon = React.forwardRef(
   (
-    { height, width, fill, color, size, stroke, as: AsComp, ...props }: any,
+    {
+      height,
+      width,
+      fill,
+      color,
+      size,
+      stroke = 'currentColor',
+      as: AsComp,
+      ...props
+    }: any,
     ref?: any
   ) => {
     const sizeProps = useMemo(() => {
@@ -65,11 +74,12 @@ cssInterop(UIFab.Icon, {
   className: {
     target: 'style',
     nativeStyleToProp: {
-      height: 'height',
-      width: 'width',
-      //@ts-ignore
-      fill: 'fill',
-      color: 'color',
+      height: true,
+      width: true,
+      // @ts-ignore
+      fill: true,
+      color: true,
+      stroke: true,
     },
   },
 });
@@ -141,7 +151,7 @@ const fabLabelStyle = tva({
 });
 
 const fabIconStyle = tva({
-  base: 'stroke-typography-50 hover:stroke-typography-0 active:stroke-typography-0',
+  base: 'text-typography-50 hover:text-typography-0 active:text-typography-0 fill-none',
   variants: {
     size: {
       '2xs': 'h-3 w-3',
