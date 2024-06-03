@@ -23,7 +23,7 @@ const SelectBasic = ({ size = 'md', variant = 'outline', ...props }: any) => {
       </SelectTrigger>
       <SelectPortal>
         <SelectBackdrop />
-        <SelectContent className="bg-red-200 web:w-[300px]">
+        <SelectContent>
           <SelectDragIndicatorWrapper>
             <SelectDragIndicator />
           </SelectDragIndicatorWrapper>
