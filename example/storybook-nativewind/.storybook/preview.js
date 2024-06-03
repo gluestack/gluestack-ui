@@ -35,7 +35,12 @@ export const parameters = {
           'Overview',
           ['Introduction', 'All Components'],
           'Getting Started',
-          ['Installation', 'Tooling Setup', 'Figma UI Kit'],
+          [
+            'Installation',
+            'Tooling Setup',
+            'VS Code Extensions',
+            'Figma UI Kit',
+          ],
           'Core Concepts',
           ['Accessibility', 'Universal'],
           'Theme Configuration',
