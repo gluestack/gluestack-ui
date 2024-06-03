@@ -67,7 +67,7 @@ const UIInput = createInput({
   // @ts-ignore
   Root:
     Platform.OS === 'web'
-      ? withStyleContext(View, SCOPE)
+      ? withStyleContext(InputWrapper, SCOPE)
       : withStyleContextAndStates(InputWrapper, SCOPE),
   Icon: PrimitiveIcon,
   Slot: Pressable,

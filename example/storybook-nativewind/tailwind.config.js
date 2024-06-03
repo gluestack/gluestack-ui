@@ -9,7 +9,7 @@ module.exports = {
   presets: [require('nativewind/preset')],
   safelist: [
     {
-      pattern: /border-(error)-(0|50|100|200|300|400|500|600|800|900|950)/,
+      pattern: /border-(error)-(0|50|100|200|300|400|500|600|700|800|900|950)/,
     },
   ],
   theme: {
