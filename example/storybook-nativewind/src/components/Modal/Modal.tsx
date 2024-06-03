@@ -9,17 +9,16 @@ import {
   ModalFooter,
   ModalHeader,
 } from '@/components/ui/modal';
-import { Center } from '@/components/ui/center';
 import { Heading } from '@/components/ui/heading';
 import { Icon, CloseIcon } from '@/components/ui/icon';
 import { Text } from '@/components/ui/text';
 
 const ModalBasic = () => {
   const [showModal, setShowModal] = useState(false);
-  const ref = React.useRef(null);
+
   return (
-    <Center h={300}>
-      <Button onPress={() => setShowModal(true)} ref={ref}>
+    <>
+      <Button onPress={() => setShowModal(true)}>
         <ButtonText>Show Modal</ButtonText>
       </Button>
       <Modal
@@ -27,7 +26,6 @@ const ModalBasic = () => {
         onClose={() => {
           setShowModal(false);
         }}
-        finalFocusRef={ref}
       >
         <ModalBackdrop />
         <ModalContent>
@@ -69,7 +67,7 @@ const ModalBasic = () => {
           </ModalFooter>
         </ModalContent>
       </Modal>
-    </Center>
+    </>
   );
 };
 

@@ -9,11 +9,11 @@ import { Text } from '@/components/ui/text';
 
 const SkeletonExample = () => {
   return (
-    <Box className="w-[290px] h-[400px] p-4 rounded-sm bg-background-100 gap-3">
-      <Skeleton variant="rounded" className="h-44 w-64 rounded-sm">
+    <Box className="w-[290px] h-[400px] p-4 rounded-md bg-background-100 gap-3">
+      <Skeleton variant="rounded" className="h-44 w-64">
         <Image
           size="full"
-          className="h-44 w-64 rounded-sm"
+          className="h-44 w-64 rounded-md"
           source={{
             uri: 'https://images.unsplash.com/photo-1715006020121-dd50879f9821?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
           }}

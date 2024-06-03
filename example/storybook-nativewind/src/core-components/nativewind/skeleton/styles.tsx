@@ -20,7 +20,7 @@ export const skeletonStyle = tva({
   },
 });
 export const skeletonTextStyle = tva({
-  base: 'rounded-sm w-full h-full',
+  base: 'rounded-sm w-full',
   variants: {
     speed: {
       1: 'duration-75',
