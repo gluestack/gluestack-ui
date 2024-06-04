@@ -67,7 +67,7 @@ const UIInput = createInput({
   // @ts-ignore
   Root:
     Platform.OS === 'web'
-      ? withStyleContext(View, SCOPE)
+      ? withStyleContext(InputWrapper, SCOPE)
       : withStyleContextAndStates(InputWrapper, SCOPE),
   Icon: PrimitiveIcon,
   Slot: Pressable,
@@ -145,7 +145,6 @@ const inputFieldStyle = tva({
 cssInterop(InputWrapper, { className: 'style' });
 cssInterop(UIInput.Slot, { className: 'style' });
 cssInterop(UIInput.Input, { className: 'style' });
-// @ts-ignore
 cssInterop(UIInput.Icon, {
   className: {
     target: 'style',

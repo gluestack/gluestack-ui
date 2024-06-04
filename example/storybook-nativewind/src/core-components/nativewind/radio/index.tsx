@@ -135,22 +135,23 @@ const UIRadio = createRadio({
       ? withStyleContext(View, SCOPE)
       : withStyleContextAndStates(Pressable, SCOPE),
   Group: View,
-  Icon: Platform.OS === 'web' ? PrimitiveIcon : withStates(IconWrapper),
-  Indicator: Platform.OS === 'web' ? View : withStates(IndicatorWrapper),
-  Label: Platform.OS === 'web' ? Text : withStates(LabelWrapper),
+  Icon: Platform.OS === 'web' ? IconWrapper : withStates(IconWrapper),
+  Indicator:
+    Platform.OS === 'web' ? IndicatorWrapper : withStates(IndicatorWrapper),
+  Label: Platform.OS === 'web' ? LabelWrapper : withStates(LabelWrapper),
 });
 
 cssInterop(UIRadio, { className: 'style' });
 cssInterop(UIRadio.Group, { className: 'style' });
 cssInterop(IndicatorWrapper, { className: 'style' });
 cssInterop(LabelWrapper, { className: 'style' });
-// @ts-ignore
 cssInterop(IconWrapper, {
   className: {
     target: 'style',
     nativeStyleToProp: {
       height: true,
       width: true,
+      // @ts-ignore
       fill: true,
       color: true,
       stroke: true,
