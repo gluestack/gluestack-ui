@@ -1,5 +1,11 @@
 # @gluestack-ui/icon
 
+## 0.1.22
+
+### Patch Changes
+
+- fix: icon size issue
+
 ## 0.1.21
 
 ### Patch Changes
