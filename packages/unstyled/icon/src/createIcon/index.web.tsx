@@ -86,11 +86,6 @@ export function createIcon<IconProps>({
       if (resolvedProps.size) {
         // sizeProps = { ...sizeProps, fontSize: resolvedProps?.size };
       }
-    } else if (resolvedProps.size) {
-      sizeStyle = {
-        height: resolvedProps.size,
-        width: resolvedProps.size,
-      };
     }
 
     return (
