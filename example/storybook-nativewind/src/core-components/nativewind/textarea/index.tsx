@@ -24,7 +24,7 @@ cssInterop(UITextarea, { className: 'style' });
 cssInterop(UITextarea.Input, { className: 'style' });
 
 const textareaStyle = tva({
-  base: 'w-full h-[100px] border border-background-300 rounded hover:border-outline-400 data-[focus=true]:border-primary-700 data-[focus=true]:hover:border-primary-700 data-[disabled=true]:opacity-40 data-[disabled=true]:hover:border-background-300',
+  base: 'w-full h-[100px] border border-background-300 rounded hover:border-outline-400 data-[focus=true]:border-primary-700 data-[focus=true]:hover:border-primary-700 data-[disabled=true]:opacity-40 data-[disabled=true]:bg-background-50 data-[disabled=true]:hover:border-background-300',
 
   variants: {
     variant: {

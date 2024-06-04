@@ -646,12 +646,12 @@ A dismissable Toast component offers users the ability to dismiss or close the t
                     const toastId = "toast-" + id;
                     return (
                       <Toast nativeID={toastId} className="bg-success-700">
-                        <Icon as={CheckIcon} className="text-typography-0 mt-1 mr-3"/>
+                        <Icon as={CheckIcon} className="text-typography-0 mr-3"/>
                         <VStack space='xs' flex={1}>
                         <ToastTitle className="text-typography-50">Download Complete</ToastTitle>
                         <ToastDescription className="text-typography-50">Your file 'wadewarren.docx' has been downloaded successfully. You can find it in your Downloads folder.</ToastDescription>
                         </VStack>
-                       <Pressable onPress={() => toast.close(id)} className="mt-1">
+                       <Pressable onPress={() => toast.close(id)}>
                         <Icon as={CloseIcon} className="text-typography-0"/>
                        </Pressable>
                       </Toast>
@@ -710,12 +710,12 @@ A Toast component with custom duration allows for specifying the length of time 
                     const toastId = "toast-" + id;
                     return (
                       <Toast nativeID={toastId} className="bg-secondary-700 p-3">
-                        <Icon as={MessageCircleIcon} className="text-typography-0 mt-1 mr-3"/>
+                        <Icon as={MessageCircleIcon} className="text-typography-0 mr-3"/>
                         <VStack space='xs' flex={1}>
                         <ToastTitle className="text-typography-50">New Message</ToastTitle>
                         <ToastDescription className="text-typography-50">Hey, just wanted to touch base and see how you're doing. Let's catch up soon!</ToastDescription>
                         </VStack>
-                         <Pressable onPress={() => toast.close(id)} className="mt-1">
+                         <Pressable onPress={() => toast.close(id)}>
                         <Icon as={CloseIcon} className="text-typography-0"/>
                        </Pressable>
                       </Toast>
@@ -779,14 +779,14 @@ A Toast component with preserve toast functionality retains the notification on 
                     const toastId = "toast-" + id;
                     return (
                       <Toast nativeID={toastId} className="bg-error-700 p-3">
-                        <Icon as={AlertTriangle} className="text-typography-0 mt-1 mr-3"/>
+                        <Icon as={AlertTriangle} className="text-typography-0 mr-3"/>
                         <VStack space='xs' flex={1}>
                         <ToastTitle className="text-typography-50">Account Security Alert</ToastTitle>
                         <ToastDescription className="text-typography-50">Your account password was recently changed.
                         If you did not authorize this change, please contact our support team immediately.
                         </ToastDescription>
                         </VStack>
-                           <Pressable onPress={() => toast.close(id)} className="mt-1">
+                           <Pressable onPress={() => toast.close(id)}>
                         <Icon as={CloseIcon} className="text-typography-50"/>
                        </Pressable>
                       </Toast>

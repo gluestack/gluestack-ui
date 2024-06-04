@@ -40,6 +40,33 @@ const toastStyle = tva({
       accent: 'border-l-4',
     },
   },
+  compoundVariants: [
+    {
+      variant: 'outline',
+      action: 'error',
+      class: 'bg-background-0 border-error-300 ',
+    },
+    {
+      variant: 'outline',
+      action: 'warning',
+      class: 'bg-background-0 border-warning-300 ',
+    },
+    {
+      variant: 'outline',
+      action: 'success',
+      class: 'bg-background-0 border-success-300 ',
+    },
+    {
+      variant: 'outline',
+      action: 'info',
+      class: 'bg-background-0 border-info-300 ',
+    },
+    {
+      variant: 'outline',
+      action: 'attention',
+      class: 'bg-background-0 border-secondary-300 ',
+    },
+  ],
 
   defaultVariants: {
     variant: 'solid',

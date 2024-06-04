@@ -59,6 +59,7 @@ This is an illustration of a **Menu** component.
       code: `
       <Menu
        size="lg"
+       offset={5}
         placement="top"
           trigger={({ ...triggerProps }) => {
             return (
@@ -530,6 +531,7 @@ Menu Component provides different placement options, allowing you to position it
     metaData={{
       code: `
       <Menu
+        offset={5}
         {...props}
           trigger={({ ...triggerProps }) => {
             return (
@@ -713,6 +715,7 @@ Our menu component supports selection mode, logging the selected menu item key t
         placement="bottom left"
         selectionMode="single"
         selectedKeys={selected}
+        offset={5}
         onSelectionChange={(keys) => {
           console.log('onSelectionChange', keys);
           setSelected(keys);

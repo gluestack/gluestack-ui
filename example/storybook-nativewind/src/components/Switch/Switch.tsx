@@ -6,10 +6,10 @@ const SwitchBasic = ({ ...props }: any) => {
   return (
     <Switch
       // value={props.isEnabled}
-      trackColor={{ false: colors.gray[300], true: colors.gray[500] }}
-      thumbColor={colors.gray[50]}
-      activeThumbColor={colors.gray[50]}
-      ios_backgroundColor={colors.gray[300]}
+      trackColor={{ false: colors.neutral[300], true: colors.neutral[950] }}
+      thumbColor={colors.neutral[50]}
+      activeThumbColor={colors.neutral[50]}
+      ios_backgroundColor={colors.neutral[300]}
       {...props}
     />
   );
