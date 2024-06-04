@@ -20,7 +20,7 @@ const badgeStyle = tva({
       warning: 'bg-background-warning border-warning-300',
       success: 'bg-background-success border-success-300',
       info: 'bg-background-info border-info-300',
-      muted: 'bg-background-muted border-secondary-300',
+      muted: 'bg-background-muted border-background-300',
     },
     variant: {
       solid: '',

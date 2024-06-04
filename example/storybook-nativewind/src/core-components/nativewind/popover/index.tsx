@@ -78,11 +78,11 @@ const popoverContentStyle = tva({
   base: 'bg-background-50 rounded-lg overflow-hidden',
   parentVariants: {
     size: {
-      xs: 'w-[60%] max-w-[360px]',
+      xs: 'w-[60%] max-w-[360px] min-w-[240px]',
       sm: 'w-[70%] max-w-[420px]',
       md: 'w-[80%] max-w-[510px]',
       lg: 'w-[90%] max-w-[640px]',
-      full: 'w-full',
+      full: 'w-[100%]',
     },
   },
 });

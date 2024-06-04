@@ -421,7 +421,7 @@ A Fab component with an icon adds a visually striking and easily recognizable bu
           ];
           return (
             <Box
-            className='border rounded-lg border-outline-200 p-6 bg-background-200 min-w-[240px] sm:min-w-[360px] md:min-w-[476px]'
+            className='border rounded-lg border-outline-200 p-6 bg-background-100 min-w-[240px] sm:min-w-[360px] md:min-w-[476px]'
             >
               <VStack space='md'>
                 {data.map((chatData)=>{
@@ -491,7 +491,7 @@ A Fab component with an icon and text combines a visual icon with accompanying t
         >
           <Fab className='top-4 h-9 bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-900'>
             <FabIcon as={SearchIcon} className='mr-1.5' color="white"/>
-            <FabLabel >Search</FabLabel>
+            <FabLabel className="text-white">Search</FabLabel>
           </Fab>
           <VStack space='lg'>
             <Box>

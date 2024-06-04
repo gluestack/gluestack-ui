@@ -75,6 +75,7 @@ This is an illustration of **Popover** component.
             isOpen={isOpen}
             onClose={handleClose}
             onOpen={handleOpen}
+            offset={10}
             {...props}
             trigger={(triggerProps) => {
               return (
@@ -708,6 +709,7 @@ A popover component can enhance the avatar by providing additional information a
       code: `
         <Box className="h-80">
           <Popover
+            offset={10}
             trigger={(triggerProps) => {
               return (
                 <HStack className="items-center">

@@ -149,9 +149,9 @@ const formControlHelperTextStyle = tva({
     size: {
       '2xs': 'text-2xs',
       'xs': 'text-xs',
-      'sm': 'text-sm',
-      'md': 'text-base',
-      'lg': 'text-lg',
+      'sm': 'text-xs',
+      'md': 'text-sm',
+      'lg': 'text-base',
       'xl': 'text-xl',
       '2xl': 'text-2xl',
       '3xl': 'text-3xl',

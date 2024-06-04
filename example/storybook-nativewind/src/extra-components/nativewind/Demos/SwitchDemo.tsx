@@ -7,10 +7,10 @@ const SwitchDemo = () => {
     <HStack space="md">
       <Switch
         defaultValue={true}
-        trackColor={{ false: colors.gray[300], true: colors.gray[500] }}
-        thumbColor={colors.gray[50]}
-        activeThumbColor={colors.gray[50]}
-        ios_backgroundColor={colors.gray[300]}
+        trackColor={{ false: colors.neutral[200], true: colors.neutral[900] }}
+        thumbColor={colors.neutral[50]}
+        activeThumbColor={colors.neutral[50]}
+        ios_backgroundColor={colors.neutral[300]}
       />
       <Text size="sm">Allow notifications</Text>
     </HStack>

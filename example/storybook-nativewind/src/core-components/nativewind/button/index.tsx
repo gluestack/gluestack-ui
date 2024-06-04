@@ -221,6 +221,30 @@ const buttonTextStyle = tva({
       class:
         'text-typography-0 group-hover/button:text-typography-0 group-active/button:text-typography-0',
     },
+    {
+      variant: 'outline',
+      action: 'primary',
+      class:
+        'text-primary-500 group-hover/button:text-primary-500 group-active/button:text-primary-500',
+    },
+    {
+      variant: 'outline',
+      action: 'secondary',
+      class:
+        'text-primary-500 group-hover/button:text-primary-500 group-active/button:text-primary-500',
+    },
+    {
+      variant: 'outline',
+      action: 'positive',
+      class:
+        'text-primary-500 group-hover/button:text-primary-500 group-active/button:text-primary-500',
+    },
+    {
+      variant: 'outline',
+      action: 'negative',
+      class:
+        'text-primary-500 group-hover/button:text-primary-500 group-active/button:text-primary-500',
+    },
   ],
 });
 
