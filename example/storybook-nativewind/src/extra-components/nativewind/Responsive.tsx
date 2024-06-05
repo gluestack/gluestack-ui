@@ -333,7 +333,13 @@ function Responsiveness({
                 display: 'none',
               },
             }}
-            onPress={checkPlatform}
+            onPress={() => {
+              checkPlatform({
+                android: updateIds?.android,
+                ios: updateIds?.ios,
+                uri: iframeUri,
+              });
+            }}
           >
             <NextImage
               src="/icon/expo-icon.svg"
