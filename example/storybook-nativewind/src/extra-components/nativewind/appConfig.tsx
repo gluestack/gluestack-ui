@@ -21,8 +21,8 @@ export const appStoryConfig = {
 
 export const starterKit = {
   updateIds: {
-    android: '9a70ae0a-85e3-4879-b151-6e5b9032f8f6',
-    ios: '5e6c1e71-8c40-4442-90de-be07911f9260',
+    android: 'e0af9f3a-ef66-4896-8b76-314c059f6408',
+    ios: '20a9694c-2803-45c2-a956-88e8ee9e6d6a',
   },
   iframeUri: 'https://gluestack-ui-starter-kits.vercel.app/',
   qrCodeUri:
