@@ -1,6 +1,11 @@
 'use client';
-
 import React from 'react';
+import { View, Pressable, Platform, ScrollView } from 'react-native';
+import {
+  Motion,
+  createMotionAnimatedComponent,
+  AnimatePresence,
+} from '@legendapp/motion';
 import { createPopover } from '@gluestack-ui/popover';
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import {
@@ -10,14 +15,6 @@ import {
 import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withStyleContextAndStates';
 import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
-
-import { View, Pressable, Platform, ScrollView } from 'react-native';
-
-import {
-  Motion,
-  createMotionAnimatedComponent,
-  AnimatePresence,
-} from '@legendapp/motion';
 
 const AnimatedPressable = createMotionAnimatedComponent(Pressable);
 const SCOPE = 'POPOVER';
@@ -58,8 +55,9 @@ const popoverStyle = tva({
     },
   },
 });
+
 const popoverArrowStyle = tva({
-  base: 'bg-background-50 z-1 absolute overflow-hidden h-3.5 w-3.5',
+  base: 'bg-background-50 z-[1] absolute overflow-hidden h-3.5 w-3.5',
 });
 
 const popoverBackdropStyle = tva({
@@ -71,18 +69,18 @@ const popoverBodyStyle = tva({
 });
 
 const popoverCloseButtonStyle = tva({
-  base: 'group/popover-close-button z-10 p-2 rounded-sm data-[focus-visible=true]:web:bg-background-100 web:outline-0 cursor-pointer',
+  base: 'group/popover-close-button z-[1] rounded-sm data-[focus-visible=true]:web:bg-background-100 web:outline-0 web:cursor-pointer',
 });
 
 const popoverContentStyle = tva({
   base: 'bg-background-50 rounded-lg overflow-hidden',
   parentVariants: {
     size: {
-      xs: 'w-[60%] max-w-[360px] min-w-[240px]',
+      xs: 'w-[60%] max-w-[360px]',
       sm: 'w-[70%] max-w-[420px]',
       md: 'w-[80%] max-w-[510px]',
       lg: 'w-[90%] max-w-[640px]',
-      full: 'w-[100%]',
+      full: 'w-full',
     },
   },
 });
