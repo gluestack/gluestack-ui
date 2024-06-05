@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, I18nManager } from 'react-native';
 import { usePopover, DismissButton, Overlay } from '@react-aria/overlays';
 import { MenuContext } from '../MenuContext';
 export function Popover({ StyledBackdrop, ...props }: any) {
@@ -17,6 +17,15 @@ export function Popover({ StyledBackdrop, ...props }: any) {
 
   if (!state.isOpen) {
     return null;
+  }
+
+  // Make position of Popover correct in RTL.
+  if (I18nManager.getConstants().isRTL) {
+    popoverProps.style = {
+      ...popoverProps.style,
+      right: popoverProps?.style?.left || 'unset',
+      left: 'unset',
+    };
   }
 
   return (

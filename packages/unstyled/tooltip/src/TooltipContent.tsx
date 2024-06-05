@@ -3,7 +3,7 @@ import { useTooltipContext } from './context';
 import { mergeRefs } from '@gluestack-ui/utils';
 import { useOverlayPosition } from '@react-native-aria/overlays';
 import { OverlayAnimatePresence } from './OverlayAnimatePresence';
-import { Platform } from 'react-native';
+import { Platform, I18nManager } from 'react-native';
 
 export function TooltipContent<StyledTooltipContentProps>(
   StyledTooltipContent: React.ComponentType<StyledTooltipContentProps>,
@@ -38,6 +38,15 @@ export function TooltipContent<StyledTooltipContentProps>(
       };
     }
     const mergedRef = mergeRefs([ref, overlayRef]);
+
+    // Make position of Tooltip correct in RTL.
+    if (Platform.OS === 'web' && I18nManager.getConstants().isRTL) {
+      overlayProps.style = {
+        ...overlayProps.style,
+        right: overlayProps?.style?.left,
+      };
+      delete overlayProps?.style?.left;
+    }
 
     return (
       <OverlayAnimatePresence
