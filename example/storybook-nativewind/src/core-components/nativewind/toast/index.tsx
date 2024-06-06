@@ -3,7 +3,7 @@ import React from 'react';
 import { createToast, createToastHook } from '@gluestack-ui/toast';
 import { Text, View } from 'react-native';
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
-import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
+import { cssInterop } from 'nativewind';
 import { Motion, AnimatePresence } from '@legendapp/motion';
 
 export const useToast = createToastHook(Motion.View, AnimatePresence);
@@ -20,7 +20,7 @@ cssInterop(UIToast.Title, { className: 'style' });
 cssInterop(UIToast.Description, { className: 'style' });
 
 const toastStyle = tva({
-  base: 'px-4 py-3 m-3 rounded flex-row web:pointer-events-auto shadow',
+  base: 'px-4 py-3 m-3 rounded flex-row web:pointer-events-auto shadow-hard-5',
   variants: {
     action: {
       error: 'bg-background-error border-error-300',
@@ -67,12 +67,8 @@ const toastStyle = tva({
       class: 'bg-background-0 border-secondary-300 ',
     },
   ],
-
-  defaultVariants: {
-    variant: 'solid',
-    action: 'attention',
-  },
 });
+
 const toastTitleStyle = tva({
   base: 'text-typography-700 font-medium font-body tracking-md text-left',
   variants: {
@@ -136,7 +132,10 @@ const toastDescriptionStyle = tva({
 });
 
 export const Toast = React.forwardRef(
-  ({ className, variant, action, ...props }: any, ref?: any) => {
+  (
+    { className, variant = 'solid', action = 'attention', ...props }: any,
+    ref?: any
+  ) => {
     return (
       <UIToast
         ref={ref}
@@ -161,6 +160,7 @@ export const ToastTitle = React.forwardRef(
     );
   }
 );
+
 export const ToastDescription = React.forwardRef(
   ({ className, size, ...props }: any, ref?: any) => {
     return (
