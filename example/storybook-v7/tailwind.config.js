@@ -188,7 +188,6 @@ module.exports = {
         'hard-5': '0px 2px 10px 0px rgba(38, 38, 38, 0.10)',
         'soft-1': '0px 0px 10px rgba(38, 38, 38, 0.1)',
         'soft-2': '0px 0px 20px rgba(38, 38, 38, 0.2)',
-        // 'soft-3': '10px 10px 30px rgba(255, 38, 38, 0.5)',
         'soft-3': '0px 0px 30px rgba(38, 38, 38, 0.1)',
         'soft-4': '0px 0px 40px rgba(38, 38, 38, 0.1)',
       },
