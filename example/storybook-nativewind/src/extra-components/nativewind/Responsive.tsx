@@ -27,6 +27,7 @@ function Responsiveness({
   iframeUri,
   qrCodeUri,
   updateIds,
+  showMenuItems = false,
 }: {
   iframeUri: string;
   qrCodeUri: string;
@@ -34,6 +35,7 @@ function Responsiveness({
     android: string;
     ios: string;
   };
+  showMenuItems?: boolean;
 }) {
   const resizableRef = useRef<any>(null);
   const [isMobile, setIsMobile] = useState(true);
@@ -115,23 +117,25 @@ function Responsiveness({
               marginLeft: 27,
             }}
           />
-          <Box flexDirection="row">
-            <Text mr="$5" fontSize="$xs" fontWeight="$normal">
-              Homestay
-            </Text>
+          {showMenuItems && (
+            <Box flexDirection="row">
+              <Text mr="$5" fontSize="$xs" fontWeight="$normal">
+                Homestay
+              </Text>
 
-            <Text mr="$5" fontSize="$xs" fontWeight="$normal">
-              File
-            </Text>
+              <Text mr="$5" fontSize="$xs" fontWeight="$normal">
+                File
+              </Text>
 
-            <Text mr="$5" fontSize="$xs" fontWeight="$normal">
-              Edit
-            </Text>
+              <Text mr="$5" fontSize="$xs" fontWeight="$normal">
+                Edit
+              </Text>
 
-            <Text mr="$5" fontSize="$xs" fontWeight="$normal">
-              View
-            </Text>
-          </Box>
+              <Text mr="$5" fontSize="$xs" fontWeight="$normal">
+                View
+              </Text>
+            </Box>
+          )}
         </Box>
 
         <Box
