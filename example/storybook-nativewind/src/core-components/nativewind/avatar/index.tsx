@@ -2,7 +2,7 @@
 import React from 'react';
 import { createAvatar } from '@gluestack-ui/avatar';
 
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, Platform } from 'react-native';
 
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import {
@@ -166,6 +166,12 @@ export const AvatarImage = React.forwardRef(
         className={avatarImageStyle({
           class: className,
         })}
+        //@ts-ignore
+        style={
+          Platform.OS === 'web'
+            ? { height: 'revert-layer', width: 'revert-layer' }
+            : undefined
+        }
       />
     );
   }
