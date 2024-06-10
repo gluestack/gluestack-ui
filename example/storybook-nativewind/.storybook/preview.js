@@ -4,6 +4,7 @@ import { OverlayProvider } from '@gluestack-ui/overlay';
 import { ToastProvider } from '@gluestack-ui/toast';
 
 import { GluestackUIProvider as GluestackUIWithNativewindProvider } from '../src/core-components/nativewind/gluestack-ui-provider';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 // global css getting resolved from babel.config.js
 import 'global.css';
@@ -136,21 +137,27 @@ export const decorators = [
 
     return (
       <GluestackUIWithGluestackStyleProvider colorMode={getColorMode()}>
-        <GluestackUIWithNativewindProvider mode={getColorMode()}>
-          <OverlayProvider style={{ flex: 1 }}>
-            <ToastProvider>
-              <View
-                style={{
-                  flex: 1,
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                }}
-              >
-                <Story />
-              </View>
-            </ToastProvider>
-          </OverlayProvider>
-        </GluestackUIWithNativewindProvider>
+        <GestureHandlerRootView
+          style={{ flex: 1, display: 'flex', height: '100vh' }}
+        >
+          <GluestackUIWithNativewindProvider mode={getColorMode()}>
+            <OverlayProvider style={{ flex: 1, display: 'flex' }}>
+              <ToastProvider>
+                <View
+                  style={{
+                    flex: 1,
+                    display: 'flex',
+                    width: '100%',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}
+                >
+                  <Story />
+                </View>
+              </ToastProvider>
+            </OverlayProvider>
+          </GluestackUIWithNativewindProvider>
+        </GestureHandlerRootView>
       </GluestackUIWithGluestackStyleProvider>
     );
   },
@@ -165,9 +172,11 @@ addParameters({
         <GluestackUIWithGluestackStyleProvider>
           <GluestackUIWithNativewindProvider>
             <DocsContainer context={context}>
-              <OverlayProvider style={{ flex: 1 }}>
-                <ToastProvider>{children}</ToastProvider>
-              </OverlayProvider>
+              <GestureHandlerRootView style={{ flex: 1 }}>
+                <OverlayProvider style={{ flex: 1 }}>
+                  <ToastProvider>{children}</ToastProvider>
+                </OverlayProvider>
+              </GestureHandlerRootView>
             </DocsContainer>
           </GluestackUIWithNativewindProvider>
         </GluestackUIWithGluestackStyleProvider>
