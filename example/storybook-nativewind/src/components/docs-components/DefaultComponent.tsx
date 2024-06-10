@@ -61,7 +61,7 @@ const ColorPaletteComponent = () => {
         };
 
         const newColor = RGBcolorCode?.split(' ');
-        const colorCode = convertRGBToHex(newColor);
+        const colorCode = RGBcolorCode ? convertRGBToHex(newColor) : undefined;
 
         variants.push({
           name,
