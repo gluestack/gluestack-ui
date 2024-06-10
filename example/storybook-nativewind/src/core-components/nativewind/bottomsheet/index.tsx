@@ -28,7 +28,7 @@ const bottomSheetContentStyle = tva({
   base: 'mt-2',
 });
 const bottomSheetTriggerStyle = tva({
-  base: 'px-5 h-10 rounded flex-row items-center justify-center border border-primary-300',
+  base: '',
 });
 
 const bottomSheetIndicatorStyle = tva({
