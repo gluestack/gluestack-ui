@@ -22,7 +22,15 @@ function ActionsheetContent(
   AnimatePresence?: any
 ) {
   return forwardRef(
-    ({ children, _experimentalContent = false, ...props }: any, ref?: any) => {
+    (
+      {
+        children,
+        _experimentalContent = false,
+        focusScope = true,
+        ...props
+      }: any,
+      ref?: any
+    ) => {
       const {
         visible,
         handleClose,
@@ -172,13 +180,17 @@ function ActionsheetContent(
                 handleCloseBackdrop={handleCloseBackdrop}
                 snapPoints={snapPoints}
               >
-                <FocusScope
-                  contain={trapFocus}
-                  autoFocus={visible && !initialFocusRef}
-                  restoreFocus={visible && !finalFocusRef}
-                >
-                  {children}
-                </FocusScope>
+                {focusScope ? (
+                  <FocusScope
+                    contain={trapFocus}
+                    autoFocus={visible && !initialFocusRef}
+                    restoreFocus={visible && !finalFocusRef}
+                  >
+                    {children}
+                  </FocusScope>
+                ) : (
+                  <>{children}</>
+                )}
               </ActionsheetContentProvider>
             </StyledActionsheetContent>
           </OverlayAnimatePresence>

@@ -1,5 +1,11 @@
 # @gluestack-ui/alert-dialog
 
+## 0.1.29
+
+### Patch Changes
+
+- fix: added focusScope prop
+
 ## 0.1.28
 
 ### Patch Changes

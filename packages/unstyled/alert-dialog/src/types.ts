@@ -50,6 +50,14 @@ export interface InterfaceAlertDialogProps {
   children?: any;
 }
 
+export interface IAlertDialogContentProps {
+  /**
+   * If true, AlertDialog Content focusScope will be applied.
+   * @default true
+   */
+  focusScope?: boolean;
+}
+
 export type IAlertDialogComponentType<
   StyledAlertDialog,
   StyledAlertDialogContent,
@@ -62,7 +70,9 @@ export type IAlertDialogComponentType<
   React.RefAttributes<StyledAlertDialog> & StyledAlertDialog & IAlertDialogProps
 > & {
   Content: React.ForwardRefExoticComponent<
-    React.RefAttributes<StyledAlertDialogContent> & StyledAlertDialogContent
+    React.RefAttributes<StyledAlertDialogContent> &
+      IAlertDialogContentProps &
+      StyledAlertDialogContent
   >;
   CloseButton: React.ForwardRefExoticComponent<
     React.RefAttributes<StyledAlertDialogCloseButton> &

@@ -20,7 +20,7 @@ const accordionStyle = tva({
   base: 'w-full',
   variants: {
     variant: {
-      filled: 'bg-white shadow',
+      filled: 'bg-white shadow-hard-2',
       unfilled: '',
     },
     size: {

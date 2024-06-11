@@ -41,12 +41,27 @@ const ColorPaletteComponent = () => {
         const variableName = extractVariableName(color); // extract the --color-name part from the var(---color-name) string using regex, it will return null if we pass it a hex code
         const colorName = variableName || color; // variableName will be null in case there was a hex code passed to the extract function
 
-        const colorCode =
+        const RGBcolorCode: string =
           colorMode === 'light'
             ? config.light[colorName]
             : config.dark[colorName]; // get the color code from the config based on the color name and the color mode
 
         const className = `bg-${name}-${variant}`; // need to save the class name for the color to use in the UI
+
+        const convertRGBToHex = (rgbColors: any) => {
+          const hexColors = rgbColors?.map((color: any) => {
+            let hex = Number(color).toString(16);
+            if (hex.length < 2) {
+              hex = '0' + hex;
+            }
+            return hex;
+          });
+
+          return `#${hexColors?.join('')}`;
+        };
+
+        const newColor = RGBcolorCode?.split(' ');
+        const colorCode = RGBcolorCode ? convertRGBToHex(newColor) : undefined;
 
         variants.push({
           name,

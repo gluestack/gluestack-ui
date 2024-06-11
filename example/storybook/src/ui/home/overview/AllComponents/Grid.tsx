@@ -2,8 +2,19 @@ import React from 'react';
 import { Box } from '@gluestack-ui/themed';
 import { ComponentCard } from './ComponentCard';
 import { content } from './content';
+import { usePathname } from 'next/navigation';
 
 export const Grid = () => {
+  let prefix = '/ui/docs/components';
+  try {
+    const pathname = usePathname();
+    prefix = pathname.includes('nativewind')
+      ? '/ui/nativewind/docs/components'
+      : '/ui/docs/components';
+  } catch (error) {
+    console.error(error);
+  }
+
   return (
     <>
       <Box
@@ -39,7 +50,7 @@ export const Grid = () => {
             title={item.title}
             child={item.child}
             padding={item.padding}
-            href={item.href}
+            href={prefix + item.href}
           />
         ))}
       </Box>

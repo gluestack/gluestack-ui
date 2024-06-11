@@ -5,6 +5,14 @@ import { OverlayProvider } from '@gluestack-ui/overlay';
 import { ToastProvider } from '@gluestack-ui/toast';
 import { setFlushStyles } from '@gluestack-ui/nativewind-utils/flush';
 
+const styleTagId = 'gluestack-ui-nativewind';
+const createStyle = (styleTagId: any) => {
+  let style = document.createElement('style');
+  style.id = styleTagId;
+  style.appendChild(document.createTextNode(''));
+  return style;
+};
+
 export function GluestackUIProvider({
   mode = 'light',
   ...props
@@ -22,7 +30,10 @@ export function GluestackUIProvider({
     const element = document.documentElement;
     if (element) {
       const head = element.querySelector('head');
-      const style = document.createElement('style');
+      let style = head?.querySelector(`[id='${styleTagId}']`);
+      if (!style) {
+        style = createStyle(styleTagId);
+      }
       style.innerHTML = `:root {${stringcssvars}} `;
       if (head) head.appendChild(style);
     }

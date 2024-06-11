@@ -10,23 +10,7 @@ module.exports = {
   safelist: [
     {
       pattern:
-        /border-(primary|secondary|tertiary|error|success|warning|info|typography|outline|background)-(0|50|100|200|300|400|500|600|700|800|900|950|white|gray|black|error|warning|muted|success|info|light|dark)/,
-    },
-    {
-      pattern:
-        /bg-(primary|secondary|tertiary|error|success|warning|info|typography|outline|background)-(0|50|100|200|300|400|500|600|700|800|900|950|white|gray|black|error|warning|muted|success|info|light|dark)/,
-    },
-    {
-      pattern:
-        /text-(primary|secondary|tertiary|error|success|warning|info|typography|outline|background)-(0|50|100|200|300|400|500|600|700|800|900|950|white|gray|black|error|warning|muted|success|info|light|dark)/,
-    },
-    {
-      pattern:
-        /stroke-(primary|secondary|tertiary|error|success|warning|info|typography|outline|background)-(0|50|100|200|300|400|500|600|700|800|900|950|white|gray|black|error|warning|muted|success|info|light|dark)/,
-    },
-    {
-      pattern:
-        /fill-(primary|secondary|tertiary|error|success|warning|info|typography|outline|background)-(0|50|100|200|300|400|500|600|700|800|900|950|white|gray|black|error|warning|muted|success|info|light|dark)/,
+        /(bg|border|text|stroke|fill)-(primary|secondary|tertiary|error|success|warning|info|typography|outline|background)-(0|50|100|200|300|400|500|600|700|800|900|950|white|gray|black|error|warning|muted|success|info|light|dark)/,
     },
   ],
   theme: {
@@ -194,6 +178,17 @@ module.exports = {
       },
       fontSize: {
         '2xs': '10px',
+      },
+      boxShadow: {
+        'hard-1': '-2px 2px 8px 0px rgba(38, 38, 38, 0.20)',
+        'hard-2': '0px 3px 10px 0px rgba(38, 38, 38, 0.20)',
+        'hard-3': '2px 2px 8px 0px rgba(38, 38, 38, 0.20)',
+        'hard-4': '0px -3px 10px 0px rgba(38, 38, 38, 0.20)',
+        'hard-5': '0px 2px 10px 0px rgba(38, 38, 38, 0.10)',
+        'soft-1': '0px 0px 10px rgba(38, 38, 38, 0.1)',
+        'soft-2': '0px 0px 20px rgba(38, 38, 38, 0.2)',
+        'soft-3': '0px 0px 30px rgba(38, 38, 38, 0.1)',
+        'soft-4': '0px 0px 40px rgba(38, 38, 38, 0.1)',
       },
     },
     plugins: [],
