@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { config } from './config';
 import { OverlayProvider } from '@gluestack-ui/overlay';
 import { ToastProvider } from '@gluestack-ui/toast';
@@ -24,20 +24,24 @@ export function GluestackUIProvider({
     acc += `${cur}:${config[mode][cur]};`;
     return acc;
   }, '');
+
   setFlushStyles(`:root {${stringcssvars}} `);
 
-  if (config[mode] && typeof document !== 'undefined') {
-    const element = document.documentElement;
-    if (element) {
-      const head = element.querySelector('head');
-      let style = head?.querySelector(`[id='${styleTagId}']`);
-      if (!style) {
-        style = createStyle(styleTagId);
+  useEffect(() => {
+    if (config[mode] && typeof document !== 'undefined') {
+      const element = document.documentElement;
+      if (element) {
+        const head = element.querySelector('head');
+        let style = head?.querySelector(`[id='${styleTagId}']`);
+        if (!style) {
+          style = createStyle(styleTagId);
+        }
+        style.innerHTML = `:root {${stringcssvars}} `;
+        if (head) head.appendChild(style);
       }
-      style.innerHTML = `:root {${stringcssvars}} `;
-      if (head) head.appendChild(style);
     }
-  }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [mode]);
 
   return (
     <OverlayProvider>
