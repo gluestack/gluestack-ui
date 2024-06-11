@@ -1,5 +1,14 @@
 # @gluestack-ui/themed
 
+## 1.1.29
+
+### Patch Changes
+
+- Updated dependencies
+  - @gluestack-ui/alert-dialog@0.1.29
+  - @gluestack-ui/actionsheet@0.2.42
+  - @gluestack-ui/modal@0.1.33
+
 ## 1.1.28
 
 ### Patch Changes

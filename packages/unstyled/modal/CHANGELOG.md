@@ -1,5 +1,11 @@
 # @gluestack-ui/modal
 
+## 0.1.33
+
+### Patch Changes
+
+- fix: added focusScope prop
+
 ## 0.1.32
 
 ### Patch Changes
