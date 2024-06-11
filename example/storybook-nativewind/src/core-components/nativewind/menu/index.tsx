@@ -9,7 +9,7 @@ import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 import { withStates } from '@gluestack-ui/nativewind-utils/withStates';
 
 const menuStyle = tva({
-  base: 'rounded bg-background-0 border border-outline-200 p-1 shadow-soft-3',
+  base: 'rounded bg-background-0 border border-outline-50 p-1 shadow-soft-3',
 });
 
 const menuItemStyle = tva({

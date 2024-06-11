@@ -44,6 +44,11 @@ export interface InterfaceActionsheetItemProps extends PressableProps {
 
 export interface InterfaceActionsheetContentProps {
   children?: any;
+  /**
+   * If true, Actionsheet Content focusScope will be applied.
+   * @default true
+   */
+  focusScope?: boolean;
 }
 
 export type IActionsheetComponentType<

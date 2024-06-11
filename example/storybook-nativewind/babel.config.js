@@ -111,6 +111,14 @@ module.exports = function (api) {
               __dirname,
               '../../packages/unstyled/toast/src'
             ),
+            '@gluestack-ui/select': path.join(
+              __dirname,
+              '../../packages/unstyled/select/src'
+            ),
+            '@gluestack-ui/modal': path.join(
+              __dirname,
+              '../../packages/unstyled/modal/src'
+            ),
             '@/extra-components/nativewind': path.resolve(
               __dirname,
               './src/core-components/nativewind'

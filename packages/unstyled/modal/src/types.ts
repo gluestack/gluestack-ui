@@ -50,6 +50,11 @@ export interface IModalContentProps {
    * @default false
    */
   focusable?: boolean;
+  /**
+   * If true, Modal Content focusScope will be applied.
+   * @default true
+   */
+  focusScope?: boolean;
 }
 
 export type IModalComponentType<

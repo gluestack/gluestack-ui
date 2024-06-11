@@ -37,7 +37,7 @@ const AlertDialogDemo = () => {
         _experimentalOverlay={showAlertDialog}
       >
         <AlertDialogBackdrop />
-        <AlertDialogContent>
+        <AlertDialogContent focusScope={false}>
           <AlertDialogHeader borderBottomWidth="$0">
             <HStack space="sm" alignItems="center">
               <Icon
