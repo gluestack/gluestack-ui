@@ -25,7 +25,7 @@ const AlertDialogDemo = () => {
       </Button>
       <AlertDialog size="lg" isOpen={showAlertDialog} onClose={handleClose}>
         <AlertDialogBackdrop />
-        <AlertDialogContent>
+        <AlertDialogContent focusScope={false}>
           <AlertDialogHeader>
             <Heading>Deactivate Account</Heading>
             <AlertDialogCloseButton>

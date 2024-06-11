@@ -15,7 +15,7 @@ const AlertDialogContent = (
   StyledAlertDialogContent: any,
   AnimatePresence?: any
 ) =>
-  forwardRef(({ children, ...props }: any, ref?: any) => {
+  forwardRef(({ children, focusScope = true, ...props }: any, ref?: any) => {
     const { initialFocusRef, finalFocusRef, handleClose, visible } =
       React.useContext(AlertDialogContext);
 
@@ -57,31 +57,37 @@ const AlertDialogContent = (
       }
     }, [initialFocusRef, finalFocusRef, visible]);
 
-    return (
+    const content = (
+      <OverlayAnimatePresence
+        visible={visible}
+        AnimatePresence={AnimatePresence}
+      >
+        <StyledAlertDialogContent
+          {...props}
+          ref={mergedRef}
+          onAccessibilityEscape={handleClose}
+          exit={true}
+          aria-modal="true"
+          role={Platform.OS === 'web' ? 'alertdialog' : undefined}
+          accessibilityViewIsModal
+          tabIndex={Platform.OS === 'web' ? -1 : undefined}
+          {...dialogProps}
+        >
+          {children}
+        </StyledAlertDialogContent>
+      </OverlayAnimatePresence>
+    );
+
+    return focusScope ? (
       <FocusScope
         contain={visible}
         autoFocus={visible && !initialFocusRef}
         restoreFocus={visible && !finalFocusRef}
       >
-        <OverlayAnimatePresence
-          visible={visible}
-          AnimatePresence={AnimatePresence}
-        >
-          <StyledAlertDialogContent
-            {...props}
-            ref={mergedRef}
-            onAccessibilityEscape={handleClose}
-            exit={true}
-            aria-modal="true"
-            role={Platform.OS === 'web' ? 'alertdialog' : undefined}
-            accessibilityViewIsModal
-            tabIndex={Platform.OS === 'web' ? -1 : undefined}
-            {...dialogProps}
-          >
-            {children}
-          </StyledAlertDialogContent>
-        </OverlayAnimatePresence>
+        {content}
       </FocusScope>
+    ) : (
+      <>{content}</>
     );
   });
 

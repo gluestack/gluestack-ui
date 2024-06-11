@@ -43,7 +43,7 @@ const ModalDemo = () => {
         _experimentalOverlay={showModal}
       >
         <ModalBackdrop />
-        <ModalContent>
+        <ModalContent focusScope={false}>
           <ModalHeader>
             <Heading size="md">Delete Folder</Heading>
             <ModalCloseButton>

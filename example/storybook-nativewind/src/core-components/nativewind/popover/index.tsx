@@ -86,7 +86,7 @@ const popoverContentStyle = tva({
 });
 
 const popoverFooterStyle = tva({
-  base: 'p-4 flex-row justify-end items-center flex-wrap border-t border-outline-300',
+  base: 'p-4 flex-row justify-end items-center flex-wrap border-t border-outline-100',
 });
 
 const popoverHeaderStyle = tva({

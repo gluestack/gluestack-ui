@@ -33,7 +33,7 @@ const ModalDemo = () => {
         finalFocusRef={ref}
       >
         <ModalBackdrop />
-        <ModalContent>
+        <ModalContent focusScope={false}>
           <ModalHeader>
             <Heading size="lg">Engage with Modals</Heading>
             <ModalCloseButton>
