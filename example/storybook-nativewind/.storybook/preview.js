@@ -33,18 +33,21 @@ export const parameters = {
         'Home',
         [
           'Overview',
-          ['Introduction', 'All Components'],
+          ['Introduction', 'All Components', 'Upgrade to v2'],
           'Getting Started',
           [
             'Installation',
             'Tooling Setup',
             'VS Code Extensions',
             'Figma UI Kit',
+            'CLI',
           ],
           'Core Concepts',
           ['Accessibility', 'Universal'],
           'Theme Configuration',
           ['Default Tokens', 'Customizing Theme', 'Dark Mode'],
+          'More',
+          ['Releases', 'Roadmap'],
         ],
         'Components',
         [

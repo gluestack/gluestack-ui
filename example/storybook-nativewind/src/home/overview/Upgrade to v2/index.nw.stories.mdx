@@ -1,0 +1,100 @@
+---
+title: Upgrade to v2 | gluestack-ui
+
+description: Upgrade to Gluestack UI v2 for enhanced performance, improved features, and better support. Follow our guide for a smooth and successful transition.
+
+---
+
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+
+<Meta title="with-nativewind/Home/Overview/Upgrade to v2" />
+
+# Upgrade to v2
+
+Upgrading to **gluestack-ui v2** offers enhanced performance, improved features, and better support. This guide will help you navigate the upgrade process smoothly and ensure a successful transition to the latest version.
+
+## Prerequisites
+
+Before upgrading to **gluestack-ui v2**, make sure you have the following:
+
+- A project using **gluestack-ui v1**.
+
+## Migration Guide
+
+Start by reading our comprehensive migration guide. This guide provides detailed instructions, code examples, and best practices to help you seamlessly transition from v1 to v2. Understanding the changes and considerations outlined in the migration guide will prepare you for the upgrade process.
+
+- [https://www.notion.so/geekyants/A-Migration-Guide-for-gluestack-ui-v1-to-v2-48bd859c6198400d98afa1a375196bee](https://www.notion.so/48bd859c6198400d98afa1a375196bee?pvs=21)
+
+## Backup Your Project
+
+Before making any changes, it's essential to backup your project to ensure you can revert to a previous state if needed. This includes backing up your codebase, configuration files, and any other relevant assets.
+
+## Optional: Install and Run Codemod Tool
+
+We've developed a codemod tool to assist with the transition. While optional, installing and running the codemod tool in your project directory can automatically upgrade your codebase. If you choose not to use the codemod tool, you can manually update your codebase following the migration guide.
+
+### Installation
+
+To install the codemod tool, follow these steps:
+
+1. Open your terminal or command prompt.
+2. Navigate to your project directory.
+3. Run the following command to install the codemod tool:
+
+```bash
+npm install -g gluestack-ui-codemod
+```
+
+### Running the Codemod Tool
+
+Once installed, you can run the codemod tool in your project directory to automatically upgrade your codebase. Follow these steps to run the codemod tool:
+
+1. Open your terminal or command prompt.
+2. Navigate to your project directory.
+3. Run the following command to start the codemod tool:
+
+```bash
+gluestack-ui-codemod v1-to-v2 <path/to/your/project>
+```
+
+Replace `<path/to/your/project>` with the path to your Gluestack UI v1 project directory.
+
+### Using the Codemod Tool
+
+The codemod tool will analyze your project's codebase and apply the necessary transformations to upgrade your code from v1 to v2. It will prompt you for confirmation before making any changes to ensure that you're comfortable with the modifications.
+
+### Benefits of Using the Codemod Tool
+
+- Automates many of the tedious code changes required for the upgrade.
+- Saves time and effort, especially for larger codebases.
+- Provides a consistent and reliable upgrade process.
+
+### Note
+
+While the codemod tool can automate many aspects of the upgrade process, it may not catch every possible code change or scenario. It's essential to review the changes made by the tool and manually verify that your codebase functions correctly after the upgrade.
+
+## Update Dependencies
+
+Next, update any dependencies that rely on gluestack-ui v1 to use the latest version, v2. This may include updating package.json, import statements, and any other references to gluestack-ui components or utilities.
+
+## Test Your Application
+
+After updating dependencies, thoroughly test your application to ensure that everything is working as expected with gluestack-ui v2. Check for any errors, warnings, or unexpected behavior and address them accordingly.
+
+## Refactor Code as Needed
+
+Depending on the changes introduced in Gluestack UI v2, you may need to refactor your code to align with the new API or features. Refer to the migration guide for specific instructions on refactoring code and updating components.
+
+## Deploy Your Application
+
+Once you're confident that your application is functioning correctly with Gluestack UI v2, deploy your changes to your production environment. Monitor your application for any issues after deployment and address them promptly.
+
+## Finalize the Upgrade
+
+After the upgrade process, review your codebase to ensure that everything is in order. Manually check for any remaining issues or inconsistencies that may have been missed. Make any necessary adjustments to finalize the upgrade process.
+
+## Need Help?
+
+If you encounter any issues or have questions during the upgrade process, don't hesitate to reach out to our support team or community for assistance. We're here to help ensure a smooth transition to gluestack-ui v2.
+
+Happy coding!
