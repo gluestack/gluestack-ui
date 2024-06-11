@@ -1,49 +1,31 @@
 ---
-title: gluestack-ui Badge Component | Installation, Usage, and API
+title: gluestack-ui BottomSheet Component | Installation, Usage, and API
 
-description: The badge component lets you quickly and easily add status indicators to your interface for improved usability. They are designed to be attention-grabbing and quickly convey important information.
+description: The bottomsheet component is simpler implementation of gorhom bottomsheet.
 
-pageTitle: Badge
+pageTitle: BottomSheet
 
-pageDescription: The badge component lets you quickly and easily add status indicators to your interface for improved usability. They are designed to be attention-grabbing and quickly convey important information.
+pageDescription: The bottomsheet component is simpler implementation of gorhom bottomsheet.
 
 showHeader: true
 ---
 
 import { Meta } from '@storybook/addon-docs';
 
-<Meta title="with-nativewind/Components/Data Display/Badge" />
+<Meta title="with-nativewind/Components/Disclosure/BottomSheet" />
 
 import {
-  Center,
-  Badge,
-  BadgeText,
-  BadgeIcon,
-  Icon,
-  Box,
-  Text,
-  VStack,
-  HStack,
-  SettingsIcon,
-  AddIcon,
-  Divider,
-  Image,
-  CheckIcon,
-  Heading,
-  Avatar,
-  AvatarFallbackText,
-  AvatarImage,
-  Button,
-  ButtonText,
-  GlobeIcon,
+  BottomSheet,
+  BottomSheetBackdrop,
+  BottomSheetContent,
+  BottomSheetDragIndicator,
+  BottomSheetItem,
+  BottomSheetItemText,
+  BottomSheetPortal,
+  BottomSheetTrigger,
+  Text
 } from '../../core-components/nativewind';
 
-import {
-  PaintBucket,
-  PuzzleIcon,
-  BadgeCheckIcon,
-  BadgePlusIcon,
-} from 'lucide-react-native';
 import {
   AppProvider,
   CodePreview,
@@ -55,48 +37,6 @@ import {
 import { transformedCode } from '../../utils';
 import Wrapper from '../../core-components/nativewind/Wrapper';
 import { CollapsibleCode } from '@gluestack/design-system';
-
-This is an illustration of **Badge** component.
-
-<Wrapper>
-  <CodePreview
-    metaData={{
-      code: `
-        <Badge {...props}>
-          <BadgeText>New feature</BadgeText>
-          <BadgeIcon as={GlobeIcon} className="ml-2" />
-        </Badge>
-      `,
-      transformCode: (code) => {
-        return transformedCode(code);
-      },
-      scope: {
-        Wrapper,
-        Badge,
-        BadgeText,
-        BadgeIcon,
-        GlobeIcon
-      },
-      argsType: {
-        size: {
-          control: 'select',
-          options: ['sm', 'md', 'lg'],
-          default: 'md',
-        },
-        variant: {
-          control: 'select',
-          options: ['solid', 'outline'],
-          default: 'solid',
-        },
-        action: {
-          control: 'select',
-          options: ['error', 'warning', 'success', 'info', 'muted'],
-          default: 'success',
-        },
-      },
-    }}
-  />
-</Wrapper>
 
 <br />
 
@@ -117,22 +57,57 @@ This is an illustration of **Badge** component.
 
 ### Run the following command:
   ```bash
-  npx gluestack-ui add badge
+  npx gluestack-ui add bottomsheet
   ```
+
+> Note: you need to install specific versions of `@gorhom/bottom-sheet@alpha (v5)`, `react-native-reanimated` version `~3.6.2` and `react-native-gesture-handler` version `~2.14.0`.
+
 </>
     </Tabs.TabPanel>
     <Tabs.TabPanel value="manual"> 
 <>
 
-### Step 1: Copy and paste the following code into your project.
+
+### Step 1: Install the following dependencies:
+
+```bash
+npm i @gorhom/bottom-sheet@alpha react-native-reanimated@~3.6.2 react-native-gesture-handler@~2.14.0
+```
+
+> Note: you need to install specific versions of `@gorhom/bottom-sheet@alpha (v5)`, `react-native-reanimated` version `~3.6.2` and `react-native-gesture-handler` version `~2.14.0`.
+
+
+### Step 2: Copy and paste the following code into your project.
+
 <CollapsibleCode>
 
 ```jsx 
-%%-- File: core-components/nativewind/badge/index.tsx --%% 
+%%-- File: core-components/nativewind/bottomsheet/index.tsx --%% 
 ```
+
 </CollapsibleCode>
 
-### Step 2: Update the import paths to match your project setup.
+
+### Step 3: Wrap your App or layout with `GestureHandlerRootView`.
+
+```jsx
+
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+
+export default function App() {
+  return (
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      {/* content */}
+    </GestureHandlerRootView>
+  );
+}
+
+```
+
+for more info follow their [installation instructions.](https://docs.swmansion.com/react-native-gesture-handler/docs/fundamentals/installation)
+
+### Step 4: Update the import paths to match your project setup.
+
 </>
     </Tabs.TabPanel>
   </Tabs.TabPanels>
@@ -143,15 +118,44 @@ This is an illustration of **Badge** component.
 To use this component in your project, include the following import statement in your file.
 
 ```jsx
-import { Badge } from '@/components/ui/badge';
+
+import {
+  BottomSheet,
+  BottomSheetBackdrop,
+  BottomSheetContent,
+  BottomSheetDragIndicator,
+  BottomSheetItem,
+  BottomSheetItemText,
+  BottomSheetPortal,
+  BottomSheetTrigger,
+} from '@/components/ui/bottomsheet';
+
 ```
 
 ```jsx
 export default () => (
-  <Badge>
-    <BadgeText />
-    <BadgeIcon />
-  </Badge>
+   <BottomSheet>
+      <BottomSheetTrigger>
+        <Text>Open BottomSheet</Text>
+      </BottomSheetTrigger>
+      <BottomSheetPortal
+        snapPoints={['25%', '50%']}
+        backdropComponent={BottomSheetBackdrop}
+        handleComponent={BottomSheetDragIndicator}
+      >
+        <BottomSheetContent>
+          <BottomSheetItem>
+            <BottomSheetItemText>Item 1</BottomSheetItemText>
+          </BottomSheetItem>
+          <BottomSheetItem>
+            <BottomSheetItemText>Item 2</BottomSheetItemText>
+          </BottomSheetItem>
+          <BottomSheetItem>
+            <BottomSheetItemText>Item 3</BottomSheetItemText>
+          </BottomSheetItem>
+        </BottomSheetContent>
+      </BottomSheetPortal>
+    </BottomSheet>
 );
 ```
 
@@ -159,23 +163,11 @@ export default () => (
 
 This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
 
-#### Badge
+#### BottomSheet
 
-It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
-
-#### BadgeText
-
-It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text) component.
-
-#### BadgeIcon
-
-Contains all Icon related layout style props and actions. It inherits all the properties of gluestack Style's [AsForwarder](/style/docs/api/as-forwarder) component.
+It is a context provider for entire bottomsheet api.
 
 ### Props
-
-Badge component is created using View component from react-native. It extends all the props supported by [React Native View](https://reactnative.dev/docs/view#props).
-
-#### Badge
 
 <>
   <TableContainer>
@@ -183,13 +175,16 @@ Badge component is created using View component from react-native. It extends al
       <Table.THead>
         <Table.TR>
           <Table.TH>
-            <Table.TText>Name</Table.TText>
+            <Table.TText>Prop</Table.TText>
           </Table.TH>
           <Table.TH>
-            <Table.TText>Value</Table.TText>
+            <Table.TText>Type</Table.TText>
           </Table.TH>
           <Table.TH>
             <Table.TText>Default</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Description</Table.TText>
           </Table.TH>
         </Table.TR>
       </Table.THead>
@@ -197,40 +192,49 @@ Badge component is created using View component from react-native. It extends al
         <Table.TR>
           <Table.TD>
             <Table.TText>
-              <InlineCode>action</InlineCode>
+              <InlineCode>snapToIndex</InlineCode>
             </Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>error | warning | success | info | muted</Table.TText>
+            <Table.TText>number</Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>success</Table.TText>
+            <Table.TText>1</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`index of snapPoints at which bottomsheet initially opens.`}</Table.TText>
           </Table.TD>
         </Table.TR>
         <Table.TR>
           <Table.TD>
             <Table.TText>
-              <InlineCode>variant</InlineCode>
+              <InlineCode>onOpen</InlineCode>
             </Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>solid | outline</Table.TText>
+            <Table.TText>() => void</Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>solid</Table.TText>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`callback function which trigger when bottomsheet is opens.`}</Table.TText>
           </Table.TD>
         </Table.TR>
         <Table.TR>
           <Table.TD>
             <Table.TText>
-              <InlineCode>size</InlineCode>
+              <InlineCode>onClose</InlineCode>
             </Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>sm | md | lg</Table.TText>
+            <Table.TText>() => void</Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>md</Table.TText>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`callback function which trigger when bottomsheet is closed.`}</Table.TText>
           </Table.TD>
         </Table.TR>
       </Table.TBody>
@@ -238,111 +242,81 @@ Badge component is created using View component from react-native. It extends al
   </TableContainer>
 </>
 
-> Note: These props are exclusively applicable when utilizing the default configuration of gluestack-ui/config. If you are using a custom theme, these props may not be available.
 
-### Examples
+#### BottomSheetTrigger
 
-The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+It inherits all the properties of React Native's [pressable](https://reactnative.dev/docs/pressable) component.
 
-#### Badge with Avatar
 
-An example of the Badge component being used with the Avatar component to display badges alongside user avatars for enhanced visual representation or identification.
+#### BottomSheetPortal
 
-<Wrapper>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
-        <VStack space="2xl">
-          <HStack space="md">
-            <Avatar>
-              <AvatarFallbackText>SS</AvatarFallbackText>
-              <AvatarImage
-                source={{
-                  uri: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60',
-                }}
-              />
-            </Avatar>
-            <VStack>
-            <HStack>
-              <Heading size="sm" >Ronald Richards</Heading>
-              <Badge  size="sm" variant="solid"  action="success" className='ml-1'>
-                  <BadgeText>Verified</BadgeText>
-                  <BadgeIcon as={BadgeCheckIcon} className='ml-1'/>
-              </Badge>
-            </HStack>
-            <Text size='sm' >Nursing Assistant</Text>
-            </VStack>
-          </HStack>
-        </VStack>
-      `,
-      transformCode: (code) => {
-        return transformedCode(code);
-      },
-      scope: {
-        Wrapper,
-        Avatar,
-        AvatarFallbackText,
-        AvatarImage,
-        Heading,
-        Text,
-        HStack,
-        VStack,
-        Badge,
-        BadgeText,
-        BadgeIcon,
-        GlobeIcon,
-        BadgeCheckIcon,
-      },
-      argsType: {},
-    }}
-  />
-</Wrapper>
+it's a gorhom BottomSheet component. inherits all the properties of [gorhom BottomSheet](https://ui.gorhom.dev/components/bottom-sheet/props#configuration).
 
-### Badge Composition
+<>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Type</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Default</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Description</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>snapPoints</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Array<string | number>`}</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Points for the bottom sheet to snap to. It accepts array of number, string or mix. String values should be a percentage.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</>
 
-An example of the Badge component being used with the Composition component, allowing for the display of badges within a composition of other UI elements.
+#### BottomSheetContent
 
-<Wrapper>
-  <CodePreview
-    showArgsController={false}
-    metaData={{
-      code: `
-       <Box className='items-center'>
-        <VStack>
-          <Badge  
-            className='z-10 self-end h-[22px] w-[22px] bg-red-600 rounded-full -mb-3.5 -mr-3.5'
-            variant="solid"
-          >
-            <BadgeText className='text-white'>2</BadgeText>
-          </Badge>
-          <Button>
-            <ButtonText>
-              Notifications
-            </ButtonText>
-          </Button>
-        </VStack>
-    </Box>
-`,
-      transformCode: (code) => {
-        return transformedCode(code);
-      },
-      scope: {
-        Wrapper,
-        Badge,
-        BadgeText,
-        BadgeIcon,
-        GlobeIcon,
-        Box,
-        Text,
-        HStack,
-        VStack,
-        Heading,
-        Button,
-        ButtonText,
-      },
-      argsType: {},
-    }}
-  />
-</Wrapper>
+It inherits all the properties of [gorhom BottomSheetView](https://ui.gorhom.dev/components/bottom-sheet/components/bottomsheetview).
+
+#### BottomSheetItem
+
+It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable) component.
+
+#### BottomSheetItemText
+
+It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text) component.
+
+#### BottomSheetTextInput
+
+It inherits all the properties of [gorhom BottomSheetTextInput](https://ui.gorhom.dev/components/bottom-sheet/components/bottomsheettextinput).
+
+#### BottomSheetScrollView
+
+It inherits all the properties of [gorhom BottomSheetScrollView](https://ui.gorhom.dev/components/bottom-sheet/components/bottomsheetscrollview).
+
+#### BottomSheetFlatList
+
+It inherits all the properties of [gorhom BottomSheetFlatList](https://ui.gorhom.dev/components/bottom-sheet/components/bottomsheetflatlist).
+
+#### BottomSheetSectionList
+
+It inherits all the properties of [gorhom BottomSheetSectionList](https://ui.gorhom.dev/components/bottom-sheet/components/bottomsheetsectionlist).

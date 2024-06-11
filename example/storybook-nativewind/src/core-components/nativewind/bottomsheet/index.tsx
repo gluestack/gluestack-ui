@@ -3,8 +3,11 @@ import GorhomBottomSheet, {
   BottomSheetView as GorhomBottomSheetView,
   BottomSheetHandle,
   BottomSheetTextInput as GorhomBottomSheetInput,
+  BottomSheetScrollView as GorhomBottomSheetScrollView,
+  BottomSheetFlatList as GorhomBottomSheetFlatList,
+  BottomSheetSectionList as GorhomBottomSheetSectionList,
 } from '@gorhom/bottom-sheet';
-import { ScrollView, FlatList, VirtualizedList, Platform } from 'react-native';
+import { Platform } from 'react-native';
 import type { PressableProps } from 'react-native';
 import { FocusScope } from '@react-native-aria/focus';
 import React, {
@@ -16,7 +19,6 @@ import React, {
   useState,
 } from 'react';
 import { Pressable, Text } from 'react-native';
-import { SectionList } from 'react-native';
 import { cssInterop } from 'nativewind';
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
 
@@ -90,6 +92,7 @@ export const BottomSheetPortal = ({
 }: Partial<IBottomSheetProps> & {
   defaultIsOpen?: boolean;
   snapToIndex?: number;
+  snapPoints: string[];
 }) => {
   const { bottomSheetRef, handleClose } = useContext(BottomSheetContext);
 
@@ -111,6 +114,7 @@ export const BottomSheetPortal = ({
       onChange={handleSheetChanges}
       handleComponent={DragIndicator}
       enablePanDownToClose={true}
+      {...props}
     >
       {props.children}
     </GorhomBottomSheet>
@@ -121,7 +125,10 @@ export const BottomSheetTrigger = ({ className, ...props }: any) => {
   const { handleOpen } = useContext(BottomSheetContext);
   return (
     <Pressable
-      onPress={handleOpen}
+      onPress={() => {
+        props.onPress && props.onPress();
+        handleOpen();
+      }}
       {...props}
       className={bottomSheetTriggerStyle({
         className: className,
@@ -262,9 +269,12 @@ export const BottomSheetItemText = ({ ...props }: any) => {
   return <Text {...props} />;
 };
 
-export const BottomSheetScrollView = ScrollView;
-export const BottomSheetFlatList = FlatList;
-export const BottomSheetSectionList = SectionList;
-export const BottomSheetSectionHeader = Text;
-export const BottomSheetVirtualizedList = VirtualizedList;
+export const BottomSheetScrollView = GorhomBottomSheetScrollView;
+export const BottomSheetFlatList = GorhomBottomSheetFlatList;
+export const BottomSheetSectionList = GorhomBottomSheetSectionList;
 export const BottomSheetTextInput = GorhomBottomSheetInput;
+
+cssInterop(GorhomBottomSheetInput, { className: 'style' });
+cssInterop(GorhomBottomSheetScrollView, { className: 'style' });
+cssInterop(GorhomBottomSheetFlatList, { className: 'style' });
+cssInterop(GorhomBottomSheetSectionList, { className: 'style' });
