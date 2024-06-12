@@ -52,6 +52,7 @@ export const parameters = {
         ],
         'Components',
         [
+          'All Components',
           ['All Components'],
           'Typography',
           ['Heading', 'Text'],
