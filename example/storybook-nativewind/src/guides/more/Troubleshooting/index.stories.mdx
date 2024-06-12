@@ -1,0 +1,67 @@
+---
+title: Changelog | gluestack-ui
+description: A quick look on gluestack-ui changelog.
+---
+
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+
+<Meta title="common/Guides/More/Troubleshooting" />
+
+# Troubleshooting
+
+If you encounter any issues while using nativewind, please refer to nativewind [](https://www.nativewind.dev/v4/guides/troubleshooting).
+
+## Common issues.
+
+### 1. "dark:" is not working as expected.
+
+If you are using `dark:` and it is not working as expected, please make sure you have the followed this [docs](/home/theme-configuration/dark-mode).
+
+### 2. Toast inside modal is not working.
+
+If you are using `Toast` inside a `Modal` make sure to add `OverlayProvider` from `@gluestack-ui/overlay` to the root of your application.
+
+```jsx
+
+import { OverlayProvider } from '@gluestack-ui/overlay';
+import {GluestackUIProvider} from '@/components/ui/gluestack-ui-provider';
+
+const App = () => {
+  return (
+    <GluestackUIProvider>
+      <OverlayProvider>
+        <YourApp />
+      </OverlayProvider>
+    </GluestackUIProvider>
+  );
+};
+
+```
+
+### 3. Flashing issue in `Next.js`.
+
+- go to [installation docs](https://gluestack.io/ui/nativewind/docs/home/getting-started/installation) click on manual. Go to step 4 check if everything is setup correctly.
+
+### 4. tailwindcss classNames are not getting override with react-native-web.
+
+- A simple fix is simply make the Tailwind styles a higher specificity. just add `important: 'html'` to your `tailwind.config.js`.
+
+```jsx
+/// tailwind.config.js
+module.exports = {
+  ...
+    important: 'html',
+  ...
+}
+
+```
+
+## Known issues.
+
+- `placeholder` is not working with css tokens.
+- `dark:` is not working with "class" as a strategy.
+
+
+## Still facing issues?
+
+If you are still facing issues, please create an issue on [github](https://github.com/gluestack/gluestack-ui).
