@@ -34,7 +34,7 @@ export const parameters = {
         'Home',
         [
           'Overview',
-          ['Introduction', 'All Components', 'Upgrade to v2'],
+          ['Introduction', 'Upgrade to v2'],
           'Getting Started',
           [
             'Installation',
@@ -52,6 +52,7 @@ export const parameters = {
         ],
         'Components',
         [
+          ['All Components'],
           'Typography',
           ['Heading', 'Text'],
           'Layout',
@@ -86,7 +87,7 @@ export const parameters = {
         'Apps',
         ['Dashboard App', 'Starter Kit', 'Storybook App'],
         'Guides',
-        ['Recipes', ['Linear Gradient'], 'More', ['Changelog']],
+        ['Recipes', ['Linear Gradient']],
       ],
       icons: [
         {

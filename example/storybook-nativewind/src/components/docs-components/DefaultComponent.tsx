@@ -156,4 +156,22 @@ const ShadowComponent = () => {
   );
 };
 
-export { ColorPaletteComponent, ShadowComponent };
+const SizeComponent = () => {
+  return <Text className="text-2xs">Text of fontSize (2xs)</Text>;
+};
+
+const WeightComponent = () => {
+  return (
+    <>
+      <Text className="font-hairline">Text with fontWeight (hairline)</Text>
+      <Text className="font-extraBlack">Text with fontWeight (extraBlack)</Text>
+    </>
+  );
+};
+
+export {
+  ColorPaletteComponent,
+  ShadowComponent,
+  SizeComponent,
+  WeightComponent,
+};
