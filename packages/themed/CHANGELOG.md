@@ -1,5 +1,14 @@
 # @gluestack-ui/themed
 
+## 1.1.30
+
+### Patch Changes
+
+- Updated dependencies
+  - @gluestack-ui/textarea@0.1.22
+  - @gluestack-ui/input@0.1.30
+  - @gluestack-ui/button@1.0.5
+
 ## 1.1.29
 
 ### Patch Changes

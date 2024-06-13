@@ -1,5 +1,15 @@
 # @gluestack-ui/input
 
+## 0.1.30
+
+### Patch Changes
+
+- - `Input` removed `aria-selected` on web. [PR](https://github.com/gluestack/gluestack-ui/pull/2089) by [Mookiies](https://github.com/Mookiies).
+  - `InputSlot` added `focusOnPress` prop for more control. [Commit](https://github.com/gluestack/gluestack-ui/commit/6cb3f1cc3e6e26b417f58f53cd8ef6f393f96138).
+  - `Utils` improved `composeEventHandlers` function. [PR](https://github.com/gluestack/gluestack-ui/pull/2216) by [Mookiies](https://github.com/Mookiies).
+- Updated dependencies
+  - @gluestack-ui/utils@0.1.13
+
 ## 0.1.29
 
 ### Patch Changes
