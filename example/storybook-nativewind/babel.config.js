@@ -26,6 +26,10 @@ module.exports = function (api) {
               __dirname,
               '../../packages/unstyled/checkbox/src'
             ),
+            '@gluestack-ui/input': path.resolve(
+              __dirname,
+              '../../packages/unstyled/input/src'
+            ),
             '@gluestack-ui/tooltip': path.resolve(
               __dirname,
               '../../packages/unstyled/tooltip/src'
