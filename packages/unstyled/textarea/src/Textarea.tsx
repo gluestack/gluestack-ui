@@ -1,4 +1,5 @@
 import React, { forwardRef } from 'react';
+import { Platform } from 'react-native';
 import { useFormControl } from '@gluestack-ui/form-control';
 import { useTextarea } from './TextareaContext';
 
@@ -60,7 +61,7 @@ export const Textarea = (StyledTextarea: any) =>
           aria-required={isRequired || textareaProps.isRequired}
           aria-invalid={isInvalid || textareaProps.isInvalid}
           aria-disabled={isDisabled || textareaProps.isDisabled}
-          aria-selected={isFocused}
+          aria-selected={Platform.OS !== 'web' ? isFocused : undefined}
           aria-hidden={isDisabled}
           editable={isDisabled || isReadOnly ? false : true}
           disabled={isDisabled || textareaProps.isDisabled}
