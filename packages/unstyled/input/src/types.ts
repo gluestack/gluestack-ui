@@ -50,16 +50,23 @@ export interface IInputProps {
   onFocus?: any;
   onBlur?: any;
 }
+export interface IInputSlotProps {
+  /**
+   * If true, the input will be focused on press.
+   * @default true
+   */
+  focusOnPress?: boolean;
+}
 
 export type IInputComponentType<Root, Icon, Slot, Input> =
   React.ForwardRefExoticComponent<
     React.RefAttributes<Root> & Root & IInputFieldProps
   > & {
     Icon: React.ForwardRefExoticComponent<React.RefAttributes<Icon> & Icon>;
-    Slot: React.ForwardRefExoticComponent<React.RefAttributes<Slot> & Slot>;
+    Slot: React.ForwardRefExoticComponent<
+      React.RefAttributes<Slot> & Slot & IInputSlotProps
+    >;
     Input: React.ForwardRefExoticComponent<
       React.RefAttributes<Input> & Input & IInputProps
     >;
   };
-
-// export type InputProps = Partial<IInputProps>;
