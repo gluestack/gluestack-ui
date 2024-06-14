@@ -6,12 +6,15 @@ import {
   ButtonSpinner,
   ButtonIcon,
 } from '@/components/ui/button';
+import { useColorMode } from '@/components/ui/gluestack-ui-provider/useColorMode';
 
 export const ButtonBasic = (props: any) => {
+  const { colorMode, toggleColorMode } = useColorMode();
+
   return (
     <>
-      <Button {...props}>
-        <ButtonText>Hello World</ButtonText>
+      <Button {...props} onPress={toggleColorMode}>
+        <ButtonText>{colorMode}</ButtonText>
         <ButtonIcon as={AddIcon} />
       </Button>
     </>

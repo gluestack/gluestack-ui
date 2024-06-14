@@ -1,5 +1,6 @@
 'use client';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { GlobalValuesContext } from './globalContext';
 import { config } from './config';
 import { OverlayProvider } from '@gluestack-ui/overlay';
 import { ToastProvider } from '@gluestack-ui/toast';
@@ -20,6 +21,8 @@ export function GluestackUIProvider({
   mode?: 'light' | 'dark';
   children?: any;
 }) {
+  const [colorMode, setColorMode] = useState<'light' | 'dark'>(mode);
+
   const stringcssvars = Object.keys(config[mode]).reduce((acc, cur) => {
     acc += `${cur}:${config[mode][cur]};`;
     return acc;
@@ -44,8 +47,10 @@ export function GluestackUIProvider({
   }, [mode]);
 
   return (
-    <OverlayProvider>
-      <ToastProvider>{props.children}</ToastProvider>
-    </OverlayProvider>
+    <GlobalValuesContext.Provider value={{ colorMode, setColorMode }}>
+      <OverlayProvider>
+        <ToastProvider>{props.children}</ToastProvider>
+      </OverlayProvider>
+    </GlobalValuesContext.Provider>
   );
 }

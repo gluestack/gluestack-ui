@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { GlobalValuesContext } from './globalContext';
 import { config } from './config';
 import { View } from 'react-native';
 import { OverlayProvider } from '@gluestack-ui/overlay';
@@ -11,18 +12,22 @@ export function GluestackUIProvider({
   mode?: 'light' | 'dark';
   children?: any;
 }) {
+  const [colorMode, setColorMode] = useState<'light' | 'dark'>(mode);
+
   return (
-    <View
-      style={[
-        config[mode],
-        { flex: 1, height: '100%', width: '100%' },
-        // @ts-ignore
-        props.style,
-      ]}
-    >
-      <OverlayProvider>
-        <ToastProvider>{props.children}</ToastProvider>
-      </OverlayProvider>
-    </View>
+    <GlobalValuesContext.Provider value={{ colorMode, setColorMode }}>
+      <View
+        style={[
+          config[mode],
+          { flex: 1, height: '100%', width: '100%' },
+          // @ts-ignore
+          props.style,
+        ]}
+      >
+        <OverlayProvider>
+          <ToastProvider>{props.children}</ToastProvider>
+        </OverlayProvider>
+      </View>
+    </GlobalValuesContext.Provider>
   );
 }
