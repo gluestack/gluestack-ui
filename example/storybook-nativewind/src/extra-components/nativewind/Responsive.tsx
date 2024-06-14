@@ -3,6 +3,7 @@ import React, { useRef, useState } from 'react';
 import NextImage from 'next/image';
 import { Expand } from '../../apps/dashboard-app/Expand';
 import { Resizable } from 're-resizable';
+import { Text as NText } from '../../core-components/nativewind/text';
 
 //function to detect if the user is on a web browser
 function checkPlatform({
@@ -39,6 +40,7 @@ function Responsiveness({
 }) {
   const resizableRef = useRef<any>(null);
   const [isMobile, setIsMobile] = useState(true);
+
   return (
     <Box minWidth={'70vw'}>
       <Resizable
@@ -202,14 +204,9 @@ function Responsiveness({
         }}
       >
         <Box>
-          <Text
-            color="$textDark50"
-            fontSize="$xl"
-            fontWeight="$bold"
-            fontFamily="Inter"
-          >
+          <NText className="text-typography-900 font-bold font-Inter" size="xl">
             Give it a shot!
-          </Text>
+          </NText>
 
           <Box
             display="none"
@@ -219,18 +216,9 @@ function Responsiveness({
               },
             }}
           >
-            <Text
-              color="$textDark300"
-              fontSize="$md"
-              fontWeight="$normal"
-              lineHeight="$lg"
-              fontFamily="Inter"
-              mt="$2"
-              sx={{
-                '@md': {
-                  maxWidth: 319,
-                },
-              }}
+            <NText
+              className="text-typography-600 font-Inter mt-2 md:max-w-[319px]"
+              size="md"
             >
               Try it in your browser or scan the QR code with the&nbsp;
               <NextImage
@@ -243,7 +231,7 @@ function Responsiveness({
                 }}
               />
               &nbsp;Expo app on your phone.
-            </Text>
+            </NText>
           </Box>
 
           <Text

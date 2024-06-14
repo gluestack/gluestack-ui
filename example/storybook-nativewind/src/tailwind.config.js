@@ -173,8 +173,7 @@ module.exports = {
         roboto: ['Roboto', 'sans-serif'],
       },
       fontWeight: {
-        hairline: '100',
-        extraBlack: '950',
+        extrablack: '950',
       },
       fontSize: {
         '2xs': '10px',

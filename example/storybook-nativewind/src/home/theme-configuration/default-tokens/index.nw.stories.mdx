@@ -11,7 +11,7 @@ showHeader: true
 ---
 
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
-import {ColorPaletteComponent, ShadowComponent, SizeComponent, WeightComponent} from '../../../components/docs-components/DefaultComponent.tsx';
+import {ColorPaletteComponent, ShadowComponent, FontSizeComponent, FontWeightComponent} from '../../../components/docs-components/DefaultComponent.tsx';
 
 <Meta title="with-nativewind/Home/Theme Configuration/Default Tokens" />
 
@@ -35,14 +35,16 @@ To add or update **Font Family**. Please refer [Tailwind CSS documentation](http
 
 To add or update **font sizes**, please refer to the [Tailwind CSS documentation](https://tailwindcss.com/docs/font-size). We have added a new size, '**2xs**', in `tailwind.config.js` with a value of '**10px**'.
 
-<SizeComponent/>
+<FontSizeComponent/>
 
 <br/>
-To add or update **font weights**, please refer to the [Tailwind CSS documentation](https://tailwindcss.com/docs/font-weight).  We have added two new weights in `tailwind.config.js`: '**hairline**' with a value of '**100**' and '**extraBlack**' with a value of '**950**'.
 
-<WeightComponent/>
+To add or update **font weights**, please refer to the [Tailwind CSS documentation](https://tailwindcss.com/docs/font-weight).  We have added a new weight, '**extraBlack**', in `tailwind.config.js` with a value of '**950**'.
+
+<FontWeightComponent/>
 
 <br/>
+
 To add or update **line heights**. Please refer [Tailwind CSS documentation](https://tailwindcss.com/docs/line-height).
 
 To add or update **letter spacing**. Please refer [Tailwind CSS documentation](https://tailwindcss.com/docs/letter-spacing).
