@@ -234,24 +234,10 @@ function Responsiveness({
             </NText>
           </Box>
 
-          <Text
-            display="flex"
-            color="$textDark300"
-            fontSize="$md"
-            fontWeight="$normal"
-            lineHeight="$lg"
-            fontFamily="Inter"
-            mt="$2"
-            sx={{
-              '@md': {
-                display: 'none',
-                maxWidth: 319,
-              },
-            }}
-          >
+          <NText className="flex text-typography-600 font-Inter mt-2 md:hidden md:max-w-[319px]">
             Try on Expo app. It&apos;s the perfect way to dive right in and
             explore.
-          </Text>
+          </NText>
 
           <Pressable
             display="none"
@@ -288,15 +274,9 @@ function Responsiveness({
             }
           >
             <OpenInNewIcon />
-            <Text
-              color="$textLight50"
-              ml="$2.5"
-              fontSize="$sm"
-              fontWeight="$normal"
-              lineHeight="$md"
-            >
+            <NText className="text-typography-50 ml-2.5" size="sm">
               Open in new tab
-            </Text>
+            </NText>
           </Pressable>
 
           <Pressable
@@ -339,15 +319,9 @@ function Responsiveness({
               width={17}
               height={16}
             />
-            <Text
-              color="$textLight50"
-              ml="$2.5"
-              fontSize="$sm"
-              fontWeight="$normal"
-              lineHeight="$md"
-            >
+            <NText className="text-typography-50 ml-2.5" size="sm">
               Open in Expo
-            </Text>
+            </NText>
           </Pressable>
         </Box>
         <Box
