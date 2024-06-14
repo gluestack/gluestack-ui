@@ -17,6 +17,7 @@ const TextBasic = ({
     bold: 'font-bold',
     extrabold: 'font-extrabold',
     black: 'font-black',
+    extrablack: 'font-extrablack',
   };
 
   return (
