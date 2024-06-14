@@ -163,7 +163,7 @@ const FontSizeComponent = () => {
 const FontWeightComponent = () => {
   return (
     <>
-      <Text className="font-extrablack">Text with fontWeight (extrablack)</Text>
+      <Text className="font-extrablack">Text of fontWeight (extrablack)</Text>
     </>
   );
 };
