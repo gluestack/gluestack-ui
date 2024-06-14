@@ -4,6 +4,7 @@ import NextImage from 'next/image';
 import { Expand } from '../../apps/dashboard-app/Expand';
 import { Resizable } from 're-resizable';
 import { Text as NText } from '../../core-components/nativewind/text';
+import { Image as NImage } from '../../core-components/nativewind/image';
 
 //function to detect if the user is on a web browser
 function checkPlatform({
@@ -229,6 +230,7 @@ function Responsiveness({
                 style={{
                   verticalAlign: 'middle',
                 }}
+                className="inline"
               />
               &nbsp;Expo app on your phone.
             </NText>
@@ -274,7 +276,7 @@ function Responsiveness({
             }
           >
             <OpenInNewIcon />
-            <NText className="text-typography-50 ml-2.5" size="sm">
+            <NText className="text-typography-950 ml-2.5" size="sm">
               Open in new tab
             </NText>
           </Pressable>
@@ -319,7 +321,7 @@ function Responsiveness({
               width={17}
               height={16}
             />
-            <NText className="text-typography-50 ml-2.5" size="sm">
+            <NText className="text-typography-950 ml-2.5" size="sm">
               Open in Expo
             </NText>
           </Pressable>
@@ -336,7 +338,13 @@ function Responsiveness({
             },
           }}
         >
-          <NextImage alt="qr-code" width={90} height={90} src={qrCodeUri} />
+          <NImage
+            alt="qr-code"
+            className="w-24 h-24"
+            source={{
+              uri: qrCodeUri,
+            }}
+          />
         </Box>
       </Box>
     </Box>
