@@ -83,7 +83,9 @@ const UIButton = createButton({
 cssInterop(UIButton, { className: 'style' });
 cssInterop(UIButton.Text, { className: 'style' });
 cssInterop(UIButton.Group, { className: 'style' });
-cssInterop(UIButton.Spinner, { className: 'style' });
+cssInterop(UIButton.Spinner, {
+  className: { target: 'style', nativeStyleToProp: { color: true } },
+});
 cssInterop(UIButton.Icon, {
   className: {
     target: 'style',

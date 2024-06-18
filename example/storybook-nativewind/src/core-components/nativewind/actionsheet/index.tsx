@@ -17,7 +17,7 @@ import {
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 import { withStates } from '@gluestack-ui/nativewind-utils/withStates';
-import { cssInterop } from 'nativewind';
+import { cssInterop, remapProps } from 'nativewind';
 import {
   Motion,
   AnimatePresence,
@@ -98,9 +98,26 @@ cssInterop(UIActionsheet.ItemText, { className: 'style' });
 cssInterop(UIActionsheet.DragIndicator, { className: 'style' });
 cssInterop(UIActionsheet.DragIndicatorWrapper, { className: 'style' });
 cssInterop(UIActionsheet.Backdrop, { className: 'style' });
-cssInterop(UIActionsheet.ScrollView, { className: 'style' });
-cssInterop(UIActionsheet.VirtualizedList, { className: 'style' });
-cssInterop(UIActionsheet.FlatList, { className: 'style' });
+cssInterop(UIActionsheet.ScrollView, {
+  className: 'style',
+  contentContainerClassName: 'contentContainerStyle',
+  indicatorClassName: 'indicatorStyle',
+});
+remapProps(UIActionsheet.VirtualizedList, {
+  className: 'style',
+  ListFooterComponentClassName: 'ListFooterComponentStyle',
+  ListHeaderComponentClassName: 'ListHeaderComponentStyle',
+  contentContainerClassName: 'contentContainerStyle',
+  indicatorClassName: 'indicatorStyle',
+});
+remapProps(UIActionsheet.FlatList, {
+  className: 'style',
+  ListFooterComponentClassName: 'ListFooterComponentStyle',
+  ListHeaderComponentClassName: 'ListHeaderComponentStyle',
+  columnWrapperClassName: 'columnWrapperStyle',
+  contentContainerClassName: 'contentContainerStyle',
+  indicatorClassName: 'indicatorStyle',
+});
 cssInterop(UIActionsheet.SectionList, { className: 'style' });
 cssInterop(UIActionsheet.SectionHeaderText, { className: 'style' });
 cssInterop(UIActionsheet.Icon, {

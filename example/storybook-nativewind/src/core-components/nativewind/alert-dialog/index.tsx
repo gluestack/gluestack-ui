@@ -41,7 +41,11 @@ cssInterop(UIAccessibleAlertDialog.Content, { className: 'style' });
 cssInterop(UIAccessibleAlertDialog.CloseButton, { className: 'style' });
 cssInterop(UIAccessibleAlertDialog.Header, { className: 'style' });
 cssInterop(UIAccessibleAlertDialog.Footer, { className: 'style' });
-cssInterop(UIAccessibleAlertDialog.Body, { className: 'style' });
+cssInterop(UIAccessibleAlertDialog.Body, {
+  className: 'style',
+  contentContainerClassName: 'contentContainerStyle',
+  indicatorClassName: 'indicatorStyle',
+});
 cssInterop(UIAccessibleAlertDialog.Backdrop, { className: 'style' });
 
 const alertDialogStyle = tva({
