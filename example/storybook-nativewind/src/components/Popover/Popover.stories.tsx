@@ -1,5 +1,6 @@
 import type { ComponentMeta } from '@storybook/react-native';
 import Popover from './Popover';
+import PopoverExamples from './PopoverExamples';
 
 const PopoverMeta: ComponentMeta<typeof Popover> = {
   title: 'stories/Popover',
@@ -41,4 +42,4 @@ const PopoverMeta: ComponentMeta<typeof Popover> = {
 
 export default PopoverMeta;
 
-export { Popover };
+export { Popover, PopoverExamples };

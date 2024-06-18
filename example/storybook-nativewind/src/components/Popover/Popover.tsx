@@ -11,10 +11,7 @@ import {
 } from '@/components/ui/popover';
 import { Button, ButtonText } from '@/components/ui/button';
 import { Text } from '@/components/ui/text';
-import { Heading } from '@/components/ui/heading';
 import { Box } from '@/components/ui/box';
-import { X } from 'lucide-react-native';
-import { Icon } from '@/components/ui/icon';
 
 const PopoverBasic = (props: any) => {
   const [showPopover, setShowPopover] = React.useState(false);
@@ -39,43 +36,15 @@ const PopoverBasic = (props: any) => {
       }}
     >
       <PopoverBackdrop />
-      <PopoverContent className="max-w-[400]">
+      <PopoverContent className="ios:max-w-[400] android:max-w-[400]">
         <PopoverArrow />
-        <PopoverHeader>
-          <Heading>Welcome!</Heading>
-          <PopoverCloseButton>
-            <Icon as={X} size="lg" />
-          </PopoverCloseButton>
-        </PopoverHeader>
+
         <PopoverBody>
-          <Text>
-            Join the product tour and start creating your own checklist. Are you
-            ready to jump in?
+          <Text size={props.size}>
+            Alex, Annie and many others are already enjoying the Pro features,
+            don't miss out on the fun!
           </Text>
         </PopoverBody>
-        <PopoverFooter>
-          <Text size="xs" className="flex-1">
-            Step 2 of 3
-          </Text>
-          {/* @ts-ignore */}
-          <Button
-            variant="outline"
-            action="secondary"
-            className="mr-3"
-            onPress={() => {
-              setShowPopover(false);
-            }}
-          >
-            <ButtonText>Back</ButtonText>
-          </Button>
-          <Button
-            onPress={() => {
-              setShowPopover(false);
-            }}
-          >
-            <ButtonText>Next</ButtonText>
-          </Button>
-        </PopoverFooter>
       </PopoverContent>
     </Popover>
   );

@@ -7,6 +7,7 @@ import {
   AnimatePresence,
 } from '@legendapp/motion';
 import { createPopover } from '@gluestack-ui/popover';
+
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import {
   withStyleContext,
@@ -18,6 +19,7 @@ import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 
 const AnimatedPressable = createMotionAnimatedComponent(Pressable);
 const SCOPE = 'POPOVER';
+
 const UIPopover = createPopover({
   // @ts-ignore
   Root:
@@ -39,7 +41,11 @@ cssInterop(UIPopover.Arrow, { className: 'style' });
 cssInterop(UIPopover.Content, { className: 'style' });
 cssInterop(UIPopover.Header, { className: 'style' });
 cssInterop(UIPopover.Footer, { className: 'style' });
-cssInterop(UIPopover.Body, { className: 'style' });
+cssInterop(UIPopover.Body, {
+  className: 'style',
+  contentContainerClassName: 'contentContainerStyle',
+  indicatorClassName: 'indicatorStyle',
+});
 cssInterop(UIPopover.Backdrop, { className: 'style' });
 cssInterop(UIPopover.CloseButton, { className: 'style' });
 
@@ -57,40 +63,40 @@ const popoverStyle = tva({
 });
 
 const popoverArrowStyle = tva({
-  base: 'bg-background-50 z-[1] absolute overflow-hidden h-3.5 w-3.5',
+  base: 'bg-background-0 z-[1] absolute overflow-hidden h-3.5 w-3.5',
 });
 
 const popoverBackdropStyle = tva({
   base: 'absolute left-0 top-0 right-0 bottom-0 bg-background-dark web:cursor-default',
 });
 
-const popoverBodyStyle = tva({
-  base: 'p-4 pt-2',
+const popoverContentStyle = tva({
+  base: 'bg-background-0 rounded-lg overflow-hidden border border-outline-100',
+  parentVariants: {
+    size: {
+      xs: 'w-[60%] max-w-[360px] p-3.5',
+      sm: 'w-[70%] max-w-[420px] p-4',
+      md: 'w-[80%] max-w-[510px] p-[18px]',
+      lg: 'w-[90%] max-w-[640px] p-5',
+      full: 'w-full p-6',
+    },
+  },
+});
+
+const popoverHeaderStyle = tva({
+  base: 'p-4 pb-2 justify-between items-center flex-row',
 });
 
 const popoverCloseButtonStyle = tva({
   base: 'group/popover-close-button z-[1] rounded-sm data-[focus-visible=true]:web:bg-background-100 web:outline-0 web:cursor-pointer',
 });
 
-const popoverContentStyle = tva({
-  base: 'bg-background-50 rounded-lg overflow-hidden',
-  parentVariants: {
-    size: {
-      xs: 'w-[60%] max-w-[360px]',
-      sm: 'w-[70%] max-w-[420px]',
-      md: 'w-[80%] max-w-[510px]',
-      lg: 'w-[90%] max-w-[640px]',
-      full: 'w-full',
-    },
-  },
+const popoverBodyStyle = tva({
+  base: 'p-4 pt-2',
 });
 
 const popoverFooterStyle = tva({
   base: 'p-4 flex-row justify-end items-center flex-wrap border-t border-outline-100',
-});
-
-const popoverHeaderStyle = tva({
-  base: 'p-4 pb-2 justify-between items-center flex-row',
 });
 
 type IPopoverProps = React.ComponentProps<typeof UIPopover> &
