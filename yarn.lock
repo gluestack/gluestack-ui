@@ -2636,6 +2636,13 @@
     "@gluestack-ui/utils" "^0.1.12"
     "@react-native-aria/focus" "^0.2.9"
 
+"@gluestack-ui/utils@0.1.12":
+  version "0.1.12"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/utils/-/utils-0.1.12.tgz#0bb3400c9315fb6c0fd1bc697b20d80f82cd3899"
+  integrity sha512-OhOkljhr7foCUJP//8LwMN3EX4/pniFWmQpk1yDJMQL9DaTJbP7s3HsnTM7UzH2kp9DR1Utoz9Y9WscH3ajLpQ==
+  dependencies:
+    "@react-native-aria/focus" "^0.2.9"
+
 "@gluestack/design-system@0.5.36":
   version "0.5.36"
   resolved "https://registry.yarnpkg.com/@gluestack/design-system/-/design-system-0.5.36.tgz#ee9c6a1dc3d0806eda5bd5781b58c3e8b3621dcf"
