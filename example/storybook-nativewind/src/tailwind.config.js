@@ -165,6 +165,11 @@ module.exports = {
           light: '#FBFBFB',
           dark: '#181719',
         },
+        indicator: {
+          primary: 'rgb(var(--color-indicator-primary)/<alpha-value>)',
+          info: 'rgb(var(--color-indicator-info)/<alpha-value>)',
+          error: 'rgb(var(--color-indicator-error)/<alpha-value>)',
+        },
       },
       fontFamily: {
         heading: undefined,
