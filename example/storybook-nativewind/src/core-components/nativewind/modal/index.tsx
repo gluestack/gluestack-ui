@@ -38,7 +38,11 @@ cssInterop(UIModal.Backdrop, { className: 'style' });
 cssInterop(UIModal.Content, { className: 'style' });
 cssInterop(UIModal.CloseButton, { className: 'style' });
 cssInterop(UIModal.Header, { className: 'style' });
-cssInterop(UIModal.Body, { className: 'style' });
+cssInterop(UIModal.Body, {
+  className: 'style',
+  contentContainerClassName: 'contentContainerStyle',
+  indicatorClassName: 'indicatorStyle',
+});
 cssInterop(UIModal.Footer, { className: 'style' });
 
 const modalStyle = tva({

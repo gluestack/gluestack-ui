@@ -21,7 +21,9 @@ const UITextarea = createTextarea({
 });
 
 cssInterop(UITextarea, { className: 'style' });
-cssInterop(UITextarea.Input, { className: 'style' });
+cssInterop(UITextarea.Input, {
+  className: { target: 'style', nativeStyleToProp: { textAlign: true } },
+});
 
 const textareaStyle = tva({
   base: 'w-full h-[100px] border border-background-300 rounded data-[hover=true]:border-outline-400 data-[focus=true]:border-primary-700 data-[focus=true]:data-[hover=true]:border-primary-700 data-[disabled=true]:opacity-40 data-[disabled=true]:bg-background-50 data-[disabled=true]:data-[hover=true]:border-background-300',

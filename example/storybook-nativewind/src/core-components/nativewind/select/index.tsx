@@ -155,7 +155,9 @@ const UISelect = createSelect(
 );
 
 cssInterop(UISelect, { className: 'style' });
-cssInterop(UISelect.Input, { className: 'style' });
+cssInterop(UISelect.Input, {
+  className: { target: 'style', nativeStyleToProp: { textAlign: true } },
+});
 cssInterop(UISelect.Trigger, { className: 'style' });
 // @ts-ignore
 cssInterop(UISelect.Icon, {
