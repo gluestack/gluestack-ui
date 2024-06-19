@@ -31,6 +31,8 @@ export function GluestackUIProvider({
     if (config[mode] && typeof document !== 'undefined') {
       const element = document.documentElement;
       if (element) {
+        element.classList.add(mode);
+        element.classList.remove(mode === 'light' ? 'dark' : 'light');
         const head = element.querySelector('head');
         let style = head?.querySelector(`[id='${styleTagId}']`);
         if (!style) {

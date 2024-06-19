@@ -148,6 +148,11 @@ export const config = {
     '--color-background-success': '237 252 242',
     '--color-background-muted': '247 248 247',
     '--color-background-info': '235 248 254',
+
+    /* Focus Ring Indicator  */
+    '--color-indicator-primary': '55 55 55',
+    '--color-indicator-info': '83 153 236',
+    '--color-indicator-error': '185 28 28',
   }),
   dark: vars({
     '--color-primary-0': '130 130 130',
@@ -295,5 +300,10 @@ export const config = {
     '--color-background-success': '28 43 33',
     '--color-background-muted': '51 51 51',
     '--color-background-info': '26 40 46',
+
+    /* Focus Ring Indicator  */
+    '--color-indicator-primary': '247 247 247',
+    '--color-indicator-info': '161 199 245',
+    '--color-indicator-error': '232 70 69',
   }),
 };
