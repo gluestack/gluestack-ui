@@ -15,7 +15,7 @@ import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 import { withStyleContext } from '@gluestack-ui/nativewind-utils/withStyleContext';
 import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withStyleContextAndStates';
-import { cssInterop, remapProps } from 'nativewind';
+import { cssInterop } from 'nativewind';
 import {
   Motion,
   AnimatePresence,
@@ -58,14 +58,14 @@ cssInterop(UIActionsheet.ScrollView, {
   contentContainerClassName: 'contentContainerStyle',
   indicatorClassName: 'indicatorStyle',
 });
-remapProps(UIActionsheet.VirtualizedList, {
+cssInterop(UIActionsheet.VirtualizedList, {
   className: 'style',
   ListFooterComponentClassName: 'ListFooterComponentStyle',
   ListHeaderComponentClassName: 'ListHeaderComponentStyle',
   contentContainerClassName: 'contentContainerStyle',
   indicatorClassName: 'indicatorStyle',
 });
-remapProps(UIActionsheet.FlatList, {
+cssInterop(UIActionsheet.FlatList, {
   className: 'style',
   ListFooterComponentClassName: 'ListFooterComponentStyle',
   ListHeaderComponentClassName: 'ListHeaderComponentStyle',
