@@ -35,7 +35,11 @@ const PrimitiveIcon = React.forwardRef(
     ref?: any
   ) => {
     const sizeProps = useMemo(() => {
-      return size ? { size } : { height, width };
+      if (size) return { size };
+      if (height && width) return { height, width };
+      if (height) return { height };
+      if (width) return { width };
+      return {};
     }, [size, height, width]);
 
     const colorProps =
@@ -126,6 +130,7 @@ const buttonStyle = tva({
       sm: 'px-4 h-9',
       md: 'px-5 h-10',
       lg: 'px-6 h-11',
+      xl: 'px-7 h-12',
     },
   },
   compoundVariants: [
@@ -196,6 +201,7 @@ const buttonTextStyle = tva({
       sm: 'text-sm',
       md: 'text-base',
       lg: 'text-lg',
+      xl: 'text-xl',
     },
   },
   parentCompoundVariants: [
@@ -260,12 +266,11 @@ const buttonIconStyle = tva({
         'text-typography-0 group-hover/button:text-typography-0 group-active/button:text-typography-0',
     },
     size: {
-      '2xs': 'h-3 w-3',
-      'xs': 'h-3.5 w-3.5',
-      'sm': 'h-4 w-4',
-      'md': 'h-[18px] w-[18px]',
-      'lg': 'h-5 w-5',
-      'xl': 'h-6 w-6',
+      xs: 'h-[3.5] w-[3.5]',
+      sm: 'h-4 w-4',
+      md: 'h-[18px] w-[18px]',
+      lg: 'h-[18px] w-[18px]',
+      xl: 'h-5 w-5',
     },
     action: {
       primary:

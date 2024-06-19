@@ -41,7 +41,11 @@ const PrimitiveIcon = React.forwardRef(
     ref?: any
   ) => {
     const sizeProps = useMemo(() => {
-      return size ? { size } : { height, width };
+      if (size) return { size };
+      if (height && width) return { height, width };
+      if (height) return { height };
+      if (width) return { width };
+      return {};
     }, [size, height, width]);
 
     const colorProps =
