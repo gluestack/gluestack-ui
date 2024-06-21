@@ -13,6 +13,7 @@ import { themes } from '@storybook/theming';
 import { View } from 'react-native';
 import { useColorScheme } from 'nativewind';
 import { useDarkMode } from '../src/components/hooks/useDarkMode';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { Platform } from 'react-native';
 import { useEffect, useState } from 'react';
 
@@ -124,21 +125,25 @@ export const decorators = [
 
     return (
       <GluestackUIWithGluestackStyleProvider colorMode={getColorMode()}>
-        <GluestackUIWithNativewindProvider mode={getColorMode()}>
-          <OverlayProvider style={{ flex: 1 }}>
-            <ToastProvider>
-              <View
-                style={{
-                  flex: 1,
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                }}
-              >
-                <Story />
-              </View>
-            </ToastProvider>
-          </OverlayProvider>
-        </GluestackUIWithNativewindProvider>
+        <GestureHandlerRootView
+          style={{ flex: 1, display: 'flex', height: '100vh' }}
+        >
+          <GluestackUIWithNativewindProvider mode={getColorMode()}>
+            <OverlayProvider style={{ flex: 1 }}>
+              <ToastProvider>
+                <View
+                  style={{
+                    flex: 1,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}
+                >
+                  <Story />
+                </View>
+              </ToastProvider>
+            </OverlayProvider>
+          </GluestackUIWithNativewindProvider>
+        </GestureHandlerRootView>
       </GluestackUIWithGluestackStyleProvider>
     );
   },
