@@ -181,6 +181,11 @@ export function useOverlayPosition(props: AriaPositionProps) {
     style.top = (position?.position?.top || 0) + (APPROX_STATUSBAR_HEIGHT || 0);
   }
 
+  if (position?.position?.bottom || position?.position?.bottom === 0) {
+    style.bottom =
+      (position?.position?.bottom || 0) - (APPROX_STATUSBAR_HEIGHT || 0);
+  }
+
   const arrowPropsWithStatusBarHeight = getArrowPropsWithStatusBarHeight({
     left: position?.arrowOffsetLeft,
     top: position?.arrowOffsetTop,
@@ -525,7 +530,11 @@ function getAvailableSpace(
 
   return Math.max(
     0,
-    boundaryDimensions[size] - childOffset[axis] - childOffset[size] - padding
+    boundaryDimensions[size] -
+      childOffset[axis] -
+      (APPROX_STATUSBAR_HEIGHT || 0) -
+      childOffset[size] -
+      padding
   );
 }
 
