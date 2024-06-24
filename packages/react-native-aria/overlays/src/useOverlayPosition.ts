@@ -75,15 +75,6 @@ const getArrowPropsWithStatusBarHeight = ({
 }) => {
   let topWithStatusBarHeight = top;
 
-  if (
-    typeof top !== 'undefined' &&
-    typeof APPROX_STATUSBAR_HEIGHT !== 'undefined'
-  ) {
-    topWithStatusBarHeight = top + APPROX_STATUSBAR_HEIGHT;
-  } else {
-    topWithStatusBarHeight = undefined;
-  }
-
   return {
     style: {
       left: left,
@@ -120,6 +111,7 @@ export function useOverlayPosition(props: AriaPositionProps) {
       measureOffset(overlayRef),
       measureOffset(targetRef),
     ]);
+    console.log(overlayRef, '--overlayRef');
 
     // Sometimes measure returns height/width 0. Best solution would be to use onLayout callback, but that might diverege from React Aria's useOverlayPosition API. Decide later, this works for now
     if (
@@ -190,7 +182,6 @@ export function useOverlayPosition(props: AriaPositionProps) {
     left: position?.arrowOffsetLeft,
     top: position?.arrowOffsetTop,
   });
-
   const returnProps = {
     rendered,
     overlayProps: {
