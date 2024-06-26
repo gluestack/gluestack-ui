@@ -13,7 +13,7 @@ import {
   useStyleContext,
 } from '@gluestack-ui/nativewind-utils/withStyleContext';
 import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withStyleContextAndStates';
-import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
+import { cssInterop } from 'nativewind';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 
 const AnimatedPressable = createMotionAnimatedComponent(Pressable);
@@ -34,6 +34,7 @@ const UIPopover = createPopover({
   AnimatedPresence: AnimatePresence,
 });
 
+//@ts-ignore
 cssInterop(UIPopover, { className: 'style' });
 cssInterop(UIPopover.Arrow, { className: 'style' });
 cssInterop(UIPopover.Content, { className: 'style' });
@@ -68,33 +69,33 @@ const popoverBackdropStyle = tva({
   base: 'absolute left-0 top-0 right-0 bottom-0 bg-background-dark web:cursor-default',
 });
 
-const popoverBodyStyle = tva({
-  base: 'p-4 pt-2',
-});
-
 const popoverCloseButtonStyle = tva({
   base: 'group/popover-close-button z-[1] rounded-sm data-[focus-visible=true]:web:bg-background-100 web:outline-0 web:cursor-pointer',
 });
 
 const popoverContentStyle = tva({
-  base: 'bg-background-50 rounded-lg overflow-hidden',
+  base: 'bg-background-50 rounded-lg overflow-hidden border border-outline-100 w-full',
   parentVariants: {
     size: {
-      xs: 'w-[60%] max-w-[360px]',
-      sm: 'w-[70%] max-w-[420px]',
-      md: 'w-[80%] max-w-[510px]',
-      lg: 'w-[90%] max-w-[640px]',
-      full: 'w-full',
+      xs: 'max-w-[360px] p-3.5',
+      sm: 'max-w-[420px] p-4',
+      md: 'max-w-[510px] p-[18px]',
+      lg: 'max-w-[640px] p-5',
+      full: 'p-6',
     },
   },
 });
 
-const popoverFooterStyle = tva({
-  base: 'p-4 flex-row justify-end items-center flex-wrap border-t border-outline-100',
+const popoverHeaderStyle = tva({
+  base: 'flex-row justify-between items-center',
 });
 
-const popoverHeaderStyle = tva({
-  base: 'p-4 pb-2 justify-between items-center flex-row',
+const popoverBodyStyle = tva({
+  base: '',
+});
+
+const popoverFooterStyle = tva({
+  base: 'flex-row justify-between items-center',
 });
 
 type IPopoverProps = React.ComponentProps<typeof UIPopover> &

@@ -24,29 +24,48 @@ import {
   PopoverCloseButton,
   PopoverArrow,
   Pressable,
-  Text as PopoverText,
+  Text,
   Heading,
   Icon,
   HStack,
   VStack,
+  Image,
   Avatar,
   AvatarFallbackText,
+  ButtonGroup,
   Button,
   ButtonText,
-  Box,
+  ButtonIcon,
+  SettingsIcon,
   CloseIcon,
   CircleIcon,
   PhoneIcon,
   ClockIcon,
   MailIcon,
+  CheckIcon,
+  InputIcon,
+  ChevronDownIcon,
+  PaperclipIcon,
   Center,
+  Box,
+  AvatarGroup,
+  AvatarImage,
+  CheckboxGroup,
+  Checkbox,
+  CheckboxIndicator,
+  CheckboxIcon,
+  CheckboxLabel,
+  Input,
+  InputField,
+  FormControl,
+  FormControlLabel,
+  FormControlLabelText
 } from '../../core-components/nativewind';
 import {
   AppProvider,
   CodePreview,
   Table,
   TableContainer,
-  Text,
   InlineCode,
   CollapsibleCode,
   Tabs
@@ -91,30 +110,13 @@ This is an illustration of **Popover** component.
           >
             <PopoverBackdrop/>
             <PopoverContent>
-              <PopoverHeader>
-                <Heading size='lg'>Welcome!</Heading>
-                <PopoverCloseButton>
-                  <Icon as={CloseIcon} />
-                </PopoverCloseButton>
-              </PopoverHeader>
+              <PopoverArrow />
               <PopoverBody>
-                <Text size='sm'>
-                  Join the product tour and start creating your own checklist. Are you ready to jump in?
+                <Text size={props.size} className="text-typography-900">
+                  Alex, Annie and many others are already enjoying the Pro features,
+                  don't miss out on the fun!
                 </Text>
               </PopoverBody>
-              <PopoverFooter>
-                <Text size='xs' className="flex-1">
-                  Step 2 of 3
-                </Text>
-                  <Button variant="outline" action='secondary' onPress={handleClose}
-                  className="mr-3"
-                  >
-                    <ButtonText>Back</ButtonText>
-                  </Button>
-                  <Button onPress={handleClose}>
-                    <ButtonText>Next</ButtonText>
-                  </Button>
-              </PopoverFooter>
             </PopoverContent>
           </Popover>
         )
@@ -125,20 +127,14 @@ This is an illustration of **Popover** component.
       },
       scope: {
         Wrapper,
-        Center,
-        Text: PopoverText,
-        Heading,
+        Text,
         Popover,
         PopoverBackdrop,
         PopoverContent,
-        PopoverHeader,
         PopoverBody,
-        PopoverFooter,
-        PopoverCloseButton,
+        PopoverArrow,
         Button,
         ButtonText,
-        CloseIcon,
-        Icon,
       },
       argsType: {
         placement: {
@@ -696,125 +692,567 @@ Popover component is created using ScrollView component from react-native. It ex
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
-#### Popover on Avatar
-
-A popover component can enhance the avatar by providing additional information and context in a concise and visually appealing manner.
+#### Simple with Avatar
 
 <Wrapper>
   <CodePreview
-    _rendererWrapper={{ py: '$6' }}
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
       code: `
-        <Box className="h-80">
+      function App() {
+        const [isOpen, setIsOpen] = React.useState(false);
+        const handleOpen = () => {
+          setIsOpen(true);
+        };
+        const handleClose = () => {
+          setIsOpen(false);
+        };
+        return (
           <Popover
+            isOpen={isOpen}
+            onClose={handleClose}
+            onOpen={handleOpen}
             offset={10}
+            {...props}
             trigger={(triggerProps) => {
               return (
-                <HStack className="items-center">
-                  <Pressable
-                    {...triggerProps}
-                    className="rounded-full"
-                  >
-                    <Avatar className="bg-indigo-600">
-                      <AvatarFallbackText >
-                        Kevin James
-                      </AvatarFallbackText>
-                    </Avatar>
-                  </Pressable>
-                  <VStack space='xs' className="ml-2.5">
-                    <Heading fontSize='$md'>
-                      Kevin James
-                    </Heading>
-                    <Text size='sm'>
-                      Hi Rachel, What’s up?
-                    </Text>
-                  </VStack>
-                </HStack>
+                <Button
+                  {...triggerProps}
+                >
+                  <ButtonText>
+                    Popover
+                  </ButtonText>
+                </Button>
               );
             }}
           >
             <PopoverBackdrop/>
-            <PopoverContent className="w-80">
-              <PopoverHeader className="px-5 pt-5">
-                <HStack>
-                  <Avatar className="bg-indigo-600">
-                    <AvatarFallbackText>
-                      Kevin James
-                    </AvatarFallbackText>
+            <PopoverContent className="w-full max-w-[485px] p-4">
+              <PopoverArrow />
+              <PopoverBody
+                className=""
+                contentContainerClassName="flex flex-row gap-4"
+              >
+              <AvatarGroup className="flex-row items-center">
+                  <Avatar className="w-9 h-9 border-[1.5px] border-outline-0">
+                    <AvatarFallbackText>John Doe</AvatarFallbackText>
+                    <AvatarImage
+                      source={{
+                        uri: 'https://s3-alpha-sig.figma.com/img/cc35/9a95/ecf9cba1881effe726061fc6f4809371?Expires=1720396800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=HmX7a1DcoTm0RnG~yjLOcv0jmQN9FhQ3ysUZWE5GlavUVAuzdJSqRvERybdlOIGzQjrvWhUxH5sIBFkM3nh9aQhP-tV2MiKEId3AqbsOthLhpPerYHwtlOWJFNo9bVWKEFCwbujaR067UWvUMtC80PST2kzprObI667bSdHxaX2DLmkOyS5wdcgUviW07YaGbu-FErcFAhQoct45OcGwWGfHOZqQ3U8ESO1EM3ogDTwbheqZ1Sm8CYudzCXcHpCDsM1RmpFB9Uoil5lf6AFeUrYSkz4GuwQ-imVEA7TsYwsdOOTqS5HEN7JiVVhicwYSVg7fXl2mELWo-F-gJI-YHg__',
+                      }}
+                    />
                   </Avatar>
-                  <VStack className="ml-2.5">
-                    <Heading fontSize='$md'>
-                      Kevin James
-                    </Heading>
-                    <HStack className="items-center">
-                      <CircleIcon className="text-green-700 h-2 w-2"/>
-                      <Text size='sm' className="pl-1.5">
-                        Active
-                      </Text>
-                    </HStack>
-                  </VStack>
-                </HStack>
-              </PopoverHeader>
-              <PopoverBody className="px-5 pb-5">
-                <VStack space='lg'>
-                  <VStack space='sm'>
-                    <HStack className="items-center">
-                      <Icon as={PhoneIcon} size='sm' />
-                      <Text size='sm' className="ml-1.5">
-                        (603) 555-0123
-                      </Text>
-                    </HStack>
-                    <HStack className="items-center">
-                      <Icon as={ClockIcon} size='sm'/>
-                      <Text size='sm' className="ml-1.5">
-                        5:21 PM local time
-                      </Text>
-                    </HStack>
-                    <HStack className="items-center">
-                      <Icon as={MailIcon} size='sm'/>
-                      <Text size='sm' className="ml-1.5">
-                        kevinjames@sample.com
-                      </Text>
-                    </HStack>
-                  </VStack>
-                  <Button>
-                    <ButtonText>View Profile</ButtonText>
-                  </Button>
-                </VStack>
+                  <Avatar className="w-9 h-9 border-[1.5px] border-outline-0">
+                    <AvatarFallbackText>John Doe</AvatarFallbackText>
+                    <AvatarImage
+                      source={{
+                        uri: 'https://s3-alpha-sig.figma.com/img/2eb8/3492/362e6b9aaebdbd8addf7513236132e27?Expires=1720396800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=GmkK2TsN5iclbaViFSb1FPHVUEUQaqQgaGc3pi1j9dPrh0HO4QdeCTncLrlj2t-~FcF7fsQrIj6HQmHKaY89lgQZS41eIrFWwos3EesW0bLc2jHlnWD1pNKrNXgyS4y3DARbSi4pG9stGFRDnsGAPpdk0mZ6Jpr7NGyuUUdZK9vDZSSg4-E072PV45JNcBQW6ku2ukRoPin9uKWJvXj8m6jiYTrGxudTy7hR9uxKIGanHjpB02MU0ZqCIID82QysCsev65SL4e2ia87z7-rzJxrSwSLYSm44kowxIeRQ0A3AfcvgwUXXJ-O2~b7bYWj6tL9pnuCZTh22YjsKKY9ppg__',
+                      }}
+                    />
+                  </Avatar>
+                  <Avatar className="w-9 h-9 border-[1.5px] border-outline-0">
+                    <AvatarFallbackText>John Doe</AvatarFallbackText>
+                    <AvatarImage
+                      source={{
+                        uri: 'https://s3-alpha-sig.figma.com/img/02c3/78df/54708eef0e8a0db5dbc0d4e815685d05?Expires=1720396800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=aRmsOqleraYNmeTyEwg3GjTnu4o6ny-XXcEFFGBFM2vyN9XY5SIUE~YvqCh0Mbc4a1Bd0e4oURhK5bOSCpSAEpJlppNflMlGDERisHTSANx7JcbERbrL6UWsQ-6aIzVh46Ryf5b0g9TOmZoTNadetQd1v8-hI6JozTA0swKvQ~iDHLOrRYs3ny8X2LDVweOHlM6~DkrL76omAfdYXl3a-zZTSdNlEhYIrrIMpBmeSRziV~7O7GRF4f0Q0eucgXsQeACcKk9lJeBdxe-wnOcHvuNcWADMV7b11TGuN14yDC4Rajsqocrb7O6yphBibUhfIjXb3EbQGCAPm~~RBrWZQQ__',
+                      }}
+                    />
+                  </Avatar>
+                  <Avatar className="w-9 h-9 border-[1.5px] border-outline-0 group-[.avatar-group]/avatar-group:ml-0">
+                    <AvatarFallbackText>John Doe</AvatarFallbackText>
+                    <AvatarImage
+                      source={{
+                        uri: 'https://s3-alpha-sig.figma.com/img/d2d6/92ba/a130347c432c7b83615044cec215d824?Expires=1720396800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Ctd39bu0D4-usTFx6ditkCSPunHYgHKgxJpmgwPVsWoYofaMxHCA4EaZFOT8fONBltIiaBvKn-19vi4N5xnh1CY0hRtx0ZLYfQkQ1K~ZMYULOerOdb--J1cSfSdiyeSLr5JNoIjSTlIYi1IcFM450YvxMUjmpH6JqBpMQwqF97VlpaNaObqIUOqxO6h7WOHMU3hrMFvEAbHldt22zEJ-RhSnFBvaJdf2kmf6fkNhIBE-AUM1opYMBxuHb-a7v59PKAL1Q13flKbjOpqz10wrG5UnxlWpDUKtYgHnOL1pIOdQraZSjD77zBHqsCYGZN5hykPShKuJ4PiDj4-1GXnukA__',
+                      }}
+                    />
+                  </Avatar>
+                </AvatarGroup>
+                <Text className="text-typography-900" size="sm">
+                  Alex, Annie and many others are already enjoying the Pro features,
+                  don't miss out on the fun!
+                </Text>
               </PopoverBody>
             </PopoverContent>
           </Popover>
-        </Box>
+        )
+      }
       `,
       transformCode: (code) => {
-        return transformedCode(code);
+        return transformedCode(code, 'function', 'App');
       },
       scope: {
         Wrapper,
-        Box,
-        Heading,
-        Text: PopoverText,
         Popover,
         PopoverBackdrop,
         PopoverContent,
+        PopoverArrow,
+        PopoverBody,
+        Button,
+        ButtonText,
+        Text,
+        AvatarGroup,
+        Avatar,
+        AvatarFallbackText,
+        AvatarImage
+      },
+      argsType: {},
+    }}
+  />
+</Wrapper>
+
+#### with CTA
+
+<Wrapper>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+      function App() {
+        const [isOpen, setIsOpen] = React.useState(false);
+        const [values, setValues] = React.useState(['work']);
+        const handleOpen = () => {
+          setIsOpen(true);
+        };
+        const handleClose = () => {
+          setIsOpen(false);
+        };
+        return (
+          <Popover
+            isOpen={isOpen}
+            onClose={handleClose}
+            onOpen={handleOpen}
+            offset={10}
+            {...props}
+            trigger={(triggerProps) => {
+              return (
+                <Button
+                  {...triggerProps}
+                >
+                  <ButtonText>
+                    Popover
+                  </ButtonText>
+                </Button>
+              );
+            }}
+          >
+            <PopoverBackdrop/>
+            <PopoverContent className="w-full max-w-[446px] p-6 gap-10 pl-5 shadow-hard-5">
+              <PopoverArrow />
+              <PopoverBody>
+                <HStack className="self-center gap-1.5">
+                  <Box className="w-8 h-1 bg-background-800 rounded" />
+                  <Box className="w-1 h-1 bg-background-100 rounded" />
+                  <Box className="w-1 h-1 bg-background-100 rounded" />
+                  <Box className="w-1 h-1 bg-background-100 rounded" />
+                </HStack>
+                <Heading className="pt-4 pl-1">
+                  Are you interested in using Pro for work or personal use?
+                </Heading>
+                <Text className="pt-4 pb-6 pl-1" size="sm">
+                  We can recommend plans that are right for you.
+                </Text>
+                <CheckboxGroup
+                  value={values}
+                  onChange={(keys) => {
+                    setValues(keys);
+                  }}
+                  className="pl-1"
+                >
+                  <VStack space="lg">
+                    <Checkbox value="projects">
+                      <CheckboxIndicator>
+                        <CheckboxIcon as={CheckIcon} />
+                      </CheckboxIndicator>
+                      <CheckboxLabel>For personal projects</CheckboxLabel>
+                    </Checkbox>
+                    <Checkbox value="work">
+                      <CheckboxIndicator>
+                        <CheckboxIcon as={CheckIcon} />
+                      </CheckboxIndicator>
+                      <CheckboxLabel>For work</CheckboxLabel>
+                    </Checkbox>
+                  </VStack>
+                </CheckboxGroup>
+              </PopoverBody>
+              <PopoverFooter>
+                <Box className="px-4">
+                  <Button variant="link" size="sm">
+                    <ButtonText>See all plans</ButtonText>
+                  </Button>
+                </Box>
+                <Pressable className="px-4 bg-primary-500 rounded" onPress={handleClose}>
+                  <Button onPress={handleClose}>
+                    <ButtonText>Next</ButtonText>
+                  </Button>
+                </Pressable>
+              </PopoverFooter>
+            </PopoverContent>
+          </Popover>
+        )
+      }
+      `,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'App');
+      },
+      scope: {
+        Wrapper,
+        Popover,
+        PopoverBackdrop,
+        PopoverContent,
+        PopoverArrow,
+        PopoverBody,
+        PopoverFooter,
+        Button,
+        ButtonText,
+        Text,
+        Heading,
+        HStack,
+        VStack,
+        Box,
+        CheckboxGroup,
+        Checkbox,
+        CheckboxIndicator,
+        CheckboxIcon,
+        CheckboxLabel,
+        CheckIcon,
+        Pressable
+      },
+      argsType: {},
+    }}
+  />
+</Wrapper>
+
+#### with Image
+
+<Wrapper>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+      function App() {
+        const [isOpen, setIsOpen] = React.useState(false);
+        const handleOpen = () => {
+          setIsOpen(true);
+        };
+        const handleClose = () => {
+          setIsOpen(false);
+        };
+        return (
+          <Popover
+            isOpen={isOpen}
+            onClose={handleClose}
+            onOpen={handleOpen}
+            offset={10}
+            {...props}
+            trigger={(triggerProps) => {
+              return (
+                <Button
+                  {...triggerProps}
+                >
+                  <ButtonText>
+                    Popover
+                  </ButtonText>
+                </Button>
+              );
+            }}
+          >
+            <PopoverBackdrop/>
+            <PopoverContent className="shadow-soft-1 p-0 pr-4 h-full max-w-full">
+              <PopoverArrow />
+              <PopoverBody
+                className=""
+                contentContainerClassName="flex flex-row gap-8 w-full h-full"
+              >
+                <Image
+                  source={{
+                    uri: 'https://s3-alpha-sig.figma.com/img/b819/38c5/bba3ac3fe834e62e4abf16b0b52f1eb9?Expires=1720396800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=SGqkhBPYxvpX4nI7c5GCjGfMdQgKSA0Y4wJPddYDGYfpTD8z0UeU8E5Xu8sOUyWHcPPf~dPY4VW-ReMFtxc7PRfoBqyZ0amXPVsuaOYUdxksJXbd2nAaLKXmxiY6V6mbL3Th5JLnTmzAX5IvlGykSK~~zXbBg3exIifvL5PUQT6KwZAsyBfGuSX-MLJ1vJ-u91fsv9eh2mbxgzcazL1SObYdoXDefldyvZaavqVhM1mbyfGuqAonScPrzofDWsrz6VI9OACbEe9NZYup6abf3QMXjKwnnPTIMYGXlm3s-tNElogZ02voIUQ~0GSd~q36h~Jz3Z1w7DebftI-ER7WmQ__',
+                  }}
+                  alt="image"
+                  className="h-[270px] w-[211px]"
+                />
+                <VStack className="items-center justify-center w-full max-w-[300px]">
+                  <Text size="sm" className="text-typography-950">
+                    Sign up to the newsletter and get
+                  </Text>
+                  <Heading size="3xl" className="text-typography-950 my-1">
+                    25% Off
+                  </Heading>
+                  <Input variant="outline" size="sm" className="my-4 w-full">
+                    <InputField placeholder="youremail@address.com" />
+                  </Input>
+                  <Button size="xs" isDisabled className="w-full">
+                    <ButtonText>Subscribe</ButtonText>
+                  </Button>
+                </VStack>
+                <Pressable className="mt-4 h-fit" onPress={handleClose}>
+                  <Icon as={CloseIcon} />
+                </Pressable>
+              </PopoverBody>
+            </PopoverContent>
+          </Popover>
+        )
+      }
+      `,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'App');
+      },
+      scope: {
+        Wrapper,
+        Popover,
+        PopoverBackdrop,
+        PopoverContent,
+        PopoverArrow,
+        PopoverBody,
+        PopoverFooter,
+        Button,
+        ButtonText,
+        Text,
+        Heading,
+        VStack,
+        Input,
+        InputField,
+        Icon,
+        CloseIcon,
+        Image,
+        Pressable
+      },
+      argsType: {},
+    }}
+  />
+</Wrapper>
+
+#### with InputField
+
+<Wrapper>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+      function App() {
+        const [isOpen, setIsOpen] = React.useState(false);
+        const handleOpen = () => {
+          setIsOpen(true);
+        };
+        const handleClose = () => {
+          setIsOpen(false);
+        };
+        return (
+          <Popover
+            isOpen={isOpen}
+            onClose={handleClose}
+            onOpen={handleOpen}
+            offset={10}
+            {...props}
+            trigger={(triggerProps) => {
+              return (
+                <Button
+                  {...triggerProps}
+                >
+                  <ButtonText>
+                    Popover
+                  </ButtonText>
+                </Button>
+              );
+            }}
+          >
+            <PopoverBackdrop/>
+            <PopoverContent className="p-9 gap-10 shadow-hard-5 w-[574px] max-w-full">
+              <PopoverArrow />
+              <PopoverHeader className="">
+                <Heading size="md">Share project</Heading>
+                <Button
+                  variant="outline"
+                  size="xs"
+                  action="secondary"
+                  className="gap-1"
+                >
+                  <ButtonText>Manage</ButtonText>
+                  <ButtonIcon as={SettingsIcon} />
+                </Button>
+              </PopoverHeader>
+              <PopoverBody className="" contentContainerClassName="gap-8">
+                <FormControl>
+                  <FormControlLabel className="mb-1">
+                    <FormControlLabelText size="xs">
+                      Search Recipients
+                    </FormControlLabelText>
+                  </FormControlLabel>
+                  <Input variant="outline" size="sm" className="w-full">
+                    <InputField placeholder="Search for names" />
+                    <InputIcon as={ChevronDownIcon} className="mr-3" />
+                  </Input>
+                </FormControl>
+                <VStack space="lg" className="">
+                  <Heading size="sm">Recipients</Heading>
+                  <VStack space="lg" className="">
+                    <HStack space="4xl" className="items-center">
+                      <HStack space="lg" className="w-full">
+                        <Avatar>
+                          <AvatarFallbackText>JC</AvatarFallbackText>
+                          <AvatarImage
+                            source={{
+                              uri: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60',
+                            }}
+                          />
+                        </Avatar>
+                        <VStack>
+                          <Heading size="sm">Jane Cooper</Heading>
+                          <Text size="xs">janecooper09@gmail.com</Text>
+                        </VStack>
+                      </HStack>
+                      <Button
+                        variant="outline"
+                        size="xs"
+                        action="secondary"
+                        className="gap-1"
+                      >
+                        <ButtonText>Can edit</ButtonText>
+                        <ButtonIcon
+                          as={ChevronDownIcon}
+                          className="h-[14px] w-[14px]"
+                        />
+                      </Button>
+                    </HStack>
+                    <HStack space="4xl">
+                      <HStack space="lg" className="w-full">
+                        <Avatar>
+                          <AvatarFallbackText>CM</AvatarFallbackText>
+                          <AvatarImage
+                            source={{
+                              uri: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60',
+                            }}
+                          />
+                        </Avatar>
+                        <VStack>
+                          <Heading size="sm">Catherine Miller</Heading>
+                          <Text size="xs">ctherienemiller88@gmail.com</Text>
+                        </VStack>
+                      </HStack>
+                      <Button
+                        variant="outline"
+                        size="xs"
+                        action="secondary"
+                        className="max-w-[97.06px] w-full gap-1"
+                      >
+                        <ButtonText>Admin</ButtonText>
+                        <ButtonIcon as={ChevronDownIcon} />
+                      </Button>
+                    </HStack>
+                    <HStack space="4xl">
+                      <HStack space="lg" className="w-full">
+                        <Avatar>
+                          <AvatarFallbackText>JB</AvatarFallbackText>
+                          <AvatarImage
+                            source={{
+                              uri: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60',
+                            }}
+                          />
+                        </Avatar>
+                        <VStack>
+                          <Heading size="sm">Jane Brown</Heading>
+                          <Text size="xs">johnb345@gmail.com</Text>
+                        </VStack>
+                      </HStack>
+                      <Button
+                        variant="outline"
+                        size="xs"
+                        action="secondary"
+                        className="gap-1"
+                      >
+                        <ButtonText>Can edit</ButtonText>
+                        <ButtonIcon as={ChevronDownIcon} />
+                      </Button>
+                    </HStack>
+                  </VStack>
+                </VStack>
+                <VStack space="lg">
+                  <Heading size="sm">Settings</Heading>
+                  <VStack className="">
+                    <HStack className="justify-between items-center ">
+                      <Text size="sm" className="text-typography-500">
+                        Anyone at{' '}
+                        <Text size="sm" className="text-typography-900">
+                          GeekyAnts
+                        </Text>{' '}
+                        can view and edit
+                      </Text>
+                      <Button variant="link" size="xs" className="px-3.5">
+                        <ButtonText className="text-blue-600">
+                          Change access
+                        </ButtonText>
+                      </Button>
+                    </HStack>
+                    <HStack className="justify-between items-center ">
+                      <Text size="sm" className="text-typography-500">
+                        Anyone with link can edit
+                      </Text>
+                      <Button variant="link" size="xs" className="px-3.5">
+                        <ButtonText className="text-blue-600">
+                          Set password
+                        </ButtonText>
+                      </Button>
+                    </HStack>
+                  </VStack>
+                </VStack>
+              </PopoverBody>
+              <PopoverFooter>
+                <ButtonGroup className="flex flex-row gap-2">
+                  <Button variant="link" size="xs" className="px-3.5 gap-1">
+                    <ButtonIcon className="stroke-blue-400" as={PaperclipIcon} />
+                    <ButtonText className="text-blue-500">
+                      Get embedded code
+                    </ButtonText>
+                  </Button>
+                  <Button variant="link" size="xs" className="px-3.5 gap-1">
+                    <ButtonIcon className="stroke-blue-400" as={PaperclipIcon} />
+                    <ButtonText className="text-blue-500">Copy link</ButtonText>
+                  </Button>
+                </ButtonGroup>
+                <Button size="sm" className="bg-blue-600" onPress={handleClose}>
+                  <ButtonText className="text-blue-50">Done</ButtonText>
+                </Button>
+              </PopoverFooter>
+            </PopoverContent>
+          </Popover>
+        )
+      }
+      `,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'App');
+      },
+      scope: {
+        Wrapper,
+        Popover,
+        PopoverBackdrop,
+        PopoverContent,
+        PopoverArrow,
         PopoverHeader,
         PopoverBody,
         PopoverFooter,
-        PopoverCloseButton,
-        Pressable,
+        ButtonGroup,
         Button,
         ButtonText,
+        ButtonIcon,
+        Text,
+        Heading,
         HStack,
         VStack,
-        CircleIcon,
-        PhoneIcon,
-        ClockIcon,
-        MailIcon,
         Avatar,
         AvatarFallbackText,
-        Icon,
+        AvatarImage,
+        FormControl,
+        FormControlLabel,
+        FormControlLabelText,
+        Input,
+        InputField,
+        SettingsIcon,
+        InputIcon,
+        ChevronDownIcon,
+        PaperclipIcon
       },
       argsType: {},
     }}
