@@ -1,5 +1,11 @@
 # @gluestack-ui/themed
 
+## 1.1.31
+
+### Patch Changes
+
+- TextArea Typing issue
+
 ## 1.1.30
 
 ### Patch Changes
