@@ -14,14 +14,19 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="with-nativewind/Home/Overview/Upgrade to v2" />
 
-import { Tabs, CollapsibleCode } from '@gluestack/design-system';
 
+import {
+  Tabs,
+  CollapsibleCode,
+  CodePreview,
+  Table,
+  TableContainer,
+  InlineCode,
+} from "@gluestack/design-system";
 
 # Upgrade to v2
 
-<br />
-
-## **Installation**
+## Installation
 
 Run the below command to setup the project:
 
@@ -41,46 +46,35 @@ Above command will override certain files and add `gluestack-ui-provider`,
 
 Add the following code at the root of your project:
 
-**Before :**
+## Before :
 
 ```jsx
-import { GluestackUIProvider } from '@gluestack-ui/themed';                                                                
-export default function App() {                                                           
-  return (                                                                                 
-    <GluestackUIProvider>                                                                 
-     {/* Your code */}                                                                     
-    </GluestackUIProvider>                                                                 
-   );                                                                                      
+import { GluestackUIProvider } from "@gluestack-ui/themed";
+export default function App() {
+  return <GluestackUIProvider>{/* Your code */}</GluestackUIProvider>;
 }
 ```
 
-**After :**
+## After :
 
 ```jsx
-import { GluestackUIProvider } from "@/components/ui/gluestack-ui-provider";              
-  export default function App() {                                                           
-  return (                                                                                 
-    <GluestackUIProvider>                                                                 
-     {/* Your code */}                                                                     
-    </GluestackUIProvider>                                                                 
-   );                                                                                      } 
+import { GluestackUIProvider } from "@/components/ui/gluestack-ui-provider";
+export default function App() {
+  return <GluestackUIProvider>{/* Your code */}</GluestackUIProvider>;
+}
 ```
 
-## **Setup tailwind CSS:**
+## Setup tailwind CSS:
 
 Import `global.css` / `globals.css` where Tailwind directives are defined.
 
 ```jsx
- import { GluestackUIProvider } from "@/components/ui/gluestack-ui-provider";  
- import "@/global.css"            
-                                                                                           
- export default function App() {                                                           
-  return (                                                                                 
-    <GluestackUIProvider>                                                                 
-     {/* Your code */}                                                                     
-    </GluestackUIProvider>                                                                 
-   );                                                                                      
- } 
+import { GluestackUIProvider } from "@/components/ui/gluestack-ui-provider";
+import "@/global.css";
+
+export default function App() {
+  return <GluestackUIProvider>{/* Your code */}</GluestackUIProvider>;
+}
 ```
 
 ## Component addition:
@@ -99,17 +93,17 @@ npx gluestack-ui@latest add heading
 
 ## Update config :
 
-### 1. If you are using  `@gluestack-ui/config-v2`
+### 1. If you are using @gluestack-ui/config-v2
 
 - If you are using `@gluestack-ui/config-v2`, there's no need to make any changes since the default NativeWind configuration is already similar.
 
-### 2 .  If you are using  `@gluestack-ui/config` or custom config or ejected config
+### 2 . If you are using @gluestack-ui/config or custom config or ejected config
 
 - In both of the cases, we should manually change the tailwind config respective to the style changes we made in the `gluestack-ui` configuration.
 
 For config conversion, the changes will be made to the config which is being passed to the provider in v2.
 
-### **Config conversion :**
+### Config conversion :
 
 ```jsx
 // Gluestack-UI v1
@@ -168,30 +162,30 @@ For Tailwind config configuration please refer to [this](https://tailwindcss.com
 - We made a codemod that will turn all your stylings in v1 code to v2 compatibility styles.
 - All the styles will be converted matching the appropriate styling for that in NativeWind.
 - Limitations:
-    - Descendant Styling ( As it’s not supported in NativeWind at the moment.)
-    - Value of `sx` prop is variable
+  - Descendant Styling ( As it’s not supported in NativeWind at the moment.)
+  - Value of `sx` prop is variable
 
 ### Descendant Styling :
 
 - Descendant styling will not be resolved and we’ll keep it as it is.
-- You can update it  manually by moving it to the respective element where the style is required
+- You can update it manually by moving it to the respective element where the style is required
 
 ```jsx
 // Before:
-import { Box,Text } from "@gluestack-ui/themed";
+import { Box, Text } from "@gluestack-ui/themed";
 
-<Box bg="$red500" sx={{_text:{color:'white'}}}>
-   <Text>Simple Text</Text>
-</Box>
+<Box bg="$red500" sx={{ _text: { color: "white" } }}>
+  <Text>Simple Text</Text>
+</Box>;
 
 // After:
 import { Box } from "@/components/ui/box";
 import { Text } from "@/components/ui/text";
 
 // descendant style will remain as it is.
-<Box className="bg-red-500" sx={{_text:{color:'white'}}}>
-   <Text>Simple Text</Text>
-</Box>
+<Box className="bg-red-500" sx={{ _text: { color: "white" } }}>
+  <Text>Simple Text</Text>
+</Box>;
 
 // Update the descendant styling:
 import { Box } from "@/components/ui/box";
@@ -199,10 +193,10 @@ import { Text } from "@/components/ui/text";
 
 // descendant style will remain as it is.
 
-// color:'white' --> text-white 
+// color:'white' --> text-white
 <Box className="bg-red-500">
-   <Text className='text-white'>Simple Text</Text>
-</Box>
+  <Text className="text-white">Simple Text</Text>
+</Box>;
 ```
 
 ### Usage :
@@ -219,85 +213,701 @@ To manually change the styling of any respective v1 specific style we can follow
 
 In this property mapper table you can find all the properties of v1 and how they can be written in v2
 
-|                        Gluestack-UI v1 |                     Gluestack-UI v2 |
-| --- | --- |
-| underline={true} | className=”underline” |
-| bold={true} | className=”font-*” |
-| size={'*'} | className=”text-*” |
-| bg=”*”  / bgColor=”*” | className=”bg-*” |
-| p=”*” | className=”p-*” |
-| color=”*” | className=”color-*” / className=”text-*” |
-| h={"*"} | className=”h-*” |
-| w={"*"} | className=”w-*” |
-| fontWeight=”*” | className=”font-*” |
-| my=”*” | className=”my-*” |
-| justifyContent=”*” | className=”justify-*” |
-| alignItems=”*” | className=”items-*” |
-| mx=”*” | className=”mx-*” |
-| $dark={{ "*" :"*"}} | className=”dark:*” |
-| px=”*” | className=”px-*” |
-| borderColor=”*” | className=”border-*” |
-| borderWidth=”*” | className=”border-*” |
-| borderRightWidth=”*” | className=”border-r-*” |
-| borderLeftWidth=”*” | className=”border-l-*” |
-| borderTopWidth=”*” | className=”border-t-*” |
-| borderBottomWidth=”*” | className=”border-b-*” |
-| borderRadius=”*” / rounded=”*” | className=”rounded-*” |
-| mt=”*” | className=”mt-*” |
-| mb=”*” | className=”mb-*” |
-| m=”*” | className=”m-*” |
-| py=”*” | className=”py-*” |
-| pt=”*” | className=”pt-*” |
-| pb=”*” | className=”pb-*” |
-| pl=”*” | className=”pl-*” |
-| pr=”*” | className=”pr-*” |
-| ml=”*” | className=”ml-*” |
-| mr=”*” | className=”mr-*” |
-| flex={"*"} | className=”flex-*” |
-| flexDirection={"*"} | className=”flex-*” |
-| lineHeight=”*” | className=”leading-*” |
-| h={value} | className=’h-[value]’ |
-| alignSelf=”*” | className=”self-*” |
-| position=”*” | className=”position-*” |
-| maxWidth={"*"} | className=”max-w-*” |
-| maxHeight={"*"} | className=”max-h-*” |
-| minWidth={"*"} | className=”min-w-*” |
-| minHeight={"*"} | className=”min-h-*” |
-| fontFamily=”*” | className=”font-*” |
-| fontStyle=”*” | className=”*” |
-| fontSize=”*” | className=”text-*” |
-| top={"*"} | className=”top-*” |
-| bottom={"*"} | className=”bottom-*” |
-| left={"*"} | className=”left-*” |
-| right={"*"} | className=”right-*” |
-| zIndex={"*"} | className=”z-*” |
-| shadowColor=”*” | className=”shadow-*” |
-| overflow=”*” | className=”overflow-*” |
-| textAlign=”*” | className=”text-*” |
-| display=”*” | className=”hidden / flex / block / inline” |
-| $sm={"*"} | className=”sm:*” |
-| $md={"*"} | className=”md:*” |
-| $lg={"*"} | className=”lg:*” |
+<>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText> Gluestack-UI v1</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText> Gluestack-UI v2</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>{`underline={true}`}</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`className=”underline”`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>{`bold={true}`}</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`className=”font-<value>”`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>{`size={"value"}`}</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`className=”text-value”`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>{`bg="value" / bgColor="value"`}</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`className="bg-value"`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>{`p="value"`}</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`className="p-value"`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>{`color="value"`}</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`className="color-value" / className="text-value"`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>{`h={"value"}`}</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`className="h-value"`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>{`w={"value"}`}</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`className="w-value"`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>{`fontWeight="value"`}</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`className="font-value"`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>{`my="value"`}</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`className="my-value"`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>{`justifyContent="value"`}</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`className="justify-value"`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>{`alignItems="value"`}</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`className="items-value"`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>{`mx="value"`}</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`className="mx-value"`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>{`$dark={{ "prop" :"value"}}`}</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`className="dark:prop-value"`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>{`px="value"`}</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`className="px-value"`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>{`borderColor="value"`}</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`className="border-value"`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>{`borderWidth="value"`}</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`className="border-value"`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>{`borderRightWidth="value"`}</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`className="border-r-value"`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>{`borderLeftWidth="value"`}</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`className="border-l-value"`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>{`borderTopWidth="value"`}</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`className="border-t-value"`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>{`borderBottomWidth="value"`}</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`className="border-b-value"`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>{`borderRadius="value" / rounded="value"`}</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`className="rounded-value"`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>{`mt="value"`}</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`className="mt-value"`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>{`mb="value"`}</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`className="mb-value"`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>{`m="value"`}</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`className="m-value"`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>{`py="value"`}</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`className="py-value"`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>{`pt="value"`}</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`className="pt-value"`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>{`pb="value"`}</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`className="pb-value"`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>{`pl="value"`}</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`className="pl-value"`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>{`pr="value"`}</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`className="pr-value"`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>{`ml="value"`}</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`className="ml-value"`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>{`mr="value"`}</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`className="mr-value"`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>{`flex={"value"}`}</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`className="flex-value"`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>{`flexDirection={"value"}`}</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`className="flex-value"`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>{`lineHeight="value"`}</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`className="leading-value"`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>{`h={"value"}`}</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`className="h-[value]"`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>{`alignSelf="value"`}</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`className="self-value"`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>{`position="value"`}</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`className="position-value"`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>{`maxWidth={"value"}`}</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`className="max-w-value"`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>{`maxHeight={"value"}`}</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`className="max-h-value"`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>{`minWidth={"value"}`}</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`className="min-w-value"`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>{`minHeight={"value"}`}</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`className="min-h-value"`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>{`fontFamily="value"`}</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`className="font-value"`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>{`fontStyle="value"`}</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`className="value"`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>{`fontSize="value"`}</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`className="text-value"`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>{`top={"value"}`}</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`className="top-value"`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>{`bottom={"value"}`}</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`className="bottom-value"`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>{`left={"value"}`}</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`className="left-value"`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>{`right={"value"}`}</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`className="right-value"`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>{`zIndex={"value"}`}</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`className="z-value"`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>{`shadowColor="value"`}</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`className="shadow-value"`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>{`overflow="value"`}</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`className="overflow-value"`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>{`textAlign="value"`}</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`className="text-value"`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>{`display="value"`}</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`className="hidden / flex / block / inline"`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>{`$sm={"value"}`}</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`className="sm:value"`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>{`$md={"value"}`}</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`className="md:value"`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>{`$lg={"value"}`}</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`className="lg:value"`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</>
 
 
 ### Property Combinations :
-
-|                        Gluestack-UI  v1 |                     Gluestack-UI v2 |
-| --- | --- |
-| `$sm-<property>`=`<token>` / `$sm-bg`=`red500` | className=`sm:*` |
-| `$sm-dark-<property>`=`<token>` / `$sm-dark-bg`= `*` | className=`sm:dark:<property>-<token>` |
-| sx=`{{<property>: <value>}}` | className=`<property>-<value>` |
-| `$dark-bg`=”*” / `$dark-color`=”*” / `$dark-%`=”*” | className=`dark:bg-*` / className=`dark:color-*` / className=`dark:%-*` |
-| `$<mode>-property`=`value`  | className=`mode:<property>:value` |
-| sx=`{{ _dark: { <property>:<value>} }}` | className=`dark:<property>:<value>` |
-| sx=`{{_ios: {property: <value>},_android: {property: <value>}}}` | className=`ios:property-<value> android:property-<value>` |
-| sx=`{{"@base": {_light: {property:<value>},_dark: { property: <value> }},"@md": {_light: { property: <value> },_dark: { property: <value> }}}` | className=”property-value dark:property-value md:property-value md:dark:property-value” |
+<>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText> Gluestack-UI v1</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText> Gluestack-UI v2</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>{`$sm-<property>=<token> / $sm-bg=red500`}</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`className="sm:*"`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>{`$sm-dark-<property>=<token> / $sm-dark-bg=*`}</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`className="sm:dark:<property>-<token>"`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>{`sx={{<property>: <value>}}`}</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`className="<property>-<value>"`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>{`$dark-bg="_" / $dark-color="_" / $dark-%="*"`}</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`className="dark:bg-*" / className="dark:color-*" / className="dark:%-*"`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>{`$<mode>-property=value`}</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`className="mode:<property>:value"`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>{`sx={{ _dark: { <property>:<value>} }}`}</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`className="dark:<property>:<value>"`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>{`sx={{_ios: {property: <value>},_android: {property: <value>}}}`}</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`className="ios:property-<value> android:property-<value>"`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>{`sx={{"@base": {_light: {property:<value>},_dark: { property: <value> }},"@md": {_light: { property: <value> },_dark: { property: <value> }}}`}</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`className="property-value dark:property-value md:property-value md:dark:property-value"`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</>
 
 ## Examples of some property combinations :
 
-**Applying styles in different color modes ( light/dark ) :**
+Applying styles in different color modes ( light/dark ) :
 
-**Before:**
+Before:
 
 ```jsx
 import { Box } from "@gluestack-ui/themed";
@@ -311,7 +921,7 @@ export default function App() {
 }
 ```
 
-**After:**
+After:
 
 ```jsx
 import { Box } from "@/components/ui/box";
@@ -321,9 +931,9 @@ export default function App() {
 }
 ```
 
-**Applying styles for different media queries ( sm/md/lg ) using `@`:**
+Applying styles for different media queries ( sm/md/lg ) using `@`:
 
-**Before:**
+Before:
 
 ```jsx
 import { Box } from "@gluestack-ui/themed";
@@ -337,7 +947,7 @@ export default function App() {
 }
 ```
 
-**After:**
+After:
 
 ```jsx
 import { Box } from "@/components/ui/box";
@@ -347,12 +957,11 @@ export default function App() {
     <Box className="sm:bg-background-100 bg-background-500">Simple Box</Box>
   );
 }
-
 ```
 
-**Applying styles for different media queries ( sm/md/lg ) using `$` :**
+Applying styles for different media queries ( sm/md/lg ) using `$` :
 
-**Before:**
+Before:
 
 ```jsx
 import { Box } from "@gluestack-ui/themed";
@@ -366,7 +975,7 @@ export default function App() {
 }
 ```
 
-**After:**
+After:
 
 ```jsx
 import { Box } from "@/components/ui/box";
@@ -378,9 +987,9 @@ export default function App() {
 }
 ```
 
-**Applying basic layout  stylings  :**
+Applying basic layout stylings :
 
-**Before:**
+Before:
 
 ```jsx
 import { Box } from "@gluestack-ui/themed";
@@ -394,7 +1003,7 @@ export default function App() {
 }
 ```
 
-**After:**
+After:
 
 ```jsx
 import { Box } from "@/components/ui/box";
@@ -404,9 +1013,9 @@ export default function App() {
 }
 ```
 
-**Applying basic layout  stylings in different color modes  :**
+Applying basic layout stylings in different color modes :
 
-**Before:**
+Before:
 
 ```jsx
 import { Box } from "@gluestack-ui/themed";
@@ -420,10 +1029,9 @@ export default function App() {
 }
 ```
 
-**After:**
+After:
 
 ```jsx
-
 import { Box } from "@/components/ui/box";
 
 //By default if you don't mention any mode it's take light mode.
@@ -432,9 +1040,9 @@ export default function App() {
 }
 ```
 
-**Applying styles for different action states ( hover/active etc..,) :**
+Applying styles for different action states ( hover/active etc..,) :
 
-**Before:**
+Before:
 
 ```jsx
 import { Box } from "@gluestack-ui/themed";
@@ -448,7 +1056,7 @@ export default function App() {
 }
 ```
 
-**After:**
+After:
 
 ```jsx
 import { Box } from "@/components/ui/box";
@@ -463,9 +1071,9 @@ export default function App() {
 }
 ```
 
-**Applying styles for different platforms ( mobile/web/android/ios) :**
+Applying styles for different platforms ( mobile/web/android/ios) :
 
-**Before:**
+Before:
 
 ```jsx
 import { Text } from "@gluestack-ui/themed";
@@ -488,7 +1096,7 @@ export default function App() {
 }
 ```
 
-**After:**
+After:
 
 ```jsx
 import { Text } from "@/components/text";
@@ -498,9 +1106,9 @@ export default function App() {
 }
 ```
 
-**Applying styles for different color modes at different media queries :**
+Applying styles for different color modes at different media queries :
 
-**Before:**
+Before:
 
 ```jsx
 import { Center } from "@gluestack-ui/themed";
@@ -527,7 +1135,7 @@ export default function App() {
 }
 ```
 
-**After:**
+After:
 
 ```jsx
 import { Center } from "@/components/center";
@@ -539,12 +1147,12 @@ export default function App() {
 }
 ```
 
-**`Descendant Styling` ( we need to manually change these styling as this is not available in NativeWind) :**
+`Descendant Styling` ( we need to manually change these styling as this is not available in NativeWind) :
 
-**Before:**
+Before:
 
 ```jsx
-import { CheckboxLabel,Text } from "@gluestack-ui/themed";
+import { CheckboxLabel, Text } from "@gluestack-ui/themed";
 
 export default function App() {
   return (
@@ -563,13 +1171,13 @@ export default function App() {
 }
 ```
 
-**After:**
+After:
 
 ```jsx
 import { CheckboxLabel } from "@/components/checkbox";
 import { Text } from "@/components/text";
 
-// we need to remove the descendant styling from parent element and add that 
+// we need to remove the descendant styling from parent element and add that
 // styling to all the child elements
 export default function App() {
   return (
