@@ -10,6 +10,7 @@ import { useControlledState } from '@react-stately/utils';
 import { MenuContext } from './MenuContext';
 import { mergeRefs } from '@gluestack-ui/utils';
 import { useHover } from '@react-native-aria/interactions';
+import { useFocus } from '@react-native-aria/focus';
 
 export const Menu = ({
   StyledMenu,
@@ -38,12 +39,12 @@ export const Menu = ({
       }: any,
       ref?: any
     ) => {
-      const [isTriggerHovered, setIsTriggerHovered] = useState(false);
+      // const [isTriggerHovered, setIsTriggerHovered] = useState(false);
       const [contentState, setContentState] = useState({
         isContentHovered: false,
         isContentFocused: false,
       });
-      const { hoverProps, isHovered } = useHover();
+      const { hoverProps, isHovered: isTriggerHovered } = useHover();
 
       const [isOpen, setIsOpen] = useControlledState(
         isOpenProp,
@@ -78,40 +79,40 @@ export const Menu = ({
 
       useEffect(() => {
         if (activateOnHover && isTriggerHovered) {
-          // console.log('onMouseEnter() triggered');
-          setIsOpen(true);
+          const timer = setTimeout(() => {
+            setIsOpen(true);
+          }, 250);
+
+          return () => clearTimeout(timer);
         }
       }, [activateOnHover, isTriggerHovered, setIsOpen]);
 
-      useEffect(() => {
-        if (
-          activateOnHover &&
-          !isTriggerHovered &&
-          !contentState.isContentFocused &&
-          !contentState.isContentHovered
-        ) {
-          setIsOpen(false);
-          // console.log('useEffect closing condition');
-        }
-      }, [
-        activateOnHover,
-        isTriggerHovered,
-        contentState.isContentFocused,
-        contentState.isContentHovered,
-        setIsOpen,
-      ]);
+      // useEffect(() => {
+      //   if (
+      //     activateOnHover &&
+      //     !isTriggerHovered
+      //     // &&
+      //     // !contentState.isContentFocused &&
+      //     // !contentState.isContentHovered
+      //   ) {
+      //     setIsOpen(false);
+      //     // console.log('useEffect closing condition');
+      //   }
+      // }, [
+      //   activateOnHover,
+      //   isTriggerHovered,
+      //   // contentState.isContentFocused,
+      //   // contentState.isContentHovered,
+      //   setIsOpen,
+      // ]);
+
+      const { focusProps, isFocused } = useFocus();
+      // console.log('menuContent popover isFocused', isFocused);
+      // console.log('trigger isHovered', isTriggerHovered);
 
       const updatedTrigger = () => {
         return trigger({
           ...menuTriggerProps,
-
-          onMouseEnter: () => {
-            setIsTriggerHovered(true);
-          },
-          onMouseLeave: () => {
-            setIsTriggerHovered(false);
-          },
-
           ...hoverProps,
           ref: triggerRef,
         });
@@ -142,6 +143,7 @@ export const Menu = ({
         <MenuContext.Provider value={{ onClose: handleClose, showBackdrop }}>
           {updatedTrigger()}
           <Popover
+            {...focusProps}
             placement={placement}
             triggerRef={triggerRef}
             state={state}
@@ -159,11 +161,14 @@ export const Menu = ({
               isOpen={state.isOpen}
               AnimatePresence={AnimatePresence}
               autoFocus={state.focusStrategy || true}
+              // autoFocus={activateOnHover ? false : state.focusStrategy || true}
+              // autoFocus={false}
               onClose={() => state.close()}
               StyledMenu={StyledMenu}
               StyledMenuItem={StyledMenuItem}
               closeOnSelect={closeOnSelect}
               ref={ref}
+              // {...focusProps}
             />
           </Popover>
         </MenuContext.Provider>
@@ -202,6 +207,7 @@ const MenuComponent = forwardRef(
       ...restProps
     } = props;
     const typeSelectProps = useTypeSelect(state);
+    // console.log('props', props);
 
     return (
       <OverlayAnimatePresence

@@ -14,6 +14,7 @@ const MenuBasic = ({ placement = 'bottom', activateOnHover = false }: any) => {
       <Menu
         placement={placement}
         activateOnHover={activateOnHover}
+        // isOpen={true}
         // eslint-disable-next-line react/no-unstable-nested-components
         trigger={({ ...triggerProps }) => {
           return (
