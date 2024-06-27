@@ -801,6 +801,7 @@ In this property mapper table you can find all the properties of v1 and how they
 
 
 ### Property Combinations :
+
 <>
   <TableContainer>
     <Table>
@@ -878,7 +879,14 @@ In this property mapper table you can find all the properties of v1 and how they
         <Table.TR>
           <Table.TD>
             <Table.TText>
-              <InlineCode>{`sx={{_ios: {property: <value>},_android: {property: <value>}}}`}</InlineCode>
+              <InlineCode>{`sx={{
+    _ios: {
+      property: <value>
+    },
+    _android: {
+      property: <value>
+    }
+  }}`}</InlineCode>
             </Table.TText>
           </Table.TD>
           <Table.TD>
@@ -888,7 +896,24 @@ In this property mapper table you can find all the properties of v1 and how they
         <Table.TR>
           <Table.TD>
             <Table.TText>
-              <InlineCode>{`sx={{"@base": {_light: {property:<value>},_dark: { property: <value> }},"@md": {_light: { property: <value> },_dark: { property: <value> }}}`}</InlineCode>
+              <InlineCode>{`sx={{
+    "@base": {
+      _light: {
+        property: <value>
+      },
+      _dark: { 
+        property: <value>
+      }
+    },
+    "@md": {
+      _light: { 
+        property: <value> 
+      },
+      _dark: { 
+        property: <value> 
+      }
+    }
+  }}`}</InlineCode>
             </Table.TText>
           </Table.TD>
           <Table.TD>
