@@ -28,6 +28,10 @@ const MenuMeta: ComponentMeta<typeof Menu> = {
         'right start',
       ],
     },
+    activateOnHover: {
+      control: 'boolean',
+      options: [true, false],
+    },
     showMenu: {
       control: 'boolean',
       figmaIgnore: true,
@@ -36,6 +40,7 @@ const MenuMeta: ComponentMeta<typeof Menu> = {
   },
   args: {
     placement: 'bottom',
+    activateOnHover: false,
     showMenu: true,
   },
 };

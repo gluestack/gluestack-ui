@@ -8,13 +8,12 @@ import { Center } from '@/components/ui/center';
 import { Menu, MenuItem, MenuItemLabel } from '@/components/ui/menu';
 import { PaintBucket, PuzzleIcon } from 'lucide-react-native';
 
-const MenuBasic = ({ placement = 'bottom' }: any) => {
+const MenuBasic = ({ placement = 'bottom', activateOnHover = false }: any) => {
   return (
     <Center>
       <Menu
-        // isOpen={true}
         placement={placement}
-        disabledKeys={['Settings']}
+        activateOnHover={activateOnHover}
         // eslint-disable-next-line react/no-unstable-nested-components
         trigger={({ ...triggerProps }) => {
           return (
@@ -24,25 +23,13 @@ const MenuBasic = ({ placement = 'bottom' }: any) => {
           );
         }}
       >
-        <MenuItem key="Community" textValue="Community">
+        <MenuItem key="Community1" textValue="Community1">
           <Icon as={GlobeIcon} size="sm" className="mr-2" />
-          <MenuItemLabel size="sm">Community</MenuItemLabel>
+          <MenuItemLabel size="sm">Community 1</MenuItemLabel>
         </MenuItem>
-        <MenuItem key="Plugins" textValue="Plugins">
-          <Icon as={PuzzleIcon} size="sm" className="mr-2" />
-          <MenuItemLabel size="sm">Plugins</MenuItemLabel>
-        </MenuItem>
-        <MenuItem key="Theme" textValue="Theme">
-          <Icon as={PaintBucket} size="sm" className="mr-2" />
-          <MenuItemLabel size="sm">Theme</MenuItemLabel>
-        </MenuItem>
-        <MenuItem key="Settings" textValue="Settings">
-          <Icon as={SettingsIcon} size="sm" className="mr-2" />
-          <MenuItemLabel size="sm">Settings</MenuItemLabel>
-        </MenuItem>
-        <MenuItem key="Add account" textValue="Add account">
-          <Icon as={AddIcon} size="sm" className="mr-2" />
-          <MenuItemLabel size="sm">Add account</MenuItemLabel>
+        <MenuItem key="Community2" textValue="Community2">
+          <Icon as={GlobeIcon} size="sm" className="mr-2" />
+          <MenuItemLabel size="sm">Community 2</MenuItemLabel>
         </MenuItem>
       </Menu>
     </Center>

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { forwardRef, useRef } from 'react';
+import React, { forwardRef, useRef, useState, useEffect } from 'react';
 import { useMenu, useMenuTrigger } from '@react-native-aria/menu';
 import { useTreeState, useMenuTriggerState } from 'react-stately';
 import { Popover } from './MenuPopover/Popover';
@@ -9,6 +9,8 @@ import { useTypeSelect } from './useTypeSelect';
 import { useControlledState } from '@react-stately/utils';
 import { MenuContext } from './MenuContext';
 import { mergeRefs } from '@gluestack-ui/utils';
+import { useHover } from '@react-native-aria/interactions';
+
 export const Menu = ({
   StyledMenu,
   StyledMenuItem,
@@ -31,10 +33,18 @@ export const Menu = ({
         shouldOverlapWithTrigger,
         _experimentalOverlay = false,
         useRNModal = false,
+        activateOnHover,
         ...props
       }: any,
       ref?: any
     ) => {
+      const [isTriggerHovered, setIsTriggerHovered] = useState(false);
+      const [contentState, setContentState] = useState({
+        isContentHovered: false,
+        isContentFocused: false,
+      });
+      const { hoverProps, isHovered } = useHover();
+
       const [isOpen, setIsOpen] = useControlledState(
         isOpenProp,
         defaultIsOpen,
@@ -66,9 +76,43 @@ export const Menu = ({
         triggerRef
       );
 
+      useEffect(() => {
+        if (activateOnHover && isTriggerHovered) {
+          // console.log('onMouseEnter() triggered');
+          setIsOpen(true);
+        }
+      }, [activateOnHover, isTriggerHovered, setIsOpen]);
+
+      useEffect(() => {
+        if (
+          activateOnHover &&
+          !isTriggerHovered &&
+          !contentState.isContentFocused &&
+          !contentState.isContentHovered
+        ) {
+          setIsOpen(false);
+          // console.log('useEffect closing condition');
+        }
+      }, [
+        activateOnHover,
+        isTriggerHovered,
+        contentState.isContentFocused,
+        contentState.isContentHovered,
+        setIsOpen,
+      ]);
+
       const updatedTrigger = () => {
         return trigger({
           ...menuTriggerProps,
+
+          onMouseEnter: () => {
+            setIsTriggerHovered(true);
+          },
+          onMouseLeave: () => {
+            setIsTriggerHovered(false);
+          },
+
+          ...hoverProps,
           ref: triggerRef,
         });
       };
@@ -92,7 +136,7 @@ export const Menu = ({
             />
           </MenuContext.Provider>
         );
-      }
+      } //figma
 
       return (
         <MenuContext.Provider value={{ onClose: handleClose, showBackdrop }}>
@@ -107,6 +151,7 @@ export const Menu = ({
             shouldFlip={shouldFlip}
             StyledBackdrop={StyledBackdrop}
             useRNModal={useRNModal}
+            setContentState={setContentState}
           >
             <MenuComponent
               {...menuProps}

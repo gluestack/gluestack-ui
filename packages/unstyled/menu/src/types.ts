@@ -82,6 +82,11 @@ export interface InterfaceMenuProps {
    * @default false
    */
   useRNModal?: boolean;
+  /**
+   * If true, activates menu on hover state
+   * @default false
+   */
+  activateOnHover?: boolean;
 }
 
 export interface IItemProp {

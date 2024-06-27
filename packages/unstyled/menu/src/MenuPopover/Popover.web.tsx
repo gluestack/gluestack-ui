@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View } from 'react-native';
 import { usePopover, DismissButton, Overlay } from '@react-aria/overlays';
 import { MenuContext } from '../MenuContext';
-export function Popover({ StyledBackdrop, ...props }: any) {
+import { useFocus } from '@react-native-aria/focus';
+import { useHover } from '@react-native-aria/interactions';
+
+export function Popover({ StyledBackdrop, setContentState, ...props }: any) {
   const ref = React.useRef(null);
   const { state, children } = props;
   const { onClose } = React.useContext(MenuContext);
+
   const { popoverProps, underlayProps } = usePopover(
     {
       ...props,
@@ -14,6 +18,20 @@ export function Popover({ StyledBackdrop, ...props }: any) {
     },
     state
   );
+
+  const { focusProps, isFocused } = useFocus();
+  const { hoverProps, isHovered } = useHover();
+
+  useEffect(() => {
+    if (setContentState) {
+      // console.log('content isFocused', isFocused);
+      // console.log('content isHovered', isHovered);
+      setContentState({
+        isContentFocused: isFocused,
+        isContentHovered: isHovered,
+      });
+    }
+  }, [isFocused, isHovered, setContentState]);
 
   if (!state.isOpen) {
     return null;
@@ -30,7 +48,7 @@ export function Popover({ StyledBackdrop, ...props }: any) {
         aria-hidden={true}
       />
       {/** @ts-ignore -web only*/}
-      <View {...popoverProps} ref={ref}>
+      <View {...popoverProps} ref={ref} {...focusProps} {...hoverProps}>
         <DismissButton onDismiss={state.close} />
         {children}
         <DismissButton onDismiss={state.close} />
