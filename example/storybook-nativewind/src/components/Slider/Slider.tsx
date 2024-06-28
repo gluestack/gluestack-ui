@@ -12,7 +12,7 @@ const SliderBasic = ({ ...props }: any) => {
     <Slider
       {...props}
       value={value}
-      onChange={(value: any) => {
+      onChange={(value: number) => {
         setValue(value);
       }}
     >
