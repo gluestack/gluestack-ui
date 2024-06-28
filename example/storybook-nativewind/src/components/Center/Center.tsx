@@ -3,11 +3,7 @@ import { Center } from '@/components/ui/center';
 import React from 'react';
 
 const CenterBasic = () => {
-  return (
-    <Center className="bg-primary-500 h-[200] w-[300]">
-      <Text className="color-white font-bold">This is the center.</Text>
-    </Center>
-  );
+  return <Center></Center>;
 };
 
 CenterBasic.description =
