@@ -1,4 +1,3 @@
-import { Text } from '@/components/ui/text';
 import { Center } from '@/components/ui/center';
 import React from 'react';
 
@@ -11,4 +10,4 @@ CenterBasic.description =
 
 export default CenterBasic;
 
-export { Text, Center };
+export { Center };
