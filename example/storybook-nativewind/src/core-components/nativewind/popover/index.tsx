@@ -39,7 +39,11 @@ cssInterop(UIPopover.Arrow, { className: 'style' });
 cssInterop(UIPopover.Content, { className: 'style' });
 cssInterop(UIPopover.Header, { className: 'style' });
 cssInterop(UIPopover.Footer, { className: 'style' });
-cssInterop(UIPopover.Body, { className: 'style' });
+cssInterop(UIPopover.Body, {
+  className: 'style',
+  contentContainerClassName: 'contentContainerStyle',
+  indicatorClassName: 'indicatorStyle',
+});
 cssInterop(UIPopover.Backdrop, { className: 'style' });
 cssInterop(UIPopover.CloseButton, { className: 'style' });
 

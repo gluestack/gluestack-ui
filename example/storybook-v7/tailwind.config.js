@@ -5,7 +5,6 @@ module.exports = {
     './../storybook-nativewind/src/**/*.{html,js,jsx,ts,tsx}',
     './../storybook-nativewind/core-components/**/*.{html,js,jsx,ts,tsx}',
     './../storybook-nativewind/components/**/*.{html,js,jsx,ts,tsx,mdx}',
-    './../../packages/**/*.{html,js,jsx,ts,tsx,mdx}',
   ],
   presets: [require('nativewind/preset')],
   safelist: [

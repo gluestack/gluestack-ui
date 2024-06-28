@@ -35,7 +35,11 @@ const PrimitiveIcon = React.forwardRef(
     ref?: any
   ) => {
     const sizeProps = useMemo(() => {
-      return size ? { size } : { height, width };
+      if (size) return { size };
+      if (height && width) return { height, width };
+      if (height) return { height };
+      if (width) return { width };
+      return {};
     }, [size, height, width]);
 
     const colorProps =
@@ -83,7 +87,9 @@ const UIButton = createButton({
 cssInterop(UIButton, { className: 'style' });
 cssInterop(UIButton.Text, { className: 'style' });
 cssInterop(UIButton.Group, { className: 'style' });
-cssInterop(UIButton.Spinner, { className: 'style' });
+cssInterop(UIButton.Spinner, {
+  className: { target: 'style', nativeStyleToProp: { color: true } },
+});
 cssInterop(UIButton.Icon, {
   className: {
     target: 'style',
@@ -103,13 +109,13 @@ const buttonStyle = tva({
   variants: {
     action: {
       primary:
-        'bg-primary-500 hover:bg-primary-600 active:bg-primary-700  border-primary-300 hover:border-primary-400 active:border-primary-500 data-[focus-visible=true]:web:ring-primary-300',
+        'bg-primary-500 hover:bg-primary-600 active:bg-primary-700  border-primary-300 hover:border-primary-400 active:border-primary-500 data-[focus-visible=true]:web:ring-indicator-info',
       secondary:
-        'bg-secondary-500 border-secondary-300 hover:bg-secondary-600 hover:border-secondary-400 active:bg-secondary-700 active:border-secondary-500 data-[focus-visible=true]:web:ring-secondary-300',
+        'bg-secondary-500 border-secondary-300 hover:bg-secondary-600 hover:border-secondary-400 active:bg-secondary-700 active:border-secondary-500 data-[focus-visible=true]:web:ring-indicator-info',
       positive:
-        'bg-success-500 border-success-300 hover:bg-success-600 hover:border-success-400 active:bg-success-700 active:border-success-500 data-[focus-visible=true]:web:ring-success-300',
+        'bg-success-500 border-success-300 hover:bg-success-600 hover:border-success-400 active:bg-success-700 active:border-success-500 data-[focus-visible=true]:web:ring-indicator-info',
       negative:
-        'bg-error-500 border-error-300 hover:bg-error-600 hover:border-error-400 active:bg-error-700 active:border-error-500 data-[focus-visible=true]:web:ring-error-300',
+        'bg-error-500 border-error-300 hover:bg-error-600 hover:border-error-400 active:bg-error-700 active:border-error-500 data-[focus-visible=true]:web:ring-indicator-info',
       default: 'bg-transparent hover:bg-background-50 active:bg-transparent',
     },
     variant: {
@@ -124,6 +130,7 @@ const buttonStyle = tva({
       sm: 'px-4 h-9',
       md: 'px-5 h-10',
       lg: 'px-6 h-11',
+      xl: 'px-7 h-12',
     },
   },
   compoundVariants: [
@@ -194,6 +201,7 @@ const buttonTextStyle = tva({
       sm: 'text-sm',
       md: 'text-base',
       lg: 'text-lg',
+      xl: 'text-xl',
     },
   },
   parentCompoundVariants: [
@@ -258,12 +266,11 @@ const buttonIconStyle = tva({
         'text-typography-0 group-hover/button:text-typography-0 group-active/button:text-typography-0',
     },
     size: {
-      '2xs': 'h-3 w-3',
-      'xs': 'h-3.5 w-3.5',
-      'sm': 'h-4 w-4',
-      'md': 'h-[18px] w-[18px]',
-      'lg': 'h-5 w-5',
-      'xl': 'h-6 w-6',
+      xs: 'h-[3.5] w-[3.5]',
+      sm: 'h-4 w-4',
+      md: 'h-[18px] w-[18px]',
+      lg: 'h-[18px] w-[18px]',
+      xl: 'h-5 w-5',
     },
     action: {
       primary:

@@ -17,7 +17,7 @@
   "main": "index.js",
   "module": "index.js",
   "types": "index.d.ts",
-  "version": "1.0.20",
+  "version": "1.0.21",
   "react-native": "src/index",
   "source": "src/index",
   "scripts": {

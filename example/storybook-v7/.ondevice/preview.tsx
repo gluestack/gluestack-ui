@@ -6,6 +6,7 @@ import { GluestackUIProvider } from '../../storybook-nativewind/src/core-compone
 import { View } from 'react-native';
 import { useState } from 'react';
 import type { Preview } from '@storybook/react';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 // import { useDarkMode } from '../../storybook-nativewind/src/components/hooks/useDarkMode';
 // import { Platform } from 'react-native';
 
@@ -21,17 +22,19 @@ const preview: Preview = {
       const [isDark] = useState(false);
 
       return (
-        <GluestackUIProvider mode="light">
-          <View
-            style={{
-              flex: 1,
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          >
-            <Story />
-          </View>
-        </GluestackUIProvider>
+        <GestureHandlerRootView style={{ flex: 1 }}>
+          <GluestackUIProvider mode="light">
+            <View
+              style={{
+                flex: 1,
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              <Story />
+            </View>
+          </GluestackUIProvider>
+        </GestureHandlerRootView>
       );
     },
   ],

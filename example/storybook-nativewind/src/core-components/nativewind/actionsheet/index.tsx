@@ -39,7 +39,11 @@ const PrimitiveIcon = React.forwardRef(
     ref?: any
   ) => {
     const sizeProps = useMemo(() => {
-      return size ? { size } : { height, width };
+      if (size) return { size };
+      if (height && width) return { height, width };
+      if (height) return { height };
+      if (width) return { width };
+      return {};
     }, [size, height, width]);
 
     const colorProps =
@@ -98,9 +102,26 @@ cssInterop(UIActionsheet.ItemText, { className: 'style' });
 cssInterop(UIActionsheet.DragIndicator, { className: 'style' });
 cssInterop(UIActionsheet.DragIndicatorWrapper, { className: 'style' });
 cssInterop(UIActionsheet.Backdrop, { className: 'style' });
-cssInterop(UIActionsheet.ScrollView, { className: 'style' });
-cssInterop(UIActionsheet.VirtualizedList, { className: 'style' });
-cssInterop(UIActionsheet.FlatList, { className: 'style' });
+cssInterop(UIActionsheet.ScrollView, {
+  className: 'style',
+  contentContainerClassName: 'contentContainerStyle',
+  indicatorClassName: 'indicatorStyle',
+});
+cssInterop(UIActionsheet.VirtualizedList, {
+  className: 'style',
+  ListFooterComponentClassName: 'ListFooterComponentStyle',
+  ListHeaderComponentClassName: 'ListHeaderComponentStyle',
+  contentContainerClassName: 'contentContainerStyle',
+  indicatorClassName: 'indicatorStyle',
+});
+cssInterop(UIActionsheet.FlatList, {
+  className: 'style',
+  ListFooterComponentClassName: 'ListFooterComponentStyle',
+  ListHeaderComponentClassName: 'ListHeaderComponentStyle',
+  columnWrapperClassName: 'columnWrapperStyle',
+  contentContainerClassName: 'contentContainerStyle',
+  indicatorClassName: 'indicatorStyle',
+});
 cssInterop(UIActionsheet.SectionList, { className: 'style' });
 cssInterop(UIActionsheet.SectionHeaderText, { className: 'style' });
 cssInterop(UIActionsheet.Icon, {

@@ -42,6 +42,7 @@ export const parameters = {
             'VS Code Extensions',
             'Figma UI Kit',
             'CLI',
+            'gluestack-ui-nativewind-utils',
           ],
           'Core Concepts',
           ['Accessibility', 'Universal'],
@@ -79,7 +80,7 @@ export const parameters = {
           'Overlay',
           ['AlertDialog', 'Menu', 'Modal', 'Popover', 'Tooltip'],
           'Disclosure',
-          ['Actionsheet', 'Accordion'],
+          ['Actionsheet', 'Accordion', 'BottomSheet'],
           'Media And Icons',
           ['Avatar', 'Image', 'Icon'],
           'Others',
@@ -88,7 +89,7 @@ export const parameters = {
         'Apps',
         ['Dashboard App', 'Starter Kit', 'Storybook App'],
         'Guides',
-        ['Recipes', ['Linear Gradient']],
+        ['Recipes', ['Linear Gradient'], 'More', ['Troubleshooting']],
       ],
       icons: [
         {
