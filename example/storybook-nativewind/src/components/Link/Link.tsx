@@ -1,16 +1,10 @@
 import React from 'react';
 import { Link, LinkText } from '@/components/ui/link';
-import { Icon } from '@/components/ui/icon';
-import { HStack } from '@/components/ui/hstack';
-import { Text } from '@/components/ui/text';
-import { ArrowUpRightIcon } from 'lucide-react-native';
 const LinkBasic = ({ ...props }: any) => {
   return (
-    <>
-      <Link href="https://google.com" {...props} isExternal>
-        <LinkText>GLUESTACK</LinkText>
-      </Link>
-    </>
+    <Link {...props} href="">
+      <LinkText>Link Text</LinkText>
+    </Link>
   );
 };
 
@@ -19,4 +13,4 @@ LinkBasic.description =
 
 export default LinkBasic;
 
-export { Link, LinkText, ArrowUpRightIcon, Icon, HStack, Text };
+export { Link, LinkText };
