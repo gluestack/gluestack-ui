@@ -1,14 +1,4 @@
 import React from 'react';
-import { VStack } from '@/components/ui/vstack';
-import { Tooltip, TooltipContent } from '@/components/ui/tooltip';
-import { HStack } from '@/components/ui/hstack';
-import { Center } from '@/components/ui/center';
-import { Button } from '@/components/ui/button';
-import { Text } from '@/components/ui/text';
-import { Heading } from '@/components/ui/heading';
-import { Box } from '@/components/ui/box';
-import { Icon } from '@/components/ui/icon';
-
 import {
   Slider,
   SliderTrack,
@@ -16,21 +6,14 @@ import {
   SliderThumb,
 } from '@/components/ui/slider';
 
-import { Volume, Volume2Icon, LightbulbIcon } from 'lucide-react-native';
-
-const SliderBasic = ({ value, ...props }: any) => {
-  const [sliderValue, setSliderValue] = React.useState(value);
-  const handleChange = (value: any) => {
-    setSliderValue(value);
-  };
-
+const SliderBasic = ({ ...props }: any) => {
+  const [value, setValue] = React.useState(30);
   return (
     <Slider
       {...props}
-      value={sliderValue}
-      className="w-[300px] h-[300px] mt-4"
+      value={value}
       onChange={(value: any) => {
-        handleChange(value);
+        setValue(value);
       }}
     >
       <SliderTrack>
@@ -46,22 +29,4 @@ SliderBasic.description =
 
 export default SliderBasic;
 
-export {
-  Slider,
-  SliderTrack,
-  SliderFilledTrack,
-  SliderThumb,
-  VStack,
-  Volume,
-  HStack,
-  Volume2Icon,
-  Text,
-  Box,
-  LightbulbIcon,
-  Icon,
-  Heading,
-  Tooltip,
-  TooltipContent,
-  Button,
-  Center,
-};
+export { Slider, SliderTrack, SliderFilledTrack, SliderThumb };
