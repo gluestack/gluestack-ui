@@ -62,7 +62,7 @@ const popoverStyle = tva({
 });
 
 const popoverArrowStyle = tva({
-  base: 'bg-background-0 absolute overflow-hidden h-3.5 w-3.5 border border-outline-100',
+  base: 'bg-background-0 z-[1] absolute overflow-hidden h-3.5 w-3.5 border-outline-100',
 });
 
 const popoverBackdropStyle = tva({
@@ -132,16 +132,18 @@ const Popover = React.forwardRef(
       ...props
     }: { className?: string } & IPopoverProps,
     ref?: any
-  ) => (
-    <UIPopover
-      ref={ref}
-      {...props}
-      // @ts-ignore
-      className={popoverStyle({ size, class: className })}
-      context={{ size }}
-      pointerEvents="box-none"
-    />
-  )
+  ) => {
+    return (
+      <UIPopover
+        ref={ref}
+        {...props}
+        // @ts-ignore
+        className={popoverStyle({ size, class: className })}
+        context={{ size }}
+        pointerEvents="box-none"
+      />
+    );
+  }
 );
 
 const PopoverArrow = React.forwardRef(
