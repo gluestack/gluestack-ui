@@ -1,6 +1,5 @@
 'use client';
-import React, { useEffect, useState } from 'react';
-import { GlobalValuesContext } from './globalContext';
+import React, { useEffect, useState, createContext } from 'react';
 import { config } from './config';
 import { OverlayProvider } from '@gluestack-ui/overlay';
 import { ToastProvider } from '@gluestack-ui/toast';
@@ -14,6 +13,8 @@ const createStyle = (styleTagId: any) => {
   return style;
 };
 
+export const GluestackUIContext = createContext<any>({});
+
 export function GluestackUIProvider({
   mode = 'light',
   ...props
@@ -23,19 +24,19 @@ export function GluestackUIProvider({
 }) {
   const [colorMode, setColorMode] = useState<'light' | 'dark'>(mode);
 
-  const stringcssvars = Object.keys(config[mode]).reduce((acc, cur) => {
-    acc += `${cur}:${config[mode][cur]};`;
+  const stringcssvars = Object.keys(config[colorMode]).reduce((acc, cur) => {
+    acc += `${cur}:${config[colorMode][cur]};`;
     return acc;
   }, '');
 
   setFlushStyles(`:root {${stringcssvars}} `);
 
   useEffect(() => {
-    if (config[mode] && typeof document !== 'undefined') {
+    if (config[colorMode] && typeof document !== 'undefined') {
       const element = document.documentElement;
       if (element) {
-        element.classList.add(mode);
-        element.classList.remove(mode === 'light' ? 'dark' : 'light');
+        element.classList.add(colorMode);
+        element.classList.remove(colorMode === 'light' ? 'dark' : 'light');
         const head = element.querySelector('head');
         let style = head?.querySelector(`[id='${styleTagId}']`);
         if (!style) {
@@ -46,13 +47,13 @@ export function GluestackUIProvider({
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [mode]);
+  }, [colorMode]);
 
   return (
-    <GlobalValuesContext.Provider value={{ colorMode, setColorMode }}>
+    <GluestackUIContext.Provider value={{ colorMode, setColorMode }}>
       <OverlayProvider>
         <ToastProvider>{props.children}</ToastProvider>
       </OverlayProvider>
-    </GlobalValuesContext.Provider>
+    </GluestackUIContext.Provider>
   );
 }

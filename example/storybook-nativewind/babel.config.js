@@ -22,6 +22,8 @@ module.exports = function (api) {
                 ? path.resolve(__dirname, './global.css')
                 : path.resolve(__dirname, './global-gluestack.css'),
 
+            '@/hooks': path.resolve(__dirname, './src/hooks'),
+
             '@gluestack-ui/checkbox': path.resolve(
               __dirname,
               '../../packages/unstyled/checkbox/src'
