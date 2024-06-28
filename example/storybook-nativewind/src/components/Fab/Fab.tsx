@@ -16,4 +16,4 @@ FabBasic.description =
 
 export default FabBasic;
 
-export { Fab, FabIcon, FabLabel, MenuIcon, Box };
+export { Fab, FabIcon, FabLabel, MenuIcon };
