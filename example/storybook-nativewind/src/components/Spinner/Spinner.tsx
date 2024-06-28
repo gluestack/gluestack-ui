@@ -5,9 +5,9 @@ import { Text } from '@/components/ui/text';
 import { VStack } from '@/components/ui/vstack';
 import colors from 'tailwindcss/colors';
 
-const SpinnerBasic = ({ ...props }) => (
-  <Spinner {...props} color={colors.gray[500]} />
-);
+const SpinnerBasic = ({ ...props }) => {
+  return <Spinner {...props} color={colors.gray[500]} />;
+};
 
 SpinnerBasic.description =
   'This is a basic Spinner component example. Spinners are used to show a loading state of a component or page.';
