@@ -1,5 +1,4 @@
 import React from 'react';
-import { AddIcon } from '@/components/ui/icon';
 import {
   Button,
   ButtonText,
@@ -9,12 +8,9 @@ import {
 
 export const ButtonBasic = (props: any) => {
   return (
-    <>
-      <Button {...props}>
-        <ButtonText>Hello World</ButtonText>
-        <ButtonIcon as={AddIcon} />
-      </Button>
-    </>
+    <Button {...props}>
+      <ButtonText>Hello World</ButtonText>
+    </Button>
   );
 };
 

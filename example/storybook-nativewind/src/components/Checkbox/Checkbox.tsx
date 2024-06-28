@@ -10,7 +10,7 @@ import { CheckIcon } from '@/components/ui/icon';
 
 const CheckboxGroupBasic = ({ ...props }: any) => {
   return (
-    <Checkbox {...props}>
+    <Checkbox {...props} value="checkbox-id">
       <CheckboxIndicator>
         <CheckboxIcon as={CheckIcon} />
       </CheckboxIndicator>
