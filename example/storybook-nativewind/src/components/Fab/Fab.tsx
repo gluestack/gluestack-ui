@@ -1,16 +1,13 @@
 import React from 'react';
 import { Fab, FabIcon, FabLabel } from '@/components/ui/fab';
 import { MenuIcon } from '@/components/ui/icon';
-import { Box } from '@/components/ui/box';
 
-const FabBasic = (props: any) => {
+const FabBasic = ({ ...props }: any) => {
   return (
-    <Box className="h-[300px] w-[300px] bg-background-200 rounded-md ">
-      <Fab placement={props.placement} {...props}>
-        {props.showIcon && <FabIcon as={MenuIcon} />}
-        {props.showLabel && <FabLabel>Menu</FabLabel>}
-      </Fab>
-    </Box>
+    <Fab {...props}>
+      <FabIcon as={MenuIcon} />
+      <FabLabel>Menu</FabLabel>
+    </Fab>
   );
 };
 

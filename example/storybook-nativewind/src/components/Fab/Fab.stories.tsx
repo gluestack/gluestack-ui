@@ -21,27 +21,10 @@ const FabMeta: ComponentMeta<typeof Fab> = {
       control: 'select',
       options: ['sm', 'md', 'lg'],
     },
-    showLabel: {
-      control: 'boolean',
-      options: [true, false],
-    },
-    showIcon: {
-      control: 'boolean',
-      figmaIgnore: true,
-      options: [true, false],
-    },
-    isHovered: {
-      control: 'boolean',
-      figmaIgnore: true,
-      options: [true, false],
-    },
   },
   args: {
     placement: 'bottom right',
-    showLabel: true,
-    showIcon: true,
     size: 'md',
-    isHovered: false,
   },
 };
 
