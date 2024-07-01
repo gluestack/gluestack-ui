@@ -6,15 +6,19 @@ import {
   ButtonSpinner,
   ButtonIcon,
 } from '@/components/ui/button';
-import { useColorMode } from '@/hooks/useColorMode';
+// import { useColorMode } from '@/hooks/useColorMode';
 
 export const ButtonBasic = (props: any) => {
-  const { colorMode, toggleColorMode } = useColorMode();
+  // const { colorMode, toggleColorMode } = useColorMode();
 
   return (
     <>
-      <Button {...props} onPress={toggleColorMode}>
+      {/* <Button {...props} onPress={toggleColorMode}>  //testing hook
         <ButtonText>{colorMode}</ButtonText>
+        <ButtonIcon as={AddIcon} />
+      </Button> */}
+      <Button {...props}>
+        <ButtonText>Button</ButtonText>
         <ButtonIcon as={AddIcon} />
       </Button>
     </>

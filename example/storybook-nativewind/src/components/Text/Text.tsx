@@ -1,40 +1,40 @@
 import React from 'react';
 import { Text } from '@/components/ui/text';
-import { useBreakpointValue } from '@/hooks/useBreakpointValue';
+// import { useBreakpointValue } from '@/hooks/useBreakpointValue';
 
 const TextBasic = ({
-  // size = 'md',
+  size = 'md',
   text = 'Hello world',
-}: // fontWeight = 'bold',
-// ...props
-any) => {
-  // const fontWeights = {
-  //   hairline: 'font-hairline',
-  //   thin: 'font-thin',
-  //   light: 'font-light',
-  //   normal: 'font-normal',
-  //   medium: 'font-medium',
-  //   semibold: 'font-semibold',
-  //   bold: 'font-bold',
-  //   extrabold: 'font-extrabold',
-  //   black: 'font-black',
-  //   extrablack: 'font-extrablack',
-  // };
+  fontWeight = 'bold',
+  ...props
+}: any) => {
+  const fontWeights = {
+    hairline: 'font-hairline',
+    thin: 'font-thin',
+    light: 'font-light',
+    normal: 'font-normal',
+    medium: 'font-medium',
+    semibold: 'font-semibold',
+    bold: 'font-bold',
+    extrabold: 'font-extrabold',
+    black: 'font-black',
+    extrablack: 'font-extrablack',
+  };
 
-  const fontWeight = useBreakpointValue({
-    base: 'font-thin',
-    sm: 'font-light',
-    md: 'font-medium',
-    lg: 'font-bold',
-    xl: 'font-black',
-  });
+  // const fontWeight = useBreakpointValue({  //testing hook
+  //   base: 'font-thin',
+  //   sm: 'font-light',
+  //   md: 'font-medium',
+  //   lg: 'font-bold',
+  //   xl: 'font-black',
+  // });
 
   return (
     <Text
-      // size={size}
-      // {...props}
-      // className={`${fontWeights[fontWeight as keyof typeof fontWeights]}`}
-      className={`${fontWeight}`}
+      size={size}
+      {...props}
+      className={`${fontWeights[fontWeight as keyof typeof fontWeights]}`}
+      // className={`${fontWeight}`}
     >
       {text}
     </Text>
