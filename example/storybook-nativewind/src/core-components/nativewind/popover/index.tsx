@@ -98,6 +98,27 @@ const popoverFooterStyle = tva({
   base: 'flex-row justify-between items-center',
 });
 
+const borderColorPattern =
+  /border-[a-z]+-(0|50|100|200|300|400|500|600|700|800|900|950)/;
+const borderWidthPattern = /border-(\d+|\[\d+(\.\d+)?(?:px)?\])/;
+
+let borderColorClass: string;
+let borderWidthClass: string;
+
+const getBorderWidthValue = (className: string) => {
+  const match = className.match(/border-(\d+|\[\d+(?:\.\d+)?(?:px)?\])/)?.[1];
+
+  if (match) {
+    if (match.includes('px')) {
+      const numberPart = match.match(/\[(\d+(?:\.\d+)?)px\]/)?.[1];
+      return parseInt(numberPart || '');
+    }
+    return parseInt(match);
+  }
+
+  return undefined;
+};
+
 type IPopoverProps = React.ComponentProps<typeof UIPopover> &
   VariantProps<typeof popoverStyle>;
 
@@ -146,28 +167,76 @@ const Popover = React.forwardRef(
   }
 );
 
+const PopoverContent = React.forwardRef(
+  (
+    {
+      className,
+      size,
+      ...props
+    }: { className?: string } & IPopoverContentProps,
+    ref?: any
+  ) => {
+    const { size: parentSize } = useStyleContext(SCOPE);
+    borderColorClass = className?.match(borderColorPattern)?.[0] || '';
+    borderWidthClass = className?.match(borderWidthPattern)?.[0] || '';
+
+    return (
+      <UIPopover.Content
+        ref={ref}
+        transition={{
+          type: 'spring',
+          damping: 18,
+          stiffness: 250,
+          mass: 0.9,
+          opacity: {
+            type: 'timing',
+            duration: 50,
+            delay: 50,
+          },
+        }}
+        {...props}
+        className={popoverContentStyle({
+          parentVariants: {
+            size: parentSize,
+          },
+          size,
+          class: className,
+        })}
+        pointerEvents="auto"
+      />
+    );
+  }
+);
+
 const PopoverArrow = React.forwardRef(
   (
     { className, ...props }: { className?: string } & IPopoverArrowProps,
     ref?: any
-  ) => (
-    <UIPopover.Arrow
-      ref={ref}
-      transition={{
-        type: 'spring',
-        damping: 18,
-        stiffness: 250,
-        mass: 0.9,
-        opacity: {
-          type: 'timing',
-          duration: 50,
-          delay: 50,
-        },
-      }}
-      {...props}
-      className={popoverArrowStyle({ class: className })}
-    />
-  )
+  ) => {
+    const borderWidthValue = getBorderWidthValue(borderWidthClass);
+
+    return (
+      <UIPopover.Arrow
+        ref={ref}
+        transition={{
+          type: 'spring',
+          damping: 18,
+          stiffness: 250,
+          mass: 0.9,
+          opacity: {
+            type: 'timing',
+            duration: 50,
+            delay: 50,
+          },
+        }}
+        {...props}
+        className={popoverArrowStyle({
+          class: `${className} ${borderColorClass}`,
+        })}
+        borderWidthValue={borderWidthValue}
+      />
+    );
+  }
 );
 
 const PopoverBackdrop = React.forwardRef(
@@ -235,45 +304,6 @@ const PopoverCloseButton = React.forwardRef(
       })}
     />
   )
-);
-
-const PopoverContent = React.forwardRef(
-  (
-    {
-      className,
-      size,
-      ...props
-    }: { className?: string } & IPopoverContentProps,
-    ref?: any
-  ) => {
-    const { size: parentSize } = useStyleContext(SCOPE);
-
-    return (
-      <UIPopover.Content
-        ref={ref}
-        transition={{
-          type: 'spring',
-          damping: 18,
-          stiffness: 250,
-          mass: 0.9,
-          opacity: {
-            type: 'timing',
-            duration: 50,
-            delay: 50,
-          },
-        }}
-        {...props}
-        className={popoverContentStyle({
-          parentVariants: {
-            size: parentSize,
-          },
-          size,
-          class: className,
-        })}
-        pointerEvents="auto"
-      />
-    );
-  }
 );
 
 const PopoverFooter = React.forwardRef(

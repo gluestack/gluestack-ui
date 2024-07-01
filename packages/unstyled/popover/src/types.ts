@@ -118,7 +118,7 @@ export type IPopoverComponentType<
     HeaderProps & React.RefAttributes<HeaderProps>
   >;
   Arrow: React.ForwardRefExoticComponent<
-    ArrowProps & React.RefAttributes<ArrowProps>
+    ArrowProps & React.RefAttributes<ArrowProps> & { borderWidthValue?: number }
   >;
   Backdrop: React.ForwardRefExoticComponent<
     BackdropProps & React.RefAttributes<BackdropProps>
