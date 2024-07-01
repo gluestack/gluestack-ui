@@ -1,11 +1,11 @@
 import resolveConfig from 'tailwindcss/resolveConfig';
-import tailwindConfig from '../../tailwind.config.js';
-// import tailwindConfig from '@/tailwind.config.js';
+import tailwindConfig from '@/tailwind.config.js';
 
 const fullConfig = resolveConfig(tailwindConfig);
 
 export const getTailwindConfigBreakpoints = () => {
   const breakpoints = fullConfig.theme.screens;
+
   return {
     'base': 0,
     'sm': parseInt(breakpoints.sm, 10),

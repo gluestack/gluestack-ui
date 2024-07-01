@@ -1,7 +1,7 @@
 import { Text } from '@/components/ui/text';
 import { Box } from '@/components/ui/box';
 import React from 'react';
-import useMedia from '../../hooks/useMedia';
+import useMedia from '@/hooks/useMedia';
 
 const BoxBasic: any = ({ ...props }: any) => {
   const media = useMedia();
@@ -13,6 +13,7 @@ const BoxBasic: any = ({ ...props }: any) => {
         flexDirection: media.sm ? 'row' : 'column',
       }}
     >
+      {/* <Text className="font-bold text-typography-0">BOX</Text> */}
       <Box className="bg-red-300 text-center">
         <Text className="font-bold text-typography-0">BOX 1</Text>
       </Box>

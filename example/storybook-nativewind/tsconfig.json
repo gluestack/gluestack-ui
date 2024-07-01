@@ -5,7 +5,8 @@
     "paths": {
       "@/components/ui/*": ["src/core-components/nativewind/*"],
       "@/hooks/*": ["src/hooks/*"],
-      "@/tailwind.config.js": ["../../tailwind.config.js"],
+      "@/utils/*": ["src/utils/*"],
+      "@/tailwind.config.js": ["src/tailwind.config.js"],
       "@gluestack-style/react": ["../../packages/styled/react/src"],
       "@gluestack-ui/popover": ["../../packages/unstyled/popover/src"],
       "@gluestack-ui/button": ["../../packages/unstyled/button/src"],

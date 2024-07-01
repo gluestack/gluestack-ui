@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useWindowDimensions } from 'react-native';
-import { getTailwindConfigBreakpoints } from '../../utils/getTailwindConfigBreakpoints';
+import { getTailwindConfigBreakpoints } from '@/utils/getTailwindConfigBreakpoints';
 
 const breakpoints = getTailwindConfigBreakpoints();
 

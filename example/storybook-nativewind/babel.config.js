@@ -23,6 +23,11 @@ module.exports = function (api) {
                 : path.resolve(__dirname, './global-gluestack.css'),
 
             '@/hooks': path.resolve(__dirname, './src/hooks'),
+            '@/utils': path.resolve(__dirname, './src/utils'),
+            '@/tailwind.config.js': path.resolve(
+              __dirname,
+              './src/tailwind.config.js'
+            ),
 
             '@gluestack-ui/checkbox': path.resolve(
               __dirname,

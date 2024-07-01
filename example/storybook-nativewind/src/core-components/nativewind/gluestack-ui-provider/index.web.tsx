@@ -32,6 +32,10 @@ export function GluestackUIProvider({
   setFlushStyles(`:root {${stringcssvars}} `);
 
   useEffect(() => {
+    setColorMode(mode);
+  }, [mode]);
+
+  useEffect(() => {
     if (config[colorMode] && typeof document !== 'undefined') {
       const element = document.documentElement;
       if (element) {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text } from '@/components/ui/text';
-import { useBreakpointValue } from '../../hooks/useBreakpointValue';
+import { useBreakpointValue } from '@/hooks/useBreakpointValue';
 
 const TextBasic = ({
   // size = 'md',
@@ -21,13 +21,12 @@ any) => {
   //   extrablack: 'font-extrablack',
   // };
 
-  const fontSizes = useBreakpointValue({
-    'base': 12,
-    'sm': 16,
-    'md': 20,
-    'lg': 24,
-    'xl': 28,
-    '2xl': 32,
+  const fontWeight = useBreakpointValue({
+    base: 'font-thin',
+    sm: 'font-light',
+    md: 'font-medium',
+    lg: 'font-bold',
+    xl: 'font-black',
   });
 
   return (
@@ -35,9 +34,7 @@ any) => {
       // size={size}
       // {...props}
       // className={`${fontWeights[fontWeight as keyof typeof fontWeights]}`}
-      // style={{ fontSize: parseInt(fontSizes, 10) }} //working
-      className={`text-[${fontSizes}px]`} //not working after 16px
-      // className="text-[30px]"
+      className={`${fontWeight}`}
     >
       {text}
     </Text>

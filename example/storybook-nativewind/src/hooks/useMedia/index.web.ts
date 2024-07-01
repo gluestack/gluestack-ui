@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { getTailwindConfigBreakpoints } from '../../utils/getTailwindConfigBreakpoints';
+import { getTailwindConfigBreakpoints } from '@/utils/getTailwindConfigBreakpoints';
 
 const breakpoints = getTailwindConfigBreakpoints();
 

@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
-import { Dimensions } from 'react-native';
-import { getTailwindConfigBreakpoints } from '../../utils/getTailwindConfigBreakpoints';
+import { useWindowDimensions } from 'react-native';
+import { getTailwindConfigBreakpoints } from '@/utils/getTailwindConfigBreakpoints';
 
 const breakpoints = getTailwindConfigBreakpoints();
 
 const useMedia = () => {
+  const { width } = useWindowDimensions();
   const [media, setMedia] = useState({
     'base': false,
     'sm': false,
@@ -14,8 +15,7 @@ const useMedia = () => {
     '2xl': false,
   });
 
-  const updateMedia = () => {
-    const width = Dimensions.get('window').width;
+  useEffect(() => {
     setMedia({
       'base': width >= breakpoints.base,
       'sm': width >= breakpoints.sm,
@@ -24,13 +24,7 @@ const useMedia = () => {
       'xl': width >= breakpoints.xl,
       '2xl': width >= breakpoints['2xl'],
     });
-  };
-
-  useEffect(() => {
-    updateMedia();
-    Dimensions.addEventListener('change', updateMedia);
-    return () => Dimensions.removeEventListener('change', updateMedia);
-  }, []);
+  }, [width]);
 
   return media;
 };

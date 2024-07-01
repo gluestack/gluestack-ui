@@ -1,4 +1,4 @@
-import React, { useState, createContext } from 'react';
+import React, { useState, createContext, useEffect } from 'react';
 import { config } from './config';
 import { View } from 'react-native';
 import { OverlayProvider } from '@gluestack-ui/overlay';
@@ -14,6 +14,10 @@ export function GluestackUIProvider({
   children?: any;
 }) {
   const [colorMode, setColorMode] = useState<'light' | 'dark'>(mode);
+
+  useEffect(() => {
+    setColorMode(mode);
+  }, [mode]);
 
   return (
     <GluestackUIContext.Provider value={{ colorMode, setColorMode }}>
