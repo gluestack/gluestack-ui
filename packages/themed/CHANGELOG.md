@@ -1,5 +1,12 @@
 # @gluestack-ui/themed
 
+## 1.1.31
+
+### Patch Changes
+
+- Updated dependencies
+  - @gluestack-ui/checkbox@0.1.29
+
 ## 1.1.30
 
 ### Patch Changes
