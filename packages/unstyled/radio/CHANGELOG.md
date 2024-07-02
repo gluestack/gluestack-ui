@@ -1,5 +1,11 @@
 # @gluestack-ui/radio
 
+## 0.1.30
+
+### Patch Changes
+
+- fix: removed radio and checkbox icons states
+
 ## 0.1.29
 
 ### Patch Changes
