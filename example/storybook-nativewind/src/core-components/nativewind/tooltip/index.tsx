@@ -29,7 +29,7 @@ const tooltipContentStyle = tva({
 });
 
 const tooltipTextStyle = tva({
-  base: 'font-normal tracking-normal text-red-400 web:select-none text-xs text-typography-50',
+  base: 'font-normal tracking-normal web:select-none text-xs text-typography-50',
 
   variants: {
     isTruncated: {
