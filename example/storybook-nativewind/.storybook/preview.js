@@ -89,7 +89,12 @@ export const parameters = {
         'Apps',
         ['Dashboard App', 'Starter Kit', 'Storybook App'],
         'Guides',
-        ['Recipes', ['Linear Gradient'], 'More', ['Troubleshooting']],
+        [
+          'Recipes',
+          ['Linear Gradient'],
+          'More',
+          ['Troubleshooting', 'Roadmap'],
+        ],
       ],
       icons: [
         {
