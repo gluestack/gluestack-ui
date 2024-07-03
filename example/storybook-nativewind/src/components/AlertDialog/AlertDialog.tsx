@@ -24,14 +24,14 @@ const AlertDialogBasic = ({ ...props }) => {
         <AlertDialogBackdrop />
         <AlertDialogContent>
           <AlertDialogHeader>
-            <Heading className="text-typography-950" size="md">
-              Are you sure you want to delete the post
+            <Heading className="text-typography-950 font-semibold" size="md">
+              Are you sure you want to delete this post?
             </Heading>
           </AlertDialogHeader>
           <AlertDialogBody className="mt-3 mb-4">
             <Text size="sm">
-              Lorem ipsum dolor sit amet consectetur. Nisl amet phasellus dolor
-              orci. At arcu sit egestas at faucibus faucibus elementum mauris.
+              Deleting the post will remove it permanently and cannot be undone.
+              Please confirm if you want to proceed.
             </Text>
           </AlertDialogBody>
           <AlertDialogFooter className="">

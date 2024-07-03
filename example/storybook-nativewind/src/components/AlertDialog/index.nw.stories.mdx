@@ -75,14 +75,13 @@ This is an illustration of **AlertDialog** component.
                 <AlertDialogBackdrop />
                 <AlertDialogContent>
                   <AlertDialogHeader>
-                    <Heading className="text-typography-950" size="md">
+                    <Heading className="text-typography-950 font-semibold" size="md">
                       Are you sure you want to delete this post?
                     </Heading>
                   </AlertDialogHeader>
                   <AlertDialogBody className="mt-3 mb-4">
                     <Text size="sm">
-                      Lorem ipsum dolor sit amet consectetur. Nisl amet phasellus dolor
-                      orci. At arcu sit egestas at faucibus faucibus elementum mauris.
+                      Deleting the post will remove it permanently and cannot be undone. Please confirm if you want to proceed.
                     </Text>
                   </AlertDialogBody>
                   <AlertDialogFooter className="">
@@ -480,12 +479,9 @@ The Examples section provides visual representations of the different variants o
               <Button onPress={() => setShowAlertDialog(true)}>
                 <ButtonText>Pay</ButtonText>
               </Button>
-              <AlertDialog
-                isOpen={showAlertDialog}
-                onClose={handleClose}
-              >
+              <AlertDialog isOpen={showAlertDialog} onClose={handleClose}>
                 <AlertDialogBackdrop />
-                <AlertDialogContent className="p-0 max-w-[491px] sm:flex-row border-blue-800 rounded-xl">
+                <AlertDialogContent className="p-0 max-w-[590px] sm:flex-row border-blue-800 rounded-xl">
                   <Box className="bg-blue-800 min-w-[123px] items-center justify-center py-4 sm:py-0">
                     <Image
                       source={{
@@ -497,22 +493,23 @@ The Examples section provides visual representations of the different variants o
                   </Box>
                   <AlertDialogBody
                     className=""
-                    contentContainerClassName="p-6 flex-row justify-between"
+                    contentContainerClassName="p-6 flex-row justify-between gap-6 md:gap-9 items-center"
                   >
                     <VStack>
-                      <Heading size="md" className="text-typography-950 font-semibold">
-                        The amount is successfully invested in your trading account
+                      <Heading size="md" className="text-typography-950 font-semibold leading-6">
+                        Get Additional Discount
                       </Heading>
-                      <Text className="pt-3 text-typography-950" size="sm">
-                        Transaction ID:
-                        <Text className="pl-3" size="sm">
-                          #1234ABCDEF
+                      <Text className="pt-2 text-typography-950" size="sm">
+                        Upgrade your plan before your trial ends yo get 5% discount. Use
+                        code{' '}
+                        <Text className="font-bold" size="sm">
+                          #PRO005
                         </Text>
                       </Text>
                     </VStack>
-                    <AlertDialogCloseButton className="p-0 hidden sm:flex">
-                      <Icon as={CloseIcon} />
-                    </AlertDialogCloseButton>
+                    <Button size="sm" className="hidden sm:flex">
+                      <ButtonText>Upgrade</ButtonText>
+                    </Button>
                   </AlertDialogBody>
                 </AlertDialogContent>
               </AlertDialog>
@@ -529,16 +526,13 @@ The Examples section provides visual representations of the different variants o
         AlertDialogBackdrop,
         AlertDialogContent,
         AlertDialogHeader,
-        AlertDialogCloseButton,
         AlertDialogFooter,
         AlertDialogBody,
-        CloseIcon,
         Button,
         ButtonText,
         Center,
         Text,
         Heading,
-        Icon,
         VStack,
         Image,
         Box
@@ -569,7 +563,7 @@ The Examples section provides visual representations of the different variants o
                 onClose={handleClose}
               >
                 <AlertDialogBackdrop />
-                <AlertDialogContent className="p-4 gap-4 max-w-[649px] w-full md:flex-row">
+                <AlertDialogContent className="p-4 gap-4 max-w-[649px] w-full md:flex-row mx-2">
                   <AlertDialogBody
                     className=""
                     contentContainerClassName="flex-row gap-4"
@@ -658,26 +652,27 @@ The Examples section provides visual representations of the different variants o
                   <Box className="rounded-full h-[52px] w-[52px] bg-background-error items-center justify-center">
                     <Icon as={TrashIcon} size="lg" className="stroke-error-500" />
                   </Box>
-                  <VStack>
-                    <AlertDialogHeader className="mb-2 justify-center">
-                      <Heading>Delete account?</Heading>
+                  <VStack className="items-center">
+                    <AlertDialogHeader className="mb-2">
+                      <Heading size="md">Delete account?</Heading>
                     </AlertDialogHeader>
                     <AlertDialogBody>
                       <Text size="sm" className="text-center">
-                        Lorem ipsum dolor sit amet consectetur. Nisl amet phasellus dolor orci. At arcu sit egestas at faucibus faucibus elementum mauris.
+                        The invoice will be deleted from the invoices section and in the documents folder. This cannot be undone.
                       </Text>
                     </AlertDialogBody>
                     <AlertDialogFooter className="mt-5">
+                      <Button size="sm" action="negative" onPress={handleClose} className="px-[30px]">
+                        <ButtonText>Delete</ButtonText>
+                      </Button>
                       <Button
                         variant="outline"
                         action="secondary"
                         onPress={handleClose}
                         size="sm"
+                        className="px-[30px]"
                       >
                         <ButtonText>Cancel</ButtonText>
-                      </Button>
-                      <Button size="sm" action="negative" onPress={handleClose}>
-                        <ButtonText>Delete</ButtonText>
                       </Button>
                     </AlertDialogFooter>
                   </VStack>
