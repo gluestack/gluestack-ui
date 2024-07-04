@@ -17,6 +17,7 @@ import { Meta } from '@storybook/addon-docs';
 import {
   Button,
   ButtonText,
+  ButtonIcon,
   Menu,
   MenuIcon,
   MenuItem,
@@ -34,6 +35,9 @@ import {
   GlobeIcon,
   Icon,
   AddIcon,
+  PlayIcon,
+  HelpCircleIcon,
+  MessageCircleIcon,
 } from '../../core-components/nativewind';
 import { PaintBucket, PuzzleIcon } from 'lucide-react-native';
 import { transformedCode } from '../../utils';
@@ -54,55 +58,39 @@ This is an illustration of a **Menu** component.
 <Wrapper>
   <CodePreview
     showComponentRenderer={true}
-    showArgsController={false}
+    showArgsController={true}
     metaData={{
       code: `
       <Menu
-       size="lg"
-       offset={5}
-        placement="top"
-          trigger={({ ...triggerProps }) => {
-            return (
-              <Button {...triggerProps}>
-                <ButtonText>Menu</ButtonText>
-              </Button>
-            );
-          }}
-        >
-          <MenuItem key="Community" textValue="Community">
-            <Icon as={GlobeIcon} size="sm" className="mr-2"/>
-            <MenuItemLabel size='sm'>
-              Community
-            </MenuItemLabel>
-          </MenuItem>
-          <MenuItem key="Plugins" textValue="Plugins">
-              {\/* PuzzleIcon is imported from 'lucide-react-native' *\/}
-              <Icon as={PuzzleIcon} size="sm" className="mr-2"/>
-              <MenuItemLabel size='sm'>
-                Plugins
-              </MenuItemLabel>
-          </MenuItem>
-          <MenuItem key="Theme" textValue="Theme">
-              {\/* PaintBucket is imported from 'lucide-react-native' *\/}
-              <Icon as={PaintBucket} size="sm" className="mr-2"/>
-              <MenuItemLabel size='sm'>
-                Theme
-              </MenuItemLabel>
-          </MenuItem>
-          <MenuItem key="Settings" textValue="Settings">
-              <Icon as={SettingsIcon} size="sm" className="mr-2"/>
-              <MenuItemLabel size='sm'>
-                Settings
-              </MenuItemLabel>
-          </MenuItem>
-          <MenuItem key="Add account" textValue="Add account">
-              <Icon as={AddIcon} size="sm" className="mr-2"/>
-              <MenuItemLabel size='sm'>
-                Add account
-              </MenuItemLabel>
-          </MenuItem>
-        </Menu>
-`,
+        {...props}
+        offset={5}
+        disabledKeys={['Settings']}
+        trigger={({ ...triggerProps }) => {
+          return (
+            <Button {...triggerProps}>
+              <ButtonText>Menu</ButtonText>
+            </Button>
+          );
+        }}
+      >
+        <MenuItem key="Add account" textValue="Add account">
+          <Icon as={AddIcon} size="sm" className="mr-2" />
+          <MenuItemLabel size="sm">Add account</MenuItemLabel>
+        </MenuItem>
+        <MenuItem key="Community" textValue="Community">
+          <Icon as={GlobeIcon} size="sm" className="mr-2" />
+          <MenuItemLabel size="sm">Community</MenuItemLabel>
+        </MenuItem>
+        <MenuItem key="Plugins" textValue="Plugins">
+          <Icon as={PlayIcon} size="sm" className="mr-2" />
+          <MenuItemLabel size="sm">Plugins</MenuItemLabel>
+        </MenuItem>
+        <MenuItem key="Settings" textValue="Settings">
+          <Icon as={SettingsIcon} size="sm" className="mr-2" />
+          <MenuItemLabel size="sm">Settings</MenuItemLabel>
+        </MenuItem>
+      </Menu>
+      `,
       transformCode: (code) => {
         return transformedCode(code);
       },
@@ -111,19 +99,34 @@ This is an illustration of a **Menu** component.
         Button,
         ButtonText,
         Menu,
-        MenuIcon,
         MenuItem,
         MenuItemLabel,
-        Text,
-        Box,
         Icon,
         GlobeIcon,
-        PuzzleIcon,
-        PaintBucket,
         SettingsIcon,
         AddIcon,
+        PlayIcon
       },
-      argsType: {},
+      argsType: {
+        placement: {
+          control: 'select',
+          options: [
+            'bottom',
+            'bottom end',
+            'bottom start',
+            'top',
+            'top end',
+            'top start',
+            'left',
+            'left end',
+            'left start',
+            'right',
+            'right end',
+            'right start',
+          ],
+          default: 'top',
+        },
+      },
     }}
   />
 </Wrapper>
@@ -520,109 +523,7 @@ Adheres to the [MENU WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/pa
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
-#### Menu Placement
-
-Menu Component provides different placement options, allowing you to position it dynamically based on user interaction or layout requirements.
-
-<Wrapper>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={true}
-    metaData={{
-      code: `
-      <Menu
-        offset={5}
-        {...props}
-          trigger={({ ...triggerProps }) => {
-            return (
-              <Button {...triggerProps}>
-                <ButtonText>Menu</ButtonText>
-              </Button>
-            );
-          }}
-        >
-          <MenuItem key="Community" textValue="Community">
-              <Icon as={GlobeIcon} size="sm" className="mr-2"/>
-              <MenuItemLabel size='sm'>
-                Community
-              </MenuItemLabel>
-          </MenuItem>
-          <MenuItem key="Plugins" textValue="Plugins">
-              {\/* PuzzleIcon is imported from 'lucide-react-native' *\/}
-              <Icon as={PuzzleIcon} size="sm" className="mr-2"/>
-              <MenuItemLabel size='sm'>
-                Plugins
-              </MenuItemLabel>
-          </MenuItem>
-          <MenuItem key="Theme" textValue="Theme">
-              {\/* PaintBucket is imported from 'lucide-react-native' *\/}
-              <Icon as={PaintBucket} size="sm" className="mr-2"/>
-              <MenuItemLabel size='sm'>
-                Theme
-              </MenuItemLabel>
-          </MenuItem>
-          <MenuItem key="Settings" textValue="Settings">
-              <Icon as={SettingsIcon} size="sm" className="mr-2"/>
-              <MenuItemLabel size='sm'>
-                Settings
-              </MenuItemLabel>
-          </MenuItem>
-          <MenuItem key="Add account" textValue="Add account">
-              <Icon as={AddIcon} size="sm" className="mr-2"/>
-              <MenuItemLabel size='sm'>
-                Add account
-              </MenuItemLabel>
-          </MenuItem>
-        </Menu>
-`,
-      transformCode: (code) => {
-        return transformedCode(code);
-      },
-      scope: {
-        Wrapper,
-        Button,
-        ButtonText,
-        Menu,
-        MenuIcon,
-        MenuItem,
-        MenuItemLabel,
-        Text,
-        Box,
-        Icon,
-        GlobeIcon,
-        PuzzleIcon,
-        PaintBucket,
-        SettingsIcon,
-        AddIcon,
-      },
-      argsType: {
-        placement: {
-          control: 'select',
-          options: [
-            'bottom',
-            'bottom end',
-            'bottom start',
-            'top',
-            'top end',
-            'top start',
-            'left',
-            'left end',
-            'left start',
-            'right',
-            'right end',
-            'right start',
-          ],
-          default: 'top',
-        },
-      },
-    }}
-  />
-</Wrapper>
-
-
-#### Disabled MenuItem
-
-Our Menu component supports dynamic disabling of menu items, enabling you to control the availability and interaction of specific menu options based on conditions or user permissions.
+#### Menu with Tag
 
 <Wrapper>
   <CodePreview
@@ -631,76 +532,75 @@ Our Menu component supports dynamic disabling of menu items, enabling you to con
     metaData={{
       code: `
       <Menu
-        placement={"top"}
-        disabledKeys={['Theme']}
-          trigger={({ ...triggerProps }) => {
-            return (
-              <Button {...triggerProps}>
-                <ButtonText>Menu</ButtonText>
-              </Button>
-            );
-          }}
+        offset={5}
+        trigger={({ ...triggerProps }) => {
+          return (
+            <Button {...triggerProps} size="sm">
+              <ButtonIcon as={MenuIcon} />
+            </Button>
+          );
+        }}
+      >
+        <MenuItem
+          key="Membership"
+          textValue="Membership"
+          className="p-2 justify-between"
         >
-          <MenuItem key="Community" textValue="Community">
-            <Icon as={GlobeIcon} size="sm" className="mr-2"/>
-            <MenuItemLabel size='sm'>
-              Community
-            </MenuItemLabel>
-          </MenuItem>
-          <MenuItem key="Plugins" textValue="Plugins">
-            {\/* PuzzleIcon is imported from 'lucide-react-native' *\/}
-            <Icon as={PuzzleIcon} size="sm" className="mr-2"/>
-            <MenuItemLabel size='sm'>
-              Plugins
-            </MenuItemLabel>
-          </MenuItem>
-          <MenuItem key="Theme" textValue="Theme">
-            {\/* PaintBucket is imported from 'lucide-react-native' *\/}
-            <Icon as={PaintBucket} size="sm" className="mr-2"/>
-            <MenuItemLabel size='sm'>Theme</MenuItemLabel>
-          </MenuItem>
-          <MenuItem key="Settings" textValue="Settings">
-            <Icon as={SettingsIcon} size="sm" className="mr-2"/>
-            <MenuItemLabel size='sm'>
-              Settings
-            </MenuItemLabel>
-          </MenuItem>
-          <MenuItem key="Add account" textValue="Add account">
-            <Icon as={AddIcon} size="sm" className="mr-2"/>
-            <MenuItemLabel size='sm'>
-              Add account
-            </MenuItemLabel>
-          </MenuItem>
-        </Menu>
-`,
+          <MenuItemLabel size="sm">Membership</MenuItemLabel>
+          <Box className="py-1 px-2 bg-background-50 rounded-full items-center justify-center">
+            <Text size="2xs" className="text-typography-900">
+              Pro
+            </Text>
+          </Box>
+        </MenuItem>
+        <MenuItem key="Orders" textValue="Orders" className="p-2">
+          <MenuItemLabel size="sm">Orders</MenuItemLabel>
+        </MenuItem>
+        <MenuItem
+          key="Address Book"
+          textValue="Address Book"
+          className="p-2 border-b border-outline-200"
+        >
+          <MenuItemLabel size="sm">Address Book</MenuItemLabel>
+        </MenuItem>
+        <MenuItem key="Earn & Redeem" textValue="Earn & Redeem" className="p-2">
+          <MenuItemLabel size="sm">Earn & Redeem</MenuItemLabel>
+        </MenuItem>
+        <MenuItem key="Coupons" textValue="Coupons" className="p-2">
+          <MenuItemLabel size="sm">Coupons</MenuItemLabel>
+        </MenuItem>
+        <MenuItem
+          key="Help Center"
+          textValue="Help Center"
+          className="p-2 border-b border-outline-200"
+        >
+          <MenuItemLabel size="sm">Help Center</MenuItemLabel>
+        </MenuItem>
+        <MenuItem key="Logout" textValue="Logout" className="p-2">
+          <MenuItemLabel size="sm">Logout</MenuItemLabel>
+        </MenuItem>
+      </Menu>
+      `,
       transformCode: (code) => {
         return transformedCode(code);
       },
       scope: {
         Wrapper,
         Button,
-        ButtonText,
-        Menu,
+        ButtonIcon,
         MenuIcon,
+        Menu,
         MenuItem,
         MenuItemLabel,
-        Text,
         Box,
-        Icon,
-        GlobeIcon,
-        PuzzleIcon,
-        PaintBucket,
-        SettingsIcon,
-        AddIcon,
+        Text
       },
       argsType: {},
     }}
   />
 </Wrapper>
 
-#### Selection
-
-Our menu component supports selection mode, logging the selected menu item key to the console when a selection change occurs. Based on the selected key, it prints a corresponding message, indicating a route push for the menu items in the example given below.
+#### Menu with Selection
 
 <Wrapper>
   <CodePreview
@@ -708,83 +608,91 @@ Our menu component supports selection mode, logging the selected menu item key t
     showArgsController={false}
     metaData={{
       code: `
-      function Example () {
+      function Example() {
         const [selected, setSelected] = React.useState(new Set([]));
-      return (
-        <Menu
-        placement="bottom left"
-        selectionMode="single"
-        selectedKeys={selected}
-        offset={5}
-        onSelectionChange={(keys) => {
-          console.log('onSelectionChange', keys);
-          setSelected(keys);
-          if (keys.currentKey === 'Community') {
-            console.log('Push to', keys.currentKey, 'route');
-          }
-          else if (keys.currentKey === 'Plugins') {
-            console.log('Push to', keys.currentKey, 'route');
-          }
-          else if (keys.currentKey === 'Theme') {
-            console.log('Push to', keys.currentKey, 'route');
-          }
-          else if (keys.currentKey === 'Settings') {
-            console.log('Push to', keys.currentKey, 'route');
-          }
-        }}
-        closeOnSelect={true}
-        trigger={({ ...triggerProps }) => {
-          return (
-            <Button {...triggerProps}>
-              <ButtonText>Menu</ButtonText>
-            </Button>
-          );
-        }}
-        >
-          <MenuItem key="Community" textValue="Community">
-            <Icon as={GlobeIcon} size="sm" className="mr-2"/>
-            <MenuItemLabel size='sm'>
-              Community
-            </MenuItemLabel>
-          </MenuItem>
-          <MenuItem key="Plugins" textValue="Plugins">
-            {\/* PuzzleIcon is imported from 'lucide-react-native' *\/}
-            <Icon as={PuzzleIcon} size="sm" className="mr-2"/>
-            <MenuItemLabel size='sm'>
-              Plugins
-            </MenuItemLabel>
-          </MenuItem>
-          <MenuItem key="Theme" textValue="Theme">
-            {\/* PaintBucket is imported from 'lucide-react-native' *\/}
-            <Icon as={PaintBucket} size="sm" className="mr-2"/>
-            <MenuItemLabel size='sm'>Theme</MenuItemLabel>
-          </MenuItem>
-          <MenuItem key="Settings" textValue="Settings">
-            <Icon as={SettingsIcon} size="sm" className="mr-2"/>
-            <MenuItemLabel size='sm'>
-              Settings
-            </MenuItemLabel>
-          </MenuItem>
-        </Menu>
-        )
+        return (
+          <Menu
+            placement="bottom left"
+            selectionMode="single"
+            selectedKeys={selected}
+            offset={5}
+            className="p-1.5"
+            onSelectionChange={(keys) => {
+              // console.log('onSelectionChange', keys);
+              setSelected(keys);
+              if (keys.currentKey === 'Account Setting') {
+                console.log('Push to', keys.currentKey, 'route');
+              } else if (keys.currentKey === 'Help Centre') {
+                console.log('Push to', keys.currentKey, 'route');
+              } else if (keys.currentKey === 'Contact Support') {
+                console.log('Push to', keys.currentKey, 'route');
+              } else if (keys.currentKey === 'Download Mobile App') {
+                console.log('Push to', keys.currentKey, 'route');
+              } else if (keys.currentKey === 'Install Chrome Extension') {
+                console.log('Push to', keys.currentKey, 'route');
+              }
+            }}
+            closeOnSelect={true}
+            trigger={({ ...triggerProps }) => {
+              return (
+                <Button {...triggerProps}>
+                  <ButtonText>Menu</ButtonText>
+                </Button>
+              );
+            }}
+          >
+            <MenuItem
+              key="Account Settings"
+              textValue="Account Settings"
+              className="p-2 min-w-[294px]"
+            >
+              <Icon as={SettingsIcon} size="sm" className="mr-2" />
+              <MenuItemLabel size="sm">Account Settings</MenuItemLabel>
+            </MenuItem>
+            <MenuItem key="Help Centre" textValue="Help Centre" className="p-2">
+              <Icon as={HelpCircleIcon} size="sm" className="mr-2" />
+              <MenuItemLabel size="sm">Help Centre</MenuItemLabel>
+            </MenuItem>
+            <MenuItem
+              key="Contact Support"
+              textValue="Contact Support"
+              className="p-2 border-b border-outline-200"
+            >
+              <Icon as={MessageCircleIcon} size="sm" className="mr-2" />
+              <MenuItemLabel size="sm">Contact Support</MenuItemLabel>
+            </MenuItem>
+            <MenuItem
+              key="Download Mobile App"
+              textValue="Download Mobile App"
+              className="p-2"
+            >
+              <MenuItemLabel size="sm">Download Mobile App</MenuItemLabel>
+            </MenuItem>
+            <MenuItem
+              key="Install Chrome Extension"
+              textValue="Install Chrome Extension"
+              className="p-2"
+            >
+              <MenuItemLabel size="sm">Install Chrome Extension</MenuItemLabel>
+            </MenuItem>
+          </Menu>
+        );
       }
-`,
+      `,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'Example');
+      },
       scope: {
         Wrapper,
         Button,
         ButtonText,
         Menu,
-        MenuIcon,
         MenuItem,
         MenuItemLabel,
-        Text,
-        Box,
         Icon,
-        GlobeIcon,
-        PuzzleIcon,
-        PaintBucket,
         SettingsIcon,
-        AddIcon,
+        HelpCircleIcon,
+        MessageCircleIcon,
       },
       argsType: {},
     }}
