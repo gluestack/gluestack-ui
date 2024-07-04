@@ -48,8 +48,6 @@ export const parameters = {
           ['Accessibility', 'Universal'],
           'Theme Configuration',
           ['Default Tokens', 'Customizing Theme', 'Dark Mode'],
-          'More',
-          ['Releases', 'Roadmap'],
         ],
         'Components',
         [
@@ -89,7 +87,12 @@ export const parameters = {
         'Apps',
         ['Dashboard App', 'Starter Kit', 'Storybook App'],
         'Guides',
-        ['Recipes', ['Linear Gradient'], 'More', ['Troubleshooting']],
+        [
+          'Recipes',
+          ['Linear Gradient'],
+          'More',
+          ['FAQ', 'Releases', 'Roadmap', 'Troubleshooting'],
+        ],
       ],
       icons: [
         {
