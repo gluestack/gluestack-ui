@@ -19,17 +19,21 @@ import {
   AlertIcon,
   AlertText,
   InfoIcon,
-  CheckCircleIcon,
-  CloseCircleIcon,
-  BellIcon,
-  AlertCircleIcon,
+  CloseIcon,
+  RepeatIcon,
   Icon,
   VStack,
-  Center,
   HStack,
+  Text,
+  Heading,
+  Button,
+  ButtonText,
+  Input,
+  InputField,
+  InputSlot,
+  InputIcon
 } from '../../core-components/nativewind';
-
-
+import { Bomb, EyeIcon, EyeOffIcon } from "lucide-react-native";
 import { transformedCode } from '../../utils';
 import {
   AppProvider,
@@ -51,10 +55,10 @@ This is an illustration of **Alert** component.
     showArgsController={true}
     metaData={{
       code: `
-        <Alert className="mx-2.5" {...props}>
-          <AlertIcon as={InfoIcon} className="mr-3"  />
+        <Alert {...props}>
+          <AlertIcon as={InfoIcon} />
           <AlertText>
-            We have updated our terms of service. Please review and accept to continue using our service.
+            Description of alert!
           </AlertText>
         </Alert>
       `,
@@ -225,26 +229,81 @@ Alert component is created using View component from react-native. It extends al
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
-#### Alert with Heading
-
-An example of an alert component with a heading, which further contains another alert component for displaying supplementary information.
+#### Alert with CTA
 
 <Wrapper>
   <CodePreview
     showComponentRenderer={true}
     showArgsController={false}
+     _rendererWrapper={{
+      alignItems: 'stretch',
+      padding: 20
+    }}
     metaData={{
       code: `
-        <Alert action='success'>
-          <AlertIcon as={CheckCircleIcon} size="xl" className='mr-3' />
-          <VStack space='xs'>
-            <AlertText className='font-bold' >
-              Congratulations!
-            </AlertText >
-            <AlertText >
-              Thank you for your submission. You will receive a confirmation email shortly.
+        <Alert
+          action="success"
+          className="gap-4 max-w-[585px] w-full self-center items-start min-[400px]:items-center"
+        >
+          <VStack className="gap-4 min-[400px]:flex-row justify-between flex-1 min-[400px]:items-center">
+            <AlertText className="font-semibold text-typography-900" size="sm">
+              Verify your phone number to create an API key
             </AlertText>
+            <Button size="sm">
+              <ButtonText>Start verification</ButtonText>
+            </Button>
           </VStack>
+          <Icon as={CloseIcon} />
+        </Alert>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Alert,
+        AlertText,
+        Wrapper,
+        VStack,
+        Icon,
+        CloseIcon,
+        Button,
+        ButtonText
+      },
+      argsType: {},
+    }}
+  />
+</Wrapper>
+
+#### Alert on cloud sync
+
+<Wrapper>
+  <CodePreview
+    _rendererWrapper={{
+      alignItems: 'stretch',
+      padding: 20
+    }}
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+        <Alert
+          action="warning"
+          className="gap-4 max-w-[516px] w-full flex-row flex py-4 items-start self-center"
+        >
+          <AlertIcon as={RepeatIcon} />
+          <HStack className="justify-between flex-1 items-center gap-1 sm:gap-8">
+            <VStack className="flex-1">
+              <Text className="font-semibold text-typography-900">
+                Sync is disabled
+              </Text>
+              <AlertText className="text-typography-900" size="sm">
+                Enable cloud sync to help safeguard your data
+              </AlertText>
+            </VStack>
+            <Button size="xs">
+              <ButtonText>Turn on</ButtonText>
+            </Button>
+          </HStack>
         </Alert>
       `,
       transformCode: (code) => {
@@ -255,12 +314,133 @@ An example of an alert component with a heading, which further contains another 
         AlertIcon,
         AlertText,
         Wrapper,
-        CheckCircleIcon,
+        HStack,
         VStack,
-        Icon,
+        RepeatIcon,
+        Button,
+        ButtonText,
+        Text
       },
       argsType: {},
     }}
-/>
+  />
+</Wrapper>
 
+#### Warning alert
+
+<Wrapper>
+  <CodePreview
+    _rendererWrapper={{
+      padding: 20
+    }}
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+        <Alert action="error" className="gap-3 items-start">
+          {/* Bomb is imported from 'lucide-react-native' */}
+          <AlertIcon as={Bomb} size="lg" />
+          <AlertText className="text-typography-900" size="sm">
+            <Text className="mr-2 font-semibold text-typography-900">
+              Heads up:
+            </Text>
+            Once done, this action cannot be undone
+          </AlertText>
+        </Alert>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Alert,
+        AlertIcon,
+        AlertText,
+        Wrapper,
+        Text,
+        Bomb
+      },
+      argsType: {},
+    }}
+  />
+</Wrapper>
+
+#### Alert on confirm password modal
+
+<Wrapper>
+  <CodePreview
+    _rendererWrapper={{
+      padding: 20
+    }}
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+        function Example() {
+          const [showPassword, setShowPassword] = React.useState(false);
+          const handleState = () => {
+            setShowPassword((showState) => {
+              return !showState;
+            });
+          };
+          return (
+            <VStack className="gap-5 sm:gap-8 p-6 sm:p-9 border border-outline-200 bg-background-0 rounded-xl shadow-hard-5 w-full max-w-[423px]">
+              <VStack className="items-center gap-1">
+                <Heading size="xl">Confirm our password?</Heading>
+                <Text>johnsmith@gmail.com</Text>
+              </VStack>
+              <VStack className="gap-3 sm:gap-5">
+                <Input className="rounded-md" size="sm">
+                  <InputField
+                    type={showPassword ? 'text' : 'password'}
+                    placeholder="Enter password"
+                  />
+                  <InputSlot className="mr-3" onPress={handleState}>
+                    {/* EyeIcon, EyeOffIcon are both imported from 'lucide-react-native' */}
+                    <InputIcon
+                      size="xs"
+                      as={showPassword ? EyeIcon : EyeOffIcon}
+                      className="stroke-background-600"
+                    />
+                  </InputSlot>
+                </Input>
+                <Button className="w-full rounded-md" size="sm">
+                  <ButtonText>Confirm</ButtonText>
+                </Button>
+              </VStack>
+              <Alert className="items-start" action="muted">
+                <AlertIcon as={InfoIcon} size="xs" className="stroke-background-500" />
+                <AlertText className="text-typography-600" size="xs">
+                  Minimum 8 characters, with at least 1 uppercase, 1 lowercase, and 1
+                  number required.
+                </AlertText>
+              </Alert>
+            </VStack>
+          );
+        };
+      `,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'Example');
+      },
+      scope: {
+        Alert,
+        AlertIcon,
+        AlertText,
+        Wrapper,
+        HStack,
+        VStack,
+        Button,
+        ButtonText,
+        Text,
+        Heading,
+        Input,
+        InputField,
+        InputSlot,
+        InputIcon,
+        EyeIcon,
+        EyeOffIcon,
+        InfoIcon
+      },
+      argsType: {},
+    }}
+  />
 </Wrapper>

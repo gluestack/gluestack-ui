@@ -14,7 +14,7 @@ import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 const SCOPE = 'ALERT';
 
 const alertStyle = tva({
-  base: 'items-center p-3 rounded flex-row',
+  base: 'items-center py-3 px-4 rounded-md flex-row gap-2',
 
   variants: {
     action: {
@@ -30,10 +30,6 @@ const alertStyle = tva({
       outline: 'border bg-transparent',
       accent: 'border-l-4',
     },
-  },
-  defaultVariants: {
-    variant: 'solid',
-    action: 'info',
   },
 });
 
