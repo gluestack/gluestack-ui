@@ -414,9 +414,31 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
+### Features
+
+- Keyboard support for actions.
+
 ### Accessibility
 
 We have outlined the various features that ensure the AlertDialog component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards.It uses React Native ARIA [@react-native-aria/focus](https://react-native-aria.geekyants.com/) which follows the [WAI-ARIA Alert and Message Dialogs Pattern](https://www.w3.org/WAI/ARIA/apg/patterns/alertdialog/).
+
+#### Keyboard
+
+- `Tab`: 
+  - Moves focus to the next tabbable element inside the dialog.
+  - If focus is on the last tabbable element inside the dialog, moves focus to the first tabbable element inside the dialog.
+- `Shift + Tab`: 
+  - Moves focus to the previous tabbable element inside the dialog.
+  - If focus is on the first tabbable element inside the dialog, moves focus to the last tabbable element inside the dialog.
+- `Escape`: Closes the dialog.
+
+#### Screen Reader
+
+- VoiceOver: When the button is focused, the screen reader will announce the button's label and provide instructions on how to click it. When the alert dialog is triggered, the screen reader will read its content.
+
+#### States
+
+- When the alert dialog is triggered, `aria-modal="true"` is added to the alert dialog content. This attribute informs assistive technologies that the windows underneath the current alert dialog are not available for interaction(inert).
 
 ### Props
 
