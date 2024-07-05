@@ -38,6 +38,7 @@ import {
   PlayIcon,
   HelpCircleIcon,
   MessageCircleIcon,
+  BadgeText,
 } from '../../core-components/nativewind';
 import { PaintBucket, PuzzleIcon } from 'lucide-react-native';
 import { transformedCode } from '../../utils';
@@ -547,11 +548,9 @@ The Examples section provides visual representations of the different variants o
           className="p-2 justify-between"
         >
           <MenuItemLabel size="sm">Membership</MenuItemLabel>
-          <Box className="py-1 px-2 bg-background-50 rounded-full items-center justify-center">
-            <Text size="2xs" className="text-typography-900">
-              Pro
-            </Text>
-          </Box>
+          <Badge action="success" className="rounded-full">
+            <BadgeText className="text-2xs capitalize">Pro</BadgeText>
+          </Badge>
         </MenuItem>
         <MenuItem key="Orders" textValue="Orders" className="p-2">
           <MenuItemLabel size="sm">Orders</MenuItemLabel>
@@ -593,7 +592,9 @@ The Examples section provides visual representations of the different variants o
         MenuItem,
         MenuItemLabel,
         Box,
-        Text
+        Text,
+        Badge,
+        BadgeText
       },
       argsType: {},
     }}
