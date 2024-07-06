@@ -1,8 +1,7 @@
 import React from 'react';
-import { Icon, CloseIcon, CheckIcon } from '@/components/ui/icon';
+import { Icon, CloseIcon } from '@/components/ui/icon';
 import { VStack } from '@/components/ui/vstack';
 import { Pressable } from '@/components/ui/pressable';
-import { Center } from '@/components/ui/center';
 import {
   Toast,
   ToastTitle,
@@ -10,7 +9,6 @@ import {
   useToast,
 } from '@/components/ui/toast';
 import { Button, ButtonText } from '@/components/ui/button';
-import { MessageCircle, AlertTriangleIcon } from 'lucide-react-native';
 
 const ToastFigmaStory = ({ _placement = 'top', _colorMode, ...props }: any) => {
   return (
@@ -41,12 +39,8 @@ const ToastBasic = ({ placement = 'top', ...props }: any) => {
             return (
               <>
                 <Toast nativeID={toastId} {...props}>
-                  <VStack space="xs">
-                    <ToastTitle>Hello World Toast</ToastTitle>
-                    <ToastDescription>
-                      Please create a support tibnnbcket from the support page
-                    </ToastDescription>
-                  </VStack>
+                  <ToastTitle>Changes applied successfully!</ToastTitle>
+
                   <Pressable onPress={() => toast.close(id)}>
                     <Icon as={CloseIcon} />
                   </Pressable>
@@ -67,20 +61,4 @@ ToastBasic.description =
 
 export default ToastBasic;
 
-export {
-  ToastFigmaStory,
-  Toast,
-  ToastTitle,
-  ToastDescription,
-  useToast,
-  Icon,
-  CloseIcon,
-  VStack,
-  CheckIcon,
-  MessageCircle,
-  AlertTriangleIcon,
-  Button,
-  ButtonText,
-  Pressable,
-  Center,
-};
+export { ToastFigmaStory, Toast, ToastTitle, ToastDescription, useToast };

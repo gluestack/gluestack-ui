@@ -1,15 +1,23 @@
 'use client';
 import React from 'react';
 import { createToast, createToastHook } from '@gluestack-ui/toast';
-import { Text, View } from 'react-native';
+import { Text, View, Platform } from 'react-native';
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import { cssInterop } from 'nativewind';
 import { Motion, AnimatePresence } from '@legendapp/motion';
+import {
+  withStyleContext,
+  useStyleContext,
+} from '@gluestack-ui/nativewind-utils/withStyleContext';
+import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withStyleContextAndStates';
 
 export const useToast = createToastHook(Motion.View, AnimatePresence);
-
+const SCOPE = 'TOAST';
 export const UIToast = createToast({
-  Root: View,
+  Root:
+    Platform.OS === 'web'
+      ? withStyleContext(View, SCOPE)
+      : withStyleContextAndStates(View, SCOPE),
   Title: Text,
   Description: Text,
 });
@@ -20,51 +28,46 @@ cssInterop(UIToast.Title, { className: 'style' });
 cssInterop(UIToast.Description, { className: 'style' });
 
 const toastStyle = tva({
-  base: 'px-4 py-3 m-3 rounded flex-row web:pointer-events-auto shadow-hard-5',
+  base: 'p-4 m-3 rounded-md gap-4 flex-row web:pointer-events-auto shadow-hard-5 bg-background-0',
   variants: {
     action: {
-      error: 'bg-background-error border-error-300',
-
-      warning: 'bg-background-warning border-warning-300',
-
-      success: 'bg-background-success border-success-300',
-
-      info: 'bg-background-info border-info-300',
-
-      attention: 'bg-background-muted border-secondary-300',
+      error: 'border-error-300',
+      warning: 'border-warning-300',
+      success: 'border-success-300',
+      info: 'border-info-300',
+      muted: 'border-secondary-300',
     },
 
     variant: {
       solid: '',
       outline: 'border',
-      accent: 'border-l-4',
     },
   },
   compoundVariants: [
     {
-      variant: 'outline',
+      variant: 'solid',
       action: 'error',
-      class: 'bg-background-0 border-error-300 ',
+      class: 'bg-background-error',
     },
     {
-      variant: 'outline',
+      variant: 'solid',
       action: 'warning',
-      class: 'bg-background-0 border-warning-300 ',
+      class: 'bg-background-warning',
     },
     {
-      variant: 'outline',
+      variant: 'solid',
       action: 'success',
-      class: 'bg-background-0 border-success-300 ',
+      class: 'bg-background-success',
     },
     {
-      variant: 'outline',
+      variant: 'solid',
       action: 'info',
-      class: 'bg-background-0 border-info-300 ',
+      class: 'bg-background-info',
     },
     {
-      variant: 'outline',
-      action: 'attention',
-      class: 'bg-background-0 border-secondary-300 ',
+      variant: 'solid',
+      action: 'muted',
+      class: 'bg-background-muted',
     },
   ],
 });
@@ -88,7 +91,7 @@ const toastTitleStyle = tva({
       '2xs': 'text-2xs',
       'xs': 'text-xs',
       'sm': 'text-sm',
-      'md': 'text-md',
+      'md': 'text-base',
       'lg': 'text-lg',
       'xl': 'text-xl',
       '2xl': 'text-2xl',
@@ -98,6 +101,46 @@ const toastTitleStyle = tva({
       '6xl': 'text-6xl',
     },
   },
+  parentVariants: {
+    variant: {
+      solid: '',
+      outline: '',
+    },
+    action: {
+      error: '',
+      warning: '',
+      success: '',
+      info: '',
+      muted: '',
+    },
+  },
+  parentCompoundVariants: [
+    {
+      variant: 'outline',
+      action: 'error',
+      class: 'text-error-800',
+    },
+    {
+      variant: 'outline',
+      action: 'warning',
+      class: 'text-warning-800',
+    },
+    {
+      variant: 'outline',
+      action: 'success',
+      class: 'text-success-800',
+    },
+    {
+      variant: 'outline',
+      action: 'info',
+      class: 'text-info-800',
+    },
+    {
+      variant: 'outline',
+      action: 'muted',
+      class: 'text-muted-800',
+    },
+  ],
 });
 
 const toastDescriptionStyle = tva({
@@ -119,7 +162,7 @@ const toastDescriptionStyle = tva({
       '2xs': 'text-2xs',
       'xs': 'text-xs',
       'sm': 'text-sm',
-      'md': 'text-md',
+      'md': 'text-base',
       'lg': 'text-lg',
       'xl': 'text-xl',
       '2xl': 'text-2xl',
@@ -133,7 +176,7 @@ const toastDescriptionStyle = tva({
 
 export const Toast = React.forwardRef(
   (
-    { className, variant = 'solid', action = 'attention', ...props }: any,
+    { className, variant = 'solid', action = 'muted', ...props }: any,
     ref?: any
   ) => {
     return (
@@ -141,6 +184,7 @@ export const Toast = React.forwardRef(
         ref={ref}
         {...props}
         className={toastStyle({ variant, action, class: className })}
+        context={{ variant, action }}
       />
     );
   }
@@ -148,6 +192,8 @@ export const Toast = React.forwardRef(
 
 export const ToastTitle = React.forwardRef(
   ({ className, size = 'md', ...props }: any, ref?: any) => {
+    const { variant: parentVariant, action: parentAction } =
+      useStyleContext(SCOPE);
     return (
       <UIToast.Title
         ref={ref}
@@ -155,6 +201,10 @@ export const ToastTitle = React.forwardRef(
         className={toastTitleStyle({
           size,
           class: className,
+          parentVariants: {
+            variant: parentVariant,
+            action: parentAction,
+          },
         })}
       />
     );
@@ -162,7 +212,7 @@ export const ToastTitle = React.forwardRef(
 );
 
 export const ToastDescription = React.forwardRef(
-  ({ className, size, ...props }: any, ref?: any) => {
+  ({ className, size = 'md', ...props }: any, ref?: any) => {
     return (
       <UIToast.Description
         ref={ref}
