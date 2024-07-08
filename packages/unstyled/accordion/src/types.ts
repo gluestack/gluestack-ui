@@ -1,3 +1,4 @@
+import React from 'react';
 import type { ViewProps } from 'react-native';
 
 export interface IAccordionProps extends ViewProps {
@@ -91,27 +92,33 @@ export type IAccordionComponentType<
   TitleTextProps,
   ContentTextProps
 > = React.ForwardRefExoticComponent<
-  AccordionProps & React.RefAttributes<AccordionProps> & IAccordionProps
+  React.PropsWithoutRef<AccordionProps & IAccordionProps> &
+    React.RefAttributes<AccordionProps>
 > & {
   Item: React.ForwardRefExoticComponent<
-    ItemProps & React.RefAttributes<ItemProps> & IAccordionItemProps
+    React.PropsWithoutRef<ItemProps & IAccordionItemProps> &
+      React.RefAttributes<ItemProps>
   >;
   Header: React.ForwardRefExoticComponent<
-    HeaderProps & React.RefAttributes<HeaderProps>
+    React.PropsWithoutRef<HeaderProps> & React.RefAttributes<HeaderProps>
   >;
   Trigger: React.ForwardRefExoticComponent<
-    Omit<TriggerProps, 'children'> & IAccordionTriggerProps
+    React.PropsWithoutRef<
+      Omit<TriggerProps, 'children'> & IAccordionTriggerProps
+    > &
+      React.RefAttributes<TriggerProps>
   >;
   Content: React.ForwardRefExoticComponent<
-    ContentProps & React.RefAttributes<ContentProps>
+    React.PropsWithoutRef<ContentProps> & React.RefAttributes<ContentProps>
   >;
   TitleText: React.ForwardRefExoticComponent<
-    TitleTextProps & React.RefAttributes<TitleTextProps>
+    React.PropsWithoutRef<TitleTextProps> & React.RefAttributes<TitleTextProps>
   >;
   ContentText: React.ForwardRefExoticComponent<
-    ContentTextProps & React.RefAttributes<ContentTextProps>
+    React.PropsWithoutRef<ContentTextProps> &
+      React.RefAttributes<ContentTextProps>
   >;
   Icon: React.ForwardRefExoticComponent<
-    IconProps & React.RefAttributes<IconProps>
+    React.PropsWithoutRef<IconProps> & React.RefAttributes<IconProps>
   >;
 };
