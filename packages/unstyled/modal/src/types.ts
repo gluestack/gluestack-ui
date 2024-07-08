@@ -66,24 +66,29 @@ export type IModalComponentType<
   BodyProps,
   BackdropProps
 > = React.ForwardRefExoticComponent<
-  ModalProps & InterfaceModalProps & React.RefAttributes<ModalProps>
+  React.PropsWithoutRef<ModalProps> &
+    InterfaceModalProps &
+    React.RefAttributes<ModalProps>
 > & {
   Content: React.ForwardRefExoticComponent<
-    ContentProps & IModalContentProps & React.RefAttributes<ContentProps>
+    React.PropsWithoutRef<ContentProps> &
+      IModalContentProps &
+      React.RefAttributes<ContentProps>
   >;
   CloseButton: React.ForwardRefExoticComponent<
-    CloseButtonProps & React.RefAttributes<CloseButtonProps>
+    React.PropsWithoutRef<CloseButtonProps> &
+      React.RefAttributes<CloseButtonProps>
   >;
   Header: React.ForwardRefExoticComponent<
-    HeaderProps & React.RefAttributes<HeaderProps>
+    React.PropsWithoutRef<HeaderProps> & React.RefAttributes<HeaderProps>
   >;
   Footer: React.ForwardRefExoticComponent<
-    FooterProps & React.RefAttributes<FooterProps>
+    React.PropsWithoutRef<FooterProps> & React.RefAttributes<FooterProps>
   >;
   Body: React.ForwardRefExoticComponent<
-    BodyProps & React.RefAttributes<BodyProps>
+    React.PropsWithoutRef<BodyProps> & React.RefAttributes<BodyProps>
   >;
   Backdrop: React.ForwardRefExoticComponent<
-    BackdropProps & React.RefAttributes<BackdropProps>
+    React.PropsWithoutRef<BackdropProps> & React.RefAttributes<BackdropProps>
   >;
 };

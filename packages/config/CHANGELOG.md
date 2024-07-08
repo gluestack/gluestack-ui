@@ -1,5 +1,13 @@
 # @gluestack-ui/config
 
+## 1.1.19
+
+### Patch Changes
+
+- fix: ref typing for all the components
+- Updated dependencies
+  - @gluestack-ui/themed@1.1.33
+
 ## 1.1.18
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @gluestack-ui/toast
 
+## 1.0.5
+
+### Patch Changes
+
+- fix: ref typing for all the components
+
 ## 1.0.4
 
 ### Patch Changes
