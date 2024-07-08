@@ -100,28 +100,31 @@ export type IPopoverComponentType<
   BackdropProps,
   CloseButtonProps
 > = React.ForwardRefExoticComponent<
-  IPopoverProps & PopoverProps & React.RefAttributes<PopoverProps>
+  IPopoverProps &
+    React.PropsWithoutRef<PopoverProps> &
+    React.RefAttributes<PopoverProps>
 > & {
   Body: React.ForwardRefExoticComponent<
-    BodyProps & React.RefAttributes<BodyProps>
+    React.PropsWithoutRef<BodyProps> & React.RefAttributes<BodyProps>
   >;
   CloseButton: React.ForwardRefExoticComponent<
-    CloseButtonProps & React.RefAttributes<CloseButtonProps>
+    React.PropsWithoutRef<CloseButtonProps> &
+      React.RefAttributes<CloseButtonProps>
   >;
   Content: React.ForwardRefExoticComponent<
-    ContentProps & React.RefAttributes<ContentProps>
+    React.PropsWithoutRef<ContentProps> & React.RefAttributes<ContentProps>
   >;
   Footer: React.ForwardRefExoticComponent<
-    FooterProps & React.RefAttributes<FooterProps>
+    React.PropsWithoutRef<FooterProps> & React.RefAttributes<FooterProps>
   >;
   Header: React.ForwardRefExoticComponent<
-    HeaderProps & React.RefAttributes<HeaderProps>
+    React.PropsWithoutRef<HeaderProps> & React.RefAttributes<HeaderProps>
   >;
   Arrow: React.ForwardRefExoticComponent<
-    ArrowProps & React.RefAttributes<ArrowProps>
+    React.PropsWithoutRef<ArrowProps> & React.RefAttributes<ArrowProps>
   >;
   Backdrop: React.ForwardRefExoticComponent<
-    BackdropProps & React.RefAttributes<BackdropProps>
+    React.PropsWithoutRef<BackdropProps> & React.RefAttributes<BackdropProps>
   >;
 };
 

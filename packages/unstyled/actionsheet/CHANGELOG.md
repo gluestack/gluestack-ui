@@ -1,5 +1,11 @@
 # @gluestack-ui/actionsheet
 
+## 0.2.43
+
+### Patch Changes
+
+- fix: ref typing for all the components
+
 ## 0.2.42
 
 ### Patch Changes

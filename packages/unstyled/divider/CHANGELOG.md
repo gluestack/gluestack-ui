@@ -1,5 +1,11 @@
 # @gluestack-ui/divider
 
+## 0.1.9
+
+### Patch Changes
+
+- fix: ref typing for all the components
+
 ## 0.1.5
 
 ### Patch Changes

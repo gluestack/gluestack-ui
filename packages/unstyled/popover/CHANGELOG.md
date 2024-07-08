@@ -1,5 +1,11 @@
 # @gluestack-ui/popover
 
+## 0.1.35
+
+### Patch Changes
+
+- fix: ref typing for all the components
+
 ## 0.1.34
 
 ### Patch Changes

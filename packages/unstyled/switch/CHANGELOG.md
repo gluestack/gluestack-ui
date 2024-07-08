@@ -1,5 +1,13 @@
 # @gluestack-ui/switch
 
+## 0.1.22
+
+### Patch Changes
+
+- fix: ref typing for all the components
+- Updated dependencies
+  - @gluestack-ui/form-control@0.1.18
+
 ## 0.1.21
 
 ### Patch Changes

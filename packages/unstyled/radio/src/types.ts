@@ -24,19 +24,23 @@ export type IRadioComponentType<
   IndicatorProps,
   LabelProps
 > = React.ForwardRefExoticComponent<
-  InterfaceRadio & React.RefAttributes<RadioProps> & RadioProps
+  InterfaceRadio &
+    React.RefAttributes<RadioProps> &
+    React.PropsWithoutRef<RadioProps>
 > & {
   Group: React.ForwardRefExoticComponent<
-    React.RefAttributes<GroupProps> & GroupProps & IRadioGroupProps
+    React.RefAttributes<GroupProps> &
+      React.PropsWithoutRef<GroupProps> &
+      IRadioGroupProps
   >;
   Icon: React.ForwardRefExoticComponent<
-    React.RefAttributes<IconProps> & IconProps
+    React.RefAttributes<IconProps> & React.PropsWithoutRef<IconProps>
   >;
   Indicator: React.ForwardRefExoticComponent<
-    React.RefAttributes<IndicatorProps> & IndicatorProps
+    React.RefAttributes<IndicatorProps> & React.PropsWithoutRef<IndicatorProps>
   >;
   Label: React.ForwardRefExoticComponent<
-    React.RefAttributes<LabelProps> & LabelProps
+    React.RefAttributes<LabelProps> & React.PropsWithoutRef<LabelProps>
   >;
 };
 
