@@ -1,13 +1,8 @@
 ---
 title: Upgrade to v2 | gluestack-ui
 
-description: A migration guide is a document designed to help you seamlessly transition from your current gluestack ui version v1 to the new version v2. Whether you are upgrading, switching to a new version directly this guide provides step-by-step instructions, best practices, and troubleshooting tips to ensure a smooth migration process..
+description: A migration guide is a document designed to help you seamlessly transition from your current gluestack ui version v1 to the new version v2. Whether you are upgrading, switching to a new version directly this guide provides step-by-step instructions, best practices, and troubleshooting tips to ensure a smooth migration process.
 
-pageTitle: Upgrade to v2
-
-pageDescription: A migration guide is a document designed to help you seamlessly transition from your current gluestack ui version v1 to the new version v2. Whether you are upgrading, switching to a new version directly this guide provides step-by-step instructions, best practices, and troubleshooting tips to ensure a smooth migration process..
-
-showHeader: true
 ---
 
 import { Meta } from '@storybook/addon-docs';
@@ -25,6 +20,8 @@ import {
 } from "@gluestack/design-system";
 
 # Upgrade to v2
+
+A migration guide is a document designed to help you seamlessly transition from your current gluestack ui version v1 to the new version v2. Whether you are upgrading, switching to a new version directly this guide provides step-by-step instructions, best practices, and troubleshooting tips to ensure a smooth migration process.
 
 ## Installation
 
@@ -804,6 +801,7 @@ In this property mapper table you can find all the properties of v1 and how they
 
 
 ### Property Combinations :
+
 <>
   <TableContainer>
     <Table>
@@ -881,7 +879,14 @@ In this property mapper table you can find all the properties of v1 and how they
         <Table.TR>
           <Table.TD>
             <Table.TText>
-              <InlineCode>{`sx={{_ios: {property: <value>},_android: {property: <value>}}}`}</InlineCode>
+              <InlineCode>{`sx={{
+    _ios: {
+      property: <value>
+    },
+    _android: {
+      property: <value>
+    }
+  }}`}</InlineCode>
             </Table.TText>
           </Table.TD>
           <Table.TD>
@@ -891,7 +896,24 @@ In this property mapper table you can find all the properties of v1 and how they
         <Table.TR>
           <Table.TD>
             <Table.TText>
-              <InlineCode>{`sx={{"@base": {_light: {property:<value>},_dark: { property: <value> }},"@md": {_light: { property: <value> },_dark: { property: <value> }}}`}</InlineCode>
+              <InlineCode>{`sx={{
+    "@base": {
+      _light: {
+        property: <value>
+      },
+      _dark: { 
+        property: <value>
+      }
+    },
+    "@md": {
+      _light: { 
+        property: <value> 
+      },
+      _dark: { 
+        property: <value> 
+      }
+    }
+  }}`}</InlineCode>
             </Table.TText>
           </Table.TD>
           <Table.TD>

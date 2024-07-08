@@ -4,7 +4,7 @@ import { createImage } from '@gluestack-ui/image';
 import { Platform, Image as RNImage } from 'react-native';
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
-import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
+import { cssInterop } from 'nativewind';
 
 const imageStyle = tva({
   base: 'max-w-full',

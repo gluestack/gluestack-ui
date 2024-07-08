@@ -12,6 +12,7 @@ export function GluestackUIProvider({
 }: {
   mode?: 'light' | 'dark';
   children?: any;
+  style?: any;
 }) {
   const [colorMode, setColorMode] = useState<'light' | 'dark'>(mode);
 

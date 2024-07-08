@@ -3,7 +3,7 @@ import { ActivityIndicator } from 'react-native';
 import React from 'react';
 import { createSpinner } from '@gluestack-ui/spinner';
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
-import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
+import { cssInterop } from 'nativewind';
 
 const UISpinner = createSpinner({ Root: ActivityIndicator });
 
