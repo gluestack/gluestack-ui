@@ -4,3 +4,7 @@ export interface InterfaceDivider {
 }
 
 export type IDividerProps = InterfaceDivider;
+
+export type IDividerComponentType<Root> = React.ForwardRefExoticComponent<
+  React.RefAttributes<Root> & React.PropsWithoutRef<Root>
+>;

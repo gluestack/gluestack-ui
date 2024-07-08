@@ -6,3 +6,7 @@ export interface IHStackProps extends ViewProps {
   ref?: any;
   children?: any;
 }
+
+export type IHStackComponentType<Root> = React.ForwardRefExoticComponent<
+  React.RefAttributes<Root> & React.PropsWithoutRef<Root> & IHStackProps
+>;
