@@ -515,10 +515,24 @@ Contains all text related layout style props and actions. It inherits all the pr
 
 ### Accessibility
 
-We have outlined the various features that ensure the Menu component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards.
+We have outlined the various features that ensure the Menu component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards. Adheres to the [MENU WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/menubar/).
 
+#### Keyboard
 
-Adheres to the [MENU WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/menubar/).
+- `Space`: Opens/closes the menu.
+- `Enter`: Opens/closes the menu.
+- `Arrow Down`: Moves focus to the next focusable element.
+- `Arrow Up`: Moves focus to the previous focusable element.
+- `Esc`: Closes the menu and moves focus to menuTrigger.
+
+#### Screen Reader
+
+- VoiceOver: When the menu is opened, the screen reader will say, Menu item group with 4 items. You are currently on a menu item group. To select this menu item, press Control + Option + Space. To close the menu, press Escape.
+
+#### States
+
+- `aria-labelledby` identifies the element that labels the current element.
+- `aria-label` defines a string value that labels the current element.
 
 ### Examples
 
