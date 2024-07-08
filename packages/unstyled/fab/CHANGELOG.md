@@ -1,5 +1,11 @@
 # @gluestack-ui/fab
 
+## 0.1.21
+
+### Patch Changes
+
+- fix: ref typing for all the components
+
 ## 0.1.20
 
 ### Patch Changes

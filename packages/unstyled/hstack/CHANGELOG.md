@@ -1,5 +1,11 @@
 # @gluestack-ui/hstack
 
+## 0.1.16
+
+### Patch Changes
+
+- fix: ref typing for all the components
+
 ## 0.1.8
 
 ### Patch Changes
