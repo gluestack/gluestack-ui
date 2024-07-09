@@ -19,6 +19,9 @@ import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 
 const AnimatedPressable = createMotionAnimatedComponent(Pressable);
 const SCOPE = 'POPOVER';
+const ArrowWrapper = React.forwardRef(({ ...props }: any, ref?: any) => {
+  return <Motion.View {...props} ref={ref} />;
+});
 const UIPopover = createPopover({
   // @ts-ignore
   Root:
@@ -26,12 +29,12 @@ const UIPopover = createPopover({
       ? withStyleContext(View, SCOPE)
       : withStyleContextAndStates(View, SCOPE),
   // @ts-ignore
-  Arrow: Platform.OS === 'web' ? Motion.View : withStates(Motion.View),
+  Arrow: Platform.OS === 'web' ? Motion.View : withStates(ArrowWrapper),
   Backdrop: AnimatedPressable,
   Body: ScrollView,
   CloseButton: Pressable,
   // @ts-ignore
-  Content: Platform.OS === 'web' ? Motion.View : withStates(Motion.View),
+  Content: Motion.View,
   Footer: View,
   Header: View,
   AnimatedPresence: AnimatePresence,
@@ -39,7 +42,7 @@ const UIPopover = createPopover({
 
 //@ts-ignore
 cssInterop(UIPopover, { className: 'style' });
-cssInterop(UIPopover.Arrow, { className: 'style' });
+cssInterop(ArrowWrapper, { className: 'style' });
 cssInterop(UIPopover.Content, { className: 'style' });
 cssInterop(UIPopover.Header, { className: 'style' });
 cssInterop(UIPopover.Footer, { className: 'style' });
@@ -69,29 +72,29 @@ const popoverArrowStyle = tva({
   variants: {
     placement: {
       'top left':
-        'data-[flip="false"]:border-t-transparent data-[flip="false"]:border-l-transparent data-[flip="true"]:border-b-transparent data-[flip="true"]:border-r-transparent',
+        'data-[flip=false]:border-t-transparent data-[flip=false]:border-l-transparent data-[flip=true]:border-b-transparent data-[flip=true]:border-r-transparent',
       'top':
-        'data-[flip="false"]:border-t-transparent data-[flip="false"]:border-l-transparent data-[flip="true"]:border-b-transparent data-[flip="true"]:border-r-transparent',
+        'data-[flip=false]:border-t-transparent data-[flip=false]:border-l-transparent data-[flip=true]:border-b-transparent data-[flip=true]:border-r-transparent',
       'top right':
-        'data-[flip="false"]:border-t-transparent data-[flip="false"]:border-l-transparent data-[flip="true"]:border-b-transparent data-[flip="true"]:border-r-transparent',
+        'data-[flip=false]:border-t-transparent data-[flip=false]:border-l-transparent data-[flip=true]:border-b-transparent data-[flip=true]:border-r-transparent',
       'bottom':
-        'data-[flip="false"]:border-b-transparent data-[flip="false"]:border-r-transparent data-[flip="true"]:border-t-transparent data-[flip="true"]:border-l-transparent',
+        'data-[flip=false]:border-b-transparent data-[flip=false]:border-r-transparent data-[flip=true]:border-t-transparent data-[flip=true]:border-l-transparent',
       'bottom left':
-        'data-[flip="false"]:border-b-transparent data-[flip="false"]:border-r-transparent data-[flip="true"]:border-t-transparent data-[flip="true"]:border-l-transparent',
+        'data-[flip=false]:border-b-transparent data-[flip=false]:border-r-transparent data-[flip=true]:border-t-transparent data-[flip=true]:border-l-transparent',
       'bottom right':
-        'data-[flip="false"]:border-b-transparent data-[flip="false"]:border-r-transparent data-[flip="true"]:border-t-transparent data-[flip="true"]:border-l-transparent',
+        'data-[flip=false]:border-b-transparent data-[flip=false]:border-r-transparent data-[flip=true]:border-t-transparent data-[flip=true]:border-l-transparent',
       'left':
-        'data-[flip="false"]:border-l-transparent data-[flip="false"]:border-b-transparent data-[flip="true"]:border-r-transparent data-[flip="true"]:border-t-transparent',
+        'data-[flip=false]:border-l-transparent data-[flip=false]:border-b-transparent data-[flip=true]:border-r-transparent data-[flip=true]:border-t-transparent',
       'left top':
-        'data-[flip="false"]:border-l-transparent data-[flip="false"]:border-b-transparent data-[flip="true"]:border-r-transparent data-[flip="true"]:border-t-transparent',
+        'data-[flip=false]:border-l-transparent data-[flip=false]:border-b-transparent data-[flip=true]:border-r-transparent data-[flip=true]:border-t-transparent',
       'left bottom':
-        'data-[flip="false"]:border-l-transparent data-[flip="false"]:border-b-transparent data-[flip="true"]:border-r-transparent data-[flip="true"]:border-t-transparent',
+        'data-[flip=false]:border-l-transparent data-[flip=false]:border-b-transparent data-[flip=true]:border-r-transparent data-[flip=true]:border-t-transparent',
       'right':
-        'data-[flip="false"]:border-r-transparent data-[flip="false"]:border-t-transparent data-[flip="true"]:border-l-transparent data-[flip="true"]:border-b-transparent',
+        'data-[flip=false]:border-r-transparent data-[flip=false]:border-t-transparent data-[flip=true]:border-l-transparent data-[flip=true]:border-b-transparent',
       'right top':
-        'data-[flip="false"]:border-r-transparent data-[flip="false"]:border-t-transparent data-[flip="true"]:border-l-transparent data-[flip="true"]:border-b-transparent',
+        'data-[flip=false]:border-r-transparent data-[flip=false]:border-t-transparent data-[flip=true]:border-l-transparent data-[flip=true]:border-b-transparent',
       'right bottom':
-        'data-[flip="false"]:border-r-transparent data-[flip="false"]:border-t-transparent data-[flip="true"]:border-l-transparent data-[flip="true"]:border-b-transparent',
+        'data-[flip=false]:border-r-transparent data-[flip=false]:border-t-transparent data-[flip=true]:border-l-transparent data-[flip=true]:border-b-transparent',
     },
   },
 });
