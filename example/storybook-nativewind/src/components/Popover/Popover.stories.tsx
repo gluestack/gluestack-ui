@@ -26,7 +26,7 @@ const PopoverMeta: ComponentMeta<typeof Popover> = {
         'top right',
         'left',
         'left bottom',
-        'left right',
+        'left top',
         'right',
         'right bottom',
         'right top',

@@ -266,7 +266,7 @@ const buttonIconStyle = tva({
         'text-typography-0 group-hover/button:text-typography-0 group-active/button:text-typography-0',
     },
     size: {
-      xs: 'h-[3.5] w-[3.5]',
+      xs: 'h-3.5 w-3.5',
       sm: 'h-4 w-4',
       md: 'h-[18px] w-[18px]',
       lg: 'h-[18px] w-[18px]',

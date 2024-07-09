@@ -21,7 +21,7 @@
     "storybook": "cd example/storybook && yarn storybook",
     "storybook:nativewind": "cd example/storybook-nativewind && yarn storybook:nativewind",
     "kitchensink:web": "cd example/ui-examples && yarn web",
-    "postinstall": "patch-package"
+    "postinstall": "patch-package && cd example/storybook-v7 && yarn"
   },
   "devDependencies": {
     "@changesets/cli": "^2.25.2",
