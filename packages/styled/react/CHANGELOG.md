@@ -1,5 +1,11 @@
 # @gluestack-style/react
 
+## 1.0.57
+
+### Patch Changes
+
+- feat: added flip state to popover
+
 ## 1.0.56
 
 ### Patch Changes
