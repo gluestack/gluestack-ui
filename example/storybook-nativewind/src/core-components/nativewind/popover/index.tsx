@@ -12,6 +12,7 @@ import {
   withStyleContext,
   useStyleContext,
 } from '@gluestack-ui/nativewind-utils/withStyleContext';
+import { withStates } from '@gluestack-ui/nativewind-utils/withStates';
 import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withStyleContextAndStates';
 import { cssInterop } from 'nativewind';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
@@ -24,11 +25,13 @@ const UIPopover = createPopover({
     Platform.OS === 'web'
       ? withStyleContext(View, SCOPE)
       : withStyleContextAndStates(View, SCOPE),
-  Arrow: Motion.View,
+  // @ts-ignore
+  Arrow: Platform.OS === 'web' ? Motion.View : withStates(Motion.View),
   Backdrop: AnimatedPressable,
   Body: ScrollView,
   CloseButton: Pressable,
-  Content: Motion.View,
+  // @ts-ignore
+  Content: Platform.OS === 'web' ? Motion.View : withStates(Motion.View),
   Footer: View,
   Header: View,
   AnimatedPresence: AnimatePresence,
@@ -62,7 +65,35 @@ const popoverStyle = tva({
 });
 
 const popoverArrowStyle = tva({
-  base: 'bg-background-0 z-[1] absolute overflow-hidden h-3.5 w-3.5 border-outline-100',
+  base: 'bg-background-0 z-[1] border absolute overflow-hidden h-3.5 w-3.5 border-outline-100',
+  variants: {
+    placement: {
+      'top left':
+        'data-[flip="false"]:border-t-transparent data-[flip="false"]:border-l-transparent data-[flip="true"]:border-b-transparent data-[flip="true"]:border-r-transparent',
+      'top':
+        'data-[flip="false"]:border-t-transparent data-[flip="false"]:border-l-transparent data-[flip="true"]:border-b-transparent data-[flip="true"]:border-r-transparent',
+      'top right':
+        'data-[flip="false"]:border-t-transparent data-[flip="false"]:border-l-transparent data-[flip="true"]:border-b-transparent data-[flip="true"]:border-r-transparent',
+      'bottom':
+        'data-[flip="false"]:border-b-transparent data-[flip="false"]:border-r-transparent data-[flip="true"]:border-t-transparent data-[flip="true"]:border-l-transparent',
+      'bottom left':
+        'data-[flip="false"]:border-b-transparent data-[flip="false"]:border-r-transparent data-[flip="true"]:border-t-transparent data-[flip="true"]:border-l-transparent',
+      'bottom right':
+        'data-[flip="false"]:border-b-transparent data-[flip="false"]:border-r-transparent data-[flip="true"]:border-t-transparent data-[flip="true"]:border-l-transparent',
+      'left':
+        'data-[flip="false"]:border-l-transparent data-[flip="false"]:border-b-transparent data-[flip="true"]:border-r-transparent data-[flip="true"]:border-t-transparent',
+      'left top':
+        'data-[flip="false"]:border-l-transparent data-[flip="false"]:border-b-transparent data-[flip="true"]:border-r-transparent data-[flip="true"]:border-t-transparent',
+      'left bottom':
+        'data-[flip="false"]:border-l-transparent data-[flip="false"]:border-b-transparent data-[flip="true"]:border-r-transparent data-[flip="true"]:border-t-transparent',
+      'right':
+        'data-[flip="false"]:border-r-transparent data-[flip="false"]:border-t-transparent data-[flip="true"]:border-l-transparent data-[flip="true"]:border-b-transparent',
+      'right top':
+        'data-[flip="false"]:border-r-transparent data-[flip="false"]:border-t-transparent data-[flip="true"]:border-l-transparent data-[flip="true"]:border-b-transparent',
+      'right bottom':
+        'data-[flip="false"]:border-r-transparent data-[flip="false"]:border-t-transparent data-[flip="true"]:border-l-transparent data-[flip="true"]:border-b-transparent',
+    },
+  },
 });
 
 const popoverBackdropStyle = tva({
@@ -98,27 +129,6 @@ const popoverFooterStyle = tva({
   base: 'flex-row justify-between items-center',
 });
 
-const borderColorPattern =
-  /border-[a-z]+-(0|50|100|200|300|400|500|600|700|800|900|950)/;
-const borderWidthPattern = /border-(\d+|\[\d+(\.\d+)?(?:px)?\])/;
-
-let borderColorClass: string;
-let borderWidthClass: string;
-
-const getBorderWidthValue = (className: string) => {
-  const match = className.match(/border-(\d+|\[\d+(?:\.\d+)?(?:px)?\])/)?.[1];
-
-  if (match) {
-    if (match.includes('px')) {
-      const numberPart = match.match(/\[(\d+(?:\.\d+)?)px\]/)?.[1];
-      return parseInt(numberPart || '');
-    }
-    return parseInt(match);
-  }
-
-  return undefined;
-};
-
 type IPopoverProps = React.ComponentProps<typeof UIPopover> &
   VariantProps<typeof popoverStyle>;
 
@@ -150,6 +160,7 @@ const Popover = React.forwardRef(
     {
       className,
       size = 'md',
+      placement = 'bottom',
       ...props
     }: { className?: string } & IPopoverProps,
     ref?: any
@@ -157,10 +168,11 @@ const Popover = React.forwardRef(
     return (
       <UIPopover
         ref={ref}
+        placement={placement}
         {...props}
         // @ts-ignore
         className={popoverStyle({ size, class: className })}
-        context={{ size }}
+        context={{ size, placement }}
         pointerEvents="box-none"
       />
     );
@@ -177,8 +189,8 @@ const PopoverContent = React.forwardRef(
     ref?: any
   ) => {
     const { size: parentSize } = useStyleContext(SCOPE);
-    borderColorClass = className?.match(borderColorPattern)?.[0] || '';
-    borderWidthClass = className?.match(borderWidthPattern)?.[0] || '';
+    // borderColorClass = className?.match(borderColorPattern)?.[0] || '';
+    // borderWidthClass = className?.match(borderWidthPattern)?.[0] || '';
 
     return (
       <UIPopover.Content
@@ -213,8 +225,8 @@ const PopoverArrow = React.forwardRef(
     { className, ...props }: { className?: string } & IPopoverArrowProps,
     ref?: any
   ) => {
-    const borderWidthValue = getBorderWidthValue(borderWidthClass);
-
+    // const borderWidthValue = getBorderWidthValue(borderWidthClass);
+    const { placement } = useStyleContext(SCOPE);
     return (
       <UIPopover.Arrow
         ref={ref}
@@ -231,9 +243,9 @@ const PopoverArrow = React.forwardRef(
         }}
         {...props}
         className={popoverArrowStyle({
-          class: `${className} ${borderColorClass}`,
+          class: className,
+          placement,
         })}
-        borderWidthValue={borderWidthValue}
       />
     );
   }

@@ -78,6 +78,10 @@ module.exports = function (api) {
               __dirname,
               '../../packages/unstyled/popover/src'
             ),
+            '@react-native-aria/overlays': path.resolve(
+              __dirname,
+              '../../packages/react-native-aria/overlays/src'
+            ),
             '@gluestack-style/react': path.resolve(
               __dirname,
               '../../packages/styled/react/src'
