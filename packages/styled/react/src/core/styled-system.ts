@@ -126,6 +126,7 @@ export const reservedKeys: Record<string, reservedKeyType> = {
   indeterminate: { key: ':indeterminate', isState: true },
   checked: { key: ':checked', isState: true },
   readOnly: { key: ':readOnly', isState: true },
+  flip: { key: ':flip', isState: true },
 
   required: { key: ':required', isState: true },
   invalid: { key: ':invalid', isState: true },

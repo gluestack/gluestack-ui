@@ -29,10 +29,10 @@ export function getWeightBaseOnPath(path: Path) {
     indeterminate: 1,
     checked: 1,
     readOnly: 1,
+    flip: 1,
 
     required: 2,
     invalid: 2,
-
     focus: 3,
     focusVisible: 4,
     hover: 5,

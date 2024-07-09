@@ -37,7 +37,7 @@
     "@expo/html-elements": "latest",
     "@gluestack-style/animation-resolver": "1.0.4",
     "@gluestack-style/legend-motion-animation-driver": "1.0.3",
-    "@gluestack-style/react": "1.0.56",
+    "@gluestack-style/react": "1.0.57",
     "@gluestack-ui/accordion": "1.0.5",
     "@gluestack-ui/actionsheet": "0.2.43",
     "@gluestack-ui/alert": "0.1.15",
@@ -55,7 +55,7 @@
     "@gluestack-ui/menu": "0.2.34",
     "@gluestack-ui/modal": "0.1.34",
     "@gluestack-ui/overlay": "0.1.14",
-    "@gluestack-ui/popover": "0.1.35",
+    "@gluestack-ui/popover": "0.1.36",
     "@gluestack-ui/pressable": "0.1.16",
     "@gluestack-ui/progress": "0.1.15",
     "@gluestack-ui/provider": "0.1.12",
@@ -66,14 +66,14 @@
     "@gluestack-ui/switch": "0.1.22",
     "@gluestack-ui/tabs": "0.1.16",
     "@gluestack-ui/textarea": "0.1.23",
-    "@gluestack-ui/themed": "1.1.33",
+    "@gluestack-ui/themed": "1.1.34",
     "@gluestack-ui/toast": "1.0.5",
     "@gluestack-ui/tooltip": "0.1.31",
     "@legendapp/motion": "latest"
   },
   "peerDependencies": {
-    "@gluestack-style/react": ">=1.0.56",
-    "@gluestack-ui/themed": ">=1.1.33"
+    "@gluestack-style/react": ">=1.0.57",
+    "@gluestack-ui/themed": ">=1.1.34"
   },
   "release-it": {
     "git": {
