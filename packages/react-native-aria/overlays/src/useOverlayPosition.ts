@@ -194,6 +194,7 @@ export function useOverlayPosition(props: AriaPositionProps) {
     placement: position.placement,
     arrowProps: arrowPropsWithStatusBarHeight,
     updatePosition,
+    isFlipped: position.isFlipped,
   };
 
   if (position.maxHeight !== undefined) {
@@ -239,6 +240,7 @@ export interface PositionResult {
   arrowOffsetTop?: number;
   maxHeight?: number;
   placement: PlacementAxis | undefined;
+  isFlipped?: boolean;
 }
 
 const calculatePosition = (opts: any): PositionResult => {
@@ -309,6 +311,7 @@ function calculatePositionInternal(
     isContainerPositioned
   );
   let normalizedOffset = offset;
+  let isFlipped = false;
   let space = getAvailableSpace(
     boundaryDimensions,
     containerOffsetWithBoundary,
@@ -343,10 +346,15 @@ function calculatePositionInternal(
 
     // If the available space for the flipped position is greater than the original available space, flip.
     if (flippedSpace > space) {
+      isFlipped = true;
       placementInfo = flippedPlacementInfo;
       position = flippedPosition;
       normalizedOffset = offset;
+    } else {
+      isFlipped = false;
     }
+  } else {
+    isFlipped = false;
   }
 
   let delta = getDelta(
@@ -404,6 +412,7 @@ function calculatePositionInternal(
     arrowOffsetLeft: arrowPosition.left,
     arrowOffsetTop: arrowPosition.top,
     placement: placementInfo.placement,
+    isFlipped,
   };
 }
 
