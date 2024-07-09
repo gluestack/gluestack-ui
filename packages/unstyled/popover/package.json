@@ -44,7 +44,7 @@
   },
   "dependencies": {
     "@gluestack-ui/hooks": "0.1.11",
-    "@gluestack-ui/overlay": "^0.1.14",
+    "@gluestack-ui/overlay": "0.1.14",
     "@gluestack-ui/utils": "^0.1.12",
     "@react-native-aria/dialog": "^0.0.4",
     "@react-native-aria/focus": "^0.2.9",
