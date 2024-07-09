@@ -66,45 +66,52 @@ export type IActionsheetComponentType<
   SectionHeaderTextProps,
   IconProps
 > = React.ForwardRefExoticComponent<
-  ActionsheetProps & React.RefAttributes<ActionsheetProps> & IActionsheetProps
+  React.RefAttributes<ActionsheetProps> &
+    React.PropsWithoutRef<ActionsheetProps & IActionsheetProps>
 > & {
   Content: React.ForwardRefExoticComponent<
-    ContentProps &
-      React.RefAttributes<ContentProps> &
-      InterfaceActionsheetContentProps
+    React.PropsWithoutRef<ContentProps & InterfaceActionsheetContentProps> &
+      React.RefAttributes<ContentProps>
   >;
   Item: React.ForwardRefExoticComponent<
-    ItemProps & InterfaceActionsheetItemProps & React.RefAttributes<ItemProps>
+    React.PropsWithoutRef<ItemProps & InterfaceActionsheetItemProps> &
+      React.RefAttributes<ItemProps>
   >;
   ItemText: React.ForwardRefExoticComponent<
-    React.RefAttributes<ItemTextProps> & ItemTextProps
+    React.RefAttributes<ItemTextProps> & React.PropsWithoutRef<ItemTextProps>
   >;
   DragIndicator: React.ForwardRefExoticComponent<
-    React.RefAttributes<DragIndicatorProps> & DragIndicatorProps
+    React.RefAttributes<DragIndicatorProps> &
+      React.PropsWithoutRef<DragIndicatorProps>
   >;
   Backdrop: React.ForwardRefExoticComponent<
-    React.RefAttributes<BackdropProps> & BackdropProps
+    React.RefAttributes<BackdropProps> & React.PropsWithoutRef<BackdropProps>
   >;
   DragIndicatorWrapper: React.ForwardRefExoticComponent<
-    React.RefAttributes<IndicatorWrapperProps> & IndicatorWrapperProps
+    React.RefAttributes<IndicatorWrapperProps> &
+      React.PropsWithoutRef<IndicatorWrapperProps>
   >;
   ScrollView: React.ForwardRefExoticComponent<
-    React.RefAttributes<ScrollViewProps> & ScrollViewProps
+    React.RefAttributes<ScrollViewProps> &
+      React.PropsWithoutRef<ScrollViewProps>
   >;
   VirtualizedList: React.ForwardRefExoticComponent<
-    React.RefAttributes<VirtualizedListProps> & VirtualizedListProps
+    React.RefAttributes<VirtualizedListProps> &
+      React.PropsWithoutRef<VirtualizedListProps>
   >;
   FlatList: React.ForwardRefExoticComponent<
-    React.RefAttributes<FlatListProps> & FlatListProps
+    React.RefAttributes<FlatListProps> & React.PropsWithoutRef<FlatListProps>
   >;
   SectionList: React.ForwardRefExoticComponent<
-    React.RefAttributes<SectionListProps> & SectionListProps
+    React.RefAttributes<SectionListProps> &
+      React.PropsWithoutRef<SectionListProps>
   >;
   SectionHeaderText: React.ForwardRefExoticComponent<
-    React.RefAttributes<SectionHeaderTextProps> & SectionHeaderTextProps
+    React.RefAttributes<SectionHeaderTextProps> &
+      React.PropsWithoutRef<SectionHeaderTextProps>
   >;
   Icon: React.ForwardRefExoticComponent<
-    React.RefAttributes<IconProps> & IconProps
+    React.RefAttributes<IconProps> & React.PropsWithoutRef<IconProps>
   >;
 };
 

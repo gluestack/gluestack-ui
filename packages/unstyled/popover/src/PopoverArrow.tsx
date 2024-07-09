@@ -15,6 +15,7 @@ const PopoverArrow = (StyledPopoverArrow: any) =>
         arrowWidth,
         arrowProps,
         updateArrowElement,
+        isFlipped,
       },
     } = usePopoverContent('PopoverContext');
 
@@ -101,6 +102,10 @@ const PopoverArrow = (StyledPopoverArrow: any) =>
             },
             additionalStyles,
           ]}
+          dataSet={{ flip: isFlipped }}
+          states={{
+            flip: isFlipped,
+          }}
         />
       );
 

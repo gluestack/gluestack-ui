@@ -77,12 +77,22 @@ export type ISliderComponentType<
   StyledSliderThumb,
   StyledSliderTrack,
   StyledSliderFilledTrack
-> = React.ForwardRefExoticComponent<StyledSlider & ISliderProps> & {
-  Thumb: React.ForwardRefExoticComponent<StyledSliderThumb & ISliderThumbProps>;
-  Track: React.ForwardRefExoticComponent<StyledSliderTrack & ISliderTrackProps>;
+> = React.ForwardRefExoticComponent<
+  InnerForwardRefExoticComponent<StyledSlider> & ISliderProps
+> & {
+  Thumb: React.ForwardRefExoticComponent<
+    InnerForwardRefExoticComponent<StyledSliderThumb> & ISliderThumbProps
+  >;
+  Track: React.ForwardRefExoticComponent<
+    InnerForwardRefExoticComponent<StyledSliderTrack> & ISliderTrackProps
+  >;
   FilledTrack: React.ForwardRefExoticComponent<
-    StyledSliderFilledTrack & ISliderTrackFilledProps
+    InnerForwardRefExoticComponent<StyledSliderFilledTrack> &
+      ISliderTrackFilledProps
   >;
 };
 
 export type ISliderProps = InterfaceSliderProps;
+
+type InnerForwardRefExoticComponent<T> = React.PropsWithoutRef<T> &
+  React.RefAttributes<T>;

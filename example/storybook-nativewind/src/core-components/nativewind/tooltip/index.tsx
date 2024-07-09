@@ -5,7 +5,7 @@ import { View, Text, Platform } from 'react-native';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import { withStyleContext } from '@gluestack-ui/nativewind-utils/withStyleContext';
-import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
+import { cssInterop } from 'nativewind';
 import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withStyleContextAndStates';
 
 import { Motion, AnimatePresence } from '@legendapp/motion';
@@ -29,7 +29,7 @@ const tooltipContentStyle = tva({
 });
 
 const tooltipTextStyle = tva({
-  base: 'font-normal tracking-normal text-red-400 web:select-none text-xs text-typography-50',
+  base: 'font-normal tracking-normal web:select-none text-xs text-typography-50',
 
   variants: {
     isTruncated: {

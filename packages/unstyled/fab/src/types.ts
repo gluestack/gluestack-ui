@@ -33,12 +33,15 @@ export interface InterfaceFabProps {
 
 export type IFabComponentType<StyledFab, StyledFabLabel, StyledFabIcon> =
   React.ForwardRefExoticComponent<
-    StyledFab & InterfaceFabProps & React.RefAttributes<StyledFab>
+    React.PropsWithoutRef<StyledFab> &
+      InterfaceFabProps &
+      React.RefAttributes<StyledFab>
   > & {
     Label: React.ForwardRefExoticComponent<
-      StyledFabLabel & React.RefAttributes<StyledFabLabel>
+      React.PropsWithoutRef<StyledFabLabel> &
+        React.RefAttributes<StyledFabLabel>
     >;
     Icon: React.ForwardRefExoticComponent<
-      StyledFabIcon & React.RefAttributes<StyledFabIcon>
+      React.PropsWithoutRef<StyledFabIcon> & React.RefAttributes<StyledFabIcon>
     >;
   };

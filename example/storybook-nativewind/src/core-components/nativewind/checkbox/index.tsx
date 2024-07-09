@@ -141,7 +141,7 @@ const checkboxLabelStyle = tva({
 });
 
 const checkboxIconStyle = tva({
-  base: 'data-[disabled=true]:opacity-40 text-typography-50 fill-none',
+  base: 'text-typography-50 fill-none',
 
   parentVariants: {
     size: {

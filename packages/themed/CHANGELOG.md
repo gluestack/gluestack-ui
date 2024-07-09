@@ -1,5 +1,52 @@
 # @gluestack-ui/themed
 
+## 1.1.34
+
+### Patch Changes
+
+- Updated dependencies
+  - @gluestack-ui/popover@0.1.36
+  - @gluestack-style/react@1.0.57
+
+## 1.1.33
+
+### Patch Changes
+
+- fix: ref typing for all the components
+- Updated dependencies
+  - @gluestack-ui/alert-dialog@0.1.30
+  - @gluestack-ui/form-control@0.1.18
+  - @gluestack-ui/actionsheet@0.2.43
+  - @gluestack-ui/accordion@1.0.5
+  - @gluestack-ui/checkbox@0.1.30
+  - @gluestack-ui/progress@0.1.15
+  - @gluestack-ui/textarea@0.1.23
+  - @gluestack-ui/divider@0.1.9
+  - @gluestack-ui/popover@0.1.35
+  - @gluestack-ui/tooltip@0.1.31
+  - @gluestack-ui/avatar@0.1.17
+  - @gluestack-ui/button@1.0.6
+  - @gluestack-ui/select@0.1.27
+  - @gluestack-ui/switch@0.1.22
+  - @gluestack-ui/alert@0.1.15
+  - @gluestack-ui/image@0.1.10
+  - @gluestack-ui/input@0.1.31
+  - @gluestack-ui/modal@0.1.34
+  - @gluestack-ui/radio@0.1.31
+  - @gluestack-ui/toast@1.0.5
+  - @gluestack-ui/link@0.1.21
+  - @gluestack-ui/menu@0.2.34
+  - @gluestack-ui/fab@0.1.21
+  - @gluestack-ui/slider@0.1.25
+
+## 1.1.32
+
+### Patch Changes
+
+- Updated dependencies
+  - @gluestack-ui/checkbox@0.1.29
+  - @gluestack-ui/radio@0.1.30
+
 ## 1.1.31
 
 ### Patch Changes

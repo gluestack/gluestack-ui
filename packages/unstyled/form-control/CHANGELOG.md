@@ -1,5 +1,11 @@
 # @gluestack-ui/form-control
 
+## 0.1.18
+
+### Patch Changes
+
+- fix: ref typing for all the components
+
 ## 0.1.17
 
 ### Patch Changes
