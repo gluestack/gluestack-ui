@@ -49,7 +49,7 @@
     "@react-native-aria/dialog": "^0.0.4",
     "@react-native-aria/focus": "^0.2.9",
     "@react-native-aria/interactions": "0.2.13",
-    "@react-native-aria/overlays": "^0.3.13"
+    "@react-native-aria/overlays": "0.3.14"
   },
   "peerDependencies": {
     "react": ">=16",
