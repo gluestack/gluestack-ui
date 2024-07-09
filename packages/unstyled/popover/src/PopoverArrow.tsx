@@ -64,31 +64,6 @@ const PopoverArrow = (StyledPopoverArrow: any) =>
             rotate: '45deg',
           }}
           style={[
-            actualPlacement === 'bottom' ||
-            actualPlacement === 'bottom left' ||
-            actualPlacement === 'bottom right'
-              ? {
-                  borderTopWidth: props?.borderWidthValue || 1,
-                  borderLeftWidth: props?.borderWidthValue || 1,
-                }
-              : actualPlacement === 'right' ||
-                actualPlacement === 'right top' ||
-                actualPlacement === 'right bottom'
-              ? {
-                  borderBottomWidth: props?.borderWidthValue || 1,
-                  borderLeftWidth: props?.borderWidthValue || 1,
-                }
-              : actualPlacement === 'left' ||
-                actualPlacement === 'left top' ||
-                actualPlacement === 'left bottom'
-              ? {
-                  borderTopWidth: props?.borderWidthValue || 1,
-                  borderRightWidth: props?.borderWidthValue || 1,
-                }
-              : {
-                  borderBottomWidth: props?.borderWidthValue || 1,
-                  borderRightWidth: props?.borderWidthValue || 1,
-                },
             props?.style,
             arrowProps?.style,
             {

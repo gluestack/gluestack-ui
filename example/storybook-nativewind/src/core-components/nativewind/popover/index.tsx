@@ -189,8 +189,6 @@ const PopoverContent = React.forwardRef(
     ref?: any
   ) => {
     const { size: parentSize } = useStyleContext(SCOPE);
-    // borderColorClass = className?.match(borderColorPattern)?.[0] || '';
-    // borderWidthClass = className?.match(borderWidthPattern)?.[0] || '';
 
     return (
       <UIPopover.Content
@@ -225,7 +223,6 @@ const PopoverArrow = React.forwardRef(
     { className, ...props }: { className?: string } & IPopoverArrowProps,
     ref?: any
   ) => {
-    // const borderWidthValue = getBorderWidthValue(borderWidthClass);
     const { placement } = useStyleContext(SCOPE);
     return (
       <UIPopover.Arrow
