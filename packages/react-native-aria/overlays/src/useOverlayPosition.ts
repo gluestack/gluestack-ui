@@ -196,7 +196,6 @@ export function useOverlayPosition(props: AriaPositionProps) {
     updatePosition,
     isFlipped: position.isFlipped,
   };
-  console.log('🚀 ~ useOverlayPosition ~ returnProps:', returnProps);
 
   if (position.maxHeight !== undefined) {
     //@ts-ignore
