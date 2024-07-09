@@ -1,4 +1,6 @@
 // @ts-nocheck
+/* eslint @typescript-eslint/no-unused-vars: 2 */
+
 /*
  * Copyright 2020 Adobe. All rights reserved.
  * This file is licensed to you under the Apache License, Version 2.0 (the "License");
@@ -209,14 +211,8 @@ function computePosition(
   containerOffsetWithBoundary: Offset,
   isContainerPositioned: boolean
 ) {
-  let {
-    placement,
-    crossPlacement,
-    axis,
-    crossAxis,
-    size,
-    crossSize,
-  } = placementInfo;
+  let { placement, crossPlacement, axis, crossAxis, size, crossSize } =
+    placementInfo;
   let position: Position = {};
 
   // button position
@@ -280,22 +276,22 @@ function getMaxHeight(
 ) {
   return position.top != null
     ? // We want the distance between the top of the overlay to the bottom of the boundary
-    Math.max(
-      0,
-      boundaryDimensions.height +
-      boundaryDimensions.top +
-      boundaryDimensions.scroll.top - // this is the bottom of the boundary
-      (containerOffsetWithBoundary.top + position.top) - // this is the top of the overlay
-      (margins.top + margins.bottom + padding) // save additional space for margin and padding
-    )
+      Math.max(
+        0,
+        boundaryDimensions.height +
+          boundaryDimensions.top +
+          boundaryDimensions.scroll.top - // this is the bottom of the boundary
+          (containerOffsetWithBoundary.top + position.top) - // this is the top of the overlay
+          (margins.top + margins.bottom + padding) // save additional space for margin and padding
+      )
     : // We want the distance between the top of the trigger to the top of the boundary
-    Math.max(
-      0,
-      childOffset.top +
-      containerOffsetWithBoundary.top - // this is the top of the trigger
-      (boundaryDimensions.top + boundaryDimensions.scroll.top) - // this is the top of the boundary
-      (margins.top + margins.bottom + padding) // save additional space for margin and padding
-    );
+      Math.max(
+        0,
+        childOffset.top +
+          containerOffsetWithBoundary.top - // this is the top of the trigger
+          (boundaryDimensions.top + boundaryDimensions.scroll.top) - // this is the top of the boundary
+          (margins.top + margins.bottom + padding) // save additional space for margin and padding
+      );
 }
 
 function getAvailableSpace(
@@ -311,26 +307,26 @@ function getAvailableSpace(
     return Math.max(
       0,
       childOffset[axis] -
-      boundaryDimensions[axis] -
-      boundaryDimensions.scroll[axis] +
-      containerOffsetWithBoundary[axis] -
-      margins[axis] -
-      margins[FLIPPED_DIRECTION[axis]] -
-      padding
+        boundaryDimensions[axis] -
+        boundaryDimensions.scroll[axis] +
+        containerOffsetWithBoundary[axis] -
+        margins[axis] -
+        margins[FLIPPED_DIRECTION[axis]] -
+        padding
     );
   }
 
   return Math.max(
     0,
     boundaryDimensions[size] +
-    boundaryDimensions[axis] +
-    boundaryDimensions.scroll[axis] -
-    containerOffsetWithBoundary[axis] -
-    childOffset[axis] -
-    childOffset[size] -
-    margins[axis] -
-    margins[FLIPPED_DIRECTION[axis]] -
-    padding
+      boundaryDimensions[axis] +
+      boundaryDimensions.scroll[axis] -
+      containerOffsetWithBoundary[axis] -
+      childOffset[axis] -
+      childOffset[size] -
+      margins[axis] -
+      margins[FLIPPED_DIRECTION[axis]] -
+      padding
   );
 }
 
@@ -350,14 +346,9 @@ export function calculatePositionInternal(
   shouldOverlapWithTrigger: boolean
 ): PositionResult {
   let placementInfo = parsePlacement(placementInput);
-  let {
-    size,
-    crossAxis,
-    crossSize,
-    placement,
-    crossPlacement,
-    axis,
-  } = placementInfo;
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  let { size, crossAxis, crossSize, placement, crossPlacement, axis } =
+    placementInfo;
   let position = computePosition(
     childOffset,
     boundaryDimensions,
@@ -368,7 +359,7 @@ export function calculatePositionInternal(
     containerOffsetWithBoundary,
     isContainerPositioned
   );
-
+  let isFlipped = false;
   let normalizedOffset = offset;
   let space = getAvailableSpace(
     boundaryDimensions,
@@ -405,10 +396,15 @@ export function calculatePositionInternal(
 
     // If the available space for the flipped position is greater than the original available space, flip.
     if (flippedSpace > space) {
+      isFlipped = true;
       placementInfo = flippedPlacementInfo;
       position = flippedPosition;
       normalizedOffset = offset;
+    } else {
+      isFlipped = false;
     }
+  } else {
+    isFlipped = false;
   }
 
   let delta = getDelta(
@@ -465,6 +461,7 @@ export function calculatePositionInternal(
     arrowOffsetLeft: arrowPosition.left,
     arrowOffsetTop: arrowPosition.top,
     placement: placementInfo.placement,
+    isFlipped,
   };
 }
 
@@ -502,7 +499,8 @@ export function calculatePosition(opts: PositionOpts): PositionResult {
   let overlaySize: Offset = getOffset(overlayNode);
   const matrix = getComputedStyle(overlayNode).getPropertyValue('transform');
   const transform = matrix;
-  const regex = /matrix\((-?\d*\.?\d+),\s*(-?\d*\.?\d+),\s*(-?\d*\.?\d+),\s*(-?\d*\.?\d+),\s*(-?\d*\.?\d+),\s*(-?\d*\.?\d+)\)/;
+  const regex =
+    /matrix\((-?\d*\.?\d+),\s*(-?\d*\.?\d+),\s*(-?\d*\.?\d+),\s*(-?\d*\.?\d+),\s*(-?\d*\.?\d+),\s*(-?\d*\.?\d+)\)/;
   const matches = transform.match(regex);
   let scaleX = 1;
   let scaleY = 1;

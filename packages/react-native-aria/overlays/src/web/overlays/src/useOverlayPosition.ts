@@ -62,6 +62,8 @@ interface PositionAria {
   placement: PlacementAxis;
   /** Updates the position of the overlay. */
   updatePosition(): void;
+  /** Whether the overlay is flipped. */
+  isFlipped: boolean;
 }
 
 // @ts-ignore
@@ -139,9 +141,11 @@ export function useOverlayPosition(props: AriaPositionProps): PositionAria {
         shouldOverlapWithTrigger,
       })
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, deps);
 
   // Update position when anything changes
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useLayoutEffect(updatePosition, deps);
 
   // Update position on window resize
@@ -224,6 +228,7 @@ export function useOverlayPosition(props: AriaPositionProps): PositionAria {
         top: position.arrowOffsetTop,
       },
     },
+    isFlipped: position.isFlipped,
     updatePosition,
   };
 }
