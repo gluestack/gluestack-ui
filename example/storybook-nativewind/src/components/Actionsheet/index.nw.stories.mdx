@@ -539,60 +539,60 @@ Demonstrates a common UI pattern known as keyboard handling or keyboard scrollin
           const [showActionsheet, setShowActionsheet] = React.useState(false);
           const handleClose = () => setShowActionsheet(!showActionsheet);
             return (
-            <>
+              <>
                 <Button onPress={handleClose}>
                   <ButtonText>Open</ButtonText>
                 </Button>
-          <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
-         <Actionsheet
-          isOpen={showActionsheet}
-          onClose={handleClose}
-        >
-          <ActionsheetBackdrop />
-          <ActionsheetContent className="max-h-[75%]">
-            <ActionsheetDragIndicatorWrapper>
-              <ActionsheetDragIndicator />
-            </ActionsheetDragIndicatorWrapper>
-            <VStack className="w-full p-[20px]">
-              <HStack space="md" className="justify-center items-center">
-                <Box
-                  className="w-[50px] h-full px-2 border border-solid border-outline-300 rounded-sm"
-                >
-                  <Image
-                    source={{ uri: 'https://i.imgur.com/UwTLr26.png' }}
-                    resizeMode="contain"
-                    className="flex-1"
-                  />
-                </Box>
-                <VStack className="flex-1">
-                  <Text className="font-bold">Mastercard</Text>
-                  <Text>Card ending in 2345</Text>
-                </VStack>
-              </HStack>
-              <FormControl className="mt-[36px]">
-                <FormControlLabel>
-                  <FormControlLabelText>
-                    Confirm security code
-                  </FormControlLabelText>
-                </FormControlLabel>
-                <Input className="w-full">
-                  <InputSlot>
-                   <InputIcon as={CreditCardIcon} className="ml-2"/>
-                  </InputSlot>
-                  <InputField placeholder="CVC/CVV" />
-                </Input>
-                <Button onPress={handleClose} className="mt-[20px]">
-                  <ButtonText className="flex-1">Pay $1000</ButtonText>
-                </Button>
-              </FormControl>
-            </VStack>
-          </ActionsheetContent>
-        </Actionsheet>
-    </KeyboardAvoidingView>
- </>
+                <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
+                  <Actionsheet
+                    isOpen={showActionsheet}
+                    onClose={handleClose}
+                  >
+                    <ActionsheetBackdrop />
+                    <ActionsheetContent className="">
+                      <ActionsheetDragIndicatorWrapper>
+                        <ActionsheetDragIndicator />
+                      </ActionsheetDragIndicatorWrapper>
+                      <VStack className="w-full pt-5">
+                        <HStack space="md" className="justify-center items-center">
+                          <Box
+                            className="w-[50px] h-full px-2 border border-solid border-outline-300 rounded-sm"
+                          >
+                            <Image
+                              source={{ uri: 'https://i.imgur.com/UwTLr26.png' }}
+                              resizeMode="contain"
+                              className="flex-1"
+                            />
+                          </Box>
+                          <VStack className="flex-1">
+                            <Text className="font-bold">Mastercard</Text>
+                            <Text>Card ending in 2345</Text>
+                          </VStack>
+                        </HStack>
+                        <FormControl className="mt-[36px]">
+                          <FormControlLabel>
+                            <FormControlLabelText>
+                              Confirm security code
+                            </FormControlLabelText>
+                          </FormControlLabel>
+                          <Input className="w-full">
+                            <InputSlot>
+                            <InputIcon as={CreditCardIcon} className="ml-2"/>
+                            </InputSlot>
+                            <InputField placeholder="CVC/CVV" />
+                          </Input>
+                          <Button onPress={handleClose} className="mt-3">
+                            <ButtonText className="flex-1">Pay $1000</ButtonText>
+                          </Button>
+                        </FormControl>
+                      </VStack>
+                    </ActionsheetContent>
+                  </Actionsheet>
+              </KeyboardAvoidingView>
+            </>
           );
         }
-`,
+      `,
       transformCode: (code) => {
         return transformedCode(code, 'function', 'App');
       },
@@ -641,68 +641,68 @@ Demonstrates a common UI pattern known as keyboard handling or keyboard scrollin
           const [showActionsheet, setShowActionsheet] = React.useState(false);
           const handleClose = () => setShowActionsheet(!showActionsheet);
             return (
-      <>
-        <Button onPress={handleClose}>
-            <ButtonText>Open</ButtonText>
-        </Button>
-         <Actionsheet
-          isOpen={showActionsheet}
-          onClose={handleClose}
-          snapPoints={[50]}
-        >
-        <KeyboardAvoidingView
-        behavior="position"
-        // eslint-disable-next-line react-native/no-inline-styles
-        style={{
-          position: 'relative',
-          flex: 1,
-          justifyContent: 'flex-end',
-        }}
-      >
-          <ActionsheetBackdrop />
-          <ActionsheetContent className="max-h-[75%]">
-            <ActionsheetDragIndicatorWrapper>
-              <ActionsheetDragIndicator />
-            </ActionsheetDragIndicatorWrapper>
-            <VStack className="w-full p-[20px]">
-              <HStack space="md" className="justify-center items-center">
-                <Box
-                  className="w-[50px] h-full px-2 border border-solid border-outline-300 rounded-sm"
-                >
-                  <Image
-                    source={{ uri: 'https://i.imgur.com/UwTLr26.png' }}
-                    resizeMode="contain"
-                    className="flex-1"
-                  />
-                </Box>
-                <VStack className="flex-1">
-                  <Text className="font-bold">Mastercard</Text>
-                  <Text>Card ending in 2345</Text>
-                </VStack>
-              </HStack>
-              <FormControl className="mt-[36px]">
-                <FormControlLabel>
-                  <FormControlLabelText>
-                    Confirm security code
-                  </FormControlLabelText>
-                </FormControlLabel>
-                <Input className="w-full">
-                  <InputSlot>
-                   <InputIcon as={CreditCardIcon} className="ml-2"/>
-                  </InputSlot>
-                  <InputField placeholder="CVC/CVV" />
-                </Input>
-                <Button onPress={handleClose} className="mt-[20px]">
-                  <ButtonText className="flex-1">Pay $1000</ButtonText>
+              <>
+                <Button onPress={handleClose}>
+                    <ButtonText>Open</ButtonText>
                 </Button>
-              </FormControl>
-            </VStack>
-          </ActionsheetContent>
-    </KeyboardAvoidingView>
-</Actionsheet>
- </>
-);}
-`,
+                <Actionsheet
+                  isOpen={showActionsheet}
+                  onClose={handleClose}
+                  snapPoints={[36]}
+                >
+                  <KeyboardAvoidingView
+                    behavior="position"
+                    style={{
+                      position: 'relative',
+                      flex: 1,
+                      justifyContent: 'flex-end',
+                    }}
+                  >
+                  <ActionsheetBackdrop />
+                  <ActionsheetContent className="">
+                    <ActionsheetDragIndicatorWrapper>
+                      <ActionsheetDragIndicator />
+                    </ActionsheetDragIndicatorWrapper>
+                    <VStack className="w-full pt-5">
+                      <HStack space="md" className="justify-center items-center">
+                        <Box
+                          className="w-[50px] h-full px-2 border border-solid border-outline-300 rounded-sm"
+                        >
+                          <Image
+                            source={{ uri: 'https://i.imgur.com/UwTLr26.png' }}
+                            resizeMode="contain"
+                            className="flex-1"
+                          />
+                        </Box>
+                        <VStack className="flex-1">
+                          <Text className="font-bold">Mastercard</Text>
+                          <Text>Card ending in 2345</Text>
+                        </VStack>
+                      </HStack>
+                      <FormControl className="mt-9">
+                        <FormControlLabel>
+                          <FormControlLabelText>
+                            Confirm security code
+                          </FormControlLabelText>
+                        </FormControlLabel>
+                        <Input className="w-full">
+                          <InputSlot>
+                          <InputIcon as={CreditCardIcon} className="ml-2"/>
+                          </InputSlot>
+                          <InputField placeholder="CVC/CVV" />
+                        </Input>
+                        <Button onPress={handleClose} className="mt-3">
+                          <ButtonText className="flex-1">Pay $1000</ButtonText>
+                        </Button>
+                      </FormControl>
+                    </VStack>
+                  </ActionsheetContent>
+                </KeyboardAvoidingView>
+              </Actionsheet>
+            </>
+          )
+        }
+      `,
       transformCode: (code) => {
         return transformedCode(code, 'function', 'App');
       },
@@ -979,20 +979,8 @@ The Actionsheet with SectionList is a variation of the Actionsheet component tha
     const handleClose = () => setShowActionsheet(!showActionsheet);
     const DATA = [
       {
-        title: 'Main dishes',
-        data: ['Pizza', 'Burger', 'Risotto'],
-      },
-      {
-        title: 'Sides',
-        data: ['French Fries', 'Onion Rings', 'Fried Shrimps'],
-      },
-      {
-        title: 'Drinks',
-        data: ['Water', 'Coke', 'Beer'],
-      },
-      {
-        title: 'Desserts',
-        data: ['Cheese Cake', 'Ice Cream'],
+        title: 'Gender',
+        data: ['Men', 'Women', 'Boy', 'Girl'],
       },
     ];
     return (
@@ -1000,7 +988,7 @@ The Actionsheet with SectionList is a variation of the Actionsheet component tha
         <Button onPress={handleClose}>
           <ButtonText>Open</ButtonText>
         </Button>
-        <Actionsheet isOpen={showActionsheet} onClose={handleClose} snapPoints={[50]}>
+        <Actionsheet isOpen={showActionsheet} onClose={handleClose} snapPoints={[35]}>
         <ActionsheetBackdrop />
         <ActionsheetContent>
           <ActionsheetDragIndicatorWrapper>
@@ -1140,7 +1128,7 @@ The Actionsheet with SectionList is a variation of the Actionsheet component tha
   />
 </Wrapper>
 
-### Updated Features
+{/* ### Actionsheet with CTA
 
 <Wrapper>
   <CodePreview
@@ -1260,4 +1248,4 @@ The Actionsheet with SectionList is a variation of the Actionsheet component tha
       argsType: {},
     }}
   />
-</Wrapper>
+</Wrapper> */}
