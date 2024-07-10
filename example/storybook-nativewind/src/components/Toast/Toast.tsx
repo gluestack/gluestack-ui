@@ -33,17 +33,17 @@ const ToastBasic = ({ placement = 'top', ...props }: any) => {
       onPress={() => {
         toast.show({
           placement: placement,
-          duration: null,
+          duration: 3000,
+          // duration: null,
           render: ({ id }) => {
             const toastId = `toast-${id}`;
             return (
               <>
                 <Toast nativeID={toastId} {...props}>
-                  <ToastTitle>Changes applied successfully!</ToastTitle>
-
-                  <Pressable onPress={() => toast.close(id)}>
-                    <Icon as={CloseIcon} />
-                  </Pressable>
+                  <ToastTitle>Toast Heading</ToastTitle>
+                  <ToastDescription>
+                    Lorem ipsum dolor sit amet consectetur.
+                  </ToastDescription>
                 </Toast>
               </>
             );

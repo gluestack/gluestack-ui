@@ -23,6 +23,7 @@ import {
   Button,
   ButtonText,
   CheckCircleIcon,
+  HelpCircleIcon,
   Icon,
   CloseIcon,
   VStack,
@@ -67,14 +68,15 @@ This is an illustration of **Toast** component.
               onPress={() => {
                 toast.show({
                   placement:"top",
+                  duration: 3000,
                   render: ({ id }) => {
                     const toastId = "toast-" + id;
                     return (
-                       <Toast nativeID={toastId} {...props}>
-                        <ToastTitle>Changes applied successfully!</ToastTitle>
-                        <Pressable onPress={() => toast.close(id)}>
-                          <Icon as={CloseIcon} />
-                        </Pressable>
+                      <Toast nativeID={toastId} {...props}>
+                        <ToastTitle>Toast Heading</ToastTitle>
+                        <ToastDescription>
+                          Lorem ipsum dolor sit amet consectetur.
+                        </ToastDescription>
                       </Toast>
                     );
                   },
@@ -93,12 +95,10 @@ This is an illustration of **Toast** component.
         Wrapper,
         Toast,
         ToastTitle,
+        ToastDescription,
         useToast,
         Button,
         ButtonText,
-        Pressable,
-        Icon,
-        CloseIcon
       },
       argsType: {
         action: {
@@ -412,27 +412,47 @@ The Examples section provides visual representations of the different variants o
               onPress={() => {
                 toast.show({
                   placement:"top",
+                  duration: null,
                   render: ({ id }) => {
                     const toastId = "toast-" + id;
                     return (
                       <Toast
+                        action="error"
                         nativeID={toastId}
-                        className="p-4 gap-4 w-full bg-background-900 shadow-hard-5 max-w-[404px]"
+                        className="p-4 gap-6 w-full shadow-hard-5 max-w-[443px] flex-row justify-between"
                       >
                         <HStack space="md">
-                          <Icon as={CheckCircleIcon} className="stroke-background-0" />
-                          <VStack>
-                            <ToastTitle className="text-typography-0 font-semibold">
-                              Note Updated
+                          <Icon
+                            as={HelpCircleIcon}
+                            className="stroke-typography-0"
+                            size="lg"
+                          />
+                          <VStack space="xs">
+                            <ToastTitle className="font-semibold">
+                              Toast Heading
                             </ToastTitle>
-                            <ToastDescription className="text-typography-100" size="sm">
-                              “SaaS Revenue” has been updated successfully
+                            <ToastDescription
+                              className="text-typography-100"
+                              size="sm"
+                            >
+                              Lorem ipsum dolor sit amet consectetur.
                             </ToastDescription>
                           </VStack>
                         </HStack>
-                        <Pressable onPress={() => toast.close(id)}>
-                          <Icon as={CloseIcon} className="stroke-background-500" />
-                        </Pressable>
+                        <HStack className="min-[450px]:gap-3 gap-1">
+                          <Button
+                            variant="link"
+                            size="sm"
+                            className="px-3.5 self-center"
+                          >
+                            <ButtonText className="text-typography-0">
+                              Retry
+                            </ButtonText>
+                          </Button>
+                          <Pressable onPress={() => toast.close(id)}>
+                            <Icon as={CloseIcon} className="stroke-background-0" />
+                          </Pressable>
+                        </HStack>
                       </Toast>
                     );
                   },
@@ -458,7 +478,7 @@ The Examples section provides visual representations of the different variants o
         Pressable,
         Icon,
         CloseIcon,
-        CheckCircleIcon,
+        HelpCircleIcon,
         HStack,
         VStack
       },
@@ -488,26 +508,18 @@ The Examples section provides visual representations of the different variants o
                     return (
                       <Toast
                         nativeID={toastId}
-                        className="p-4 gap-3 w-full sm:min-w-[386px] bg-background-0 shadow-hard-2 flex-col"
+                        className="p-4 gap-3 w-full sm:min-w-[386px] bg-background-0 shadow-hard-2 flex-row"
                       >
-                        <HStack className="justify-between">
-                          <ToastTitle className="text-typography-900 font-semibold">
-                            New notification
-                          </ToastTitle>
-                          <Pressable onPress={() => toast.close(id)}>
-                            <Icon as={CloseIcon} />
-                          </Pressable>
-                        </HStack>
-                        <HStack space="md">
-                          <Avatar size="lg">
-                            <AvatarFallbackText>JS</AvatarFallbackText>
-                            <AvatarImage
-                              source={{
-                                uri: 'https://s3-alpha-sig.figma.com/img/cc35/9a95/ecf9cba1881effe726061fc6f4809371?Expires=1721001600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Pyj83N4SzedRQj~mtWMGxuhBcBMcuGc6ppsgWMnKDu2iEEcD-NQaE2WHgwqq6k7uHxzBd~gecQN2HXDrkVTlxvryARvD8Ai5RkaicN8OdqqHojHdmT8y1Q1IPKjSf0HxHA0EgkkTS8RLqRXBwrXV6IaGsVKNxche92mdvCt0llYhzeQO0xLYOYIDUiOXONpcpP72QgRMZLbU3Ep2thUnwl6VuxFiphQPOKkLLUEeGhQF5KDQB71NG09Ypq2V3okej6dtPb0eo~IunDKiFIfDUwrj~2fD6Y~JRrVhmSIXloZlAPwCd37NwzT-Jl8pR4JIWqF4dRigx67HOSUExrezJg__',
-                              }}
-                            />
-                          </Avatar>
-                          <VStack>
+                        <Avatar>
+                          <AvatarFallbackText>JS</AvatarFallbackText>
+                          <AvatarImage
+                            source={{
+                              uri: 'https://s3-alpha-sig.figma.com/img/cc35/9a95/ecf9cba1881effe726061fc6f4809371?Expires=1721001600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Pyj83N4SzedRQj~mtWMGxuhBcBMcuGc6ppsgWMnKDu2iEEcD-NQaE2WHgwqq6k7uHxzBd~gecQN2HXDrkVTlxvryARvD8Ai5RkaicN8OdqqHojHdmT8y1Q1IPKjSf0HxHA0EgkkTS8RLqRXBwrXV6IaGsVKNxche92mdvCt0llYhzeQO0xLYOYIDUiOXONpcpP72QgRMZLbU3Ep2thUnwl6VuxFiphQPOKkLLUEeGhQF5KDQB71NG09Ypq2V3okej6dtPb0eo~IunDKiFIfDUwrj~2fD6Y~JRrVhmSIXloZlAPwCd37NwzT-Jl8pR4JIWqF4dRigx67HOSUExrezJg__',
+                            }}
+                          />
+                        </Avatar>
+                        <VStack className="w-full">
+                          <HStack className="justify-between w-full">
                             <Heading
                               size="sm"
                               className="text-typography-950 font-semibold"
@@ -515,13 +527,13 @@ The Examples section provides visual representations of the different variants o
                               Jacob Steve
                             </Heading>
                             <Text size="sm" className="text-typography-500">
-                              commented on your photo
+                              2m ago
                             </Text>
-                            <Text size="xs" className="text-blue-500 mt-1">
-                              a few seconds ago
-                            </Text>
-                          </VStack>
-                        </HStack>
+                          </HStack>
+                          <Text size="sm" className="text-typography-500">
+                            commented on your photo
+                          </Text>
+                        </VStack>
                       </Toast>
                     );
                   },
@@ -582,9 +594,9 @@ The Examples section provides visual representations of the different variants o
                     return (
                       <Toast
                         nativeID={toastId}
-                        className="p-4 gap-4 w-full max-w-[386px] bg-background-0 shadow-hard-2"
+                        className="p-4 gap-4 w-full max-w-[386px] bg-background-0 shadow-hard-2 flex-row"
                       >
-                        <Box className="h-11 w-11 items-center justify-center hidden min-[400px]:flex">
+                        <Box className="h-11 w-11 items-center justify-center hidden min-[400px]:flex bg-background-50">
                         {\/* RefreshCw is imported from 'lucide-react-native' *\/}
                           <Icon
                             as={RefreshCw}
@@ -599,10 +611,13 @@ The Examples section provides visual representations of the different variants o
                                 Update available
                               </ToastTitle>
                               <Pressable onPress={() => toast.close(id)}>
-                                <Icon as={CloseIcon} />
+                                <Icon
+                                  as={CloseIcon}
+                                  className="stroke-background-500"
+                                />
                               </Pressable>
                             </HStack>
-                            <ToastDescription>
+                            <ToastDescription className="text-typography-700">
                               A new software version is available for download.
                             </ToastDescription>
                           </VStack>
@@ -677,7 +692,7 @@ The Examples section provides visual representations of the different variants o
                     return (
                       <Toast
                         nativeID={toastId}
-                        className="px-5 py-3 gap-4 shadow-soft-1 items-center"
+                        className="px-5 py-3 gap-4 shadow-soft-1 items-center flex-row"
                       >
                         {\/* Send is imported from 'lucide-react-native' *\/}
                         <Icon
