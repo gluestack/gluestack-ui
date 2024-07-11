@@ -38,7 +38,7 @@ This is an illustration of **useBreakPointValue** hook.
   <CodePreview
     _rendererWrapper={{ px: '$2.5' }}
     showComponentRenderer={true}
-    showArgsController={true}
+    showArgsController={false}
     metaData={{
       code: `
       function App(){
@@ -155,7 +155,7 @@ This section provides a comprehensive reference list for the hook arguments, det
             <Table.TText>Arguments</Table.TText>
           </Table.TH>
           <Table.TH>
-            <Table.TText>Value</Table.TText>
+            <Table.TText>Type</Table.TText>
           </Table.TH>
           <Table.TH>
             <Table.TText>Default</Table.TText>
@@ -180,3 +180,7 @@ This section provides a comprehensive reference list for the hook arguments, det
     </Table>
   </TableContainer>
 </>
+
+### Return Value
+
+The **useBreakPointValue** hook returns value, based on given break point value object.

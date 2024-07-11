@@ -1,0 +1,236 @@
+---
+title: gluestack-ui Alert Component | Installation, Usage, and API
+
+description: Alerts are used to communicate the status of a system, feature, or page. They indicate a specific state that may require attention from the user.
+
+pageTitle: Alert
+
+pageDescription: Alerts are used to communicate the status of a system, feature, or page. They indicate a specific state that may require attention from the user.
+
+showHeader: true
+---
+
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="with-nativewind/Hooks/UseMediaQueryBasic" />
+
+import {
+  Box,
+  Text,
+  Heading,
+  Icon,
+} from '../../core-components/nativewind';
+import { Smartphone, Tablet, Laptop, Tv } from 'lucide-react-native';
+import { useMediaQuery } from '../../core-components/hooks/use-media-query.ts';
+import { transformedCode } from '../../utils';
+import {
+  AppProvider,
+  CodePreview,
+  Table,
+  InlineCode,
+  TableContainer,
+  Tabs
+} from '@gluestack/design-system';
+import { CollapsibleCode } from '@gluestack/design-system';
+import Wrapper from '../../core-components/nativewind/Wrapper';
+
+**useMediaQuery** is a custom hook that helps detect matches between a single media query or multiple media queries. React Native does not natively support media queries, so useMediaQuery is still limited. 
+
+<Wrapper>
+  <CodePreview
+    _rendererWrapper={{ px: '$2.5' , height:300}}
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+      function App(){
+      const [isMobile, isTablet, isSmallScreen, isLargeScreen] = useMediaQuery([
+    {
+      maxWidth: 480,
+    },
+    {
+      minWidth: 481,
+      maxWidth: 768,
+    },
+    {
+      minWidth: 769,
+      maxWidth: 1300,
+    },
+    {
+      minWidth: 1301,
+    },
+  ]);
+        return (
+    <Box className="justify-center items-center gap-4">
+      <Heading>useMediaQuery</Heading>
+      <Text>Resize your browser windows to see changes.</Text>
+      <Box className="flex-row flex-wrap gap-8 justify-center">
+        <Box
+          className={
+            'border justify-center items-center w-[120px] h-[80px] rounded gap-2 ' +
+            (isMobile ? 'border-green-500 bg-green-50' : '')
+          }
+        >
+          <Icon as={Smartphone} size={'xs'} />
+          <Text size="sm">Small</Text>
+        </Box>
+        <Box
+          className={
+            'border justify-center items-center w-[120px] h-[80px] rounded gap-2 ' +
+            (isTablet ? 'border-green-500 bg-green-50' : '')
+          }
+        >
+          <Icon as={Tablet} />
+          <Text size="sm">medium</Text>
+        </Box>
+        <Box
+          className={
+            'border justify-center items-center w-[120px] h-[80px] rounded gap-2 ' +
+            (isSmallScreen ? 'border-green-500 bg-green-50' : '')
+          }
+        >
+          <Icon as={Laptop} />
+          <Text size="sm">Large</Text>
+        </Box>
+        <Box
+          className={
+            'border justify-center items-center w-[120px] h-[80px] rounded gap-2 ' +
+            (isLargeScreen ? 'border-green-500 bg-green-50' : '')
+          }
+        >
+          <Icon as={Tv} />
+          <Text size="sm">Extra Large</Text>
+        </Box>
+      </Box>
+    </Box>
+  );
+      }
+      `,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'App');
+      },
+      scope: {
+        Box,
+        Text,
+        Heading,
+        Icon,
+        Smartphone,
+        Tablet,
+        Laptop,
+        Tv,
+        useMediaQuery,
+        Wrapper,
+      },
+      argsType: {
+      },
+    }}
+  />
+</Wrapper>
+
+<br />
+
+## Installation
+
+<Tabs value="cli" type="section">
+<Tabs.TabList>
+      <Tabs.Tab value="cli">
+        <Tabs.TabTitle>CLI</Tabs.TabTitle>
+      </Tabs.Tab>
+     <Tabs.Tab value="manual">
+        <Tabs.TabTitle>Manual</Tabs.TabTitle>
+     </Tabs.Tab>
+  </Tabs.TabList>
+  <Tabs.TabPanels>
+    <Tabs.TabPanel value="cli">
+<>
+
+### Run the following command:
+  ```bash
+  npx gluestack-ui add useMediaQuery
+  ```
+</>
+    </Tabs.TabPanel>
+    <Tabs.TabPanel value="manual"> 
+<>
+
+
+### Step 1: Copy and paste the following code into your project.
+
+<CollapsibleCode>
+
+```jsx 
+%%-- File: core-components/hooks/use-media-query.ts --%% 
+```
+
+</CollapsibleCode>
+
+### Step 2: Update the import paths to match your project setup.
+</>
+    </Tabs.TabPanel>
+  </Tabs.TabPanels>
+</Tabs>
+
+## API Reference
+
+To use this component in your project, include the following import statement in your file.
+
+```jsx
+import { useMediaQuery } from '@/components/hooks/use-media-query';
+```
+
+```jsx
+const flexDir = useMediaQuery({
+                minWidth: 480,
+                maxWidth: 1280,
+              });
+```
+
+### Hook Arguments
+
+This section provides a comprehensive reference list for the hook arguments, detailing descriptions, properties, types, and default behavior for easy project integration.
+
+#### useBreakPointValue
+
+<>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Arguments</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Type</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Default</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>1</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`{ [key: maxHeight | maxWidth | minHeight | minWidth | orientation] : value } \nArray<{ [key: maxHeight | maxWidth | minHeight | minWidth | orientation] : value }`}></Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</>
+
+
+### Return Value
+
+The **useMediaQuery** hook returns an array of booleans, indicating whether the given query matches or queries match.
+
+### Why an array? 
+
+**useMediaQuery** accepts both an object and an array of object, but will always return an array. This way, you can combine multiple media queries which will be individually matched in a single call. The options to use are still limited to maxWidth, minWidth, maxHeight, minHeight, orientation.
