@@ -46,6 +46,8 @@ export const parameters = {
           ],
           'Core Concepts',
           ['Accessibility', 'Universal'],
+          'Performance',
+          ['Benchmarks'],
           'Theme Configuration',
           ['Default Tokens', 'Customizing Theme', 'Dark Mode'],
         ],
