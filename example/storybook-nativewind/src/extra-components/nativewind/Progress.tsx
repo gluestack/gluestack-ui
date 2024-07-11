@@ -3,11 +3,9 @@ import React from 'react';
 
 export function Graph({ data }: { data: any }) {
   const colorMap: any = {
-    'gluestack-ui': '$primary500',
+    'gluestack-ui v1': '$primary500',
     'React Native': '#61dafb',
-    'Tamagui': '#d6409f',
-    'Styled Components': '$yellow500',
-    'NativeBase': '$cyan600',
+    'gluestack-ui v2': '$cyan600',
   };
 
   const maxValue = Math.max(...Object.values(data).map((stat: any) => stat));
