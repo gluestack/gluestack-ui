@@ -20,7 +20,7 @@ export function Graph({ data }: { data: any }) {
       rounded="$md"
       sx={{
         _dark: {
-          bg: '$backgroundDark950',
+          bg: '$backgroundDark800',
         },
       }}
       mb="$8"
@@ -33,6 +33,10 @@ export function Graph({ data }: { data: any }) {
             <VStack>
               <Text
                 sx={{
+                  color: '$text900',
+                  _dark: {
+                    color: '$text50',
+                  },
                   _web: { whiteSpace: 'nowrap' },
                   w: 130,
                   fontSize: '$sm',
@@ -54,6 +58,10 @@ export function Graph({ data }: { data: any }) {
                 fontSize="$xs"
                 flex={1}
                 sx={{
+                  color: '$text900',
+                  _dark: {
+                    color: '$text50',
+                  },
                   _web: {
                     whiteSpace: 'nowrap',
                   },
