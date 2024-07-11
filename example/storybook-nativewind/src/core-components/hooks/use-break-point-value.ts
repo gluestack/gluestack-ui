@@ -60,10 +60,11 @@ export const getBreakPointValue = (values: any, width: any) => {
   return finalBreakPointResolvedValue;
 };
 
-export function useBreakpointValue(values: BreakPointValue) {
+export function useBreakpointValue(values: BreakPointValue): any {
   const { width } = useWindowDimensions();
 
-  const [currentBreakPointValue, setCurrentBreakPointValue] = useState(null);
+  const [currentBreakPointValue, setCurrentBreakPointValue] =
+    useState(undefined);
 
   useEffect(() => {
     if (typeof values === 'object') {
