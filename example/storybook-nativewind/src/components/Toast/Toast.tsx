@@ -26,7 +26,7 @@ const ToastFigmaStory = ({ _placement = 'top', _colorMode, ...props }: any) => {
   );
 };
 
-const ToastBasic = (...props: any) => {
+const ToastBasic = ({ ...props }: any) => {
   const toast = useToast();
   const [toastId, setToastId] = useState<number>(0);
 
@@ -50,7 +50,7 @@ const ToastBasic = (...props: any) => {
 
     toast.show({
       id: newId,
-      placement: 'top',
+      placement: props.placement,
       duration: 3000,
       // duration: null,
       render: ({ id }) => {
