@@ -86,6 +86,8 @@ export const parameters = {
           'Others',
           ['Fab', 'Skeleton'],
         ],
+        'Hooks',
+        ['useBreakPointValue', 'useMediaQuery'],
         'Apps',
         ['Dashboard App', 'Starter Kit', 'Storybook App'],
         'Guides',
