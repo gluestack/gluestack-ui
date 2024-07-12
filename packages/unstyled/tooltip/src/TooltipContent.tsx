@@ -77,11 +77,6 @@ export function TooltipContent<StyledTooltipContentProps>(
         AnimatePresence={AnimatePresence}
       >
         <StyledTooltipContent
-          {...props}
-          ref={mergedRef}
-          key={placement + calculatedPlacement}
-          role={Platform.OS === 'web' ? 'tooltip' : undefined}
-          style={[overlayProps.style, { position: 'absolute' }, style]}
           initial={initialAnimatedStyles}
           animate={animatedStyles}
           exit={exitAnimatedStyles}
@@ -89,6 +84,11 @@ export function TooltipContent<StyledTooltipContentProps>(
             type: 'timing',
             duration: 100,
           }}
+          {...props}
+          ref={mergedRef}
+          key={placement + calculatedPlacement}
+          role={Platform.OS === 'web' ? 'tooltip' : undefined}
+          style={[overlayProps.style, { position: 'absolute' }, style]}
         >
           {children}
         </StyledTooltipContent>
