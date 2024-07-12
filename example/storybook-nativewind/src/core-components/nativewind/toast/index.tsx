@@ -28,7 +28,7 @@ cssInterop(UIToast.Title, { className: 'style' });
 cssInterop(UIToast.Description, { className: 'style' });
 
 const toastStyle = tva({
-  base: 'p-4 m-3 rounded-md gap-1 web:pointer-events-auto shadow-hard-5 border-outline-100',
+  base: 'p-4 m-1 rounded-md gap-1 web:pointer-events-auto shadow-hard-5 border-outline-100',
   variants: {
     action: {
       error: 'bg-error-700',

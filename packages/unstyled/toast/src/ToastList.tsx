@@ -113,6 +113,15 @@ export const ToastList = () => {
                           opacity: 1,
                           y: 0,
                         }}
+                        exit={{
+                          opacity: 0,
+                          y: transitionConfig[position],
+                        }}
+                        transition={{
+                          type: 'timing',
+                          duration: 150,
+                        }}
+                        key={toast.id}
                         {...toast.config?.containerStyle}
                         style={{ pointerEvents: 'box-none' }}
                       >
