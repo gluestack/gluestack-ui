@@ -105,27 +105,6 @@ export const TooltipContent = React.forwardRef(
     return (
       <UITooltip.Content
         ref={ref}
-        initial={{
-          opacity: 0,
-          scale: 0.5,
-        }}
-        animate={{
-          opacity: 1,
-          scale: 1,
-        }}
-        exit={{
-          opacity: 0,
-          scale: 0.5,
-        }}
-        transition={{
-          type: 'spring',
-          damping: 18,
-          stiffness: 50,
-          opacity: {
-            type: 'timing',
-            duration: 250,
-          },
-        }}
         {...props}
         className={tooltipContentStyle({
           class: className,
