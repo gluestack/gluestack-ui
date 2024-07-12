@@ -119,6 +119,11 @@ export const parameters = {
           name: 'BookOpen',
           headerTitle: 'Guides',
         },
+        {
+          source: 'lucide-react-native',
+          name: 'Anchor',
+          headerTitle: 'Hooks',
+        },
       ],
     },
   },
