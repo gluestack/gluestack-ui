@@ -111,4 +111,66 @@ const ColorPaletteComponent = () => {
   );
 };
 
-export { ColorPaletteComponent };
+const ShadowComponent = () => {
+  const { colorMode } = useContext(LayoutContext);
+  return (
+    <GluestackUIProvider mode={colorMode}>
+      <VStack space="lg">
+        <Heading>Hard Shadows</Heading>
+        <HStack space="lg">
+          <Box className="h-20 w-20 rounded-lg items-center justify-center bg-typography-0 shadow-hard-1">
+            <Text>1</Text>
+          </Box>
+          <Box className="h-20 w-20 rounded-lg items-center justify-center bg-typography-0 shadow-hard-2">
+            <Text>2</Text>
+          </Box>
+          <Box className="h-20 w-20 rounded-lg items-center justify-center bg-typography-0 shadow-hard-3">
+            <Text>3</Text>
+          </Box>
+          <Box className="h-20 w-20 rounded-lg items-center justify-center bg-typography-0 shadow-hard-4">
+            <Text>4</Text>
+          </Box>
+          <Box className="h-20 w-20 rounded-lg items-center justify-center bg-typography-0 shadow-hard-5">
+            <Text>5</Text>
+          </Box>
+        </HStack>
+
+        <Heading>Soft Shadows</Heading>
+        <HStack space="lg">
+          <Box className="h-20 w-20 rounded-lg items-center justify-center bg-typography-0 shadow-soft-1">
+            <Text>1</Text>
+          </Box>
+          <Box className="h-20 w-20 rounded-lg items-center justify-center bg-typography-0 shadow-soft-2">
+            <Text>2</Text>
+          </Box>
+          <Box className="h-20 w-20 rounded-lg items-center justify-center bg-typography-0 shadow-soft-3">
+            <Text>3</Text>
+          </Box>
+          <Box className="h-20 w-20 rounded-lg items-center justify-center bg-typography-0 shadow-soft-4">
+            <Text>4</Text>
+          </Box>
+        </HStack>
+      </VStack>
+      {/* </SafeAreaView> */}
+    </GluestackUIProvider>
+  );
+};
+
+const FontSizeComponent = () => {
+  return <Text className="text-2xs">Text of fontSize (2xs)</Text>;
+};
+
+const FontWeightComponent = () => {
+  return (
+    <>
+      <Text className="font-extrablack">Text of fontWeight (extrablack)</Text>
+    </>
+  );
+};
+
+export {
+  ColorPaletteComponent,
+  ShadowComponent,
+  FontSizeComponent,
+  FontWeightComponent,
+};

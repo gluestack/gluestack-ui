@@ -3,16 +3,14 @@ import {
   FabIcon,
   Box,
   MenuIcon,
-  FabLabel,
 } from '../../../core-components/nativewind';
 import React from 'react';
 
 const FabDemo = () => {
   return (
-    <Box className="h-[150px] w-[200px] bg-background-200 rounded-md ">
+    <Box className="h-[150px] w-[200px] bg-background-100 rounded-md ">
       <Fab placement={'bottom right'}>
         <FabIcon as={MenuIcon} />
-        <FabLabel>Menu</FabLabel>
       </Fab>
     </Box>
   );

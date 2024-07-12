@@ -8,7 +8,7 @@ import {
   useStyleContext,
 } from '@gluestack-ui/nativewind-utils/withStyleContext';
 import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withStyleContextAndStates';
-import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
+import { cssInterop } from 'nativewind';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 
 import {
@@ -41,7 +41,11 @@ cssInterop(UIAccessibleAlertDialog.Content, { className: 'style' });
 cssInterop(UIAccessibleAlertDialog.CloseButton, { className: 'style' });
 cssInterop(UIAccessibleAlertDialog.Header, { className: 'style' });
 cssInterop(UIAccessibleAlertDialog.Footer, { className: 'style' });
-cssInterop(UIAccessibleAlertDialog.Body, { className: 'style' });
+cssInterop(UIAccessibleAlertDialog.Body, {
+  className: 'style',
+  contentContainerClassName: 'contentContainerStyle',
+  indicatorClassName: 'indicatorStyle',
+});
 cssInterop(UIAccessibleAlertDialog.Backdrop, { className: 'style' });
 
 const alertDialogStyle = tva({
@@ -58,7 +62,7 @@ const alertDialogStyle = tva({
 });
 
 const alertDialogContentStyle = tva({
-  base: 'bg-background-50 rounded-lg overflow-hidden ',
+  base: 'bg-background-0 rounded-lg overflow-hidden border border-outline-100 p-6',
   parentVariants: {
     size: {
       xs: 'w-[60%] max-w-[360px]',
@@ -75,14 +79,14 @@ const alertDialogCloseButtonStyle = tva({
 });
 
 const alertDialogHeaderStyle = tva({
-  base: 'p-4 pb-0 justify-between items-center flex-row',
+  base: 'justify-between items-center flex-row',
 });
 
 const alertDialogFooterStyle = tva({
-  base: 'px-4 pb-4 pt-2 flex-row justify-end items-center flex-wrap',
+  base: 'flex-row justify-end items-center gap-3',
 });
 
-const alertDialogBodyStyle = tva({ base: 'px-4 py-2' });
+const alertDialogBodyStyle = tva({ base: '' });
 
 const alertDialogBackdropStyle = tva({
   base: 'absolute left-0 top-0 right-0 bottom-0 bg-background-dark web:cursor-default',

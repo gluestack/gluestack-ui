@@ -13,7 +13,7 @@ import {
   useStyleContext,
 } from '@gluestack-ui/nativewind-utils/withStyleContext';
 import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withStyleContextAndStates';
-import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
+import { cssInterop } from 'nativewind';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 
 const AnimatedPressable = createMotionAnimatedComponent(Pressable);
@@ -38,7 +38,11 @@ cssInterop(UIModal.Backdrop, { className: 'style' });
 cssInterop(UIModal.Content, { className: 'style' });
 cssInterop(UIModal.CloseButton, { className: 'style' });
 cssInterop(UIModal.Header, { className: 'style' });
-cssInterop(UIModal.Body, { className: 'style' });
+cssInterop(UIModal.Body, {
+  className: 'style',
+  contentContainerClassName: 'contentContainerStyle',
+  indicatorClassName: 'indicatorStyle',
+});
 cssInterop(UIModal.Footer, { className: 'style' });
 
 const modalStyle = tva({

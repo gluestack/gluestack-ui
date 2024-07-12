@@ -5,6 +5,7 @@ module.exports = {
     './src/**/*.{html,js,jsx,ts,tsx}',
     './src/core-components/**/**/*.{html,js,jsx,ts,tsx}',
     './src/components/**/*.{html,js,jsx,ts,tsx,mdx}',
+    './src/hooks/**/*.{html,js,jsx,ts,tsx,mdx}',
   ],
   presets: [require('nativewind/preset')],
   safelist: [
@@ -165,6 +166,11 @@ module.exports = {
           light: '#FBFBFB',
           dark: '#181719',
         },
+        indicator: {
+          primary: 'rgb(var(--color-indicator-primary)/<alpha-value>)',
+          info: 'rgb(var(--color-indicator-info)/<alpha-value>)',
+          error: 'rgb(var(--color-indicator-error)/<alpha-value>)',
+        },
       },
       fontFamily: {
         heading: undefined,
@@ -173,8 +179,7 @@ module.exports = {
         roboto: ['Roboto', 'sans-serif'],
       },
       fontWeight: {
-        hairline: '100',
-        extraBlack: '950',
+        extrablack: '950',
       },
       fontSize: {
         '2xs': '10px',

@@ -15,12 +15,13 @@
     "release": "changeset publish",
     "prepare": "husky install",
     "lint": "eslint packages/**/**/src --ext .ts,.tsx --config .eslintrc",
+    "lint-nativewind": "eslint example/storybook-nativewind/src/core-components --ext .ts,.tsx --config .eslintrc",
     "eject:gluestack-style": "git clone -b development git@github.com:gluestack/gluestack-style.git gluestack-style && echo Now update babel.config.js",
     "create-new-package": "node ./scripts/create-new-package.js",
     "storybook": "cd example/storybook && yarn storybook",
     "storybook:nativewind": "cd example/storybook-nativewind && yarn storybook:nativewind",
     "kitchensink:web": "cd example/ui-examples && yarn web",
-    "postinstall": "patch-package"
+    "postinstall": "patch-package && cd example/storybook-v7 && yarn"
   },
   "devDependencies": {
     "@changesets/cli": "^2.25.2",

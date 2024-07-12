@@ -22,6 +22,10 @@ module.exports = function (api) {
                 ? path.resolve(__dirname, './global.css')
                 : path.resolve(__dirname, './global-gluestack.css'),
 
+            '@/components/hooks': path.resolve(
+              __dirname,
+              './src/core-components/hooks'
+            ),
             '@gluestack-ui/checkbox': path.resolve(
               __dirname,
               '../../packages/unstyled/checkbox/src'
@@ -77,6 +81,10 @@ module.exports = function (api) {
             '@gluestack-ui/popover': path.resolve(
               __dirname,
               '../../packages/unstyled/popover/src'
+            ),
+            '@react-native-aria/overlays': path.resolve(
+              __dirname,
+              '../../packages/react-native-aria/overlays/src'
             ),
             '@gluestack-style/react': path.resolve(
               __dirname,

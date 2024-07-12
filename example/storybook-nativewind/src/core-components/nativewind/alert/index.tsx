@@ -14,26 +14,21 @@ import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 const SCOPE = 'ALERT';
 
 const alertStyle = tva({
-  base: 'items-center p-3 rounded flex-row',
+  base: 'items-center py-3 px-4 rounded-md flex-row gap-2 border-outline-100',
 
   variants: {
     action: {
-      error: 'bg-background-error border-error-300 ',
-      warning: 'bg-background-warning border-warning-300',
-      success: 'bg-background-success border-success-300',
-      info: 'bg-background-info border-info-300',
-      muted: 'bg-background-muted border-muted-300',
+      error: 'bg-background-error',
+      warning: 'bg-background-warning',
+      success: 'bg-background-success',
+      info: 'bg-background-info',
+      muted: 'bg-background-muted',
     },
 
     variant: {
       solid: '',
-      outline: 'border bg-transparent',
-      accent: 'border-l-4',
+      outline: 'border bg-background-0',
     },
-  },
-  defaultVariants: {
-    variant: 'solid',
-    action: 'info',
   },
 });
 
@@ -76,6 +71,15 @@ const alertTextStyle = tva({
       true: 'bg-yellow-500',
     },
   },
+  parentVariants: {
+    action: {
+      error: 'text-error-800',
+      warning: 'text-warning-800',
+      success: 'text-success-800',
+      info: 'text-info-800',
+      muted: 'text-muted-800',
+    },
+  },
 });
 
 const alertIconStyle = tva({
@@ -92,11 +96,11 @@ const alertIconStyle = tva({
   },
   parentVariants: {
     action: {
-      error: 'text-error-500',
-      warning: 'text-warning-500',
-      success: 'text-success-500',
-      info: 'text-info-500',
-      muted: 'text-secondary-500',
+      error: 'text-error-800',
+      warning: 'text-warning-800',
+      success: 'text-success-800',
+      info: 'text-info-800',
+      muted: 'text-secondary-800',
     },
   },
 });
@@ -116,7 +120,11 @@ const PrimitiveIcon = React.forwardRef(
     ref?: any
   ) => {
     const sizeProps = useMemo(() => {
-      return size ? { size } : { height, width };
+      if (size) return { size };
+      if (height && width) return { height, width };
+      if (height) return { height };
+      if (width) return { width };
+      return {};
     }, [size, height, width]);
 
     const colorProps =
@@ -214,6 +222,7 @@ const AlertText = React.forwardRef(
     }: { className?: string } & IAlertTextProps,
     ref?: any
   ) => {
+    const { action: parentAction } = useStyleContext(SCOPE);
     return (
       <UIAlert.Text
         // @ts-ignore
@@ -227,6 +236,9 @@ const AlertText = React.forwardRef(
           italic,
           highlight,
           class: className,
+          parentVariants: {
+            action: parentAction,
+          },
         })}
         {...props}
         ref={ref}

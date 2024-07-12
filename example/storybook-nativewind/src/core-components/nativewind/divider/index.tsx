@@ -2,7 +2,7 @@
 import { createDivider } from '@gluestack-ui/divider';
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import { View } from 'react-native';
-import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
+import { cssInterop } from 'nativewind';
 
 import React from 'react';
 const dividerStyle = tva({

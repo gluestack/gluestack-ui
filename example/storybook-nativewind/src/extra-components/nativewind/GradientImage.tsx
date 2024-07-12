@@ -1,9 +1,9 @@
+import React from 'react';
 import { Image, Center } from '../../core-components/nativewind';
-import React, { useContext } from 'react';
-import { LayoutContext } from '@gluestack/design-system';
+import { useColorMode } from '@gluestack-ui/themed';
 
 const GradientImage = () => {
-  const { colorMode } = useContext(LayoutContext);
+  const colorMode = useColorMode();
 
   return (
     <Center>
@@ -12,7 +12,7 @@ const GradientImage = () => {
           colorMode === 'light' ? '/assets/light-lg.svg' : '/assets/dark-lg.svg'
         }
         alt="linear-gradient"
-        className="h-64 w-[400px]"
+        className="h-64 w-96"
       />
     </Center>
   );

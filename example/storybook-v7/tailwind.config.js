@@ -5,7 +5,6 @@ module.exports = {
     './../storybook-nativewind/src/**/*.{html,js,jsx,ts,tsx}',
     './../storybook-nativewind/core-components/**/*.{html,js,jsx,ts,tsx}',
     './../storybook-nativewind/components/**/*.{html,js,jsx,ts,tsx,mdx}',
-    './../../packages/**/*.{html,js,jsx,ts,tsx,mdx}',
   ],
   presets: [require('nativewind/preset')],
   safelist: [
@@ -174,8 +173,7 @@ module.exports = {
         roboto: ['Roboto', 'sans-serif'],
       },
       fontWeight: {
-        hairline: '100',
-        extraBlack: '950',
+        extrablack: '950',
       },
       fontSize: {
         '2xs': '10px',

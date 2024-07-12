@@ -6,7 +6,7 @@ import { Pressable as RNPressable, Platform } from 'react-native';
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import { withStyleContext } from '@gluestack-ui/nativewind-utils/withStyleContext';
 import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withStyleContextAndStates';
-import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
+import { cssInterop } from 'nativewind';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 
 const UIPressable = createPressable({
@@ -17,7 +17,7 @@ const UIPressable = createPressable({
 });
 
 const pressableStyle = tva({
-  base: 'data-[focus-visible=true]:outline-none data-[focus-visible=true]:ring-primary-700 data-[focus-visible=true]:ring-2 data-[disabled=true]:opacity-40',
+  base: 'data-[focus-visible=true]:outline-none data-[focus-visible=true]:ring-indicator-info data-[focus-visible=true]:ring-2 data-[disabled=true]:opacity-40',
 });
 
 cssInterop(UIPressable, { className: 'style' });

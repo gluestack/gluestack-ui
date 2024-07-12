@@ -13,7 +13,13 @@ Object.entries(screenSize).forEach(([key, value]) => {
 export const getBreakPointValue = (values, width) => {
   if (typeof values !== 'object') return values;
   let finalBreakPointResolvedValue;
-  const mediaQueriesBreakpoints = [];
+  const mediaQueriesBreakpoints = [
+    {
+      key: 'default',
+      breakpoint: 0,
+      isValid: true,
+    },
+  ];
   Object.keys(resolveScreenWidth).forEach((key) => {
     const isValid = isValidBreakpoint(resolveScreenWidth[key], width);
     mediaQueriesBreakpoints.push({
@@ -27,13 +33,14 @@ export const getBreakPointValue = (values, width) => {
     breakpoint.value = values.hasOwnProperty(breakpoint.key)
       ? // @ts-ignore
         values[breakpoint.key]
-      : mediaQueriesBreakpoints[index - 1].value;
+      : mediaQueriesBreakpoints[index - 1]?.value ||
+        mediaQueriesBreakpoints[0]?.value;
   });
   const lastValidObject = getLastValidObject(mediaQueriesBreakpoints);
   if (!lastValidObject) {
     finalBreakPointResolvedValue = values;
   } else {
-    finalBreakPointResolvedValue = lastValidObject.value;
+    finalBreakPointResolvedValue = lastValidObject?.value;
   }
   return finalBreakPointResolvedValue;
 };
