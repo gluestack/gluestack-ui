@@ -16,10 +16,10 @@ const UseMediaQueryBasic = ({ ...props }: any) => {
     },
     {
       minWidth: 769,
-      maxWidth: 1300,
+      maxWidth: 1440,
     },
     {
-      minWidth: 1301,
+      minWidth: 1441,
     },
   ]);
 

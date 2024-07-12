@@ -1,12 +1,11 @@
 /* eslint-disable react-native/no-inline-styles */
-import React from 'react';
-import { ToastContext } from './ToastContext';
-import { Overlay } from '@gluestack-ui/overlay';
-import { SafeAreaView } from 'react-native';
-import { View, Platform } from 'react-native';
 import { useKeyboardBottomInset } from '@gluestack-ui/hooks';
-import type { IToast } from './types';
+import { Overlay } from '@gluestack-ui/overlay';
+import React from 'react';
+import { Platform, SafeAreaView, View } from 'react-native';
 import { OverlayAnimatePresence } from './OverlayAnimatePresence';
+import { ToastContext } from './ToastContext';
+import type { IToast, ToastPlacement } from './types';
 
 const initialAnimationOffset = 24;
 const transitionConfig: any = {
@@ -61,12 +60,12 @@ export const ToastList = () => {
     AnimationWrapper,
     AnimatePresence: ContextAnimatePresence,
   } = React.useContext(ToastContext);
-  const AnimationView = AnimationWrapper.current;
-  const AnimatePresence = ContextAnimatePresence.current;
+  const AnimationView = AnimationWrapper?.current;
+  const AnimatePresence = ContextAnimatePresence?.current;
 
   const bottomInset = useKeyboardBottomInset() * 2;
   const getPositions = () => {
-    return Object.keys(toastInfo);
+    return Object.keys(toastInfo) as (keyof typeof toastInfo)[];
   };
 
   let hasToastOnOverlay = false;
@@ -76,7 +75,7 @@ export const ToastList = () => {
 
   return getPositions().length > 0 ? (
     <Overlay isOpen={hasToastOnOverlay} isKeyboardDismissable={false}>
-      {getPositions().map((position: string) => {
+      {getPositions().map((position: ToastPlacement) => {
         if (Object.keys(POSITIONS).includes(position))
           return (
             <View
@@ -84,9 +83,9 @@ export const ToastList = () => {
               style={{
                 justifyContent: 'center',
                 margin: 'auto',
+                //@ts-expect-error it is properly defined above per-platform
                 position: toastPositionStyle,
                 pointerEvents: 'box-none',
-                //@ts-ignore
                 ...POSITIONS[position],
               }}
             >

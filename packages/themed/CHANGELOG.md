@@ -1,5 +1,12 @@
 # @gluestack-ui/themed
 
+## 1.1.35
+
+### Patch Changes
+
+- Updated dependencies
+  - @gluestack-ui/toast@1.0.6
+
 ## 1.1.34
 
 ### Patch Changes

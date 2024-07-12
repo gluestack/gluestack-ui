@@ -19,7 +19,7 @@ function Tooltip<StyledTooltipProp>(
         defaultIsOpen = false,
         onClose,
         onOpen,
-        openDelay = 0,
+        openDelay = 350,
         closeDelay = 0,
         placement = 'bottom',
         children,
