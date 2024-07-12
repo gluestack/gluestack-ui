@@ -406,8 +406,8 @@ const ButtonIcon = React.forwardRef(
       size,
       ...props
     }: IButtonIcon & {
-      className?: any;
-      as?: any;
+      className?: string | undefined;
+      as?: React.ReactNode;
     },
     ref?: any
   ) => {
