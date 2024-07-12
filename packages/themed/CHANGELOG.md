@@ -1,5 +1,12 @@
 # @gluestack-ui/themed
 
+## 1.1.36
+
+### Patch Changes
+
+- Updated dependencies
+  - @gluestack-ui/tooltip@0.1.32
+
 ## 1.1.35
 
 ### Patch Changes
