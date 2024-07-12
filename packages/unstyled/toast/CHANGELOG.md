@@ -1,5 +1,11 @@
 # @gluestack-ui/toast
 
+## 1.0.7
+
+### Patch Changes
+
+- - Fixed toast animation
+
 ## 1.0.6
 
 ### Patch Changes
