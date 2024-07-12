@@ -36,16 +36,35 @@ export type IFormControlComponentType<
   _LabelAstrick,
   Helper,
   HelperText
-> = React.ForwardRefExoticComponent<Root & InterfaceFormControlProps> & {
-  Error: React.ForwardRefExoticComponent<Error> & {
-    Text: React.ForwardRefExoticComponent<ErrorText>;
-    Icon: React.ForwardRefExoticComponent<ErrorIcon>;
+> = React.ForwardRefExoticComponent<
+  InnerForwardRefExoticComponent<Root> & InterfaceFormControlProps
+> & {
+  Error: React.ForwardRefExoticComponent<
+    InnerForwardRefExoticComponent<Error>
+  > & {
+    Text: React.ForwardRefExoticComponent<
+      InnerForwardRefExoticComponent<ErrorText>
+    >;
+    Icon: React.ForwardRefExoticComponent<
+      InnerForwardRefExoticComponent<ErrorIcon>
+    >;
   };
-  Label: React.ForwardRefExoticComponent<Label> & {
-    Text: React.ForwardRefExoticComponent<LabelText>;
+  Label: React.ForwardRefExoticComponent<
+    InnerForwardRefExoticComponent<Label>
+  > & {
+    Text: React.ForwardRefExoticComponent<
+      InnerForwardRefExoticComponent<LabelText>
+    >;
   };
-  Helper: React.ForwardRefExoticComponent<Helper> & {
-    Text: React.ForwardRefExoticComponent<HelperText>;
+  Helper: React.ForwardRefExoticComponent<
+    InnerForwardRefExoticComponent<Helper>
+  > & {
+    Text: React.ForwardRefExoticComponent<
+      InnerForwardRefExoticComponent<HelperText>
+    >;
   };
 };
 export type IFormControlProps = InterfaceFormControlProps;
+
+type InnerForwardRefExoticComponent<T> = React.PropsWithoutRef<T> &
+  React.RefAttributes<T>;

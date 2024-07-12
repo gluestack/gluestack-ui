@@ -1,11 +1,11 @@
 ---
 title: Actionsheet | gluestack-ui | Installation, Usage, and API
 
-description: The Actionsheet component presents a set of options to the user, overlaid on top of the app's content, allowing them to take quick actions without leaving the current page or view.
+description: Quickly access options overlaying the app's content for efficient user actions.
 
 pageTitle: Actionsheet
 
-pageDescription: The Actionsheet component presents a set of options to the user, overlaid on top of the app's content, allowing them to take quick actions without leaving the current page or view.
+pageDescription: Quickly access options overlaying the app's content for efficient user actions.
 
 showHeader: true
 ---
@@ -28,6 +28,7 @@ import {
   ActionsheetFlatList,
   ActionsheetSectionList,
   ActionsheetSectionHeaderText,
+  ButtonGroup,
   Button,
   ButtonText,
   VStack,
@@ -43,13 +44,16 @@ import {
   HStack,
   Image,
   Text,
+  Heading,
   Box,
   Icon,
   TrashIcon,
-  ShareIcon,
-  PlayIcon,
-  FavouriteIcon,
+  EyeOffIcon,
+  ClockIcon,
+  DownloadIcon,
+  EditIcon,
   CloseIcon,
+  Pressable
 } from '../../core-components/nativewind';
 import {
   CollapsibleCode,
@@ -58,13 +62,10 @@ import {
   Table,
   TableContainer,
   InlineCode,
-  AddIcon,
-  InfoIcon,
-  Alert,
   Tabs
 } from '@gluestack/design-system';
 import { Platform, KeyboardAvoidingView, } from 'react-native';
-import { CreditCardIcon } from 'lucide-react-native';
+import { CreditCardIcon, UploadCloud, Send, Percent, DollarSign } from 'lucide-react-native';
 import { transformedCode } from '../../utils';
 import Wrapper from '../../core-components/nativewind/Wrapper';
 
@@ -76,41 +77,41 @@ This is an illustration of **Actionsheet** component.
     showArgsController={false}
     metaData={{
       code: `
-function App(){
-  const [showActionsheet, setShowActionsheet] = React.useState(false);
-  const handleClose = () => setShowActionsheet(!showActionsheet);
-    return (
-      <Box>
-        <Button onPress={handleClose}>
-          <ButtonText>Open</ButtonText>
-        </Button>
-        <Actionsheet isOpen={showActionsheet} onClose={handleClose} className="z-[999]">
-          <ActionsheetBackdrop />
-          <ActionsheetContent className="z-[999] h-72">
-            <ActionsheetDragIndicatorWrapper>
-              <ActionsheetDragIndicator />
-            </ActionsheetDragIndicatorWrapper>
-            <ActionsheetItem onPress={handleClose}>
-              <ActionsheetItemText>Delete</ActionsheetItemText>
-            </ActionsheetItem>
-            <ActionsheetItem onPress={handleClose}>
-              <ActionsheetItemText>Share</ActionsheetItemText>
-            </ActionsheetItem>
-            <ActionsheetItem onPress={handleClose}>
-              <ActionsheetItemText>Play</ActionsheetItemText>
-            </ActionsheetItem>
-            <ActionsheetItem onPress={handleClose}>
-              <ActionsheetItemText>Favourite</ActionsheetItemText>
-            </ActionsheetItem>
-            <ActionsheetItem onPress={handleClose}>
-              <ActionsheetItemText>Cancel</ActionsheetItemText>
-            </ActionsheetItem>
-          </ActionsheetContent>
-        </Actionsheet>
-      </Box>
-  );
-}
-`,
+      function App(){
+        const [showActionsheet, setShowActionsheet] = React.useState(false);
+        const handleClose = () => setShowActionsheet(!showActionsheet);
+          return (
+            <>
+              <Button onPress={() => setShowActionsheet(true)}>
+                <ButtonText>Open Actionsheet</ButtonText>
+              </Button>
+              <Actionsheet isOpen={showActionsheet} onClose={handleClose}>
+                <ActionsheetBackdrop />
+                <ActionsheetContent>
+                  <ActionsheetDragIndicatorWrapper>
+                    <ActionsheetDragIndicator />
+                  </ActionsheetDragIndicatorWrapper>
+                  <ActionsheetItem onPress={handleClose}>
+                    <ActionsheetItemText>Edit Message</ActionsheetItemText>
+                  </ActionsheetItem>
+                  <ActionsheetItem onPress={handleClose}>
+                    <ActionsheetItemText>Mark Unread</ActionsheetItemText>
+                  </ActionsheetItem>
+                  <ActionsheetItem onPress={handleClose}>
+                    <ActionsheetItemText>Remind Me</ActionsheetItemText>
+                  </ActionsheetItem>
+                  <ActionsheetItem onPress={handleClose}>
+                    <ActionsheetItemText>Add to Saved Items</ActionsheetItemText>
+                  </ActionsheetItem>
+                  <ActionsheetItem isDisabled onPress={handleClose}>
+                    <ActionsheetItemText>Delete</ActionsheetItemText>
+                  </ActionsheetItem>
+                </ActionsheetContent>
+              </Actionsheet>
+            </>
+          );
+        }
+      `,
       transformCode: (code) => {
         return transformedCode(code, 'function', 'App');
       },
@@ -125,7 +126,6 @@ function App(){
         ActionsheetItem,
         ActionsheetItemText,
         Wrapper,
-        Box,
       },
     }}
   />
@@ -509,7 +509,15 @@ We have outlined the various features that ensure the Actionsheet component is a
 
 ### Screen Reader
 
-- VoiceOver: When the actionsheet is focused, the screen reader will announce the button group .
+- VoiceOver: When the ActionSheet is focused, the screen reader will announce the button name. After entering the ActionSheet, it will read the content of the ActionSheet items.
+
+#### Keyboard
+
+- `Space`: Opens the actionsheet.
+- `Enter`: Opens/closes the actionsheet.
+- `Tab`: Moves focus to the next focusable element.
+- `Shift + Tab`: Moves focus to the previous focusable element.
+- `Esc`: Closes the actionsheet.
 
 ## Examples
 
@@ -531,60 +539,60 @@ Demonstrates a common UI pattern known as keyboard handling or keyboard scrollin
           const [showActionsheet, setShowActionsheet] = React.useState(false);
           const handleClose = () => setShowActionsheet(!showActionsheet);
             return (
-            <>
+              <>
                 <Button onPress={handleClose}>
                   <ButtonText>Open</ButtonText>
                 </Button>
-          <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
-         <Actionsheet
-          isOpen={showActionsheet}
-          onClose={handleClose}
-        >
-          <ActionsheetBackdrop />
-          <ActionsheetContent className="max-h-[75%]">
-            <ActionsheetDragIndicatorWrapper>
-              <ActionsheetDragIndicator />
-            </ActionsheetDragIndicatorWrapper>
-            <VStack className="w-full p-[20px]">
-              <HStack space="md" className="justify-center items-center">
-                <Box
-                  className="w-[50px] h-full px-2 border border-solid border-outline-300 rounded-sm"
-                >
-                  <Image
-                    source={{ uri: 'https://i.imgur.com/UwTLr26.png' }}
-                    resizeMode="contain"
-                    className="flex-1"
-                  />
-                </Box>
-                <VStack className="flex-1">
-                  <Text className="font-bold">Mastercard</Text>
-                  <Text>Card ending in 2345</Text>
-                </VStack>
-              </HStack>
-              <FormControl className="mt-[36px]">
-                <FormControlLabel>
-                  <FormControlLabelText>
-                    Confirm security code
-                  </FormControlLabelText>
-                </FormControlLabel>
-                <Input className="w-full">
-                  <InputSlot>
-                   <InputIcon as={CreditCardIcon} className="ml-2"/>
-                  </InputSlot>
-                  <InputField placeholder="CVC/CVV" />
-                </Input>
-                <Button onPress={handleClose} className="mt-[20px]">
-                  <ButtonText className="flex-1">Pay $1000</ButtonText>
-                </Button>
-              </FormControl>
-            </VStack>
-          </ActionsheetContent>
-        </Actionsheet>
-    </KeyboardAvoidingView>
- </>
+                <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
+                  <Actionsheet
+                    isOpen={showActionsheet}
+                    onClose={handleClose}
+                  >
+                    <ActionsheetBackdrop />
+                    <ActionsheetContent className="">
+                      <ActionsheetDragIndicatorWrapper>
+                        <ActionsheetDragIndicator />
+                      </ActionsheetDragIndicatorWrapper>
+                      <VStack className="w-full pt-5">
+                        <HStack space="md" className="justify-center items-center">
+                          <Box
+                            className="w-[50px] h-full px-2 border border-solid border-outline-300 rounded-sm"
+                          >
+                            <Image
+                              source={{ uri: 'https://i.imgur.com/UwTLr26.png' }}
+                              resizeMode="contain"
+                              className="flex-1"
+                            />
+                          </Box>
+                          <VStack className="flex-1">
+                            <Text className="font-bold">Mastercard</Text>
+                            <Text>Card ending in 2345</Text>
+                          </VStack>
+                        </HStack>
+                        <FormControl className="mt-[36px]">
+                          <FormControlLabel>
+                            <FormControlLabelText>
+                              Confirm security code
+                            </FormControlLabelText>
+                          </FormControlLabel>
+                          <Input className="w-full">
+                            <InputSlot>
+                            <InputIcon as={CreditCardIcon} className="ml-2"/>
+                            </InputSlot>
+                            <InputField placeholder="CVC/CVV" />
+                          </Input>
+                          <Button onPress={handleClose} className="mt-3">
+                            <ButtonText className="flex-1">Pay $1000</ButtonText>
+                          </Button>
+                        </FormControl>
+                      </VStack>
+                    </ActionsheetContent>
+                  </Actionsheet>
+              </KeyboardAvoidingView>
+            </>
           );
         }
-`,
+      `,
       transformCode: (code) => {
         return transformedCode(code, 'function', 'App');
       },
@@ -633,68 +641,68 @@ Demonstrates a common UI pattern known as keyboard handling or keyboard scrollin
           const [showActionsheet, setShowActionsheet] = React.useState(false);
           const handleClose = () => setShowActionsheet(!showActionsheet);
             return (
-      <>
-        <Button onPress={handleClose}>
-            <ButtonText>Open</ButtonText>
-        </Button>
-         <Actionsheet
-          isOpen={showActionsheet}
-          onClose={handleClose}
-          snapPoints={[50]}
-        >
-        <KeyboardAvoidingView
-        behavior="position"
-        // eslint-disable-next-line react-native/no-inline-styles
-        style={{
-          position: 'relative',
-          flex: 1,
-          justifyContent: 'flex-end',
-        }}
-      >
-          <ActionsheetBackdrop />
-          <ActionsheetContent className="max-h-[75%]">
-            <ActionsheetDragIndicatorWrapper>
-              <ActionsheetDragIndicator />
-            </ActionsheetDragIndicatorWrapper>
-            <VStack className="w-full p-[20px]">
-              <HStack space="md" className="justify-center items-center">
-                <Box
-                  className="w-[50px] h-full px-2 border border-solid border-outline-300 rounded-sm"
-                >
-                  <Image
-                    source={{ uri: 'https://i.imgur.com/UwTLr26.png' }}
-                    resizeMode="contain"
-                    className="flex-1"
-                  />
-                </Box>
-                <VStack className="flex-1">
-                  <Text className="font-bold">Mastercard</Text>
-                  <Text>Card ending in 2345</Text>
-                </VStack>
-              </HStack>
-              <FormControl className="mt-[36px]">
-                <FormControlLabel>
-                  <FormControlLabelText>
-                    Confirm security code
-                  </FormControlLabelText>
-                </FormControlLabel>
-                <Input className="w-full">
-                  <InputSlot>
-                   <InputIcon as={CreditCardIcon} className="ml-2"/>
-                  </InputSlot>
-                  <InputField placeholder="CVC/CVV" />
-                </Input>
-                <Button onPress={handleClose} className="mt-[20px]">
-                  <ButtonText className="flex-1">Pay $1000</ButtonText>
+              <>
+                <Button onPress={handleClose}>
+                    <ButtonText>Open</ButtonText>
                 </Button>
-              </FormControl>
-            </VStack>
-          </ActionsheetContent>
-    </KeyboardAvoidingView>
-</Actionsheet>
- </>
-);}
-`,
+                <Actionsheet
+                  isOpen={showActionsheet}
+                  onClose={handleClose}
+                  snapPoints={[36]}
+                >
+                  <KeyboardAvoidingView
+                    behavior="position"
+                    style={{
+                      position: 'relative',
+                      flex: 1,
+                      justifyContent: 'flex-end',
+                    }}
+                  >
+                  <ActionsheetBackdrop />
+                  <ActionsheetContent className="">
+                    <ActionsheetDragIndicatorWrapper>
+                      <ActionsheetDragIndicator />
+                    </ActionsheetDragIndicatorWrapper>
+                    <VStack className="w-full pt-5">
+                      <HStack space="md" className="justify-center items-center">
+                        <Box
+                          className="w-[50px] h-full px-2 border border-solid border-outline-300 rounded-sm"
+                        >
+                          <Image
+                            source={{ uri: 'https://i.imgur.com/UwTLr26.png' }}
+                            resizeMode="contain"
+                            className="flex-1"
+                          />
+                        </Box>
+                        <VStack className="flex-1">
+                          <Text className="font-bold">Mastercard</Text>
+                          <Text>Card ending in 2345</Text>
+                        </VStack>
+                      </HStack>
+                      <FormControl className="mt-9">
+                        <FormControlLabel>
+                          <FormControlLabelText>
+                            Confirm security code
+                          </FormControlLabelText>
+                        </FormControlLabel>
+                        <Input className="w-full">
+                          <InputSlot>
+                          <InputIcon as={CreditCardIcon} className="ml-2"/>
+                          </InputSlot>
+                          <InputField placeholder="CVC/CVV" />
+                        </Input>
+                        <Button onPress={handleClose} className="mt-3">
+                          <ButtonText className="flex-1">Pay $1000</ButtonText>
+                        </Button>
+                      </FormControl>
+                    </VStack>
+                  </ActionsheetContent>
+                </KeyboardAvoidingView>
+              </Actionsheet>
+            </>
+          )
+        }
+      `,
       transformCode: (code) => {
         return transformedCode(code, 'function', 'App');
       },
@@ -745,52 +753,42 @@ The Actionsheet with Icons is a variation of the Actionsheet component that disp
           const [showActionsheet, setShowActionsheet] = React.useState(false);
           const handleClose = () => setShowActionsheet(!showActionsheet);
             return (
-            <>
+              <>
                 <Button onPress={handleClose}>
                   <ButtonText>Open</ButtonText>
                 </Button>
                 <Actionsheet isOpen={showActionsheet} onClose={handleClose}>
-                <ActionsheetBackdrop />
+                  <ActionsheetBackdrop />
                   <ActionsheetContent>
                     <ActionsheetDragIndicatorWrapper>
                       <ActionsheetDragIndicator />
                     </ActionsheetDragIndicatorWrapper>
                     <ActionsheetItem onPress={handleClose}>
-                      <ActionsheetIcon>
-                        <Icon as={TrashIcon} />
-                      </ActionsheetIcon>
+                      <ActionsheetIcon className="stroke-background-700" as={EditIcon} />
+                      <ActionsheetItemText>Edit Message</ActionsheetItemText>
+                    </ActionsheetItem>
+                    <ActionsheetItem onPress={handleClose}>
+                      <ActionsheetIcon className="stroke-background-700" as={EyeOffIcon} />
+                      <ActionsheetItemText>Mark Unread</ActionsheetItemText>
+                    </ActionsheetItem>
+                    <ActionsheetItem onPress={handleClose}>
+                      <ActionsheetIcon className="stroke-background-700" as={ClockIcon} />
+                      <ActionsheetItemText>Remind Me</ActionsheetItemText>
+                    </ActionsheetItem>
+                    <ActionsheetItem onPress={handleClose}>
+                      <ActionsheetIcon className="stroke-background-700" as={DownloadIcon} />
+                      <ActionsheetItemText>Add to Saved Items</ActionsheetItemText>
+                    </ActionsheetItem>
+                    <ActionsheetItem isDisabled onPress={handleClose}>
+                      <ActionsheetIcon className="stroke-background-700" as={TrashIcon} />
                       <ActionsheetItemText>Delete</ActionsheetItemText>
                     </ActionsheetItem>
-                    <ActionsheetItem onPress={handleClose}>
-                      <ActionsheetIcon>
-                        <Icon as={ShareIcon} />
-                      </ActionsheetIcon>
-                      <ActionsheetItemText>Share</ActionsheetItemText>
-                    </ActionsheetItem>
-                    <ActionsheetItem onPress={handleClose}>
-                      <ActionsheetIcon>
-                        <Icon as={PlayIcon} />
-                      </ActionsheetIcon>
-                      <ActionsheetItemText>Play</ActionsheetItemText>
-                    </ActionsheetItem>
-                    <ActionsheetItem onPress={handleClose}>
-                      <ActionsheetIcon>
-                        <Icon as={FavouriteIcon} />
-                      </ActionsheetIcon>
-                      <ActionsheetItemText>Favourite</ActionsheetItemText>
-                    </ActionsheetItem>
-                    <ActionsheetItem onPress={handleClose}>
-                      <ActionsheetIcon>
-                        <Icon as={CloseIcon} />
-                      </ActionsheetIcon>
-                      <ActionsheetItemText>Cancel</ActionsheetItemText>
-                    </ActionsheetItem>
                   </ActionsheetContent>
-              </Actionsheet>
-            </>
-          );
-        }
-  `,
+                </Actionsheet>
+              </>
+            );
+          }
+        `,
       transformCode: (code) => {
         return transformedCode(code, 'function', 'App');
       },
@@ -803,13 +801,12 @@ The Actionsheet with Icons is a variation of the Actionsheet component that disp
         ActionsheetItem,
         ActionsheetItemText,
         ActionsheetIcon,
-        Icon,
         Wrapper,
         TrashIcon,
-        ShareIcon,
-        PlayIcon,
-        FavouriteIcon,
-        CloseIcon,
+        EyeOffIcon,
+        ClockIcon,
+        DownloadIcon,
+        EditIcon,
         Button,
         ButtonText,
       },
@@ -982,20 +979,8 @@ The Actionsheet with SectionList is a variation of the Actionsheet component tha
     const handleClose = () => setShowActionsheet(!showActionsheet);
     const DATA = [
       {
-        title: 'Main dishes',
-        data: ['Pizza', 'Burger', 'Risotto'],
-      },
-      {
-        title: 'Sides',
-        data: ['French Fries', 'Onion Rings', 'Fried Shrimps'],
-      },
-      {
-        title: 'Drinks',
-        data: ['Water', 'Coke', 'Beer'],
-      },
-      {
-        title: 'Desserts',
-        data: ['Cheese Cake', 'Ice Cream'],
+        title: 'Gender',
+        data: ['Men', 'Women', 'Boy', 'Girl'],
       },
     ];
     return (
@@ -1003,7 +988,7 @@ The Actionsheet with SectionList is a variation of the Actionsheet component tha
         <Button onPress={handleClose}>
           <ButtonText>Open</ButtonText>
         </Button>
-        <Actionsheet isOpen={showActionsheet} onClose={handleClose} snapPoints={[50]}>
+        <Actionsheet isOpen={showActionsheet} onClose={handleClose} snapPoints={[35]}>
         <ActionsheetBackdrop />
         <ActionsheetContent>
           <ActionsheetDragIndicatorWrapper>
@@ -1051,3 +1036,216 @@ The Actionsheet with SectionList is a variation of the Actionsheet component tha
     }}
   />
 </Wrapper>
+
+### File Upload with Actionsheet
+
+<Wrapper>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+        function App(){
+          const [showActionsheet, setShowActionsheet] = React.useState(false);
+          const handleClose = () => setShowActionsheet(!showActionsheet);
+          return (
+            <>
+              <Button onPress={handleClose}>
+                <ButtonText>Open</ButtonText>
+              </Button>
+              <Actionsheet isOpen={showActionsheet} onClose={handleClose}>
+                <ActionsheetBackdrop />
+                <ActionsheetContent className="px-5">
+                  <ActionsheetDragIndicatorWrapper>
+                    <ActionsheetDragIndicator />
+                  </ActionsheetDragIndicatorWrapper>
+                  <HStack className="justify-between w-full mt-3">
+                    <VStack>
+                      <Heading size="md" className="font-semibold">
+                        Upload your latest resume
+                      </Heading>
+                      <Text size="sm">JPG, PDF, PNG supported</Text>
+                    </VStack>
+                    <Pressable onPress={handleClose}>
+                      <Icon as={CloseIcon} size="lg" className="stroke-background-500" />
+                    </Pressable>
+                  </HStack>
+                  <Box className="my-[18px] items-center justify-center rounded-xl bg-background-50 border border-dashed border-outline-300 h-[130px] w-full">
+                    <Icon
+                      as={UploadCloud}
+                      className="h-[62px] w-[62px] stroke-background-200"
+                    />
+                    <Text size="sm">No files uploaded yet</Text>
+                  </Box>
+                  <ButtonGroup className="w-full">
+                    <Button className="w-full" onPress={handleClose}>
+                      <ButtonText>Browse files</ButtonText>
+                    </Button>
+                    <Button
+                      className="w-full"
+                      variant="outline"
+                      isDisabled
+                      action="secondary"
+                    >
+                      <ButtonText>Upload</ButtonText>
+                    </Button>
+                  </ButtonGroup>
+                </ActionsheetContent>
+              </Actionsheet>
+            </>
+          );
+        }
+      `,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'App');
+      },
+      scope: {
+        Actionsheet,
+        ActionsheetBackdrop,
+        ActionsheetContent,
+        ActionsheetDragIndicator,
+        ActionsheetDragIndicatorWrapper,
+        ActionsheetItem,
+        ActionsheetItemText,
+        ActionsheetSectionList,
+        ActionsheetSectionHeaderText,
+        ButtonGroup,
+        Button,
+        ButtonText,
+        Wrapper,
+        HStack,
+        VStack,
+        Box,
+        Heading,
+        Text,
+        Icon,
+        CloseIcon,
+        UploadCloud,
+        Pressable
+      },
+      argsType: {},
+    }}
+  />
+</Wrapper>
+
+{/* ### Actionsheet with CTA
+
+<Wrapper>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+        function App(){
+          const [showActionsheet, setShowActionsheet] = React.useState(false);
+          const handleClose = () => setShowActionsheet(!showActionsheet);
+          return (
+            <>
+              <Button onPress={handleClose}>
+                <ButtonText>Open</ButtonText>
+              </Button>
+              <Actionsheet isOpen={showActionsheet} onClose={handleClose}>
+                <ActionsheetBackdrop />
+                <ActionsheetContent className="px-5">
+                  <ActionsheetDragIndicatorWrapper>
+                    <ActionsheetDragIndicator />
+                  </ActionsheetDragIndicatorWrapper>
+                  <HStack className="justify-between w-full gap-2 mt-3">
+                    <Text
+                      size="xl"
+                      className="font-semibold text-typography-900 flex-1"
+                    >
+                      See what all new features are available in this updated
+                    </Text>
+                    <Pressable onPress={handleClose}>
+                      <Icon as={CloseIcon} size="lg" className="stroke-background-500" />
+                    </Pressable>
+                  </HStack>
+                  <VStack className="my-5 gap-3 w-full">
+                    <ActionsheetItem className="gap-3 w-full" onPress={handleClose}>
+                      <Box className="bg-success-700 rounded-full items-center justify-center w-8 h-8">
+                        <ActionsheetIcon size="sm" as={Send} className="stroke-typography-0" />
+                      </Box>
+                      <VStack className="flex-1">
+                        <Text className="text-typography-950">
+                          Simplified navigation
+                        </Text>
+                        <ActionsheetItemText size="sm">
+                          Usage of app was never that easy: all important things at your
+                          fingertips
+                        </ActionsheetItemText>
+                      </VStack>
+                    </ActionsheetItem>
+                    <ActionsheetItem className="gap-3" onPress={handleClose}>
+                      <Box className="w-8 h-8 bg-success-700 rounded-full items-center justify-center">
+                        <ActionsheetIcon
+                          size="sm"
+                          as={Percent}
+                          className="stroke-typography-0"
+                        />
+                      </Box>
+                      <VStack className="flex-1">
+                        <Text className="text-typography-950">Special offer</Text>
+                        <ActionsheetItemText size="sm">
+                          Get new offers and discounts every week right in the app
+                        </ActionsheetItemText>
+                      </VStack>
+                    </ActionsheetItem>
+                    <ActionsheetItem className="gap-3" onPress={handleClose}>
+                      <Box className="w-8 h-8 bg-success-700 rounded-full items-center justify-center">
+                        <ActionsheetIcon
+                          size="sm"
+                          as={DollarSign}
+                          className="stroke-typography-0"
+                        />
+                      </Box>
+                      <VStack className="flex-1">
+                        <Text className="text-typography-950">New cashback</Text>
+                        <ActionsheetItemText size="sm">
+                          Get daily cashback from every purchase you make and even more
+                          when you shop at our partners
+                        </ActionsheetItemText>
+                      </VStack>
+                    </ActionsheetItem>
+                  </VStack>
+                  <Button className="w-full" size="lg" onPress={handleClose}>
+                    <ButtonText>Explore all</ButtonText>
+                  </Button>
+                </ActionsheetContent>
+              </Actionsheet>
+            </>
+          );
+        }
+      `,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'App');
+      },
+      scope: {
+        Actionsheet,
+        ActionsheetBackdrop,
+        ActionsheetContent,
+        ActionsheetDragIndicator,
+        ActionsheetDragIndicatorWrapper,
+        ActionsheetItem,
+        ActionsheetIcon,
+        ActionsheetItemText,
+        ActionsheetSectionList,
+        ActionsheetSectionHeaderText,
+        Button,
+        ButtonText,
+        Wrapper,
+        HStack,
+        VStack,
+        Box,
+        Text,
+        Icon,
+        CloseIcon,
+        Send,
+        Percent,
+        DollarSign,
+        Pressable
+      },
+      argsType: {},
+    }}
+  />
+</Wrapper> */}

@@ -4,6 +4,7 @@
     "baseUrl": ".",
     "paths": {
       "@/components/ui/*": ["src/core-components/nativewind/*"],
+      "@/components/hooks/*": ["src/core-components/hooks/*"],
       "@gluestack-style/react": ["../../packages/styled/react/src"],
       "@gluestack-ui/popover": ["../../packages/unstyled/popover/src"],
       "@gluestack-ui/button": ["../../packages/unstyled/button/src"],

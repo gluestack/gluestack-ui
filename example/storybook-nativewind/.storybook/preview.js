@@ -46,10 +46,10 @@ export const parameters = {
           ],
           'Core Concepts',
           ['Accessibility', 'Universal'],
+          'Performance',
+          ['Benchmarks'],
           'Theme Configuration',
           ['Default Tokens', 'Customizing Theme', 'Dark Mode'],
-          'More',
-          ['Releases', 'Roadmap'],
         ],
         'Components',
         [
@@ -86,10 +86,17 @@ export const parameters = {
           'Others',
           ['Fab', 'Skeleton'],
         ],
+        'Hooks',
+        ['useBreakPointValue', 'useMediaQuery'],
         'Apps',
         ['Dashboard App', 'Starter Kit', 'Storybook App'],
         'Guides',
-        ['Recipes', ['Linear Gradient'], 'More', ['Troubleshooting']],
+        [
+          'Recipes',
+          ['Linear Gradient'],
+          'More',
+          ['FAQ', 'Releases', 'Roadmap', 'Troubleshooting'],
+        ],
       ],
       icons: [
         {

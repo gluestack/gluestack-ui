@@ -1,5 +1,11 @@
 # @gluestack-ui/button
 
+## 0.1.10
+
+### Patch Changes
+
+- fix: ref typing for all the components
+
 ## 0.1.9
 
 ### Patch Changes

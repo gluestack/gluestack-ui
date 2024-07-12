@@ -1,6 +1,6 @@
 {
   "name": "@gluestack-ui/popover",
-  "version": "0.1.34",
+  "version": "0.1.36",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/index.d.ts",
@@ -44,12 +44,12 @@
   },
   "dependencies": {
     "@gluestack-ui/hooks": "0.1.11",
-    "@gluestack-ui/overlay": "^0.1.14",
+    "@gluestack-ui/overlay": "0.1.14",
     "@gluestack-ui/utils": "^0.1.12",
     "@react-native-aria/dialog": "^0.0.4",
     "@react-native-aria/focus": "^0.2.9",
     "@react-native-aria/interactions": "0.2.13",
-    "@react-native-aria/overlays": "^0.3.12"
+    "@react-native-aria/overlays": "0.3.14"
   },
   "peerDependencies": {
     "react": ">=16",

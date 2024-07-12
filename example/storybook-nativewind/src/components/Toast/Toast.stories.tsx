@@ -25,16 +25,16 @@ const ToastMeta: ComponentMeta<typeof Toast> = {
     },
     action: {
       control: 'select',
-      options: ['error', 'warning', 'success', 'info', 'attention'],
+      options: ['error', 'warning', 'success', 'info', 'muted'],
     },
     variant: {
       control: 'select',
-      options: ['solid', 'outline', 'accent'],
+      options: ['solid', 'outline'],
     },
   },
   args: {
     placement: 'bottom',
-    action: 'attention',
+    action: 'muted',
     variant: 'solid',
   },
 };
