@@ -1,6 +1,6 @@
 {
   "name": "@gluestack-ui/themed",
-  "version": "1.1.35",
+  "version": "1.1.36",
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "module": "build/index",
@@ -66,7 +66,7 @@
     "@gluestack-ui/tabs": "0.1.16",
     "@gluestack-ui/textarea": "0.1.23",
     "@gluestack-ui/toast": "1.0.6",
-    "@gluestack-ui/tooltip": "0.1.31",
+    "@gluestack-ui/tooltip": "0.1.32",
     "@legendapp/motion": "latest"
   },
   "devDependencies": {
