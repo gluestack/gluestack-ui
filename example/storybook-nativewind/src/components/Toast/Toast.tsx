@@ -31,15 +31,7 @@ const ToastBasic = ({ ...props }: any) => {
   const [toastId, setToastId] = useState<number>(0);
 
   const handleToast = () => {
-    // Check if toast is active and close it if so
-    if (toast.isActive(toastId)) {
-      toast.close(toastId);
-
-      // Wait a moment before showing the new toast
-      setTimeout(() => {
-        showNewToast();
-      }, 75); // Adjust the delay as needed
-    } else {
+    if (!toast.isActive(toastId)) {
       showNewToast();
     }
   };

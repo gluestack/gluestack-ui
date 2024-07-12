@@ -65,12 +65,7 @@ This is an illustration of **Toast** component.
           const toast = useToast();
           const [toastId, setToastId] = React.useState(0);
           const handleToast = () => {
-            if (toast.isActive(toastId)) {
-              toast.close(toastId);
-              setTimeout(() => {
-                showNewToast();
-              }, 75);
-            } else {
+            if (!toast.isActive(toastId)) {
               showNewToast();
             }
           };
@@ -423,12 +418,7 @@ The Examples section provides visual representations of the different variants o
           const toast = useToast();
           const [toastId, setToastId] = React.useState(0);
           const handleToast = () => {
-            if (toast.isActive(toastId)) {
-              toast.close(toastId);
-              setTimeout(() => {
-                showNewToast();
-              }, 75);
-            } else {
+            if (!toast.isActive(toastId)) {
               showNewToast();
             }
           };
@@ -602,12 +592,7 @@ The Examples section provides visual representations of the different variants o
         const toast = useToast();
         const [toastId, setToastId] = React.useState(0);
         const handleToast = () => {
-          if (toast.isActive(toastId)) {
-            toast.close(toastId);
-            setTimeout(() => {
-              showNewToast();
-            }, 100);
-          } else {
+          if (!toast.isActive(toastId)) {
             showNewToast();
           }
         };
