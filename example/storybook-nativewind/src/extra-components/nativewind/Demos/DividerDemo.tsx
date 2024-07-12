@@ -1,20 +1,13 @@
 import React from 'react';
-import { HStack, Heading, Divider } from '../../../core-components/nativewind';
+import { Center, Text, Divider } from '../../../core-components/nativewind';
 
 const DividerDemo = () => {
   return (
-    <HStack
-      className={`items-center justify-center flex-col h-auto
-     gap-1`}
-    >
-      <Heading size="sm" className="font-semibold">
-        Firefox
-      </Heading>
-      <Divider />
-      <Heading size="sm" className="font-semibold">
-        Chrome
-      </Heading>
-    </HStack>
+    <Center>
+      <Text className="font-semibold">Easy</Text>
+      <Divider className="my-0.5" />
+      <Text className="font-semibold">Difficult</Text>
+    </Center>
   );
 };
 
