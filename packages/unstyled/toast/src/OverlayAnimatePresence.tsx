@@ -1,14 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import { ExitAnimationContext } from '@gluestack-ui/overlay';
 import React, { forwardRef } from 'react';
 import { Animated } from 'react-native';
-import { ExitAnimationContext } from '@gluestack-ui/overlay';
 
-const defaultTransitionConfig: any = {
+const defaultTransitionConfig = {
   type: 'timing',
   useNativeDriver: true,
   duration: 0,
   delay: 0,
-};
+} as const;
 
 export const OverlayAnimatePresence = forwardRef(
   ({ children, visible = false, AnimatePresence, onExit }: any, ref?: any) => {
@@ -27,8 +27,6 @@ export const OverlayAnimatePresence = forwardRef(
 
         if (AnimatePresence) {
           Animated.sequence([
-            // @ts-ignore - delay is present in defaultTransitionConfig
-            //@ts-ignore
             Animated[transition.type ?? 'timing'](animateValue, {
               toValue: startAnimation,
               useNativeDriver: true,

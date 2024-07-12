@@ -1,10 +1,10 @@
-import React, { useState, useMemo } from 'react';
-import { ToastList } from './ToastList';
-import type { IToastInfo, IToast, IToastProps } from './types';
-import { ToastContext } from './ToastContext';
+import React, { useMemo, useState } from 'react';
 import { View } from 'react-native';
+import { ToastContext } from './ToastContext';
+import { ToastList } from './ToastList';
+import type { IToast, IToastInfo, IToastProps } from './types';
 export const ToastProvider = ({ children }: { children: any }) => {
-  const [toastInfo, setToastInfo] = useState<IToastInfo>({});
+  const [toastInfo, setToastInfo] = useState<IToastInfo>({} as IToastInfo);
   const [visibleToasts, setVisibleToasts] = useState<{
     [key in string]: boolean;
   }>({});
@@ -18,7 +18,7 @@ export const ToastProvider = ({ children }: { children: any }) => {
   }, [setVisibleToasts]);
 
   const hideToast = React.useCallback(
-    (id: any) => {
+    (id: string) => {
       setVisibleToasts((prevVisibleToasts) => ({
         ...prevVisibleToasts,
         [id]: false,
@@ -28,10 +28,14 @@ export const ToastProvider = ({ children }: { children: any }) => {
   );
 
   const isActive = React.useCallback(
-    (id: any) => {
-      for (const toastPosition of Object.keys(toastInfo)) {
+    (id: string) => {
+      for (const toastPosition of Object.keys(
+        toastInfo
+      ) as (keyof typeof toastInfo)[]) {
         const positionArray: Array<IToast> = toastInfo[toastPosition];
-        return positionArray.findIndex((toastData) => toastData.id === id) > -1;
+        if (positionArray.findIndex((toastData) => toastData.id === id) > -1) {
+          return true;
+        }
       }
       return false;
     },
@@ -39,9 +43,11 @@ export const ToastProvider = ({ children }: { children: any }) => {
   );
 
   const removeToast = React.useCallback(
-    (id: any) => {
+    (id: string) => {
       setToastInfo((prev) => {
-        for (const toastPosition of Object.keys(prev)) {
+        for (const toastPosition of Object.keys(
+          prev
+        ) as (keyof typeof prev)[]) {
           const positionArray: Array<IToast> = prev[toastPosition];
           const isToastPresent =
             positionArray.findIndex((toastData) => toastData.id === id) > -1;
@@ -65,30 +71,34 @@ export const ToastProvider = ({ children }: { children: any }) => {
   );
 
   const setToast = React.useCallback(
-    (props: IToastProps): number => {
+    (props: IToastProps): string => {
       const {
         placement = 'bottom',
         render,
-        id = toastIndex.current++,
+        id = `${toastIndex.current++}`,
         duration = 5000,
       } = props;
 
       if (render) {
         const component = render({ id });
 
-        setToastInfo((prev: any) => {
+        setToastInfo((prev: IToastInfo): IToastInfo => {
           return {
             ...prev,
             [placement]: [
-              ...(prev[placement] ? prev[placement] : []),
+              ...(prev[placement] ? prev[placement] : []).filter(
+                (t) => t.id !== id
+              ),
               { component, id, config: props },
             ],
           };
         });
 
-        setVisibleToasts((toasts: any) => {
+        setVisibleToasts((toasts: { [key: string]: boolean }) => {
           return {
-            ...toasts,
+            ...Object.fromEntries(
+              Object.entries(toasts).filter(([key]) => key !== id)
+            ),
             [id]: true,
           };
         });

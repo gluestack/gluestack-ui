@@ -1,16 +1,16 @@
 import { createContext } from 'react';
-import type { IToastContext } from './types';
+import type { IToastContext, IToastInfo } from './types';
 
 export const ToastContext = createContext<IToastContext>({
-  toastInfo: {},
+  toastInfo: {} as IToastInfo,
   setToastInfo: () => {},
-  setToast: () => {},
+  setToast: () => '',
   removeToast: () => {},
   hideAll: () => {},
   isActive: () => false,
   visibleToasts: {},
   setVisibleToasts: () => {},
   hideToast: () => {},
-  AnimationWrapper: null,
-  AnimatePresence: null,
+  AnimationWrapper: { current: null },
+  AnimatePresence: { current: null },
 });
