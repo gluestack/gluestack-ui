@@ -50,9 +50,9 @@ const ToastBasic = ({ ...props }: any) => {
         return (
           <Toast nativeID={uniqueToastId} {...props} className="flex-row gap-3">
             <VStack space="xs">
-              <ToastTitle>Hello World Toast</ToastTitle>
+              <ToastTitle>Hello!</ToastTitle>
               <ToastDescription>
-                Please create a support ticket from the support page
+                This is a customized toast message.
               </ToastDescription>
             </VStack>
             <Pressable onPress={() => toast.close(id)}>
