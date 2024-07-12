@@ -1,5 +1,16 @@
 # @gluestack-ui/toast
 
+## 1.0.6
+
+### Patch Changes
+
+- ### Fixes
+
+  - Fixed `isActive` always returning false by [Andrew M](https://github.com/evelant).
+  - Removed almost all instances of `any`, replaced with actual types by [Andrew M](https://github.com/evelant).
+  - Fixed duplicate toasts when calling `show` with an existing id by [Andrew M](https://github.com/evelant).
+  - Removed unnecessary `@ts-ignore` usages by [Andrew M](https://github.com/evelant).
+
 ## 1.0.5
 
 ### Patch Changes
