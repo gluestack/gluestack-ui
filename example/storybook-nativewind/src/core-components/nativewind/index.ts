@@ -20,6 +20,7 @@ export * from './fab';
 export * from './form-control';
 export * from './input';
 // export * from './input-accessory-view';
+export * from './portal';
 export * from './image';
 export * from './keyboard-avoiding-view';
 export * from './link';

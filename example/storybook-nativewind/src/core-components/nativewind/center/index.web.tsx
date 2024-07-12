@@ -1,7 +1,11 @@
 import React from 'react';
 import { centerStyle } from './styles';
 
-const Center = ({ className, ...props }: any) => {
+import type { VariantProps } from '@gluestack-ui/nativewind-utils';
+type ICenterProps = VariantProps<typeof centerStyle> &
+  React.HTMLAttributes<HTMLDivElement>;
+
+const Center = ({ className, ...props }: ICenterProps) => {
   return <div className={centerStyle({ class: className })} {...props} />;
 };
 
