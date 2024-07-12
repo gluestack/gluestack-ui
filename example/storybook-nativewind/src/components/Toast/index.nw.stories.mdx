@@ -61,32 +61,41 @@ This is an illustration of **Toast** component.
     showArgsController={true}
     metaData={{
       code: `
-      function Example() {
+        function Example() {
           const toast = useToast();
+          const [toastId, setToastId] = React.useState(0);
+          const handleToast = () => {
+            if (!toast.isActive(toastId)) {
+              showNewToast();
+            }
+          };
+          const showNewToast = () => {
+            const newId = Math.random();
+            setToastId(newId);
+            toast.show({
+              id: newId,
+              placement: 'top',
+              duration: 3000,
+              // duration: null,
+              render: ({ id }) => {
+                const uniqueToastId = "toast-" + id;
+                return (
+                  <Toast nativeID={uniqueToastId} {...props}>
+                    <ToastTitle>Toast Heading</ToastTitle>
+                    <ToastDescription>
+                      Lorem ipsum dolor sit amet consectetur.
+                    </ToastDescription>
+                  </Toast>
+                );
+              },
+            });
+          };
           return (
-            <Button
-              onPress={() => {
-                toast.show({
-                  placement:"top",
-                  duration: 3000,
-                  render: ({ id }) => {
-                    const toastId = "toast-" + id;
-                    return (
-                      <Toast nativeID={toastId} {...props}>
-                        <ToastTitle>Toast Heading</ToastTitle>
-                        <ToastDescription>
-                          Lorem ipsum dolor sit amet consectetur.
-                        </ToastDescription>
-                      </Toast>
-                    );
-                  },
-                });
-              }}
-            >
-              <ButtonText>Show Toast</ButtonText>
+            <Button onPress={handleToast}>
+              <ButtonText>Press Me</ButtonText>
             </Button>
           );
-        };
+        }
       `,
       transformCode: (code) => {
         return transformedCode(code, 'function', 'Example');
@@ -405,64 +414,61 @@ The Examples section provides visual representations of the different variants o
     showArgsController={false}
     metaData={{
       code: `
-      function Example() {
+        function Example() {
           const toast = useToast();
+          const [toastId, setToastId] = React.useState(0);
+          const handleToast = () => {
+            if (!toast.isActive(toastId)) {
+              showNewToast();
+            }
+          };
+          const showNewToast = () => {
+            const newId = Math.random();
+            setToastId(newId);
+            toast.show({
+              id: newId,
+              placement: 'top',
+              duration: 3000,
+              render: ({ id }) => {
+                const uniqueToastId = "toast-" + id;
+                return (
+                  <Toast
+                    action="error"
+                    nativeID={uniqueToastId}
+                    className="p-4 gap-6 w-full shadow-hard-5 max-w-[443px] flex-row justify-between"
+                  >
+                    <HStack space="md">
+                      <Icon
+                        as={HelpCircleIcon}
+                        className="stroke-typography-0"
+                        size="lg"
+                      />
+                      <VStack space="xs">
+                        <ToastTitle className="font-semibold">Toast Heading</ToastTitle>
+                        <ToastDescription className="text-typography-100" size="sm">
+                          Lorem ipsum dolor sit amet consectetur.
+                        </ToastDescription>
+                      </VStack>
+                    </HStack>
+                    <HStack className="min-[450px]:gap-3 gap-1">
+                      <Button variant="link" size="sm" className="px-3.5 self-center">
+                        <ButtonText className="text-typography-0">Retry</ButtonText>
+                      </Button>
+                      <Pressable onPress={() => toast.close(id)}>
+                        <Icon as={CloseIcon} className="stroke-background-0" />
+                      </Pressable>
+                    </HStack>
+                  </Toast>
+                );
+              },
+            });
+          };
           return (
-            <Button
-              onPress={() => {
-                toast.show({
-                  placement:"top",
-                  duration: null,
-                  render: ({ id }) => {
-                    const toastId = "toast-" + id;
-                    return (
-                      <Toast
-                        action="error"
-                        nativeID={toastId}
-                        className="p-4 gap-6 w-full shadow-hard-5 max-w-[443px] flex-row justify-between"
-                      >
-                        <HStack space="md">
-                          <Icon
-                            as={HelpCircleIcon}
-                            className="stroke-typography-0"
-                            size="lg"
-                          />
-                          <VStack space="xs">
-                            <ToastTitle className="font-semibold">
-                              Toast Heading
-                            </ToastTitle>
-                            <ToastDescription
-                              className="text-typography-100"
-                              size="sm"
-                            >
-                              Lorem ipsum dolor sit amet consectetur.
-                            </ToastDescription>
-                          </VStack>
-                        </HStack>
-                        <HStack className="min-[450px]:gap-3 gap-1">
-                          <Button
-                            variant="link"
-                            size="sm"
-                            className="px-3.5 self-center"
-                          >
-                            <ButtonText className="text-typography-0">
-                              Retry
-                            </ButtonText>
-                          </Button>
-                          <Pressable onPress={() => toast.close(id)}>
-                            <Icon as={CloseIcon} className="stroke-background-0" />
-                          </Pressable>
-                        </HStack>
-                      </Toast>
-                    );
-                  },
-                });
-              }}
-            >
-              <ButtonText>Show Toast</ButtonText>
+            <Button onPress={handleToast}>
+              <ButtonText>Press Me</ButtonText>
             </Button>
           );
-        };
+        }
       `,
       transformCode: (code) => {
         return transformedCode(code, 'function', 'Example');
@@ -583,68 +589,74 @@ The Examples section provides visual representations of the different variants o
     metaData={{
       code: `
       function Example() {
-          const toast = useToast();
-          return (
-            <Button
-              onPress={() => {
-                toast.show({
-                  placement:"top",
-                  render: ({ id }) => {
-                    const toastId = "toast-" + id;
-                    return (
-                      <Toast
-                        nativeID={toastId}
-                        className="p-4 gap-4 w-full max-w-[386px] bg-background-0 shadow-hard-2 flex-row"
-                      >
-                        <Box className="h-11 w-11 items-center justify-center hidden min-[400px]:flex bg-background-50">
-                        {\/* RefreshCw is imported from 'lucide-react-native' *\/}
-                          <Icon
-                            as={RefreshCw}
-                            size="xl"
-                            className="stroke-background-800"
-                          />
-                        </Box>
-                        <VStack space="xl">
-                          <VStack space="xs">
-                            <HStack className="justify-between">
-                              <ToastTitle className="text-typography-900 font-semibold">
-                                Update available
-                              </ToastTitle>
-                              <Pressable onPress={() => toast.close(id)}>
-                                <Icon
-                                  as={CloseIcon}
-                                  className="stroke-background-500"
-                                />
-                              </Pressable>
-                            </HStack>
-                            <ToastDescription className="text-typography-700">
-                              A new software version is available for download.
-                            </ToastDescription>
-                          </VStack>
-                          <ButtonGroup className="gap-3 flex-row">
-                            <Button
-                              action="secondary"
-                              variant="outline"
-                              size="sm"
-                              className="flex-grow"
-                            >
-                              <ButtonText>Not now</ButtonText>
-                            </Button>
-                            <Button size="sm" className="flex-grow">
-                              <ButtonText>Update</ButtonText>
-                            </Button>
-                          </ButtonGroup>
-                        </VStack>
-                      </Toast>
-                    );
-                  },
-                });
-              }}
-            >
-              <ButtonText>Show Toast</ButtonText>
-            </Button>
-          );
+        const toast = useToast();
+        const [toastId, setToastId] = React.useState(0);
+        const handleToast = () => {
+          if (!toast.isActive(toastId)) {
+            showNewToast();
+          }
         };
+        const showNewToast = () => {
+          const newId = Math.random();
+          setToastId(newId);
+          toast.show({
+            id: newId,
+            placement: 'top',
+            duration: 3000,
+            render: ({ id }) => {
+              const uniqueToastId = "toast-" + id;
+              return (
+                <Toast
+                  nativeID={uniqueToastId}
+                  className="p-4 gap-4 w-full max-w-[386px] bg-background-0 shadow-hard-2 flex-row"
+                >
+                  <Box className="h-11 w-11 items-center justify-center hidden min-[400px]:flex bg-background-50">
+                    {\/* RefreshCw is imported from 'lucide-react-native' *\/}
+                    <Icon
+                      as={RefreshCw}
+                      size="xl"
+                      className="stroke-background-800"
+                    />
+                  </Box>
+                  <VStack space="xl">
+                    <VStack space="xs">
+                      <HStack className="justify-between">
+                        <ToastTitle className="text-typography-900 font-semibold">
+                          Update available
+                        </ToastTitle>
+                        <Pressable onPress={() => toast.close(id)}>
+                          <Icon as={CloseIcon} className="stroke-background-500" />
+                        </Pressable>
+                      </HStack>
+                      <ToastDescription className="text-typography-700">
+                        A new software version is available for download.
+                      </ToastDescription>
+                    </VStack>
+                    <ButtonGroup className="gap-3 flex-row">
+                      <Button
+                        action="secondary"
+                        variant="outline"
+                        size="sm"
+                        className="flex-grow"
+                      >
+                        <ButtonText>Not now</ButtonText>
+                      </Button>
+                      <Button size="sm" className="flex-grow">
+                        <ButtonText>Update</ButtonText>
+                      </Button>
+                    </ButtonGroup>
+                  </VStack>
+                </Toast>
+              );
+            },
+          });
+        };
+        return (
+          <Button onPress={handleToast}>
+            <ButtonText>Press Me</ButtonText>
+          </Button>
+        );
+      }
       `,
       transformCode: (code) => {
         return transformedCode(code, 'function', 'Example');
