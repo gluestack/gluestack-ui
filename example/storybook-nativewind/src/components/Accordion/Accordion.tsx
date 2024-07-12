@@ -9,6 +9,7 @@ import {
   AccordionContent,
   AccordionContentText,
 } from '@/components/ui/accordion';
+import { Divider } from '@/components/ui/divider';
 import {
   ChevronDownIcon,
   ChevronUpIcon,
@@ -48,6 +49,7 @@ const AccordionBasic = ({ ...props }: any) => {
         </AccordionContent>
       </AccordionItem>
 
+      <Divider />
       <AccordionItem value="b">
         <AccordionHeader>
           <AccordionTrigger>
@@ -77,6 +79,7 @@ const AccordionBasic = ({ ...props }: any) => {
         </AccordionContent>
       </AccordionItem>
 
+      <Divider />
       <AccordionItem value="c">
         <AccordionHeader>
           <AccordionTrigger>
@@ -104,6 +107,7 @@ const AccordionBasic = ({ ...props }: any) => {
         </AccordionContent>
       </AccordionItem>
 
+      <Divider />
       <AccordionItem value="d">
         <AccordionHeader>
           <AccordionTrigger>
