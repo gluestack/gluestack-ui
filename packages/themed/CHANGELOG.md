@@ -1,5 +1,13 @@
 # @gluestack-ui/themed
 
+## 1.1.38
+
+### Patch Changes
+
+- Updated dependencies
+  - @gluestack-ui/overlay@0.1.15
+  - @gluestack-ui/popover@0.1.37
+
 ## 1.1.37
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @gluestack-ui/overlay
 
+## 0.1.15
+
+### Patch Changes
+
+- fix: style in array
+
 ## 0.1.14
 
 ### Patch Changes

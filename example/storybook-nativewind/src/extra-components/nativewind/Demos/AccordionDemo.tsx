@@ -8,6 +8,7 @@ import {
   AccordionIcon,
   AccordionContent,
   AccordionContentText,
+  Divider,
 } from '../../../core-components/nativewind';
 import { ChevronDownIcon } from 'lucide-react-native';
 import { ChevronUpIcon } from 'lucide-react-native';
@@ -40,7 +41,7 @@ const AccordionDemo = () => {
             </AccordionContentText>
           </AccordionContent>
         </AccordionItem>
-
+        <Divider />
         <AccordionItem value="b">
           <AccordionHeader>
             <AccordionTrigger>

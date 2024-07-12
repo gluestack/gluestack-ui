@@ -105,7 +105,7 @@ This is an illustration of **Icon** component.
     showArgsController={true}
     metaData={{
       code: `
-        <Icon as={CalendarDaysIcon}  {...props} className="text-typography-500"/>
+        <Icon as={EditIcon} {...props} />
       `,
       transformCode: (code) => {
         return transformedCode(code);
@@ -113,7 +113,7 @@ This is an illustration of **Icon** component.
       scope: {
         Wrapper,
         Icon,
-        CalendarDaysIcon,
+        EditIcon
       },
       argsType: {
         size: {

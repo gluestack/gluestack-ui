@@ -562,11 +562,11 @@ Checkbox provide a mutually exclusive selection mechanism, allowing users to cho
     metaData={{
       code: `
         function App(){
-            const [values, setValues] = useState(["Eng"]);
-           return (
-            <CheckboxGroup value={values}  onChange={(keys) => {
-        setValues(keys)
-      }}>
+            const [values, setValues] = React.useState(["Eng"]);
+            return (
+              <CheckboxGroup value={values}  onChange={(keys) => {
+                setValues(keys)
+              }}>
                 <VStack space="xl">
                   <Checkbox value="Eng">
                         <CheckboxIndicator>
@@ -623,7 +623,7 @@ A horizontal component incorporating a checkbox allows for intuitive and space-e
     metaData={{
       code: `
           function App(){
-             const [values, setValues] = useState(["Illustration"]);
+             const [values, setValues] = React.useState(["Illustration"]);
            return (
              <CheckboxGroup value={values}  onChange={(keys) => {
         setValues(keys)
@@ -683,7 +683,7 @@ A checkbox component with help text provides informative guidance alongside sele
     metaData={{
       code: `
         function App(){
-             const [values, setValues] = useState(["Design"]);
+             const [values, setValues] = React.useState(["Design"]);
            return (
              <CheckboxGroup value={values}  onChange={(keys) => {
         setValues(keys)
@@ -804,7 +804,7 @@ A checkbox component with Label left configuration aligns the label to the left,
     metaData={{
       code: `
        function App(){
-             const [values, setValues] = useState(["Jane"]);
+             const [values, setValues] = React.useState(["Jane"]);
            return (
              <CheckboxGroup value={values}  onChange={(keys) => {
         setValues(keys)
@@ -920,7 +920,7 @@ An uncontrolled component utilizes a checkbox component, providing a simpler imp
     metaData={{
       code: `
 function App() {
-       const radioRef = useRef(null);
+       const radioRef = React.useRef(null);
         const handleCheckboxChange = (e) => {
             e.preventDefault();
             const checkboxValue = radioRef.current.checked;

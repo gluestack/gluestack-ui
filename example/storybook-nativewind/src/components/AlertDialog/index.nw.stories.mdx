@@ -61,7 +61,7 @@ This is an illustration of **AlertDialog** component.
       code: `
         function Example(){
           const [showAlertDialog, setShowAlertDialog] = React.useState(false);
-          const handleClose = () => setShowAlertDialog(!showAlertDialog);
+          const handleClose = () => setShowAlertDialog(false);
           return (
             <>
               <Button onPress={() => setShowAlertDialog(true)}>
@@ -495,7 +495,7 @@ The Examples section provides visual representations of the different variants o
       code: `
         function Example(){
           const [showAlertDialog, setShowAlertDialog] = React.useState(false);
-          const handleClose = () => setShowAlertDialog(!showAlertDialog);
+          const handleClose = () => setShowAlertDialog(false);
           return (
             <>
               <Button onPress={() => setShowAlertDialog(true)}>
@@ -529,7 +529,7 @@ The Examples section provides visual representations of the different variants o
                         </Text>
                       </Text>
                     </VStack>
-                    <Button size="sm" className="hidden sm:flex">
+                    <Button size="sm" className="hidden sm:flex" onPress={handleClose}>
                       <ButtonText>Upgrade</ButtonText>
                     </Button>
                   </AlertDialogBody>
@@ -574,7 +574,7 @@ The Examples section provides visual representations of the different variants o
       code: `
         function Example(){
           const [showAlertDialog, setShowAlertDialog] = React.useState(false);
-          const handleClose = () => setShowAlertDialog(!showAlertDialog);
+          const handleClose = () => setShowAlertDialog(false);
           return (
             <>
               <Button onPress={() => setShowAlertDialog(true)}>
@@ -659,7 +659,7 @@ The Examples section provides visual representations of the different variants o
       code: `
         function Example(){
           const [showAlertDialog, setShowAlertDialog] = React.useState(false);
-          const handleClose = () => setShowAlertDialog(!showAlertDialog);
+          const handleClose = () => setShowAlertDialog(false);
           return (
             <>
               <Button onPress={() => setShowAlertDialog(true)}>
