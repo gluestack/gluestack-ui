@@ -99,7 +99,7 @@ export const content = [
   {
     title: 'Fab',
     child: <FabDemo />,
-    href: '/others/fab',
+    href: '/fab',
   },
   {
     title: 'FormControl',
