@@ -76,14 +76,13 @@ This is an illustration of **Toast** component.
               id: newId,
               placement: 'top',
               duration: 3000,
-              // duration: null,
               render: ({ id }) => {
                 const uniqueToastId = "toast-" + id;
                 return (
                   <Toast nativeID={uniqueToastId} {...props}>
-                    <ToastTitle>Toast Heading</ToastTitle>
+                    <ToastTitle>Hello!</ToastTitle>
                     <ToastDescription>
-                      Lorem ipsum dolor sit amet consectetur.
+                      This is a customized toast message.
                     </ToastDescription>
                   </Toast>
                 );
@@ -444,15 +443,15 @@ The Examples section provides visual representations of the different variants o
                         size="lg"
                       />
                       <VStack space="xs">
-                        <ToastTitle className="font-semibold">Toast Heading</ToastTitle>
+                        <ToastTitle className="font-semibold">Error!</ToastTitle>
                         <ToastDescription className="text-typography-100" size="sm">
-                          Lorem ipsum dolor sit amet consectetur.
+                          Something went wrong.
                         </ToastDescription>
                       </VStack>
                     </HStack>
                     <HStack className="min-[450px]:gap-3 gap-1">
                       <Button variant="link" size="sm" className="px-3.5 self-center">
-                        <ButtonText className="text-typography-0">Retry</ButtonText>
+                        <ButtonText className="text-typography-0 group-hover/button:text-typography-50">Retry</ButtonText>
                       </Button>
                       <Pressable onPress={() => toast.close(id)}>
                         <Icon as={CloseIcon} className="stroke-background-0" />
