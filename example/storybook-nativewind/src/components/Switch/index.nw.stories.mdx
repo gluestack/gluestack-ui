@@ -38,10 +38,11 @@ This is an illustration of **Switch** component.
     showArgsController={true}
     metaData={{
       code: `
-          <Switch {...props} trackColor={{ false: colors.neutral[200], true: colors.neutral[900] }}
-      thumbColor={colors.neutral[50]}
-      activeThumbColor={colors.neutral[50]}
-      ios_backgroundColor={colors.neutral[300]} />
+        <Switch {...props} trackColor={{ false: colors.neutral[300], true: colors.neutral[600] }}
+          thumbColor={colors.neutral[50]}
+          activeThumbColor={colors.neutral[50]}
+          ios_backgroundColor={colors.neutral[300]} 
+        />
       `,
       transformCode: (code) => {
         return transformedCode(code);

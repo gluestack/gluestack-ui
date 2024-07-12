@@ -5,8 +5,7 @@ import colors from 'tailwindcss/colors';
 const SwitchBasic = ({ ...props }: any) => {
   return (
     <Switch
-      // value={props.isEnabled}
-      trackColor={{ false: colors.neutral[300], true: colors.neutral[950] }}
+      trackColor={{ false: colors.neutral[300], true: colors.neutral[600] }}
       thumbColor={colors.neutral[50]}
       activeThumbColor={colors.neutral[50]}
       ios_backgroundColor={colors.neutral[300]}
