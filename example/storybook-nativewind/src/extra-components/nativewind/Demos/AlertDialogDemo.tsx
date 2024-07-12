@@ -23,7 +23,7 @@ const AlertDialogDemo = () => {
       </Button>
       <AlertDialog size="lg" isOpen={showAlertDialog} onClose={handleClose}>
         <AlertDialogBackdrop />
-        <AlertDialogContent>
+        <AlertDialogContent focusScope={false}>
           <AlertDialogHeader>
             <Heading className="text-typography-950 font-semibold" size="md">
               Delete post?

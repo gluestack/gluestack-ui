@@ -38,13 +38,11 @@ export const content = [
   {
     title: 'Actionsheet',
     child: <ActionsheetDemo />,
-    padding: '$0',
     href: '/actionsheet',
   },
   {
     title: 'AlertDialog',
     child: <AlertDialogDemo />,
-    padding: '$0',
     href: '/alert-dialog',
   },
   {
@@ -149,7 +147,6 @@ export const content = [
   {
     title: 'Modal',
     child: <ModalDemo />,
-    padding: '$0',
     href: '/modal',
   },
 
