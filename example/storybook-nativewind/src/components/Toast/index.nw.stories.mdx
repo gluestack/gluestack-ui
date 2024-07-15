@@ -433,8 +433,9 @@ The Examples section provides visual representations of the different variants o
                 return (
                   <Toast
                     action="error"
+                    variant="outline"
                     nativeID={uniqueToastId}
-                    className="p-4 gap-6 w-full shadow-hard-5 max-w-[443px] flex-row justify-between"
+                    className="p-4 gap-6 border-error-500 w-full shadow-hard-5 max-w-[443px] flex-row justify-between"
                   >
                     <HStack space="md">
                       <Icon
@@ -443,18 +444,18 @@ The Examples section provides visual representations of the different variants o
                         size="lg"
                       />
                       <VStack space="xs">
-                        <ToastTitle className="font-semibold">Error!</ToastTitle>
-                        <ToastDescription className="text-typography-100" size="sm">
+                        <ToastTitle className="font-semibold text-error-500">Error!</ToastTitle>
+                        <ToastDescription size="sm">
                           Something went wrong.
                         </ToastDescription>
                       </VStack>
                     </HStack>
                     <HStack className="min-[450px]:gap-3 gap-1">
                       <Button variant="link" size="sm" className="px-3.5 self-center">
-                        <ButtonText className="text-typography-0 group-hover/button:text-typography-50">Retry</ButtonText>
+                        <ButtonText>Retry</ButtonText>
                       </Button>
                       <Pressable onPress={() => toast.close(id)}>
-                        <Icon as={CloseIcon} className="stroke-background-0" />
+                        <Icon as={CloseIcon} />
                       </Pressable>
                     </HStack>
                   </Toast>
