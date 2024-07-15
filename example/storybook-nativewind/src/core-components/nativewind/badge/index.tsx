@@ -210,7 +210,7 @@ const BadgeText = ({
   );
 };
 
-type IBadgeIconProps = React.ComponentProps<typeof View> &
+type IBadgeIconProps = React.ComponentProps<typeof PrimitiveIcon> &
   VariantProps<typeof badgeIconStyle>;
 const BadgeIcon = React.forwardRef(
   (
@@ -218,7 +218,11 @@ const BadgeIcon = React.forwardRef(
       className,
       size,
       ...props
-    }: { className?: string; color?: string; as?: any } & IBadgeIconProps,
+    }: {
+      className?: string;
+      color?: string;
+      as?: any;
+    } & IBadgeIconProps,
     ref?: any
   ) => {
     const { size: parentSize, action: parentAction } = useStyleContext(SCOPE);
