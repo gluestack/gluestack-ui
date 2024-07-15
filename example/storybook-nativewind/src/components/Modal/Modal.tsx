@@ -13,7 +13,7 @@ import { Heading } from '@/components/ui/heading';
 import { Icon, CloseIcon } from '@/components/ui/icon';
 import { Text } from '@/components/ui/text';
 
-const ModalBasic = () => {
+const ModalBasic = ({ ...props }: any) => {
   const [showModal, setShowModal] = useState(false);
 
   return (
@@ -26,17 +26,20 @@ const ModalBasic = () => {
         onClose={() => {
           setShowModal(false);
         }}
+        {...props}
       >
         <ModalBackdrop />
         <ModalContent>
           <ModalHeader>
-            <Heading size="lg">Engage with Modals</Heading>
+            <Heading size="md" className="text-typography-950">
+              Invite your team
+            </Heading>
             <ModalCloseButton>
-              <Icon as={CloseIcon} />
+              <Icon as={CloseIcon} className="stroke-background-500" />
             </ModalCloseButton>
           </ModalHeader>
           <ModalBody>
-            <Text>
+            <Text size="sm" className="text-typography-500">
               Elevate user interactions with our versatile modals. Seamlessly
               integrate notifications, forms, and media displays. Make an impact
               effortlessly.
@@ -45,9 +48,7 @@ const ModalBasic = () => {
           <ModalFooter>
             <Button
               variant="outline"
-              size="sm"
               action="secondary"
-              className="mr-3"
               onPress={() => {
                 setShowModal(false);
               }}
@@ -55,9 +56,6 @@ const ModalBasic = () => {
               <ButtonText>Cancel</ButtonText>
             </Button>
             <Button
-              size="sm"
-              action="positive"
-              className="border-0"
               onPress={() => {
                 setShowModal(false);
               }}
@@ -83,5 +81,4 @@ export {
   ModalFooter,
   Button,
   ButtonText,
-  Text,
 };
