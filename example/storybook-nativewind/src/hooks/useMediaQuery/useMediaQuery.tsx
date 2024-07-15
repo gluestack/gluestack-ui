@@ -31,7 +31,7 @@ const UseMediaQueryBasic = ({ ...props }: any) => {
         <Box
           className={
             'border justify-center items-center w-[120px] h-[80px] rounded gap-2 ' +
-            (isMobile ? 'border-green-500 bg-green-50' : '')
+            (isMobile ? 'border-primary-500 bg-background-50' : '')
           }
         >
           <Icon as={Smartphone} size={'xs'} />
@@ -40,7 +40,7 @@ const UseMediaQueryBasic = ({ ...props }: any) => {
         <Box
           className={
             'border justify-center items-center w-[120px] h-[80px] rounded gap-2 ' +
-            (isTablet ? 'border-green-500 bg-green-50' : '')
+            (isTablet ? 'border-primary-500 bg-background-50' : '')
           }
         >
           <Icon as={Tablet} />
@@ -49,7 +49,7 @@ const UseMediaQueryBasic = ({ ...props }: any) => {
         <Box
           className={
             'border justify-center items-center w-[120px] h-[80px] rounded gap-2 ' +
-            (isSmallScreen ? 'border-green-500 bg-green-50' : '')
+            (isSmallScreen ? 'border-primary-500 bg-background-50' : '')
           }
         >
           <Icon as={Laptop} />
@@ -58,7 +58,7 @@ const UseMediaQueryBasic = ({ ...props }: any) => {
         <Box
           className={
             'border justify-center items-center w-[120px] h-[80px] rounded gap-2 ' +
-            (isLargeScreen ? 'border-green-500 bg-green-50' : '')
+            (isLargeScreen ? 'border-primary-500 bg-background-50' : '')
           }
         >
           <Icon as={Tv} />
