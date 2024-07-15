@@ -79,7 +79,7 @@ This is an illustration of **Actionsheet** component.
       code: `
       function App(){
         const [showActionsheet, setShowActionsheet] = React.useState(false);
-        const handleClose = () => setShowActionsheet(!showActionsheet);
+        const handleClose = () => setShowActionsheet(false);
           return (
             <>
               <Button onPress={() => setShowActionsheet(true)}>
@@ -537,7 +537,7 @@ Demonstrates a common UI pattern known as keyboard handling or keyboard scrollin
       code: `
         function App(){
           const [showActionsheet, setShowActionsheet] = React.useState(false);
-          const handleClose = () => setShowActionsheet(!showActionsheet);
+          const handleClose = () => setShowActionsheet(false);
             return (
               <>
                 <Button onPress={handleClose}>
@@ -639,7 +639,7 @@ Demonstrates a common UI pattern known as keyboard handling or keyboard scrollin
       code: `
         function App(){
           const [showActionsheet, setShowActionsheet] = React.useState(false);
-          const handleClose = () => setShowActionsheet(!showActionsheet);
+          const handleClose = () => setShowActionsheet(false);
             return (
               <>
                 <Button onPress={handleClose}>
@@ -751,7 +751,7 @@ The Actionsheet with Icons is a variation of the Actionsheet component that disp
       code: `
         function App(){
           const [showActionsheet, setShowActionsheet] = React.useState(false);
-          const handleClose = () => setShowActionsheet(!showActionsheet);
+          const handleClose = () => setShowActionsheet(false);
             return (
               <>
                 <Button onPress={handleClose}>
@@ -826,7 +826,7 @@ The Actionsheet with Virtualized List includes a virtualized list for better per
     metaData={{
       code: `function App(){
     const [showActionsheet, setShowActionsheet] = React.useState(false);
-    const handleClose = () => setShowActionsheet(!showActionsheet);
+    const handleClose = () => setShowActionsheet(false);
     const data = React.useMemo(() => Array(50).fill(0).map((_, index) => 'Item' + index),[]);
     const getItem = (_data, index) => ({
       id: Math.random().toString(12).substring(0),
@@ -899,7 +899,7 @@ The Actionsheet with Flat List is a variation of the Actionsheet component that 
     metaData={{
       code: `function App(){
     const [showActionsheet, setShowActionsheet] = React.useState(false);
-    const handleClose = () => setShowActionsheet(!showActionsheet);
+    const handleClose = () => setShowActionsheet(false);
     const DATA = [
       {
         id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
@@ -976,7 +976,7 @@ The Actionsheet with SectionList is a variation of the Actionsheet component tha
     metaData={{
       code: `function App(){
     const [showActionsheet, setShowActionsheet] = React.useState(false);
-    const handleClose = () => setShowActionsheet(!showActionsheet);
+    const handleClose = () => setShowActionsheet(false);
     const DATA = [
       {
         title: 'Gender',
@@ -1047,7 +1047,7 @@ The Actionsheet with SectionList is a variation of the Actionsheet component tha
       code: `
         function App(){
           const [showActionsheet, setShowActionsheet] = React.useState(false);
-          const handleClose = () => setShowActionsheet(!showActionsheet);
+          const handleClose = () => setShowActionsheet(false);
           return (
             <>
               <Button onPress={handleClose}>
@@ -1138,7 +1138,7 @@ The Actionsheet with SectionList is a variation of the Actionsheet component tha
       code: `
         function App(){
           const [showActionsheet, setShowActionsheet] = React.useState(false);
-          const handleClose = () => setShowActionsheet(!showActionsheet);
+          const handleClose = () => setShowActionsheet(false);
           return (
             <>
               <Button onPress={handleClose}>

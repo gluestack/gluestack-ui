@@ -60,7 +60,7 @@ This is an illustration of **Modal** component.
     metaData={{
       code: `
         function App(){
-          const [showModal, setShowModal] = useState(false);
+          const [showModal, setShowModal] = React.useState(false);
           console.log(showModal);
           const ref = React.useRef(null);
           return (
@@ -530,9 +530,9 @@ A user interface featuring multiple modal components that allow for layered inte
     metaData={{
       code: `
         function App() {
-          const [showModal, setShowModal] = useState(false);
-          const [showModal2, setShowModal2] = useState(false);
-          const [showModal3, setShowModal3] = useState(false);
+          const [showModal, setShowModal] = React.useState(false);
+          const [showModal2, setShowModal2] = React.useState(false);
+          const [showModal3, setShowModal3] = React.useState(false);
           return (
             <Center>
               <Center className='h-[400px]' >
