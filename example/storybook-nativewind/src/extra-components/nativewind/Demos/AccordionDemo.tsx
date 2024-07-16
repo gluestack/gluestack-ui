@@ -17,7 +17,7 @@ const AccordionDemo = () => {
   const accRef = React.useRef(null);
   return (
     <ScrollView contentContainerStyle={{ maxHeight: 50 }}>
-      <Accordion mt="$5">
+      <Accordion className="border border-outline-200">
         <AccordionItem value="a">
           <AccordionHeader>
             <AccordionTrigger>
