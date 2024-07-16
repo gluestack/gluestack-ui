@@ -7,29 +7,101 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 <Meta title="with-nativewind/Home/Getting Started/Figma UI Kit" />
 
+import { Box } from "../../../core-components/nativewind/box"
+import { HStack } from "../../../core-components/nativewind/hstack"
+import { Text } from "../../../core-components/nativewind/text"
+import { Button, ButtonText } from "../../../core-components/nativewind/button"
+
 # Figma UI Kit
 
-The [Figma UI Kit](https://www.figma.com/@gluestack) provides a collection of ready-to-use UI components from the gluestack-ui v2. So you can directly use these components in Figma and design your app. The developers won’t have a chance to say this is not possible!
+The [Figma UI Kit](https://www.figma.com/community/file/1358053104938234615) provides a collection of ready-to-use UI components from the gluestack-ui library. So you can directly use these components in Figma and design your app. The developers won’t have a chance to say this is not possible!
 
-## Auto-generated
+<img src="/images/figma-kit.png"  />
 
-Yes, our Figma UI Kit is auto-generated from the storybook. This helps us maintain a single source of truth, providing design-development consistency which is very important if you are building at scale.
+## What is included?
 
-## Customize with ease
+Discover the comprehensive features of our latest Figma UI Kit, designed to enhance your design workflow with consistency, efficiency, and customization. Here's a breakdown of what you can expect:
 
-- **AutoLayout support** - AutoLayout is a powerful feature in Figma that helps you create responsive and flexible designs by automatically adjusting the layout and spacing of elements within frames. It's particularly useful for designing interfaces that need to adapt to various screen sizes or content changes.
+- **Color Tokens**: Color tokens in Figma provide a systematic way to manage and use colors in your design projects. They ensure consistency and simplify updates by defining a centralized set of color values reusable throughout the project. Our kit includes an extended color palette added as styles, semantic colors as variable collections, and a set of fixed colors that remain unchanged across modes.
+- **Text Tokens**: Text tokens in Figma enable you to define and manage consistent text properties like font, size, line spacing, and color. Our Figma UI Kit features two main foundation components, **Text** and **Heading**, with various sizes and font weights. You can easily customize these styles and typography properties to align with your brand.
+- **Shadow Tokens**: Shadow tokens, also known as effect styles, allow you to define and manage effects such as drop shadows, strokes, blurs, and images. Our kit includes two primary shadows, **Hard** and **Soft**, covering different light source directions and intensities.
+- **Components**: Components in Figma are reusable design elements that ensure consistent and efficient designs. They can represent UI elements, icons, buttons, or any visual elements you want to reuse. Our Figma UI Kit includes around 23 components with instances mapped in compound components, enabling you to design screens effortlessly with common primitive components.
+- **Additional Examples**: We’ve added more components and their use cases in the latest version. These examples demonstrate how components can be customized to meet user needs.
 
-- **Color Tokens** - Color tokens in Figma refer to a systematic and organized way of managing and using colors within your design projects. They help maintain consistency and make it easier to update colors across your designs by defining a centralized set of color values that can be reused throughout your project. In this Figma UI Kit we have a beautiful palette around 4312 color tokens with alpha support, covering around 48 colors with its 10 hues.
+## Incorporated Features -
 
-- **Text Tokens** - Text tokens in Figma, sometimes referred to as text styles or text components, allow you to define and manage a consistent set of text properties such as font, size, line spacing, color, and more. Text tokens help maintain a unified text style across your design project, making it easier to ensure consistency and make global updates when needed. In this Figma UI Kit, we have two major foundation components **Text** and **Heading**, along with its sizes and font weights.
+The Figma kit includes all the latest Figma features, making it an excellent starting point for any design system. The gluestack kit leverages the following advanced features to enhance your design process and streamline your workflow.
 
-- **Shadow Tokens** - Shadow tokens in Figma, sometimes referred to as effect styles, allow you to define and manage Effects, like drop shadows, stroke, blur and even images as Styles. In this Figma UI Kit, we majorly have included two shadows, named **Hard** and **Soft** shadows.
+### AutoLayout Support
 
-- **Components** - Components in Figma are reusable design elements that allow you to create consistent and efficient designs. Components can represent UI elements, icons, buttons, or any other visual elements that you want to reuse across your design projects. This Figma UI Kit, includes around 23 components along with its instances mapped in compound components.
+Figma's AutoLayout feature allows for the creation of responsive and flexible designs by automatically adjusting the layout and spacing of elements within frames. This ensures that designs adapt seamlessly to various screen sizes and content changes. All components in our file are equipped with AutoLayout, enabling consistent design across mobile, tablet, and desktop devices.
 
-<img src="/images/figma-ui-kit-desktop.svg" />
+### Variable Support
 
-## Try it now
+The latest variable feature in Figma simplifies the process of switching between light and dark modes. With just one click, you can toggle between these modes, ensuring that designs are optimized for different viewing preferences.
 
-Find the Figma UI Kit live [here](https://www.figma.com/community/file/1358053104938234615/gluestack-ui-v2-0-design-kit)!
+<img src="/images/Variables.png" />
 
+## Taking It One Step Further
+
+We like to elevate our offerings, and with the v2 release, users will benefit from the following enhancements:
+
+- **Detailed Documentation**: Each component comes with a spec sheet, providing comprehensive information on structuring, properties, dos and don'ts, and use cases. This documentation is invaluable for anyone seeking an in-depth understanding of our design process.
+
+<img src="/images/figma-docs.png" />
+
+- **gluestack Plugin**: Customization in Figma can often be a manual and time-consuming task. To streamline this, we've introduced the [gluestack plugin](https://www.figma.com/community/plugin/1304000704678516266/gluestack), now available in the Figma Community. This plugin simplifies the process of linking text styles and updating font families, making customization more efficient and less tedious.
+
+<Box className="p-4 flex rounded-md border border-gray-200 dark:border-gray-800 mb-6">
+  <HStack space="md" className="items-center">
+  <Box
+      className="mr-2 hidden sm:flex justify-center items-center h-14 w-14 rounded-full bg-[#F6F6F6] dark:bg-[#F2F1F1]"
+    >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="25"
+      viewBox="0 0 24 25"
+      fill="none"
+    >
+      <path
+        d="M3 11.5L21 6.5V18.5L3 14.5V11.5Z"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke="#272625"
+        className="stroke-[#272625] dark:stroke-[#F6F6F6]"
+      />
+      <path
+        d="M11.6002 17.3002C11.4952 17.681 11.3161 18.0374 11.0733 18.3491C10.8305 18.6607 10.5287 18.9215 10.1851 19.1165C9.84156 19.3115 9.46294 19.4369 9.0709 19.4856C8.67885 19.5343 8.28105 19.5053 7.90022 19.4002C7.51938 19.2951 7.16297 19.1161 6.85133 18.8733C6.53969 18.6305 6.27892 18.3287 6.08392 17.9851C5.88892 17.6415 5.7635 17.2629 5.71482 16.8709C5.66614 16.4788 5.69516 16.081 5.80022 15.7002"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke="#272625"
+        className="stroke-[#272625] dark:stroke-[#F6F6F6]"
+      />
+    </svg>
+    </Box>
+  <HStack>
+    <Box
+      maxWidth="fit-content"
+      maxHeight="fit-content"
+      className="max-w-fit max-h-fit flex-1 text-sm gap-1"
+    >
+      <Text className="text-sm font-bold">
+        Try it out now!
+      </Text>
+      <Box style={{ $$css: true, note: 'note-content' }}>
+      <Text className="text-sm">
+        Streamline your design process with our versatile Figma kit. Get access to a rich collection of components, patterns, and assets to create stunning designs effortlessly. 
+      </Text>
+      </Box>
+    </Box>
+    </HStack>
+    <Button>
+      <ButtonText>
+        Figma Kit
+      </ButtonText>
+    </Button>
+  </HStack>
+</Box>
