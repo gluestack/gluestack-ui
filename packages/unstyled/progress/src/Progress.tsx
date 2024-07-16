@@ -13,7 +13,7 @@ const useProgress = ({
 }) => {
   const valueWidth =
     value < max && value > min
-      ? ((value - min) / (max - min)) * 100
+      ? Math.round(((value - min) / (max - min)) * 100)
       : value > min
       ? 100
       : 0;

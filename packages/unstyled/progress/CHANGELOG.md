@@ -1,5 +1,11 @@
 # @gluestack-ui/progress
 
+## 0.1.16
+
+### Patch Changes
+
+- fix: round of calculation
+
 ## 0.1.15
 
 ### Patch Changes

@@ -61,7 +61,6 @@ const ModalDemo = () => {
             </Button>
             <Button
               size="sm"
-              action="positive"
               onPress={() => {
                 setShowModal(false);
               }}

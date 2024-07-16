@@ -540,7 +540,7 @@ Demonstrates a common UI pattern known as keyboard handling or keyboard scrollin
           const handleClose = () => setShowActionsheet(false);
             return (
               <>
-                <Button onPress={handleClose}>
+                <Button onPress={() => setShowActionsheet(true)}>
                   <ButtonText>Open</ButtonText>
                 </Button>
                 <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
@@ -642,7 +642,7 @@ Demonstrates a common UI pattern known as keyboard handling or keyboard scrollin
           const handleClose = () => setShowActionsheet(false);
             return (
               <>
-                <Button onPress={handleClose}>
+                <Button onPress={() => setShowActionsheet(true)}>
                     <ButtonText>Open</ButtonText>
                 </Button>
                 <Actionsheet
@@ -754,7 +754,7 @@ The Actionsheet with Icons is a variation of the Actionsheet component that disp
           const handleClose = () => setShowActionsheet(false);
             return (
               <>
-                <Button onPress={handleClose}>
+                <Button onPress={() => setShowActionsheet(true)}>
                   <ButtonText>Open</ButtonText>
                 </Button>
                 <Actionsheet isOpen={showActionsheet} onClose={handleClose}>
@@ -843,7 +843,7 @@ The Actionsheet with Virtualized List includes a virtualized list for better per
     );
     return (
     <>
-        <Button onPress={handleClose}>
+        <Button onPress={() => setShowActionsheet(true)}>
           <ButtonText>Open</ButtonText>
         </Button>
         <Actionsheet isOpen={showActionsheet} onClose={handleClose}  snapPoints={[50]}>
@@ -924,7 +924,7 @@ The Actionsheet with Flat List is a variation of the Actionsheet component that 
     );
     return (
     <>
-        <Button onPress={handleClose}>
+        <Button onPress={() => setShowActionsheet(true)}>
           <ButtonText>Open</ButtonText>
         </Button>
         <Actionsheet isOpen={showActionsheet} onClose={handleClose}>
@@ -985,7 +985,7 @@ The Actionsheet with SectionList is a variation of the Actionsheet component tha
     ];
     return (
     <>
-        <Button onPress={handleClose}>
+        <Button onPress={() => setShowActionsheet(true)}>
           <ButtonText>Open</ButtonText>
         </Button>
         <Actionsheet isOpen={showActionsheet} onClose={handleClose} snapPoints={[35]}>
@@ -1050,7 +1050,7 @@ The Actionsheet with SectionList is a variation of the Actionsheet component tha
           const handleClose = () => setShowActionsheet(false);
           return (
             <>
-              <Button onPress={handleClose}>
+              <Button onPress={() => setShowActionsheet(true)}>
                 <ButtonText>Open</ButtonText>
               </Button>
               <Actionsheet isOpen={showActionsheet} onClose={handleClose}>
@@ -1141,7 +1141,7 @@ The Actionsheet with SectionList is a variation of the Actionsheet component tha
           const handleClose = () => setShowActionsheet(false);
           return (
             <>
-              <Button onPress={handleClose}>
+              <Button onPress={() => setShowActionsheet(true)}>
                 <ButtonText>Open</ButtonText>
               </Button>
               <Actionsheet isOpen={showActionsheet} onClose={handleClose}>
