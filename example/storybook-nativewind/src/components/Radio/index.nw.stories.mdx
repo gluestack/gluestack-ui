@@ -832,7 +832,7 @@ The Radio components can be used with either a ref or no state, providing an unc
     metaData={{
       code: `
       function App () {
-        const radioRef = useRef(null);
+        const radioRef = React.useRef(null);
         const handleRadioChange = (e) => {
           e.preventDefault();
           const checkboxValue = radioRef.current.checked;

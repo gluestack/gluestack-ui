@@ -81,7 +81,10 @@ const UIButton = createButton({
   Text,
   Group: View,
   Spinner: ActivityIndicator,
-  Icon: Platform.OS === 'web' ? PrimitiveIcon : withStates(PrimitiveIcon),
+  Icon:
+    Platform.OS === 'web'
+      ? withStates(PrimitiveIcon)
+      : withStates(PrimitiveIcon),
 });
 
 cssInterop(UIButton, { className: 'style' });
@@ -90,7 +93,7 @@ cssInterop(UIButton.Group, { className: 'style' });
 cssInterop(UIButton.Spinner, {
   className: { target: 'style', nativeStyleToProp: { color: true } },
 });
-cssInterop(UIButton.Icon, {
+cssInterop(PrimitiveIcon, {
   className: {
     target: 'style',
     nativeStyleToProp: {
@@ -109,19 +112,20 @@ const buttonStyle = tva({
   variants: {
     action: {
       primary:
-        'bg-primary-500 hover:bg-primary-600 active:bg-primary-700  border-primary-300 hover:border-primary-400 active:border-primary-500 data-[focus-visible=true]:web:ring-indicator-info',
+        'bg-primary-500 data-[hover=true]:bg-primary-600 data-[active=true]:bg-primary-700 border-primary-300 data-[hover=true]:border-primary-400 data-[active=true]:border-primary-500 data-[focus-visible=true]:web:ring-indicator-info',
       secondary:
-        'bg-secondary-500 border-secondary-300 hover:bg-secondary-600 hover:border-secondary-400 active:bg-secondary-700 active:border-secondary-500 data-[focus-visible=true]:web:ring-indicator-info',
+        'bg-secondary-500 border-secondary-300 data-[hover=true]:bg-secondary-600 data-[hover=true]:border-secondary-400 data-[active=true]:bg-secondary-700 data-[active=true]:border-secondary-500 data-[focus-visible=true]:web:ring-indicator-info',
       positive:
-        'bg-success-500 border-success-300 hover:bg-success-600 hover:border-success-400 active:bg-success-700 active:border-success-500 data-[focus-visible=true]:web:ring-indicator-info',
+        'bg-success-500 border-success-300 data-[hover=true]:bg-success-600 data-[hover=true]:border-success-400 data-[active=true]:bg-success-700 data-[active=true]:border-success-500 data-[focus-visible=true]:web:ring-indicator-info',
       negative:
-        'bg-error-500 border-error-300 hover:bg-error-600 hover:border-error-400 active:bg-error-700 active:border-error-500 data-[focus-visible=true]:web:ring-indicator-info',
-      default: 'bg-transparent hover:bg-background-50 active:bg-transparent',
+        'bg-error-500 border-error-300 data-[hover=true]:bg-error-600 data-[hover=true]:border-error-400 data-[active=true]:bg-error-700 data-[active=true]:border-error-500 data-[focus-visible=true]:web:ring-indicator-info',
+      default:
+        'bg-transparent data-[hover=true]:bg-background-50 data-[active=true]:bg-transparent',
     },
     variant: {
       link: 'px-0',
       outline:
-        'bg-transparent border hover:bg-background-50 active:bg-transparent',
+        'bg-transparent border data-[hover=true]:bg-background-50 data-[active=true]:bg-transparent',
       solid: '',
     },
 
@@ -137,42 +141,50 @@ const buttonStyle = tva({
     {
       action: 'primary',
       variant: 'link',
-      class: 'px-0 bg-transparent hover:bg-transparent active:bg-transparent',
+      class:
+        'px-0 bg-transparent data-[hover=true]:bg-transparent data-[active=true]:bg-transparent',
     },
     {
       action: 'secondary',
       variant: 'link',
-      class: 'px-0 bg-transparent hover:bg-transparent active:bg-transparent',
+      class:
+        'px-0 bg-transparent data-[hover=true]:bg-transparent data-[active=true]:bg-transparent',
     },
     {
       action: 'positive',
       variant: 'link',
-      class: 'px-0 bg-transparent hover:bg-transparent active:bg-transparent',
+      class:
+        'px-0 bg-transparent data-[hover=true]:bg-transparent data-[active=true]:bg-transparent',
     },
     {
       action: 'negative',
       variant: 'link',
-      class: 'px-0 bg-transparent hover:bg-transparent active:bg-transparent',
+      class:
+        'px-0 bg-transparent data-[hover=true]:bg-transparent data-[active=true]:bg-transparent',
     },
     {
       action: 'primary',
       variant: 'outline',
-      class: 'bg-transparent hover:bg-background-50 active:bg-transparent',
+      class:
+        'bg-transparent data-[hover=true]:bg-background-50 data-[active=true]:bg-transparent',
     },
     {
       action: 'secondary',
       variant: 'outline',
-      class: 'bg-transparent hover:bg-background-50 active:bg-transparent',
+      class:
+        'bg-transparent data-[hover=true]:bg-background-50 data-[active=true]:bg-transparent',
     },
     {
       action: 'positive',
       variant: 'outline',
-      class: 'bg-transparent hover:bg-background-50 active:bg-transparent',
+      class:
+        'bg-transparent data-[hover=true]:bg-background-50 data-[active=true]:bg-transparent',
     },
     {
       action: 'negative',
       variant: 'outline',
-      class: 'bg-transparent hover:bg-background-50 active:bg-transparent',
+      class:
+        'bg-transparent data-[hover=true]:bg-background-50 data-[active=true]:bg-transparent',
     },
   ],
 });
@@ -182,19 +194,19 @@ const buttonTextStyle = tva({
   parentVariants: {
     action: {
       primary:
-        'text-primary-600 group-hover/button:text-primary-600 group-active/button:text-primary-700',
+        'text-primary-600 data-[hover=true]:text-primary-600 data-[active=true]:text-primary-700',
       secondary:
-        'text-secondary-600 group-hover/button:text-secondary-600 group-active/button:text-secondary-700',
+        'text-secondary-600 data-[hover=true]:text-secondary-600 data-[active=true]:text-secondary-700',
       positive:
-        'text-success-600 group-hover/button:text-success-600 group-active/button:text-success-700',
+        'text-success-600 data-[hover=true]:text-success-600 data-[active=true]:text-success-700',
       negative:
-        'text-error-600 group-hover/button:text-error-600 group-active/button:text-error-700',
+        'text-error-600 data-[hover=true]:text-error-600 data-[active=true]:text-error-700',
     },
     variant: {
-      link: 'group-hover/button:underline group-active/button:underline',
+      link: 'data-[hover=true]:underline data-[active=true]:underline',
       outline: '',
       solid:
-        'text-typography-0 group-hover/button:text-typography-0 group-active/button:text-typography-0',
+        'text-typography-0 data-[hover=true]:text-typography-0 data-[active=true]:text-typography-0',
     },
     size: {
       xs: 'text-xs',
@@ -209,49 +221,49 @@ const buttonTextStyle = tva({
       variant: 'solid',
       action: 'primary',
       class:
-        'text-typography-0 group-hover/button:text-typography-0 group-active/button:text-typography-0',
+        'text-typography-0 data-[hover=true]:text-typography-0 data-[active=true]:text-typography-0',
     },
     {
       variant: 'solid',
       action: 'secondary',
       class:
-        'text-typography-0 group-hover/button:text-typography-0 group-active/button:text-typography-0',
+        'text-typography-0 data-[hover=true]:text-typography-0 data-[active=true]:text-typography-0',
     },
     {
       variant: 'solid',
       action: 'positive',
       class:
-        'text-typography-0 group-hover/button:text-typography-0 group-active/button:text-typography-0',
+        'text-typography-0 data-[hover=true]:text-typography-0 data-[active=true]:text-typography-0',
     },
     {
       variant: 'solid',
       action: 'negative',
       class:
-        'text-typography-0 group-hover/button:text-typography-0 group-active/button:text-typography-0',
+        'text-typography-0 data-[hover=true]:text-typography-0 data-[active=true]:text-typography-0',
     },
     {
       variant: 'outline',
       action: 'primary',
       class:
-        'text-primary-500 group-hover/button:text-primary-500 group-active/button:text-primary-500',
+        'text-primary-500 data-[hover=true]:text-primary-500 data-[active=true]:text-primary-500',
     },
     {
       variant: 'outline',
       action: 'secondary',
       class:
-        'text-primary-500 group-hover/button:text-primary-500 group-active/button:text-primary-500',
+        'text-primary-500 data-[hover=true]:text-primary-500 data-[active=true]:text-primary-500',
     },
     {
       variant: 'outline',
       action: 'positive',
       class:
-        'text-primary-500 group-hover/button:text-primary-500 group-active/button:text-primary-500',
+        'text-primary-500 data-[hover=true]:text-primary-500 data-[active=true]:text-primary-500',
     },
     {
       variant: 'outline',
       action: 'negative',
       class:
-        'text-primary-500 group-hover/button:text-primary-500 group-active/button:text-primary-500',
+        'text-primary-500 data-[hover=true]:text-primary-500 data-[active=true]:text-primary-500',
     },
   ],
 });
@@ -260,10 +272,10 @@ const buttonIconStyle = tva({
   base: 'fill-none',
   parentVariants: {
     variant: {
-      link: 'group-hover/button:underline group-active/button:underline',
+      link: 'data-[hover=true]:underline data-[active=true]:underline',
       outline: '',
       solid:
-        'text-typography-0 group-hover/button:text-typography-0 group-active/button:text-typography-0',
+        'text-typography-0 data-[hover=true]:text-typography-0 data-[active=true]:text-typography-0',
     },
     size: {
       xs: 'h-3.5 w-3.5',
@@ -274,14 +286,14 @@ const buttonIconStyle = tva({
     },
     action: {
       primary:
-        'text-primary-600 group-hover/button:text-primary-600 group-active/button:text-primary-700',
+        'text-primary-600 data-[hover=true]:text-primary-600 data-[active=true]:text-primary-700',
       secondary:
-        'text-secondary-600 group-hover/button:text-secondary-600 group-active/button:text-secondary-700',
+        'text-secondary-600 data-[hover=true]:text-secondary-600 data-[active=true]:text-secondary-700',
       positive:
-        'text-success-600 group-hover/button:text-success-600 group-active/button:text-success-700',
+        'text-success-600 data-[hover=true]:text-success-600 data-[active=true]:text-success-700',
 
       negative:
-        'text-error-600 group-hover/button:text-error-600 group-active/button:text-error-700',
+        'text-error-600 data-[hover=true]:text-error-600 data-[active=true]:text-error-700',
     },
   },
   parentCompoundVariants: [
@@ -289,25 +301,25 @@ const buttonIconStyle = tva({
       variant: 'solid',
       action: 'primary',
       class:
-        'text-typography-0 group-hover/button:text-typography-0 group-active/button:text-typography-0',
+        'text-typography-0 data-[hover=true]:text-typography-0 data-[active=true]:text-typography-0',
     },
     {
       variant: 'solid',
       action: 'secondary',
       class:
-        'text-typography-0 group-hover/button:text-typography-0 group-active/button:text-typography-0',
+        'text-typography-0 data-[hover=true]:text-typography-0 data-[active=true]:text-typography-0',
     },
     {
       variant: 'solid',
       action: 'positive',
       class:
-        'text-typography-0 group-hover/button:text-typography-0 group-active/button:text-typography-0',
+        'text-typography-0 data-[hover=true]:text-typography-0 data-[active=true]:text-typography-0',
     },
     {
       variant: 'solid',
       action: 'negative',
       class:
-        'text-typography-0 group-hover/button:text-typography-0 group-active/button:text-typography-0',
+        'text-typography-0 data-[hover=true]:text-typography-0 data-[active=true]:text-typography-0',
     },
   ],
 });

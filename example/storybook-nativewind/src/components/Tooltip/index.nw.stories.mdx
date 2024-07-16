@@ -522,7 +522,7 @@ A tooltip component with an avatar is a user interface element that displays a s
                   }}
                 >
                   <TooltipContent
-                    className="p-4 rounded-md max-w-72 bg-background-0"
+                    className="p-4 rounded-md max-w-72 bg-background-50"
                   >
                     <VStack space='md' className="rounded-lg">
                       <Heading size="sm">View all members of this channel</Heading>
@@ -535,15 +535,15 @@ A tooltip component with an avatar is a user interface element that displays a s
                 </Tooltip>
                <Avatar size="lg"
                     className={"border-outline-0 border-2 bg-emerald-600"} >
-                      <AvatarFallbackText>Sandeep Srivastva</AvatarFallbackText>
+                      <AvatarFallbackText className="text-white">Sandeep Srivastva</AvatarFallbackText>
                 </Avatar>
                    <Avatar size="lg"
                     className={"border-outline-0 border-2 bg-cyan-600"} >
-                      <AvatarFallbackText>Arjun Kapoor</AvatarFallbackText>
+                      <AvatarFallbackText className="text-white">Arjun Kapoor</AvatarFallbackText>
                 </Avatar>
                       <Avatar size="lg"
                     className={"border-outline-0 border-2 bg-indigo-600"} >
-                      <AvatarFallbackText>Ritik Sharma </AvatarFallbackText>
+                      <AvatarFallbackText className="text-white">Ritik Sharma </AvatarFallbackText>
                 </Avatar>
               </AvatarGroup>
             </Box>
@@ -590,14 +590,14 @@ A tooltip component with an icon is a user interface element that provides conte
                   placement={"top"}
                   trigger={(triggerProps) => {
                     return (
-                    <Avatar size="md" {...triggerProps} className="bg-indigo-600">
-                      <Icon as={EditIcon} size="sm" className="text-typography-0"/>
+                    <Avatar size="md" {...triggerProps} className="bg-primary-600">
+                      <Icon as={EditIcon} size="sm" className="text-white"/>
                     </Avatar>
                     )
                   }}
               >
                 <TooltipContent
-                className="bg-background-0 rounded-md"
+                className="bg-background-50 rounded-md"
                 >
                   <Box className="p-2.5">
                     <Text size="sm">New message</Text>
