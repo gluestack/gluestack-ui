@@ -1,31 +1,9 @@
 import React from 'react';
 import { Text } from '@/components/ui/text';
 
-const TextBasic = ({
-  size = 'md',
-  text = 'Hello world',
-  fontWeight = 'bold',
-  ...props
-}: any) => {
-  const fontWeights = {
-    hairline: 'font-hairline',
-    thin: 'font-thin',
-    light: 'font-light',
-    normal: 'font-normal',
-    medium: 'font-medium',
-    semibold: 'font-semibold',
-    bold: 'font-bold',
-    extrabold: 'font-extrabold',
-    black: 'font-black',
-    extrablack: 'font-extrablack',
-  };
-
+const TextBasic = ({ size = 'md', text = 'Hello world', ...props }: any) => {
   return (
-    <Text
-      size={size}
-      {...props}
-      className={`${fontWeights[fontWeight as keyof typeof fontWeights]}`}
-    >
+    <Text size={size} {...props}>
       {text}
     </Text>
   );
