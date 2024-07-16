@@ -141,7 +141,7 @@ function Card1() {
                       },
                     }}
                   >
-                    gluestack
+                    gluestack@v1
                   </Text>
                 </Text>
                 {showCopy ? (
