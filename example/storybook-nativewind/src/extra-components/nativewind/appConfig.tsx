@@ -7,6 +7,15 @@ export const kitchensink = {
   qrCodeUri:
     'https://qr.expo.dev/eas-update?slug=exp&projectId=42cce9b5-9fbe-4572-92ba-fc43b2437a85&groupId=432e8802-2a73-4498-8301-5ac41664678e',
 };
+export const todoapp = {
+  updateIds: {
+    android: 'd2aa812c-739b-4200-8455-a8ca6da22310',
+    ios: '742e1120-7c9a-4bba-bfe0-1dd4b812934b',
+  },
+  iframeUri: 'https://gluestack-ui-todo-example-app.vercel.app/',
+  qrCodeUri:
+    'https://qr.expo.dev/eas-update?slug=exp&projectId=42cce9b5-9fbe-4572-92ba-fc43b2437a85&groupId=432e8802-2a73-4498-8301-5ac41664678e',
+};
 
 export const appStoryConfig = {
   updateIds: {
