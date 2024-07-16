@@ -699,9 +699,7 @@ Error messages can be displayed using FormControl.
             <VStack space="sm">
               <Radio size="sm" value="Mango">
                 <RadioIndicator>
-                  <RadioIcon>
-                    <CircleIcon/>
-                  </RadioIcon>
+                  <RadioIcon as={CircleIcon} />
                 </RadioIndicator>
                 <RadioLabel>
                   Monday
@@ -709,9 +707,7 @@ Error messages can be displayed using FormControl.
               </Radio>
               <Radio size="sm" value="Apple">
                 <RadioIndicator>
-                  <RadioIcon>
-                    <CircleIcon/>
-                  </RadioIcon>
+                  <RadioIcon as={CircleIcon} />
                 </RadioIndicator>
                 <RadioLabel>
                   Tuesday
@@ -719,9 +715,7 @@ Error messages can be displayed using FormControl.
               </Radio>
               <Radio size="sm" value="Orange">
                 <RadioIndicator>
-                  <RadioIcon>
-                    <CircleIcon/>
-                  </RadioIcon>
+                  <RadioIcon as={CircleIcon} />
                 </RadioIndicator>
                 <RadioLabel>
                   Wednesday
@@ -730,7 +724,7 @@ Error messages can be displayed using FormControl.
             </VStack>
           </RadioGroup>
           <FormControlError>
-            <FormControlErrorIcon size={10} as={AlertCircleIcon}/>
+            <FormControlErrorIcon as={AlertCircleIcon}/>
             <FormControlErrorText>
               Choose one time slot for the meeting
             </FormControlErrorText>
@@ -786,7 +780,7 @@ Form Action Buttons can also be utilized in conjunction with FormControl.
           </FormControl>
                <FormControl>
             <Button action='negative' className='ml-4'>
-              <ButtonText>
+              <ButtonText className="text-white">
                 Delete
               </ButtonText>
             </Button>

@@ -242,8 +242,8 @@ An Avatar component with text displays a stylized representation of a user or en
     <VStack space="2xl">
         <HStack space="md">
             <Avatar className='bg-indigo-600'>
-              <AvatarFallbackText>Ronald Richards</AvatarFallbackText>
-              <AvatarBadge $dark-borderColor="$black"/>
+              <AvatarFallbackText className="text-white">Ronald Richards</AvatarFallbackText>
+              <AvatarBadge />
             </Avatar>
           <VStack>
              <Heading size="sm" >Ronald Richards</Heading>
@@ -252,7 +252,7 @@ An Avatar component with text displays a stylized representation of a user or en
       </HStack>
       <HStack space="md">
         <Avatar className='bg-orange-600'>
-            <AvatarFallbackText>Arlene McCoy</AvatarFallbackText>
+            <AvatarFallbackText className="text-white">Arlene McCoy</AvatarFallbackText>
         </Avatar>
         <VStack>
             <Heading size="sm" >Arlene McCoy</Heading>
@@ -294,7 +294,7 @@ An Avatar component with an icon combines a graphical symbol or icon with a user
             <HStack space="md">
               <Avatar className='bg-indigo-600'>
                 {/* User is imported from 'lucide-react-native' */}
-                <Icon as={User} size="lg"/>
+                <Icon as={User} size="lg" className="stroke-white" />
               </Avatar>
               <VStack >
                 <Heading size="sm" >Ronald Richards</Heading>
@@ -304,7 +304,7 @@ An Avatar component with an icon combines a graphical symbol or icon with a user
             <HStack space="md">
                 <Avatar className='bg-pink-600'>
                  {/* User is imported from 'lucide-react-native' */}
-                <Icon as={User} size="lg"/>
+                <Icon as={User} size="lg" className="stroke-white" />
                 </Avatar>
                 <VStack >
                   <Heading size="sm" >Kevin James</Heading>
@@ -422,7 +422,7 @@ The avatar group allows users to group avatars and display them in a horizontal 
               {avatars.slice(0, 3).map((avatar, index) => {
                 return (
                   <Avatar key={index} size="lg" className={'border-2 border-outline-0 ' + avatar.color}>
-                    <AvatarFallbackText>{avatar.alt}</AvatarFallbackText>
+                    <AvatarFallbackText className="text-white">{avatar.alt}</AvatarFallbackText>
                   </Avatar>
                 );
               })}
