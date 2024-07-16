@@ -63,7 +63,7 @@ const modalBackdropStyle = tva({
 });
 
 const modalContentStyle = tva({
-  base: 'bg-background-50 rounded-lg overflow-hidden',
+  base: 'bg-background-0 rounded-md overflow-hidden border border-outline-100 shadow-hard-2 p-6',
   parentVariants: {
     size: {
       xs: 'w-[60%] max-w-[360px]',
@@ -76,19 +76,19 @@ const modalContentStyle = tva({
 });
 
 const modalBodyStyle = tva({
-  base: 'px-4 pb-2 pt-0',
+  base: 'mt-4 mb-6',
 });
 
 const modalCloseButtonStyle = tva({
-  base: 'group/modal-close-button z-10 p-2 rounded data-[focus-visible=true]:web:bg-background-100 web:outline-0 cursor-pointer',
+  base: 'group/modal-close-button z-10 rounded data-[focus-visible=true]:web:bg-background-100 web:outline-0 cursor-pointer',
 });
 
 const modalHeaderStyle = tva({
-  base: 'px-4 pt-4 pb-2 justify-between items-center flex-row',
+  base: 'justify-between items-center flex-row',
 });
 
 const modalFooterStyle = tva({
-  base: 'p-4 flex-row justify-end items-center flex-wrap',
+  base: 'flex-row justify-end items-center gap-2',
 });
 
 type IModalProps = React.ComponentProps<typeof UIModal> &
