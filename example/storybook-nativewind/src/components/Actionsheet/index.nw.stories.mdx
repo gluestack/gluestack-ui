@@ -540,7 +540,7 @@ Demonstrates a common UI pattern known as keyboard handling or keyboard scrollin
           const handleClose = () => setShowActionsheet(false);
             return (
               <>
-                <Button onPress={handleClose}>
+                <Button onPress={() => setShowActionsheet(true)}>
                   <ButtonText>Open</ButtonText>
                 </Button>
                 <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
@@ -642,7 +642,7 @@ Demonstrates a common UI pattern known as keyboard handling or keyboard scrollin
           const handleClose = () => setShowActionsheet(false);
             return (
               <>
-                <Button onPress={handleClose}>
+                <Button onPress={() => setShowActionsheet(true)}>
                     <ButtonText>Open</ButtonText>
                 </Button>
                 <Actionsheet
@@ -754,7 +754,7 @@ The Actionsheet with Icons is a variation of the Actionsheet component that disp
           const handleClose = () => setShowActionsheet(false);
             return (
               <>
-                <Button onPress={handleClose}>
+                <Button onPress={() => setShowActionsheet(true)}>
                   <ButtonText>Open</ButtonText>
                 </Button>
                 <Actionsheet isOpen={showActionsheet} onClose={handleClose}>
@@ -843,7 +843,7 @@ The Actionsheet with Virtualized List includes a virtualized list for better per
     );
     return (
     <>
-        <Button onPress={handleClose}>
+        <Button onPress={() => setShowActionsheet(true)}>
           <ButtonText>Open</ButtonText>
         </Button>
         <Actionsheet isOpen={showActionsheet} onClose={handleClose}  snapPoints={[50]}>
@@ -924,7 +924,7 @@ The Actionsheet with Flat List is a variation of the Actionsheet component that 
     );
     return (
     <>
-        <Button onPress={handleClose}>
+        <Button onPress={() => setShowActionsheet(true)}>
           <ButtonText>Open</ButtonText>
         </Button>
         <Actionsheet isOpen={showActionsheet} onClose={handleClose}>
@@ -985,7 +985,7 @@ The Actionsheet with SectionList is a variation of the Actionsheet component tha
     ];
     return (
     <>
-        <Button onPress={handleClose}>
+        <Button onPress={() => setShowActionsheet(true)}>
           <ButtonText>Open</ButtonText>
         </Button>
         <Actionsheet isOpen={showActionsheet} onClose={handleClose} snapPoints={[35]}>
@@ -1050,7 +1050,7 @@ The Actionsheet with SectionList is a variation of the Actionsheet component tha
           const handleClose = () => setShowActionsheet(false);
           return (
             <>
-              <Button onPress={handleClose}>
+              <Button onPress={() => setShowActionsheet(true)}>
                 <ButtonText>Open</ButtonText>
               </Button>
               <Actionsheet isOpen={showActionsheet} onClose={handleClose}>
@@ -1127,125 +1127,3 @@ The Actionsheet with SectionList is a variation of the Actionsheet component tha
     }}
   />
 </Wrapper>
-
-{/* ### Actionsheet with CTA
-
-<Wrapper>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
-        function App(){
-          const [showActionsheet, setShowActionsheet] = React.useState(false);
-          const handleClose = () => setShowActionsheet(false);
-          return (
-            <>
-              <Button onPress={handleClose}>
-                <ButtonText>Open</ButtonText>
-              </Button>
-              <Actionsheet isOpen={showActionsheet} onClose={handleClose}>
-                <ActionsheetBackdrop />
-                <ActionsheetContent className="px-5">
-                  <ActionsheetDragIndicatorWrapper>
-                    <ActionsheetDragIndicator />
-                  </ActionsheetDragIndicatorWrapper>
-                  <HStack className="justify-between w-full gap-2 mt-3">
-                    <Text
-                      size="xl"
-                      className="font-semibold text-typography-900 flex-1"
-                    >
-                      See what all new features are available in this updated
-                    </Text>
-                    <Pressable onPress={handleClose}>
-                      <Icon as={CloseIcon} size="lg" className="stroke-background-500" />
-                    </Pressable>
-                  </HStack>
-                  <VStack className="my-5 gap-3 w-full">
-                    <ActionsheetItem className="gap-3 w-full" onPress={handleClose}>
-                      <Box className="bg-success-700 rounded-full items-center justify-center w-8 h-8">
-                        <ActionsheetIcon size="sm" as={Send} className="stroke-typography-0" />
-                      </Box>
-                      <VStack className="flex-1">
-                        <Text className="text-typography-950">
-                          Simplified navigation
-                        </Text>
-                        <ActionsheetItemText size="sm">
-                          Usage of app was never that easy: all important things at your
-                          fingertips
-                        </ActionsheetItemText>
-                      </VStack>
-                    </ActionsheetItem>
-                    <ActionsheetItem className="gap-3" onPress={handleClose}>
-                      <Box className="w-8 h-8 bg-success-700 rounded-full items-center justify-center">
-                        <ActionsheetIcon
-                          size="sm"
-                          as={Percent}
-                          className="stroke-typography-0"
-                        />
-                      </Box>
-                      <VStack className="flex-1">
-                        <Text className="text-typography-950">Special offer</Text>
-                        <ActionsheetItemText size="sm">
-                          Get new offers and discounts every week right in the app
-                        </ActionsheetItemText>
-                      </VStack>
-                    </ActionsheetItem>
-                    <ActionsheetItem className="gap-3" onPress={handleClose}>
-                      <Box className="w-8 h-8 bg-success-700 rounded-full items-center justify-center">
-                        <ActionsheetIcon
-                          size="sm"
-                          as={DollarSign}
-                          className="stroke-typography-0"
-                        />
-                      </Box>
-                      <VStack className="flex-1">
-                        <Text className="text-typography-950">New cashback</Text>
-                        <ActionsheetItemText size="sm">
-                          Get daily cashback from every purchase you make and even more
-                          when you shop at our partners
-                        </ActionsheetItemText>
-                      </VStack>
-                    </ActionsheetItem>
-                  </VStack>
-                  <Button className="w-full" size="lg" onPress={handleClose}>
-                    <ButtonText>Explore all</ButtonText>
-                  </Button>
-                </ActionsheetContent>
-              </Actionsheet>
-            </>
-          );
-        }
-      `,
-      transformCode: (code) => {
-        return transformedCode(code, 'function', 'App');
-      },
-      scope: {
-        Actionsheet,
-        ActionsheetBackdrop,
-        ActionsheetContent,
-        ActionsheetDragIndicator,
-        ActionsheetDragIndicatorWrapper,
-        ActionsheetItem,
-        ActionsheetIcon,
-        ActionsheetItemText,
-        ActionsheetSectionList,
-        ActionsheetSectionHeaderText,
-        Button,
-        ButtonText,
-        Wrapper,
-        HStack,
-        VStack,
-        Box,
-        Text,
-        Icon,
-        CloseIcon,
-        Send,
-        Percent,
-        DollarSign,
-        Pressable
-      },
-      argsType: {},
-    }}
-  />
-</Wrapper> */}
