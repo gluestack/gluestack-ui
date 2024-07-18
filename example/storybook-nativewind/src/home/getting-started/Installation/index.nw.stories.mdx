@@ -19,14 +19,6 @@ import { CollapsibleCode, Tabs } from '@gluestack/design-system';
 
 To get started with **gluestack-ui v2**, check out this quick installation guide. It provides simple steps to help you install and use the library in your projects.
 
-
-### Step 1: Setup your project.
-
-Setup your project with [Next.js](https://nextjs.org/docs/getting-started/installation) or [Expo](https://docs.expo.dev/get-started/create-a-project/). 
-
-
-### Step 2: Initialize
-
 <br />
 
 <Tabs value="cli" type="section">
@@ -44,18 +36,33 @@ Setup your project with [Next.js](https://nextjs.org/docs/getting-started/instal
 
 <br />
 
+### Step 1: Initialize
+
 Use `init` command to add `GluestackUIProvider` and `gluestack-ui-provider/config.ts` file into your project.
 
 ```bash
 npx gluestack-ui init
 ```
 
+Your project is now ready to use **gluestack-ui** components. To add gluestack-ui components to your project using the CLI, refer to the above command or use the [CLI guide](/ui/docs/home/getting-started/cli).
+
+```bash
+npx gluestack-ui add box
+```
+
+If you encounter issues during the CLI installation, refer to the manual installation guide available.
+
 </>
     </Tabs.TabPanel>
     <Tabs.TabPanel value="manual"> 
 <>
+<br />
 
-### Step 2.1: Install dependencies
+### Step 1: Setup your project.
+
+Setup nativewind in your project following [NativeWind documentation](https://www.nativewind.dev/v4/getting-started/react-native).
+
+### Step 2: Install dependencies
 
 Install the dependencies of gluestack-ui in your project. This can be done using the following command:
 
@@ -71,7 +78,7 @@ npm i @gluestack-ui/nativewind-utils
 
 ```
 
-### Step 2.2: Update Tailwind configuration
+### Step 2.1: Update Tailwind configuration
 
 Update `tailwind.config.js` file with the following code
 
@@ -79,7 +86,7 @@ Update `tailwind.config.js` file with the following code
 %%-- File: tailwind.config.js --%% 
 ```
 
-### Step 2.3: Configure components path
+### Step 2.2: Configure components path
 
 Create a `components/ui` folder inside `src` folder and add path in `tsconfig.json`
 
@@ -94,7 +101,7 @@ Create a `components/ui` folder inside `src` folder and add path in `tsconfig.js
   }
 ```
 
-### Step 2.4: Configure GluestackUIProvider
+### Step 2.3: Configure GluestackUIProvider
 
 To add config, create a `gluestack-ui-provider/config.ts` file in your `components/ui` folder and paste the following code.
 
@@ -128,11 +135,6 @@ To add `GluestackUIProvider`, create a `gluestack-ui-provider/index.web.tsx` fil
 
 </CollapsibleCode>
 
-</>
-    </Tabs.TabPanel>
-  </Tabs.TabPanels>
-</Tabs>
-
 ### Step 3: Configure GluestackUIProvider in project
 
 Wrap your app with `GluestackUIProvider` in `App.tsx`.
@@ -162,6 +164,7 @@ It's also recommended to set up your server-side rendering (SSR) correctly. To d
   <Tabs.TabPanels>
     <Tabs.TabPanel value="App Router">
 <>
+<br/>
 
 For Next.js App Routers we will create a new `registry.tsx` file in the root of your project and use the flush function from `@gluestack-ui/nativewind-utils`
 
@@ -239,6 +242,7 @@ export default function RootLayout({
     </Tabs.TabPanel>
     <Tabs.TabPanel value="Page Router">
 <>
+<br/>
 
 
 For Next.js we will add this code in `_document.tsx` file.
@@ -271,6 +275,11 @@ Document.getInitialProps = async ({ renderPage }: any) => {
 
 export default Document;
 ```
+
+</>
+    </Tabs.TabPanel>
+  </Tabs.TabPanels>
+</Tabs>
 
 </>
     </Tabs.TabPanel>
