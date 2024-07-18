@@ -3,7 +3,7 @@ import { Link, LinkText } from '@gluestack-ui/themed';
 
 const LinkDemo = () => {
   return (
-    <Link href="https://gluestack.io/" isExternal>
+    <Link href="https://v1.gluestack.io/" isExternal>
       <LinkText>gluestack</LinkText>
     </Link>
   );

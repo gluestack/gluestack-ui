@@ -21,7 +21,7 @@ const LinearGradientCard: MyLinearGradientStory = () => {
           size="xs"
           w={300}
           source={{
-            uri: 'https://ui.gluestack.io/_next/image?url=%2Ficon%2Flogo%2Fdark-mode.svg&w=384&q=75',
+            uri: 'https://v1.gluestack.io/_next/image?url=%2Ficon%2Flogo%2Fdark-mode.svg&w=384&q=75',
           }}
         />
       </Box>

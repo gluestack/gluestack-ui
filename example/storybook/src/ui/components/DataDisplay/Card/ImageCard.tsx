@@ -43,7 +43,7 @@ const ImageCard = () => {
       <Heading size="md" fontFamily="$heading" mb="$4">
         The Power of Positive Thinking
       </Heading>
-      <Link href="https://gluestack.io/" isExternal>
+      <Link href="https://v1.gluestack.io/" isExternal>
         <HStack alignItems="center">
           <LinkText
             size="sm"
