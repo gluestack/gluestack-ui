@@ -1,5 +1,11 @@
 # @gluestack-ui/themed
 
+## 1.1.42
+
+### Patch Changes
+
+- - slider version bump
+
 ## 1.1.41
 
 ### Patch Changes
