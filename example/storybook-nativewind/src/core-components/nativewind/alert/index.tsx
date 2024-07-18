@@ -188,7 +188,7 @@ const Alert = React.forwardRef(
     {
       className,
       variant = 'solid',
-      action = 'info',
+      action = 'muted',
       ...props
     }: { className?: string } & IAlertProps,
     ref?: any
