@@ -1,5 +1,12 @@
 # @gluestack-ui/slider
 
+## 0.1.26
+
+### Patch Changes
+
+- - Fixed sliderTrackHeight prop
+  - Fixed step prop
+
 ## 0.1.25
 
 ### Patch Changes
