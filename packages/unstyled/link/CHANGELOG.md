@@ -1,5 +1,11 @@
 # @gluestack-ui/link
 
+## 0.1.22
+
+### Patch Changes
+
+- fix: disabled link
+
 ## 0.1.21
 
 ### Patch Changes
