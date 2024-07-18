@@ -4,7 +4,7 @@ import { InfoIcon } from '@/components/ui/icon';
 
 const AlertBasic = ({ ...props }: any) => {
   return (
-    <Alert {...props} className="gap-3">
+    <Alert {...props}>
       <AlertIcon as={InfoIcon} />
       <AlertText>Selection successfully moved!</AlertText>
     </Alert>

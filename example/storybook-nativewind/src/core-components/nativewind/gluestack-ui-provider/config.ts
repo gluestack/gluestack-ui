@@ -205,7 +205,7 @@ export const config = {
     '--color-error-400': '230 53 53',
     '--color-error-500': '239 68 68',
     '--color-error-600': '248 113 113',
-    '--color-error-700': '230 53 52',
+    '--color-error-700': '252 165 165',
     '--color-error-800': '254 202 202',
     '--color-error-900': '254 226 226',
     '--color-error-950': '254 233 233',

@@ -21,6 +21,8 @@ function Slider<StyledSliderProps>(
         'isPressed': isPressedProp,
         // @ts-ignore
         'aria-label': ariaLabel = 'Slider',
+        sliderTrackHeight,
+        step,
         children,
         ...props
       }: StyledSliderProps & ISliderProps,
@@ -61,6 +63,7 @@ function Slider<StyledSliderProps>(
         numberFormatter: { format: (e) => e },
         minValue: props.minValue,
         maxValue: props.maxValue,
+        step,
         onChange: (val: any) => {
           props.onChange && props.onChange(val[0]);
         },
@@ -93,6 +96,7 @@ function Slider<StyledSliderProps>(
           setIsHovered,
           trackProps,
           onTrackLayout: onLayout,
+          sliderTrackHeight,
         };
         // eslint-disable-next-line react-hooks/exhaustive-deps
       }, [
@@ -114,6 +118,7 @@ function Slider<StyledSliderProps>(
         isFocusedProp,
         isFocusVisibleProp,
         isPressedProp,
+        sliderTrackHeight,
       ]);
 
       return (

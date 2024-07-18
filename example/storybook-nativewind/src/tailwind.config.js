@@ -196,6 +196,6 @@ module.exports = {
         'soft-4': '0px 0px 40px rgba(38, 38, 38, 0.1)',
       },
     },
-    plugins: [],
   },
+  plugins: [],
 };

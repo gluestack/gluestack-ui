@@ -31,7 +31,7 @@ const toastStyle = tva({
   base: 'p-4 m-1 rounded-md gap-1 web:pointer-events-auto shadow-hard-5 border-outline-100',
   variants: {
     action: {
-      error: 'bg-error-700',
+      error: 'bg-error-800',
       warning: 'bg-warning-700',
       success: 'bg-success-700',
       info: 'bg-info-700',
