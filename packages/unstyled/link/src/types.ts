@@ -26,6 +26,7 @@ export type IUseLinkProp = {
   isExternal?: boolean;
   onPress: ((event?: GestureResponderEvent) => any) | null | undefined;
   _ref: MutableRefObject<any>;
+  isDisabled?: boolean;
 };
 
 export type ILinkComponentType<Root, TextProps> =

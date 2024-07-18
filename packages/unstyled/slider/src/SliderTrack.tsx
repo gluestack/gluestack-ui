@@ -16,6 +16,7 @@ function SliderTrack<StyledSliderTrackProps>(
       isFocusVisible,
       isDisabled,
       isPressed,
+      sliderTrackHeight,
     } = React.useContext(SliderContext);
 
     return (
@@ -23,7 +24,7 @@ function SliderTrack<StyledSliderTrackProps>(
         onLayout={onTrackLayout}
         ref={mergeRefs([_ref, ref])}
         {...trackProps}
-        style={style}
+        style={[{ height: sliderTrackHeight }, style]}
         {...props}
         isDisabled={isDisabled}
         tabIndex={-1}
