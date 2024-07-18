@@ -61,19 +61,19 @@
     "@gluestack-ui/provider": "0.1.12",
     "@gluestack-ui/radio": "0.1.31",
     "@gluestack-ui/select": "0.1.27",
-    "@gluestack-ui/slider": "0.1.26",
+    "@gluestack-ui/slider": "0.1.25",
     "@gluestack-ui/spinner": "0.1.14",
     "@gluestack-ui/switch": "0.1.22",
     "@gluestack-ui/tabs": "0.1.16",
     "@gluestack-ui/textarea": "0.1.23",
-    "@gluestack-ui/themed": "1.1.41",
+    "@gluestack-ui/themed": "1.1.40",
     "@gluestack-ui/toast": "1.0.7",
     "@gluestack-ui/tooltip": "0.1.32",
     "@legendapp/motion": "latest"
   },
   "peerDependencies": {
     "@gluestack-style/react": ">=1.0.57",
-    "@gluestack-ui/themed": ">=1.1.41"
+    "@gluestack-ui/themed": ">=1.1.40"
   },
   "release-it": {
     "git": {

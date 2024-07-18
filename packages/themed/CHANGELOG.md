@@ -1,12 +1,5 @@
 # @gluestack-ui/themed
 
-## 1.1.41
-
-### Patch Changes
-
-- Updated dependencies
-  - @gluestack-ui/slider@0.1.26
-
 ## 1.1.40
 
 ### Patch Changes
