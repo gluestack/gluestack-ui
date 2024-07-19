@@ -25,7 +25,11 @@ import {
 } from './select-actionsheet';
 import { Pressable, View, TextInput, Platform } from 'react-native';
 
-/** Select Components */
+const SelectTriggerWrapper = React.forwardRef(
+  ({ ...props }: any, ref?: any) => {
+    return <Pressable {...props} ref={ref} />;
+  }
+);
 
 const selectIconStyle = tva({
   base: 'text-background-500 fill-none',
@@ -137,8 +141,8 @@ const UISelect = createSelect(
     // @ts-ignore
     Trigger:
       Platform.OS === 'web'
-        ? withStyleContext(Pressable)
-        : withStyleContextAndStates(Pressable),
+        ? withStyleContext(SelectTriggerWrapper)
+        : withStyleContextAndStates(SelectTriggerWrapper),
     Input: TextInput,
     Icon: PrimitiveIcon,
   },
@@ -162,7 +166,7 @@ cssInterop(UISelect, { className: 'style' });
 cssInterop(UISelect.Input, {
   className: { target: 'style', nativeStyleToProp: { textAlign: true } },
 });
-cssInterop(UISelect.Trigger, { className: 'style' });
+cssInterop(SelectTriggerWrapper, { className: 'style' });
 // @ts-ignore
 cssInterop(UISelect.Icon, {
   className: {
