@@ -3,7 +3,7 @@ import React from 'react';
 import { createMenu } from '@gluestack-ui/menu';
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import { cssInterop } from 'nativewind';
-import { Pressable, Text, Platform } from 'react-native';
+import { Pressable, Text, Platform, View } from 'react-native';
 import { Motion, AnimatePresence } from '@legendapp/motion';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 import { withStates } from '@gluestack-ui/nativewind-utils/withStates';
@@ -96,12 +96,16 @@ const Item = React.forwardRef(
   }
 );
 
+const Separator = React.forwardRef(() => {
+  return <View className="bg-outline-500 h-px my-1 w-full " />;
+});
 export const UIMenu = createMenu({
   Root: Motion.View,
   Item: Platform.OS === 'web' ? Item : withStates(Item),
   Label: Text,
   Backdrop: BackdropPressable,
   AnimatePresence: AnimatePresence,
+  Seperator: Separator,
 });
 
 cssInterop(UIMenu, { className: 'style' });
@@ -180,6 +184,8 @@ const MenuItemLabel = React.forwardRef(
   }
 );
 
+// @ts-ignore
+export const MenuSeperator = UIMenu.Separator;
 Menu.displayName = 'Menu';
 MenuItem.displayName = 'MenuItem';
 MenuItemLabel.displayName = 'MenuItemLabel';
