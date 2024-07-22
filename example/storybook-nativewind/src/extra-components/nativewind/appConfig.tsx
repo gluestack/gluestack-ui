@@ -12,7 +12,8 @@ export const todoapp = {
     android: '43940b83-c131-4584-bca2-9fab98debd25',
     ios: '2be27bfb-845b-4e44-ab7e-fd5109ab20bb',
   },
-  iframeUri: 'https://gluestack-ui-todo-example-app.vercel.app/',
+  iframeUri:
+    'https://gluestack-ui-todo-example-app-git-main-gluestack.vercel.app/',
   qrCodeUri:
     'https://qr.expo.dev/eas-update?slug=exp&projectId=2f45053e-e4a6-4598-b0bb-5b7a5024029d&groupId=6eaef910-7074-458e-91df-adf917e222d3',
 };
