@@ -11,16 +11,21 @@ import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withSt
 import { cssInterop } from 'nativewind';
 import { withStates } from '@gluestack-ui/nativewind-utils/withStates';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
+
+const TextareaWrapper = React.forwardRef(({ ...props }: any, ref?: any) => {
+  return <View {...props} ref={ref} />;
+});
+
 const SCOPE = 'TEXTAREA';
 const UITextarea = createTextarea({
   Root:
     Platform.OS === 'web'
-      ? withStyleContext(View, SCOPE)
-      : withStyleContextAndStates(View, SCOPE),
+      ? withStyleContext(TextareaWrapper, SCOPE)
+      : withStyleContextAndStates(TextareaWrapper, SCOPE),
   Input: Platform.OS === 'web' ? TextInput : withStates(TextInput),
 });
 
-cssInterop(UITextarea, { className: 'style' });
+cssInterop(TextareaWrapper, { className: 'style' });
 cssInterop(UITextarea.Input, {
   className: { target: 'style', nativeStyleToProp: { textAlign: true } },
 });
