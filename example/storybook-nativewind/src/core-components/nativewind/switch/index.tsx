@@ -8,10 +8,7 @@ import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withSt
 import { cssInterop } from 'nativewind';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 
-const SwitchWrapper = React.forwardRef<
-  React.ElementRef<typeof RNSwitch>,
-  React.ComponentProps<typeof RNSwitch>
->(({ ...props }, ref) => {
+const SwitchWrapper = React.forwardRef(({ ...props }: any, ref?: any) => {
   return <RNSwitch {...props} ref={ref} />;
 });
 
@@ -38,18 +35,20 @@ const switchStyle = tva({
 
 type ISwitchProps = React.ComponentProps<typeof UISwitch> &
   VariantProps<typeof switchStyle>;
-const Switch = React.forwardRef<
-  React.ElementRef<typeof UISwitch>,
-  ISwitchProps
->(({ className, size = 'md', ...props }, ref) => {
-  return (
-    <UISwitch
-      ref={ref}
-      {...props}
-      className={switchStyle({ size, class: className })}
-    />
-  );
-});
+const Switch = React.forwardRef(
+  (
+    { className, size = 'md', ...props }: { className?: string } & ISwitchProps,
+    ref?: any
+  ) => {
+    return (
+      <UISwitch
+        ref={ref}
+        {...props}
+        className={switchStyle({ size, class: className })}
+      />
+    );
+  }
+);
 
 Switch.displayName = 'Switch';
 export { Switch };
