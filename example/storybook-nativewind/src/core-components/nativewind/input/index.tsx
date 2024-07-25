@@ -63,10 +63,7 @@ const PrimitiveIcon = React.forwardRef(
   }
 );
 
-const InputWrapper = React.forwardRef<
-  React.ElementRef<typeof View>,
-  React.ComponentProps<typeof View>
->(({ ...props }, ref) => {
+const InputWrapper = React.forwardRef(({ ...props }: any, ref?: any) => {
   return <View {...props} ref={ref} />;
 });
 
@@ -169,9 +166,17 @@ cssInterop(UIInput.Icon, {
 });
 
 type IInputProps = React.ComponentProps<typeof UIInput> &
-  VariantProps<typeof inputStyle> & { className?: string };
-const Input = React.forwardRef<React.ElementRef<typeof UIInput>, IInputProps>(
-  ({ className, variant = 'outline', size = 'md', ...props }, ref) => {
+  VariantProps<typeof inputStyle>;
+const Input = React.forwardRef(
+  (
+    {
+      className,
+      variant = 'outline',
+      size = 'md',
+      ...props
+    }: { className?: string } & IInputProps,
+    ref?: any
+  ) => {
     return (
       <UIInput
         ref={ref}
@@ -183,93 +188,100 @@ const Input = React.forwardRef<React.ElementRef<typeof UIInput>, IInputProps>(
   }
 );
 
-type IInputIconProps = React.ComponentProps<typeof UIInput.Icon> & {
-  as: any;
-  className?: string;
-};
+type IInputIconProps = React.ComponentProps<typeof UIInput.Icon> & { as: any };
+const InputIcon = React.forwardRef(
+  (
+    {
+      className,
+      size,
+      ...props
+    }: {
+      className?: any;
+      as?: any;
+    } & IInputIconProps,
+    ref?: any
+  ) => {
+    const { size: parentSize } = useStyleContext(SCOPE);
 
-const InputIcon = React.forwardRef<
-  React.ElementRef<typeof UIInput.Icon>,
-  IInputIconProps
->(({ className, size, ...props }, ref) => {
-  const { size: parentSize } = useStyleContext(SCOPE);
-
-  if (typeof size === 'number') {
+    if (typeof size === 'number') {
+      return (
+        <UIInput.Icon
+          ref={ref}
+          {...props}
+          className={inputIconStyle({ class: className })}
+          size={size}
+        />
+      );
+    } else if (
+      (props.height !== undefined || props.width !== undefined) &&
+      size === undefined
+    ) {
+      return (
+        <UIInput.Icon
+          ref={ref}
+          {...props}
+          className={inputIconStyle({ class: className })}
+        />
+      );
+    }
     return (
       <UIInput.Icon
         ref={ref}
         {...props}
-        className={inputIconStyle({ class: className })}
-        size={size}
-      />
-    );
-  } else if (
-    (props.height !== undefined || props.width !== undefined) &&
-    size === undefined
-  ) {
-    return (
-      <UIInput.Icon
-        ref={ref}
-        {...props}
-        className={inputIconStyle({ class: className })}
+        className={inputIconStyle({
+          parentVariants: {
+            size: parentSize,
+          },
+          class: className,
+        })}
       />
     );
   }
-  return (
-    <UIInput.Icon
-      ref={ref}
-      {...props}
-      className={inputIconStyle({
-        parentVariants: {
-          size: parentSize,
-        },
-        class: className,
-      })}
-    />
-  );
-});
+);
 
 type IInputSlotProps = React.ComponentProps<typeof UIInput.Slot> &
-  VariantProps<typeof inputSlotStyle> & { className?: string };
-
-const InputSlot = React.forwardRef<
-  React.ElementRef<typeof UIInput.Slot>,
-  IInputSlotProps
->(({ className, ...props }, ref) => {
-  return (
-    <UIInput.Slot
-      ref={ref}
-      {...props}
-      className={inputSlotStyle({
-        class: className,
-      })}
-    />
-  );
-});
+  VariantProps<typeof inputSlotStyle>;
+const InputSlot = React.forwardRef(
+  (
+    { className, ...props }: { className?: string } & IInputSlotProps,
+    ref?: any
+  ) => {
+    return (
+      <UIInput.Slot
+        ref={ref}
+        {...props}
+        className={inputSlotStyle({
+          class: className,
+        })}
+      />
+    );
+  }
+);
 
 type IInputFieldProps = React.ComponentProps<typeof UIInput.Input> &
-  VariantProps<typeof inputFieldStyle> & { className?: string };
+  VariantProps<typeof inputFieldStyle>;
+const InputField = React.forwardRef(
+  (
+    { className, ...props }: { className?: string } & IInputFieldProps,
+    ref?: any
+  ) => {
+    const { variant: parentVariant, size: parentSize } = useStyleContext(SCOPE);
 
-const InputField = React.forwardRef<
-  React.ElementRef<typeof UIInput.Input>,
-  IInputFieldProps
->(({ className, ...props }, ref) => {
-  const { variant: parentVariant, size: parentSize } = useStyleContext(SCOPE);
-
-  return (
-    <UIInput.Input
-      ref={ref}
-      {...props}
-      className={inputFieldStyle({
-        parentVariants: {
-          variant: parentVariant,
-          size: parentSize,
-        },
-        class: className,
-      })}
-    />
-  );
-});
+    return (
+      <UIInput.Input
+        ref={ref}
+        {...props}
+        className={inputFieldStyle({
+          parentVariants: {
+            variant: parentVariant,
+            size: parentSize,
+          },
+          class: className,
+        })}
+      />
+    );
+  }
+);
 
 Input.displayName = 'Input';
 InputIcon.displayName = 'InputIcon';

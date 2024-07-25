@@ -1,7 +1,6 @@
 import React, { useMemo } from 'react';
 import { createIcon } from '@gluestack-ui/icon';
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
-import { VariantProps } from '@gluestack-ui/nativewind-utils';
 
 const accessClassName = (style: any) => {
   const obj = style[0];
@@ -9,32 +8,15 @@ const accessClassName = (style: any) => {
   return obj[keys[1]];
 };
 
-const Svg = React.forwardRef<
-  React.ElementRef<'svg'>,
-  React.ComponentPropsWithoutRef<'svg'>
->(({ style, className, ...props }, ref) => {
+const Svg = ({ style, className, ...props }: any) => {
   const calculateClassName = useMemo(() => {
     return className === undefined ? accessClassName(style) : className;
   }, [className, style]);
 
-  return <svg ref={ref} {...props} className={calculateClassName} />;
-});
-
-type IPrimitiveIcon = {
-  height?: number | string;
-  width?: number | string;
-  fill?: string;
-  color?: string;
-  size?: number | string;
-  stroke?: string;
-  as?: React.ElementType;
-  className?: string;
+  return <svg {...props} className={calculateClassName} />;
 };
 
-const PrimitiveIcon = React.forwardRef<
-  React.ElementRef<'svg'>,
-  React.ComponentPropsWithoutRef<'svg'> & IPrimitiveIcon
->(
+const PrimitiveIcon = React.forwardRef(
   (
     {
       height,
@@ -45,8 +27,8 @@ const PrimitiveIcon = React.forwardRef<
       stroke = 'currentColor',
       as: AsComp,
       ...props
-    },
-    ref
+    }: any,
+    ref?: any
   ) => {
     const sizeProps = useMemo(() => {
       if (size) return { size };
@@ -101,43 +83,38 @@ const iconStyle = tva({
   },
 });
 
-export const Icon = React.forwardRef<
-  React.ElementRef<typeof UIIcon>,
-  React.ComponentPropsWithoutRef<typeof UIIcon> &
-    VariantProps<typeof iconStyle> & {
-      height?: number | string;
-      width?: number | string;
+export const Icon = React.forwardRef(
+  ({ size = 'md', className, ...props }: any, ref?: any) => {
+    if (typeof size === 'number') {
+      return (
+        <UIIcon
+          ref={ref}
+          {...props}
+          className={iconStyle({ class: className })}
+          size={size}
+        />
+      );
+    } else if (
+      (props.height !== undefined || props.width !== undefined) &&
+      size === undefined
+    ) {
+      return (
+        <UIIcon
+          ref={ref}
+          {...props}
+          className={iconStyle({ class: className })}
+        />
+      );
     }
->(({ size = 'md', className, ...props }, ref) => {
-  if (typeof size === 'number') {
     return (
       <UIIcon
         ref={ref}
         {...props}
-        className={iconStyle({ class: className })}
-        size={size}
-      />
-    );
-  } else if (
-    (props.height !== undefined || props.width !== undefined) &&
-    size === undefined
-  ) {
-    return (
-      <UIIcon
-        ref={ref}
-        {...props}
-        className={iconStyle({ class: className })}
+        className={iconStyle({ size, class: className })}
       />
     );
   }
-  return (
-    <UIIcon
-      ref={ref}
-      {...props}
-      className={iconStyle({ size, class: className })}
-    />
-  );
-});
+);
 
 type ParameterTypes = Omit<Parameters<typeof createIcon>[0], 'Root'>;
 

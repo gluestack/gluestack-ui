@@ -5,9 +5,7 @@ import { headingStyle } from './styles';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 
 type IHeadingProps = VariantProps<typeof headingStyle> &
-  React.ComponentPropsWithoutRef<typeof H1> & {
-    as?: React.ElementType;
-  };
+  React.ComponentProps<typeof H1>;
 
 cssInterop(H1, { className: 'style' });
 cssInterop(H2, { className: 'style' });
@@ -17,7 +15,7 @@ cssInterop(H5, { className: 'style' });
 cssInterop(H6, { className: 'style' });
 
 const MappedHeading = memo(
-  forwardRef<React.ElementRef<typeof H1>, IHeadingProps>(
+  forwardRef(
     (
       {
         size,
@@ -30,8 +28,8 @@ const MappedHeading = memo(
         italic,
         highlight,
         ...props
-      },
-      ref
+      }: IHeadingProps,
+      ref?: any
     ) => {
       switch (size) {
         case '5xl':
@@ -167,10 +165,19 @@ const MappedHeading = memo(
     }
   )
 );
-
 const Heading = memo(
-  forwardRef<React.ElementRef<typeof H1>, IHeadingProps>(
-    ({ className, size = 'lg', as: AsComp, ...props }, ref?: any) => {
+  forwardRef(
+    (
+      {
+        className,
+        size = 'lg',
+        as: AsComp,
+        ...props
+      }: IHeadingProps & {
+        as?: React.ElementType;
+      },
+      ref?: any
+    ) => {
       const {
         isTruncated,
         bold,
