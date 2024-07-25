@@ -22,7 +22,7 @@ export interface IOverlayProps {
   style?: ViewStyle;
 }
 
-const Overlay = React.forwardRef(
+const Overlay = React.forwardRef<React.ElementRef<typeof Modal>, IOverlayProps>(
   (
     {
       children,
@@ -33,8 +33,8 @@ const Overlay = React.forwardRef(
       animationPreset = 'fade',
       onRequestClose,
       style,
-    }: IOverlayProps,
-    ref?: any
+    },
+    ref
   ) => {
     const [exited, setExited] = React.useState(!isOpen);
 

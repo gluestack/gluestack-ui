@@ -12,7 +12,13 @@ cssInterop(UISpinner, {
 });
 
 const spinnerStyle = tva({});
-const Spinner = React.forwardRef(({ className, color, ...props }: any, ref) => {
+
+type ISpinnerProps = React.ComponentProps<typeof UISpinner>;
+
+const Spinner = React.forwardRef<
+  React.ElementRef<typeof UISpinner>,
+  ISpinnerProps
+>(({ className, color, ...props }, ref) => {
   return (
     <UISpinner
       ref={ref}
