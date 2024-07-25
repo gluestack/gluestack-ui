@@ -27,15 +27,15 @@ cssInterop(UIImage, { className: 'style' });
 
 type ImageProps = VariantProps<typeof imageStyle> &
   React.ComponentProps<typeof UIImage>;
-const Image = ({
-  size = 'md',
-  className,
-  ...props
-}: { className?: any } & ImageProps) => {
+const Image = React.forwardRef<
+  React.ElementRef<typeof UIImage>,
+  ImageProps & { className?: string }
+>(({ size = 'md', className, ...props }, ref) => {
   return (
     <UIImage
       className={imageStyle({ size, class: className })}
       {...props}
+      ref={ref}
       //@ts-ignore
       style={
         Platform.OS === 'web'
@@ -44,7 +44,7 @@ const Image = ({
       }
     />
   );
-};
+});
 
 Image.displayName = 'Image';
 export { Image };
