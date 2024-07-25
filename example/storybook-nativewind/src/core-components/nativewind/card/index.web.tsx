@@ -1,7 +1,7 @@
 import React from 'react';
 import { cardStyle } from './styles';
-import { VariantProps } from '@gluestack-ui/nativewind-utils';
-import { ViewProps } from 'react-native';
+import type { VariantProps } from '@gluestack-ui/nativewind-utils';
+import type { ViewProps } from 'react-native';
 
 type Similar<T, U> = {
   [K in keyof T & keyof U]: T[K] extends U[K]
