@@ -20,5 +20,5 @@ export const withStates = <T extends React.ComponentType<any>>(Component: T) =>
       );
     }
   ) as React.ForwardRefExoticComponent<
-    React.ComponentProps<T> & WithStatesProps & React.RefAttributes<T>
+    React.ComponentPropsWithoutRef<T> & WithStatesProps & React.RefAttributes<T>
   >;

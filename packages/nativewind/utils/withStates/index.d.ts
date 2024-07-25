@@ -6,6 +6,8 @@ type WithStatesProps = {
 export declare const withStates: <T extends React.ComponentType<any>>(
   Component: T
 ) => React.ForwardRefExoticComponent<
-  React.ComponentProps<T> & WithStatesProps & React.RefAttributes<T>
+  React.PropsWithoutRef<React.ComponentProps<T>> &
+    WithStatesProps &
+    React.RefAttributes<T>
 >;
 export {};

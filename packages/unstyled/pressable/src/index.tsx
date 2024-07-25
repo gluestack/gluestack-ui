@@ -8,5 +8,7 @@ export function createPressable<PressableProps>({
   const Pressable = PressableMain(Root);
 
   Pressable.displayName = 'Pressable';
-  return Pressable;
+  return Pressable as React.ForwardRefExoticComponent<
+    React.PropsWithoutRef<PressableProps> & React.RefAttributes<PressableProps>
+  >;
 }

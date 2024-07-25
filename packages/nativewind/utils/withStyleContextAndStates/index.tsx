@@ -35,7 +35,9 @@ export const withStyleContextAndStates = <T extends React.ComponentType<any>>(
       </ParentContext.Provider>
     );
   }) as React.ForwardRefExoticComponent<
-    React.ComponentProps<T> & WithStyleContextProps & React.RefAttributes<T>
+    React.ComponentPropsWithoutRef<T> &
+      WithStyleContextProps &
+      React.RefAttributes<T>
   >;
 };
 

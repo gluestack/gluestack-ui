@@ -27,22 +27,20 @@ type IPressableProps = Omit<
   'context'
 > &
   VariantProps<typeof pressableStyle>;
-const Pressable = React.forwardRef(
-  (
-    { className, ...props }: { className?: string } & IPressableProps,
-    ref?: any
-  ) => {
-    return (
-      <UIPressable
-        {...props}
-        ref={ref}
-        className={pressableStyle({
-          class: className,
-        })}
-      />
-    );
-  }
-);
+const Pressable = React.forwardRef<
+  React.ElementRef<typeof UIPressable>,
+  IPressableProps
+>(({ className, ...props }, ref) => {
+  return (
+    <UIPressable
+      {...props}
+      ref={ref}
+      className={pressableStyle({
+        class: className,
+      })}
+    />
+  );
+});
 
 Pressable.displayName = 'Pressable';
 export { Pressable };
