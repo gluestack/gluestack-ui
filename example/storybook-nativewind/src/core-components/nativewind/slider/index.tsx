@@ -13,22 +13,32 @@ import { cssInterop } from 'nativewind';
 import { withStates } from '@gluestack-ui/nativewind-utils/withStates';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 
+const ThumbWrapper = React.forwardRef<
+  React.ElementRef<typeof View>,
+  React.ComponentProps<typeof View>
+>((props, ref) => <View ref={ref} {...props} />);
+
+const FilledTrackWrapper = React.forwardRef<
+  React.ElementRef<typeof View>,
+  React.ComponentProps<typeof View>
+>((props, ref) => <View ref={ref} {...props} />);
+
 const SCOPE = 'SLIDER';
 export const UISlider = createSlider({
   Root:
     Platform.OS === 'web'
       ? withStyleContext(View, SCOPE)
       : withStyleContextAndStates(View, SCOPE),
-  Thumb: Platform.OS === 'web' ? View : withStates(View),
+  Thumb: Platform.OS === 'web' ? ThumbWrapper : withStates(View),
   Track: Pressable,
-  FilledTrack: Platform.OS === 'web' ? View : withStates(View),
+  FilledTrack: Platform.OS === 'web' ? FilledTrackWrapper : withStates(View),
   ThumbInteraction: View,
 });
 
 cssInterop(UISlider, { className: 'style' });
-cssInterop(UISlider.Thumb, { className: 'style' });
+cssInterop(ThumbWrapper, { className: 'style' });
 cssInterop(UISlider.Track, { className: 'style' });
-cssInterop(UISlider.FilledTrack, { className: 'style' });
+cssInterop(FilledTrackWrapper, { className: 'style' });
 
 const sliderStyle = tva({
   base: 'justify-center items-center data-[disabled=true]:web:opacity-40 data-[disabled=true]:web:pointer-events-none',
@@ -203,6 +213,7 @@ export const SliderThumb = React.forwardRef<
 
   return (
     <UISlider.Thumb
+      //@ts-ignore
       ref={ref}
       {...props}
       className={sliderThumbStyle({
@@ -258,6 +269,7 @@ export const SliderFilledTrack = React.forwardRef<
 
   return (
     <UISlider.FilledTrack
+      //@ts-ignore
       ref={ref}
       {...props}
       className={sliderFilledTrackStyle({
