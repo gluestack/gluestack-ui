@@ -89,10 +89,7 @@ const UIButton = createButton({
   Text,
   Group: View,
   Spinner: ActivityIndicator,
-  Icon:
-    Platform.OS === 'web'
-      ? withStates(PrimitiveIcon)
-      : withStates(PrimitiveIcon),
+  Icon: withStates(PrimitiveIcon),
 });
 
 cssInterop(UIButton, { className: 'style' });
