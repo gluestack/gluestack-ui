@@ -1,5 +1,5 @@
 'use client';
-import React, { useMemo, type ForwardRefExoticComponent } from 'react';
+import React, { useMemo } from 'react';
 import { createRadio } from '@gluestack-ui/radio';
 import { Svg } from 'react-native-svg';
 import { Pressable, View, Platform, Text } from 'react-native';
@@ -143,10 +143,11 @@ const radioLabelStyle = tva({
 const SCOPE = 'Radio';
 
 const UIRadio = createRadio({
-  Root:
-    Platform.OS === 'web'
-      ? withStyleContext(View, SCOPE)
-      : withStyleContextAndStates(Pressable, SCOPE),
+  Root: (Platform.OS === 'web'
+    ? withStyleContext(View, SCOPE)
+    : withStyleContextAndStates(Pressable, SCOPE)) as ReturnType<
+    typeof withStyleContextAndStates<typeof Pressable>
+  >,
   Group: View,
   Icon: Platform.OS === 'web' ? IconWrapper : withStates(IconWrapper),
   Indicator:
