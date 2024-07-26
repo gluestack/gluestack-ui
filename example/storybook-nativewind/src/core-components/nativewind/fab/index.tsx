@@ -13,7 +13,7 @@ import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withSt
 import { cssInterop } from 'nativewind';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 
-type IPrimitiveIcon = {
+type IPrimitiveIcon = React.ComponentPropsWithoutRef<typeof Svg> & {
   height?: number | string;
   width?: number | string;
   fill?: string;
@@ -94,6 +94,7 @@ cssInterop(UIFab.Icon, {
     nativeStyleToProp: {
       height: true,
       width: true,
+      // @ts-ignore
       fill: true,
       color: true,
       stroke: true,

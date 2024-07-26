@@ -16,8 +16,7 @@ export function createPopover<
   FooterProps,
   BodyProps,
   BackdropProps,
-  CloseButtonProps,
-  AnimatePresenceProps
+  CloseButtonProps
 >({
   Root,
   Arrow,
@@ -37,7 +36,7 @@ export function createPopover<
   Body: React.ComponentType<BodyProps>;
   Backdrop: React.ComponentType<BackdropProps>;
   CloseButton: React.ComponentType<CloseButtonProps>;
-  AnimatePresence?: React.ComponentType<AnimatePresenceProps>;
+  AnimatePresence?: any;
 }) {
   const Popover: any = PopoverMain(Root);
   Popover.Content = PopoverContent(Content, AnimatePresence);

@@ -37,7 +37,7 @@ type IPrimitiveIcon = {
 };
 const PrimitiveIcon = React.forwardRef<
   React.ElementRef<typeof Svg>,
-  IPrimitiveIcon
+  IPrimitiveIcon & React.ComponentPropsWithoutRef<typeof Svg>
 >(
   (
     {

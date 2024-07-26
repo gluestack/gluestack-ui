@@ -7,7 +7,7 @@ type WithStatesProps = {
   states?: any;
 };
 
-export const withStates = <T extends React.ComponentType<any>>(Component: T) =>
+export const withStates = <T,>(Component: T) =>
   React.forwardRef(
     ({ states, className, ...props }: T & WithStatesProps, ref?: any) => {
       const classNamesFinal = React.useMemo(() => {
@@ -16,9 +16,8 @@ export const withStates = <T extends React.ComponentType<any>>(Component: T) =>
       }, [className, states]);
 
       return (
+        // @ts-ignore
         <Component className={classNamesFinal} {...(props as any)} ref={ref} />
       );
     }
-  ) as React.ForwardRefExoticComponent<
-    React.ComponentPropsWithoutRef<T> & WithStatesProps & React.RefAttributes<T>
-  >;
+  ) as T;

@@ -99,7 +99,6 @@ const Item = React.forwardRef<
 
 export const UIMenu = createMenu({
   Root: Motion.View,
-  // @ts-ignore
   Item: Platform.OS === 'web' ? Item : withStates(Item),
   Label: Text,
   Backdrop: BackdropPressable,

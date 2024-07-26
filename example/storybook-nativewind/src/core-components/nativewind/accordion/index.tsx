@@ -2,7 +2,7 @@
 import React, { useMemo } from 'react';
 import { createAccordion } from '@gluestack-ui/accordion';
 import { Svg } from 'react-native-svg';
-import { View, Pressable, Text, Platform } from 'react-native';
+import { View, Pressable, Text, Platform, TextProps } from 'react-native';
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 import {
@@ -94,7 +94,7 @@ type IPrimitiveIcon = {
 
 const PrimitiveIcon = React.forwardRef<
   React.ElementRef<typeof Svg>,
-  IPrimitiveIcon
+  IPrimitiveIcon & React.ComponentPropsWithoutRef<typeof Svg>
 >(
   (
     {
@@ -149,12 +149,14 @@ const Root =
     ? withStyleContext(View, SCOPE)
     : withStyleContextAndStates(View, SCOPE);
 
-const Header = Platform.OS === 'web' ? H3 : View;
+const Header = (
+  Platform.OS === 'web' ? H3 : View
+) as React.ComponentType<TextProps>;
+
 /** Creator */
 const UIAccordion = createAccordion({
   Root: Root,
   Item: View,
-  //@ts-ignore
   Header: Header,
   Trigger: Pressable,
   Icon: PrimitiveIcon,

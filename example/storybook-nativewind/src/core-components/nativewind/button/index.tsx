@@ -21,7 +21,7 @@ import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 
 const SCOPE = 'BUTTON';
 
-type IPrimitiveIcon = {
+type IPrimitiveIcon = React.ComponentPropsWithoutRef<typeof Svg> & {
   height?: number | string;
   width?: number | string;
   fill?: string;
@@ -89,10 +89,7 @@ const UIButton = createButton({
   Text,
   Group: View,
   Spinner: ActivityIndicator,
-  Icon:
-    Platform.OS === 'web'
-      ? withStates(PrimitiveIcon)
-      : withStates(PrimitiveIcon),
+  Icon: withStates(PrimitiveIcon),
 });
 
 cssInterop(UIButton, { className: 'style' });
@@ -108,6 +105,7 @@ cssInterop(PrimitiveIcon, {
     nativeStyleToProp: {
       height: true,
       width: true,
+      // @ts-ignore
       fill: true,
       color: true,
       stroke: true,

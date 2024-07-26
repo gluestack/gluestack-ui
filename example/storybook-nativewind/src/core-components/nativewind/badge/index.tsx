@@ -93,7 +93,7 @@ const badgeIconStyle = tva({
   },
 });
 
-type IPrimitiveIcon = {
+type IPrimitiveIcon = React.ComponentPropsWithoutRef<typeof Svg> & {
   height?: number | string;
   width?: number | string;
   fill?: string;
