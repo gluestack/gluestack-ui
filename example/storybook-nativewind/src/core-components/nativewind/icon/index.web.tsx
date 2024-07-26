@@ -144,7 +144,14 @@ type ParameterTypes = Omit<Parameters<typeof createIcon>[0], 'Root'>;
 const createIconUI = ({ ...props }: ParameterTypes) => {
   const UIIcon = createIcon({ Root: Svg, ...props });
 
-  return React.forwardRef(({ className, size, ...props }: any, ref) => {
+  return React.forwardRef<
+    React.ElementRef<typeof UIIcon>,
+    React.ComponentPropsWithoutRef<typeof UIIcon> &
+      VariantProps<typeof iconStyle> & {
+        height?: number | string;
+        width?: number | string;
+      }
+  >(({ className, size, ...props }, ref) => {
     return (
       <UIIcon
         ref={ref}

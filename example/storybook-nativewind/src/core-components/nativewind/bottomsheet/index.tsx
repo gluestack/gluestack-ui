@@ -8,7 +8,7 @@ import GorhomBottomSheet, {
   BottomSheetSectionList as GorhomBottomSheetSectionList,
 } from '@gorhom/bottom-sheet';
 import { Platform } from 'react-native';
-import type { PressableProps } from 'react-native';
+import type { PressableProps, TextProps } from 'react-native';
 import { FocusScope } from '@react-native-aria/focus';
 import React, {
   createContext,
@@ -41,7 +41,18 @@ const bottomSheetItemStyle = tva({
   base: 'p-3 flex-row items-center rounded-sm w-full disabled:opacity-0.4 web:pointer-events-auto disabled:cursor-not-allowed hover:bg-background-50 active:bg-background-100 focus:bg-background-100 web:focus-visible:bg-background-100',
 });
 
-const BottomSheetContext = createContext<any>({});
+const BottomSheetContext = createContext<{
+  visible: boolean;
+  bottomSheetRef: React.RefObject<GorhomBottomSheet>;
+  handleClose: () => void;
+  handleOpen: () => void;
+}>({
+  visible: false,
+  bottomSheetRef: { current: null },
+  handleClose: () => {},
+  handleOpen: () => {},
+});
+
 type IBottomSheetProps = React.ComponentProps<typeof GorhomBottomSheet>;
 export const BottomSheet = ({
   snapToIndex = 1,
@@ -50,7 +61,7 @@ export const BottomSheet = ({
   ...props
 }: {
   snapToIndex?: number;
-  children?: any;
+  children?: React.ReactNode;
   onOpen?: () => void;
   onClose?: () => void;
 }) => {
@@ -121,12 +132,15 @@ export const BottomSheetPortal = ({
   );
 };
 
-export const BottomSheetTrigger = ({ className, ...props }: any) => {
+export const BottomSheetTrigger = ({
+  className,
+  ...props
+}: PressableProps & { className?: string }) => {
   const { handleOpen } = useContext(BottomSheetContext);
   return (
     <Pressable
-      onPress={() => {
-        props.onPress && props.onPress();
+      onPress={(e) => {
+        props.onPress && props.onPress(e);
         handleOpen();
       }}
       {...props}
@@ -192,7 +206,7 @@ export const BottomSheetContent = ({ ...props }: IBottomSheetContent) => {
   const keyDownHandlers = useMemo(() => {
     return Platform.OS === 'web'
       ? {
-          onKeyDown: (e: any) => {
+          onKeyDown: (e: React.KeyboardEvent) => {
             if (e.key === 'Escape') {
               e.preventDefault();
               handleClose();
@@ -265,7 +279,7 @@ export const BottomSheetItem = ({
   );
 };
 
-export const BottomSheetItemText = ({ ...props }: any) => {
+export const BottomSheetItemText = ({ ...props }: TextProps) => {
   return <Text {...props} />;
 };
 

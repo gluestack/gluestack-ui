@@ -183,7 +183,7 @@ type ICheckboxProps = React.ComponentPropsWithoutRef<typeof UICheckbox> &
 const Checkbox = React.forwardRef<
   React.ElementRef<typeof UICheckbox>,
   ICheckboxProps
->(({ className, size = 'md', ...props }, ref?: any) => {
+>(({ className, size = 'md', ...props }, ref) => {
   return (
     <UICheckbox
       className={checkboxStyle({

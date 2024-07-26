@@ -14,7 +14,21 @@ import { withStates } from '@gluestack-ui/nativewind-utils/withStates';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 const SCOPE = 'INPUT';
 
-const PrimitiveIcon = React.forwardRef(
+type IPrimitiveIcon = {
+  height?: number | string;
+  width?: number | string;
+  fill?: string;
+  color?: string;
+  size?: number | string;
+  stroke?: string;
+  as?: React.ElementType;
+  className?: string;
+};
+
+const PrimitiveIcon = React.forwardRef<
+  React.ElementRef<typeof Svg>,
+  IPrimitiveIcon
+>(
   (
     {
       height,
@@ -25,8 +39,8 @@ const PrimitiveIcon = React.forwardRef(
       stroke = 'currentColor',
       as: AsComp,
       ...props
-    }: any,
-    ref?: any
+    },
+    ref
   ) => {
     const sizeProps = useMemo(() => {
       if (size) return { size };
@@ -184,7 +198,6 @@ const Input = React.forwardRef<React.ElementRef<typeof UIInput>, IInputProps>(
 );
 
 type IInputIconProps = React.ComponentProps<typeof UIInput.Icon> & {
-  as: any;
   className?: string;
 };
 

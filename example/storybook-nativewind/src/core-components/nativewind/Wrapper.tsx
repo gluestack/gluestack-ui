@@ -8,7 +8,7 @@ export function GluestackUIProvider({
   ...props
 }: {
   mode?: 'light' | 'dark';
-  children?: any;
+  children?: React.ReactNode;
 }) {
   if (config[mode] && typeof document !== 'undefined') {
     const element = document.documentElement;
@@ -26,8 +26,14 @@ export function GluestackUIProvider({
   return props.children;
 }
 
-const Wrapper = ({ children, ...props }: any) => {
-  const colorMode: any = useColorMode();
+const Wrapper = ({
+  children,
+  ...props
+}: {
+  children?: React.ReactNode;
+  props?: React.ComponentProps<typeof Box>;
+}) => {
+  const colorMode = useColorMode() as 'light' | 'dark';
   return (
     <Box
       sx={{

@@ -5,10 +5,8 @@ import { skeletonStyle, skeletonTextStyle } from './styles';
 
 type ISkeletonProps = React.ComponentProps<typeof View> &
   VariantProps<typeof skeletonStyle> & {
-    variant?: 'sharp' | 'circular' | 'rounded';
     isLoaded?: boolean;
     startColor?: string;
-    speed?: number;
   };
 
 type ISkeletonTextProps = React.ComponentProps<typeof View> &
@@ -16,8 +14,6 @@ type ISkeletonTextProps = React.ComponentProps<typeof View> &
     _lines?: number;
     isLoaded?: boolean;
     startColor?: string;
-    speed?: number;
-    gap?: number;
   };
 
 const Skeleton = forwardRef<
