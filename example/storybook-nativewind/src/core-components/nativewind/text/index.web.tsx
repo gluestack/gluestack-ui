@@ -18,7 +18,7 @@ const Text = React.forwardRef<React.ElementRef<'span'>, ITextProps>(
       highlight,
       ...props
     }: { className?: string } & ITextProps,
-    ref?: any
+    ref
   ) => {
     return (
       <span

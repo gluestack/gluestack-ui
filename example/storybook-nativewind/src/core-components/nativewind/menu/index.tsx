@@ -65,7 +65,8 @@ const menuItemLabelStyle = tva({
 
 const BackdropPressable = React.forwardRef<
   React.ElementRef<typeof Pressable>,
-  any
+  React.ComponentPropsWithoutRef<typeof Pressable> &
+    VariantProps<typeof menuBackdropStyle>
 >(({ className, ...props }, ref) => {
   return (
     <Pressable

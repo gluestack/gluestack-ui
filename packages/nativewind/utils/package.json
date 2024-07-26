@@ -74,7 +74,8 @@
     "flush",
     "scripts",
     "IsWeb",
-    "useBreakpointValue"
+    "useBreakpointValue",
+    "tailwind-plugin"
   ],
   "jest": {
     "preset": "jest-expo",

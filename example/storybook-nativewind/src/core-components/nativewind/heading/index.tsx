@@ -170,7 +170,7 @@ const MappedHeading = memo(
 
 const Heading = memo(
   forwardRef<React.ElementRef<typeof H1>, IHeadingProps>(
-    ({ className, size = 'lg', as: AsComp, ...props }, ref?: any) => {
+    ({ className, size = 'lg', as: AsComp, ...props }, ref) => {
       const {
         isTruncated,
         bold,

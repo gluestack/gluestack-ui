@@ -15,9 +15,6 @@ export const skeletonStyle = tva({
       4: 'duration-200',
     },
   },
-  defaultVariants: {
-    variant: 'rounded',
-  },
 });
 export const skeletonTextStyle = tva({
   base: 'rounded-sm w-full',

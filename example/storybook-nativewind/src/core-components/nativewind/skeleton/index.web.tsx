@@ -1,73 +1,115 @@
 import React from 'react';
 import { skeletonStyle, skeletonTextStyle } from './styles';
+import type { ViewProps } from 'react-native';
+import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 
-const Skeleton = ({
-  className,
-  variant,
-  children,
-  speed = 2,
-  startColor = 'bg-background-200',
-  isLoaded = false,
-  ...props
-}: any) => {
-  if (!isLoaded) {
-    return (
-      <div
-        className={`animate-pulse ${startColor} ${skeletonStyle({
-          variant,
-          speed,
-          class: className,
-        })}`}
-        {...props}
-      />
-    );
-  } else {
-    return children;
-  }
+type Similar<T, U> = {
+  [K in keyof T & keyof U]: T[K] extends U[K]
+    ? U[K] extends T[K]
+      ? T[K]
+      : never
+    : never;
 };
 
-const SkeletonText = ({
-  className,
-  _lines,
-  isLoaded = false,
-  startColor = 'bg-background-200',
-  gap = 2,
-  children,
-  ...props
-}: any) => {
-  if (!isLoaded) {
-    if (_lines) {
+type ISkeletonProps = Similar<
+  ViewProps,
+  React.ComponentPropsWithoutRef<'div'>
+> &
+  VariantProps<typeof skeletonStyle> & {
+    startColor?: string;
+    isLoaded?: boolean;
+  };
+
+const Skeleton = React.forwardRef<HTMLDivElement, ISkeletonProps>(
+  (
+    {
+      className,
+      variant = 'rounded',
+      children,
+      speed = 2,
+      startColor = 'bg-background-200',
+      isLoaded = false,
+      ...props
+    },
+    ref
+  ) => {
+    if (!isLoaded) {
       return (
         <div
-          className={`flex flex-col ${skeletonTextStyle({
-            gap,
-          })}`}
-        >
-          {Array.from({ length: _lines }).map((_, index) => (
-            <div
-              key={index}
-              className={`animate-pulse ${startColor} ${skeletonTextStyle({
-                class: className,
-              })}`}
-              {...props}
-            />
-          ))}
-        </div>
-      );
-    } else {
-      return (
-        <div
-          className={`animate-pulse ${startColor} ${skeletonTextStyle({
+          ref={ref}
+          className={`animate-pulse ${startColor} ${skeletonStyle({
+            variant,
+            speed,
             class: className,
           })}`}
           {...props}
         />
       );
+    } else {
+      return children;
     }
-  } else {
-    return children;
   }
-};
+);
+
+type ISkeletonTextProps = Similar<
+  ViewProps,
+  React.ComponentPropsWithoutRef<'div'>
+> &
+  VariantProps<typeof skeletonTextStyle> & {
+    _lines?: number;
+    isLoaded?: boolean;
+    startColor?: string;
+  };
+
+const SkeletonText = React.forwardRef<HTMLDivElement, ISkeletonTextProps>(
+  (
+    {
+      className,
+      _lines,
+      isLoaded = false,
+      startColor = 'bg-background-200',
+      gap = 2,
+      children,
+      ...props
+    },
+    ref
+  ) => {
+    if (!isLoaded) {
+      if (_lines) {
+        return (
+          <div
+            ref={ref}
+            className={`flex flex-col ${skeletonTextStyle({
+              gap,
+            })}`}
+          >
+            {Array.from({ length: _lines }).map((_, index) => (
+              <div
+                key={index}
+                className={`animate-pulse ${startColor} ${skeletonTextStyle({
+                  class: className,
+                })}`}
+                {...props}
+              />
+            ))}
+          </div>
+        );
+      } else {
+        return (
+          <div
+            ref={ref}
+            className={`animate-pulse ${startColor} ${skeletonTextStyle({
+              class: className,
+            })}`}
+            {...props}
+          />
+        );
+      }
+    } else {
+      return children;
+    }
+  }
+);
 
 Skeleton.displayName = 'Skeleton';
 SkeletonText.displayName = 'SkeletonText';

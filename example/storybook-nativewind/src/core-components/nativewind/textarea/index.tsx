@@ -12,7 +12,10 @@ import { cssInterop } from 'nativewind';
 import { withStates } from '@gluestack-ui/nativewind-utils/withStates';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 
-const TextareaWrapper = React.forwardRef(({ ...props }: any, ref?: any) => {
+const TextareaWrapper = React.forwardRef<
+  React.ElementRef<typeof View>,
+  React.ComponentProps<typeof View>
+>(({ ...props }, ref) => {
   return <View {...props} ref={ref} />;
 });
 

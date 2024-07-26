@@ -22,13 +22,77 @@ import {
   createMotionAnimatedComponent,
 } from '@legendapp/motion';
 
-import React from 'react';
+import React, { useMemo } from 'react';
+import { Svg } from 'react-native-svg';
 
 const AnimatedPressable = createMotionAnimatedComponent(Pressable);
+
+type IPrimitiveIcon = {
+  height?: number | string;
+  width?: number | string;
+  fill?: string;
+  color?: string;
+  size?: number | string;
+  stroke?: string;
+  as?: React.ElementType;
+  className?: string;
+};
+
+const PrimitiveIcon = React.forwardRef<
+  React.ElementRef<typeof Svg>,
+  IPrimitiveIcon
+>(
+  (
+    {
+      height,
+      width,
+      fill,
+      color,
+      size,
+      stroke = 'currentColor',
+      as: AsComp,
+      ...props
+    },
+    ref
+  ) => {
+    const sizeProps = useMemo(() => {
+      if (size) return { size };
+      if (height && width) return { height, width };
+      if (height) return { height };
+      if (width) return { width };
+      return {};
+    }, [size, height, width]);
+
+    const colorProps =
+      stroke === 'currentColor' && color !== undefined ? color : stroke;
+
+    if (AsComp) {
+      return (
+        <AsComp
+          ref={ref}
+          fill={fill}
+          {...props}
+          {...sizeProps}
+          stroke={colorProps}
+        />
+      );
+    }
+    return (
+      <Svg
+        ref={ref}
+        height={height}
+        width={width}
+        fill={fill}
+        stroke={colorProps}
+        {...props}
+      />
+    );
+  }
+);
+
 export const UIActionsheet = createActionsheet({
   Root: View,
   Content: withStyleContext(Motion.View),
-  // @ts-ignore
   Item:
     Platform.OS === 'web'
       ? withStyleContext(Pressable)
@@ -42,7 +106,7 @@ export const UIActionsheet = createActionsheet({
   FlatList: FlatList,
   SectionList: SectionList,
   SectionHeaderText: H4,
-  Icon: View,
+  Icon: PrimitiveIcon,
   AnimatePresence: AnimatePresence,
 });
 
@@ -272,7 +336,6 @@ type IActionsheetSectionHeaderTextProps = VariantProps<
 type IActionsheetIconProps = VariantProps<typeof actionsheetIconStyle> &
   React.ComponentProps<typeof UIActionsheet.Icon> & {
     className?: string;
-    as?: any;
   };
 
 const Actionsheet = React.forwardRef<

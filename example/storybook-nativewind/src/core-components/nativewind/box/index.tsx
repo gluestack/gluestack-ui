@@ -16,7 +16,7 @@ type IBoxProps = Similar<ViewProps, React.ComponentPropsWithoutRef<'div'>> &
   VariantProps<typeof boxStyle>;
 
 const Box = React.forwardRef<React.ElementRef<typeof View>, IBoxProps>(
-  ({ className, ...props }, ref?: any) => {
+  ({ className, ...props }, ref) => {
     return (
       <View ref={ref} {...props} className={boxStyle({ class: className })} />
     );
