@@ -131,6 +131,8 @@ type TVSlotsWithBase<
 type TVBaseName = 'base';
 
 export type VariantProps<T extends (...args: any) => any> = Omit<
-  TVVariantProps<T>,
+  TVVariantProps<T> & {
+    className?: string;
+  },
   'parentVariants'
 >;

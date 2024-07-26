@@ -7,7 +7,7 @@ import React, {
   forwardRef,
 } from 'react';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
-import { View, Dimensions, Platform } from 'react-native';
+import { View, Dimensions, Platform, ViewProps } from 'react-native';
 import { gridStyle, gridItemStyle } from './styles';
 import { cssInterop } from 'nativewind';
 import {
@@ -17,29 +17,6 @@ import {
 const { width } = Dimensions.get('window');
 
 const GridContext = createContext<any>({});
-type IGridProps = React.ComponentProps<typeof View> &
-  VariantProps<typeof gridStyle> & {
-    gap?: number;
-    rowGap?: number;
-    columnGap?: number;
-    flexDirection?: 'row' | 'column' | 'row-reverse' | 'column-reverse';
-    padding?: number;
-    paddingLeft?: number;
-    paddingRight?: number;
-    paddingStart?: number;
-    paddingEnd?: number;
-    _extra: {
-      className: string;
-    };
-  };
-
-type IGridItemProps = React.ComponentProps<typeof View> &
-  VariantProps<typeof gridItemStyle> & {
-    index?: number;
-    _extra: {
-      className: string;
-    };
-  };
 
 function arrangeChildrenIntoRows({
   childrenArray,
@@ -129,8 +106,32 @@ function generateResponsiveColSpans({
   return result;
 }
 
-const Grid = forwardRef(
-  ({ className, _extra, children, ...props }: IGridProps, ref?: any) => {
+type Similar<T, U> = {
+  [K in keyof T & keyof U]: T[K] extends U[K]
+    ? U[K] extends T[K]
+      ? T[K]
+      : never
+    : never;
+};
+
+type IGridProps = Similar<ViewProps, React.ComponentPropsWithoutRef<'div'>> &
+  VariantProps<typeof gridStyle> & {
+    gap?: number;
+    rowGap?: number;
+    columnGap?: number;
+    flexDirection?: 'row' | 'column' | 'row-reverse' | 'column-reverse';
+    padding?: number;
+    paddingLeft?: number;
+    paddingRight?: number;
+    paddingStart?: number;
+    paddingEnd?: number;
+    _extra: {
+      className: string;
+    };
+  };
+
+const Grid = forwardRef<React.ElementRef<typeof View>, IGridProps>(
+  ({ className, _extra, children, ...props }, ref) => {
     const [calculatedWidth, setCalculatedWidth] = useState<number | null>(null);
 
     const gridClass = _extra?.className;
@@ -237,8 +238,19 @@ cssInterop(Grid, {
   },
 });
 
-const GridItem = forwardRef(
-  ({ className, _extra, ...props }: IGridItemProps, ref?: any) => {
+type IGridItemProps = Similar<
+  ViewProps,
+  React.ComponentPropsWithoutRef<'div'>
+> &
+  VariantProps<typeof gridItemStyle> & {
+    index?: number;
+    _extra: {
+      className: string;
+    };
+  };
+
+const GridItem = forwardRef<React.ElementRef<typeof View>, IGridItemProps>(
+  ({ className, _extra, ...props }, ref) => {
     const [flexBasisValue, setFlexBasisValue] = useState<
       number | string | null
     >('auto');
@@ -253,9 +265,10 @@ const GridItem = forwardRef(
     } = useContext(GridContext);
 
     const gridItemClass = _extra?.className;
-    const responsiveColSpan: any = useBreakpointValue(
-      generateResponsiveColSpans({ gridItemClassName: gridItemClass })
-    );
+    const responsiveColSpan: number =
+      useBreakpointValue(
+        generateResponsiveColSpans({ gridItemClassName: gridItemClass })
+      ) ?? 1;
 
     useEffect(() => {
       if (
@@ -303,17 +316,20 @@ const GridItem = forwardRef(
     return (
       <View
         ref={ref}
+        // @ts-expect-error
         gridItemClass={gridItemClass}
         className={gridItemStyle({
           class:
             className + ' ' + Platform.select({ web: gridItemClass ?? '' }) ??
             '',
         })}
-        //@ts-ignore
-        style={{
-          flexBasis: flexBasisValue,
-        }}
         {...props}
+        style={[
+          {
+            flexBasis: flexBasisValue as any,
+          },
+          props.style,
+        ]}
       />
     );
   }

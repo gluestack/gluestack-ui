@@ -7,8 +7,8 @@ import { vstackStyle } from './styles';
 type IVStackProps = React.ComponentProps<typeof View> &
   VariantProps<typeof vstackStyle>;
 
-const VStack = React.forwardRef(
-  ({ className, space, reversed, ...props }: IVStackProps, ref?: any) => {
+const VStack = React.forwardRef<React.ElementRef<typeof View>, IVStackProps>(
+  ({ className, space, reversed, ...props }, ref) => {
     return (
       <View
         className={vstackStyle({ space, reversed, class: className })}
