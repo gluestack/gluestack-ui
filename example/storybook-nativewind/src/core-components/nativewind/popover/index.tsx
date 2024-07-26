@@ -19,16 +19,18 @@ import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 
 const AnimatedPressable = createMotionAnimatedComponent(Pressable);
 const SCOPE = 'POPOVER';
-const ArrowWrapper = React.forwardRef(({ ...props }: any, ref?: any) => {
+const ArrowWrapper = React.forwardRef(({ ...props }, ref) => {
   return <Motion.View {...props} ref={ref} />;
-});
+}) as React.ForwardRefExoticComponent<
+  React.ElementRef<typeof Motion.View> &
+    React.ComponentProps<typeof Motion.View>
+>;
 const UIPopover = createPopover({
-  // @ts-ignore
-  Root:
-    Platform.OS === 'web'
-      ? withStyleContext(View, SCOPE)
-      : withStyleContextAndStates(View, SCOPE),
-  // @ts-ignore
+  Root: (Platform.OS === 'web'
+    ? withStyleContext(View, SCOPE)
+    : withStyleContextAndStates(View, SCOPE)) as ReturnType<
+    typeof withStyleContext<typeof View>
+  >,
   Arrow: Platform.OS === 'web' ? Motion.View : withStates(ArrowWrapper),
   Backdrop: AnimatedPressable,
   Body: ScrollView,
@@ -36,10 +38,9 @@ const UIPopover = createPopover({
   Content: Motion.View,
   Footer: View,
   Header: View,
-  AnimatedPresence: AnimatePresence,
+  AnimatePresence: AnimatePresence,
 });
 
-//@ts-ignore
 cssInterop(UIPopover, { className: 'style' });
 cssInterop(ArrowWrapper, { className: 'style' });
 cssInterop(UIPopover.Content, { className: 'style' });
