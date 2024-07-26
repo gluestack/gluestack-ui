@@ -262,7 +262,7 @@ const AccordionItem = React.forwardRef<
 const AccordionContent = React.forwardRef<
   React.ElementRef<typeof UIAccordion.Content>,
   IAccordionContentProps
->(({ className, ...props }, ref?: any) => {
+>(({ className, ...props }, ref) => {
   return (
     <UIAccordion.Content
       ref={ref}
@@ -294,7 +294,7 @@ const AccordionContentText = React.forwardRef<
 const AccordionIcon = React.forwardRef<
   React.ElementRef<typeof UIAccordion.Icon>,
   IAccordionIconProps
->(({ size, className, ...props }, ref?: any) => {
+>(({ size, className, ...props }, ref) => {
   const { size: parentSize } = useStyleContext(SCOPE);
 
   if (typeof size === 'number') {
