@@ -6,7 +6,7 @@ import { ToastProvider } from '@gluestack-ui/toast';
 import { setFlushStyles } from '@gluestack-ui/nativewind-utils/flush';
 
 const styleTagId = 'gluestack-ui-nativewind';
-const createStyle = (styleTagId: any) => {
+const createStyle = (styleTagId: string) => {
   let style = document.createElement('style');
   style.id = styleTagId;
   style.appendChild(document.createTextNode(''));
@@ -18,7 +18,7 @@ export function GluestackUIProvider({
   ...props
 }: {
   mode?: 'light' | 'dark';
-  children?: any;
+  children?: React.ReactNode;
 }) {
   const stringcssvars = Object.keys(config[mode]).reduce((acc, cur) => {
     acc += `${cur}:${config[mode][cur]};`;

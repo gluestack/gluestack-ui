@@ -7,10 +7,15 @@
       "@/components/hooks/*": ["src/core-components/hooks/*"],
       "@gluestack-style/react": ["../../packages/styled/react/src"],
       "@gluestack-ui/popover": ["../../packages/unstyled/popover/src"],
+      "@gluestack-ui/overlay": ["../../packages/unstyled/overlay/src"],
       "@gluestack-ui/button": ["../../packages/unstyled/button/src"],
+      "@gluestack-ui/toast": ["../../packages/unstyled/toast/src"],
       "@gluestack-ui/alert": ["../../packages/unstyled/alert/src"],
       "@gluestack-ui/input": ["../../packages/unstyled/input/src"],
       "@gluestack-ui/checkbox": ["../../packages/unstyled/checkbox/src"],
+      "@gluestack-ui/form-control": [
+        "../../packages/unstyled/form-control/src"
+      ],
       "@gluestack-ui/modal": ["../../packages/unstyled/modal/src"],
       "@gluestack-ui/radio": ["../../packages/unstyled/radio/src"],
       "@gluestack-ui/accordion": ["../../packages/unstyled/accordion/src"],
@@ -18,6 +23,7 @@
       "@gluestack-ui/avatar": ["../../packages/unstyled/avatar/src"],
       "@gluestack-ui/tooltip": ["../../packages/unstyled/tooltip/src"],
       "@gluestack-ui/fab": ["../../packages/unstyled/fab/src"],
+      "@gluestack-ui/progress": ["../../packages/unstyled/progress/src"],
       "@gluestack-ui/alert-dialog": [
         "../../packages/unstyled/alert-dialog/src"
       ],

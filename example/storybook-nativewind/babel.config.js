@@ -103,6 +103,10 @@ module.exports = function (api) {
               __dirname,
               '../../packages/nativewind/utils/cssInterop'
             ),
+            '@gluestack-ui/nativewind-utils/tailwind-plugin': path.resolve(
+              __dirname,
+              '../../packages/nativewind/utils/tailwind-plugin'
+            ),
             '@gluestack-ui/nativewind-utils/tva': path.resolve(
               __dirname,
               '../../packages/nativewind/utils/tva'

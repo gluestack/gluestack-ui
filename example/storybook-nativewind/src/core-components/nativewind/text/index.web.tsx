@@ -4,7 +4,7 @@ import { textStyle } from './styles';
 
 type ITextProps = React.ComponentProps<'span'> & VariantProps<typeof textStyle>;
 
-const Text = React.forwardRef(
+const Text = React.forwardRef<React.ElementRef<'span'>, ITextProps>(
   (
     {
       className,
@@ -18,7 +18,7 @@ const Text = React.forwardRef(
       highlight,
       ...props
     }: { className?: string } & ITextProps,
-    ref?: any
+    ref
   ) => {
     return (
       <span

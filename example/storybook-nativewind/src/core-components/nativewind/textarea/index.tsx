@@ -11,16 +11,24 @@ import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withSt
 import { cssInterop } from 'nativewind';
 import { withStates } from '@gluestack-ui/nativewind-utils/withStates';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
+
+const TextareaWrapper = React.forwardRef<
+  React.ElementRef<typeof View>,
+  React.ComponentProps<typeof View>
+>(({ ...props }, ref) => {
+  return <View {...props} ref={ref} />;
+});
+
 const SCOPE = 'TEXTAREA';
 const UITextarea = createTextarea({
   Root:
     Platform.OS === 'web'
-      ? withStyleContext(View, SCOPE)
-      : withStyleContextAndStates(View, SCOPE),
+      ? withStyleContext(TextareaWrapper, SCOPE)
+      : withStyleContextAndStates(TextareaWrapper, SCOPE),
   Input: Platform.OS === 'web' ? TextInput : withStates(TextInput),
 });
 
-cssInterop(UITextarea, { className: 'style' });
+cssInterop(TextareaWrapper, { className: 'style' });
 cssInterop(UITextarea.Input, {
   className: { target: 'style', nativeStyleToProp: { textAlign: true } },
 });
@@ -57,51 +65,42 @@ const textareaInputStyle = tva({
 type ITextareaProps = React.ComponentProps<typeof UITextarea> &
   VariantProps<typeof textareaStyle>;
 
-const Textarea = React.forwardRef(
-  (
-    {
-      className,
-      variant = 'default',
-      size = 'md',
-      ...props
-    }: { className?: string } & ITextareaProps,
-    ref?: any
-  ) => {
-    return (
-      <UITextarea
-        ref={ref}
-        {...props}
-        className={textareaStyle({ variant, class: className })}
-        context={{ size }}
-      />
-    );
-  }
-);
+const Textarea = React.forwardRef<
+  React.ElementRef<typeof UITextarea>,
+  ITextareaProps
+>(({ className, variant = 'default', size = 'md', ...props }, ref) => {
+  return (
+    <UITextarea
+      ref={ref}
+      {...props}
+      className={textareaStyle({ variant, class: className })}
+      context={{ size }}
+    />
+  );
+});
 
 type ITextareaInputProps = React.ComponentProps<typeof UITextarea.Input> &
   VariantProps<typeof textareaInputStyle>;
 
-const TextareaInput = React.forwardRef(
-  (
-    { className, ...props }: { className?: string } & ITextareaInputProps,
-    ref?: any
-  ) => {
-    const { size: parentSize } = useStyleContext(SCOPE);
+const TextareaInput = React.forwardRef<
+  React.ElementRef<typeof UITextarea.Input>,
+  ITextareaInputProps
+>(({ className, ...props }, ref) => {
+  const { size: parentSize } = useStyleContext(SCOPE);
 
-    return (
-      <UITextarea.Input
-        ref={ref}
-        {...props}
-        className={textareaInputStyle({
-          parentVariants: {
-            size: parentSize,
-          },
-          class: className,
-        })}
-      />
-    );
-  }
-);
+  return (
+    <UITextarea.Input
+      ref={ref}
+      {...props}
+      className={textareaInputStyle({
+        parentVariants: {
+          size: parentSize,
+        },
+        class: className,
+      })}
+    />
+  );
+});
 
 Textarea.displayName = 'Textarea';
 TextareaInput.displayName = 'TextareaInput';
