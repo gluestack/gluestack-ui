@@ -1,4 +1,5 @@
 const plugin = require('tailwindcss/plugin');
+
 const stateObj = {
   'indeterminate=true': 1,
   'indeterminate=false': 1,
@@ -8,32 +9,44 @@ const stateObj = {
   'read-only=false': 1,
   'flip=true': 1,
   'flip=false': 1,
+
   'required=true': 2,
   'required=false': 2,
   'invalid=true': 2,
   'invalid=false': 2,
+
   'focus=true': 3,
   'focus=false': 3,
+
   'focus-visible=true': 4,
   'focus-visible=false': 4,
+
   'hover=true': 5,
   'hover=false': 5,
+
   'pressed=true': 6,
   'pressed=false': 6,
   'active=true': 6,
   'active=false': 6,
+
   'loading=true': 7,
   'loading=false': 7,
+
   'disabled=true': 10,
   'disabled=false': 10,
-};
-const getStatesWeight = (state) => {
+} as Record<string, number>;
+const getStatesWeight = (state: string) => {
   return stateObj[state];
 };
-const gluestackPlugin = plugin(function ({ matchVariant }) {
+
+const gluestackPlugin = plugin(function ({
+  matchVariant,
+}: {
+  matchVariant: any;
+}) {
   matchVariant(
     'data',
-    (_value) => {
+    (_value: any) => {
       if (!_value.includes('=')) {
         return `&`;
       }
@@ -41,10 +54,11 @@ const gluestackPlugin = plugin(function ({ matchVariant }) {
       return `&[data-${state}="${value}"]`;
     },
     {
-      sort(a, z) {
+      sort(a: any, z: any) {
         return getStatesWeight(a.value) - getStatesWeight(z.value);
       },
     }
   );
 });
+
 export default gluestackPlugin;
