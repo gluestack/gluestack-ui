@@ -11,7 +11,7 @@ import {
   Menu,
   MenuItem,
   MenuItemLabel,
-  MenuSeperator,
+  MenuSeparator,
 } from '@/components/ui/menu';
 
 const MenuBasic = (props: any) => {
@@ -33,17 +33,17 @@ const MenuBasic = (props: any) => {
         <Icon as={AddIcon} size="sm" className="mr-2" />
         <MenuItemLabel size="sm">Add account</MenuItemLabel>
       </MenuItem>
-      <MenuSeperator />
+      <MenuSeparator />
       <MenuItem key="Community" textValue="Community">
         <Icon as={GlobeIcon} size="sm" className="mr-2" />
         <MenuItemLabel size="sm">Community</MenuItemLabel>
       </MenuItem>
-      <MenuSeperator />
+      <MenuSeparator />
       <MenuItem key="Plugins" textValue="Plugins">
         <Icon as={PlayIcon} size="sm" className="mr-2" />
         <MenuItemLabel size="sm">Plugins</MenuItemLabel>
       </MenuItem>
-      <MenuSeperator />
+      <MenuSeparator />
       <MenuItem key="Settings" textValue="Settings">
         <Icon as={SettingsIcon} size="sm" className="mr-2" />
         <MenuItemLabel size="sm">Settings</MenuItemLabel>
