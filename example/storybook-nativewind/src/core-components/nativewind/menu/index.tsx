@@ -22,6 +22,10 @@ const menuBackdropStyle = tva({
   // opacity-50 bg-background-500,
 });
 
+const menuSeparatorStyle = tva({
+  base: 'bg-background-200 h-px w-full',
+});
+
 const menuItemLabelStyle = tva({
   base: 'text-typography-700 font-normal font-body',
 
@@ -96,16 +100,24 @@ const Item = React.forwardRef(
   }
 );
 
-const Separator = React.forwardRef(() => {
-  return <View className="bg-outline-500 h-px my-1 w-full " />;
-});
+const Separator = React.forwardRef(
+  ({ className, ...props }: any, ref?: any) => {
+    return (
+      <View
+        ref={ref}
+        className={menuSeparatorStyle({ class: className })}
+        {...props}
+      />
+    );
+  }
+);
 export const UIMenu = createMenu({
   Root: Motion.View,
   Item: Platform.OS === 'web' ? Item : withStates(Item),
   Label: Text,
   Backdrop: BackdropPressable,
   AnimatePresence: AnimatePresence,
-  Seperator: Separator,
+  Separator: Separator,
 });
 
 cssInterop(UIMenu, { className: 'style' });
@@ -184,10 +196,10 @@ const MenuItemLabel = React.forwardRef(
   }
 );
 
-// @ts-ignore
-export const MenuSeperator = UIMenu.Separator;
+const MenuSeperator = UIMenu.Separator;
+
 Menu.displayName = 'Menu';
 MenuItem.displayName = 'MenuItem';
 MenuItemLabel.displayName = 'MenuItemLabel';
-
-export { Menu, MenuItem, MenuItemLabel };
+MenuSeperator.displayName = 'MenuSeperator';
+export { Menu, MenuItem, MenuItemLabel, MenuSeperator };

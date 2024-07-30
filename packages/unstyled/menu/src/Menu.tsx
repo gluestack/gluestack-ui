@@ -14,7 +14,7 @@ export const Menu = ({
   StyledMenuItem,
   StyledBackdrop,
   AnimatePresence,
-  StyledSeperator,
+  StyledSeparator,
 }: any) => {
   return forwardRef(
     (
@@ -88,7 +88,7 @@ export const Menu = ({
               onClose={() => state.close()}
               StyledMenu={StyledMenu}
               StyledMenuItem={StyledMenuItem}
-              StyledSeperator={StyledSeperator}
+              StyledSeparator={StyledSeparator}
               closeOnSelect={closeOnSelect}
               ref={ref}
             />
@@ -119,7 +119,7 @@ export const Menu = ({
               onClose={() => state.close()}
               StyledMenu={StyledMenu}
               StyledMenuItem={StyledMenuItem}
-              StyledSeperator={StyledSeperator}
+              StyledSeparator={StyledSeparator}
               closeOnSelect={closeOnSelect}
               ref={ref}
             />
@@ -134,7 +134,7 @@ const MenuComponent = forwardRef(
     {
       StyledMenu,
       StyledMenuItem,
-      StyledSeperator,
+      StyledSeparator,
       AnimatePresence,
       isOpen,
       closeOnSelect,
@@ -189,7 +189,11 @@ const MenuComponent = forwardRef(
                   />
                 );
               case 'seperator':
-                return <StyledSeperator {...item.props} key={item.key} />;
+                return (
+                  StyledSeparator && (
+                    <StyledSeparator {...item.props} key={item.key} />
+                  )
+                );
               default:
                 return null;
             }
