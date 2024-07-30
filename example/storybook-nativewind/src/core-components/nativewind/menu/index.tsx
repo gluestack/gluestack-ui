@@ -196,10 +196,10 @@ const MenuItemLabel = React.forwardRef(
   }
 );
 
-const MenuSeperator = UIMenu.Separator;
+const MenuSeparator = UIMenu.Separator;
 
 Menu.displayName = 'Menu';
 MenuItem.displayName = 'MenuItem';
 MenuItemLabel.displayName = 'MenuItemLabel';
-MenuSeperator.displayName = 'MenuSeperator';
-export { Menu, MenuItem, MenuItemLabel, MenuSeperator };
+MenuSeparator.displayName = 'MenuSeperator';
+export { Menu, MenuItem, MenuItemLabel, MenuSeparator };

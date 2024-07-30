@@ -39,6 +39,7 @@ import {
   HelpCircleIcon,
   MessageCircleIcon,
   BadgeText,
+  MenuSeparator
 } from '../../core-components/nativewind';
 import { PaintBucket, PuzzleIcon } from 'lucide-react-native';
 import { transformedCode } from '../../utils';
@@ -508,6 +509,10 @@ Contains all button related layout style props and actions. It inherits all the 
 
 Contains all text related layout style props and actions. It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text) component.
 
+#### MenuSeparator
+
+Contains all view related layout style props and actions. It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
 ### Features
 
 - Keyboard support for actions.
@@ -572,10 +577,11 @@ The Examples section provides visual representations of the different variants o
         <MenuItem
           key="Address Book"
           textValue="Address Book"
-          className="p-2 border-b border-outline-200"
+          className="p-2"
         >
           <MenuItemLabel size="sm">Address Book</MenuItemLabel>
         </MenuItem>
+        <MenuSeparator />
         <MenuItem key="Earn & Redeem" textValue="Earn & Redeem" className="p-2">
           <MenuItemLabel size="sm">Earn & Redeem</MenuItemLabel>
         </MenuItem>
@@ -585,10 +591,11 @@ The Examples section provides visual representations of the different variants o
         <MenuItem
           key="Help Center"
           textValue="Help Center"
-          className="p-2 border-b border-outline-200"
+          className="p-2"
         >
           <MenuItemLabel size="sm">Help Center</MenuItemLabel>
         </MenuItem>
+         <MenuSeparator />
         <MenuItem key="Logout" textValue="Logout" className="p-2">
           <MenuItemLabel size="sm">Logout</MenuItemLabel>
         </MenuItem>
@@ -605,6 +612,7 @@ The Examples section provides visual representations of the different variants o
         Menu,
         MenuItem,
         MenuItemLabel,
+        MenuSeparator,
         Box,
         Text,
         Badge,
@@ -671,11 +679,12 @@ The Examples section provides visual representations of the different variants o
             <MenuItem
               key="Contact Support"
               textValue="Contact Support"
-              className="p-2 border-b border-outline-200"
+              className="p-2"
             >
               <Icon as={MessageCircleIcon} size="sm" className="mr-2" />
               <MenuItemLabel size="sm">Contact Support</MenuItemLabel>
             </MenuItem>
+            <MenuSeparator />
             <MenuItem
               key="Download Mobile App"
               textValue="Download Mobile App"
@@ -708,6 +717,7 @@ The Examples section provides visual representations of the different variants o
         SettingsIcon,
         HelpCircleIcon,
         MessageCircleIcon,
+        MenuSeparator,
       },
       argsType: {},
     }}
