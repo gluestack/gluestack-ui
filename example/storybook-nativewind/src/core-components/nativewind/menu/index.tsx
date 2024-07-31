@@ -85,7 +85,7 @@ const BackdropPressable = React.forwardRef<
 
 type IMenuItemProps = VariantProps<typeof menuItemStyle> & {
   className?: string;
-};
+} & React.ComponentPropsWithoutRef<typeof Pressable>;
 
 const Item = React.forwardRef<
   React.ElementRef<typeof Pressable>,
