@@ -7,7 +7,12 @@ import {
   SettingsIcon,
   PlayIcon,
 } from '@/components/ui/icon';
-import { Menu, MenuItem, MenuItemLabel } from '@/components/ui/menu';
+import {
+  Menu,
+  MenuItem,
+  MenuItemLabel,
+  MenuSeparator,
+} from '@/components/ui/menu';
 
 const MenuBasic = (props: any) => {
   return (
@@ -28,14 +33,17 @@ const MenuBasic = (props: any) => {
         <Icon as={AddIcon} size="sm" className="mr-2" />
         <MenuItemLabel size="sm">Add account</MenuItemLabel>
       </MenuItem>
+      <MenuSeparator />
       <MenuItem key="Community" textValue="Community">
         <Icon as={GlobeIcon} size="sm" className="mr-2" />
         <MenuItemLabel size="sm">Community</MenuItemLabel>
       </MenuItem>
+      <MenuSeparator />
       <MenuItem key="Plugins" textValue="Plugins">
         <Icon as={PlayIcon} size="sm" className="mr-2" />
         <MenuItemLabel size="sm">Plugins</MenuItemLabel>
       </MenuItem>
+      <MenuSeparator />
       <MenuItem key="Settings" textValue="Settings">
         <Icon as={SettingsIcon} size="sm" className="mr-2" />
         <MenuItemLabel size="sm">Settings</MenuItemLabel>

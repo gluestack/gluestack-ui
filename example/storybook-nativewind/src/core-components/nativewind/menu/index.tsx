@@ -3,7 +3,7 @@ import React from 'react';
 import { createMenu } from '@gluestack-ui/menu';
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import { cssInterop } from 'nativewind';
-import { Pressable, Text, Platform } from 'react-native';
+import { Pressable, Text, Platform, View } from 'react-native';
 import { Motion, AnimatePresence } from '@legendapp/motion';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 import { withStates } from '@gluestack-ui/nativewind-utils/withStates';
@@ -20,6 +20,10 @@ const menuBackdropStyle = tva({
   base: 'absolute top-0 bottom-0 left-0 right-0 web:cursor-default',
   // add this classnames if you want to give background color to backdrop
   // opacity-50 bg-background-500,
+});
+
+const menuSeparatorStyle = tva({
+  base: 'bg-background-200 h-px w-full',
 });
 
 const menuItemLabelStyle = tva({
@@ -81,7 +85,7 @@ const BackdropPressable = React.forwardRef<
 
 type IMenuItemProps = VariantProps<typeof menuItemStyle> & {
   className?: string;
-};
+} & React.ComponentPropsWithoutRef<typeof Pressable>;
 
 const Item = React.forwardRef<
   React.ElementRef<typeof Pressable>,
@@ -98,12 +102,24 @@ const Item = React.forwardRef<
   );
 });
 
+const Separator = React.forwardRef(
+  ({ className, ...props }: any, ref?: any) => {
+    return (
+      <View
+        ref={ref}
+        className={menuSeparatorStyle({ class: className })}
+        {...props}
+      />
+    );
+  }
+);
 export const UIMenu = createMenu({
   Root: Motion.View,
   Item: Platform.OS === 'web' ? Item : withStates(Item),
   Label: Text,
   Backdrop: BackdropPressable,
   AnimatePresence: AnimatePresence,
+  Separator: Separator,
 });
 
 cssInterop(UIMenu, { className: 'style' });
@@ -185,8 +201,10 @@ const MenuItemLabel = React.forwardRef<
   }
 );
 
+const MenuSeparator = UIMenu.Separator;
+
 Menu.displayName = 'Menu';
 MenuItem.displayName = 'MenuItem';
 MenuItemLabel.displayName = 'MenuItemLabel';
-
-export { Menu, MenuItem, MenuItemLabel };
+MenuSeparator.displayName = 'MenuSeperator';
+export { Menu, MenuItem, MenuItemLabel, MenuSeparator };

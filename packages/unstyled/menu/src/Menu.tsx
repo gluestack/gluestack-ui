@@ -14,6 +14,7 @@ export const Menu = ({
   StyledMenuItem,
   StyledBackdrop,
   AnimatePresence,
+  StyledSeparator,
 }: any) => {
   return forwardRef(
     (
@@ -87,6 +88,7 @@ export const Menu = ({
               onClose={() => state.close()}
               StyledMenu={StyledMenu}
               StyledMenuItem={StyledMenuItem}
+              StyledSeparator={StyledSeparator}
               closeOnSelect={closeOnSelect}
               ref={ref}
             />
@@ -117,6 +119,7 @@ export const Menu = ({
               onClose={() => state.close()}
               StyledMenu={StyledMenu}
               StyledMenuItem={StyledMenuItem}
+              StyledSeparator={StyledSeparator}
               closeOnSelect={closeOnSelect}
               ref={ref}
             />
@@ -131,6 +134,7 @@ const MenuComponent = forwardRef(
     {
       StyledMenu,
       StyledMenuItem,
+      StyledSeparator,
       AnimatePresence,
       isOpen,
       closeOnSelect,
@@ -170,17 +174,30 @@ const MenuComponent = forwardRef(
           role="list"
           {...restProps}
         >
-          {[...state.collection].map((item) => (
-            <MenuItem
-              StyledMenuItem={StyledMenuItem}
-              key={item.key}
-              item={item}
-              state={state}
-              onAction={props.onAction}
-              onClose={props.onClose}
-              closeOnSelect={closeOnSelect}
-            />
-          ))}
+          {[...state.collection].map((item) => {
+            switch (item.type) {
+              case 'item':
+                return (
+                  <MenuItem
+                    StyledMenuItem={StyledMenuItem}
+                    key={item.key}
+                    item={item}
+                    state={state}
+                    onAction={props.onAction}
+                    onClose={props.onClose}
+                    closeOnSelect={closeOnSelect}
+                  />
+                );
+              case 'seperator':
+                return (
+                  StyledSeparator && (
+                    <StyledSeparator {...item.props} key={item.key} />
+                  )
+                );
+              default:
+                return null;
+            }
+          })}
         </StyledMenu>
       </OverlayAnimatePresence>
     );

@@ -1,5 +1,11 @@
 # @gluestack-ui/menu
 
+## 0.2.35
+
+### Patch Changes
+
+- added new composition component separator in menu
+
 ## 0.2.34
 
 ### Patch Changes

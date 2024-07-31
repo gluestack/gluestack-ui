@@ -80,6 +80,7 @@ export * from './Menu';
 export * from './MenuBackdrop';
 export * from './MenuItem';
 export * from './MenuLabel';
+export * from './MenuSeparator';
 export * from './Modal';
 export * from './ModalBackdrop';
 export * from './ModalBody';
