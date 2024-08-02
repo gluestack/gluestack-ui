@@ -12,7 +12,7 @@ type Similar<T, U> = {
 };
 
 type ICenterProps = Similar<ViewProps, React.ComponentPropsWithoutRef<'div'>> &
-  VariantProps<typeof centerStyle>;
+  VariantProps<typeof centerStyle> & { className?: string };
 
 const Center = React.forwardRef<React.ElementRef<typeof View>, ICenterProps>(
   ({ className, ...props }, ref) => {

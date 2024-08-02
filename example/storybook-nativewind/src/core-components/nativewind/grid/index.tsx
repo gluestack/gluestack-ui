@@ -128,6 +128,7 @@ type IGridProps = Similar<ViewProps, React.ComponentPropsWithoutRef<'div'>> &
     _extra: {
       className: string;
     };
+    className?: string;
   };
 
 const Grid = forwardRef<React.ElementRef<typeof View>, IGridProps>(

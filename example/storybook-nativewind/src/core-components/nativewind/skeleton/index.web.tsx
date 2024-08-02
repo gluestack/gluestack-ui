@@ -18,7 +18,7 @@ type ISkeletonProps = Similar<
   VariantProps<typeof skeletonStyle> & {
     startColor?: string;
     isLoaded?: boolean;
-  };
+  } & { className?: string };
 
 const Skeleton = React.forwardRef<HTMLDivElement, ISkeletonProps>(
   (

@@ -12,7 +12,7 @@ type Similar<T, U> = {
 };
 
 type ICardProps = Similar<ViewProps, React.ComponentPropsWithoutRef<'div'>> &
-  VariantProps<typeof cardStyle>;
+  VariantProps<typeof cardStyle> & { className?: string };
 
 const Card = React.forwardRef<HTMLDivElement, ICardProps>(
   ({ className, size = 'md', variant = 'elevated', ...props }, ref) => {

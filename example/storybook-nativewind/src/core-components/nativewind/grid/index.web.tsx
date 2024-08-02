@@ -25,6 +25,7 @@ type IGridProps = Similar<ViewProps, React.ComponentPropsWithoutRef<'div'>> &
     _extra: {
       className: string;
     };
+    className?: string;
   };
 
 const Grid = React.forwardRef<HTMLDivElement, IGridProps>(

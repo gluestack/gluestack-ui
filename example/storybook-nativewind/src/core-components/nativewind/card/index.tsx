@@ -12,7 +12,7 @@ type Similar<T, U> = {
 };
 
 type ICardProps = Similar<ViewProps, React.ComponentPropsWithoutRef<'div'>> &
-  VariantProps<typeof cardStyle>;
+  VariantProps<typeof cardStyle> & { className?: string };
 
 const Card = React.forwardRef<React.ElementRef<typeof View>, ICardProps>(
   ({ className, size = 'md', variant = 'elevated', ...props }, ref) => {

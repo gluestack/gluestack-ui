@@ -13,7 +13,7 @@ type Similar<T, U> = {
 };
 
 type IBoxProps = Similar<ViewProps, React.ComponentPropsWithoutRef<'div'>> &
-  VariantProps<typeof boxStyle>;
+  VariantProps<typeof boxStyle> & { className?: string };
 
 const Box = React.forwardRef<React.ElementRef<typeof View>, IBoxProps>(
   ({ className, ...props }, ref) => {

@@ -11,7 +11,7 @@ type Similar<T, U> = {
 };
 
 type IHStackProps = Similar<ViewProps, React.ComponentPropsWithoutRef<'div'>> &
-  VariantProps<typeof hstackStyle>;
+  VariantProps<typeof hstackStyle> & { className?: string };
 
 const HStack = React.forwardRef<React.ElementRef<'div'>, IHStackProps>(
   ({ className, space, reversed, ...props }, ref) => {
