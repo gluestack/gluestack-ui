@@ -290,7 +290,7 @@ The Examples section provides visual representations of the different variants o
           action="warning"
           className="gap-4 max-w-[516px] w-full flex-row flex py-4 items-start self-center"
         >
-          <AlertIcon as={RepeatIcon} />
+          <AlertIcon as={RepeatIcon} className="mt-1" />
           <HStack className="justify-between flex-1 items-center gap-1 sm:gap-8">
             <VStack className="flex-1">
               <Text className="font-semibold text-typography-900">
@@ -337,7 +337,7 @@ The Examples section provides visual representations of the different variants o
     showArgsController={false}
     metaData={{
       code: `
-        <Alert action="error" className="gap-3 items-start">
+        <Alert action="error" className="gap-3">
           {/* Bomb is imported from 'lucide-react-native' */}
           <AlertIcon as={Bomb} size="lg" />
           <AlertText className="text-typography-900" size="sm">
