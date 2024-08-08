@@ -1,6 +1,5 @@
 import React from 'react';
-import { Center } from '../../core-components/nativewind';
-import Image from 'next/image';
+import { Image } from '../../core-components/nativewind';
 
 const AnatomyImage = ({
   mobileUrl,
@@ -10,23 +9,21 @@ const AnatomyImage = ({
   webUrl: string;
 }) => {
   return (
-    <Center className="w-full h-[400px] max-h-[300px] min-[426px]:my-4 sm:max-h-[375px] md:max-h-[259px] relative">
+    <>
       <Image
-        src={mobileUrl}
+        source={{ uri: mobileUrl }}
         alt="anatomy-image"
-        sizes="100vw"
-        fill
-        className="md:hidden"
+        className="md:hidden aspect-[513/375]"
+        size="full"
       />
 
       <Image
-        src={webUrl}
+        source={{ uri: webUrl }}
         alt="anatomy-image"
-        sizes="100vw"
-        fill
-        className="hidden md:flex"
+        className="hidden md:flex aspect-[736/259]"
+        size="full"
       />
-    </Center>
+    </>
   );
 };
 export default AnatomyImage;
