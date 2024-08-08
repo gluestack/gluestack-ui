@@ -1,7 +1,9 @@
 import React from 'react';
 import { Image, Center } from '../../core-components/nativewind';
 // import { useBreakpointValue } from '@gluestack-ui/themed';
-import { useBreakpointValue } from '@/components/hooks/use-break-point-value';
+// import { useBreakpointValue } from '@/components/hooks/use-break-point-value';
+//@ts-ignore
+import { useBreakpointValue } from '@/hooks/useBreakPointValue';
 
 const AnatomyImage = () => {
   // const source = useBreakpointValue({
@@ -10,8 +12,8 @@ const AnatomyImage = () => {
   // });
 
   const source = useBreakpointValue({
-    default: '/assets/light-lg.svg',
-    md: '/assets/dark-lg.svg',
+    default: '/assets/alert_mobile.svg',
+    md: '/assets/alert_web.svg',
   });
 
   return (
