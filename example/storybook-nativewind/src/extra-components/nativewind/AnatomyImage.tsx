@@ -1,27 +1,30 @@
 import React from 'react';
-import { Image, Center } from '../../core-components/nativewind';
-// import { useBreakpointValue } from '@gluestack-ui/themed';
-// import { useBreakpointValue } from '@/components/hooks/use-break-point-value';
-//@ts-ignore
-import { useBreakpointValue } from '@/hooks/useBreakPointValue';
+import { Center } from '../../core-components/nativewind';
+import Image from 'next/image';
 
-const AnatomyImage = () => {
-  // const source = useBreakpointValue({
-  //   default: 'https://ibb.co/F3bdXr7',
-  //   md: 'https://ibb.co/Z1R8HR2',
-  // });
-
-  const source = useBreakpointValue({
-    default: '/assets/alert_mobile.svg',
-    md: '/assets/alert_web.svg',
-  });
-
+const AnatomyImage = ({
+  mobileUrl,
+  webUrl,
+}: {
+  mobileUrl: string;
+  webUrl: string;
+}) => {
   return (
-    <Center>
+    <Center className="w-full h-[400px] max-h-[300px] min-[426px]:my-4 sm:max-h-[375px] md:max-h-[259px] relative">
       <Image
-        source={source}
+        src={mobileUrl}
         alt="anatomy-image"
-        // className="h-64 w-96"
+        sizes="100vw"
+        fill
+        className="md:hidden"
+      />
+
+      <Image
+        src={webUrl}
+        alt="anatomy-image"
+        sizes="100vw"
+        fill
+        className="hidden md:flex"
       />
     </Center>
   );
