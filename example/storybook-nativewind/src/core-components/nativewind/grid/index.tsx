@@ -106,15 +106,7 @@ function generateResponsiveColSpans({
   return result;
 }
 
-type Similar<T, U> = {
-  [K in keyof T & keyof U]: T[K] extends U[K]
-    ? U[K] extends T[K]
-      ? T[K]
-      : never
-    : never;
-};
-
-type IGridProps = Similar<ViewProps, React.ComponentPropsWithoutRef<'div'>> &
+type IGridProps = ViewProps &
   VariantProps<typeof gridStyle> & {
     gap?: number;
     rowGap?: number;
@@ -238,10 +230,7 @@ cssInterop(Grid, {
   },
 });
 
-type IGridItemProps = Similar<
-  ViewProps,
-  React.ComponentPropsWithoutRef<'div'>
-> &
+type IGridItemProps = ViewProps &
   VariantProps<typeof gridItemStyle> & {
     index?: number;
     _extra: {

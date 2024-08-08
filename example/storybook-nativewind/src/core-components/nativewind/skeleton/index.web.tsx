@@ -1,20 +1,9 @@
 import React from 'react';
 import { skeletonStyle, skeletonTextStyle } from './styles';
-import type { ViewProps } from 'react-native';
+
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 
-type Similar<T, U> = {
-  [K in keyof T & keyof U]: T[K] extends U[K]
-    ? U[K] extends T[K]
-      ? T[K]
-      : never
-    : never;
-};
-
-type ISkeletonProps = Similar<
-  ViewProps,
-  React.ComponentPropsWithoutRef<'div'>
-> &
+type ISkeletonProps = React.ComponentPropsWithoutRef<'div'> &
   VariantProps<typeof skeletonStyle> & {
     startColor?: string;
     isLoaded?: boolean;
@@ -51,10 +40,7 @@ const Skeleton = React.forwardRef<HTMLDivElement, ISkeletonProps>(
   }
 );
 
-type ISkeletonTextProps = Similar<
-  ViewProps,
-  React.ComponentPropsWithoutRef<'div'>
-> &
+type ISkeletonTextProps = React.ComponentPropsWithoutRef<'div'> &
   VariantProps<typeof skeletonTextStyle> & {
     _lines?: number;
     isLoaded?: boolean;

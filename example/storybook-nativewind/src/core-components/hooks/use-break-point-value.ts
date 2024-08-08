@@ -1,10 +1,10 @@
 import { Dimensions, useWindowDimensions } from 'react-native';
 import { useEffect, useState } from 'react';
 
-import DefaultTheme from 'tailwindcss/defaultConfig';
 import resolveConfig from 'tailwindcss/resolveConfig';
+import tailwindConfig from '@/tailwind.config';
 
-const TailwindTheme = resolveConfig(DefaultTheme);
+const TailwindTheme = resolveConfig(tailwindConfig);
 const screenSize = TailwindTheme.theme.screens;
 
 type breakpoints = keyof typeof screenSize | 'default';
@@ -63,8 +63,9 @@ export const getBreakPointValue = (values: any, width: any) => {
 export function useBreakpointValue(values: BreakPointValue): any {
   const { width } = useWindowDimensions();
 
-  const [currentBreakPointValue, setCurrentBreakPointValue] =
-    useState(undefined);
+  const [currentBreakPointValue, setCurrentBreakPointValue] = useState(
+    getBreakPointValue(values, width)
+  );
 
   useEffect(() => {
     if (typeof values === 'object') {

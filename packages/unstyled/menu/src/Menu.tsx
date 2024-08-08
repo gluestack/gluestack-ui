@@ -36,22 +36,30 @@ export const Menu = ({
       }: any,
       ref?: any
     ) => {
+      const [isOpenHover, setIsOpenHover] = React.useState(false);
+
       const [isOpen, setIsOpen] = useControlledState(
         isOpenProp,
-        defaultIsOpen,
+        defaultIsOpen || isOpenHover,
         (isOpenValue) => {
           isOpenValue ? onOpen?.() : onClose?.();
         }
       );
 
+      const handleHover = () => {
+        setIsOpenHover(true);
+      };
       const handleClose = () => {
         setIsOpen(false);
+      };
+      const handleOpen = () => {
+        setIsOpen(true);
       };
 
       const showBackdrop = React.useRef(false);
 
       const state = useMenuTriggerState({
-        isOpen: isOpen || false,
+        isOpen: isOpen,
         //@ts-ignore
         closeOnSelect: closeOnSelect,
         onOpenChange: (isOpenValue: boolean) => {
@@ -70,6 +78,7 @@ export const Menu = ({
       const updatedTrigger = () => {
         return trigger({
           ...menuTriggerProps,
+          onPress: handleOpen,
           ref: triggerRef,
         });
       };

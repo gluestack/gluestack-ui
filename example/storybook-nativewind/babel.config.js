@@ -139,10 +139,18 @@ module.exports = function (api) {
               __dirname,
               './src/core-components/nativewind'
             ),
+            '@/tailwind.config': path.join(
+              __dirname,
+              '../../example/storybook-nativewind/tailwind.config.js'
+            ),
             'tailwind.config': path.join(
               __dirname,
               '../../example/storybook-nativewind/tailwind.config.js'
             ),
+            'culori': [
+              path.resolve(__dirname, './node_modules/culori/src/'),
+              path.resolve(__dirname, '../../node_modules/culori/src/'),
+            ],
           },
         },
       ],

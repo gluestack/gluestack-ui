@@ -4,16 +4,7 @@ import { View } from 'react-native';
 import type { ViewProps } from 'react-native';
 import { hstackStyle } from './styles';
 
-type Similar<T, U> = {
-  [K in keyof T & keyof U]: T[K] extends U[K]
-    ? U[K] extends T[K]
-      ? T[K]
-      : never
-    : never;
-};
-
-type IHStackProps = Similar<ViewProps, React.ComponentPropsWithoutRef<'div'>> &
-  VariantProps<typeof hstackStyle>;
+type IHStackProps = ViewProps & VariantProps<typeof hstackStyle>;
 
 const HStack = React.forwardRef<React.ElementRef<typeof View>, IHStackProps>(
   ({ className, space, reversed, ...props }, ref) => {

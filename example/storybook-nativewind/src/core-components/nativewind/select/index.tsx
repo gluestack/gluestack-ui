@@ -71,13 +71,13 @@ const selectTriggerStyle = tva({
 });
 
 const selectInputStyle = tva({
-  base: 'py-auto px-3 placeholder:text-typography-500 web:w-full h-full text-typography-900 pointer-events-none web:outline-none',
+  base: 'py-auto px-3 placeholder:text-typography-500 web:w-full h-full text-typography-900 pointer-events-none web:outline-none ios:leading-[0px]',
   parentVariants: {
     size: {
-      xl: 'text-xl leading-[0px]',
-      lg: 'text-lg leading-[0px]',
-      md: 'text-base leading-[0px]',
-      sm: 'text-sm leading-[0px]',
+      xl: 'text-xl',
+      lg: 'text-lg',
+      md: 'text-base',
+      sm: 'text-sm',
     },
     variant: {
       underlined: 'px-0',
@@ -153,7 +153,6 @@ const PrimitiveIcon = React.forwardRef<
 const UISelect = createSelect(
   {
     Root: View,
-    // @ts-ignore
     Trigger:
       Platform.OS === 'web'
         ? withStyleContext(SelectTriggerWrapper)
@@ -182,14 +181,13 @@ cssInterop(UISelect.Input, {
   className: { target: 'style', nativeStyleToProp: { textAlign: true } },
 });
 cssInterop(SelectTriggerWrapper, { className: 'style' });
-// @ts-ignore
+
 cssInterop(UISelect.Icon, {
   className: {
     target: 'style',
     nativeStyleToProp: {
       height: true,
       width: true,
-      // @ts-ignore
       fill: true,
       color: true,
       stroke: true,

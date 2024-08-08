@@ -49,7 +49,12 @@ export const parameters = {
           'Performance',
           ['Benchmarks'],
           'Theme Configuration',
-          ['Default Tokens', 'Customizing Theme', 'Dark Mode'],
+          [
+            'Default Tokens',
+            'Customizing Theme',
+            'Dark Mode',
+            'Theme Configurator',
+          ],
         ],
         'Components',
         [
