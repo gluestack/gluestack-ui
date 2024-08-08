@@ -10,6 +10,9 @@ import { Canvas, Meta, Story } from '@storybook/addon-docs';
 
 <Meta title="with-nativewind/Home/Theme Configuration/Dark Mode" />
 
+import { Tabs } from '@gluestack/design-system';
+import { CollapsibleCode } from '@gluestack/design-system';
+
 
 ## Color Scheme
 
@@ -54,7 +57,11 @@ export const config = {
 }
 ```
 
-3. Pass the color mode to the `GluestackUIProvider` using the `mode` prop and use the tokens inside your code.
+3. Pass the color mode to the `GluestackUIProvider` using the `mode` prop and use the tokens inside your code. `mode`prop accepts three values: `system`, `light` and `dark`.
+
+  - `system`: It uses the system color mode.
+  - `light`: It uses the light color mode.
+  - `dark`: It uses the dark color mode.
 
 ```js
 // App.tsx
@@ -140,5 +147,170 @@ After this, we need to update our scripts in the `package.json` file as shown be
 For Next.js projects, you can directly set the `darkMode` strategy to `"class"` without needing to change the scripts.
 
 > Note: This is a temporary solution until we fix the issue with nativewind for the `darkMode:"class"` strategy.
+
+## Persist Color Mode
+
+
+<Tabs value="native" type="section">
+  <Tabs.TabList>
+      <Tabs.Tab value="native">
+        <Tabs.TabTitle>Native</Tabs.TabTitle>
+      </Tabs.Tab>
+     <Tabs.Tab value="web">
+        <Tabs.TabTitle>Web</Tabs.TabTitle>
+     </Tabs.Tab>
+  </Tabs.TabList>
+  <Tabs.TabPanels>
+    <Tabs.TabPanel value="native">
+<>
+
+
+### Step 1: Install the following dependencies:
+```bash
+npm i @react-native-async-storage/async-storage
+```
+
+We will use the `@react-native-async-storage/async-storage` package to store the color mode in the device's local storage. You can also use other storage solutions.
+
+### Step 2: Create a new file `ThemeProvider.tsx` at `components/ui/ThemeProvider`.
+<CollapsibleCode>
+
+```jsx 
+// components/ui/ThemeProvider/ThemeProvider.tsx
+"use client";
+
+import React, { createContext, useState, useEffect, useContext } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
+type Theme = "light" | "dark";
+
+interface ThemeContextType {
+  theme: Theme;
+  toggleTheme: () => void;
+}
+
+export const ThemeContext = createContext<ThemeContextType | undefined>(
+  undefined
+);
+
+export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
+  const [theme, setTheme] = useState<Theme>("light");
+
+  useEffect(() => {
+    (async () => {
+      const savedTheme = (await AsyncStorage.getItem("theme")) as
+        | Theme
+        | "light";
+      if (savedTheme) {
+        setTheme(savedTheme);
+        AsyncStorage.setItem("theme", savedTheme);
+      }
+    })();
+  }, []);
+
+  const toggleTheme = () => {
+    const newTheme = theme === "light" ? "dark" : "light";
+    setTheme(newTheme);
+    AsyncStorage.setItem("theme", newTheme);
+  };
+
+  return (
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+      {children}
+    </ThemeContext.Provider>
+  );
+};
+
+export const useTheme = () => {
+  const context = useContext(ThemeContext);
+  if (context === undefined) {
+    throw new Error("useTheme must be used within a ThemeProvider");
+  }
+  return context;
+};
+```
+</CollapsibleCode>
+
+### Step 3: Update the root component to use the `ThemeProvider` component.
+
+</>
+    </Tabs.TabPanel>
+    <Tabs.TabPanel value="web"> 
+<>
+
+### Step 1: Install the following dependencies:
+```bash
+npm i js-cookie @types/js-cookie
+```
+
+We have to use the `js-cookie` library to set and get cookies in the browser.
+
+### Step 2: Create a new file `ThemeProvider.web.tsx` at `components/ui/ThemeProvider`.
+<CollapsibleCode>
+
+```jsx 
+// components/ui/ThemeProvider/ThemeProvider.web.tsx
+"use client";
+
+import React, { createContext, useState, useEffect, useContext } from "react";
+import Cookies from "js-cookie";
+
+type Theme = "light" | "dark";
+
+interface ThemeContextType {
+  theme: Theme;
+  toggleTheme: () => void;
+}
+
+export const ThemeContext = createContext<ThemeContextType | undefined>(
+  undefined
+);
+
+export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
+  const [theme, setTheme] = useState<Theme>("light");
+
+  useEffect(() => {
+    const savedTheme = Cookies.get("theme") as Theme | undefined;
+    if (savedTheme) {
+      setTheme(savedTheme);
+      document.documentElement.classList.add(savedTheme);
+      document.documentElement.style.colorScheme = savedTheme;
+    }
+  }, []);
+
+  const toggleTheme = () => {
+    const newTheme = theme === "light" ? "dark" : "light";
+    setTheme(newTheme);
+    Cookies.set("theme", newTheme, { expires: 365 });
+    document.documentElement.classList.remove(theme);
+    document.documentElement.classList.add(newTheme);
+    document.documentElement.style.colorScheme = newTheme;
+  };
+
+  return (
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+      {children}
+    </ThemeContext.Provider>
+  );
+};
+
+export const useTheme = () => {
+  const context = useContext(ThemeContext);
+  if (context === undefined) {
+    throw new Error("useTheme must be used within a ThemeProvider");
+  }
+  return context;
+};
+```
+</CollapsibleCode>
+
+### Step 3: Update the root component to use the `ThemeProvider` component.
+
+</>
+    </Tabs.TabPanel>
+  </Tabs.TabPanels>
+</Tabs>
+
+
 
 Please refer to the Tailwind CSS dark mode [documentation](https://tailwindcss.com/docs/dark-mode) for more information and core concepts of dark mode.
