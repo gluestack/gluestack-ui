@@ -6,7 +6,7 @@ import { Text } from 'react-native';
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import { withStyleContext } from '@gluestack-ui/nativewind-utils/withStyleContext';
 import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withStyleContextAndStates';
-import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
+import { cssInterop } from 'nativewind';
 import { withStates } from '@gluestack-ui/nativewind-utils/withStates';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 
@@ -23,11 +23,11 @@ cssInterop(UILink, { className: 'style' });
 cssInterop(UILink.Text, { className: 'style' });
 
 const linkStyle = tva({
-  base: 'web:outline-0 web:data-[disabled=true]:cursor-not-allowed web:data-[focus-visible=true]:outline-2 web:data-[focus-visible=true]:outline-primary-700 web:data-[focus-visible=true]:outline data-[disabled=true]:opacity-40 group/link',
+  base: 'group/link web:outline-0 data-[disabled=true]:web:cursor-not-allowed data-[focus-visible=true]:web:ring-2 data-[focus-visible=true]:web:ring-indicator-primary data-[focus-visible=true]:web:outline-0 data-[disabled=true]:opacity-4 ',
 });
 
 const linkTextStyle = tva({
-  base: 'underline text-info-700 group-hover/link:text-info-600 group-hover/link:no-underline group-active/link:text-info-700 font-normal font-body web:font-sans web:tracking-sm web:my-0 web:bg-transparent web:border-0 web:box-border web:display-inline web:list-none web:margin-0 web:padding-0 web:position-relative web:text-start web:whitespace-pre-wrap web:word-wrap-break-word',
+  base: 'underline text-info-700 data-[hover=true]:text-info-600 data-[hover=true]:no-underline data-[active=true]:text-info-700 font-normal font-body web:font-sans web:tracking-sm web:my-0 web:bg-transparent web:border-0 web:box-border web:display-inline web:list-none web:margin-0 web:padding-0 web:position-relative web:text-start web:whitespace-pre-wrap web:word-wrap-break-word',
 
   variants: {
     isTruncated: {
@@ -68,9 +68,10 @@ const linkTextStyle = tva({
 });
 
 type ILinkProps = React.ComponentProps<typeof UILink> &
-  VariantProps<typeof linkStyle>;
-const Link = React.forwardRef(
-  ({ className, ...props }: { className?: string } & ILinkProps, ref?: any) => {
+  VariantProps<typeof linkStyle> & { className?: string };
+
+const Link = React.forwardRef<React.ElementRef<typeof UILink>, ILinkProps>(
+  ({ className, ...props }, ref) => {
     return (
       <UILink
         ref={ref}
@@ -82,28 +83,23 @@ const Link = React.forwardRef(
 );
 
 type ILinkTextProps = React.ComponentProps<typeof UILink.Text> &
-  VariantProps<typeof linkTextStyle>;
-const LinkText = React.forwardRef(
-  (
-    {
-      className,
-      size = 'md',
-      ...props
-    }: { className?: string } & ILinkTextProps,
-    ref?: any
-  ) => {
-    return (
-      <UILink.Text
-        ref={ref}
-        {...props}
-        className={linkTextStyle({
-          class: className,
-          size,
-        })}
-      />
-    );
-  }
-);
+  VariantProps<typeof linkTextStyle> & { className?: string };
+
+const LinkText = React.forwardRef<
+  React.ElementRef<typeof UILink.Text>,
+  ILinkTextProps
+>(({ className, size = 'md', ...props }, ref) => {
+  return (
+    <UILink.Text
+      ref={ref}
+      {...props}
+      className={linkTextStyle({
+        class: className,
+        size,
+      })}
+    />
+  );
+});
 
 Link.displayName = 'Link';
 LinkText.displayName = 'LinkText';

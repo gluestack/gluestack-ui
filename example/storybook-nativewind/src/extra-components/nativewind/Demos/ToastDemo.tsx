@@ -2,17 +2,14 @@ import {
   Toast,
   ToastDescription,
   ToastTitle,
-  VStack,
 } from '../../../core-components/nativewind';
 import React from 'react';
 
 const ToastDemo = () => {
   return (
-    <Toast action="info" variant="accent">
-      <VStack space="xs">
-        <ToastTitle>Info</ToastTitle>
-        <ToastDescription>Add a note here</ToastDescription>
-      </VStack>
+    <Toast action="muted" variant="solid">
+      <ToastTitle>Hello!</ToastTitle>
+      <ToastDescription>This is a customized toast.</ToastDescription>
     </Toast>
   );
 };

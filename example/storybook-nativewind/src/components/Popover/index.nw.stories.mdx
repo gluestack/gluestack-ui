@@ -1,11 +1,11 @@
 ---
 title: gluestack-ui Popover Component | Installation, Usage, and API
 
-description: Popovers often provide contextual information or quick access to related actions without requiring the user to navigate to a different page or view.
+description: Contextual pop-ups offer info or actions conveniently, enhancing user flow without page changes.
 
 pageTitle: Popover
 
-pageDescription: Popovers often provide contextual information or quick access to related actions without requiring the user to navigate to a different page or view.
+pageDescription: Contextual pop-ups offer info or actions conveniently, enhancing user flow without page changes.
 
 showHeader: true
 ---
@@ -24,29 +24,48 @@ import {
   PopoverCloseButton,
   PopoverArrow,
   Pressable,
-  Text as PopoverText,
+  Text,
   Heading,
   Icon,
   HStack,
   VStack,
+  Image,
   Avatar,
   AvatarFallbackText,
+  ButtonGroup,
   Button,
   ButtonText,
-  Box,
+  ButtonIcon,
+  SettingsIcon,
   CloseIcon,
   CircleIcon,
   PhoneIcon,
   ClockIcon,
   MailIcon,
+  CheckIcon,
+  InputIcon,
+  ChevronDownIcon,
+  ChevronRightIcon,
+  ArrowRightIcon,
+  ShareIcon,
+  PaperclipIcon,
   Center,
+  Box,
+  AvatarGroup,
+  AvatarImage,
+  CheckboxGroup,
+  Checkbox,
+  CheckboxIndicator,
+  CheckboxIcon,
+  CheckboxLabel,
+  Input,
+  InputField
 } from '../../core-components/nativewind';
 import {
   AppProvider,
   CodePreview,
   Table,
   TableContainer,
-  Text,
   InlineCode,
   CollapsibleCode,
   Tabs
@@ -82,7 +101,7 @@ This is an illustration of **Popover** component.
                   {...triggerProps}
                 >
                   <ButtonText>
-                    Popover
+                    Open Popover
                   </ButtonText>
                 </Button>
               );
@@ -90,30 +109,13 @@ This is an illustration of **Popover** component.
           >
             <PopoverBackdrop/>
             <PopoverContent>
-              <PopoverHeader>
-                <Heading size='lg'>Welcome!</Heading>
-                <PopoverCloseButton>
-                  <Icon as={CloseIcon} />
-                </PopoverCloseButton>
-              </PopoverHeader>
+              <PopoverArrow />
               <PopoverBody>
-                <Text size='sm'>
-                  Join the product tour and start creating your own checklist. Are you ready to jump in?
+                <Text size={props.size} className="text-typography-900">
+                  Alex, Annie and many others are already enjoying the Pro features,
+                  don't miss out on the fun!
                 </Text>
               </PopoverBody>
-              <PopoverFooter>
-                <Text size='xs' className="flex-1">
-                  Step 2 of 3
-                </Text>
-                  <Button variant="outline" action='secondary' onPress={handleClose}
-                  className="mr-3"
-                  >
-                    <ButtonText>Back</ButtonText>
-                  </Button>
-                  <Button onPress={handleClose}>
-                    <ButtonText>Next</ButtonText>
-                  </Button>
-              </PopoverFooter>
             </PopoverContent>
           </Popover>
         )
@@ -124,20 +126,14 @@ This is an illustration of **Popover** component.
       },
       scope: {
         Wrapper,
-        Center,
-        Text: PopoverText,
-        Heading,
+        Text,
         Popover,
         PopoverBackdrop,
         PopoverContent,
-        PopoverHeader,
         PopoverBody,
-        PopoverFooter,
-        PopoverCloseButton,
+        PopoverArrow,
         Button,
         ButtonText,
-        CloseIcon,
-        Icon,
       },
       argsType: {
         placement: {
@@ -638,6 +634,10 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
 
 It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable) component.
 
+### Features
+
+- Keyboard support for actions.
+
 ### Accessibility
 
 We have outlined the various features that ensure the Popover component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards. It adheres to the [Dialog WAI-ARIA design pattern.](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/).
@@ -649,6 +649,10 @@ We have outlined the various features that ensure the Popover component is acces
 - `Tab`: Moves focus to the next focusable element.
 - `Shift + Tab`: Moves focus to the previous focusable element.
 - `Esc`: Closes the popover and moves focus to PopoverTrigger.
+
+#### Screen Reader
+
+- VoiceOver: When we click on button, the screen reader will announce Popover, menu expanded, button and when we close it then it says Popover, menu collapsed, button.
 
 ### Props
 
@@ -695,124 +699,494 @@ Popover component is created using ScrollView component from react-native. It ex
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
-#### Popover on Avatar
-
-A popover component can enhance the avatar by providing additional information and context in a concise and visually appealing manner.
+#### Popover used along with multiple Avatars
 
 <Wrapper>
   <CodePreview
-    _rendererWrapper={{ py: '$6' }}
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
       code: `
-        <Box className="h-80">
+      function App() {
+        const [isOpen, setIsOpen] = React.useState(false);
+        const handleOpen = () => {
+          setIsOpen(true);
+        };
+        const handleClose = () => {
+          setIsOpen(false);
+        };
+        return (
           <Popover
+            isOpen={isOpen}
+            onClose={handleClose}
+            onOpen={handleOpen}
+            {...props}
             trigger={(triggerProps) => {
               return (
-                <HStack className="items-center">
-                  <Pressable
-                    {...triggerProps}
-                    className="rounded-full"
-                  >
-                    <Avatar className="bg-indigo-600">
-                      <AvatarFallbackText >
-                        Kevin James
-                      </AvatarFallbackText>
-                    </Avatar>
-                  </Pressable>
-                  <VStack space='xs' className="ml-2.5">
-                    <Heading fontSize='$md'>
-                      Kevin James
-                    </Heading>
-                    <Text size='sm'>
-                      Hi Rachel, What’s up?
-                    </Text>
-                  </VStack>
-                </HStack>
+                <Button
+                  {...triggerProps}
+                  size="sm"
+                >
+                  <ButtonText>
+                    Open Popover
+                  </ButtonText>
+                </Button>
               );
             }}
           >
             <PopoverBackdrop/>
-            <PopoverContent className="w-80">
-              <PopoverHeader className="px-5 pt-5">
-                <HStack>
-                  <Avatar className="bg-indigo-600">
-                    <AvatarFallbackText>
-                      Kevin James
-                    </AvatarFallbackText>
+            <PopoverContent className="w-full max-w-[420px] p-4">
+              <PopoverArrow />
+              <PopoverBody
+                className=""
+                contentContainerClassName="flex flex-row gap-4"
+              >
+              <AvatarGroup className="flex-row items-center">
+                  <Avatar className="w-9 h-9 border-[1.5px] border-outline-0">
+                    <AvatarFallbackText>John Doe</AvatarFallbackText>
+                    <AvatarImage
+                      source={{
+                        uri: 'https://i.ibb.co/PF4vFQk/a130347c432c7b83615044cec215d824.jpg',
+                      }}
+                      alt="imageAltText"
+                    />
                   </Avatar>
-                  <VStack className="ml-2.5">
-                    <Heading fontSize='$md'>
-                      Kevin James
-                    </Heading>
-                    <HStack className="items-center">
-                      <CircleIcon className="text-green-700 h-2 w-2"/>
-                      <Text size='sm' className="pl-1.5">
-                        Active
-                      </Text>
-                    </HStack>
+                  <Avatar className="w-9 h-9 border-[1.5px] border-outline-0">
+                    <AvatarFallbackText>John Doe</AvatarFallbackText>
+                    <AvatarImage
+                      source={{
+                        uri: 'https://i.ibb.co/MgrMrRc/Avatar-2.png',
+                      }}
+                      alt="imageAltText"
+                    />
+                  </Avatar>
+                  <Avatar className="w-9 h-9 border-[1.5px] border-outline-0">
+                    <AvatarFallbackText>John Doe</AvatarFallbackText>
+                    <AvatarImage
+                      source={{
+                        uri: 'https://i.ibb.co/BLRZt0p/Avatar-6.jpg',
+                      }}
+                      alt="imageAltText"
+                    />
+                  </Avatar>
+                  <Avatar className="w-9 h-9 border-[1.5px] border-outline-0 group-[.avatar-group]/avatar-group:ml-0">
+                    <AvatarFallbackText>John Doe</AvatarFallbackText>
+                    <AvatarImage
+                      source={{
+                        uri: 'https://i.ibb.co/4VVsQ0K/Avatar-7.png',
+                      }}
+                      alt="imageAltText"
+                    />
+                  </Avatar>
+                </AvatarGroup>
+                <Text className="text-typography-900" size="sm">
+                  Alex, Annie and many others are already enjoying the Pro features,
+                  don't miss out on the fun!
+                </Text>
+              </PopoverBody>
+            </PopoverContent>
+          </Popover>
+        )
+      }
+      `,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'App');
+      },
+      scope: {
+        Wrapper,
+        Popover,
+        PopoverBackdrop,
+        PopoverContent,
+        PopoverArrow,
+        PopoverBody,
+        Button,
+        ButtonText,
+        Text,
+        AvatarGroup,
+        Avatar,
+        AvatarFallbackText,
+        AvatarImage
+      },
+      argsType: {},
+    }}
+  />
+</Wrapper>
+
+#### Popover with CTA
+
+<Wrapper>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+      function App() {
+        const [isOpen, setIsOpen] = React.useState(false);
+        const [values, setValues] = React.useState(['work']);
+        const handleOpen = () => {
+          setIsOpen(true);
+        };
+        const handleClose = () => {
+          setIsOpen(false);
+        };
+        return (
+          <Popover
+            isOpen={isOpen}
+            onClose={handleClose}
+            onOpen={handleOpen}
+            offset={8}
+            {...props}
+            trigger={(triggerProps) => {
+              return (
+                <Button {...triggerProps} className="gap-2">
+                  <ButtonText>Purchase Plan</ButtonText>
+                  <ButtonIcon as={ChevronRightIcon} />
+                </Button>
+              );
+            }}
+          >
+            <PopoverBackdrop/>
+            <PopoverContent className="w-full max-w-[420px] p-5 gap-6 pl-4 shadow-hard-5">
+              <PopoverBody>
+                <Heading className="pl-1">
+                  Are you interested in using Pro for work or personal use?
+                </Heading>
+                <Text className="pt-2 pb-6 pl-1" size="sm">
+                  We can recommend plans that are right for you. With our personalized
+                  approach, you can trust that the plans we recommend will align
+                  perfectly with your goals.
+                </Text>
+                <CheckboxGroup
+                  value={values}
+                  onChange={(keys) => {
+                    setValues(keys);
+                  }}
+                  className="pl-1"
+                >
+                  <VStack space="sm">
+                    <Checkbox value="projects">
+                      <CheckboxIndicator>
+                        <CheckboxIcon as={CheckIcon} />
+                      </CheckboxIndicator>
+                      <CheckboxLabel>For personal projects</CheckboxLabel>
+                    </Checkbox>
+                    <Checkbox value="work">
+                      <CheckboxIndicator>
+                        <CheckboxIcon as={CheckIcon} />
+                      </CheckboxIndicator>
+                      <CheckboxLabel>For work</CheckboxLabel>
+                    </Checkbox>
                   </VStack>
-                </HStack>
-              </PopoverHeader>
-              <PopoverBody className="px-5 pb-5">
-                <VStack space='lg'>
-                  <VStack space='sm'>
-                    <HStack className="items-center">
-                      <Icon as={PhoneIcon} size='sm' />
-                      <Text size='sm' className="ml-1.5">
-                        (603) 555-0123
-                      </Text>
-                    </HStack>
-                    <HStack className="items-center">
-                      <Icon as={ClockIcon} size='sm'/>
-                      <Text size='sm' className="ml-1.5">
-                        5:21 PM local time
-                      </Text>
-                    </HStack>
-                    <HStack className="items-center">
-                      <Icon as={MailIcon} size='sm'/>
-                      <Text size='sm' className="ml-1.5">
-                        kevinjames@sample.com
-                      </Text>
-                    </HStack>
-                  </VStack>
-                  <Button>
-                    <ButtonText>View Profile</ButtonText>
+                </CheckboxGroup>
+              </PopoverBody>
+              <PopoverFooter>
+                <Pressable
+                  className="px-4 bg-primary-500 rounded w-full"
+                  onPress={handleClose}
+                >
+                  <Button onPress={handleClose} size="sm" className="gap-2">
+                    <ButtonText>Next</ButtonText>
+                    <ButtonIcon as={ArrowRightIcon} />
+                  </Button>
+                </Pressable>
+              </PopoverFooter>
+            </PopoverContent>
+          </Popover>
+        )
+      }
+      `,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'App');
+      },
+      scope: {
+        Wrapper,
+        Popover,
+        PopoverBackdrop,
+        PopoverContent,
+        PopoverArrow,
+        PopoverBody,
+        PopoverFooter,
+        Button,
+        ButtonText,
+        Text,
+        Heading,
+        HStack,
+        VStack,
+        Box,
+        CheckboxGroup,
+        Checkbox,
+        CheckboxIndicator,
+        CheckboxIcon,
+        CheckboxLabel,
+        CheckIcon,
+        Pressable,
+        ArrowRightIcon,
+        ChevronRightIcon,
+        ButtonIcon
+      },
+      argsType: {},
+    }}
+  />
+</Wrapper>
+
+#### Popover with Image
+
+<Wrapper>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+      function App() {
+        const [isOpen, setIsOpen] = React.useState(false);
+        const handleOpen = () => {
+          setIsOpen(true);
+        };
+        const handleClose = () => {
+          setIsOpen(false);
+        };
+        return (
+          <Popover
+            isOpen={isOpen}
+            onClose={handleClose}
+            onOpen={handleOpen}
+            offset={8}
+            {...props}
+            trigger={(triggerProps) => {
+              return (
+                <Button
+                  {...triggerProps}
+                  size="sm"
+                >
+                  <ButtonText>
+                    Claim Offer
+                  </ButtonText>
+                </Button>
+              );
+            }}
+          >
+            <PopoverBackdrop/>
+            <PopoverContent className="shadow-soft-1 h-full max-w-full p-0">
+              <PopoverBody
+                className=""
+                contentContainerClassName="flex flex-col sm:flex-row w-full h-full"
+              >
+                <Image
+                  source={{
+                    uri: 'https://i.ibb.co/TqD9vBY/popover-image-1-11zon.jpg',
+                  }}
+                  alt="image"
+                  className="sm:h-[270px] sm:w-[211px] h-[150px] w-full"
+                />
+                <VStack className="items-center justify-center w-full max-w-[344px] sm:mx-8 p-4 sm:p-0">
+                  <Text size="sm" className="text-typography-950">
+                    Sign up to the newsletter and get
+                  </Text>
+                  <Heading size="3xl" className="text-typography-950 my-1">
+                    25% Off
+                  </Heading>
+                  <Input variant="outline" size="sm" className="my-4 w-full">
+                    <InputField placeholder="youremail@address.com" />
+                  </Input>
+                  <Button size="xs" isDisabled className="w-full">
+                    <ButtonText>Subscribe</ButtonText>
                   </Button>
                 </VStack>
               </PopoverBody>
             </PopoverContent>
           </Popover>
-        </Box>
+        )
+      }
       `,
       transformCode: (code) => {
-        return transformedCode(code);
+        return transformedCode(code, 'function', 'App');
       },
       scope: {
         Wrapper,
-        Box,
-        Heading,
-        Text: PopoverText,
         Popover,
         PopoverBackdrop,
         PopoverContent,
+        PopoverArrow,
+        PopoverBody,
+        PopoverFooter,
+        Button,
+        ButtonText,
+        Text,
+        Heading,
+        VStack,
+        Input,
+        InputField,
+        Icon,
+        CloseIcon,
+        Image,
+        Pressable
+      },
+      argsType: {},
+    }}
+  />
+</Wrapper>
+
+#### Popover with InputField
+
+<Wrapper>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+      function App() {
+        const [isOpen, setIsOpen] = React.useState(false);
+        const handleOpen = () => {
+          setIsOpen(true);
+        };
+        const handleClose = () => {
+          setIsOpen(false);
+        };
+        return (
+          <Popover
+            isOpen={isOpen}
+            onClose={handleClose}
+            onOpen={handleOpen}
+            offset={8}
+            {...props}
+            trigger={(triggerProps) => {
+              return (
+                <Button {...triggerProps} className="gap-2">
+                  <ButtonText>Share</ButtonText>
+                  <ButtonIcon as={ShareIcon} />
+                </Button>
+              );
+            }}
+          >
+            <PopoverBackdrop/>
+            <PopoverContent className="p-5 gap-8 shadow-hard-5 max-w-[473px] w-full">
+              <PopoverHeader className="w-full gap-3">
+                <Input size="sm" className="flex-1">
+                  <InputField placeholder="Email separated by commas" />
+                </Input>
+                <Button size="sm" className="text-blue-600">
+                  <ButtonText className="text-blue-50">Invite</ButtonText>
+                </Button>
+              </PopoverHeader>
+              <PopoverBody className="" contentContainerClassName="gap-6">
+                <Heading size="sm">People with access</Heading>
+                <VStack space="lg">
+                  <VStack space="lg">
+                    <HStack space="4xl" className="items-center">
+                      <HStack space="md" className="w-full items-center">
+                        <Avatar>
+                          <AvatarFallbackText>JC</AvatarFallbackText>
+                          <AvatarImage
+                            source={{
+                              uri: 'https://i.ibb.co/7R4DyhQ/Avatar-1.jpg',
+                            }}
+                            alt="imageAltText"
+                          />
+                        </Avatar>
+                        <VStack>
+                          <Text
+                            size="sm"
+                            className="font-semibold text-typography-900"
+                          >
+                            Jane Cooper
+                          </Text>
+                          <Text size="xs">janecooper09@gmail.com</Text>
+                        </VStack>
+                      </HStack>
+                      <Button variant="link" size="xs" className="gap-1 sm:px-3.5">
+                        <ButtonText>Can edit</ButtonText>
+                        <ButtonIcon as={ChevronDownIcon} />
+                      </Button>
+                    </HStack>
+                    <HStack space="4xl" className="items-center">
+                      <HStack space="md" className="w-full items-center">
+                        <Avatar>
+                          <AvatarFallbackText>JC</AvatarFallbackText>
+                          <AvatarImage
+                            source={{
+                              uri: 'https://i.ibb.co/sQwcjSZ/Avatar-2.png',
+                            }}
+                            alt="imageAltText"
+                          />
+                        </Avatar>
+                        <VStack>
+                          <Text
+                            size="sm"
+                            className="font-semibold text-typography-900"
+                          >
+                            Catherine Miller
+                          </Text>
+                          <Text size="xs">ctherienemiller88@gmail.com</Text>
+                        </VStack>
+                      </HStack>
+                      <Button variant="link" size="xs" className="gap-1 sm:px-3.5">
+                        <ButtonText>Admin</ButtonText>
+                        <ButtonIcon as={ChevronDownIcon} />
+                      </Button>
+                    </HStack>
+                    <HStack space="4xl" className="items-center">
+                      <HStack space="md" className="w-full items-center">
+                        <Avatar>
+                          <AvatarFallbackText>JC</AvatarFallbackText>
+                          <AvatarImage
+                            source={{
+                              uri: 'https://i.ibb.co/XXkHzcZ/Avatar-3.png',
+                            }}
+                          />
+                        </Avatar>
+                        <VStack>
+                          <Text
+                            size="sm"
+                            className="font-semibold text-typography-900"
+                          >
+                            John Brown
+                          </Text>
+                          <Text size="xs">johnb345@gmail.com</Text>
+                        </VStack>
+                      </HStack>
+                      <Button variant="link" size="xs" className="gap-1 sm:px-3.5">
+                        <ButtonText>Can edit</ButtonText>
+                        <ButtonIcon as={ChevronDownIcon} />
+                      </Button>
+                    </HStack>
+                  </VStack>
+                </VStack>
+              </PopoverBody>
+            </PopoverContent>
+          </Popover>
+        )
+      }
+      `,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'App');
+      },
+      scope: {
+        Wrapper,
+        Popover,
+        PopoverBackdrop,
+        PopoverContent,
+        PopoverArrow,
         PopoverHeader,
         PopoverBody,
         PopoverFooter,
-        PopoverCloseButton,
-        Pressable,
+        ButtonGroup,
         Button,
         ButtonText,
+        ButtonIcon,
+        Text,
+        Heading,
         HStack,
         VStack,
-        CircleIcon,
-        PhoneIcon,
-        ClockIcon,
-        MailIcon,
         Avatar,
         AvatarFallbackText,
-        Icon,
+        AvatarImage,
+        Input,
+        InputField,
+        SettingsIcon,
+        InputIcon,
+        ChevronDownIcon,
+        PaperclipIcon,
+        ShareIcon
       },
       argsType: {},
     }}

@@ -12,7 +12,9 @@
     "withStyleContextAndStates",
     "cssInterop",
     "flush",
-    "IsWeb"
+    "IsWeb",
+    "useBreakpointValue",
+    "tailwind-plugin"
   ],
   "exclude": ["node_modules", "example"],
   "path": {},

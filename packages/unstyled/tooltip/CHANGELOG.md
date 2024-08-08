@@ -1,5 +1,18 @@
 # @gluestack-ui/tooltip
 
+## 0.1.32
+
+### Patch Changes
+
+- - Fixed tooltip animation
+  - Changed default delay to 350ms
+
+## 0.1.31
+
+### Patch Changes
+
+- fix: ref typing for all the components
+
 ## 0.1.30
 
 ### Patch Changes

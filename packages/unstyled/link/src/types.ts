@@ -26,11 +26,14 @@ export type IUseLinkProp = {
   isExternal?: boolean;
   onPress: ((event?: GestureResponderEvent) => any) | null | undefined;
   _ref: MutableRefObject<any>;
+  isDisabled?: boolean;
 };
 
 export type ILinkComponentType<Root, TextProps> =
-  React.ForwardRefExoticComponent<Root & InterfaceLinkProps> & {
+  React.ForwardRefExoticComponent<
+    React.PropsWithoutRef<Root> & React.RefAttributes<Root> & InterfaceLinkProps
+  > & {
     Text: React.ForwardRefExoticComponent<
-      TextProps & React.RefAttributes<TextProps>
+      React.PropsWithoutRef<TextProps> & React.RefAttributes<TextProps>
     >;
   };

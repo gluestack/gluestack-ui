@@ -28,7 +28,6 @@ import {
   Heading,
   Center,
   VStack,
-  Command,
   Icon,
   Text
 } from '../../core-components/themed';
@@ -540,7 +539,7 @@ A tooltip component with an avatar is a user interface element that displays a s
             <Box h="$96" justifyContent="center">
               <AvatarGroup flexDirection='row'>
                 <Tooltip
-                  placement={"top"}
+                  placement="top"
                   trigger={(triggerProps) => {
                     return (
                       <Avatar
@@ -620,7 +619,7 @@ A tooltip component with an icon is a user interface element that provides conte
           return (
             <Box h="$96" justifyContent="center">
               <Tooltip
-                  placement={"top"}
+                  placement="top"
                   trigger={(triggerProps) => {
                     return (
                     <Avatar size="md" {...triggerProps} bg="$indigo600">

@@ -1,5 +1,19 @@
 # @gluestack-ui/slider
 
+## 0.1.25
+
+### Patch Changes
+
+- fix: ref typing for all the components
+- Updated dependencies
+  - @gluestack-ui/form-control@0.1.18
+
+## 0.1.24
+
+### Patch Changes
+
+- Fixed slider disabled state
+
 ## 0.1.23
 
 ### Patch Changes

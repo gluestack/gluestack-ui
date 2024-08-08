@@ -1,13 +1,15 @@
 ---
 title: gluestack-ui Icon Component | Installation, Usage, and API
 
-description: Icons are often used to enhance the usability and accessibility of digital products by providing users with clear and intuitive visual cues. It serves as an intuitive and easily recognizable way to communicate with users.
+description: Icons provide clear, intuitive visual cues for better usability and accessibility in digital products.
 
 pageTitle: Icon
 
-pageDescription: Icons are often used to enhance the usability and accessibility of digital products by providing users with clear and intuitive visual cues. It serves as an intuitive and easily recognizable way to communicate with users.
+pageDescription: Icons provide clear, intuitive visual cues for better usability and accessibility in digital products.
 
 showHeader: true
+
+tag: RSC
 ---
 
 import { Meta } from '@storybook/addon-docs';
@@ -105,7 +107,7 @@ This is an illustration of **Icon** component.
     showArgsController={true}
     metaData={{
       code: `
-        <Icon as={CalendarDaysIcon}  {...props}/>
+        <Icon as={EditIcon} {...props} />
       `,
       transformCode: (code) => {
         return transformedCode(code);
@@ -113,7 +115,7 @@ This is an illustration of **Icon** component.
       scope: {
         Wrapper,
         Icon,
-        CalendarDaysIcon,
+        EditIcon
       },
       argsType: {
         size: {
@@ -260,61 +262,61 @@ Below is a list of all of the icons in the library.
       code: `
       <Center>
   <HStack className="w-[70%] flex flex-wrap">
-        <Icon as={AddIcon} className="m-2 w-4 h-4" />
-        <Icon as={ArrowLeftIcon} className="m-2 w-4 h-4" />
-        <Icon as={ArrowRightIcon} className="m-2 w-4 h-4" />
-        <Icon as={ArrowUpIcon} className="m-2 w-4 h-4" />
-        <Icon as={ArrowDownIcon} className="m-2 w-4 h-4" />
-        <Icon as={ChevronsLeftIcon} className="m-2 w-4 h-4" />
-        <Icon as={ChevronsRightIcon} className="m-2 w-4 h-4" />
-        <Icon as={ChevronsUpDownIcon} className="m-2 w-4 h-4" />
-        <Icon as={AtSignIcon} className="m-2 w-4 h-4" />
-        <Icon as={PaperclipIcon} className="m-2 w-4 h-4" />
-        <Icon as={BellIcon} className="m-2 w-4 h-4" />
-        <Icon as={CalendarDaysIcon} className="m-2 w-4 h-4" />
-        <Icon as={MessageCircleIcon} className="m-2 w-4 h-4" />
-        <Icon as={CheckIcon} className="m-2 w-4 h-4" />
-        <Icon as={ChevronDownIcon} className="m-2 w-4 h-4" />
-        <Icon as={ChevronUpIcon} className="m-2 w-4 h-4" />
-        <Icon as={ChevronLeftIcon} className="m-2 w-4 h-4" />
-        <Icon as={ChevronRightIcon} className="m-2 w-4 h-4" />
-        <Icon as={CloseIcon} className="m-2 w-4 h-4" />
-        <Icon as={CopyIcon} className="m-2 w-4 h-4" />
-        <Icon as={TrashIcon} className="m-2 w-4 h-4" />
-        <Icon as={DownloadIcon} className="m-2 w-4 h-4" />
-        <Icon as={GripVerticalIcon} className="m-2 w-4 h-4" />
-        <Icon as={EditIcon} className="m-2 w-4 h-4" />
-        <Icon as={MailIcon} className="m-2 w-4 h-4" />
-        <Icon as={ExternalLinkIcon} className="m-2 w-4 h-4" />
-        <Icon as={MenuIcon} className="m-2 w-4 h-4" />
-        <Icon as={InfoIcon} className="m-2 w-4 h-4" />
-        <Icon as={LinkIcon} className="m-2 w-4 h-4" />
-        <Icon as={LockIcon} className="m-2 w-4 h-4" />
-        <Icon as={RemoveIcon} className="m-2 w-4 h-4" />
-        <Icon as={MoonIcon} className="m-2 w-4 h-4" />
-        <Icon as={SlashIcon} className="m-2 w-4 h-4" />
-        <Icon as={CheckCircleIcon} className="m-2 w-4 h-4" />
-        <Icon as={PhoneIcon} className="m-2 w-4 h-4" />
-        <Icon as={HelpCircleIcon} className="m-2 w-4 h-4" />
-        <Icon as={RepeatIcon} className="m-2 w-4 h-4" />
-        <Icon as={Repeat1Icon} className="m-2 w-4 h-4" />
-        <Icon as={SearchIcon} className="m-2 w-4 h-4" />
-        <Icon as={SettingsIcon} className="m-2 w-4 h-4" />
-        <Icon as={LoaderIcon} className="m-2 w-4 h-4" />
-        <Icon as={StarIcon} className="m-2 w-4 h-4" />
-        <Icon as={SunIcon} className="m-2 w-4 h-4" />
-        <Icon as={ClockIcon} className="m-2 w-4 h-4" />
-        <Icon as={UnlockIcon} className="m-2 w-4 h-4" />
-        <Icon as={EyeIcon} className="m-2 w-4 h-4" />
-        <Icon as={EyeOffIcon} className="m-2 w-4 h-4" />
-        <Icon as={AlertCircleIcon} className="m-2 w-4 h-4" />
-        <Icon as={CloseCircleIcon} className="m-2 w-4 h-4" />
-        <Icon as={ShareIcon} className="m-2 w-4 h-4" />
-        <Icon as={CircleIcon} className="m-2 w-4 h-4" />
-        <Icon as={FavouriteIcon} className="m-2 w-4 h-4" />
-        <Icon as={GlobeIcon} className="m-2 w-4 h-4" />
-        <Icon as={ThreeDotsIcon} className="m-2 w-4 h-4" />
-        <Icon as={PlayIcon} className="m-2 w-4 h-4" />
+        <Icon as={AddIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={ArrowLeftIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={ArrowRightIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={ArrowUpIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={ArrowDownIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={ChevronsLeftIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={ChevronsRightIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={ChevronsUpDownIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={AtSignIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={PaperclipIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={BellIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={CalendarDaysIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={MessageCircleIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={CheckIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={ChevronDownIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={ChevronUpIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={ChevronLeftIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={ChevronRightIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={CloseIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={CopyIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={TrashIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={DownloadIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={GripVerticalIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={EditIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={MailIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={ExternalLinkIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={MenuIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={InfoIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={LinkIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={LockIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={RemoveIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={MoonIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={SlashIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={CheckCircleIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={PhoneIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={HelpCircleIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={RepeatIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={Repeat1Icon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={SearchIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={SettingsIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={LoaderIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={StarIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={SunIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={ClockIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={UnlockIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={EyeIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={EyeOffIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={AlertCircleIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={CloseCircleIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={ShareIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={CircleIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={FavouriteIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={GlobeIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={ThreeDotsIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={PlayIcon} className="text-typography-500 m-2 w-4 h-4" />
   </HStack>
   </Center>
 `,
@@ -398,10 +400,10 @@ Below is a list of all of the icons in the library.
     metaData={{
       code: `
       <VStack space="md" className="items-center">
-        <Icon as={Camera} />
-        <Icon as={ChromeIcon}  />
-        <Icon as={InstagramIcon} />
-        <Icon as={FacebookIcon} />
+        <Icon className="text-typography-500" as={Camera} />
+        <Icon className="text-typography-500" as={ChromeIcon}  />
+        <Icon className="text-typography-500" as={InstagramIcon} />
+        <Icon className="text-typography-500" as={FacebookIcon} />
       </VStack>
 `,
       transformCode: (code) => {

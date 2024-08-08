@@ -21,6 +21,8 @@ function Slider<StyledSliderProps>(
         'isPressed': isPressedProp,
         // @ts-ignore
         'aria-label': ariaLabel = 'Slider',
+        sliderTrackHeight,
+        step,
         children,
         ...props
       }: StyledSliderProps & ISliderProps,
@@ -61,6 +63,7 @@ function Slider<StyledSliderProps>(
         numberFormatter: { format: (e) => e },
         minValue: props.minValue,
         maxValue: props.maxValue,
+        step,
         onChange: (val: any) => {
           props.onChange && props.onChange(val[0]);
         },
@@ -77,27 +80,23 @@ function Slider<StyledSliderProps>(
       );
       const contextValue = React.useMemo(() => {
         return {
+          isDisabled: isDisabled || isDisabledProp,
+          isFocused: isFocused || isFocusedProp,
+          isFocusVisible: isFocusVisible || isFocusVisibleProp,
+          isPressed: isPressed || isPressedProp,
+          isHovered: isHovered || isHoveredProp,
+          isReadOnly,
+          isReversed,
           trackLayout,
           state,
-          orientation: orientation,
-          isDisabled: isDisabled,
-          isFocused: isFocused,
-          setIsFocused: setIsFocused,
-          isFocusVisible: isFocusVisible,
-          setIsFocusVisible: setIsFocusVisible,
-          isPressed: isPressed,
-          setIsPressed: setIsPressed,
-          isHovered: isHovered,
-          setIsHovered: setIsHovered,
-          isReversed: isReversed,
+          orientation,
+          setIsFocused,
+          setIsFocusVisible,
+          setIsPressed,
+          setIsHovered,
           trackProps,
-          isReadOnly: isReadOnly,
           onTrackLayout: onLayout,
-          isHoveredProp,
-          isDisabledProp,
-          isFocusedProp,
-          isFocusVisibleProp,
-          isPressedProp,
+          sliderTrackHeight,
         };
         // eslint-disable-next-line react-hooks/exhaustive-deps
       }, [
@@ -119,6 +118,7 @@ function Slider<StyledSliderProps>(
         isFocusedProp,
         isFocusVisibleProp,
         isPressedProp,
+        sliderTrackHeight,
       ]);
 
       return (

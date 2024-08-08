@@ -20,7 +20,8 @@ export const injectCss = (
 ) => {};
 export const injectGlobalCss = (
   _css: any,
-  _styleTagID: string = 'css-injected-global'
+  _styleTagID: string = 'css-injected-global',
+  _experimentalSupportDynamicTheme?: boolean
 ) => {};
 
 export const flush = () => {

@@ -3,14 +3,22 @@ import { ActivityIndicator } from 'react-native';
 import React from 'react';
 import { createSpinner } from '@gluestack-ui/spinner';
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
-import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
+import { cssInterop } from 'nativewind';
 
 const UISpinner = createSpinner({ Root: ActivityIndicator });
 
-cssInterop(UISpinner, { className: 'style' });
+cssInterop(UISpinner, {
+  className: { target: 'style', nativeStyleToProp: { color: true } },
+});
 
 const spinnerStyle = tva({});
-const Spinner = React.forwardRef(({ className, color, ...props }: any, ref) => {
+
+type ISpinnerProps = React.ComponentProps<typeof UISpinner>;
+
+const Spinner = React.forwardRef<
+  React.ElementRef<typeof UISpinner>,
+  ISpinnerProps
+>(({ className, color, ...props }, ref) => {
   return (
     <UISpinner
       ref={ref}

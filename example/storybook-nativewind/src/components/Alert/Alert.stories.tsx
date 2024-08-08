@@ -13,7 +13,7 @@ const AlertMeta: ComponentMeta<typeof Alert> = {
   argTypes: {
     variant: {
       control: 'select',
-      options: ['solid', 'accent', 'outline'],
+      options: ['solid', 'outline'],
     },
     action: {
       control: 'select',

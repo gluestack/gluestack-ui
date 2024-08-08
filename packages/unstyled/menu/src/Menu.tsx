@@ -14,6 +14,7 @@ export const Menu = ({
   StyledMenuItem,
   StyledBackdrop,
   AnimatePresence,
+  StyledSeparator,
 }: any) => {
   return forwardRef(
     (
@@ -35,22 +36,30 @@ export const Menu = ({
       }: any,
       ref?: any
     ) => {
+      const [isOpenHover, setIsOpenHover] = React.useState(false);
+
       const [isOpen, setIsOpen] = useControlledState(
         isOpenProp,
-        defaultIsOpen,
+        defaultIsOpen || isOpenHover,
         (isOpenValue) => {
           isOpenValue ? onOpen?.() : onClose?.();
         }
       );
 
+      const handleHover = () => {
+        setIsOpenHover(true);
+      };
       const handleClose = () => {
         setIsOpen(false);
+      };
+      const handleOpen = () => {
+        setIsOpen(true);
       };
 
       const showBackdrop = React.useRef(false);
 
       const state = useMenuTriggerState({
-        isOpen: isOpen || false,
+        isOpen: isOpen,
         //@ts-ignore
         closeOnSelect: closeOnSelect,
         onOpenChange: (isOpenValue: boolean) => {
@@ -69,6 +78,7 @@ export const Menu = ({
       const updatedTrigger = () => {
         return trigger({
           ...menuTriggerProps,
+          onPress: handleOpen,
           ref: triggerRef,
         });
       };
@@ -87,6 +97,7 @@ export const Menu = ({
               onClose={() => state.close()}
               StyledMenu={StyledMenu}
               StyledMenuItem={StyledMenuItem}
+              StyledSeparator={StyledSeparator}
               closeOnSelect={closeOnSelect}
               ref={ref}
             />
@@ -117,6 +128,7 @@ export const Menu = ({
               onClose={() => state.close()}
               StyledMenu={StyledMenu}
               StyledMenuItem={StyledMenuItem}
+              StyledSeparator={StyledSeparator}
               closeOnSelect={closeOnSelect}
               ref={ref}
             />
@@ -131,6 +143,7 @@ const MenuComponent = forwardRef(
     {
       StyledMenu,
       StyledMenuItem,
+      StyledSeparator,
       AnimatePresence,
       isOpen,
       closeOnSelect,
@@ -170,17 +183,30 @@ const MenuComponent = forwardRef(
           role="list"
           {...restProps}
         >
-          {[...state.collection].map((item) => (
-            <MenuItem
-              StyledMenuItem={StyledMenuItem}
-              key={item.key}
-              item={item}
-              state={state}
-              onAction={props.onAction}
-              onClose={props.onClose}
-              closeOnSelect={closeOnSelect}
-            />
-          ))}
+          {[...state.collection].map((item) => {
+            switch (item.type) {
+              case 'item':
+                return (
+                  <MenuItem
+                    StyledMenuItem={StyledMenuItem}
+                    key={item.key}
+                    item={item}
+                    state={state}
+                    onAction={props.onAction}
+                    onClose={props.onClose}
+                    closeOnSelect={closeOnSelect}
+                  />
+                );
+              case 'seperator':
+                return (
+                  StyledSeparator && (
+                    <StyledSeparator {...item.props} key={item.key} />
+                  )
+                );
+              default:
+                return null;
+            }
+          })}
         </StyledMenu>
       </OverlayAnimatePresence>
     );

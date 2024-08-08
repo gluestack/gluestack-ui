@@ -33,31 +33,34 @@ const ModalDemo = () => {
         finalFocusRef={ref}
       >
         <ModalBackdrop />
-        <ModalContent>
+        <ModalContent focusScope={false}>
           <ModalHeader>
             <Heading size="lg">Engage with Modals</Heading>
             <ModalCloseButton>
-              <Icon as={CloseIcon} />
+              <Icon
+                as={CloseIcon}
+                size="md"
+                className="stroke-background-400 group-[:hover]/modal-close-button:stroke-background-700 group-[:active]/modal-close-button:stroke-background-900 group-[:focus-visible]/modal-close-button:stroke-background-900"
+              />
             </ModalCloseButton>
           </ModalHeader>
           <ModalBody>
-            <Text>Elevate user interactions</Text>
+            <Text>Elevate user interactions with our versatile modals.</Text>
           </ModalBody>
           <ModalFooter>
             <Button
               variant="outline"
               size="sm"
               action="secondary"
+              className="mr-3"
               onPress={() => {
                 setShowModal(false);
               }}
-              className="mr-1.5"
             >
               <ButtonText>Cancel</ButtonText>
             </Button>
             <Button
               size="sm"
-              action="positive"
               onPress={() => {
                 setShowModal(false);
               }}

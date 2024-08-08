@@ -8,6 +8,7 @@ import {
   AccordionIcon,
   AccordionContent,
   AccordionContentText,
+  Divider,
 } from '../../../core-components/nativewind';
 import { ChevronDownIcon } from 'lucide-react-native';
 import { ChevronUpIcon } from 'lucide-react-native';
@@ -16,7 +17,7 @@ const AccordionDemo = () => {
   const accRef = React.useRef(null);
   return (
     <ScrollView contentContainerStyle={{ maxHeight: 50 }}>
-      <Accordion mt="$5">
+      <Accordion className="border border-outline-200">
         <AccordionItem value="a">
           <AccordionHeader>
             <AccordionTrigger>
@@ -40,7 +41,7 @@ const AccordionDemo = () => {
             </AccordionContentText>
           </AccordionContent>
         </AccordionItem>
-
+        <Divider />
         <AccordionItem value="b">
           <AccordionHeader>
             <AccordionTrigger>
@@ -63,32 +64,6 @@ const AccordionDemo = () => {
           <AccordionContent>
             <AccordionContentText>
               We accept Visa, Mastercard, and American Express.
-            </AccordionContentText>
-          </AccordionContent>
-        </AccordionItem>
-
-        <AccordionItem value="c">
-          <AccordionHeader>
-            <AccordionTrigger>
-              {({ isExpanded }: { isExpanded: boolean }) => {
-                return (
-                  <>
-                    <AccordionTitleText>
-                      Can I cancel my subscription at any time?
-                    </AccordionTitleText>
-                    {isExpanded ? (
-                      <AccordionIcon as={ChevronUpIcon} />
-                    ) : (
-                      <AccordionIcon as={ChevronDownIcon} />
-                    )}
-                  </>
-                );
-              }}
-            </AccordionTrigger>
-          </AccordionHeader>
-          <AccordionContent>
-            <AccordionContentText>
-              Yes, you can cancel your subscription at any time.
             </AccordionContentText>
           </AccordionContent>
         </AccordionItem>

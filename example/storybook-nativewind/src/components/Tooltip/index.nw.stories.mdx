@@ -1,11 +1,11 @@
 ---
 title: Tooltip | gluestack-ui | Installation, Usage, and API
 
-description: Whether you need to provide helpful hints to new users or display extra details for power users, the Tooltip component is a simple and effective way.
+description: Easily provide hints or display details for users, enhancing usability and clarity.
 
 pageTitle: Tooltip
 
-pageDescription: Whether you need to provide helpful hints to new users or display extra details for power users, the Tooltip component is a simple and effective way.
+pageDescription: Easily provide hints or display details for users, enhancing usability and clarity.
 
 showHeader: true
 ---
@@ -61,7 +61,7 @@ This is an illustration of **Tooltip** component.
           {...props}
           trigger={(triggerProps) => {
             return (
-              <Button className='h-24' {...triggerProps}>
+              <Button className='p-4' {...triggerProps}>
                 <ButtonText>Hover on me!</ButtonText>
               </Button>
             );
@@ -508,7 +508,7 @@ A tooltip component with an avatar is a user interface element that displays a s
             <Box className="justify-center h-96">
               <AvatarGroup className="flex-row">
                 <Tooltip
-                  placement={"top"}
+                  placement="top"
                   trigger={(triggerProps) => {
                     return (
                       <Avatar
@@ -522,7 +522,7 @@ A tooltip component with an avatar is a user interface element that displays a s
                   }}
                 >
                   <TooltipContent
-                    className="p-5 max-w-72 bg-background-0"
+                    className="p-4 rounded-md max-w-72 bg-background-50"
                   >
                     <VStack space='md' className="rounded-lg">
                       <Heading size="sm">View all members of this channel</Heading>
@@ -534,16 +534,16 @@ A tooltip component with an avatar is a user interface element that displays a s
                   </TooltipContent>
                 </Tooltip>
                <Avatar size="lg"
-                    className={"border-outline-0 border-2 bg-emerald-600"} >
-                      <AvatarFallbackText>Sandeep Srivastva</AvatarFallbackText>
+                    className="border-outline-0 border-2 bg-emerald-600" >
+                      <AvatarFallbackText className="text-white">Sandeep Srivastva</AvatarFallbackText>
                 </Avatar>
                    <Avatar size="lg"
-                    className={"border-outline-0 border-2 bg-cyan-600"} >
-                      <AvatarFallbackText>Arjun Kapoor</AvatarFallbackText>
+                    className="border-outline-0 border-2 bg-cyan-600" >
+                      <AvatarFallbackText className="text-white">Arjun Kapoor</AvatarFallbackText>
                 </Avatar>
                       <Avatar size="lg"
-                    className={"border-outline-0 border-2 bg-indigo-600"} >
-                      <AvatarFallbackText>Ritik Sharma </AvatarFallbackText>
+                    className="border-outline-0 border-2 bg-indigo-600" >
+                      <AvatarFallbackText className="text-white">Ritik Sharma </AvatarFallbackText>
                 </Avatar>
               </AvatarGroup>
             </Box>
@@ -587,19 +587,19 @@ A tooltip component with an icon is a user interface element that provides conte
           return (
             <Box className="h-96 justify-center">
               <Tooltip
-                  placement={"top"}
+                  placement="top"
                   trigger={(triggerProps) => {
                     return (
-                    <Avatar size="md" {...triggerProps} className="bg-indigo-600">
-                      <Icon as={EditIcon} size="sm" className="text-typography-0"/>
+                    <Avatar size="md" {...triggerProps} className="bg-primary-600">
+                      <Icon as={EditIcon} size="sm" className="text-white"/>
                     </Avatar>
                     )
                   }}
               >
                 <TooltipContent
-                className="bg-background-0"
+                className="bg-background-50 rounded-md"
                 >
-                  <Box className="rounded-lg p-2.5">
+                  <Box className="p-2.5">
                     <Text size="sm">New message</Text>
                     <HStack space="xs" className="p-1 ml-3">
                           <Avatar size="xs" className="bg-gray-500 rounded">

@@ -24,6 +24,7 @@ export const parameters = {
 
 import { useDarkMode } from '../src/hooks/useDarkMode';
 import { Platform } from 'react-native';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 export const decorators = [
   withBackgrounds,
@@ -45,11 +46,13 @@ export const decorators = [
       }
     }
     return (
-      <GluestackUIProvider config={config}>
-        <Box flex={1} p="$10">
-          <Story />
-        </Box>
-      </GluestackUIProvider>
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        <GluestackUIProvider config={config}>
+          <Box flex={1} p="$10">
+            <Story />
+          </Box>
+        </GluestackUIProvider>
+      </GestureHandlerRootView>
     );
   },
 ];
@@ -75,9 +78,11 @@ addParameters({
       }
       return (
         <DocsContainer context={context}>
-          <GluestackUIProvider config={config} colorMode={getColorMode()}>
-            {children}
-          </GluestackUIProvider>
+          <GestureHandlerRootView style={{ flex: 1 }}>
+            <GluestackUIProvider config={config} colorMode={getColorMode()}>
+              {children}
+            </GluestackUIProvider>
+          </GestureHandlerRootView>
         </DocsContainer>
       );
     },

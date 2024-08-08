@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import { Button, ButtonText } from '@/components/ui/button';
 import { Text } from '@/components/ui/text';
 import { Heading } from '@/components/ui/heading';
-import { X } from 'lucide-react-native';
-
 import {
   AlertDialog,
   AlertDialogBackdrop,
@@ -20,32 +18,32 @@ const AlertDialogBasic = ({ ...props }) => {
   return (
     <>
       <Button onPress={() => setShowAlertDialog(true)}>
-        <ButtonText>Click me</ButtonText>
+        <ButtonText>Open Dialog</ButtonText>
       </Button>
       <AlertDialog isOpen={showAlertDialog} onClose={handleClose} {...props}>
         <AlertDialogBackdrop />
         <AlertDialogContent>
           <AlertDialogHeader>
-            <Heading>Return Policy</Heading>
-            <AlertDialogCloseButton>
-              <X
-                size={20}
-                className="stroke-background-400 group-[:hover]/alert-dialog-close-button:stroke-background-700 group-[:active]/alert-dialog-close-button:stroke-background-900 group-[:focus-visible]/alert-dialog-close-button:stroke-background-900"
-              />
-            </AlertDialogCloseButton>
+            <Heading className="text-typography-950 font-semibold" size="md">
+              Are you sure you want to delete this post?
+            </Heading>
           </AlertDialogHeader>
-          <AlertDialogBody>
-            <Text>
-              Whoa, slow down there! This modal is like a red light at an
-              intersection, reminding you to stop and think before you proceed.
-              Is deleting this folder the right choice?
+          <AlertDialogBody className="mt-3 mb-4">
+            <Text size="sm">
+              Deleting the post will remove it permanently and cannot be undone.
+              Please confirm if you want to proceed.
             </Text>
           </AlertDialogBody>
-          <AlertDialogFooter className="gap-3">
-            <Button variant="outline" action="secondary" onPress={handleClose}>
+          <AlertDialogFooter className="">
+            <Button
+              variant="outline"
+              action="secondary"
+              onPress={handleClose}
+              size="sm"
+            >
               <ButtonText>Cancel</ButtonText>
             </Button>
-            <Button action="negative" onPress={handleClose}>
+            <Button size="sm" onPress={handleClose}>
               <ButtonText>Delete</ButtonText>
             </Button>
           </AlertDialogFooter>

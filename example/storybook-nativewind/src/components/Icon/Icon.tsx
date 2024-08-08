@@ -60,15 +60,15 @@ import {
 } from '@/components/ui/icon';
 import { HStack } from '@/components/ui/hstack';
 import { VStack } from '@/components/ui/vstack';
-
 import {
   ChromeIcon,
   InstagramIcon,
   FacebookIcon,
   Camera,
 } from 'lucide-react-native';
-const IconBasic = ({ size, ...props }: any) => {
-  return <Icon as={AddIcon} size={size} {...props} />;
+
+const IconBasic = ({ ...props }: any) => {
+  return <Icon as={EditIcon} {...props} />;
 };
 
 IconBasic.description =

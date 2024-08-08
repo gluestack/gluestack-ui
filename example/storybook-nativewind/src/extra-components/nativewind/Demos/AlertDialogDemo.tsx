@@ -9,15 +9,13 @@ import {
   AlertDialogBody,
   Text,
   AlertDialogFooter,
-  AlertDialogCloseButton,
 } from '../../../core-components/nativewind';
 import { Heading } from '../../../core-components/nativewind/heading';
-import { X } from 'lucide-react-native';
 import { OverlayProvider } from '@gluestack-ui/overlay';
 
 const AlertDialogDemo = () => {
   const [showAlertDialog, setShowAlertDialog] = useState(false);
-  const handleClose = () => setShowAlertDialog(!showAlertDialog);
+  const handleClose = () => setShowAlertDialog(false);
   return (
     <OverlayProvider>
       <Button onPress={() => setShowAlertDialog(true)}>
@@ -25,29 +23,27 @@ const AlertDialogDemo = () => {
       </Button>
       <AlertDialog size="lg" isOpen={showAlertDialog} onClose={handleClose}>
         <AlertDialogBackdrop />
-        <AlertDialogContent>
+        <AlertDialogContent focusScope={false}>
           <AlertDialogHeader>
-            <Heading>Return Policy</Heading>
-            <AlertDialogCloseButton>
-              <X
-                size={20}
-                className="stroke-background-400 group-[:hover]/alert-dialog-close-button:stroke-background-700 group-[:active]/alert-dialog-close-button:stroke-background-900 group-[:focus-visible]/alert-dialog-close-button:stroke-background-900"
-              />
-            </AlertDialogCloseButton>
+            <Heading className="text-typography-950 font-semibold" size="md">
+              Delete post?
+            </Heading>
           </AlertDialogHeader>
-          <AlertDialogBody>
-            <Text>Whoa, slow down there!</Text>
+          <AlertDialogBody className="mt-2 mb-4">
+            <Text size="sm">
+              Deleting the post will remove it permanently and cannot be undone.
+            </Text>
           </AlertDialogBody>
-          <AlertDialogFooter className="gap-2">
+          <AlertDialogFooter className="">
             <Button
-              size="sm"
               variant="outline"
               action="secondary"
               onPress={handleClose}
+              size="sm"
             >
               <ButtonText>Cancel</ButtonText>
             </Button>
-            <Button size="sm" action="negative" onPress={handleClose}>
+            <Button size="sm" onPress={handleClose}>
               <ButtonText>Delete</ButtonText>
             </Button>
           </AlertDialogFooter>

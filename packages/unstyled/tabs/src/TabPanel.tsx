@@ -19,7 +19,8 @@ export const TabPanel = <StyledTabPanel,>(
               tabIndex={value === currentActiveTab ? 0 : -1}
               role={Platform.OS === 'web' ? 'tabpanel' : undefined}
               {...(props as StyledTabPanel)}
-              style={{ display: isActive ? 'flex' : 'none' }}
+              //@ts-ignore
+              style={[{ display: isActive ? 'flex' : 'none' }, props.style]}
               ref={ref}
             />
           );

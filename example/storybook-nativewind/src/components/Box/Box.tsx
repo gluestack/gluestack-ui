@@ -2,26 +2,12 @@ import { Text } from '@/components/ui/text';
 import { Box } from '@/components/ui/box';
 import React from 'react';
 
-const BoxBasic: any = ({
-  bg = 'blue500',
-  w = '100',
-  h = '100',
-  className = '',
-  ...props
-}: any) => {
+const BoxBasic: any = ({ ...props }: any) => {
   return (
     <Box
-      {...props}
-      bg={`$${bg}`}
-      h={h}
-      w={w}
-      justifyContent="center"
-      alignItems="center"
-      className={className}
+      className={`justify-center items-center bg-blue-500 w-[${props.w}px] h-[${props.h}px]`}
     >
-      <Text color="white" fontWeight="$bold">
-        BOX
-      </Text>
+      <Text className="font-bold text-typography-0">BOX</Text>
     </Box>
   );
 };

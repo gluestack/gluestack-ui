@@ -1,11 +1,11 @@
 ---
 title: gluestack-ui Button Component | Installation, Usage, and API
 
-description: A button component is a graphical user interface element that enables users to act by clicking or tapping. It can be customized in size, shape, color, and behavior to fit the design of the application or website.
+description: Trigger an action or event with customizable size, shape, color, and behavior.
 
 pageTitle: Button
 
-pageDescription: A button component is a graphical user interface element that enables users to act by clicking or tapping. It can be customized in size, shape, color, and behavior to fit the design of the application or website.
+pageDescription: Trigger an action or event with customizable size, shape, color, and behavior.
 
 showHeader: true
 ---
@@ -490,8 +490,8 @@ A loading button is a type of button component that provides visual feedback to 
       code: `
         <Button className='p-3'>
         {/* colors is imported from tailwindcss/colors */}
-          <ButtonSpinner color={colors.gray[400]} className='mr-1'/>
-          <ButtonText className='font-medium text-sm'>Please wait...</ButtonText>
+          <ButtonSpinner color={colors.gray[400]} />
+          <ButtonText className='font-medium text-sm ml-2'>Please wait...</ButtonText>
         </Button>
       `,
       transformCode: (code) => {

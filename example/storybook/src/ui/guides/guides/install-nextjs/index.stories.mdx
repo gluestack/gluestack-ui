@@ -51,7 +51,7 @@ npm i @gluestack-ui/themed @gluestack-style/react @gluestack/ui-next-adapter rea
 
 ```
 
-### Step 1.5: Default Themed.(Optional)
+### Step 1.5: Default Theme (Optional)
 
 `gluestack-ui` is intentionally designed as an unstyled library, providing you with the flexibility to style your components as you prefer. However, if you want to use the default theme, you can install `@gluestack-ui/config` as well.
 
@@ -109,8 +109,9 @@ export default function StyledJsxRegistry({
 }
 ```
 
-- We also need to add `className="gs"` to the `<html>` element in the `layout.tsx` file
-- We also need to wrap `children` with `StyledJsxRegistry` in the `layout.tsx` file
+- We also need to add `className="gs"` to the `<html>` element in the `layout.tsx` file.
+- We also need to wrap `children` with `StyledJsxRegistry` in the `layout.tsx` file.
+- If dark mode needs to be rendered from the server side, you also need to add `className="gs gs-dark"` to the `html` element in the `layout.tsx` file. (optional)
 
 The code in `layout.tsx` file at this point of time will look like this:
 
@@ -145,6 +146,7 @@ export default function RootLayout({
 
 To prevent flickering, the `gs` class should be attached, which increases the specificity of any inline styles that are being used.
 
+
 Add this code in your `_document.tsx` file.
 
 ```jsx
@@ -175,6 +177,8 @@ Document.getInitialProps = async ({ renderPage }: any) => {
 
 export default Document;
 ```
+
+If dark mode needs to be rendered from the server side, you also need to add `className="gs gs-dark"` to the `Html` element in the `_document.tsx` file. (optional)
 
 ### Step 3: Setup @gluestack/ui-next-adapter
 
@@ -270,3 +274,6 @@ export default function App({ Component, pageProps }: AppProps) {
 This ensures that all components are wrapped with `<GluestackUIProvider />`, and the theme from `@gluestack-ui/config` is applied.
 
 This guide should help you get started with gluestack-ui in your expo project. If you run into any issues or have further questions, please refer to the official documentation or community forums.
+
+
+

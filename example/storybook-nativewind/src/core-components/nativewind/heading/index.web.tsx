@@ -1,76 +1,201 @@
-import React, { memo } from 'react';
+import React, { forwardRef, memo } from 'react';
 import { headingStyle } from './styles';
+import type { VariantProps } from '@gluestack-ui/nativewind-utils';
+type IHeadingProps = VariantProps<typeof headingStyle> &
+  React.ComponentPropsWithoutRef<'h1'> & {
+    as?: React.ElementType;
+  };
 
-const Heading = memo(
-  ({ className, size = 'lg', as: AsComp, ...props }: any) => {
-    const MappedHeading = ({ size }: any) => {
+const MappedHeading = memo(
+  forwardRef<HTMLHeadingElement, IHeadingProps>(
+    (
+      {
+        size,
+        className,
+        isTruncated,
+        bold,
+        underline,
+        strikeThrough,
+        sub,
+        italic,
+        highlight,
+        ...props
+      },
+      ref
+    ) => {
       switch (size) {
         case '5xl':
         case '4xl':
         case '3xl':
           return (
             <h1
-              className={headingStyle({ size, class: className })}
+              className={headingStyle({
+                size,
+                isTruncated,
+                bold,
+                underline,
+                strikeThrough,
+                sub,
+                italic,
+                highlight,
+                class: className,
+              })}
               {...props}
+              ref={ref}
             />
           );
         case '2xl':
           return (
             <h2
-              className={headingStyle({ size, class: className })}
+              className={headingStyle({
+                size,
+                isTruncated,
+                bold,
+                underline,
+                strikeThrough,
+                sub,
+                italic,
+                highlight,
+                class: className,
+              })}
               {...props}
+              ref={ref}
             />
           );
         case 'xl':
           return (
             <h3
-              className={headingStyle({ size, class: className })}
+              className={headingStyle({
+                size,
+                isTruncated,
+                bold,
+                underline,
+                strikeThrough,
+                sub,
+                italic,
+                highlight,
+                class: className,
+              })}
               {...props}
+              ref={ref}
             />
           );
         case 'lg':
           return (
             <h4
-              className={headingStyle({ size, class: className })}
+              className={headingStyle({
+                size,
+                isTruncated,
+                bold,
+                underline,
+                strikeThrough,
+                sub,
+                italic,
+                highlight,
+                class: className,
+              })}
               {...props}
+              ref={ref}
             />
           );
         case 'md':
           return (
             <h5
-              className={headingStyle({ size, class: className })}
+              className={headingStyle({
+                size,
+                isTruncated,
+                bold,
+                underline,
+                strikeThrough,
+                sub,
+                italic,
+                highlight,
+                class: className,
+              })}
               {...props}
+              ref={ref}
             />
           );
         case 'sm':
         case 'xs':
           return (
             <h6
-              className={headingStyle({ size, class: className })}
+              className={headingStyle({
+                size,
+                isTruncated,
+                bold,
+                underline,
+                strikeThrough,
+                sub,
+                italic,
+                highlight,
+                class: className,
+              })}
               {...props}
+              ref={ref}
             />
           );
         default:
           return (
             <h4
-              className={headingStyle({ size, class: className })}
+              className={headingStyle({
+                size,
+                isTruncated,
+                bold,
+                underline,
+                strikeThrough,
+                sub,
+                italic,
+                highlight,
+                class: className,
+              })}
               {...props}
+              ref={ref}
             />
           );
       }
-    };
+    }
+  )
+);
 
-    if (AsComp) {
+const Heading = memo(
+  forwardRef<HTMLHeadingElement, IHeadingProps>(
+    ({ className, size = 'lg', as: AsComp, ...props }, ref) => {
+      const {
+        isTruncated,
+        bold,
+        underline,
+        strikeThrough,
+        sub,
+        italic,
+        highlight,
+      } = props;
+
+      if (AsComp) {
+        return (
+          <AsComp
+            className={headingStyle({
+              size,
+              isTruncated,
+              bold,
+              underline,
+              strikeThrough,
+              sub,
+              italic,
+              highlight,
+              class: className,
+            })}
+            {...props}
+            ref={ref}
+          />
+        );
+      }
+
       return (
-        <AsComp
-          className={headingStyle({ size, class: className })}
-          {...props}
-        />
+        <MappedHeading className={className} size={size} ref={ref} {...props} />
       );
     }
-
-    return <MappedHeading size={size} />;
-  }
+  )
 );
 
 Heading.displayName = 'Heading';

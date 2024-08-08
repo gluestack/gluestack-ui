@@ -8,7 +8,6 @@ const TooltipBasic = ({
   placement = 'bottom',
   text = 'Hello world',
 }: any) => {
-  2;
   return (
     <Tooltip
       offset={10}

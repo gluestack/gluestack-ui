@@ -91,14 +91,18 @@ We have also exported all the providers separately so that you can use them indi
 To use only config and styled functionalities, you can use `GluestackUIStyledProvider` component.
 
 ```jsx
-import { GluestackUIStyledProvider } from '@gluestack-ui/themed';
+import { GluestackUIStyledProvider, Button, ButtonText } from '@gluestack-ui/themed';
 import { config } from '@gluestack-ui/config';
 
-<GluestackUIStyledProvider config={config}>
-  <Button>
-    <ButtonText>Hello World</ButtonText>
-  </Button>
-</GluestackUIStyledProvider>;
+export default function App() {
+  return (
+    <GluestackUIStyledProvider config={config}>
+      <Button>
+        <ButtonText>Hello World</ButtonText>
+      </Button>
+    </GluestackUIStyledProvider>
+  )
+}
 ```
 
 ### OverlayProvider

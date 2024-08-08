@@ -1,3 +1,4 @@
+import { PropsWithoutRef, RefAttributes } from 'react';
 import type { PressableProps } from 'react-native';
 
 export interface InterfaceButtonProps extends PressableProps {
@@ -53,19 +54,19 @@ export type IButtonComponentType<
   TextProps,
   IconProps
 > = React.ForwardRefExoticComponent<
-  React.RefAttributes<ButtonProps> & ButtonProps & IButtonProps
+  PropsWithoutRef<ButtonProps & IButtonProps> & RefAttributes<ButtonProps>
 > & {
   Group: React.ForwardRefExoticComponent<
-    React.RefAttributes<GroupProps> & GroupProps & IButtonGroupProps
+    RefAttributes<GroupProps> & PropsWithoutRef<GroupProps & IButtonGroupProps>
   >;
   Spinner: React.ForwardRefExoticComponent<
-    SpinnerProps & React.RefAttributes<SpinnerProps>
+    PropsWithoutRef<SpinnerProps> & React.RefAttributes<SpinnerProps>
   >;
   Text: React.ForwardRefExoticComponent<
-    React.RefAttributes<TextProps> & TextProps
+    React.RefAttributes<TextProps> & PropsWithoutRef<TextProps>
   >;
   Icon: React.ForwardRefExoticComponent<
-    React.RefAttributes<IconProps> & IconProps
+    React.RefAttributes<IconProps> & PropsWithoutRef<IconProps>
   >;
 };
 

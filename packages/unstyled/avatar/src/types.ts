@@ -15,19 +15,22 @@ export type IAvatarComponentType<
   ImageProps,
   FallbackTextProps
 > = React.ForwardRefExoticComponent<
-  IAvatarProps & AvatarProps & React.RefAttributes<AvatarProps>
+  React.PropsWithoutRef<IAvatarProps & AvatarProps> &
+    React.RefAttributes<AvatarProps>
 > & {
   Badge: React.ForwardRefExoticComponent<
-    BadgeProps & React.RefAttributes<BadgeProps>
+    React.PropsWithoutRef<BadgeProps> & React.RefAttributes<BadgeProps>
   >;
   Group: React.ForwardRefExoticComponent<
-    GroupProps & React.RefAttributes<GroupProps> & IAvatarGroupProps
+    React.PropsWithoutRef<GroupProps & IAvatarGroupProps> &
+      React.RefAttributes<GroupProps>
   >;
   Image: React.ForwardRefExoticComponent<
-    ImageProps & React.RefAttributes<ImageProps>
+    React.PropsWithoutRef<ImageProps> & React.RefAttributes<ImageProps>
   >;
   FallbackText: React.ForwardRefExoticComponent<
-    FallbackTextProps & React.RefAttributes<FallbackTextProps>
+    React.PropsWithoutRef<FallbackTextProps> &
+      React.RefAttributes<FallbackTextProps>
   >;
 };
 

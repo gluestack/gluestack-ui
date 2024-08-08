@@ -27,29 +27,37 @@ const TextMeta: ComponentMeta<typeof Text> = {
         '6xl',
       ],
     },
-    fontWeight: {
-      control: 'select',
-      options: [
-        'hairline',
-        'thin',
-        'light',
-        'normal',
-        'medium',
-        'semibold',
-        'bold',
-        'extrabold',
-        'black',
-      ],
+    bold: {
+      control: 'boolean',
+    },
+    italic: {
+      control: 'boolean',
+    },
+    underline: {
+      control: 'boolean',
+    },
+    strikeThrough: {
+      control: 'boolean',
+    },
+    highlight: {
+      control: 'boolean',
+    },
+    sub: {
+      control: 'boolean',
     },
   },
   args: {
     text: 'Hello world',
     size: 'md',
-    fontWeight: 'medium',
+    bold: false,
+    italic: false,
+    underline: false,
+    strikeThrough: false,
+    highlight: false,
+    sub: false,
   },
 };
 
 export default TextMeta;
 
 export { Text };
-// export { TextSizes };

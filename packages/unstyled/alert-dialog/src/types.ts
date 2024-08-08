@@ -1,3 +1,5 @@
+import React from 'react';
+
 export interface InterfaceAlertDialogProps {
   /**
    * If true, the AlertDialog will open. Useful for controllable state behaviour
@@ -47,7 +49,15 @@ export interface InterfaceAlertDialogProps {
    * @default false
    */
   useRNModal?: boolean;
-  children?: any;
+  children?: React.ReactNode;
+}
+
+export interface IAlertDialogContentProps {
+  /**
+   * If true, AlertDialog Content focusScope will be applied.
+   * @default true
+   */
+  focusScope?: boolean;
 }
 
 export type IAlertDialogComponentType<
@@ -59,26 +69,32 @@ export type IAlertDialogComponentType<
   StyledAlertDialogBody,
   StyledAlertDialogBackdrop
 > = React.ForwardRefExoticComponent<
-  React.RefAttributes<StyledAlertDialog> & StyledAlertDialog & IAlertDialogProps
+  React.RefAttributes<StyledAlertDialog> &
+    React.PropsWithoutRef<StyledAlertDialog & IAlertDialogProps>
 > & {
   Content: React.ForwardRefExoticComponent<
-    React.RefAttributes<StyledAlertDialogContent> & StyledAlertDialogContent
+    React.RefAttributes<StyledAlertDialogContent> &
+      React.PropsWithoutRef<IAlertDialogContentProps & StyledAlertDialogContent>
   >;
   CloseButton: React.ForwardRefExoticComponent<
     React.RefAttributes<StyledAlertDialogCloseButton> &
-      StyledAlertDialogCloseButton
+      React.PropsWithoutRef<StyledAlertDialogCloseButton>
   >;
   Header: React.ForwardRefExoticComponent<
-    React.RefAttributes<StyledAlertDialogHeader> & StyledAlertDialogHeader
+    React.RefAttributes<StyledAlertDialogHeader> &
+      React.PropsWithoutRef<StyledAlertDialogHeader>
   >;
   Footer: React.ForwardRefExoticComponent<
-    React.RefAttributes<StyledAlertDialogFooter> & StyledAlertDialogFooter
+    React.RefAttributes<StyledAlertDialogFooter> &
+      React.PropsWithoutRef<StyledAlertDialogFooter>
   >;
   Body: React.ForwardRefExoticComponent<
-    React.RefAttributes<StyledAlertDialogBody> & StyledAlertDialogBody
+    React.RefAttributes<StyledAlertDialogBody> &
+      React.PropsWithoutRef<StyledAlertDialogBody>
   >;
   Backdrop: React.ForwardRefExoticComponent<
-    React.RefAttributes<StyledAlertDialogBackdrop> & StyledAlertDialogBackdrop
+    React.RefAttributes<StyledAlertDialogBackdrop> &
+      React.PropsWithoutRef<StyledAlertDialogBackdrop>
   >;
 };
 

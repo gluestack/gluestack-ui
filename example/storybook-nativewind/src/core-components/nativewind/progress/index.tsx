@@ -7,7 +7,7 @@ import {
   withStyleContext,
   useStyleContext,
 } from '@gluestack-ui/nativewind-utils/withStyleContext';
-import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
+import { cssInterop } from 'nativewind';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 const SCOPE = 'PROGRESS';
 export const UIProgress = createProgress({
@@ -50,34 +50,36 @@ type IProgressProps = VariantProps<typeof progressStyle> &
 type IProgressFilledTrackProps = VariantProps<typeof progressFilledTrackStyle> &
   React.ComponentProps<typeof UIProgress.FilledTrack>;
 
-export const Progress = React.forwardRef(
-  ({ className, size = 'md', ...props }: IProgressProps, ref?: any) => {
-    return (
-      <UIProgress
-        ref={ref}
-        {...props}
-        className={progressStyle({ size, class: className })}
-        context={{ size }}
-      />
-    );
-  }
-);
+export const Progress = React.forwardRef<
+  React.ElementRef<typeof UIProgress>,
+  IProgressProps
+>(({ className, size = 'md', ...props }, ref) => {
+  return (
+    <UIProgress
+      ref={ref}
+      {...props}
+      className={progressStyle({ size, class: className })}
+      context={{ size }}
+    />
+  );
+});
 
-export const ProgressFilledTrack = React.forwardRef(
-  ({ className, ...props }: IProgressFilledTrackProps, ref?: any) => {
-    const { size: parentSize } = useStyleContext(SCOPE);
+export const ProgressFilledTrack = React.forwardRef<
+  React.ElementRef<typeof UIProgress.FilledTrack>,
+  IProgressFilledTrackProps
+>(({ className, ...props }, ref) => {
+  const { size: parentSize } = useStyleContext(SCOPE);
 
-    return (
-      <UIProgress.FilledTrack
-        ref={ref}
-        className={progressFilledTrackStyle({
-          parentVariants: {
-            size: parentSize,
-          },
-          class: className,
-        })}
-        {...props}
-      />
-    );
-  }
-);
+  return (
+    <UIProgress.FilledTrack
+      ref={ref}
+      className={progressFilledTrackStyle({
+        parentVariants: {
+          size: parentSize,
+        },
+        class: className,
+      })}
+      {...props}
+    />
+  );
+});

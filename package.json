@@ -15,11 +15,15 @@
     "release": "changeset publish",
     "prepare": "husky install",
     "lint": "eslint packages/**/**/src --ext .ts,.tsx --config .eslintrc",
+    "lint-nativewind": "eslint example/storybook-nativewind/src/core-components --ext .ts,.tsx --config .eslintrc",
     "eject:gluestack-style": "git clone -b development git@github.com:gluestack/gluestack-style.git gluestack-style && echo Now update babel.config.js",
     "create-new-package": "node ./scripts/create-new-package.js",
     "storybook": "cd example/storybook && yarn storybook",
     "storybook:nativewind": "cd example/storybook-nativewind && yarn storybook:nativewind",
-    "kitchensink:web": "cd example/ui-examples && yarn web"
+    "storybook:nativewind-ios": "cd example/storybook-v7 && yarn storybook:ios",
+    "storybook:nativewind-android": "cd example/storybook-v7 && yarn storybook:android",
+    "kitchensink:web": "cd example/ui-examples && yarn web",
+    "postinstall": "patch-package && cd example/storybook-v7 && yarn"
   },
   "devDependencies": {
     "@changesets/cli": "^2.25.2",
@@ -47,7 +51,9 @@
   },
   "resolutions": {
     "react-native": "0.72.4",
-    "react-native-web": "0.19.9"
+    "react-native-web": "0.19.9",
+    "react-native-css-interop": "0.0.36",
+    "nativewind": "4.0.36"
   },
   "packageManager": "yarn@1.22.17",
   "version": "0.2.46",

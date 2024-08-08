@@ -9,17 +9,16 @@ import {
   ModalFooter,
   ModalHeader,
 } from '@/components/ui/modal';
-import { Center } from '@/components/ui/center';
 import { Heading } from '@/components/ui/heading';
 import { Icon, CloseIcon } from '@/components/ui/icon';
 import { Text } from '@/components/ui/text';
 
-const ModalBasic = () => {
+const ModalBasic = ({ ...props }: any) => {
   const [showModal, setShowModal] = useState(false);
-  const ref = React.useRef(null);
+
   return (
-    <Center h={300}>
-      <Button onPress={() => setShowModal(true)} ref={ref}>
+    <>
+      <Button onPress={() => setShowModal(true)}>
         <ButtonText>Show Modal</ButtonText>
       </Button>
       <Modal
@@ -27,18 +26,20 @@ const ModalBasic = () => {
         onClose={() => {
           setShowModal(false);
         }}
-        finalFocusRef={ref}
+        {...props}
       >
         <ModalBackdrop />
         <ModalContent>
           <ModalHeader>
-            <Heading size="lg">Engage with Modals</Heading>
+            <Heading size="md" className="text-typography-950">
+              Invite your team
+            </Heading>
             <ModalCloseButton>
-              <Icon as={CloseIcon} />
+              <Icon as={CloseIcon} className="stroke-background-500" />
             </ModalCloseButton>
           </ModalHeader>
           <ModalBody>
-            <Text>
+            <Text size="sm" className="text-typography-500">
               Elevate user interactions with our versatile modals. Seamlessly
               integrate notifications, forms, and media displays. Make an impact
               effortlessly.
@@ -47,9 +48,7 @@ const ModalBasic = () => {
           <ModalFooter>
             <Button
               variant="outline"
-              size="sm"
               action="secondary"
-              mr="$3"
               onPress={() => {
                 setShowModal(false);
               }}
@@ -57,9 +56,6 @@ const ModalBasic = () => {
               <ButtonText>Cancel</ButtonText>
             </Button>
             <Button
-              size="sm"
-              action="positive"
-              borderWidth="$0"
               onPress={() => {
                 setShowModal(false);
               }}
@@ -69,7 +65,7 @@ const ModalBasic = () => {
           </ModalFooter>
         </ModalContent>
       </Modal>
-    </Center>
+    </>
   );
 };
 
@@ -85,5 +81,4 @@ export {
   ModalFooter,
   Button,
   ButtonText,
-  Text,
 };

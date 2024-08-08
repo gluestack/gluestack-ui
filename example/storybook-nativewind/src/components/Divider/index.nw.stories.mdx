@@ -1,11 +1,11 @@
 ---
 title: gluestack-ui Divider Component | Installation, Usage, and API
 
-description: Revamp your content organization with the Divider component! Use it to visually separate different sections of a list or group for a more structured and easy-to-read interface.
+description: Organize content visually with separators for a more structured, easy-to-read interface.
 
 pageTitle: Divider
 
-pageDescription: Revamp your content organization with the Divider component! Use it to visually separate different sections of a list or group for a more structured and easy-to-read interface.
+pageDescription: Organize content visually with separators for a more structured, easy-to-read interface.
 
 showHeader: true
 ---
@@ -45,11 +45,11 @@ This is an illustration of **Divider** component.
     metaData={{
       code: `
         <Center>
-          <Text>
+          <Text className="font-semibold">
             Easy
           </Text>
           <Divider className="my-0.5"/>
-          <Text>
+          <Text className="font-semibold">
             Difficult
           </Text>
         </Center>
@@ -234,36 +234,24 @@ A Divider component with different layouts offers versatile options for visually
     showArgsController={false}
     metaData={{
       code: `
-        <VStack
-          space="md"
-          className="justify-center items-center"
-        >
-          <HStack
-            className="h-[40px] justify-center items-center"
-          >
-            <Text>Simple</Text>
-            <Divider
-              orientation="vertical"
-              className="mx-2.5 bg-emerald-500 h-[15px]"
-            />
-            <Text>Easy</Text>
-            <Divider
-              orientation="vertical"
-              className="mx-2.5 bg-indigo-500 h-[15px]"
-            />
-            <Text>Beautiful</Text>
-          </HStack>
-          <VStack
-            className="w-[100px] justify-center items-center"
-          >
-            <Text>Firefox</Text>
-            <Divider
-              variant="horizontal"
-              className="w-[55px] bg-red-500"
-            />
-            <Text>Chrome</Text>
-          </VStack>
-        </VStack>
+    <VStack {...props}>
+      <Heading>gluestack-ui</Heading>
+      <Text>Universal component library</Text>
+      <Divider className="my-2  bg-indigo-500" />
+      <HStack className="">
+        <Text>Installation</Text>
+        <Divider
+          orientation="vertical"
+          className="mx-2 h-[20px]  bg-emerald-500"
+        />
+        <Text>API Reference</Text>
+        <Divider
+          orientation="vertical"
+          className="mx-2 h-[20px]  bg-emerald-500"
+        />
+        <Text>Examples</Text>
+      </HStack>
+    </VStack>
       `,
       transformCode: (code) => {
         return transformedCode(code);
@@ -274,6 +262,7 @@ A Divider component with different layouts offers versatile options for visually
         VStack,
         HStack,
         Text,
+        Heading
       },
       argsType: {},
     }}
@@ -381,51 +370,38 @@ A Divider component used with or without inset adds visual hierarchy and distinc
     showArgsController={false}
     metaData={{
       code: `
-        <VStack space='2xl'>
-          <HStack 
-          className="px-3 h-8 rounded border border-outline-300"
-          >
-            <Button variant='link' size='xs'>
-              <ButtonText >
-                Github
-              </ButtonText>
-            </Button>
-            <Divider orientation='vertical' className="mx-2.5"/>
-            <Button variant='link' size='xs'>
-              <ButtonText >
-                Twitter
-              </ButtonText>
-            </Button>
-            <Divider orientation='vertical' className="mx-2.5"/>
-            <Button variant='link' size='xs'>
-              <ButtonText >
-                Discord
-              </ButtonText>
-            </Button>
-          </HStack>
-          <HStack 
-          className="px-3 h-8 rounded border border-outline-300 items-center"
-          >
-            <Button variant='link' size='xs'>
-              <ButtonText >
-                Github
-              </ButtonText>
-            </Button>
-            <Divider orientation='vertical' className="h-[50%] mx-2.5"/>
-            <Button variant='link' size='xs'>
-              <ButtonText >
-                Twitter
-              </ButtonText>
-            </Button>
-            <Divider orientation='vertical' className="h-[50%]
-            mx-2.5"/>
-            <Button variant='link' size='xs'>
-              <ButtonText >
-                Discord
-              </ButtonText>
-            </Button>
-          </HStack>
-        </VStack>
+    <VStack space="2xl" {...props}>
+      <HStack className="px-3 h-8 rounded border border-solid border-outline-300">
+        <Button variant="link" size="xs">
+          <ButtonText>Github</ButtonText>
+        </Button>
+        <Divider orientation="vertical" className="mx-2.5" />
+        <Button variant="link" size="xs">
+          <ButtonText>Twitter</ButtonText>
+        </Button>
+        <Divider orientation="vertical" className="mx-2.5" />
+        <Button variant="link" size="xs">
+          <ButtonText>Discord</ButtonText>
+        </Button>
+      </HStack>
+      <HStack className="px-3 h-8 rounded border border-solid border-outline-300 items-center">
+        <Button variant="link" size="xs">
+          <ButtonText>Github</ButtonText>
+        </Button>
+        <Divider orientation="vertical" className="h-[50%] mx-2.5" />
+        <Button variant="link" size="xs">
+          <ButtonText>Twitter</ButtonText>
+        </Button>
+        <Divider
+          orientation="vertical"
+          className="h-[50%]
+      mx-2.5"
+        />
+        <Button variant="link" size="xs">
+          <ButtonText>Discord</ButtonText>
+        </Button>
+      </HStack>
+    </VStack>
       `,
       transformCode: (code) => {
         return transformedCode(code);

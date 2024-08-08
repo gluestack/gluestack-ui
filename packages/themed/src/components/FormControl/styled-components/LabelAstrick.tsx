@@ -2,6 +2,6 @@
 import { styled } from '@gluestack-style/react';
 import { Text } from '../../Text';
 export default styled(Text, {}, {
-  componentName: 'FormControlErrorText',
+  componentName: 'FormControlLabelAstrick',
   ancestorStyle: ['_labelAstrick'],
 } as const);

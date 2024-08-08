@@ -41,12 +41,27 @@ const ColorPaletteComponent = () => {
         const variableName = extractVariableName(color); // extract the --color-name part from the var(---color-name) string using regex, it will return null if we pass it a hex code
         const colorName = variableName || color; // variableName will be null in case there was a hex code passed to the extract function
 
-        const colorCode =
+        const RGBcolorCode: string =
           colorMode === 'light'
             ? config.light[colorName]
             : config.dark[colorName]; // get the color code from the config based on the color name and the color mode
 
         const className = `bg-${name}-${variant}`; // need to save the class name for the color to use in the UI
+
+        const convertRGBToHex = (rgbColors: any) => {
+          const hexColors = rgbColors?.map((color: any) => {
+            let hex = Number(color).toString(16);
+            if (hex.length < 2) {
+              hex = '0' + hex;
+            }
+            return hex;
+          });
+
+          return `#${hexColors?.join('')}`;
+        };
+
+        const newColor = RGBcolorCode?.split(' ');
+        const colorCode = RGBcolorCode ? convertRGBToHex(newColor) : undefined;
 
         variants.push({
           name,
@@ -96,4 +111,66 @@ const ColorPaletteComponent = () => {
   );
 };
 
-export { ColorPaletteComponent };
+const ShadowComponent = () => {
+  const { colorMode } = useContext(LayoutContext);
+  return (
+    <GluestackUIProvider mode={colorMode}>
+      <VStack space="lg">
+        <Heading>Hard Shadows</Heading>
+        <HStack space="lg">
+          <Box className="h-20 w-20 rounded-lg items-center justify-center bg-typography-0 shadow-hard-1">
+            <Text>1</Text>
+          </Box>
+          <Box className="h-20 w-20 rounded-lg items-center justify-center bg-typography-0 shadow-hard-2">
+            <Text>2</Text>
+          </Box>
+          <Box className="h-20 w-20 rounded-lg items-center justify-center bg-typography-0 shadow-hard-3">
+            <Text>3</Text>
+          </Box>
+          <Box className="h-20 w-20 rounded-lg items-center justify-center bg-typography-0 shadow-hard-4">
+            <Text>4</Text>
+          </Box>
+          <Box className="h-20 w-20 rounded-lg items-center justify-center bg-typography-0 shadow-hard-5">
+            <Text>5</Text>
+          </Box>
+        </HStack>
+
+        <Heading>Soft Shadows</Heading>
+        <HStack space="lg">
+          <Box className="h-20 w-20 rounded-lg items-center justify-center bg-typography-0 shadow-soft-1">
+            <Text>1</Text>
+          </Box>
+          <Box className="h-20 w-20 rounded-lg items-center justify-center bg-typography-0 shadow-soft-2">
+            <Text>2</Text>
+          </Box>
+          <Box className="h-20 w-20 rounded-lg items-center justify-center bg-typography-0 shadow-soft-3">
+            <Text>3</Text>
+          </Box>
+          <Box className="h-20 w-20 rounded-lg items-center justify-center bg-typography-0 shadow-soft-4">
+            <Text>4</Text>
+          </Box>
+        </HStack>
+      </VStack>
+      {/* </SafeAreaView> */}
+    </GluestackUIProvider>
+  );
+};
+
+const FontSizeComponent = () => {
+  return <Text className="text-2xs">Text of fontSize (2xs)</Text>;
+};
+
+const FontWeightComponent = () => {
+  return (
+    <>
+      <Text className="font-extrablack">Text of fontWeight (extrablack)</Text>
+    </>
+  );
+};
+
+export {
+  ColorPaletteComponent,
+  ShadowComponent,
+  FontSizeComponent,
+  FontWeightComponent,
+};

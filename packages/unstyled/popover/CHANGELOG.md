@@ -1,5 +1,26 @@
 # @gluestack-ui/popover
 
+## 0.1.37
+
+### Patch Changes
+
+- Updated dependencies
+  - @gluestack-ui/overlay@0.1.15
+
+## 0.1.36
+
+### Patch Changes
+
+- feat: added flip state to popover
+- Updated dependencies
+  - @react-native-aria/overlays@0.3.13
+
+## 0.1.35
+
+### Patch Changes
+
+- fix: ref typing for all the components
+
 ## 0.1.34
 
 ### Patch Changes

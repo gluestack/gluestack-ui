@@ -1,5 +1,17 @@
 # @gluestack-ui/menu
 
+## 0.2.35
+
+### Patch Changes
+
+- added new composition component separator in menu
+
+## 0.2.34
+
+### Patch Changes
+
+- fix: ref typing for all the components
+
 ## 0.2.33
 
 ### Patch Changes

@@ -108,6 +108,7 @@ const PopoverContent = (StyledPopoverContent: any, AnimatePresence?: any) =>
       overlayProps,
       arrowProps,
       placement: calculatedPlacement,
+      isFlipped,
     } = useOverlayPosition({
       placement: placement,
       targetRef,
@@ -192,7 +193,9 @@ const PopoverContent = (StyledPopoverContent: any, AnimatePresence?: any) =>
     };
 
     return (
-      <PopoverContentProvider value={{ ...value, ...providerValues }}>
+      <PopoverContentProvider
+        value={{ ...value, ...providerValues, isFlipped }}
+      >
         <OverlayAnimatePresence
           visible={isOpen}
           AnimatePresence={AnimatePresence}
@@ -227,6 +230,10 @@ const PopoverContent = (StyledPopoverContent: any, AnimatePresence?: any) =>
                 exit={exitAnimatedStyles}
                 style={popoverContentStyle}
                 ref={mergedRef}
+                dataSet={{ flip: isFlipped }}
+                states={{
+                  flip: isFlipped,
+                }}
               >
                 {children}
               </StyledPopoverContent>

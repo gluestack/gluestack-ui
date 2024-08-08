@@ -1,11 +1,11 @@
 ---
 title: gluestack-ui Avatar Component | Installation, Usage, and API
 
-description: The Avatar component is a versatile UI element representing a user with profile pictures, initials, or a fallback icon. It adds a personal touch to the user interface, making it more engaging.
+description: Enhance UI engagement with a versatile element showing user profiles via pictures, initials, or icons
 
 pageTitle: Avatar
 
-pageDescription: The Avatar component is a versatile UI element representing a user with profile pictures, initials, or a fallback icon. It adds a personal touch to the user interface, making it more engaging.
+pageDescription: Enhance UI engagement with a versatile element showing user profiles via pictures, initials, or icons
 
 showHeader: true
 ---
@@ -49,29 +49,35 @@ This is an illustration of **Avatar** component.
     showArgsController = { true}
     metaData = {{
       code: `
-        <Avatar {...props} className='bg-primary-600'>
-          <AvatarFallbackText>Sandeep Srivastava</AvatarFallbackText>
+        <Avatar {...props}>
+          <AvatarFallbackText>Jane Doe</AvatarFallbackText>
+        <AvatarImage
+          source={{
+            uri: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
+          }}
+        />
+        <AvatarBadge />
         </Avatar>
       `,
         transformCode: (code) => {
           return transformedCode(code);
         },
           scope: {
-        Wrapper,
+          Wrapper,
           Avatar,
           AvatarBadge,
           AvatarFallbackText,
           AvatarImage,
         },
-      argsType: {
-        size: {
-          control: 'select',
-            options: ['xs', 'sm', 'md', 'lg', 'xl', '2xl'],
-            default: 'md',
-          },
-      },
+        argsType: {
+          size: {
+            control: 'select',
+              options: ['xs', 'sm', 'md', 'lg', 'xl', '2xl'],
+              default: 'md',
+            },
+        },
+      }
     }
-  }
   />
 </Wrapper>
 
@@ -236,8 +242,8 @@ An Avatar component with text displays a stylized representation of a user or en
     <VStack space="2xl">
         <HStack space="md">
             <Avatar className='bg-indigo-600'>
-              <AvatarFallbackText>Ronald Richards</AvatarFallbackText>
-              <AvatarBadge $dark-borderColor="$black"/>
+              <AvatarFallbackText className="text-white">Ronald Richards</AvatarFallbackText>
+              <AvatarBadge />
             </Avatar>
           <VStack>
              <Heading size="sm" >Ronald Richards</Heading>
@@ -246,7 +252,7 @@ An Avatar component with text displays a stylized representation of a user or en
       </HStack>
       <HStack space="md">
         <Avatar className='bg-orange-600'>
-            <AvatarFallbackText>Arlene McCoy</AvatarFallbackText>
+            <AvatarFallbackText className="text-white">Arlene McCoy</AvatarFallbackText>
         </Avatar>
         <VStack>
             <Heading size="sm" >Arlene McCoy</Heading>
@@ -288,7 +294,7 @@ An Avatar component with an icon combines a graphical symbol or icon with a user
             <HStack space="md">
               <Avatar className='bg-indigo-600'>
                 {/* User is imported from 'lucide-react-native' */}
-                <Icon as={User} color="white" size="lg"/>
+                <Icon as={User} size="lg" className="stroke-white" />
               </Avatar>
               <VStack >
                 <Heading size="sm" >Ronald Richards</Heading>
@@ -298,7 +304,7 @@ An Avatar component with an icon combines a graphical symbol or icon with a user
             <HStack space="md">
                 <Avatar className='bg-pink-600'>
                  {/* User is imported from 'lucide-react-native' */}
-                <Icon as={User} size="lg"/>
+                <Icon as={User} size="lg" className="stroke-white" />
                 </Avatar>
                 <VStack >
                   <Heading size="sm" >Kevin James</Heading>
@@ -361,6 +367,7 @@ An Avatar component with an image incorporates a user or entity representation u
                     uri: 'https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8dXNlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60',
                   }}
               />
+              <AvatarBadge />
             </Avatar>
             <VStack>
               <Heading size="sm" >Arlene McCoy</Heading>
@@ -415,7 +422,7 @@ The avatar group allows users to group avatars and display them in a horizontal 
               {avatars.slice(0, 3).map((avatar, index) => {
                 return (
                   <Avatar key={index} size="lg" className={'border-2 border-outline-0 ' + avatar.color}>
-                    <AvatarFallbackText>{avatar.alt}</AvatarFallbackText>
+                    <AvatarFallbackText className="text-white">{avatar.alt}</AvatarFallbackText>
                   </Avatar>
                 );
               })}

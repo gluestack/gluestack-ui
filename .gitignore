@@ -2,6 +2,7 @@
 
 # dependencies
 node_modules
+patches
 .pnp
 .pnp.js
 .env
@@ -38,5 +39,8 @@ yarn-error.log*
 # turbo
 .turbo
 .vercel
+
+# jetBrains IDE files
+.idea
 
 packages/gluestack-style

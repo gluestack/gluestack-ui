@@ -1,3 +1,4 @@
+import React from 'react';
 import type { ImageSourcePropType } from 'react-native';
 export interface IImageProps {
   source?: ImageSourcePropType | string;
@@ -5,5 +6,9 @@ export interface IImageProps {
 }
 
 export type IImageComponentType<StyledImage> = React.ForwardRefExoticComponent<
-  IImageProps & Omit<StyledImage, 'source' | 'alt'>
+  IImageProps &
+    InnerForwardRefExoticComponent<Omit<StyledImage, 'source' | 'alt'>>
 >;
+
+type InnerForwardRefExoticComponent<T> = React.PropsWithoutRef<T> &
+  React.RefAttributes<T>;

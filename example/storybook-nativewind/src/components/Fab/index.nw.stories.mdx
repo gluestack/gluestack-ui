@@ -1,11 +1,11 @@
 ---
 title: gluestack-ui Fab Component | Installation, Usage, and API
 
-description: The Floating Action Button (FAB) is a dynamic button that stays visible and provides access to a primary action throughout the user's journey in the application. It is a powerful UI element that adds a touch of elegance and convenience to the user experience.
+description: A dynamic button that stays visible, offering convenient access to a primary action.
 
 pageTitle: Fab
 
-pageDescription: The Floating Action Button (FAB) is a dynamic button that stays visible and provides access to a primary action throughout the user's journey in the application. It is a powerful UI element that adds a touch of elegance and convenience to the user experience.
+pageDescription: A dynamic button that stays visible, offering convenient access to a primary action.
 
 showHeader: true
 ---
@@ -421,7 +421,7 @@ A Fab component with an icon adds a visually striking and easily recognizable bu
           ];
           return (
             <Box
-            className='border rounded-lg border-outline-200 p-6 bg-background-200 min-w-[240px] sm:min-w-[360px] md:min-w-[476px]'
+            className='border rounded-lg border-outline-200 p-6 bg-background-100 min-w-[240px] sm:min-w-[360px] md:min-w-[476px]'
             >
               <VStack space='md'>
                 {data.map((chatData)=>{
@@ -446,9 +446,9 @@ A Fab component with an icon adds a visually striking and easily recognizable bu
                   );
                 })}
               </VStack>
-              <Fab size='lg' className='bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800' >
+              <Fab size='lg' className='bg-primary-600 hover:bg-primary-700 active:bg-primary-800' >
                 {/* EditIcon is imported from 'lucide-react-native' */}
-                <FabIcon as={EditIcon}/>
+                <FabIcon as={EditIcon} color="white"/>
               </Fab>
             </Box>
           );
@@ -489,13 +489,13 @@ A Fab component with an icon and text combines a visual icon with accompanying t
         <Box
           className='max-w-96 border rounded-lg border-outline-200 py-[56px] px-6 mx-5 bg-background-100'
         >
-          <Fab className='top-4 h-9 bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-900'>
-            <FabIcon as={SearchIcon} className='mr-1.5' />
-            <FabLabel >Search</FabLabel>
+          <Fab className='top-4 h-9 bg-primary-600 hover:bg-primary-700 active:bg-primary-900'>
+            <FabIcon as={SearchIcon} className='stroke-white' />
+            <FabLabel className='text-white'>Search</FabLabel>
           </Fab>
           <VStack space='lg'>
             <Box>
-              <Text className='text-xs text-blue-600 font-bold'>
+              <Text className='text-xs text-primary-600 font-bold'>
                 HEALTH
               </Text>
               <Heading size='sm'>
@@ -524,7 +524,7 @@ A Fab component with an icon and text combines a visual icon with accompanying t
             </Box>
             <Divider />
             <Box>
-              <Text className='text-xs text-blue-600 font-bold'>
+              <Text className='text-xs text-primary-600 font-bold'>
                 TECHNOLOGY
               </Text>
               <Heading size='sm' >
@@ -690,14 +690,14 @@ A Fab component with custom placement allows for flexible positioning of the but
               Oranges are a great source of vitamin C, which is essential for a healthy immune system. Oranges are a great source of vitamin C, which is important for maintaining a healthy immune system. Vitamin C also helps with the absorption of iron and the production of collagen, which supports healthy skin, teeth, and bones.
             </Text>
             <Link href="https://gluestack.io/" isExternal>
-              <Text className='text-xs text-pink-600'>
+              <Text className='text-xs text-primary-600'>
                 READ MORE
               </Text>
             </Link>
           </VStack>
-          <Fab size='lg' className='bg-pink-600 right-4 bottom-16 hover:bg-pink-700 active:bg-pink-800'>
+          <Fab size='lg' className='bg-primary-600 right-4 bottom-16 hover:bg-primary-700 active:bg-primary-800'>
             {/* ShoppingCartIcon is imported from 'lucide-react-native' */}
-            <FabIcon as={ShoppingCartIcon} className='h-4 w-4'/>
+            <FabIcon as={ShoppingCartIcon} className='h-4 w-4' color="white"/>
           </Fab>
         </Box>
       `,

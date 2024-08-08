@@ -13,7 +13,7 @@ import { useDialog } from '@react-native-aria/dialog';
 import { mergeRefs } from '@gluestack-ui/utils';
 
 const ModalContent = (StyledModalContent: any, AnimatePresence?: any) =>
-  forwardRef(({ children, ...props }: any, ref?: any) => {
+  forwardRef(({ children, focusScope = true, ...props }: any, ref?: any) => {
     const { initialFocusRef, finalFocusRef, handleClose, visible } =
       React.useContext(ModalContext);
 
@@ -63,30 +63,36 @@ const ModalContent = (StyledModalContent: any, AnimatePresence?: any) =>
       }
     }, [initialFocusRef, finalFocusRef, visible]);
 
-    return (
+    const content = (
+      <OverlayAnimatePresence
+        visible={visible}
+        AnimatePresence={AnimatePresence}
+      >
+        <StyledModalContent
+          {...props}
+          ref={mergedRef}
+          onAccessibilityEscape={handleClose}
+          aria-modal="true"
+          role={Platform.OS === 'web' ? 'dialog' : undefined}
+          accessibilityViewIsModal
+          tabIndex={Platform.OS === 'web' ? -1 : undefined}
+          {...dialogProps}
+        >
+          {children}
+        </StyledModalContent>
+      </OverlayAnimatePresence>
+    );
+
+    return focusScope ? (
       <FocusScope
         contain={visible}
         autoFocus={visible && !initialFocusRef}
         restoreFocus={visible && !finalFocusRef}
       >
-        <OverlayAnimatePresence
-          visible={visible}
-          AnimatePresence={AnimatePresence}
-        >
-          <StyledModalContent
-            {...props}
-            ref={mergedRef}
-            onAccessibilityEscape={handleClose}
-            aria-modal="true"
-            role={Platform.OS === 'web' ? 'dialog' : undefined}
-            accessibilityViewIsModal
-            tabIndex={Platform.OS === 'web' ? -1 : undefined}
-            {...dialogProps}
-          >
-            {children}
-          </StyledModalContent>
-        </OverlayAnimatePresence>
+        {content}
       </FocusScope>
+    ) : (
+      <>{content}</>
     );
   });
 

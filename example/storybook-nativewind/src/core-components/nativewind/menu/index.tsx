@@ -2,23 +2,28 @@
 import React from 'react';
 import { createMenu } from '@gluestack-ui/menu';
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
-import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
-import { Pressable, Text } from 'react-native';
+import { cssInterop } from 'nativewind';
+import { Pressable, Text, Platform, View } from 'react-native';
 import { Motion, AnimatePresence } from '@legendapp/motion';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
+import { withStates } from '@gluestack-ui/nativewind-utils/withStates';
 
 const menuStyle = tva({
-  base: 'min-w-[200px] py-2 rounded-sm bg-background-0',
+  base: 'rounded-md bg-background-0 border border-outline-100 p-1 shadow-hard-5',
 });
 
 const menuItemStyle = tva({
-  base: 'p-3 flex-row items-center data-[hover=true]:bg-background-100 data-[active=true]:bg-background-200 data-[focus=true]:bg-background-100 data-[focus=true]:web:outline-noe data-[focus=true]:web:outline-0 data-[disabled=true]:opacity-40 data-[disabled=true]:web:cursor-not-allowed data-[focus-visible=true]:web:outline-2 data-[focus-visible=true]:web:outline-primary-700 data-[focus-visible=true]:web:outline data-[focus-visible=true]:web:cursor-pointer  data-[disabled=true]:data-[focus=true]:bg-transparent ',
+  base: 'min-w-[200px] p-3 flex-row items-center rounded data-[hover=true]:bg-background-50 data-[active=true]:bg-background-100 data-[focus=true]:bg-background-50 data-[focus=true]:web:outline-none data-[focus=true]:web:outline-0 data-[disabled=true]:opacity-40 data-[disabled=true]:web:cursor-not-allowed data-[focus-visible=true]:web:outline-2 data-[focus-visible=true]:web:outline-primary-700 data-[focus-visible=true]:web:outline data-[focus-visible=true]:web:cursor-pointer data-[disabled=true]:data-[focus=true]:bg-transparent',
 });
 
 const menuBackdropStyle = tva({
-  base: 'absolute top-0 bottom-0 left-0 right-0 bg-background-dark opacity-50 web:cursor-default',
-  // add this classnames if you want to give background colour to backdrop
+  base: 'absolute top-0 bottom-0 left-0 right-0 web:cursor-default',
+  // add this classnames if you want to give background color to backdrop
   // opacity-50 bg-background-500,
+});
+
+const menuSeparatorStyle = tva({
+  base: 'bg-background-200 h-px w-full',
 });
 
 const menuItemLabelStyle = tva({
@@ -62,33 +67,47 @@ const menuItemLabelStyle = tva({
   },
 });
 
-const BackdropPressable = React.forwardRef(
+const BackdropPressable = React.forwardRef<
+  React.ElementRef<typeof Pressable>,
+  React.ComponentPropsWithoutRef<typeof Pressable> &
+    VariantProps<typeof menuBackdropStyle>
+>(({ className, ...props }, ref) => {
+  return (
+    <Pressable
+      ref={ref}
+      className={menuBackdropStyle({
+        class: className,
+      })}
+      {...props}
+    />
+  );
+});
+
+type IMenuItemProps = VariantProps<typeof menuItemStyle> & {
+  className?: string;
+} & React.ComponentPropsWithoutRef<typeof Pressable>;
+
+const Item = React.forwardRef<
+  React.ElementRef<typeof Pressable>,
+  IMenuItemProps
+>(({ className, ...props }, ref) => {
+  return (
+    <Pressable
+      ref={ref}
+      className={menuItemStyle({
+        class: className,
+      })}
+      {...props}
+    />
+  );
+});
+
+const Separator = React.forwardRef(
   ({ className, ...props }: any, ref?: any) => {
     return (
-      <Pressable
+      <View
         ref={ref}
-        className={menuBackdropStyle({
-          class: className,
-        })}
-        {...props}
-      />
-    );
-  }
-);
-
-type IMenuItemProps = VariantProps<typeof menuItemStyle>;
-
-const Item = React.forwardRef(
-  (
-    { className, ...props }: { className?: string } & IMenuItemProps,
-    ref?: any
-  ) => {
-    return (
-      <Pressable
-        ref={ref}
-        className={menuItemStyle({
-          class: className,
-        })}
+        className={menuSeparatorStyle({ class: className })}
         {...props}
       />
     );
@@ -96,42 +115,41 @@ const Item = React.forwardRef(
 );
 export const UIMenu = createMenu({
   Root: Motion.View,
-  Item: Item,
+  Item: Platform.OS === 'web' ? Item : withStates(Item),
   Label: Text,
   Backdrop: BackdropPressable,
   AnimatePresence: AnimatePresence,
+  Separator: Separator,
 });
 
 cssInterop(UIMenu, { className: 'style' });
 cssInterop(UIMenu.ItemLabel, { className: 'style' });
 
 type IMenuProps = React.ComponentProps<typeof UIMenu> &
-  VariantProps<typeof menuStyle>;
+  VariantProps<typeof menuStyle> & { className?: string };
 type IMenuItemLabelProps = React.ComponentProps<typeof UIMenu.ItemLabel> &
-  VariantProps<typeof menuItemLabelStyle>;
+  VariantProps<typeof menuItemLabelStyle> & { className?: string };
 
-const Menu = React.forwardRef(
-  ({ className, ...props }: { className?: string } & IMenuProps, ref?: any) => {
+const Menu = React.forwardRef<React.ElementRef<typeof UIMenu>, IMenuProps>(
+  ({ className, ...props }, ref) => {
     return (
       <UIMenu
         ref={ref}
         initial={{
           opacity: 0,
+          scale: 0.8,
         }}
         animate={{
           opacity: 1,
+          scale: 1,
         }}
         exit={{
           opacity: 0,
+          scale: 0.8,
         }}
         transition={{
-          type: 'spring',
-          damping: 18,
-          stiffness: 250,
-          opacity: {
-            type: 'timing',
-            duration: 200,
-          },
+          type: 'timing',
+          duration: 100,
         }}
         className={menuStyle({
           class: className,
@@ -144,7 +162,10 @@ const Menu = React.forwardRef(
 
 const MenuItem = UIMenu.Item;
 
-const MenuItemLabel = React.forwardRef(
+const MenuItemLabel = React.forwardRef<
+  React.ElementRef<typeof UIMenu.ItemLabel>,
+  IMenuItemLabelProps
+>(
   (
     {
       className,
@@ -157,8 +178,8 @@ const MenuItemLabel = React.forwardRef(
       italic,
       highlight,
       ...props
-    }: { className?: string } & IMenuItemLabelProps,
-    ref?: any
+    },
+    ref
   ) => {
     return (
       <UIMenu.ItemLabel
@@ -180,8 +201,10 @@ const MenuItemLabel = React.forwardRef(
   }
 );
 
+const MenuSeparator = UIMenu.Separator;
+
 Menu.displayName = 'Menu';
 MenuItem.displayName = 'MenuItem';
 MenuItemLabel.displayName = 'MenuItemLabel';
-
-export { Menu, MenuItem, MenuItemLabel };
+MenuSeparator.displayName = 'MenuSeperator';
+export { Menu, MenuItem, MenuItemLabel, MenuSeparator };

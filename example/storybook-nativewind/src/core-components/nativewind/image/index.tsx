@@ -4,7 +4,7 @@ import { createImage } from '@gluestack-ui/image';
 import { Platform, Image as RNImage } from 'react-native';
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
-import { cssInterop } from '@gluestack-ui/nativewind-utils/cssInterop';
+import { cssInterop } from 'nativewind';
 
 const imageStyle = tva({
   base: 'max-w-full',
@@ -27,15 +27,15 @@ cssInterop(UIImage, { className: 'style' });
 
 type ImageProps = VariantProps<typeof imageStyle> &
   React.ComponentProps<typeof UIImage>;
-const Image = ({
-  size = 'md',
-  className,
-  ...props
-}: { className?: any } & ImageProps) => {
+const Image = React.forwardRef<
+  React.ElementRef<typeof UIImage>,
+  ImageProps & { className?: string }
+>(({ size = 'md', className, ...props }, ref) => {
   return (
     <UIImage
       className={imageStyle({ size, class: className })}
       {...props}
+      ref={ref}
       //@ts-ignore
       style={
         Platform.OS === 'web'
@@ -44,7 +44,7 @@ const Image = ({
       }
     />
   );
-};
+});
 
 Image.displayName = 'Image';
 export { Image };

@@ -1,11 +1,11 @@
 ---
 title: gluestack-ui Radio Component | Installation, Usage, and API
 
-description: The Radio component presents users with predefined choices and enables them to select only one option. It is commonly used for providing a single-choice selection in forms or surveys.
+description: Standalone radio button for use in any layout, offering predefined choices for selection.
 
 pageTitle: Radio
 
-pageDescription: The Radio component presents users with predefined choices and enables them to select only one option. It is commonly used for providing a single-choice selection in forms or surveys.
+pageDescription: Standalone radio button for use in any layout, offering predefined choices for selection.
 
 showHeader: true
 ---
@@ -48,9 +48,9 @@ This is an illustration of **Radio** component.
         <RadioGroup>
           <Radio value="change" {...props}>
             <RadioIndicator>
-              <RadioIcon as={CircleIcon} className="stroke-1"/>
+              <RadioIcon as={CircleIcon}/>
             </RadioIndicator>
-            <RadioLabel >Label</RadioLabel>
+            <RadioLabel>Label</RadioLabel>
           </Radio>
         </RadioGroup>
       `,
@@ -728,7 +728,7 @@ Radio buttons can be used horizontally
     metaData={{
       code: `
       function App() {
-        const [values, setValues] = useState("Monday");
+        const [values, setValues] = React.useState("Monday");
         return (
           <RadioGroup value={values} onChange={setValues} >
             <VStack space="lg" className="w-40">
@@ -780,7 +780,7 @@ The Radio components can be used with a controlled state, enabling precise manag
     metaData={{
       code: `
       function App () {
-        const [values, setValues] = useState('Apartments');
+        const [values, setValues] = React.useState('Apartments');
         return (
           <RadioGroup value={values} onChange={setValues}>
             <VStack space='md'>
@@ -832,7 +832,7 @@ The Radio components can be used with either a ref or no state, providing an unc
     metaData={{
       code: `
       function App () {
-        const radioRef = useRef(null);
+        const radioRef = React.useRef(null);
         const handleRadioChange = (e) => {
           e.preventDefault();
           const checkboxValue = radioRef.current.checked;
@@ -888,7 +888,7 @@ The Radio group component allows users to group radio and display them in a hori
     metaData={{
       code: `
         function RadioGroupExample() {
-          const [values, setValues] = useState("1st");
+          const [values, setValues] = React.useState("1st");
           return (
             <RadioGroup value={values} onChange={setValues}>
               <VStack space="sm">

@@ -6,7 +6,7 @@ export interface ISelectProps {
   isFocused?: boolean;
   isFocusVisible?: boolean;
   closeOnOverlayClick?: boolean;
-  selectedValue?: string;
+  selectedValue?: string | null;
   /**
    * @deprecated Use `initialLabel` instead.
    */
@@ -43,53 +43,69 @@ export type ISelectComponentType<
   SelectSectionListProps,
   SelectSectionHeaderTextProps
 > = React.ForwardRefExoticComponent<
-  SelectProps & ISelectProps & React.RefAttributes<SelectProps>
+  React.PropsWithoutRef<SelectProps> &
+    ISelectProps &
+    React.RefAttributes<SelectProps>
 > & {
   Trigger: React.ForwardRefExoticComponent<
-    SelectTriggerProps & React.RefAttributes<SelectTriggerProps>
+    React.PropsWithoutRef<SelectTriggerProps> &
+      React.RefAttributes<SelectTriggerProps>
   >;
   Input: React.ForwardRefExoticComponent<
-    SelectInputProps & React.RefAttributes<SelectInputProps>
+    React.PropsWithoutRef<SelectInputProps> &
+      React.RefAttributes<SelectInputProps>
   >;
   Icon: React.ForwardRefExoticComponent<
-    SelectIconProps & React.RefAttributes<SelectIconProps>
+    React.PropsWithoutRef<SelectIconProps> &
+      React.RefAttributes<SelectIconProps>
   >;
   Portal: React.ForwardRefExoticComponent<
-    SelectPortalProps & React.RefAttributes<SelectPortalProps>
+    React.PropsWithoutRef<SelectPortalProps> &
+      React.RefAttributes<SelectPortalProps>
   >;
   Backdrop: React.ForwardRefExoticComponent<
-    SelectBackdropProps & React.RefAttributes<SelectBackdropProps>
+    React.PropsWithoutRef<SelectBackdropProps> &
+      React.RefAttributes<SelectBackdropProps>
   >;
   Content: React.ForwardRefExoticComponent<
-    SelectContentProps & React.RefAttributes<SelectContentProps>
+    React.PropsWithoutRef<SelectContentProps> &
+      React.RefAttributes<SelectContentProps>
   >;
   DragIndicator: React.ForwardRefExoticComponent<
-    SelectDragIndicatorProps & React.RefAttributes<SelectDragIndicatorProps>
+    React.PropsWithoutRef<SelectDragIndicatorProps> &
+      React.RefAttributes<SelectDragIndicatorProps>
   >;
   DragIndicatorWrapper: React.ForwardRefExoticComponent<
-    SelectDragIndicatorWrapperProps &
+    React.PropsWithoutRef<SelectDragIndicatorWrapperProps> &
       React.RefAttributes<SelectDragIndicatorWrapperProps>
   >;
   Item: React.ForwardRefExoticComponent<
-    ISelectItemProps & SelectItemProps & React.RefAttributes<SelectItemProps>
+    ISelectItemProps &
+      React.PropsWithoutRef<SelectItemProps> &
+      React.RefAttributes<SelectItemProps>
   >;
   ItemText: React.ForwardRefExoticComponent<
-    SelectItemTextProps & React.RefAttributes<SelectItemTextProps>
+    React.PropsWithoutRef<SelectItemTextProps> &
+      React.RefAttributes<SelectItemTextProps>
   >;
   ScrollView: React.ForwardRefExoticComponent<
-    SelectScrollViewProps & React.RefAttributes<SelectScrollViewProps>
+    React.PropsWithoutRef<SelectScrollViewProps> &
+      React.RefAttributes<SelectScrollViewProps>
   >;
   VirtualizedList: React.ForwardRefExoticComponent<
-    SelectVirtualizedListProps & React.RefAttributes<SelectVirtualizedListProps>
+    React.PropsWithoutRef<SelectVirtualizedListProps> &
+      React.RefAttributes<SelectVirtualizedListProps>
   >;
   FlatList: React.ForwardRefExoticComponent<
-    SelectFlatListProps & React.RefAttributes<SelectFlatListProps>
+    React.PropsWithoutRef<SelectFlatListProps> &
+      React.RefAttributes<SelectFlatListProps>
   >;
   SectionList: React.ForwardRefExoticComponent<
-    SelectSectionListProps & React.RefAttributes<SelectSectionListProps>
+    React.PropsWithoutRef<SelectSectionListProps> &
+      React.RefAttributes<SelectSectionListProps>
   >;
   SectionHeaderText: React.ForwardRefExoticComponent<
-    SelectSectionHeaderTextProps &
+    React.PropsWithoutRef<SelectSectionHeaderTextProps> &
       React.RefAttributes<SelectSectionHeaderTextProps>
   >;
 };

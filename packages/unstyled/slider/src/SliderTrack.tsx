@@ -16,11 +16,7 @@ function SliderTrack<StyledSliderTrackProps>(
       isFocusVisible,
       isDisabled,
       isPressed,
-      isHoveredProp,
-      isDisabledProp,
-      isFocusedProp,
-      isFocusVisibleProp,
-      isPressedProp,
+      sliderTrackHeight,
     } = React.useContext(SliderContext);
 
     return (
@@ -28,23 +24,23 @@ function SliderTrack<StyledSliderTrackProps>(
         onLayout={onTrackLayout}
         ref={mergeRefs([_ref, ref])}
         {...trackProps}
-        style={style}
+        style={[{ height: sliderTrackHeight }, style]}
         {...props}
         isDisabled={isDisabled}
         tabIndex={-1}
         states={{
-          hover: isHovered || isHoveredProp,
-          disabled: isDisabled || isDisabledProp,
-          focus: isFocused || isFocusedProp,
-          focusVisible: isFocusVisible || isFocusVisibleProp,
-          active: isPressed || isPressedProp,
+          hover: isHovered,
+          disabled: isDisabled,
+          focus: isFocused,
+          focusVisible: isFocusVisible,
+          active: isPressed,
         }}
         dataSet={{
-          hover: isHovered || isHoveredProp ? 'true' : 'false',
-          disabled: isDisabled || isDisabledProp ? 'true' : 'false',
-          focus: isFocused || isFocusedProp ? 'true' : 'false',
-          focusVisible: isFocusVisible || isFocusVisibleProp ? 'true' : 'false',
-          active: isPressed || isPressedProp ? 'true' : 'false',
+          hover: isHovered ? 'true' : 'false',
+          disabled: isDisabled ? 'true' : 'false',
+          focus: isFocused ? 'true' : 'false',
+          focusVisible: isFocusVisible ? 'true' : 'false',
+          active: isPressed ? 'true' : 'false',
         }}
         disabled={isDisabled}
       >

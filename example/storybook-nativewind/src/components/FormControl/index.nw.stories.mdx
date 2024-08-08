@@ -1,11 +1,11 @@
 ---
 title: gluestack-ui FormControl Component | Installation, Usage, and API
 
-description: By using FormControl, developers can provide important context to form elements. This context can include whether the element is invalid, disabled, or required.
+description: Provide context to form elements, such as invalid, disabled, or required states.
 
 pageTitle: FormControl
 
-pageDescription: By using FormControl, developers can provide important context to form elements. This context can include whether the element is invalid, disabled, or required.
+pageDescription: Provide context to form elements, such as invalid, disabled, or required states.
 
 showHeader: true
 ---
@@ -699,9 +699,7 @@ Error messages can be displayed using FormControl.
             <VStack space="sm">
               <Radio size="sm" value="Mango">
                 <RadioIndicator>
-                  <RadioIcon>
-                    <CircleIcon/>
-                  </RadioIcon>
+                  <RadioIcon as={CircleIcon} />
                 </RadioIndicator>
                 <RadioLabel>
                   Monday
@@ -709,9 +707,7 @@ Error messages can be displayed using FormControl.
               </Radio>
               <Radio size="sm" value="Apple">
                 <RadioIndicator>
-                  <RadioIcon>
-                    <CircleIcon/>
-                  </RadioIcon>
+                  <RadioIcon as={CircleIcon} />
                 </RadioIndicator>
                 <RadioLabel>
                   Tuesday
@@ -719,9 +715,7 @@ Error messages can be displayed using FormControl.
               </Radio>
               <Radio size="sm" value="Orange">
                 <RadioIndicator>
-                  <RadioIcon>
-                    <CircleIcon/>
-                  </RadioIcon>
+                  <RadioIcon as={CircleIcon} />
                 </RadioIndicator>
                 <RadioLabel>
                   Wednesday
@@ -730,7 +724,7 @@ Error messages can be displayed using FormControl.
             </VStack>
           </RadioGroup>
           <FormControlError>
-            <FormControlErrorIcon size={10} as={AlertCircleIcon}/>
+            <FormControlErrorIcon as={AlertCircleIcon}/>
             <FormControlErrorText>
               Choose one time slot for the meeting
             </FormControlErrorText>
@@ -778,16 +772,16 @@ Form Action Buttons can also be utilized in conjunction with FormControl.
       code: `
         <HStack>
           <FormControl>
-            <Button action='negative' className='mr-4'>
-              <ButtonText>
-                Delete
-              </ButtonText>
-            </Button>
-          </FormControl>
-          <FormControl>
             <Button variant='outline' action='secondary'>
               <ButtonText>
                 Cancel
+              </ButtonText>
+            </Button>
+          </FormControl>
+               <FormControl>
+            <Button action='negative' className='ml-4'>
+              <ButtonText className="text-white group-hover/button:text-white group-active/button:text-white">
+                Delete
               </ButtonText>
             </Button>
           </FormControl>

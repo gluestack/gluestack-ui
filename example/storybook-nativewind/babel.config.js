@@ -22,9 +22,17 @@ module.exports = function (api) {
                 ? path.resolve(__dirname, './global.css')
                 : path.resolve(__dirname, './global-gluestack.css'),
 
+            '@/components/hooks': path.resolve(
+              __dirname,
+              './src/core-components/hooks'
+            ),
             '@gluestack-ui/checkbox': path.resolve(
               __dirname,
               '../../packages/unstyled/checkbox/src'
+            ),
+            '@gluestack-ui/input': path.resolve(
+              __dirname,
+              '../../packages/unstyled/input/src'
             ),
             '@gluestack-ui/tooltip': path.resolve(
               __dirname,
@@ -74,6 +82,10 @@ module.exports = function (api) {
               __dirname,
               '../../packages/unstyled/popover/src'
             ),
+            '@react-native-aria/overlays': path.resolve(
+              __dirname,
+              '../../packages/react-native-aria/overlays/src'
+            ),
             '@gluestack-style/react': path.resolve(
               __dirname,
               '../../packages/styled/react/src'
@@ -91,9 +103,17 @@ module.exports = function (api) {
               __dirname,
               '../../packages/nativewind/utils/cssInterop'
             ),
+            '@gluestack-ui/nativewind-utils/tailwind-plugin': path.resolve(
+              __dirname,
+              '../../packages/nativewind/utils/tailwind-plugin'
+            ),
             '@gluestack-ui/nativewind-utils/tva': path.resolve(
               __dirname,
               '../../packages/nativewind/utils/tva'
+            ),
+            '@gluestack-ui/nativewind-utils/useMediaQuery': path.resolve(
+              __dirname,
+              '../../packages/nativewind/utils/useMediaQuery'
             ),
             '@gluestack-ui/nativewind-utils': path.resolve(
               __dirname,
@@ -107,9 +127,21 @@ module.exports = function (api) {
               __dirname,
               '../../packages/unstyled/toast/src'
             ),
+            '@gluestack-ui/select': path.join(
+              __dirname,
+              '../../packages/unstyled/select/src'
+            ),
+            '@gluestack-ui/modal': path.join(
+              __dirname,
+              '../../packages/unstyled/modal/src'
+            ),
             '@/extra-components/nativewind': path.resolve(
               __dirname,
               './src/core-components/nativewind'
+            ),
+            '@/tailwind.config': path.join(
+              __dirname,
+              '../../example/storybook-nativewind/tailwind.config.js'
             ),
             'tailwind.config': path.join(
               __dirname,

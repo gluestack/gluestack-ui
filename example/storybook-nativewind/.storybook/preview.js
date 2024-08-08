@@ -4,6 +4,7 @@ import { OverlayProvider } from '@gluestack-ui/overlay';
 import { ToastProvider } from '@gluestack-ui/toast';
 
 import { GluestackUIProvider as GluestackUIWithNativewindProvider } from '../src/core-components/nativewind/gluestack-ui-provider';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 // global css getting resolved from babel.config.js
 import 'global.css';
@@ -33,24 +34,40 @@ export const parameters = {
         'Home',
         [
           'Overview',
-          ['Introduction', 'All Components'],
+          ['Introduction', 'Upgrade to v2'],
           'Getting Started',
-          ['Installation', 'Tooling Setup', 'Figma UI Kit'],
+          [
+            'Installation',
+            'Tooling Setup',
+            'VS Code Extensions',
+            'Figma UI Kit',
+            'CLI',
+            'gluestack-ui-nativewind-utils',
+          ],
           'Core Concepts',
           ['Accessibility', 'Universal'],
+          'Performance',
+          ['Benchmarks'],
           'Theme Configuration',
-          ['Default Tokens', 'Customizing Theme', 'Theme Configurator'],
+          [
+            'Default Tokens',
+            'Customizing Theme',
+            'Dark Mode',
+            'Theme Configurator',
+          ],
         ],
         'Components',
         [
+          'All Components',
+          ['All Components'],
           'Typography',
           ['Heading', 'Text'],
           'Layout',
-          ['Box', 'Center', 'Divider', 'HStack', 'VStack'],
+          ['Box', 'Center', 'Divider', 'HStack', 'VStack', 'Grid'],
           'Feedback',
           ['Alert', 'Progress', 'Spinner', 'Toast'],
           'Data Display',
-          ['Badge', 'Card'],
+          ['Badge', 'Card', 'Table'],
           'Forms',
           [
             'Button',
@@ -66,18 +83,25 @@ export const parameters = {
             'Textarea',
           ],
           'Overlay',
-          ['AlertDialog', 'Menu', 'Modal', 'Popover', 'Tooltip'],
+          ['AlertDialog', 'Menu', 'Modal', 'Popover', 'Portal', 'Tooltip'],
           'Disclosure',
-          ['Actionsheet', 'Accordion'],
+          ['Actionsheet', 'Accordion', 'BottomSheet'],
           'Media And Icons',
           ['Avatar', 'Image', 'Icon'],
           'Others',
-          ['Fab'],
+          ['Fab', 'Skeleton'],
         ],
+        'Hooks',
+        ['useBreakPointValue', 'useMediaQuery'],
+        'Apps',
+        ['Dashboard App', 'Todo App', 'Starter Kit', 'Storybook App'],
         'Guides',
-        'Recipes',
-        ['Linear Gradient'],
-        ['More', ['Changelog']],
+        [
+          'Recipes',
+          ['Linear Gradient'],
+          'More',
+          ['FAQs', 'Releases', 'Roadmap', 'Troubleshooting'],
+        ],
       ],
       icons: [
         {
@@ -92,8 +116,18 @@ export const parameters = {
         },
         {
           source: 'lucide-react-native',
+          name: 'Layers',
+          headerTitle: 'Apps',
+        },
+        {
+          source: 'lucide-react-native',
           name: 'BookOpen',
           headerTitle: 'Guides',
+        },
+        {
+          source: 'lucide-react-native',
+          name: 'Anchor',
+          headerTitle: 'Hooks',
         },
       ],
     },
@@ -126,21 +160,27 @@ export const decorators = [
 
     return (
       <GluestackUIWithGluestackStyleProvider colorMode={getColorMode()}>
-        <GluestackUIWithNativewindProvider mode={getColorMode()}>
-          <OverlayProvider style={{ flex: 1 }}>
-            <ToastProvider>
-              <View
-                style={{
-                  flex: 1,
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                }}
-              >
-                <Story />
-              </View>
-            </ToastProvider>
-          </OverlayProvider>
-        </GluestackUIWithNativewindProvider>
+        <GestureHandlerRootView
+          style={{ flex: 1, display: 'flex', height: '100vh' }}
+        >
+          <GluestackUIWithNativewindProvider mode={getColorMode()}>
+            <OverlayProvider style={{ flex: 1, display: 'flex' }}>
+              <ToastProvider>
+                <View
+                  style={{
+                    flex: 1,
+                    display: 'flex',
+                    width: '100%',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}
+                >
+                  <Story />
+                </View>
+              </ToastProvider>
+            </OverlayProvider>
+          </GluestackUIWithNativewindProvider>
+        </GestureHandlerRootView>
       </GluestackUIWithGluestackStyleProvider>
     );
   },
@@ -155,9 +195,11 @@ addParameters({
         <GluestackUIWithGluestackStyleProvider>
           <GluestackUIWithNativewindProvider>
             <DocsContainer context={context}>
-              <OverlayProvider style={{ flex: 1 }}>
-                <ToastProvider>{children}</ToastProvider>
-              </OverlayProvider>
+              <GestureHandlerRootView style={{ flex: 1 }}>
+                <OverlayProvider style={{ flex: 1 }}>
+                  <ToastProvider>{children}</ToastProvider>
+                </OverlayProvider>
+              </GestureHandlerRootView>
             </DocsContainer>
           </GluestackUIWithNativewindProvider>
         </GluestackUIWithGluestackStyleProvider>

@@ -5,22 +5,10 @@ import { Box } from '@/components/ui/box';
 import { Heading } from '@/components/ui/heading';
 import { Center } from '@/components/ui/center';
 
-const ProgressBasic = ({ value = 50, ...props }: any) => {
+const ProgressBasic = ({ ...props }: any) => {
   return (
-    <Center>
-      <Progress
-        // sx={{
-        //   w: 300,
-        //   _web: {
-        //     w: 800,
-        //   },
-        // }}
-        style={{
-          width: 800,
-        }}
-        value={value}
-        {...props}
-      >
+    <Center className="w-full">
+      <Progress className="w-[80%]" {...props}>
         <ProgressFilledTrack />
       </Progress>
     </Center>

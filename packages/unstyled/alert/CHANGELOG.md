@@ -1,5 +1,17 @@
 # @gluestack-ui/alert
 
+## 0.1.15
+
+### Patch Changes
+
+- fix: ref typing for all the components
+
+## 0.1.14
+
+### Patch Changes
+
+- fix alerttext component typing
+
 ## 0.1.13
 
 ### Patch Changes
