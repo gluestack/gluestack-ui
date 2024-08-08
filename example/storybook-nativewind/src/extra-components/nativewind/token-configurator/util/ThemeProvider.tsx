@@ -13,8 +13,7 @@ export default function ThemeProvider({
   const [value, setValue] = useState(config.light);
 
   const updateValue = (newValue: any) => {
-    // console.log("updating value", newValue);
-    setValue(newValue);
+    setValue(newValue.light);
   };
 
   return (

@@ -6,69 +6,110 @@ import { useImmer } from 'use-immer';
 import DynamicWidthInput from './DynamicWidthInput';
 import { ThemeContext } from '../util/ThemeProvider';
 import { useContext, useEffect } from 'react';
-import { themeNativeWindDB, themeDBBase } from '../util/theme/theme';
+import { themeDBBase } from '../util/theme/theme';
+import { config as themeNativeWindDB } from '../../../../core-components/nativewind/gluestack-ui-provider/config';
+
+function rgbToHex(rgb: any) {
+  try {
+    let [r, g, b] = rgb.split(' ').map(Number);
+
+    // Convert each component to a 2-digit hexadecimal value
+    let hex =
+      '#' +
+      r.toString(16).padStart(2, '0') +
+      g.toString(16).padStart(2, '0') +
+      b.toString(16).padStart(2, '0');
+
+    return hex.toUpperCase();
+  } catch (Err) {
+    return '';
+  }
+  // Split the input string into an array of R, G, B values
+}
+
+function hexToRGB(hex: any) {
+  // Remove the '#' if it's there
+  hex = hex.replace(/^#/, '');
+
+  // Parse the hex values into R, G, B
+  let bigint = parseInt(hex, 16);
+  let r = (bigint >> 16) & 255;
+  let g = (bigint >> 8) & 255;
+  let b = bigint & 255;
+
+  // Return the RGB value in "R G B" format
+  return `${r} ${g} ${b}`;
+}
 
 export default function NativeWindCodeEditorComponent() {
-  const [theme, setTheme] = useImmer(themeNativeWindDB);
-  const [themeBase, setThemeBase] = useImmer(themeDBBase);
+  const [theme, setTheme] = useImmer(
+    JSON.parse(JSON.stringify(themeNativeWindDB))
+  );
+
+  // const [themeBase, setThemeBase] = useImmer(themeDBBase);
   const { value: themeValue, updateValue: updateThemeValue } =
     useContext(ThemeContext);
 
   useEffect(() => {
     //update theme provider value
     if (themeValue) {
-      const updatedValue = { ...theme };
-      Object.entries(theme).forEach((key, value) => {
-        //@ts-ignore
-        updatedValue[key] = value;
-      });
-      updateThemeValue(updatedValue);
+      // const updatedValue = { ...theme };
+      // Object.entries(theme).forEach((key, value) => {
+      //   //@ts-ignore
+      //   updatedValue[key] = value;
+      // });
+
+      updateThemeValue(theme);
+      // console.log(themeNativeWindDB, 'updatedValue');
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [themeBase, theme]);
+  }, [theme]);
 
-  function updatePaletteFromBaseColor(colorName: string, colorHex: string) {
-    let shades: any = {};
-    shades = createPaletteFromNameValue(colorName, colorHex)!.swatches;
+  // function updatePaletteFromBaseColor(colorName: string, colorHex: string) {
+  //   let shades: any = {};
+  //   shades = createPaletteFromNameValue(colorName, colorHex)!.swatches;
 
-    // console.log(value);
+  //   // console.log(value);
 
-    //update colors in theme
-    Object.entries(shades).forEach((e) => {
-      type responseType = { hex: string; stop: number };
-      const shadeNumber = (e[1] as responseType).stop;
-      const shadeHex = (e[1] as responseType).hex;
-      if (shadeNumber !== 1000) {
-        setTheme((draft: any) => {
-          draft[`--color-${colorName}-${shadeNumber}`] = shadeHex;
-        });
-      }
-    });
-  }
+  //   //update colors in theme
+  //   Object.entries(shades).forEach((e) => {
+  //     type responseType = { hex: string; stop: number };
+  //     const shadeNumber = (e[1] as responseType).stop;
+  //     const shadeHex = (e[1] as responseType).hex;
+  //     if (shadeNumber !== 1000) {
+  //       setTheme((draft: any) => {
+  //         draft[`--color-${colorName}-${shadeNumber}`] = shadeHex;
+  //       });
+  //     }
+  //   });
+  // }
 
   // Function to reset theme values to their defaults
   const handleReset = () => {
     setTheme(themeNativeWindDB);
-    setThemeBase(themeDBBase);
+    // setThemeBase(themeDBBase);
   };
 
   // Function to copy theme code
   const handleCopy = () => {
     // Create a temporary textarea element
     const textarea = document.createElement('textarea');
-    textarea.value = `
-export const config = {
-  light: vars({\n`;
 
-    Object.entries(theme).map(([key, value]) => {
-      textarea.value = textarea.value.concat(`    '${key}': '${value}',\n`);
+    textarea.value = `'use client';
+import { vars } from 'nativewind';
+
+export const config = {\n`;
+
+    Object.entries(theme).map(([key1, value1]) => {
+      textarea.value = textarea.value.concat(`  '${key1}': vars({\n`);
+      Object.entries(theme[key1]).map(([key, value]) => {
+        textarea.value = textarea.value.concat(`    '${key}': '${value}',\n`);
+      });
+      textarea.value = textarea.value.concat(`  }),\n`);
     });
 
-    textarea.value = textarea.value.concat(
-      `
-    }),
-  };`
-    );
+    textarea.value = textarea.value.concat(`};`);
+
     document.body.appendChild(textarea);
     window.getSelection()?.removeAllRanges(); // clear any prev selection
     //select stuff
@@ -99,106 +140,67 @@ export const config = {
 
         <div id="codeEditor" className="flex flex-col items-center">
           <pre>
-            <code className="text-neutral-400">{`export const config = {`}</code>
-            <code>{`
-  light: vars({\n\n`}</code>
-            {/* for simple color generation from a base color */}
-            {Object.entries(themeBase).map(([key, value]) => (
-              <div key={key} className="my-2">
-                <code>
-                  {'    '}
-                  {/* <span
-                    data-tip="Pick →"
-                    className="tooltip-open tooltip-accent tooltip-left align-middle bg-white"
-                  > */}
-                  <span className="inline-block w-1" />
-                  <input
-                    type="color"
-                    value={formatHex(value)}
-                    // className={`h-5 w-5 p-1 cursor-pointer `} //moz
-                    className="h-[1.25rem] w-[1.05rem] border-none outline-none cursor-pointer bg-transparent disabled:opacity-50 disabled:pointer-events-none"
-                    onChange={(e) => {
-                      setThemeBase((d: any) => {
-                        d[key] = e.target.value;
-                      });
+            <code className="text-neutral-400">{`'use client';
+import { vars } from 'nativewind';
 
-                      updatePaletteFromBaseColor(key, e.target.value);
-                    }}
-                  />
-                  {/* </span> */} {key}: {'"'}
-                  <DynamicWidthInput
-                    className="hover:outline focus:outline bg-transparent"
-                    value={value}
-                    onChange={(text: string) => {
-                      // if (value === "") {
-                      //   setThemeBase((d: any) => {
-                      //     d[key] = " ";
-                      //   });
-                      // }
-                      setThemeBase((d: any) => {
-                        d[key] = text;
-                      });
-                      const color = parse(text);
-                      if (color) {
-                        const colorHex = formatHex(color);
-                        updatePaletteFromBaseColor(key, colorHex);
-                      }
-                    }}
-                  />
-                  {'"'},
-                </code>
-                {'\n'}
-              </div>
-            ))}
+export const config = {`}</code>
             {'\n'}
             {/* for all colors individually */}
-            {Object.entries(theme).map(([key, value]) => (
-              <div key={key} className="my-2">
-                <code>
-                  {'    '}
-                  <span className="inline-block w-1" />
-                  <input
-                    type="color"
-                    value={formatHex(value)}
-                    className="h-[1.25rem] w-[1.05rem] border-none outline-none cursor-pointer bg-transparent disabled:opacity-50 disabled:pointer-events-none"
-                    onChange={(e) => {
-                      setTheme((draft: any) => {
-                        draft[key] = e.target.value;
-                      });
-                    }}
-                  />
-                  {/* </span> */} {key}: {'"'}
-                  {/* <button
-                    className="hover:outline focus:outline"
-                    contentEditable="true"
-                  >
-                    {value}
-                  </button> */}
-                  <DynamicWidthInput
-                    className="hover:outline focus:outline bg-transparent"
-                    value={value}
-                    onChange={(text: string) => {
-                      // if (value === "") {
-                      //   setThemeBase((d: any) => {
-                      //     d[key] = " ";
-                      //   });
-                      // }
-                      setTheme((d: any) => {
-                        d[key] = text;
-                      });
-                    }}
-                  />
-                  {'"'},
+            {Object.entries(theme).map(([key1, value1]) => (
+              <>
+                <span className="inline-block w-1" />
+                <code className="ml-4 text-neutral-400">
+                  {key1}: {'vars({'}
                 </code>
+                {Object.entries(theme[key1]).map(([key, value]) => (
+                  <div key={key} className="my-2">
+                    <code>
+                      {'    '}
+                      <span className="inline-block w-1" />
+                      <input
+                        type="color"
+                        value={rgbToHex(value)}
+                        className="h-[1.25rem] w-[1.05rem] border-none outline-none cursor-pointer bg-transparent disabled:opacity-50 disabled:pointer-events-none"
+                        onChange={(e) => {
+                          console.log(value, 'value');
+
+                          setTheme((draft: any) => {
+                            draft[key1][key] = hexToRGB(e.target.value);
+                          });
+                        }}
+                      />
+                      {/* </span> */} {key}: {'"'}
+                      {/* <button
+                      className="hover:outline focus:outline"
+                      contentEditable="true"
+                    >
+                      {value}
+                    </button> */}
+                      <DynamicWidthInput
+                        className="hover:outline focus:outline bg-transparent"
+                        value={value}
+                        onChange={(text: string) => {
+                          // if (value === '') {
+                          //   setThemeBase((d: any) => {
+                          //     d[key1][key] = ' ';
+                          //   });
+                          // }
+                          setTheme((d: any) => {
+                            d[key1][key] = text;
+                          });
+                        }}
+                      />
+                      {'"'},
+                    </code>
+                    {'\n'}
+                  </div>
+                ))}
+                <code className="ml-4 text-neutral-400">{'}),'}</code>
                 {'\n'}
-              </div>
+              </>
             ))}
-            <code className="text-neutral-400">
-              {`
-  }),
-};
-`}
-            </code>
+
+            <code className="text-neutral-400">{`};`}</code>
           </pre>
         </div>
       </div>
