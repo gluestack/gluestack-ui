@@ -10,7 +10,7 @@ import colors from 'tailwindcss/colors';
 
 const SpinnerAndProgressGrid = () => {
   return (
-    <div className="flex flex-col md:flex-row justify-between gap-4">
+    <div className="flex flex-col md:flex-row justify-between gap-4 my-4">
       <div className="flex flex-col justify-center gap-2 w-1/5">
         <Spinner />
         <Spinner color={colors.emerald[600]} />

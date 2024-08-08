@@ -7,7 +7,7 @@ import Link from 'next/link';
 import React from 'react';
 const CardAndLinkGrid = () => {
   return (
-    <div className="flex flex-col sm:flex-row gap-4 py-6">
+    <div className="flex flex-col sm:flex-row gap-4 py-6 my-4">
       <div className="flex-1">
         <Card
           size="md"

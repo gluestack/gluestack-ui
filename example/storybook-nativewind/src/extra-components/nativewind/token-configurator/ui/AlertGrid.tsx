@@ -7,7 +7,7 @@ import { Text } from '../../../../core-components/nativewind/text';
 
 const AlertGrid = () => {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    <div className="grid grid-cols-1 sm:grid-cols-1 gap-4 my-4">
       <Alert className="mx-2.5 mb-2.5 lg:mb-0" action="success" variant="solid">
         <AlertIcon as={InfoIcon} className="mr-3" />
         <Text>12 unread messages. Tap to see.</Text>

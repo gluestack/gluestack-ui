@@ -71,15 +71,13 @@ const PreviewComponent = () => {
       <LinkButtonGrid />
       <BadgesGrid />
       <SpinnerAndProgressGrid />
-      <div className="outer-container flex justify-between py-6">
-        <SwitchesCheckboxAndRadioGrid />
-        <SliderGrid />
-      </div>
+      <SwitchesCheckboxAndRadioGrid />
+      <SliderGrid />
       <InputGrid />
       <CardAndLinkGrid />
       <AlertGrid />
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+      <div className="grid grid-cols-1 sm:grid-cols-1 gap-4 pt-4">
         <div className="w-full sm:w-full flex justify-center mb-4">
           <Textarea
             // className="w-full"
@@ -92,7 +90,7 @@ const PreviewComponent = () => {
           </Textarea>
         </div>
 
-        <div className="w-full sm:w-full flex justify-center mb-4 pt-8">
+        <div className="w-full sm:w-full flex justify-center mb-4">
           <AvatarGroup>
             {avatars.slice(0, 3).map((avatar, index) => (
               <Avatar

@@ -24,7 +24,7 @@ import { HStack } from '../../../../core-components/nativewind/hstack';
 const SwitchesCheckboxAndRadioGrid = () => {
   const [values, setValues] = React.useState('Read-only');
   return (
-    <div className="flex flex-col gap-4 items-start justify-between">
+    <div className="flex flex-col gap-4 items-start justify-between my-4">
       <div className="flex gap-4">
         <Switch
           size="md"

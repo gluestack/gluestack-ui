@@ -9,7 +9,7 @@ import {
 } from '../../../../core-components/nativewind/slider';
 const SliderGrid = () => {
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-4 my-4">
       <div className="flex justify-center items-center w-[400px] h-2">
         <Slider
           defaultValue={30}
