@@ -165,14 +165,14 @@ For Next.js projects, you can directly set the `darkMode` strategy to `"class"` 
 <>
 
 
-### Step 1: Install the following dependencies:
+Step 1: Install the following dependencies:
 ```bash
 npm i @react-native-async-storage/async-storage
 ```
 
 We will use the `@react-native-async-storage/async-storage` package to store the color mode in the device's local storage. You can also use other storage solutions.
 
-### Step 2: Create a new file `ThemeProvider.tsx` at `components/ui/ThemeProvider`.
+Step 2: Create a new file `ThemeProvider.tsx` at `components/ui/ThemeProvider`.
 <CollapsibleCode>
 
 ```jsx 
@@ -231,21 +231,21 @@ export const useTheme = () => {
 ```
 </CollapsibleCode>
 
-### Step 3: Update the root component to use the `ThemeProvider` component.
+Step 3: Update your app's root to utilize the `ThemeProvider` component.
 
 </>
     </Tabs.TabPanel>
     <Tabs.TabPanel value="web"> 
 <>
 
-### Step 1: Install the following dependencies:
+Step 1: Install the following dependencies:
 ```bash
 npm i js-cookie @types/js-cookie
 ```
 
 We have to use the `js-cookie` library to set and get cookies in the browser.
 
-### Step 2: Create a new file `ThemeProvider.web.tsx` at `components/ui/ThemeProvider`.
+Step 2: Create a new file `ThemeProvider.web.tsx` at `components/ui/ThemeProvider`.
 <CollapsibleCode>
 
 ```jsx 
@@ -304,7 +304,7 @@ export const useTheme = () => {
 ```
 </CollapsibleCode>
 
-### Step 3: Update the root component to use the `ThemeProvider` component.
+Step 3: Update your app's root to utilize the `ThemeProvider` component.
 
 </>
     </Tabs.TabPanel>
