@@ -27,6 +27,7 @@
     "@react-native-async-storage/async-storage": "1.23.1",
     "@react-native-community/datetimepicker": "8.0.1",
     "@react-native-community/slider": "4.5.2",
+    "@shopify/react-native-skia": "1.2.3",
     "autoprefixer": "^10.4.19",
     "eas-cli": "^9.0.7",
     "expo": "^51.0.8",
@@ -40,12 +41,13 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-native": "0.74.1",
-    "react-native-gesture-handler": "~2.14.0",
+    "react-native-gesture-handler": "~2.16.1",
     "react-native-reanimated": "~3.10.1",
     "react-native-safe-area-context": "4.10.1",
     "react-native-svg": "15.2.0",
     "react-native-web": "~0.19.10",
-    "tailwind-variants": "^0.2.1"
+    "tailwind-variants": "^0.2.1",
+    "victory-native": "^41.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.19.3",
