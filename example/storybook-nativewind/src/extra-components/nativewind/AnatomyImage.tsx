@@ -13,14 +13,14 @@ const AnatomyImage = ({
       <Image
         source={{ uri: mobileUrl }}
         alt="anatomy-image"
-        className="md:hidden w-full aspect-[513/375]"
+        className="md:hidden w-full aspect-[513/375] mb-5"
         size="none"
       />
 
       <Image
         source={{ uri: webUrl }}
         alt="anatomy-image"
-        className="hidden md:flex w-full aspect-[736/259]"
+        className="hidden md:flex w-full aspect-[736/259] mb-6"
         size="none"
       />
     </>
