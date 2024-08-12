@@ -10,7 +10,7 @@
 
 ## Introduction
 
-**gluestack-ui v2** provides universal and customizable React and React Native components, designed to make your development process faster and easier. Built with Tailwind CSS (NativeWind) at its core, gluestack-ui v2 allows you to simply copy-paste pre-built components and patterns directly into your projects.
+**gluestack-ui v2** offers customizable, beautifully designed components for your projects. Unlike traditional libraries, it's not a pre-packaged dependency. Choose the components you need and copy-paste them directly into your React, Next.js & React Native projects.
 
 
 ## Documentation
