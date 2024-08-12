@@ -55,9 +55,6 @@ JavaScript, React, React Native, Styled System
 If you're migrating from gluestack-ui v1, we've got you covered with a detailed [migration guide](https://gluestack.io/ui/docs/home/overview/upgrade-to-v2) with codemod.
 
 
-More guides on how to get started are available
-[here](https://gluestack.io/ui/docs).
-
 ## Created By GeekyAnts
 
 GeekyAnts is a team of React Native experts who love open-source and solving developer problems. We’ve been working on React Native since 2015 and have designed and built React Native apps for almost 200+ clients across the globe. Our clients include startups to big enterprises! Need help with your React Native app?
