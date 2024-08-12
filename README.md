@@ -44,10 +44,6 @@ For detailed installation instructions, visit the [gluestack-ui v2 installation 
 JavaScript, React, React Native, Styled System
 
 
-## Documentation
-Comprehensive documentation, including component usage, customization options, and migration guides, can be found on our [official website](https://gluestack.io/ui/docs).
-
-
 ## Getting Started
 - **Install gluestack-ui:** Follow the ]installation guide](https://gluestack.io/ui/docs/home/getting-started/installation).
 - **Add Components:** Use our CLI to add components to your project, or simply copy-paste from our documentation.
