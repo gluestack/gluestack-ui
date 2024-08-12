@@ -45,7 +45,7 @@ JavaScript, React, React Native, Styled System
 
 
 ## Getting Started
-- **Install gluestack-ui:** Follow the ]installation guide](https://gluestack.io/ui/docs/home/getting-started/installation).
+- **Install gluestack-ui:** Follow the [installation guide](https://gluestack.io/ui/docs/home/getting-started/installation).
 - **Add Components:** Use our CLI to add components to your project, or simply copy-paste from our documentation.
 - **Customize:** Tailor the components to fit your project's needs using theming tokens and configuration.
 - **Build:** Start building your app with a consistent, accessible, and high-performance UI.
