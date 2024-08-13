@@ -1,35 +1,22 @@
 import React from 'react';
-import { Image } from '../../core-components/nativewind';
+import { Center } from '../../core-components/nativewind';
+import Image from 'next/image';
 
 const AnatomyImage = ({
   mobileUrl,
   webUrl,
-  web_className,
-  mobile_className,
+  classNameStyle,
 }: {
   mobileUrl: string;
   webUrl: string;
-  web_className: string;
-  mobile_className: string;
+  classNameStyle: string;
 }) => {
   return (
-    <>
-      <Image
-        source={{ uri: mobileUrl }}
-        alt="anatomy-image"
-        className={`md:hidden w-full aspect-[513/375] mb-5 ${mobile_className}`}
-        //@ts-ignore
-        size="none"
-      />
+    <Center className={`w-full ${classNameStyle} mb-6`}>
+      <Image src={mobileUrl} alt="anatomy-image" fill className="md:hidden" />
 
-      <Image
-        source={{ uri: webUrl }}
-        alt="anatomy-image"
-        className={`hidden md:flex w-full aspect-[736/259] mb-6 ${web_className}`}
-        //@ts-ignore
-        size="none"
-      />
-    </>
+      <Image src={webUrl} alt="anatomy-image" fill className="hidden md:flex" />
+    </Center>
   );
 };
 export default AnatomyImage;
