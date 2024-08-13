@@ -1,5 +1,11 @@
 # @gluestack-ui/select
 
+## 0.1.28
+
+### Patch Changes
+
+- feat: added textStyle for native
+
 ## 0.1.27
 
 ### Patch Changes
