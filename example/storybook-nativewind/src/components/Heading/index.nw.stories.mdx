@@ -129,15 +129,142 @@ This section provides a comprehensive reference list for the component props, de
 
 #### Heading
 
-It inherits all the properties of @expo/html-elements's [H1](https://github.com/expo/expo/tree/main/packages/html-elements) component.
+Heading renders a heading element with a range of sizes and semantic meanings. It offers a variety of props to customize the appearance of the heading.
+
+<>
+<TableContainer>
+  <Table>
+    <Table.THead>
+      <Table.TR>
+        <Table.TH>
+          <Table.TText>Sizes</Table.TText>
+        </Table.TH>
+        <Table.TH>
+          <Table.TText>Web</Table.TText>
+        </Table.TH>
+        <Table.TH>
+          <Table.TText>Native (@expo-html/elements)</Table.TText>
+        </Table.TH>
+      </Table.TR>
+    </Table.THead>
+    <Table.TBody>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>5xl</InlineCode>{`,`} 
+            <InlineCode>4xl</InlineCode>{`,`} 
+            <InlineCode>3xl</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>{`<h1 />`}</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>H1</InlineCode>
+          </Table.TText>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>2xl</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>{`<h2 />`}</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>H2</InlineCode>
+          </Table.TText>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>xl</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>{`<h3 />`}</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>H3</InlineCode>
+          </Table.TText>
+          </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>lg</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>{`<h4 />`}</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>H4</InlineCode>
+          </Table.TText>
+          </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>md</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>{`<h5 />`}</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>H5</InlineCode>
+          </Table.TText>
+          </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>sm</InlineCode>{`,`}
+            <InlineCode>xs</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>{`<h6 />`}</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>H6</InlineCode>
+          </Table.TText>
+          </Table.TD>
+      </Table.TR>
+    </Table.TBody>
+  </Table>
+</TableContainer>
+</>
+<>
 
 ### Props
 
 #### Heading
 
-Heading component is created using H1 component from @expo/html-elements. It extends all the props supported by [Expo HTML Heading Elements](https://www.npmjs.com/package/@expo/html-elements/v/0.0.5), [utility props](/ui/docs/styling/utility-and-sx-props) and the props mentioned below.
+Heading component is created using Heading component from @expo/html-elements on native. It extends all the props supported by [Expo HTML Heading Elements](https://www.npmjs.com/package/@expo/html-elements/v/0.0.5) and the props mentioned below.
 
-<>
   <TableContainer>
     <Table>
       <Table.THead>
