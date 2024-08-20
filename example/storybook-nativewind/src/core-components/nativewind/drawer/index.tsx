@@ -113,6 +113,11 @@ const drawerContentStyle = tva({
       class: 'h-3/4',
     },
     {
+      anchor: 'top',
+      size: 'full',
+      class: 'h-full',
+    },
+    {
       anchor: 'bottom',
       size: 'sm',
       class: 'h-1/4',
@@ -126,6 +131,11 @@ const drawerContentStyle = tva({
       anchor: 'bottom',
       size: 'lg',
       class: 'h-3/4',
+    },
+    {
+      anchor: 'bottom',
+      size: 'full',
+      class: 'h-full',
     },
   ],
 });
