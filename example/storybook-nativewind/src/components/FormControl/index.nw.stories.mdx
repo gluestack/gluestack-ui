@@ -159,19 +159,20 @@ The Radio Component can be incorporated within the FormControl.
     showArgsController={false}
     metaData={{
       code: `
+      function App () {
+        const [values, setValues] = React.useState("Mango");
+        return (
         <FormControl>
           <FormControlLabel>
             <FormControlLabelText>
               Favourite fruit
             </FormControlLabelText>
           </FormControlLabel>
-          <RadioGroup className='my-2'>
+          <RadioGroup className='my-2' value={values} onChange={setValues}>
             <VStack space="sm">
               <Radio size="sm" value="Mango">
                 <RadioIndicator>
-                  <RadioIcon>
-                    <CircleIcon/>
-                  </RadioIcon>
+                  <RadioIcon as={CircleIcon} />
                 </RadioIndicator>
                 <RadioLabel>
                   Mango
@@ -179,9 +180,7 @@ The Radio Component can be incorporated within the FormControl.
               </Radio>
               <Radio size="sm" value="Apple">
                 <RadioIndicator>
-                  <RadioIcon>
-                    <CircleIcon/>
-                  </RadioIcon>
+                  <RadioIcon as={CircleIcon} />
                 </RadioIndicator>
                 <RadioLabel>
                   Apple
@@ -189,9 +188,7 @@ The Radio Component can be incorporated within the FormControl.
               </Radio>
               <Radio size="sm" value="Orange">
                 <RadioIndicator>
-                  <RadioIcon>
-                    <CircleIcon/>
-                  </RadioIcon>
+                  <RadioIcon as={CircleIcon} />
                 </RadioIndicator>
                 <RadioLabel>
                   Orange
@@ -205,9 +202,11 @@ The Radio Component can be incorporated within the FormControl.
             </FormControlHelperText>
           </FormControlHelper>
         </FormControl>
+        )
+       }
       `,
       transformCode: (code) => {
-        return transformedCode(code);
+        return transformedCode(code, 'function', 'App');
       },
       scope: {
         Wrapper,

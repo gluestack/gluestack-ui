@@ -461,6 +461,8 @@ It inherits all the properties of React Native's [Pressable](https://reactnative
 
 It is internally mapped wth gluestack-ui's [Actionsheet](/ui/docs/components/disclosure/actionsheet) component, which inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
+> Note: If **snapPoints** are not provided to `SelectPortal`, then it's essential to set **maxHeight** to `SelectContent`.
+
 #### SelectBackdrop
 
 It is internally mapped wth gluestack-ui's [ActionsheetBackdrop](https://ui.gluestack.io/docs/components/disclosure/actionsheet) component, which is React Native's [Pressable](https://reactnative.dev/docs/pressable) component, created using [@legendapp/motion's](https://legendapp.com/open-source/motion/) `createMotionAnimatedComponent` function to add animation to the component. You can use any declarative animation library you prefer.
