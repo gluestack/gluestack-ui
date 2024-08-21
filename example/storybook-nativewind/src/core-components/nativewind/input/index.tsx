@@ -28,54 +28,32 @@ type IPrimitiveIcon = {
 const PrimitiveIcon = React.forwardRef<
   React.ElementRef<typeof Svg>,
   IPrimitiveIcon
->(
-  (
-    {
-      height,
-      width,
-      fill,
-      color,
-      size,
-      stroke = 'currentColor',
-      as: AsComp,
-      ...props
-    },
-    ref
-  ) => {
-    const sizeProps = useMemo(() => {
-      if (size) return { size };
-      if (height && width) return { height, width };
-      if (height) return { height };
-      if (width) return { width };
-      return {};
-    }, [size, height, width]);
+>(({ height, width, fill, color, size, stroke, as: AsComp, ...props }, ref) => {
+  const sizeProps = useMemo(() => {
+    if (size) return { size };
+    if (height && width) return { height, width };
+    if (height) return { height };
+    if (width) return { width };
+    return {};
+  }, [size, height, width]);
 
-    const colorProps =
-      stroke === 'currentColor' && color !== undefined ? color : stroke;
-
-    if (AsComp) {
-      return (
-        <AsComp
-          ref={ref}
-          fill={fill}
-          {...props}
-          {...sizeProps}
-          stroke={colorProps}
-        />
-      );
-    }
-    return (
-      <Svg
-        ref={ref}
-        height={height}
-        width={width}
-        fill={fill}
-        stroke={colorProps}
-        {...props}
-      />
-    );
+  let colorProps = {};
+  if (color) {
+    colorProps = { ...colorProps, color: color };
   }
-);
+  if (stroke) {
+    colorProps = { ...colorProps, stroke: stroke };
+  }
+  if (fill) {
+    colorProps = { ...colorProps, fill: fill };
+  }
+  if (AsComp) {
+    return <AsComp ref={ref} {...sizeProps} {...colorProps} {...props} />;
+  }
+  return (
+    <Svg ref={ref} height={height} width={width} {...colorProps} {...props} />
+  );
+});
 
 const InputWrapper = React.forwardRef<
   React.ElementRef<typeof View>,

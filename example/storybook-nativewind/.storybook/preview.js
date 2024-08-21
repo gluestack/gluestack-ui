@@ -95,7 +95,7 @@ export const parameters = {
           'Recipes',
           ['Linear Gradient'],
           'More',
-          ['FAQs', 'Releases', 'Roadmap', 'Troubleshooting'],
+          ['FAQs', 'Releases', 'Roadmap', 'Troubleshooting', 'Discord FAQs'],
         ],
       ],
       icons: [
