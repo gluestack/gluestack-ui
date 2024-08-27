@@ -42,6 +42,8 @@ export const Checkbox = (StyledCheckbox: any) =>
     const _ref = React.useRef(null);
     const { isHovered } = useHover({}, _ref);
     const { focusProps, isFocusVisible } = useFocusRing();
+    const ariaLabel =
+      combinedProps['aria-label'] || combinedProps.value || 'Checkbox';
 
     const mergedRef = mergeRefs([ref, _ref]);
     const { inputProps: groupItemInputProps } = checkboxGroupContext
@@ -49,7 +51,7 @@ export const Checkbox = (StyledCheckbox: any) =>
         useCheckboxGroupItem(
           {
             ...combinedProps,
-            'aria-label': combinedProps['aria-label'],
+            'aria-label': ariaLabel,
             'value': combinedProps.value,
           },
           checkboxGroupContext.state,
@@ -60,7 +62,7 @@ export const Checkbox = (StyledCheckbox: any) =>
         useCheckbox(
           {
             ...combinedProps,
-            'aria-label': combinedProps['aria-label'],
+            'aria-label': ariaLabel,
           },
           state,
           //@ts-ignore
