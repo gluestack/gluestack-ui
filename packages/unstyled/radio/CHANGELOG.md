@@ -1,5 +1,11 @@
 # @gluestack-ui/radio
 
+## 0.1.32
+
+### Patch Changes
+
+- fix: resolved 'aria-label' warning
+
 ## 0.1.31
 
 ### Patch Changes

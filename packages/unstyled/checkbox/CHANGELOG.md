@@ -1,5 +1,11 @@
 # @gluestack-ui/checkbox
 
+## 0.1.31
+
+### Patch Changes
+
+- fix: resolved 'aria-label' warning
+
 ## 0.1.30
 
 ### Patch Changes

@@ -1,5 +1,13 @@
 # @gluestack-ui/themed
 
+## 1.1.47
+
+### Patch Changes
+
+- Updated dependencies
+  - @gluestack-ui/checkbox@0.1.31
+  - @gluestack-ui/radio@0.1.32
+
 ## 1.1.46
 
 ### Patch Changes
