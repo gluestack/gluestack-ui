@@ -113,10 +113,6 @@ const RadioComponent = memo(
   )
 );
 
-const generateRandomAriaLabel = () => {
-  return `checkbox-${Math.random().toString(36).substr(2, 9)}`;
-};
-
 const Radio = (StyledRadio: any) =>
   forwardRef(
     (
@@ -142,8 +138,7 @@ const Radio = (StyledRadio: any) =>
       };
 
       const inputRef = React.useRef(null);
-      const ariaLabel =
-        props['aria-label'] || props.value || generateRandomAriaLabel();
+      const ariaLabel = props['aria-label'] || props.value || 'Radio';
       const radioState = useRadio(
         {
           ...combinedProps,

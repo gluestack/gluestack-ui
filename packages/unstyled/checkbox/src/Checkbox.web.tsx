@@ -13,10 +13,6 @@ import {
 import { useFormControlContext } from '@gluestack-ui/form-control';
 import { VisuallyHidden } from '@react-aria/visually-hidden';
 
-const generateRandomAriaLabel = () => {
-  return `checkbox-${Math.random().toString(36).substr(2, 9)}`;
-};
-
 export const Checkbox = (StyledCheckbox: any) =>
   forwardRef(({ children, ...props }: any, ref?: any) => {
     const {
@@ -46,8 +42,7 @@ export const Checkbox = (StyledCheckbox: any) =>
     const _ref = React.useRef(null);
     const { isHovered } = useHover({}, _ref);
     const { focusProps, isFocusVisible } = useFocusRing();
-    const ariaLabel =
-      props['aria-label'] || props.value || generateRandomAriaLabel();
+    const ariaLabel = props['aria-label'] || props.value || 'Checkbox';
 
     const mergedRef = mergeRefs([ref, _ref]);
     const { inputProps: groupItemInputProps } = checkboxGroupContext
