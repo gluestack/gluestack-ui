@@ -12,6 +12,11 @@ import {
   composeEventHandlers,
 } from '@gluestack-ui/utils';
 import { useFormControlContext } from '@gluestack-ui/form-control';
+
+const generateRandomAriaLabel = () => {
+  return `checkbox-${Math.random().toString(36).substr(2, 9)}`;
+};
+
 export const Checkbox = (StyledCheckbox: any) =>
   forwardRef(
     (
@@ -53,13 +58,15 @@ export const Checkbox = (StyledCheckbox: any) =>
 
       const _ref = React.useRef(null);
       const mergedRef = mergeRefs([ref, _ref]);
+      const ariaLabel =
+        props['aria-label'] || props.value || generateRandomAriaLabel();
 
       const { inputProps: groupItemInputProps } = checkboxGroupContext
         ? // eslint-disable-next-line react-hooks/rules-of-hooks
           useCheckboxGroupItem(
             {
               ...combinedProps,
-              'aria-label': combinedProps['aria-label'],
+              'aria-label': ariaLabel,
               'value': combinedProps.value,
             },
             checkboxGroupContext.state,
@@ -70,7 +77,7 @@ export const Checkbox = (StyledCheckbox: any) =>
           useCheckbox(
             {
               ...combinedProps,
-              'aria-label': combinedProps['aria-label'],
+              'aria-label': ariaLabel,
             },
             state,
             //@ts-ignore
