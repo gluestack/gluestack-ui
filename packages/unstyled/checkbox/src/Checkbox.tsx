@@ -54,7 +54,8 @@ export const Checkbox = (StyledCheckbox: any) =>
 
       const _ref = React.useRef(null);
       const mergedRef = mergeRefs([ref, _ref]);
-      const ariaLabel = props['aria-label'] || props.value || 'Checkbox';
+      const ariaLabel =
+        combinedProps['aria-label'] || combinedProps.value || 'Checkbox';
 
       const { inputProps: groupItemInputProps } = checkboxGroupContext
         ? // eslint-disable-next-line react-hooks/rules-of-hooks

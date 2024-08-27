@@ -42,7 +42,8 @@ export const Checkbox = (StyledCheckbox: any) =>
     const _ref = React.useRef(null);
     const { isHovered } = useHover({}, _ref);
     const { focusProps, isFocusVisible } = useFocusRing();
-    const ariaLabel = props['aria-label'] || props.value || 'Checkbox';
+    const ariaLabel =
+      combinedProps['aria-label'] || combinedProps.value || 'Checkbox';
 
     const mergedRef = mergeRefs([ref, _ref]);
     const { inputProps: groupItemInputProps } = checkboxGroupContext
