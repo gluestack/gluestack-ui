@@ -24,7 +24,7 @@ jobs:
         id: slack
         uses: slackapi/slack-github-action@v1.23.0
         with:
-          channel-id: ${{ secrets.SLACK_CHANNEL_ISSUES_ID }}
+          channel-id: ${{ secrets.SLACK_CHANNEL_ID }}
           slack-message: |
             :speech_balloon: New Discussion Created :speech_balloon:
             *Title:* ${{ steps.discussion-details.outputs.title }}
