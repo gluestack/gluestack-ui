@@ -1,0 +1,62 @@
+name: Auto Assign Issues and Discussions
+
+on:
+  issues:
+    types: [opened]
+  discussion:
+    types: [created]
+
+jobs:
+  auto-assign:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Auto Assign
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            const fs = require('fs');
+            const path = require('path');
+
+            // Read the assignees from a file
+            const assigneesPath = path.join(process.env.GITHUB_WORKSPACE, '.github', 'assignees.json');
+            const assignees = JSON.parse(fs.readFileSync(assigneesPath, 'utf8'));
+
+            // Get the current index
+            let indexPath = path.join(process.env.GITHUB_WORKSPACE, '.github', 'assign-index.txt');
+            let currentIndex = 0;
+            if (fs.existsSync(indexPath)) {
+              currentIndex = parseInt(fs.readFileSync(indexPath, 'utf8'));
+            }
+
+            // Get the next assignee
+            const nextAssignee = assignees[currentIndex % assignees.length];
+
+            // Assign the issue or discussion
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            if (context.eventName === 'issues') {
+              await github.rest.issues.addAssignees({
+                owner,
+                repo,
+                issue_number: context.issue.number,
+                assignees: [nextAssignee]
+              });
+            } else if (context.eventName === 'discussion') {
+              // GitHub API doesn't support assigning discussions directly
+              // So we'll add a comment mentioning the assignee
+              await github.rest.discussions.createComment({
+                owner,
+                repo,
+                discussion_number: context.payload.discussion.number,
+                body: `@${nextAssignee} has been assigned to this discussion.`
+              });
+            }
+
+            // Update the index
+            fs.writeFileSync(indexPath, ((currentIndex + 1) % assignees.length).toString());
+
+            console.log(`Assigned to ${nextAssignee}`);
