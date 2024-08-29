@@ -12,12 +12,12 @@
 
 **gluestack-ui v2** offers customizable, beautifully designed components for your projects. Unlike traditional libraries, it's not a pre-packaged dependency. Choose the components you need and copy-paste them directly into your React, Next.js & React Native projects.
 
-
 ## Documentation
 
 You can find detailed documentation for each component, including a list of props and examples, in https://gluestack.io/ui/docs website.
 
 ## Features
+
 - **Modular Architecture:** Pick and choose the components you need without unnecessary bloat.
 - **NativeWind Integration:** Tailwind CSS support for seamless styling across web and mobile.
 - **RSC Compatible:** Optimized for React Server Components to enhance performance.
@@ -27,9 +27,7 @@ You can find detailed documentation for each component, including a list of prop
 - **Frequent updates:** We are constantly working on improving the library and adding new components. Follow us on GitHub to stay up-to-date on the latest releases and features.
 - **Community support:** Need help using the library or have a suggestion for a new feature? Join our [Discord](https://discord.com/invite/95qQ84nf6f) channel to connect with the community and get support.
 
-
 ## Installing **gluestack-ui v2**
-
 
 To get started with **gluestack-ui v2**, you must have an existing Next.js or Expo project. Then, simply run the following command:
 
@@ -43,17 +41,16 @@ For detailed installation instructions, visit the [gluestack-ui v2 installation 
 
 JavaScript, React, React Native, Styled System
 
-
 ## Getting Started
+
 - **Install gluestack-ui:** Follow the [installation guide](https://gluestack.io/ui/docs/home/getting-started/installation).
 - **Add Components:** Use our CLI to add components to your project, or simply copy-paste from our documentation.
 - **Customize:** Tailor the components to fit your project's needs using theming tokens and configuration.
 - **Build:** Start building your app with a consistent, accessible, and high-performance UI.
 
-
 ## Migration from gluestack-ui v1
-If you're migrating from gluestack-ui v1, we've got you covered with a detailed [migration guide](https://gluestack.io/ui/docs/home/overview/upgrade-to-v2) with codemod.
 
+If you're migrating from gluestack-ui v1, we've got you covered with a detailed [migration guide](https://gluestack.io/ui/docs/home/overview/upgrade-to-v2) with codemod.
 
 ## Created By GeekyAnts
 

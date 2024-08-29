@@ -1,5 +1,11 @@
 # @gluestack-ui/menu
 
+## 0.2.36
+
+### Patch Changes
+
+- fix: build issue
+
 ## 0.2.35
 
 ### Patch Changes
