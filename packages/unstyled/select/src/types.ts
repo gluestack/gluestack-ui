@@ -82,11 +82,11 @@ export type ISelectComponentType<
   Item: React.ForwardRefExoticComponent<
     ISelectItemProps &
       React.PropsWithoutRef<SelectItemProps> &
-      React.RefAttributes<SelectItemProps>
-  >;
-  ItemText: React.ForwardRefExoticComponent<
-    React.PropsWithoutRef<SelectItemTextProps> &
-      React.RefAttributes<SelectItemTextProps>
+      React.RefAttributes<SelectItemProps> & {
+        textStyle?: {
+          [K in keyof SelectItemTextProps]?: SelectItemTextProps[K];
+        };
+      }
   >;
   ScrollView: React.ForwardRefExoticComponent<
     React.PropsWithoutRef<SelectScrollViewProps> &

@@ -1,11 +1,41 @@
 # @gluestack-ui/themed
 
+## 1.1.48
+
+### Patch Changes
+
+- Updated dependencies
+- Updated dependencies [6f212ce]
+  - @gluestack-ui/select@0.1.29
+
+## 1.1.47
+
+### Patch Changes
+
+- Updated dependencies
+  - @gluestack-ui/checkbox@0.1.31
+  - @gluestack-ui/radio@0.1.32
+
+## 1.1.46
+
+### Patch Changes
+
+- Updated dependencies
+  - @gluestack-ui/actionsheet@0.2.44
+
+## 1.1.45
+
+### Patch Changes
+
+- Updated dependencies
+  - @gluestack-ui/accordion@1.0.6
+
 ## 1.1.44
 
 ### Patch Changes
 
 - Updated dependencies
-  - @gluestack-ui/menu@0.2.36
+  - @gluestack-ui/select@0.1.28
 
 ## 1.1.43
 

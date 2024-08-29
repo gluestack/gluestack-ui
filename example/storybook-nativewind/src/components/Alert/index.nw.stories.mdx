@@ -45,6 +45,7 @@ import {
 } from '@gluestack/design-system';
 import { CollapsibleCode } from '@gluestack/design-system';
 import Wrapper from '../../core-components/nativewind/Wrapper';
+import AnatomyImage from '../../extra-components/nativewind/AnatomyImage';
 
 This is an illustration of **Alert** component.
 
@@ -76,7 +77,7 @@ This is an illustration of **Alert** component.
         action: {
           control: 'select',
           options: ['success', 'info', 'error', 'warning', 'muted'],
-          default: 'info',
+          default: 'muted',
         },
         variant: {
           control: 'select',
@@ -145,6 +146,8 @@ To use this component in your project, include the following import statement in
 ```jsx
 import { Alert, AlertIcon, AlertText } from '@/components/ui/alert';
 ```
+
+<AnatomyImage mobileUrl='https://i.imgur.com/gdI4o2w.png' webUrl='https://i.imgur.com/f8hHiIJ.png' classNameStyle='aspect-[513/375] md:aspect-[736/259]' />
 
 ```jsx
 export default () => (
@@ -290,7 +293,7 @@ The Examples section provides visual representations of the different variants o
           action="warning"
           className="gap-4 max-w-[516px] w-full flex-row flex py-4 items-start self-center"
         >
-          <AlertIcon as={RepeatIcon} />
+          <AlertIcon as={RepeatIcon} className="mt-1" />
           <HStack className="justify-between flex-1 items-center gap-1 sm:gap-8">
             <VStack className="flex-1">
               <Text className="font-semibold text-typography-900">
@@ -337,7 +340,7 @@ The Examples section provides visual representations of the different variants o
     showArgsController={false}
     metaData={{
       code: `
-        <Alert action="error" className="gap-3 items-start">
+        <Alert action="error" className="gap-3">
           {/* Bomb is imported from 'lucide-react-native' */}
           <AlertIcon as={Bomb} size="lg" />
           <AlertText className="text-typography-900" size="sm">

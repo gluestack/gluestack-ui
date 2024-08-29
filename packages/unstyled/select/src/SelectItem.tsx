@@ -14,6 +14,7 @@ export const SelectItem = (StyledSelectItem: any, StyledSelectItemText: any) =>
         // isInvalid,
         label,
         value,
+        textStyle,
         ...props
       }: any,
       ref?: any
@@ -44,7 +45,7 @@ export const SelectItem = (StyledSelectItem: any, StyledSelectItemText: any) =>
               checked: activeValue == value ? 'true' : 'false',
             }}
           >
-            <StyledSelectItemText>{label}</StyledSelectItemText>
+            <StyledSelectItemText {...textStyle}>{label}</StyledSelectItemText>
           </StyledSelectItem>
         );
       }

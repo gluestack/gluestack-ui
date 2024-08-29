@@ -16,7 +16,7 @@ import { mergeRefs } from '@gluestack-ui/utils';
 import { useDialog } from '@react-native-aria/dialog';
 
 import { usePreventScroll } from '@react-native-aria/overlays';
-const windowHeight = Dimensions.get('window').height;
+const windowHeight = Dimensions.get('screen').height;
 function ActionsheetContent(
   StyledActionsheetContent: any,
   AnimatePresence?: any

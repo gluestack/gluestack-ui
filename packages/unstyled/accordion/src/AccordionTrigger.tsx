@@ -64,6 +64,7 @@ export const AccordionTrigger = (StyledAccordionTrigger: any) =>
             props?.onPressOut,
             pressProps.onPressOut
           )}
+          onPress={composeEventHandlers(props?.onPress, buttonProps.onPress)}
           // @ts-ignore - web only
           onHoverIn={composeEventHandlers(
             props?.onHoverIn,

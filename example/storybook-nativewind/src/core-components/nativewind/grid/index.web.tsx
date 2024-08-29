@@ -1,17 +1,9 @@
 import React from 'react';
 import { gridStyle, gridItemStyle } from './styles';
-import type { ViewProps } from 'react-native';
+
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 
-type Similar<T, U> = {
-  [K in keyof T & keyof U]: T[K] extends U[K]
-    ? U[K] extends T[K]
-      ? T[K]
-      : never
-    : never;
-};
-
-type IGridProps = Similar<ViewProps, React.ComponentPropsWithoutRef<'div'>> &
+type IGridProps = React.ComponentPropsWithoutRef<'div'> &
   VariantProps<typeof gridStyle> & {
     gap?: number;
     rowGap?: number;
@@ -43,10 +35,7 @@ const Grid = React.forwardRef<HTMLDivElement, IGridProps>(
   }
 );
 
-type IGridItemProps = Similar<
-  ViewProps,
-  React.ComponentPropsWithoutRef<'div'>
-> &
+type IGridItemProps = React.ComponentPropsWithoutRef<'div'> &
   VariantProps<typeof gridItemStyle> & {
     index?: number;
     _extra: {

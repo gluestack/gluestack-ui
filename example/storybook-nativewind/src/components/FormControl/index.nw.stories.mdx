@@ -86,6 +86,7 @@ import {
 import { transformedCode } from '../../utils';
 import { useState } from 'react';
 import Wrapper from '../../core-components/nativewind/Wrapper';
+import AnatomyImage from '../../extra-components/nativewind/AnatomyImage';
 
 This is an illustration of **FormControl** component.
 
@@ -148,93 +149,6 @@ This is an illustration of **FormControl** component.
   />
 </Wrapper>
 
-#### Form Control with Radio
-
-The Radio Component can be incorporated within the FormControl.
-
-<Wrapper>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={false}
-    metaData={{
-      code: `
-        <FormControl>
-          <FormControlLabel>
-            <FormControlLabelText>
-              Favourite fruit
-            </FormControlLabelText>
-          </FormControlLabel>
-          <RadioGroup className='my-2'>
-            <VStack space="sm">
-              <Radio size="sm" value="Mango">
-                <RadioIndicator>
-                  <RadioIcon>
-                    <CircleIcon/>
-                  </RadioIcon>
-                </RadioIndicator>
-                <RadioLabel>
-                  Mango
-                </RadioLabel>
-              </Radio>
-              <Radio size="sm" value="Apple">
-                <RadioIndicator>
-                  <RadioIcon>
-                    <CircleIcon/>
-                  </RadioIcon>
-                </RadioIndicator>
-                <RadioLabel>
-                  Apple
-                </RadioLabel>
-              </Radio>
-              <Radio size="sm" value="Orange">
-                <RadioIndicator>
-                  <RadioIcon>
-                    <CircleIcon/>
-                  </RadioIcon>
-                </RadioIndicator>
-                <RadioLabel>
-                  Orange
-                </RadioLabel>
-              </Radio>
-            </VStack>
-          </RadioGroup>
-          <FormControlHelper>
-            <FormControlHelperText>
-              Choose the fruit you like the most
-            </FormControlHelperText>
-          </FormControlHelper>
-        </FormControl>
-      `,
-      transformCode: (code) => {
-        return transformedCode(code);
-      },
-      scope: {
-        Wrapper,
-        FormControl,
-        FormControlLabel,
-        FormControlLabelText,
-        FormControlHelper,
-        FormControlHelperText,
-        FormControlError,
-        FormControlErrorIcon,
-        FormControlErrorText,
-        Icon,
-        Radio,
-        RadioGroup,
-        RadioIcon,
-        RadioIndicator,
-        RadioLabel,
-        AlertCircleIcon,
-        VStack,
-        CircleIcon,
-        Heading,
-      },
-      argsType: {},
-    }}
-  />
-</Wrapper>
-
-<br />
 
 ## Installation
 
@@ -286,6 +200,8 @@ To use this component in your project, include the following import statement in
 ```jsx
 import { FormControl } from '@/components/ui/form-control';
 ```
+
+<AnatomyImage mobileUrl='https://i.imgur.com/qDJSDGA.png' webUrl='https://i.imgur.com/jbkdJ4q.png' classNameStyle='aspect-[513/534] md:aspect-[736/378]' />
 
 ```jsx
 export default () => (
@@ -458,6 +374,91 @@ FormControl component is created using View component from react-native. It exte
 ### Examples
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+#### Form Control with Radio
+
+The Radio Component can be incorporated within the FormControl.
+
+<Wrapper>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+      function App () {
+        const [values, setValues] = React.useState("Mango");
+        return (
+        <FormControl>
+          <FormControlLabel>
+            <FormControlLabelText>
+              Favourite fruit
+            </FormControlLabelText>
+          </FormControlLabel>
+          <RadioGroup className='my-2' value={values} onChange={setValues}>
+            <VStack space="sm">
+              <Radio size="sm" value="Mango">
+                <RadioIndicator>
+                  <RadioIcon as={CircleIcon} />
+                </RadioIndicator>
+                <RadioLabel>
+                  Mango
+                </RadioLabel>
+              </Radio>
+              <Radio size="sm" value="Apple">
+                <RadioIndicator>
+                  <RadioIcon as={CircleIcon} />
+                </RadioIndicator>
+                <RadioLabel>
+                  Apple
+                </RadioLabel>
+              </Radio>
+              <Radio size="sm" value="Orange">
+                <RadioIndicator>
+                  <RadioIcon as={CircleIcon} />
+                </RadioIndicator>
+                <RadioLabel>
+                  Orange
+                </RadioLabel>
+              </Radio>
+            </VStack>
+          </RadioGroup>
+          <FormControlHelper>
+            <FormControlHelperText>
+              Choose the fruit you like the most
+            </FormControlHelperText>
+          </FormControlHelper>
+        </FormControl>
+        )
+       }
+      `,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'App');
+      },
+      scope: {
+        Wrapper,
+        FormControl,
+        FormControlLabel,
+        FormControlLabelText,
+        FormControlHelper,
+        FormControlHelperText,
+        FormControlError,
+        FormControlErrorIcon,
+        FormControlErrorText,
+        Icon,
+        Radio,
+        RadioGroup,
+        RadioIcon,
+        RadioIndicator,
+        RadioLabel,
+        AlertCircleIcon,
+        VStack,
+        CircleIcon,
+        Heading,
+      },
+      argsType: {},
+    }}
+  />
+</Wrapper>
 
 #### Form Control with Input
 

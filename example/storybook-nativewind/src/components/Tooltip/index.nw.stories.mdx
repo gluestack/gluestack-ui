@@ -44,10 +44,9 @@ import {
   CollapsibleCode,
   Tabs
 } from '@gluestack/design-system';
-
 import Wrapper from '../../core-components/nativewind/Wrapper';
-
 import { Command } from 'lucide-react-native';
+import AnatomyImage from '../../extra-components/nativewind/AnatomyImage';
 
 This is an illustration of **Tooltip** component.
 
@@ -164,6 +163,8 @@ To use this component in your project, include the following import statement in
 ```jsx
 import { Tooltip } from '@/components/ui/tooltip';
 ```
+
+<AnatomyImage mobileUrl='https://i.imgur.com/ORGCmyK.png' webUrl='https://i.imgur.com/O8BeXgi.png' classNameStyle='aspect-[513/242] md:aspect-[736/170]' />
 
 ```jsx
 export default () => (
@@ -508,7 +509,7 @@ A tooltip component with an avatar is a user interface element that displays a s
             <Box className="justify-center h-96">
               <AvatarGroup className="flex-row">
                 <Tooltip
-                  placement={"top"}
+                  placement="top"
                   trigger={(triggerProps) => {
                     return (
                       <Avatar
@@ -534,15 +535,15 @@ A tooltip component with an avatar is a user interface element that displays a s
                   </TooltipContent>
                 </Tooltip>
                <Avatar size="lg"
-                    className={"border-outline-0 border-2 bg-emerald-600"} >
+                    className="border-outline-0 border-2 bg-emerald-600" >
                       <AvatarFallbackText className="text-white">Sandeep Srivastva</AvatarFallbackText>
                 </Avatar>
                    <Avatar size="lg"
-                    className={"border-outline-0 border-2 bg-cyan-600"} >
+                    className="border-outline-0 border-2 bg-cyan-600" >
                       <AvatarFallbackText className="text-white">Arjun Kapoor</AvatarFallbackText>
                 </Avatar>
                       <Avatar size="lg"
-                    className={"border-outline-0 border-2 bg-indigo-600"} >
+                    className="border-outline-0 border-2 bg-indigo-600" >
                       <AvatarFallbackText className="text-white">Ritik Sharma </AvatarFallbackText>
                 </Avatar>
               </AvatarGroup>
@@ -587,7 +588,7 @@ A tooltip component with an icon is a user interface element that provides conte
           return (
             <Box className="h-96 justify-center">
               <Tooltip
-                  placement={"top"}
+                  placement="top"
                   trigger={(triggerProps) => {
                     return (
                     <Avatar size="md" {...triggerProps} className="bg-primary-600">

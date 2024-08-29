@@ -1,5 +1,18 @@
 # @gluestack-ui/select
 
+## 0.1.29
+
+### Patch Changes
+
+- fix: default Value in Select
+- 6f212ce: fix: default value in Select
+
+## 0.1.28
+
+### Patch Changes
+
+- feat: added textStyle for native
+
 ## 0.1.27
 
 ### Patch Changes

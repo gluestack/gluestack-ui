@@ -20,7 +20,7 @@ import { Center } from '../../core-components/nativewind';
 import { Text } from '../../core-components/nativewind/text';
 
 import { transformedCode } from '../../utils';
-import { AppProvider, CodePreview, Table } from '@gluestack/design-system';
+import { AppProvider, CodePreview, Table, TableContainer, InlineCode } from '@gluestack/design-system';
 
 import Wrapper from '../../core-components/nativewind/Wrapper';
 import { CollapsibleCode, Tabs } from '@gluestack/design-system';
@@ -130,4 +130,43 @@ This section provides a comprehensive reference list for the component props, de
 
 #### Center
 
-It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+<p>{`Renders a <div /> on web and a View on native.`}</p>
+
+<>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Platform</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Output</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>{`Web`}</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`<div />`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>Native</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`<View />`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</>

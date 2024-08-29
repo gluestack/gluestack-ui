@@ -139,9 +139,17 @@ module.exports = function (api) {
               __dirname,
               './src/core-components/nativewind'
             ),
+            '@/tailwind.config': path.join(
+              __dirname,
+              '../../example/storybook-nativewind/tailwind.config.js'
+            ),
             'tailwind.config': path.join(
               __dirname,
               '../../example/storybook-nativewind/tailwind.config.js'
+            ),
+            'next/image': path.resolve(
+              __dirname,
+              './src/extra-components/storybook-components/NextImageAlt'
             ),
           },
         },

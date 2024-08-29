@@ -2,6 +2,7 @@
 import React, { useMemo } from 'react';
 import { createButton } from '@gluestack-ui/button';
 import { Svg } from 'react-native-svg';
+import type { PressableProps } from 'react-native';
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import {
   withStyleContext,
@@ -20,6 +21,12 @@ import {
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 
 const SCOPE = 'BUTTON';
+const ButtonWrapper = React.forwardRef<
+  React.ElementRef<typeof Pressable>,
+  PressableProps
+>(({ ...props }, ref) => {
+  return <Pressable {...props} ref={ref} />;
+});
 
 type IPrimitiveIcon = React.ComponentPropsWithoutRef<typeof Svg> & {
   height?: number | string;
@@ -81,8 +88,8 @@ const PrimitiveIcon = React.forwardRef(
 
 const Root =
   Platform.OS === 'web'
-    ? withStyleContext(Pressable, SCOPE)
-    : withStyleContextAndStates(Pressable, SCOPE);
+    ? withStyleContext(ButtonWrapper, SCOPE)
+    : withStyleContextAndStates(ButtonWrapper, SCOPE);
 
 const UIButton = createButton({
   Root: Root,
@@ -92,7 +99,7 @@ const UIButton = createButton({
   Icon: withStates(PrimitiveIcon),
 });
 
-cssInterop(UIButton, { className: 'style' });
+cssInterop(Root, { className: 'style' });
 cssInterop(UIButton.Text, { className: 'style' });
 cssInterop(UIButton.Group, { className: 'style' });
 cssInterop(UIButton.Spinner, {
