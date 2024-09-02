@@ -8,6 +8,7 @@ export interface InterfaceRadio extends ViewProps {
   isHovered?: boolean;
   isFocusVisible?: boolean;
   isIndeterminate?: boolean;
+  forceMount?: boolean;
 }
 
 export interface IRadioGroupProps {

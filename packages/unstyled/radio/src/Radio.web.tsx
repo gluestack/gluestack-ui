@@ -26,6 +26,7 @@ const RadioComponent = memo(
         isIndeterminate: isIndeterminateProp,
         isFocused: isFocusedProp,
         isPressed: isPressedProp,
+        forceMount,
         children,
         ...props
       }: any,
@@ -93,6 +94,7 @@ const RadioComponent = memo(
             isIndeterminate={isIndeterminate || isIndeterminateProp}
             isFocused={isFocused || isFocusedProp}
             isPressed={isPressed || isPressedProp}
+            forceMount={forceMount}
           >
             <VisuallyHidden>
               <input
@@ -123,6 +125,7 @@ const Radio = (StyledRadio: any) =>
         isFocused: isFocusedProp,
         isPressed: isPressedProp,
         isInvalid: isInvalidProp,
+        forceMount = false,
         children,
         ...props
       }: any,
@@ -181,6 +184,7 @@ const Radio = (StyledRadio: any) =>
           isFocused={isFocusedProp}
           isPressed={isPressedProp}
           isInvalid={isInvalid || isInvalidProp}
+          forceMount={forceMount}
         />
       );
     }
