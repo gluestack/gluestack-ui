@@ -2,16 +2,17 @@ name: Issue assignment
 
 on:
   issues:
-    types: [opened, edited, labeled]
+    types: [opened]
 
 jobs:
   auto-assign:
     runs-on: ubuntu-latest
+    permissions:
+      issues: write
     steps:
       - name: 'Auto-assign issue'
-        uses: pozil/auto-assign-issue@v1
+        uses: pozil/auto-assign-issue@v2
         with:
-          repo-token: ${{ secrets.MY_GITHUB_TOKEN }}
-          teams: dank-style-support
+          assignees: viraj-10,rajat693
           numOfAssignee: 1
           allowSelfAssign: false
