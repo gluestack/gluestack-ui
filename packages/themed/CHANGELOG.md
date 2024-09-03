@@ -1,5 +1,12 @@
 # @gluestack-ui/themed
 
+## 1.1.49
+
+### Patch Changes
+
+- Updated dependencies
+  - @gluestack-ui/accordion@1.0.7
+
 ## 1.1.48
 
 ### Patch Changes
