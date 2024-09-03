@@ -7,15 +7,7 @@ export const RadioIcon = (StyledRadioIcon: any) =>
 
     if (forceMount || isChecked) {
       return (
-        <StyledRadioIcon
-          {...props}
-          ref={ref}
-          // eslint-disable-next-line react-native/no-inline-styles
-          style={{
-            ...props.style,
-            visibility: isChecked ? 'visible' : 'hidden',
-          }}
-        >
+        <StyledRadioIcon {...props} ref={ref}>
           {children}
         </StyledRadioIcon>
       );
