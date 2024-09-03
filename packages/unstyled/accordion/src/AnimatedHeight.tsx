@@ -45,7 +45,7 @@ const AnimatedHeight = ({ hide, extraHeight = 0, children }: any) => {
           },
         ]}
         onLayout={(e) => {
-          const height = e.nativeEvent.layout.height;
+          const height = Math.round(e.nativeEvent.layout.height);
           setMeasuredHeight(height);
         }}
       >
