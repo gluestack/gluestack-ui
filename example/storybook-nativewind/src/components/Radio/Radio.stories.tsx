@@ -35,10 +35,6 @@ const RadioMeta: ComponentMeta<typeof Radio> = {
       figmaIgnore: true,
       options: [true, false],
     },
-    forceMount: {
-      type: 'boolean',
-      options: [true, false],
-    },
   },
   args: {
     size: 'md',
@@ -47,7 +43,6 @@ const RadioMeta: ComponentMeta<typeof Radio> = {
     isReadOnly: false,
     isHovered: false,
     isFocusVisible: false,
-    forceMount: false,
   },
 };
 
