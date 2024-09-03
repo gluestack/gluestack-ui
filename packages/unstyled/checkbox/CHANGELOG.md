@@ -1,5 +1,11 @@
 # @gluestack-ui/checkbox
 
+## 0.1.32
+
+### Patch Changes
+
+- feat: added forceMount prop
+
 ## 0.1.31
 
 ### Patch Changes
