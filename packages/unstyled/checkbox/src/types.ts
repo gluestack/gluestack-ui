@@ -31,7 +31,8 @@ export type ICheckboxComponentType<Root, Indicator, Icon, Label, Group> =
       React.RefAttributes<Indicator> & React.PropsWithoutRef<Indicator>
     >;
     Icon: React.ForwardRefExoticComponent<
-      React.RefAttributes<Icon> & React.PropsWithoutRef<Icon>
+      React.RefAttributes<Icon> &
+        React.PropsWithoutRef<Icon> & { forceMount?: boolean }
     >;
     Label: React.ForwardRefExoticComponent<
       React.RefAttributes<Label> & React.PropsWithoutRef<Label>

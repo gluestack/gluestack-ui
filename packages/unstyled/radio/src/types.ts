@@ -34,7 +34,8 @@ export type IRadioComponentType<
       IRadioGroupProps
   >;
   Icon: React.ForwardRefExoticComponent<
-    React.RefAttributes<IconProps> & React.PropsWithoutRef<IconProps>
+    React.RefAttributes<IconProps> &
+      React.PropsWithoutRef<IconProps> & { forceMount?: boolean }
   >;
   Indicator: React.ForwardRefExoticComponent<
     React.RefAttributes<IndicatorProps> & React.PropsWithoutRef<IndicatorProps>
