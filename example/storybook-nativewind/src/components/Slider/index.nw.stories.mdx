@@ -430,17 +430,92 @@ We have outlined the various features that ensure the Slider component is access
 
 Slider component is created using View component from react-native. It extends all the props supported by [React Native View](https://reactnative.dev/docs/view#props).
 
-<!--
-## Spec Doc
 
-Explore the comprehensive details of the Slider in this document, including its implementation details, checklist, and potential future additions. Dive into the thought process behind the component and gain insights into its development journey.
+### Data Attributes Table
+Component receives states as props as boolean values, which are applied as ```data-*``` attributes. These attributes are then used to style the component via classNames, enabling state-based styling.
 
-<iframe
-  style={{
-    borderRadius: '8px',
-    border: ' 1px solid rgba(0, 0, 0, 0.1)',
-    aspectRatio: 736 / 585,
-  }}
-  src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FNcXOxqKbdnGsLQNex3H76u%2F%25C2%25A0%25F0%259F%2593%259Agluestack-UI-handbook%3Ftype%3Ddesign%26node-id%3D6449-50331%26t%3DyCpyOJadMBgzgdP2-1%26scaling%3Dscale-down%26page-id%3D6429%253A48430%26starting-point-node-id%3D6449%253A50331%26mode%3Ddesign"
-  allowFullScreen
-/> -->
+<>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>State</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Data Attribute</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Values</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>hover</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>
+              data-hover
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>true | false</InlineCode>
+            </Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>active</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>data-active</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>true | false</InlineCode>
+            </Table.TText>
+          </Table.TD>
+        </Table.TR>
+         <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>disabled</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>data-disabled</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>true | false</InlineCode>
+            </Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>focus</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>data-focus</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>true | false</InlineCode>
+            </Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</>
+
+
