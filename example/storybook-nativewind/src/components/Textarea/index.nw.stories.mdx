@@ -384,6 +384,92 @@ Textarea component is created using TextInput component from react-native. It ex
   </TableContainer>
 </>
 
+### Data Attributes Table
+Component receives states as props as boolean values, which are applied as ```data-*``` attributes. These attributes are then used to style the component via classNames, enabling state-based styling.
+
+<>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>State</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Data Attribute</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Values</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>hover</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>
+              data-hover
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>true | false</InlineCode>
+            </Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>focus</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>data-focus</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>true | false</InlineCode>
+            </Table.TText>
+          </Table.TD>
+        </Table.TR>
+         <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>disabled</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>data-disabled</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>true | false</InlineCode>
+            </Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>invalid</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>data-invalid</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>true | false</InlineCode>
+            </Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</>
 
 ### Examples
 

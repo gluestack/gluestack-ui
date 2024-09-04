@@ -118,6 +118,61 @@ This section provides a comprehensive reference list for the component props, de
 
 It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable) component.
 
+### Data Attributes Table
+Component receives states as props as boolean values, which are applied as ```data-*``` attributes. These attributes are then used to style the component via classNames, enabling state-based styling.
+
+<>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>State</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Data Attribute</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Values</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+         <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>disabled</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>data-disabled</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>true | false</InlineCode>
+            </Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>focusVisible</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>data-focus-visible</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>true | false</InlineCode>
+            </Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</>
+
 ### Examples
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
