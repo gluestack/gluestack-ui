@@ -430,7 +430,6 @@ We have outlined the various features that ensure the Slider component is access
 
 Slider component is created using View component from react-native. It extends all the props supported by [React Native View](https://reactnative.dev/docs/view#props).
 
-
 ### Data Attributes Table
 Component receives states as props as boolean values, which are applied as ```data-*``` attributes. These attributes are then used to style the component via classNames, enabling state-based styling.
 
@@ -451,38 +450,6 @@ Component receives states as props as boolean values, which are applied as ```da
         </Table.TR>
       </Table.THead>
       <Table.TBody>
-        <Table.TR>
-          <Table.TD>
-            <Table.TText>
-              <InlineCode>hover</InlineCode>
-            </Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>
-              data-hover
-            </Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>
-              <InlineCode>true | false</InlineCode>
-            </Table.TText>
-          </Table.TD>
-        </Table.TR>
-        <Table.TR>
-          <Table.TD>
-            <Table.TText>
-              <InlineCode>active</InlineCode>
-            </Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>data-active</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>
-              <InlineCode>true | false</InlineCode>
-            </Table.TText>
-          </Table.TD>
-        </Table.TR>
          <Table.TR>
           <Table.TD>
             <Table.TText>
@@ -506,6 +473,21 @@ Component receives states as props as boolean values, which are applied as ```da
           </Table.TD>
           <Table.TD>
             <Table.TText>data-focus</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>true | false</InlineCode>
+            </Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>invalid</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>data-invalid</Table.TText>
           </Table.TD>
           <Table.TD>
             <Table.TText>
