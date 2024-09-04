@@ -16,7 +16,7 @@ export const RadioGroup = (StyledRadioGroup: any) =>
       {
         ...formControlContext,
         ...props,
-        'aria-label': props['aria-label'],
+        'aria-label': props['aria-label'] || 'RadioGroup',
       },
       state
     );

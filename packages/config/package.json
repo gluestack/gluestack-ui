@@ -38,13 +38,13 @@
     "@gluestack-style/animation-resolver": "1.0.4",
     "@gluestack-style/legend-motion-animation-driver": "1.0.3",
     "@gluestack-style/react": "1.0.57",
-    "@gluestack-ui/accordion": "1.0.6",
+    "@gluestack-ui/accordion": "1.0.7",
     "@gluestack-ui/actionsheet": "0.2.44",
     "@gluestack-ui/alert": "0.1.15",
     "@gluestack-ui/alert-dialog": "0.1.30",
     "@gluestack-ui/avatar": "0.1.17",
     "@gluestack-ui/button": "1.0.7",
-    "@gluestack-ui/checkbox": "0.1.31",
+    "@gluestack-ui/checkbox": "0.1.32",
     "@gluestack-ui/divider": "0.1.9",
     "@gluestack-ui/fab": "0.1.21",
     "@gluestack-ui/form-control": "0.1.18",
@@ -59,21 +59,21 @@
     "@gluestack-ui/pressable": "0.1.16",
     "@gluestack-ui/progress": "0.1.16",
     "@gluestack-ui/provider": "0.1.12",
-    "@gluestack-ui/radio": "0.1.32",
+    "@gluestack-ui/radio": "0.1.33",
     "@gluestack-ui/select": "0.1.29",
     "@gluestack-ui/slider": "0.1.25",
     "@gluestack-ui/spinner": "0.1.14",
     "@gluestack-ui/switch": "0.1.22",
     "@gluestack-ui/tabs": "0.1.17",
     "@gluestack-ui/textarea": "0.1.23",
-    "@gluestack-ui/themed": "1.1.48",
+    "@gluestack-ui/themed": "1.1.50",
     "@gluestack-ui/toast": "1.0.7",
     "@gluestack-ui/tooltip": "0.1.32",
     "@legendapp/motion": "latest"
   },
   "peerDependencies": {
     "@gluestack-style/react": ">=1.0.57",
-    "@gluestack-ui/themed": ">=1.1.48"
+    "@gluestack-ui/themed": ">=1.1.50"
   },
   "release-it": {
     "git": {
