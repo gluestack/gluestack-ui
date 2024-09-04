@@ -14,7 +14,7 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="with-nativewind/Components/Forms/Link" />
 
-import { ArrowUpRightIcon, Icon, HStack, Text, Link, LinkText } from '../../core-components/nativewind';
+import { Icon, HStack, Text, Link, LinkText } from '../../core-components/nativewind';
 import { transformedCode } from '../../utils';
 import {
   AppProvider,
@@ -408,7 +408,7 @@ The Examples section provides visual representations of the different variants o
       transformCode: (code) => {
         return transformedCode(code);
       },
-      scope: { Link, LinkText, Wrapper, ArrowUpRightIcon, Icon, HStack, Text },
+      scope: { Link, LinkText, Wrapper, Icon, HStack, Text },
       argsType: {},
     }}
   />
@@ -428,7 +428,8 @@ The Examples section provides visual representations of the different variants o
               <Link href="https://gluestack.io/" isExternal>
                 <HStack alignItems="center">
                 <LinkText size="lg">Pinterest</LinkText>
-                <Icon as={ArrowUpRightIcon} size="lg" className='mt-0.5 text-info-600'/>
+                {/* ArrowUpRight is imported from 'lucide-react-native' */}
+                <Icon as={ArrowUpRight} size="lg" className='mt-0.5 text-info-600'/>
                 </HStack>
               </Link>
          </HStack>
@@ -436,7 +437,7 @@ The Examples section provides visual representations of the different variants o
       transformCode: (code) => {
         return transformedCode(code);
       },
-      scope: { Link, LinkText, Wrapper, ArrowUpRightIcon, Icon, HStack, Text },
+      scope: { Link, LinkText, Wrapper, ArrowUpRight, Icon, HStack, Text },
       argsType: {},
     }}
   />
