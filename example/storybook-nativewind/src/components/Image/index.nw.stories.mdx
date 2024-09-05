@@ -28,6 +28,7 @@ import {
   Tabs
 } from '@gluestack/design-system';
 import { CollapsibleCode } from '@gluestack/design-system';
+import { Image as UnitoolsImage } from '@unitools/image';
 
 This is an illustration of **Image** component.
 
@@ -136,17 +137,47 @@ It inherits all the properties of React Native's [Image](https://reactnative.dev
 
 Image component is created using Image component from react-native. It extends all the props supported by [React Native Image](https://reactnative.dev/docs/image#props).
 
-<!--
-## Spec Doc
+### Example
 
-Explore the comprehensive details of the Image in this document, including its implementation details, checklist, and potential future additions. Dive into the thought process behind the component and gain insights into its development journey.
+The Examples section offers visual previews of the component, letting you quickly identify the best fit for your needs. Just copy the code and use it in your project.
 
-<iframe
-  style={{
-    borderRadius: '8px',
-    border: ' 1px solid rgba(0, 0, 0, 0.1)',
-    aspectRatio: 736 / 585,
-  }}
-  src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FNcXOxqKbdnGsLQNex3H76u%2F%25C2%25A0%25F0%259F%2593%259Agluestack-UI-handbook%3Ftype%3Ddesign%26node-id%3D6429-37300%26t%3Dh37ERUrDzeh1Zy7x-1%26scaling%3Dscale-down%26page-id%3D6429%253A35399%26starting-point-node-id%3D6429%253A37300%26mode%3Ddesign"
-  allowFullScreen
-/> -->
+#### Basic Unitools Image 
+
+The below example will run for both nextjs and expo projects. For installation steps, refer to the [Installation](https://unitools.geekyants.com/packages/image/) section of ```@unitools/image```.
+
+```jsx
+import { Image } from '@unitools/image';
+```
+
+<Wrapper>
+  <CodePreview
+    showComponentRenderer={false}
+    showArgsController={false}
+    metaData={{
+      code: `
+      import { Image as UnitoolsImage } from '@unitools/image';
+        function Home() {
+          return (
+            <View>
+              <UnitoolsImage
+                source={require("@/assets/icon.png")}
+                alt="Logo"
+                width={200}
+                height={200}
+              />
+            </View>
+          );
+        }
+      `,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'Home', 'require');
+      },
+      scope: {
+        Wrapper,
+        UnitoolsImage,
+      },
+      argsType: {
+      },
+    }}
+  />
+</Wrapper>

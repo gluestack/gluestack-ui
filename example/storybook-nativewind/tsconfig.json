@@ -3,6 +3,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
+      "@/assets/*": ["./assets/*"],
       "@/components/ui/*": ["src/core-components/nativewind/*"],
       "@/components/hooks/*": ["src/core-components/hooks/*"],
       "@gluestack-style/react": ["../../packages/styled/react/src"],
