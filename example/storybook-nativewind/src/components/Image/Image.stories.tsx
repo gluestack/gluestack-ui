@@ -19,4 +19,5 @@ const ImageMeta: ComponentMeta<typeof Image> = {
 export default ImageMeta;
 
 export { Image };
+
 // export { ImageSizesStory };
