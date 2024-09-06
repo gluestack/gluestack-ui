@@ -28,3 +28,5 @@ const ImageSizes = ({
 };
 
 export default ImageSizes;
+
+export { Image, VStack };

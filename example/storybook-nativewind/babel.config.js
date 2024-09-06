@@ -12,7 +12,6 @@ module.exports = function (api) {
         'module-resolver',
         {
           alias: {
-            '@unitools/image': '@unitools/image-expo',
             '@/components/ui':
               process.env.STYLE_ENGINE === 'nativewind'
                 ? path.resolve(__dirname, './src/core-components/nativewind')
