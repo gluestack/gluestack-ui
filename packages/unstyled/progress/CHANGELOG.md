@@ -1,5 +1,11 @@
 # @gluestack-ui/progress
 
+## 0.1.17
+
+### Patch Changes
+
+- feat: added orientation prop
+
 ## 0.1.16
 
 ### Patch Changes
