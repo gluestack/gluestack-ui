@@ -70,6 +70,10 @@ module.exports = function (api) {
               __dirname,
               '../../packages/unstyled/link/src'
             ),
+            '@gluestack-ui/progress': path.resolve(
+              __dirname,
+              '../../packages/unstyled/progress/src'
+            ),
             '@gluestack-ui/accordion': path.resolve(
               __dirname,
               '../../packages/unstyled/accordion/src'

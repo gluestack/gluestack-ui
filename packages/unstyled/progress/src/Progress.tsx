@@ -6,12 +6,14 @@ const useProgress = ({
   min,
   max,
   value,
+  orientation = 'horizontal',
 }: {
   min: number;
   max: number;
   value: number;
+  orientation: 'horizontal' | 'vertical';
 }) => {
-  const valueWidth =
+  const calculatedValue =
     value < max && value > min
       ? Math.round(((value - min) / (max - min)) * 100)
       : value > min
@@ -24,9 +26,11 @@ const useProgress = ({
     'role': 'progressbar',
     'aria-valuemin': min,
     'aria-valuemax': max,
-    'aria-valuenow': valueWidth,
-    'aria-valuetext': `${valueWidth}%`,
-    valueWidth,
+    'aria-valuenow': calculatedValue,
+    'aria-valuetext': `${calculatedValue}%`,
+    'aria-orientation': orientation,
+    'valueWidth': orientation === 'horizontal' ? calculatedValue : 100,
+    'valueHeight': orientation === 'vertical' ? calculatedValue : 100,
   };
 };
 
@@ -35,10 +39,17 @@ export function Progress<StyledProgressProps>(
 ) {
   return forwardRef(
     (
-      { children, min = 0, max = 100, value = 0, ...props }: IProgressProps,
+      {
+        children,
+        min = 0,
+        max = 100,
+        value = 0,
+        orientation = 'horizontal',
+        ...props
+      }: IProgressProps,
       ref?: any
     ) => {
-      const progressProps = useProgress({ min, max, value });
+      const progressProps = useProgress({ min, max, value, orientation });
 
       return (
         <StyledProgress
@@ -50,6 +61,8 @@ export function Progress<StyledProgressProps>(
             min={min}
             max={max}
             valueWidth={progressProps.valueWidth}
+            valueHeight={progressProps.valueHeight}
+            orientation={orientation}
           >
             {children}
           </ProgressProvider>
