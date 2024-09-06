@@ -14,6 +14,11 @@ export interface InterfaceProgressProps {
    * @default 100
    */
   max?: number;
+  /**
+   * Orientation of the progress bar.
+   * @default 'horizontal'
+   */
+  orientation?: 'horizontal' | 'vertical';
   children?: any;
 }
 

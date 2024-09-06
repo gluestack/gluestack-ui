@@ -6,9 +6,10 @@ import { Heading } from '@/components/ui/heading';
 import { Center } from '@/components/ui/center';
 
 const ProgressBasic = ({ ...props }: any) => {
+  // console.log('props', props);
   return (
-    <Center className="w-full">
-      <Progress className="w-[80%]" {...props}>
+    <Center className="w-[300px] h-[300px]">
+      <Progress {...props}>
         <ProgressFilledTrack />
       </Progress>
     </Center>
