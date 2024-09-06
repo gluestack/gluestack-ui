@@ -17,6 +17,7 @@ import { Meta } from '@storybook/addon-docs';
 import { Image } from '../../core-components/nativewind';
 import { transformedCode } from '../../utils';
 import Wrapper from '../../core-components/nativewind/Wrapper';
+import UnitoolsImageEg from '../../extra-components/nativewind/UnitoolsImage';
 
 import {
   AppProvider,
@@ -149,6 +150,8 @@ The below example will run for both nextjs and expo projects. For installation s
 import { Image } from '@unitools/image';
 ```
 
+<UnitoolsImageEg/>
+
 <Wrapper>
   <CodePreview
     showComponentRenderer={false}
@@ -160,17 +163,17 @@ import { Image } from '@unitools/image';
           return (
             <View>
               <UnitoolsImage
-                source={require("@/assets/icon.png")}
+                source={require("@/assets/mountains.png")}
                 alt="Logo"
-                width={200}
-                height={200}
+                width={208}
+                height={320}
               />
             </View>
           );
         }
       `,
       transformCode: (code) => {
-        return transformedCode(code, 'function', 'Home', 'require');
+        return transformedCode(code, 'function', 'Home');
       },
       scope: {
         Wrapper,
