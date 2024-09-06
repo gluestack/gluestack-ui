@@ -15,7 +15,7 @@ import { Meta } from '@storybook/addon-docs';
 <Meta title="with-nativewind/Components/Feedback/Progress" />
 
 
-import { Progress, ProgressFilledTrack, VStack, Box, Heading } from '../../core-components/nativewind';
+import { Progress, ProgressFilledTrack, VStack, Box, Heading, Center } from '../../core-components/nativewind';
 import { transformedCode } from '../../utils';
 import {
   AppProvider,
@@ -34,23 +34,33 @@ This is an illustration of **Progress** component.
 
 <Wrapper>
   <CodePreview
+    _rendererWrapper={{
+        py: '$6',
+      }}
     showComponentRenderer={true}
     showArgsController={true}
     metaData={{
       code: `
-       <Progress value={40} className="w-[300px]" {...props} >
-          <ProgressFilledTrack />
-        </Progress>
+        <Center className='w-[300px] h-[300px]'>
+          <Progress value={40} {...props} >
+            <ProgressFilledTrack />
+          </Progress>
+        </Center>
       `,
       transformCode: (code) => {
         return transformedCode(code);
       },
-      scope: { Wrapper, Progress, ProgressFilledTrack },
+      scope: { Wrapper, Progress, ProgressFilledTrack, Center },
       argsType: {
         size: {
           control: 'select',
           options: ['xs', 'sm', 'md', 'lg', 'xl', '2xl'],
           default: 'md',
+        },
+        orientation: {
+          control: 'select',
+          options: ['horizontal', 'vertical'],
+          default: 'horizontal',
         },
       },
     }}
@@ -217,6 +227,19 @@ Progress component is created using View component from react-native. It extends
           </Table.TD>
           <Table.TD>
             <Table.TText>md</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>orientation</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>vertical | horizontal</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>horizontal</Table.TText>
           </Table.TD>
         </Table.TR>
       </Table.TBody>
