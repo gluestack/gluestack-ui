@@ -28,7 +28,7 @@ import Wrapper from '../../core-components/nativewind/Wrapper';
 import { CollapsibleCode } from '@gluestack/design-system';
 import AnatomyImage from '../../extra-components/nativewind/AnatomyImage';
 import { ArrowUpRight } from 'lucide-react-native';
-import { Link as UnitoolsLink } from '@unitools/link';
+import UnitoolsLink from '@unitools/link';
 import UnitoolsLinkEg from '../../extra-components/nativewind/UnitoolsLink';
 
 This is an illustration of **Link** component.
@@ -465,7 +465,7 @@ import Link from "@unitools/link";
         </Link>
       `,
       transformCode: (code) => {
-        return transformedCode(code, 'function', 'Home');
+        return transformedCode(code);
       },
       scope: {
         Wrapper,
