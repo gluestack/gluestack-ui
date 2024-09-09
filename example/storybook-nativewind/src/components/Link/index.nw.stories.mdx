@@ -28,6 +28,8 @@ import Wrapper from '../../core-components/nativewind/Wrapper';
 import { CollapsibleCode } from '@gluestack/design-system';
 import AnatomyImage from '../../extra-components/nativewind/AnatomyImage';
 import { ArrowUpRight } from 'lucide-react-native';
+import { Link as UnitoolsLink } from '@unitools/link';
+import UnitoolsLinkEg from '../../extra-components/nativewind/UnitoolsLink';
 
 This is an illustration of **Link** component.
 
@@ -254,6 +256,48 @@ We have outlined the various features that ensure the Link component is accessib
 
 Link component is created using Pressable component from react-native. It extends all the props supported by [React Native Pressable](https://reactnative.dev/docs/pressable#props).
 
+
+#### Link
+
+<>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Name</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Value</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Default</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>size</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>
+              xs | sm | md | lg | xl | 2xl | 3xl | 4xl | 5xl | 6xl
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>md</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</>
+
+> Note: These props are exclusively applicable when utilizing the default configuration of gluestack-ui/config. If you are using a custom theme, these props may not be available.
+
 ### Data Attributes Table
 
 Component receives states as props as boolean values, which are applied as ```data-*``` attributes. These attributes are then used to style the component via classNames, enabling state-based styling.
@@ -344,49 +388,6 @@ Component receives states as props as boolean values, which are applied as ```da
 
 ### Examples
 
-#### Link
-
-<>
-  <TableContainer>
-    <Table>
-      <Table.THead>
-        <Table.TR>
-          <Table.TH>
-            <Table.TText>Name</Table.TText>
-          </Table.TH>
-          <Table.TH>
-            <Table.TText>Value</Table.TText>
-          </Table.TH>
-          <Table.TH>
-            <Table.TText>Default</Table.TText>
-          </Table.TH>
-        </Table.TR>
-      </Table.THead>
-      <Table.TBody>
-        <Table.TR>
-          <Table.TD>
-            <Table.TText>
-              <InlineCode>size</InlineCode>
-            </Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>
-              xs | sm | md | lg | xl | 2xl | 3xl | 4xl | 5xl | 6xl
-            </Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>md</Table.TText>
-          </Table.TD>
-        </Table.TR>
-      </Table.TBody>
-    </Table>
-  </TableContainer>
-</>
-
-> Note: These props are exclusively applicable when utilizing the default configuration of gluestack-ui/config. If you are using a custom theme, these props may not be available.
-
-### Examples
-
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
 #### Default
@@ -443,3 +444,43 @@ The Examples section provides visual representations of the different variants o
     }}
   />
 </Wrapper>
+
+#### Basic Unitools Link
+The below example will run for both Expo and Next.js projects. For installation steps, refer to the [Installation](https://unitools.geekyants.com/packages/link/) section of ```@unitools/link```.
+
+```jsx
+import Link from "@unitools/link";
+```
+
+<UnitoolsLinkEg/>
+
+<Wrapper>
+  <CodePreview
+    showComponentRenderer={false}
+    showArgsController={false}
+    metaData={{
+      code: `
+        import { Link as UnitoolsLink } from '@unitools/link';
+        function Home() {
+          return (
+            <UnitoolsLink href="https://gluestack.io/">
+              <Text>gluestack</Text>
+            </UnitoolsLink>
+          );
+        }
+      `,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'Home');
+      },
+      scope: {
+        Wrapper,
+        UnitoolsLink,
+        LinkText,
+        Text,
+      },
+      argsType: {},
+    }}
+  />
+</Wrapper>
+
+> Note: For the Next.js project replace the ```<Text>``` with the ```<p>```
