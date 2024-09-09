@@ -161,7 +161,7 @@ npm i @gluestack-ui/fab
 To use this component in your project, include the following import statement in your file.
 
 ```jsx
-import { Fab } from '@gluestack-ui/themed';
+import { Fab, FabLabel, FabIcon } from '@/components/ui/fab';
 ```
 
 <AnatomyImage mobileUrl='https://i.imgur.com/sVSTRfB.png' webUrl='https://i.imgur.com/olpBoZg.png' classNameStyle='aspect-[513/358] md:aspect-[736/242]' />
@@ -295,7 +295,7 @@ It inherits all the properties of React Native's [Text](https://reactnative.dev/
 
 #### FabIcon
 
-Contains all Icon related layout style props and actions. It inherits all the properties of Gluestack Style's [AsForwarder](/style/docs/api/as-forwarder) component.
+Contains all Icon related layout style props and actions. It inherits all the properties of gluestack Style's [AsForwarder](/style/docs/api/as-forwarder) component.
 
 ### Features
 
@@ -332,6 +332,62 @@ The following are the lists of all the libraries and packages the component reli
 ### Props
 
 Fab component is created using Pressable component from react-native. It extends all the props supported by [React Native Pressable](https://reactnative.dev/docs/pressable#props).
+
+### Data Attributes Table
+
+Component receives states as props as boolean values, which are applied as ```data-*``` attributes. These attributes are then used to style the component via classNames, enabling state-based styling.
+
+<>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>State</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Data Attribute</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Values</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>focus</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>data-focus</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>true | false</InlineCode>
+            </Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>focusVisible</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>data-focus-visible</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>true | false</InlineCode>
+            </Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</>
 
 #### Fab
 
@@ -492,8 +548,8 @@ A Fab component with an icon and text combines a visual icon with accompanying t
           className='max-w-96 border rounded-lg border-outline-200 py-[56px] px-6 mx-5 bg-background-100'
         >
           <Fab className='top-4 h-9 bg-primary-600 hover:bg-primary-700 active:bg-primary-900'>
-            <FabIcon as={SearchIcon} className='stroke-white' />
-            <FabLabel className='text-white'>Search</FabLabel>
+            <FabIcon as={SearchIcon} />
+            <FabLabel>Search</FabLabel>
           </Fab>
           <VStack space='lg'>
             <Box>
@@ -699,7 +755,7 @@ A Fab component with custom placement allows for flexible positioning of the but
           </VStack>
           <Fab size='lg' className='bg-primary-600 right-4 bottom-16 hover:bg-primary-700 active:bg-primary-800'>
             {/* ShoppingCartIcon is imported from 'lucide-react-native' */}
-            <FabIcon as={ShoppingCartIcon} className='h-4 w-4' color="white"/>
+            <FabIcon as={ShoppingCartIcon} className='h-4 w-4'/>
           </Fab>
         </Box>
       `,

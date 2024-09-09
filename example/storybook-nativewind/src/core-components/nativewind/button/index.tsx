@@ -2,6 +2,7 @@
 import React, { useMemo } from 'react';
 import { createButton } from '@gluestack-ui/button';
 import { Svg } from 'react-native-svg';
+import type { PressableProps } from 'react-native';
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import {
   withStyleContext,
@@ -20,6 +21,12 @@ import {
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 
 const SCOPE = 'BUTTON';
+const ButtonWrapper = React.forwardRef<
+  React.ElementRef<typeof Pressable>,
+  PressableProps
+>(({ ...props }, ref) => {
+  return <Pressable {...props} ref={ref} />;
+});
 
 type IPrimitiveIcon = React.ComponentPropsWithoutRef<typeof Svg> & {
   height?: number | string;
@@ -29,21 +36,29 @@ type IPrimitiveIcon = React.ComponentPropsWithoutRef<typeof Svg> & {
   size?: number | string;
   stroke?: string;
   as?: React.ElementType;
+  className?: string;
+  classNameColor?: string;
 };
-const PrimitiveIcon = React.forwardRef(
+
+const PrimitiveIcon = React.forwardRef<
+  React.ElementRef<typeof Svg>,
+  IPrimitiveIcon
+>(
   (
     {
       height,
       width,
       fill,
       color,
+      classNameColor,
       size,
-      stroke = 'currentColor',
+      stroke,
       as: AsComp,
       ...props
-    }: IPrimitiveIcon,
-    ref: React.Ref<Svg>
+    },
+    ref
   ) => {
+    color = color ?? classNameColor;
     const sizeProps = useMemo(() => {
       if (size) return { size };
       if (height && width) return { height, width };
@@ -52,37 +67,29 @@ const PrimitiveIcon = React.forwardRef(
       return {};
     }, [size, height, width]);
 
-    const colorProps =
-      stroke === 'currentColor' && color !== undefined ? color : stroke;
+    let colorProps = {};
+    if (fill) {
+      colorProps = { ...colorProps, fill: fill };
+    }
+    if (stroke !== 'currentColor') {
+      colorProps = { ...colorProps, stroke: stroke };
+    } else if (stroke === 'currentColor' && color !== undefined) {
+      colorProps = { ...colorProps, stroke: color };
+    }
 
     if (AsComp) {
-      return (
-        <AsComp
-          ref={ref}
-          fill={fill}
-          {...props}
-          {...sizeProps}
-          stroke={colorProps}
-        />
-      );
+      return <AsComp ref={ref} {...props} {...sizeProps} {...colorProps} />;
     }
     return (
-      <Svg
-        ref={ref}
-        height={height}
-        width={width}
-        fill={fill}
-        stroke={colorProps}
-        {...props}
-      />
+      <Svg ref={ref} height={height} width={width} {...colorProps} {...props} />
     );
   }
 );
 
 const Root =
   Platform.OS === 'web'
-    ? withStyleContext(Pressable, SCOPE)
-    : withStyleContextAndStates(Pressable, SCOPE);
+    ? withStyleContext(ButtonWrapper, SCOPE)
+    : withStyleContextAndStates(ButtonWrapper, SCOPE);
 
 const UIButton = createButton({
   Root: Root,
@@ -92,22 +99,22 @@ const UIButton = createButton({
   Icon: withStates(PrimitiveIcon),
 });
 
-cssInterop(UIButton, { className: 'style' });
+cssInterop(Root, { className: 'style' });
 cssInterop(UIButton.Text, { className: 'style' });
 cssInterop(UIButton.Group, { className: 'style' });
 cssInterop(UIButton.Spinner, {
   className: { target: 'style', nativeStyleToProp: { color: true } },
 });
-
+//@ts-ignore
 cssInterop(PrimitiveIcon, {
   className: {
     target: 'style',
     nativeStyleToProp: {
       height: true,
       width: true,
-      // @ts-ignore
+      //@ts-ignore
       fill: true,
-      color: true,
+      color: 'classNameColor',
       stroke: true,
     },
   },

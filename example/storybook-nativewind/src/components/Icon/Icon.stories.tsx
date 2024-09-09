@@ -1,5 +1,6 @@
 import type { ComponentMeta } from '@storybook/react-native';
 import Icon from './Icon';
+import IconPropTesting from './IconPropTesting';
 
 // BellIcon, // AtSignIcon, // ArrowLeftIcon, // ArrowRightIcon, // ArrowDownIcon, // ArrowUpIcon, // AlertCircleIcon, // AddIcon, // Icon,
 // CalendarDaysIcon,
@@ -133,4 +134,4 @@ const IconMeta: ComponentMeta<typeof Icon> = {
 
 export default IconMeta;
 
-export { Icon };
+export { Icon, IconPropTesting };

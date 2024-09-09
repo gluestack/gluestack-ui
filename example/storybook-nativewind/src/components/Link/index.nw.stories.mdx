@@ -14,7 +14,7 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="with-nativewind/Components/Forms/Link" />
 
-import { ArrowUpRightIcon, Icon, HStack, Text, Link, LinkText } from '../../core-components/nativewind';
+import { Icon, HStack, Text, Link, LinkText } from '../../core-components/nativewind';
 import { transformedCode } from '../../utils';
 import {
   AppProvider,
@@ -27,6 +27,7 @@ import {
 import Wrapper from '../../core-components/nativewind/Wrapper';
 import { CollapsibleCode } from '@gluestack/design-system';
 import AnatomyImage from '../../extra-components/nativewind/AnatomyImage';
+import { ArrowUpRight } from 'lucide-react-native';
 
 This is an illustration of **Link** component.
 
@@ -253,6 +254,96 @@ We have outlined the various features that ensure the Link component is accessib
 
 Link component is created using Pressable component from react-native. It extends all the props supported by [React Native Pressable](https://reactnative.dev/docs/pressable#props).
 
+### Data Attributes Table
+
+Component receives states as props as boolean values, which are applied as ```data-*``` attributes. These attributes are then used to style the component via classNames, enabling state-based styling.
+
+<>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>State</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Data Attribute</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Values</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>hover</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>
+              data-hover
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>true | false</InlineCode>
+            </Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>active</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>data-active</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>true | false</InlineCode>
+            </Table.TText>
+          </Table.TD>
+        </Table.TR>
+         <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>disabled</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>data-disabled</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>true | false</InlineCode>
+            </Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>focusVisible</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>data-focus-visible</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>true | false</InlineCode>
+            </Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</>
+
+### Examples
+
 #### Link
 
 <>
@@ -318,7 +409,7 @@ The Examples section provides visual representations of the different variants o
       transformCode: (code) => {
         return transformedCode(code);
       },
-      scope: { Link, LinkText, Wrapper, ArrowUpRightIcon, Icon, HStack, Text },
+      scope: { Link, LinkText, Wrapper, Icon, HStack, Text },
       argsType: {},
     }}
   />
@@ -338,7 +429,8 @@ The Examples section provides visual representations of the different variants o
               <Link href="https://gluestack.io/" isExternal>
                 <HStack alignItems="center">
                 <LinkText size="lg">Pinterest</LinkText>
-                <Icon as={ArrowUpRightIcon} size="lg" className='mt-0.5 text-info-600'/>
+                {/* ArrowUpRight is imported from 'lucide-react-native' */}
+                <Icon as={ArrowUpRight} size="lg" className='mt-0.5 text-info-600'/>
                 </HStack>
               </Link>
          </HStack>
@@ -346,7 +438,7 @@ The Examples section provides visual representations of the different variants o
       transformCode: (code) => {
         return transformedCode(code);
       },
-      scope: { Link, LinkText, Wrapper, ArrowUpRightIcon, Icon, HStack, Text },
+      scope: { Link, LinkText, Wrapper, ArrowUpRight, Icon, HStack, Text },
       argsType: {},
     }}
   />

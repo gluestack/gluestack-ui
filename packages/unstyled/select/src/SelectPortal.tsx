@@ -44,7 +44,7 @@ export const SelectPortal = (StyledSelectPortal: any) =>
               hoverProps,
               focusProps,
               setValue,
-              value: value === null ? PLACEHOLDER_OPTION : value,
+              value: !value ? PLACEHOLDER_OPTION : value,
               setLabel,
               label,
               isReadOnly,
@@ -78,7 +78,7 @@ export const SelectPortal = (StyledSelectPortal: any) =>
             }
           }}
           ref={mergeRefs([ref, hoverRef])}
-          value={value ?? PLACEHOLDER_OPTION}
+          value={!value ? PLACEHOLDER_OPTION : value}
           aria-label={placeholder}
           aria-readonly={isReadOnly}
           style={StyleSheet.flatten([

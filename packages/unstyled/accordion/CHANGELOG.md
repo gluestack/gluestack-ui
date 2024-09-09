@@ -1,5 +1,17 @@
 # @gluestack-ui/accordion
 
+## 1.0.7
+
+### Patch Changes
+
+- fix: animation issue resolved in native devices.
+
+## 1.0.6
+
+### Patch Changes
+
+- onpress issue on accordion trigger
+
 ## 1.0.5
 
 ### Patch Changes

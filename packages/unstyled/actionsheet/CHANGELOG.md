@@ -1,5 +1,11 @@
 # @gluestack-ui/actionsheet
 
+## 0.2.44
+
+### Patch Changes
+
+- fix snappoint bottom issue in android
+
 ## 0.2.43
 
 ### Patch Changes

@@ -64,7 +64,12 @@ export function createIcon<IconProps>({
       ...props,
     };
 
-    const { stroke = 'currentColor', color, ...resolvedProps } = finalProps;
+    const {
+      stroke = 'currentColor',
+      color,
+      role = 'img',
+      ...resolvedProps
+    } = finalProps;
     let type = resolvedProps.type;
     if (type === undefined) {
       type = 'svg';
@@ -92,7 +97,7 @@ export function createIcon<IconProps>({
       <Root
         {...resolvedProps}
         {...colorProps}
-        role="img"
+        role={role}
         ref={ref}
         {...sizeProps}
         {...sizeStyle}
