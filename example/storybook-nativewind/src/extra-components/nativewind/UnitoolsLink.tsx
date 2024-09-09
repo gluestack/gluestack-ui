@@ -5,7 +5,9 @@ const UnitoolsLink = () => {
   return (
     <Center>
       <Link href="https://gluestack.io/">
-        <Text>gluestack</Text>
+        <Text className="text-sky-700 underline hover:no-underline p-6">
+          gluestack
+        </Text>
       </Link>
     </Center>
   );

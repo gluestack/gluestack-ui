@@ -446,7 +446,7 @@ The Examples section provides visual representations of the different variants o
 </Wrapper>
 
 #### Basic Unitools Link
-The below example will run for both Expo and Next.js projects. For installation steps, refer to the [Installation](https://unitools.geekyants.com/packages/link/) section of ```@unitools/link```.
+The below example will run for both Expo and Next.js projects. For installation steps, refer to the [Installation](https://unitools.geekyants.com/packages/link/) section of ```@unitools/link```. For the **Next.js** project replace the ```<Text>``` with the ```<p>```.
 
 ```jsx
 import Link from "@unitools/link";
@@ -460,21 +460,16 @@ import Link from "@unitools/link";
     showArgsController={false}
     metaData={{
       code: `
-        import { Link as UnitoolsLink } from '@unitools/link';
-        function Home() {
-          return (
-            <UnitoolsLink href="https://gluestack.io/">
-              <Text>gluestack</Text>
-            </UnitoolsLink>
-          );
-        }
+        <Link href="https://gluestack.io/">
+          <Text>gluestack</Text>
+        </Link>
       `,
       transformCode: (code) => {
         return transformedCode(code, 'function', 'Home');
       },
       scope: {
         Wrapper,
-        UnitoolsLink,
+        UnitoolsLink:Link,
         LinkText,
         Text,
       },
@@ -482,5 +477,3 @@ import Link from "@unitools/link";
     }}
   />
 </Wrapper>
-
-> Note: For the Next.js project replace the ```<Text>``` with the ```<p>```
