@@ -2,7 +2,6 @@
   "gluestack-ui-provider": {
     "dependencies": {
       "tailwindcss": "",
-      "nativewind": "4.0.36",
       "@gluestack-ui/overlay": "latest",
       "@gluestack-ui/toast": "latest",
       "@gluestack-ui/nativewind-utils": "latest",
@@ -15,7 +14,7 @@
   "accordion": {
     "dependencies": {
       "@gluestack-ui/accordion": "latest",
-      "@expo/html-elements": "latest"
+      "@expo/html-elements": "0.4.2"
     }
   },
   "actionsheet": {
@@ -74,7 +73,7 @@
   },
   "heading": {
     "dependencies": {
-      "@expo/html-elements": "latest"
+      "@expo/html-elements": "0.4.2"
     }
   },
   "hstack": {
@@ -150,7 +149,10 @@
   },
   "select": {
     "dependencies": {
-      "@gluestack-ui/select": "latest"
+      "@gluestack-ui/select": "latest",
+      "@gluestack-ui/actionsheet": "latest",
+      "@legendapp/motion": "latest",
+      "@expo/html-elements": "0.4.2"
     }
   },
   "slider": {
