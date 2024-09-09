@@ -29,7 +29,7 @@ import {
   Tabs
 } from '@gluestack/design-system';
 import { CollapsibleCode } from '@gluestack/design-system';
-import { Image as UnitoolsImage } from '@unitools/image';
+import UnitoolsImage from '@unitools/image';
 
 This is an illustration of **Image** component.
 
@@ -144,10 +144,10 @@ The Examples section offers visual previews of the component, letting you quickl
 
 #### Basic Unitools Image 
 
-The below example will run for both nextjs and expo projects. For installation steps, refer to the [Installation](https://unitools.geekyants.com/packages/image/) section of ```@unitools/image```.
+The below example will run for both Expo and Next.js projects. For installation steps, refer to the [Installation](https://unitools.geekyants.com/packages/image/) section of ```@unitools/image```.
 
 ```jsx
-import { Image } from '@unitools/image';
+import Image from '@unitools/image';
 ```
 
 <UnitoolsImageEg/>
@@ -158,26 +158,19 @@ import { Image } from '@unitools/image';
     showArgsController={false}
     metaData={{
       code: `
-      import { Image as UnitoolsImage } from '@unitools/image';
-        function Home() {
-          return (
-            <View>
-              <UnitoolsImage
-                source={require("@/assets/mountains.png")}
-                alt="Logo"
-                width={208}
-                height={320}
-              />
-            </View>
-          );
-        }
+        <Image
+          source={require("@/assets/mountains.png")}
+          alt="Logo"
+          width={208}
+          height={320}
+        />            
       `,
       transformCode: (code) => {
-        return transformedCode(code, 'function', 'Home');
+        return transformedCode(code);
       },
       scope: {
         Wrapper,
-        UnitoolsImage,
+        UnitoolsImage:Image,
       },
       argsType: {
       },
