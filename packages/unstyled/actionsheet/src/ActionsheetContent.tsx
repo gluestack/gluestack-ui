@@ -15,7 +15,6 @@ import { FocusScope } from '@react-native-aria/focus';
 import { mergeRefs } from '@gluestack-ui/utils';
 import { useDialog } from '@react-native-aria/dialog';
 
-import { usePreventScroll } from '@react-native-aria/overlays';
 const windowHeight = Dimensions.get('screen').height;
 function ActionsheetContent(
   StyledActionsheetContent: any,
@@ -40,8 +39,6 @@ function ActionsheetContent(
         finalFocusRef,
         snapPoints,
       } = React.useContext(ActionsheetContext);
-
-      usePreventScroll();
 
       const pan = React.useRef(new Animated.ValueXY()).current;
       const contentSheetHeight = React.useRef(0);
