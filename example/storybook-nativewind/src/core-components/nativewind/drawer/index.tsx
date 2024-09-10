@@ -81,7 +81,7 @@ const drawerBackdropStyle = tva({
 });
 
 const drawerContentStyle = tva({
-  base: 'bg-background-0 overflow-hidden border border-outline-100 p-6 absolute',
+  base: 'bg-background-0 overflow-scroll border border-outline-100 p-6 absolute',
   parentVariants: {
     size: {
       sm: 'w-1/4',
@@ -140,10 +140,6 @@ const drawerContentStyle = tva({
   ],
 });
 
-const drawerBodyStyle = tva({
-  base: 'mt-4 mb-6',
-});
-
 const drawerCloseButtonStyle = tva({
   base: 'z-10 rounded data-[focus-visible=true]:web:bg-background-100 web:outline-0 cursor-pointer',
 });
@@ -152,8 +148,12 @@ const drawerHeaderStyle = tva({
   base: 'justify-between items-center flex-row',
 });
 
+const drawerBodyStyle = tva({
+  base: 'mt-4 mb-6 shrink-0',
+});
+
 const drawerFooterStyle = tva({
-  base: 'flex-row justify-end items-center gap-2',
+  base: 'flex-row justify-end items-center',
 });
 
 type IDrawerProps = React.ComponentProps<typeof UIDrawer> &

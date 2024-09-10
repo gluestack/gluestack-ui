@@ -1,18 +1,22 @@
 import type { ComponentMeta } from '@storybook/react-native';
 import Drawer from './Drawer';
+import DrawerExample from './DrawerExample';
+import DrawerExample2 from './DrawerExample2';
 
 const DrawerMeta: ComponentMeta<typeof Drawer> = {
   title: 'stories/Drawer',
   component: Drawer,
+  parameters: {
+    layout: 'fullscreen',
+  },
   // metaInfo is required for figma generation
   // @ts-ignore
   metaInfo: {
     componentDescription: `A Drawer component provides a slide-in panel from any screen edge, with customizable size and anchor positions, featuring smooth animations for opening and closing. It adapts dynamically based on screen dimensions.`,
   },
   args: {
-    size: 'md',
-    anchor: 'right',
-    showDrawer: false,
+    size: 'sm',
+    anchor: 'left',
   },
   argTypes: {
     size: {
@@ -23,13 +27,11 @@ const DrawerMeta: ComponentMeta<typeof Drawer> = {
       control: 'select',
       options: ['left', 'right', 'top', 'bottom'],
     },
-    showDrawer: {
-      control: 'boolean',
-      options: [true, false],
-    },
   },
 };
 
 export default DrawerMeta;
 
 export { Drawer };
+export { DrawerExample };
+export { DrawerExample2 };

@@ -1,20 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Button, ButtonText } from '@/components/ui/button';
 import {
   Drawer,
   DrawerBackdrop,
   DrawerBody,
-  DrawerCloseButton,
   DrawerContent,
   DrawerFooter,
   DrawerHeader,
 } from '@/components/ui/drawer';
 import { Heading } from '@/components/ui/heading';
-import { Icon, CloseIcon } from '@/components/ui/icon';
 import { Text } from '@/components/ui/text';
 
 const DrawerBasic = ({ ...props }: any) => {
-  const [showDrawer, setShowDrawer] = useState(false);
+  const [showDrawer, setShowDrawer] = React.useState(false);
 
   return (
     <>
@@ -35,36 +33,21 @@ const DrawerBasic = ({ ...props }: any) => {
         <DrawerBackdrop />
         <DrawerContent>
           <DrawerHeader>
-            <Heading size="md" className="text-typography-950">
-              Invite your team
-            </Heading>
-            <DrawerCloseButton>
-              <Icon as={CloseIcon} className="stroke-background-500" />
-            </DrawerCloseButton>
+            <Heading size="3xl">Heading</Heading>
           </DrawerHeader>
           <DrawerBody>
-            <Text size="sm" className="text-typography-500">
-              Elevate user interactions with our versatile modals. Seamlessly
-              integrate notifications, forms, and media displays. Make an impact
-              effortlessly.
+            <Text size="2xl" className="text-typography-800">
+              This is a sentence.
             </Text>
           </DrawerBody>
           <DrawerFooter>
             <Button
-              variant="outline"
-              action="secondary"
               onPress={() => {
                 setShowDrawer(false);
               }}
+              className="flex-1"
             >
-              <ButtonText>Cancel</ButtonText>
-            </Button>
-            <Button
-              onPress={() => {
-                setShowDrawer(false);
-              }}
-            >
-              <ButtonText>Explore</ButtonText>
+              <ButtonText>Button</ButtonText>
             </Button>
           </DrawerFooter>
         </DrawerContent>
@@ -74,15 +57,3 @@ const DrawerBasic = ({ ...props }: any) => {
 };
 
 export default DrawerBasic;
-
-export {
-  Drawer,
-  DrawerBackdrop,
-  DrawerContent,
-  DrawerHeader,
-  DrawerCloseButton,
-  DrawerBody,
-  DrawerFooter,
-  Button,
-  ButtonText,
-};

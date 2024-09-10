@@ -1,0 +1,124 @@
+---
+title: Drawer | gluestack-ui | Installation, Usage, and API
+
+description: A sliding panel that emerges from the edge of the screen to reveal additional content or navigation options..
+pageTitle: Drawer
+
+pageDescription: A sliding panel that emerges from the edge of the screen to reveal additional content or navigation options..
+showHeader: true
+---
+
+import { anchorBlockIdFromId, Meta } from '@storybook/addon-docs';
+
+<Meta title="with-nativewind/Components/Overlay/Drawer" />
+
+import {
+  Drawer,
+  DrawerBackdrop,
+  DrawerBody,
+  DrawerCloseButton,
+  DrawerContent,
+  DrawerFooter,
+  DrawerHeader,
+  CheckboxGroup,
+  Checkbox,
+  CheckboxIndicator,
+  CheckboxIcon,
+  CheckboxLabel,
+  Slider,
+  SliderTrack,
+  SliderFilledTrack,
+  SliderThumb,
+  HStack,
+  VStack,
+  Heading,
+  Text,
+  Divider,
+  CheckIcon,
+  CircleIcon,
+  Icon,
+  Button,
+  ButtonText,
+  Avatar,
+  AvatarFallbackText,
+  AvatarImage,
+} from '../../core-components/nativewind';
+import {
+  User,
+  Home,
+  ShoppingCart,
+  CreditCard,
+  LogIn,
+} from 'lucide-react-native';
+import { transformedCode } from '../../utils';
+import {
+  CodePreview,
+  Table,
+  TableContainer,
+  AddIcon,
+  InfoIcon,
+  InlineCode,
+  Tabs,
+  CollapsibleCode
+} from '@gluestack/design-system';
+import Wrapper from '../../core-components/nativewind/Wrapper';
+import AnatomyImage from '../../extra-components/nativewind/AnatomyImage';
+
+This is an illustration of **Drawer** component.
+
+<Wrapper>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={true}
+    metaData={{
+      code: `
+        function App() {
+          const [showDrawer, setShowDrawer] = React.useState(false);
+          return (
+            <>
+              <Button
+                onPress={() => {
+                  setShowDrawer(true);
+                }}
+              >
+                <ButtonText>Show Drawer</ButtonText>
+              </Button>
+              <Drawer />
+            </>
+          );
+        };
+      `,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'App');
+      },
+      scope: {
+        Wrapper,
+        Drawer,
+        DrawerBackdrop,
+        DrawerBody,
+        DrawerCloseButton,
+        DrawerContent,
+        DrawerFooter,
+        DrawerHeader, 
+        Button,
+        ButtonText,
+        Heading,
+        Text,
+      },
+      argsType: {
+        size: {
+          control: 'select',
+          options: ['sm', 'md', 'lg', 'full'],
+          default: 'sm',
+        },
+        anchor: {
+          control: 'select',
+          options: ['left', 'right', 'top', 'bottom'],
+          default: 'left',
+        },
+      },
+    }}
+  />
+</Wrapper>
+
+<br />
