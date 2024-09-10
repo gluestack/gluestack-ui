@@ -7231,6 +7231,10 @@
   version "0.0.4"
   resolved "https://registry.yarnpkg.com/@unitools/link/-/link-0.0.4.tgz#5587c95b25c2f71b81e5a3ddd81653d61f047b43"
   integrity sha512-2vDHzcryiYGuMn+OFa/PvSLXn09pKgL+Tai1jN88MLsg/Pp5BVwc55rqe8juFbQCDcH4uHDT5TMq+IRynuIvVw==
+"@unitools/image@^0.0.5":
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/@unitools/image/-/image-0.0.5.tgz#3a41cff525b2eb4f925f9203486e5a8998ddd0b2"
+  integrity sha512-w34iTSvim5jqBunAJONMddyGOpKMyhd6lAD6mzqGyK9PV1qekMY3ajvpl9rvK8bE5cX3g5l07+QDEuT1ZWIQ2w==
 
 "@urql/core@2.3.6":
   version "2.3.6"
