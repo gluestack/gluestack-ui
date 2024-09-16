@@ -50,3 +50,4 @@ export * from './refresh-control';
 export * from './image-background';
 export * from './skeleton';
 export * from './bottomsheet';
+export * from './drawer';

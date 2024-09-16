@@ -182,7 +182,7 @@ type IDrawerCloseButtonProps = React.ComponentProps<
 const Drawer = React.forwardRef<
   React.ElementRef<typeof UIDrawer>,
   IDrawerProps
->(({ className, size = 'md', anchor = 'right', ...props }, ref) => {
+>(({ className, size = 'sm', anchor = 'left', ...props }, ref) => {
   return (
     <UIDrawer
       ref={ref}

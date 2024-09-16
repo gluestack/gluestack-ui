@@ -1,7 +1,5 @@
 import type { ComponentMeta } from '@storybook/react-native';
 import Drawer from './Drawer';
-import DrawerExample from './DrawerExample';
-import DrawerExample2 from './DrawerExample2';
 
 const DrawerMeta: ComponentMeta<typeof Drawer> = {
   title: 'stories/Drawer',
@@ -33,5 +31,3 @@ const DrawerMeta: ComponentMeta<typeof Drawer> = {
 export default DrawerMeta;
 
 export { Drawer };
-export { DrawerExample };
-export { DrawerExample2 };
