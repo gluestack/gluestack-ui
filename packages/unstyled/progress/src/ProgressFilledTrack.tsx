@@ -5,12 +5,18 @@ export function ProgressFilledTrack<StyledProgressFilledTrack>(
   StyledProgressFilledTrack: React.ComponentType<StyledProgressFilledTrack>
 ) {
   return forwardRef(({ style = {}, ...props }: any, ref?: any) => {
-    const { valueWidth } = useProgress('ProgressContext');
+    const { valueWidth, valueHeight, orientation } =
+      useProgress('ProgressContext');
+
+    const filledStyle =
+      orientation === 'vertical'
+        ? { height: `${valueHeight}%`, width: '100%' }
+        : { width: `${valueWidth}%`, height: '100%' };
 
     return (
       <StyledProgressFilledTrack
         {...(props as StyledProgressFilledTrack)}
-        style={[style, { width: `${valueWidth}%`, height: '100%' }]}
+        style={[style, filledStyle]}
         ref={ref}
       />
     );

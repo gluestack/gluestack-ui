@@ -1,5 +1,11 @@
 # @gluestack-ui/radio
 
+## 0.1.33
+
+### Patch Changes
+
+- feat: added forceMount prop
+
 ## 0.1.32
 
 ### Patch Changes

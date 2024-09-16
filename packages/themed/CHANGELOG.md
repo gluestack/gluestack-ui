@@ -1,5 +1,27 @@
 # @gluestack-ui/themed
 
+## 1.1.51
+
+### Patch Changes
+
+- Updated dependencies
+  - @gluestack-ui/progress@0.1.17
+
+## 1.1.50
+
+### Patch Changes
+
+- Updated dependencies
+  - @gluestack-ui/checkbox@0.1.32
+  - @gluestack-ui/radio@0.1.33
+
+## 1.1.49
+
+### Patch Changes
+
+- Updated dependencies
+  - @gluestack-ui/accordion@1.0.7
+
 ## 1.1.48
 
 ### Patch Changes

@@ -240,6 +240,7 @@ export default () => (
   </Accordion>
 );
 ```
+
 ### Component Props
 
 This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
@@ -479,12 +480,11 @@ We have outlined the various features that ensure the Accordion component is acc
 
 - VoiceOver: When the Accordion Item is focused, the screen reader will announce the Accordion's title text and the state of the Accordion trigger (expanded or collapsed).
 
-
-## Examples
+### Examples
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
-### Customized Component
+#### Customized Component
 
 The following example demonstrates how easily you can customize the Accordion component to suit your needs.
 
@@ -627,7 +627,7 @@ Wrapper,
 
 </AppProvider>
 
-### Rounded corners
+#### Rounded corners
 
 The borderRadius prop can be used to create rounded corners for both the Accordion and AccordionItem components.
 
@@ -723,7 +723,7 @@ function App(){
   />
 </AppProvider>
 
-### Disabled item
+#### Disabled item
 
 You can disable an item by setting the isDisabled prop to true. This will prevent the user from interacting with the item and its content. You can also disable the whole accordion by setting the isDisabled prop to true on the Accordion component.
 
@@ -821,7 +821,7 @@ function App(){
   />
 </AppProvider>
 
-### Default value
+#### Default value
 
 Use the defaultValue prop to define the open item by default.
 
@@ -943,7 +943,7 @@ function App(){
   />
 </AppProvider>
 
-### Nested Components
+#### Nested Components
 
 You can nest Accordion components to create a nested accordion. This is useful when you want to group related content together. In the following example, we have created a nested accordion to group the states of USA by region.
 
@@ -1064,7 +1064,7 @@ function App(){
   />
 </AppProvider>
 
-### Controlled Accordion
+#### Controlled Accordion
 
 A component is controlled when it's managed by its parent using props.
 You can make the Accordion component controlled by passing the value prop to the Accordion and setting the onValueChange to update the value prop. In the following example, we have created a controlled accordion to display the expanded state of the accordion.
@@ -1189,13 +1189,3 @@ function App(){
     }}
   />
 </AppProvider>
-
-
-
-
-
-
-
-
-
-

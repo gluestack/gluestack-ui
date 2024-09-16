@@ -18,10 +18,15 @@ const ProgressMeta: ComponentMeta<typeof Progress> = {
       control: 'select',
       options: ['xs', 'sm', 'md', 'lg', 'xl', '2xl'],
     },
+    orientation: {
+      control: 'select',
+      options: ['horizontal', 'vertical'],
+    },
   },
   args: {
     value: 40,
     size: 'md',
+    orientation: 'horizontal',
   },
 };
 
