@@ -41,16 +41,18 @@ import {
   Icon,
   Button,
   ButtonText,
+  ButtonIcon,
   Avatar,
   AvatarFallbackText,
   AvatarImage,
+  Pressable,
 } from '../../core-components/nativewind';
 import {
   User,
   Home,
   ShoppingCart,
   Wallet,
-  LogIn,
+  LogOut,
 } from 'lucide-react-native';
 import { transformedCode } from '../../utils';
 import {
@@ -530,9 +532,9 @@ The Examples section provides visual representations of the different variants o
       code: `
         function App() {
           const [showDrawer, setShowDrawer] = React.useState(false);
-          const [categories, setCategories] = React.useState();
-          const [brands, setBrands] = React.useState();
-          const [colors, setColors] = React.useState();
+          const [categories, setCategories] = React.useState([]);
+          const [brands, setBrands] = React.useState([]);
+          const [colors, setColors] = React.useState([]);
           return (
             <>
               <Button
@@ -549,10 +551,18 @@ The Examples section provides visual representations of the different variants o
                 }}
               >
                 <DrawerBackdrop />
-                <DrawerContent className="px-4 py-2 w-[270px]">
+                <DrawerContent className="px-4 py-3 w-[270px] md:w-[300px]">
                   <DrawerHeader>
                     <Heading size="md">FILTERS</Heading>
-                    <Button variant="link" size="xs">
+                    <Button
+                      variant="link"
+                      size="xs"
+                      onPress={() => {
+                        setCategories([]);
+                        setBrands([]);
+                        setColors([]);
+                      }}
+                    >
                       <ButtonText>Clear All</ButtonText>
                     </Button>
                   </DrawerHeader>
@@ -568,52 +578,52 @@ The Examples section provides visual representations of the different variants o
                           setCategories(keys);
                         }}
                       >
-                      <VStack className="gap-3 mt-3 ml-1">
-                        <HStack className="items-center gap-1">
-                          <Checkbox value="tops" size="sm">
-                            <CheckboxIndicator>
-                              <CheckboxIcon as={CheckIcon} />
-                            </CheckboxIndicator>
-                            <CheckboxLabel>Tops</CheckboxLabel>
-                          </Checkbox>
-                          <Text className="text-typography-500" size="xs">
-                            (143,234)
-                          </Text>
-                        </HStack>
-                        <HStack className="items-center gap-1">
-                          <Checkbox value="bottoms" size="sm">
-                            <CheckboxIndicator>
-                              <CheckboxIcon as={CheckIcon} />
-                            </CheckboxIndicator>
-                            <CheckboxLabel>Bottoms</CheckboxLabel>
-                          </Checkbox>
-                          <Text className="text-typography-500" size="xs">
-                            (5,431,234)
-                          </Text>
-                        </HStack>
-                        <HStack className="items-center gap-1">
-                          <Checkbox value="shoes" size="sm">
-                            <CheckboxIndicator>
-                              <CheckboxIcon as={CheckIcon} />
-                            </CheckboxIndicator>
-                            <CheckboxLabel>Shoes</CheckboxLabel>
-                          </Checkbox>
-                          <Text className="text-typography-500" size="xs">
-                            (98,234)
-                          </Text>
-                        </HStack>
-                        <HStack className="items-center gap-1">
-                          <Checkbox value="accessories" size="sm">
-                            <CheckboxIndicator>
-                              <CheckboxIcon as={CheckIcon} />
-                            </CheckboxIndicator>
-                            <CheckboxLabel>Accessories</CheckboxLabel>
-                          </Checkbox>
-                          <Text className="text-typography-500" size="xs">
-                            (91,234)
-                          </Text>
-                        </HStack>
-                      </VStack>
+                        <VStack className="gap-3 mt-3 ml-1">
+                          <HStack className="items-center gap-1">
+                            <Checkbox value="tops" size="sm">
+                              <CheckboxIndicator>
+                                <CheckboxIcon as={CheckIcon} />
+                              </CheckboxIndicator>
+                              <CheckboxLabel>Tops</CheckboxLabel>
+                            </Checkbox>
+                            <Text className="text-typography-500" size="xs">
+                              (143,234)
+                            </Text>
+                          </HStack>
+                          <HStack className="items-center gap-1">
+                            <Checkbox value="bottoms" size="sm">
+                              <CheckboxIndicator>
+                                <CheckboxIcon as={CheckIcon} />
+                              </CheckboxIndicator>
+                              <CheckboxLabel>Bottoms</CheckboxLabel>
+                            </Checkbox>
+                            <Text className="text-typography-500" size="xs">
+                              (5,431,234)
+                            </Text>
+                          </HStack>
+                          <HStack className="items-center gap-1">
+                            <Checkbox value="shoes" size="sm">
+                              <CheckboxIndicator>
+                                <CheckboxIcon as={CheckIcon} />
+                              </CheckboxIndicator>
+                              <CheckboxLabel>Shoes</CheckboxLabel>
+                            </Checkbox>
+                            <Text className="text-typography-500" size="xs">
+                              (98,234)
+                            </Text>
+                          </HStack>
+                          <HStack className="items-center gap-1">
+                            <Checkbox value="accessories" size="sm">
+                              <CheckboxIndicator>
+                                <CheckboxIcon as={CheckIcon} />
+                              </CheckboxIndicator>
+                              <CheckboxLabel>Accessories</CheckboxLabel>
+                            </Checkbox>
+                            <Text className="text-typography-500" size="xs">
+                              (91,234)
+                            </Text>
+                          </HStack>
+                        </VStack>
                       </CheckboxGroup>
                     </VStack>
                     <VStack className="pl-2 py-3">
@@ -625,52 +635,52 @@ The Examples section provides visual representations of the different variants o
                           setBrands(keys);
                         }}
                       >
-                      <VStack className="gap-3 mt-3 ml-1">
-                        <HStack className="items-center gap-1">
-                          <Checkbox value="tops" size="sm">
-                            <CheckboxIndicator>
-                              <CheckboxIcon as={CheckIcon} />
-                            </CheckboxIndicator>
-                            <CheckboxLabel>Allen Solly</CheckboxLabel>
-                          </Checkbox>
-                          <Text className="text-typography-500" size="xs">
-                            (1,234)
-                          </Text>
-                        </HStack>
-                        <HStack className="items-center gap-1">
-                          <Checkbox value="bottoms" size="sm">
-                            <CheckboxIndicator>
-                              <CheckboxIcon as={CheckIcon} />
-                            </CheckboxIndicator>
-                            <CheckboxLabel>Adidas</CheckboxLabel>
-                          </Checkbox>
-                          <Text className="text-typography-500" size="xs">
-                            (524)
-                          </Text>
-                        </HStack>
-                        <HStack className="items-center gap-1">
-                          <Checkbox value="shoes" size="sm">
-                            <CheckboxIndicator>
-                              <CheckboxIcon as={CheckIcon} />
-                            </CheckboxIndicator>
-                            <CheckboxLabel>Nike</CheckboxLabel>
-                          </Checkbox>
-                          <Text className="text-typography-500" size="xs">
-                            (931)
-                          </Text>
-                        </HStack>
-                        <HStack className="items-center gap-1">
-                          <Checkbox value="accessories" size="sm">
-                            <CheckboxIndicator>
-                              <CheckboxIcon as={CheckIcon} />
-                            </CheckboxIndicator>
-                            <CheckboxLabel>Marks & Spencer</CheckboxLabel>
-                          </Checkbox>
-                          <Text className="text-typography-500" size="xs">
-                            (1,241)
-                          </Text>
-                        </HStack>
-                      </VStack>
+                        <VStack className="gap-3 mt-3 ml-1">
+                          <HStack className="items-center gap-1">
+                            <Checkbox value="tops" size="sm">
+                              <CheckboxIndicator>
+                                <CheckboxIcon as={CheckIcon} />
+                              </CheckboxIndicator>
+                              <CheckboxLabel>Allen Solly</CheckboxLabel>
+                            </Checkbox>
+                            <Text className="text-typography-500" size="xs">
+                              (1,234)
+                            </Text>
+                          </HStack>
+                          <HStack className="items-center gap-1">
+                            <Checkbox value="bottoms" size="sm">
+                              <CheckboxIndicator>
+                                <CheckboxIcon as={CheckIcon} />
+                              </CheckboxIndicator>
+                              <CheckboxLabel>Adidas</CheckboxLabel>
+                            </Checkbox>
+                            <Text className="text-typography-500" size="xs">
+                              (524)
+                            </Text>
+                          </HStack>
+                          <HStack className="items-center gap-1">
+                            <Checkbox value="shoes" size="sm">
+                              <CheckboxIndicator>
+                                <CheckboxIcon as={CheckIcon} />
+                              </CheckboxIndicator>
+                              <CheckboxLabel>Nike</CheckboxLabel>
+                            </Checkbox>
+                            <Text className="text-typography-500" size="xs">
+                              (931)
+                            </Text>
+                          </HStack>
+                          <HStack className="items-center gap-1">
+                            <Checkbox value="accessories" size="sm">
+                              <CheckboxIndicator>
+                                <CheckboxIcon as={CheckIcon} />
+                              </CheckboxIndicator>
+                              <CheckboxLabel>Marks & Spencer</CheckboxLabel>
+                            </Checkbox>
+                            <Text className="text-typography-500" size="xs">
+                              (1,241)
+                            </Text>
+                          </HStack>
+                        </VStack>
                       </CheckboxGroup>
                     </VStack>
                     <VStack className="pl-2 py-3">
@@ -705,76 +715,76 @@ The Examples section provides visual representations of the different variants o
                           setColors(keys);
                         }}
                       >
-                      <VStack className="gap-3 mt-3 ml-1">
-                        <HStack className="items-center gap-1">
-                          <Checkbox value="tops" size="sm">
-                            <CheckboxIndicator>
-                              <CheckboxIcon as={CheckIcon} />
-                            </CheckboxIndicator>
-                            <CheckboxLabel className="flex flex-row items-center">
-                              <Icon
-                                as={CircleIcon}
-                                className="fill-gray-200 text-gray-200 mr-1"
-                              />
-                              White
-                            </CheckboxLabel>
-                          </Checkbox>
-                          <Text className="text-typography-500" size="xs">
-                            (23,673)
-                          </Text>
-                        </HStack>
-                        <HStack className="items-center gap-1">
-                          <Checkbox value="bottoms" size="sm">
-                            <CheckboxIndicator>
-                              <CheckboxIcon as={CheckIcon} />
-                            </CheckboxIndicator>
-                            <CheckboxLabel className="flex flex-row items-center">
-                              <Icon
-                                as={CircleIcon}
-                                className="fill-black text-black mr-1"
-                              />
-                              Black
-                            </CheckboxLabel>
-                          </Checkbox>
-                          <Text className="text-typography-500" size="xs">
-                            (54,657)
-                          </Text>
-                        </HStack>
-                        <HStack className="items-center gap-1">
-                          <Checkbox value="shoes" size="sm">
-                            <CheckboxIndicator>
-                              <CheckboxIcon as={CheckIcon} />
-                            </CheckboxIndicator>
-                            <CheckboxLabel className="flex flex-row items-center">
-                              <Icon
-                                as={CircleIcon}
-                                className="fill-red-500 text-red-500 mr-1"
-                              />
-                              Red
-                            </CheckboxLabel>
-                          </Checkbox>
-                          <Text className="text-typography-500" size="xs">
-                            (45,678)
-                          </Text>
-                        </HStack>
-                        <HStack className="items-center gap-1">
-                          <Checkbox value="accessories" size="sm">
-                            <CheckboxIndicator>
-                              <CheckboxIcon as={CheckIcon} />
-                            </CheckboxIndicator>
-                            <CheckboxLabel className="flex flex-row items-center">
-                              <Icon
-                                as={CircleIcon}
-                                className="fill-amber-900 text-amber-900 mr-1"
-                              />
-                              Brown
-                            </CheckboxLabel>
-                          </Checkbox>
-                          <Text className="text-typography-500" size="xs">
-                            (13,672)
-                          </Text>
-                        </HStack>
-                      </VStack>
+                        <VStack className="gap-3 mt-3 ml-1">
+                          <HStack className="items-center gap-1">
+                            <Checkbox value="tops" size="sm">
+                              <CheckboxIndicator>
+                                <CheckboxIcon as={CheckIcon} />
+                              </CheckboxIndicator>
+                              <CheckboxLabel className="flex flex-row items-center">
+                                <Icon
+                                  as={CircleIcon}
+                                  className="fill-gray-200 text-gray-200 mr-1"
+                                />
+                                White
+                              </CheckboxLabel>
+                            </Checkbox>
+                            <Text className="text-typography-500" size="xs">
+                              (23,673)
+                            </Text>
+                          </HStack>
+                          <HStack className="items-center gap-1">
+                            <Checkbox value="bottoms" size="sm">
+                              <CheckboxIndicator>
+                                <CheckboxIcon as={CheckIcon} />
+                              </CheckboxIndicator>
+                              <CheckboxLabel className="flex flex-row items-center">
+                                <Icon
+                                  as={CircleIcon}
+                                  className="fill-black text-black mr-1"
+                                />
+                                Black
+                              </CheckboxLabel>
+                            </Checkbox>
+                            <Text className="text-typography-500" size="xs">
+                              (54,657)
+                            </Text>
+                          </HStack>
+                          <HStack className="items-center gap-1">
+                            <Checkbox value="shoes" size="sm">
+                              <CheckboxIndicator>
+                                <CheckboxIcon as={CheckIcon} />
+                              </CheckboxIndicator>
+                              <CheckboxLabel className="flex flex-row items-center">
+                                <Icon
+                                  as={CircleIcon}
+                                  className="fill-red-500 text-red-500 mr-1"
+                                />
+                                Red
+                              </CheckboxLabel>
+                            </Checkbox>
+                            <Text className="text-typography-500" size="xs">
+                              (45,678)
+                            </Text>
+                          </HStack>
+                          <HStack className="items-center gap-1">
+                            <Checkbox value="accessories" size="sm">
+                              <CheckboxIndicator>
+                                <CheckboxIcon as={CheckIcon} />
+                              </CheckboxIndicator>
+                              <CheckboxLabel className="flex flex-row items-center">
+                                <Icon
+                                  as={CircleIcon}
+                                  className="fill-amber-900 text-amber-900 mr-1"
+                                />
+                                Brown
+                              </CheckboxLabel>
+                            </Checkbox>
+                            <Text className="text-typography-500" size="xs">
+                              (13,672)
+                            </Text>
+                          </HStack>
+                        </VStack>
                       </CheckboxGroup>
                     </VStack>
                   </DrawerBody>
@@ -782,7 +792,7 @@ The Examples section provides visual representations of the different variants o
               </Drawer>
             </>
           );
-        };
+        }
       `,
       transformCode: (code) => {
         return transformedCode(code, 'function', 'App');
@@ -830,80 +840,91 @@ The Examples section provides visual representations of the different variants o
     metaData={{
       code: `
         function App() {
-          const [showDrawer, setShowDrawer] = React.useState(false);
-          return (
-            <>
-            <Button
-              onPress={() => {
-                setShowDrawer(true);
-              }}
-            >
-              <ButtonText>Show Drawer</ButtonText>
-            </Button>
-            <Drawer
-                isOpen={showDrawer}
-                onClose={() => {
-                  setShowDrawer(false);
-                }}
-              >
-                <DrawerBackdrop />
-                <DrawerContent className="w-[270px]">
-                  <DrawerHeader className="justify-center flex-col gap-2">
-                    <Avatar size="2xl">
-                      <AvatarFallbackText>User Image</AvatarFallbackText>
-                      <AvatarImage
-                        source={{
-                          uri: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
-                        }}
-                      />
-                    </Avatar>
-                    <Text size="lg">User Name</Text>
-                    <Divider />
-                  </DrawerHeader>
-                  <DrawerBody className="px-2 pt-4" contentContainerClassName="gap-6">
-                    <HStack className="gap-4">
-                      {/* User is imported from 'lucide-react-native' */}
-                      <Icon as={User} size="xl" className="text-typography-600" />
-                      <Text>My Profile</Text>
-                    </HStack>
-                    <HStack className="gap-4">
-                      {/* Home is imported from 'lucide-react-native' */}
-                      <Icon as={Home} size="xl" className="text-typography-600" />
-                      <Text>Saved Address</Text>
-                    </HStack>
-                    <HStack className="gap-4">
-                      {/* ShoppingCart is imported from 'lucide-react-native' */}
-                      <Icon
-                        as={ShoppingCart}
-                        size="xl"
-                        className="text-typography-600"
-                      />
-                      <Text>Orders</Text>
-                    </HStack>
-                    <HStack className="gap-4">
-                      {/* Wallet is imported from 'lucide-react-native' */}
-                      <Icon as={Wallet} size="xl" className="text-typography-600" />
-                      <Text>Saved Cards</Text>
-                    </HStack>
-                    <HStack className="gap-4">
-                      <Icon as={StarIcon} size="xl" className="text-typography-600" />
-                      <Text>Review App</Text>
-                    </HStack>
-                    <HStack className="gap-4">
-                      <Icon as={PhoneIcon} size="xl" className="text-typography-600" />
-                      <Text>Contact Us</Text>
-                    </HStack>
-                    <HStack className="gap-4">
-                      {/* LogIn is imported from 'lucide-react-native' */}
-                      <Icon as={LogIn} size="xl" className="text-typography-600" />
-                      <Text>Sign In</Text>
-                    </HStack>
-                  </DrawerBody>
-                </DrawerContent>
-              </Drawer>
-            </>
+            const [showDrawer, setShowDrawer] = React.useState(false);
+            return (
+              <>
+                <Button
+                  onPress={() => {
+                    setShowDrawer(true);
+                  }}
+                >
+                  <ButtonText>Show Drawer</ButtonText>
+                </Button>
+                <Drawer
+                  isOpen={showDrawer}
+                  onClose={() => {
+                    setShowDrawer(false);
+                  }}
+                >
+                  <DrawerBackdrop />
+                  <DrawerContent className="w-[270px] md:w-[300px]">
+                    <DrawerHeader className="justify-center flex-col gap-2">
+                      <Avatar size="2xl">
+                        <AvatarFallbackText>User Image</AvatarFallbackText>
+                        <AvatarImage
+                          source={{
+                            uri: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
+                          }}
+                        />
+                      </Avatar>
+                      <VStack className="justify-center items-center">
+                        <Text size="lg">User Name</Text>
+                        <Text size="sm" className="text-typography-600">
+                          abc@gmail.com
+                        </Text>
+                      </VStack>
+                    </DrawerHeader>
+                    <Divider className="my-4" />
+                    <DrawerBody contentContainerClassName="gap-2">
+                      <Pressable className="gap-3 flex-row items-center hover:bg-background-50 p-2 rounded-md">
+                        {/* User is imported from 'lucide-react-native' */}
+                        <Icon as={User} size="lg" className="text-typography-600" />
+                        <Text>My Profile</Text>
+                      </Pressable>
+                      <Pressable className="gap-3 flex-row items-center hover:bg-background-50 p-2 rounded-md">
+                        {/* Home is imported from 'lucide-react-native' */}
+                        <Icon as={Home} size="lg" className="text-typography-600" />
+                        <Text>Saved Address</Text>
+                      </Pressable>
+                      <Pressable className="gap-3 flex-row items-center hover:bg-background-50 p-2 rounded-md">
+                        {/* ShoppingCart is imported from 'lucide-react-native' */}
+                        <Icon
+                          as={ShoppingCart}
+                          size="lg"
+                          className="text-typography-600"
+                        />
+                        <Text>Orders</Text>
+                      </Pressable>
+                      <Pressable className="gap-3 flex-row items-center hover:bg-background-50 p-2 rounded-md">
+                        {/* Wallet is imported from 'lucide-react-native' */}
+                        <Icon as={Wallet} size="lg" className="text-typography-600" />
+                        <Text>Saved Cards</Text>
+                      </Pressable>
+                      <Pressable className="gap-3 flex-row items-center hover:bg-background-50 p-2 rounded-md">
+                        <Icon as={StarIcon} size="lg" className="text-typography-600" />
+                        <Text>Review App</Text>
+                      </Pressable>
+                      <Pressable className="gap-3 flex-row items-center hover:bg-background-50 p-2 rounded-md">
+                        <Icon as={PhoneIcon} size="lg" className="text-typography-600" />
+                        <Text>Contact Us</Text>
+                      </Pressable>
+                    </DrawerBody>
+                    <DrawerFooter>
+                      <Button
+                        className="w-full gap-2"
+                        variant="outline"
+                        action="secondary"
+                      >
+                        <ButtonText>Logout</ButtonText>
+                        {/* LogOut is imported from 'lucide-react-native' */}
+                        <ButtonIcon as={LogOut} />
+                      </Button>
+                    </DrawerFooter>
+                  </DrawerContent>
+                </Drawer>
+              </>
             );
-          };
+          }
         `,
       transformCode: (code) => {
         return transformedCode(code, 'function', 'App');
@@ -915,10 +936,14 @@ The Examples section provides visual representations of the different variants o
         DrawerBody,
         DrawerContent,
         DrawerHeader, 
+        DrawerFooter,
         Button,
         ButtonText,
+        ButtonIcon,
         Text,
         HStack,
+        VStack,
+        Pressable,
         Divider,
         Avatar,
         AvatarFallbackText,
@@ -927,7 +952,7 @@ The Examples section provides visual representations of the different variants o
         Home,
         ShoppingCart,
         Wallet,
-        LogIn,
+        LogOut,
         Icon,
         StarIcon,
         PhoneIcon
