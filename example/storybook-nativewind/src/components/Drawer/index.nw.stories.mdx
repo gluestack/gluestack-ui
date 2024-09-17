@@ -49,7 +49,7 @@ import {
   User,
   Home,
   ShoppingCart,
-  CreditCard,
+  Wallet,
   LogIn,
 } from 'lucide-react-native';
 import { transformedCode } from '../../utils';
@@ -567,8 +567,8 @@ The Examples section provides visual representations of the different variants o
                         onChange={(keys) => {
                           setCategories(keys);
                         }}
-                        className="flex flex-col gap-3 mt-3 ml-1"
                       >
+                      <VStack className="gap-3 mt-3 ml-1">
                         <HStack className="items-center gap-1">
                           <Checkbox value="tops" size="sm">
                             <CheckboxIndicator>
@@ -613,6 +613,7 @@ The Examples section provides visual representations of the different variants o
                             (91,234)
                           </Text>
                         </HStack>
+                      </VStack>
                       </CheckboxGroup>
                     </VStack>
                     <VStack className="pl-2 py-3">
@@ -623,8 +624,8 @@ The Examples section provides visual representations of the different variants o
                         onChange={(keys) => {
                           setBrands(keys);
                         }}
-                        className="flex flex-col gap-3 mt-3 ml-1"
                       >
+                      <VStack className="gap-3 mt-3 ml-1">
                         <HStack className="items-center gap-1">
                           <Checkbox value="tops" size="sm">
                             <CheckboxIndicator>
@@ -669,6 +670,7 @@ The Examples section provides visual representations of the different variants o
                             (1,241)
                           </Text>
                         </HStack>
+                      </VStack>
                       </CheckboxGroup>
                     </VStack>
                     <VStack className="pl-2 py-3">
@@ -702,8 +704,8 @@ The Examples section provides visual representations of the different variants o
                         onChange={(keys) => {
                           setColors(keys);
                         }}
-                        className="flex flex-col gap-3 mt-3 ml-1"
                       >
+                      <VStack className="gap-3 mt-3 ml-1">
                         <HStack className="items-center gap-1">
                           <Checkbox value="tops" size="sm">
                             <CheckboxIndicator>
@@ -772,6 +774,7 @@ The Examples section provides visual representations of the different variants o
                             (13,672)
                           </Text>
                         </HStack>
+                      </VStack>
                       </CheckboxGroup>
                     </VStack>
                   </DrawerBody>
@@ -878,8 +881,8 @@ The Examples section provides visual representations of the different variants o
                       <Text>Orders</Text>
                     </HStack>
                     <HStack className="gap-4">
-                      {/* CreditCard is imported from 'lucide-react-native' */}
-                      <Icon as={CreditCard} size="xl" className="text-typography-600" />
+                      {/* Wallet is imported from 'lucide-react-native' */}
+                      <Icon as={Wallet} size="xl" className="text-typography-600" />
                       <Text>Saved Cards</Text>
                     </HStack>
                     <HStack className="gap-4">
@@ -923,7 +926,7 @@ The Examples section provides visual representations of the different variants o
         User,
         Home,
         ShoppingCart,
-        CreditCard,
+        Wallet,
         LogIn,
         Icon,
         StarIcon,
