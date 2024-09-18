@@ -15,6 +15,7 @@ import { FocusScope } from '@react-native-aria/focus';
 import { mergeRefs } from '@gluestack-ui/utils';
 import { useDialog } from '@react-native-aria/dialog';
 
+import { usePreventScroll } from '@react-native-aria/overlays';
 const windowHeight = Dimensions.get('screen').height;
 function ActionsheetContent(
   StyledActionsheetContent: any,
@@ -26,6 +27,13 @@ function ActionsheetContent(
         children,
         _experimentalContent = false,
         focusScope = true,
+        /**
+         * @deprecated In the future this property will be removed and the
+         * default behavior will be not to prevent scroll. You can still
+         * prevent scroll by using the ActionsheetBackdrop component and
+         * its `preventScroll` property, which is set to `true` by default.
+         **/
+        preventScroll = true,
         ...props
       }: any,
       ref?: any
@@ -39,6 +47,8 @@ function ActionsheetContent(
         finalFocusRef,
         snapPoints,
       } = React.useContext(ActionsheetContext);
+
+      usePreventScroll({ isDisabled: preventScroll })
 
       const pan = React.useRef(new Animated.ValueXY()).current;
       const contentSheetHeight = React.useRef(0);
