@@ -1,10 +1,9 @@
 'use client';
 import React from 'react';
-import { Switch as RNSwitch, Platform } from 'react-native';
+import { Switch as RNSwitch } from 'react-native';
 import { createSwitch } from '@gluestack-ui/switch';
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import { withStyleContext } from '@gluestack-ui/nativewind-utils/withStyleContext';
-import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withStyleContextAndStates';
 import { cssInterop } from 'nativewind';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 
@@ -16,10 +15,7 @@ const SwitchWrapper = React.forwardRef<
 });
 
 const UISwitch = createSwitch({
-  Root:
-    Platform.OS === 'web'
-      ? withStyleContext(SwitchWrapper)
-      : withStyleContextAndStates(SwitchWrapper),
+  Root: withStyleContext(SwitchWrapper),
 });
 
 cssInterop(SwitchWrapper, { className: 'style' });
