@@ -8,11 +8,9 @@ function ActionsheetBackdrop<T>(
   AnimatePresence?: React.ComponentType<any>
 ) {
   return forwardRef(
-    ({ children, preventScroll = true, ...props }: T & { children?: any }, ref?: any) => {
+    ({ children, ...props }: T & { children?: any }, ref?: any) => {
       const { closeOnOverlayClick, handleClose, backdropVisible } =
         React.useContext(ActionsheetContext);
-
-      usePreventScroll({ isDisabled: preventScroll });
 
       return (
         <OverlayAnimatePresence

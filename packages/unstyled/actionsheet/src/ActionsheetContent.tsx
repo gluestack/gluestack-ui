@@ -27,12 +27,6 @@ function ActionsheetContent(
         children,
         _experimentalContent = false,
         focusScope = true,
-        /**
-         * @deprecated In the future this property will be removed and the
-         * default behavior will be not to prevent scroll. You can still
-         * prevent scroll by using the ActionsheetBackdrop component and
-         * its `preventScroll` property, which is set to `true` by default.
-         **/
         preventScroll = true,
         ...props
       }: any,
