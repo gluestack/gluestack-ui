@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { View, Pressable, ScrollView } from 'react-native';
+import { View, Pressable, ScrollView, Platform } from 'react-native';
 import {
   Motion,
   createMotionAnimatedComponent,
@@ -25,7 +25,7 @@ const ArrowWrapper = React.forwardRef(({ ...props }, ref) => {
 >;
 const UIPopover = createPopover({
   Root: withStyleContext(View, SCOPE),
-  Arrow: Motion.View,
+  Arrow: Platform.OS == 'web' ? Motion.View : ArrowWrapper,
   Backdrop: AnimatedPressable,
   Body: ScrollView,
   CloseButton: Pressable,
