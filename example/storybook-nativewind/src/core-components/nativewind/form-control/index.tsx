@@ -27,32 +27,46 @@ type IPrimitiveIcon = React.ComponentPropsWithoutRef<typeof Svg> & {
 const PrimitiveIcon = React.forwardRef<
   React.ElementRef<typeof Svg>,
   IPrimitiveIcon
->(({ height, width, fill, color, size, stroke, as: AsComp, ...props }, ref) => {
-  const sizeProps = useMemo(() => {
-    if (size) return { size };
-    if (height && width) return { height, width };
-    if (height) return { height };
-    if (width) return { width };
-    return {};
-  }, [size, height, width]);
+>(
+  (
+    {
+      height,
+      width,
+      fill,
+      color,
+      size,
+      stroke = 'currentColor',
+      as: AsComp,
+      ...props
+    },
+    ref
+  ) => {
+    const sizeProps = useMemo(() => {
+      if (size) return { size };
+      if (height && width) return { height, width };
+      if (height) return { height };
+      if (width) return { width };
+      return {};
+    }, [size, height, width]);
 
-  let colorProps = {};
-  if (color) {
-    colorProps = { ...colorProps, color: color };
+    let colorProps = {};
+    if (color) {
+      colorProps = { ...colorProps, color: color };
+    }
+    if (stroke) {
+      colorProps = { ...colorProps, stroke: stroke };
+    }
+    if (fill) {
+      colorProps = { ...colorProps, fill: fill };
+    }
+    if (AsComp) {
+      return <AsComp ref={ref} {...sizeProps} {...colorProps} {...props} />;
+    }
+    return (
+      <Svg ref={ref} height={height} width={width} {...colorProps} {...props} />
+    );
   }
-  if (stroke) {
-    colorProps = { ...colorProps, stroke: stroke };
-  }
-  if (fill) {
-    colorProps = { ...colorProps, fill: fill };
-  }
-  if (AsComp) {
-    return <AsComp ref={ref} {...sizeProps} {...colorProps} {...props} />;
-  }
-  return (
-    <Svg ref={ref} height={height} width={width} {...colorProps} {...props} />
-  );
-});
+);
 
 const formControlStyle = tva({
   base: 'flex flex-col',

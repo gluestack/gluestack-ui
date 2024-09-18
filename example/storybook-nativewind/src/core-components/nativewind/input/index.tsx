@@ -38,7 +38,7 @@ const PrimitiveIcon = React.forwardRef<
       color,
       classNameColor,
       size,
-      stroke,
+      stroke = 'currentColor',
       as: AsComp,
       ...props
     },
