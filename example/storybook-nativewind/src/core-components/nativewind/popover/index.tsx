@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { View, Pressable, Platform, ScrollView } from 'react-native';
+import { View, Pressable, ScrollView, Platform } from 'react-native';
 import {
   Motion,
   createMotionAnimatedComponent,
@@ -12,8 +12,6 @@ import {
   withStyleContext,
   useStyleContext,
 } from '@gluestack-ui/nativewind-utils/withStyleContext';
-import { withStates } from '@gluestack-ui/nativewind-utils/withStates';
-import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withStyleContextAndStates';
 import { cssInterop } from 'nativewind';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 
@@ -26,12 +24,8 @@ const ArrowWrapper = React.forwardRef(({ ...props }, ref) => {
     React.ComponentProps<typeof Motion.View>
 >;
 const UIPopover = createPopover({
-  Root: (Platform.OS === 'web'
-    ? withStyleContext(View, SCOPE)
-    : withStyleContextAndStates(View, SCOPE)) as ReturnType<
-    typeof withStyleContext<typeof View>
-  >,
-  Arrow: Platform.OS === 'web' ? Motion.View : withStates(ArrowWrapper),
+  Root: withStyleContext(View, SCOPE),
+  Arrow: Platform.OS == 'web' ? Motion.View : ArrowWrapper,
   Backdrop: AnimatedPressable,
   Body: ScrollView,
   CloseButton: Pressable,

@@ -9,8 +9,6 @@ import {
   useStyleContext,
 } from '@gluestack-ui/nativewind-utils/withStyleContext';
 import { cssInterop } from 'nativewind';
-import { withStates } from '@gluestack-ui/nativewind-utils/withStates';
-import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withStyleContextAndStates';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 
 const IndicatorWrapper = React.forwardRef<
@@ -154,14 +152,13 @@ const SCOPE = 'Radio';
 const UIRadio = createRadio({
   Root: (Platform.OS === 'web'
     ? withStyleContext(View, SCOPE)
-    : withStyleContextAndStates(Pressable, SCOPE)) as ReturnType<
-    typeof withStyleContextAndStates<typeof Pressable>
+    : withStyleContext(Pressable, SCOPE)) as ReturnType<
+    typeof withStyleContext<typeof Pressable>
   >,
   Group: View,
-  Icon: Platform.OS === 'web' ? IconWrapper : withStates(IconWrapper),
-  Indicator:
-    Platform.OS === 'web' ? IndicatorWrapper : withStates(IndicatorWrapper),
-  Label: Platform.OS === 'web' ? LabelWrapper : withStates(LabelWrapper),
+  Icon: IconWrapper,
+  Indicator: IndicatorWrapper,
+  Label: LabelWrapper,
 });
 
 cssInterop(UIRadio, { className: 'style' });
