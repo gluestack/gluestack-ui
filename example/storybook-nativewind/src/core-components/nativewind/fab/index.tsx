@@ -1,7 +1,6 @@
 'use client';
 import React, { useMemo } from 'react';
 import { createFab } from '@gluestack-ui/fab';
-import { Platform, Text } from 'react-native';
 import { Pressable } from 'react-native';
 import { Svg } from 'react-native-svg';
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
@@ -9,7 +8,6 @@ import {
   withStyleContext,
   useStyleContext,
 } from '@gluestack-ui/nativewind-utils/withStyleContext';
-import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withStyleContextAndStates';
 import { cssInterop } from 'nativewind';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 
@@ -73,17 +71,16 @@ const PrimitiveIcon = React.forwardRef<
 
 const SCOPE = 'FAB';
 const UIFab = createFab({
-  Root:
-    Platform.OS === 'web'
-      ? withStyleContext(Pressable, SCOPE)
-      : withStyleContextAndStates(Pressable, SCOPE),
+  //@ts-expect-error
+  Root: withStyleContext(Pressable, SCOPE),
+  //@ts-expect-error
   Label: Text,
   Icon: PrimitiveIcon,
 });
-
+//@ts-expect-error
 cssInterop(UIFab, { className: 'style' });
+//@ts-expect-error
 cssInterop(UIFab.Label, { className: 'style' });
-//@ts-ignore
 cssInterop(UIFab.Icon, {
   className: {
     target: 'style',
@@ -187,6 +184,7 @@ const Fab = React.forwardRef<React.ElementRef<typeof UIFab>, IFabProps>(
       <UIFab
         ref={ref}
         {...props}
+        //@ts-expect-error
         className={fabStyle({ size, placement, class: className })}
         context={{ size }}
       />
@@ -215,6 +213,7 @@ const FabLabel = React.forwardRef<
   ) => {
     const { size: parentSize } = useStyleContext(SCOPE);
     return (
+      //@ts-expect-error
       <UIFab.Label
         ref={ref}
         {...props}
