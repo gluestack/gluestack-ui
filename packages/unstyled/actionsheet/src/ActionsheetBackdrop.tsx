@@ -1,7 +1,6 @@
 import React, { forwardRef } from 'react';
 import { ActionsheetContext } from './context';
 import { OverlayAnimatePresence } from './OverlayAnimatePresence';
-import { usePreventScroll } from '@react-native-aria/overlays';
 
 function ActionsheetBackdrop<T>(
   StyledActionsheetBackdrop: React.ComponentType<T>,
