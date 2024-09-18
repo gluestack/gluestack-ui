@@ -92,6 +92,7 @@ export const Avatar = React.forwardRef<
     <UIAvatar
       ref={ref}
       {...props}
+      // @ts-expect-error
       className={avatarStyle({ size, class: className })}
       context={{ size }}
     />
@@ -111,6 +112,7 @@ export const AvatarBadge = React.forwardRef<
     <UIAvatar.Badge
       ref={ref}
       {...props}
+      // @ts-expect-error
       className={avatarBadgeStyle({
         parentVariants: {
           size: parentSize,
@@ -136,6 +138,7 @@ export const AvatarFallbackText = React.forwardRef<
     <UIAvatar.FallbackText
       ref={ref}
       {...props}
+      // @ts-expect-error
       className={avatarFallbackTextStyle({
         parentVariants: {
           size: parentSize,
@@ -161,7 +164,7 @@ export const AvatarImage = React.forwardRef<
       className={avatarImageStyle({
         class: className,
       })}
-      // @ts-ignore
+      // @ts-expect-error
       style={
         Platform.OS === 'web'
           ? { height: 'revert-layer', width: 'revert-layer' }
@@ -182,6 +185,7 @@ export const AvatarGroup = React.forwardRef<
     <UIAvatar.Group
       ref={ref}
       {...props}
+      // @ts-expect-error
       className={avatarGroupStyle({
         class: className,
       })}

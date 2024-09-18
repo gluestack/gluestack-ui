@@ -203,6 +203,7 @@ const Alert = React.forwardRef<React.ElementRef<typeof UIAlert>, IAlertProps>(
   ({ className, variant = 'solid', action = 'muted', ...props }, ref) => {
     return (
       <UIAlert
+        // @ts-expect-error
         className={alertStyle({ action, variant, class: className })}
         context={{ variant, action }}
         ref={ref}
@@ -237,6 +238,7 @@ const AlertText = React.forwardRef<
     const { action: parentAction } = useStyleContext(SCOPE);
     return (
       <UIAlert.Text
+        // @ts-expect-error
         className={alertTextStyle({
           isTruncated,
           bold,

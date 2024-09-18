@@ -6,7 +6,7 @@ import {
   withStyleContext,
   useStyleContext,
 } from '@gluestack-ui/nativewind-utils/withStyleContext';
-import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withStyleContextAndStates';
+
 import { cssInterop } from 'nativewind';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 import {
@@ -14,17 +14,14 @@ import {
   AnimatePresence,
   createMotionAnimatedComponent,
 } from '@legendapp/motion';
-import { View, Pressable, ScrollView, Platform } from 'react-native';
+import { View, Pressable, ScrollView } from 'react-native';
 
 const AnimatedPressable = createMotionAnimatedComponent(Pressable);
 
 const SCOPE = 'ALERT_DIALOG';
 
 const UIAccessibleAlertDialog = createAlertDialog({
-  Root:
-    Platform.OS === 'web'
-      ? withStyleContext(View, SCOPE)
-      : withStyleContextAndStates(View, SCOPE),
+  Root: withStyleContext(View, SCOPE),
   Body: ScrollView,
   Content: Motion.View,
   CloseButton: Pressable,
@@ -133,6 +130,7 @@ const AlertDialog = React.forwardRef<
     <UIAccessibleAlertDialog
       ref={ref}
       {...props}
+      // @ts-expect-error
       className={alertDialogStyle({ class: className })}
       context={{ size }}
       pointerEvents="box-none"
@@ -172,6 +170,7 @@ const AlertDialogContent = React.forwardRef<
         },
       }}
       {...props}
+      // @ts-expect-error
       className={alertDialogContentStyle({
         parentVariants: {
           size: parentSize,
@@ -191,6 +190,7 @@ const AlertDialogCloseButton = React.forwardRef<
     <UIAccessibleAlertDialog.CloseButton
       ref={ref}
       {...props}
+      // @ts-expect-error
       className={alertDialogCloseButtonStyle({
         class: className,
       })}
@@ -206,6 +206,7 @@ const AlertDialogHeader = React.forwardRef<
     <UIAccessibleAlertDialog.Header
       ref={ref}
       {...props}
+      // @ts-expect-error
       className={alertDialogHeaderStyle({
         class: className,
       })}
@@ -221,6 +222,7 @@ const AlertDialogFooter = React.forwardRef<
     <UIAccessibleAlertDialog.Footer
       ref={ref}
       {...props}
+      // @ts-expect-error
       className={alertDialogFooterStyle({
         class: className,
       })}
@@ -236,6 +238,7 @@ const AlertDialogBody = React.forwardRef<
     <UIAccessibleAlertDialog.Body
       ref={ref}
       {...props}
+      // @ts-expect-error
       className={alertDialogBodyStyle({
         class: className,
       })}
@@ -269,6 +272,7 @@ const AlertDialogBackdrop = React.forwardRef<
         },
       }}
       {...props}
+      // @ts-expect-error
       className={alertDialogBackdropStyle({
         class: className,
       })}
