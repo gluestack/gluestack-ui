@@ -32,6 +32,11 @@ export interface InterfaceActionsheetProps {
   children?: any;
   animationPreset?: 'fade' | 'slide' | 'none';
   snapPoints?: Array<number>;
+  /**
+   * if true, prevent scroll when Actionsheet is open
+   * @default true
+   */
+  preventScroll?: boolean;
 }
 
 export interface InterfaceActionsheetItemProps extends PressableProps {
