@@ -27,7 +27,6 @@ function ActionsheetContent(
         children,
         _experimentalContent = false,
         focusScope = true,
-        preventScroll = true,
         ...props
       }: any,
       ref?: any
@@ -40,6 +39,7 @@ function ActionsheetContent(
         handleCloseBackdrop,
         finalFocusRef,
         snapPoints,
+        preventScroll,
       } = React.useContext(ActionsheetContext);
 
       usePreventScroll({ isDisabled: preventScroll });
