@@ -24,6 +24,7 @@ export function Actionsheet<T>(StyledActionsheet: React.ComponentType<T>) {
         snapPoints,
         // @ts-ignore
         _experimentalOverlay = false,
+        preventScroll = false,
         ...props
       }: T & IActionsheetProps,
       ref?: any
@@ -64,6 +65,7 @@ export function Actionsheet<T>(StyledActionsheet: React.ComponentType<T>) {
           initialFocusRef,
           finalFocusRef,
           snapPoints,
+          preventScroll,
         };
       }, [
         handleClose,
@@ -75,6 +77,7 @@ export function Actionsheet<T>(StyledActionsheet: React.ComponentType<T>) {
         initialFocusRef,
         finalFocusRef,
         snapPoints,
+        preventScroll,
       ]);
 
       return (
