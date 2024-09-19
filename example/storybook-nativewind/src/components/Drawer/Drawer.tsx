@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, ButtonText } from '@/components/ui/button';
 import {
   Drawer,
-  DrawerBackdrop,
+  // DrawerBackdrop,
   DrawerBody,
   DrawerContent,
   DrawerFooter,
@@ -10,27 +10,23 @@ import {
 } from '@/components/ui/drawer';
 import { Heading } from '@/components/ui/heading';
 import { Text } from '@/components/ui/text';
+import { VStack } from '@/components/ui/vstack';
+import { HStack } from '@/components/ui/hstack';
 
 const DrawerBasic = ({ ...props }: any) => {
   const [showDrawer, setShowDrawer] = React.useState(false);
 
   return (
-    <>
-      <Button
-        onPress={() => {
-          setShowDrawer(true);
-        }}
-      >
-        <ButtonText>Show Drawer</ButtonText>
-      </Button>
+    <HStack className="h-full w-full bg-red-200 relative">
       <Drawer
         isOpen={showDrawer}
         onClose={() => {
           setShowDrawer(false);
         }}
         {...props}
+        _experimentalOverlay={true}
       >
-        <DrawerBackdrop />
+        {/* <DrawerBackdrop /> */}
         <DrawerContent>
           <DrawerHeader>
             <Heading size="3xl">Heading</Heading>
@@ -52,7 +48,34 @@ const DrawerBasic = ({ ...props }: any) => {
           </DrawerFooter>
         </DrawerContent>
       </Drawer>
-    </>
+      <VStack className="relative p-4">
+        <Text>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
+          auctor, nunc id aliquam tincidunt, nisl nunc tincidunt urna, nec
+          tincidunt nunc nunc vitae nunc. Sed euismod, nunc id aliquam
+          tincidunt, nisl nunc tincidunt urna, nec tincidunt nunc nunc vitae
+          nunc. Sed euismod, nunc id aliquam tincidunt, nisl nunc tincidunt
+          urna, nec tincidunt nunc nunc vitae nunc. Sed euismod, nunc id aliquam
+          tincidunt, nisl nunc tincidunt urna.
+        </Text>
+        <Button
+          onPress={() => {
+            setShowDrawer(!showDrawer);
+          }}
+        >
+          <ButtonText>Show Drawer</ButtonText>
+        </Button>
+        <Text>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
+          auctor, nunc id aliquam tincidunt, nisl nunc tincidunt urna, nec
+          tincidunt nunc nunc vitae nunc. Sed euismod, nunc id aliquam
+          tincidunt, nisl nunc tincidunt urna, nec tincidunt nunc nunc vitae
+          nunc. Sed euismod, nunc id aliquam tincidunt, nisl nunc tincidunt
+          urna, nec tincidunt nunc nunc vitae nunc. Sed euismod, nunc id aliquam
+          tincidunt, nisl nunc tincidunt urna.
+        </Text>
+      </VStack>
+    </HStack>
   );
 };
 

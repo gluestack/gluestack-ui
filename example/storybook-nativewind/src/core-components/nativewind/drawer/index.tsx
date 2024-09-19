@@ -59,7 +59,7 @@ cssInterop(UIDrawer.Body, {
 cssInterop(UIDrawer.Footer, { className: 'style' });
 
 const drawerStyle = tva({
-  base: 'w-full h-full web:pointer-events-none relative',
+  base: 'w-full h-full web:pointer-events-none relative bg-green-200',
   variants: {
     size: {
       sm: '',
@@ -73,6 +73,11 @@ const drawerStyle = tva({
       top: 'justify-start',
       bottom: 'justify-end',
     },
+    _experimentalOverlay: {
+      true: 'max-w-fit',
+      // true: "",
+      false: '',
+    },
   },
 });
 
@@ -81,19 +86,19 @@ const drawerBackdropStyle = tva({
 });
 
 const drawerContentStyle = tva({
-  base: 'bg-background-0 overflow-scroll border border-outline-100 p-6 absolute',
+  base: 'bg-background-0 overflow-scroll border border-outline-100 p-6',
   parentVariants: {
     size: {
-      sm: 'w-1/4',
-      md: 'w-1/2',
-      lg: 'w-3/4',
-      full: 'w-full',
+      sm: 'w-[25vw]',
+      md: 'w-[50vw]',
+      lg: 'w-[75vw]',
+      full: 'w-[100vw]',
     },
     anchor: {
-      left: 'h-full',
-      right: 'h-full',
-      top: 'w-full',
-      bottom: 'w-full',
+      left: 'h-[100vh]',
+      right: 'h-[100vh]',
+      top: 'w-[100vw]',
+      bottom: 'w-[100vw]',
     },
   },
   parentCompoundVariants: [
@@ -182,17 +187,45 @@ type IDrawerCloseButtonProps = React.ComponentProps<
 const Drawer = React.forwardRef<
   React.ElementRef<typeof UIDrawer>,
   IDrawerProps
->(({ className, size = 'sm', anchor = 'left', ...props }, ref) => {
-  return (
-    <UIDrawer
-      ref={ref}
-      {...props}
-      pointerEvents="box-none"
-      className={drawerStyle({ size, anchor, class: className })}
-      context={{ size, anchor }}
-    />
-  );
-});
+>(
+  (
+    {
+      className,
+      size = 'sm',
+      anchor = 'left',
+      _experimentalOverlay = false,
+      ...props
+    },
+    ref
+  ) => {
+    // const drawerWidth = screenWidth * 0.25;
+    return (
+      <UIDrawer
+        ref={ref}
+        {...props}
+        //@ts-ignore
+        // initial={-drawerWidth}
+        // animate={0}
+        // exit={-drawerWidth}
+        // transition={{
+        //   type: "timing",
+        //   duration: 300,
+        // }}
+        pointerEvents="box-none"
+        className={drawerStyle({
+          size,
+          anchor,
+          _experimentalOverlay,
+          // class: `${className} left-0 top-0`,
+          class: className,
+        })}
+        context={{ size, anchor }}
+        //@ts-ignore
+        _experimentalOverlay={_experimentalOverlay}
+      />
+    );
+  }
+);
 
 const DrawerBackdrop = React.forwardRef<
   React.ElementRef<typeof UIDrawer.Backdrop>,
