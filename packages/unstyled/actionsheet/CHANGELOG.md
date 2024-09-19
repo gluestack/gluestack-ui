@@ -1,5 +1,11 @@
 # @gluestack-ui/actionsheet
 
+## 0.2.45
+
+### Patch Changes
+
+- feat: added `preventScroll` prop to `Actionsheet`.
+
 ## 0.2.44
 
 ### Patch Changes
