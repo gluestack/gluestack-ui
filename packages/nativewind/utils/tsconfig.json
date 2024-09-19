@@ -13,8 +13,7 @@
     "cssInterop",
     "flush",
     "IsWeb",
-    "useBreakpointValue",
-    "tailwind-plugin"
+    "useBreakpointValue"
   ],
   "exclude": ["node_modules", "example"],
   "path": {},

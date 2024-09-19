@@ -69,7 +69,7 @@ export const UIIcon = createIcon({
 });
 
 const iconStyle = tva({
-  base: 'text-typography-950 fill-none',
+  base: 'text-typography-950 fill-none pointer-events-none',
   variants: {
     size: {
       '2xs': 'h-3 w-3',
@@ -82,7 +82,7 @@ const iconStyle = tva({
   },
 });
 
-// @ts-ignore
+// @ts-expect-error
 cssInterop(UIIcon, {
   className: {
     target: 'style',

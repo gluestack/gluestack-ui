@@ -27,6 +27,7 @@ function ActionsheetContent(
         children,
         _experimentalContent = false,
         focusScope = true,
+        preventScroll = true,
         ...props
       }: any,
       ref?: any
@@ -41,7 +42,7 @@ function ActionsheetContent(
         snapPoints,
       } = React.useContext(ActionsheetContext);
 
-      usePreventScroll();
+      usePreventScroll({ isDisabled: preventScroll });
 
       const pan = React.useRef(new Animated.ValueXY()).current;
       const contentSheetHeight = React.useRef(0);
