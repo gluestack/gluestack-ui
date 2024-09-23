@@ -42,7 +42,7 @@ export function TooltipContent<StyledTooltipContentProps>(
     const mergedRef = mergeRefs([ref, overlayRef]);
 
     const initialAnimatedStyles = {
-      opacity: 1,
+      opacity: 0,
       scale: 0.9,
       y:
         calculatedPlacement === 'top'
