@@ -1,7 +1,6 @@
 import React from 'react';
 import {
   ChevronDownIcon,
-  Icon,
   Select,
   SelectTrigger,
   SelectInput,
@@ -19,9 +18,7 @@ const SelectDemo = () => {
     <Select>
       <SelectTrigger>
         <SelectInput placeholder="Select option" />
-        <SelectIcon className="mr-3">
-          <Icon as={ChevronDownIcon} />
-        </SelectIcon>
+        <SelectIcon as={ChevronDownIcon} className="mr-3" />
       </SelectTrigger>
       <SelectPortal>
         <SelectBackdrop />

@@ -1,3 +1,5 @@
+import React from 'react';
+import { OverlayProvider } from '@gluestack-ui/overlay';
 import {
   Heading,
   ModalBackdrop,
@@ -13,12 +15,11 @@ import {
   Text,
   ModalFooter,
 } from '../../../core-components/nativewind';
-import React, { useState } from 'react';
-import { OverlayProvider } from '@gluestack-ui/overlay';
 
 const ModalDemo = () => {
-  const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = React.useState(false);
   const ref = React.useRef(null);
+
   return (
     <OverlayProvider>
       <Button onPress={() => setShowModal(true)} ref={ref}>

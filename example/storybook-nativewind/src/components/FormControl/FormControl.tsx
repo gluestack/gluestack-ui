@@ -9,36 +9,56 @@ import {
   FormControlErrorIcon,
   FormControlErrorText,
 } from '@/components/ui/form-control';
-import { AlertCircleIcon } from 'lucide-react-native';
+import { AlertCircleIcon } from '@/components/ui/icon';
 import { Input, InputField } from '@/components/ui/input';
+import { Button, ButtonText } from '@/components/ui/button';
+import { VStack } from '@/components/ui/vstack';
 
 const FormControlBasic = ({ ...props }: any) => {
+  const [isInvalid, setIsInvalid] = React.useState(false);
+  const [inputValue, setInputValue] = React.useState('12345');
+
+  const handleSubmit = () => {
+    if (inputValue.length < 6) {
+      setIsInvalid(true);
+    } else {
+      setIsInvalid(false);
+    }
+  };
+
   return (
-    <FormControl {...props}>
-      <FormControlLabel>
-        <FormControlLabelText>Password</FormControlLabelText>
-      </FormControlLabel>
-      <Input>
-        <InputField
-          type="password"
-          defaultValue="12345"
-          placeholder="password"
-        />
-      </Input>
+    <VStack className="w-full max-w-[300px] rounded-md border border-background-200 p-4">
+      <FormControl isInvalid={isInvalid} {...props}>
+        <FormControlLabel>
+          <FormControlLabelText>Password</FormControlLabelText>
+        </FormControlLabel>
+        <Input className="my-1" size={props.size}>
+          <InputField
+            type="password"
+            placeholder="password"
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
+          />
+        </Input>
 
-      <FormControlHelper>
-        <FormControlHelperText>
-          Must be atleast 6 characters.
-        </FormControlHelperText>
-      </FormControlHelper>
+        <FormControlHelper>
+          <FormControlHelperText>
+            Must be atleast 6 characters.
+          </FormControlHelperText>
+        </FormControlHelper>
 
-      <FormControlError>
-        <FormControlErrorIcon as={AlertCircleIcon} />
-        <FormControlErrorText>
-          Atleast 6 characters are required.
-        </FormControlErrorText>
-      </FormControlError>
-    </FormControl>
+        <FormControlError>
+          <FormControlErrorIcon as={AlertCircleIcon} />
+          <FormControlErrorText>
+            Atleast 6 characters are required.
+          </FormControlErrorText>
+        </FormControlError>
+      </FormControl>
+
+      <Button className="w-fit self-end mt-4" size="sm" onPress={handleSubmit}>
+        <ButtonText>Submit</ButtonText>
+      </Button>
+    </VStack>
   );
 };
 

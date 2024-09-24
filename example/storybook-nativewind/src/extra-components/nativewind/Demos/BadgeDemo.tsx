@@ -3,11 +3,12 @@ import {
   Badge,
   BadgeText,
   BadgeIcon,
-} from '../../../core-components/nativewind/badge';
-import { GlobeIcon } from '../../../core-components/nativewind/icon';
+  GlobeIcon,
+} from '../../../core-components/nativewind';
+
 const BadgeDemo = () => {
   return (
-    <Badge action="muted">
+    <Badge>
       <BadgeText>Verified</BadgeText>
       <BadgeIcon as={GlobeIcon} className="ml-2" />
     </Badge>

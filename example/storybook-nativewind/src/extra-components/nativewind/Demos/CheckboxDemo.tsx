@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   CheckIcon,
   Checkbox,
@@ -5,11 +6,10 @@ import {
   CheckboxIndicator,
   CheckboxLabel,
 } from '../../../core-components/nativewind';
-import React from 'react';
 
 export const CheckboxDemo = () => {
   return (
-    <Checkbox>
+    <Checkbox value={''}>
       <CheckboxIndicator>
         <CheckboxIcon as={CheckIcon} />
       </CheckboxIndicator>

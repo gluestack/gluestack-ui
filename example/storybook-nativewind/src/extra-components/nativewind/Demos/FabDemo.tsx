@@ -1,10 +1,10 @@
+import React from 'react';
 import {
   Fab,
   FabIcon,
   Box,
   MenuIcon,
 } from '../../../core-components/nativewind';
-import React from 'react';
 
 const FabDemo = () => {
   return (

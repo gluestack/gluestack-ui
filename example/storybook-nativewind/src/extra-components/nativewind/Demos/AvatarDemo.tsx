@@ -1,11 +1,12 @@
+import React from 'react';
 import {
   Avatar,
   AvatarBadge,
   AvatarFallbackText,
   AvatarImage,
 } from '../../../core-components/nativewind/avatar';
-import React from 'react';
-const Avatardemo = () => {
+
+const AvatarDemo = () => {
   return (
     <Avatar>
       <AvatarFallbackText>John Doe</AvatarFallbackText>
@@ -19,4 +20,4 @@ const Avatardemo = () => {
   );
 };
 
-export default Avatardemo;
+export default AvatarDemo;

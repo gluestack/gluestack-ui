@@ -3,9 +3,10 @@ import {
   Progress,
   ProgressFilledTrack,
 } from '../../../core-components/nativewind';
+
 const ProgressDemo = () => {
   return (
-    <Progress value={40} className="w-[200px]">
+    <Progress value={40} className="w-[220px]">
       <ProgressFilledTrack />
     </Progress>
   );
