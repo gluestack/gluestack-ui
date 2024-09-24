@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   CircleIcon,
   Radio,
@@ -10,17 +10,18 @@ import {
 } from '../../../core-components/nativewind';
 
 const RadioDemo = () => {
-  const [values, setValues] = useState('Monday');
+  const [values, setValues] = React.useState('optionA');
+
   return (
     <RadioGroup value={values} onChange={setValues}>
       <VStack space="md">
-        <Radio value="Monday">
+        <Radio value="optionA">
           <RadioLabel>Option A</RadioLabel>
           <RadioIndicator>
             <RadioIcon as={CircleIcon} />
           </RadioIndicator>
         </Radio>
-        <Radio value="Tuesday">
+        <Radio value="optionB">
           <RadioLabel>Option B</RadioLabel>
           <RadioIndicator>
             <RadioIcon as={CircleIcon} />

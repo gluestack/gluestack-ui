@@ -172,7 +172,7 @@ type IBadgeProps = React.ComponentPropsWithoutRef<typeof ContextView> &
   VariantProps<typeof badgeStyle>;
 const Badge = ({
   children,
-  action = 'info',
+  action = 'muted',
   variant = 'solid',
   size = 'md',
   className,

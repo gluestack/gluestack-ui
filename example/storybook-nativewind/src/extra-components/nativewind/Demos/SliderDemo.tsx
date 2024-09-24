@@ -1,20 +1,14 @@
+import React from 'react';
 import {
   Slider,
   SliderFilledTrack,
   SliderThumb,
   SliderTrack,
 } from '../../../core-components/nativewind';
-import React from 'react';
 
 export const SliderDemo = () => {
   return (
-    <Slider
-      defaultValue={30}
-      size="md"
-      orientation="horizontal"
-      isDisabled={false}
-      isReversed={false}
-    >
+    <Slider defaultValue={30} className="w-[220px]">
       <SliderTrack>
         <SliderFilledTrack />
       </SliderTrack>

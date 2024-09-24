@@ -1,5 +1,5 @@
-import { Input, InputField } from '../../../core-components/nativewind';
 import React from 'react';
+import { Input, InputField } from '../../../core-components/nativewind';
 
 const InputDemo = () => {
   return (
