@@ -10,10 +10,10 @@ const FormControlMeta: ComponentMeta<typeof FormControl> = {
     componentDescription: `By using FormControl, developers can provide important context to form elements. This context can include whether the element is invalid, disabled, or required.`,
   },
   argTypes: {
-    // isInvalid: {
-    //   control: 'boolean',
-    //   options: [true, false],
-    // },
+    isInvalid: {
+      control: 'boolean',
+      options: [true, false],
+    },
     size: {
       control: 'select',
       options: ['sm', 'md', 'lg', 'xl'],
@@ -28,7 +28,7 @@ const FormControlMeta: ComponentMeta<typeof FormControl> = {
     },
   },
   args: {
-    // isInvalid: false,
+    isInvalid: false,
     isRequired: false,
     isDisabled: false,
     size: 'md',

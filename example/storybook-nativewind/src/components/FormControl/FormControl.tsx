@@ -14,8 +14,8 @@ import { Input, InputField } from '@/components/ui/input';
 import { Button, ButtonText } from '@/components/ui/button';
 import { VStack } from '@/components/ui/vstack';
 
-const FormControlBasic = ({ ...props }: any) => {
-  const [isInvalid, setIsInvalid] = React.useState(false);
+const FormControlBasic = ({ isInvalid: propsIsInvalid, ...props }: any) => {
+  const [isInvalid, setIsInvalid] = React.useState(propsIsInvalid);
   const [inputValue, setInputValue] = React.useState('12345');
 
   const handleSubmit = () => {
@@ -25,6 +25,10 @@ const FormControlBasic = ({ ...props }: any) => {
       setIsInvalid(false);
     }
   };
+
+  React.useEffect(() => {
+    setIsInvalid(propsIsInvalid);
+  }, [propsIsInvalid]);
 
   return (
     <VStack className="w-full max-w-[300px] rounded-md border border-background-200 p-4">
