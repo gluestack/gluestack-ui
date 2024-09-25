@@ -16,7 +16,7 @@ npx install @gluestack-ui/nativewind-utils
 
 ```jsx
 // import the tva
-import { tva } from '@gluestack-ui/nativewind-utils';
+import { tva } from '@gluestack-ui/nativewind-utils/tva';
 
 // Understanding the API
 const buttonStyle = tva({
