@@ -1,8 +1,6 @@
 # `@gluestack-ui/nativewind-utils`
 
-```json
 A utility function package for @gluestack-ui/nativewind
-```
 
 ## Installation
 
