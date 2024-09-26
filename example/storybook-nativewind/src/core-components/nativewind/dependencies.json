@@ -20,7 +20,8 @@
   "actionsheet": {
     "dependencies": {
       "@legendapp/motion": "latest",
-      "@gluestack-ui/actionsheet": "latest"
+      "@gluestack-ui/actionsheet": "latest",
+      "@expo/html-elements": "0.4.2"
     }
   },
   "alert": {
