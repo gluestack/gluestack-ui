@@ -1,5 +1,7 @@
 # `@gluestack-ui/nativewind-utils`
 
+A utility function package for @gluestack-ui/nativewind
+
 ## Installation
 
 To install the component, run the following command in your terminal. This will add the component to your project's dependencies and allow you to use it in your project.
