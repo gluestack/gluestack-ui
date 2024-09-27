@@ -137,7 +137,7 @@ export const Icon = React.forwardRef<
 type ParameterTypes = Omit<Parameters<typeof createIcon>[0], 'Root'>;
 
 const createIconUI = ({ ...props }: ParameterTypes) => {
-  const UIIcon = createIcon({ Root: Svg, ...props });
+  const NewUIIcon = createIcon({ Root: Svg, ...props });
 
   return React.forwardRef<
     React.ElementRef<typeof UIIcon>,
@@ -146,16 +146,17 @@ const createIconUI = ({ ...props }: ParameterTypes) => {
         height?: number | string;
         width?: number | string;
       }
-  >(({ className, size, ...props }, ref) => {
+  >(({ className, size, ...inComingprops }, ref) => {
     return (
-      <UIIcon
+      <NewUIIcon
         ref={ref}
-        {...props}
+        {...inComingprops}
         className={iconStyle({ size, class: className })}
       />
     );
   });
 };
+
 export { createIconUI as createIcon };
 
 // All Icons

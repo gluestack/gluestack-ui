@@ -25,7 +25,7 @@ const ArrowWrapper = React.forwardRef(({ ...props }, ref) => {
 >;
 const UIPopover = createPopover({
   Root: withStyleContext(View, SCOPE),
-  Arrow: Platform.OS == 'web' ? Motion.View : ArrowWrapper,
+  Arrow: Platform.OS === 'web' ? Motion.View : ArrowWrapper,
   Backdrop: AnimatedPressable,
   Body: ScrollView,
   CloseButton: Pressable,

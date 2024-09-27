@@ -16,6 +16,7 @@
       "@gluestack-ui/form-control": [
         "../../packages/unstyled/form-control/src"
       ],
+      "@/components/ui/utils/*": ["src/core-components/hooks/*"],
       "@gluestack-ui/modal": ["../../packages/unstyled/modal/src"],
       "@gluestack-ui/radio": ["../../packages/unstyled/radio/src"],
       "@gluestack-ui/accordion": ["../../packages/unstyled/accordion/src"],

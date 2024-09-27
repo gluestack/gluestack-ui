@@ -16,7 +16,7 @@ const resolveScreenWidth: any = {
 };
 
 Object.entries(screenSize).forEach(([key, value]) => {
-  resolveScreenWidth[key] = parseInt(value.replace('px', ''));
+  resolveScreenWidth[key] = parseInt(value.replace('px', ''), 10);
 });
 
 export const getBreakPointValue = (values: any, width: any) => {

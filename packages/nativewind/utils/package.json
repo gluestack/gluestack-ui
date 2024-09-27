@@ -69,7 +69,6 @@
     "withStates",
     "withStyleContext",
     "withStyleContextAndStates",
-    "cssInterop",
     "flush",
     "IsWeb",
     "tailwind-plugin"
