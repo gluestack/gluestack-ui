@@ -64,4 +64,4 @@ We welcome contributions to the `gluestack-ui`. If you have an idea for a new co
 
 ## License
 
-Licensed under the MIT License, Copyright © 2023 GeekyAnts. See [LICENSE](https://github.com/gluestack/gluestack-ui/blob/main/LICENSE) for more information.
+Licensed under the MIT License, Copyright © 2024 GeekyAnts. See [LICENSE](https://github.com/gluestack/gluestack-ui/blob/main/LICENSE) for more information.
