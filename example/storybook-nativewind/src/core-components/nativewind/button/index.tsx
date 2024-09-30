@@ -8,16 +8,8 @@ import {
   withStyleContext,
   useStyleContext,
 } from '@gluestack-ui/nativewind-utils/withStyleContext';
-import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withStyleContextAndStates';
 import { cssInterop } from 'nativewind';
-import { withStates } from '@gluestack-ui/nativewind-utils/withStates';
-import {
-  ActivityIndicator,
-  Pressable,
-  Text,
-  View,
-  Platform,
-} from 'react-native';
+import { ActivityIndicator, Pressable, Text, View } from 'react-native';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 
 const SCOPE = 'BUTTON';
@@ -86,17 +78,14 @@ const PrimitiveIcon = React.forwardRef<
   }
 );
 
-const Root =
-  Platform.OS === 'web'
-    ? withStyleContext(ButtonWrapper, SCOPE)
-    : withStyleContextAndStates(ButtonWrapper, SCOPE);
+const Root = withStyleContext(ButtonWrapper, SCOPE);
 
 const UIButton = createButton({
   Root: Root,
   Text,
   Group: View,
   Spinner: ActivityIndicator,
-  Icon: withStates(PrimitiveIcon),
+  Icon: PrimitiveIcon,
 });
 
 cssInterop(Root, { className: 'style' });

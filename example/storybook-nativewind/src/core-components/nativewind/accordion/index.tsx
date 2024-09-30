@@ -9,7 +9,6 @@ import {
   withStyleContext,
   useStyleContext,
 } from '@gluestack-ui/nativewind-utils/withStyleContext';
-import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withStyleContextAndStates';
 import { H3 } from '@expo/html-elements';
 import { cssInterop } from 'nativewind';
 
@@ -30,6 +29,7 @@ const accordionStyle = tva({
     },
   },
 });
+
 const accordionItemStyle = tva({
   parentVariants: {
     variant: {
@@ -139,10 +139,7 @@ const PrimitiveIcon = React.forwardRef<
   }
 );
 
-const Root =
-  Platform.OS === 'web'
-    ? withStyleContext(View, SCOPE)
-    : withStyleContextAndStates(View, SCOPE);
+const Root = withStyleContext(View, SCOPE);
 
 const Header = (
   Platform.OS === 'web' ? H3 : View

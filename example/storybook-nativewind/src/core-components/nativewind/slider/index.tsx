@@ -8,9 +8,7 @@ import {
   withStyleContext,
   useStyleContext,
 } from '@gluestack-ui/nativewind-utils/withStyleContext';
-import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withStyleContextAndStates';
 import { cssInterop } from 'nativewind';
-import { withStates } from '@gluestack-ui/nativewind-utils/withStates';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 
 const ThumbWrapper = React.forwardRef<
@@ -25,13 +23,10 @@ const FilledTrackWrapper = React.forwardRef<
 
 const SCOPE = 'SLIDER';
 export const UISlider = createSlider({
-  Root:
-    Platform.OS === 'web'
-      ? withStyleContext(View, SCOPE)
-      : withStyleContextAndStates(View, SCOPE),
-  Thumb: Platform.OS === 'web' ? ThumbWrapper : withStates(View),
+  Root: withStyleContext(View, SCOPE),
+  Thumb: Platform.OS === 'web' ? ThumbWrapper : View,
   Track: Pressable,
-  FilledTrack: Platform.OS === 'web' ? FilledTrackWrapper : withStates(View),
+  FilledTrack: Platform.OS === 'web' ? FilledTrackWrapper : View,
   ThumbInteraction: View,
 });
 

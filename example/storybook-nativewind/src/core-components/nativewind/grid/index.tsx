@@ -13,8 +13,8 @@ import { cssInterop } from 'nativewind';
 import {
   useBreakpointValue,
   getBreakPointValue,
-} from '@gluestack-ui/nativewind-utils/useBreakpointValue';
-const { width } = Dimensions.get('window');
+} from '@/components/ui/utils/use-break-point-value';
+const { width: DEVICE_WIDTH } = Dimensions.get('window');
 
 const GridContext = createContext<any>({});
 
@@ -137,7 +137,7 @@ const Grid = forwardRef<React.ElementRef<typeof View>, IGridProps>(
 
         const colSpan2 = getBreakPointValue(
           generateResponsiveColSpans({ gridItemClassName }),
-          width
+          DEVICE_WIDTH
         );
         const colSpan = colSpan2 ? colSpan2 : 1;
 

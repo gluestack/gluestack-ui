@@ -2,15 +2,13 @@
 import React, { useMemo } from 'react';
 import { createInput } from '@gluestack-ui/input';
 import { Svg } from 'react-native-svg';
-import { View, Pressable, TextInput, Platform } from 'react-native';
+import { View, Pressable, TextInput } from 'react-native';
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import {
   withStyleContext,
   useStyleContext,
 } from '@gluestack-ui/nativewind-utils/withStyleContext';
-import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withStyleContextAndStates';
 import { cssInterop } from 'nativewind';
-import { withStates } from '@gluestack-ui/nativewind-utils/withStates';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 const SCOPE = 'INPUT';
 
@@ -81,13 +79,10 @@ const InputWrapper = React.forwardRef<
 
 const UIInput = createInput({
   // @ts-ignore
-  Root:
-    Platform.OS === 'web'
-      ? withStyleContext(InputWrapper, SCOPE)
-      : withStyleContextAndStates(InputWrapper, SCOPE),
+  Root: withStyleContext(InputWrapper, SCOPE),
   Icon: PrimitiveIcon,
   Slot: Pressable,
-  Input: Platform.OS === 'web' ? TextInput : withStates(TextInput),
+  Input: TextInput,
 });
 
 const inputStyle = tva({

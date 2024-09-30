@@ -1,7 +1,7 @@
 'use client';
 import React, { useMemo } from 'react';
 import { createCheckbox } from '@gluestack-ui/checkbox';
-import { View, Pressable, Text } from 'react-native';
+import { View, Pressable, Text, Platform } from 'react-native';
 import type { TextProps, ViewProps } from 'react-native';
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import { Svg } from 'react-native-svg';
@@ -9,11 +9,8 @@ import {
   withStyleContext,
   useStyleContext,
 } from '@gluestack-ui/nativewind-utils/withStyleContext';
-import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withStyleContextAndStates';
 import { cssInterop } from 'nativewind';
-import { withStates } from '@gluestack-ui/nativewind-utils/withStates';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
-import { Platform } from 'react-native';
 
 const IndicatorWrapper = React.forwardRef<
   React.ElementRef<typeof View>,
@@ -99,12 +96,11 @@ const UICheckbox = createCheckbox({
   Root:
     Platform.OS === 'web'
       ? withStyleContext(View, SCOPE)
-      : withStyleContextAndStates(Pressable, SCOPE),
-  Group: Platform.OS === 'web' ? View : withStates(View),
-  Icon: Platform.OS === 'web' ? IconWrapper : withStates(IconWrapper),
-  Label: Platform.OS === 'web' ? LabelWrapper : withStates(LabelWrapper),
-  Indicator:
-    Platform.OS === 'web' ? IndicatorWrapper : withStates(IndicatorWrapper),
+      : withStyleContext(Pressable, SCOPE),
+  Group: View,
+  Icon: IconWrapper,
+  Label: LabelWrapper,
+  Indicator: IndicatorWrapper,
 });
 
 cssInterop(UICheckbox, { className: 'style' });

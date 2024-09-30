@@ -11,13 +11,11 @@ import {
   VirtualizedList,
   FlatList,
   SectionList,
-  Platform,
   PressableProps,
 } from 'react-native';
 
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
-import { withStates } from '@gluestack-ui/nativewind-utils/withStates';
 import { cssInterop } from 'nativewind';
 import {
   Motion,
@@ -36,6 +34,7 @@ type IPrimitiveIcon = {
   className?: string;
   classNameColor?: string;
 };
+
 const PrimitiveIcon = React.forwardRef<
   React.ElementRef<typeof Svg>,
   IPrimitiveIcon
@@ -94,7 +93,7 @@ const AnimatedPressable = createMotionAnimatedComponent(Pressable);
 export const UIActionsheet = createActionsheet({
   Root: View,
   Content: Motion.View,
-  Item: Platform.OS === 'web' ? ItemWrapper : withStates(ItemWrapper),
+  Item: ItemWrapper,
   ItemText: Text,
   DragIndicator: View,
   IndicatorWrapper: View,
@@ -340,6 +339,7 @@ const Actionsheet = React.forwardRef<
 >(({ className, ...props }, ref) => {
   return (
     <UIActionsheet
+      // @ts-expect-error
       className={actionsheetStyle({
         class: className,
       })}
@@ -355,6 +355,7 @@ const ActionsheetContent = React.forwardRef<
 >(({ className, ...props }, ref) => {
   return (
     <UIActionsheet.Content
+      // @ts-expect-error
       className={actionsheetContentStyle({
         class: className,
       })}
@@ -370,6 +371,7 @@ const ActionsheetItem = React.forwardRef<
 >(({ className, ...props }, ref) => {
   return (
     <UIActionsheet.Item
+      // @ts-expect-error
       className={actionsheetItemStyle({
         class: className,
       })}
@@ -397,6 +399,7 @@ const ActionsheetItemText = React.forwardRef<
   ) => {
     return (
       <UIActionsheet.ItemText
+        // @ts-expect-error
         className={actionsheetItemTextStyle({
           class: className,
           isTruncated,
@@ -418,6 +421,7 @@ const ActionsheetDragIndicator = React.forwardRef<
 >(({ className, ...props }, ref) => {
   return (
     <UIActionsheet.DragIndicator
+      // @ts-expect-error
       className={actionsheetDragIndicatorStyle({
         class: className,
       })}
@@ -433,6 +437,7 @@ const ActionsheetDragIndicatorWrapper = React.forwardRef<
 >(({ className, ...props }, ref) => {
   return (
     <UIActionsheet.DragIndicatorWrapper
+      // @ts-expect-error
       className={actionsheetDragIndicatorWrapperStyle({
         class: className,
       })}
@@ -458,6 +463,7 @@ const ActionsheetBackdrop = React.forwardRef<
         opacity: 0,
       }}
       {...props}
+      // @ts-expect-error
       className={actionsheetBackdropStyle({
         class: className,
       })}
@@ -472,6 +478,7 @@ const ActionsheetScrollView = React.forwardRef<
 >(({ className, ...props }, ref) => {
   return (
     <UIActionsheet.ScrollView
+      // @ts-expect-error
       className={actionsheetScrollViewStyle({
         class: className,
       })}
@@ -487,6 +494,7 @@ const ActionsheetVirtualizedList = React.forwardRef<
 >(({ className, ...props }, ref) => {
   return (
     <UIActionsheet.VirtualizedList
+      // @ts-expect-error
       className={actionsheetVirtualizedListStyle({
         class: className,
       })}
@@ -502,6 +510,7 @@ const ActionsheetFlatList = React.forwardRef<
 >(({ className, ...props }, ref) => {
   return (
     <UIActionsheet.FlatList
+      // @ts-expect-error
       className={actionsheetFlatListStyle({
         class: className,
       })}
@@ -517,6 +526,7 @@ const ActionsheetSectionList = React.forwardRef<
 >(({ className, ...props }, ref) => {
   return (
     <UIActionsheet.SectionList
+      // @ts-expect-error
       className={actionsheetSectionListStyle({
         class: className,
       })}
@@ -547,6 +557,7 @@ const ActionsheetSectionHeaderText = React.forwardRef<
   ) => {
     return (
       <UIActionsheet.SectionHeaderText
+        // @ts-expect-error
         className={actionsheetSectionHeaderTextStyle({
           class: className,
           isTruncated,
