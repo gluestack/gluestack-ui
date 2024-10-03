@@ -5,7 +5,8 @@
       "@gluestack-ui/overlay": "latest",
       "@gluestack-ui/toast": "latest",
       "@gluestack-ui/nativewind-utils": "latest",
-      "react-native-svg": "13.4.0"
+      "react-native-svg": "13.4.0",
+      "nativewind": "4.1.10"
     },
     "devDependencies": {
       "jscodeshift": "0.15.2"
@@ -40,15 +41,23 @@
       "@gluestack-ui/avatar": "latest"
     }
   },
-  "badge": { "dependencies": {} },
-  "box": { "dependencies": {} },
+  "badge": {
+    "dependencies": {}
+  },
+  "box": {
+    "dependencies": {}
+  },
   "button": {
     "dependencies": {
       "@gluestack-ui/button": "latest"
     }
   },
-  "card": { "dependencies": {} },
-  "center": { "dependencies": {} },
+  "card": {
+    "dependencies": {}
+  },
+  "center": {
+    "dependencies": {}
+  },
   "checkbox": {
     "dependencies": {
       "@gluestack-ui/checkbox": "latest"
@@ -142,9 +151,15 @@
       "@gluestack-ui/radio": "latest"
     }
   },
-  "refresh-control": { "dependencies": {} },
-  "safe-area-view": { "dependencies": {} },
-  "scroll-view": { "dependencies": {} },
+  "refresh-control": {
+    "dependencies": {}
+  },
+  "safe-area-view": {
+    "dependencies": {}
+  },
+  "scroll-view": {
+    "dependencies": {}
+  },
   "section-list": {
     "dependencies": {}
   },
@@ -166,13 +181,17 @@
       "@gluestack-ui/spinner": "latest"
     }
   },
-  "status-bar": { "dependencies": {} },
+  "status-bar": {
+    "dependencies": {}
+  },
   "switch": {
     "dependencies": {
       "@gluestack-ui/switch": "latest"
     }
   },
-  "text": { "dependencies": {} },
+  "text": {
+    "dependencies": {}
+  },
   "textarea": {
     "dependencies": {
       "@gluestack-ui/textarea": "latest"
@@ -190,7 +209,18 @@
       "@legendapp/motion": "latest"
     }
   },
-  "view": { "dependencies": {} },
-  "virtualized-list": { "dependencies": {} },
-  "vstack": { "dependencies": {} }
+  "view": {
+    "dependencies": {}
+  },
+  "virtualized-list": {
+    "dependencies": {}
+  },
+  "vstack": {
+    "dependencies": {}
+  },
+  "grid": {
+    "dependencies": {},
+    "hooks": ["useBreakpointValue"]
+  },
+  "IgnoredComponents": ["bottomsheet"]
 }
