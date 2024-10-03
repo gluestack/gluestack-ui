@@ -25,6 +25,7 @@ The init command adds the necessary `gluestack-ui.config.json` file, includes th
 - `next.config.js` ( for Next.js)
 - `tailwind.config.js`
 - `global.css` (for Tailwind CSS)
+- `ts.config.json`
 - entry file (for your project)
 
 
@@ -37,6 +38,8 @@ npx gluestack-ui init
 ### Options:
 
 - `--path <path>`: Specifies the directory path where you want to add the GluestackUIProvider component. By default, it creates the component in the `components/ui` directory within your project's root.
+
+- `--use-<package>`: This flag specifies the package manager to use when initializing gluestack-ui. Supported options are npm (default), yarn, bun, and pnpm. Replace `<package>` with your preferred package manager.
 
 ```bash
 Usage: npx gluestack-ui init [options]
@@ -68,6 +71,10 @@ add component to your project
 Options:
   --all          Adds all existing components from gluestack-ui
   --path <path>  Path to add components, defaults to the directory where GluestackUIProvider is located.
+  --use-npm      Set npm as the project's package manager, default
+  --use-yarn     Set yarn as the project's package manager
+  --use-bun      Set bun as the project's package manager
+  --use-pnpm     Set pnpm as the project's package manager, currently not supported in react-native-cli projects
 ```
 
 ## gluestack-ui.config.json
