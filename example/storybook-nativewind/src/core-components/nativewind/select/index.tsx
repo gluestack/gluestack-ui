@@ -96,6 +96,7 @@ type IPrimitiveIcon = {
   as?: React.ElementType;
   className?: string;
   classNameColor?: string;
+  style?: any;
 };
 
 const PrimitiveIcon = React.forwardRef<
@@ -112,6 +113,7 @@ const PrimitiveIcon = React.forwardRef<
       size,
       stroke = 'currentColor',
       as: AsComp,
+      style,
       ...props
     },
     ref
@@ -136,7 +138,15 @@ const PrimitiveIcon = React.forwardRef<
     }
 
     if (AsComp) {
-      return <AsComp ref={ref} {...props} {...sizeProps} {...colorProps} />;
+      return (
+        <AsComp
+          ref={ref}
+          {...props}
+          style={style}
+          {...sizeProps}
+          {...colorProps}
+        />
+      );
     }
     return (
       <Svg ref={ref} height={height} width={width} {...colorProps} {...props} />
@@ -172,7 +182,7 @@ cssInterop(UISelect.Input, {
   className: { target: 'style', nativeStyleToProp: { textAlign: true } },
 });
 cssInterop(SelectTriggerWrapper, { className: 'style' });
-//@ts-ignore
+
 cssInterop(UISelect.Icon, {
   className: {
     target: 'style',
@@ -304,8 +314,6 @@ const SelectContent = UISelect.Content;
 const SelectDragIndicator = UISelect.DragIndicator;
 const SelectDragIndicatorWrapper = UISelect.DragIndicatorWrapper;
 const SelectItem = UISelect.Item;
-// @ts-expect-error
-const SelectItemText = UISelect.ItemText;
 const SelectScrollView = UISelect.ScrollView;
 const SelectVirtualizedList = UISelect.VirtualizedList;
 const SelectFlatList = UISelect.FlatList;
@@ -323,7 +331,6 @@ export {
   SelectDragIndicator,
   SelectDragIndicatorWrapper,
   SelectItem,
-  SelectItemText,
   SelectScrollView,
   SelectVirtualizedList,
   SelectFlatList,

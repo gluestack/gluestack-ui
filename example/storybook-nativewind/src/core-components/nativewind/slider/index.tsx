@@ -208,7 +208,6 @@ export const SliderThumb = React.forwardRef<
 
   return (
     <UISlider.Thumb
-      //@ts-ignore
       ref={ref}
       {...props}
       className={sliderThumbStyle({
@@ -264,7 +263,6 @@ export const SliderFilledTrack = React.forwardRef<
 
   return (
     <UISlider.FilledTrack
-      //@ts-ignore
       ref={ref}
       {...props}
       className={sliderFilledTrackStyle({

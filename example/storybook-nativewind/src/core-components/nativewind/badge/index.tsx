@@ -103,6 +103,7 @@ type IPrimitiveIcon = React.ComponentPropsWithoutRef<typeof Svg> & {
   as?: React.ElementType;
   className?: string;
   classNameColor?: string;
+  style?: any;
 };
 
 const PrimitiveIcon = React.forwardRef<
@@ -119,6 +120,7 @@ const PrimitiveIcon = React.forwardRef<
       size,
       stroke = 'currentColor',
       as: AsComp,
+      style,
       ...props
     },
     ref
@@ -143,7 +145,15 @@ const PrimitiveIcon = React.forwardRef<
     }
 
     if (AsComp) {
-      return <AsComp ref={ref} {...props} {...sizeProps} {...colorProps} />;
+      return (
+        <AsComp
+          ref={ref}
+          {...props}
+          style={style}
+          {...sizeProps}
+          {...colorProps}
+        />
+      );
     }
     return (
       <Svg ref={ref} height={height} width={width} {...colorProps} {...props} />
@@ -153,14 +163,14 @@ const PrimitiveIcon = React.forwardRef<
 
 const ContextView = withStyleContext(View, SCOPE);
 cssInterop(ContextView, { className: 'style' });
-//@ts-ignore
+
 cssInterop(PrimitiveIcon, {
   className: {
     target: 'style',
     nativeStyleToProp: {
       height: true,
       width: true,
-      //@ts-ignore
+
       fill: true,
       color: 'classNameColor',
       stroke: true,
@@ -180,7 +190,6 @@ const Badge = ({
 }: { className?: string } & IBadgeProps) => {
   return (
     <ContextView
-      // @ts-expect-error
       className={badgeStyle({ action, variant, class: className })}
       {...props}
       context={{
@@ -205,7 +214,6 @@ const BadgeText = React.forwardRef<
   return (
     <Text
       ref={ref}
-      // @ts-expect-error
       className={badgeTextStyle({
         parentVariants: {
           size: parentSize,

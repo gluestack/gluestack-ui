@@ -91,6 +91,7 @@ type IPrimitiveIcon = {
   as?: React.ElementType;
   className?: string;
   classNameColor?: string;
+  style?: any;
 };
 
 const PrimitiveIcon = React.forwardRef<
@@ -107,6 +108,7 @@ const PrimitiveIcon = React.forwardRef<
       size,
       stroke = 'currentColor',
       as: AsComp,
+      style,
       ...props
     },
     ref
@@ -131,7 +133,15 @@ const PrimitiveIcon = React.forwardRef<
     }
 
     if (AsComp) {
-      return <AsComp ref={ref} {...props} {...sizeProps} {...colorProps} />;
+      return (
+        <AsComp
+          ref={ref}
+          {...props}
+          style={style}
+          {...sizeProps}
+          {...colorProps}
+        />
+      );
     }
     return (
       <Svg ref={ref} height={height} width={width} {...colorProps} {...props} />
@@ -161,12 +171,10 @@ cssInterop(UIAccordion, { className: 'style' });
 cssInterop(UIAccordion.Item, { className: 'style' });
 cssInterop(UIAccordion.Header, { className: 'style' });
 cssInterop(UIAccordion.Trigger, { className: 'style' });
-//@ts-ignore
-cssInterop(UIAccordion.Icon, { className: 'style' });
 cssInterop(UIAccordion.TitleText, { className: 'style' });
 cssInterop(UIAccordion.Content, { className: 'style' });
 cssInterop(UIAccordion.ContentText, { className: 'style' });
-// @ts-ignore
+
 cssInterop(UIAccordion.Icon, {
   className: {
     target: 'style',

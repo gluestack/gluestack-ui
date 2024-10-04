@@ -22,6 +22,7 @@ type IPrimitiveIcon = {
   as?: React.ElementType;
   className?: string;
   classNameColor?: string;
+  style?: any;
 };
 
 const PrimitiveIcon = React.forwardRef<
@@ -38,6 +39,7 @@ const PrimitiveIcon = React.forwardRef<
       size,
       stroke = 'currentColor',
       as: AsComp,
+      style,
       ...props
     },
     ref
@@ -62,7 +64,15 @@ const PrimitiveIcon = React.forwardRef<
     }
 
     if (AsComp) {
-      return <AsComp ref={ref} {...props} {...sizeProps} {...colorProps} />;
+      return (
+        <AsComp
+          ref={ref}
+          {...props}
+          style={style}
+          {...sizeProps}
+          {...colorProps}
+        />
+      );
     }
     return (
       <Svg ref={ref} height={height} width={width} {...colorProps} {...props} />
@@ -78,7 +88,6 @@ const InputWrapper = React.forwardRef<
 });
 
 const UIInput = createInput({
-  // @ts-ignore
   Root: withStyleContext(InputWrapper, SCOPE),
   Icon: PrimitiveIcon,
   Slot: Pressable,
@@ -158,7 +167,7 @@ cssInterop(UIInput.Slot, { className: 'style' });
 cssInterop(UIInput.Input, {
   className: { target: 'style', nativeStyleToProp: { textAlign: true } },
 });
-//@ts-ignore
+
 cssInterop(UIInput.Icon, {
   className: {
     target: 'style',

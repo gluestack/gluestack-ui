@@ -30,6 +30,7 @@ type IPrimitiveIcon = {
   as?: React.ElementType;
   className?: string;
   classNameColor?: string;
+  style?: any;
 };
 
 const PrimitiveIcon = React.forwardRef<

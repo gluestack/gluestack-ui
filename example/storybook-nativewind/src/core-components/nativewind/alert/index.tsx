@@ -115,6 +115,7 @@ type IPrimitiveIcon = React.ComponentPropsWithoutRef<typeof Svg> & {
   as?: React.ElementType;
   className?: string;
   classNameColor?: string;
+  style?: any;
 };
 const PrimitiveIcon = React.forwardRef<
   React.ElementRef<typeof Svg>,
@@ -130,6 +131,7 @@ const PrimitiveIcon = React.forwardRef<
       size,
       stroke = 'currentColor',
       as: AsComp,
+      style,
       ...props
     },
     ref
@@ -154,7 +156,15 @@ const PrimitiveIcon = React.forwardRef<
     }
 
     if (AsComp) {
-      return <AsComp ref={ref} {...props} {...sizeProps} {...colorProps} />;
+      return (
+        <AsComp
+          ref={ref}
+          {...props}
+          style={style}
+          {...sizeProps}
+          {...colorProps}
+        />
+      );
     }
     return (
       <Svg ref={ref} height={height} width={width} {...colorProps} {...props} />
@@ -176,16 +186,16 @@ export const UIAlert = createAlert({
 });
 
 cssInterop(UIAlert, { className: 'style' });
-//@ts-ignore
+
 cssInterop(UIAlert.Text, { className: 'style' });
-//@ts-ignore
+
 cssInterop(IconWrapper, {
   className: {
     target: 'style',
     nativeStyleToProp: {
       height: true,
       width: true,
-      //@ts-ignore
+
       fill: true,
       color: 'classNameColor',
       stroke: true,
@@ -203,7 +213,6 @@ const Alert = React.forwardRef<React.ElementRef<typeof UIAlert>, IAlertProps>(
   ({ className, variant = 'solid', action = 'muted', ...props }, ref) => {
     return (
       <UIAlert
-        // @ts-expect-error
         className={alertStyle({ action, variant, class: className })}
         context={{ variant, action }}
         ref={ref}
@@ -238,7 +247,6 @@ const AlertText = React.forwardRef<
     const { action: parentAction } = useStyleContext(SCOPE);
     return (
       <UIAlert.Text
-        // @ts-expect-error
         className={alertTextStyle({
           isTruncated,
           bold,

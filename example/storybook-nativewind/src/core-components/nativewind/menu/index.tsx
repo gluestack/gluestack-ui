@@ -74,7 +74,6 @@ const BackdropPressable = React.forwardRef<
   return (
     <Pressable
       ref={ref}
-      // @ts-expect-error
       className={menuBackdropStyle({
         class: className,
       })}
@@ -94,7 +93,6 @@ const Item = React.forwardRef<
   return (
     <Pressable
       ref={ref}
-      // @ts-expect-error
       className={menuItemStyle({
         class: className,
       })}
@@ -152,7 +150,6 @@ const Menu = React.forwardRef<React.ElementRef<typeof UIMenu>, IMenuProps>(
           type: 'timing',
           duration: 100,
         }}
-        // @ts-expect-error
         className={menuStyle({
           class: className,
         })}
@@ -186,7 +183,6 @@ const MenuItemLabel = React.forwardRef<
     return (
       <UIMenu.ItemLabel
         ref={ref}
-        // @ts-expect-error
         className={menuItemLabelStyle({
           isTruncated,
           bold,

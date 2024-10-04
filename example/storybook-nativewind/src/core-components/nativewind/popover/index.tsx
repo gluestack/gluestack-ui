@@ -161,7 +161,6 @@ const Popover = React.forwardRef<
       ref={ref}
       placement={placement}
       {...props}
-      // @ts-ignore
       className={popoverStyle({ size, class: className })}
       context={{ size, placement }}
       pointerEvents="box-none"

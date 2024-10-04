@@ -1,7 +1,7 @@
 'use client';
 import React, { useMemo } from 'react';
 import { createFab } from '@gluestack-ui/fab';
-import { Pressable } from 'react-native';
+import { Pressable, Text } from 'react-native';
 import { Svg } from 'react-native-svg';
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import {
@@ -21,6 +21,7 @@ type IPrimitiveIcon = React.ComponentPropsWithoutRef<typeof Svg> & {
   as?: React.ElementType;
   className?: string;
   classNameColor?: string;
+  style?: any;
 };
 
 const PrimitiveIcon = React.forwardRef<
@@ -37,6 +38,7 @@ const PrimitiveIcon = React.forwardRef<
       size,
       stroke = 'currentColor',
       as: AsComp,
+      style,
       ...props
     },
     ref
@@ -61,7 +63,15 @@ const PrimitiveIcon = React.forwardRef<
     }
 
     if (AsComp) {
-      return <AsComp ref={ref} {...props} {...sizeProps} {...colorProps} />;
+      return (
+        <AsComp
+          ref={ref}
+          {...props}
+          style={style}
+          {...sizeProps}
+          {...colorProps}
+        />
+      );
     }
     return (
       <Svg ref={ref} height={height} width={width} {...colorProps} {...props} />
@@ -70,16 +80,15 @@ const PrimitiveIcon = React.forwardRef<
 );
 
 const SCOPE = 'FAB';
+const Root = withStyleContext(Pressable, SCOPE);
 const UIFab = createFab({
-  //@ts-expect-error
-  Root: withStyleContext(Pressable, SCOPE),
-  //@ts-expect-error
+  Root: Root,
   Label: Text,
   Icon: PrimitiveIcon,
 });
-//@ts-expect-error
+
 cssInterop(UIFab, { className: 'style' });
-//@ts-expect-error
+
 cssInterop(UIFab.Label, { className: 'style' });
 cssInterop(UIFab.Icon, {
   className: {
@@ -87,7 +96,6 @@ cssInterop(UIFab.Icon, {
     nativeStyleToProp: {
       height: true,
       width: true,
-      //@ts-ignore
       fill: true,
       color: 'classNameColor',
       stroke: true,
@@ -184,7 +192,6 @@ const Fab = React.forwardRef<React.ElementRef<typeof UIFab>, IFabProps>(
       <UIFab
         ref={ref}
         {...props}
-        //@ts-expect-error
         className={fabStyle({ size, placement, class: className })}
         context={{ size }}
       />
@@ -213,7 +220,6 @@ const FabLabel = React.forwardRef<
   ) => {
     const { size: parentSize } = useStyleContext(SCOPE);
     return (
-      //@ts-expect-error
       <UIFab.Label
         ref={ref}
         {...props}

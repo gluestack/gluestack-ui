@@ -161,9 +161,7 @@
     }
   },
   "spinner": {
-    "dependencies": {
-      "@gluestack-ui/spinner": "latest"
-    }
+    "dependencies": {}
   },
   "status-bar": { "dependencies": {} },
   "switch": {

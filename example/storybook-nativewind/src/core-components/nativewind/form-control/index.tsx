@@ -313,7 +313,7 @@ cssInterop(UIFormControl.Error.Icon, {
     nativeStyleToProp: {
       height: true,
       width: true,
-      // @ts-ignore
+
       fill: true,
       color: true,
       stroke: true,

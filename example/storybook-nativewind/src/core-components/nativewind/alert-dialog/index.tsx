@@ -130,7 +130,6 @@ const AlertDialog = React.forwardRef<
     <UIAccessibleAlertDialog
       ref={ref}
       {...props}
-      // @ts-expect-error
       className={alertDialogStyle({ class: className })}
       context={{ size }}
       pointerEvents="box-none"
@@ -170,7 +169,6 @@ const AlertDialogContent = React.forwardRef<
         },
       }}
       {...props}
-      // @ts-expect-error
       className={alertDialogContentStyle({
         parentVariants: {
           size: parentSize,
@@ -190,7 +188,6 @@ const AlertDialogCloseButton = React.forwardRef<
     <UIAccessibleAlertDialog.CloseButton
       ref={ref}
       {...props}
-      // @ts-expect-error
       className={alertDialogCloseButtonStyle({
         class: className,
       })}
@@ -206,7 +203,6 @@ const AlertDialogHeader = React.forwardRef<
     <UIAccessibleAlertDialog.Header
       ref={ref}
       {...props}
-      // @ts-expect-error
       className={alertDialogHeaderStyle({
         class: className,
       })}
@@ -222,7 +218,6 @@ const AlertDialogFooter = React.forwardRef<
     <UIAccessibleAlertDialog.Footer
       ref={ref}
       {...props}
-      // @ts-expect-error
       className={alertDialogFooterStyle({
         class: className,
       })}
@@ -238,7 +233,6 @@ const AlertDialogBody = React.forwardRef<
     <UIAccessibleAlertDialog.Body
       ref={ref}
       {...props}
-      // @ts-expect-error
       className={alertDialogBodyStyle({
         class: className,
       })}
@@ -272,7 +266,6 @@ const AlertDialogBackdrop = React.forwardRef<
         },
       }}
       {...props}
-      // @ts-expect-error
       className={alertDialogBackdropStyle({
         class: className,
       })}

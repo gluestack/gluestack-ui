@@ -16,6 +16,7 @@ type IPrimitiveIcon = {
   as?: React.ElementType;
   className?: string;
   classNameColor?: string;
+  style?: any;
 };
 
 const PrimitiveIcon = React.forwardRef<
@@ -66,7 +67,10 @@ const PrimitiveIcon = React.forwardRef<
 
 export const UIIcon = createIcon({
   Root: PrimitiveIcon,
-});
+}) as React.ForwardRefExoticComponent<
+  React.ComponentPropsWithoutRef<typeof PrimitiveIcon> &
+    React.RefAttributes<React.ElementRef<typeof Svg>>
+>;
 
 const iconStyle = tva({
   base: 'text-typography-950 fill-none pointer-events-none',
@@ -82,7 +86,6 @@ const iconStyle = tva({
   },
 });
 
-// @ts-expect-error
 cssInterop(UIIcon, {
   className: {
     target: 'style',
@@ -136,7 +139,13 @@ export const Icon = React.forwardRef<React.ElementRef<typeof Svg>, IIConProps>(
 type ParameterTypes = Omit<Parameters<typeof createIcon>[0], 'Root'>;
 
 const createIconUI = ({ ...props }: ParameterTypes) => {
-  const UIIconCreateIcon = createIcon({ Root: Svg, ...props });
+  const UIIconCreateIcon = createIcon({
+    Root: Svg,
+    ...props,
+  }) as React.ForwardRefExoticComponent<
+    React.ComponentPropsWithoutRef<typeof PrimitiveIcon> &
+      React.RefAttributes<React.ElementRef<typeof Svg>>
+  >;
 
   return React.forwardRef<React.ElementRef<typeof Svg>>(
     (
@@ -150,7 +159,6 @@ const createIconUI = ({ ...props }: ParameterTypes) => {
     ) => {
       return (
         <UIIconCreateIcon
-          // @ts-ignore
           ref={ref}
           {...inComingProps}
           className={iconStyle({ size, class: className })}

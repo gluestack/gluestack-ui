@@ -212,7 +212,6 @@ const Grid = forwardRef<React.ElementRef<typeof View>, IGridProps>(
   }
 );
 
-//@ts-ignore
 cssInterop(Grid, {
   className: {
     target: 'style',
@@ -308,9 +307,7 @@ const GridItem = forwardRef<React.ElementRef<typeof View>, IGridItemProps>(
         // @ts-expect-error
         gridItemClass={gridItemClass}
         className={gridItemStyle({
-          class:
-            className + ' ' + Platform.select({ web: gridItemClass ?? '' }) ??
-            '',
+          class: className,
         })}
         {...props}
         style={[
