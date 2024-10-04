@@ -1,6 +1,6 @@
 {
   "name": "@gluestack-ui/themed",
-  "version": "1.1.53",
+  "version": "1.1.54",
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "module": "build/index",
@@ -40,7 +40,7 @@
     "@gluestack-ui/accordion": "1.0.7",
     "@gluestack-ui/actionsheet": "0.2.45",
     "@gluestack-ui/alert": "0.1.15",
-    "@gluestack-ui/alert-dialog": "0.1.30",
+    "@gluestack-ui/alert-dialog": "0.1.31",
     "@gluestack-ui/avatar": "0.1.17",
     "@gluestack-ui/button": "1.0.7",
     "@gluestack-ui/checkbox": "0.1.32",

@@ -9,10 +9,10 @@ import {
   AccordionContent,
   AccordionContentText,
   Divider,
+  ScrollView,
 } from '../../../core-components/nativewind';
-import { ChevronDownIcon } from 'lucide-react-native';
-import { ChevronUpIcon } from 'lucide-react-native';
-import { ScrollView } from '../../../core-components/nativewind';
+import { ChevronUpIcon, ChevronDownIcon } from 'lucide-react-native';
+
 const AccordionDemo = () => {
   const accRef = React.useRef(null);
   return (

@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   Tooltip,
   TooltipContent,
@@ -5,16 +6,16 @@ import {
   Button,
   ButtonText,
 } from '../../../core-components/nativewind';
-import React from 'react';
 
 const TooltipDemo = () => {
   return (
     <Tooltip
       placement="top"
+      // eslint-disable-next-line react/no-unstable-nested-components
       trigger={(triggerProps) => {
         return (
           <Button {...triggerProps}>
-            <ButtonText>Hover </ButtonText>
+            <ButtonText>Hover on me!</ButtonText>
           </Button>
         );
       }}

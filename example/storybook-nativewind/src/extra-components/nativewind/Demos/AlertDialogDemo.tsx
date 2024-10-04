@@ -19,7 +19,7 @@ const AlertDialogDemo = () => {
   return (
     <OverlayProvider>
       <Button onPress={() => setShowAlertDialog(true)}>
-        <ButtonText>Click me</ButtonText>
+        <ButtonText>Open Dialog</ButtonText>
       </Button>
       <AlertDialog size="lg" isOpen={showAlertDialog} onClose={handleClose}>
         <AlertDialogBackdrop />

@@ -21,7 +21,7 @@ import LinkDemo from './Demos/LinkDemo';
 import PressableDemo from './Demos/PressableDemo';
 import RadioDemo from './Demos/RadioDemo';
 import SwitchDemo from './Demos/SwitchDemo';
-import TextAreaDemo from './Demos/TeaxtAreaDemo';
+import TextAreaDemo from './Demos/TextAreaDemo';
 import TooltipDemo from './Demos/TooltipDemo';
 import IconDemo from './Demos/IconDemo';
 import ImageDemo from './Demos/ImageDemo';

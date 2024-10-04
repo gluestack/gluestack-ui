@@ -1,10 +1,5 @@
 import React from 'react';
 import {
-  Button,
-  ButtonText,
-  Center,
-} from '../../../core-components/nativewind';
-import {
   Actionsheet,
   ActionsheetBackdrop,
   ActionsheetContent,
@@ -12,17 +7,19 @@ import {
   ActionsheetDragIndicatorWrapper,
   ActionsheetItem,
   ActionsheetItemText,
-} from '../../../core-components/nativewind/actionsheet';
+  Button,
+  ButtonText,
+  Center,
+} from '../../../core-components/nativewind';
 
 const ActionsheetDemo = () => {
   const [showActionsheet, setShowActionsheet] = React.useState(false);
-
   const handleClose = () => setShowActionsheet(false);
 
   return (
     <Center>
       <Button onPress={() => setShowActionsheet(true)}>
-        <ButtonText>Open</ButtonText>
+        <ButtonText>Open Actionsheet</ButtonText>
       </Button>
       <Actionsheet isOpen={showActionsheet} onClose={handleClose}>
         <ActionsheetBackdrop />
