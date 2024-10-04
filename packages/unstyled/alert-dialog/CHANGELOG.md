@@ -1,5 +1,11 @@
 # @gluestack-ui/alert-dialog
 
+## 0.1.31
+
+### Patch Changes
+
+- fix: added useRNModal support
+
 ## 0.1.30
 
 ### Patch Changes
