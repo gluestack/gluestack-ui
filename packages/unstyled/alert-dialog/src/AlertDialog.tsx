@@ -19,6 +19,7 @@ export const AlertDialog = <T,>(StyledAlertDialog: React.ComponentType<T>) =>
         defaultIsOpen = false,
         initialFocusRef,
         finalFocusRef,
+        useRNModal,
         avoidKeyboard = false,
         closeOnOverlayClick = true,
         isKeyboardDismissable = true,
@@ -91,6 +92,7 @@ export const AlertDialog = <T,>(StyledAlertDialog: React.ComponentType<T>) =>
           onRequestClose={handleClose}
           isKeyboardDismissable={isKeyboardDismissable}
           animationPreset={animationPreset}
+          useRNModal={useRNModal}
         >
           <AlertDialogContext.Provider value={contextValue}>
             <StyledAlertDialog {...(props as T)} ref={ref}>

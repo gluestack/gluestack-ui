@@ -31,6 +31,7 @@ const accordionStyle = tva({
   },
 });
 const accordionItemStyle = tva({
+  base: 'py-3 px-4',
   parentVariants: {
     variant: {
       filled: 'bg-background-0',
@@ -65,7 +66,7 @@ const accordionContentTextStyle = tva({
   base: 'text-typography-700 font-normal',
   parentVariants: {
     size: {
-      sm: 'text-sm ',
+      sm: 'text-sm',
       md: 'text-base',
       lg: 'text-lg',
     },
@@ -75,10 +76,10 @@ const accordionHeaderStyle = tva({
   base: 'mx-0 my-0',
 });
 const accordionContentStyle = tva({
-  base: 'px-5 mt-2 pb-5',
+  base: 'mt-4',
 });
 const accordionTriggerStyle = tva({
-  base: 'w-full py-5 px-5 flex-row justify-between items-center web:outline-none focus:outline-none data-[disabled=true]:opacity-40 data-[disabled=true]:cursor-not-allowed data-[focus-visible=true]:bg-background-50',
+  base: 'w-full flex-row justify-between items-center web:outline-none focus:outline-none data-[disabled=true]:opacity-40 data-[disabled=true]:cursor-not-allowed data-[focus-visible=true]:bg-background-50',
 });
 
 type IPrimitiveIcon = {
