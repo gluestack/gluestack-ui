@@ -4,9 +4,8 @@ import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import { VariantProps } from '@gluestack-ui/nativewind-utils';
 
 const accessClassName = (style: any) => {
-  const obj = style[0];
-  const keys = Object.keys(obj); //will return an array of keys
-  return obj[keys[1]];
+  const keys = Object.keys(style);
+  return style[keys[1]];
 };
 
 const Svg = React.forwardRef<
