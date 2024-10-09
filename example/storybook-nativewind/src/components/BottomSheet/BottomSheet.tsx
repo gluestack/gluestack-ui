@@ -6,25 +6,26 @@ import {
   BottomSheetDragIndicator,
   BottomSheetItem,
   BottomSheetItemText,
-  BottomSheetPortal,
-  BottomSheetTrigger,
 } from '@/components/ui/bottomsheet';
-import { Text } from '@/components/ui/text';
-
-const BottomSheetBasic = ({
-  text = 'Open Action Sheet',
-  _colorMode,
-  ...props
-}: any) => {
+import { Button, ButtonText } from '@/components/ui/button';
+const BottomSheetBasic = ({ ...props }: any) => {
+  const [isOpen, setIsOpen] = React.useState(false);
   return (
-    <BottomSheet {...props}>
-      <BottomSheetTrigger>
-        <Text>{text}</Text>
-      </BottomSheetTrigger>
-      <BottomSheetPortal
-        snapPoints={['25%', '50%']}
+    <>
+      <Button onPress={() => setIsOpen(true)}>
+        <ButtonText>Open Bottom Sheet</ButtonText>
+      </Button>
+      <BottomSheet
+        snapPoints={['25%', '90%']}
+        isOpen={isOpen}
+        index={0}
+        enableDynamicSizing={false}
+        onClose={() => {
+          setIsOpen(false);
+        }}
         backdropComponent={BottomSheetBackdrop}
         handleComponent={BottomSheetDragIndicator}
+        {...props}
       >
         <BottomSheetContent>
           <BottomSheetItem>
@@ -37,8 +38,8 @@ const BottomSheetBasic = ({
             <BottomSheetItemText>Item 3</BottomSheetItemText>
           </BottomSheetItem>
         </BottomSheetContent>
-      </BottomSheetPortal>
-    </BottomSheet>
+      </BottomSheet>
+    </>
   );
 };
 
