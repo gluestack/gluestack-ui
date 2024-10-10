@@ -162,8 +162,6 @@ const inputFieldStyle = tva({
   },
 });
 
-cssInterop(InputWrapper, { className: 'style' });
-cssInterop(UIInput.Slot, { className: 'style' });
 cssInterop(UIInput.Input, {
   className: { target: 'style', nativeStyleToProp: { textAlign: true } },
 });

@@ -113,18 +113,12 @@ const UICheckbox = createCheckbox({
   Indicator: IndicatorWrapper,
 });
 
-cssInterop(UICheckbox, { className: 'style' });
-cssInterop(UICheckbox.Group, { className: 'style' });
-cssInterop(LabelWrapper, { className: 'style' });
-cssInterop(IndicatorWrapper, { className: 'style' });
-
 cssInterop(IconWrapper, {
   className: {
     target: 'style',
     nativeStyleToProp: {
       height: true,
       width: true,
-
       fill: true,
       color: 'classNameColor',
       stroke: true,

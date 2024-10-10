@@ -167,14 +167,6 @@ const UIAccordion = createAccordion({
   Content: View,
 });
 
-cssInterop(UIAccordion, { className: 'style' });
-cssInterop(UIAccordion.Item, { className: 'style' });
-cssInterop(UIAccordion.Header, { className: 'style' });
-cssInterop(UIAccordion.Trigger, { className: 'style' });
-cssInterop(UIAccordion.TitleText, { className: 'style' });
-cssInterop(UIAccordion.Content, { className: 'style' });
-cssInterop(UIAccordion.ContentText, { className: 'style' });
-
 cssInterop(UIAccordion.Icon, {
   className: {
     target: 'style',

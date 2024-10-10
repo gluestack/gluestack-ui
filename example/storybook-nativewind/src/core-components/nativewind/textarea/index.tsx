@@ -23,7 +23,6 @@ const UITextarea = createTextarea({
   Input: TextInput,
 });
 
-cssInterop(TextareaWrapper, { className: 'style' });
 cssInterop(UITextarea.Input, {
   className: { target: 'style', nativeStyleToProp: { textAlign: true } },
 });

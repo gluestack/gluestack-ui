@@ -171,11 +171,6 @@ const UIRadio = createRadio({
   Label: LabelWrapper,
 });
 
-cssInterop(UIRadio, { className: 'style' });
-cssInterop(UIRadio.Group, { className: 'style' });
-cssInterop(IndicatorWrapper, { className: 'style' });
-cssInterop(LabelWrapper, { className: 'style' });
-
 cssInterop(IconWrapper, {
   className: {
     target: 'style',
