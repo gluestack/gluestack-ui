@@ -117,6 +117,9 @@ type IGridProps = ViewProps &
     paddingRight?: number;
     paddingStart?: number;
     paddingEnd?: number;
+    borderWidth?: number;
+    borderLeftWidth?: number;
+    borderRightWidth?: number;
     _extra: {
       className: string;
     };
@@ -182,6 +185,10 @@ const Grid = forwardRef<React.ElementRef<typeof View>, IGridProps>(
       };
     }, [calculatedWidth, itemsPerRow, responsiveNumColumns, props]);
 
+    const borderLeftWidth = props?.borderLeftWidth || props?.borderWidth || 0;
+    const borderRightWidth = props?.borderRightWidth || props?.borderWidth || 0;
+    const borderWidthToSubtract = borderLeftWidth + borderRightWidth;
+
     return (
       <GridContext.Provider value={contextValue}>
         <View
@@ -196,12 +203,13 @@ const Grid = forwardRef<React.ElementRef<typeof View>, IGridProps>(
             const paddingRightToSubtract =
               props?.paddingEnd || props?.paddingRight || props?.padding || 0;
 
-            const width =
+            const gridWidth =
               event.nativeEvent.layout.width -
               paddingLeftToSubtract -
-              paddingRightToSubtract;
+              paddingRightToSubtract -
+              borderWidthToSubtract;
 
-            setCalculatedWidth(width);
+            setCalculatedWidth(gridWidth);
           }}
           {...props}
         >
@@ -226,6 +234,9 @@ cssInterop(Grid, {
       paddingRight: 'paddingRight',
       paddingStart: 'paddingStart',
       paddingEnd: 'paddingEnd',
+      borderWidth: 'borderWidth',
+      borderLeftWidth: 'borderLeftWidth',
+      borderRightWidth: 'borderRightWidth',
     },
   },
 });
@@ -271,7 +282,7 @@ const GridItem = forwardRef<React.ElementRef<typeof View>, IGridItemProps>(
           return itemsPerRow[key].includes(props?.index);
         });
 
-        const rowColsCount = itemsPerRow[row as string].length;
+        const rowColsCount = itemsPerRow[row as string]?.length;
 
         const space = columnGap || gap || 0;
 
