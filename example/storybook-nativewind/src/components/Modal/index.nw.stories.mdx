@@ -73,10 +73,9 @@ This is an illustration of **Modal** component.
       code: `
         function App(){
           const [showModal, setShowModal] = React.useState(false);
-          const ref = React.useRef(null);
           return (
             <Center className='h-[300px]'>
-              <Button onPress={() => setShowModal(true)} ref={ref}>
+              <Button onPress={() => setShowModal(true)}>
                 <ButtonText>Show Modal</ButtonText>
               </Button>
               <Modal
@@ -84,7 +83,6 @@ This is an illustration of **Modal** component.
                 onClose={() => {
                   setShowModal(false);
                 }}
-                finalFocusRef={ref}
                 {...props}
               >
                 <ModalBackdrop />
