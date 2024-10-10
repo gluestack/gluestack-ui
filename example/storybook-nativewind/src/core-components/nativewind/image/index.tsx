@@ -18,6 +18,7 @@ const imageStyle = tva({
       'xl': 'h-32 w-32',
       '2xl': 'h-64 w-64',
       'full': 'h-full w-full',
+      'none': '',
     },
   },
 });
@@ -39,7 +40,8 @@ const Image = React.forwardRef<
       //@ts-ignore
       style={
         Platform.OS === 'web'
-          ? { height: 'revert-layer', width: 'revert-layer' }
+          ? // eslint-disable-next-line react-native/no-inline-styles
+            { height: 'revert-layer', width: 'revert-layer' }
           : undefined
       }
     />
