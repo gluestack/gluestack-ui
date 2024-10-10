@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { View, Pressable, ScrollView, Platform } from 'react-native';
+import { View, Pressable, ScrollView } from 'react-native';
 import {
   Motion,
   createMotionAnimatedComponent,
@@ -17,15 +17,10 @@ import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 
 const AnimatedPressable = createMotionAnimatedComponent(Pressable);
 const SCOPE = 'POPOVER';
-const ArrowWrapper = React.forwardRef(({ ...props }, ref) => {
-  return <Motion.View {...props} ref={ref} />;
-}) as React.ForwardRefExoticComponent<
-  React.ElementRef<typeof Motion.View> &
-    React.ComponentProps<typeof Motion.View>
->;
+
 const UIPopover = createPopover({
   Root: withStyleContext(View, SCOPE),
-  Arrow: Platform.OS === 'web' ? Motion.View : ArrowWrapper,
+  Arrow: Motion.View,
   Backdrop: AnimatedPressable,
   Body: ScrollView,
   CloseButton: Pressable,
@@ -35,18 +30,8 @@ const UIPopover = createPopover({
   AnimatePresence: AnimatePresence,
 });
 
-cssInterop(UIPopover, { className: 'style' });
-cssInterop(ArrowWrapper, { className: 'style' });
-cssInterop(UIPopover.Content, { className: 'style' });
-cssInterop(UIPopover.Header, { className: 'style' });
-cssInterop(UIPopover.Footer, { className: 'style' });
-cssInterop(UIPopover.Body, {
-  className: 'style',
-  contentContainerClassName: 'contentContainerStyle',
-  indicatorClassName: 'indicatorStyle',
-});
-cssInterop(UIPopover.Backdrop, { className: 'style' });
-cssInterop(UIPopover.CloseButton, { className: 'style' });
+cssInterop(Motion.View, { className: 'style' });
+cssInterop(AnimatedPressable, { className: 'style' });
 
 const popoverStyle = tva({
   base: 'group/popover w-full h-full justify-center items-center web:pointer-events-none',

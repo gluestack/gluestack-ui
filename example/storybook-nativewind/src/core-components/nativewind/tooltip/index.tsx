@@ -15,6 +15,8 @@ export const UITooltip = createTooltip({
   AnimatePresence: AnimatePresence,
 });
 
+cssInterop(Motion.View, { className: 'style' });
+
 const tooltipStyle = tva({
   base: 'w-full h-full web:pointer-events-none',
 });
@@ -65,10 +67,6 @@ const tooltipTextStyle = tva({
     },
   },
 });
-
-cssInterop(UITooltip, { className: 'style' });
-cssInterop(UITooltip.Content, { className: 'style' });
-cssInterop(UITooltip.Text, { className: 'style' });
 
 type ITooltipProps = React.ComponentProps<typeof UITooltip> &
   VariantProps<typeof tooltipStyle> & { className?: string };
