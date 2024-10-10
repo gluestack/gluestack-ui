@@ -16,7 +16,6 @@ import { cssInterop } from 'nativewind';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 
 const AnimatedPressable = createMotionAnimatedComponent(Pressable);
-
 const SCOPE = 'MODAL';
 
 const UIModal = createModal({
