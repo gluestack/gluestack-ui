@@ -31,17 +31,8 @@ const UIAccessibleAlertDialog = createAlertDialog({
   AnimatePresence: AnimatePresence,
 });
 
-cssInterop(UIAccessibleAlertDialog, { className: 'style' });
-cssInterop(UIAccessibleAlertDialog.Content, { className: 'style' });
-cssInterop(UIAccessibleAlertDialog.CloseButton, { className: 'style' });
-cssInterop(UIAccessibleAlertDialog.Header, { className: 'style' });
-cssInterop(UIAccessibleAlertDialog.Footer, { className: 'style' });
-cssInterop(UIAccessibleAlertDialog.Body, {
-  className: 'style',
-  contentContainerClassName: 'contentContainerStyle',
-  indicatorClassName: 'indicatorStyle',
-});
-cssInterop(UIAccessibleAlertDialog.Backdrop, { className: 'style' });
+cssInterop(Motion.View, { className: 'style' });
+cssInterop(AnimatedPressable, { className: 'style' });
 
 const alertDialogStyle = tva({
   base: 'group/modal w-full h-full justify-center items-center web:pointer-events-none',

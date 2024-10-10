@@ -121,8 +121,7 @@ export const UIMenu = createMenu({
   Separator: Separator,
 });
 
-cssInterop(UIMenu, { className: 'style' });
-cssInterop(UIMenu.ItemLabel, { className: 'style' });
+cssInterop(Motion.View, { className: 'style' });
 
 type IMenuProps = React.ComponentProps<typeof UIMenu> &
   VariantProps<typeof menuStyle> & { className?: string };
