@@ -1,0 +1,87 @@
+{
+  "framework": {
+    "id": "creators-framework",
+    "name": "framework",
+    "question": "Looking for one stack for web, mobile & backend?",
+    "description": "Collection of universal UI tools and styling libraries that simplify building design systems.",
+    "flyoutDescription": "One codebase for web, mobile & backend",
+    "icon": "https://gluestack.io/icon/favicons/framework.svg",
+    "link": "https://framework.gluestack.io",
+    "tag": "coming soon",
+    "linearGradient": "linear-gradient(329deg, rgba(0, 16, 71, 0.40) 0%, rgba(77, 77, 77, 0.00) 100%), linear-gradient(123deg, rgba(115, 41, 150, 0.60) 0%, rgba(15, 24, 86, 0.00) 100%)"
+  },
+
+  "ui": {
+    "id": "creators-ui",
+    "name": "gluestack-ui",
+    "question": "Want beautifully designed, accessible and universal components?",
+    "description": "Universal Headless & Customizable Components for React Native, Next.js, Expo & React with Optional Styling.",
+    "flyoutDescription": "Universal Headless & Customizable Components for React Native, Next.js, Expo & React with Optional Styling.",
+    "icon": "https://gluestack.io/icon/favicons/ui.svg",
+    "link": "https://ui.gluestack.io/",
+    "tag": "beta",
+    "ossTag": "oss",
+    "linearGradient": "linear-gradient(329deg, rgba(0, 16, 71, 0.40) 0%, rgba(77, 77, 77, 0.00) 100%), linear-gradient(123deg, rgba(57, 146, 227, 0.60) 0%, rgba(15, 24, 86, 0.00) 100%)"
+  },
+
+  "style": {
+    "id": "creators-style",
+    "name": "gluestack-style",
+    "question": "Looking for universal and performant CSS-in-JS library?",
+    "description": "Universal and Performant Styling Library made for React Native, Next.js, Expo & React.",
+    "flyoutDescription": "Universal and Performant Styling library made for React Native, Next.js, Expo & React.",
+    "icon": "https://gluestack.io/icon/favicons/style.svg",
+    "link": "https://style.gluestack.io",
+    "tag": "beta",
+    "ossTag": "oss",
+    "linearGradient": "linear-gradient(138deg, rgba(3, 189, 153, 0.40) 0.96%, rgba(27, 155, 147, 0.13) 46.16%, rgba(15, 31, 81, 0.28) 85.56%)"
+  },
+
+  "bolt": {
+    "id": "creators-bolt",
+    "name": "bolt",
+    "question": "",
+    "description": "The Universal Project Runner for containers, child processes and even VM, all under one unified API.",
+    "flyoutDescription": "The Universal Project Runner for containers, child processes and even VM, all under one unified API.",
+    "icon": "https://gluestack.io/icon/favicons/bolt.svg",
+    "link": "https://bolt.gluestack.io",
+    "tag": "alpha",
+    "linearGradient": "linear-gradient(329deg, rgba(0, 16, 71, 0.40) 0%, rgba(77, 77, 77, 0.00) 100%), linear-gradient(123deg, rgba(97, 85, 42, 0.60) 0%, rgba(15, 24, 86, 0.00) 100%)"
+  },
+
+  "pro": {
+    "id": "creators-pro",
+    "name": "gluestack-ui pro",
+    "question": "",
+    "description": "200+ universal UI components that work across web and native platforms.",
+    "flyoutDescription": "200+ universal UI components that work across web and native platforms.",
+    "icon": "https://gluestack.io/icon/favicons/pro.svg",
+    "link": "https://gluestack.io/",
+    "tag": "coming soon",
+    "linearGradient": "linear-gradient(138deg, rgba(86, 148, 219, 0.40) 0.96%, rgba(82, 112, 216, 0.40) 46.16%, rgba(15, 31, 81, 0.28) 85.56%)"
+  },
+
+  "gluestack": {
+    "id": "creators-gluestack",
+    "name": "gluestack",
+    "question": "Looking for a full-stack framework that simplifies the process of building modern web & mobile apps?",
+    "description": "Collection of universal UI tools and styling libraries that simplify building design systems.",
+    "flyoutDescription": "Collection of universal UI tools and styling libraries that simplify building design systems.",
+    "icon": "https://gluestack.io/icon/favicons/main-dark.svg",
+    "link": "https://gluestack.io/",
+    "tag": "",
+    "linearGradient": "linear-gradient(329deg, rgba(0, 16, 71, 0.40) 0%, rgba(77, 77, 77, 0.00) 100%), linear-gradient(123deg, rgba(115, 41, 150, 0.60) 0%, rgba(15, 24, 86, 0.00) 100%)"
+  },
+
+  "starter-kit": {
+    "id": "creators-starter-kit",
+    "name": "Starter-kit",
+    "question": "Looking for Customizable and Performant pre-build UI templates built using gluestack-ui?",
+    "description": "Customizable and Performant pre-build UI templates built using gluestack-ui",
+    "flyoutDescription": "Customizable and Performant pre-build UI templates built using gluestack-ui",
+    "icon": "https://gluestack.io/icon/favicons/starter-kit.svg",
+    "link": "https://ui.gluestack.io/starter-kit",
+    "tag": "",
+    "linearGradient": "linear-gradient(329deg, rgba(0, 16, 71, 0.40) 0%, rgba(77, 77, 77, 0.00) 100%), linear-gradient(123deg, rgba(115, 41, 150, 0.60) 0%, rgba(15, 24, 86, 0.00) 100%)"
+  }
+}
