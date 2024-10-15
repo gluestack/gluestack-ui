@@ -98,10 +98,6 @@ const UIButton = createButton({
   Icon: PrimitiveIcon,
 });
 
-cssInterop(UIButton.Spinner, {
-  className: { target: 'style', nativeStyleToProp: { color: true } },
-});
-
 cssInterop(PrimitiveIcon, {
   className: {
     target: 'style',
