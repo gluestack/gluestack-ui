@@ -172,24 +172,13 @@ const PrimitiveIcon = React.forwardRef<
   }
 );
 
-const IconWrapper = React.forwardRef<
-  React.ElementRef<typeof PrimitiveIcon>,
-  IPrimitiveIcon
->(({ ...props }, ref) => {
-  return <PrimitiveIcon {...props} ref={ref} />;
-});
-
 export const UIAlert = createAlert({
   Root: withStyleContext(View, SCOPE),
   Text: Text,
-  Icon: IconWrapper,
+  Icon: PrimitiveIcon,
 });
 
-cssInterop(UIAlert, { className: 'style' });
-
-cssInterop(UIAlert.Text, { className: 'style' });
-
-cssInterop(IconWrapper, {
+cssInterop(PrimitiveIcon, {
   className: {
     target: 'style',
     nativeStyleToProp: {

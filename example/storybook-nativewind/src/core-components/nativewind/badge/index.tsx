@@ -162,7 +162,6 @@ const PrimitiveIcon = React.forwardRef<
 );
 
 const ContextView = withStyleContext(View, SCOPE);
-cssInterop(ContextView, { className: 'style' });
 
 cssInterop(PrimitiveIcon, {
   className: {

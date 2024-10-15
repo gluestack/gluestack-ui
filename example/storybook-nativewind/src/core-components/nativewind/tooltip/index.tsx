@@ -5,7 +5,6 @@ import { View, Text } from 'react-native';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import { withStyleContext } from '@gluestack-ui/nativewind-utils/withStyleContext';
-import { cssInterop } from 'nativewind';
 import { Motion, AnimatePresence } from '@legendapp/motion';
 
 export const UITooltip = createTooltip({
@@ -65,10 +64,6 @@ const tooltipTextStyle = tva({
     },
   },
 });
-
-cssInterop(UITooltip, { className: 'style' });
-cssInterop(UITooltip.Content, { className: 'style' });
-cssInterop(UITooltip.Text, { className: 'style' });
 
 type ITooltipProps = React.ComponentProps<typeof UITooltip> &
   VariantProps<typeof tooltipStyle> & { className?: string };
