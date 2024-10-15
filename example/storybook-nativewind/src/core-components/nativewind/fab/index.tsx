@@ -87,10 +87,7 @@ const UIFab = createFab({
   Icon: PrimitiveIcon,
 });
 
-cssInterop(UIFab, { className: 'style' });
-
-cssInterop(UIFab.Label, { className: 'style' });
-cssInterop(UIFab.Icon, {
+cssInterop(PrimitiveIcon, {
   className: {
     target: 'style',
     nativeStyleToProp: {
