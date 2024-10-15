@@ -7,7 +7,8 @@
         "@gluestack-ui/toast": "latest",
         "@gluestack-ui/nativewind-utils": "latest",
         "react-native-svg": "latest",
-        "nativewind": "4.1.10"
+        "nativewind": "4.1.10",
+        "react-native-safe-area-context": "latest"
       },
       "devDependencies": {
         "jscodeshift": "0.15.2"
