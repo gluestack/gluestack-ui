@@ -7,6 +7,7 @@ import {
   TR as ExpoTR,
   Caption as ExpoTCaption,
 } from '@expo/html-elements';
+
 import {
   tableStyle,
   tableHeaderStyle,
@@ -19,8 +20,16 @@ import {
 } from './styles';
 import { Text, View } from 'react-native';
 
-const TableHeaderContext = createContext<any>({});
-const TableFooterContext = createContext<any>({});
+const TableHeaderContext = createContext<{
+  isHeaderRow: boolean;
+}>({
+  isHeaderRow: false,
+});
+const TableFooterContext = createContext<{
+  isFooterRow: boolean;
+}>({
+  isFooterRow: false,
+});
 
 type ITableProps = React.ComponentProps<typeof ExpoTable>;
 type ITableHeaderProps = React.ComponentProps<typeof ExpoTHead>;

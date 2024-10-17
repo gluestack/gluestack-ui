@@ -10,8 +10,16 @@ import {
   tableCaptionStyle,
 } from './styles';
 
-const TableHeaderContext = createContext<any>({});
-const TableFooterContext = createContext<any>({});
+const TableHeaderContext = createContext<{
+  isHeaderRow: boolean;
+}>({
+  isHeaderRow: false,
+});
+const TableFooterContext = createContext<{
+  isFooterRow: boolean;
+}>({
+  isFooterRow: false,
+});
 
 const Table = React.forwardRef(({ className, ...props }: any, ref?: any) => {
   return (
