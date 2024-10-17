@@ -54,9 +54,7 @@
     }
   },
   "divider": {
-    "dependencies": {
-      "@gluestack-ui/divider": "latest"
-    }
+    "dependencies": {}
   },
   "fab": {
     "dependencies": {
