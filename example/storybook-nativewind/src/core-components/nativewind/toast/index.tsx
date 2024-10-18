@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
-import { createToast, createToastHook } from '@gluestack-ui/toast';
-import { Text, View } from 'react-native';
+import { createToastHook } from '@gluestack-ui/toast';
+import { AccessibilityInfo, Text, View } from 'react-native';
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import { cssInterop } from 'nativewind';
 import { Motion, AnimatePresence } from '@legendapp/motion';
@@ -13,16 +13,8 @@ import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 
 export const useToast = createToastHook(Motion.View, AnimatePresence);
 const SCOPE = 'TOAST';
-export const UIToast = createToast({
-  Root: withStyleContext(View, SCOPE),
-  Title: Text,
-  Description: Text,
-});
 
 cssInterop(Motion.View, { className: 'style' });
-cssInterop(UIToast, { className: 'style' });
-cssInterop(UIToast.Title, { className: 'style' });
-cssInterop(UIToast.Description, { className: 'style' });
 
 const toastStyle = tva({
   base: 'p-4 m-1 rounded-md gap-1 web:pointer-events-auto shadow-hard-5 border-outline-100',
@@ -150,16 +142,17 @@ const toastDescriptionStyle = tva({
   },
 });
 
-type IToastProps = React.ComponentProps<typeof UIToast> & {
+const Root = withStyleContext(View, SCOPE);
+type IToastProps = React.ComponentProps<typeof Root> & {
   className?: string;
 } & VariantProps<typeof toastStyle>;
 
 export const Toast = React.forwardRef<
-  React.ElementRef<typeof UIToast>,
+  React.ElementRef<typeof Root>,
   IToastProps
 >(({ className, variant = 'solid', action = 'muted', ...props }, ref) => {
   return (
-    <UIToast
+    <Root
       ref={ref}
       className={toastStyle({ variant, action, class: className })}
       context={{ variant, action }}
@@ -168,20 +161,29 @@ export const Toast = React.forwardRef<
   );
 });
 
-type IToastTitleProps = React.ComponentProps<typeof UIToast.Title> & {
+type IToastTitleProps = React.ComponentProps<typeof Text> & {
   className?: string;
 } & VariantProps<typeof toastTitleStyle>;
 
 export const ToastTitle = React.forwardRef<
-  React.ElementRef<typeof UIToast.Title>,
+  React.ElementRef<typeof Text>,
   IToastTitleProps
->(({ className, size = 'md', ...props }, ref) => {
+>(({ className, size = 'md', children, ...props }, ref) => {
   const { variant: parentVariant, action: parentAction } =
     useStyleContext(SCOPE);
+  React.useEffect(() => {
+    // Issue from react-native side
+    // Hack for now, will fix this later
+    AccessibilityInfo.announceForAccessibility(children as string);
+  }, [children]);
+
   return (
-    <UIToast.Title
-      ref={ref}
+    <Text
       {...props}
+      ref={ref}
+      aria-live="assertive"
+      aria-atomic="true"
+      role="alert"
       className={toastTitleStyle({
         size,
         class: className,
@@ -190,23 +192,23 @@ export const ToastTitle = React.forwardRef<
           action: parentAction,
         },
       })}
-    />
+    >
+      {children}
+    </Text>
   );
 });
 
-type IToastDescriptionProps = React.ComponentProps<
-  typeof UIToast.Description
-> & {
+type IToastDescriptionProps = React.ComponentProps<typeof Text> & {
   className?: string;
 } & VariantProps<typeof toastDescriptionStyle>;
 
 export const ToastDescription = React.forwardRef<
-  React.ElementRef<typeof UIToast.Description>,
+  React.ElementRef<typeof Text>,
   IToastDescriptionProps
 >(({ className, size = 'md', ...props }, ref) => {
   const { variant: parentVariant } = useStyleContext(SCOPE);
   return (
-    <UIToast.Description
+    <Text
       ref={ref}
       {...props}
       className={toastDescriptionStyle({
