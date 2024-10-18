@@ -80,15 +80,8 @@ const PrimitiveIcon = React.forwardRef<
   }
 );
 
-const InputWrapper = React.forwardRef<
-  React.ElementRef<typeof View>,
-  React.ComponentProps<typeof View>
->(({ ...props }, ref) => {
-  return <View {...props} ref={ref} />;
-});
-
 const UIInput = createInput({
-  Root: withStyleContext(InputWrapper, SCOPE),
+  Root: withStyleContext(View, SCOPE),
   Icon: PrimitiveIcon,
   Slot: Pressable,
   Input: TextInput,
@@ -160,12 +153,6 @@ const inputFieldStyle = tva({
       '6xl': 'text-6xl',
     },
   },
-});
-
-cssInterop(InputWrapper, { className: 'style' });
-cssInterop(UIInput.Slot, { className: 'style' });
-cssInterop(UIInput.Input, {
-  className: { target: 'style', nativeStyleToProp: { textAlign: true } },
 });
 
 cssInterop(UIInput.Icon, {

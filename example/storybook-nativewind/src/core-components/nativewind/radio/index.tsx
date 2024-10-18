@@ -11,27 +11,6 @@ import {
 import { cssInterop } from 'nativewind';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 
-const IndicatorWrapper = React.forwardRef<
-  React.ElementRef<typeof View>,
-  React.ComponentProps<typeof View>
->(({ ...props }, ref) => {
-  return <View {...props} ref={ref} />;
-});
-
-const LabelWrapper = React.forwardRef<
-  React.ElementRef<typeof Text>,
-  React.ComponentProps<typeof Text>
->(({ ...props }, ref) => {
-  return <Text {...props} ref={ref} />;
-});
-
-const IconWrapper = React.forwardRef<
-  React.ElementRef<typeof PrimitiveIcon>,
-  React.ComponentProps<typeof PrimitiveIcon>
->(({ ...props }, ref) => {
-  return <PrimitiveIcon {...props} ref={ref} />;
-});
-
 type IPrimitiveIcon = {
   height?: number | string;
   width?: number | string;
@@ -166,17 +145,12 @@ const UIRadio = createRadio({
     typeof withStyleContext<typeof Pressable>
   >,
   Group: View,
-  Icon: IconWrapper,
-  Indicator: IndicatorWrapper,
-  Label: LabelWrapper,
+  Icon: PrimitiveIcon,
+  Indicator: View,
+  Label: Text,
 });
 
-cssInterop(UIRadio, { className: 'style' });
-cssInterop(UIRadio.Group, { className: 'style' });
-cssInterop(IndicatorWrapper, { className: 'style' });
-cssInterop(LabelWrapper, { className: 'style' });
-
-cssInterop(IconWrapper, {
+cssInterop(PrimitiveIcon, {
   className: {
     target: 'style',
     nativeStyleToProp: {

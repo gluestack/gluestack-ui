@@ -7,25 +7,12 @@ import {
   withStyleContext,
   useStyleContext,
 } from '@gluestack-ui/nativewind-utils/withStyleContext';
-import { cssInterop } from 'nativewind';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
-
-const TextareaWrapper = React.forwardRef<
-  React.ElementRef<typeof View>,
-  React.ComponentProps<typeof View>
->(({ ...props }, ref) => {
-  return <View {...props} ref={ref} />;
-});
 
 const SCOPE = 'TEXTAREA';
 const UITextarea = createTextarea({
-  Root: withStyleContext(TextareaWrapper, SCOPE),
+  Root: withStyleContext(View, SCOPE),
   Input: TextInput,
-});
-
-cssInterop(TextareaWrapper, { className: 'style' });
-cssInterop(UITextarea.Input, {
-  className: { target: 'style', nativeStyleToProp: { textAlign: true } },
 });
 
 const textareaStyle = tva({
