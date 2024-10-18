@@ -20,6 +20,8 @@ const Svg = React.forwardRef<
   return <svg ref={ref} {...props} className={calculateClassName} />;
 });
 
+export { Svg };
+
 type IPrimitiveIcon = {
   height?: number | string;
   width?: number | string;

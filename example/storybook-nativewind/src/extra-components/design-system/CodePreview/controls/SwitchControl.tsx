@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
 import {
-  Switch,
   FormControl,
   FormControlLabel,
   FormControlLabelText,
-} from '@/components/ui';
+} from '@/components/ui/form-control';
+import { Switch } from '@/components/ui/switch';
 import { CodePreviewContext } from '../CodePreviewProvider';
 
 export const SwitchControl = ({ defaultValue, componentProp }: any) => {
@@ -32,13 +32,8 @@ export const SwitchControl = ({ defaultValue, componentProp }: any) => {
 
   return (
     <FormControl>
-      <FormControlLabel mb="$3">
-        <FormControlLabelText
-          fontSize="$xs"
-          lineHeight="$xs"
-          color="$textDark400"
-          fontWeight="$normal"
-        >
+      <FormControlLabel className="mb-3">
+        <FormControlLabelText className="text-sm leading-3 text-typography-400 dark:text-background-400 font-normal">
           {componentProp}
         </FormControlLabelText>
       </FormControlLabel>

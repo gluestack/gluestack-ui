@@ -4,7 +4,11 @@ import ArgsController from './ArgsController';
 import { CodePreviewProvider } from './CodePreviewProvider';
 import ComponentRenderer from './ComponentRenderer';
 import { useMode } from '@/components/ui/gluestack-ui-provider/providerContext';
-import { Box, Link, Pressable, HStack, Text } from '@/components/ui';
+import { Box } from '@/components/ui/box';
+import { Pressable } from '@/components/ui/pressable';
+import { HStack } from '@/components/ui/hstack';
+import { Link } from '@/components/ui/link';
+import { Text } from '@/components/ui/text';
 import { ExpoIcon } from '../icons';
 
 const genrateProp = (prop: any, props: any) => {
@@ -181,7 +185,7 @@ const CodePreview = ({
                         activeTab === 'web'
                           ? 'top-1/2 -translate-y-1/2'
                           : 'top-1/4 -translate-y-1/4'
-                      }`}
+                      } `}
                     >
                       {showComponentRenderer && (
                         <ComponentRenderer

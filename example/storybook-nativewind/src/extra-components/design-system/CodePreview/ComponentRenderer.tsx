@@ -4,7 +4,7 @@ import {
   LivePreview as ReactLivePreview,
   LiveError,
 } from 'react-live';
-import { Box } from '@/components/ui';
+import { Box } from '@/components/ui/box';
 import { CodePreviewContext } from './CodePreviewProvider';
 // @ts-ignore
 const ComponentRenderer = ({
@@ -20,7 +20,7 @@ const ComponentRenderer = ({
       <Box
         className={`${
           activeTab === 'web' ? '' : 'w-[230px]'
-        } flex justify-center items-center overflow-scroll`}
+        } flex justify-center items-center bg-red-500 flex-1 min-h-full`}
       >
         <LiveProvider
           code={
@@ -32,6 +32,9 @@ const ComponentRenderer = ({
           scope={{ ...metaData?.scope }}
           {...props}
         >
+          <Box>TEST</Box>
+          {/* <iframe className="w-full h-full"> */}
+          {/* </iframe> */}
           <div
             style={{
               transform: activeTab === 'web' ? 'none' : 'scale(0.55)',

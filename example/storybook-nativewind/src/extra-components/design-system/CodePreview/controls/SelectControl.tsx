@@ -1,10 +1,12 @@
 import React, { useContext, useState } from 'react';
 import {
-  Select,
-  ChevronDownIcon,
   FormControl,
   FormControlLabel,
   FormControlLabelText,
+} from '@/components/ui/form-control';
+import { ChevronDownIcon } from '@/components/ui/icon';
+import {
+  Select,
   SelectTrigger,
   SelectInput,
   SelectIcon,
@@ -14,7 +16,7 @@ import {
   SelectDragIndicatorWrapper,
   SelectDragIndicator,
   SelectItem,
-} from '@/components/ui';
+} from '@/components/ui/select';
 import { CodePreviewContext } from '../CodePreviewProvider';
 
 export const SelectControl = ({
@@ -49,13 +51,8 @@ export const SelectControl = ({
 
   return (
     <FormControl>
-      <FormControlLabel mb="$3">
-        <FormControlLabelText
-          fontSize="$xs"
-          lineHeight="$xs"
-          color="$textDark400"
-          fontWeight="$normal"
-        >
+      <FormControlLabel className="mb-3">
+        <FormControlLabelText className="text-xs leading-3 text-typography-400 dark:text-background-500 font-normal">
           {componentProp}
         </FormControlLabelText>
       </FormControlLabel>
@@ -66,48 +63,14 @@ export const SelectControl = ({
       >
         <SelectTrigger
           variant="underlined"
-          sx={{
-            _light: {
-              'color': '$textLight900',
-              ':hover': {
-                borderColor: '$borderLight400',
-              },
-            },
-            _dark: {
-              'color': '$textDark50',
-              ':hover': {
-                borderColor: '$borderDark600',
-              },
-            },
-          }}
+          className="text-typography-900 hover:border-background-400 dark:text-typography-50 dark:hover:border-background-600"
         >
           <SelectInput
             placeholder={`Select ${componentProp}`}
-            fontSize="$sm"
-            fontWeight="$normal"
-            // color="$textLight900"
-            sx={{
-              _light: {
-                color: '$textLight900',
-              },
-              _dark: {
-                color: '$textDark50',
-              },
-            }}
+            className="text-sm text-background-900 dark:text-background-500"
           />
-          <SelectIcon mr="$3">
-            <ChevronDownIcon
-              h="$4"
-              w="$4"
-              sx={{
-                _light: {
-                  color: '$backgroundLight500',
-                },
-                _dark: {
-                  color: '$backgroundDark400',
-                },
-              }}
-            />
+          <SelectIcon className="mr-3">
+            <ChevronDownIcon className="h-4 w-4 text-background-500 dark:text-background-700" />
           </SelectIcon>
         </SelectTrigger>
         <SelectPortal>
@@ -121,7 +84,7 @@ export const SelectControl = ({
                 value={option}
                 label={option}
                 key={index}
-                fontWeight="$normal"
+                className="font-normal"
               />
             ))}
           </SelectContent>

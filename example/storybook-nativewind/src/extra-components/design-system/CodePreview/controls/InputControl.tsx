@@ -1,11 +1,10 @@
 import React, { useContext, useState } from 'react';
+import { Input, InputField } from '@/components/ui/input';
 import {
-  Input,
   FormControl,
   FormControlLabel,
   FormControlLabelText,
-  InputField,
-} from '@/components/ui';
+} from '@/components/ui/form-control';
 import { CodePreviewContext } from '../CodePreviewProvider';
 
 export const InputControl = ({ defaultValue, componentProp }: any) => {
@@ -36,13 +35,8 @@ export const InputControl = ({ defaultValue, componentProp }: any) => {
 
   return (
     <FormControl>
-      <FormControlLabel mb="$3">
-        <FormControlLabelText
-          fontSize="$xs"
-          lineHeight="$xs"
-          color="$textDark400"
-          fontWeight="$normal"
-        >
+      <FormControlLabel className="mb-3">
+        <FormControlLabelText className="text-xs leading-3 text-typography-400 font-normal">
           {componentProp}
         </FormControlLabelText>
       </FormControlLabel>
@@ -51,16 +45,7 @@ export const InputControl = ({ defaultValue, componentProp }: any) => {
           placeholder="Enter label"
           value={value}
           onChange={handleChange}
-          color="$textLight900"
-          sx={{
-            _dark: {
-              color: '$textDark50',
-            },
-          }}
-          fontSize="$sm"
-          pt="$3"
-          pb="$2"
-          px="$0"
+          className="text-typography-900 dark:text-typography-50 text-sm pt-3 pb-2 px-0"
         />
       </Input>
     </FormControl>

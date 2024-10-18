@@ -1,8 +1,5 @@
 import React from 'react';
-import {
-  createIcon,
-  Svg,
-} from '@/docs-components/nativewind/core-components/nativewind/icon';
+import { createIcon, Svg } from '@/components/ui/icon';
 
 // import Root from '../styled-components/Root';
 import { Path } from 'react-native-svg';
