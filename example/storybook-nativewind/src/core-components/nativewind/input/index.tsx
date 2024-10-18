@@ -2,15 +2,13 @@
 import React, { useMemo } from 'react';
 import { createInput } from '@gluestack-ui/input';
 import { Svg } from 'react-native-svg';
-import { View, Pressable, TextInput, Platform } from 'react-native';
+import { View, Pressable, TextInput } from 'react-native';
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import {
   withStyleContext,
   useStyleContext,
 } from '@gluestack-ui/nativewind-utils/withStyleContext';
-import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withStyleContextAndStates';
 import { cssInterop } from 'nativewind';
-import { withStates } from '@gluestack-ui/nativewind-utils/withStates';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 const SCOPE = 'INPUT';
 
@@ -24,6 +22,7 @@ type IPrimitiveIcon = {
   as?: React.ElementType;
   className?: string;
   classNameColor?: string;
+  style?: any;
 };
 
 const PrimitiveIcon = React.forwardRef<
@@ -40,6 +39,7 @@ const PrimitiveIcon = React.forwardRef<
       size,
       stroke = 'currentColor',
       as: AsComp,
+      style,
       ...props
     },
     ref
@@ -64,7 +64,15 @@ const PrimitiveIcon = React.forwardRef<
     }
 
     if (AsComp) {
-      return <AsComp ref={ref} {...props} {...sizeProps} {...colorProps} />;
+      return (
+        <AsComp
+          ref={ref}
+          {...props}
+          style={style}
+          {...sizeProps}
+          {...colorProps}
+        />
+      );
     }
     return (
       <Svg ref={ref} height={height} width={width} {...colorProps} {...props} />
@@ -72,22 +80,11 @@ const PrimitiveIcon = React.forwardRef<
   }
 );
 
-const InputWrapper = React.forwardRef<
-  React.ElementRef<typeof View>,
-  React.ComponentProps<typeof View>
->(({ ...props }, ref) => {
-  return <View {...props} ref={ref} />;
-});
-
 const UIInput = createInput({
-  // @ts-ignore
-  Root:
-    Platform.OS === 'web'
-      ? withStyleContext(InputWrapper, SCOPE)
-      : withStyleContextAndStates(InputWrapper, SCOPE),
+  Root: withStyleContext(View, SCOPE),
   Icon: PrimitiveIcon,
   Slot: Pressable,
-  Input: Platform.OS === 'web' ? TextInput : withStates(TextInput),
+  Input: TextInput,
 });
 
 const inputStyle = tva({
@@ -158,12 +155,6 @@ const inputFieldStyle = tva({
   },
 });
 
-cssInterop(InputWrapper, { className: 'style' });
-cssInterop(UIInput.Slot, { className: 'style' });
-cssInterop(UIInput.Input, {
-  className: { target: 'style', nativeStyleToProp: { textAlign: true } },
-});
-//@ts-ignore
 cssInterop(UIInput.Icon, {
   className: {
     target: 'style',

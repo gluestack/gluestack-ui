@@ -9,7 +9,6 @@ import {
   withStyleContext,
   useStyleContext,
 } from '@gluestack-ui/nativewind-utils/withStyleContext';
-import { cssInterop } from 'nativewind';
 const SCOPE = 'AVATAR';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 
@@ -20,12 +19,6 @@ const UIAvatar = createAvatar({
   Image: Image,
   FallbackText: Text,
 });
-
-cssInterop(UIAvatar, { className: 'style' });
-cssInterop(UIAvatar.Badge, { className: 'style' });
-cssInterop(UIAvatar.Group, { className: 'style' });
-cssInterop(UIAvatar.Image, { className: 'style' });
-cssInterop(UIAvatar.FallbackText, { className: 'style' });
 
 const avatarStyle = tva({
   base: 'rounded-full justify-center items-center relative bg-primary-600 group-[.avatar-group]/avatar-group:-ml-2.5',
@@ -161,10 +154,11 @@ export const AvatarImage = React.forwardRef<
       className={avatarImageStyle({
         class: className,
       })}
-      // @ts-ignore
+      // @ts-expect-error
       style={
         Platform.OS === 'web'
-          ? { height: 'revert-layer', width: 'revert-layer' }
+          ? // eslint-disable-next-line react-native/no-inline-styles
+            { height: 'revert-layer', width: 'revert-layer' }
           : undefined
       }
     />

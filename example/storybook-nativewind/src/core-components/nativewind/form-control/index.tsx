@@ -300,20 +300,12 @@ export const UIFormControl = createFormControl({
   HelperText: Text,
 });
 
-cssInterop(UIFormControl, { className: 'style' });
-cssInterop(UIFormControl.Error, { className: 'style' });
-cssInterop(UIFormControl.Error.Text, { className: 'style' });
-cssInterop(UIFormControl.Label, { className: 'style' });
-cssInterop(UIFormControl.Label.Text, { className: 'style' });
-cssInterop(UIFormControl.Helper, { className: 'style' });
-cssInterop(UIFormControl.Helper.Text, { className: 'style' });
 cssInterop(UIFormControl.Error.Icon, {
   className: {
     target: 'style',
     nativeStyleToProp: {
       height: true,
       width: true,
-      // @ts-ignore
       fill: true,
       color: true,
       stroke: true,

@@ -8,16 +8,8 @@ import {
   withStyleContext,
   useStyleContext,
 } from '@gluestack-ui/nativewind-utils/withStyleContext';
-import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withStyleContextAndStates';
 import { cssInterop } from 'nativewind';
-import { withStates } from '@gluestack-ui/nativewind-utils/withStates';
-import {
-  ActivityIndicator,
-  Pressable,
-  Text,
-  View,
-  Platform,
-} from 'react-native';
+import { ActivityIndicator, Pressable, Text, View } from 'react-native';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 
 const SCOPE = 'BUTTON';
@@ -38,6 +30,7 @@ type IPrimitiveIcon = React.ComponentPropsWithoutRef<typeof Svg> & {
   as?: React.ElementType;
   className?: string;
   classNameColor?: string;
+  style?: any;
 };
 
 const PrimitiveIcon = React.forwardRef<
@@ -54,6 +47,7 @@ const PrimitiveIcon = React.forwardRef<
       size,
       stroke = 'currentColor',
       as: AsComp,
+      style,
       ...props
     },
     ref
@@ -78,7 +72,15 @@ const PrimitiveIcon = React.forwardRef<
     }
 
     if (AsComp) {
-      return <AsComp ref={ref} {...props} {...sizeProps} {...colorProps} />;
+      return (
+        <AsComp
+          ref={ref}
+          {...props}
+          style={style}
+          {...sizeProps}
+          {...colorProps}
+        />
+      );
     }
     return (
       <Svg ref={ref} height={height} width={width} {...colorProps} {...props} />
@@ -86,33 +88,22 @@ const PrimitiveIcon = React.forwardRef<
   }
 );
 
-const Root =
-  Platform.OS === 'web'
-    ? withStyleContext(ButtonWrapper, SCOPE)
-    : withStyleContextAndStates(ButtonWrapper, SCOPE);
+const Root = withStyleContext(ButtonWrapper, SCOPE);
 
 const UIButton = createButton({
   Root: Root,
   Text,
   Group: View,
   Spinner: ActivityIndicator,
-  Icon: withStates(PrimitiveIcon),
+  Icon: PrimitiveIcon,
 });
 
-cssInterop(Root, { className: 'style' });
-cssInterop(UIButton.Text, { className: 'style' });
-cssInterop(UIButton.Group, { className: 'style' });
-cssInterop(UIButton.Spinner, {
-  className: { target: 'style', nativeStyleToProp: { color: true } },
-});
-//@ts-ignore
 cssInterop(PrimitiveIcon, {
   className: {
     target: 'style',
     nativeStyleToProp: {
       height: true,
       width: true,
-      //@ts-ignore
       fill: true,
       color: 'classNameColor',
       stroke: true,

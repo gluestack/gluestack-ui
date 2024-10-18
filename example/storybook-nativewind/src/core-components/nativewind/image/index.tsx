@@ -4,7 +4,6 @@ import { createImage } from '@gluestack-ui/image';
 import { Platform, Image as RNImage } from 'react-native';
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
-import { cssInterop } from 'nativewind';
 
 const imageStyle = tva({
   base: 'max-w-full',
@@ -24,7 +23,6 @@ const imageStyle = tva({
 });
 
 const UIImage = createImage({ Root: RNImage });
-cssInterop(UIImage, { className: 'style' });
 
 type ImageProps = VariantProps<typeof imageStyle> &
   React.ComponentProps<typeof UIImage>;
@@ -37,7 +35,7 @@ const Image = React.forwardRef<
       className={imageStyle({ size, class: className })}
       {...props}
       ref={ref}
-      //@ts-ignore
+      // @ts-expect-error
       style={
         Platform.OS === 'web'
           ? // eslint-disable-next-line react-native/no-inline-styles
