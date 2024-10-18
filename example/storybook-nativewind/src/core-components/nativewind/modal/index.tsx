@@ -16,7 +16,6 @@ import { cssInterop } from 'nativewind';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 
 const AnimatedPressable = createMotionAnimatedComponent(Pressable);
-
 const SCOPE = 'MODAL';
 
 const UIModal = createModal({
@@ -29,17 +28,9 @@ const UIModal = createModal({
   Header: View,
   AnimatePresence: AnimatePresence,
 });
-cssInterop(UIModal, { className: 'style' });
-cssInterop(UIModal.Backdrop, { className: 'style' });
-cssInterop(UIModal.Content, { className: 'style' });
-cssInterop(UIModal.CloseButton, { className: 'style' });
-cssInterop(UIModal.Header, { className: 'style' });
-cssInterop(UIModal.Body, {
-  className: 'style',
-  contentContainerClassName: 'contentContainerStyle',
-  indicatorClassName: 'indicatorStyle',
-});
-cssInterop(UIModal.Footer, { className: 'style' });
+
+cssInterop(AnimatedPressable, { className: 'style' });
+cssInterop(Motion.View, { className: 'style' });
 
 const modalStyle = tva({
   base: 'group/modal w-full h-full justify-center items-center web:pointer-events-none',
@@ -59,7 +50,7 @@ const modalBackdropStyle = tva({
 });
 
 const modalContentStyle = tva({
-  base: 'bg-background-0 rounded-md overflow-hidden border border-outline-100 shadow-hard-2 p-6',
+  base: 'bg-background-0 rounded-md overflow-hidden border border-outline-100 p-6',
   parentVariants: {
     size: {
       xs: 'w-[60%] max-w-[360px]',
