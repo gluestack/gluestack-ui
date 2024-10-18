@@ -93,40 +93,57 @@ This is an illustration of **FormControl** component.
 <Wrapper>
   <CodePreview
     showComponentRenderer={true}
-    showArgsController={false}
+    showArgsController={true}
+    _rendererWrapper={{
+      p: '$3',
+    }}
     metaData={{
       code: `
-        <Box className="h-32 w-72">
-          <FormControl {...props}>
-            <FormControlLabel className="mb-1">
-              <FormControlLabelText>Password</FormControlLabelText>
-            </FormControlLabel>
-            <Input>
-              <InputField
-                type="password"
-                defaultValue="12345"
-                placeholder="password"
-              />
-            </Input>
-            <FormControlHelper>
-              <FormControlHelperText>
-                Must be at least 6 characters.
-              </FormControlHelperText>
-            </FormControlHelper>
-            <FormControlError>
-              <FormControlErrorIcon
-                size={10}
-                as={AlertCircleIcon}
-              />
-              <FormControlErrorText>
-                At least 6 characters are required.
-              </FormControlErrorText>
-            </FormControlError>
-          </FormControl>
-        </Box>
+        function App () {
+        const [isInvalid, setIsInvalid] = React.useState(false);
+        const [inputValue, setInputValue] = React.useState('12345');
+        const handleSubmit = () => {
+          if (inputValue.length < 6) {
+            setIsInvalid(true);
+          } else {
+            setIsInvalid(false);
+          }
+        };
+        return (
+          <VStack className="w-full max-w-[300px] rounded-md border border-background-200 p-4">
+            <FormControl isInvalid={isInvalid} {...props}>
+              <FormControlLabel>
+                <FormControlLabelText>Password</FormControlLabelText>
+              </FormControlLabel>
+              <Input className="my-1" size={props.size}>
+                <InputField
+                  type="password"
+                  placeholder="password"
+                  value={inputValue}
+                  onChangeText={(text) => setInputValue(text)}
+                />
+              </Input>
+              <FormControlHelper>
+                <FormControlHelperText>
+                  Must be atleast 6 characters.
+                </FormControlHelperText>
+              </FormControlHelper>
+              <FormControlError>
+                <FormControlErrorIcon as={AlertCircleIcon} />
+                <FormControlErrorText>
+                  Atleast 6 characters are required.
+                </FormControlErrorText>
+              </FormControlError>
+            </FormControl>
+            <Button className="w-fit self-end mt-4" size="sm" onPress={handleSubmit}>
+              <ButtonText>Submit</ButtonText>
+            </Button>
+          </VStack>
+        );
+      };
       `,
       transformCode: (code) => {
-        return transformedCode(code);
+        return transformedCode(code, 'function', 'App');
       },
       scope: {
         Wrapper,
@@ -138,13 +155,33 @@ This is an illustration of **FormControl** component.
         FormControlError,
         FormControlErrorIcon,
         FormControlErrorText,
-        Icon,
+        useState,
         Input,
         InputField,
         AlertCircleIcon,
-        Box,
+        Button,
+        ButtonText,
+        VStack,
       },
-      argsType: {},
+      argsType: {
+        size: {
+          control: 'select',
+          options: ['sm', 'md', 'lg'],
+          default: 'md',
+        },
+        isDisabled: {
+          control: 'boolean',
+          default: false,
+        },
+        isReadOnly: {
+          control: 'boolean',
+          default: false,
+        },
+        isRequired: {
+          control: 'boolean',
+          default: false,
+        },
+      },
     }}
   />
 </Wrapper>
@@ -460,91 +497,6 @@ The Radio Component can be incorporated within the FormControl.
   />
 </Wrapper>
 
-#### Form Control with Input
-
-The Input Component can be incorporated within the FormControl.
-
-<Wrapper>
-  <CodePreview
-    showComponentRenderer={true}
-    showArgsController={true}
-    metaData={{
-      code: `
-        <Box className="h-32 w-72">
-          <FormControl {...props}>
-            <FormControlLabel className="mb-1">
-              <FormControlLabelText>Password</FormControlLabelText>
-            </FormControlLabel>
-            <Input>
-              <InputField
-                type="password"
-                defaultValue="12345"
-                placeholder="password"
-              />
-            </Input>
-            <FormControlHelper>
-              <FormControlHelperText>
-                Must be at least 6 characters.
-              </FormControlHelperText>
-            </FormControlHelper>
-            <FormControlError>
-              <FormControlErrorIcon
-                size={10}
-                as={AlertCircleIcon}
-              />
-              <FormControlErrorText>
-                At least 6 characters are required.
-              </FormControlErrorText>
-            </FormControlError>
-          </FormControl>
-        </Box>
-      `,
-      transformCode: (code) => {
-        return transformedCode(code);
-      },
-      scope: {
-        Wrapper,
-        FormControl,
-        FormControlLabel,
-        FormControlLabelText,
-        FormControlHelper,
-        FormControlHelperText,
-        FormControlError,
-        FormControlErrorIcon,
-        FormControlErrorText,
-        Icon,
-        Input,
-        InputField,
-        AlertCircleIcon,
-        Box,
-      },
-      argsType: {
-        size: {
-          control: 'select',
-          options: ['sm', 'md', 'lg'],
-          default: 'md',
-        },
-        isDisabled: {
-          control: 'boolean',
-          default: false,
-        },
-        isInvalid: {
-          control: 'boolean',
-          default: false,
-        },
-        isReadOnly: {
-          control: 'boolean',
-          default: false,
-        },
-        isRequired: {
-          control: 'boolean',
-          default: false,
-        },
-      },
-    }}
-  />
-</Wrapper>
-
 #### Form Control with Checkbox
 
 The Checkbox Component can be incorporated within the FormControl.
@@ -555,55 +507,52 @@ The Checkbox Component can be incorporated within the FormControl.
     showArgsController={false}
     metaData={{
       code: `
-        <FormControl>
-          <FormControlLabel>
-            <FormControlLabelText>
-              Sign up for newsletters
-            </FormControlLabelText>
-          </FormControlLabel>
-          <CheckboxGroup className='my-2'>
-            <VStack space="sm">
-              <Checkbox size="sm" value="Mango">
-                <CheckboxIndicator className='mr-2'>
-                  <CheckboxIcon>
-                    <CheckIcon />
-                  </CheckboxIcon>
-                </CheckboxIndicator>
-                <CheckboxLabel>
-                  Daily Bits
-                </CheckboxLabel>
-              </Checkbox>
-              <Checkbox size="sm" value="Apple">
-                <CheckboxIndicator className='mr-2'>
-                  <CheckboxIcon>
-                    <CheckIcon />
-                  </CheckboxIcon>
-                </CheckboxIndicator>
-                <CheckboxLabel>
-                  Event Updates
-                </CheckboxLabel>
-              </Checkbox>
-              <Checkbox size="sm" value="Orange">
-                <CheckboxIndicator className='mr-2'>
-                  <CheckboxIcon>
-                    <CheckIcon />
-                  </CheckboxIcon>
-                </CheckboxIndicator>
-                <CheckboxLabel>
-                  Sponsorship
-                </CheckboxLabel>
-              </Checkbox>
-            </VStack>
-          </CheckboxGroup>
-          <FormControlHelper>
-            <FormControlHelperText>
-              Subscribe to newsletters for updates
-            </FormControlHelperText>
-          </FormControlHelper>
-        </FormControl>
+      function App() {
+      const [values, setValues] = React.useState(['bits']);
+        return (
+          <FormControl>
+            <FormControlLabel>
+              <FormControlLabelText>Sign up for newsletters</FormControlLabelText>
+            </FormControlLabel>
+            <CheckboxGroup
+              className="my-2"
+              value={values}
+              onChange={(keys) => {
+                setValues(keys);
+              }}
+            >
+              <VStack space="sm">
+                <Checkbox size="sm" value="bits">
+                  <CheckboxIndicator className="mr-2">
+                    <CheckboxIcon as={CheckIcon} />
+                  </CheckboxIndicator>
+                  <CheckboxLabel>Daily Bits</CheckboxLabel>
+                </Checkbox>
+                <Checkbox size="sm" value="event">
+                  <CheckboxIndicator className="mr-2">
+                    <CheckboxIcon as={CheckIcon} />
+                  </CheckboxIndicator>
+                  <CheckboxLabel>Event Updates</CheckboxLabel>
+                </Checkbox>
+                <Checkbox size="sm" value="sponsorship">
+                  <CheckboxIndicator className="mr-2">
+                    <CheckboxIcon as={CheckIcon} />
+                  </CheckboxIndicator>
+                  <CheckboxLabel>Sponsorship</CheckboxLabel>
+                </Checkbox>
+              </VStack>
+            </CheckboxGroup>
+            <FormControlHelper>
+              <FormControlHelperText>
+                Subscribe to newsletters for updates
+              </FormControlHelperText>
+            </FormControlHelper>
+          </FormControl>
+        );
+      }
       `,
       transformCode: (code) => {
-        return transformedCode(code);
+        return transformedCode(code, 'function', 'App');
       },
       scope: {
         Wrapper,
@@ -615,6 +564,7 @@ The Checkbox Component can be incorporated within the FormControl.
         FormControlError,
         FormControlErrorIcon,
         FormControlErrorText,
+        useState,
         Icon,
         Checkbox,
         CheckboxGroup,

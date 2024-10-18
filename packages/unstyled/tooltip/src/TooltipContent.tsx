@@ -3,7 +3,7 @@ import { useTooltipContext } from './context';
 import { mergeRefs } from '@gluestack-ui/utils';
 import { useOverlayPosition } from '@react-native-aria/overlays';
 import { OverlayAnimatePresence } from './OverlayAnimatePresence';
-import { Platform } from 'react-native';
+import { Platform, View } from 'react-native';
 
 export function TooltipContent<StyledTooltipContentProps>(
   StyledTooltipContent: React.ComponentType<StyledTooltipContentProps>,
@@ -60,9 +60,9 @@ export function TooltipContent<StyledTooltipContentProps>(
 
     const animatedStyles = {
       opacity: 1,
+      x: 0,
       y: 0,
       scale: 1,
-      x: 0,
     };
 
     const exitAnimatedStyles = {
@@ -76,22 +76,27 @@ export function TooltipContent<StyledTooltipContentProps>(
         visible={isOpen}
         AnimatePresence={AnimatePresence}
       >
-        <StyledTooltipContent
-          initial={initialAnimatedStyles}
-          animate={animatedStyles}
-          exit={exitAnimatedStyles}
-          transition={{
-            type: 'timing',
-            duration: 100,
-          }}
-          {...props}
+        <View
           ref={mergedRef}
-          key={placement + calculatedPlacement}
-          role={Platform.OS === 'web' ? 'tooltip' : undefined}
-          style={[overlayProps.style, { position: 'absolute' }, style]}
+          style={[overlayProps.style, { position: 'absolute' }]}
         >
-          {children}
-        </StyledTooltipContent>
+          <StyledTooltipContent
+            initial={initialAnimatedStyles}
+            animate={animatedStyles}
+            exit={exitAnimatedStyles}
+            transition={{
+              type: 'timing',
+              duration: 100,
+            }}
+            {...props}
+            style={style}
+            ref={mergedRef}
+            key={placement + calculatedPlacement}
+            role={Platform.OS === 'web' ? 'tooltip' : undefined}
+          >
+            {children}
+          </StyledTooltipContent>
+        </View>
       </OverlayAnimatePresence>
     );
   });

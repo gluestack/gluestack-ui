@@ -45,6 +45,7 @@ Ensure you have the following prerequisites installed on your project to use glu
 
 - Node.js: Version 16 or higher.
 - React: Version 18 or higher.
+- Operating System: macOS. We are currently working on support for Windows OS. For now, we recommend using the manual installation guide to avoid any issues.
 
 ### Step 2: Initialize
 
@@ -92,7 +93,7 @@ npm i @gluestack-ui/nativewind-utils
 
 ### Step 2.1: Update Tailwind configuration
 
-Update `tailwind.config.js` file with the following code
+Update the `tailwind.config.js` file with the following code and also the the `content` property with paths to the files where components are used.
 
 ```js
 %%-- File: tailwind.config.js --%% 
@@ -108,7 +109,7 @@ Create a `components/ui` folder inside `src` folder and add path in `tsconfig.js
     // ...
     "paths": {
       // ...
-      "@/*": ["./src/*"] // Add relative path
+      "@/*": ["./*"] // Add relative path
     },
   }
 ```
@@ -143,6 +144,16 @@ To add `GluestackUIProvider`, create a `gluestack-ui-provider/index.web.tsx` fil
 
 ```jsx
 %%-- File: core-components/nativewind/gluestack-ui-provider/index.web.tsx --%%
+```
+
+</CollapsibleCode>
+
+Also, create a `gluestack-ui-provider/script.ts` file inside `components/ui` folder and paste the following code.
+
+<CollapsibleCode>
+
+```jsx
+%%-- File: core-components/nativewind/gluestack-ui-provider/script.ts --%%
 ```
 
 </CollapsibleCode>

@@ -28,8 +28,8 @@ const FormControlMeta: ComponentMeta<typeof FormControl> = {
     },
   },
   args: {
-    isInvalid: true,
-    isRequired: true,
+    isInvalid: false,
+    isRequired: false,
     isDisabled: false,
     size: 'md',
   },

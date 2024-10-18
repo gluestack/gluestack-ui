@@ -3,12 +3,12 @@ import {
   Alert,
   AlertIcon,
   AlertText,
+  InfoIcon,
 } from '../../../core-components/nativewind';
-import { InfoIcon } from '../../../core-components/nativewind';
 
 const AlertDemo = () => {
   return (
-    <Alert action="muted">
+    <Alert>
       <AlertIcon as={InfoIcon} />
       <AlertText>Description of alert!</AlertText>
     </Alert>

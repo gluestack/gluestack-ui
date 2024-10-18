@@ -39,9 +39,10 @@ function ActionsheetContent(
         handleCloseBackdrop,
         finalFocusRef,
         snapPoints,
+        preventScroll,
       } = React.useContext(ActionsheetContext);
 
-      usePreventScroll();
+      usePreventScroll({ isDisabled: preventScroll });
 
       const pan = React.useRef(new Animated.ValueXY()).current;
       const contentSheetHeight = React.useRef(0);

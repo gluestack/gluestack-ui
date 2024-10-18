@@ -1,5 +1,11 @@
 # @gluestack-ui/tooltip
 
+## 0.1.33
+
+### Patch Changes
+
+- fix: tooltip content was rendering 2 times
+
 ## 0.1.32
 
 ### Patch Changes

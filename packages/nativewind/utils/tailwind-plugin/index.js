@@ -1,4 +1,5 @@
-const plugin = require('tailwindcss/plugin');
+import plugin from 'tailwindcss/plugin';
+
 const stateObj = {
   'indeterminate=true': 1,
   'indeterminate=false': 1,

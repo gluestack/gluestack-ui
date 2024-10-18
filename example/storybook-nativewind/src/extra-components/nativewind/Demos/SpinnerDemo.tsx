@@ -1,6 +1,6 @@
 import React from 'react';
-import { Spinner } from '../../../core-components/nativewind';
 import colors from 'tailwindcss/colors';
+import { Spinner } from '../../../core-components/nativewind';
 
 const SpinnerDemo = () => {
   return <Spinner size="large" color={colors.gray[500]} />;

@@ -17,6 +17,7 @@ const imageStyle = tva({
       'xl': 'h-32 w-32',
       '2xl': 'h-64 w-64',
       'full': 'h-full w-full',
+      'none': '',
     },
   },
 });

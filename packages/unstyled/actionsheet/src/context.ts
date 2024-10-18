@@ -13,4 +13,5 @@ export const ActionsheetContext = React.createContext({
   bottomInset: 0 as number,
   trapFocus: true as boolean,
   snapPoints: [] as Array<number>,
+  preventScroll: true as boolean,
 });

@@ -1,5 +1,26 @@
 # @gluestack-ui/themed
 
+## 1.1.54
+
+### Patch Changes
+
+- Updated dependencies
+  - @gluestack-ui/alert-dialog@0.1.31
+
+## 1.1.53
+
+### Patch Changes
+
+- Updated dependencies
+  - @gluestack-ui/tooltip@0.1.33
+
+## 1.1.52
+
+### Patch Changes
+
+- Updated dependencies
+  - @gluestack-ui/actionsheet@0.2.45
+
 ## 1.1.51
 
 ### Patch Changes
