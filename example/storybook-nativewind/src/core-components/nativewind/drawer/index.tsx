@@ -46,17 +46,9 @@ const UIDrawer = createDrawer({
   Header: View,
   AnimatePresence: AnimatePresence,
 });
-cssInterop(UIDrawer, { className: 'style' });
-cssInterop(UIDrawer.Backdrop, { className: 'style' });
-cssInterop(UIDrawer.Content, { className: 'style' });
-cssInterop(UIDrawer.CloseButton, { className: 'style' });
-cssInterop(UIDrawer.Header, { className: 'style' });
-cssInterop(UIDrawer.Body, {
-  className: 'style',
-  contentContainerClassName: 'contentContainerStyle',
-  indicatorClassName: 'indicatorStyle',
-});
-cssInterop(UIDrawer.Footer, { className: 'style' });
+
+cssInterop(AnimatedPressable, { className: 'style' });
+cssInterop(Motion.View, { className: 'style' });
 
 const drawerStyle = tva({
   base: 'w-full h-full web:pointer-events-none relative',

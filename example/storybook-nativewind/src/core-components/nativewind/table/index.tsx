@@ -7,6 +7,7 @@ import {
   TR as ExpoTR,
   Caption as ExpoTCaption,
 } from '@expo/html-elements';
+
 import {
   tableStyle,
   tableHeaderStyle,
@@ -19,8 +20,16 @@ import {
 } from './styles';
 import { Text, View } from 'react-native';
 
-const TableHeaderContext = createContext<any>({});
-const TableFooterContext = createContext<any>({});
+const TableHeaderContext = createContext<{
+  isHeaderRow: boolean;
+}>({
+  isHeaderRow: false,
+});
+const TableFooterContext = createContext<{
+  isFooterRow: boolean;
+}>({
+  isFooterRow: false,
+});
 
 type ITableProps = React.ComponentProps<typeof ExpoTable>;
 type ITableHeaderProps = React.ComponentProps<typeof ExpoTHead>;
@@ -39,6 +48,7 @@ const Table = React.forwardRef<React.ElementRef<typeof ExpoTable>, ITableProps>(
   ({ className, ...props }, ref) => {
     return (
       <ExpoTable
+        // @ts-expect-error
         ref={ref}
         className={tableStyle({ class: className })}
         {...props}
@@ -59,6 +69,7 @@ const TableHeader = React.forwardRef<
   return (
     <TableHeaderContext.Provider value={contextValue}>
       <ExpoTHead
+        // @ts-expect-error
         ref={ref}
         className={tableHeaderStyle({ class: className })}
         {...props}
@@ -73,6 +84,7 @@ const TableBody = React.forwardRef<
 >(({ className, ...props }, ref) => {
   return (
     <ExpoTBody
+      // @ts-expect-error
       ref={ref}
       className={tableBodyStyle({ class: className })}
       {...props}
@@ -92,6 +104,7 @@ const TableFooter = React.forwardRef<
   return (
     <TableFooterContext.Provider value={contextValue}>
       <ExpoTFoot
+        // @ts-expect-error
         ref={ref}
         className={tableFooterStyle({ class: className })}
         {...props}
@@ -132,6 +145,7 @@ const TableRow = React.forwardRef<
 
   return (
     <ExpoTR
+      // @ts-expect-error
       ref={ref}
       className={tableRowStyleStyle({
         isHeaderRow,
@@ -172,6 +186,7 @@ const TableCaption = React.forwardRef<
 >(({ className, ...props }, ref) => {
   return (
     <ExpoTCaption
+      // @ts-expect-error
       ref={ref}
       className={tableCaptionStyle({ class: className })}
       {...props}

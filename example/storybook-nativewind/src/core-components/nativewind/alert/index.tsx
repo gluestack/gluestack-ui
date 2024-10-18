@@ -115,6 +115,7 @@ type IPrimitiveIcon = React.ComponentPropsWithoutRef<typeof Svg> & {
   as?: React.ElementType;
   className?: string;
   classNameColor?: string;
+  style?: any;
 };
 const PrimitiveIcon = React.forwardRef<
   React.ElementRef<typeof Svg>,
@@ -130,6 +131,7 @@ const PrimitiveIcon = React.forwardRef<
       size,
       stroke = 'currentColor',
       as: AsComp,
+      style,
       ...props
     },
     ref
@@ -154,7 +156,15 @@ const PrimitiveIcon = React.forwardRef<
     }
 
     if (AsComp) {
-      return <AsComp ref={ref} {...props} {...sizeProps} {...colorProps} />;
+      return (
+        <AsComp
+          ref={ref}
+          {...props}
+          style={style}
+          {...sizeProps}
+          {...colorProps}
+        />
+      );
     }
     return (
       <Svg ref={ref} height={height} width={width} {...colorProps} {...props} />
@@ -162,30 +172,19 @@ const PrimitiveIcon = React.forwardRef<
   }
 );
 
-const IconWrapper = React.forwardRef<
-  React.ElementRef<typeof PrimitiveIcon>,
-  IPrimitiveIcon
->(({ ...props }, ref) => {
-  return <PrimitiveIcon {...props} ref={ref} />;
-});
-
 export const UIAlert = createAlert({
   Root: withStyleContext(View, SCOPE),
   Text: Text,
-  Icon: IconWrapper,
+  Icon: PrimitiveIcon,
 });
 
-cssInterop(UIAlert, { className: 'style' });
-//@ts-ignore
-cssInterop(UIAlert.Text, { className: 'style' });
-//@ts-ignore
-cssInterop(IconWrapper, {
+cssInterop(PrimitiveIcon, {
   className: {
     target: 'style',
     nativeStyleToProp: {
       height: true,
       width: true,
-      //@ts-ignore
+
       fill: true,
       color: 'classNameColor',
       stroke: true,

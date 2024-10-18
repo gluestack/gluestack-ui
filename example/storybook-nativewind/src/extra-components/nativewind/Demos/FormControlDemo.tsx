@@ -38,7 +38,9 @@ const FormControlDemo = () => {
             type="password"
             placeholder="password"
             value={inputValue}
-            onChange={(e) => setInputValue(e.target.value)}
+            onChangeText={(text) => {
+              setInputValue(text);
+            }}
           />
         </Input>
 

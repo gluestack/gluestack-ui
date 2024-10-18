@@ -1,36 +1,18 @@
 'use client';
 import React from 'react';
 import { createTextarea } from '@gluestack-ui/textarea';
-import { View, TextInput, Platform } from 'react-native';
+import { View, TextInput } from 'react-native';
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import {
   withStyleContext,
   useStyleContext,
 } from '@gluestack-ui/nativewind-utils/withStyleContext';
-import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withStyleContextAndStates';
-import { cssInterop } from 'nativewind';
-import { withStates } from '@gluestack-ui/nativewind-utils/withStates';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
-
-const TextareaWrapper = React.forwardRef<
-  React.ElementRef<typeof View>,
-  React.ComponentProps<typeof View>
->(({ ...props }, ref) => {
-  return <View {...props} ref={ref} />;
-});
 
 const SCOPE = 'TEXTAREA';
 const UITextarea = createTextarea({
-  Root:
-    Platform.OS === 'web'
-      ? withStyleContext(TextareaWrapper, SCOPE)
-      : withStyleContextAndStates(TextareaWrapper, SCOPE),
-  Input: Platform.OS === 'web' ? TextInput : withStates(TextInput),
-});
-
-cssInterop(TextareaWrapper, { className: 'style' });
-cssInterop(UITextarea.Input, {
-  className: { target: 'style', nativeStyleToProp: { textAlign: true } },
+  Root: withStyleContext(View, SCOPE),
+  Input: TextInput,
 });
 
 const textareaStyle = tva({

@@ -6,7 +6,7 @@ import {
   withStyleContext,
   useStyleContext,
 } from '@gluestack-ui/nativewind-utils/withStyleContext';
-import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withStyleContextAndStates';
+
 import { cssInterop } from 'nativewind';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 import {
@@ -14,17 +14,14 @@ import {
   AnimatePresence,
   createMotionAnimatedComponent,
 } from '@legendapp/motion';
-import { View, Pressable, ScrollView, Platform } from 'react-native';
+import { View, Pressable, ScrollView } from 'react-native';
 
 const AnimatedPressable = createMotionAnimatedComponent(Pressable);
 
 const SCOPE = 'ALERT_DIALOG';
 
 const UIAccessibleAlertDialog = createAlertDialog({
-  Root:
-    Platform.OS === 'web'
-      ? withStyleContext(View, SCOPE)
-      : withStyleContextAndStates(View, SCOPE),
+  Root: withStyleContext(View, SCOPE),
   Body: ScrollView,
   Content: Motion.View,
   CloseButton: Pressable,
@@ -34,17 +31,8 @@ const UIAccessibleAlertDialog = createAlertDialog({
   AnimatePresence: AnimatePresence,
 });
 
-cssInterop(UIAccessibleAlertDialog, { className: 'style' });
-cssInterop(UIAccessibleAlertDialog.Content, { className: 'style' });
-cssInterop(UIAccessibleAlertDialog.CloseButton, { className: 'style' });
-cssInterop(UIAccessibleAlertDialog.Header, { className: 'style' });
-cssInterop(UIAccessibleAlertDialog.Footer, { className: 'style' });
-cssInterop(UIAccessibleAlertDialog.Body, {
-  className: 'style',
-  contentContainerClassName: 'contentContainerStyle',
-  indicatorClassName: 'indicatorStyle',
-});
-cssInterop(UIAccessibleAlertDialog.Backdrop, { className: 'style' });
+cssInterop(Motion.View, { className: 'style' });
+cssInterop(AnimatedPressable, { className: 'style' });
 
 const alertDialogStyle = tva({
   base: 'group/modal w-full h-full justify-center items-center web:pointer-events-none',

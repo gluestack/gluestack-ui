@@ -41,7 +41,7 @@ const FormControlBasic = ({ isInvalid: propsIsInvalid, ...props }: any) => {
             type="password"
             placeholder="password"
             value={inputValue}
-            onChange={(e) => setInputValue(e.target.value)}
+            onChangeText={(text) => setInputValue(text)}
           />
         </Input>
 

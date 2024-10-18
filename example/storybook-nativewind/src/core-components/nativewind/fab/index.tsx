@@ -1,15 +1,13 @@
 'use client';
 import React, { useMemo } from 'react';
 import { createFab } from '@gluestack-ui/fab';
-import { Platform, Text } from 'react-native';
-import { Pressable } from 'react-native';
+import { Pressable, Text } from 'react-native';
 import { Svg } from 'react-native-svg';
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import {
   withStyleContext,
   useStyleContext,
 } from '@gluestack-ui/nativewind-utils/withStyleContext';
-import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withStyleContextAndStates';
 import { cssInterop } from 'nativewind';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 
@@ -23,6 +21,7 @@ type IPrimitiveIcon = React.ComponentPropsWithoutRef<typeof Svg> & {
   as?: React.ElementType;
   className?: string;
   classNameColor?: string;
+  style?: any;
 };
 
 const PrimitiveIcon = React.forwardRef<
@@ -39,6 +38,7 @@ const PrimitiveIcon = React.forwardRef<
       size,
       stroke = 'currentColor',
       as: AsComp,
+      style,
       ...props
     },
     ref
@@ -63,7 +63,15 @@ const PrimitiveIcon = React.forwardRef<
     }
 
     if (AsComp) {
-      return <AsComp ref={ref} {...props} {...sizeProps} {...colorProps} />;
+      return (
+        <AsComp
+          ref={ref}
+          {...props}
+          style={style}
+          {...sizeProps}
+          {...colorProps}
+        />
+      );
     }
     return (
       <Svg ref={ref} height={height} width={width} {...colorProps} {...props} />
@@ -72,25 +80,19 @@ const PrimitiveIcon = React.forwardRef<
 );
 
 const SCOPE = 'FAB';
+const Root = withStyleContext(Pressable, SCOPE);
 const UIFab = createFab({
-  Root:
-    Platform.OS === 'web'
-      ? withStyleContext(Pressable, SCOPE)
-      : withStyleContextAndStates(Pressable, SCOPE),
+  Root: Root,
   Label: Text,
   Icon: PrimitiveIcon,
 });
 
-cssInterop(UIFab, { className: 'style' });
-cssInterop(UIFab.Label, { className: 'style' });
-//@ts-ignore
-cssInterop(UIFab.Icon, {
+cssInterop(PrimitiveIcon, {
   className: {
     target: 'style',
     nativeStyleToProp: {
       height: true,
       width: true,
-      //@ts-ignore
       fill: true,
       color: 'classNameColor',
       stroke: true,
