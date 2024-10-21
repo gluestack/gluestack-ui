@@ -1,7 +1,6 @@
 import React, { useMemo } from 'react';
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import { Svg } from 'react-native-svg';
-import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withStyleContextAndStates';
 import {
   withStyleContext,
   useStyleContext,
@@ -23,7 +22,7 @@ import {
   ActionsheetSectionList,
   ActionsheetSectionHeaderText,
 } from './select-actionsheet';
-import { Pressable, View, TextInput, Platform } from 'react-native';
+import { Pressable, View, TextInput } from 'react-native';
 
 const SelectTriggerWrapper = React.forwardRef<
   React.ElementRef<typeof Pressable>,
@@ -97,6 +96,7 @@ type IPrimitiveIcon = {
   as?: React.ElementType;
   className?: string;
   classNameColor?: string;
+  style?: any;
 };
 
 const PrimitiveIcon = React.forwardRef<
@@ -113,6 +113,7 @@ const PrimitiveIcon = React.forwardRef<
       size,
       stroke = 'currentColor',
       as: AsComp,
+      style,
       ...props
     },
     ref
@@ -137,7 +138,15 @@ const PrimitiveIcon = React.forwardRef<
     }
 
     if (AsComp) {
-      return <AsComp ref={ref} {...props} {...sizeProps} {...colorProps} />;
+      return (
+        <AsComp
+          ref={ref}
+          {...props}
+          style={style}
+          {...sizeProps}
+          {...colorProps}
+        />
+      );
     }
     return (
       <Svg ref={ref} height={height} width={width} {...colorProps} {...props} />
@@ -148,10 +157,7 @@ const PrimitiveIcon = React.forwardRef<
 const UISelect = createSelect(
   {
     Root: View,
-    Trigger:
-      Platform.OS === 'web'
-        ? withStyleContext(SelectTriggerWrapper)
-        : withStyleContextAndStates(SelectTriggerWrapper),
+    Trigger: withStyleContext(SelectTriggerWrapper),
     Input: TextInput,
     Icon: PrimitiveIcon,
   },
@@ -176,7 +182,7 @@ cssInterop(UISelect.Input, {
   className: { target: 'style', nativeStyleToProp: { textAlign: true } },
 });
 cssInterop(SelectTriggerWrapper, { className: 'style' });
-//@ts-ignore
+
 cssInterop(UISelect.Icon, {
   className: {
     target: 'style',
@@ -308,7 +314,6 @@ const SelectContent = UISelect.Content;
 const SelectDragIndicator = UISelect.DragIndicator;
 const SelectDragIndicatorWrapper = UISelect.DragIndicatorWrapper;
 const SelectItem = UISelect.Item;
-const SelectItemText = UISelect.ItemText;
 const SelectScrollView = UISelect.ScrollView;
 const SelectVirtualizedList = UISelect.VirtualizedList;
 const SelectFlatList = UISelect.FlatList;
@@ -326,7 +331,6 @@ export {
   SelectDragIndicator,
   SelectDragIndicatorWrapper,
   SelectItem,
-  SelectItemText,
   SelectScrollView,
   SelectVirtualizedList,
   SelectFlatList,

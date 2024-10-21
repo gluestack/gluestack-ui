@@ -18,8 +18,8 @@ const InputWithIcon = ({ ...props }: any) => {
     <VStack space="md" w="$full">
       <Input {...props} size="sm">
         <InputField
-          onChange={(e: any) => {
-            setValue(e.nativeEvent.text);
+          onChangeText={(text) => {
+            setValue(text);
           }}
           value={value}
           placeholder="Enter Text here"
@@ -31,8 +31,8 @@ const InputWithIcon = ({ ...props }: any) => {
 
       <Input {...props} size="md">
         <InputField
-          onChange={(e: any) => {
-            setValue(e.nativeEvent.text);
+          onChangeText={(text) => {
+            setValue(text);
           }}
           value={value}
           placeholder="Enter Text here"
@@ -44,8 +44,8 @@ const InputWithIcon = ({ ...props }: any) => {
 
       <Input {...props} size="lg" isDisabled>
         <InputField
-          onChange={(e: any) => {
-            setValue(e.nativeEvent.text);
+          onChangeText={(text) => {
+            setValue(text);
           }}
           value={value}
           placeholder="Enter Text here"
@@ -57,8 +57,8 @@ const InputWithIcon = ({ ...props }: any) => {
 
       <Input {...props} size="xl" isInvalid>
         <InputField
-          onChange={(e: any) => {
-            setValue(e.nativeEvent.text);
+          onChangeText={(text) => {
+            setValue(text);
           }}
           value={value}
           placeholder="Enter Text here"

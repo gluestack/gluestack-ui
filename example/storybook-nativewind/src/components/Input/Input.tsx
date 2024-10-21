@@ -8,8 +8,8 @@ const InputBasic = ({ ...props }: any) => {
   return (
     <Input {...props}>
       <InputField
-        onChange={(e: any) => {
-          setValue(e.nativeEvent.text);
+        onChangeText={(text) => {
+          setValue(text);
         }}
         value={value}
         placeholder="Enter Text here"

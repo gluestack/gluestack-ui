@@ -14,7 +14,8 @@ import {
   useBreakpointValue,
   getBreakPointValue,
 } from '@/components/ui/utils/use-break-point-value';
-const { width } = Dimensions.get('window');
+
+const { width: DEVICE_WIDTH } = Dimensions.get('window');
 
 const GridContext = createContext<any>({});
 
@@ -140,7 +141,7 @@ const Grid = forwardRef<React.ElementRef<typeof View>, IGridProps>(
 
         const colSpan2 = getBreakPointValue(
           generateResponsiveColSpans({ gridItemClassName }),
-          width
+          DEVICE_WIDTH
         );
         const colSpan = colSpan2 ? colSpan2 : 1;
 
@@ -220,7 +221,6 @@ const Grid = forwardRef<React.ElementRef<typeof View>, IGridProps>(
   }
 );
 
-//@ts-ignore
 cssInterop(Grid, {
   className: {
     target: 'style',
@@ -319,9 +319,7 @@ const GridItem = forwardRef<React.ElementRef<typeof View>, IGridItemProps>(
         // @ts-expect-error
         gridItemClass={gridItemClass}
         className={gridItemStyle({
-          class:
-            className + ' ' + Platform.select({ web: gridItemClass ?? '' }) ??
-            '',
+          class: className,
         })}
         {...props}
         style={[
