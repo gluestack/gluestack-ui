@@ -105,6 +105,7 @@ const CodePreview = ({
   showExternalResource,
   _container,
   _rendererWrapper,
+  isOverlayComponent = false,
   ...props
 }: any) => {
   const [previewMetaData, setPreviewMetaData] = React.useState(metaData);
@@ -163,9 +164,7 @@ const CodePreview = ({
                   }`}
                 >
                   <div
-                    className={`bg-contain bg-center bg-no-repeat overflow-hidden  h-full bg-transparent relative ${
-                      activeTab === 'web' ? 'min-h-[200px]' : 'min-h-[530px]'
-                    }`}
+                    className={`bg-contain bg-center bg-no-repeat overflow-hidden  h-full bg-transparent relative min-h-[530px]`}
                     style={{
                       backgroundImage:
                         activeTab === 'android'
@@ -181,16 +180,15 @@ const CodePreview = ({
                     }}
                   >
                     <Box
-                      className={`absolute left-1/2 transform -translate-x-1/2  ${
-                        activeTab === 'web'
-                          ? 'top-1/2 -translate-y-1/2'
-                          : 'top-1/4 -translate-y-1/4'
-                      } `}
+                      className={`absolute left-1/2 transform -translate-x-1/2 top-1/2 -translate-y-1/2 ${
+                        activeTab === 'web' ? '' : 'h-5/6'
+                      }`}
                     >
                       {showComponentRenderer && (
                         <ComponentRenderer
                           showArgsController={showArgsController}
                           activeTab={activeTab}
+                          isOverlayComponent={isOverlayComponent}
                           {...rendererProps}
                           _rendererWrapper={_rendererWrapper}
                         />

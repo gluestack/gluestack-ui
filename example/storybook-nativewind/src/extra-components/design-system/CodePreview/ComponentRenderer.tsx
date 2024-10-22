@@ -6,35 +6,49 @@ import {
 } from 'react-live';
 import { Box } from '@/components/ui/box';
 import { CodePreviewContext } from './CodePreviewProvider';
+
+function wrapWithOverlayProvider(componentStr: string) {
+  const overlayProviderStart = '<OverlayProvider>';
+  const overlayProviderEnd = '</OverlayProvider>';
+  const modifiedComponentStr = componentStr.replace(
+    /return\s*\(\s*/, // Matches the return statement
+    `return (\n  ${overlayProviderStart}\n`
+  );
+  const lastClosingParenIndex = modifiedComponentStr.lastIndexOf(')'); // Find the last closing parenthesis
+  const finalComponentStr =
+    modifiedComponentStr.slice(0, lastClosingParenIndex) +
+    `  ${overlayProviderEnd}\n` +
+    modifiedComponentStr.slice(lastClosingParenIndex);
+  return finalComponentStr;
+}
+
 // @ts-ignore
 const ComponentRenderer = ({
   showArgsController,
   _rendererWrapper,
   activeTab,
+  isOverlayComponent,
   ...props
 }: any) => {
   const { metaData, propsString } = useContext(CodePreviewContext);
-
+  const componentCode = isOverlayComponent
+    ? activeTab === 'web'
+      ? `${metaData?.code}`
+      : wrapWithOverlayProvider(`${metaData?.code}`)
+    : `${metaData?.code}`;
   return (
-    <Box {..._rendererWrapper}>
-      <Box
-        className={`${
-          activeTab === 'web' ? '' : 'w-[230px]'
-        } flex justify-center items-center bg-red-500 flex-1 min-h-full`}
-      >
+    <Box {..._rendererWrapper} className="h-full flex flex-col justify-center ">
+      <Box className={`${activeTab === 'web' ? '' : 'w-[210px]'} h-full`}>
         <LiveProvider
           code={
             showArgsController
-              ? metaData?.code.replace('{...props}', propsString)
-              : metaData?.code
+              ? componentCode.replace('{...props}', propsString)
+              : componentCode
           }
           transformCode={metaData?.transformCode ?? null}
           scope={{ ...metaData?.scope }}
           {...props}
         >
-          <Box>TEST</Box>
-          {/* <iframe className="w-full h-full"> */}
-          {/* </iframe> */}
           <div
             style={{
               transform: activeTab === 'web' ? 'none' : 'scale(0.55)',
