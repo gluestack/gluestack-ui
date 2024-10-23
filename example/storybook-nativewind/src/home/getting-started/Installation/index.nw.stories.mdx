@@ -11,7 +11,8 @@ showHeader: false
 ---
 
 import { Meta } from '@storybook/addon-docs';
-import { CollapsibleCode, Tabs } from '@gluestack/design-system';
+import { CollapsibleCode, Tabs, Table, TableContainer, InlineCode } from '@gluestack/design-system';
+import { Text } from 'react-native';
 
 <Meta title="with-nativewind/Home/Getting Started/Installation" />
 
@@ -43,8 +44,81 @@ If you are starting with a new project, setup your project with [Next.js](https:
 ### Prerequisites
 Ensure you have the following prerequisites installed on your project to use gluestack-ui CLI:
 
-- Node.js: Version 16 or higher.
-- React: Version 18 or higher.
+<>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Package Name</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Supported Versions</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Upcoming Support</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>next</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>
+              13 {"<"} versions {"<"} 14
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>version 15</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>react-native</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>versions > 72.5</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>expo</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>versions > 50</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>node</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>versions > 16</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</>
 
 ### Step 2: Initialize
 
