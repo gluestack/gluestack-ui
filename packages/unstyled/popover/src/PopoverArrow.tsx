@@ -27,6 +27,12 @@ const PopoverArrow = (StyledPopoverArrow: any) =>
       });
     }, [arrowHeight, arrowWidth, placement, actualPlacement]);
 
+    if (arrowProps?.style?.left) {
+      arrowProps.style.left -= arrowWidth / 2;
+    } else if (arrowProps?.style?.top) {
+      arrowProps.style.top -= arrowHeight / 2;
+    }
+
     React.useEffect(() => {
       const ArrowComponent = (
         <StyledPopoverArrow
