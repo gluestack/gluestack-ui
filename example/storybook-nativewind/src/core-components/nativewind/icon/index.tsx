@@ -6,6 +6,7 @@ import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import { cssInterop } from 'nativewind';
 import { VariantProps } from '@gluestack-ui/nativewind-utils';
 
+export { Svg };
 type IPrimitiveIcon = {
   height?: number | string;
   width?: number | string;

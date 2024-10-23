@@ -63,13 +63,14 @@ import {
 } from '../../core-components/nativewind';
 import {
   AppProvider,
-  CodePreview,
   Table,
   TableContainer,
   InlineCode,
   CollapsibleCode,
   Tabs
 } from '@gluestack/design-system';
+import {OverlayProvider} from '@gluestack-ui/overlay'
+import { CodePreview } from '../../extra-components/design-system/CodePreview'
 import { transformedCode } from '../../utils';
 import Wrapper from '../../core-components/nativewind/Wrapper';
 
@@ -90,6 +91,7 @@ This is an illustration of **Popover** component.
           setIsOpen(false);
         };
         return (
+        <OverlayProvider>
           <Popover
             isOpen={isOpen}
             onClose={handleClose}
@@ -108,7 +110,7 @@ This is an illustration of **Popover** component.
             }}
           >
             <PopoverBackdrop/>
-            <PopoverContent>
+            <PopoverContent >
               <PopoverArrow />
               <PopoverBody>
                 <Text size={props.size} className="text-typography-900">
@@ -118,6 +120,7 @@ This is an illustration of **Popover** component.
               </PopoverBody>
             </PopoverContent>
           </Popover>
+          </OverlayProvider>
         )
       }
       `,
@@ -134,6 +137,7 @@ This is an illustration of **Popover** component.
         PopoverArrow,
         Button,
         ButtonText,
+        OverlayProvider
       },
       argsType: {
         placement: {
