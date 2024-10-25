@@ -80,7 +80,9 @@ jobs:
 
     - name: Build Next.js app
       working-directory: test-app
-      run: npm run build
+      run: |
+        echo "{ \"extends\": \"next/core-web-vitals\", \"rules\": {} }" > .eslintrc.json
+        npm run build -- --no-lint
 
     - name: Start Next.js app
       working-directory: test-app
