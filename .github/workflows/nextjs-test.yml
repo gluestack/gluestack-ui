@@ -52,7 +52,7 @@ jobs:
     - name: Install gluestack-ui
       working-directory: test-app
       run: |
-        npx gluestack-ui init
+        printf '\n%.0s' {1..10} | npx gluestack-ui init
         npx gluestack-ui add --all
 
     - name: Add Button component
@@ -111,10 +111,12 @@ jobs:
     if: failure()
     runs-on: ubuntu-latest
     steps:
-    - name: Discord Notification
-      uses: sarisia/actions-status-discord@v1
+    - name: Slack Notification
+      uses: 8398a7/action-slack@v3
       with:
-        webhook: ${{ secrets.DISCORD_WEBHOOK }}
         status: ${{ job.status }}
-        title: "Next.js gluestack-ui Test failed!"
-        description: "Build failed for ${{ github.ref }} branch"
+        text: 'Next.js gluestack-ui Test failed!'
+        fields: repo,message,commit,author,action,eventName,ref,workflow
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
