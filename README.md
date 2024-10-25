@@ -1,5 +1,9 @@
 # gluestack-ui v2
 
+[![Next.js Latest](https://github.com/gluestack/gluestack-ui/actions/workflows/nextjs-test.yml/badge.svg?branch=main&event=push&matrix=next-version%3Alatest)](https://github.com/gluestack/gluestack-ui/actions/workflows/nextjs-test.yml)
+[![Next.js 14](https://github.com/gluestack/gluestack-ui/actions/workflows/nextjs-test.yml/badge.svg?branch=main&event=push&matrix=next-version%3A14)](https://github.com/gluestack/gluestack-ui/actions/workflows/nextjs-test.yml)
+[![Next.js 13](https://github.com/gluestack/gluestack-ui/actions/workflows/nextjs-test.yml/badge.svg?branch=main&event=push&matrix=next-version%3A13)](https://github.com/gluestack/gluestack-ui/actions/workflows/nextjs-test.yml)
+
 <h3 align="center">
   <a href="https://github.com/gluestack/gluestack-ui">
     <img src="https://raw.githubusercontent.com/gluestack/gluestack-ui/main/img/gluestack-banner.png" alt="gluestack-ui logo" >
