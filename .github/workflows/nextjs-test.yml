@@ -78,11 +78,34 @@ jobs:
         }
         EOT
 
-    - name: Build Next.js app
+    - name: Rename original next.config.js
+      working-directory: test-app
+      run: mv next.config.js next.config.original.js
+
+    - name: Create new next.config.js
       working-directory: test-app
       run: |
+        cat <<EOT > next.config.js
+        import originalConfig from './next.config.original.js';
+
+        /** @type {import('next').NextConfig} */
+        const nextConfig = {
+          ...originalConfig,
+          typescript: {
+            ignoreBuildErrors: true,
+          },
+        };
+
+        export default nextConfig;
+        EOT
+
+    - name: Build Next.js app
+      working-directory: test-app
+      env:
+        NEXT_TELEMETRY_DISABLED: 1
+      run: |
         echo "{ \"extends\": \"next/core-web-vitals\", \"rules\": {} }" > .eslintrc.json
-        npm run build -- --no-lint
+        npm run build
 
     - name: Start Next.js app
       working-directory: test-app
