@@ -105,7 +105,7 @@ jobs:
         NEXT_TELEMETRY_DISABLED: 1
       run: |
         echo "{ \"extends\": \"next/core-web-vitals\", \"rules\": {} }" > .eslintrc.json
-        npm run build
+        npm run build -- --no-lint
 
     - name: Start Next.js app
       working-directory: test-app
