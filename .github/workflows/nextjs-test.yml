@@ -80,13 +80,13 @@ jobs:
 
     - name: Rename original next.config.js
       working-directory: test-app
-      run: mv next.config.js next.config.original.js
+      run: mv next.config.mjs next.config.original.mjs
 
     - name: Create new next.config.js
       working-directory: test-app
       run: |
-        cat <<EOT > next.config.js
-        import originalConfig from './next.config.original.js';
+        cat <<EOT > next.config.mjs
+        import originalConfig from './next.config.original.mjs';
 
         /** @type {import('next').NextConfig} */
         const nextConfig = {
