@@ -1,4 +1,4 @@
-name: Next.js 13 gluestack-ui Test
+name: Next.js 13.x
 
 on:
   push:
