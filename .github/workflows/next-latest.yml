@@ -1,0 +1,139 @@
+name: Next.js Latest gluestack-ui Test
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  schedule:
+    - cron: '0 0 * * *'  # Run daily at midnight UTC
+
+jobs:
+  check-next-version:
+    runs-on: ubuntu-latest
+    outputs:
+      should_run: ${{ steps.check.outputs.should_run }}
+      latest_version: ${{ steps.check.outputs.latest_version }}
+    steps:
+      - id: check
+        run: |
+          LATEST=$(npm view next version)
+          CURRENT=$(cat .next-version 2>/dev/null || echo "")
+          if [ "$LATEST" != "$CURRENT" ]; then
+            echo "should_run=true" >> $GITHUB_OUTPUT
+            echo "latest_version=$LATEST" >> $GITHUB_OUTPUT
+            echo $LATEST > .next-version
+          else
+            echo "should_run=false" >> $GITHUB_OUTPUT
+          fi
+
+  test-next-latest:
+    needs: check-next-version
+    if: ${{ needs.check-next-version.outputs.should_run == 'true' || github.event_name == 'push' || github.event_name == 'pull_request' }}
+    runs-on: ubuntu-latest
+    name: Next.js latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      - name: Create Next.js project
+        run: |
+          npx create-next-app@latest test-app --typescript --eslint --tailwind --app --src-dir --use-npm --no-experimental-app
+          cd test-app
+      - name: Install gluestack-ui
+        working-directory: test-app
+        run: |
+          npx gluestack-ui init --template-only --projectType nextjs
+          npx gluestack-ui add --all
+      - name: Rename original next.config file
+        working-directory: test-app
+        run: mv next.config.ts next.config.original.ts
+      - name: Create new next.config file
+        working-directory: test-app
+        run: |
+          cat <<EOT > next.config.ts
+          import originalConfig from './next.config.original.ts';
+
+          /** @type {import('next').NextConfig} */
+          const nextConfig = {
+            ...originalConfig,
+            typescript: {
+              ignoreBuildErrors: true,
+            },
+          };
+
+          export default nextConfig;
+          EOT
+      - name: Add Button component
+        working-directory: test-app
+        run: |
+          cat <<EOT > src/app/page.tsx
+          import {
+            Button,
+            ButtonText,
+            ButtonSpinner,
+            ButtonIcon,
+            ButtonGroup,
+          } from "@/components/ui/button"
+
+          export default function Home() {
+            return (
+              <main className="flex min-h-screen flex-col items-center justify-between p-24">
+                <Button size="md" variant="solid" action="primary">
+                  <ButtonText>Hello World!</ButtonText>
+                </Button>
+              </main>
+            )
+          }
+          EOT
+      - name: Build Next.js app
+        working-directory: test-app
+        env:
+          NEXT_TELEMETRY_DISABLED: 1
+        run: |
+          echo "{ \"extends\": \"next/core-web-vitals\", \"rules\": {} }" > .eslintrc.json
+          npm run build -- --no-lint
+      - name: Start Next.js app
+        working-directory: test-app
+        run: npm run start & sleep 10
+      - name: Check if button is rendered
+        run: |
+          if curl -s http://localhost:3000 | grep -q "Hello World!"; then
+            echo "Button found on the page"
+            exit 0
+          else
+            echo "Button not found on the page"
+            exit 1
+          fi
+
+  notify:
+    needs: test-next-latest
+    if: always() && github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+    - name: Slack Notification
+      uses: 8398a7/action-slack@v3
+      with:
+        status: ${{ job.status }}
+        text: 'Next.js Latest Test: ${{ job.status }}'
+        fields: repo,commit,action,eventName
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+  update-version:
+    needs: test-next-latest
+    if: ${{ needs.check-next-version.outputs.should_run == 'true' }}
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Update Next.js version file
+      run: |
+        echo ${{ needs.check-next-version.outputs.latest_version }} > .next-version
+        git config user.name github-actions
+        git config user.email github-actions@github.com
+        git add .next-version
+        git commit -m "Update Next.js version to ${{ needs.check-next-version.outputs.latest_version }}"
+        git push

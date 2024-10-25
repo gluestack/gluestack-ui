@@ -1,8 +1,8 @@
 # gluestack-ui v2
 
-[![Next.js Latest](https://github.com/gluestack/gluestack-ui/actions/workflows/nextjs-test.yml/badge.svg?branch=main&job=test-next-latest)](https://github.com/gluestack/gluestack-ui/actions/workflows/nextjs-test.yml)
-[![Next.js 14](https://github.com/gluestack/gluestack-ui/actions/workflows/nextjs-test.yml/badge.svg?branch=main&job=test-next-14)](https://github.com/gluestack/gluestack-ui/actions/workflows/nextjs-test.yml)
-[![Next.js 13](https://github.com/gluestack/gluestack-ui/actions/workflows/nextjs-test.yml/badge.svg?branch=main&job=test-next-13)](https://github.com/gluestack/gluestack-ui/actions/workflows/nextjs-test.yml)
+[![Next.js Latest](https://github.com/gluestack/gluestack-ui/actions/workflows/next-latest.yml/badge.svg)](https://github.com/gluestack/gluestack-ui/actions/workflows/next-latest.yml)
+[![Next.js 14](https://github.com/gluestack/gluestack-ui/actions/workflows/next-14.yml/badge.svg)](https://github.com/gluestack/gluestack-ui/actions/workflows/next-14.yml)
+[![Next.js 13](https://github.com/gluestack/gluestack-ui/actions/workflows/next-13.yml/badge.svg)](https://github.com/gluestack/gluestack-ui/actions/workflows/next-13.yml)
 
 <h3 align="center">
   <a href="https://github.com/gluestack/gluestack-ui">
