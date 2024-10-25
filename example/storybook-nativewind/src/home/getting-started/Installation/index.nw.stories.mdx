@@ -146,27 +146,27 @@ If you encounter issues during the CLI installation, refer to the manual install
 
 ### Step 1: Setup your project.
 
-Setup nativewind in your project following [NativeWind documentation](https://www.nativewind.dev/v4/getting-started/react-native).
+Setup nativewind in your project following [NativeWind documentation](https://www.nativewind.dev/getting-started/react-native).
 
 ### Step 2: Install dependencies
 
 Install the dependencies of gluestack-ui in your project. This can be done using the following command:
 
 ```bash
-yarn add @gluestack-ui/nativewind-utils
+yarn add @gluestack-ui/nativewind-utils @gluestack-ui/overlay @gluestack-ui/toast react-native-svg
 
 ```
 
 OR
 
 ```bash
-npm i @gluestack-ui/nativewind-utils
+npm i @gluestack-ui/nativewind-utils @gluestack-ui/overlay @gluestack-ui/toast react-native-svg
 
 ```
 
 ### Step 2.1: Update Tailwind configuration
 
-Update the `tailwind.config.js` file with the following code and also the the `content` property with paths to the files where components are used.
+Update the `tailwind.config.js` file with the following code and also the `content` property with paths to the files where components are used.
 
 ```js
 %%-- File: tailwind.config.js --%% 
@@ -244,7 +244,21 @@ export default function App() {
 }
 ```
 
-### Step 4: Server-side rendering (SSR) (Next.js Only).
+### Step 4: Update Next config file. (Next.js Only).
+
+Make sure your `next.config` file look like this, as mentioned below.
+
+```jsx
+import { withGluestackUI } from "@gluestack/ui-next-adapter";
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  transpilePackages: ["nativewind", "react-native-css-interop"]
+};
+
+export default withGluestackUI(nextConfig);
+```
+
+### Step 5: Server-side rendering (SSR) (Next.js Only).
 
 It's also recommended to set up your server-side rendering (SSR) correctly. To do this, you will need to use the `flush()` function exported by the `@gluestack-ui/nativewind-utils`
 
