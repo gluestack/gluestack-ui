@@ -78,11 +78,37 @@ jobs:
         }
         EOT
 
-    - name: Rename original next.config.js
+    - name: Rename original next.config file
       working-directory: test-app
-      run: mv next.config.mjs next.config.original.mjs
+      run: |
+        if [ "${{ matrix.next-version }}" = "13" ]; then
+          mv next.config.js next.config.original.js
+        elif [ "${{ matrix.next-version }}" = "14" ] || [ "${{ matrix.next-version }}" = "latest" ]; then
+          mv next.config.mjs next.config.original.mjs
+        else
+          mv next.config.ts next.config.original.ts
+        fi
 
-    - name: Create new next.config.js
+    - name: Create new next.config file for Next.js 13
+      if: matrix.next-version == '13'
+      working-directory: test-app
+      run: |
+        cat <<EOT > next.config.js
+        const originalConfig = require('./next.config.original.js');
+
+        /** @type {import('next').NextConfig} */
+        const nextConfig = {
+          ...originalConfig,
+          typescript: {
+            ignoreBuildErrors: true,
+          },
+        };
+
+        module.exports = nextConfig;
+        EOT
+
+    - name: Create new next.config file for Next.js 14 and latest
+      if: matrix.next-version == '14' || matrix.next-version == 'latest'
       working-directory: test-app
       run: |
         cat <<EOT > next.config.mjs
@@ -90,6 +116,24 @@ jobs:
 
         /** @type {import('next').NextConfig} */
         const nextConfig = {
+          ...originalConfig,
+          typescript: {
+            ignoreBuildErrors: true,
+          },
+        };
+
+        export default nextConfig;
+        EOT
+
+    - name: Create new next.config file for Next.js 15+
+      if: matrix.next-version != '13' && matrix.next-version != '14' && matrix.next-version != 'latest'
+      working-directory: test-app
+      run: |
+        cat <<EOT > next.config.ts
+        import type { NextConfig } from 'next';
+        import originalConfig from './next.config.original';
+
+        const nextConfig: NextConfig = {
           ...originalConfig,
           typescript: {
             ignoreBuildErrors: true,
