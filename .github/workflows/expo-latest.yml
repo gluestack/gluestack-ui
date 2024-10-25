@@ -74,9 +74,13 @@ jobs:
         working-directory: test-app
         run: |
           npm run web & sleep 30
+
       - name: Check if button is rendered
         run: |
-          if curl -s http://localhost:8081 | grep -q "Hello World!"; then
+          echo "Curl output:"
+          curl -s http://localhost:8081 | tee curl_output.log
+          echo "Searching for 'Hello World!' in the output:"
+          if grep -q "Hello World!" curl_output.log; then
             echo "Button found on the page"
             exit 0
           else
