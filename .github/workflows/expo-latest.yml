@@ -54,7 +54,8 @@ jobs:
       - name: Add Button component
         working-directory: test-app
         run: |
-          cat <<EOT > app/(tabs)/index.tsx
+          mkdir -p app/\(tabs\)
+          cat <<EOT > app/\(tabs\)/index.tsx
           import React from 'react';
           import { View } from 'react-native';
           import { Button, ButtonText } from '@/components/ui/button';
