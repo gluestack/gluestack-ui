@@ -18,7 +18,6 @@ import { Icon, HStack, Text, Link, LinkText } from '../../core-components/native
 import { transformedCode } from '../../utils';
 import {
   AppProvider,
-  CodePreview,
   Table,
   TableContainer,
   InlineCode,
@@ -30,6 +29,7 @@ import AnatomyImage from '../../extra-components/nativewind/AnatomyImage';
 import { ArrowUpRight } from 'lucide-react-native';
 import UnitoolsLink from '@unitools/link';
 import UnitoolsLinkEg from '../../extra-components/nativewind/UnitoolsLink';
+import { CodePreview } from '../../extra-components/design-system/CodePreview'
 
 This is an illustration of **Link** component.
 
@@ -39,7 +39,7 @@ This is an illustration of **Link** component.
     showArgsController={false}
     metaData={{
       code: `
-      <Link href="https://gluestack.io/">
+      <Link href="https://gluestack.io/" className='mx-auto'>
         <LinkText>gluestack</LinkText>
       </Link>
       `,
@@ -398,7 +398,7 @@ The Examples section provides visual representations of the different variants o
     showArgsController={false}
     metaData={{
       code: `
-          <HStack>
+          <HStack >
             <Text
               size="lg"
             >Design inspiration from </Text>
@@ -424,7 +424,7 @@ The Examples section provides visual representations of the different variants o
     showArgsController={false}
     metaData={{
       code: `
-        <HStack>
+        <HStack className='mx-auto'>
               <Text
                size="lg">Go to </Text>
               <Link href="https://gluestack.io/" isExternal>

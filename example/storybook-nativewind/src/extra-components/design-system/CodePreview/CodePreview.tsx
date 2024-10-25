@@ -128,7 +128,12 @@ const CodePreview = ({
         className="w-full bg-white rounded-lg mb-6 dark:bg-black dark:md:max-w-[736px] overflow-auto"
         {...props}
       >
-        <CodePreviewTabs activeTab={activeTab} callback={onTabChangeCallback} />
+        {(showArgsController || showComponentRenderer) && (
+          <CodePreviewTabs
+            activeTab={activeTab}
+            callback={onTabChangeCallback}
+          />
+        )}
         <CodePreviewProvider
           metaData={previewMetaData}
           updateMetaData={updateMetaData}

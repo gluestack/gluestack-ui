@@ -35,13 +35,12 @@ import { useState, useRef } from 'react';
 import { transformedCode } from '../../utils';
 import {
   AppProvider,
-  CodePreview,
   Table,
   TableContainer,
   InlineCode,
   Tabs
 } from '@gluestack/design-system';
-
+import { CodePreview } from '../../extra-components/design-system/CodePreview'
 import Wrapper from '../../core-components/nativewind/Wrapper';
 import { CollapsibleCode } from '@gluestack/design-system';
 import AnatomyImage from '../../extra-components/nativewind/AnatomyImage';
@@ -54,7 +53,7 @@ This is an illustration of **Checkbox** component.
     showArgsController={true}
     metaData={{
       code: `
-          <Checkbox   {...props}  >
+          <Checkbox   {...props}  className='mx-auto'>
             <CheckboxIndicator>
               <CheckboxIcon as={CheckIcon}/>
             </CheckboxIndicator>
@@ -730,8 +729,10 @@ Checkbox provide a mutually exclusive selection mechanism, allowing users to cho
             return (
               <CheckboxGroup value={values}  onChange={(keys) => {
                 setValues(keys)
-              }}>
-                <VStack space="xl">
+              }}
+              className='mx-auto'
+              >
+                <VStack space="xl" >
                   <Checkbox value="Eng">
                         <CheckboxIndicator>
                           <CheckboxIcon as={CheckIcon}/>
@@ -792,7 +793,7 @@ A horizontal component incorporating a checkbox allows for intuitive and space-e
              <CheckboxGroup value={values}  onChange={(keys) => {
         setValues(keys)
       }}>
-                <HStack space="2xl">
+                <HStack space="2xl" className='flex-wrap'>
                   <Checkbox value="Illustration">
                     <CheckboxIndicator>
                       <CheckboxIcon as={CheckIcon}/>
@@ -972,7 +973,9 @@ A checkbox component with Label left configuration aligns the label to the left,
            return (
              <CheckboxGroup value={values}  onChange={(keys) => {
         setValues(keys)
-      }}>
+      }}
+      className='mx-auto'
+      >
      <VStack space="lg" className='w-40'>
             <Checkbox className='justify-between' value="Jane">
               <CheckboxLabel >Jane Cooper</CheckboxLabel>
@@ -1090,7 +1093,7 @@ function App() {
             const checkboxValue = radioRef.current.checked;
           };
         return (
-          <CheckboxGroup  ref={radioRef} >
+          <CheckboxGroup  ref={radioRef} className='mx-auto'>
           <VStack space="md">
                   <Checkbox  onChange={handleCheckboxChange}  value="Apartments">
                     <CheckboxIndicator>

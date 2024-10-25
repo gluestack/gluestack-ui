@@ -20,7 +20,6 @@ import { Heading, Center } from '../../core-components/nativewind';
 import { transformedCode } from '../../utils';
 import {
   AppProvider,
-  CodePreview,
   Table,
   TableContainer,
   Text,
@@ -29,6 +28,7 @@ import {
 
 import Wrapper from '../../core-components/nativewind/Wrapper';
 import { CollapsibleCode, Tabs } from '@gluestack/design-system';
+import { CodePreview } from '../../extra-components/design-system/CodePreview'
 
 This is an illustration of **Heading** component.
 
@@ -38,7 +38,7 @@ This is an illustration of **Heading** component.
   showArgsController = { false}
   metaData = {{
     code: `
-        <Heading>I am a Heading</Heading>
+        <Heading className='text-center'>I am a Heading</Heading>
       `,
       transformCode: (code) => {
         return transformedCode(code);

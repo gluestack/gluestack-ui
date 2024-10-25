@@ -20,8 +20,8 @@ import { Center } from '../../core-components/nativewind';
 import { Text } from '../../core-components/nativewind/text';
 
 import { transformedCode } from '../../utils';
-import { AppProvider, CodePreview, Table, TableContainer, InlineCode } from '@gluestack/design-system';
-
+import { AppProvider, Table, TableContainer, InlineCode } from '@gluestack/design-system';
+import { CodePreview } from '../../extra-components/design-system/CodePreview'
 import Wrapper from '../../core-components/nativewind/Wrapper';
 import { CollapsibleCode, Tabs } from '@gluestack/design-system';
 
@@ -34,7 +34,7 @@ This is an illustration of **Center** component.
   showArgsController = { false}
   metaData = {{
     code: `
-<Center className="bg-primary-500 h-[200px] w-[300px]">
+<Center className="bg-primary-500 h-[200px] max-w-[300px] w-full ">
   <Text className="text-typography-0 font-bold">
     This is the center.
   </Text>

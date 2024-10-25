@@ -37,7 +37,7 @@ import {
   ButtonText,
   GlobeIcon,
 } from '../../core-components/nativewind';
-
+import { CodePreview } from '../../extra-components/design-system/CodePreview'
 import {
   PaintBucket,
   PuzzleIcon,
@@ -46,7 +46,6 @@ import {
 } from 'lucide-react-native';
 import {
   AppProvider,
-  CodePreview,
   Table,
   TableContainer,
   InlineCode,
@@ -63,7 +62,7 @@ This is an illustration of **Badge** component.
   <CodePreview
     metaData={{
       code: `
-        <Badge {...props}>
+        <Badge {...props} className='mx-auto'>
           <BadgeText>Verified</BadgeText>
           <BadgeIcon as={GlobeIcon} className="ml-2" />
         </Badge>
@@ -257,7 +256,7 @@ An example of the Badge component being used with the Avatar component to displa
     metaData={{
       code: `
         <VStack space="2xl">
-          <HStack space="md">
+          <HStack space="md" className='items-center'>
             <Avatar>
               <AvatarFallbackText>SS</AvatarFallbackText>
               <AvatarImage
