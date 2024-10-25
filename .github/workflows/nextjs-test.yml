@@ -52,7 +52,7 @@ jobs:
     - name: Install gluestack-ui
       working-directory: test-app
       run: |
-        printf '\n%.0s' {1..10} | npx gluestack-ui init
+        npx gluestack-ui init --template-only --projectType nextjs
         npx gluestack-ui add --all
 
     - name: Add Button component
