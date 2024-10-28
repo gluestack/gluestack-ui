@@ -10,7 +10,7 @@ on:
 
 jobs:
   check-expo-version:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     outputs:
       should_run: ${{ steps.check.outputs.should_run }}
       latest_version: ${{ steps.check.outputs.latest_version }}
@@ -30,7 +30,7 @@ jobs:
   test-expo-latest:
     needs: check-expo-version
     if: ${{ needs.check-expo-version.outputs.should_run == 'true' || github.event_name == 'push' || github.event_name == 'pull_request' }}
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     name: Expo latest
     steps:
       - uses: actions/checkout@v3
@@ -95,7 +95,7 @@ jobs:
   notify:
     needs: test-expo-latest
     if: always() && github.event_name == 'push' && github.ref == 'refs/heads/main'
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
     - name: Slack Notification
       uses: 8398a7/action-slack@v3
@@ -110,7 +110,7 @@ jobs:
   update-version:
     needs: test-expo-latest
     if: ${{ needs.check-expo-version.outputs.should_run == 'true' }}
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
     - uses: actions/checkout@v3
     - name: Update Expo version file
