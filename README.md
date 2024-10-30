@@ -1,10 +1,12 @@
-# gluestack-ui v2
+# gluestack-ui: React & React Native Components & Patterns
+
+gluestack-ui is a library of copy-pasteable components & patterns crafted with Tailwind CSS (NativeWind).
+
 
 [![Next.js Latest](https://github.com/gluestack/gluestack-ui/actions/workflows/next-latest.yml/badge.svg)](https://github.com/gluestack/gluestack-ui/actions/workflows/next-latest.yml)
 [![Next.js 14.x](https://github.com/gluestack/gluestack-ui/actions/workflows/next-14.yml/badge.svg)](https://github.com/gluestack/gluestack-ui/actions/workflows/next-14.yml)
 [![Next.js 13.x](https://github.com/gluestack/gluestack-ui/actions/workflows/next-13.yml/badge.svg)](https://github.com/gluestack/gluestack-ui/actions/workflows/next-13.yml)
 [![Expo Latest](https://github.com/gluestack/gluestack-ui/actions/workflows/expo-latest.yml/badge.svg)](https://github.com/gluestack/gluestack-ui/actions/workflows/expo-latest.yml)
-[![Expo 51.x](https://github.com/gluestack/gluestack-ui/actions/workflows/expo-51.yml/badge.svg)](https://github.com/gluestack/gluestack-ui/actions/workflows/expo-51.yml)
 
 <h3 align="center">
   <a href="https://github.com/gluestack/gluestack-ui">
