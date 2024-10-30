@@ -107,18 +107,3 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-
-  update-version:
-    needs: test-expo-latest
-    if: ${{ needs.check-expo-version.outputs.should_run == 'true' }}
-    runs-on: macos-latest
-    steps:
-    - uses: actions/checkout@v3
-    - name: Update Expo version file
-      run: |
-        echo ${{ needs.check-expo-version.outputs.latest_version }} > .expo-version
-        git config user.name github-actions
-        git config user.email github-actions@github.com
-        git add .expo-version
-        git commit -m "Update Expo version to ${{ needs.check-expo-version.outputs.latest_version }}"
-        git push
