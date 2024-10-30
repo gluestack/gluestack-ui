@@ -213,6 +213,8 @@ const PopoverContent = (StyledPopoverContent: any, AnimatePresence?: any) =>
               ...overlayProps?.style,
             }}
             ref={overlayRef}
+            // DO NOT REMOVE THIS.
+            collapsable={false}
           >
             {arrowElement}
             <FocusScopeComponent contain={trapFocus} restoreFocus autoFocus>
