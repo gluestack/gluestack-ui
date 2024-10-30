@@ -1,4 +1,4 @@
-name: Next.js Latest gluestack-ui Test
+name: Next.js Latest
 
 on:
   push:
