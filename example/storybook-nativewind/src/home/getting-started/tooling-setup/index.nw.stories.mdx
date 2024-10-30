@@ -25,11 +25,11 @@ If you are using VSCode and the [Tailwind CSS IntelliSense Extension](https://ma
 
 ## Prettier plugin setup (optional)
 
-If you are using [prettier-plugin-tailwindcss](https://github.com/tailwindlabs/prettier-plugin-tailwindcss) to sort your class names, you can add tv to the list of functions that should be sorted.
+If you are using [prettier-plugin-tailwindcss](https://github.com/tailwindlabs/prettier-plugin-tailwindcss) to sort your class names, you can add tv to the list of functions that should be sorted (on `.prettierrc`).
 
 ```jsx
 module.exports = {
-  plugins: [require('prettier-plugin-tailwindcss')],
+  plugins: ['prettier-plugin-tailwindcss'],
   tailwindFunctions: ['tva'],
 };
 ```
