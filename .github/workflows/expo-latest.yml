@@ -45,12 +45,13 @@ jobs:
       - name: Install dependencies
         working-directory: test-app
         run: |
-          npm install react-native-web react-dom
+          npm install react-native-web react-dom @expo/metro-runtime
       - name: Install gluestack-ui
         working-directory: test-app
         run: |
           npx gluestack-ui init --template-only --projectType expo
           npx gluestack-ui add --all
+          npx tailwindcss -i ./global.css -o ./node_modules/.cache/nativewind/global.css
       - name: Add Button component
         working-directory: test-app
         run: |
