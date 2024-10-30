@@ -1328,7 +1328,22 @@ index 0000000..49edfc6
 ```
 </CollapsibleCode>
 
-5. Changes in `next.config.ts`. Copy-paste the following code.
+5 . Add Script postinstall in `package.json`. 
+
+
+```json
+
+"postinstall": "patch-package"
+
+```
+
+6. Run following command to apply patches.
+
+```bash
+npm run postinstall
+```
+
+7. Changes in `next.config.ts`. Copy-paste the following code.
 
 <CollapsibleCode>
 
