@@ -1,5 +1,11 @@
 # @gluestack-ui/popover
 
+## 0.1.38
+
+### Patch Changes
+
+- fix: popover on android
+
 ## 0.1.37
 
 ### Patch Changes
