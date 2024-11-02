@@ -116,8 +116,8 @@ jobs:
     - name: Slack Notification
       uses: 8398a7/action-slack@v3
       with:
-        status: ${{ job.status }}
-        text: 'Next.js Latest Test: ${{ job.status }}'
+        status: ${{ needs.test-next-latest.result }}
+        text: 'Next.js Latest Test: ${{ needs.test-next-latest.result }}'
         fields: repo,commit,action,eventName
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
