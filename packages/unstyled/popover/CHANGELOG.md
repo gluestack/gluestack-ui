@@ -1,5 +1,11 @@
 # @gluestack-ui/popover
 
+## 0.1.39
+
+### Patch Changes
+
+- fix: popover arrow position calculation
+
 ## 0.1.38
 
 ### Patch Changes
