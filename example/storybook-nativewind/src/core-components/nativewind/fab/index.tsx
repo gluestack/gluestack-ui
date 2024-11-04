@@ -165,7 +165,7 @@ const fabLabelStyle = tva({
 });
 
 const fabIconStyle = tva({
-  base: 'text-typography-50 hover:text-typography-0 active:text-typography-0 fill-none',
+  base: 'text-typography-50 fill-none',
   variants: {
     size: {
       '2xs': 'h-3 w-3',
