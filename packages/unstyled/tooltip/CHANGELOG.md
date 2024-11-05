@@ -1,5 +1,11 @@
 # @gluestack-ui/tooltip
 
+## 0.1.34
+
+### Patch Changes
+
+- fix: tooltip content android
+
 ## 0.1.33
 
 ### Patch Changes
