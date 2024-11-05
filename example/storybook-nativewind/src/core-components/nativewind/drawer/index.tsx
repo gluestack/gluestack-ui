@@ -1,13 +1,7 @@
 'use client';
 import React from 'react';
 import { createModal as createDrawer } from '@gluestack-ui/modal';
-import {
-  Pressable,
-  View,
-  ScrollView,
-  Platform,
-  Dimensions,
-} from 'react-native';
+import { Pressable, View, ScrollView, Dimensions } from 'react-native';
 import {
   Motion,
   AnimatePresence,
@@ -18,7 +12,6 @@ import {
   withStyleContext,
   useStyleContext,
 } from '@gluestack-ui/nativewind-utils/withStyleContext';
-import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withStyleContextAndStates';
 import { cssInterop } from 'nativewind';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 
@@ -34,10 +27,7 @@ const sizes: { [key: string]: number } = {
 };
 
 const UIDrawer = createDrawer({
-  Root:
-    Platform.OS === 'web'
-      ? withStyleContext(View, SCOPE)
-      : withStyleContextAndStates(View, SCOPE),
+  Root: withStyleContext(View, SCOPE),
   Backdrop: AnimatedPressable,
   Content: Motion.View,
   Body: ScrollView,
