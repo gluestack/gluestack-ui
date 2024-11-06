@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import { Text, View } from 'react-native';
-import { PrimitiveIcon } from '../../../utils';
+import { PrimitiveIcon, UIIcon } from '@gluestack-ui/icon';
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import {
   withStyleContext,
@@ -164,14 +164,14 @@ type IBadgeIconProps = React.ComponentPropsWithoutRef<typeof PrimitiveIcon> &
   VariantProps<typeof badgeIconStyle>;
 
 const BadgeIcon = React.forwardRef<
-  React.ElementRef<typeof PrimitiveIcon>,
+  React.ElementRef<typeof UIIcon>,
   IBadgeIconProps
 >(({ className, size, ...props }, ref) => {
   const { size: parentSize, action: parentAction } = useStyleContext(SCOPE);
 
   if (typeof size === 'number') {
     return (
-      <PrimitiveIcon
+      <UIIcon
         ref={ref}
         {...props}
         className={badgeIconStyle({ class: className })}
@@ -179,11 +179,11 @@ const BadgeIcon = React.forwardRef<
       />
     );
   } else if (
-    (props.height !== undefined || props.width !== undefined) &&
+    (props?.height !== undefined || props?.width !== undefined) &&
     size === undefined
   ) {
     return (
-      <PrimitiveIcon
+      <UIIcon
         ref={ref}
         {...props}
         className={badgeIconStyle({ class: className })}
@@ -191,7 +191,7 @@ const BadgeIcon = React.forwardRef<
     );
   }
   return (
-    <PrimitiveIcon
+    <UIIcon
       className={badgeIconStyle({
         parentVariants: {
           size: parentSize,

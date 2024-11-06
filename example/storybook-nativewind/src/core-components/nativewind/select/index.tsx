@@ -1,6 +1,6 @@
 import React from 'react';
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
-import { PrimitiveIcon } from '../../../utils';
+import { PrimitiveIcon, UIIcon } from '@gluestack-ui/icon';
 import {
   withStyleContext,
   useStyleContext,
@@ -91,7 +91,7 @@ const UISelect = createSelect(
     Root: View,
     Trigger: withStyleContext(SelectTriggerWrapper),
     Input: TextInput,
-    Icon: PrimitiveIcon,
+    Icon: UIIcon,
   },
   {
     Portal: Actionsheet,
@@ -115,7 +115,7 @@ cssInterop(UISelect.Input, {
 });
 cssInterop(SelectTriggerWrapper, { className: 'style' });
 
-cssInterop(UISelect.Icon, {
+cssInterop(PrimitiveIcon, {
   className: {
     target: 'style',
     nativeStyleToProp: {

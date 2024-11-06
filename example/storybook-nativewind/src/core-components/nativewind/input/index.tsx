@@ -9,15 +9,28 @@ import {
 } from '@gluestack-ui/nativewind-utils/withStyleContext';
 import { cssInterop } from 'nativewind';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
-import { PrimitiveIcon } from '../../../utils';
+import { PrimitiveIcon, UIIcon } from '@gluestack-ui/icon';
 
 const SCOPE = 'INPUT';
 
 const UIInput = createInput({
   Root: withStyleContext(View, SCOPE),
-  Icon: PrimitiveIcon,
+  Icon: UIIcon,
   Slot: Pressable,
   Input: TextInput,
+});
+
+cssInterop(PrimitiveIcon, {
+  className: {
+    target: 'style',
+    nativeStyleToProp: {
+      height: true,
+      width: true,
+      fill: true,
+      color: 'classNameColor',
+      stroke: true,
+    },
+  },
 });
 
 const inputStyle = tva({
@@ -84,19 +97,6 @@ const inputFieldStyle = tva({
       '4xl': 'text-4xl',
       '5xl': 'text-5xl',
       '6xl': 'text-6xl',
-    },
-  },
-});
-
-cssInterop(UIInput.Icon, {
-  className: {
-    target: 'style',
-    nativeStyleToProp: {
-      height: true,
-      width: true,
-      fill: true,
-      color: 'classNameColor',
-      stroke: true,
     },
   },
 });

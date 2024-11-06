@@ -9,7 +9,7 @@ import {
 import React from 'react';
 import { cssInterop } from 'nativewind';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
-import { PrimitiveIcon } from '../../../utils';
+import { PrimitiveIcon, UIIcon } from '@gluestack-ui/icon';
 
 const SCOPE = 'ALERT';
 
@@ -108,7 +108,7 @@ const alertIconStyle = tva({
 export const UIAlert = createAlert({
   Root: withStyleContext(View, SCOPE),
   Text: Text,
-  Icon: PrimitiveIcon,
+  Icon: UIIcon,
 });
 
 cssInterop(PrimitiveIcon, {

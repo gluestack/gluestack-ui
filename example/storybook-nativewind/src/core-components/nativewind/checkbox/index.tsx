@@ -4,7 +4,7 @@ import { createCheckbox } from '@gluestack-ui/checkbox';
 import { View, Pressable, Text, Platform } from 'react-native';
 import type { TextProps, ViewProps } from 'react-native';
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
-import { PrimitiveIcon, IPrimitiveIcon } from '../../../utils';
+import { PrimitiveIcon, IPrimitiveIcon, UIIcon } from '@gluestack-ui/icon';
 import {
   withStyleContext,
   useStyleContext,
@@ -29,7 +29,7 @@ const IconWrapper = React.forwardRef<
   React.ElementRef<typeof PrimitiveIcon>,
   IPrimitiveIcon
 >(({ ...props }, ref) => {
-  return <PrimitiveIcon {...props} ref={ref} />;
+  return <UIIcon {...props} ref={ref} />;
 });
 
 const SCOPE = 'CHECKBOX';
@@ -45,7 +45,7 @@ const UICheckbox = createCheckbox({
   Indicator: IndicatorWrapper,
 });
 
-cssInterop(IconWrapper, {
+cssInterop(PrimitiveIcon, {
   className: {
     target: 'style',
     nativeStyleToProp: {

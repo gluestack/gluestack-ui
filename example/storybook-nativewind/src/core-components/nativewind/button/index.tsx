@@ -10,7 +10,7 @@ import {
 import { cssInterop } from 'nativewind';
 import { ActivityIndicator, Pressable, Text, View } from 'react-native';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
-import { PrimitiveIcon } from '../../../utils';
+import { PrimitiveIcon, UIIcon } from '@gluestack-ui/icon';
 
 const SCOPE = 'BUTTON';
 const ButtonWrapper = React.forwardRef<
@@ -27,7 +27,7 @@ const UIButton = createButton({
   Text,
   Group: View,
   Spinner: ActivityIndicator,
-  Icon: PrimitiveIcon,
+  Icon: UIIcon,
 });
 
 cssInterop(PrimitiveIcon, {

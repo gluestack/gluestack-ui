@@ -9,14 +9,14 @@ import {
 } from '@gluestack-ui/nativewind-utils/withStyleContext';
 import { cssInterop } from 'nativewind';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
-import { PrimitiveIcon } from '../../../utils';
+import { PrimitiveIcon, UIIcon } from '@gluestack-ui/icon';
 
 const SCOPE = 'FAB';
 const Root = withStyleContext(Pressable, SCOPE);
 const UIFab = createFab({
   Root: Root,
   Label: Text,
-  Icon: PrimitiveIcon,
+  Icon: UIIcon,
 });
 
 cssInterop(PrimitiveIcon, {

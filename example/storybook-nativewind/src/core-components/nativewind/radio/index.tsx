@@ -9,7 +9,34 @@ import {
 } from '@gluestack-ui/nativewind-utils/withStyleContext';
 import { cssInterop } from 'nativewind';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
-import { PrimitiveIcon } from '../../../utils';
+import { PrimitiveIcon, UIIcon } from '@gluestack-ui/icon';
+
+const SCOPE = 'Radio';
+
+const UIRadio = createRadio({
+  Root: (Platform.OS === 'web'
+    ? withStyleContext(View, SCOPE)
+    : withStyleContext(Pressable, SCOPE)) as ReturnType<
+    typeof withStyleContext<typeof Pressable>
+  >,
+  Group: View,
+  Icon: UIIcon,
+  Indicator: View,
+  Label: Text,
+});
+
+cssInterop(PrimitiveIcon, {
+  className: {
+    target: 'style',
+    nativeStyleToProp: {
+      height: true,
+      width: true,
+      fill: true,
+      color: 'classNameColor',
+      stroke: true,
+    },
+  },
+});
 
 const radioStyle = tva({
   base: 'group/radio flex-row justify-start items-center web:cursor-pointer data-[disabled=true]:web:cursor-not-allowed',
@@ -64,33 +91,6 @@ const radioLabelStyle = tva({
       '4xl': 'text-4xl',
       '5xl': 'text-5xl',
       '6xl': 'text-6xl',
-    },
-  },
-});
-
-const SCOPE = 'Radio';
-
-const UIRadio = createRadio({
-  Root: (Platform.OS === 'web'
-    ? withStyleContext(View, SCOPE)
-    : withStyleContext(Pressable, SCOPE)) as ReturnType<
-    typeof withStyleContext<typeof Pressable>
-  >,
-  Group: View,
-  Icon: PrimitiveIcon,
-  Indicator: View,
-  Label: Text,
-});
-
-cssInterop(PrimitiveIcon, {
-  className: {
-    target: 'style',
-    nativeStyleToProp: {
-      height: true,
-      width: true,
-      fill: true,
-      color: 'classNameColor',
-      stroke: true,
     },
   },
 });

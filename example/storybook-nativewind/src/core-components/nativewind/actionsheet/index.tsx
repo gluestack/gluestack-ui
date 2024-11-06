@@ -12,7 +12,7 @@ import {
   SectionList,
   PressableProps,
 } from 'react-native';
-import { PrimitiveIcon } from '../../../utils';
+import { PrimitiveIcon, UIIcon } from '@gluestack-ui/icon';
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 import { cssInterop } from 'nativewind';
@@ -44,7 +44,7 @@ export const UIActionsheet = createActionsheet({
   FlatList: FlatList,
   SectionList: SectionList,
   SectionHeaderText: H4,
-  Icon: PrimitiveIcon,
+  Icon: UIIcon,
   AnimatePresence: AnimatePresence,
 });
 
@@ -78,7 +78,7 @@ cssInterop(UIActionsheet.FlatList, {
 cssInterop(UIActionsheet.SectionList, { className: 'style' });
 cssInterop(UIActionsheet.SectionHeaderText, { className: 'style' });
 
-cssInterop(UIActionsheet.Icon, {
+cssInterop(PrimitiveIcon, {
   className: {
     target: 'style',
     nativeStyleToProp: {

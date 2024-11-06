@@ -1,24 +1,8 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import { createIcon } from '@gluestack-ui/icon';
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import { VariantProps } from '@gluestack-ui/nativewind-utils';
-import { PrimitiveIcon } from '../../../utils';
-
-const accessClassName = (style: any) => {
-  const keys = Object.keys(style);
-  return style[keys[1]];
-};
-
-const Svg = React.forwardRef<
-  React.ElementRef<'svg'>,
-  React.ComponentPropsWithoutRef<'svg'>
->(({ style, className, ...props }, ref) => {
-  const calculateClassName = useMemo(() => {
-    return className === undefined ? accessClassName(style) : className;
-  }, [className, style]);
-
-  return <svg ref={ref} {...props} className={calculateClassName} />;
-});
+import { PrimitiveIcon, Svg } from '@gluestack-ui/icon';
 
 export const UIIcon = createIcon({
   Root: PrimitiveIcon,
@@ -78,9 +62,14 @@ export const Icon = React.forwardRef<
 
 type ParameterTypes = Omit<Parameters<typeof createIcon>[0], 'Root'>;
 
+const accessClassName = (style: any) => {
+  const styleObject = Array.isArray(style) ? style[0] : style;
+  const keys = Object.keys(styleObject);
+  return styleObject[keys[1]];
+};
+
 const createIconUI = ({ ...props }: ParameterTypes) => {
   const NewUIIcon = createIcon({ Root: Svg, ...props });
-
   return React.forwardRef<
     React.ElementRef<typeof UIIcon>,
     React.ComponentPropsWithoutRef<typeof UIIcon> &
@@ -88,13 +77,14 @@ const createIconUI = ({ ...props }: ParameterTypes) => {
         height?: number | string;
         width?: number | string;
       }
-  >(({ className, size, ...inComingprops }, ref) => {
+  >(({ className, ...inComingprops }, ref) => {
+    const calculateClassName = React.useMemo(() => {
+      return className === undefined
+        ? accessClassName(inComingprops?.style)
+        : className;
+    }, [className, inComingprops?.style]);
     return (
-      <NewUIIcon
-        ref={ref}
-        {...inComingprops}
-        className={iconStyle({ size, class: className })}
-      />
+      <NewUIIcon ref={ref} {...inComingprops} className={calculateClassName} />
     );
   });
 };

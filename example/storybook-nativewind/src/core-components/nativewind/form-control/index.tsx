@@ -9,7 +9,7 @@ import {
 } from '@gluestack-ui/nativewind-utils/withStyleContext';
 import { cssInterop } from 'nativewind';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
-import { PrimitiveIcon } from '../../../utils';
+import { PrimitiveIcon, UIIcon } from '@gluestack-ui/icon';
 
 const SCOPE = 'FORM_CONTROL';
 
@@ -237,7 +237,7 @@ export const UIFormControl = createFormControl({
   Root: withStyleContext(View, SCOPE),
   Error: View,
   ErrorText: Text,
-  ErrorIcon: PrimitiveIcon,
+  ErrorIcon: UIIcon,
   Label: View,
   LabelText: Text,
   LabelAstrick: FormControlLabelAstrick,
@@ -245,7 +245,7 @@ export const UIFormControl = createFormControl({
   HelperText: Text,
 });
 
-cssInterop(UIFormControl.Error.Icon, {
+cssInterop(PrimitiveIcon, {
   className: {
     target: 'style',
     nativeStyleToProp: {
