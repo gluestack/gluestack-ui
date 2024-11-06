@@ -1,10 +1,10 @@
 'use client';
-import React, { useMemo } from 'react';
+import React from 'react';
 import { createCheckbox } from '@gluestack-ui/checkbox';
 import { View, Pressable, Text, Platform } from 'react-native';
 import type { TextProps, ViewProps } from 'react-native';
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
-import { Svg } from 'react-native-svg';
+import { PrimitiveIcon, IPrimitiveIcon, UIIcon } from '@gluestack-ui/icon';
 import {
   withStyleContext,
   useStyleContext,
@@ -25,80 +25,12 @@ const LabelWrapper = React.forwardRef<React.ElementRef<typeof Text>, TextProps>(
   }
 );
 
-type IPrimitiveIcon = React.ComponentPropsWithoutRef<typeof Svg> & {
-  height?: number | string;
-  width?: number | string;
-  fill?: string;
-  color?: string;
-  size?: number | string;
-  stroke?: string;
-  as?: React.ElementType;
-  className?: string;
-  classNameColor?: string;
-  style?: any;
-};
-
 const IconWrapper = React.forwardRef<
   React.ElementRef<typeof PrimitiveIcon>,
   IPrimitiveIcon
 >(({ ...props }, ref) => {
-  return <PrimitiveIcon {...props} ref={ref} />;
+  return <UIIcon {...props} ref={ref} />;
 });
-
-const PrimitiveIcon = React.forwardRef<
-  React.ElementRef<typeof Svg>,
-  IPrimitiveIcon
->(
-  (
-    {
-      height,
-      width,
-      fill,
-      color,
-      classNameColor,
-      size,
-      stroke = 'currentColor',
-      as: AsComp,
-      style,
-      ...props
-    },
-    ref
-  ) => {
-    color = color ?? classNameColor;
-    const sizeProps = useMemo(() => {
-      if (size) return { size };
-      if (height && width) return { height, width };
-      if (height) return { height };
-      if (width) return { width };
-      return {};
-    }, [size, height, width]);
-
-    let colorProps = {};
-    if (fill) {
-      colorProps = { ...colorProps, fill: fill };
-    }
-    if (stroke !== 'currentColor') {
-      colorProps = { ...colorProps, stroke: stroke };
-    } else if (stroke === 'currentColor' && color !== undefined) {
-      colorProps = { ...colorProps, stroke: color };
-    }
-
-    if (AsComp) {
-      return (
-        <AsComp
-          ref={ref}
-          {...props}
-          style={style}
-          {...sizeProps}
-          {...colorProps}
-        />
-      );
-    }
-    return (
-      <Svg ref={ref} height={height} width={width} {...colorProps} {...props} />
-    );
-  }
-);
 
 const SCOPE = 'CHECKBOX';
 const UICheckbox = createCheckbox({
@@ -113,7 +45,7 @@ const UICheckbox = createCheckbox({
   Indicator: IndicatorWrapper,
 });
 
-cssInterop(IconWrapper, {
+cssInterop(PrimitiveIcon, {
   className: {
     target: 'style',
     nativeStyleToProp: {

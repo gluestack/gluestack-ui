@@ -52,8 +52,8 @@
   "resolutions": {
     "react-native": "0.72.4",
     "react-native-web": "0.19.9",
-    "react-native-css-interop": "0.0.36",
-    "nativewind": "4.1.10"
+    "react-native-css-interop": "0.1.22",
+    "nativewind": "4.1.23"
   },
   "packageManager": "yarn@1.22.17",
   "version": "0.2.46"
