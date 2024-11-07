@@ -27,11 +27,17 @@ const PopoverArrow = (StyledPopoverArrow: any) =>
       });
     }, [arrowHeight, arrowWidth, placement, actualPlacement]);
 
-    if (arrowProps?.style?.left) {
-      arrowProps.style.left -= arrowWidth / 2;
-    } else if (arrowProps?.style?.top) {
-      arrowProps.style.top -= arrowHeight / 2;
-    }
+    const ArrowStyle = React.useMemo(() => {
+      return {
+        top: arrowProps?.style?.top - arrowHeight / 2,
+        left: arrowProps?.style?.left - arrowWidth / 2,
+      };
+    }, [
+      arrowHeight,
+      arrowWidth,
+      arrowProps?.style?.top,
+      arrowProps?.style?.left,
+    ]);
 
     React.useEffect(() => {
       const ArrowComponent = (
@@ -42,6 +48,7 @@ const PopoverArrow = (StyledPopoverArrow: any) =>
             updateArrowSize({ height, width });
           }}
           {...props}
+          {...ArrowStyle}
           key={actualPlacement + 'arrow'}
           initial={{
             opacity: 0,
@@ -71,15 +78,15 @@ const PopoverArrow = (StyledPopoverArrow: any) =>
           }}
           style={[
             props?.style,
-            arrowProps?.style,
+            ArrowStyle,
             {
               // To avoid border radius case
               top:
                 placement === 'right bottom' || placement === 'left bottom'
-                  ? arrowProps?.style?.top > 4
-                    ? arrowProps?.style?.top - 4
-                    : arrowProps?.style?.top
-                  : arrowProps?.style?.top,
+                  ? ArrowStyle?.top > 4
+                    ? ArrowStyle?.top - 4
+                    : ArrowStyle?.top
+                  : ArrowStyle?.top,
             },
             additionalStyles,
           ]}

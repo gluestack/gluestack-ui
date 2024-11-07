@@ -1,8 +1,6 @@
 import React, { forwardRef } from 'react';
 import { useControllableState } from '@gluestack-ui/hooks';
 import { Overlay } from '@gluestack-ui/overlay';
-
-// import { useOverlayPosition } from '@react-native-aria/overlays';
 import { PopoverProvider } from './PopoverContext';
 
 export const Popover = (StyledPopover: any) =>
