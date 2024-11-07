@@ -18,7 +18,7 @@ export function ActionsheetItem<T>(
         isFocused: isFocusedProp,
         isFocusVisible: isFocusVisibleProp,
         ...props
-      }: T & InterfaceActionsheetItemProps,
+      }: InterfaceActionsheetItemProps,
       ref?: any
     ) => {
       const { isFocusVisible, focusProps: focusRingProps }: any =

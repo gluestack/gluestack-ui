@@ -4,7 +4,7 @@ import { AccordionContext } from './Context';
 import { useAccordion } from '@react-native-aria/accordion';
 import { useControlledState } from '@react-stately/utils';
 
-export const Accordion = <T,>(StyledAccordion: any) =>
+export const Accordion = (StyledAccordion: any) =>
   forwardRef(
     (
       {
@@ -16,7 +16,7 @@ export const Accordion = <T,>(StyledAccordion: any) =>
         onValueChange,
         children,
         ...props
-      }: T & IAccordionProps,
+      }: IAccordionProps,
       ref?: any
     ) => {
       const [selectedValues, setSelectedValues] = useControlledState(

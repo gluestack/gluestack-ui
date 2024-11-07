@@ -5,7 +5,7 @@ export const TabTitle = <StyledTabTitle,>(
   StyledTabTitle: React.ComponentType<StyledTabTitle>
 ) =>
   memo(
-    forwardRef(({ ...props }: StyledTabTitle, ref?: any) => {
+    forwardRef(({ ...props }: any, ref?: any) => {
       return <StyledTabTitle {...(props as StyledTabTitle)} ref={ref} />;
     })
   );

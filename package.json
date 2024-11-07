@@ -5,6 +5,7 @@
     "example/storybook",
     "example/storybook-nativewind"
   ],
+  "name": "gluestack-ui",
   "scripts": {
     "test": "bash ./scripts/test.sh",
     "dev": "turbo run dev",
@@ -55,6 +56,7 @@
     "react-native-css-interop": "0.1.22",
     "nativewind": "4.1.23"
   },
+  "dependencies": {},
   "packageManager": "yarn@1.22.17",
   "version": "0.2.46"
 }

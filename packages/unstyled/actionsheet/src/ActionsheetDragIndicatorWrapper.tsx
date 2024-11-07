@@ -6,7 +6,7 @@ const windowHeight = Dimensions.get('window').height;
 export function ActionsheetDragIndicatorWrapper<T>(
   StyledActionsheetDragIndicatorWrapper: React.ComponentType<T>
 ) {
-  return forwardRef((props: T, ref?: any) => {
+  return forwardRef((props: any, ref?: any) => {
     const {
       pan,
       handleClose,

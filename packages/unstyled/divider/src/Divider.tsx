@@ -1,23 +1,20 @@
 import React, { forwardRef } from 'react';
-import { Platform, ViewProps } from 'react-native';
-import type { IDividerProps } from './types';
+import { Platform } from 'react-native';
 
 export function Divider<T>(StyledDivider: React.ComponentType<T>) {
-  return forwardRef(
-    ({ children, ...props }: T & ViewProps & IDividerProps, ref?: any) => {
-      const { orientation } = props;
+  return forwardRef(({ children, ...props }: any, ref?: any) => {
+    const { orientation } = props;
 
-      return (
-        <StyledDivider
-          ref={ref}
-          {...(props as T & ViewProps & IDividerProps)}
-          aria-orientation={orientation}
-          //@ts-ignore web only role
-          role={Platform.OS === 'web' ? 'separator' : undefined}
-        >
-          {children}
-        </StyledDivider>
-      );
-    }
-  );
+    return (
+      <StyledDivider
+        ref={ref}
+        {...props}
+        aria-orientation={orientation}
+        //@ts-ignore web only role
+        role={Platform.OS === 'web' ? 'separator' : undefined}
+      >
+        {children}
+      </StyledDivider>
+    );
+  });
 }
