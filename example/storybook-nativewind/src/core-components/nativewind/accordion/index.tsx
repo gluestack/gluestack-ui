@@ -31,7 +31,7 @@ const accordionStyle = tva({
 });
 
 const accordionItemStyle = tva({
-  base: 'py-3 px-4',
+  base: 'px-4',
   parentVariants: {
     variant: {
       filled: 'bg-background-0',
@@ -76,10 +76,10 @@ const accordionHeaderStyle = tva({
   base: 'mx-0 my-0',
 });
 const accordionContentStyle = tva({
-  base: 'mt-4',
+  base: 'py-3',
 });
 const accordionTriggerStyle = tva({
-  base: 'w-full flex-row justify-between items-center web:outline-none focus:outline-none data-[disabled=true]:opacity-40 data-[disabled=true]:cursor-not-allowed data-[focus-visible=true]:bg-background-50',
+  base: 'py-3 w-full flex-row justify-between items-center web:outline-none focus:outline-none data-[disabled=true]:opacity-40 data-[disabled=true]:cursor-not-allowed data-[focus-visible=true]:bg-background-50',
 });
 
 const Root = withStyleContext(View, SCOPE);
