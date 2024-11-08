@@ -1,5 +1,11 @@
 # @gluestack-ui/popover
 
+## 0.1.41
+
+### Patch Changes
+
+- fix: popover error issue
+
 ## 0.1.40
 
 ### Patch Changes
