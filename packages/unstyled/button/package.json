@@ -1,6 +1,6 @@
 {
   "name": "@gluestack-ui/button",
-  "version": "1.0.7",
+  "version": "1.0.8-alpha.11",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/index.d.ts",
