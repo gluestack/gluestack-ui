@@ -10,7 +10,7 @@
     "allowUnusedLabels": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "jsx": "react",
+    "jsx": "preserve",
     "lib": ["esnext", "dom"],
     "module": "esnext",
     "moduleResolution": "node",
