@@ -479,15 +479,15 @@ The Input component integrates with an icon and a button, providing users with a
     metaData={{
       code: `
         function App() {
-          const [showPassword, setShowPassword] = useState(false);
-          const [showModal, setShowModal] = useState(false);
+          const [showPassword, setShowPassword] = React.useState(false);
+          const [showModal, setShowModal] = React.useState(false);
 
           const handleState = () => {
             setShowPassword((showState) => !showState);
           };
 
           const handleLogin = () => {
-            setShowModal(true); // Show the modal on login button click
+            setShowModal(true);
           };
 
           return (
@@ -560,7 +560,7 @@ The Input component integrates with an icon and a button, providing users with a
                   </VStack>
                   <Button
                     ml='auto'
-                    onPress={handleLogin} // Trigger the modal on login button press
+                    onPress={handleLogin}
                   >
                     <ButtonText color='$white'>
                       Login
