@@ -480,59 +480,95 @@ The Input component integrates with an icon and a button, providing users with a
       code: `
         function App() {
           const [showPassword, setShowPassword] = useState(false);
+          const [showModal, setShowModal] = useState(false);
+
           const handleState = () => {
-            setShowPassword((showState) => {
-              return !showState;
-            });
+            setShowPassword((showState) => !showState);
           };
+
+          const handleLogin = () => {
+            setShowModal(true); // Show the modal on login button click
+          };
+
           return (
-            <FormControl
-              p='$4'
-              borderWidth='$1'
-              borderRadius='$lg'
-              borderColor='$borderLight300'
-              $dark-borderWidth='$1' $dark-borderRadius='$lg' $dark-borderColor='$borderDark800'
-            >
-              <VStack space='xl'>
-                <Heading color='$text900' lineHeight='$md'>
-                  Login
-                </Heading>
-                <VStack space='xs'>
-                  <Text color='$text500' lineHeight='$xs'>
-                    Email
-                  </Text>
-                  <Input>
-                    <InputField
-                      type="text"
-                    />
-                  </Input>
+            <>
+              <Modal
+                isOpen={showModal}
+                onClose={() => setShowModal(false)}
+                size="md"
+              >
+                <ModalBackdrop />
+                <ModalContent>
+                  <ModalHeader>
+                    <Heading size="md" className="text-typography-950">
+                      Login Successful
+                    </Heading>
+                    <ModalCloseButton>
+                      <Icon
+                        as={CloseIcon}
+                        size="md"
+                        className="stroke-background-400 group-[:hover]/modal-close-button:stroke-background-700 group-[:active]/modal-close-button:stroke-background-900 group-[:focus-visible]/modal-close-button:stroke-background-900"
+                      />
+                    </ModalCloseButton>
+                  </ModalHeader>
+                  <ModalBody>
+                    <Text size="sm" className="text-typography-500">
+                      You are now logged in. Explore the app and start collaborating with your team.
+                    </Text>
+                  </ModalBody>
+                  <ModalFooter>
+                    <Button
+                      variant="outline"
+                      action="secondary"
+                      onPress={() => setShowModal(false)}
+                    >
+                      <ButtonText>Close</ButtonText>
+                    </Button>
+                  </ModalFooter>
+                </ModalContent>
+              </Modal>
+
+              <FormControl
+                p='$4'
+                borderWidth='$1'
+                borderRadius='$lg'
+                borderColor='$borderLight300'
+                $dark-borderWidth='$1' $dark-borderRadius='$lg' $dark-borderColor='$borderDark800'
+              >
+                <VStack space='xl'>
+                  <Heading color='$text900' lineHeight='$md'>
+                    Login
+                  </Heading>
+                  <VStack space='xs'>
+                    <Text color='$text500' lineHeight='$xs'>
+                      Email
+                    </Text>
+                    <Input>
+                      <InputField type="text" />
+                    </Input>
+                  </VStack>
+                  <VStack space='xs'>
+                    <Text color='$text500' lineHeight='$xs'>
+                      Password
+                    </Text>
+                    <Input textAlign='center'>
+                      <InputField type={showPassword ? 'text' : 'password'} />
+                      <InputSlot pr='$3' onPress={handleState}>
+                        <InputIcon as={showPassword ? EyeIcon : EyeOffIcon} color='$darkBlue500' />
+                      </InputSlot>
+                    </Input>
+                  </VStack>
+                  <Button
+                    ml='auto'
+                    onPress={handleLogin} // Trigger the modal on login button press
+                  >
+                    <ButtonText color='$white'>
+                      Login
+                    </ButtonText>
+                  </Button>
                 </VStack>
-                <VStack space='xs'>
-                  <Text color='$text500' lineHeight='$xs'>
-                    Password
-                  </Text>
-                  <Input textAlign='center'>
-                    <InputField
-                      type={showPassword ? 'text' : 'password'}
-                    />
-                    <InputSlot pr='$3' onPress={handleState}>
-                      {/* EyeIcon, EyeOffIcon are both imported from 'lucide-react-native' */}
-                      <InputIcon as={showPassword ? EyeIcon : EyeOffIcon}  color='$darkBlue500'/>
-                    </InputSlot>
-                  </Input>
-                </VStack>
-                <Button
-                  ml='auto'
-                  onPress={()=>{
-                    setShowModal(false);
-                  }}
-                >
-                  <ButtonText color='$white'>
-                    Save
-                  </ButtonText>
-                </Button>
-              </VStack>
-            </FormControl>
+              </FormControl>
+            </>
           );
         }
       `,
