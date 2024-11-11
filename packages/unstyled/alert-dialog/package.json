@@ -16,16 +16,17 @@
     "nextjs"
   ],
   "version": "0.1.31",
-  "main": "lib/commonjs/index",
-  "module": "lib/module/index",
-  "types": "lib/typescript/index.d.ts",
+  "main": "lib/index",
+  "module": "lib/index",
+  "types": "lib/index.d.ts",
   "react-native": "src/index",
   "source": "src/index",
-  "typings": "lib/typescript/index.d.ts",
+  "typings": "lib/index.d.ts",
   "scripts": {
-    "prepare": "bob build",
+    "prepare": "tsc",
     "release": "release-it",
-    "build": "bob build",
+    "watch": "tsc --watch",
+    "build": "tsc",
     "clean": "rm -rf lib",
     "dev:web": "cd example/native && yarn web --clear",
     "storybook": "cd example/native/storybook && yarn web"
@@ -40,7 +41,7 @@
     "react-native-builder-bob": "^0.20.1",
     "react-native-web": "^0.19.9",
     "tsconfig": "7",
-    "typescript": "^4.9.4"
+    "typescript": "^5.6.3"
   },
   "dependencies": {
     "@gluestack-ui/hooks": "0.1.11",
@@ -58,17 +59,6 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/gluestack/gluestack-ui.git"
-  },
-  "react-native-builder-bob": {
-    "source": "src",
-    "output": "lib",
-    "targets": [
-      "commonjs",
-      [
-        "module"
-      ],
-      "typescript"
-    ]
   },
   "files": [
     "lib/",
@@ -89,22 +79,5 @@
     "setupFiles": [
       "<rootDir>/src/jest/mock.ts"
     ]
-  },
-  "release-it": {
-    "git": {
-      "commitMessage": "chore: release ${version}",
-      "tagName": "v${version}"
-    },
-    "npm": {
-      "publish": true
-    },
-    "github": {
-      "release": true
-    },
-    "plugins": {
-      "@release-it/conventional-changelog": {
-        "preset": "angular"
-      }
-    }
   }
 }
