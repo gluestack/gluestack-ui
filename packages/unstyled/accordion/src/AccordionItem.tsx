@@ -1,6 +1,6 @@
 import React, { forwardRef, useContext, useMemo, useState } from 'react';
 import { AccordionContext, AccordionItemContext } from './Context';
-import { IAccordionItemProps } from './types';
+import type { IAccordionItemProps } from './types';
 import { useAccordionItem } from '@react-native-aria/accordion';
 
 export const AccordionItem = <T,>(StyledAccordionItem: any) =>

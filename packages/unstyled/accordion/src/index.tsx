@@ -5,7 +5,7 @@ import { AccordionContentText } from './AccordionContentText';
 import { AccordionItem } from './AccordionItem';
 import { AccordionTrigger } from './AccordionTrigger';
 import { AccordionContent } from './AccordionContent';
-import { IAccordionComponentType } from './types';
+import type { IAccordionComponentType } from './types';
 import { AccordionIcon } from './AccordionIcon';
 import { AccordionHeader } from './AccordionHeader';
 

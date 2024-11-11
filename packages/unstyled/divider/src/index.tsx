@@ -1,6 +1,6 @@
 import type React from 'react';
 import { Divider as DividerMain } from './Divider';
-import { IDividerComponentType } from './types';
+import type { IDividerComponentType } from './types';
 
 export function createDivider<DividerProps>({
   Root,

@@ -1,5 +1,6 @@
 import React, { forwardRef } from 'react';
-import { Platform, ViewProps } from 'react-native';
+import { Platform } from 'react-native';
+import type { ViewProps } from 'react-native';
 import type { IDividerProps } from './types';
 
 export function Divider<T>(StyledDivider: React.ComponentType<T>) {
