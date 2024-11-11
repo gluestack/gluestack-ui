@@ -8,9 +8,10 @@
   "source": "src/index",
   "typings": "lib/typescript/index.d.ts",
   "scripts": {
-    "prepare": "bob build",
+    "prepare": "tsc",
     "release": "release-it",
-    "build": "bob build",
+    "watch": "tsc --watch",
+    "build": "tsc",
     "clean": "rm -rf lib",
     "dev:web": "cd example/native && yarn web --clear",
     "storybook": "cd example/native/storybook && yarn web"
