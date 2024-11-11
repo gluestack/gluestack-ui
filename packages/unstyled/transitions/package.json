@@ -1,7 +1,7 @@
 {
   "name": "@gluestack-ui/transitions",
   "description": "Transitions animations for React Native, Next.js & React",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "main": "lib/index",
   "module": "lib/index",
   "types": "lib/index.d.ts",
@@ -30,9 +30,9 @@
     "typescript": "^5.6.3"
   },
   "dependencies": {
-    "@gluestack-ui/overlay": "^0.1.12",
-    "@gluestack-ui/react-native-aria": "^0.1.5",
-    "@gluestack-ui/utils": "^0.1.12",
+    "@gluestack-ui/overlay": "^0.1.16",
+    "@gluestack-ui/react-native-aria": "^0.1.6",
+    "@gluestack-ui/utils": "^0.1.14",
     "@react-native-aria/focus": "^0.2.9"
   },
   "peerDependencies": {

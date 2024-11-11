@@ -1,7 +1,7 @@
 {
   "name": "@gluestack-ui/form-control",
   "description": "A universal headless form-control component for React Native, Next.js & React",
-  "version": "0.1.18",
+  "version": "0.1.19",
   "main": "lib/index",
   "module": "lib/index",
   "types": "lib/index.d.ts",
@@ -30,7 +30,7 @@
     "typescript": "^5.6.3"
   },
   "dependencies": {
-    "@gluestack-ui/utils": "^0.1.12",
+    "@gluestack-ui/utils": "^0.1.14",
     "@react-native-aria/focus": "^0.2.9"
   },
   "peerDependencies": {

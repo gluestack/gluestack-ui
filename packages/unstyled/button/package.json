@@ -1,6 +1,6 @@
 {
   "name": "@gluestack-ui/button",
-  "version": "1.0.8-alpha.15",
+  "version": "1.0.8",
   "main": "lib/index",
   "module": "lib/index",
   "types": "lib/index.d.ts",
@@ -42,7 +42,7 @@
     "typescript": "^5.6.3"
   },
   "dependencies": {
-    "@gluestack-ui/utils": "0.1.13",
+    "@gluestack-ui/utils": "0.1.14",
     "@react-native-aria/focus": "^0.2.9",
     "@react-native-aria/interactions": "0.2.13"
   },

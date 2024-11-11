@@ -15,7 +15,7 @@
     "ios",
     "nextjs"
   ],
-  "version": "0.1.17",
+  "version": "0.1.18",
   "main": "lib/index",
   "module": "lib/index",
   "types": "lib/index.d.ts",
@@ -44,7 +44,7 @@
     "typescript": "^5.6.3"
   },
   "dependencies": {
-    "@gluestack-ui/utils": "^0.1.12"
+    "@gluestack-ui/utils": "^0.1.14"
   },
   "peerDependencies": {
     "react": ">=16",

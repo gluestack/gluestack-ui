@@ -1,5 +1,11 @@
 # @gluestack-ui/divider
 
+## 0.1.10
+
+### Patch Changes
+
+- Feat: Change in build moving from bob build to tsc build
+
 ## 0.1.9
 
 ### Patch Changes

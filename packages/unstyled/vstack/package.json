@@ -1,7 +1,7 @@
 {
   "name": "@gluestack-ui/vstack",
   "description": "A universal headless vstack component for React Native, Next.js & React",
-  "version": "0.1.15",
+  "version": "0.1.16",
   "main": "lib/index",
   "module": "lib/index",
   "types": "lib/index.d.ts",
@@ -30,7 +30,7 @@
     "typescript": "^5.6.3"
   },
   "dependencies": {
-    "@gluestack-ui/utils": "^0.1.12"
+    "@gluestack-ui/utils": "^0.1.14"
   },
   "peerDependencies": {
     "react": ">=16",

@@ -1,5 +1,15 @@
 # @gluestack-ui/select
 
+## 0.1.30
+
+### Patch Changes
+
+- Feat: Change in build moving from bob build to tsc build
+- Updated dependencies
+  - @gluestack-ui/form-control@0.1.19
+  - @gluestack-ui/hooks@0.1.12
+  - @gluestack-ui/utils@0.1.14
+
 ## 0.1.29
 
 ### Patch Changes
