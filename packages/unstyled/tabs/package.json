@@ -1,12 +1,12 @@
 {
   "name": "@gluestack-ui/tabs",
   "version": "0.1.17",
-  "main": "lib/commonjs/index",
-  "module": "lib/module/index",
-  "types": "lib/typescript/index.d.ts",
+  "main": "lib/index",
+  "module": "lib/index",
+  "types": "lib/index.d.ts",
   "react-native": "src/index",
   "source": "src/index",
-  "typings": "lib/typescript/index.d.ts",
+  "typings": "lib/index.d.ts",
   "scripts": {
     "prepare": "tsc",
     "release": "release-it",
@@ -42,17 +42,6 @@
     "type": "git",
     "url": "git+https://github.com/gluestack/gluestack-ui.git"
   },
-  "react-native-builder-bob": {
-    "source": "src",
-    "output": "lib",
-    "targets": [
-      "commonjs",
-      [
-        "module"
-      ],
-      "typescript"
-    ]
-  },
   "files": [
     "lib/",
     "src/"
@@ -72,22 +61,5 @@
     "setupFiles": [
       "<rootDir>/src/jest/mock.ts"
     ]
-  },
-  "release-it": {
-    "git": {
-      "commitMessage": "chore: release ${version}",
-      "tagName": "v${version}"
-    },
-    "npm": {
-      "publish": true
-    },
-    "github": {
-      "release": true
-    },
-    "plugins": {
-      "@release-it/conventional-changelog": {
-        "preset": "angular"
-      }
-    }
   }
 }
