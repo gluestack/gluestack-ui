@@ -1,5 +1,13 @@
 # @gluestack-ui/form-control
 
+## 0.1.19
+
+### Patch Changes
+
+- Feat: Change in build moving from bob build to tsc build
+- Updated dependencies
+  - @gluestack-ui/utils@0.1.14
+
 ## 0.1.18
 
 ### Patch Changes

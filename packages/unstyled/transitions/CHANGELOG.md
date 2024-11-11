@@ -1,5 +1,15 @@
 # @gluestack-ui/transitions
 
+## 0.1.11
+
+### Patch Changes
+
+- Feat: Change in build moving from bob build to tsc build
+- Updated dependencies
+  - @gluestack-ui/react-native-aria@0.1.6
+  - @gluestack-ui/overlay@0.1.16
+  - @gluestack-ui/utils@0.1.14
+
 ## 0.1.10
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @gluestack-ui/react-native-aria
 
+## 0.1.6
+
+### Patch Changes
+
+- Feat: Change in build moving from bob build to tsc build
+
 ## 0.1.5
 
 ### Patch Changes

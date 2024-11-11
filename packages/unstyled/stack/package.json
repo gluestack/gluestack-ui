@@ -1,6 +1,6 @@
 {
   "name": "@gluestack-ui/stack",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "main": "lib/index",
   "module": "lib/index",
   "types": "lib/index.d.ts",
@@ -29,7 +29,7 @@
     "typescript": "^5.6.3"
   },
   "dependencies": {
-    "@gluestack-ui/utils": "^0.1.9",
+    "@gluestack-ui/utils": "^0.1.14",
     "@react-native-aria/focus": "^0.2.9"
   },
   "peerDependencies": {

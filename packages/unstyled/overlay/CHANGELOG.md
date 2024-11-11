@@ -1,5 +1,11 @@
 # @gluestack-ui/overlay
 
+## 0.1.16
+
+### Patch Changes
+
+- Feat: Change in build moving from bob build to tsc build
+
 ## 0.1.15
 
 ### Patch Changes

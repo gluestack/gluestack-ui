@@ -1,5 +1,13 @@
 # @gluestack-ui/accordion
 
+## 1.0.8
+
+### Patch Changes
+
+- Feat: Change in build moving from bob build to tsc build
+- Updated dependencies
+  - @gluestack-ui/utils@0.1.14
+
 ## 1.0.7
 
 ### Patch Changes
