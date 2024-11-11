@@ -1,20 +1,18 @@
 {
-  "include": ["src"],
+  "include": ["./src"],
   "exclude": ["node_modules", "example"],
-  "paths": {
-    "@gluestack-ui/utils": ["../utils/src"],
-    "@gluestack-ui/form-control": ["../form-control/src"]
-  },
+  "paths": {},
   "compilerOptions": {
-    "emitDeclarationOnly": true,
+    "ignoreDeprecations": "5.0",
     "noEmit": false,
-    "baseUrl": "",
     "declaration": true,
+    "allowJs": true,
     "allowUnreachableCode": false,
     "allowUnusedLabels": true,
     "esModuleInterop": true,
+    "verbatimModuleSyntax": true,
     "forceConsistentCasingInFileNames": true,
-    "jsx": "react",
+    "jsx": "preserve",
     "lib": ["esnext", "dom"],
     "module": "esnext",
     "moduleResolution": "node",
@@ -27,6 +25,7 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "strict": true,
-    "target": "esnext"
+    "target": "esnext",
+    "outDir": "./lib"
   }
 }

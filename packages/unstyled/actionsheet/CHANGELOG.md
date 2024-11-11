@@ -1,5 +1,16 @@
 # @gluestack-ui/actionsheet
 
+## 0.2.46
+
+### Patch Changes
+
+- Feat: Change in build moving from bob build to tsc build
+- Updated dependencies
+  - @gluestack-ui/transitions@0.1.11
+  - @gluestack-ui/overlay@0.1.16
+  - @gluestack-ui/hooks@0.1.12
+  - @gluestack-ui/utils@0.1.14
+
 ## 0.2.45
 
 ### Patch Changes

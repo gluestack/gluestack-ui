@@ -1,5 +1,11 @@
 # @gluestack-ui/utils
 
+## 0.1.14
+
+### Patch Changes
+
+- Feat: Change in build moving from bob build to tsc build
+
 ## 0.1.13
 
 ### Patch Changes

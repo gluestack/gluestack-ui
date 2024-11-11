@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { Keyboard, Platform, KeyboardEvent } from 'react-native';
-
+import { Keyboard, Platform } from 'react-native';
+import type { KeyboardEvent } from 'react-native';
 export const useKeyboardBottomInset = () => {
   const [bottom, setBottom] = React.useState(0);
   const subscriptions = React.useRef<any[]>([]);
