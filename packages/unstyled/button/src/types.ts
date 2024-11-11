@@ -1,4 +1,4 @@
-import { PropsWithoutRef, RefAttributes } from 'react';
+import type { PropsWithoutRef, RefAttributes } from 'react';
 import type { PressableProps } from 'react-native';
 
 export interface InterfaceButtonProps extends PressableProps {
