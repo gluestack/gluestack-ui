@@ -87,7 +87,7 @@ const popoverCloseButtonStyle = tva({
 });
 
 const popoverContentStyle = tva({
-  base: 'bg-background-0 rounded-lg overflow-hidden border border-outline-100',
+  base: 'bg-background-0 rounded-lg overflow-hidden border border-outline-100 w-full',
   parentVariants: {
     size: {
       xs: 'max-w-[360px] p-3.5',
