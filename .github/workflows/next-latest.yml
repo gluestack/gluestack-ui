@@ -1,4 +1,4 @@
-name: Next.js Latest with Gluestack UI
+name: Next.js Latest
 
 on:
   push:
@@ -33,7 +33,7 @@ jobs:
     needs: check-next-version
     if: ${{ needs.check-next-version.outputs.should_run == 'true' || github.event_name == 'push' || github.event_name == 'pull_request' }}
     runs-on: ubuntu-latest
-    name: Next.js latest with Gluestack UI
+    name: Next.js latest
     steps:
       - uses: actions/checkout@v3
 
