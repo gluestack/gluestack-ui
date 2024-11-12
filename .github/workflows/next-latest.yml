@@ -1076,18 +1076,3 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-
-  update-version:
-    needs: test-next-latest
-    if: ${{ needs.check-next-version.outputs.should_run == 'true' }}
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Update Next.js version file
-        run: |
-          echo ${{ needs.check-next-version.outputs.latest_version }} > .next-version
-          git config user.name github-actions
-          git config user.email github-actions@github.com
-          git add .next-version
-          git commit -m "Update Next.js version to ${{ needs.check-next-version.outputs.latest_version }}"
-          git push
