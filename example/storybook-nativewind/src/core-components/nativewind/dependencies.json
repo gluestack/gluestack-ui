@@ -5,7 +5,7 @@
         "tailwindcss": "",
         "@gluestack-ui/overlay": "latest",
         "@gluestack-ui/toast": "latest",
-        "@gluestack-ui/nativewind-utils": "latest",
+        "@gluestack-ui/nativewind-utils": "next",
         "react-native-svg": "latest",
         "nativewind": "latest",
         "react-native-safe-area-context": "latest"
