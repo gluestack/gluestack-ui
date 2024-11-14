@@ -223,7 +223,8 @@
     "grid": {
       "dependencies": {},
       "hooks": ["useBreakpointValue"]
-=======
+    }
+  },
   "gluestack-ui-provider": {
     "dependencies": {
       "tailwindcss": "",
