@@ -1,7 +1,6 @@
 'use client';
 import React from 'react';
 import { createButton } from '@gluestack-ui/button';
-import type { PressableProps } from 'react-native';
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import {
   withStyleContext,
@@ -13,14 +12,8 @@ import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 import { PrimitiveIcon, UIIcon } from '@gluestack-ui/icon';
 
 const SCOPE = 'BUTTON';
-const ButtonWrapper = React.forwardRef<
-  React.ElementRef<typeof Pressable>,
-  PressableProps
->(({ ...props }, ref) => {
-  return <Pressable {...props} ref={ref} />;
-});
 
-const Root = withStyleContext(ButtonWrapper, SCOPE);
+const Root = withStyleContext(Pressable, SCOPE);
 
 const UIButton = createButton({
   Root: Root,
