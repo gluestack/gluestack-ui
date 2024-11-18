@@ -25,7 +25,7 @@
     "storybook:nativewind-ios": "cd example/storybook-v7 && yarn storybook:ios",
     "storybook:nativewind-android": "cd example/storybook-v7 && yarn storybook:android",
     "kitchensink:web": "cd example/ui-examples && yarn web",
-    "postinstall": "patch-package && cd example/storybook-v7 && yarn"
+    "postinstall": "cd example/storybook-v7 && yarn"
   },
   "devDependencies": {
     "@changesets/cli": "^2.25.2",
