@@ -226,7 +226,6 @@ const PopoverContent = (StyledPopoverContent: any, AnimatePresence?: any) =>
                 collapsable={false}
                 {...dialogProps}
                 tabIndex={Platform.OS === 'web' ? -1 : undefined}
-                key={placement + calculatedPlacement}
                 initial={initialAnimatedStyles}
                 animate={animatedStyles}
                 exit={exitAnimatedStyles}
