@@ -1,5 +1,21 @@
 # @gluestack-ui/tooltip
 
+## 0.1.35
+
+### Patch Changes
+
+- Feat: Change in build moving from bob build to tsc build
+- Updated dependencies
+  - @gluestack-ui/overlay@0.1.16
+  - @gluestack-ui/hooks@0.1.12
+  - @gluestack-ui/utils@0.1.14
+
+## 0.1.34
+
+### Patch Changes
+
+- fix: tooltip content android
+
 ## 0.1.33
 
 ### Patch Changes

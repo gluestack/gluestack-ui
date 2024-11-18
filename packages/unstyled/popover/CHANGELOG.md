@@ -1,5 +1,39 @@
 # @gluestack-ui/popover
 
+## 0.1.42
+
+### Patch Changes
+
+- Feat: Change in build moving from bob build to tsc build
+- Updated dependencies
+  - @gluestack-ui/overlay@0.1.16
+  - @gluestack-ui/hooks@0.1.12
+  - @gluestack-ui/utils@0.1.14
+
+## 0.1.41
+
+### Patch Changes
+
+- fix: popover error issue
+
+## 0.1.40
+
+### Patch Changes
+
+- fix: Popover Arrow styling
+
+## 0.1.39
+
+### Patch Changes
+
+- fix: popover arrow position calculation
+
+## 0.1.38
+
+### Patch Changes
+
+- fix: popover on android
+
 ## 0.1.37
 
 ### Patch Changes

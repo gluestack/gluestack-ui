@@ -77,6 +77,7 @@ export function TooltipContent<StyledTooltipContentProps>(
         AnimatePresence={AnimatePresence}
       >
         <View
+          collapsable={false}
           ref={mergedRef}
           style={[overlayProps.style, { position: 'absolute' }]}
         >

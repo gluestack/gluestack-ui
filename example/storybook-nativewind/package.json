@@ -32,7 +32,7 @@
     "@gluestack-style/animation-resolver": "^1.0.4",
     "@gluestack-style/react": "^1.0.57",
     "@gluestack-ui/config": "^1.1.19",
-    "@gluestack-ui/themed": "^1.1.54",
+    "@gluestack-ui/themed": "^1.1.60",
     "@gluestack/design-system": "^0.5.36",
     "@gorhom/bottom-sheet": "^5.0.0-alpha.10",
     "@legendapp/motion": "^2.2.0",

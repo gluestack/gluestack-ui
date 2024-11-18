@@ -1,17 +1,18 @@
 {
   "name": "@gluestack-ui/form-control",
   "description": "A universal headless form-control component for React Native, Next.js & React",
-  "version": "0.1.18",
-  "main": "lib/commonjs/index",
-  "module": "lib/module/index",
-  "types": "lib/typescript/index.d.ts",
+  "version": "0.1.19",
+  "main": "lib/index",
+  "module": "lib/index",
+  "types": "lib/index.d.ts",
   "react-native": "src/index",
   "source": "src/index",
-  "typings": "lib/typescript/index.d.ts",
+  "typings": "lib/index.d.ts",
   "scripts": {
-    "prepare": "bob build",
+    "prepare": "tsc",
     "release": "release-it",
-    "build": "bob build",
+    "watch": "tsc --watch",
+    "build": "tsc",
     "clean": "rm -rf lib",
     "dev:web": "cd example/native && yarn web --clear",
     "storybook": "cd example/native/storybook && yarn web"
@@ -26,10 +27,10 @@
     "react-native-builder-bob": "^0.20.1",
     "react-native-web": "^0.19.9",
     "tsconfig": "7",
-    "typescript": "^4.9.4"
+    "typescript": "^5.6.3"
   },
   "dependencies": {
-    "@gluestack-ui/utils": "^0.1.12",
+    "@gluestack-ui/utils": "^0.1.14",
     "@react-native-aria/focus": "^0.2.9"
   },
   "peerDependencies": {
@@ -40,17 +41,6 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/gluestack/gluestack-ui.git"
-  },
-  "react-native-builder-bob": {
-    "source": "src",
-    "output": "lib",
-    "targets": [
-      "commonjs",
-      [
-        "module"
-      ],
-      "typescript"
-    ]
   },
   "files": [
     "lib/",
@@ -71,23 +61,6 @@
     "setupFiles": [
       "<rootDir>/src/jest/mock.ts"
     ]
-  },
-  "release-it": {
-    "git": {
-      "commitMessage": "chore: release ${version}",
-      "tagName": "v${version}"
-    },
-    "npm": {
-      "publish": true
-    },
-    "github": {
-      "release": true
-    },
-    "plugins": {
-      "@release-it/conventional-changelog": {
-        "preset": "angular"
-      }
-    }
   },
   "keywords": [
     "react",

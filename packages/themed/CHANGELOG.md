@@ -1,5 +1,76 @@
 # @gluestack-ui/themed
 
+## 1.1.60
+
+### Patch Changes
+
+- Updated dependencies
+  - @gluestack-ui/alert-dialog@0.1.32
+  - @gluestack-ui/form-control@0.1.19
+  - @gluestack-ui/actionsheet@0.2.46
+  - @gluestack-ui/accordion@1.0.8
+  - @gluestack-ui/pressable@0.1.17
+  - @gluestack-ui/checkbox@0.1.33
+  - @gluestack-ui/progress@0.1.18
+  - @gluestack-ui/provider@0.1.13
+  - @gluestack-ui/textarea@0.1.24
+  - @gluestack-ui/divider@0.1.10
+  - @gluestack-ui/overlay@0.1.16
+  - @gluestack-ui/popover@0.1.42
+  - @gluestack-ui/spinner@0.1.15
+  - @gluestack-ui/tooltip@0.1.35
+  - @gluestack-ui/avatar@0.1.18
+  - @gluestack-ui/button@1.0.8
+  - @gluestack-ui/select@0.1.30
+  - @gluestack-ui/slider@0.1.26
+  - @gluestack-ui/switch@0.1.23
+  - @gluestack-ui/alert@0.1.16
+  - @gluestack-ui/image@0.1.11
+  - @gluestack-ui/input@0.1.32
+  - @gluestack-ui/modal@0.1.35
+  - @gluestack-ui/radio@0.1.34
+  - @gluestack-ui/toast@1.0.8
+  - @gluestack-ui/icon@0.1.23
+  - @gluestack-ui/link@0.1.23
+  - @gluestack-ui/menu@0.2.37
+  - @gluestack-ui/tabs@0.1.18
+  - @gluestack-ui/fab@0.1.22
+
+## 1.1.59
+
+### Patch Changes
+
+- Updated dependencies
+  - @gluestack-ui/popover@0.1.41
+
+## 1.1.58
+
+### Patch Changes
+
+- Updated dependencies
+  - @gluestack-ui/popover@0.1.40
+
+## 1.1.57
+
+### Patch Changes
+
+- Updated dependencies
+  - @gluestack-ui/tooltip@0.1.34
+
+## 1.1.56
+
+### Patch Changes
+
+- Updated dependencies
+  - @gluestack-ui/popover@0.1.39
+
+## 1.1.55
+
+### Patch Changes
+
+- Updated dependencies
+  - @gluestack-ui/popover@0.1.38
+
 ## 1.1.54
 
 ### Patch Changes

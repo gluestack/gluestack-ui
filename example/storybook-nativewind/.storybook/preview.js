@@ -34,7 +34,7 @@ export const parameters = {
         'Home',
         [
           'Overview',
-          ['Introduction', 'Upgrade to v2'],
+          ['Introduction'],
           'Getting Started',
           [
             'Installation',
@@ -103,7 +103,14 @@ export const parameters = {
           'Recipes',
           ['Linear Gradient'],
           'More',
-          ['FAQs', 'Releases', 'Roadmap', 'Troubleshooting', 'Discord FAQs'],
+          [
+            'Upgrade to v2',
+            'FAQs',
+            'Releases',
+            'Roadmap',
+            'Troubleshooting',
+            'Discord FAQs',
+          ],
         ],
       ],
       icons: [

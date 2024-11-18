@@ -213,6 +213,8 @@ const PopoverContent = (StyledPopoverContent: any, AnimatePresence?: any) =>
               ...overlayProps?.style,
             }}
             ref={overlayRef}
+            // DO NOT REMOVE THIS.
+            collapsable={false}
           >
             {arrowElement}
             <FocusScopeComponent contain={trapFocus} restoreFocus autoFocus>
@@ -224,7 +226,6 @@ const PopoverContent = (StyledPopoverContent: any, AnimatePresence?: any) =>
                 collapsable={false}
                 {...dialogProps}
                 tabIndex={Platform.OS === 'web' ? -1 : undefined}
-                key={placement + calculatedPlacement}
                 initial={initialAnimatedStyles}
                 animate={animatedStyles}
                 exit={exitAnimatedStyles}
