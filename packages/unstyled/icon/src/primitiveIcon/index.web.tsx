@@ -17,7 +17,7 @@ const Svg = React.forwardRef<
   return <svg ref={ref} {...props} className={calculateClassName} />;
 });
 
-type IPrimitiveIcon = {
+export type IPrimitiveIcon = {
   height?: number | string;
   width?: number | string;
   fill?: string;
@@ -80,4 +80,4 @@ const UIIcon = createIcon({
   Root: PrimitiveIcon,
 });
 
-export { IPrimitiveIcon, PrimitiveIcon, Svg, UIIcon };
+export { PrimitiveIcon, Svg, UIIcon };
