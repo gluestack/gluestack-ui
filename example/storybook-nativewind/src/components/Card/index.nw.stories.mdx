@@ -37,7 +37,6 @@ import {
 } from '../../core-components/nativewind';
 import {
   AppProvider,
-  CodePreview,
   Table,
   TableContainer,
   InlineCode,
@@ -47,6 +46,7 @@ import { transformedCode } from '../../utils';
 
 import Wrapper from '../../core-components/nativewind/Wrapper';
 import { CollapsibleCode } from '@gluestack/design-system';
+import { CodePreview } from '../../extra-components/design-system/CodePreview'
 
 This is an illustration of a **Card** component.
 
@@ -275,7 +275,7 @@ function App(){
         source={{
           uri: 'https://images.unsplash.com/photo-1529693662653-9d480530a697?q=80&w=2831&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         }}
-        className="mb-6 h-[240px] w-full rounded-md"
+        className="mb-6 min-h-[160px] max-h-[240px]  w-full rounded-md"
       />
       <Text
         className="text-sm font-normal mb-2 text-typography-700"
@@ -392,7 +392,7 @@ function App(){
         </VStack>
       </Box>
       <Box
-        className="mb-5 flex-col sm:mb-6 sm:flex-row"
+        className="mb-5 flex-col sm:mb-6 sm:flex-row flex-wrap "
       >
         <Image
           source={{
@@ -471,16 +471,16 @@ function App(){
         </Text>
       </VStack>
       <Box
-        className="flex-col sm:flex-row"
+        className="flex flex-col sm:flex-row flex-wrap gap-2"
       >
         <Button
-          className="px-4 py-2 mr-0 mb-3 sm:mr-3 sm:mb-0 sm:flex-1"
+          className="px-4 py-2 sm:flex-1 min-w-[80px]"
         >
-          <ButtonText size="sm">Add to cart</ButtonText>
+          <ButtonText size="sm" >Add to cart</ButtonText>
         </Button>
         <Button
           variant="outline"
-          className="px-4 py-2 border-outline-300 sm:flex-1"
+          className="px-4 py-2 border-outline-300 sm:flex-1 min-w-[80px]"
         >
           <ButtonText
             size="sm"

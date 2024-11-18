@@ -19,16 +19,15 @@ import { Progress, ProgressFilledTrack, VStack, Box, Heading, Center } from '../
 import { transformedCode } from '../../utils';
 import {
   AppProvider,
-  CodePreview,
   Text,
   Table,
   TableContainer,
   InlineCode,
   Tabs
 } from '@gluestack/design-system';
-
 import Wrapper from '../../core-components/nativewind/Wrapper';
 import { CollapsibleCode } from '@gluestack/design-system';
+import { CodePreview } from '../../extra-components/design-system/CodePreview'
 
 This is an illustration of **Progress** component.
 
@@ -41,7 +40,7 @@ This is an illustration of **Progress** component.
     showArgsController={true}
     metaData={{
       code: `
-        <Center className='w-[300px] h-[150px]'>
+        <Center className='w-full min-w-[200px]  max-w-[300px] h-[150px]'>
           <Progress value={40} {...props} >
             <ProgressFilledTrack />
           </Progress>
@@ -265,7 +264,7 @@ Progress component with value
       code: `
       <VStack space="lg">
         <Text size="lg">Downloading 55%</Text>
-        <Progress value={55} className='w-80 h-1'>
+        <Progress value={55} className='w-full min-w-[200px]  max-w-[300px] h-1'>
           <ProgressFilledTrack className='h-1' />
         </Progress>
       </VStack>
@@ -297,16 +296,16 @@ You can add track color to progress bar as per our needs.
     metaData={{
       code: `
         <VStack space="3xl">
-          <Progress value={46} className='w-96 h-2' size="sm">
+          <Progress value={46} className='w-full min-w-[200px]  max-w-[300px] h-2' size="sm">
             <ProgressFilledTrack className='bg-emerald-600'/>
           </Progress>
-          <Progress value={46} className='w-96 h-2' size="sm">
+          <Progress value={46} className='w-full min-w-[200px]  max-w-[300px] h-2' size="sm">
             <ProgressFilledTrack className='bg-amber-600'/>
           </Progress>
-          <Progress value={46} className='w-96 h-2' size="sm">
+          <Progress value={46} className='w-full min-w-[200px]  max-w-[300px] h-2' size="sm">
             <ProgressFilledTrack className='bg-fuchsia-600'/>
           </Progress>
-          <Progress value={46} className='w-96 h-2' size="sm">
+          <Progress value={46} className='w-full min-w-[200px]  max-w-[300px] h-2' size="sm">
             <ProgressFilledTrack className='bg-cyan-600'/>
           </Progress>
         </VStack>
@@ -337,7 +336,7 @@ You can customize the progress bar. Below is the example where we have change th
       code: `
         <VStack space="lg">
         <Heading>Internal Storage</Heading>
-        <Progress value={46} className='w-[410px] h-2 bg-lime-100'>
+        <Progress value={46} className='w-full min-w-[200px]  max-w-[300px] h-2 bg-lime-100'>
           <ProgressFilledTrack className='h-2 bg-lime-500' />
         </Progress>
         <Text size="md">14GB</Text>

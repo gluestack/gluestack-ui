@@ -16,9 +16,9 @@ import { Meta } from '@storybook/addon-docs';
 
 import { Spinner, HStack, VStack, Text } from '../../core-components/nativewind';
 import { transformedCode } from '../../utils';
-import { AppProvider, CodePreview } from '@gluestack/design-system';
+import { AppProvider } from '@gluestack/design-system';
 import colors from 'tailwindcss/colors';
-
+import { CodePreview } from '../../extra-components/design-system/CodePreview'
 import Wrapper from '../../core-components/nativewind/Wrapper';
 import { CollapsibleCode, Tabs } from '@gluestack/design-system';
 
@@ -139,7 +139,7 @@ A Spinner component with a label provides informative text or a label alongside 
     showArgsController={false}
     metaData={{
       code: `
-        <HStack space="sm" >
+        <HStack space="sm" className='mx-auto'>
           <Spinner/>
           <Text size="md">Please Wait</Text>
         </HStack>

@@ -34,7 +34,6 @@ import {
 import { transformedCode } from '../../utils';
 import {
   AppProvider,
-  CodePreview,
   InlineCode,
   Table,
   TableContainer,
@@ -43,6 +42,7 @@ import Wrapper from '../../core-components/nativewind/Wrapper';
 import { Center } from '../../core-components/nativewind/center';
 import { CollapsibleCode, Tabs } from '@gluestack/design-system';
 import AnatomyImage from '../../extra-components/nativewind/AnatomyImage';
+import { CodePreview } from '../../extra-components/design-system/CodePreview'
 
 This is an illustration of **Slider** component.
 
@@ -52,7 +52,7 @@ This is an illustration of **Slider** component.
     showArgsController={true}
     metaData={{
       code: `
-      <Center className="w-[300px] h-[150px]">
+      <Center className="w-full min-w-[200px]  max-w-[300px] h-[150px]">
           <Slider  defaultValue={30} {...props}  >
             <SliderTrack>
               <SliderFilledTrack />

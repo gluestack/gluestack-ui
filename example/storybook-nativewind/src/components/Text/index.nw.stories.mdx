@@ -20,10 +20,10 @@ import { Text, Center } from '../../core-components/nativewind';
 import { transformedCode } from '../../utils';
 import Wrapper from '../../core-components/nativewind/Wrapper';
 import { CollapsibleCode, Tabs } from '@gluestack/design-system';
+import { CodePreview } from '../../extra-components/design-system/CodePreview'
 
 import {
   AppProvider,
-  CodePreview,
   Table,
   TableContainer,
   InlineCode,
@@ -37,7 +37,7 @@ This is an illustration of **Text** component.
   showArgsController = { false}
   metaData = {{
     code: `
-        <Text>
+        <Text className='text-center'>
           Hello World!
         </Text>
       `,

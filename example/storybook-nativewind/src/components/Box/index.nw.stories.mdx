@@ -21,8 +21,8 @@ import { Box } from '../../core-components/nativewind';
 import { Text } from '../../core-components/nativewind/text';
 
 import { transformedCode } from '../../utils';
-import { AppProvider, CodePreview, Tabs, InlineCode } from '@gluestack/design-system';
-
+import { AppProvider, Tabs, InlineCode } from '@gluestack/design-system';
+import { CodePreview } from '../../extra-components/design-system/CodePreview'
 import Wrapper from '../../core-components/nativewind/Wrapper';
 import { CollapsibleCode, Table, TableContainer, } from '@gluestack/design-system';
 
@@ -37,7 +37,7 @@ This is an illustration of **Box** component.
 <Box
   className="bg-primary-500 p-5"
 >
-  <Text className='text-typography-0'>
+  <Text className='text-typography-0 text-center'>
     This is the Box
   </Text>
 </Box>

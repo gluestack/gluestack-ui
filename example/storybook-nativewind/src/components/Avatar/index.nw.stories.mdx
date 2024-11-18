@@ -31,12 +31,12 @@ import colors from 'tailwindcss/colors';
 import { transformedCode } from '../../utils';
 import {
   AppProvider,
-  CodePreview,
   Table,
   TableContainer,
   InlineCode,
   Tabs
 } from '@gluestack/design-system';
+import { CodePreview } from '../../extra-components/design-system/CodePreview'
 import { CollapsibleCode } from '@gluestack/design-system';
 import Wrapper from '../../core-components/nativewind/Wrapper';
 import AnatomyImage from '../../extra-components/nativewind/AnatomyImage';
@@ -49,7 +49,7 @@ This is an illustration of **Avatar** component.
     showArgsController = { true}
     metaData = {{
       code: `
-        <Avatar {...props}>
+        <Avatar {...props} className='mx-auto'>
           <AvatarFallbackText>Jane Doe</AvatarFallbackText>
         <AvatarImage
           source={{
@@ -646,7 +646,7 @@ Fallback text is shown when the image fails to load, the image is not available 
     metaData={{
       code: `
      <HStack space="md" h="100%" justifyContent="center" alignItems="center">
-          <Avatar size="md">
+          <Avatar size="md" className='mx-auto'>
             <AvatarFallbackText>John Doe</AvatarFallbackText>
             <AvatarImage
               source={{

@@ -84,13 +84,12 @@ import {
   FacebookIcon,
   Camera,
 } from 'lucide-react-native';
-
+import { CodePreview } from '../../extra-components/design-system/CodePreview'
 import { Path, Rect } from 'react-native-svg';
 import { CollapsibleCode } from "@gluestack/design-system"
 import { transformedCode } from '../../utils';
 import {
   AppProvider,
-  CodePreview,
   Table,
   TableContainer,
   InlineCode,
@@ -107,7 +106,7 @@ This is an illustration of **Icon** component.
     showArgsController={true}
     metaData={{
       code: `
-        <Icon as={EditIcon} {...props} />
+        <Icon as={EditIcon} {...props} className='mx-auto'/>
       `,
       transformCode: (code) => {
         return transformedCode(code);
@@ -460,7 +459,7 @@ on Native :
           ),
         });
       function App () {
-        return <Icon as={GluestackIcon} size='xl' className="text-typography-black"/>;
+        return <Icon as={GluestackIcon} size='xl' className="text-typography-black mx-auto"/>;
       }
       `,
       transformCode: (code) => {

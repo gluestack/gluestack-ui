@@ -27,13 +27,12 @@ import { useState, useRef } from 'react';
 import { transformedCode } from '../../utils';
 import {
   AppProvider,
-  CodePreview,
   Table,
   TableContainer,
   InlineCode,
   Tabs
 } from '@gluestack/design-system';
-
+import { CodePreview } from '../../extra-components/design-system/CodePreview'
 import Wrapper from '../../core-components/nativewind/Wrapper';
 import { CollapsibleCode } from '@gluestack/design-system';
 import AnatomyImage from '../../extra-components/nativewind/AnatomyImage';
@@ -46,7 +45,7 @@ This is an illustration of **Radio** component.
     showArgsController={true}
     metaData={{
       code: `
-        <RadioGroup>
+        <RadioGroup className='mx-auto'>
           <Radio value="change" {...props}>
             <RadioIndicator>
               <RadioIcon as={CircleIcon}/>
@@ -585,7 +584,7 @@ Radio buttons provide a mutually exclusive selection mechanism, allowing users t
       function App () {
         const [values, setValues] = React.useState("Eng");
         return (
-          <RadioGroup value={values} onChange={setValues}>
+          <RadioGroup value={values} onChange={setValues} className='mx-auto'>
             <VStack space="sm">
               <Radio value="Eng" >
                 <RadioIndicator>

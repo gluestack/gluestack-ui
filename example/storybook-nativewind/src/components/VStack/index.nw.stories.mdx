@@ -18,7 +18,6 @@ import { Meta } from '@storybook/addon-docs';
 
 import {
   AppProvider,
-  CodePreview,
   Table,
   TableContainer,
   Text,
@@ -29,6 +28,7 @@ import { Box, VStack } from '../../core-components/nativewind';
 import { transformedCode } from '../../utils';
 import Wrapper from '../../core-components/nativewind/Wrapper';
 import { CollapsibleCode } from '@gluestack/design-system';
+import { CodePreview } from '../../extra-components/design-system/CodePreview'
 
 This is an illustration of **VStack** component.
 
@@ -38,7 +38,7 @@ This is an illustration of **VStack** component.
   showArgsController = { true}
   metaData = {{
     code: `
-        <Box className='justify-center h-80'>
+        <Box className='justify-center h-80 mx-auto'>
           <VStack {...props}>
             <Box  className="h-20 w-20 bg-primary-300" />
             <Box  className="h-20 w-20 bg-primary-400" />
@@ -270,7 +270,7 @@ A VStack component with the reversed prop reverses the order of vertically stack
     showArgsController={false}
     metaData={{
       code: `
-        <VStack space='md'>
+        <VStack space='md' className='mx-auto'>
           <Box className='w-20 h-20 bg-primary-300' />
           <Box className='w-20 h-20 bg-primary-400' />
           <Box className='w-20 h-20 bg-primary-500' />
