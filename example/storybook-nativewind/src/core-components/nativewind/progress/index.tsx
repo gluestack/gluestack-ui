@@ -126,7 +126,7 @@ type IProgressProps = VariantProps<typeof progressStyle> &
 type IProgressFilledTrackProps = VariantProps<typeof progressFilledTrackStyle> &
   React.ComponentProps<typeof UIProgress.FilledTrack>;
 
-export const Progress = React.forwardRef<
+const Progress = React.forwardRef<
   React.ElementRef<typeof UIProgress>,
   IProgressProps
 >(({ className, size = 'md', orientation = 'horizontal', ...props }, ref) => {
@@ -141,7 +141,7 @@ export const Progress = React.forwardRef<
   );
 });
 
-export const ProgressFilledTrack = React.forwardRef<
+const ProgressFilledTrack = React.forwardRef<
   React.ElementRef<typeof UIProgress.FilledTrack>,
   IProgressFilledTrackProps
 >(({ className, ...props }, ref) => {
@@ -162,3 +162,5 @@ export const ProgressFilledTrack = React.forwardRef<
     />
   );
 });
+
+export { Progress, ProgressFilledTrack };
