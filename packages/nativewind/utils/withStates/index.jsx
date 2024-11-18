@@ -9,10 +9,6 @@ export const withStates = (Component) =>
     }, [className, states]);
     return (
       // @ts-ignore
-      React.createElement(Component, {
-        className: classNamesFinal,
-        ...props,
-        ref: ref,
-      })
+      <Component className={classNamesFinal} {...props} ref={ref} />
     );
   });

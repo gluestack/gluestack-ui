@@ -1,6 +1,6 @@
 {
   "name": "@gluestack-ui/themed",
-  "version": "1.1.60",
+  "version": "1.1.61",
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "module": "build/index",
@@ -54,7 +54,7 @@
     "@gluestack-ui/menu": "0.2.37",
     "@gluestack-ui/modal": "0.1.35",
     "@gluestack-ui/overlay": "0.1.16",
-    "@gluestack-ui/popover": "0.1.42",
+    "@gluestack-ui/popover": "0.1.43",
     "@gluestack-ui/pressable": "0.1.17",
     "@gluestack-ui/progress": "0.1.18",
     "@gluestack-ui/provider": "0.1.13",
