@@ -55,7 +55,7 @@
     "@gluestack-ui/menu": "0.2.37",
     "@gluestack-ui/modal": "0.1.35",
     "@gluestack-ui/overlay": "0.1.16",
-    "@gluestack-ui/popover": "0.1.42",
+    "@gluestack-ui/popover": "0.1.43",
     "@gluestack-ui/pressable": "0.1.17",
     "@gluestack-ui/progress": "0.1.18",
     "@gluestack-ui/provider": "0.1.13",
@@ -66,14 +66,14 @@
     "@gluestack-ui/switch": "0.1.23",
     "@gluestack-ui/tabs": "0.1.18",
     "@gluestack-ui/textarea": "0.1.24",
-    "@gluestack-ui/themed": "1.1.60",
+    "@gluestack-ui/themed": "1.1.61",
     "@gluestack-ui/toast": "1.0.8",
     "@gluestack-ui/tooltip": "0.1.35",
     "@legendapp/motion": "latest"
   },
   "peerDependencies": {
     "@gluestack-style/react": ">=1.0.57",
-    "@gluestack-ui/themed": ">=1.1.60"
+    "@gluestack-ui/themed": ">=1.1.61"
   },
   "release-it": {
     "git": {
