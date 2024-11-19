@@ -207,7 +207,7 @@
     },
     "tooltip": {
       "dependencies": {
-        "@gluestack-ui/tooltip": "latest",
+        "@gluestack-ui/tooltip": "alpha",
         "@legendapp/motion": "latest"
       }
     },
