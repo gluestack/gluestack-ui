@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import { PrimitiveIcon, UIIcon } from '@gluestack-ui/icon';
