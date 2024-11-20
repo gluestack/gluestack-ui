@@ -36,7 +36,6 @@ const PopoverArrow = (StyledPopoverArrow: any) =>
             updateArrowSize({ height, width });
           }}
           {...props}
-          key={actualPlacement + 'arrow'}
           initial={{
             opacity: 0,
             y:

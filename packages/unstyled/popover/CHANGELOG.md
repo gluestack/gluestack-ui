@@ -1,5 +1,11 @@
 # @gluestack-ui/popover
 
+## 0.1.43
+
+### Patch Changes
+
+- fix: removed unwanted key from popover
+
 ## 0.1.42
 
 ### Patch Changes

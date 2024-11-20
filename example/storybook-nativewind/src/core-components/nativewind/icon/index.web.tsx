@@ -1,3 +1,4 @@
+'use client';
 import React, { useMemo } from 'react';
 import { createIcon } from '@gluestack-ui/icon';
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
