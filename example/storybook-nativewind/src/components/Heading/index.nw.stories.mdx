@@ -421,8 +421,8 @@ Heading component offers a range of sizes, including `xs`, `sm`, `md`, `lg`, `xl
           ];
           return (
               <Center>
-                {sizes.map((size) => (
-                  <Heading size={size}>{size}</Heading>
+                {sizes.map((size, index) => (
+                  <Heading size={size} key={index}>{size}</Heading>
                 ))}
               </Center>
           );
