@@ -84,7 +84,7 @@ type IAvatarProps = Omit<
 > &
   VariantProps<typeof avatarStyle>;
 
-export const Avatar = React.forwardRef<
+const Avatar = React.forwardRef<
   React.ElementRef<typeof UIAvatar>,
   IAvatarProps
 >(({ className, size = 'md', ...props }, ref) => {
@@ -101,7 +101,7 @@ export const Avatar = React.forwardRef<
 type IAvatarBadgeProps = React.ComponentPropsWithoutRef<typeof UIAvatar.Badge> &
   VariantProps<typeof avatarBadgeStyle>;
 
-export const AvatarBadge = React.forwardRef<
+const AvatarBadge = React.forwardRef<
   React.ElementRef<typeof UIAvatar.Badge>,
   IAvatarBadgeProps
 >(({ className, size, ...props }, ref) => {
@@ -126,7 +126,7 @@ type IAvatarFallbackTextProps = React.ComponentPropsWithoutRef<
   typeof UIAvatar.FallbackText
 > &
   VariantProps<typeof avatarFallbackTextStyle>;
-export const AvatarFallbackText = React.forwardRef<
+const AvatarFallbackText = React.forwardRef<
   React.ElementRef<typeof UIAvatar.FallbackText>,
   IAvatarFallbackTextProps
 >(({ className, size, ...props }, ref) => {
@@ -150,7 +150,7 @@ export const AvatarFallbackText = React.forwardRef<
 type IAvatarImageProps = React.ComponentPropsWithoutRef<typeof UIAvatar.Image> &
   VariantProps<typeof avatarImageStyle>;
 
-export const AvatarImage = React.forwardRef<
+const AvatarImage = React.forwardRef<
   React.ElementRef<typeof UIAvatar.Image>,
   IAvatarImageProps
 >(({ className, ...props }, ref) => {
@@ -174,7 +174,7 @@ export const AvatarImage = React.forwardRef<
 type IAvatarGroupProps = React.ComponentPropsWithoutRef<typeof UIAvatar.Group> &
   VariantProps<typeof avatarGroupStyle>;
 
-export const AvatarGroup = React.forwardRef<
+const AvatarGroup = React.forwardRef<
   React.ElementRef<typeof UIAvatar.Group>,
   IAvatarGroupProps
 >(({ className, ...props }, ref) => {
@@ -188,3 +188,5 @@ export const AvatarGroup = React.forwardRef<
     />
   );
 });
+
+export { Avatar, AvatarBadge, AvatarFallbackText, AvatarImage, AvatarGroup };

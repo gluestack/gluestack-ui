@@ -100,7 +100,7 @@ type IIConProps = IPrimitiveIcon &
   VariantProps<typeof iconStyle> &
   React.ComponentPropsWithoutRef<typeof UIIcon>;
 
-export const Icon = React.forwardRef<React.ElementRef<typeof Svg>, IIConProps>(
+const Icon = React.forwardRef<React.ElementRef<typeof Svg>, IIConProps>(
   ({ size = 'md', className, ...props }, ref) => {
     if (typeof size === 'number') {
       return (
@@ -132,6 +132,8 @@ export const Icon = React.forwardRef<React.ElementRef<typeof Svg>, IIConProps>(
     );
   }
 );
+
+export { Icon };
 
 type ParameterTypes = Omit<Parameters<typeof createIcon>[0], 'Root'>;
 

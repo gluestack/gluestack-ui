@@ -12,9 +12,9 @@ import {
 import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withStyleContextAndStates';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 
-export const useToast = createToastHook(Motion.View, AnimatePresence);
+const useToast = createToastHook(Motion.View, AnimatePresence);
 const SCOPE = 'TOAST';
-export const UIToast = createToast({
+const UIToast = createToast({
   Root:
     Platform.OS === 'web'
       ? withStyleContext(View, SCOPE)
@@ -158,25 +158,24 @@ type IToastProps = React.ComponentProps<typeof UIToast> & {
   className?: string;
 } & VariantProps<typeof toastStyle>;
 
-export const Toast = React.forwardRef<
-  React.ElementRef<typeof UIToast>,
-  IToastProps
->(({ className, variant = 'solid', action = 'muted', ...props }, ref) => {
-  return (
-    <UIToast
-      ref={ref}
-      className={toastStyle({ variant, action, class: className })}
-      context={{ variant, action }}
-      {...props}
-    />
-  );
-});
+const Toast = React.forwardRef<React.ElementRef<typeof UIToast>, IToastProps>(
+  ({ className, variant = 'solid', action = 'muted', ...props }, ref) => {
+    return (
+      <UIToast
+        ref={ref}
+        className={toastStyle({ variant, action, class: className })}
+        context={{ variant, action }}
+        {...props}
+      />
+    );
+  }
+);
 
 type IToastTitleProps = React.ComponentProps<typeof UIToast.Title> & {
   className?: string;
 } & VariantProps<typeof toastTitleStyle>;
 
-export const ToastTitle = React.forwardRef<
+const ToastTitle = React.forwardRef<
   React.ElementRef<typeof UIToast.Title>,
   IToastTitleProps
 >(({ className, size = 'md', ...props }, ref) => {
@@ -204,7 +203,7 @@ type IToastDescriptionProps = React.ComponentProps<
   className?: string;
 } & VariantProps<typeof toastDescriptionStyle>;
 
-export const ToastDescription = React.forwardRef<
+const ToastDescription = React.forwardRef<
   React.ElementRef<typeof UIToast.Description>,
   IToastDescriptionProps
 >(({ className, size = 'md', ...props }, ref) => {
@@ -223,3 +222,5 @@ export const ToastDescription = React.forwardRef<
     />
   );
 });
+
+export { useToast, Toast, ToastTitle, ToastDescription };
