@@ -159,11 +159,13 @@ import Image from '@unitools/image';
     metaData={{
       code: `
         <Image
-          source={require("@/assets/mountains.png")}
+          source={{
+            uri: "https://gluestack.github.io/public-blog-video-assets/mountains.png",
+          }}
           alt="Logo"
-          width={208}
-          height={320}
-        />            
+          size='none'
+          className="aspect-[320/208] w-full max-w-[320px]"
+        />        
       `,
       transformCode: (code) => {
         return transformedCode(code);
