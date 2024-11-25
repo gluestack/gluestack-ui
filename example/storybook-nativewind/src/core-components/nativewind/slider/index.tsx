@@ -9,6 +9,7 @@ import {
   useStyleContext,
 } from '@gluestack-ui/nativewind-utils/withStyleContext';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
+import { cssInterop } from 'nativewind';
 
 const SCOPE = 'SLIDER';
 const Root = withStyleContext(View, SCOPE);
@@ -19,6 +20,8 @@ export const UISlider = createSlider({
   FilledTrack: View,
   ThumbInteraction: View,
 });
+
+cssInterop(UISlider.Track, { className: 'style' });
 
 const sliderStyle = tva({
   base: 'justify-center items-center data-[disabled=true]:opacity-40 data-[disabled=true]:web:pointer-events-none',

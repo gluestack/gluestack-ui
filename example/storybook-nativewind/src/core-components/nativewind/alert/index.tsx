@@ -33,7 +33,7 @@ const alertStyle = tva({
 });
 
 const alertTextStyle = tva({
-  base: 'flex-1 font-normal font-body',
+  base: 'font-normal font-body',
 
   variants: {
     isTruncated: {
