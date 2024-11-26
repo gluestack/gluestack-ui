@@ -100,7 +100,7 @@ const alertIconStyle = tva({
       warning: 'text-warning-800',
       success: 'text-success-800',
       info: 'text-info-800',
-      muted: 'text-secondary-800',
+      muted: 'text-background-800',
     },
   },
 });
