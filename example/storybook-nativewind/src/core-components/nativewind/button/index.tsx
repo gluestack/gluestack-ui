@@ -269,6 +269,12 @@ const buttonGroupStyle = tva({
     isAttached: {
       true: 'gap-0',
     },
+    flexDirection: {
+      'row': 'flex-row',
+      'column': 'flex-col',
+      'row-reverse': 'flex-row-reverse',
+      'column-reverse': 'flex-col-reverse',
+    },
   },
 });
 
@@ -391,15 +397,31 @@ type IButtonGroupProps = React.ComponentPropsWithoutRef<typeof UIButton.Group> &
 const ButtonGroup = React.forwardRef<
   React.ElementRef<typeof UIButton.Group>,
   IButtonGroupProps
->(({ className, space = 'md', isAttached = false, ...props }, ref) => {
-  return (
-    <UIButton.Group
-      className={buttonGroupStyle({ class: className, space, isAttached })}
-      {...props}
-      ref={ref}
-    />
-  );
-});
+>(
+  (
+    {
+      className,
+      space = 'md',
+      isAttached = false,
+      flexDirection = 'column',
+      ...props
+    },
+    ref
+  ) => {
+    return (
+      <UIButton.Group
+        className={buttonGroupStyle({
+          class: className,
+          space,
+          isAttached,
+          flexDirection,
+        })}
+        {...props}
+        ref={ref}
+      />
+    );
+  }
+);
 
 Button.displayName = 'Button';
 ButtonText.displayName = 'ButtonText';
