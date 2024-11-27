@@ -2,11 +2,19 @@ import React, { forwardRef, memo } from 'react';
 import { H1, H2, H3, H4, H5, H6 } from '@expo/html-elements';
 import { headingStyle } from './styles';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
+import { cssInterop } from 'nativewind';
 
 type IHeadingProps = VariantProps<typeof headingStyle> &
   React.ComponentPropsWithoutRef<typeof H1> & {
     as?: React.ElementType;
   };
+
+cssInterop(H1, { className: 'style' });
+cssInterop(H2, { className: 'style' });
+cssInterop(H3, { className: 'style' });
+cssInterop(H4, { className: 'style' });
+cssInterop(H5, { className: 'style' });
+cssInterop(H6, { className: 'style' });
 
 const MappedHeading = memo(
   forwardRef<React.ElementRef<typeof H1>, IHeadingProps>(

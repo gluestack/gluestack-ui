@@ -24,7 +24,7 @@ const toastStyle = tva({
       warning: 'bg-warning-700',
       success: 'bg-success-700',
       info: 'bg-info-700',
-      muted: 'bg-secondary-700',
+      muted: 'bg-background-800',
     },
 
     variant: {
