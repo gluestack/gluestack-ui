@@ -6,8 +6,9 @@
         "@gluestack-ui/overlay": "latest",
         "@gluestack-ui/toast": "latest",
         "@gluestack-ui/nativewind-utils": "alpha",
-        "react-native-svg": "latest",
+        "react-native-svg": "15.2.0",
         "nativewind": "latest",
+        "react-native-css-interop": "latest",
         "react-native-safe-area-context": "latest"
       },
       "devDependencies": {
