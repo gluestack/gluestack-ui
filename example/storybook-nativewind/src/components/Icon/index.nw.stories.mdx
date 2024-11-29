@@ -445,8 +445,8 @@ on Native :
     showArgsController={false}
     metaData={{
       code: `
+      function App () {
         const GluestackIcon = createIcon({
-          // createIcon function is imported from '@/components/ui/icon'
           viewBox: '0 0 32 32',
           path: (
             <>
@@ -459,7 +459,6 @@ on Native :
             </>
           ),
         });
-      function App () {
         return <Icon as={GluestackIcon} size='xl' className="text-typography-black"/>;
       }
       `,
