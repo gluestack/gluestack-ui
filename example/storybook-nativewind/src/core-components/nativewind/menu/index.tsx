@@ -204,5 +204,5 @@ const MenuSeparator = UIMenu.Separator;
 Menu.displayName = 'Menu';
 MenuItem.displayName = 'MenuItem';
 MenuItemLabel.displayName = 'MenuItemLabel';
-MenuSeparator.displayName = 'MenuSeperator';
+MenuSeparator.displayName = 'MenuSeparator';
 export { Menu, MenuItem, MenuItemLabel, MenuSeparator };
