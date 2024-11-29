@@ -350,11 +350,11 @@ This section provides a comprehensive reference list for the component props, de
 </>
 
 
-## Examples
+### Examples
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
-### Setting the gap between grid items
+#### Setting the gap between grid items
 
 Use the gap-* utilities to change the gap between both rows and columns in grid
 
@@ -410,7 +410,7 @@ Use the gap-* utilities to change the gap between both rows and columns in grid
   />
 </Wrapper>
 
-### Changing row and column gaps independently
+#### Changing row and column gaps independently
 
 Use the gap-x-* and gap-y-* utilities to change the gap between columns and rows independently.
 
@@ -492,7 +492,7 @@ Use the gap-x-* and gap-y-* utilities to change the gap between columns and rows
   />
 </Wrapper>
 
-### Nested Grids
+#### Nested Grids
 
 The following example depicts how easily you can nest grids to create complex layouts with multiple levels of nesting.
 
@@ -582,7 +582,7 @@ The following example depicts how easily you can nest grids to create complex la
   />
 </Wrapper>
 
-### Responsive Grids
+#### Responsive Grids
 
 You can pass different grid-cols-* and col-span-* values at different breakpoints to create a more responsive layout.
 
@@ -664,6 +664,6 @@ You can pass different grid-cols-* and col-span-* values at different breakpoint
   />
 </Wrapper>
 
-### Why we introduced \_extra prop?
+#### Why we introduced \_extra prop?
 
 Grid Layout is not supported in native. In order to make our component universal, we introduced the `_extra` prop to pass the grid classnames to the grid component. We use the `_extra` prop to pass the grid classnames to the grid component & extract the neccessary styles from the provided classname. This approach provides a SSR friendly solution for responsiveness.
