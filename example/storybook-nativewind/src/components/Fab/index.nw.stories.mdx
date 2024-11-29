@@ -482,9 +482,9 @@ A Fab component with an icon adds a visually striking and easily recognizable bu
             className='border rounded-lg border-outline-200 p-6 bg-background-100 min-w-[240px] sm:min-w-[360px] md:min-w-[476px]'
             >
               <VStack space='md'>
-                {data.map((chatData)=>{
+                {data.map((chatData, index)=>{
                   return (
-                    <HStack space='sm' className='items-center'>
+                    <HStack space='sm' className='items-center' key={index}>
                       <Avatar size='sm'>
                         <AvatarImage
                           source={{
