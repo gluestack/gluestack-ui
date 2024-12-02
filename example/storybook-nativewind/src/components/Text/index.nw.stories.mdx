@@ -335,12 +335,12 @@ Text component comes in different sizes, such as `xs`, `sm`, `md`, `lg`, `xl`, `
           ];
           return (
             <Center>
-              {sizes.map((size) => (
-                <Text size={size} className="text-center">{size}</Text>
+              {sizes.map((size, index) => (
+                <Text size={size} key={index} className="text-center">{size}</Text>
               ))}
             </Center>
           );
-        };
+        }
       `,
       transformCode: (code) => {
         return transformedCode(code, 'function', 'App');

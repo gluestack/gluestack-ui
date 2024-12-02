@@ -138,7 +138,7 @@ It inherits all the properties of React Native's [Image](https://reactnative.dev
 
 Image component is created using Image component from react-native. It extends all the props supported by [React Native Image](https://reactnative.dev/docs/image#props).
 
-### Example
+### Examples
 
 The Examples section offers visual previews of the component, letting you quickly identify the best fit for your needs. Just copy the code and use it in your project.
 
@@ -159,11 +159,13 @@ import Image from '@unitools/image';
     metaData={{
       code: `
         <Image
-          source={require("@/assets/mountains.png")}
+          source={{
+            uri: "https://gluestack.github.io/public-blog-video-assets/mountains.png",
+          }}
           alt="Logo"
-          width={208}
-          height={320}
-        />            
+          size='none'
+          className="aspect-[320/208] w-full max-w-[320px]"
+        />       
       `,
       transformCode: (code) => {
         return transformedCode(code);
