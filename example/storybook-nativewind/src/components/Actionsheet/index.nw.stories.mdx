@@ -849,7 +849,7 @@ The Actionsheet with Virtualized List includes a virtualized list for better per
     const handleClose = () => setShowActionsheet(false);
     const data = React.useMemo(() => Array(50).fill(0).map((_, index) => 'Item' + index),[]);
     const getItem = (_data, index) => ({
-      id: Math.random().toString(12).substring(0),
+      id: index,
       title: _data[index],
     });
     const getItemCount = (_data) => _data.length;
