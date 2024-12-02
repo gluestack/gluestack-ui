@@ -640,7 +640,7 @@ Radio buttons can be used horizontally.
     metaData={{
       code: `
         function App() {
-          const [values, setValues] = React.useState("Cash On Delivery")
+          const [values, setValues] = React.useState("Cash On Delivery");
           return (
             <RadioGroup value={values} onChange={setValues} >
               <HStack space="2xl">
@@ -1000,7 +1000,7 @@ The Radio group component allows users to group radio and display them in a hori
               </VStack>
             </RadioGroup>
           );
-        };
+        }
       `,
       transformCode: (code) => {
         return transformedCode(code, 'function', 'RadioGroupExample');

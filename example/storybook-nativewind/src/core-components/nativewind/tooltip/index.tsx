@@ -74,7 +74,7 @@ type ITooltipContentProps = React.ComponentProps<typeof UITooltip.Content> &
 type ITooltipTextProps = React.ComponentProps<typeof UITooltip.Text> &
   VariantProps<typeof tooltipTextStyle> & { className?: string };
 
-export const Tooltip = React.forwardRef<
+const Tooltip = React.forwardRef<
   React.ElementRef<typeof UITooltip>,
   ITooltipProps
 >(({ className, ...props }, ref) => {
@@ -87,7 +87,7 @@ export const Tooltip = React.forwardRef<
   );
 });
 
-export const TooltipContent = React.forwardRef<
+const TooltipContent = React.forwardRef<
   React.ElementRef<typeof UITooltip.Content>,
   ITooltipContentProps & { className?: string }
 >(({ className, ...props }, ref) => {
@@ -103,7 +103,7 @@ export const TooltipContent = React.forwardRef<
   );
 });
 
-export const TooltipText = React.forwardRef<
+const TooltipText = React.forwardRef<
   React.ElementRef<typeof UITooltip.Text>,
   ITooltipTextProps & { className?: string }
 >(({ size, className, ...props }, ref) => {
@@ -115,3 +115,5 @@ export const TooltipText = React.forwardRef<
     />
   );
 });
+
+export { Tooltip, TooltipContent, TooltipText };

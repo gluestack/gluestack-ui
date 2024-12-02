@@ -6,6 +6,7 @@
 
 - Updated dependencies
   - @gluestack-ui/icon@0.1.24
+  - @gluestack-ui/popover@0.1.43
 
 ## 1.1.60
 

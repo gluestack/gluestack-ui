@@ -11,7 +11,7 @@ import {
 } from '@gluestack-ui/nativewind-utils/withStyleContext';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 
-export const useToast = createToastHook(Motion.View, AnimatePresence);
+const useToast = createToastHook(Motion.View, AnimatePresence);
 const SCOPE = 'TOAST';
 
 cssInterop(Motion.View, { className: 'style' });
@@ -221,3 +221,5 @@ export const ToastDescription = React.forwardRef<
     />
   );
 });
+
+export { useToast, Toast, ToastTitle, ToastDescription };
