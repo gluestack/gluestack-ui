@@ -7,17 +7,16 @@ type WithStatesProps = {
   states?: any;
 };
 
-export const withStates = <T,>(Component: T) =>
-  React.forwardRef(
-    ({ states, className, ...props }: T & WithStatesProps, ref?: any) => {
-      const classNamesFinal = React.useMemo(() => {
-        if (!className) return;
-        return extractDataClassName(className, states);
-      }, [className, states]);
+export const withStates = <T extends React.ComponentType<any>>(Component: T) =>
+  React.forwardRef(({ states, className, ...props }, ref) => {
+    const classNamesFinal = React.useMemo(() => {
+      if (!className) return;
+      return extractDataClassName(className, states);
+    }, [className, states]);
 
-      return (
-        // @ts-ignore
-        <Component className={classNamesFinal} {...(props as any)} ref={ref} />
-      );
-    }
-  ) as T;
+    return (
+      <Component className={classNamesFinal} {...(props as any)} ref={ref} />
+    );
+  }) as React.ForwardRefExoticComponent<
+    React.ComponentPropsWithoutRef<T> & WithStatesProps & React.RefAttributes<T>
+  >;
