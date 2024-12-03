@@ -113,6 +113,12 @@ cssInterop(PrimitiveIcon, {
   },
 });
 
+cssInterop(H3, {
+  className: {
+    target: 'style',
+  },
+});
+
 type IAccordionProps = React.ComponentPropsWithoutRef<typeof UIAccordion> &
   VariantProps<typeof accordionStyle>;
 
