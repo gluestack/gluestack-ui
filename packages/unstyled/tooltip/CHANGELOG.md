@@ -1,5 +1,11 @@
 # @gluestack-ui/tooltip
 
+## 0.1.37
+
+### Patch Changes
+
+- Fix: Tooltip and Icon issues for V2
+
 ## 0.1.35
 
 ### Patch Changes
