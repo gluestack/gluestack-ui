@@ -164,7 +164,10 @@ const RadioLabel = React.forwardRef<
 });
 
 type IRadioIconProps = React.ComponentProps<typeof UIRadio.Icon> &
-  VariantProps<typeof radioIconStyle>;
+  VariantProps<typeof radioIconStyle> & {
+    height?: number;
+    width?: number;
+  };
 const RadioIcon = React.forwardRef<
   React.ElementRef<typeof UIRadio.Icon>,
   IRadioIconProps

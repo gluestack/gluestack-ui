@@ -190,7 +190,10 @@ const AlertText = React.forwardRef<
 );
 
 type IAlertIconProps = React.ComponentPropsWithoutRef<typeof UIAlert.Icon> &
-  VariantProps<typeof alertIconStyle>;
+  VariantProps<typeof alertIconStyle> & {
+    height?: number;
+    width?: number;
+  };
 
 const AlertIcon = React.forwardRef<
   React.ElementRef<typeof UIAlert.Icon>,

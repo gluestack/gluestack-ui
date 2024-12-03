@@ -341,6 +341,8 @@ type IButtonIcon = React.ComponentPropsWithoutRef<typeof UIButton.Icon> &
   VariantProps<typeof buttonIconStyle> & {
     className?: string | undefined;
     as?: React.ElementType;
+    height?: number;
+    width?: number;
   };
 
 const ButtonIcon = React.forwardRef<
