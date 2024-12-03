@@ -1,7 +1,14 @@
+import { deepMergeObjects } from '../utils/deepMerge';
 // @ts-ignore
 import { tv } from 'tailwind-variants';
-import { deepMergeObjects } from '../utils/deepMerge';
-const tvatemp = (options, config) => {
+const tvatemp = (
+  options,
+  /**
+   * The config object allows you to modify the default configuration.
+   * @see https://www.tailwind-variants.org/docs/api-reference#config-optional
+   */
+  config
+) => {
   const parentVariants = options?.parentVariants;
   const parentCompoundVariants = options?.parentCompoundVariants;
   delete options.parentVariants;

@@ -5,7 +5,7 @@
         "tailwindcss": "",
         "@gluestack-ui/overlay": "latest",
         "@gluestack-ui/toast": "latest",
-        "@gluestack-ui/nativewind-utils": "alpha",
+        "@gluestack-ui/nativewind-utils": "latest",
         "react-native-svg": "15.2.0",
         "nativewind": "latest",
         "react-native-css-interop": "latest",
@@ -94,7 +94,7 @@
     },
     "icon": {
       "dependencies": {
-        "@gluestack-ui/icon": "alpha"
+        "@gluestack-ui/icon": "latest"
       }
     },
     "image": {
@@ -208,7 +208,7 @@
     },
     "tooltip": {
       "dependencies": {
-        "@gluestack-ui/tooltip": "alpha",
+        "@gluestack-ui/tooltip": "latest",
         "@legendapp/motion": "latest"
       }
     },
@@ -231,7 +231,7 @@
       "tailwindcss": "",
       "@gluestack-ui/overlay": "latest",
       "@gluestack-ui/toast": "latest",
-      "@gluestack-ui/nativewind-utils": "alpha",
+      "@gluestack-ui/nativewind-utils": "latest",
       "react-native-svg": "13.4.0"
     },
     "devDependencies": {

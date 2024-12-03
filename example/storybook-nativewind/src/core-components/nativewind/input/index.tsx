@@ -116,9 +116,12 @@ const Input = React.forwardRef<React.ElementRef<typeof UIInput>, IInputProps>(
   }
 );
 
-type IInputIconProps = React.ComponentProps<typeof UIInput.Icon> & {
-  className?: string;
-};
+type IInputIconProps = React.ComponentProps<typeof UIInput.Icon> &
+  VariantProps<typeof inputIconStyle> & {
+    className?: string;
+    height?: number;
+    width?: number;
+  };
 
 const InputIcon = React.forwardRef<
   React.ElementRef<typeof UIInput.Icon>,

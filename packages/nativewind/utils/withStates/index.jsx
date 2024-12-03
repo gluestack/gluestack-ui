@@ -7,8 +7,5 @@ export const withStates = (Component) =>
       if (!className) return;
       return extractDataClassName(className, states);
     }, [className, states]);
-    return (
-      // @ts-ignore
-      <Component className={classNamesFinal} {...props} ref={ref} />
-    );
+    return <Component className={classNamesFinal} {...props} ref={ref} />;
   });

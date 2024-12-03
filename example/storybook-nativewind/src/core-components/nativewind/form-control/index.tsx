@@ -317,7 +317,11 @@ const FormControlErrorText = React.forwardRef<
 type IFormControlErrorIconProps = React.ComponentProps<
   typeof UIFormControl.Error.Icon
 > &
-  VariantProps<typeof formControlErrorIconStyle>;
+  VariantProps<typeof formControlErrorIconStyle> & {
+    height?: number;
+    width?: number;
+  };
+
 const FormControlErrorIcon = React.forwardRef<
   React.ElementRef<typeof UIFormControl.Error.Icon>,
   IFormControlErrorIconProps
