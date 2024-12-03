@@ -35,11 +35,17 @@ export const config = {
     /* Added a new background color for light mode */
     '--color-background-new': '#BAE7FC',
 
+   /* Add a new token with custom font-size */
+   '--custom-font-size': '80'
+
   }),
   dark: vars({
      ... // other tokens
       /* Added a new background color for dark mode */
     '--color-background-new': '#89D6FA',
+
+   /* Add a new token with custom font-size */
+   '--custom-font-size': '80'
   }),
 };
 
@@ -59,6 +65,11 @@ export const config = {
           new: 'var(--color-background-new)',
         },
       },
+        fontSize: {
+          ... // other font size values,
+          /* Added a new font size token */
+         'custom-heading-xl':'var(--custom-font-size)'
+      },
     },
     plugins: [],
   },
@@ -69,3 +80,26 @@ You can customize all the tokens in `config`. For a complete list of tokens and 
 By utilizing this approach, you can seamlessly modify the primary color tokens of the theme while maintaining the overall theme configuration intact.
 
 If you want to extend the default tailwind config and add fonts, breakpoints, border radius values, and more, please refer to the [tailwindcss](https://tailwindcss.com/docs/theme#customizing-the-default-theme) documentation.
+
+In order for `custom-heading-xl` to work, you also will need to pass an additional config for the [tva](https://gluestack.io/ui/docs/home/getting-started/gluestack-ui-nativewind-utils#tva-tailwind-variant-authority) function when defining a component, for [Text](https://gluestack.io/ui/docs/components/text) it will be:
+```jsx
+// Text style props are from here https://gluestack.io/ui/docs/components/text (step 3, the one from styles.tsx)
+const textStyleProps = {}
+
+//ref @see https://www.tailwind-variants.org/docs/api-reference#config-optional
+const config = {
+  twMerge: true,
+  twMergeConfig: {
+    classGroups: {
+      'font-size': [
+        {
+          text: ['custom-heading-xl'],
+        },
+      ],
+    },
+  },
+};
+
+export const textStyle = tva(...textStyleProps, config)
+```
+Another way to solve this is by setting [global tailwind-variants config](https://www.tailwind-variants.org/docs/config#global-config), but it will affect all components. Maybe it's not your case and you want to have a custom font-size only for a specific component/part of the app.

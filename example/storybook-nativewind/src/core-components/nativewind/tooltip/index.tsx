@@ -1,24 +1,20 @@
 'use client';
 import React from 'react';
 import { createTooltip } from '@gluestack-ui/tooltip';
-import { View, Text, Platform } from 'react-native';
+import { View, Text } from 'react-native';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import { withStyleContext } from '@gluestack-ui/nativewind-utils/withStyleContext';
-import { cssInterop } from 'nativewind';
-import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withStyleContextAndStates';
-
 import { Motion, AnimatePresence } from '@legendapp/motion';
-
-const UITooltip = createTooltip({
-  Root:
-    Platform.OS === 'web'
-      ? withStyleContext(View)
-      : withStyleContextAndStates(View),
+import { cssInterop } from 'nativewind';
+export const UITooltip = createTooltip({
+  Root: withStyleContext(View),
   Content: Motion.View,
   Text: Text,
   AnimatePresence: AnimatePresence,
 });
+
+cssInterop(Motion.View, { className: 'style' });
 
 const tooltipStyle = tva({
   base: 'w-full h-full web:pointer-events-none',
@@ -70,10 +66,6 @@ const tooltipTextStyle = tva({
     },
   },
 });
-
-cssInterop(UITooltip, { className: 'style' });
-cssInterop(UITooltip.Content, { className: 'style' });
-cssInterop(UITooltip.Text, { className: 'style' });
 
 type ITooltipProps = React.ComponentProps<typeof UITooltip> &
   VariantProps<typeof tooltipStyle> & { className?: string };

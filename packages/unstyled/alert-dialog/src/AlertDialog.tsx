@@ -27,7 +27,7 @@ export const AlertDialog = <T,>(StyledAlertDialog: React.ComponentType<T>) =>
         // @ts-ignore
         _experimentalOverlay = false,
         ...props
-      }: T & IAlertDialogProps,
+      }: IAlertDialogProps,
       ref?: any
     ) => {
       const bottomInset = useKeyboardBottomInset();

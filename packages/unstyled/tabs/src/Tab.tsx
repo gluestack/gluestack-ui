@@ -15,12 +15,11 @@ export const Tab = <StyledTab,>(StyledTab: React.ComponentType<StyledTab>) =>
           value,
           children,
           ...props
-        }: StyledTab &
-          PressableProps & {
-            children?: any;
-            value?: string;
-            onSelect: (key: string) => void;
-          },
+        }: PressableProps & {
+          children?: any;
+          value?: string;
+          onSelect: (key: string) => void;
+        },
         ref?: any
       ) => {
         const { focusProps: focusRingProps, isFocusVisible }: any =

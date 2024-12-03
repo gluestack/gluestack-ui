@@ -13,7 +13,7 @@ export const TabList = <StyledTabList,>(
           orientation = 'horizontal',
           variant,
           ...props
-        }: StyledTabList & {
+        }: {
           children?: any;
           orientation: 'horizontal' | 'vertical';
           variant: 'scrollable' | null;

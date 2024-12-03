@@ -5,7 +5,7 @@ export function ActionsheetScrollView<T>(
 ) {
   return forwardRef(
     (
-      { children, ...props }: T & { children?: React.ReactNode | string },
+      { children, ...props }: { children?: React.ReactNode | string },
       ref?: any
     ) => {
       return (

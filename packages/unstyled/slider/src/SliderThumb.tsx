@@ -27,9 +27,7 @@ function SliderThumb<StyledSliderThumb, StyledSliderThumbInteraction>(
         scaleOnPressed = 1,
         style,
         ...props
-      }: StyledSliderThumbInteraction &
-        StyledSliderThumbInteraction &
-        ISliderThumbProps & { children?: any; style?: any },
+      }: ISliderThumbProps & { children?: any; style?: any },
       ref?: any
     ) => {
       const [thumbSize, setThumbSize] = React.useState({

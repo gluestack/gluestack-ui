@@ -10,24 +10,23 @@ function Pressable<T>(StyledPressable: React.ComponentType<T>) {
       {
         children,
         ...props
-      }: T &
-        Omit<PressableProps, 'children'> & { tabIndex?: 0 | -1 } & {
-          children?:
-            | (({
-                hovered,
-                pressed,
-                focused,
-                focusVisible,
-                disabled,
-              }: {
-                hovered?: boolean;
-                pressed?: boolean;
-                focused?: boolean;
-                focusVisible?: boolean;
-                disabled?: boolean;
-              }) => React.ReactNode)
-            | React.ReactNode;
-        },
+      }: Omit<PressableProps, 'children'> & { tabIndex?: 0 | -1 } & {
+        children?:
+          | (({
+              hovered,
+              pressed,
+              focused,
+              focusVisible,
+              disabled,
+            }: {
+              hovered?: boolean;
+              pressed?: boolean;
+              focused?: boolean;
+              focusVisible?: boolean;
+              disabled?: boolean;
+            }) => React.ReactNode)
+          | React.ReactNode;
+      },
       ref?: any
     ) => {
       const { focusProps: focusRingProps, isFocusVisible }: any =

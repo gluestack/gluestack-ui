@@ -17,24 +17,23 @@ export const Button = <T,>(StyledButton: React.ComponentType<T>) =>
         isFocused: isFocusedProp,
         isFocusVisible: isFocusVisibleProp,
         ...props
-      }: T &
-        Omit<IButtonProps, 'children'> & {
-          children?:
-            | (({
-                hovered,
-                pressed,
-                focused,
-                focusVisible,
-                disabled,
-              }: {
-                hovered?: boolean;
-                pressed?: boolean;
-                focused?: boolean;
-                focusVisible?: boolean;
-                disabled?: boolean;
-              }) => React.ReactNode)
-            | React.ReactNode;
-        },
+      }: Omit<IButtonProps, 'children'> & {
+        children?:
+          | (({
+              hovered,
+              pressed,
+              focused,
+              focusVisible,
+              disabled,
+            }: {
+              hovered?: boolean;
+              pressed?: boolean;
+              focused?: boolean;
+              focusVisible?: boolean;
+              disabled?: boolean;
+            }) => React.ReactNode)
+          | React.ReactNode;
+      },
       ref?: any
     ) => {
       const { isFocusVisible, focusProps: focusRingProps }: any =

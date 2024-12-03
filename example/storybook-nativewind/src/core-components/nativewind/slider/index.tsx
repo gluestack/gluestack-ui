@@ -1,47 +1,30 @@
 'use client';
 import { createSlider } from '@gluestack-ui/slider';
 import { Pressable } from 'react-native';
-import { View, Platform } from 'react-native';
+import { View } from 'react-native';
 import React from 'react';
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import {
   withStyleContext,
   useStyleContext,
 } from '@gluestack-ui/nativewind-utils/withStyleContext';
-import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withStyleContextAndStates';
-import { cssInterop } from 'nativewind';
-import { withStates } from '@gluestack-ui/nativewind-utils/withStates';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
-
-const ThumbWrapper = React.forwardRef<
-  React.ElementRef<typeof View>,
-  React.ComponentProps<typeof View>
->((props, ref) => <View ref={ref} {...props} />);
-
-const FilledTrackWrapper = React.forwardRef<
-  React.ElementRef<typeof View>,
-  React.ComponentProps<typeof View>
->((props, ref) => <View ref={ref} {...props} />);
+import { cssInterop } from 'nativewind';
 
 const SCOPE = 'SLIDER';
-const UISlider = createSlider({
-  Root:
-    Platform.OS === 'web'
-      ? withStyleContext(View, SCOPE)
-      : withStyleContextAndStates(View, SCOPE),
-  Thumb: Platform.OS === 'web' ? ThumbWrapper : withStates(View),
+const Root = withStyleContext(View, SCOPE);
+export const UISlider = createSlider({
+  Root: Root,
+  Thumb: View,
   Track: Pressable,
-  FilledTrack: Platform.OS === 'web' ? FilledTrackWrapper : withStates(View),
+  FilledTrack: View,
   ThumbInteraction: View,
 });
 
-cssInterop(UISlider, { className: 'style' });
-cssInterop(ThumbWrapper, { className: 'style' });
 cssInterop(UISlider.Track, { className: 'style' });
-cssInterop(FilledTrackWrapper, { className: 'style' });
 
 const sliderStyle = tva({
-  base: 'justify-center items-center data-[disabled=true]:web:opacity-40 data-[disabled=true]:web:pointer-events-none',
+  base: 'justify-center items-center data-[disabled=true]:opacity-40 data-[disabled=true]:web:pointer-events-none',
   variants: {
     orientation: {
       horizontal: 'w-full',
@@ -213,7 +196,6 @@ const SliderThumb = React.forwardRef<
 
   return (
     <UISlider.Thumb
-      //@ts-ignore
       ref={ref}
       {...props}
       className={sliderThumbStyle({
@@ -269,7 +251,6 @@ const SliderFilledTrack = React.forwardRef<
 
   return (
     <UISlider.FilledTrack
-      //@ts-ignore
       ref={ref}
       {...props}
       className={sliderFilledTrackStyle({

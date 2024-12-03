@@ -34,7 +34,7 @@
     "expo-status-bar": "~1.12.1",
     "expo-updates": "~0.25.14",
     "lucide-react-native": "^0.378.0",
-    "nativewind": "^4.0.36",
+    "nativewind": "4.1.10",
     "normalize-css-color": "^1.0.2",
     "postcss-loader": "^8.1.1",
     "react": "18.2.0",
