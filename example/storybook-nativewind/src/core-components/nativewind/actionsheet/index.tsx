@@ -272,6 +272,8 @@ type IActionsheetIconProps = VariantProps<typeof actionsheetIconStyle> &
   React.ComponentPropsWithoutRef<typeof UIActionsheet.Icon> & {
     className?: string;
     as?: React.ElementType;
+    height?: number;
+    width?: number;
   };
 
 const Actionsheet = React.forwardRef<

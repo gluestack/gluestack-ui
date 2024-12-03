@@ -169,7 +169,10 @@ const FabLabel = React.forwardRef<
 );
 
 type IFabIconProps = React.ComponentPropsWithoutRef<typeof UIFab.Icon> &
-  VariantProps<typeof fabIconStyle>;
+  VariantProps<typeof fabIconStyle> & {
+    height?: number;
+    width?: number;
+  };
 
 const FabIcon = React.forwardRef<
   React.ElementRef<typeof UIFab.Icon>,

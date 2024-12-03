@@ -76,7 +76,7 @@ const accordionHeaderStyle = tva({
   base: 'mx-0 my-0',
 });
 const accordionContentStyle = tva({
-  base: 'mt-4',
+  base: 'pt-1 pb-3 px-4',
 });
 const accordionTriggerStyle = tva({
   base: 'w-full flex-row justify-between items-center web:outline-none focus:outline-none data-[disabled=true]:opacity-40 data-[disabled=true]:cursor-not-allowed data-[focus-visible=true]:bg-background-50 py-3 px-4',
@@ -113,6 +113,12 @@ cssInterop(PrimitiveIcon, {
   },
 });
 
+cssInterop(H3, {
+  className: {
+    target: 'style',
+  },
+});
+
 type IAccordionProps = React.ComponentPropsWithoutRef<typeof UIAccordion> &
   VariantProps<typeof accordionStyle>;
 
@@ -134,6 +140,8 @@ type IAccordionContentTextProps = React.ComponentPropsWithoutRef<
 type IAccordionIconProps = VariantProps<typeof accordionIconStyle> &
   React.ComponentPropsWithoutRef<typeof UIAccordion.Icon> & {
     as?: React.ElementType;
+    height?: number;
+    width?: number;
   };
 
 type IAccordionHeaderProps = React.ComponentPropsWithoutRef<
