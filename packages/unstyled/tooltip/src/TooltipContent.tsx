@@ -92,7 +92,6 @@ export function TooltipContent<StyledTooltipContentProps>(
             {...props}
             style={style}
             ref={mergedRef}
-            key={placement + calculatedPlacement}
             role={Platform.OS === 'web' ? 'tooltip' : undefined}
           >
             {children}

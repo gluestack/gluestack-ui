@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import { createModal } from '@gluestack-ui/modal';
-import { Pressable, View, ScrollView, Platform } from 'react-native';
+import { Pressable, View, ScrollView } from 'react-native';
 import {
   Motion,
   AnimatePresence,
@@ -12,19 +12,14 @@ import {
   withStyleContext,
   useStyleContext,
 } from '@gluestack-ui/nativewind-utils/withStyleContext';
-import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withStyleContextAndStates';
 import { cssInterop } from 'nativewind';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 
 const AnimatedPressable = createMotionAnimatedComponent(Pressable);
-
 const SCOPE = 'MODAL';
 
 const UIModal = createModal({
-  Root:
-    Platform.OS === 'web'
-      ? withStyleContext(View, SCOPE)
-      : withStyleContextAndStates(View, SCOPE),
+  Root: withStyleContext(View, SCOPE),
   Backdrop: AnimatedPressable,
   Content: Motion.View,
   Body: ScrollView,
@@ -33,17 +28,9 @@ const UIModal = createModal({
   Header: View,
   AnimatePresence: AnimatePresence,
 });
-cssInterop(UIModal, { className: 'style' });
-cssInterop(UIModal.Backdrop, { className: 'style' });
-cssInterop(UIModal.Content, { className: 'style' });
-cssInterop(UIModal.CloseButton, { className: 'style' });
-cssInterop(UIModal.Header, { className: 'style' });
-cssInterop(UIModal.Body, {
-  className: 'style',
-  contentContainerClassName: 'contentContainerStyle',
-  indicatorClassName: 'indicatorStyle',
-});
-cssInterop(UIModal.Footer, { className: 'style' });
+
+cssInterop(AnimatedPressable, { className: 'style' });
+cssInterop(Motion.View, { className: 'style' });
 
 const modalStyle = tva({
   base: 'group/modal w-full h-full justify-center items-center web:pointer-events-none',

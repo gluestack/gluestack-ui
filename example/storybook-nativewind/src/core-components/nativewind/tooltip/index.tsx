@@ -1,24 +1,20 @@
 'use client';
 import React from 'react';
 import { createTooltip } from '@gluestack-ui/tooltip';
-import { View, Text, Platform } from 'react-native';
+import { View, Text } from 'react-native';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import { withStyleContext } from '@gluestack-ui/nativewind-utils/withStyleContext';
-import { cssInterop } from 'nativewind';
-import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withStyleContextAndStates';
-
 import { Motion, AnimatePresence } from '@legendapp/motion';
-
+import { cssInterop } from 'nativewind';
 export const UITooltip = createTooltip({
-  Root:
-    Platform.OS === 'web'
-      ? withStyleContext(View)
-      : withStyleContextAndStates(View),
+  Root: withStyleContext(View),
   Content: Motion.View,
   Text: Text,
   AnimatePresence: AnimatePresence,
 });
+
+cssInterop(Motion.View, { className: 'style' });
 
 const tooltipStyle = tva({
   base: 'w-full h-full web:pointer-events-none',
@@ -71,10 +67,6 @@ const tooltipTextStyle = tva({
   },
 });
 
-cssInterop(UITooltip, { className: 'style' });
-cssInterop(UITooltip.Content, { className: 'style' });
-cssInterop(UITooltip.Text, { className: 'style' });
-
 type ITooltipProps = React.ComponentProps<typeof UITooltip> &
   VariantProps<typeof tooltipStyle> & { className?: string };
 type ITooltipContentProps = React.ComponentProps<typeof UITooltip.Content> &
@@ -82,7 +74,7 @@ type ITooltipContentProps = React.ComponentProps<typeof UITooltip.Content> &
 type ITooltipTextProps = React.ComponentProps<typeof UITooltip.Text> &
   VariantProps<typeof tooltipTextStyle> & { className?: string };
 
-export const Tooltip = React.forwardRef<
+const Tooltip = React.forwardRef<
   React.ElementRef<typeof UITooltip>,
   ITooltipProps
 >(({ className, ...props }, ref) => {
@@ -95,7 +87,7 @@ export const Tooltip = React.forwardRef<
   );
 });
 
-export const TooltipContent = React.forwardRef<
+const TooltipContent = React.forwardRef<
   React.ElementRef<typeof UITooltip.Content>,
   ITooltipContentProps & { className?: string }
 >(({ className, ...props }, ref) => {
@@ -111,7 +103,7 @@ export const TooltipContent = React.forwardRef<
   );
 });
 
-export const TooltipText = React.forwardRef<
+const TooltipText = React.forwardRef<
   React.ElementRef<typeof UITooltip.Text>,
   ITooltipTextProps & { className?: string }
 >(({ size, className, ...props }, ref) => {
@@ -123,3 +115,5 @@ export const TooltipText = React.forwardRef<
     />
   );
 });
+
+export { Tooltip, TooltipContent, TooltipText };

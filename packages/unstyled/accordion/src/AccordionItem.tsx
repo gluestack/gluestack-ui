@@ -3,8 +3,8 @@ import { AccordionContext, AccordionItemContext } from './Context';
 import type { IAccordionItemProps } from './types';
 import { useAccordionItem } from '@react-native-aria/accordion';
 
-export const AccordionItem = <T,>(StyledAccordionItem: any) =>
-  forwardRef(({ children, ...props }: T & IAccordionItemProps, ref?: any) => {
+export const AccordionItem = (StyledAccordionItem: any) =>
+  forwardRef(({ children, ...props }: IAccordionItemProps, ref?: any) => {
     const [titleText, setTitleText] = useState('');
     const { state, isDisabledAccordion, selectedValues } =
       useContext(AccordionContext);

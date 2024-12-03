@@ -539,11 +539,11 @@ We have outlined the various features that ensure the Actionsheet component is a
 - `Shift + Tab`: Moves focus to the previous focusable element.
 - `Esc`: Closes the actionsheet.
 
-## Examples
+### Examples
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
-### Keyboard handling
+#### Keyboard handling
 
 Demonstrates a common UI pattern known as keyboard handling or keyboard scrolling, in which an input field is automatically scrolled into view when the user taps on it and the keyboard appears. This improves usability and ensures that the input field is always visible and accessible, even when the keyboard is blocking part of the screen.
 
@@ -759,7 +759,7 @@ Demonstrates a common UI pattern known as keyboard handling or keyboard scrollin
   />
 </Wrapper>
 
-### Icons
+#### Icons
 
 The Actionsheet with Icons is a variation of the Actionsheet component that displays icons next to each option. It's commonly used in apps for a more visual representation of options and easier navigation.
 
@@ -835,7 +835,7 @@ The Actionsheet with Icons is a variation of the Actionsheet component that disp
   />
 </Wrapper>
 
-### VirtualizedList
+#### VirtualizedList
 
 The Actionsheet with Virtualized List includes a virtualized list for better performance when displaying a large number of options. It's commonly used in apps with long lists of options for an improved user experience.
 
@@ -849,7 +849,7 @@ The Actionsheet with Virtualized List includes a virtualized list for better per
     const handleClose = () => setShowActionsheet(false);
     const data = React.useMemo(() => Array(50).fill(0).map((_, index) => 'Item' + index),[]);
     const getItem = (_data, index) => ({
-      id: Math.random().toString(12).substring(0),
+      id: index,
       title: _data[index],
     });
     const getItemCount = (_data) => _data.length;
@@ -908,7 +908,7 @@ The Actionsheet with Virtualized List includes a virtualized list for better per
   />
 </Wrapper>
 
-### FlatList
+#### FlatList
 
 The Actionsheet with Flat List is a variation of the Actionsheet component that displays a flat list of options. It's commonly used in apps for a simple and straightforward display of options to the user.
 
@@ -985,7 +985,7 @@ The Actionsheet with Flat List is a variation of the Actionsheet component that 
   />
 </Wrapper>
 
-### SectionList
+#### SectionList
 
 The Actionsheet with SectionList is a variation of the Actionsheet component that displays a sectioned list of options. It's commonly used in apps to organize options into different categories or sections for better readability and navigation.
 
@@ -1057,7 +1057,7 @@ The Actionsheet with SectionList is a variation of the Actionsheet component tha
   />
 </Wrapper>
 
-### File Upload with Actionsheet
+#### File Upload with Actionsheet
 
 <Wrapper>
   <CodePreview

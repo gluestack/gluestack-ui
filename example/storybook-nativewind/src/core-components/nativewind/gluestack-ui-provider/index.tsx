@@ -35,6 +35,7 @@ export function GluestackUIProvider({
     <View
       style={[
         config[colorSchemeName],
+        // eslint-disable-next-line react-native/no-inline-styles
         { flex: 1, height: '100%', width: '100%' },
         props.style,
       ]}

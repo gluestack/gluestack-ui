@@ -1086,7 +1086,6 @@ An uncontrolled component utilizes a checkbox component, providing a simpler imp
 function App() {
        const radioRef = React.useRef(null);
         const handleCheckboxChange = (e) => {
-            e.preventDefault();
             const checkboxValue = radioRef.current.checked;
           };
         return (
@@ -1170,7 +1169,7 @@ function CheckboxExample(){
         </CheckboxGroup>
       </Center>
   );
-};
+}
 `,
       transformCode: (code) => {
         return transformedCode(code, 'function', 'CheckboxExample');

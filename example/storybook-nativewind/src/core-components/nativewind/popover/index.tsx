@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { View, Pressable, Platform, ScrollView } from 'react-native';
+import { View, Pressable, ScrollView } from 'react-native';
 import {
   Motion,
   createMotionAnimatedComponent,
@@ -12,26 +12,15 @@ import {
   withStyleContext,
   useStyleContext,
 } from '@gluestack-ui/nativewind-utils/withStyleContext';
-import { withStates } from '@gluestack-ui/nativewind-utils/withStates';
-import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withStyleContextAndStates';
 import { cssInterop } from 'nativewind';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 
 const AnimatedPressable = createMotionAnimatedComponent(Pressable);
 const SCOPE = 'POPOVER';
-const ArrowWrapper = React.forwardRef(({ ...props }, ref) => {
-  return <Motion.View {...props} ref={ref} />;
-}) as React.ForwardRefExoticComponent<
-  React.ElementRef<typeof Motion.View> &
-    React.ComponentProps<typeof Motion.View>
->;
+
 const UIPopover = createPopover({
-  Root: (Platform.OS === 'web'
-    ? withStyleContext(View, SCOPE)
-    : withStyleContextAndStates(View, SCOPE)) as ReturnType<
-    typeof withStyleContext<typeof View>
-  >,
-  Arrow: Platform.OS === 'web' ? Motion.View : withStates(ArrowWrapper),
+  Root: withStyleContext(View, SCOPE),
+  Arrow: Motion.View,
   Backdrop: AnimatedPressable,
   Body: ScrollView,
   CloseButton: Pressable,
@@ -41,18 +30,8 @@ const UIPopover = createPopover({
   AnimatePresence: AnimatePresence,
 });
 
-cssInterop(UIPopover, { className: 'style' });
-cssInterop(ArrowWrapper, { className: 'style' });
-cssInterop(UIPopover.Content, { className: 'style' });
-cssInterop(UIPopover.Header, { className: 'style' });
-cssInterop(UIPopover.Footer, { className: 'style' });
-cssInterop(UIPopover.Body, {
-  className: 'style',
-  contentContainerClassName: 'contentContainerStyle',
-  indicatorClassName: 'indicatorStyle',
-});
-cssInterop(UIPopover.Backdrop, { className: 'style' });
-cssInterop(UIPopover.CloseButton, { className: 'style' });
+cssInterop(Motion.View, { className: 'style' });
+cssInterop(AnimatedPressable, { className: 'style' });
 
 const popoverStyle = tva({
   base: 'group/popover w-full h-full justify-center items-center web:pointer-events-none',
@@ -72,29 +51,29 @@ const popoverArrowStyle = tva({
   variants: {
     placement: {
       'top left':
-        'data-[flip=false]:border-t-transparent data-[flip=false]:border-l-transparent data-[flip=true]:border-b-transparent data-[flip=true]:border-r-transparent',
+        'data-[flip=false]:border-t-0 data-[flip=false]:border-l-0 data-[flip=true]:border-b-0 data-[flip=true]:border-r-0',
       'top':
-        'data-[flip=false]:border-t-transparent data-[flip=false]:border-l-transparent data-[flip=true]:border-b-transparent data-[flip=true]:border-r-transparent',
+        'data-[flip=false]:border-t-0 data-[flip=false]:border-l-0 data-[flip=true]:border-b-0 data-[flip=true]:border-r-0',
       'top right':
-        'data-[flip=false]:border-t-transparent data-[flip=false]:border-l-transparent data-[flip=true]:border-b-transparent data-[flip=true]:border-r-transparent',
+        'data-[flip=false]:border-t-0 data-[flip=false]:border-l-0 data-[flip=true]:border-b-0 data-[flip=true]:border-r-0',
       'bottom':
-        'data-[flip=false]:border-b-transparent data-[flip=false]:border-r-transparent data-[flip=true]:border-t-transparent data-[flip=true]:border-l-transparent',
+        'data-[flip=false]:border-b-0 data-[flip=false]:border-r-0 data-[flip=true]:border-t-0 data-[flip=true]:border-l-0',
       'bottom left':
-        'data-[flip=false]:border-b-transparent data-[flip=false]:border-r-transparent data-[flip=true]:border-t-transparent data-[flip=true]:border-l-transparent',
+        'data-[flip=false]:border-b-0 data-[flip=false]:border-r-0 data-[flip=true]:border-t-0 data-[flip=true]:border-l-0',
       'bottom right':
-        'data-[flip=false]:border-b-transparent data-[flip=false]:border-r-transparent data-[flip=true]:border-t-transparent data-[flip=true]:border-l-transparent',
+        'data-[flip=false]:border-b-0 data-[flip=false]:border-r-0 data-[flip=true]:border-t-0 data-[flip=true]:border-l-0',
       'left':
-        'data-[flip=false]:border-l-transparent data-[flip=false]:border-b-transparent data-[flip=true]:border-r-transparent data-[flip=true]:border-t-transparent',
+        'data-[flip=false]:border-l-0 data-[flip=false]:border-b-0 data-[flip=true]:border-r-0 data-[flip=true]:border-t-0',
       'left top':
-        'data-[flip=false]:border-l-transparent data-[flip=false]:border-b-transparent data-[flip=true]:border-r-transparent data-[flip=true]:border-t-transparent',
+        'data-[flip=false]:border-l-0 data-[flip=false]:border-b-0 data-[flip=true]:border-r-0 data-[flip=true]:border-t-0',
       'left bottom':
-        'data-[flip=false]:border-l-transparent data-[flip=false]:border-b-transparent data-[flip=true]:border-r-transparent data-[flip=true]:border-t-transparent',
+        'data-[flip=false]:border-l-0 data-[flip=false]:border-b-0 data-[flip=true]:border-r-0 data-[flip=true]:border-t-0',
       'right':
-        'data-[flip=false]:border-r-transparent data-[flip=false]:border-t-transparent data-[flip=true]:border-l-transparent data-[flip=true]:border-b-transparent',
+        'data-[flip=false]:border-r-0 data-[flip=false]:border-t-0 data-[flip=true]:border-l-0 data-[flip=true]:border-b-0',
       'right top':
-        'data-[flip=false]:border-r-transparent data-[flip=false]:border-t-transparent data-[flip=true]:border-l-transparent data-[flip=true]:border-b-transparent',
+        'data-[flip=false]:border-r-0 data-[flip=false]:border-t-0 data-[flip=true]:border-l-0 data-[flip=true]:border-b-0',
       'right bottom':
-        'data-[flip=false]:border-r-transparent data-[flip=false]:border-t-transparent data-[flip=true]:border-l-transparent data-[flip=true]:border-b-transparent',
+        'data-[flip=false]:border-r-0 data-[flip=false]:border-t-0 data-[flip=true]:border-l-0 data-[flip=true]:border-b-0',
     },
   },
 });
@@ -167,7 +146,6 @@ const Popover = React.forwardRef<
       ref={ref}
       placement={placement}
       {...props}
-      // @ts-ignore
       className={popoverStyle({ size, class: className })}
       context={{ size, placement }}
       pointerEvents="box-none"

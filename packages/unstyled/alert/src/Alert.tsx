@@ -1,8 +1,7 @@
 import React, { forwardRef } from 'react';
-import type { IAlertProps } from './types';
 
-export const Alert = <T,>(StyledAlert: any) =>
-  forwardRef(({ children, ...props }: T & IAlertProps, ref?: any) => {
+export const Alert = (StyledAlert: any) =>
+  forwardRef(({ children, ...props }: any, ref?: any) => {
     return (
       <StyledAlert ref={ref} role={props?.role || 'alert'} {...props}>
         {children}

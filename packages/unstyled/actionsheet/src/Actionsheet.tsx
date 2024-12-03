@@ -26,7 +26,7 @@ export function Actionsheet<T>(StyledActionsheet: React.ComponentType<T>) {
         _experimentalOverlay = false,
         preventScroll = false,
         ...props
-      }: T & IActionsheetProps,
+      }: IActionsheetProps,
       ref?: any
     ) => {
       const overlayStyle = Platform.OS === 'web' ? { position: 'fixed' } : {};

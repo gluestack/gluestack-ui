@@ -464,7 +464,7 @@ A Fab component with an icon adds a visually striking and easily recognizable bu
             {
               uri: 'https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
               name: 'Kevin James',
-              msg: 'Hi Rachel, What\\'s up',
+              msg: "Hi Rachel, What's up",
             },
             {
               uri: 'https://images.unsplash.com/photo-1527980965255-d3b416303d12?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80',
@@ -482,9 +482,9 @@ A Fab component with an icon adds a visually striking and easily recognizable bu
             className='border rounded-lg border-outline-200 p-6 bg-background-100 min-w-[240px] sm:min-w-[360px] md:min-w-[476px]'
             >
               <VStack space='md'>
-                {data.map((chatData)=>{
+                {data.map((chatData, index)=>{
                   return (
-                    <HStack space='sm' className='items-center'>
+                    <HStack space='sm' className='items-center' key={index}>
                       <Avatar size='sm'>
                         <AvatarImage
                           source={{
@@ -732,6 +732,7 @@ A Fab component with custom placement allows for flexible positioning of the but
               fallbackSource={{
                 uri: 'https://drive.google.com/uc?export=view&id=1h1e89BtQCp6JdGiKo92dlf5bjHC8hLjt',
               }}
+              alt="image"
             />
           </Box>
           <VStack className='px-6 pt-4 pb-6'>

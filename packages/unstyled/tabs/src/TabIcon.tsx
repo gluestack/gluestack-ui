@@ -5,7 +5,7 @@ export const TabIcon = <StyledTabIcon,>(
   StyledTabIcon: React.ComponentType<StyledTabIcon>
 ) =>
   memo(
-    forwardRef(({ ...props }: StyledTabIcon, ref?: any) => {
+    forwardRef(({ ...props }: any, ref?: any) => {
       return <StyledTabIcon {...(props as StyledTabIcon)} ref={ref} />;
     })
   );

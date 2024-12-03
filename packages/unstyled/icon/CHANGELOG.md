@@ -1,5 +1,17 @@
 # @gluestack-ui/icon
 
+## 0.1.25
+
+### Patch Changes
+
+- Fix: Tooltip and Icon issues for V2
+
+## 0.1.24
+
+### Patch Changes
+
+- fix: added primitive icons
+
 ## 0.1.23
 
 ### Patch Changes

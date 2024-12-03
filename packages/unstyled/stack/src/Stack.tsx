@@ -13,13 +13,7 @@ export function Stack<
 ) {
   return forwardRef(
     (
-      {
-        children,
-        reversed,
-        space,
-        direction,
-        ...props
-      }: StyledStackProps & IStackProps,
+      { children, reversed, space, direction, ...props }: IStackProps,
       ref?: any
     ) => {
       const getSpacedChildren = (children: any) => {

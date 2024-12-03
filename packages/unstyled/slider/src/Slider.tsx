@@ -25,7 +25,7 @@ function Slider<StyledSliderProps>(
         step,
         children,
         ...props
-      }: StyledSliderProps & ISliderProps,
+      }: ISliderProps,
       ref?: any
     ) => {
       const formControlContext = useFormControlContext();

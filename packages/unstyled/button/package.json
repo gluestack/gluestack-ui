@@ -23,10 +23,10 @@
     "nextjs"
   ],
   "scripts": {
+    "build": "tsc",
     "prepare": "tsc",
     "release": "release-it",
     "watch": "tsc --watch",
-    "build": "tsc",
     "clean": "rm -rf lib",
     "dev:web": "cd example/native && yarn web --clear",
     "storybook": "cd example/native/storybook && yarn web"
