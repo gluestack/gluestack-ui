@@ -504,7 +504,7 @@ The Examples section provides visual representations of the different variants o
               <AlertDialog isOpen={showAlertDialog} onClose={handleClose}>
                 <AlertDialogBackdrop />
                 <AlertDialogContent className="p-0 max-w-[590px] sm:flex-row border-primary-800 rounded-xl">
-                  <Box className="bg-primary-600 min-w-[123px] items-center justify-center">
+                  <Box className="bg-primary-600 min-w-[123px] items-center justify-center native:max-h-[95px]">
                     <Image
                       source={{
                         uri: "https://gluestack.github.io/public-blog-video-assets/Image%20Container.png",
@@ -666,26 +666,28 @@ The Examples section provides visual representations of the different variants o
               <Button onPress={() => setShowAlertDialog(true)}>
                 <ButtonText>Delete Invoice</ButtonText>
               </Button>
-              <AlertDialog
-                isOpen={showAlertDialog}
-                onClose={handleClose}
-              >
+              <AlertDialog isOpen={showAlertDialog} onClose={handleClose}>
                 <AlertDialogBackdrop />
                 <AlertDialogContent className="w-full max-w-[415px] gap-4 items-center">
                   <Box className="rounded-full h-[52px] w-[52px] bg-background-error items-center justify-center">
                     <Icon as={TrashIcon} size="lg" className="stroke-error-500" />
                   </Box>
-                  <VStack className="items-center">
                     <AlertDialogHeader className="mb-2">
                       <Heading size="md">Delete account?</Heading>
                     </AlertDialogHeader>
                     <AlertDialogBody>
                       <Text size="sm" className="text-center">
-                        The invoice will be deleted from the invoices section and in the documents folder. This cannot be undone.
+                        The invoice will be deleted from the invoices section and in
+                        the documents folder. This cannot be undone.
                       </Text>
                     </AlertDialogBody>
                     <AlertDialogFooter className="mt-5">
-                      <Button size="sm" action="negative" onPress={handleClose} className="px-[30px]">
+                      <Button
+                        size="sm"
+                        action="negative"
+                        onPress={handleClose}
+                        className="px-[30px]"
+                      >
                         <ButtonText>Delete</ButtonText>
                       </Button>
                       <Button
@@ -698,7 +700,6 @@ The Examples section provides visual representations of the different variants o
                         <ButtonText>Cancel</ButtonText>
                       </Button>
                     </AlertDialogFooter>
-                  </VStack>
                 </AlertDialogContent>
               </AlertDialog>
             </>
