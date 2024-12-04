@@ -516,18 +516,18 @@ The Examples section provides visual representations of the different variants o
                     return (
                       <Toast
                         nativeID={toastId}
-                        className="p-4 gap-3 w-full sm:min-w-[386px] bg-background-0 shadow-hard-2 flex-row"
+                        className="p-4 gap-3 w-full sm:min-w-[386px] max-w-[386px] bg-background-0 shadow-hard-2 flex-row"
                       >
                         <Avatar>
                           <AvatarFallbackText>JS</AvatarFallbackText>
                           <AvatarImage
                             source={{
-                              uri: 'https://gluestack.github.io/public-blog-video-assets/Avatar.png',
+                              uri: "https://gluestack.github.io/public-blog-video-assets/Avatar.png",
                             }}
                           />
                         </Avatar>
-                        <VStack className="w-full">
-                          <HStack className="justify-between w-full">
+                        <VStack className="web:flex-1">
+                          <HStack className="justify-between">
                             <Heading
                               size="sm"
                               className="text-typography-950 font-semibold"
