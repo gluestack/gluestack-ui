@@ -12,6 +12,11 @@ module.exports = function (api) {
         'module-resolver',
         {
           alias: {
+            '@/components/ui/gluestack-ui-provider/providerContext':
+              path.resolve(
+                __dirname,
+                './src/extra-components/storybook-components/ColorMode'
+              ),
             '@/components/ui':
               process.env.STYLE_ENGINE === 'nativewind'
                 ? path.resolve(__dirname, './src/core-components/nativewind')
