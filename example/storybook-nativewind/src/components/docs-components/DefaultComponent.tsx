@@ -9,10 +9,12 @@ import {
   Text,
   Heading,
 } from '../../core-components/nativewind';
-import { LayoutContext } from '@gluestack/design-system';
+// import { LayoutContext } from '@gluestack/design-system';
+import { useMode } from '@/components/ui/gluestack-ui-provider/providerContext';
 
 const ColorPaletteComponent = () => {
-  const { colorMode } = useContext(LayoutContext);
+  // const { colorMode } = useContext(LayoutContext);
+  const { colorMode } = useMode();
 
   const colorPalette = useMemo(() => {
     const sourceObject = tailwindConfig!.theme!.extend!.colors; // get the source object to loop
