@@ -34,7 +34,7 @@ export const Community = ({
               href={community.link}
               key={key}
               isExternal
-              className="min-w-[300px] lg:max-w-[300px] sm:flex-1 border-background-300  dark:border-background-800 rounded-xl overflow-hidden border"
+              className="min-w-[300px] lg:max-w-[300px] sm:flex-1 border-outline-100 rounded-xl overflow-hidden border hover:bg-background-50"
             >
               <VStack space="sm" className="p-6">
                 <HStack className="items-center text-black  dark:text-white">
