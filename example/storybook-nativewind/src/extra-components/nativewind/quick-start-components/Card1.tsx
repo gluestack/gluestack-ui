@@ -112,7 +112,7 @@ function Card1() {
         </Box>
       </Box>
       <Box className="gap-5 flex lg:flex-row  lg:flex-wrap flex-col w-full">
-        <Box className="rounded-xl border border-outline-50 bg-background-50  web:bg-[linear-gradient(99deg, rgba(248, 207, 106, 0.20) 5.76%, rgba(80, 228, 255, 0.20) 87.08%)] ">
+        <Box className="rounded-xl border border-outline-50 bg-background-50">
           <Box className="p-6">
             <VStack space="lg">
               <Text className="text-xl font-bold font-plus-jakarta">
@@ -120,7 +120,6 @@ function Card1() {
               </Text>
               <HStack>
                 <NextLink
-                  className="bg-background-0"
                   href="/ui/docs/getting-started/vscode-extensions"
                   style={{
                     borderRadius: 8,
@@ -133,7 +132,7 @@ function Card1() {
             </VStack>
           </Box>
         </Box>
-        <Box className="rounded-xl border border-outline-50 bg-background-50  web:bg-[linear-gradient(99deg, rgba(20, 82, 119, 0.20) 5.76%, rgba(197, 58, 148, 0.20) 87.08%)] ">
+        <Box className="rounded-xl border border-outline-50 bg-background-50">
           <Box className="p-6">
             <VStack space="lg">
               <Text className="text-xl font-bold font-plus-jakarta">
@@ -151,7 +150,7 @@ function Card1() {
             </VStack>
           </Box>
         </Box>
-        <Box className="rounded-xl border lg:flex-1 border-outline-50 bg-background-50  web:bg-[linear-gradient(99deg, rgba(247, 162, 161, 0.20) 5.76%, rgba(33, 120, 221, 0.20) 87.08%)] ">
+        <Box className="rounded-xl border lg:flex-1 border-outline-50 bg-background-50 ">
           <Box className="p-6">
             <VStack space="lg">
               <Text className="text-xl font-bold font-plus-jakarta">
@@ -175,7 +174,7 @@ function Card1() {
                 <Link
                   href="https://github.com/gluestack/gluestack-ui-starter-kits/tree/main/universal"
                   isExternal
-                  className="rounded-lg flex items-center  justify-center p-4 bg-background-0"
+                  className="rounded-lg flex items-center  justify-center p-4 bg-background-50"
                 >
                   <HStack className="gap-2 items-center">
                     <Unitools />
