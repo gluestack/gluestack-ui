@@ -38,7 +38,7 @@ function Card1() {
             <VStack space="lg" className="justify-center">
               <HStack className="justify-between items-center">
                 <Text className="text-xl font-bold font-plus-jakarta my-0">
-                  Quickstart
+                  Quick Start
                 </Text>
                 <MySvgComponent />
               </HStack>
