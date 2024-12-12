@@ -174,7 +174,7 @@ function Card1() {
                 <Link
                   href="https://github.com/gluestack/gluestack-ui-starter-kits/tree/main/universal"
                   isExternal
-                  className="rounded-lg flex items-center  justify-center p-4 bg-background-50"
+                  className="rounded-lg flex items-center justify-center p-4 bg-background-0 dark:bg-[#323031]  border-[1.5px] border-outline-0 dark:border-outline-100 border-t-[0.5px] border-l-[0.5px]"
                 >
                   <HStack className="gap-2 items-center">
                     <Unitools />
