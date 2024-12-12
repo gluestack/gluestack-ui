@@ -1,4 +1,4 @@
-import React, { useContext, Fragment, useMemo } from 'react';
+import React, { Fragment, useMemo } from 'react';
 import tailwindConfig from 'tailwind.config';
 import { GluestackUIProvider } from '../../core-components/nativewind/gluestack-ui-provider';
 import { config } from '../../core-components/nativewind/gluestack-ui-provider/config';
@@ -9,11 +9,9 @@ import {
   Text,
   Heading,
 } from '../../core-components/nativewind';
-// import { LayoutContext } from '@gluestack/design-system';
 import { useMode } from '@/components/ui/gluestack-ui-provider/providerContext';
 
 const ColorPaletteComponent = () => {
-  // const { colorMode } = useContext(LayoutContext);
   const { colorMode } = useMode();
 
   const colorPalette = useMemo(() => {
@@ -114,7 +112,8 @@ const ColorPaletteComponent = () => {
 };
 
 const ShadowComponent = () => {
-  const { colorMode } = useContext(LayoutContext);
+  const { colorMode } = useMode();
+
   return (
     <GluestackUIProvider mode={colorMode}>
       <VStack space="lg">
