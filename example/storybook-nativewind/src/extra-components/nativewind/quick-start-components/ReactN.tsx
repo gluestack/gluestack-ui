@@ -128,7 +128,13 @@ function ReactN() {
       xmlns="http://www.w3.org/2000/svg"
     >
       <g filter="url(#filter0_ii_10256_68839)">
-        <rect width={167} height={72} rx={8} fill="white" fillOpacity="0.16" />
+        <rect
+          width={167}
+          height={72}
+          rx={8}
+          fill="#232123"
+          fillOpacity="0.16"
+        />
         <rect
           width={167}
           height={72}
@@ -214,7 +220,7 @@ function ReactN() {
             result="effect2_innerShadow_10256_68839"
           />
         </filter>
-        <radialGradient
+        {/* <radialGradient
           id="paint0_radial_10256_68839"
           cx={0}
           cy={0}
@@ -224,7 +230,7 @@ function ReactN() {
         >
           <stop stopColor="white" stopOpacity="0.08" />
           <stop offset={1} stopColor="white" stopOpacity={0} />
-        </radialGradient>
+        </radialGradient> */}
       </defs>
     </svg>
   );

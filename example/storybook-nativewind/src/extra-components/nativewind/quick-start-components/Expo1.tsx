@@ -91,7 +91,13 @@ function Expo1() {
       xmlns="http://www.w3.org/2000/svg"
     >
       <g filter="url(#filter0_ii_10256_68778)">
-        <rect width={112} height={72} rx={8} fill="white" fillOpacity="0.16" />
+        <rect
+          width={112}
+          height={72}
+          rx={8}
+          fill="#232123"
+          fillOpacity="0.16"
+        />
         <rect
           width={112}
           height={72}
@@ -165,7 +171,7 @@ function Expo1() {
             result="effect2_innerShadow_10256_68778"
           />
         </filter>
-        <radialGradient
+        {/* <radialGradient
           id="paint0_radial_10256_68778"
           cx={0}
           cy={0}
@@ -175,7 +181,7 @@ function Expo1() {
         >
           <stop stopColor="white" stopOpacity="0.08" />
           <stop offset={1} stopColor="white" stopOpacity={0} />
-        </radialGradient>
+        </radialGradient> */}
       </defs>
     </svg>
   );

@@ -127,7 +127,7 @@ function Next() {
       xmlns="http://www.w3.org/2000/svg"
     >
       <g filter="url(#filter0_ii_10256_68770)">
-        <rect width={92} height={72} rx={8} fill="white" fillOpacity="0.16" />
+        <rect width={92} height={72} rx={8} fill="#232123" fillOpacity="0.16" />
         <rect
           width={92}
           height={72}
@@ -229,7 +229,7 @@ function Next() {
             result="effect2_innerShadow_10256_68770"
           />
         </filter>
-        <radialGradient
+        {/* <radialGradient
           id="paint0_radial_10256_68770"
           cx={0}
           cy={0}
@@ -239,7 +239,7 @@ function Next() {
         >
           <stop stopColor="white" stopOpacity="0.08" />
           <stop offset={1} stopColor="white" stopOpacity={0} />
-        </radialGradient>
+        </radialGradient> */}
         <clipPath id="clip0_10256_68770">
           <rect
             width="63.9991"

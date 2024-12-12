@@ -130,7 +130,7 @@ function Figma() {
           width={112}
           height={72}
           rx={8}
-          fill="white"
+          fill="#232123"
           fillOpacity="0.16"
         />
         <rect
@@ -226,7 +226,7 @@ function Figma() {
             result="effect2_innerShadow_11109_118495"
           />
         </filter>
-        <radialGradient
+        {/* <radialGradient
           id="paint0_radial_11109_118495"
           cx={0}
           cy={0}
@@ -236,7 +236,7 @@ function Figma() {
         >
           <stop stopColor="white" stopOpacity="0.08" />
           <stop offset={1} stopColor="white" stopOpacity={0} />
-        </radialGradient>
+        </radialGradient> */}
         <clipPath id="clip0_11109_118495">
           <rect
             width={20}

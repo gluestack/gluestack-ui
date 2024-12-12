@@ -213,7 +213,7 @@ function VsCode() {
           width="212.426"
           height={72}
           rx={8}
-          fill="white"
+          fill="#232123"
           fillOpacity="0.16"
         />
         <rect
@@ -396,7 +396,7 @@ function VsCode() {
             result="shape"
           />
         </filter>
-        <radialGradient
+        {/* <radialGradient
           id="paint0_radial_11109_118448"
           cx={0}
           cy={0}
@@ -406,7 +406,7 @@ function VsCode() {
         >
           <stop stopColor="white" stopOpacity="0.08" />
           <stop offset={1} stopColor="white" stopOpacity={0} />
-        </radialGradient>
+        </radialGradient> */}
         <linearGradient
           id="paint1_linear_11109_118448"
           x1="26.052"

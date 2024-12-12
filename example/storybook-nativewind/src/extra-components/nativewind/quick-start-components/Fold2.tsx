@@ -5,7 +5,6 @@ import { ArrowRightIcon, Icon } from '@/components/ui/icon';
 import React, { memo } from 'react';
 import { Card } from './Card';
 import { content } from './content';
-import NextLink from 'next/link';
 import { HStack } from '@/components/ui/hstack';
 
 const Fold2 = memo(() => {
@@ -21,27 +20,25 @@ const Fold2 = memo(() => {
           />
         );
       })}
-      <NextLink
-        href="/ui/docs/overview/all-components"
-        style={{
-          textDecoration: 'none',
-        }}
-      >
-        <VStack className="h-full min-w-[240px] min-h-[240px] items-center justify-center flex-1 rounded-xl border border-background-100  bg-background-100  dark:bg-black  dark:border-background-300">
+      <Card
+        title={
+          <HStack className="items-center gap-2">
+            <Text className="text-primary-400 text-lg  dark:text-typography-500">
+              See All
+            </Text>
+            <Icon as={ArrowRightIcon} className="text-typography-500" />
+          </HStack>
+        }
+        child={
           <VStack className="px-6 justify-center items-center">
             <Text className=" text-center text-lg">30+ components</Text>
             <Text className="mb-6 text-center text-lg">
               for React, Next.js & React Native
             </Text>
-            <HStack className="items-center gap-2">
-              <Text className="text-primary-400 text-lg  dark:text-typography-500">
-                See All
-              </Text>
-              <Icon as={ArrowRightIcon} className="text-typography-500" />
-            </HStack>
           </VStack>
-        </VStack>
-      </NextLink>
+        }
+        href={'/ui/docs/overview/all-components'}
+      />
     </Box>
   );
 });
