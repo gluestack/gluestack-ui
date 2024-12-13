@@ -17,7 +17,7 @@ export const ComponentCard = ({
   return (
     <VStack className="rounded-xl border border-outline-100 min-w-full md:flex-1 ">
       <Box
-        className={`min-h-[236px] rounded-tl-xl rounded-tr-xl border-b border-b-outline-50 bg-background-50 items-center justify-center `}
+        className={`min-h-[236px] rounded-tl-xl rounded-tr-xl border-b border-b-outline-50 bg-background-50 items-center justify-center p-6`}
       >
         {child}
       </Box>

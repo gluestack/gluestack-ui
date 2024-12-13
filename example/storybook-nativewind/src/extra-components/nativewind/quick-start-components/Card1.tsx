@@ -38,7 +38,7 @@ function Card1() {
             <VStack space="lg" className="justify-center">
               <HStack className="justify-between items-center">
                 <Text className="text-xl font-bold font-plus-jakarta my-0">
-                  Quickstart
+                  Quick Start
                 </Text>
                 <MySvgComponent />
               </HStack>
@@ -52,9 +52,9 @@ function Card1() {
                 className="items-center justify-start py-6 px-7 rounded-lg md:px-9 dark:bg-black bg-white"
               >
                 <Tilde />
-                <Text className="text-lg leading-sm mx-3 font-sourcecode font-medium text-typography-900  md:text-xl  md:leading-md">
+                <Text className="text-lg leading-sm mx-3 font-source-code-pro font-medium text-typography-900  md:text-xl  md:leading-md">
                   npm create{' '}
-                  <Text className="text-lg leading-sm font-medium text-primary-300 font-sourcecode md:text-xl  md:leading-md">
+                  <Text className="text-lg leading-sm font-medium text-primary-300 font-source-code-pro md:text-xl  md:leading-md">
                     gluestack
                   </Text>
                 </Text>

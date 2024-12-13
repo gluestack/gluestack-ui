@@ -8,7 +8,7 @@ export const Card = ({
   child,
   href,
 }: {
-  title: string;
+  title: string | React.ReactNode;
   child: React.ReactNode;
   href: string;
 }) => {

@@ -34,7 +34,7 @@ export const parameters = {
         'Home',
         [
           'Overview',
-          ['Introduction', 'QuickStart'],
+          ['Introduction', 'Quick Start'],
           'Getting Started',
           [
             'Installation',
