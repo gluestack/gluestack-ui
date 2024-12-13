@@ -1,4 +1,4 @@
-export const kitchensink = {
+export const dashboard = {
   updateIds: {
     android: '86bded6f-2090-4db0-ac52-c5c008bc6b09',
     ios: '0afc90f1-e618-4fcf-a380-ac48f63fe4a2',
@@ -6,6 +6,15 @@ export const kitchensink = {
   iframeUri: 'https://ui-example-nativewind.vercel.app/',
   qrCodeUri:
     'https://qr.expo.dev/eas-update?slug=exp&projectId=42cce9b5-9fbe-4572-92ba-fc43b2437a85&groupId=5a598f1d-f9ad-4f4e-ab64-da240438da2b&host=u.expo.dev',
+};
+export const kitchensink = {
+  updateIds: {
+    android: '9b4fde60-22d0-472f-bb40-7616835fef62',
+    ios: 'df0d208f-4348-4989-a152-1217a1d05fed',
+  },
+  iframeUri: 'https://kitchen-sink-v2.gluestack.io/',
+  qrCodeUri:
+    'https://qr.expo.dev/eas-update?slug=exp&projectId=8d16a046-45ac-43e4-b730-33c7a0d6d1ea&groupId=b8a50696-388f-4287-ad95-43e83c011c91&host=u.expo.dev',
 };
 export const todoapp = {
   updateIds: {
@@ -38,5 +47,3 @@ export const starterKit = {
   qrCodeUri:
     'https://qr.expo.dev/eas-update?slug=exp&projectId=148098d1-7e19-4326-9814-dd661a192776&groupId=552a8e7a-2682-451d-97c5-1d633e75acd1',
 };
-
-export default kitchensink;
