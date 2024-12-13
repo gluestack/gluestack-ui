@@ -1,4 +1,4 @@
-import { useDarkMode } from '@/src/components/hooks/useDarkMode';
+import { useDarkMode } from '../../../src/components/hooks/useDarkMode';
 import React from 'react';
 import { Platform } from 'react-native';
 
