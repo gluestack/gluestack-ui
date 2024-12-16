@@ -33,7 +33,7 @@ const buttonText = tva({
   parentVariants: {
     size: {
       lg: 'text-lg',
-      md: 'text-md',
+      md: 'text-base',
       sm: 'text-sm',
     },
   },
