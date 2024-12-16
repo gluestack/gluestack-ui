@@ -97,7 +97,13 @@ export const parameters = {
         'Hooks',
         ['useBreakPointValue', 'useMediaQuery'],
         'Apps',
-        ['Dashboard App', 'Todo App', 'Starter Kit', 'Storybook App'],
+        [
+          'Dashboard App',
+          'Kitchensink App',
+          'Todo App',
+          'Starter Kit',
+          'Storybook App',
+        ],
         'Guides',
         [
           'Recipes',
