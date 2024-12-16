@@ -23,7 +23,7 @@ export const Community = ({
         <Text className="font-bold text-2xl font-Plus Jakarta Sans">
           Join our community
         </Text>
-        <Text className="text-md">
+        <Text className="text-base">
           Be a part of this journey. Everyone is welcome!
         </Text>
       </VStack>
