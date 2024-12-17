@@ -280,6 +280,7 @@ type IActionsheetSectionHeaderTextProps = VariantProps<
 type IActionsheetIconProps = VariantProps<typeof actionsheetIconStyle> &
   React.ComponentProps<typeof UIActionsheet.Icon> & {
     className?: string;
+    as?: React.ElementType;
   };
 
 const Actionsheet = React.forwardRef<
