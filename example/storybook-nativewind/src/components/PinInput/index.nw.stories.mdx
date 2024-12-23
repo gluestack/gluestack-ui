@@ -282,9 +282,9 @@ This is an example of a PinInput component with a caption.
               <FormControlLabel className="pl-2">
                 Enter OTP
               </FormControlLabel>
-              <PinInput value={value} onChange={setValue}>
+              <PinInput value={value} onChange={setValue} numberOfFields={4}>
                 {Array.from({ length: 4 }).map((_, index) => (
-                  <PinInputField key={index} />
+                  <PinInputField key={index} index={index} />
                 ))}
               </PinInput>
             </FormControl>
