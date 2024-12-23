@@ -51,6 +51,7 @@
     "@gluestack-ui/icon": "0.1.25",
     "@gluestack-ui/image": "0.1.11",
     "@gluestack-ui/input": "0.1.32",
+    "@gluestack-ui/pin-input": "0.0.2",
     "@gluestack-ui/link": "0.1.23",
     "@gluestack-ui/menu": "0.2.37",
     "@gluestack-ui/modal": "0.1.35",
@@ -66,14 +67,14 @@
     "@gluestack-ui/switch": "0.1.23",
     "@gluestack-ui/tabs": "0.1.18",
     "@gluestack-ui/textarea": "0.1.24",
-    "@gluestack-ui/themed": "1.1.62",
+    "@gluestack-ui/themed": "1.1.63",
     "@gluestack-ui/toast": "1.0.8",
     "@gluestack-ui/tooltip": "0.1.37",
     "@legendapp/motion": "latest"
   },
   "peerDependencies": {
     "@gluestack-style/react": ">=1.0.57",
-    "@gluestack-ui/themed": ">=1.1.62"
+    "@gluestack-ui/themed": ">=1.1.63"
   },
   "release-it": {
     "git": {
