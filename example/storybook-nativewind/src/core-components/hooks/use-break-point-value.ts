@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import resolveConfig from 'tailwindcss/resolveConfig';
 import tailwindConfig from 'tailwind.config';
 
-const TailwindTheme = resolveConfig(tailwindConfig);
+const TailwindTheme = resolveConfig(tailwindConfig as any);
 const screenSize = TailwindTheme.theme.screens;
 
 type breakpoints = keyof typeof screenSize | 'default';
@@ -16,10 +16,12 @@ const resolveScreenWidth: any = {
 };
 
 Object.entries(screenSize).forEach(([key, value]) => {
-  resolveScreenWidth[key] = parseInt(value.replace('px', ''), 10);
+  if (typeof value === 'string') {
+    resolveScreenWidth[key] = parseInt(value.replace('px', ''), 10);
+  }
 });
 
-export const getBreakPointValue = (values: any, width: any) => {
+export const getBreakPointValue = (values: BreakPointValue, width: number) => {
   if (typeof values !== 'object') return values;
 
   let finalBreakPointResolvedValue: any;
