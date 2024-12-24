@@ -1,11 +1,6 @@
 {
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
-    "strict": true,
-    "paths": {
-      "@/components/ui/utils/*": [
-        "./../storybook-nativewind/src/core-components/hooks/*"
-      ]
-    }
+    "strict": true
   }
 }

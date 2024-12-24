@@ -24,11 +24,6 @@ module.exports = function (api) {
                     './../storybook-nativewind/src/core-components/nativewind'
                   ),
 
-            '@/components/ui/utils': path.resolve(
-              __dirname,
-              './../storybook-nativewind/src/core-components/hooks/'
-            ),
-
             'global.css':
               process.env.STYLE_ENGINE === 'gluestack'
                 ? path.resolve(

@@ -14,13 +14,7 @@
     "storybook": "cross-env STORYBOOK_ENABLED='true' expo start",
     "storybook:ios": "cross-env STORYBOOK_ENABLED='true' expo start --ios",
     "storybook:android": "cross-env STORYBOOK_ENABLED='true' expo start --android",
-    "eas:update": "NODE_OPTIONS='--max-old-space-size=8192' npx tailwindcss --input ./global.css && NODE_OPTIONS='--max-old-space-size=8192' eas update",
-    "storybook:nativewind": "DARK_MODE=class NODE_OPTIONS=--openssl-legacy-provider STYLE_ENGINE=nativewind start-storybook -p 6007",
-    "storybook:gluestack": "NODE_OPTIONS=--openssl-legacy-provider STYLE_ENGINE=gluestack start-storybook -p 6007",
-    "dev": "yarn storybook",
-    "storybook-nw": "NODE_OPTIONS=--openssl-legacy-provider STYLE_ENGINE=nativewind start-storybook -p 6007",
-    "build-storybook:nativewind": "STYLE_ENGINE=nativewind build-storybook",
-    "build-storybook:gluestack": "STYLE_ENGINE=gluestack build-storybook"
+    "eas:update": "NODE_OPTIONS='--max-old-space-size=8192' npx tailwindcss --input ./global.css && NODE_OPTIONS='--max-old-space-size=8192' eas update"
   },
   "dependencies": {
     "@babel/runtime": "^7.24.5",
