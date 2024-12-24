@@ -19,6 +19,9 @@
       ],
       "@react-native-aria/interactions": [
         "../../packages/react-native-aria/interactions/src"
+      ],
+      "@gluestack-ui/unstyled/calendar": [
+        "../../packages/unstyled/calendar/src"
       ]
     },
     "emitDeclarationOnly": true,
