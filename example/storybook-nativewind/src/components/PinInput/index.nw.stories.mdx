@@ -280,8 +280,10 @@ This is an example of a PinInput component with a caption.
           }, [value]);
           return (
             <FormControl className="gap-4">
-              <FormControlLabel className="pl-2">
-                Enter OTP
+              <FormControlLabel>
+                <FormControlLabelText>
+                  Enter OTP
+                </FormControlLabelText>
               </FormControlLabel>
               <PinInput value={value} onChange={setValue} numberOfFields={4}>
                 {Array.from({ length: 4 }).map((_, index) => (
@@ -299,6 +301,7 @@ This is an example of a PinInput component with a caption.
         Box,
         FormControl,
         FormControlLabel,
+        FormControlLabelText,
         PinInput,
         PinInputField,
         Wrapper,
