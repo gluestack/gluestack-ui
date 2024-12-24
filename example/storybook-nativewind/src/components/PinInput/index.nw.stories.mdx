@@ -21,6 +21,7 @@ import {
   Box,
   FormControl,
   FormControlLabel,
+  FormControlLabelText,
   PinInput,
   PinInputField,
 } from '../../core-components/nativewind';
@@ -52,9 +53,9 @@ This is an illustration of a **PinInput** component.
     }}
     metaData={{
       code: `
-        <PinInput>
+        <PinInput noOfFields={4}>
           {Array.from({ length: 4 }).map((_, index) => (
-            <PinInputField key={index} />
+            <PinInputField key={index} index={index} />
           ))}
         </PinInput>
       `,

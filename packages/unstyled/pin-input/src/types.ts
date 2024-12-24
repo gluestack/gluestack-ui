@@ -39,6 +39,7 @@ export interface IPinInputFieldProps {
   isReadOnly?: boolean;
   /**
    * The index of the field.
+   * Required, else component will not work.
    */
   index?: number;
 }
@@ -46,7 +47,18 @@ export interface IPinInputProps {
   type?: 'text' | 'password';
   onFocus?: any;
   onBlur?: any;
+  /**
+   * Required.The number of fields in the pin input.
+   * Default: 4
+   */
   noOfFields?: number;
+  /**
+   * The value of the pin input.
+   */
+  value?: string;
+  /**
+   * The onChange handler for the pin input.
+   */
   onChange?: (value: string) => void;
   /**
    * If true, the input will indicate an error.
