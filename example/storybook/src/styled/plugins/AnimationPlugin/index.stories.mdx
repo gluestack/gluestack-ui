@@ -1,0 +1,102 @@
+---
+title: Animation Plugin | gluestack-style
+description: Learn to add animation props with gluestack-style’s Animation Plugin for dynamic, animated UI elements. Performance impacts and lack of typings are limitations.
+canonical: https://gluestack.io/style
+---
+
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+import { Pressable, Text, View } from 'react-native';
+import { useEffect, useState, useRef } from 'react';
+import { Motion } from '@legendapp/motion';
+import { Button, AppProvider, CodePreview } from '@gluestack/design-system';
+import { config } from '../../components/nb.config';
+import { StyledProvider, styled } from '@gluestack-style/react';
+
+<Meta title="styled/plugins/Animation Plugin" />
+
+# Animation Plugin
+
+gluestack-style offers a plugin that supports animation properties, utilizing animation libraries such as [@legendapp/motion](https://legendapp.com/open-source/motion/), [framer-motion](https://www.framer.com/motion/), and [moti](https://moti.fyi/). We will use `@legendapp/motion` in this example.
+
+## Installation:
+
+```bash
+# using npm
+
+npm install @gluestack-style/animation-resolver
+
+# using yarn
+
+yarn add @gluestack-style/animation-resolver
+```
+
+## How to use:
+
+### Initialization of the plugin:
+
+- You can initialize the Animation plugin by creating a new instance of the AnimationResolver class and pass it inside config. The `AnimationResolver` takes an optional `styledUtils` object that maps the styled utils object. Here's an example:
+
+> By default, the plugin aliases `@legendapp/motion` properties.
+
+```jsx
+import { AnimationResolver } from '@gluestack-style/animation-resolver';
+
+export const config = {
+  aliases: {},
+  tokens: {},
+  plugins: [new AnimationResolver()],
+};
+```
+
+- In this example, we are creating a new instance of the AnimationResolver class, passing an object with the 'aliases' property as an argument. The aliases object maps the aliases :initial, :animate, and :exit to their corresponding animation props.
+
+### Example of creating a styled component:
+
+- Once the plugin is initialized, you can use the `styled` function to create styled components with animation props. Here's an example:
+
+```jsx
+import { AnimatedView } from '@gluestack-style/animation-resolver';
+
+const Box = styled(AnimatedView, {
+  ':initial': { opacity: 0 },
+  ':animate': { opacity: 1 },
+  ':exit': { opacity: 0 },
+});
+```
+
+The final internal styled object that will be resolved is:
+
+```jsx
+styledObject = {
+  'props': {
+    initial: {
+      opacity: 0,
+    },
+    animate: {
+      opacity: 1,
+    },
+    exit: {
+      opacity: 0,
+    },
+    }
+  },
+};
+```
+
+## Exit animation:
+
+- The Animation plugin provides a `AnimatePresence` component. Internally, it utilizes `AnimatePresence` from activated animation driver to check if any component is removed from the React tree, aiding in exit animations. Here's an example:
+
+We used the styled component below to create the above example:
+
+```jsx
+const StyledMotionImage = styled(AnimatedImage, {
+  ':animate': {
+    zIndex: 1,
+    x: 0,
+    opacity: 1,
+  },
+});
+```
+
+In this example, we're using the `AnimatePresence`, provided by the animation resolver, to wrap the Box component. Internally, it uses `AnimatePresence` from activated animation driver.

@@ -1,0 +1,263 @@
+---
+title: Image | gluestack-ui | Installation, Usage, and API
+
+description: With the Image component, you can enhance the look and feel of your app or website by incorporating compelling imagery.
+
+pageTitle: Image
+
+pageDescription: With the Image component, you can enhance the look and feel of your app or website by incorporating compelling imagery.
+
+showHeader: true
+---
+
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="ui/Components/Media And Icons/Image" />
+
+import { Image } from './Image';
+import { VStack } from './ImageSizes';
+import { transformedCode } from '../../../utils';
+import Wrapper from '../../Wrapper';
+
+import {
+  AppProvider,
+  CodePreview,
+  Text,
+  Table,
+  TableContainer,
+  InlineCode,
+} from '@gluestack/design-system';
+
+This is an illustration of a **Themed Image** component with default configuration.
+
+<AppProvider>
+  <CodePreview
+    _rendererWrapper={{
+      py: '$8',
+      px: '$8',
+    }}
+    showComponentRenderer={true}
+    showArgsController={true}
+    metaData={{
+      code: `
+       <Image
+       {...props}
+         source={{
+            uri: 'https://images.unsplash.com/photo-1472214103451-9374bd1c798e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+          }}
+      />
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Image,
+      },
+      argsType: {
+        size: {
+          control: 'select',
+          options: ['2xs', 'xs', 'sm', 'md', 'lg', 'xl', '2xl'],
+          default: 'md',
+        },
+        borderRadius: {
+          control: 'select',
+          options: [
+            '$none',
+            '$xs',
+            '$sm',
+            '$md',
+            '$lg',
+            '$xl',
+            '$2xl',
+            '$3xl',
+            '$full',
+          ],
+          default: '$none',
+        },
+      },
+    }}
+  />
+</AppProvider>
+
+<br />
+
+## API Reference
+
+### Import
+
+To use this component in your project, include the following import statement in your file.
+
+```jsx
+import { Image } from '@gluestack-ui/themed';
+```
+
+### Anatomy
+
+The structure provided below can help you identify and understand a Image component's various parts.
+
+```jsx
+export default () => <Image source={source} />;
+```
+
+### Component Props
+
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
+
+#### Image
+
+It inherits all the properties of React Native's [Image](https://reactnative.dev/docs/image) component.
+
+## Themed
+
+The themed version of the component is a pre-styled version of the component, which allows you to quickly integrate the component into your project. The component's design and functionality are fully defined, allowing you to focus on the more important aspects of your project. To know more about Themed Library please visit this [link](https://gluestack.io/ui/docs/core-concepts/themed-library).
+
+### Props
+
+Image component is created using Image component from react-native. It extends all the props supported by [React Native Image](https://reactnative.dev/docs/image#props), [utility props](/ui/docs/styling/utility-and-sx-props) and the props mentioned below.
+
+#### Image
+
+<AppProvider>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Name</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Value</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Default</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>size</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>
+              {'2xs | xs | sm | md | lg | xl | 2xl | full'}
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>md</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</AppProvider>
+
+> Note: These props are exclusively applicable when utilizing the default configuration of gluestack-ui/config. If you are using a custom theme, these props may not be available.
+
+## Unstyled
+
+All the components in `gluestack-ui` are unstyled by default. To customize your UI using the extendedTheme, please refer to this [link](https://gluestack.io/ui/docs/theme-configuration/customizing-theme/eject-library). The import names of components serve as keys to customize each component.
+
+<!--
+### Advanced
+
+We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
+
+### Customizing the Image
+
+We have a function called `createImage` which can be used to create a custom image component. This function takes in a configuration object which contains the styled components that you want to use for the Image.
+
+For customizing the Image, you have to map styled Image to Image. You can refer [gluestack.io/style](/style) for more information on how to use styled components.
+-->
+
+#### How to use Next.js Image
+
+By default, Image component uses Native Image component. If you want to use Next.js Image component, you have to create a new styled component for image and map it to Image component. You can also change the already present styled-component for images on the path `./components/core/button/styled-components` in your project.
+
+```jsx
+import Image from 'next/image';
+
+
+// Using the Next Image component
+const StyledImage = styled(Image, styling, componentConfig, extenedBaseConfig);
+
+// if some styling are direct props, you can pass them as props in the styling
+props: {
+  w: 100,
+  h: 100,
+  borderRadius: '$full',
+}
+
+// import the createImage function
+import { createImage } from '@gluestack-ui/image';
+
+// Understanding the API
+const Image = createImage({
+  Root: StyledImage
+});
+
+// you can also /style/docs/getting-started/styled to style the component
+
+export default () => <Image />;
+```
+
+#### How to use Expo Image
+
+In expo, Image component doesn't accept dataSet prop in the components. So, you have to pass config to not optimize the Image component on web in the styled function to make it work.
+
+```jsx
+import Image from 'expo-image';
+
+// Using the Expo Image component
+const StyledImage = styled(Image, styling, componentConfig, extenedBaseConfig);
+
+// import the createImage function
+import { createImage } from '@gluestack-ui/image';
+
+// Understanding the API
+const Image = createImage({
+  Root: StyledImage,
+});
+
+export default () => <Image />;
+```
+
+<!--
+#### Usage
+
+Default styling of the component can be found in the `components/core/image` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/main/packages/themed/src/components/Image) of the styled `Image` component.
+
+```jsx
+// import the styles
+import { Root } from '../components/core/image/styled-components';
+
+// import the createImage function
+import { createImage } from '@gluestack-ui/image';
+
+// Understanding the API
+const Image = createImage({
+  Root: StyledImage,
+});
+
+// Using the Image component
+export default () => <Image />;
+```
+
+-->
+
+## Spec Doc
+
+Explore the comprehensive details of the Image in this document, including its implementation details, checklist, and potential future additions. Dive into the thought process behind the component and gain insights into its development journey.
+
+<iframe
+  style={{
+    borderRadius: '8px',
+    border: ' 1px solid rgba(0, 0, 0, 0.1)',
+    aspectRatio: 736 / 585,
+  }}
+  src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FNcXOxqKbdnGsLQNex3H76u%2F%25C2%25A0%25F0%259F%2593%259Agluestack-UI-handbook%3Ftype%3Ddesign%26node-id%3D6429-37300%26t%3Dh37ERUrDzeh1Zy7x-1%26scaling%3Dscale-down%26page-id%3D6429%253A35399%26starting-point-node-id%3D6429%253A37300%26mode%3Ddesign"
+  allowFullScreen
+/>
