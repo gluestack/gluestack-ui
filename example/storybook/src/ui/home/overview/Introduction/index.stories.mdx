@@ -1,0 +1,97 @@
+---
+title: Introduction | gluestack-ui
+description: gluestack-ui is a React Native and React library that provides universal, styled, and accessible components.
+---
+
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+
+<Meta title="ui/Home/Overview/Introduction" />
+
+# Introduction
+
+Customizable Components for React, Next.js & React Native with Optional Styling.
+
+**gluestack-ui** is a universal UI library that provides themed and unstyled components. These components are designed for easy integration into applications developed with React, React Native, Next.js and Expo.
+
+## Why we built gluestack-ui?
+
+gluestack-ui originally started as part of [NativeBase](https://nativebase.io/), a universal component library for both React and React Native. However,we realized that it would be just patchwork, so we introduced gluestack. `gluestack-ui` is a complete rebuild of NativeBase, with all the positives and none of the negatives. We can incrementally adopt **gluestack-ui** and add them directly to your project using CLI.
+
+We also broke down the library into two separate libraries for different responsibilities.
+
+- [gluestack-style](/style/docs) - A high-performance, universal CSS-in-JS styling library.
+- [gluestack-ui](/ui) - A set of ready-to-use(themed) or unstyled components that can be added to any project, across any device and styled to fit your needs.
+
+> Note: This is a component library and provides a set of components that can be directly imported into any project. But, if there is a requirement for more customization or having components ejected/copy-pasted inside the project for such cases, we are building [gluestack-ui with-nativewind](/ui/with-nativewind/docs). These are in the experimental phase.
+
+## Features
+
+- **Consistency**: gluestack-ui provides a consistent design language across different platforms, making it easier to build interfaces that look and feel the same on all the devices.
+
+- **Accessibility**: gluestack-ui aims to provide a set of accessible components that work across different platforms and devices. The components have [accessibility](/ui/docs/core-concepts/accessibility) features such as ARIA attributes, keyboard navigation, and focus management.
+
+- **Ease of use**: The gluestack-ui components are designed to be easily [customizable](/ui/docs/theme-configuration/customizing-theme). They have clear and concise APIs that make integration into existing projects simple.
+
+- **Optional styling**: gluestack-ui provides an option to use the components with or without styling. The components can be used as-is or styled to fit your needs. You can choose to not pass the config and use the components as [unstyled](/ui/docs/core-concepts/unstyled-library).
+
+- **Theming tokens**: gluestack-ui takes a [config file](https://github.com/gluestack/gluestack-ui/blob/main/packages/config/src/gluestack-ui.config.ts) in the `GluestackUIProvider`, which contains theme tokens, aliases, component themes, etc, to help with the project requirements. You can install and import the [config](https://www.npmjs.com/package/@gluestack-ui/config) as a module. See more about [theming](/ui/docs/core-concepts/themed-library).
+
+- **Animation**: gluestack-ui provides a plugin to add support for Animation using Animation libraries like [@legendapp/motion](https://legendapp.com/open-source/motion/) and [moti](https://moti.fyi/). [Check here](https://gluestack.io/style/docs).
+
+## Products
+
+- VS Code Extension: Our [VS Code extension](/ui/docs/getting-started/vscode-extensions) is specifically designed to quicken your development process using `gluestack-ui`. These extensions provide gluestack snippets, which are shorthand for commonly used `gluestack-ui` components and recipes.
+
+- Figma UI Kit: [Figma UI Kit](/ui/docs/getting-started/figma-ui-kit) is a set of components that can be used to create mockups for your application. It includes all the components from `gluestack-ui` and is designed to be used with Figma. It has all the tokens, components with all the variants, and both light and dark mode.
+
+- Head Starter Kit: [Free screens](/ui/docs/getting-started/installation) made with `gluestack-ui` that let you get a taste of the library before you start using it.
+
+## But aren't React Native and React Native Web sufficient?
+
+gluestack-ui and React Native Web aren't directly comparable as they are different. While React Native and React Native Web can be used to create cross-platform applications, they require developers to write platform-specific code and customize their components for accessibility and performance. gluestack-ui provides a different approach by offering a set of universal, themed as well as unstyled components that work seamlessly on both web and mobile platforms.
+
+By using gluestack-ui, developers can create accessible and user-friendly interfaces with a consistent design language without worrying about the underlying platform. The focus on accessibility and performance means that developers can achieve a high level of usability with minimal effort.
+
+React Native Web is great! gluestack-ui needs React Native Web's "components" to build universal components. gluestack-ui builds upon the React Native Web components by adding accessibility props, focus management, and other functionality to ensure that the components are accessible and performant. But, gluestack-style doesn't use React Native Web's styling engine (which is highly performant)! gluestack-ui's babel-plugin (compiler) precompiles the declarative styling object into CSS classes and declarations and injects them directly during compile-time leading to zero style calculation during the runtime.
+
+## Why use gluestack-ui, when we already have NativeBase?
+
+gluestack-ui was originally part of NativeBase, but it has since evolved into a standalone library with significantly improved performance. It prioritizes performance and is optimized for even complex applications with many elements.
+
+We have also shifted from prop-based APIs in NativeBase to compound APIs because that provides a more cohesive, robust and consistent interface for developers.
+
+## Future Considerations
+
+gluestack-ui is committed to continuously expanding its library of components to meet the needs of developers. We plan to add more components to the library, such as navigation, combo box, and grid. Apart from that, we are actively working on improving the performance of the styling library using techniques such as bundler-plugins, tree flattening, and more.
+
+## Community
+
+### Discord
+
+Get involved with the community, ask questions, and share tips, join our Discord.
+
+[Join our Discord](https://discord.gg/95qQ84nf6f)
+
+### Twitter
+
+To receive updates on new primitives, announcements, blog posts, and tips on using the library.
+
+[Follow gluestack on Twitter](https://twitter.com/gluestack)
+
+### GitHub
+
+To report bugs, request features, or contribute to the library, check out the gluestack-ui GitHub repository.
+
+[View gluestack-ui on GitHub](https://github.com/gluestack/gluestack-ui)
+
+### Stackoverflow
+
+Receive firsthand assistance from our community of developers.
+
+[Visit Stackoverflow](https://stackoverflow.com/questions/tagged/gluestack)
+
+### LinkedIn
+
+Stay updated about our company and collaborate on enterprise-level projects.
+
+[Follow us on LinkedIn](https://www.linkedin.com/company/gluestackio/)

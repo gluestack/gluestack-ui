@@ -1,0 +1,905 @@
+---
+title: Slider | gluestack-ui | Installation, Usage, and API
+
+description: The Slider component enables an intuitive selection of values within a designated range. Users can easily adjust their selection by sliding a visual indicator along the track.
+
+pageTitle: Slider
+
+pageDescription: The Slider component enables an intuitive selection of values within a designated range. Users can easily adjust their selection by sliding a visual indicator along the track.
+
+showHeader: true
+---
+
+import { Meta } from '@storybook/addon-docs';
+import { useRef, useEffect, useState } from 'react';
+
+<Meta title="ui/Components/Forms/Slider" />
+
+import {
+  Slider,
+  SliderTrack,
+  SliderFilledTrack,
+  SliderThumb,
+  VStack,
+  Volume,
+  Text,
+} from './Slider';
+import { HStack, Volume2Icon, Box, Center } from './Slider';
+import {
+  LightbulbIcon,
+  Icon,
+  Heading,
+  Tooltip,
+  TooltipContent,
+  Button,
+} from './Slider';
+import { transformedCode } from '../../../utils';
+import {
+  AppProvider,
+  CodePreview,
+  InlineCode,
+  Table,
+  TableContainer,
+} from '@gluestack/design-system';
+
+import Wrapper from '../../Wrapper';
+
+This is an illustration of a **Themed Slider** component with default configuration.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={true}
+    metaData={{
+      code: `
+      <Center w={300} h={100}>
+          <Slider  defaultValue={30} {...props}  >
+            <SliderTrack>
+              <SliderFilledTrack />
+            </SliderTrack>
+            <SliderThumb />
+          </Slider>
+      </Center>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Slider,
+        SliderTrack,
+        SliderFilledTrack,
+        SliderThumb,
+        Center,
+      },
+      argsType: {
+        size: {
+          control: 'select',
+          options: ['sm', 'md', 'lg'],
+          default: 'md',
+        },
+        orientation: {
+          control: 'select',
+          options: ['vertical', 'horizontal'],
+          default: 'horizontal',
+        },
+        isDisabled: {
+          control: 'boolean',
+        },
+        isReversed: {
+          control: 'boolean',
+        },
+      },
+    }}
+  />
+</AppProvider>
+
+<br />
+
+## API Reference
+
+### Import
+
+To use this component in your project, include the following import statement in your file.
+
+```bash
+import { Slider } from '@gluestack-ui/themed';
+```
+
+### Anatomy
+
+The structure provided below can help you identify and understand a Slider component's various parts.
+
+```jsx
+export default () => (
+  <Slider>
+    <SliderTrack>
+      <SliderFilledTrack />
+    </SliderTrack>
+    <SliderThumb />
+  </Slider>
+);
+```
+
+### Component Props
+
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
+
+#### Slider
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+<AppProvider>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Type</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Default</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Description</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>onChange</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{'(value: number) => void'}</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>
+              Function called when the state of the Slider changes.
+            </Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>isDisabled</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>bool</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>When true, this will disable Slider</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>isReadOnly</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>
+              To manually set read-only to the checkbox.
+            </Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>sliderTrackHeight</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>number</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>8</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>To change the slider track height .</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>defaultValue</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>number</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>To change the slider value .</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>minValue</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>number</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>The slider's minimum value</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>maxValue</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>number</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>The slider's maximum value.</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>value</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>number</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>The slider's current value.</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>step</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>number</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText> The slider's step value.</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</AppProvider>
+
+**Descendants Styling Props**
+Props to style child components.
+
+<AppProvider>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Sx Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Description</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>_thumb</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Prop to style SliderThumb Component`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>_track</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Prop to style SliderTrack Component`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>_filledTrack</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Prop to style SliderFilledTrack Component`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</AppProvider>
+
+#### SliderTrack
+
+It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/Pressable) component.
+
+#### SliderFilledTrack
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+#### SliderThumb
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+### Features
+
+- Keyboard support for actions.
+- Support for hover, focus and active states.
+
+### Accessibility
+
+We have outlined the various features that ensure the Slider component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards.Adheres to the [WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/slider/).
+
+#### Keyboard
+
+- `Tab`: Moves focus to the next focusable element.
+- `Right Arrow`: Increase the value of the slider by one step.
+- `Up Arrow`: Increase the value of the slider by one step.
+- `Left Arrow`: Decrease the value of the slider by one step.
+- `Down Arrow`: Decrease the value of the slider by one step.
+
+### Screen Reader
+
+- VoiceOver: When the slider is focused, the screen reader will announce the slider's value.
+
+## Themed
+
+The themed version of the component is a pre-styled version of the component, which allows you to quickly integrate the component into your project. The component's design and functionality are fully defined, allowing you to focus on the more important aspects of your project. To know more about Themed Library please visit this [link](https://gluestack.io/ui/docs/core-concepts/themed-library).
+
+### Props
+
+Slider component is created using View component from react-native. It extends all the props supported by [React Native View](https://reactnative.dev/docs/view#props), [utility props](/ui/docs/styling/utility-and-sx-props) and the props mentioned below.
+
+#### Slider
+
+<AppProvider>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Name</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Value</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Default</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>orientation</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>horizontal | vertical</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>horizontal</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>isReversed</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>true | false</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>false</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>size</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>sm | md | lg</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>md</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</AppProvider>
+
+> Note: These props are exclusively applicable when utilizing the default configuration of gluestack-ui/config. If you are using a custom theme, these props may not be available.
+
+### Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+#### Slider with Orientation
+
+An example of the Slider component being used with the Slider with Orientation feature to customize the orientation of the slider, providing flexibility in the direction of sliding and input for numerical or adjustable values within a user interface.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+function App(){
+  const [sliderValue, setSliderValue] = React.useState(45);
+  const handleChange = (value) => {
+    setSliderValue(value);
+  };
+  return (
+    <Center w="$80">
+      <Slider
+        sliderTrackHeight={4}
+        value={sliderValue}
+        orientation="vertical"
+        h={120}
+        onChange={(value) => {
+        handleChange(value);
+        }}>
+        <SliderTrack>
+          <SliderFilledTrack />
+        </SliderTrack>
+        <SliderThumb />
+      </Slider>
+    </Center>
+  );
+}
+`,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'App');
+      },
+      scope: {
+        Box,
+        Slider,
+        SliderTrack,
+        SliderFilledTrack,
+        SliderThumb,
+        Center,
+        Wrapper,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### Color scheme
+
+A Slider component with a color scheme adds visual styling and customization options, allowing the slider track and handle to be displayed in different colors, enhancing the aesthetic appeal and visual coherence of the slider within a user interface.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+function App(){
+  return (
+    <VStack space="4xl">
+    <Center w="$80">
+        <Slider   defaultValue={45} sliderTrackHeight={4}>
+          <SliderTrack>
+            <SliderFilledTrack bg="$emerald600"/>
+          </SliderTrack >
+          <SliderThumb bg="$emerald600" $active-outlineColor="$emerald500" />
+        </Slider>
+    </Center>
+     <Center w="$80">
+        <Slider   defaultValue={45} sliderTrackHeight={4}>
+          <SliderTrack>
+            <SliderFilledTrack bg="$amber600"/>
+          </SliderTrack >
+          <SliderThumb bg="$amber600" $active-outlineColor="$amber500" />
+        </Slider>
+    </Center>
+     <Center w="$80">
+        <Slider  defaultValue={45} sliderTrackHeight={4}>
+          <SliderTrack>
+            <SliderFilledTrack bg="$fuchsia600"/>
+          </SliderTrack >
+          <SliderThumb bg="$fuchsia600" $active-outlineColor="$fuchsia500"/>
+        </Slider>
+    </Center>
+     <Center w="$80">
+        <Slider   defaultValue={45} sliderTrackHeight={4}>
+          <SliderTrack>
+            <SliderFilledTrack bg="$cyan600"/>
+          </SliderTrack >
+          <SliderThumb bg="$cyan600" $active-outlineColor="$cyan500" />
+        </Slider>
+    </Center>
+    </VStack>
+  );
+}
+`,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'App');
+      },
+      scope: {
+        Center,
+        Slider,
+        SliderTrack,
+        SliderFilledTrack,
+        SliderThumb,
+        VStack,
+        Wrapper,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### With tooltip
+
+A Slider component with a tooltip displays a visual indicator or text overlay that provides real-time feedback on the selected value as users interact with the slider, improving usability and precision in inputting or adjusting numeric or continuous data within a user interface.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+function App(){
+  const [sliderValue, setSliderValue] = React.useState(40);
+  const handleChange = (value) => {
+    setSliderValue(value);
+  };
+  return (
+     <HStack space="lg">
+     <Text size="md">$0</Text>
+        <Tooltip
+              placement={"top"}
+              trigger={(triggerProps) => {
+                return (
+                      <Center w="$80">
+                          <Slider
+                           step={5}
+                            sliderTrackHeight={4}
+                            value={sliderValue}
+                            maxValue={60}
+                            minValue={0}
+                            onChange={v => {
+                              handleChange(Math.floor(v));
+                            }}>
+                            <SliderTrack>
+                              <SliderFilledTrack />
+                            </SliderTrack>
+                            <SliderThumb {...triggerProps}/>
+                          </Slider>
+                      </Center>
+                )
+              }}
+            >
+            <TooltipContent>
+              <Text color="white">{"$" + sliderValue}</Text>
+            </TooltipContent>
+          </Tooltip>
+    <Text size="md">$60</Text>
+    </HStack>
+);
+}
+`,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'App');
+      },
+      scope: {
+        Wrapper,
+        Slider,
+        SliderTrack,
+        SliderFilledTrack,
+        SliderThumb,
+        Center,
+        Volume,
+        VStack,
+        HStack,
+        Volume2Icon,
+        Text,
+        Box,
+        Tooltip,
+        TooltipContent,
+        Button,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### Form Controlled
+
+A Slider component with form-controlled behavior allows for seamless integration with a form's state management, enabling the slider value to be controlled and updated through a parent component's form state, providing a consistent and synchronized user experience for capturing and manipulating numeric or continuous data within a form.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+function App(){
+  const [sliderValue, setSliderValue] = React.useState(50);
+  const handleChange = (value) => {
+    setSliderValue(value);
+  };
+  return (
+    <VStack space="lg">
+    <Heading size="sm">Select the quantity</Heading>
+    <Center w="$72">
+        <Slider
+          sliderTrackHeight={5}
+          size='md'
+          value={sliderValue}
+          onChange={(value) => {
+          handleChange(value);
+          }}>
+          <SliderTrack>
+            <SliderFilledTrack/>
+          </SliderTrack>
+           <SliderThumb/>
+        </Slider>
+    </Center>
+    <Text size="sm">Slide the knob to select the number of products</Text>
+    </VStack>
+  );
+}
+`,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'App');
+      },
+      scope: {
+        Wrapper,
+        Center,
+        Slider,
+        SliderTrack,
+        SliderFilledTrack,
+        SliderThumb,
+        Center,
+        LightbulbIcon,
+        Icon,
+        Text,
+        VStack,
+        Heading,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### Custom
+
+A custom Slider component with an icon incorporates a personalized design by combining a graphical symbol or icon with the slider interface, adding a unique visual element and enhancing the user experience when interacting with numeric or continuous data input in a user interface.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+function App(){
+  const [sliderValue, setSliderValue] = React.useState(55);
+  const handleChange = (value) => {
+    setSliderValue(value);
+  };
+  return (
+    <VStack space="lg">
+    <Text size="lg">Brightness</Text>
+    <Center w="$72">
+        <Slider
+          sliderTrackHeight={6}
+          size='lg'
+          value={sliderValue}
+          onChange={(value) => {
+          handleChange(value);
+          }}>
+          <SliderTrack>
+            <SliderFilledTrack bg="$amber600"/>
+          </SliderTrack>
+           <SliderThumb bg="$amber600" p='$1' $active-outlineColor="$amber500">
+            <Icon as={LightbulbIcon} color="white" size="sm"/>
+          </SliderThumb>
+        </Slider>
+    </Center>
+    </VStack>
+  );
+}
+`,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'App');
+      },
+      scope: {
+        Wrapper,
+        Center,
+        Slider,
+        SliderTrack,
+        SliderFilledTrack,
+        SliderThumb,
+        LightbulbIcon,
+        Icon,
+        Text,
+        VStack,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### Volume
+
+A Slider component used as a volume control allows users to adjust the audio volume by sliding the handle along the track, providing an intuitive and interactive way to control the sound output within a user interface.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+function App(){
+  const [sliderValue, setSliderValue] = React.useState(40);
+  const [onChangeEndValue, setOnChangeEndValue] = React.useState(40);
+  const handleChange = (value) => {
+    setSliderValue(value);
+  };
+  return (
+    <VStack space="2xl">
+    <Box>
+    <Text textAlign="center">current sliderValue - {sliderValue}</Text>
+    <Text textAlign="center">onChangeEndValue - {onChangeEndValue}</Text>
+    </Box>
+    <HStack space="lg">
+    <Volume/>
+    <Center w="$80">
+        <Slider
+          sliderTrackHeight={4}
+          value={sliderValue}
+          onChange={v => {
+         handleChange(Math.floor(v));
+         }} onChangeEnd={v => {
+        v && setOnChangeEndValue(Math.floor(v));
+         }}>
+          <SliderTrack>
+            <SliderFilledTrack />
+          </SliderTrack>
+          <SliderThumb />
+        </Slider>
+    </Center>
+    <Volume2Icon/>
+    </HStack>
+     </VStack>
+  );
+}
+`,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'App');
+      },
+      scope: {
+        Wrapper,
+        Center,
+        Slider,
+        SliderTrack,
+        SliderFilledTrack,
+        SliderThumb,
+        Center,
+        Volume,
+        VStack,
+        HStack,
+        Volume2Icon,
+        Text,
+        Box,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+## Unstyled
+
+All the components in `gluestack-ui` are unstyled by default. To customize your UI using the extendedTheme, please refer to this [link](https://gluestack.io/ui/docs/theme-configuration/customizing-theme/eject-library). The import names of components serve as keys to customize each component.
+
+<!--
+
+### Customizing the Slider
+
+For customizing the Slider, you have to map styled view to Slider You can refer [gluestack.io/style](/style/docs/getting-started/styled) on how to use styled components.
+
+#### Usage
+
+Default styling of the component can be found in the `components/slider` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/main/packages/themed/src/components/Slider) of the styled `Slider` component.
+
+```jsx
+// import the styles
+import {
+  Root,
+  Thumb,
+  Track,
+  FilledTrack,
+  ThumbInteraction,
+} from '../components/core/slider/styled-components';
+
+// import the createSlider function
+import { createSlider } from '@gluestack-ui/slider';
+
+// Understanding the API
+const Slider = createSlider({
+  Root,
+  Thumb,
+  Track,
+  FilledTrack,
+  ThumbInteraction,
+});
+
+// Using the Slider component
+export default () => (
+  <Slider>
+    <SliderTrack>
+      <SliderFilledTrack />
+    </SliderTrack>
+    <SliderThumb />
+  </Slider>
+);
+```
+
+-->
+
+## Spec Doc
+
+Explore the comprehensive details of the Slider in this document, including its implementation details, checklist, and potential future additions. Dive into the thought process behind the component and gain insights into its development journey.
+
+<iframe
+  style={{
+    borderRadius: '8px',
+    border: ' 1px solid rgba(0, 0, 0, 0.1)',
+    aspectRatio: 736 / 585,
+  }}
+  src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FNcXOxqKbdnGsLQNex3H76u%2F%25C2%25A0%25F0%259F%2593%259Agluestack-UI-handbook%3Ftype%3Ddesign%26node-id%3D6449-50331%26t%3DyCpyOJadMBgzgdP2-1%26scaling%3Dscale-down%26page-id%3D6429%253A48430%26starting-point-node-id%3D6449%253A50331%26mode%3Ddesign"
+  allowFullScreen
+/>

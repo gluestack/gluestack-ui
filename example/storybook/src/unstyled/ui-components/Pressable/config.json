@@ -1,0 +1,4 @@
+{
+  "dependencies": { "@gluestack-ui/pressable": "latest" },
+  "keywords": ["components", "core"]
+}

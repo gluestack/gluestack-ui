@@ -1,0 +1,34 @@
+---
+title: Installation | gluestack-ui
+
+description: To get started with gluestack-ui, check out this quick installation guide. It provides simple steps to help you install and use the library in your projects.
+
+pageTitle: Installation
+
+pageDescription: To get started with gluestack-ui, check out this quick installation guide. It provides simple steps to help you install and use the library in your projects.
+
+toc: false
+---
+
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+
+<Meta title="ui/Home/Getting Started/Installation" />
+
+import { App, Talk, Socail, Card1, Card2 } from './App';
+
+import { AppProvider } from '@gluestack/design-system';
+
+# Getting Started
+
+<AppProvider>
+  <Card1 />
+</AppProvider>
+
+## Try gluestack-ui
+
+<AppProvider>
+  <Card2 />
+  <App />
+  <Talk />
+  <Socail />
+</AppProvider>

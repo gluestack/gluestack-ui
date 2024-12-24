@@ -1,0 +1,48 @@
+---
+title: Performance Overview | gluestack-ui
+description: Performance Overview description
+pageTitle: Performance Overview
+pageDescription: Performance Overview description
+---
+
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+
+<Meta title="ui/Home/Performance/Overview" />
+
+# Performance Overview
+
+Performance is our top priority. With gluestack-ui you get blazing fast performance for beautifully styled components. **With a babel plugin for pre-computing styles during the build process, and runtime performance optimizations, gluestack-ui delivers high performance styling**.
+
+## Low bundle size
+
+Both `@gluestack-style/react` and `@gluestack-ui-themed` libraries are
+
+- **Tree-shakable**
+  - This allows unused code to be stripped out during the build process.
+- **No side-effects**
+  - This allows bundlers to eliminate unused exports during the build process.
+
+This results in a smaller and optimized bundle for the application, thus enhancing performance.
+
+### Bundle size
+
+- `@gluestack-style/react` < 25kb gzip
+- `@gluestack-ui/themed` < 80kb gzip
+
+## Benchmark
+
+We tested the performance of a webpage, built with `gluestack-ui` and a large number of elements, using Lighthouse and achieved a **high score of 100 for Performance, 97 for Accessibility, 92 for Best Practices, and 100 for SEO**. You can check out the website and see the Lighthouse report for yourself. You can see more in-depth report [here](https://gluestack.io/ui/docs/performance/benchmarks).
+
+<img
+  src="/images/PerformanceScreenshot.png"
+  width="100%"
+  alt="Performance metrics from lighthouse report"
+/>
+
+We have run the benchmark, and we are getting great results compared to other libraries. We don't want the comparison with other libraries to be the ultimate scoring system. It doesn't give the full picture of any library. There are other important metrics too. Also, we may go wrong in how we run the benchmark, we may end up with selection bias too (unintentionally).
+
+We suggest a way to test the performance, is to build real examples, create complex pages and native screens with a large number of elements, and test with Lighthouse and PageSpeed Insights. E.g., we are getting a 99 or 100 score on our docs website built with gluestack-ui.
+
+gluestack-ui also supports Server-Side Rendering (SSR) through the flush function, which allows styles to be rendered on the server and hydrated on the client, eliminating the FOUC (Flash of Unstyled Content) issue and improving the overall user experience.
+
+In conclusion, gluestack-ui is designed to deliver **high performance styling**, and we continue to make optimizations to ensure it remains efficient and fast.

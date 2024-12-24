@@ -1,0 +1,111 @@
+---
+title: Utility Props | gluestack-style
+description: Writing inline styles with Utility Props. We provide you the ability to pass down utility props on any Styled Component which internally converts to `sx` prop.
+---
+
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+
+<Meta title="styled/api/Overriding Styles (Utility Props)" />
+
+# Overriding Styles (Utility Props)
+
+We understand that styling components using sx props can be a bit challenging to learn. To simplify this process, we offer the option to pass utility props to any Styled Component. Internally, these utility props are converted into sx props
+
+Let's explore how you can utilize these utility props.
+
+### Basic styling
+
+You can apply aliases and styling props directly to the component.
+
+```jsx
+<StyledButton borderColor="$grey600" bg="$grey700" borderRadius="$md" />
+```
+
+In the above example, you can apply alaises or styles directly to the component, and it will work seamlessly.
+
+This will turn into :
+
+```jsx
+<StyledButton
+  sx={{ borderColor: '$grey600', bg: '$grey700', borderRadius: '$md' }}
+/>
+```
+
+### Complex styling
+
+You can also handle more intricate styling, such as styles for different states, colormode, media queries, and descendants.
+
+```jsx
+<StyledButton
+  flexDirection="column"
+  $md-flexDirection="row"
+  $hover-bg="$primary600"
+  $_text-hover-color="$text800"
+/>
+```
+
+- To achieve this, you can use the `$` prefix and specify the entire property path, like `$hover-bg` followed by its corresponding value.
+- We provide comprehensive TypeScript support for single-level utility props, including aliases and styles in the format `${states/media/colormode/platform/descendants}-{aliases / style}`.
+- For something like `$hover-sm-bg`, TypeScript suggestions are not available, but you can write props prefixed with `${states/media/colormode/platform/descendants}-*`.
+
+This will turn into :
+
+```jsx
+<StyledButton
+  sx={{
+    'flexDirection': 'column',
+    ':hover': {
+      bg: '$primary600',
+    },
+    '_text': {
+      ':hover': {
+        color: '$text800',
+      },
+    },
+    '@md': {
+      flexDirection: 'row',
+    },
+  }}
+/>
+```
+
+### More utility props
+
+If your component's props become cluttered when using the above utility props, we offer support for an object-based approach to improve code maintainability.
+
+```jsx
+<StyledButton
+  flexDirection="column"
+  $md={{ flexDirection: 'row' }}
+  $hover={{
+    bg: '$primary600',
+    _text: {
+      color: '$text800',
+    },
+  }}
+/>
+```
+
+- In this case, you can specify states, colormode, media queries, and descendants in object form, prefixed with `$`. These objects take sx properties as values.
+- We have provided complete TypeScript support for this approach as well.
+
+This will turn into :
+
+```jsx
+<StyledButton
+  sx={{
+    'flexDirection': 'column',
+    ':hover': {
+      bg: '$primary600',
+    },
+    '_text': {
+      ':hover': {
+        color: '$text800',
+      },
+    },
+    '@md': {
+      flexDirection: 'row',
+    },
+  }}
+/>
+```

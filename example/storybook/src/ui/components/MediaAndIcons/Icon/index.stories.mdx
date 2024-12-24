@@ -1,0 +1,449 @@
+---
+title: Icon | gluestack-ui | Installation, Usage, and API
+description: Icons are often used to enhance the usability and accessibility of digital products by providing users with clear and intuitive visual cues. It serves as an intuitive and easily recognizable way to communicate with users.
+pageTitle: Icon
+pageDescription: Icons are often used to enhance the usability and accessibility of digital products by providing users with clear and intuitive visual cues. It serves as an intuitive and easily recognizable way to communicate with users.
+showHeader: true
+---
+
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="ui/Components/Media And Icons/Icon" />
+
+import { VStack, Icon, HStack } from './Icon';
+
+import { AddIcon, CheckIcon, CloseIcon, InfoIcon } from './Icon';
+import { ArrowUpIcon, ChevronDownIcon, ChevronUpIcon } from './Icon';
+import { ChevronLeftIcon, ChevronRightIcon } from './Icon';
+import { ChevronsLeftIcon, ChevronsRightIcon, AtSignIcon } from './Icon';
+import { CheckCircleIcon, AlertCircleIcon } from './Icon';
+import { ChevronsUpDownIcon, PaperclipIcon, BellIcon } from './Icon';
+import { MenuIcon, ArrowRightIcon, ArrowLeftIcon } from './Icon';
+import { ArrowDownIcon, CalendarDaysIcon, MessageCircleIcon } from './Icon';
+import { CopyIcon, TrashIcon, DownloadIcon } from './Icon';
+import { GripVerticalIcon, EditIcon, MailIcon, LinkIcon } from './Icon';
+import { ExternalLinkIcon, LockIcon, RemoveIcon, MoonIcon } from './Icon';
+import { SlashIcon, PhoneIcon, HelpCircleIcon, RepeatIcon } from './Icon';
+import { Repeat1Icon, SearchIcon, SettingsIcon, LoaderIcon } from './Icon';
+import { StarIcon, SunIcon, ClockIcon, UnlockIcon } from './Icon';
+import { EyeIcon, EyeOffIcon, CloseCircleIcon, ShareIcon } from './Icon';
+import { CircleIcon, FavouriteIcon, GlobeIcon, PlayIcon } from './Icon';
+import { ThreeDotsIcon, createIcon } from './Icon';
+
+import { Path, Rect } from 'react-native-svg';
+
+import {
+  Camera,
+  ChromeIcon,
+  InstagramIcon,
+  FacebookIcon,
+} from 'lucide-react-native';
+
+import { transformedCode } from '../../../utils';
+import {
+  AppProvider,
+  CodePreview,
+  Table,
+  TableContainer,
+  InlineCode,
+} from '@gluestack/design-system';
+
+import Wrapper from '../../Wrapper';
+
+This is an illustration of a **Themed Icon** component with default configuration.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={true}
+    metaData={{
+      code: `
+        <Icon as={CalendarDaysIcon}  {...props}/>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Icon,
+        CalendarDaysIcon,
+      },
+      argsType: {
+        size: {
+          control: 'select',
+          options: ['xs', 'sm', 'md', 'lg', 'xl'],
+          default: 'md',
+        },
+      },
+    }}
+  />
+</AppProvider>
+
+<br />
+
+## API Reference
+
+### Import
+
+To use this component in your project, include the following import statement in your file.
+
+```jsx
+import { Icon } from '@gluestack-ui/themed';
+```
+
+### Anatomy
+
+The structure provided below can help you identify and understand a Icon component's various parts.
+
+```jsx
+export default () => <Icon as={} />;
+```
+
+### Component Props
+
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
+
+#### Icon
+
+Pre built icons provided by gluestack-ui inherits all the properties of React Native SVG's [svg](https://github.com/software-mansion/react-native-svg/tree/main/Example) component.
+
+The Icon components inherits all the properties that third party library provides and can be directly applied as props.
+
+### Features
+
+- support of props on any svg icon
+
+### Accessibility
+
+We have outlined the various features that ensure the Icon component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards.
+
+Role: img is passed
+
+## Themed
+
+The themed version of the component is a pre-styled version of the component, which allows you to quickly integrate the component into your project. The component's design and functionality are fully defined, allowing you to focus on the more important aspects of your project. To know more about Themed Library please visit this [link](https://gluestack.io/ui/docs/core-concepts/themed-library).
+
+### Props
+
+Icon component is created using AsForwarder component from @gluestack-style/react. It extends all the props supported by [gluestack-ui AsForwarder](https://gluestack.io/style/docs/api/as-forwarder), [utility props](/ui/docs/styling/utility-and-sx-props) and the props mentioned below.
+
+#### Image
+
+<AppProvider>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Name</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Value</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Default</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>size</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{'2xs | xs | sm | md | lg | xl'}</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>md</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</AppProvider>
+
+> Note: These props are exclusively applicable when utilizing the default configuration of gluestack-ui/config. If you are using a custom theme, these props may not be available.
+
+### Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+#### All gluestack icons
+
+Below is a list of all of the icons in the library.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+  <HStack w="70%" flexWrap= 'wrap'>
+        <Icon as={AddIcon} m="$2" w="$4" h="$4" />
+        <Icon as={ArrowLeftIcon} m="$2" w="$4" h="$4" />
+        <Icon as={ArrowRightIcon} m="$2" w="$4" h="$4" />
+        <Icon as={ArrowUpIcon} m="$2" w="$4" h="$4" />
+        <Icon as={ArrowDownIcon} m="$2" w="$4" h="$4" />
+        <Icon as={ChevronsLeftIcon} m="$2" w="$4" h="$4" />
+        <Icon as={ChevronsRightIcon} m="$2" w="$4" h="$4" />
+        <Icon as={ChevronsUpDownIcon} m="$2" w="$4" h="$4" />
+        <Icon as={AtSignIcon} m="$2" w="$4" h="$4" />
+        <Icon as={PaperclipIcon} m="$2" w="$4" h="$4" />
+        <Icon as={BellIcon} m="$2" w="$4" h="$4" />
+        <Icon as={CalendarDaysIcon} m="$2" w="$4" h="$4" />
+        <Icon as={MessageCircleIcon} m="$2" w="$4" h="$4" />
+        <Icon as={CheckIcon} m="$2" w="$4" h="$4" />
+        <Icon as={ChevronDownIcon} m="$2" w="$4" h="$4" />
+        <Icon as={ChevronUpIcon} m="$2" w="$4" h="$4" />
+        <Icon as={ChevronLeftIcon} m="$2" w="$4" h="$4" />
+        <Icon as={ChevronRightIcon} m="$2" w="$4" h="$4" />
+        <Icon as={CloseIcon} m="$2" w="$4" h="$4" />
+        <Icon as={CopyIcon} m="$2" w="$4" h="$4" />
+        <Icon as={TrashIcon} m="$2" w="$4" h="$4" />
+        <Icon as={DownloadIcon} m="$2" w="$4" h="$4" />
+        <Icon as={GripVerticalIcon} m="$2" w="$4" h="$4" />
+        <Icon as={EditIcon} m="$2" w="$4" h="$4" />
+        <Icon as={MailIcon} m="$2" w="$4" h="$4" />
+        <Icon as={ExternalLinkIcon} m="$2" w="$4" h="$4" />
+        <Icon as={MenuIcon} m="$2" w="$4" h="$4" />
+        <Icon as={InfoIcon} m="$2" w="$4" h="$4" />
+        <Icon as={LinkIcon} m="$2" w="$4" h="$4" />
+        <Icon as={LockIcon} m="$2" w="$4" h="$4" />
+        <Icon as={RemoveIcon} m="$2" w="$4" h="$4" />
+        <Icon as={MoonIcon} m="$2" w="$4" h="$4" />
+        <Icon as={SlashIcon} m="$2" w="$4" h="$4" />
+        <Icon as={CheckCircleIcon} m="$2" w="$4" h="$4" />
+        <Icon as={PhoneIcon} m="$2" w="$4" h="$4" />
+        <Icon as={HelpCircleIcon} m="$2" w="$4" h="$4" />
+        <Icon as={RepeatIcon} m="$2" w="$4" h="$4" />
+        <Icon as={Repeat1Icon} m="$2" w="$4" h="$4" />
+        <Icon as={SearchIcon} m="$2" w="$4" h="$4" />
+        <Icon as={SettingsIcon} m="$2" w="$4" h="$4" />
+        <Icon as={LoaderIcon} m="$2" w="$4" h="$4" />
+        <Icon as={StarIcon} m="$2" w="$4" h="$4" />
+        <Icon as={SunIcon} m="$2" w="$4" h="$4" />
+        <Icon as={ClockIcon} m="$2" w="$4" h="$4" />
+        <Icon as={UnlockIcon} m="$2" w="$4" h="$4" />
+        <Icon as={EyeIcon} m="$2" w="$4" h="$4" />
+        <Icon as={EyeOffIcon} m="$2" w="$4" h="$4" />
+        <Icon as={AlertCircleIcon} m="$2" w="$4" h="$4" />
+        <Icon as={CloseCircleIcon} m="$2" w="$4" h="$4" />
+        <Icon as={ShareIcon} m="$2" w="$4" h="$4" />
+        <Icon as={CircleIcon} m="$2" w="$4" h="$4" />
+        <Icon as={FavouriteIcon} m="$2" w="$4" h="$4" />
+        <Icon as={GlobeIcon} m="$2" w="$4" h="$4" />
+        <Icon as={ThreeDotsIcon} m="$2" w="$4" h="$4" />
+        <Icon as={PlayIcon} m="$2" w="$4" h="$4" />
+  </HStack>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        HStack,
+        AddIcon,
+        CheckIcon,
+        CloseIcon,
+        InfoIcon,
+        ArrowUpIcon,
+        ChevronDownIcon,
+        ChevronUpIcon,
+        ChevronLeftIcon,
+        ChevronRightIcon,
+        ChevronsLeftIcon,
+        ChevronsRightIcon,
+        AtSignIcon,
+        CheckCircleIcon,
+        AlertCircleIcon,
+        ChevronsUpDownIcon,
+        PaperclipIcon,
+        BellIcon,
+        MenuIcon,
+        ArrowRightIcon,
+        ArrowLeftIcon,
+        ArrowDownIcon,
+        CalendarDaysIcon,
+        MessageCircleIcon,
+        CopyIcon,
+        TrashIcon,
+        DownloadIcon,
+        GripVerticalIcon,
+        EditIcon,
+        MailIcon,
+        LinkIcon,
+        ExternalLinkIcon,
+        LockIcon,
+        RemoveIcon,
+        MoonIcon,
+        SlashIcon,
+        PhoneIcon,
+        HelpCircleIcon,
+        RepeatIcon,
+        Repeat1Icon,
+        SearchIcon,
+        SettingsIcon,
+        LoaderIcon,
+        StarIcon,
+        SunIcon,
+        ClockIcon,
+        UnlockIcon,
+        EyeIcon,
+        EyeOffIcon,
+        CloseCircleIcon,
+        ShareIcon,
+        CircleIcon,
+        FavouriteIcon,
+        GlobeIcon,
+        ThreeDotsIcon,
+        Icon,
+        PlayIcon,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### Lucide Icons (Recommended)
+
+[Lucide](https://lucide.dev/docs/lucide-react-native) is an open source icon library for displaying icons for react-native. `gluestack-ui` provides an easy integration with lucide icons.
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+      <VStack space="md" alignItems='center'>
+        <Icon as={Camera} />
+        <Icon as={ChromeIcon}  />
+        <Icon as={InstagramIcon} />
+        <Icon as={FacebookIcon} />
+      </VStack>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        VStack,
+        ChromeIcon,
+        InstagramIcon,
+        FacebookIcon,
+        Icon,
+        Camera,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+#### SVG & Custom Icons
+
+We can directly create Icon using `createIcon` function exported from `@gluestack-ui/themed` and use it by passing it in `as` prop in `Icon` component.
+CreateIcon function takes viewBox, d, path etc as parameters. We can use svgs from other icon libraries like fluent, react-icons etc.
+
+##### Notes to remember while using createIcon function
+
+- Pass svg props such as `viewBox` in `createIcon` directly.
+- Copy the svg code without the SVG tag directly into the function argument `Path` or `D` or whichever prop justifies your svg.
+- Replace HTML SVG tags (e.g., `<path>`, `<rect>` etc) with the corresponding React Native SVG components (e.g., `<Path>`, `<Rect>` etc).
+- For any color property (i.e. fill, stroke etc), if you want to override that color, pass "currentColor" instead of a colorCode.
+
+Before :
+`<path fill="#FF0000" d="M10 10L20 20" /> `
+
+After :
+`<Path fill="currentColor" d="M10 10L20 20" /> `
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+        const GluestackIcon = createIcon({
+          // createIcon function is imported from '@gluestack-ui/themed'
+          viewBox: '0 0 32 32',
+          path: (
+            <>
+              {/* Rect, Path is imported from 'react-native-svg' */}
+              <Rect width="32" height="32" rx="2" fill="currentColor"/>
+              <Path d="M9.5 14.6642L15.9999 9.87633V12.1358L9.5 16.9236V14.6642Z" fill="white"/>
+              <Path d="M22.5 14.6642L16.0001 9.87639V12.1359L22.5 16.9237V14.6642Z" fill="white"/>
+              <Path d="M9.5 19.8641L15.9999 15.0763V17.3358L9.5 22.1236V19.8641Z" fill="white"/>
+              <Path d="M22.5 19.8642L16.0001 15.0764V17.3358L22.5 22.1237V19.8642Z" fill="white"/>
+            </>
+          ),
+        });
+      function App () {
+        return <Icon as={GluestackIcon} color='black' size='xl'/>;
+      }
+      `,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'App');
+      },
+      scope: {
+        Wrapper,
+        createIcon,
+        Icon,
+        Path,
+        Rect,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+> gluestack-ui provides a set of pre created icons that can be used directly in our app and can also integrate third party icons using [AsForwarder](/style/docs/api/as-forwarder) from [gluestack-style](/style)
+
+## Unstyled
+
+All the components in `gluestack-ui` are unstyled by default. To customize your UI using the extendedTheme, please refer to this [link](https://gluestack.io/ui/docs/theme-configuration/customizing-theme/eject-library). The import names of components serve as keys to customize each component.
+
+<!--
+
+### Advanced
+
+We provide in-depth information on how to customize and extend the component's functionality to meet your needs. Below, we describe how to modify the component to suit your requirements.
+
+### Customizing the Icon
+
+We have a function called `createIcon` which can be used to create a custom icon component. This function takes in a configuration object which contains the styled components that you want to use for the icon. You can refer [gluestack.io/style](/style/docs/getting-started/styled) on how to use styled components.
+
+#### Usage
+
+Default styling of all these components can be found in the `./components/core/icon` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/main/packages/themed/src/components/Icons) of the styled `Icon` components.
+
+```jsx
+// import the styles
+import { Root } from '../components/core/icon/styled-components';
+
+// import the createIcon function
+import { createIcon } from '@gluestack-ui/icon';
+
+// Understanding the API
+const Icon = createIcon({
+  Root,
+});
+
+// Using the icon component
+export default () => <Icon />;
+```
+-->
+
+## Spec Doc
+
+Explore the comprehensive details of the Icon in this document, including its implementation details, checklist, and potential future additions. Dive into the thought process behind the component and gain insights into its development journey.
+
+<iframe
+  style={{
+    borderRadius: '8px',
+    border: ' 1px solid rgba(0, 0, 0, 0.1)',
+    aspectRatio: 736 / 585,
+  }}
+  src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FNcXOxqKbdnGsLQNex3H76u%2F%25C2%25A0%25F0%259F%2593%259Agluestack-UI-handbook%3Fpage-id%3D6412%253A31332%26type%3Ddesign%26node-id%3D6412-33234%26viewport%3D723%252C127%252C0.03%26t%3DxNCgdoHjEw3Tlb72-1%26scaling%3Dscale-down%26starting-point-node-id%3D6412%253A33234%26mode%3Ddesign"
+  allowFullScreen
+/>

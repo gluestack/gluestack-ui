@@ -1,0 +1,35 @@
+---
+title: useTheme | gluestack-ui
+description: useTheme is a custom hook which returns an array of active themes
+showHeader: false
+---
+
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+
+<Meta title="styled/Hooks/useTheme" />
+
+# useTheme
+
+**useTheme** is a custom hook which returns an array of active themes.
+
+### Import
+
+To use the `useTheme` in your project, import `useTheme` from `@gluestack-style/react`. as Demonstrated below.
+
+```jsx
+import { useTheme } from '@gluestack-style/react';
+```
+
+Demonstration of `useTheme` 
+
+```jsx
+import { View } from 'react-native';
+import { useTheme } from '@gluestack-style/react';
+
+const Example = () => {
+  const theme = useTheme()
+  return (
+    <View>{/* Do something with the theme */}</View>
+  );
+};
+```

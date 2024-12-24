@@ -16,3 +16,4 @@ babel.config.js
 
 
 example/storybook/__tests__/*
+example/storybook/*
