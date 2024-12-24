@@ -1,5 +1,0 @@
-{
-  "dependencies": { "@gluestack-ui/select": "latest" },
-  "componentDependencies": ["Actionsheet"],
-  "keywords": ["components", "core"]
-}
