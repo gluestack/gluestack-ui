@@ -1,0 +1,376 @@
+---
+title: gluestack-ui Calendar Component | Installation, Usage, and API
+
+description: A flexible Calendar component for date selection and display in React Native applications.
+
+pageTitle: Calendar
+
+pageDescription: A customizable Calendar component that provides date selection, range selection, and event display capabilities.
+
+showHeader: true
+
+tag: alpha
+---
+
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="with-nativewind/Components/Others/Calendar" />
+
+import { Calendar,
+CalendarHeader,
+CalendarHeaderNext,
+CalendarHeaderPrev,
+CalendarHeaderTitle,
+CalendarGrid,
+CalendarGridWeek,
+CalendarGridDays } from '../../core-components/nativewind';
+import {
+  AppProvider,
+  CodePreview,
+  Table,
+  TableContainer,
+  InlineCode,
+  Tabs
+} from '@gluestack/design-system';
+import { transformedCode } from '../../utils';
+import Wrapper from '../../core-components/nativewind/Wrapper';
+import { CollapsibleCode } from '@gluestack/design-system';
+
+# Calendar
+
+## Installation
+
+<Tabs value="cli" type="section">
+  <Tabs.TabList>
+      <Tabs.Tab value="cli">
+        <Tabs.TabTitle>CLI</Tabs.TabTitle>
+      </Tabs.Tab>
+     <Tabs.Tab value="manual">
+        <Tabs.TabTitle>Manual</Tabs.TabTitle>
+     </Tabs.Tab>
+  </Tabs.TabList>
+  <Tabs.TabPanels>
+    <Tabs.TabPanel value="cli">
+<>
+
+### Run the following command:
+  ```bash
+  npx gluestack-ui add calendar
+  ```
+
+</>
+    </Tabs.TabPanel>
+    <Tabs.TabPanel value="manual"> 
+<>
+
+
+### Step 1: Install the following dependencies:
+
+```bash
+npm i 
+```
+
+### Step 2: Copy and paste the following code into your project.
+
+<CollapsibleCode>
+
+```jsx 
+%%-- File: core-components/nativewind/calendar/index.tsx --%% 
+```
+
+</CollapsibleCode>
+
+
+### Step 3: Update the import paths to match your project setup.
+
+</>
+    </Tabs.TabPanel>
+  </Tabs.TabPanels>
+</Tabs>
+
+## API Reference
+
+To use this component in your project, include the following import statement in your file.
+
+```jsx
+
+import {
+  Calendar,
+  CalendarHeader,
+  CalendarHeaderNext,
+  CalendarHeaderPrev,
+  CalendarHeaderTitle,
+  CalendarGrid,
+  CalendarGridWeek,
+  CalendarGridDays,
+} from '@/components/ui/calendar';
+
+```
+```jsx
+export default () => (
+  <Calendar
+    value={new Date()}
+    onChange={(date) => console.log(date)}
+  >
+    <CalendarHeader>
+      <CalendarHeaderPrev />
+      <CalendarHeaderTitle />
+      <CalendarHeaderNext />
+    </CalendarHeader>
+    <CalendarGrid>
+      <CalendarGridWeek />
+      <CalendarGridDays />
+    </CalendarGrid>
+  </Calendar>
+);
+```
+
+### Component Props
+
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
+
+#### Calendar
+
+It is a context provider for entire calendar api.
+
+### Props
+
+<>
+<TableContainer>
+  <Table>
+    <Table.THead>
+      <Table.TR>
+        <Table.TH>
+          <Table.TText>Prop</Table.TText>
+        </Table.TH>
+        <Table.TH>
+          <Table.TText>Type</Table.TText>
+        </Table.TH>
+        <Table.TH>
+          <Table.TText>Default</Table.TText>
+        </Table.TH>
+        <Table.TH>
+          <Table.TText>Description</Table.TText>
+        </Table.TH>
+      </Table.TR>
+    </Table.THead>
+    <Table.TBody>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>value</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>Date</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>-</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>Currently selected date</Table.TText>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>defaultValue</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>Date</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>Current date</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>Initial date for uncontrolled usage</Table.TText>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>onChange</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>(date: Date) => void</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>-</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>Called when date selection changes</Table.TText>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>minDate</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>Date</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>-</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>Minimum selectable date</Table.TText>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>maxDate</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>Date</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>-</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>Maximum selectable date</Table.TText>
+        </Table.TD>
+      </Table.TR>
+    </Table.TBody>
+  </Table>
+</TableContainer>
+</>
+
+### CalendarGridWeek
+
+Component for rendering calendar week cells. Supports custom rendering through the render prop.
+
+<>
+<TableContainer>
+  <Table>
+    <Table.THead>
+      <Table.TR>
+        <Table.TH>
+          <Table.TText>Prop</Table.TText>
+        </Table.TH>
+        <Table.TH>
+          <Table.TText>Type</Table.TText>
+        </Table.TH>
+        <Table.TH>
+          <Table.TText>Default</Table.TText>
+        </Table.TH>
+        <Table.TH>
+          <Table.TText>Description</Table.TText>
+        </Table.TH>
+      </Table.TR>
+    </Table.THead>
+    <Table.TBody>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>render</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>(props: RenderProps) => React.ReactNode</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>-</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>Custom renderer for date cells. Allows complete customization of how dates are displayed</Table.TText>
+        </Table.TD>
+      </Table.TR>
+    </Table.TBody>
+  </Table>
+</TableContainer>
+</>
+
+
+### CalendarGridDays
+
+Component for rendering calendar day cells. Supports custom rendering through the render prop.
+
+
+<>
+<TableContainer>
+  <Table>
+    <Table.THead>
+      <Table.TR>
+        <Table.TH>
+          <Table.TText>Prop</Table.TText>
+        </Table.TH>
+        <Table.TH>
+          <Table.TText>Type</Table.TText>
+        </Table.TH>
+        <Table.TH>
+          <Table.TText>Default</Table.TText>
+        </Table.TH>
+        <Table.TH>
+          <Table.TText>Description</Table.TText>
+        </Table.TH>
+      </Table.TR>
+    </Table.THead>
+    <Table.TBody>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>render</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>(props: RenderProps) => React.ReactNode</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>-</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>Custom renderer for date cells. Allows complete customization of how dates are displayed</Table.TText>
+        </Table.TD>
+      </Table.TR>
+    </Table.TBody>
+  </Table>
+</TableContainer>
+</>
+
+### CalendarHeaderPrev & CalendarHeaderNext
+
+<>
+<TableContainer>
+  <Table>
+    <Table.THead>
+      <Table.TR>
+        <Table.TH>
+          <Table.TText>Prop</Table.TText>
+        </Table.TH>
+        <Table.TH>
+          <Table.TText>Type</Table.TText>
+        </Table.TH>
+        <Table.TH>
+          <Table.TText>Default</Table.TText>
+        </Table.TH>
+        <Table.TH>
+          <Table.TText>Description</Table.TText>
+        </Table.TH>
+      </Table.TR>
+    </Table.THead>
+    <Table.TBody>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>isDisabled</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>boolean</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>false</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>If true, the button will be disabled</Table.TText>
+        </Table.TD>
+      </Table.TR>
+    </Table.TBody>
+  </Table>
+</TableContainer>
+</>
