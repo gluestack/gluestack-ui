@@ -1,0 +1,79 @@
+---
+title: gluestack-ui Animations | gluestack-ui
+
+description: This shows how we can animate components in gluestack-ui in Next.js and Expo projects.
+
+pageTitle: Animations
+
+pageDescription: This shows how we can animate components in gluestack-ui in Next.js and Expo projects.
+---
+
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+
+<Meta title="ui/Guides/Advanced/Animations" />
+
+# Animations
+
+gluestack-ui leverages the power of the [Animation plugin](/style/docs/plugins/animation-plugin) from [gluestack.io/style](/style) to provide animations for a more engaging user experience. By default, all of our animated components are built using the [@legendapp/motion](https://legendapp.com/open-source/motion/), which provides declarative animations for React Native.
+
+### Usage:
+
+By default, gluestack-ui/themed comes with with `animation plugin` plugin installed with `@legendapp/motion` animation driver. You can use the Animatable Components from `@gluestack-style/animation-resolver` and from them you can create your own animated components.
+
+```jsx
+import { AnimatedView } from '@gluestack-style/animation-resolver';
+import { styled } from '@gluestack-style/react';
+
+const AnimatedBox = styled(AnimatedView, {
+  ':initial': {
+    opacity: 0,
+  },
+  ':animate': {
+    opacity: 1,
+  },
+  ':exit': {
+    opacity: 0,
+  },
+});
+```
+
+or You can also extend the style of the animated components and customize it.
+
+```jsx
+const componentTheme = createComponents({
+  ...defaultConfig.components,
+  ModalContent: {
+    theme: {
+      ':initial': {
+        bg: 'white',
+      },
+    },
+  },
+});
+
+// Pass this componentTheme in the provider.
+```
+
+## Overlay components:
+
+gluestack-ui also provides a set of overlay components that can be used to create a modal-like experience. All the animation props works out of the box with these components. However, to animate component on exit you need to pass [AnimatePresence](https://legendapp.com/open-source/motion/animate-presence/) while creating component.
+
+If you can use `AnimatePresence` from `@gluestack-style/animation-resolver`, which internally uses `AnimatePresence` from your chosen driver.
+
+### Example:
+
+```jsx
+import { AnimatePresence } from '@gluestack-style/animation-resolver';
+
+export const Tooltip = createTooltip({
+  Root,
+  Content,
+  AnimatePresence, // Can be AnimatePresence from the library you are using
+});
+```
+
+## Advanced concepts for animations in gluestack-ui
+
+However, you are not limited to use only `@legendapp/motion`. You can use any declarative animation library you prefer, such as [framer-motion](https://www.framer.com/motion/), and [moti](https://moti.fyi/), or others. You can add your own animation driver to the `animation-resolver` plugin and use it with gluestack-ui. Currently we only provide 2 drivers, `@legendapp/motion` and `moti`.
+
+You can refer to [customizing animations](/ui/docs/theme-configuration/customizing-theme) section's documentation for more details on customizing the Animation Components.

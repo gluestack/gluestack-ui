@@ -1,0 +1,129 @@
+---
+title: Third party components | gluestack-ui
+description: Ways to add third party components to gluestack-ui
+toc: false
+---
+
+import {
+  GluestackUIProvider,
+  HStack,
+  Text,
+  Pressable,
+  Icon,
+  AddIcon,
+  Button,
+  Box,
+} from '@gluestack-ui/themed';
+import { config } from '@gluestack-ui/config';
+import { transformedCode } from '../../../utils';
+import Wrapper from '../../../components/Wrapper';
+import {
+  AppProvider,
+  CodePreview,
+  Table,
+  TableContainer,
+  InlineCode,
+} from '@gluestack/design-system';
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+
+<script async src="https://snack.expo.dev/embed.js"></script>
+
+<Meta title="ui/Guides/Resources/Third Party Library Integrations" />
+
+# Third-Party Component Integrations
+
+This page provides guidance on incorporating third-party components into your gluestack-ui project. Enhance your application's functionality by seamlessly integrating external components.
+
+## Integration Steps:
+
+1. Install the third-party component's package.
+
+2. Create a wrapper component that renders the third-party component.
+
+3. Add the wrapper component to your gluestack-ui project.
+
+## Example
+
+### Install the third-party component's package
+
+Install the third-party component's package using your package manager of choice. For example, to install the [react-native-color-picker](https://github.com/instea/react-native-color-picker) package, run the following command:
+
+```bash
+yarn add react-native-color-picker
+```
+
+### Create a wrapper component
+
+Create a wrapper component that renders the third-party component. For example, to create a wrapper component for the [react-native-color-picker](ColorPicker)
+
+- Create a new directory for the wrapper component. For example, `src/components/ColorPicker`.
+- Create a new file for the wrapper component. For example, `src/components/ColorPicker/ColorPicker.tsx` for native and `src/components/ColorPicker/ColorPicker.web.tsx` for web.
+- Add the following code to the wrapper component file for native:
+
+```jsx
+import { ColorPicker as ColorPickerComponent } from 'react-native-color-picker';
+
+export default ColorPicker = (props) => {
+  return <ColorPickerComponent {...props} />;
+};
+```
+
+- Add the following code to the wrapper component file for web:
+
+```jsx
+export default ColorPicker = (props) => {
+  return <input type="color" {...props} />;
+};
+```
+
+- Add the following code to the `src/components/index.ts` file:
+
+```jsx
+export ColorPicker from './ColorPicker';
+```
+
+### Add the wrapper component to your gluestack-ui project
+
+Add the wrapper component to your gluestack-ui project. For example, to add the [react-native-color-picker](ColorPicker) wrapper component to your gluestack-ui project:
+
+```jsx
+import { ColorPicker } from '../components';
+import { Center } from '@gluestack-ui/themed';
+export const HomeScreen = () => {
+  return (
+    <Center>
+      <ColorPicker style={{ height: 80, width: 80 }} />
+    </Center>
+  );
+};
+```
+
+### Styling the third-party component using gluestack-style
+
+You can style the third-party component using the [gluestack-style](/style/docs). For example, to style the [react-native-color-picker](ColorPicker) component:
+
+```jsx
+import { ColorPicker } from '../components';
+import { styled } from '@gluestack-ui/themed';
+
+const StyledColorPicker = styled(ColorPicker, {
+  bg: '$yellow100',
+  height: '$64',
+  width: '$48',
+});
+```
+
+You can check the [styled](style/docs/getting-started/styled) function from `gluestack-style` to style it more precisely as per needs.
+
+### Adding accessibility labels to the third-party component
+
+You can add accessibility labels to the third-party component using the [gluestack-accessibility](/accessibility/docs). For example, to add accessibility labels to the [react-native-color-picker](ColorPicker) component:
+
+```jsx
+import { ColorPicker as ColorPickerComponent } from 'react-native-color-picker';
+
+export default ColorPicker = (props) => {
+  return <ColorPickerComponent {...props} accessibilityLabel={'your-label'} />;
+};
+```
+../../components1/Wrapper../../../utils../../../components/Wrapper

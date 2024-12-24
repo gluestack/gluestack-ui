@@ -1,0 +1,23 @@
+import { Button, ButtonGroup, ButtonText } from '@gluestack-ui/themed';
+import React from 'react';
+
+const ButtonGroupBasic = ({ ...props }) => {
+  return (
+    <ButtonGroup {...props}>
+      <Button>
+        <ButtonText>Button 1</ButtonText>
+      </Button>
+      <Button>
+        <ButtonText>Button 2</ButtonText>
+      </Button>
+      <Button>
+        <ButtonText>Button 3</ButtonText>
+      </Button>
+    </ButtonGroup>
+  );
+};
+
+ButtonGroupBasic.description =
+  'This is a basic ButtonGroup component example. ButtonGroups are used to group related buttons together.';
+
+export default ButtonGroupBasic;
