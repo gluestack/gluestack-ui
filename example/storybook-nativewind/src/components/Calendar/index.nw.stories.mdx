@@ -38,6 +38,27 @@ import { CollapsibleCode } from '@gluestack/design-system';
 
 # Calendar
 
+<Wrapper>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={true}
+    metaData={{
+      code: `
+    <Calendar {...props} value={new Date()} className="max-w-sm"/>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Calendar,
+        Wrapper,
+      },
+    }}
+  />
+</Wrapper>
+
+<br />
+
 ## Installation
 
 <Tabs value="cli" type="section">

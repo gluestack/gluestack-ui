@@ -55,7 +55,7 @@ export interface ICalendarGridWeekProps {
    * Render method for custom day rendering
    */
   render?: (
-    weekdays: string[],
+    weekdays: string,
     Component: React.ComponentType<React.ReactNode>
   ) => React.ReactNode;
 }
@@ -64,7 +64,7 @@ export interface ICalendarDayProps {
   /**
    * The day number or null for empty cells
    */
-  day: number | null;
+  day: Date | null;
   /**
    * When true, indicates this day is selected
    */
@@ -80,17 +80,14 @@ export interface ICalendarDayProps {
   /**
    * Handler for when the day is pressed
    */
-  onPress?: (day: number) => void;
+  onPress?: (date: Date) => void;
 }
 
 export interface ICalendarGridDaysProps {
   /**
    * Render method for custom day rendering
    */
-  render?: (
-    days: (number | null)[],
-    Component: React.ComponentType<ICalendarDayProps>
-  ) => React.ReactNode;
+  render?: (days: Date | null, props: ICalendarDayProps) => React.ReactNode;
 }
 
 export interface ICalendarContextValue {
@@ -105,7 +102,7 @@ export interface ICalendarContextValue {
   /**
    * Handler for date selection
    */
-  handleDateSelect: (day: number) => void;
+  handleDateSelect: (day: Date | null) => void;
   /**
    * Navigate to previous month
    */
@@ -117,11 +114,11 @@ export interface ICalendarContextValue {
   /**
    * Get array of days for current month
    */
-  getDaysInMonth: () => (number | null)[];
+  getDaysInMonth: () => (Date | null)[];
   /**
    * Check if a day is today
    */
-  isToday: (day: number) => boolean;
+  isToday: (day: Date | null) => boolean;
   /**
    * Weekdays
    */
@@ -142,6 +139,11 @@ export interface ICalendarContextValue {
    * If true, the next navigation button is disabled
    */
   isNextDisabled: boolean;
+
+  /**
+   * If true, the day is disabled
+   */
+  isDisabled: (day: Date | null) => boolean;
 }
 
 export type ICalendarComponentType<

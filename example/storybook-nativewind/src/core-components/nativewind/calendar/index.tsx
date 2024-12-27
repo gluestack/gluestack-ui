@@ -4,8 +4,6 @@ import {
   View as RNView,
   Pressable as RNPressable,
   Text as RNText,
-  TextProps as RNTextProps,
-  Platform,
 } from 'react-native';
 import { createCalendar } from '@gluestack-ui/calendar';
 import { withStyleContext } from '@gluestack-ui/nativewind-utils/withStyleContext';
@@ -29,9 +27,11 @@ const SCOPE = 'CALENDAR';
 
 const Root = withStyleContext(RNView, SCOPE);
 
-const Header = (
-  Platform.OS === 'web' ? RNText : RNView
-) as React.ComponentType<RNTextProps>;
+cssInterop(Root, {
+  className: {
+    target: 'style',
+  },
+});
 
 /** Creator */
 
@@ -40,7 +40,7 @@ const UICalendar = createCalendar({
   HeaderPrev: RNPressable,
   HeaderTitle: RNText,
   HeaderNext: RNPressable,
-  Header: Header,
+  Header: RNText,
   GridWeek: RNView,
   GridDays: RNView,
   Grid: RNView,
@@ -98,19 +98,6 @@ type ICalendarHeaderTitleProps = React.ComponentPropsWithoutRef<
   VariantProps<typeof calendarTitleStyle>;
 
 /** Components */
-
-const Calendar = React.forwardRef<
-  React.ElementRef<typeof UICalendar>,
-  ICalendarProps
->(({ className, ...props }, ref) => {
-  return (
-    <UICalendar
-      ref={ref}
-      {...props}
-      className={calendarStyle({ class: className })}
-    />
-  );
-});
 
 const CalendarHeaderPrev = React.forwardRef<
   React.ElementRef<typeof UICalendar.HeaderPrev>,
@@ -190,17 +177,12 @@ const CalendarGridWeek = React.forwardRef<
       ref={ref}
       {...props}
       className={calendarGridWeekStyle({ class: className })}
-      render={(weekdays) => {
-        return weekdays.map((day) => {
-          return (
-            <RNText
-              className={calendarWeekCellStyle({ class: className })}
-              key={day}
-            >
-              {day}
-            </RNText>
-          );
-        });
+      render={(day) => {
+        return (
+          <RNText className={calendarWeekCellStyle({ class: className })}>
+            {day}
+          </RNText>
+        );
       }}
     />
   );
@@ -215,19 +197,46 @@ const CalendarGridDays = React.forwardRef<
       ref={ref}
       {...props}
       className={calendarGridDaysStyle({ class: className })}
-      render={(days) => {
-        return days.map((day) => {
-          return (
-            <RNText
-              className={calendarDaysCellStyle({ class: className })}
-              key={day}
-            >
-              {day}
-            </RNText>
-          );
-        });
-      }}
+      render={(day, states) => (
+        <RNView
+          {...states}
+          className={calendarDaysCellStyle({ class: className })}
+        >
+          <RNText>{day?.getDate()}</RNText>
+        </RNView>
+      )}
     />
+  );
+});
+
+const Calendar = React.forwardRef<
+  React.ElementRef<typeof UICalendar>,
+  ICalendarProps
+>(({ children, className, ...props }, ref) => {
+  return children ? (
+    <UICalendar
+      ref={ref}
+      {...props}
+      className={calendarStyle({ class: className })}
+    >
+      {children}
+    </UICalendar>
+  ) : (
+    <UICalendar
+      ref={ref}
+      {...props}
+      className={calendarStyle({ class: className })}
+    >
+      <CalendarHeader>
+        <CalendarHeaderPrev />
+        <CalendarHeaderTitle />
+        <CalendarHeaderNext />
+      </CalendarHeader>
+      <CalendarGrid>
+        <CalendarGridWeek />
+        <CalendarGridDays />
+      </CalendarGrid>
+    </UICalendar>
   );
 });
 

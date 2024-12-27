@@ -9,10 +9,11 @@ export const CalendarContext = createContext<ICalendarContextValue>({
   nextMonth: () => {},
   getDaysInMonth: () => [],
   isToday: () => false,
-  WEEKDAYS: [],
-  MONTHS: [],
+  weekDays: [],
+  months: [],
   title: '',
   isPrevDisabled: false,
   isNextDisabled: false,
+  isDisabled: () => false,
 });
 export const useCalendarContext = () => useContext(CalendarContext);

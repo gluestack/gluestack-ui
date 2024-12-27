@@ -42,6 +42,16 @@ export function Calendar(StyledCalendar: any) {
       const isPrevDisabled = minDate ? currentMonth < minDate : false;
       const isNextDisabled = maxDate ? currentMonth > maxDate : false;
 
+      const isDisabled = useCallback(
+        (day: Date | null) => {
+          if (!day) return false;
+          if (minDate && day < minDate) return true;
+          if (maxDate && day > maxDate) return true;
+          return false;
+        },
+        [minDate, maxDate]
+      );
+
       const title = useMemo(() => {
         return `${
           MONTHS[currentMonth.getMonth()]
@@ -79,36 +89,30 @@ export function Calendar(StyledCalendar: any) {
         }
 
         for (let i = 1; i <= daysInMonth; i++) {
-          days.push(i);
+          days.push(new Date(year, month, i));
         }
 
         return days;
       }, [currentMonth]);
 
       const handleDateSelect = useCallback(
-        (day: number) => {
-          const newDate = new Date(currentMonth);
-          newDate.setDate(day);
-          if (minDate && newDate < minDate) return;
-          if (maxDate && newDate > maxDate) return;
-
-          setSelectedDate(newDate);
-          onChange?.(newDate);
+        (day: Date | null) => {
+          if (!day) return;
+          onChange?.(day);
+          setSelectedDate(day);
         },
-        [currentMonth, minDate, maxDate, onChange]
+        [onChange]
       );
 
-      const isToday = useCallback(
-        (day: number) => {
-          const today = new Date();
-          return (
-            today.getDate() === day &&
-            today.getMonth() === currentMonth.getMonth() &&
-            today.getFullYear() === currentMonth.getFullYear()
-          );
-        },
-        [currentMonth]
-      );
+      const isToday = useCallback((day: Date | null) => {
+        if (!day) return false;
+        const today = new Date();
+        return (
+          today.getDate() === day.getDate() &&
+          today.getMonth() === day.getMonth() &&
+          today.getFullYear() === day.getFullYear()
+        );
+      }, []);
 
       const contextValue = useMemo(
         () => ({
@@ -124,6 +128,7 @@ export function Calendar(StyledCalendar: any) {
           months: MONTHS,
           isPrevDisabled,
           isNextDisabled,
+          isDisabled,
         }),
         [
           selectedDate,
@@ -136,6 +141,7 @@ export function Calendar(StyledCalendar: any) {
           isToday,
           isPrevDisabled,
           isNextDisabled,
+          isDisabled,
         ]
       );
       return (

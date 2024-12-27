@@ -10,20 +10,8 @@ import {
   CalendarGridDays,
 } from '@/components/ui/calendar';
 
-const CalendarBasic = () => {
-  return (
-    <Calendar value={new Date()} className="max-w-6xl">
-      <CalendarHeader>
-        <CalendarHeaderPrev />
-        <CalendarHeaderTitle />
-        <CalendarHeaderNext />
-      </CalendarHeader>
-      <CalendarGrid>
-        <CalendarGridWeek />
-        <CalendarGridDays />
-      </CalendarGrid>
-    </Calendar>
-  );
+const CalendarBasic = ({ ...props }: any) => {
+  return <Calendar {...props} value={new Date()} className="w-72" />;
 };
 
 CalendarBasic.description =
@@ -31,4 +19,13 @@ CalendarBasic.description =
 
 export default CalendarBasic;
 
-export { Calendar };
+export {
+  Calendar,
+  CalendarHeader,
+  CalendarHeaderNext,
+  CalendarHeaderPrev,
+  CalendarHeaderTitle,
+  CalendarGrid,
+  CalendarGridWeek,
+  CalendarGridDays,
+};
