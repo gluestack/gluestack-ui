@@ -19,6 +19,7 @@ export * from './divider';
 export * from './fab';
 export * from './form-control';
 export * from './input';
+export * from './pin-input';
 // export * from './input-accessory-view';
 export * from './portal';
 export * from './image';
