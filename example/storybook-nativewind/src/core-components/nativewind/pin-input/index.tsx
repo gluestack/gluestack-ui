@@ -3,9 +3,16 @@ import React, { forwardRef } from 'react';
 import { View, TextInput } from 'react-native';
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import { createPinInput } from '@gluestack-ui/pin-input';
+import {
+  useStyleContext,
+  withStyleContext,
+} from '@gluestack-ui/nativewind-utils/withStyleContext';
+import type { VariantProps } from '@gluestack-ui/nativewind-utils';
+
+const SCOPE = 'PIN_INPUT';
 
 const PinInputRoot = createPinInput({
-  Root: View,
+  Root: withStyleContext(View, SCOPE),
   Input: TextInput,
 });
 
@@ -16,50 +23,60 @@ const PinInputStyle = tva({
       sm: ``,
       md: ``,
       lg: ``,
+      xl: ``,
     },
   },
 });
 
 const PinInputFieldStyle = tva({
-  base: `flex w-10 h-10 p-0 rounded-md text-lg bg-background-50 text-center justify-center items-center border border-background-200 data-[hover=true]:bg-background-100 data-[hover=true]:border-background-200 web:data-[focus=true]:outline web:data-[focus=true]:outline-blue-200 data-[focus=true]:bg-background-200`,
+  base: `flex w-10 h-10 p-0 rounded-md text-typography-950 text-base bg-background-50 text-center ios:leading-[0px] border border-background-200 data-[hover=true]:bg-background-100 data-[hover=true]:border-background-200 web:data-[focus=true]:outline web:data-[focus=true]:outline-blue-200 data-[focus=true]:bg-background-200`,
   parentVariants: {
     size: {
-      sm: `text-base w-8 h-8`,
-      md: `text-lg w-10 h-10`,
-      lg: `text-xl w-12 h-12`,
+      xl: 'h-12 w-12 text-2xl',
+      lg: 'h-11 w-11 text-xl',
+      md: 'h-10 w-10 text-lg',
+      sm: 'h-9 w-9 text-base',
     },
   },
 });
 
+type IPinInputProps = React.ComponentProps<typeof PinInputRoot> &
+  VariantProps<typeof PinInputStyle> & { className?: string };
+
 const PinInput = forwardRef<
   React.ElementRef<typeof PinInputRoot>,
-  React.ComponentProps<typeof PinInputRoot> & { className?: string }
->(({ children, className, ...props }, ref) => {
+  IPinInputProps
+>(({ children, size = 'lg', className, ...props }, ref) => {
   return (
     <PinInputRoot
-      // @ts-ignore
       ref={ref}
       className={PinInputStyle({
         class: className,
       })}
       {...props}
+      context={{ size: size }}
     >
       {children}
     </PinInputRoot>
   );
 });
 
+type IPinInputFieldProps = React.ComponentProps<typeof PinInputRoot.Input> &
+  VariantProps<typeof PinInputFieldStyle> & { className?: string };
+
 const PinInputField = forwardRef<
   React.ElementRef<typeof PinInputRoot.Input>,
-  React.ComponentProps<typeof PinInputRoot.Input> & { className?: string }
->(({ className, ...props }, ref) => {
+  IPinInputFieldProps
+>(({ className, size, ...props }, ref) => {
+  const { size: parentSize } = useStyleContext(SCOPE);
   return (
     <PinInputRoot.Input
-      // @ts-ignore
       ref={ref}
       className={PinInputFieldStyle({
         class: className,
-        size: 'sm',
+        parentVariants: {
+          size: size ?? parentSize,
+        },
       })}
       {...props}
     />
