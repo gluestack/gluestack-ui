@@ -48,7 +48,12 @@ export interface IPinInputProps {
   onFocus?: any;
   onBlur?: any;
   /**
-   * Required.The number of fields in the pin input.
+   * Required. The refs of the input fields.
+   * It will return the array of refs of the input fields.
+   */
+  inputRefs?: any;
+  /**
+   * Required. The number of fields in the pin input, else component will not work properly.
    * Default: 4
    */
   noOfFields?: number;

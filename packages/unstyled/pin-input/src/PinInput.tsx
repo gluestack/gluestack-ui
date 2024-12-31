@@ -33,8 +33,10 @@ export const PinInput = (StyledPinInput: any) =>
         handleBackSpace,
       } = usePinInput('PinInputContext');
 
-      // @ts-ignore
-      const value = inputValue?.length > index ? inputValue[index] : '';
+      const value =
+        (inputValue as string)?.length > index
+          ? (inputValue as string)[index]
+          : '';
 
       const inputRef = useRef();
 
@@ -51,8 +53,6 @@ export const PinInput = (StyledPinInput: any) =>
       });
 
       const handlePaste = (pastedValue: any) => {
-        // const newPastedValue = pastedValue.slice(0, -1);
-        // // console.log('newPastedValue', newPastedValue);
         setInputValue(pastedValue);
       };
 

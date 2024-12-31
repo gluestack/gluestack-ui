@@ -19,8 +19,8 @@ export const PinInputGroup = (StyledPinInputRoot: any) =>
         isRequired,
         noOfFields = 4,
         value,
-        // defaultValue,
         onChange,
+        inputRefs,
         ...props
       }: any,
       ref?: any
@@ -35,6 +35,9 @@ export const PinInputGroup = (StyledPinInputRoot: any) =>
         childRefs.current = Array(noOfFields)
           .fill(null)
           .map((_, i) => childRefs.current[i] || createRef());
+      }
+      if (inputRefs) {
+        inputRefs.current = childRefs.current;
       }
 
       const inputProps = useFormControlContext();
