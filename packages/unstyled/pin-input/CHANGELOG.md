@@ -1,5 +1,11 @@
 # @gluestack-ui/pin-input
 
+## 0.0.7
+
+### Patch Changes
+
+- updated readme
+
 ## 0.0.6
 
 ### Patch Changes

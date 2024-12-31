@@ -1,9 +1,9 @@
-# @gluestack-style/input
+# @gluestack-style/pin-input
 
 ## Installation
 
-To use `@gluestack-ui/input`, all you need to do is install the
-`@gluestack-ui/input` package:
+To use `@gluestack-ui/pin-input`, all you need to do is install the
+`@gluestack-ui/pin-input` package:
 
 ```sh
 $ yarn add @gluestack-ui/pin-input
@@ -15,7 +15,7 @@ $ npm i @gluestack-ui/pin-input
 
 ## Usage
 
-The Input component is your go-to tool for gathering user input in a sleek and user-friendly text field. Whether you're designing a simple login form or a complex search feature, this component has got you covered. Here's an example how to use this package to create one:
+The PinInput component is specifically designed for capturing One-Time Passwords (OTPs) in a user-friendly and secure manner. It's perfect for implementing OTP verification in your application, ensuring a smooth user experience. Here's an example of how to use this package to create an OTP input field:
 
 ```jsx
 import { View, TextInput } from 'react-native';
@@ -26,9 +26,9 @@ const PinInputRoot = createPinInput({
 });
 ```
 
-## Customizing the input:
+## Customizing the pin-input:
 
-Default styling of all these components can be found in the components/core/input file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/ui-components/Input/index.tsx) of the styled `input` components.
+Default styling of all these components can be found in the components/core/pin-input file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/ui-components/PinInput/index.tsx) of the styled `pin-input` components.
 
 ```jsx
 import { View, TextInput } from 'react-native';
@@ -42,7 +42,7 @@ const PinInputField = createPinInput({
   Input: TextInput,
 });
 
-// Using the input component
+// Using the pin-input component
 export default () => (
   <PinInputField>
     <PinInputFieldInput />
