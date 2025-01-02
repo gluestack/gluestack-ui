@@ -27,7 +27,7 @@ cssInterop(UITimeInput, {
 });
 
 const timeInputStyle = tva({
-  base: 'flex flex-row items-center justify-between',
+  base: 'flex flex-row items-center justify-between w-fit',
   variants: {
     size: {
       xl: 'h-12 gap-5',
