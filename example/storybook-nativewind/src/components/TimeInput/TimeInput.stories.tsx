@@ -7,7 +7,7 @@ const TimeInputMeta: ComponentMeta<typeof TimeInput> = {
   // metaInfo is required for figma generation
   // @ts-ignore
   metaInfo: {
-    componentDescription: `The TimeInput component is designed to accommodate larger amounts of text input. It allows multi-line input and can be easily customized to fit the user's needs.`,
+    componentDescription: `The TimeInput component is designed to take the time from user in the form of day.js object`,
   },
   argTypes: {
     size: {
