@@ -9,8 +9,35 @@ const TimeInputMeta: ComponentMeta<typeof TimeInput> = {
   metaInfo: {
     componentDescription: `The TimeInput component is designed to accommodate larger amounts of text input. It allows multi-line input and can be easily customized to fit the user's needs.`,
   },
-  argTypes: {},
-  args: {},
+  argTypes: {
+    size: {
+      control: 'select',
+      options: ['sm', 'md', 'lg', 'xl'],
+    },
+    variant: {
+      control: 'select',
+      options: ['outlined', 'underlined'],
+    },
+    isInvalid: {
+      control: 'boolean',
+      options: [true, false],
+    },
+    isDisabled: {
+      control: 'boolean',
+      options: [true, false],
+    },
+    isReadOnly: {
+      control: 'boolean',
+      options: [true, false],
+    },
+  },
+  args: {
+    size: 'sm',
+    variant: 'outlined',
+    isInvalid: false,
+    isDisabled: false,
+    isReadOnly: false,
+  },
 };
 
 export default TimeInputMeta;

@@ -1,6 +1,5 @@
 import { TimeInputHr } from './TimeInputHr';
 import { TimeInputMin } from './TimeInputMin';
-import { TimeInputSec } from './TimeInputSec';
 import type { ITimeInputComponentType } from './types';
 import { TimeInputGroup } from './TimeInputGroup';
 import { TimeInputMeridiem } from './TimeInputMeridiem';
@@ -10,42 +9,36 @@ export const createTimeInput = <
   Root,
   TimeInputHr,
   TimeInputMin,
-  TimeInputSec,
   TimeInputMeridiem,
   TimeInputMeridiemText
 >({
   Root,
   TimeInputHr: Hr,
   TimeInputMin: Min,
-  TimeInputSec: Sec,
   TimeInputMeridiem: Meridiem,
   TimeInputMeridiemText: MeridiemText,
 }: {
   Root: React.ComponentType<Root>;
   TimeInputHr: React.ComponentType<TimeInputHr>;
   TimeInputMin: React.ComponentType<TimeInputMin>;
-  TimeInputSec: React.ComponentType<TimeInputSec>;
   TimeInputMeridiem: React.ComponentType<TimeInputMeridiem>;
   TimeInputMeridiemText: React.ComponentType<TimeInputMeridiemText>;
 }) => {
-  const TimeInputField = TimeInputGroup(Root) as any;
-  TimeInputField.Hr = TimeInputHr(Hr);
-  TimeInputField.Min = TimeInputMin(Min);
-  TimeInputField.Sec = TimeInputSec(Sec);
-  TimeInputField.Meridiem = TimeInputMeridiem(Meridiem);
-  TimeInputField.MeridiemText = TimeInputMeridiemText(MeridiemText);
-  TimeInputField.displayName = 'TimeInputField';
-  TimeInputField.Hr.displayName = 'TimeInputField.Hr';
-  TimeInputField.Min.displayName = 'TimeInputField.Min';
-  TimeInputField.Sec.displayName = 'TimeInputField.Sec';
-  TimeInputField.Meridiem.displayName = 'TimeInputField.Meridiem';
-  TimeInputField.MeridiemText.displayName = 'TimeInputField.MeridiemText';
+  const TimeInput = TimeInputGroup(Root) as any;
+  TimeInput.Hr = TimeInputHr(Hr);
+  TimeInput.Min = TimeInputMin(Min);
+  TimeInput.Meridiem = TimeInputMeridiem(Meridiem);
+  TimeInput.MeridiemText = TimeInputMeridiemText(MeridiemText);
+  TimeInput.displayName = 'TimeInput';
+  TimeInput.Hr.displayName = 'TimeInput.Hr';
+  TimeInput.Min.displayName = 'TimeInput.Min';
+  TimeInput.Meridiem.displayName = 'TimeInput.Meridiem';
+  TimeInput.MeridiemText.displayName = 'TimeInput.MeridiemText';
 
-  return TimeInputField as ITimeInputComponentType<
+  return TimeInput as ITimeInputComponentType<
     Root,
     TimeInputHr,
     TimeInputMin,
-    TimeInputSec,
     TimeInputMeridiem,
     TimeInputMeridiemText
   >;

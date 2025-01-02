@@ -3,28 +3,26 @@ import {
   TimeInput,
   TimeInputHr,
   TimeInputMin,
-  TimeInputSec,
   TimeInputMeridiem,
   TimeInputMeridiemText,
+  TimeInputColumn,
 } from '@/components/ui/time-input';
 
 const TimeInputBasic = ({ ...props }: any) => {
   const [timeValue, setTimeValue] = useState(null);
-
   return (
     <>
       <TimeInput
         {...props}
-        // variant="rounded"
-        format={12}
-        timeValue={timeValue}
+        value={timeValue}
         onChange={setTimeValue}
-        // defaultValue="12:02:00:PM"
+        isHovered={true}
+        isReadOnly={true}
+        className=""
       >
         <TimeInputHr placeholder="HH" />
+        <TimeInputColumn className="" />
         <TimeInputMin placeholder="MM" />
-        <TimeInputSec placeholder="SS" />
-
         <TimeInputMeridiem isPressed={false} isHovered={true}>
           <TimeInputMeridiemText />
         </TimeInputMeridiem>

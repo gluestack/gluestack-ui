@@ -1,9 +1,11 @@
-import React, { forwardRef, useMemo, useRef } from 'react';
+import React, { forwardRef, useMemo, useRef, useState } from 'react';
 import { Platform } from 'react-native';
 import { useFormControl } from '@gluestack-ui/form-control';
 import { useTimeInput } from './TimeInputContext';
 import { mergeRefs } from '@gluestack-ui/utils';
 import { useHover } from '@react-native-aria/interactions';
+import { useFocusRing } from '@react-native-aria/focus';
+import type { ITimeInputFieldProps } from './types';
 
 export const TimeInputHr = (StyledTimeInputHr: any) =>
   forwardRef(
@@ -14,41 +16,40 @@ export const TimeInputHr = (StyledTimeInputHr: any) =>
         'isHovered': isHoveredProp = true,
         'aria-label': ariaLabel = 'Hours',
         editable,
-        // isFocused: isFocusedProp = false,
         'isDisabled': isDisabledProp = false,
+        'isFocused': isFocusedProp = false,
+        'isFocusVisible': isFocusVisibleProp,
         ...props
-      }: any,
+      }: Omit<ITimeInputFieldProps, 'children'> & { children: React.ReactNode },
       ref?: any
     ) => {
       const {
         isDisabled,
         isReadOnly,
-        isFocused,
         isInvalid,
-        setIsFocused,
-        isFocusVisible,
         isRequired,
-        updateHours,
-        timeValue,
+        value,
+        setTimeValue,
       } = useTimeInput('TimeInputContext');
+
       const inputProps = useFormControl({
-        isDisabled: props.isDisabled,
-        isInvalid: props.isInvalid,
-        isReadOnly: props.isReadOnly,
-        isRequired: props.isRequired,
+        isDisabled: isDisabledProp,
+        isInvalid: isInvalid,
+        isReadOnly: isReadOnly,
+        isRequired: isRequired,
         id: props.id,
       });
+
       const inputRef = useRef(null);
-      const handleChange = (e: any) => {
-        const newHours = e.target.value;
-        updateHours(newHours);
-      };
       const { isHovered }: any = useHover({}, inputRef);
+
+      const [isFocused, setIsFocused] = useState(false);
       const handleFocus = (focusState: boolean, callback: any) => {
-        setIsFocused?.(focusState);
+        setIsFocused(focusState);
         callback();
       };
 
+      const { isFocusVisible }: any = useFocusRing();
       const mergedRef = mergeRefs([ref, inputRef]);
 
       const editableProp = useMemo(() => {
@@ -70,25 +71,38 @@ export const TimeInputHr = (StyledTimeInputHr: any) =>
         isDisabledProp,
       ]);
 
+      const handleChange = (newHoursInt: string) => {
+        const newHours = newHoursInt.replace(/[^0-9]/g, '');
+        if (newHours === newHoursInt) {
+          const newTimeValue = newHours
+            ? value
+                .set('hour', parseInt(newHours) % 12)
+                .second(new Date().getSeconds())
+            : value.set('hour', 0).second(new Date().getSeconds());
+          setTimeValue(newTimeValue);
+        }
+      };
+
       return (
         <StyledTimeInputHr
           {...props}
           states={{
-            focus: isFocused,
+            focus: isFocusedProp || isFocused,
             invalid: isInvalid,
             readonly: isReadOnly,
             required: isRequired,
             hover: isHoveredProp && isHovered,
-            focusVisible: isFocusVisible,
+            focusVisible: isFocusVisibleProp || isFocusVisible,
             disabled: isDisabled || inputProps.isDisabled,
           }}
           dataSet={{
-            focus: isFocused ? 'true' : 'false',
+            focus: isFocusedProp || isFocused ? 'true' : 'false',
             invalid: isInvalid ? 'true' : 'false',
             readonly: isReadOnly ? 'true' : 'false',
             required: isRequired ? 'true' : 'false',
             hover: isHoveredProp && isHovered ? 'true' : 'false',
-            focusVisible: isFocusVisible ? 'true' : 'false',
+            focusVisible:
+              isFocusVisibleProp || isFocusVisible ? 'true' : 'false',
             disabled: isDisabled || inputProps.isDisabled ? 'true' : 'false',
           }}
           disabled={isDisabled || inputProps.isDisabled}
@@ -106,19 +120,13 @@ export const TimeInputHr = (StyledTimeInputHr: any) =>
             onKeyPress && onKeyPress(e);
           }}
           onFocus={(e: any) => {
-            handleFocus(
-              true,
-              props?.onFocus ? () => props?.onFocus(e) : () => {}
-            );
+            handleFocus(true, () => props.onFocus?.(e));
           }}
           onBlur={(e: any) => {
-            handleFocus(
-              false,
-              props?.onBlur ? () => props?.onBlur(e) : () => {}
-            );
+            handleFocus(false, () => props.onBlur?.(e));
           }}
-          value={timeValue.split(':')[0]}
-          onChange={handleChange}
+          value={(value.get('hour') % 12).toString()}
+          onChangeText={handleChange}
           ref={mergedRef}
           keyboardType="number-pad"
         >

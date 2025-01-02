@@ -6,13 +6,11 @@ export const TimeInputMeridiemText = (StyledTimeInputMeridiemText: any) =>
     const {
       isDisabled,
       isReadOnly,
-      isFocused,
-      isInvalid,
-      isFocusVisible,
       meridiemHovered,
-      meridiemValue,
+      meridiem,
       meridiemPressed,
     } = useTimeInput('TimeInputContext');
+
     return (
       <StyledTimeInputMeridiemText
         ref={ref}
@@ -20,21 +18,17 @@ export const TimeInputMeridiemText = (StyledTimeInputMeridiemText: any) =>
         states={{
           hover: meridiemHovered,
           disabled: isDisabled,
-          focusVisible: isFocusVisible,
-          focus: isFocused,
           active: meridiemPressed,
           readOnly: isReadOnly,
-          invalid: isInvalid,
         }}
         dataSet={{
           hover: meridiemHovered,
-          focus: focus,
+          disabled: isDisabled,
           active: meridiemPressed,
           readOnly: isReadOnly,
-          invalid: isInvalid,
         }}
       >
-        {meridiemValue}
+        {meridiem}
       </StyledTimeInputMeridiemText>
     );
   });

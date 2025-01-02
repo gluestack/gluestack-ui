@@ -3,6 +3,8 @@ import { useTimeInput } from './TimeInputContext';
 import { composeEventHandlers } from '@gluestack-ui/utils';
 import { mergeRefs } from '@gluestack-ui/utils';
 import { useHover, usePress } from '@react-native-aria/interactions';
+import { useFocusRing, useFocus } from '@react-native-aria/focus';
+import type { ITimeInputMeridiemProps } from './types';
 
 export const TimeInputMeridiem = (StyledTimeInputMeridiem: any) =>
   forwardRef(
@@ -13,37 +15,50 @@ export const TimeInputMeridiem = (StyledTimeInputMeridiem: any) =>
         isFocused: isFocusedProp,
         isPressed: isPressedProp,
         isFocusVisible: isFocusVisibleProp,
-        // editable,
         isDisabled: isDisabledProp,
         ...props
-      }: any,
+      }: Omit<ITimeInputMeridiemProps, 'children'> & {
+        children: React.ReactNode;
+      },
       ref?: any
     ) => {
       const {
         isDisabled,
         isReadOnly,
-        isFocused,
-        isInvalid,
-        // setIsFocused,
-        isFocusVisible,
+        value,
+        meridiem,
+        setMeridiem,
         isRequired,
-        format,
-        updateMeridiem,
+        setTimeValue,
         setMeridiemHovered,
-        meridiemValue,
         setMeridiemPressed,
       } = useTimeInput('TimeInputContext');
+
+      const { isFocusVisible, focusProps: focusRingProps }: any =
+        useFocusRing();
+      const { isFocused, focusProps } = useFocus();
+
       const { pressProps: pressableProps, isPressed } = usePress({
         isDisabled,
       });
 
       const buttonRef = useRef(null);
       const { isHovered } = useHover({}, buttonRef);
+
       const mergedRef = mergeRefs([ref, buttonRef]);
 
-      if (format !== 12) {
-        return null;
-      }
+      const updateMeridiem = (meridiem: string) => {
+        if (meridiem === 'AM') {
+          const newTimeValue = value.set('hour', value.get('hour') + 12);
+          setMeridiem('PM');
+          setTimeValue(newTimeValue);
+        } else {
+          const newTimeValue = value.set('hour', value.get('hour') - 12);
+          setMeridiem('AM');
+          setTimeValue(newTimeValue);
+        }
+      };
+
       return (
         <StyledTimeInputMeridiem
           accessible={true}
@@ -56,7 +71,6 @@ export const TimeInputMeridiem = (StyledTimeInputMeridiem: any) =>
             focusVisible: isFocusVisibleProp || isFocusVisible,
             active: isPressedProp || isPressed,
             pressed: isPressed,
-            invalid: isInvalid,
             required: isRequired,
             readOnly: isReadOnly,
           }}
@@ -68,7 +82,6 @@ export const TimeInputMeridiem = (StyledTimeInputMeridiem: any) =>
               isFocusVisibleProp || isFocusVisible ? 'true' : 'false',
             active: isPressedProp || isPressed ? 'true' : 'false',
             pressed: isPressed && isPressedProp ? 'true' : 'false',
-            invalid: isInvalid ? 'true' : 'false',
             required: isRequired ? 'true' : 'false',
             readOnly: isReadOnly ? 'true' : 'false',
           }}
@@ -94,7 +107,17 @@ export const TimeInputMeridiem = (StyledTimeInputMeridiem: any) =>
             }
           )}
           onPress={composeEventHandlers(props?.onPress, () =>
-            updateMeridiem(meridiemValue)
+            updateMeridiem(meridiem)
+          )}
+          // @ts-ignore - web only
+          onFocus={composeEventHandlers(
+            composeEventHandlers(props?.onFocus, focusProps.onFocus),
+            focusRingProps.onFocus
+          )}
+          // @ts-ignore - web only
+          onBlur={composeEventHandlers(
+            composeEventHandlers(props?.onBlur, focusProps.onBlur),
+            focusRingProps.onBlur
           )}
         >
           {children}
