@@ -116,10 +116,12 @@ export type ITimeInputComponentType<Root, Hr, Min, Meridiem, MeridiemText> =
     React.RefAttributes<Root> & React.PropsWithoutRef<Root> & ITimeInputProps
   > & {
     Hr: React.ForwardRefExoticComponent<
-      React.RefAttributes<Hr> & React.PropsWithoutRef<Hr> & ITimeInputProps
+      React.RefAttributes<Hr> & React.PropsWithoutRef<Hr> & ITimeInputFieldProps
     >;
     Min: React.ForwardRefExoticComponent<
-      React.RefAttributes<Min> & React.PropsWithoutRef<Min> & ITimeInputProps
+      React.RefAttributes<Min> &
+        React.PropsWithoutRef<Min> &
+        ITimeInputFieldProps
     >;
     Meridiem: React.ForwardRefExoticComponent<
       React.RefAttributes<Meridiem> &
@@ -132,16 +134,33 @@ export type ITimeInputComponentType<Root, Hr, Min, Meridiem, MeridiemText> =
     Text: React.FC;
   };
 export interface ITimeInputMeridiemProps {
+  /**
+   * If true, the input will be on active state on press.
+   */
   isPressed?: boolean;
+  /**
+   * If true, the input will be disabled.
+   */
   isDisabled?: boolean;
+  /**
+   * If true, the input will be hovered.
+   */
   isHovered?: boolean;
+  /**
+   * If true, the input will be focused.
+   */
   isFocused?: boolean;
+  /**
+   * If true, the input will be focus visible.
+   */
   isFocusVisible?: boolean;
   children: JSX.Element | Array<JSX.Element> | ((props: any) => JSX.Element);
-  isInvalid?: boolean;
-  isReadOnly?: boolean;
-  isRequired?: boolean;
-  toggleItem?: () => void;
+  /**
+   * callback function that will be called when the input is focused
+   */
   onFocus?: (e: any) => void;
+  /**
+   * callback function that will be called when the input is blurred
+   */
   onBlur?: (e: any) => void;
 }
