@@ -30,16 +30,20 @@ const timeInputStyle = tva({
   base: 'flex flex-row items-center justify-between w-fit',
   variants: {
     size: {
-      xl: 'h-12 gap-5',
-      lg: 'h-11 gap-4',
-      md: 'h-11 gap-3',
-      sm: 'h-9 gap-2',
+      xl: 'gap-5',
+      lg: 'gap-4',
+      md: 'gap-3',
+      sm: 'gap-2',
+    },
+    variant: {
+      outlined: '',
+      underlined: '',
     },
   },
 });
 
 const timeInputFieldStyle = tva({
-  base: 'border-background-300 content-center data-[hover=true]:border-outline-400 data-[focus=true]:border-primary-700 data-[focus=true]:data-[hover=true]:border-primary-700 data-[disabled=true]:opacity-40 data-[disabled=true]:data-[hover=true]:border-background-300  text-center placeholder:text-typography-500',
+  base: 'border-background-300 data-[hover=true]:border-outline-400 data-[focus=true]:border-primary-700 data-[focus=true]:data-[hover=true]:border-primary-700 data-[disabled=true]:opacity-40 data-[disabled=true]:data-[hover=true]:border-background-300  text-center placeholder:text-typography-500',
 
   parentVariants: {
     size: {
@@ -50,7 +54,7 @@ const timeInputFieldStyle = tva({
     },
     variant: {
       underlined:
-        'rounded-none border-b data-[invalid=true]:border-b-2 data-[invalid=true]:border-error-700 data-[invalid=true]:data-[hover=true]:border-error-700 data-[invalid=true]:data-[focus=true]:border-error-700 data-[invalid=true]:data-[focus=true]:data-[hover=true]:border-error-700 data-[invalid=true]:data-[disabled=true]:data-[hover=true]:border-error-700',
+        'border-b data-[invalid=true]:border-b-2 data-[invalid=true]:border-error-700 data-[invalid=true]:data-[hover=true]:border-error-700 data-[invalid=true]:data-[focus=true]:border-error-700 data-[invalid=true]:data-[focus=true]:data-[hover=true]:border-error-700 data-[invalid=true]:data-[disabled=true]:data-[hover=true]:border-error-700',
       outlined:
         'rounded border data-[invalid=true]:border-error-700 data-[invalid=true]:data-[hover=true]:border-error-700 data-[invalid=true]:data-[focus=true]:border-error-700 data-[invalid=true]:data-[focus=true]:data-[hover=true]:border-error-700 data-[invalid=true]:data-[disabled=true]:data-[hover=true]:border-error-700 data-[focus=true]:web:ring-1 data-[focus=true]:web:ring-inset data-[focus=true]:web:ring-indicator-primary data-[invalid=true]:web:ring-1 data-[invalid=true]:web:ring-inset data-[invalid=true]:web:ring-indicator-error data-[invalid=true]:data-[focus=true]:data-[hover=true]:web:ring-1 data-[invalid=true]:data-[focus=true]:data-[hover=true]:web:ring-inset data-[invalid=true]:data-[focus=true]:data-[hover=true]:web:ring-indicator-error data-[invalid=true]:data-[disabled=true]:data-[hover=true]:web:ring-1 data-[invalid=true]:data-[disabled=true]:data-[hover=true]:web:ring-inset data-[invalid=true]:data-[disabled=true]:data-[hover=true]:web:ring-indicator-error',
     },
@@ -72,6 +76,14 @@ const timeInputMeridiemTextStyle = tva({
 
 const timeInputColumnStyle = tva({
   base: 'text-sm font-semibold',
+  variants: {
+    size: {
+      xl: 'text-xl',
+      lg: 'text-lg',
+      md: 'text-base',
+      sm: 'text-sm',
+    },
+  },
 });
 
 const timeInputMeridiemStyle = tva({
@@ -203,8 +215,18 @@ const TimeInputMeridiemText = React.forwardRef<
 });
 
 const TimeInputColumn = ({ className, ...props }: { className?: string }) => {
+  const { size: parentSize } = useStyleContext(SCOPE);
+
   return (
-    <Text className={timeInputColumnStyle({ class: className })} {...props}>
+    <Text
+      className={timeInputColumnStyle({
+        parentVariants: {
+          size: parentSize,
+        },
+        class: className,
+      })}
+      {...props}
+    >
       :
     </Text>
   );
