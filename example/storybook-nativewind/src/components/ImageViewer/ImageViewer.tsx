@@ -4,35 +4,42 @@ import { Image, Pressable } from 'react-native';
 import {
   ImageViewer,
   ImageViewerBackdrop,
+  ImageViewerCloseButton,
   ImageViewerContent,
   ImageViewerImage,
 } from '@/components/ui/image-viewer';
+import { Icon } from '@/components/ui/icon';
+import { CloseIcon } from '@/components/ui/icon';
 
-const ImageViewerBasic = () => {
-  const Images = [
-    { id: 1, url: 'https://picsum.photos/200/300' },
-    { id: 2, url: 'https://picsum.photos/200/300' },
-    { id: 3, url: 'https://picsum.photos/200/300' },
-  ];
+const ImageViewerBasic = ({ ...props }: any) => {
+  const Images = [{ id: 1, url: 'https://picsum.photos/1000/1000' }];
   const [visible, setVisible] = useState(false);
   return (
     <>
       <Pressable onPress={() => setVisible(true)}>
         <Image
-          source={{ uri: 'https://picsum.photos/200/300' }}
+          source={{ uri: Images[0].url }}
           className="w-[200px] h-[200px]"
           resizeMode="contain"
         />
       </Pressable>
 
-      <ImageViewer isOpen={visible} onClose={() => setVisible(false)}>
+      <ImageViewer
+        isOpen={visible}
+        onClose={() => setVisible(false)}
+        {...props}
+      >
         <ImageViewerBackdrop>
           <ImageViewerContent
             images={Images}
             renderImages={(item: any) => (
               <ImageViewerImage key={item.id} source={{ uri: item.url }} />
             )}
-          />
+          >
+            <ImageViewerCloseButton>
+              <Icon as={CloseIcon} size="md" />
+            </ImageViewerCloseButton>
+          </ImageViewerContent>
         </ImageViewerBackdrop>
       </ImageViewer>
     </>

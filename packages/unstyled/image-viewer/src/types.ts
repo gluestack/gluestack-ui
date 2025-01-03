@@ -5,22 +5,48 @@ export interface ImageViewerContext {
   setScale: (scale: number) => void;
 }
 
-// export interface ImageViewerProps extends ViewProps {
-//   imageUrl: string;
-//   visible?: boolean;
-//   onRequestClose?: () => void;
-//   className?: string;
-//   closeButtonClassName?: string;
-//   closeButtonIconClassName?: string;
-//   imageClassName?: string;
-// }
+export interface ImageViewerProps {
+  /**
+   * If true, the modal will open. Useful for controllable state behavior.
+   */
+  isOpen?: boolean;
+  /**
+   * Callback invoked when the modal is closed.
+   */
+  onClose?: any;
+  /**
+   * If true, the modal will be opened by default.
+   */
+}
 
-// export type IImageViewerComponentType<StyledImage> = {
-//   Modal: React.ComponentType<StyledImage>;
-//   GestureHandlerRootView: React.ComponentType<any>;
-//   Image: React.ComponentType<ImageProps>;
-// };
+export interface ImageViewerContentProps {
+  images: { id: number; url: string }[];
+  renderImages: (item: any) => React.ReactNode;
+}
 
-// export interface IImageViewer {
-//   Root: React.FC<ImageViewerProps>;
-// }
+export interface ImageViewerCloseButtonProps {
+  onClose: () => void;
+}
+
+export type IImageViewerComponentType<
+  ImageViewerProps,
+  ImageViewerContentProps,
+  ImageViewerCloseButtonProps,
+  ImageViewerBackdropProps
+> = React.ForwardRefExoticComponent<
+  React.PropsWithoutRef<ImageViewerProps> &
+    React.RefAttributes<ImageViewerProps>
+> & {
+  Content: React.ForwardRefExoticComponent<
+    React.PropsWithoutRef<ImageViewerContentProps> &
+      React.RefAttributes<ImageViewerContentProps>
+  >;
+  CloseButton: React.ForwardRefExoticComponent<
+    React.PropsWithoutRef<ImageViewerCloseButtonProps> &
+      React.RefAttributes<ImageViewerCloseButtonProps>
+  >;
+  Backdrop: React.ForwardRefExoticComponent<
+    React.PropsWithoutRef<ImageViewerBackdropProps> &
+      React.RefAttributes<ImageViewerBackdropProps>
+  >;
+};

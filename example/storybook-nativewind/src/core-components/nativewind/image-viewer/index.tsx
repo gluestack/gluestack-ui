@@ -10,7 +10,8 @@ import {
 } from 'react-native-gesture-handler';
 
 import Animated from 'react-native-reanimated';
-const imageViewerStyle = tva({
+import { VariantProps } from '@gluestack-ui/nativewind-utils/types';
+const ImageViewerStyle = tva({
   base: 'flex-1 bg-background-dark justify-center items-center ',
 });
 
@@ -23,7 +24,7 @@ const BackdropStyle = tva({
 });
 
 const CloseButtonStyle = tva({
-  base: 'absolute top-4 right-4 z-10 bg-background-dark rounded-full w-8 h-8 justify-center items-center cursor-pointer',
+  base: 'absolute top-4 right-4 z-10 bg-white rounded-full w-8 h-8 justify-center items-center cursor-pointer',
 });
 
 const UIImageViewer = createImageViewer({
@@ -31,59 +32,80 @@ const UIImageViewer = createImageViewer({
   Backdrop: Animated.View,
   Content: GestureHandlerRootView,
   Animated: Animated.View,
-  Gesture: Gesture,
+  Gesture: Gesture as any,
   GestureDetector: GestureDetector,
   CloseButton: Pressable,
 });
 
-// type ImageViewerProps = VariantProps<typeof imageViewerStyle> &
-//   React.ComponentProps<typeof UIImageViewer>;
+type IImageViewerProps = React.ComponentProps<typeof UIImageViewer> &
+  VariantProps<typeof ImageViewerStyle> & { className?: string };
 
-const ImageViewer = React.forwardRef(({ className, ...props }: any, ref) => {
+type IImageViewerBackdropProps = React.ComponentProps<
+  typeof UIImageViewer.Backdrop
+> &
+  VariantProps<typeof BackdropStyle> & { className?: string };
+
+type IImageViewerContentProps = React.ComponentProps<
+  typeof UIImageViewer.Content
+> &
+  VariantProps<typeof ImageStyle> & { className?: string };
+
+type IImageViewerCloseButtonProps = React.ComponentProps<
+  typeof UIImageViewer.CloseButton
+> &
+  VariantProps<typeof CloseButtonStyle> & { className?: string };
+
+const ImageViewer = React.forwardRef<
+  React.ElementRef<typeof UIImageViewer>,
+  IImageViewerProps
+>(({ className, ...props }, ref) => {
   return (
     <UIImageViewer
-      className={imageViewerStyle({ class: className })}
+      className={ImageViewerStyle({ class: className })}
       {...props}
       ref={ref}
     />
   );
 });
 
-const ImageViewerBackdrop = React.forwardRef(
-  ({ className, ...props }: any, ref) => {
-    return (
-      <UIImageViewer.Backdrop
-        className={BackdropStyle({ class: className })}
-        {...props}
-        ref={ref}
-      />
-    );
-  }
-);
+const ImageViewerBackdrop = React.forwardRef<
+  React.ElementRef<typeof UIImageViewer.Backdrop>,
+  IImageViewerBackdropProps
+>(({ className, ...props }, ref) => {
+  return (
+    <UIImageViewer.Backdrop
+      className={BackdropStyle({ class: className })}
+      {...props}
+      ref={ref}
+    />
+  );
+});
 
-const ImageViewerContent = React.forwardRef(
-  ({ className, ...props }: any, ref) => {
-    return (
-      <UIImageViewer.Content
-        className={imageViewerStyle({ class: className })}
-        {...props}
-        ref={ref}
-      />
-    );
-  }
-);
+const ImageViewerContent = React.forwardRef<
+  React.ElementRef<typeof UIImageViewer.Content>,
+  IImageViewerContentProps
+>(({ className, ...props }, ref) => {
+  return (
+    <UIImageViewer.Content
+      className={ImageStyle({ class: className })}
+      {...props}
+      ref={ref}
+    />
+  );
+});
 
-const ImageViewerCloseButton = React.forwardRef(
-  ({ className, ...props }: any, ref) => {
-    return (
-      <UIImageViewer.CloseButton
-        {...props}
-        ref={ref}
-        className={CloseButtonStyle({ class: className })}
-      />
-    );
-  }
-);
+const ImageViewerCloseButton = React.forwardRef<
+  React.ElementRef<typeof UIImageViewer.CloseButton>,
+  IImageViewerCloseButtonProps
+>(({ className, ...props }, ref) => {
+  return (
+    <UIImageViewer.CloseButton
+      {...props}
+      ref={ref}
+      className={CloseButtonStyle({ class: className })}
+    />
+  );
+});
 
 const ImageViewerImage = React.forwardRef(
   ({ className, ...props }: any, ref) => {

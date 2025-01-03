@@ -2,6 +2,7 @@ import { default as ImageViewerMain } from './ImageViewer';
 import ImageViewerBackdrop from './ImageViewerBackdrop';
 import ImageViewerCloseButton from './ImageViewerCloseButton';
 import ImageViewerContent from './ImageViewerContent';
+import type { IImageViewerComponentType } from './types';
 
 export { ImageViewerContext } from './ImageViewerContext';
 export const createImageViewer = <
@@ -43,5 +44,10 @@ export const createImageViewer = <
   ImageViewer.Backdrop.displayName = 'ImageViewer.Backdrop';
   ImageViewer.Content.displayName = 'ImageViewer.Content';
   ImageViewer.CloseButton.displayName = 'ImageViewer.CloseButton';
-  return ImageViewer;
+  return ImageViewer as IImageViewerComponentType<
+    ModalProps,
+    BackdropProps,
+    ContentProps,
+    CloseButtonProps
+  >;
 };
