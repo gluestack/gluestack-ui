@@ -34,6 +34,10 @@ module.exports = function (api) {
               __dirname,
               '../../packages/unstyled/input/src'
             ),
+            '@gluestack-ui/image-viewer': path.resolve(
+              __dirname,
+              '../../packages/unstyled/image-viewer/src'
+            ),
             '@gluestack-ui/tooltip': path.resolve(
               __dirname,
               '../../packages/unstyled/tooltip/src'
