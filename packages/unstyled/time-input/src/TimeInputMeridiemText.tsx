@@ -5,10 +5,10 @@ export const TimeInputMeridiemText = (StyledTimeInputMeridiemText: any) =>
   forwardRef(({ ...props }: any, ref?: any) => {
     const {
       isDisabled,
-      isReadOnly,
       meridiemHovered,
       meridiem,
       meridiemPressed,
+      isInvalid,
     } = useTimeInput('TimeInputContext');
 
     return (
@@ -19,13 +19,13 @@ export const TimeInputMeridiemText = (StyledTimeInputMeridiemText: any) =>
           hover: meridiemHovered,
           disabled: isDisabled,
           active: meridiemPressed,
-          readOnly: isReadOnly,
+          invalid: isInvalid,
         }}
         dataSet={{
           hover: meridiemHovered,
           disabled: isDisabled,
           active: meridiemPressed,
-          readOnly: isReadOnly,
+          invalid: isInvalid,
         }}
       >
         {meridiem}

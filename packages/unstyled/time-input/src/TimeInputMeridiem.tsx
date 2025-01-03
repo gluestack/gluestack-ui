@@ -25,6 +25,7 @@ export const TimeInputMeridiem = (StyledTimeInputMeridiem: any) =>
       const {
         isDisabled,
         isReadOnly,
+        isInvalid,
         value,
         meridiem,
         setMeridiem,
@@ -67,6 +68,7 @@ export const TimeInputMeridiem = (StyledTimeInputMeridiem: any) =>
           {...props}
           states={{
             disabled: isDisabled,
+            invalid: isInvalid,
             hover: isHoveredProp || isHovered,
             focus: isFocusedProp || isFocused,
             focusVisible: isFocusVisibleProp || isFocusVisible,
@@ -77,6 +79,7 @@ export const TimeInputMeridiem = (StyledTimeInputMeridiem: any) =>
           }}
           dataSet={{
             disabled: isDisabled ? 'true' : 'false',
+            invalid: isInvalid ? 'true' : 'false',
             hover: isHoveredProp && isHovered ? 'true' : 'false',
             focus: isFocusedProp || isFocused ? 'true' : 'false',
             focusVisible:
@@ -86,7 +89,7 @@ export const TimeInputMeridiem = (StyledTimeInputMeridiem: any) =>
             required: isRequired ? 'true' : 'false',
             readOnly: isReadOnly ? 'true' : 'false',
           }}
-          disabled={isDisabled || isDisabledProp}
+          disabled={isDisabled || isDisabledProp || isReadOnly}
           onHoverIn={() => setMeridiemHovered(true)}
           onHoverOut={() => setMeridiemHovered(false)}
           onPressIn={composeEventHandlers(
