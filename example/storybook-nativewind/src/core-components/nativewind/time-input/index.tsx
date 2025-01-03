@@ -62,7 +62,7 @@ const timeInputFieldStyle = tva({
 });
 
 const timeInputMeridiemTextStyle = tva({
-  base: 'text-typography-0 font-semibold web:select-none',
+  base: 'web:select-none data-[invalid=true]:text-error-700',
 
   parentVariants: {
     size: {
@@ -70,6 +70,10 @@ const timeInputMeridiemTextStyle = tva({
       md: 'text-base',
       lg: 'text-lg',
       xl: 'text-xl',
+    },
+    variant: {
+      outlined: 'text-typography-0',
+      underlined: '',
     },
   },
 });
@@ -87,7 +91,7 @@ const timeInputColonStyle = tva({
 });
 
 const timeInputMeridiemStyle = tva({
-  base: 'rounded bg-primary-500 flex-row items-center justify-center data-[focus-visible=true]:web:outline-none data-[focus-visible=true]:web:ring-2 data-[disabled=true]:opacity-40',
+  base: 'rounded flex-row items-center justify-center data-[focus-visible=true]:web:outline-none data-[focus-visible=true]:web:ring-2 data-[disabled=true]:opacity-40',
 
   parentVariants: {
     size: {
@@ -96,13 +100,15 @@ const timeInputMeridiemStyle = tva({
       md: 'h-10 w-10',
       sm: 'h-9 w-9',
     },
+    variant: {
+      outlined: 'bg-primary-500',
+      underlined: 'border border-background-300',
+    },
   },
 });
 
 type ITimeInputProps = React.ComponentProps<typeof UITimeInput> &
-  VariantProps<typeof timeInputStyle> & { className?: string } & {
-    variant: 'outlined' | 'underlined';
-  };
+  VariantProps<typeof timeInputStyle> & { className?: string };
 const TimeInput = React.forwardRef<
   React.ElementRef<typeof UITimeInput>,
   ITimeInputProps
@@ -168,13 +174,13 @@ const TimeInputMin = React.forwardRef<
 type ITimeInputFieldMeridiemProps = React.ComponentProps<
   typeof UITimeInput.Meridiem
 > &
-  VariantProps<typeof timeInputFieldStyle> & { className?: string };
+  VariantProps<typeof timeInputMeridiemStyle> & { className?: string };
 
 const TimeInputMeridiem = React.forwardRef<
   React.ElementRef<typeof UITimeInput.Meridiem>,
   ITimeInputFieldMeridiemProps
 >(({ className, ...props }, ref) => {
-  const { size: parentSize } = useStyleContext(SCOPE);
+  const { size: parentSize, variant: parentVariant } = useStyleContext(SCOPE);
   return (
     <UITimeInput.Meridiem
       ref={ref}
@@ -182,6 +188,7 @@ const TimeInputMeridiem = React.forwardRef<
       className={timeInputMeridiemStyle({
         parentVariants: {
           size: parentSize,
+          variant: parentVariant,
         },
         class: className,
       })}
@@ -192,13 +199,13 @@ const TimeInputMeridiem = React.forwardRef<
 type ITimeInputFieldMeridiemTextProps = React.ComponentProps<
   typeof UITimeInput.MeridiemText
 > &
-  VariantProps<typeof timeInputFieldStyle> & { className?: string };
+  VariantProps<typeof timeInputMeridiemTextStyle> & { className?: string };
 
 const TimeInputMeridiemText = React.forwardRef<
   React.ElementRef<typeof UITimeInput.MeridiemText>,
   ITimeInputFieldMeridiemTextProps
 >(({ className, ...props }, ref) => {
-  const { size: parentSize } = useStyleContext(SCOPE);
+  const { size: parentSize, variant: parentVariant } = useStyleContext(SCOPE);
 
   return (
     <UITimeInput.MeridiemText
@@ -207,6 +214,7 @@ const TimeInputMeridiemText = React.forwardRef<
       className={timeInputMeridiemTextStyle({
         parentVariants: {
           size: parentSize,
+          variant: parentVariant,
         },
         class: className,
       })}
