@@ -74,7 +74,7 @@ const timeInputMeridiemTextStyle = tva({
   },
 });
 
-const timeInputColumnStyle = tva({
+const timeInputColonStyle = tva({
   base: 'text-sm font-semibold',
   variants: {
     size: {
@@ -214,12 +214,12 @@ const TimeInputMeridiemText = React.forwardRef<
   );
 });
 
-const TimeInputColumn = ({ className, ...props }: { className?: string }) => {
+const TimeInputColon = ({ className, ...props }: { className?: string }) => {
   const { size: parentSize } = useStyleContext(SCOPE);
 
   return (
     <Text
-      className={timeInputColumnStyle({
+      className={timeInputColonStyle({
         parentVariants: {
           size: parentSize,
         },
@@ -237,7 +237,7 @@ TimeInputHr.displayName = 'TimeInputHr';
 TimeInputMin.displayName = 'TimeInputMin';
 TimeInputMeridiem.displayName = 'TimeInputMeridiem';
 TimeInputMeridiemText.displayName = 'TimeInputMeridiemText';
-TimeInputColumn.displayName = 'TimeInputColumn';
+TimeInputColon.displayName = 'TimeInputColon';
 
 export {
   TimeInput,
@@ -245,5 +245,5 @@ export {
   TimeInputMin,
   TimeInputMeridiem,
   TimeInputMeridiemText,
-  TimeInputColumn,
+  TimeInputColon,
 };

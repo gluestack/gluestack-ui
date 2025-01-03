@@ -5,7 +5,7 @@ import {
   TimeInputMin,
   TimeInputMeridiem,
   TimeInputMeridiemText,
-  TimeInputColumn,
+  TimeInputColon,
 } from '@/components/ui/time-input';
 
 const TimeInputBasic = ({ ...props }: any) => {
@@ -20,7 +20,7 @@ const TimeInputBasic = ({ ...props }: any) => {
         className=""
       >
         <TimeInputHr placeholder="HH" />
-        <TimeInputColumn className="" />
+        <TimeInputColon className="" />
         <TimeInputMin placeholder="MM" />
         <TimeInputMeridiem isPressed={false} isHovered={true}>
           <TimeInputMeridiemText />

@@ -20,7 +20,7 @@ import {
   TimeInputMin,
   TimeInputMeridiem,
   TimeInputMeridiemText,
-  TimeInputColumn,
+  TimeInputColon,
 } from '../../core-components/nativewind/time-input';
 import { transformedCode } from '../../utils';
 import {
@@ -46,7 +46,7 @@ This is an illustration of **TimeInput** component.
       code: `
         <TimeInput>
           <TimeInputHr placeholder='HH'/>
-          <TimeInputColumn/>
+          <TimeInputColon/>
           <TimeInputMin placeholder='MM'/>
           <TimeInputMeridiem>
             <TimeInputMeridiemText/>
@@ -63,7 +63,7 @@ This is an illustration of **TimeInput** component.
         TimeInputMin,
         TimeInputMeridiem,
         TimeInputMeridiemText,
-        TimeInputColumn,
+        TimeInputColon,
       },
       argsType: {
         variant: {
@@ -152,7 +152,7 @@ import { TimeInput } from '@/components/ui/time-input';
 export default () => (
   <TimeInput>
     <TimeInputHr placeholder='HH'/>
-    <TimeInputColumn/>
+    <TimeInputColon/>
     <TimeInputMin placeholder='MM'/>
     <TimeInputMeridiem>
       <TimeInputMeridiemText/>
