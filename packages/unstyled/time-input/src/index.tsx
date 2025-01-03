@@ -1,7 +1,7 @@
+import { TimeInput as TimeInputComponent } from './TimeInput';
 import { TimeInputHr } from './TimeInputHr';
 import { TimeInputMin } from './TimeInputMin';
 import type { ITimeInputComponentType } from './types';
-import { TimeInputGroup } from './TimeInputGroup';
 import { TimeInputMeridiem } from './TimeInputMeridiem';
 import { TimeInputMeridiemText } from './TimeInputMeridiemText';
 
@@ -24,7 +24,7 @@ export const createTimeInput = <
   TimeInputMeridiem: React.ComponentType<TimeInputMeridiem>;
   TimeInputMeridiemText: React.ComponentType<TimeInputMeridiemText>;
 }) => {
-  const TimeInput = TimeInputGroup(Root) as any;
+  const TimeInput = TimeInputComponent(Root) as any;
   TimeInput.Hr = TimeInputHr(Hr);
   TimeInput.Min = TimeInputMin(Min);
   TimeInput.Meridiem = TimeInputMeridiem(Meridiem);

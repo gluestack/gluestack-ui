@@ -20,7 +20,7 @@ export const TimeInputHr = (StyledTimeInputHr: any) =>
         'isFocused': isFocusedProp = false,
         'isFocusVisible': isFocusVisibleProp,
         ...props
-      }: Omit<ITimeInputFieldProps, 'children'> & { children: React.ReactNode },
+      }: ITimeInputFieldProps & { children: React.ReactNode },
       ref?: any
     ) => {
       const {
@@ -30,6 +30,8 @@ export const TimeInputHr = (StyledTimeInputHr: any) =>
         isRequired,
         value,
         setTimeValue,
+        minuteRef,
+        hourRef,
       } = useTimeInput('TimeInputContext');
 
       const inputProps = useFormControl({
@@ -50,7 +52,7 @@ export const TimeInputHr = (StyledTimeInputHr: any) =>
       };
 
       const { isFocusVisible }: any = useFocusRing();
-      const mergedRef = mergeRefs([ref, inputRef]);
+      const mergedRef = mergeRefs([ref, inputRef, hourRef]);
 
       const editableProp = useMemo(() => {
         if (editable !== undefined) {
@@ -76,10 +78,13 @@ export const TimeInputHr = (StyledTimeInputHr: any) =>
         if (newHours === newHoursInt) {
           const newTimeValue = newHours
             ? value
-                .set('hour', parseInt(newHours) % 12)
+                .set('hour', parseInt(newHours))
                 .second(new Date().getSeconds())
             : value.set('hour', 0).second(new Date().getSeconds());
           setTimeValue(newTimeValue);
+          if (parseInt(newHours) > 1) {
+            minuteRef.current.select();
+          }
         }
       };
 
@@ -121,11 +126,12 @@ export const TimeInputHr = (StyledTimeInputHr: any) =>
           }}
           onFocus={(e: any) => {
             handleFocus(true, () => props.onFocus?.(e));
+            hourRef.current.select();
           }}
           onBlur={(e: any) => {
             handleFocus(false, () => props.onBlur?.(e));
           }}
-          value={(value.get('hour') % 12).toString()}
+          value={(value.get('hour') % 12).toString().padStart(2, '0')}
           onChangeText={handleChange}
           ref={mergedRef}
           keyboardType="number-pad"

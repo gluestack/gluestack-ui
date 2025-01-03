@@ -17,7 +17,7 @@ export const TimeInputMeridiem = (StyledTimeInputMeridiem: any) =>
         isFocusVisible: isFocusVisibleProp,
         isDisabled: isDisabledProp,
         ...props
-      }: Omit<ITimeInputMeridiemProps, 'children'> & {
+      }: ITimeInputMeridiemProps & {
         children: React.ReactNode;
       },
       ref?: any
@@ -32,6 +32,7 @@ export const TimeInputMeridiem = (StyledTimeInputMeridiem: any) =>
         setTimeValue,
         setMeridiemHovered,
         setMeridiemPressed,
+        meridiemRef,
       } = useTimeInput('TimeInputContext');
 
       const { isFocusVisible, focusProps: focusRingProps }: any =
@@ -42,10 +43,10 @@ export const TimeInputMeridiem = (StyledTimeInputMeridiem: any) =>
         isDisabled,
       });
 
-      const buttonRef = useRef(null);
-      const { isHovered } = useHover({}, buttonRef);
+      const pressableRef = useRef(null);
+      const { isHovered } = useHover({}, pressableRef);
 
-      const mergedRef = mergeRefs([ref, buttonRef]);
+      const mergedRef = mergeRefs([ref, pressableRef, meridiemRef]);
 
       const updateMeridiem = (meridiem: string) => {
         if (meridiem === 'AM') {

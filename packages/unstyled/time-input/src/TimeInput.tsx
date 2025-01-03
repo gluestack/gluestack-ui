@@ -4,7 +4,7 @@ import { useFormControlContext } from '@gluestack-ui/form-control';
 import { mergeRefs } from '@gluestack-ui/utils';
 import dayjs, { Dayjs } from 'dayjs';
 import type { ITimeInputProps } from './types';
-export const TimeInputGroup = (StyledTimeInputRoot: any) =>
+export const TimeInput = (StyledTimeInputRoot: any) =>
   forwardRef(
     (
       {
@@ -19,8 +19,10 @@ export const TimeInputGroup = (StyledTimeInputRoot: any) =>
       }: Omit<ITimeInputProps, 'children'> & { children: React.ReactNode[] },
       ref?: any
     ) => {
-      const timeInputRef = React.useRef();
-      const timeInputFieldRef = React.useRef(null);
+      const hourRef = React.useRef(null);
+      const minuteRef = React.useRef(null);
+      const meridiemRef = React.useRef(null);
+
       const [timeValue, setTimeValue] = useState<Dayjs>(
         externalValue ? externalValue : dayjs()
       );
@@ -52,14 +54,13 @@ export const TimeInputGroup = (StyledTimeInputRoot: any) =>
               isRequired || timeInputProps.isRequired ? 'true' : 'false',
           }}
           {...props}
-          ref={mergeRefs([timeInputRef, ref])}
+          ref={mergeRefs([ref])}
         >
           <TimeInputProvider
             isDisabled={isDisabled || timeInputProps.isDisabled}
             isInvalid={isInvalid || timeInputProps.isInvalid}
             isReadOnly={isReadOnly || timeInputProps.isReadOnly}
             isRequired={isRequired || timeInputProps.isRequired}
-            timeInputFieldRef={timeInputFieldRef}
             value={timeValue}
             setTimeValue={handleTimeChange}
             meridiemHovered={meridiemHovered}
@@ -68,6 +69,9 @@ export const TimeInputGroup = (StyledTimeInputRoot: any) =>
             setMeridiemPressed={setMeridiemPressed}
             meridiem={meridiem}
             setMeridiem={setMeridiem}
+            hourRef={hourRef}
+            minuteRef={minuteRef}
+            meridiemRef={meridiemRef}
           >
             {children}
           </TimeInputProvider>

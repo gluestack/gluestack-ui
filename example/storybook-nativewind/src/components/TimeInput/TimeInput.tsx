@@ -17,7 +17,6 @@ const TimeInputBasic = ({ ...props }: any) => {
         value={timeValue}
         onChange={setTimeValue}
         isHovered={true}
-        isReadOnly={true}
         className=""
       >
         <TimeInputHr placeholder="HH" />

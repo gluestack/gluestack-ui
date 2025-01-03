@@ -20,7 +20,7 @@ export const TimeInputMin = (StyledTimeInputMin: any) =>
         'isFocused': isFocusedProp = false,
         'isFocusVisible': isFocusVisibleProp,
         ...props
-      }: Omit<ITimeInputFieldProps, 'children'> & { children: React.ReactNode },
+      }: ITimeInputFieldProps & { children: React.ReactNode },
       ref?: any
     ) => {
       const {
@@ -30,6 +30,8 @@ export const TimeInputMin = (StyledTimeInputMin: any) =>
         isRequired,
         value,
         setTimeValue,
+        minuteRef,
+        meridiemRef,
       } = useTimeInput('TimeInputContext');
 
       const inputRef = useRef(null);
@@ -51,7 +53,7 @@ export const TimeInputMin = (StyledTimeInputMin: any) =>
 
       const { isFocusVisible }: any = useFocusRing();
 
-      const mergedRef = mergeRefs([ref, inputRef]);
+      const mergedRef = mergeRefs([ref, inputRef, minuteRef]);
 
       const editableProp = useMemo(() => {
         if (editable !== undefined) {
@@ -68,10 +70,13 @@ export const TimeInputMin = (StyledTimeInputMin: any) =>
         if (newMinutes === newMinutesInt) {
           const newTimeValue = newMinutes
             ? value
-                .set('minute', parseInt(newMinutes) % 60)
+                .set('minute', parseInt(newMinutes))
                 .second(new Date().getSeconds())
             : value.set('minute', 0).second(new Date().getSeconds());
           setTimeValue(newTimeValue);
+          if (parseInt(newMinutes) > 5) {
+            meridiemRef.current.focus();
+          }
         }
       };
 
@@ -113,12 +118,13 @@ export const TimeInputMin = (StyledTimeInputMin: any) =>
           }}
           onFocus={(e: any) => {
             handleFocus(true, () => props.onFocus?.(e));
+            minuteRef.current.select();
           }}
           onBlur={(e: any) => {
             handleFocus(false, () => props.onBlur?.(e));
           }}
           ref={mergedRef}
-          value={value.get('minute').toString()}
+          value={value.get('minute').toString().padStart(2, '0')}
           onChangeText={handleChange}
           keyboardType="number-pad"
         >

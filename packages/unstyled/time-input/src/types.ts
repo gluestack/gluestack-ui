@@ -1,5 +1,22 @@
 import { Dayjs } from 'dayjs';
-
+export interface TimeInputContext {
+  isDisabled?: boolean;
+  isInvalid?: boolean;
+  isReadOnly?: boolean;
+  isRequired?: boolean;
+  timeInputFieldRef?: any; //remove it
+  value: Dayjs;
+  setTimeValue: (value: Dayjs) => void;
+  meridiem: string;
+  setMeridiem: (meridiem: string) => void;
+  meridiemHovered: boolean;
+  setMeridiemHovered: (meridiemHovered: boolean) => void;
+  meridiemPressed: boolean;
+  setMeridiemPressed: (meridiemPressed: boolean) => void;
+  hourRef: React.RefObject<any>;
+  minuteRef: React.RefObject<any>;
+  meridiemRef: React.RefObject<any>;
+}
 export interface ITimeInputProps {
   /**
    * If true, the input will indicate an error.
