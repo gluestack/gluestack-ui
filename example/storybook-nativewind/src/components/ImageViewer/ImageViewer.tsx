@@ -7,8 +7,7 @@ import {
   ImageViewerContent,
   ImageViewerImage,
 } from '@/components/ui/image-viewer';
-import { Icon } from '@/components/ui/icon';
-import { CloseIcon } from '@/components/ui/icon';
+import { Icon, CloseIcon } from '@/components/ui/icon';
 
 const ImageViewerBasic = ({ ...props }: any) => {
   const Images = [{ id: 1, url: 'https://picsum.photos/1000/1000' }];
@@ -37,7 +36,7 @@ const ImageViewerBasic = ({ ...props }: any) => {
             )}
           >
             <ImageViewerCloseButton>
-              <Icon as={CloseIcon} size="md" />
+              <Icon as={CloseIcon}/>
             </ImageViewerCloseButton>
           </ImageViewerContent>
         </ImageViewerBackdrop>
