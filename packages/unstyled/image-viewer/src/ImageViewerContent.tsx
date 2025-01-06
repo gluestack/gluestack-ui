@@ -26,6 +26,8 @@ const ImageViewerContent = (
     const translateY = useSharedValue(0);
     const focalX = useSharedValue(0);
     const focalY = useSharedValue(0);
+    const lastTranslateX = useSharedValue(0);
+    const lastTranslateY = useSharedValue(0);
 
     const pinchGesture = Gesture.Pinch()
       .onStart(() => {
@@ -55,11 +57,11 @@ const ImageViewerContent = (
           // If already zoomed in, reset to normal
           scale.value = withTiming(1);
           savedScale.value = 1;
-          translateX.value = withSpring(0);
-          translateY.value = withSpring(0);
+          translateX.value = withTiming(0);
+          translateY.value = withTiming(0);
         } else {
           // Zoom in to 2x at the tap location
-          scale.value = withSpring(2);
+          scale.value = withTiming(2);
           savedScale.value = 2;
 
           // Calculate the focal point for zooming
@@ -69,17 +71,23 @@ const ImageViewerContent = (
           const focusY = event.y - centerY;
 
           // Adjust translation to zoom into the tapped point
-          translateX.value = withSpring(-focusX);
-          translateY.value = withSpring(-focusY);
+          translateX.value = withTiming(-focusX);
+          translateY.value = withTiming(-focusY);
         }
       });
 
     const panGesture = Gesture.Pan()
+      .onStart(() => {
+        // Store the current translation values when starting the pan
+        lastTranslateX.value = translateX.value;
+        lastTranslateY.value = translateY.value;
+      })
       .onUpdate((event: any) => {
         if (scale.value > 1) {
           // When zoomed in, allow panning within bounds
-          translateX.value = event.translationX;
-          translateY.value = event.translationY;
+          // Calculate new positions based on the start position plus the new translation
+          translateX.value = lastTranslateX.value + event.translationX;
+          translateY.value = lastTranslateY.value + event.translationY;
         } else {
           // Normal swipe behavior when not zoomed
           if (Math.abs(event.translationY) > Math.abs(event.translationX)) {
