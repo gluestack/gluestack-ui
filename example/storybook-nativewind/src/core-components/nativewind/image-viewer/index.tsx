@@ -1,4 +1,3 @@
-'use client';
 import React from 'react';
 import { createImageViewer } from '@gluestack-ui/image-viewer';
 import { Image, Modal, Pressable } from 'react-native';
