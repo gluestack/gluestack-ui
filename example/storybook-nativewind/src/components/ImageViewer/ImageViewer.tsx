@@ -31,6 +31,7 @@ const ImageViewerBasic = ({ ...props }: any) => {
       >
         <ImageViewerBackdrop>
           <ImageViewerContent
+            //@ts-ignore
             images={Images}
             renderImages={(item: any) => (
               <ImageViewerImage key={item.id} source={{ uri: item.url }} />

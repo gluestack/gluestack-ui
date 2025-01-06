@@ -1,7 +1,7 @@
 export interface ImageViewerContext {
   onClose: () => void;
-  isOpen: boolean;
-  scale: number;
+  isOpen: boolean | undefined;
+  scale: number | undefined;
   setScale: (scale: number) => void;
 }
 
@@ -20,12 +20,8 @@ export interface ImageViewerProps {
 }
 
 export interface ImageViewerContentProps {
-  images: { id: number; url: string }[];
+  images: any;
   renderImages: (item: any) => React.ReactNode;
-}
-
-export interface ImageViewerCloseButtonProps {
-  onClose: () => void;
 }
 
 export type IImageViewerComponentType<

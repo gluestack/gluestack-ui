@@ -11,12 +11,17 @@ import {
 
 import Animated from 'react-native-reanimated';
 import { VariantProps } from '@gluestack-ui/nativewind-utils/types';
+
 const ImageViewerStyle = tva({
-  base: 'flex-1 bg-background-dark justify-center items-center ',
+  base: 'flex-1 justify-center items-center ',
 });
 
 const ImageStyle = tva({
   base: 'w-[100vw] h-[100vh]',
+});
+
+const ContentStyle = tva({
+  base: '',
 });
 
 const BackdropStyle = tva({
@@ -48,11 +53,7 @@ type IImageViewerBackdropProps = React.ComponentProps<
 type IImageViewerContentProps = React.ComponentProps<
   typeof UIImageViewer.Content
 > &
-  VariantProps<typeof ImageStyle> & {
-    className?: string;
-    images: { id: number; url: string }[];
-    renderImages: (item: any) => React.ReactNode;
-  };
+  VariantProps<typeof ContentStyle> & { className?: string };
 
 type IImageViewerCloseButtonProps = React.ComponentProps<
   typeof UIImageViewer.CloseButton
@@ -91,7 +92,7 @@ const ImageViewerContent = React.forwardRef<
 >(({ className, ...props }, ref) => {
   return (
     <UIImageViewer.Content
-      className={ImageStyle({ class: className })}
+      className={ContentStyle({ class: className })}
       {...props}
       ref={ref}
     />

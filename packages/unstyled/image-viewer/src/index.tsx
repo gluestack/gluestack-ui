@@ -6,7 +6,7 @@ import type { IImageViewerComponentType } from './types';
 
 export { ImageViewerContext } from './ImageViewerContext';
 export const createImageViewer = <
-  ModalProps,
+  ImageViewerProps,
   GestureDetectorProps,
   AnimatedProps,
   GestureProps,
@@ -22,7 +22,7 @@ export const createImageViewer = <
   Content,
   CloseButton,
 }: {
-  Root: React.ComponentType<ModalProps>;
+  Root: React.ComponentType<ImageViewerProps>;
   GestureDetector: React.ComponentType<GestureDetectorProps>;
   Animated: React.ComponentType<AnimatedProps>;
   Gesture: React.ComponentType<GestureProps>;
@@ -45,7 +45,7 @@ export const createImageViewer = <
   ImageViewer.Content.displayName = 'ImageViewer.Content';
   ImageViewer.CloseButton.displayName = 'ImageViewer.CloseButton';
   return ImageViewer as IImageViewerComponentType<
-    ModalProps,
+    ImageViewerProps,
     BackdropProps,
     ContentProps,
     CloseButtonProps
