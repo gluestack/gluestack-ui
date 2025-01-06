@@ -26,6 +26,10 @@ import {
   Pressable,
   Image
 } from '../../core-components/nativewind';
+import { 
+  Pressable,
+  Image
+} from 'react-native';
 import { transformedCode } from '../../utils';
 import { useState } from 'react';
 
@@ -69,7 +73,7 @@ This is an illustration of **ImageViewer** component.
       <ImageViewerBackdrop>
       <ImageViewerContent images={Images} renderImages={(item) => (<ImageViewerImage key={item.id} source={{ uri: item.url }} />)} >
       <ImageViewerCloseButton>
-      <Icon as={CloseIcon} size="md" />
+      <Icon as={CloseIcon}/>
       </ImageViewerCloseButton>
       </ImageViewerContent>
       </ImageViewerBackdrop>
@@ -171,7 +175,7 @@ export default () => (
 This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
 
 #### ImageViewer
-The`ImageViewer` component serves as the main container for displaying images in a modal view. It provides a user-friendly interface for viewing images with features like pinch-to-zoom, double-tap zoom, and swipe gestures for navigation and dismissal. It is built on top of React Native's [Modal](https://reactnative.dev/docs/modal) component, inheriting all its properties and behaviors.
+The`ImageViewer` component serves as the main container for displaying images in a modal view. It provides a user-friendly interface for viewing images with features like pinch-to-zoom, double-tap zoom, and swipe gestures for dismissal. It is built on top of React Native's [Modal](https://reactnative.dev/docs/modal) component, inheriting all its properties and behaviors.
 
 <Wrapper>
   <TableContainer>
@@ -321,39 +325,6 @@ The `ImageViewerBackdrop` component serves as the background layer of the `Image
 
 The `ImageViewerImage` component is used to display individual images within the `ImageViewerContent`. It supports all the properties of React Native's [Image](https://reactnative.dev/docs/image) component, making it easy to customize the appearance and behavior of the images.
 
-### Example
 
-The Example section offers visual previews of the component, letting you quickly identify the best fit for your needs. Just copy the code and use it in your project.
-
-```jsx
-import { ImageViewer, ImageViewerBackdrop, ImageViewerContent, ImageViewerCloseButton, ImageViewerImage } from '@/components/ui/image-viewer';
-import { CloseIcon, Icon } from '@/components/ui/icon';
-import React, { useState } from 'react';
-```
-
-```jsx
-  function App() {
-        const [visible, setVisible] = React.useState(false);
-        const Images = [{ id: 1, url: 'https://picsum.photos/1000/1000' }];
-        return (
-          <>
-  <ImageViewer isOpen={visible} onClose={() => {setVisible(false)}}>
-    <ImageViewerBackdrop>
-      <ImageViewerContent images={Images} renderImages={(item) => (<ImageViewerImage key={item.id} source={{ uri: item.url }} />)} >
-        <ImageViewerCloseButton>
-          <Icon as={CloseIcon}/>
-        </ImageViewerCloseButton>
-      </ImageViewerContent>
-    </ImageViewerBackdrop>
-  </ImageViewer>
-
-  // For Showing the Image that can be clicked to open the ImageViewer
-  <Pressable onPress={() => setVisible(true)}>
-  <Image source={{ uri: Images[0].url }} className="w-[200px] h-[200px]" resizeMode="contain" />
-  </Pressable>
-  </>
-);
-}
-```
 > Note: Currently, the ImageViewer component is limited to only single image, multiple image support will be added in the future.
 
