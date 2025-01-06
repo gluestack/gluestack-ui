@@ -48,7 +48,11 @@ type IImageViewerBackdropProps = React.ComponentProps<
 type IImageViewerContentProps = React.ComponentProps<
   typeof UIImageViewer.Content
 > &
-  VariantProps<typeof ImageStyle> & { className?: string };
+  VariantProps<typeof ImageStyle> & {
+    className?: string;
+    images: { id: number; url: string }[];
+    renderImages: (item: any) => React.ReactNode;
+  };
 
 type IImageViewerCloseButtonProps = React.ComponentProps<
   typeof UIImageViewer.CloseButton
