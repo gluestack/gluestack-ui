@@ -7,7 +7,7 @@ const ImageViewerMeta: ComponentMeta<typeof ImageViewer> = {
   // metaInfo is required for figma generation
   // @ts-ignore
   metaInfo: {
-    componentDescription: `The ImageViewer component provides a modal view for displaying and interacting with images, supporting features like pinch-to-zoom, double-tap zoom, and swipe-to-dismiss.`,
+    componentDescription: `The ImageViewer component provides a modal view for displaying and interacting with images, supporting features like pinch-to-zoom, double-tap zoom, and swipe up/down to dismiss.`,
   },
   argTypes: {},
   args: {
