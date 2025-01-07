@@ -25,7 +25,7 @@ export const calendarGridDaysStyle = tva({
 });
 
 export const calendarDaysCellStyle = tva({
-  base: 'w-[14.28%] p-2 aspect-square cursor-pointer flex items-center justify-center',
+  base: 'w-[14.28%] aspect-square cursor-pointer flex items-center justify-center data-[selected=true]:bg-primary-0 rounded-lg',
 });
 
 export const calendarWeekCellStyle = tva({

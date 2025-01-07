@@ -1,17 +1,8 @@
 import React from 'react';
-import {
-  Calendar,
-  CalendarHeader,
-  CalendarHeaderNext,
-  CalendarHeaderPrev,
-  CalendarHeaderTitle,
-  CalendarGrid,
-  CalendarGridWeek,
-  CalendarGridDays,
-} from '@/components/ui/calendar';
+import { Calendar } from '@/components/ui/calendar';
 
 const CalendarBasic = ({ ...props }: any) => {
-  return <Calendar {...props} value={new Date()} className="w-72" />;
+  return <Calendar {...props} defaultValue={new Date()} className="max-w-md" />;
 };
 
 CalendarBasic.description =
@@ -19,13 +10,4 @@ CalendarBasic.description =
 
 export default CalendarBasic;
 
-export {
-  Calendar,
-  CalendarHeader,
-  CalendarHeaderNext,
-  CalendarHeaderPrev,
-  CalendarHeaderTitle,
-  CalendarGrid,
-  CalendarGridWeek,
-  CalendarGridDays,
-};
+export { Calendar };

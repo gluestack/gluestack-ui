@@ -1,4 +1,5 @@
 import type { PropsWithoutRef, RefAttributes } from 'react';
+import type { GestureResponderEvent } from 'react-native';
 
 export interface ICalendarProps {
   /**
@@ -80,14 +81,14 @@ export interface ICalendarDayProps {
   /**
    * Handler for when the day is pressed
    */
-  onPress?: (date: Date) => void;
+  onPress?: (event: GestureResponderEvent) => void;
 }
 
 export interface ICalendarGridDaysProps {
   /**
    * Render method for custom day rendering
    */
-  render?: (days: Date | null, props: ICalendarDayProps) => React.ReactNode;
+  render?: (days: Date | null, dayProps: any) => React.ReactNode;
 }
 
 export interface ICalendarContextValue {

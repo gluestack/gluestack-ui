@@ -197,13 +197,15 @@ const CalendarGridDays = React.forwardRef<
       ref={ref}
       {...props}
       className={calendarGridDaysStyle({ class: className })}
-      render={(day, states) => (
-        <RNView
-          {...states}
-          className={calendarDaysCellStyle({ class: className })}
+      render={(day, dayProps) => (
+        <RNPressable
+          {...dayProps}
+          className={calendarDaysCellStyle({
+            class: className,
+          })}
         >
           <RNText>{day?.getDate()}</RNText>
-        </RNView>
+        </RNPressable>
       )}
     />
   );
