@@ -88,10 +88,10 @@ export default () => (
 
 ### ImageViewerContent
 
-| Prop         | Type                             | Default | Description                        |
-| ------------ | -------------------------------- | ------- | ---------------------------------- |
-| images       | Array<{id: number, url: string}> | -       | Array of image objects to display  |
-| renderImages | (item: any) => ReactNode         | -       | Function to render each image item |
+| Prop         | Type                     | Default | Description                        |
+| ------------ | ------------------------ | ------- | ---------------------------------- |
+| images       | Array<any>               | -       | Array of image objects to display  |
+| renderImages | (item: any) => ReactNode | -       | Function to render each image item |
 
 More guides on how to get started are available [here](https://ui.gluestack.io/docs/components/media-and-icons/image-viewer).
 
