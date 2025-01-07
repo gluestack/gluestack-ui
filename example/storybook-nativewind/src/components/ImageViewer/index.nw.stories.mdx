@@ -23,8 +23,6 @@ import {
   CloseIcon,
   Icon,
   Center,
-  Pressable,
-  Image
 } from '../../core-components/nativewind';
 import { 
   Pressable,
@@ -333,32 +331,66 @@ The Example section offers visual previews of the component, letting you quickly
 import { ImageViewer, ImageViewerBackdrop, ImageViewerContent, ImageViewerCloseButton, ImageViewerImage } from '@/components/ui/image-viewer';
 import { CloseIcon, Icon } from '@/components/ui/icon';
 import React, { useState } from 'react';
+import { Pressable, Image } from 'react-native';
+import { Center } from '@/components/ui/center';
 ```
 
-```jsx
-  function App() {
+<Wrapper>
+  <CodePreview
+    _rendererWrapper={{
+      py: '$8',
+      px: '$8',
+    }}
+    showComponentRenderer={true}
+    showArgsController={true}
+    metaData={{
+      code: `
+      function App() {
         const [visible, setVisible] = React.useState(false);
         const Images = [{ id: 1, url: 'https://picsum.photos/1000/1000' }];
         return (
-          <>
-  <ImageViewer isOpen={visible} onClose={() => {setVisible(false)}}>
-    <ImageViewerBackdrop>
+          <Center>
+        <Pressable onPress={() => setVisible(true)}>
+        <Image
+          source={{ uri: Images[0].url }}
+          className="w-[200px] h-[200px]"
+          resizeMode="contain"
+        />
+      </Pressable>
+      <ImageViewer isOpen={visible} onClose={() => setVisible(false)}>
+      <ImageViewerBackdrop>
       <ImageViewerContent images={Images} renderImages={(item) => (<ImageViewerImage key={item.id} source={{ uri: item.url }} />)} >
-        <ImageViewerCloseButton>
-          <Icon as={CloseIcon}/>
-        </ImageViewerCloseButton>
+      <ImageViewerCloseButton>
+      <Icon as={CloseIcon}/>
+      </ImageViewerCloseButton>
       </ImageViewerContent>
-    </ImageViewerBackdrop>
-  </ImageViewer>
-
-  // For Showing the Image that can be clicked to open the ImageViewer
-  <Pressable onPress={() => setVisible(true)}>
-  <Image source={{ uri: Images[0].url }} className="w-[200px] h-[200px]" resizeMode="contain" />
-  </Pressable>
-  </>
-);
-}
-```
+      </ImageViewerBackdrop>
+      </ImageViewer>
+      </Center>
+        );
+      }
+      `,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'App');
+      },
+      scope: {
+        Wrapper,
+        ImageViewer,
+        ImageViewerBackdrop,
+        ImageViewerContent,
+        ImageViewerCloseButton,
+        ImageViewerImage,
+        CloseIcon,
+        Icon,
+        useState,
+        Pressable,
+        Image,
+        Center,
+      },
+      argsType: {},
+    }}
+  />
+</Wrapper>
 
 > Note: Currently, the ImageViewer component is limited to only single image, multiple image support will be added in the future.
 
