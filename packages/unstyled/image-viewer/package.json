@@ -1,6 +1,6 @@
 {
   "name": "@gluestack-ui/image-viewer",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "main": "lib/index",
   "module": "lib/index",
   "types": "lib/index.d.ts",
@@ -38,7 +38,6 @@
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "react-native": "^0.72.4",
-    "@react-native-aria/focus": "^0.2.9",
     "react-native-builder-bob": "^0.20.1",
     "react-native-web": "^0.19.9",
     "tsconfig": "7",
@@ -46,7 +45,10 @@
   },
   "dependencies": {
     "react-native-gesture-handler": "^2.21.2",
-    "react-native-reanimated": "~3.6.2"
+    "react-native-reanimated": "~3.6.2",
+    "@react-native-aria/focus": "^0.2.9",
+    "@react-native-aria/interactions": "0.2.13",
+    "@gluestack-ui/utils": "^0.1.14"
   },
   "peerDependencies": {
     "react": ">=16",
