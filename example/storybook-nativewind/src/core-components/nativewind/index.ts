@@ -52,3 +52,4 @@ export * from './image-background';
 export * from './skeleton';
 export * from './bottomsheet';
 export * from './drawer';
+export * from './image-viewer';
