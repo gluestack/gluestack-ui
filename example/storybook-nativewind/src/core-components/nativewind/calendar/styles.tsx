@@ -5,7 +5,7 @@ export const calendarStyle = tva({
 });
 
 export const calendarNavStyle = tva({
-  base: 'w-6 h-6 flex items-center justify-center rounded-full hover:bg-typography-100 active:bg-typography-200',
+  base: 'w-6 h-6 p-1 flex items-center justify-center rounded-full data-[hover=true]:bg-typography-100 data-[active=true]:bg-typography-200 data-[disabled=true]:opacity-40 data-[disabled=true]:cursor-not-allowed',
 });
 
 export const calendarTitleStyle = tva({
@@ -25,7 +25,13 @@ export const calendarGridDaysStyle = tva({
 });
 
 export const calendarDaysCellStyle = tva({
-  base: 'w-[14.28%] aspect-square cursor-pointer flex items-center justify-center data-[selected=true]:bg-primary-0 rounded-lg',
+  base: 'w-[14.28%] p-2 flex items-center justify-center rounded-lg',
+  variants: {
+    hasDay: {
+      true: 'cursor-pointer data-[today=true]:bg-primary-50 data-[selected=true]:data-[disabled=false]:bg-primary-50 data-[active=true]:data-[disabled=false]:bg-primary-50 data-[hover=true]:data-[disabled=false]:bg-primary-0 data-[disabled=true]:text-typography-300 data-[disabled=true]:cursor-not-allowed',
+      false: 'cursor-default',
+    },
+  },
 });
 
 export const calendarWeekCellStyle = tva({

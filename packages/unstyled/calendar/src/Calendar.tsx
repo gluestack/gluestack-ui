@@ -39,9 +39,6 @@ export function Calendar(StyledCalendar: any) {
         selectedDate ?? new Date()
       );
 
-      const isPrevDisabled = minDate ? currentMonth < minDate : false;
-      const isNextDisabled = maxDate ? currentMonth > maxDate : false;
-
       const isDisabled = useCallback(
         (day: Date | null) => {
           if (!day) return false;
@@ -76,6 +73,24 @@ export function Calendar(StyledCalendar: any) {
         setCurrentMonth(newDate);
       }, [currentMonth]);
 
+      const isPrevDisabled = useMemo(() => {
+        if (!minDate) return false;
+        return (
+          currentMonth.getFullYear() < minDate.getFullYear() ||
+          (currentMonth.getFullYear() === minDate.getFullYear() &&
+            currentMonth.getMonth() < minDate.getMonth())
+        );
+      }, [currentMonth, minDate]);
+
+      const isNextDisabled = useMemo(() => {
+        if (!maxDate) return false;
+        return (
+          currentMonth.getFullYear() > maxDate.getFullYear() ||
+          (currentMonth.getFullYear() === maxDate.getFullYear() &&
+            currentMonth.getMonth() >= maxDate.getMonth())
+        );
+      }, [currentMonth, maxDate]);
+
       const getDaysInMonth = useCallback(() => {
         const year = currentMonth.getFullYear();
         const month = currentMonth.getMonth();
@@ -98,8 +113,8 @@ export function Calendar(StyledCalendar: any) {
       const handleDateSelect = useCallback(
         (day: Date | null) => {
           if (!day) return;
-          onChange?.(day);
           setSelectedDate(day);
+          onChange?.(day);
         },
         [onChange]
       );

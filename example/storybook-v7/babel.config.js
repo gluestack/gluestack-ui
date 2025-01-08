@@ -120,6 +120,10 @@ module.exports = function (api) {
               __dirname,
               '../../packages/unstyled/toast/src'
             ),
+            '@gluestack-ui/calendar': path.join(
+              __dirname,
+              '../../packages/unstyled/calendar/src'
+            ),
             '@/extra-components/nativewind': path.resolve(
               __dirname,
               './../storybook-nativewind/src/core-components/nativewind'

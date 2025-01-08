@@ -20,25 +20,25 @@ export const CalendarGridDays = (StyledCalendarGridDays: any) =>
 
     return (
       <StyledCalendarGridDays ref={ref} {...props}>
-        {days.map((day) => {
-          return (
-            <CommonPressable
-              ref={ref}
-              {...props}
-              isDisabled={isDisabled(day)}
-              onPress={() => handleDateSelect(day)}
-              states={{
-                today: isToday(day),
-                selected: day && selectedDate && isSameDate(day, selectedDate),
-              }}
-              dataSet={{
-                today: isToday(day) ? 'true' : 'false',
-                selected: day && selectedDate && isSameDate(day, selectedDate),
-              }}
-              StyledComponent={(dayProps: any) => render(day, dayProps)}
-            />
-          );
-        })}
+        {days.map((day, index) => (
+          <CommonPressable
+            ref={ref}
+            key={index}
+            isDisabled={isDisabled(day)}
+            onPress={() => handleDateSelect(day)}
+            states={{
+              today: isToday(day),
+              selected: day && selectedDate && isSameDate(day, selectedDate),
+              disabled: isDisabled(day),
+            }}
+            dataSet={{
+              today: isToday(day) ? 'true' : 'false',
+              selected: day && selectedDate && isSameDate(day, selectedDate),
+              disabled: isDisabled(day),
+            }}
+            StyledComponent={(dayProps: any) => render(day, dayProps)}
+          />
+        ))}
       </StyledCalendarGridDays>
     );
   });

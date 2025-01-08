@@ -5,7 +5,7 @@ export const CalendarGridWeek = (StyledCalendarGridWeek: any) =>
     const { weekDays } = useCalendarContext();
     return (
       <StyledCalendarGridWeek ref={ref} {...props}>
-        {weekDays.map((weekday) => render?.(weekday))}
+        {weekDays.map((weekday, index) => render?.(weekday, index))}
       </StyledCalendarGridWeek>
     );
   });

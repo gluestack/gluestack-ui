@@ -44,7 +44,7 @@ import { CollapsibleCode } from '@gluestack/design-system';
     showArgsController={true}
     metaData={{
       code: `
-    <Calendar {...props} value={new Date()} className="max-w-sm"/>
+    <Calendar {...props} value={new Date()} className="w-72"/>
       `,
       transformCode: (code) => {
         return transformedCode(code);
@@ -292,7 +292,7 @@ Component for rendering calendar week cells. Supports custom rendering through t
           </Table.TText>
         </Table.TD>
         <Table.TD>
-          <Table.TText>(props: RenderProps) => React.ReactNode</Table.TText>
+          <Table.TText>(weekdays: string) => React.ReactNode</Table.TText>
         </Table.TD>
         <Table.TD>
           <Table.TText>-</Table.TText>
@@ -339,13 +339,13 @@ Component for rendering calendar day cells. Supports custom rendering through th
           </Table.TText>
         </Table.TD>
         <Table.TD>
-          <Table.TText>(props: RenderProps) => React.ReactNode</Table.TText>
+          <Table.TText>(day: Date | null, dayProps: any) => React.ReactNode</Table.TText>
         </Table.TD>
         <Table.TD>
           <Table.TText>-</Table.TText>
         </Table.TD>
         <Table.TD>
-          <Table.TText>Custom renderer for date cells. Allows complete customization of how dates are displayed</Table.TText>
+          <Table.TText>Custom renderer for date cells. Allows complete customization of how each date is displayed</Table.TText>
         </Table.TD>
       </Table.TR>
     </Table.TBody>

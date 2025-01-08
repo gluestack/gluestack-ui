@@ -40,7 +40,7 @@ const UICalendar = createCalendar({
   HeaderPrev: RNPressable,
   HeaderTitle: RNText,
   HeaderNext: RNPressable,
-  Header: RNText,
+  Header: RNView,
   GridWeek: RNView,
   GridDays: RNView,
   Grid: RNView,
@@ -109,7 +109,7 @@ const CalendarHeaderPrev = React.forwardRef<
       {...props}
       className={calendarNavStyle({ class: className })}
     >
-      <UIIcon as={ChevronLeft} />
+      <UIIcon as={ChevronLeft} className="text-primary-500" />
     </UICalendar.HeaderPrev>
   );
 });
@@ -124,7 +124,7 @@ const CalendarHeaderNext = React.forwardRef<
       {...props}
       className={calendarNavStyle({ class: className })}
     >
-      <UIIcon as={ChevronRight} />
+      <UIIcon as={ChevronRight} className="text-primary-500" />
     </UICalendar.HeaderNext>
   );
 });
@@ -177,9 +177,12 @@ const CalendarGridWeek = React.forwardRef<
       ref={ref}
       {...props}
       className={calendarGridWeekStyle({ class: className })}
-      render={(day) => {
+      render={(day, index) => {
         return (
-          <RNText className={calendarWeekCellStyle({ class: className })}>
+          <RNText
+            key={index}
+            className={calendarWeekCellStyle({ class: className })}
+          >
             {day}
           </RNText>
         );
@@ -191,22 +194,27 @@ const CalendarGridWeek = React.forwardRef<
 const CalendarGridDays = React.forwardRef<
   React.ElementRef<typeof UICalendar.GridDays>,
   ICalendarGridDaysProps
->(({ className, ...props }, ref) => {
+>(({ className, render, ...props }, ref) => {
   return (
     <UICalendar.GridDays
       ref={ref}
       {...props}
       className={calendarGridDaysStyle({ class: className })}
-      render={(day, dayProps) => (
-        <RNPressable
-          {...dayProps}
-          className={calendarDaysCellStyle({
-            class: className,
-          })}
-        >
-          <RNText>{day?.getDate()}</RNText>
-        </RNPressable>
-      )}
+      render={
+        render ||
+        ((day, dayProps) => {
+          return (
+            <RNPressable
+              {...dayProps}
+              className={calendarDaysCellStyle({
+                hasDay: !!day,
+              })}
+            >
+              <RNText>{day?.getDate()}</RNText>
+            </RNPressable>
+          );
+        })
+      }
     />
   );
 });

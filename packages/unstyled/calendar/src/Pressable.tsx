@@ -26,7 +26,7 @@ const Pressable = forwardRef(
       isDisabled,
     });
     const { isFocused, focusProps } = useFocus();
-    const { isFocusVisible, focusRingProps }: any = useFocusRing();
+    const { isFocusVisible, focusProps: focusRingProps }: any = useFocusRing();
 
     const defaultStates = {
       hover: isHoveredProp || isHovered,
