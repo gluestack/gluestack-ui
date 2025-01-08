@@ -2563,11 +2563,6 @@
   resolved "https://registry.yarnpkg.com/@gluestack-ui/config-v2/-/config-v2-1.1.1.tgz#28b5e4da34e8b62eb8b81fb0bef193374bf87f7c"
   integrity sha512-JDixCRACi1Dy+JEK0TtSIDgsOYsz3VX6LVUw+qERJu56z1F2q/USJWMC1X7NEx5FQ/nS9XhzliW2I1GIM+FLhg==
 
-"@gluestack-ui/config@^1.0.13", "@gluestack-ui/config@^1.1.19":
-  version "1.1.20"
-  resolved "https://registry.yarnpkg.com/@gluestack-ui/config/-/config-1.1.20.tgz#d1dcdde67fc91ff3217638b6faa24c04ba7a5c9e"
-  integrity sha512-kgIzcRZfrzdNiKry7TcgsS85SgACxSRxaLTWdxoNPB/WaJ+XrCbKbaBuQOiELW33dgl2IdyUw60V8XlsLM+f2A==
-
 "@gluestack-ui/pin-input@0.0.2":
   version "0.0.2"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/pin-input/-/pin-input-0.0.2.tgz#c1bd598741acc39ccb80ac53e397064dfe1dd10e"
