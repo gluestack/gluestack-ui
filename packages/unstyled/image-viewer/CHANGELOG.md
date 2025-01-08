@@ -4,7 +4,7 @@
 
 ### Patch Changes
 
-- fix: updated dependencies.json
+- fix: updated reanimated version
 
 ## 0.0.3
 
