@@ -1,4 +1,4 @@
-import React, { forwardRef, useContext } from 'react';
+import React, { forwardRef } from 'react';
 import { ImageViewerContext } from './ImageViewerContext';
 import {
   runOnJS,
@@ -28,7 +28,7 @@ const ImageViewerContent = (
       }: ImageViewerContentProps & { children: React.ReactNode },
       ref?: any
     ) => {
-      const { onClose, setScale }: any = useContext(ImageViewerContext);
+      const { onClose, setScale }: any = React.useContext(ImageViewerContext);
       const scale = useSharedValue(1);
       const savedScale = useSharedValue(1);
       const translateX = useSharedValue(0);
@@ -145,7 +145,7 @@ const ImageViewerContent = (
         doubleTapGesture,
         Gesture.Simultaneous(pinchGesture, panGesture)
       );
-
+      // @ts-ignore
       const animatedStyle = useAnimatedStyle(() => {
         setScale(scale.value);
         if (scale.value <= 1) {
