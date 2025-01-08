@@ -19,7 +19,7 @@
   "dependencies": {
     "@babel/runtime": "^7.24.5",
     "@gluestack-style/legend-motion-animation-driver": "^1.0.3",
-    "@gluestack-ui/config": "^1.1.18",
+    "@gluestack-ui/config": "^1.1.19",
     "@gluestack-ui/themed": "^1.1.26",
     "@gorhom/bottom-sheet": "^5.0.0-alpha.10",
     "@legendapp/motion": "^2.3.0",
