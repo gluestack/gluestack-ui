@@ -23,7 +23,9 @@ CalendarHeaderPrev,
 CalendarHeaderTitle,
 CalendarGrid,
 CalendarGridWeek,
-CalendarGridDays } from '../../core-components/nativewind';
+CalendarGridDays,
+Pressable,
+Text } from '../../core-components/nativewind';
 import {
   AppProvider,
   CodePreview,
@@ -152,7 +154,7 @@ This section provides a comprehensive reference list for the component props, de
 
 #### Calendar
 
-It is a context provider for entire calendar api.
+It inherits all the properties of React Native's `View` component.
 
 ### Props
 
@@ -261,9 +263,13 @@ It is a context provider for entire calendar api.
 </TableContainer>
 </>
 
+### CalendarGrid
+
+It inherits all the properties of React Native's `View` component.
+
 ### CalendarGridWeek
 
-Component for rendering calendar week cells. Supports custom rendering through the render prop.
+It inherits all the properties of React Native's `View` component. Renders calendar week cells and provides flexibility through a render prop for custom cell rendering.
 
 <>
 <TableContainer>
@@ -292,7 +298,7 @@ Component for rendering calendar week cells. Supports custom rendering through t
           </Table.TText>
         </Table.TD>
         <Table.TD>
-          <Table.TText>(weekdays: string) => React.ReactNode</Table.TText>
+          <Table.TText>(weekdays: string, index: number) => React.ReactNode</Table.TText>
         </Table.TD>
         <Table.TD>
           <Table.TText>-</Table.TText>
@@ -309,7 +315,7 @@ Component for rendering calendar week cells. Supports custom rendering through t
 
 ### CalendarGridDays
 
-Component for rendering calendar day cells. Supports custom rendering through the render prop.
+It inherits all the properties of React Native's `View` component. Renders calendar day cells and provides flexibility through a render prop for custom cell rendering.
 
 
 <>
@@ -353,7 +359,17 @@ Component for rendering calendar day cells. Supports custom rendering through th
 </TableContainer>
 </>
 
+### CalendarHeader
+
+It inherits all the properties of React Native's `View` component.
+
+### CalendarHeaderTitle
+
+It inherits all the properties of React Native's `Text` component.
+
 ### CalendarHeaderPrev & CalendarHeaderNext
+
+It inherits all the properties of React Native's `Pressable` component.
 
 <>
 <TableContainer>
@@ -395,3 +411,53 @@ Component for rendering calendar day cells. Supports custom rendering through th
   </Table>
 </TableContainer>
 </>
+
+### Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+### Calendar with Custom Renderer
+Here is a complete example of how to use the `Calendar` component with its `render` prop to customize the appearance of the calendar.
+
+<Wrapper>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+        <Calendar
+          {...props}
+          value={new Date()}
+          className="w-72"
+          minDate={new Date(2024, 5, 1)}
+          maxDate={new Date(2025, 1, 15)}
+        >
+          <CalendarHeader>
+            <CalendarHeaderPrev />
+            <CalendarHeaderTitle />
+            <CalendarHeaderNext />
+          </CalendarHeader>
+          <CalendarGrid>
+            <CalendarGridWeek />
+            <CalendarGridDays
+              render={(day, dayProps) => (
+                <Pressable
+                  key={day?.getDate()}
+                  {...dayProps}
+                  className="w-[14.28%] p-2 flex items-center justify-center rounded-lg"
+                >
+                  <Text>{day?.getDate()}</Text>
+                </Pressable>
+              )}
+            />
+          </CalendarGrid>
+        </Calendar>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: { Calendar, CalendarHeader, CalendarHeaderPrev, CalendarHeaderNext, CalendarHeaderTitle, CalendarGrid, CalendarGridWeek, CalendarGridDays, Wrapper, Pressable, Text },
+      argsType: {},
+    }}
+  />
+</Wrapper>
