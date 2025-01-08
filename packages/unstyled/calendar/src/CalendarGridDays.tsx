@@ -22,8 +22,7 @@ export const CalendarGridDays = (StyledCalendarGridDays: any) =>
       <StyledCalendarGridDays ref={ref} {...props}>
         {days.map((day, index) => (
           <CommonPressable
-            ref={ref}
-            key={index}
+            key={`key-${day}-${index}`}
             isDisabled={isDisabled(day)}
             onPress={() => handleDateSelect(day)}
             states={{

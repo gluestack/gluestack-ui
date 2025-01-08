@@ -5,7 +5,7 @@ export const calendarStyle = tva({
 });
 
 export const calendarNavStyle = tva({
-  base: 'w-6 h-6 p-1 flex items-center justify-center rounded-full data-[hover=true]:bg-typography-100 data-[active=true]:bg-typography-200 data-[disabled=true]:opacity-40 data-[disabled=true]:cursor-not-allowed',
+  base: 'w-6 h-6 p-1 flex items-center justify-center rounded-full data-[hover=true]:bg-background-100 data-[active=true]:bg-background-200 data-[disabled=true]:opacity-40 data-[disabled=true]:cursor-not-allowed',
 });
 
 export const calendarTitleStyle = tva({
@@ -13,7 +13,7 @@ export const calendarTitleStyle = tva({
 });
 
 export const calendarHeaderStyle = tva({
-  base: 'flex flex-row w-full justify-between items-center px-4 py-2 border-b border-typography-200',
+  base: 'flex flex-row w-full justify-between items-center px-4 py-2 border-b border-outline-200',
 });
 
 export const calendarGridWeekStyle = tva({
@@ -25,17 +25,17 @@ export const calendarGridDaysStyle = tva({
 });
 
 export const calendarDaysCellStyle = tva({
-  base: 'w-[14.28%] p-2 flex items-center justify-center rounded-lg',
+  base: 'w-[15.15%] p-2 m-0.5 flex items-center justify-center rounded-lg',
   variants: {
     hasDay: {
-      true: 'cursor-pointer data-[today=true]:bg-primary-50 data-[selected=true]:data-[disabled=false]:bg-primary-50 data-[active=true]:data-[disabled=false]:bg-primary-50 data-[hover=true]:data-[disabled=false]:bg-primary-0 data-[disabled=true]:text-typography-300 data-[disabled=true]:cursor-not-allowed',
+      true: 'cursor-pointer data-[today=true]:bg-background-100 data-[selected=true]:data-[disabled=false]:bg-background-500 data-[active=true]:data-[disabled=false]:bg-background-500 data-[hover=true]:data-[disabled=false]:bg-background-50 data-[disabled=true]:cursor-not-allowed group',
       false: 'cursor-default',
     },
   },
 });
 
 export const calendarWeekCellStyle = tva({
-  base: 'w-[14.28%] p-2 aspect-square flex items-center justify-center text-typography-500 font-medium',
+  base: 'w-[14.28%] p-2 flex items-center justify-center text-typography-500 font-medium',
 });
 
 export const calendarGridStyle = tva({

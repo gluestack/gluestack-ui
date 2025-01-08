@@ -109,7 +109,7 @@ const CalendarHeaderPrev = React.forwardRef<
       {...props}
       className={calendarNavStyle({ class: className })}
     >
-      <UIIcon as={ChevronLeft} className="text-primary-500" />
+      <UIIcon as={ChevronLeft} className="text-typography-800" />
     </UICalendar.HeaderPrev>
   );
 });
@@ -124,7 +124,7 @@ const CalendarHeaderNext = React.forwardRef<
       {...props}
       className={calendarNavStyle({ class: className })}
     >
-      <UIIcon as={ChevronRight} className="text-primary-500" />
+      <UIIcon as={ChevronRight} className="text-typography-800" />
     </UICalendar.HeaderNext>
   );
 });
@@ -201,16 +201,19 @@ const CalendarGridDays = React.forwardRef<
       {...props}
       className={calendarGridDaysStyle({ class: className })}
       render={
-        render ||
+        render ??
         ((day, dayProps) => {
           return (
             <RNPressable
+              key={day}
               {...dayProps}
               className={calendarDaysCellStyle({
                 hasDay: !!day,
               })}
             >
-              <RNText>{day?.getDate()}</RNText>
+              <RNText className="group-data-[selected=true]:text-typography-0">
+                {day?.getDate()}
+              </RNText>
             </RNPressable>
           );
         })
