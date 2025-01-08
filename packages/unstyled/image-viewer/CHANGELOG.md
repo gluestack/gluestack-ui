@@ -1,5 +1,11 @@
 # @gluestack-ui/image-viewer
 
+## 0.0.4
+
+### Patch Changes
+
+- fix: updated reanimated version
+
 ## 0.0.3
 
 ### Patch Changes
