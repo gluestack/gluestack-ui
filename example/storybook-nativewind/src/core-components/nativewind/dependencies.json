@@ -234,5 +234,5 @@
       "hooks": ["useBreakpointValue"]
     }
   },
-  "IgnoredComponents": ["bottomsheet"]
+  "IgnoredComponents": ["bottomsheet", "image-viewer"]
 }
