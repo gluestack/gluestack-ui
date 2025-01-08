@@ -23,8 +23,6 @@ import {
   CloseIcon,
   Icon,
   Center,
-  Pressable,
-  Image
 } from '../../core-components/nativewind';
 import { 
   Pressable,
@@ -277,7 +275,7 @@ The `ImageViewerContent` component is responsible for rendering the images withi
             </Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>Array&lt;{`{id: number, url: string}`}&gt;</Table.TText>
+            <Table.TText>Array&lt;{`any`}&gt;</Table.TText>
           </Table.TD>
           <Table.TD>
             <Table.TText>-</Table.TText>
@@ -325,6 +323,74 @@ The `ImageViewerBackdrop` component serves as the background layer of the `Image
 
 The `ImageViewerImage` component is used to display individual images within the `ImageViewerContent`. It supports all the properties of React Native's [Image](https://reactnative.dev/docs/image) component, making it easy to customize the appearance and behavior of the images.
 
+### Example
+
+The Example section offers visual previews of the component, letting you quickly identify the best fit for your needs. Just copy the code and use it in your project.
+
+```jsx
+import { ImageViewer, ImageViewerBackdrop, ImageViewerContent, ImageViewerCloseButton, ImageViewerImage } from '@/components/ui/image-viewer';
+import { CloseIcon, Icon } from '@/components/ui/icon';
+import React, { useState } from 'react';
+import { Pressable, Image } from 'react-native';
+import { Center } from '@/components/ui/center';
+```
+
+<Wrapper>
+  <CodePreview
+    _rendererWrapper={{
+      py: '$8',
+      px: '$8',
+    }}
+    showComponentRenderer={true}
+    showArgsController={true}
+    metaData={{
+      code: `
+      function App() {
+        const [visible, setVisible] = React.useState(false);
+        const Images = [{ id: 1, url: 'https://picsum.photos/1000/1000' }];
+        return (
+          <Center>
+        <Pressable onPress={() => setVisible(true)}>
+        <Image
+          source={{ uri: Images[0].url }}
+          className="w-[200px] h-[200px]"
+          resizeMode="contain"
+        />
+      </Pressable>
+      <ImageViewer isOpen={visible} onClose={() => setVisible(false)}>
+      <ImageViewerBackdrop>
+      <ImageViewerContent images={Images} renderImages={(item) => (<ImageViewerImage key={item.id} source={{ uri: item.url }} />)} >
+      <ImageViewerCloseButton>
+      <Icon as={CloseIcon}/>
+      </ImageViewerCloseButton>
+      </ImageViewerContent>
+      </ImageViewerBackdrop>
+      </ImageViewer>
+      </Center>
+        );
+      }
+      `,
+      transformCode: (code) => {
+        return transformedCode(code, 'function', 'App');
+      },
+      scope: {
+        Wrapper,
+        ImageViewer,
+        ImageViewerBackdrop,
+        ImageViewerContent,
+        ImageViewerCloseButton,
+        ImageViewerImage,
+        CloseIcon,
+        Icon,
+        useState,
+        Pressable,
+        Image,
+        Center,
+      },
+      argsType: {},
+    }}
+  />
+</Wrapper>
 
 > Note: Currently, the ImageViewer component is limited to only single image, multiple image support will be added in the future.
 
