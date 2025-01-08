@@ -76,24 +76,161 @@ export default () => (
 );
 ```
 
-## Component Props
+### Component Props
 
-### ImageViewer
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
 
-| Prop     | Type      | Default | Description                                            |
-| -------- | --------- | ------- | ------------------------------------------------------ |
-| isOpen   | boolean   | false   | If true, the image viewer modal will open              |
-| onClose  | function  | -       | Callback invoked when the image viewer modal is closed |
-| children | ReactNode | -       | The content to be rendered inside the image viewer     |
+#### ImageViewer
 
-### ImageViewerContent
+The`ImageViewer` component serves as the main container for displaying images in a modal view. It provides a user-friendly interface for viewing images with features like pinch-to-zoom, double-tap zoom, and swipe gestures for dismissal. It is built on top of React Native's [Modal](https://reactnative.dev/docs/modal) component, inheriting all its properties and behaviors.
 
-| Prop         | Type                     | Default | Description                        |
-| ------------ | ------------------------ | ------- | ---------------------------------- |
-| images       | Array<any>               | -       | Array of image objects to display  |
-| renderImages | (item: any) => ReactNode | -       | Function to render each image item |
+<Wrapper>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Type</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Default</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Description</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Required</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>isOpen</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>boolean</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`If true, the image-viewer modal will open. Useful for controllable state behavior.`}</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>Yes</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>onClose</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`() => any`}</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`Callback invoked when the image-viewer modal is closed.`}</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>Yes</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</Wrapper>
 
-More guides on how to get started are available [here](https://ui.gluestack.io/docs/components/media-and-icons/image-viewer).
+#### ImageViewerContent
+
+The `ImageViewerContent` component is responsible for rendering the images within the `ImageViewer`. It supports gestures for zooming and panning, allowing users to interact with the images. This component leverages React Native's [Animated](https://reactnative.dev/docs/animated#props) & [View](https://reactnative.dev/docs/view) components, as well as gesture handling from the [react-native-gesture-handler](https://docs.swmansion.com/react-native-gesture-handler/docs/) library.
+
+<Wrapper>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Type</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Default</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Description</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Required</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>images</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>Array&lt;{`any`}&gt;</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>Array of image objects to display</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>Yes</Table.TText>
+          </Table.TD>
+        </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>renderImages</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>(item: any) => ReactNode</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>Function to render each image item</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>Yes</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</Wrapper>
+
+#### ImageViewerCloseButton
+
+The `ImageViewerCloseButton` component provides a customizable button for closing the `ImageViewer`. It is typically placed within the `ImageViewerContent` and can be styled to match the application's design. It inherits properties from React Native's [View](https://reactnative.dev/docs/view) component.
+
+#### ImageViewerBackdrop
+
+The `ImageViewerBackdrop` component serves as the background layer of the `ImageViewer`, providing a dimmed or blurred effect behind the content. It enhances the focus on the images being viewed. This component is built using React Native's [Animated](https://reactnative.dev/docs/animated#props) & [View](https://reactnative.dev/docs/view) components, allowing for smooth transitions and animations.
+
+#### ImageViewerImage
+
+The `ImageViewerImage` component is used to display individual images within the `ImageViewerContent`. It supports all the properties of React Native's [Image](https://reactnative.dev/docs/image) component, making it easy to customize the appearance and behavior of the images.
 
 ## Contributing
 
