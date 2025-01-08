@@ -9,7 +9,7 @@ export interface ImageViewerProps {
   /**
    * If true, the modal will open. Useful for controllable state behavior.
    */
-  isOpen?: boolean;
+  isOpen: boolean | undefined;
   /**
    * Callback invoked when the modal is closed.
    */
@@ -21,7 +21,7 @@ export interface ImageViewerProps {
 
 export interface ImageViewerContentProps {
   images: any;
-  renderImages: (item: any) => React.ReactNode;
+  renderImages: (item: any) => any;
 }
 
 export type IImageViewerComponentType<
