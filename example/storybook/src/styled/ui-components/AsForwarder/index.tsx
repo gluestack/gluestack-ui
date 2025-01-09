@@ -1,6 +1,5 @@
 import { styled, AsForwarder } from '@gluestack-style/react';
 import { H1 } from '@expo/html-elements';
-import { Svg } from 'react-native-svg';
 
 export const StyledHeading = styled(
   H1,

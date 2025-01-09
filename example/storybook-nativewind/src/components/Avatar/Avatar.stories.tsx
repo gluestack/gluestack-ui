@@ -1,7 +1,5 @@
 import type { ComponentMeta } from '@storybook/react-native';
 import Avatar from './Avatar';
-import AvatarGroupExample from './AvatarGroup';
-import AvatarSizeExample from './AvatarSizes';
 
 const AvatarMeta: ComponentMeta<typeof Avatar> = {
   title: 'stories/Avatar',
@@ -38,5 +36,3 @@ const AvatarMeta: ComponentMeta<typeof Avatar> = {
 
 export default AvatarMeta;
 export { Avatar };
-export { AvatarSizeExample as AvatarSizes };
-export { AvatarGroupExample as AvatarGroup };

@@ -15,10 +15,12 @@
       "@gluestack-ui/toast": ["../../packages/unstyled/toast/src"],
       "@gluestack-ui/alert": ["../../packages/unstyled/alert/src"],
       "@gluestack-ui/input": ["../../packages/unstyled/input/src"],
+      "@gluestack-ui/pin-input": ["../../packages/unstyled/pin-input/src"],
       "@gluestack-ui/checkbox": ["../../packages/unstyled/checkbox/src"],
       "@gluestack-ui/form-control": [
         "../../packages/unstyled/form-control/src"
       ],
+      "@/components/ui/utils/*": ["src/core-components/hooks/*"],
       "@gluestack-ui/modal": ["../../packages/unstyled/modal/src"],
       "@gluestack-ui/radio": ["../../packages/unstyled/radio/src"],
       "@gluestack-ui/accordion": ["../../packages/unstyled/accordion/src"],

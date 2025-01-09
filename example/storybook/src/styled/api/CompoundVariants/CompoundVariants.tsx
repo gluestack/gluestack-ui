@@ -1,8 +1,7 @@
-import React, { memo, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-import { createStyled, styled } from '@gluestack-style/react';
+import { styled } from '@gluestack-style/react';
 import { Wrapper } from '../../components/Wrapper';
-import { Motion } from '@legendapp/motion';
 import { View } from 'react-native';
 import { Text } from 'react-native';
 
@@ -89,7 +88,7 @@ const StyledView = styled(
   }
 );
 export function CompoundVariants() {
-  const [hover, setHover] = useState(false);
+  const [setHover] = useState(false);
 
   // console.log(
   //   animatedPlugin.inputMiddleWare({

@@ -1,13 +1,9 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React from 'react';
 
-import { Pressable as RNPressable, Text as RNText, View } from 'react-native';
+import { Text as RNText, View } from 'react-native';
 import { AsForwarder, styled } from '@gluestack-style/react';
 import { Wrapper } from '../../components/Wrapper';
-import { AnimatedView } from '@gluestack-style/animation-resolver';
-import { CameraIcon } from 'lucide-react-native';
 
-import Link from 'next/link';
-import { Pressable } from 'react-native';
 export const BaseIcon = styled(
   AsForwarder,
   {
@@ -80,22 +76,22 @@ export const BaseIcon = styled(
   }
 );
 
-const StyledIcon = styled(
-  BaseIcon,
-  {
-    props: {
-      size: 'md',
-      //@ts-ignore
-      fill: 'none',
-    },
-    color: '$backgroundLight800',
-    _dark: {
-      //@ts-ignore
-      color: '$backgroundDark400',
-    },
-  },
-  { componentName: 'Icon' }
-);
+// const StyledIcon = styled(
+//   BaseIcon,
+//   {
+//     props: {
+//       size: 'md',
+//       //@ts-ignore
+//       fill: 'none',
+//     },
+//     color: '$backgroundLight800',
+//     _dark: {
+//       //@ts-ignore
+//       color: '$backgroundDark400',
+//     },
+//   },
+//   { componentName: 'Icon' }
+// );
 
 const Text = styled(
   RNText,

@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import { StyledProvider, styled } from '@gluestack-style/react';
 import { config } from '../../components/nb.config';
 

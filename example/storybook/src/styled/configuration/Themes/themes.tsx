@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text as RNText, Pressable } from 'react-native';
-import { styled, StyledProvider, Theme } from '@gluestack-style/react';
+import { styled, Theme } from '@gluestack-style/react';
 import { Wrapper } from '../../components/Wrapper';
 
 const StyledLinkButton = styled(
@@ -41,7 +41,7 @@ const Box = styled(View, {
 });
 const Text = styled(RNText, { color: '$textColor' });
 
-export function Themes({ ...args }) {
+export function Themes() {
   const [theme, setTheme] = React.useState('2000s');
   const themes = ['2000s', '2010s', '2020s'];
   return (

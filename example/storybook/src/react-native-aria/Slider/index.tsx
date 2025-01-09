@@ -1,10 +1,10 @@
-import React from "react";
-import { View, Text, Pressable, Platform } from "react-native";
-import { useSlider, useSliderThumb } from "@react-native-aria/slider";
-import { useSliderState } from "@react-stately/slider";
-import { useFocusRing } from "@react-native-aria/focus";
-import { VisuallyHidden } from "@react-aria/visually-hidden";
-import { mergeProps } from "@react-aria/utils";
+import React from 'react';
+import { View, Text, Pressable, Platform } from 'react-native';
+import { useSlider, useSliderThumb } from '@react-native-aria/slider';
+import { useSliderState } from '@react-stately/slider';
+import { useFocusRing } from '@react-native-aria/focus';
+import { VisuallyHidden } from '@react-aria/visually-hidden';
+import { mergeProps } from '@react-aria/utils';
 
 const useLayout = () => {
   const [layout, setLayout] = React.useState({});
@@ -38,12 +38,12 @@ export function Slider(props) {
       }}
     >
       {/* Create a flex container for the label and output element. */}
-      <View style={{ display: "flex", alignSelf: "stretch" }}>
+      <View style={{ display: 'flex', alignSelf: 'stretch' }}>
         {props.label && <Text {...labelProps}>{props.label}</Text>}
-        {Platform.OS === "web" && (
+        {Platform.OS === 'web' && (
           <output
             {...outputProps}
-            style={{ flex: "1 0 auto", textAlign: "end" }}
+            style={{ flex: '1 0 auto', textAlign: 'end' }}
           >
             {state.getThumbValueLabel(0)}
           </output>
@@ -57,16 +57,16 @@ export function Slider(props) {
           ref={trackRef}
           style={{
             height: 30,
-            width: " 100%",
+            width: ' 100%',
           }}
         >
           <View
             style={{
-              position: "absolute",
-              backgroundColor: "gray",
+              position: 'absolute',
+              backgroundColor: 'gray',
               height: 3,
               top: 13,
-              width: "100%",
+              width: '100%',
             }}
           />
         </Pressable>
@@ -94,7 +94,7 @@ function Thumb(props) {
   return (
     <View
       style={{
-        position: "absolute",
+        position: 'absolute',
         top: 4,
         transform: [{ translateX: layout.width ? -layout.width / 2 : 0 }],
         left: `${state.getThumbPercent(index) * 100}%`,
@@ -108,13 +108,13 @@ function Thumb(props) {
           height: 20,
           borderRadius: 99999,
           backgroundColor: isFocusVisible
-            ? "orange"
+            ? 'orange'
             : state.isThumbDragging(index)
-            ? "dimgrey"
-            : "gray",
+            ? 'dimgrey'
+            : 'gray',
         }}
       >
-        {Platform.OS === "web" && (
+        {Platform.OS === 'web' && (
           <VisuallyHidden>
             <input ref={inputRef} {...mergeProps(inputProps, focusProps)} />
           </VisuallyHidden>

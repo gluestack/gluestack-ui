@@ -1,5 +1,4 @@
 import React from 'react';
-import { View } from 'react-native';
 import { styled } from '@gluestack-style/react';
 import { Wrapper } from '../../components/Wrapper';
 import { LinearGradient } from 'expo-linear-gradient';

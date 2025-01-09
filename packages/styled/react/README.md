@@ -1,6 +1,6 @@
 <h3 align="center">
   <a href="https://github.com/gluestack/gluestack-style">
-    <img src="https://raw.githubusercontent.com/gluestack/gluestack-style/main/img/gluestack-logo.svg" alt="gluestack logo">
+    <img src="https://raw.githubusercontent.com/gluestack/gluestack-style/main/assets/gluestack-logo.svg" alt="gluestack logo">
   </a>
   <br>
   <br>
