@@ -59,7 +59,7 @@
     "card": {
       "dependencies": {}
     },
-    "center": {
+    "calendar": {
       "dependencies": {}
     },
     "checkbox": {
@@ -234,5 +234,5 @@
       "hooks": ["useBreakpointValue"]
     }
   },
-  "IgnoredComponents": ["bottomsheet", "image-viewer"]
+  "IgnoredComponents": ["bottomsheet", "image-viewer", "calendar"]
 }
