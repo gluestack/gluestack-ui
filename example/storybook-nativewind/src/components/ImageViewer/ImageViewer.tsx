@@ -10,7 +10,11 @@ import {
 import { Icon, CloseIcon } from '@/components/ui/icon';
 
 const ImageViewerBasic = ({ ...props }: any) => {
-  const Images = [{ id: 1, url: 'https://picsum.photos/1000/1000' }];
+  const Images = [
+    { id: 1, url: 'https://picsum.photos/1000/1000', title: 'Image 1' },
+    { id: 2, url: 'https://picsum.photos/1000/1000', title: 'Image 2' },
+    { id: 3, url: 'https://picsum.photos/1000/1000', title: 'Image 3' },
+  ];
   const [visible, setVisible] = useState(false);
   return (
     <>
@@ -29,11 +33,11 @@ const ImageViewerBasic = ({ ...props }: any) => {
       >
         <ImageViewerBackdrop>
           <ImageViewerContent
-            //@ts-ignore
             images={Images}
-            renderImages={(item: any) => (
-              <ImageViewerImage key={item.id} source={{ uri: item.url }} />
+            renderImages={({ item }) => (
+              <ImageViewerImage source={{ uri: item.url }} />
             )}
+            keyExtractor={(item, index) => item.id + '-' + index}
           >
             <ImageViewerCloseButton>
               <Icon as={CloseIcon} />

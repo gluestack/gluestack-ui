@@ -8,7 +8,7 @@ import {
   withTiming,
 } from 'react-native-reanimated';
 import { Dimensions, StatusBar } from 'react-native';
-import type { ImageViewerContentProps } from './types';
+import type { InterfaceImageViewerContentProps } from './types';
 
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window');
 const DOUBLE_TAP_DELAY = 300;
@@ -24,8 +24,9 @@ const ImageViewerContent = (
       {
         images,
         renderImages,
+        keyExtractor,
         children,
-      }: ImageViewerContentProps & { children: React.ReactNode },
+      }: InterfaceImageViewerContentProps & { children: React.ReactNode },
       ref?: any
     ) => {
       const { onClose, setScale }: any = useContext(ImageViewerContext);
@@ -45,7 +46,7 @@ const ImageViewerContent = (
         .onUpdate((event: any) => {
           // Apply the new scale based on the saved scale value
           const newScale = savedScale.value * event.scale;
-          scale.value = Math.min(Math.max(newScale, 0.5), 3);
+          scale.value = Math.min(Math.max(newScale, 0.5), 10);
           focalX.value = event.focalX;
           focalY.value = event.focalY;
         })
@@ -147,7 +148,7 @@ const ImageViewerContent = (
       );
 
       const animatedStyle = useAnimatedStyle(() => {
-        setScale(scale.value);
+        runOnJS(setScale)(scale.value);
         if (scale.value <= 1) {
         }
         return {
@@ -165,7 +166,16 @@ const ImageViewerContent = (
           {children}
           <StyledGestureDetector gesture={composedGesture}>
             <StyledAnimated style={animatedStyle}>
-              {images.map(renderImages)}
+              {images.slice(0, 1).map((item: any, index: number) => {
+                const RenderImage = renderImages;
+                return (
+                  <RenderImage
+                    key={keyExtractor ? keyExtractor(item, index) : index}
+                    item={item}
+                    index={index}
+                  />
+                );
+              })}
             </StyledAnimated>
           </StyledGestureDetector>
         </StyledGestureHandlerRootView>
