@@ -21,7 +21,7 @@ export interface InterfaceImageViewerProps {
   /**
    * If true, the ImageViewer will open. Useful for controllable state behavior.
    */
-  isOpen: boolean | undefined;
+  isOpen: boolean;
   /**
    * Callback invoked when the ImageViewer is closed.
    */
