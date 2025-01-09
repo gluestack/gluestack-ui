@@ -90,7 +90,7 @@ export default () => (
 | -------- | --------- | ------- | ------------------------------------------------------ | -------- |
 | isOpen   | boolean   | false   | If true, the image viewer modal will open              | Yes      |
 | onClose  | function  | -       | Callback invoked when the image viewer modal is closed | Yes      |
-| children | ReactNode | -       | The content to be rendered inside the image viewer     | \_       |
+| children | ReactNode | -       | The content to be rendered inside the image viewer     |  _       |
 
 ### ImageViewerContent
 
