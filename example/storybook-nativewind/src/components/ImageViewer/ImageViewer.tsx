@@ -33,12 +33,11 @@ const ImageViewerBasic = ({ ...props }: any) => {
       >
         <ImageViewerBackdrop>
           <ImageViewerContent
-            //@ts-ignore
             images={Images}
             renderImages={({ item }: any) => (
-              <ImageViewerImage key={item.id} source={{ uri: item.url }} />
+              <ImageViewerImage source={{ uri: item.url }} />
             )}
-            keyExtractor={(item: any, index: number) => `${item.id}-${index}`}
+            keyExtractor={(item, index) => item.id + '-' + index}
           >
             <ImageViewerCloseButton>
               <Icon as={CloseIcon} />
