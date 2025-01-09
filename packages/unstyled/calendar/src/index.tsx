@@ -3,9 +3,10 @@ import { CalendarHeaderPrev } from './CalendarHeaderPrev';
 import { CalendarHeaderTitle } from './CalendarHeaderTitle';
 import { CalendarHeaderNext } from './CalendarHeaderNext';
 import { CalendarHeader } from './CalendarHeader';
-import { CalendarGridWeek } from './CalendarGridWeek';
-import { CalendarGridDays } from './CalendarGridDays';
-import { CalendarGrid } from './CalendarGrid';
+import { CalendarWeek } from './CalendarWeek';
+import { CalendarDays } from './CalendarDays';
+import { CalendarDate } from './CalendarDate';
+import { CalendarContent } from './CalendarContent';
 import { Calendar as CalendarMain } from './Calendar';
 import type { ICalendarComponentType } from './types';
 
@@ -15,45 +16,50 @@ export function createCalendar<
   CalendarHeaderTitle,
   CalendarHeaderNext,
   CalendarHeader,
-  CalendarGridWeek,
-  CalendarGridDays,
-  CalendarGrid
+  CalendarWeek,
+  CalendarDays,
+  CalendarContent,
+  CalendarDate
 >({
   Root,
   HeaderPrev,
   HeaderTitle,
   HeaderNext,
   Header,
-  GridWeek,
-  GridDays,
-  Grid,
+  Week,
+  Days,
+  Content,
+  Date,
 }: {
   Root: React.ComponentType<Calendar>;
   HeaderPrev: React.ComponentType<CalendarHeaderPrev>;
   HeaderTitle: React.ComponentType<CalendarHeaderTitle>;
   HeaderNext: React.ComponentType<CalendarHeaderNext>;
   Header: React.ComponentType<CalendarHeader>;
-  GridWeek: React.ComponentType<CalendarGridWeek>;
-  GridDays: React.ComponentType<CalendarGridDays>;
-  Grid: React.ComponentType<CalendarGrid>;
+  Week: React.ComponentType<CalendarWeek>;
+  Days: React.ComponentType<CalendarDays>;
+  Content: React.ComponentType<CalendarContent>;
+  Date: React.ComponentType<CalendarDate>;
 }) {
   const Calendar = CalendarMain(Root) as any;
   Calendar.HeaderPrev = CalendarHeaderPrev(HeaderPrev);
   Calendar.HeaderTitle = CalendarHeaderTitle(HeaderTitle);
   Calendar.HeaderNext = CalendarHeaderNext(HeaderNext);
   Calendar.Header = CalendarHeader(Header);
-  Calendar.GridWeek = CalendarGridWeek(GridWeek);
-  Calendar.GridDays = CalendarGridDays(GridDays);
-  Calendar.Grid = CalendarGrid(Grid);
+  Calendar.Week = CalendarWeek(Week);
+  Calendar.Days = CalendarDays(Days);
+  Calendar.Content = CalendarContent(Content);
+  Calendar.Date = CalendarDate(Date);
 
   Calendar.displayName = 'Calendar';
   Calendar.HeaderPrev.displayName = 'Calendar.HeaderPrev';
   Calendar.HeaderTitle.displayName = 'Calendar.HeaderTitle';
   Calendar.HeaderNext.displayName = 'Calendar.HeaderNext';
   Calendar.Header.displayName = 'Calendar.Header';
-  Calendar.GridWeek.displayName = 'Calendar.GridWeek';
-  Calendar.GridDays.displayName = 'Calendar.GridDays';
-  Calendar.Grid.displayName = 'Calendar.Grid';
+  Calendar.Week.displayName = 'Calendar.Week';
+  Calendar.Days.displayName = 'Calendar.Days';
+  Calendar.Content.displayName = 'Calendar.Content';
+  Calendar.Date.displayName = 'Calendar.Date';
 
   return Calendar as ICalendarComponentType<
     Calendar,
@@ -61,8 +67,9 @@ export function createCalendar<
     CalendarHeaderTitle,
     CalendarHeaderNext,
     CalendarHeader,
-    CalendarGridWeek,
-    CalendarGridDays,
-    CalendarGrid
+    CalendarWeek,
+    CalendarDays,
+    CalendarContent,
+    CalendarDate
   >;
 }

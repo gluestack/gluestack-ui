@@ -1,15 +1,15 @@
 import React from 'react';
 import {
   Calendar,
-  CalendarGrid,
-  CalendarGridDays,
-  CalendarGridWeek,
+  CalendarContent,
+  CalendarDays,
+  CalendarWeek,
   CalendarHeader,
   CalendarHeaderNext,
   CalendarHeaderPrev,
   CalendarHeaderTitle,
 } from '@/components/ui/calendar';
-import { Text } from '@/components/ui/text';
+// import { Text } from '@/components/ui/text';
 import { Pressable } from '@/components/ui/pressable';
 import { cssInterop } from 'nativewind';
 
@@ -34,20 +34,20 @@ const CalendarBasic = ({ ...props }: any) => {
         <CalendarHeaderTitle />
         <CalendarHeaderNext />
       </CalendarHeader>
-      <CalendarGrid>
-        <CalendarGridWeek />
-        <CalendarGridDays
-          render={(day, dayProps) => (
-            <Pressable
-              key={day?.getDate()}
-              {...dayProps}
-              className="w-[14.28%] p-2 flex items-center justify-center rounded-lg"
-            >
-              <Text>{day?.getDate()}</Text>
-            </Pressable>
-          )}
+      <CalendarContent>
+        <CalendarWeek />
+        <CalendarDays
+        // render={({ day, ...dayProps }) => (
+        //   <Pressable
+        //     key={day?.getDate()}
+        //     {...dayProps}
+        //     className="w-[14.28%] p-2 flex items-center justify-center rounded-lg"
+        //   >
+        //     <Text>{day?.getDate()}</Text>
+        //   </Pressable>
+        // )}
         />
-      </CalendarGrid>
+      </CalendarContent>
     </Calendar>
   );
 };

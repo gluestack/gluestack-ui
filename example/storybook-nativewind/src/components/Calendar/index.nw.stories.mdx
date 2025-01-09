@@ -21,10 +21,11 @@ CalendarHeader,
 CalendarHeaderNext,
 CalendarHeaderPrev,
 CalendarHeaderTitle,
-CalendarGrid,
-CalendarGridWeek,
-CalendarGridDays,
+CalendarContent,
+CalendarWeek,
+CalendarDays,
 Pressable,
+Box,
 Text } from '../../core-components/nativewind';
 import {
   AppProvider,
@@ -38,7 +39,7 @@ import { transformedCode } from '../../utils';
 import Wrapper from '../../core-components/nativewind/Wrapper';
 import { CollapsibleCode } from '@gluestack/design-system';
 
-# Calendar
+This is an illustration of **Calendar** component.
 
 <Wrapper>
   <CodePreview
@@ -123,9 +124,9 @@ import {
   CalendarHeaderNext,
   CalendarHeaderPrev,
   CalendarHeaderTitle,
-  CalendarGrid,
-  CalendarGridWeek,
-  CalendarGridDays,
+  CalendarContent,
+  CalendarWeek,
+  CalendarDays,
 } from '@/components/ui/calendar';
 
 ```
@@ -140,10 +141,10 @@ export default () => (
       <CalendarHeaderTitle />
       <CalendarHeaderNext />
     </CalendarHeader>
-    <CalendarGrid>
-      <CalendarGridWeek />
-      <CalendarGridDays />
-    </CalendarGrid>
+    <CalendarContent>
+      <CalendarWeek />
+      <CalendarDays />
+    </CalendarContent>
   </Calendar>
 );
 ```
@@ -263,11 +264,11 @@ It inherits all the properties of React Native's `View` component.
 </TableContainer>
 </>
 
-### CalendarGrid
+### CalendarContent
 
 It inherits all the properties of React Native's `View` component.
 
-### CalendarGridWeek
+### CalendarWeek
 
 It inherits all the properties of React Native's `View` component. Renders calendar week cells and provides flexibility through a render prop for custom cell rendering.
 
@@ -298,7 +299,7 @@ It inherits all the properties of React Native's `View` component. Renders calen
           </Table.TText>
         </Table.TD>
         <Table.TD>
-          <Table.TText>(weekdays: string, index: number) => React.ReactNode</Table.TText>
+          <Table.TText><InlineCode>{`({weekday: string}) => React.ReactNode`}</InlineCode></Table.TText>
         </Table.TD>
         <Table.TD>
           <Table.TText>-</Table.TText>
@@ -313,7 +314,7 @@ It inherits all the properties of React Native's `View` component. Renders calen
 </>
 
 
-### CalendarGridDays
+### CalendarDays
 
 It inherits all the properties of React Native's `View` component. Renders calendar day cells and provides flexibility through a render prop for custom cell rendering.
 
@@ -345,13 +346,64 @@ It inherits all the properties of React Native's `View` component. Renders calen
           </Table.TText>
         </Table.TD>
         <Table.TD>
-          <Table.TText>(day: Date | null, dayProps: any) => React.ReactNode</Table.TText>
+          <Table.TText><InlineCode>{`({day: Date | null, dayProps: any}) => React.ReactNode`}</InlineCode></Table.TText>
         </Table.TD>
         <Table.TD>
           <Table.TText>-</Table.TText>
         </Table.TD>
         <Table.TD>
           <Table.TText>Custom renderer for date cells. Allows complete customization of how each date is displayed</Table.TText>
+        </Table.TD>
+      </Table.TR>
+    </Table.TBody>
+  </Table>
+</TableContainer>
+</>
+
+### CalendarDate
+
+A pressable component used for rendering individual date cells within `CalendarDays`. This component is used by default when no custom render function is provided to `CalendarDays` by the user.
+
+It inherits all the properties of React Native's `Pressable` component and handles states like selected, disabled, today, etc.
+
+```jsx
+import { CalendarDate } from '@/components/ui/calendar';
+```
+
+<>
+<TableContainer>
+  <Table>
+    <Table.THead>
+      <Table.TR>
+        <Table.TH>
+          <Table.TText>Prop</Table.TText>
+        </Table.TH>
+        <Table.TH>
+          <Table.TText>Type</Table.TText>
+        </Table.TH>
+        <Table.TH>
+          <Table.TText>Default</Table.TText>
+        </Table.TH>
+        <Table.TH>
+          <Table.TText>Description</Table.TText>
+        </Table.TH>
+      </Table.TR>
+    </Table.THead>
+    <Table.TBody>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>date</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>Date | null</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>-</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>The date to be displayed</Table.TText>
         </Table.TD>
       </Table.TR>
     </Table.TBody>
@@ -416,7 +468,7 @@ It inherits all the properties of React Native's `Pressable` component.
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
-### Calendar with Custom Renderer
+#### Calendar with Custom Renderer
 Here is a complete example of how to use the `Calendar` component with its `render` prop to customize the appearance of the calendar.
 
 <Wrapper>
@@ -426,38 +478,80 @@ Here is a complete example of how to use the `Calendar` component with its `rend
     metaData={{
       code: `
         <Calendar
-          {...props}
           value={new Date()}
           className="w-72"
           minDate={new Date(2024, 5, 1)}
           maxDate={new Date(2025, 1, 15)}
+          onChange={(day) => console.log(day)}
         >
           <CalendarHeader>
             <CalendarHeaderPrev />
             <CalendarHeaderTitle />
             <CalendarHeaderNext />
           </CalendarHeader>
-          <CalendarGrid>
-            <CalendarGridWeek />
-            <CalendarGridDays
-              render={(day, dayProps) => (
-                <Pressable
-                  key={day?.getDate()}
-                  {...dayProps}
-                  className="w-[14.28%] p-2 flex items-center justify-center rounded-lg"
-                >
-                  <Text>{day?.getDate()}</Text>
-                </Pressable>
-              )}
+          <CalendarContent>
+            <CalendarWeek />
+            <CalendarDays
+            render={({ day, ...dayProps }) => (
+              <Pressable
+                key={day?.getDate()}
+                {...dayProps}
+                className="w-[14.28%] p-2 flex items-center justify-center rounded-lg"
+              >
+                <Text>{day?.getDate()}</Text>
+              </Pressable>
+            )}
             />
-          </CalendarGrid>
+          </CalendarContent>
         </Calendar>
       `,
       transformCode: (code) => {
         return transformedCode(code);
       },
-      scope: { Calendar, CalendarHeader, CalendarHeaderPrev, CalendarHeaderNext, CalendarHeaderTitle, CalendarGrid, CalendarGridWeek, CalendarGridDays, Wrapper, Pressable, Text },
+      scope: { Calendar, CalendarHeader, CalendarHeaderPrev, CalendarHeaderNext, CalendarHeaderTitle, CalendarContent, CalendarWeek, CalendarDays, Wrapper, Pressable, Text },
       argsType: {},
     }}
   />
 </Wrapper>
+
+#### Default Usage with CalendarDate
+The default implementation uses `CalendarDate` internally:
+
+```jsx
+<Calendar>
+  <CalendarContent>
+    <CalendarWeek />
+    <CalendarDays /> 
+  </CalendarContent>
+</Calendar>
+```
+
+#### Custom Implementation with CalendarDate
+You can provide your own implementation while still using `CalendarDate`.
+
+```jsx
+<CalendarDays
+  render={({ day, ...dayProps }) => (
+    <CalendarDate date={day} {...dayProps}>
+      {/* Custom content inside CalendarDate */}
+      <Text>{day?.getDate()}</Text>
+    </CalendarDate>
+  )}
+/>
+```
+
+#### Custom Implementation
+Or create a completely custom date cell:
+
+```jsx
+<CalendarDays
+  render={({ day, ...dayProps }) => (
+    <Box
+      {...dayProps}
+      className="w-[14.28%] p-2 flex items-center justify-center"
+    >
+      <Text>{day?.getDate()}</Text>
+    </Box>
+  )}
+/>
+```

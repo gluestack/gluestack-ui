@@ -27,7 +27,7 @@ export interface ICalendarProps {
   children?: React.ReactNode;
 }
 
-export interface ICalendarHeaderNavProps {
+export interface ICalendarNavProps {
   /**
    * If true, the button will be in pressed state.
    */
@@ -50,40 +50,25 @@ export interface ICalendarHeaderNavProps {
   isDisabled?: boolean;
 }
 
-export interface ICalendarGridWeekProps {
+export interface ICalendarWeekProps {
+  /**
+   * Render method for custom week rendering
+   */
+  render?: ({ weekday }: { [key: string]: any }) => React.ReactNode;
+}
+
+export interface ICalendarDaysProps {
   /**
    * Render method for custom day rendering
    */
-  render?: (weekdays: string, index: number) => React.ReactNode;
+  render?: ({ day, ...dayProps }: { [key: string]: any }) => React.ReactNode;
 }
 
-export interface ICalendarDayProps {
+export interface ICalendarDateProps {
   /**
-   * The day number or null for empty cells
+   * The date to be displayed
    */
   day: Date | null;
-  /**
-   * When true, indicates this day is selected
-   */
-  isSelected?: boolean;
-  /**
-   * When true, indicates this is today's date
-   */
-  isToday?: boolean;
-  /**
-   * When true, indicates this day cannot be selected
-   */
-  isDisabled?: boolean;
-  /**
-   * Handler for when the day is pressed
-   */
-}
-
-export interface ICalendarGridDaysProps {
-  /**
-   * Render method for custom day rendering
-   */
-  render?: (days: Date | null, dayProps: any) => React.ReactNode;
 }
 
 export interface ICalendarContextValue {
@@ -148,9 +133,10 @@ export type ICalendarComponentType<
   HeaderPrev,
   HeaderTitle,
   HeaderNext,
-  GridWeek,
-  GridDays,
-  Grid
+  Week,
+  Days,
+  Content,
+  Date
 > = React.ForwardRefExoticComponent<
   PropsWithoutRef<Root> & RefAttributes<Root> & ICalendarProps
 > & {
@@ -158,25 +144,24 @@ export type ICalendarComponentType<
     PropsWithoutRef<Header> & RefAttributes<Header>
   >;
   HeaderPrev: React.ForwardRefExoticComponent<
-    PropsWithoutRef<HeaderPrev> &
-      RefAttributes<HeaderPrev> &
-      ICalendarHeaderNavProps
+    PropsWithoutRef<HeaderPrev> & RefAttributes<HeaderPrev> & ICalendarNavProps
   >;
   HeaderNext: React.ForwardRefExoticComponent<
-    PropsWithoutRef<HeaderNext> &
-      RefAttributes<HeaderNext> &
-      ICalendarHeaderNavProps
+    PropsWithoutRef<HeaderNext> & RefAttributes<HeaderNext> & ICalendarNavProps
   >;
   HeaderTitle: React.ForwardRefExoticComponent<
     PropsWithoutRef<HeaderTitle> & RefAttributes<HeaderTitle>
   >;
-  Grid: React.ForwardRefExoticComponent<
-    PropsWithoutRef<Grid> & RefAttributes<Grid>
+  Content: React.ForwardRefExoticComponent<
+    PropsWithoutRef<Content> & RefAttributes<Content>
   >;
-  GridWeek: React.ForwardRefExoticComponent<
-    PropsWithoutRef<GridWeek> & RefAttributes<GridWeek> & ICalendarGridWeekProps
+  Week: React.ForwardRefExoticComponent<
+    PropsWithoutRef<Week> & RefAttributes<Week> & ICalendarWeekProps
   >;
-  GridDays: React.ForwardRefExoticComponent<
-    PropsWithoutRef<GridDays> & RefAttributes<GridDays> & ICalendarGridDaysProps
+  Days: React.ForwardRefExoticComponent<
+    PropsWithoutRef<Days> & RefAttributes<Days> & ICalendarDaysProps
+  >;
+  Date: React.ForwardRefExoticComponent<
+    PropsWithoutRef<Date> & RefAttributes<Date> & ICalendarDateProps
   >;
 };

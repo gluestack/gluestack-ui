@@ -12,14 +12,14 @@ import { PrimitiveIcon, UIIcon } from '@gluestack-ui/icon';
 import { VariantProps } from '@gluestack-ui/nativewind-utils/types';
 import {
   calendarStyle,
-  calendarGridStyle,
-  calendarGridWeekStyle,
-  calendarGridDaysStyle,
+  calendarContentStyle,
+  calendarWeekStyle,
+  calendarDaysStyle,
   calendarHeaderStyle,
   calendarNavStyle,
   calendarTitleStyle,
   calendarWeekCellStyle,
-  calendarDaysCellStyle,
+  calendarDateStyle,
 } from './styles';
 import { ChevronRight, ChevronLeft } from 'lucide-react-native';
 
@@ -41,9 +41,10 @@ const UICalendar = createCalendar({
   HeaderTitle: RNText,
   HeaderNext: RNPressable,
   Header: RNView,
-  GridWeek: RNView,
-  GridDays: RNView,
-  Grid: RNView,
+  Week: RNView,
+  Days: RNView,
+  Content: RNView,
+  Date: RNPressable,
 });
 
 cssInterop(PrimitiveIcon, {
@@ -62,20 +63,20 @@ cssInterop(PrimitiveIcon, {
 type ICalendarProps = React.ComponentPropsWithoutRef<typeof UICalendar> &
   VariantProps<typeof calendarStyle>;
 
-type ICalendarGridProps = React.ComponentPropsWithoutRef<
-  typeof UICalendar.Grid
+type ICalendarContentProps = React.ComponentPropsWithoutRef<
+  typeof UICalendar.Content
 > &
-  VariantProps<typeof calendarGridStyle>;
+  VariantProps<typeof calendarContentStyle>;
 
-type ICalendarGridWeekProps = React.ComponentPropsWithoutRef<
-  typeof UICalendar.GridWeek
+type ICalendarWeekProps = React.ComponentPropsWithoutRef<
+  typeof UICalendar.Week
 > &
-  VariantProps<typeof calendarGridWeekStyle>;
+  VariantProps<typeof calendarWeekStyle>;
 
-type ICalendarGridDaysProps = React.ComponentPropsWithoutRef<
-  typeof UICalendar.GridDays
+type ICalendarDaysProps = React.ComponentPropsWithoutRef<
+  typeof UICalendar.Days
 > &
-  VariantProps<typeof calendarGridDaysStyle>;
+  VariantProps<typeof calendarDaysStyle>;
 
 type ICalendarHeaderProps = React.ComponentPropsWithoutRef<
   typeof UICalendar.Header
@@ -96,6 +97,11 @@ type ICalendarHeaderTitleProps = React.ComponentPropsWithoutRef<
   typeof UICalendar.HeaderTitle
 > &
   VariantProps<typeof calendarTitleStyle>;
+
+type ICalendarDateProps = React.ComponentPropsWithoutRef<
+  typeof UICalendar.Date
+> &
+  VariantProps<typeof calendarDateStyle>;
 
 /** Components */
 
@@ -155,35 +161,32 @@ const CalendarHeader = React.forwardRef<
   );
 });
 
-const CalendarGrid = React.forwardRef<
-  React.ElementRef<typeof UICalendar.Grid>,
-  ICalendarGridProps
+const CalendarContent = React.forwardRef<
+  React.ElementRef<typeof UICalendar.Content>,
+  ICalendarContentProps
 >(({ className, ...props }, ref) => {
   return (
-    <UICalendar.Grid
+    <UICalendar.Content
       ref={ref}
       {...props}
-      className={calendarGridStyle({ class: className })}
+      className={calendarContentStyle({ class: className })}
     />
   );
 });
 
-const CalendarGridWeek = React.forwardRef<
-  React.ElementRef<typeof UICalendar.GridWeek>,
-  ICalendarGridWeekProps
+const CalendarWeek = React.forwardRef<
+  React.ElementRef<typeof UICalendar.Week>,
+  ICalendarWeekProps
 >(({ className, ...props }, ref) => {
   return (
-    <UICalendar.GridWeek
+    <UICalendar.Week
       ref={ref}
       {...props}
-      className={calendarGridWeekStyle({ class: className })}
-      render={(day, index) => {
+      className={calendarWeekStyle({ class: className })}
+      render={({ weekday }: any) => {
         return (
-          <RNText
-            key={index}
-            className={calendarWeekCellStyle({ class: className })}
-          >
-            {day}
+          <RNText className={calendarWeekCellStyle({ class: className })}>
+            {weekday}
           </RNText>
         );
       }}
@@ -191,30 +194,43 @@ const CalendarGridWeek = React.forwardRef<
   );
 });
 
-const CalendarGridDays = React.forwardRef<
-  React.ElementRef<typeof UICalendar.GridDays>,
-  ICalendarGridDaysProps
+const CalendarDate = React.forwardRef<
+  React.ElementRef<typeof UICalendar.Date>,
+  ICalendarDateProps
+>(({ className, day, ...props }, ref) => {
+  return (
+    <UICalendar.Date
+      ref={ref}
+      day={day}
+      {...props}
+      className={calendarDateStyle({
+        class: className,
+        hasDay: day ? true : false,
+      })}
+    />
+  );
+});
+
+const CalendarDays = React.forwardRef<
+  React.ElementRef<typeof UICalendar.Days>,
+  ICalendarDaysProps
 >(({ className, render, ...props }, ref) => {
   return (
-    <UICalendar.GridDays
+    <UICalendar.Days
       ref={ref}
       {...props}
-      className={calendarGridDaysStyle({ class: className })}
+      className={calendarDaysStyle({
+        class: className,
+      })}
       render={
         render ??
-        ((day, dayProps) => {
+        (({ day, ...dayProps }: any) => {
           return (
-            <RNPressable
-              key={day}
-              {...dayProps}
-              className={calendarDaysCellStyle({
-                hasDay: !!day,
-              })}
-            >
+            <CalendarDate {...dayProps} day={day}>
               <RNText className="group-data-[selected=true]:text-typography-0">
                 {day?.getDate()}
               </RNText>
-            </RNPressable>
+            </CalendarDate>
           );
         })
       }
@@ -245,10 +261,10 @@ const Calendar = React.forwardRef<
         <CalendarHeaderTitle />
         <CalendarHeaderNext />
       </CalendarHeader>
-      <CalendarGrid>
-        <CalendarGridWeek />
-        <CalendarGridDays />
-      </CalendarGrid>
+      <CalendarContent>
+        <CalendarWeek />
+        <CalendarDays />
+      </CalendarContent>
     </UICalendar>
   );
 });
@@ -258,9 +274,10 @@ CalendarHeaderPrev.displayName = 'CalendarHeaderPrev';
 CalendarHeaderNext.displayName = 'CalendarHeaderNext';
 CalendarHeaderTitle.displayName = 'CalendarHeaderTitle';
 CalendarHeader.displayName = 'CalendarHeader';
-CalendarGrid.displayName = 'CalendarGrid';
-CalendarGridWeek.displayName = 'CalendarGridWeek';
-CalendarGridDays.displayName = 'CalendarGridDays';
+CalendarContent.displayName = 'CalendarContent';
+CalendarWeek.displayName = 'CalendarWeek';
+CalendarDays.displayName = 'CalendarDays';
+CalendarDate.displayName = 'CalendarDate';
 
 export {
   Calendar,
@@ -268,7 +285,8 @@ export {
   CalendarHeaderNext,
   CalendarHeaderTitle,
   CalendarHeader,
-  CalendarGrid,
-  CalendarGridWeek,
-  CalendarGridDays,
+  CalendarContent,
+  CalendarWeek,
+  CalendarDays,
+  CalendarDate,
 };
