@@ -103,6 +103,13 @@
         "@gluestack-ui/image": "latest"
       }
     },
+    "image-viewer": {
+      "dependencies": {
+        "@gluestack-ui/image-viewer": "latest",
+        "react-native-gesture-handler": "^2.21.2",
+        "react-native-reanimated": "^3.16.6"
+      }
+    },
     "image-background": {
       "dependencies": {}
     },
@@ -227,5 +234,5 @@
       "hooks": ["useBreakpointValue"]
     }
   },
-  "IgnoredComponents": ["bottomsheet"]
+  "IgnoredComponents": ["bottomsheet", "image-viewer"]
 }

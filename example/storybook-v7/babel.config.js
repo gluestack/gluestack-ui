@@ -120,6 +120,10 @@ module.exports = function (api) {
               __dirname,
               '../../packages/unstyled/pin-input/src'
             ),
+            '@gluestack-ui/image-viewer': path.join(
+              __dirname,
+              '../../packages/unstyled/image-viewer/src'
+            ),
             '@gluestack-ui/toast': path.join(
               __dirname,
               '../../packages/unstyled/toast/src'

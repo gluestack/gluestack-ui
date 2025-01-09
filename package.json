@@ -22,9 +22,9 @@
     "create-new-package": "node ./scripts/create-new-package.js",
     "storybook": "cd example/storybook && yarn storybook",
     "storybook:nativewind": "cd example/storybook-nativewind && yarn storybook:nativewind",
+    "storybook:nativewind-expo": "cd example/storybook-v7 && yarn storybook",
     "storybook:nativewind-ios": "cd example/storybook-v7 && yarn storybook:ios",
     "storybook:nativewind-android": "cd example/storybook-v7 && yarn storybook:android",
-    "kitchensink:web": "cd example/ui-examples && yarn web",
     "postinstall": "cd example/storybook-v7 && yarn"
   },
   "devDependencies": {

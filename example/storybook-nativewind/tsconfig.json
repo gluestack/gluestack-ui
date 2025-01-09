@@ -29,6 +29,9 @@
       "@gluestack-ui/tooltip": ["../../packages/unstyled/tooltip/src"],
       "@gluestack-ui/fab": ["../../packages/unstyled/fab/src"],
       "@gluestack-ui/progress": ["../../packages/unstyled/progress/src"],
+      "@gluestack-ui/image-viewer": [
+        "../../packages/unstyled/image-viewer/src"
+      ],
       "@gluestack-ui/alert-dialog": [
         "../../packages/unstyled/alert-dialog/src"
       ],
