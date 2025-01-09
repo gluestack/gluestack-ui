@@ -24,7 +24,7 @@ import {
   Icon,
   Center,
 } from '../../core-components/nativewind';
-import { 
+import {
   Pressable,
   Image
 } from 'react-native';
@@ -60,23 +60,29 @@ This is an illustration of **ImageViewer** component.
         const Images = [{ id: 1, url: 'https://picsum.photos/1000/1000' }];
         return (
           <Center>
-        <Pressable onPress={() => setVisible(true)}>
-        <Image
-          source={{ uri: Images[0].url }}
-          className="w-[200px] h-[200px]"
-          resizeMode="contain"
-        />
-      </Pressable>
-      <ImageViewer isOpen={visible} onClose={() => setVisible(false)}>
-      <ImageViewerBackdrop>
-      <ImageViewerContent images={Images} renderImages={(item) => (<ImageViewerImage key={item.id} source={{ uri: item.url }} />)} >
-      <ImageViewerCloseButton>
-      <Icon as={CloseIcon}/>
-      </ImageViewerCloseButton>
-      </ImageViewerContent>
-      </ImageViewerBackdrop>
-      </ImageViewer>
-      </Center>
+            <Pressable onPress={() => setVisible(true)}>
+              <Image
+                source={{ uri: Images[0].url }}
+                className="w-[200px] h-[200px]"
+                resizeMode="contain"
+              />
+            </Pressable>
+            <ImageViewer isOpen={visible} onClose={() => setVisible(false)}>
+              <ImageViewerBackdrop>
+                <ImageViewerContent
+                  images={Images}
+                  renderImages={(item) => (
+                    <ImageViewerImage key={item.id} source={{ uri: item.url }} />
+                  )}
+                  keyExtractor={(item, index) => item.id + '-' + index}
+                >
+                <ImageViewerCloseButton>
+                  <Icon as={CloseIcon}/>
+                </ImageViewerCloseButton>
+              </ImageViewerContent>
+            </ImageViewerBackdrop>
+          </ImageViewer>
+        </Center>
         );
       }
       `,
@@ -306,6 +312,27 @@ The `ImageViewerContent` component is responsible for rendering the images withi
             <Table.TText>Yes</Table.TText>
           </Table.TD>
         </Table.TR>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>keyExtractor</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>(item: any, index: number) => string</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>Function to extract the key for each image item</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>Yes</Table.TText>
+          </Table.TD>
+        </Table.TR>
       </Table.TBody>
     </Table>
   </TableContainer>
@@ -350,23 +377,29 @@ import { Center } from '@/components/ui/center';
         const Images = [{ id: 1, url: 'https://picsum.photos/1000/1000' }];
         return (
           <Center>
-        <Pressable onPress={() => setVisible(true)}>
-        <Image
-          source={{ uri: Images[0].url }}
-          className="w-[200px] h-[200px]"
-          resizeMode="contain"
-        />
-      </Pressable>
-      <ImageViewer isOpen={visible} onClose={() => setVisible(false)}>
-      <ImageViewerBackdrop>
-      <ImageViewerContent images={Images} renderImages={(item) => (<ImageViewerImage key={item.id} source={{ uri: item.url }} />)} >
-      <ImageViewerCloseButton>
-      <Icon as={CloseIcon}/>
-      </ImageViewerCloseButton>
-      </ImageViewerContent>
-      </ImageViewerBackdrop>
-      </ImageViewer>
-      </Center>
+            <Pressable onPress={() => setVisible(true)}>
+              <Image
+                source={{ uri: Images[0].url }}
+                className="w-[200px] h-[200px]"
+                resizeMode="contain"
+              />
+            </Pressable>
+            <ImageViewer isOpen={visible} onClose={() => setVisible(false)}>
+              <ImageViewerBackdrop>
+                <ImageViewerContent
+                  images={Images}
+                  renderImages={(item) => (
+                    <ImageViewerImage key={item.id} source={{ uri: item.url }} />
+                  )}
+                  keyExtractor={(item, index) => item.id + '-' + index}
+                >
+                <ImageViewerCloseButton>
+                  <Icon as={CloseIcon}/>
+                </ImageViewerCloseButton>
+              </ImageViewerContent>
+            </ImageViewerBackdrop>
+          </ImageViewer>
+        </Center>
         );
       }
       `,
