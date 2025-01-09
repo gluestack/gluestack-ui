@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import React, { forwardRef, useContext } from 'react';
 import { ImageViewerContext } from './ImageViewerContext';
 import {
   runOnJS,
@@ -24,11 +24,12 @@ const ImageViewerContent = (
       {
         images,
         renderImages,
+        keyExtractor,
         children,
       }: ImageViewerContentProps & { children: React.ReactNode },
       ref?: any
     ) => {
-      const { onClose, setScale }: any = React.useContext(ImageViewerContext);
+      const { onClose, setScale }: any = useContext(ImageViewerContext);
       const scale = useSharedValue(1);
       const savedScale = useSharedValue(1);
       const translateX = useSharedValue(0);
@@ -165,7 +166,16 @@ const ImageViewerContent = (
           {children}
           <StyledGestureDetector gesture={composedGesture}>
             <StyledAnimated style={animatedStyle}>
-              {images.map(renderImages)}
+              {images.map((item: any, index: number) => {
+                const RenderImage = renderImages;
+                return (
+                  <RenderImage
+                    key={keyExtractor(item, index)}
+                    item={item}
+                    index={index}
+                  />
+                );
+              })}
             </StyledAnimated>
           </StyledGestureDetector>
         </StyledGestureHandlerRootView>
