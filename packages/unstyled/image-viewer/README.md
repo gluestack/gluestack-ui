@@ -67,9 +67,14 @@ export default () => (
     <ImageViewerBackdrop>
       <ImageViewerContent
         images={images}
-        renderImages={(item) => (
-          <ImageViewerImage key={item.id} source={{ uri: item.url }} />
-        )}
+        renderImages={({ item, index }) => {
+          return (
+            <ImageViewerImage
+              key={item.id + '-' + index}
+              source={{ uri: item.url }}
+            />
+          );
+        }}
         keyExtractor={(item, index) => `${item.id}-${index}`}
       />
     </ImageViewerBackdrop>
@@ -81,19 +86,19 @@ export default () => (
 
 ### ImageViewer
 
-| Prop     | Type      | Default | Description                                            |
-| -------- | --------- | ------- | ------------------------------------------------------ |
-| isOpen   | boolean   | false   | If true, the image viewer modal will open              |
-| onClose  | function  | -       | Callback invoked when the image viewer modal is closed |
-| children | ReactNode | -       | The content to be rendered inside the image viewer     |
+| Prop     | Type      | Default | Description                                            | Required |
+| -------- | --------- | ------- | ------------------------------------------------------ | -------- |
+| isOpen   | boolean   | false   | If true, the image viewer modal will open              | Yes      |
+| onClose  | function  | -       | Callback invoked when the image viewer modal is closed | Yes      |
+| children | ReactNode | -       | The content to be rendered inside the image viewer     | \_       |
 
 ### ImageViewerContent
 
-| Prop         | Type                                 | Default | Description                                     |
-| ------------ | ------------------------------------ | ------- | ----------------------------------------------- |
-| images       | Array<any>                           | -       | Array of image objects to display               |
-| renderImages | (item: any) => ReactNode             | -       | Function to render each image item              |
-| keyExtractor | (item: any, index: number) => string | -       | Function to extract the key for each image item |
+| Prop         | Type                                      | Default | Description                                     | Required |
+| ------------ | ----------------------------------------- | ------- | ----------------------------------------------- | -------- |
+| images       | Array<any>                                | -       | Array of image objects to display               | Yes      |
+| renderImages | ({item: any, index: number}) => ReactNode | -       | Function to render each image item              | Yes      |
+| keyExtractor | (item: any, index: number) => string      | -       | Function to extract the key for each image item | Yes      |
 
 More guides on how to get started are available [here](https://ui.gluestack.io/docs/components/media-and-icons/image-viewer).
 
