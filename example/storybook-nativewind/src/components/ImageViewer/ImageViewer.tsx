@@ -34,12 +34,8 @@ const ImageViewerBasic = ({ ...props }: any) => {
         <ImageViewerBackdrop>
           <ImageViewerContent
             images={Images}
-            renderImages={({ item, index }) => {
-              return (
-                <ImageViewerImage
-                  source={{ uri: item.url }}
-                />
-              );
+            renderImages={({ item }) => {
+              return <ImageViewerImage source={{ uri: item.url }} />;
             }}
             keyExtractor={(item, index) => item.id + '-' + index}
           >

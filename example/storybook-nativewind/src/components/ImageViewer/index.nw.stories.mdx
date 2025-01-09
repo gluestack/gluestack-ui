@@ -72,7 +72,7 @@ This is an illustration of **ImageViewer** component.
                 <ImageViewerContent
                   images={Images}
                   renderImages={({item, index}) => (
-                    <ImageViewerImage key={item.id} source={{ uri: item.url }} />
+                    <ImageViewerImage source={{ uri: item.url }} />
                   )}
                   keyExtractor={(item, index) => item.id + '-' + index}
                 >
@@ -389,7 +389,7 @@ import { Center } from '@/components/ui/center';
                 <ImageViewerContent
                   images={Images}
                   renderImages={({item, index}) => (
-                    <ImageViewerImage key={item.id} source={{ uri: item.url }} />
+                    <ImageViewerImage source={{ uri: item.url }} />
                   )}
                   keyExtractor={(item, index) => item.id + '-' + index}
                 >
