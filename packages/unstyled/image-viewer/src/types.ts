@@ -5,7 +5,7 @@ export interface ImageViewerContext {
   setScale: (scale: number) => void;
 }
 
-export interface ImageViewerProps {
+export interface InterfaceImageViewerProps {
   /**
    * If true, the modal will open. Useful for controllable state behavior.
    */
@@ -14,15 +14,21 @@ export interface ImageViewerProps {
    * Callback invoked when the modal is closed.
    */
   onClose?: any;
-  /**
-   * If true, the modal will be opened by default.
-   */
 }
 
-export interface ImageViewerContentProps {
-  images: any;
+export interface InterfaceImageViewerContentProps {
+  /**
+   * The images to display in the ImageViewer.
+   */
+  images: any[];
+  /**
+   * The function to render the images.
+   */
   renderImages: (item: any) => any;
-  keyExtractor: (item: any, index: number) => string;
+  /**
+   * The function to extract the key for the images.
+   */
+  keyExtractor: (item: any, index: number) => React.Attributes['key'];
 }
 
 export type IImageViewerComponentType<
@@ -32,10 +38,12 @@ export type IImageViewerComponentType<
   ImageViewerBackdropProps
 > = React.ForwardRefExoticComponent<
   React.PropsWithoutRef<ImageViewerProps> &
+    InterfaceImageViewerProps &
     React.RefAttributes<ImageViewerProps>
 > & {
   Content: React.ForwardRefExoticComponent<
     React.PropsWithoutRef<ImageViewerContentProps> &
+      InterfaceImageViewerContentProps &
       React.RefAttributes<ImageViewerContentProps>
   >;
   CloseButton: React.ForwardRefExoticComponent<
