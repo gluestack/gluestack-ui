@@ -4,7 +4,8 @@
     "strict": true,
     "baseUrl": ".",
     "paths": {
-      "@gluestack-ui/pin-input": ["../../packages/unstyled/pin-input/src"]
+      "@gluestack-ui/pin-input": ["../../packages/unstyled/pin-input/src"],
+      "@gluestack-ui/image-viewer": ["../../packages/unstyled/image-viewer/src"]
     }
   }
 }
