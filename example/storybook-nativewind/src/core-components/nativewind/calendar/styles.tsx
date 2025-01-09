@@ -28,7 +28,7 @@ export const calendarDaysCellStyle = tva({
   base: 'w-[15.15%] p-2 m-0.5 flex items-center justify-center rounded-lg',
   variants: {
     hasDay: {
-      true: 'cursor-pointer data-[today=true]:bg-background-100 data-[selected=true]:data-[disabled=false]:bg-background-500 data-[active=true]:data-[disabled=false]:bg-background-500 data-[hover=true]:data-[disabled=false]:bg-background-50 data-[disabled=true]:cursor-not-allowed group',
+      true: 'cursor-pointer data-[today=true]:bg-background-100 data-[selected=true]:data-[disabled=false]:bg-background-500 data-[hover=true]:data-[disabled=false]:bg-background-50 data-[disabled=true]:cursor-not-allowed group',
       false: 'cursor-default',
     },
   },
