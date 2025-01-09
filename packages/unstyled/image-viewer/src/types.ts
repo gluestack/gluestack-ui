@@ -22,6 +22,7 @@ export interface ImageViewerProps {
 export interface ImageViewerContentProps {
   images: any;
   renderImages: (item: any) => any;
+  keyExtractor: (item: any, index: number) => string;
 }
 
 export type IImageViewerComponentType<
