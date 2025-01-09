@@ -70,6 +70,7 @@ export default () => (
         renderImages={(item) => (
           <ImageViewerImage key={item.id} source={{ uri: item.url }} />
         )}
+        keyExtractor={(item, index) => `${item.id}-${index}`}
       />
     </ImageViewerBackdrop>
   </ImageViewer>
@@ -88,10 +89,11 @@ export default () => (
 
 ### ImageViewerContent
 
-| Prop         | Type                     | Default | Description                        |
-| ------------ | ------------------------ | ------- | ---------------------------------- |
-| images       | Array<any>               | -       | Array of image objects to display  |
-| renderImages | (item: any) => ReactNode | -       | Function to render each image item |
+| Prop         | Type                                 | Default | Description                                     |
+| ------------ | ------------------------------------ | ------- | ----------------------------------------------- |
+| images       | Array<any>                           | -       | Array of image objects to display               |
+| renderImages | (item: any) => ReactNode             | -       | Function to render each image item              |
+| keyExtractor | (item: any, index: number) => string | -       | Function to extract the key for each image item |
 
 More guides on how to get started are available [here](https://ui.gluestack.io/docs/components/media-and-icons/image-viewer).
 

@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react';
 import { ImageViewerContext } from './ImageViewerContext';
-import type { ImageViewerProps } from './types';
+import type { InterfaceImageViewerProps } from './types';
 
 const ImageViewer = (StyledRoot: any) =>
   forwardRef(
@@ -10,7 +10,7 @@ const ImageViewer = (StyledRoot: any) =>
         isOpen,
         onClose,
         ...props
-      }: ImageViewerProps & { children: React.ReactNode },
+      }: InterfaceImageViewerProps & { children: React.ReactNode },
       ref?: any
     ) => {
       const [scale, setScale] = React.useState(1);
