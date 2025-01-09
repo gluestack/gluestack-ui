@@ -71,8 +71,8 @@ This is an illustration of **ImageViewer** component.
               <ImageViewerBackdrop>
                 <ImageViewerContent
                   images={Images}
-                  renderImages={(item) => (
-                    <ImageViewerImage key={item.id} source={{ uri: item.url }} />
+                  renderImages={({item, index}) => (
+                    <ImageViewerImage source={{ uri: item.url }} />
                   )}
                   keyExtractor={(item, index) => item.id + '-' + index}
                 >
@@ -300,7 +300,7 @@ The `ImageViewerContent` component is responsible for rendering the images withi
             </Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>(item: any) => ReactNode</Table.TText>
+            <Table.TText>{`({item, index}) => ReactNode`}</Table.TText>
           </Table.TD>
           <Table.TD>
             <Table.TText>-</Table.TText>
@@ -388,8 +388,8 @@ import { Center } from '@/components/ui/center';
               <ImageViewerBackdrop>
                 <ImageViewerContent
                   images={Images}
-                  renderImages={(item) => (
-                    <ImageViewerImage key={item.id} source={{ uri: item.url }} />
+                  renderImages={({item, index}) => (
+                    <ImageViewerImage source={{ uri: item.url }} />
                   )}
                   keyExtractor={(item, index) => item.id + '-' + index}
                 >
