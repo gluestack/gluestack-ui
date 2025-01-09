@@ -1,17 +1,29 @@
 export interface ImageViewerContext {
+  /**
+   * Callback invoked when the ImageViewer is closed.
+   */
   onClose: () => void;
+  /**
+   * If true, the ImageViewer will open. Useful for controllable state behavior.
+   */
   isOpen: boolean | undefined;
+  /**
+   * The current scale of the Image.
+   */
   scale: number | undefined;
+  /**
+   * Callback function to set the scale of the Image to be used in backdrop for adjusting the opacity.
+   */
   setScale: (scale: number) => void;
 }
 
 export interface InterfaceImageViewerProps {
   /**
-   * If true, the modal will open. Useful for controllable state behavior.
+   * If true, the ImageViewer will open. Useful for controllable state behavior.
    */
   isOpen: boolean | undefined;
   /**
-   * Callback invoked when the modal is closed.
+   * Callback invoked when the ImageViewer is closed.
    */
   onClose?: any;
 }
@@ -20,13 +32,19 @@ export interface InterfaceImageViewerContentProps {
   /**
    * The images to display in the ImageViewer.
    */
-  images: any[];
+  images: Array<any>;
   /**
-   * The function to render the images.
+   * Callback React.ReactNode function to render the images.
    */
-  renderImages: (item: any) => any;
+  renderImages: ({
+    item,
+    index,
+  }: {
+    item: any;
+    index: number;
+  }) => React.ReactNode;
   /**
-   * The function to extract the key for the images.
+   * Callback function to extract the key for the images.
    */
   keyExtractor: (item: any, index: number) => React.Attributes['key'];
 }
