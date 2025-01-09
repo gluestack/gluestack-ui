@@ -1,5 +1,11 @@
 # @gluestack-ui/image-viewer
 
+## 0.0.6
+
+### Patch Changes
+
+- fix: fixed typings, added keyExtractor, improved pinch gesture and made working on native
+
 ## 0.0.5
 
 ### Patch Changes
