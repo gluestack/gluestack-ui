@@ -2,12 +2,11 @@ import React, { useState } from 'react';
 import { PinInput, PinInputField } from '@/components/ui/pin-input';
 
 const PinInputBasic = ({ ...props }: any) => {
-  const [value, setValue] = useState('1357');
+  const [value, setValue] = useState('');
   return (
     <PinInput
       {...props}
       className=""
-      defaultValue={'0000'}
       value={value}
       onChange={(e: any) => {
         setValue(e);
