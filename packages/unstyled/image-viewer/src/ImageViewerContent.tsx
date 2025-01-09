@@ -145,9 +145,9 @@ const ImageViewerContent = (
         doubleTapGesture,
         Gesture.Simultaneous(pinchGesture, panGesture)
       );
-      // @ts-ignore
+
       const animatedStyle = useAnimatedStyle(() => {
-        setScale(scale.value);
+        runOnJS(setScale)(scale.value);
         if (scale.value <= 1) {
         }
         return {
