@@ -70,7 +70,6 @@ export default () => (
         renderImages={({ item, index }) => {
           return (
             <ImageViewerImage
-              key={item.id + '-' + index}
               source={{ uri: item.url }}
             />
           );
