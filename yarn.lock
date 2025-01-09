@@ -2670,11 +2670,6 @@
     "@react-native-aria/focus" "^0.2.9"
     "@react-native-aria/interactions" "^0.2.11"
 
-"@gluestack-ui/config-v2@^1.0.1":
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/@gluestack-ui/config-v2/-/config-v2-1.1.1.tgz#28b5e4da34e8b62eb8b81fb0bef193374bf87f7c"
-  integrity sha512-JDixCRACi1Dy+JEK0TtSIDgsOYsz3VX6LVUw+qERJu56z1F2q/USJWMC1X7NEx5FQ/nS9XhzliW2I1GIM+FLhg==
-
 "@gluestack-ui/pin-input@0.0.2":
   version "0.0.2"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/pin-input/-/pin-input-0.0.2.tgz#c1bd598741acc39ccb80ac53e397064dfe1dd10e"
@@ -18600,16 +18595,6 @@ react-native-css-interop@0.1.22:
     lightningcss "^1.27.0"
     semver "^7.6.3"
 
-react-native-gesture-handler@^2.12.1:
-  version "2.20.0"
-  resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-2.20.0.tgz#2d9ec4e9bd22619ebe36269dda3ecb1173928276"
-  integrity sha512-rFKqgHRfxQ7uSAivk8vxCiW4SB3G0U7jnv7kZD4Y90K5kp6YrU8Q3tWhxe3Rx55BIvSd3mBe9ZWbWVJ0FsSHPA==
-  dependencies:
-    "@egjs/hammerjs" "^2.0.17"
-    hoist-non-react-statics "^3.3.0"
-    invariant "^2.2.4"
-    prop-types "^15.7.2"
-
 react-native-gesture-handler@^2.21.2:
   version "2.21.2"
   resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-2.21.2.tgz#824a098d7397212fbe51aa3a9df84833a4ea1c3f"
@@ -18618,17 +18603,6 @@ react-native-gesture-handler@^2.21.2:
     "@egjs/hammerjs" "^2.0.17"
     hoist-non-react-statics "^3.3.0"
     invariant "^2.2.4"
-    prop-types "^15.7.2"
-
-react-native-gesture-handler@~2.14.0:
-  version "2.14.1"
-  resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-2.14.1.tgz#930640231024b7921435ab476aa501dd4a6b2e01"
-  integrity sha512-YiM1BApV4aKeuwsM6O4C2ufwewYEKk6VMXOt0YqEZFMwABBFWhXLySFZYjBSNRU2USGppJbfHP1q1DfFQpKhdA==
-  dependencies:
-    "@egjs/hammerjs" "^2.0.17"
-    hoist-non-react-statics "^3.3.0"
-    invariant "^2.2.4"
-    lodash "^4.17.21"
     prop-types "^15.7.2"
 
 react-native-modal-datetime-picker@^14.0.0:
