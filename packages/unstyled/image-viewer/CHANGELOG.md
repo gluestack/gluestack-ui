@@ -1,5 +1,17 @@
 # @gluestack-ui/image-viewer
 
+## 0.0.8
+
+### Patch Changes
+
+- fix: ts-ignore for useAnimatedStyle
+
+## 0.0.7
+
+### Patch Changes
+
+- fix: ts-ignore for useAnimatedStyle
+
 ## 0.0.6
 
 ### Patch Changes
