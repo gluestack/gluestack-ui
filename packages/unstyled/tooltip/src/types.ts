@@ -58,7 +58,10 @@ export interface InterfaceTooltipProps {
   /**
    * Function that returns a React Element. This element will be used as a Trigger for the popover.
    */
-  trigger: ({ ref, onHoverIn, onHoverOut }: any, { open }: any) => void;
+  trigger: (
+    { ref, onHoverIn, onHoverOut }: any,
+    { open }: any
+  ) => React.ReactNode;
   /**
    * Size of the arrow
    * @default 12
