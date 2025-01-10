@@ -1,5 +1,11 @@
 # @gluestack-ui/tooltip
 
+## 0.1.38
+
+### Patch Changes
+
+- trigger prop typing fix
+
 ## 0.1.37
 
 ### Patch Changes
