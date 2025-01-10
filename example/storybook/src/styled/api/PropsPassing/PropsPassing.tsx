@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { AnimationResolver } from '@gluestack-style/animation-plugin';
 
 import { createStyled, styled } from '@gluestack-style/react';
@@ -8,51 +8,51 @@ import { View } from 'react-native';
 
 const styledAnimated = createStyled([new AnimationResolver()]);
 
-const StyledMotionView = styledAnimated(
-  Motion.View,
-  {
-    'w': 100,
-    'h': 200,
-    'bg': '$blue500',
-    ':initial': { y: -150 },
-    ':animate': {
-      opacity: 0.5,
-      y: 50,
-      scale: 1,
-    },
-    ':hover': {
-      ':animate': {
-        opacity: 1,
-      },
-    },
-    '_text': {
-      ':animate': {
-        scale: 1,
-      },
-      ':hover': {
-        ':animate': {
-          scale: 1.01,
-        },
-      },
-    },
-    'variants': {
-      variant: {
-        solid: {
-          bg: '$green500',
-        },
-        subtle: {
-          bg: '$green200',
-        },
-      },
-    },
-    'defaultProps': {
-      variant: 'solid',
-    },
-  },
-  {
-    descendantStyle: ['_text'],
-  }
-);
+// const StyledMotionView = styledAnimated(
+//   Motion.View,
+//   {
+//     'w': 100,
+//     'h': 200,
+//     'bg': '$blue500',
+//     ':initial': { y: -150 },
+//     ':animate': {
+//       opacity: 0.5,
+//       y: 50,
+//       scale: 1,
+//     },
+//     ':hover': {
+//       ':animate': {
+//         opacity: 1,
+//       },
+//     },
+//     '_text': {
+//       ':animate': {
+//         scale: 1,
+//       },
+//       ':hover': {
+//         ':animate': {
+//           scale: 1.01,
+//         },
+//       },
+//     },
+//     'variants': {
+//       variant: {
+//         solid: {
+//           bg: '$green500',
+//         },
+//         subtle: {
+//           bg: '$green200',
+//         },
+//       },
+//     },
+//     'defaultProps': {
+//       variant: 'solid',
+//     },
+//   },
+//   {
+//     descendantStyle: ['_text'],
+//   }
+// );
 
 const StlyedText = styledAnimated(
   Motion.View,

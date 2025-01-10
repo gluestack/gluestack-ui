@@ -1,8 +1,8 @@
-import React from "react";
-import { View, Pressable, Text } from "react-native";
-import { useTooltipTriggerState } from "@react-stately/tooltip";
-import { mergeProps } from "@react-aria/utils";
-import { useTooltip, useTooltipTrigger } from "@react-native-aria/tooltip";
+import React from 'react';
+import { View, Pressable, Text } from 'react-native';
+import { useTooltipTriggerState } from '@react-stately/tooltip';
+import { mergeProps } from '@react-aria/utils';
+import { useTooltip, useTooltipTrigger } from '@react-native-aria/tooltip';
 
 function Tooltip({ state, ...props }) {
   let { tooltipProps } = useTooltip(props, state);
@@ -10,10 +10,10 @@ function Tooltip({ state, ...props }) {
   return (
     <View
       style={{
-        position: "absolute",
-        top: "100%",
+        position: 'absolute',
+        top: '100%',
         marginTop: 10,
-        backgroundColor: "white",
+        backgroundColor: 'white',
         padding: 5,
         borderWidth: 1,
       }}
@@ -32,7 +32,7 @@ export function TooltipExample(props) {
   let { triggerProps, tooltipProps } = useTooltipTrigger(props, state, ref);
 
   return (
-    <View style={{ position: "relative" }}>
+    <View style={{ position: 'relative' }}>
       <Pressable
         style={{ maxWidth: 120, padding: 10, marginLeft: 20, borderWidth: 1 }}
         ref={ref}

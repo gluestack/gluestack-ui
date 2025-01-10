@@ -1,9 +1,9 @@
-import React from "react";
-import { mergeProps } from "@react-aria/utils";
-import { useButton } from "@react-native-aria/button";
-import { useComboBoxState } from "@react-stately/combobox";
-import { useComboBox } from "@react-native-aria/combobox";
-import { useListBox, useOption } from "@react-native-aria/listbox";
+import React from 'react';
+import { mergeProps } from '@react-aria/utils';
+import { useButton } from '@react-native-aria/button';
+import { useComboBoxState } from '@react-stately/combobox';
+import { useComboBox } from '@react-native-aria/combobox';
+import { useListBox, useOption } from '@react-native-aria/listbox';
 import {
   View,
   Text,
@@ -12,7 +12,7 @@ import {
   ScrollView,
   findNodeHandle,
   Platform,
-} from "react-native";
+} from 'react-native';
 
 function contains(string, substring) {
   if (substring.length === 0) {
@@ -48,7 +48,7 @@ export function ComboBox(props) {
       buttonRef: triggerRef,
       listBoxRef,
       popoverRef,
-      menuTrigger: "input",
+      menuTrigger: 'input',
     },
     state
   );
@@ -60,13 +60,13 @@ export function ComboBox(props) {
     <View>
       <Text {...labelProps}>{props.label}</Text>
       <View>
-        <View style={{ flexDirection: "row" }}>
+        <View style={{ flexDirection: 'row' }}>
           <TextInput
             {...inputProps}
             ref={inputRef}
             style={{
               height: 22,
-              width: "80%",
+              width: '80%',
               marginRight: 0,
             }}
           />
@@ -106,13 +106,8 @@ export function ComboBox(props) {
 }
 
 function ListBoxPopup(props) {
-  let {
-    popoverRef,
-    listBoxRef,
-    state,
-    shouldUseVirtualFocus,
-    ...otherProps
-  } = props;
+  let { popoverRef, listBoxRef, state, shouldUseVirtualFocus, ...otherProps } =
+    props;
 
   // Get props for the list box.
   // Prevent focus moving to list box via shouldUseVirtualFocus
@@ -134,17 +129,17 @@ function ListBoxPopup(props) {
       <ScrollView
         {...mergeProps(listBoxProps, otherProps)}
         ref={(node) => {
-          if (Platform.OS === "web") {
+          if (Platform.OS === 'web') {
             listBoxRef.current = findNodeHandle(node);
           } else {
             listBoxRef.current = node;
           }
         }}
         style={{
-          position: "absolute",
-          width: "100%",
+          position: 'absolute',
+          width: '100%',
           margin: 4,
-          background: "lightgray",
+          background: 'lightgray',
           maxHeight: 100,
         }}
       >
@@ -185,16 +180,16 @@ function Option({ item, state, shouldUseVirtualFocus }) {
   );
 
   let backgroundColor;
-  let color = "black";
+  let color = 'black';
 
   if (isSelected) {
-    backgroundColor = "blueviolet";
-    color = "white";
+    backgroundColor = 'blueviolet';
+    color = 'white';
   } else if (isFocused) {
-    backgroundColor = "gray";
+    backgroundColor = 'gray';
   } else if (isDisabled) {
-    backgroundColor = "transparent";
-    color = "gray";
+    backgroundColor = 'transparent';
+    color = 'gray';
   }
 
   return (
@@ -205,8 +200,8 @@ function Option({ item, state, shouldUseVirtualFocus }) {
         background: backgroundColor,
         color: color,
         padding: 5,
-        outline: "none",
-        cursor: "pointer",
+        outline: 'none',
+        cursor: 'pointer',
       }}
     >
       <Text>{item.rendered}</Text>

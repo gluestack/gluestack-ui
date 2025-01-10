@@ -1,9 +1,9 @@
-import React from "react";
+import React from 'react';
 import {
   OverlayContainer,
   useOverlayPosition,
-} from "@react-native-aria/overlays";
-import { useButton } from "@react-native-aria/button";
+} from '@react-native-aria/overlays';
+import { useButton } from '@react-native-aria/button';
 import {
   View,
   Text,
@@ -13,9 +13,8 @@ import {
   findNodeHandle,
   ScrollView,
   Platform,
-  SafeAreaView,
-} from "react-native";
-import { useToggleState } from "@react-stately/toggle";
+} from 'react-native';
+import { useToggleState } from '@react-stately/toggle';
 
 // Button to close overlay on outside click
 function CloseButton(props) {
@@ -23,7 +22,7 @@ function CloseButton(props) {
     <TouchableWithoutFeedback
       onPress={props.onClose}
       accessible={false}
-      importantForAccessibility={"no-hide-descendants"}
+      importantForAccessibility={'no-hide-descendants'}
     >
       <View style={StyleSheet.absoluteFill}></View>
     </TouchableWithoutFeedback>
@@ -31,17 +30,17 @@ function CloseButton(props) {
 }
 
 const positions = [
-  "top",
-  "left",
-  "right",
-  "bottom",
-  "top left",
-  "top right",
-  "left top",
-  "left bottom",
-  "bottom right, bottom left",
-  "right top",
-  "right bottom",
+  'top',
+  'left',
+  'right',
+  'bottom',
+  'top left',
+  'top right',
+  'left top',
+  'left bottom',
+  'bottom right, bottom left',
+  'right top',
+  'right bottom',
 ];
 
 export function TriggerWrapper() {
@@ -56,11 +55,11 @@ export function TriggerWrapper() {
   return <Trigger placement={positions[placement]}></Trigger>;
 }
 
-const OverlayView = ({ targetRef, placement }) => {
+const OverlayView = ({ targetRef }) => {
   let overlayRef = React.useRef();
 
   const { overlayProps } = useOverlayPosition({
-    placement: "top",
+    placement: 'top',
     targetRef,
     overlayRef,
     offset: 10,
@@ -70,13 +69,13 @@ const OverlayView = ({ targetRef, placement }) => {
     <ScrollView
       bounces={false}
       style={{
-        position: "absolute",
+        position: 'absolute',
         height: 400,
-        backgroundColor: "lightgray",
+        backgroundColor: 'lightgray',
         ...overlayProps.style,
       }}
       ref={(node) => {
-        if (Platform.OS === "web") {
+        if (Platform.OS === 'web') {
           overlayRef.current = findNodeHandle(node);
         } else {
           overlayRef.current = node;
@@ -105,8 +104,8 @@ export default function Trigger({ placement }: any) {
     <View
       style={{
         height: 400,
-        alignItems: "center",
-        justifyContent: "center",
+        alignItems: 'center',
+        justifyContent: 'center',
       }}
     >
       <Pressable
@@ -117,7 +116,7 @@ export default function Trigger({ placement }: any) {
       >
         <View
           style={{
-            flexDirection: "row",
+            flexDirection: 'row',
             borderWidth: 1,
             paddingHorizontal: 10,
             paddingVertical: 10,

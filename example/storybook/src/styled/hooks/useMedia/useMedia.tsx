@@ -1,10 +1,5 @@
 import React from 'react';
-import {
-  useMediaQuery,
-  styled,
-  useBreakpointValue,
-  useMedia,
-} from '@gluestack-style/react';
+import { useMediaQuery, styled, useMedia } from '@gluestack-style/react';
 import Wrapper from '../../components/Wrapper';
 import { View, Text } from 'react-native';
 

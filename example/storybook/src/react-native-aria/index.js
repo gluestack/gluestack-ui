@@ -1,9 +1,9 @@
-import "./Slider/Slider.stories";
-import "./Combobox/Combobox.stories";
-import "./Listbox/Listbox.stories";
-import "./Tabs/Tabs.stories";
-import "./Menu/Menu.stories";
-import "./Modal/Modal.stories"
+import './Slider/Slider.stories';
+import './Combobox/Combobox.stories';
+import './Listbox/Listbox.stories';
+import './Tabs/Tabs.stories';
+import './Menu/Menu.stories';
+import './Modal/Modal.stories';
 // import "./Button/Button.stories";
 // import "./Button/ToggleButton.stories";
 // import "./Checkbox/Checkbox.stories";

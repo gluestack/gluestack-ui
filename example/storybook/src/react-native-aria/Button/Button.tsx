@@ -1,10 +1,9 @@
-import React from "react";
-import { useHover } from "@react-native-aria/interactions";
-import { useButton } from "@react-native-aria/button";
-import { useFocusRing } from "@react-native-aria/focus";
-import { OverlayContainer, OverlayProvider } from "@react-native-aria/overlays";
-import { Pressable, Text, View } from "react-native";
-import { useRef } from "react";
+import React from 'react';
+import { useHover } from '@react-native-aria/interactions';
+import { useButton } from '@react-native-aria/button';
+import { useFocusRing } from '@react-native-aria/focus';
+import { Pressable, Text, View } from 'react-native';
+import { useRef } from 'react';
 
 export function Button(props: any) {
   const ref = useRef(null);
@@ -22,13 +21,13 @@ export function Button(props: any) {
         {...hoverProps}
         {...focusProps}
         style={{
-          backgroundColor: isPressed ? "rgb(9, 90, 186)" : "#e1e1e1",
+          backgroundColor: isPressed ? 'rgb(9, 90, 186)' : '#e1e1e1',
           padding: 5,
         }}
       >
         <Text
           style={{
-            color: isPressed ? "#f1f1f1" : "#000",
+            color: isPressed ? '#f1f1f1' : '#000',
           }}
         >
           A simple button
@@ -37,10 +36,10 @@ export function Button(props: any) {
 
       <View>
         <View>
-          <Text>{isFocusVisible ? "focus visible" : "not focus visible"}</Text>
+          <Text>{isFocusVisible ? 'focus visible' : 'not focus visible'}</Text>
         </View>
         <View>
-          <Text>{isHovered ? "Hovering" : "Not hovering"}</Text>
+          <Text>{isHovered ? 'Hovering' : 'Not hovering'}</Text>
         </View>
       </View>
     </View>

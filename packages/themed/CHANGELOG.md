@@ -1,5 +1,18 @@
 # @gluestack-ui/themed
 
+## 1.1.64
+
+### Patch Changes
+
+- fix: removed extra dependency
+
+## 1.1.63
+
+### Patch Changes
+
+- Updated dependencies
+  - @gluestack-ui/pin-input@0.0.2
+
 ## 1.1.62
 
 ### Patch Changes
