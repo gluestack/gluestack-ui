@@ -1,6 +1,6 @@
 {
   "name": "@gluestack-ui/themed",
-  "version": "1.1.63",
+  "version": "1.1.64",
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "module": "build/index",
@@ -50,7 +50,6 @@
     "@gluestack-ui/icon": "0.1.25",
     "@gluestack-ui/image": "0.1.11",
     "@gluestack-ui/input": "0.1.32",
-    "@gluestack-ui/pin-input": "0.0.2",
     "@gluestack-ui/link": "0.1.23",
     "@gluestack-ui/menu": "0.2.37",
     "@gluestack-ui/modal": "0.1.35",
