@@ -147,6 +147,9 @@ const ImageViewerContent = (
         Gesture.Simultaneous(pinchGesture, panGesture)
       );
 
+      // This type error is coming from reanimated and react native types itself
+      // https://github.com/software-mansion/react-native-reanimated/issues/4548
+      // @ts-ignore
       const animatedStyle = useAnimatedStyle(() => {
         runOnJS(setScale)(scale.value);
         if (scale.value <= 1) {
