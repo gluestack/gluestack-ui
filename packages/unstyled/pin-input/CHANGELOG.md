@@ -1,5 +1,11 @@
 # @gluestack-ui/pin-input
 
+## 0.0.8
+
+### Patch Changes
+
+- chore: removed extra dependency for clipboard
+
 ## 0.0.7
 
 ### Patch Changes

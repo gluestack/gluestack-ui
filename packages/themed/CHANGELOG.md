@@ -1,5 +1,11 @@
 # @gluestack-ui/themed
 
+## 1.1.64
+
+### Patch Changes
+
+- fix: removed extra dependency
+
 ## 1.1.63
 
 ### Patch Changes
