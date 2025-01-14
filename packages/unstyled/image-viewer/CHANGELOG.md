@@ -1,5 +1,11 @@
 # @gluestack-ui/image-viewer
 
+## 0.0.10
+
+### Patch Changes
+
+- fix: updated translateY breakpoint value for onClose
+
 ## 0.0.9
 
 ### Patch Changes
