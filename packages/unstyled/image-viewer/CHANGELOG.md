@@ -10,7 +10,7 @@
 
 ### Patch Changes
 
-- fix: changed translateY breakpoint for onClose
+- fix: closebuttonicon bg on hover and updated example
 
 ## 0.0.8
 
