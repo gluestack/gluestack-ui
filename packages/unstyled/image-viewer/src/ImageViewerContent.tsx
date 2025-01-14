@@ -7,8 +7,7 @@ import {
   withSpring,
   withTiming,
 } from 'react-native-reanimated';
-import { Dimensions } from 'react-native';
-import { StatusBar } from 'expo-status-bar';
+import { Dimensions, StatusBar } from 'react-native';
 import type { InterfaceImageViewerContentProps } from './types';
 
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window');
@@ -166,7 +165,7 @@ const ImageViewerContent = (
 
       return (
         <StyledGestureHandlerRootView ref={ref}>
-          <StatusBar hidden={true} animated />
+          <StatusBar hidden={true} />
           {children}
           <StyledGestureDetector gesture={composedGesture}>
             <StyledAnimated style={animatedStyle}>
