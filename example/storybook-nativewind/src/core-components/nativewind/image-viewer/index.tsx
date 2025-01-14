@@ -28,7 +28,7 @@ const BackdropStyle = tva({
 });
 
 const CloseButtonStyle = tva({
-  base: 'absolute top-4 right-4 z-10 bg-white rounded-full w-8 h-8 justify-center items-center cursor-pointer',
+  base: 'absolute top-4 right-4 z-10 rounded-full w-8 h-8 justify-center items-center cursor-pointer hover:bg-primary-500 transition-all duration-300',
 });
 
 const UIImageViewer = createImageViewer({

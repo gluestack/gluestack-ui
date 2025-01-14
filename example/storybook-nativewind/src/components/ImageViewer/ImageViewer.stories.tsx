@@ -11,7 +11,12 @@ const ImageViewerMeta: ComponentMeta<typeof ImageViewer> = {
   },
   argTypes: {},
   args: {
-    images: [{ id: 1, url: 'https://picsum.photos/1000/1000' }],
+    images: [
+      {
+        id: 1,
+        url: 'https://img.freepik.com/free-photo/young-boy-learning-how-ride-horse_23-2150460636.jpg',
+      },
+    ],
   },
 };
 
