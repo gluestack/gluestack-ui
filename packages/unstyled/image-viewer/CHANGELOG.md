@@ -1,5 +1,11 @@
 # @gluestack-ui/image-viewer
 
+## 0.0.9
+
+### Patch Changes
+
+- fix: closebuttonicon bg on hover and updated example
+
 ## 0.0.8
 
 ### Patch Changes
