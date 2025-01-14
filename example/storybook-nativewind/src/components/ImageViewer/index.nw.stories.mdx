@@ -52,19 +52,19 @@ This is an illustration of **ImageViewer** component.
       px: '$8',
     }}
     showComponentRenderer={true}
-    showArgsController={true}
+    showArgsController={false}
     metaData={{
       code: `
       function App() {
         const [visible, setVisible] = React.useState(false);
-        const Images = [{ id: 1, url: 'https://picsum.photos/1000/1000' }];
+        const Images = [{ id: 1, url: 'https://img.freepik.com/free-photo/young-boy-learning-how-ride-horse_23-2150460636.jpg' }];
         return (
           <Center>
             <Pressable onPress={() => setVisible(true)}>
               <Image
                 source={{ uri: Images[0].url }}
                 className="w-[200px] h-[200px]"
-                resizeMode="contain"
+                resizeMode="cover"
               />
             </Pressable>
             <ImageViewer isOpen={visible} onClose={() => setVisible(false)}>
@@ -77,7 +77,7 @@ This is an illustration of **ImageViewer** component.
                   keyExtractor={(item, index) => item.id + '-' + index}
                 >
                 <ImageViewerCloseButton>
-                  <Icon as={CloseIcon}/>
+                  <Icon as={CloseIcon} className='text-secondary-500'/>
                 </ImageViewerCloseButton>
               </ImageViewerContent>
             </ImageViewerBackdrop>
@@ -369,19 +369,19 @@ import { Center } from '@/components/ui/center';
       px: '$8',
     }}
     showComponentRenderer={true}
-    showArgsController={true}
+    showArgsController={false}
     metaData={{
       code: `
       function App() {
         const [visible, setVisible] = React.useState(false);
-        const Images = [{ id: 1, url: 'https://picsum.photos/1000/1000' }];
+        const Images = [{ id: 1, url: 'https://img.freepik.com/free-photo/young-boy-learning-how-ride-horse_23-2150460636.jpg' }];
         return (
           <Center>
             <Pressable onPress={() => setVisible(true)}>
               <Image
                 source={{ uri: Images[0].url }}
                 className="w-[200px] h-[200px]"
-                resizeMode="contain"
+                resizeMode="cover"
               />
             </Pressable>
             <ImageViewer isOpen={visible} onClose={() => setVisible(false)}>
@@ -394,7 +394,7 @@ import { Center } from '@/components/ui/center';
                   keyExtractor={(item, index) => item.id + '-' + index}
                 >
                 <ImageViewerCloseButton>
-                  <Icon as={CloseIcon}/>
+                  <Icon as={CloseIcon} className='text-secondary-500'/>
                 </ImageViewerCloseButton>
               </ImageViewerContent>
             </ImageViewerBackdrop>
