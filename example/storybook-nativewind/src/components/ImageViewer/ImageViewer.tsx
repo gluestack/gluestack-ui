@@ -11,9 +11,11 @@ import { Icon, CloseIcon } from '@/components/ui/icon';
 
 const ImageViewerBasic = ({ ...props }: any) => {
   const Images = [
-    { id: 1, url: 'https://picsum.photos/1000/1000', title: 'Image 1' },
-    { id: 2, url: 'https://picsum.photos/1000/1000', title: 'Image 2' },
-    { id: 3, url: 'https://picsum.photos/1000/1000', title: 'Image 3' },
+    {
+      id: 1,
+      url: 'https://img.freepik.com/free-photo/young-boy-learning-how-ride-horse_23-2150460636.jpg',
+      title: 'Image 1',
+    },
   ];
   const [visible, setVisible] = useState(false);
   return (
@@ -22,7 +24,7 @@ const ImageViewerBasic = ({ ...props }: any) => {
         <Image
           source={{ uri: Images[0].url }}
           className="w-[200px] h-[200px]"
-          resizeMode="contain"
+          resizeMode="cover"
         />
       </Pressable>
 
@@ -40,7 +42,7 @@ const ImageViewerBasic = ({ ...props }: any) => {
             keyExtractor={(item, index) => item.id + '-' + index}
           >
             <ImageViewerCloseButton>
-              <Icon as={CloseIcon} />
+              <Icon as={CloseIcon} className="text-secondary-500" />
             </ImageViewerCloseButton>
           </ImageViewerContent>
         </ImageViewerBackdrop>
