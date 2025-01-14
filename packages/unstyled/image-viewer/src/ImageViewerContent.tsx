@@ -111,7 +111,7 @@ const ImageViewerContent = (
         })
         .onEnd((event: any) => {
           if (scale.value <= 1) {
-            if (Math.abs(event.translationY) > SCREEN_HEIGHT * 0.005) {
+            if (Math.abs(event.translationY) > SCREEN_HEIGHT * 0.03) {
               runOnJS(onClose)();
             }
           }
