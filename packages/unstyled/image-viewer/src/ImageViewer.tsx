@@ -1,6 +1,7 @@
 import React, { forwardRef } from 'react';
 import { ImageViewerContext } from './ImageViewerContext';
 import type { InterfaceImageViewerProps } from './types';
+import { StatusBar } from 'expo-status-bar';
 
 const ImageViewer = (StyledRoot: any) =>
   forwardRef(
@@ -26,6 +27,7 @@ const ImageViewer = (StyledRoot: any) =>
 
       return (
         <ImageViewerContext.Provider value={contextValue}>
+          <StatusBar animated style="inverted" />
           <StyledRoot
             visible={isOpen}
             onRequestClose={onClose}
