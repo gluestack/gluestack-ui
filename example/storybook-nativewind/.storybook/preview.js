@@ -108,6 +108,8 @@ export const parameters = {
         [
           'Recipes',
           ['Linear Gradient'],
+          'Tutorials',
+          ['Building Ecommerce App'],
           'More',
           [
             'Upgrade to v2',
