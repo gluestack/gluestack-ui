@@ -208,6 +208,11 @@
         "@gluestack-ui/textarea": "latest"
       }
     },
+    "time-input": {
+      "dependencies": {
+        "@gluestack-ui/time-input": "latest"
+      }
+    },
     "toast": {
       "dependencies": {
         "@gluestack-ui/toast": "latest",
@@ -234,5 +239,5 @@
       "hooks": ["useBreakpointValue"]
     }
   },
-  "IgnoredComponents": ["bottomsheet", "image-viewer"]
+  "IgnoredComponents": ["bottomsheet", "image-viewer", "time-input"]
 }
