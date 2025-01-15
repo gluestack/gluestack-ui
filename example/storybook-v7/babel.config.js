@@ -124,6 +124,10 @@ module.exports = function (api) {
               __dirname,
               '../../packages/unstyled/image-viewer/src'
             ),
+            '@gluestack-ui/time-input': path.join(
+              __dirname,
+              '../../packages/unstyled/time-input/src'
+            ),
             '@gluestack-ui/toast': path.join(
               __dirname,
               '../../packages/unstyled/toast/src'
