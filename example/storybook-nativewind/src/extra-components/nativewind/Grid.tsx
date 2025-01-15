@@ -49,7 +49,6 @@ export const Grid = () => {
             key={index}
             title={item.title}
             child={item.child}
-            padding={item.padding}
             href={prefix + item.href}
           />
         ))}

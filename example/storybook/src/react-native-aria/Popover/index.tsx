@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   Pressable,
   View,
@@ -6,19 +6,18 @@ import {
   StyleSheet,
   TouchableWithoutFeedback,
   Button,
-} from "react-native";
+} from 'react-native';
 import {
   OverlayContainer,
-  OverlayProvider,
   useOverlayPosition,
-} from "@react-native-aria/overlays";
+} from '@react-native-aria/overlays';
 
 function CloseButton(props: any) {
   return (
     <TouchableWithoutFeedback
       onPress={props.onClose}
       accessible={false}
-      importantForAccessibility={"no-hide-descendants"}
+      importantForAccessibility={'no-hide-descendants'}
     >
       <View style={StyleSheet.absoluteFill}></View>
     </TouchableWithoutFeedback>
@@ -28,7 +27,7 @@ function CloseButton(props: any) {
 const PopoverContent = ({ targetRef }) => {
   let overlayRef = React.useRef(null);
   const { overlayProps } = useOverlayPosition({
-    placement: "top",
+    placement: 'top',
     targetRef,
     overlayRef,
   });
@@ -37,19 +36,19 @@ const PopoverContent = ({ targetRef }) => {
     <View
       ref={overlayRef}
       style={{
-        position: "absolute",
+        position: 'absolute',
         ...overlayProps.style,
       }}
     >
       <View
         style={{
-          shadowColor: "##D1D5DB",
+          shadowColor: '##D1D5DB',
           elevation: 4,
           borderWidth: 1,
-          borderColor: "#D1D5DB",
+          borderColor: '#D1D5DB',
         }}
       >
-        <View style={{ padding: 10, backgroundColor: "#F3F4F6" }}>
+        <View style={{ padding: 10, backgroundColor: '#F3F4F6' }}>
           <Text>Popover Title </Text>
         </View>
         <View style={{ maxWidth: 200, padding: 10 }}>
@@ -63,8 +62,8 @@ const PopoverContent = ({ targetRef }) => {
         <View
           style={{
             padding: 10,
-            flexDirection: "row",
-            justifyContent: "space-around",
+            flexDirection: 'row',
+            justifyContent: 'space-around',
           }}
         >
           <Button onPress={() => {}} title="Yes"></Button>
@@ -75,23 +74,23 @@ const PopoverContent = ({ targetRef }) => {
   );
 };
 
-export function PopoverExample(props: any) {
+export function PopoverExample() {
   const [visible, setVisible] = React.useState(false);
 
   let ref = React.useRef(null);
 
   return (
-    <View style={{ marginLeft: "auto", marginRight: "auto" }}>
+    <View style={{ marginLeft: 'auto', marginRight: 'auto' }}>
       <Pressable
         ref={ref}
         role="button"
         onPress={() => setVisible(!visible)}
         style={{
-          backgroundColor: "#F3F4F6",
+          backgroundColor: '#F3F4F6',
           maxWidth: 100,
           padding: 10,
-          justifyContent: "center",
-          alignItems: "center",
+          justifyContent: 'center',
+          alignItems: 'center',
         }}
       >
         <Text>Press me</Text>

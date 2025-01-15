@@ -1,28 +1,28 @@
 //@ts-nocheck
-import React from "react";
-import { useMenuTriggerState } from "@react-stately/menu";
-import { useTreeState } from "@react-stately/tree";
-import { mergeProps } from "@react-aria/utils";
+import React from 'react';
+import { useMenuTriggerState } from '@react-stately/menu';
+import { useTreeState } from '@react-stately/tree';
+import { mergeProps } from '@react-aria/utils';
 import {
   OverlayContainer,
   useOverlayPosition,
   useOverlay,
-} from "@react-native-aria/overlays";
+} from '@react-native-aria/overlays';
 import {
   useMenu,
   useMenuItem,
   useMenuTrigger,
   useMenuSection,
-} from "@react-native-aria/menu";
-import { useSeparator } from "@react-native-aria/separator";
+} from '@react-native-aria/menu';
+import { useSeparator } from '@react-native-aria/separator';
 import {
   TouchableWithoutFeedback,
   View,
   Text,
   StyleSheet,
   Pressable,
-} from "react-native";
-import { FocusScope } from "@react-native-aria/focus";
+} from 'react-native';
+import { FocusScope } from '@react-native-aria/focus';
 
 // Button to close overlay on outside click
 function CloseButton(props) {
@@ -30,7 +30,7 @@ function CloseButton(props) {
     <TouchableWithoutFeedback
       onPress={props.onClose}
       accessible={false}
-      importantForAccessibility={"no-hide-descendants"}
+      importantForAccessibility={'no-hide-descendants'}
     >
       <View style={StyleSheet.absoluteFill}></View>
     </TouchableWithoutFeedback>
@@ -49,7 +49,7 @@ export function MenuButton(props) {
 
   // Get props for the button based on the trigger props from useMenuTrigger
   return (
-    <View style={{ alignSelf: "center" }}>
+    <View style={{ alignSelf: 'center' }}>
       <Pressable
         {...menuTriggerProps}
         ref={ref}
@@ -57,9 +57,9 @@ export function MenuButton(props) {
       >
         <View
           style={{
-            flexDirection: "row",
+            flexDirection: 'row',
             borderWidth: 1,
-            justifyContent: "space-around",
+            justifyContent: 'space-around',
             paddingHorizontal: 10,
             paddingVertical: 5,
           }}
@@ -106,7 +106,7 @@ function MenuPopup(props) {
   );
 
   const { overlayProps }: any = useOverlayPosition({
-    placement: "bottom",
+    placement: 'bottom',
     targetRef: props.targetRef,
     overlayRef,
     offset: 10,
@@ -115,7 +115,7 @@ function MenuPopup(props) {
   return (
     <View
       style={{
-        position: "absolute",
+        position: 'absolute',
         ...overlayProps.style,
       }}
       ref={overlayRef}
@@ -124,11 +124,11 @@ function MenuPopup(props) {
       <View>
         <View
           style={{
-            backgroundColor: "lightgray",
+            backgroundColor: 'lightgray',
           }}
         >
           {[...state.collection].map((item) => {
-            if (item.type === "section") {
+            if (item.type === 'section') {
               return (
                 <MenuSection
                   key={item.key}
@@ -159,8 +159,8 @@ function MenuPopup(props) {
 const MenuSection = (props: any) => {
   let { item, state, onAction } = props;
   let { itemProps, headingProps, groupProps } = useMenuSection({
-    heading: item.rendered,
-   "aria-label": item["aria-label"],
+    'heading': item.rendered,
+    'aria-label': item['aria-label'],
   });
 
   let { separatorProps } = useSeparator({});
@@ -217,11 +217,11 @@ export function MenuItem({ item, state, onAction, onClose }) {
         style={{
           paddingVertical: 10,
           paddingHorizontal: 20,
-          flexDirection: "row",
+          flexDirection: 'row',
         }}
       >
         <Text>{item.rendered}</Text>
-        <Text>{isSelected ? "✔️" : null}</Text>
+        <Text>{isSelected ? '✔️' : null}</Text>
       </View>
     </Pressable>
   );

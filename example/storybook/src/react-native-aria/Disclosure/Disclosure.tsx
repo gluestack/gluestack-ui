@@ -1,10 +1,10 @@
-import React from "react";
-import { useToggleState } from "@react-stately/toggle";
+import React from 'react';
+import { useToggleState } from '@react-stately/toggle';
 import {
   useDisclosureButton,
   useDisclosure,
-} from "@react-native-aria/disclosure";
-import { Pressable, Text, View } from "react-native";
+} from '@react-native-aria/disclosure';
+import { Pressable, Text, View } from 'react-native';
 
 type Props = {
   isOpen?: boolean;

@@ -1,10 +1,10 @@
-import React from "react";
-import { useRadioGroupState } from "@react-stately/radio";
-import { useRadio, useRadioGroup } from "@react-native-aria/radio";
-import { Platform, Pressable, Text, View } from "react-native";
-import { VisuallyHidden } from "@react-aria/visually-hidden";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { useFocusRing } from "@react-native-aria/focus";
+import React from 'react';
+import { useRadioGroupState } from '@react-stately/radio';
+import { useRadio, useRadioGroup } from '@react-native-aria/radio';
+import { Platform, Pressable, Text, View } from 'react-native';
+import { VisuallyHidden } from '@react-aria/visually-hidden';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { useFocusRing } from '@react-native-aria/focus';
 
 let RadioContext = React.createContext<any>({});
 
@@ -40,32 +40,32 @@ export function Radio(props: any) {
   let { isFocusVisible, focusProps } = useFocusRing();
 
   let isSelected = state.selectedValue === props.value;
-  const icon = isSelected ? "radiobox-marked" : "radiobox-blank";
+  const icon = isSelected ? 'radiobox-marked' : 'radiobox-blank';
 
   return (
     <>
-      {Platform.OS === "web" ? (
+      {Platform.OS === 'web' ? (
         <label>
           <VisuallyHidden>
             <input {...inputProps} {...focusProps} ref={inputRef}></input>
           </VisuallyHidden>
 
-          <View style={{ flexDirection: "row", alignItems: "center" }}>
+          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
             <View style={isFocusVisible ? { borderWidth: 1 } : {}}>
-              <MaterialCommunityIcons size={30} color={"#000"} name={icon} />
+              <MaterialCommunityIcons size={30} color={'#000'} name={icon} />
             </View>
             <Text>{props.children}</Text>
           </View>
         </label>
       ) : (
         <Pressable {...inputProps} {...focusProps}>
-          <View style={{ flexDirection: "row", alignItems: "center" }}>
+          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
             <View style={isFocusVisible ? { borderWidth: 1 } : {}}>
-              <MaterialCommunityIcons size={30} color={"#000"} name={icon} />
+              <MaterialCommunityIcons size={30} color={'#000'} name={icon} />
             </View>
             <Text>{props.children}</Text>
           </View>
-          <Text>{isSelected ? "selected" : "not selected"}</Text>
+          <Text>{isSelected ? 'selected' : 'not selected'}</Text>
         </Pressable>
       )}
     </>

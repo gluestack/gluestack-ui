@@ -1,10 +1,10 @@
-import React from "react";
-import { useListBox, useOption } from "@react-native-aria/listbox";
-import { useListState } from "@react-stately/list";
-import { SpectrumListBoxProps } from "@react-types/listbox";
-import { useFocusRing } from "@react-native-aria/focus";
-import { mergeProps } from "@react-aria/utils";
-import { Pressable, Text, View } from "react-native";
+import React from 'react';
+import { useListBox, useOption } from '@react-native-aria/listbox';
+import { useListState } from '@react-stately/list';
+import { SpectrumListBoxProps } from '@react-types/listbox';
+import { useFocusRing } from '@react-native-aria/focus';
+import { mergeProps } from '@react-aria/utils';
+import { Pressable, Text, View } from 'react-native';
 
 type IListBoxProps = SpectrumListBoxProps<any> & {
   children: any;
@@ -64,11 +64,11 @@ function Option({ item, state }) {
       {...mergeProps(optionProps, focusProps)}
       ref={ref}
       style={{
-        backgroundColor: isSelected ? "pink" : "transparent",
-        color: isSelected ? "white" : null,
+        backgroundColor: isSelected ? 'pink' : 'transparent',
+        color: isSelected ? 'white' : null,
         padding: 5,
         outlineWidth: isFocusVisible ? 2 : 0,
-        outlineStyle: "solid",
+        outlineStyle: 'solid',
       }}
     >
       <Text>{item.rendered}</Text>

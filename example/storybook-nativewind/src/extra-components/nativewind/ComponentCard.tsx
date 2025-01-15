@@ -1,50 +1,23 @@
 import React from 'react';
-import { Box, Text, VStack } from '@gluestack/design-system';
+import { Box } from '@/components/ui/box';
+import { Text } from '@/components/ui/text';
+import { VStack } from '@/components/ui/vstack';
 import NextLink from 'next/link';
 
 export const ComponentCard = ({
   title,
   child,
-  padding,
   href,
 }: {
   title: string;
   child: React.ReactNode;
-  padding?: string;
   props?: any;
   href: string;
 }) => {
   return (
-    <VStack
-      borderRadius="$xl"
-      borderWidth={1}
-      borderColor="$trueGray300"
-      minWidth="100%"
-      sx={{
-        '@md': {
-          flex: 1,
-        },
-        '_dark': {
-          borderColor: '$borderDark800',
-        },
-      }}
-    >
+    <VStack className="rounded-xl border border-outline-100 min-w-full md:flex-1 ">
       <Box
-        minHeight={236}
-        padding={padding ? padding : '$6'}
-        borderTopLeftRadius="$xl"
-        borderTopRightRadius="$xl"
-        borderBottomWidth={1}
-        borderBottomColor="$trueGray300"
-        bg="$trueGray50"
-        justifyContent="center"
-        alignItems="center"
-        sx={{
-          _dark: {
-            borderBottomColor: '$borderDark800',
-            bg: '#0C0E12',
-          },
-        }}
+        className={`min-h-[236px] rounded-tl-xl rounded-tr-xl border-b border-b-outline-50 bg-background-50 items-center justify-center p-6`}
       >
         {child}
       </Box>
@@ -55,13 +28,7 @@ export const ComponentCard = ({
         }}
       >
         <Box>
-          <Text
-            fontSize="$xl"
-            fontWeight="$medium"
-            lineHeight="$xl"
-            px="$6"
-            py="$4"
-          >
+          <Text className="text-xl font-medium leading-3 px-6 py-4">
             {title}
           </Text>
         </Box>

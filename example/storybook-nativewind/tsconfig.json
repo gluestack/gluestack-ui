@@ -5,7 +5,9 @@
     "paths": {
       "@/components/ui/*": ["src/core-components/nativewind/*"],
       "@/components/hooks/*": ["src/core-components/hooks/*"],
-      "@/components/ui/utils/*": ["src/core-components/hooks/*"],
+      "@/components/ui/gluestack-ui-provider/providerContext": [
+        "./src/extra-components/storybook-components/ColorMode"
+      ],
       "@gluestack-style/react": ["../../packages/styled/react/src"],
       "@gluestack-ui/popover": ["../../packages/unstyled/popover/src"],
       "@gluestack-ui/overlay": ["../../packages/unstyled/overlay/src"],
@@ -14,6 +16,7 @@
       "@gluestack-ui/alert": ["../../packages/unstyled/alert/src"],
       "@gluestack-ui/time-input": ["../../packages/unstyled/time-input/src"],
       "@gluestack-ui/input": ["../../packages/unstyled/input/src"],
+      "@gluestack-ui/pin-input": ["../../packages/unstyled/pin-input/src"],
       "@gluestack-ui/checkbox": ["../../packages/unstyled/checkbox/src"],
       "@gluestack-ui/form-control": [
         "../../packages/unstyled/form-control/src"
@@ -26,6 +29,9 @@
       "@gluestack-ui/tooltip": ["../../packages/unstyled/tooltip/src"],
       "@gluestack-ui/fab": ["../../packages/unstyled/fab/src"],
       "@gluestack-ui/progress": ["../../packages/unstyled/progress/src"],
+      "@gluestack-ui/image-viewer": [
+        "../../packages/unstyled/image-viewer/src"
+      ],
       "@gluestack-ui/alert-dialog": [
         "../../packages/unstyled/alert-dialog/src"
       ],

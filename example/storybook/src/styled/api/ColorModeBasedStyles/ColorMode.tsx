@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import { View, Pressable, Text } from 'react-native';
 import { styled } from '@gluestack-style/react';
 import { Wrapper } from '../../components/Wrapper';
-import { get, set } from '@gluestack-style/react';
+import { get } from '@gluestack-style/react';
 
 const StyledColorMode = memo(
   styled(

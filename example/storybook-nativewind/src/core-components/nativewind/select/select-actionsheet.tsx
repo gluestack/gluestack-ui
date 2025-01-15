@@ -114,7 +114,7 @@ const actionsheetItemTextStyle = tva({
       '2xs': 'text-2xs',
       'xs': 'text-xs',
       'sm': 'text-sm',
-      'md': 'text-md',
+      'md': 'text-base',
       'lg': 'text-lg',
       'xl': 'text-xl',
       '2xl': 'text-2xl',
@@ -179,7 +179,7 @@ const actionsheetSectionHeaderTextStyle = tva({
       '2xl': 'text-2xl',
       'xl': 'text-xl',
       'lg': 'text-lg',
-      'md': 'text-md',
+      'md': 'text-base',
       'sm': 'text-sm',
       'xs': 'text-xs',
     },
@@ -280,6 +280,7 @@ type IActionsheetSectionHeaderTextProps = VariantProps<
 type IActionsheetIconProps = VariantProps<typeof actionsheetIconStyle> &
   React.ComponentProps<typeof UIActionsheet.Icon> & {
     className?: string;
+    as?: React.ElementType;
   };
 
 const Actionsheet = React.forwardRef<

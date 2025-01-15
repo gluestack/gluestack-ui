@@ -24,17 +24,17 @@ const StyledText = styled(
 );
 
 export function UtilityFunctions() {
-  const addGlobalCss = createGlobalStylesWeb({
-    '.test': { p: '$8', bg: '$amber400' },
-    'body': {
-      bg: '$coolGray800',
-    },
-    '#hash': {
-      bg: '$amber700',
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-  });
+  // const addGlobalCss = createGlobalStylesWeb({
+  //   '.test': { p: '$8', bg: '$amber400' },
+  //   'body': {
+  //     bg: '$coolGray800',
+  //   },
+  //   '#hash': {
+  //     bg: '$amber700',
+  //     alignItems: 'center',
+  //     justifyContent: 'center',
+  //   },
+  // });
   return (
     <Wrapper
       globalStyles={{

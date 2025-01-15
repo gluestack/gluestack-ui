@@ -1,12 +1,11 @@
-import React, { MutableRefObject } from "react";
-import { Pressable, StyleSheet, Text } from "react-native";
-import { useTabsState } from "@react-stately/tabs";
-import { useTabs, useTab } from "@react-native-aria/tabs";
-import { SpectrumTabsProps } from "@react-types/tabs";
-import { Orientation, DOMProps, Node } from "@react-types/shared";
-import { SingleSelectListState } from "@react-stately/list";
-import { View } from "react-native";
-
+import React from 'react';
+import { Pressable, StyleSheet, Text } from 'react-native';
+import { useTabsState } from '@react-stately/tabs';
+import { useTabs, useTab } from '@react-native-aria/tabs';
+import { SpectrumTabsProps } from '@react-types/tabs';
+import { Orientation, DOMProps, Node } from '@react-types/shared';
+import { SingleSelectListState } from '@react-stately/list';
+import { View } from 'react-native';
 
 export function TabsExample(props: SpectrumTabsProps<any>) {
   let state = useTabsState(props);
@@ -30,7 +29,7 @@ export function TabsExample(props: SpectrumTabsProps<any>) {
 
 interface TabListProps<T> {
   isQuiet?: boolean;
-  density?: "compact" | "regular";
+  density?: 'compact' | 'regular';
   isDisabled?: boolean;
   orientation?: Orientation;
   state: SingleSelectListState<T>;
@@ -42,16 +41,7 @@ const TabList = React.forwardRef(function <T>(
   props: TabListProps<T>,
   ref: any
 ) {
-  let {
-    isQuiet,
-    density,
-    state,
-    isDisabled,
-    orientation,
-    selectedTab,
-    className,
-    ...otherProps
-  } = props;
+  let { state, isDisabled, orientation, ...otherProps } = props;
 
   return (
     <View {...otherProps} ref={ref} style={styles(props).tabButtons}>
@@ -85,10 +75,13 @@ export function Tab(props: TabProps<any>) {
   const style = styles({ ...props, isSelected }).tab;
   const textStyle = styles({ ...props, isSelected }).tabText;
 
-
   return (
     <Pressable {...tabProps} ref={ref} style={style}>
-      {typeof rendered === "string" ? <Text style={textStyle}>{rendered}</Text> : rendered}
+      {typeof rendered === 'string' ? (
+        <Text style={textStyle}>{rendered}</Text>
+      ) : (
+        rendered
+      )}
     </Pressable>
   );
 }
@@ -99,13 +92,13 @@ const styles = (props: any) => {
       marginLeft: 10,
     },
     tabText: {
-      color: props.isSelected ? "#1E40AF" : "#1F2937",
-      borderBottomColor: "#1E40AF",
+      color: props.isSelected ? '#1E40AF' : '#1F2937',
+      borderBottomColor: '#1E40AF',
       borderBottomWidth: props.isSelected ? 2 : 0,
       padding: 10,
     },
     tabButtons: {
-      flexDirection: props.orientation === "vertical" ? "column" : "row",
+      flexDirection: props.orientation === 'vertical' ? 'column' : 'row',
     },
   });
 };

@@ -2,15 +2,11 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import { Wrapper } from '../../components/Wrapper';
 import { Camera } from 'lucide-react-native';
-import { StyledHeading } from '../../ui-components/AsForwarder';
-import { H2 } from '@expo/html-elements';
 import { styled } from '@gluestack-style/react';
 
 const Box = styled(View, {});
-import Svg from 'react-native-svg';
 
 export function AsForwarder({ as, children, ...props }: any) {
-  console.log(props, 'props here');
   return <Box>{children}</Box>;
   // const As: any = as;
   // return as ? <As {...props}>{children}</As> : <Svg {...props}>{children}</Svg>;

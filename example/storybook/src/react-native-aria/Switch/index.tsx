@@ -7,8 +7,8 @@
  * @benkeroumamine
  */
 
-import { useToggleState } from "@react-stately/toggle";
-import React, { useRef } from "react";
+import { useToggleState } from '@react-stately/toggle';
+import React, { useRef } from 'react';
 import {
   StyleSheet,
   Text,
@@ -16,14 +16,14 @@ import {
   Animated,
   Platform,
   Pressable,
-} from "react-native";
-import { useSwitch } from "@react-native-aria/switch";
-import { useFocusRing } from "@react-native-aria/focus";
-import { VisuallyHidden } from "@react-aria/visually-hidden";
+} from 'react-native';
+import { useSwitch } from '@react-native-aria/switch';
+import { useFocusRing } from '@react-native-aria/focus';
+import { VisuallyHidden } from '@react-aria/visually-hidden';
 
 const calculateDimensions = (size: any) => {
   switch (size) {
-    case "small":
+    case 'small':
       return {
         width: 40,
         padding: 10,
@@ -31,7 +31,7 @@ const calculateDimensions = (size: any) => {
         circleHeight: 15,
         translateX: 22,
       };
-    case "large":
+    case 'large':
       return {
         width: 70,
         padding: 20,
@@ -52,9 +52,9 @@ const calculateDimensions = (size: any) => {
 
 const defaultProps = {
   isOn: false,
-  onColor: "#4cd137",
-  offColor: "#ecf0f1",
-  size: "medium",
+  onColor: '#4cd137',
+  offColor: '#ecf0f1',
+  size: 'medium',
   labelStyle: {},
   thumbOnStyle: {},
   thumbOffStyle: {},
@@ -64,7 +64,7 @@ const defaultProps = {
   disabled: false,
   animationSpeed: 300,
   useNativeDriver: true,
-  circleColor: "white",
+  circleColor: 'white',
 };
 
 export function Switch(origProps: any) {
@@ -78,7 +78,7 @@ export function Switch(origProps: any) {
 
   const createToggleSwitchStyle = () => [
     {
-      justifyContent: "center",
+      justifyContent: 'center',
       width: dimensions.current.width,
       borderRadius: 20,
       padding: dimensions.current.padding,
@@ -89,17 +89,17 @@ export function Switch(origProps: any) {
 
   const createInsideCircleStyle = () => [
     {
-      alignItems: "center",
-      justifyContent: "center",
-      margin: Platform.OS === "web" ? 0 : 4,
-      left: Platform.OS === "web" ? 4 : 0,
-      position: "absolute",
+      alignItems: 'center',
+      justifyContent: 'center',
+      margin: Platform.OS === 'web' ? 0 : 4,
+      left: Platform.OS === 'web' ? 4 : 0,
+      position: 'absolute',
       backgroundColor: props.circleColor,
       transform: [{ translateX: offsetX.current }],
       width: dimensions.current.circleWidth,
       height: dimensions.current.circleHeight,
       borderRadius: dimensions.current.circleWidth / 2,
-      shadowColor: "#000",
+      shadowColor: '#000',
       shadowOffset: {
         width: 0,
         height: 2,
@@ -128,14 +128,14 @@ export function Switch(origProps: any) {
       <View style={[...createToggleSwitchStyle(), { marginBottom: 5 }]}>
         <Animated.View style={createInsideCircleStyle()}>{icon}</Animated.View>
       </View>
-      <Text>{isOn ? "on" : "off"}</Text>
+      <Text>{isOn ? 'on' : 'off'}</Text>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: "center",
+    alignItems: 'center',
   },
   labelStyle: {
     marginHorizontal: 10,
@@ -147,12 +147,12 @@ export function ControlledSwitch() {
   const { isFocusVisible, focusProps } = useFocusRing();
   const inputRef = useRef(null);
   let { inputProps } = useSwitch(
-    { "aria-label": "Example switch" },
+    { 'aria-label': 'Example switch' },
     state,
     inputRef
   );
 
-  if (Platform.OS === "web") {
+  if (Platform.OS === 'web') {
     return (
       <label>
         <VisuallyHidden>
@@ -163,8 +163,8 @@ export function ControlledSwitch() {
             isOn={state.isSelected}
             onColor="green"
             offColor="red"
-            label={"this is a switch"}
-            labelStyle={{ color: "black", fontWeight: "900" }}
+            label={'this is a switch'}
+            labelStyle={{ color: 'black', fontWeight: '900' }}
             size="large"
             onToggle={state.toggle}
           />
@@ -179,8 +179,8 @@ export function ControlledSwitch() {
             isOn={state.isSelected}
             onColor="green"
             offColor="red"
-            label={"this is a switch"}
-            labelStyle={{ color: "black", fontWeight: "900" }}
+            label={'this is a switch'}
+            labelStyle={{ color: 'black', fontWeight: '900' }}
             size="large"
             onToggle={state.toggle}
           />
