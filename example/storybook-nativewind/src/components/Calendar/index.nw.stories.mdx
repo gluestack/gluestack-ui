@@ -1,0 +1,557 @@
+---
+title: gluestack-ui Calendar Component | Installation, Usage, and API
+
+description: A flexible Calendar component for date selection and display in React Native applications.
+
+pageTitle: Calendar
+
+pageDescription: A customizable Calendar component that provides date selection, range selection, and event display capabilities.
+
+showHeader: true
+
+tag: alpha
+---
+
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="with-nativewind/Components/Others/Calendar" />
+
+import { Calendar,
+CalendarHeader,
+CalendarHeaderNext,
+CalendarHeaderPrev,
+CalendarHeaderTitle,
+CalendarContent,
+CalendarWeek,
+CalendarDays,
+Pressable,
+Box,
+Text } from '../../core-components/nativewind';
+import {
+  AppProvider,
+  CodePreview,
+  Table,
+  TableContainer,
+  InlineCode,
+  Tabs
+} from '@gluestack/design-system';
+import { transformedCode } from '../../utils';
+import Wrapper from '../../core-components/nativewind/Wrapper';
+import { CollapsibleCode } from '@gluestack/design-system';
+
+This is an illustration of **Calendar** component.
+
+<Wrapper>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={true}
+    metaData={{
+      code: `
+    <Calendar {...props} value={new Date()} className="w-72"/>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Calendar,
+        Wrapper,
+      },
+    }}
+  />
+</Wrapper>
+
+<br />
+
+## Installation
+
+<Tabs value="cli" type="section">
+  <Tabs.TabList>
+      <Tabs.Tab value="cli">
+        <Tabs.TabTitle>CLI</Tabs.TabTitle>
+      </Tabs.Tab>
+     <Tabs.Tab value="manual">
+        <Tabs.TabTitle>Manual</Tabs.TabTitle>
+     </Tabs.Tab>
+  </Tabs.TabList>
+  <Tabs.TabPanels>
+    <Tabs.TabPanel value="cli">
+<>
+
+### Run the following command:
+  ```bash
+  npx gluestack-ui add calendar
+  ```
+
+</>
+    </Tabs.TabPanel>
+    <Tabs.TabPanel value="manual"> 
+<>
+
+
+### Step 1: Install the following dependencies:
+
+```bash
+npm i 
+```
+
+### Step 2: Copy and paste the following code into your project.
+
+<CollapsibleCode>
+
+```jsx 
+%%-- File: core-components/nativewind/calendar/index.tsx --%% 
+```
+
+</CollapsibleCode>
+
+
+### Step 3: Update the import paths to match your project setup.
+
+</>
+    </Tabs.TabPanel>
+  </Tabs.TabPanels>
+</Tabs>
+
+## API Reference
+
+To use this component in your project, include the following import statement in your file.
+
+```jsx
+
+import {
+  Calendar,
+  CalendarHeader,
+  CalendarHeaderNext,
+  CalendarHeaderPrev,
+  CalendarHeaderTitle,
+  CalendarContent,
+  CalendarWeek,
+  CalendarDays,
+} from '@/components/ui/calendar';
+
+```
+```jsx
+export default () => (
+  <Calendar
+    value={new Date()}
+    onChange={(date) => console.log(date)}
+  >
+    <CalendarHeader>
+      <CalendarHeaderPrev />
+      <CalendarHeaderTitle />
+      <CalendarHeaderNext />
+    </CalendarHeader>
+    <CalendarContent>
+      <CalendarWeek />
+      <CalendarDays />
+    </CalendarContent>
+  </Calendar>
+);
+```
+
+### Component Props
+
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
+
+#### Calendar
+
+It inherits all the properties of React Native's `View` component.
+
+### Props
+
+<>
+<TableContainer>
+  <Table>
+    <Table.THead>
+      <Table.TR>
+        <Table.TH>
+          <Table.TText>Prop</Table.TText>
+        </Table.TH>
+        <Table.TH>
+          <Table.TText>Type</Table.TText>
+        </Table.TH>
+        <Table.TH>
+          <Table.TText>Default</Table.TText>
+        </Table.TH>
+        <Table.TH>
+          <Table.TText>Description</Table.TText>
+        </Table.TH>
+      </Table.TR>
+    </Table.THead>
+    <Table.TBody>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>value</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>Date</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>-</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>Currently selected date</Table.TText>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>defaultValue</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>Date</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>Current date</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>Initial date for uncontrolled usage</Table.TText>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>onChange</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>(date: Date) => void</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>-</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>Called when date selection changes</Table.TText>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>minDate</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>Date</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>-</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>Minimum selectable date</Table.TText>
+        </Table.TD>
+      </Table.TR>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>maxDate</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>Date</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>-</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>Maximum selectable date</Table.TText>
+        </Table.TD>
+      </Table.TR>
+    </Table.TBody>
+  </Table>
+</TableContainer>
+</>
+
+### CalendarContent
+
+It inherits all the properties of React Native's `View` component.
+
+### CalendarWeek
+
+It inherits all the properties of React Native's `View` component. Renders calendar week cells and provides flexibility through a render prop for custom cell rendering.
+
+<>
+<TableContainer>
+  <Table>
+    <Table.THead>
+      <Table.TR>
+        <Table.TH>
+          <Table.TText>Prop</Table.TText>
+        </Table.TH>
+        <Table.TH>
+          <Table.TText>Type</Table.TText>
+        </Table.TH>
+        <Table.TH>
+          <Table.TText>Default</Table.TText>
+        </Table.TH>
+        <Table.TH>
+          <Table.TText>Description</Table.TText>
+        </Table.TH>
+      </Table.TR>
+    </Table.THead>
+    <Table.TBody>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>render</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText><InlineCode>{`({weekday: string}) => React.ReactNode`}</InlineCode></Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>-</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>Custom renderer for date cells. Allows complete customization of how dates are displayed</Table.TText>
+        </Table.TD>
+      </Table.TR>
+    </Table.TBody>
+  </Table>
+</TableContainer>
+</>
+
+
+### CalendarDays
+
+It inherits all the properties of React Native's `View` component. Renders calendar day cells and provides flexibility through a render prop for custom cell rendering.
+
+
+<>
+<TableContainer>
+  <Table>
+    <Table.THead>
+      <Table.TR>
+        <Table.TH>
+          <Table.TText>Prop</Table.TText>
+        </Table.TH>
+        <Table.TH>
+          <Table.TText>Type</Table.TText>
+        </Table.TH>
+        <Table.TH>
+          <Table.TText>Default</Table.TText>
+        </Table.TH>
+        <Table.TH>
+          <Table.TText>Description</Table.TText>
+        </Table.TH>
+      </Table.TR>
+    </Table.THead>
+    <Table.TBody>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>render</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText><InlineCode>{`({day: Date | null, dayProps: any}) => React.ReactNode`}</InlineCode></Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>-</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>Custom renderer for date cells. Allows complete customization of how each date is displayed</Table.TText>
+        </Table.TD>
+      </Table.TR>
+    </Table.TBody>
+  </Table>
+</TableContainer>
+</>
+
+### CalendarDate
+
+A pressable component used for rendering individual date cells within `CalendarDays`. This component is used by default when no custom render function is provided to `CalendarDays` by the user.
+
+It inherits all the properties of React Native's `Pressable` component and handles states like selected, disabled, today, etc.
+
+```jsx
+import { CalendarDate } from '@/components/ui/calendar';
+```
+
+<>
+<TableContainer>
+  <Table>
+    <Table.THead>
+      <Table.TR>
+        <Table.TH>
+          <Table.TText>Prop</Table.TText>
+        </Table.TH>
+        <Table.TH>
+          <Table.TText>Type</Table.TText>
+        </Table.TH>
+        <Table.TH>
+          <Table.TText>Default</Table.TText>
+        </Table.TH>
+        <Table.TH>
+          <Table.TText>Description</Table.TText>
+        </Table.TH>
+      </Table.TR>
+    </Table.THead>
+    <Table.TBody>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>date</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>Date | null</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>-</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>The date to be displayed</Table.TText>
+        </Table.TD>
+      </Table.TR>
+    </Table.TBody>
+  </Table>
+</TableContainer>
+</>
+
+### CalendarHeader
+
+It inherits all the properties of React Native's `View` component.
+
+### CalendarHeaderTitle
+
+It inherits all the properties of React Native's `Text` component.
+
+### CalendarHeaderPrev & CalendarHeaderNext
+
+It inherits all the properties of React Native's `Pressable` component.
+
+<>
+<TableContainer>
+  <Table>
+    <Table.THead>
+      <Table.TR>
+        <Table.TH>
+          <Table.TText>Prop</Table.TText>
+        </Table.TH>
+        <Table.TH>
+          <Table.TText>Type</Table.TText>
+        </Table.TH>
+        <Table.TH>
+          <Table.TText>Default</Table.TText>
+        </Table.TH>
+        <Table.TH>
+          <Table.TText>Description</Table.TText>
+        </Table.TH>
+      </Table.TR>
+    </Table.THead>
+    <Table.TBody>
+      <Table.TR>
+        <Table.TD>
+          <Table.TText>
+            <InlineCode>isDisabled</InlineCode>
+          </Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>boolean</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>false</Table.TText>
+        </Table.TD>
+        <Table.TD>
+          <Table.TText>If true, the button will be disabled</Table.TText>
+        </Table.TD>
+      </Table.TR>
+    </Table.TBody>
+  </Table>
+</TableContainer>
+</>
+
+### Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+#### Calendar with Custom Renderer
+Here is a complete example of how to use the `Calendar` component with its `render` prop to customize the appearance of the calendar.
+
+<Wrapper>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+        <Calendar
+          value={new Date()}
+          className="w-72"
+          minDate={new Date(2024, 5, 1)}
+          maxDate={new Date(2025, 1, 15)}
+          onChange={(day) => console.log(day)}
+        >
+          <CalendarHeader>
+            <CalendarHeaderPrev />
+            <CalendarHeaderTitle />
+            <CalendarHeaderNext />
+          </CalendarHeader>
+          <CalendarContent>
+            <CalendarWeek />
+            <CalendarDays
+            render={({ day, ...dayProps }) => (
+              <Pressable
+                key={day?.getDate()}
+                {...dayProps}
+                className="w-[14.28%] p-2 flex items-center justify-center rounded-lg"
+              >
+                <Text>{day?.getDate()}</Text>
+              </Pressable>
+            )}
+            />
+          </CalendarContent>
+        </Calendar>
+      `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: { Calendar, CalendarHeader, CalendarHeaderPrev, CalendarHeaderNext, CalendarHeaderTitle, CalendarContent, CalendarWeek, CalendarDays, Wrapper, Pressable, Text },
+      argsType: {},
+    }}
+  />
+</Wrapper>
+
+#### Default Usage with CalendarDate
+The default implementation uses `CalendarDate` internally:
+
+```jsx
+<Calendar>
+  <CalendarContent>
+    <CalendarWeek />
+    <CalendarDays /> 
+  </CalendarContent>
+</Calendar>
+```
+
+#### Custom Implementation with CalendarDate
+You can provide your own implementation while still using `CalendarDate`.
+
+```jsx
+<CalendarDays
+  render={({ day, ...dayProps }) => (
+    <CalendarDate date={day} {...dayProps}>
+      {/* Custom content inside CalendarDate */}
+      <Text>{day?.getDate()}</Text>
+    </CalendarDate>
+  )}
+/>
+```
+
+#### Custom Implementation
+Or create a completely custom date cell:
+
+```jsx
+<CalendarDays
+  render={({ day, ...dayProps }) => (
+    <Box
+      {...dayProps}
+      className="w-[14.28%] p-2 flex items-center justify-center"
+    >
+      <Text>{day?.getDate()}</Text>
+    </Box>
+  )}
+/>
+```
