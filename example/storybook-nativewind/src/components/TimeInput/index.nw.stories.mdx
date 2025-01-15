@@ -44,8 +44,8 @@ This is an illustration of **TimeInput** component.
     showArgsController={true}
     metaData={{
       code: `
-        <TimeInput>
-          <TimeInputHr placeholder='HH'/>
+        <TimeInput  {...props}>
+          <TimeInputHr placeholder='HH' />
           <TimeInputColon/>
           <TimeInputMin placeholder='MM'/>
           <TimeInputMeridiem>
@@ -68,8 +68,8 @@ This is an illustration of **TimeInput** component.
       argsType: {
         variant: {
           control: 'select',
-          options: ['outline', 'underlined'],
-          default: 'outline',
+          options: ['outlined', 'underlined'],
+          default: 'outlined',
         },
         size: {
           control: 'select',
@@ -146,7 +146,6 @@ To use this component in your project, include the following import statement in
 import { TimeInput } from '@/components/ui/time-input';
 ```
 
-<AnatomyImage mobileUrl='https://i.imgur.com/5WeYhdS.png' webUrl='https://i.imgur.com/drYm89F.png' classNameStyle='aspect-[513/354] md:aspect-[736/238]' />
 
 ```jsx
 export default () => (
