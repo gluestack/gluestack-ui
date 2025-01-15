@@ -90,11 +90,11 @@ const VadimStream = () => {
         <Box
           className="flex-1 border border-outline-200 rounded-lg overflow-hidden aspect-video"
           id="player1"
-        ></Box>
+        />
         <Box
           className="flex-1 border border-outline-200 rounded-lg overflow-hidden aspect-video"
           id="player2"
-        ></Box>
+        />
       </HStack>
     </Box>
   );
