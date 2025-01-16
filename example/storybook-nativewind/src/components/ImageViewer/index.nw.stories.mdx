@@ -30,6 +30,7 @@ import {
 } from 'react-native';
 import { transformedCode } from '../../utils';
 import { useState } from 'react';
+import { StatusBar } from 'expo-status-bar';
 
 import {
   CodePreview,
@@ -60,6 +61,7 @@ This is an illustration of **ImageViewer** component.
         const Images = [{ id: 1, url: 'https://img.freepik.com/free-photo/young-boy-learning-how-ride-horse_23-2150460636.jpg' }];
         return (
           <Center>
+          <StatusBar hidden={visible}/>
             <Pressable onPress={() => setVisible(true)}>
               <Image
                 source={{ uri: Images[0].url }}
@@ -102,6 +104,7 @@ This is an illustration of **ImageViewer** component.
         Pressable,
         Image,
         Center,
+        StatusBar,
       },
       argsType: {},
     }}
@@ -360,6 +363,7 @@ import { CloseIcon, Icon } from '@/components/ui/icon';
 import React, { useState } from 'react';
 import { Pressable, Image } from 'react-native';
 import { Center } from '@/components/ui/center';
+import { StatusBar } from 'expo-status-bar';
 ```
 
 <Wrapper>
@@ -377,6 +381,7 @@ import { Center } from '@/components/ui/center';
         const Images = [{ id: 1, url: 'https://img.freepik.com/free-photo/young-boy-learning-how-ride-horse_23-2150460636.jpg' }];
         return (
           <Center>
+          <StatusBar hidden={visible}/>
             <Pressable onPress={() => setVisible(true)}>
               <Image
                 source={{ uri: Images[0].url }}
@@ -419,6 +424,7 @@ import { Center } from '@/components/ui/center';
         Pressable,
         Image,
         Center,
+        StatusBar,
       },
       argsType: {},
     }}
