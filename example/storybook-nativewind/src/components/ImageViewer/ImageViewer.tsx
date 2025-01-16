@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Image, Pressable } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
 import {
   ImageViewer,
   ImageViewerBackdrop,
@@ -20,6 +21,7 @@ const ImageViewerBasic = ({ ...props }: any) => {
   const [visible, setVisible] = useState(false);
   return (
     <>
+      <StatusBar hidden={visible} />
       <Pressable onPress={() => setVisible(true)}>
         <Image
           source={{ uri: Images[0].url }}

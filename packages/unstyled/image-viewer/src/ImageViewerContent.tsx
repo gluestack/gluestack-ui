@@ -7,7 +7,7 @@ import {
   withSpring,
   withTiming,
 } from 'react-native-reanimated';
-import { Dimensions, StatusBar } from 'react-native';
+import { Dimensions } from 'react-native';
 import type { InterfaceImageViewerContentProps } from './types';
 
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window');
@@ -100,13 +100,10 @@ const ImageViewerContent = (
             translateY.value = lastTranslateY.value + event.translationY;
           } else {
             // Normal swipe behavior when not zoomed
-            if (Math.abs(event.translationY) > Math.abs(event.translationX)) {
-              translateY.value = event.translationY;
-              scale.value = Math.max(
-                0.5,
-                1 - Math.abs(event.translationY) / SCREEN_HEIGHT
-              );
-            }
+            translateY.value = event.translationY;
+            scale.value = withSpring(
+              Math.max(0.5, 1 - Math.abs(event.translationY) / SCREEN_HEIGHT)
+            );
           }
         })
         .onEnd((event: any) => {
@@ -120,7 +117,7 @@ const ImageViewerContent = (
           if (scale.value <= 1) {
             translateX.value = 0;
             translateY.value = withSpring(0);
-            scale.value = withSpring(1);
+            scale.value = withTiming(1);
             savedScale.value = 1;
           } else {
             // When zoomed, bound the pan values
@@ -152,8 +149,6 @@ const ImageViewerContent = (
       // @ts-ignore
       const animatedStyle = useAnimatedStyle(() => {
         runOnJS(setScale)(scale.value);
-        if (scale.value <= 1) {
-        }
         return {
           transform: [
             { translateX: translateX.value },
@@ -165,7 +160,6 @@ const ImageViewerContent = (
 
       return (
         <StyledGestureHandlerRootView ref={ref}>
-          <StatusBar hidden={true} />
           {children}
           <StyledGestureDetector gesture={composedGesture}>
             <StyledAnimated style={animatedStyle}>
