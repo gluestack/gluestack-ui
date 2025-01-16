@@ -1,7 +1,6 @@
 'use client';
-import React from 'react';
 import { Box } from '@/components/ui/box';
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 declare global {
   interface Window {
@@ -12,70 +11,86 @@ declare global {
 
 const VadimStream = () => {
   useEffect(() => {
-    let player1: any = null;
-    let player2: any = null;
-
-    // Load the IFrame Player API code asynchronously
-    const loadYouTubeAPI = () => {
+    // Only load the API if it hasn't been loaded yet
+    if (!document.getElementById('youtube-api')) {
       const tag = document.createElement('script');
+      tag.id = 'youtube-api';
       tag.src = 'https://www.youtube.com/iframe_api';
       const firstScriptTag = document.getElementsByTagName('script')[0];
       firstScriptTag.parentNode?.insertBefore(tag, firstScriptTag);
-    };
+    }
 
-    // This function creates an <iframe> (and YouTube player) after the API code downloads
-    window.onYouTubeIframeAPIReady = () => {
-      player1 = new window.YT.Player('player1', {
-        height: '100%',
-        width: '100%',
-        videoId: 'FBXUPJ9_Xl0',
-        playerVars: {
-          playsinline: 1,
-        },
+    // Initialize players when API is ready
+    const initializePlayers = () => {
+      new window.YT.Player('player1', {
         events: {
           onStateChange: (event: any) => {
             if (event.data === window.YT.PlayerState.PLAYING) {
-              player2?.pauseVideo();
+              const player2Frame = document.getElementById(
+                'player2'
+              ) as HTMLIFrameElement;
+              player2Frame?.contentWindow?.postMessage(
+                '{"event":"command","func":"pauseVideo","args":""}',
+                '*'
+              );
             }
           },
         },
       });
 
-      player2 = new window.YT.Player('player2', {
-        height: '100%',
-        width: '100%',
-        videoId: '9ErkOcDWJxI',
-        playerVars: {
-          playsinline: 1,
-        },
+      new window.YT.Player('player2', {
         events: {
           onStateChange: (event: any) => {
             if (event.data === window.YT.PlayerState.PLAYING) {
-              player1?.pauseVideo();
+              const player1Frame = document.getElementById(
+                'player1'
+              ) as HTMLIFrameElement;
+              player1Frame?.contentWindow?.postMessage(
+                '{"event":"command","func":"pauseVideo","args":""}',
+                '*'
+              );
             }
           },
         },
       });
     };
 
-    loadYouTubeAPI();
+    // If API is already loaded, initialize players directly
+    if (window.YT && window.YT.Player) {
+      initializePlayers();
+    } else {
+      // Otherwise wait for API to load
+      window.onYouTubeIframeAPIReady = initializePlayers;
+    }
 
     return () => {
-      player1?.destroy();
-      player2?.destroy();
+      // Only reset the ready handler, don't remove the script
+      window.onYouTubeIframeAPIReady = () => {};
     };
   }, []);
 
   return (
-    <Box className="relative flex-1 w-full h-full gap-5 flex-col md:flex-row mb-auto">
-      <Box
-        className="flex-1 border border-outline-200 rounded-lg overflow-hidden aspect-video"
-        id="player1"
-      />
-      <Box
-        className="flex-1 border border-outline-200 rounded-lg overflow-hidden aspect-video"
-        id="player2"
-      />
+    <Box className="relative flex-1 w-full h-full gap-5 flex-col md:flex-row">
+      <Box className="flex-1 border border-outline-200 rounded-lg overflow-hidden aspect-video">
+        <iframe
+          id="player1"
+          width="100%"
+          height="100%"
+          src="https://www.youtube.com/embed/FBXUPJ9_Xl0?enablejsapi=1"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+        />
+      </Box>
+      <Box className="flex-1 border border-outline-200 rounded-lg overflow-hidden aspect-video">
+        <iframe
+          id="player2"
+          width="100%"
+          height="100%"
+          src="https://www.youtube.com/embed/9ErkOcDWJxI?enablejsapi=1"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+        />
+      </Box>
     </Box>
   );
 };
