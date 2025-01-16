@@ -1,5 +1,11 @@
 # @gluestack-ui/image-viewer
 
+## 0.0.11
+
+### Patch Changes
+
+- fix: fixed lagging while swipping down image to close ImageViewer
+
 ## 0.0.10
 
 ### Patch Changes
