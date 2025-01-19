@@ -17,10 +17,9 @@ const TimeInputBasic = ({ ...props }: any) => {
         value={timeValue}
         onChange={setTimeValue}
         isHovered={true}
-        className=""
       >
         <TimeInputHr placeholder="HH" />
-        <TimeInputColon className="" />
+        <TimeInputColon />
         <TimeInputMin placeholder="MM" />
         <TimeInputMeridiem isPressed={false} isHovered={true}>
           <TimeInputMeridiemText />

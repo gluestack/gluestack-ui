@@ -75,7 +75,10 @@ export const TimeInputMin = (StyledTimeInputMin: any) =>
             : value.set('minute', 0).second(new Date().getSeconds());
           setTimeValue(newTimeValue);
           if (parseInt(newMinutes) > 5) {
-            meridiemRef.current.focus();
+            if (Platform.OS === 'web') {
+              meridiemRef.current.focus();
+            }
+            minuteRef.current.blur();
           }
         }
       };
