@@ -118,7 +118,6 @@ export const TimeInputMin = (StyledTimeInputMin: any) =>
           }}
           onFocus={(e: any) => {
             handleFocus(true, () => props.onFocus?.(e));
-            minuteRef.current.select();
           }}
           onBlur={(e: any) => {
             handleFocus(false, () => props.onBlur?.(e));
@@ -127,6 +126,7 @@ export const TimeInputMin = (StyledTimeInputMin: any) =>
           value={value.get('minute').toString().padStart(2, '0')}
           onChangeText={handleChange}
           keyboardType="number-pad"
+          selectTextOnFocus={true}
         >
           {children}
         </StyledTimeInputMin>

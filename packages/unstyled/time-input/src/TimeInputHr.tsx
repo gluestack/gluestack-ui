@@ -83,7 +83,7 @@ export const TimeInputHr = (StyledTimeInputHr: any) =>
             : value.set('hour', 0).second(new Date().getSeconds());
           setTimeValue(newTimeValue);
           if (parseInt(newHours) > 1) {
-            minuteRef.current.select();
+            minuteRef.current.focus();
           }
         }
       };
@@ -126,7 +126,6 @@ export const TimeInputHr = (StyledTimeInputHr: any) =>
           }}
           onFocus={(e: any) => {
             handleFocus(true, () => props.onFocus?.(e));
-            hourRef.current.select();
           }}
           onBlur={(e: any) => {
             handleFocus(false, () => props.onBlur?.(e));
@@ -135,6 +134,7 @@ export const TimeInputHr = (StyledTimeInputHr: any) =>
           onChangeText={handleChange}
           ref={mergedRef}
           keyboardType="number-pad"
+          selectTextOnFocus={true}
         >
           {children}
         </StyledTimeInputHr>
