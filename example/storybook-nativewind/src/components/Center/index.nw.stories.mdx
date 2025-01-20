@@ -33,15 +33,19 @@ This is an illustration of **Center** component.
   showComponentRenderer = { true}
   showArgsController = { false}
   metaData = {{
-    code: `
-<Center className="bg-primary-500 h-[200px] w-[300px]">
+    code: `import { Center } from "@/components/ui/center";
+import { Text } from "@/components/ui/text";
+function Example() {
+  return (
+    <Center className="bg-primary-500 h-[200px] w-[300px]">
   <Text className="text-typography-0 font-bold">
     This is the center.
   </Text>
 </Center>
-`,
+  );
+}`,
       transformCode: (code) => {
-        return transformedCode(code);
+        return transformedCode(code, 'function', 'Example');
       },
         scope: {
       Wrapper,

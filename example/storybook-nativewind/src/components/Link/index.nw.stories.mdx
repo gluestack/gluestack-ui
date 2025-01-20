@@ -38,13 +38,16 @@ This is an illustration of **Link** component.
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-      <Link href="https://gluestack.io/">
+      code: `import { Link, LinkText } from "@/components/ui/link";
+function Example() {
+  return (
+    <Link href="https://gluestack.io/">
         <LinkText>gluestack</LinkText>
       </Link>
-      `,
+  );
+}`,
       transformCode: (code) => {
-        return transformedCode(code);
+        return transformedCode(code, 'function', 'Example');
       },
       scope: {
         Wrapper,
@@ -397,8 +400,12 @@ The Examples section provides visual representations of the different variants o
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-          <HStack>
+      code: `import { HStack } from "@/components/ui/hstack";
+import { Link, LinkText } from "@/components/ui/link";
+import { Text } from "@/components/ui/text";
+function Example() {
+  return (
+    <HStack>
             <Text
               size="lg"
             >Design inspiration from&nbsp;</Text>
@@ -406,9 +413,10 @@ The Examples section provides visual representations of the different variants o
                 <LinkText size="lg">pinterest.com</LinkText>
               </Link>
           </HStack>
-`,
+  );
+}`,
       transformCode: (code) => {
-        return transformedCode(code);
+        return transformedCode(code, 'function', 'Example');
       },
       scope: { Link, LinkText, Wrapper, Icon, HStack, Text },
       argsType: {},
@@ -423,8 +431,14 @@ The Examples section provides visual representations of the different variants o
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-        <HStack>
+      code: `import { HStack } from "@/components/ui/hstack";
+import { Link, LinkText } from "@/components/ui/link";
+import { Text } from "@/components/ui/text";
+import { Icon } from "@/components/ui/icon";
+import { ArrowUpRight } from "lucide-react-native";
+function Example() {
+  return (
+    <HStack>
               <Text
                size="lg">Go to&nbsp;</Text>
               <Link href="https://gluestack.io/" isExternal>
@@ -435,9 +449,10 @@ The Examples section provides visual representations of the different variants o
                 </HStack>
               </Link>
          </HStack>
-`,
+  );
+}`,
       transformCode: (code) => {
-        return transformedCode(code);
+        return transformedCode(code, 'function', 'Example');
       },
       scope: { Link, LinkText, Wrapper, ArrowUpRight, Icon, HStack, Text },
       argsType: {},
@@ -459,13 +474,17 @@ import Link from "@unitools/link";
     showComponentRenderer={false}
     showArgsController={false}
     metaData={{
-      code: `
-        <Link href="https://gluestack.io/">
+      code: `import { Link } from "@/components/ui/link";
+import { Text } from "@/components/ui/text";
+function Example() {
+  return (
+    <Link href="https://gluestack.io/">
           <Text>gluestack</Text>
         </Link>
-      `,
+  );
+}`,
       transformCode: (code) => {
-        return transformedCode(code);
+        return transformedCode(code, 'function', 'Example');
       },
       scope: {
         Wrapper,

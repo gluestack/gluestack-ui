@@ -47,8 +47,13 @@ This is an illustration of **Pressable** component.
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-      function App(){
+      code: `import { Button, ButtonText, ButtonIcon } from "@/components/ui/button";
+import { HStack } from "@/components/ui/hstack";
+import { Text } from "@/components/ui/text";
+import { CloseIcon } from "@/components/ui/icon";
+import React from "react";
+import { Portal } from "lucide-react-native";
+function App(){
           const [visible, setVisible] = React.useState(false);
           const handleClose = () => setVisible(false);
           return (
@@ -74,8 +79,7 @@ This is an illustration of **Pressable** component.
               </Button>
             </>
           );
-        }
-      `,
+        }`,
       transformCode: (code) => {
         return transformedCode(code, 'function', 'App');
       },

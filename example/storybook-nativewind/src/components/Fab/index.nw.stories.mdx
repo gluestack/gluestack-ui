@@ -59,8 +59,12 @@ This is an illustration of **Fab** component.
     showComponentRenderer={true}
     showArgsController={true}
     metaData={{
-      code: `
-        <Box
+      code: `import { Box } from "@/components/ui/box";
+import { Fab, FabLabel, FabIcon } from "@/components/ui/fab";
+import { AddIcon } from "@/components/ui/icon";
+function Example() {
+  return (
+    <Box
           className='h-[360px] w-80 bg-background-50 rounded-md'
         >
           <Fab {...props}>
@@ -68,9 +72,10 @@ This is an illustration of **Fab** component.
             <FabLabel>Quick start</FabLabel>
           </Fab>
         </Box>
-      `,
+  );
+}`,
       transformCode: (code) => {
-        return transformedCode(code);
+        return transformedCode(code, 'function', 'Example');
       },
       scope: { Box, Wrapper, Fab, FabIcon, FabLabel, AddIcon },
       argsType: {
@@ -458,8 +463,15 @@ A Fab component with an icon adds a visually striking and easily recognizable bu
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-        function App() {
+      code: `import { Avatar, AvatarImage } from "@/components/ui/avatar";
+import { Box } from "@/components/ui/box";
+import { Fab, FabIcon } from "@/components/ui/fab";
+import { Heading } from "@/components/ui/heading";
+import { HStack } from "@/components/ui/hstack";
+import { Text } from "@/components/ui/text";
+import { VStack } from "@/components/ui/vstack";
+import { EditIcon } from "@/components/ui/icon";
+function App() {
           const data = [
             {
               uri: 'https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
@@ -511,8 +523,7 @@ A Fab component with an icon adds a visually striking and easily recognizable bu
               </Fab>
             </Box>
           );
-        }
-      `,
+        }`,
       transformCode: (code) => {
         return transformedCode(code, 'function', 'App');
       },
@@ -544,8 +555,17 @@ A Fab component with an icon and text combines a visual icon with accompanying t
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-        <Box
+      code: `import { Box } from "@/components/ui/box";
+import { Divider } from "@/components/ui/divider";
+import { Fab, FabLabel, FabIcon } from "@/components/ui/fab";
+import { Heading } from "@/components/ui/heading";
+import { HStack } from "@/components/ui/hstack";
+import { Text } from "@/components/ui/text";
+import { VStack } from "@/components/ui/vstack";
+import { SearchIcon } from "@/components/ui/icon";
+function Example() {
+  return (
+    <Box
           className='max-w-96 border rounded-lg border-outline-200 py-[56px] px-6 mx-5 bg-background-100'
         >
           <Fab className="top-4 h-10 bg-primary-600 hover:bg-primary-700 active:bg-primary-900 py-2">
@@ -614,9 +634,10 @@ A Fab component with an icon and text combines a visual icon with accompanying t
             </Box>
           </VStack>
         </Box>
-      `,
+  );
+}`,
       transformCode: (code) => {
-        return transformedCode(code);
+        return transformedCode(code, 'function', 'Example');
       },
       scope: {
         Fab,
@@ -646,8 +667,15 @@ A Fab component with placement options allows for flexible positioning of the bu
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-        <Box
+      code: `import { Box } from "@/components/ui/box";
+import { Checkbox, CheckboxIndicator, CheckboxLabel, CheckboxIcon } from "@/components/ui/checkbox";
+import { Fab, FabIcon } from "@/components/ui/fab";
+import { Text } from "@/components/ui/text";
+import { VStack } from "@/components/ui/vstack";
+import { AddIcon, CheckIcon } from "@/components/ui/icon";
+function Example() {
+  return (
+    <Box
           className='border rounded-lg border-outline-300 py-4 bg-background-0 mx-5'
         >
           <VStack space='lg' className='mb-2 px-6 py-2'>
@@ -686,9 +714,10 @@ A Fab component with placement options allows for flexible positioning of the bu
             <FabIcon as={AddIcon} size='sm'/>
           </Fab>
         </Box>
-      `,
+  );
+}`,
       transformCode: (code) => {
-        return transformedCode(code);
+        return transformedCode(code, 'function', 'Example');
       },
       scope: {
         Box,
@@ -720,8 +749,17 @@ A Fab component with custom placement allows for flexible positioning of the but
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-        <Box
+      code: `import { Box } from "@/components/ui/box";
+import { Fab, FabIcon } from "@/components/ui/fab";
+import { Heading } from "@/components/ui/heading";
+import { Image } from "@/components/ui/image";
+import { Link } from "@/components/ui/link";
+import { Text } from "@/components/ui/text";
+import { VStack } from "@/components/ui/vstack";
+import { ShoppingCartIcon } from "lucide-react-native";
+function Example() {
+  return (
+    <Box
           className='max-w-96 border rounded-lg border-outline-200 overflow-hidden mx-5  bg-background-100'
         >
           <Box>
@@ -760,9 +798,10 @@ A Fab component with custom placement allows for flexible positioning of the but
             <FabIcon as={ShoppingCartIcon} className='h-4 w-4'/>
           </Fab>
         </Box>
-      `,
+  );
+}`,
       transformCode: (code) => {
-        return transformedCode(code);
+        return transformedCode(code, 'function', 'Example');
       },
       scope: {
         Fab,

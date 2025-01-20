@@ -40,15 +40,19 @@ This is an illustration of **Progress** component.
     showComponentRenderer={true}
     showArgsController={true}
     metaData={{
-      code: `
-        <Center className='w-[300px] h-[150px]'>
+      code: `import { Center } from "@/components/ui/center";
+import { Progress, ProgressFilledTrack } from "@/components/ui/progress";
+function Example() {
+  return (
+    <Center className='w-[300px] h-[150px]'>
           <Progress value={40} {...props} >
             <ProgressFilledTrack />
           </Progress>
         </Center>
-      `,
+  );
+}`,
       transformCode: (code) => {
-        return transformedCode(code);
+        return transformedCode(code, 'function', 'Example');
       },
       scope: { Wrapper, Progress, ProgressFilledTrack, Center },
       argsType: {
@@ -262,16 +266,21 @@ Progress component with value
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-      <VStack space="lg" className="max-w-80 w-full">
+      code: `import { Progress, ProgressFilledTrack } from "@/components/ui/progress";
+import { Text } from "@/components/ui/text";
+import { VStack } from "@/components/ui/vstack";
+function Example() {
+  return (
+    <VStack space="lg" className="max-w-80 w-full">
         <Text size="lg">Downloading 55%</Text>
         <Progress value={55} className='w-full h-1'>
           <ProgressFilledTrack className='h-1' />
         </Progress>
       </VStack>
-    `,
+  );
+}`,
       transformCode: (code) => {
-        return transformedCode(code);
+        return transformedCode(code, 'function', 'Example');
       },
       scope: {
         Wrapper,
@@ -295,8 +304,11 @@ You can add track color to progress bar as per our needs.
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-        <VStack space="3xl" className="max-w-96 w-full">
+      code: `import { Progress, ProgressFilledTrack } from "@/components/ui/progress";
+import { VStack } from "@/components/ui/vstack";
+function Example() {
+  return (
+    <VStack space="3xl" className="max-w-96 w-full">
           <Progress value={46} className='w-full h-2' size="sm">
             <ProgressFilledTrack className='bg-emerald-600'/>
           </Progress>
@@ -310,9 +322,10 @@ You can add track color to progress bar as per our needs.
             <ProgressFilledTrack className='bg-cyan-600'/>
           </Progress>
         </VStack>
-      `,
+  );
+}`,
       transformCode: (code) => {
-        return transformedCode(code);
+        return transformedCode(code, 'function', 'Example');
       },
       scope: {
         Wrapper,
@@ -334,17 +347,23 @@ You can customize the progress bar. Below is the example where we have change th
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-        <VStack space="lg" className="max-w-[410px] w-full">
+      code: `import { Heading } from "@/components/ui/heading";
+import { Progress, ProgressFilledTrack } from "@/components/ui/progress";
+import { Text } from "@/components/ui/text";
+import { VStack } from "@/components/ui/vstack";
+function Example() {
+  return (
+    <VStack space="lg" className="max-w-[410px] w-full">
         <Heading>Internal Storage</Heading>
         <Progress value={46} className='w-full h-2 bg-lime-100'>
           <ProgressFilledTrack className='h-2 bg-lime-500' />
         </Progress>
         <Text size="md">14GB</Text>
         </VStack>
-      `,
+  );
+}`,
       transformCode: (code) => {
-        return transformedCode(code);
+        return transformedCode(code, 'function', 'Example');
       },
       scope: {
         Wrapper,

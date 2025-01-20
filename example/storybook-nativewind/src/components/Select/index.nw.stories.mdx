@@ -57,8 +57,11 @@ This is an illustration of **Select** component.
     showComponentRenderer={true}
     showArgsController={true}
     metaData={{
-      code: `
-        <Select>
+      code: `import { Select, SelectTrigger, SelectInput, SelectIcon, SelectPortal, SelectBackdrop, SelectContent, SelectDragIndicator, SelectDragIndicatorWrapper, SelectItem } from "@/components/ui/select";
+import { ChevronDownIcon } from "@/components/ui/icon";
+function Example() {
+  return (
+    <Select>
           <SelectTrigger {...props}>
             <SelectInput placeholder="Select option" />
             <SelectIcon className="mr-3" as={ChevronDownIcon} />
@@ -87,9 +90,10 @@ This is an illustration of **Select** component.
             </SelectContent>
           </SelectPortal>
         </Select>
-      `,
+  );
+}`,
       transformCode: (code) => {
-        return transformedCode(code);
+        return transformedCode(code, 'function', 'Example');
       },
       scope: {
         Wrapper,
@@ -761,8 +765,12 @@ The Select component with FormControl example demonstrates how to manage its sta
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-        <FormControl isRequired isInvalid>
+      code: `import { FormControl, FormControlError, FormControlErrorText, FormControlErrorIcon, FormControlLabel, FormControlLabelText, FormControlHelper, FormControlHelperText } from "@/components/ui/form-control";
+import { Select, SelectTrigger, SelectInput, SelectIcon, SelectPortal, SelectBackdrop, SelectContent, SelectDragIndicator, SelectDragIndicatorWrapper, SelectItem } from "@/components/ui/select";
+import { AlertCircleIcon, ChevronDownIcon } from "@/components/ui/icon";
+function Example() {
+  return (
+    <FormControl isRequired isInvalid>
           <FormControlLabel>
             <FormControlLabelText>
               Choose your favorite color
@@ -797,9 +805,10 @@ The Select component with FormControl example demonstrates how to manage its sta
             <FormControlErrorText>Mandatory field</FormControlErrorText>
           </FormControlError>
         </FormControl>
-`,
+  );
+}`,
       transformCode: (code) => {
-        return transformedCode(code);
+        return transformedCode(code, 'function', 'Example');
       },
       scope: {
         Wrapper,

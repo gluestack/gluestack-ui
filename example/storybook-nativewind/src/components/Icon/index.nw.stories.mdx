@@ -106,11 +106,14 @@ This is an illustration of **Icon** component.
     showComponentRenderer={true}
     showArgsController={true}
     metaData={{
-      code: `
-        <Icon as={EditIcon} {...props} />
-      `,
+      code: `import { Icon, EditIcon } from "@/components/ui/icon";
+function Example() {
+  return (
+    <Icon as={EditIcon} {...props} />
+  );
+}`,
       transformCode: (code) => {
-        return transformedCode(code);
+        return transformedCode(code, 'function', 'Example');
       },
       scope: {
         Wrapper,
@@ -257,8 +260,12 @@ Below is a list of all of the icons in the library.
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-      <Center>
+      code: `import { Center } from "@/components/ui/center";
+import { HStack } from "@/components/ui/hstack";
+import { Icon, AddIcon, AlertCircleIcon, ArrowUpIcon, ArrowDownIcon, ArrowRightIcon, ArrowLeftIcon, AtSignIcon, BellIcon, CalendarDaysIcon, CheckIcon, CheckCircleIcon, ChevronUpIcon, ChevronDownIcon, ChevronLeftIcon, ChevronRightIcon, ChevronsLeftIcon, ChevronsRightIcon, ChevronsUpDownIcon, CircleIcon, ClockIcon, CloseIcon, CloseCircleIcon, CopyIcon, DownloadIcon, EditIcon, EyeIcon, EyeOffIcon, FavouriteIcon, GlobeIcon, GripVerticalIcon, HelpCircleIcon, InfoIcon, LinkIcon, ExternalLinkIcon, LoaderIcon, LockIcon, MailIcon, MenuIcon, MessageCircleIcon, MoonIcon, PaperclipIcon, PhoneIcon, PlayIcon, RemoveIcon, RepeatIcon, Repeat1Icon, SearchIcon, SettingsIcon, ShareIcon, SlashIcon, StarIcon, SunIcon, ThreeDotsIcon, TrashIcon, UnlockIcon } from "@/components/ui/icon";
+function Example() {
+  return (
+    <Center>
   <HStack className="w-[70%] flex flex-wrap">
         <Icon as={AddIcon} className="text-typography-500 m-2 w-4 h-4" />
         <Icon as={ArrowLeftIcon} className="text-typography-500 m-2 w-4 h-4" />
@@ -317,9 +324,10 @@ Below is a list of all of the icons in the library.
         <Icon as={PlayIcon} className="text-typography-500 m-2 w-4 h-4" />
   </HStack>
   </Center>
-`,
+  );
+}`,
       transformCode: (code) => {
-        return transformedCode(code);
+        return transformedCode(code, 'function', 'Example');
       },
       scope: {
         Center,
@@ -396,16 +404,21 @@ Below is a list of all of the icons in the library.
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-      <VStack space="md" className="items-center">
+      code: `import { VStack } from "@/components/ui/vstack";
+import { Icon } from "@/components/ui/icon";
+import { Camera, ChromeIcon, InstagramIcon, FacebookIcon } from "lucide-react-native";
+function Example() {
+  return (
+    <VStack space="md" className="items-center">
         <Icon className="text-typography-500" as={Camera} />
         <Icon className="text-typography-500" as={ChromeIcon}  />
         <Icon className="text-typography-500" as={InstagramIcon} />
         <Icon className="text-typography-500" as={FacebookIcon} />
       </VStack>
-`,
+  );
+}`,
       transformCode: (code) => {
-        return transformedCode(code);
+        return transformedCode(code, 'function', 'Example');
       },
       scope: {
         Wrapper,
@@ -444,8 +457,9 @@ on Native :
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-      function App () {
+      code: `import { Icon, createIcon } from "@/components/ui/icon";
+import { Path } from "react-native-svg";
+function App () {
         const GluestackIcon = createIcon({
           viewBox: '0 0 32 32',
           path: (
@@ -460,8 +474,7 @@ on Native :
           ),
         });
         return <Icon as={GluestackIcon} size='xl' className="text-typography-black"/>;
-      }
-      `,
+      }`,
       transformCode: (code) => {
         return transformedCode(code, 'function', 'App');
       },

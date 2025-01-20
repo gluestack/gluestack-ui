@@ -76,8 +76,10 @@ This is an illustration of **Actionsheet** component.
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-      function App(){
+      code: `import { Actionsheet, ActionsheetContent, ActionsheetItem, ActionsheetItemText, ActionsheetDragIndicator, ActionsheetDragIndicatorWrapper, ActionsheetBackdrop } from "@/components/ui/actionsheet";
+import { Button, ButtonText } from "@/components/ui/button";
+import React from "react";
+function App(){
         const [showActionsheet, setShowActionsheet] = React.useState(false);
         const handleClose = () => setShowActionsheet(false);
           return (
@@ -110,8 +112,7 @@ This is an illustration of **Actionsheet** component.
               </Actionsheet>
             </>
           );
-        }
-      `,
+        }`,
       transformCode: (code) => {
         return transformedCode(code, 'function', 'App');
       },
@@ -554,8 +555,20 @@ Demonstrates a common UI pattern known as keyboard handling or keyboard scrollin
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-        function App(){
+      code: `import { Actionsheet, ActionsheetContent, ActionsheetDragIndicator, ActionsheetDragIndicatorWrapper, ActionsheetBackdrop } from "@/components/ui/actionsheet";
+import { Box } from "@/components/ui/box";
+import { Button, ButtonText } from "@/components/ui/button";
+import { FormControl, FormControlLabel, FormControlLabelText } from "@/components/ui/form-control";
+import { HStack } from "@/components/ui/hstack";
+import { Image } from "@/components/ui/image";
+import { Input, InputField, InputIcon, InputSlot } from "@/components/ui/input";
+import { KeyboardAvoidingView } from "@/components/ui/keyboard-avoiding-view";
+import { Text } from "@/components/ui/text";
+import { VStack } from "@/components/ui/vstack";
+import { Platform } from "react-native";
+import React from "react";
+import { CreditCardIcon } from "lucide-react-native";
+function App(){
           const [showActionsheet, setShowActionsheet] = React.useState(false);
           const handleClose = () => setShowActionsheet(false);
             return (
@@ -611,8 +624,7 @@ Demonstrates a common UI pattern known as keyboard handling or keyboard scrollin
               </KeyboardAvoidingView>
             </>
           );
-        }
-      `,
+        }`,
       transformCode: (code) => {
         return transformedCode(code, 'function', 'App');
       },
@@ -656,8 +668,19 @@ Demonstrates a common UI pattern known as keyboard handling or keyboard scrollin
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-        function App(){
+      code: `import { Actionsheet, ActionsheetContent, ActionsheetDragIndicator, ActionsheetDragIndicatorWrapper, ActionsheetBackdrop } from "@/components/ui/actionsheet";
+import { Box } from "@/components/ui/box";
+import { Button, ButtonText } from "@/components/ui/button";
+import { FormControl, FormControlLabel, FormControlLabelText } from "@/components/ui/form-control";
+import { HStack } from "@/components/ui/hstack";
+import { Image } from "@/components/ui/image";
+import { Input, InputField, InputIcon, InputSlot } from "@/components/ui/input";
+import { KeyboardAvoidingView } from "@/components/ui/keyboard-avoiding-view";
+import { Text } from "@/components/ui/text";
+import { VStack } from "@/components/ui/vstack";
+import React from "react";
+import { CreditCardIcon } from "lucide-react-native";
+function App(){
           const [showActionsheet, setShowActionsheet] = React.useState(false);
           const handleClose = () => setShowActionsheet(false);
             return (
@@ -721,8 +744,7 @@ Demonstrates a common UI pattern known as keyboard handling or keyboard scrollin
               </Actionsheet>
             </>
           )
-        }
-      `,
+        }`,
       transformCode: (code) => {
         return transformedCode(code, 'function', 'App');
       },
@@ -768,8 +790,11 @@ The Actionsheet with Icons is a variation of the Actionsheet component that disp
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-        function App(){
+      code: `import { Actionsheet, ActionsheetContent, ActionsheetItem, ActionsheetItemText, ActionsheetDragIndicator, ActionsheetDragIndicatorWrapper, ActionsheetBackdrop, ActionsheetIcon } from "@/components/ui/actionsheet";
+import { Button, ButtonText } from "@/components/ui/button";
+import { ClockIcon, DownloadIcon, EditIcon, EyeOffIcon, TrashIcon } from "@/components/ui/icon";
+import React from "react";
+function App(){
           const [showActionsheet, setShowActionsheet] = React.useState(false);
           const handleClose = () => setShowActionsheet(false);
             return (
@@ -807,8 +832,7 @@ The Actionsheet with Icons is a variation of the Actionsheet component that disp
                 </Actionsheet>
               </>
             );
-          }
-        `,
+          }`,
       transformCode: (code) => {
         return transformedCode(code, 'function', 'App');
       },
@@ -844,7 +868,10 @@ The Actionsheet with Virtualized List includes a virtualized list for better per
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `function App(){
+      code: `import { Actionsheet, ActionsheetContent, ActionsheetItem, ActionsheetItemText, ActionsheetDragIndicator, ActionsheetDragIndicatorWrapper, ActionsheetBackdrop, ActionsheetVirtualizedList } from "@/components/ui/actionsheet";
+import { Button, ButtonText } from "@/components/ui/button";
+import React from "react";
+function App(){
     const [showActionsheet, setShowActionsheet] = React.useState(false);
     const handleClose = () => setShowActionsheet(false);
     const data = React.useMemo(() => Array(50).fill(0).map((_, index) => 'Item' + index),[]);
@@ -885,8 +912,7 @@ The Actionsheet with Virtualized List includes a virtualized list for better per
       </Actionsheet>
     </>
 );
-}
-`,
+}`,
       transformCode: (code) => {
         return transformedCode(code, 'function', 'App');
       },
@@ -917,7 +943,10 @@ The Actionsheet with Flat List is a variation of the Actionsheet component that 
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `function App(){
+      code: `import { Actionsheet, ActionsheetContent, ActionsheetItem, ActionsheetItemText, ActionsheetDragIndicator, ActionsheetDragIndicatorWrapper, ActionsheetBackdrop, ActionsheetFlatList } from "@/components/ui/actionsheet";
+import { Button, ButtonText } from "@/components/ui/button";
+import React from "react";
+function App(){
     const [showActionsheet, setShowActionsheet] = React.useState(false);
     const handleClose = () => setShowActionsheet(false);
     const DATA = [
@@ -962,8 +991,7 @@ The Actionsheet with Flat List is a variation of the Actionsheet component that 
       </Actionsheet>
     </>
 );
-}
-`,
+}`,
       transformCode: (code) => {
         return transformedCode(code, 'function', 'App');
       },
@@ -994,7 +1022,10 @@ The Actionsheet with SectionList is a variation of the Actionsheet component tha
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `function App(){
+      code: `import { Actionsheet, ActionsheetContent, ActionsheetItem, ActionsheetItemText, ActionsheetDragIndicator, ActionsheetDragIndicatorWrapper, ActionsheetBackdrop, ActionsheetSectionList, ActionsheetSectionHeaderText } from "@/components/ui/actionsheet";
+import { Button, ButtonText } from "@/components/ui/button";
+import React from "react";
+function App(){
     const [showActionsheet, setShowActionsheet] = React.useState(false);
     const handleClose = () => setShowActionsheet(false);
     const DATA = [
@@ -1033,8 +1064,7 @@ The Actionsheet with SectionList is a variation of the Actionsheet component tha
       </Actionsheet>
     </>
 );
-}
-`,
+}`,
       transformCode: (code) => {
         return transformedCode(code, 'function', 'App');
       },
@@ -1064,8 +1094,18 @@ The Actionsheet with SectionList is a variation of the Actionsheet component tha
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-        function App(){
+      code: `import { Actionsheet, ActionsheetContent, ActionsheetDragIndicator, ActionsheetDragIndicatorWrapper, ActionsheetBackdrop } from "@/components/ui/actionsheet";
+import { Box } from "@/components/ui/box";
+import { Button, ButtonText, ButtonGroup } from "@/components/ui/button";
+import { Heading } from "@/components/ui/heading";
+import { HStack } from "@/components/ui/hstack";
+import { Pressable } from "@/components/ui/pressable";
+import { Text } from "@/components/ui/text";
+import { VStack } from "@/components/ui/vstack";
+import { Icon, CloseIcon } from "@/components/ui/icon";
+import React from "react";
+import { UploadCloud } from "lucide-react-native";
+function App(){
           const [showActionsheet, setShowActionsheet] = React.useState(false);
           const handleClose = () => setShowActionsheet(false);
           return (
@@ -1114,8 +1154,7 @@ The Actionsheet with SectionList is a variation of the Actionsheet component tha
               </Actionsheet>
             </>
           );
-        }
-      `,
+        }`,
       transformCode: (code) => {
         return transformedCode(code, 'function', 'App');
       },
@@ -1155,8 +1194,17 @@ The Actionsheet with SectionList is a variation of the Actionsheet component tha
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-        function App(){
+      code: `import { Actionsheet, ActionsheetContent, ActionsheetItem, ActionsheetItemText, ActionsheetDragIndicator, ActionsheetDragIndicatorWrapper, ActionsheetBackdrop, ActionsheetIcon } from "@/components/ui/actionsheet";
+import { Box } from "@/components/ui/box";
+import { Button, ButtonText } from "@/components/ui/button";
+import { HStack } from "@/components/ui/hstack";
+import { Pressable } from "@/components/ui/pressable";
+import { Text } from "@/components/ui/text";
+import { VStack } from "@/components/ui/vstack";
+import { Icon, CloseIcon } from "@/components/ui/icon";
+import React from "react";
+import { Send, Percent, DollarSign } from "lucide-react-native";
+function App(){
           const [showActionsheet, setShowActionsheet] = React.useState(false);
           const handleClose = () => setShowActionsheet(false);
           return (
@@ -1235,8 +1283,7 @@ The Actionsheet with SectionList is a variation of the Actionsheet component tha
               </Actionsheet>
             </>
           );
-        }
-      `,
+        }`,
       transformCode: (code) => {
         return transformedCode(code, 'function', 'App');
       },

@@ -55,8 +55,11 @@ This is an illustration of **Tooltip** component.
     showComponentRenderer={true}
     showArgsController={true}
     metaData={{
-      code: `
-        <Tooltip
+      code: `import { Button, ButtonText } from "@/components/ui/button";
+import { Tooltip, TooltipContent, TooltipText } from "@/components/ui/tooltip";
+function Example() {
+  return (
+    <Tooltip
           {...props}
           trigger={(triggerProps) => {
             return (
@@ -70,9 +73,10 @@ This is an illustration of **Tooltip** component.
            <TooltipText>Tooltip</TooltipText>
           </TooltipContent>
         </Tooltip>
-      `,
+  );
+}`,
       transformCode: (code) => {
-        return transformedCode(code);
+        return transformedCode(code, 'function', 'Example');
       },
       scope: {
         Wrapper,
@@ -503,8 +507,14 @@ A tooltip component with an avatar is a user interface element that displays a s
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-       function App(){
+      code: `import { Avatar, AvatarFallbackText, AvatarGroup } from "@/components/ui/avatar";
+import { Box } from "@/components/ui/box";
+import { Center } from "@/components/ui/center";
+import { Heading } from "@/components/ui/heading";
+import { Text } from "@/components/ui/text";
+import { Tooltip, TooltipContent } from "@/components/ui/tooltip";
+import { VStack } from "@/components/ui/vstack";
+function App(){
           return (
             <Box className="justify-center h-96">
               <AvatarGroup className="flex-row">
@@ -549,8 +559,7 @@ A tooltip component with an avatar is a user interface element that displays a s
               </AvatarGroup>
             </Box>
           );
-        }
-      `,
+        }`,
       transformCode: (code) => {
         return transformedCode(code, 'function', 'App');
       },
@@ -583,8 +592,14 @@ A tooltip component with an icon is a user interface element that provides conte
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-        function App(){
+      code: `import { Avatar, AvatarFallbackText } from "@/components/ui/avatar";
+import { Box } from "@/components/ui/box";
+import { HStack } from "@/components/ui/hstack";
+import { Text } from "@/components/ui/text";
+import { Tooltip, TooltipContent } from "@/components/ui/tooltip";
+import { Icon, EditIcon } from "@/components/ui/icon";
+import { Command } from "lucide-react-native";
+function App(){
           return (
             <Box className="h-96 justify-center">
               <Tooltip
@@ -615,8 +630,7 @@ A tooltip component with an icon is a user interface element that provides conte
               </Tooltip>
             </Box>
         );
-        }
-      `,
+        }`,
       transformCode: (code) => {
         return transformedCode(code, 'function', 'App');
       },

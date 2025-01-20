@@ -55,16 +55,21 @@ This is an illustration of a **Card** component.
     showComponentRenderer={true}
     showArgsController={true}
     metaData={{
-      code: `
+      code: `import { Card } from "@/components/ui/card";
+import { Heading } from "@/components/ui/heading";
+import { Text } from "@/components/ui/text";
+function Example() {
+  return (
     <Card {...props} className="m-3">
       <Heading size="md" className="mb-1">
         Quick Start
       </Heading>
       <Text size="sm">Start building your next project in minutes</Text>
     </Card>
-      `,
+  );
+}`,
       transformCode: (code) => {
-        return transformedCode(code);
+        return transformedCode(code, 'function', 'Example');
       },
       scope: {
         Card,
@@ -267,7 +272,13 @@ This is an example of a Card component with an image.
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
+      code: `import { Card } from "@/components/ui/card";
+import { Heading } from "@/components/ui/heading";
+import { HStack } from "@/components/ui/hstack";
+import { Image } from "@/components/ui/image";
+import { Link, LinkText } from "@/components/ui/link";
+import { Text } from "@/components/ui/text";
+import { Icon, ArrowRightIcon } from "@/components/ui/icon";
 function App(){
     return (
       <Card className="p-5 rounded-lg max-w-[360px] m-3">
@@ -303,8 +314,7 @@ function App(){
       </Link>
     </Card>
 );
-}
-`,
+}`,
 transformCode: (code) => {
 return transformedCode(code, 'function', 'App');
 },
@@ -334,7 +344,15 @@ This is an example of a Card component with other components like Avatar, Image 
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
+      code: `import { Avatar, AvatarFallbackText, AvatarImage } from "@/components/ui/avatar";
+import { Box } from "@/components/ui/box";
+import { Button, ButtonText } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { Divider } from "@/components/ui/divider";
+import { Heading } from "@/components/ui/heading";
+import { Image } from "@/components/ui/image";
+import { Text } from "@/components/ui/text";
+import { VStack } from "@/components/ui/vstack";
 function App(){
     return (
     <Card className="p-6 rounded-lg max-w-[360px] m-3">
@@ -415,8 +433,7 @@ function App(){
       </Button>
     </Card>
 );
-}
-`,
+}`,
 transformCode: (code) => {
 return transformedCode(code, 'function', 'App');
 },
@@ -449,7 +466,13 @@ This example illustrates a card showcasing a product.
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
+      code: `import { Box } from "@/components/ui/box";
+import { Button, ButtonText } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { Heading } from "@/components/ui/heading";
+import { Image } from "@/components/ui/image";
+import { Text } from "@/components/ui/text";
+import { VStack } from "@/components/ui/vstack";
 function App(){
     return (
     <Card className="p-5 rounded-lg max-w-[360px] m-3">
@@ -496,8 +519,7 @@ function App(){
       </Box>
     </Card>
 );
-}
-`,
+}`,
 transformCode: (code) => {
 return transformedCode(code, 'function', 'App');
 },
@@ -526,7 +548,12 @@ This is an example of a Card component with a blog post.
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
+      code: `import { Avatar, AvatarFallbackText, AvatarImage } from "@/components/ui/avatar";
+import { Box } from "@/components/ui/box";
+import { Card } from "@/components/ui/card";
+import { Heading } from "@/components/ui/heading";
+import { Text } from "@/components/ui/text";
+import { VStack } from "@/components/ui/vstack";
 function App(){
     return (
     <Card className="p-5 rounded-lg max-w-[360px] m-3"
@@ -567,8 +594,7 @@ function App(){
       </Box>
     </Card>
 );
-}
-`,
+}`,
 transformCode: (code) => {
 return transformedCode(code, 'function', 'App');
 },

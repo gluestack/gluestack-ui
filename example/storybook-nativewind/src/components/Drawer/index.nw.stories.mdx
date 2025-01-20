@@ -73,8 +73,12 @@ This is an illustration of **Drawer** component.
     showComponentRenderer={true}
     showArgsController={true}
     metaData={{
-      code: `
-        function App() {
+      code: `import { Button, ButtonText } from "@/components/ui/button";
+import { Drawer, DrawerBackdrop, DrawerContent, DrawerHeader, DrawerBody, DrawerFooter } from "@/components/ui/drawer";
+import { Heading } from "@/components/ui/heading";
+import { Text } from "@/components/ui/text";
+import React from "react";
+function App() {
           const [showDrawer, setShowDrawer] = React.useState(false);
           return (
             <>
@@ -116,8 +120,7 @@ This is an illustration of **Drawer** component.
               </Drawer>
             </>
           );
-        };
-      `,
+        };`,
       transformCode: (code) => {
         return transformedCode(code, 'function', 'App');
       },
@@ -529,8 +532,19 @@ The Examples section provides visual representations of the different variants o
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-        function App() {
+      code: `import { Button, ButtonText } from "@/components/ui/button";
+import { Checkbox, CheckboxIndicator, CheckboxLabel, CheckboxIcon, CheckboxGroup } from "@/components/ui/checkbox";
+import { Divider } from "@/components/ui/divider";
+import { Drawer, DrawerBackdrop, DrawerContent, DrawerHeader, DrawerBody } from "@/components/ui/drawer";
+import { Heading } from "@/components/ui/heading";
+import { HStack } from "@/components/ui/hstack";
+import { Slider, SliderThumb, SliderTrack, SliderFilledTrack } from "@/components/ui/slider";
+import { Text } from "@/components/ui/text";
+import { VStack } from "@/components/ui/vstack";
+import { Icon, CheckIcon, CircleIcon } from "@/components/ui/icon";
+import colors from "tailwindcss/colors";
+import React from "react";
+function App() {
           const [showDrawer, setShowDrawer] = React.useState(false);
           const [categories, setCategories] = React.useState([]);
           const [brands, setBrands] = React.useState([]);
@@ -791,8 +805,7 @@ The Examples section provides visual representations of the different variants o
               </Drawer>
             </>
           );
-        }
-      `,
+        }`,
       transformCode: (code) => {
         return transformedCode(code, 'function', 'App');
       },
@@ -837,8 +850,17 @@ The Examples section provides visual representations of the different variants o
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-        function App() {
+      code: `import { Avatar, AvatarFallbackText, AvatarImage } from "@/components/ui/avatar";
+import { Button, ButtonText, ButtonIcon } from "@/components/ui/button";
+import { Divider } from "@/components/ui/divider";
+import { Drawer, DrawerBackdrop, DrawerContent, DrawerHeader, DrawerBody, DrawerFooter } from "@/components/ui/drawer";
+import { Pressable } from "@/components/ui/pressable";
+import { Text } from "@/components/ui/text";
+import { VStack } from "@/components/ui/vstack";
+import { Icon, PhoneIcon, StarIcon } from "@/components/ui/icon";
+import React from "react";
+import { User, Home, ShoppingCart, Wallet, LogOut } from "lucide-react-native";
+function App() {
             const [showDrawer, setShowDrawer] = React.useState(false);
             return (
               <>
@@ -923,8 +945,7 @@ The Examples section provides visual representations of the different variants o
                 </Drawer>
               </>
             );
-          }
-        `,
+          }`,
       transformCode: (code) => {
         return transformedCode(code, 'function', 'App');
       },

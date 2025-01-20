@@ -44,15 +44,18 @@ This is an illustration of **Textarea** component.
     showComponentRenderer={true}
     showArgsController={true}
     metaData={{
-      code: `
-        <Textarea {...props} className="w-64">
+      code: `import { Textarea, TextareaInput } from "@/components/ui/textarea";
+function Example() {
+  return (
+    <Textarea {...props} className="w-64">
           <TextareaInput
             placeholder="Your text goes here..."
           />
         </Textarea>
-      `,
+  );
+}`,
       transformCode: (code) => {
-        return transformedCode(code);
+        return transformedCode(code, 'function', 'Example');
       },
       scope: {
         Wrapper,
@@ -485,8 +488,11 @@ The Textarea Component can be incorporated within the FormControl.
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-        <FormControl size="sm" className="max-w-[200px] w-full">
+      code: `import { FormControl, FormControlLabel, FormControlLabelText, FormControlHelper, FormControlHelperText } from "@/components/ui/form-control";
+import { Textarea, TextareaInput } from "@/components/ui/textarea";
+function Example() {
+  return (
+    <FormControl size="sm" className="max-w-[200px] w-full">
           <FormControlLabel>
             <FormControlLabelText>
               Write with me
@@ -501,9 +507,10 @@ The Textarea Component can be incorporated within the FormControl.
             </FormControlHelperText>
           </FormControlHelper>
         </FormControl>
-      `,
+  );
+}`,
       transformCode: (code) => {
-        return transformedCode(code);
+        return transformedCode(code, 'function', 'Example');
       },
       scope: {
         Wrapper,

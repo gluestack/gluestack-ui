@@ -54,13 +54,16 @@ This is an illustration of **Button** component.
     showComponentRenderer={true}
     showArgsController={true}
     metaData={{
-      code: `
-        <Button {...props}>
+      code: `import { Button, ButtonText } from "@/components/ui/button";
+function Example() {
+  return (
+    <Button {...props}>
           <ButtonText>Hello World!</ButtonText>
         </Button>
-      `,
+  );
+}`,
       transformCode: (code) => {
-        return transformedCode(code);
+        return transformedCode(code, 'function', 'Example');
       },
       scope: { Button, ButtonText, ButtonIcon, Wrapper },
       argsType: {
@@ -581,7 +584,7 @@ A loading button is a type of button component that provides visual feedback to 
     showArgsController={false}
     metaData={{
       code: `
-      import colors from "tailwindcss/colors";
+import colors from "tailwindcss/colors";
       import { Button, ButtonText, ButtonSpinner } from "@/components/ui/button";
         function ButtonDemo(){
         return (
@@ -611,7 +614,7 @@ A button with an icon integrates a visual symbol within the button component, en
     showArgsController={false}
     metaData={{
       code: `
-        import { EditIcon } from "@/components/ui/icon";
+import { EditIcon } from "@/components/ui/icon";
         import { Button, ButtonIcon } from "@/components/ui/button";
         function ButtonDemo(){
         return (
@@ -643,7 +646,7 @@ A button with a link combines the interactive behavior of a button component wit
     showArgsController={false}
     metaData={{
       code: `
-        import { Button, ButtonText, ButtonIcon } from "@/components/ui/button";
+import { Button, ButtonText, ButtonIcon } from "@/components/ui/button";
         import { ArrowUpIcon } from "@/components/ui/icon";
         function ButtonDemo(){
         return (
@@ -676,7 +679,7 @@ The icon component incorporates a button component, combining visual representat
     showArgsController={false}
     metaData={{
       code: `
-        import { Button, ButtonText, ButtonIcon } from "@/components/ui/button";
+import { Button, ButtonText, ButtonIcon } from "@/components/ui/button";
         import { InfoIcon, AddIcon } from "@/components/ui/icon";
         import { Box } from "@/components/ui/box";
         function ButtonDemo(){
@@ -714,7 +717,7 @@ The button with full width component utilizes a button component, expanding its 
     showArgsController={false}
     metaData={{
       code: `
-      import { ArrowLeftIcon } from "@/components/ui/icon";
+import { ArrowLeftIcon } from "@/components/ui/icon";
 import { VStack } from "@/components/ui/vstack";
 import { Text } from "@/components/ui/text";
 import { Input, InputField } from "@/components/ui/input";

@@ -61,8 +61,10 @@ This is an illustration of **Toast** component.
     showComponentRenderer={true}
     showArgsController={true}
     metaData={{
-      code: `
-        function Example() {
+      code: `import { Button, ButtonText } from "@/components/ui/button";
+import { useToast, Toast, ToastTitle, ToastDescription } from "@/components/ui/toast";
+import React from "react";
+function Example() {
           const toast = useToast();
           const [toastId, setToastId] = React.useState(0);
           const handleToast = () => {
@@ -95,8 +97,7 @@ This is an illustration of **Toast** component.
               <ButtonText>Press Me</ButtonText>
             </Button>
           );
-        }
-      `,
+        }`,
       transformCode: (code) => {
         return transformedCode(code, 'function', 'Example');
       },
@@ -415,8 +416,14 @@ The Examples section provides visual representations of the different variants o
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-        function Example() {
+      code: `import { Button, ButtonText } from "@/components/ui/button";
+import { HStack } from "@/components/ui/hstack";
+import { Pressable } from "@/components/ui/pressable";
+import { useToast, Toast, ToastTitle, ToastDescription } from "@/components/ui/toast";
+import { VStack } from "@/components/ui/vstack";
+import { Icon, CloseIcon, HelpCircleIcon } from "@/components/ui/icon";
+import React from "react";
+function Example() {
           const toast = useToast();
           const [toastId, setToastId] = React.useState(0);
           const handleToast = () => {
@@ -470,8 +477,7 @@ The Examples section provides visual representations of the different variants o
               <ButtonText>Press Me</ButtonText>
             </Button>
           );
-        }
-      `,
+        }`,
       transformCode: (code) => {
         return transformedCode(code, 'function', 'Example');
       },
@@ -503,8 +509,14 @@ The Examples section provides visual representations of the different variants o
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-      function Example() {
+      code: `import { Avatar, AvatarFallbackText, AvatarImage } from "@/components/ui/avatar";
+import { Button, ButtonText } from "@/components/ui/button";
+import { Heading } from "@/components/ui/heading";
+import { HStack } from "@/components/ui/hstack";
+import { Text } from "@/components/ui/text";
+import { useToast, Toast } from "@/components/ui/toast";
+import { VStack } from "@/components/ui/vstack";
+function Example() {
           const toast = useToast();
           return (
             <Button
@@ -551,8 +563,7 @@ The Examples section provides visual representations of the different variants o
               <ButtonText>Show Toast</ButtonText>
             </Button>
           );
-        }
-      `,
+        }`,
       transformCode: (code) => {
         return transformedCode(code, 'function', 'Example');
       },
@@ -589,8 +600,16 @@ The Examples section provides visual representations of the different variants o
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-      function Example() {
+      code: `import { Box } from "@/components/ui/box";
+import { Button, ButtonText, ButtonGroup } from "@/components/ui/button";
+import { HStack } from "@/components/ui/hstack";
+import { Pressable } from "@/components/ui/pressable";
+import { useToast, Toast, ToastTitle, ToastDescription } from "@/components/ui/toast";
+import { VStack } from "@/components/ui/vstack";
+import { Icon, CloseIcon } from "@/components/ui/icon";
+import React from "react";
+import { RefreshCw } from "lucide-react-native";
+function Example() {
         const toast = useToast();
         const [toastId, setToastId] = React.useState(0);
         const handleToast = () => {
@@ -658,8 +677,7 @@ The Examples section provides visual representations of the different variants o
             <ButtonText>Press Me</ButtonText>
           </Button>
         );
-      }
-      `,
+      }`,
       transformCode: (code) => {
         return transformedCode(code, 'function', 'Example');
       },
@@ -693,8 +711,12 @@ The Examples section provides visual representations of the different variants o
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-      function Example() {
+      code: `import { Button, ButtonText } from "@/components/ui/button";
+import { Divider } from "@/components/ui/divider";
+import { useToast, Toast, ToastTitle } from "@/components/ui/toast";
+import { Icon } from "@/components/ui/icon";
+import { Send } from "lucide-react-native";
+function Example() {
           const toast = useToast();
           return (
             <Button
@@ -728,8 +750,7 @@ The Examples section provides visual representations of the different variants o
               <ButtonText>Show Toast</ButtonText>
             </Button>
           );
-        }
-      `,
+        }`,
       transformCode: (code) => {
         return transformedCode(code, 'function', 'Example');
       },

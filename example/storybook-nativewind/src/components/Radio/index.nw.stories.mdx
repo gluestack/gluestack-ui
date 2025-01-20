@@ -45,8 +45,11 @@ This is an illustration of **Radio** component.
     showComponentRenderer={true}
     showArgsController={true}
     metaData={{
-      code: `
-        <RadioGroup>
+      code: `import { Radio, RadioGroup, RadioIndicator, RadioLabel, RadioIcon } from "@/components/ui/radio";
+import { CircleIcon } from "@/components/ui/icon";
+function Example() {
+  return (
+    <RadioGroup>
           <Radio value="change" {...props}>
             <RadioIndicator>
               <RadioIcon as={CircleIcon}/>
@@ -54,9 +57,10 @@ This is an illustration of **Radio** component.
             <RadioLabel>Label</RadioLabel>
           </Radio>
         </RadioGroup>
-      `,
+  );
+}`,
       transformCode: (code) => {
-        return transformedCode(code);
+        return transformedCode(code, 'function', 'Example');
       },
       scope: {
         Wrapper,
@@ -581,8 +585,11 @@ Radio buttons provide a mutually exclusive selection mechanism, allowing users t
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-      function App () {
+      code: `import { Radio, RadioGroup, RadioIndicator, RadioLabel, RadioIcon } from "@/components/ui/radio";
+import { VStack } from "@/components/ui/vstack";
+import { CircleIcon } from "@/components/ui/icon";
+import React from "react";
+function App () {
         const [values, setValues] = React.useState("Eng");
         return (
           <RadioGroup value={values} onChange={setValues}>
@@ -608,8 +615,7 @@ Radio buttons provide a mutually exclusive selection mechanism, allowing users t
             </VStack>
           </RadioGroup>
         )
-       }
-      `,
+       }`,
       transformCode: (code) => {
         return transformedCode(code, 'function', 'App');
       },
@@ -638,8 +644,11 @@ Radio buttons can be used horizontally.
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-        function App() {
+      code: `import { HStack } from "@/components/ui/hstack";
+import { Radio, RadioGroup, RadioIndicator, RadioLabel, RadioIcon } from "@/components/ui/radio";
+import { CircleIcon } from "@/components/ui/icon";
+import React from "react";
+function App() {
           const [values, setValues] = React.useState("Cash On Delivery");
           return (
             <RadioGroup value={values} onChange={setValues} >
@@ -659,8 +668,7 @@ Radio buttons can be used horizontally.
               </HStack>
             </RadioGroup>
           )
-        }
-      `,
+        }`,
       transformCode: (code) => {
         return transformedCode(code, 'function', 'App');
       },
@@ -689,8 +697,13 @@ Radio buttons can be used with helper text.
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-      function App () {
+      code: `import { Box } from "@/components/ui/box";
+import { Radio, RadioGroup, RadioIndicator, RadioLabel, RadioIcon } from "@/components/ui/radio";
+import { Text } from "@/components/ui/text";
+import { VStack } from "@/components/ui/vstack";
+import { CircleIcon } from "@/components/ui/icon";
+import React from "react";
+function App () {
           const [values, setValues] = React.useState("Read-only");
           return (
             <RadioGroup value={values} onChange={setValues}>
@@ -716,8 +729,7 @@ Radio buttons can be used with helper text.
               </VStack>
             </RadioGroup>
           )
-        }
-      `,
+        }`,
       transformCode: (code) => {
         return transformedCode(code, 'function', 'App');
       },
@@ -748,8 +760,15 @@ Radio buttons can be used inside FormControl for better control of states and fu
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-        <FormControl>
+      code: `import { FormControl } from "@/components/ui/form-control";
+import { Heading } from "@/components/ui/heading";
+import { Radio, RadioGroup, RadioIndicator, RadioLabel, RadioIcon } from "@/components/ui/radio";
+import { Text } from "@/components/ui/text";
+import { VStack } from "@/components/ui/vstack";
+import { CircleIcon } from "@/components/ui/icon";
+function Example() {
+  return (
+    <FormControl>
           <VStack space="md">
             <Heading size="sm">
               Which time slot works best for you?
@@ -781,9 +800,10 @@ Radio buttons can be used inside FormControl for better control of states and fu
             </Text>
           </VStack>
         </FormControl>
-      `,
+  );
+}`,
       transformCode: (code) => {
-        return transformedCode(code);
+        return transformedCode(code, 'function', 'Example');
       },
       scope: {
         Wrapper,
@@ -813,8 +833,11 @@ Radio buttons can be used horizontally
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-      function App() {
+      code: `import { Radio, RadioGroup, RadioIndicator, RadioLabel, RadioIcon } from "@/components/ui/radio";
+import { VStack } from "@/components/ui/vstack";
+import { CircleIcon } from "@/components/ui/icon";
+import React from "react";
+function App() {
         const [values, setValues] = React.useState("Monday");
         return (
           <RadioGroup value={values} onChange={setValues} >
@@ -834,8 +857,7 @@ Radio buttons can be used horizontally
             </VStack>
           </RadioGroup >
         )
-      }
-      `,
+      }`,
       transformCode: (code) => {
         return transformedCode(code, 'function', 'App');
       },
@@ -865,8 +887,11 @@ The Radio components can be used with a controlled state, enabling precise manag
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-      function App () {
+      code: `import { Radio, RadioGroup, RadioIndicator, RadioLabel, RadioIcon } from "@/components/ui/radio";
+import { VStack } from "@/components/ui/vstack";
+import { CircleIcon } from "@/components/ui/icon";
+import React from "react";
+function App () {
         const [values, setValues] = React.useState('Apartments');
         return (
           <RadioGroup value={values} onChange={setValues}>
@@ -886,8 +911,7 @@ The Radio components can be used with a controlled state, enabling precise manag
             </VStack>
           </RadioGroup>
           )
-        }
-      `,
+        }`,
       transformCode: (code) => {
         return transformedCode(code, 'function', 'App');
       },
@@ -917,8 +941,11 @@ The Radio components can be used with either a ref or no state, providing an unc
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-      function App () {
+      code: `import { Radio, RadioGroup, RadioIndicator, RadioLabel, RadioIcon } from "@/components/ui/radio";
+import { VStack } from "@/components/ui/vstack";
+import { CircleIcon } from "@/components/ui/icon";
+import React from "react";
+function App () {
         const radioRef = React.useRef(null);
         const handleRadioChange = (e) => {
           e.preventDefault();
@@ -942,8 +969,7 @@ The Radio components can be used with either a ref or no state, providing an unc
             </VStack>
           </RadioGroup>
         );
-      }
-      `,
+      }`,
       transformCode: (code) => {
         return transformedCode(code, 'function', 'App');
       },
@@ -973,8 +999,11 @@ The Radio group component allows users to group radio and display them in a hori
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-        function RadioGroupExample() {
+      code: `import { Radio, RadioGroup, RadioIndicator, RadioLabel, RadioIcon } from "@/components/ui/radio";
+import { VStack } from "@/components/ui/vstack";
+import { CircleIcon } from "@/components/ui/icon";
+import React from "react";
+function RadioGroupExample() {
           const [values, setValues] = React.useState("1st");
           return (
             <RadioGroup value={values} onChange={setValues}>
@@ -1000,8 +1029,7 @@ The Radio group component allows users to group radio and display them in a hori
               </VStack>
             </RadioGroup>
           );
-        }
-      `,
+        }`,
       transformCode: (code) => {
         return transformedCode(code, 'function', 'RadioGroupExample');
       },

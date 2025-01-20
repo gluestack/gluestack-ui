@@ -62,14 +62,18 @@ This is an illustration of **Badge** component.
 <Wrapper>
   <CodePreview
     metaData={{
-      code: `
-        <Badge {...props}>
+      code: `import { Badge, BadgeIcon, BadgeText } from "@/components/ui/badge";
+import { GlobeIcon } from "@/components/ui/icon";
+function Example() {
+  return (
+    <Badge {...props}>
           <BadgeText>Verified</BadgeText>
           <BadgeIcon as={GlobeIcon} className="ml-2" />
         </Badge>
-      `,
+  );
+}`,
       transformCode: (code) => {
-        return transformedCode(code);
+        return transformedCode(code, 'function', 'Example');
       },
       scope: {
         Wrapper,
@@ -255,8 +259,16 @@ An example of the Badge component being used with the Avatar component to displa
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-        <VStack space="2xl">
+      code: `import { Avatar, AvatarFallbackText, AvatarImage } from "@/components/ui/avatar";
+import { Badge, BadgeIcon, BadgeText } from "@/components/ui/badge";
+import { Heading } from "@/components/ui/heading";
+import { HStack } from "@/components/ui/hstack";
+import { Text } from "@/components/ui/text";
+import { VStack } from "@/components/ui/vstack";
+import { BadgeCheckIcon } from "lucide-react-native";
+function Example() {
+  return (
+    <VStack space="2xl">
           <HStack space="md">
             <Avatar>
               <AvatarFallbackText>SS</AvatarFallbackText>
@@ -278,9 +290,10 @@ An example of the Badge component being used with the Avatar component to displa
             </VStack>
           </HStack>
         </VStack>
-      `,
+  );
+}`,
       transformCode: (code) => {
-        return transformedCode(code);
+        return transformedCode(code, 'function', 'Example');
       },
       scope: {
         Wrapper,
@@ -310,8 +323,13 @@ An example of the Badge component being used with the Composition component, all
   <CodePreview
     showArgsController={false}
     metaData={{
-      code: `
-       <Box className='items-center'>
+      code: `import { Badge, BadgeText } from "@/components/ui/badge";
+import { Box } from "@/components/ui/box";
+import { Button, ButtonText } from "@/components/ui/button";
+import { VStack } from "@/components/ui/vstack";
+function Example() {
+  return (
+    <Box className='items-center'>
         <VStack>
           <Badge  
             className='z-10 self-end h-[22px] w-[22px] bg-red-600 rounded-full -mb-3.5 -mr-3.5'
@@ -326,9 +344,10 @@ An example of the Badge component being used with the Composition component, all
           </Button>
         </VStack>
     </Box>
-`,
+  );
+}`,
       transformCode: (code) => {
-        return transformedCode(code);
+        return transformedCode(code, 'function', 'Example');
       },
       scope: {
         Wrapper,

@@ -70,8 +70,14 @@ This is an illustration of **Modal** component.
     showComponentRenderer={true}
     showArgsController={true}
     metaData={{
-      code: `
-        function App(){
+      code: `import { Button, ButtonText } from "@/components/ui/button";
+import { Center } from "@/components/ui/center";
+import { Heading } from "@/components/ui/heading";
+import { Modal, ModalBackdrop, ModalContent, ModalCloseButton, ModalHeader, ModalBody, ModalFooter } from "@/components/ui/modal";
+import { Text } from "@/components/ui/text";
+import { Icon, CloseIcon } from "@/components/ui/icon";
+import React from "react";
+function App(){
           const [showModal, setShowModal] = React.useState(false);
           return (
             <Center className='h-[300px]'>
@@ -125,8 +131,7 @@ This is an illustration of **Modal** component.
               </Modal>
             </Center>
           );
-        }
-      `,
+        }`,
       transformCode: (code) => {
         return transformedCode(code, 'function', 'App');
       },
@@ -546,8 +551,16 @@ A user interface featuring multiple modal components that allow for layered inte
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-        function App() {
+      code: `import { Button, ButtonText, ButtonIcon } from "@/components/ui/button";
+import { Heading } from "@/components/ui/heading";
+import { HStack } from "@/components/ui/hstack";
+import { Input, InputField } from "@/components/ui/input";
+import { Link, LinkText } from "@/components/ui/link";
+import { Modal, ModalBackdrop, ModalContent, ModalHeader, ModalBody, ModalFooter } from "@/components/ui/modal";
+import { Text } from "@/components/ui/text";
+import { ArrowLeftIcon } from "@/components/ui/icon";
+import React from "react";
+function App() {
           const [showModal, setShowModal] = React.useState(false);
           const [showModal2, setShowModal2] = React.useState(false);
           const [showModal3, setShowModal3] = React.useState(false);
@@ -700,8 +713,7 @@ A user interface featuring multiple modal components that allow for layered inte
               </Modal>
             </>
           );
-        }
-      `,
+        }`,
       transformCode: (code) => {
         return transformedCode(code, 'function', 'App');
       },
@@ -742,8 +754,13 @@ A user interface featuring multiple modal components that allow for layered inte
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-        function App() {
+      code: `import { Button, ButtonText } from "@/components/ui/button";
+import { Heading } from "@/components/ui/heading";
+import { Image } from "@/components/ui/image";
+import { Modal, ModalBackdrop, ModalContent, ModalBody, ModalFooter } from "@/components/ui/modal";
+import { Text } from "@/components/ui/text";
+import React from "react";
+function App() {
         const [showModal, setShowModal] = React.useState(false);
         return (
           <>
@@ -800,8 +817,7 @@ A user interface featuring multiple modal components that allow for layered inte
             </Modal>
           </>
         );
-      }
-      `,
+      }`,
       transformCode: (code) => {
         return transformedCode(code, 'function', 'App');
       },
@@ -832,8 +848,14 @@ A user interface featuring multiple modal components that allow for layered inte
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-        function App() {
+      code: `import { Box } from "@/components/ui/box";
+import { Button, ButtonText } from "@/components/ui/button";
+import { Heading } from "@/components/ui/heading";
+import { Modal, ModalBackdrop, ModalContent, ModalHeader, ModalBody, ModalFooter } from "@/components/ui/modal";
+import { Text } from "@/components/ui/text";
+import { Icon, TrashIcon } from "@/components/ui/icon";
+import React from "react";
+function App() {
         const [showModal, setShowModal] = React.useState(false);
         return (
           <>
@@ -888,8 +910,7 @@ A user interface featuring multiple modal components that allow for layered inte
             </Modal>
           </>
         );
-      }
-      `,
+      }`,
       transformCode: (code) => {
         return transformedCode(code, 'function', 'App');
       },
@@ -923,8 +944,19 @@ A user interface featuring multiple modal components that allow for layered inte
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-        function App() {
+      code: `import { Box } from "@/components/ui/box";
+import { Button, ButtonText } from "@/components/ui/button";
+import { Heading } from "@/components/ui/heading";
+import { HStack } from "@/components/ui/hstack";
+import { Image } from "@/components/ui/image";
+import { Modal, ModalBackdrop, ModalContent, ModalHeader, ModalBody, ModalFooter } from "@/components/ui/modal";
+import { Radio, RadioGroup, RadioIndicator, RadioIcon } from "@/components/ui/radio";
+import { Text } from "@/components/ui/text";
+import { VStack } from "@/components/ui/vstack";
+import { Icon, CircleIcon } from "@/components/ui/icon";
+import React from "react";
+import { CreditCard } from "lucide-react-native";
+function App() {
         const paymentOptions = [
           {
             value: 'visa',
@@ -1031,8 +1063,7 @@ A user interface featuring multiple modal components that allow for layered inte
           </Modal>
           </>
         );
-      }
-      `,
+      }`,
       transformCode: (code) => {
         return transformedCode(code, 'function', 'App');
       },
@@ -1083,8 +1114,16 @@ A user interface featuring multiple modal components that allow for layered inte
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-        function App() {
+      code: `import { Button, ButtonText } from "@/components/ui/button";
+import { Heading } from "@/components/ui/heading";
+import { Input, InputField } from "@/components/ui/input";
+import { Modal, ModalBackdrop, ModalContent, ModalCloseButton, ModalHeader, ModalBody } from "@/components/ui/modal";
+import { Pressable } from "@/components/ui/pressable";
+import { Text } from "@/components/ui/text";
+import { VStack } from "@/components/ui/vstack";
+import { Icon, CloseIcon, CopyIcon } from "@/components/ui/icon";
+import React from "react";
+function App() {
           const [showModal, setShowModal] = React.useState(false);
           return (
             <>
@@ -1128,8 +1167,7 @@ A user interface featuring multiple modal components that allow for layered inte
               </Modal>
             </>
           );
-        }
-      `,
+        }`,
       transformCode: (code) => {
         return transformedCode(code, 'function', 'App');
       },

@@ -36,13 +36,16 @@ This is an illustration of **Text** component.
     showComponentRenderer={ true }
   showArgsController = { false}
   metaData = {{
-    code: `
-        <Text>
+    code: `import { Text } from "@/components/ui/text";
+function Example() {
+  return (
+    <Text>
           Hello World!
         </Text>
-      `,
+  );
+}`,
       transformCode: (code) => {
-        return transformedCode(code);
+        return transformedCode(code, 'function', 'Example');
       },
         scope: {
       Wrapper,
@@ -319,8 +322,9 @@ Text component comes in different sizes, such as `xs`, `sm`, `md`, `lg`, `xl`, `
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-        function App() {
+      code: `import { Center } from "@/components/ui/center";
+import { Text } from "@/components/ui/text";
+function App() {
           const sizes = [
             'xs',
             'sm',
@@ -340,8 +344,7 @@ Text component comes in different sizes, such as `xs`, `sm`, `md`, `lg`, `xl`, `
               ))}
             </Center>
           );
-        }
-      `,
+        }`,
       transformCode: (code) => {
         return transformedCode(code, 'function', 'App');
       },
