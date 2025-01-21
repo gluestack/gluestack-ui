@@ -5,6 +5,42 @@ const { parse } = require('@babel/parser');
 const traverse = require('@babel/traverse').default;
 const { componentsImportMap } = require('./componentsImportList');
 
+function removeEmptyLines(code) {
+  return code
+    .split('\n')
+    .filter((line) => line.trim() !== '')
+    .join('\n');
+}
+
+function removeComments(code) {
+  // Remove only JSX comments wrapped in curly braces
+  code = code.replace(/{\s*\/\*[\s\S]*?\*\/\s*}|{\s*\/\/.*?\s*}/g, '');
+
+  const cleanedCode = removeEmptyLines(code);
+  return cleanedCode;
+}
+
+function hasExistingImports(code) {
+  const importRegex = /^\s*import\s+.*?['"].*?['"]\s*;?\s*$/gm;
+  return importRegex.test(code);
+}
+
+function processCodeBlock(code) {
+  // Remove comments first
+  const cleanCode = removeComments(code);
+
+  // Check if imports already exist
+  if (hasExistingImports(cleanCode)) {
+    return cleanCode; // Return cleaned code with existing imports
+  }
+
+  // Generate new imports if needed
+  const components = extractComponents(cleanCode);
+  const imports = generateImports(components);
+
+  return `${imports}${imports ? '\n' : ''}${cleanCode}`;
+}
+
 // Function to extract code blocks from MDX content
 function extractCodeBlocks(mdxContent) {
   const codeBlockRegex = /code: `([\s\S]*?)`/g;
@@ -188,18 +224,19 @@ function updateMDXFile(filePath) {
     for (let i = codeBlocks.length - 1; i >= 0; i--) {
       const block = codeBlocks[i];
       let processedCode = block.codeContent.trim();
-      const needsWrapping = needsComponentWrapping(processedCode);
 
+      // First process the code block to remove comments and handle imports
+      processedCode = processCodeBlock(processedCode);
+
+      // Then check if it needs wrapping
+      const needsWrapping = needsComponentWrapping(processedCode);
       if (needsWrapping) {
         processedCode = wrapInFunctionalComponent(processedCode);
         mdxContent = updateTransformCode(mdxContent, block.startIndex);
       }
 
-      const components = extractComponents(processedCode);
-      const imports = generateImports(components);
-      const newCodeContent = `code: \`${imports}${
-        imports ? '\n' : ''
-      }${processedCode}\``;
+      // Update the code content in MDX
+      const newCodeContent = `code: \`${processedCode}\``;
 
       mdxContent =
         mdxContent.slice(0, block.startIndex) +
@@ -213,7 +250,6 @@ function updateMDXFile(filePath) {
     // eslint-disable-next-line no-console
     console.log('📁 File path:', path.dirname(filePath));
   } catch (error) {
-    // eslint-disable-next-line no-console
     console.error(`❌ Error processing ${filePath}:`, error);
   }
 }

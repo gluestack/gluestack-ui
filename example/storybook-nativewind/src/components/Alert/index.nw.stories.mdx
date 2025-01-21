@@ -363,7 +363,6 @@ import { Bomb } from "lucide-react-native";
 function Example() {
   return (
     <Alert action="error" className="gap-3">
-          {/* Bomb is imported from 'lucide-react-native' */}
           <AlertIcon as={Bomb} size="lg" />
           <AlertText className="text-typography-900" size="sm">
             <Text className="mr-2 font-semibold text-typography-900">
@@ -428,7 +427,6 @@ function Example() {
                     placeholder="Enter password"
                   />
                   <InputSlot className="mr-3" onPress={handleState}>
-                    {/* EyeIcon, EyeOffIcon are both imported from 'lucide-react-native' */}
                     <InputIcon
                       size="xs"
                       as={showPassword ? EyeIcon : EyeOffIcon}
