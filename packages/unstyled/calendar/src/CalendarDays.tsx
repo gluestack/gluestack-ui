@@ -7,7 +7,12 @@ export const CalendarDays = (StyledCalendarDays: any) =>
     const days = getDaysInMonth();
 
     return (
-      <StyledCalendarDays ref={ref} {...props}>
+      <StyledCalendarDays
+        ref={ref}
+        {...props}
+        aria-label="Calendar dates"
+        accessibilityLabel="Calendar dates"
+      >
         {days.map((day, index) => {
           const dayProps = {};
           const Day = render;

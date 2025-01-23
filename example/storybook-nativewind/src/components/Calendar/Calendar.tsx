@@ -9,16 +9,6 @@ import {
   CalendarHeaderPrev,
   CalendarHeaderTitle,
 } from '@/components/ui/calendar';
-// import { Text } from '@/components/ui/text';
-import { Pressable } from '@/components/ui/pressable';
-import { cssInterop } from 'nativewind';
-
-// note: required for nativewind to work on Storybook
-cssInterop(Pressable, {
-  className: {
-    target: 'style',
-  },
-});
 
 const CalendarBasic = ({ ...props }: any) => {
   return (
@@ -36,17 +26,7 @@ const CalendarBasic = ({ ...props }: any) => {
       </CalendarHeader>
       <CalendarContent>
         <CalendarWeek />
-        <CalendarDays
-        // render={({ day, ...dayProps }) => (
-        //   <Pressable
-        //     key={day?.getDate()}
-        //     {...dayProps}
-        //     className="w-[14.28%] p-2 flex items-center justify-center rounded-lg"
-        //   >
-        //     <Text>{day?.getDate()}</Text>
-        //   </Pressable>
-        // )}
-        />
+        <CalendarDays />
       </CalendarContent>
     </Calendar>
   );

@@ -48,11 +48,14 @@ export const CalendarDate = (StyledCalendarDate: React.ComponentType<any>) =>
         if (!date) return false;
         return date.getTime() === selectedDate?.getTime();
       };
+
+      const label = day ? day.toLocaleDateString() : 'empty cell';
       return (
         // @ts-ignore
         <StyledCalendarDate
           ref={ref}
           disabled={props.disabled || isDisabled(day)}
+          tabIndex={day === null ? -1 : undefined}
           states={{
             hover: isHovered,
             focus: isFocused,
@@ -103,6 +106,15 @@ export const CalendarDate = (StyledCalendarDate: React.ComponentType<any>) =>
             composeEventHandlers(props?.onBlur, focusProps.onBlur),
             focusRingProps.onBlur
           )}
+          role="gridcell"
+          accessible
+          accessibilityLabel={label}
+          accessibilityElementsHidden={
+            isDisabled || props.disabled || day === null
+          }
+          aria-selected={day ? isSameDate(day) : false}
+          aria-disabled={props.disabled || isDisabled(day) || day === null}
+          aria-label={label}
         >
           {typeof children === 'function'
             ? children({

@@ -4,7 +4,12 @@ export const CalendarWeek = (StyledCalendarWeek: any) =>
   forwardRef(({ render, ...props }: any, ref?: any) => {
     const { weekDays } = useCalendarContext();
     return (
-      <StyledCalendarWeek ref={ref} {...props}>
+      <StyledCalendarWeek
+        ref={ref}
+        {...props}
+        role="row"
+        aria-label="Week days"
+      >
         {weekDays.map((weekday, index) => {
           const Weekday = render;
           return <Weekday weekday={weekday} key={`key-${weekday}-${index}`} />;

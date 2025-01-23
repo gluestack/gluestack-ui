@@ -10,6 +10,7 @@ import { withStyleContext } from '@gluestack-ui/nativewind-utils/withStyleContex
 import { cssInterop } from 'nativewind';
 import { PrimitiveIcon, UIIcon } from '@gluestack-ui/icon';
 import { VariantProps } from '@gluestack-ui/nativewind-utils/types';
+import { ChevronRight, ChevronLeft } from 'lucide-react-native';
 import {
   calendarStyle,
   calendarContentStyle,
@@ -21,7 +22,6 @@ import {
   calendarWeekCellStyle,
   calendarDateStyle,
 } from './styles';
-import { ChevronRight, ChevronLeft } from 'lucide-react-native';
 
 const SCOPE = 'CALENDAR';
 
@@ -115,7 +115,7 @@ const CalendarHeaderPrev = React.forwardRef<
       {...props}
       className={calendarNavStyle({ class: className })}
     >
-      <UIIcon as={ChevronLeft} className="text-typography-800" />
+      <UIIcon as={ChevronLeft} className="text-typography-800 w-3.5 h-3.5" />
     </UICalendar.HeaderPrev>
   );
 });
@@ -130,7 +130,7 @@ const CalendarHeaderNext = React.forwardRef<
       {...props}
       className={calendarNavStyle({ class: className })}
     >
-      <UIIcon as={ChevronRight} className="text-typography-800" />
+      <UIIcon as={ChevronRight} className="text-typography-800 w-3.5 h-3.5" />
     </UICalendar.HeaderNext>
   );
 });
@@ -227,7 +227,7 @@ const CalendarDays = React.forwardRef<
         (({ day, ...dayProps }: any) => {
           return (
             <CalendarDate {...dayProps} day={day}>
-              <RNText className="group-data-[selected=true]:text-typography-0">
+              <RNText className="text-typography-800 group-data-[selected=true]:text-typography-0 group-data-[disabled=true]:text-typography-400">
                 {day?.getDate()}
               </RNText>
             </CalendarDate>

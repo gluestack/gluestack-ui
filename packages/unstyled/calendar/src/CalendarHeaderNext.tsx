@@ -48,7 +48,13 @@ export const CalendarHeaderNext = (StyledCalendarHeaderNext: any) =>
             focusVisible:
               isFocusVisibleProp || isFocusVisible ? 'true' : 'false',
           }}
+          role="button"
+          aria-label="Next month"
+          aria-disabled={isDisabled || isNextDisabled}
+          aria-selected={isPressedProp || isPressed}
+          accessibilityLabel="Next month"
           disabled={isDisabled}
+          accessibilityElementsHidden={isDisabled || isNextDisabled}
           onPressIn={composeEventHandlers(
             props?.onPressIn,
             pressProps.onPressIn

@@ -1,22 +1,28 @@
 import React, { forwardRef, useMemo, useCallback } from 'react';
 import { CalendarContext } from './Context';
 import type { ICalendarProps } from './types';
+import {
+  format,
+  addMonths,
+  subMonths,
+  isSameDay,
+  isWithinInterval,
+  startOfMonth,
+  getDaysInMonth as getMonthDays,
+  getDay,
+  eachDayOfInterval,
+  startOfWeek,
+  endOfWeek,
+} from 'date-fns';
 
-const WEEKDAYS = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
-const MONTHS = [
-  'January',
-  'February',
-  'March',
-  'April',
-  'May',
-  'June',
-  'July',
-  'August',
-  'September',
-  'October',
-  'November',
-  'December',
-];
+const WEEKDAYS = eachDayOfInterval({
+  start: startOfWeek(new Date()),
+  end: endOfWeek(new Date()),
+}).map((day: Date) => format(day, 'EEEEEE'));
+
+const MONTHS = Array.from({ length: 12 }, (_, i) =>
+  format(new Date(2024, i, 1), 'MMMM')
+);
 
 export function Calendar(StyledCalendar: any) {
   return forwardRef(
@@ -42,35 +48,26 @@ export function Calendar(StyledCalendar: any) {
       const isDisabled = useCallback(
         (day: Date | null) => {
           if (!day) return false;
-          if (minDate && day < minDate) return true;
-          if (maxDate && day > maxDate) return true;
+          if (minDate && maxDate) {
+            return !isWithinInterval(day, { start: minDate, end: maxDate });
+          }
+          if (minDate) return day < minDate;
+          if (maxDate) return day > maxDate;
           return false;
         },
         [minDate, maxDate]
       );
 
       const title = useMemo(() => {
-        return `${
-          MONTHS[currentMonth.getMonth()]
-        } ${currentMonth.getFullYear()}`;
+        return format(currentMonth, 'MMMM yyyy');
       }, [currentMonth]);
 
       const prevMonth = useCallback(() => {
-        const newDate = new Date(
-          currentMonth.getFullYear(),
-          currentMonth.getMonth() - 1,
-          1
-        );
-        setCurrentMonth(newDate);
+        setCurrentMonth(subMonths(currentMonth, 1));
       }, [currentMonth]);
 
       const nextMonth = useCallback(() => {
-        const newDate = new Date(
-          currentMonth.getFullYear(),
-          currentMonth.getMonth() + 1,
-          1
-        );
-        setCurrentMonth(newDate);
+        setCurrentMonth(addMonths(currentMonth, 1));
       }, [currentMonth]);
 
       const isPrevDisabled = useMemo(() => {
@@ -92,19 +89,15 @@ export function Calendar(StyledCalendar: any) {
       }, [currentMonth, maxDate]);
 
       const getDaysInMonth = useCallback(() => {
-        const year = currentMonth.getFullYear();
-        const month = currentMonth.getMonth();
-        const daysInMonth = new Date(year, month + 1, 0).getDate();
-        const firstDayOfMonth = new Date(year, month, 1).getDay();
+        const firstDayOfMonth = getDay(startOfMonth(currentMonth));
+        const daysInMonth = getMonthDays(currentMonth);
 
-        const days = [];
-
-        for (let i = 0; i < firstDayOfMonth; i++) {
-          days.push(null);
-        }
+        const days = Array(firstDayOfMonth).fill(null);
 
         for (let i = 1; i <= daysInMonth; i++) {
-          days.push(new Date(year, month, i));
+          days.push(
+            new Date(currentMonth.getFullYear(), currentMonth.getMonth(), i)
+          );
         }
 
         return days;
@@ -121,12 +114,7 @@ export function Calendar(StyledCalendar: any) {
 
       const isToday = useCallback((day: Date | null) => {
         if (!day) return false;
-        const today = new Date();
-        return (
-          today.getDate() === day.getDate() &&
-          today.getMonth() === day.getMonth() &&
-          today.getFullYear() === day.getFullYear()
-        );
+        return isSameDay(day, new Date());
       }, []);
 
       const contextValue = useMemo(
@@ -161,7 +149,14 @@ export function Calendar(StyledCalendar: any) {
       );
       return (
         <CalendarContext.Provider value={contextValue}>
-          <StyledCalendar ref={ref} {...(props as ICalendarProps)}>
+          <StyledCalendar
+            ref={ref}
+            {...props}
+            role="group"
+            aria-label="Calendar"
+            accessible
+            accessibilityLabel="Calendar"
+          >
             {children}
           </StyledCalendar>
         </CalendarContext.Provider>

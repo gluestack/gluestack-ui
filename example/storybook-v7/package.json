@@ -28,6 +28,7 @@
     "@react-native-community/datetimepicker": "8.0.1",
     "@react-native-community/slider": "4.5.2",
     "autoprefixer": "^10.4.19",
+    "date-fns": "^4.1.0",
     "eas-cli": "^9.0.7",
     "expo": "^51.0.8",
     "expo-constants": "~16.0.1",
