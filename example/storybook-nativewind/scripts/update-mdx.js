@@ -219,6 +219,13 @@ function updateMDXFile(filePath) {
 
       // First check if imports exist
       if (hasExistingImports(processedCode)) {
+        // Add space after imports if needed
+        processedCode = processedCode.replace(/function/g, '\t\nfunction');
+        const newCodeContent = `code: \`${processedCode}\``;
+        mdxContent =
+          mdxContent.slice(0, block.startIndex) +
+          newCodeContent +
+          mdxContent.slice(block.endIndex);
         continue; // Skip this code block if imports exist
       }
 
