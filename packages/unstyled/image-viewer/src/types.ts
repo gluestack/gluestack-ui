@@ -39,9 +39,11 @@ export interface InterfaceImageViewerContentProps {
   renderImages: ({
     item,
     index,
+    onLoad,
   }: {
     item: any;
     index: number;
+    onLoad: (event: any) => void;
   }) => React.ReactNode;
   /**
    * Callback function to extract the key for the images.
