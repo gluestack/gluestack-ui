@@ -44,8 +44,13 @@ This is an illustration of **Divider** component.
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-        <Center>
+      code: `import { Center } from "@/components/ui/center";
+import { Divider } from "@/components/ui/divider";
+import { Text } from "@/components/ui/text";
+	
+function Example() {
+  return (
+    <Center>
           <Text className="font-semibold">
             Easy
           </Text>
@@ -54,9 +59,10 @@ This is an illustration of **Divider** component.
             Difficult
           </Text>
         </Center>
-      `,
+  );
+}`,
       transformCode: (code) => {
-        return transformedCode(code);
+        return transformedCode(code, 'function', 'Example');
       },
       scope: {
         Wrapper,
@@ -236,7 +242,14 @@ A Divider component with different layouts offers versatile options for visually
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
+      code: `import { Divider } from "@/components/ui/divider";
+import { Heading } from "@/components/ui/heading";
+import { HStack } from "@/components/ui/hstack";
+import { Text } from "@/components/ui/text";
+import { VStack } from "@/components/ui/vstack";
+	
+function Example() {
+  return (
     <VStack>
       <Heading>gluestack-ui</Heading>
       <Text>Universal component library</Text>
@@ -255,9 +268,10 @@ A Divider component with different layouts offers versatile options for visually
         <Text>Examples</Text>
       </HStack>
     </VStack>
-      `,
+  );
+}`,
       transformCode: (code) => {
-        return transformedCode(code);
+        return transformedCode(code, 'function', 'Example');
       },
       scope: {
         Wrapper,
@@ -282,8 +296,16 @@ A Divider component with a specified divider orientation allows for clear visual
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-        <VStack
+      code: `import { Box } from "@/components/ui/box";
+import { Divider } from "@/components/ui/divider";
+import { Heading } from "@/components/ui/heading";
+import { HStack } from "@/components/ui/hstack";
+import { Text } from "@/components/ui/text";
+import { VStack } from "@/components/ui/vstack";
+	
+function Example() {
+  return (
+    <VStack
           space='lg'
           className="p-12 border border-outline-300 rounded-lg mx-5"
           >
@@ -344,9 +366,10 @@ A Divider component with a specified divider orientation allows for clear visual
             </HStack>
           </Box>
         </VStack>
-      `,
+  );
+}`,
       transformCode: (code) => {
-        return transformedCode(code);
+        return transformedCode(code, 'function', 'Example');
       },
       scope: {
         Wrapper,
@@ -372,7 +395,13 @@ A Divider component used with or without inset adds visual hierarchy and distinc
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
+      code: `import { Button, ButtonText } from "@/components/ui/button";
+import { Divider } from "@/components/ui/divider";
+import { HStack } from "@/components/ui/hstack";
+import { VStack } from "@/components/ui/vstack";
+	
+function Example() {
+  return (
     <VStack space="2xl">
       <HStack className="px-3 h-8 rounded border border-solid border-outline-300">
         <Button variant="link" size="xs">
@@ -405,9 +434,10 @@ A Divider component used with or without inset adds visual hierarchy and distinc
         </Button>
       </HStack>
     </VStack>
-      `,
+  );
+}`,
       transformCode: (code) => {
-        return transformedCode(code);
+        return transformedCode(code, 'function', 'Example');
       },
       scope: {
         Wrapper,
@@ -432,8 +462,15 @@ A Divider component with added content allows for the inclusion of additional te
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-        <Box
+      code: `import { Box } from "@/components/ui/box";
+import { Divider } from "@/components/ui/divider";
+import { Heading } from "@/components/ui/heading";
+import { HStack } from "@/components/ui/hstack";
+import { Text } from "@/components/ui/text";
+	
+function Example() {
+  return (
+    <Box
         className="py-9 px-20 m-5 rounded-lg
         border border-outline-300
         "
@@ -464,9 +501,10 @@ A Divider component with added content allows for the inclusion of additional te
             </HStack>
           </Box>
         </Box>
-      `,
+  );
+}`,
       transformCode: (code) => {
-        return transformedCode(code);
+        return transformedCode(code, 'function', 'Example');
       },
       scope: {
         Wrapper,

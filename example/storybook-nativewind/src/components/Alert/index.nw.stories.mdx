@@ -55,16 +55,21 @@ This is an illustration of **Alert** component.
     showComponentRenderer={true}
     showArgsController={true}
     metaData={{
-      code: `
-        <Alert {...props}>
+      code: `import { Alert, AlertText, AlertIcon } from "@/components/ui/alert";
+import { InfoIcon } from "@/components/ui/icon";
+	
+function Example() {
+  return (
+    <Alert {...props}>
           <AlertIcon as={InfoIcon} />
           <AlertText>
             Description of alert!
           </AlertText>
         </Alert>
-      `,
+  );
+}`,
       transformCode: (code) => {
-        return transformedCode(code);
+        return transformedCode(code, 'function', 'Example');
       },
       scope: {
         Alert,
@@ -243,8 +248,14 @@ The Examples section provides visual representations of the different variants o
       padding: 20
     }}
     metaData={{
-      code: `
-        <Alert
+      code: `import { Alert, AlertText } from "@/components/ui/alert";
+import { Button, ButtonText } from "@/components/ui/button";
+import { VStack } from "@/components/ui/vstack";
+import { Icon, CloseIcon } from "@/components/ui/icon";
+	
+function Example() {
+  return (
+    <Alert
           action="success"
           className="gap-4 max-w-[585px] w-full self-center items-start min-[400px]:items-center"
         >
@@ -258,9 +269,10 @@ The Examples section provides visual representations of the different variants o
           </VStack>
           <Icon as={CloseIcon} />
         </Alert>
-      `,
+  );
+}`,
       transformCode: (code) => {
-        return transformedCode(code);
+        return transformedCode(code, 'function', 'Example');
       },
       scope: {
         Alert,
@@ -288,8 +300,16 @@ The Examples section provides visual representations of the different variants o
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-        <Alert
+      code: `import { Alert, AlertText, AlertIcon } from "@/components/ui/alert";
+import { Button, ButtonText } from "@/components/ui/button";
+import { HStack } from "@/components/ui/hstack";
+import { Text } from "@/components/ui/text";
+import { VStack } from "@/components/ui/vstack";
+import { RepeatIcon } from "@/components/ui/icon";
+	
+function Example() {
+  return (
+    <Alert
           action="warning"
           className="gap-4 max-w-[516px] w-full flex-row flex py-4 items-start self-center"
         >
@@ -308,9 +328,10 @@ The Examples section provides visual representations of the different variants o
             </Button>
           </HStack>
         </Alert>
-      `,
+  );
+}`,
       transformCode: (code) => {
-        return transformedCode(code);
+        return transformedCode(code, 'function', 'Example');
       },
       scope: {
         Alert,
@@ -339,9 +360,13 @@ The Examples section provides visual representations of the different variants o
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-        <Alert action="error" className="gap-3">
-          {/* Bomb is imported from 'lucide-react-native' */}
+      code: `import { Alert, AlertText, AlertIcon } from "@/components/ui/alert";
+import { Text } from "@/components/ui/text";
+import { Bomb } from "lucide-react-native";
+	
+function Example() {
+  return (
+    <Alert action="error" className="gap-3">
           <AlertIcon as={Bomb} size="lg" />
           <AlertText className="text-typography-900" size="sm">
             <Text className="mr-2 font-semibold text-typography-900">
@@ -350,9 +375,10 @@ The Examples section provides visual representations of the different variants o
             Once done, this action cannot be undone
           </AlertText>
         </Alert>
-      `,
+  );
+}`,
       transformCode: (code) => {
-        return transformedCode(code);
+        return transformedCode(code, 'function', 'Example');
       },
       scope: {
         Alert,
@@ -377,8 +403,16 @@ The Examples section provides visual representations of the different variants o
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-        function Example() {
+      code: `import { Alert, AlertText, AlertIcon } from "@/components/ui/alert";
+import { Button, ButtonText } from "@/components/ui/button";
+import { Heading } from "@/components/ui/heading";
+import { Input, InputField, InputIcon, InputSlot } from "@/components/ui/input";
+import { Text } from "@/components/ui/text";
+import { VStack } from "@/components/ui/vstack";
+import { EyeIcon, EyeOffIcon, InfoIcon } from "@/components/ui/icon";
+import React from "react";
+	
+function Example() {
           const [showPassword, setShowPassword] = React.useState(false);
           const handleState = () => {
             setShowPassword((showState) => {
@@ -398,7 +432,6 @@ The Examples section provides visual representations of the different variants o
                     placeholder="Enter password"
                   />
                   <InputSlot className="mr-3" onPress={handleState}>
-                    {/* EyeIcon, EyeOffIcon are both imported from 'lucide-react-native' */}
                     <InputIcon
                       size="xs"
                       as={showPassword ? EyeIcon : EyeOffIcon}
@@ -419,8 +452,7 @@ The Examples section provides visual representations of the different variants o
               </Alert>
             </VStack>
           );
-        }
-      `,
+        }`,
       transformCode: (code) => {
         return transformedCode(code, 'function', 'Example');
       },

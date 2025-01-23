@@ -63,8 +63,13 @@ This is an illustration of a **Menu** component.
     showComponentRenderer={true}
     showArgsController={true}
     metaData={{
-      code: `
-      <Menu
+      code: `import { Button, ButtonText } from "@/components/ui/button";
+import { Menu, MenuItem, MenuItemLabel } from "@/components/ui/menu";
+import { Icon, AddIcon, GlobeIcon, PlayIcon, SettingsIcon } from "@/components/ui/icon";
+	
+function Example() {
+  return (
+    <Menu
         {...props}
         offset={5}
         disabledKeys={['Settings']}
@@ -93,9 +98,10 @@ This is an illustration of a **Menu** component.
           <MenuItemLabel size="sm">Settings</MenuItemLabel>
         </MenuItem>
       </Menu>
-      `,
+  );
+}`,
       transformCode: (code) => {
-        return transformedCode(code);
+        return transformedCode(code, 'function', 'Example');
       },
       scope: {
         Wrapper,
@@ -557,8 +563,14 @@ The Examples section provides visual representations of the different variants o
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-      <Menu
+      code: `import { Badge, BadgeText } from "@/components/ui/badge";
+import { Button, ButtonIcon } from "@/components/ui/button";
+import { Menu, MenuItem, MenuItemLabel, MenuSeparator } from "@/components/ui/menu";
+import { MenuIcon } from "@/components/ui/icon";
+	
+function Example() {
+  return (
+    <Menu
         offset={5}
         trigger={({ ...triggerProps }) => {
           return (
@@ -607,9 +619,10 @@ The Examples section provides visual representations of the different variants o
           <MenuItemLabel size="sm">Logout</MenuItemLabel>
         </MenuItem>
       </Menu>
-      `,
+  );
+}`,
       transformCode: (code) => {
-        return transformedCode(code);
+        return transformedCode(code, 'function', 'Example');
       },
       scope: {
         Wrapper,
@@ -637,8 +650,12 @@ The Examples section provides visual representations of the different variants o
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-      function Example() {
+      code: `import { Button, ButtonText } from "@/components/ui/button";
+import { Menu, MenuItem, MenuItemLabel, MenuSeparator } from "@/components/ui/menu";
+import { Icon, HelpCircleIcon, MessageCircleIcon, SettingsIcon } from "@/components/ui/icon";
+import React from "react";
+	
+function Example() {
         const [selected, setSelected] = React.useState(new Set([]));
         return (
           <Menu
@@ -707,8 +724,7 @@ The Examples section provides visual representations of the different variants o
             </MenuItem>
           </Menu>
         );
-      }
-      `,
+      }`,
       transformCode: (code) => {
         return transformedCode(code, 'function', 'Example');
       },
