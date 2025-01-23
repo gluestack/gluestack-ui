@@ -58,8 +58,13 @@ This is an illustration of **AlertDialog** component.
     showComponentRenderer={true}
     showArgsController={true}
     metaData={{
-      code: `
-        function Example(){
+      code: `import { AlertDialog, AlertDialogContent, AlertDialogHeader, AlertDialogFooter, AlertDialogBody, AlertDialogBackdrop } from "@/components/ui/alert-dialog";
+import { Button, ButtonText } from "@/components/ui/button";
+import { Heading } from "@/components/ui/heading";
+import { Text } from "@/components/ui/text";
+import React from "react";
+	
+function Example(){
           const [showAlertDialog, setShowAlertDialog] = React.useState(false);
           const handleClose = () => setShowAlertDialog(false);
           return (
@@ -101,8 +106,7 @@ This is an illustration of **AlertDialog** component.
               </AlertDialog>
             </>
           );
-        }
-      `,
+        }`,
       transformCode: (code) => {
         return transformedCode(code, 'function', 'Example');
       },
@@ -492,8 +496,16 @@ The Examples section provides visual representations of the different variants o
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-        function Example(){
+      code: `import { AlertDialog, AlertDialogContent, AlertDialogBody, AlertDialogBackdrop } from "@/components/ui/alert-dialog";
+import { Box } from "@/components/ui/box";
+import { Button, ButtonText } from "@/components/ui/button";
+import { Heading } from "@/components/ui/heading";
+import { Image } from "@/components/ui/image";
+import { Text } from "@/components/ui/text";
+import { VStack } from "@/components/ui/vstack";
+import React from "react";
+	
+function Example(){
           const [showAlertDialog, setShowAlertDialog] = React.useState(false);
           const handleClose = () => setShowAlertDialog(false);
           return (
@@ -538,8 +550,7 @@ The Examples section provides visual representations of the different variants o
               </AlertDialog>
             </>
           );
-        }
-      `,
+        }`,
       transformCode: (code) => {
         return transformedCode(code, 'function', 'Example');
       },
@@ -572,8 +583,17 @@ The Examples section provides visual representations of the different variants o
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-        function Example(){
+      code: `import { AlertDialog, AlertDialogContent, AlertDialogFooter, AlertDialogBody, AlertDialogBackdrop } from "@/components/ui/alert-dialog";
+import { Box } from "@/components/ui/box";
+import { Button, ButtonText } from "@/components/ui/button";
+import { Heading } from "@/components/ui/heading";
+import { Text } from "@/components/ui/text";
+import { VStack } from "@/components/ui/vstack";
+import { Icon } from "@/components/ui/icon";
+import React from "react";
+import { UploadCloud } from "lucide-react-native";
+	
+function Example(){
           const [showAlertDialog, setShowAlertDialog] = React.useState(false);
           const handleClose = () => setShowAlertDialog(false);
           return (
@@ -622,8 +642,7 @@ The Examples section provides visual representations of the different variants o
               </AlertDialog>
             </>
           );
-        }
-      `,
+        }`,
       transformCode: (code) => {
         return transformedCode(code, 'function', 'Example');
       },
@@ -657,8 +676,15 @@ The Examples section provides visual representations of the different variants o
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-        function Example(){
+      code: `import { AlertDialog, AlertDialogContent, AlertDialogHeader, AlertDialogFooter, AlertDialogBody, AlertDialogBackdrop } from "@/components/ui/alert-dialog";
+import { Box } from "@/components/ui/box";
+import { Button, ButtonText } from "@/components/ui/button";
+import { Heading } from "@/components/ui/heading";
+import { Text } from "@/components/ui/text";
+import { Icon, TrashIcon } from "@/components/ui/icon";
+import React from "react";
+	
+function Example(){
           const [showAlertDialog, setShowAlertDialog] = React.useState(false);
           const handleClose = () => setShowAlertDialog(false);
           return (
@@ -704,8 +730,7 @@ The Examples section provides visual representations of the different variants o
               </AlertDialog>
             </>
           );
-        }
-      `,
+        }`,
       transformCode: (code) => {
         return transformedCode(code, 'function', 'Example');
       },

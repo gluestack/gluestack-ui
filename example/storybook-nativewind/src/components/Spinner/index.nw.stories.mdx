@@ -29,11 +29,16 @@ This is an illustration of **Spinner** component.
     showComponentRenderer={true}
     showArgsController={true}
     metaData={{
-      code: `
-        <Spinner {...props} color={colors.gray[500]} />
-      `,
+      code: `import { Spinner } from "@/components/ui/spinner";
+import colors from "tailwindcss/colors";
+	
+function Example() {
+  return (
+    <Spinner {...props} color={colors.gray[500]} />
+  );
+}`,
       transformCode: (code) => {
-        return transformedCode(code);
+        return transformedCode(code, 'function', 'Example');
       },
       scope: { Wrapper, Spinner, colors },
       argsType: {
@@ -138,14 +143,20 @@ A Spinner component with a label provides informative text or a label alongside 
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-        <HStack space="sm" >
+      code: `import { HStack } from "@/components/ui/hstack";
+import { Spinner } from "@/components/ui/spinner";
+import { Text } from "@/components/ui/text";
+	
+function Example() {
+  return (
+    <HStack space="sm" >
           <Spinner/>
           <Text size="md">Please Wait</Text>
         </HStack>
-      `,
+  );
+}`,
       transformCode: (code) => {
-        return transformedCode(code);
+        return transformedCode(code, 'function', 'Example');
       },
       scope: {
         Wrapper,
@@ -167,17 +178,22 @@ A Spinner component with a color scheme enhances visual appeal by incorporating 
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-      <VStack space="md" >
-      {/* colors is imported from 'tailwindcss/colors' */}
+      code: `import { Spinner } from "@/components/ui/spinner";
+import { VStack } from "@/components/ui/vstack";
+import colors from "tailwindcss/colors";
+	
+function Example() {
+  return (
+    <VStack space="md" >
         <Spinner color={colors.indigo[600]} />
         <Spinner color={colors.emerald[600]} />
         <Spinner color={colors.amber[600]} />
         <Spinner color={colors.fuchsia[600]} />
       </VStack>
-    `,
+  );
+}`,
       transformCode: (code) => {
-        return transformedCode(code);
+        return transformedCode(code, 'function', 'Example');
       },
       scope: {
         Wrapper,

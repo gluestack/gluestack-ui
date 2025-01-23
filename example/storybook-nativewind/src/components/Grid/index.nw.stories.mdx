@@ -45,8 +45,11 @@ This is an illustration of **Grid** component.
       padding: 20,
     }}
     metaData = {{
-      code: `
-<Grid className="gap-5" _extra={{
+      code: `import { Grid, GridItem } from "@/components/ui/grid";
+	
+function Example() {
+  return (
+    <Grid className="gap-5" _extra={{
   className: 'grid-cols-8'
 }} >
       <GridItem
@@ -80,10 +83,11 @@ This is an illustration of **Grid** component.
 }}
       />
     </Grid>
-`,
+  );
+}`,
         transformCode: (code) => {
-          return transformedCode(code);
-        },
+        return transformedCode(code, 'function', 'Example');
+      },
           scope: {
         Wrapper,
         Grid,
@@ -367,7 +371,11 @@ Use the gap-* utilities to change the gap between both rows and columns in grid
       padding: 20,
     }}
     metaData={{
-      code: `
+      code: `import { Grid, GridItem } from "@/components/ui/grid";
+import { Text } from "@/components/ui/text";
+	
+function Example() {
+  return (
     <Grid className="gap-4" _extra={{
       className: 'grid-cols-9',
     }}>
@@ -396,9 +404,10 @@ Use the gap-* utilities to change the gap between both rows and columns in grid
         <Text>C</Text>
       </GridItem>
     </Grid>
-      `,
+  );
+}`,
       transformCode: (code) => {
-        return transformedCode(code);
+        return transformedCode(code, 'function', 'Example');
       },
       scope: {
        Grid,
@@ -423,8 +432,12 @@ Use the gap-x-* and gap-y-* utilities to change the gap between columns and rows
       padding: 20,
     }}
     metaData = {{
-      code: `
-<Grid className="gap-y-2 gap-x-4" _extra={{
+      code: `import { Grid, GridItem } from "@/components/ui/grid";
+import { Text } from "@/components/ui/text";
+	
+function Example() {
+  return (
+    <Grid className="gap-y-2 gap-x-4" _extra={{
   className: 'grid-cols-6',
 }}>
       <GridItem
@@ -476,10 +489,11 @@ Use the gap-x-* and gap-y-* utilities to change the gap between columns and rows
         <Text className="text-sm">06</Text>
       </GridItem>
     </Grid>
-`,
+  );
+}`,
         transformCode: (code) => {
-          return transformedCode(code);
-        },
+        return transformedCode(code, 'function', 'Example');
+      },
           scope: {
         Wrapper,
         Grid,
@@ -505,8 +519,12 @@ The following example depicts how easily you can nest grids to create complex la
       padding: 20,
     }}
     metaData = {{
-      code: `
-<Grid className="gap-3" _extra={{
+      code: `import { Grid, GridItem } from "@/components/ui/grid";
+import { Text } from "@/components/ui/text";
+	
+function Example() {
+  return (
+    <Grid className="gap-3" _extra={{
   className: 'grid-cols-8',
 }}>
       <GridItem
@@ -566,10 +584,11 @@ The following example depicts how easily you can nest grids to create complex la
         </Grid>
       </GridItem>
     </Grid>
-`,
+  );
+}`,
         transformCode: (code) => {
-          return transformedCode(code);
-        },
+        return transformedCode(code, 'function', 'Example');
+      },
           scope: {
         Wrapper,
         Grid,
@@ -595,8 +614,12 @@ You can pass different grid-cols-* and col-span-* values at different breakpoint
       padding: 20,
     }}
     metaData = {{
-      code: `
-<Grid className="gap-y-2 gap-x-4" _extra={{
+      code: `import { Grid, GridItem } from "@/components/ui/grid";
+import { Text } from "@/components/ui/text";
+	
+function Example() {
+  return (
+    <Grid className="gap-y-2 gap-x-4" _extra={{
   className: 'grid-cols-6',
 }}>
       <GridItem
@@ -648,10 +671,11 @@ You can pass different grid-cols-* and col-span-* values at different breakpoint
         <Text className="text-sm">06</Text>
       </GridItem>
     </Grid>
-`,
+  );
+}`,
         transformCode: (code) => {
-          return transformedCode(code);
-        },
+        return transformedCode(code, 'function', 'Example');
+      },
           scope: {
         Wrapper,
         Grid,

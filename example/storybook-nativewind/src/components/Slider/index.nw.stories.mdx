@@ -51,8 +51,12 @@ This is an illustration of **Slider** component.
     showComponentRenderer={true}
     showArgsController={true}
     metaData={{
-      code: `
-      <Center className="w-[300px] h-[150px]">
+      code: `import { Center } from "@/components/ui/center";
+import { Slider, SliderThumb, SliderTrack, SliderFilledTrack } from "@/components/ui/slider";
+	
+function Example() {
+  return (
+    <Center className="w-[300px] h-[150px]">
           <Slider  defaultValue={30} {...props}  >
             <SliderTrack>
               <SliderFilledTrack />
@@ -60,9 +64,10 @@ This is an illustration of **Slider** component.
             <SliderThumb />
           </Slider>
       </Center>
-      `,
+  );
+}`,
       transformCode: (code) => {
-        return transformedCode(code);
+        return transformedCode(code, 'function', 'Example');
       },
       scope: {
         Wrapper,

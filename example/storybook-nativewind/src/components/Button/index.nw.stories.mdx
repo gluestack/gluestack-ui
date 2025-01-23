@@ -54,13 +54,17 @@ This is an illustration of **Button** component.
     showComponentRenderer={true}
     showArgsController={true}
     metaData={{
-      code: `
-        <Button {...props}>
+      code: `import { Button, ButtonText } from "@/components/ui/button";
+	
+function Example() {
+  return (
+    <Button {...props}>
           <ButtonText>Hello World!</ButtonText>
         </Button>
-      `,
+  );
+}`,
       transformCode: (code) => {
-        return transformedCode(code);
+        return transformedCode(code, 'function', 'Example');
       },
       scope: { Button, ButtonText, ButtonIcon, Wrapper },
       argsType: {
@@ -580,15 +584,19 @@ A loading button is a type of button component that provides visual feedback to 
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-        <Button className='p-3'>
-        {/* colors is imported from tailwindcss/colors */}
+      code: `import { Button, ButtonText, ButtonSpinner } from "@/components/ui/button";
+import colors from "tailwindcss/colors";
+	
+function Example() {
+  return (
+    <Button className='p-3'>
           <ButtonSpinner color={colors.gray[400]} />
           <ButtonText className='font-medium text-sm ml-2'>Please wait...</ButtonText>
         </Button>
-      `,
+  );
+}`,
       transformCode: (code) => {
-        return transformedCode(code);
+        return transformedCode(code, 'function', 'Example');
       },
       scope: { Button, ButtonText, Wrapper, ButtonSpinner, colors },
       argsType: {},
@@ -605,16 +613,21 @@ A button with an icon integrates a visual symbol within the button component, en
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-        <Button
+      code: `import { Button, ButtonIcon } from "@/components/ui/button";
+import { EditIcon } from "@/components/ui/icon";
+	
+function Example() {
+  return (
+    <Button
       size='lg'
       className='rounded-full p-3.5'
     >
       <ButtonIcon as={EditIcon} />
     </Button>
-      `,
+  );
+}`,
       transformCode: (code) => {
-        return transformedCode(code);
+        return transformedCode(code, 'function', 'Example');
       },
       scope: { Button, ButtonIcon, Wrapper, EditIcon },
       argsType: {},
@@ -631,17 +644,22 @@ A button with a link combines the interactive behavior of a button component wit
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-        <Button variant='link'>
+      code: `import { Button, ButtonText, ButtonIcon } from "@/components/ui/button";
+import { ArrowUpIcon } from "@/components/ui/icon";
+	
+function Example() {
+  return (
+    <Button variant='link'>
           <ButtonText className='font-medium text-sm text-typography-900' >
             Back to top
           </ButtonText>
           <ButtonIcon as={ArrowUpIcon}
            className='h-3 w-3 text-background-900 ml-1' />
         </Button>
-      `,
+  );
+}`,
       transformCode: (code) => {
-        return transformedCode(code);
+        return transformedCode(code, 'function', 'Example');
       },
       scope: { Button, ButtonText, ButtonIcon, Wrapper, ArrowUpIcon },
       argsType: {},
@@ -658,8 +676,13 @@ The icon component incorporates a button component, combining visual representat
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-        <Box>
+      code: `import { Box } from "@/components/ui/box";
+import { Button, ButtonText, ButtonIcon } from "@/components/ui/button";
+import { AddIcon, InfoIcon } from "@/components/ui/icon";
+	
+function Example() {
+  return (
+    <Box>
           <Button>
           <ButtonIcon as={InfoIcon} className='mr-2'/>
             <ButtonText>Left Icon</ButtonText>
@@ -669,9 +692,10 @@ The icon component incorporates a button component, combining visual representat
             <ButtonIcon as={AddIcon} className='ml-2'/>
           </Button>
         </Box>
-      `,
+  );
+}`,
       transformCode: (code) => {
-        return transformedCode(code);
+        return transformedCode(code, 'function', 'Example');
       },
       scope: { Button, ButtonText, ButtonIcon, Wrapper, Icon, InfoIcon, AddIcon, Box },
       argsType: {},
@@ -689,8 +713,18 @@ The button with full width component utilizes a button component, expanding its 
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-        <Center>
+      code: `import { Box } from "@/components/ui/box";
+import { Button, ButtonText, ButtonIcon } from "@/components/ui/button";
+import { Center } from "@/components/ui/center";
+import { Heading } from "@/components/ui/heading";
+import { Input, InputField } from "@/components/ui/input";
+import { Text } from "@/components/ui/text";
+import { VStack } from "@/components/ui/vstack";
+import { ArrowLeftIcon } from "@/components/ui/icon";
+	
+function Example() {
+  return (
+    <Center>
           <Box className='p-5 max-w-96 border border-background-300 rounded-lg'>
             <VStack className='pb-4' space='xs'>
               <Heading className='leading-[30px]'>
@@ -738,9 +772,10 @@ The button with full width component utilizes a button component, expanding its 
             </VStack>
           </Box>
         </Center>
-      `,
+  );
+}`,
       transformCode: (code) => {
-        return transformedCode(code);
+        return transformedCode(code, 'function', 'Example');
       },
       scope: {
         Button,

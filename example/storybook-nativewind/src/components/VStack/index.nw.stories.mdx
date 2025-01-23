@@ -37,17 +37,22 @@ This is an illustration of **VStack** component.
     showComponentRenderer={ true }
   showArgsController = { true}
   metaData = {{
-    code: `
-        <Box className='justify-center h-80'>
+    code: `import { Box } from "@/components/ui/box";
+import { VStack } from "@/components/ui/vstack";
+	
+function Example() {
+  return (
+    <Box className='justify-center h-80'>
           <VStack {...props}>
             <Box  className="h-20 w-20 bg-primary-300" />
             <Box  className="h-20 w-20 bg-primary-400" />
             <Box  className="h-20 w-20 bg-primary-500" />
           </VStack>
         </Box>
-      `,
+  );
+}`,
       transformCode: (code) => {
-        return transformedCode(code);
+        return transformedCode(code, 'function', 'Example');
       },
         scope: {
       Wrapper,
@@ -269,15 +274,20 @@ A VStack component with the reversed prop reverses the order of vertically stack
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-        <VStack space='md'>
+      code: `import { Box } from "@/components/ui/box";
+import { VStack } from "@/components/ui/vstack";
+	
+function Example() {
+  return (
+    <VStack space='md'>
           <Box className='w-20 h-20 bg-primary-300' />
           <Box className='w-20 h-20 bg-primary-400' />
           <Box className='w-20 h-20 bg-primary-500' />
         </VStack>
-      `,
+  );
+}`,
       transformCode: (code) => {
-        return transformedCode(code);
+        return transformedCode(code, 'function', 'Example');
       },
       scope: { Box, Wrapper, VStack },
       argsType: {},

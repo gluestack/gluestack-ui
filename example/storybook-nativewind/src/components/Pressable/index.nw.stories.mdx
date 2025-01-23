@@ -29,14 +29,19 @@ This is an illustration of **Pressable** component.
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
- <Pressable
+      code: `import { Pressable } from "@/components/ui/pressable";
+import { Text } from "@/components/ui/text";
+	
+function Example() {
+  return (
+    <Pressable
   onPress={() => console.log('Hello')} className="p-5 bg-primary-500">
   <Text className="text-typography-0">Press me</Text>
 </Pressable>
-`,
+  );
+}`,
       transformCode: (code) => {
-        return transformedCode(code);
+        return transformedCode(code, 'function', 'Example');
       },
       scope: {
         Wrapper,
@@ -187,7 +192,11 @@ You can change the child elements according to the states of Pressable component
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
+      code: `import { Pressable } from "@/components/ui/pressable";
+import { Text } from "@/components/ui/text";
+	
+function Example() {
+  return (
     <Pressable className="p-16 bg-primary-500">
       {({ pressed }) => (
         <Text className={pressed ? 'text-pink-400' : 'text-amber-400'}>
@@ -195,9 +204,10 @@ You can change the child elements according to the states of Pressable component
         </Text>
       )}
     </Pressable>
-    `,
+  );
+}`,
       transformCode: (code) => {
-        return transformedCode(code);
+        return transformedCode(code, 'function', 'Example');
       },
       scope: {
         Wrapper,

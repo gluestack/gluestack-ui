@@ -55,8 +55,15 @@ This is an illustration of **ImageViewer** component.
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-      function App() {
+      code: `import { Center } from "@/components/ui/center";
+import { Image } from "@/components/ui/image";
+import { ImageViewer, ImageViewerBackdrop, ImageViewerContent, ImageViewerImage, ImageViewerCloseButton } from "@/components/ui/image-viewer";
+import { Pressable } from "@/components/ui/pressable";
+import { StatusBar } from "@/components/ui/statusbar";
+import { Icon, CloseIcon } from "@/components/ui/icon";
+import React from "react";
+	
+function App() {
         const [visible, setVisible] = React.useState(false);
         const Images = [{ id: 1, url: 'https://img.freepik.com/free-photo/young-boy-learning-how-ride-horse_23-2150460636.jpg' }];
         return (
@@ -86,8 +93,7 @@ This is an illustration of **ImageViewer** component.
           </ImageViewer>
         </Center>
         );
-      }
-      `,
+      }`,
       transformCode: (code) => {
         return transformedCode(code, 'function', 'App');
       },
@@ -379,8 +385,15 @@ import { StatusBar } from 'expo-status-bar';
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-      function App() {
+      code: `import { Center } from "@/components/ui/center";
+import { Image } from "@/components/ui/image";
+import { ImageViewer, ImageViewerBackdrop, ImageViewerContent, ImageViewerImage, ImageViewerCloseButton } from "@/components/ui/image-viewer";
+import { Pressable } from "@/components/ui/pressable";
+import { StatusBar } from "@/components/ui/statusbar";
+import { Icon, CloseIcon } from "@/components/ui/icon";
+import React from "react";
+	
+function App() {
         const [visible, setVisible] = React.useState(false);
         const Images = [{ id: 1, url: 'https://img.freepik.com/free-photo/young-boy-learning-how-ride-horse_23-2150460636.jpg' }];
         return (
@@ -410,8 +423,7 @@ import { StatusBar } from 'expo-status-bar';
           </ImageViewer>
         </Center>
         );
-      }
-      `,
+      }`,
       transformCode: (code) => {
         return transformedCode(code, 'function', 'App');
       },

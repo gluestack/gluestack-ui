@@ -4,14 +4,17 @@ export function transformedCode(
   type: 'jsx' | 'function' = 'jsx',
   componentName?: string
 ) {
+  let codeFormat = code;
+  const importRegex = /import[^;]*;/g;
+  codeFormat = codeFormat.replace(importRegex, '');
   if (type === 'function') {
     return `function App() {
-      ${code}
+      ${codeFormat}
     return <Wrapper><${componentName} /></Wrapper>;
   };`;
   }
   return `function App() {
-    return <Wrapper>${code}</Wrapper>;
+    return <Wrapper>${codeFormat}</Wrapper>;
   };`;
 }
 

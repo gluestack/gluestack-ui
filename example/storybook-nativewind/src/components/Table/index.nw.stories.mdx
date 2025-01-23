@@ -56,7 +56,10 @@ This is an illustration of a **Table** component.
       overflow: 'scroll',
     }}
     metaData={{
-      code: `
+      code: `import { Table, TableHeader, TableBody, TableFooter, TableHead, TableRow, TableData } from "@/components/ui/table";
+	
+function Example() {
+  return (
     <Table className="w-full">
       <TableHeader>
         <TableRow>
@@ -100,9 +103,10 @@ This is an illustration of a **Table** component.
         </TableRow>
       </TableFooter>
     </Table>
-      `,
+  );
+}`,
       transformCode: (code) => {
-        return transformedCode(code);
+        return transformedCode(code, 'function', 'Example');
       },
       scope: {
        Table,
@@ -357,7 +361,9 @@ This is an example of a Table component with a caption.
       overflow: 'scroll',
     }}
     metaData={{
-      code: `
+      code: `import { Box } from "@/components/ui/box";
+import { Table, TableHeader, TableBody, TableHead, TableRow, TableData, TableCaption } from "@/components/ui/table";
+	
 function App(){
     return (
         <Box className="rounded-lg overflow-hidden w-full">
@@ -407,8 +413,7 @@ function App(){
       </Table>
     </Box>
 );
-}
-`,
+}`,
 transformCode: (code) => {
 return transformedCode(code, 'function', 'App');
 },
@@ -443,7 +448,10 @@ This example demonstrates a table with a striped background.
       overflow: 'scroll',
     }}
     metaData={{
-      code: `
+      code: `import { Badge, BadgeText } from "@/components/ui/badge";
+import { Box } from "@/components/ui/box";
+import { Table, TableHeader, TableBody, TableHead, TableRow, TableData } from "@/components/ui/table";
+	
 function App(){
     return (
          <Box className="p-3 bg-background-0 rounded-lg overflow-hidden">
@@ -547,8 +555,7 @@ function App(){
       </Table>
     </Box>
 );
-}
-`,
+}`,
 transformCode: (code) => {
 return transformedCode(code, 'function', 'App');
 },
@@ -584,7 +591,10 @@ This example illustrates a table component with a badge component.
       overflow: 'scroll',
     }}
     metaData={{
-      code: `
+      code: `import { Badge, BadgeText } from "@/components/ui/badge";
+import { Box } from "@/components/ui/box";
+import { Table, TableHeader, TableBody, TableHead, TableRow, TableData } from "@/components/ui/table";
+	
 function App(){
     return (
  <Box className="rounded-lg overflow-hidden">
@@ -688,8 +698,7 @@ function App(){
       </Table>
     </Box>
 );
-}
-`,
+}`,
 transformCode: (code) => {
 return transformedCode(code, 'function', 'App');
 },
@@ -725,7 +734,9 @@ This example illustrates a table component with a top and a side header.
       overflow: 'scroll',
     }}
     metaData={{
-      code: `
+      code: `import { Box } from "@/components/ui/box";
+import { Table, TableHeader, TableBody, TableHead, TableRow, TableData } from "@/components/ui/table";
+	
 function App(){
     return (
 <Box className="border border-solid border-outline-200 rounded-lg overflow-hidden w-full">
@@ -777,8 +788,7 @@ function App(){
       </Table>
     </Box>
 );
-}
-`,
+}`,
 transformCode: (code) => {
 return transformedCode(code, 'function', 'App');
 },
