@@ -48,8 +48,11 @@ This is an illustration of **Avatar** component.
       showComponentRenderer={ true }
     showArgsController = { true}
     metaData = {{
-      code: `
-        <Avatar {...props}>
+      code: `import { Avatar, AvatarBadge, AvatarFallbackText, AvatarImage } from "@/components/ui/avatar";
+	
+function Example() {
+  return (
+    <Avatar {...props}>
           <AvatarFallbackText>Jane Doe</AvatarFallbackText>
         <AvatarImage
           source={{
@@ -58,10 +61,11 @@ This is an illustration of **Avatar** component.
         />
         <AvatarBadge />
         </Avatar>
-      `,
+  );
+}`,
         transformCode: (code) => {
-          return transformedCode(code);
-        },
+        return transformedCode(code, 'function', 'Example');
+      },
           scope: {
           Wrapper,
           Avatar,
@@ -240,7 +244,14 @@ An Avatar component with text displays a stylized representation of a user or en
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
+      code: `import { Avatar, AvatarBadge, AvatarFallbackText } from "@/components/ui/avatar";
+import { Heading } from "@/components/ui/heading";
+import { HStack } from "@/components/ui/hstack";
+import { Text } from "@/components/ui/text";
+import { VStack } from "@/components/ui/vstack";
+	
+function Example() {
+  return (
     <VStack space="2xl">
         <HStack space="md">
             <Avatar className='bg-indigo-600'>
@@ -262,9 +273,10 @@ An Avatar component with text displays a stylized representation of a user or en
         </VStack>
      </HStack>
     </VStack>
-`,
+  );
+}`,
       transformCode: (code) => {
-        return transformedCode(code);
+        return transformedCode(code, 'function', 'Example');
       },
       scope: {
         Wrapper,
@@ -291,11 +303,19 @@ An Avatar component with an icon combines a graphical symbol or icon with a user
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-        <VStack space="2xl">
+      code: `import { Avatar } from "@/components/ui/avatar";
+import { Heading } from "@/components/ui/heading";
+import { HStack } from "@/components/ui/hstack";
+import { Text } from "@/components/ui/text";
+import { VStack } from "@/components/ui/vstack";
+import { Icon } from "@/components/ui/icon";
+import { User } from "lucide-react-native";
+	
+function Example() {
+  return (
+    <VStack space="2xl">
             <HStack space="md">
               <Avatar className='bg-indigo-600'>
-                {/* User is imported from 'lucide-react-native' */}
                 <Icon as={User} size="lg" className="stroke-white" />
               </Avatar>
               <VStack >
@@ -305,7 +325,6 @@ An Avatar component with an icon combines a graphical symbol or icon with a user
             </HStack>
             <HStack space="md">
                 <Avatar className='bg-pink-600'>
-                 {/* User is imported from 'lucide-react-native' */}
                 <Icon as={User} size="lg" className="stroke-white" />
                 </Avatar>
                 <VStack >
@@ -314,9 +333,10 @@ An Avatar component with an icon combines a graphical symbol or icon with a user
                 </VStack>
           </HStack>
         </VStack>
-      `,
+  );
+}`,
       transformCode: (code) => {
-        return transformedCode(code);
+        return transformedCode(code, 'function', 'Example');
       },
       scope: {
         Wrapper,
@@ -345,8 +365,15 @@ An Avatar component with an image incorporates a user or entity representation u
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-        <VStack space="2xl">
+      code: `import { Avatar, AvatarBadge, AvatarFallbackText, AvatarImage } from "@/components/ui/avatar";
+import { Heading } from "@/components/ui/heading";
+import { HStack } from "@/components/ui/hstack";
+import { Text } from "@/components/ui/text";
+import { VStack } from "@/components/ui/vstack";
+	
+function Example() {
+  return (
+    <VStack space="2xl">
           <HStack space="md">
             <Avatar>
               <AvatarFallbackText>SS</AvatarFallbackText>
@@ -377,9 +404,10 @@ An Avatar component with an image incorporates a user or entity representation u
             </VStack>
           </HStack>
         </VStack>
-      `,
+  );
+}`,
       transformCode: (code) => {
-        return transformedCode(code);
+        return transformedCode(code, 'function', 'Example');
       },
       scope: {
         Wrapper,
@@ -408,8 +436,9 @@ The avatar group allows users to group avatars and display them in a horizontal 
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-        function App(){
+      code: `import { Avatar, AvatarFallbackText, AvatarGroup } from "@/components/ui/avatar";
+	
+function App(){
           const avatars = [
               { src: 'https://example.com.jpg', alt: 'Sandeep Srivastva', color:'bg-emerald-600' },
               { src: 'https://example.com.jpg', alt: 'Arjun Kapoor', color:'bg-cyan-600' },
@@ -433,8 +462,7 @@ The avatar group allows users to group avatars and display them in a horizontal 
               </Avatar>
             </AvatarGroup>
           );
-        }
-      `,
+        }`,
       transformCode: (code) => {
         return transformedCode(code, 'function', 'App');
       },
@@ -461,8 +489,11 @@ An Avatar Group component without badges organizes multiple avatars in a visuall
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-        <AvatarGroup>
+      code: `import { Avatar, AvatarFallbackText, AvatarImage, AvatarGroup } from "@/components/ui/avatar";
+	
+function Example() {
+  return (
+    <AvatarGroup>
           <Avatar size="md">
             <AvatarFallbackText>John Doe</AvatarFallbackText>
             <AvatarImage
@@ -496,9 +527,10 @@ An Avatar Group component without badges organizes multiple avatars in a visuall
             />
           </Avatar>
         </AvatarGroup>
-`,
+  );
+}`,
       transformCode: (code) => {
-        return transformedCode(code);
+        return transformedCode(code, 'function', 'Example');
       },
       scope: {
         Avatar,
@@ -523,8 +555,11 @@ An Avatar Group component with badges presents a collection of avatars with acco
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-        <AvatarGroup>
+      code: `import { Avatar, AvatarBadge, AvatarFallbackText, AvatarImage, AvatarGroup } from "@/components/ui/avatar";
+	
+function Example() {
+  return (
+    <AvatarGroup>
           <Avatar size="md">
             <AvatarFallbackText>John Doe</AvatarFallbackText>
             <AvatarImage
@@ -563,9 +598,10 @@ An Avatar Group component with badges presents a collection of avatars with acco
             <AvatarBadge />
           </Avatar>
         </AvatarGroup>
-`,
+  );
+}`,
       transformCode: (code) => {
-        return transformedCode(code);
+        return transformedCode(code, 'function', 'Example');
       },
       scope: {
         Avatar,
@@ -590,11 +626,19 @@ A custom Avatar component with text allows for personalized user or entity repre
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-        <VStack space="2xl">
+      code: `import { Avatar } from "@/components/ui/avatar";
+import { Heading } from "@/components/ui/heading";
+import { HStack } from "@/components/ui/hstack";
+import { Text } from "@/components/ui/text";
+import { VStack } from "@/components/ui/vstack";
+import { Icon } from "@/components/ui/icon";
+import { User } from "lucide-react-native";
+	
+function Example() {
+  return (
+    <VStack space="2xl">
           <HStack space="md">
             <Avatar size="md" className='bg-indigo-300 border-2 border-indigo-600'>
-              {/* User is imported from 'lucide-react-native' */}
               <Icon as={User} size="xl" className='text-indigo-600' />
             </Avatar>
             <VStack  >
@@ -604,7 +648,6 @@ A custom Avatar component with text allows for personalized user or entity repre
           </HStack>
           <HStack space="md">
             <Avatar size="md" className='bg-pink-300 border-2 border-pink-600'>
-            {/* User is imported from 'lucide-react-native' */}
               <Icon as={User} size="xl" className='text-pink-600' />
             </Avatar>
             <VStack >
@@ -613,9 +656,10 @@ A custom Avatar component with text allows for personalized user or entity repre
             </VStack>
           </HStack>
         </VStack>
-      `,
+  );
+}`,
       transformCode: (code) => {
-        return transformedCode(code);
+        return transformedCode(code, 'function', 'Example');
       },
       scope: {
         Wrapper,
@@ -644,8 +688,12 @@ Fallback text is shown when the image fails to load, the image is not available 
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-     <HStack space="md">
+      code: `import { Avatar, AvatarFallbackText, AvatarImage } from "@/components/ui/avatar";
+import { HStack } from "@/components/ui/hstack";
+	
+function Example() {
+  return (
+    <HStack space="md">
           <Avatar size="md">
             <AvatarFallbackText>John Doe</AvatarFallbackText>
             <AvatarImage
@@ -655,9 +703,10 @@ Fallback text is shown when the image fails to load, the image is not available 
             />
           </Avatar>
       </HStack>
-    `,
+  );
+}`,
       transformCode: (code) => {
-        return transformedCode(code);
+        return transformedCode(code, 'function', 'Example');
       },
       scope: {
         Avatar,

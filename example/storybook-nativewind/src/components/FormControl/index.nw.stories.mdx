@@ -98,8 +98,14 @@ This is an illustration of **FormControl** component.
       p: '$3',
     }}
     metaData={{
-      code: `
-        function App () {
+      code: `import { Button, ButtonText } from "@/components/ui/button";
+import { FormControl, FormControlError, FormControlErrorText, FormControlErrorIcon, FormControlLabel, FormControlLabelText, FormControlHelper, FormControlHelperText } from "@/components/ui/form-control";
+import { Input, InputField } from "@/components/ui/input";
+import { VStack } from "@/components/ui/vstack";
+import { AlertCircleIcon } from "@/components/ui/icon";
+import React from "react";
+	
+function App () {
         const [isInvalid, setIsInvalid] = React.useState(false);
         const [inputValue, setInputValue] = React.useState('12345');
         const handleSubmit = () => {
@@ -140,8 +146,7 @@ This is an illustration of **FormControl** component.
             </Button>
           </VStack>
         );
-      };
-      `,
+      };`,
       transformCode: (code) => {
         return transformedCode(code, 'function', 'App');
       },
@@ -421,8 +426,13 @@ The Radio Component can be incorporated within the FormControl.
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-      function App () {
+      code: `import { FormControl, FormControlLabel, FormControlLabelText, FormControlHelper, FormControlHelperText } from "@/components/ui/form-control";
+import { Radio, RadioGroup, RadioIndicator, RadioLabel, RadioIcon } from "@/components/ui/radio";
+import { VStack } from "@/components/ui/vstack";
+import { CircleIcon } from "@/components/ui/icon";
+import React from "react";
+	
+function App () {
         const [values, setValues] = React.useState("Mango");
         return (
         <FormControl>
@@ -466,8 +476,7 @@ The Radio Component can be incorporated within the FormControl.
           </FormControlHelper>
         </FormControl>
         )
-       }
-      `,
+       }`,
       transformCode: (code) => {
         return transformedCode(code, 'function', 'App');
       },
@@ -506,8 +515,13 @@ The Checkbox Component can be incorporated within the FormControl.
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-      function App() {
+      code: `import { Checkbox, CheckboxIndicator, CheckboxLabel, CheckboxIcon, CheckboxGroup } from "@/components/ui/checkbox";
+import { FormControl, FormControlLabel, FormControlLabelText, FormControlHelper, FormControlHelperText } from "@/components/ui/form-control";
+import { VStack } from "@/components/ui/vstack";
+import { CheckIcon } from "@/components/ui/icon";
+import React from "react";
+	
+function App() {
       const [values, setValues] = React.useState(['bits']);
         return (
           <FormControl>
@@ -549,8 +563,7 @@ The Checkbox Component can be incorporated within the FormControl.
             </FormControlHelper>
           </FormControl>
         );
-      }
-      `,
+      }`,
       transformCode: (code) => {
         return transformedCode(code, 'function', 'App');
       },
@@ -590,8 +603,12 @@ The Textarea Component can be incorporated within the FormControl.
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-        <FormControl>
+      code: `import { FormControl, FormControlLabel, FormControlLabelText, FormControlHelper, FormControlHelperText } from "@/components/ui/form-control";
+import { Textarea, TextareaInput } from "@/components/ui/textarea";
+	
+function Example() {
+  return (
+    <FormControl>
           <FormControlLabel>
             <FormControlLabelText>
               Comment
@@ -606,9 +623,10 @@ The Textarea Component can be incorporated within the FormControl.
             </FormControlHelperText>
           </FormControlHelper>
         </FormControl>
-      `,
+  );
+}`,
       transformCode: (code) => {
-        return transformedCode(code);
+        return transformedCode(code, 'function', 'Example');
       },
       scope: {
         Wrapper,
@@ -639,8 +657,14 @@ Error messages can be displayed using FormControl.
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-        <FormControl isInvalid>
+      code: `import { FormControl, FormControlError, FormControlErrorText, FormControlErrorIcon, FormControlLabel, FormControlLabelText } from "@/components/ui/form-control";
+import { Radio, RadioGroup, RadioIndicator, RadioLabel, RadioIcon } from "@/components/ui/radio";
+import { VStack } from "@/components/ui/vstack";
+import { AlertCircleIcon, CircleIcon } from "@/components/ui/icon";
+	
+function Example() {
+  return (
+    <FormControl isInvalid>
           <FormControlLabel>
             <FormControlLabelText>
               Which time slot works best for you?
@@ -681,9 +705,10 @@ Error messages can be displayed using FormControl.
             </FormControlErrorText>
           </FormControlError>
         </FormControl>
-      `,
+  );
+}`,
       transformCode: (code) => {
-        return transformedCode(code);
+        return transformedCode(code, 'function', 'Example');
       },
       scope: {
         Wrapper,
@@ -720,8 +745,13 @@ Form Action Buttons can also be utilized in conjunction with FormControl.
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-        <HStack>
+      code: `import { Button, ButtonText } from "@/components/ui/button";
+import { FormControl } from "@/components/ui/form-control";
+import { HStack } from "@/components/ui/hstack";
+	
+function Example() {
+  return (
+    <HStack>
           <FormControl>
             <Button variant='outline' action='secondary'>
               <ButtonText>
@@ -737,9 +767,10 @@ Form Action Buttons can also be utilized in conjunction with FormControl.
             </Button>
           </FormControl>
         </HStack>
-      `,
+  );
+}`,
       transformCode: (code) => {
-        return transformedCode(code);
+        return transformedCode(code, 'function', 'Example');
       },
       scope: {
         Wrapper,

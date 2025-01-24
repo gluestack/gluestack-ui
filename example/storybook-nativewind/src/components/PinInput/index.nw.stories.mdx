@@ -52,15 +52,19 @@ This is an illustration of a **PinInput** component.
       overflow: 'scroll',
     }}
     metaData={{
-      code: `
-        <PinInput noOfFields={4}>
+      code: `import { PinInput, PinInputField } from "@/components/ui/pin-input";
+	
+function Example() {
+  return (
+    <PinInput noOfFields={4}>
           {Array.from({ length: 4 }).map((_, index) => (
             <PinInputField key={index} index={index} />
           ))}
         </PinInput>
-      `,
+  );
+}`,
       transformCode: (code) => {
-        return transformedCode(code);
+        return transformedCode(code, 'function', 'Example');
       },
       scope: {
         PinInput,
@@ -272,8 +276,10 @@ This is an example of a PinInput component with a caption.
       overflow: 'scroll',
     }}
     metaData={{
-      code: `
-        function App(){
+      code: `import { FormControl, FormControlLabel, FormControlLabelText } from "@/components/ui/form-control";
+import { PinInput, PinInputField } from "@/components/ui/pin-input";
+	
+function App(){
           const [value, setValue] = useState('');
           useEffect(() => {
             console.log(value);
@@ -292,8 +298,7 @@ This is an example of a PinInput component with a caption.
               </PinInput>
             </FormControl>
           );
-        }
-      `,
+        }`,
       transformCode: (code) => {
         return transformedCode(code, 'function', 'App');
       },

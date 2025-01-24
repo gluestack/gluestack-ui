@@ -55,8 +55,13 @@ This is an illustration of **Accordion** component.
       justifyContent: 'stretch',
     }}
     metaData={{
-      code: `
-      <Accordion {...props} className="m-5 w-[90%] border border-outline-200">
+      code: `import { Accordion, AccordionItem, AccordionHeader, AccordionTrigger, AccordionTitleText, AccordionContentText, AccordionIcon, AccordionContent } from "@/components/ui/accordion";
+import { Divider } from "@/components/ui/divider";
+import { ChevronUpIcon, ChevronDownIcon } from "@/components/ui/icon";
+	
+function Example() {
+  return (
+    <Accordion {...props} className="m-5 w-[90%] border border-outline-200">
         <AccordionItem value="a">
           <AccordionHeader>
             <AccordionTrigger>
@@ -112,9 +117,10 @@ This is an illustration of **Accordion** component.
           </AccordionContent>
         </AccordionItem>
         </Accordion>
-      `,
+  );
+}`,
       transformCode: (code) => {
-        return transformedCode(code);
+        return transformedCode(code, 'function', 'Example');
       },
       scope: {
         Accordion,
@@ -497,7 +503,9 @@ The following example demonstrates how easily you can customize the Accordion co
       justifyContent: 'stretch',
     }}
     metaData={{
-      code: `
+      code: `import { Accordion, AccordionItem, AccordionHeader, AccordionTrigger, AccordionTitleText, AccordionContentText, AccordionIcon, AccordionContent } from "@/components/ui/accordion";
+import { ChevronUpIcon, ChevronDownIcon } from "@/components/ui/icon";
+	
 function App(){
     return (
       <Accordion
@@ -604,8 +612,7 @@ function App(){
       </AccordionItem>
     </Accordion>
 );
-}
-`,
+}`,
 transformCode: (code) => {
 return transformedCode(code, 'function', 'App');
 },
@@ -640,7 +647,9 @@ The borderRadius prop can be used to create rounded corners for both the Accordi
       justifyContent: 'stretch',
     }}
     metaData={{
-      code: `
+      code: `import { Accordion, AccordionItem, AccordionHeader, AccordionTrigger, AccordionTitleText, AccordionContentText, AccordionIcon, AccordionContent } from "@/components/ui/accordion";
+import { MinusIcon, PlusIcon } from "lucide-react-native";
+	
 function App(){
     return (
           <Accordion className="m-5 w-[80%] max-w-[640px] bg-transparent">
@@ -701,8 +710,7 @@ function App(){
       </AccordionItem>
     </Accordion>
 );
-}
-`,
+}`,
       transformCode: (code) => {
         return transformedCode(code, 'function', 'App');
       },
@@ -736,7 +744,9 @@ You can disable an item by setting the isDisabled prop to true. This will preven
       justifyContent: 'stretch',
     }}
     metaData={{
-      code: `
+      code: `import { Accordion, AccordionItem, AccordionHeader, AccordionTrigger, AccordionTitleText, AccordionContentText, AccordionIcon, AccordionContent } from "@/components/ui/accordion";
+import { MinusIcon, PlusIcon } from "lucide-react-native";
+	
 function App(){
     return (
           <Accordion variant="unfilled" className="m-5 w-[90%]">
@@ -756,7 +766,6 @@ function App(){
                   ) : (
                     <AccordionIcon as={PlusIcon}  />
                   )}
-                
                 </>
               );
             }}
@@ -768,7 +777,6 @@ function App(){
           </AccordionContentText>
         </AccordionContent>
       </AccordionItem>
-   
       <AccordionItem value="item-2" >
         <AccordionHeader>
           <AccordionTrigger>
@@ -798,8 +806,7 @@ function App(){
       </AccordionItem>
     </Accordion>
 );
-}
-`,
+}`,
       transformCode: (code) => {
         return transformedCode(code, 'function', 'App');
       },
@@ -834,7 +841,10 @@ Use the defaultValue prop to define the open item by default.
       justifyContent: 'stretch',
     }}
     metaData={{
-      code: `
+      code: `import { Accordion, AccordionItem, AccordionHeader, AccordionTrigger, AccordionTitleText, AccordionContentText, AccordionIcon, AccordionContent } from "@/components/ui/accordion";
+import { Divider } from "@/components/ui/divider";
+import { MinusIcon, PlusIcon } from "lucide-react-native";
+	
 function App(){
     return (
           <Accordion variant="unfilled" type="single" defaultValue="item-3" className="w-[90%] m-5">
@@ -852,7 +862,6 @@ function App(){
                   ) : (
                     <AccordionIcon as={PlusIcon}  />
                   )}
-                
                 </>
               );
             }}
@@ -920,8 +929,7 @@ function App(){
       </AccordionItem>
     </Accordion>
 );
-}
-`,
+}`,
       transformCode: (code) => {
         return transformedCode(code, 'function', 'App');
       },
@@ -956,7 +964,9 @@ You can nest Accordion components to create a nested accordion. This is useful w
       justifyContent: 'stretch',
     }}
     metaData={{
-      code: `
+      code: `import { Accordion, AccordionItem, AccordionHeader, AccordionTrigger, AccordionTitleText, AccordionContentText, AccordionIcon, AccordionContent } from "@/components/ui/accordion";
+import { MinusIcon, PlusIcon } from "lucide-react-native";
+	
 function App(){
     return (
            <Accordion
@@ -1041,8 +1051,7 @@ function App(){
       </AccordionItem>
     </Accordion>
 );
-}
-`,
+}`,
       transformCode: (code) => {
         return transformedCode(code, 'function', 'App');
       },
@@ -1078,7 +1087,10 @@ You can make the Accordion component controlled by passing the value prop to the
       justifyContent: 'stretch',
     }}
     metaData={{
-      code: `
+      code: `import { Accordion, AccordionItem, AccordionHeader, AccordionTrigger, AccordionTitleText, AccordionContentText, AccordionIcon, AccordionContent } from "@/components/ui/accordion";
+import React from "react";
+import { MinusIcon, PlusIcon } from "lucide-react-native";
+	
 function App(){
     const [selectedValues, setSelectedValues] = React.useState(['item-1', 'item-2']);
     return (
@@ -1098,7 +1110,6 @@ function App(){
                   ) : (
                     <AccordionIcon as={PlusIcon}  />
                   )}
-                
                 </>
               );
             }}
@@ -1110,7 +1121,6 @@ function App(){
           </AccordionContentText>
         </AccordionContent>
       </AccordionItem>
-   
       <AccordionItem value="item-2"
       >
         <AccordionHeader>
@@ -1166,8 +1176,7 @@ function App(){
       </AccordionItem>
     </Accordion>
 );
-}
-`,
+}`,
       transformCode: (code) => {
         return transformedCode(code, 'function', 'App');
       },

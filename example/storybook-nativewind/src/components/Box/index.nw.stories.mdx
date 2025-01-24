@@ -33,18 +33,23 @@ This is an illustration of **Box** component.
       showComponentRenderer={ true }
     showArgsController = { false}
     metaData = {{
-      code: `
-<Box
+      code: `import { Box } from "@/components/ui/box";
+import { Text } from "@/components/ui/text";
+	
+function Example() {
+  return (
+    <Box
   className="bg-primary-500 p-5"
 >
   <Text className='text-typography-0'>
     This is the Box
   </Text>
 </Box>
-`,
+  );
+}`,
         transformCode: (code) => {
-          return transformedCode(code);
-        },
+        return transformedCode(code, 'function', 'Example');
+      },
           scope: {
         Wrapper,
           Box,

@@ -37,11 +37,15 @@ This is an illustration of **Heading** component.
     showComponentRenderer={ true }
   showArgsController = { false}
   metaData = {{
-    code: `
-        <Heading>I am a Heading</Heading>
-      `,
+    code: `import { Heading } from "@/components/ui/heading";
+	
+function Example() {
+  return (
+    <Heading>I am a Heading</Heading>
+  );
+}`,
       transformCode: (code) => {
-        return transformedCode(code);
+        return transformedCode(code, 'function', 'Example');
       },
         scope: {
       Wrapper,
@@ -406,8 +410,10 @@ Heading component offers a range of sizes, including `xs`, `sm`, `md`, `lg`, `xl
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-        function App() {
+      code: `import { Center } from "@/components/ui/center";
+import { Heading } from "@/components/ui/heading";
+	
+function App() {
           const sizes = [
             'xs',
             'sm',
@@ -426,8 +432,7 @@ Heading component offers a range of sizes, including `xs`, `sm`, `md`, `lg`, `xl
                 ))}
               </Center>
           );
-        }
-      `,
+        }`,
       transformCode: (code) => {
         return transformedCode(code, 'function', 'App');
       },

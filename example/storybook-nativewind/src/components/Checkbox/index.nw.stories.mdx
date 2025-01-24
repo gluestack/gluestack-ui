@@ -53,16 +53,21 @@ This is an illustration of **Checkbox** component.
     showComponentRenderer={true}
     showArgsController={true}
     metaData={{
-      code: `
-          <Checkbox   {...props}  >
+      code: `import { Checkbox, CheckboxIndicator, CheckboxLabel, CheckboxIcon } from "@/components/ui/checkbox";
+import { CheckIcon } from "@/components/ui/icon";
+	
+function Example() {
+  return (
+    <Checkbox   {...props}  >
             <CheckboxIndicator>
               <CheckboxIcon as={CheckIcon}/>
             </CheckboxIndicator>
             <CheckboxLabel>Label</CheckboxLabel>
           </Checkbox>
-      `,
+  );
+}`,
       transformCode: (code) => {
-        return transformedCode(code);
+        return transformedCode(code, 'function', 'Example');
       },
       scope: {
         Checkbox,
@@ -724,8 +729,12 @@ Checkbox provide a mutually exclusive selection mechanism, allowing users to cho
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-        function App(){
+      code: `import { Checkbox, CheckboxIndicator, CheckboxLabel, CheckboxIcon, CheckboxGroup } from "@/components/ui/checkbox";
+import { VStack } from "@/components/ui/vstack";
+import { CheckIcon } from "@/components/ui/icon";
+import React from "react";
+	
+function App(){
             const [values, setValues] = React.useState(["Eng"]);
             return (
               <CheckboxGroup value={values}  onChange={(keys) => {
@@ -753,8 +762,7 @@ Checkbox provide a mutually exclusive selection mechanism, allowing users to cho
               </VStack>
               </CheckboxGroup>
            )
-        }
-      `,
+        }`,
       transformCode: (code) => {
         return transformedCode(code, 'function', 'App');
       },
@@ -785,8 +793,12 @@ A horizontal component incorporating a checkbox allows for intuitive and space-e
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-          function App(){
+      code: `import { Checkbox, CheckboxIndicator, CheckboxLabel, CheckboxIcon, CheckboxGroup } from "@/components/ui/checkbox";
+import { HStack } from "@/components/ui/hstack";
+import { CheckIcon } from "@/components/ui/icon";
+import React from "react";
+	
+function App(){
              const [values, setValues] = React.useState(["Illustration"]);
            return (
              <CheckboxGroup value={values}  onChange={(keys) => {
@@ -814,8 +826,7 @@ A horizontal component incorporating a checkbox allows for intuitive and space-e
                </HStack>
                  </CheckboxGroup>
            )
-        }
-`,
+        }`,
       transformCode: (code) => {
         return transformedCode(code, 'function', 'App');
       },
@@ -845,8 +856,14 @@ A checkbox component with help text provides informative guidance alongside sele
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-        function App(){
+      code: `import { Box } from "@/components/ui/box";
+import { Checkbox, CheckboxIndicator, CheckboxLabel, CheckboxIcon, CheckboxGroup } from "@/components/ui/checkbox";
+import { Text } from "@/components/ui/text";
+import { VStack } from "@/components/ui/vstack";
+import { CheckIcon } from "@/components/ui/icon";
+import React from "react";
+	
+function App(){
              const [values, setValues] = React.useState(["Design"]);
            return (
              <CheckboxGroup value={values}  onChange={(keys) => {
@@ -874,8 +891,7 @@ A checkbox component with help text provides informative guidance alongside sele
         </VStack>
                  </CheckboxGroup>
            )
-        }
-`,
+        }`,
       transformCode: (code) => {
         return transformedCode(code, 'function', 'App');
       },
@@ -908,8 +924,16 @@ A checkbox component integrated with form control enhances the user experience b
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-       <FormControl>
+      code: `import { Checkbox, CheckboxIndicator, CheckboxLabel, CheckboxIcon } from "@/components/ui/checkbox";
+import { FormControl } from "@/components/ui/form-control";
+import { Heading } from "@/components/ui/heading";
+import { Text } from "@/components/ui/text";
+import { VStack } from "@/components/ui/vstack";
+import { CheckIcon } from "@/components/ui/icon";
+	
+function Example() {
+  return (
+    <FormControl>
            <VStack space="sm">
               <Heading size="sm" >Sign up for newsletters</Heading>
               <Checkbox >
@@ -933,9 +957,10 @@ A checkbox component integrated with form control enhances the user experience b
               <Text size="sm">Subscribe to newsletters for updates</Text>
            </VStack>
             </FormControl>
-        `,
+  );
+}`,
       transformCode: (code) => {
-        return transformedCode(code);
+        return transformedCode(code, 'function', 'Example');
       },
       scope: {
         Checkbox,
@@ -966,8 +991,12 @@ A checkbox component with Label left configuration aligns the label to the left,
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-       function App(){
+      code: `import { Checkbox, CheckboxIndicator, CheckboxLabel, CheckboxIcon, CheckboxGroup } from "@/components/ui/checkbox";
+import { VStack } from "@/components/ui/vstack";
+import { CheckIcon } from "@/components/ui/icon";
+import React from "react";
+	
+function App(){
              const [values, setValues] = React.useState(["Jane"]);
            return (
              <CheckboxGroup value={values}  onChange={(keys) => {
@@ -1027,8 +1056,12 @@ A controlled component architecture incorporates a checkbox component, allowing 
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-      function App() {
+      code: `import { Checkbox, CheckboxIndicator, CheckboxLabel, CheckboxIcon, CheckboxGroup } from "@/components/ui/checkbox";
+import { VStack } from "@/components/ui/vstack";
+import { CheckIcon } from "@/components/ui/icon";
+import React from "react";
+	
+function App() {
          const [values, setValues] = React.useState(['UX Research']);
         return (
           <CheckboxGroup value={values}  onChange={(keys)=>{
@@ -1050,8 +1083,7 @@ A controlled component architecture incorporates a checkbox component, allowing 
             </VStack>
           </CheckboxGroup>
         )
-      }
-      `,
+      }`,
       transformCode: (code) => {
         return transformedCode(code, 'function', 'App');
       },
@@ -1082,7 +1114,11 @@ An uncontrolled component utilizes a checkbox component, providing a simpler imp
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
+      code: `import { Checkbox, CheckboxIndicator, CheckboxLabel, CheckboxIcon, CheckboxGroup } from "@/components/ui/checkbox";
+import { VStack } from "@/components/ui/vstack";
+import { CheckIcon } from "@/components/ui/icon";
+import React from "react";
+	
 function App() {
        const radioRef = React.useRef(null);
         const handleCheckboxChange = (e) => {
@@ -1106,8 +1142,7 @@ function App() {
             </VStack>
           </CheckboxGroup>
                )
-        }
-        `,
+        }`,
       transformCode: (code) => {
         return transformedCode(code, 'function', 'App');
       },
@@ -1138,7 +1173,12 @@ The checkbox group component allows users to group checkbox and display them in 
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
+      code: `import { Center } from "@/components/ui/center";
+import { Checkbox, CheckboxIndicator, CheckboxLabel, CheckboxIcon, CheckboxGroup } from "@/components/ui/checkbox";
+import { VStack } from "@/components/ui/vstack";
+import { CheckIcon } from "@/components/ui/icon";
+import React from "react";
+	
 function CheckboxExample(){
   const [values, setValues] = React.useState([]);
   return (
@@ -1169,8 +1209,7 @@ function CheckboxExample(){
         </CheckboxGroup>
       </Center>
   );
-}
-`,
+}`,
       transformCode: (code) => {
         return transformedCode(code, 'function', 'CheckboxExample');
       },

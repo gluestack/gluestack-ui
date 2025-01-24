@@ -38,15 +38,20 @@ This is an illustration of **Switch** component.
     showComponentRenderer={true}
     showArgsController={true}
     metaData={{
-      code: `
-        <Switch {...props} trackColor={{ false: colors.neutral[300], true: colors.neutral[600] }}
+      code: `import { Switch } from "@/components/ui/switch";
+import colors from "tailwindcss/colors";
+	
+function Example() {
+  return (
+    <Switch {...props} trackColor={{ false: colors.neutral[300], true: colors.neutral[600] }}
           thumbColor={colors.neutral[50]}
           activeThumbColor={colors.neutral[50]}
           ios_backgroundColor={colors.neutral[300]} 
         />
-      `,
+  );
+}`,
       transformCode: (code) => {
-        return transformedCode(code);
+        return transformedCode(code, 'function', 'Example');
       },
       scope: { Wrapper, Switch, colors },
       argsType: {
@@ -337,8 +342,14 @@ An example of a switch component with a label, which includes another switch com
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-        <HStack space="md">
+      code: `import { HStack } from "@/components/ui/hstack";
+import { Switch } from "@/components/ui/switch";
+import { Text } from "@/components/ui/text";
+import colors from "tailwindcss/colors";
+	
+function Example() {
+  return (
+    <HStack space="md">
           <Switch
             trackColor={{ false: colors.gray[300], true: colors.gray[500] }}
             thumbColor={colors.gray[50]}
@@ -347,9 +358,10 @@ An example of a switch component with a label, which includes another switch com
           />
           <Text size="sm" >Allow notifications</Text>
         </HStack>
-     `,
+  );
+}`,
       transformCode: (code) => {
-        return transformedCode(code);
+        return transformedCode(code, 'function', 'Example');
       },
       scope: {
         Wrapper,
@@ -372,8 +384,14 @@ An example of a switch component used within a checked state component to repres
     showComponentRenderer={true}
     showArgsController={false}
     metaData={{
-      code: `
-        <HStack space="md">
+      code: `import { HStack } from "@/components/ui/hstack";
+import { Switch } from "@/components/ui/switch";
+import { Text } from "@/components/ui/text";
+import colors from "tailwindcss/colors";
+	
+function Example() {
+  return (
+    <HStack space="md">
           <Switch
             defaultValue={true}
             trackColor={{ false: colors.gray[300], true: colors.gray[500] }}
@@ -383,9 +401,10 @@ An example of a switch component used within a checked state component to repres
           />
           <Text size="sm" >Public profile</Text>
         </HStack>
-     `,
+  );
+}`,
       transformCode: (code) => {
-        return transformedCode(code);
+        return transformedCode(code, 'function', 'Example');
       },
       scope: {
         Wrapper,
