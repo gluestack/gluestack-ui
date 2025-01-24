@@ -13,7 +13,7 @@ import { cssInterop } from 'nativewind';
 import {
   useBreakpointValue,
   getBreakPointValue,
-} from '../../hooks/use-break-point-value';
+} from '@/components/ui/utils/use-break-point-value';
 
 const { width: DEVICE_WIDTH } = Dimensions.get('window');
 

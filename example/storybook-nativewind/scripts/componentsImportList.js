@@ -134,6 +134,7 @@ export const componentsImportMap = {
     'PopoverBody',
     'PopoverContent',
   ],
+  'portal': ['Portal'],
   'pressable': ['Pressable'],
   'progress': ['Progress', 'ProgressFilledTrack'],
   'radio': ['Radio', 'RadioGroup', 'RadioIndicator', 'RadioLabel', 'RadioIcon'],
