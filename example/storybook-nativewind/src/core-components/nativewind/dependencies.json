@@ -2,7 +2,7 @@
   "components": {
     "gluestack-ui-provider": {
       "dependencies": {
-        "tailwindcss": "",
+        "tailwindcss": "3.4.17",
         "@gluestack-ui/overlay": "latest",
         "@gluestack-ui/toast": "latest",
         "@gluestack-ui/nativewind-utils": "latest",
