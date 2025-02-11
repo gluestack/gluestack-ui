@@ -1,7 +1,9 @@
-import React, { forwardRef, useContext } from 'react';
+import React, { forwardRef, useContext, useEffect } from 'react';
 import { ImageViewerContext } from './ImageViewerContext';
 import {
+  Easing,
   runOnJS,
+  useAnimatedReaction,
   useAnimatedStyle,
   useSharedValue,
   withSpring,
@@ -38,22 +40,35 @@ const ImageViewerContent = (
       const focalY = useSharedValue(0);
       const lastTranslateX = useSharedValue(0);
       const lastTranslateY = useSharedValue(0);
+      const isPinching = useSharedValue(false);
+      const imageWidth = useSharedValue(0);
+      const imageHeight = useSharedValue(0);
+
+      useEffect(() => {
+        if (scale.value === 1) {
+          isPinching.value = false;
+        }
+      }, [scale.value, isPinching]);
 
       const pinchGesture = Gesture.Pinch()
         .onStart(() => {
+          isPinching.value = true;
           savedScale.value = scale.value;
         })
         .onUpdate((event: any) => {
           // Apply the new scale based on the saved scale value
           const newScale = savedScale.value * event.scale;
-          scale.value = Math.min(Math.max(newScale, 0.5), 10);
+          scale.value = Math.min(Math.max(newScale, 0.3), 10);
           focalX.value = event.focalX;
           focalY.value = event.focalY;
         })
         .onEnd(() => {
           if (scale.value < 1) {
-            scale.value = withSpring(1);
+            scale.value = 1;
             savedScale.value = 1;
+          }
+          if (scale.value < 0.9) {
+            runOnJS(onClose)();
           } else {
             savedScale.value = scale.value;
           }
@@ -64,77 +79,117 @@ const ImageViewerContent = (
         .maxDuration(DOUBLE_TAP_DELAY)
         .onStart((event: any) => {
           if (scale.value > 1) {
-            // If already zoomed in, reset to normal
-            scale.value = withTiming(1);
+            // Reset to normal
+            scale.value = withTiming(1, { easing: Easing.ease });
             savedScale.value = 1;
-            translateX.value = withTiming(0);
-            translateY.value = withTiming(0);
+            translateX.value = 0;
+            translateY.value = 0;
           } else {
-            // Zoom in to 2x at the tap location
-            scale.value = withTiming(2);
+            // Zoom in to 2x
+            scale.value = withTiming(2, { easing: Easing.ease });
             savedScale.value = 2;
 
-            // Calculate the focal point for zooming
+            // Calculate the scaled dimensions at 2x
+            const scaledWidth = imageWidth.value * 2;
+            const scaledHeight = imageHeight.value * 2;
+
+            // Calculate tap point relative to center
             const centerX = SCREEN_WIDTH / 2;
             const centerY = SCREEN_HEIGHT / 2;
             const focusX = event.x - centerX;
             const focusY = event.y - centerY;
 
-            // Adjust translation to zoom into the tapped point
-            translateX.value = withTiming(-focusX);
-            translateY.value = withTiming(-focusY);
+            // Calculate maximum allowed translation
+            const maxTranslateX = Math.max(0, (scaledWidth - SCREEN_WIDTH) / 2);
+            const maxTranslateY = Math.max(
+              0,
+              (scaledHeight - SCREEN_HEIGHT) / 2
+            );
+
+            // Apply bounded translation
+            translateX.value = Math.max(
+              -maxTranslateX,
+              Math.min(maxTranslateX, -focusX)
+            );
+            translateY.value = Math.max(
+              -maxTranslateY,
+              Math.min(maxTranslateY, -focusY)
+            );
           }
         });
 
       const panGesture = Gesture.Pan()
         .onStart(() => {
-          // Store the current translation values when starting the pan
           lastTranslateX.value = translateX.value;
           lastTranslateY.value = translateY.value;
         })
         .onUpdate((event: any) => {
           if (scale.value > 1) {
-            // When zoomed in, allow panning within bounds
-            // Calculate new positions based on the start position plus the new translation
-            translateX.value = lastTranslateX.value + event.translationX;
-            translateY.value = lastTranslateY.value + event.translationY;
-          } else {
-            // Normal swipe behavior when not zoomed
-            translateY.value = event.translationY;
-            scale.value = withSpring(
-              Math.max(0.5, 1 - Math.abs(event.translationY) / SCREEN_HEIGHT)
+            // Calculate the scaled dimensions
+            const scaledWidth = imageWidth.value * scale.value;
+            const scaledHeight = imageHeight.value * scale.value;
+
+            // Calculate the maximum allowed translation based on scaled dimensions
+            const maxTranslateX = Math.max(0, (scaledWidth - SCREEN_WIDTH) / 2);
+            const maxTranslateY = Math.max(
+              0,
+              (scaledHeight - SCREEN_HEIGHT) / 2
             );
+
+            // Calculate new positions with bounds
+            const newTranslateX = lastTranslateX.value + event.translationX;
+            const newTranslateY = lastTranslateY.value + event.translationY;
+
+            // Apply bounds with smooth clamping
+            translateX.value = Math.max(
+              -maxTranslateX,
+              Math.min(maxTranslateX, newTranslateX)
+            );
+            translateY.value = Math.max(
+              -maxTranslateY,
+              Math.min(maxTranslateY, newTranslateY)
+            );
+          } else {
+            // When not zoomed in, allow dragging to dismiss
+            translateX.value = event.translationX;
+            translateY.value = event.translationY;
+            if (!isPinching.value) {
+              scale.value = withSpring(
+                Math.max(0.5, 1 - Math.abs(event.translationY) / SCREEN_HEIGHT)
+              );
+            }
           }
         })
         .onEnd((event: any) => {
           if (scale.value <= 1) {
             if (Math.abs(event.translationY) > SCREEN_HEIGHT * 0.03) {
               runOnJS(onClose)();
+            } else {
+              // Reset position
+              translateX.value = 0;
+              translateY.value = 0;
+              scale.value = 1;
+              savedScale.value = 1;
             }
-          }
-
-          // Reset position if not zoomed
-          if (scale.value <= 1) {
-            translateX.value = 0;
-            translateY.value = withSpring(0);
-            scale.value = withTiming(1);
-            savedScale.value = 1;
           } else {
-            // When zoomed, bound the pan values
-            const maxTranslateX = ((scale.value - 1) * SCREEN_WIDTH) / 2;
-            const maxTranslateY = ((scale.value - 1) * SCREEN_HEIGHT) / 2;
+            // Calculate final bounds for zoomed state
+            const scaledWidth = imageWidth.value * scale.value;
+            const scaledHeight = imageHeight.value * scale.value;
 
-            translateX.value = withSpring(
-              Math.min(
-                Math.max(translateX.value, -maxTranslateX),
-                maxTranslateX
-              )
+            const maxTranslateX = Math.max(0, (scaledWidth - SCREEN_WIDTH) / 2);
+            const maxTranslateY = Math.max(
+              0,
+              (scaledHeight - SCREEN_HEIGHT) / 2
             );
-            translateY.value = withSpring(
-              Math.min(
-                Math.max(translateY.value, -maxTranslateY),
-                maxTranslateY
-              )
+
+            // ensure position stays within bounds
+            translateX.value = Math.max(
+              -maxTranslateX,
+              Math.min(maxTranslateX, translateX.value)
+            );
+            translateY.value = Math.max(
+              -maxTranslateY,
+              Math.min(maxTranslateY, translateY.value)
             );
           }
         });
@@ -148,7 +203,6 @@ const ImageViewerContent = (
       // https://github.com/software-mansion/react-native-reanimated/issues/4548
       // @ts-ignore
       const animatedStyle = useAnimatedStyle(() => {
-        runOnJS(setScale)(scale.value);
         return {
           transform: [
             { translateX: translateX.value },
@@ -157,6 +211,15 @@ const ImageViewerContent = (
           ],
         };
       });
+
+      // Add a separate worklet to handle scale changes
+      useAnimatedReaction(
+        () => scale.value,
+        (currentScale) => {
+          runOnJS(setScale)(currentScale);
+        },
+        [scale.value]
+      );
 
       return (
         <StyledGestureHandlerRootView ref={ref}>
@@ -170,6 +233,27 @@ const ImageViewerContent = (
                     key={keyExtractor ? keyExtractor(item, index) : index}
                     item={item}
                     index={index}
+                    onLoad={(event) => {
+                      if (event.nativeEvent) {
+                        const { width, height } = event.nativeEvent.source;
+                        // Calculate scaled dimensions to fit screen while maintaining aspect ratio
+                        let scaledWidth = width;
+                        let scaledHeight = height;
+                        const screenRatio = SCREEN_WIDTH / SCREEN_HEIGHT;
+                        const imageRatio = width / height;
+                        if (imageRatio > screenRatio) {
+                          // Image is wider than screen ratio
+                          scaledWidth = SCREEN_WIDTH;
+                          scaledHeight = SCREEN_WIDTH / imageRatio;
+                        } else {
+                          // Image is taller than screen ratio
+                          scaledHeight = SCREEN_HEIGHT;
+                          scaledWidth = SCREEN_HEIGHT * imageRatio;
+                        }
+                        imageWidth.value = scaledWidth;
+                        imageHeight.value = scaledHeight;
+                      }
+                    }}
                   />
                 );
               })}
