@@ -1,5 +1,11 @@
 # @gluestack-ui/hooks
 
+## 0.2.0
+
+### Minor Changes
+
+- Feat: backhandler api update
+
 ## 0.1.12
 
 ### Patch Changes

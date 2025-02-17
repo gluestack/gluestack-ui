@@ -1,5 +1,11 @@
 # @react-native-aria/interactions
 
+## 0.3.0
+
+### Minor Changes
+
+- Feat: backhandler api update
+
 ## 0.2.13
 
 ### Patch Changes

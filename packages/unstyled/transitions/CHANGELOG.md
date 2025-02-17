@@ -1,5 +1,13 @@
 # @gluestack-ui/transitions
 
+## 0.1.12
+
+### Patch Changes
+
+- Updated dependencies
+  - @gluestack-ui/react-native-aria@0.2.0
+  - @gluestack-ui/overlay@0.1.17
+
 ## 0.1.11
 
 ### Patch Changes

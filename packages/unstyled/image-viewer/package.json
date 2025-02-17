@@ -1,6 +1,6 @@
 {
   "name": "@gluestack-ui/image-viewer",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "main": "lib/index",
   "module": "lib/index",
   "types": "lib/index.d.ts",
@@ -47,7 +47,7 @@
     "react-native-gesture-handler": "^2.21.2",
     "react-native-reanimated": "^3.16.6",
     "@react-native-aria/focus": "^0.2.9",
-    "@react-native-aria/interactions": "0.2.13",
+    "@react-native-aria/interactions": "0.3.0",
     "@gluestack-ui/utils": "^0.1.14"
   },
   "peerDependencies": {
