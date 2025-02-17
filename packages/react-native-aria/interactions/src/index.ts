@@ -10,5 +10,6 @@ export {
 export {
   keyboardDismissHandlerManager,
   useKeyboardDismissable,
-  useBackHandler,
 } from './useKeyboardDismisssable';
+
+export { useBackHandler } from './useBackHandler';
