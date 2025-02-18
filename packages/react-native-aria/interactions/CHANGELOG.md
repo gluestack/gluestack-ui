@@ -1,6 +1,6 @@
 # @react-native-aria/interactions
 
-## 0.3.0
+## 0.2.14
 
 ### Minor Changes
 
