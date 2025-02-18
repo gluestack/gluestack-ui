@@ -1,14 +1,5 @@
 # @gluestack-ui/toast
 
-## 1.0.9
-
-### Patch Changes
-
-- Updated dependencies
-  - @gluestack-ui/hooks@0.2.0
-  - @gluestack-ui/overlay@0.1.17
-  - @gluestack-ui/transitions@0.1.12
-
 ## 1.0.8
 
 ### Patch Changes

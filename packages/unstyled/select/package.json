@@ -15,7 +15,7 @@
     "ios",
     "nextjs"
   ],
-  "version": "0.1.31",
+  "version": "0.1.30",
   "main": "lib/index",
   "module": "lib/index",
   "types": "lib/index.d.ts",
@@ -45,7 +45,7 @@
   },
   "dependencies": {
     "@gluestack-ui/form-control": "^0.1.19",
-    "@gluestack-ui/hooks": "0.2.0",
+    "@gluestack-ui/hooks": "0.1.12",
     "@gluestack-ui/utils": "^0.1.14",
     "@react-native-aria/focus": "^0.2.9"
   },
