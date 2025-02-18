@@ -1,7 +1,7 @@
 {
   "name": "@gluestack-ui/input",
   "description": "A universal headless input component for React Native, Next.js & React",
-  "version": "0.1.33",
+  "version": "0.1.34",
   "main": "lib/index",
   "module": "lib/index",
   "types": "lib/index.d.ts",
@@ -33,7 +33,7 @@
     "@gluestack-ui/form-control": "^0.1.19",
     "@gluestack-ui/utils": "^0.1.14",
     "@react-native-aria/focus": "^0.2.9",
-    "@react-native-aria/interactions": "0.3.0"
+    "@react-native-aria/interactions": "0.2.13"
   },
   "peerDependencies": {
     "react": ">=16",
