@@ -43,7 +43,7 @@
     "@react-aria/overlays": "^3.13.0",
     "@react-aria/separator": "^3.3.0",
     "@react-aria/utils": "^3.15.0",
-    "@react-native-aria/button": "^0.2.8",
+    "@react-native-aria/button": "^0.2.7",
     "@react-native-aria/checkbox": "^0.2.9",
     "@react-native-aria/overlays": "^0.3.14",
     "@react-native-aria/separator": "^0.2.6",
