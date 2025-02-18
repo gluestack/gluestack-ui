@@ -1,6 +1,5 @@
-import React from 'react';
-import { useEffect } from 'react';
-import { BackHandler } from 'react-native';
+import { useEffect, useRef } from 'react';
+import { BackHandler, NativeEventSubscription } from 'react-native';
 
 type IParams = {
   enabled?: boolean;
@@ -27,7 +26,7 @@ export const keyboardDismissHandlerManager = {
  * Handles attaching callback for Escape key listener on web and Back button listener on Android
  */
 export const useKeyboardDismissable = ({ enabled, callback }: IParams) => {
-  React.useEffect(() => {
+  useEffect(() => {
     let cleanupFn = () => {};
     if (enabled) {
       cleanupFn = keyboardDismissHandlerManager.push(callback);
@@ -41,19 +40,22 @@ export const useKeyboardDismissable = ({ enabled, callback }: IParams) => {
 
   useBackHandler({ enabled, callback });
 };
-
 export function useBackHandler({ enabled, callback }: IParams) {
+  const backHandlerRef = useRef<NativeEventSubscription | null>(null);
+
   useEffect(() => {
-    let backHandler = () => {
+    const backHandler = () => {
       callback();
       return true;
     };
     if (enabled) {
-      BackHandler.addEventListener('hardwareBackPress', backHandler);
+      backHandlerRef.current = BackHandler.addEventListener(
+        'hardwareBackPress',
+        backHandler
+      );
     } else {
-      BackHandler.removeEventListener('hardwareBackPress', backHandler);
+      backHandlerRef.current?.remove();
     }
-    return () =>
-      BackHandler.removeEventListener('hardwareBackPress', backHandler);
+    return () => backHandlerRef.current?.remove();
   }, [enabled, callback]);
 }

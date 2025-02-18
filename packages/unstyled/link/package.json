@@ -1,6 +1,6 @@
 {
   "name": "@gluestack-ui/link",
-  "version": "0.1.23",
+  "version": "0.1.24",
   "main": "lib/index",
   "module": "lib/index",
   "types": "lib/index.d.ts",
@@ -46,7 +46,7 @@
   "dependencies": {
     "@gluestack-ui/utils": "^0.1.14",
     "@react-native-aria/focus": "^0.2.9",
-    "@react-native-aria/interactions": "0.2.13"
+    "@react-native-aria/interactions": "0.3.0"
   },
   "peerDependencies": {
     "react": ">=16",
