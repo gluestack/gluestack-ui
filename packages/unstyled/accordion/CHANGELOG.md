@@ -1,12 +1,5 @@
 # @gluestack-ui/accordion
 
-## 1.0.9
-
-### Patch Changes
-
-- Updated dependencies
-  - @react-native-aria/interactions@0.3.0
-
 ## 1.0.8
 
 ### Patch Changes
