@@ -1,5 +1,13 @@
 # @gluestack-ui/modal
 
+## 0.1.38
+
+### Patch Changes
+
+- Updated dependencies
+  - @react-native-aria/interactions@0.2.13
+  - @gluestack-ui/overlay@0.1.19
+
 ## 0.1.37
 
 ### Patch Changes

@@ -1,6 +1,6 @@
 {
   "name": "@react-native-aria/tabs",
-  "version": "0.2.12",
+  "version": "0.2.10",
   "description": "This library is a part of react-native-aria.",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",

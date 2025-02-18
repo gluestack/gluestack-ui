@@ -1,6 +1,6 @@
 {
   "name": "@gluestack-ui/tabs",
-  "version": "0.1.20",
+  "version": "0.1.21",
   "main": "lib/index",
   "module": "lib/index",
   "types": "lib/index.d.ts",

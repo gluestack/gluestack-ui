@@ -1,6 +1,6 @@
 {
   "name": "@gluestack-ui/image",
-  "version": "0.1.13",
+  "version": "0.1.14",
   "main": "lib/index",
   "module": "lib/index",
   "types": "lib/index.d.ts",

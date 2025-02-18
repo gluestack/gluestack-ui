@@ -1,5 +1,13 @@
 # @gluestack-ui/radio
 
+## 0.1.37
+
+### Patch Changes
+
+- Updated dependencies
+  - @react-native-aria/interactions@0.2.13
+  - @react-native-aria/radio@0.2.10
+
 ## 0.1.36
 
 ### Patch Changes

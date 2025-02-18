@@ -1,7 +1,7 @@
 {
   "name": "@gluestack-ui/slider",
   "description": "A universal headless slider component for React Native, Next.js & React",
-  "version": "0.1.28",
+  "version": "0.1.29",
   "main": "lib/index",
   "module": "lib/index",
   "types": "lib/index.d.ts",
