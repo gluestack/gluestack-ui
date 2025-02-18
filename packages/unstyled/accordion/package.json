@@ -15,7 +15,7 @@
     "ios",
     "nextjs"
   ],
-  "version": "1.0.8",
+  "version": "1.0.9",
   "main": "lib/index",
   "module": "lib/index",
   "types": "lib/index.d.ts",
@@ -47,7 +47,7 @@
     "@gluestack-ui/utils": "^0.1.14",
     "@react-native-aria/accordion": "^0.0.2",
     "@react-native-aria/focus": "^0.2.9",
-    "@react-native-aria/interactions": "0.2.13"
+    "@react-native-aria/interactions": "0.3.0"
   },
   "homepage": "https://github.com/gluestack/gluestack-ui/tree/main/packages/unstyled/accordion#readme",
   "repository": {
