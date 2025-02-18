@@ -1,6 +1,6 @@
 {
   "name": "@gluestack-ui/radio",
-  "version": "0.1.35",
+  "version": "0.1.37",
   "main": "lib/index",
   "module": "lib/index",
   "types": "lib/index.d.ts",
@@ -48,8 +48,8 @@
     "@gluestack-ui/utils": "^0.1.14",
     "@react-aria/visually-hidden": "^3.7.0",
     "@react-native-aria/focus": "^0.2.9",
-    "@react-native-aria/interactions": "0.3.0",
-    "@react-native-aria/radio": "^0.2.11",
+    "@react-native-aria/interactions": "0.2.13",
+    "@react-native-aria/radio": "^0.2.10",
     "@react-stately/radio": "^3.8.1"
   },
   "peerDependencies": {

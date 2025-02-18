@@ -1,5 +1,19 @@
 # @gluestack-ui/tabs
 
+## 0.1.21
+
+### Patch Changes
+
+- Updated dependencies
+  - @react-native-aria/interactions@0.2.13
+
+## 0.1.20
+
+### Patch Changes
+
+- Updated dependencies
+  - @react-native-aria/interactions@0.2.13
+
 ## 0.1.19
 
 ### Patch Changes

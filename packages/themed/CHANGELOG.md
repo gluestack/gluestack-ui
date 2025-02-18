@@ -1,5 +1,55 @@
 # @gluestack-ui/themed
 
+## 1.1.68
+
+### Patch Changes
+
+- @gluestack-ui/accordion@1.0.11
+- @gluestack-ui/actionsheet@0.2.49
+- @gluestack-ui/alert-dialog@0.1.35
+- @gluestack-ui/button@1.0.11
+- @gluestack-ui/checkbox@0.1.36
+- @gluestack-ui/fab@0.1.25
+- @gluestack-ui/image@0.1.14
+- @gluestack-ui/input@0.1.35
+- @gluestack-ui/link@0.1.26
+- @gluestack-ui/menu@0.2.40
+- @gluestack-ui/modal@0.1.38
+- @gluestack-ui/overlay@0.1.19
+- @gluestack-ui/popover@0.1.46
+- @gluestack-ui/pressable@0.1.20
+- @gluestack-ui/provider@0.1.16
+- @gluestack-ui/radio@0.1.37
+- @gluestack-ui/slider@0.1.29
+- @gluestack-ui/switch@0.1.26
+- @gluestack-ui/tabs@0.1.21
+- @gluestack-ui/tooltip@0.1.41
+
+## 1.1.67
+
+### Patch Changes
+
+- @gluestack-ui/accordion@1.0.10
+- @gluestack-ui/actionsheet@0.2.48
+- @gluestack-ui/alert-dialog@0.1.34
+- @gluestack-ui/button@1.0.10
+- @gluestack-ui/checkbox@0.1.35
+- @gluestack-ui/fab@0.1.24
+- @gluestack-ui/image@0.1.13
+- @gluestack-ui/input@0.1.34
+- @gluestack-ui/link@0.1.25
+- @gluestack-ui/menu@0.2.39
+- @gluestack-ui/modal@0.1.37
+- @gluestack-ui/overlay@0.1.18
+- @gluestack-ui/popover@0.1.45
+- @gluestack-ui/pressable@0.1.19
+- @gluestack-ui/provider@0.1.15
+- @gluestack-ui/radio@0.1.36
+- @gluestack-ui/slider@0.1.28
+- @gluestack-ui/switch@0.1.25
+- @gluestack-ui/tabs@0.1.20
+- @gluestack-ui/tooltip@0.1.40
+
 ## 1.1.66
 
 ### Patch Changes
