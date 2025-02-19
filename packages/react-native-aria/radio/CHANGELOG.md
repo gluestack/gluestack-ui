@@ -4,6 +4,13 @@
 
 ### Patch Changes
 
+- Updated dependencies
+  - @react-native-aria/interactions@0.2.14
+
+## 0.2.11
+
+### Patch Changes
+
 - fix: typing issue for radio input checkbox
 
 ## 0.2.10
