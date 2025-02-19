@@ -15,7 +15,7 @@
     "ios",
     "nextjs"
   ],
-  "version": "0.2.49",
+  "version": "0.2.50",
   "main": "lib/index",
   "module": "lib/index",
   "types": "lib/index.d.ts",
@@ -44,13 +44,13 @@
     "typescript": "^5.6.3"
   },
   "dependencies": {
-    "@gluestack-ui/hooks": "0.1.12",
-    "@gluestack-ui/overlay": "^0.1.19",
+    "@gluestack-ui/hooks": "0.1.13",
+    "@gluestack-ui/overlay": "^0.1.20",
     "@gluestack-ui/transitions": "^0.1.11",
     "@gluestack-ui/utils": "^0.1.14",
     "@react-native-aria/dialog": "^0.0.4",
     "@react-native-aria/focus": "^0.2.9",
-    "@react-native-aria/interactions": "0.2.13"
+    "@react-native-aria/interactions": "0.2.14"
   },
   "homepage": "https://github.com/gluestack/gluestack-ui/tree/main/packages/unstyled/actionsheet#readme",
   "repository": {

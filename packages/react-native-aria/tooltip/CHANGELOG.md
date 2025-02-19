@@ -1,5 +1,12 @@
 # @react-native-aria/tooltip
 
+## 0.2.7
+
+### Patch Changes
+
+- Updated dependencies
+  - @react-native-aria/interactions@0.2.14
+
 ## 0.2.6
 
 ### Patch Changes

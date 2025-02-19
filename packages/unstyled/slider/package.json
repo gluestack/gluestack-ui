@@ -1,7 +1,7 @@
 {
   "name": "@gluestack-ui/slider",
   "description": "A universal headless slider component for React Native, Next.js & React",
-  "version": "0.1.29",
+  "version": "0.1.30",
   "main": "lib/index",
   "module": "lib/index",
   "types": "lib/index.d.ts",
@@ -31,10 +31,10 @@
   },
   "dependencies": {
     "@gluestack-ui/form-control": "^0.1.19",
-    "@gluestack-ui/hooks": "0.1.12",
+    "@gluestack-ui/hooks": "0.1.13",
     "@gluestack-ui/utils": "^0.1.14",
     "@react-aria/visually-hidden": "^3.8.1",
-    "@react-native-aria/interactions": "0.2.13",
+    "@react-native-aria/interactions": "0.2.14",
     "@react-native-aria/slider": "^0.2.11",
     "@react-stately/slider": "^3.2.4"
   },
