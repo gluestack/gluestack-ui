@@ -1,5 +1,14 @@
 # @gluestack-ui/tooltip
 
+## 0.1.42
+
+### Patch Changes
+
+- Updated dependencies
+  - @react-native-aria/interactions@0.2.14
+  - @gluestack-ui/hooks@0.1.13
+  - @gluestack-ui/overlay@0.1.20
+
 ## 0.1.41
 
 ### Patch Changes

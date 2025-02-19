@@ -1,5 +1,11 @@
 # @gluestack-ui/react-native-aria
 
+## 0.1.7
+
+### Patch Changes
+
+- Fix: removed old backhandler api
+
 ## 0.1.6
 
 ### Patch Changes

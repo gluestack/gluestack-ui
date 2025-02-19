@@ -1,5 +1,15 @@
 # @gluestack-ui/menu
 
+## 0.2.41
+
+### Patch Changes
+
+- Updated dependencies
+  - @react-native-aria/interactions@0.2.14
+  - @gluestack-ui/hooks@0.1.13
+  - @react-native-aria/menu@0.2.13
+  - @gluestack-ui/overlay@0.1.20
+
 ## 0.2.40
 
 ### Patch Changes
