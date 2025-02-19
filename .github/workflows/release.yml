@@ -33,7 +33,7 @@ jobs:
           publish: yarn release
         env:
           GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_TOKEN: ${{ secrets.GLUESTACK_ADMIN_NPM_TOKEN }}
 
       # - name: Get published package version
       #   id: version
