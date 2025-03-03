@@ -1,16 +1,11 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, { forwardRef } from 'react';
 import { ModalContext } from './Context';
-import {
-  Platform,
-  findNodeHandle,
-  AccessibilityInfo,
-  Keyboard,
-} from 'react-native';
+import { Platform, AccessibilityInfo, Keyboard } from 'react-native';
 import { FocusScope } from '@react-native-aria/focus';
 import { OverlayAnimatePresence } from './OverlayAnimatePresence';
 import { useDialog } from '@react-native-aria/dialog';
-import { mergeRefs } from '@gluestack-ui/utils';
+import { mergeRefs, findNodeHandle } from '@gluestack-ui/utils';
 
 const ModalContent = (StyledModalContent: any, AnimatePresence?: any) =>
   forwardRef(({ children, focusScope = true, ...props }: any, ref?: any) => {

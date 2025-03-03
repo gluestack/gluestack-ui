@@ -1,6 +1,6 @@
 export { useHover } from './useHover';
-export {
-  usePress,
+export { usePress } from './usePress';
+export type {
   PressEvents,
   PressHookProps,
   PressProps,
