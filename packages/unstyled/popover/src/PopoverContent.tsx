@@ -3,14 +3,8 @@
 import React, { forwardRef, useState } from 'react';
 import { useKeyboardDismissable } from '@gluestack-ui/hooks';
 import { usePopover } from './PopoverContext';
-import {
-  Platform,
-  findNodeHandle,
-  AccessibilityInfo,
-  Keyboard,
-  View,
-} from 'react-native';
-import { mergeRefs } from '@gluestack-ui/utils';
+import { Platform, AccessibilityInfo, Keyboard, View } from 'react-native';
+import { mergeRefs, findNodeHandle } from '@gluestack-ui/utils';
 import { useOverlayPosition } from '@react-native-aria/overlays';
 import { OverlayAnimatePresence } from './OverlayAnimatePresence';
 import { FocusScope as FocusScopeAria } from '@react-native-aria/focus';

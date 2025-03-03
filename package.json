@@ -9,6 +9,7 @@
   "scripts": {
     "test": "bash ./scripts/test.sh",
     "dev": "turbo run dev",
+    "watch": "turbo run watch --filter=./packages/**/* --parallel",
     "build:unstyled": "turbo run build --filter=./packages/unstyled/*",
     "build": "turbo run build --filter=@gluestack-style/react --filter=@react-native-aria/* --no-cache && yarn build:rest",
     "build:rest": "turbo run build --filter=@gluestack-ui/* --filter=@gluestack-style/* --filter=!@gluestack-ui/nativewind-utils --no-cache",

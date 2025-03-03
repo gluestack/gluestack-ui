@@ -3,7 +3,6 @@ import React, { forwardRef } from 'react';
 import {
   Animated,
   Dimensions,
-  findNodeHandle,
   AccessibilityInfo,
   Platform,
   Keyboard,
@@ -12,7 +11,7 @@ import { ActionsheetContext } from './context';
 import { ActionsheetContentProvider } from './ActionsheetContentContext';
 import { OverlayAnimatePresence } from './OverlayAnimatePresence';
 import { FocusScope } from '@react-native-aria/focus';
-import { mergeRefs } from '@gluestack-ui/utils';
+import { mergeRefs, findNodeHandle } from '@gluestack-ui/utils';
 import { useDialog } from '@react-native-aria/dialog';
 
 import { usePreventScroll } from '@react-native-aria/overlays';

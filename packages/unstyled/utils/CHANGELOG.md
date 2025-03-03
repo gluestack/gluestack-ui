@@ -1,5 +1,11 @@
 # @gluestack-ui/utils
 
+## 0.1.15
+
+### Patch Changes
+
+- Feat : React-19 support
+
 ## 0.1.14
 
 ### Patch Changes

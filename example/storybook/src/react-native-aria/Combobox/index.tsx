@@ -4,15 +4,7 @@ import { useButton } from '@react-native-aria/button';
 import { useComboBoxState } from '@react-stately/combobox';
 import { useComboBox } from '@react-native-aria/combobox';
 import { useListBox, useOption } from '@react-native-aria/listbox';
-import {
-  View,
-  Text,
-  Pressable,
-  TextInput,
-  ScrollView,
-  findNodeHandle,
-  Platform,
-} from 'react-native';
+import { View, Text, Pressable, TextInput, ScrollView } from 'react-native';
 
 function contains(string, substring) {
   if (substring.length === 0) {
@@ -129,11 +121,7 @@ function ListBoxPopup(props) {
       <ScrollView
         {...mergeProps(listBoxProps, otherProps)}
         ref={(node) => {
-          if (Platform.OS === 'web') {
-            listBoxRef.current = findNodeHandle(node);
-          } else {
-            listBoxRef.current = node;
-          }
+          listBoxRef.current = node;
         }}
         style={{
           position: 'absolute',

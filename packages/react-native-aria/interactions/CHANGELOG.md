@@ -1,5 +1,11 @@
 # @react-native-aria/interactions
 
+## 0.2.15
+
+### Patch Changes
+
+- Feat : React-19 support
+
 ## 0.2.14
 
 ### Patch Changes
