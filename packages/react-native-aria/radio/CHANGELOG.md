@@ -1,5 +1,12 @@
 # @react-native-aria/radio
 
+## 0.2.12
+
+### Patch Changes
+
+- Updated dependencies
+  - @react-native-aria/interactions@0.2.15
+
 ## 0.2.11
 
 ### Patch Changes

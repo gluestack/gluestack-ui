@@ -1,5 +1,16 @@
 # @gluestack-ui/menu
 
+## 0.2.42
+
+### Patch Changes
+
+- Feat : React-19 support
+- Updated dependencies
+  - @react-native-aria/interactions@0.2.15
+  - @gluestack-ui/utils@0.1.15
+  - @react-native-aria/menu@0.2.14
+  - @gluestack-ui/overlay@0.1.21
+
 ## 0.2.41
 
 ### Patch Changes

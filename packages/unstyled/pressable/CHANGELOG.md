@@ -1,5 +1,13 @@
 # @gluestack-ui/pressable
 
+## 0.1.22
+
+### Patch Changes
+
+- Updated dependencies
+  - @react-native-aria/interactions@0.2.15
+  - @gluestack-ui/utils@0.1.15
+
 ## 0.1.21
 
 ### Patch Changes
