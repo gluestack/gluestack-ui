@@ -10,9 +10,7 @@ import {
   Pressable,
   TouchableWithoutFeedback,
   StyleSheet,
-  findNodeHandle,
   ScrollView,
-  Platform,
 } from 'react-native';
 import { useToggleState } from '@react-stately/toggle';
 
@@ -56,7 +54,7 @@ export function TriggerWrapper() {
 }
 
 const OverlayView = ({ targetRef }) => {
-  let overlayRef = React.useRef();
+  let overlayRef = React.useRef<ScrollView | null>();
 
   const { overlayProps } = useOverlayPosition({
     placement: 'top',
@@ -75,11 +73,7 @@ const OverlayView = ({ targetRef }) => {
         ...overlayProps.style,
       }}
       ref={(node) => {
-        if (Platform.OS === 'web') {
-          overlayRef.current = findNodeHandle(node);
-        } else {
-          overlayRef.current = node;
-        }
+        overlayRef.current = node;
       }}
     >
       <View
