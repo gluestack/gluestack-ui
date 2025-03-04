@@ -1,5 +1,31 @@
 # @gluestack-ui/themed
 
+## 1.1.70
+
+### Patch Changes
+
+- Updated dependencies
+  - @gluestack-ui/alert-dialog@0.1.37
+  - @gluestack-ui/actionsheet@0.2.51
+  - @gluestack-ui/popover@0.1.48
+  - @gluestack-ui/modal@0.1.40
+  - @gluestack-ui/menu@0.2.42
+  - @gluestack-ui/accordion@1.0.13
+  - @gluestack-ui/button@1.0.13
+  - @gluestack-ui/checkbox@0.1.38
+  - @gluestack-ui/fab@0.1.27
+  - @gluestack-ui/image@0.1.16
+  - @gluestack-ui/input@0.1.37
+  - @gluestack-ui/link@0.1.28
+  - @gluestack-ui/overlay@0.1.21
+  - @gluestack-ui/pressable@0.1.22
+  - @gluestack-ui/provider@0.1.18
+  - @gluestack-ui/radio@0.1.39
+  - @gluestack-ui/slider@0.1.31
+  - @gluestack-ui/switch@0.1.28
+  - @gluestack-ui/tabs@0.1.23
+  - @gluestack-ui/tooltip@0.1.43
+
 ## 1.1.69
 
 ### Patch Changes

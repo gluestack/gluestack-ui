@@ -1,5 +1,12 @@
 # @react-native-aria/toggle
 
+## 0.2.10
+
+### Patch Changes
+
+- Updated dependencies
+  - @react-native-aria/interactions@0.2.15
+
 ## 0.2.9
 
 ### Patch Changes

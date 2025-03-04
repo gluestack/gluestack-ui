@@ -1,5 +1,15 @@
 # @gluestack-ui/alert-dialog
 
+## 0.1.37
+
+### Patch Changes
+
+- Feat : React-19 support
+- Updated dependencies
+  - @react-native-aria/interactions@0.2.15
+  - @gluestack-ui/utils@0.1.15
+  - @gluestack-ui/overlay@0.1.21
+
 ## 0.1.36
 
 ### Patch Changes

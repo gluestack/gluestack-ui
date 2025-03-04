@@ -1,5 +1,13 @@
 # @gluestack-ui/pin-input
 
+## 0.0.13
+
+### Patch Changes
+
+- Updated dependencies
+  - @react-native-aria/interactions@0.2.15
+  - @gluestack-ui/utils@0.1.15
+
 ## 0.0.12
 
 ### Patch Changes

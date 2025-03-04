@@ -1,5 +1,15 @@
 # @gluestack-ui/modal
 
+## 0.1.40
+
+### Patch Changes
+
+- Feat : React-19 support
+- Updated dependencies
+  - @react-native-aria/interactions@0.2.15
+  - @gluestack-ui/utils@0.1.15
+  - @gluestack-ui/overlay@0.1.21
+
 ## 0.1.39
 
 ### Patch Changes
