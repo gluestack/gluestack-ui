@@ -139,7 +139,7 @@ type IBadgeTextProps = React.ComponentPropsWithoutRef<typeof Text> &
 const BadgeText = React.forwardRef<
   React.ComponentRef<typeof Text>,
   IBadgeTextProps
->(({ children, className, size, ...props }, ref) => {
+>(function BadgeText({ children, className, size, ...props }, ref) {
   const { size: parentSize, action: parentAction } = useStyleContext(SCOPE);
   return (
     <Text
@@ -165,7 +165,7 @@ type IBadgeIconProps = React.ComponentPropsWithoutRef<typeof PrimitiveIcon> &
 const BadgeIcon = React.forwardRef<
   React.ComponentRef<typeof UIIcon>,
   IBadgeIconProps
->(({ className, size, ...props }, ref) => {
+>(function BadgeIcon({ className, size, ...props }, ref) {
   const { size: parentSize, action: parentAction } = useStyleContext(SCOPE);
 
   if (typeof size === 'number') {
