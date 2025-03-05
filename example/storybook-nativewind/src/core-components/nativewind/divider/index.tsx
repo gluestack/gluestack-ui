@@ -18,9 +18,9 @@ type IUIDividerProps = React.ComponentPropsWithoutRef<typeof View> &
   VariantProps<typeof dividerStyle>;
 
 const Divider = React.forwardRef<
-  React.ElementRef<typeof View>,
+  React.ComponentRef<typeof View>,
   IUIDividerProps
->(({ className, orientation = 'horizontal', ...props }, ref) => {
+>(function Divider({ className, orientation = 'horizontal', ...props }, ref) {
   return (
     <View
       ref={ref}

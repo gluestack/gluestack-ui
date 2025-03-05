@@ -110,14 +110,14 @@ cssInterop(PrimitiveIcon, {
 
 type IBadgeProps = React.ComponentPropsWithoutRef<typeof ContextView> &
   VariantProps<typeof badgeStyle>;
-const Badge = ({
+function Badge({
   children,
   action = 'muted',
   variant = 'solid',
   size = 'md',
   className,
   ...props
-}: { className?: string } & IBadgeProps) => {
+}: { className?: string } & IBadgeProps) {
   return (
     <ContextView
       className={badgeStyle({ action, variant, class: className })}
@@ -131,13 +131,13 @@ const Badge = ({
       {children}
     </ContextView>
   );
-};
+}
 
 type IBadgeTextProps = React.ComponentPropsWithoutRef<typeof Text> &
   VariantProps<typeof badgeTextStyle>;
 
 const BadgeText = React.forwardRef<
-  React.ElementRef<typeof Text>,
+  React.ComponentRef<typeof Text>,
   IBadgeTextProps
 >(({ children, className, size, ...props }, ref) => {
   const { size: parentSize, action: parentAction } = useStyleContext(SCOPE);
@@ -163,7 +163,7 @@ type IBadgeIconProps = React.ComponentPropsWithoutRef<typeof PrimitiveIcon> &
   VariantProps<typeof badgeIconStyle>;
 
 const BadgeIcon = React.forwardRef<
-  React.ElementRef<typeof UIIcon>,
+  React.ComponentRef<typeof UIIcon>,
   IBadgeIconProps
 >(({ className, size, ...props }, ref) => {
   const { size: parentSize, action: parentAction } = useStyleContext(SCOPE);

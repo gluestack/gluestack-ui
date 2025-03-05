@@ -99,11 +99,12 @@ type IModalFooterProps = React.ComponentProps<typeof UIModal.Footer> &
 type IModalCloseButtonProps = React.ComponentProps<typeof UIModal.CloseButton> &
   VariantProps<typeof modalCloseButtonStyle> & { className?: string };
 
-const Modal = React.forwardRef<React.ElementRef<typeof UIModal>, IModalProps>(
+const Modal = React.forwardRef<React.ComponentRef<typeof UIModal>, IModalProps>(
   ({ className, size = 'md', ...props }, ref) => (
     <UIModal
       ref={ref}
       {...props}
+      // @ts-expect-error : pointerEvents is not defined on UIModal
       pointerEvents="box-none"
       className={modalStyle({ size, class: className })}
       context={{ size }}
@@ -112,9 +113,9 @@ const Modal = React.forwardRef<React.ElementRef<typeof UIModal>, IModalProps>(
 );
 
 const ModalBackdrop = React.forwardRef<
-  React.ElementRef<typeof UIModal.Backdrop>,
+  React.ComponentRef<typeof UIModal.Backdrop>,
   IModalBackdropProps
->(({ className, ...props }, ref) => {
+>(function ModalBackdrop({ className, ...props }, ref) {
   return (
     <UIModal.Backdrop
       ref={ref}
@@ -145,9 +146,9 @@ const ModalBackdrop = React.forwardRef<
 });
 
 const ModalContent = React.forwardRef<
-  React.ElementRef<typeof UIModal.Content>,
+  React.ComponentRef<typeof UIModal.Content>,
   IModalContentProps
->(({ className, size, ...props }, ref) => {
+>(function ModalContent({ className, size, ...props }, ref) {
   const { size: parentSize } = useStyleContext(SCOPE);
 
   return (
@@ -187,9 +188,9 @@ const ModalContent = React.forwardRef<
 });
 
 const ModalHeader = React.forwardRef<
-  React.ElementRef<typeof UIModal.Header>,
+  React.ComponentRef<typeof UIModal.Header>,
   IModalHeaderProps
->(({ className, ...props }, ref) => {
+>(function ModalHeader({ className, ...props }, ref) {
   return (
     <UIModal.Header
       ref={ref}
@@ -202,9 +203,9 @@ const ModalHeader = React.forwardRef<
 });
 
 const ModalBody = React.forwardRef<
-  React.ElementRef<typeof UIModal.Body>,
+  React.ComponentRef<typeof UIModal.Body>,
   IModalBodyProps
->(({ className, ...props }, ref) => {
+>(function ModalBody({ className, ...props }, ref) {
   return (
     <UIModal.Body
       ref={ref}
@@ -217,9 +218,9 @@ const ModalBody = React.forwardRef<
 });
 
 const ModalFooter = React.forwardRef<
-  React.ElementRef<typeof UIModal.Footer>,
+  React.ComponentRef<typeof UIModal.Footer>,
   IModalFooterProps
->(({ className, ...props }, ref) => {
+>(function ModalFooter({ className, ...props }, ref) {
   return (
     <UIModal.Footer
       ref={ref}
@@ -232,9 +233,9 @@ const ModalFooter = React.forwardRef<
 });
 
 const ModalCloseButton = React.forwardRef<
-  React.ElementRef<typeof UIModal.CloseButton>,
+  React.ComponentRef<typeof UIModal.CloseButton>,
   IModalCloseButtonProps
->(({ className, ...props }, ref) => {
+>(function ModalCloseButton({ className, ...props }, ref) {
   return (
     <UIModal.CloseButton
       ref={ref}
