@@ -10,6 +10,7 @@ import {
   VirtualizedList,
   FlatList,
   SectionList,
+  ViewStyle,
 } from 'react-native';
 import { PrimitiveIcon, UIIcon } from '@gluestack-ui/icon';
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
@@ -20,15 +21,26 @@ import {
   Motion,
   AnimatePresence,
   createMotionAnimatedComponent,
+  MotionComponentProps,
 } from '@legendapp/motion';
 
 import React from 'react';
 
-const AnimatedPressable = createMotionAnimatedComponent(Pressable);
+type IAnimatedPressableProps = React.ComponentProps<typeof Pressable> &
+  MotionComponentProps<typeof Pressable, ViewStyle, unknown, unknown, unknown>;
+
+const AnimatedPressable = createMotionAnimatedComponent(
+  Pressable
+) as React.ComponentType<IAnimatedPressableProps>;
+
+type IMotionViewProps = React.ComponentProps<typeof View> &
+  MotionComponentProps<typeof View, ViewStyle, unknown, unknown, unknown>;
+
+const MotionView = Motion.View as React.ComponentType<IMotionViewProps>;
 
 export const UIActionsheet = createActionsheet({
   Root: View,
-  Content: withStyleContext(Motion.View),
+  Content: withStyleContext(MotionView),
   Item: withStyleContext(Pressable),
   ItemText: Text,
   DragIndicator: View,
@@ -331,7 +343,10 @@ const ActionsheetItem = React.forwardRef<
 const ActionsheetItemText = React.forwardRef<
   React.ComponentRef<typeof UIActionsheet.ItemText>,
   IActionsheetItemTextProps
->(function ActionsheetItemText({ className, ...props }, ref) {
+>(function ActionsheetItemText(
+  { className, isTruncated, bold, underline, strikeThrough, size, ...props },
+  ref
+) {
   return (
     <UIActionsheet.ItemText
       className={actionsheetItemTextStyle({

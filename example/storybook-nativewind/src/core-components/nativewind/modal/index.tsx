@@ -1,11 +1,12 @@
 'use client';
 import React from 'react';
 import { createModal } from '@gluestack-ui/modal';
-import { Pressable, View, ScrollView } from 'react-native';
+import { Pressable, View, ScrollView, ViewStyle } from 'react-native';
 import {
   Motion,
   AnimatePresence,
   createMotionAnimatedComponent,
+  MotionComponentProps,
 } from '@legendapp/motion';
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import {
@@ -15,13 +16,23 @@ import {
 import { cssInterop } from 'nativewind';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 
-const AnimatedPressable = createMotionAnimatedComponent(Pressable);
+type IAnimatedPressableProps = React.ComponentProps<typeof Pressable> &
+  MotionComponentProps<typeof Pressable, ViewStyle, unknown, unknown, unknown>;
+
+const AnimatedPressable = createMotionAnimatedComponent(
+  Pressable
+) as React.ComponentType<IAnimatedPressableProps>;
 const SCOPE = 'MODAL';
+
+type IMotionViewProps = React.ComponentProps<typeof View> &
+  MotionComponentProps<typeof View, ViewStyle, unknown, unknown, unknown>;
+
+const MotionView = Motion.View as React.ComponentType<IMotionViewProps>;
 
 const UIModal = createModal({
   Root: withStyleContext(View, SCOPE),
   Backdrop: AnimatedPressable,
-  Content: Motion.View,
+  Content: MotionView,
   Body: ScrollView,
   CloseButton: Pressable,
   Footer: View,
@@ -30,7 +41,7 @@ const UIModal = createModal({
 });
 
 cssInterop(AnimatedPressable, { className: 'style' });
-cssInterop(Motion.View, { className: 'style' });
+cssInterop(MotionView, { className: 'style' });
 
 const modalStyle = tva({
   base: 'group/modal w-full h-full justify-center items-center web:pointer-events-none',
@@ -104,7 +115,6 @@ const Modal = React.forwardRef<React.ComponentRef<typeof UIModal>, IModalProps>(
     <UIModal
       ref={ref}
       {...props}
-      // @ts-expect-error : pointerEvents is not defined on UIModal
       pointerEvents="box-none"
       className={modalStyle({ size, class: className })}
       context={{ size }}
@@ -247,7 +257,6 @@ const ModalCloseButton = React.forwardRef<
   );
 });
 
-// Assign display names
 Modal.displayName = 'Modal';
 ModalBackdrop.displayName = 'ModalBackdrop';
 ModalContent.displayName = 'ModalContent';

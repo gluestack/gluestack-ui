@@ -3,9 +3,18 @@ import React from 'react';
 import { createMenu } from '@gluestack-ui/menu';
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import { cssInterop } from 'nativewind';
-import { Pressable, Text, View } from 'react-native';
-import { Motion, AnimatePresence } from '@legendapp/motion';
+import { Pressable, Text, View, ViewStyle } from 'react-native';
+import {
+  Motion,
+  AnimatePresence,
+  MotionComponentProps,
+} from '@legendapp/motion';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
+
+type IMotionViewProps = React.ComponentProps<typeof View> &
+  MotionComponentProps<typeof View, ViewStyle, unknown, unknown, unknown>;
+
+const MotionView = Motion.View as React.ComponentType<IMotionViewProps>;
 
 const menuStyle = tva({
   base: 'rounded-md bg-background-0 border border-outline-100 p-1 shadow-hard-5',
@@ -115,7 +124,7 @@ const Separator = React.forwardRef<
   );
 });
 export const UIMenu = createMenu({
-  Root: Motion.View,
+  Root: MotionView,
   Item: Item,
   Label: Text,
   Backdrop: BackdropPressable,
@@ -123,7 +132,7 @@ export const UIMenu = createMenu({
   Separator: Separator,
 });
 
-cssInterop(Motion.View, { className: 'style' });
+cssInterop(MotionView, { className: 'style' });
 
 type IMenuProps = React.ComponentProps<typeof UIMenu> &
   VariantProps<typeof menuStyle> & { className?: string };

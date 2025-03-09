@@ -13,17 +13,30 @@ import {
   Motion,
   AnimatePresence,
   createMotionAnimatedComponent,
+  MotionComponentProps,
 } from '@legendapp/motion';
-import { View, Pressable, ScrollView } from 'react-native';
-
-const AnimatedPressable = createMotionAnimatedComponent(Pressable);
+import { View, Pressable, ScrollView, ViewStyle } from 'react-native';
 
 const SCOPE = 'ALERT_DIALOG';
 
+const RootComponent = withStyleContext(View, SCOPE);
+
+type IMotionViewProps = React.ComponentProps<typeof View> &
+  MotionComponentProps<typeof View, ViewStyle, unknown, unknown, unknown>;
+
+const MotionView = Motion.View as React.ComponentType<IMotionViewProps>;
+
+type IAnimatedPressableProps = React.ComponentProps<typeof Pressable> &
+  MotionComponentProps<typeof Pressable, ViewStyle, unknown, unknown, unknown>;
+
+const AnimatedPressable = createMotionAnimatedComponent(
+  Pressable
+) as React.ComponentType<IAnimatedPressableProps>;
+
 const UIAccessibleAlertDialog = createAlertDialog({
-  Root: withStyleContext(View, SCOPE),
+  Root: RootComponent,
   Body: ScrollView,
-  Content: Motion.View,
+  Content: MotionView,
   CloseButton: Pressable,
   Header: View,
   Footer: View,
@@ -31,7 +44,7 @@ const UIAccessibleAlertDialog = createAlertDialog({
   AnimatePresence: AnimatePresence,
 });
 
-cssInterop(Motion.View, { className: 'style' });
+cssInterop(MotionView, { className: 'style' });
 cssInterop(AnimatedPressable, { className: 'style' });
 
 const alertDialogStyle = tva({

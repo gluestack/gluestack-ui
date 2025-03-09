@@ -11,6 +11,7 @@ import {
   FlatList,
   SectionList,
   PressableProps,
+  ViewStyle,
 } from 'react-native';
 import { PrimitiveIcon, UIIcon } from '@gluestack-ui/icon';
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
@@ -20,6 +21,7 @@ import {
   Motion,
   AnimatePresence,
   createMotionAnimatedComponent,
+  MotionComponentProps,
 } from '@legendapp/motion';
 
 const ItemWrapper = React.forwardRef<
@@ -29,11 +31,21 @@ const ItemWrapper = React.forwardRef<
   return <Pressable {...props} ref={ref} />;
 });
 
-const AnimatedPressable = createMotionAnimatedComponent(Pressable);
+type IMotionViewProps = React.ComponentProps<typeof View> &
+  MotionComponentProps<typeof View, ViewStyle, unknown, unknown, unknown>;
+
+const MotionView = Motion.View as React.ComponentType<IMotionViewProps>;
+
+type IAnimatedPressableProps = React.ComponentProps<typeof Pressable> &
+  MotionComponentProps<typeof Pressable, ViewStyle, unknown, unknown, unknown>;
+
+const AnimatedPressable = createMotionAnimatedComponent(
+  Pressable
+) as React.ComponentType<IAnimatedPressableProps>;
 
 export const UIActionsheet = createActionsheet({
   Root: View,
-  Content: Motion.View,
+  Content: MotionView,
   Item: ItemWrapper,
   ItemText: Text,
   DragIndicator: View,

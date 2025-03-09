@@ -1,20 +1,29 @@
 'use client';
 import React from 'react';
 import { createToastHook } from '@gluestack-ui/toast';
-import { AccessibilityInfo, Text, View } from 'react-native';
+import { AccessibilityInfo, Text, View, ViewStyle } from 'react-native';
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import { cssInterop } from 'nativewind';
-import { Motion, AnimatePresence } from '@legendapp/motion';
+import {
+  Motion,
+  AnimatePresence,
+  MotionComponentProps,
+} from '@legendapp/motion';
 import {
   withStyleContext,
   useStyleContext,
 } from '@gluestack-ui/nativewind-utils/withStyleContext';
 import type { VariantProps } from '@gluestack-ui/nativewind-utils';
 
-const useToast = createToastHook(Motion.View, AnimatePresence);
+type IMotionViewProps = React.ComponentProps<typeof View> &
+  MotionComponentProps<typeof View, ViewStyle, unknown, unknown, unknown>;
+
+const MotionView = Motion.View as React.ComponentType<IMotionViewProps>;
+
+const useToast = createToastHook(MotionView, AnimatePresence);
 const SCOPE = 'TOAST';
 
-cssInterop(Motion.View, { className: 'style' });
+cssInterop(MotionView, { className: 'style' });
 
 const toastStyle = tva({
   base: 'p-4 m-1 rounded-md gap-1 web:pointer-events-auto shadow-hard-5 border-outline-100',
