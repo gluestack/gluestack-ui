@@ -80,8 +80,16 @@ export function GluestackUIProvider({
   }, []);
 
   return (
-    <OverlayProvider>
-      <ToastProvider>{props.children}</ToastProvider>
-    </OverlayProvider>
+    <>
+      <script
+        suppressHydrationWarning
+        dangerouslySetInnerHTML={{
+          __html: `(${script.toString()})('${mode}')`,
+        }}
+      />
+      <OverlayProvider>
+        <ToastProvider>{props.children}</ToastProvider>
+      </OverlayProvider>
+    </>
   );
 }
