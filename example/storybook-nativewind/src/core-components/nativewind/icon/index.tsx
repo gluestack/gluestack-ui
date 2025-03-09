@@ -45,7 +45,7 @@ type IIConProps = IPrimitiveIcon &
   VariantProps<typeof iconStyle> &
   React.ComponentPropsWithoutRef<typeof UIIcon>;
 
-const Icon = React.forwardRef<React.ComponentRef<typeof Svg>, IIConProps>(
+const Icon = React.forwardRef<React.ComponentRef<typeof UIIcon>, IIConProps>(
   function Icon({ size = 'md', className, ...props }, ref) {
     if (typeof size === 'number') {
       return (
