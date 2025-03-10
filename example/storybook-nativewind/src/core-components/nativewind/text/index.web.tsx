@@ -4,8 +4,8 @@ import { textStyle } from './styles';
 
 type ITextProps = React.ComponentProps<'span'> & VariantProps<typeof textStyle>;
 
-const Text = React.forwardRef<React.ElementRef<'span'>, ITextProps>(
-  (
+const Text = React.forwardRef<React.ComponentRef<'span'>, ITextProps>(
+  function Text(
     {
       className,
       isTruncated,
@@ -19,7 +19,7 @@ const Text = React.forwardRef<React.ElementRef<'span'>, ITextProps>(
       ...props
     }: { className?: string } & ITextProps,
     ref
-  ) => {
+  ) {
     return (
       <span
         className={textStyle({
