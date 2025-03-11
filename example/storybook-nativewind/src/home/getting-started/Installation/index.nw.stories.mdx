@@ -398,7 +398,7 @@ export default Document;
 
 #### Additional Step for Next.js 15.
 
-Currently, Next.js 15 runs on react@19-rc.0. This version of react is not compatible with react-native-web@0.19.13. To resolve this, you need to do following steps.
+Currently, Next.js 15 runs on react@19.0. This version of react is not compatible with react-native-web@0.19.13. To resolve this, you need to do following steps.
 
 1. Changes in `registry.tsx`. Copy-paste the following code.
 
@@ -409,7 +409,7 @@ Currently, Next.js 15 runs on react@19-rc.0. This version of react is not compat
 import React, { useRef, useState } from "react";
 import { useServerInsertedHTML } from "next/navigation";
 import { StyleRegistry, createStyleRegistry } from "styled-jsx";
-// @ts-ignore
+// @ts-expect-error : AppRegistry is defined in react-native-web but its type is not defined
 import { AppRegistry } from "react-native-web";
 import { flush } from "@gluestack-ui/nativewind-utils/flush";
 
@@ -527,11 +527,9 @@ export function GluestackUIProvider({
   }, []);
 
   return (
-    <>
-      <OverlayProvider>
-        <ToastProvider>{props.children}</ToastProvider>
-      </OverlayProvider>
-    </>
+    <OverlayProvider>
+      <ToastProvider>{props.children}</ToastProvider>
+    </OverlayProvider>
   );
 }
 
@@ -1361,6 +1359,44 @@ export default withGluestackUI(nextConfig);
 
 </CollapsibleCode>
 
+8. Create a new file named `tailwind-variants.d.ts` in the root of your project.
+
+Put the following code in the file.
+
+```jsx
+
+declare module "tailwind-variants/dist/config" {
+  export type { TVConfig };
+}
+
+```
+
+9. If you're using eslint, you need to update your eslint.config.mjs file.
+
+```jsx
+import { dirname } from "path";
+import { fileURLToPath } from "url";
+import { FlatCompat } from "@eslint/eslintrc";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+const compat = new FlatCompat({
+  baseDirectory: __dirname,
+});
+
+const eslintConfig = [
+  ...compat.extends("next/core-web-vitals", "next/typescript"),
+  {
+    rules: {
+      "@typescript-eslint/no-explicit-any": "off",
+    },
+  },
+];
+
+export default eslintConfig;
+
+```
 
 
 ## Common issues
