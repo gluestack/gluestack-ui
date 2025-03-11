@@ -1,6 +1,7 @@
 {
   "name": "@gluestack-ui/alert",
-  "version": "0.1.16",
+  "license": "MIT",
+  "version": "0.1.17",
   "main": "lib/index",
   "module": "lib/index",
   "types": "lib/index.d.ts",

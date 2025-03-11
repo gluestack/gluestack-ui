@@ -15,6 +15,7 @@
     "ios",
     "nextjs"
   ],
+  "license": "MIT",
   "version": "0.1.38",
   "main": "lib/index",
   "module": "lib/index",
