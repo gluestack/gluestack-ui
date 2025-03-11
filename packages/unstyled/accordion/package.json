@@ -15,7 +15,8 @@
     "ios",
     "nextjs"
   ],
-  "version": "1.0.13",
+  "version": "1.0.14",
+  "license": "MIT",
   "main": "lib/index",
   "module": "lib/index",
   "types": "lib/index.d.ts",

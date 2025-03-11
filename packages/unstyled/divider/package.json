@@ -1,6 +1,7 @@
 {
   "name": "@gluestack-ui/divider",
-  "version": "0.1.10",
+  "version": "0.1.11",
+  "license": "MIT",
   "main": "lib/index",
   "module": "lib/index",
   "types": "lib/index.d.ts",

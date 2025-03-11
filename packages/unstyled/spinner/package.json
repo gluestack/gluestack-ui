@@ -1,6 +1,7 @@
 {
   "name": "@gluestack-ui/spinner",
-  "version": "0.1.15",
+  "version": "0.1.16",
+  "license": "MIT",
   "main": "lib/index",
   "module": "lib/index",
   "types": "lib/index.d.ts",

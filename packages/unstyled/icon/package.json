@@ -1,7 +1,8 @@
 {
   "name": "@gluestack-ui/icon",
   "description": "A universal headless icon component for React Native, Next.js & React",
-  "version": "0.1.25",
+  "version": "0.1.26",
+  "license": "MIT",
   "main": "lib/index",
   "module": "lib/index",
   "types": "lib/index.d.ts",
