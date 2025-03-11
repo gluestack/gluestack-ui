@@ -1,7 +1,7 @@
 {
   "name": "@gluestack-ui/overlay",
   "description": "A universal headless overlay component for React Native, Next.js & React",
-  "version": "0.1.21",
+  "version": "0.1.22",
   "main": "lib/index",
   "module": "lib/index",
   "types": "lib/index.d.ts",
@@ -31,8 +31,8 @@
   },
   "dependencies": {
     "@react-native-aria/focus": "^0.2.9",
-    "@react-native-aria/interactions": "0.2.15",
-    "@react-native-aria/overlays": "^0.3.12"
+    "@react-native-aria/interactions": "0.2.16",
+    "@react-native-aria/overlays": "^0.3.15"
   },
   "peerDependencies": {
     "react": ">=16",

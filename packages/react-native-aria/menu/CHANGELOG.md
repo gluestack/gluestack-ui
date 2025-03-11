@@ -1,5 +1,14 @@
 # @react-native-aria/menu
 
+## 0.2.15
+
+### Patch Changes
+
+- Updated dependencies
+  - @react-native-aria/utils@0.2.12
+  - @react-native-aria/interactions@0.2.16
+  - @react-native-aria/overlays@0.3.15
+
 ## 0.2.14
 
 ### Patch Changes

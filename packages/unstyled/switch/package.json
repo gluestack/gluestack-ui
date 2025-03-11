@@ -1,6 +1,6 @@
 {
   "name": "@gluestack-ui/switch",
-  "version": "0.1.28",
+  "version": "0.1.29",
   "main": "lib/index",
   "module": "lib/index",
   "types": "lib/index.d.ts",
@@ -47,7 +47,7 @@
     "@gluestack-ui/form-control": "^0.1.19",
     "@gluestack-ui/utils": "^0.1.15",
     "@react-native-aria/focus": "^0.2.9",
-    "@react-native-aria/interactions": "0.2.15",
+    "@react-native-aria/interactions": "0.2.16",
     "@react-stately/toggle": "^3.4.4"
   },
   "peerDependencies": {

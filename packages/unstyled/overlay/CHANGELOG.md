@@ -1,5 +1,14 @@
 # @gluestack-ui/overlay
 
+## 0.1.22
+
+### Patch Changes
+
+- fix: react-19 typing support
+- Updated dependencies
+  - @react-native-aria/interactions@0.2.16
+  - @react-native-aria/overlays@0.3.15
+
 ## 0.1.21
 
 ### Patch Changes
