@@ -22,7 +22,10 @@ export interface IOverlayProps {
   style?: ViewStyle;
 }
 
-const Overlay = React.forwardRef<React.ElementRef<typeof Modal>, IOverlayProps>(
+const Overlay = React.forwardRef<
+  React.ComponentRef<typeof Modal>,
+  IOverlayProps
+>(
   (
     {
       children,

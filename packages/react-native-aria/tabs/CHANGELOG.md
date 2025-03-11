@@ -1,5 +1,13 @@
 # @react-native-aria/tabs
 
+## 0.2.13
+
+### Patch Changes
+
+- Updated dependencies
+  - @react-native-aria/utils@0.2.12
+  - @react-native-aria/interactions@0.2.16
+
 ## 0.2.12
 
 ### Patch Changes

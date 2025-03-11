@@ -1,5 +1,13 @@
 # @gluestack-ui/icon
 
+## 0.1.26
+
+### Patch Changes
+
+- fix: react-19 typing support
+- Updated dependencies
+  - @gluestack-ui/provider@0.1.19
+
 ## 0.1.25
 
 ### Patch Changes

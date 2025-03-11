@@ -17,7 +17,7 @@ export type IPrimitiveIcon = {
 };
 
 export const PrimitiveIcon = React.forwardRef<
-  React.ElementRef<typeof Svg>,
+  React.ComponentRef<typeof Svg>,
   IPrimitiveIcon
 >(
   (
