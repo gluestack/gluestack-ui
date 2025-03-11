@@ -8,7 +8,7 @@ const accessClassName = (style: any) => {
 };
 
 const Svg = React.forwardRef<
-  React.ElementRef<'svg'>,
+  React.ComponentRef<'svg'>,
   React.ComponentPropsWithoutRef<'svg'>
 >(({ style, className, ...props }, ref) => {
   const calculateClassName = React.useMemo(() => {
@@ -31,7 +31,7 @@ export type IPrimitiveIcon = {
 };
 
 const PrimitiveIcon = React.forwardRef<
-  React.ElementRef<typeof Svg>,
+  React.ComponentRef<typeof Svg>,
   IPrimitiveIcon
 >(
   (

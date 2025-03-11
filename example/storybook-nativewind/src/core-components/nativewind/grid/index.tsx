@@ -126,8 +126,8 @@ type IGridProps = ViewProps &
     };
   };
 
-const Grid = forwardRef<React.ElementRef<typeof View>, IGridProps>(
-  ({ className, _extra, children, ...props }, ref) => {
+const Grid = forwardRef<React.ComponentRef<typeof View>, IGridProps>(
+  function Grid({ className, _extra, children, ...props }, ref) {
     const [calculatedWidth, setCalculatedWidth] = useState<number | null>(null);
 
     const gridClass = _extra?.className;
@@ -165,7 +165,7 @@ const Grid = forwardRef<React.ElementRef<typeof View>, IGridProps>(
 
     const childrenWithProps = React.Children.map(children, (child, index) => {
       if (React.isValidElement(child)) {
-        return React.cloneElement(child, { index } as any);
+        return React.cloneElement(child, { key: index });
       }
 
       return child;
@@ -197,7 +197,7 @@ const Grid = forwardRef<React.ElementRef<typeof View>, IGridProps>(
           className={gridStyle({
             class: className + ' ' + gridClassMerged,
           })}
-          onLayout={(event: any) => {
+          onLayout={(event) => {
             const paddingLeftToSubtract =
               props?.paddingStart || props?.paddingLeft || props?.padding || 0;
 
@@ -249,8 +249,8 @@ type IGridItemProps = ViewProps &
     };
   };
 
-const GridItem = forwardRef<React.ElementRef<typeof View>, IGridItemProps>(
-  ({ className, _extra, ...props }, ref) => {
+const GridItem = forwardRef<React.ComponentRef<typeof View>, IGridItemProps>(
+  function GridItem({ className, _extra, ...props }, ref) {
     const [flexBasisValue, setFlexBasisValue] = useState<
       number | string | null
     >('auto');
@@ -265,10 +265,9 @@ const GridItem = forwardRef<React.ElementRef<typeof View>, IGridItemProps>(
     } = useContext(GridContext);
 
     const gridItemClass = _extra?.className;
-    const responsiveColSpan: number =
-      useBreakpointValue(
-        generateResponsiveColSpans({ gridItemClassName: gridItemClass })
-      ) ?? 1;
+    const responsiveColSpan = (useBreakpointValue(
+      generateResponsiveColSpans({ gridItemClassName: gridItemClass })
+    ) ?? 1) as number;
 
     useEffect(() => {
       if (
@@ -316,7 +315,7 @@ const GridItem = forwardRef<React.ElementRef<typeof View>, IGridItemProps>(
     return (
       <View
         ref={ref}
-        // @ts-expect-error
+        // @ts-expect-error : internal implementation for r-19/react-native-web
         gridItemClass={gridItemClass}
         className={gridItemStyle({
           class: className,
@@ -324,6 +323,7 @@ const GridItem = forwardRef<React.ElementRef<typeof View>, IGridItemProps>(
         {...props}
         style={[
           {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             flexBasis: flexBasisValue as any,
           },
           props.style,

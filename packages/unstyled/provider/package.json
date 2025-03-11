@@ -44,7 +44,7 @@
     "tsconfig": "*"
   },
   "dependencies": {
-    "@react-native-aria/interactions": "0.2.15",
+    "@react-native-aria/interactions": "0.2.16",
     "tsconfig": "7",
     "typescript": "^5.6.3"
   },

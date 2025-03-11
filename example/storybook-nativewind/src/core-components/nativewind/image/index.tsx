@@ -27,19 +27,18 @@ const UIImage = createImage({ Root: RNImage });
 type ImageProps = VariantProps<typeof imageStyle> &
   React.ComponentProps<typeof UIImage>;
 const Image = React.forwardRef<
-  React.ElementRef<typeof UIImage>,
+  React.ComponentRef<typeof UIImage>,
   ImageProps & { className?: string }
->(({ size = 'md', className, ...props }, ref) => {
+>(function Image({ size = 'md', className, ...props }, ref) {
   return (
     <UIImage
       className={imageStyle({ size, class: className })}
       {...props}
       ref={ref}
-      // @ts-expect-error
+      // @ts-expect-error : web only
       style={
         Platform.OS === 'web'
-          ? // eslint-disable-next-line react-native/no-inline-styles
-            { height: 'revert-layer', width: 'revert-layer' }
+          ? { height: 'revert-layer', width: 'revert-layer' }
           : undefined
       }
     />

@@ -1,5 +1,12 @@
 # @react-native-aria/button
 
+## 0.2.10
+
+### Patch Changes
+
+- Updated dependencies
+  - @react-native-aria/interactions@0.2.16
+
 ## 0.2.9
 
 ### Patch Changes

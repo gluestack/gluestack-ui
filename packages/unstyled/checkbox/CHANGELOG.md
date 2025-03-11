@@ -1,5 +1,14 @@
 # @gluestack-ui/checkbox
 
+## 0.1.39
+
+### Patch Changes
+
+- Updated dependencies
+  - @react-native-aria/utils@0.2.12
+  - @react-native-aria/checkbox@0.2.10
+  - @react-native-aria/interactions@0.2.16
+
 ## 0.1.38
 
 ### Patch Changes

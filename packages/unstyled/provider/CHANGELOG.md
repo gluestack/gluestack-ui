@@ -1,5 +1,12 @@
 # @gluestack-ui/provider
 
+## 0.1.19
+
+### Patch Changes
+
+- Updated dependencies
+  - @react-native-aria/interactions@0.2.16
+
 ## 0.1.18
 
 ### Patch Changes

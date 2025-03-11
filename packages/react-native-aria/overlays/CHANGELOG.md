@@ -1,5 +1,12 @@
 # @react-native-aria/overlays
 
+## 0.3.15
+
+### Patch Changes
+
+- Updated dependencies
+  - @react-native-aria/utils@0.2.12
+
 ## 0.3.14
 
 ### Patch Changes

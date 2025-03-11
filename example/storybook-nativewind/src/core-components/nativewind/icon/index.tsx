@@ -11,7 +11,7 @@ export const UIIcon = createIcon({
   Root: PrimitiveIcon,
 }) as React.ForwardRefExoticComponent<
   React.ComponentPropsWithoutRef<typeof PrimitiveIcon> &
-    React.RefAttributes<React.ElementRef<typeof Svg>>
+    React.RefAttributes<React.ComponentRef<typeof Svg>>
 >;
 
 const iconStyle = tva({
@@ -45,8 +45,8 @@ type IIConProps = IPrimitiveIcon &
   VariantProps<typeof iconStyle> &
   React.ComponentPropsWithoutRef<typeof UIIcon>;
 
-const Icon = React.forwardRef<React.ElementRef<typeof Svg>, IIConProps>(
-  ({ size = 'md', className, ...props }, ref) => {
+const Icon = React.forwardRef<React.ComponentRef<typeof UIIcon>, IIConProps>(
+  function Icon({ size = 'md', className, ...props }, ref) {
     if (typeof size === 'number') {
       return (
         <UIIcon
@@ -88,28 +88,26 @@ const createIconUI = ({ ...props }: ParameterTypes) => {
     ...props,
   }) as React.ForwardRefExoticComponent<
     React.ComponentPropsWithoutRef<typeof PrimitiveIcon> &
-      React.RefAttributes<React.ElementRef<typeof Svg>>
+      React.RefAttributes<React.ComponentRef<typeof Svg>>
   >;
 
-  return React.forwardRef<React.ElementRef<typeof Svg>>(
-    (
-      {
-        className,
-        size,
-        ...inComingProps
-      }: VariantProps<typeof iconStyle> &
-        React.ComponentPropsWithoutRef<typeof UIIconCreateIcon>,
-      ref
-    ) => {
-      return (
-        <UIIconCreateIcon
-          ref={ref}
-          {...inComingProps}
-          className={iconStyle({ size, class: className })}
-        />
-      );
-    }
-  );
+  return React.forwardRef<React.ComponentRef<typeof Svg>>(function UIIcon(
+    {
+      className,
+      size,
+      ...inComingProps
+    }: VariantProps<typeof iconStyle> &
+      React.ComponentPropsWithoutRef<typeof UIIconCreateIcon>,
+    ref
+  ) {
+    return (
+      <UIIconCreateIcon
+        ref={ref}
+        {...inComingProps}
+        className={iconStyle({ size, class: className })}
+      />
+    );
+  });
 };
 export { createIconUI as createIcon };
 // All Icons

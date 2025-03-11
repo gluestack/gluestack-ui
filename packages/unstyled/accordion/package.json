@@ -48,7 +48,7 @@
     "@gluestack-ui/utils": "^0.1.15",
     "@react-native-aria/accordion": "^0.0.2",
     "@react-native-aria/focus": "^0.2.9",
-    "@react-native-aria/interactions": "0.2.15"
+    "@react-native-aria/interactions": "0.2.16"
   },
   "homepage": "https://github.com/gluestack/gluestack-ui/tree/main/packages/unstyled/accordion#readme",
   "repository": {

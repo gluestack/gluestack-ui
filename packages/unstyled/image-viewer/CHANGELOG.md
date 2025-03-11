@@ -1,5 +1,12 @@
 # @gluestack-ui/image-viewer
 
+## 0.0.17
+
+### Patch Changes
+
+- Updated dependencies
+  - @react-native-aria/interactions@0.2.16
+
 ## 0.0.16
 
 ### Patch Changes

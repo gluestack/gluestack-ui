@@ -21,12 +21,8 @@ export const getLabel = (props: any) => {
 };
 
 export * from './ariaToAccessibilityMap';
-export {
-  useId,
-  useLayoutEffect,
-  mergeIds,
-  mergeProps,
-} from '@react-aria/utils';
+export { useId, mergeIds, mergeProps } from '@react-aria/utils';
+export { useLayoutEffect } from './useLayoutEffect';
 export { SSRProvider, useIsSSR } from '@react-aria/ssr';
 
 export const isRTL = (): any => {
