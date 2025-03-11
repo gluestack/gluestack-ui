@@ -48,6 +48,11 @@ jobs:
           npm -v
           cat .next-version || echo ".next-version file not found"
 
+      - name: Set Git identity
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
       - name: Create Next.js project from create-command
         run: |
           npx create-gluestack@latest test-app --next-app-router
