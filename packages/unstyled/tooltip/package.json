@@ -1,7 +1,8 @@
 {
   "name": "@gluestack-ui/tooltip",
   "description": "A universal headless tooltip component for React Native, Next.js & React",
-  "version": "0.1.43",
+  "version": "0.1.44",
+  "license": "MIT",
   "main": "lib/index",
   "module": "lib/index",
   "types": "lib/index.d.ts",

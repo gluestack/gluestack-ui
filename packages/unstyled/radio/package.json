@@ -1,6 +1,7 @@
 {
   "name": "@gluestack-ui/radio",
-  "version": "0.1.39",
+  "version": "0.1.40",
+  "license": "MIT",
   "main": "lib/index",
   "module": "lib/index",
   "types": "lib/index.d.ts",

@@ -1,6 +1,7 @@
 {
   "name": "@gluestack-ui/link",
-  "version": "0.1.28",
+  "version": "0.1.29",
+  "license": "MIT",
   "main": "lib/index",
   "module": "lib/index",
   "types": "lib/index.d.ts",

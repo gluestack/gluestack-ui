@@ -1,6 +1,7 @@
 {
   "name": "@gluestack-ui/pressable",
-  "version": "0.1.22",
+  "version": "0.1.23",
+  "license": "MIT",
   "main": "lib/index",
   "module": "lib/index",
   "types": "lib/index.d.ts",
