@@ -1,5 +1,13 @@
 # @gluestack-ui/slider
 
+## 0.1.32
+
+### Patch Changes
+
+- Updated dependencies
+  - @react-native-aria/interactions@0.2.16
+  - @react-native-aria/slider@0.2.12
+
 ## 0.1.31
 
 ### Patch Changes
