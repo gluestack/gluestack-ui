@@ -6,8 +6,9 @@ const ImageViewerBackdrop = (StyledImageViewerBackdrop: any) =>
   forwardRef(({ children, ...props }: any, ref?: any) => {
     const { scale } = useContext(ImageViewerContext);
     const animatedStyle = useAnimatedStyle(() => {
+      const absScale = Number(scale?.toFixed(2));
       return {
-        opacity: scale,
+        opacity: absScale,
       };
     });
 
