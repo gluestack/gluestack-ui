@@ -13,9 +13,16 @@ import { OverlayAnimatePresence } from './OverlayAnimatePresence';
 import { FocusScope } from '@react-native-aria/focus';
 import { mergeRefs, findNodeHandle } from '@gluestack-ui/utils';
 import { useDialog } from '@react-native-aria/dialog';
-
 import { usePreventScroll } from '@react-native-aria/overlays';
-const windowHeight = Dimensions.get('screen').height;
+
+//dimentions not giving proper window height on web
+const windowHeight =
+  Platform.OS === 'web'
+    ? typeof window !== 'undefined'
+      ? window.innerHeight
+      : Dimensions.get('screen').height
+    : Dimensions.get('screen').height;
+
 function ActionsheetContent(
   StyledActionsheetContent: any,
   AnimatePresence?: any
