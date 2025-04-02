@@ -16,6 +16,7 @@
     "nextjs"
   ],
   "version": "0.2.43",
+  "license": "MIT",
   "main": "lib/index",
   "module": "lib/index",
   "types": "lib/index.d.ts",

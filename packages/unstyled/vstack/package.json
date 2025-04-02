@@ -1,7 +1,8 @@
 {
   "name": "@gluestack-ui/vstack",
   "description": "A universal headless vstack component for React Native, Next.js & React",
-  "version": "0.1.16",
+  "version": "0.1.17",
+  "license": "MIT",
   "main": "lib/index",
   "module": "lib/index",
   "types": "lib/index.d.ts",
