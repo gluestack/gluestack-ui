@@ -41,7 +41,9 @@ const ChildPath = ({ element, fill, stroke: pathStroke }: any) => {
   if (!element) {
     return null;
   }
-
+  if (element.type === React.Fragment) {
+    return element;
+  }
   return React.cloneElement(element, {
     fill: fillColor ? fillColor : 'currentColor',
     stroke: pathStrokeColor,
