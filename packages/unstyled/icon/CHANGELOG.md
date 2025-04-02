@@ -1,5 +1,11 @@
 # @gluestack-ui/icon
 
+## 0.1.27
+
+### Patch Changes
+
+- fixed Warning Invalid prop fill supplied to React.Fragment in RN CLI
+
 ## 0.1.26
 
 ### Patch Changes
