@@ -205,7 +205,7 @@ const Grid = forwardRef<React.ComponentRef<typeof View>, IGridProps>(
               props?.paddingEnd || props?.paddingRight || props?.padding || 0;
 
             const gridWidth =
-              event.nativeEvent.layout.width -
+              Math.floor(event.nativeEvent.layout.width) -
               paddingLeftToSubtract -
               paddingRightToSubtract -
               borderWidthToSubtract;
