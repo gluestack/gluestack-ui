@@ -86,7 +86,7 @@ npx gluestack-ui@latest add heading
 ## Step 4 : Code Migration
 
 ### Codemod
-The gluestack-ui v2 migration process has been streamlined with the creation of a codemod. This codemod automates the conversion of your existing v1 code to v2, ensuring a smooth transition. Here's what the codemod does:
+The gluestack-ui v2 migration process has been streamlined with the creation of a codemod. This codemod automates the conversion of your existing v1 code to v2, ensuring a smooth transition. Here’s what the codemod does:
 
 ##### Style Migration:
   - It migrates all your existing stylings in v1 code to the appropriate v2 code.
@@ -94,7 +94,7 @@ The gluestack-ui v2 migration process has been streamlined with the creation of 
 ##### Config Migration:
   - If you have a custom v1 configuration, the codemod will also migrate this configuration to be compatible with v2.
 ##### Limitations:
-  - Descendant Styling ( As it's not supported in NativeWind at the moment)
+  - Descendant Styling ( As it’s not supported in NativeWind at the moment)
   - Value of `sx` prop is variable
 #### Please proceed with the following steps to continue the migration:
 <Tabs value="cli" type="section">
@@ -147,7 +147,7 @@ In this property mapper table you can find all the properties of v1 and how they
             </Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>{`className="underline"`}</Table.TText>
+             <Table.TText>{`className=”underline”`}</Table.TText>
           </Table.TD>
         </Table.TR>
         <Table.TR>
@@ -157,7 +157,7 @@ In this property mapper table you can find all the properties of v1 and how they
             </Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>{`className="font-<value>"`}</Table.TText>
+            <Table.TText>{`className=”font-<value>”`}</Table.TText>
           </Table.TD>
         </Table.TR>
         <Table.TR>
@@ -167,7 +167,7 @@ In this property mapper table you can find all the properties of v1 and how they
             </Table.TText>
           </Table.TD>
           <Table.TD>
-            <Table.TText>{`className="text-value"`}</Table.TText>
+             <Table.TText>{`className=”text-value”`}</Table.TText>
           </Table.TD>
         </Table.TR>
         <Table.TR>
@@ -1112,7 +1112,7 @@ For Tailwind config configuration please refer to [this](https://tailwindcss.com
 
 ### Limitations (Descendant Styling) :
 
-- Descendant styling will not be resolved and we'll keep it as it is.
+- Descendant styling will not be resolved and we’ll keep it as it is.
 - You can update it manually by moving it to the respective element where the style is required
 
 ```jsx
@@ -1188,7 +1188,7 @@ export default function App() {
 }
 ```
 
-**Applying styles for different media queries (sm/md/lg) using @** :
+**Applying styles for different media queries (sm/md/lg) using `@`**:
 
 **Before**:
 
@@ -1216,7 +1216,7 @@ export default function App() {
 }
 ```
 
-**Applying styles for different media queries (sm/md/lg) using $** :
+**Applying styles for different media queries (sm/md/lg) using `$`** :
 
 **Before**:
 
