@@ -1,5 +1,11 @@
 # @gluestack-ui/textarea
 
+## 0.1.25
+
+### Patch Changes
+
+- fix: updated dependencies to include @react-native-aria/interactions
+
 ## 0.1.24
 
 ### Patch Changes
