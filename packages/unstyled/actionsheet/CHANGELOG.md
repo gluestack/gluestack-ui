@@ -1,5 +1,11 @@
 # @gluestack-ui/actionsheet
 
+## 0.2.53
+
+### Patch Changes
+
+- fix: fixed window height calculation
+
 ## 0.2.52
 
 ### Patch Changes
