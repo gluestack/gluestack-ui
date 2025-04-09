@@ -15,7 +15,7 @@
     "ios",
     "nextjs"
   ],
-  "version": "0.2.52",
+  "version": "0.2.53",
   "main": "lib/index",
   "module": "lib/index",
   "types": "lib/index.d.ts",

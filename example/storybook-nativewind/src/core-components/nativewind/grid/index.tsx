@@ -165,7 +165,7 @@ const Grid = forwardRef<React.ComponentRef<typeof View>, IGridProps>(
 
     const childrenWithProps = React.Children.map(children, (child, index) => {
       if (React.isValidElement(child)) {
-        return React.cloneElement(child, { ...child.props, key: index, index });
+        return React.cloneElement(child, { key: index, index: index } as any);
       }
 
       return child;
