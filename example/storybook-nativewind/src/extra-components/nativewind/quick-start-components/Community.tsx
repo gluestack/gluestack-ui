@@ -1,10 +1,10 @@
+import React from 'react';
 import { Link } from '@/components/ui/link';
 import { Text } from '@/components/ui/text';
 import { VStack } from '@/components/ui/vstack';
 import { HStack } from '@/components/ui/hstack';
 import { Box } from '@/components/ui/box';
-import React from 'react';
-
+import { Heading } from '@/components/ui/heading';
 export type CommunityItem = {
   name: string;
   icon: React.ReactElement;
@@ -20,9 +20,9 @@ export const Community = ({
   return (
     <Box className="my-6">
       <VStack space="sm">
-        <Text className="font-bold text-2xl font-Plus Jakarta Sans">
+        <Heading size="2xl" className="font-bold font-Plus Jakarta Sans">
           Join our community
-        </Text>
+        </Heading>
         <Text className="text-base">
           Be a part of this journey. Everyone is welcome!
         </Text>
