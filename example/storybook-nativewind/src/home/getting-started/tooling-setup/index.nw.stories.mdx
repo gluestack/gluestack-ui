@@ -25,11 +25,29 @@ If you are using VSCode and the [Tailwind CSS IntelliSense Extension](https://ma
 
 ## Prettier plugin setup (optional)
 
-If you are using [prettier-plugin-tailwindcss](https://github.com/tailwindlabs/prettier-plugin-tailwindcss) to sort your class names, you can add tv to the list of functions that should be sorted (on `.prettierrc`).
+If you are using [prettier-plugin-tailwindcss](https://github.com/tailwindlabs/prettier-plugin-tailwindcss) to sort your class names, you can add `tva` to the list of functions that should be sorted (in `.prettierrc`).
 
 ```jsx
 module.exports = {
   plugins: ['prettier-plugin-tailwindcss'],
   tailwindFunctions: ['tva'],
+};
+```
+
+## ESlint plugin setup (optional)
+
+If you are using [eslint-plugin-tailwindcss](https://github.com/francoismassart/eslint-plugin-tailwindcss) to lint your class names, you can add `tva` to the list of functions that should be linted (in `.eslintrc.js`).
+
+```jsx
+module.exports = {
+  extends: [
+    "expo",
+    "plugin:tailwindcss/recommended",
+  ],
+  settings: {
+    tailwindcss: {
+      callees: ["classnames", "clsx", "ctl", "tva"],
+    },
+  },
 };
 ```
