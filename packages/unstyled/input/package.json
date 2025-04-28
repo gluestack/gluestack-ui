@@ -1,5 +1,6 @@
 {
   "name": "@gluestack-ui/input",
+  "license": "MIT",
   "description": "A universal headless input component for React Native, Next.js & React",
   "version": "0.1.38",
   "main": "lib/index",

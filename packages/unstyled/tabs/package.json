@@ -1,6 +1,7 @@
 {
   "name": "@gluestack-ui/tabs",
   "version": "0.1.24",
+  "license": "MIT",
   "main": "lib/index",
   "module": "lib/index",
   "types": "lib/index.d.ts",

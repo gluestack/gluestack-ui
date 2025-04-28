@@ -1,5 +1,6 @@
 {
   "name": "@gluestack-ui/transitions",
+  "license": "MIT",
   "description": "Transitions animations for React Native, Next.js & React",
   "version": "0.1.11",
   "main": "lib/index",

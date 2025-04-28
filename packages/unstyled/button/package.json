@@ -1,5 +1,6 @@
 {
   "name": "@gluestack-ui/button",
+  "license": "MIT",
   "version": "1.0.14",
   "main": "lib/index",
   "module": "lib/index",

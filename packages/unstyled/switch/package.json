@@ -1,5 +1,6 @@
 {
   "name": "@gluestack-ui/switch",
+  "license": "MIT",
   "version": "0.1.29",
   "main": "lib/index",
   "module": "lib/index",

@@ -1,5 +1,6 @@
 {
   "name": "@gluestack-ui/hstack",
+  "license": "MIT",
   "description": "A universal headless hstack component for React Native, Next.js & React",
   "version": "0.1.17",
   "main": "lib/index",

@@ -1,5 +1,6 @@
 {
   "name": "@gluestack-ui/linear-gradient",
+  "license": "MIT",
   "version": "0.1.3",
   "main": "lib/index",
   "module": "lib/index",

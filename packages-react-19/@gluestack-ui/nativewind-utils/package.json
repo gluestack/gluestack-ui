@@ -1,5 +1,6 @@
 {
   "name": "@gluestack-ui/nativewind-utils",
+  "license": "MIT",
   "description": "A utility function package for @gluestack-ui/nativewind",
   "keywords": [
     "react",

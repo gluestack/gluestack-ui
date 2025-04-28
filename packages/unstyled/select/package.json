@@ -1,5 +1,6 @@
 {
   "name": "@gluestack-ui/select",
+  "license": "MIT",
   "description": "A universal headless select component for React Native, Next.js & React",
   "keywords": [
     "react",

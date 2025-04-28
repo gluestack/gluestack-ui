@@ -1,5 +1,6 @@
 {
   "name": "@gluestack-style/moti-animation-driver",
+  "license": "MIT",
   "version": "1.0.2",
   "description": "A gluestack-style driver for using moti animation with animation resolver plugin.",
   "keywords": [

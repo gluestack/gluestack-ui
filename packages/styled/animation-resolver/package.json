@@ -1,5 +1,6 @@
 {
   "name": "@gluestack-style/animation-resolver",
+  "license": "MIT",
   "version": "1.0.4",
   "description": "A gluestack-style plugin for resolving animation properties, utilizing animation libraries.",
   "keywords": [

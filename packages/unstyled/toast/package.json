@@ -1,5 +1,6 @@
 {
   "name": "@gluestack-ui/toast",
+  "license": "MIT",
   "description": "A universal headless toast component for React Native, Next.js & React",
   "keywords": [
     "react",

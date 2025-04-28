@@ -1,5 +1,6 @@
 {
   "name": "@gluestack-ui/image-viewer",
+  "license": "MIT",
   "version": "0.0.17",
   "main": "lib/index",
   "module": "lib/index",

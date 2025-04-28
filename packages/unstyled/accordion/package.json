@@ -1,5 +1,6 @@
 {
   "name": "@gluestack-ui/accordion",
+  "license": "MIT",
   "description": "A universal headless accordion component for React Native, Next.js & React",
   "keywords": [
     "react",

@@ -1,5 +1,6 @@
 {
   "name": "@gluestack-ui/slider",
+  "license": "MIT",
   "description": "A universal headless slider component for React Native, Next.js & React",
   "version": "0.1.32",
   "main": "lib/index",

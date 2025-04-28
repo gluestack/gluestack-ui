@@ -1,5 +1,6 @@
 {
   "name": "@gluestack-ui/progress",
+  "license": "MIT",
   "description": "A universal headless progress component for React Native, Next.js & React",
   "keywords": [
     "react",

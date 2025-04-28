@@ -1,5 +1,6 @@
 {
   "name": "@gluestack-ui/avatar",
+  "license": "MIT",
   "description": "A universal headless avatar component for React Native, Next.js & React",
   "version": "0.1.18",
   "main": "lib/index",

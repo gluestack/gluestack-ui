@@ -1,5 +1,6 @@
 {
   "name": "@gluestack-ui/modal",
+  "license": "MIT",
   "description": "A universal headless modal component for React Native, Next.js & React",
   "keywords": [
     "react",

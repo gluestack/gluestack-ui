@@ -1,5 +1,6 @@
 {
   "name": "@gluestack-ui/utils",
+  "license": "MIT",
   "description": "Utility functions used internally in gluestack-ui",
   "version": "0.1.15",
   "main": "lib/index",

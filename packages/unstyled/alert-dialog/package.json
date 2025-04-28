@@ -1,5 +1,6 @@
 {
   "name": "@gluestack-ui/alert-dialog",
+  "license": "MIT",
   "description": "A universal headless alert-dialog component for React Native, Next.js & React",
   "keywords": [
     "react",

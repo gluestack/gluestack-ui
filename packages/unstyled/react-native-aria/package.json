@@ -1,5 +1,6 @@
 {
   "name": "@gluestack-ui/react-native-aria",
+  "license": "MIT",
   "version": "0.1.7",
   "main": "lib/index",
   "module": "lib/index",

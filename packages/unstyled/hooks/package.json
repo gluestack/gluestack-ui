@@ -1,5 +1,6 @@
 {
   "name": "@gluestack-ui/hooks",
+  "license": "MIT",
   "description": "Provides hooks used in gluestack-ui",
   "version": "0.1.13",
   "main": "lib/index",
