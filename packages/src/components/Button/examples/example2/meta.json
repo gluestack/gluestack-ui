@@ -1,22 +1,30 @@
 {
-    "argTypes": {
-      "variant": {
-        "control": {
-          "type": "select"
-        },
-        "options": ["primary", "secondary", "outline"],
-        "defaultValue": "primary"
+  "argTypes": {
+    "variant": {
+      "control": {
+        "type": "select"
       },
-      "size": {
-        "control": {
-          "type": "select"
-        },
-        "options": ["small", "medium", "large"],
-        "defaultValue": "medium"
-      }
+      "options": ["solid", "outline", "link"],
+      "defaultValue": "solid"
     },
-    "reactLive": {
-      "Box": "../../components/Box",
-      "Card": "../../components/Card"
+    "action": {
+      "control": {
+        "type": "select"
+      },
+      "options": ["primary", "secondary", "positive", "negative"],
+      "defaultValue": "primary"
+    },
+    "size": {
+      "control": {
+        "type": "select"
+      },
+      "options": ["xs", "sm", "md", "lg"],
+      "defaultValue": "md"
     }
+  },
+  "reactLive": {
+    "Button": "Button",
+    "ButtonText": "Button",
+    "ButtonSpinner": "Button"
   }
+}
