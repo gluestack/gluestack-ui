@@ -18,8 +18,10 @@
     "nativewind": "^4.1.23",
     "next": "14.2.4",
     "react": "^18",
+    "react-aria": "^3.39.0",
     "react-dom": "^18",
     "react-native-web": "^0.19.12",
+    "tailwind-variants": "^1.0.0",
     "ui": "*"
   },
   "devDependencies": {

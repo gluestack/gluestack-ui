@@ -1,15 +1,15 @@
 'use client';
 import React from 'react';
-import { createButton } from './src';
-import { tva } from '../../../nativewind/utils/tva';
+import { createButton } from './creator';
+import { tva } from '../../nativewind/utils/tva';
 import {
   withStyleContext,
   useStyleContext,
-} from '../../../nativewind/utils/withStyleContext';
+} from '../../nativewind/utils/withStyleContext';
 import { cssInterop } from 'nativewind';
 import { ActivityIndicator, Pressable, Text, View } from 'react-native';
 import type { VariantProps } from 'tailwind-variants';
-import { PrimitiveIcon, UIIcon } from '../Icon/src';
+import { PrimitiveIcon, UIIcon } from '../Icon/creator';
 
 const SCOPE = 'BUTTON';
 
