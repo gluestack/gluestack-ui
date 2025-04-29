@@ -2,6 +2,7 @@ import chokidar from "chokidar";
 import path from "path";
 import fs from "fs";
 import mappers from "../mappers/index";
+import docsMapper from "../mappers/docs";
 
 const sourcePath = "./packages/src";
 const componentsPath = "./packages/src/components";
@@ -34,6 +35,25 @@ const getComponentFromPath = (filePath: string): string | null => {
 const processFileChange = async (event: string, filePath: string) => {
   console.log(`File ${event}: ${filePath}`);
   const component = getComponentFromPath(filePath);
+  
+  // If a component directory is being deleted, handle it directly
+  if (event === "removed" && component) {
+    const componentDir = path.join(componentsPath, component);
+    // Check if the component directory no longer exists
+    if (!fs.existsSync(componentDir)) {
+      console.log(`Component directory deleted: ${component}`);
+      if (docsMapper && typeof docsMapper.component === 'function') {
+        try {
+          // Call the docs mapper directly with 'removed' event
+          await docsMapper.component(component, 'removed');
+        } catch (error) {
+          console.error(`Error deleting docs for component ${component}:`, error);
+        }
+      }
+    }
+  }
+  
+  // Continue with the regular processing
   for (const mapperConfig of mappers) {
     try {
       const { name, mapper } = mapperConfig;
@@ -41,8 +61,8 @@ const processFileChange = async (event: string, filePath: string) => {
       
       if (component) {
         if (mapper && typeof mapper.component === 'function') {
-          console.log(`Processing component: ${component}`);
-          await mapper.component(component);
+          console.log(`Processing component: ${component} (${event})`);
+          await mapper.component(component, event);
         } else {
           console.warn(`Mapper ${name} doesn't have a component method`);
         }

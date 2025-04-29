@@ -1,0 +1,108 @@
+import CodePreviewer from '../../CodePreviewer';
+import {Button} from '../../../../components/Button';
+import {ButtonText} from '../../../../components/Button';
+import {ButtonSpinner} from '../../../../components/Button';
+
+# Box
+
+The Box component is a versatile container that can be used to create various layouts and styles. It provides a flexible and powerful way to manage the layout of your components
+
+
+
+<CodePreviewer
+  code={`<View>
+    <Button variant="{{variant}}" size="{{size}}" action="{{action}}">
+        <ButtonText>Button Text</ButtonText>
+        <ButtonSpinner/>
+    </Button>
+</View>`}
+  argTypes={{
+  "variant": {
+    "control": {
+      "type": "select"
+    },
+    "options": [
+      "solid",
+      "outline",
+      "link"
+    ],
+    "defaultValue": "solid"
+  },
+  "action": {
+    "control": {
+      "type": "select"
+    },
+    "options": [
+      "primary",
+      "secondary",
+      "positive",
+      "negative"
+    ],
+    "defaultValue": "primary"
+  },
+  "size": {
+    "control": {
+      "type": "select"
+    },
+    "options": [
+      "xs",
+      "sm",
+      "md",
+      "lg"
+    ],
+    "defaultValue": "md"
+  }
+}}
+  reactLive={{ Button, ButtonText, ButtonSpinner }}
+/>
+
+
+
+
+
+<CodePreviewer
+  code={`<View>
+    <Button variant="{{variant}}" size="{{size}}">
+        <ButtonText>Button Text</ButtonText>
+        <ButtonSpinner/>
+    </Button>
+</View>`}
+  argTypes={{
+  "variant": {
+    "control": {
+      "type": "select"
+    },
+    "options": [
+      "solid",
+      "outline",
+      "link"
+    ],
+    "defaultValue": "solid"
+  },
+  "action": {
+    "control": {
+      "type": "select"
+    },
+    "options": [
+      "primary",
+      "secondary",
+      "positive",
+      "negative"
+    ],
+    "defaultValue": "primary"
+  },
+  "size": {
+    "control": {
+      "type": "select"
+    },
+    "options": [
+      "xs",
+      "sm",
+      "md",
+      "lg"
+    ],
+    "defaultValue": "md"
+  }
+}}
+  reactLive={{ Button, ButtonText, ButtonSpinner }}
+/>

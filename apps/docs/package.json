@@ -15,11 +15,13 @@
     "@next/mdx": "^15.3.1",
     "@types/mdx": "^2.0.13",
     "app": "*",
+    "handlebars": "^4.7.8",
     "nativewind": "^4.1.23",
     "next": "14.2.4",
     "react": "^18",
     "react-aria": "^3.39.0",
     "react-dom": "^18",
+    "react-live": "^4.1.8",
     "react-native-web": "^0.19.12",
     "tailwind-variants": "^1.0.0",
     "ui": "*"

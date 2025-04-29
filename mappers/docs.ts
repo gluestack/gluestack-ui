@@ -58,6 +58,30 @@ const copyComponent = (component: string) => {
   console.log(`✅ Component ${component} processed`);
 };
 
+// Function to delete component docs when component is deleted
+const deleteComponentDocs = (component: string) => {
+  const docsComponentPath = path.resolve('apps/docs/components', component);
+  const docsUiPath = path.resolve('apps/docs/app/ui/docs', component.toLowerCase());
+  
+  try {
+    // Delete from docs/components
+    if (fs.existsSync(docsComponentPath)) {
+      fs.rmSync(docsComponentPath, { recursive: true, force: true });
+      console.log(`✓ Deleted component docs from: ${docsComponentPath}`);
+    }
+    
+    // Delete from docs/app/ui/docs
+    if (fs.existsSync(docsUiPath)) {
+      fs.rmSync(docsUiPath, { recursive: true, force: true });
+      console.log(`✓ Deleted component UI docs from: ${docsUiPath}`);
+    }
+    
+    console.log(`✅ Docs for ${component} deleted successfully`);
+  } catch (error) {
+    console.error(`Error deleting docs for ${component}:`, error);
+  }
+};
+
 // Function to copy and process docs files from component/docs to web UI docs
 const copyDocs = (component: string) => {
   const sourcePath = path.resolve('packages/src/components');
@@ -136,7 +160,10 @@ const copyDocs = (component: string) => {
       
       // Generate import statements
       const importContent = Array.from(uniqueImports).map(([key, value]) => {
-        return `import ${key} from '${value}';`;
+        if(key === 'CodePreviewer'){
+          return `import CodePreviewer from '../../CodePreviewer';`;
+        }
+        return `import {${key}} from '../../../../components/${value}';`;
       });
       
       const totalContent = `${importContent.join("\n")}\n\n${newContent}`;
@@ -151,7 +178,7 @@ const copyDocs = (component: string) => {
       const newFilePath = path.join(dirPath, 'page.tsx');
       const pageContent = `
 "use client";
-import Docs from './${path.basename(fileObj.path, path.extname(fileObj.path))}';
+import Docs from './index.mdx';
 export default function Page() {
   return (
     <div>
@@ -256,9 +283,13 @@ const processNonComponentFile = (srcPath: string) => {
 };
 
 export default {
-  component: function(component: string) {
-    copyComponent(component);
-    copyDocs(component);
+  component: function(component: string, event = 'added') {
+    if (event === 'removed') {
+      deleteComponentDocs(component);
+    } else {
+      copyComponent(component);
+      copyDocs(component);
+    }
   },
   
   nonComponent: function(filePath: string) {
