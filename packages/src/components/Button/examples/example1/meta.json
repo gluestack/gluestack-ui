@@ -1,0 +1,22 @@
+{
+    "argTypes": {
+      "variant": {
+        "control": {
+          "type": "select"
+        },
+        "options": ["primary", "secondary", "outline"],
+        "defaultValue": "primary"
+      },
+      "size": {
+        "control": {
+          "type": "select"
+        },
+        "options": ["small", "medium", "large"],
+        "defaultValue": "medium"
+      }
+    },
+    "reactLive": {
+      "Box": "../../components/Box",
+      "Card": "../../components/Card"
+    }
+  }
