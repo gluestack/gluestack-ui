@@ -61,7 +61,7 @@ const copyComponent = (component: string) => {
 // Function to copy and process docs files from component/docs to web UI docs
 const copyDocs = (component: string) => {
   const sourcePath = path.resolve('packages/src/components');
-  const docsPath = path.resolve('apps/docs/ui/docs');
+  const docsPath = path.resolve('apps/docs/app/ui/docs');
   const codePreviewerRegex = /\/\/\/\s*\{Example:(\d+)\}\s*\/\/\//g;
   
   try {
