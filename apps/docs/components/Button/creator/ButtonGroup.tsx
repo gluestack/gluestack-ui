@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react';
-import { flattenChildren } from '../../../utils/getSpacedChild';
+import { flattenChildren } from '../../../../utils/getSpacedChild';
 
 export const ButtonGroup = (StyledButtonGroup: any) =>
   forwardRef(

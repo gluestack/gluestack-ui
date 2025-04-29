@@ -127,10 +127,15 @@ const processNonComponentFile = (srcPath: string) => {
     return;
   }
   
+  // Skip if it's in the components directory
+  if (relativePath.startsWith('components')) {
+    return;
+  }
+  
   // Check if it's a directory
   const isDirectory = fs.statSync(normalizedPath).isDirectory();
   
-  // Get destination path
+  // Get destination path directly in the docs directory
   const destPath = path.join(docsDir, relativePath);
   
   // Create parent directory if it doesn't exist
@@ -142,11 +147,11 @@ const processNonComponentFile = (srcPath: string) => {
   if (isDirectory) {
     // Copy entire directory
     copyDir(normalizedPath, destPath);
-    console.log(`✓ Copied directory: ${relativePath} to docs`);
+    console.log(`✓ Copied directory: ${relativePath} directly to docs`);
   } else {
     // Copy single file
     fs.copyFileSync(normalizedPath, destPath);
-    console.log(`✓ Copied file: ${relativePath} to docs`);
+    console.log(`✓ Copied file: ${relativePath} directly to docs`);
   }
 };
 
@@ -175,7 +180,7 @@ export default {
     }
   },
   
-  // Process all non-component directories like react-native-aria, nativewind
+  // Process all non-component directories
   allNonComponents: function() {
     try {
       const packagesDir = path.resolve('packages/src');
@@ -193,6 +198,23 @@ export default {
       console.log('✅ All non-component directories processed successfully');
     } catch (error) {
       console.error('Error processing all non-component directories:', error);
+    }
+  },
+  
+  // Process utils directory specifically
+  utils: function() {
+    try {
+      const packagesDir = path.resolve('packages/src');
+      const utilsDir = path.join(packagesDir, 'utils');
+      
+      if (fs.existsSync(utilsDir)) {
+        processNonComponentFile(utilsDir);
+        console.log('✅ Utils directory processed successfully');
+      } else {
+        console.warn('⚠ Utils directory not found in packages/src');
+      }
+    } catch (error) {
+      console.error('Error processing utils directory:', error);
     }
   }
 };
