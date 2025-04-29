@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "chokidar": "^4.0.3",
+    "typescript": "^5.8.3"
+  },
+  "scripts": {
+    "dev": "tsx --watch scripts/dev.ts"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.3"
+  }
+}
