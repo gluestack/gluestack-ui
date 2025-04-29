@@ -1,7 +1,10 @@
 import chokidar from "chokidar";
+import path from "path";
+import fs from "fs";
 import mappers from "../mappers/index";
 
 const sourcePath = "./packages/src";
+const componentsPath = "./packages/src/components";
 
 // Initialize watcher
 const watcher = chokidar.watch(sourcePath, {
@@ -14,39 +17,52 @@ const watcher = chokidar.watch(sourcePath, {
 });
 
 
-const findComponent = (path: string): string | null => {
-  const parts = path.split("/");
-  return parts.length > 3 ? parts[3] : null;
+const getComponentFromPath = (filePath: string): string | null => {
+  const normalizedPath = path.normalize(filePath);
+  if (!normalizedPath.includes('components')) {
+    return null;
+  }
+  const relativePath = path.relative(componentsPath, normalizedPath);
+  const parts = relativePath.split(path.sep);
+  
+  if (parts.length > 0) {
+    return parts[0];
+  }
+  return null;
 };
 
-
-const processFileChange = async (event: string, path: string) => {
-  const component = findComponent(path);
-  console.log(`File ${event}: ${path}`);
-  if (!component) {
-    console.log("Not a component path, skipping");
-    return;
-  }
-  console.log(`Processing component: ${component}`);
-  // Process through each registered mapper
+const processFileChange = async (event: string, filePath: string) => {
+  console.log(`File ${event}: ${filePath}`);
+  const component = getComponentFromPath(filePath);
   for (const mapperConfig of mappers) {
     try {
       const { name, mapper } = mapperConfig;
       console.log(`Applying mapper: ${name}`);
       
-      // Call the component method on the mapper
-      if (mapper && typeof mapper.component === 'function') {
-        await mapper.component(component);
+      if (component) {
+        if (mapper && typeof mapper.component === 'function') {
+          console.log(`Processing component: ${component}`);
+          await mapper.component(component);
+        } else {
+          console.warn(`Mapper ${name} doesn't have a component method`);
+        }
       } else {
-        console.warn(`Mapper ${name} doesn't have a component method`);
+        if (mapper && typeof mapper.nonComponent === 'function') {
+          console.log(`Processing non-component file: ${filePath}`);
+          await mapper.nonComponent(filePath);
+        } else {
+          console.warn(`Mapper ${name} doesn't have a nonComponent method`);
+        }
       }
     } catch (error) {
-      console.error(`Error processing mapper for component ${component}:`, error);
+      if (component) {
+        console.error(`Error processing mapper for component ${component}:`, error);
+      } else {
+        console.error(`Error processing mapper for file ${filePath}:`, error);
+      }
     }
   }
 };
-
-// Add event listeners for all file events
 watcher
   .on("add", path => processFileChange("added", path))
   .on("change", path => processFileChange("changed", path))
