@@ -161,15 +161,6 @@ export default {
     processComponents([component]);
   },
   
-  // Process multiple components at once
-  components: function(components: string[]) {
-    processComponents(components);
-  },
-  
-  // Process all components
-  allComponents: function() {
-    processComponents('all');
-  },
   
   nonComponent: function(filePath: string) {
     try {
@@ -180,26 +171,6 @@ export default {
     }
   },
   
-  // Process all non-component directories
-  allNonComponents: function() {
-    try {
-      const packagesDir = path.resolve('packages/src');
-      
-      // Get all directories in packages/src that are not 'components'
-      const nonComponentDirs = fs.readdirSync(packagesDir, { withFileTypes: true })
-        .filter(dirent => dirent.isDirectory() && dirent.name !== 'components')
-        .map(dirent => path.join(packagesDir, dirent.name));
-      
-      // Process each non-component directory
-      for (const dirPath of nonComponentDirs) {
-        processNonComponentFile(dirPath);
-      }
-      
-      console.log('✅ All non-component directories processed successfully');
-    } catch (error) {
-      console.error('Error processing all non-component directories:', error);
-    }
-  },
   
   // Process utils directory specifically
   utils: function() {
