@@ -111,13 +111,13 @@ export default function CodePreviewer({
         </div>
 
         <div className="p-4 flex-1 flex items-center justify-center">
-          <LiveProvider code={compiledCode} scope={{ ...reactLive, View }}>
+          <LiveProvider code={compiledCode} scope={{ ...reactLive, View, Text, TouchableOpacity ,useState, useEffect}}>
             <LiveError />
             <LivePreview />
           </LiveProvider>
         </div>
       </div>
-      <LiveProvider code={compiledCode} scope={{ ...reactLive, View }}>
+      <LiveProvider code={compiledCode} scope={{ ...reactLive, View, Text, TouchableOpacity ,useState, useEffect}}>
         <LiveError />
         <LiveEditor />
       </LiveProvider>

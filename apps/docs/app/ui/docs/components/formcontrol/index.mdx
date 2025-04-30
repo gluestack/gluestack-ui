@@ -20,9 +20,22 @@ import {ButtonSpinner} from '../../../../../components/Button';
 Enhance form usability with FormControl components in React. Manage validation, disabled states, and more. Easy integration for seamless form handling.
 ### This is an illustration of Checkbox component.
 <CodePreviewer
-  code={`<View>
-<FormControl
-        isInvalid={ {{isInvalid}} }
+  code={`function App () {
+  const [isInvalid, setIsInvalid] = useState(false);
+  const [inputValue, setInputValue] = useState("12345");
+
+  const handleSubmit = () => {
+    if (inputValue.length < 6) {
+      setIsInvalid(true);
+    } else {
+      setIsInvalid(false);
+    }
+  };
+
+  return (
+    <View className="w-full max-w-[300px] rounded-md border border-background-200 p-4">
+      <FormControl
+        isInvalid={isInvalid}
         size="{{size}}"
         isDisabled={ {{isDisabled}} }
         isReadOnly={ {{isReadOnly}} }
@@ -35,24 +48,28 @@ Enhance form usability with FormControl components in React. Manage validation, 
           <InputField
             type="password"
             placeholder="password"
+            value={inputValue}
+            onChangeText={(text) => setInputValue(text)}
           />
         </Input>
         <FormControlHelper>
           <FormControlHelperText>
-            Must be atleast 6 characters.
+            Must be at least 6 characters.
           </FormControlHelperText>
         </FormControlHelper>
         <FormControlError>
           <FormControlErrorIcon as={AlertCircleIcon} />
           <FormControlErrorText>
-            Atleast 6 characters are required.
+            At least 6 characters are required.
           </FormControlErrorText>
         </FormControlError>
       </FormControl>
-      <Button className="w-fit self-end mt-4" size="sm" variant="outline">
+      <Button className="w-fit self-end mt-4" size="sm" variant="outline" onPress={handleSubmit}>
         <ButtonText>Submit</ButtonText>
       </Button>
-</View>`}
+    </View>
+  );
+};`}
   argTypes={{
   "isDisabled": {
     "control": {
@@ -67,12 +84,6 @@ Enhance form usability with FormControl components in React. Manage validation, 
     "defaultValue": true
   },
   "isRequired": {
-    "control": {
-      "type": "boolean"
-    },
-    "defaultValue": true
-  },
-  "isInvalid": {
     "control": {
       "type": "boolean"
     },
