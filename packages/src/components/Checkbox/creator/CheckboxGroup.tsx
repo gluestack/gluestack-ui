@@ -1,7 +1,7 @@
 import React, { createContext, forwardRef } from 'react';
-import { useCheckboxGroup } from '@react-native-aria/checkbox';
+import { useCheckboxGroup } from '../aria/checkbox/src';
 import { useCheckboxGroupState } from '@react-stately/checkbox';
-import { useFormControlContext } from '@gluestack-ui/form-control';
+import { useFormControlContext } from '../../FormControl/creator';
 export const CheckboxGroupContext = createContext<any>(null);
 
 const CheckboxGroup = (StyledCheckboxGroup: any) =>

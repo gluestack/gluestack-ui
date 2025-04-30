@@ -1,14 +1,15 @@
 import React from 'react';
+// import { useId } from '@react-native-aria/utils';
 import { ariaAttr } from '../../../utils/common';
 
-export type ICheckboxContext = Omit<
-  ReturnType<typeof useCheckboxProvider>,
+export type IFormControlContext = Omit<
+  ReturnType<typeof useFormControlProvider>,
   'htmlProps'
 >;
 
-export const CheckboxContext = React.createContext({});
+export const FormControlContext = React.createContext({});
 
-export function useCheckboxProvider(props: any) {
+export function useFormControlProvider(props: any) {
   const {
     id: idProp,
     isRequired,
@@ -25,7 +26,17 @@ export function useCheckboxProvider(props: any) {
   }
 
   const idTemp = uniqueId();
+  // const responsiveQueryContext = React.useContext(ResponsiveQueryContext);
+  // const disableCSSMediaQueries = responsiveQueryContext.disableCSSMediaQueries;
 
+  // if (!disableCSSMediaQueries) {
+  //   // This if statement technically breaks the rules of hooks, but is safe
+  //   // because the condition never changes after mounting.
+  //   // eslint-disable-next-line react-hooks/rules-of-hooks
+  //   id = useId();
+  // }
+
+  // const id = '';
   // Generate all the required ids
   const id = idProp || `field-${idTemp}`;
 
@@ -54,7 +65,7 @@ export function useCheckboxProvider(props: any) {
     setHasFeedbackText,
     hasHelpText,
     setHasHelpText,
-    id,
+    id: id,
     labelId,
     feedbackId,
     helpTextId,
@@ -71,8 +82,8 @@ export function useCheckboxProvider(props: any) {
  * It provides a convenient way to control a form fields, validation
  * and helper text.
  */
-export function useCheckbox(props: any) {
-  const field = useCheckboxContext();
+export function useFormControl(props: any) {
+  const field = useFormControlContext();
   const describedBy: any[] = [];
 
   // Error message must be described first in all scenarios.
@@ -101,6 +112,6 @@ export function useCheckbox(props: any) {
   };
 }
 
-export const useCheckboxContext = () => {
-  return React.useContext(CheckboxContext) as unknown as ICheckboxContext;
+export const useFormControlContext = () => {
+  return React.useContext(FormControlContext) as unknown as IFormControlContext;
 };

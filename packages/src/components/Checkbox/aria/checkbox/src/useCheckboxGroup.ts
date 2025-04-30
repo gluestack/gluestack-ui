@@ -1,6 +1,6 @@
 import type { CheckboxGroupState } from '@react-stately/checkbox';
 import { mergeProps, filterDOMProps } from '@react-aria/utils';
-import { getLabel } from '@react-native-aria/utils';
+import { getLabel } from '../../../../../utils/aria/utils/src';
 import { AriaCheckboxGroupProps } from '@react-types/checkbox';
 
 interface CheckboxGroupAria {

@@ -1,4 +1,4 @@
-import { createContext } from '@gluestack-ui/utils';
+import { createContext } from '../../../utils/common';
 
 export const [CheckboxProvider, useCheckbox] =
   createContext<any>('CheckboxContext');

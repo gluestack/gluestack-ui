@@ -1,16 +1,16 @@
 import React, { forwardRef, useContext } from 'react';
 import { CheckboxProvider } from './CheckboxProvider';
-import { useFocusRing } from '@react-native-aria/focus';
-import { useHover } from '@react-native-aria/interactions';
+import { useFocusRing } from '../../../utils/aria/focus/src';
+import { useHover } from '../../../utils/aria/interactions/src';
 import { useToggleState } from '@react-stately/toggle';
-import { useCheckbox, useCheckboxGroupItem } from '@react-native-aria/checkbox';
+import { useCheckbox, useCheckboxGroupItem } from '../aria/checkbox/src';
 import { CheckboxGroupContext } from './CheckboxGroup';
 import {
   combineContextAndProps,
   mergeRefs,
   stableHash,
-} from '@gluestack-ui/utils';
-import { useFormControlContext } from '@gluestack-ui/form-control';
+} from '../../../utils/common';
+import { useFormControlContext } from '../../FormControl/creator/useFormControl';
 import { VisuallyHidden } from '@react-aria/visually-hidden';
 
 export const Checkbox = (StyledCheckbox: any) =>

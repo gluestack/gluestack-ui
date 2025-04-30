@@ -27,6 +27,8 @@ const copyComponent = (component: string) => {
   const destDir = path.join(docsDir, component);
   const creatorDir = path.join(componentDir, 'creator');
   const destCreatorDir = path.join(destDir, 'creator');
+  const ariaDir = path.join(componentDir, 'aria');
+  const destAriaDir = path.join(destDir, 'aria');
   
   // Check if component exists
   if (!fs.existsSync(componentDir)) {
@@ -53,6 +55,12 @@ const copyComponent = (component: string) => {
   if (fs.existsSync(creatorDir)) {
     copyDir(creatorDir, destCreatorDir);
     console.log(`✓ Copied creator directory for ${component}`);
+  }
+  
+  // Copy aria dir if exists
+  if (fs.existsSync(ariaDir)) {
+    copyDir(ariaDir, destAriaDir);
+    console.log(`✓ Copied aria directory for ${component}`);
   }
   
   console.log(`✅ Component ${component} processed`);

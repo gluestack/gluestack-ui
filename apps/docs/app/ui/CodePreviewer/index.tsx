@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import Handlebars from 'handlebars';
-import {View, Text,TouchableOpacity} from 'react-native';
+import {View, Text, TouchableOpacity} from 'react-native-web';
 import {LiveProvider, LiveEditor, LiveError, LivePreview} from 'react-live';
 export default function CodePreviewer({
   code,
@@ -64,6 +64,19 @@ export default function CodePreviewer({
       );
     }
     
+    if (control?.type === 'boolean' || typeof defaultValue === 'boolean') {
+      return (
+        <div className="control-item">
+          <label htmlFor={name}>{name}:</label>
+          <input
+            type="checkbox"
+            id={name}
+            checked={values[name] ?? defaultValue}
+            onChange={(e) => handleChange(name, e.target.checked)}
+          />
+        </div>
+      );
+    }
 
     // Add more control types as needed (checkbox, radio, etc.)
     

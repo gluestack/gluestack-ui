@@ -10,7 +10,7 @@ import {
   useStyleContext,
 } from '../../utils/nativewind/utils/withStyleContext';
 import { cssInterop } from 'nativewind';
-import type { VariantProps } from '../../utils/nativewind/utils/variantProps';
+import type { VariantProps } from '../../utils/nativewind/utils';
 
 const IndicatorWrapper = React.forwardRef<
   React.ComponentRef<typeof View>,
