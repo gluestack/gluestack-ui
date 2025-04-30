@@ -1,0 +1,33 @@
+<View>
+<FormControl
+        isInvalid={ {{isInvalid}} }
+        size="{{size}}"
+        isDisabled={ {{isDisabled}} }
+        isReadOnly={ {{isReadOnly}} }
+        isRequired={ {{isRequired}} }
+      >
+        <FormControlLabel>
+          <FormControlLabelText>Password</FormControlLabelText>
+        </FormControlLabel>
+        <Input className="my-1" size="{{size}}">
+          <InputField
+            type="password"
+            placeholder="password"
+          />
+        </Input>
+        <FormControlHelper>
+          <FormControlHelperText>
+            Must be atleast 6 characters.
+          </FormControlHelperText>
+        </FormControlHelper>
+        <FormControlError>
+          <FormControlErrorIcon as={AlertCircleIcon} />
+          <FormControlErrorText>
+            Atleast 6 characters are required.
+          </FormControlErrorText>
+        </FormControlError>
+      </FormControl>
+      <Button className="w-fit self-end mt-4" size="sm" variant="outline">
+        <ButtonText>Submit</ButtonText>
+      </Button>
+</View>
