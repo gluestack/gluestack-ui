@@ -3,17 +3,16 @@ import {Button} from '../../../../components/Button';
 import {ButtonText} from '../../../../components/Button';
 import {ButtonSpinner} from '../../../../components/Button';
 
-# Box
+# Button
 
-The Box component is a versatile container that can be used to create various layouts and styles. It provides a flexible and powerful way to manage the layout of your components
+Discover a powerful button component for React & React Native with customizable size, shape, color, and behavior. Perfect for UI design & seamless user interactions.
 
 
-
+### This is an illustration of Button component.
 <CodePreviewer
   code={`<View>
     <Button variant="{{variant}}" size="{{size}}" action="{{action}}">
         <ButtonText>Button Text</ButtonText>
-        <ButtonSpinner/>
     </Button>
 </View>`}
   argTypes={{
@@ -26,7 +25,7 @@ The Box component is a versatile container that can be used to create various la
       "outline",
       "link"
     ],
-    "defaultValue": "solid"
+    "defaultValue": "outline"
   },
   "action": {
     "control": {
@@ -53,12 +52,12 @@ The Box component is a versatile container that can be used to create various la
     "defaultValue": "md"
   }
 }}
-  reactLive={{ Button, ButtonText, ButtonSpinner }}
+  reactLive={{ Button, ButtonText }}
 />
 
 
 
-
+### Button with loading state
 
 <CodePreviewer
   code={`<View>
@@ -77,7 +76,7 @@ The Box component is a versatile container that can be used to create various la
       "outline",
       "link"
     ],
-    "defaultValue": "solid"
+    "defaultValue": "outline"
   },
   "action": {
     "control": {

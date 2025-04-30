@@ -5,7 +5,7 @@
           "type": "select"
         },
         "options": ["solid", "outline", "link"],
-        "defaultValue": "solid"
+        "defaultValue": "outline"
       },
       "action": {
         "control": {
@@ -24,7 +24,6 @@
     },
     "reactLive": {
       "Button": "Button",
-      "ButtonText": "Button",
-      "ButtonSpinner": "Button"
+      "ButtonText": "Button"
     }
   }
