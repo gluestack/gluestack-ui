@@ -1,7 +1,7 @@
-import { useFocusRing, useFocus } from '../../../utils/react-native-aria/focus/src';
+import { useFocusRing, useFocus } from '../../../utils/aria/focus/src';
 import React, { forwardRef, useMemo } from 'react';
 import { composeEventHandlers } from '../../../utils/common/composeEventHandlers';
-import { useHover, usePress } from '../../../utils/react-native-aria/interactions/src';
+import { useHover, usePress } from '../../../utils/aria/interactions/src';
 import { ButtonContext } from './Context';
 
 import type { IButtonProps } from './types';
