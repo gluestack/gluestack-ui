@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import Handlebars from 'handlebars';
-import {View, Text, TouchableOpacity} from 'react-native-web';
+import {View, Text, TouchableOpacity} from 'react-native';
 import {LiveProvider, LiveEditor, LiveError, LivePreview} from 'react-live';
 export default function CodePreviewer({
   code,
