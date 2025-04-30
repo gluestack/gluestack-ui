@@ -33,7 +33,7 @@ Enhance form usability with FormControl components in React. Manage validation, 
   };
 
   return (
-    <View className="w-full max-w-[300px] rounded-md border border-background-200 p-4">
+    <View>
       <FormControl
         isInvalid={isInvalid}
         size="{{size}}"
@@ -58,8 +58,8 @@ Enhance form usability with FormControl components in React. Manage validation, 
           </FormControlHelperText>
         </FormControlHelper>
         <FormControlError>
-          <FormControlErrorIcon as={AlertCircleIcon} />
-          <FormControlErrorText>
+          <FormControlErrorIcon as={AlertCircleIcon} className="text-red-500"/>
+          <FormControlErrorText  className="text-red-500">
             At least 6 characters are required.
           </FormControlErrorText>
         </FormControlError>
