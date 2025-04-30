@@ -7,7 +7,7 @@ export default function Sidebar() {
       <div className="flex flex-col mt-4 gap-2">
         {componentsList.map((component) => (
           <Link
-            href={`/ui/docs/${component.name.toLowerCase()}`}
+            href={`/ui/docs/components/${component.name.toLowerCase()}`}
             key={component.name}
             className="text-lg text-gray-500 hover:text-gray-700"
           >

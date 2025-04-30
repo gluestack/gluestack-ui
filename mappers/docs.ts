@@ -96,7 +96,7 @@ const deleteComponentDocs = (component: string) => {
 // Function to copy and process docs files from component/docs to web UI docs
 const copyDocs = (component: string) => {
   const sourcePath = path.resolve("packages/src/components");
-  const docsPath = path.resolve("apps/docs/app/ui/docs");
+  const docsPath = path.resolve("apps/docs/app/ui/docs/components");
   const codePreviewerRegex = /\/\/\/\s*\{Example:(\d+)\}\s*\/\/\//g;
 
   try {
@@ -137,7 +137,7 @@ const copyDocs = (component: string) => {
     // Process each file for example markers
     for (const fileObj of copiedFiles) {
       const uniqueImports = new Map();
-      uniqueImports.set("CodePreviewer", "../../../CodePreviewer");
+      uniqueImports.set("CodePreviewer", "../../../..CodePreviewer");
 
       // Read file content
       const content = fs.readFileSync(fileObj.path, "utf-8");
@@ -172,9 +172,9 @@ const copyDocs = (component: string) => {
       // Generate import statements
       const importContent = Array.from(uniqueImports).map(([key, value]) => {
         if (key === "CodePreviewer") {
-          return `import CodePreviewer from '../../CodePreviewer';`;
+          return `import CodePreviewer from '../../../CodePreviewer';`;
         }
-        return `import {${key}} from '../../../../components/${value}';`;
+        return `import {${key}} from '../../../../../components/${value}';`;
       });
 
       const totalContent = `${importContent.join("\n")}\n\n${newContent}`;
