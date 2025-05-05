@@ -1,49 +1,42 @@
 "use client";
-import { Button, ButtonText } from "../components/Button";
-import {
-  Popover,
-  PopoverBackdrop,
-  PopoverArrow,
-  PopoverBody,
-  PopoverContent,
-} from "../components/Popover";
-import { Text } from "react-native";
-import React from "react";
 
-export default function App() {
-  const [isOpen, setIsOpen] = React.useState(false);
-  const handleOpen = () => {
-    setIsOpen(true);
-  };
-  const handleClose = () => {
-    setIsOpen(false);
-  };
-  console.log(isOpen);
-  return (
-    <Popover
-      isOpen={isOpen}
-      onClose={handleClose}
-      onOpen={handleOpen}
-      placement="bottom"
-      size="full"
-      trigger={(triggerProps) => {
-        return (
-          <Button {...triggerProps}>
-            <ButtonText>Open Popover</ButtonText>
-          </Button>
-        );
-      }}
-    >
-      <PopoverBackdrop />
-      <PopoverContent className="bg-red-500 w-40 h-40">
-        <PopoverArrow />
-        <PopoverBody>
-          <Text className="text-typography-900">
-            Alex, Annie and many others are already enjoying the Pro features,
-            don't miss out on the fun!
-          </Text>
-        </PopoverBody>
-      </PopoverContent>
-    </Popover>
-  );
-}
+import { Actionsheet, ActionsheetContent, ActionsheetItem, ActionsheetItemText, ActionsheetDragIndicator, ActionsheetDragIndicatorWrapper, ActionsheetBackdrop } from "../components/ActionSheet";
+import { Button, ButtonText } from "../components/Button";
+import { GluestackUIProvider } from "../components/gluestack-ui-provider";
+import React from "react";
+	
+
+export default function App(){
+        const [showActionsheet, setShowActionsheet] = React.useState(false);
+        const handleClose = () => setShowActionsheet(false);
+          return (
+            <GluestackUIProvider>
+              <Button onPress={() => setShowActionsheet(true)}>
+                <ButtonText>Open Actionsheet</ButtonText>
+              </Button>
+              <Actionsheet isOpen={showActionsheet} onClose={handleClose}>
+                <ActionsheetBackdrop />
+                <ActionsheetContent>
+                  <ActionsheetDragIndicatorWrapper>
+                    <ActionsheetDragIndicator />
+                  </ActionsheetDragIndicatorWrapper>
+                  <ActionsheetItem onPress={handleClose}>
+                    <ActionsheetItemText>Edit Message</ActionsheetItemText>
+                  </ActionsheetItem>
+                  <ActionsheetItem onPress={handleClose}>
+                    <ActionsheetItemText>Mark Unread</ActionsheetItemText>
+                  </ActionsheetItem>
+                  <ActionsheetItem onPress={handleClose}>
+                    <ActionsheetItemText>Remind Me</ActionsheetItemText>
+                  </ActionsheetItem>
+                  <ActionsheetItem onPress={handleClose}>
+                    <ActionsheetItemText>Add to Saved Items</ActionsheetItemText>
+                  </ActionsheetItem>
+                  <ActionsheetItem isDisabled onPress={handleClose}>
+                    <ActionsheetItemText>Delete</ActionsheetItemText>
+                  </ActionsheetItem>
+                </ActionsheetContent>
+              </Actionsheet>
+            </GluestackUIProvider>
+          );
+        }
