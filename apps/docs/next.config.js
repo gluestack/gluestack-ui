@@ -15,6 +15,8 @@ const nextConfig = withExpo({
     "ui",
     "nativewind",
     "react-native-css-interop",
+    "@expo/html-elements",
+    "react-native-safe-area-context",
     // Add other packages that need transpiling
   ],
   webpack: (config) => {

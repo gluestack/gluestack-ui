@@ -9,12 +9,15 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@expo/html-elements": "^0.12.5",
     "@expo/next-adapter": "^6.0.0",
+    "@legendapp/motion": "^2.4.0",
     "@mdx-js/loader": "^3.1.0",
     "@mdx-js/react": "^3.1.0",
     "@next/mdx": "^15.3.1",
     "@types/mdx": "^2.0.13",
     "app": "*",
+    "dom-helpers": "^5.2.1",
     "handlebars": "^4.7.8",
     "nativewind": "^4.1.23",
     "next": "14.2.4",
@@ -22,6 +25,7 @@
     "react-aria": "^3.39.0",
     "react-dom": "^18",
     "react-live": "^4.1.8",
+    "react-native-safe-area-context": "^5.4.0",
     "react-native-web": "^0.19.12",
     "tailwind-variants": "^1.0.0",
     "ui": "*"

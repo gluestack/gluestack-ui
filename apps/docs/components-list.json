@@ -13,5 +13,8 @@
   },
   {
     "name": "FormControl"
+  },
+  {
+    "name": "Popover"
   }
 ]
