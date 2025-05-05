@@ -30,7 +30,7 @@ export interface DialogProps extends AriaDialogProps {}
  */
 
 import { useDialog as useDialogAria } from '@react-aria/dialog';
-import { mapDomPropsToRN } from '@react-native-aria/utils';
+import { mapDomPropsToRN } from '../../utils/src';
 
 export function useDialog(
   props: DialogProps,

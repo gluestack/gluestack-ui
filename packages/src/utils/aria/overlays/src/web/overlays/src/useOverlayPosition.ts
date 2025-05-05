@@ -21,7 +21,7 @@ import {
 } from 'react';
 import { Placement, PlacementAxis, PositionProps } from '@react-types/overlays';
 import { useCloseOnScroll } from './useCloseOnScroll';
-import { isRTL, useLayoutEffect } from '@react-native-aria/utils';
+import { isRTL, useLayoutEffect } from '../../../../../utils/src';
 
 interface AriaPositionProps extends PositionProps {
   /**

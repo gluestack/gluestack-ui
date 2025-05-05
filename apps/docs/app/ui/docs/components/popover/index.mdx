@@ -1,0 +1,86 @@
+import CodePreviewer from '../../../CodePreviewer';
+import {Popover} from '../../../../../components/Popover';
+import {PopoverBackdrop} from '../../../../../components/Popover';
+import {PopoverArrow} from '../../../../../components/Popover';
+import {PopoverBody} from '../../../../../components/Popover';
+import {PopoverContent} from '../../../../../components/Popover';
+import {Button} from '../../../../../components/Button';
+import {ButtonText} from '../../../../../components/Button';
+
+# Popover
+Improve user experience with a React Popover component—perfect for contextual modals, tooltips & interactive UI elements. Works seamlessly in React & React Native!
+### This is an illustration of Popover component.
+<CodePreviewer
+  code={`function App() {
+  const [isOpen, setIsOpen] = useState(false)
+  const handleOpen = () => {
+    setIsOpen(true)
+  }
+  const handleClose = () => {
+    setIsOpen(false)
+  }
+  return (
+    <Popover
+      isOpen={isOpen}
+      onClose={handleClose}
+      onOpen={handleOpen}
+      placement="{{placement}}"
+      size="{{size}}"
+      trigger={(triggerProps) => {
+        return (
+          <Button {...triggerProps}>
+            <ButtonText>Open Popover</ButtonText>
+          </Button>
+        )
+      }}
+    >
+      <PopoverBackdrop />
+      <PopoverContent>
+        <PopoverArrow />
+        <PopoverBody>
+          <Text className="text-typography-900">
+            Alex, Annie and many others are already enjoying the Pro features,
+            don't miss out on the fun!
+          </Text>
+        </PopoverBody>
+      </PopoverContent>
+    </Popover>
+  )
+}`}
+  argTypes={{
+  "size": {
+    "control": {
+      "type": "select"
+    },
+    "options": [
+      "xs",
+      "sm",
+      "md",
+      "lg",
+      "full"
+    ],
+    "defaultValue": "md"
+  },
+  "placement": {
+    "control": {
+      "type": "select"
+    },
+    "options": [
+      "top",
+      "bottom",
+      "left",
+      "right",
+      "bottom-left",
+      "bottom-right",
+      "top-left",
+      "top-right",
+      "left-bottom",
+      "left-right",
+      "right-bottom",
+      "right-top"
+    ],
+    "defaultValue": "bottom"
+  }
+}}
+  reactLive={{ Popover, PopoverBackdrop, PopoverArrow, PopoverBody, PopoverContent, Button, ButtonText }}
+/>
