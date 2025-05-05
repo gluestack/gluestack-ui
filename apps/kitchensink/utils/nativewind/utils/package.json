@@ -1,0 +1,92 @@
+{
+  "name": "@gluestack-ui/nativewind-utils",
+  "description": "A utility function package for @gluestack-ui/nativewind",
+  "keywords": [
+    "react",
+    "native",
+    "react-native",
+    "nativewind",
+    "gluestack-ui",
+    "universal",
+    "typescript",
+    "utils",
+    "android",
+    "ios",
+    "nextjs"
+  ],
+  "main": "index.js",
+  "module": "index.js",
+  "types": "index.d.ts",
+  "version": "1.0.26",
+  "react-native": "src/index",
+  "source": "src/index",
+  "scripts": {
+    "prepare": "tsc",
+    "build": "tsc",
+    "remove": "rm -rf ../../../node_modules/react-native-css-interop",
+    "clean": "rm -rf lib",
+    "dev:web": "cd example/native && yarn web --clear",
+    "storybook": "cd example/native/storybook && yarn web"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.22",
+    "babel-plugin-transform-remove-console": "^6.9.4",
+    "react": "^18.1.0",
+    "react-native-builder-bob": "^0.20.1",
+    "tsconfig": "7",
+    "typescript": "^4.9.4"
+  },
+  "dependencies": {
+    "find-yarn-workspace-root": "^2.0.0",
+    "patch-package": "8.0.0",
+    "tailwind-variants": "0.1.20"
+  },
+  "peerDependencies": {
+    "nativewind": ">=4.0",
+    "react": ">=16"
+  },
+  "react-native-builder-bob": {
+    "source": "src",
+    "output": "lib",
+    "targets": [
+      "commonjs",
+      [
+        "module"
+      ],
+      "typescript"
+    ]
+  },
+  "files": [
+    "cn",
+    "context",
+    "utils",
+    "index.js",
+    "index.d.ts",
+    "tva",
+    "types.js",
+    "types.d.ts",
+    "utils",
+    "withStates",
+    "withStyleContext",
+    "withStyleContextAndStates",
+    "flush",
+    "IsWeb",
+    "tailwind-plugin"
+  ],
+  "jest": {
+    "preset": "jest-expo",
+    "transform": {
+      "^.+\\.js$": "<rootDir>/node_modules/react-native/jest/preprocessor.js"
+    },
+    "modulePathIgnorePatterns": [
+      "<rootDir>/example/*",
+      "<rootDir>/lib/"
+    ],
+    "transformIgnorePatterns": [
+      "node_modules/(?!(@react-native|react-native|expo-asset|expo-constants|@unimodules|react-native-unimodules|expo-font|react-native-svg|@expo/vector-icons|react-native-vector-icons|@react-native-aria/checkbox|@react-native-aria/interactions|@react-native-aria/button|@react-native-aria/switch|@react-native-aria/toggle|@react-native-aria/utils|@react-native-aria/*))"
+    ],
+    "setupFiles": [
+      "<rootDir>/src/jest/mock.ts"
+    ]
+  }
+}
