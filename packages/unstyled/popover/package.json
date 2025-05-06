@@ -1,5 +1,6 @@
 {
   "name": "@gluestack-ui/popover",
+  "license": "MIT",
   "version": "0.1.49",
   "main": "lib/index",
   "module": "lib/index",

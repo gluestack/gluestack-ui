@@ -1,5 +1,6 @@
 {
   "name": "@gluestack-ui/actionsheet",
+  "license": "MIT",
   "description": "A universal headless actionsheet component for React Native, Next.js & React",
   "keywords": [
     "react",

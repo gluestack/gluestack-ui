@@ -1,5 +1,6 @@
 {
   "name": "@gluestack-ui/pin-input",
+  "license": "MIT",
   "description": "A universal headless pin-input component for React Native, Next.js & React",
   "version": "0.0.14",
   "main": "lib/index",

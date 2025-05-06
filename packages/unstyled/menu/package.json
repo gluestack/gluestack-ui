@@ -1,6 +1,7 @@
 {
   "name": "@gluestack-ui/menu",
   "description": "A universal headless menu component for React Native, Next.js & React",
+  "license": "MIT",
   "keywords": [
     "react",
     "native",

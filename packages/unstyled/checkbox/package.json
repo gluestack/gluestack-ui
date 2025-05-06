@@ -1,5 +1,6 @@
 {
   "name": "@gluestack-ui/checkbox",
+  "license": "MIT",
   "version": "0.1.39",
   "main": "lib/index",
   "module": "lib/index",

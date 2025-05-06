@@ -1,5 +1,6 @@
 {
   "name": "@gluestack-ui/provider",
+  "license": "MIT",
   "description": "A universal headless provider component for React Native, Next.js & React",
   "keywords": [
     "react",

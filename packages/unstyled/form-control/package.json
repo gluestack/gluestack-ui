@@ -1,5 +1,6 @@
 {
   "name": "@gluestack-ui/form-control",
+  "license": "MIT",
   "description": "A universal headless form-control component for React Native, Next.js & React",
   "version": "0.1.19",
   "main": "lib/index",

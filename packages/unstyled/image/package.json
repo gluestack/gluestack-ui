@@ -1,5 +1,6 @@
 {
   "name": "@gluestack-ui/image",
+  "license": "MIT",
   "version": "0.1.17",
   "main": "lib/index",
   "module": "lib/index",

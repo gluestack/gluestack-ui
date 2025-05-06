@@ -1,5 +1,6 @@
 {
   "name": "@gluestack-ui/overlay",
+  "license": "MIT",
   "description": "A universal headless overlay component for React Native, Next.js & React",
   "version": "0.1.22",
   "main": "lib/index",

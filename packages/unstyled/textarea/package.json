@@ -1,5 +1,6 @@
 {
   "name": "@gluestack-ui/textarea",
+  "license": "MIT",
   "description": "A universal headless text-area component for React Native, Next.js & React",
   "version": "0.1.25",
   "main": "lib/index",

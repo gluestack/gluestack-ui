@@ -1,5 +1,6 @@
 {
   "name": "@gluestack-ui/radio",
+  "license": "MIT",
   "version": "0.1.40",
   "main": "lib/index",
   "module": "lib/index",
