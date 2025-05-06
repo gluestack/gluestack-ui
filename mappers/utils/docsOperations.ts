@@ -11,7 +11,9 @@ export const copyDocs = (component: string) => {
 
   try {
     const componentDocsPath = path.join(sourcePath, component, "docs");
+    console.log(componentDocsPath);
     if (!fileOps.pathExists(componentDocsPath)) {
+      console.log(`No doc files found for ${component}`);
       return;
     }
     const docFiles = fileOps.getFilesInDirectory(componentDocsPath);
@@ -32,12 +34,12 @@ export const copyDocs = (component: string) => {
       name: file,
     }));
     for (const fileObj of copiedFiles) {
-      // const wasModified = templateGen.processFileForExamples(fileObj.path, component);
-      // if (wasModified) {
-      //   console.log(`✓ Processed examples in ${fileObj.name}`);
-      // }
+      const wasModified = templateGen.processFileForExamples(fileObj.path, component);
+      if (wasModified) {
+        console.log(`✓ Processed examples in ${fileObj.name}`);
+      }
 
-      // Create page.tsx file
+   
       const dirPath = path.dirname(fileObj.path);
       const newFilePath = path.join(dirPath, "page.tsx");
       fileOps.writeTextFile(newFilePath, templateGen.generatePageContent());

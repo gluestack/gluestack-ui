@@ -1,4 +1,64 @@
+import CodePreviewer from '@/components/code-previewer';
+import {Input} from '@/components/ui/Input';
+import {InputField} from '@/components/ui/Input';
+import {InputIcon} from '@/components/ui/Input';
+import {InputSlot} from '@/components/ui/Input';
+import {AddIcon} from '@/components/ui/Icon';
+
 # input
 A feature-rich React Native Input component – supports icons, validation, and styling options for seamless user input in your mobile app.
 ### Illustartion of input component
-/// {Example:1} ///
+<CodePreviewer
+  code={`<View>
+    <Input variant="{{variant}}" size="{{size}}" isDisabled={ {{isDisabled}} } isInvalid={ {{isInvalid}} } isReadOnly={ {{isReadOnly}} }>
+        <InputField placeholder="Enter Text here..." />
+        <InputSlot>
+            <InputIcon as={AddIcon} />
+        </InputSlot>
+    </Input>
+</View>`}
+  argTypes={{
+  "isDisabled": {
+    "control": {
+      "type": "boolean"
+    },
+    "defaultValue": true
+  },
+  "isInvalid": {
+    "control": {
+      "type": "boolean"
+    },
+    "defaultValue": false
+  },
+  "isReadOnly": {
+    "control": {
+      "type": "boolean"
+    },
+    "defaultValue": false
+  },
+  "variant": {
+    "control": {
+      "type": "select"
+    },
+    "options": [
+      "outline",
+      "rounded",
+      "underlined"
+    ],
+    "defaultValue": "outline"
+  },
+  "size": {
+    "control": {
+      "type": "select"
+    },
+    "options": [
+      "sm",
+      "md",
+      "lg",
+      "xl"
+    ],
+    "defaultValue": "md"
+  }
+}}
+  reactLive={{ Input, InputField, InputIcon, InputSlot, AddIcon }}
+/>

@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
 import { InputProvider } from './InputContext';
 import { useHover } from '@/utils/aria/interactions/src';
-import { useFormControlContext } from '@/src/components/ui/form-control/creator';
+import { useFormControlContext } from '@/components/ui/form-control/creator';
 import { mergeRefs } from '@/utils/common';
 import { useFocusRing } from '@/utils/aria/focus/src';
 

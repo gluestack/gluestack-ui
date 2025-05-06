@@ -1,8 +1,8 @@
-'use client';
+"use client";
 import React from 'react';
 import { createIcon } from './creator';
-import { tva } from '../../utils/nativewind/utils/tva';
-import { VariantProps } from '../../utils/nativewind/utils';
+import { tva } from '@/utils/nativewind/utils/tva';
+import { VariantProps } from '@/utils/nativewind/utils';
 import { PrimitiveIcon, Svg } from './creator';
 
 export const UIIcon = createIcon({

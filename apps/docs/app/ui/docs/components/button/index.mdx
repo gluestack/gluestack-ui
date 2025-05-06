@@ -1,13 +1,107 @@
+import CodePreviewer from '@/components/code-previewer';
+import {Button} from '@/components/ui/Button';
+import {ButtonText} from '@/components/ui/Button';
+import {ButtonSpinner} from '@/components/ui/Button';
+
 # Button
 
 Discover a powerful button component for React & React Native with customizable size, shape, color, and behavior. Perfect for UI design & seamless user interactions.
 
 
 ### This is an illustration of Button component.
-/// {Example:1} ///
+<CodePreviewer
+  code={`<View>
+    <Button variant="{{variant}}" size="{{size}}" action="{{action}}">
+        <ButtonText>Button Text</ButtonText>
+    </Button>
+</View>`}
+  argTypes={{
+  "variant": {
+    "control": {
+      "type": "select"
+    },
+    "options": [
+      "solid",
+      "outline",
+      "link"
+    ],
+    "defaultValue": "outline"
+  },
+  "action": {
+    "control": {
+      "type": "select"
+    },
+    "options": [
+      "primary",
+      "secondary",
+      "positive",
+      "negative"
+    ],
+    "defaultValue": "primary"
+  },
+  "size": {
+    "control": {
+      "type": "select"
+    },
+    "options": [
+      "xs",
+      "sm",
+      "md",
+      "lg"
+    ],
+    "defaultValue": "md"
+  }
+}}
+  reactLive={{ Button, ButtonText }}
+/>
 
 
 
 ### Button with loading state
 
-/// {Example:2} ///
+<CodePreviewer
+  code={`<View>
+    <Button variant="{{variant}}" size="{{size}}">
+        <ButtonText>Button Text</ButtonText>
+        <ButtonSpinner/>
+    </Button>
+</View>`}
+  argTypes={{
+  "variant": {
+    "control": {
+      "type": "select"
+    },
+    "options": [
+      "solid",
+      "outline",
+      "link"
+    ],
+    "defaultValue": "outline"
+  },
+  "action": {
+    "control": {
+      "type": "select"
+    },
+    "options": [
+      "primary",
+      "secondary",
+      "positive",
+      "negative"
+    ],
+    "defaultValue": "primary"
+  },
+  "size": {
+    "control": {
+      "type": "select"
+    },
+    "options": [
+      "xs",
+      "sm",
+      "md",
+      "lg"
+    ],
+    "defaultValue": "md"
+  }
+}}
+  reactLive={{ Button, ButtonText, ButtonSpinner }}
+/>

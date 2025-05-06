@@ -1,4 +1,105 @@
+import CodePreviewer from '@/components/code-previewer';
+import {FormControl} from '@/components/ui/FormControl';
+import {FormControlLabel} from '@/components/ui/FormControl';
+import {FormControlError} from '@/components/ui/FormControl';
+import {FormControlErrorText} from '@/components/ui/FormControl';
+import {FormControlErrorIcon} from '@/components/ui/FormControl';
+import {FormControlHelper} from '@/components/ui/FormControl';
+import {FormControlHelperText} from '@/components/ui/FormControl';
+import {FormControlLabelText} from '@/components/ui/FormControl';
+import {AlertCircleIcon} from '@/components/ui/Icon';
+import {Input} from '@/components/ui/Input';
+import {InputField} from '@/components/ui/Input';
+import {InputIcon} from '@/components/ui/Input';
+import {InputSlot} from '@/components/ui/Input';
+import {Button} from '@/components/ui/Button';
+import {ButtonText} from '@/components/ui/Button';
+import {ButtonSpinner} from '@/components/ui/Button';
+
 # FormControl
 Enhance form usability with FormControl components in React. Manage validation, disabled states, and more. Easy integration for seamless form handling.
 ### This is an illustration of Checkbox component.
-/// {Example:1} ///
+<CodePreviewer
+  code={`function App () {
+  const [isInvalid, setIsInvalid] = useState(false);
+  const [inputValue, setInputValue] = useState("12345");
+
+  const handleSubmit = () => {
+    if (inputValue.length < 6) {
+      setIsInvalid(true);
+    } else {
+      setIsInvalid(false);
+    }
+  };
+
+  return (
+    <View>
+      <FormControl
+        isInvalid={isInvalid}
+        size="{{size}}"
+        isDisabled={ {{isDisabled}} }
+        isReadOnly={ {{isReadOnly}} }
+        isRequired={ {{isRequired}} }
+      >
+        <FormControlLabel>
+          <FormControlLabelText>Password</FormControlLabelText>
+        </FormControlLabel>
+        <Input className="my-1" size="{{size}}">
+          <InputField
+            type="password"
+            placeholder="password"
+            value={inputValue}
+            onChangeText={(text) => setInputValue(text)}
+          />
+        </Input>
+        <FormControlHelper>
+          <FormControlHelperText>
+            Must be at least 6 characters.
+          </FormControlHelperText>
+        </FormControlHelper>
+        <FormControlError>
+          <FormControlErrorIcon as={AlertCircleIcon} className="text-red-500"/>
+          <FormControlErrorText  className="text-red-500">
+            At least 6 characters are required.
+          </FormControlErrorText>
+        </FormControlError>
+      </FormControl>
+      <Button className="w-fit self-end mt-4" size="sm" variant="outline" onPress={handleSubmit}>
+        <ButtonText>Submit</ButtonText>
+      </Button>
+    </View>
+  );
+};`}
+  argTypes={{
+  "isDisabled": {
+    "control": {
+      "type": "boolean"
+    },
+    "defaultValue": true
+  },
+  "isReadOnly": {
+    "control": {
+      "type": "boolean"
+    },
+    "defaultValue": true
+  },
+  "isRequired": {
+    "control": {
+      "type": "boolean"
+    },
+    "defaultValue": true
+  },
+  "size": {
+    "control": {
+      "type": "select"
+    },
+    "options": [
+      "sm",
+      "md",
+      "lg"
+    ],
+    "defaultValue": "md"
+  }
+}}
+  reactLive={{ FormControl, FormControlLabel, FormControlError, FormControlErrorText, FormControlErrorIcon, FormControlHelper, FormControlHelperText, FormControlLabelText, AlertCircleIcon, Input, InputField, InputIcon, InputSlot, Button, ButtonText, ButtonSpinner }}
+/>
