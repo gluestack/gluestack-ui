@@ -15,10 +15,10 @@
       }
     },
     "reactLive": {
-      "Checkbox": "Checkbox",
-      "CheckboxIndicator": "Checkbox",
-      "CheckboxLabel": "Checkbox",
-      "CheckIcon": "Icon",
-      "CheckboxIcon": "Checkbox"
+      "Checkbox": "checkbox",
+      "CheckboxIndicator": "checkbox",
+      "CheckboxLabel": "checkbox",
+      "CheckIcon": "icon",
+      "CheckboxIcon": "checkbox"
     }
   }

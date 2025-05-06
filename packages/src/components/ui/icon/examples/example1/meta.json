@@ -9,7 +9,7 @@
       }
     },
     "reactLive": {
-      "Icon": "Icon",
-      "EditIcon": "Icon"
+      "Icon": "icon",
+      "EditIcon": "icon"
     }
   }

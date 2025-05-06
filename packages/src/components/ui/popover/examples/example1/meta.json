@@ -16,12 +16,12 @@
       }
     },
     "reactLive": {
-      "Popover": "Popover",
-      "PopoverBackdrop": "Popover",
-      "PopoverArrow": "Popover",
-      "PopoverBody": "Popover",
-      "PopoverContent": "Popover",
-      "Button": "Button",
-      "ButtonText": "Button"
+      "Popover": "popover",
+      "PopoverBackdrop": "popover",
+      "PopoverArrow": "popover",
+      "PopoverBody": "popover",
+      "PopoverContent": "popover",
+      "Button": "button",
+      "ButtonText": "button"
     }
   }

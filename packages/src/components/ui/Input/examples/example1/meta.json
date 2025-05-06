@@ -35,10 +35,10 @@
     }
   },
   "reactLive": {
-    "Input": "Input",
-    "InputField": "Input",
-    "InputIcon": "Input",
-    "InputSlot": "Input",
-    "AddIcon": "Icon"
+    "Input": "input",
+    "InputField": "input",
+    "InputIcon": "input",
+    "InputSlot": "input",
+    "AddIcon": "icon"
   }
 }

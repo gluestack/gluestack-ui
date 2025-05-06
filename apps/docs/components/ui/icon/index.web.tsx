@@ -1,4 +1,4 @@
-"use client";
+'use client';
 import React from 'react';
 import { createIcon } from './creator';
 import { tva } from '@/utils/nativewind/utils/tva';
