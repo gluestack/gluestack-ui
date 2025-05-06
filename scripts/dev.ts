@@ -5,7 +5,7 @@ import mappers from "../mappers/index";
 import docsMapper from "../mappers/docs";
 
 const sourcePath = "./packages";
-const componentsPath = "./packages/src/components";
+const componentsPath = "./packages/src/components/ui";
 
 // Initialize watcher
 const watcher = chokidar.watch(sourcePath, {

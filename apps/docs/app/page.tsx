@@ -1,7 +1,7 @@
 "use client";
 
-import { Actionsheet, ActionsheetContent, ActionsheetItem, ActionsheetItemText, ActionsheetDragIndicator, ActionsheetDragIndicatorWrapper, ActionsheetBackdrop } from "../components/ActionSheet";
-import { Button, ButtonText } from "../components/Button";
+import { Actionsheet, ActionsheetContent, ActionsheetItem, ActionsheetItemText, ActionsheetDragIndicator, ActionsheetDragIndicatorWrapper, ActionsheetBackdrop } from "@/components/ui/actionsheet";
+import { Button, ButtonText } from "@/components/ui/button";
 
 import React from "react";
 	

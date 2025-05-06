@@ -4,7 +4,7 @@ import * as fileOps from "./fileOperations";
 
 // Get paths for component directories from the source and destination directories
 export const getComponentPaths = (component: string) => {
-  const componentsDir = path.resolve("packages/src/components");
+  const componentsDir = path.resolve("packages/src/components/ui");
   const docsDir = path.resolve("apps/docs/components/ui");
 
   return {
@@ -19,7 +19,6 @@ export const getComponentPaths = (component: string) => {
 
 export const copyComponent = (component: string) => {
   const paths = getComponentPaths(component);
-  
   // Check if component exists
   if (!fileOps.pathExists(paths.componentDir)) {
     console.warn(`Component not found: ${component}`);
@@ -28,7 +27,7 @@ export const copyComponent = (component: string) => {
   // Create destination dir
   fileOps.ensureDirectoryExists(paths.destDir);
   // Copy specific files
-  const filesToCopy = ["index.tsx", "index.web.tsx"];
+  const filesToCopy = ["index.tsx", "index.web.tsx","config.ts","script.ts"];
   for (const file of filesToCopy) {
     const srcFile = path.join(paths.componentDir, file);
     if (fileOps.pathExists(srcFile)) {

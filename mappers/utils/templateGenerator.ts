@@ -1,11 +1,6 @@
 import path from "path";
 import * as fileOps from "./fileOperations";
 
-/**
- * Extracts imports from code and adds them to uniqueImports map
- * @param code Source code to process
- * @param uniqueImports Map of imports to update
- */
 export const extractImports = (
   code: string,
   uniqueImports: Map<string, string>
@@ -23,19 +18,13 @@ export const extractImports = (
   }
 };
 
-/**
- * Generate code previewer template
- * @param exampleNumber Example number to generate
- * @param component Component name
- * @param uniqueImports Map to store imports used in the example
- * @returns Generated code previewer string
- */
+
 export const generateCodePreviewer = (
   exampleNumber: string,
   component: string,
   uniqueImports: Map<string, string>
 ) => {
-  const sourcePath = path.resolve("packages/src/components");
+  const sourcePath = path.resolve("packages/src/components/ui");
   const examplePath = path.join(
     sourcePath,
     component,
@@ -95,12 +84,7 @@ export default function Page() {
 }`;
 };
 
-/**
- * Process a file for code examples
- * @param filePath Path to the file being processed
- * @param component Component name
- * @returns Whether the file was modified
- */
+
 export const processFileForExamples = (
   filePath: string,
   component: string
@@ -109,7 +93,6 @@ export const processFileForExamples = (
   const uniqueImports = new Map();
   uniqueImports.set("CodePreviewer", "../../../..CodePreviewer");
 
-  // Read file content
   const content = fileOps.readTextFile(filePath);
 
   // Extract existing imports

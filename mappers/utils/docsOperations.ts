@@ -6,7 +6,7 @@ import * as templateGen from "./templateGenerator";
 // Copy documentation files for a component
 
 export const copyDocs = (component: string) => {
-  const sourcePath = path.resolve("packages/src/components");
+  const sourcePath = path.resolve("packages/src/components/ui");
   const docsPath = path.resolve("apps/docs/app/ui/docs/components");
 
   try {
