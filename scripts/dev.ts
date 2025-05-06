@@ -4,7 +4,7 @@ import fs from "fs";
 import mappers from "../mappers/index";
 import docsMapper from "../mappers/docs";
 
-const sourcePath = "./packages/src";
+const sourcePath = "./packages";
 const componentsPath = "./packages/src/components";
 
 // Initialize watcher
@@ -33,7 +33,6 @@ const getComponentFromPath = (filePath: string): string | null => {
 };
 
 const processFileChange = async (event: string, filePath: string) => {
-  console.log(`File ${event}: ${filePath}`);
   const component = getComponentFromPath(filePath);
   
   // If a component directory is being deleted, handle it directly
@@ -41,10 +40,8 @@ const processFileChange = async (event: string, filePath: string) => {
     const componentDir = path.join(componentsPath, component);
     // Check if the component directory no longer exists
     if (!fs.existsSync(componentDir)) {
-      console.log(`Component directory deleted: ${component}`);
       if (docsMapper && typeof docsMapper.component === 'function') {
         try {
-          // Call the docs mapper directly with 'removed' event
           await docsMapper.component(component, 'removed');
         } catch (error) {
           console.error(`Error deleting docs for component ${component}:`, error);
@@ -57,18 +54,15 @@ const processFileChange = async (event: string, filePath: string) => {
   for (const mapperConfig of mappers) {
     try {
       const { name, mapper } = mapperConfig;
-      console.log(`Applying mapper: ${name}`);
       
       if (component) {
         if (mapper && typeof mapper.component === 'function') {
-          console.log(`Processing component: ${component} (${event})`);
           await mapper.component(component, event);
         } else {
           console.warn(`Mapper ${name} doesn't have a component method`);
         }
       } else {
         if (mapper && typeof mapper.nonComponent === 'function') {
-          console.log(`Processing non-component file: ${filePath}`);
           await mapper.nonComponent(filePath);
         } else {
           console.warn(`Mapper ${name} doesn't have a nonComponent method`);
@@ -88,4 +82,3 @@ watcher
   .on("change", path => processFileChange("changed", path))
   .on("unlink", path => processFileChange("removed", path));
 
-console.log(`Watching for file changes in ${sourcePath}...`);

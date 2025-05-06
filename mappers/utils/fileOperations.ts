@@ -1,11 +1,7 @@
 import fs from "fs";
 import path from "path";
 
-/**
- * Copies a directory recursively from source to destination
- * @param src Source directory path
- * @param dest Destination directory path
- */
+// Copy a directory to a destination directory
 export const copyDir = (src: string, dest: string) => {
   if (!fs.existsSync(dest)) {
     fs.mkdirSync(dest, { recursive: true });
@@ -22,71 +18,45 @@ export const copyDir = (src: string, dest: string) => {
   }
 };
 
-/**
- * Checks if a file or directory exists at the given path
- * @param filePath Path to check
- * @returns boolean indicating if the path exists
- */
+// Check if a file exists
 export const pathExists = (filePath: string): boolean => {
   return fs.existsSync(filePath);
 };
 
-/**
- * Creates a directory if it doesn't exist
- * @param dirPath Directory path to create
- */
+// Ensure a directory exists
 export const ensureDirectoryExists = (dirPath: string) => {
   if (!fs.existsSync(dirPath)) {
     fs.mkdirSync(dirPath, { recursive: true });
   }
 };
 
-/**
- * Reads a file as UTF-8 text
- * @param filePath Path to the file
- * @returns File contents as string
- */
+// Read a text file
 export const readTextFile = (filePath: string): string => {
   return fs.readFileSync(filePath, "utf-8");
 };
 
-/**
- * Writes text content to a file
- * @param filePath Path to the file
- * @param content Content to write
- */
+// Write a text file
 export const writeTextFile = (filePath: string, content: string) => {
   fs.writeFileSync(filePath, content, "utf-8");
 };
 
-/**
- * Reads a JSON file and parses the content
- * @param filePath Path to the JSON file
- * @returns Parsed JSON object
- */
+// Read a JSON file
 export const readJsonFile = (filePath: string): any => {
   const content = readTextFile(filePath);
   return JSON.parse(content);
 };
 
-/**
- * Deletes a file or directory recursively
- * @param path Path to delete
- */
+// Delete a file or directory
 export const deletePath = (path: string) => {
   if (fs.existsSync(path)) {
     fs.rmSync(path, { recursive: true, force: true });
   }
 };
 
-/**
- * Gets all files in a directory
- * @param dirPath Directory path
- * @returns Array of file names
- */
+// Get all files in a directory
 export const getFilesInDirectory = (dirPath: string): string[] => {
   if (!fs.existsSync(dirPath)) {
     return [];
   }
   return fs.readdirSync(dirPath);
-}; 
+};
