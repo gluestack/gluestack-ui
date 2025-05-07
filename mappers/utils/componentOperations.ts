@@ -8,8 +8,8 @@ import * as fileOps from "./fileOperations";
  * @returns Object containing relevant paths
  */
 export const getComponentPaths = (component: string) => {
-  const componentsDir = path.resolve("packages/src/components");
-  const docsDir = path.resolve("apps/docs/components");
+  const componentsDir = path.resolve("packages/src/components/ui");
+  const docsDir = path.resolve("apps/docs/components/ui");
 
   return {
     componentDir: path.join(componentsDir, component),
@@ -38,7 +38,7 @@ export const copyComponent = (component: string) => {
   fileOps.ensureDirectoryExists(paths.destDir);
 
   // Copy specific files
-  const filesToCopy = ["index.tsx", "index.web.tsx"];
+  const filesToCopy = ["index.tsx", "index.web.tsx","config.ts","script.ts"];
   for (const file of filesToCopy) {
     const srcFile = path.join(paths.componentDir, file);
     if (fileOps.pathExists(srcFile)) {

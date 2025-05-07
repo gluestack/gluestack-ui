@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Sidebar from "./ui/Sidebar";
 import Header from "./ui/Header";
-import { GluestackUIProvider } from "../components/gluestack-ui-provider";
+import { GluestackUIProvider } from "../components/ui/gluestack-ui-provider";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({
