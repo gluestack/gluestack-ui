@@ -73,7 +73,7 @@ export const deleteComponentDocs = (component: string) => {
   const docsComponentPath = path.resolve("apps/docs/components", component);
   const docsUiPath = path.resolve(
     "apps/docs/app/ui/docs",
-    component.toLowerCase()
+    component
   );
 
   try {

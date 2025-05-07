@@ -13,7 +13,7 @@ import {
   PressableProps,
   ViewStyle,
 } from 'react-native';
-import { PrimitiveIcon, UIIcon } from '../Icon/creator';
+import { PrimitiveIcon, UIIcon } from '../icon/creator';
 import { tva } from '../../../utils/nativewind/utils/tva';
 import type { VariantProps } from '../../../utils/nativewind-utils';
 import { cssInterop } from 'nativewind';

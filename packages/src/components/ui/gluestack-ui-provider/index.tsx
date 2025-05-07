@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { config } from './config';
 import { View, ViewProps } from 'react-native';
-import { OverlayProvider } from '../Overlay/creator';
-import { ToastProvider } from '../Toast/creator';
+import { OverlayProvider } from '../overlay/creator';
+import { ToastProvider } from '../toast/creator';
 import { useColorScheme } from 'nativewind';
 
 export type ModeType = 'light' | 'dark' | 'system';

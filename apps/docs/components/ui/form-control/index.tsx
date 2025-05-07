@@ -9,7 +9,7 @@ import {
 } from '../../../utils/nativewind/utils/withStyleContext';
 import { cssInterop } from 'nativewind';
 import type { VariantProps } from '../../../utils/nativewind/utils';
-import { PrimitiveIcon, UIIcon } from '../Icon/creator';
+import { PrimitiveIcon, UIIcon } from '../icon/creator';
 
 const SCOPE = 'FORM_CONTROL';
 

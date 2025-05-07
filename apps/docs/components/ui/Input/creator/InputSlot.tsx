@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react';
 import { useInput } from './InputContext';
-import { useFormControl } from '../../FormControl/creator';
+import { useFormControl } from '../../form-control/creator';
 
 export const InputSlot = (StyledInputSlot: any) =>
   forwardRef(

@@ -1,6 +1,6 @@
 import React, { forwardRef, useMemo } from 'react';
 import { Platform } from 'react-native';
-import { useFormControl } from '../../FormControl/creator';
+import { useFormControl } from '../../form-control/creator';
 import { useInput } from './InputContext';
 import { mergeRefs } from '../../../../utils/common';
 

@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react';
 import { useControllableState } from '../../../utils/hooks/src';
-import { Overlay } from '../../Overlay/creator';
+import { Overlay } from '../../overlay/creator';
 import { PopoverProvider } from './PopoverContext';
 
 export const Popover = (StyledPopover: any) =>

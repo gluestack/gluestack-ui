@@ -26,7 +26,7 @@ export const copyDocs = (component: string) => {
     }
 
     // Create destination folder (lowercase component name)
-    const destPath = path.join(docsPath, component.toLowerCase());
+    const destPath = path.join(docsPath, component);
     fileOps.ensureDirectoryExists(destPath);
 
     // Copy docs files

@@ -4,7 +4,7 @@ import { createCheckbox } from './creator';
 import { View, Pressable, Text, Platform } from 'react-native';
 import type { TextProps, ViewProps } from 'react-native';
 import { tva } from '../../../utils/nativewind/utils/tva';
-import { PrimitiveIcon, IPrimitiveIcon, UIIcon } from '../Icon/creator';
+import { PrimitiveIcon, IPrimitiveIcon, UIIcon } from '../icon/creator';
 import {
   withStyleContext,
   useStyleContext,

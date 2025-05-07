@@ -1,8 +1,8 @@
 'use client';
 import React, { useEffect, useLayoutEffect } from 'react';
 import { config } from './config';
-import { OverlayProvider } from '../Overlay/creator';
-import { ToastProvider } from '../Toast/creator';
+import { OverlayProvider } from '../overlay/creator';
+import { ToastProvider } from '../toast/creator';
 import { setFlushStyles } from '../../../utils/nativewind/utils/flush';
 import { script } from './script';
 
