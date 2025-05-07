@@ -117,6 +117,12 @@ export const processNonComponentFile = (srcPath: string) => {
   if (relativePath.startsWith("components")) {
     return;
   }
+  // Skip if it's a package file or config file
+  const excludedFiles = ["tsconfig.json", "package.json", "package-lock.json"];
+  if (excludedFiles.includes(path.basename(srcPath))) {
+    return;
+  }
+
 
   // Check if it's a directory
   const isDirectory = fs.statSync(normalizedPath).isDirectory();
