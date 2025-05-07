@@ -16,5 +16,8 @@
   },
   {
     "name": "popover"
+  },
+  {
+    "name": "modal"
   }
 ]
