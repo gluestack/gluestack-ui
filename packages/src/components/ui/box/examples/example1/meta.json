@@ -1,0 +1,8 @@
+{
+    "argTypes": {
+    },
+    "reactLive": {
+      "Box": "box",
+      "Text": "text"
+    }
+  }

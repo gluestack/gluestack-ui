@@ -19,6 +19,8 @@
       "Button": "button",
       "ButtonText": "button",
       "Icon": "icon",
-      "CloseIcon": "icon"
+      "CloseIcon": "icon",
+      "Center": "center",
+      "Text": "text"
     }
   }

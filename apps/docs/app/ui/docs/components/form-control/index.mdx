@@ -15,6 +15,7 @@ import {InputSlot} from '@/components/ui/input';
 import {Button} from '@/components/ui/button';
 import {ButtonText} from '@/components/ui/button';
 import {ButtonSpinner} from '@/components/ui/button';
+import {VStack} from '@/components/ui/vstack';
 
 # FormControl
 Enhance form usability with FormControl components in React. Manage validation, disabled states, and more. Easy integration for seamless form handling.
@@ -33,7 +34,7 @@ Enhance form usability with FormControl components in React. Manage validation, 
   };
 
   return (
-    <View>
+    <VStack>
       <FormControl
         isInvalid={isInvalid}
         size="{{size}}"
@@ -67,7 +68,7 @@ Enhance form usability with FormControl components in React. Manage validation, 
       <Button className="w-fit self-end mt-4" size="sm" variant="outline" onPress={handleSubmit}>
         <ButtonText>Submit</ButtonText>
       </Button>
-    </View>
+    </VStack>
   );
 };`}
   argTypes={{
@@ -101,5 +102,5 @@ Enhance form usability with FormControl components in React. Manage validation, 
     "defaultValue": "md"
   }
 }}
-  reactLive={{ FormControl, FormControlLabel, FormControlError, FormControlErrorText, FormControlErrorIcon, FormControlHelper, FormControlHelperText, FormControlLabelText, AlertCircleIcon, Input, InputField, InputIcon, InputSlot, Button, ButtonText, ButtonSpinner }}
+  reactLive={{ FormControl, FormControlLabel, FormControlError, FormControlErrorText, FormControlErrorIcon, FormControlHelper, FormControlHelperText, FormControlLabelText, AlertCircleIcon, Input, InputField, InputIcon, InputSlot, Button, ButtonText, ButtonSpinner, VStack }}
 />

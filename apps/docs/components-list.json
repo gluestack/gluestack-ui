@@ -19,5 +19,20 @@
   },
   {
     "name": "modal"
+  },
+  {
+    "name": "vstack"
+  },
+  {
+    "name": "hstack"
+  },
+  {
+    "name": "box"
+  },
+  {
+    "name": "text"
+  },
+  {
+    "name": "center"
   }
 ]

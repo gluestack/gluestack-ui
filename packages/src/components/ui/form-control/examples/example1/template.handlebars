@@ -11,7 +11,7 @@ function App () {
   };
 
   return (
-    <View>
+    <VStack>
       <FormControl
         isInvalid={isInvalid}
         size="{{size}}"
@@ -45,6 +45,6 @@ function App () {
       <Button className="w-fit self-end mt-4" size="sm" variant="outline" onPress={handleSubmit}>
         <ButtonText>Submit</ButtonText>
       </Button>
-    </View>
+    </VStack>
   );
 };

@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import Handlebars from "handlebars";
-import { View, Text, TouchableOpacity } from "react-native";
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from "react-live";
 export default function CodePreviewer({
   code,
@@ -83,7 +82,6 @@ export default function CodePreviewer({
             checked={values[name] ?? defaultValue}
             onChange={(e) => handleChange(name, e.target.checked)}
           />
-         
         </div>
       );
     }
@@ -111,13 +109,19 @@ export default function CodePreviewer({
         </div>
 
         <div className="p-4 flex-1 flex items-center justify-center">
-          <LiveProvider code={compiledCode} scope={{ ...reactLive, View, Text, TouchableOpacity ,useState, useEffect}}>
+          <LiveProvider
+            code={compiledCode}
+            scope={{ ...reactLive, useState, useEffect }}
+          >
             <LiveError />
             <LivePreview />
           </LiveProvider>
         </div>
       </div>
-      <LiveProvider code={compiledCode} scope={{ ...reactLive, View, Text, TouchableOpacity ,useState, useEffect}}>
+      <LiveProvider
+        code={compiledCode}
+        scope={{ ...reactLive, useState, useEffect }}
+      >
         <LiveError />
         <LiveEditor />
       </LiveProvider>

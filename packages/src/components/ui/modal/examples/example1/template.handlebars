@@ -1,7 +1,7 @@
 function App() {
   const [showModal, setShowModal] = React.useState(false)
   return (
-    <View className="h-[300px]">
+    <Center className="h-[300px]">
       <Button onPress={() => setShowModal(true)}>
         <ButtonText>Show Modal</ButtonText>
       </Button>
@@ -53,6 +53,6 @@ function App() {
           </ModalFooter>
         </ModalContent>
       </Modal>
-    </View>
+    </Center>
   )
 }
