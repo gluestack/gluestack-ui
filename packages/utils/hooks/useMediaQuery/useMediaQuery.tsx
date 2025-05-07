@@ -1,10 +1,10 @@
-import React from 'react';
-import { Text } from '@/components/ui/text';
-import { Heading } from '@/components/ui/heading';
-import { Box } from '@/components/ui/box';
-import { Icon } from '@/components/ui/icon';
-import { useMediaQuery } from '@/components/hooks/use-media-query';
-import { Smartphone, Tablet, Laptop, Tv } from 'lucide-react-native';
+import React from "react";
+import { Text } from "@/components/ui/text";
+import { Heading } from "@/components/ui/heading";
+import { Box } from "@/components/ui/box";
+import { Icon } from "@/src/components/ui/icon";
+import { useMediaQuery } from "@/components/hooks/use-media-query";
+import { Smartphone, Tablet, Laptop, Tv } from "lucide-react-native";
 const UseMediaQueryBasic = ({ ...props }: any) => {
   const [isMobile, isTablet, isSmallScreen, isLargeScreen] = useMediaQuery([
     {
@@ -30,17 +30,17 @@ const UseMediaQueryBasic = ({ ...props }: any) => {
       <Box className="flex-row flex-wrap gap-8 justify-center">
         <Box
           className={
-            'border justify-center items-center w-[120px] h-[80px] rounded gap-2 ' +
-            (isMobile ? 'border-primary-500 bg-background-50' : '')
+            "border justify-center items-center w-[120px] h-[80px] rounded gap-2 " +
+            (isMobile ? "border-primary-500 bg-background-50" : "")
           }
         >
-          <Icon as={Smartphone} size={'xs'} />
+          <Icon as={Smartphone} size={"xs"} />
           <Text size="sm">Small</Text>
         </Box>
         <Box
           className={
-            'border justify-center items-center w-[120px] h-[80px] rounded gap-2 ' +
-            (isTablet ? 'border-primary-500 bg-background-50' : '')
+            "border justify-center items-center w-[120px] h-[80px] rounded gap-2 " +
+            (isTablet ? "border-primary-500 bg-background-50" : "")
           }
         >
           <Icon as={Tablet} />
@@ -48,8 +48,8 @@ const UseMediaQueryBasic = ({ ...props }: any) => {
         </Box>
         <Box
           className={
-            'border justify-center items-center w-[120px] h-[80px] rounded gap-2 ' +
-            (isSmallScreen ? 'border-primary-500 bg-background-50' : '')
+            "border justify-center items-center w-[120px] h-[80px] rounded gap-2 " +
+            (isSmallScreen ? "border-primary-500 bg-background-50" : "")
           }
         >
           <Icon as={Laptop} />
@@ -57,8 +57,8 @@ const UseMediaQueryBasic = ({ ...props }: any) => {
         </Box>
         <Box
           className={
-            'border justify-center items-center w-[120px] h-[80px] rounded gap-2 ' +
-            (isLargeScreen ? 'border-primary-500 bg-background-50' : '')
+            "border justify-center items-center w-[120px] h-[80px] rounded gap-2 " +
+            (isLargeScreen ? "border-primary-500 bg-background-50" : "")
           }
         >
           <Icon as={Tv} />
@@ -70,5 +70,5 @@ const UseMediaQueryBasic = ({ ...props }: any) => {
 };
 
 UseMediaQueryBasic.description =
-  'This is a basic Alert component example. Alerts are used to communicate a state that affects a system, feature or page';
+  "This is a basic Alert component example. Alerts are used to communicate a state that affects a system, feature or page";
 export default UseMediaQueryBasic;
