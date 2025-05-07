@@ -100,7 +100,7 @@ export const deleteComponentDocs = (component: string) => {
  * @param srcPath Source file path within packages/src
  */
 export const processNonComponentFile = (srcPath: string) => {
-  const packagesDir = path.resolve("packages/src");
+  const packagesDir = path.resolve("packages");
   const docsDir = path.resolve("apps/docs");
 
   // Normalize path and make relative to packages/src
@@ -144,14 +144,14 @@ export const processNonComponentFile = (srcPath: string) => {
  */
 export const processUtilsDirectory = () => {
   try {
-    const packagesDir = path.resolve("packages/src");
+    const packagesDir = path.resolve("packages");
     const utilsDir = path.join(packagesDir, "utils");
 
     if (fileOps.pathExists(utilsDir)) {
       processNonComponentFile(utilsDir);
       console.log("✅ Utils directory processed successfully");
     } else {
-      console.warn("⚠ Utils directory not found in packages/src");
+      console.warn("⚠ Utils directory not found in packages");
     }
   } catch (error) {
     console.error("Error processing utils directory:", error);

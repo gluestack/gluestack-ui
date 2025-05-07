@@ -4,7 +4,7 @@ import fs from "fs";
 import mappers from "../mappers/index";
 import docsMapper from "../mappers/docs";
 
-const sourcePath = "./packages/src";
+const sourcePath = "./packages";
 const componentsPath = "./packages/src/components/ui";
 
 // Initialize watcher
