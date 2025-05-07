@@ -8,7 +8,6 @@ module.exports = {
     './components/**/*.{html,js,jsx,ts,tsx,mdx}',
     './utils/**/*.{html,js,jsx,ts,tsx,mdx}',
     './*.{html,js,jsx,ts,tsx,mdx}',
-    '../../packages/**/*.{html,js,jsx,ts,tsx,mdx}',
   ],
   presets: [require('nativewind/preset')],
   safelist: [

@@ -11,7 +11,7 @@ import {
   stableHash,
   composeEventHandlers,
 } from '@/utils/common';
-import { useFormControlContext } from '@/src/components/ui/form-control/creator/useFormControl';
+import { useFormControlContext } from '@/components/ui/form-control/creator/useFormControl';
 
 export const Checkbox = (StyledCheckbox: any) =>
   forwardRef(

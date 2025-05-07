@@ -10,7 +10,7 @@ import {
   mergeRefs,
   stableHash,
 } from '@/utils/common';
-import { useFormControlContext } from '@/src/components/ui/form-control/creator/useFormControl';
+import { useFormControlContext } from '@/components/ui/form-control/creator/useFormControl';
 import { VisuallyHidden } from '@react-aria/visually-hidden';
 
 export const Checkbox = (StyledCheckbox: any) =>

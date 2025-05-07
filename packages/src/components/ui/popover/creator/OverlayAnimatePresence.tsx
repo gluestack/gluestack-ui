@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { forwardRef } from 'react';
 import { Animated } from 'react-native';
-import { ExitAnimationContext } from '@/src/components/ui/overlay/creator';
+import { ExitAnimationContext } from '@/components/ui/overlay/creator';
 
 const defaultTransitionConfig: any = {
   type: 'timing',
