@@ -35,7 +35,7 @@ export const generateCodePreviewer = (
   component: string,
   uniqueImports: Map<string, string>
 ) => {
-  const sourcePath = path.resolve("packages/src/components");
+  const sourcePath = path.resolve("packages/src/components/ui");
   const examplePath = path.join(
     sourcePath,
     component,

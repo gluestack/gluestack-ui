@@ -1,6 +1,28 @@
 import CodePreviewer from '../../../CodePreviewer';
+import {Icon} from '../../../../../components/Icon';
+import {EditIcon} from '../../../../../components/Icon';
 
 # Icon
 Use gluestack-ui Icon component to enhance your web and mobile app with scalable component icons. A must-have React Native icon library for modern development!
 ### This is an illustration of Icon component.
-<!-- Failed to load CodePreviewer for Example:1 -->
+<CodePreviewer
+  code={`<View>
+     <Icon as={EditIcon} size="{{size}}" />
+</View>`}
+  argTypes={{
+  "size": {
+    "control": {
+      "type": "select"
+    },
+    "options": [
+      "xs",
+      "sm",
+      "md",
+      "lg",
+      "xl"
+    ],
+    "defaultValue": "md"
+  }
+}}
+  reactLive={{ Icon, EditIcon }}
+/>
