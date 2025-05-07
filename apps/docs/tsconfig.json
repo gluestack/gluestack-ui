@@ -1,5 +1,4 @@
 {
-  "extends": "../../tsconfig.json",
   "compilerOptions": {
     "jsxImportSource": "nativewind",
     "lib": ["dom", "dom.iterable", "esnext"],
@@ -19,7 +18,15 @@
         "name": "next"
       }
     ],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./*"]
+    }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "paths": {
+    "@/*": ["./*"],
+   
+  },
   "exclude": ["node_modules"]
 }
