@@ -27,7 +27,7 @@ export const copyComponent = (component: string) => {
   // Create destination dir
   fileOps.ensureDirectoryExists(paths.destDir);
   // Copy specific files
-  const filesToCopy = ["index.tsx", "index.web.tsx","config.ts","script.ts"];
+  const filesToCopy = ["index.tsx", "index.web.tsx", "config.ts", "script.ts"];
   for (const file of filesToCopy) {
     const srcFile = path.join(paths.componentDir, file);
     if (fileOps.pathExists(srcFile)) {
@@ -46,7 +46,6 @@ export const copyComponent = (component: string) => {
     fileOps.copyDir(paths.ariaDir, paths.destAriaDir);
   }
 };
-
 
 export const deleteComponentDocs = (component: string) => {
   const docsComponentPath = path.resolve("apps/docs/components/ui", component);
@@ -70,7 +69,6 @@ export const deleteComponentDocs = (component: string) => {
   }
 };
 
-
 export const processNonComponentFile = (srcPath: string) => {
   const packagesDir = path.resolve("packages");
   const docsDir = path.resolve("apps/docs");
@@ -84,6 +82,11 @@ export const processNonComponentFile = (srcPath: string) => {
   }
 
   if (relativePath.startsWith("components")) {
+    return;
+  }
+
+  const excludedFiles = ["tsconfig.json", "package.json", "package-lock.json"];
+  if (excludedFiles.includes(path.basename(srcPath))) {
     return;
   }
 
@@ -114,4 +117,4 @@ export const processUtilsDirectory = () => {
   } catch (error) {
     console.error("Error processing utils directory:", error);
   }
-}; 
+};
