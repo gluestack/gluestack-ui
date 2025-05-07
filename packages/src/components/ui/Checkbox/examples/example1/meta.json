@@ -1,0 +1,24 @@
+{
+    "argTypes": {
+      "isDisabled": {
+        "control": {
+          "type": "boolean"
+        },
+        "defaultValue": true
+      }, 
+      "size": {
+        "control": {
+          "type": "select"
+        },
+        "options": ["sm", "md", "lg"],
+        "defaultValue": "md"
+      }
+    },
+    "reactLive": {
+      "Checkbox": "checkbox",
+      "CheckboxIndicator": "checkbox",
+      "CheckboxLabel": "checkbox",
+      "CheckIcon": "icon",
+      "CheckboxIcon": "checkbox"
+    }
+  }

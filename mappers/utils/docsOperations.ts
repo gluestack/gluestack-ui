@@ -7,7 +7,7 @@ import * as templateGen from "./templateGenerator";
  * @param component Component name
  */
 export const copyDocs = (component: string) => {
-  const sourcePath = path.resolve("packages/src/components");
+  const sourcePath = path.resolve("packages/src/components/ui");
   const docsPath = path.resolve("apps/docs/app/ui/docs/components");
 
   try {
@@ -26,7 +26,7 @@ export const copyDocs = (component: string) => {
     }
 
     // Create destination folder (lowercase component name)
-    const destPath = path.join(docsPath, component.toLowerCase());
+    const destPath = path.join(docsPath, component);
     fileOps.ensureDirectoryExists(destPath);
 
     // Copy docs files

@@ -1,0 +1,15 @@
+{
+    "argTypes": {
+      "size": {
+        "control": {
+          "type": "select"
+        },
+        "options": ["xs", "sm", "md", "lg", "xl"],
+        "defaultValue": "md"
+      }
+    },
+    "reactLive": {
+      "Icon": "icon",
+      "EditIcon": "icon"
+    }
+  }

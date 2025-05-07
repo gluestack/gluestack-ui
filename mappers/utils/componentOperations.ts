@@ -8,8 +8,8 @@ import * as fileOps from "./fileOperations";
  * @returns Object containing relevant paths
  */
 export const getComponentPaths = (component: string) => {
-  const componentsDir = path.resolve("packages/src/components");
-  const docsDir = path.resolve("apps/docs/components");
+  const componentsDir = path.resolve("packages/src/components/ui");
+  const docsDir = path.resolve("apps/docs/components/ui");
 
   return {
     componentDir: path.join(componentsDir, component),
@@ -38,7 +38,7 @@ export const copyComponent = (component: string) => {
   fileOps.ensureDirectoryExists(paths.destDir);
 
   // Copy specific files
-  const filesToCopy = ["index.tsx", "index.web.tsx"];
+  const filesToCopy = ["index.tsx", "index.web.tsx","config.ts","script.ts"];
   for (const file of filesToCopy) {
     const srcFile = path.join(paths.componentDir, file);
     if (fileOps.pathExists(srcFile)) {
@@ -73,7 +73,7 @@ export const deleteComponentDocs = (component: string) => {
   const docsComponentPath = path.resolve("apps/docs/components", component);
   const docsUiPath = path.resolve(
     "apps/docs/app/ui/docs",
-    component.toLowerCase()
+    component
   );
 
   try {
@@ -100,7 +100,7 @@ export const deleteComponentDocs = (component: string) => {
  * @param srcPath Source file path within packages/src
  */
 export const processNonComponentFile = (srcPath: string) => {
-  const packagesDir = path.resolve("packages/src");
+  const packagesDir = path.resolve("packages");
   const docsDir = path.resolve("apps/docs");
 
   // Normalize path and make relative to packages/src
@@ -117,6 +117,12 @@ export const processNonComponentFile = (srcPath: string) => {
   if (relativePath.startsWith("components")) {
     return;
   }
+  // Skip if it's a package file or config file
+  const excludedFiles = ["tsconfig.json", "package.json", "package-lock.json"];
+  if (excludedFiles.includes(path.basename(srcPath))) {
+    return;
+  }
+
 
   // Check if it's a directory
   const isDirectory = fs.statSync(normalizedPath).isDirectory();
@@ -144,14 +150,14 @@ export const processNonComponentFile = (srcPath: string) => {
  */
 export const processUtilsDirectory = () => {
   try {
-    const packagesDir = path.resolve("packages/src");
+    const packagesDir = path.resolve("packages");
     const utilsDir = path.join(packagesDir, "utils");
 
     if (fileOps.pathExists(utilsDir)) {
       processNonComponentFile(utilsDir);
       console.log("✅ Utils directory processed successfully");
     } else {
-      console.warn("⚠ Utils directory not found in packages/src");
+      console.warn("⚠ Utils directory not found in packages");
     }
   } catch (error) {
     console.error("Error processing utils directory:", error);
