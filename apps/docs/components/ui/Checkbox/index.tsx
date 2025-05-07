@@ -3,14 +3,14 @@ import React from 'react';
 import { createCheckbox } from './creator';
 import { View, Pressable, Text, Platform } from 'react-native';
 import type { TextProps, ViewProps } from 'react-native';
-import { tva } from '../../../utils/nativewind/utils/tva';
-import { PrimitiveIcon, IPrimitiveIcon, UIIcon } from '../icon/creator';
+import { tva } from '@/utils/nativewind/utils/tva';
+import { PrimitiveIcon, IPrimitiveIcon, UIIcon } from '@/components/ui/icon/creator';
 import {
   withStyleContext,
   useStyleContext,
-} from '../../../utils/nativewind/utils/withStyleContext';
+} from '@/utils/nativewind/utils/withStyleContext';
 import { cssInterop } from 'nativewind';
-import type { VariantProps } from '../../../utils/nativewind/utils';
+import type { VariantProps } from '@/utils/nativewind/utils';
 
 const IndicatorWrapper = React.forwardRef<
   React.ComponentRef<typeof View>,
