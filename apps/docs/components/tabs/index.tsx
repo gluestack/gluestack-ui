@@ -1,0 +1,33 @@
+import React, { useState } from 'react';
+export const Tabs = ({ children }) => {
+  // Extract tab names from children
+  const tabNames = React.Children.map(children, (child) => {
+    return child.props.label;
+  });
+  const [activeTab, setActiveTab] = useState(0);
+  return (
+    <div className="tabs-container my-4">
+      <div className="flex border-b border-gray-200">
+        {tabNames.map((name, index) => (
+          <button
+            key={index}
+            className={`py-2 px-4 font-medium text-sm ${
+              activeTab === index
+                ? 'text-blue-600 border-b-2 border-blue-600'
+                : 'text-gray-500 hover:text-gray-700'
+            }`}
+            onClick={() => setActiveTab(index)}
+          >
+            {name}
+          </button>
+        ))}
+      </div>
+      <div className="py-4">
+        {React.Children.toArray(children)[activeTab]}
+      </div>
+    </div>
+  );
+};
+export const TabItem = ({ children, label }) => {
+  return <div>{children}</div>;
+};
