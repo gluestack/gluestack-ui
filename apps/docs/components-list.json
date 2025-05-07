@@ -1,20 +1,20 @@
 [
   {
-    "name": "Input"
+    "name": "input"
   },
   {
-    "name": "Button"
+    "name": "button"
   },
   {
-    "name": "Checkbox"
+    "name": "checkbox"
   },
   {
-    "name": "Icon"
+    "name": "icon"
   },
   {
-    "name": "FormControl"
+    "name": "form-control"
   },
   {
-    "name": "Popover"
+    "name": "popover"
   }
 ]

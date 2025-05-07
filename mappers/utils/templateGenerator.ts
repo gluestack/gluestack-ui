@@ -107,7 +107,7 @@ export const processFileForExamples = (
 ): boolean => {
   const codePreviewerRegex = /\/\/\/\s*\{Example:(\d+)\}\s*\/\/\//g;
   const uniqueImports = new Map();
-  uniqueImports.set("CodePreviewer", "../../../..CodePreviewer");
+  uniqueImports.set("CodePreviewer", "@/components/code-previewer");
 
   // Read file content
   const content = fileOps.readTextFile(filePath);
@@ -142,9 +142,9 @@ export const processFileForExamples = (
   // Generate import statements
   const importContent = Array.from(uniqueImports).map(([key, value]) => {
     if (key === "CodePreviewer") {
-      return `import CodePreviewer from '../../../CodePreviewer';`;
+      return `import CodePreviewer from '@/components/code-previewer';`;
     }
-    return `import {${key}} from '../../../../../components/${value}';`;
+    return `import {${key}} from '@/components/ui/${value}';`;
   });
 
   const totalContent = `${importContent.join("\n")}\n\n${newContent}`;

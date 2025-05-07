@@ -1,4 +1,4 @@
-import componentsList from "../../../components-list.json";
+import componentsList from "../../components-list.json";
 import Link from "next/link";
 export default function Sidebar() {
   return (

@@ -23,8 +23,8 @@
     }
   },
   "reactLive": {
-    "Button": "Button",
-    "ButtonText": "Button",
-    "ButtonSpinner": "Button"
+    "Button": "button",
+    "ButtonText": "button",
+    "ButtonSpinner": "button"
   }
 }

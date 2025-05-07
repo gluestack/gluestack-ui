@@ -27,22 +27,22 @@
       }
     },
     "reactLive": {
-      "FormControl": "FormControl",
-      "FormControlLabel": "FormControl",
-      "FormControlError": "FormControl",
-      "FormControlErrorText": "FormControl",
-      "FormControlErrorIcon": "FormControl",
-      "FormControlHelper": "FormControl",
-      "FormControlHelperText": "FormControl",
-      "FormControlLabelText": "FormControl",
-      "AlertCircleIcon": "Icon",
-      "Input": "Input",
-      "InputField": "Input",
-      "InputIcon": "Input",
-      "InputSlot": "Input",
-      "Button": "Button",
-      "ButtonText": "Button",
-      "ButtonSpinner": "Button"
+      "FormControl": "form-control",
+      "FormControlLabel": "form-control",
+      "FormControlError": "form-control",
+      "FormControlErrorText": "form-control",
+      "FormControlErrorIcon": "form-control",
+      "FormControlHelper": "form-control",
+      "FormControlHelperText": "form-control",
+      "FormControlLabelText": "form-control",
+      "AlertCircleIcon": "icon",
+      "Input": "input",
+      "InputField": "input",
+      "InputIcon": "input",
+      "InputSlot": "input",
+      "Button": "button",
+      "ButtonText": "button",
+      "ButtonSpinner": "button"
 
     }
   }
