@@ -37,8 +37,8 @@ const CodeBlock: React.FC<CodeBlockProps> = ({ code, language = 'jsx', className
   };
 
   return (
-    <div className={`relative group my-4 ${className}`}>
-      <pre className={`language-${language} border rounded-lg max-h-[400px] overflow-y-auto p-4`}>
+    <div className="relative group">
+      <pre className={`language-${language} border rounded-lg max-h-[400px] overflow-y-auto p-4 ${className}`}>
         <code ref={codeRef} className={`language-${language}`}>
           {code}
         </code>
