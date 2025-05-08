@@ -3,14 +3,14 @@ import {Tabs} from '@/components/tabs';
 import {TabItem} from '@/components/tabs';
 import {Button} from '@/components/ui/button';
 import {ButtonText} from '@/components/ui/button';
-import {ButtonSpinner} from '@/components/ui/button';
 
 # Button
+<br/>
 
 Discover a powerful button component for React & React Native with customizable size, shape, color, and behavior. Perfect for UI design & seamless user interactions.
 
-
-### This is an illustration of Button component.
+<br/>
+ This is an illustration of __Button__ component.
 <CodePreviewer
   code={`function Example() {
   return (
@@ -59,70 +59,16 @@ Discover a powerful button component for React & React Native with customizable 
   reactLive={{ Button, ButtonText }}
 />
 
-
-
-### Button with loading state
-
-<CodePreviewer
-  code={`function Example() {
-  return (
-    <Button variant="{{variant}}" size="{{size}}" action="{{action}}">
-        <ButtonText>Button Text</ButtonText>
-        <ButtonSpinner/>
-    </Button>
-  )
-}`}
-  argTypes={{
-  "variant": {
-    "control": {
-      "type": "select"
-    },
-    "options": [
-      "solid",
-      "outline",
-      "link"
-    ],
-    "defaultValue": "outline"
-  },
-  "action": {
-    "control": {
-      "type": "select"
-    },
-    "options": [
-      "primary",
-      "secondary",
-      "positive",
-      "negative"
-    ],
-    "defaultValue": "primary"
-  },
-  "size": {
-    "control": {
-      "type": "select"
-    },
-    "options": [
-      "xs",
-      "sm",
-      "md",
-      "lg"
-    ],
-    "defaultValue": "md"
-  }
-}}
-  reactLive={{ Button, ButtonText, ButtonSpinner }}
-/>
+<br/>
+## Installation
 
 <Tabs>
-<TabItem label="cli">
+<TabItem label="CLI">
 ### Run the following command:
   ```bash
-npm i @gluestack-ui/input
-  ```
-
-   ```bash
   npx gluestack-ui add button
   ```
 </TabItem>
-<TabItem label="manual">
+<TabItem label="Manual">
 </TabItem>
 </Tabs>

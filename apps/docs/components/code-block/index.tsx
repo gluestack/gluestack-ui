@@ -12,22 +12,24 @@ import 'prismjs/components/prism-markup';
 import 'prismjs/themes/prism.css'; // Or use 'prism-tomorrow.css' for dark mode
 
 type CodeBlockProps = {
+  className?: string;
   code: string;
   language?: 'jsx' | 'javascript' | 'ts' | 'tsx' | string;
 };
 
-const CodeBlock: React.FC<CodeBlockProps> = ({ code, language = 'jsx' }) => {
+const CodeBlock: React.FC<CodeBlockProps> = ({ code, language = 'jsx', className }) => {
   useEffect(() => {
     Prism.highlightAll();
   }, [code]);
 
   return (
-    <pre className={`language-${language}`}>
-        <p>hello</p>
+
+    <pre className={`language-${language} border  rounded-lg max-h-[400px] overflow-y-auto ${className}`}>
       <code className={`language-${language}`}>
         {code}
       </code>
     </pre>
+
   );
 };
 
