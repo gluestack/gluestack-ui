@@ -11,14 +11,16 @@ import {CheckboxIcon} from '@/components/ui/checkbox';
 Build interactive forms with a checkbox component for React & React Native. Features include hover, focus, disabled states, and multiple checkbox selection.
 ### This is an illustration of Checkbox component.
 <CodePreviewer
-  code={`<View>
+  code={`function Example() {
+  return (
     <Checkbox isDisabled={ {{isDisabled}} } size="{{size}}">
         <CheckboxIndicator>
             <CheckboxIcon as={CheckIcon} />
         </CheckboxIndicator>
         <CheckboxLabel>Label</CheckboxLabel>
     </Checkbox>
-</View>`}
+  )
+}`}
   argTypes={{
   "isDisabled": {
     "control": {

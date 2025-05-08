@@ -12,6 +12,8 @@ import {Button} from '@/components/ui/button';
 import {ButtonText} from '@/components/ui/button';
 import {Icon} from '@/components/ui/icon';
 import {CloseIcon} from '@/components/ui/icon';
+import {Center} from '@/components/ui/center';
+import {Text} from '@/components/ui/text';
 
 # Modal
 Create smooth and accessible modals in React & React Native. Implement React modal components for alerts, forms, and notifications with ease. Optimize modal component for better user engagement.
@@ -21,7 +23,7 @@ Create smooth and accessible modals in React & React Native. Implement React mod
   code={`function App() {
   const [showModal, setShowModal] = React.useState(false)
   return (
-    <View className="h-[300px]">
+    <Center className="h-[300px]">
       <Button onPress={() => setShowModal(true)}>
         <ButtonText>Show Modal</ButtonText>
       </Button>
@@ -73,7 +75,7 @@ Create smooth and accessible modals in React & React Native. Implement React mod
           </ModalFooter>
         </ModalContent>
       </Modal>
-    </View>
+    </Center>
   )
 }`}
   argTypes={{
@@ -91,5 +93,5 @@ Create smooth and accessible modals in React & React Native. Implement React mod
     "defaultValue": "md"
   }
 }}
-  reactLive={{ Modal, ModalBackdrop, ModalBody, ModalContent, ModalCloseButton, ModalHeader, ModalFooter, Button, ButtonText, Icon, CloseIcon }}
+  reactLive={{ Modal, ModalBackdrop, ModalBody, ModalContent, ModalCloseButton, ModalHeader, ModalFooter, Button, ButtonText, Icon, CloseIcon, Center, Text }}
 />

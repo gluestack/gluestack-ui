@@ -11,14 +11,16 @@ import {AddIcon} from '@/components/ui/icon';
 A feature-rich React Native Input component – supports icons, validation, and styling options for seamless user input in your mobile app.
 ### Illustartion of input component
 <CodePreviewer
-  code={`<View>
+  code={`function Example() {
+  return (
     <Input variant="{{variant}}" size="{{size}}" isDisabled={ {{isDisabled}} } isInvalid={ {{isInvalid}} } isReadOnly={ {{isReadOnly}} }>
         <InputField placeholder="Enter Text here..." />
         <InputSlot>
             <InputIcon as={AddIcon} />
         </InputSlot>
     </Input>
-</View>`}
+  )
+}`}
   argTypes={{
   "isDisabled": {
     "control": {

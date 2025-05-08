@@ -42,7 +42,7 @@
       "InputSlot": "input",
       "Button": "button",
       "ButtonText": "button",
-      "ButtonSpinner": "button"
-
+      "ButtonSpinner": "button",
+      "VStack": "vstack"
     }
   }

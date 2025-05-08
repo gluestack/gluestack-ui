@@ -13,11 +13,13 @@ Discover a powerful button component for React & React Native with customizable 
 
 ### This is an illustration of Button component.
 <CodePreviewer
-  code={`<View>
+  code={`function Example() {
+  return (
     <Button variant="{{variant}}" size="{{size}}" action="{{action}}">
         <ButtonText>Button Text</ButtonText>
     </Button>
-</View>`}
+  )
+}`}
   argTypes={{
   "variant": {
     "control": {
@@ -63,12 +65,14 @@ Discover a powerful button component for React & React Native with customizable 
 ### Button with loading state
 
 <CodePreviewer
-  code={`<View>
-    <Button variant="{{variant}}" size="{{size}}">
+  code={`function Example() {
+  return (
+    <Button variant="{{variant}}" size="{{size}}" action="{{action}}">
         <ButtonText>Button Text</ButtonText>
         <ButtonSpinner/>
     </Button>
-</View>`}
+  )
+}`}
   argTypes={{
   "variant": {
     "control": {

@@ -19,5 +19,38 @@
   },
   {
     "name": "modal"
+  },
+  {
+    "name": "vstack"
+  },
+  {
+    "name": "hstack"
+  },
+  {
+    "name": "box"
+  },
+  {
+    "name": "text"
+  },
+  {
+    "name": "center"
+  },
+  {
+    "name": "divider"
+  },
+  {
+    "name": "grid"
+  },
+  {
+    "name": "alert"
+  },
+  {
+    "name": "progress"
+  },
+  {
+    "name": "spinner"
+  },
+  {
+    "name": "toast"
   }
 ]

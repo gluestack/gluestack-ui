@@ -38,7 +38,7 @@ export const copyComponent = (component: string) => {
   fileOps.ensureDirectoryExists(paths.destDir);
 
   // Copy specific files
-  const filesToCopy = ["index.tsx", "index.web.tsx","config.ts","script.ts"];
+  const filesToCopy = ["index.tsx", "index.web.tsx", "styles.tsx","config.ts","script.ts"];
   for (const file of filesToCopy) {
     const srcFile = path.join(paths.componentDir, file);
     if (fileOps.pathExists(srcFile)) {

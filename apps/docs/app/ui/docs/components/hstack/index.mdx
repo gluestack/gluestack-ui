@@ -1,0 +1,44 @@
+import CodePreviewer from '@/components/code-previewer';
+import {HStack} from '@/components/ui/hstack';
+import {Box} from '@/components/ui/box';
+
+# HStack
+Use the gluestack-ui HStack component in React Native to align elements horizontally. Easily customize layouts with spacing and reverse props. Learn how to install and use HStack today!
+### This is an illustration of HStack component.
+
+<CodePreviewer
+  code={`function Example() {
+  return (
+    <HStack space="{{space}}" reversed={ {{isReversed}} }>
+      <Box className="h-20 w-20 bg-primary-300" />
+      <Box className="h-20 w-20 bg-primary-400" />
+      <Box className="h-20 w-20 bg-primary-500" />
+    </HStack>
+  )
+}`}
+  argTypes={{
+  "space": {
+    "control": {
+      "type": "select"
+    },
+    "options": [
+      "xs",
+      "sm",
+      "md",
+      "lg",
+      "xl",
+      "2xl",
+      "3xl",
+      "4xl"
+    ],
+    "defaultValue": "md"
+  },
+  "isReversed": {
+    "control": {
+      "type": "boolean"
+    },
+    "defaultValue": false
+  }
+}}
+  reactLive={{ HStack, Box }}
+/>
