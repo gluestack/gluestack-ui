@@ -4,6 +4,7 @@ import {TabItem} from '@/components/tabs';
 import {Button} from '@/components/ui/button';
 import {ButtonText} from '@/components/ui/button';
 import {ButtonSpinner} from '@/components/ui/button';
+import CodeBlock from '@/components/code-block';
 
 # Button
 
@@ -111,14 +112,12 @@ Discover a powerful button component for React & React Native with customizable 
 <Tabs>
 <TabItem label="cli">
 ### Run the following command:
-  ```bash
-  npx gluestack-ui add button
-  ```
+  
 </TabItem>
 <TabItem label="manual">
 ### Step 1: Install the following dependencies:
 ```bash
-npm i @gluestack-ui/button
+npm i @gluestack-ui/popover @legendapp/motion
 ```
 
 ### Step 2: Copy and paste the following code into your project.
@@ -135,3 +134,13 @@ npm i @gluestack-ui/button
 
 </TabItem>
 </Tabs>
+
+
+```jsx
+const year = "2001";
+const movie = "Shrek";
+console.log(`${movie}, ${year}`);
+```
+
+
+

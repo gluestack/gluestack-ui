@@ -4,6 +4,9 @@ const { withExpo } = require("@expo/next-adapter");
 const createMDX = require("@next/mdx");
 const withMDX = createMDX({
   extension: /\.mdx?$/,
+  options: {
+    remarkPlugins: [require("remark-prism")],
+  },
 });
 
 const nextConfig = withExpo({
