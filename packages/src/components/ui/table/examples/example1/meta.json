@@ -1,0 +1,12 @@
+{
+  "argTypes": {},
+  "reactLive": {
+    "Table": "table",
+    "TableBody": "table",
+    "TableHeader": "table",
+    "TableRow": "table",
+    "TableHead": "table",
+    "TableData": "table",
+    "TableFooter": "table"
+  }
+}
