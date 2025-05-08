@@ -100,15 +100,16 @@ export function CodePreviewer({
 
   return (
     <div className="flex flex-col w-full my-2">
-      <div className=" border border-gray-200 rounded-t-lg flex w-full">
-        <div className="p-4 border-r py-10 border-gray-200 flex-1">
-          <div className="flex flex-col gap-2">
+      <div className=" border border-gray-200 rounded-t-lg flex w-full min-h-[200px]">
+        {Object.keys(argTypes).length > 0 && (
+          <div className="p-4 border-r py-10 border-gray-200 flex-1">
+            <div className="flex flex-col gap-2">
             {Object.entries(argTypes).map(([key, value]) => (
               <ArgController key={key} name={key} config={value} />
             ))}
           </div>
         </div>
-
+        )}
         <div className="p-4 flex-1 flex items-center justify-center">
           <LiveProvider
             code={compiledCode}
