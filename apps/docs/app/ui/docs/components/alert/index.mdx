@@ -1,0 +1,48 @@
+import CodePreviewer from '@/components/code-previewer';
+import {Alert} from '@/components/ui/alert';
+import {AlertText} from '@/components/ui/alert';
+import {AlertIcon} from '@/components/ui/alert';
+import {InfoIcon} from '@/components/ui/icon';
+
+# Alert
+
+gluestack-ui offers a responsive React Native Alert component with multiple styles. Easily integrate alerts into your UI with customizable React Native alert styles.
+
+
+### This is an illustration of Alert component.
+<CodePreviewer
+  code={`function Example() {
+  return (
+    <Alert action="{{ action }}" variant="{{ variant }}">
+      <AlertIcon as={InfoIcon} />
+      <AlertText>Description of alert!</AlertText>
+    </Alert>
+  )
+}`}
+  argTypes={{
+  "variant": {
+    "control": {
+      "type": "select"
+    },
+    "options": [
+      "solid",
+      "outline"
+    ],
+    "defaultValue": "outline"
+  },
+  "action": {
+    "control": {
+      "type": "select"
+    },
+    "options": [
+      "success",
+      "info",
+      "error",
+      "warning",
+      "muted"
+    ],
+    "defaultValue": "muted"
+  }
+}}
+  reactLive={{ Alert, AlertText, AlertIcon, InfoIcon }}
+/>

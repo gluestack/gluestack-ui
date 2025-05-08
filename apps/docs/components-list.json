@@ -34,5 +34,23 @@
   },
   {
     "name": "center"
+  },
+  {
+    "name": "divider"
+  },
+  {
+    "name": "grid"
+  },
+  {
+    "name": "alert"
+  },
+  {
+    "name": "progress"
+  },
+  {
+    "name": "spinner"
+  },
+  {
+    "name": "toast"
   }
 ]

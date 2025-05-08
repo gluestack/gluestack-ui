@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
-import { useKeyboardBottomInset } from '../../../../utils/hooks/src';
-import { Overlay } from '../../overlay/creator';
+import { useKeyboardBottomInset } from '@/utils/hooks/src';
+import { Overlay } from '@/components/ui/overlay/creator';
 import React from 'react';
 import { Platform, SafeAreaView, View } from 'react-native';
 import { OverlayAnimatePresence } from './OverlayAnimatePresence';
