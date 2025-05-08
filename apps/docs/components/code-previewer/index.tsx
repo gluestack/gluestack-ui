@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import Handlebars from "handlebars";
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from "react-live";
-export default function CodePreviewer({
+import CodeBlock from "../code-block";
+export function CodePreviewer({
   code,
   message,
   argTypes,
@@ -118,13 +119,7 @@ export default function CodePreviewer({
           </LiveProvider>
         </div>
       </div>
-      <LiveProvider
-        code={compiledCode}
-        scope={{ ...reactLive, useState, useEffect }}
-      >
-        <LiveError />
-        <LiveEditor />
-      </LiveProvider>
+      <CodeBlock code={compiledCode} language="jsx" />
     </div>
   );
 }
