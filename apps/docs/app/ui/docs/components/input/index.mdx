@@ -3,9 +3,6 @@ import {Tabs} from '@/components/tabs';
 import {TabItem} from '@/components/tabs';
 import {Input} from '@/components/ui/input';
 import {InputField} from '@/components/ui/input';
-import {InputIcon} from '@/components/ui/input';
-import {InputSlot} from '@/components/ui/input';
-import {AddIcon} from '@/components/ui/icon';
 
 # input
 A feature-rich React Native Input component – supports icons, validation, and styling options for seamless user input in your mobile app.
@@ -15,9 +12,6 @@ A feature-rich React Native Input component – supports icons, validation, and 
   return (
     <Input variant="{{variant}}" size="{{size}}" isDisabled={ {{isDisabled}} } isInvalid={ {{isInvalid}} } isReadOnly={ {{isReadOnly}} }>
         <InputField placeholder="Enter Text here..." />
-        <InputSlot>
-            <InputIcon as={AddIcon} />
-        </InputSlot>
     </Input>
   )
 }`}
@@ -64,5 +58,5 @@ A feature-rich React Native Input component – supports icons, validation, and 
     "defaultValue": "md"
   }
 }}
-  reactLive={{ Input, InputField, InputIcon, InputSlot, AddIcon }}
+  reactLive={{ Input, InputField }}
 />

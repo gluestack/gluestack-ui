@@ -1,0 +1,7 @@
+{
+  "argTypes": {},
+  "reactLive": {
+    "Pressable": "pressable",
+    "Text": "text"
+  }
+}
