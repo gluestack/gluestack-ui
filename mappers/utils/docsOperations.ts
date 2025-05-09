@@ -41,10 +41,8 @@ export const copyComponentsDocs = (component: string) => {
 
     // Process each file for example markers
     for (const fileObj of copiedFiles) {
-      const wasModified = templateGen.processFileForExamples(fileObj.path, component);
-      if (wasModified) {
-        console.log(`✓ Processed examples in ${fileObj.name}`);
-      }
+      templateGen.processFileForExamples(fileObj.path, component);
+     
 
       // Create page.tsx file
       const dirPath = path.dirname(fileObj.path);
@@ -60,7 +58,6 @@ export const copyComponentsDocs = (component: string) => {
 export const copyNonComponentDocs = (filePath: string) => {
   const sourcePath = path.resolve("packages/src/docs");
   const docsPath = path.resolve("apps/docs/app/ui/docs");
-console.log("------------------------------------",sourcePath, docsPath)
   try {
     fileOps.copyDir(sourcePath, docsPath);
   } catch (error) {

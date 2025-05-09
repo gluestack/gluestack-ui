@@ -55,14 +55,9 @@ export const copyComponent = (component: string) => {
   if (fileOps.pathExists(paths.ariaDir)) {
     fileOps.copyDir(paths.ariaDir, paths.destAriaDir);
   }
-
-  console.log(`✅ Component ${component} processed`);
 };
 
-/**
- * Delete component docs when a component is deleted
- * @param component Component name
- */
+
 export const deleteComponentDocs = (component: string) => {
   const docsComponentPath = path.resolve("apps/docs/components", component);
   const docsUiPath = path.resolve("apps/docs/app/ui/docs", component);

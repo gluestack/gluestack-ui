@@ -1,10 +1,6 @@
 import path from "path";
 import * as fileOps from "./fileOperations";
-/**
-* Extracts imports from code and adds them to uniqueImports map
-* @param code Source code to process
-* @param uniqueImports Map of imports to update
-*/
+
 export const extractImports = (
   code: string,
   uniqueImports: Map<string, string>
@@ -20,13 +16,7 @@ export const extractImports = (
     }
   }
 };
-/**
-* Generate code previewer template
-* @param exampleNumber Example number to generate
-* @param component Component name
-* @param uniqueImports Map to store imports used in the example
-* @returns Generated code previewer string
-*/
+
 export const generateCodePreviewer = (
   exampleNumber: string,
   component: string,
@@ -70,10 +60,7 @@ export const generateCodePreviewer = (
     return `<!-- Failed to load CodePreviewer for Example:${exampleNumber} -->`;
   }
 };
-/**
-* Generate page.tsx content
-* @returns Page.tsx file content
-*/
+
 export const generatePageContent = (): string => {
   return `
 "use client";
@@ -86,12 +73,7 @@ export default function Page() {
   );
 }`;
 };
-/**
-* Process a file for code examples
-* @param filePath Path to the file being processed
-* @param component Component name
-* @returns Whether the file was modified
-*/
+
 export const processFileForExamples = (
   filePath: string,
   component: string
@@ -99,8 +81,6 @@ export const processFileForExamples = (
   const codePreviewerRegex = /\/\/\/\s*\{Example:(\d+)\}\s*\/\/\//g;
   const uniqueImports = new Map();
   uniqueImports.set("CodePreviewer", "@/components/code-previewer");
-  uniqueImports.set("Tabs", "@/components/tabs");
-  uniqueImports.set("TabItem", "@/components/tabs");
   // Read file content
   const content = fileOps.readTextFile(filePath);
   // Extract existing imports
