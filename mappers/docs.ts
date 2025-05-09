@@ -19,6 +19,8 @@ export default {
       componentOperations.processNonComponentFile(filePath);
       // for the non-component docs
       docsOperations.copyNonComponentDocs(filePath);
+      // for the docs components
+      componentOperations.copyDocsComponents(filePath);
     } catch (error) {
       console.error(`Error processing non-component file ${filePath}:`, error);
     }
