@@ -2,11 +2,6 @@ import path from "path";
 import fs from "fs";
 import * as fileOps from "./fileOperations";
 
-/**
- * Get paths for component directories
- * @param component Component name
- * @returns Object containing relevant paths
- */
 export const getComponentPaths = (component: string) => {
   const componentsDir = path.resolve("packages/src/components/ui");
   const docsDir = path.resolve("apps/docs/components/ui");
@@ -21,10 +16,6 @@ export const getComponentPaths = (component: string) => {
   };
 };
 
-/**
- * Copy a component's files to the docs directory
- * @param component Component name
- */
 export const copyComponent = (component: string) => {
   const paths = getComponentPaths(component);
   
@@ -46,20 +37,17 @@ export const copyComponent = (component: string) => {
         path.join(paths.destDir, file),
         fileOps.readTextFile(srcFile)
       );
-      console.log(`✓ Copied ${file} for ${component}`);
     }
   }
 
   // Copy creator dir if exists
   if (fileOps.pathExists(paths.creatorDir)) {
     fileOps.copyDir(paths.creatorDir, paths.destCreatorDir);
-    console.log(`✓ Copied creator directory for ${component}`);
   }
 
   // Copy aria dir if exists
   if (fileOps.pathExists(paths.ariaDir)) {
     fileOps.copyDir(paths.ariaDir, paths.destAriaDir);
-    console.log(`✓ Copied aria directory for ${component}`);
   }
 
   console.log(`✅ Component ${component} processed`);
@@ -95,13 +83,9 @@ export const deleteComponentDocs = (component: string) => {
   }
 };
 
-/**
- * Process non-component files like utilities, aria helpers, etc.
- * @param srcPath Source file path within packages/src
- */
 export const processNonComponentFile = (srcPath: string) => {
-  const packagesDir = path.resolve("packages");
-  const docsDir = path.resolve("apps/docs");
+  const packagesDir = path.resolve("packages/utils");
+  const docsDir = path.resolve("apps/docs/utils");
 
   // Normalize path and make relative to packages/src
   const normalizedPath = path.normalize(srcPath);
@@ -145,21 +129,4 @@ export const processNonComponentFile = (srcPath: string) => {
   }
 };
 
-/**
- * Process utils directory specifically
- */
-export const processUtilsDirectory = () => {
-  try {
-    const packagesDir = path.resolve("packages");
-    const utilsDir = path.join(packagesDir, "utils");
 
-    if (fileOps.pathExists(utilsDir)) {
-      processNonComponentFile(utilsDir);
-      console.log("✅ Utils directory processed successfully");
-    } else {
-      console.warn("⚠ Utils directory not found in packages");
-    }
-  } catch (error) {
-    console.error("Error processing utils directory:", error);
-  }
-}; 

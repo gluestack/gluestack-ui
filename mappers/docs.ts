@@ -9,29 +9,18 @@ export default {
       // copy the component code
       componentOperations.copyComponent(component);
       // copy the component docs
-      docsOperations.copyDocs(component);
+      docsOperations.copyComponentsDocs(component);
     }
   },
-  /**
-   * Processes a non-component file or directory
-   * @param filePath Path to the non-component file
-   */
+  // this is for the non-component code and non-component docs sync
   nonComponent: function (filePath: string) {
     try {
       // for the non-component code
       componentOperations.processNonComponentFile(filePath);
+      // for the non-component docs
+      docsOperations.copyNonComponentDocs(filePath);
     } catch (error) {
       console.error(`Error processing non-component file ${filePath}:`, error);
-    }
-  },
-  /**
-   * Processes the utils directory specifically
-   */
-  utils: function () {
-    try {
-      componentOperations.processUtilsDirectory();
-    } catch (error) {
-      console.error("Error processing utils directory:", error);
     }
   },
 };

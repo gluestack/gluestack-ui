@@ -2,11 +2,8 @@ import path from "path";
 import * as fileOps from "./fileOperations";
 import * as templateGen from "./templateGenerator";
 
-/**
- * Copy and process docs files from component/docs to web UI docs
- * @param component Component name
- */
-export const copyDocs = (component: string) => {
+
+export const copyComponentsDocs = (component: string) => {
   const sourcePath = path.resolve("packages/src/components/ui");
   const docsPath = path.resolve("apps/docs/app/ui/docs/components");
 
@@ -34,7 +31,6 @@ export const copyDocs = (component: string) => {
       const srcFilePath = path.join(componentDocsPath, file);
       const destFilePath = path.join(destPath, file);
       fileOps.writeTextFile(destFilePath, fileOps.readTextFile(srcFilePath));
-      console.log(`✓ Copied docs file: ${file} for ${component}`);
     }
 
     // Process code examples in copied files
@@ -54,11 +50,21 @@ export const copyDocs = (component: string) => {
       const dirPath = path.dirname(fileObj.path);
       const newFilePath = path.join(dirPath, "page.tsx");
       fileOps.writeTextFile(newFilePath, templateGen.generatePageContent());
-      console.log(`✓ Created page.tsx for ${fileObj.name}`);
     }
 
-    console.log(`✅ Docs for ${component} processed successfully`);
   } catch (error) {
     console.error(`Error processing docs for ${component}:`, error);
   }
 }; 
+
+export const copyNonComponentDocs = (filePath: string) => {
+  const sourcePath = path.resolve("packages/src/docs");
+  const docsPath = path.resolve("apps/docs/app/ui/docs");
+console.log("------------------------------------",sourcePath, docsPath)
+  try {
+    fileOps.copyDir(sourcePath, docsPath);
+  } catch (error) {
+    console.error(`Error copying docs for ${filePath}:`, error);
+  }
+};
+
