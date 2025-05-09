@@ -1,5 +1,4 @@
 import type { MDXComponents } from "mdx/types";
-import { View, Text } from "react-native";
 import CodeBlock from "@/components/code-block";
 import React from "react";
 
@@ -19,7 +18,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     p: (props) => <p className="text-base" {...props} />,
     // Define container styles
     wrapper: (props) => (
-      <View className="max-w-prose mx-auto py-8" {...props} />
+      <div className="max-w-prose mx-auto py-8" {...props} />
     ),
     // Handle code blocks
     pre: ({ children }: { children: React.ReactElement<CodeProps> }) => {

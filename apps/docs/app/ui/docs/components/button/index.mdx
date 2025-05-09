@@ -4,6 +4,8 @@ import {TabItem} from '@/components/tabs';
 import {Button} from '@/components/ui/button';
 import {ButtonText} from '@/components/ui/button';
 
+import {Table,TableHeader,TableCell,TableHeaderCell,TableBody,TableRow} from '@/components/table'
+
 # Button
 <br/>
 
@@ -58,7 +60,6 @@ Discover a powerful button component for React & React Native with customizable 
 }}
   reactLive={{ Button, ButtonText }}
 />
-
 <br/>
 ## Installation
 
@@ -72,3 +73,36 @@ Discover a powerful button component for React & React Native with customizable 
 <TabItem label="Manual">
 </TabItem>
 </Tabs>
+
+## Components props
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
+<br/>
+### Button
+Contains all button related layout style props and actions. It inherits all the properties of React Native's Pressable component.
+<br/>
+<>
+<Table>
+<TableBody>
+  <TableRow>
+    <TableHeaderCell>Prop</TableHeaderCell>
+    <TableHeaderCell>Type</TableHeaderCell>
+    <TableHeaderCell>Default</TableHeaderCell>
+    <TableHeaderCell>Description</TableHeaderCell>
+  </TableRow>
+  <TableRow>
+    <TableCell>isHovered</TableCell>
+    <TableCell>bool</TableCell>
+    <TableCell>false</TableCell>
+    <TableCell>To manually set hover to the button.</TableCell>
+  </TableRow>
+ <TableRow>
+    <TableCell>isPressed</TableCell>
+    <TableCell>bool</TableCell>
+    <TableCell>false</TableCell>
+    <TableCell>To manually set pressable state to the button.</TableCell>
+  </TableRow>
+  </TableBody>
+</Table>
+</>
+
+hello
