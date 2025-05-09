@@ -18,7 +18,9 @@ export default {
       // for the non-component code
       componentOperations.processNonComponentFile(filePath);
       // for the non-component docs
-      docsOperations.copyNonComponentDocs(filePath);
+      if(filePath.includes("docs")) {
+        docsOperations.copyNonComponentDocs(filePath);
+      }
       // for the docs components
       componentOperations.copyDocsComponents(filePath);
     } catch (error) {

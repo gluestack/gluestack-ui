@@ -59,7 +59,19 @@ export const copyNonComponentDocs = (filePath: string) => {
   const sourcePath = path.resolve("packages/src/docs");
   const docsPath = path.resolve("apps/docs/app/ui/docs");
   try {
+    // Extract the name from the filePath (e.g., "packages/src/docs/name/index.mdx" -> "name")
+    const name = path.basename(path.dirname(filePath));
+    
+    // Create the destination directory path
+    const destDirPath = path.join(docsPath, name);
+    fileOps.ensureDirectoryExists(destDirPath);
+    
+    // Copy the docs content
     fileOps.copyDir(sourcePath, docsPath);
+    console.log(filePath);
+    
+    // Create page.tsx in the name-specific directory
+    fileOps.writeTextFile(path.join(destDirPath, "page.tsx"), templateGen.generatePageContent());
   } catch (error) {
     console.error(`Error copying docs for ${filePath}:`, error);
   }
