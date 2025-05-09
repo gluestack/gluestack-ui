@@ -1,7 +1,7 @@
 import React, { forwardRef } from "react";
 import { Platform } from "react-native";
 import { useControllableState } from "@/utils/hooks/src";
-import { Overlay } from "@/src/components/ui/overlay/creator";
+import { Overlay } from "@/components/ui/overlay/creator";
 import { ActionsheetContext } from "./context";
 import { StyleSheet } from "react-native";
 import type { IActionsheetProps } from "./types";

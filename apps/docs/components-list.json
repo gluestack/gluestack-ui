@@ -52,5 +52,38 @@
   },
   {
     "name": "toast"
+  },
+  {
+    "name": "heading"
+  },
+  {
+    "name": "badge"
+  },
+  {
+    "name": "card"
+  },
+  {
+    "name": "table"
+  },
+  {
+    "name": "link"
+  },
+  {
+    "name": "pressable"
+  },
+  {
+    "name": "radio"
+  },
+  {
+    "name": "select"
+  },
+  {
+    "name": "slider"
+  },
+  {
+    "name": "switch"
+  },
+  {
+    "name": "textarea"
   }
 ]

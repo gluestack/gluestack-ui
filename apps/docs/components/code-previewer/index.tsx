@@ -27,6 +27,7 @@ export function CodePreviewer({
 
   useEffect(() => {
     const compiledCodetemp = Handlebars.compile(code);
+    console.log(compiledCodetemp(values));
     setCompiledCode(compiledCodetemp(values));
   }, [values]);
 
