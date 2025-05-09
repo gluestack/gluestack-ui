@@ -1,38 +1,29 @@
-import { 
-  componentOperations, 
-  docsOperations 
-} from "./utils";
-
-/**
- * Mapper for documentation generation and component docs sync
- */
+import { componentOperations, docsOperations } from "./utils";
 export default {
-  /**
-   * Processes a component by copying its files to docs and generating documentation
-   * @param component Component name to process
-   * @param event Event type ("added" or "removed")
-   */
+  // this is for the component code and component docs sync
   component: function (component: string, event = "added") {
     if (event === "removed") {
+      // delete the component code
       componentOperations.deleteComponentDocs(component);
     } else {
+      // copy the component code
       componentOperations.copyComponent(component);
+      // copy the component docs
       docsOperations.copyDocs(component);
     }
   },
-
   /**
    * Processes a non-component file or directory
    * @param filePath Path to the non-component file
    */
   nonComponent: function (filePath: string) {
     try {
+      // for the non-component code
       componentOperations.processNonComponentFile(filePath);
     } catch (error) {
       console.error(`Error processing non-component file ${filePath}:`, error);
     }
   },
-
   /**
    * Processes the utils directory specifically
    */
@@ -44,3 +35,13 @@ export default {
     }
   },
 };
+
+
+
+
+
+
+
+
+
+
