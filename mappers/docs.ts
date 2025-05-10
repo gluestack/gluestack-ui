@@ -1,7 +1,7 @@
 import { componentOperations, docsOperations } from "./utils";
 export default {
   // this is for the component code and component docs sync
-  component: function (component: string, event = "added") {
+  component: function (component: string, event = "added", filePath: string) {
     if (event === "removed") {
       // delete the component code
       componentOperations.deleteComponentDocs(component);
@@ -9,7 +9,9 @@ export default {
       // copy the component code
       componentOperations.copyComponent(component);
       // copy the component docs
-      docsOperations.copyComponentsDocs(component);
+      if (filePath.includes("components/docs")) {
+        docsOperations.copyComponentsDocs(component);
+      }
     }
   },
   // this is for the non-component code and non-component docs sync
@@ -18,7 +20,7 @@ export default {
       // for the non-component code
       componentOperations.processNonComponentFile(filePath);
       // for the non-component docs
-      if(filePath.includes("docs")) {
+      if (filePath.includes("docs")) {
         docsOperations.copyNonComponentDocs(filePath);
       }
       // for the docs components
@@ -28,13 +30,3 @@ export default {
     }
   },
 };
-
-
-
-
-
-
-
-
-
-

@@ -20,7 +20,7 @@ const watcher = chokidar.watch(sourcePath, {
 
 const getComponentFromPath = (filePath: string): string | null => {
   const normalizedPath = path.normalize(filePath);
-  if (!normalizedPath.includes('components')) {
+  if (!normalizedPath.includes('components/ui')) {
     return null;
   }
   const relativePath = path.relative(componentsPath, normalizedPath);
@@ -60,7 +60,7 @@ const processFileChange = async (event: string, filePath: string) => {
       
       if (component) {
         if (mapper && typeof mapper.component === 'function') {
-          await mapper.component(component, event);
+          await mapper.component(component, event,filePath);
         } else {
           console.warn(`Mapper ${name} doesn't have a component method`);
         }
