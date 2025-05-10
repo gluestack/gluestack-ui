@@ -9,7 +9,7 @@ export default {
       // copy the component code
       componentOperations.copyComponent(component);
       // copy the component docs
-      if (filePath.includes("components/docs")) {
+      if (filePath.includes("/docs/") || filePath.includes("\\docs\\")) {
         docsOperations.copyComponentsDocs(component);
       }
     }
@@ -20,7 +20,7 @@ export default {
       // for the non-component code
       componentOperations.processNonComponentFile(filePath);
       // for the non-component docs
-      if (filePath.includes("docs")) {
+      if (filePath.includes("/docs/") || filePath.includes("\\docs\\")) {
         docsOperations.copyNonComponentDocs(filePath);
       }
       // for the docs components

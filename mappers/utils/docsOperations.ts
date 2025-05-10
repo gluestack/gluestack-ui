@@ -58,14 +58,14 @@ export const copyNonComponentDocs = (filePath: string) => {
   try {
     // Extract the name from the filePath (e.g., "packages/src/docs/name/index.mdx" -> "name")
     const name = path.basename(path.dirname(filePath));
-
+    console.log(filePath);
     // Create the destination directory path
     const destDirPath = path.join(docsPath, name);
+   
     fileOps.ensureDirectoryExists(destDirPath);
 
     // Copy the docs content
     fileOps.copyDir(sourcePath, docsPath);
-    console.log(filePath);
 
     // Create page.tsx in the name-specific directory
     fileOps.writeTextFile(
