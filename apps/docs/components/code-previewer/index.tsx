@@ -101,7 +101,7 @@ export function CodePreviewer({
 
   return (
     <div className="flex flex-col w-full my-2">
-      <div className=" border border-gray-200 rounded-t-lg flex w-full min-h-[200px]">
+      <div className="-mb-2 border border-gray-200 rounded-t-lg flex w-full min-h-[200px]">
         {Object.keys(argTypes).length > 0 && (
           <div className="p-4 border-r py-10 border-gray-200 flex-1">
             <div className="flex flex-col gap-2">
@@ -121,7 +121,7 @@ export function CodePreviewer({
           </LiveProvider>
         </div>
       </div>
-      <CodeBlock code={compiledCode} language="jsx" />
+      <CodeBlock code={compiledCode} language="jsx" className="rounded-b-lg rounded-t-none border-t-0" />
     </div>
   );
 }

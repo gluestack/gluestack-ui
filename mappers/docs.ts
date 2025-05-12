@@ -1,46 +1,32 @@
-import { 
-  componentOperations, 
-  docsOperations 
-} from "./utils";
-
-/**
- * Mapper for documentation generation and component docs sync
- */
+import { componentOperations, docsOperations } from "./utils";
 export default {
-  /**
-   * Processes a component by copying its files to docs and generating documentation
-   * @param component Component name to process
-   * @param event Event type ("added" or "removed")
-   */
-  component: function (component: string, event = "added") {
+  // this is for the component code and component docs sync
+  component: function (component: string, event = "added", filePath: string) {
     if (event === "removed") {
+      // delete the component code
       componentOperations.deleteComponentDocs(component);
     } else {
+      // copy the component code
       componentOperations.copyComponent(component);
-      docsOperations.copyDocs(component);
+      // copy the component docs
+      if (filePath.includes("/docs/") || filePath.includes("\\docs\\")) {
+        docsOperations.copyComponentsDocs(component);
+      }
     }
   },
-
-  /**
-   * Processes a non-component file or directory
-   * @param filePath Path to the non-component file
-   */
+  // this is for the non-component code and non-component docs sync
   nonComponent: function (filePath: string) {
     try {
+      // for the non-component code
       componentOperations.processNonComponentFile(filePath);
+      // for the non-component docs
+      if (filePath.includes("/docs/") || filePath.includes("\\docs\\")) {
+        docsOperations.copyNonComponentDocs(filePath);
+      }
+      // for the docs components
+      componentOperations.copyDocsComponents(filePath);
     } catch (error) {
       console.error(`Error processing non-component file ${filePath}:`, error);
-    }
-  },
-
-  /**
-   * Processes the utils directory specifically
-   */
-  utils: function () {
-    try {
-      componentOperations.processUtilsDirectory();
-    } catch (error) {
-      console.error("Error processing utils directory:", error);
     }
   },
 };

@@ -20,7 +20,7 @@ const watcher = chokidar.watch(sourcePath, {
 
 const getComponentFromPath = (filePath: string): string | null => {
   const normalizedPath = path.normalize(filePath);
-  if (!normalizedPath.includes('components')) {
+  if (!normalizedPath.includes('components/ui')) {
     return null;
   }
   const relativePath = path.relative(componentsPath, normalizedPath);
@@ -33,7 +33,7 @@ const getComponentFromPath = (filePath: string): string | null => {
 };
 
 const processFileChange = async (event: string, filePath: string) => {
-  console.log(`File ${event}: ${filePath}`);
+
   const component = getComponentFromPath(filePath);
   
   // If a component directory is being deleted, handle it directly
@@ -57,18 +57,15 @@ const processFileChange = async (event: string, filePath: string) => {
   for (const mapperConfig of mappers) {
     try {
       const { name, mapper } = mapperConfig;
-      console.log(`Applying mapper: ${name}`);
       
       if (component) {
         if (mapper && typeof mapper.component === 'function') {
-          console.log(`Processing component: ${component} (${event})`);
-          await mapper.component(component, event);
+          await mapper.component(component, event,filePath);
         } else {
           console.warn(`Mapper ${name} doesn't have a component method`);
         }
       } else {
         if (mapper && typeof mapper.nonComponent === 'function') {
-          console.log(`Processing non-component file: ${filePath}`);
           await mapper.nonComponent(filePath);
         } else {
           console.warn(`Mapper ${name} doesn't have a nonComponent method`);
