@@ -1,4 +1,3 @@
-
 export default function Header() {
   return (
     <div className="w-full h-16 flex items-center  border-b border-gray-200">

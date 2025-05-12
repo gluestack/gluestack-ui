@@ -115,5 +115,11 @@
   },
   {
     "name": "image"
+  },
+  {
+    "name": "fab"
+  },
+  {
+    "name": "skeleton"
   }
 ]

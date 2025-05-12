@@ -1,0 +1,9 @@
+{
+  "argTypes": {},
+  "reactLive": {
+    "Skeleton": "skeleton",
+    "SkeletonText": "skeleton",
+    "Box": "box",
+    "HStack": "hstack"
+  }
+}
