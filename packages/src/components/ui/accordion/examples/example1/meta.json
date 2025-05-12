@@ -1,0 +1,50 @@
+{
+  "argTypes": {
+    "size": {
+      "control": {
+        "type": "select"
+      },
+      "options": ["sm", "md", "lg"],
+      "defaultValue": "md"
+    },
+    "variant": {
+      "control": {
+        "type": "select"
+      },
+      "options": ["filled", "unfilled"],
+      "defaultValue": "filled"
+    },
+    "type": {
+      "control": {
+        "type": "select"
+      },
+      "options": ["single", "multiple"],
+      "defaultValue": "single"
+    },
+    "isCollapsible": {
+      "control": {
+        "type": "boolean"
+      },
+      "defaultValue": true
+    },
+    "isDisabled": {
+      "control": {
+        "type": "boolean"
+      },
+      "defaultValue": false
+    }
+  },
+  "reactLive": {
+    "Accordion": "accordion",
+    "AccordionItem": "accordion",
+    "AccordionHeader": "accordion",
+    "AccordionTrigger": "accordion",
+    "AccordionTitleText": "accordion",
+    "AccordionContent": "accordion",
+    "AccordionContentText": "accordion",
+    "AccordionIcon": "accordion",
+    "Divider": "divider",
+    "ChevronDownIcon": "icon",
+    "ChevronUpIcon": "icon"
+  }
+}

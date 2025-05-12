@@ -1,0 +1,18 @@
+function Example() {
+  return (
+    <Tooltip
+      placement="{{placement}}"
+      trigger={(triggerProps) => {
+        return (
+          <Button {...triggerProps}>
+            <ButtonText>Hover on me!</ButtonText>
+          </Button>
+        )
+      }}
+    >
+      <TooltipContent>
+        <TooltipText>Tooltip</TooltipText>
+      </TooltipContent>
+    </Tooltip>
+  )
+}

@@ -85,5 +85,35 @@
   },
   {
     "name": "textarea"
+  },
+  {
+    "name": "alert-dialog"
+  },
+  {
+    "name": "drawer"
+  },
+  {
+    "name": "menu"
+  },
+  {
+    "name": "actionsheet"
+  },
+  {
+    "name": "portal"
+  },
+  {
+    "name": "tooltip"
+  },
+  {
+    "name": "accordion"
+  },
+  {
+    "name": "bottomsheet"
+  },
+  {
+    "name": "avatar"
+  },
+  {
+    "name": "image"
   }
 ]

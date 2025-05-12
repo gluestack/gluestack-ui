@@ -1,0 +1,14 @@
+{
+  "argTypes": {},
+  "reactLive": {
+    "BottomSheet": "bottomsheet",
+    "BottomSheetTrigger": "bottomsheet",
+    "BottomSheetPortal": "bottomsheet",
+    "BottomSheetContent": "bottomsheet",
+    "BottomSheetItem": "bottomsheet",
+    "BottomSheetItemText": "bottomsheet",
+    "BottomSheetBackdrop": "bottomsheet",
+    "BottomSheetDragIndicator": "bottomsheet",
+    "Text": "text"
+  }
+}

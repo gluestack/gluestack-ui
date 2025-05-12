@@ -2,7 +2,7 @@ import React, { forwardRef } from 'react';
 import { SelectContext } from './SelectContext';
 import { useHover } from '@/utils/aria/interactions/src';
 import { useControllableState } from '@/utils/hooks/src';
-import { useFormControlContext } from '@/components/ui/form-control/creator'
+import { useFormControlContext } from '@/components/ui/form-control/creator';
 import { useFocusRing } from '@/utils/aria/focus/src';
 
 export const Select = (StyledSelect: any) =>

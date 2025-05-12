@@ -2,13 +2,13 @@
 
 import React from "react";
 import { tva } from "@/utils/nativewind/utils/tva";
-import { PrimitiveIcon, UIIcon } from "@/components/ui/icon/creator";
+import { PrimitiveIcon, UIIcon } from "@/src/components/ui/icon/creator";
 import {
   withStyleContext,
   useStyleContext,
 } from "@/utils/nativewind/utils/withStyleContext";
 import type { VariantProps } from "@/utils/nativewind/utils";
-import { createSelect } from "./creator";
+import { createSelect } from "@/components/ui/select/creator";
 import { cssInterop } from "nativewind";
 import {
   Actionsheet,

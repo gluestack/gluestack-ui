@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react';
-import { useHover } from '@react-aria/interactions';
+import { useHover } from '@/utils/aria/interactions/src';
 import { useToggleState } from '@react-stately/toggle';
 import { useFormControlContext } from '@/components/ui/form-control/creator';
 import { mergeRefs } from '@/utils/common';

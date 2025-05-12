@@ -11,7 +11,7 @@
         "control": {
           "type": "select"
         },
-        "options": ["top", "bottom", "left", "right","bottom-left", "bottom-right", "top-left", "top-right","left-bottom","left-right","right-bottom","right-top"],
+        "options": ["top", "bottom", "left", "right","bottom left", "bottom right", "top left", "top right","left bottom","left right","right bottom","right top"],
         "defaultValue": "bottom"
       }
     },

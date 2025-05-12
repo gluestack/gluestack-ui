@@ -8,7 +8,7 @@ import {
   PrimitiveIcon,
   IPrimitiveIcon,
   UIIcon,
-} from "@/components/ui/icon/creator";
+} from "@/src/components/ui/icon/creator";
 import {
   withStyleContext,
   useStyleContext,

@@ -1,0 +1,44 @@
+function App() {
+  const [showDrawer, setShowDrawer] = React.useState(false)
+  return (
+    <>
+      <Button
+        onPress={() => {
+          setShowDrawer(true)
+        }}
+      >
+        <ButtonText>Show Drawer</ButtonText>
+      </Button>
+      <Drawer
+        isOpen={showDrawer}
+        onClose={() => {
+          setShowDrawer(false)
+        }}
+        size="{{size}}"
+        anchor="{{anchor}}"
+      >
+        <DrawerBackdrop />
+        <DrawerContent>
+          <DrawerHeader>
+            <Heading size="{{size}}">Heading</Heading>
+          </DrawerHeader>
+          <DrawerBody>
+            <Text size="{{size}}" className="text-typography-800">
+              This is a sentence.
+            </Text>
+          </DrawerBody>
+          <DrawerFooter>
+            <Button
+              onPress={() => {
+                setShowDrawer(false)
+              }}
+              className="flex-1"
+            >
+              <ButtonText>Button</ButtonText>
+            </Button>
+          </DrawerFooter>
+        </DrawerContent>
+      </Drawer>
+    </>
+  )
+}
