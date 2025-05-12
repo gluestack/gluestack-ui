@@ -11,7 +11,7 @@ Build interactive forms with a checkbox component for React & React Native. Feat
 <CodePreviewer
   code={`function Example() {
   return (
-    <Checkbox isDisabled={ {{isDisabled}} } size="{{size}}">
+    <Checkbox isDisabled={ {{isDisabled}} } isInvalid={ {{isInvalid}} } size="{{size}}">
         <CheckboxIndicator>
             <CheckboxIcon as={CheckIcon} />
         </CheckboxIndicator>
@@ -24,7 +24,13 @@ Build interactive forms with a checkbox component for React & React Native. Feat
     "control": {
       "type": "boolean"
     },
-    "defaultValue": true
+    "defaultValue": false
+  },
+  "isInvalid": {
+    "control": {
+      "type": "boolean"
+    },
+    "defaultValue": false
   },
   "size": {
     "control": {

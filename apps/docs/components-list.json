@@ -52,5 +52,68 @@
   },
   {
     "name": "toast"
+  },
+  {
+    "name": "heading"
+  },
+  {
+    "name": "badge"
+  },
+  {
+    "name": "card"
+  },
+  {
+    "name": "table"
+  },
+  {
+    "name": "link"
+  },
+  {
+    "name": "pressable"
+  },
+  {
+    "name": "radio"
+  },
+  {
+    "name": "select"
+  },
+  {
+    "name": "slider"
+  },
+  {
+    "name": "switch"
+  },
+  {
+    "name": "textarea"
+  },
+  {
+    "name": "alert-dialog"
+  },
+  {
+    "name": "drawer"
+  },
+  {
+    "name": "menu"
+  },
+  {
+    "name": "actionsheet"
+  },
+  {
+    "name": "portal"
+  },
+  {
+    "name": "tooltip"
+  },
+  {
+    "name": "accordion"
+  },
+  {
+    "name": "bottomsheet"
+  },
+  {
+    "name": "avatar"
+  },
+  {
+    "name": "image"
   }
 ]

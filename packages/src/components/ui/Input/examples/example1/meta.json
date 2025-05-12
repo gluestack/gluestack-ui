@@ -36,9 +36,6 @@
   },
   "reactLive": {
     "Input": "input",
-    "InputField": "input",
-    "InputIcon": "input",
-    "InputSlot": "input",
-    "AddIcon": "icon"
+    "InputField": "input"
   }
 }

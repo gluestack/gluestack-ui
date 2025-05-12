@@ -1,0 +1,93 @@
+import {CodePreviewer} from '@/components/code-previewer';
+import {Tabs} from '@/components/tabs';
+import {TabItem} from '@/components/tabs';
+import {Drawer} from '@/components/ui/drawer';
+import {DrawerBackdrop} from '@/components/ui/drawer';
+import {DrawerContent} from '@/components/ui/drawer';
+import {DrawerHeader} from '@/components/ui/drawer';
+import {DrawerBody} from '@/components/ui/drawer';
+import {DrawerFooter} from '@/components/ui/drawer';
+import {Button} from '@/components/ui/button';
+import {ButtonText} from '@/components/ui/button';
+import {Heading} from '@/components/ui/heading';
+import {Text} from '@/components/ui/text';
+
+# Drawer
+
+Implement a responsive Drawer component in React & React Native for navigation and content display. Learn how to install, customize, and integrate it into your project.
+
+
+### This is an illustration of Drawer component.
+<CodePreviewer
+  code={`function App() {
+  const [showDrawer, setShowDrawer] = React.useState(false)
+  return (
+    <>
+      <Button
+        onPress={() => {
+          setShowDrawer(true)
+        }}
+      >
+        <ButtonText>Show Drawer</ButtonText>
+      </Button>
+      <Drawer
+        isOpen={showDrawer}
+        onClose={() => {
+          setShowDrawer(false)
+        }}
+        size="{{size}}"
+        anchor="{{anchor}}"
+      >
+        <DrawerBackdrop />
+        <DrawerContent>
+          <DrawerHeader>
+            <Heading size="{{size}}">Heading</Heading>
+          </DrawerHeader>
+          <DrawerBody>
+            <Text size="{{size}}" className="text-typography-800">
+              This is a sentence.
+            </Text>
+          </DrawerBody>
+          <DrawerFooter>
+            <Button
+              onPress={() => {
+                setShowDrawer(false)
+              }}
+              className="flex-1"
+            >
+              <ButtonText>Button</ButtonText>
+            </Button>
+          </DrawerFooter>
+        </DrawerContent>
+      </Drawer>
+    </>
+  )
+}`}
+  argTypes={{
+  "size": {
+    "control": {
+      "type": "select"
+    },
+    "options": [
+      "sm",
+      "md",
+      "lg",
+      "full"
+    ],
+    "defaultValue": "sm"
+  },
+  "anchor": {
+    "control": {
+      "type": "select"
+    },
+    "options": [
+      "left",
+      "right",
+      "top",
+      "bottom"
+    ],
+    "defaultValue": "left"
+  }
+}}
+  reactLive={{ Drawer, DrawerBackdrop, DrawerContent, DrawerHeader, DrawerBody, DrawerFooter, Button, ButtonText, Heading, Text }}
+/>

@@ -1,2 +1,43 @@
 import {CodePreviewer} from '@/components/code-previewer';
 
+
+
+# Grid
+
+Discover a powerful button component for React & React Native with customizable size, shape, color, and behavior. Perfect for UI design & seamless user interactions.
+
+
+### This is an illustration of Grid component.
+<CodePreviewer
+  code={`function Example() {
+  return (
+    <Grid
+      className="gap-5"
+      _extra=\\{{className: "grid-cols-8"}}
+    >
+      <GridItem
+        className="bg-background-50 p-6 rounded-md"
+        _extra=\\{{className: "col-span-3"}}
+      />
+      <GridItem
+        className="bg-background-50 p-6 rounded-md"
+        _extra=\\{{className: "col-span-5"}}
+      />
+      <GridItem
+        className="bg-background-50 p-6 rounded-md"
+        _extra=\\{{className: "col-span-6"}}
+      />
+      <GridItem
+        className="bg-background-50 p-6 rounded-md"
+        _extra=\\{{className: "col-span-4"}}
+      />
+      <GridItem
+        className="bg-background-50 p-6 rounded-md"
+        _extra=\\{{className: "col-span-4"}}
+      />
+    </Grid>
+  )
+}`}
+  argTypes={{}}
+  reactLive={{ Grid, GridItem }}
+/>

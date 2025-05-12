@@ -1,15 +1,15 @@
-import { OverlayContainer } from '../aria/overlays/src'
+import { OverlayContainer } from '@/components/ui/overlay/aria';
 import React from 'react';
 import type { ViewStyle } from 'react-native';
 import { Modal, Platform } from 'react-native';
-import { useKeyboardDismissable } from '../../../../utils/aria/interactions/src';
+import { useKeyboardDismissable } from '@/utils/aria/interactions/src';
 
 export const ExitAnimationContext = React.createContext({
   exited: true,
   setExited: (_exited: boolean) => {},
 });
 
-export { OverlayProvider } from '../aria/overlays/src';
+export { OverlayProvider } from '@/components/ui/overlay/aria';
 export interface IOverlayProps {
   isOpen?: boolean;
   children?: any;

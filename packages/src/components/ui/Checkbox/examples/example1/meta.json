@@ -4,8 +4,14 @@
         "control": {
           "type": "boolean"
         },
-        "defaultValue": true
-      }, 
+        "defaultValue": false
+      },
+      "isInvalid": {
+        "control": {
+          "type": "boolean"
+        },
+        "defaultValue": false
+      },
       "size": {
         "control": {
           "type": "select"
