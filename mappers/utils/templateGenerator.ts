@@ -74,6 +74,19 @@ export default function Page() {
 }`;
 };
 
+export const processFileContent = (content: string): string => {
+  const fileContentRegex = /%%--\s*File:\s*([^%]+)\s*--%%/g;
+  return content.replace(fileContentRegex, (_, filePath) => {
+    try {
+      const fileContent = fileOps.readTextFile(filePath.trim());
+      return fileContent;
+    } catch (error) {
+      console.error(`Failed to read file: ${filePath}`, error);
+      return `<!-- Failed to load file: ${filePath} -->`;
+    }
+  });
+};
+
 export const processFileForExamples = (
   filePath: string,
   component: string
@@ -92,13 +105,14 @@ export const processFileForExamples = (
       return "";
     })
     .trim();
-  // Replace example markers
-  const newContent = contentWithoutImports.replace(
-    codePreviewerRegex,
-    (_, number) => {
+  // Replace example markers and file content markers
+  const newContent = contentWithoutImports
+    .replace(codePreviewerRegex, (_, number) => {
       return generateCodePreviewer(number, component, uniqueImports);
-    }
-  );
+    });
+  
+  // Process file content markers
+  const processedContent = processFileContent(newContent);
   // Add existing imports to uniqueImports to avoid duplicates
   existingImports.forEach((importStatement: any) => {
     const matches = importStatement.match(/import (.+) from '(.+)';/);
@@ -114,7 +128,7 @@ export const processFileForExamples = (
     }
     return `import {${key}} from '@/components/ui/${value}';`;
   });
-  const totalContent = `${importContent.join("\n")}\n\n${newContent}`;
+  const totalContent = `${importContent.join("\n")}\n\n${processedContent}`;
   if (content !== totalContent) {
     fileOps.writeTextFile(filePath, totalContent);
     return true;

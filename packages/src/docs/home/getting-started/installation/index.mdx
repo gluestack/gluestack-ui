@@ -1,109 +1,51 @@
 import {Tabs,TabItem} from '@/docs-components/tabs'
+import {Table,TableHeader,TableCell,TableHeaderCell,TableBody,TableRow} from '@/docs-components/table'
+import {InlineCode} from '@/docs-components/inline-code'
 
 # Installation
 
 To get started with **gluestack-ui v2**, check out this quick installation guide. It provides simple steps to help you install and use the library in your projects.
 
-<br />
-
-<Tabs value="cli" type="section">
-<Tabs.TabList>
-      <Tabs.Tab value="cli">
-        <Tabs.TabTitle>CLI</Tabs.TabTitle>
-      </Tabs.Tab>
-     <Tabs.Tab value="manual">
-        <Tabs.TabTitle>Manual</Tabs.TabTitle>
-     </Tabs.Tab>
-  </Tabs.TabList>
-  <Tabs.TabPanels>
-    <Tabs.TabPanel value="cli">
-<>
-
-<br />
-
+<Tabs>
+<TabItem label="CLI">
 ### Step 1: Setup your project
 
-If you are starting with a new project, setup your project with [Next.js](https://nextjs.org/docs/getting-started/installation) or [Expo](https://docs.expo.dev/get-started/create-a-project/). If you already have a project, you can skip this step.
+If you are starting with a new project, setup your project with [Next.js](https://nextjs.org/docs/getting-started/installation) or [Expo](https://docs.expo.dev/get-started/create-a-project/) If you already have a project, you can skip this step.
 
 ### Prerequisites
 Ensure you have the following prerequisites installed on your project to use gluestack-ui CLI:
 
-<>
-  <TableContainer>
-    <Table>
-      <Table.THead>
-        <Table.TR>
-          <Table.TH>
-            <Table.TText>Package Name</Table.TText>
-          </Table.TH>
-          <Table.TH>
-            <Table.TText>Supported Versions</Table.TText>
-          </Table.TH>
-          <Table.TH>
-            <Table.TText>Upcoming Support</Table.TText>
-          </Table.TH>
-        </Table.TR>
-      </Table.THead>
-      <Table.TBody>
-        <Table.TR>
-          <Table.TD>
-            <Table.TText>
-              <InlineCode>next</InlineCode>
-            </Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>
-              13 {"<="} versions {"<="} 14
-            </Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>version 15 (Next.js 15 Support is Manual Only for Now. Please check the Additional Step for Next.js 15)</Table.TText>
-          </Table.TD>
-        </Table.TR>
-        <Table.TR>
-          <Table.TD>
-            <Table.TText>
-              <InlineCode>react-native</InlineCode>
-            </Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>versions >= 72.5</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>-</Table.TText>
-          </Table.TD>
-        </Table.TR>
-        <Table.TR>
-          <Table.TD>
-            <Table.TText>
-              <InlineCode>expo</InlineCode>
-            </Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>versions >= 50</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>-</Table.TText>
-          </Table.TD>
-        </Table.TR>
-        <Table.TR>
-          <Table.TD>
-            <Table.TText>
-              <InlineCode>node</InlineCode>
-            </Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>versions > 16</Table.TText>
-          </Table.TD>
-          <Table.TD>
-            <Table.TText>-</Table.TText>
-          </Table.TD>
-        </Table.TR>
-      </Table.TBody>
-    </Table>
-  </TableContainer>
-</>
+<Table>
+<TableBody>
+  <TableRow>
+    <TableHeaderCell>Package Name</TableHeaderCell>
+    <TableHeaderCell>Supported Versions</TableHeaderCell>
+    <TableHeaderCell>Upcoming Support</TableHeaderCell>
+  </TableRow>
+  <TableRow>
+    <TableCell><InlineCode>next</InlineCode></TableCell>
+    <TableCell> 13 {"<="} versions {"<="} 14</TableCell>
+    <TableCell>version 15 (Next.js 15 Support is Manual Only for Now. Please check the Additional Step for Next.js 15)</TableCell>
+  </TableRow>
+ <TableRow>
+    <TableCell><InlineCode>react-native</InlineCode></TableCell>
+    <TableCell>versions >= 72.5</TableCell>
+    <TableCell>-</TableCell>
+  </TableRow>
+  <TableRow>
+    <TableCell><InlineCode>expo</InlineCode></TableCell>
+    <TableCell>versions >= 50</TableCell>
+    <TableCell>-</TableCell>
+  </TableRow>
+   <TableRow>
+    <TableCell><InlineCode>node</InlineCode></TableCell>
+    <TableCell>versions > 16</TableCell>
+    <TableCell>-</TableCell>
+  </TableRow>
 
+ 
+  </TableBody>
+</Table>
 ### Step 2: Initialize
 
 Go to your project, and use the `init` command at the root of your project to add `GluestackUIProvider` and the `gluestack-ui-provider/config.ts` file to your project..
@@ -111,9 +53,6 @@ Go to your project, and use the `init` command at the root of your project to ad
 ```bash
 npx gluestack-ui init
 ```
-
-> Installation using gluestack-ui CLI in Expo projects supports for Expo SDK 50 and above only. For Expo SDK < 49, please refer to the manual installation.
-
 Your project is now ready to use **gluestack-ui** components. To add gluestack-ui components to your project using the CLI, refer to the above command or use the [CLI guide](/ui/docs/home/getting-started/cli).
 
 ```bash
@@ -122,12 +61,9 @@ npx gluestack-ui add box
 
 If you encounter issues during the CLI installation, refer to the manual installation guide available.
 
-</>
-    </Tabs.TabPanel>
-    <Tabs.TabPanel value="manual"> 
-<>
-<br />
 
+</TabItem>
+<TabItem label="Manual">
 ### Step 1: Setup your project.
 
 Setup nativewind in your project following [NativeWind documentation](https://www.nativewind.dev/getting-started/react-native).
@@ -152,10 +88,6 @@ npm i @gluestack-ui/nativewind-utils @gluestack-ui/overlay @gluestack-ui/toast r
 
 Update the `tailwind.config.js` file with the following code and also the `content` property with paths to the files where components are used.
 
-```js
-%%-- File: tailwind.config.js --%% 
-```
-
 ### Step 2.2: Configure components path
 
 Create a `components/ui` folder inside `src` folder and add path in `tsconfig.json`
@@ -174,46 +106,10 @@ Create a `components/ui` folder inside `src` folder and add path in `tsconfig.js
 ### Step 2.3: Configure GluestackUIProvider
 
 To add config, create a `gluestack-ui-provider/config.ts` file in your `components/ui` folder and paste the following code.
-
-<CollapsibleCode>
-
 ```jsx
-%%-- File: core-components/nativewind/gluestack-ui-provider/config.ts --%%
+%%-- File: packages/src/components/ui/gluestack-ui-provider/config.ts --%%
 ```
 
-</CollapsibleCode>
-
-#### For Native
-To add `GluestackUIProvider`, create a `gluestack-ui-provider/index.tsx` file inside `components/ui` folder and paste the following code.
-
-<CollapsibleCode>
-
-```jsx
-%%-- File: core-components/nativewind/gluestack-ui-provider/index.tsx --%%
-```
-
-</CollapsibleCode>
-
-#### For Web
-To add `GluestackUIProvider`, create a `gluestack-ui-provider/index.web.tsx` file inside `components/ui` folder and paste the following code.
-
-<CollapsibleCode>
-
-```jsx
-%%-- File: core-components/nativewind/gluestack-ui-provider/index.web.tsx --%%
-```
-
-</CollapsibleCode>
-
-Also, create a `gluestack-ui-provider/script.ts` file inside `components/ui` folder and paste the following code.
-
-<CollapsibleCode>
-
-```jsx
-%%-- File: core-components/nativewind/gluestack-ui-provider/script.ts --%%
-```
-
-</CollapsibleCode>
 
 ### Step 3: Configure GluestackUIProvider in project
 
@@ -227,7 +123,6 @@ export default function App() {
   );
 }
 ```
-
 ### Step 4: Update Next config file. (Next.js Only).
 
 Make sure your `next.config` file look like this, as mentioned below.
@@ -246,20 +141,8 @@ export default withGluestackUI(nextConfig);
 
 It's also recommended to set up your server-side rendering (SSR) correctly. To do this, you will need to use the `flush()` function exported by the `@gluestack-ui/nativewind-utils`
 
-<Tabs value="App Router" type="section">
-<Tabs.TabList>
-  <Tabs.Tab value="App Router">
-    <Tabs.TabTitle>App Router</Tabs.TabTitle>
-  </Tabs.Tab>
-  <Tabs.Tab value="Page Router">
-      <Tabs.TabTitle>Page Router</Tabs.TabTitle>
-  </Tabs.Tab>
-  </Tabs.TabList>
-  <Tabs.TabPanels>
-    <Tabs.TabPanel value="App Router">
-<>
-<br/>
-
+<Tabs>
+<TabItem label="App Router">
 For Next.js App Routers we will create a new `registry.tsx` file in the root of your project and use the flush function from `@gluestack-ui/nativewind-utils`
 
 ```jsx
@@ -331,14 +214,8 @@ export default function RootLayout({
 }
 
 ```
-
-</>
-    </Tabs.TabPanel>
-    <Tabs.TabPanel value="Page Router">
-<>
-<br/>
-
-
+</TabItem>
+<TabItem label="Page Router">
 For Next.js we will add this code in `_document.tsx` file.
 
 ```jsx
@@ -369,15 +246,10 @@ Document.getInitialProps = async ({ renderPage }: any) => {
 
 export default Document;
 ```
-
-</>
-    </Tabs.TabPanel>
-  </Tabs.TabPanels>
+</TabItem>
 </Tabs>
 
-</>
-    </Tabs.TabPanel>
-  </Tabs.TabPanels>
+</TabItem>
 </Tabs>
 
 #### Additional Step for Next.js 15.
@@ -385,8 +257,6 @@ export default Document;
 Currently, Next.js 15 runs on react@19.0. This version of react is not compatible with react-native-web@0.19.13. To resolve this, you need to do following steps.
 
 1. Changes in `registry.tsx`. Copy-paste the following code.
-
-<CollapsibleCode>
 
 ```jsx
 "use client";
@@ -422,11 +292,9 @@ export default function StyledJsxRegistry({
 }
 
 ```
-</CollapsibleCode>
 
 2. Changes in `gluestack-ui-provider/index.web.tsx`. Copy-paste the following code.
 
-<CollapsibleCode>
 
 ```jsx
 
@@ -519,15 +387,9 @@ export function GluestackUIProvider({
 
 ```
 
-</CollapsibleCode>
-
-
 3. create a `patches` folder in the root of your project.
 
 4. create a `react-native-web+0.19.13.patch` file in the `patches` folder and paste the following code.
-
-<CollapsibleCode>
-
 ```jsx
 diff --git a/node_modules/react-native-web/dist/cjs/exports/AppRegistry/renderApplication.js b/node_modules/react-native-web/dist/cjs/exports/AppRegistry/renderApplication.js
 index 0c0cb2f..83fd94b 100644
@@ -1308,8 +1170,6 @@ index 0000000..49edfc6
 +});
 \ No newline at end of file
 ```
-</CollapsibleCode>
-
 5 . Add Script postinstall in `package.json`. 
 
 
@@ -1327,7 +1187,6 @@ npm run postinstall
 
 7. Changes in `next.config.ts`. Copy-paste the following code.
 
-<CollapsibleCode>
 
 ```jsx
 
@@ -1341,7 +1200,6 @@ export default withGluestackUI(nextConfig);
 
 ```
 
-</CollapsibleCode>
 
 8. Create a new file named `tailwind-variants.d.ts` in the root of your project.
 

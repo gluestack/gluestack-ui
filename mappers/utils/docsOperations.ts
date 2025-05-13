@@ -56,19 +56,21 @@ export const copyNonComponentDocs = (filePath: string) => {
   const sourcePath = path.resolve("packages/src/docs");
   const docsPath = path.resolve("apps/docs/app/ui/docs");
   try {
-    // Extract the name from the filePath (e.g., "packages/src/docs/name/index.mdx" -> "name")
-    const name = path.basename(path.dirname(filePath));
-    // Create the destination directory path
-    const destDirPath = path.join(docsPath, name);
-   
-    fileOps.ensureDirectoryExists(destDirPath);
-
     // Copy the docs content
     fileOps.copyDir(sourcePath, docsPath);
     const relativePath = path.relative(sourcePath, filePath);
+    const destFilePath = path.join(docsPath, relativePath);
+    
+    // Process file content markers if it's an MDX file
+    if (filePath.endsWith('.mdx')) {
+      const content = fileOps.readTextFile(destFilePath);
+      const processedContent = templateGen.processFileContent(content);
+      fileOps.writeTextFile(destFilePath, processedContent);
+    }
+
     // Create page.tsx in the name-specific directory
     fileOps.writeTextFile(
-      path.join(sourcePath, relativePath.replace("index.mdx", "page.tsx")),
+      path.join(docsPath, relativePath.replace("index.mdx", "page.tsx")),
       templateGen.generatePageContent()
     );
   } catch (error) {

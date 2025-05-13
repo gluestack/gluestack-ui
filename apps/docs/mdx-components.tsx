@@ -11,6 +11,7 @@ interface CodeProps {
 import { OL } from "@/components/ol";
 import { UL } from "@/components/ul";
 import { LI } from "@/components/li";
+import { InlineCode } from "./components/docs-components/inline-code";
 
 function containsAny(targetString: string) {
   const stringsToCheck: string[] = [
@@ -52,7 +53,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       return (
         <Link
           isExternal={containsAny(props.href)}
-          className="leading-6 font-body text-typography-950 underline underline-offset-4 decoration-typography-950"
+          className="leading-6 font-body text-typography-950 underline underline-offset-4 decoration-typography-950 inline-block"
           {...props}
         />
       );
@@ -65,6 +66,9 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       const language =
         children?.props?.className?.replace("language-", "") || "jsx";
       return <CodeBlock code={code} language={language} />;
+    },
+    code: (props: any) => {
+      return <InlineCode {...props} />;
     },
     // Add more custom components as needed
   };
