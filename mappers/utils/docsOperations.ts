@@ -58,7 +58,6 @@ export const copyNonComponentDocs = (filePath: string) => {
   try {
     // Extract the name from the filePath (e.g., "packages/src/docs/name/index.mdx" -> "name")
     const name = path.basename(path.dirname(filePath));
-    console.log(filePath);
     // Create the destination directory path
     const destDirPath = path.join(docsPath, name);
    
@@ -66,10 +65,10 @@ export const copyNonComponentDocs = (filePath: string) => {
 
     // Copy the docs content
     fileOps.copyDir(sourcePath, docsPath);
-
+    const relativePath = path.relative(sourcePath, filePath);
     // Create page.tsx in the name-specific directory
     fileOps.writeTextFile(
-      path.join(destDirPath, "page.tsx"),
+      path.join(sourcePath, relativePath.replace("index.mdx", "page.tsx")),
       templateGen.generatePageContent()
     );
   } catch (error) {

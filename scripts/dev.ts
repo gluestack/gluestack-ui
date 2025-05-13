@@ -60,7 +60,7 @@ const processFileChange = async (event: string, filePath: string) => {
       
       if (component) {
         if (mapper && typeof mapper.component === 'function') {
-          await mapper.component(component, event,filePath);
+          await mapper.component(component, event);
         } else {
           console.warn(`Mapper ${name} doesn't have a component method`);
         }
