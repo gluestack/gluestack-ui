@@ -1,0 +1,17 @@
+{
+    "argTypes": {},
+    "reactLive": {
+      "Accordion": "accordion",
+      "AccordionItem": "accordion",
+      "AccordionHeader": "accordion",
+      "AccordionTrigger": "accordion",
+      "AccordionTitleText": "accordion",
+      "AccordionContent": "accordion",
+      "AccordionContentText": "accordion",
+      "AccordionIcon": "accordion",
+      "Divider": "divider",
+      "ChevronDownIcon": "icon",
+      "ChevronUpIcon": "icon"
+    }
+  }
+  

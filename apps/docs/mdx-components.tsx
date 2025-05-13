@@ -59,7 +59,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       );
     },
     // Define container styles
-    wrapper: (props) => <div className="max-w-prose mx-auto py-8" {...props} />,
+    wrapper: (props) => <div className="max-w-[55vw] mx-auto py-8" {...props} />,
     // Handle code blocks
     pre: ({ children }: { children: React.ReactElement<CodeProps> }) => {
       const code = children?.props?.children || "";
