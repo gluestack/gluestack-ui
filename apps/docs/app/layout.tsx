@@ -16,7 +16,7 @@ export default function RootLayout({
         <GluestackUIProvider mode="light">
           <div className="flex flex-col w-full h-full">
             <Header />
-            <div className="w-4/5 h-[calc(100vh-64px)]">{children}</div>
+            <div className="w-full h-[calc(100vh-64px)]">{children}</div>
           </div>
         </GluestackUIProvider>
       </body>

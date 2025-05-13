@@ -8,10 +8,9 @@ export default {
     } else {
       // copy the component code
       componentOperations.copyComponent(component);
-      // copy the component docs
-      if (filePath.includes("/docs/") || filePath.includes("\\docs\\")) {
+    
         docsOperations.copyComponentsDocs(component);
-      }
+    
     }
   },
   // this is for the non-component code and non-component docs sync

@@ -2,7 +2,7 @@
 
 import React from "react";
 import { tva } from "@/utils/nativewind/utils/tva";
-import { PrimitiveIcon, UIIcon } from "@/src/components/ui/icon/creator";
+import { PrimitiveIcon, UIIcon } from "@/components/ui/icon/creator";
 import {
   withStyleContext,
   useStyleContext,
