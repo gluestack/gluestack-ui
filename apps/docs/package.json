@@ -22,6 +22,7 @@
     "handlebars": "^4.7.8",
     "nativewind": "^4.1.23",
     "next": "14.2.4",
+    "prism-react-renderer": "^2.4.1",
     "react": "^18",
     "react-aria": "^3.39.0",
     "react-dom": "^18",

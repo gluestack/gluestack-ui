@@ -11,12 +11,15 @@ import {Divider} from '@/components/ui/divider';
 import {ChevronDownIcon} from '@/components/ui/icon';
 import {ChevronUpIcon} from '@/components/ui/icon';
 
+import {Tabs,TabItem} from '@/docs-components/tabs'
+import {Table,TableHeader,TableCell,TableHeaderCell,TableBody,TableRow} from '@/docs-components/table'
+import {InlineCode} from '@/docs-components/inline-code'
+
 # Accordion
 
 Explore gluestack's Accordion component for Expo, next.js, React & React Native. Build sleek, interactive accordions with ease.
 
-
-### This is an illustration of Accordion component.
+ This is an illustration of **Accordion** component.
 <CodePreviewer
   code={`function Example() {
   return (
@@ -132,3 +135,539 @@ Explore gluestack's Accordion component for Expo, next.js, React & React Native.
 }}
   reactLive={{ Accordion, AccordionItem, AccordionHeader, AccordionTrigger, AccordionTitleText, AccordionContent, AccordionContentText, AccordionIcon, Divider, ChevronDownIcon, ChevronUpIcon }}
 />
+
+## Installation
+
+<Tabs>
+<TabItem label="CLI">
+### Run the following command:
+  ```bash
+  npx gluestack-ui add accordion
+  ```
+</TabItem>
+<TabItem label="Manual">
+### Step 1: Install the following dependencies:
+
+```bash
+npm i @gluestack-ui/accordion @expo/html-elements
+```
+
+### Step 2: Copy and paste the following code into your project.
+
+
+```jsx 
+"use client";
+import React from "react";
+import { createAccordion } from "@/components/ui/accordion/creator";
+import { View, Pressable, Text, Platform, TextProps } from "react-native";
+import { tva } from "@/utils/nativewind/utils/tva";
+import type { VariantProps } from "@/utils/nativewind/utils";
+import {
+  withStyleContext,
+  useStyleContext,
+} from "@/utils/nativewind/utils/withStyleContext";
+import { H3 } from "@expo/html-elements";
+import { cssInterop } from "nativewind";
+import { PrimitiveIcon, UIIcon } from "@/components/ui/icon/creator";
+
+const SCOPE = "ACCORDION";
+/** Styles */
+
+const accordionStyle = tva({
+  base: "w-full",
+  variants: {
+    variant: {
+      filled: "bg-white shadow-hard-2",
+      unfilled: "",
+    },
+    size: {
+      sm: "",
+      md: "",
+      lg: "",
+    },
+  },
+});
+
+const accordionItemStyle = tva({
+  base: "",
+  parentVariants: {
+    variant: {
+      filled: "bg-background-0",
+      unfilled: "bg-transparent",
+    },
+  },
+});
+const accordionTitleTextStyle = tva({
+  base: "text-typography-900 font-bold flex-1 text-left",
+  parentVariants: {
+    size: {
+      sm: "text-sm",
+      md: "text-base",
+      lg: "text-lg",
+    },
+  },
+});
+const accordionIconStyle = tva({
+  base: "text-typography-900 fill-none",
+  parentVariants: {
+    size: {
+      "2xs": "h-3 w-3",
+      xs: "h-3.5 w-3.5",
+      sm: "h-4 w-4",
+      md: "h-[18px] w-[18px]",
+      lg: "h-5 w-5",
+      xl: "h-6 w-6",
+    },
+  },
+});
+const accordionContentTextStyle = tva({
+  base: "text-typography-700 font-normal",
+  parentVariants: {
+    size: {
+      sm: "text-sm",
+      md: "text-base",
+      lg: "text-lg",
+    },
+  },
+});
+const accordionHeaderStyle = tva({
+  base: "mx-0 my-0",
+});
+const accordionContentStyle = tva({
+  base: "pt-1 pb-3 px-4",
+});
+const accordionTriggerStyle = tva({
+  base: "w-full flex-row justify-between items-center web:outline-none focus:outline-none data-[disabled=true]:opacity-40 data-[disabled=true]:cursor-not-allowed data-[focus-visible=true]:bg-background-50 py-3 px-4",
+});
+
+const Root = withStyleContext(View, SCOPE);
+
+const Header = (
+  Platform.OS === "web" ? H3 : View
+) as React.ComponentType<TextProps>;
+
+/** Creator */
+const UIAccordion = createAccordion({
+  Root: Root,
+  Item: View,
+  Header: Header,
+  Trigger: Pressable,
+  Icon: UIIcon,
+  TitleText: Text,
+  ContentText: Text,
+  Content: View,
+});
+
+cssInterop(PrimitiveIcon, {
+  className: {
+    target: "style",
+    nativeStyleToProp: {
+      height: true,
+      width: true,
+      fill: true,
+      color: "classNameColor",
+      stroke: true,
+    },
+  },
+});
+
+cssInterop(H3, {
+  className: {
+    target: "style",
+  },
+});
+
+type IAccordionProps = React.ComponentPropsWithoutRef<typeof UIAccordion> &
+  VariantProps<typeof accordionStyle>;
+
+type IAccordionItemProps = React.ComponentPropsWithoutRef<
+  typeof UIAccordion.Item
+> &
+  VariantProps<typeof accordionItemStyle>;
+
+type IAccordionContentProps = React.ComponentPropsWithoutRef<
+  typeof UIAccordion.Content
+> &
+  VariantProps<typeof accordionContentStyle>;
+
+type IAccordionContentTextProps = React.ComponentPropsWithoutRef<
+  typeof UIAccordion.ContentText
+> &
+  VariantProps<typeof accordionContentTextStyle>;
+
+type IAccordionIconProps = VariantProps<typeof accordionIconStyle> &
+  React.ComponentPropsWithoutRef<typeof UIAccordion.Icon> & {
+    as?: React.ElementType;
+    height?: number;
+    width?: number;
+  };
+
+type IAccordionHeaderProps = React.ComponentPropsWithoutRef<
+  typeof UIAccordion.Header
+> &
+  VariantProps<typeof accordionHeaderStyle>;
+
+type IAccordionTriggerProps = React.ComponentPropsWithoutRef<
+  typeof UIAccordion.Trigger
+> &
+  VariantProps<typeof accordionTriggerStyle>;
+
+type IAccordionTitleTextProps = React.ComponentPropsWithoutRef<
+  typeof UIAccordion.TitleText
+> &
+  VariantProps<typeof accordionTitleTextStyle>;
+
+/** Components */
+
+const Accordion = React.forwardRef<
+  React.ComponentRef<typeof UIAccordion>,
+  IAccordionProps
+>(({ className, variant = "filled", size = "md", ...props }, ref) => {
+  return (
+    <UIAccordion
+      ref={ref}
+      {...props}
+      className={accordionStyle({ variant, class: className })}
+      context={{ variant, size }}
+    />
+  );
+});
+
+const AccordionItem = React.forwardRef<
+  React.ComponentRef<typeof UIAccordion.Item>,
+  IAccordionItemProps
+>(({ className, ...props }, ref) => {
+  const { variant } = useStyleContext(SCOPE);
+  return (
+    <UIAccordion.Item
+      ref={ref}
+      {...props}
+      className={accordionItemStyle({
+        parentVariants: { variant },
+        class: className,
+      })}
+    />
+  );
+});
+
+const AccordionContent = React.forwardRef<
+  React.ComponentRef<typeof UIAccordion.Content>,
+  IAccordionContentProps
+>(function AccordionContent({ className, ...props }, ref) {
+  return (
+    <UIAccordion.Content
+      ref={ref}
+      {...props}
+      className={accordionContentStyle({
+        class: className,
+      })}
+    />
+  );
+});
+
+const AccordionContentText = React.forwardRef<
+  React.ComponentRef<typeof UIAccordion.ContentText>,
+  IAccordionContentTextProps
+>(function AccordionContentText({ className, ...props }, ref) {
+  const { size } = useStyleContext(SCOPE);
+  return (
+    <UIAccordion.ContentText
+      ref={ref}
+      {...props}
+      className={accordionContentTextStyle({
+        parentVariants: { size },
+        class: className,
+      })}
+    />
+  );
+});
+
+const AccordionIcon = React.forwardRef<
+  React.ComponentRef<typeof UIAccordion.Icon>,
+  IAccordionIconProps
+>(function AccordionIcon({ size, className, ...props }, ref) {
+  const { size: parentSize } = useStyleContext(SCOPE);
+
+  if (typeof size === "number") {
+    return (
+      <UIAccordion.Icon
+        ref={ref}
+        {...props}
+        className={accordionIconStyle({ class: className })}
+        size={size}
+      />
+    );
+  } else if (
+    (props.height !== undefined || props.width !== undefined) &&
+    size === undefined
+  ) {
+    return (
+      <UIAccordion.Icon
+        ref={ref}
+        {...props}
+        className={accordionIconStyle({ class: className })}
+      />
+    );
+  }
+  return (
+    <UIAccordion.Icon
+      ref={ref}
+      {...props}
+      className={accordionIconStyle({
+        size,
+        class: className,
+        parentVariants: { size: parentSize },
+      })}
+    />
+  );
+});
+
+const AccordionHeader = React.forwardRef<
+  React.ComponentRef<typeof UIAccordion.Header>,
+  IAccordionHeaderProps
+>(function AccordionHeader({ className, ...props }, ref) {
+  return (
+    <UIAccordion.Header
+      ref={ref}
+      {...props}
+      className={accordionHeaderStyle({
+        class: className,
+      })}
+    />
+  );
+});
+
+const AccordionTrigger = React.forwardRef<
+  React.ComponentRef<typeof UIAccordion.Trigger>,
+  IAccordionTriggerProps
+>(function AccordionTrigger({ className, ...props }, ref) {
+  return (
+    <UIAccordion.Trigger
+      ref={ref}
+      {...props}
+      className={accordionTriggerStyle({
+        class: className,
+      })}
+    />
+  );
+});
+const AccordionTitleText = React.forwardRef<
+  React.ComponentRef<typeof UIAccordion.TitleText>,
+  IAccordionTitleTextProps
+>(function AccordionTitleText({ className, ...props }, ref) {
+  const { size } = useStyleContext(SCOPE);
+  return (
+    <UIAccordion.TitleText
+      ref={ref}
+      {...props}
+      className={accordionTitleTextStyle({
+        parentVariants: { size },
+        class: className,
+      })}
+    />
+  );
+});
+
+Accordion.displayName = "Accordion";
+AccordionItem.displayName = "AccordionItem";
+AccordionHeader.displayName = "AccordionHeader";
+AccordionTrigger.displayName = "AccordionTrigger";
+AccordionTitleText.displayName = "AccordionTitleText";
+AccordionContentText.displayName = "AccordionContentText";
+AccordionIcon.displayName = "AccordionIcon";
+AccordionContent.displayName = "AccordionContent";
+
+export {
+  Accordion,
+  AccordionItem,
+  AccordionHeader,
+  AccordionTrigger,
+  AccordionTitleText,
+  AccordionContentText,
+  AccordionIcon,
+  AccordionContent,
+};
+ 
+```
+
+### Step 3: Update the import paths to match your project setup.
+
+## API Reference
+
+To use this component in your project, include the following import statement in your file.
+
+```jsx
+import {
+  Accordion,
+  AccordionItem,
+  AccordionHeader,
+  AccordionTrigger,
+  AccordionTitleText,
+  AccordionContent,
+  AccordionContentText,
+  AccordionIcon,
+} from '@/components/ui/accordion';
+```
+
+```jsx
+export default () => (
+  <Accordion>
+    <AccordionItem>
+      <AccordionHeader>
+        <AccordionTrigger>
+          <AccordionTitleText />
+          <AccordionIcon />
+        </AccordionTrigger>
+      </AccordionHeader>
+      <AccordionContent>
+        <AccordionContentText />
+      </AccordionContent>
+    </AccordionItem>
+  </Accordion>
+);
+```
+
+</TabItem>
+</Tabs>
+
+### Component Props
+
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
+
+#### Accordion
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+<br/>
+<>
+<Table>
+<TableBody>
+  <TableRow>
+    <TableHeaderCell>Prop</TableHeaderCell>
+    <TableHeaderCell>Type</TableHeaderCell>
+    <TableHeaderCell>Default</TableHeaderCell>
+    <TableHeaderCell>Description</TableHeaderCell>
+  </TableRow>
+  <TableRow>
+    <TableCell><InlineCode>type</InlineCode></TableCell>
+    <TableCell>"single" | "multiple"</TableCell>
+    <TableCell>"single"</TableCell>
+    <TableCell>Determines whether one or multiple items can be opened at the same time.</TableCell>
+  </TableRow>
+  <TableRow>
+    <TableCell><InlineCode>isCollapsible</InlineCode></TableCell>
+    <TableCell>boolean</TableCell>
+    <TableCell>true</TableCell>
+    <TableCell>When type is "single" or "multiple", allows closing content when clicking trigger for an open item.</TableCell>
+  </TableRow>
+   <TableRow>
+    <TableCell><InlineCode>defaultValue</InlineCode></TableCell>
+    <TableCell>string[]</TableCell>
+    <TableCell>[]</TableCell>
+    <TableCell>The value of the item to expand when initially rendered when type is "single" or "multiple".</TableCell>
+  </TableRow>
+  <TableRow>
+    <TableCell><InlineCode>value</InlineCode></TableCell>
+    <TableCell>string[]</TableCell>
+    <TableCell>[]</TableCell>
+    <TableCell>The controlled value of the item to expand when type is "single" or "multiple".</TableCell>
+  </TableRow>
+  <TableRow>
+    <TableCell><InlineCode>onValueChange</InlineCode></TableCell>
+    <TableCell>function</TableCell>
+    <TableCell>-</TableCell>
+    <TableCell>Event handler called when the expanded state of an item changes and type is "single" or "multiple".</TableCell>
+  </TableRow>
+    <TableRow>
+    <TableCell><InlineCode>isDisabled</InlineCode></TableCell>
+    <TableCell>boolean</TableCell>
+    <TableCell>false</TableCell>
+    <TableCell>When true, prevents the user from interacting with the accordion and all its items.</TableCell>
+  </TableRow>
+  </TableBody>
+</Table>
+</>
+#### AccordionItem
+
+Contains all the parts of a collapsible section.
+
+<>
+<Table>
+<TableBody>
+  <TableRow>
+    <TableHeaderCell>Prop</TableHeaderCell>
+    <TableHeaderCell>Type</TableHeaderCell>
+    <TableHeaderCell>Default</TableHeaderCell>
+    <TableHeaderCell>Description</TableHeaderCell>
+  </TableRow>
+  <TableRow>
+    <TableCell><InlineCode>value</InlineCode></TableCell>
+    <TableCell>string</TableCell>
+    <TableCell>-</TableCell>
+    <TableCell>The controlled value of the item to expand when type is "single" or "multiple". Must be used in conjunction with onValueChange. This is a mandatory prop.</TableCell>
+  </TableRow>
+  <TableRow>
+    <TableCell><InlineCode>isDisabled</InlineCode></TableCell>
+    <TableCell>boolean</TableCell>
+    <TableCell>false</TableCell>
+    <TableCell>When true, prevents the user from interacting with the accordion and all its items.</TableCell>
+  </TableRow>
+</TableBody>
+</Table>
+</>
+#### AccordionHeader
+
+Wraps an `Accordion.Trigger`. It inherits all the properties of @expo/html-elements's [H3](https://www.npmjs.com/package/@expo/html-elements#h3) on web and It inherits all the properties of react native's [View](https://reactnative.dev/docs/view) on native. Use the as prop to update it to the appropriate heading level for your page.
+
+
+#### AccordionTrigger
+
+Toggles the collapsed state of its associated item. It inherits all the properties of react native's [Pressable](https://reactnative.dev/docs/pressable). It should be nested inside of an `Accordion.Header`.
+
+#### AccordionTitleText
+
+It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text) component.
+
+#### AccordionIcon
+
+Contains all Icon related layout style props and actions.It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+#### AccordionContent
+
+Contains all the collapsible content for an item. It inherits all the properties of React Native [View](https://reactnative.dev/docs/view) component.
+
+#### AccordionContentText
+
+It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text) component.
+
+### Accessibility
+
+Adheres to the Accordion [WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/accordion/examples/accordion/).
+
+
+We have outlined the various features that ensure the Accordion component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards.
+
+- Header is h3 tag on web.
+- aria-expanded is "true" when the Accordion Content is visible, otherwise false.
+- role is set to "region" for the currently expanded accordion panel.
+- aria-controls points to the id of the Accordion Content.
+- aria-labelledby references the accordion header button that expands and collapses the region.
+
+### Keyboard Interactions
+
+- `Space` - When focus is on an Accordion.Trigger of a collapsed section, expands the section.
+- `Enter` - When focus is on an Accordion.Trigger of a collapsed section, expands the section.
+- `Tab` - Moves focus to the next focusable element.
+- `Shift + Tab` - Moves focus to the previous focusable element.
+
+### Screen Reader
+
+- VoiceOver: When the Accordion Item is focused, the screen reader will announce the Accordion's title text and the state of the Accordion trigger (expanded or collapsed).
+
+### Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+#### Customized Component
+
+The following example demonstrates how easily you can customize the Accordion component to suit your needs.
