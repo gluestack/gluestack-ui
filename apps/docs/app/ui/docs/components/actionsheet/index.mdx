@@ -28,6 +28,15 @@ import {ClockIcon} from '@/components/ui/icon';
 import {DownloadIcon} from '@/components/ui/icon';
 import {TrashIcon} from '@/components/ui/icon';
 import {ActionsheetVirtualizedList} from '@/components/ui/actionsheet';
+import {ActionsheetFlatList} from '@/components/ui/actionsheet';
+import {ActionsheetSectionList} from '@/components/ui/actionsheet';
+import {ActionsheetSectionHeaderText} from '@/components/ui/actionsheet';
+import {ButtonGroup} from '@/components/ui/button';
+import {Heading} from '@/components/ui/heading';
+import {Icon} from '@/components/ui/icon';
+import {CloseIcon} from '@/components/ui/icon';
+import {UploadCloud} from '@/components/ui/icon';
+import {Pressable} from '@/components/ui/pressable';
 
 import {Tabs,TabItem} from '@/docs-components/tabs'
 import {Table,TableHeader,TableCell,TableHeaderCell,TableBody,TableRow} from '@/docs-components/table'
@@ -1100,4 +1109,166 @@ The Actionsheet with Virtualized List includes a virtualized list for better per
 }`}
   argTypes={{}}
   reactLive={{ Actionsheet, ActionsheetContent, ActionsheetItem, ActionsheetItemText, ActionsheetDragIndicator, ActionsheetDragIndicatorWrapper, ActionsheetBackdrop, Button, ButtonText, ActionsheetVirtualizedList }}
+/>
+
+#### FlatList
+
+The Actionsheet with Flat List is a variation of the Actionsheet component that displays a flat list of options. It's commonly used in apps for a simple and straightforward display of options to the user.
+
+<CodePreviewer
+  code={`function App(){
+    const [showActionsheet, setShowActionsheet] = React.useState(false);
+    const handleClose = () => setShowActionsheet(false);
+    const DATA = [
+      {
+        id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+        title: 'First Item'
+      },
+      {
+        id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+        title: 'Second Item'
+      },
+      {
+        id: '58694a0f-3da1-471f-bd96-145571e29d72',
+        title: 'Third Item'
+      },
+    ];
+    const Item = React.useCallback(
+      ({ title }) => (
+        <ActionsheetItem onPress={handleClose}>
+          <ActionsheetItemText>{title}</ActionsheetItemText>
+        </ActionsheetItem>
+      ),
+      [handleClose]
+    );
+    return (
+    <>
+        <Button onPress={() => setShowActionsheet(true)}>
+          <ButtonText>Open</ButtonText>
+        </Button>
+        <Actionsheet isOpen={showActionsheet} onClose={handleClose}>
+        <ActionsheetBackdrop />
+        <ActionsheetContent>
+          <ActionsheetDragIndicatorWrapper>
+            <ActionsheetDragIndicator />
+          </ActionsheetDragIndicatorWrapper>
+          <ActionsheetFlatList
+            data={DATA}
+            renderItem={({ item }) => <Item title={item.title} />}
+            keyExtractor={(item) => item.id}
+          />
+        </ActionsheetContent>
+      </Actionsheet>
+    </>
+);
+}`}
+  argTypes={{}}
+  reactLive={{ Actionsheet, ActionsheetBackdrop, ActionsheetContent, ActionsheetDragIndicator, ActionsheetDragIndicatorWrapper, ActionsheetItem, ActionsheetItemText, ActionsheetFlatList, Button, ButtonText }}
+/>
+
+#### SectionList
+
+The Actionsheet with SectionList is a variation of the Actionsheet component that displays a sectioned list of options. It's commonly used in apps to organize options into different categories or sections for better readability and navigation.
+
+<CodePreviewer
+  code={`function App(){
+    const [showActionsheet, setShowActionsheet] = React.useState(false);
+    const handleClose = () => setShowActionsheet(false);
+    const DATA = [
+      {
+        title: 'Gender',
+        data: ['Men', 'Women', 'Boy', 'Girl'],
+      },
+    ];
+    return (
+    <>
+        <Button onPress={() => setShowActionsheet(true)}>
+          <ButtonText>Open</ButtonText>
+        </Button>
+        <Actionsheet isOpen={showActionsheet} onClose={handleClose} snapPoints={[35]}>
+        <ActionsheetBackdrop />
+        <ActionsheetContent>
+          <ActionsheetDragIndicatorWrapper>
+            <ActionsheetDragIndicator />
+          </ActionsheetDragIndicatorWrapper>
+           <ActionsheetSectionList
+            h="$56"
+            sections={DATA}
+            keyExtractor={(item, index) => item + index}
+            renderItem={({ item }) => (
+              <ActionsheetItem onPress={handleClose}>
+                <ActionsheetItemText>{item}</ActionsheetItemText>
+              </ActionsheetItem>
+            )}
+            renderSectionHeader={({ section: { title, data } }) => (
+              <ActionsheetSectionHeaderText>
+                {title}  ({data.length})
+              </ActionsheetSectionHeaderText>
+            )}
+          />
+        </ActionsheetContent>
+      </Actionsheet>
+    </>
+);
+}`}
+  argTypes={{}}
+  reactLive={{ Actionsheet, ActionsheetBackdrop, ActionsheetContent, ActionsheetDragIndicator, ActionsheetDragIndicatorWrapper, ActionsheetItem, ActionsheetItemText, ActionsheetSectionList, ActionsheetSectionHeaderText, Button, ButtonText }}
+/>
+
+
+#### File Upload with Actionsheet
+
+<CodePreviewer
+  code={`function App(){
+          const [showActionsheet, setShowActionsheet] = React.useState(false);
+          const handleClose = () => setShowActionsheet(false);
+          return (
+            <>
+              <Button onPress={() => setShowActionsheet(true)}>
+                <ButtonText>Open</ButtonText>
+              </Button>
+              <Actionsheet isOpen={showActionsheet} onClose={handleClose}>
+                <ActionsheetBackdrop />
+                <ActionsheetContent className="px-5">
+                  <ActionsheetDragIndicatorWrapper>
+                    <ActionsheetDragIndicator />
+                  </ActionsheetDragIndicatorWrapper>
+                  <HStack className="justify-between w-full mt-3">
+                    <VStack>
+                      <Heading size="md" className="font-semibold">
+                        Upload your latest resume
+                      </Heading>
+                      <Text size="sm">JPG, PDF, PNG supported</Text>
+                    </VStack>
+                    <Pressable onPress={handleClose}>
+                      <Icon as={CloseIcon} size="lg" className="stroke-background-500" />
+                    </Pressable>
+                  </HStack>
+                  <Box className="my-[18px] items-center justify-center rounded-xl bg-background-50 border border-dashed border-outline-300 h-[130px] w-full">
+                    <Icon
+                      as={UploadCloud}
+                      className="h-[62px] w-[62px] stroke-background-200"
+                    />
+                    <Text size="sm">No files uploaded yet</Text>
+                  </Box>
+                  <ButtonGroup className="w-full">
+                    <Button className="w-full" onPress={handleClose}>
+                      <ButtonText>Browse files</ButtonText>
+                    </Button>
+                    <Button
+                      className="w-full"
+                      variant="outline"
+                      isDisabled
+                      action="secondary"
+                    >
+                      <ButtonText>Upload</ButtonText>
+                    </Button>
+                  </ButtonGroup>
+                </ActionsheetContent>
+              </Actionsheet>
+            </>
+          );
+        }`}
+  argTypes={{}}
+  reactLive={{ Actionsheet, ActionsheetBackdrop, ActionsheetContent, ActionsheetDragIndicator, ActionsheetDragIndicatorWrapper, ActionsheetItem, ActionsheetItemText, ActionsheetSectionList, ActionsheetSectionHeaderText, ButtonGroup, Button, ButtonText, HStack, VStack, Box, Heading, Text, Icon, CloseIcon, UploadCloud, Pressable }}
 />
