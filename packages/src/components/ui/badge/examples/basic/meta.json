@@ -23,9 +23,9 @@
       }
     },
     "reactLive": {
-      "Badge": "badge",
-      "BadgeText": "badge",
-      "BadgeIcon": "badge",
-      "GlobeIcon": "icon"
+      "Badge": "@/components/ui/badge",
+      "BadgeText": "@/components/ui/badge",
+      "BadgeIcon": "@/components/ui/badge",
+      "GlobeIcon": "@/components/ui/icon"
     }
   }

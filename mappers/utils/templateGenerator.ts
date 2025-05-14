@@ -126,7 +126,7 @@ export const processFileForExamples = (
     if (key === "CodePreviewer"||key === "Tabs"||key === "TabItem") {
       return `import {${key}} from '${value}';`;
     }
-    return `import {${key}} from '@/components/ui/${value}';`;
+    return `import {${key}} from '${value}';`;
   });
   const totalContent = `${importContent.join("\n")}\n\n${processedContent}`;
   if (content !== totalContent) {

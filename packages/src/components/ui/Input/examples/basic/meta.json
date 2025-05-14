@@ -35,7 +35,7 @@
     }
   },
   "reactLive": {
-    "Input": "input",
-    "InputField": "input"
+    "Input": "@/components/ui/input",
+    "InputField": "@/components/ui/input"
   }
 }

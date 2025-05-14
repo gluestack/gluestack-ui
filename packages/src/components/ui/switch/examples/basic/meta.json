@@ -43,6 +43,6 @@
     }
   },
   "reactLive": {
-    "Switch": "switch"
+    "Switch": "@/components/ui/switch"
   }
 }

@@ -9,10 +9,10 @@
       }
     },
     "reactLive": {
-      "Tooltip": "tooltip",
-      "TooltipContent": "tooltip",
-      "TooltipText": "tooltip",
-      "Button": "button",
-      "ButtonText": "button"
+      "Tooltip": "@/components/ui/tooltip",
+      "TooltipContent": "@/components/ui/tooltip",
+      "TooltipText": "@/components/ui/tooltip",
+      "Button": "@/components/ui/button",
+      "ButtonText": "@/components/ui/button"
     }
   }

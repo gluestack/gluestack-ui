@@ -27,7 +27,7 @@
       }
     },
     "reactLive": {
-      "Textarea": "textarea",
-      "TextareaInput": "textarea"
+      "Textarea": "@/components/ui/textarea",
+      "TextareaInput": "@/components/ui/textarea"
     }
   }

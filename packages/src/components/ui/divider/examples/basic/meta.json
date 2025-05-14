@@ -1,9 +1,9 @@
 {
     "argTypes": {},
     "reactLive": {
-      "Center": "center",
-      "Text": "text",
-      "Divider": "divider"
+      "Center": "@/components/ui/center",
+      "Text": "@/components/ui/text",
+      "Divider": "@/components/ui/divider"
     }
   }
   

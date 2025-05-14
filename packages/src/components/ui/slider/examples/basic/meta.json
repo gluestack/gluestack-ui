@@ -28,10 +28,10 @@
       }
     },
     "reactLive": {
-      "Slider": "slider",
-      "SliderTrack": "slider",
-      "SliderFilledTrack": "slider",
-      "SliderThumb": "slider",
-      "Center": "center"
+      "Slider": "@/components/ui/slider",
+      "SliderTrack": "@/components/ui/slider",
+      "SliderFilledTrack": "@/components/ui/slider",
+      "SliderThumb": "@/components/ui/slider",
+      "Center": "@/components/ui/center"
     }
   }

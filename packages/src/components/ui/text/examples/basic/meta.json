@@ -2,6 +2,6 @@
     "argTypes": {
     },
     "reactLive": {
-      "Text": "text"
+      "Text": "@/components/ui/text"
     }
   }

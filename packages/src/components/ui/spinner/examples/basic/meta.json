@@ -16,6 +16,6 @@
       }
     },
     "reactLive": {
-      "Spinner": "spinner"
+      "Spinner": "@/components/ui/spinner"
     }
   }

@@ -16,15 +16,15 @@
       }
     },
     "reactLive": {
-      "Drawer": "drawer",
-      "DrawerBackdrop": "drawer",
-      "DrawerContent": "drawer",
-      "DrawerHeader": "drawer",
-      "DrawerBody": "drawer",
-      "DrawerFooter": "drawer",
-      "Button": "button",
-      "ButtonText": "button",
-      "Heading": "heading",
-      "Text": "text"
+      "Drawer": "@/components/ui/drawer",
+      "DrawerBackdrop": "@/components/ui/drawer",
+      "DrawerContent": "@/components/ui/drawer",
+      "DrawerHeader": "@/components/ui/drawer",
+      "DrawerBody": "@/components/ui/drawer",
+      "DrawerFooter": "@/components/ui/drawer",
+      "Button": "@/components/ui/button",
+      "ButtonText": "@/components/ui/button",
+      "Heading": "@/components/ui/heading",
+      "Text": "@/components/ui/text"
     }
   }

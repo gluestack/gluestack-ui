@@ -15,7 +15,7 @@
       }
     },
     "reactLive": {
-      "HStack": "hstack",
-      "Box": "box"
+      "HStack": "@/components/ui/hstack",
+      "Box": "@/components/ui/box"
     }
   }

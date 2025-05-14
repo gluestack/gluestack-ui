@@ -16,9 +16,9 @@
       }
     },
     "reactLive": {
-      "Alert": "alert",
-      "AlertText": "alert",
-      "AlertIcon": "alert",
-      "InfoIcon": "icon"
+      "Alert": "@/components/ui/alert",
+      "AlertText": "@/components/ui/alert",
+      "AlertIcon": "@/components/ui/alert",
+      "InfoIcon": "@/components/ui/icon"
     }
   }

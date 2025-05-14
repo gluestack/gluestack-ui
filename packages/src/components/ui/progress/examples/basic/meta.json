@@ -16,8 +16,8 @@
       }
     },
     "reactLive": {
-        "Progress": "progress",
-        "ProgressFilledTrack": "progress",
-        "Center": "center"
+        "Progress": "@/components/ui/progress",
+        "ProgressFilledTrack": "@/components/ui/progress",
+        "Center": "@/components/ui/center"
     }
   }

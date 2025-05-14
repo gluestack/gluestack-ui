@@ -1,12 +1,12 @@
 {
   "argTypes": {},
   "reactLive": {
-    "Portal": "portal",
-    "HStack": "hstack",
-    "Text": "text",
-    "Button": "button",
-    "ButtonText": "button",
-    "ButtonIcon": "button",
-    "CloseIcon": "icon"
+    "Portal": "@/components/ui/portal",
+    "HStack": "@/components/ui/hstack",
+    "Text": "@/components/ui/text",
+    "Button": "@/components/ui/button",
+    "ButtonText": "@/components/ui/button",
+    "ButtonIcon": "@/components/ui/button",
+    "CloseIcon": "@/components/ui/icon"
   }
 }

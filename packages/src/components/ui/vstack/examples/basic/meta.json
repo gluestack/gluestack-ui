@@ -15,7 +15,7 @@
       }
     },
     "reactLive": {
-      "VStack": "vstack",
-      "Box": "box"
+      "VStack": "@/components/ui/vstack",
+      "Box": "@/components/ui/box"
     }
   }

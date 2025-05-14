@@ -1,7 +1,7 @@
-{
-  "argTypes": {},
-  "reactLive": {
-    "Center": "center",
-    "Text": "text"
-  }
+  {
+    "argTypes": {},
+    "reactLive": {
+      "Center": "@/components/ui/center",
+      "Text": "@/components/ui/text"
+    }
 }

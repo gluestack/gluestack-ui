@@ -1,17 +1,17 @@
 {
     "argTypes": {},
     "reactLive": {
-      "Accordion": "accordion",
-      "AccordionItem": "accordion",
-      "AccordionHeader": "accordion",
-      "AccordionTrigger": "accordion",
-      "AccordionTitleText": "accordion",
-      "AccordionContent": "accordion",
-      "AccordionContentText": "accordion",
-      "AccordionIcon": "accordion",
-      "Divider": "divider",
-      "ChevronDownIcon": "icon",
-      "ChevronUpIcon": "icon"
+      "Accordion": "@/components/ui/accordion",
+      "AccordionItem": "@/components/ui/accordion",
+      "AccordionHeader": "@/components/ui/accordion",
+      "AccordionTrigger": "@/components/ui/accordion",
+      "AccordionTitleText": "@/components/ui/accordion",
+      "AccordionContent": "@/components/ui/accordion",
+      "AccordionContentText": "@/components/ui/accordion",
+      "AccordionIcon": "@/components/ui/accordion",
+      "Divider": "@/components/ui/divider",
+      "ChevronDownIcon": "@/components/ui/icon",
+      "ChevronUpIcon": "@/components/ui/icon"
     }
   }
   

@@ -9,18 +9,18 @@
       }
     },
     "reactLive": {
-      "Modal": "modal",
-      "ModalBackdrop": "modal",
-      "ModalBody": "modal",
-      "ModalContent": "modal",
-      "ModalCloseButton": "modal",
-      "ModalHeader": "modal",
-      "ModalFooter": "modal",
-      "Button": "button",
-      "ButtonText": "button",
-      "Icon": "icon",
-      "CloseIcon": "icon",
-      "Center": "center",
-      "Text": "text"
+      "Modal": "@/components/ui/modal",
+      "ModalBackdrop": "@/components/ui/modal",
+      "ModalBody": "@/components/ui/modal",
+      "ModalContent": "@/components/ui/modal",
+      "ModalCloseButton": "@/components/ui/modal",
+      "ModalHeader": "@/components/ui/modal",
+      "ModalFooter": "@/components/ui/modal",
+      "Button": "@/components/ui/button",
+      "ButtonText": "@/components/ui/button",
+      "Icon": "@/components/ui/icon",
+      "CloseIcon": "@/components/ui/icon",
+      "Center": "@/components/ui/center",
+      "Text": "@/components/ui/text"
     }
   }

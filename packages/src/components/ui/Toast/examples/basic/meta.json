@@ -16,11 +16,11 @@
       }
     },
     "reactLive": {
-      "Toast": "toast",
-      "ToastTitle": "toast",
-      "ToastDescription": "toast",
-      "useToast": "toast",
-      "Button": "button",
-      "ButtonText": "button"
+      "Toast": "@/components/ui/toast",
+      "ToastTitle": "@/components/ui/toast",
+      "ToastDescription": "@/components/ui/toast",
+      "useToast": "@/components/ui/toast",
+      "Button": "@/components/ui/button",
+      "ButtonText": "@/components/ui/button"
     }
   }

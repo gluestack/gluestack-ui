@@ -9,9 +9,9 @@
     }
   },
   "reactLive": {
-    "Avatar": "avatar",
-    "AvatarFallbackText": "avatar",
-    "AvatarImage": "avatar",
-    "AvatarBadge": "avatar"
+    "Avatar": "@/components/ui/avatar",
+    "AvatarFallbackText": "@/components/ui/avatar",
+    "AvatarImage": "@/components/ui/avatar",
+    "AvatarBadge": "@/components/ui/avatar"
   }
 }

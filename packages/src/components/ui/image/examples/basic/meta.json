@@ -9,6 +9,6 @@
       }
     },
     "reactLive": {
-      "Image": "image"
+      "Image": "@/components/ui/image"
     }
   }

@@ -1,7 +1,7 @@
 {
   "argTypes": {},
   "reactLive": {
-    "Grid": "grid",
-    "GridItem": "grid"
+    "Grid": "@/components/ui/grid",
+    "GridItem": "@/components/ui/grid"
   }
 }
