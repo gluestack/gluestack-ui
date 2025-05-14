@@ -18,7 +18,7 @@ export const extractImports = (
 };
 
 export const generateCodePreviewer = (
-  exampleNumber: string,
+  exampleName: string,
   component: string,
   uniqueImports: Map<string, string>
 ) => {
@@ -27,14 +27,14 @@ export const generateCodePreviewer = (
     sourcePath,
     component,
     "examples",
-    `example${exampleNumber}`
+    exampleName
   );
   const codePath = path.join(examplePath, "template.handlebars");
   const argsPath = path.join(examplePath, "meta.json");
   try {
     if (!fileOps.pathExists(codePath) || !fileOps.pathExists(argsPath)) {
-      console.error(`Missing files for example ${exampleNumber} in ${component}`);
-      return `<!-- Failed to load CodePreviewer for Example:${exampleNumber} -->`;
+      console.error(`Missing files for example ${exampleName} in ${component}`);
+      return `<!-- Failed to load CodePreviewer for Example:${exampleName} -->`;
     }
     const code = fileOps.readTextFile(codePath);
     const meta = fileOps.readJsonFile(argsPath);
@@ -54,10 +54,10 @@ export const generateCodePreviewer = (
 />`;
   } catch (error) {
     console.error(
-      `:x: Error building CodePreviewer for Example:${exampleNumber} in ${component}:`,
+      `:x: Error building CodePreviewer for Example:${exampleName} in ${component}:`,
       error
     );
-    return `<!-- Failed to load CodePreviewer for Example:${exampleNumber} -->`;
+    return `<!-- Failed to load CodePreviewer for Example:${exampleName} -->`;
   }
 };
 
@@ -91,7 +91,7 @@ export const processFileForExamples = (
   filePath: string,
   component: string
 ): boolean => {
-  const codePreviewerRegex = /\/\/\/\s*\{Example:(\d+)\}\s*\/\/\//g;
+  const codePreviewerRegex = /\/\/\/\s*\{Example:([^}]+)\}\s*\/\/\//g;
   const uniqueImports = new Map();
   uniqueImports.set("CodePreviewer", "@/components/code-previewer");
   // Read file content
@@ -107,8 +107,8 @@ export const processFileForExamples = (
     .trim();
   // Replace example markers and file content markers
   const newContent = contentWithoutImports
-    .replace(codePreviewerRegex, (_, number) => {
-      return generateCodePreviewer(number, component, uniqueImports);
+    .replace(codePreviewerRegex, (_, exampleName) => {
+      return generateCodePreviewer(exampleName.trim(), component, uniqueImports);
     });
   
   // Process file content markers
