@@ -21,6 +21,13 @@ import {InputField} from '@/components/ui/input';
 import {InputIcon} from '@/components/ui/input';
 import {CreditCardIcon} from 'lucide-react-native';
 import {Text} from '@/components/ui/text';
+import {ActionsheetIcon} from '@/components/ui/actionsheet';
+import {EditIcon} from '@/components/ui/icon';
+import {EyeOffIcon} from '@/components/ui/icon';
+import {ClockIcon} from '@/components/ui/icon';
+import {DownloadIcon} from '@/components/ui/icon';
+import {TrashIcon} from '@/components/ui/icon';
+import {ActionsheetVirtualizedList} from '@/components/ui/actionsheet';
 
 import {Tabs,TabItem} from '@/docs-components/tabs'
 import {Table,TableHeader,TableCell,TableHeaderCell,TableBody,TableRow} from '@/docs-components/table'
@@ -993,4 +1000,104 @@ Demonstrates a common UI pattern known as keyboard handling or keyboard scrollin
 }`}
   argTypes={{}}
   reactLive={{ Actionsheet, ActionsheetContent, ActionsheetItem, ActionsheetItemText, ActionsheetDragIndicator, ActionsheetDragIndicatorWrapper, ActionsheetBackdrop, Button, ButtonText, VStack, HStack, Box, Image, FormControl, FormControlLabel, FormControlLabelText, Input, InputSlot, InputField, InputIcon, CreditCardIcon, Text }}
+/>
+
+#### Icons
+
+The Actionsheet with Icons is a variation of the Actionsheet component that displays icons next to each option. It's commonly used in apps for a more visual representation of options and easier navigation.
+
+<CodePreviewer
+  code={`function App() {
+  const [showActionsheet, setShowActionsheet] = React.useState(false);
+  const handleClose = () => setShowActionsheet(false);
+
+  return (
+    <>
+      <Button onPress={() => setShowActionsheet(true)}>
+        <ButtonText>Open</ButtonText>
+      </Button>
+      <Actionsheet isOpen={showActionsheet} onClose={handleClose}>
+        <ActionsheetBackdrop />
+        <ActionsheetContent>
+          <ActionsheetDragIndicatorWrapper>
+            <ActionsheetDragIndicator />
+          </ActionsheetDragIndicatorWrapper>
+          <ActionsheetItem onPress={handleClose}>
+            <ActionsheetIcon className="stroke-background-700" as={EditIcon} />
+            <ActionsheetItemText>Edit Message</ActionsheetItemText>
+          </ActionsheetItem>
+          <ActionsheetItem onPress={handleClose}>
+            <ActionsheetIcon className="stroke-background-700" as={EyeOffIcon} />
+            <ActionsheetItemText>Mark Unread</ActionsheetItemText>
+          </ActionsheetItem>
+          <ActionsheetItem onPress={handleClose}>
+            <ActionsheetIcon className="stroke-background-700" as={ClockIcon} />
+            <ActionsheetItemText>Remind Me</ActionsheetItemText>
+          </ActionsheetItem>
+          <ActionsheetItem onPress={handleClose}>
+            <ActionsheetIcon className="stroke-background-700" as={DownloadIcon} />
+            <ActionsheetItemText>Add to Saved Items</ActionsheetItemText>
+          </ActionsheetItem>
+          <ActionsheetItem isDisabled onPress={handleClose}>
+            <ActionsheetIcon className="stroke-background-700" as={TrashIcon} />
+            <ActionsheetItemText>Delete</ActionsheetItemText>
+          </ActionsheetItem>
+        </ActionsheetContent>
+      </Actionsheet>
+    </>
+  );
+}`}
+  argTypes={{}}
+  reactLive={{ Actionsheet, ActionsheetContent, ActionsheetItem, ActionsheetItemText, ActionsheetDragIndicator, ActionsheetDragIndicatorWrapper, ActionsheetBackdrop, ActionsheetIcon, Button, ButtonText, EditIcon, EyeOffIcon, ClockIcon, DownloadIcon, TrashIcon }}
+/>
+
+#### VirtualizedList
+
+The Actionsheet with Virtualized List includes a virtualized list for better performance when displaying a large number of options. It's commonly used in apps with long lists of options for an improved user experience.
+
+<CodePreviewer
+  code={`function App(){
+    const [showActionsheet, setShowActionsheet] = React.useState(false);
+    const handleClose = () => setShowActionsheet(false);
+    const data = React.useMemo(() => Array(50).fill(0).map((_, index) => 'Item' + index),[]);
+    const getItem = (_data, index) => ({
+      id: index,
+      title: _data[index],
+    });
+    const getItemCount = (_data) => _data.length;
+    const Item = React.useCallback(
+      ({ title }) => (
+        <ActionsheetItem onPress={handleClose}>
+          <ActionsheetItemText>{title}</ActionsheetItemText>
+        </ActionsheetItem>
+      ),
+      [handleClose]
+    );
+    return (
+    <>
+        <Button onPress={() => setShowActionsheet(true)}>
+          <ButtonText>Open</ButtonText>
+        </Button>
+        <Actionsheet isOpen={showActionsheet} onClose={handleClose}  snapPoints={[50]}>
+        <ActionsheetBackdrop />
+        <ActionsheetContent>
+          <ActionsheetDragIndicatorWrapper>
+            <ActionsheetDragIndicator />
+          </ActionsheetDragIndicatorWrapper>
+          <ActionsheetVirtualizedList
+            h="$56"
+            data={data}
+            initialNumToRender={5}
+            renderItem={({ item }) => <Item title={item.title} />}
+            keyExtractor={(item) => item.id}
+            getItemCount={getItemCount}
+            getItem={getItem}
+          />
+        </ActionsheetContent>
+      </Actionsheet>
+    </>
+);
+}`}
+  argTypes={{}}
+  reactLive={{ Actionsheet, ActionsheetContent, ActionsheetItem, ActionsheetItemText, ActionsheetDragIndicator, ActionsheetDragIndicatorWrapper, ActionsheetBackdrop, Button, ButtonText, ActionsheetVirtualizedList }}
 />
