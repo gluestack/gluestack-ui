@@ -112,15 +112,13 @@ export function CodePreviewer({
           </div>
         </div>
         )}
-        <div className="p-4 flex-1 flex w-full ">
+        <div className="p-4 flex-1 flex items-center justify-center w-full ">
           <LiveProvider
             code={compiledCode}
             scope={{ ...reactLive, useState, useEffect }}
           >
-            <div className="w-full h-full">
             <LiveError />
-            <LivePreview />
-            </div>
+            <LivePreview className=" flex items-center justify-center  w-full" />
           </LiveProvider>
         </div>
       </div>
