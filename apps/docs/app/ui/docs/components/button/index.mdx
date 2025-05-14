@@ -1,4 +1,6 @@
 import {CodePreviewer} from '@/components/code-previewer';
+import {Button} from '@/components/ui/button';
+import {ButtonText} from '@/components/ui/button';
 
 import {Table,TableHeader,TableCell,TableHeaderCell,TableBody,TableRow} from '@/docs-components/table'
 import {Tabs,TabItem} from '@/docs-components/tabs'
@@ -10,7 +12,53 @@ Discover a powerful button component for React & React Native with customizable 
 
 <br/>
  This is an illustration of __Button__ component.
-<!-- Failed to load CodePreviewer for Example:1 -->
+<CodePreviewer
+  code={`function Example() {
+  return (
+    <Button variant="{{variant}}" size="{{size}}" action="{{action}}">
+        <ButtonText>Button Text</ButtonText>
+    </Button>
+  )
+}`}
+  argTypes={{
+  "variant": {
+    "control": {
+      "type": "select"
+    },
+    "options": [
+      "solid",
+      "outline",
+      "link"
+    ],
+    "defaultValue": "outline"
+  },
+  "action": {
+    "control": {
+      "type": "select"
+    },
+    "options": [
+      "primary",
+      "secondary",
+      "positive",
+      "negative"
+    ],
+    "defaultValue": "primary"
+  },
+  "size": {
+    "control": {
+      "type": "select"
+    },
+    "options": [
+      "xs",
+      "sm",
+      "md",
+      "lg"
+    ],
+    "defaultValue": "md"
+  }
+}}
+  reactLive={{ Button, ButtonText }}
+/>
 <br/>
 ## Installation
 

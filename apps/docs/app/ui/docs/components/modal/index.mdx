@@ -1,7 +1,95 @@
 import {CodePreviewer} from '@/components/code-previewer';
+import {Modal} from '@/components/ui/modal';
+import {ModalBackdrop} from '@/components/ui/modal';
+import {ModalBody} from '@/components/ui/modal';
+import {ModalContent} from '@/components/ui/modal';
+import {ModalCloseButton} from '@/components/ui/modal';
+import {ModalHeader} from '@/components/ui/modal';
+import {ModalFooter} from '@/components/ui/modal';
+import {Button} from '@/components/ui/button';
+import {ButtonText} from '@/components/ui/button';
+import {Icon} from '@/components/ui/icon';
+import {CloseIcon} from '@/components/ui/icon';
+import {Center} from '@/components/ui/center';
+import {Text} from '@/components/ui/text';
 
 # Modal
 Create smooth and accessible modals in React & React Native. Implement React modal components for alerts, forms, and notifications with ease. Optimize modal component for better user engagement.
 ### This is an illustration of Modal component.
 
-<!-- Failed to load CodePreviewer for Example:1 -->
+<CodePreviewer
+  code={`function App() {
+  const [showModal, setShowModal] = React.useState(false)
+  return (
+    <Center className="h-[300px]">
+      <Button onPress={() => setShowModal(true)}>
+        <ButtonText>Show Modal</ButtonText>
+      </Button>
+      <Modal
+        isOpen={showModal}
+        onClose={() => {
+          setShowModal(false)
+        }}
+        size="{{size}}"
+      >
+        <ModalBackdrop />
+        <ModalContent>
+          <ModalHeader>
+            <Text  className="text-typography-950">
+              Invite your team
+            </Text>
+            <ModalCloseButton>
+              <Icon
+                as={CloseIcon}
+                size="md"
+                className="stroke-background-400 group-[:hover]/modal-close-button:stroke-background-700 group-[:active]/modal-close-button:stroke-background-900 group-[:focus-visible]/modal-close-button:stroke-background-900"
+              />
+            </ModalCloseButton>
+          </ModalHeader>
+          <ModalBody>
+            <Text size="sm" className="text-typography-500">
+              Elevate user interactions with our versatile modals. Seamlessly
+              integrate notifications, forms, and media displays. Make an impact
+              effortlessly.
+            </Text>
+          </ModalBody>
+          <ModalFooter>
+            <Button
+              variant="outline"
+              action="secondary"
+              onPress={() => {
+                setShowModal(false)
+              }}
+            >
+              <ButtonText>Cancel</ButtonText>
+            </Button>
+            <Button
+              onPress={() => {
+                setShowModal(false)
+              }}
+            >
+              <ButtonText>Explore</ButtonText>
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+    </Center>
+  )
+}`}
+  argTypes={{
+  "size": {
+    "control": {
+      "type": "select"
+    },
+    "options": [
+      "xs",
+      "sm",
+      "md",
+      "lg",
+      "full"
+    ],
+    "defaultValue": "md"
+  }
+}}
+  reactLive={{ Modal, ModalBackdrop, ModalBody, ModalContent, ModalCloseButton, ModalHeader, ModalFooter, Button, ButtonText, Icon, CloseIcon, Center, Text }}
+/>

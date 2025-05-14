@@ -1,4 +1,6 @@
 import {CodePreviewer} from '@/components/code-previewer';
+import {Link} from '@/components/ui/link';
+import {LinkText} from '@/components/ui/link';
 
 # Link
 
@@ -6,4 +8,14 @@ Enhance navigation with a React Native link component. Seamless UI link design f
 
 
 ### This is an illustration of Link component.
-<!-- Failed to load CodePreviewer for Example:1 -->
+<CodePreviewer
+  code={`function Example() {
+  return (
+    <Link href="https://gluestack.io/">
+      <LinkText>gluestack</LinkText>
+    </Link>
+  )
+}`}
+  argTypes={{}}
+  reactLive={{ Link, LinkText }}
+/>

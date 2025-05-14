@@ -1,4 +1,5 @@
 import {CodePreviewer} from '@/components/code-previewer';
+import {Heading} from '@/components/ui/heading';
 
 # Heading
 
@@ -6,4 +7,10 @@ Explore the gluestack-ui Heading Component with installation steps, API referenc
 
 
 ### This is an illustration of Heading component.
-<!-- Failed to load CodePreviewer for Example:1 -->
+<CodePreviewer
+  code={`function Example() {
+  return <Heading>I am a Heading</Heading>
+}`}
+  argTypes={{}}
+  reactLive={{ Heading }}
+/>
