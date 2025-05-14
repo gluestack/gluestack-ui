@@ -18,7 +18,7 @@ export const extractImports = (
 };
 
 export const generateCodePreviewer = (
-  exampleNumber: string,
+  exampleName: string,
   component: string,
   uniqueImports: Map<string, string>
 ) => {
@@ -27,14 +27,14 @@ export const generateCodePreviewer = (
     sourcePath,
     component,
     "examples",
-    `example${exampleNumber}`
+    exampleName
   );
   const codePath = path.join(examplePath, "template.handlebars");
   const argsPath = path.join(examplePath, "meta.json");
   try {
     if (!fileOps.pathExists(codePath) || !fileOps.pathExists(argsPath)) {
-      console.error(`Missing files for example ${exampleNumber} in ${component}`);
-      return `<!-- Failed to load CodePreviewer for Example:${exampleNumber} -->`;
+      console.error(`Missing files for example ${exampleName} in ${component}`);
+      return `<!-- Failed to load CodePreviewer for Example:${exampleName} -->`;
     }
     const code = fileOps.readTextFile(codePath);
     const meta = fileOps.readJsonFile(argsPath);
@@ -54,10 +54,10 @@ export const generateCodePreviewer = (
 />`;
   } catch (error) {
     console.error(
-      `:x: Error building CodePreviewer for Example:${exampleNumber} in ${component}:`,
+      `:x: Error building CodePreviewer for Example:${exampleName} in ${component}:`,
       error
     );
-    return `<!-- Failed to load CodePreviewer for Example:${exampleNumber} -->`;
+    return `<!-- Failed to load CodePreviewer for Example:${exampleName} -->`;
   }
 };
 
@@ -74,11 +74,24 @@ export default function Page() {
 }`;
 };
 
+export const processFileContent = (content: string): string => {
+  const fileContentRegex = /%%--\s*File:\s*([^%]+)\s*--%%/g;
+  return content.replace(fileContentRegex, (_, filePath) => {
+    try {
+      const fileContent = fileOps.readTextFile(filePath.trim());
+      return fileContent;
+    } catch (error) {
+      console.error(`Failed to read file: ${filePath}`, error);
+      return `<!-- Failed to load file: ${filePath} -->`;
+    }
+  });
+};
+
 export const processFileForExamples = (
   filePath: string,
   component: string
 ): boolean => {
-  const codePreviewerRegex = /\/\/\/\s*\{Example:(\d+)\}\s*\/\/\//g;
+  const codePreviewerRegex = /\/\/\/\s*\{Example:([^}]+)\}\s*\/\/\//g;
   const uniqueImports = new Map();
   uniqueImports.set("CodePreviewer", "@/components/code-previewer");
   // Read file content
@@ -92,13 +105,14 @@ export const processFileForExamples = (
       return "";
     })
     .trim();
-  // Replace example markers
-  const newContent = contentWithoutImports.replace(
-    codePreviewerRegex,
-    (_, number) => {
-      return generateCodePreviewer(number, component, uniqueImports);
-    }
-  );
+  // Replace example markers and file content markers
+  const newContent = contentWithoutImports
+    .replace(codePreviewerRegex, (_, exampleName) => {
+      return generateCodePreviewer(exampleName.trim(), component, uniqueImports);
+    });
+  
+  // Process file content markers
+  const processedContent = processFileContent(newContent);
   // Add existing imports to uniqueImports to avoid duplicates
   existingImports.forEach((importStatement: any) => {
     const matches = importStatement.match(/import (.+) from '(.+)';/);
@@ -112,9 +126,9 @@ export const processFileForExamples = (
     if (key === "CodePreviewer"||key === "Tabs"||key === "TabItem") {
       return `import {${key}} from '${value}';`;
     }
-    return `import {${key}} from '@/components/ui/${value}';`;
+    return `import {${key}} from '${value}';`;
   });
-  const totalContent = `${importContent.join("\n")}\n\n${newContent}`;
+  const totalContent = `${importContent.join("\n")}\n\n${processedContent}`;
   if (content !== totalContent) {
     fileOps.writeTextFile(filePath, totalContent);
     return true;

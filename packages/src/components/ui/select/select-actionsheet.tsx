@@ -12,7 +12,7 @@ import {
   SectionList,
   ViewStyle,
 } from "react-native";
-import { PrimitiveIcon, UIIcon } from "@/src/components/ui/icon/creator";
+import { PrimitiveIcon, UIIcon } from "@/components/ui/icon/creator";
 import { tva } from "@/utils/nativewind/utils/tva";
 import type { VariantProps } from "@/utils/nativewind/utils";
 import { withStyleContext } from "@/utils/nativewind/utils/withStyleContext";
