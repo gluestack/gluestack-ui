@@ -12,6 +12,7 @@ import { OL } from "@/components/ol";
 import { UL } from "@/components/ul";
 import { LI } from "@/components/li";
 import { InlineCode } from "./components/docs-components/inline-code";
+import { BlockQuote } from "./components/note/page";
 
 function containsAny(targetString: string) {
   const stringsToCheck: string[] = [
@@ -69,6 +70,9 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     },
     code: (props: any) => {
       return <InlineCode {...props} />;
+    },
+    blockquote: (props: any) => {
+      return <BlockQuote {...props} />;
     },
     // Add more custom components as needed
   };
