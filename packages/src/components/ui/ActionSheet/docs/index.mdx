@@ -38,22 +38,12 @@ npm i @gluestack-ui/actionsheet
 
 ### Step 3: Update the import paths to match your project setup.
 
+</TabItem>
+</Tabs>
+
 ## API Reference
 
 To use this component in your project, include the following import statement in your file.
-
-```jsx
-import {
-  Actionsheet,
-  ActionsheetBackdrop,
-  ActionsheetContent,
-  ActionsheetDragIndicator,
-  ActionsheetDragIndicatorWrapper,
-  ActionsheetItem,
-  ActionsheetItemText,
-  ActionsheetIcon,
-} from '@/components/ui/actionsheet';
-```
 
 ```jsx
 export default () => (
@@ -71,8 +61,18 @@ export default () => (
 );
 ```
 
-</TabItem>
-</Tabs>
+```jsx
+import {
+  Actionsheet,
+  ActionsheetBackdrop,
+  ActionsheetContent,
+  ActionsheetDragIndicator,
+  ActionsheetDragIndicatorWrapper,
+  ActionsheetItem,
+  ActionsheetItemText,
+  ActionsheetIcon,
+} from '@/components/ui/actionsheet';
+```
 
 ### Component Props
 
@@ -83,98 +83,46 @@ This section provides a comprehensive reference list for the component props, de
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
 
-<>
 <Table>
-<TableBody>
-  <TableRow>
-    <TableHeaderCell>Prop</TableHeaderCell>
-    <TableHeaderCell>Type</TableHeaderCell>
-    <TableHeaderCell>Default</TableHeaderCell>
-    <TableHeaderCell>Description</TableHeaderCell>
-  </TableRow>
-  <TableRow>
-    <TableCell><InlineCode>isOpen</InlineCode></TableCell>
-    <TableCell>boolean</TableCell>
-    <TableCell>-</TableCell>
-    <TableCell>If true, the Actionsheet will open. Useful for controllable state behavior.</TableCell>
-  </TableRow>
-  <TableRow>
-    <TableCell><InlineCode>onClose</InlineCode></TableCell>
-    <TableCell>() => any</TableCell>
-    <TableCell>-</TableCell>
-    <TableCell>Callback invoked when the Actionsheet is closed.</TableCell>
-  </TableRow>
-  <TableRow>
-    <TableCell><InlineCode>onOpen</InlineCode></TableCell>
-    <TableCell>() => any</TableCell>
-    <TableCell>-</TableCell>
-    <TableCell>Callback invoked when the Actionsheet is opened.</TableCell>
-  </TableRow>
-  <TableRow>
-    <TableCell><InlineCode>useRNModal</InlineCode></TableCell>
-    <TableCell>boolean</TableCell>
-    <TableCell>false</TableCell>
-    <TableCell>If true, renders react-native native modal.</TableCell>
-  </TableRow>
-  <TableRow>
-    <TableCell><InlineCode>defaultIsOpen</InlineCode></TableCell>
-    <TableCell>boolean</TableCell>
-    <TableCell>-</TableCell>
-    <TableCell>Specifies the default open state of the Actionsheet</TableCell>
-  </TableRow>
-  <TableRow>
-    <TableCell><InlineCode>initialFocusRef</InlineCode></TableCell>
-    <TableCell>{`React.RefObject<any>`}</TableCell>
-    <TableCell>-</TableCell>
-    <TableCell>The ref of element to receive focus when the Actionsheet opens.</TableCell>
-  </TableRow>
-  <TableRow>
-    <TableCell><InlineCode>finalFocusRef</InlineCode></TableCell>
-    <TableCell>{`React.RefObject<any>`}</TableCell>
-    <TableCell>-</TableCell>
-    <TableCell>The ref of element to receive focus when the Actionsheet closes</TableCell>
-  </TableRow>
-  <TableRow>
-    <TableCell><InlineCode>closeOnOverlayClick</InlineCode></TableCell>
-    <TableCell>boolean</TableCell>
-    <TableCell>-</TableCell>
-    <TableCell>If true, the Actionsheet will close when the overlay is clicked.</TableCell>
-  </TableRow>
-  <TableRow>
-    <TableCell><InlineCode>isKeyboardDismissable</InlineCode></TableCell>
-    <TableCell>boolean</TableCell>
-    <TableCell>-</TableCell>
-    <TableCell>If true, the keyboard can dismiss the Actionsheet</TableCell>
-  </TableRow>
-  <TableRow>
-    <TableCell><InlineCode>trapFocus</InlineCode></TableCell>
-    <TableCell>boolean</TableCell>
-    <TableCell>true</TableCell>
-    <TableCell>If true, creates a focus scope containing all elements within the Actionsheet content.</TableCell>
-  </TableRow>
-  <TableRow>
-    <TableCell><InlineCode>children</InlineCode></TableCell>
-    <TableCell>any</TableCell>
-    <TableCell>-</TableCell>
-    <TableCell>The content to display inside the Actionsheet</TableCell>
-  </TableRow>
-  <TableRow>
-    <TableCell><InlineCode>snapPoints</InlineCode></TableCell>
-    <TableCell>{`Array<number>`}</TableCell>
-    <TableCell>[50]</TableCell>
-    <TableCell>The snap points for the Actionsheet The Actionsheet will snap to the point closest to its current position. The default value is 50% of the screen height. The value should be between 0 and 100. Currently, only one snap point is supported. We plan to support multiple snap points in the future.</TableCell>
-  </TableRow>
-  <TableRow>
-    <TableCell><InlineCode>preventScroll</InlineCode></TableCell>
-    <TableCell>boolean</TableCell>
-    <TableCell>true</TableCell>
-    <TableCell>If true, scroll will be prevented when the Actionsheet is open.</TableCell>
-  </TableRow>
-</TableBody>
+  <TableBody>
+    <TableRow>
+      <TableHeaderCell>Name</TableHeaderCell>
+      <TableHeaderCell>Type</TableHeaderCell>
+      <TableHeaderCell>Default</TableHeaderCell>
+      <TableHeaderCell>Description</TableHeaderCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>isOpen</TableCell>
+      <TableCell>boolean</TableCell>
+      <TableCell>false</TableCell>
+      <TableCell>Whether the actionsheet is open.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>onClose</TableCell>
+      <TableCell>() => void</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>Callback function when the actionsheet is closed.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>snapPoints</TableCell>
+      <TableCell>number[]</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>Array of numbers representing the snap points in percentage.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>initialFocusRef</TableCell>
+      <TableCell><InlineCode>React.RefObject&lt;any&gt;</InlineCode></TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>Ref for the element that should be focused when the actionsheet opens.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>finalFocusRef</TableCell>
+      <TableCell><InlineCode>React.RefObject&lt;any&gt;</InlineCode></TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>Ref for the element that should be focused when the actionsheet closes.</TableCell>
+    </TableRow>
+  </TableBody>
 </Table>
-</>
-
->Note: If **snapPoints** are not provided to `Actionsheet`, then it's essential to set **maxHeight** to `ActionsheetContent`.
 
 #### ActionsheetBackdrop
 
