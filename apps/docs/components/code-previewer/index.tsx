@@ -27,8 +27,9 @@ export function CodePreviewer({
 
   useEffect(() => {
     const compiledCodetemp = Handlebars.compile(code);
-    console.log(compiledCodetemp(values));
-    setCompiledCode(compiledCodetemp(values));
+    if (values) {
+      setCompiledCode(compiledCodetemp(values));
+    }
   }, [values]);
 
   // Handle control value changes
@@ -111,17 +112,17 @@ export function CodePreviewer({
           </div>
         </div>
         )}
-        <div className="p-4 flex-1 flex items-center justify-center">
+        <div className="p-4 flex-1 flex items-center justify-center w-full ">
           <LiveProvider
             code={compiledCode}
-            scope={{ ...reactLive, useState, useEffect }}
+            scope={{ ...reactLive }}
           >
             <LiveError />
-            <LivePreview />
+            <LivePreview className=" flex items-center justify-center  w-full" />
           </LiveProvider>
         </div>
       </div>
-      <CodeBlock code={compiledCode} language="jsx" className="rounded-b-lg rounded-t-none border-t-0" />
+      <CodeBlock code={compiledCode} theme="light" language="jsx" className="rounded-b-lg rounded-t-none border-t-0" />
     </div>
   );
 }

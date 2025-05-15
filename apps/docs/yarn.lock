@@ -4553,10 +4553,10 @@ lru-cache@^10.2.0:
   resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-10.4.3.tgz#410fc8a17b70e598013df257c2446b7f3383f119"
   integrity sha512-JNAzZcXrCt42VGLuYz0zfAzDfAvJWW6AfYlDBQyDV5DClI2m5sAmK+OIO7s59XfsRsWHp02jAJrRadPRGTt6SQ==
 
-lucide-react-native@^0.509.0:
-  version "0.509.0"
-  resolved "https://registry.yarnpkg.com/lucide-react-native/-/lucide-react-native-0.509.0.tgz#699cd3461e38ed07c188513d5f50afdad561e927"
-  integrity sha512-O5HF8AYsqcmESFpodgJbuxeA7wpfcCUuDFOcJl/hR73D0aALa4XjYAXwMfmhVz4CK+kqDlQbQsG+LOLWxSSdhg==
+lucide-react-native@^0.510.0:
+  version "0.510.0"
+  resolved "https://registry.yarnpkg.com/lucide-react-native/-/lucide-react-native-0.510.0.tgz#999936268233c24b895a3d5a939af4134a86e219"
+  integrity sha512-Ggy6NyWNcb/Wp9I0Kguwab5FRjr3GYsxNi0Nmy+skur1yj9TKiF2vcXPL7zWkkcgqk8WWKiIvmN3CntWvaDR1w==
 
 markdown-extensions@^2.0.0:
   version "2.0.0"
@@ -5512,7 +5512,7 @@ prettier@^3.3.2:
   resolved "https://registry.yarnpkg.com/prettier/-/prettier-3.5.3.tgz#4fc2ce0d657e7a02e602549f053b239cb7dfe1b5"
   integrity sha512-QQtaxnoDJeAkDvDKWCLiwIXkTgRhwYDEQCghU9Z6q03iyek/rxRh/2lC3HB7P8sWT2xC/y5JDctPLBIGzHKbhw==
 
-prism-react-renderer@^2.4.0:
+prism-react-renderer@^2.4.0, prism-react-renderer@^2.4.1:
   version "2.4.1"
   resolved "https://registry.yarnpkg.com/prism-react-renderer/-/prism-react-renderer-2.4.1.tgz#ac63b7f78e56c8f2b5e76e823a976d5ede77e35f"
   integrity sha512-ey8Ls/+Di31eqzUxC46h8MksNuGx/n0AAC8uKpwFau4RPDYLuE3EXTp8N8G2vX2N7UC/+IXeNUnlWBGGcAG+Ig==
@@ -5680,11 +5680,10 @@ react-native-safe-area-context@^5.4.0:
   version "5.4.0"
   resolved "https://registry.yarnpkg.com/react-native-safe-area-context/-/react-native-safe-area-context-5.4.0.tgz#04b51940408c114f75628a12a93569d30c525454"
   integrity sha512-JaEThVyJcLhA+vU0NU8bZ0a1ih6GiF4faZ+ArZLqpYbL6j7R3caRqj+mE3lEtKCuHgwjLg3bCxLL1GPUJZVqUA==
-
-react-native-svg@^15.11.2:
-  version "15.11.2"
-  resolved "https://registry.yarnpkg.com/react-native-svg/-/react-native-svg-15.11.2.tgz#7540e8e1eabc4dcd3b1e35ada5a1d9f1b96d37c4"
-  integrity sha512-+YfF72IbWQUKzCIydlijV1fLuBsQNGMT6Da2kFlo1sh+LE3BIm/2Q7AR1zAAR6L0BFLi1WaQPLfFUC9bNZpOmw==
+react-native-svg@^15.12.0:
+  version "15.12.0"
+  resolved "https://registry.yarnpkg.com/react-native-svg/-/react-native-svg-15.12.0.tgz#0e2d476961e8b07f8c549fe4489c99b5130dc150"
+  integrity sha512-iE25PxIJ6V0C6krReLquVw6R0QTsRTmEQc4K2Co3P6zsimU/jltcDBKYDy1h/5j9S/fqmMeXnpM+9LEWKJKI6A==
   dependencies:
     css-select "^5.1.0"
     css-tree "^1.1.3"

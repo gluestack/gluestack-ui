@@ -1,0 +1,7 @@
+{
+  "argTypes": {},
+  "reactLive": {
+    "Heading": "@/components/ui/heading",
+    "Center": "@/components/ui/center"
+  }
+}

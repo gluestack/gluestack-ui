@@ -8,7 +8,7 @@ import {
   PrimitiveIcon,
   IPrimitiveIcon,
   Svg,
-} from "@/src/components/ui/icon/creator";
+} from "@/components/ui/icon/creator";
 
 export const UIIcon = createIcon({
   Root: PrimitiveIcon,
