@@ -4,9 +4,10 @@ interface IconProps {
   name: string;
   size?: number;
   color?: string;
+  className?: string;
 }
 
-export function Icon({ name, size = 20, color = "#64748b" }: IconProps) {
+export function Icon({ name, size = 20, color = "#64748b", className }: IconProps) {
   // @ts-ignore - Lucide icons are dynamically accessed
   const IconComponent = LucideIcons[name];
 
@@ -15,5 +16,5 @@ export function Icon({ name, size = 20, color = "#64748b" }: IconProps) {
     return null;
   }
 
-  return <IconComponent size={size} color={color} />;
+  return <IconComponent size={size} color={color} className={className} />;
 }

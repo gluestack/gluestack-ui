@@ -4,7 +4,9 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import sidebarData from "@/sidebar.json";
-import { Icon } from "./icon";
+// import { Icon } from "./icon";
+import { Icon } from "@/components/ui/icon";
+import { Text } from "@/components/ui/text";
 
 interface Page {
   type?: string;
@@ -22,7 +24,7 @@ interface Page {
 const SidebarSection = ({ section }: { section: Page }) => {
   return (
     <div className="flex gap-2 py-2 mb-2">
-      <span className={`text-gray-950 font-bold pl-3 uppercase font-jakarta`}>
+      <span className={`text-typography-950 font-bold pl-3 uppercase font-jakarta`}>
         {section.title}
       </span>
     </div>
@@ -116,7 +118,7 @@ export default function Sidebar() {
   return (
     <div className="ml-4 w-64 h-full border-r border-outline-100 flex flex-col">
       {/* Fixed parent dropdowns at top */}
-      <div className="flex-none py-4 border-b border-gray-200">
+      <div className="flex-none py-4 border-b border-outline-100">
         {parentDropdowns.map((section: Page, index: number) => (
           <div
             key={index}
@@ -127,11 +129,9 @@ export default function Sidebar() {
           >
             <div className="flex items-center gap-2 px-4 py-2">
               {section.icons && (
-                <span className="text-gray-600">
-                  <Icon name={section.icons.name} />
-                </span>
+                  <Icon as={section.icons.name} />
               )}
-              <span className="text-gray-700 font-medium">{section.title}</span>
+              <Text className="text-typography-950 font-medium">{section.title}</Text>
             </div>
           </div>
         ))}

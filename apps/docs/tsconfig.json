@@ -25,9 +25,5 @@
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "paths": {
-    "@/*": ["./*"],
-    "@/docs-components/*": ["./components/docs-components/*"]
-  },
   "exclude": ["node_modules"]
 }

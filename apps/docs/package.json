@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@docsearch/react": "^3.9.0",
     "@expo/html-elements": "^0.12.5",
     "@expo/next-adapter": "^6.0.0",
     "@gorhom/bottom-sheet": "^5.0.0-alpha.11",
@@ -28,6 +29,7 @@
     "react": "^18",
     "react-aria": "^3.39.0",
     "react-dom": "^18",
+    "react-icons": "^5.5.0",
     "react-live": "^4.1.8",
     "react-native-gesture-handler": "~2.14.0",
     "react-native-reanimated": "~3.6.2",
