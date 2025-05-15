@@ -18,14 +18,14 @@ export const TableHeader = (props: React.HTMLProps<HTMLTableSectionElement>) => 
 export const TableBody = (props: React.HTMLProps<HTMLTableSectionElement>) => (
   <tbody
     {...props}
-    className={`border-x border-border-200`}
+    className={`border border-outline-200`}
   />
 );
 
 export const TableRow = (props: React.HTMLProps<HTMLTableRowElement>) => (
   <tr
     {...props}
-    className={`border-b border-border-200 last:border-b-0`}
+    className={`border-b border-outline-200 last:border-b-0`}
   />
 );  
 
