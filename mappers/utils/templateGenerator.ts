@@ -5,27 +5,7 @@ interface ImportMap {
   [key: string]: string[];
 }
 
-export const extractImports = (
-  code: string,
-  importMap: ImportMap
-) => {
-  const importRegex = /^import .+ from '.+';$/gm;
-  const matches = [...code.matchAll(importRegex)];
-  for (const match of matches) {
-    const importStatement = match[0];
-    const importMatch = importStatement.match(/import (.+) from '(.+)';/);
-    if (importMatch && importMatch.length === 3) {
-      const [_, key, value] = importMatch;
-      const trimmedKey = key.trim();
-      if (!importMap[value]) {
-        importMap[value] = [];
-      }
-      if (!importMap[value].includes(trimmedKey)) {
-        importMap[value].push(trimmedKey);
-      }
-    }
-  }
-};
+
 
 export const generateCodePreviewer = (
   exampleName: string,
