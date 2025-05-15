@@ -4,13 +4,13 @@
 
 If you are using VSCode and the [Tailwind CSS IntelliSense Extension](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss), you have to add the following to your `settings.json` file.
 
-```js
+```json
 
-  {
-    "tailwindCSS.experimental.classRegex": [
-      ["tva\\((([^()]*|\\([^()]*\\))*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]
-    ]
-  }
+{
+  "tailwindCSS.experimental.classRegex": [
+    ["tva\\((([^()]*|\\([^()]*\\))*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]
+  ]
+}
 
 ```
 
@@ -18,7 +18,8 @@ If you are using VSCode and the [Tailwind CSS IntelliSense Extension](https://ma
 
 If you are using [prettier-plugin-tailwindcss](https://github.com/tailwindlabs/prettier-plugin-tailwindcss) to sort your class names, you can add tv to the list of functions that should be sorted (on `.prettierrc`).
 
-```jsx
+
+```ts
 module.exports = {
   plugins: ['prettier-plugin-tailwindcss'],
   tailwindFunctions: ['tva'],
