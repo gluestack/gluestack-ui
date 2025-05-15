@@ -82,7 +82,7 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
   } as React.CSSProperties;
 
   return (
-    <div className="relative group">
+    <div className="relative group mb-5">
       <pre 
         className={`language-${language} border rounded-lg max-h-[400px] overflow-y-auto p-4 ${className}`}
         style={themeStyles}
