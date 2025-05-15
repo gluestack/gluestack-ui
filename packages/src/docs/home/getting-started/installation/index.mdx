@@ -92,7 +92,7 @@ Update the `tailwind.config.js` file with the following code and also the `conte
 
 Create a `components/ui` folder inside `src` folder and add path in `tsconfig.json`
 
-```js
+```json
   // ... (other configs)
   compilerOptions: {
     // ...
@@ -106,7 +106,7 @@ Create a `components/ui` folder inside `src` folder and add path in `tsconfig.js
 ### Step 2.3: Configure GluestackUIProvider
 
 To add config, create a `gluestack-ui-provider/config.ts` file in your `components/ui` folder and paste the following code.
-```jsx
+```ts
 %%-- File: packages/src/components/ui/gluestack-ui-provider/config.ts --%%
 ```
 
@@ -115,7 +115,7 @@ To add config, create a `gluestack-ui-provider/config.ts` file in your `componen
 
 Wrap your app with `GluestackUIProvider` in `App.tsx`.
 
-```jsx
+```tsx
 // App.tsx
 export default function App() {
   return (
@@ -127,7 +127,7 @@ export default function App() {
 
 Make sure your `next.config` file look like this, as mentioned below.
 
-```jsx
+```js
 import { withGluestackUI } from "@gluestack/ui-next-adapter";
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -145,7 +145,7 @@ It's also recommended to set up your server-side rendering (SSR) correctly. To d
 <TabItem label="App Router">
 For Next.js App Routers we will create a new `registry.tsx` file in the root of your project and use the flush function from `@gluestack-ui/nativewind-utils`
 
-```jsx
+```tsx
 "use client";
 
 import React, { useRef, useState } from "react";
@@ -258,7 +258,7 @@ Currently, Next.js 15 runs on react@19.0. This version of react is not compatibl
 
 1. Changes in `registry.tsx`. Copy-paste the following code.
 
-```jsx
+```tsx
 "use client";
 import React, { useRef, useState } from "react";
 import { useServerInsertedHTML } from "next/navigation";
@@ -296,7 +296,7 @@ export default function StyledJsxRegistry({
 2. Changes in `gluestack-ui-provider/index.web.tsx`. Copy-paste the following code.
 
 
-```jsx
+```tsx
 
 "use client";
 import React, { useEffect, useLayoutEffect } from "react";
@@ -390,7 +390,7 @@ export function GluestackUIProvider({
 3. create a `patches` folder in the root of your project.
 
 4. create a `react-native-web+0.19.13.patch` file in the `patches` folder and paste the following code.
-```jsx
+```patch
 diff --git a/node_modules/react-native-web/dist/cjs/exports/AppRegistry/renderApplication.js b/node_modules/react-native-web/dist/cjs/exports/AppRegistry/renderApplication.js
 index 0c0cb2f..83fd94b 100644
 --- a/node_modules/react-native-web/dist/cjs/exports/AppRegistry/renderApplication.js
@@ -1170,6 +1170,7 @@ index 0000000..49edfc6
 +});
 \ No newline at end of file
 ```
+
 5 . Add Script postinstall in `package.json`. 
 
 
@@ -1205,7 +1206,7 @@ export default withGluestackUI(nextConfig);
 
 Put the following code in the file.
 
-```jsx
+```ts
 
 declare module "tailwind-variants/dist/config" {
   export type { TVConfig };
@@ -1215,7 +1216,7 @@ declare module "tailwind-variants/dist/config" {
 
 9. If you're using eslint, you need to update your eslint.config.mjs file.
 
-```jsx
+```js
 import { dirname } from "path";
 import { fileURLToPath } from "url";
 import { FlatCompat } from "@eslint/eslintrc";

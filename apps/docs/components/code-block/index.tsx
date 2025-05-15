@@ -8,6 +8,7 @@ import 'prismjs/components/prism-bash';
 import 'prismjs/components/prism-json';
 import 'prismjs/components/prism-css';
 import 'prismjs/components/prism-markup';
+import 'prismjs/components/prism-diff';
 import './styles.css';
 
 // Theme configurations
@@ -39,7 +40,7 @@ const themes = {
 type CodeBlockProps = {
   className?: string;
   code: string;
-  language?: 'jsx' | 'javascript' | 'ts' | 'tsx' | string;
+  language?: 'jsx' | 'javascript' | 'ts' | 'tsx' | 'patch' | string;
   theme?: 'light' | 'dark';
 };
 
@@ -82,7 +83,7 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
   } as React.CSSProperties;
 
   return (
-    <div className="relative group">
+    <div className="relative group mb-5">
       <pre 
         className={`language-${language} border rounded-lg max-h-[400px] overflow-y-auto p-4 ${className}`}
         style={themeStyles}

@@ -9,9 +9,6 @@ Discover the ActionSheet component for Expo, React & React Native. Easily create
 This is an illustration of **ActionSheet** component.
 /// {Example:basic} ///
 
-## Component Props
-This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
-
 <br/>
 ## Installation
 
@@ -45,7 +42,7 @@ npm i @gluestack-ui/actionsheet
 
 To use this component in your project, include the following import statement in your file.
 
-```jsx
+```ts
 export default () => (
   <Actionsheet>
     <ActionsheetBackdrop />
@@ -61,7 +58,7 @@ export default () => (
 );
 ```
 <br/>
-```jsx
+```ts
 import {
   Actionsheet,
   ActionsheetBackdrop,
@@ -73,6 +70,8 @@ import {
   ActionsheetIcon,
 } from '@/components/ui/actionsheet';
 ```
+
+<br/>
 
 ### Component Props
 
@@ -123,6 +122,9 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
     </TableRow>
   </TableBody>
 </Table>
+
+>Note: If snapPoints are not provided to Actionsheet, then it's essential to set maxHeight to ActionsheetContent.
+
 
 #### ActionsheetBackdrop
 

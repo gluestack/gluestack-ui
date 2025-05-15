@@ -1,0 +1,10 @@
+{
+  "argTypes": {},
+  "reactLive": {
+    "Avatar": "@/components/ui/avatar",
+    "AvatarBadge": "@/components/ui/avatar",
+    "AvatarFallbackText": "@/components/ui/avatar",
+    "AvatarImage": "@/components/ui/avatar",
+    "HStack": "@/components/ui/hstack"
+  }
+} 

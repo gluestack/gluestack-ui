@@ -1,0 +1,16 @@
+{
+  "argTypes": {},
+  "reactLive": {
+    "Avatar": "@/components/ui/avatar",
+    "AvatarFallbackText": "@/components/ui/avatar",
+    "AvatarImage": "@/components/ui/avatar",
+    "Badge": "@/components/ui/badge",
+    "BadgeIcon": "@/components/ui/badge",
+    "BadgeText": "@/components/ui/badge",
+    "Heading": "@/components/ui/heading",
+    "HStack": "@/components/ui/hstack",
+    "Text": "@/components/ui/text",
+    "VStack": "@/components/ui/vstack",
+    "BadgeCheckIcon": "lucide-react-native"
+  }
+} 

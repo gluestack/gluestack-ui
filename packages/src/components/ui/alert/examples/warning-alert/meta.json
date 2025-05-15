@@ -1,0 +1,10 @@
+{
+  "argTypes": {},
+  "reactLive": {
+    "Alert": "@/components/ui/alert",
+    "AlertText": "@/components/ui/alert",
+    "AlertIcon": "@/components/ui/alert",
+    "Text": "@/components/ui/text",
+    "Bomb": "lucide-react-native"
+  }
+} 

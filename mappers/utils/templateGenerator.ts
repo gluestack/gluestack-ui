@@ -1,26 +1,16 @@
 import path from "path";
 import * as fileOps from "./fileOperations";
 
-export const extractImports = (
-  code: string,
-  uniqueImports: Map<string, string>
-) => {
-  const importRegex = /^import .+ from '.+';$/gm;
-  const matches = [...code.matchAll(importRegex)];
-  for (const match of matches) {
-    const importStatement = match[0];
-    const importMatch = importStatement.match(/import (.+) from '(.+)';/);
-    if (importMatch && importMatch.length === 3) {
-      const [_, key, value] = importMatch;
-      uniqueImports.set(key.trim(), value);
-    }
-  }
-};
+interface ImportMap {
+  [key: string]: string[];
+}
+
+
 
 export const generateCodePreviewer = (
   exampleName: string,
   component: string,
-  uniqueImports: Map<string, string>
+  importMap: ImportMap
 ) => {
   const sourcePath = path.resolve("packages/src/components/ui");
   const examplePath = path.join(
@@ -41,10 +31,14 @@ export const generateCodePreviewer = (
     const argTypes = JSON.stringify(meta.argTypes || {}, null, 2);
     const reactLiveKeys = meta.reactLive ? Object.keys(meta.reactLive) : [];
     const reactLive = `{ ${reactLiveKeys.join(", ")} }`;
-    // Add reactLive imports to uniqueImports
+    // Add reactLive imports to importMap
     reactLiveKeys.forEach((key) => {
-      if (!uniqueImports.has(key)) {
-        uniqueImports.set(key, meta.reactLive[key]);
+      const value = meta.reactLive[key];
+      if (!importMap[value]) {
+        importMap[value] = [];
+      }
+      if (!importMap[value].includes(key)) {
+        importMap[value].push(key);
       }
     });
     return `<CodePreviewer
@@ -92,43 +86,34 @@ export const processFileForExamples = (
   component: string
 ): boolean => {
   const codePreviewerRegex = /\/\/\/\s*\{Example:([^}]+)\}\s*\/\/\//g;
-  const uniqueImports = new Map();
-  uniqueImports.set("CodePreviewer", "@/components/code-previewer");
+  const importMap: ImportMap = {
+    "@/components/code-previewer": ["CodePreviewer"]
+  };
+  
   // Read file content
   const content = fileOps.readTextFile(filePath);
+  
   // Extract existing imports
-  const importRegex = /^import .+ from '.+';$/gm;
-  const existingImports = new Set();
-  const contentWithoutImports = content
-    .replace(importRegex, (match) => {
-      existingImports.add(match);
-      return "";
-    })
-    .trim();
+  const contentWithoutImports = content.trim();
+
   // Replace example markers and file content markers
   const newContent = contentWithoutImports
     .replace(codePreviewerRegex, (_, exampleName) => {
-      return generateCodePreviewer(exampleName.trim(), component, uniqueImports);
+      return generateCodePreviewer(exampleName.trim(), component, importMap);
     });
   
   // Process file content markers
   const processedContent = processFileContent(newContent);
-  // Add existing imports to uniqueImports to avoid duplicates
-  existingImports.forEach((importStatement: any) => {
-    const matches = importStatement.match(/import (.+) from '(.+)';/);
-    if (matches && matches.length === 3) {
-      const [_, key, value] = matches;
-      uniqueImports.set(key.trim(), value);
-    }
-  });
-  // Generate import statements
-  const importContent = Array.from(uniqueImports).map(([key, value]) => {
-    if (key === "CodePreviewer"||key === "Tabs"||key === "TabItem") {
-      return `import {${key}} from '${value}';`;
-    }
-    return `import {${key}} from '${value}';`;
-  });
-  const totalContent = `${importContent.join("\n")}\n\n${processedContent}`;
+
+  // Generate import statements in one go
+  const importContent = Object.entries(importMap)
+    .map(([path, imports]) => {
+      return `import { ${imports.join(", ")} } from '${path}';`;
+    })
+    .join("\n");
+
+  const totalContent = `${importContent}\n\n${processedContent}`;
+  
   if (content !== totalContent) {
     fileOps.writeTextFile(filePath, totalContent);
     return true;

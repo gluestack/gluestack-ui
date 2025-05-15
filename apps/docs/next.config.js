@@ -22,6 +22,25 @@ const nextConfig = withExpo({
     "react-native-safe-area-context",
     // Add other packages that need transpiling
   ],
+  images: {
+    remotePatterns: [
+      {
+        hostname: 'qr.expo.dev',
+      },
+      {
+        hostname: 'i.imgur.com',
+      },
+      {
+        hostname: 'avatars.githubusercontent.com',
+      },
+      {
+        hostname: 'gluestack.github.io',
+      },
+      {
+        hostname: 'pbs.twimg.com',
+      },
+    ],
+  },
   webpack: (config) => {
     config.resolve.alias = {
       ...(config.resolve.alias || {}),
