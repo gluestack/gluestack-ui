@@ -123,9 +123,6 @@ export const processFileForExamples = (
   });
   // Generate import statements
   const importContent = Array.from(uniqueImports).map(([key, value]) => {
-    if (key === "CodePreviewer"||key === "Tabs"||key === "TabItem") {
-      return `import {${key}} from '${value}';`;
-    }
     return `import {${key}} from '${value}';`;
   });
   const totalContent = `${importContent.join("\n")}\n\n${processedContent}`;
