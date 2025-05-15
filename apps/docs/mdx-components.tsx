@@ -34,12 +34,12 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
     ...components,
     // Define custom heading styles
-    h1: (props) => <Heading size="3xl" className="font-bold text-4xl text-typography-950 mt-2 mb-2.5" {...props} />,
-    h2: (props) => <Heading size="2xl" className="text-2xl font-bold text-typography-900 mt-3 mb-1.5" {...props} />,
-    h3: (props) => <Heading size="xl" className="text-xl font-bold text-typography-800 mt-3 mb-1.5" {...props} />,
-    h4: (props) => <Heading size="lg" className="text-lg font-bold text-typography-700 mt-3 mb-1.5" {...props} />,
-    h5: (props) => <Heading size="md" className="text-md font-bold text-typography-600 mt-2.5 mb-1.5" {...props} />,
-    p: (props) => <Text className="block mb-6 text-typography-700" {...props} />,
+    h1: (props) => <Heading size="3xl" className="font-bold text-4xl text-typography-950 mt-2 mb-2.5 font-jakarta" {...props} />,
+    h2: (props) => <Heading size="2xl" className="text-2xl font-bold text-typography-900 mt-3 mb-1.5 font-jakarta" {...props} />,
+    h3: (props) => <Heading size="xl" className="text-xl font-bold text-typography-900 mt-3 mb-1.5 font-jakarta" {...props} />,
+    h4: (props) => <Heading size="lg" className="text-lg font-bold text-typography-900 mt-3 mb-1.5 font-jakarta" {...props} />,
+    h5: (props) => <Heading size="md" className="text-md font-bold text-typography-900 mt-2.5 mb-1.5 font-jakarta" {...props} />,
+    p: (props) => <Text className="block mb-6 text-typography-800 font-inter" {...props} />,
     // Define paragraph styles
     ul: (props: any) => <ul {...props} className="w-full mb-3" />,
     ol: (props: any) => <ol {...props} className="mb-3" />,
@@ -66,7 +66,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       const code = children?.props?.children || "";
       const language =
         children?.props?.className?.replace("language-", "") || "jsx";
-      return <CodeBlock code={code} language={language} />;
+      return <CodeBlock code={code} language={language} theme="light" />;
     },
     code: (props: any) => {
       return <InlineCode {...props} />;

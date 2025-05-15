@@ -183,6 +183,7 @@ module.exports = {
         'roboto': ['var(--font-roboto)'],
         'code': ['var(--font-source-code-pro)'],
         'inter': ['var(--font-inter)'],
+        'space-mono': ['var(--font-space-mono)'],
       },
       fontWeight: {
         extrablack: '950',

@@ -122,7 +122,7 @@ export function CodePreviewer({
           </LiveProvider>
         </div>
       </div>
-      <CodeBlock code={compiledCode} language="jsx" className="rounded-b-lg rounded-t-none border-t-0" />
+      <CodeBlock code={compiledCode} theme="light" language="jsx" className="rounded-b-lg rounded-t-none border-t-0" />
     </div>
   );
 }

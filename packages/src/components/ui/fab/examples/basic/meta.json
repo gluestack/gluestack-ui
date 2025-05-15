@@ -41,10 +41,10 @@
     }
   },
   "reactLive": {
-    "Box": "box",
-    "Fab": "fab",
-    "FabIcon": "fab",
-    "FabLabel": "fab",
-    "AddIcon": "icon"
+    "Box": "@/components/ui/box",
+    "Fab": "@/components/ui/fab",
+    "FabIcon": "@/components/ui/fab",
+    "FabLabel": "@/components/ui/fab",
+    "AddIcon": "@/components/ui/icon"
   }
 }

@@ -1,5 +1,5 @@
 "use client";
-import { Inter, Roboto, Plus_Jakarta_Sans, Source_Code_Pro } from "next/font/google";
+import { Inter, Roboto, Plus_Jakarta_Sans, Source_Code_Pro, Space_Mono} from "next/font/google";
 import "./globals.css";
 import Header from "@/components/header";
 import { GluestackUIProvider } from "@/components/ui/gluestack-ui-provider";
@@ -23,13 +23,20 @@ const sourceCodePro = Source_Code_Pro({
   display: 'swap',
   variable: '--font-source-code-pro',
 });
+const spaceMono=Space_Mono({
+  subsets: ['latin'],
+  weight: ['400', '700'],
+  display: 'swap',
+  variable: '--font-space-mono',
+});
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${plusJakartaSans.variable} ${roboto.variable} ${sourceCodePro.variable} ${inter.className}`}>
+    <html lang="en" className={`${plusJakartaSans.variable} ${roboto.variable} ${sourceCodePro.variable} ${inter.className} ${spaceMono.variable}`}>
       <body className={inter.className}>
         <GluestackUIProvider mode="light">
           <div className="flex flex-col w-full h-full">
