@@ -86,9 +86,6 @@ This is an illustration of **ActionSheet** component.
   reactLive={{ Actionsheet, ActionsheetContent, ActionsheetItem, ActionsheetItemText, ActionsheetDragIndicator, ActionsheetDragIndicatorWrapper, ActionsheetBackdrop, Button, ButtonText }}
 />
 
-## Component Props
-This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
-
 <br/>
 ## Installation
 
@@ -720,6 +717,8 @@ import {
 } from '@/components/ui/actionsheet';
 ```
 
+<br/>
+
 ### Component Props
 
 This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
@@ -769,6 +768,9 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
     </TableRow>
   </TableBody>
 </Table>
+
+>Note: If snapPoints are not provided to Actionsheet, then it's essential to set maxHeight to ActionsheetContent.
+
 
 #### ActionsheetBackdrop
 

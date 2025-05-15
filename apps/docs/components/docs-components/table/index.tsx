@@ -25,14 +25,14 @@ export const TableBody = (props: React.HTMLProps<HTMLTableSectionElement>) => (
 export const TableRow = (props: React.HTMLProps<HTMLTableRowElement>) => (
   <tr
     {...props}
-    className={`border border-border-200`}
+    className={`border-b border-border-200 last:border-b-0`}
   />
 );  
 
 export const TableCell = (props: React.HTMLProps<HTMLTableCellElement>) => (
   <td
     {...props}
-    className={`p-3 text-typography-950`}
+    className={`px-4 py-3`}
   />
 );  
 
