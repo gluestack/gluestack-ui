@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Handlebars from "handlebars";
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from "react-live";
 import CodeBlock from "../code-block";
+import { ThemeContext } from "@/utils/context/theme-context";
 export function CodePreviewer({
   code,
   message,
@@ -13,6 +14,7 @@ export function CodePreviewer({
   argTypes: Record<string, any>;
   reactLive: any;
 }) {
+  const { colorMode } = useContext(ThemeContext);
   // Initialize state with default values from args
   const [values, setValues] = useState<Record<string, any>>({});
   const [compiledCode, setCompiledCode] = useState<any>();
@@ -102,9 +104,9 @@ export function CodePreviewer({
 
   return (
     <div className="flex flex-col w-full my-2">
-      <div className="-mb-2 border border-gray-200 rounded-t-lg flex w-full min-h-[200px]">
+      <div className="-mb-2 border border-outline-100 rounded-t-lg flex w-full min-h-[200px]">
         {Object.keys(argTypes).length > 0 && (
-          <div className="p-4 border-r py-10 border-gray-200 flex-1">
+          <div className="p-4 border-r py-10 border-outline-100 flex-1">
             <div className="flex flex-col gap-2">
             {Object.entries(argTypes).map(([key, value]) => (
               <ArgController key={key} name={key} config={value} />
@@ -122,7 +124,7 @@ export function CodePreviewer({
           </LiveProvider>
         </div>
       </div>
-      <CodeBlock code={compiledCode} theme="light" language="tsx" className="rounded-b-lg rounded-t-none border-t-0" />
+      <CodeBlock code={compiledCode} language="tsx" className="rounded-b-lg rounded-t-none border-t-0" />
     </div>
   );
 }

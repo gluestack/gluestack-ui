@@ -7,14 +7,14 @@ export const Tabs = ({ children }) => {
   const [activeTab, setActiveTab] = useState(0);
   return (
     <div className="tabs-container my-4">
-      <div className="flex border-b border-gray-200">
+      <div className="flex border-b border-typography-100">
         {tabNames.map((name, index) => (
           <button
             key={index}
             className={`py-2 px-4 font-bold text-lg ${
               activeTab === index
-                ? 'text-gray-900 border-b-2 border-gray-900'
-                : 'text-gray-500 hover:text-gray-700'
+                ? 'text-typography-950 border-b-2 border-typography-950'
+                : 'text-typography-400'
             }`}
             onClick={() => setActiveTab(index)}
           >

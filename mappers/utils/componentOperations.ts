@@ -35,6 +35,7 @@ export const copyComponent = (component: string) => {
     "styles.tsx",
     "config.ts",
     "script.ts",
+    "select-actionsheet.tsx",
   ];
   for (const file of filesToCopy) {
     const srcFile = path.join(paths.componentDir, file);
