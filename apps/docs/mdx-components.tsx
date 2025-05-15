@@ -66,7 +66,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       const code = children?.props?.children || "";
       const language =
         children?.props?.className?.replace("language-", "") || "jsx";
-      return <CodeBlock code={code} language={language} theme="light" />;
+      return <CodeBlock code={code} language={language} />;
     },
     code: (props: any) => {
       return <InlineCode {...props} />;

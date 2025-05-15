@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useContext } from 'react';
 import Prism from 'prismjs';
 import 'prismjs/components/prism-jsx';
 import 'prismjs/components/prism-javascript';
@@ -9,6 +9,7 @@ import 'prismjs/components/prism-json';
 import 'prismjs/components/prism-css';
 import 'prismjs/components/prism-markup';
 import 'prismjs/components/prism-diff';
+import { ThemeContext } from "@/utils/context/theme-context";
 import './styles.css';
 
 // Theme configurations
@@ -25,15 +26,15 @@ const themes = {
     punctuation: '#B6AD9A',
   },
   dark: {
-    background: '#2d2d2d',
-    text: '#ccc',
-    comment: '#999',
-    keyword: '#c5c8c6',
-    string: '#99c794',
-    function: '#f99157',
-    number: '#f99157',
-    operator: '#66d9ef',
-    punctuation: '#ccc',
+    background: '#171717',
+    text: '#9CDCFE',
+    comment: '#D4D4D4',
+    keyword: '#9CDCFE',
+    string: '#CE9178',
+    function: '#DCDCAA',
+    number: '#9CDCFE',
+    operator: '#569CD6',
+    punctuation: '#D4D4D4',
   },
 };
 
@@ -41,18 +42,17 @@ type CodeBlockProps = {
   className?: string;
   code: string;
   language?: 'jsx' | 'javascript' | 'ts' | 'tsx' | 'patch' | string;
-  theme?: 'light' | 'dark';
 };
 
 const CodeBlock: React.FC<CodeBlockProps> = ({ 
   code, 
   language = 'jsx', 
-  className,
-  theme = 'light' 
+  className
 }) => {
   const [copied, setCopied] = useState(false);
   const codeRef = useRef<HTMLElement>(null);
-  const currentTheme = themes[theme];
+  const { colorMode } = useContext(ThemeContext);
+  const currentTheme = themes[colorMode];
 
   useEffect(() => {
     Prism.highlightAll();
@@ -85,7 +85,7 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
   return (
     <div className="relative group mb-5">
       <pre 
-        className={`language-${language} border rounded-lg max-h-[400px] overflow-y-auto p-4 ${className}`}
+        className={`language-${language} border border-outline-100 rounded-lg max-h-[400px] overflow-y-auto p-6 ${className}`}
         style={themeStyles}
       >
         <code ref={codeRef}>
