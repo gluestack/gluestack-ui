@@ -41,6 +41,40 @@ export const generateCodePreviewer = (
         importMap[value].push(key);
       }
     });
+
+    // If this is the basic example, copy it to the docs components folder
+    if (exampleName === "basic") {
+      const docsPath = path.resolve("apps/docs/components/page-components/all-components");
+      const destPath = path.join(docsPath, component);
+      const destFilePath = path.join(destPath, "index.tsx");
+      
+      // Create destination directory if it doesn't exist
+      fileOps.ensureDirectoryExists(destPath);
+      
+      // Generate imports from meta.reactLive
+      const imports = reactLiveKeys.map(key => {
+        const value = meta.reactLive[key];
+        return `import { ${key} } from '${value}';`;
+      }).join("\n");
+      
+      // Generate the component file content with CodePreviewer template
+      const fileContent = `import { CodePreviewer } from '@/components/code-previewer';
+${imports}
+
+export default function Example() {
+  return (
+    <CodePreviewer
+      code={\`${code.trim()}\`}
+      argTypes={${argTypes}}
+      reactLive={${reactLive}}
+    />
+  );
+}`;
+      
+      // Write the file
+      fileOps.writeTextFile(destFilePath, fileContent);
+    }
+
     return `<CodePreviewer
   code={\`${code.trim()}\`}
   argTypes={${argTypes}}

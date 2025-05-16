@@ -5,12 +5,10 @@ import CodeBlock from "../code-block";
 import { ThemeContext } from "@/utils/context/theme-context";
 export function CodePreviewer({
   code,
-  message,
   argTypes,
   reactLive,
 }: {
   code: string;
-  message: string;
   argTypes: Record<string, any>;
   reactLive: any;
 }) {

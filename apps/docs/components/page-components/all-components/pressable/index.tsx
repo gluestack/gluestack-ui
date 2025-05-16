@@ -1,0 +1,22 @@
+import { CodePreviewer } from '@/components/code-previewer';
+import { Pressable } from '@/components/ui/pressable';
+import { Text } from '@/components/ui/text';
+
+export default function Example() {
+  return (
+    <CodePreviewer
+      code={`function Example() {
+  return (
+    <Pressable
+      onPress={() => console.log("Hello")}
+      className="p-5 bg-primary-500"
+    >
+      <Text className="text-typography-0">Press me</Text>
+    </Pressable>
+  )
+}`}
+      argTypes={{}}
+      reactLive={{ Pressable, Text }}
+    />
+  );
+}
