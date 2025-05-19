@@ -1,10 +1,10 @@
-import { CodePreviewer } from '@/components/code-previewer';
+import { ComponentPreviewer } from '@/components/component-previewer';
 import { Input } from '@/components/ui/input';
 import { InputField } from '@/components/ui/input';
 
 export default function Example() {
   return (
-    <CodePreviewer
+    <ComponentPreviewer
       code={`function Example() {
   return (
     <Input variant="{{variant}}" size="{{size}}" isDisabled={ {{isDisabled}} } isInvalid={ {{isInvalid}} } isReadOnly={ {{isReadOnly}} }>

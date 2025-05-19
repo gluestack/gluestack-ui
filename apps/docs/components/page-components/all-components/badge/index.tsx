@@ -1,4 +1,4 @@
-import { CodePreviewer } from '@/components/code-previewer';
+import { ComponentPreviewer } from '@/components/component-previewer';
 import { Badge } from '@/components/ui/badge';
 import { BadgeText } from '@/components/ui/badge';
 import { BadgeIcon } from '@/components/ui/badge';
@@ -6,7 +6,7 @@ import { GlobeIcon } from '@/components/ui/icon';
 
 export default function Example() {
   return (
-    <CodePreviewer
+    <ComponentPreviewer
       code={`function Example() {
   return (
     <Badge size="{{size}}" variant="{{variant}}" action="{{action}}">

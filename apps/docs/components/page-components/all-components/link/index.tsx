@@ -1,10 +1,10 @@
-import { CodePreviewer } from '@/components/code-previewer';
+import { ComponentPreviewer } from '@/components/component-previewer';
 import { Link } from '@/components/ui/link';
 import { LinkText } from '@/components/ui/link';
 
 export default function Example() {
   return (
-    <CodePreviewer
+    <ComponentPreviewer
       code={`function Example() {
   return (
     <Link href="https://gluestack.io/">

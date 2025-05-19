@@ -1,10 +1,10 @@
-import { CodePreviewer } from '@/components/code-previewer';
+import { ComponentPreviewer } from '@/components/component-previewer';
 import { Button } from '@/components/ui/button';
 import { ButtonText } from '@/components/ui/button';
 
 export default function Example() {
   return (
-    <CodePreviewer
+    <ComponentPreviewer
       code={`function Example() {
   return (
     <Button variant="{{variant}}" size="{{size}}" action="{{action}}">

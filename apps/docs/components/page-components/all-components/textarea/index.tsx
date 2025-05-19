@@ -1,10 +1,10 @@
-import { CodePreviewer } from '@/components/code-previewer';
+import { ComponentPreviewer } from '@/components/component-previewer';
 import { Textarea } from '@/components/ui/textarea';
 import { TextareaInput } from '@/components/ui/textarea';
 
 export default function Example() {
   return (
-    <CodePreviewer
+    <ComponentPreviewer
       code={`function Example() {
   return (
     <Textarea

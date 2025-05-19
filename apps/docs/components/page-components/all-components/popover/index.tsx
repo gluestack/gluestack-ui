@@ -1,4 +1,4 @@
-import { CodePreviewer } from '@/components/code-previewer';
+import { ComponentPreviewer } from '@/components/component-previewer';
 import { Popover } from '@/components/ui/popover';
 import { PopoverBackdrop } from '@/components/ui/popover';
 import { PopoverArrow } from '@/components/ui/popover';
@@ -10,9 +10,9 @@ import { Text } from '@/components/ui/text';
 
 export default function Example() {
   return (
-    <CodePreviewer
+    <ComponentPreviewer
       code={`function App() {
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = React.useState(false)
   const handleOpen = () => {
     setIsOpen(true)
   }

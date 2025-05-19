@@ -1,4 +1,4 @@
-import { CodePreviewer } from '@/components/code-previewer';
+import { ComponentPreviewer } from '@/components/component-previewer';
 import { Alert } from '@/components/ui/alert';
 import { AlertText } from '@/components/ui/alert';
 import { AlertIcon } from '@/components/ui/alert';
@@ -6,7 +6,7 @@ import { InfoIcon } from '@/components/ui/icon';
 
 export default function Example() {
   return (
-    <CodePreviewer
+    <ComponentPreviewer
       code={`function Example() {
   return (
     <Alert action="{{ action }}" variant="{{ variant }}">

@@ -1,10 +1,10 @@
-import { CodePreviewer } from '@/components/code-previewer';
+import { ComponentPreviewer } from '@/components/component-previewer';
 import { VStack } from '@/components/ui/vstack';
 import { Box } from '@/components/ui/box';
 
 export default function Example() {
   return (
-    <CodePreviewer
+    <ComponentPreviewer
       code={`function Example() {
   return (
     <Box className="justify-center h-80">

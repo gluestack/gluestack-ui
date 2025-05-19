@@ -1,11 +1,11 @@
-import { CodePreviewer } from '@/components/code-previewer';
+import { ComponentPreviewer } from '@/components/component-previewer';
 import { Progress } from '@/components/ui/progress';
 import { ProgressFilledTrack } from '@/components/ui/progress';
 import { Center } from '@/components/ui/center';
 
 export default function Example() {
   return (
-    <CodePreviewer
+    <ComponentPreviewer
       code={`function Example() {
   return (
     <Center className="w-[300px] h-[150px]">

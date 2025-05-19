@@ -58,12 +58,12 @@ export const generateCodePreviewer = (
       }).join("\n");
       
       // Generate the component file content with CodePreviewer template
-      const fileContent = `import { CodePreviewer } from '@/components/code-previewer';
+      const fileContent = `import { ComponentPreviewer } from '@/components/component-previewer';
 ${imports}
 
 export default function Example() {
   return (
-    <CodePreviewer
+    <ComponentPreviewer
       code={\`${code.trim()}\`}
       argTypes={${argTypes}}
       reactLive={${reactLive}}

@@ -1,4 +1,4 @@
-import { CodePreviewer } from '@/components/code-previewer';
+import { ComponentPreviewer } from '@/components/component-previewer';
 import { Checkbox } from '@/components/ui/checkbox';
 import { CheckboxIndicator } from '@/components/ui/checkbox';
 import { CheckboxLabel } from '@/components/ui/checkbox';
@@ -7,7 +7,7 @@ import { CheckboxIcon } from '@/components/ui/checkbox';
 
 export default function Example() {
   return (
-    <CodePreviewer
+    <ComponentPreviewer
       code={`function Example() {
   return (
     <Checkbox isDisabled={ {{isDisabled}} } isInvalid={ {{isInvalid}} } size="{{size}}">

@@ -1,10 +1,10 @@
-import { CodePreviewer } from '@/components/code-previewer';
+import { ComponentPreviewer } from '@/components/component-previewer';
 import { Center } from '@/components/ui/center';
 import { Text } from '@/components/ui/text';
 
 export default function Example() {
   return (
-    <CodePreviewer
+    <ComponentPreviewer
       code={`function Example() {
     return (
       <Center className="bg-primary-500 h-[200px] w-[300px]">

@@ -1,9 +1,9 @@
-import { CodePreviewer } from '@/components/code-previewer';
+import { ComponentPreviewer } from '@/components/component-previewer';
 import { Spinner } from '@/components/ui/spinner';
 
 export default function Example() {
   return (
-    <CodePreviewer
+    <ComponentPreviewer
       code={`function Example() {
   return <Spinner size="{{size}}" color="{{color}}" />
 }`}

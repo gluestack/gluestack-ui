@@ -1,4 +1,4 @@
-import { CodePreviewer } from '@/components/code-previewer';
+import { ComponentPreviewer } from '@/components/component-previewer';
 import { Portal } from '@/components/ui/portal';
 import { HStack } from '@/components/ui/hstack';
 import { Text } from '@/components/ui/text';
@@ -9,7 +9,7 @@ import { CloseIcon } from '@/components/ui/icon';
 
 export default function Example() {
   return (
-    <CodePreviewer
+    <ComponentPreviewer
       code={`function App() {
   const [visible, setVisible] = useState(false)
   const handleClose = () => setVisible(false)

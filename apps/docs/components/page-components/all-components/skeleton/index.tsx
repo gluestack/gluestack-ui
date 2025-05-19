@@ -1,4 +1,4 @@
-import { CodePreviewer } from '@/components/code-previewer';
+import { ComponentPreviewer } from '@/components/component-previewer';
 import { Skeleton } from '@/components/ui/skeleton';
 import { SkeletonText } from '@/components/ui/skeleton';
 import { Box } from '@/components/ui/box';
@@ -6,7 +6,7 @@ import { HStack } from '@/components/ui/hstack';
 
 export default function Example() {
   return (
-    <CodePreviewer
+    <ComponentPreviewer
       code={`function Example() {
   return (
     <Box className="w-[325px] gap-4 p-3 rounded-md bg-background-100">

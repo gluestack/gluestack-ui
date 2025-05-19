@@ -1,4 +1,4 @@
-import { CodePreviewer } from '@/components/code-previewer';
+import { ComponentPreviewer } from '@/components/component-previewer';
 import { Slider } from '@/components/ui/slider';
 import { SliderTrack } from '@/components/ui/slider';
 import { SliderFilledTrack } from '@/components/ui/slider';
@@ -7,7 +7,7 @@ import { Center } from '@/components/ui/center';
 
 export default function Example() {
   return (
-    <CodePreviewer
+    <ComponentPreviewer
       code={`function Example() {
   return (
     <Center className="w-[300px] h-[150px]">

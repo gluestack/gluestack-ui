@@ -1,4 +1,4 @@
-import { CodePreviewer } from '@/components/code-previewer';
+import { ComponentPreviewer } from '@/components/component-previewer';
 import { Modal } from '@/components/ui/modal';
 import { ModalBackdrop } from '@/components/ui/modal';
 import { ModalBody } from '@/components/ui/modal';
@@ -15,7 +15,7 @@ import { Text } from '@/components/ui/text';
 
 export default function Example() {
   return (
-    <CodePreviewer
+    <ComponentPreviewer
       code={`function App() {
   const [showModal, setShowModal] = React.useState(false)
   return (

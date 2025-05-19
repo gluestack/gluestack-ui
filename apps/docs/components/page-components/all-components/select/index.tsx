@@ -1,4 +1,4 @@
-import { CodePreviewer } from '@/components/code-previewer';
+import { ComponentPreviewer } from '@/components/component-previewer';
 import { Select } from '@/components/ui/select';
 import { SelectTrigger } from '@/components/ui/select';
 import { SelectInput } from '@/components/ui/select';
@@ -13,7 +13,7 @@ import { ChevronDownIcon } from '@/components/ui/icon';
 
 export default function Example() {
   return (
-    <CodePreviewer
+    <ComponentPreviewer
       code={`function Example() {
   return (
     <Select>

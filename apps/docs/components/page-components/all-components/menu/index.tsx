@@ -1,4 +1,4 @@
-import { CodePreviewer } from '@/components/code-previewer';
+import { ComponentPreviewer } from '@/components/component-previewer';
 import { Menu } from '@/components/ui/menu';
 import { MenuItem } from '@/components/ui/menu';
 import { MenuItemLabel } from '@/components/ui/menu';
@@ -12,7 +12,7 @@ import { SettingsIcon } from '@/components/ui/icon';
 
 export default function Example() {
   return (
-    <CodePreviewer
+    <ComponentPreviewer
       code={`function Example() {
   return (
     <Menu

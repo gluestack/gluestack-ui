@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const componentsList = [
   "accordion",
@@ -64,7 +64,7 @@ export default function AllComponents() {
         if (!Component) return null;
         
         return (
-          <div key={componentName} className="border rounded-lg p-4">
+          <div key={componentName} className="border border-outline-200 rounded-lg p-4">
             <h2 className="text-2xl font-bold mb-4 capitalize">{componentName}</h2>
             <Component />
           </div>

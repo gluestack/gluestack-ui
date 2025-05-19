@@ -1,10 +1,10 @@
-import { CodePreviewer } from '@/components/code-previewer';
+import { ComponentPreviewer } from '@/components/component-previewer';
 import { HStack } from '@/components/ui/hstack';
 import { Box } from '@/components/ui/box';
 
 export default function Example() {
   return (
-    <CodePreviewer
+    <ComponentPreviewer
       code={`function Example() {
   return (
     <HStack space="{{space}}" reversed={ {{isReversed}} }>

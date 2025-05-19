@@ -1,4 +1,4 @@
-import { CodePreviewer } from '@/components/code-previewer';
+import { ComponentPreviewer } from '@/components/component-previewer';
 import { Drawer } from '@/components/ui/drawer';
 import { DrawerBackdrop } from '@/components/ui/drawer';
 import { DrawerContent } from '@/components/ui/drawer';
@@ -12,7 +12,7 @@ import { Text } from '@/components/ui/text';
 
 export default function Example() {
   return (
-    <CodePreviewer
+    <ComponentPreviewer
       code={`function App() {
   const [showDrawer, setShowDrawer] = React.useState(false)
   return (

@@ -1,4 +1,4 @@
-import { CodePreviewer } from '@/components/code-previewer';
+import { ComponentPreviewer } from '@/components/component-previewer';
 import { Actionsheet } from '@/components/ui/actionsheet';
 import { ActionsheetContent } from '@/components/ui/actionsheet';
 import { ActionsheetItem } from '@/components/ui/actionsheet';
@@ -11,7 +11,7 @@ import { ButtonText } from '@/components/ui/button';
 
 export default function Example() {
   return (
-    <CodePreviewer
+    <ComponentPreviewer
       code={`function App() {
   const [showActionsheet, setShowActionsheet] = React.useState(false)
   const handleClose = () => setShowActionsheet(false)

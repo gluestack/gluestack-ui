@@ -1,4 +1,4 @@
-import { CodePreviewer } from '@/components/code-previewer';
+import { ComponentPreviewer } from '@/components/component-previewer';
 import { Radio } from '@/components/ui/radio';
 import { RadioGroup } from '@/components/ui/radio';
 import { RadioIndicator } from '@/components/ui/radio';
@@ -8,7 +8,7 @@ import { CircleIcon } from '@/components/ui/icon';
 
 export default function Example() {
   return (
-    <CodePreviewer
+    <ComponentPreviewer
       code={`function Example() {
   return (
     <RadioGroup>

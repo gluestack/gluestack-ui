@@ -1,4 +1,4 @@
-import { CodePreviewer } from '@/components/code-previewer';
+import { ComponentPreviewer } from '@/components/component-previewer';
 import { FormControl } from '@/components/ui/form-control';
 import { FormControlLabel } from '@/components/ui/form-control';
 import { FormControlError } from '@/components/ui/form-control';
@@ -19,10 +19,10 @@ import { VStack } from '@/components/ui/vstack';
 
 export default function Example() {
   return (
-    <CodePreviewer
+    <ComponentPreviewer
       code={`function App () {
-  const [isInvalid, setIsInvalid] = useState(false);
-  const [inputValue, setInputValue] = useState("12345");
+  const [isInvalid, setIsInvalid] = React.useState(false);
+  const [inputValue, setInputValue] = React.useState("12345");
 
   const handleSubmit = () => {
     if (inputValue.length < 6) {

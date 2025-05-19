@@ -1,4 +1,4 @@
-import { CodePreviewer } from '@/components/code-previewer';
+import { ComponentPreviewer } from '@/components/component-previewer';
 import { Toast } from '@/components/ui/toast';
 import { ToastTitle } from '@/components/ui/toast';
 import { ToastDescription } from '@/components/ui/toast';
@@ -8,7 +8,7 @@ import { ButtonText } from '@/components/ui/button';
 
 export default function Example() {
   return (
-    <CodePreviewer
+    <ComponentPreviewer
       code={`function Example() {
   const toast = useToast()
   const [toastId, setToastId] = React.useState(0)

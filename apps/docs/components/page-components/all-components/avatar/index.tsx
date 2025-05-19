@@ -1,4 +1,4 @@
-import { CodePreviewer } from '@/components/code-previewer';
+import { ComponentPreviewer } from '@/components/component-previewer';
 import { Avatar } from '@/components/ui/avatar';
 import { AvatarFallbackText } from '@/components/ui/avatar';
 import { AvatarImage } from '@/components/ui/avatar';
@@ -6,7 +6,7 @@ import { AvatarBadge } from '@/components/ui/avatar';
 
 export default function Example() {
   return (
-    <CodePreviewer
+    <ComponentPreviewer
       code={`function Example() {
   return (
     <Avatar size="{{size}}">

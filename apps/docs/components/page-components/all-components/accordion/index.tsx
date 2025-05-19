@@ -1,4 +1,4 @@
-import { CodePreviewer } from '@/components/code-previewer';
+import { ComponentPreviewer } from '@/components/component-previewer';
 import { Accordion } from '@/components/ui/accordion';
 import { AccordionItem } from '@/components/ui/accordion';
 import { AccordionHeader } from '@/components/ui/accordion';
@@ -13,7 +13,7 @@ import { ChevronUpIcon } from '@/components/ui/icon';
 
 export default function Example() {
   return (
-    <CodePreviewer
+    <ComponentPreviewer
       code={`function Example() {
   return (
     <Accordion

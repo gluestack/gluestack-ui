@@ -1,4 +1,4 @@
-import { CodePreviewer } from '@/components/code-previewer';
+import { ComponentPreviewer } from '@/components/component-previewer';
 import { AlertDialog } from '@/components/ui/alert-dialog';
 import { AlertDialogContent } from '@/components/ui/alert-dialog';
 import { AlertDialogHeader } from '@/components/ui/alert-dialog';
@@ -12,7 +12,7 @@ import { Heading } from '@/components/ui/heading';
 
 export default function Example() {
   return (
-    <CodePreviewer
+    <ComponentPreviewer
       code={`function Example() {
   const [showAlertDialog, setShowAlertDialog] = React.useState(false)
   const handleClose = () => setShowAlertDialog(false)

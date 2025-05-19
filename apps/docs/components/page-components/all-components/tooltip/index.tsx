@@ -1,4 +1,4 @@
-import { CodePreviewer } from '@/components/code-previewer';
+import { ComponentPreviewer } from '@/components/component-previewer';
 import { Tooltip } from '@/components/ui/tooltip';
 import { TooltipContent } from '@/components/ui/tooltip';
 import { TooltipText } from '@/components/ui/tooltip';
@@ -7,7 +7,7 @@ import { ButtonText } from '@/components/ui/button';
 
 export default function Example() {
   return (
-    <CodePreviewer
+    <ComponentPreviewer
       code={`function Example() {
   return (
     <Tooltip

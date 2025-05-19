@@ -1,4 +1,4 @@
-import { CodePreviewer } from '@/components/code-previewer';
+import { ComponentPreviewer } from '@/components/component-previewer';
 import { Table } from '@/components/ui/table';
 import { TableBody } from '@/components/ui/table';
 import { TableHeader } from '@/components/ui/table';
@@ -9,7 +9,7 @@ import { TableFooter } from '@/components/ui/table';
 
 export default function Example() {
   return (
-    <CodePreviewer
+    <ComponentPreviewer
       code={`function Example() {
   return (
     <Table className="w-full">
