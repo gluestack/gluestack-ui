@@ -87,7 +87,7 @@ const Header = ({ isOpenSidebar, setIsOpenSidebar }: any) => {
     },
   ];
   return (
-    <Box className="w-full bg-white dark:bg-background-0/60 bg-opacity-60 z-10 border-outline-100 border-b">
+    <Box className="w-full bg-white dark:bg-background-0/60 bg-opacity-60 sticky top-0 z-10 border-outline-100 border-b ">
       <Nav className="py-3 items-center backdrop-blur">
         <Box className="flex-row items-center justify-between w-[85%] max-w-[1440px] lg:mx-[180px] mx-5">
           <HStack className="items-center md:gap-3 gap-4">
@@ -195,7 +195,9 @@ const Header = ({ isOpenSidebar, setIsOpenSidebar }: any) => {
                                   variant="solid"
                                   action={option.badge.action as any}
                                 >
-                                  <BadgeText className="text-xs font-roboto">{option.badge.text}</BadgeText>
+                                  <BadgeText className="text-xs font-roboto">
+                                    {option.badge.text}
+                                  </BadgeText>
                                 </Badge>
                               </HStack>
                             </Link>
