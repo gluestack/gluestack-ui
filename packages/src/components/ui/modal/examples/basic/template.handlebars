@@ -1,58 +1,51 @@
-function App() {
-  const [showModal, setShowModal] = React.useState(false)
+function Example() {
+  const [showModal, setShowModal] = React.useState(false);
   return (
-    <Center className="h-[300px]">
+    <>
       <Button onPress={() => setShowModal(true)}>
-        <ButtonText>Show Modal</ButtonText>
+        <ButtonText>Open Modal</ButtonText>
       </Button>
       <Modal
         isOpen={showModal}
         onClose={() => {
-          setShowModal(false)
+          setShowModal(false);
         }}
         size="{{size}}"
       >
         <ModalBackdrop />
         <ModalContent>
           <ModalHeader>
-            <Text  className="text-typography-950">
-              Invite your team
-            </Text>
+            <Heading size="lg">Modal Title</Heading>
             <ModalCloseButton>
-              <Icon
-                as={CloseIcon}
-                size="md"
-                className="stroke-background-400 group-[:hover]/modal-close-button:stroke-background-700 group-[:active]/modal-close-button:stroke-background-900 group-[:focus-visible]/modal-close-button:stroke-background-900"
-              />
+              <Icon as={CloseIcon} />
             </ModalCloseButton>
           </ModalHeader>
           <ModalBody>
-            <Text size="sm" className="text-typography-500">
-              Elevate user interactions with our versatile modals. Seamlessly
-              integrate notifications, forms, and media displays. Make an impact
-              effortlessly.
+            <Text>
+              This is the modal body. You can add any content here.
             </Text>
           </ModalBody>
           <ModalFooter>
             <Button
               variant="outline"
               action="secondary"
+              mr="$3"
               onPress={() => {
-                setShowModal(false)
+                setShowModal(false);
               }}
             >
               <ButtonText>Cancel</ButtonText>
             </Button>
             <Button
               onPress={() => {
-                setShowModal(false)
+                setShowModal(false);
               }}
             >
-              <ButtonText>Explore</ButtonText>
+              <ButtonText>Save</ButtonText>
             </Button>
           </ModalFooter>
         </ModalContent>
       </Modal>
-    </Center>
-  )
+    </>
+  );
 }
