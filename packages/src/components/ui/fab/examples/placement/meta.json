@@ -1,0 +1,19 @@
+{
+  "title": "Placement",
+  "description": "A FAB component with different placement options",
+  "componentName": "Fab",
+  "argTypes": {},
+  "reactLive": {
+    "Fab": "@/components/ui/fab",
+    "FabIcon": "@/components/ui/fab",
+    "Box": "@/components/ui/box",
+    "VStack": "@/components/ui/vstack",
+    "Checkbox": "@/components/ui/checkbox",
+    "CheckboxIndicator": "@/components/ui/checkbox",
+    "CheckboxLabel": "@/components/ui/checkbox",
+    "CheckboxIcon": "@/components/ui/checkbox",
+    "Text": "@/components/ui/text",
+    "AddIcon": "@/components/ui/icon",
+    "CheckIcon": "@/components/ui/icon"
+  }
+} 

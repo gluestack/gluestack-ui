@@ -1,0 +1,8 @@
+{
+  "argTypes": {},
+  "reactLive": {
+    "Button": "@/components/ui/button",
+    "ButtonIcon": "@/components/ui/button",
+    "EditIcon": "@/components/ui/icon"
+  }
+} 
