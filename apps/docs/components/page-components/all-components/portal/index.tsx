@@ -11,7 +11,7 @@ export default function Example() {
   return (
     <ComponentPreviewer
       code={`function App() {
-  const [visible, setVisible] = useState(false)
+  const [visible, setVisible] = React.useState(false)
   const handleClose = () => setVisible(false)
   return (
     <>
