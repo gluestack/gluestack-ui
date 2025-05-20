@@ -1,5 +1,21 @@
 import { CodePreviewer } from '@/components/code-previewer';
-import { Icon, EditIcon } from '@/components/ui/icon';
+import { Icon, EditIcon, AddIcon, AlertCircleIcon, ArrowUpIcon, ArrowDownIcon, ArrowRightIcon, ArrowLeftIcon, AtSignIcon, BellIcon, CalendarDaysIcon, CheckIcon, CheckCircleIcon, ChevronUpIcon, ChevronDownIcon, ChevronLeftIcon, ChevronRightIcon, ChevronsLeftIcon, ChevronsRightIcon, ChevronsUpDownIcon, CircleIcon, ClockIcon, CloseIcon, CloseCircleIcon, CopyIcon, DownloadIcon, EyeIcon, EyeOffIcon, FavouriteIcon, GlobeIcon, GripVerticalIcon, HelpCircleIcon, InfoIcon, LinkIcon, ExternalLinkIcon, LoaderIcon, LockIcon, MailIcon, MenuIcon, MessageCircleIcon, MoonIcon, PaperclipIcon, PhoneIcon, PlayIcon, RemoveIcon, RepeatIcon, Repeat1Icon, SearchIcon, SettingsIcon, ShareIcon, SlashIcon, StarIcon, SunIcon, ThreeDotsIcon, TrashIcon, UnlockIcon, createIcon } from '@/components/ui/icon';
+import { Center } from '@/components/ui/center';
+import { HStack } from '@/components/ui/hstack';
+import { VStack } from '@/components/ui/vstack';
+import { Camera, ChromeIcon, InstagramIcon, FacebookIcon } from 'lucide-react-native';
+import { Path } from 'react-native-svg';
+
+import { Tabs, TabItem } from "@/docs-components/tabs";
+import {
+  Table,
+  TableHeader,
+  TableCell,
+  TableHeaderCell,
+  TableBody,
+  TableRow,
+} from "@/docs-components/table";
+import { InlineCode } from "@/docs-components/inline-code";
 
 # Icon
 Use gluestack-ui Icon component to enhance your web and mobile app with scalable component icons. A must-have React Native icon library for modern development!
@@ -26,4 +42,225 @@ Use gluestack-ui Icon component to enhance your web and mobile app with scalable
   }
 }}
   reactLive={{ Icon, EditIcon }}
+/>
+## Installation
+
+<Tabs>
+<TabItem label="CLI">
+### Run the following command:
+  ```bash
+  npx gluestack-ui add icon
+  ```
+</TabItem>
+<TabItem label="Manual">
+### Step 1: Install the following dependencies:
+```bash
+npm i @gluestack-ui/icon
+```
+
+### Step 2: Copy and paste the following code into your project.
+
+```tsx
+<!-- Failed to load file: core-components/nativewind/icon/index.tsx  --> 
+```
+
+### Step 3: Update the import paths to match your project setup.
+</TabItem>
+</Tabs>
+
+## API Reference
+
+To use this component in your project, include the following import statement in your file.
+
+```ts
+import { Icon } from '@/components/ui/icon';
+```
+
+```ts
+export default () => <Icon as={} />;
+```
+
+### Component Props
+
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
+
+#### Icon
+
+Pre built icons provided by gluestack-ui inherits all the properties of React Native SVG's [Svg](https://github.com/software-mansion/react-native-svg/tree/main/Example) on native and [svg](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/svg) html element on web.
+
+The Icon components inherits all the properties that third party library provides and can be directly applied as props.
+
+### Features
+
+- support of props on any svg icon
+
+### Accessibility
+
+We have outlined the various features that ensure the Icon component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards.
+
+Role: img is passed
+
+<>
+<Table>
+<TableHeader>
+  <TableRow>
+    <TableHeaderCell>Prop</TableHeaderCell>
+    <TableHeaderCell>Type</TableHeaderCell>
+    <TableHeaderCell>Default</TableHeaderCell>
+    <TableHeaderCell>Description</TableHeaderCell>
+  </TableRow>
+  </TableHeader>
+  <TableBody>
+  <TableRow>
+    <TableCell><InlineCode>size</InlineCode></TableCell>
+    <TableCell>2xs | xs | sm | md | lg | xl</TableCell>
+    <TableCell>md</TableCell>
+    <TableCell>The size of the icon.</TableCell>
+  </TableRow>
+  </TableBody>
+</Table>
+</>
+
+### Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+#### All gluestack icons
+
+Below is a list of all of the icons in the library.
+
+<CodePreviewer
+  code={`function Example() {
+  return (
+    <Center>
+  <HStack className="w-[70%] flex flex-wrap">
+        <Icon as={AddIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={ArrowLeftIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={ArrowRightIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={ArrowUpIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={ArrowDownIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={ChevronsLeftIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={ChevronsRightIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={ChevronsUpDownIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={AtSignIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={PaperclipIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={BellIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={CalendarDaysIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={MessageCircleIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={CheckIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={ChevronDownIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={ChevronUpIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={ChevronLeftIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={ChevronRightIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={CloseIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={CopyIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={TrashIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={DownloadIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={GripVerticalIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={EditIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={MailIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={ExternalLinkIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={MenuIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={InfoIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={LinkIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={LockIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={RemoveIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={MoonIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={SlashIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={CheckCircleIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={PhoneIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={HelpCircleIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={RepeatIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={Repeat1Icon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={SearchIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={SettingsIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={LoaderIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={StarIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={SunIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={ClockIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={UnlockIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={EyeIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={EyeOffIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={AlertCircleIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={CloseCircleIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={ShareIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={CircleIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={FavouriteIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={GlobeIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={ThreeDotsIcon} className="text-typography-500 m-2 w-4 h-4" />
+        <Icon as={PlayIcon} className="text-typography-500 m-2 w-4 h-4" />
+  </HStack>
+  </Center>
+  );
+}`}
+  argTypes={{}}
+  reactLive={{ Icon, Center, HStack, AddIcon, AlertCircleIcon, ArrowUpIcon, ArrowDownIcon, ArrowRightIcon, ArrowLeftIcon, AtSignIcon, BellIcon, CalendarDaysIcon, CheckIcon, CheckCircleIcon, ChevronUpIcon, ChevronDownIcon, ChevronLeftIcon, ChevronRightIcon, ChevronsLeftIcon, ChevronsRightIcon, ChevronsUpDownIcon, CircleIcon, ClockIcon, CloseIcon, CloseCircleIcon, CopyIcon, DownloadIcon, EditIcon, EyeIcon, EyeOffIcon, FavouriteIcon, GlobeIcon, GripVerticalIcon, HelpCircleIcon, InfoIcon, LinkIcon, ExternalLinkIcon, LoaderIcon, LockIcon, MailIcon, MenuIcon, MessageCircleIcon, MoonIcon, PaperclipIcon, PhoneIcon, PlayIcon, RemoveIcon, RepeatIcon, Repeat1Icon, SearchIcon, SettingsIcon, ShareIcon, SlashIcon, StarIcon, SunIcon, ThreeDotsIcon, TrashIcon, UnlockIcon }}
+/>
+
+#### Lucide Icons (Recommended)
+
+[Lucide](https://lucide.dev/docs/lucide-react-native) is an open source icon library for displaying icons for react-native. `gluestack-ui` provides an easy integration with lucide icons.
+
+<CodePreviewer
+  code={`function Example() {
+  return (
+    <VStack space="md" className="items-center">
+      <Icon className="text-typography-500" size="{{size}}" as={Camera} />
+      <Icon className="text-typography-500" size="{{size}}" as={ChromeIcon} />
+      <Icon className="text-typography-500" size="{{size}}" as={InstagramIcon} />
+      <Icon className="text-typography-500" size="{{size}}" as={FacebookIcon} />
+    </VStack>
+  );
+}`}
+  argTypes={{}}
+  reactLive={{ Icon, VStack, Camera, ChromeIcon, InstagramIcon, FacebookIcon }}
+/>
+
+#### SVG & Custom Icons
+
+We can directly create Icon using `createIcon` function exported from `@/components/ui/icon` and use it by passing it in `as` prop in `Icon` component.
+CreateIcon function takes viewBox, d, path etc as parameters. We can use svgs from other icon libraries like fluent, react-icons etc.
+
+**Notes to remember while using createIcon function**
+
+- Pass svg props such as `viewBox` in `createIcon` directly.
+- Copy the svg code without the SVG tag directly into the function argument `Path` or `D` or whichever prop justifies your svg.
+- Replace HTML SVG tags (e.g., `<path>`, `<rect>` etc) with the corresponding React Native SVG components (e.g., `<Path>`, `<Rect>` etc) for native.
+- For any color property (i.e. fill, stroke etc), if you want to override that color, pass "currentColor" instead of a colorCode or className.
+
+on Web :
+`<path fill="#FF0000" d="M10 10L20 20" /> `
+
+on Native :
+`<Path fill="currentColor" d="M10 10L20 20" /> `
+
+<CodePreviewer
+  code={`function App() {
+  const GluestackIcon = createIcon({
+    viewBox: "0 0 32 32",
+    path: (
+      <>
+        <Path
+          d="M9.5 14.6642L15.9999 9.87633V12.1358L9.5 16.9236V14.6642Z"
+          fill="white"
+        />
+        <Path
+          d="M22.5 14.6642L16.0001 9.87639V12.1359L22.5 16.9237V14.6642Z"
+          fill="white"
+        />
+        <Path
+          d="M9.5 19.8641L15.9999 15.0763V17.3358L9.5 22.1236V19.8641Z"
+          fill="white"
+        />
+        <Path
+          d="M22.5 19.8642L16.0001 15.0764V17.3358L22.5 22.1237V19.8642Z"
+          fill="white"
+        />
+      </>
+    ),
+  })
+  return <Icon as={GluestackIcon} size="xl" className="text-typography-black" />
+}`}
+  argTypes={{}}
+  reactLive={{ Icon, createIcon, Path }}
 />

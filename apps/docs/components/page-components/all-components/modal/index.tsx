@@ -1,78 +1,71 @@
 import { ComponentPreviewer } from '@/components/component-previewer';
 import { Modal } from '@/components/ui/modal';
 import { ModalBackdrop } from '@/components/ui/modal';
-import { ModalBody } from '@/components/ui/modal';
 import { ModalContent } from '@/components/ui/modal';
-import { ModalCloseButton } from '@/components/ui/modal';
 import { ModalHeader } from '@/components/ui/modal';
+import { ModalCloseButton } from '@/components/ui/modal';
+import { ModalBody } from '@/components/ui/modal';
 import { ModalFooter } from '@/components/ui/modal';
 import { Button } from '@/components/ui/button';
 import { ButtonText } from '@/components/ui/button';
+import { Heading } from '@/components/ui/heading';
+import { Text } from '@/components/ui/text';
 import { Icon } from '@/components/ui/icon';
 import { CloseIcon } from '@/components/ui/icon';
-import { Center } from '@/components/ui/center';
-import { Text } from '@/components/ui/text';
 
 export default function Example() {
   return (
     <ComponentPreviewer
-      code={`function App() {
-  const [showModal, setShowModal] = React.useState(false)
+      code={`function Example() {
+  const [showModal, setShowModal] = React.useState(false);
   return (
-    <Center className="h-[300px]">
+    <>
       <Button onPress={() => setShowModal(true)}>
-        <ButtonText>Show Modal</ButtonText>
+        <ButtonText>Open Modal</ButtonText>
       </Button>
       <Modal
         isOpen={showModal}
         onClose={() => {
-          setShowModal(false)
+          setShowModal(false);
         }}
         size="{{size}}"
       >
         <ModalBackdrop />
         <ModalContent>
           <ModalHeader>
-            <Text  className="text-typography-950">
-              Invite your team
-            </Text>
+            <Heading size="lg">Modal Title</Heading>
             <ModalCloseButton>
-              <Icon
-                as={CloseIcon}
-                size="md"
-                className="stroke-background-400 group-[:hover]/modal-close-button:stroke-background-700 group-[:active]/modal-close-button:stroke-background-900 group-[:focus-visible]/modal-close-button:stroke-background-900"
-              />
+              <Icon as={CloseIcon} />
             </ModalCloseButton>
           </ModalHeader>
           <ModalBody>
-            <Text size="sm" className="text-typography-500">
-              Elevate user interactions with our versatile modals. Seamlessly
-              integrate notifications, forms, and media displays. Make an impact
-              effortlessly.
+            <Text>
+              This is the modal body. You can add any content here.
             </Text>
           </ModalBody>
           <ModalFooter>
             <Button
               variant="outline"
               action="secondary"
+              mr="$3"
               onPress={() => {
-                setShowModal(false)
+                setShowModal(false);
               }}
             >
               <ButtonText>Cancel</ButtonText>
             </Button>
             <Button
               onPress={() => {
-                setShowModal(false)
+                setShowModal(false);
               }}
             >
-              <ButtonText>Explore</ButtonText>
+              <ButtonText>Save</ButtonText>
             </Button>
           </ModalFooter>
         </ModalContent>
       </Modal>
-    </Center>
-  )
+    </>
+  );
 }`}
       argTypes={{
   "size": {
@@ -89,7 +82,7 @@ export default function Example() {
     "defaultValue": "md"
   }
 }}
-      reactLive={{ Modal, ModalBackdrop, ModalBody, ModalContent, ModalCloseButton, ModalHeader, ModalFooter, Button, ButtonText, Icon, CloseIcon, Center, Text }}
+      reactLive={{ Modal, ModalBackdrop, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter, Button, ButtonText, Heading, Text, Icon, CloseIcon }}
     />
   );
 }
