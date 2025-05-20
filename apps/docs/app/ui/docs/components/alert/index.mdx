@@ -368,13 +368,15 @@ Contains all alert related layout style props and actions. It inherits all the p
 
 <>
 <Table>
-<TableBody>
+  <TableHeader>
   <TableRow>
     <TableHeaderCell>Prop</TableHeaderCell>
     <TableHeaderCell>Type</TableHeaderCell>
     <TableHeaderCell>Default</TableHeaderCell>
     <TableHeaderCell>Description</TableHeaderCell>
   </TableRow>
+  </TableHeader>
+  <TableBody>
   <TableRow>
     <TableCell><InlineCode>action</InlineCode></TableCell>
     <TableCell>error | warning | success | info | muted</TableCell>
