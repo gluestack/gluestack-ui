@@ -1,0 +1,8 @@
+{
+  "reactLive": {
+    "Pressable": "@/components/ui/pressable",
+    "Text": "@/components/ui/text",
+    "Box": "@/components/ui/box",
+    "VStack": "@/components/ui/vstack"
+  }
+} 

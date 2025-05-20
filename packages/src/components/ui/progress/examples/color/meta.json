@@ -1,0 +1,7 @@
+{
+  "reactLive": {
+    "Progress": "@/components/ui/progress",
+    "ProgressFilledTrack": "@/components/ui/progress",
+    "VStack": "@/components/ui/vstack"
+  }
+} 
