@@ -1,0 +1,12 @@
+{
+  
+  "argTypes": {},
+  "reactLive": {
+    "Icon": "@/components/ui/icon",
+    "VStack": "@/components/ui/vstack",
+    "Camera": "lucide-react-native",
+    "ChromeIcon": "lucide-react-native",
+    "InstagramIcon": "lucide-react-native",
+    "FacebookIcon": "lucide-react-native"
+  }
+} 
