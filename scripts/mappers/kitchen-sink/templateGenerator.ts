@@ -1,7 +1,6 @@
 import path from "path";
 import * as fileOps from "../utils/fileOperations";
 import { componentPreviewerTemplate, pageContentTemplate, codePreviewerTemplate } from "./templates";
-import { CodePreviewer } from '@/docs-components/code-previewer';
 
 interface ImportMap {
   [key: string]: string[];

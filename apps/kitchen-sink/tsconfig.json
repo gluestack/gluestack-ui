@@ -1,7 +1,18 @@
 {
-  "extends": "../../tsconfig.json",
+  "extends": "expo/tsconfig.base",
   "compilerOptions": {
-    "jsx": "react-jsx"
+    "strict": true,
+    "paths": {
+      "@/*": [
+        "./*"
+      ],
+      "@/docs-components/*": [
+        "./components/docs-components/*"
+      ],
+      "tailwind.config": [
+        "./tailwind.config.js"
+      ]
+    }
   },
   "include": [
     "**/*.ts",
@@ -9,9 +20,5 @@
     ".expo/types/**/*.ts",
     "expo-env.d.ts",
     "nativewind-env.d.ts"
-  ],
-  "paths": {
-      "@/*": ["./*"],
-      "@/docs-components/*": ["./components/docs-components/*"]
-    }
+  ]
 }
