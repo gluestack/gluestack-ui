@@ -1,7 +1,11 @@
 import { CodePreviewer } from '@/components/custom/code-previewer';
 import { Image } from '@/components/ui/image';
 
-<CodePreviewer
+
+export default function ComponentExamples() {
+  return (
+    <div>
+      <CodePreviewer
   code={`function Example() {
   return (
     <Image
@@ -49,3 +53,6 @@ import { Image } from '@/components/ui/image';
   argTypes={{}}
   reactLive={{ Image }}
 />
+    </div>
+  );
+}

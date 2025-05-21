@@ -2,7 +2,11 @@ import { CodePreviewer } from '@/components/custom/code-previewer';
 import { VStack } from '@/components/ui/vstack';
 import { Box } from '@/components/ui/box';
 
-<CodePreviewer
+
+export default function ComponentExamples() {
+  return (
+    <div>
+      <CodePreviewer
   code={`function Example() {
   return (
     <Box className="justify-center h-80">
@@ -40,3 +44,6 @@ import { Box } from '@/components/ui/box';
 }}
   reactLive={{ VStack, Box }}
 />
+    </div>
+  );
+}

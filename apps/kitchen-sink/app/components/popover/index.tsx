@@ -12,7 +12,11 @@ import { Input, InputField } from '@/components/ui/input';
 import { Image } from '@/components/ui/image';
 import { HStack } from '@/components/ui/hstack';
 
-<CodePreviewer
+
+export default function ComponentExamples() {
+  return (
+    <div>
+      <CodePreviewer
   code={`function App() {
   const [isOpen, setIsOpen] = React.useState(false)
   const handleOpen = () => {
@@ -395,3 +399,6 @@ import { HStack } from '@/components/ui/hstack';
   argTypes={{}}
   reactLive={{ Popover, PopoverBackdrop, PopoverContent, PopoverHeader, PopoverBody, Button, ButtonText, ButtonIcon, Heading, Text, HStack, VStack, Input, InputField, Avatar, AvatarFallbackText, AvatarImage, ShareIcon, ChevronDownIcon }}
 />
+    </div>
+  );
+}

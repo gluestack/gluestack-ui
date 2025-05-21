@@ -1,7 +1,11 @@
 import { CodePreviewer } from '@/components/custom/code-previewer';
 import { Switch } from '@/components/ui/switch';
 
-<CodePreviewer
+
+export default function ComponentExamples() {
+  return (
+    <div>
+      <CodePreviewer
   code={`function Example() {
   return (
     <Switch
@@ -75,3 +79,6 @@ import { Switch } from '@/components/ui/switch';
 }}
   reactLive={{ Switch }}
 />
+    </div>
+  );
+}

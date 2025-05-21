@@ -1,7 +1,11 @@
 import { CodePreviewer } from '@/components/custom/code-previewer';
 import { Table, TableBody, TableHeader, TableRow, TableHead, TableData, TableFooter } from '@/components/ui/table';
 
-<CodePreviewer
+
+export default function ComponentExamples() {
+  return (
+    <div>
+      <CodePreviewer
   code={`function Example() {
   return (
     <Table className="w-full">
@@ -52,3 +56,6 @@ import { Table, TableBody, TableHeader, TableRow, TableHead, TableData, TableFoo
   argTypes={{}}
   reactLive={{ Table, TableBody, TableHeader, TableRow, TableHead, TableData, TableFooter }}
 />
+    </div>
+  );
+}

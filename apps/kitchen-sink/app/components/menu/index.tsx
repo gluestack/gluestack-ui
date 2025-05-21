@@ -4,7 +4,11 @@ import { Button, ButtonText, ButtonIcon } from '@/components/ui/button';
 import { Icon, AddIcon, GlobeIcon, PlayIcon, SettingsIcon, MenuIcon, HelpCircleIcon, MessageCircleIcon } from '@/components/ui/icon';
 import { Badge, BadgeText } from '@/components/ui/badge';
 
-<CodePreviewer
+
+export default function ComponentExamples() {
+  return (
+    <div>
+      <CodePreviewer
   code={`function Example() {
   return (
     <Menu
@@ -243,3 +247,6 @@ import { Badge, BadgeText } from '@/components/ui/badge';
   argTypes={{}}
   reactLive={{ Menu, MenuItem, MenuItemLabel, MenuSeparator, Button, ButtonText, Icon, SettingsIcon, HelpCircleIcon, MessageCircleIcon }}
 />
+    </div>
+  );
+}

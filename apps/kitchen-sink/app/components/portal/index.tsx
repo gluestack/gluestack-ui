@@ -5,7 +5,11 @@ import { Text } from '@/components/ui/text';
 import { Button, ButtonText, ButtonIcon } from '@/components/ui/button';
 import { CloseIcon } from '@/components/ui/icon';
 
-<CodePreviewer
+
+export default function ComponentExamples() {
+  return (
+    <div>
+      <CodePreviewer
   code={`function App() {
   const [visible, setVisible] = React.useState(false)
   const handleClose = () => setVisible(false)
@@ -33,3 +37,6 @@ import { CloseIcon } from '@/components/ui/icon';
   argTypes={{}}
   reactLive={{ Portal, HStack, Text, Button, ButtonText, ButtonIcon, CloseIcon }}
 />
+    </div>
+  );
+}

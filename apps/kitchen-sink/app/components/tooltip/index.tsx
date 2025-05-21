@@ -2,7 +2,11 @@ import { CodePreviewer } from '@/components/custom/code-previewer';
 import { Tooltip, TooltipContent, TooltipText } from '@/components/ui/tooltip';
 import { Button, ButtonText } from '@/components/ui/button';
 
-<CodePreviewer
+
+export default function ComponentExamples() {
+  return (
+    <div>
+      <CodePreviewer
   code={`function Example() {
   return (
     <Tooltip
@@ -45,3 +49,6 @@ import { Button, ButtonText } from '@/components/ui/button';
 }}
   reactLive={{ Tooltip, TooltipContent, TooltipText, Button, ButtonText }}
 />
+    </div>
+  );
+}

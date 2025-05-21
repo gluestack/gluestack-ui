@@ -2,7 +2,11 @@ import { CodePreviewer } from '@/components/custom/code-previewer';
 import { Radio, RadioGroup, RadioIndicator, RadioIcon, RadioLabel } from '@/components/ui/radio';
 import { CircleIcon } from '@/components/ui/icon';
 
-<CodePreviewer
+
+export default function ComponentExamples() {
+  return (
+    <div>
+      <CodePreviewer
   code={`function Example() {
   return (
     <RadioGroup>
@@ -42,3 +46,6 @@ import { CircleIcon } from '@/components/ui/icon';
 }}
   reactLive={{ Radio, RadioGroup, RadioIndicator, RadioIcon, RadioLabel, CircleIcon }}
 />
+    </div>
+  );
+}

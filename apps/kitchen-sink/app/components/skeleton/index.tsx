@@ -3,7 +3,11 @@ import { Skeleton, SkeletonText } from '@/components/ui/skeleton';
 import { Box } from '@/components/ui/box';
 import { HStack } from '@/components/ui/hstack';
 
-<CodePreviewer
+
+export default function ComponentExamples() {
+  return (
+    <div>
+      <CodePreviewer
   code={`function Example() {
   return (
     <Box className="w-[325px] gap-4 p-3 rounded-md bg-background-100">
@@ -19,3 +23,6 @@ import { HStack } from '@/components/ui/hstack';
   argTypes={{}}
   reactLive={{ Skeleton, SkeletonText, Box, HStack }}
 />
+    </div>
+  );
+}

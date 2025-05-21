@@ -6,7 +6,11 @@ import { VStack } from '@/components/ui/vstack';
 import { Camera, ChromeIcon, InstagramIcon, FacebookIcon } from 'lucide-react-native';
 import { Path } from 'react-native-svg';
 
-<CodePreviewer
+
+export default function ComponentExamples() {
+  return (
+    <div>
+      <CodePreviewer
   code={`function Example() {
   return (
      <Icon as={EditIcon} size="{{size}}" />
@@ -143,3 +147,6 @@ import { Path } from 'react-native-svg';
   argTypes={{}}
   reactLive={{ Icon, createIcon, Path }}
 />
+    </div>
+  );
+}

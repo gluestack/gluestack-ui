@@ -2,7 +2,11 @@ import { CodePreviewer } from '@/components/custom/code-previewer';
 import { Slider, SliderTrack, SliderFilledTrack, SliderThumb } from '@/components/ui/slider';
 import { Center } from '@/components/ui/center';
 
-<CodePreviewer
+
+export default function ComponentExamples() {
+  return (
+    <div>
+      <CodePreviewer
   code={`function Example() {
   return (
     <Center className="w-[300px] h-[150px]">
@@ -58,3 +62,6 @@ import { Center } from '@/components/ui/center';
 }}
   reactLive={{ Slider, SliderTrack, SliderFilledTrack, SliderThumb, Center }}
 />
+    </div>
+  );
+}

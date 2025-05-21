@@ -12,7 +12,11 @@ import { Box } from '@/components/ui/box';
 import { VStack } from '@/components/ui/vstack';
 import { Pressable } from '@/components/ui/pressable';
 
-<CodePreviewer
+
+export default function ComponentExamples() {
+  return (
+    <div>
+      <CodePreviewer
   code={`function Example() {
   const [showModal, setShowModal] = React.useState(false);
   return (
@@ -477,3 +481,6 @@ import { Pressable } from '@/components/ui/pressable';
   argTypes={{}}
   reactLive={{ Modal, ModalBackdrop, ModalContent, ModalHeader, ModalCloseButton, ModalBody, Button, ButtonText, Heading, Text, VStack, Icon, CloseIcon, CopyIcon, Input, InputField, Pressable }}
 />
+    </div>
+  );
+}

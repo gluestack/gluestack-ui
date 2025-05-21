@@ -2,7 +2,11 @@ import { CodePreviewer } from '@/components/custom/code-previewer';
 import { Grid, GridItem } from '@/components/ui/grid';
 import { Text } from '@/components/ui/text';
 
-<CodePreviewer
+
+export default function ComponentExamples() {
+  return (
+    <div>
+      <CodePreviewer
   code={`function Example() {
   return (
     <Grid
@@ -263,3 +267,6 @@ import { Text } from '@/components/ui/text';
   argTypes={{}}
   reactLive={{ Grid, GridItem, Text }}
 />
+    </div>
+  );
+}

@@ -1,7 +1,11 @@
 import { CodePreviewer } from '@/components/custom/code-previewer';
 import { Textarea, TextareaInput } from '@/components/ui/textarea';
 
-<CodePreviewer
+
+export default function ComponentExamples() {
+  return (
+    <div>
+      <CodePreviewer
   code={`function Example() {
   return (
     <Textarea
@@ -49,3 +53,6 @@ import { Textarea, TextareaInput } from '@/components/ui/textarea';
 }}
   reactLive={{ Textarea, TextareaInput }}
 />
+    </div>
+  );
+}

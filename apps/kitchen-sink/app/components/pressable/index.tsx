@@ -4,7 +4,11 @@ import { Text } from '@/components/ui/text';
 import { Box } from '@/components/ui/box';
 import { VStack } from '@/components/ui/vstack';
 
-<CodePreviewer
+
+export default function ComponentExamples() {
+  return (
+    <div>
+      <CodePreviewer
   code={`function Example() {
   return (
     <Pressable
@@ -34,3 +38,6 @@ import { VStack } from '@/components/ui/vstack';
   argTypes={{}}
   reactLive={{ Pressable, Text, Box, VStack }}
 />
+    </div>
+  );
+}

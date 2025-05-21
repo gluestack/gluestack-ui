@@ -5,7 +5,11 @@ import { VStack } from '@/components/ui/vstack';
 import { Text } from '@/components/ui/text';
 import { Heading } from '@/components/ui/heading';
 
-<CodePreviewer
+
+export default function ComponentExamples() {
+  return (
+    <div>
+      <CodePreviewer
   code={`function Example() {
   return (
     <Center className="w-[300px] h-[150px]">
@@ -97,3 +101,6 @@ import { Heading } from '@/components/ui/heading';
   argTypes={{}}
   reactLive={{ Progress, ProgressFilledTrack, VStack, Heading, Text }}
 />
+    </div>
+  );
+}

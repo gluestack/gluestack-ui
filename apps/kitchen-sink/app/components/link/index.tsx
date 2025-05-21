@@ -5,7 +5,11 @@ import { Text } from '@/components/ui/text';
 import { Icon } from '@/components/ui/icon';
 import { ArrowUpRight } from 'lucide-react-native';
 
-<CodePreviewer
+
+export default function ComponentExamples() {
+  return (
+    <div>
+      <CodePreviewer
   code={`function Example() {
   return (
     <Link href="https://gluestack.io/">
@@ -46,3 +50,6 @@ import { ArrowUpRight } from 'lucide-react-native';
   argTypes={{}}
   reactLive={{ Link, LinkText, HStack, Text, Icon, ArrowUpRight }}
 />
+    </div>
+  );
+}

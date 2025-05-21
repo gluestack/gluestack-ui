@@ -2,7 +2,11 @@ import { CodePreviewer } from '@/components/custom/code-previewer';
 import { Toast, ToastTitle, ToastDescription, useToast } from '@/components/ui/toast';
 import { Button, ButtonText } from '@/components/ui/button';
 
-<CodePreviewer
+
+export default function ComponentExamples() {
+  return (
+    <div>
+      <CodePreviewer
   code={`function Example() {
   const toast = useToast()
   const [toastId, setToastId] = React.useState(0)
@@ -64,3 +68,6 @@ import { Button, ButtonText } from '@/components/ui/button';
 }}
   reactLive={{ Toast, ToastTitle, ToastDescription, useToast, Button, ButtonText }}
 />
+    </div>
+  );
+}

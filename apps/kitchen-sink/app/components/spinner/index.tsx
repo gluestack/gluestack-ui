@@ -1,7 +1,11 @@
 import { CodePreviewer } from '@/components/custom/code-previewer';
 import { Spinner } from '@/components/ui/spinner';
 
-<CodePreviewer
+
+export default function ComponentExamples() {
+  return (
+    <div>
+      <CodePreviewer
   code={`function Example() {
   return <Spinner size="{{size}}" color="{{color}}" />
 }`}
@@ -34,3 +38,6 @@ import { Spinner } from '@/components/ui/spinner';
 }}
   reactLive={{ Spinner }}
 />
+    </div>
+  );
+}

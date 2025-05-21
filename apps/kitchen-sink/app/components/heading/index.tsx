@@ -2,7 +2,11 @@ import { CodePreviewer } from '@/components/custom/code-previewer';
 import { Heading } from '@/components/ui/heading';
 import { Center } from '@/components/ui/center';
 
-<CodePreviewer
+
+export default function ComponentExamples() {
+  return (
+    <div>
+      <CodePreviewer
   code={`function Example() {
   return <Heading>I am a Heading</Heading>
 }`}
@@ -26,3 +30,6 @@ return (
   argTypes={{}}
   reactLive={{ Heading, Center }}
 />
+    </div>
+  );
+}

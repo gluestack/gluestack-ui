@@ -9,7 +9,11 @@ import { Checkbox, CheckboxGroup, CheckboxIndicator, CheckboxLabel, CheckboxIcon
 import { Textarea, TextareaInput } from '@/components/ui/textarea';
 import { HStack } from '@/components/ui/hstack';
 
-<CodePreviewer
+
+export default function ComponentExamples() {
+  return (
+    <div>
+      <CodePreviewer
   code={`function App () {
   const [isInvalid, setIsInvalid] = React.useState(false);
   const [inputValue, setInputValue] = React.useState("12345");
@@ -290,3 +294,6 @@ import { HStack } from '@/components/ui/hstack';
   argTypes={{}}
   reactLive={{ FormControl, Button, ButtonText, HStack }}
 />
+    </div>
+  );
+}

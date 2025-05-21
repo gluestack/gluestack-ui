@@ -2,7 +2,11 @@ import { CodePreviewer } from '@/components/custom/code-previewer';
 import { HStack } from '@/components/ui/hstack';
 import { Box } from '@/components/ui/box';
 
-<CodePreviewer
+
+export default function ComponentExamples() {
+  return (
+    <div>
+      <CodePreviewer
   code={`function Example() {
   return (
     <HStack space="{{space}}" reversed={ {{isReversed}} }>
@@ -52,3 +56,6 @@ import { Box } from '@/components/ui/box';
   argTypes={{}}
   reactLive={{ HStack, Box }}
 />
+    </div>
+  );
+}
