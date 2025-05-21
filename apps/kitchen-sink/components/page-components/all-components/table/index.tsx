@@ -1,4 +1,5 @@
 import { ComponentPreviewer } from '@/components/custom/component-previewer';
+
 import { Table } from '@/components/ui/table';
 import { TableBody } from '@/components/ui/table';
 import { TableHeader } from '@/components/ui/table';
@@ -9,8 +10,8 @@ import { TableFooter } from '@/components/ui/table';
 
 export default function Example() {
   return (
-    <ComponentPreviewer
-      code={`function Example() {
+    <ComponentPreviewer props={{}}>
+      {props => {
   return (
     <Table className="w-full">
       <TableHeader>
@@ -56,9 +57,7 @@ export default function Example() {
       </TableFooter>
     </Table>
   )
-}`}
-      argTypes={{}}
-      reactLive={{ Table, TableBody, TableHeader, TableRow, TableHead, TableData, TableFooter }}
-    />
+}
+    </ComponentPreviewer>
   );
 }

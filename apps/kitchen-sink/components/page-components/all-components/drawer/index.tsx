@@ -1,4 +1,5 @@
 import { ComponentPreviewer } from '@/components/custom/component-previewer';
+
 import { Drawer } from '@/components/ui/drawer';
 import { DrawerBackdrop } from '@/components/ui/drawer';
 import { DrawerContent } from '@/components/ui/drawer';
@@ -15,8 +16,8 @@ import { CloseIcon } from '@/components/ui/icon';
 
 export default function Example() {
   return (
-    <ComponentPreviewer
-      code={`function Example() {
+    <ComponentPreviewer props={{}}>
+      {props => {
   const [showDrawer, setShowDrawer] = React.useState(false);
   return (
     <>
@@ -56,11 +57,7 @@ export default function Example() {
           </DrawerFooter>
         </DrawerContent>
       </Drawer>
-    </>
-  );
-}`}
-      argTypes={{}}
-      reactLive={{ Drawer, DrawerBackdrop, DrawerContent, DrawerHeader, DrawerBody, DrawerFooter, DrawerCloseButton, Button, ButtonText, Heading, Text, Icon, CloseIcon }}
-    />
+    </>}
+    </ComponentPreviewer>
   );
 }

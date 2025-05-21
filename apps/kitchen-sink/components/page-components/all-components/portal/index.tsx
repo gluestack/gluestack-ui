@@ -1,4 +1,5 @@
 import { ComponentPreviewer } from '@/components/custom/component-previewer';
+
 import { Portal } from '@/components/ui/portal';
 import { HStack } from '@/components/ui/hstack';
 import { Text } from '@/components/ui/text';
@@ -9,8 +10,8 @@ import { CloseIcon } from '@/components/ui/icon';
 
 export default function Example() {
   return (
-    <ComponentPreviewer
-      code={`function App() {
+    <ComponentPreviewer props={{}}>
+      {props => function App() {
   const [visible, setVisible] = React.useState(false)
   const handleClose = () => setVisible(false)
   return (
@@ -33,9 +34,7 @@ export default function Example() {
       </Button>
     </>
   )
-}`}
-      argTypes={{}}
-      reactLive={{ Portal, HStack, Text, Button, ButtonText, ButtonIcon, CloseIcon }}
-    />
+}
+    </ComponentPreviewer>
   );
 }

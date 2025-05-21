@@ -1,24 +1,11 @@
 import { ComponentPreviewer } from '@/components/custom/component-previewer';
+
 import { Textarea } from '@/components/ui/textarea';
 import { TextareaInput } from '@/components/ui/textarea';
 
 export default function Example() {
   return (
-    <ComponentPreviewer
-      code={`function Example() {
-  return (
-    <Textarea
-      size="{{size}}"
-      isReadOnly={ {{isReadOnly}} }
-      isInvalid={ {{isInvalid}} }
-      isDisabled={ {{isDisabled}} }
-      className="w-64"
-    >
-      <TextareaInput placeholder="Your text goes here..." />
-    </Textarea>
-  )
-}`}
-      argTypes={{
+    <ComponentPreviewer props={{
   "size": {
     "control": {
       "type": "select"
@@ -49,8 +36,20 @@ export default function Example() {
     },
     "defaultValue": false
   }
-}}
-      reactLive={{ Textarea, TextareaInput }}
-    />
+}}>
+      {props => {
+  return (
+    <Textarea
+      size={props.size}
+      isReadOnly={ {{isReadOnly}} }
+      isInvalid={ {{isInvalid}} }
+      isDisabled={ {{isDisabled}} }
+      className="w-64"
+    >
+      <TextareaInput placeholder="Your text goes here..." />
+    </Textarea>
+  )
+}
+    </ComponentPreviewer>
   );
 }

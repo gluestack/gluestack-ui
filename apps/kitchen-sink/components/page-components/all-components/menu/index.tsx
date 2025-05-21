@@ -1,4 +1,5 @@
 import { ComponentPreviewer } from '@/components/custom/component-previewer';
+
 import { Menu } from '@/components/ui/menu';
 import { MenuItem } from '@/components/ui/menu';
 import { MenuItemLabel } from '@/components/ui/menu';
@@ -12,11 +13,32 @@ import { SettingsIcon } from '@/components/ui/icon';
 
 export default function Example() {
   return (
-    <ComponentPreviewer
-      code={`function Example() {
+    <ComponentPreviewer props={{
+  "placement": {
+    "control": {
+      "type": "select"
+    },
+    "options": [
+      "top",
+      "bottom",
+      "left",
+      "right",
+      "top start",
+      "top end",
+      "bottom start",
+      "bottom end",
+      "left start",
+      "left end",
+      "right start",
+      "right end"
+    ],
+    "defaultValue": "top"
+  }
+}}>
+      {props => {
   return (
     <Menu
-      placement="{{placement}}"
+      placement={props.placement}
       offset={5}
       disabledKeys={["Settings"]}
       trigger={({ ...triggerProps }) => {
@@ -45,30 +67,7 @@ export default function Example() {
       </MenuItem>
     </Menu>
   )
-}`}
-      argTypes={{
-  "placement": {
-    "control": {
-      "type": "select"
-    },
-    "options": [
-      "top",
-      "bottom",
-      "left",
-      "right",
-      "top start",
-      "top end",
-      "bottom start",
-      "bottom end",
-      "left start",
-      "left end",
-      "right start",
-      "right end"
-    ],
-    "defaultValue": "top"
-  }
-}}
-      reactLive={{ Menu, MenuItem, MenuItemLabel, Button, ButtonText, Icon, AddIcon, GlobeIcon, PlayIcon, SettingsIcon }}
-    />
+}
+    </ComponentPreviewer>
   );
 }

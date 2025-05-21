@@ -1,22 +1,10 @@
 import { ComponentPreviewer } from '@/components/custom/component-previewer';
+
 import { Switch } from '@/components/ui/switch';
 
 export default function Example() {
   return (
-    <ComponentPreviewer
-      code={`function Example() {
-  return (
-    <Switch
-      size="{{size}}"
-      isDisabled={ {{isDisabled}} }
-      trackColor="{{trackColor}}"
-      thumbColor="{{thumbColor}}"
-      activeThumbColor="{{activeThumbColor}}"
-      ios_backgroundColor="{{ios_backgroundColor}}"
-    />
-  )
-}`}
-      argTypes={{
+    <ComponentPreviewer props={{
   "size": {
     "control": {
       "type": "select"
@@ -74,8 +62,19 @@ export default function Example() {
     ],
     "defaultValue": "#E2E8F0"
   }
-}}
-      reactLive={{ Switch }}
+}}>
+      {props => {
+  return (
+    <Switch
+      size={props.size}
+      isDisabled={ {{isDisabled}} }
+      trackColor={props.trackColor}
+      thumbColor={props.thumbColor}
+      activeThumbColor={props.activeThumbColor}
+      ios_backgroundColor={props.ios_backgroundColor}
     />
+  )
+}
+    </ComponentPreviewer>
   );
 }

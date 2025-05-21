@@ -1,4 +1,5 @@
 import { ComponentPreviewer } from '@/components/custom/component-previewer';
+
 import { Accordion } from '@/components/ui/accordion';
 import { AccordionItem } from '@/components/ui/accordion';
 import { AccordionHeader } from '@/components/ui/accordion';
@@ -13,12 +14,56 @@ import { ChevronUpIcon } from '@/components/ui/icon';
 
 export default function Example() {
   return (
-    <ComponentPreviewer
-      code={`function Example() {
+    <ComponentPreviewer props={{
+  "size": {
+    "control": {
+      "type": "select"
+    },
+    "options": [
+      "sm",
+      "md",
+      "lg"
+    ],
+    "defaultValue": "md"
+  },
+  "variant": {
+    "control": {
+      "type": "select"
+    },
+    "options": [
+      "filled",
+      "unfilled"
+    ],
+    "defaultValue": "filled"
+  },
+  "type": {
+    "control": {
+      "type": "select"
+    },
+    "options": [
+      "single",
+      "multiple"
+    ],
+    "defaultValue": "single"
+  },
+  "isCollapsible": {
+    "control": {
+      "type": "boolean"
+    },
+    "defaultValue": true
+  },
+  "isDisabled": {
+    "control": {
+      "type": "boolean"
+    },
+    "defaultValue": false
+  }
+}}>
+      {props => {
   return (
     <Accordion
-      size="{{size}}"
-      variant="{{variant}}"
+      size={props.size}
+      variant={props.variant}
       type="single"
       isCollapsible={ {{isCollapsible}} }
       isDisabled={ {{isDisabled}} }
@@ -80,53 +125,7 @@ export default function Example() {
       </AccordionItem>
     </Accordion>
   )
-}`}
-      argTypes={{
-  "size": {
-    "control": {
-      "type": "select"
-    },
-    "options": [
-      "sm",
-      "md",
-      "lg"
-    ],
-    "defaultValue": "md"
-  },
-  "variant": {
-    "control": {
-      "type": "select"
-    },
-    "options": [
-      "filled",
-      "unfilled"
-    ],
-    "defaultValue": "filled"
-  },
-  "type": {
-    "control": {
-      "type": "select"
-    },
-    "options": [
-      "single",
-      "multiple"
-    ],
-    "defaultValue": "single"
-  },
-  "isCollapsible": {
-    "control": {
-      "type": "boolean"
-    },
-    "defaultValue": true
-  },
-  "isDisabled": {
-    "control": {
-      "type": "boolean"
-    },
-    "defaultValue": false
-  }
-}}
-      reactLive={{ Accordion, AccordionItem, AccordionHeader, AccordionTrigger, AccordionTitleText, AccordionContent, AccordionContentText, AccordionIcon, Divider, ChevronDownIcon, ChevronUpIcon }}
-    />
+}
+    </ComponentPreviewer>
   );
 }

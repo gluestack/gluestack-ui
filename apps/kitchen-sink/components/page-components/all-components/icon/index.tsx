@@ -1,16 +1,11 @@
 import { ComponentPreviewer } from '@/components/custom/component-previewer';
+
 import { Icon } from '@/components/ui/icon';
 import { EditIcon } from '@/components/ui/icon';
 
 export default function Example() {
   return (
-    <ComponentPreviewer
-      code={`function Example() {
-  return (
-     <Icon as={EditIcon} size="{{size}}" />
-  )
-}`}
-      argTypes={{
+    <ComponentPreviewer props={{
   "size": {
     "control": {
       "type": "select"
@@ -24,8 +19,12 @@ export default function Example() {
     ],
     "defaultValue": "md"
   }
-}}
-      reactLive={{ Icon, EditIcon }}
-    />
+}}>
+      {props => {
+  return (
+     <Icon as={EditIcon} size={props.size} />
+  )
+}
+    </ComponentPreviewer>
   );
 }

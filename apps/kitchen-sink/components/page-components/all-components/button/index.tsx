@@ -1,18 +1,11 @@
 import { ComponentPreviewer } from '@/components/custom/component-previewer';
+
 import { Button } from '@/components/ui/button';
 import { ButtonText } from '@/components/ui/button';
 
 export default function Example() {
   return (
-    <ComponentPreviewer
-      code={`function Example() {
-  return (
-    <Button variant="{{variant}}" size="{{size}}" action="{{action}}">
-        <ButtonText>Button Text</ButtonText>
-    </Button>
-  )
-}`}
-      argTypes={{
+    <ComponentPreviewer props={{
   "variant": {
     "control": {
       "type": "select"
@@ -48,8 +41,14 @@ export default function Example() {
     ],
     "defaultValue": "md"
   }
-}}
-      reactLive={{ Button, ButtonText }}
-    />
+}}>
+      {props => {
+  return (
+    <Button variant={props.variant} size={props.size} action={props.action}>
+        <ButtonText>Button Text</ButtonText>
+    </Button>
+  )
+}
+    </ComponentPreviewer>
   );
 }

@@ -1,4 +1,5 @@
 import { ComponentPreviewer } from '@/components/custom/component-previewer';
+
 import { Popover } from '@/components/ui/popover';
 import { PopoverBackdrop } from '@/components/ui/popover';
 import { PopoverArrow } from '@/components/ui/popover';
@@ -10,44 +11,7 @@ import { Text } from '@/components/ui/text';
 
 export default function Example() {
   return (
-    <ComponentPreviewer
-      code={`function App() {
-  const [isOpen, setIsOpen] = React.useState(false)
-  const handleOpen = () => {
-    setIsOpen(true)
-  }
-  const handleClose = () => {
-    setIsOpen(false)
-  }
-  return (
-    <Popover
-      isOpen={isOpen}
-      onClose={handleClose}
-      onOpen={handleOpen}
-      placement="{{placement}}"
-      size="{{size}}"
-      trigger={(triggerProps) => {
-        return (
-          <Button {...triggerProps}>
-            <ButtonText>Open Popover</ButtonText>
-          </Button>
-        )
-      }}
-    >
-      <PopoverBackdrop />
-      <PopoverContent>
-        <PopoverArrow />
-        <PopoverBody>
-          <Text className="text-typography-900">
-            Alex, Annie and many others are already enjoying the Pro features,
-            don't miss out on the fun!
-          </Text>
-        </PopoverBody>
-      </PopoverContent>
-    </Popover>
-  )
-}`}
-      argTypes={{
+    <ComponentPreviewer props={{
   "size": {
     "control": {
       "type": "select"
@@ -81,8 +45,43 @@ export default function Example() {
     ],
     "defaultValue": "bottom"
   }
-}}
-      reactLive={{ Popover, PopoverBackdrop, PopoverArrow, PopoverBody, PopoverContent, Button, ButtonText, Text }}
-    />
+}}>
+      {props => function App() {
+  const [isOpen, setIsOpen] = React.useState(false)
+  const handleOpen = () => {
+    setIsOpen(true)
+  }
+  const handleClose = () => {
+    setIsOpen(false)
+  }
+  return (
+    <Popover
+      isOpen={isOpen}
+      onClose={handleClose}
+      onOpen={handleOpen}
+      placement={props.placement}
+      size={props.size}
+      trigger={(triggerProps) => {
+        return (
+          <Button {...triggerProps}>
+            <ButtonText>Open Popover</ButtonText>
+          </Button>
+        )
+      }}
+    >
+      <PopoverBackdrop />
+      <PopoverContent>
+        <PopoverArrow />
+        <PopoverBody>
+          <Text className="text-typography-900">
+            Alex, Annie and many others are already enjoying the Pro features,
+            don't miss out on the fun!
+          </Text>
+        </PopoverBody>
+      </PopoverContent>
+    </Popover>
+  )
+}
+    </ComponentPreviewer>
   );
 }

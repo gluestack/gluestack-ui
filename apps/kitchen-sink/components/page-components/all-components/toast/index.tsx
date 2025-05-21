@@ -1,4 +1,5 @@
 import { ComponentPreviewer } from '@/components/custom/component-previewer';
+
 import { Toast } from '@/components/ui/toast';
 import { ToastTitle } from '@/components/ui/toast';
 import { ToastDescription } from '@/components/ui/toast';
@@ -8,42 +9,7 @@ import { ButtonText } from '@/components/ui/button';
 
 export default function Example() {
   return (
-    <ComponentPreviewer
-      code={`function Example() {
-  const toast = useToast()
-  const [toastId, setToastId] = React.useState(0)
-  const handleToast = () => {
-    if (!toast.isActive(toastId)) {
-      showNewToast()
-    }
-  }
-  const showNewToast = () => {
-    const newId = Math.random()
-    setToastId(newId)
-    toast.show({
-      id: newId,
-      placement: "top",
-      duration: 3000,
-      render: ({ id }) => {
-        const uniqueToastId = "toast-" + id
-        return (
-          <Toast nativeID={uniqueToastId} action="{{action}}" variant="{{variant}}">
-            <ToastTitle>Hello!</ToastTitle>
-            <ToastDescription>
-              This is a customized toast message.
-            </ToastDescription>
-          </Toast>
-        )
-      },
-    })
-  }
-  return (
-    <Button onPress={handleToast}>
-      <ButtonText>Press Me</ButtonText>
-    </Button>
-  )
-}`}
-      argTypes={{
+    <ComponentPreviewer props={{
   "action": {
     "control": {
       "type": "select"
@@ -67,8 +33,41 @@ export default function Example() {
     ],
     "defaultValue": "solid"
   }
-}}
-      reactLive={{ Toast, ToastTitle, ToastDescription, useToast, Button, ButtonText }}
-    />
+}}>
+      {props => {
+  const toast = useToast()
+  const [toastId, setToastId] = React.useState(0)
+  const handleToast = () => {
+    if (!toast.isActive(toastId)) {
+      showNewToast()
+    }
+  }
+  const showNewToast = () => {
+    const newId = Math.random()
+    setToastId(newId)
+    toast.show({
+      id: newId,
+      placement: "top",
+      duration: 3000,
+      render: ({ id }) => {
+        const uniqueToastId = "toast-" + id
+        return (
+          <Toast nativeID={uniqueToastId} action={props.action} variant={props.variant}>
+            <ToastTitle>Hello!</ToastTitle>
+            <ToastDescription>
+              This is a customized toast message.
+            </ToastDescription>
+          </Toast>
+        )
+      },
+    })
+  }
+  return (
+    <Button onPress={handleToast}>
+      <ButtonText>Press Me</ButtonText>
+    </Button>
+  )
+}
+    </ComponentPreviewer>
   );
 }

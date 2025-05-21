@@ -1,14 +1,13 @@
 import { ComponentPreviewer } from '@/components/custom/component-previewer';
+
 import { Text } from '@/components/ui/text';
 
 export default function Example() {
   return (
-    <ComponentPreviewer
-      code={`function Example() {
+    <ComponentPreviewer props={{}}>
+      {props => {
   return <Text>Hello World!</Text>
-}`}
-      argTypes={{}}
-      reactLive={{ Text }}
-    />
+}
+    </ComponentPreviewer>
   );
 }

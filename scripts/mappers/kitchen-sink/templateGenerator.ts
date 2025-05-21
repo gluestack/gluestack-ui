@@ -1,6 +1,9 @@
 import path from "path";
 import * as fileOps from "../utils/fileOperations";
-import { componentPreviewerTemplate, pageContentTemplate, codePreviewerTemplate } from "./templates";
+import {
+  componentPreviewerTemplate,
+  codePreviewerTemplate,
+} from "./templates";
 
 interface ImportMap {
   [key: string]: string[];
@@ -20,21 +23,28 @@ export const generateCodePreviewer = (
       console.error(`Missing files for example ${exampleName} in ${component}`);
       return `<!-- Failed to load CodePreviewer for Example:${exampleName} -->`;
     }
-    const code = fileOps.readTextFile(codePath);
+    let code = fileOps.readTextFile(codePath);
+    // Remove function Example() wrapper if it exists
+    code = code
+      .replace(/function Example\(\)/, "")
+      .replace(/\\\\/g, "")
+      .replace(/\s*\);\s*}\s*$/, "")
+      .trim();
+
     const meta = fileOps.readJsonFile(argsPath);
     const argTypes = JSON.stringify(meta.argTypes || {}, null, 2);
-    const reactLiveKeys = meta.reactLive ? Object.keys(meta.reactLive) : [];
-    const reactLive = `{ ${reactLiveKeys.join(", ")} }`;
+
     // Add reactLive imports to importMap
-    reactLiveKeys.forEach((key) => {
-      const value = meta.reactLive[key];
-      if (!importMap[value]) {
-        importMap[value] = [];
-      }
-      if (!importMap[value].includes(key)) {
-        importMap[value].push(key);
-      }
-    });
+    if (meta.reactLive) {
+      Object.entries(meta.reactLive).forEach(([key, value]) => {
+        if (!importMap[value as string]) {
+          importMap[value as string] = [];
+        }
+        if (!importMap[value as string].includes(key)) {
+          importMap[value as string].push(key);
+        }
+      });
+    }
 
     // If this is the basic example, copy it to the docs components folder
     if (exampleName === "basic") {
@@ -48,26 +58,24 @@ export const generateCodePreviewer = (
       fileOps.ensureDirectoryExists(destPath);
 
       // Generate imports from meta.reactLive
-      const imports = reactLiveKeys
-        .map((key) => {
-          const value = meta.reactLive[key];
-          return `import { ${key} } from '${value}';`;
-        })
-        .join("\n");
+      const imports = meta.reactLive
+        ? Object.entries(meta.reactLive)
+            .map(([key, value]) => `import { ${key} } from '${value}';`)
+            .join("\n")
+        : "";
 
       // Generate the component file content with ComponentPreviewer template
       const fileContent = componentPreviewerTemplate(
         imports,
         code.trim(),
-        argTypes,
-        reactLive
+        argTypes
       );
 
       // Write the file
       fileOps.writeTextFile(destFilePath, fileContent);
     }
 
-    return codePreviewerTemplate(code.trim(), argTypes, reactLive);
+    return codePreviewerTemplate(code.trim(), argTypes);
   } catch (error) {
     console.error(
       `:x: Error building CodePreviewer for Example:${exampleName} in ${component}:`,
@@ -75,10 +83,6 @@ export const generateCodePreviewer = (
     );
     return `<!-- Failed to load CodePreviewer for Example:${exampleName} -->`;
   }
-};
-
-export const generatePageContent = (): string => {
-  return pageContentTemplate;
 };
 
 export const processFileContent = (content: string): string => {
@@ -100,7 +104,7 @@ export const processFileForExamples = (
 ): boolean => {
   const codePreviewerRegex = /\/\/\/\s*\{Example:([^}]+)\}\s*\/\/\//g;
   const importMap: ImportMap = {
-    "@/components/custom/code-previewer": ["CodePreviewer"],
+    "@/components/custom/component-previewer": ["ComponentPreviewer"],
   };
   // Read file content
   const content = fileOps.readTextFile(filePath);
@@ -135,21 +139,27 @@ export const processFileForExamples = (
   return false;
 };
 
-export const copyFileContent = (sourcePath: string, destinationPath: string) => {
+export const copyFileContent = (
+  sourcePath: string,
+  destinationPath: string
+) => {
   try {
     // Read the source file
     const content = fileOps.readTextFile(sourcePath);
-    
+
     // Ensure the destination directory exists
     const destDir = path.dirname(destinationPath);
     fileOps.ensureDirectoryExists(destDir);
-    
+
     // Write to the destination file
     fileOps.writeTextFile(destinationPath, content);
-    
+
     return true;
   } catch (error) {
-    console.error(`Error copying file content from ${sourcePath} to ${destinationPath}:`, error);
+    console.error(
+      `Error copying file content from ${sourcePath} to ${destinationPath}:`,
+      error
+    );
     return false;
   }
 };
@@ -162,21 +172,24 @@ export const copyProcessedAnnotations = (
   try {
     // Read source file content
     const sourceContent = fileOps.readTextFile(sourcePath);
-    
     const codePreviewerRegex = /\/\/\/\s*\{Example:([^}]+)\}\s*\/\/\//g;
     const importMap: ImportMap = {
-      "@/components/custom/code-previewer": ["CodePreviewer"],
+      "@/components/custom/component-previewer": ["ComponentPreviewer"],
     };
 
     // Only collect the processed annotations
-    let processedContent = '';
+    let processedContent = "";
     let match;
-    
+
     // Process each annotation match
     while ((match = codePreviewerRegex.exec(sourceContent)) !== null) {
       const exampleName = match[1].trim();
-      const processedAnnotation = generateCodePreviewer(exampleName, component, importMap);
-      processedContent += processedAnnotation + '\n\n';
+      const processedAnnotation = generateCodePreviewer(
+        exampleName,
+        component,
+        importMap
+      );
+      processedContent += processedAnnotation + "\n\n";
     }
 
     // If we found and processed any annotations
@@ -190,28 +203,33 @@ export const copyProcessedAnnotations = (
 
       // Wrap the processed content in a component
       const wrappedContent = `
+import { SafeAreaView } from 'react-native';
+import React from 'react';
 export default function ComponentExamples() {
   return (
-    <div>
+    <SafeAreaView>
       ${processedContent.trim()}
-    </div>
+    </SafeAreaView>
   );
 }`;
 
       // Combine imports with wrapped content
       const finalContent = `${importContent}\n\n${wrappedContent}`;
-      
+
       // Ensure destination directory exists and write file
       const destDir = path.dirname(destinationPath);
       fileOps.ensureDirectoryExists(destDir);
       fileOps.writeTextFile(destinationPath, finalContent);
-      
+
       return true;
     }
-    
+
     return false;
   } catch (error) {
-    console.error(`Error processing annotations from ${sourcePath} to ${destinationPath}:`, error);
+    console.error(
+      `Error processing annotations from ${sourcePath} to ${destinationPath}:`,
+      error
+    );
     return false;
   }
 };

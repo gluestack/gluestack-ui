@@ -1,17 +1,20 @@
 import React, { useState } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 
-type CodePreviewerProps = {
+type ComponentPreviewerProps = {
   children: (props: { [key: string]: any }) => React.ReactNode;
   props: {
     [key: string]: {
+      control: {
+        type: string;
+      };
       options: string[];
       defaultValue: string;
     };
   };
 };
 
-export const CodePreviewer = ({ children, props }: CodePreviewerProps) => {
+export const ComponentPreviewer = ({ children, props }: ComponentPreviewerProps) => {
   // Initialize state for each option dynamically
   const initialState = Object.keys(props).reduce(
     (acc, key) => {
@@ -40,19 +43,26 @@ export const CodePreviewer = ({ children, props }: CodePreviewerProps) => {
               <TouchableOpacity
                 key={option}
                 onPress={() => handleChange(key, option)}
-                className="p-2"
+                className={`p-2 ${selectedValues[key] === option ? 'bg-primary-500' : ''}`}
               >
-                <Text className="text-black">{option}</Text>
+                <Text className={selectedValues[key] === option ? 'text-white' : 'text-black'}>
+                  {option}
+                </Text>
               </TouchableOpacity>
             ))}
           </View>
         </View>
       ))}
 
-      {/* Rendering the children with updated props */}
-      {children(selectedValues)}
+      {/* Preview section */}
+      <View className="mt-8 border-t pt-4">
+        <Text className="text-lg font-semibold mb-4">Preview</Text>
+        <View className="flex items-center justify-center">
+          {children(selectedValues)}
+        </View>
+      </View>
     </View>
   );
 };
 
-export default CodePreviewer;
+export default ComponentPreviewer;

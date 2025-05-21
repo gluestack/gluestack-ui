@@ -32,12 +32,6 @@ export const copyComponentsDocs = (component: string) => {
 
       // Copy only the processed annotations from MDX to TSX
       templateGen.copyProcessedAnnotations(sourceMdxPath, destTsxPath, component);
-
-      // Create page.tsx file for routing
-      fileOps.writeTextFile(
-        path.join(destPath, "page.tsx"),
-        templateGen.generatePageContent()
-      );
     } catch (error) {
       console.error(`Error processing docs for ${component}:`, error);
     }

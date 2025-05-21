@@ -1,4 +1,5 @@
 import { ComponentPreviewer } from '@/components/custom/component-previewer';
+
 import { Tooltip } from '@/components/ui/tooltip';
 import { TooltipContent } from '@/components/ui/tooltip';
 import { TooltipText } from '@/components/ui/tooltip';
@@ -7,26 +8,7 @@ import { ButtonText } from '@/components/ui/button';
 
 export default function Example() {
   return (
-    <ComponentPreviewer
-      code={`function Example() {
-  return (
-    <Tooltip
-      placement="{{placement}}"
-      trigger={(triggerProps) => {
-        return (
-          <Button {...triggerProps}>
-            <ButtonText>Hover on me!</ButtonText>
-          </Button>
-        )
-      }}
-    >
-      <TooltipContent>
-        <TooltipText>Tooltip</TooltipText>
-      </TooltipContent>
-    </Tooltip>
-  )
-}`}
-      argTypes={{
+    <ComponentPreviewer props={{
   "placement": {
     "control": {
       "type": "select"
@@ -47,8 +29,25 @@ export default function Example() {
     ],
     "defaultValue": "top"
   }
-}}
-      reactLive={{ Tooltip, TooltipContent, TooltipText, Button, ButtonText }}
-    />
+}}>
+      {props => {
+  return (
+    <Tooltip
+      placement={props.placement}
+      trigger={(triggerProps) => {
+        return (
+          <Button {...triggerProps}>
+            <ButtonText>Hover on me!</ButtonText>
+          </Button>
+        )
+      }}
+    >
+      <TooltipContent>
+        <TooltipText>Tooltip</TooltipText>
+      </TooltipContent>
+    </Tooltip>
+  )
+}
+    </ComponentPreviewer>
   );
 }

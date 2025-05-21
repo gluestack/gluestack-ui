@@ -1,4 +1,5 @@
 import { ComponentPreviewer } from '@/components/custom/component-previewer';
+
 import { Checkbox } from '@/components/ui/checkbox';
 import { CheckboxIndicator } from '@/components/ui/checkbox';
 import { CheckboxLabel } from '@/components/ui/checkbox';
@@ -7,18 +8,7 @@ import { CheckboxIcon } from '@/components/ui/checkbox';
 
 export default function Example() {
   return (
-    <ComponentPreviewer
-      code={`function Example() {
-  return (
-    <Checkbox isDisabled={ {{isDisabled}} } isInvalid={ {{isInvalid}} } size="{{size}}">
-        <CheckboxIndicator>
-            <CheckboxIcon as={CheckIcon} />
-        </CheckboxIndicator>
-        <CheckboxLabel>Label</CheckboxLabel>
-    </Checkbox>
-  )
-}`}
-      argTypes={{
+    <ComponentPreviewer props={{
   "isDisabled": {
     "control": {
       "type": "boolean"
@@ -42,8 +32,17 @@ export default function Example() {
     ],
     "defaultValue": "md"
   }
-}}
-      reactLive={{ Checkbox, CheckboxIndicator, CheckboxLabel, CheckIcon, CheckboxIcon }}
-    />
+}}>
+      {props => {
+  return (
+    <Checkbox isDisabled={ {{isDisabled}} } isInvalid={ {{isInvalid}} } size={props.size}>
+        <CheckboxIndicator>
+            <CheckboxIcon as={CheckIcon} />
+        </CheckboxIndicator>
+        <CheckboxLabel>Label</CheckboxLabel>
+    </Checkbox>
+  )
+}
+    </ComponentPreviewer>
   );
 }

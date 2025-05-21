@@ -16,7 +16,7 @@ import { CloseIcon } from '@/components/ui/icon';
 export default function Example() {
   return (
     <ComponentPreviewer
-      code={`function Example() {
+      code={`{
   const [showModal, setShowModal] = React.useState(false);
   return (
     <>
@@ -47,7 +47,7 @@ export default function Example() {
             <Button
               variant="outline"
               action="secondary"
-              mr="$3"
+              className="mr-3"
               onPress={() => {
                 setShowModal(false);
               }}

@@ -1,13 +1,10 @@
 import { ComponentPreviewer } from '@/components/custom/component-previewer';
+
 import { Spinner } from '@/components/ui/spinner';
 
 export default function Example() {
   return (
-    <ComponentPreviewer
-      code={`function Example() {
-  return <Spinner size="{{size}}" color="{{color}}" />
-}`}
-      argTypes={{
+    <ComponentPreviewer props={{
   "size": {
     "control": {
       "type": "select"
@@ -33,8 +30,10 @@ export default function Example() {
     ],
     "defaultValue": "red"
   }
-}}
-      reactLive={{ Spinner }}
-    />
+}}>
+      {props => {
+  return <Spinner size={props.size} color={props.color} />
+}
+    </ComponentPreviewer>
   );
 }

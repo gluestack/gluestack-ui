@@ -1,18 +1,11 @@
 import { ComponentPreviewer } from '@/components/custom/component-previewer';
+
 import { Input } from '@/components/ui/input';
 import { InputField } from '@/components/ui/input';
 
 export default function Example() {
   return (
-    <ComponentPreviewer
-      code={`function Example() {
-  return (
-    <Input variant="{{variant}}" size="{{size}}" isDisabled={ {{isDisabled}} } isInvalid={ {{isInvalid}} } isReadOnly={ {{isReadOnly}} }>
-        <InputField placeholder="Enter Text here..." />
-    </Input>
-  )
-}`}
-      argTypes={{
+    <ComponentPreviewer props={{
   "isDisabled": {
     "control": {
       "type": "boolean"
@@ -54,8 +47,14 @@ export default function Example() {
     ],
     "defaultValue": "md"
   }
-}}
-      reactLive={{ Input, InputField }}
-    />
+}}>
+      {props => {
+  return (
+    <Input variant={props.variant} size={props.size} isDisabled={ {{isDisabled}} } isInvalid={ {{isInvalid}} } isReadOnly={ {{isReadOnly}} }>
+        <InputField placeholder="Enter Text here..." />
+    </Input>
+  )
+}
+    </ComponentPreviewer>
   );
 }

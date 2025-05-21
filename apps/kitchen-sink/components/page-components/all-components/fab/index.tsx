@@ -1,4 +1,5 @@
 import { ComponentPreviewer } from '@/components/custom/component-previewer';
+
 import { Box } from '@/components/ui/box';
 import { Fab } from '@/components/ui/fab';
 import { FabIcon } from '@/components/ui/fab';
@@ -7,24 +8,7 @@ import { AddIcon } from '@/components/ui/icon';
 
 export default function Example() {
   return (
-    <ComponentPreviewer
-      code={`function Example() {
-  return (
-    <Box className="h-[360px] w-80 bg-background-50 rounded-md">
-      <Fab
-        size="{{size}}"
-        placement="{{placement}}"
-        isHovered={ {{isHovered}} }
-        isDisabled={ {{isDisabled}} }
-        isPressed={ {{isPressed}} }
-      >
-        <FabIcon as={AddIcon} />
-        <FabLabel>Quick start</FabLabel>
-      </Fab>
-    </Box>
-  )
-}`}
-      argTypes={{
+    <ComponentPreviewer props={{
   "size": {
     "control": {
       "type": "select"
@@ -68,8 +52,23 @@ export default function Example() {
     },
     "defaultValue": false
   }
-}}
-      reactLive={{ Box, Fab, FabIcon, FabLabel, AddIcon }}
-    />
+}}>
+      {props => {
+  return (
+    <Box className="h-[360px] w-80 bg-background-50 rounded-md">
+      <Fab
+        size={props.size}
+        placement={props.placement}
+        isHovered={ {{isHovered}} }
+        isDisabled={ {{isDisabled}} }
+        isPressed={ {{isPressed}} }
+      >
+        <FabIcon as={AddIcon} />
+        <FabLabel>Quick start</FabLabel>
+      </Fab>
+    </Box>
+  )
+}
+    </ComponentPreviewer>
   );
 }

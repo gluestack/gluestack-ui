@@ -1,4 +1,5 @@
 import { ComponentPreviewer } from '@/components/custom/component-previewer';
+
 import { Slider } from '@/components/ui/slider';
 import { SliderTrack } from '@/components/ui/slider';
 import { SliderFilledTrack } from '@/components/ui/slider';
@@ -7,26 +8,7 @@ import { Center } from '@/components/ui/center';
 
 export default function Example() {
   return (
-    <ComponentPreviewer
-      code={`function Example() {
-  return (
-    <Center className="w-[300px] h-[150px]">
-      <Slider
-        defaultValue={30}
-        size="{{size}}"
-        orientation="{{orientation}}"
-        isDisabled={ {{isDisabled}} }
-        isReversed={ {{isReversed}} }
-      >
-        <SliderTrack>
-          <SliderFilledTrack />
-        </SliderTrack>
-        <SliderThumb />
-      </Slider>
-    </Center>
-  )
-}`}
-      argTypes={{
+    <ComponentPreviewer props={{
   "size": {
     "control": {
       "type": "select"
@@ -60,8 +42,25 @@ export default function Example() {
     },
     "defaultValue": false
   }
-}}
-      reactLive={{ Slider, SliderTrack, SliderFilledTrack, SliderThumb, Center }}
-    />
+}}>
+      {props => {
+  return (
+    <Center className="w-[300px] h-[150px]">
+      <Slider
+        defaultValue={30}
+        size={props.size}
+        orientation={props.orientation}
+        isDisabled={ {{isDisabled}} }
+        isReversed={ {{isReversed}} }
+      >
+        <SliderTrack>
+          <SliderFilledTrack />
+        </SliderTrack>
+        <SliderThumb />
+      </Slider>
+    </Center>
+  )
+}
+    </ComponentPreviewer>
   );
 }

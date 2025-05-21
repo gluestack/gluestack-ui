@@ -1,12 +1,13 @@
 import { ComponentPreviewer } from '@/components/custom/component-previewer';
+
 import { Center } from '@/components/ui/center';
 import { Text } from '@/components/ui/text';
 import { Divider } from '@/components/ui/divider';
 
 export default function Example() {
   return (
-    <ComponentPreviewer
-      code={`function Example() {
+    <ComponentPreviewer props={{}}>
+      {props => {
   return (
 <Center>
   <Text className="font-semibold">
@@ -18,9 +19,7 @@ export default function Example() {
   </Text>
 </Center>
 )
-}`}
-      argTypes={{}}
-      reactLive={{ Center, Text, Divider }}
-    />
+}
+    </ComponentPreviewer>
   );
 }

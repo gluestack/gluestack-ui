@@ -1,4 +1,5 @@
 import { ComponentPreviewer } from '@/components/custom/component-previewer';
+
 import { Modal } from '@/components/ui/modal';
 import { ModalBackdrop } from '@/components/ui/modal';
 import { ModalContent } from '@/components/ui/modal';
@@ -15,8 +16,22 @@ import { CloseIcon } from '@/components/ui/icon';
 
 export default function Example() {
   return (
-    <ComponentPreviewer
-      code={`function Example() {
+    <ComponentPreviewer props={{
+  "size": {
+    "control": {
+      "type": "select"
+    },
+    "options": [
+      "xs",
+      "sm",
+      "md",
+      "lg",
+      "full"
+    ],
+    "defaultValue": "md"
+  }
+}}>
+      {props => {
   const [showModal, setShowModal] = React.useState(false);
   return (
     <>
@@ -28,7 +43,7 @@ export default function Example() {
         onClose={() => {
           setShowModal(false);
         }}
-        size="{{size}}"
+        size={props.size}
       >
         <ModalBackdrop />
         <ModalContent>
@@ -47,7 +62,7 @@ export default function Example() {
             <Button
               variant="outline"
               action="secondary"
-              mr="$3"
+              className="mr-3"
               onPress={() => {
                 setShowModal(false);
               }}
@@ -64,25 +79,7 @@ export default function Example() {
           </ModalFooter>
         </ModalContent>
       </Modal>
-    </>
-  );
-}`}
-      argTypes={{
-  "size": {
-    "control": {
-      "type": "select"
-    },
-    "options": [
-      "xs",
-      "sm",
-      "md",
-      "lg",
-      "full"
-    ],
-    "defaultValue": "md"
-  }
-}}
-      reactLive={{ Modal, ModalBackdrop, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter, Button, ButtonText, Heading, Text, Icon, CloseIcon }}
-    />
+    </>}
+    </ComponentPreviewer>
   );
 }

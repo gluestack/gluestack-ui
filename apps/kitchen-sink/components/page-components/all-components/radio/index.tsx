@@ -1,4 +1,5 @@
 import { ComponentPreviewer } from '@/components/custom/component-previewer';
+
 import { Radio } from '@/components/ui/radio';
 import { RadioGroup } from '@/components/ui/radio';
 import { RadioIndicator } from '@/components/ui/radio';
@@ -8,20 +9,7 @@ import { CircleIcon } from '@/components/ui/icon';
 
 export default function Example() {
   return (
-    <ComponentPreviewer
-      code={`function Example() {
-  return (
-    <RadioGroup>
-      <Radio value="{{value}}" size="{{size}}" isInvalid={ {{isInvalid}} } isDisabled={ {{isDisabled}} }>
-        <RadioIndicator>
-          <RadioIcon as={CircleIcon} />
-        </RadioIndicator>
-        <RadioLabel>Label</RadioLabel>
-      </Radio>
-    </RadioGroup>
-  )
-}`}
-      argTypes={{
+    <ComponentPreviewer props={{
   "size": {
     "control": {
       "type": "select"
@@ -45,8 +33,19 @@ export default function Example() {
     },
     "defaultValue": false
   }
-}}
-      reactLive={{ Radio, RadioGroup, RadioIndicator, RadioIcon, RadioLabel, CircleIcon }}
-    />
+}}>
+      {props => {
+  return (
+    <RadioGroup>
+      <Radio value={props.value} size={props.size} isInvalid={ {{isInvalid}} } isDisabled={ {{isDisabled}} }>
+        <RadioIndicator>
+          <RadioIcon as={CircleIcon} />
+        </RadioIndicator>
+        <RadioLabel>Label</RadioLabel>
+      </Radio>
+    </RadioGroup>
+  )
+}
+    </ComponentPreviewer>
   );
 }

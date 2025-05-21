@@ -1,4 +1,5 @@
 import { ComponentPreviewer } from '@/components/custom/component-previewer';
+
 import { Actionsheet } from '@/components/ui/actionsheet';
 import { ActionsheetContent } from '@/components/ui/actionsheet';
 import { ActionsheetItem } from '@/components/ui/actionsheet';
@@ -11,8 +12,8 @@ import { ButtonText } from '@/components/ui/button';
 
 export default function Example() {
   return (
-    <ComponentPreviewer
-      code={`function App() {
+    <ComponentPreviewer props={{}}>
+      {props => function App() {
   const [showActionsheet, setShowActionsheet] = React.useState(false)
   const handleClose = () => setShowActionsheet(false)
   return (
@@ -45,9 +46,7 @@ export default function Example() {
       </Actionsheet>
     </>
   )
-}`}
-      argTypes={{}}
-      reactLive={{ Actionsheet, ActionsheetContent, ActionsheetItem, ActionsheetItemText, ActionsheetDragIndicator, ActionsheetDragIndicatorWrapper, ActionsheetBackdrop, Button, ButtonText }}
-    />
+}
+    </ComponentPreviewer>
   );
 }

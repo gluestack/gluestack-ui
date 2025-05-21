@@ -1,11 +1,12 @@
 import { ComponentPreviewer } from '@/components/custom/component-previewer';
+
 import { Pressable } from '@/components/ui/pressable';
 import { Text } from '@/components/ui/text';
 
 export default function Example() {
   return (
-    <ComponentPreviewer
-      code={`function Example() {
+    <ComponentPreviewer props={{}}>
+      {props => {
   return (
     <Pressable
       onPress={() => console.log("Hello")}
@@ -14,9 +15,7 @@ export default function Example() {
       <Text className="text-typography-0">Press me</Text>
     </Pressable>
   )
-}`}
-      argTypes={{}}
-      reactLive={{ Pressable, Text }}
-    />
+}
+    </ComponentPreviewer>
   );
 }

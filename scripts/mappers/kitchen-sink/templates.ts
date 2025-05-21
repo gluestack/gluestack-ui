@@ -1,39 +1,29 @@
 export const componentPreviewerTemplate = (
   imports: string,
   code: string,
-  argTypes: string,
-  reactLive: string
+  argTypes: string
 ) => `import { ComponentPreviewer } from '@/components/custom/component-previewer';
+
 ${imports}
 
 export default function Example() {
   return (
-    <ComponentPreviewer
-      code={\`${code}\`}
-      argTypes={${argTypes}}
-      reactLive={${reactLive}}
-    />
+    <ComponentPreviewer props={${argTypes}}>
+      {props => ${code.replace(/function Example\(\)\s*{\s*return\s*/, '').replace(/}$/, '').replace(/="{{(\w+)}}"/g, "={props.$1}")}}
+    </ComponentPreviewer>
   );
 }`;
 
-export const pageContentTemplate = `
-"use client";
-import Docs from './index.mdx';
-export default function Page() {
-  return (
-    <div>
-      <Docs />
-      hello
-    </div>
-  );
-}`;
 
 export const codePreviewerTemplate = (
   code: string,
-  argTypes: string,
-  reactLive: string
-) => `<CodePreviewer
-  code={\`${code}\`}
-  argTypes={${argTypes}}
-  reactLive={${reactLive}}
-/>`; 
+  argTypes: string
+) => `<ComponentPreviewer props={${argTypes}}>
+  {props => ${code
+    .replace(/function Example\(\)/, '')
+    .replace(/}$/, '')
+    .replace(/="{{(\w+)}}"/g, "={props.$1}")
+    .replace(/\\\\/g, '')
+    .replace(/\s*\);\s*}\s*$/, '')
+    .trim()}}}
+</ComponentPreviewer>`; 
