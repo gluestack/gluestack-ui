@@ -1,0 +1,44 @@
+import path from "path";
+import * as fileOps from "../utils/fileOperations";
+import * as templateGen from "./templateGenerator";
+
+export const copyComponentsDocs = (component: string) => {
+    const sourcePath = path.resolve("packages/components/ui");
+    const websitePath = path.resolve("apps/kitchen-sink/app/components");
+  
+    try {
+      // Find docs files in the component folder
+      const componentDocsPath = path.join(sourcePath, component, "docs");
+      if (!fileOps.pathExists(componentDocsPath)) {
+        console.log(`No docs found for ${component}  ${componentDocsPath}`);
+        return;
+      }
+  
+      // Get list of docs files
+      const docFiles = fileOps.getFilesInDirectory(componentDocsPath);
+      if (docFiles.length === 0) {
+        console.log(`No doc files found for ${component}`);
+        return;
+      }
+
+      // Create destination folder (lowercase component name)
+      const destPath = path.join(websitePath, component);
+      fileOps.ensureDirectoryExists(destPath);
+
+      // Source MDX file path
+      const sourceMdxPath = path.join(componentDocsPath, "index.mdx");
+      // Destination TSX file path
+      const destTsxPath = path.join(destPath, "index.tsx");
+
+      // Copy only the processed annotations from MDX to TSX
+      templateGen.copyProcessedAnnotations(sourceMdxPath, destTsxPath, component);
+
+      // Create page.tsx file for routing
+      fileOps.writeTextFile(
+        path.join(destPath, "page.tsx"),
+        templateGen.generatePageContent()
+      );
+    } catch (error) {
+      console.error(`Error processing docs for ${component}:`, error);
+    }
+  };

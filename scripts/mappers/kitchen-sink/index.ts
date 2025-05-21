@@ -1,8 +1,12 @@
+import * as componentOperations from "./componentsOperations";
+import * as docsOperations from "./docsOperations";
 export default {
     component: function(component:string, event = 'added') {
-       // console.log(`Component: ${component} (${event})`);
+        componentOperations.copyComponent(component);
+        componentOperations.processNonComponentFile(); 
+        docsOperations.copyComponentsDocs(component);
     },
     nonComponent: function(path:string) {
-        // console.log(`Non-component: ${path}`);
+
     }
 };

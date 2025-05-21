@@ -65,3 +65,4 @@ export const getFilesInDirectory = (dirPath: string): string[] => {
   }
   return fs.readdirSync(dirPath);
 }; 
+
