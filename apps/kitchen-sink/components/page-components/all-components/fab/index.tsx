@@ -59,9 +59,9 @@ export default function Example() {
       <Fab
         size={props.size}
         placement={props.placement}
-        isHovered={ {{isHovered}} }
-        isDisabled={ {{isDisabled}} }
-        isPressed={ {{isPressed}} }
+        isHovered={props.isHovered}
+        isDisabled={props.isDisabled}
+        isPressed={props.isPressed}
       >
         <FabIcon as={AddIcon} />
         <FabLabel>Quick start</FabLabel>

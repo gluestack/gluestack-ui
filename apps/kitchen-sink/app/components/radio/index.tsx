@@ -1,15 +1,14 @@
 import { ComponentPreviewer } from '@/components/custom/component-previewer';
-
-import { Radio } from '@/components/ui/radio';
-import { RadioGroup } from '@/components/ui/radio';
-import { RadioIndicator } from '@/components/ui/radio';
-import { RadioIcon } from '@/components/ui/radio';
-import { RadioLabel } from '@/components/ui/radio';
+import { Radio, RadioGroup, RadioIndicator, RadioIcon, RadioLabel } from '@/components/ui/radio';
 import { CircleIcon } from '@/components/ui/icon';
 
-export default function Example() {
+
+import { SafeAreaView } from 'react-native';
+import React from 'react';
+export default function ComponentExamples() {
   return (
-    <ComponentPreviewer props={{
+    <SafeAreaView>
+      <ComponentPreviewer props={{
   "size": {
     "control": {
       "type": "select"
@@ -34,7 +33,7 @@ export default function Example() {
     "defaultValue": false
   }
 }}>
-      {props => {
+  {props => {
   return (
     <RadioGroup>
       <Radio value={props.value} size={props.size} isInvalid={props.isInvalid} isDisabled={props.isDisabled}>
@@ -44,8 +43,8 @@ export default function Example() {
         <RadioLabel>Label</RadioLabel>
       </Radio>
     </RadioGroup>
-  )
-}
-    </ComponentPreviewer>
+  )}}
+</ComponentPreviewer>
+    </SafeAreaView>
   );
 }

@@ -1,10 +1,13 @@
 import { ComponentPreviewer } from '@/components/custom/component-previewer';
-
 import { Switch } from '@/components/ui/switch';
 
-export default function Example() {
+
+import { SafeAreaView } from 'react-native';
+import React from 'react';
+export default function ComponentExamples() {
   return (
-    <ComponentPreviewer props={{
+    <SafeAreaView>
+      <ComponentPreviewer props={{
   "size": {
     "control": {
       "type": "select"
@@ -63,7 +66,7 @@ export default function Example() {
     "defaultValue": "#E2E8F0"
   }
 }}>
-      {props => {
+  {props => {
   return (
     <Switch
       size={props.size}
@@ -73,8 +76,8 @@ export default function Example() {
       activeThumbColor={props.activeThumbColor}
       ios_backgroundColor={props.ios_backgroundColor}
     />
-  )
-}
-    </ComponentPreviewer>
+  )}}
+</ComponentPreviewer>
+    </SafeAreaView>
   );
 }

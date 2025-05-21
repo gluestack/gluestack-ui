@@ -1,14 +1,14 @@
 import { ComponentPreviewer } from '@/components/custom/component-previewer';
-
-import { Slider } from '@/components/ui/slider';
-import { SliderTrack } from '@/components/ui/slider';
-import { SliderFilledTrack } from '@/components/ui/slider';
-import { SliderThumb } from '@/components/ui/slider';
+import { Slider, SliderTrack, SliderFilledTrack, SliderThumb } from '@/components/ui/slider';
 import { Center } from '@/components/ui/center';
 
-export default function Example() {
+
+import { SafeAreaView } from 'react-native';
+import React from 'react';
+export default function ComponentExamples() {
   return (
-    <ComponentPreviewer props={{
+    <SafeAreaView>
+      <ComponentPreviewer props={{
   "size": {
     "control": {
       "type": "select"
@@ -43,7 +43,7 @@ export default function Example() {
     "defaultValue": false
   }
 }}>
-      {props => {
+  {props => {
   return (
     <Center className="w-[300px] h-[150px]">
       <Slider
@@ -59,8 +59,8 @@ export default function Example() {
         <SliderThumb />
       </Slider>
     </Center>
-  )
-}
-    </ComponentPreviewer>
+  )}}
+</ComponentPreviewer>
+    </SafeAreaView>
   );
 }

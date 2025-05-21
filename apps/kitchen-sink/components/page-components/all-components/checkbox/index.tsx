@@ -35,7 +35,7 @@ export default function Example() {
 }}>
       {props => {
   return (
-    <Checkbox isDisabled={ {{isDisabled}} } isInvalid={ {{isInvalid}} } size={props.size}>
+    <Checkbox isDisabled={props.isDisabled} isInvalid={props.isInvalid} size={props.size}>
         <CheckboxIndicator>
             <CheckboxIcon as={CheckIcon} />
         </CheckboxIndicator>

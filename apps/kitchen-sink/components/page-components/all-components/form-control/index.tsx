@@ -68,9 +68,9 @@ export default function Example() {
       <FormControl
         isInvalid={isInvalid}
         size={props.size}
-        isDisabled={ {{isDisabled}} }
-        isReadOnly={ {{isReadOnly}} }
-        isRequired={ {{isRequired}} }
+        isDisabled={props.isDisabled}
+        isReadOnly={props.isReadOnly}
+        isRequired={props.isRequired}
       >
         <FormControlLabel>
           <FormControlLabelText>Password</FormControlLabelText>

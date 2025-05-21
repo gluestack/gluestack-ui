@@ -9,7 +9,9 @@ ${imports}
 export default function Example() {
   return (
     <ComponentPreviewer props={${argTypes}}>
-      {props => ${code.replace(/function Example\(\)\s*{\s*return\s*/, '').replace(/}$/, '').replace(/="{{(\w+)}}"/g, "={props.$1}")}}
+      {props => ${code.replace(/function Example\(\)\s*{\s*return\s*/, '').replace(/}$/, '')
+        .replace(/="{{(\w+)}}"/g, "={props.$1}")
+        .replace(/={\s*{{\s*(\w+)\s*}}\s*}/g, "={props.$1}")}}
     </ComponentPreviewer>
   );
 }`;
@@ -23,6 +25,7 @@ export const codePreviewerTemplate = (
     .replace(/function Example\(\)/, '')
     .replace(/}$/, '')
     .replace(/="{{(\w+)}}"/g, "={props.$1}")
+    .replace(/={\s*{{\s*(\w+)\s*}}\s*}/g, "={props.$1}")
     .replace(/\\\\/g, '')
     .replace(/\s*\);\s*}\s*$/, '')
     .trim()}}}

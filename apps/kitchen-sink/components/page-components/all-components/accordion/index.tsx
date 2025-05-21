@@ -65,8 +65,8 @@ export default function Example() {
       size={props.size}
       variant={props.variant}
       type="single"
-      isCollapsible={ {{isCollapsible}} }
-      isDisabled={ {{isDisabled}} }
+      isCollapsible={props.isCollapsible}
+      isDisabled={props.isDisabled}
       className="m-5 w-[90%] border border-outline-200"
     >
       <AccordionItem value="a">

@@ -50,7 +50,7 @@ export default function Example() {
 }}>
       {props => {
   return (
-    <Input variant={props.variant} size={props.size} isDisabled={ {{isDisabled}} } isInvalid={ {{isInvalid}} } isReadOnly={ {{isReadOnly}} }>
+    <Input variant={props.variant} size={props.size} isDisabled={props.isDisabled} isInvalid={props.isInvalid} isReadOnly={props.isReadOnly}>
         <InputField placeholder="Enter Text here..." />
     </Input>
   )

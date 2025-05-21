@@ -1,11 +1,13 @@
 import { ComponentPreviewer } from '@/components/custom/component-previewer';
+import { Textarea, TextareaInput } from '@/components/ui/textarea';
 
-import { Textarea } from '@/components/ui/textarea';
-import { TextareaInput } from '@/components/ui/textarea';
 
-export default function Example() {
+import { SafeAreaView } from 'react-native';
+import React from 'react';
+export default function ComponentExamples() {
   return (
-    <ComponentPreviewer props={{
+    <SafeAreaView>
+      <ComponentPreviewer props={{
   "size": {
     "control": {
       "type": "select"
@@ -37,7 +39,7 @@ export default function Example() {
     "defaultValue": false
   }
 }}>
-      {props => {
+  {props => {
   return (
     <Textarea
       size={props.size}
@@ -48,8 +50,8 @@ export default function Example() {
     >
       <TextareaInput placeholder="Your text goes here..." />
     </Textarea>
-  )
-}
-    </ComponentPreviewer>
+  )}}
+</ComponentPreviewer>
+    </SafeAreaView>
   );
 }
