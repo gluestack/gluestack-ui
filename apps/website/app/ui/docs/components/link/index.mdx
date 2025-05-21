@@ -1,4 +1,4 @@
-import { CodePreviewer } from '@/custom/components/code-previewer';
+import { CodePreviewer } from '@/components/custom/code-previewer';
 import { Link, LinkText } from '@/components/ui/link';
 import { HStack } from '@/components/ui/hstack';
 import { Text } from '@/components/ui/text';
@@ -56,10 +56,10 @@ import { createLink } from './creator';
 import { Pressable } from 'react-native';
 import { Text } from 'react-native';
 
-import { tva } from '@/utils/nativewind/utils/tva';
-import { withStyleContext } from '@/utils/nativewind/utils/withStyleContext';
+import { tva } from '@/utils/gluestack-utils/nativewind/utils/tva';
+import { withStyleContext } from '@/utils/gluestack-utils/nativewind/utils/withStyleContext';
 import { cssInterop } from 'nativewind';
-import type { VariantProps } from '@/utils/nativewind/utils';
+import type { VariantProps } from '@/utils/gluestack-utils/nativewind/utils';
 
 import React from 'react';
 export const UILink = createLink({

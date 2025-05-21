@@ -1,4 +1,4 @@
-import { CodePreviewer } from '@/custom/components/code-previewer';
+import { CodePreviewer } from '@/components/custom/code-previewer';
 import { Heading } from '@/components/ui/heading';
 import { Center } from '@/components/ui/center';
 
@@ -35,7 +35,7 @@ Explore the gluestack-ui Heading Component with installation steps, API referenc
 import React, { forwardRef, memo } from 'react';
 import { H1, H2, H3, H4, H5, H6 } from '@expo/html-elements';
 import { headingStyle } from './styles';
-import type { VariantProps } from '@/utils/nativewind/utils';
+import type { VariantProps } from '@/utils/gluestack-utils/nativewind/utils';
 import { cssInterop } from 'nativewind';
 
 type IHeadingProps = VariantProps<typeof headingStyle> &
@@ -262,7 +262,7 @@ export { Heading };
 ```jsx 
 import React, { forwardRef, memo } from 'react';
 import { headingStyle } from './styles';
-import type { VariantProps } from '@/utils/nativewind/utils';
+import type { VariantProps } from '@/utils/gluestack-utils/nativewind/utils';
 type IHeadingProps = VariantProps<typeof headingStyle> &
   React.ComponentPropsWithoutRef<'h1'> & {
     as?: React.ElementType;
@@ -469,8 +469,8 @@ export { Heading };
 
 
 ```jsx 
-import { tva } from '@/utils/nativewind/utils/tva';
-import { isWeb } from '@/utils/nativewind/utils/IsWeb';
+import { tva } from '@/utils/gluestack-utils/nativewind/utils/tva';
+import { isWeb } from '@/utils/gluestack-utils/nativewind/utils/IsWeb';
 const baseStyle = isWeb
   ? 'font-sans tracking-sm bg-transparent border-0 box-border display-inline list-none margin-0 padding-0 position-relative text-start no-underline whitespace-pre-wrap word-wrap-break-word'
   : '';

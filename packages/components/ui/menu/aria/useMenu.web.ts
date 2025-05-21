@@ -1,6 +1,6 @@
 import { useMenu as useMenuWeb, AriaMenuOptions } from '@react-aria/menu';
 import { TreeState } from '@react-stately/tree';
-import { mapDomPropsToRN } from '@/utils/aria/utils/src';
+import { mapDomPropsToRN } from '@/utils/gluestack-utils/aria/utils/src';
 import { RefObject } from 'react';
 
 export const useMenu = (

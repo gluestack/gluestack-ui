@@ -1,4 +1,4 @@
-import { CodePreviewer } from '@/custom/components/code-previewer';
+import { CodePreviewer } from '@/components/custom/code-previewer';
 import { Grid, GridItem } from '@/components/ui/grid';
 import { Text } from '@/components/ui/text';
 
@@ -74,14 +74,14 @@ import React, {
   useMemo,
   forwardRef,
 } from 'react';
-import type { VariantProps } from '@/utils/nativewind/utils';
+import type { VariantProps } from '@/utils/gluestack-utils/nativewind/utils';
 import { View, Dimensions, Platform, ViewProps } from 'react-native';
 import { gridStyle, gridItemStyle } from './styles';
 import { cssInterop } from 'nativewind';
 import {
   useBreakpointValue,
   getBreakPointValue,
-} from '@/utils/hooks/src/useBreakPointValue';
+} from '@/utils/gluestack-utils/hooks/src/useBreakPointValue';
 
 const { width: DEVICE_WIDTH } = Dimensions.get('window');
 
@@ -415,7 +415,7 @@ export { Grid, GridItem };
 import React from 'react';
 import { gridStyle, gridItemStyle } from './styles';
 
-import type { VariantProps } from '@/utils/nativewind/utils';
+import type { VariantProps } from '@/utils/gluestack-utils/nativewind/utils';
 
 type IGridProps = React.ComponentPropsWithoutRef<'div'> &
   VariantProps<typeof gridStyle> & {
@@ -483,8 +483,8 @@ export { Grid, GridItem };
 ### Step 3: Copy and paste the following code into your project.
 
 ```jsx 
-import { tva } from '@/utils/nativewind/utils/tva';
-import { isWeb } from '@/utils/nativewind/utils/IsWeb';
+import { tva } from '@/utils/gluestack-utils/nativewind/utils/tva';
+import { isWeb } from '@/utils/gluestack-utils/nativewind/utils/IsWeb';
 
 const gridBaseStyle = isWeb
   ? 'grid grid-cols-12'

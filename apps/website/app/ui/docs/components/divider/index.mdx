@@ -1,4 +1,4 @@
-import { CodePreviewer } from '@/custom/components/code-previewer';
+import { CodePreviewer } from '@/components/custom/code-previewer';
 import { Center } from '@/components/ui/center';
 import { Text } from '@/components/ui/text';
 import { Divider } from '@/components/ui/divider';
@@ -56,9 +56,9 @@ npm i @gluestack-ui/divider
 ```jsx 
 'use client';
 import React from 'react';
-import { tva } from '@/utils/nativewind/utils/tva';
+import { tva } from '@/utils/gluestack-utils/nativewind/utils/tva';
 import { Platform, View } from 'react-native';
-import type { VariantProps } from '@/utils/nativewind/utils';
+import type { VariantProps } from '@/utils/gluestack-utils/nativewind/utils';
 
 const dividerStyle = tva({
   base: 'bg-background-200',

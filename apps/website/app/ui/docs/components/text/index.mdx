@@ -1,4 +1,4 @@
-import { CodePreviewer } from '@/custom/components/code-previewer';
+import { CodePreviewer } from '@/components/custom/code-previewer';
 import { Text } from '@/components/ui/text';
 
 import {Tabs,TabItem} from '@/docs-components/tabs'
@@ -35,7 +35,7 @@ This is an illustration of **Text** component.
 ```jsx 
 import React from 'react';
 
-import type { VariantProps } from '@/utils/nativewind/utils';
+import type { VariantProps } from '@/utils/gluestack-utils/nativewind/utils';
 import { Text as RNText } from 'react-native';
 import { textStyle } from './styles';
 
@@ -91,7 +91,7 @@ export { Text };
 
 ```jsx 
 import React from 'react';
-import type { VariantProps } from '@/utils/nativewind/utils';
+import type { VariantProps } from '@/utils/gluestack-utils/nativewind/utils';
 import { textStyle } from './styles';
 
 type ITextProps = React.ComponentProps<'span'> & VariantProps<typeof textStyle>;
@@ -142,8 +142,8 @@ export { Text };
 
 
 ```jsx 
-import { tva } from '@/utils/nativewind/utils/tva';
-import { isWeb } from '@/utils/nativewind/utils/IsWeb';
+import { tva } from '@/utils/gluestack-utils/nativewind/utils/tva';
+import { isWeb } from '@/utils/gluestack-utils/nativewind/utils/IsWeb';
 
 const baseStyle = isWeb
   ? 'font-sans tracking-sm my-0 bg-transparent border-0 box-border display-inline list-none margin-0 padding-0 position-relative text-start no-underline whitespace-pre-wrap word-wrap-break-word'

@@ -1,8 +1,8 @@
 import { mergeProps } from '@react-aria/utils';
 import type { RefObject } from 'react';
 import type { ToggleState } from '@react-stately/toggle';
-import { usePress } from '@/utils/aria/interactions/src';
-import { getLabel } from '@/utils/aria/utils/src';
+import { usePress } from '@/utils/gluestack-utils/aria/interactions/src';
+import { getLabel } from '@/utils/gluestack-utils/aria/utils/src';
 import { AriaToggleProps } from '@react-types/checkbox';
 
 export interface ToggleAria {

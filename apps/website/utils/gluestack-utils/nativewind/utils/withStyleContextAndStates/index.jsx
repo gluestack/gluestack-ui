@@ -1,8 +1,8 @@
 'use client';
 import React from 'react';
 import { extractDataClassName } from '../utils';
-import { ParentContext } from '@/utils/nativewind/utils/context';
-import { useParentContext } from '@/utils/nativewind/utils/context';
+import { ParentContext } from '@/utils/gluestack-utils/nativewind/utils/context';
+import { useParentContext } from '@/utils/gluestack-utils/nativewind/utils/context';
 export const withStyleContextAndStates = (Component, scope = 'Global') => {
   return React.forwardRef(({ context, className, states, ...props }, ref) => {
     let contextValues = {};

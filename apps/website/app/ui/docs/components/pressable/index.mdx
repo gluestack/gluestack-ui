@@ -1,4 +1,4 @@
-import { CodePreviewer } from '@/custom/components/code-previewer';
+import { CodePreviewer } from '@/components/custom/code-previewer';
 import { Pressable } from '@/components/ui/pressable';
 import { Text } from '@/components/ui/text';
 import { Box } from '@/components/ui/box';
@@ -61,9 +61,9 @@ import React from 'react';
 import { createPressable } from './creator';
 import { Pressable as RNPressable } from 'react-native';
 
-import { tva } from '@/utils/nativewind/utils/tva';
-import { withStyleContext } from '@/utils/nativewind/utils/withStyleContext';
-import type { VariantProps } from '@/utils/nativewind/utils';
+import { tva } from '@/utils/gluestack-utils/nativewind/utils/tva';
+import { withStyleContext } from '@/utils/gluestack-utils/nativewind/utils/withStyleContext';
+import type { VariantProps } from '@/utils/gluestack-utils/nativewind/utils';
 
 const UIPressable = createPressable({
   Root: withStyleContext(RNPressable),

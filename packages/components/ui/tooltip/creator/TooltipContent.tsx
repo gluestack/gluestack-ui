@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
 import { useTooltipContext } from './context';
-import { mergeRefs } from '@/utils/common';
-import { useOverlayPosition } from '@/utils/aria/overlays/src';
+import { mergeRefs } from '@/utils/gluestack-utils/common';
+import { useOverlayPosition } from '@/utils/gluestack-utils/aria/overlays/src';
 import { OverlayAnimatePresence } from './OverlayAnimatePresence';
 import { Platform, View } from 'react-native';
 

@@ -8,7 +8,7 @@ import { OverlayAnimatePresence } from './MenuPopover/OverlayAnimatePresence';
 import { useTypeSelect } from './useTypeSelect';
 import { useControlledState } from '@react-stately/utils';
 import { MenuContext } from './MenuContext';
-import { mergeRefs } from '@/utils/common';
+import { mergeRefs } from '@/utils/gluestack-utils/common';
 export const Menu = ({
   StyledMenu,
   StyledMenuItem,

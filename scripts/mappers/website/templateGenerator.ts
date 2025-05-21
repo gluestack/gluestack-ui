@@ -100,7 +100,7 @@ export const processFileForExamples = (
 ): boolean => {
   const codePreviewerRegex = /\/\/\/\s*\{Example:([^}]+)\}\s*\/\/\//g;
   const importMap: ImportMap = {
-    "@/custom/components/code-previewer": ["CodePreviewer"],
+    "@/components/custom/code-previewer": ["CodePreviewer"],
   };
   // Read file content
   const content = fileOps.readTextFile(filePath);

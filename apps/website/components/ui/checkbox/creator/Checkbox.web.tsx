@@ -1,7 +1,7 @@
 import React, { forwardRef, useContext } from 'react';
 import { CheckboxProvider } from './CheckboxProvider';
-import { useFocusRing } from '@/utils/aria/focus/src';
-import { useHover } from '@/utils/aria/interactions/src';
+import { useFocusRing } from '@/utils/gluestack-utils/aria/focus/src';
+import { useHover } from '@/utils/gluestack-utils/aria/interactions/src';
 import { useToggleState } from '@react-stately/toggle';
 import { useCheckbox, useCheckboxGroupItem } from '../aria/checkbox/src';
 import { CheckboxGroupContext } from './CheckboxGroup';
@@ -9,7 +9,7 @@ import {
   combineContextAndProps,
   mergeRefs,
   stableHash,
-} from '@/utils/common';
+} from '@/utils/gluestack-utils/common';
 import { useFormControlContext } from '@/components/ui/form-control/creator';
 import { VisuallyHidden } from '@react-aria/visually-hidden';
 

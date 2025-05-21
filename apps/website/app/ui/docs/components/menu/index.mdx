@@ -1,4 +1,4 @@
-import { CodePreviewer } from '@/custom/components/code-previewer';
+import { CodePreviewer } from '@/components/custom/code-previewer';
 import { Menu, MenuItem, MenuItemLabel, MenuSeparator } from '@/components/ui/menu';
 import { Button, ButtonText, ButtonIcon } from '@/components/ui/button';
 import { Icon, AddIcon, GlobeIcon, PlayIcon, SettingsIcon, MenuIcon, HelpCircleIcon, MessageCircleIcon } from '@/components/ui/icon';
@@ -105,7 +105,7 @@ npm i @gluestack-ui/menu @legendapp/motion
 'use client';
 import React from 'react';
 import { createMenu } from '@/components/ui/menu/creator';
-import { tva } from '@/utils/nativewind/utils/tva';
+import { tva } from '@/utils/gluestack-utils/nativewind/utils/tva';
 import { cssInterop } from 'nativewind';
 import { Pressable, Text, View, ViewStyle } from 'react-native';
 import {
@@ -113,7 +113,7 @@ import {
   AnimatePresence,
   MotionComponentProps,
 } from '@legendapp/motion';
-import type { VariantProps } from '@/utils/nativewind/utils';
+import type { VariantProps } from '@/utils/gluestack-utils/nativewind/utils';
 
 type IMotionViewProps = React.ComponentProps<typeof View> &
   MotionComponentProps<typeof View, ViewStyle, unknown, unknown, unknown>;

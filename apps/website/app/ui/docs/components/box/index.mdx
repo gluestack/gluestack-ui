@@ -1,4 +1,4 @@
-import { CodePreviewer } from '@/custom/components/code-previewer';
+import { CodePreviewer } from '@/components/custom/code-previewer';
 import { Box } from '@/components/ui/box';
 import { Text } from '@/components/ui/text';
 
@@ -49,7 +49,7 @@ npx gluestack-ui add box
 import React from 'react';
 import { View, ViewProps } from 'react-native';
 
-import type { VariantProps } from '@/utils/nativewind/utils/';
+import type { VariantProps } from '@/utils/gluestack-utils/nativewind/utils/';
 import { boxStyle } from './styles';
 
 type IBoxProps = ViewProps &
@@ -76,7 +76,7 @@ export { Box };
 import React from 'react';
 import { boxStyle } from './styles';
 
-import type { VariantProps } from '@/utils/nativewind/utils/';
+import type { VariantProps } from '@/utils/gluestack-utils/nativewind/utils/';
 
 type IBoxProps = React.ComponentPropsWithoutRef<'div'> &
   VariantProps<typeof boxStyle> & { className?: string };
@@ -97,8 +97,8 @@ export { Box };
 ### Step 3: Copy and paste the following code into styles.tsx in your project.
 
 ```tsx
-import { tva } from '@/utils/nativewind/utils/tva';
-import { isWeb } from '@/utils/nativewind/utils/IsWeb';
+import { tva } from '@/utils/gluestack-utils/nativewind/utils/tva';
+import { isWeb } from '@/utils/gluestack-utils/nativewind/utils/IsWeb';
 
 const baseStyle = isWeb
   ? 'flex flex-col relative z-0 box-border border-0 list-none min-w-0 min-h-0 bg-transparent items-stretch m-0 p-0 text-decoration-none'

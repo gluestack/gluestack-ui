@@ -1,4 +1,4 @@
-import { CodePreviewer } from '@/custom/components/code-previewer';
+import { CodePreviewer } from '@/components/custom/code-previewer';
 import { Center } from '@/components/ui/center';
 import { Text } from '@/components/ui/text';
 
@@ -49,7 +49,7 @@ npx gluestack-ui add center
 import { View, ViewProps } from 'react-native';
 import React from 'react';
 import { centerStyle } from './styles';
-import type { VariantProps } from '@/utils/nativewind/utils';
+import type { VariantProps } from '@/utils/gluestack-utils/nativewind/utils';
 
 type ICenterProps = ViewProps & VariantProps<typeof centerStyle>;
 
@@ -78,7 +78,7 @@ export { Center };
 import React from 'react';
 import { centerStyle } from './styles';
 
-import type { VariantProps } from '@/utils/nativewind/utils';
+import type { VariantProps } from '@/utils/gluestack-utils/nativewind/utils';
 
 type ICenterProps = React.ComponentPropsWithoutRef<'div'> &
   VariantProps<typeof centerStyle>;
@@ -100,8 +100,8 @@ export { Center };
 ### Step 3: Copy and paste the following code into styles.tsx in your project.
 
 ```jsx 
-import { tva } from "@/utils/nativewind/utils";
-import { isWeb } from "@/utils/nativewind/utils/IsWeb";
+import { tva } from "@/utils/gluestack-utils/nativewind/utils";
+import { isWeb } from "@/utils/gluestack-utils/nativewind/utils/IsWeb";
 
 const baseStyle = isWeb ? "flex flex-col relative z-0" : "";
 
