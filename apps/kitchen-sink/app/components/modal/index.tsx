@@ -15,9 +15,11 @@ import { Pressable } from '@/components/ui/pressable';
 
 import { SafeAreaView } from 'react-native';
 import React from 'react';
+import { ScrollView } from 'react-native';
 export default function ComponentExamples() {
   return (
     <SafeAreaView>
+        <ScrollView>
       <ComponentPreviewer props={{
   "size": {
     "control": {
@@ -465,6 +467,7 @@ export default function ComponentExamples() {
     </>
   );}}
 </ComponentPreviewer>
+        </ScrollView>
     </SafeAreaView>
   );
 }

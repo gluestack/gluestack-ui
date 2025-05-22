@@ -5,9 +5,11 @@ import { Center } from '@/components/ui/center';
 
 import { SafeAreaView } from 'react-native';
 import React from 'react';
+import { ScrollView } from 'react-native';
 export default function ComponentExamples() {
   return (
     <SafeAreaView>
+        <ScrollView>
       <ComponentPreviewer props={{}}>
   {props => {
   return <Heading>I am a Heading</Heading>}}
@@ -27,6 +29,7 @@ return (
 </Center>
 );}}
 </ComponentPreviewer>
+        </ScrollView>
     </SafeAreaView>
   );
 }

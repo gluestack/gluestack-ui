@@ -7,9 +7,11 @@ import { Badge, BadgeText } from '@/components/ui/badge';
 
 import { SafeAreaView } from 'react-native';
 import React from 'react';
+import { ScrollView } from 'react-native';
 export default function ComponentExamples() {
   return (
     <SafeAreaView>
+        <ScrollView>
       <ComponentPreviewer props={{
   "placement": {
     "control": {
@@ -237,6 +239,7 @@ export default function ComponentExamples() {
     </Menu>
   );}}
 </ComponentPreviewer>
+        </ScrollView>
     </SafeAreaView>
   );
 }

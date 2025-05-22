@@ -5,9 +5,11 @@ import { Button, ButtonText } from '@/components/ui/button';
 
 import { SafeAreaView } from 'react-native';
 import React from 'react';
+import { ScrollView } from 'react-native';
 export default function ComponentExamples() {
   return (
     <SafeAreaView>
+        <ScrollView>
       <ComponentPreviewer props={{
   "placement": {
     "control": {
@@ -48,6 +50,7 @@ export default function ComponentExamples() {
     </Tooltip>
   )}}
 </ComponentPreviewer>
+        </ScrollView>
     </SafeAreaView>
   );
 }

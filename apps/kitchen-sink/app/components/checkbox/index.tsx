@@ -12,9 +12,11 @@ import { Center } from '@/components/ui/center';
 
 import { SafeAreaView } from 'react-native';
 import React from 'react';
+import { ScrollView } from 'react-native';
 export default function ComponentExamples() {
   return (
     <SafeAreaView>
+        <ScrollView>
       <ComponentPreviewer props={{
   "isDisabled": {
     "control": {
@@ -280,6 +282,7 @@ export default function ComponentExamples() {
     </Center>
   );}}
 </ComponentPreviewer>
+        </ScrollView>
     </SafeAreaView>
   );
 }

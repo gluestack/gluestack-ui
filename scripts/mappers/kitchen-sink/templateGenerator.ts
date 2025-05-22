@@ -1,9 +1,6 @@
 import path from "path";
 import * as fileOps from "../utils/fileOperations";
-import {
-  componentPreviewerTemplate,
-  codePreviewerTemplate,
-} from "./templates";
+import { componentPreviewerTemplate, codePreviewerTemplate } from "./templates";
 
 interface ImportMap {
   [key: string]: string[];
@@ -28,7 +25,7 @@ export const generateCodePreviewer = (
     code = code
       .replace(/function Example\(\)/, "")
       .replace(/\\\\/g, "")
-      
+
       .trim();
 
     const meta = fileOps.readJsonFile(argsPath);
@@ -205,10 +202,13 @@ export const copyProcessedAnnotations = (
       const wrappedContent = `
 import { SafeAreaView } from 'react-native';
 import React from 'react';
+import { ScrollView } from 'react-native';
 export default function ComponentExamples() {
   return (
     <SafeAreaView>
+        <ScrollView>
       ${processedContent.trim()}
+        </ScrollView>
     </SafeAreaView>
   );
 }`;
