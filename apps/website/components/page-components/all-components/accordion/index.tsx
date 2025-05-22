@@ -19,7 +19,7 @@ export default function Example() {
     <Accordion
       size="{{size}}"
       variant="{{variant}}"
-      type="single"
+      type="{{type}}"
       isCollapsible={ {{isCollapsible}} }
       isDisabled={ {{isDisabled}} }
       className="m-5 w-[90%] border border-outline-200"

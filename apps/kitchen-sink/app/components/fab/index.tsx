@@ -19,7 +19,7 @@ import React from 'react';
 import { ScrollView } from 'react-native';
 export default function ComponentExamples() {
   return (
-    <SafeAreaView className="flex-1 bg-background-50">
+    <SafeAreaView className="flex-1 bg-background-0">
         <ScrollView>
       <ComponentPreviewer props={{
   "size": {
@@ -65,7 +65,7 @@ export default function ComponentExamples() {
     },
     "defaultValue": false
   }
-}}>
+}} title={undefined}>
   {props => {
   return (
     <Box className="h-[360px] w-80 bg-background-50 rounded-md">
@@ -83,7 +83,7 @@ export default function ComponentExamples() {
   )}}
 </ComponentPreviewer>
 
-<ComponentPreviewer props={{}}>
+<ComponentPreviewer props={{}} title={"FAB with Icon"}>
   {props => {
   const data = [
     {
@@ -135,7 +135,7 @@ export default function ComponentExamples() {
   );}}
 </ComponentPreviewer>
 
-<ComponentPreviewer props={{}}>
+<ComponentPreviewer props={{}} title={"FAB with Icon and Text"}>
   {props => {
   return (
     <Box className='max-w-96 border rounded-lg border-outline-200 py-[56px] px-6 mx-5 bg-background-100'>
@@ -198,7 +198,7 @@ export default function ComponentExamples() {
   );}}
 </ComponentPreviewer>
 
-<ComponentPreviewer props={{}}>
+<ComponentPreviewer props={{}} title={"Placement"}>
   {props => {
   return (
     <Box className='border rounded-lg border-outline-300 py-4 bg-background-0 mx-5'>
@@ -241,7 +241,7 @@ export default function ComponentExamples() {
   );}}
 </ComponentPreviewer>
 
-<ComponentPreviewer props={{}}>
+<ComponentPreviewer props={{}} title={"Custom Placement"}>
   {props => {
   return (
     <Box className='max-w-96 border rounded-lg border-outline-200 overflow-hidden mx-5 bg-background-100'>

@@ -14,7 +14,7 @@ import React from 'react';
 import { ScrollView } from 'react-native';
 export default function ComponentExamples() {
   return (
-    <SafeAreaView className="flex-1 bg-background-50">
+    <SafeAreaView className="flex-1 bg-background-0">
         <ScrollView>
       <ComponentPreviewer props={{
   "variant": {
@@ -52,7 +52,7 @@ export default function ComponentExamples() {
     ],
     "defaultValue": "md"
   }
-}}>
+}} title={undefined}>
   {props => {
   return (
     <Button variant={props.variant} size={props.size} action={props.action}>
@@ -61,7 +61,7 @@ export default function ComponentExamples() {
   )}}
 </ComponentPreviewer>
 
-<ComponentPreviewer props={{}}>
+<ComponentPreviewer props={{}} title={undefined}>
   {props => {
   return (
     <Button className='p-3'>
@@ -71,7 +71,7 @@ export default function ComponentExamples() {
   );}}
 </ComponentPreviewer>
 
-<ComponentPreviewer props={{}}>
+<ComponentPreviewer props={{}} title={undefined}>
   {props => {
   return (
     <Button
@@ -83,7 +83,7 @@ export default function ComponentExamples() {
   );}}
 </ComponentPreviewer>
 
-<ComponentPreviewer props={{}}>
+<ComponentPreviewer props={{}} title={undefined}>
   {props => {
   return (
     <Button variant='link'>
@@ -95,7 +95,7 @@ export default function ComponentExamples() {
   );}}
 </ComponentPreviewer>
 
-<ComponentPreviewer props={{}}>
+<ComponentPreviewer props={{}} title={undefined}>
   {props => {
   return (
     <Box>
@@ -111,7 +111,7 @@ export default function ComponentExamples() {
   );}}
 </ComponentPreviewer>
 
-<ComponentPreviewer props={{}}>
+<ComponentPreviewer props={{}} title={undefined}>
   {props => {
   return (
     <Center>

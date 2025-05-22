@@ -1,4 +1,5 @@
 {
+    "title": "File Upload with Actionsheet",
     "argTypes": {},
     "reactLive": {
         "Actionsheet": "@/components/ui/actionsheet",

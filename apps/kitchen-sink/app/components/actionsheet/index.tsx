@@ -19,9 +19,9 @@ import React from 'react';
 import { ScrollView } from 'react-native';
 export default function ComponentExamples() {
   return (
-    <SafeAreaView className="flex-1 bg-background-50">
+    <SafeAreaView className="flex-1 bg-background-0">
         <ScrollView>
-      <ComponentPreviewer props={{}}>
+      <ComponentPreviewer props={{}} title={undefined}>
   {props => {
   const [showActionsheet, setShowActionsheet] = React.useState(false)
   const handleClose = () => setShowActionsheet(false)
@@ -57,7 +57,7 @@ export default function ComponentExamples() {
   )}}
 </ComponentPreviewer>
 
-<ComponentPreviewer props={{}}>
+<ComponentPreviewer props={{}} title={"Without SnapPoints"}>
   {props => {
   const [showActionsheet, setShowActionsheet] = React.useState(false)
   const handleClose = () => setShowActionsheet(false)
@@ -93,7 +93,7 @@ export default function ComponentExamples() {
   )}}
 </ComponentPreviewer>
 
-<ComponentPreviewer props={{}}>
+<ComponentPreviewer props={{}} title={"With SnapPoints"}>
   {props => {
   const [showActionsheet, setShowActionsheet] = React.useState(false);
   const handleClose = () => setShowActionsheet(false);
@@ -152,7 +152,7 @@ export default function ComponentExamples() {
   );}}
 </ComponentPreviewer>
 
-<ComponentPreviewer props={{}}>
+<ComponentPreviewer props={{}} title={"Icons"}>
   {props => {
   const [showActionsheet, setShowActionsheet] = React.useState(false);
   const handleClose = () => setShowActionsheet(false);
@@ -194,7 +194,7 @@ export default function ComponentExamples() {
   );}}
 </ComponentPreviewer>
 
-<ComponentPreviewer props={{}}>
+<ComponentPreviewer props={{}} title={"VirtualizedList"}>
   {props => {
     const [showActionsheet, setShowActionsheet] = React.useState(false);
     const handleClose = () => setShowActionsheet(false);
@@ -238,7 +238,7 @@ export default function ComponentExamples() {
 );}}
 </ComponentPreviewer>
 
-<ComponentPreviewer props={{}}>
+<ComponentPreviewer props={{}} title={"FlatList"}>
   {props => {
     const [showActionsheet, setShowActionsheet] = React.useState(false);
     const handleClose = () => setShowActionsheet(false);
@@ -286,7 +286,7 @@ export default function ComponentExamples() {
 );}}
 </ComponentPreviewer>
 
-<ComponentPreviewer props={{}}>
+<ComponentPreviewer props={{}} title={"SectionList"}>
   {props => {
     const [showActionsheet, setShowActionsheet] = React.useState(false);
     const handleClose = () => setShowActionsheet(false);
@@ -328,7 +328,7 @@ export default function ComponentExamples() {
 );}}
 </ComponentPreviewer>
 
-<ComponentPreviewer props={{}}>
+<ComponentPreviewer props={{}} title={"File Upload with Actionsheet"}>
   {props => {
           const [showActionsheet, setShowActionsheet] = React.useState(false);
           const handleClose = () => setShowActionsheet(false);

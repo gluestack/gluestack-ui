@@ -18,7 +18,7 @@ Explore gluestack's Accordion component for Expo, next.js, React & React Native.
     <Accordion
       size="{{size}}"
       variant="{{variant}}"
-      type="single"
+      type="{{type}}"
       isCollapsible={ {{isCollapsible}} }
       isDisabled={ {{isDisabled}} }
       className="m-5 w-[90%] border border-outline-200"
@@ -667,10 +667,6 @@ We have outlined the various features that ensure the Accordion component is acc
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
-#### Customized Component
-
-The following example demonstrates how easily you can customize the Accordion component to suit your needs.
-
 <CodePreviewer
   code={`function App(){
     return (
@@ -777,9 +773,7 @@ The following example demonstrates how easily you can customize the Accordion co
   reactLive={{ Accordion, AccordionItem, AccordionHeader, AccordionTrigger, AccordionTitleText, AccordionContent, AccordionContentText, AccordionIcon, Divider, ChevronDownIcon, ChevronUpIcon }}
 />
 
-#### Rounded corners
 
-The borderRadius prop can be used to create rounded corners for both the Accordion and AccordionItem components.
 <CodePreviewer
   code={`function App(){
     return (
@@ -846,9 +840,7 @@ The borderRadius prop can be used to create rounded corners for both the Accordi
   reactLive={{ Accordion, AccordionItem, AccordionHeader, AccordionTrigger, AccordionTitleText, AccordionContent, AccordionContentText, AccordionIcon, Divider, AddIcon, RemoveIcon }}
 />
 
-#### Disabled item
 
-You can disable an item by setting the isDisabled prop to true. This will prevent the user from interacting with the item and its content. You can also disable the whole accordion by setting the isDisabled prop to true on the Accordion component.
 <CodePreviewer
   code={`function App(){
     return (
@@ -914,10 +906,6 @@ You can disable an item by setting the isDisabled prop to true. This will preven
   reactLive={{ Accordion, AccordionItem, AccordionHeader, AccordionTrigger, AccordionTitleText, AccordionContent, AccordionContentText, AccordionIcon, Divider, AddIcon, RemoveIcon }}
 />
 
-
-#### Default value
-
-Use the defaultValue prop to define the open item by default.
 
 <CodePreviewer
   code={`function App(){
@@ -1010,10 +998,6 @@ Use the defaultValue prop to define the open item by default.
 />
 
 
-#### Nested Components
-
-You can nest Accordion components to create a nested accordion. This is useful when you want to group related content together. In the following example, we have created a nested accordion to group the states of USA by region.
-
 <CodePreviewer
   code={`function App(){
     return (
@@ -1103,11 +1087,6 @@ You can nest Accordion components to create a nested accordion. This is useful w
   argTypes={{}}
   reactLive={{ Accordion, AccordionItem, AccordionHeader, AccordionTrigger, AccordionTitleText, AccordionContent, AccordionContentText, AccordionIcon, Divider, AddIcon, RemoveIcon }}
 />
-
-#### Controlled Accordion
-
-A component is controlled when it's managed by its parent using props.
-You can make the Accordion component controlled by passing the value prop to the Accordion and setting the onValueChange to update the value prop. In the following example, we have created a controlled accordion to display the expanded state of the accordion.
 
 <CodePreviewer
   code={`function App(){

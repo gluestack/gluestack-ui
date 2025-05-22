@@ -9,7 +9,7 @@ import React from 'react';
 import { ScrollView } from 'react-native';
 export default function ComponentExamples() {
   return (
-    <SafeAreaView className="flex-1 bg-background-50">
+    <SafeAreaView className="flex-1 bg-background-0">
         <ScrollView>
       <ComponentPreviewer props={{
   "size": {
@@ -55,13 +55,13 @@ export default function ComponentExamples() {
     },
     "defaultValue": false
   }
-}}>
+}} title={undefined}>
   {props => {
   return (
     <Accordion
       size={props.size}
       variant={props.variant}
-      type="single"
+      type={props.type}
       isCollapsible={props.isCollapsible}
       isDisabled={props.isDisabled}
       className="m-5 w-[90%] border border-outline-200"
@@ -124,7 +124,7 @@ export default function ComponentExamples() {
   )}}
 </ComponentPreviewer>
 
-<ComponentPreviewer props={{}}>
+<ComponentPreviewer props={{}} title={"Customized Component"}>
   {props => {
     return (
       <Accordion
@@ -227,7 +227,7 @@ export default function ComponentExamples() {
 );}}
 </ComponentPreviewer>
 
-<ComponentPreviewer props={{}}>
+<ComponentPreviewer props={{}} title={"Rounded corners"}>
   {props => {
     return (
           <Accordion className="m-5 w-[80%] max-w-[640px] bg-transparent">
@@ -290,7 +290,7 @@ export default function ComponentExamples() {
 );}}
 </ComponentPreviewer>
 
-<ComponentPreviewer props={{}}>
+<ComponentPreviewer props={{}} title={"Disabled item"}>
   {props => {
     return (
           <Accordion variant="unfilled" className="m-5 w-[90%]">
@@ -352,7 +352,7 @@ export default function ComponentExamples() {
 );}}
 </ComponentPreviewer>
 
-<ComponentPreviewer props={{}}>
+<ComponentPreviewer props={{}} title={"Default value"}>
   {props => {
     return (
           <Accordion variant="unfilled" type="single" defaultValue="item-3" className="w-[90%] m-5">
@@ -439,7 +439,7 @@ export default function ComponentExamples() {
 );}}
 </ComponentPreviewer>
 
-<ComponentPreviewer props={{}}>
+<ComponentPreviewer props={{}} title={"Nested Components"}>
   {props => {
     return (
            <Accordion
@@ -526,7 +526,7 @@ export default function ComponentExamples() {
 );}}
 </ComponentPreviewer>
 
-<ComponentPreviewer props={{}}>
+<ComponentPreviewer props={{}} title={"Controlled Accordion"}>
   {props => {
     const [selectedValues, setSelectedValues] = React.useState(['item-1', 'item-2']);
     return (

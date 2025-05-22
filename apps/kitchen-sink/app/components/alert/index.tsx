@@ -14,7 +14,7 @@ import React from 'react';
 import { ScrollView } from 'react-native';
 export default function ComponentExamples() {
   return (
-    <SafeAreaView className="flex-1 bg-background-50">
+    <SafeAreaView className="flex-1 bg-background-0">
         <ScrollView>
       <ComponentPreviewer props={{
   "variant": {
@@ -40,7 +40,7 @@ export default function ComponentExamples() {
     ],
     "defaultValue": "muted"
   }
-}}>
+}} title={undefined}>
   {props => {
   return (
     <Alert action={props.action} variant={props.variant}>
@@ -50,7 +50,7 @@ export default function ComponentExamples() {
   )}}
 </ComponentPreviewer>
 
-<ComponentPreviewer props={{}}>
+<ComponentPreviewer props={{}} title={"Alert with CTA"}>
   {props => {
   return (
     <Alert
@@ -70,7 +70,7 @@ export default function ComponentExamples() {
   );}}
 </ComponentPreviewer>
 
-<ComponentPreviewer props={{}}>
+<ComponentPreviewer props={{}} title={"Alert on cloud sync"}>
   {props => {
   return (
     <Alert
@@ -90,7 +90,7 @@ export default function ComponentExamples() {
   );}}
 </ComponentPreviewer>
 
-<ComponentPreviewer props={{}}>
+<ComponentPreviewer props={{}} title={"Warning alert"}>
   {props => {
   return (
     <Alert action="error" className="gap-3">
@@ -105,7 +105,7 @@ export default function ComponentExamples() {
   );}}
 </ComponentPreviewer>
 
-<ComponentPreviewer props={{}}>
+<ComponentPreviewer props={{}} title={"Alert on confirm password modal"}>
   {props => {
   const [showPassword, setShowPassword] = React.useState(false);
   const handleState = () => {

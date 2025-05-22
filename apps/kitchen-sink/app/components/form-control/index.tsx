@@ -15,7 +15,7 @@ import React from 'react';
 import { ScrollView } from 'react-native';
 export default function ComponentExamples() {
   return (
-    <SafeAreaView className="flex-1 bg-background-50">
+    <SafeAreaView className="flex-1 bg-background-0">
         <ScrollView>
       <ComponentPreviewer props={{
   "isDisabled": {
@@ -47,7 +47,7 @@ export default function ComponentExamples() {
     ],
     "defaultValue": "md"
   }
-}}>
+}} title={undefined}>
   {props => {
   const [isInvalid, setIsInvalid] = React.useState(false);
   const [inputValue, setInputValue] = React.useState("12345");
@@ -99,7 +99,7 @@ export default function ComponentExamples() {
   );}}
 </ComponentPreviewer>
 
-<ComponentPreviewer props={{}}>
+<ComponentPreviewer props={{}} title={undefined}>
   {props => {
   const [values, setValues] = React.useState("Mango");
   return (
@@ -146,7 +146,7 @@ export default function ComponentExamples() {
   );}}
 </ComponentPreviewer>
 
-<ComponentPreviewer props={{}}>
+<ComponentPreviewer props={{}} title={undefined}>
   {props => {
       const [values, setValues] = React.useState(['bits']);
         return (
@@ -191,7 +191,7 @@ export default function ComponentExamples() {
         );}}
 </ComponentPreviewer>
 
-<ComponentPreviewer props={{}}>
+<ComponentPreviewer props={{}} title={undefined}>
   {props => {
   return (
     <FormControl isInvalid>
@@ -238,7 +238,7 @@ export default function ComponentExamples() {
   );}}
 </ComponentPreviewer>
 
-<ComponentPreviewer props={{}}>
+<ComponentPreviewer props={{}} title={undefined}>
   {props => {
   return (
     <FormControl>
@@ -259,7 +259,7 @@ export default function ComponentExamples() {
   );}}
 </ComponentPreviewer>
 
-<ComponentPreviewer props={{}}>
+<ComponentPreviewer props={{}} title={undefined}>
   {props => {
   return (
     <HStack>

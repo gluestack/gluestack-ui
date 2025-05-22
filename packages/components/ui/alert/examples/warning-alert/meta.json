@@ -1,4 +1,5 @@
 {
+  "title": "Warning alert",
   "argTypes": {},
   "reactLive": {
     "Alert": "@/components/ui/alert",

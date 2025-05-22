@@ -1,5 +1,7 @@
 {
-    "argTypes": {},
+  "title": "Customized Component",
+  "description": "The following example demonstrates how easily you can customize the Accordion component to suit your needs.",
+  "argTypes": {},
     "reactLive": {
       "Accordion": "@/components/ui/accordion",
       "AccordionItem": "@/components/ui/accordion",

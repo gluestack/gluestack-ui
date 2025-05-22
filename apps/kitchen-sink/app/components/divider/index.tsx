@@ -14,9 +14,9 @@ import React from 'react';
 import { ScrollView } from 'react-native';
 export default function ComponentExamples() {
   return (
-    <SafeAreaView className="flex-1 bg-background-50">
+    <SafeAreaView className="flex-1 bg-background-0">
         <ScrollView>
-      <ComponentPreviewer props={{}}>
+      <ComponentPreviewer props={{}} title={undefined}>
   {props => {
   return (
 <Center>
@@ -31,7 +31,7 @@ export default function ComponentExamples() {
 )}}
 </ComponentPreviewer>
 
-<ComponentPreviewer props={{}}>
+<ComponentPreviewer props={{}} title={"Variants"}>
   {props => {
   return (
     <VStack>
@@ -55,7 +55,7 @@ export default function ComponentExamples() {
   );}}
 </ComponentPreviewer>
 
-<ComponentPreviewer props={{}}>
+<ComponentPreviewer props={{}} title={"Orientation"}>
   {props => {
   return (
     <VStack
@@ -115,7 +115,7 @@ export default function ComponentExamples() {
   );}}
 </ComponentPreviewer>
 
-<ComponentPreviewer props={{}}>
+<ComponentPreviewer props={{}} title={"With & Without Inset"}>
   {props => {
   return (
     <VStack space="2xl">
@@ -149,7 +149,7 @@ export default function ComponentExamples() {
   );}}
 </ComponentPreviewer>
 
-<ComponentPreviewer props={{}}>
+<ComponentPreviewer props={{}} title={"Adding content within a Divider"}>
   {props => {
   return (
     <Box className="py-9 px-20 m-5 rounded-lg border border-outline-300">

@@ -13,7 +13,7 @@ import React from 'react';
 import { ScrollView } from 'react-native';
 export default function ComponentExamples() {
   return (
-    <SafeAreaView className="flex-1 bg-background-50">
+    <SafeAreaView className="flex-1 bg-background-0">
         <ScrollView>
       <ComponentPreviewer props={{
   "isDisabled": {
@@ -57,7 +57,7 @@ export default function ComponentExamples() {
     ],
     "defaultValue": "md"
   }
-}}>
+}} title={undefined}>
   {props => {
   return (
     <Input variant={props.variant} size={props.size} isDisabled={props.isDisabled} isInvalid={props.isInvalid} isReadOnly={props.isReadOnly}>
@@ -66,7 +66,7 @@ export default function ComponentExamples() {
   )}}
 </ComponentPreviewer>
 
-<ComponentPreviewer props={{}}>
+<ComponentPreviewer props={{}} title={undefined}>
   {props => {
   const [showPassword, setShowPassword] = React.useState(false);
   const handleState = () => {
@@ -107,7 +107,7 @@ export default function ComponentExamples() {
   );}}
 </ComponentPreviewer>
 
-<ComponentPreviewer props={{}}>
+<ComponentPreviewer props={{}} title={undefined}>
   {props => {
   return (
     <Input>

@@ -12,9 +12,10 @@ type ComponentPreviewerProps = {
       defaultValue: string | boolean;
     };
   };
+  title?: string;
 };
 
-export const ComponentPreviewer = ({ children, props }: ComponentPreviewerProps) => {
+export const ComponentPreviewer = ({ children, props, title }: ComponentPreviewerProps) => {
   // Initialize state for each option dynamically
   const initialState = Object.keys(props).reduce(
     (acc, key) => {
@@ -88,7 +89,7 @@ export const ComponentPreviewer = ({ children, props }: ComponentPreviewerProps)
 
   return (
     <View className="p-4">
-      <Text className="text-lg font-semibold">Component Preview</Text>
+    
 
       {/* Loop through the props dynamically and render controls */}
       {Object.keys(props).map((key) => (
@@ -101,8 +102,8 @@ export const ComponentPreviewer = ({ children, props }: ComponentPreviewerProps)
       ))}
 
       {/* Preview section */}
+      <Text className="text-lg font-semibold text-typography-900">{title}</Text>
       <View className="mt-8 border-t pt-4">
-        <Text className="text-lg font-semibold mb-4">Preview</Text>
         <View className="flex items-center justify-center">
           {children(selectedValues)}
         </View>

@@ -835,7 +835,7 @@ The Examples section provides visual representations of the different variants o
 
 Demonstrates a common UI pattern known as keyboard handling or keyboard scrolling, in which an input field is automatically scrolled into view when the user taps on it and the keyboard appears. This improves usability and ensures that the input field is always visible and accessible, even when the keyboard is blocking part of the screen.
 
-##### Without SnapPoints
+
 <CodePreviewer
   code={`function App() {
   const [showActionsheet, setShowActionsheet] = React.useState(false)
@@ -875,7 +875,7 @@ Demonstrates a common UI pattern known as keyboard handling or keyboard scrollin
   reactLive={{ Actionsheet, ActionsheetContent, ActionsheetItem, ActionsheetItemText, ActionsheetDragIndicator, ActionsheetDragIndicatorWrapper, ActionsheetBackdrop, Button, ButtonText }}
 />
 
-##### With SnapPoints
+
 <CodePreviewer
   code={`function App() {
   const [showActionsheet, setShowActionsheet] = React.useState(false);
@@ -938,9 +938,6 @@ Demonstrates a common UI pattern known as keyboard handling or keyboard scrollin
   reactLive={{ Actionsheet, ActionsheetContent, ActionsheetItem, ActionsheetItemText, ActionsheetDragIndicator, ActionsheetDragIndicatorWrapper, ActionsheetBackdrop, Button, ButtonText, VStack, HStack, Box, Image, FormControl, FormControlLabel, FormControlLabelText, Input, InputSlot, InputField, InputIcon, CreditCardIcon, Text }}
 />
 
-#### Icons
-
-The Actionsheet with Icons is a variation of the Actionsheet component that displays icons next to each option. It's commonly used in apps for a more visual representation of options and easier navigation.
 
 <CodePreviewer
   code={`function App() {
@@ -987,9 +984,6 @@ The Actionsheet with Icons is a variation of the Actionsheet component that disp
   reactLive={{ Actionsheet, ActionsheetContent, ActionsheetItem, ActionsheetItemText, ActionsheetDragIndicator, ActionsheetDragIndicatorWrapper, ActionsheetBackdrop, ActionsheetIcon, Button, ButtonText, EditIcon, EyeOffIcon, ClockIcon, DownloadIcon, TrashIcon }}
 />
 
-#### VirtualizedList
-
-The Actionsheet with Virtualized List includes a virtualized list for better performance when displaying a large number of options. It's commonly used in apps with long lists of options for an improved user experience.
 
 <CodePreviewer
   code={`function App(){
@@ -1038,9 +1032,6 @@ The Actionsheet with Virtualized List includes a virtualized list for better per
   reactLive={{ Actionsheet, ActionsheetContent, ActionsheetItem, ActionsheetItemText, ActionsheetDragIndicator, ActionsheetDragIndicatorWrapper, ActionsheetBackdrop, Button, ButtonText, ActionsheetVirtualizedList }}
 />
 
-#### FlatList
-
-The Actionsheet with Flat List is a variation of the Actionsheet component that displays a flat list of options. It's commonly used in apps for a simple and straightforward display of options to the user.
 
 <CodePreviewer
   code={`function App(){
@@ -1093,9 +1084,6 @@ The Actionsheet with Flat List is a variation of the Actionsheet component that 
   reactLive={{ Actionsheet, ActionsheetBackdrop, ActionsheetContent, ActionsheetDragIndicator, ActionsheetDragIndicatorWrapper, ActionsheetItem, ActionsheetItemText, ActionsheetFlatList, Button, ButtonText }}
 />
 
-#### SectionList
-
-The Actionsheet with SectionList is a variation of the Actionsheet component that displays a sectioned list of options. It's commonly used in apps to organize options into different categories or sections for better readability and navigation.
 
 <CodePreviewer
   code={`function App(){
@@ -1142,8 +1130,6 @@ The Actionsheet with SectionList is a variation of the Actionsheet component tha
   reactLive={{ Actionsheet, ActionsheetBackdrop, ActionsheetContent, ActionsheetDragIndicator, ActionsheetDragIndicatorWrapper, ActionsheetItem, ActionsheetItemText, ActionsheetSectionList, ActionsheetSectionHeaderText, Button, ButtonText }}
 />
 
-
-#### File Upload with Actionsheet
 
 <CodePreviewer
   code={`function App(){

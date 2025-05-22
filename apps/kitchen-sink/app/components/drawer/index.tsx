@@ -19,7 +19,7 @@ import React from 'react';
 import { ScrollView } from 'react-native';
 export default function ComponentExamples() {
   return (
-    <SafeAreaView className="flex-1 bg-background-50">
+    <SafeAreaView className="flex-1 bg-background-0">
         <ScrollView>
       <ComponentPreviewer props={{
   "size": {
@@ -46,7 +46,7 @@ export default function ComponentExamples() {
     ],
     "defaultValue": "left"
   }
-}}>
+}} title={undefined}>
   {props => {
   const [showDrawer, setShowDrawer] = React.useState(false);
   return (
@@ -93,7 +93,7 @@ export default function ComponentExamples() {
   );}}
 </ComponentPreviewer>
 
-<ComponentPreviewer props={{}}>
+<ComponentPreviewer props={{}} title={"Filter"}>
   {props => {
   const [showDrawer, setShowDrawer] = React.useState(false);
   const [categories, setCategories] = React.useState([]);
@@ -191,7 +191,7 @@ export default function ComponentExamples() {
   );}}
 </ComponentPreviewer>
 
-<ComponentPreviewer props={{}}>
+<ComponentPreviewer props={{}} title={"Sidebar Menu"}>
   {props => {
   const [showDrawer, setShowDrawer] = React.useState(false);
   return (

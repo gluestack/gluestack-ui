@@ -15,7 +15,7 @@ import React from 'react';
 import { ScrollView } from 'react-native';
 export default function ComponentExamples() {
   return (
-    <SafeAreaView className="flex-1 bg-background-50">
+    <SafeAreaView className="flex-1 bg-background-0">
         <ScrollView>
       <ComponentPreviewer props={{
   "isDisabled": {
@@ -41,7 +41,7 @@ export default function ComponentExamples() {
     ],
     "defaultValue": "md"
   }
-}}>
+}} title={undefined}>
   {props => {
   return (
     <Checkbox isDisabled={props.isDisabled} isInvalid={props.isInvalid} size={props.size}>
@@ -53,7 +53,7 @@ export default function ComponentExamples() {
   )}}
 </ComponentPreviewer>
 
-<ComponentPreviewer props={{}}>
+<ComponentPreviewer props={{}} title={"Multiple Checkbox"}>
   {props => {
   const [values, setValues] = React.useState(["Eng"]);
   return (
@@ -84,7 +84,7 @@ export default function ComponentExamples() {
   );}}
 </ComponentPreviewer>
 
-<ComponentPreviewer props={{}}>
+<ComponentPreviewer props={{}} title={"Horizontal"}>
   {props => {
   const [values, setValues] = React.useState(["Illustration"]);
   return (
@@ -115,7 +115,7 @@ export default function ComponentExamples() {
   );}}
 </ComponentPreviewer>
 
-<ComponentPreviewer props={{}}>
+<ComponentPreviewer props={{}} title={"With Help Text"}>
   {props => {
   const [values, setValues] = React.useState(["Design"]);
   return (
@@ -146,7 +146,7 @@ export default function ComponentExamples() {
   );}}
 </ComponentPreviewer>
 
-<ComponentPreviewer props={{}}>
+<ComponentPreviewer props={{}} title={"Form Control"}>
   {props => {
   return (
     <FormControl>
@@ -176,7 +176,7 @@ export default function ComponentExamples() {
   );}}
 </ComponentPreviewer>
 
-<ComponentPreviewer props={{}}>
+<ComponentPreviewer props={{}} title={"Label Left"}>
   {props => {
   const [values, setValues] = React.useState(["Jane"]);
   return (
@@ -207,7 +207,7 @@ export default function ComponentExamples() {
   );}}
 </ComponentPreviewer>
 
-<ComponentPreviewer props={{}}>
+<ComponentPreviewer props={{}} title={"Controlled"}>
   {props => {
   const [values, setValues] = React.useState(['UX Research']);
   return (
@@ -232,7 +232,7 @@ export default function ComponentExamples() {
   );}}
 </ComponentPreviewer>
 
-<ComponentPreviewer props={{}}>
+<ComponentPreviewer props={{}} title={"Uncontrolled"}>
   {props => {
   const checkboxRef = React.useRef(null);
   const handleCheckboxChange = (e) => {
@@ -258,7 +258,7 @@ export default function ComponentExamples() {
   );}}
 </ComponentPreviewer>
 
-<ComponentPreviewer props={{}}>
+<ComponentPreviewer props={{}} title={"Checkbox Group"}>
   {props => {
   const [values, setValues] = React.useState([]);
   return (

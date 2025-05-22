@@ -1,4 +1,6 @@
 {
+  "title": "VirtualizedList",
+  "description": "The Actionsheet with Virtualized List includes a virtualized list for better performance when displaying a large number of options. It's commonly used in apps with long lists of options for an improved user experience.",
   "argTypes": {},
   "reactLive": {
     "Actionsheet": "@/components/ui/actionsheet",

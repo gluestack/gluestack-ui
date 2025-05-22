@@ -8,7 +8,7 @@ import React from 'react';
 import { ScrollView } from 'react-native';
 export default function ComponentExamples() {
   return (
-    <SafeAreaView className="flex-1 bg-background-50">
+    <SafeAreaView className="flex-1 bg-background-0">
         <ScrollView>
       <ComponentPreviewer props={{
   "space": {
@@ -33,7 +33,7 @@ export default function ComponentExamples() {
     },
     "defaultValue": false
   }
-}}>
+}} title={undefined}>
   {props => {
   return (
     <HStack space={props.space} reversed={props.isReversed}>
@@ -44,7 +44,7 @@ export default function ComponentExamples() {
   )}}
 </ComponentPreviewer>
 
-<ComponentPreviewer props={{}}>
+<ComponentPreviewer props={{}} title={undefined}>
   {props => {
   return (
     <HStack space="md" reversed>

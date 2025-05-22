@@ -11,7 +11,7 @@ import React from 'react';
 import { ScrollView } from 'react-native';
 export default function ComponentExamples() {
   return (
-    <SafeAreaView className="flex-1 bg-background-50">
+    <SafeAreaView className="flex-1 bg-background-0">
         <ScrollView>
       <ComponentPreviewer props={{
   "size": {
@@ -38,7 +38,7 @@ export default function ComponentExamples() {
     ],
     "defaultValue": "horizontal"
   }
-}}>
+}} title={undefined}>
   {props => {
   return (
     <Center className="w-[300px] h-[150px]">
@@ -49,7 +49,7 @@ export default function ComponentExamples() {
   )}}
 </ComponentPreviewer>
 
-<ComponentPreviewer props={{}}>
+<ComponentPreviewer props={{}} title={undefined}>
   {props => {
   return (
     <VStack space="lg" className="max-w-80 w-full">
@@ -61,7 +61,7 @@ export default function ComponentExamples() {
   );}}
 </ComponentPreviewer>
 
-<ComponentPreviewer props={{}}>
+<ComponentPreviewer props={{}} title={undefined}>
   {props => {
   return (
     <VStack space="3xl" className="max-w-96 w-full">
@@ -81,7 +81,7 @@ export default function ComponentExamples() {
   );}}
 </ComponentPreviewer>
 
-<ComponentPreviewer props={{}}>
+<ComponentPreviewer props={{}} title={undefined}>
   {props => {
   return (
     <VStack space="lg" className="max-w-[410px] w-full">

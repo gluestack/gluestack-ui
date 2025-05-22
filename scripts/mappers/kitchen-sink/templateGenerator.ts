@@ -25,12 +25,11 @@ export const generateCodePreviewer = (
     code = code
       .replace(/function Example\(\)/, "")
       .replace(/\\\\/g, "")
-
       .trim();
 
     const meta = fileOps.readJsonFile(argsPath);
     const argTypes = JSON.stringify(meta.argTypes || {}, null, 2);
-
+    const title = JSON.stringify(meta.title);
     // Add reactLive imports to importMap
     if (meta.reactLive) {
       Object.entries(meta.reactLive).forEach(([key, value]) => {
@@ -72,7 +71,7 @@ export const generateCodePreviewer = (
       fileOps.writeTextFile(destFilePath, fileContent);
     }
 
-    return codePreviewerTemplate(code.trim(), argTypes);
+    return codePreviewerTemplate(code.trim(), argTypes, title);
   } catch (error) {
     console.error(
       `:x: Error building CodePreviewer for Example:${exampleName} in ${component}:`,
@@ -205,7 +204,7 @@ import React from 'react';
 import { ScrollView } from 'react-native';
 export default function ComponentExamples() {
   return (
-    <SafeAreaView className="flex-1 bg-background-50">
+    <SafeAreaView className="flex-1 bg-background-0">
         <ScrollView>
       ${processedContent.trim()}
         </ScrollView>

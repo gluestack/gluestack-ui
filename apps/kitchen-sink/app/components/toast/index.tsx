@@ -8,7 +8,7 @@ import React from 'react';
 import { ScrollView } from 'react-native';
 export default function ComponentExamples() {
   return (
-    <SafeAreaView className="flex-1 bg-background-50">
+    <SafeAreaView className="flex-1 bg-background-0">
         <ScrollView>
       <ComponentPreviewer props={{
   "action": {
@@ -34,7 +34,7 @@ export default function ComponentExamples() {
     ],
     "defaultValue": "solid"
   }
-}}>
+}} title={undefined}>
   {props => {
   const toast = useToast()
   const [toastId, setToastId] = React.useState(0)

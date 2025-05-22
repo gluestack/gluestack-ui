@@ -19,8 +19,9 @@ export default function Example() {
 
 export const codePreviewerTemplate = (
   code: string,
-  argTypes: string
-) => `<ComponentPreviewer props={${argTypes}}>
+  argTypes: string,
+  title: string
+) => `<ComponentPreviewer props={${argTypes}} title={${title}}>
   {props => ${code
     .replace(/function\s+\w+\s*\(\)/, '')
     .replace(/}$/, '')
